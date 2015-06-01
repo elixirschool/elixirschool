@@ -181,7 +181,7 @@ iex> not 42
 
 If you've used Ruby, string interpolation in Elixir will look familiar:
 
-```
+```elixir
 iex> name = "Sean"
 iex> "Hello #{name}"
 "Hello Sean"
@@ -191,7 +191,7 @@ iex> "Hello #{name}"
 
 String concatenation is uses the `<>` operator:
 
-```
+```elixir
 iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
