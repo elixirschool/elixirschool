@@ -28,9 +28,10 @@ __Features__:
 
 Other resources for learning and using Elixir:
 
-+ [Elixir Experience](http://elixirexperience.com)
-+ [Elixir Sips](http://elixirsips.com)
 + [Awesome Elixir](https://github.com/h4cc/awesome-elixir)
++ [Elixir Experience](http://elixirexperience.com)
++ [Elixir Sips](http://elixirsips.com) (_Requires subscription_)
++ [Exercisim.io - Elixir](https://github.com/exercism/xelixir)
 
 ## Contributing
 
