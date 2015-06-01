@@ -18,7 +18,7 @@ __Features__:
 ## Lessons
 
 1. [Basics](/lessons/basics.md) - Setup, basic types and operations.
-2. Collections - List, tuples, keywords, maps, dicts and functional combinators.
+2. [Collections](/lessons/collections.md) - List, tuples, keywords, maps, dicts and functional combinators.
 3. Pattern matching - Match operator, matching, and pin operator.
 4. Control flow - The `if`, `unless`, `case`, and `cond` structures.
 5. Composition - Modules, structs,
