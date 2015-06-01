@@ -9,7 +9,7 @@ List, tuples, keywords, maps, dicts and functional combinators.
 	- [List subtraction](#list-subtraction) 
 	- [Head / Tail](#head-/-tail) 
 - [Tuples](#tuples)
-- [Keywords](#keywords)
+- [Keyword lists](#keyword-lists)
 - [Maps](#maps)
 - [Dicts](#dicts)
 
@@ -92,9 +92,70 @@ iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
 
-## Keywords
+## Keyword lists
+
+Keywords and maps are the associative collections of Elixir; both implement the `Dict` module.  In Elixir, a keyword list is special list of tuples whos first element is an atom; they share performance with lists:
+
+```elixir
+iex> [foo: "bar", hello: "world"]
+[foo: "bar", hello: "world"]
+iex> [{:foo, "bar"}, {:hello, "world"}]
+[foo: "bar", hello: "world"]
+```
+
+The three characteristics of keyword lists highlight their importance:
+
++ Keys are atoms.
++ Keys are ordered.
++ Keys are unique.
+
+For these reasons keywords lists are most commonly used to pass options to functions.
 
 ## Maps
 
+In Elixir maps are the "go-to" key-value store, unlike keyword lists they allow keys of any type and they do not follow ordering.  You can define a map with the `%{}` syntax:
+
+```elixir
+iex> map = %{:foo => "bar", "hello" => :world}
+%{:foo => "bar", "hello" => :world}
+iex> map[:foo]
+"bar"
+iex> map["hello"]
+:world
+```
+
+If a duplicate is added to a map, it will replace the former value:
+
+```elixir
+iex> %{:foo => "bar", :foo => "hello world"}
+%{foo: "hello world"}
+```
+
+As we can see from the output above, there is a special syntax for maps containing only atom keys:
+
+```elixir
+iex> %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+
+iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
+true
+```
+
 ## Dicts
 
+In Elixir, both keyword lists and maps implement the `Dict` module; as such they are known collectively as dictionaries.  If you need to build your own key-value store, implementing the `Dict` module is a good place to start.
+
+The [`Dict` module](http://elixir-lang.org/docs/stable/elixir/#!Dict.html) provides a number of useful functions for interacting with, and manipulating, these dictionaries:
+
+```elixir
+# keyword lists
+iex> Dict.put([foo: "bar"], :hello, "world")
+[hello: "world", foo: "bar"]
+
+# maps
+iex> Dict.put(%{:foo => "bar"}, "hello", "world")
+%{:foo => "bar", "hello" => "world"}
+
+iex> Dict.has_key?(%{:foo => "bar"}, :foo)
+true
+```
