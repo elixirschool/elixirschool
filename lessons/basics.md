@@ -4,7 +4,6 @@ Setup, basic types and operations.
 
 ## Table of Contents
 
-- [Why Elixir?](#why-elixir?)
 - [Setup](#setup)
 	- [Install Elixir](#install-elixir) 
 	- [Interactive Mode](#interactive-mode)
@@ -20,8 +19,6 @@ Setup, basic types and operations.
 	- [Comparison](#comparison)
 	- [String concatenation](#string-concatenation)
 	- [String interpolation](#string-interpolation)
-	
-## Why Elixir?
 
 ## Setup
 
