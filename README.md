@@ -2,7 +2,9 @@
 
 Lessons in the Fundamentals of Elixir, inspired by Twitter's [Scala School](http://twitter.github.io/scala_school/).
 
-## About
+_This is actively being developed, your feedback is encouraged._
+
+## About Elixir
 
 "Elixir is a dynamic, functional language designed for building scalable and maintainable applications." -- [elixir-lang.org](http://elixir-lang.org/)
 
