@@ -1,4 +1,4 @@
-# Lesson 2 — Collections
+# Collections
 
 List, tuples, keywords, maps, dicts and functional combinators.
 

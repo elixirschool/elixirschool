@@ -1,4 +1,4 @@
-# Lesson 1 — Basics
+# Basics
 
 Setup, basic types and operations.
 
