@@ -18,10 +18,11 @@ __Features__:
 ## Lessons
 
 1. [Basics](/lessons/basics.md) - Setup, basic types and operations.
+1. [Strings and Binaries](/lessons/strings-binaries.md) - Strings, char list, and binaries.
 1. [Collections](/lessons/collections.md) - List, tuples, keywords, maps, dicts and functional combinators.
 1. [Enum](/lessons/enum.md) - A set of functions for working with collections.
-1. Pattern matching - Match operator, matching, and pin operator.
-1. Control flow - The `if`, `unless`, `case`, and `cond` structures.
+1. [Pattern Matching](/lessons/pattern-matching.md) - Match operator, matching, and pin operator.
+1. [Conditional Expressions](/lessons/conditional-expressions.md) - The `if`, `unless`, `case`, and `cond` structures.
 1. Composition - Modules, structs,
 1. Testing
 
