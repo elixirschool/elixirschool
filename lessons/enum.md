@@ -1,4 +1,4 @@
-# Lesson 3 — Enum
+# Enum
 
 A set of algorithms for enumerating over collections.
 
