@@ -2,7 +2,9 @@
 
 Lessons in the Fundamentals of Elixir, inspired by Twitter's [Scala School](http://twitter.github.io/scala_school/).
 
-## About
+_This is actively being developed, your feedback is encouraged._
+
+## About Elixir
 
 "Elixir is a dynamic, functional language designed for building scalable and maintainable applications." -- [elixir-lang.org](http://elixir-lang.org/)
 
@@ -20,8 +22,8 @@ __Features__:
 1. [Basics](/lessons/basics.md) - Setup, basic types and operations.
 1. [Collections](/lessons/collections.md) - List, tuples, keywords, maps, dicts and functional combinators.
 1. [Enum](/lessons/enum.md) - A set of functions for working with collections.
-1. Pattern matching - Match operator, matching, and pin operator.
-1. Control flow - The `if`, `unless`, `case`, and `cond` structures.
+1. [Pattern Matching](/lessons/pattern-matching.md) - Match operator, matching, and pin operator.
+1. [Control Structures](/lessons/control-structures.md) - The `if`, `unless`, `case`, and `cond` structures.
 1. Composition - Modules, structs,
 1. Testing
 

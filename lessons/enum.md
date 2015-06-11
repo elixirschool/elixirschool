@@ -99,7 +99,7 @@ iex> Enum.min([5, 3, 0, -1])
 Returns the `max` value in the collection:
 
 ```elixir
-iex> Enum.min([5, 3, 0, -1])
+iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
