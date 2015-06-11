@@ -22,19 +22,21 @@ __Features__:
 1. [Basics](/lessons/basics.md) - Setup, basic types and operations.
 1. [Collections](/lessons/collections.md) - List, tuples, keywords, maps, dicts and functional combinators.
 1. [Enum](/lessons/enum.md) - A set of functions for working with collections.
-1. [Pattern Matching](/lessons/pattern-matching.md) - Match operator, matching, and pin operator.
-1. [Control Structures](/lessons/control-structures.md) - The `if`, `unless`, `case`, and `cond` structures.
-1. Composition - Modules, structs,
-1. Testing
+1. [Pattern Matching](/lessons/pattern-matching.md) - Match operator, matching, and the pin operator.
+1. [Control Structures](/lessons/control-structures.md) - The `if/2`, `unless/2`, `case`, and `cond` structures.
+1. Composition - Modules, module attributes, and structs.
+1. Mix - Build tool, package manager, and CLI tasks. 
+1. Testing - ExTest and ExSpec.
+1. Concurrency - Processes, Agents, and Tasks.
+1. Concurrency cont - GenServer, GenEvent, and Supervisors.
+1. Distribution - Distribute work to remote nodes.
+1. Elixir + Erlang - Interoperability with Erlang.
 
-## Resources
+## Examples
 
-Other resources for learning and using Elixir:
+## Awesome resources
 
 + [Awesome Elixir](https://github.com/h4cc/awesome-elixir)
-+ [Elixir Experience](http://elixirexperience.com)
-+ [Elixir Sips](http://elixirsips.com) (_Requires subscription_)
-+ [Exercisim.io - Elixir](https://github.com/exercism/xelixir)
 
 ## Contributing
 
