@@ -25,7 +25,7 @@ __Features__:
 1. [Pattern Matching](/lessons/pattern-matching.md) - Match operator, matching, and the pin operator.
 1. [Control Structures](/lessons/control-structures.md) - The `if/2`, `unless/2`, `case`, and `cond` structures.
 1. [Functions](/lessons/functions.md) - Anonymous functions, named functions, and guards.
-1. Composition - Modules, module attributes, and structs.
+1. [Composition](/lessons/composition.md) - Modules, module attributes, and structs.
 1. Mix - Build tool, package manager, and CLI tasks. 
 1. Testing - ExTest and ExSpec.
 1. Concurrency - Processes, Agents, and Tasks.
