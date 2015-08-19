@@ -33,8 +33,8 @@ __Features__:
 
 ## Contributing
 
-Contributions are welcomed and encouraged!  Please see [CONTRIBUTING.md]().
+Contributions are welcomed and encouraged!  Please see [CONTRIBUTING.md](https://github.com/doomspork/elixir-school/blob/master/CONTRIBUTIING.md).
 
 ## License
 
-Please see [LICENSE]() for licensing details.
+Please see [LICENSE](https://github.com/doomspork/elixir-school/blob/master/LICENSE) for licensing details.
