@@ -24,8 +24,8 @@ __Features__:
 1. [Control Structures](/lessons/control-structures.md) - The `if/2`, `unless/2`, `case`, and `cond` structures.
 1. [Functions](/lessons/functions.md) - Anonymous functions, named functions, and guards.
 1. [Composition](/lessons/composition.md) - Modules, module attributes, and structs.
-1. Mix - Build tool, package manager, and CLI tasks. 
-1. Testing - ExTest and ExSpec.
+1. [Mix](/lessons/mix.md) - Build tool, dependency manager, and CLI tasks. 
+1. Testing - ExTest and testing best practices.
 1. Concurrency - Processes, Agents, and Tasks.
 1. Concurrency cont - GenServer, GenEvent, and Supervisors.
 1. Distribution - Distribute work to remote nodes.
