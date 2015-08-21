@@ -2,6 +2,8 @@
 
 Lessons in the Fundamentals of Elixir, inspired by Twitter's [Scala School](http://twitter.github.io/scala_school/).
 
+_This is actively being developed, your feedback is encouraged._
+
 ## About Elixir
 
 "Elixir is a dynamic, functional language designed for building scalable and maintainable applications." -- [elixir-lang.org](http://elixir-lang.org/)
@@ -31,10 +33,16 @@ __Features__:
 1. Distribution - Distribute work to remote nodes.
 1. Elixir + Erlang - Interoperability with Erlang.
 
+## Additional resources
+
++ [Getting Started](http://elixir-lang.org/getting-started/introduction.html) (Official guide)
++ [Exercism](https://github.com/exercism/xelixir)
+
 ## Contributing
 
-Contributions are welcomed and encouraged!  Please see [CONTRIBUTING.md](https://github.com/doomspork/elixir-school/blob/master/CONTRIBUTIING.md).
+Contributions are welcomed and encouraged!  Please see [CONTRIBUTING.md]().
+
 
 ## License
 
-Please see [LICENSE](https://github.com/doomspork/elixir-school/blob/master/LICENSE) for licensing details.
+Please see [LICENSE]() for licensing details.
