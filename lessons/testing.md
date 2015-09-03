@@ -30,7 +30,7 @@ end
 
 We can run our project's tests with `mix test`.  If we do that now we should see an output similar to:
 
-```bash
+```shell
 Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 1 tests, 0 failures
 ```
@@ -53,7 +53,7 @@ end
 
 Now we should see a very different kind of output:
 
-```bash
+```shell
   1) test the truth (ConcoctionTest)
      test/concoction_test.exs:4
      Assertion with == failed
@@ -98,7 +98,6 @@ defmodule ConcoctionTest do
   end
 end
 ```
-
 
 ## Mocking
 

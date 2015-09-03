@@ -7,9 +7,10 @@ If you're familiar with Ruby you can think of Plug aa Rack with a splash of Sina
 ## Table of Contents
 
 - [Installation](#installation)
-- [The Plug Spec](#the-plug-spec)
+- [The specification](#the-specification)
 - [Creating a Plug](#creating-a-plug)
 - [Using Plug.Router](#using-plugrouter)
+- [Running our web app](#running-our-web-app)
 - [Testing Plugs](#testing-plugs)
 - [Available Plugs](#available-plugs)
 
@@ -32,7 +33,7 @@ def application do
 end
 ```
 
-## The Plug Spec
+## The specification
 
 In order to begin creating Plugs we need to know, and adhere to, the Plug spec.  Thankfully for us, there are only two functions necessary: `init/1` and `call/2`.
 
@@ -141,6 +142,44 @@ end
 That's it!  We've setup our Plug to verify that all requests to `/upload` include both `"content"` and `"mimetype"`, only then will route code be executed.  
 
 For now our `/upload` endpoint isn't very useful but we've seen how to create and integrate our Plug. In the next lessons we'll add more functionality.
+
+## Running our web app
+
+Before we can run our application we need to setup and configure our web server, in this instance Cowboy.  For now we'll just make the code changes necessary to run everything, we'll dig into specifics in later lessons.
+
+Let's start by updating the `application` portion of our `mix.exs` to tell Elixir about our application and set an application env variable.  With those changes in place our code should look something like this:
+
+```elixir
+def application do
+  [applications: [:cowboy, :plug],
+   mod: {Concoction, []},
+   env: [cowboy_port: 8080]]
+end
+```
+
+Next we need to update `lib/concoction.ex` to start and supervisor Cowboy:
+
+```elixir
+defmodule Concoction do
+  use Application
+
+  def start(_type, _args) do
+    port = Application.get_env(:concoction, :cowboy_port, 8080)
+
+    children = [
+      Plug.Adapters.Cowboy.child_spec(:http, Concoction.Plug.Router, [], port: port)
+    ]
+
+    Supervisor.start_link(children, strategy: :one_for_one)
+  end
+end
+```
+
+Now to run our application we can use:
+
+```shell
+$ mix run --no-halt
+```
 
 ## Testing a Plug
 
