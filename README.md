@@ -41,9 +41,8 @@ __Features__:
 
 ## Contributing
 
-Contributions are welcomed and encouraged!  Please see [CONTRIBUTING.md]().
-
+Contributions are welcomed and encouraged!  Please see [CONTRIBUTING.md](CONTRIBUTIING.md).
 
 ## License
 
-Please see [LICENSE]() for licensing details.
+Please see [LICENSE](LICENSE) for licensing details.
