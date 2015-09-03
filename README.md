@@ -27,7 +27,8 @@ __Features__:
 1. [Functions](/lessons/functions.md) - Anonymous functions, named functions, and guards.
 1. [Composition](/lessons/composition.md) - Modules, module attributes, and structs.
 1. [Mix](/lessons/mix.md) - Build tool, dependency manager, and CLI tasks. 
-1. Testing - ExTest and testing best practices.
+1. [Testing](/lessons/testing.md) - ExTest and testing best practices.
+1. [Plug](/lessons/plug.md) - Composable modules for web applications.
 1. Concurrency - Processes, Agents, and Tasks.
 1. Concurrency cont - GenServer, GenEvent, and Supervisors.
 1. Distribution - Distribute work to remote nodes.
