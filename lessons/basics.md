@@ -5,17 +5,17 @@ Setup, basic types and operations.
 ## Table of Contents
 
 - [Setup](#setup)
-	- [Install Elixir](#install-elixir) 
+	- [Install Elixir](#install-elixir)
 	- [Interactive Mode](#interactive-mode)
 - [Basic Types](#basic-types)
-	- [Integers](#integers) 
+	- [Integers](#integers)
 	- [Floats](#floats)
 	- [Booleans](#booleans)
 	- [Atom](#atoms)
 	- [String](#strings)
 - [Basic Operations](#basic-operations)
-	- [Arithmetic](#arithmetic) 
-	- [Boolean](#boolean) 
+	- [Arithmetic](#arithmetic)
+	- [Boolean](#boolean)
 	- [Comparison](#comparison)
 	- [String concatenation](#string-concatenation)
 	- [String interpolation](#string-interpolation)
@@ -36,7 +36,7 @@ To get started, let's run `iex`:
 
 	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
-	
+
 ## Basic Types
 
 ### Integers
@@ -68,7 +68,7 @@ iex> .41
 iex> 1.0e-10
 ```
 
-	
+
 ### Booleans
 
 Elixir supports `true` and `false` as booleans; everything is truthy except for `false` and `nil`:
@@ -87,6 +87,17 @@ iex> :foo
 :foo
 iex> :foo == :bar
 false
+```
+
+NOTE: Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
+
+```elixir
+iex> true |> is_atom
+true
+iex> :true |> is_boolean
+true
+iex> :true === true
+true
 ```
 
 ### Strings
@@ -115,7 +126,7 @@ iex(10)> "foo\nbar"
 ### Arithmetic
 
 Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.  It's important to notice that `/` will always return a float:
- 
+
 ```elixir
 iex> 2 + 2
 4

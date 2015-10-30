@@ -1,8 +1,8 @@
 # Mix
 
-Before we can dive into the deeper waters of Elixir we first need to learn about mix.  If you're familiar with Ruby mix is Bundler, RubyGems, and Rake combined.  It's a crucial part of any Elixir project, in this lesson we're going to explore just a few of its great features.  To see all that mix has to offer run `mix help`.
+Before we can dive into the deeper waters of Elixir we first need to learn about mix. If you're familiar with Ruby mix is Bundler, RubyGems, and Rake combined. It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of it's great features. To see all that mix has to offer run `mix help`.
 
-Until now we've been working exclusively within `iex` which has limitations.  In order to build something substancial we need to divide our code up into many files to effectively manage it, mix let's us do that with projects.
+Until now we've been working exclusively within `iex` which has limitations.  In order to build something substantial we need to divide our code up into many files to effectively manage it, mix let's us do that with projects.
 
 From this point on we will focus on incrementally building a complete application. For our application, we'll build an HTTP service that will allow us to store some data and retrieve it later at a unique URL.
 
@@ -101,7 +101,7 @@ Starting `iex` this way will loads your application and dependencies into the cu
 
 Our project doesn't have any dependencies but will shortly, so we'll go ahead and cover defining dependencies and fetching them.
 
-To add a new dependency we need to first add it to our `mix.exs` in the `deps` section.  Our dependency list is comprised of tuples with two required values and one optional: The package name as an atom, the version string, and optional options.  
+To add a new dependency we need to first add it to our `mix.exs` in the `deps` section.  Our dependency list is comprised of tuples with two required values and one optional: The package name as an atom, the version string, and optional options.
 
 For this example let's look at a project with dependencies, like [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 
@@ -116,7 +116,7 @@ end
 
 As you probably decerned from the dependencies above, the `cowboy` dependency is only necessary during development and test.
 
-Once we've defined our dependencies there is one final step, fetching them.  This is analogous to `bundle install`: 
+Once we've defined our dependencies there is one final step, fetching them.  This is analogous to `bundle install`:
 
 ```bash
 $ mix deps.get
@@ -132,7 +132,7 @@ Mix, much like Bundler, supports differing environments.  Out of the box mix wor
 + `:test` — Used by `mix test`. Covered further in our next lesson.
 + `:prod` — Used when we ship our application to production.
 
-The current environment can be access using `Mix.env`.  As expected, the environment can be changed via the `MIX_ENV` environment variable:
+The current environment can be accessed using `Mix.env`.  As expected, the environment can be changed via the `MIX_ENV` environment variable:
 
 ```bash
 $ MIX_ENV=prod mix compile

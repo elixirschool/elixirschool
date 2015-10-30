@@ -17,7 +17,7 @@ It should be noted that in Elixir, the only falsey values are `nil` and the bool
 ```elixir
 iex> if String.valid?("Hello") do
 ...>   "Valid string!"
-...> else 
+...> else
 ...>   "Invalid string."
 ...> end
 "Valid string!"
@@ -35,7 +35,7 @@ iex> unless is_integer("hello") do
 ...>   "Not an Int"
 ...> end
 "Not an Int"
-``` 
+```
 
 ## `case`
 
@@ -50,7 +50,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-The `_` variable is an important inclusion in `case` statements, failure to find a match will raise an error:
+The `_` variable is an important inclusion in `case` statements. Without it failure to find a match will raise an error:
 
 ```elixir
 iex> case :even do
@@ -65,6 +65,7 @@ iex> case :even do
 "Not Odd"
 ```
 
+Consider `_` as the `else` that will match "everything else".
 Since `case` relies on pattern matching, all of the same rules and restrictions apply.  If you intend to match against existing variables you must use the pin `^` operator:
 
 ```elixir
@@ -89,14 +90,14 @@ iex> case {1, 2, 3} do
 ...>     "Won't match"
 ...> end
 "Will match"
-``` 
+```
 
 Check the official docs for [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
 
 
 ## `cond`
 
-When we need to match conditions, and not values, we can turn to `cond`; this akin to `else if` or `elsif` from other languages:
+When we need to match conditions, and not values, we can turn to `cond`; this is akin to `else if` or `elsif` from other languages:
 
 _This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
 

@@ -37,7 +37,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### assert
 
-If you've written tests before then you're familiar with `assert`; in some frameworks `should` or `expect` fill the role of `assert`.  
+If you've written tests before then you're familiar with `assert`; in some frameworks `should` or `expect` fill the role of `assert`.
 
 We use the `assert` macro to test that the expression is true.  In the event that it is not, an error will be raise and our tests will fail.  To test a failure let's change our sample and then run `mix test`:
 
@@ -101,7 +101,7 @@ end
 
 ## Mocking
 
-The simple answer to mocking in Elixir: don't.  You may instintually reach for mocks but they are highly discouraged in the Elixir community and for good reason.  If you follow good design principles the resulting code will be is easy to test as individual components.
+The simple answer to mocking in Elixir: don't.  You may instinctively reach for mocks but they are highly discouraged in the Elixir community and for good reason.  If you follow good design principles the resulting code will be easy to test as individual components.
 
 Resist the urge.
 
