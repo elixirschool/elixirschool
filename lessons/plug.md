@@ -2,7 +2,7 @@
 
 We will continue our development of [Concoction](http://github.com/doomspork/concoction) in this lesson by learning about and integrating Plug.
 
-If you're familiar with Ruby you can think of Plug aa Rack with a splash of Sinatra, it provides a specification for web application components and adapters for web servers. While not part of Elixir core, plug is an official Elixir project.  
+If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra, it provides a specification for web application components and adapters for web servers. While not part of Elixir core, Plug is an official Elixir project.
 
 ## Table of Contents
 
@@ -37,7 +37,7 @@ end
 
 In order to begin creating Plugs we need to know, and adhere to, the Plug spec.  Thankfully for us, there are only two functions necessary: `init/1` and `call/2`.
 
-The `init/1` function is use to initialize our Plug's options, passed as the second argument to our `call/2` function.  In addition to our initialized options the `call/2` function receives a `%Plug.Conn` as it's first argument and is expected to return a connection.
+The `init/1` function is used to initialize our Plug's options, passed as the second argument to our `call/2` function.  In addition to our initialized options the `call/2` function receives a `%Plug.Conn` as it's first argument and is expected to return a connection.
 
 Here's a simple Plug that returns "Hello World!":
 
@@ -139,7 +139,7 @@ defmodule Concoction.Plug.Router do
 end
 ```
 
-That's it!  We've setup our Plug to verify that all requests to `/upload` include both `"content"` and `"mimetype"`, only then will route code be executed.  
+That's it!  We've setup our Plug to verify that all requests to `/upload` include both `"content"` and `"mimetype"`, only then will route code be executed.
 
 For now our `/upload` endpoint isn't very useful but we've seen how to create and integrate our Plug. In the next lessons we'll add more functionality.
 
