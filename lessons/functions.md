@@ -79,12 +79,12 @@ defmodule Greeter do
 end
 ```
 
-Armed with our knowledge of pattern matching, let's explore rescursion using named functions:
+Armed with our knowledge of pattern matching, let's explore recursion using named functions:
 
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t) 
+  def of([_|t]), do: 1 + of(t)
 end
 
 iex> Length.of []
@@ -173,7 +173,7 @@ defmodule Greeter do
   def hello(name, country \\ "en") when is_binary(name) do
     phrase(country) <> name
   end
-  
+
   defp phrase("en"), do: "Hello, "
   defp phrase("es"), do: "Hola, "
 end
@@ -195,7 +195,7 @@ defmodule Greeter do
   def hello(name, country) when is_binary(name) do
     phrase(country) <> name
   end
-  
+
   defp phrase("en"), do: "Hello, "
   defp phrase("es"), do: "Hola, "
 end
