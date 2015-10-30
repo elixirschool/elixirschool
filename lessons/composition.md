@@ -1,6 +1,6 @@
 # Composition
 
-We know from experience its unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialize map known as a struct in order to organize our code more efficiently.
+We know from experience its unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
 
 ## Table of Contents
 
@@ -10,7 +10,7 @@ We know from experience its unruly to have all of our functions in the same file
 
 ## Modules
 
-Modules are the best way to organize functions into a namespace.  In addition grouping functions, they allow us to define named and private functions which we covered in the previous lesson.
+Modules are the best way to organize functions into a namespace.  In addition to grouping functions, they allow us to define named and private functions which we covered in the previous lesson.
 
 Let's look at a basic example:
 
@@ -32,7 +32,7 @@ defmodule Example.Greetings do
 	def morning(name) do
 		"Good morning #{name}."
 	end
-	
+
 	def evening(name) do
 		"Good night #{name}."
 	end
@@ -49,7 +49,7 @@ Module attributes are most commonly used as constants in Elixir.  Let's take a l
 ```elixir
 defmodule Example do
 	@greeting "Hello"
-	
+
 	def greeting(name) do
 		~s(#{@greeting} #{name}.)
 	end
@@ -91,7 +91,7 @@ We can update our struct just like we would a map:
 
 ```elixir
 iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]} 
+%Example.User{name: "Steve", roles: [:admin, :owner]}
 iex> sean = %{steve | name: "Sean"}
 %Example.User{name: "Sean", password: nil, roles: [:admin, :owner]}
 ```
