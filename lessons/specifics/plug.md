@@ -1,7 +1,5 @@
 # Plug
 
-We will continue our development of [Concoction](http://github.com/doomspork/concoction) in this lesson by learning about and integrating Plug.
-
 If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra, it provides a specification for web application components and adapters for web servers. While not part of Elixir core, Plug is an official Elixir project.
 
 ## Table of Contents
@@ -57,14 +55,14 @@ end
 
 ## Creating a Plug
 
-For our project we're going to create a Plug to verify whether or not the request has some set of required parameters.  By impleneting our validation in a Plug we can be assured that only valid requests will make it through to our application.  We will expect our Plug to be initialized with two options: `:paths` and `:fields`.  These will represent the paths we apply our logic to and which fields to require.
+For this example we'll create a Plug to verify whether or not the request has some set of required parameters.  By implementing our validation in a Plug we can be assured that only valid requests will make it through to our application.  We will expect our Plug to be initialized with two options: `:paths` and `:fields`.  These will represent the paths we apply our logic to and which fields to require.
 
 _Note_: Plugs are applied to all requests which is why we will handle filtering requests and applying our logic to only a subset of them.  To ignore a request we simply pass the connection through.
 
 We'll start by looking at our finished Plug and then discuss how it works, we'll create it at `lib/plug/verify_request.ex`:
 
 ```elixir
-defmodule Concoction.Plug.VerifyRequest do
+defmodule Example.Plug.VerifyRequest do
   import Plug.Conn
 
   defmodule IncompleteRequestError do
@@ -106,7 +104,7 @@ Now that we have our `VerifyRequest` plug, we can move on to our router.  As we 
 To start let's create a file at `lib/plug/router.ex` and copy the following into it:
 
 ```elixir
-defmodule Concoction.Plug.Router do
+defmodule Example.Plug.Router do
   use Plug.Router
 
   plug :match
@@ -122,10 +120,10 @@ This is a bare minimum Router but the code should be pretty self explainatory.  
 Let's add our Plug to the router:
 
 ```elixir
-defmodule Concoction.Plug.Router do
+defmodule Example.Plug.Router do
   use Plug.Router
 
-  alias Concoction.Plug.VerifyRequest
+  alias Example.Plug.VerifyRequest
 
   plug Plug.Parsers, parsers: [:urlencoded, :multipart]
   plug VerifyRequest, fields: ["content", "mimetype"],
@@ -141,7 +139,7 @@ end
 
 That's it!  We've setup our Plug to verify that all requests to `/upload` include both `"content"` and `"mimetype"`, only then will route code be executed.
 
-For now our `/upload` endpoint isn't very useful but we've seen how to create and integrate our Plug. In the next lessons we'll add more functionality.
+For now our `/upload` endpoint isn't very useful but we've seen how to create and integrate our Plug.
 
 ## Running our web app
 
@@ -152,22 +150,22 @@ Let's start by updating the `application` portion of our `mix.exs` to tell Elixi
 ```elixir
 def application do
   [applications: [:cowboy, :plug],
-   mod: {Concoction, []},
+   mod: {Example, []},
    env: [cowboy_port: 8080]]
 end
 ```
 
-Next we need to update `lib/concoction.ex` to start and supervisor Cowboy:
+Next we need to update `lib/example.ex` to start and supervisor Cowboy:
 
 ```elixir
-defmodule Concoction do
+defmodule Example do
   use Application
 
   def start(_type, _args) do
     port = Application.get_env(:concoction, :cowboy_port, 8080)
 
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Concoction.Plug.Router, [], port: port)
+      Plug.Adapters.Cowboy.child_spec(:http, Example.Plug.Router, [], port: port)
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one)
@@ -192,7 +190,7 @@ defmodule RouterTest do
   use ExUnit.Case
   use Plug.Test
 
-  alias Concoction.Plug.Router
+  alias Example.Plug.Router
 
   @content "<html><body>Hi!</body></html>"
   @mimetype "text/html"
@@ -225,8 +223,6 @@ defmodule RouterTest do
   end
 end
 ```
-
-The remaining tests can be found in the [Concoction](https://github.com/doomspork/concoction) repo.
 
 ## Available Plugs
 
