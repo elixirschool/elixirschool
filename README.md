@@ -39,5 +39,4 @@ __Features__:
 
 ### Specific Tools
 1. [Plug](/lessons/specifics/plug.md) - Composable modules for web applications.
-1. Ecto - Database wrapper and query language.
-1. Guardian - JWT based authentication.
+1. [Ecto](/lessons/specifics/ecto.md) - Database wrapper and query language.
