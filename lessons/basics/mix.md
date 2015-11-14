@@ -4,10 +4,6 @@ Before we can dive into the deeper waters of Elixir we first need to learn about
 
 Until now we've been working exclusively within `iex` which has limitations.  In order to build something substantial we need to divide our code up into many files to effectively manage it, mix let's us do that with projects.
 
-From this point on we will focus on incrementally building a complete application. For our application, we'll build an HTTP service that will allow us to store some data and retrieve it later at a unique URL.
-
-_Note_: Code for the application can be found at [doomspork/concoction](http://github.com/doomspork/concoction).
-
 ## Table of Contents
 
 - [New Projects](#new-project)
@@ -21,7 +17,7 @@ _Note_: Code for the application can be found at [doomspork/concoction](http://g
 When we're ready to create a new Elixir project, mix makes it easy with the `mix new` command.  This will generate our project's folder structure and necessary boilerplate.  This is pretty straight forward, so let's get started:
 
 ```bash
-$ mix new concoction
+$ mix new example
 ```
 
 From the output we can see that mix has created our directory and a number of boilerplate files:
@@ -33,20 +29,20 @@ From the output we can see that mix has created our directory and a number of bo
 * creating config
 * creating config/config.exs
 * creating lib
-* creating lib/concoction.ex
+* creating lib/example.ex
 * creating test
 * creating test/test_helper.exs
-* creating test/concoction_test.exs
+* creating test/example_test.exs
 ```
 
 In this lesson we're going to focus our attention on `mix.exs`.  Here we configure our application, dependencies, environment, and version.  Open the file in your favorite editor, you should see something like this (comments removed for brevity):
 
 ```elixir
-defmodule Concoction.Mixfile do
+defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :concoction,
+    [app: :example,
      version: "0.0.1",
      elixir: "~> 1.0",
      build_embedded: Mix.env == :prod,
@@ -81,11 +77,11 @@ $ mix compile
 There isn't much to our project so the output isn't too exciting but it should complete successfully:
 
 ```bash
-Compiled lib/concoction.ex
-Generated concoction app
+Compiled lib/example.ex
+Generated example app
 ```
 
-When we compile a project mix creates a `_build` directory for our artifacts.  If we look inside `_build` we will see our compiled application: `concoction.app`.
+When we compile a project mix creates a `_build` directory for our artifacts.  If we look inside `_build` we will see our compiled application: `example.app`.
 
 ## Interactive
 
@@ -122,7 +118,7 @@ Once we've defined our dependencies there is one final step, fetching them.  Thi
 $ mix deps.get
 ```
 
-That's it!  We've defined and fetched our project dependencies.  Now we're prepared to add dependencies to [concoction](https://github.com/doomspork/concoction) when the time comes.
+That's it!  We've defined and fetched our project dependencies.  Now we're prepared to add dependencies when the time comes.
 
 ## Environments
 
