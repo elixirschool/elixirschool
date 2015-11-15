@@ -31,12 +31,16 @@ __Features__:
 1. [Testing](/lessons/basics/testing.md) - ExTest and testing best practices.
 
 ### Advanced
+
 1. [Concurrency](/lessons/advanced/concurrency.md) - Processes, Agents, and Tasks.
-1. Concurrency cont - GenServer, GenEvent, and Supervisors.
+1. OTP Behaviors - GenServer, GenEvent, and Supervisors.
 1. Distribution - Distribute work to remote nodes.
-1. Elixir + Erlang - Interoperability with Erlang.
-1. Macros - Defining functionality with `quote` and `unquote`.
+1. [Elixir + Erlang](/lessons/advanced/erlang.md) - Interoperability with Erlang.
+1. Meta-Programming - Macros, `quote`, and `unquote`.
+1. Hex Packages - Packaging and sharing functionality with the community.
 
 ### Specific Tools
 1. [Plug](/lessons/specifics/plug.md) - Composable modules for web applications.
 1. [Ecto](/lessons/specifics/ecto.md) - Database wrapper and query language.
+1. ETS - Erlang Term Service
+1. Mnesia - A distributed soft real-time database system in Erlang.
