@@ -1,0 +1,40 @@
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="{{ site.baseurl }}">
+          {{ site.title }}
+        </a>
+      </h1>
+      <p class="lead">{{ site.description }}</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <h2>Basics</h2>
+      {% assign basic_list = site.pages | where: "category", "basic" | sort: "order"  %}
+      {% for node in basic_list %}
+      <div class="sidebar-nav-item">
+        {{ node.order }}. <a class="sidebar-lesson {% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+      </div>
+      {% endfor %}
+
+      <h2>Advanced</h2>
+      {% assign adv_list = site.pages | where: "category", "advanced" | sort: "order"  %}
+      {% for node in adv_list %}
+      <div class="sidebar-nav-item">
+        {{ node.order }}. <a class="sidebar-lesson {% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+      </div>
+      {% endfor %}
+
+      <h2>Specifics</h2>
+      {% assign specifics_list = site.pages | where: "category", "specific" | sort: "order"  %}
+      {% for node in specifics_list %}
+      <div class="sidebar-nav-item">
+        {{ node.order }}. <a class="sidebar-lesson {% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+      </div>
+      {% endfor %}
+    </nav>
+
+    <p>&copy; {{ site.time | date: '%Y' }} <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>

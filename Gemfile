@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+ruby '2.2.3'
+
+gem 'jekyll'
+gem 'kramdown'
+gem 'rack-jekyll'
+gem 'rake'
+gem 'puma'
+gem 'autoprefixer-rails'
+gem 'sprockets-es6'
+gem 'jekyll-assets'
+gem 'font-awesome-sass'
