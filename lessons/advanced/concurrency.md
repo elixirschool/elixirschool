@@ -1,4 +1,9 @@
-# Concurrency
+---
+layout: page
+title: Concurrency
+category: advanced
+order: 2
+---
 
 One the selling points of Elixir is its support for concurrency.  Thanks to the ErlangVM, concurrency in Elixir is easier than expected.  The concurrency model replies on Actors, a contained process that communicates with other processes through message passing.
 
@@ -7,9 +12,9 @@ In this lesson we'll look at the concurrency modules that ship with Elixir.  In 
 ## Table of Contents
 
 - [Processes](#processes)
-	- [Message Passing](#message-passing)
-	- [Process Linking](#process-linking)
-	- [Process Monitoring](#process-monitoring)
+  - [Message Passing](#message-passing)
+  - [Process Linking](#process-linking)
+  - [Process Monitoring](#process-monitoring)
 - [Agents](#agents)
 - [Tasks](#tasks)
 
@@ -34,7 +39,7 @@ iex> Example.add(2, 3)
 ```
 
 To evaluate the function asynchronously we use `spawn/3`:
- 
+
 ```elixir
 iex> spawn(Example, :add, [2, 3])
 5
@@ -87,12 +92,12 @@ Sometimes we don't want our linked process to crash the current one.  For that w
 defmodule Example do
   def explode, do: exit(:kaboom)
   def run do
-	Process.flag(:trap_exit, true)
-	spawn_link(Example, :explode, [])
-	
-	receive do
-		{:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
-	end
+  Process.flag(:trap_exit, true)
+  spawn_link(Example, :explode, [])
+
+  receive do
+    {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+  end
   end
 end
 
@@ -110,10 +115,10 @@ defmodule Example do
   def explode, do: exit(:kaboom)
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
-	
-	  receive do
-      	{:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
-	  end
+
+    receive do
+        {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+    end
   end
 end
 

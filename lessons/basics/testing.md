@@ -1,13 +1,18 @@
-# Testing
+---
+layout: page
+title: Testing
+category: basic
+order: 9
+---
 
 Testing is an important part of developing software.  In this lesson we'll look at how to test our Elixir code with ExUnit and some best practices for doing so.
 
 ## Table of Contents
 
 - [ExTest](#extest)
-	- [assert](#assert)
-	- [refute](#refute)
-	- [assert_raise](#assert_raise)
+  - [assert](#assert)
+  - [refute](#refute)
+  - [assert_raise](#assert_raise)
 - [Test Setup](#test-setup)
 - [Mocking](#mocking)
 - [Best Practices](#best-practices)

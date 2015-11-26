@@ -1,21 +1,26 @@
-# Ecto
+---
+layout: page
+title: Ecto
+category: specific
+order: 2
+---
 
 Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define models, insert and update records, and query them.
 
 ## Table of Contents
 
 - [Setup](#setup)
-	- [Repository](#repository)
-	- [Configuration](#configuration)
+  - [Repository](#repository)
+  - [Configuration](#configuration)
 - [Mix Tasks](#mix-tasks)
 - [Migrations](#migrations)
 - [Models](#models)
 - [Querying](#querying)
-	- [Basics](#basic-querying)
-	- [Group By](#group-by)
-	- [Order By](#order-by)
-	- [Joins](#joins)	 
-	- [Fragments](#fragments)
+  - [Basics](#basic-querying)
+  - [Group By](#group-by)
+  - [Order By](#order-by)
+  - [Joins](#joins)
+  - [Fragments](#fragments)
 - [Changesets](#changesets)
 
 ## Setup
@@ -153,8 +158,8 @@ Ecto provides an excellent Query DSL that allows us to express query clearly.  T
 
 ```elixir
 query = from u in User,
-		where: u.confirmed == true,
-		select: u.username
+    where: u.confirmed == true,
+    select: u.username
 
 Repo.all(User, query)
 ```
@@ -162,11 +167,11 @@ Repo.all(User, query)
 In addition to `all/2` Repo provides a number of callbacks including `one/2`, `get/3`, `insert/2`, and `delete/2`.  A complete list of callbacks can be found at [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
 
 ### Count
- 
+
 ```elixir
 query = from u in User,
-		where: u.confirmed == true,
-		select: count(u.id)
+    where: u.confirmed == true,
+    select: count(u.id)
 ```
 
 ### Group By
@@ -175,9 +180,9 @@ To group usernames by their creation date we can include the `group_by` option:
 
 ```elixir
 query = from u in User,
-		group_by: u.created_at,
-		select: [u.username, u.created_at]
-		
+    group_by: u.created_at,
+    select: [u.username, u.created_at]
+
 
 Repo.all(User, query)
 ```
@@ -188,9 +193,9 @@ Ordering users by their creation date:
 
 ```elixir
 query = from u in User,
-		order_by: u.created_at,
-		select: [u.username, u.created_at]
-		
+    order_by: u.created_at,
+    select: [u.username, u.created_at]
+
 
 Repo.all(User, query)
 ```
@@ -199,8 +204,8 @@ To order by `DESC`:
 
 ```elixir
 query = from u in User,
-		order_by: [desc: u.created_at],
-		select: [u.username, u.created_at]
+    order_by: [desc: u.created_at],
+    select: [u.username, u.created_at]
 ```
 
 ### Joins
@@ -209,8 +214,8 @@ Assuming we had a profile associated with our user, let's find all confirmed acc
 
 ```elixir
 query = from p in Profile,
-		join: u in assoc(profile, :user),
-		where: u.confirmed == true
+    join: u in assoc(profile, :user),
+    where: u.confirmed == true
 ```
 
 ### Fragments
@@ -219,8 +224,8 @@ Sometimes the Query API isn't enough, like when we need specific database functi
 
 ```elixir
 query = from u in User,
-		where: fragment("downcase(?)", u.username) == ^username
-		select: u
+    where: fragment("downcase(?)", u.username) == ^username
+    select: u
 ```
 
 Additional query examples can be found at [phoenix-examples/ecto_query_library](https://github.com/phoenix-examples/ecto_query_library).
@@ -247,10 +252,10 @@ defmodule ExampleApp.User do
 
     timestamps
   end
-  
+
   @required_fields ~w(username encrypted_password email)
   @optional_fields ~w()
-  
+
   def changeset(model, params) do
     model
     |> cast(params, @required_fields, @optional_fields)
@@ -259,7 +264,7 @@ defmodule ExampleApp.User do
     |> unique_constraint(:username, name: :email)
     |> put_change(:encrypted_password, Comeonin.Bcrypt.hashpwsalt(params[:password]))
   end
-  
+
   defp validate_password_confirmation(changeset) do
     case Ecto.Changeset.get_change(changeset, :password_confirmation) do
       nil -> password_mismatch_error(changeset)
@@ -271,7 +276,7 @@ defmodule ExampleApp.User do
 end
 ```
 
-We've added two new functions `changeset/2` and `validate_password_confirmation/1`.  
+We've added two new functions `changeset/2` and `validate_password_confirmation/1`.
 
 As its name suggests `changeset/2` creates a new changeset for us.  In it we use `cast/4` to convert our parameters to a changeset from a set of required and optional fields.  Next we validate the changeset's password length, password confirmation match using our own function, and username uniqueness.  Finally we update our actual password database field.  For this we use `put_change/3` to update a value in the changeset.
 
@@ -279,10 +284,10 @@ Using `User.changeset/2` is relatively straightforward:
 
 ```elixir
 pw = "passwords should be hard"
-changeset = User.changeset(%User{}, %{username: "doomspork", 
-									  email: "sean@seancallan.com", 
-									  password: pw, 
-									  password_confirmation: pw})
+changeset = User.changeset(%User{}, %{username: "doomspork",
+                    email: "sean@seancallan.com",
+                    password: pw,
+                    password_confirmation: pw})
 
 case Repo.insert(changeset) do
   {:ok, model}        -> # Inserted with success

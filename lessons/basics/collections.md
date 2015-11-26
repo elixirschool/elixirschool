@@ -1,4 +1,9 @@
-# Collections
+---
+layout: page
+title: Collections
+category: basic
+order: 2
+---
 
 List, tuples, keywords, maps, dicts and functional combinators.
 

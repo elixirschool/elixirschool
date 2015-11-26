@@ -1,25 +1,30 @@
-# Enum
+---
+layout: page
+title: Enum
+category: basic
+order: 3
+---
 
 A set of algorithms for enumerating over collections.
 
 ## Table of Contents
 
 - [Enum](#enum)
-	- [all?](#all?)
-	- [any?](#any?)
-	- [chunk](#chunk)
-	- [chunk_by](#chunk_by)
-	- [each](#each)
-	- [map](#map)
-	- [min](#min)
-	- [max](#max)
-	- [reduce](#reduce)
-	- [sort](#sort)
-	- [uniq](#uniq)
+  - [all?](#all?)
+  - [any?](#any?)
+  - [chunk](#chunk)
+  - [chunk_by](#chunk_by)
+  - [each](#each)
+  - [map](#map)
+  - [min](#min)
+  - [max](#max)
+  - [reduce](#reduce)
+  - [sort](#sort)
+  - [uniq](#uniq)
 
 ## Enum
 
-The `Enum` module includes over one hundred functions for working with the collections we learned about in the last lesson. 
+The `Enum` module includes over one hundred functions for working with the collections we learned about in the last lesson.
 
 This lesson will only cover a subset of the available functions, to see a complete set of functions visit the official [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html) module.
 

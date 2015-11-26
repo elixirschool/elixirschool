@@ -1,4 +1,9 @@
-# Basics
+---
+layout: page
+title: Basics
+category: basic
+order: 1
+---
 
 Setup, basic types and operations.
 

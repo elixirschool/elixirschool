@@ -1,16 +1,21 @@
-# Functions
+---
+layout: page
+title: Functions
+category: basic
+order: 6
+---
 
 In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
 
 ## Table of Contents
 
 - [Anonymous functions](#anonymous-functions)
-	- [The & shorthand](#the--shorthand)
+  - [The & shorthand](#the--shorthand)
 - [Pattern matching](#pattern-matching)
 - [Named functions](#named-functions)
-	- [Private functions](#private-functions)
-	- [Guards](#guards)
-	- [Default arguments](#default-arguments)
+  - [Private functions](#private-functions)
+  - [Guards](#guards)
+  - [Default arguments](#default-arguments)
 
 ## Anonymous functions
 

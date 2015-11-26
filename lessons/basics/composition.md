@@ -1,11 +1,16 @@
-# Composition
+---
+layout: page
+title: Composition
+category: basic
+order: 7
+---
 
 We know from experience its unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
 
 ## Table of Contents
 
 - [Modules](#modules)
-	- [Module attributes](#module-attributes)
+  - [Module attributes](#module-attributes)
 - [Structs](#structs)
 
 ## Modules
@@ -14,11 +19,11 @@ Modules are the best way to organize functions into a namespace.  In addition to
 
 Let's look at a basic example:
 
-```elixir
+``` elixir
 defmodule Example do
-	def greeting(name) do
-		~s(Hello #{name}.)
-	end
+  def greeting(name) do
+    ~s(Hello #{name}.)
+  end
 end
 
 iex> Example.greeting "Sean"
@@ -29,13 +34,13 @@ It is possible to nest modules in Elixir, allowing you to further namespace your
 
 ```elixir
 defmodule Example.Greetings do
-	def morning(name) do
-		"Good morning #{name}."
-	end
+  def morning(name) do
+    "Good morning #{name}."
+  end
 
-	def evening(name) do
-		"Good night #{name}."
-	end
+  def evening(name) do
+    "Good night #{name}."
+  end
 end
 
 iex> Example.Greetings.morning "Sean"
@@ -48,11 +53,11 @@ Module attributes are most commonly used as constants in Elixir.  Let's take a l
 
 ```elixir
 defmodule Example do
-	@greeting "Hello"
+  @greeting "Hello"
 
-	def greeting(name) do
-		~s(#{@greeting} #{name}.)
-	end
+  def greeting(name) do
+    ~s(#{@greeting} #{name}.)
+  end
 end
 ```
 
@@ -70,7 +75,7 @@ To define a struct we use `defstruct` along with a keyword list of fields and de
 
 ```elixir
 defmodule Example.User do
-	defstruct name: "Sean", roles: []
+  defstruct name: "Sean", roles: []
 end
 ```
 

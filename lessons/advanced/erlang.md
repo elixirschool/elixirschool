@@ -1,4 +1,9 @@
-# Elixir + Erlang
+---
+layout: page
+title: Erlang Interoperability
+category: advanced
+order: 1
+---
 
 One of the added benefits to building on top of the ErlangVM is the plethora of existing libraries available to us.  Interoperability allows us to leverage those libraries and the Erlang standard lib from our Elixir code.  In this lesson we'll look at how to access functionality in the standard lib along with third-party Erlang packages.
 
@@ -15,11 +20,11 @@ Let's use `:timer.tc` to time execution of a given function:
 
 ```elixir
 defmodule Example do
-	def timed(fun, args) do
-		{time, result} = :timer.tc(fun, args)
-		IO.puts "Time: #{time}ms"
-		IO.puts "Result: #{result}"
-	end
+  def timed(fun, args) do
+    {time, result} = :timer.tc(fun, args)
+    IO.puts "Time: #{time}ms"
+    IO.puts "Result: #{result}"
+  end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
