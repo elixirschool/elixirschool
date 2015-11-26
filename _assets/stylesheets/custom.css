@@ -1,0 +1,27 @@
+/*
+ * Custom Theme Classes
+ */
+
+.theme-custom-purple .sidebar {
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAALUlEQVQYV2P0Mov/z0AEYKRY4f///58zMjJKwiyj3ER0Z9PIRHSHYwst6lsNAMs/GrcD9Fh5AAAAAElFTkSuQmCC) repeat;
+}
+.theme-custom-purple .content a,
+.theme-custom-purple .related-posts li a:hover {
+  color: #4A365F;
+}
+
+h2 {
+ color: #F07E6B;
+}
+
+.sidebar-lesson {
+  margin-left: 10px;
+}
+
+a.sidebar-lesson:hover,
+a.sidebar-lesson:focus {
+  text-decoration: underline;
+}
+.sidebar-lesson.active {
+  font-weight: bold;
+}
