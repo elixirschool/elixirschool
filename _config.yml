@@ -1,21 +1,30 @@
+# Author
+author:
+  name: Sean Callan
+  url: seancallan.com
+  email: sean@seancallan.com
+  twitter: doomspork
+  github: doomspork
+
+# Setup
 title: Elixir School
-email: sean@seancallan.com
 description: Lessons in the Fundamentals of Elixir
 baseurl: '/'
 url: 'http://elixirschool.com' # the base hostname & protocol for your site
-twitter_username: doomspork
-github_username: doomspork
+permalink: pretty
+gems:
+  - kramdown
+  - jekyll-assets
 
+# Markdown Config
 markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-gems:
-  - kramdown
-  - jekyll-assets
-exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
 
+# Assets
+exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
 assets:
   compress:
     css:  sass
