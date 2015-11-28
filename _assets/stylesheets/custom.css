@@ -25,3 +25,14 @@ a.sidebar-lesson:focus {
 .sidebar-lesson.active {
   font-weight: bold;
 }
+
+/*
+ * Overrides theme's sidebar so content isn't cut off
+ */
+.sidebar {
+    overflow-y: scroll;
+}
+
+.sidebar-sticky {
+    top: 1rem;
+}
