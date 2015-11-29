@@ -36,3 +36,30 @@ a.sidebar-lesson:focus {
 .sidebar-sticky {
     top: 1rem;
 }
+
+.sidebar-nav-item {
+  padding-left: 5px;  
+}
+
+.sidebar-nav-group {
+  padding-bottom: 10px;
+}
+
+.sidebar-nav-header {
+  display: block;; 
+  vertical-align: middle;
+  cursor: pointer;
+
+  span {
+    font-weight: bold;
+    line-height: 1.25;
+    font-size: 1.5rem;
+    color: #F07E6B;
+  }
+
+  i {
+    padding-bottom: 10px;
+    vertical-align: middle;
+    width: 20px;
+  }
+}

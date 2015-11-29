@@ -11,13 +11,13 @@
 
     <nav class="sidebar-nav">
       {% for lesson_type in site.sections %}
-        <div class="sidebar-nav-group">
+      {% assign category = lesson_type | downcase %}
+        <div class="sidebar-nav-group {{ category }}">
           <div class="sidebar-nav-header">
             <i class="fa fa-chevron-down"></i>
             <span>{{ lesson_type }}</span>
           </div>
           <div class="sidebar-nav-list">
-            {% assign category = lesson_type | downcase %}
             {% assign list = site.pages | where: "category", category | sort: "order"  %}
             {% for node in list %}
               <div class="sidebar-nav-item">
