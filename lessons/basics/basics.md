@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Basics
-category: basic
+category: basics
 order: 1
 ---
 

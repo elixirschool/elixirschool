@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Plug
-category: specific
+category: specifics
 order: 1
 ---
 

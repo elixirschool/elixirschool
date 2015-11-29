@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Pattern Matching
-category: basic
+category: basics
 order: 4
 ---
 

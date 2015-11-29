@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Collections
-category: basic
+category: basics
 order: 2
 ---
 

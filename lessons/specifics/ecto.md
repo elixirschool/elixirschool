@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Ecto
-category: specific
+category: specifics
 order: 2
 ---
 

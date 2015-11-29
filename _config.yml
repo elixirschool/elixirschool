@@ -29,3 +29,5 @@ assets:
   compress:
     css:  sass
     js:   uglifier
+
+sections: ['Basics', 'Advanced', 'Specifics']

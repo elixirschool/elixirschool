@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Control Structures
-category: basic
+category: basics
 order: 5
 ---
 

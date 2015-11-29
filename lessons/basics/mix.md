@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Mix
-category: basic
+category: basics
 order: 8
 ---
 

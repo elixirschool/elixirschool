@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Composition
-category: basic
+category: basics
 order: 7
 ---
 

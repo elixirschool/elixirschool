@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Enum
-category: basic
+category: basics
 order: 3
 ---
 

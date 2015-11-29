@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Testing
-category: basic
+category: basics
 order: 9
 ---
 

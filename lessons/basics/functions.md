@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Functions
-category: basic
+category: basics
 order: 6
 ---
 

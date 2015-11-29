@@ -10,29 +10,24 @@
     </div>
 
     <nav class="sidebar-nav">
-      <h2>Basics</h2>
-      {% assign basic_list = site.pages | where: "category", "basic" | sort: "order"  %}
-      {% for node in basic_list %}
-      <div class="sidebar-nav-item">
-        {{ node.order }}. <a class="sidebar-lesson {% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
-      </div>
+      {% for lesson_type in site.sections %}
+        <div class="sidebar-nav-group">
+          <div class="sidebar-nav-header">
+            <i class="fa fa-chevron-down"></i>
+            <span>{{ lesson_type }}</span>
+          </div>
+          <div class="sidebar-nav-list">
+            {% assign category = lesson_type | downcase %}
+            {% assign list = site.pages | where: "category", category | sort: "order"  %}
+            {% for node in list %}
+              <div class="sidebar-nav-item">
+                {{ node.order }}. <a class="sidebar-lesson {% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
       {% endfor %}
 
-      <h2>Advanced</h2>
-      {% assign adv_list = site.pages | where: "category", "advanced" | sort: "order"  %}
-      {% for node in adv_list %}
-      <div class="sidebar-nav-item">
-        {{ node.order }}. <a class="sidebar-lesson {% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
-      </div>
-      {% endfor %}
-
-      <h2>Specifics</h2>
-      {% assign specifics_list = site.pages | where: "category", "specific" | sort: "order"  %}
-      {% for node in specifics_list %}
-      <div class="sidebar-nav-item">
-        {{ node.order }}. <a class="sidebar-lesson {% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
-      </div>
-      {% endfor %}
     </nav>
 
     <p>&copy; {{ site.time | date: '%Y' }} <a href="https://github.com/doomspork">Sean Callan</a></p>
