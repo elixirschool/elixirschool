@@ -92,12 +92,12 @@ Sometimes we don't want our linked process to crash the current one.  For that w
 defmodule Example do
   def explode, do: exit(:kaboom)
   def run do
-  Process.flag(:trap_exit, true)
-  spawn_link(Example, :explode, [])
+    Process.flag(:trap_exit, true)
+    spawn_link(Example, :explode, [])
 
-  receive do
-    {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
-  end
+    receive do
+      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+    end
   end
 end
 
@@ -117,7 +117,7 @@ defmodule Example do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-        {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
     end
   end
 end
