@@ -11,6 +11,7 @@ Ecto is an official Elixir project providing a database wrapper and integrated q
 
 - [Setup](#setup)
   - [Repository](#repository)
+  - [Supervisor](#supervisor)
   - [Configuration](#configuration)
 - [Mix Tasks](#mix-tasks)
 - [Migrations](#migrations)
@@ -42,6 +43,8 @@ def application do
 end
 ```
 
+### Repository
+
 Finally we need to create our project's respository, the database wrapper.  This can be done via the `mix ecto.gen.repo` task, we'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
 
 ```elixir
@@ -50,6 +53,31 @@ defmodule ExampleApp.Repo do
     otp_app: :example_app
 end
 ```
+
+### Supervisor
+
+Once we've created our Repo we need to setup our supervisor tree, which is usually found in `lib/<project name>.ex`.
+
+It is important to note that we setup the Repo as a supervisor with `supervsor/3` and _not_ `worker/3`.  If you generated your app with the `--sup` flag much of this exists already:
+
+```elixir
+defmodule ExampleApp.App do
+  use Application
+
+  def start(_type, _args) do
+    import Supervisor.Spec
+
+    children = [
+      supervisor(ExampleApp.Repo, [])
+    ]
+
+    opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end
+```
+
+For more info on supervisors check out the [OTP Supervisors](/lessons/advanced/otp-supervisors) lesson.
 
 ### Configuration
 
