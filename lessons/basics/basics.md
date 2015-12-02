@@ -22,8 +22,8 @@ Setup, basic types and operations.
 	- [Arithmetic](#arithmetic)
 	- [Boolean](#boolean)
 	- [Comparison](#comparison)
-	- [String concatenation](#string-concatenation)
 	- [String interpolation](#string-interpolation)
+	- [String concatenation](#string-concatenation)
 
 ## Setup
 
