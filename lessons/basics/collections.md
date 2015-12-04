@@ -20,7 +20,7 @@ List, tuples, keywords, maps, dicts and functional combinators.
 
 ## Lists
 
-Lists are simple collections of values, they may include multiple types; lists may include non-unqiue values:
+Lists are simple collections of values, they may include multiple types; lists may include non-unique values:
 
 ```elixir
 iex> [3.41, :pie, "Apple"]

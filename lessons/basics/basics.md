@@ -202,7 +202,7 @@ iex> "Hello #{name}"
 
 ### String concatenation
 
-String concatenation is uses the `<>` operator:
+String concatenation uses the `<>` operator:
 
 ```elixir
 iex> name = "Sean"
