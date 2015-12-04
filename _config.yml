@@ -9,9 +9,23 @@ author:
 # Setup
 title: Elixir School
 description: Lessons in the Fundamentals of Elixir
-baseurl: '/'
-url: 'http://elixirschool.com' # the base hostname & protocol for your site
+baseurl: /
+url: https://elixirschool.com
 permalink: pretty
+languages: ['en']
+default_lang: en
+exclude_from_localization: []
+sections:
+  - tag: basics
+    label:
+      en: Basics
+  - tag: advanced
+    label:
+      en: Advanced
+  - tag: specifics
+    label:
+      en: Specifics
+
 gems:
   - kramdown
   - jekyll-assets
@@ -22,12 +36,9 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-
 # Assets
 exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
 assets:
   compress:
     css:  sass
     js:   uglifier
-
-sections: ['Basics', 'Advanced', 'Specifics']
