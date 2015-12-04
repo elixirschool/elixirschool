@@ -3,6 +3,7 @@ layout: page
 title: Functions
 category: basics
 order: 6
+lang: en
 ---
 
 In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.

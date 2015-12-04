@@ -3,6 +3,7 @@ layout: page
 title: Basics
 category: basics
 order: 1
+lang: en
 ---
 
 Setup, basic types and operations.

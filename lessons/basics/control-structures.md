@@ -3,6 +3,7 @@ layout: page
 title: Control Structures
 category: basics
 order: 5
+lang: en
 ---
 
 In this lesson we will look at the control structures available to us in Elixir.

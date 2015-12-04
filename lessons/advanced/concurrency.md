@@ -3,6 +3,7 @@ layout: page
 title: Concurrency
 category: advanced
 order: 3
+lang: en
 ---
 
 One the selling points of Elixir is its support for concurrency.  Thanks to the ErlangVM, concurrency in Elixir is easier than expected.  The concurrency model replies on Actors, a contained process that communicates with other processes through message passing.
