@@ -1,0 +1,129 @@
+---
+layout: page
+title: 制御構造
+category: basics
+order: 5
+lang: jp
+---
+
+このレッスンではElixirで利用できる制御構造を見ていきます。
+
+## 目次
+
+- [`if`と`unless`](#if-and-unless)
+- [`case`](#case)
+- [`cond`](#cond)
+
+## `if`と`unless`
+
+ひょっとすると以前に`if/2`と出くわしているかもしれませんし、もしRubyを使っているなら`unless/2`をよくご存知でしょう。Elixirではこの2つはほとんど同じように作用しますが、言語の構成要素としてではなく、マクロとして定義されています。この実装は[Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html)で知ることが出来ます。
+
+Elixirでは偽とみなされる値は`nil`と真理値の`false`だけだということに、留意すべきです。
+
+```elixir
+iex> if String.valid?("Hello") do
+...>   "Valid string!"
+...> else
+...>   "Invalid string."
+...> end
+"Valid string!"
+
+iex> if "a string value" do
+...>   "Truthy"
+...> end
+"Truthy"
+```
+
+`unless/2`は`if/2`のように使いますが、条件が否定される時だけ作用します:
+
+```elixir
+iex> unless is_integer("hello") do
+...>   "Not an Int"
+...> end
+"Not an Int"
+```
+
+## `case`
+
+もし複数のパターンに対してマッチする必要があるなら、`case`を使うことができます:
+
+```elixir
+iex> case {:ok, "Hello World"} do
+...>   {:ok, result} -> result
+...>   {:error} -> "Uh oh!"
+...>   _ -> "Catch all"
+...> end
+"Hello World"
+```
+
+`_`変数は`case`命令文の中に含まれる重要な要素です。これが無いと、マッチするものが見あたらない場合にエラーが発生します:
+
+```elixir
+iex> case :even do
+...>   :odd -> "Odd"
+...> end
+** (CaseClauseError) no case clause matching: :even
+
+iex> case :even do
+...>   :odd -> "Odd"
+...>   _ -> "Not Odd"
+...> end
+"Not Odd"
+```
+
+`_`を"他の全て"にマッチする`else`と考えましょう。
+`case`はパターンマッチングに依存しているため、パターンマッチングと同じルールや制限が全て適用されます。もし既存の変数に対してマッチさせようという場合にはピン`^`演算子を使わなくてはいけません:
+
+```elixir
+iex> pie = 3.41
+3.41
+iex> case "cherry pie" do
+...>   ^pie -> "Not so tasty"
+...>   pie -> "I bet #{pie} is tasty"
+...> end
+"I bet cherry pie is tasty"
+```
+
+`case`のもう1つの素晴らしい特徴として、ガード節に対応していることがあげられます:
+
+_この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html)ガイドから直接持ってきています。_
+
+```elixir
+iex> case {1, 2, 3} do
+...>   {1, x, 3} when x > 0 ->
+...>     "Will match"
+...>   _ ->
+...>     "Won't match"
+...> end
+"Will match"
+```
+
+公式ドキュメントから[Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses)を読んでみてください。
+
+## `cond`
+
+値ではなく、条件をマッチさせる必要がある時には、`cond`を使うことが出来ます。これは他の言語でいうところの`else if`や`elsif`のようなものです:
+
+_この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html)ガイドから直接持ってきています。_
+
+```elixir
+iex> cond do
+...>   2 + 2 == 5 ->
+...>     "This will not be true"
+...>   2 * 2 == 3 ->
+...>     "Nor this"
+...>   1 + 1 == 2 ->
+...>     "But this will"
+...> end
+"But this will"
+```
+
+`case`のように、`cond`はマッチしない場合にエラーを発生させます。これに対処するには、`true`になる条件を定義すればよいです:
+
+```elixir
+iex> cond do
+...>   7 + 1 == 0 -> "Incorrect"
+...>   true -> "Catch all"
+...> end
+"Catch all"
+```
