@@ -2,33 +2,46 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       <h1>
-        <a href="{{ site.baseurl }}">
-          {{ site.title }}
+        <a href="{{site.baseurl}}">
+          {{site.title}}
         </a>
       </h1>
-      <p class="lead">{{ site.description }}</p>
+      <p class="lead">{{site.description}}</p>
     </div>
 
     <nav class="sidebar-nav">
-      {% for lesson_type in site.sections %}
-      {% assign category = lesson_type | downcase %}
-        <div class="sidebar-nav-group {{ category }}">
+      {% assign lang = page.lang || site.default_lang %}
+      {% for section in site.sections %}
+        {% assign title = section.label[lang] %}
+        <div class="sidebar-nav-group {{section.tag}}">
           <div class="sidebar-nav-header">
             <i class="fa fa-chevron-down"></i>
-            <span>{{ lesson_type }}</span>
+            <span>{{title}}</span>
           </div>
           <div class="sidebar-nav-list">
-            {% assign list = site.pages | where: "category", category | sort: "order"  %}
+            
+            {% assign list = site.pages | where: "category", section.tag | where: "lang", lang | sort: "order" %}
             {% for node in list %}
               <div class="sidebar-nav-item">
-                {{ node.order }}. <a class="sidebar-lesson {% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+                {{node.order}}. <a class="sidebar-lesson {% if page.url == node.url %} active{% endif %}" href="{{node.url}}">{{node.title}}</a>
               </div>
             {% endfor %}
           </div>
         </div>
       {% endfor %}
-
     </nav>
+
+    <p>
+      {% if page.lang == site.default_lang %}
+        {% assign url = page.url %}
+      {% else %}
+        {% assign url = page.url | slice: 3, 99 %}
+      {% endif %}
+
+      {% for lang in site.languages %}
+        <a href="{% if lang == site.default_lang %} {{site.url}}{{url}} {% else %} {{site.url}}/{{lang}}{{url}} {% endif %}">{{lang}}</a>
+      {% endfor %}
+    </p>
 
     <p>&copy; {{ site.time | date: '%Y' }} <a href="https://github.com/doomspork">Sean Callan</a></p>
   </div>

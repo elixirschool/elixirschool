@@ -3,6 +3,7 @@ layout: page
 title: Testing
 category: basics
 order: 9
+lang: en
 ---
 
 Testing is an important part of developing software.  In this lesson we'll look at how to test our Elixir code with ExUnit and some best practices for doing so.

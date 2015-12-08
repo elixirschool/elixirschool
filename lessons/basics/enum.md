@@ -3,6 +3,7 @@ layout: page
 title: Enum
 category: basics
 order: 3
+lang: en
 ---
 
 A set of algorithms for enumerating over collections.
