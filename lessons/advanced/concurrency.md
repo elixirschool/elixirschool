@@ -109,7 +109,7 @@ Exit reason: kaboom
 
 ### Process Monitoring
 
-What if don't want to link two processes but still be kept informed? For that we can use process monitoring with `spawn_monitor`.  When we monitor a process we get a message if the process crashes without our current process crashing or needing to explicitly trap exits.
+What if we don't want to link two processes but still be kept informed? For that we can use process monitoring with `spawn_monitor`.  When we monitor a process we get a message if the process crashes without our current process crashing or needing to explicitly trap exits.
 
 ```elixir
 defmodule Example do
