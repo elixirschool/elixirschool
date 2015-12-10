@@ -19,7 +19,7 @@ sections:
   - tag: basics
     label:
       en: Basics
-      jp: 基本
+      jp: 基礎
   - tag: advanced
     label:
       en: Advanced
