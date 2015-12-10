@@ -49,7 +49,7 @@ iex> spawn(Example, :add, [2, 3])
 
 ### Message Passing
 
-To communicate, processes rely on message passing. There are two main components to this: `send/2` and `receive`.  The `send/2` function allows us to send messages to PIDs.  To listen we use `receive` to match messages, if no match is found the execution continues uninterupted.
+To communicate, processes rely on message passing. There are two main components to this: `send/2` and `receive`.  The `send/2` function allows us to send messages to PIDs.  To listen we use `receive` to match messages, if no match is found the execution continues uninterrupted.
 
 ```elixir
 defmodule Example do

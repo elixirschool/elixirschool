@@ -65,7 +65,7 @@ Now that we know how to use Erlang we should cover some of the gotchas that come
 
 ### Atoms
 
-Erlang atoms look much like their Elixir counterparts without the colon (`:`).  They're they are represented by lowercase strings and underscores:
+Erlang atoms look much like their Elixir counterparts without the colon (`:`).  They are represented by lowercase strings and underscores:
 
 Elixir:
 
