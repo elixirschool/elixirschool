@@ -21,7 +21,7 @@ Supervisors are specialized processes with one purpose: monitoring other process
 
 The magic to Supervisors is in the `Supervisor.start_link/2` function.  In addition to starting our supervisor and children, it allows us to define the strategy our supervisor uses for managing child processes.
 
-Children defined using a list and the `worker/3` function we imported from `Supervisor.Spec`.  The `worker/3` function takes a module, arguments, and a set of options.  Under the hood `worker/3` calls `start_link/3` with our arguments during initialization.
+Children are defined using a list and the `worker/3` function we imported from `Supervisor.Spec`.  The `worker/3` function takes a module, arguments, and a set of options.  Under the hood `worker/3` calls `start_link/3` with our arguments during initialization.
 
 Using the SimpeQueue from the [OTP Concurrency](/lessons/advanced/otp-concurrency) lesson let's get started:
 

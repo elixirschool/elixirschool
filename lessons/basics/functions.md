@@ -29,6 +29,7 @@ iex> sum = fn (a, b) -> a + b end
 iex> sum.(2, 3)
 5
 ```
+
 ### The & shorthand
 
 Using anonymous functions is such a common practice in Elixir there is shorthand for doing so:
