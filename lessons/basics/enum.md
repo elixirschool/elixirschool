@@ -49,6 +49,7 @@ Unlike the above, `any?` will return `true` if at least one item evaluates to `t
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
+
 ### chunk
 
 If you need to break your collection up into smaller groups, `chunk` is the function you're probably looking for:
