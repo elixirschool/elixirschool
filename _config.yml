@@ -12,19 +12,22 @@ description: Lessons in the Fundamentals of Elixir
 baseurl: /
 url: https://elixirschool.com
 permalink: pretty
-languages: ['en']
+languages: ['en', 'jp']
 default_lang: en
 exclude_from_localization: []
 sections:
   - tag: basics
     label:
       en: Basics
+      jp: 基礎
   - tag: advanced
     label:
       en: Advanced
+      jp: 上級
   - tag: specifics
     label:
       en: Specifics
+      jp: 詳細
 
 gems:
   - kramdown
