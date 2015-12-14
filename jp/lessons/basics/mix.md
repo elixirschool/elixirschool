@@ -12,11 +12,11 @@ lang: jp
 
 ## 目次
 
-- [新しいプロジェクト](#new-project)
-- [コンパイル](#compilation)
-- [対話的な方法](#interactive)
-- [依存関係を管理する](#manage-dependencies)
-- [環境](#environments)
+- [新しいプロジェクト](#section-1)
+- [コンパイル](#section-2)
+- [対話的な方法](#section-3)
+- [依存関係を管理する](#section-4)
+- [環境](#section-5)
 
 ## 新しいプロジェクト
 

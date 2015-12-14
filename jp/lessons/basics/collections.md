@@ -10,14 +10,14 @@ lang: jp
 
 ## 目次
 
-- [リスト](#lists)
-	- [リストの連結](#list-concatenation)
-	- [リストの減算](#list-subtraction)
-	- [頭部 / 尾部](#head-/-tail)
-- [タプル](#tuples)
-- [キーワードリスト](#keyword-lists)
-- [マップ](#maps)
-- [ディクショナリ(辞書)](#dicts)
+- [リスト](#section-1)
+	- [リストの連結](#section-2)
+	- [リストの減算](#section-3)
+	- [頭部 / 尾部](#section-4)
+- [タプル](#section-5)
+- [キーワードリスト](#section-6)
+- [マップ](#section-7)
+- [ディクショナリ(辞書)](#section-8)
 
 ## リスト
 

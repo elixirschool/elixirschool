@@ -10,13 +10,13 @@ Elixirや多くの関数型言語では、関数は第一級市民(≒ファー�
 
 ## 目次
 
-- [匿名関数](#anonymous-functions)
-  - [&省略記法](#the--shorthand)
-- [パターンマッチング](#pattern-matching)
-- [名前付き関数](#named-functions)
-  - [プライベート関数](#private-functions)
-  - [ガード](#guards)
-  - [デフォルト引数](#default-arguments)
+- [匿名関数](#section-1)
+  - [&省略記法](#section-2)
+- [パターンマッチング](#section-3)
+- [名前付き関数](#section-4)
+  - [プライベート関数](#section-5)
+  - [ガード](#section-6)
+  - [デフォルト引数](#section-7)
 
 ## 匿名関数
 

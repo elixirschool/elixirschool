@@ -10,9 +10,9 @@ Elixirで実行ファイルをビルドするにはescriptを利用します。e
 
 ## 目次
 
-- [始めに](#getting-started)
-- [引数の解析](#parsing-args)
-- [ビルド](#building)
+- [始めに](#section-1)
+- [引数の解析](#section-2)
+- [ビルド](#section-3)
 
 ## 始めに
 

@@ -10,7 +10,7 @@ lang: jp
 
 ## 目次
 
-- [`if`と`unless`](#if-and-unless)
+- [`if`と`unless`](#ifunless)
 - [`case`](#case)
 - [`cond`](#cond)
 

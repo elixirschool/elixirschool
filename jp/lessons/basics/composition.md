@@ -10,9 +10,9 @@ lang: jp
 
 ## 目次
 
-- [モジュール](#modules)
-  - [モジュールの属性](#module-attributes)
-- [構造体](#structs)
+- [モジュール](#section-1)
+  - [モジュールの属性](#section-2)
+- [構造体](#section-3)
 
 ## モジュール
 

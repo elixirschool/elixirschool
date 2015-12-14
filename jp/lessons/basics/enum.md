@@ -11,8 +11,8 @@ lang: jp
 ## 目次
 
 - [Enum](#enum)
-  - [all?](#all?)
-  - [any?](#any?)
+  - [all?](#all)
+  - [any?](#any)
   - [chunk](#chunk)
   - [chunk_by](#chunk_by)
   - [each](#each)

@@ -13,12 +13,12 @@ lang: jp
 ## 目次
 
 - [GenServer](#genserver)
-  - [同期関数](#synchronous-function)
-  - [非同期関数](#asynchronous-function)
+  - [同期関数](#section-1)
+  - [非同期関数](#section-2)
 - [GenEvent](#genevent)
-  - [イベントの処理](#handling-events)
-  - [ハンドラの呼び出し](#calling-handlers)
-  - [GenEventの使用](#using-genevents)
+  - [イベントの処理](#section-3)
+  - [ハンドラの呼び出し](#section-4)
+  - [GenEventの使用](#genevent-1)
 
 ## GenServer
 

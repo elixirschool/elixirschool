@@ -13,10 +13,10 @@ lang: jp
 - [ExTest](#extest)
   - [assert](#assert)
   - [refute](#refute)
-  - [assert_raise](#assert_raise)
-- [テストのセットアップ](#test-setup)
-- [Mocking](#mocking)
-- [Best Practices](#best-practices)
+  - [assert_raise](#assertraise)
+- [テストのセットアップ](#section-1)
+- [モック](#section-2)
+- [ベストプラクティス](#section-3)
 
 ## ExTest
 

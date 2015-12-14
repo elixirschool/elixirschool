@@ -10,21 +10,21 @@ lang: jp
 
 ## 目次
 
-- [セットアップ](#setup)
-	- [Elixirのインストール](#install-elixir)
-	- [対話モード](#interactive-mode)
-- [基本型](#basic-types)
-	- [整数](#integers)
-	- [浮動小数](#floats)
-	- [真理値](#booleans)
-	- [アトム](#atoms)
-	- [文字列](#strings)
-- [基本の演算](#basic-operations)
-	- [算術](#arithmetic)
-	- [論理](#boolean)
-	- [比較](#comparison)
-	- [文字列への式展開](#string-interpolation)
-	- [文字列の連結](#string-concatenation)
+- [セットアップ](#section-1)
+	- [Elixirのインストール](#elixir)
+	- [対話モード](#section-2)
+- [基本型](#section-3)
+	- [整数](#section-4)
+	- [浮動小数](#section-5)
+	- [真理値](#section-6)
+	- [アトム](#section-7)
+	- [文字列](#section-8)
+- [基本の演算](#section-9)
+	- [算術](#section-10)
+	- [論理](#section-11)
+	- [比較](#section-12)
+	- [文字列への式展開](#section-13)
+	- [文字列の連結](#section-14)
 
 ## セットアップ
 

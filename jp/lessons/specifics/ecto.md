@@ -162,14 +162,13 @@ defmodule ExampleApp.User do
   @required_fields ~w(username encrypted_password email confirmed)
   @optional_fields ~w()
 
-  def changeset(model, params \\ :empty) do
-    model
+  def changeset(model, params \\ :empty) do model
     |> cast(params, @required_fields, @optional_fields)
   end
 end
 ```
 
-モデル内で定義するスキーマはマイグレーションで記述したものを厳密に表現します。ここではデータベースのフィールドの他に、2つの仮想的なフィールドも加えています。仮想フィールドはデータベースには保存されませんが、バリデーションのような仕組みに役立てることができます。実際の仮想フィールドは[Changeset](#changeset)の項で見ることにします。
+モデル内で定義するスキーマはマイグレーションで記述したものを厳密に表現します。ここではデータベースのフィールドの他に、2つの仮想的なフィールドも加えています。仮想フィールドはデータベースには保存されませんが、バリデーションのような仕組みに役立てることができます。実際の仮想フィールドは[Changeset](#section-9)の項で見ることにします。
 
 ## クエリ
 

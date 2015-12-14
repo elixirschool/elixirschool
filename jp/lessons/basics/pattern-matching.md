@@ -10,8 +10,8 @@ order: 4
 
 ## 目次
 
-- [マッチ演算子](#match-operator)
-- [ピン演算子](#pin-operator)
+- [マッチ演算子](#section-1)
+- [ピン演算子](#section-2)
 
 ## マッチ演算子
 
