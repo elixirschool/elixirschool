@@ -30,7 +30,7 @@ lang: jp
 
 ### Elixirのインストール
 
-各OS向けのインストール方法は Elixir-lang.org 上の[Installing Elixir](http://elixir-lang.org/install.html) で探すことが出来ます。
+各OS向けのインストール方法は Elixir-lang.org 上の[Installing Elixir](http://elixir-lang.org/install.html) で探すことができます。
 
 ### 対話モード
 
@@ -86,7 +86,7 @@ iex> false
 
 ### アトム
 
-アトムは自身の名前がそのまま値になる定数です。もしRubyに慣れ親しんでいれば、シンボルと同義です:
+アトムは自身の名前がそのまま値になる定数です。Rubyをご存知なら、シンボルと同義になります:
 
 ```elixir
 iex> :foo
@@ -144,7 +144,7 @@ iex> 10 / 5
 2.0
 ```
 
-もし整数同士の割り算や剰余が必要な場合、Elixirにはこれを解く2つの便利な関数があります:
+整数同士の割り算や剰余が必要な場合、Elixirにはこれを解く2つの便利な関数があります:
 
 ```elixir
 iex> div(10, 5)
@@ -193,7 +193,7 @@ iex> not 42
 
 ### 文字列への式展開
 
-もしRubyを使っているなら、Elixirでの式展開は見覚えがあるでしょう:
+Rubyを使っているなら、Elixirでの式展開は見覚えがあるでしょう:
 
 ```elixir
 iex> name = "Sean"

@@ -16,7 +16,7 @@ lang: jp
 
 ## `if`と`unless`
 
-ひょっとすると以前に`if/2`と出くわしているかもしれませんし、もしRubyを使っているなら`unless/2`をよくご存知でしょう。Elixirではこの2つはほとんど同じように作用しますが、言語の構成要素としてではなく、マクロとして定義されています。この実装は[Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html)で知ることが出来ます。
+ひょっとすると以前に`if/2`と出くわしているかもしれませんし、Rubyを使っていれば`unless/2`をご存知でしょう。Elixirではこの2つはほとんど同じように作用しますが、言語の構成要素としてではなく、マクロとして定義されています。この実装は[Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html)で知ることができます。
 
 Elixirでは偽とみなされる値は`nil`と真理値の`false`だけだということに、留意すべきです。
 
@@ -45,7 +45,7 @@ iex> unless is_integer("hello") do
 
 ## `case`
 
-もし複数のパターンに対してマッチする必要があるなら、`case`を使うことができます:
+複数のパターンに対してマッチする必要があるなら、`case`を使うことができます:
 
 ```elixir
 iex> case {:ok, "Hello World"} do
@@ -72,7 +72,7 @@ iex> case :even do
 ```
 
 `_`を"他の全て"にマッチする`else`と考えましょう。
-`case`はパターンマッチングに依存しているため、パターンマッチングと同じルールや制限が全て適用されます。もし既存の変数に対してマッチさせようという場合にはピン`^`演算子を使わなくてはいけません:
+`case`はパターンマッチングに依存しているため、パターンマッチングと同じルールや制限が全て適用されます。既存の変数に対してマッチさせようという場合にはピン`^`演算子を使わなくてはいけません:
 
 ```elixir
 iex> pie = 3.41
@@ -102,7 +102,7 @@ iex> case {1, 2, 3} do
 
 ## `cond`
 
-値ではなく、条件をマッチさせる必要がある時には、`cond`を使うことが出来ます。これは他の言語でいうところの`else if`や`elsif`のようなものです:
+値ではなく、条件をマッチさせる必要がある時には、`cond`を使うことができます。これは他の言語でいうところの`else if`や`elsif`のようなものです:
 
 _この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html)ガイドから直接持ってきています。_
 
