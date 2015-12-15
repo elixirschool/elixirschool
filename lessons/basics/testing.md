@@ -13,7 +13,7 @@ Testing is an important part of developing software.  In this lesson we'll look 
 - [ExTest](#extest)
   - [assert](#assert)
   - [refute](#refute)
-  - [assert_raise](#assert_raise)
+  - [assert_raise](#assertraise)
 - [Test Setup](#test-setup)
 - [Mocking](#mocking)
 - [Best Practices](#best-practices)

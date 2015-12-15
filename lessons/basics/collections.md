@@ -13,7 +13,7 @@ List, tuples, keywords, maps, dicts and functional combinators.
 - [Lists](#lists)
 	- [List concatenation](#list-concatenation)
 	- [List subtraction](#list-subtraction)
-	- [Head / Tail](#head-/-tail)
+	- [Head / Tail](#head--tail)
 - [Tuples](#tuples)
 - [Keyword lists](#keyword-lists)
 - [Maps](#maps)

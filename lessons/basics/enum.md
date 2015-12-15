@@ -11,8 +11,8 @@ A set of algorithms for enumerating over collections.
 ## Table of Contents
 
 - [Enum](#enum)
-  - [all?](#all?)
-  - [any?](#any?)
+  - [all?](#all)
+  - [any?](#any)
   - [chunk](#chunk)
   - [chunk_by](#chunk_by)
   - [each](#each)
