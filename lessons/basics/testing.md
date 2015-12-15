@@ -45,7 +45,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 If you've written tests before then you're familiar with `assert`; in some frameworks `should` or `expect` fill the role of `assert`.
 
-We use the `assert` macro to test that the expression is true.  In the event that it is not, an error will be raise and our tests will fail.  To test a failure let's change our sample and then run `mix test`:
+We use the `assert` macro to test that the expression is true.  In the event that it is not, an error will be raised and our tests will fail.  To test a failure let's change our sample and then run `mix test`:
 
 ```elixir
 defmodule ConcoctionTest do
@@ -83,7 +83,7 @@ ExUnit will tells us exactly where our failed assertions are, what the expected 
 
 ### assert_raise
 
-Sometimes it may be necessary to assert that an error was been raised, we can do this with `assert_raise`.  We'll see an example of `assert_raise` in the next lesson on Plug.
+Sometimes it may be necessary to assert that an error has been raised, we can do this with `assert_raise`.  We'll see an example of `assert_raise` in the next lesson on Plug.
 
 ## Test Setup
 
