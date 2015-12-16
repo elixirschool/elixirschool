@@ -139,7 +139,7 @@ defmodule Greeter do
   defp phrase, do: "Hello, "
 end
 
-iex> Greeter.hello ["Sean", "Steve"], "en"
+iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
