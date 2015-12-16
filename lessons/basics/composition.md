@@ -87,7 +87,7 @@ iex> %Example.User{}
 %Example.User{name: "Sean", roles: []}
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: [:admin]}
+%Example.User{name: "Steve", roles: []}
 
 iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
 %Example.User{name: "Steve", roles: [:admin, :owner]}
@@ -105,7 +105,7 @@ iex> sean = %{steve | name: "Sean"}
 Most importantly, you can match structs against maps:
 
 ```elixir
-iex(12)> %{name: "Sean"} = sean
-%Example.User{name: "Sean", password: nil, roles: [:admin, :owner]}
+iex> %{name: "Sean"} = sean
+%Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
