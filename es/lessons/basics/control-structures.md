@@ -1,0 +1,131 @@
+---
+layout: page
+title: Estructuras de control
+category: basics
+order: 5
+lang: es
+---
+
+En esta lección veremos las estructuras de control disponibles en Elixir
+
+## Tabla de Contenidos
+
+- [`if` y `unless`](#if-y-unless)
+- [`case`](#case)
+- [`cond`](#cond)
+
+## `if` y `unless`
+
+Es probable que haya visto `if/2` antes, y si ha utilizado Ruby esta familiarizado con `unless/2`. En Elixir ellos funcionan de la misma forma pero estan definidos como macros, no son construcciones propias del lenguaje; puede encontrar su implementación en el [módulo Kernel](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+
+
+Debería tomarse en cuenta que en Elixir, los únicos valores falsos son `nil` y el booleano `false`.
+
+```elixir
+iex> if String.valid?("Hello") do
+...>   "Valid string!"
+...> else
+...>   "Invalid string."
+...> end
+"Valid string!"
+
+iex> if "a string value" do
+...>   "Truthy"
+...> end
+"Truthy"
+```
+
+Usar `unless/2` es como `if/2` solo que trabaja en forma inversa:
+
+```elixir
+iex> unless is_integer("hello") do
+...>   "Not an Int"
+...> end
+"Not an Int"
+```
+
+## `case`
+
+Si es necesario buscar una coincidencia en múltiples patrones podemos usar `case`:
+
+```elixir
+iex> case {:ok, "Hello World"} do
+...>   {:ok, result} -> result
+...>   {:error} -> "Uh oh!"
+...>   _ -> "Catch all"
+...> end
+"Hello World"
+```
+
+La variable `_` es una inclusión importante en la declaración `case`. Sin esto, cuando no se encuentre una coincidencia, se alzará un error:
+
+```elixir
+iex> case :even do
+...>   :odd -> "Odd"
+...> end
+** (CaseClauseError) no case clause matching: :even
+
+iex> case :even do
+...>   :odd -> "Odd"
+...>   _ -> "Not Odd"
+...> end
+"Not Odd"
+```
+
+Considera `_` como el `else` the coincidirá con "todo lo demás".
+Ya que `case` se basa en la coincidencia de patrones, las mismas reglas y restricciones se aplican. Si intentas coincidir con variables existentes debes usar el operador pin `^`:
+
+```elixir
+iex> pie = 3.41
+3.41
+iex> case "cherry pie" do
+...>   ^pie -> "Not so tasty"
+...>   pie -> "I bet #{pie} is tasty"
+...> end
+"I bet cherry pie is tasty"
+```
+
+Otra característica interesante de `case` es que este soporta cláusulas de guardia:
+
+_Este ejemplo viene directamente de la guía oficina de Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
+
+```elixir
+iex> case {1, 2, 3} do
+...>   {1, x, 3} when x > 0 ->
+...>     "Will match"
+...>   _ ->
+...>     "Won't match"
+...> end
+"Will match"
+```
+
+Revisa la documentación oficial para [Expresiones permitidas en cláusulas de guardia](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+
+
+## `cond`
+
+Cuando necesitamos condiciones con coincidencia, y no valores, podemos cambiar a `cond`; esto es parecido a `else if` o `elsif` en otros lenguajes:
+
+_Este ejemplo viene directamente de la guía oficial de Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
+
+```elixir
+iex> cond do
+...>   2 + 2 == 5 ->
+...>     "This will not be true"
+...>   2 * 2 == 3 ->
+...>     "Nor this"
+...>   1 + 1 == 2 ->
+...>     "But this will"
+...> end
+"But this will"
+```
+
+Como `case`, `cond` alzará un error si no hay una coincidencia. Para manejar esto, podemos definir una condición cuyo valor es `true`:
+
+```elixir
+iex> cond do
+...>   7 + 1 == 0 -> "Incorrect"
+...>   true -> "Catch all"
+...> end
+"Catch all"
+```
