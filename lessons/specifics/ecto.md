@@ -259,7 +259,7 @@ query = from u in User,
 
 Additional query examples can be found at [phoenix-examples/ecto_query_library](https://github.com/phoenix-examples/ecto_query_library).
 
-## Changeset
+## Changesets
 
 In the previous section we learned how to retrieve data but how about inserting and updating it?  For that we need Changesets.
 
