@@ -22,11 +22,12 @@ Testing is an important part of developing software.  In this lesson we'll look 
 
 Elixir's builtin test framework is ExUnit and it includes everything we need to thoroughly test our code.  Before moving on it is important to note that tests are implemented as Elixir scripts so we need to use the `.exs` file extension.  Before we can run our tests we need to start ExUnit with `ExUnit.start()`, this is most commonly done in `test/test_helper.exs`.
 
-When we generated our project mix was helpful enough to create a simple test for us, we can find it at `test/concoction_test.exs`:
+When we generated our example project in the previous lesson, mix was helpful enough to create a simple test for us, we can find it at `test/example_test.exs`:
 
 ```elixir
-defmodule ConcoctionTest do
+defmodule ExampleTest do
   use ExUnit.Case
+  doctest Example
 
   test "the truth" do
     assert 1 + 1 == 2
@@ -48,8 +49,9 @@ If you've written tests before then you're familiar with `assert`; in some frame
 We use the `assert` macro to test that the expression is true.  In the event that it is not, an error will be raised and our tests will fail.  To test a failure let's change our sample and then run `mix test`:
 
 ```elixir
-defmodule ConcoctionTest do
+defmodule ExampleTest do
   use ExUnit.Case
+  doctest Example
 
   test "the truth" do
     assert 1 + 1 == 3
@@ -60,14 +62,14 @@ end
 Now we should see a very different kind of output:
 
 ```shell
-  1) test the truth (ConcoctionTest)
-     test/concoction_test.exs:4
+  1) test the truth (ExampleTest)
+     test/example_test.exs:5
      Assertion with == failed
      code: 1 + 1 == 3
      lhs:  2
      rhs:  3
      stacktrace:
-       test/concoction_test.exs:5
+       test/example_test.exs:6
 
 ......
 
@@ -92,8 +94,9 @@ In some instances it may be necessary to perform setup before our tests.  To acc
 For the sake of example, we'll change our code to use `setup_all`:
 
 ```elixir
-defmodule ConcoctionTest do
+defmodule ExampleTest do
   use ExUnit.Case
+  doctest Example
 
   setup_all do
     {:ok, number: 2}
