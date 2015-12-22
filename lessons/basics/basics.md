@@ -60,7 +60,7 @@ iex> 0b0110
 iex> 0o644
 420
 iex> 0x1F
-255
+31
 ```
 
 ### Floats
@@ -120,10 +120,10 @@ iex> "dziękuję"
 Strings support line breaks and escape sequences:
 
 ```elixir
-iex(9)> "foo
-...(9)> bar"
+iex> "foo
+...> bar"
 "foo\nbar"
-iex(10)> "foo\nbar"
+iex> "foo\nbar"
 "foo\nbar"
 ```
 
