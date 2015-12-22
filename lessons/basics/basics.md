@@ -155,7 +155,7 @@ iex> rem(10, 3)
 
 ### Boolean
 
-Elixir providers `||`, `&&`, and `!` boolean oeprators, these support any types:
+Elixir providers `||`, `&&`, and `!` boolean operators, these support any types:
 
 ```elixir
 iex> -20 || true
@@ -174,7 +174,7 @@ iex> !false
 true
 ```
 
-There are three additional operators who's first argument _must_ be a boolean (`true` and `false`):
+There are three additional operators whose first argument _must_ be a boolean (`true` and `false`):
 
 ```elixir
 iex> true and 42
