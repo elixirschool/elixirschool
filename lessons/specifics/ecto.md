@@ -59,7 +59,7 @@ end
 
 Once we've created our Repo we need to setup our supervisor tree, which is usually found in `lib/<project name>.ex`.
 
-It is important to note that we setup the Repo as a supervisor with `supervsor/3` and _not_ `worker/3`.  If you generated your app with the `--sup` flag much of this exists already:
+It is important to note that we setup the Repo as a supervisor with `supervisor/3` and _not_ `worker/3`.  If you generated your app with the `--sup` flag much of this exists already:
 
 ```elixir
 defmodule ExampleApp.App do
