@@ -51,7 +51,7 @@ iex> [1, 2] ++ [3, 4, 1]
 
 ### List Subtraction
 
-Support for substraction is provided via the `--/2` operator; it's safe to subtract a missing value:
+Support for subtraction is provided via the `--/2` operator; it's safe to subtract a missing value:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
