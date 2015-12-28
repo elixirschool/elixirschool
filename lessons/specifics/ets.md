@@ -26,7 +26,7 @@ Erlang Term Storage, commonly referred to as ETS, is a powerful storage engine b
 
 ## Overview
 
-ETS is a robust in-memory store for Elixir and Erlang objects that comes included.  ETS is capable of storing very large amounts of data and offers a constant time for data access.  
+ETS is a robust in-memory store for Elixir and Erlang objects that comes included.  ETS is capable of storing very large amounts of data and offers a constant time for data access.
 
 Tables in ETS are created and owned by individual processes.  When an owner process terminates its tables are destroyed.  By default ETS is limited to 1400 tables per node.
 
@@ -67,7 +67,7 @@ Access control in ETS is similar to access control within modules:
 
 ## Inserting data
 
-ETS has no schema, the only limitation is that data must be stored as a tuple who's first element is the key.  To add new data we can use `insert/2`: 
+ETS has no schema, the only limitation is that data must be stored as a tuple who's first element is the key.  To add new data we can use `insert/2`:
 
 ```elixir
 iex> :ets.insert(:user_lookup, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
@@ -79,13 +79,13 @@ When we use `insert/2` with a `set` or `ordered_set` existing data will be repla
 ```elixir
 iex> :ets.insert_new(:user_lookup, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
 false
-iex>:ets.insert_new(:user_lookup, {"3100", "", ["Elixir", "Ruby", "JavaScript"]})
+iex> :ets.insert_new(:user_lookup, {"3100", "", ["Elixir", "Ruby", "JavaScript"]})
 true
 ```
 
 ## Data Retrieval
 
-ETS offers us a few convenient and flexible ways to retrieve our stored data.  We'll look at how to retrieve data by key and through different forms of pattern matching.  
+ETS offers us a few convenient and flexible ways to retrieve our stored data.  We'll look at how to retrieve data by key and through different forms of pattern matching.
 
 The most efficient, and ideal, retrieval method is key lookup.  While useful, matching iterates through the table and should be used sparingly especially for very large data sets.
 
@@ -102,7 +102,7 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 
 ETS was built for Erlang so be warned match variables may feel a _little_ clunky.
 
-To specify a variable in our match we use the atoms `:"$1"`, `:"$2"`, `:"$3"`, and so on; the variable number reflects the result position and not the match position.  For values we're not interested we use the `:"_"` variable.  
+To specify a variable in our match we use the atoms `:"$1"`, `:"$2"`, `:"$3"`, and so on; the variable number reflects the result position and not the match position.  For values we're not interested we use the `:"_"` variable.
 
 Values can also be used in matching but only variables will be turned as part of our result.  Let's put it all together and see how it works:
 
@@ -116,7 +116,7 @@ Let's look at another example to see how variables influence the resulting list 
 ```elixir
 iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
 [["Sean", ["Elixir", "Ruby", "Java"], "doomspork"],
- ["", ["Elixir", "Ruby", "JavaScript"], "3100"]] 
+ ["", ["Elixir", "Ruby", "JavaScript"], "3100"]]
 ```
 
 What if we want our original object not a list?  We can use `match_object/2`, which regardless of variables returns our entire object:
@@ -142,19 +142,19 @@ Let's take one of our previous `match/2` examples and turn it into a `select/2`:
 iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
- 
-iex> :ets.select(:user_lookup, [{{:"$1", :"_", :"$3"}, [], [:"$_"]}])
+
+iex> :ets.select(:user_lookup, [{ {:"$1", :"_", :"$3"}, [], [:"$_"]}])
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"spork", 30, ["ruby", "elixir"]}]
 ```
 
-Whole `select/2` allows for finer control over what we retrieve and how we return it, this syntax is quite unfriendly and only grows more so when we introduce guards.  Thankfully for us there's a helper method, `fun2ms/1`, that takes a function and returns a match_spec.  
+Whole `select/2` allows for finer control over what we retrieve and how we return it, this syntax is quite unfriendly and only grows more so when we introduce guards.  Thankfully for us there's a helper method, `fun2ms/1`, that takes a function and returns a match_spec.
 
 This allows us to use the familiar function syntax generate the match_specs we need.  Using `fun2ms/2` and `select/2` let's find all usernames with 2 or more languages:
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
-[{{:"$1", :_, :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]
+[{ {:"$1", :"_", :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]
 
 iex> :ets.select(:user_lookup, fun)
 ["doomspork", "3100"]
@@ -271,4 +271,4 @@ iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
 1451089134
 ```
 
-As you see we are able to implement a scalable and fast cache without any external dependencies and this is only one of many uses for ETS.  
+As you see we are able to implement a scalable and fast cache without any external dependencies and this is only one of many uses for ETS.
