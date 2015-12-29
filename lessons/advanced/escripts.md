@@ -75,7 +75,7 @@ end
 
 ## Building
 
-Once we've finished configuring our app to use escript, building our executable is a breeze with mix:
+Once we've finished configuring our application to use escript, building our executable is a breeze with mix:
 
 ```elixir
 $ mix escript.build

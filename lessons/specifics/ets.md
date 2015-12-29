@@ -53,7 +53,7 @@ iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
 There are four types of table available in ETS:
 
 + `set` — This is the default table type.  One value per key.  Keys are unique.
-+ `ordered_set` — Similar to `set` but orderd by Erlang/Elixir term.  It is important to note that key comparison is different within `ordered_set`.  Keys must not match so long as they compare equally, both 1 and 1.0 are considered equal.
++ `ordered_set` — Similar to `set` but ordered by Erlang/Elixir term.  It is important to note that key comparison is different within `ordered_set`.  Keys must not match so long as they compare equally, both 1 and 1.0 are considered equal.
 + `bag` — Many objects per key but only one instance of each object per key.
 + `duplicate_bag` — Many objects per key, duplicates allowed.
 

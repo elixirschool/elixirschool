@@ -121,7 +121,7 @@ defmodule Example.Plug.Router do
 end
 ```
 
-This is a bare minimum Router but the code should be pretty self explainatory.  We've included some macros through `use Plug.Router` and then set up two of the builtin Plugs: `:match` and `:dispatch`.   There are two defined routes, one for handling GET returns to the root and the second for matching all other requests so we can return a 404 message.
+This is a bare minimum Router but the code should be pretty self explanatory.  We've included some macros through `use Plug.Router` and then set up two of the built-in Plugs: `:match` and `:dispatch`.   There are two defined routes, one for handling GET returns to the root and the second for matching all other requests so we can return a 404 message.
 
 Let's add our Plug to the router:
 
@@ -187,7 +187,7 @@ $ mix run --no-halt
 
 ## Testing a Plug
 
-Testing Plugs is pretty straight forward thanks to `Plug.Test`, it includes a number of convience functions to make testing easy.
+Testing Plugs is pretty straight forward thanks to `Plug.Test`, it includes a number of convenience functions to make testing easy.
 
 See if you can follow along with router test:
 

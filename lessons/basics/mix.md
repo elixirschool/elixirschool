@@ -116,7 +116,7 @@ def deps do
 end
 ```
 
-As you probably decerned from the dependencies above, the `cowboy` dependency is only necessary during development and test.
+As you probably discerned from the dependencies above, the `cowboy` dependency is only necessary during development and test.
 
 Once we've defined our dependencies there is one final step, fetching them.  This is analogous to `bundle install`:
 
