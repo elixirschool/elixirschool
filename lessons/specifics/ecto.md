@@ -89,7 +89,8 @@ config :example_app, ExampleApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "example_app",
   username: "postgres",
-  password: "postgres"
+  password: "postgres",
+  hostname: "localhost"
 ```
 
 ## Mix Tasks
