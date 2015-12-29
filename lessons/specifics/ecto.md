@@ -261,7 +261,7 @@ query = from u in User,
     select: u
 ```
 
-Additional query examples can be found at [phoenix-examples/ecto_query_library](https://github.com/phoenix-examples/ecto_query_library).
+Additional query examples can be found in the [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html) module description.
 
 ## Changesets
 
