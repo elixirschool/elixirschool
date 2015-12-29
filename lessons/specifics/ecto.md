@@ -47,7 +47,7 @@ end
 
 ### Repository
 
-Finally we need to create our project's respository, the database wrapper.  This can be done via the `mix ecto.gen.repo` task, we'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
+Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo` task, we'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
 
 ```elixir
 defmodule ExampleApp.Repo do
@@ -267,7 +267,7 @@ Additional query examples can be found at [phoenix-examples/ecto_query_library](
 
 In the previous section we learned how to retrieve data but how about inserting and updating it?  For that we need Changesets.
 
-Changesets take care of filtering, validating, mantaining contraints when changing a model.
+Changesets take care of filtering, validating, maintaining constraints when changing a model.
 
 For this example we'll focus on the changeset for user account creation.  To start we need to update our model:
 
