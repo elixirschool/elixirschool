@@ -189,11 +189,13 @@ The official documentation can be found at [Ecto.Query](http://hexdocs.pm/ecto/E
 Ecto provides an excellent Query DSL that allows us to express query clearly.  To find the usernames of all confirmed accounts we could use something like this:
 
 ```elixir
+alias ExampleApp.{Repo,User}
+
 query = from u in User,
     where: u.confirmed == true,
     select: u.username
 
-Repo.all(User, query)
+Repo.all(query)
 ```
 
 In addition to `all/2` Repo provides a number of callbacks including `one/2`, `get/3`, `insert/2`, and `delete/2`.  A complete list of callbacks can be found at [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
@@ -208,15 +210,14 @@ query = from u in User,
 
 ### Group By
 
-To group usernames by their creation date we can include the `group_by` option:
+To group usernames by their confirmation status we can include the `group_by` option:
 
 ```elixir
 query = from u in User,
-    group_by: u.created_at,
-    select: [u.username, u.created_at]
+    group_by: u.confirmed,
+    select: [u.confirmed, count(u.id)]
 
-
-Repo.all(User, query)
+Repo.all(query)
 ```
 
 ### Order By
@@ -225,19 +226,18 @@ Ordering users by their creation date:
 
 ```elixir
 query = from u in User,
-    order_by: u.created_at,
-    select: [u.username, u.created_at]
+    order_by: u.inserted_at,
+    select: [u.username, u.inserted_at]
 
-
-Repo.all(User, query)
+Repo.all(query)
 ```
 
 To order by `DESC`:
 
 ```elixir
 query = from u in User,
-    order_by: [desc: u.created_at],
-    select: [u.username, u.created_at]
+    order_by: [desc: u.inserted_at],
+    select: [u.username, u.inserted_at]
 ```
 
 ### Joins
