@@ -162,7 +162,7 @@ defmodule ExampleApp.User do
     timestamps
   end
 
-  @required_fields ~w(username encrypted_password email confirmed)
+  @required_fields ~w(username encrypted_password email)
   @optional_fields ~w()
 
   def changeset(user, params \\ :empty) do
@@ -273,10 +273,12 @@ For this example we'll focus on the changeset for user account creation.  To sta
 
 ```elixir
 defmodule ExampleApp.User do
-  use ExampleApp.Web, :model
+  use Ecto.Schema
+  import Ecto.Changeset
+  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
   schema "users" do
-    field :username, :string, unique: true
+    field :username, :string
     field :encrypted_password, :string
     field :email, :string
     field :confirmed, :boolean, default: false
@@ -286,36 +288,47 @@ defmodule ExampleApp.User do
     timestamps
   end
 
-  @required_fields ~w(username encrypted_password email)
+  @required_fields ~w(username email password password_confirmation)
   @optional_fields ~w()
 
-  def changeset(model, params) do
-    model
+  def changeset(user, params \\ :empty) do
+    user
     |> cast(params, @required_fields, @optional_fields)
     |> validate_length(:password, min: 8)
-    |> validate_password_confirmation
+    |> validate_password_confirmation()
     |> unique_constraint(:username, name: :email)
-    |> put_change(:encrypted_password, Comeonin.Bcrypt.hashpwsalt(params[:password]))
+    |> put_change(:encrypted_password, hashpwsalt(params[:password]))
   end
 
   defp validate_password_confirmation(changeset) do
-    case Ecto.Changeset.get_change(changeset, :password_confirmation) do
-      nil -> password_mismatch_error(changeset)
+    case get_change(changeset, :password_confirmation) do
+      nil ->
+        password_mismatch_error(changeset)
       confirmation ->
-        password = Ecto.Changeset.get_field(changeset, :password)
+        password = get_field(changeset, :password)
         if confirmation == password, do: changeset, else: password_incorrect_error(changeset)
     end
+  end
+
+  defp password_mismatch_error(changeset) do
+    add_error(changeset, :password_confirmation, "Passwords does not match")
+  end
+
+  defp password_incorrect_error(changeset) do
+    add_error(changeset, :password, "is not valid")
   end
 end
 ```
 
-We've added two new functions `changeset/2` and `validate_password_confirmation/1`.
+We've improved our `changeset/2` function and added three new helper functions: `validate_password_confirmation/1`, `password_mismatch_error/1` and `password_incorrect_error/1`.
 
 As its name suggests `changeset/2` creates a new changeset for us.  In it we use `cast/4` to convert our parameters to a changeset from a set of required and optional fields.  Next we validate the changeset's password length, password confirmation match using our own function, and username uniqueness.  Finally we update our actual password database field.  For this we use `put_change/3` to update a value in the changeset.
 
 Using `User.changeset/2` is relatively straightforward:
 
 ```elixir
+alias ExampleApp.{User,Repo}
+
 pw = "passwords should be hard"
 changeset = User.changeset(%User{}, %{username: "doomspork",
                     email: "sean@seancallan.com",
