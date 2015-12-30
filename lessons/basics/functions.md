@@ -103,7 +103,7 @@ iex> Length.of [1, 2, 3]
 
 ### Private functions
 
-When we don't want other modules accesing a function we can use private functions, which can only be called within their Module.  We can define them in Elixir with `defp`:
+When we don't want other modules accessing a function we can use private functions, which can only be called within their Module.  We can define them in Elixir with `defp`:
 
 ```elixir
 defmodule Greeter do

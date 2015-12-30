@@ -26,7 +26,7 @@ An OTP server is a module with the GenServer behavior that implements a set of c
 
 To demonstrate the GenServer API we'll implement a basic queue to store and retrieve values.
 
-To begin our GenServer we need to start it and handle the initialization.  In most cases we'll want to link rocesses so we use `GenServer.start_link/3`.  We pass in the GenServer module we're starting, initial arguments, and a set of GenServer options.  The arguments are be passed to `GenServer.init/1` which sets the initial state through it's return value.  In our example the arguments will be our initial state:
+To begin our GenServer we need to start it and handle the initialization. In most cases we'll want to link processes so we use `GenServer.start_link/3`.  We pass in the GenServer module we're starting, initial arguments, and a set of GenServer options.  The arguments are be passed to `GenServer.init/1` which sets the initial state through it's return value.  In our example the arguments will be our initial state:
 
 ```elixir
 defmodule SimpleQueue do

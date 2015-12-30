@@ -144,7 +144,7 @@ Though not as common, Elixir does support private macros.  A private macro is de
 
 ### Macro Hygiene
 
-How macros interact with the caller's context when expanded is known as macro hygiene.  By default macros in Elixir are hygienetic and will not conflict with our context:
+How macros interact with the caller's context when expanded is known as macro hygiene. By default macros in Elixir are hygienic and will not conflict with our context:
 
 ```elixir
 defmodule Example do
@@ -194,11 +194,11 @@ iex> val
 -1
 ```
 
-By including `var!/2` in our macro we manipulated the value of `val` without passing it into our macro.  The use of unhygience macros should be kept to a minimum.  By including `var!/2` we increase the risk of a variable resolution conflict.
+By including `var!/2` in our macro we manipulated the value of `val` without passing it into our macro.  The use of non-hygienic macros should be kept to a minimum.  By including `var!/2` we increase the risk of a variable resolution conflict.
 
 ### Binding
 
-We already covered the usefulness of `unquote/1` but there's another way to inject values into our code: binding.  With variable binding we are able to include multiple variables in our macro and ensure they're only unquoted once, avoiding accidential revaluations. To use bind variables we need to pass a keyword list the `bind_quoted` option in `quote/2`.
+We already covered the usefulness of `unquote/1` but there's another way to inject values into our code: binding.  With variable binding we are able to include multiple variables in our macro and ensure they're only unquoted once, avoiding accidental revaluations. To use bind variables we need to pass a keyword list the `bind_quoted` option in `quote/2`.
 
 To see the benefit of `bind_quote` and to demonstrate the revaluation issue let's use an example.  We can start by creating a macro that simply outputs the expression twice:
 
