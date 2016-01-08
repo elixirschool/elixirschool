@@ -18,7 +18,8 @@ Ecto is an official Elixir project providing a database wrapper and integrated q
 - [Migrations](#migrations)
 - [Models](#models)
 - [Querying](#querying)
-  - [Basics](#basic-querying)
+  - [Basics](#basics)
+  - [Count](#count)
   - [Group By](#group-by)
   - [Order By](#order-by)
   - [Joins](#joins)
@@ -46,7 +47,7 @@ end
 
 ### Repository
 
-Finally we need to create our project's respository, the database wrapper.  This can be done via the `mix ecto.gen.repo` task, we'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
+Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo` task, we'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
 
 ```elixir
 defmodule ExampleApp.Repo do
@@ -89,7 +90,8 @@ config :example_app, ExampleApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "example_app",
   username: "postgres",
-  password: "postgres"
+  password: "postgres",
+  hostname: "localhost"
 ```
 
 ## Mix Tasks
@@ -146,10 +148,11 @@ For now let's look at what the model for our migration might look like:
 
 ```elixir
 defmodule ExampleApp.User do
-  use ExampleApp.Web, :model
+  use Ecto.Schema
+  import Ecto.Changeset
 
   schema "users" do
-    field :username, :string, unique: true
+    field :username, :string
     field :encrypted_password, :string
     field :email, :string
     field :confirmed, :boolean, default: false
@@ -159,12 +162,13 @@ defmodule ExampleApp.User do
     timestamps
   end
 
-  @required_fields ~w(username encrypted_password email confirmed)
+  @required_fields ~w(username encrypted_password email)
   @optional_fields ~w()
 
-  def changeset(model, params \\ :empty) do
-    model
+  def changeset(user, params \\ :empty) do
+    user
     |> cast(params, @required_fields, @optional_fields)
+    |> unique_constraint(:username)
   end
 end
 ```
@@ -186,11 +190,13 @@ The official documentation can be found at [Ecto.Query](http://hexdocs.pm/ecto/E
 Ecto provides an excellent Query DSL that allows us to express query clearly.  To find the usernames of all confirmed accounts we could use something like this:
 
 ```elixir
+alias ExampleApp.{Repo,User}
+
 query = from u in User,
     where: u.confirmed == true,
     select: u.username
 
-Repo.all(User, query)
+Repo.all(query)
 ```
 
 In addition to `all/2` Repo provides a number of callbacks including `one/2`, `get/3`, `insert/2`, and `delete/2`.  A complete list of callbacks can be found at [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
@@ -205,15 +211,14 @@ query = from u in User,
 
 ### Group By
 
-To group usernames by their creation date we can include the `group_by` option:
+To group usernames by their confirmation status we can include the `group_by` option:
 
 ```elixir
 query = from u in User,
-    group_by: u.created_at,
-    select: [u.username, u.created_at]
+    group_by: u.confirmed,
+    select: [u.confirmed, count(u.id)]
 
-
-Repo.all(User, query)
+Repo.all(query)
 ```
 
 ### Order By
@@ -222,19 +227,18 @@ Ordering users by their creation date:
 
 ```elixir
 query = from u in User,
-    order_by: u.created_at,
-    select: [u.username, u.created_at]
+    order_by: u.inserted_at,
+    select: [u.username, u.inserted_at]
 
-
-Repo.all(User, query)
+Repo.all(query)
 ```
 
 To order by `DESC`:
 
 ```elixir
 query = from u in User,
-    order_by: [desc: u.created_at],
-    select: [u.username, u.created_at]
+    order_by: [desc: u.inserted_at],
+    select: [u.username, u.inserted_at]
 ```
 
 ### Joins
@@ -257,22 +261,24 @@ query = from u in User,
     select: u
 ```
 
-Additional query examples can be found at [phoenix-examples/ecto_query_library](https://github.com/phoenix-examples/ecto_query_library).
+Additional query examples can be found in the [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html) module description.
 
 ## Changesets
 
 In the previous section we learned how to retrieve data but how about inserting and updating it?  For that we need Changesets.
 
-Changesets take care of filtering, validating, mantaining contraints when changing a model.
+Changesets take care of filtering, validating, maintaining constraints when changing a model.
 
 For this example we'll focus on the changeset for user account creation.  To start we need to update our model:
 
 ```elixir
 defmodule ExampleApp.User do
-  use ExampleApp.Web, :model
+  use Ecto.Schema
+  import Ecto.Changeset
+  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
   schema "users" do
-    field :username, :string, unique: true
+    field :username, :string
     field :encrypted_password, :string
     field :email, :string
     field :confirmed, :boolean, default: false
@@ -282,36 +288,47 @@ defmodule ExampleApp.User do
     timestamps
   end
 
-  @required_fields ~w(username encrypted_password email)
+  @required_fields ~w(username email password password_confirmation)
   @optional_fields ~w()
 
-  def changeset(model, params) do
-    model
+  def changeset(user, params \\ :empty) do
+    user
     |> cast(params, @required_fields, @optional_fields)
     |> validate_length(:password, min: 8)
-    |> validate_password_confirmation
+    |> validate_password_confirmation()
     |> unique_constraint(:username, name: :email)
-    |> put_change(:encrypted_password, Comeonin.Bcrypt.hashpwsalt(params[:password]))
+    |> put_change(:encrypted_password, hashpwsalt(params[:password]))
   end
 
   defp validate_password_confirmation(changeset) do
-    case Ecto.Changeset.get_change(changeset, :password_confirmation) do
-      nil -> password_mismatch_error(changeset)
+    case get_change(changeset, :password_confirmation) do
+      nil ->
+        password_mismatch_error(changeset)
       confirmation ->
-        password = Ecto.Changeset.get_field(changeset, :password)
+        password = get_field(changeset, :password)
         if confirmation == password, do: changeset, else: password_incorrect_error(changeset)
     end
+  end
+
+  defp password_mismatch_error(changeset) do
+    add_error(changeset, :password_confirmation, "Passwords does not match")
+  end
+
+  defp password_incorrect_error(changeset) do
+    add_error(changeset, :password, "is not valid")
   end
 end
 ```
 
-We've added two new functions `changeset/2` and `validate_password_confirmation/1`.
+We've improved our `changeset/2` function and added three new helper functions: `validate_password_confirmation/1`, `password_mismatch_error/1` and `password_incorrect_error/1`.
 
 As its name suggests `changeset/2` creates a new changeset for us.  In it we use `cast/4` to convert our parameters to a changeset from a set of required and optional fields.  Next we validate the changeset's password length, password confirmation match using our own function, and username uniqueness.  Finally we update our actual password database field.  For this we use `put_change/3` to update a value in the changeset.
 
 Using `User.changeset/2` is relatively straightforward:
 
 ```elixir
+alias ExampleApp.{User,Repo}
+
 pw = "passwords should be hard"
 changeset = User.changeset(%User{}, %{username: "doomspork",
                     email: "sean@seancallan.com",
