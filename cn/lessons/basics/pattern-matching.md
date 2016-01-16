@@ -1,7 +1,8 @@
 ---
-
-layout: page title: 模式匹配 category: basics order: 4
-
+layout: page
+title: 模式匹配
+category: basics
+order: 4
 lang: cn
 --------
 

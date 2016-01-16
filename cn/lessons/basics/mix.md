@@ -1,7 +1,8 @@
 ---
-
-layout: page title: Mix category: basics order: 8
-
+layout: page
+title: Mix
+category: basics
+order: 8
 lang: cn
 --------
 
