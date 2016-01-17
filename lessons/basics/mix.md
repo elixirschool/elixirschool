@@ -72,7 +72,7 @@ The `application` section is used during the generation of our application file 
 
 ## Compilation
 
-Mix is a smart and will compile your changes when necessary, but it may still be necessary explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
+Mix is smart and will compile your changes when necessary, but it may still be necessary explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
 
 To compile a mix project we only need to run `mix compile` in our base directory:
 
