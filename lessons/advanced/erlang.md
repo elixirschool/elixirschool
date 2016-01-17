@@ -81,18 +81,30 @@ example.
 
 ### Strings
 
-Erlang strings are represented by single quotes (`''`) much like Elixir's char lists.  In addition to sharing the syntax with Erlang strings, char lists are more commonly use when interfacing with Erlang code.
+In Elixir when we talk about strings we mean UTF-8 encoded binaries.  In Erlang, strings still use double quotes but refer to char lists:
 
 Elixir:
 
 ```elixir
-"Example String"
+iex> is_list('Example')
+true
+iex> is_binary("Example")
+true
+iex> <<"Example">> === "Example"
+true
 ```
 
 Erlang:
 
 ```erlang
-'Example String'.
+1> is_list('Example').
+false
+1> is_list("Example").
+true
+1> is_binary("Example").
+false
+1> is_binary(<<"Example">>).
+true
 ```
 
 It's important to note that many older Erlang libraries may not support binaries so we need to convert Elixir strings to char lists.  Thankfully this is easy to accomplish with the `to_char_list/1` function:
