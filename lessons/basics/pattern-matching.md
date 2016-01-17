@@ -59,9 +59,9 @@ iex> {:ok, value} = {:error}
 
 ## Pin operator
 
-As we just learned, the match operator handles assignment when the left side of the match includes a variable.  In some cases this behavior, variable rebinding, is undesirable.  For these situations, we have the `^` operator:
+We just learned the match operator handles assignment when the left side of the match includes a variable.  In some cases this behavior, variable rebinding, is undesirable.  For these situations, we have the pin operator: `^`.
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/pattern-matching.html) guide._
+When we pin a variable we match on the existing value rather than rebinding to a new one.  Let's take a look at how this works:
 
 ```elixir
 iex> x = 1
@@ -72,4 +72,33 @@ iex> {x, ^x} = {2, 1}
 {2, 1}
 iex> x
 2
+```
+
+Elixir 1.2 introduced support for pins in map keys and function clauses:
+
+```elixir
+iex> key = "hello"
+"hello"
+iex> %{^key => value} = %{"hello" => "world"}
+%{"hello" => "world"}
+iex> value
+"world"
+iex> %{^key => value} = %{:hello => "world"}
+** (MatchError) no match of right hand side value: %{hello: "world"}
+```
+
+An example of pinning in a function clause:
+
+```elixir
+iex> greeting = "Hello"
+"Hello"
+iex> greet = fn
+...>   (^greeting, name) -> "Hi #{name}"
+...>   (greeting, name) -> "#{greeting}, #{name}"
+...> end
+#Function<12.54118792/2 in :erl_eval.expr/5>
+iex> greet.("Hello", "Sean")
+"Hi Sean"
+iex> greet.("Mornin'", "Sean")
+"Mornin', Sean"
 ```

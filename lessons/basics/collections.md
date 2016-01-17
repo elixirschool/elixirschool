@@ -17,7 +17,6 @@ List, tuples, keywords, maps, dicts and functional combinators.
 - [Tuples](#tuples)
 - [Keyword lists](#keyword-lists)
 - [Maps](#maps)
-- [Dicts](#dicts)
 
 ## Lists
 
@@ -130,6 +129,15 @@ iex> map["hello"]
 :world
 ```
 
+As of Elixir 1.2 variables are allowed as map keys:
+
+```elixir
+iex> key = "hello"
+"hello"
+iex> %{key => "world"}
+%{"hello" => "world"}
+```
+
 If a duplicate is added to a map, it will replace the former value:
 
 ```elixir
@@ -144,24 +152,5 @@ iex> %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
-true
-```
-
-## Dicts
-
-In Elixir, both keyword lists and maps implement the `Dict` module; as such they are known collectively as dictionaries.  If you need to build your own key-value store, implementing the `Dict` module is a good place to start.
-
-The [`Dict` module](http://elixir-lang.org/docs/stable/elixir/#!Dict.html) provides a number of useful functions for interacting with, and manipulating, these dictionaries:
-
-```elixir
-# keyword lists
-iex> Dict.put([foo: "bar"], :hello, "world")
-[hello: "world", foo: "bar"]
-
-# maps
-iex> Dict.put(%{:foo => "bar"}, "hello", "world")
-%{:foo => "bar", "hello" => "world"}
-
-iex> Dict.has_key?(%{:foo => "bar"}, :foo)
 true
 ```
