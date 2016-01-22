@@ -26,9 +26,9 @@ How much we comment and what makes quality documentation remains a contentious i
 
 Elixir treats documentation as a *first-class citizen*, offering various functions to access and generate documentation for your projects. The Elixir core provides us with many different attributes to annotate a codebase. Let's look at 3 ways:
 
-  - `#`~ For inline documentation.
-  - `@moduledoc` ~ For module level documentation.
-  - `@doc` ~ For function level documentation.
+  - `#`- For inline documentation.
+  - `@moduledoc` - For module level documentation.
+  - `@doc` - For function level documentation.
 
 ### Inline Documentation
 
