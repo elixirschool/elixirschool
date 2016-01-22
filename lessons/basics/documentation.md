@@ -26,7 +26,7 @@ How much we comment and what makes quality documentation remains a contentious i
 
 Elixir treats documentation as a *first-class citizen*, offering various functions to access and generate documentation for your projects. The Elixir core provides us with many different attributes to annotate a codebase. Let's look at 3 ways:
 
-  - `#`- For inline documentation.
+  - `#` - For inline documentation.
   - `@moduledoc` - For module level documentation.
   - `@doc` - For function level documentation.
 
@@ -41,7 +41,7 @@ Take this Elixir Script (greeting.exs):
 IO.puts "Hello, " <> "chum."
 ```
 
-Elixir, when running this script will ignore everything from `#` to the end of the line, treating it as throw away data. It may add no value to the operation or performance of the script, however when it's not so obvious what is going happening a programmer should know from reading your comment. Be mindful not to abuse the single line comment! Littering a codebase could become an unwelcome nightmare for some. It is best used in moderation.
+Elixir, when running this script will ignore everything from `#` to the end of the line, treating it as throw away data. It may add no value to the operation or performance of the script, however when it's not so obvious what is happening a programmer should know from reading your comment. Be mindful not to abuse the single line comment! Littering a codebase could become an unwelcome nightmare for some. It is best used in moderation.
 
 ### Documenting Modules
 
@@ -63,15 +63,11 @@ end
 
 We (or others) can access this module documentation using the `h` helper function within IEx. 
 
-```bash
-~/$ iex
-
-Interactive Elixir (1.2.0) - press Ctrl+C to exit (type h() ENTER for help)
-
-iex(1)> c("greeter.ex")
+```elixir
+iex> c("greeter.ex")
 [Greeter]
 
-iex(2)> h Greeter
+iex> h Greeter
 
                 Greeter                                     
 
@@ -80,7 +76,7 @@ Provides a function hello/1 to greet a human
 
 ### Documenting Functions
 
-Just as Elixir gives us the ability for module level annotation, it also gives use similar annotations for documenting functions. The `@doc` annotator allows for inline documentation at a function level. The `@doc` annotator sits just above the function it is annotating.
+Just as Elixir gives us the ability for module level annotation, it also enables similar annotations for documenting functions. The `@doc` annotator allows for inline documentation at a function level. The `@doc` annotator sits just above the function it is annotating.
 
 ```elixir
 defmodule Greeter do
@@ -113,15 +109,11 @@ end
 
 If we kick into IEx again and use the helper command (`h`) on the function prepended with the module name, we should see the following.
 
-```bash
-~/$ iex
-
-Interactive Elixir (1.2.0) - press Ctrl+C to exit (type h() ENTER for help)
-
-iex(1)> c("greeter.ex")
+```elixir
+iex> c("greeter.ex")
 [Greeter]
 
-iex(2)> h Greeter.hello
+iex> h Greeter.hello
 
                 def hello(name)                                 
 
@@ -133,13 +125,13 @@ Parameters
 
 Examples
 
-  iex> Greeter.hello("Sean") 
-  "Hello, Sean"
+    iex> Greeter.hello("Sean") 
+    "Hello, Sean"
 
-  iex> Greeter.hello("pete") 
-  "Hello, pete"
+    iex> Greeter.hello("pete") 
+    "Hello, pete"
 
-iex(3)> 
+iex> 
 ```
 
 Notice how you can use markup within out documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
@@ -149,7 +141,7 @@ Notice how you can use markup within out documentation and the terminal will ren
 ExDoc is an official Elixir project that **produces HTML (HyperText Markup Language and online documentation for Elixir projects** that can be found on [GitHub](https://github.com/elixir-lang/ex_doc). First lets create a Mix project for our application:
 
 ```bash
-~/$ mix new greet_everyone                 
+$ mix new greet_everyone                 
 
 * creating README.md
 * creating .gitignore
@@ -169,18 +161,15 @@ You can use "mix" to compile it, test it, and more:
     mix test
 
 Run "mix help" for more commands.
-~/$ cd greet_everyone
+
+$ cd greet_everyone
 
 ```
 
-Now copy and paste the code from the `@doc` annotator lesson into a file called `lib/greeter.ex` and make sure everything is still working from the command line. Now that we are working within a Mix project we need to start IEx a little differently using the `iex -S mix` sequence:
+Now copy and paste the code from the `@doc` annotator lesson into a file called `lib/greeter.ex` and make sure everything is still working from the command line. Now that we are working within a Mix project we need to start IEx a little differently using the `iex -S mix` command sequence:
 
 ```bash
-greet_everyone/$ ~ iex -S mix # loads the mix project into IEx
-
-Interactive Elixir (1.2.0) - press Ctrl+C to exit (type h() ENTER for help)
-
-iex(1)> h Greeter.hello
+iex> h Greeter.hello
 
                 def hello(name)                                 
 
@@ -192,18 +181,16 @@ Parameters
 
 Examples
 
-  iex> Greeter.hello("Sean") 
-  "Hello, Sean"
+    iex> Greeter.hello("Sean") 
+    "Hello, Sean"
 
-  iex> Greeter.hello("pete") 
-  "Hello, pete"
-
-iex(2)> 
+    iex> Greeter.hello("pete") 
+    "Hello, pete"
 ```
 
 ### Installing
 
-Assuming all being well, and we're seeing the output above suggests that we are ready to set up ExDoc. Within our `mix.exs` file add the two required dependencies to get started; `:earmark` and `:ex_doc`.
+Assuming all is well, and we're seeing the output above suggests that we are ready to set up ExDoc. Within our `mix.exs` file add the two required dependencies to get started; `:earmark` and `:ex_doc`.
 
 ```elixir
   def deps do
@@ -221,13 +208,11 @@ It is worth noting at this point, that you are not forced to use Earmark. You ca
 Carrying on, from the command line run the following two commands:
 
 ```bash
-greet_everyone/$ ~ mix deps.get # gets ExDoc + Earmark.
-greet_everyone/$ ~ mix docs # makes the documentation.
+$ mix deps.get # gets ExDoc + Earmark.
+$ mix docs # makes the documentation.
 
 Docs successfully generated.
 View them at "doc/index.html".
-
-greet_everyone/$ ~
 ```
 
 Hopefully, if everything went to plan, you should see a similar message as to the output message in the above example. Let's now look inside our Mix project and we should see that there is another directory called **doc/**. Inside is our generated documentation. If we visit the index page in our browser we should see the following:
@@ -242,7 +227,7 @@ We can now deploy this to GitHub, our own website, more commonly [HexDocs](https
 
 ## Best Practice
 
-Adding documentation shoud be added within the Best practices guidelines of the language. Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows. The community however has made efforts to establish best practices. To read more about best practices see: https://github.com/niftyn8/elixir_style_guide
+Adding documentation shoud be added within the Best practices guidelines of the language. Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows. The community however has made efforts to establish best practices. To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
   - Always document a module.
 
@@ -255,7 +240,7 @@ defmodule Greeter do
 end
 ```
 
-  - If you do not intend to document a module, **do not** leave it blank. Instead mark the module as `false` as so:
+  - If you do not intend to document a module, **do not** leave it blank. Consider annotating the module `false` as so:
 
 ```elixir
 defmodule Greeter do
@@ -264,7 +249,7 @@ defmodule Greeter do
 end
 ```
 
- - When you are referring to functions within your module documentation, use backticks like so:
+ - When referring to functions within module documentation, use backticks like so:
 
 ```elixir
 defmodule Greeter do
@@ -317,11 +302,11 @@ defmodule Greeter do
 
   ## Examples
 
-    iex> Greeter.hello("Sean")
-    "Hello, Sean"
+      iex> Greeter.hello("Sean")
+      "Hello, Sean"
 
-    iex> Greeter.hello("pete")
-    "Hello, pete"
+      iex> Greeter.hello("pete")
+      "Hello, pete"
 
   """
   def hello(name) do
