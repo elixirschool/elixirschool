@@ -19,7 +19,6 @@
             <span>{{title}}</span>
           </div>
           <div class="sidebar-nav-list">
-            
             {% assign list = site.pages | where: "category", section.tag | where: "lang", lang | sort: "order" %}
             {% for node in list %}
               <div class="sidebar-nav-item">
