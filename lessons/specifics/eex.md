@@ -11,7 +11,7 @@ Much like Ruby has ERB and Java JSPs, Elixir has EEx or Embedded Elixir.  With E
 ## Table of Contents
 
 - [API](#API)
-	- [Evaluation](#evaluation) 
+	- [Evaluation](#evaluation)
 	- [Definitions](#definitions)
 	- [Compilation](#compilation)
 - [Tags](#tags)
@@ -19,7 +19,7 @@ Much like Ruby has ERB and Java JSPs, Elixir has EEx or Embedded Elixir.  With E
 
 ## API
 
-The EEx API supports working with strings and files directly.  The API is divided into three main components: simple evaluation, function defintions, and compilation to AST.
+The EEx API supports working with strings and files directly.  The API is divided into three main components: simple evaluation, function definitions, and compilation to AST.
 
 ### Evaluation
 
@@ -51,7 +51,7 @@ iex> Example.greeting("Sean")
 
 ### Compilation
 
-Lastly, EEx provides us a way to directly generate Elixir AST from a string or file using `compile_string` or `compile_file`.  This API is primarily used by the aforemetioned APIs but is available should you wish to implement your own handling of embedded Elixir.
+Lastly, EEx provides us a way to directly generate Elixir AST from a string or file using `compile_string` or `compile_file`.  This API is primarily used by the aforementioned APIs but is available should you wish to implement your own handling of embedded Elixir.
 
 ## Tags
 

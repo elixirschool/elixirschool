@@ -205,7 +205,7 @@ import List, only: :macros
 
 ### `require`
 
-Althought used less frequently `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
+Although used less frequently `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
 
 ```elixir
 defmodule Example do

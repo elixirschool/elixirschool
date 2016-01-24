@@ -10,7 +10,7 @@ Testing is an important part of developing software.  In this lesson we'll look 
 
 ## Table of Contents
 
-- [ExTest](#extest)
+- [ExUnit](#exunit)
   - [assert](#assert)
   - [refute](#refute)
   - [assert_raise](#assertraise)
@@ -18,7 +18,7 @@ Testing is an important part of developing software.  In this lesson we'll look 
 - [Mocking](#mocking)
 - [Best Practices](#best-practices)
 
-## ExTest
+## ExUnit
 
 Elixir's built-in test framework is ExUnit and it includes everything we need to thoroughly test our code.  Before moving on it is important to note that tests are implemented as Elixir scripts so we need to use the `.exs` file extension.  Before we can run our tests we need to start ExUnit with `ExUnit.start()`, this is most commonly done in `test/test_helper.exs`.
 
