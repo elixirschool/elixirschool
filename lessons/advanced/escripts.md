@@ -6,7 +6,7 @@ order: 2
 lang: en
 ---
 
-To build executables in Elixir we will be using escript.  Escript produces an executables that can be run on any system with Erlang installed.
+To build executables in Elixir we will be using escript. Escript produces an executable that can be run on any system with Erlang installed.
 
 ## Table of Contents
 
