@@ -8,7 +8,7 @@ author:
 
 # Setup
 title: Elixir School
-description: Lessons in the Fundamentals of Elixir
+description: Lessons about the Elixir programming language
 baseurl: /
 url: https://elixirschool.com
 permalink: pretty

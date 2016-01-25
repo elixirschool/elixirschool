@@ -23,6 +23,7 @@ Erlang Term Storage, commonly referred to as ETS, is a powerful storage engine b
   - [Removing Records](#removing-records)
   - [Removing Tables](#removing-tables)
 - [Example ETS Usage](#example-ets-usage)
+- [Disk-based ETS](#disk-based-ets)
 
 ## Overview
 
@@ -148,9 +149,9 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
  {"spork", 30, ["ruby", "elixir"]}]
 ```
 
-Whole `select/2` allows for finer control over what we retrieve and how we return it, this syntax is quite unfriendly and only grows more so when we introduce guards.  Thankfully for us there's a helper method, `fun2ms/1`, that takes a function and returns a match_spec.
+Although `select/2` allows for finer control over what and how we retrieve records, the syntax is quite unfriendly and will only become more so.  To handle this the ETS module includes `fun2ms/1`, to turn the functions into match_specs.  With `fun2ms/1` we can create queries using a familiar function syntax.
 
-This allows us to use the familiar function syntax generate the match_specs we need.  Using `fun2ms/2` and `select/2` let's find all usernames with 2 or more languages:
+Let's use `fun2ms/2` and `select/2` to find all usernames with 2 or more languages:
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
@@ -272,3 +273,27 @@ iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
 ```
 
 As you see we are able to implement a scalable and fast cache without any external dependencies and this is only one of many uses for ETS.
+
+## Disk-basd ETS
+
+We now know ETS is for in-memory term storage but what if we need disk-based storage? For that we have Disk Based Term Storage or DETS for short.  The ETS and DETS APIs are interchangeable with the exception of how tables are created. DETS relies on `open_file/2` and doesn't require the `:named_table` option:
+
+```elixir
+iex> {:ok, table} = :dets.open_file(:disk_storage, [type: :set])
+{:ok, :disk_storage}
+iex> :dets.insert_new(table, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
+true
+iex> select_all = :ets.fun2ms(&(&1))
+[{:"$1", [], [:"$1"]}]
+iex> :dets.select(table, fun)
+[{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
+```
+
+If you exit `iex` and look in your local directory, you'll see a new file `disk_storage`:
+
+```shell
+$ ls | grep -c disk_storage
+1
+```
+
+One last thing to note is that DETS does not support `ordered_set` like ETS, only `set`, `bag`, and `duplicate_bag`.
