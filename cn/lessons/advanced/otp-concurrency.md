@@ -79,6 +79,7 @@ defmodule SimpleQueue do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
 
+  def queue, do: GenServer.call(__MODULE__, :queue)
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
 end
 ```
