@@ -2,13 +2,13 @@
 layout: page
 title: Error Handling
 category: advanced
-order: 7
+order: 2
 lang: en
 ---
 
 Although more common to return the `{:error, reason}` tuple, Elixir supports exceptions and in this lesson we'll look at how to handle errors and the different mechanisms available to us.
 
-In general the convention in Elixir is to create a function (`example/1`) which returns `{:ok, result}` and `{:error, reason}` and a separate function (`example!/1`) that returns the unwrapped `result` or raises an error.  
+In general the convention in Elixir is to create a function (`example/1`) which returns `{:ok, result}` and `{:error, reason}` and a separate function (`example!/1`) that returns the unwrapped `result` or raises an error.
 
 This lesson will focus on interacting with the latter.
 
@@ -147,7 +147,7 @@ iex> spawn_link fn -> exit("oh no") end
 ```
 
 While it is possible to catch an exit with `try/catch` doing so is _extremely_ rare.  In almost all cases it is advantagous to let the supervisor handle the process exit:
- 
+
 ```elixir
 iex> try do
 ...>   exit "oh no!"
