@@ -2,7 +2,7 @@
 layout: page
 title: Metaprogramming
 category: advanced
-order: 6
+order: 7
 lang: en
 ---
 
