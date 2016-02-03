@@ -2,7 +2,7 @@
 layout: page
 title: Sigils
 category: basics
-order: 11
+order: 9
 lang: en
 ---
 
