@@ -32,7 +32,7 @@ Instalação, tipos básicos e operações básicas.
 
 As instruções para cada sistema operacional podem ser encontradas em [Elixir-lang.org](http://elixir-lang.org) na aba [Install](http://elixir-lang.org/install.html).
 
-### Modo Interactivo
+### Modo Interativo
 
 Elixir vem com `iex`, um console interativo, que nos permite avaliar expressões Elixir.
 

@@ -8,7 +8,7 @@ lang: pt
 
 As lições de fundamentos de Elixir foram inspiradas em [Scala School](http://twitter.github.io/scala_school/) do Twitter.
 
-_¡Nós encorajamos a sua participação e colaboração!_
+_Nós encorajamos a sua participação e colaboração!_
 
 ## Sobre o Elixir
 
