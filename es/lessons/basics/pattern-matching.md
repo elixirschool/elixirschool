@@ -6,7 +6,7 @@ order: 4
 lang: es
 ---
 
-La coincidencia de patrones es una parte poderosa de Elixir, nos permite coincidir valores simple, estructuras de datos, e incluso funciones. En esta lección vamos a comenzar a ver como es usada la coincidencia de patrones.
+La coincidencia de patrones es una parte poderosa de Elixir, nos permite coincidir valores simples, estructuras de datos, e incluso funciones. En esta lección vamos a comenzar a ver como es usada la coincidencia de patrones.
 
 ## Tabla de Contenidos
 
@@ -15,7 +15,7 @@ La coincidencia de patrones es una parte poderosa de Elixir, nos permite coincid
 
 ## Operador de coincidencia
 
-¿Estas listo para una bola curva? En Elixir, el operador `=` es actualmente nuestro operador de coincidencia. A través del operador de coincidencia podemos asignar y luego coincidir valores, echemos un vistazo:
+¿Estás listo para una bola curva? En Elixir, el operador `=` es actualmente nuestro operador de coincidencia. A través del operador de coincidencia podemos asignar y luego coincidir valores, echemos un vistazo:
 
 ```elixir
 iex> x = 1

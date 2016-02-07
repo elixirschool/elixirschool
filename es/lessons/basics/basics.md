@@ -65,7 +65,7 @@ iex> 0x1F
 
 ### Coma flotante
 
-En Elixir, los números con coma flotante requieren un decimal despues de al menos un dígito; estos tienen una precisión de 64 bits y soportan `e` para números exponenciales.
+En Elixir, los números con coma flotante requieren un decimal después de al menos un dígito; estos tienen una precisión de 64 bits y soportan `e` para números exponenciales.
 
 ```elixir
 iex> 3.41
@@ -84,9 +84,9 @@ iex> true
 iex> false
 ```
 
-### Atomos
+### Átomos
 
-Un Átomo es una constante cuyo nombre es su valor, si estas familiarizado con Ruby estos son equivalentes a los Símbolos:
+Un Átomo es una constante cuyo nombre es su valor, si estás familiarizado con Ruby estos son equivalentes a los Símbolos:
 
 ```elixir
 iex> :foo
@@ -95,7 +95,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTA: Booleanos `true` y `false` son tambien los átomos `:true` y `:false` respectivamente.
+NOTA: Booleanos `true` y `false` son también los átomos `:true` y `:false` respectivamente.
 
 ```elixir
 iex> true |> is_atom
@@ -108,7 +108,7 @@ true
 
 ### Cadenas
 
-Las cadenas en Elixir estan codificadas en utf-8 y estan representadas con comillas dobles:
+Las cadenas en Elixir están codificadas en utf-8 y están representadas con comillas dobles:
 
 ```elixir
 iex> "Hello"
@@ -117,7 +117,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-Las cadenas soportan saltos de linea y secuencias de escape:
+Las cadenas soportan saltos de línea y secuencias de escape:
 
 ```elixir
 iex(9)> "foo
