@@ -13,8 +13,8 @@ In this lesson we'll focus on two important pieces: GenServers and GenEvents.
 ## Table of Contents
 
 - [GenServer](#genserver)
-  - [Synchronous Functions](#synchronous-function)
-  - [Asynchronous Functions](#asynchronous-function)
+  - [Synchronous Functions](#synchronous-functions)
+  - [Asynchronous Functions](#asynchronous-functions)
 - [GenEvent](#genevent)
   - [Handling Events](#handling-events)
   - [Calling Handlers](#calling-handlers)
