@@ -12,7 +12,7 @@ description: Lessons about the Elixir programming language
 baseurl: /
 url: https://elixirschool.com
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi']
 default_lang: en
 exclude_from_localization: []
 sections:
@@ -23,6 +23,7 @@ sections:
       cn: 基础
       es: Básico
       pt: Básico
+      vi: Cơ bản
   - tag: advanced
     label:
       en: Advanced
@@ -30,6 +31,7 @@ sections:
       cn: 高级
       es: Avanzado
       pt: Avançado
+      vi: Nâng cao
   - tag: specifics
     label:
       en: Specifics
@@ -37,6 +39,7 @@ sections:
       cn: 详情
       es: Específico
       pt: Específico
+      vi: Cụ thể
 
 gems:
   - kramdown
