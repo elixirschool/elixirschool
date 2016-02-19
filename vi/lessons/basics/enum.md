@@ -6,9 +6,9 @@ order: 3
 lang: vi
 ---
 
-A set of algorithms for enumerating over collections.
+Các thuật toán để thao tác với tập hợp
 
-## Table of Contents
+## Mục lục
 
 - [Enum](#enum)
   - [all?](#all)
@@ -25,14 +25,13 @@ A set of algorithms for enumerating over collections.
 
 ## Enum
 
-The `Enum` module includes over one hundred functions for working with the collections we learned about in the last lesson.
+Module Enum bao gồm hơn một trăm hàm để dùng với các tập hợp ta đã biết từ bài trước.
 
-This lesson will only cover a subset of the available functions, to see a complete set of functions visit the official [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html) module.
-
+Bài này sẽ chỉ thảo luận một vài trong số các hàm đó, xem đầy đủ các hàm tại trang tài liệu chính thức [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); xem thao tác trì hoãn (lazy enumeration) tại trang [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html)
 
 ### all?
 
-When using `all?`, and much of `Enum`, we supply a function to apply to our collection's items.  In the case of `all?`, the entire collection must evaluate to `true` otherwise `false` will be returned:
+Khi dùng hàm 'all?', và hầu hết các hàm khác của 'Enum', ta cần cung cấp một hàm để xử lý từng phần tử của tập hợp. Trong trường hợp của 'all?', tất cả các phần tử của tập hợp phải có giá trị `true`, nếu không kết quả sẽ trả về `false`
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -43,7 +42,7 @@ true
 
 ### any?
 
-Unlike the above, `any?` will return `true` if at least one item evaluates to `true`:
+Ngược lại, `any?` trả về `true` nếu có ít nhất 1 phần tử có giá trị `true`
 
 ```elixir
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
@@ -52,27 +51,27 @@ true
 
 ### chunk
 
-If you need to break your collection up into smaller groups, `chunk` is the function you're probably looking for:
+Để chia tập hợp thành các nhóm nhỏ, bạn có thể dùng `chunk`:
 
 ```elixir
 iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-There are a few options for `chunk` but we won't go into them, check out [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) in the official docs to learn more.
+Có nhiều lựa chọn với hàm `chunk` nhưng ta sẽ không đi sâu vào chi tiết, xem trang chính thức [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) để biết thêm chi tiết.
 
 ### chunk_by
 
-If we need to group our collection based on something other than size, we can use the `chunk_by` method:
+Nếu cần nhóm các phần tử theo một tính năng khác không phải kích thước, ta có thể dùng `chunk_by`:
 
 ```elixir
-iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
+iex> Enum.chunk_by(["one", "twoóm", "three", "four", "five"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"]]
 ```
 
 ### each
 
-It may be necessary to iterate over a collection without producing a new value, for this case we use `each`:
+Để xử lý tất cả các phần tử mà không trả về giá trị mới, hãy sử dụng `each`:
 
 ```elixir
 iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
@@ -81,11 +80,11 @@ two
 three
 ```
 
-__Note__: The `each` method does return the atom `:ok`.
+__Lưu ý__: Hàm `each` thực ra luôn trả về atom `:ok`.
 
 ### map
 
-To apply our function to each item and produce a new collection look to the `map` function:
+Dùng hàm `map` để tạo tập hợp mới bằng cách gọi một hàm trên mỗi phần tử của tập hợp đang có:
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
@@ -94,7 +93,7 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-Find the `min` value in our collection:
+Dùng hàm `min` để tìm giá trị của phần tử nhỏ nhất:
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
@@ -103,7 +102,7 @@ iex> Enum.min([5, 3, 0, -1])
 
 ### max
 
-Returns the `max` value in the collection:
+Dùng hàm `max` để tìm giá trị của phần tử lớn nhất:
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
@@ -112,7 +111,7 @@ iex> Enum.max([5, 3, 0, -1])
 
 ### reduce
 
-With `reduce` we can distill our collection down into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first value is used:
+Hàm `reduce` có thể rút gọn tập hợp về một giá trị. Ta cần cung cấp một giá trị tích luỹ (accumulator) không bắt buộc (trong trường hợp này là `10`) và một hàm để tính dựa trên giá trị tích luỹ này và các phần tử của tập hợp; nếu không có giá trị tích luỹ, phần tử đầu tiên sẽ được sử dụng thay thế:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
@@ -123,7 +122,7 @@ iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 
 ### sort
 
-Sorting our collections is made easy with not one, but two, `sort` functions.  The first option available to us uses Elixir's term ordering to determine the sorted order:
+Sắp xếp tập hợp được hỗ trợ bởi hai hàm `sort`. Ta có thể dùng thứ tự sắp xếp có sẵn của Elixir:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -133,21 +132,21 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-The other option allows us to provide a sort function:
+Hoặc tự cung cấp một hàm để sắp xếp:
 
 ```elixir
-# with our function
+# dùng hàm đã chọn
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
 [%{val: 4}, %{val: 1}]
 
-# without
+# không dùng hàm
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
 ### uniq
 
-We can use `uniq` to remove duplicates from our collections:
+Hàm `uniq` dùng để loại bỏ các phần tử bị lặp trong tập hợp:
 
 ```elixir
 iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
