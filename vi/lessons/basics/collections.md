@@ -6,28 +6,28 @@ order: 2
 lang: vi
 ---
 
-Danh sách (list), tuple, danh sách từ khoá (keyword), map, từ điển (dict) và sự kết hợp hàm số
+List (Danh sách), tuple, keyword (danh sách từ khoá), map, dict (từ điển) và functional combinators (toán tử kết hợp hướng chức năng)
 
 ## Mục Lục
 
-- [Danh sách](#lists)
-	- [Nối danh sách](#list-concatenation)
-	- [Phép trừ danh sách](#list-subtraction)
-	- [Đầu / Đuôi](#head--tail)
+- [List (Danh sách)](#lists)
+	- [Nối List](#list-concatenation)
+	- [Phép trừ List](#list-subtraction)
+	- [Phần tử Đầu / Đuôi](#head--tail)
 - [Tuple](#tuples)
-- [Danh sách từ khoá](#keyword-lists)
+- [Keyword List (Danh sách từ khoá)](#keyword-lists)
 - [Map](#maps)
 
-## Danh sách
+## List (Danh sách)
 
-Danh sách là một tập hợp các giá trị, có thể bao gồm nhiều kiểu dữ liệu; có thể bao gồm giá trị bị lặp:
+List (danh sách) là một tập hợp các giá trị, có thể bao gồm nhiều kiểu dữ liệu; có thể bao gồm giá trị lặp:
 
 ```elixir
 iex> [3.41, :pie, "Apple"]
 [3.41, :pie, "Apple"]
 ```
 
-Với Elixir, danh sách được xây dựng từ danh sách liên kết (linked list). Điều này dẫn đến việc truy cập kích thước của danh sách là một thao tác với độ phức tạp `O(n)`. Vì lý do này, chèn phần tử vào đầu danh sách thường nhanh hơn so với thêm vào cuối danh sách:
+Với Elixir, list được xây dựng từ linked list (danh sách liên kết). Điều này dẫn đến việc truy cập kích thước của list là một thao tác với độ phức tạp `O(n)`. Vì lý do này, chèn phần tử vào đầu list thường nhanh hơn so với thêm vào cuối list:
 
 ```elixir
 iex> list = [3.41, :pie, "Apple"]
@@ -38,25 +38,25 @@ iex> list ++ ["Cherry"]
 [3.41, :pie, "Apple", "Cherry"]
 ```
 
-### Nối danh sách
+### Nối list
 
-Dùng toán tử `++/2` để nối danh sách:
+Dùng toán tử `++/2` để nối list:
 
 ```elixir
 iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-### Phép trừ danh sách
+### Phép trừ list
 
-Phép trừ danh sách có thể thực hiện thông qua toán tử `--/2`; danh sách trừ có thể bao gồm những giá trị không có trong danh sách bị trừ:
+Phép trừ list có thể thực hiện thông qua toán tử `--/2`; list trừ có thể bao gồm những giá trị không có trong list bị trừ:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-### Đầu / Đuôi
+### Phần tử Đầu / Đuôi
 
 Khi sử dụng danh sách, ta thường phải dùng tới đầu và đuôi của danh sách. Đầu là phần tử đầu tiên của danh sách và đuôi là danh sách những phần tử còn lại. Elixir hỗ trợ hai hàm hữu dụng, `hd` và `tl`, để truy cập đầu và đuôi:
 
@@ -80,14 +80,14 @@ iex> t
 
 ## Tuple
 
-Tuple cũng tương tự như danh sách nhưng luôn được lưu cạnh nhau trong bộ nhớ. Điều này dẫn tới việc truy cập kích thước tuple rất nhanh nhưng thay đổi thì chậm. Sau khi thay đổi, tuple mới phải được copy lại hết vào bộ nhớ:
+Tuple cũng tương tự như list nhưng luôn được lưu cạnh nhau trong bộ nhớ. Điều này dẫn tới việc truy cập kích thước tuple rất nhanh nhưng thay đổi thì chậm. Sau khi thay đổi, tuple mới phải được copy lại hết vào bộ nhớ:
 
 ```elixir
 iex> {3.41, :pie, "Apple"}
 {3.41, :pie, "Apple"}
 ```
 
-Thông thường, tuple được sử dụng để trả về những thông tin thêm vào của các hàm; bạn sẽ thấy rõ hơn sự hữu dụng của tuple khi dùng so khớp mẫu (pattern matching):
+Thông thường, tuple được sử dụng để trả về những thông tin thêm vào của các hàm; bạn sẽ thấy rõ hơn sự hữu dụng của tuple khi pattern matching (dùng so khớp mẫu):
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -96,9 +96,9 @@ iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
 
-## Danh sách từ khoá
+## Keyword Lists (Danh sách từ khoá)
 
-Danh sách từ khoá và map là những kiểu từ điển của Elixir; cả hai cùng sử dụng `Dict` module bên dưới. Một danh sách từ khoá trong Elixir là một loại danh sách tuple đặc biệt mà ở đó phần tử đầu tiên của tuple là một atom; chúng có cùng hiệu suất với danh sách:
+Keywords List (danh sách từ khoá) và map là những kiểu dictionary (từ điển) của Elixir; cả hai cùng sử dụng `Dict` module bên dưới. Một keyword list trong Elixir là một loại danh sách tuple đặc biệt mà ở đó phần tử đầu tiên của tuple là một atom; chúng có cùng hiệu suất với danh sách:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -107,13 +107,13 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 [foo: "bar", hello: "world"]
 ```
 
-Ba tính năng của danh sách từ khoá cho thấy sự quan trọng của nó:
+Ba tính năng của keyword list cho thấy sự quan trọng của nó:
 
 + Các khoá đều là atom.
 + Các khoá được sắp xếp trình tự.
 + Các khoá có thể bị lặp
 
-Vì những lý do này, danh sách từ khoá thường được dùng để truyền vào hàm những giá trị không bắt buộc.
+Vì những lý do này, keyword list thường được dùng để truyền vào hàm những giá trị không bắt buộc.
 
 ## Map
 
