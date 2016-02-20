@@ -25,13 +25,13 @@ Các thuật toán để thao tác với tập hợp
 
 ## Enum
 
-Module Enum bao gồm hơn một trăm hàm để dùng với các tập hợp ta đã biết từ bài trước.
+Module `Enum` bao gồm hơn một trăm hàm để dùng với các tập hợp ta đã biết từ bài trước.
 
 Bài này sẽ chỉ thảo luận một vài trong số các hàm đó, xem đầy đủ các hàm tại trang tài liệu chính thức [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); xem thao tác trì hoãn (lazy enumeration) tại trang [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html)
 
 ### all?
 
-Khi dùng hàm 'all?', và hầu hết các hàm khác của 'Enum', ta cần cung cấp một hàm để xử lý từng phần tử của tập hợp. Trong trường hợp của 'all?', tất cả các phần tử của tập hợp phải có giá trị `true`, nếu không kết quả sẽ trả về `false`
+Khi dùng hàm `all?`, và hầu hết các hàm khác của `Enum`, ta cần cung cấp một hàm để xử lý từng phần tử của tập hợp. Trong trường hợp của `all?`, tất cả các phần tử của tập hợp phải có giá trị `true`, nếu không kết quả sẽ trả về `false`
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
