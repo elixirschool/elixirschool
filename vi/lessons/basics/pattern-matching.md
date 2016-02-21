@@ -1,28 +1,28 @@
 ---
 layout: page
-title: Pattern Matching
+title: Pattern matching (so trùng mẫu)
 category: basics
 order: 4
 lang: vi
 ---
 
-Pattern matching is a powerful part of Elixir, it allows us to match simple values, data structures, and even functions.  In this lesson we will begin to see how pattern matching is used.
+Pattern matching (so trùng mẫu) là chức năng lợi hại của Elixir, nó giúp chung ta so khớp các giá trị đơn giản, các kiểu cấu trúc dữ liệu và cả hàm. Trong bài này chúng ta sẽ cùng khám phá cách cơ chế này.
 
-## Table of Contents
+## Mục lục
 
-- [Match operator](#match-operator)
-- [Pin operator](#pin-operator)
+- [Match operator (Toán tử khớp)](#match-operator)
+- [Pin operator (Toán tử ghim)](#pin-operator)
 
-## Match operator
+## Match operator (Toán tử khớp)
 
-Are you ready for a curveball?  In Elixir, the `=` operator is actually our match operator.  Through the match operator we can assign and then match values, let's take a look:
+Bạn đã chuẩn bị tinh thần chưa? Trong Elixir, thực ra dấu = chính là match operator. Thông qua nó chúng ta có thể gán và sau đó so khớp giá trị, hãy cùng xem ví dụ sau:
 
 ```elixir
 iex> x = 1
 1
 ```
 
-Now let's try some simple matching:
+Bây giờ hãy thử với một ví dụ so khớp đơn giản sau:
 
 ```elixir
 iex> 1 = x
@@ -31,7 +31,7 @@ iex> 2 = x
 ** (MatchError) no match of right hand side value: 1
 ```
 
-Let's try that with some of the collections we know:
+Và thử với các kiểu tổ hợp:
 
 ```elixir
 # Lists
@@ -57,11 +57,11 @@ iex> {:ok, value} = {:error}
 ** (MatchError) no match of right hand side value: {:error}
 ```
 
-## Pin operator
+## Pin operator (Toán tử ghim)
 
-We just learned the match operator handles assignment when the left side of the match includes a variable.  In some cases this behavior, variable rebinding, is undesirable.  For these situations, we have the pin operator: `^`.
+Chúng ta mới biết được rằng match operator đảm nhiệm phép gán khi vế trái của khớp chứa một biến. Trong một số trường hợp, với cách hoạt động này, variable rebinding (biến bị gán với một giá trị khác) là điều không mong muốn. Những lúc đó, chúng ta có pin operator: `^`.
 
-When we pin a variable we match on the existing value rather than rebinding to a new one.  Let's take a look at how this works:
+Khi pin (ghim) một biến thì ta so khớp giá trị hiện tại của nó chứ không phải là gán nó với một giá trị mới. Hãy xem cách chúng hoặt động:
 
 ```elixir
 iex> x = 1
@@ -74,7 +74,7 @@ iex> x
 2
 ```
 
-Elixir 1.2 introduced support for pins in map keys and function clauses:
+Elixir 1.2 giới thiệu việc hỗ trợ pin (ghim) cho các khoá trong kiểu map và trong mệnh đề của hàm:
 
 ```elixir
 iex> key = "hello"
@@ -87,7 +87,7 @@ iex> %{^key => value} = %{:hello => "world"}
 ** (MatchError) no match of right hand side value: %{hello: "world"}
 ```
 
-An example of pinning in a function clause:
+Một ví dụ về pin (ghim) trong một mệnh đề hàm:
 
 ```elixir
 iex> greeting = "Hello"
