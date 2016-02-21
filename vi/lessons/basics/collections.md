@@ -27,7 +27,7 @@ iex> [3.41, :pie, "Apple"]
 [3.41, :pie, "Apple"]
 ```
 
-Với Elixir, list được xây dựng từ linked list (danh sách liên kết). Điều này dẫn đến việc truy cập kích thước của list là một thao tác với độ phức tạp `O(n)`. Vì lý do này, chèn phần tử vào đầu list thường nhanh hơn so với thêm vào cuối list:
+Elixir triển khai list như những linked list (danh sách liên kết). Có nghĩa là việc truy cập độ dài của list là thao tác có độ phức tạp `O(n)`. Vì lý do này, chèn phần tử vào đầu list thường nhanh hơn so với thêm vào cuối list:
 
 ```elixir
 iex> list = [3.41, :pie, "Apple"]
@@ -80,14 +80,14 @@ iex> t
 
 ## Tuple
 
-Tuple cũng tương tự như list nhưng luôn được lưu cạnh nhau trong bộ nhớ. Điều này dẫn tới việc truy cập kích thước tuple rất nhanh nhưng thay đổi thì chậm. Sau khi thay đổi, tuple mới phải được copy lại hết vào bộ nhớ:
+Tuple cũng tương tự như list nhưng được lưu trữ một cách liên tục trên bộ nhớ. Điều này dẫn tới việc truy cập kích thước tuple rất nhanh nhưng thay đổi thì chậm. Sau khi thay đổi, tuple mới phải được copy toàn bộ vào bộ nhớ:
 
 ```elixir
 iex> {3.41, :pie, "Apple"}
 {3.41, :pie, "Apple"}
 ```
 
-Thông thường, tuple được sử dụng để trả về những thông tin thêm vào của các hàm; bạn sẽ thấy rõ hơn sự hữu dụng của tuple khi pattern matching (dùng so khớp mẫu):
+Thông thường, tuple được sử dụng như một cơ chế để trả về các thông tin bổ sung từ các hàm; sự hữu dụng của nó trở nên rõ ràng hơn khi chúng ta đụng tới pattern matching (so khớp mẫu):
 
 ```elixir
 iex> File.read("path/to/existing/file")
