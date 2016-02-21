@@ -15,7 +15,7 @@ Pattern matching (so trùng mẫu) là chức năng lợi hại của Elixir, n�
 
 ## Match operator (Toán tử khớp)
 
-Bạn đã chuẩn bị tinh thần chưa? Trong Elixir, khoá `=` là match operator. Thông qua match operator chúng ta có thể gán và sau đó so khớp giá trị, hãy cùng xem ví dụ sau:
+Bạn đã chuẩn bị tinh thần chưa? Trong Elixir, thực ra dấu = chính là match operator. Thông qua nó chúng ta có thể gán và sau đó so khớp giá trị, hãy cùng xem ví dụ sau:
 
 ```elixir
 iex> x = 1
@@ -59,9 +59,9 @@ iex> {:ok, value} = {:error}
 
 ## Pin operator (Toán tử ghim)
 
-Chúng ta vừa học cách match operator đảm nhiệm phần gán giá trị khi vế trái của biểu thức trùng có kèm một biến. Trong một vài trường hợp thì chúng ta không muốn biến bị rebind (gán với giá trị mới). Để tránh được chuyện đó chúng ta dùng pin operator `^`:
+Chúng ta mới biết được rằng match operator đảm nhiệm phép gán khi vế trái của khớp chứa một biến. Trong một số trường hợp, với cách hoạt động này, variable rebinding (biến bị gán với một giá trị khác) là điều không mong muốn. Những lúc đó, chúng ta có pin operator: `^`.
 
-Khi chúng ta 'ghim' một biến, chúng ta so khớp giá trị hiện hành hơn là gán vào một biến mới. Hãy xem cách chúng hoặt động:
+Khi pin (ghim) một biến thì ta so khớp giá trị hiện tại của nó chứ không phải là gán nó với một giá trị mới. Hãy xem cách chúng hoặt động:
 
 ```elixir
 iex> x = 1
@@ -74,7 +74,7 @@ iex> x
 2
 ```
 
-Elixir 1.2 giới thiệu cơ chế ghim cho cả khoá của kiểu map và cú pháp của hàm:
+Elixir 1.2 giới thiệu việc hỗ trợ pin (ghim) cho các khoá trong kiểu map và trong mệnh đề của hàm:
 
 ```elixir
 iex> key = "hello"
@@ -87,7 +87,7 @@ iex> %{^key => value} = %{:hello => "world"}
 ** (MatchError) no match of right hand side value: %{hello: "world"}
 ```
 
-Một ví dụ cách ghim cú pháp của hàm:
+Một ví dụ về pin (ghim) trong một mệnh đề hàm:
 
 ```elixir
 iex> greeting = "Hello"
