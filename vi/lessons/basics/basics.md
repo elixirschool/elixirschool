@@ -62,7 +62,7 @@ iex> 0x1F
 31
 ```
 
-### Float (Số không nguyên)
+### Float (Số thực dấu phẩy động)
 
 Trong Elixir, số Float được thể hiện bằng một số thập phân đi sau dấu phân số; chúng sẽ có độ chính xác kép 64bit và hỗ trợ `e` cho số luỹ thừa:
 
@@ -131,7 +131,7 @@ iex> "foo\nbar"
 
 ### Toán học
 
-Elixir hỗ trợ các toán tử phổ thông `+`, `-`, `*`, và `/` như bạn kì vọng. Xin lưu ý rằng `/` luôn trả về một số Float (số không nguyên) động:
+Elixir hỗ trợ các toán tử phổ thông `+`, `-`, `*`, và `/` như bạn kì vọng. Xin lưu ý rằng `/` luôn trả về một số Float động:
 
 ```elixir
 iex> 2 + 2
