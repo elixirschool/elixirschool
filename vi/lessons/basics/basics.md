@@ -14,17 +14,17 @@ Cài đặt, cái kiểu phổ thông và cơ chế hoạt động.
 	- [Cài Elixir](#install-elixir)
 	- [Chế độ trực quan](#interactive-mode)
 - [Kiểu phổ thông](#basic-types)
-	- [Số nguyên](#integers)
-	- [Số không nguyên](#floats)
-	- [Luận lý Boole](#booleans)
+	- [Integer](#integers)
+	- [Float](#floats)
+	- [Boolean](#booleans)
 	- [Atom](#atoms)
-	- [Chuỗi](#strings)
+	- [String](#strings)
 - [Cơ chế vận hành phổ thông](#basic-operations)
 	- [Toán học](#arithmetic)
 	- [Boolean](#boolean)
 	- [So sánh](#comparison)
-	- [Chèn chuỗi](#string-interpolation)
-	- [Sâu chuỗi](#string-concatenation)
+	- [String Interpolation](#string-interpolation)
+	- [Sâu nối String](#string-concatenation)
 
 ## Cài đặt
 
@@ -44,7 +44,7 @@ Elixir đi kèm với `iex`, một shell trực quan, cho phép chúng ta chạy
 
 ## Các kiểu phổ thông
 
-### Số nguyên
+### Integer (Số nguyên)
 
 ```elixir
 iex> 255
@@ -62,9 +62,9 @@ iex> 0x1F
 31
 ```
 
-### Số không nguyên
+### Float (Số thực dấu phẩy động)
 
-Trong Elixir, số không nguyên được thể hiện bằng một số thập phân đi sau dấu phân số; chúng sẽ có độ chính xác kép 64bit và hỗ trợ `e` cho số luỹ thừa:
+Trong Elixir, số Float được thể hiện bằng một số thập phân đi sau dấu phân số; chúng sẽ có độ chính xác kép 64bit và hỗ trợ `e` cho số luỹ thừa:
 
 CHÚ THÍCH: Dấu phân số theo hệ toán học Anh là `.` chứ không phải dấu `,`
 
@@ -75,7 +75,7 @@ iex> .41
 iex> 1.0e-10
 ```
 
-### Luận lý Boole
+### Boolean (Luận lý Boole)
 
 Elixir dùng `true` và `false` như luận lý; tất cả mọi thứ đều được xem là thật ngoại trừ `false` và `nil`:
 
@@ -84,7 +84,7 @@ iex> true
 iex> false
 ```
 
-### Atoms
+### Atom
 
 Một atom là một biến không thay đổi với tên là giá trị của chúng. Nếu bạn quen Ruby thì chúng giống Symbols:
 
@@ -106,9 +106,9 @@ iex> :true === true
 true
 ```
 
-### Chuỗi
+### String (Chuỗi)
 
-Chuỗi trong Elixir được định dạng theo chuẩn UTF-8 và được gói trong dấu ngoặc kép:
+String (chuỗi) trong Elixir được định dạng theo chuẩn UTF-8 và được gói trong dấu ngoặc kép:
 
 ```elixir
 iex> "Hello"
@@ -117,7 +117,7 @@ iex> "cải cách"
 "cải cách"
 ```
 
-Chuỗi cũng hỗ trợ tách ra nhiều dòng và tự động thoát các chuỗi theo trình tự:
+String cũng hỗ trợ tách ra nhiều dòng và tự động thoát các chuỗi theo trình tự:
 
 ```elixir
 iex> "foo
@@ -131,7 +131,7 @@ iex> "foo\nbar"
 
 ### Toán học
 
-Elixir hỗ trợ các toán tử phổ thông `+`, `-`, `*`, và `/` như bạn kì vọng. Xin lưu ý rằng `/` luôn trả về một số không nguyên động:
+Elixir hỗ trợ các toán tử phổ thông `+`, `-`, `*`, và `/` như bạn kì vọng. Xin lưu ý rằng `/` luôn trả về một số Float động:
 
 ```elixir
 iex> 2 + 2
@@ -144,7 +144,7 @@ iex> 10 / 5
 2.0
 ```
 
-Nếu bạn cần chia số nguyên hoặc tìm số thừa, Elixir có 2 hàm hữu dụng để thực hiện:
+Nếu bạn cần chia số Integer hoặc tìm số thừa, Elixir có 2 hàm hữu dụng để thực hiện:
 
 ```elixir
 iex> div(10, 5)
@@ -153,7 +153,7 @@ iex> rem(10, 3)
 1
 ```
 
-### Luận lý Boole
+### Boolean (Luận lý Boole)
 
 Elixir cung cấp luận tử `||`, `&&`, and `!`, chúng hỗ trợ các kiểu dữ liệu sau:
 
@@ -174,7 +174,7 @@ iex> !false
 true
 ```
 
-Có 3 luận tử bổ sung mà đối số _phải là_ một luận lý Boole (`true` và `false`):
+Có 3 luận tử bổ sung mà đối số _phải là_ một luận lý Boolean (`true` và `false`):
 
 ```elixir
 iex> true and 42
@@ -204,7 +204,7 @@ iex> 2 <= 3
 true
 ```
 
-Nếu muốn so sánh kĩ số nguyên hay số không nguyên, sử dụng `===`:
+Nếu muốn so sánh kĩ số Float hay số Integer, sử dụng `===`:
 
 ```elixir
 iex> 2 == 2.0
@@ -228,9 +228,9 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### Chèn chuỗi
+### String Interpolation (Chèn chuỗi)
 
-Nếu bạn đã từng sử dụng qua Ruby, chèn vào một chuỗi với Elixir rất giống:
+Nếu bạn đã từng sử dụng qua Ruby, chèn vào một String với Elixir rất giống:
 
 ```elixir
 iex> name = "Sean"
@@ -238,9 +238,9 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### Sâu chuỗi
+### Sâu nối String
 
-Dùng `<>` để xâu các chuỗi lại với nhau:
+Dùng `<>` để xâu các String lại với nhau:
 
 ```elixir
 iex> name = "Sean"
