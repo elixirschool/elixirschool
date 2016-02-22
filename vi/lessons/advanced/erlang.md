@@ -1,28 +1,28 @@
 ---
 layout: page
-title: Erlang Interoperability
+title: Tương tác với Erlang
 category: advanced
 order: 1
 lang: vi
 ---
 
-One of the added benefits to building on top of the ErlangVM is the plethora of existing libraries available to us.  Interoperability allows us to leverage those libraries and the Erlang standard lib from our Elixir code.  In this lesson we'll look at how to access functionality in the standard lib along with third-party Erlang packages.
+Một trong những lợi ích có được khi xây dựng dựa trên ErlangVM (máy ảo Erlang) là sự phong phú của các thư viện có sẵn. Khả năng tương tác với Erlang cho phép ta sử dụng những thư viện này cũng như thư viện chuẩn của Erlang khi viết code bằng Elixir. Ở bài này, chúng ta sẽ xem xét việc truy cập những tính năng của thư viện chuẩn cũng như thư viện bên thứ ba của Erlang.
 
-## Table of Contents
+## Mục lục
 
-- [Standard Library](#standard-library)
-- [Erlang Packages](#erlang-packages)
-- [Notable Differences](#notable-differences)
-  - [Atoms](#atoms)
-  - [Strings](#strings)
-  - [Variables](#variables)
+- [Thư viện chuẩn](#standard-library)
+- [Erlang Packages (thư viện bên thứ ba)](#erlang-packages)
+- [Những điểm khác biệt cần lưu ý](#notable-differences)
+  - [Atom](#atoms)
+  - [Chuỗi](#strings)
+  - [Biến](#variables)
 
 
-## Standard Library
+## Thư viện chuẩn
 
-Erlang's extensive standard library can be accessed from any Elixir code in our application.  Erlang modules are represented by lowercase atoms such as `:os` and `:timer`.
+Thư viện chuẩn phong phú của Erlang có thể được truy cập từ bất kỳ đoạn code Elixir nào trong hệ thống. Module của Erlang được ký hiệu bởi atom trong chữ in thường như là `:os` và `:timer`.
 
-Let's use `:timer.tc` to time execution of a given function:
+Hãy thử dùng `:timer.tc` để tính thời gian chạy của một hàm đã cho:
 
 ```elixir
 defmodule Example do
@@ -38,11 +38,11 @@ Time: 8ms
 Result: 1000000
 ```
 
-For a complete list of the modules available, see the [Erlang Reference Manual](http://erlang.org/doc/apps/stdlib/).
+Để có một danh sách đầy đủ các module sẵn có, xem thêm [Erlang Reference Manual (Sổ tay tra cứu Erlang)](http://erlang.org/doc/apps/stdlib/).
 
-## Erlang Packages
+## Erlang Packages (Thư viện bên thứ ba của Erlang)
 
-In a prior lesson we covered Mix and managing our dependencies, including Erlang libraries works the same way.  In the event the Erlang library has not been pushed to [Hex](hex.pm) you can refer the git repository instead:
+Ở một bài trước, ta đã tìm hiểu về Mix và cách quản lý dependencies (thành phần phụ thuộc), bao gồm các thư viện Erlang cũng có cơ chế hoạt động như vậy. Trong trường hợp thư viện Erlang đó chưa có trên [Hex](hex.pm) bạn có thể trỏ tới git repo:
 
 ```elixir
 def deps do
@@ -50,7 +50,7 @@ def deps do
 end
 ```
 
-Now we can access our Erlang library:
+Và giờ ta có thể truy cập thư viện Erlang:
 
 ```elixir
 png = :png.create(#{:size => {30, 30},
@@ -59,13 +59,13 @@ png = :png.create(#{:size => {30, 30},
                     :palette => palette}),
 ```
 
-## Notable Differences
+## Những điểm khác biệt cần lưu ý
 
-Now that we know how to use Erlang we should cover some of the gotchas that come with Erlang interoperability.
+Sau khi đã biết cách sử dụng Erlang ta nên điểm lại những sai lầm dễ mắc phải khi tương tác với Erlang.
 
-### Atoms
+### Atom
 
-Erlang atoms look much like their Elixir counterparts without the colon (`:`).  They are represented by lowercase strings and underscores:
+Các atom trong Erlang trông giống như trong Elixir nhưng không có dấu hai chấm (`:`). Chúng được ký hiệu bởi chuỗi chữ thường và underscore (đường gạch dưới):
 
 Elixir:
 
@@ -79,9 +79,9 @@ Erlang:
 example.
 ```
 
-### Strings
+### Chuỗi
 
-In Elixir when we talk about strings we mean UTF-8 encoded binaries.  In Erlang, strings still use double quotes but refer to char lists:
+Khi nói đến chuỗi trong Elixir ta nói đến chuỗi nhị phân được mã hoá theo UTF-8. Với Erlang, chuỗi vẫn sử dụng double quotes (dấu phẩy kép ") nhưng lại là các char list (danh sách dấu chữ):
 
 Elixir:
 
@@ -107,7 +107,7 @@ false
 true
 ```
 
-It's important to note that many older Erlang libraries may not support binaries so we need to convert Elixir strings to char lists.  Thankfully this is easy to accomplish with the `to_char_list/1` function:
+Điều cần phải chú ý ở đây là nhiều thư viện cũ của Erlang không hỗ trợ chuỗi nhị phân, vì vậy ta phải biến đổi chuỗi Elixir thành char list (danh sách dấu chữ):
 
 ```elixir
 iex> :string.words("Hello World")
@@ -142,4 +142,4 @@ Erlang:
 11
 ```
 
-That's it!  Leveraging Erlang from within our Elixir applications is easy and effectively doubles the number of libraries available to us.
+Vậy đó! Sử dụng Erlang từ hệ thống Elixir thật dễ dàng và nhân đôi số lượng thư viện ta có thể sử dụng.
