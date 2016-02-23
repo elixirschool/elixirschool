@@ -2,7 +2,7 @@
 layout: page
 title: Almacenamiento de términos de Erlang (ETS)
 category: specifics
-order: 3
+order: 4
 lang: es
 ---
 
