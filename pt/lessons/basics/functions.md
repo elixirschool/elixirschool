@@ -1,0 +1,216 @@
+---
+layout: page
+title: Funções
+category: basics
+order: 6
+lang: pt
+---
+
+Em Elixir e em várias linguagens funcionais, funções são cidadãos de primeira classe. Nós iremos aprender sobre os tipos de funções em Elixir, qual a diferença, e como usar elas.
+
+## Sumário
+
+- [Funções anônimas](#funcoes-anonimas)
+  - [A & taquigrafia](#a--taquigrafia)
+- [Pattern matching](#pattern-matching)
+- [Funçnoes nomeadas](#funcoes-nomeadas)
+  - [Funções privadas](#funcoes-privadas)
+  - [Guards](#guards)
+  - [Argumentos padrões](#argumentos-padroes)
+
+
+## Funções anônimas
+
+Tal como o nome indica, uma função anônima não tem nome. Como vimos na lição `Enum`, elas são frequentemente passadas para outras funções. Para definir uma função anônima em Elixir nós precisamos das palavras-chave `fn` e `end`. Dentro destes, podemos definir qualquer número de parâmetros e corpos separados por `->`.
+
+Vejamos um exemplo básico:
+
+```elixir
+iex> sum = fn (a, b) -> a + b end
+iex> sum.(2, 3)
+5
+```
+
+### A & taquigrafia
+
+Na utilização de funções anônimas é uma prática comum em Elixir, utilizando a abreviação para fazê-lo:
+
+```elixir
+iex> sum = &(&1 + &2)
+iex> sum.(2, 3)
+5
+```
+
+Como você provavlemente já adivinhou, na versão abreviada nossos parâmetros estão disponíveis como `&1`, `&2`, `&3`, e assim por diante.
+
+## Pattern matching
+
+Pattern matching não é limitado a apenas variáveis em Elixir, isto pode ser aplicado a assinaturas como veremos nesta seção.
+
+Elixir utiliza pattern matching para identificar o primeiro conjunto de parâmetros associados e invoca seu respectivo corpo.
+
+```elixir
+iex> handle_result = fn
+...>   {:ok, result} -> IO.puts "Handling result..."
+...>   {:error} -> IO.puts "An error has occurred!"
+...> end
+
+iex> some_result = 1
+iex> handle_result.({:ok, some_result})
+Handling result...
+
+iex> handle_result.({:error})
+An error has occurred!
+```
+
+## Funções nomeadas
+
+Nós podemos definir funções com nomes para referir a elas no futuro, estas funções nomeadas são definidas com a palavra-chave `def` dentro de um modulo. Nós iremos aprender mais sobre Modulos nas próximas lições, por agora nós iremos focar apenas nas funções nomeadas.
+
+Funções definidas dentro de um modulo são disponíveis para uso de outros modulos, isso é particularmente útil na construção de blocos em Elixir:
+
+```elixir
+defmodule Greeter do
+  def hello(name) do
+    "Hello, " <> name
+  end
+end
+
+iex> Greeter.hello("Sean")
+"Hello, Sean"
+```
+Se o corpo da nossa função apenas tem uma linha, nós podemos reduzi-lo ainda mais com `do:`:
+
+```elixir
+defmodule Greeter do
+  def hello(name), do: "Hello, " <> name
+end
+```
+
+Armado com nosso conhecimento sobre pattern matching, vamos explorar recursão usando funções nomeadas:
+
+```elixir
+defmodule Length do
+  def of([]), do: 0
+  def of([_|t]), do: 1 + of(t)
+end
+
+iex> Length.of []
+0
+iex> Length.of [1, 2, 3]
+3
+```
+
+### Funções privadas
+
+Quando não quisermos que outros modulos acessem uma função, nós podemos usar funções privadas, que só podem ser chamadas dentro de seus modulos. Nós podemos definir elas em Elixir com `defp`:
+
+```elixir
+defmodule Greeter do
+  def hello(name), do: phrase <> name
+  defp phrase, do: "Hello, "
+end
+
+iex> Greeter.hello("Sean")
+"Hello, Sean"
+
+iex> Greeter.phrase
+** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+    Greeter.phrase()
+```
+
+### Guards
+
+Nós cobrimos brevemente guards nas lições de [Estruturas Condicionais](/control-structures.md), agora nós iremos ver como podemos aplicá-los em funções nomeadas. Uma vez que Elixir tem correspondência em uma função, qualquer guard existente irá ser testado.
+
+No exempo a seguir nós temos duas funções com a mesma assinatura, contamos com guards para determinar qual usar com base no tipo do argumento:
+
+```elixir
+defmodule Greeter do
+  def hello(names) when is_list(names) do
+    names
+    |> Enum.join(", ")
+    |> hello
+  end
+
+  def hello(name) when is_binary(name) do
+    phrase <> name
+  end
+
+  defp phrase, do: "Hello, "
+end
+
+iex> Greeter.hello ["Sean", "Steve"]
+"Hello, Sean, Steve"
+```
+
+### Argumentos padrões
+
+Se nós quisermos um valor padrão para um argumento, nós usamos a sintaxe `argumento \\ valor`:
+
+```elixir
+defmodule Greeter do
+  def hello(name, country \\ "en") do
+    phrase(country) <> name
+  end
+
+  defp phrase("en"), do: "Hello, "
+  defp phrase("es"), do: "Hola, "
+end
+
+iex> Greeter.hello("Sean", "en")
+"Hello, Sean"
+
+iex> Greeter.hello("Sean")
+"Hello, Sean"
+
+iex> Greeter.hello("Sean", "es")
+"Hola, Sean"
+```
+
+Quando combinamos nosso exemplo de guard com argumento padrão, nos deparamos com um problema. Vamos ver o que pode parecer:
+
+```elixir
+defmodule Greeter do
+  def hello(names, country \\ "en") when is_list(names) do
+    names
+    |> Enum.join(", ")
+    |> hello(country)
+  end
+
+  def hello(name, country \\ "en") when is_binary(name) do
+    phrase(country) <> name
+  end
+
+  defp phrase("en"), do: "Hello, "
+  defp phrase("es"), do: "Hola, "
+end
+
+** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+```
+
+Elixir não gosta de argumentos padrões em multiplas funções, pode ser confuso. Para lidar com isto, adicionamos funções com nosso argumento padrão:
+
+```elixir
+defmodule Greeter do
+  def hello(names, country \\ "en")
+  def hello(names, country) when is_list(names) do
+    names
+    |> Enum.join(", ")
+    |> hello(country)
+  end
+
+  def hello(name, country) when is_binary(name) do
+    phrase(country) <> name
+  end
+
+  defp phrase("en"), do: "Hello, "
+  defp phrase("es"), do: "Hola, "
+end
+
+iex> Greeter.hello ["Sean", "Steve"]
+"Hello, Sean, Steve"
+
+iex> Greeter.hello ["Sean", "Steve"], "es"
+"Hola, Sean, Steve"
+```
