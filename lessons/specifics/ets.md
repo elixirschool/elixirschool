@@ -2,7 +2,7 @@
 layout: page
 title: Erlang Term Storage (ETS)
 category: specifics
-order: 3
+order: 4
 lang: en
 ---
 

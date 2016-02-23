@@ -88,6 +88,8 @@ Elixir:
 ```elixir
 iex> is_list('Example')
 true
+iex> is_list("Example")
+false
 iex> is_binary("Example")
 true
 iex> <<"Example">> === "Example"
@@ -99,11 +101,11 @@ Erlang:
 ```erlang
 1> is_list('Example').
 false
-1> is_list("Example").
+2> is_list("Example").
 true
-1> is_binary("Example").
+3> is_binary("Example").
 false
-1> is_binary(<<"Example">>).
+4> is_binary(<<"Example">>).
 true
 ```
 
