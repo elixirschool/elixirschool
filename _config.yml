@@ -10,9 +10,9 @@ author:
 title: Elixir School
 description: Lessons about the Elixir programming language
 baseurl: /
-url: https://elixirschool.com
+url: http://localhost:4000
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk']
 default_lang: en
 exclude_from_localization: []
 sections:
@@ -25,6 +25,7 @@ sections:
       pt: Básico
       vi: Cơ bản
       ru: Основы
+      sk: Základy
   - tag: advanced
     label:
       en: Advanced
@@ -34,6 +35,7 @@ sections:
       pt: Avançado
       vi: Nâng cao
       ru: Продвинутый
+      sk: Pokročilé
   - tag: specifics
     label:
       en: Specifics
@@ -43,6 +45,7 @@ sections:
       pt: Específico
       vi: Cụ thể
       ru: Специфика
+      sk: Špecifiká
 
 gems:
   - kramdown
