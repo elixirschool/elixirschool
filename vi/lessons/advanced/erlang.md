@@ -6,15 +6,15 @@ order: 1
 lang: vi
 ---
 
-Một trong những lợi ích có được khi xây dựng dựa trên ErlangVM (máy ảo Erlang) là sự phong phú của các thư viện có sẵn. Khả năng tương tác với Erlang cho phép ta sử dụng những thư viện này cũng như thư viện chuẩn của Erlang khi viết code bằng Elixir. Ở bài này, chúng ta sẽ xem xét việc truy cập những tính năng của thư viện chuẩn cũng như thư viện bên thứ ba của Erlang.
+Một trong những lợi ích có được khi xây dựng dựa trên ErlangVM là sự phong phú của các thư viện có sẵn. Khả năng tương tác với Erlang cho phép ta sử dụng những thư viện này cũng như thư viện chuẩn của Erlang khi viết code bằng Elixir. Ở bài này, chúng ta sẽ xem xét việc truy cập những tính năng của thư viện chuẩn cũng như thư viện bên thứ ba của Erlang.
 
 ## Mục lục
 
 - [Thư viện chuẩn](#standard-library)
-- [Erlang Packages (thư viện bên thứ ba)](#erlang-packages)
+- [Erlang Packages](#erlang-packages)
 - [Những điểm khác biệt cần lưu ý](#notable-differences)
   - [Atom](#atoms)
-  - [Chuỗi](#strings)
+  - [String](#strings)
   - [Biến](#variables)
 
 
@@ -65,7 +65,7 @@ Sau khi đã biết cách sử dụng Erlang ta nên điểm lại những sai l
 
 ### Atom
 
-Các atom trong Erlang trông giống như trong Elixir nhưng không có dấu hai chấm (`:`). Chúng được ký hiệu bởi chuỗi chữ thường và underscore (đường gạch dưới):
+Các atom trong Erlang trông giống như trong Elixir nhưng không có dấu hai chấm (`:`). Chúng được ký hiệu bởi string chữ thường và underscore (đường gạch dưới):
 
 Elixir:
 
@@ -79,9 +79,9 @@ Erlang:
 example.
 ```
 
-### Chuỗi
+### String (Chuỗi)
 
-Khi nói đến chuỗi trong Elixir ta nói đến chuỗi nhị phân được mã hoá theo UTF-8. Với Erlang, chuỗi vẫn sử dụng double quotes (dấu phẩy kép ") nhưng lại là các char list (danh sách dấu chữ):
+Khi nói đến string trong Elixir ta nói đến binaries (chuỗi nhị phân) được mã hoá theo UTF-8. Với Erlang, string vẫn sử dụng double quotes (dấu phẩy kép ") nhưng lại là các char list (danh sách ký tự):
 
 Elixir:
 
@@ -107,7 +107,7 @@ false
 true
 ```
 
-Điều cần phải chú ý ở đây là nhiều thư viện cũ của Erlang không hỗ trợ chuỗi nhị phân, vì vậy ta phải biến đổi chuỗi Elixir thành char list (danh sách dấu chữ):
+Điều cần phải chú ý ở đây là nhiều thư viện cũ của Erlang không hỗ trợ binaries (chuỗi nhị phân), vì vậy ta phải biến đổi string Elixir thành char list (danh sách ký tự):
 
 ```elixir
 iex> :string.words("Hello World")
