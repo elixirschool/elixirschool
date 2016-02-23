@@ -25,13 +25,13 @@ Um conjunto de algoritmos para fazer enumeração em coleções.
 
 ## Enum
 
-O módulo `Enum` inclui mais de cem funções para trabalha com as coleções que aprendemos na ultima lição.
+O módulo `Enum` inclui mais de cem funções para trabalhar com as coleções que aprendemos na ultima lição.
 
 Essa lição somente mostrará um subconjunto das funções disponíveis, para ver a lista completa de funções visite a documentação oficial [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); para enumeração preguiçosa use o módulo[`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
 
 ### all?
 
-Quando usa `all?`, e muitas das funções de `Enum`, provemos uma função para aplicar os elementos da nossa coleção. No caso do `all?`, a coleção inteira deve ser avaliada como `true`, em outros casos `false` será retornado:
+Quando usando `all?`, e muitas das funções de `Enum`, provemos uma função para aplicar os elementos da nossa coleção. No caso do `all?`, a coleção inteira deve ser avaliada como `true`, em outros casos `false` será retornado:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -51,7 +51,7 @@ true
 
 ### chunk
 
-Se necessita quebrar sua coleção em pequenos grupos, `chunk` é a função que provavelmente está buscando:
+Se você necessita quebrar sua coleção em pequenos grupos, `chunk` é a função que você provavelmente está buscando:
 
 ```elixir
 iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
@@ -122,7 +122,7 @@ iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 
 ### sort
 
-Ordenar nossas coleção são fáceis com uma das funções de ordenação. A primeira opção disponível utiliza o critério do Elixir para determinar a ordem da ordenação:
+Ordenar nossas coleção é fácil com uma das funções de ordenação. A primeira opção disponível utiliza o critério do Elixir para determinar a ordem da ordenação:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])

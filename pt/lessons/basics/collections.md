@@ -15,9 +15,8 @@ Listas, tuplas, listas de palavras chave, mapas, dicionários e combinadores fun
 	- [Subtração de listas](#subtracao-de-listas)
 	- [Topo / Cauda](#topo--cauda)
 - [Tuplas](#tuplas)
-- [Listas de palavras chave](#listas-de-palavras-chave)
+- [Listas de palavras-chave](#listas-de-palavras-chave)
 - [Mapas](#mapas)
-- [Dicionários](#dicionarios)
 
 ## Listas
 
@@ -51,7 +50,7 @@ iex> [1, 2] ++ [3, 4, 1]
 
 ### Subtração de listas
 
-O suporte para subtração é provido pelo o operador `--/2`; é seguro subtrair um valor que não existe:
+O suporte para subtração é provido pelo operador `--/2`; é seguro subtrair um valor que não existe:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
@@ -97,9 +96,9 @@ iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
 
-## Listas de palavras chave
+## Listas de palavras-chave
 
-As listas de palavras chave e os mapas são coleções associativas no Elixir; ambas implementam o módulo `Dict`. No Elixir, uma lista de palavras chave é uma lista especial de tuplas cujo o primeiro elemento é um átomo; eles compartilham o desempenho das listas:
+As listas de palavras-chave e os mapas são coleções associativas no Elixir; ambas implementam o módulo `Dict`. No Elixir, uma lista de palavras-chave é uma lista especial de tuplas cujo o primeiro elemento é um átomo; eles compartilham o desempenho das listas:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -108,17 +107,17 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 [foo: "bar", hello: "world"]
 ```
 
-As três características relevantes das listas de palavras chave são:
+As três características relevantes das listas de palavras-chave são:
 
 + As chaves são átomos.
 + As chaves estão ordenadas.
 + As chaves não são únicas.
 
-Por essas razões as listas de palavras chave são frequentemente usadas para passar opções a funções.
+Por essas razões as listas de palavras-chave são frequentemente usadas para passar opções a funções.
 
 ## Mapas
 
-A diferença entre os mapas e as listas de palavras chave porque os mapas permitem chaves de qualquer tipo e não segue uma ordem. Você pode definir um mapa com a sintaxe `%{}`:
+A diferença entre os mapas e as listas de palavras-chave está no fato de que os mapas permitem chaves de qualquer tipo e não segue uma ordem. Você pode definir um mapa com a sintaxe `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -129,7 +128,7 @@ iex> map["hello"]
 :world
 ```
 
-Com o Elixir 1.2 variaveis são permitidas como chaves do mapa:
+Com em Elixir 1.2, variáveis são permitidas como chaves do mapa:
 
 ```elixir
 iex> key = "hello"
@@ -152,24 +151,5 @@ iex> %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
-true
-```
-
-## Dicionários
-
-Listas de palavras chaves e mapas, ambas implementam o módulo `Dict`; como tal, são conhecidos coletivamente como dicionários. Se necessita construir teu proprio armazenamento chave-valor, implementar o módulo `Dict` é um bom lugar para iniciar.
-
-O [módulo `Dict`](http://elixir-lang.org/docs/stable/elixir/#!Dict.html) provê um número de funcões úteis para interagir e manipular esses dicionários:
-
-```elixir
-# keyword lists
-iex> Dict.put([foo: "bar"], :hello, "world")
-[hello: "world", foo: "bar"]
-
-# maps
-iex> Dict.put(%{:foo => "bar"}, "hello", "world")
-%{:foo => "bar", "hello" => "world"}
-
-iex> Dict.has_key?(%{:foo => "bar"}, :foo)
 true
 ```
