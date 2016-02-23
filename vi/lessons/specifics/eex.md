@@ -2,7 +2,7 @@
 layout: page
 title: Embedded Elixir (EEx)
 category: specifics
-order: 4
+order: 3
 lang: vi
 ---
 
