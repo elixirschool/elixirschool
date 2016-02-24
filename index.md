@@ -14,7 +14,6 @@ Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][jp] a
 [es]: https://elixirschool.com/es/
 [jp]: https://elixirschool.com/jp/
 [pt]: https://elixirschool.com/pt/
-[pt]: https://elixirschool.com/pt/
 [vi]: https://elixirschool.com/vi/
 
 _Your feedback and participation is encouraged!_
