@@ -14,7 +14,7 @@ Instalação, tipos básicos e operações básicas.
 	- [Instalar Elixir](#instalar-elixir)
 	- [Modo interativo](#modo-interativo)
 - [Tipos Básicos](#tipos)
-	- [Inteiros](#enteros)
+	- [Inteiros](#inteiros)
 	- [Ponto Flutuantes](#ponto-flutuantes)
 	- [Booleanos](#booleanos)
 	- [Atomos](#atomos)
@@ -23,18 +23,18 @@ Instalação, tipos básicos e operações básicas.
 	- [Aritmética](#aritmetica)
 	- [Booleanas](#booleanas)
 	- [Comparação](#comparacao)
-	- [Interpolação de string](#interpolacao-de-string)
-	- [Concatenação de string](#concatenacao-de-string)
+	- [Interpolação de String](#interpolacao-de-string)
+	- [Concatenação de String](#concatenacao-de-string)
 
 ## Instalação
 
 ### Instalar Elixir
 
-As instruções para cada sistema operacional podem ser encontradas em [Elixir-lang.org](http://elixir-lang.org) na aba [Install](http://elixir-lang.org/install.html).
+As instruções para instalação de cada sistema operacional podem ser encontradas em [Elixir-lang.org](http://elixir-lang.org) na aba [Install](http://elixir-lang.org/install.html).
 
 ### Modo Interativo
 
-Elixir vem com `iex`, um console interativo, que nos permite avaliar expressões Elixir.
+Elixir vem com `iex`, um console interativo, que nos permite avaliar expressões em Elixir.
 
 Para iniciar, executamos `iex`:
 
@@ -95,7 +95,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTA: Booleanos `true` e `false` são também átomos `:true` e `:false` respectivamente.
+NOTA: Booleanos `true` e `false` também são átomos `:true` e `:false` respectivamente.
 
 ```elixir
 iex> true |> is_atom
@@ -216,13 +216,13 @@ false
 Uma importante caracteristica do Elixir é que
 
 
-Uma característica importante de elixir é que os dois tipos podem ser comparados, isto é particularmente útil para a ordenação. Não precisamos memorizar a ordem de classificação, mas é importante estar ciente de que:
+Uma característica importante de Elixir é que os dois tipos podem ser comparados, isto é particularmente útil em ordenação. Não precisamos memorizar a ordem de classificação, mas é importante estar ciente de que:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
 
-Isso pode levar a algumas comparações interessantes e válidas, você pode não encontrar em outras linguagens:
+Isso pode levar a algumas comparações interessantes e válidas, que você pode não encontrar em outras linguagens:
 
 ```elixir
 iex> :hello > 999
