@@ -2,7 +2,7 @@
 layout: page
 title: Pipe Operator 
 category: basics
-order: 12
+order: 6 
 lang: en
 ---
 
