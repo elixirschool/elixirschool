@@ -21,14 +21,14 @@ Listas, tuplas, listas de palabras clave, mapas, diccionarios y combinadores fun
 
 ## Listas
 
-Las listas son simples colleciones de valores, estas pueden incluir múltiples tipos; las listas puede incluir valores no únicos
+Las listas son simples colecciones de valores, estas pueden incluir múltiples tipos; las listas puede incluir valores no únicos
 
 ```elixir
 iex> [3.41, :pie, "Apple"]
 [3.41, :pie, "Apple"]
 ```
 
-Elixir implementa las listas como listas enlazadas. Esto significa que acceder a la longitud de la lista es una operación `O(n)`. Por esta razón, es normalmente mas rápido agregar un elemento al inicio que al final.
+Elixir implementa las listas como listas enlazadas. Esto significa que acceder a la longitud de la lista es una operación `O(n)`. Por esta razón, normalmente es más rápido agregar un elemento al inicio que al final.
 
 ```elixir
 iex> list = [3.41, :pie, "Apple"]
@@ -42,7 +42,7 @@ iex> list ++ ["Cherry"]
 
 ### Concatenación de listas
 
-La concatenation de listas usa el operador `++/2`.
+La concatenación de listas usa el operador `++/2`.
 
 ```elixir
 iex> [1, 2] ++ [3, 4, 1]
@@ -51,7 +51,7 @@ iex> [1, 2] ++ [3, 4, 1]
 
 ### Sustracción de listas
 
-El soporte para sustracción es provisto por el operador `--/2`; es seguro sustraer un valor que no existente:
+El soporte para sustracción es provisto por el operador `--/2`; es seguro sustraer un valor que no existe:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
@@ -69,7 +69,7 @@ iex> tl [3.41, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-Ademas de la funciones citadas, puedes usar el operador tuberia `|`; veremos este patrón en futuras lecciones:
+Además de la funciones citadas, puedes usar el operador tubería `|`; veremos este patrón en futuras lecciones:
 
 ```elixir
 iex> [h|t] = [3.41, :pie, "Apple"]
@@ -89,7 +89,7 @@ iex> {3.41, :pie, "Apple"}
 {3.41, :pie, "Apple"}
 ```
 
-Es común para las tuplas ser usadas como un mecanismo que retorna información adicional de funciones; la utilidad de esto será mas aparante cuando entremos en la coincidencia de patrones:
+Es común para las tuplas ser usadas como un mecanismo que retorna información adicional de funciones; la utilidad de esto será mas aparente cuando entremos en la coincidencia de patrones:
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -112,10 +112,10 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 Las tres características resaltantes de las listas de palabras clave son:
 
 + Las llaves son átomos.
-+ Las llaves estan ordenadas.
++ Las llaves están ordenadas.
 + Las llaves no son únicas.
 
-Por estas razones las listas de palabras clave son comunmente usadas para pasar opciones a funciones.
+Por estas razones las listas de palabras clave son comúnmente usadas para pasar opciones a funciones.
 
 ## Mapas
 

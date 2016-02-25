@@ -3,7 +3,7 @@ layout: page
 title: OTP Supervisors
 category: advanced
 order: 6
-lang: en
+lang: vi
 ---
 
 Supervisors are specialized processes with one purpose: monitoring other processes. These supervisors enable us to create fault-tolerant applications by automatically restarting child processes when they fail.

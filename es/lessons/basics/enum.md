@@ -32,7 +32,7 @@ Esta lección solo cubrirá un subconjunto de las funciones disponibles, para ve
 
 ### all?
 
-Cuando usas `all?`, y muchas de la funciones de `Enum`, proveemos una función para aplicar a los elementos de nuestra colección. En el caso de `all?`, la colección entera debe ser evaluada a `true` en otro caso `false` sera retornado:
+Cuando usas `all?`, y muchas de la funciones de `Enum`, proveemos una función para aplicar a los elementos de nuestra colección. En el caso de `all?`, la colección entera debe ser evaluada a `true`, en otro caso `false` será retornado:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -52,7 +52,7 @@ true
 
 ### chunk
 
-Si necesitas romper tu colleción en pequeños grupos, `chunk` es la función que probablemente estas buscando:
+Si necesitas romper tu colleción en pequeños grupos, `chunk` es la función que probablemente estás buscando:
 
 ```elixir
 iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
@@ -63,7 +63,7 @@ Hay algunas opciones para `chunk` pero no vamos a entrar en ellas, revisa [`chun
 
 ### chunk_by
 
-Si nececitas agrupar una colección basándose en algo diferente al tamaño, podemos usar la función `chunk_by`:
+Si necesitas agrupar una colección basándose en algo diferente al tamaño, podemos usar la función `chunk_by`:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -123,7 +123,7 @@ iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 
 ### sort
 
-Ordenar nuestras colecciones se hace facil con no una sino dos funciones de ordenación. La primera opción disponible para nosotros utiliza el criterio de Elixir para determinar el orden de ordenación:
+Ordenar nuestras colecciones se hace fácil con no una sino dos funciones de ordenación. La primera opción disponible para nosotros utiliza el criterio de Elixir para determinar el orden de ordenación:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
