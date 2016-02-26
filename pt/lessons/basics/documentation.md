@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Documentation
+title: Documentação
 category: basics
 order: 10
 lang: pt
