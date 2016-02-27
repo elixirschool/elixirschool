@@ -1,3 +1,4 @@
+{% assign lang = page.lang || site.default_lang %}
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
@@ -6,11 +7,10 @@
           {{site.title}}
         </a>
       </h1>
-      <p class="lead">{{site.description}}</p>
+      <p class="lead">{{site.description[lang]}}</p>
     </div>
 
     <nav class="sidebar-nav">
-      {% assign lang = page.lang || site.default_lang %}
       {% for section in site.sections %}
         {% assign title = section.label[lang] %}
         <div class="sidebar-nav-group {{section.tag}}">

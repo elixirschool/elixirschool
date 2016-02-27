@@ -17,7 +17,7 @@ Instalação, tipos básicos e operações básicas.
 	- [Inteiros](#inteiros)
 	- [Ponto Flutuantes](#ponto-flutuantes)
 	- [Booleanos](#booleanos)
-	- [Atomos](#atomos)
+	- [Átomos](#atomos)
 	- [Strings](#strings)
 - [Operações Básicas](#operaciones-basicas)
 	- [Aritmética](#aritmetica)
@@ -84,7 +84,7 @@ iex> true
 iex> false
 ```
 
-### Atomos
+### <a name="atomos"></a>Átomos
 
 Um Átomo é uma constante cujo o nome é seu valor, se está familiarizado com Ruby, estes são equivalentes aos Símbolos:
 
@@ -108,7 +108,7 @@ true
 
 ### Strings
 
-As strings em Elixir estão codificadas em utf-8 e estão representadas com aspas duplas:
+As strings em Elixir são codificadas em utf-8 e são representadas com aspas duplas:
 
 ```elixir
 iex> "Hello"
@@ -117,7 +117,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-As strings suportam quebras de linha e sequências de espaço:
+As strings suportam quebras de linha e caracteres de escape:
 
 ```elixir
 iex(9)> "foo
@@ -155,7 +155,7 @@ iex> rem(10, 3)
 
 ### Booleanos
 
-Elixir prover os operadores booleanos: `||`, `&&`, e `!`, estes suportam qualquer tipo:
+Elixir provê os operadores booleanos: `||`, `&&`, e `!`, estes suportam qualquer tipo:
 
 ```elixir
 iex> -20 || true
@@ -213,10 +213,7 @@ iex> 2 === 2.0
 false
 ```
 
-Uma importante caracteristica do Elixir é que
-
-
-Uma característica importante de Elixir é que os dois tipos podem ser comparados, isto é particularmente útil em ordenação. Não precisamos memorizar a ordem de classificação, mas é importante estar ciente de que:
+Uma característica importante de Elixir é que quaisquer dois tipos podem ser comparados, isto é particularmente útil em ordenação. Não precisamos memorizar a ordem de classificação, mas é importante estar ciente de que:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
