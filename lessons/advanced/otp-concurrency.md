@@ -102,7 +102,7 @@ iex> SimpleQueue.queue
 
 ### Asynchronous Functions
 
-Asynchronous requests are handled with the `handle_cast/2` callback.  This works much like `handle_cast/3` but does not receive the caller and is not expected to reply.
+Asynchronous requests are handled with the `handle_cast/2` callback.  This works much like `handle_call/3` but does not receive the caller and is not expected to reply.
 
 We'll implement our enqueue functionality to be asynchronous, updating the queue but not blocking our current execution:
 
