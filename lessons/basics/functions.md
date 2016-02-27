@@ -2,7 +2,7 @@
 layout: page
 title: Functions
 category: basics
-order: 6
+order: 7
 lang: en
 ---
 
