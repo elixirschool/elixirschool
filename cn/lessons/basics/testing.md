@@ -2,7 +2,7 @@
 layout: page
 title: 测试
 category: basics
-order: 9
+order: 12 
 lang: cn
 ---
 
