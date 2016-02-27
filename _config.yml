@@ -8,7 +8,14 @@ author:
 
 # Setup
 title: Elixir School
-description: Lessons about the Elixir programming language
+description:
+  en: Lessons about the Elixir programming language
+  jp: Lessons about the Elixir programming language
+  cn: Lessons about the Elixir programming language
+  es: Lessons about the Elixir programming language
+  pt: Lições sobre a linguagem de programação Elixir
+  vi: Lessons about the Elixir programming language
+  ru: Lessons about the Elixir programming language
 baseurl: /
 url: https://elixirschool.com
 permalink: pretty
