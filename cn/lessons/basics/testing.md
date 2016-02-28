@@ -2,7 +2,7 @@
 layout: page
 title: 测试
 category: basics
-order: 9
+order: 12 
 lang: cn
 ---
 
@@ -16,7 +16,6 @@ lang: cn
 
 - [Test 配置](#test-)
 - [Mocking](#mocking)
-- [最佳实践](#section-1)
 
 # ExTest
 Elixir 自带的测试框架是 ExUnit，它包括的功能足够我们充分测试自己的代码。在继续讲解之前，有一点要注意：测试是通过 Elixir 脚本来执行的，所以测试文件的后缀名必须是 `.exs`。在运行测试之前，我们要先用 `ExUnit.start()` 来启动 ExUnit，这一般在 `test/test_helper.exs` 已经帮我们做了。
@@ -106,6 +105,3 @@ end
 # Mocking
 Elixir 对 mocking 的建议是：不要使用 mocking。你可能不自觉地想使用 mock，但是它不被 Elixir 社区推荐是有充分理由的。如果你代码遵循良好的设计原则，它们会很容易测试。
 
-抑制想使用 mock 的欲望！
-
-# 最佳实践

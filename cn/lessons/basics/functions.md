@@ -2,7 +2,7 @@
 layout: page
 title: 函数
 category: basics
-order: 6
+order: 7
 lang: cn
 ---
 

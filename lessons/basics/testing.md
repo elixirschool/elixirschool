@@ -16,7 +16,6 @@ Testing is an important part of developing software.  In this lesson we'll look 
   - [assert_raise](#assertraise)
 - [Test Setup](#test-setup)
 - [Mocking](#mocking)
-- [Best Practices](#best-practices)
 
 ## ExUnit
 
@@ -114,4 +113,3 @@ The simple answer to mocking in Elixir: don't.  You may instinctively reach for 
 
 Resist the urge.
 
-## Best Practices

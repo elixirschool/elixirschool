@@ -16,7 +16,6 @@ Testes são uma parte importante do desenvolvimento de software. Nesta lição n
   - [assert_raise](#assertraise)
 - [Configuração de Teste](#configuracao-de-teste)
 - [Mocking](#mocking)
-- [Boas Práticas](#boas-praticas)
 
 ## ExUnit
 
@@ -113,4 +112,3 @@ A resposta simples para mocking no Elixir é: não faça isso.Você pode instint
 
 Resista à tentação.
 
-## Best Practices
