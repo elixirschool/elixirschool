@@ -2,7 +2,7 @@
 layout: page
 title: Testando
 category: basics
-order: 11
+order: 12
 lang: pt
 ---
 
@@ -111,4 +111,3 @@ end
 A resposta simples para mocking no Elixir é: não faça isso.Você pode instintivamente querer utilizar mocks, porém eles são altamente desaconselhados na comunidade Elixir por uma boa razão. Se você seguir bons princípios de design o código resultante será fácil para testar os componentes individuais.
 
 Resista à tentação.
-
