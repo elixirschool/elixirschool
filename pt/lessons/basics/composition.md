@@ -2,7 +2,7 @@
 layout: page
 title: Composição
 category: basics
-order: 7
+order: 8
 lang: pt
 ---
 
