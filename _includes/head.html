@@ -10,16 +10,12 @@
 
   <meta property="og:url" content="https://elixirschool.com/">
   <meta property="og:site_name" content="ElixirSchool">
-  <meta property="og:title" content="Elixir School - Lessons about the Elixir programming language">
+  <meta property="og:title" content="{% include title.html %}">
   <meta property="og:description" content="Lessons about the Elixir programming language, inspired by Twitter’s Scala School.">
   <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
 
   <title>
-    {% if page.title == "Home" %}
-      {{ site.title }} &middot; {{ site.tagline }}
-    {% else %}
-      {{ page.title }} &middot; {{ site.title }}
-    {% endif %}
+    {% include title.html %}
   </title>
 
   <!-- CSS -->
