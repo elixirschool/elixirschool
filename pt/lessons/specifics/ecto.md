@@ -360,8 +360,8 @@ changeset = User.changeset(%User{}, %{username: "doomspork",
                     password_confirmation: pw})
 
 case Repo.insert(changeset) do
-  {:ok, model}        -> # Inserted with success
-  {:error, changeset} -> # Something went wrong
+  {:ok, model}        -> # Inserido com sucesso
+  {:error, changeset} -> # Algo correu mal
 end
 ```
 
