@@ -49,9 +49,9 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-### List Subtraction
+### Odčítavanie zoznamov
 
-Odčítanie zoznamov sa robí operátorom `--`; odčítanie hodnoty, ktorá v pôvodnom zozname neexistuje, je v poriadku:
+Odčítanie zoznamov (list substraction) sa robí operátorom `--`. Odčítanie hodnoty, ktorá v pôvodnom zozname neexistuje, je v poriadku:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
