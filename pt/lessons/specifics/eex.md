@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Embedded Elixir (EEx)
+title: Elixir embutido (EEx)
 category: specifics
 order: 3
 lang: pt
