@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Mnesia 
+title: Mnesia
 category: specifics
 order: 5
 lang: en
@@ -95,11 +95,11 @@ iex(learner@elixirschool.com)> Node.self
 :"learner@elixirschool.com"
 ```
 
-As we can now see, the node we are running is an atom called `:"learner@elixirschool.com"`. If we run `Mnesia.create_schema([node()])` again, we will see that it created another folder called **Mnesia.learner@elixirschool.com**. The purpose of this is quite simple. Nodes in Erlang are used to connect to other nodes to share (distribute) information and resources. This doesn't have to be restricted to the same machine and can communicate via LAN, the internet etc. 
+As we can now see, the node we are running is an atom called `:"learner@elixirschool.com"`. If we run `Mnesia.create_schema([node()])` again, we will see that it created another folder called **Mnesia.learner@elixirschool.com**. The purpose of this is quite simple. Nodes in Erlang are used to connect to other nodes to share (distribute) information and resources. This doesn't have to be restricted to the same machine and can communicate via LAN, the internet etc.
 
 ## Starting Mnesia
 
-Now we have the background basics out of the way and set up the database, we are now in a position to start the Mnesia DMBS with the ```Mnesia.start/0``` command.
+Now we have the background basics out of the way and set up the database, we are now in a position to start the Mnesia DBMS with the ```Mnesia.start/0``` command.
 
 ```shell
 iex> alias :mnesia, as: Mnesia
@@ -116,7 +116,7 @@ It is worth keeping in mind when running a distributed system with two or more p
 The function `Mnesia.create_table/2` is used to create tables within our database. Below we create a table called `Person` and then pass a keyword list defining the table schema.
 
 ```shell
-iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]]) 
+iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:atomic, :ok}
 ```
 
@@ -160,7 +160,7 @@ If we try to query a record that doesn't exist Mnesia will respond with an empty
 
 ## Transactions
 
-Traditionally we use **transactions** to encapsulate our reads and writes to our database. Transactions are an important part of designing fault-tolerant, highly distributed systems. An Mnesia *transaction is a mechanism by which a series of database operations can be executed as one functional block*. First we create an anonymous function, in this case `data_to_write` and then pass it onto `Mnesia.transaction`. 
+Traditionally we use **transactions** to encapsulate our reads and writes to our database. Transactions are an important part of designing fault-tolerant, highly distributed systems. An Mnesia *transaction is a mechanism by which a series of database operations can be executed as one functional block*. First we create an anonymous function, in this case `data_to_write` and then pass it onto `Mnesia.transaction`.
 
 ```shell
 iex> data_to_write = fn ->
@@ -185,5 +185,3 @@ iex> data_to_read = fn ->
 iex> Mnesia.transaction(data_to_read)
 {:atomic, [{Person, 6, "Monty Burns", "Businessman"}]}
 ```
-
-
