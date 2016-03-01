@@ -1,17 +1,21 @@
 <head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-  <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lessons about the Elixir programming language, inspired by Twitter’s Scala School.">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="{% include title.html %}">
+  <meta property="og:description" content="Lessons about the Elixir programming language, inspired by Twitter’s Scala School.">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
   <title>
-    {% if page.title == "Home" %}
-      {{ site.title }} &middot; {{ site.tagline }}
-    {% else %}
-      {{ page.title }} &middot; {{ site.title }}
-    {% endif %}
+    {% include title.html %}
   </title>
 
   <!-- CSS -->
@@ -25,5 +29,5 @@
   analytics.page()
   }}();
   </script>
-  
+
 </head>
