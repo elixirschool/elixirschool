@@ -109,7 +109,7 @@ iex> Mnesia.start()
 :ok
 ```
 
-It is worth keeping in mind when running a distributed system with two or more participating nodes, the function `mnesia:start/1` must be executed on all participating nodes.
+It is worth keeping in mind when running a distributed system with two or more participating nodes, the function `Mnesia.start/1` must be executed on all participating nodes.
 
 ## Creating Tables
 
@@ -143,16 +143,16 @@ iex> Mnesia.dirty_write({Person, 3, "Moe Szyslak", "Bartender"})
 ...and to retrieve the entries we can use `Mnesia.dirty_read/1`:
 
 ```shell
-iex> :mnesia.dirty_read({Person, 1})
+iex> Mnesia.dirty_read({Person, 1})
 [{Person, 1, "Seymour Skinner", "Principal"}]
 
-iex> :mnesia.dirty_read({Person, 2})
+iex> Mnesia.dirty_read({Person, 2})
 [{Person, 2, "Homer Simpson", "Safety Inspector"}]
 
-iex> :mnesia.dirty_read({Person, 3})
+iex> Mnesia.dirty_read({Person, 3})
 [{Person, 3, "Moe Szyslak", "Bartender"}]
 
-iex> :mnesia.dirty_read({Person, 4})
+iex> Mnesia.dirty_read({Person, 4})
 []
 ```
 
