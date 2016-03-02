@@ -97,7 +97,7 @@ It may be necessary to use `iex` within the context of our application.  Thankfu
 $ iex -S mix
 ```
 
-Starting `iex` this way will loads your application and dependencies into the current runtime.
+Starting `iex` this way will load your application and dependencies into the current runtime.
 
 ## Manage Dependencies
 
