@@ -49,7 +49,9 @@ Elixir 自带了 `iex` 这样一个交互 shell, 可以让我们随时计算 Eli
 
 ```elixir
 iex> 255
+255
 iex> 0xFF
+255
 ```
 
 Elixir 语言本身就支持二进制、八进制和十六进制的整数：
@@ -69,9 +71,11 @@ iex> 0x1F
 
 ```elixir
 iex> 3.41
+3.41
 iex> .41
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
+1.0e-10
 ```
 
 
@@ -81,7 +85,9 @@ Elixir 支持 `true` 和 `false` 两种布尔值，除了 `false` 和 `nil` 之�
 
 ```elixir
 iex> true
+true
 iex> false
+false
 ```
 
 ### 原子类型

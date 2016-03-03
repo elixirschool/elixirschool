@@ -49,7 +49,9 @@ Para iniciar, executamos `iex`:
 
 ```elixir
 iex> 255
+255
 iex> 0xFF
+255
 ```
 
 O suporte para números binários, octais e hexadecimais também estão inclusos:
@@ -69,9 +71,11 @@ Em Elixir, os ponto flutuantes requerem um decimal depois de pelo menos um dígi
 
 ```elixir
 iex> 3.41
+3.41
 iex> .41
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
+1.0e-10
 ```
 
 
@@ -81,7 +85,9 @@ Elixir suporta `true` e `false` como booleanos; todo valor é verdadeiro com exc
 
 ```elixir
 iex> true
+true
 iex> false
+false
 ```
 
 ### <a name="atomos"></a>Átomos

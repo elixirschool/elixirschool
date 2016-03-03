@@ -49,7 +49,9 @@ Para empezar, Ejecutamos `iex`:
 
 ```elixir
 iex> 255
+255
 iex> 0xFF
+255
 ```
 
 El soporte para números binarios, octales y hexadecimales también viene incluido:
@@ -69,9 +71,11 @@ En Elixir, los números con coma flotante requieren un decimal después de al me
 
 ```elixir
 iex> 3.41
+3.41
 iex> .41
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
+1.0e-10
 ```
 
 
@@ -81,7 +85,9 @@ Elixir soporta `true` y `false` como booleanos; todo valor es verdadero a excepc
 
 ```elixir
 iex> true
+true
 iex> false
+false
 ```
 
 ### Átomos

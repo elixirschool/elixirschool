@@ -48,7 +48,9 @@ Elixir đi kèm với `iex`, một shell trực quan, cho phép chúng ta chạy
 
 ```elixir
 iex> 255
+255
 iex> 0xFF
+255
 ```
 
 Có hỗ trợ số nhị phân, bát phân, thập lục phân:
@@ -70,9 +72,11 @@ CHÚ THÍCH: Dấu phân số theo hệ toán học Anh là `.` chứ không ph�
 
 ```elixir
 iex> 3.41
+3.41
 iex> .41
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
+1.0e-10
 ```
 
 ### Boolean (Luận lý Boole)
@@ -81,7 +85,9 @@ Elixir dùng `true` và `false` như luận lý; tất cả mọi thứ đều �
 
 ```elixir
 iex> true
+true
 iex> false
+false
 ```
 
 ### Atom

@@ -49,7 +49,9 @@ To get started, let's run `iex`:
 
 ```elixir
 iex> 255
+255
 iex> 0xFF
+255
 ```
 
 Support for binary, octal, and hexadecimal numbers comes built in:
@@ -69,9 +71,11 @@ In Elixir, float numbers require a decimal after at least one digit; they have 6
 
 ```elixir
 iex> 3.41
+3.41
 iex> .41
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
+1.0e-10
 ```
 
 
@@ -81,12 +85,14 @@ Elixir supports `true` and `false` as booleans; everything is truthy except for 
 
 ```elixir
 iex> true
+true
 iex> false
+false
 ```
 
 ### Atoms
 
-An atom is a constant who's name is their value, if you're familiar with Ruby these are synonymous with Symbols:
+An atom is a constant whose name is their value. If you're familiar with Ruby these are synonymous with Symbols:
 
 ```elixir
 iex> :foo
@@ -155,7 +161,7 @@ iex> rem(10, 3)
 
 ### Boolean
 
-Elixir providers `||`, `&&`, and `!` boolean operators, these support any types:
+Elixir provides the `||`, `&&`, and `!` boolean operators. These support any types:
 
 ```elixir
 iex> -20 || true
