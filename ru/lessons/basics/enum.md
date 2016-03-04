@@ -3,7 +3,7 @@ layout: page
 title: Enum
 category: basics
 order: 3
-lang: en
+lang: ru 
 ---
 
 Набор алгоритмов для операций с коллекциями.
