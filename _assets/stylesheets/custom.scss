@@ -38,17 +38,26 @@ a.sidebar-lesson:focus {
 }
 
 .sidebar-nav-item {
-  padding-left: 5px;  
+  border-radius: 3px;
+  margin: 0 0 5px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0 15px;
 }
 
 .sidebar-nav-group {
-  padding-bottom: 10px;
+  padding-bottom: 0;
 }
 
 .sidebar-nav-header {
-  display: block;; 
-  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
   cursor: pointer;
+  display: block;
+  margin: 0 0 5px;
+  padding: 5px 10px 0;
+  text-align: left;
+  vertical-align: middle;
 
   span {
     font-weight: bold;
@@ -61,5 +70,26 @@ a.sidebar-lesson:focus {
     padding-bottom: 10px;
     vertical-align: middle;
     width: 20px;
+  }
+}
+
+@media (min-width: 48em) {
+  .sidebar-nav-item {
+    background: none;
+    border: none;
+    margin: 0;
+    background: none;
+    padding: 0 0 0 5px;
+  }
+
+  .sidebar-nav-group {
+    padding-bottom: 10px;
+  }
+
+  .sidebar-nav-header {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
   }
 }
