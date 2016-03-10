@@ -16,10 +16,11 @@ description:
   pt: Lições sobre a linguagem de programação Elixir
   vi: Lessons about the Elixir programming language
   ru: Lessons about the Elixir programming language
+  my: Pelajaran mengenai bahasa aturcara Elixir
 baseurl: /
-url: https://elixirschool.com
+url: http://localhost:4000
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'my']
 default_lang: en
 exclude_from_localization: []
 sections:
@@ -32,6 +33,7 @@ sections:
       pt: Básico
       vi: Cơ bản
       ru: Основы
+      my: Asas
   - tag: advanced
     label:
       en: Advanced
@@ -41,6 +43,7 @@ sections:
       pt: Avançado
       vi: Nâng cao
       ru: Продвинутый
+      my: Lanjutan
   - tag: specifics
     label:
       en: Specifics
@@ -50,6 +53,7 @@ sections:
       pt: Específico
       vi: Cụ thể
       ru: Специфика
+      my: Khusus
 
 gems:
   - kramdown
