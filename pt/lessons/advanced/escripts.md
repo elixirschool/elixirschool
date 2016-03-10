@@ -1,0 +1,93 @@
+---
+layout: page
+title: Executáveis
+category: advanced
+order: 3
+lang: pt
+---
+
+Para criar executáveis em Elixir nós utilizaremos escript. Escript produz um executável que pode rodar em qualquer sistema que tenha Erlang instalado.
+
+## Sumário
+- [Começando](#comecando)
+- [Fazendo Parsing dos Argumentos](#fazendo-parsing-dos-argumentos)
+- [Criando o Executável](#criando-o-executavel)
+
+## <a name="comecando"></a>Começando
+
+Para criar um executável com escript há poucas coisas que precisamos fazer: implementar um método `main/1` e atualizar nosso Mixfile.
+
+Vamos começar criando um módulo que servirá como ponto de entrada para nosso executável, é aí que vamos implementar `main/1`:
+
+```elixir
+defmodule ExampleApp.CLI do
+  def main(args \\ []) do
+    # Do stuff
+  end
+end
+```
+
+A seguir nós precisamos atualizar nosso Mixfile incluindo a opção `:escript` para nosso projeto além de especificar nosso `:main_module`:
+
+```elixir
+defmodule ExampleApp.Mixfile do
+  def project do
+    [app: :example_app,
+     version: "0.0.1",
+     escript: escript]
+  end
+
+  def escript do
+    [main_module: ExampleApp.CLI]
+  end
+end
+```
+
+## Fazendo Parsing dos Argumentos
+
+Com nossa aplicação configurada podemos começar a parsear os argumentos da linha de comando. Para fazer isso vamos utilizar o método `OptionParser.parse/2` do Elixir e a opção `:switches` para indicar que nossa flag é booleana.
+
+```elixir
+defmodule ExampleApp.CLI do
+  def main(args \\ []) do
+    args
+    |> parse_args
+    |> response
+    |> IO.puts
+  end
+
+  defp parse_args(args) do
+    {opts, word, _} =
+      args
+      |> OptionParser.parse(switches: [upcase: :boolean])
+
+    {opts, List.to_string(word)}
+  end
+
+  defp response({opts, "Hello"}), do: response({opts, "World"})
+  defp response({opts, word}) do
+    if opts[:upcase], do: word = String.upcase(word)
+    word
+  end
+end
+```
+
+## <a name="criando-o-executavel"></a>Criando o Executável
+
+Quando terminamos de configurar nossa aplicação para usar escript, criar o executável é muito simples usando mix:
+
+```elixir
+$ mix escript.build
+```
+
+Vamos testar:
+
+```elixir
+$ ./example_app --upcase Hello
+WORLD
+
+$ ./example_app Hi
+Hi
+```
+
+É isso. Nós fizemos nosso primeiro executável em Elixir usando escript.
