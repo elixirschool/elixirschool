@@ -10,7 +10,7 @@ author:
 title: Elixir School
 description: Lessons about the Elixir programming language
 baseurl: /
-url: http://localhost:4000
+url: https://elixirschool.com
 permalink: pretty
 languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk']
 default_lang: en
