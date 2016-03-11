@@ -6,7 +6,7 @@ order: 4
 lang: pt
 ---
 
-Um dos pontos de oferta do Elixir é o suporte a concorrência. Obrigado à ErlangVM, concorrência no Elixir é mais fácil do que o esperado. O modelo de concorrência replica sobre Atores, um processo constante que se comunica com outros processos através de passagem de mensagem. 
+Um dos pontos ofertados pelo Elixir é o suporte a concorrência. Graças à ErlangVM, concorrência no Elixir é mais fácil do que esperamos. O modelo de concorrência replica sobre Atores, um processo constante que se comunica com outros processos através de passagem de mensagem. 
 
 Nesta aula nós veremos os módulos de concorrência que vêm com Elixir. No próximo capítulo nós cobriremos os comportamentos OTP que os implementam.
 
