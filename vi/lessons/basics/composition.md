@@ -104,7 +104,7 @@ We can update our struct just like we would a map:
 iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
 %Example.User{name: "Steve", roles: [:admin, :owner]}
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", password: nil, roles: [:admin, :owner]}
+%Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
 Most importantly, you can match structs against maps:
