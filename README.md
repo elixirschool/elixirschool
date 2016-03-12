@@ -46,7 +46,7 @@ In addition to the steps above there are a few addition steps required for trans
   $ mkdir -p jp/lessons/{basics,advanced,specifics}
   ```
 
-1. Update `_config.yml` by including the 2 character code in `languages` and adding translations to `sections`:
+1. Update `_config.yml` by including the 2 character code in `languages` and adding translations to `sections` and `description`:
 
   ```md
   languages: ['en', 'jp']
@@ -57,6 +57,9 @@ In addition to the steps above there are a few addition steps required for trans
       label:
         en: Basics
         jp: 基本
+	description:
+	  en: Lessons about the Elixir programming language
+	  pt: Lições sobre a linguagem de programação Elixir
   ```
 
 #### Translated Lesson
