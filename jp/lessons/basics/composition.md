@@ -99,7 +99,7 @@ iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
 iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
 %Example.User{name: "Steve", roles: [:admin, :owner]}
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", password: nil, roles: [:admin, :owner]}
+%Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
 最も重要なことですが、構造体はマップに対してマッチすることができます:
