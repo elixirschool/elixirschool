@@ -63,7 +63,7 @@ end
 
 ## After
 
-At times it may be necessary to perform some action after our `try/rescue` regardless of error, for this we have `try/after`.  If you're familiar with Ruby this is akin to `begin/rescue/ensure` or in Java `try/catch/finally`:
+At times it may be necessary to perform some action after our `try/rescue` regardless of error.  For this we have `try/after`.  If you're familiar with Ruby this is akin to `begin/rescue/ensure` or in Java `try/catch/finally`:
 
 ```elixir
 iex> try do
@@ -146,7 +146,7 @@ iex> spawn_link fn -> exit("oh no") end
 ** (EXIT from #PID<0.101.0>) "oh no"
 ```
 
-While it is possible to catch an exit with `try/catch` doing so is _extremely_ rare.  In almost all cases it is advantagous to let the supervisor handle the process exit:
+While it is possible to catch an exit with `try/catch` doing so is _extremely_ rare.  In almost all cases it is advantageous to let the supervisor handle the process exit:
 
 ```elixir
 iex> try do
