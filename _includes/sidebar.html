@@ -38,7 +38,7 @@
       {% endif %}
 
       {% for lang in site.languages %}
-        <a href="{% if lang == site.default_lang %} {{site.url}}{{url}} {% else %} {{site.url}}/{{lang}}{{url}} {% endif %}">{{lang}}</a>
+        <a href="{% if lang == site.default_lang %} {{url}} {% else %} /{{lang}}{{url}} {% endif %}">{{lang}}</a>
       {% endfor %}
     </p>
 
