@@ -29,7 +29,7 @@ Class names and proper nouns do not get translated.
 - concatenation - конкатенация
 - exception - исключение
 - float - число с плавающей запятой
-- head - глава
+- head - голова
 - integer - целое число
 - interpolation - интерполяция
 - map - ассоциативный массив
