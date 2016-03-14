@@ -6,7 +6,7 @@ order: 1
 lang: en
 ---
 
-If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra, it provides a specification for web application components and adapters for web servers. While not part of Elixir core, Plug is an official Elixir project.
+If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra.  It provides a specification for web application components and adapters for web servers. While not part of Elixir core, Plug is an official Elixir project.
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@ If you're familiar with Ruby you can think of Plug as Rack with a splash of Sina
 
 ## Installation
 
-Installation is a breeze with mix.  To install Plug we need to make two small changes to our `mix.exs`.  The first thing to do is add both Plug and a web server to our file as dependencies, we'll be using Cowboy:
+Installation is a breeze with mix.  To install Plug we need to make two small changes to our `mix.exs`.  The first thing to do is add both Plug and a web server (we'll be using Cowboy) to our file as dependencies:
 
 ```elixir
 defp deps do
@@ -39,9 +39,9 @@ end
 
 ## The specification
 
-In order to begin creating Plugs we need to know, and adhere to, the Plug spec.  Thankfully for us, there are only two functions necessary: `init/1` and `call/2`.
+In order to begin creating Plugs, we need to know, and adhere to, the Plug spec.  Thankfully for us, there are only two functions necessary: `init/1` and `call/2`.
 
-The `init/1` function is used to initialize our Plug's options, passed as the second argument to our `call/2` function.  In addition to our initialized options the `call/2` function receives a `%Plug.Conn` as it's first argument and is expected to return a connection.
+The `init/1` function is used to initialize our Plug's options, which are passed as the second argument to our `call/2` function.  In addition to our initialized options the `call/2` function receives a `%Plug.Conn` as its first argument and is expected to return a connection.
 
 Here's a simple Plug that returns "Hello World!":
 
@@ -65,7 +65,7 @@ For this example we'll create a Plug to verify whether or not the request has so
 
 _Note_: Plugs are applied to all requests which is why we will handle filtering requests and applying our logic to only a subset of them.  To ignore a request we simply pass the connection through.
 
-We'll start by looking at our finished Plug and then discuss how it works, we'll create it at `lib/plug/verify_request.ex`:
+We'll start by looking at our finished Plug and then discuss how it works.  We'll create it at `lib/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
@@ -97,15 +97,15 @@ defmodule Example.Plug.VerifyRequest do
 end
 ```
 
-The first thing to note is we have defined a new exception `IncompleteRequestError` and that one of it's options is `:plug_status`.  When available this option is used by Plug to set the HTTP status code in the event of an exception.
+The first thing to note is we have defined a new exception `IncompleteRequestError` and that one of its options is `:plug_status`.  When available this option is used by Plug to set the HTTP status code in the event of an exception.
 
-The second portion of our Plug is the `call/2` method, this is where we handle whether or not to apply our verification logic.  Only when the request's path is contained in our `:paths` option will we call `verify_request!/2`.
+The second portion of our Plug is the `call/2` method.  This is where we decide whether or not to apply our verification logic.  Only when the request's path is contained in our `:paths` option will we call `verify_request!/2`.
 
 The last portion of our plug is the private function `verify_request!/2` which verifies whether the required `:fields` are all present.  In the event that some are missing, we raise `IncompleteRequestError`.
 
 ## Using Plug.Router
 
-Now that we have our `VerifyRequest` plug, we can move on to our router.  As we are about to see we don't need a framework like Sinatra in Elixir, we get that for free with Plug.
+Now that we have our `VerifyRequest` plug, we can move on to our router.  As we are about to see, we don't need a framework like Sinatra in Elixir since we get that for free with Plug.
 
 To start let's create a file at `lib/plug/router.ex` and copy the following into it:
 
@@ -121,7 +121,7 @@ defmodule Example.Plug.Router do
 end
 ```
 
-This is a bare minimum Router but the code should be pretty self explanatory.  We've included some macros through `use Plug.Router` and then set up two of the built-in Plugs: `:match` and `:dispatch`.   There are two defined routes, one for handling GET returns to the root and the second for matching all other requests so we can return a 404 message.
+This is a bare minimum Router but the code should be pretty self-explanatory.  We've included some macros through `use Plug.Router` and then set up two of the built-in Plugs: `:match` and `:dispatch`.   There are two defined routes, one for handling GET returns to the root and the second for matching all other requests so we can return a 404 message.
 
 Let's add our Plug to the router:
 
@@ -143,13 +143,13 @@ defmodule Example.Plug.Router do
 end
 ```
 
-That's it!  We've setup our Plug to verify that all requests to `/upload` include both `"content"` and `"mimetype"`, only then will route code be executed.
+That's it!  We've set up our Plug to verify that all requests to `/upload` include both `"content"` and `"mimetype"`.  Only then will the route code be executed.
 
 For now our `/upload` endpoint isn't very useful but we've seen how to create and integrate our Plug.
 
 ## Running our web app
 
-Before we can run our application we need to setup and configure our web server, in this instance Cowboy.  For now we'll just make the code changes necessary to run everything, we'll dig into specifics in later lessons.
+Before we can run our application we need to set up and configure our web server, which in this instance is Cowboy.  For now we'll just make the code changes necessary to run everything, and we'll dig into specifics in later lessons.
 
 Let's start by updating the `application` portion of our `mix.exs` to tell Elixir about our application and set an application env variable.  With those changes in place our code should look something like this:
 
@@ -161,7 +161,7 @@ def application do
 end
 ```
 
-Next we need to update `lib/example.ex` to start and supervisor Cowboy:
+Next we need to update `lib/example.ex` to start and supervise Cowboy:
 
 ```elixir
 defmodule Example do
@@ -187,9 +187,9 @@ $ mix run --no-halt
 
 ## Testing a Plug
 
-Testing Plugs is pretty straight forward thanks to `Plug.Test`, it includes a number of convenience functions to make testing easy.
+Testing Plugs is pretty straightforward thanks to `Plug.Test`.  It includes a number of convenience functions to make testing easy.
 
-See if you can follow along with router test:
+See if you can follow along with the router test:
 
 ```elixir
 defmodule RouterTest do
@@ -232,4 +232,4 @@ end
 
 ## Available Plugs
 
-There are a number of Plugs available out-of-the-box, the complete list can be found in the Plug docs [here](https://github.com/elixir-lang/plug#available-plugs).
+There are a number of Plugs available out-of-the-box.  The complete list can be found in the Plug docs [here](https://github.com/elixir-lang/plug#available-plugs).
