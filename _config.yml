@@ -16,6 +16,7 @@ description:
   pt: Lições sobre a linguagem de programação Elixir
   vi: Lessons about the Elixir programming language
   ru: Уроки программирования на языке Elixir
+  sk: Lekcie o programovacom jazyku Elixir
 baseurl: /
 url: https://elixirschool.com
 permalink: pretty
