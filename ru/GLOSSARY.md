@@ -21,15 +21,15 @@ Class names and proper nouns do not get translated.
 - pipe operator - оператор потока
 - sigils - строковая метка
 - tuple - кортеж
-- function clauses - функциональное ветвление (???)
+- function clauses - объявления функций
 
 #### CS terms
 
 - boolean - логический тип
 - concatenation - конкатенация
 - exception - исключение
-- float - число с плавающей точкой
-- head - голова
+- float - число с плавающей запятой
+- head - глава
 - integer - целое число
 - interpolation - интерполяция
 - map - ассоциативный массив
