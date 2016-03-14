@@ -47,7 +47,7 @@ end
 
 ### Repository
 
-Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo` task, we'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
+Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo` task.  We'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
 
 ```elixir
 defmodule ExampleApp.Repo do
@@ -58,9 +58,9 @@ end
 
 ### Supervisor
 
-Once we've created our Repo we need to setup our supervisor tree, which is usually found in `lib/<project name>.ex`.
+Once we've created our Repo we need to set up our supervisor tree, which is usually found in `lib/<project name>.ex`.
 
-It is important to note that we setup the Repo as a supervisor with `supervisor/3` and _not_ `worker/3`.  If you generated your app with the `--sup` flag much of this exists already:
+It is important to note that we set up the Repo as a supervisor with `supervisor/3` and _not_ `worker/3`.  If you generated your app with the `--sup` flag much of this exists already:
 
 ```elixir
 defmodule ExampleApp.App do
@@ -83,7 +83,7 @@ For more info on supervisors check out the [OTP Supervisors](/lessons/advanced/o
 
 ### Configuration
 
-To configure ecto we need to add a section to our `config/config.exs`.  Here we'll specify the repository, adapter, database, account information:
+To configure Ecto we need to add a section to our `config/config.exs`.  Here we'll specify the repository, adapter, database, and account information:
 
 ```elixir
 config :example_app, ExampleApp.Repo,
@@ -132,9 +132,9 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 end
 ```
 
-By default Ecto creates an `id` auto incrementing primary key.  Here we're using the default `change/0` callback but Ecto also supports `up/0` and `down/0` in the event you need more granular control.
+By default Ecto creates an auto-incrementing primary key called `id`.  Here we're using the default `change/0` callback but Ecto also supports `up/0` and `down/0` in the event you need more granular control.
 
-As you might have guessed adding `timestamps` to your migration will create and manage `created_at` and `updated_at` for you.
+As you might have guessed, adding `timestamps` to your migration will create and manage `created_at` and `updated_at` for you.
 
 To apply our new migration run `mix ecto.migrate`.
 
@@ -142,7 +142,7 @@ For more on migrations take a look at the [Ecto.Migration](http://hexdocs.pm/ect
 
 ## Models
 
-Now that we have our migration we can move on to the model.  Models define our schema, helper methods, and our changesets, we'll cover changesets more in the next sections.
+Now that we have our migration we can move on to the model.  Models define our schema, helper methods, and our changesets.  We'll cover changesets more in the next sections.
 
 For now let's look at what the model for our migration might look like:
 
@@ -173,11 +173,11 @@ defmodule ExampleApp.User do
 end
 ```
 
-The schema we define in our model closely represents what we specified in our migration.  In addition to our database fields we're also including two virtual fields.  Virtual fields are not saved to the database but can be useful for things like validation.  We'll see the virtual fields in action in the [Changeset](#changeset) section.
+The schema we define in our model closely represents what we specified in our migration.  In addition to our database fields we're also including two virtual fields.  Virtual fields are not saved to the database but can be useful for things like validation.  We'll see the virtual fields in action in the [Changesets](#changesets) section.
 
 ## Querying
 
-Before we can query our repository we need to import the Query API, for now we only need to import `from/2`:
+Before we can query our repository we need to import the Query API.  For now we only need to import `from/2`:
 
 ```elixir
 import Ecto.Query, only: [from: 2]
@@ -187,7 +187,7 @@ The official documentation can be found at [Ecto.Query](http://hexdocs.pm/ecto/E
 
 ### Basics
 
-Ecto provides an excellent Query DSL that allows us to express query clearly.  To find the usernames of all confirmed accounts we could use something like this:
+Ecto provides an excellent Query DSL that allows us to express queries clearly.  To find the usernames of all confirmed accounts we could use something like this:
 
 ```elixir
 alias ExampleApp.{Repo,User}
@@ -199,7 +199,7 @@ query = from u in User,
 Repo.all(query)
 ```
 
-In addition to `all/2` Repo provides a number of callbacks including `one/2`, `get/3`, `insert/2`, and `delete/2`.  A complete list of callbacks can be found at [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
+In addition to `all/2`, Repo provides a number of callbacks including `one/2`, `get/3`, `insert/2`, and `delete/2`.  A complete list of callbacks can be found at [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
 
 ### Count
 
@@ -211,7 +211,7 @@ query = from u in User,
 
 ### Group By
 
-To group usernames by their confirmation status we can include the `group_by` option:
+To group users by their confirmation status we can include the `group_by` option:
 
 ```elixir
 query = from u in User,
@@ -253,7 +253,7 @@ query = from p in Profile,
 
 ### Fragments
 
-Sometimes the Query API isn't enough, like when we need specific database functions.  The `fragment/1` function exists for this purpose:
+Sometimes, like when we need specific database functions, the Query API isn't enough.  The `fragment/1` function exists for this purpose:
 
 ```elixir
 query = from u in User,
@@ -265,9 +265,9 @@ Additional query examples can be found in the [Ecto.Query.API](http://hexdocs.pm
 
 ## Changesets
 
-In the previous section we learned how to retrieve data but how about inserting and updating it?  For that we need Changesets.
+In the previous section we learned how to retrieve data, but how about inserting and updating it?  For that we need Changesets.
 
-Changesets take care of filtering, validating, maintaining constraints when changing a model.
+Changesets take care of filtering, validating, and maintaining constraints when changing a model.
 
 For this example we'll focus on the changeset for user account creation.  To start we need to update our model:
 
@@ -320,9 +320,9 @@ defmodule ExampleApp.User do
 end
 ```
 
-We've improved our `changeset/2` function and added three new helper functions: `validate_password_confirmation/1`, `password_mismatch_error/1` and `password_incorrect_error/1`.
+We've improved our `changeset/2` function and added three new helper functions: `validate_password_confirmation/1`, `password_mismatch_error/1`, and `password_incorrect_error/1`.
 
-As its name suggests `changeset/2` creates a new changeset for us.  In it we use `cast/4` to convert our parameters to a changeset from a set of required and optional fields.  Next we validate the changeset's password length, password confirmation match using our own function, and username uniqueness.  Finally we update our actual password database field.  For this we use `put_change/3` to update a value in the changeset.
+As its name suggests, `changeset/2` creates a new changeset for us.  In it we use `cast/4` to convert our parameters to a changeset from a set of required and optional fields.  Next we validate the changeset's password length, we use our own function to validate the password confirmation matches, and we validate username uniqueness.  Finally we update our actual password database field.  For this we use `put_change/3` to update a value in the changeset.
 
 Using `User.changeset/2` is relatively straightforward:
 

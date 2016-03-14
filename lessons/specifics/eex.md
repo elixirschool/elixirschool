@@ -6,7 +6,7 @@ order: 3
 lang: en
 ---
 
-Much like Ruby has ERB and Java JSPs, Elixir has EEx or Embedded Elixir.  With EEx we can embed and evaluate Elixir inside strings.
+Much like Ruby has ERB and Java has JSPs, Elixir has EEx, or Embedded Elixir.  With EEx we can embed and evaluate Elixir inside strings.
 
 ## Table of Contents
 
@@ -32,7 +32,7 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 
 ### Definitions
 
-The fastest, and preferred, method of using EEx is to embed our template into a module so it can be compiled.  For this we need our template at compile time and the `function_from_string` and `function_from_file` macros.
+The fastest, and preferred, method of using EEx is to embed our template into a module so it can be compiled.  For this we need our template at compile time, along with the `function_from_string` and `function_from_file` macros.
 
 Let's move our greeting to another file and generate a function for our template:
 
@@ -64,7 +64,7 @@ By default there are four supported tags in EEx:
 <%# Comments - they are discarded from source %>
 ```
 
-All expressions that wish to output __must__ use the equals sign (`=`).  It's important to note that while other templating languages treat clauses like `if` in a special way, EEx does not.  Without `=` nothing will be outputted:
+All expressions that wish to output __must__ use the equals sign (`=`).  It's important to note that while other templating languages treat clauses like `if` in a special way, EEx does not.  Without `=` nothing will be output:
 
 ```elixir
 <%= if true do %>
@@ -76,14 +76,13 @@ All expressions that wish to output __must__ use the equals sign (`=`).  It's im
 
 ## Engine
 
-By default Elixir used the `EEx.SmartEngine` which includes support for assignments (like `@name`):
+By default Elixir uses the `EEx.SmartEngine`, which includes support for assignments (like `@name`):
 
 ```elixir
 iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 "Hi, Sean"
 ```
 
-The `EEx.SmartEngine` assignments are useful because assignments can be changed without requiring template compilation:
+The `EEx.SmartEngine` assignments are useful because assignments can be changed without requiring template compilation.
 
 Interested in writing your own engine?  Check out the [`EEx.Engine`](http://elixir-lang.org/docs/v1.2/eex/EEx.Engine.html) behaviour to see what's required.
-
