@@ -10,10 +10,10 @@ Um dos pontos ofertados pelo Elixir é o suporte a concorrência. Graças à Erl
 
 Nesta aula nós veremos os módulos de concorrência que vêm com Elixir. No próximo capítulo nós cobriremos os comportamentos OTP que os implementam.
 
-## Tabela de Conteúdos
+## Sumário
 
 - [Processos](#processos)
-  - [Passagem de mensagens](#passagem-mensagem)
+  - [Passagem de mensagem](#passagem-de-mensagem)
   - [Vinculando Processos](#vinculando-processos)
   - [Monitorando Processos](#monitorando-processos)
 - [Agentes](#agentes)
@@ -21,9 +21,9 @@ Nesta aula nós veremos os módulos de concorrência que vêm com Elixir. No pr�
 
 ## Processos
 
-Processos no ErlanVM são leves e executam em todas CPUs. Enquanto eles podem parecer como threads nativas, eles são bastantes simples e não é incomum ter milhares de processos concorrentes em uma aplicação Elixir.
+Processos no ErlanVM são leves e executam em todas as CPUs. Enquanto eles podem parecer como threads nativas, eles são bastantes simples e não é incomum ter milhares de processos concorrentes em uma aplicação Elixir.
 
-A forma mais fácil para cirar um novo processo é o `spawn` na qual tem tanto uma função nomeada ou anônima. Quando criamos um novo processo ele retorna um _Process Identifier_ ou PID, para exclusivamente identificá-lo dentro de nossa aplicação.
+A forma mais fácil para criar um novo processo é o `spawn` na qual tem tanto uma função nomeada ou anônima. Quando criamos um novo processo ele retorna um _Process Identifier_ ou PID, para exclusivamente identificá-lo dentro de nossa aplicação.
 
 Para iniciar criaremos um módulo e definiremos uma função que gostariamos de executar:
 
@@ -130,7 +130,7 @@ Exit reason: kaboom
 
 ## Agentes
 
-Agentes são uma abstração acerca processos em segundo plano em estado de manutenção. Podemos acessa-los de outros processo dentro de nossa aplicação ou nó. O estado do nosso Agente definido como valor de retorno de nossa função: 
+Agentes são uma abstração acerca de processos em segundo plano em estado de manutenção. Podemos acessa-los de outros processos dentro de nossa aplicação ou nó. O estado do nosso Agente é definido como valor de retorno de nossa função: 
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
@@ -155,7 +155,7 @@ iex> Agent.get(Numbers, &(&1))
 
 ## Tarefas
 
-Tarefas fornece uma forma para executar uma função em segundo plano e posteriormente recuperar seu valor. Elas podem ser particularmente útil ao manusear operações dispendiosa, sem bloquear a execução do aplicativo.
+Tarefas fornecem uma forma para executar uma função em segundo plano e posteriormente recuperar seu valor. Elas podem ser particularmente útil ao manusear operações dispendiosa, sem bloquear a execução do aplicativo.
 
 ```elixir
 defmodule Example do
