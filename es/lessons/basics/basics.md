@@ -197,6 +197,43 @@ iex> not 42
 
 ### Comparación
 
+Elixir viene con todos los operadores de comparación a los que estamos acostumbrados: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` and `>`.
+
+```elixir
+iex> 1 > 2
+false
+iex> 1 != 2
+true
+iex> 2 == 2
+true
+iex> 2 <= 3
+true
+```
+
+Para comparación estricta de enteros y flotantes usamos `===`:
+
+```elixir
+iex> 2 == 2.0
+true
+iex> 2 === 2.0
+false
+```
+
+Una característica importante de Elixir es que cualquier par de tipos se pueden comparar, esto es útil particularmente en ordenación. No necesitamos memorizar el orden pero es importante ser consiente de este:
+
+```elixir
+number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+```
+
+Esto puede conducir a algunas interesantes y válidas comparaciones que no puedes encontrar en otros lenguajes:
+
+```elixir
+iex> :hello > 999
+true
+iex> {:hello, :world} > [1, 2, 3]
+false
+```
+
 ### Interpolación de cadenas
 
 Si haz usado Ruby, la interpolación de cadenas en Elixir te parecerá muy familiar:

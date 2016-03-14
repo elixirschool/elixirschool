@@ -61,7 +61,7 @@ iex> {:ok, value} = {:error}
 
 Como hemos aprendido, el operador de coincidencia maneja la asignación cuando el lado izquierdo de la coincidencia incluye una variable. En algunos casos este comportamiento, re-enlazamiento de variable, no es el deseado. Para esas situaciones, tenemos el operador `^`.
 
-_Este ejemplo viene directamente de la guía oficial de Elixir [Getting Started](http://elixir-lang.org/getting-started/pattern-matching.html)._
+Cuando usamos el operador pin con una variable, hacemos una coincidencia sobre el valor existente en lugar de enlazarlo a uno nuevo. Vamos a ver como funciona esto:
 
 ```elixir
 iex> x = 1
@@ -72,4 +72,33 @@ iex> {x, ^x} = {2, 1}
 {2, 1}
 iex> x
 2
+```
+
+Elixir 1.2 introduce soporte para usar el operador pin en las llaves de los mapas y en las cláusulas de función:
+
+```elixir
+iex> key = "hello"
+"hello"
+iex> %{^key => value} = %{"hello" => "world"}
+%{"hello" => "world"}
+iex> value
+"world"
+iex> %{^key => value} = %{:hello => "world"}
+** (MatchError) no match of right hand side value: %{hello: "world"}
+```
+
+Un ejemplo de usar el operador pin en una cláusula de función:
+
+```elixir
+iex> greeting = "Hello"
+"Hello"
+iex> greet = fn
+...>   (^greeting, name) -> "Hi #{name}"
+...>   (greeting, name) -> "#{greeting}, #{name}"
+...> end
+#Function<12.54118792/2 in :erl_eval.expr/5>
+iex> greet.("Hello", "Sean")
+"Hi Sean"
+iex> greet.("Mornin'", "Sean")
+"Mornin', Sean"
 ```
