@@ -42,7 +42,7 @@ Para una lista completa de los módulos disponibles, visite el [Manual de Refere
 
 ## Paquetes Erlang
 
-En una lección anterior hemos cubierto Mix y la administración de nuestras dependencias, incluir las bibliotecas de Erlang funciona de la misma manera. En caso de que la biblioteca Erlang no haya sido agregada en [Hex] (hex.pm) puedes hacer referencia al repositorio git en su lugar:
+En una lección anterior hemos cubierto Mix y la administración de nuestras dependencias, incluir las bibliotecas de Erlang funciona de la misma manera. En caso de que la biblioteca Erlang no haya sido agregada en [Hex] (https://hex.pm) puedes hacer referencia al repositorio git en su lugar:
 
 ```elixir
 def deps do

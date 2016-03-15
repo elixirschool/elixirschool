@@ -42,7 +42,7 @@ For a complete list of the modules available, see the [Erlang Reference Manual](
 
 ## Erlang Packages
 
-In a prior lesson we covered Mix and managing our dependencies.  Including Erlang libraries works the same way.  In the event the Erlang library has not been pushed to [Hex](hex.pm) you can refer to the git repository instead:
+In a prior lesson we covered Mix and managing our dependencies.  Including Erlang libraries works the same way.  In the event the Erlang library has not been pushed to [Hex](https://hex.pm) you can refer to the git repository instead:
 
 ```elixir
 def deps do

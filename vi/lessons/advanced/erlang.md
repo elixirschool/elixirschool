@@ -42,7 +42,7 @@ Result: 1000000
 
 ## Erlang Packages (Thư viện bên thứ ba của Erlang)
 
-Ở một bài trước, ta đã tìm hiểu về Mix và cách quản lý dependencies (thành phần phụ thuộc), bao gồm các thư viện Erlang cũng có cơ chế hoạt động như vậy. Trong trường hợp thư viện Erlang đó chưa có trên [Hex](hex.pm) bạn có thể trỏ tới git repo:
+Ở một bài trước, ta đã tìm hiểu về Mix và cách quản lý dependencies (thành phần phụ thuộc), bao gồm các thư viện Erlang cũng có cơ chế hoạt động như vậy. Trong trường hợp thư viện Erlang đó chưa có trên [Hex](https://hex.pm) bạn có thể trỏ tới git repo:
 
 ```elixir
 def deps do
