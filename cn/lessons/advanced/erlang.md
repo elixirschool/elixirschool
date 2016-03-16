@@ -38,7 +38,7 @@ Result: 1000000
 要了解所有可用的模块，请看 [Erlang 参考手册](http://erlang.org/doc/apps/stdlib/)。
 
 # Erlang 三方依赖
-在之前的课程中，我们讲过如何使用 Mix 和管理依赖，要引入 Erlang 的依赖，方法也是一样的。如果依赖的 Erlang 库不在 [hex](hex.pm)，你也可以直接使用 git 代码库的地址：
+在之前的课程中，我们讲过如何使用 Mix 和管理依赖，要引入 Erlang 的依赖，方法也是一样的。如果依赖的 Erlang 库不在 [hex](https://hex.pm)，你也可以直接使用 git 代码库的地址：
 
 ```elixir
 def deps do

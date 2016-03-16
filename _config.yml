@@ -14,10 +14,9 @@ description:
   cn: Lessons about the Elixir programming language
   es: Lecciones acerca del lenguaje de programación Elixir
   pt: Lições sobre a linguagem de programação Elixir
-  vi: Lessons about the Elixir programming language
+  vi: Giáo trình cho ngôn ngữ lập trình Elixir
   ru: Уроки программирования на языке Elixir
   sk: Lekcie o programovacom jazyku Elixir
-baseurl: /
 url: https://elixirschool.com
 permalink: pretty
 languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk']
@@ -58,6 +57,7 @@ sections:
 gems:
   - kramdown
   - jekyll-assets
+  - jekyll-sitemap
 
 # Markdown Config
 markdown: kramdown
@@ -69,5 +69,12 @@ kramdown:
 exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
 assets:
   compress:
-    css:  sass
-    js:   uglifier
+    css: sass
+    js:  uglifier
+
+sitemap:
+  file: '/sitemap.xml'
+  include_posts:
+      - '/index.html'
+  change_frequency_name: 'change_frequency'
+  priority_name: 'priority'

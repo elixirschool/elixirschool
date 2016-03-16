@@ -32,6 +32,7 @@ GEM
       sprockets-helpers (~> 1.2)
     jekyll-sass-converter (1.3.0)
       sass (~> 3.2)
+    jekyll-sitemap (0.10.0)
     jekyll-watch (1.3.0)
       listen (~> 3.0)
     json (1.8.3)
@@ -71,8 +72,12 @@ DEPENDENCIES
   font-awesome-sass
   jekyll
   jekyll-assets
+  jekyll-sitemap
   kramdown
   puma
   rack-jekyll
   rake
   sprockets-es6
+
+BUNDLED WITH
+   1.10.6
