@@ -8,7 +8,7 @@ This file is targeted at the translators and serves as a basic tutorial for tran
 
 Class names and proper nouns do not get translated.
 
-### Glossary (ru)
+### Glossary (russian)
 
 #### Elixir-related terms
 
@@ -26,15 +26,17 @@ Class names and proper nouns do not get translated.
 #### CS terms
 
 - boolean - логический тип
+- collection - коллекция
 - concatenation - конкатенация
 - exception - исключение
 - float - число с плавающей запятой
 - head - голова
 - integer - целое число
 - interpolation - интерполяция
+- list - список
 - map - ассоциативный массив
 - metaprogramming - метапрограммирование
 - pattern matching - сопоставление с образцом
+- rebind variable - переприсвоение переменной
 - substraction - вычитание
 - tail - хвост
-- rebind variable - переприсвоение переменной
