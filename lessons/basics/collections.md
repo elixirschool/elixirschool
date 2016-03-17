@@ -57,6 +57,8 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+**Note:** It uses [strict comparison](../basics.md#comparison) to match the values.
+
 ### Head / Tail
 
 When using lists it is common to work with the list's head and tail.  The head is the first element of the list and the tail the remaining elements.  Elixir provides two helpful methods, `hd` and `tl`, for working with these parts:
