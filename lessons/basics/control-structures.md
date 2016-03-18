@@ -13,6 +13,7 @@ In this lesson we will look at the control structures available to us in Elixir.
 - [`if` and `unless`](#if-and-unless)
 - [`case`](#case)
 - [`cond`](#cond)
+- [`with`](#with)
 
 ## `if` and `unless`
 
@@ -100,7 +101,6 @@ iex> case {1, 2, 3} do
 
 Check the official docs for [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
 
-
 ## `cond`
 
 When we need to match conditions, and not values, we can turn to `cond`; this is akin to `else if` or `elsif` from other languages:
@@ -127,4 +127,54 @@ iex> cond do
 ...>   true -> "Catch all"
 ...> end
 "Catch all"
+```
+
+## `with`
+
+The special form `with` is useful when you might use a nested `case` statement or situations that cannot cleanly be piped together. The `with` expression is composed of the keyword, generators, and finally an expression.
+
+We'll discuss generators more in the List Comprehensions lesson but for now we only need to know they use pattern matching to compare the right side of the `<-` to the left.
+
+We'll start with a simple example of `with` and then look at something more:
+
+```elixir
+iex> user = %{first: "Sean", last: "Callan"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+"Callan, Sean"
+```
+
+In the event that an expression fails to match, the non-matching value will be returned:
+
+```elixir
+iex> user = %{first: "doomspork"}
+%{first: "doomspork"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+:error
+```
+
+Now let's look a larger example without `with` and then see how we can refactor it:
+
+```elixir
+case Repo.insert(changeset) do 
+  {:ok, user} -> 
+    case Guardian.encode_and_sign(resource, :token, claims) do
+      {:ok, jwt, full_claims} ->
+        important_stuff(jwt, full_claims)
+      error -> error
+    end
+  error -> error
+end
+```
+
+When we introduce `with` we end up with code that is easy to understand and has fewer lines:
+
+```elixir
+with 
+  {:ok, user} <- Repo.insert(changeset),
+  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+  do: important_stuff(jwt, full_claims)
 ```
