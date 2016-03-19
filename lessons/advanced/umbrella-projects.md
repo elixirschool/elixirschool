@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Umbrella Projects 
-category: advanced 
+title: Umbrella Projects
+category: advanced
 order: 8
 lang: en
 ---
