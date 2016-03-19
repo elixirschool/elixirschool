@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Projetos Guarda-chuva 
-category: advanced 
+title: Projetos Guarda-chuva
+category: advanced
 order: 8
 lang: pt
 ---
 
-Determinados momentos um projeto pode ficar enorme, realmente enorme. A ferramenta de construção Mix nos permite dividir nosso código em vários aplicativos e fazer nossos projetos em Elixir mais manejáveis à medida que crescem. 
+Determinados momentos um projeto pode ficar enorme, realmente enorme. A ferramenta de construção Mix nos permite dividir nosso código em vários aplicativos e fazer nossos projetos em Elixir mais manejáveis à medida que crescem.
 
 ## Sumário
 
@@ -14,7 +14,7 @@ Determinados momentos um projeto pode ficar enorme, realmente enorme. A ferramen
 - [Projetos filho](#projetos-filho)
 - [IEx](#iex)
 
-## <a name=introducao></a>Introdução
+## <a name="introducao"></a>Introdução
 
 Para criar um projeto guarda-chuva nós iniciamos um projeto como se iniciássemos um projeto Mix normal, mas colocando o argumento `--umbrella`. Neste exemplo, faremos o *shell* de um kit de ferramentas de aprendizado de máquina. Por que um kit de ferramentas de aprendizado de máquina? Por que não? É composto de vários algoritmos de aprendizado e funções de utilidades diferentes.
 
