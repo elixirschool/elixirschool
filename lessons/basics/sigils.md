@@ -72,7 +72,7 @@ iex> "elixir" =~ re
 true
 ```
 
-We can see that in the first test for equality, that `Elixir` does not match with the regular expression. This is because it is capitalized. Because Elixir supports Perl Compatible Regular Expressions (PCRE), we can append `i` to the end of our sigil to turn on case sensitivity.
+We can see that in the first test for equality, that `Elixir` does not match with the regular expression. This is because it is capitalized. Because Elixir supports Perl Compatible Regular Expressions (PCRE), we can append `i` to the end of our sigil to turn off case sensitivity.
 
 ```elixir
 iex> re = ~r/elixir/i
