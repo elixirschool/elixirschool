@@ -128,7 +128,7 @@ iex> map["hello"]
 :world
 ```
 
-Com em Elixir 1.2, variáveis são permitidas como chaves do mapa:
+Em Elixir 1.2, variáveis são permitidas como chaves do mapa:
 
 ```elixir
 iex> key = "hello"
