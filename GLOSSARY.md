@@ -27,11 +27,13 @@ Class names and proper nouns do not get translated.
 - function clauses - объявления функций
 - guard - ограничитель
 - guard operator - ограничивающий оператор
+- changeset - набор изменений
 - keyword list - список с ключами
 - match operator - оператор сопоставления
 - pin operator - фиксирующий оператор
 - pipe operator - оператор конвейера
 - sigil - строковая метка
+- schema - структура
 - tuple - кортеж
 
 #### <a name="russian-cs-terms"></a> CS terms
@@ -59,6 +61,7 @@ Class names and proper nouns do not get translated.
 - signature - сигнатура (функции)
 - standard library - стандартная библиотека
 - subtraction - вычитание
+- supervision tree - дерево надзора
 - supervisor - супервизор
 - tail - хвост
 - worker - рабочий процесс
