@@ -18,7 +18,7 @@ Class names and proper nouns do not get translated.
 - keyword list - список с ключами
 - match operator - оператор сопоставления
 - pin operator - фиксирующий оператор
-- pipe operator - оператор потока
+- pipe operator - оператор конвейера
 - sigils - строковая метка
 - tuple - кортеж
 - function clauses - объявления функций
