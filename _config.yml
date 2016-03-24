@@ -18,7 +18,7 @@ description:
   ru: Уроки программирования на языке Elixir
   sk: Lekcie o programovacom jazyku Elixir
   gr: Μαθήματα προγραμματισμού της γλώσσας Elixir
-  fr: Lessons about the Elixir programming language
+  fr: Leçons sur le langage de programmation Elixir
 url: https://elixirschool.com
 permalink: pretty
 languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'gr', 'fr']
@@ -36,7 +36,7 @@ sections:
       ru: Основы
       sk: Základy
       gr: Βασικά
-      fr: Basics
+      fr: Bases
   - tag: advanced
     label:
       en: Advanced
@@ -48,7 +48,7 @@ sections:
       ru: Продвинутый
       sk: Pokročilé
       gr: Προχωρημένα
-      fr: Advanced
+      fr: Avancé
   - tag: specifics
     label:
       en: Specifics
@@ -60,7 +60,7 @@ sections:
       ru: Специфика
       sk: Špecifiká
       gr: Ιδιαιτερότητες
-      fr: Specifics
+      fr: Spécificités
 
 gems:
   - kramdown
