@@ -84,7 +84,7 @@ iex> case "cherry pie" do
 "I bet cherry pie is tasty"
 ```
 
-Другой интересной возможностью `case` является поддержка сторожевых выражений:
+Другой интересной возможностью `case` является поддержка ограничивающих выражений:
 
 _Этот пример взят из официальной документации [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
 
@@ -98,7 +98,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Также советуем почитать официальную документацию про [выражения доступные в сторожевых выражениях](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Также советуем почитать официальную документацию про [выражения доступные в ограничивающих выражениях](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
 
 ## `cond`
 

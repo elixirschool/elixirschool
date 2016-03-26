@@ -14,29 +14,37 @@ Class names and proper nouns do not get translated.
 
 - actors - модель акторов
 - atom - атом
-- guard operator - сторожевой оператор
+- function clauses - объявления функций
+- guard - ограничитель
+- guard operator - ограничивающий оператор
 - keyword list - список с ключами
 - match operator - оператор сопоставления
 - pin operator - фиксирующий оператор
-- pipe operator - оператор потока
+- pipe operator - оператор конвейера
 - sigils - строковая метка
 - tuple - кортеж
-- function clauses - объявления функций
 
 #### CS terms
 
+- anonymous function - анонимная функция
 - boolean - логический тип
 - collection - коллекция
 - concatenation - конкатенация
 - exception - исключение
 - float - число с плавающей запятой
+- function body - тело функции
 - head - голова
 - integer - целое число
 - interpolation - интерполяция
 - list - список
 - map - ассоциативный массив
 - metaprogramming - метапрограммирование
+- module - модуль
 - pattern matching - сопоставление с образцом
+- private (function) - закрытая (функция)
+- protected (function) - защищённая (функция)
+- public (function) - общедоступная (функция)
 - rebind variable - переприсвоение переменной
 - substraction - вычитание
+- signature - сигнатура (функции)
 - tail - хвост
