@@ -175,7 +175,7 @@ iex> last([1, 2, 3])
 
 By default all functions and macros are imported but we can filter them using the `:only` and `:except` options.
 
-To import specific functions and macros we need must provide the name/arity pairs to `:only` and `:except`.  Let's start by importing only the `last/1` function:
+To import specific functions and macros, we must provide the name/arity pairs to `:only` and `:except`.  Let's start by importing only the `last/1` function:
 
 ```elixir
 iex> import List, only: [last: 1]
