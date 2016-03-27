@@ -33,6 +33,10 @@ a.sidebar-lesson:focus {
     overflow-y: scroll;
 }
 
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
 .sidebar-sticky {
     top: 1rem;
 }
