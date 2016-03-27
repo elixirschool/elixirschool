@@ -6,7 +6,7 @@ order: 7
 lang: fr
 ---
 
-En Elixir et dans d'autres langages fonctionnels, les fonctions sont des citoyens de premier ordre. Nous verrons les différents types de fonctions en
+En Elixir, comme dans tous les langages fonctionnels, les fonctions sont des citoyens de premier ordre. Nous verrons les différents types de fonctions en
 Elixir, ce qui les rend différentes et comment les utiliser.
 
 ## Table des matières
@@ -22,7 +22,7 @@ Elixir, ce qui les rend différentes et comment les utiliser.
 ## Fonctions anonymes
 
 Tout comme leur nom le sous-entend, les fonctions anonymes n'ont pas de nom. Tel que nous l'avons vu dans la leçon `Enum`, elles sont fréquemment passées à
-d'autres fonctions. Pour définir une fonctions anonyme en Elixir, nous avons besoin des mot-clés `fn` et `end`, à l'intérieur desquels nous pouvons définir 
+d'autres fonctions. Pour définir une fonction anonyme en Elixir, nous avons besoin des mot-clés `fn` et `end`, à l'intérieur desquels nous pouvons définir 
 n'importe quel nombre de paramètres et de corps de fonction, séparés par `->`.
 Jetons un coup d'œil à cet exemple : 
 
@@ -48,7 +48,7 @@ Comme vous avez peut-être déjà deviné, dans la version raccourcie nos param�
 Le Pattern matching (ou « Filtrage par motif » en Français) en Elixir ne se limite pas juste aux variables. Il peut être appliqué aux signatures de
 fonctions, comme nous allons le voir dans cette section : 
 
-Elixir utilise le pattern matching pour identifier le premier groupe de paramètres correspondant, et appelle le corps de fonction correspondant : 
+Elixir utilise le pattern matching pour identifier le groupe de paramètres correspondant, et appelle le corps de fonction correspondant : 
 
 ```elixir
 iex> handle_result = fn
@@ -65,8 +65,8 @@ An error has occurred!
 ```
 ## Fonctions nommées
 
-Nous pouvons définir des fonctions nommées auxquelles nous pouvons nous référer plus tard. Ces fonctions sont définies avec le mot-clé `def` au sein d'un
-module. Nous en apprendrons plus au sujet des Modules dans les prochaines leçons. Maintenant, concentrons-nous seulement sur les fonctions nommées.
+Nous pouvons définir des fonctions nommées que nous pouvons appeler plus tard. Ces fonctions sont définies avec le mot-clé `def` au sein d'un
+module. Nous en apprendrons plus au sujet des Modules dans les prochaines leçons. Pour l'instant, concentrons-nous seulement sur les fonctions nommées.
 
 Les fonctions définies au sein d'un module sont utilisables par les autres modules, et c'est un élément de langage particulièrement utile en Elixir.
 
@@ -89,7 +89,7 @@ defmodule Greeter do
 end
 ```
 
-Et armés de notre connaissance du pattern matching, explorons dorénavant la récursion en utilisant les fonctions : 
+Armés de notre connaissance du pattern matching, explorons maintenant la récursion en utilisant les fonctions : 
 
 ```elixir
 defmodule Length do
@@ -104,7 +104,7 @@ iex> Length.of [1, 2, 3]
 ```
 
 ### Fonctions privées
-Quand nous ne voulons pas que d'autres modules aient accès à nos fonctions, nous pouvons utiliser des fonctions privées, qui sont seulement disponibles
+Lorsque nous ne voulons pas que d'autres modules aient accès à nos fonctions, nous pouvons utiliser des fonctions privées, qui sont seulement disponibles
 au sein de leur propre module. Elles sont définies avec le mot-clé `defp` : 
 
 ```elixir
@@ -127,7 +127,7 @@ Nous avons brièvement couvert les guards (prosaïquement traduit par « gardes 
 [Structures de contrôle](../control-structures.md).  
 Nous allons à présent voir comment nous pouvons les appliquer aux fonctions.
 
-L'exemple cis-dessous contient deux fonctions avec la même signature. Nous allons nous servir des guards pour déterminer laquelle des deux utiliser, en
+L'exemple ci-dessous contient deux fonctions avec la même signature. Nous allons nous servir des guards pour déterminer laquelle des deux utiliser, en
 nous basant sur le type des arguments : 
 
 
@@ -152,7 +152,7 @@ iex> Greeter.hello ["Sean", "Steve"]
 
 ### Arguments par défaut
 
-Si nous voulons une valeur par défaut pour un argument, nous utiliserons la syntaxe `arguments \\ valeur` : 
+Si nous voulons donner une valeur par défaut pour un argument, nous utiliserons la syntaxe `arguments \\ valeur` : 
 
 ```elixir
 defmodule Greeter do
@@ -174,7 +174,7 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-Quand nous combinons nos exemples de guards avec les arguments par défaut, nous recontrons un problème. Regardons ce à quoi il ressemble :
+Quand nous combinons nos exemples de guards avec les arguments par défaut, nous rencontrons un problème. Regardons cela de plus près : 
 
 ```elixir
 defmodule Greeter do
@@ -195,7 +195,7 @@ end
 ** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
 ```
 
-Elixir n'aime pas les arguments par défaut dans les fonctions, cela peut être déroutant. Pour gérer ceci, nous ajoutons une tête de fonction avec nos
+Elixir n'aime pas les arguments par défaut dans les fonctions avec plusieurs matchs, ça peut être déroutant. Pour gérer ceci, nous ajoutons une tête de fonction avec nos
 arguments par défaut : 
 
 ```elixir
