@@ -21,7 +21,7 @@ Class names and proper nouns do not get translated.
 - match operator - оператор сопоставления
 - pin operator - фиксирующий оператор
 - pipe operator - оператор конвейера
-- sigils - строковая метка
+- sigil - строковая метка
 - tuple - кортеж
 
 #### CS terms
@@ -45,6 +45,8 @@ Class names and proper nouns do not get translated.
 - protected (function) - защищённая (функция)
 - public (function) - общедоступная (функция)
 - rebind variable - переприсвоение переменной
-- substraction - вычитание
 - signature - сигнатура (функции)
+- substraction - вычитание
+- supervisor - супервизор
 - tail - хвост
+- worker - рабочий процесс
