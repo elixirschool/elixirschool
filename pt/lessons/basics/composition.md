@@ -116,7 +116,7 @@ iex> %{name: "Sean"} = sean
 
 ## Composição
 
-Agora que sabemos como criar módulos e structs, vamos aprender a incluir uma funcionalidade existente neles através da composição. Elixir nos fornece uma variedade de maneiras diferentes para interagir com outors módulos, vamos ver o que temos à nossa disposição.
+Agora que sabemos como criar módulos e structs, vamos aprender a incluir uma funcionalidade existente neles através da composição. Elixir nos fornece uma variedade de maneiras diferentes para interagir com outros módulos, vamos ver o que temos à nossa disposição.
 
 ### `alias`
 

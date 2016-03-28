@@ -73,7 +73,7 @@ iex> {x, ^x} = {2, 1}
 iex> x
 2
 ```
-Elixir 1.2 intriduziu suporte para pins em chaves de mapas e cláusulas de função:
+Elixir 1.2 introduziu suporte para pins em chaves de mapas e cláusulas de função:
 
 ```elixir
 iex> key = "hello"

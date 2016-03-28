@@ -127,7 +127,7 @@ $ mix deps.get
 
 ## Ambientes
 
-Mix, bem como BUndler, suporta ambientes diferentes. Naturalmente mix trabalha com três ambientes:
+Mix, bem como Bundler, suporta ambientes diferentes. Naturalmente mix trabalha com três ambientes:
 
 + `:dev` — O ambiente padrão.
 + `:test` — Usado por `mix test`. Coberto futuramente na nossa próxima lição.
