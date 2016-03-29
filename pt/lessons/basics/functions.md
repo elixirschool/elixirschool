@@ -41,7 +41,7 @@ iex> sum.(2, 3)
 5
 ```
 
-Como você provavlemente já adivinhou, na versão abreviada nossos parâmetros estão disponíveis como `&1`, `&2`, `&3`, e assim por diante.
+Como você provavelmente já adivinhou, na versão abreviada nossos parâmetros estão disponíveis como `&1`, `&2`, `&3`, e assim por diante.
 
 ## Pattern matching
 
@@ -103,7 +103,7 @@ iex> Length.of [1, 2, 3]
 
 ### Funções privadas
 
-Quando não quisermos que outros modulos acessem uma função, nós podemos usar funções privadas, que só podem ser chamadas dentro de seus modulos. Nós podemos definir elas em Elixir com `defp`:
+Quando não quisermos que outros módulos acessem uma função, nós podemos usar funções privadas, que só podem ser chamadas dentro de seus módulos. Nós podemos definir elas em Elixir com `defp`:
 
 ```elixir
 defmodule Greeter do
