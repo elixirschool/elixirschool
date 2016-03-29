@@ -1,0 +1,73 @@
+---
+layout: page
+title: L'opérateur Pipe
+category: basics
+order: 6
+lang: fr
+---
+
+L'opérateur pipe `|>` passe le résultat d'une expression en tant que premier paramètre à une autre expression.
+
+## Table des matières
+
+- [Introduction](#introduction)
+- [Exemples](#exemples)
+- [Bonnes pratiques](#bonnes-pratiques)
+
+## Introduction
+
+Le code peut vite devenir confus. L'appel à une fonction peut être tellement imbriqué que la logique devient difficile à suivre. Prenons cet exemple:
+
+```elixir
+foo(bar(baz(new_function(other_function()))))
+```
+
+Ici nous passons le résultat de `other_function/1` à `new_function/1`, puis de `new_function/1` à `baz/1`, de `baz/1` à `bar/1` et enfin le résultat de `bar/1` à `foo/1`. Elixir propose une alternative pragmatique à ce chaos syntaxique: l'opérateur pipe. L'opérateur pipe `|>` *prends le résultat d'une expression, et le passe à la suivante*. Regardons maintenant le bout de code au dessus re-écrit avec l'opérateur pipe.
+
+```elixir
+other_function() |> new_function() |> baz() |> bar() |> foo()
+```
+
+Le pipe prends le résultat à sa gauche et le passe à sa droite.
+
+## Exemples
+
+Nous allons utiliser le module String d'Elixir pour les exemples suivants.
+
+- Segmentation de String
+
+```shell
+iex> "Elixir rocks" |> String.split
+["Elixir", "rocks"]
+```
+
+- Transformation des tokens en majuscules
+
+```shell
+iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+["ELIXIR", "ROCKS"]
+```
+
+- Vérification de la fin
+
+```shell
+iex> "elixir" |> String.ends_with?("ixir")
+true
+```
+
+## Bonnes pratiques
+
+Si l'arité d'une fonction et supérieure à 1, assurez vous d'utiliser des parenthèses. Ce n'est pas nécessaire pour Elixir mais plus pour les autres développeurs qui pourraient mal interpréter votre code. Si on prends notre 2ème exemple, et enlevons les parenthèses de `Enum.map/2`, nous pouvons voir l'avertissement suivant:
+
+```shell
+iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
+iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+
+foo 1 |> bar 2 |> baz 3
+
+Should be written as:
+
+foo(1) |> bar(2) |> baz(3)
+
+["ELIXIR", "ROCKS"]
+```
