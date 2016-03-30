@@ -8,9 +8,10 @@ lang: fr
 
 Leçons sur le langage de programmation Elixir, inspiré de la [Scala School](http://twitter.github.io/scala_school/) de Twitter.
 
-Disponible en [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][jp] et [Português][pt].
+Disponible en [English][en], [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][jp] et [Português][pt].
 
 [cn]: https://elixirschool.com/cn/
+[en]: https://elixirschool.com/en/
 [es]: https://elixirschool.com/es/
 [jp]: https://elixirschool.com/jp/
 [pt]: https://elixirschool.com/pt/
