@@ -8,7 +8,7 @@ lang: it
 
 Liste, tuple, liste di keywords, mappe, dizionari e combinatori funzionali.
 
-## Table of Contents
+## Tavola dei contenuti
 
 - [Liste](#liste)
 	- [Concatenazione di Liste](#concatenazione-di-liste)
