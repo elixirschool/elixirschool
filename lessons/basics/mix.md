@@ -70,6 +70,16 @@ The first section we'll look at is `project`.  Here we define the name of our ap
 
 The `application` section is used during the generation of our application file which we'll cover next.
 
+## Interactive
+
+It may be necessary to use `iex` within the context of our application.  Thankfully for us, mix makes this easy.  We can start a new `iex` session:
+
+```bash
+$ iex -S mix
+```
+
+Starting `iex` this way will load your application and dependencies into the current runtime.
+
 ## Compilation
 
 Mix is smart and will compile your changes when necessary, but it may still be necessary explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
@@ -88,16 +98,6 @@ Generated example app
 ```
 
 When we compile a project mix creates a `_build` directory for our artifacts.  If we look inside `_build` we will see our compiled application: `example.app`.
-
-## Interactive
-
-It may be necessary to use `iex` within the context of our application.  Thankfully for us, mix makes this easy.  With our application compiled we can start a new `iex` session:
-
-```bash
-$ iex -S mix
-```
-
-Starting `iex` this way will load your application and dependencies into the current runtime.
 
 ## Manage Dependencies
 
