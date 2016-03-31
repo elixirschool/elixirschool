@@ -6,7 +6,7 @@ order: 2
 lang: en
 ---
 
-List, tuples, keywords, maps, dicts and functional combinators.
+List, tuples, keywords, maps and functional combinators.
 
 ## Table of Contents
 
@@ -101,7 +101,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Keyword lists
 
-Keywords and maps are the associative collections of Elixir; both implement the `Dict` module.  In Elixir, a keyword list is a special list of tuples whose first element is an atom; they share performance with lists:
+Keywords and maps are the associative collections of Elixir.  In Elixir, a keyword list is a special list of tuples whose first element is an atom; they share performance with lists:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
