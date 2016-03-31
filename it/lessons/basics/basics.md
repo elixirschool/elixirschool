@@ -8,7 +8,7 @@ lang: it
 
 Configurazione, tipi di base ed operazioni di base.
 
-## Tavola dei contenuti
+## Tavola dei Contenuti
 
 - [Configurazione](#configurazione)
 	- [Installare Elixir](#installare-elixir)
