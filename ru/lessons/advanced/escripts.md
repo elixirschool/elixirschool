@@ -1,0 +1,94 @@
+---
+layout: page
+title: Исполняемые файлы
+category: advanced
+order: 3
+lang: ru
+---
+
+Для сборки исполняемых файлов в Elixir мы будем использовать escript. Escript создаёт исполняемый файл, который может быть запущен на любой системе с предустановленным Erlang.
+
+## Содержание
+
+- [Начало работы](#section-1)
+- [Разбор аргументов](#section-2)
+- [Сборка](#section-3)
+
+## Начало работы
+
+Для создания исполняемого файла с помощью escript нужно сделать совсем немного: имплементировать метод `main/1` и обновить наш Mixfile.
+
+Начнём с создания модуля, используемого в качестве точки входа в наш исполняемый файл.  Именно здесь мы и создадим `main/1`:
+
+```elixir
+defmodule ExampleApp.CLI do
+  def main(args \\ []) do
+    # Do stuff
+  end
+end
+```
+
+Далее нам надо обновить наш Mixfile &mdash; включить `:escript` для нашего проекта, а также указать `:main_module`:
+
+```elixir
+defmodule ExampleApp.Mixfile do
+  def project do
+    [app: :example_app,
+     version: "0.0.1",
+     escript: escript]
+  end
+
+  def escript do
+    [main_module: ExampleApp.CLI]
+  end
+end
+```
+
+## Разбор аргументов
+
+Наше приложение настроено, и теперь мы можем заняться разбором аргументов из командной строки.  Для этого воспользуемся `OptionParser.parse/2` Elixir'а с опцией `:switches` и укажем, что наш флаг логического типа:
+
+```elixir
+defmodule ExampleApp.CLI do
+  def main(args \\ []) do
+    args
+    |> parse_args
+    |> response
+    |> IO.puts
+  end
+
+  defp parse_args(args) do
+    {opts, word, _} =
+      args
+      |> OptionParser.parse(switches: [upcase: :boolean])
+
+    {opts, List.to_string(word)}
+  end
+
+  defp response({opts, "Hello"}), do: response({opts, "World"})
+  defp response({opts, word}) do
+    if opts[:upcase], do: word = String.upcase(word)
+    word
+  end
+end
+```
+
+## Сборка
+
+Как только мы закончили настройку нашего приложения для использования escript, до сборки исполняемого файла остался всего один шаг с mix:
+
+```elixir
+$ mix escript.build
+```
+
+Давайте попробуем:
+
+```elixir
+$ ./example_app --upcase Hello
+WORLD
+
+$ ./example_app Hi
+Hi
+```
+
+Вот и всё.  Мы только что сделали наш первый исполняемый файл на Elixir, используя escript.
