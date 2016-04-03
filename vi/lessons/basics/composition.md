@@ -71,7 +71,7 @@ It is important to note there are reserved attributes in Elixir.  The three most
 
 + `moduledoc` — Documents the current module.
 + `doc` — Documentation for functions and macros.
-+ `behaviour` — Use an OTP or use-defined behaviour.
++ `behaviour` — Use an OTP or user-defined behaviour.
 
 ## Structs
 

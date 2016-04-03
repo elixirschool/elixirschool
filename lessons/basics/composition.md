@@ -71,7 +71,7 @@ It is important to note there are reserved attributes in Elixir.  The three most
 
 + `moduledoc` — Documents the current module.
 + `doc` — Documentation for functions and macros.
-+ `behaviour` — Use an OTP or use-defined behaviour.
++ `behaviour` — Use an OTP or user-defined behaviour.
 
 ## Structs
 
@@ -120,7 +120,7 @@ Now that we know how to create modules and structs let's learn how to include ex
 
 ### `alias`
 
-Allows us to alias module names, used quite frequently in Elixir code:  
+Allows us to alias module names, used quite frequently in Elixir code:
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -129,7 +129,7 @@ end
 
 defmodule Example do
   alias Sayings.Greetings
-  
+
   def greeting(name), do: Greetings.basic(name)
 end
 
@@ -145,7 +145,7 @@ If there's a conflict with two aliases or you just wish to alias to a different 
 ```elixir
 defmodule Example do
   alias Sayings.Greetings, as: Hi
-  
+
   def print_message(name), do: Hi.basic(name)
 end
 ```
