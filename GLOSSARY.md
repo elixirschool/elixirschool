@@ -28,6 +28,7 @@ Class names and proper nouns do not get translated.
 
 - anonymous function - анонимная функция
 - boolean - логический тип
+- char list - список символов
 - collection - коллекция
 - concatenation - конкатенация
 - exception - исключение
@@ -46,6 +47,7 @@ Class names and proper nouns do not get translated.
 - public (function) - общедоступная (функция)
 - rebind variable - переприсвоение переменной
 - signature - сигнатура (функции)
+- standard library - стандартная библиотека
 - substraction - вычитание
 - supervisor - супервизор
 - tail - хвост
