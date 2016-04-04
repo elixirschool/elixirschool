@@ -57,7 +57,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-**Note:** It uses [strict comparison](../basics.md#comparison) to match the values.
+**Note:** It uses [strict comparison](../basics/#comparison) to match the values.
 
 ### Head / Tail
 
