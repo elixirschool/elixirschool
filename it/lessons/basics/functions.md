@@ -40,7 +40,7 @@ iex> sum.(2, 3)
 5
 ```
 
-Come potrai avere già intuito, nella versione abbreviata i parametri sono disponibili nella forma `&1`, `&2`, `&3`, etc.
+Come avrai già intuito, nella versione abbreviata i parametri sono disponibili nella forma `&1`, `&2`, `&3`, etc.
 
 ## Pattern Matching
 
@@ -64,7 +64,7 @@ An error has occurred!
 
 ## Funzioni con un nome
 
-Possiamo associare un nome alla definizione di una funzione in modo da poterla richiamare successivamente. Queste funzioni sono definite con la keyword `def` all'interno di un modulo. Approfondiremo i Moduli nelle prossime lezioni, per ora ci concentreremo esclusivamente sulle funzioni con un nome.
+Possiamo associare un nome alla definizione di una funzione in modo da poterla richiamare successivamente. Queste funzioni sono definite con la keyword `def` all'interno di un modulo. Approfondiremo i Moduli nelle prossime lezioni, per ora ci concentreremo esclusivamente sulle funzioni con un nome (_named functions_).
 
 Le funzioni definite all'interno di un modulo possono essere usate da altri moduli, questo è uno strumento particolarmente utile in Elixir:
 
@@ -121,9 +121,9 @@ iex> Greeter.phrase
 
 ### Guardie
 
-Abbiamo trattato brevemente le guadie (_guards_) nella lezione sulle [Strutture di Controllo](../control-structures.md), ora vedremo come possiamo applicarle alle funzioni con un nome. Una volta che Elixir ha individuato una funzione, tutte le guardie verranno controllate.
+Abbiamo trattato brevemente le guadie (_guards_) nella lezione sulle [Strutture di Controllo](../control-structures), ora vedremo come possiamo applicarle alle funzioni con un nome. Una volta che Elixir ha individuato una funzione, tutte le guardie verranno controllate.
 
-Nell'esempio che segue abbiamo due funzioni con la stessa _signature_ (cioè accettano gli stessi argomenti), ma ci affidiamo alle guardie per determinare quale usare basandoci sul tipo di argomenti:
+Nell'esempio che segue, abbiamo due funzioni con la stessa _signature_ (cioè accettano gli stessi argomenti), ma ci affidiamo alle guardie per determinare quale usare basandoci sul tipo di argomenti passati:
 
 ```elixir
 defmodule Greeter do
@@ -171,7 +171,7 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-Quando combiniamo il nostro esempio sulle guardie, con gli argomenti di default, ci troviamo di fronte ad un problema. Diamo uno sguardo a cosa potrebbe somigliare:
+Quando combiniamo il nostro esempio sulle guardie con gli argomenti di default, ci troviamo di fronte ad un problema. Diamo uno sguardo a cosa potrebbe somigliare:
 
 ```elixir
 defmodule Greeter do

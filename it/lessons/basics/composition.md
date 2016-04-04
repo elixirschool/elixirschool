@@ -6,7 +6,7 @@ order: 8
 lang: it
 ---
 
-Per esperienza sappiamo che è disordinato avere tutte le nostre funzioni nello stesso file o ambito. In questa lezione affronteremo come raggruppare le funzioni e definire una mappa specializzata conosciuta come struttura (_struct_) per organizzare il nostro codice in modo più efficiente.
+Per esperienza sappiamo che è disordinato avere tutte le nostre funzioni nello stesso file o ambito (_scope_). In questa lezione affronteremo come raggruppare le funzioni e definire una mappa specializzata conosciuta come struttura (_struct_) per organizzare il nostro codice in modo più efficiente.
 
 ## Tavola dei Contenuti
 
@@ -116,7 +116,7 @@ iex> %{name: "Sean"} = sean
 
 ## Composizione
 
-Ora che sappiamo come creare i moduli e le strutture, vediao come includere funzionalità esistenti al loro interno tramite la composizione. Elixir fornisce una varietà di modi differenti per interagire con altri moduli. Vediamo cosa abbiamo a disposizione.
+Ora che sappiamo come creare i moduli e le strutture, vediamo come includere funzionalità esistenti al loro interno tramite la composizione (_composition_). Elixir fornisce una varietà di modi differenti per interagire con altri moduli. Vediamo cosa abbiamo a disposizione.
 
 ### `alias`
 
@@ -140,7 +140,7 @@ defmodule Example do
 end
 ```
 
-Se c'è un conflitto tra due alias o vuoi semplicemente rinominare con un nome del tutto differente, possiamo usare l'opzione `:as`:
+Se c'è un conflitto tra due alias o vuoi semplicemente rinominare il modulo con un nome del tutto differente, si può usare l'opzione `:as`:
 
 ```elixir
 defmodule Example do
@@ -185,7 +185,7 @@ iex> last([1, 2, 3])
 3
 ```
 
-Se importiamo tutto tranne `last/1` a proviamo a chiamare le stesse funzioni come nell'esempio precedente:
+Se importiamo tutto tranne `last/1` e proviamo a chiamare le stesse funzioni come nell'esempio precedente:
 
 ```elixir
 iex> import List, except: [last: 1]
@@ -205,7 +205,7 @@ import List, only: :macros
 
 ### `require`
 
-Nonostante sia usato meno frequentemente, `require/2` è comunque importante. Richiedere un modulo garantisce che venga compilato e caricato. Questo è particolarmente utile quando dobbiamo accedere alle macro di un modulo:
+Nonostante sia usato meno frequentemente, `require/2` è comunque importante. _Richiedere_ un modulo garantisce che venga compilato e caricato. Questo è particolarmente utile quando dobbiamo accedere alle macro di un modulo:
 
 ```elixir
 defmodule Example do
@@ -219,7 +219,7 @@ Se proviamo a chiamare una macro che non è stata ancora caricata, Elixir sollev
 
 ### `use`
 
-Usa il modulo nel contesto corrente. Questo è particolarmente utile quando un modulo ha bisogno di eseguire qualche configurazione. Chiamando `use` invochiamo la funzione (_hook_) `__using__` all'interno del modulo, fornendo al modulo la possibilità di modificare il contesto esistente:
+Usa il modulo nel contesto corrente. Questo è particolarmente utile quando un modulo ha bisogno di eseguire qualche configurazione. Chiamando `use` invochiamo la funzione (_hook_) `__using__` all'interno del modulo, offrendo la possibilità di modificare il contesto esistente:
 
 ```elixir
 defmodule MyModule do

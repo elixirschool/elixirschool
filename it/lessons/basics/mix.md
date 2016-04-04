@@ -6,7 +6,7 @@ order: 9
 lang: it
 ---
 
-Prima di approfondire ulteriormente Elixir, dobbiamo prima imparare a conoscere mix. Se hai familiarità con Ruby, mix è Bundler, RubyGems e Rake in un solo strumento. È un elemento cruciale di qualsiasi progetto Elixir e in questa lezione esploreremo solo una parte delle sue eccezionali funzionalità. Per vedere tutte le cose che mix puòfare, lancia `mix help`.
+Prima di approfondire ulteriormente Elixir, dobbiamo prima imparare a conoscere mix. Se hai familiarità con Ruby, mix è Bundler, RubyGems e Rake in un solo strumento. È un elemento cruciale di qualsiasi progetto Elixir e in questa lezione esploreremo solo una parte delle sue eccezionali funzionalità. Per vedere tutte le cose che mix può fare, lancia `mix help`.
 
 Finora abbiamo lavorato esclusivamente con `iex` che però ha alcune limitazioni. Per costruire qualcosa di significativo dobbiamo dividere il nostro codice su più files in modo da poterli gestire meglio, mix ci permette di farlo con i progetti.
 
@@ -20,7 +20,7 @@ Finora abbiamo lavorato esclusivamente con `iex` che però ha alcune limitazioni
 
 ## Nuovi Progetti
 
-QUando siamo pronti a creare un nuovo progetto in Elixir, mix rende l'operazione semplice con il comando `mix new`. Questo genererà la struttura delle cartelle per il nostro progetto assieme ai file predefiniti. Questo è decisamente facile, quindi cominciamo:
+Quando siamo pronti a creare un nuovo progetto in Elixir, mix rende l'operazione semplice con il comando `mix new`. Questo genererà la struttura delle cartelle per il nostro progetto assieme ai file predefiniti. Questo è decisamente facile, quindi cominciamo:
 
 ```bash
 $ mix new example
@@ -66,7 +66,7 @@ defmodule Example.Mixfile do
 end
 ```
 
-La prima sezione che osserveremo è `project`. Qui definiamo il nome della nostra applicazione (`app`), specifichiamo la nostra versione (`version`), la versione di Elxiir (`elixir`), infine le nostre dipendenze (`deps`).
+La prima sezione che osserveremo è `project`. Qui definiamo il nome della nostra applicazione (`app`), specifichiamo la nostra versione (`version`), la versione di Elxir (`elixir`), infine le nostre dipendenze (`deps`).
 
 La sezione `application` è usata durante la generazione del file per la nostra applicazione di cui parleremo più avanti.
 
@@ -103,7 +103,7 @@ Lanciando `iex` in questo modo, verrà caricata la nostra applicazione e le sue 
 
 Il nostro progetto non ha ancora alcuna dipendenza ma le avrà a breve, quindi procediamo definendo le dipendenze e scaricandole.
 
-Per aggiungere una nuova dipendenza dobbiamo innanzi tutto aggiungerla al nostro `mix.exs` all'interno della sezione `deps`. La nostra lista di dipendenze è composta da tuple con due valori obbligatori ed uno opzionale: il nome del pacchetto come atom, una stringa che rappresenta la versione, ed eventuali opzioni.
+Per aggiungere una nuova dipendenza, dobbiamo innanzi tutto aggiungerla al nostro `mix.exs` all'interno della sezione `deps`. La nostra lista di dipendenze è composta da tuple con due valori obbligatori ed uno opzionale: il nome del pacchetto come atom, una stringa che rappresenta la versione, ed eventuali opzioni.
 
 Per questo esempio, diamo uno sguardo ad un progetto con le dipendenze, come [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 

@@ -71,7 +71,7 @@ iex> case :even do
 "Not Odd"
 ```
 
-Considera `_` come un `else` che verificherà "qualsiasi altra" condizione.
+Considera `_` come un `else` che verificherà _qualsiasi altra_ condizione.
 Dal momento che `case` sfrutta il pattern matching, valgono le sue stesse regole e restrizioni. Se hai intenzione di verificare il valore di una variabile esistente, devi usare l'operatore pin `^`:
 
 ```elixir
@@ -103,7 +103,7 @@ Leggi la documentazione ufficiale per [Expressions allowed in guard clauses](htt
 
 ## `cond`
 
-Quando abbiamo bisogno di verificare condizioni, a non valori, possiamo usare `cond`; è simile a `else if` o `elsif` in altri linguaggi:
+Quando abbiamo bisogno di verificare condizioni, non valori, possiamo usare `cond`; è simile a `else if` o `elsif` in altri linguaggi:
 
 _Questo esempio è tratto direttamente dalla guida ufficiale di Elxir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
 
