@@ -139,9 +139,9 @@ Exemples
 iex>
 ```
 
-Vous remarquerez que vous pouvez utiliser une syntaxe de mise en forme dans la documentation, et que votre terminal en fera le rendu.
-Mis à part le fait que cette fonctionnalité vienne s'ajouter à un déjà vaste écosystème. Cette fonctionnalité devient encore plus intéressante quand on 
-en vient à ExDoc pour générer de la documentation HTML à la volée. 
+Vous remarquerez que vous pouvez utiliser une syntaxe d'embelissement dans la documentation, et que votre terminal en fera le rendu.
+Mis à part le fait que cette fonctionnalité vienne s'ajouter à un déjà vaste écosystème, elle devient beaucoup plus intéressante quand on en vient à
+ExDoc pour générer de la documentation HTML à la volée.
 
 ## ExDoc
 
