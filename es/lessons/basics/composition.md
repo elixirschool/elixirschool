@@ -78,7 +78,7 @@ Es importante notar que hay atributos reservados en Elixir. Los tres más comune
 
 ## Estructuras
 
-Las estructuras son mapas especiales con un conjunto definido de llaves y valores default. Deben ser definidas dentro de un módulo, y tomarán su nombre. Es común que una estructura sea definida únicamente dentro de un módulo.
+Las estructuras son mapas especiales con un conjunto definido de llaves y valores por defecto. Deben ser definidas dentro de un módulo, y tomarán su nombre. Es común que una estructura sea definida únicamente dentro de un módulo.
 
 Para definir una estructura utilizamos `defstruct` junto con una lista de llaves y valores por defecto:
 
@@ -177,7 +177,7 @@ iex> last([1, 2, 3])
 
 ### Filtrado
 
-Por default, todas las funciones y macros son importadas, pero podemos filtarlas utilizando las opciones `:only` y `:except`
+Por defeccto, todas las funciones y macros son importadas, pero podemos filtarlas utilizando las opciones `:only` y `:except`
 Empecemos por importar únicamente la función `last/1`
 
 ```elixir
