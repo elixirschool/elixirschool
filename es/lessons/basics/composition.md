@@ -177,7 +177,7 @@ iex> last([1, 2, 3])
 
 ### Filtrado
 
-Por defeccto, todas las funciones y macros son importadas, pero podemos filtarlas utilizando las opciones `:only` y `:except`
+Por defecto, todas las funciones y macros son importadas, pero podemos filtarlas utilizando las opciones `:only` y `:except`
 Empecemos por importar únicamente la función `last/1`
 
 ```elixir
