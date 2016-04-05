@@ -31,6 +31,7 @@ iex> sum = fn (a, b) -> a + b end
 iex> sum.(2, 3)
 5
 ```
+
 ### Le raccourci '&'
 
 Utiliser des fonctions anonymes est quelque chose de tellement courant en Elixir qu'il y a un raccourci pour le faire : 
@@ -63,6 +64,7 @@ Handling result...
 iex> handle_result.({:error})
 An error has occurred!
 ```
+
 ## Fonctions nommées
 
 Nous pouvons définir des fonctions nommées que nous pouvons appeler plus tard. Ces fonctions sont définies avec le mot-clé `def` au sein d'un
