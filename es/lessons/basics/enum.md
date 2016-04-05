@@ -136,11 +136,11 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 La otra opción nos permite proveer una función de ordenación:
 
 ```elixir
-# with our function
+# con nuestra función
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
 [%{count: 4}, %{count: 1}]
 
-# without
+# sin nuestra función
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
