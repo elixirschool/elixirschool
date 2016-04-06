@@ -24,7 +24,6 @@ Mendokumentasi kod Elixir.
 
 Berapa banyak komen dibuat dan apa yang dikatakan sebagai dokumentasi berkualiti masih hebat diperdebatkan di dalam dunia pengaturcaraan.  Walaupun begitu, kita masih boleh bersetuju bahawa dokumentasi adalah penting untuk kita dan juga mereka yang bekerja dengan codebase kita.
 
-Elixir treats documentation as a *first-class citizen*, offering various functions to access and generate documentation for your projects. The Elixir core provides us with many different attributes to annotate a codebase. Let's look at 3 ways:
 Elixir memberikan dokumentasi dengan layanan kelas pertama, dengan menyediaka pelbagai fungsi untuk mencapai dan menjana dokumentasi untuk projek kita.  Komponen teras Elixir menyediakan pelbagai ciri untuk annotate satu codebase.  Mari lihat 3 cara:
 
   - `#` - untuk dokumentasi inline.
@@ -133,11 +132,11 @@ Examples
 iex>
 ```
 
-Notice how you can use markup within out documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
+Perhatikan bagaimana anda boleh gunakan 'markup' di dalam dokumentasi kita dan terminal akan memaparkannya?  Selain dari ianya hebat dan tambahan amat bagus kepada ekosistem ELixir, ianya lebih lagi menarik apabila kita melihat ExDoc menjana dokumentasi HTML secara spontan.
 
 ## ExDoc
 
-ExDoc is an official Elixir project that **produces HTML (HyperText Markup Language and online documentation for Elixir projects** that can be found on [GitHub](https://github.com/elixir-lang/ex_doc). First let's create a Mix project for our application:
+ExDoc ialah satu projek rasmi Elixir yang **menjana HTML dan dokumentasi atas talian untuk projek-projek Elixir** yang boleh didapati di [GitHub](https://github.com/elixir-lang/ex_doc).  Pertama sekali kita akan membuat satu projek Mix untuk aplikasi kita:
 
 ```bash
 $ mix new greet_everyone
@@ -165,7 +164,7 @@ $ cd greet_everyone
 
 ```
 
-Now copy and paste the code from the `@doc` annotator lesson into a file called `lib/greeter.ex` and make sure everything is still working from the command line. Now that we are working within a Mix project we need to start IEx a little differently using the `iex -S mix` command sequence:
+Sekarang salin dan tampal kod dari pelajaran annotator `@doc` ke dalam satu fail `lib/greeter.ex` dan pastikan semuanya masih berfungsi daripada command line.  Oeh kerana sekarang kita bekerja di dalam satu projek Mix kita perlu jalankan IEx menggunakan arahan `iex -S mix`:
 
 ```bash
 iex> h Greeter.hello
@@ -187,9 +186,9 @@ Examples
     "Hello, pete"
 ```
 
-### Installing
+### Pemasangan
 
-Assuming all is well, and we're seeing the output above suggests that we are ready to set up ExDoc. Within our `mix.exs` file add the two required dependencies to get started; `:earmark` and `:ex_doc`.
+Dengan anggapan semuaya berfungsi dengan baik, dan kita dapat melihat paparan sebagaimana di atas kita telah bersedia untuk memasang ExDoc.  Di dalam fail `mix.exs` kita, tambahkan dua dependency yang diperlukan untuk bermula; `:earmark` and `:ex_doc`.
 
 ```elixir
   def deps do
@@ -198,13 +197,13 @@ Assuming all is well, and we're seeing the output above suggests that we are rea
   end
 ```
 
-We specify the `only: :dev` key-value pair as we don't want to download and compile these dependencies in a production environment. But why Earmark? Earmark is a Markdown parser for the elixir programming language that ExDoc utilizes to turn our documentation within `@moduledoc` and `@doc` to beautiful looking HTML.
+Kita menetapkan pasangan key-value `only: :dev` sebab kita tidak mahu untuk memuatturun dan mengkompil dependency tersebut di dalam persekitaran pengeluaran(production environment).
 
-It is worth noting at this point, that you are not forced to use Earmark. You can change the markup tool to others such as Pandoc, Hoedown or Cmark; however you will need to do a little more configuration which you can read about [here](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). For this tutorial, we'll just stick with Earmark.
+Perlu diingatkan, anda tidak diwajibkan untuk menggunakan Earkmark,  Anda boeh menggunakan alat markup yang lain seperti Pandoc, Hoedown atau Cmark; tetapi anda akan diperlukan untuk membuat sedikit konfigurasi yang boleh anda baca [di sini](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool).  Untuk tutorial ini kita akan gunakan Earmark. 
 
-### Generating Documentation
+### Menjana Dokumentasi
 
-Carrying on, from the command line run the following two commands:
+Jalankan arahan berikut dari command line:
 
 ```bash
 $ mix deps.get # gets ExDoc + Earmark.
@@ -213,8 +212,7 @@ $ mix docs # makes the documentation.
 Docs successfully generated.
 View them at "doc/index.html".
 ```
-
-Hopefully, if everything went to plan, you should see a similar message as to the output message in the above example. Let's now look inside our Mix project and we should see that there is another directory called **doc/**. Inside is our generated documentation. If we visit the index page in our browser we should see the following:
+Harap-harap, jika semuanya mengikut rancangan, anda sepatutnya dapa melihat mesej yang sama dengan paparan mesej di dalam contoh di atas.  Sekarang kita akan lihat ke dalam projek Mix kita dan kita akan dapat melihat lagi satu direktori bernama **doc/**.  Di dalamnya ialah dokumentasi yang dijanakan.  Jika kita capai page indeks di dalam browser kita sepatutnya dapat melihat paparan seperti berikut:
 
 ![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
 

@@ -15,16 +15,16 @@ Penyediaan, Jenis Data Asas dan Operasi.
 	- [Mod Interaktif](#mod-interaktif)
 - [Jenis Data Asas](#jenis-data-asas)
 	- [Angka Bulat](#angka-bulat)
-	- [Apungan](#apungan)
+	- [Nombor Apungan](#nombor-apungan)
 	- [Boolean](#boolean)
 	- [Atom](#atom)
-	- [Rentetan](#rentetan)
+	- [String](#string)
 - [Operasi Asas](#operasi-asas)
 	- [Arithmetik](#arithmetik)
 	- [Boolean](#boolean)
 	- [Perbandingan](#perbandingan)
-	- [Sisipan Rentetan(String Interpolation)](#sisipan-rentetan(string-interpolation))
-	- [String concatenation](#string-concatenation)
+	- [Interpolasi String](#interpolasi-string)
+	- [Perangkaian String](#perangkaian-string)
 
 ## Setup
 
@@ -54,7 +54,7 @@ iex> 0xFF
 255
 ```
 
-Sokongan untuk nombor-nombor binari, oktal dan hexadesimal disertakan secara lalai(default):
+Sokongan untuk nombor-nombor binari, oktal dan heksadesimal disertakan secara lalai(default):
 
 ```elixir
 iex> 0b0110
@@ -65,7 +65,7 @@ iex> 0x1F
 31
 ```
 
-### Apungan
+### Nombor Apungan
 
 Dalam Elixir, nombor apungan memerlukan satu desimal selepas sekurang-kurangnya satu digit; mereka mempunyai 64 bit double precision dan menyokong penggunaan `e` untuk nombor eksponen:
 
@@ -114,7 +114,7 @@ true
 
 ### Strings
 
-String dalam Elixir adalah dienkod UTF-8 dan disempadankan dengan double quotes:
+String di dalam Elixir adalah dienkod UTF-8 dan disempadankan dengan tanda petik(double quotes):
 
 ```elixir
 iex> "Hello"
@@ -123,7 +123,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-String menyokong line break dan escape sequence:
+String menyokong pemisah baris(line break) dan urutan escape(escape sequence):
 
 ```elixir
 iex> "foo
@@ -219,7 +219,7 @@ iex> 2 === 2.0
 false
 ```
 
-Satu feature penting Elixir ialah mana-mana dua bentuk jenis data boleh dibandingkan, ini adalah amat berguna ketika membuat sorting.  Kita tidak perlu menghafal susunan sort tetapi penting untuk diberikan perhatian:
+Satu ciri penting Elixir ialah mana-mana dua bentuk jenis data boleh dibandingkan, ini adalah amat berguna ketika membuat penyusunan.  Kita tidak perlu menghafal susunan tetapi penting untuk diberikan perhatian:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
@@ -234,9 +234,9 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### String interpolation
+### Interpolasi String
 
-Jika anda pernah menggunakan Ruby, string interpolation dalam Elixir akan dikenali:
+Jika anda pernah menggunakan Ruby, interpolasi string dalam Elixir akan dikenali:
 
 ```elixir
 iex> name = "Sean"
@@ -244,9 +244,9 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### String concatenation
+### Perangkaian String
 
-String concatenation menggunakan operator `<>`:
+Perangkaian string menggunakan operator `<>`:
 
 ```elixir
 iex> name = "Sean"

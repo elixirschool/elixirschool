@@ -10,15 +10,15 @@ List, tuples, keywords, maps, dicts dan functional combinators.
 
 ## Kandungan
 
-- [Lists](#lists)
-	- [List concatenation](#list-concatenation)
-	- [List subtraction](#list-subtraction)
+- [List](#list)
+	- [Perangkaian List](#perangkaian-list)
+	- [Penolakan List](#penolakan-list)
 	- [Head / Tail](#head--tail)
-- [Tuples](#tuples)
-- [Keyword lists](#keyword-lists)
-- [Maps](#maps)
+- [Tuple](#tuple)
+- [Kata-kunci list](#kata--kunci-list)
+- [Map](#map)
 
-## Lists
+## List
 
 List adalah senarai nilai ringkas, mereka boleh mengandungi pelbagai jenis data; list dibolehkan untuk mengandungi nilai-nilai yang bukan unik:
 
@@ -27,7 +27,7 @@ iex> [3.41, :pie, "Apple"]
 [3.41, :pie, "Apple"]
 ```
 
-Elixir melaksanakan list sebagai linked list.  Ini bermakna mencapai saiz list ialah satu operasi `0(n)`.  Oleh sebab ini selalunya lebih cepat untuk melakukan prepend dari melakukan append:
+Elixir melaksanakan list sebagai 'linked list'.  Ini bermakna mencapai saiz list ialah satu operasi `0(n)`.  Oleh sebab ini selalunya lebih cepat untuk melakukan operasi penambahan awalan(prepend) dari melakukan operasi lampiran(append):
 
 ```elixir
 iex> list = [3.41, :pie, "Apple"]
@@ -39,16 +39,16 @@ iex> list ++ ["Cherry"]
 ```
 
 
-### List Concatenation
+### Perangkaian List
 
-List concatenation menggunakan operator `++/2`:
+Perangkaian list menggunakan operator `++/2`:
 
 ```elixir
 iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-### List Subtraction
+### Penolakan List
 
 Sokongan untuk proses penolakan dibekalkan melalui operator `--/2`; ianya selamat untuk membuat penolakan nilai yang hilang:
 
@@ -79,9 +79,9 @@ iex> t
 [:pie, "Apple"]
 ```
 
-## Tuples
+## Tuple
 
-Tuples adalah sama dengan lists tetapi disimpan secara berturutan di dalam ingatan.  Ini membuatkan capaian ke atas nilai panjang mereka laju tetapi membuat kemaskini adalah mahal; satu tuple baru mestilah disalin keseluruhannya ke dalam ingatan.  Tuple diisytiharkan menggunakan curly braces:
+Tuple adalah sama dengan list tetapi disimpan secara berturutan di dalam ingatan.  Ini membuatkan capaian ke atas nilai panjang mereka laju tetapi membuat kemaskini adalah mahal; satu tuple baru mestilah disalin keseluruhannya ke dalam ingatan.  Tuple diisytiharkan menggunakan curly braces:
 
 ```elixir
 iex> {3.41, :pie, "Apple"}
@@ -97,9 +97,9 @@ iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
 
-## Keyword lists
+## Kata-kunci list
 
-Keyword dan map adalah koleksi asosiatif( associative collections of) Elixir; kedua-duanya melaksanakan modul `Dict`.  Dalam Elixir, keyword list ialah sejenis senarai tuple khas yang mengandungi elemen pertama dari jenis atom; prestasi mereka adalah sama dengan list:
+Keyword dan map adalah koleksi asosiatif( associative collections of) Elixir; kedua-duanya melaksanakan modul `Dict`.  Dalam Elixir, kata-kunci list ialah sejenis senarai tuple khas yang mengandungi elemen pertama dari jenis atom; prestasi mereka adalah sama dengan list:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -108,18 +108,17 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 [foo: "bar", hello: "world"]
 ```
 
-The three characteristics of keyword lists highlight their importance:
-Terdapat tiga ciri keyword list yang menonjolkan kepentingan mereka:
+Terdapat tiga ciri kata-kunci list yang menonjolkan kepentingan mereka:
 
 + Keys adalah dari jenis atom.
 + Keys adalah dalam bentuk turutan.
 + Keys adalah tidak unik.
 
-Atas sebab-sebab tersebut keyword list selalu digunakan to menghantar pilihan kepada fungsi.
+Atas sebab-sebab tersebut kata-kunci list selalu digunakan to menghantar pilihan kepada fungsi.
 
 ## Map
 
-Dalam Elixir map adalah 'key-value store' yang paling kerap digunapakai, berlainanan dengan keyword lists mereka membenarkan penggunan key dari pelbagai jenis data dan mereka tidak mengikut turutan.  Anda boleh mengisytiharkan sesatu map dengan menggunakan sintaks `%{}`:
+Dalam Elixir map adalah 'key-value store' yang paling kerap digunapakai, berlainanan dengan kata-kunci list mereka membenarkan penggunan key dari pelbagai jenis data dan mereka tidak mengikut turutan.  Anda boleh mengisytiharkan sesatu map dengan menggunakan sintaks `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Karangan
+title: Komposisi
 category: basics
 order: 8
 lang: my
@@ -13,7 +13,7 @@ Kita tahu dari pengalaman bahawa menyimpan semua fungsi di dalam satu fail dan s
 - [Modul](#modul)
   - [Ciri-ciri Modul](#ciri-ciri-modul)
 - [Struct](#struct)
-- [Karangan](#karangan)
+- [Komposisi](#komposis)
   - [`alias`](#alias)
   - [`import`](#import)
   - [`require`](#require)
@@ -37,7 +37,7 @@ iex> Example.greeting "Sean"
 ```
 
 It is possible to nest modules in Elixir, allowing you to further namespace your functionality:
-Elixir memungkinkan untuk membina modul dalam bentuk nesting:
+Elixir membolehkan untuk membina modul dalam bentuk bersarang, membenarkan anda untuk mengembangkan penggunaan 'namespace' kefungsian anda:
 
 ```elixir
 defmodule Example.Greetings do
@@ -54,7 +54,7 @@ iex> Example.Greetings.morning "Sean"
 "Good morning Sean."
 ```
 
-### Ciri-ciri Module
+### Ciri-ciri Modul
 
 Ciri-ciri modul adalah yang paling kerap digunakan sebagai pemalar di dalam Elixir.  Mari kita lihat satu contoh ringkas:
 
@@ -68,16 +68,15 @@ defmodule Example do
 end
 ```
 
-It is important to note there are reserved attributes in Elixir.  The three most common are:
 Adalah penting untuk dijelaska bahawa terdapat beberapa ciri-ciri simpanan dalam Elixir.  Tiga yang paling biasa adalah:
 
 + `moduledoc` — menjana dokumentasi modul semasa.
 + `doc` — menjana dokumentasi untuk fungsi dan makro.
 + `behaviour` — penggunaan OTP atau kelakuan tetapan pengguna.
 
-## Structs
+## Struct
 
-Struct adalah sejenis map khas yang mengandungi satu set key dan nilai.  Ia mesti ditetapkan di dalam satu modul, yang mana ia mendapat namanya(nama struct adalah nama modul yang mana ia terkandung).  Menjadi kebiasaan apabila satu modul hanya mengandungi struct di dalamnya.
+Struct adalah sejenis map khas yang mengandungi satu set key dan value.  Ia mesti ditetapkan di dalam satu modul, yang mana ia mendapat namanya(nama struct adalah nama modul yang mana ia terkandung).  Menjadi kebiasaan apabila satu modul hanya mengandungi struct di dalamnya.
 
 Gunakan `defstruct` untuk menetapkan satu struct, di samping satu keyword list yang mengandungi key dan nilai lalai:
 
@@ -116,10 +115,9 @@ iex> %{name: "Sean"} = sean
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-## Composition
-## Karangan
+## Komposisi
 
-Setelah kita mengetahui cara untuk membina modul dan struct, kini masa untuk mempelajari cara untuk memasukkan functionality sedia ada ke dalam modul tersebut melalui karangan.  Elixir membekalkan kita beberapa cara berbeza untuk berinteraksi dengan modul-modul lain, mari lihat apa yang telah disediakan untuk kita.
+Setelah kita mengetahui cara untuk membina modul dan struct, kini masa untuk mempelajari cara untuk memasukkan kefungsian sedia ada ke dalam modul tersebut melalui komposisi.  Elixir membekalkan kita beberapa cara berbeza untuk berinteraksi dengan modul-modul lain, mari lihat apa yang telah disediakan untuk kita.
 
 ### `alias`
 
@@ -199,7 +197,6 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arty pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
 Sebagai tambahan kepada pasangan 'name/arity' terdapat dua jenis atom istimewa, `:functions` dan `:macros`, yang masing-masing hanya mengimport fungsi dan makro.
 
 ```elixir
