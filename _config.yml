@@ -21,6 +21,8 @@ description:
   gr: Μαθήματα προγραμματισμού της γλώσσας Elixir
   it: Lezioni sul linguaggio di programmazione Elixir
 url: https://elixirschool.com
+insecure_url: http://elixirschool.com #Evernote gives a 500 error on the https
+og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
 languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it']
 default_lang: en
