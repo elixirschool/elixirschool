@@ -52,3 +52,46 @@ Class names and proper nouns do not get translated.
 - supervisor - супервизор
 - tail - хвост
 - worker - рабочий процесс
+
+
+### Glossary (portuguese)
+
+#### Elixir-related terms
+
+- actors - atores
+- atom - átomo
+- function clauses - cláusulas de função
+- guard - guarda
+- guard operator - operador de guarda
+- keyword list - lista de palavras
+- match operator - operador para procura de padrões
+- pin operator - operator para apontar para último valor atribuido a variável
+- pipe operator - operador pipe
+- sigils - tag de padrão
+- tuple - tupla
+
+#### CS terms
+
+- anonymous function - função anônima
+- boolean - variável binária para valores verdadeiros ou falsos
+- collection - coleção
+- concatenation - concatenação
+- exception - exceção
+- float - flutuador
+- function body - corpo da função
+- head - cabeça (cabeçalho)
+- integer - inteiro
+- interpolation - interpolação
+- list - lista
+- map - mapa
+- metaprogramming - metaprogramação
+- module - módulo
+- pattern matching - correspondência de padrão
+- private (function) - privada (função)
+- protected (function) - protegida (função)
+- public (function) - pública (função)
+- rebind variable - religar variável
+- substraction - subtração
+- signature - assinatura (função)
+- tail - cauda
+- worker - operário
