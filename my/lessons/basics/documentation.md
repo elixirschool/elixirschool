@@ -10,21 +10,21 @@ Mendokumentasi kod Elixir.
 
 ## Kandungan
 
-- [Annotation](#annotation)
+- [Pencatatan](#pencatatan)
   - [Dokumentasi Inline](#inline-documentation)
   - [Menjana Dokumentasi Modul](#documenting-modules)
   - [Menjana Dokumentasi Fungsi](#documenting-functions)
 - [ExDoc](#exdoc)
   - [Pemasangan](#pemasangan)
   - [Penjanaan Dokumentasi](#penjanaan-dokumentasi)
-- [Best Practice](#best-practice)
+- [Amalan-amalan Terbaik](#amalan--amalan-practice)
 
 
-## Annotation
+## Pencatatatan
 
-Berapa banyak komen dibuat dan apa yang dikatakan sebagai dokumentasi berkualiti masih hebat diperdebatkan di dalam dunia pengaturcaraan.  Walaupun begitu, kita masih boleh bersetuju bahawa dokumentasi adalah penting untuk kita dan juga mereka yang bekerja dengan codebase kita.
+Berapa banyak komen dibuat dan apa yang dikatakan sebagai dokumentasi berkualiti masih hebat diperdebatkan di dalam dunia pengaturcaraan.  Walaupun begitu, kita masih boleh bersetuju bahawa dokumentasi adalah penting untuk kita dan juga mereka yang bekerja dengan kod asas kita.
 
-Elixir memberikan dokumentasi dengan layanan kelas pertama, dengan menyediaka pelbagai fungsi untuk mencapai dan menjana dokumentasi untuk projek kita.  Komponen teras Elixir menyediakan pelbagai ciri untuk annotate satu codebase.  Mari lihat 3 cara:
+Elixir memberikan dokumentasi dengan layanan kelas pertama, dengan menyediaka pelbagai fungsi untuk mencapai dan menjana dokumentasi untuk projek kita.  Komponen teras Elixir menyediakan pelbagai ciri untuk mencatat satu kod asas.  Mari lihat 3 cara:
 
   - `#` - untuk dokumentasi inline.
   - `@moduledoc` - Untuk dokumentasi peringkat Modul.
@@ -216,17 +216,17 @@ Harap-harap, jika semuanya mengikut rancangan, anda sepatutnya dapa melihat mese
 
 ![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
 
-We can see that Earmark has rendered our markdown and ExDoc is now displaying it in a useful format.
+Kita dapat lihat bahawa Earmark telah memproses markdown kita dan ExDoc memaparkannnya di dalam format yang berguna.
 
 ![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
 
-We can now deploy this to GitHub, our own website, more commonly [HexDocs](https://hexdocs.pm/).
+Sekarang kita boleh melakukan deploy ke Github, laman web kita sendiri, atau [HexDocs](https://hexdocs.pm/). 
 
-## Best Practice
+## Amalan Terbaik
 
-Adding documentation should be added within the Best practices guidelines of the language. Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows. The community, however, has made efforts to establish best practices. To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
+Amalan menambahkan dokumentasi sepatutnya dimasukkan sebagai salah satu panduan amalan terbaik bahasa ini.  Oleh sebab Eixir ialah bahasa yang agak baharu masih banyak standard untuk diterokai sepadan dengan pertumbuhan ekosistemnya.  Bagaimanapun, komuniti ini telah melakukan banyak usaha untuk memantapkan amalan-amalan terbaik.  Untuk membaca lebih lanjut berkenaan amalan-amalan terbaik, sila lihat [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide). 
 
-  - Always document a module.
+  - Selalu mendokumentasi sesatu modul.
 
 ```elixir
 defmodule Greeter do
@@ -237,7 +237,7 @@ defmodule Greeter do
 end
 ```
 
-  - If you do not intend to document a module, **do not** leave it blank. Consider annotating the module `false` as so:
+  - Jika anda tidak berniat untuk mendokumentasi sesatu modul, **jangan** tinggalkannya kosong.  Catatkan modul itu sebagai `false` seperti berikut:
 
 ```elixir
 defmodule Greeter do
@@ -246,7 +246,7 @@ defmodule Greeter do
 end
 ```
 
- - When referring to functions within module documentation, use backticks like so:
+ - Apabila merujuk kepada fungsi-fungsi dari dalam dokumentasi, gunakan simbol backtick seperti berikut:
 
 ```elixir
 defmodule Greeter do
@@ -262,7 +262,7 @@ defmodule Greeter do
 end
 ```
 
- - Separate any and all code one line under the `@moduledoc` as so:
+ - Pisahkan semua kod dari dokumentasi dengan satu baris dari bawah `@moduledoc` seperti berikut:
 
 ```elixir
 defmodule Greeter do
@@ -281,7 +281,7 @@ defmodule Greeter do
 end
 ```
 
- - Use markdown within functions that will make it easier to read either via IEx or ExDoc.
+ - Gunakan markdown dari dalam fungsi yang akan menjadikannya lebih senang untuk dibaca melaui IEx atau ExDoc.
 
 ```elixir
 defmodule Greeter do
@@ -312,6 +312,6 @@ defmodule Greeter do
 end
 ```
 
- - Try to include some code examples in your documentation, this also allows you to generate automatic tests from the code examples found in a module, function or macro with [ExUnit.DocTest][]. In order to do that, one needs to invoke the `doctest/1` macro from their test case and write their examples according to some guidelines, which are detailed in the [official documentation][ExUnit.DocTest]
+ - Cuba untuk memasukkan contoh-contoh kod ke dalam dokumetasi anda, ini juga memudahkan anda menjana ujian-ujian otomatik daripada kod-kod contoh di dalam sesatu modul, fungsi atau makro menggunakan [ExUnit.DocTest][].  Untuk melaksanakannya, anda perlu memanggil makro `doctest/1` darpada kes ujian dan tuliskan contoh-contoh berpandukan kepada [official documentation][ExUnit.DocTest].
 
 [ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html
