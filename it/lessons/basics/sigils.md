@@ -8,7 +8,7 @@ lang: it
 
 Lavorare e creare sigils.
 
-## Table of Contents.
+## Tavola dei Contenuti
 
 - [Introduzione ai Sigils](#introduzione-ai-sigils)
   - [Liste di Caratteri](#liste-di-caratteri)
