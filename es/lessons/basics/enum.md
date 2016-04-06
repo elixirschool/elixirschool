@@ -25,14 +25,14 @@ Un conjunto de algoritmos para hacer enumeración sobre colecciones.
 
 ## Enum
 
-El módulo `Enum` incluye mas de cien funciones para trabajar con las colleciones que aprendimos en la última lección.
+El módulo `Enum` incluye más de cien funciones para trabajar con las colecciones que aprendimos en la última lección.
 
-Esta lección solo cubrirá un subconjunto de las funciones disponibles, para ver la lista completa de funciones visita la documentación oficial [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); para enumeración perezosa usa el módulo [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
+Esta lección solo cubrirá un subconjunto de las funciones disponibles. Para ver la lista completa de funciones visita la documentación oficial [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); para enumeración perezosa usa el módulo [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
 
 
 ### all?
 
-Cuando usas `all?`, y muchas de la funciones de `Enum`, proveemos una función para aplicar a los elementos de nuestra colección. En el caso de `all?`, la colección entera debe ser evaluada a `true`, en otro caso `false` será retornado:
+Cuando usas `all?`, y muchas de las funciones de `Enum`, proveemos una función para aplicar a los elementos de nuestra colección. En el caso de `all?`, la colección entera debe ser evaluada a `true`, en otro caso `false` será retornado:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -52,14 +52,14 @@ true
 
 ### chunk
 
-Si necesitas romper tu colleción en pequeños grupos, `chunk` es la función que probablemente estás buscando:
+Si necesitas romper tu colección en pequeños grupos, `chunk` es la función que probablemente estás buscando:
 
 ```elixir
 iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Hay algunas opciones para `chunk` pero no vamos a entrar en ellas, revisa [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) en la documentación oficial para aprender mas.
+Hay algunas opciones para `chunk` pero no vamos a entrar en ellas, revisa [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) en la documentación oficial para aprender más.
 
 ### chunk_by
 
@@ -123,7 +123,7 @@ iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 
 ### sort
 
-Ordenar nuestras colecciones se hace fácil con no una sino dos funciones de ordenación. La primera opción disponible para nosotros utiliza el criterio de Elixir para determinar el orden de ordenación:
+Ordenar nuestras colecciones se hace fácil con no una, sino dos funciones de ordenación. La primera opción disponible para nosotros utiliza el criterio de Elixir para determinar el orden de ordenación:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])

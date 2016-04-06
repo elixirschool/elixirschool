@@ -21,7 +21,7 @@ Sabemos por experiencia que es revoltoso tener nuestras funciones en el mismo ar
 
 ## Modulos
 
-Los módulos son la mejor manera de organizar funciones en un namespace. En adición a las funciones agrupativas, los módulos nos permiten definir funciones nombradas y privadas, las cuales cubrimos en la lección pasada
+Los módulos son la mejor manera de organizar funciones en un namespace. En adición a las funciones agrupativas, los módulos nos permiten definir funciones nombradas y privadas, las cuales cubrimos en la lección pasada.
 
 Démosle un vistazo a un ejemplo básico:
 
@@ -36,7 +36,7 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
-Es posible anidar módulos en Elixir, permitiendonos ser explícitos nombrando nuestra funcionalidad.
+Es posible anidar módulos en Elixir, permitiéndonos ser explícitos nombrando nuestra funcionalidad.
 
 
 ```elixir
@@ -133,7 +133,7 @@ end
 
 defmodule Example do
   alias Sayings.Greetings
-  
+
   def greeting(name), do: Greetings.basic(name)
 end
 
@@ -149,12 +149,12 @@ Si hay un conflicto entre dos alias o quieres que los alias tomen un nombre dife
 ```elixir
 defmodule Example do
   alias Sayings.Greetings, as: Hi
-  
+
   def print_message(name), do: Hi.basic(name)
 end
 ```
 
-Es posible dar multiples alias a un módulo a la vez:
+Es posible dar múltiples alias a un módulo a la vez:
 
 ```elixir
 defmodule Example do
@@ -164,7 +164,7 @@ end
 
 ### `import`
 
-Si queremos importar las funciones y macros de un módulo, más que sólo darle un alias, podemos utilizar `import/` 
+Si queremos importar las funciones y macros de un módulo, más que sólo darle un alias, podemos utilizar `import/`:
 
 ```elixir
 iex> last([1, 2, 3])
@@ -199,7 +199,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-En adición a los pares nombre/aridad, hay dos atomos especiales, `:functions` y `:macros`, las cuales importan únicamente funciones y macros, respectivamente:
+En adición a los pares nombre/aridad, hay dos átomos especiales, `:functions` y `:macros`, las cuales importan únicamente funciones y macros, respectivamente:
 
 ```elixir
 import List, only: :functions
@@ -223,7 +223,7 @@ Si intentamos hacer un llamado a una macro que no está cargada aún, Elixir arr
 ### `use`
 
 Utiliza el módulo en el contexto actual. Esto es particularmente utilizado cuando un módulo necesita realizar algún setup. Llamando `use`, invocamos el hook `__using__` dentro del módulo, dándole al módulo una oportunidad para modificar nuestro contexto actual.
- 
+
 ```elixir
 defmodule MyModule do
   defmacro __using__(opts) do

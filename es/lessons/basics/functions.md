@@ -6,7 +6,7 @@ order: 6
 lang: es
 ---
 
-En Elixir y en muchos lenguajes funcionales, las funciones son ciudadanos de primera clase. Vamos a aprender acerca de los tipos de funciones en Elixir, que los hace diferentes, y como usarlos.
+En Elixir y en muchos lenguajes funcionales, las funciones son ciudadanos de primera clase. Vamos a aprender acerca de los tipos de funciones en Elixir, qué los hace diferentes, y cómo usarlos.
 
 ## Tabla de Contenidos
 
@@ -20,7 +20,7 @@ En Elixir y en muchos lenguajes funcionales, las funciones son ciudadanos de pri
 
 ## Funciones anónimas
 
-Tal como el nombre sugiere, una función anónima no tiene nombre. Como vimos en la lección `Enum`, ellas son pasadas frecuentemente a otra funciones. Para definir una función anónima en Elixir necesitamos las palabras clave `fn` y `end`. Dentro de estos podemos definir, separados por `->`, cualquier número de parámetros y el cuerpo de la función.
+Tal como el nombre sugiere, una función anónima no tiene nombre. Como vimos en la lección `Enum`, ellas son pasadas frecuentemente a otras funciones. Para definir una función anónima en Elixir necesitamos las palabras clave `fn` y `end`. Dentro de estos podemos definir, separados por `->`, cualquier número de parámetros y el cuerpo de la función.
 
 Vamos a ver un ejemplo básico:
 
@@ -40,11 +40,11 @@ iex> sum.(2, 3)
 5
 ```
 
-Como probablemente ya haz adivinado, en la versión reducida nuestros parámetros están disponible como `&1`, `&2`, `&3`.
+Como probablemente ya has adivinado, en la versión reducida nuestros parámetros están disponible como: `&1`, `&2`, `&3`.
 
 ## Coincidencia de patrones
 
-La coincidencia de patrones no esta limitada solo a las variables en Elixir, puede ser aplicada a las firmas de la función como veremos en esta sección.
+La coincidencia de patrones no está limitada solo a las variables en Elixir, puede ser aplicada a las firmas de la función como veremos en esta sección.
 
 Elixir usa coincidencia de patrones para identificar el primer conjunto de parámetros que coincidan e invocar al cuerpo correspondiente:
 
@@ -64,9 +64,9 @@ An error has occurred!
 
 ## Funciones con nombre
 
-Podemos definir funciones con nombre para asi poder referirnos a ellas luego, estas funciones con nombre son definidas con la palabra clave `def` dentro de un módulo, Vamos a aprender mas acerca de los módulos en las siguientes lecciones, por ahora nos enfocaremos solamente en las funciones con nombre.
+Podemos definir funciones con nombre para así poder referirnos a ellas luego. Estas funciones con nombre son definidas con la palabra clave `def` dentro de un módulo. Vamos a aprender más acerca de los módulos en las siguientes lecciones, por ahora nos enfocaremos solamente en las funciones con nombre.
 
-Las funciones definidas dentro de un módulo estan disponibles para ser usadas por otros módulos, esto es particularmente útil para construir bloques en Elixir:
+Las funciones definidas dentro de un módulo están disponibles para ser usadas por otros módulos, esto es particularmente útil para construir bloques en Elixir:
 
 ```elixir
 defmodule Greeter do
@@ -79,7 +79,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 ```
 
-Si el cuerpo de nuestra función solo se extiende a una linea, podemos acortarla con `do:`:
+Si el cuerpo de nuestra función solo se extiende a una línea, podemos acortarla con `do:`:
 
 ```elixir
 defmodule Greeter do
@@ -121,9 +121,9 @@ iex> Greeter.phrase
 
 ### Guardas
 
-Hemos cubierto brevemente las guardas en la lección [Estructuras de control](../control-structures.md), ahora veremos como aplicarlas a las funciones con nombre. Una vez Elixir ha coincidido una función algunas guardas serán evaluadas.
+Hemos cubierto brevemente las guardas en la lección [Estructuras de control](../control-structures.md), ahora veremos cómo aplicarlas a las funciones con nombre. Una vez Elixir ha coincidido una función algunas guardas serán evaluadas.
 
-En el siguiente ejemplo tenemos dos funciones con la misma firma, confiamos en las guardas para determinar cual usar basandonos en el tipo de los argumentos:
+En el siguiente ejemplo tenemos dos funciones con la misma firma, confiamos en las guardas para determinar cuál usar basándonos en el tipo de los argumentos:
 
 ```elixir
 defmodule Greeter do
