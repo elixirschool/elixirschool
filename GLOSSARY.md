@@ -46,9 +46,9 @@ Class names and proper nouns do not get translated.
 - protected (function) - защищённая (функция)
 - public (function) - общедоступная (функция)
 - rebind variable - переприсвоение переменной
+- subtraction - вычитание
 - signature - сигнатура (функции)
 - standard library - стандартная библиотека
-- substraction - вычитание
 - supervisor - супервизор
 - tail - хвост
 - worker - рабочий процесс
@@ -67,7 +67,7 @@ Class names and proper nouns do not get translated.
 - match operator - operador para procura de padrões
 - pin operator - operator para apontar para último valor atribuido a variável
 - pipe operator - operador pipe
-- sigils - tag de padrão
+- sigils - mecanismos para transformação de representações textuais
 - tuple - tupla
 
 #### CS terms
@@ -90,8 +90,8 @@ Class names and proper nouns do not get translated.
 - private (function) - privada (função)
 - protected (function) - protegida (função)
 - public (function) - pública (função)
-- rebind variable - religar variável
-- substraction - subtração
+- rebind variable - associar variável novamente
+- subtraction - subtração
 - signature - assinatura (função)
 - tail - cauda
 - worker - operário
