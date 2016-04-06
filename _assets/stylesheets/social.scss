@@ -1,0 +1,96 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Import icon font, I've used Entypo (http://entypo.com/)
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+// List of icon unicode symbols from the icon font
+// and background colours for the icons
+$icon-list: (
+    twitter "\F309" #32b9e7,
+    facebook "\F30C" #4b70ab,
+    googleplus "\F30F" #fa5432,
+    pintrest "\F312" #d63533,
+    linkedin "\F318" #0087be,
+    evernote "\F333" #aaca62,
+    email "\2709" #FB7629,
+    print "\e716" #167ab6,
+);
+
+// Each loop for creating the icon CSS
+@each $icon, $unicode, $icon-background in $icon-list {
+
+    .icon--#{$icon} {
+        &::before {
+            content: $unicode;
+        }
+    }
+
+    .social__icon--#{$icon} {
+      background-color: $icon-background;
+
+        &:hover {
+          // Swap black for white to make the icons lighter on hover
+          background-color: mix(black, $icon-background, 15%);
+        }
+
+    }
+
+}
+
+// Display icons next to each other
+.social__item {
+    display: inline-block;
+    margin-right: 0.1em;
+}
+
+// Basic icon style
+.icon {
+  font-family: 'entypo';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  // Better Font Rendering
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Extend icon to all other icons
+[class^="icon--"] {
+  @extend .icon;
+}
+
+// Icon background
+.social__icon {
+  font-size: 1.4em;
+  color: white;
+  text-decoration: none;
+  // Remove border radius to make icons square
+  border-radius:100%;
+  width: 1.4em;
+  height: 1.4em;
+  text-align: center;
+
+  // Vertical Centering
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Extend social__icon to all other icons
+[class^="social__icon"] {
+  @extend .social__icon;
+}
+
+// Add padding to icons container
+.social__container {
+  padding: 1em;
+  font-size: 1.5em;
+}
