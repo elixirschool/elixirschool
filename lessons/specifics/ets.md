@@ -274,7 +274,7 @@ iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
 
 As you see we are able to implement a scalable and fast cache without any external dependencies and this is only one of many uses for ETS.
 
-## Disk-basd ETS
+## Disk-based ETS
 
 We now know ETS is for in-memory term storage but what if we need disk-based storage? For that we have Disk Based Term Storage, or DETS for short.  The ETS and DETS APIs are interchangeable with the exception of how tables are created. DETS relies on `open_file/2` and doesn't require the `:named_table` option:
 
