@@ -19,7 +19,7 @@ description:
   ru: Lessons about the Elixir programming language
   my: Pelajaran mengenai bahasa aturcara Elixir
 baseurl: /
-url: http://elixirschool.com
+url: https://elixirschool.com
 permalink: pretty
 languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'my']
 =======
