@@ -6,7 +6,7 @@ order: 6
 lang: pt
 ---
 
-O operador pipe `/>` passa o resultado de uma expressão como o primeiro parâmetro de outra expressão.
+O operador pipe `|>` passa o resultado de uma expressão como o primeiro parâmetro de outra expressão.
 
 ## Sumário
 

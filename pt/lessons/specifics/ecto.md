@@ -10,7 +10,7 @@ Ecto é um projeto oficial do Elixir que fornece uma camada de banco de dados e
 linguagem integrada para consultas. Com Ecto podemos criar *migrations*, definir
 modelos, inserir e atualizar registos, e fazer consultas.
 
-## Tabela de Conteúdos
+## Sumário
 
 - [Instalação](#instalacao)
   - [Repositório](#repositorio)

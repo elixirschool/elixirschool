@@ -6,7 +6,7 @@ order: 2
 lang: en
 ---
 
-List, tuples, keywords, maps, dicts and functional combinators.
+List, tuples, keywords, maps and functional combinators.
 
 ## Table of Contents
 
@@ -57,6 +57,8 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+**Note:** It uses [strict comparison](../basics/#comparison) to match the values.
+
 ### Head / Tail
 
 When using lists it is common to work with the list's head and tail.  The head is the first element of the list and the tail the remaining elements.  Elixir provides two helpful methods, `hd` and `tl`, for working with these parts:
@@ -99,7 +101,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Keyword lists
 
-Keywords and maps are the associative collections of Elixir; both implement the `Dict` module.  In Elixir, a keyword list is a special list of tuples whose first element is an atom; they share performance with lists:
+Keywords and maps are the associative collections of Elixir.  In Elixir, a keyword list is a special list of tuples whose first element is an atom; they share performance with lists:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]

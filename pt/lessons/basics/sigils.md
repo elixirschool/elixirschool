@@ -25,7 +25,7 @@ Uma lista de sigils disponíveis incluem:
 
   - `~C` Gera uma lista de caracteres **sem** escape ou interpolação
   - `~c` Gera uma lista de caracteres **com** escape e interpolação
-  - `~R` Gera uma expressão egular **sem** escape ou interpolação
+  - `~R` Gera uma expressão regular **sem** escape ou interpolação
   - `~r` Gera uma expressão regular **com** escape e interpolação
   - `~S` Gera strings **sem** escape ou interpolação
   - `~s` Gera string **com** escape e interpolação
@@ -37,7 +37,7 @@ Uma lista de delimitadores inclue:
   - `<...>` Um par de brackets
   - `{...}` Um par de chaves
   - `[...]` Um par de colchetes
-  - `(...)` Um par de parêntesis
+  - `(...)` Um par de parênteses
   - `|...|` Um par de pipes
   - `/.../` Um par de barras
   - `"..."` Um par de aspas duplas
@@ -72,7 +72,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Podemos ver que no primeiro teste de igualdade, `Elixir` não coincide com a expressão regular. Isso acontece por quê ele está utilizando letra maiúscula. Pelo fato de Elixir suportar expresões regulares compatíveis com Perl (PCRE), podemos acrescentar `i` ao final do nosso sigil para ligar maiúsculas e minúsculas.
+Podemos ver que no primeiro teste de igualdade, `Elixir` não coincide com a expressão regular. Isso acontece porque ele está utilizando letra maiúscula. Pelo fato de Elixir suportar expresões regulares compatíveis com Perl (PCRE), podemos acrescentar `i` ao final do nosso sigil para ligar maiúsculas e minúsculas.
 
 ```elixir
 iex> re = ~r/elixir/i
@@ -85,7 +85,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Além disso, Elixir fornece a API [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html), que é construído em cima da biblioteca de expressão regular do Erlang. Vamos implementar `Regex.split/2` usando um sigil regex.
+Além disso, Elixir fornece a API [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html), que é construída em cima da biblioteca de expressão regular do Erlang. Vamos implementar `Regex.split/2` usando um sigil regex.
 
 ```elixir
 iex> string = "100_000_000"
@@ -121,7 +121,7 @@ iex> ~S/welcome to elixir #{String.downcase "school"}/
 
 ### Lista de Palavras
 
-A lista de palavras do tipo sigil pode vir em um tempo muito útil. Isto pode lhe economizar tempo, teclas e possivelmente, reduzir a complexidade dentro da base de código. Veja este exemplo simples:
+A lista de palavras do tipo sigil pode ser muito útil. Pode lhe economizar tempo, digitação e possivelmente, reduzir a complexidade dentro da base de código. Veja este exemplo simples:
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -131,7 +131,7 @@ iex> ~W/i love elixir school/
 ["i", "love", "elixir", "school"]
 ```
 
-Podemos ver que o que é digitado entre os delimitadores são separados por espaços em branco em uma lista. No entanto, não existe qualquer diferença entre estes dois exemplos. Novamente, a diferença vem com as seguintes sequências de interpolação e escape. Veja o seguinte exemplo:
+Podemos ver que o que é digitado entre os delimitadores é separado por espaços em branco em uma lista. No entanto, não existe qualquer diferença entre estes dois exemplos. Novamente, a diferença vem com as seguintes sequências de interpolação e escape. Veja o seguinte exemplo:
 
 ```elixir
 iex> ~w/i love #{'e'}lixir school/
@@ -143,7 +143,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ## Criando Sigils
 
-Um dos objetivos do Elixir é ser uma linguagem de programação extenssível. Como não é surpresa, é possivel facilmene a criação do seu próprio sigil customizado. Neste exemplo, vamos criar um sigil para converter uma cadeia para letras maiúsculas. Como já existe uma função para isso no núcleo do Elixir (`String.upcase/1`), vamos embrulhar o nosso sigil em torno desta função.
+Um dos objetivos do Elixir é ser uma linguagem de programação extensível. Não é surpresa então que você possa facilmene criar o seu próprio sigil customizado. Neste exemplo, vamos criar um sigil para converter uma cadeia para letras maiúsculas. Como já existe uma função para isso no núcleo do Elixir (`String.upcase/1`), vamos embrulhar o nosso sigil em torno desta função.
 
 ```elixir
 
@@ -158,4 +158,4 @@ iex> ~u/elixir school/
 ELIXIR SCHOOL
 ```
 
-Primeiro definimos um módulo chamado `MySigils` e dentro deste módulo, nós criamos uma função chamada `sigil_u`. Como não existe nenhum sigil `~u` no espaço de sigil existente, vamos usá-lo. O `_u` indica que desejamos usar `u` como caractere depois do til. A definição da função deve receber dois argumentos, uma entrada e uma lista.
+Primeiro definimos um módulo chamado `MySigils` e dentro deste módulo, criamos uma função chamada `sigil_u`. Como não existe nenhum sigil `~u` no espaço de sigil existente, vamos usá-lo. O `_u` indica que desejamos usar `u` como caractere depois do til. A definição da função deve receber dois argumentos, uma entrada e uma lista.

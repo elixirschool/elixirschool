@@ -41,7 +41,7 @@ iex> sum.(2, 3)
 5
 ```
 
-Como você provavlemente já adivinhou, na versão abreviada nossos parâmetros estão disponíveis como `&1`, `&2`, `&3`, e assim por diante.
+Como você provavelmente já adivinhou, na versão abreviada nossos parâmetros estão disponíveis como `&1`, `&2`, `&3`, e assim por diante.
 
 ## Pattern matching
 
@@ -103,7 +103,7 @@ iex> Length.of [1, 2, 3]
 
 ### Funções privadas
 
-Quando não quisermos que outros modulos acessem uma função, nós podemos usar funções privadas, que só podem ser chamadas dentro de seus modulos. Nós podemos definir elas em Elixir com `defp`:
+Quando não quisermos que outros módulos acessem uma função, nós podemos usar funções privadas, que só podem ser chamadas dentro de seus módulos. Nós podemos definir elas em Elixir com `defp`:
 
 ```elixir
 defmodule Greeter do
@@ -121,7 +121,7 @@ iex> Greeter.phrase
 
 ### Guards
 
-Nós cobrimos brevemente guards nas lições de [Estruturas Condicionais](/control-structures.md), agora nós iremos ver como podemos aplicá-los em funções nomeadas. Uma vez que Elixir tem correspondência em uma função, qualquer guard existente irá ser testado.
+Nós cobrimos brevemente guards nas lições de [Estruturas Condicionais](../control-structures.md), agora nós iremos ver como podemos aplicá-los em funções nomeadas. Uma vez que Elixir tem correspondência em uma função, qualquer guard existente irá ser testado.
 
 No exempo a seguir nós temos duas funções com a mesma assinatura, contamos com guards para determinar qual usar com base no tipo do argumento:
 

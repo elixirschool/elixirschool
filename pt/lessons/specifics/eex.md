@@ -8,7 +8,7 @@ lang: pt
 
 Do mesmo jeito que Ruby possui ERB e Java JSPs, Elixir tem EEx ou *Embedded Elixir (Elixir embutido)*. Com EEx podemos embutir e avaliar código Elixir dentro das *strings*.
 
-## Table of Contents
+## Sumário
 
 - [API](#API)
 	- [Avaliação](#avaliacao)

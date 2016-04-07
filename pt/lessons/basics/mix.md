@@ -6,7 +6,7 @@ order: 9
 lang: pt
 ---
 
-Antes de podermos mergulhar nas águas mais profundas de Elixir primeiro precisamos aprender a utilizar o mix. Se você estiver familiarizado com Ruby, mix é o Bundler, RubyGems e Rake combinados. É uma parte crucial de qualquer projeto Elixir e neste lição vamos explorar apenas algumas des suas grandes funcionalidades. Para ver tudo o que o mix tem para oferecer, execute `mix help`.
+Antes de podermos mergulhar nas águas mais profundas de Elixir primeiro precisamos aprender a utilizar o mix. Se você estiver familiarizado com Ruby, mix é o Bundler, RubyGems e o Rake juntos. É uma parte crucial de qualquer projeto Elixir e nesta lição vamos explorar apenas algumas das suas grandes funcionalidades. Para ver tudo que o mix tem para oferecer, execute `mix help`.
 
 Até agora trabalhamos exclusivamente dentro do `iex` que tem limitações. A fim de construir algo substancial precisamos dividir nosso código acima em outros arquivos para gerenciar de forma eficaz, mix nos permite fazer isso com projetos.
 
@@ -86,7 +86,7 @@ Não há muito dentro do nosso projeto, então a saída não será muito emocion
 Compiled lib/example.ex
 Generated example app
 ```
-Quando compilanos um projeto, mix cria um diretório `_build` para os nossos artefatos. SE olharmos dentro de `_build` nós iramos ver a aplicação compilada: `example.app`.
+Quando compilanos um projeto, mix cria um diretório `_build` para os nossos artefatos. Se olharmos dentro de `_build` veremos a aplicação compilada: `example.app`.
 
 ## Interativo
 
@@ -102,7 +102,7 @@ Iniciando `iex` desta forma , carrega sua aplicação e dependências no atual a
 
 Nosso projeto não tem nenhuma dependência, mas em breve irá ter, por isso iremos seguir em frente e cobrir a definição e busca de dependências.
 
-Para adicionar um anova dependência, primeiro precisamos adicioná-la ao nosso `mix.ex` na seçnao `deps`. Nossa lista de dependência é composta por tuples coms 2 valores requeridos e um opcional: O nome do pacote como um ´tomo, a versão como string e opções opcionais.
+Para adicionar uma nova dependência, primeiro precisamos adicioná-la ao nosso `mix.ex` na seção `deps`. Nossa lista de dependência é composta por tuplas com 2 valores obrigatórios e um opcional: O nome do pacote como um *atom*, a versão como *string* e opções opcionais.
 
 Para este exemplo vamos ver um projeto com dependências, como  [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 
@@ -127,13 +127,13 @@ $ mix deps.get
 
 ## Ambientes
 
-Mix, bem como BUndler, suporta ambientes diferentes. Naturalmente mix trabalha com três ambientes:
+Mix, bem como Bundler, suporta ambientes diferentes. Naturalmente mix trabalha com três ambientes:
 
 + `:dev` — O ambiente padrão.
 + `:test` — Usado por `mix test`. Coberto futuramente na nossa próxima lição.
 + `:prod` — Usado quando nós enviamos a nossa aplicação para produção.
 
-O ambiente autla pode ser acessado usando `Mix.env`. Como esperado, o ambiente pode ser alterado através da variável `MIX_ENV`:
+O ambiente atual pode ser acessado usando `Mix.env`. Como esperado, o ambiente pode ser alterado através da variável de ambiente `MIX_ENV`:
 
 ```bash
 $ MIX_ENV=prod mix compile

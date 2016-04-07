@@ -19,9 +19,9 @@ Testes são uma parte importante do desenvolvimento de software. Nesta lição n
 
 ## ExUnit
 
-O framework de testes integrado do Elixir é o ExUnit, isto inclui tudo o que precisamos para testar exaustivamente o nosso código. Antes de avançar, é importante notar que testes são implemnetados como scripts Elixir, por isso precisamos usar a extensão de arquivo `.exs`. Antes de podermos executar nossos testes nós precisamos iniciar o ExUnit com `ExUnit.start()`, este é mais comumente feito em `test/test_helper.exs`.
+O framework de testes integrado do Elixir é o ExUnit, isto inclui tudo o que precisamos para testar exaustivamente o nosso código. Antes de avançar, é importante notar que testes são implementados como scripts Elixir, por isso precisamos usar a extensão de arquivo `.exs`. Antes de podermos executar nossos testes nós precisamos iniciar o ExUnit com `ExUnit.start()`, este é mais comumente feito em `test/test_helper.exs`.
 
-Quando geramos nosso projeto de exemplo na lição anterior, o mix foi útil o suficiente para criar um teste simples para nós, podemos contrá-lo em `test/example_test.exs`:
+Quando geramos nosso projeto de exemplo na lição anterior, o mix foi útil o suficiente para criar um teste simples para nós, podemos encontrá-lo em `test/example_test.exs`:
 
 ```elixir
 defmodule ExampleTest do

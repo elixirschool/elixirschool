@@ -6,7 +6,7 @@ order: 4
 lang: en
 ---
 
-One the selling points of Elixir is its support for concurrency. Thanks to the ErlangVM, concurrency in Elixir is easier than expected.  The concurrency model replies on Actors, a contained process that communicates with other processes through message passing.
+One the selling points of Elixir is its support for concurrency. Thanks to the ErlangVM, concurrency in Elixir is easier than expected.  The concurrency model relies on Actors, a contained process that communicates with other processes through message passing.
 
 In this lesson we'll look at the concurrency modules that ship with Elixir.  In the following chapter we cover the OTP behaviors that implement them.
 
@@ -21,9 +21,9 @@ In this lesson we'll look at the concurrency modules that ship with Elixir.  In 
 
 ## Processes
 
-Processes in the ErlangVM are lightweight and run across all CPUs.  While they may seem like native threads they're simpler and it's not uncommon to have thousands of concurrent process in an Elixir application.
+Processes in the ErlangVM are lightweight and run across all CPUs.  While they may seem like native threads, they're simpler and it's not uncommon to have thousands of concurrent processes in an Elixir application.
 
-The easiest way to create a new process is `spawn` which takes either an anonymous or named function.  When we create a new process it returns a _Process Identifier_, or PID, to uniquely identify it within our application.
+The easiest way to create a new process is `spawn`, which takes either an anonymous or named function.  When we create a new process it returns a _Process Identifier_, or PID, to uniquely identify it within our application.
 
 To start we'll create a module and define a function we'd like to run:
 
@@ -49,7 +49,7 @@ iex> spawn(Example, :add, [2, 3])
 
 ### Message Passing
 
-To communicate, processes rely on message passing. There are two main components to this: `send/2` and `receive`.  The `send/2` function allows us to send messages to PIDs.  To listen we use `receive` to match messages, if no match is found the execution continues uninterrupted.
+To communicate, processes rely on message passing. There are two main components to this: `send/2` and `receive`.  The `send/2` function allows us to send messages to PIDs.  To listen we use `receive` to match messages.  If no match is found the execution continues uninterrupted.
 
 ```elixir
 defmodule Example do
@@ -130,7 +130,7 @@ Exit reason: kaboom
 
 ## Agents
 
-Agents are an abstraction around background processes maintaining state.  We can access them from other processes within our application and node.  The state of our Agent set to our function's return value:
+Agents are an abstraction around background processes maintaining state.  We can access them from other processes within our application and node.  The state of our Agent is set to our function's return value:
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
@@ -143,7 +143,7 @@ iex> Agent.get(agent, &(&1))
 [1, 2, 3, 4, 5]
 ```
 
-When we name an Agent we can refer to it by that instead of it's PID:
+When we name an Agent we can refer to it by that instead of its PID:
 
 ```elixir
 iex> Agent.start_link(fn -> [1, 2, 3] end, name: Numbers)

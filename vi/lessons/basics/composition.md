@@ -71,7 +71,7 @@ It is important to note there are reserved attributes in Elixir.  The three most
 
 + `moduledoc` — Documents the current module.
 + `doc` — Documentation for functions and macros.
-+ `behaviour` — Use an OTP or use-defined behaviour.
++ `behaviour` — Use an OTP or user-defined behaviour.
 
 ## Structs
 
@@ -104,7 +104,7 @@ We can update our struct just like we would a map:
 iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
 %Example.User{name: "Steve", roles: [:admin, :owner]}
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", password: nil, roles: [:admin, :owner]}
+%Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
 Most importantly, you can match structs against maps:
