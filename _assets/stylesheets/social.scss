@@ -44,7 +44,7 @@ $icon-list: (
 // Display icons next to each other
 .social__item {
     display: inline-block;
-    margin-right: 0.1em;
+    margin-right: 0.4em;
 }
 
 // Basic icon style
@@ -69,13 +69,13 @@ $icon-list: (
 
 // Icon background
 .social__icon {
-  font-size: 1.4em;
+  font-size: 1.2em;
   color: white;
   text-decoration: none;
   // Remove border radius to make icons square
   border-radius:100%;
-  width: 1.4em;
-  height: 1.4em;
+  width: 1.6em;
+  height: 1.6em;
   text-align: center;
 
   // Vertical Centering
@@ -91,6 +91,6 @@ $icon-list: (
 
 // Add padding to icons container
 .social__container {
-  padding: 1em;
-  font-size: 1.5em;
+  padding: 0;
+  font-size: 1.2em;
 }
