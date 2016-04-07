@@ -14,25 +14,16 @@ description:
   cn: Lessons about the Elixir programming language
   es: Lecciones acerca del lenguaje de programación Elixir
   pt: Lições sobre a linguagem de programação Elixir
-<<<<<<< HEAD
-  vi: Lessons about the Elixir programming language
-  ru: Lessons about the Elixir programming language
-  my: Pelajaran mengenai bahasa aturcara Elixir
-baseurl: /
-url: https://elixirschool.com
-permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'my']
-=======
   vi: Giáo trình cho ngôn ngữ lập trình Elixir
   ru: Уроки программирования на языке Elixir
   sk: Lekcie o programovacom jazyku Elixir
   fr: Leçons sur le langage de programmation Elixir
   gr: Μαθήματα προγραμματισμού της γλώσσας Elixir
   it: Lezioni sul linguaggio di programmazione Elixir
+  my: Pelajaran mengenai bahasa aturcara Elixir
 url: https://elixirschool.com
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it']
->>>>>>> upstream/master
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it','my']
 default_lang: en
 exclude_from_localization: []
 sections:
@@ -45,14 +36,11 @@ sections:
       pt: Básico
       vi: Cơ bản
       ru: Основы
-<<<<<<< HEAD
       my: Asas
-=======
       sk: Základy
       fr: Bases
       gr: Βασικά
       it: Base
->>>>>>> upstream/master
   - tag: advanced
     label:
       en: Advanced
@@ -62,14 +50,11 @@ sections:
       pt: Avançado
       vi: Nâng cao
       ru: Продвинутый
-<<<<<<< HEAD
       my: Lanjutan
-=======
       sk: Pokročilé
       fr: Avancé
       gr: Προχωρημένα
       it: Avanzato
->>>>>>> upstream/master
   - tag: specifics
     label:
       en: Specifics
@@ -79,14 +64,11 @@ sections:
       pt: Específico
       vi: Cụ thể
       ru: Специфика
-<<<<<<< HEAD
       my: Khusus
-=======
       sk: Špecifiká
       fr: Spécificités
       gr: Ιδιαιτερότητες
       it: Specifiche
->>>>>>> upstream/master
 
 gems:
   - kramdown
