@@ -1,0 +1,2 @@
+stage:
+  run: bundle exec jekyll s
