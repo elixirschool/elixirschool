@@ -8,9 +8,19 @@ This file is targeted at the translators and serves as a basic tutorial for tran
 
 Class names and proper nouns do not get translated.
 
-### Glossary (russian)
 
-#### Elixir-related terms
+### Table of Contents
+
+- [Glossary - Russian](#glossary-russian)
+	- [Elixir-related terms](#russian-elixir-related-terms)
+	- [CS terms](#russian-cs-terms)
+- [Glossary - Portuguese](#glossary-portuguese)
+  - [Elixir-related terms](#portuguese-elixir-related-terms)
+  - [CS terms](#portuguese-cs-terms)
+
+### <a name="glossary-russian"></a> Glossary - Russian
+
+#### <a name="russian-elixir-related-terms"></a> Elixir-related terms
 
 - actors - модель акторов
 - atom - атом
@@ -24,7 +34,7 @@ Class names and proper nouns do not get translated.
 - sigil - строковая метка
 - tuple - кортеж
 
-#### CS terms
+#### <a name="russian-cs-terms"></a> CS terms
 
 - anonymous function - анонимная функция
 - boolean - логический тип
@@ -48,7 +58,51 @@ Class names and proper nouns do not get translated.
 - rebind variable - переприсвоение переменной
 - signature - сигнатура (функции)
 - standard library - стандартная библиотека
-- substraction - вычитание
+- subtraction - вычитание
 - supervisor - супервизор
 - tail - хвост
 - worker - рабочий процесс
+
+
+### <a name="glossary-portuguese"></a> Glossary - Portuguese
+
+#### <a name="portuguese-elixir-related-terms"></a> Elixir-related terms
+
+- actors - atores
+- atom - átomo
+- function clauses - cláusulas de função
+- guard - guarda
+- guard operator - operador de guarda
+- keyword list - lista de palavras
+- match operator - operador para procura de padrões
+- pin operator - operator para apontar para último valor atribuido a variável
+- pipe operator - operador pipe
+- sigils - mecanismos para transformação de representações textuais
+- tuple - tupla
+
+#### <a name="portuguese-cs-terms"></a> CS terms
+
+- anonymous function - função anônima
+- boolean - variável binária para valores verdadeiros ou falsos
+- collection - coleção
+- concatenation - concatenação
+- exception - exceção
+- float - flutuador
+- function body - corpo da função
+- head - cabeça (cabeçalho)
+- integer - inteiro
+- interpolation - interpolação
+- list - lista
+- map - mapa
+- metaprogramming - metaprogramação
+- module - módulo
+- pattern matching - correspondência de padrão
+- private (function) - privada (função)
+- protected (function) - protegida (função)
+- public (function) - pública (função)
+- rebind variable - associar variável novamente
+- subtraction - subtração
+- signature - assinatura (função)
+- standard library - biblioteca padrão
+- tail - cauda
+- worker - operário
