@@ -41,7 +41,7 @@ in the umbrella project root will automatically run
 for each application in the apps/ directory.
 ```
 
-As you can see from the shell command, Mix created a small skeleton project for us with two directorys:
+As you can see from the shell command, Mix created a small skeleton project for us with two directories:
 
   - `apps/` - where our sub (child) projects will reside
   - `config/` - where our umbrella projects configuration will live
