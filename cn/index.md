@@ -8,6 +8,14 @@ lang: cn
 
 Elixir 基础知识教程，受 Twitter 的 [Scala School](http://twitter.github.io/scala_school/) 启发编写。
 
+目前有多种语言版本： [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][jp] and [Português][pt].
+
+[cn]: https://elixirschool.com/cn/
+[es]: https://elixirschool.com/es/
+[jp]: https://elixirschool.com/jp/
+[pt]: https://elixirschool.com/pt/
+[vi]: https://elixirschool.com/vi/
+
 _欢迎你的反馈和参与_
 
 # 关于 Elixir
