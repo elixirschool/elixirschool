@@ -8,15 +8,6 @@ lang: my
 
 Pelajaran mengenai bahasa aturcara Elixir, diinspirasikan oleh [Sekolah Scala Twitter](http://twitter.github.io/scala_school/).
 
-Boleh di dapati dalam bahasa [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][jp], [Português][pt] dan [Melayu][my].
-
-[cn]: https://elixirschool.com/cn/
-[es]: https://elixirschool.com/es/
-[jp]: https://elixirschool.com/jp/
-[pt]: https://elixirschool.com/pt/
-[vi]: https://elixirschool.com/vi/
-[my]: https://elixirschool.com/my/
-
 _Maklumbalas dan penyertaan anda amat dialu-alukan!_
 
 ## Mengenai Elixir
