@@ -150,7 +150,7 @@ iex> 10 / 5
 2.0
 ```
 
-Si tu necesitas una división entera o el resto de una división, Elixir viene con dos funciones útiles para para lograr esto:
+Si tú necesitas una división entera o el resto de una división, Elixir viene con dos funciones útiles para para lograr esto:
 
 ```elixir
 iex> div(10, 5)
@@ -197,7 +197,7 @@ iex> not 42
 
 ### Comparación
 
-Elixir viene con todos los operadores de comparación a los que estamos acostumbrados: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` and `>`.
+Elixir viene con todos los operadores de comparación a los que estamos acostumbrados: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` y `>`.
 
 ```elixir
 iex> 1 > 2
@@ -219,7 +219,7 @@ iex> 2 === 2.0
 false
 ```
 
-Una característica importante de Elixir es que cualquier par de tipos se pueden comparar, esto es útil particularmente en ordenación. No necesitamos memorizar el orden pero es importante ser consiente de este:
+Una característica importante de Elixir es que cualquier par de tipos se pueden comparar, esto es útil particularmente en ordenación. No necesitamos memorizar el orden pero es importante ser consciente de este:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
@@ -236,7 +236,7 @@ false
 
 ### Interpolación de cadenas
 
-Si haz usado Ruby, la interpolación de cadenas en Elixir te parecerá muy familiar:
+Si has usado Ruby, la interpolación de cadenas en Elixir te parecerá muy familiar:
 
 ```elixir
 iex> name = "Sean"
