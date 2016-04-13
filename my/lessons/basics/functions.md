@@ -24,7 +24,7 @@ Seperti yang dibayangkan oleh namanya, fungsi tanpa nama(anonymous function) ada
 
 Mari lihat satu contoh mudah:
 
-```elixirre
+```elixir
 iex> sum = fn (a, b) -> a + b end
 iex> sum.(2, 3)
 5
