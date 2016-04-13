@@ -21,10 +21,11 @@ description:
   gr: Μαθήματα προγραμματισμού της γλώσσας Elixir
   it: Lezioni sul linguaggio di programmazione Elixir
   pl: Lekcje programowania w języku Elixir
+  my: Pelajaran mengenai bahasa aturcara Elixir
 url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my']
 default_lang: en
 exclude_from_localization: []
 sections:
@@ -37,6 +38,7 @@ sections:
       pt: Básico
       vi: Cơ bản
       ru: Основы
+      my: Asas
       sk: Základy
       fr: Bases
       gr: Βασικά
@@ -51,6 +53,7 @@ sections:
       pt: Avançado
       vi: Nâng cao
       ru: Продвинутый
+      my: Lanjutan
       sk: Pokročilé
       fr: Avancé
       gr: Προχωρημένα
@@ -65,6 +68,7 @@ sections:
       pt: Específico
       vi: Cụ thể
       ru: Специфика
+      my: Khusus
       sk: Špecifiká
       fr: Spécificités
       gr: Ιδιαιτερότητες

@@ -21,14 +21,14 @@ Listas, tuplas, listas de palabras clave, mapas, diccionarios y combinadores fun
 
 ## Listas
 
-Las listas son simples colecciones de valores, estas pueden incluir múltiples tipos; las listas puede incluir valores no únicos
+Las listas son simples colecciones de valores. Estas pueden incluir múltiples tipos; las listas pueden incluir valores no únicos:
 
 ```elixir
 iex> [3.41, :pie, "Apple"]
 [3.41, :pie, "Apple"]
 ```
 
-Elixir implementa las listas como listas enlazadas. Esto significa que acceder a la longitud de la lista es una operación `O(n)`. Por esta razón, normalmente es más rápido agregar un elemento al inicio que al final.
+Elixir implementa las listas como listas enlazadas. Esto significa que acceder a la longitud de la lista es una operación `O(n)`. Por esta razón, normalmente es más rápido agregar un elemento al inicio que al final:
 
 ```elixir
 iex> list = [3.41, :pie, "Apple"]
@@ -42,7 +42,7 @@ iex> list ++ ["Cherry"]
 
 ### Concatenación de listas
 
-La concatenación de listas usa el operador `++/2`.
+La concatenación de listas usa el operador `++/2`:
 
 ```elixir
 iex> [1, 2] ++ [3, 4, 1]
@@ -119,7 +119,7 @@ Por estas razones las listas de palabras clave son comúnmente usadas para pasar
 
 ## Mapas
 
-A diferencia de las listas de palabras clave estos permiten llaves de cualquier tipo y no siguen un órden. Tu puedes definir un mapa con la sintaxis `%{}`:
+A diferencia de las listas de palabras clave estos permiten llaves de cualquier tipo y no siguen un orden. Tú puedes definir un mapa con la sintaxis `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -149,7 +149,7 @@ true
 
 ## Diccionarios
 
-En Elixir, ambos, listas de palabras claves y mapas implementan el módulo `Dict`; como tales se conocen colectivamente como diccionarios. Si necesitas construir tu propio almacenamiento clave-valor, implementar el módulo `Dict` es un buen lugar para empezar.
+En Elixir, ambos, listas de palabras claves y mapas implementan el módulo `Dict`; tales se conocen colectivamente como diccionarios. Si necesitas construir tu propio almacenamiento clave-valor, implementar el módulo `Dict` es un buen lugar para empezar.
 
 El [módulo `Dict`](http://elixir-lang.org/docs/stable/elixir/#!Dict.html) provee un número de funciones útiles para interactuar y manipular esos diccionarios:
 

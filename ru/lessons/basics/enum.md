@@ -135,11 +135,11 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 Вторая позволяет передать собственную функцию для сравнения элементов:
 
 ```elixir
-# with our function
+# с нашей функцией
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
 [%{val: 4}, %{val: 1}]
 
-# without
+# без неё
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```

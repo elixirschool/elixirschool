@@ -16,7 +16,7 @@ En esta lección veremos las estructuras de control disponibles en Elixir
 
 ## `if` y `unless`
 
-Es probable que haya visto `if/2` antes, y si ha utilizado Ruby esta familiarizado con `unless/2`. En Elixir ellos funcionan de la misma forma pero estan definidos como macros, no son construcciones propias del lenguaje; puede encontrar su implementación en el [módulo Kernel](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Es probable que hayas visto `if/2` antes, y si has utilizado Ruby, estás familiarizado con `unless/2`. En Elixir ellos funcionan de la misma forma pero están definidos como macros, no son construcciones propias del lenguaje; puedes encontrar su implementación en el [módulo Kernel](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
 
 
 Debería tomarse en cuenta que en Elixir, los únicos valores falsos son `nil` y el booleano `false`.
@@ -72,7 +72,7 @@ iex> case :even do
 "Not Odd"
 ```
 
-Considera `_` como el `else` the coincidirá con "todo lo demás".
+Considera `_` como el `else` que coincidirá con "todo lo demás".
 Ya que `case` se basa en la coincidencia de patrones, las mismas reglas y restricciones se aplican. Si intentas coincidir con variables existentes debes usar el operador pin `^`:
 
 ```elixir
@@ -120,7 +120,7 @@ iex> cond do
 "But this will"
 ```
 
-Como `case`, `cond` alzará un error si no hay una coincidencia. Para manejar esto, podemos definir una condición cuyo valor es `true`:
+Como `case`, `cond` alzará un error si no hay una coincidencia, para manejar esto, podemos definir una condición cuyo valor es `true`:
 
 ```elixir
 iex> cond do
