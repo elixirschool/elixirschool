@@ -1,17 +1,17 @@
 ---
 layout: page
-title: Basics
+title: Podstawy
 category: basics
 order: 1
-lang: en
+lang: pl
 ---
 
-Setup, basic types and operations.
+Przygotowanie środowiska, podstawowe typy danych i operacje
 
-## Table of Contents
+## Spis treści
 
-- [Setup](#setup)
-	- [Install Elixir](#install-elixir)
+- [Przygotowanie środowiska](#przygotowanie-srodowiska)
+	- [Instalacja](#install-elixir)
 	- [Interactive Mode](#interactive-mode)
 - [Basic Types](#basic-types)
 	- [Integers](#integers)
@@ -26,11 +26,11 @@ Setup, basic types and operations.
 	- [String interpolation](#string-interpolation)
 	- [String concatenation](#string-concatenation)
 
-## Setup
+## Przygotowanie środowiska
 
-### Install Elixir
+### Instalacja
 
-Installation instructions for each OS can be found on Elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
+Proces instalacji środowiska, w języku angielskim, dla poszczególnych systemów operacyjnych jest opisany ma stronie Elixir-lang.org w sekcji [Installing Elixir](http://elixir-lang.org/install.html).
 
 ### Interactive Mode
 
