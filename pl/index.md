@@ -8,7 +8,7 @@ lang: pl
 
 Kurs języka Elixir zainspirowany twitterowym kursem [Scala School](http://twitter.github.io/scala_school/).
 
-Dostępny po [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][jp], [Português][pt] and [Bahasa Melayu][my] 
+Dostępny też po [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][jp], [Português][pt] and [Bahasa Melayu][my] 
 
 [cn]: https://elixirschool.com/cn/
 [es]: https://elixirschool.com/es/
