@@ -13,6 +13,7 @@ lang: ru
 - [`if` и `unless`](#if--unless)
 - [`case`](#case)
 - [`cond`](#cond)
+- [`with`](#with)
 
 ## `if` и `unless`
 
@@ -126,4 +127,54 @@ iex> cond do
 ...>   true -> "Catch all"
 ...> end
 "Catch all"
+```
+
+## `with`
+
+Специальная форма `with` может пригодиться в ситуациях, когда сложно использовать оператор потока, либо когда нужен вложенный вызов `case`. `with` состоит из ключевого слова, генераторов и выражения в конце.
+
+Мы ещё обсудим генераторы в уроке о списковых включениях (list comprehensions), но сейчас нам достаточно знать лишь то, что они используют сопоставление с образцом для сравнения правой части `<-` с левой.
+
+Начнём с простого примера с `with`:
+
+```elixir
+iex> user = %{first: "Sean", last: "Callan"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+"Callan, Sean"
+```
+
+В случае, если для выражения не найдется совпадение, вернётся несовпавшее значение:
+
+```elixir
+iex> user = %{first: "doomspork"}
+%{first: "doomspork"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+:error
+```
+
+Давайте взглянем на пример побольше без использования `with`, а затем узнаем, как мы могли бы его улучшить:
+
+```elixir
+case Repo.insert(changeset) do
+  {:ok, user} ->
+    case Guardian.encode_and_sign(resource, :token, claims) do
+      {:ok, jwt, full_claims} ->
+        important_stuff(jwt, full_claims)
+      error -> error
+    end
+  error -> error
+end
+```
+
+А теперь благодаря `with` мы в итоге получим короткий и простой для понимания код:
+
+```elixir
+with
+  {:ok, user} <- Repo.insert(changeset),
+  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+  do: important_stuff(jwt, full_claims)
 ```
