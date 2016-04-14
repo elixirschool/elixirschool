@@ -11,8 +11,8 @@ Przygotowanie środowiska, podstawowe typy danych i operacje
 ## Spis treści
 
 - [Przygotowanie środowiska](#przygotowanie-srodowiska)
-	- [Instalacja](#install-elixir)
-	- [Interactive Mode](#interactive-mode)
+	- [Instalacja](#instalacja)
+	- [Tryb interaktywny](#tryb-interaktywny)
 - [Basic Types](#basic-types)
 	- [Integers](#integers)
 	- [Floats](#floats)
@@ -30,9 +30,9 @@ Przygotowanie środowiska, podstawowe typy danych i operacje
 
 ### Instalacja
 
-Proces instalacji środowiska, w języku angielskim, dla poszczególnych systemów operacyjnych jest opisany ma stronie Elixir-lang.org w sekcji [Installing Elixir](http://elixir-lang.org/install.html).
+Proces instalacji środowiska dla poszczególnych systemów operacyjnych jest opisany, w języku angielskim, na stronie Elixir-lang.org w sekcji [Installing Elixir](http://elixir-lang.org/install.html).
 
-### Interactive Mode
+### Tryb interaktywny
 
 Elixir comes with `iex`, an interactive shell, which allows us to evaluate Elixir expressions as we go.
 
