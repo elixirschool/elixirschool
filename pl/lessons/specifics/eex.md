@@ -6,7 +6,7 @@ order: 3
 lang: pl
 ---
 
-Tak jak w Ruby ma ERB, a Java JSP tak i Elixir ma EEx - Embedded Elixir. Dzięki EEx możemy osadać kod Elixira w ciągach znaków.  
+Tak jak w Ruby mamy ERB, a Javie istnieje JSP tak i Elixir ma EEx - Embedded Elixir. Dzięki EEx możemy osadać kod Elixira w ciągach znaków.  
 
 ## Spis Treści
 
@@ -23,7 +23,7 @@ API EEx pozwala na pracę zarówno z ciągami znaków jak i plikami. Jest ono po
 
 ### Ewaluacja
 
-Używając funkcji `eval_string` i `eval_file` możemy ewaluować ciągi znaków jak i pliki. Jest to najprostsze podejście, ale też najwolniejsze ponieważ kod jest interpretowany lecz nie kompilowany.
+Używając funkcji `eval_string` i `eval_file` możemy ewaluować ciągi znaków jak i pliki. Jest to najprostsze podejście, ale też najwolniejsze ponieważ kod jest tylko interpretowany, a nie kompilowany.
 
 ```elixir
 iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
@@ -32,9 +32,9 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 
 ### Definiowanie funkcji
 
-Najszybszą, i preferowaną, metodą użycia EEx jest osadzenie szablonu w module dzięki czemu można go skompilować. By to zrobić potrzebujemy w czasie kompilacji pliku z szablonem oraz makr `function_from_string` i `function_from_file`.
+Najszybszą, i preferowaną, metodą użycia EEx jest osadzenie szablonu w module dzięki czemu można go skompilować. By to zrobić potrzebujemy w czasie kompilacji modułu pliku z szablonem oraz makr `function_from_string` i `function_from_file`.
 
-Przenieśmy nasze powitanie do osobnego pliku, szablonu, i zdefiniujmy dla niego funkcję: 
+Przenieśmy nasze powitanie do osobnego pliku, szablonu, i zdefiniujmy dla niego funkcję w module: 
 
 ```elixir
 # greeting.eex
@@ -51,7 +51,7 @@ iex> Example.greeting("Sean")
 
 ### Kompilacja
 
-W końcu, EEx pozwala nam na bezpośrednie stworzenie AST Elixira z ciągu znaków lub pliku za pomocą funkcji, odpowiednio `compile_string` i `compile_file`.  Te funkcje są przede wszystkim używane przez wyżej wymienione APIs, ale są też dostępne jeżeli chcesz stworzyć własną obsługę wbudowanego Elixira.
+W końcu, EEx pozwala nam na bezpośrednie stworzenie AST Elixira z ciągu znaków lub z pliku za pomocą funkcji, odpowiednio `compile_string` i `compile_file`.  Funkcje  te są przede wszystkim używane przez wyżej opisane API, ale są też dostępne jeżeli chcesz stworzyć własną obsługę wbudowanego Elixira.
 
 ## Znaczniki
 
