@@ -48,6 +48,7 @@ Class names and proper nouns do not get translated.
 - integer - целое число
 - interpolation - интерполяция
 - list - список
+- list comprehension - списковое включение
 - map - ассоциативный массив
 - metaprogramming - метапрограммирование
 - module - модуль
