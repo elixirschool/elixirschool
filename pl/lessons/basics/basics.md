@@ -14,17 +14,17 @@ Przygotowanie środowiska, podstawowe typy danych i operacje
 	- [Instalacja](#instalacja)
 	- [Tryb interaktywny](#tryb-interaktywny)
 - [Podstawowe typy danych](#podstawowe-typy-danych)
-	- [Liczby całkowite](#liczby-calkowite)
+	- [Liczby całkowite](#liczby-całkowite)
 	- [Liczby zmiennoprzecinkowe](#liczby-zmiennoprzecinkowe)
-	- [Wartości logiczne](#wartosci-logiczne)
+	- [Wartości logiczne](#wartości-logiczne)
 	- [Atomy](#atomy)
-	- [Ciągi znaków](#Ciagi-znakow)
+	- [Ciągi znaków](#ciągi-znakþw)
 - [Podstawowe operacje](#podstawowe-operacje)
 	- [Arytmetyczne](#arytmetyczne)
 	- [Logiczne](#logiczne)
 	- [Porównania](#porownania)
-	- [Interpolacja ciągów znaków](#interpolacja-ciagow-znakow)
-	- [Łączenie ciągów znaków](#laczenie-ciagow-znakow)
+	- [Interpolacja ciągów znaków](#interpolacja-ciągów-znaków)
+	- [Łączenie ciągów znaków](#laczenie-ciągów-znaków)
 
 ## Przygotowanie środowiska
 
