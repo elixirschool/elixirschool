@@ -13,18 +13,18 @@ Przygotowanie środowiska, podstawowe typy danych i operacje
 - [Przygotowanie środowiska](#przygotowanie-srodowiska)
 	- [Instalacja](#instalacja)
 	- [Tryb interaktywny](#tryb-interaktywny)
-- [Basic Types](#basic-types)
-	- [Integers](#integers)
-	- [Floats](#floats)
-	- [Booleans](#booleans)
-	- [Atom](#atoms)
-	- [String](#strings)
-- [Basic Operations](#basic-operations)
-	- [Arithmetic](#arithmetic)
-	- [Boolean](#boolean)
-	- [Comparison](#comparison)
-	- [String interpolation](#string-interpolation)
-	- [String concatenation](#string-concatenation)
+- [Podstawowe typy danych](#podstawowe-typy-danych)
+	- [Liczby całkowite](#liczby-calkowite)
+	- [Liczby zmiennoprzecinkowe](#liczby-zmiennoprzecinkowe)
+	- [Wartości logiczne](#wartosci-logiczne)
+	- [Atomy](#atomy)
+	- [Ciągi znaków](#Ciagi-znakow)
+- [Podstawowe operacje](#podstawowe-operacje)
+	- [Arytmetyczne](#arytmetyczne)
+	- [Logiczne](#logiczne)
+	- [Porównania](#porownania)
+	- [Interpolacja ciągów znaków](#interpolacja-ciagow-znakow)
+	- [Łączenie ciągów znaków](#laczenie-ciagow-znakow)
 
 ## Przygotowanie środowiska
 
@@ -34,18 +34,20 @@ Proces instalacji środowiska dla poszczególnych systemów operacyjnych jest op
 
 ### Tryb interaktywny
 
-Elixir comes with `iex`, an interactive shell, which allows us to evaluate Elixir expressions as we go.
+W Elixirze dostępny jest interaktywna powłoka `iex`, która pozwala nam na uruchamianie kodu w konsoli.   
 
-To get started, let's run `iex`:
+By ją uruchomić wpisz w wierszu poleceń `iex`:
 
 	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
-## Basic Types
+## Podstawowe typy danych
 
-### Integers
+### Liczby całkowite
+
+ang. _Integer_
 
 ```elixir
 iex> 255
@@ -54,7 +56,7 @@ iex> 0xFF
 255
 ```
 
-Support for binary, octal, and hexadecimal numbers comes built in:
+Elixir pozwala też na używanie liczb w notacji binarnej, ósemkowej i szesnastkowej:  
 
 ```elixir
 iex> 0b0110
@@ -65,9 +67,9 @@ iex> 0x1F
 31
 ```
 
-### Floats
+### Liczby zmiennoprzecinkowe
 
-In Elixir, float numbers require a decimal after at least one digit; they have 64 bit double precision and support `e` for exponent numbers:
+W Elixirze liczby zmiennoprzecinkowe (ang. _float_) oznaczamy pojedynczą kropką; mają one 64 bitową prezycję oraz możemy użyć notacji z `e` do wyrażenia potęg:
 
 ```elixir
 iex> 3.41
@@ -79,9 +81,9 @@ iex> 1.0e-10
 ```
 
 
-### Booleans
+### Wartości logiczne
 
-Elixir supports `true` and `false` as booleans; everything is truthy except for `false` and `nil`:
+Wartości logiczne (ang. _Boolean_) są reprezentowane przez `true` dla prady i `false` dla fałszu; każda wartość, innego typu, będzie interpretowana jako prawda poza `false` i `nil`:  
 
 ```elixir
 iex> true
@@ -90,9 +92,9 @@ iex> false
 false
 ```
 
-### Atoms
+### Atomy
 
-An atom is a constant whose name is their value. If you're familiar with Ruby these are synonymous with Symbols:
+Atomy są to stałe posiadające nazwę. Jeżeli masz doświadczenie z językiem Ruby to atomy są tym samym co Symbole:
 
 ```elixir
 iex> :foo
@@ -101,7 +103,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTE: Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
+UWAGA: Wartości `true` i `false` są też atomami odpowiednio`:true` i `:false`.
 
 ```elixir
 iex> true |> is_atom
@@ -112,9 +114,9 @@ iex> :true === true
 true
 ```
 
-### Strings
+### Ciągi znaków
 
-Strings in Elixir are UTF-8 encoded and are wrapped in double quotes:
+Ciągi znaków (ang. _String_) w Elixirze są reprezentowane w kodowaniu UTF-8 i otoczone znakiem cudzysłowu:
 
 ```elixir
 iex> "Hello"
@@ -123,7 +125,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-Strings support line breaks and escape sequences:
+W ciągu znaków można używać zarówno znaków ucieczki jak i tworzyć ciągi w wielu liniach: 
 
 ```elixir
 iex> "foo
@@ -133,11 +135,11 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-## Basic Operations
+## Podstawowe operacje
 
-### Arithmetic
+### Arytmetyczne
 
-Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.  It's important to notice that `/` will always return a float:
+Elixir oczywiście wspiera podstawowe operatory `+`, `-`, `*` i`/`.  Ważne jest, że operacja `/` zawsze zwróci liczbę zmiennoprzecinkową:
 
 ```elixir
 iex> 2 + 2
@@ -150,7 +152,7 @@ iex> 10 / 5
 2.0
 ```
 
-If you need integer division or the division remainder, Elixir comes with two helpful functions to achieve this:
+Jeżeli jednak potrzebujesz dzielenia liczb całkowitych, albo reszty z dzielenia, Elixir udostępnia dwie funkcje do obsługi tych działań:
 
 ```elixir
 iex> div(10, 5)
@@ -159,9 +161,9 @@ iex> rem(10, 3)
 1
 ```
 
-### Boolean
+### Logiczne
 
-Elixir provides the `||`, `&&`, and `!` boolean operators. These support any types:
+Elixir posiada operatory logiczne `||`, `&&` i `!`. Wspierają one wszystkie typy:
 
 ```elixir
 iex> -20 || true
@@ -181,6 +183,7 @@ true
 ```
 
 There are three additional operators whose first argument _must_ be a boolean (`true` and `false`):
+Istnieją też trzy operatory, które _muszą_ być użyte tylko z wartościami logicznymi (`true` i `false`):
 
 ```elixir
 iex> true and 42
@@ -195,9 +198,9 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-### Comparison
+### Porównania
 
-Elixir comes with all the comparisons operators we're used to: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` and `>`.
+Elixir posiada pełen zestaw operatorów porównania: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` i `>`.
 
 ```elixir
 iex> 1 > 2
@@ -210,7 +213,7 @@ iex> 2 <= 3
 true
 ```
 
-For strict comparison of integers and floats use `===`:
+Operator `===` porównuje wartość i typ, na przykład:
 
 ```elixir
 iex> 2 == 2.0
@@ -219,13 +222,13 @@ iex> 2 === 2.0
 false
 ```
 
-An important feature of Elixir is that any two types can be compared, this is particularly useful in sorting.  We don't need to memorize the sort order but it is important to be aware of it:
+Ważną cechą Elixira jest to, że można porównać zmienne dowolngo typu, jest to szczególnie użyteczne przy sortowaniu. Nie musimy pamiętać kolejności przy sortowaniu, ale warto jest by mieć to na uwadze:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
 
-This can lead to some interesting, and valid, comparisons you might not find in other languages:
+Pozwala to na stworzenie nietypowych, ale poprawnych konstrukcji porównań, które nie są dostępne w innych jezykach:
 
 ```elixir
 iex> :hello > 999
@@ -234,9 +237,9 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### String interpolation
+### Interpolacja ciągów znaków
 
-If you've used Ruby, string interpolation in Elixir will look familiar:
+Jeżeli używałeś Rubiego to interpolacja ciągów znaków w Elixirze wygląda tak samo:
 
 ```elixir
 iex> name = "Sean"
@@ -244,9 +247,10 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### String concatenation
+### Łączenie ciągów znaków
 
 String concatenation uses the `<>` operator:
+By połączyć dwa ciągi znaków wystarczy użyć operatora `<>`:
 
 ```elixir
 iex> name = "Sean"
