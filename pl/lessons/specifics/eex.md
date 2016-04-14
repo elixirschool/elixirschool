@@ -51,7 +51,7 @@ iex> Example.greeting("Sean")
 
 ### Kompilacja
 
-W końcu, EEx pozwala nam na bezpośrednie stworzenie AST Elixira z ciągu znaków lub z pliku za pomocą funkcji, odpowiednio `compile_string` i `compile_file`.  Funkcje  te są przede wszystkim używane przez wyżej opisane API, ale są też dostępne jeżeli chcesz stworzyć własną obsługę wbudowanego Elixira.
+W końcu, EEx pozwala nam na bezpośrednie stworzenie AST Elixira z ciągu znaków lub z pliku za pomocą funkcji, odpowiednio `compile_string` i `compile_file`.  Funkcje  te są przede wszystkim używane przez wyżej opisane API, ale są też dostępne jeżeli chcemy stworzyć własną obsługę wbudowanego Elixira.
 
 ## Znaczniki
 
