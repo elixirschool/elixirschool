@@ -6,7 +6,7 @@ order: 3
 lang: pl
 ---
 
-Tak jak w Ruby mamy ERB, a Javie istnieje JSP tak i Elixir ma EEx - Embedded Elixir. Dzięki EEx możemy osadać kod Elixira w ciągach znaków.  
+Tak jak w Ruby mamy ERB, a w Javie istnieje JSP, tak i Elixir ma EEx - Embedded Elixir. Dzięki EEx możemy osadzać kod Elixira w ciągach znaków.  
 
 ## Spis Treści
 
@@ -64,7 +64,7 @@ Domyślnie EEx wspiera cztery znaczniki:
 <%# Komentarz - usuwany ze źródła %>
 ```
 
-Wszystkie wyrażenia, które coś zwracają __muszą__ używać znaku równości (`=`).  Ważną rzeczą jest to, że w przeciwieństwie do inncy języków szablonów EEx nie traktuje wyrażeń w rodzaju `if` w specjalny sposób.  Bez znaku `=` nic nie zostanie wyświetlone:
+Wszystkie wyrażenia, które coś zwracają __muszą__ używać znaku równości (`=`).  Ważną rzeczą jest to, że w przeciwieństwie do innych języków szablonów EEx nie traktuje wyrażeń w rodzaju `if` w specjalny sposób.  Bez znaku `=` nic nie zostanie wyświetlone:
 
 ```elixir
 <%= if true do %>

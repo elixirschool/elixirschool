@@ -34,7 +34,7 @@ Proces instalacji środowiska dla poszczególnych systemów operacyjnych jest op
 
 ### Tryb interaktywny
 
-W Elixirze dostępny jest interaktywna powłoka `iex`, która pozwala nam na uruchamianie kodu w konsoli.   
+W Elixirze dostępna jest interaktywna powłoka `iex`, która pozwala nam na uruchamianie kodu w konsoli.   
 
 By ją uruchomić wpisz w wierszu poleceń `iex`:
 
@@ -83,7 +83,7 @@ iex> 1.0e-10
 
 ### Wartości logiczne
 
-Wartości logiczne (ang. _Boolean_) są reprezentowane przez `true` dla prady i `false` dla fałszu; każda wartość, innego typu, będzie interpretowana jako prawda poza `false` i `nil`:  
+Wartości logiczne (ang. _Boolean_) są reprezentowane przez `true` dla prawdy i `false` dla fałszu; każda wartość, innego typu, będzie interpretowana jako prawda poza `false` i `nil`:  
 
 ```elixir
 iex> true
@@ -182,7 +182,6 @@ iex> !false
 true
 ```
 
-There are three additional operators whose first argument _must_ be a boolean (`true` and `false`):
 Istnieją też trzy operatory, które _muszą_ być użyte tylko z wartościami logicznymi (`true` i `false`):
 
 ```elixir
@@ -249,7 +248,6 @@ iex> "Hello #{name}"
 
 ### Łączenie ciągów znaków
 
-String concatenation uses the `<>` operator:
 By połączyć dwa ciągi znaków wystarczy użyć operatora `<>`:
 
 ```elixir
