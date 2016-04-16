@@ -10,24 +10,6 @@
   font-weight: normal; font-style: normal;
 }
 
-[class^="icon-"], [class*=" icon-"] {
-  font-family: entypo;
-  font-style: normal;
-
-  /* font-size: 14px; */
-
-  display: inline-block;
-  width: 1.1em;
-  margin-right: .1em;
-  text-align: center;
-}
-
-.the-icons li {
-  font-size: 14px;
-  line-height: 24px;
-  height: 24px;
-}
-
 .icon-note:before { content: "\266a"; } /* '\266a' */
 .icon-note-beamed:before { content: "\266b"; } /* '\266b' */
 .icon-music:before { content: "🎵"; } /* '\1f3b5' */
@@ -312,4 +294,3 @@
 .icon-sweden:before { content: "\f601"; } /* '\f601' */
 .icon-db-shape:before { content: "\f600"; } /* '\f600' */
 .icon-logo-db:before { content: "\f603"; } /* '\f603' */
-
