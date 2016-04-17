@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Keserempakan(Concurrency)
+title: Keserempakan
 category: advanced
 order: 4
 lang: my
