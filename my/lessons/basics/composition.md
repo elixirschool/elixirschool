@@ -6,7 +6,11 @@ order: 8
 lang: my
 ---
 
+<<<<<<< HEAD
 Kita tahu dari pengalaman bahawa menyimpan semua fungsi di dalam satu fail dan skop membawa kepada keadaan kelam-kabut.  Di dalam pelajaran ini kita akan melihat bagaimana untuk meletakkan beberapa fungsi ke dalam satu kumpulan dan menetapkan sejenis map khas yang dikenali sebagai struct dalam usaha untuk menguruskan kod kita dengan lebih efisien. 
+=======
+Kita tahu dari pengalaman bahawa menyimpan semua fungsi di dalam satu fail dan skop adalah amat berkecamuk.  Di dalam pelajaran ini kita akan melihat bagaimana untuk meletakkan beberapa fungsi ke dalam satu kumpulan dan menetapkan sejenis map khas yang dikenali sebagai struct dalam usaha untuk menguruskan kod kita dengan lebih efisien. 
+>>>>>>> 7296adf4f1b29bad940c4eccc1cecb50b094fae3
 
 ## Kandungan
 
@@ -21,7 +25,11 @@ Kita tahu dari pengalaman bahawa menyimpan semua fungsi di dalam satu fail dan s
 
 ## Modul
 
+<<<<<<< HEAD
 Penggunaan modul-modul adalah cara yang terbaik untuk menguruskan fungsi-fungsi di dalam satu namespace.  Tambahan kepada pengumpulan fungsi-fungsi, mereka juga membenarkan kita menetapkan fungsi bernama dan fungsi terlindung yang telah kita lihat dalam pelajaran lepas. 
+=======
+Penggunaan modul-modul adalah cara yang terbaik untuk menguruskan fungsi-fungsi ke dalam satu namespace.  Tambahan kepada pengumpulan fungsi-fungsi, mereka juga membenarkan kita menetapkan fungsi-fungsi named dan private yang telah kita cover dalam pelajaran lepas. 
+>>>>>>> 7296adf4f1b29bad940c4eccc1cecb50b094fae3
 
 Mari kita lihat satu contoh asas:
 
@@ -36,7 +44,12 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
+<<<<<<< HEAD
 Elixir membolehkan untuk membina modul dalam bentuk bersarang, mengupayakan anda untuk mengembangkan 'namespace' fungsi anda:
+=======
+It is possible to nest modules in Elixir, allowing you to further namespace your functionality:
+Elixir membolehkan untuk membina modul dalam bentuk bersarang, membenarkan anda untuk mengembangkan penggunaan 'namespace' kefungsian anda:
+>>>>>>> 7296adf4f1b29bad940c4eccc1cecb50b094fae3
 
 ```elixir
 defmodule Example.Greetings do
@@ -67,7 +80,11 @@ defmodule Example do
 end
 ```
 
+<<<<<<< HEAD
 Adalah penting untuk dijelaskan bahawa terdapat beberapa ciri-ciri simpanan dalam Elixir.  Tiga yang paling biasa adalah:
+=======
+Adalah penting untuk dijelaska bahawa terdapat beberapa ciri-ciri simpanan dalam Elixir.  Tiga yang paling biasa adalah:
+>>>>>>> 7296adf4f1b29bad940c4eccc1cecb50b094fae3
 
 + `moduledoc` — menjana dokumentasi modul semasa.
 + `doc` — menjana dokumentasi untuk fungsi dan makro.
@@ -77,7 +94,11 @@ Adalah penting untuk dijelaskan bahawa terdapat beberapa ciri-ciri simpanan dala
 
 Struct adalah sejenis map khas yang mengandungi satu set key dan value.  Ia mesti ditetapkan di dalam satu modul, yang mana ia mendapat namanya(nama struct adalah nama modul yang mana ia terkandung).  Menjadi kebiasaan apabila satu modul hanya mengandungi struct di dalamnya.
 
+<<<<<<< HEAD
 Gunakan `defstruct` untuk menetapkan satu struct, di samping satu list katakunci yang mengandungi katakunci dan nilai lalai:
+=======
+Gunakan `defstruct` untuk menetapkan satu struct, di samping satu keyword list yang mengandungi key dan nilai lalai:
+>>>>>>> 7296adf4f1b29bad940c4eccc1cecb50b094fae3
 
 ```elixir
 defmodule Example.User do
@@ -216,7 +237,11 @@ defmodule Example do
 end
 ```
 
+<<<<<<< HEAD
 Jika kita cuba memanggil satu makro yang masih belum dipasang Elixir akan menimbulkan ralat.
+=======
+Jika kita cuba memanggil satu makro yang masih belum dipasang Elixir akan menerbitkan ralat.
+>>>>>>> 7296adf4f1b29bad940c4eccc1cecb50b094fae3
 
 ### `use`
 

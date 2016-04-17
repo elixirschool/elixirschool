@@ -59,7 +59,7 @@ iex> for n <- list, times <- 1..n do
 ["*", "*", "**", "*", "**", "***", "*", "**", "***", "****"]
 ```
 
-To better illustrate the looping that is occuring, let's use `IO.puts` to display the two generated values:
+To better illustrate the looping that is occurring, let's use `IO.puts` to display the two generated values:
 
 ```elixir
 iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
@@ -75,7 +75,7 @@ iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 4 - 4
 ```
 
-List comprehensions are syntatic sugar and should be used only when appropriate.
+List comprehensions are syntactic sugar and should be used only when appropriate.
 
 ## Filters
 

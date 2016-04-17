@@ -11,7 +11,7 @@ title: Elixir School
 description:
   en: Lessons about the Elixir programming language
   jp: プログラミング言語Elixirのレッスン
-  cn: Lessons about the Elixir programming language
+  cn: Elixir 编程语言教程
   es: Lecciones acerca del lenguaje de programación Elixir
   pt: Lições sobre a linguagem de programação Elixir
   vi: Giáo trình cho ngôn ngữ lập trình Elixir
@@ -21,9 +21,12 @@ description:
   gr: Μαθήματα προγραμματισμού της γλώσσας Elixir
   it: Lezioni sul linguaggio di programmazione Elixir
   my: Pelajaran mengenai bahasa aturcara Elixir
+  pl: Lekcje programowania w języku Elixir
+baseurl: /
 url: https://elixirschool.com
+og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it','my']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my']
 default_lang: en
 exclude_from_localization: []
 sections:
@@ -41,6 +44,7 @@ sections:
       fr: Bases
       gr: Βασικά
       it: Base
+      pl: Podstawy
   - tag: advanced
     label:
       en: Advanced
@@ -55,6 +59,7 @@ sections:
       fr: Avancé
       gr: Προχωρημένα
       it: Avanzato
+      pl: Zaawansowane
   - tag: specifics
     label:
       en: Specifics
@@ -69,6 +74,7 @@ sections:
       fr: Spécificités
       gr: Ιδιαιτερότητες
       it: Specifiche
+      pl: Specyficzne
 
 gems:
   - kramdown

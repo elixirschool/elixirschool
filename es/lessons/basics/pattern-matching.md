@@ -6,7 +6,7 @@ order: 4
 lang: es
 ---
 
-La coincidencia de patrones es una parte poderosa de Elixir, nos permite coincidir valores simples, estructuras de datos, e incluso funciones. En esta lección vamos a comenzar a ver como es usada la coincidencia de patrones.
+La coincidencia de patrones es una parte poderosa de Elixir, nos permite coincidir valores simples, estructuras de datos, e incluso funciones. En esta lección vamos a comenzar a ver cómo es usada la coincidencia de patrones.
 
 ## Tabla de Contenidos
 
@@ -61,7 +61,7 @@ iex> {:ok, value} = {:error}
 
 Como hemos aprendido, el operador de coincidencia maneja la asignación cuando el lado izquierdo de la coincidencia incluye una variable. En algunos casos este comportamiento, re-enlazamiento de variable, no es el deseado. Para esas situaciones, tenemos el operador `^`.
 
-Cuando usamos el operador pin con una variable, hacemos una coincidencia sobre el valor existente en lugar de enlazarlo a uno nuevo. Vamos a ver como funciona esto:
+Cuando usamos el operador pin con una variable, hacemos una coincidencia sobre el valor existente en lugar de enlazarlo a uno nuevo. Vamos a ver cómo funciona esto:
 
 ```elixir
 iex> x = 1
