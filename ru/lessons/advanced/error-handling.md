@@ -83,7 +83,7 @@ The end!
 ```elixir
 {:ok, file} = File.open "example.json"
 try do
-   # Do hazardous work
+   # Делаем что-нибудь опасное
 after
    File.close(file)
 end
