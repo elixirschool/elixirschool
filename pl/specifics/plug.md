@@ -151,7 +151,7 @@ Na chwilę obecną adres `/upload` nie jest specjalnie użyteczny, ale wiemy ju�
 
 Zanim uruchomimy naszą aplikację web musimy skonfigurować serwer, w tym przypadku będzie to Cowboy. Będzie to konfiguracja minimum która pozwoli nam na uruchomienie aplikacji, szczegółami zajmiemy się w kolejnych lekcjach.
 
-Rozpocznijmy od aktualizacji sekcji `application` w pliku `mix.exs` tak by wskazać Elixirowy naszą aplikację i ustawić jej zmienne środowiskowe. Po tych zmianach nasz plik powinien wyglądać mniej więcej tak:
+Rozpocznijmy od aktualizacji sekcji `application` w pliku `mix.exs` tak by wskazać Elixirowi naszą aplikację i ustawić jej zmienne środowiskowe. Po tych zmianach nasz plik powinien wyglądać mniej więcej tak:
 
 ```elixir
 def application do
