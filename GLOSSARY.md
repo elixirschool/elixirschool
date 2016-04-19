@@ -30,7 +30,7 @@ Class names and proper nouns do not get translated.
 - guard - ограничитель
 - guard operator - ограничивающий оператор
 - changeset - набор изменений
-- keyword list - список с ключами
+- keyword list - ключевой список
 - match operator - оператор сопоставления
 - pin operator - фиксирующий оператор
 - pipe operator - оператор конвейера
