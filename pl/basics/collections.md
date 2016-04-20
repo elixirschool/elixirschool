@@ -83,14 +83,14 @@ iex> t
 
 ## Krotki
 
-Tuples are similar to lists but are stored contiguously in memory.  This makes accessing their length fast but modification expensive; the new tuple must be copied entirely to memory.  Tuples are defined with curly braces:
+Krotki są podobne do list, ale zajmują ciągły obszar pamięci.  Powoduje to, że odczyt jest bardzo szybki lecz kodyfikacja kosztowna; zmiana wartości oznacza stworzenie nowej krotki i skopiowanie elementów starej.  Krotki definiujemy za pomocą klamer:
 
 ```elixir
 iex> {3.41, :pie, "Apple"}
 {3.41, :pie, "Apple"}
 ```
 
-It is common for tuples to be used as a mechanism to return additional information from functions; the usefulness of this will be more apparent when we get into pattern matching:
+Typowym zastosowaniem krotek jest zwracanie dodatkowych informacji z funkcji; jest to bardzo przydatne i przyjrzymy się temu bliżej przy omawianiu mechanizmu dopasowań:
 
 ```elixir
 iex> File.read("path/to/existing/file")
