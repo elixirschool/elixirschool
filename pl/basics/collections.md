@@ -50,7 +50,7 @@ iex> [1, 2] ++ [3, 4, 1]
 
 ### Usuwanie elementów
 
-Usuwanie elementów wykonuje operator `--/2`; operacja jest bezpieczna jeżeli chcemy usunąć nie istniejący element:
+Usuwanie elementów wykonuje operator `--/2`; operacja jest bezpieczna, jeżeli chcemy usunąć nieistniejący element:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
@@ -61,7 +61,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 
 ### Głowa i ogon
 
-Pracując z listami będziemy często używać pojęć głowa i ogon.  Głowa jest to pierwszy element listy, a ogon to pozostałe elementy.  Elixir ma dwie pomocne metody, `hd` i `tl`, które pomagają w pracy z tymi elementami:
+Pracując z listami, będziemy często używać pojęć głowa i ogon.  Głowa jest to pierwszy element listy, a ogon to pozostałe elementy.  Elixir ma dwie pomocne metody, `hd` i `tl`, które pomagają w pracy z tymi elementami:
 
 ```elixir
 iex> hd [3.41, :pie, "Apple"]
@@ -70,7 +70,7 @@ iex> tl [3.41, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-Poza wyżej wymienionymi funkcjami, możemy też użyć operatora `|`; spotkamy się z nim w kolejnych lekcjach:
+Poza wyżej wymienionymi funkcjami możemy też użyć operatora `|`; spotkamy się z nim w kolejnych lekcjach:
 
 ```elixir
 iex> [h|t] = [3.41, :pie, "Apple"]
@@ -83,7 +83,7 @@ iex> t
 
 ## Krotki
 
-Krotki są podobne do list, ale zajmują ciągły obszar pamięci.  Powoduje to, że odczyt jest bardzo szybki lecz kodyfikacja kosztowna; zmiana wartości oznacza stworzenie nowej krotki i skopiowanie elementów starej.  Krotki definiujemy za pomocą klamer:
+Krotki są podobne do list, ale zajmują ciągły obszar pamięci.  Powoduje to, że odczyt jest bardzo szybki, lecz kodyfikacja kosztowna; zmiana wartości oznacza stworzenie nowej krotki i skopiowanie elementów starej.  Krotki definiujemy za pomocą klamer:
 
 ```elixir
 iex> {3.41, :pie, "Apple"}
@@ -101,7 +101,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Listy asocjacyjne
 
-Keywords and maps are the associative collections of Elixir.  In Elixir, a keyword list is a special list of tuples whose first element is an atom; they share performance with lists:
+Listy asocjacyjne i mapy są to dwa rodzaje kolekcji asocjacyjnych w Elixirze.  W Elixirze lista asocjacyjna jest to specjalna lista krotek, których pierwszym elementem jest atom; zachowują się one jak zwykłe listy:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -110,17 +110,17 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 [foo: "bar", hello: "world"]
 ```
 
-The three characteristics of keyword lists highlight their importance:
+Trzy cechy list asocjacyjnych podkreślają ich znaczenie: 
 
-+ Keys are atoms.
-+ Keys are ordered.
-+ Keys are not unique.
++ Klucze są atomami.
++ Klucze zachowują kolejność.
++ Klucze mogą nie być unikalne.
 
-For these reasons keyword lists are most commonly used to pass options to functions.
+Z tej właśnie przyczyny listy asocjacyjne są zazwyczaj używane do przekazywania opcji do funkcji.
 
 ## Mapy
 
-In Elixir maps are the "go-to" key-value store, unlike keyword lists they allow keys of any type and they do not follow ordering.  You can define a map with the `%{}` syntax:
+W Elixirze mapy to dobrze znane kontenery przechowujące pary klucz-wartość. W przeciwieństwie do list asocjacyjnych pozwalają by, klucz był dowolnego typu i nie muszą zachowywać kolejności.  Mapę definiujemy za pomocą `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -131,7 +131,7 @@ iex> map["hello"]
 :world
 ```
 
-As of Elixir 1.2 variables are allowed as map keys:
+Od wersji 1.2 Elixir 1.2 zmienne mogą być użyte jako klucz:
 
 ```elixir
 iex> key = "hello"
@@ -140,14 +140,14 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-If a duplicate is added to a map, it will replace the former value:
+Jeżeli dodamy do mapy duplikat, to zastąpi on już istniejącą wartość:
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-As we can see from the output above, there is a special syntax for maps containing only atom keys:
+Na powyższym przykładzie zastosowaliśmy specjalną konwencję zapisu dostępną tylko wtedy gdy wszystkie klucze są atomami:
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
