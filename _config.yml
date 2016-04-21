@@ -20,8 +20,8 @@ description:
   fr: Leçons sur le langage de programmation Elixir
   gr: Μαθήματα προγραμματισμού της γλώσσας Elixir
   it: Lezioni sul linguaggio di programmazione Elixir
-  pl: Lekcje programowania w języku Elixir
   my: Pelajaran mengenai bahasa aturcara Elixir
+  pl: Lekcje programowania w języku Elixir
 baseurl: /
 url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
