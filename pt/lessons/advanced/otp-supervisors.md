@@ -17,7 +17,7 @@ Supervisores são processos especializados com um propósito: monitorar outros p
   - [Instalação](#instalacao)
   - [Tarefas Supervisionadas](#tarefas-supervisionadas)
 
-##<a name="configuracao"></a> Configuração
+## <a name="configuracao"></a>Configuração
 
 A magia de Supervisores está na função `Supervisor.start_link/2`. Além de iniciar nosso supervisor e filhos, nos permite definir a estratégia que nosso supervisor irá usar para gerenciar os processos filhos.
 
@@ -37,7 +37,7 @@ children = [
 
 Se o nosso processo fosse falhar ou ser encerrado, nosso Supervisor iria automaticamente reiniciar este processo como se nada tivesse acontecido.
 
-###<a name="estrategias"></a> Estratégias
+### <a name="estrategias"></a>Estratégias
 
 Atualmente, existem quatro estratégias diferentes de reinicialização disponíveis aos supervisores:
 
@@ -49,7 +49,7 @@ Atualmente, existem quatro estratégias diferentes de reinicialização disponí
 
 + `:simple_one_for_one` - O melhor para processos filhos dinamicamente adicionados. É requerido que o Supervisor tenha apenas um filho.
 
-###<a name="nesting"></a> Nesting
+### Nesting
 
 Além de processos de trabalho também podemos supervisionar surpevisores para criar uma árvore de supervisores. A única diferença para nós é trocar `supervisor/3` por `worker/3`.
 
@@ -68,7 +68,7 @@ children = [
 
 Tarefas têm o seu próprio Supervisor especializado, o `Task.Supervisor`. Projetado para tarefas criadas dinamicamente. O supervisor usa `:simple_one_for_one` por debaixo dos panos.
 
-###<a name="instalacao"></a> Instalação
+### <a name="instalacao"></a>Instalação
 
 Incluir o `Task.Supervisor` não é diferente de outros supervisores:
 

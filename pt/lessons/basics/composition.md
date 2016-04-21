@@ -53,7 +53,7 @@ iex> Example.Greetings.morning "Sean"
 "Good morning Sean."
 ```
 
-### Atributos de módulo
+### <a name="atributos-de-modulo"></a>Atributos de módulo
 
 Atributos de módulo são mais comumente usados como constantes no Elixir. Vamos dar uma olhada em um exemplo simples:
 
@@ -114,7 +114,7 @@ iex> %{name: "Sean"} = sean
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-## Composição
+## <a name="composicao"></a>Composição
 
 Agora que sabemos como criar módulos e structs, vamos aprender a incluir uma funcionalidade existente neles através da composição. Elixir nos fornece uma variedade de maneiras diferentes para interagir com outros módulos, vamos ver o que temos à nossa disposição.
 
