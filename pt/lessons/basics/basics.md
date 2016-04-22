@@ -19,14 +19,14 @@ Instalação, tipos básicos e operações básicas.
 	- [Booleanos](#booleanos)
 	- [Átomos](#atomos)
 	- [Strings](#strings)
-- [Operações Básicas](#operaciones-basicas)
+- [Operações Básicas](#operacoes-basicas)
 	- [Aritmética](#aritmetica)
 	- [Booleanas](#booleanas)
 	- [Comparação](#comparacao)
-	- [Interpolação de String](#interpolacao-de-string)
-	- [Concatenação de String](#concatenacao-de-string)
+	- [Interpolação de Strings](#interpolacao-de-strings)
+	- [Concatenação de Strings](#concatenacao-de-strings)
 
-## Instalação
+## <a name="instalacao"></a>Instalação
 
 ### Instalar Elixir
 
@@ -43,7 +43,7 @@ Para iniciar, executamos `iex`:
 	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
-## Tipos Básicos
+## <a name="tipos"></a>Tipos Básicos
 
 ### Inteiros
 
@@ -133,9 +133,9 @@ iex(10)> "foo\nbar"
 "foo\nbar"
 ```
 
-## Operações Básicas
+## <a name="operacoes-basicas"></a>Operações Básicas
 
-### Aritmética
+### <a name="aritmetica"></a>Aritmética
 
 Elixir suporta os operadores básicos `+`, `-`, `*`, e `/` como era de esperar. É importante ressaltar que `/` sempre retornará um número ponto flutuante:
 
@@ -195,7 +195,7 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-### Comparação
+### <a name="comparacao"></a>Comparação
 
 Elixir vem com todos os operadores de comparação que estamos acostumados a usar: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` e `>`.
 
@@ -234,7 +234,7 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### Interpolação de Strings
+### <a name="interpolacao-de-strings"></a>Interpolação de Strings
 
 Se você já usou Ruby, a interpolação de strings em Elixir parecerá muito familiar:
 
@@ -244,7 +244,7 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### Concatenação de Strings
+### <a name="concatenacao-de-strings"></a>Concatenação de Strings
 
 A concatenação de strings usa o operador `<>`:
 

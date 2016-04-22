@@ -16,8 +16,8 @@ Mnesia é um sistema de gestão de banco de dados em tempo real de alto tráfego
 - [Nós](#nos)
 - [Iniciando Mnesia](#iniciando-mnesia)
 - [Criando Tabelas](#criando-tabelas)
-- [A Forma Suja](#a-forma-suja)
-- [Operações](#operacoes)
+- [A Maneira Suja](#a-maneira-suja)
+- [Transações](#transacoes)
 
 
 ## <a name="visao-geral"></a> Visão Geral
