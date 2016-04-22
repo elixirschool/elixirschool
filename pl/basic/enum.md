@@ -122,7 +122,7 @@ iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 
 ### sort
 
-Sortowanie kolekcji jest bardzo proste dzięki nie jednej a dwóm funkcjom `sort`.  Pierwsza z nich używa porządkuje elementy zgodnie ze specyfikacją Elixira:
+Sortowanie kolekcji jest bardzo proste dzięki nie jednej a dwóm funkcjom `sort`.  Pierwsza z nich porządkuje elementy zgodnie ze specyfikacją Elixira:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
