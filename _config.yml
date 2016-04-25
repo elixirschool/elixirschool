@@ -46,7 +46,7 @@ sections:
       gr: Βασικά
       it: Base
       pl: Podstawy
-      no: Basis
+      no: Grunnleggende
   - tag: advanced
     label:
       en: Advanced
