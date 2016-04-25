@@ -69,7 +69,7 @@ iex> 0x1F
 
 ### Liczby zmiennoprzecinkowe
 
-W Elixirze liczby zmiennoprzecinkowe (ang. _float_) oznaczamy pojedynczą kropką; mają one 64 bitową prezycję oraz możemy użyć notacji z `e` do wyrażenia potęg:
+W Elixirze liczby zmiennoprzecinkowe (ang. _float_) oznaczamy pojedynczą kropką; mają one 64 bitową precyzję oraz możemy użyć notacji z `e` do wyrażenia potęg:
 
 ```elixir
 iex> 3.41
@@ -94,7 +94,7 @@ false
 
 ### Atomy
 
-Atomy są to stałe posiadające nazwę. Jeżeli masz doświadczenie z językiem Ruby to atomy są tym samym co Symbole:
+Atomy są to stałe, których nazwa jest jednocześnie ich wartością. Jeżeli masz doświadczenie z językiem Ruby to atomy są tym samym co Symbole:
 
 ```elixir
 iex> :foo
@@ -182,7 +182,7 @@ iex> !false
 true
 ```
 
-Istnieją też trzy operatory, które _muszą_ być użyte tylko z wartościami logicznymi (`true` i `false`):
+Istnieją też trzy operatory, których pierwszym argumentem _muszi_ być wartość logiczna (`true` i `false`):
 
 ```elixir
 iex> true and 42
@@ -221,7 +221,7 @@ iex> 2 === 2.0
 false
 ```
 
-Ważną cechą Elixira jest to, że można porównać zmienne dowolngo typu, jest to szczególnie użyteczne przy sortowaniu. Nie musimy pamiętać kolejności przy sortowaniu, ale warto jest by mieć to na uwadze:
+Ważną cechą Elixira jest to, że można porównać zmienne dowolngo typu, co jest szczególnie użyteczne przy sortowaniu. Nie musimy pamiętać kolejności przy sortowaniu, ale warto jest by mieć to na uwadze:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
