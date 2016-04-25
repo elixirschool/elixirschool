@@ -27,11 +27,11 @@ Installasjon, grunnleggende typer og operasjoner.
 	- [String interpolasjon](#string-interpolation)
 	- [String sammensetning](#string-concatenation)
 
-## Setup
+## Installering
 
-### Install Elixir
+### Installere Elixir
 
-Installation instructions for each OS can be found on Elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
+Se guiden hos Elixir-lang.org - [Installere Elixir](http://elixir-lang.org/install.html) på hvordan du installerer Elixir på en rekke forskjellige operativsystemer.
 
 ### Interactive Mode
 
