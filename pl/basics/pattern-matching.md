@@ -6,7 +6,7 @@ order: 4
 lang: pl
 ---
 
-Dopasowanie wzorców to jedno z najmocniejszych elementów Elixira pozwala dopasować wartości, struktury danych, a nawet funkcje. Tę lekcję rozpoczniemy od przyjrzenia się jak używać tego mechanizmu.
+Dopasowanie wzorców, to jeden z najmocniejszych elementów Elixira, który pozwala dopasować wartości, struktury danych, a nawet funkcje. Tę lekcję rozpoczniemy od przyjrzenia się jak używać tego mechanizmu.
 
 ## Spis treści
 
