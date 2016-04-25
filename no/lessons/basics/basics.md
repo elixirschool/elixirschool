@@ -11,21 +11,21 @@ Installasjon, grunnleggende typer og operasjoner.
 
 ## Innholdsfortegnelse
 
-- [Innstallering](#setup)
-	- [Installere Elixir ](#install-elixir)
-	- [Interaktiv Modus](#interactive-mode)
-- [Grunnleggende Typer](#basic-types)
+- [Installering](#installering)
+	- [Installere Elixir ](#installere-elixir)
+	- [Interaktiv Modus](#interaktiv-modus)
+- [Grunnleggende Typer](#grunnleggende-typer)
 	- [Integers](#integers)
 	- [Floats](#floats)
 	- [Booleans](#booleans)
 	- [Atom](#atoms)
 	- [String](#strings)
-- [Grunnleggende Operasjoner](#basic-operations)
-	- [Aritmetikk](#arithmetic)
+- [Grunnleggende Operasjoner](#grunnleggende-operasjoner)
+	- [Aritmetikk](#artmetikk)
 	- [Boolean](#boolean)
-	- [Sammenligning](#comparison)
-	- [String interpolasjon](#string-interpolation)
-	- [String sammensetning](#string-concatenation)
+	- [Sammenligning](#sammenligning)
+	- [String interpolasjon](#string-interpolasjon)
+	- [String sammensetning](#string-sammensetning)
 
 ## Installering
 
@@ -33,18 +33,19 @@ Installasjon, grunnleggende typer og operasjoner.
 
 Se guiden hos Elixir-lang.org - [Installere Elixir](http://elixir-lang.org/install.html) på hvordan du installerer Elixir på en rekke forskjellige operativsystemer.
 
-### Interactive Mode
+### Interaktiv Modus
 
-Elixir comes with `iex`, an interactive shell, which allows us to evaluate Elixir expressions as we go.
+Elixir leveres med `iex`, et interaktivt skall som lar oss evaluere Elixirkoder fortløpende.
 
 To get started, let's run `iex`:
+For å start IEx skriver vi `iex` i terminalvinduet:
 
 	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
-## Basic Types
+## Grunnleggende Typer
 
 ### Integers
 
@@ -55,7 +56,7 @@ iex> 0xFF
 255
 ```
 
-Support for binary, octal, and hexadecimal numbers comes built in:
+Elixir støtter binære, oktale og heksdesimale tall:
 
 ```elixir
 iex> 0b0110
@@ -68,7 +69,7 @@ iex> 0x1F
 
 ### Floats
 
-In Elixir, float numbers require a decimal after at least one digit; they have 64 bit double precision and support `e` for exponent numbers:
+Float tall krever et desimal med minimum et siffer. De har 64 bit dobbel nøyaktighet, og støtter `e` for å lage eksponente tall:
 
 ```elixir
 iex> 3.41
@@ -82,7 +83,7 @@ iex> 1.0e-10
 
 ### Booleans
 
-Elixir supports `true` and `false` as booleans; everything is truthy except for `false` and `nil`:
+Elixir støtter `true` og `false` som boolske verdier. Alt er 'sant', bortsett fra `false` (usant) og `nil` (null):
 
 ```elixir
 iex> true
@@ -93,7 +94,7 @@ false
 
 ### Atoms
 
-An atom is a constant whose name is their value. If you're familiar with Ruby these are synonymous with Symbols:
+Et atom er en konstant, hvor navnet er dens verdi. Om du er kjent med Ruby, kjenner du disse igjen som Symboler:
 
 ```elixir
 iex> :foo
@@ -102,7 +103,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTE: Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
+MERK: De boolske verdiene `true` og `false` er også atomer: `:true` og `:false`.
 
 ```elixir
 iex> true |> is_atom
@@ -115,7 +116,7 @@ true
 
 ### Strings
 
-Strings in Elixir are UTF-8 encoded and are wrapped in double quotes:
+Strings i Elixir er UTF-8 innkodet, og skrives mellom doble anførselstegn:
 
 ```elixir
 iex> "Hello"
@@ -124,7 +125,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-Strings support line breaks and escape sequences:
+Strings støtter linjeskift og avbruddssekvenser:
 
 ```elixir
 iex> "foo
