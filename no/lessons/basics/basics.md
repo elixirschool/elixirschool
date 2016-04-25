@@ -108,6 +108,7 @@ iex> "dziękuję"
 ```
 
 Strenger støtter linjeskift og avbruddssekvenser:
+=======
 
 ```elixir
 iex> "foo
