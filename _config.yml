@@ -22,7 +22,7 @@ description:
   it: Lezioni sul linguaggio di programmazione Elixir
   my: Pelajaran mengenai bahasa aturcara Elixir
   pl: Lekcje programowania w języku Elixir
-  no: Leksjoner om programmeringsspråket Elixir
+  no: Leksjoner i programmeringsspråket Elixir
 baseurl: /
 url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
