@@ -3,7 +3,7 @@ layout: page
 title: Dokumentowanie kodu
 category: basics
 order: 11
-lang: en
+lang: pl
 ---
 
 Jak dokumentować kod Elixira.
