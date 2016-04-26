@@ -6,7 +6,7 @@ order: 1
 lang: no
 ---
 
-Installasjon, grunnleggende typer og operasjoner.
+Installasjon, grunnleggende typer og operatorer.
 
 
 ## Innholdsfortegnelse
@@ -15,17 +15,17 @@ Installasjon, grunnleggende typer og operasjoner.
 	- [Installere Elixir ](#installere-elixir)
 	- [Interaktiv Modus](#interaktiv-modus)
 - [Grunnleggende Typer](#grunnleggende-typer)
-	- [Integers](#integers)
+	- [Heltall (integers)](#heltall-integers)
 	- [Flyttall (floats)](#flyttall-floats)
 	- [Boolske verdier (booleans)](#boolske-verdier-booleans)
-	- [Atom](#atoms)
+	- [Atomer (atoms)](#atomer-atoms)
 	- [Strenger (strings)](#strenger-strings)
 - [Grunnleggende Operatorer](#grunnleggende-operatorer)
 	- [Aritmetikk](#artmetikk)
-	- [Boolske Operatorer](#boolske-operatorer-boolean)
-	- [Sammenligning](#sammenligning)
-	- [Streng interpolasjon](#string-interpolasjon)
-	- [Streng sammensetning](#string-sammensetning)
+	- [Boolske operatorer](#boolske-operatorer-boolean)
+	- [Sammenligningsoperatorer](#sammenligningsoperatorer)
+	- [Strenginterpolering](#strenginterpolering-string-interpolation)
+	- [Strengsammensetning](#strengsammensetning-string-concatenation)
 
 ## Installering
 
@@ -46,7 +46,7 @@ For å starte IEx skriver vi `iex` i terminalvinduet:
 
 ## Grunnleggende Typer
 
-### Integers
+### Heltall (integers)
 
 ```elixir
 iex> 255
@@ -55,7 +55,7 @@ iex> 0xFF
 255
 ```
 
-Elixir støtter binære, oktale og heksdesimale tall:
+Elixir støtter binære, oktale og heksdesimale heltall:
 
 ```elixir
 iex> 0b0110
@@ -68,7 +68,7 @@ iex> 0x1F
 
 ### Flyttall (floats)
 
-Float tall krever et desimal med minimum et siffer. De har 64 bit dobbel nøyaktighet, og støtter `e` for å lage eksponente tall:
+flyttall krever et desimal med minimum et siffer. De har 64 bit dobbel nøyaktighet, og støtter `e` for å lage eksponenter:
 
 ```elixir
 iex> 3.41
@@ -91,7 +91,7 @@ iex> false
 false
 ```
 
-### Atoms
+### Atomer (Atoms)
 
 Et atom er en konstant, hvor navnet er dens verdi. Om du er kjent med Ruby, kjenner du disse igjen som Symboler:
 
@@ -197,7 +197,7 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-### Sammenligning
+### Sammenligningoperatorer
 
 Elixir lar deg bruke en rekke forskjellige operatorer for sammenligning av verdier: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` og `>`.
 
@@ -222,7 +222,7 @@ false
 ```
 
 En viktig egenskap i Elixir, er at alle typer kan bli sammenlignet med hverandre.
-Dette er spesielt nyttig ved sortering. Vi trenger ikke memorisere sorteringsrekkefølgen, men det er greit å være klar over den:
+Dette er spesielt nyttig ved sortering. Vi trenger ikke memorisere sorteringsrekkefølgen, men det er greit å være kjent med den:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
@@ -237,10 +237,10 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### Streng interpolation
+### Strenginterpolering (String interpolation)
 
-If you've used Ruby, string interpolation in Elixir will look familiar:
-Hvis du noen gang har programmert i Ruby, vil streng interpolasjon i Elixir se veldig kjent ut:
+Hvis du noen gang har programmert i Ruby, vil strenginterpolering i Elixir
+se kjent ut:
 
 ```elixir
 iex> name = "Sean"
@@ -248,9 +248,9 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### String concatenation
+### Strengsammensetning (String concatenation)
 
-String concatenation uses the `<>` operator:
+Strengsammensetning benytter `<>` operatoren:
 
 ```elixir
 iex> name = "Sean"
