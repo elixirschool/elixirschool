@@ -15,6 +15,7 @@ Installasjon, grunnleggende typer og operatorer.
 	- [Installere Elixir ](#installere-elixir)
 	- [Interaktiv Modus](#interaktiv-modus)
 - [Grunnleggende Typer](#grunnleggende-typer)
+<<<<<<< e2ee2fb715b9645a3d0849108b7387aa10cadcfe
 	- [Heltall (integers)](#heltall-integers)
 	- [Flyttall (floats)](#flyttall-floats)
 	- [Boolske verdier (booleans)](#boolske-verdier-booleans)
@@ -26,6 +27,19 @@ Installasjon, grunnleggende typer og operatorer.
 	- [Sammenligningsoperatorer](#sammenligningsoperatorer)
 	- [Strenginterpolering](#strenginterpolering-string-interpolation)
 	- [Strengsammensetning](#strengsammensetning-string-concatenation)
+=======
+	- [Integers](#integers)
+	- [Flyttall (floats)](#flyttall-floats)
+	- [Boolske verdier (booleans)](#boolske-verdier-booleans)
+	- [Atom](#atoms)
+	- [Strenger (strings)](#strenger-strings)
+- [Grunnleggende Operatorer](#grunnleggende-operatorer)
+	- [Aritmetikk](#artmetikk)
+	- [Boolske Operatorer](#boolske-operatorer-boolean)
+	- [Sammenligning](#sammenligning)
+	- [Streng interpolasjon](#string-interpolasjon)
+	- [Streng sammensetning](#string-sammensetning)
+>>>>>>> Translated to string interpolation
 
 ## Installering
 
@@ -197,7 +211,11 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
+<<<<<<< e2ee2fb715b9645a3d0849108b7387aa10cadcfe
 ### Sammenligningoperatorer
+=======
+### Sammenligning
+>>>>>>> Translated to string interpolation
 
 Elixir lar deg bruke en rekke forskjellige operatorer for sammenligning av verdier: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` og `>`.
 
@@ -222,7 +240,11 @@ false
 ```
 
 En viktig egenskap i Elixir, er at alle typer kan bli sammenlignet med hverandre.
+<<<<<<< e2ee2fb715b9645a3d0849108b7387aa10cadcfe
 Dette er spesielt nyttig ved sortering. Vi trenger ikke memorisere sorteringsrekkefølgen, men det er greit å være kjent med den:
+=======
+Dette er spesielt nyttig ved sortering. Vi trenger ikke memorisere sorteringsrekkefølgen, men det er greit å være klar over den:
+>>>>>>> Translated to string interpolation
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
@@ -237,10 +259,17 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
+<<<<<<< e2ee2fb715b9645a3d0849108b7387aa10cadcfe
 ### Strenginterpolering (String interpolation)
 
 Hvis du noen gang har programmert i Ruby, vil strenginterpolering i Elixir
 se kjent ut:
+=======
+### Streng interpolation
+
+If you've used Ruby, string interpolation in Elixir will look familiar:
+Hvis du noen gang har programmert i Ruby, vil streng interpolasjon i Elixir se veldig kjent ut:
+>>>>>>> Translated to string interpolation
 
 ```elixir
 iex> name = "Sean"
