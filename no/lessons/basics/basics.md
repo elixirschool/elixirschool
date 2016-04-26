@@ -37,8 +37,7 @@ Se guiden hos Elixir-lang.org - [Installere Elixir](http://elixir-lang.org/insta
 
 Elixir leveres med `iex`, et interaktivt skall som lar oss evaluere Elixirkoder fortløpende.
 
-To get started, let's run `iex`:
-For å start IEx skriver vi `iex` i terminalvinduet:
+For å starte IEx skriver vi `iex` i terminalvinduet:
 
 	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
