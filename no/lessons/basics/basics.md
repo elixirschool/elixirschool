@@ -16,16 +16,16 @@ Installasjon, grunnleggende typer og operasjoner.
 	- [Interaktiv Modus](#interaktiv-modus)
 - [Grunnleggende Typer](#grunnleggende-typer)
 	- [Integers](#integers)
-	- [Floats](#floats)
-	- [Booleans](#booleans)
+	- [Flyttall (floats)](#flyttall-floats)
+	- [Boolske verdier (booleans)](#boolske-verdier-booleans)
 	- [Atom](#atoms)
-	- [String](#strings)
-- [Grunnleggende Operasjoner](#grunnleggende-operasjoner)
+	- [Strenger (strings)](#strenger-strings)
+- [Grunnleggende Operatorer](#grunnleggende-operatorer)
 	- [Aritmetikk](#artmetikk)
-	- [Boolean](#boolean)
+	- [Boolske Operatorer](#boolske-operatorer-boolean)
 	- [Sammenligning](#sammenligning)
-	- [String interpolasjon](#string-interpolasjon)
-	- [String sammensetning](#string-sammensetning)
+	- [Streng interpolasjon](#string-interpolasjon)
+	- [Streng sammensetning](#string-sammensetning)
 
 ## Installering
 
@@ -66,7 +66,7 @@ iex> 0x1F
 31
 ```
 
-### Floats
+### Flyttall (floats)
 
 Float tall krever et desimal med minimum et siffer. De har 64 bit dobbel nøyaktighet, og støtter `e` for å lage eksponente tall:
 
@@ -80,7 +80,7 @@ iex> 1.0e-10
 ```
 
 
-### Booleans
+### Boolske Verdier (booleans)
 
 Elixir støtter `true` og `false` som boolske verdier. Alt er 'sant', bortsett fra `false` (usant) og `nil` (null):
 
@@ -113,9 +113,9 @@ iex> :true === true
 true
 ```
 
-### Strings
+### Strenger (strings)
 
-Strings i Elixir er UTF-8 innkodet, og skrives mellom doble anførselstegn:
+Strenger i Elixir er UTF-8 innkodet, og skrives mellom doble anførselstegn:
 
 ```elixir
 iex> "Hello"
@@ -124,7 +124,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-Strings støtter linjeskift og avbruddssekvenser:
+Strenger støtter linjeskift og avbruddssekvenser:
 
 ```elixir
 iex> "foo
@@ -134,11 +134,11 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-## Basic Operations
+## Grunnleggende Operatorer
 
-### Arithmetic
+### Aritmetikk
 
-Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.  It's important to notice that `/` will always return a float:
+Elixir støtter de grunnleggende matematiske operatorene `+`, `-`, `*` og `/`. Det er verdt å merke seg at `/` alltid vil returnere et flyttall (float):
 
 ```elixir
 iex> 2 + 2
@@ -151,7 +151,7 @@ iex> 10 / 5
 2.0
 ```
 
-If you need integer division or the division remainder, Elixir comes with two helpful functions to achieve this:
+Elixir har to innebygde funksjoner for å returnere et heltall(integer), eller finne rest i en divisjon:
 
 ```elixir
 iex> div(10, 5)
@@ -160,9 +160,10 @@ iex> rem(10, 3)
 1
 ```
 
-### Boolean
+### Boolske Operatorer (boolean)
 
-Elixir provides the `||`, `&&`, and `!` boolean operators. These support any types:
+Elixir lar deg bruke de boolske operatorene `||`, `&&` og `!`.
+Disse operatorene støtter alle typer:
 
 ```elixir
 iex> -20 || true
@@ -181,7 +182,7 @@ iex> !false
 true
 ```
 
-There are three additional operators whose first argument _must_ be a boolean (`true` and `false`):
+Det er i tillegg tre andre operatorer, hvor første argumentet _må_ være en boolsk verdi (`true` eller `false`):
 
 ```elixir
 iex> true and 42
@@ -196,9 +197,9 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-### Comparison
+### Sammenligning
 
-Elixir comes with all the comparisons operators we're used to: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` and `>`.
+Elixir lar deg bruke en rekke forskjellige operatorer for sammenligning av verdier: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` og `>`.
 
 ```elixir
 iex> 1 > 2
@@ -211,7 +212,7 @@ iex> 2 <= 3
 true
 ```
 
-For strict comparison of integers and floats use `===`:
+For en nøyaktig (strict) sammenligning av heltall og flyttall benytter vi oss av `===`:
 
 ```elixir
 iex> 2 == 2.0
@@ -220,13 +221,14 @@ iex> 2 === 2.0
 false
 ```
 
-An important feature of Elixir is that any two types can be compared, this is particularly useful in sorting.  We don't need to memorize the sort order but it is important to be aware of it:
+En viktig egenskap i Elixir, er at alle typer kan bli sammenlignet med hverandre.
+Dette er spesielt nyttig ved sortering. Vi trenger ikke memorisere sorteringsrekkefølgen, men det er greit å være klar over den:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
 
-This can lead to some interesting, and valid, comparisons you might not find in other languages:
+Dette kan føre til noen interessante, men gyldige sammenligninger du kanskje ikke finner i andre programmeringsspråk:
 
 ```elixir
 iex> :hello > 999
@@ -235,9 +237,10 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### String interpolation
+### Streng interpolation
 
 If you've used Ruby, string interpolation in Elixir will look familiar:
+Hvis du noen gang har programmert i Ruby, vil streng interpolasjon i Elixir se veldig kjent ut:
 
 ```elixir
 iex> name = "Sean"
