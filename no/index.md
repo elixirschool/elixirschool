@@ -13,7 +13,7 @@ _Du oppfordres til å delta, samt gi tilbakemeldinger!_
 
 ## Om Elixir
 
-"Elixir er et dynamisk, funksjonelt språk utviklet for å bygge skalerbar og vedlikeholdsvennlige applikasjoner." [elixir-lang.org](http://elixir-lang.org/)
+"Elixir er et dynamisk, funksjonelt språk utviklet for å bygge skalerbare og vedlikeholdsvennlige applikasjoner." [elixir-lang.org](http://elixir-lang.org/)
 
 
 Elixir benytter den bunnsolide ErlangVM til å bygge distribuerte og feiltolerante systemer med lav forsinkelse, rett ut av boksen.
