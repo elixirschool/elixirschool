@@ -110,7 +110,7 @@ iex> try do
 %ExampleError{message: "an example error has occurred"}
 ```
 
-## Lançar
+## <a name="lancar"></a>Lançar
 
 Outro mecanismo para trabalhar com erros no Elixir é `throw` e `catch`. Na prática, isso não ocorre frequentemente no código mais recente de Elixir. Mas, é importante conhecer e entendê-los mesmo assim.
 

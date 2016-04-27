@@ -312,6 +312,6 @@ defmodule Greeter do
 end
 ```
 
- - Cuba untuk memasukkan contoh-contoh kod ke dalam dokumetasi anda, ini juga memudahkan anda menjana ujian-ujian otomatik daripada kod-kod contoh di dalam sesatu modul, fungsi atau makro menggunakan [ExUnit.DocTest][].  Untuk melaksanakannya, anda perlu memanggil makro `doctest/1` darpada kes ujian dan tuliskan contoh-contoh berpandukan kepada [official documentation][ExUnit.DocTest].
+ - Cuba untuk memasukkan contoh-contoh kod ke dalam dokumetasi anda, ini juga memudahkan anda menjana ujian-ujian otomatik daripada kod-kod contoh di dalam sesatu modul, fungsi atau makro menggunakan [ExUnit.DocTest][ExUnit.DocTest].  Untuk melaksanakannya, anda perlu memanggil makro `doctest/1` daripada kes ujian dan tuliskan contoh-contoh berpandukan kepada [dokumentasi rasmi][ExUnit.DocTest].
 
 [ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html

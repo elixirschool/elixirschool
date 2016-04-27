@@ -20,7 +20,7 @@ Documentando código em Elixir.
 - [Boas Práticas](#boas-praticas)
 
 
-## Anotações
+## <a name="anotacoes"></a>Anotações
 
 Quanto nós comentamos e o que faz uma documentação de qualidade continua a ser uma questão controversa dentro do mundo da programação. No entanto, nós podemos concordar que documentação é importante para nós e para aqueles que trabalham com a nossa base de código.
 
@@ -30,7 +30,7 @@ Elixir trata de documentação como uma *cidadã de primeira classe*, oferecendo
   - `@moduledoc` - Para documentação em nível de módulo.
   - `@doc` - Para documentação em nível de função.
 
-### Documentação em Linha
+### <a name="documentacao-em-linha"></a>Documentação em Linha
 
 Provavelmente, a maneira mais simples de comentar o seu código é com comentários em linha. Semelhante a Ruby ou Python, comentário em linha do Elixir é determinado com um `#`, muitas vezes conhecido como um `sustenido`, ou um *hash* dependendo de onde você vive no mundo.
 
@@ -43,7 +43,7 @@ IO.puts "Hello, " <> "chum."
 
 Elixir, ao executar este script irá ignorar tudo, de '#' até o fim da linha, tratando-a como dados ocultos e sem lógica de execução. Pode adicionar nenhum valor para a operação ou o desempenho do script, no entanto, quando não é tão óbvio sobre o que está acontecendo, um programador deve saber ao ler o seu comentário. Esteja atento para não abusar do comentário de uma linha! Bagunçando uma base de código pode se tornar um pesadelo indesejável para alguns. É melhor usar com moderação.
 
-### Documentando Módulos
+### <a name="documentacao-de-modulos"></a>Documentação de  Módulos
 
 A anotação `@moduledoc`  permite a documentação em linha em um nível de módulo. É tipicamente situada logo abaixo da declaração `defmodule` no topo de um arquivo. O exemplo abaixo mostra um comentário de uma linha dentro do `@moduledoc` decorator.
 
@@ -72,7 +72,7 @@ iex> h Greeter
 Provides a function hello/1 to greet a human
 ```
 
-### Documentando Funções
+### <a name="documentacao-de-funcoes"></a>Documentação de Funções
 
 Assim como Elixir nos dá a capacidade para anotação em nível de módulo, ele também permite anotações semelhantes para documentar funções. A anotação `@doc` permite a documentação de funções. A anotação `@doc` fica logo acima da função que está anotando.
 
@@ -201,7 +201,7 @@ Nós especificamos o `only :dev` par de chave-valor, já que não desejamos faze
 
 É interessante notar neste momento, que você não é obrigado a usar Earmark. Você pode mudar a ferramenta de marcação para outras como Pandoc, Hoedown ou Cmark; porém você terá que fazer um pouco mais de configuração, no qual você pode ler sobre [aqui](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Para este tutorial, vamos continuar utilizando Earmark.
 
-### Gerando Documentação
+### <a name="gerando-documentacao"></a>Gerando Documentação
 
 Prosseguindo, a partir da linha de comando execute os dois comandos a seguir:
 
@@ -223,7 +223,7 @@ Podemos ver que Earmark converteu nosso markdown e ExDoc agora é exibido em um 
 
 Agora nós podemos implantar isso para GitHub, o nosso próprio site, mais comumente no [HexDocs][HexDocs](https://hexdocs.pm/).
 
-## Boas Práticas
+## <a name="boas-praticas"></a>Boas Práticas
 
 Adicionar documentação deve ser seguido com as boas práticas orientadas pela linguagem. Desde que Elixir é uma linguagem bastante jovem, muitas normas ainda estão a ser descobertas ao longo do crescimento do ecossistema. A comunidade, entretanto, tem feito esforços para estabelecer as melhores práticas. Para ler mais sobre as melhores práticas veja [O Guia de Estilo Elixir] (https://github.com/niftyn8/elixir_style_guide).
 

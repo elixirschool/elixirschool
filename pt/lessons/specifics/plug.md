@@ -15,7 +15,7 @@ Se você estiver familiarizado com Ruby, você pode pensar sobre Plug como o Rac
 - [Criando um Plug](#criando-um-plug)
 - [Usando Plug.Router](#usando-plugrouter)
 - [Executando nosso Web App](#executando-nosso-web-app)
-- [Testando Plugs](#testing-plugs)
+- [Testando Plugs](#testando-plugs)
 - [Plugs Disponíveis](#plugs-disponiveis)
 
 ## <a name="instalacao"></a> Instalação
@@ -185,7 +185,7 @@ Agora para executar nossa aplicação, podemos usar:
 $ mix run --no-halt
 ```
 
-## Testando um Plug
+## Testando Plugs
 
 Testes em Plugs são bastante simples, graças ao `Plug.Test`, que inclui uma série de funções convenientes para fazer o teste ser algo fácil.
 

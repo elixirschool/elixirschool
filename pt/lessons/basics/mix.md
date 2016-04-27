@@ -70,7 +70,7 @@ A primeira seção que iremos analisar é `project`. Aqui nós definimos o nome 
 
 A seção `application` é usada durante a geração do nosso arquivo de aplicação que iremos ver em breve.
 
-## Compilação
+## <a name="compilacao"></a>Compilação
 
 Mix é inteligente e irá compilar as alterações quando necessário, mas ainda pode ser necessário explicitamente compilar o seu projeto. Nesta seção, vamos cobrir a forma de compilar o nosso projeto e o que essa compilação faz.
 
@@ -98,7 +98,7 @@ $ iex -S mix
 
 Iniciando `iex` desta forma , carrega sua aplicação e dependências no atual ambiente de execução.
 
-## Gestão de dependências
+## <a name="gestao-de-dependencias"></a>Gestão de dependências
 
 Nosso projeto não tem nenhuma dependência, mas em breve irá ter, por isso iremos seguir em frente e cobrir a definição e busca de dependências.
 

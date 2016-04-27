@@ -39,7 +39,7 @@ iex> list ++ ["Cherry"]
 ```
 
 
-### Concatenação de listas
+### <a name="concatenacao-de-listas"></a>Concatenação de listas
 
 A concatenação de listas usa o operador `++/2`.
 
@@ -48,7 +48,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-### Subtração de listas
+### <a name="subtracao-de-listas"></a>Subtração de listas
 
 O suporte para subtração é provido pelo operador `--/2`; é seguro subtrair um valor que não existe:
 

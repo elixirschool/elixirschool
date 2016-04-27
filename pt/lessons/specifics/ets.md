@@ -20,9 +20,9 @@ Erlang Term Storage, comumente referenciado como ETS, é um poderoso mecanismo d
   - [Correspondências Simples](#correspondencias-simples)
   - [Pesquisa Avançada](#pesquisa-avancada)
 - [Eliminando Dados](#eliminando-dados)
-  - [Removendo Registos](#removendo-registos)
+  - [Removendo Registos](#removendo-registros)
   - [Removendo Tabelas](#removendo-tabelas)
-- [Exemplo de uso do ETS](#exemplo-de-uso-do-ets)
+- [Exemplos de uso do ETS](#exemplos-de-uso-do-ets)
 - [ETS baseado em Disco](#ets-baseado-em-disco)
 
 ## <a name="visao-geral"></a> Visão Geral
@@ -91,7 +91,7 @@ ETS eferece-nos algumas formas convenientes e flexivéis para recuperar nossos d
 O mais eficiente, e ideal, método de recuperar dados é a busca por chave. Enquanto útil, *matching* percore a tabela e deve ser usado com moderação especialmente para grandes conjuntos de dados.
 
 
-### Busca por chave
+### Pesquisa de chave
 
 Dado uma chave, podemos usar `lookup/2` para recuperar todos os registos com esta chave:
 
@@ -165,9 +165,9 @@ iex> :ets.select(:user_lookup, fun)
 
 Quer aprender mais sobre a especificação `match`? Confira a documentação oficial do Erlang para [match_spec](http://www.erlang.org/doc/apps/erts/match_spec.html).
 
-## Eliminando Dasdos
+## Eliminando Dados
 
-### Removendo Registos
+### Removendo Registros
 
 Eliminar termos é tão simples como `insert/2` e `lookup/2`. Com `delete/2` precisamos apenas da nossa tabela e a chave. Isso elimina tanto a chave como o seu respectivo valor:
 

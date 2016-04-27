@@ -21,7 +21,7 @@ Do mesmo jeito que Ruby possui ERB e Java JSPs, Elixir tem EEx ou *Embedded Elix
 
 A API EEX suporta trabalhar com cadeias de caracteres e arquivos directamente. A API está dividida em três componentes principais: avaliação simples, definicações de funções, e complilação para AST.
 
-### Avaliação
+### <a name="avaliacao"></a>Avaliação
 
 Usando `eval_string` e `eval_file` podemos realizar uma simples avaliação sobre uma string ou conteúdos de um arquivo. Este é a API mais simples mas lento uma vez que o código é interpretado e não compilado.
 
@@ -30,7 +30,7 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 "Hi, Sean"
 ```
 
-### Definições
+### <a name="definicoes"></a>Definições
 
 A mais rápida e preferida forma de usar o EEx é embutir nosso template dentro de um módulo assim ele pode ser compilado. Para isso precisamos do nosso template no momento da compilação e dos macros `function_from_string` e `function_from_file`.
 
@@ -49,7 +49,7 @@ iex> Example.greeting("Sean")
 "Hi, Sean"
 ```
 
-### Compilação
+### <a name="compilacao"></a>Compilação
 
 Por último, EEx fornece-nos uma forma para directamente gerar Elixir AST a partir de uma cadeia de caracteres usando `compile_string` ou `compile_file`. Esta API é usada principalmente pelas APIs acima mencionadas, mas está disponível caso deseje implementar seu próprio tratamento de Elixir embutido.
 
