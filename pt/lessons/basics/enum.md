@@ -60,7 +60,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 
 Há algumas opções para `chunk` porém não vamos entrar nelas, revise [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) na documentação oficial para aprender mais.
 
-### chunk_by
+### <a name="chunk_by"></a>chunk_by
 
 Se necessita agrupar uma coleção baseado em algo diferente do tamanho, podemos usar a função `chunk_by`:
 

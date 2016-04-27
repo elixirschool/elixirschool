@@ -13,13 +13,13 @@ Em Elixir e em várias linguagens funcionais, funções são cidadãos de primei
 - [Funções anônimas](#funcoes-anonimas)
   - [A & taquigrafia](#a--taquigrafia)
 - [Pattern matching](#pattern-matching)
-- [Funçnoes nomeadas](#funcoes-nomeadas)
+- [Funções nomeadas](#funcoes-nomeadas)
   - [Funções privadas](#funcoes-privadas)
   - [Guards](#guards)
   - [Argumentos padrões](#argumentos-padroes)
 
 
-## Funções anônimas
+## <a name="funcoes-anonimas"></a>Funções anônimas
 
 Tal como o nome indica, uma função anônima não tem nome. Como vimos na lição `Enum`, elas são frequentemente passadas para outras funções. Para definir uma função anônima em Elixir nós precisamos das palavras-chave `fn` e `end`. Dentro destes, podemos definir qualquer número de parâmetros e corpos separados por `->`.
 
@@ -63,7 +63,7 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-## Funções nomeadas
+## <a name="funcoes-nomeadas"></a>Funções nomeadas
 
 Nós podemos definir funções com nomes para referir a elas no futuro, estas funções nomeadas são definidas com a palavra-chave `def` dentro de um modulo. Nós iremos aprender mais sobre Modulos nas próximas lições, por agora nós iremos focar apenas nas funções nomeadas.
 
@@ -101,7 +101,7 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### Funções privadas
+### <a name="funcoes-privadas"></a>Funções privadas
 
 Quando não quisermos que outros módulos acessem uma função, nós podemos usar funções privadas, que só podem ser chamadas dentro de seus módulos. Nós podemos definir elas em Elixir com `defp`:
 
@@ -144,7 +144,7 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### Argumentos padrões
+### <a name="argumentos-padroes"></a>Argumentos padrões
 
 Se nós quisermos um valor padrão para um argumento, nós usamos a sintaxe `argumento \\ valor`:
 
