@@ -6,9 +6,12 @@ order: 4
 lang: pl
 ---
 
-One the selling points of Elixir is its support for concurrency. Thanks to the ErlangVM, concurrency in Elixir is easier than expected.  The concurrency model relies on Actors, a contained process that communicates with other processes through message passing.
+Jednym z najbardziej wartościowych elementów Elixira jest, to jak rozwiązano w nim obsługę współbieżności. Dzięki 
+temu, że działa on na maszynie wirtualnej Erlanga, zadanie top zostało bardzo uproszczone. Współbieżność oparta jest 
+o model aktorów, reprezentowanych przez procesy, które komunikują się, wymieniając wiadomości. 
 
-In this lesson we'll look at the concurrency modules that ship with Elixir.  In the following chapter we cover the OTP behaviors that implement them.
+W tej lekcji przyjrzymy się modułom, które służą do obsługi współbieżności, a w kolejnych omówimy i 
+zaimplementujemy zachowania OTP.
 
 ## Spis treści
 
@@ -21,7 +24,9 @@ In this lesson we'll look at the concurrency modules that ship with Elixir.  In 
 
 ## Procesy
 
-Processes in the ErlangVM are lightweight and run across all CPUs.  While they may seem like native threads, they're simpler and it's not uncommon to have thousands of concurrent processes in an Elixir application.
+Maszyna wirtualna Erlanga używa procesów lekkich, które mogą działać na wszystkich dostępnych dla niej procesorach. 
+Choć są one podobne do natywnych, systemowych, wątków, to jednak są prostsze i nie jest niczym niezwykłym, gdy w 
+aplikacji napisanej w Elixirze na raz działa kilka tysięcy procesów.
 
 The easiest way to create a new process is `spawn`, which takes either an anonymous or named function.  When we create a new process it returns a _Process Identifier_, or PID, to uniquely identify it within our application.
 
