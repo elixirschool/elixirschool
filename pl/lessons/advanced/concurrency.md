@@ -28,9 +28,11 @@ Maszyna wirtualna Erlanga używa procesów lekkich, które mogą działać na ws
 Choć są one podobne do natywnych, systemowych, wątków, to jednak są prostsze i nie jest niczym niezwykłym, gdy w 
 aplikacji napisanej w Elixirze na raz działa kilka tysięcy procesów.
 
-The easiest way to create a new process is `spawn`, which takes either an anonymous or named function.  When we create a new process it returns a _Process Identifier_, or PID, to uniquely identify it within our application.
+Najprostszą metodą na utworzenie nowego procesu jest wywołanie `spawn`, która jako argument przyjmuje funkcję nazwaną,
+ jak i anonimową. Kiedy utworzy nowy proces zwróci _Identyfikator procesu_, czyli PID, który w sposób unikalny 
+ identyfikuje proces w naszej aplikacji.
 
-To start we'll create a module and define a function we'd like to run:
+Zacznijmy od stworzenia nowego moduły i zdefiniowania w nim funkcji, którą będziemy uruchamiać:
 
 ```elixir
 defmodule Example do
@@ -44,7 +46,7 @@ iex> Example.add(2, 3)
 :ok
 ```
 
-To evaluate the function asynchronously we use `spawn/3`:
+By wywołać ją asynchronicznie wywołajmy `spawn/3`:
 
 ```elixir
 iex> spawn(Example, :add, [2, 3])
@@ -54,7 +56,10 @@ iex> spawn(Example, :add, [2, 3])
 
 ### Przekazywanie komunikatów
 
-To communicate, processes rely on message passing. There are two main components to this: `send/2` and `receive`.  The `send/2` function allows us to send messages to PIDs.  To listen we use `receive` to match messages.  If no match is found the execution continues uninterrupted.
+Komunikacja pomiędzy procesami bazuje na wymianie komunikatów. Istnieją dwa główne elementy tego mechanizmu: `send/2` i 
+`receive`. Funkcja `send/2` pozwalana na wysłanie komunikatu pod skazany PID. Przychodzących komunikatów nasłuchujemy
+ za pomocą `receive` i dopasowujemy je do oczekiwanych wzorców. Jeżeli nie będzie dopasowania, to cały proces będzie 
+ kontynuowany bez przerw.
 
 ```elixir
 defmodule Example do
@@ -78,7 +83,9 @@ iex> send pid, :ok
 
 ### Łączenie procesów
 
-One problem with `spawn` is knowing when a process crashes.  For that we need to link our processes using `spawn_link`.  Two linked processes will receive exit notifications from one another:
+Problemów z funkcją `spawn` polega na tym, że nie wiemy, kiedy proces ulegnie awarii.  Dlatego też potrzebujemy 
+procesów połączonych, które tworzy się z użyciem `spawn_link`.  Dwa połączone procesy będą nawzajem otrzymywać 
+komunikaty o swoim zakończeniu:
 
 ```elixir
 defmodule Example do
@@ -92,7 +99,9 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) :kaboom
 ```
 
-Sometimes we don't want our linked process to crash the current one.  For that we need to trap the exits.  When trapping exits they will be received as a tuple message: `{:EXIT, from_pid, reason}`.
+Czasami nie chcemy by awaria jednego procesu, spowodowała zamknięcie połączonego z nim innego procesu. Dlatego też 
+musimy przechwycić informacje o zamknięciu. Wynikiem tej operacji jest wiadomość w postaci krotki: `{:EXIT, from_pid,
+ reason}`.
 
 ```elixir
 defmodule Example do
@@ -114,7 +123,9 @@ Exit reason: kaboom
 
 ### Monitoring
 
-What if we don't want to link two processes but still be kept informed? For that we can use process monitoring with `spawn_monitor`.  When we monitor a process we get a message if the process crashes without our current process crashing or needing to explicitly trap exits.
+A co jeżeli nie chcemy łączyć procesów, ale chcemy nadal być informowani? Do tego służy mechanizm monitoringu 
+`spawn_monitor`.  Gdy monitorujemy inny proces z naszego procesu, to gdy otrzymamy wiadomość o jego awarii, nasz 
+proces nie ulegnie awarii ani też nie będziemy musieli jawnie obsłużyć sygnału zamknięcia.
 
 ```elixir
 defmodule Example do
@@ -135,7 +146,9 @@ Exit reason: kaboom
 
 ## Agenci
 
-Agents are an abstraction around background processes maintaining state.  We can access them from other processes within our application and node.  The state of our Agent is set to our function's return value:
+Agenci są pewnego rodzaju abstrakcją nad procesami służącą do zarządzania ich stanem. Możemy się do nich odwołać z 
+poziomu innego procesu, aplikacji, albo innego węzła. Aktualny stan agenta jest równy ostatniej zwróconej przez 
+proces wartości:
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
@@ -148,7 +161,7 @@ iex> Agent.get(agent, &(&1))
 [1, 2, 3, 4, 5]
 ```
 
-When we name an Agent we can refer to it by that instead of its PID:
+Do nazwanych agentów możemy odwołać się przez nazwę zamiast przez PID:
 
 ```elixir
 iex> Agent.start_link(fn -> [1, 2, 3] end, name: Numbers)
@@ -160,7 +173,9 @@ iex> Agent.get(Numbers, &(&1))
 
 ## Zadania
 
-Tasks provide a way to execute a function in the background and retrieve its return value later.  They can be particularly useful when handling expensive operations without blocking the application execution.
+Zadania pozwalają na wywołanie funkcji w tle i otrzymanie wyniku w późniejszym terminie. Jest to przydatne 
+szczególnie wtedy, gdy funkcja wykonuje jakieś długotrwałe obliczenia albo jest operacją blokującą. Można wtedy 
+wywołać ją bez blokowania całej aplikacji.
 
 ```elixir
 defmodule Example do
@@ -173,7 +188,7 @@ end
 iex> task = Task.async(Example, :double, [2000])
 %Task{pid: #PID<0.111.0>, ref: #Reference<0.0.8.200>}
 
-# Do some work
+# Coś się kręci
 
 iex> Task.await(task)
 4000
