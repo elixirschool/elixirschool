@@ -85,7 +85,7 @@ iex> t
 
 ## Tupler (tuples)
 
-Tupler ligner på lister, men er lagret i datamaskinens minne. Dette gjør at vi raskt kan få tilgang til de, men det gjør også endringer kostbare da tuppelen i sin helhet må kopieres tilbake i minnet.
+Tupler ligner på lister, men er lagret i datamaskinens minne. Dette gjør at vi raskt kan få tilgang til dem, men det gjør også endringer kostbare da tuppelen i sin helhet må kopieres tilbake i minnet.
 Vi definerer tupler ved å skrive de mellom klammeparantes:
 
 ```elixir
@@ -120,11 +120,11 @@ I ei nøkkelordsliste er:
 + Nøklene ikke unike
 + Nøklene i en rekkefølge
 
-På grunn av dette er det vanligst å bruke nøkkelordslister til å gi forskjellige innstillinger til funksjoner.
+På grunn av dette er det vanlig å bruke nøkkelordslister til å gi forskjellige innstillinger til funksjoner.
 
 ## Kart (maps)
 
-I tillegg til nøkkelordslister kan vi også benytte oss av kart. Kart lar oss lagre nøkler av uansett typer, og de følger heller ikke en bestemt rekkefølge.
+I tillegg til nøkkelordslister kan vi også benytte oss av kart. Kart lar oss lagre nøkler med forskjellige typer, og de følger heller ikke en bestemt rekkefølge.
 Vi definerer kart ved å bruke syntaksen `%{}`:
 
 ```elixir
@@ -145,7 +145,7 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-Om et duplikat blir lagt til kartet, vil den tidligere verdien bli erstattet:
+Om et nøkkelduplikat blir lagt til kartet, vil den tidligere verdien bli erstattet:
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
