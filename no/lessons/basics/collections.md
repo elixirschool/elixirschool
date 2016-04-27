@@ -60,7 +60,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ```
 
 **Note:** It uses [strict comparison](../basics/#comparison) to match the values.
-**Merk:**  Den bruker [nøyaktig sammenligning](../basics/#sammenligningsoperatorer) for å matche verdiene.
+**Merk:**  Operatoren bruker [nøyaktig sammenligning](../basics/#sammenligningsoperatorer) for å matche verdiene.
 
 ### Head / Tail
 
@@ -89,7 +89,8 @@ iex> t
 ## Tupler (tuples)
 
 Tuples are similar to lists but are stored contiguously in memory.  This makes accessing their length fast but modification expensive; the new tuple must be copied entirely to memory.  Tuples are defined with curly braces:
-Tupler ligner på lister, men er lagret i minne på datamaskinen. Dette gjør at vi raskt kan få tilgang til de, men det gjør også endringer kostbare, da tuppelen i sin helhet må kopieres til minnet. Tupler defineres ved å skrive de mellom klammeparantes:
+Tupler ligner på lister, men er lagret i minne på datamaskinen. Dette gjør at vi raskt kan få tilgang til de, men det gjør også endringer kostbare, da tuppelen i sin helhet må kopieres tilbake i minnet.
+Tupler defineres ved å skrive de mellom klammeparantes:
 
 ```elixir
 iex> {3.41, :pie, "Apple"}
@@ -106,11 +107,11 @@ iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
 
-## Nøkkelordlister (keyword lists)
+## Nøkkelordslister (keyword lists)
 
 Keywords and maps are the associative collections of Elixir.  In Elixir, a keyword list is a special list of tuples whose first element is an atom; they share performance with lists:
-Nøkkelord (keywords) og kart (maps) er assosiative kolleksjoner i Elixir. Ei nøkkelordsliste er en liste som består av tupler, hvor det første elementet er et atam.
-Nøkkelordslister har samme ytelse som en vanlig liste:
+Nøkkelord (keywords) og kart (maps) er assosiative kolleksjoner i Elixir.
+Ei nøkkelordsliste er en liste som består av tupler, hvor det første elementet er et atom. Nøkkelordslister har samme ytelse som en vanlig liste:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -131,7 +132,7 @@ Disse tre karakteristikkene av ei nøkkelordsliste fremhever dems betydning:
 + Keys are not unique.
 
 For these reasons keyword lists are most commonly used to pass options to functions.
-Av disse grunnene er det vanligst å bruke søkeordslister for å gi forskjellige alternativer til funksjoner.
+På grunn av dette er det vanligst å bruke nøkkelordslister for å gi forskjellige alternativer til funksjoner.
 
 ## Kart (maps)
 
@@ -148,6 +149,7 @@ iex> map["hello"]
 ```
 
 As of Elixir 1.2 variables are allowed as map keys:
+I Elixir 1.2 kan variabler brukes som kartnøkler:
 
 ```elixir
 iex> key = "hello"
@@ -157,6 +159,7 @@ iex> %{key => "world"}
 ```
 
 If a duplicate is added to a map, it will replace the former value:
+Hvis et duplikat blir lagt til kartet, vil den forrige verdien bli erstattet:
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
@@ -164,6 +167,7 @@ iex> %{:foo => "bar", :foo => "hello world"}
 ```
 
 As we can see from the output above, there is a special syntax for maps containing only atom keys:
+Som vi kan se fra eksemplet over, er det en spesiell syntaks for kart som kun inneholder atomnøkler:
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
