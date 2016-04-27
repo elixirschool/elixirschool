@@ -208,7 +208,7 @@ Consolidated String.Chars
 Consolidated Enumerable
 Consolidated IEx.Info
 Consolidated Inspect
-Interactive Elixir (1.2.1) - press Ctrl+C to exit (type h() ENTER for help)
+Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
 iex> Datasets.hello
 Hello, I'm the datasets
