@@ -74,7 +74,7 @@ iex> case :even do
 
 Konstrukcja `_` działa tak samo, jak `else`, czyli dopasuje "wszystko inne".
 
-Jako że `case` wykorzystuje dopasowanie wzorców, a zatem wszystkie zasady tam obowiązujące są zachowane.  Jeżeli chcesz dopasować istniejącą zmienną, to musisz użyć operatora `^`:
+Jako że `case` wykorzystuje dopasowanie wzorców, wszystkie zasady tam obowiązujące są zachowane.  Jeżeli chcesz dopasować istniejącą zmienną, to musisz użyć operatora `^`:
 
 ```elixir
 iex> pie = 3.41
@@ -134,7 +134,8 @@ iex> cond do
 
 Konstrukcja `with` jest to forma, którą możemy użyć zamiast zagnieżdżonych wyrażeń `case` albo w sytuacji, gdy nie mogą być one powiązane z jednoznaczny sposób. Wyrażenie `with` składa się ze słowa kluczowego, generatora i wyrażenia.
 
-Zajmiemy się jeszcze generatorami przy okazji omawiania list generowanych, a na chwilę obecną jedyne co musimy wiedzieć to, że używają dopasowania wzorców, by połączyć elementy po prawej stronie `<-` z tymi po lewej.
+Zajmiemy się jeszcze generatorami przy okazji omawiania list składanych, a na chwilę obecną jedyne co musimy wiedzieć
+ to, że używają dopasowania wzorców, by połączyć elementy po prawej stronie `<-` z tymi po lewej.
 
 Zacznijmy od prostego wyrażenia `with`:
 
