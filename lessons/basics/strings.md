@@ -2,7 +2,7 @@
 layout: page
 title: Strings
 category: basics
-order: 9
+order: 14
 lang: en
 ---
 
