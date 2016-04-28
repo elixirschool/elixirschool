@@ -40,7 +40,7 @@ Elixir đi kèm với `iex`, một shell trực quan, cho phép chúng ta chạy
 
 	Erlang/OTP 18 [erts-7.2.1] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir (1.2.2) - press Ctrl+C to exit (type h() ENTER for help)
+	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
 ## Các kiểu phổ thông
 
