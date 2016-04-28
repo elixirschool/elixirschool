@@ -20,7 +20,4 @@ var toggle_section = function() {
 
 $(function() {
   $('.sidebar-nav-header').click(toggle_section);
-
-  $('.advanced .sidebar-nav-header').click();
-  $('.specifics .sidebar-nav-header').click();
 });
