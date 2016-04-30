@@ -6,7 +6,7 @@ order: 3
 lang: no
 ---
 
-Et sett med algorytmer for å iterere over kolleksjoner.
+Et sett med algoritmer for å iterere over kolleksjoner.
 
 ## Innholdsfortegnelse
 
@@ -60,7 +60,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Det finnes flere alternativer for `chunk`, men vi blir ikke å gå inn på dem. Se  [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) i den offisielle dokumentasjonen for å lære mer.
+Det finnes flere alternativer for `chunk`, men vi blir ikke å gå igjennom de. Se  [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) i den offisielle dokumentasjonen for å lære mer.
 
 ### chunk_by
 
