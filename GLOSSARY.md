@@ -44,6 +44,7 @@ Class names and proper nouns do not get translated.
 - attribute - атрибут
 - bitsring - битовая строка
 - boolean - логический тип
+- callback - функция обратного вызова
 - char list - список символов
 - collection - коллекция
 - concatenation - конкатенация
