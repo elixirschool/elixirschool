@@ -245,7 +245,7 @@ To demonstrate the cache we'll use a function that returns the system time and a
 ```elixir
 defmodule ExampleApp do
   def test do
-    :os.system(:seconds)
+    :os.system_time(:seconds)
   end
 end
 

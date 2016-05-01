@@ -245,7 +245,7 @@ end
 ```elixir
 defmodule ExampleApp do
   def test do
-    :os.system(:seconds)
+    :os.system_time(:seconds)
   end
 end
 

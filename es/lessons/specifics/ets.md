@@ -246,7 +246,7 @@ Para demostrar la caché vamos a utilizar una función que devuelve la hora del 
 ```elixir
 defmodule ExampleApp do
   def test do
-    :os.system(:seconds)
+    :os.system_time(:seconds)
   end
 end
 

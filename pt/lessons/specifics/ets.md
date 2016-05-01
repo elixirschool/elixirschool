@@ -247,7 +247,7 @@ Para demostrar o uso do cache, iremos usar a função que retorna a hora do sist
 ```elixir
 defmodule ExampleApp do
   def test do
-    :os.system(:seconds)
+    :os.system_time(:seconds)
   end
 end
 
