@@ -1,32 +1,38 @@
 ---
 layout: page
-title: OTP Concurrency
+title: Współbieżność z OTP
 category: advanced
 order: 5
-lang: en
+lang: pl
 ---
 
-We've looked at the Elixir abstractions for concurrency but sometimes we need greater control and for that we turn to the OTP behaviors that Elixir is built on.
+Poznaliśmy już abstrakcję do obsługi współbieżności, jaką oferuje Elixir. Czasami potrzebujemy większej kontroli nad
+tym, co się dzieje. Dlatego też Elixir ma obsługę zachowań OTP.  
 
-In this lesson we'll focus on two important pieces: GenServers and GenEvents.
+W tej lekcji skupimy się na dwóch elementach: GenServers i GenEvents.
 
-## Table of Contents
+## Spis treści
 
 - [GenServer](#genserver)
-  - [Synchronous Functions](#synchronous-functions)
-  - [Asynchronous Functions](#asynchronous-functions)
+  - [Funkcje synchroniczne](#Funkcje-synchroniczne)
+  - [Funkcje asynchroniczne](#Funkcje-asynchroniczne)
 - [GenEvent](#genevent)
-  - [Handling Events](#handling-events)
-  - [Calling Handlers](#calling-handlers)
-  - [Using GenEvents](#using-genevents)
+  - [Obsługa zdarzeń](#Obsługa-zdarzeń)
+  - [Wywoływanie zdarzeń](#Wywoływanie-zdarzeń)
+  - [Użycie GenEvents](#użycie-genevents)
 
 ## GenServer
 
-An OTP server is a module with the GenServer behavior that implements a set of callbacks.  At its most basic level a GenServer is a loop that handles one request per iteration passing along an updated state.
+Serwer OTP zawiera moduł zachowań GenServer, który implementuje zestaw wywołań zwrotnych (ang. callback). W dużym 
+uproszczeniu GenServer to pętla, w której każda iteracja odpowiada obsłudze jednego żądania, które aktualizuje stan 
+aplikacji.  
 
-To demonstrate the GenServer API we'll implement a basic queue to store and retrieve values.
+By pokazać jak działa GenServer, zaimplementujemy prostą kolejkę.
 
-To begin our GenServer we need to start it and handle the initialization. In most cases we'll want to link processes so we use `GenServer.start_link/3`.  We pass in the GenServer module we're starting, initial arguments, and a set of GenServer options.  The arguments will be passed to `GenServer.init/1` which sets the initial state through its return value.  In our example the arguments will be our initial state:
+By uruchomić GenServer, musimy go wystartować oraz obsłużyć procedurę inicjacji. W większości przypadków chcemy 
+obsłużyć łączenie procesów, dlatego użyjemy `GenServer.start_link/3`. Przekażemy do modułu GenServer argumenty 
+startowe i niewielki zestaw opcji. Argumenty zostaną przekazane do funkcji `GenServer.init/1`, która na ich podstawie
+ utworzy początkowy stan aplikacji. W naszym przykładzie argumenty i stan początkowy będą takie same:
 
 ```elixir
 defmodule SimpleQueue do
@@ -46,7 +52,7 @@ defmodule SimpleQueue do
 end
 ```
 
-### Synchronous Functions
+### Funkcje synchroniczne
 
 It's often necessary to interact with GenServers in a synchronous way, calling a function and waiting for its response.  To handle synchronous requests we need to implement the `GenServer.handle_call/3` callback which takes: the request, the caller's PID, and the existing state; it is expected to reply by returning a tuple: `{:reply, response, state}`.
 
@@ -100,7 +106,7 @@ iex> SimpleQueue.queue
 [3]
 ```
 
-### Asynchronous Functions
+### Funkcje asynchroniczne
 
 Asynchronous requests are handled with the `handle_cast/2` callback.  This works much like `handle_call/3` but does not receive the caller and is not expected to reply.
 
@@ -164,7 +170,7 @@ For more information check out the official [GenServer](http://elixir-lang.org/d
 
 We learned that GenServers are processes that can maintain state and handle synchronous and asynchronous requests.  So what is a GenEvent?  GenEvents are generic event managers that receive incoming events and notify subscribed consumers.  They provide a mechanism for dynamically adding and removing handlers to flows of events.
 
-### Handling Events
+### Obsługa zdarzeń
 
 The most important callback in GenEvents as you can imagine is `handle_event/2`.  This receives the event and the handler's current state and is expected to return a tuple: `{:ok, state}`.
 
@@ -193,7 +199,7 @@ defmodule PersistenceHandler do
 end
 ```
 
-### Calling Handlers
+### Wywoływanie zdarzeń
 
 In addition to `handle_event/2` GenEvents also support `handle_call/2` among other callbacks.  With `handle_call/2` we can handle specific synchronous messages with our handler.
 
@@ -214,7 +220,7 @@ defmodule LoggerHandler do
 end
 ```
 
-### Using GenEvents
+### Użycie GenEvents
 
 With our handlers ready to go we need to familiarize ourselves with a few of GenEvent's functions.  The three most important functions are: `add_handler/3`, `notify/2`, and `call/4`.  These allow us to add handlers, broadcast new messages, and call specific handler functions respectively.
 
