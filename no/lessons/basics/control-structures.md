@@ -57,7 +57,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-Variabelen `_` er en viktig del av `case`. Uten den vil manglende evne til å finne en match gi oss ei feilmelding:
+Variabelen `_` er en viktig del av `case`. Uten den vil funksjonen gi oss ei feilmelding, hvis det ikke finnes en match.
 
 ```elixir
 iex> case :even do
