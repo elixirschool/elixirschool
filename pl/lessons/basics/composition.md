@@ -79,8 +79,8 @@ W Elixirze istnieją zarezerwowane nazwy dla atrybutów.  Trzy najpopularniejsze
 
 ## Struktury
 
-Struktury to wyspecjalizowane mapy, które zawierają prawy klucz, wartość domyślna. Muszą być zdefiniowane w module i 
-mają taką samą jak on nazwę. Nie rzadko struktura jest jedynym elementem zdefiniowanym w module.
+Struktury to wyspecjalizowane mapy, które zawierają zbiór kluczy i domyślnych wartości. Muszą być zdefiniowane w 
+module i mają taką samą jak on nazwę. Nierzadko struktura jest jedynym elementem zdefiniowanym w module.
 
 By zdefiniować strukturę, używamy słowa kluczowego `defstruct` wraz z listą asocjacyjną zawierającą nazwy pól i 
 wartości domyślne:
@@ -157,7 +157,7 @@ defmodule Example do
 end
 ```
 
-Można też utworzyć alias to wielu modułów naraz:
+Można też utworzyć alias do wielu modułów naraz:
 
 ```elixir
 defmodule Example do
@@ -178,7 +178,7 @@ iex> last([1, 2, 3])
 3
 ```
 
-#### Filtering
+#### Filtrowanie
 
 Domyślnie importowane są wszystkie funkcje i makra, ale możemy odfiltrować tylko część z nich za pomocą opcji `:only` i 
 `:except`.
@@ -206,7 +206,7 @@ iex> last([1, 2, 3])
 ```
 
 Poza podaniem pary nazwa/liczba argumentów możemy też użyć dwóch atomów `:functions` i `:macros`, dzięki którym 
-zaimportujemy odpowiedni tylko funkcje lub tylko makra:
+zaimportujemy odpowiednio tylko funkcje lub tylko makra:
 
 ```elixir
 import List, only: :functions
