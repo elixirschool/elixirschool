@@ -253,13 +253,13 @@ iex> :ets.new(:simple_cache, [:named_table])
 :simple_cache
 iex> ExampleApp.test
 1451089115
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089119
 iex> ExampleApp.test
 1451089123
 iex> ExampleApp.test
 1451089127
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089119
 ```
 
@@ -268,7 +268,7 @@ After 10 seconds if we try again we should get a fresh result:
 ```elixir
 iex> ExampleApp.test
 1451089131
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089134
 ```
 
