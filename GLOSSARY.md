@@ -42,6 +42,7 @@ Class names and proper nouns do not get translated.
 
 - anonymous function - анонимная функция
 - attribute - атрибут
+- bitsring - битовая строка
 - boolean - логический тип
 - char list - список символов
 - collection - коллекция

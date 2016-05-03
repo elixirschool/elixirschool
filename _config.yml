@@ -23,11 +23,12 @@ description:
   my: Pelajaran mengenai bahasa aturcara Elixir
   pl: Lekcje programowania w języku Elixir
   no: Leksjoner i programmeringsspråket Elixir
+  ko: 프로그래밍 언어 Elixir 배우기
 baseurl: /
 url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko']
 default_lang: en
 exclude_from_localization: []
 sections:
@@ -47,6 +48,7 @@ sections:
       it: Base
       pl: Podstawy
       no: Grunnleggende
+      ko: 기초
   - tag: advanced
     label:
       en: Advanced
@@ -63,6 +65,7 @@ sections:
       it: Avanzato
       pl: Zaawansowane
       no: Avansert
+      ko: 심화
   - tag: specifics
     label:
       en: Specifics
@@ -79,6 +82,7 @@ sections:
       it: Specifiche
       pl: Specyficzne
       no: Detaljer
+      ko: 활용
 
 gems:
   - kramdown

@@ -247,7 +247,7 @@ Para demostrar o uso do cache, iremos usar a função que retorna a hora do sist
 ```elixir
 defmodule ExampleApp do
   def test do
-    :os.system(:seconds)
+    :os.system_time(:seconds)
   end
 end
 
@@ -255,13 +255,13 @@ iex> :ets.new(:simple_cache, [:named_table])
 :simple_cache
 iex> ExampleApp.test
 1451089115
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089119
 iex> ExampleApp.test
 1451089123
 iex> ExampleApp.test
 1451089127
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089119
 ```
 
@@ -270,7 +270,7 @@ Depois de 10 segundos se não tentarmos novamente deveremos receber um novo resu
 ```elixir
 iex> ExampleApp.test
 1451089131
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089134
 ```
 
