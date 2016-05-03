@@ -6,7 +6,7 @@ order: 7
 lang: ko
 ---
 
-엘릭서를 포함한 많은 함수형 언어에서, 함수들은 일급 시민입니다. 우리는 엘릭서를 특별하게 해주는 함수의 유형에 대해 배우고, 그것을 어떻게 이용하는지 배울 것입니다.
+Elixir를 포함한 많은 함수형 언어에서, 함수들은 일급 시민입니다. 우리는 Elixir를 특별하게 해주는 함수의 유형에 대해 배우고, 그것을 어떻게 이용하는지 배울 것입니다.
 In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
 
 ## 목차
@@ -22,7 +22,7 @@ In Elixir and many functional languages, functions are first class citizens.  We
 ## 익명 함수
 ## Anonymous functions
 
-이름이 암시하는 것과 같이, 익명 함수는 이름이 없습니다. `Enum` 수업에서 보았듯이, 함수는 빈번히 다른 함수로 넘겨지게 됩니다. 엘릭서에서 익명 함수를 정의하기 위해, 우리는 `fn` 그리고 `end` 키워드가 필요합니다. 익명 함수 내에서 우리는 매개변수의 개수를 정의할 수 있고, 함수의 몸체는 `->`로 구분됩니다.
+이름이 암시하는 것과 같이, 익명 함수는 이름이 없습니다. `Enum` 수업에서 보았듯이, 함수는 빈번히 다른 함수로 넘겨지게 됩니다. Elixir에서 익명 함수를 정의하기 위해, 우리는 `fn` 그리고 `end` 키워드가 필요합니다. 익명 함수 내에서 우리는 매개변수의 개수를 정의할 수 있고, 함수의 몸체는 `->`로 구분됩니다.
 Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, they are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
 
 기초적인 예제를 보도록 하죠:
@@ -37,7 +37,7 @@ iex> sum.(2, 3)
 ### &으로 줄여쓰기
 ### The & shorthand
 
-엘릭서에서 줄여쓰기할 경우, 익명함수를 쓰는 것은 흔히 보이는 사례입니다:
+Elixir에서 줄여쓰기할 경우, 익명함수를 쓰는 것은 흔히 보이는 사례입니다:
 Using anonymous functions is such a common practice in Elixir there is shorthand for doing so:
 
 ```elixir
@@ -52,10 +52,10 @@ As you probably already guessed, in the shorthand version our parameters are ava
 ## 패턴 매칭
 ## Pattern matching
 
-엘릭서에서 패턴 매칭은 단순히 변수를 다루는 데서 그치지 않고, 함수의 시그니쳐에서도 적용될 수 있다는 것을 이 섹션에서 확인할 것입니다.
+Elixir에서 패턴 매칭은 단순히 변수를 다루는 데서 그치지 않고, 함수의 시그니쳐에서도 적용될 수 있다는 것을 이 섹션에서 확인할 것입니다.
 Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
 
-엘릭서는 ??? 식별하기 위해 패턴 매칭을 사용합니다. 
+Elixir는 ??? 식별하기 위해 패턴 매칭을 사용합니다. 
 Elixir uses pattern matching to identify the first set of parameters which match and invokes the corresponding body:
 
 ```elixir
@@ -75,10 +75,10 @@ An error has occurred!
 ## 이름이 있는 함수
 ## Named functions
 
-우리는 차후에 호출할 수 있도록 모듈 내에서 `def` 키워드를 이용하여 함수에 이름을 부여할 수 있습니다. 지금은 이름이 있는 함수를 다루는 것에 집중하도록 하고, 다음 강의에서 모듈에 대해 더 배울 것입니다..
+우리는 차후에 호출할 수 있도록 모듈 내에서 `def` 키워드를 이용하여 함수에 이름을 부여할 수 있습니다. 지금은 이름이 있는 함수를 다루는 것에 집중하도록 하고, 다음 강의에서 모듈에 대해 더 배울 것입니다.
 We can define functions with names so we can refer to them later, these named functions are defined with the `def` keyword within a module.  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
 
-모듈 내에서 정의된 함수는 다른 모듈에서 접근이 가능하며, 이는 엘릭서에서 프로젝트를 구축할때 특히 유용합니다. 
+모듈 내에서 정의된 함수는 다른 모듈에서 접근이 가능하며, 이는 Elixir에서 프로젝트를 구축할때 특히 유용합니다. 
 Functions defined within a module are available to other modules for use, this is a particularly useful building block in Elixir:
 
 ```elixir
@@ -139,7 +139,7 @@ iex> Greeter.phrase
 ### 보호자(Guards)
 ### Guards
 
-[제어 구조](../control-structures.md) 강의에서 guards에 대해 간략하게 다뤘으니, 지금은 이름이 있는 함수에 어떻게 적용할 수 있는지 알아보도록 하겠습니다. 엘릭서에서 함수가 매치되기만 하면, 존재하는 어떤 guards 든지 테스트될 것입니다.
+[제어 구조](../control-structures.md) 강의에서 guards에 대해 간략하게 다뤘으니, 지금은 이름이 있는 함수에 어떻게 적용할 수 있는지 알아보도록 하겠습니다. Elixir에서 함수가 매치되기만 하면, 존재하는 어떤 guards 든지 테스트될 것입니다.
 We briefly covered guards in the [Control Structures](../control-structures.md) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
 
 다음의 예제예서, 우리는 
