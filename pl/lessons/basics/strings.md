@@ -29,7 +29,7 @@ iex> string = <<104,101,108,108,111>>
 "hello"
 ```
 
->Uwaga: używając `<< >>` określamy, że liczby w środku kompilator powinien traktować jak bajty.
+>Uwaga: używając `<< >>` określamy, iż liczby w środku kompilator powinien traktować jak bajty.
 
 ## Listy znaków
 
