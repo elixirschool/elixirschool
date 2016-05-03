@@ -54,11 +54,22 @@ end
 
 ### Funkcje synchroniczne
 
-It's often necessary to interact with GenServers in a synchronous way, calling a function and waiting for its response.  To handle synchronous requests we need to implement the `GenServer.handle_call/3` callback which takes: the request, the caller's PID, and the existing state; it is expected to reply by returning a tuple: `{:reply, response, state}`.
+Czasami zadania zlecane GenServer muszą być wykonywane w sposób synchroniczny, czyli wywołujemy funkcję i czekamy na 
+rezultat. By sprostać temu wyzwaniu, musimy zaimplementować funkcję zwrotną `GenServer.handle_call/3`, która jako 
+parametry przyjmuje: 
 
-With pattern matching we can define callbacks for many different requests and states. A complete list of accepted return values can be found in the [`GenServer.handle_call/3`](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#c:handle_call/3) docs.
+ * żądanie
+ * PID procesu wywołującego
+ * stan
+ 
+W odpowiedzi musi zwrócić krotkę w postaci: `{:reply, odpowiedź, stan}`.
 
-To demonstrate synchronous requests let's add the ability to display our current queue and to remove a value:
+Wykorzystując dopasowania wzorców, możemy zdefiniować wiele wywołań zwrotnych, w zależności od żądania i stanu. Pełna
+dokumentacja zawierająca listę parametrów i zwracanych wartości znajduje się w dokumentacji [`GenServer.handle_call/3`]
+(http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#c:handle_call/3).
+
+By zademonstrować wywołanie synchroniczne, dodajmy do naszej kolejki, możliwość wyświetlenia zawartości i usunięcia 
+jednej z wartości:
 
 ```elixir
 defmodule SimpleQueue do
@@ -93,7 +104,7 @@ end
 
 ```
 
-Let's start our SimpleQueue and test out our new dequeue functionality:
+Wystartujmy naszą aplikację `SimpleQueue` i przetestujmy nowe funkcjonalności:
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])
@@ -108,9 +119,11 @@ iex> SimpleQueue.queue
 
 ### Funkcje asynchroniczne
 
-Asynchronous requests are handled with the `handle_cast/2` callback.  This works much like `handle_call/3` but does not receive the caller and is not expected to reply.
+Wywołania asynchroniczne są obsługiwane przez `handle_cast/2`.  Działają podobnie jak `handle_call/3`, a jedynymi 
+różnicami są brak PID wywołującego oraz to, że nie oczekujemy wartości zwracanej.
 
-We'll implement our enqueue functionality to be asynchronous, updating the queue but not blocking our current execution:
+Zaimplementujmy dodawanie elementów do kolejki jako asynchroniczne. Dzięki temu, dodając element nie będziemy blokować
+ działania programu:
 
 ```elixir
 defmodule SimpleQueue do
@@ -151,7 +164,7 @@ defmodule SimpleQueue do
 end
 ```
 
-Let's put our new functionality to use:
+Spróbujmy użyć naszej nowej funkcjonalności:
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])
@@ -164,17 +177,21 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-For more information check out the official [GenServer](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#content) documentation.
+Więcej informacji znajdziesz w oficjalnej dokumentacji [GenServer](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#content).
 
 ## GenEvent
 
-We learned that GenServers are processes that can maintain state and handle synchronous and asynchronous requests.  So what is a GenEvent?  GenEvents are generic event managers that receive incoming events and notify subscribed consumers.  They provide a mechanism for dynamically adding and removing handlers to flows of events.
+Wiemy już jak z pomocą GenServer obsługiwać żądania synchroniczne i asynchroniczne. Czym jest GenEvent? GenEvent to 
+generyczny manager zdarzeń, który po otrzymaniu informacji powiadamia zainteresowanych konsumentów. Posiada mechanizm
+ do dynamicznego dodawania i usuwania obsługi konkretnych zdarzeń.  
 
 ### Obsługa zdarzeń
 
-The most important callback in GenEvents as you can imagine is `handle_event/2`.  This receives the event and the handler's current state and is expected to return a tuple: `{:ok, state}`.
+Najważniejszą funkcją zwrotną z jaką pracujemy w GenEvents, jest `handle_event/2`. Przyjmuje ona jako parametry 
+zdarzenie i aktualny stan, a zwraca krotkę: `{:ok, stan}`.
 
-To demonstrate the GenEvent functionality let's start by creating two handlers, one to keep a log of messages and the other to persist them (theoretically):
+By zademonstrować działanie, uruchomimy GenEvent z dwoma modułami obsługi zdarzeń. Pierwszy zapisze je do dziennika, a
+ drugi utrwali je (czysto teoretycznie):
 
 ```elixir
 defmodule LoggerHandler do
@@ -201,9 +218,10 @@ end
 
 ### Wywoływanie zdarzeń
 
-In addition to `handle_event/2` GenEvents also support `handle_call/2` among other callbacks.  With `handle_call/2` we can handle specific synchronous messages with our handler.
+Poza  `handle_event/2` GenEvents posiada też między innymi `handle_call/2`. Za pomocą `handle_call/2`
+ możemy obsługiwać konkretne, synchroniczne wiadomości.
 
-Let's update our `LoggerHandler` to include a method for retrieving the current message log:
+Zaktualizujmy  `LoggerHandler` dodając metodę do pobierania bieżącej wiadomości z logu:
 
 ```elixir
 defmodule LoggerHandler do
@@ -220,11 +238,13 @@ defmodule LoggerHandler do
 end
 ```
 
-### Użycie GenEvents
+### Użycie GenEvent
 
-With our handlers ready to go we need to familiarize ourselves with a few of GenEvent's functions.  The three most important functions are: `add_handler/3`, `notify/2`, and `call/4`.  These allow us to add handlers, broadcast new messages, and call specific handler functions respectively.
+Mając nasze funkcje do obsługi zdarzeń, możemy przejść do innych istotnych funkcji GenEvent. Trzy najważniejsze z nich 
+to: `add_handler/3`, `notify/2` i `call/4`. Pozwalają one odpowiednio na dodawanie nowych funkcji obsługi zdarzeń, 
+rozgłaszanie wiadomości i wywoływanie konkretnych funkcji obsługi.
 
-If we put it all together we can see our handlers in action:
+Zbierzmy wszytko razem i zobaczmy jak w praktyce to działa:
 
 ```elixir
 iex> {:ok, pid} = GenEvent.start_link([])
@@ -239,4 +259,5 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-See the official [GenEvent](http://elixir-lang.org/docs/v1.1/elixir/GenEvent.html#content) documentation for a complete list of callbacks and GenEvent functionality.
+W oficjalnej dokumentacji [GenEvent](http://elixir-lang.org/docs/v1.1/elixir/GenEvent.html#content) znajduje się 
+pełna lista funkcji zwrotnych, których możemy użyć.
