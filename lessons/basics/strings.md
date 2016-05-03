@@ -12,11 +12,12 @@ What are Strings in Elixir, Char lists, Graphemes and Codepoints.
 
 - [Strings in Elixir](#strings-in-elixir)
 - [Char lists](#char-lists)
-- [Graphemes and Codepoints](#graphemes)
+- [Graphemes and Codepoints](#graphemes-and-codepoints)
 - [String functions](#string-functions)
-  - [Length](#length)
-  - [Replace](#replace)
-  - [Duplicate](#duplicate)
+  - [Length](#length1)
+  - [Replace](#replace4)
+  - [Duplicate](#duplicate2)
+  - [Split](#split2)
 - [Exercises](#exercises)
   - [Anagrams](#anagrams)
 
