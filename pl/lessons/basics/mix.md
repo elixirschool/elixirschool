@@ -75,7 +75,7 @@ end
 Pierwsza sekcja, której się przyjrzymy to `project`.  W niej definiujemy nazwę naszej aplikacji (`app`), określamy jej 
 wersję (`version`), wersję Elixira (`elixir`) oraz listę zależności (`deps`).
 
-Sekcja `application` jest używana w czasie tworzenia pliku aplikacji. Przyjrzymy się w następnej kolejności.
+Sekcja `application` jest używana w czasie tworzenia pliku aplikacji. Przyjrzymy się jej w następnej kolejności.
 
 ## Tryb interaktywny
 
