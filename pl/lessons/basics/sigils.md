@@ -34,7 +34,7 @@ Lista dostępnych sigili to:
   - `~W` Tworzy listę słów **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
   - `~w` Tworzy listę słów **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
 
-Ogranicznikami dla listy są:
+Listę możemy utworzyć korzystając ze znaków:
 
   - `<...>` Nawisy ostrokątne
   - `{...}` Nawiasy klamrowe
@@ -57,8 +57,8 @@ iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = #{2 + 7}'
 ```
 
-Jak widać sigil `~c`, pisany małą literą, przeprowadza obliczenia, w przeciwieństwie do `~C`, pisany wielką literą, nie.
- Konwencja wyliczania wartości bądź nie z pomocą użycia odpowiedniej małej albo wielkiej litery jest taka sama dla 
+Jak widać sigil `~c`, pisany małą literą, przeprowadza obliczenia, w przeciwieństwie do `~C`, pisany wielką literą.
+ Konwencja wyliczania wartości, bądź nie, z pomocą użycia odpowiedniej małej albo wielkiej litery jest taka sama dla 
  wszystkich sigili.
 
 ### Wyrażenia regularne
@@ -77,8 +77,8 @@ true
 ```
 
 Jak widzimy pierwszy test nie powiódł się. ponieważ `Elixir` nie pasuje do wyrażenia, gdyż to uwzględnia wielkość 
-liter. Elixir wspiera wyrażenia regularne kompatybilne z Perlem (PCRE - Perl Compatible Regular Expressions), to 
-możemy dodać `i` na końcu sigila by dopasowanie nie brało pod uwagę wielkości liter. 
+liter. Ponieważ Elixir wspiera wyrażenia regularne kompatybilne z Perlem (PCRE - Perl Compatible Regular Expressions)
+, możemy dodać `i` na końcu sigila by dopasowanie nie brało pod uwagę wielkości liter. 
 
 ```elixir
 iex> re = ~r/elixir/i
@@ -91,7 +91,6 @@ iex> "elixir" =~ re
 true
 ```
 
-Further, Elixir provides the [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API which is built on top of Erlang's regular expression library. Let's implement `Regex.split/2` using a regex sigil:
 Elixir posiada też moduł [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html), którego API jest oparte o 
 bibliotekę do obsługi wyrażeń  regularnych z Erlanga. Zaimplementujmy funkcję `Regex.split/2` z użyciem sigila:  
 
