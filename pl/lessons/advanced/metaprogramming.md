@@ -6,29 +6,31 @@ order: 7
 lang: pl
 ---
 
-Metaprogramming is the process of using code to write code.  In Elixir this gives us the ability to extend the language to fit our needs and dynamically change the code.  We'll start by looking at how Elixir is represented under the hood, then how to modify it, and finally we can use this knowledge to extend it.
-Metaprogramowanie to proces tworzenia kodu, którego zadaniem jest generowanie kodu. W Elixirze mamy możliwość .  In 
-Elixir this gives us the ability to extend the 
-language to fit our needs and dynamically change the code.  We'll start by looking at how Elixir is represented under the hood, then how to modify it, and finally we can use this knowledge to extend it.
+Metaprogramowanie to proces tworzenia kodu, którego zadaniem jest generowanie kodu. W Elixirze mamy możliwość
+rozszerzania języka tak by dynamicznie generowany kod dostosowywał się do naszych bieżących potrzeb. Najpierw
+przyjrzymy się, jaka jest wewnętrzna reprezentacja kodu Elixira, następnie zobaczmy, jak można ją modyfikować, by w
+końcu wykorzystać zdobytą wiedzę do rozszerzania kodu za pomocą makr.
 
-A word of caution:  Metaprogramming is tricky and should only be used when absolutely necessary.  Overuse will almost certainly lead to complex code that is difficult to understand and debug.
+Drobna uwaga:  metaprogramowanie jest zawiłe i powinno być stosowane tylko w ostateczności. Nadużywane wpędzi nasz w 
+kłopoty ze zrozumieniem i utrzymaniem zawiłego i skomplikowanego kodu.
 
 ## Spis treści
 
-- [Quote](#quote)
-- [Unquote](#unquote)
+- [Reprezentacja wewnętrzna kodu](#Reprezentacja-wewnętrzna-kodu)
+- [Modyfikacja AST](#Modyfikacja-AST)
 - [Makra](#macros)
 	- [Makra prywatne](#Makra-prywatne)
 	- [Sanacja makr](#Sanacja-makr)
 	- [Spinanie](#Spinanie)
 
-## Quote
+## Reprezentacja wewnętrzna kodu
 
-The first step to metaprogramming is understanding how expressions are represented.  In Elixir the abstract syntax tree (AST), the internal representation of our code, is composed of tuples.  These tuples contain three parts: function name, metadata, and function arguments.
- The first step to metaprogramming is understanding how expressions are represented.  In Elixir the abstract syntax 
- tree (AST), the internal representation of our code, is composed of tuples.  These tuples contain three parts: function name, metadata, and function arguments.
+Pierwszym krokiem w metaprogramowaniu jest zrozumienie, jak reprezentowana jest składnia programu. W Elixirze drzewo 
+składniowe (AST) jest wewnętrznie reprezentowane w postaci zagnieżdżonych krotek. Każda z nich ma trzy elementy: 
+nazwę funkcji, metadane i argumenty.
 
-In order to see these internal structures, Elixir supplies us with the `quote/2` function.  Using `quote/2` we can convert Elixir code into its underlying representation:
+Byśmy zobaczyć tę wewnętrzną strukturę, Elixir udostępnia funkcję `quote/2`.  Używając `quote/2` możemy zamienić kod 
+Elixira tak by była dla nas zrozumiała:
 
 ```elixir
 iex> quote do: 42
@@ -45,7 +47,8 @@ iex> quote do: if value, do: "True", else: "False"
 iex(6)>
 ```
 
-Notice the first three don't return tuples?  There are five literals that return themselves when quoted:
+Zauważyłeś, że pierwsze trzy wywołania nie zwróciły krotek? Istnieje pięć elementów języka, które zachowują się w ten
+ sposób:
 
 ```elixir
 iex> :atom
@@ -60,11 +63,11 @@ iex> {"hello", :world} # 2 element tuples
 {"hello", :world}
 ```
 
-## Unquote
+## Modyfikacja AST
 
-Now that we can retrieve the internal structure of our code, how do we modify it?  To inject new code or values we use `unquote/1`.  When we unquote an expression it will be evaluated and injected into the AST.  To demonstrate `unqoute/1` let's look at some examples:
- Now that we can retrieve the internal structure of our code, how do we modify it?  To inject new code or values we 
- use `unquote/1`.  When we unquote an expression it will be evaluated and injected into the AST.  To demonstrate `unqoute/1` let's look at some examples:
+Skoro wiemy już jak uzyskać wewnętrzną reprezentację kodu, to pojawia się pytanie, jak ją modyfikować? By 
+wstawić do kodu nową wartość lub wyrażenie użyjemy `unquote/1`. Zostanie ono wyliczone, a następnie wstawione w 
+odpowiednie miejsce AST. Zobaczmy, jak działa `unqoute/1` na poniższym przykładzie:
 
 ```elixir
 iex> denominator = 2
@@ -75,13 +78,18 @@ iex> quote do: divide(42, unquote(denominator))
 {:divide, [], [42, 2]}
 ```
 
-In the first example our variable `denominator` is quoted so the resulting AST includes a tuple for accessing the variable.  In the `unquote/1` example the resulting code includes the value of `denominator` instead.
+W pierwszym przykładzie zmienna `denominator` jest elementem drzewa AST i została przedstawiona jako krotka opisująca
+ odwołanie do zmiennej. Jednak, gdy użyjemy`unquote/1`, to w rezultacie zostanie wyznaczona wartość zmiennej 
+ `denominator` i to ona zostanie wyświetlona.
 
 ## Makra
 
-Once we understand `quote/2` and `unquote/1` we're ready to dive into macros.  It is important to remember that macros, like all metaprogramming, should be used sparingly.
+Jak już rozumiemy `quote/2` i `unquote/1`, to możemy przyjrzeć się makrom. Ważną rzeczą do zapamiętania jest to, że 
+makra tak jak całe metaprogramowanie powinny być używane oszczędnie.
 
-In the simplest of terms macros are special functions designed to return a quoted expression that will be inserted into our application code.  Imagine the macro being replaced with the quoted expression rather than called like a function.  With macros we have everything necessary to extend Elixir and dynamically add code to our applications.
+Najprościej mówiąc makro to rodzaj funkcji, która zwraca fragment AST, które może zostać wstawione do naszego kodu. 
+Przy czym makro zostanie zamienione na nasz kod, a nie wywołane jak zwykła funkcja. Dysponując makramy mamy 
+wszystkie niezbędne narzędzia, by dynamicznie dodawać kod w naszych aplikacjach.
 
 We begin by defining a macro using `defmacro/2` which, like much of Elixir, is itself a macro (let that sink in).  As an example we'll implement `unless` as a macro.  Remember that our macro needs to return a quoted expression:
 
