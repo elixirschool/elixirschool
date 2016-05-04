@@ -91,7 +91,8 @@ Najprościej mówiąc makro to rodzaj funkcji, która zwraca fragment AST, któr
 Przy czym makro zostanie zamienione na nasz kod, a nie wywołane jak zwykła funkcja. Dysponując makramy mamy 
 wszystkie niezbędne narzędzia, by dynamicznie dodawać kod w naszych aplikacjach.
 
-We begin by defining a macro using `defmacro/2` which, like much of Elixir, is itself a macro (let that sink in).  As an example we'll implement `unless` as a macro.  Remember that our macro needs to return a quoted expression:
+By zdefiniować makro, użyjemy `defmacro/2`, które, jak wiele rzeczy w Elixirze, samo też jest makrem. W naszym 
+przykładzie zaimplementujemy `unless` jako makro. Pamiętaj, że makro musi zwrócić fragment AST:
 
 ```elixir
 defmodule OurMacro do
@@ -104,6 +105,7 @@ end
 ```
 
 Let's require our module and give our macro a whirl:
+Zaimportujmy więc nasz moduł i pozwólmy makru działać:
 
 ```elixir
 iex> require OurMacro
