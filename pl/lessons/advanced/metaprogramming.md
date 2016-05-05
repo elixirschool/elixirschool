@@ -20,7 +20,7 @@ kłopoty ze zrozumieniem i utrzymaniem zawiłego i skomplikowanego kodu.
 - [Modyfikacja AST](#Modyfikacja-AST)
 - [Makra](#macros)
 	- [Makra prywatne](#Makra-prywatne)
-	- [Sanacja makr](#Sanacja-makr)
+	- [Separacja makr](#Separacja-makr)
 	- [Spinanie](#Spinanie)
 
 ## Reprezentacja wewnętrzna kodu
@@ -115,9 +115,13 @@ iex> OurMacro.unless false, do: "Hi"
 "Hi"
 ```
 
-Because macros replace code in our application, we can control when and what is compiled.  An example of this can be found in the `Logger` module.  When logging is disabled no code is injected and the resulting application contains no references or function calls to logging.  This is different from other languages where there is still the overhead of a function call even when the implementation is NOP.
+Ponieważ makra podmieniają kod w naszej aplikacji, zatem mamy wpływ na to, co i kiedy zostanie skompilowane. Przykład 
+tego typu zabiegów znajdziemy w module `Logger`.  Kiedy logowanie jest wyłączone, to żaden kod nie zostanie dopisany 
+i rezultacie nasza aplikacja nie będzie miała śladu po wywołaniach loggera. Takie zachowanie wyróżnia Elixira wśród 
+innych języków, w których nadal istnieje narzut związany z wywołaniem funkcji, które z powodu konfiguracji nic nie 
+robią.
 
-To demonstrate this we'll make a simple logger that can either be enabled or disabled:
+By zademonstrować to zachowanie, stwórzmy prosty logger, który będzie można włączyć i wyłączyć:
 
 ```elixir
 defmodule Logger do
@@ -139,7 +143,7 @@ defmodule Example do
 end
 ```
 
-With logging enabled our `test` function would result in code looking something like this:
+Ggy logowanie jest włączone funkcja `test` będzie wyglądać mniej więcej w ten sposób:
 
 ```elixir
 def test do
@@ -147,7 +151,7 @@ def test do
 end
 ```
 
-But if we disable logging the resulting code would be:
+Ale jeżeli jest wyłączone to kod będzie następujący:
 
 ```elixir
 def test do
@@ -156,11 +160,13 @@ end
 
 ### Makra prywatne
 
-Though not as common, Elixir does support private macros.  A private macro is defined with `defmacrop` and can only be called from the module in which it was defined.  Private macros must be defined before the code that invokes them.
+Niespotykanym rozwiązaniem w innych językach jest wspierany przez Elixira mechanizm mark prywatnych. Makro prywatne 
+definiujemy za pomocą `defmacrop` i można je wywołać tylko w module, w którym zostało zdefiniowane.
 
-### Sanacja makr
+### Separacja makr
 
-How macros interact with the caller's context when expanded is known as macro hygiene. By default macros in Elixir are hygienic and will not conflict with our context:
+Sposób, w jaki makro wchodzi w interakcję z kontekstem wywołującego, jest nazywane separacja makr. Domyślnie Elixir
+odseparowuje makra od kontekstu, by nie powodowały konfliktów:
 
 ```elixir
 defmodule Example do
@@ -179,7 +185,8 @@ iex> val
 42
 ```
 
-But what if we wanted to manipulate the value of `val`?  To mark a variable as being unhygienic we can use `var!/2`.  Let's update our example to include another macro utilizing `var!/2`:
+Co, jeżeli chcielibyśmy manipulować zmienną `val` w makrze? Możemy oznaczyć naszą zmienną jako nieodseparowaną z a 
+pomocą `var!/2`.  Dodajmy do przykładu kolejne, nieodseparowane makro, używające `var!/2`:
 
 ```elixir
 defmodule Example do
@@ -193,7 +200,7 @@ defmodule Example do
 end
 ```
 
-Let's compare how they interact with our context:
+Porównajmy, jaki wpływ mają na nasz kontekst:
 
 ```elixir
 iex> require Example
@@ -210,13 +217,18 @@ iex> val
 -1
 ```
 
-By including `var!/2` in our macro we manipulated the value of `val` without passing it into our macro.  The use of non-hygienic macros should be kept to a minimum.  By including `var!/2` we increase the risk of a variable resolution conflict.
+Dodając `var!/2` możemy manipulować wartością `val` bez konieczności przekazywana jej jako parametru. Używanie 
+nieodseparowanych makr powinno być ograniczone do minimum. Używając `var!/2` zwiększamy szansę na pojawienie się 
+konfliktu nazw i zakresów wśród zmiennych.
 
-### Binding
+### Spinanie
 
-We already covered the usefulness of `unquote/1`, but there's another way to inject values into our code: binding.  With variable binding we are able to include multiple variables in our macro and ensure they're only unquoted once, avoiding accidental revaluations. To use bound variables we need to pass a keyword list to the `bind_quoted` option in `quote/2`.
+Wiemy już, jak użyteczna jest funkcja `unquote/1`, ale poza nią istnieje jeszcze inna metoda wstawiania wartości do 
+kodu, spinanie. Wykorzystując spinanie zmiennych, możemy używać zmiennej wiele razy w jednym makrze bez obawy, że 
+nastąpi zmiana jej wartości. By tego dokonać, musimy przekazać opcję `bind_quoted` do funkcji `quote/2`.
 
-To see the benefit of `bind_quote` and to demonstrate the revaluation issue let's use an example.  We can start by creating a macro that simply outputs the expression twice:
+By pokazać zalety `bind_quote` oraz problem zmiany wartości zmiennej posłużmy się następującym przykładem. Stwórzmy 
+proste makro, które będzie dwukrotnie wypisywać przekazaną wartość:
 
 ```elixir
 defmodule Example do
@@ -229,7 +241,7 @@ defmodule Example do
 end
 ```
 
-We'll try out our new macro by passing it the current system time.  We should expect to see it output twice:
+Przetestujmy je podając aktualny czas. W rezultacie powinniśmy zobaczyć dwie linie:
 
 ```elixir
 iex> Example.double_puts(:os.system_time)
@@ -237,7 +249,9 @@ iex> Example.double_puts(:os.system_time)
 1450475941851733000
 ```
 
-The times are different!  What happened?  Using `unquote/1` on the same expression multiple times results in revaluation and that can have unintended consequences.  Let's update the example to use `bind_quoted` and see what we get:
+Wartości są różne! Co się stało?  Gdy użyliśmy `unquote/1` na tym samym wyrażeniu kilka razy, to pomiędzy naszymi 
+wywołaniami wartość wyrażenia zmieniła się, co doprowadziło do nieoczekiwanego zachowania. Poprawmy kod, używając  
+`bind_quoted` i zobaczmy co się stanie:
 
 ```elixir
 defmodule Example do
@@ -256,6 +270,7 @@ iex> Example.double_puts(:os.system_time)
 1450476083466500000
 ```
 
-With `bind_quoted` we get our expected outcome: the same time printed twice.
+Kod z `bind_quoted` zadziałał zgodnie z oczekiwaniami, pojawiła się dwa razy taka sama wartość.
 
-Now that we've covered `quote/2`, `unquote/1`, and `defmacro/2` we have all the tools necessary to extend Elixir to suit our needs.
+Teraz gdy znamy `quote/2`, `unquote/1` i`defmacro/2`, to mamy już wszystkie potrzebne narzędzia, by rozszerzać Elixira
+ wedle naszych potrzeb.
