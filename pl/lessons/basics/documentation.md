@@ -39,7 +39,7 @@ poziomie kodu do tworzenia dokumentacji. Przyjrzyjmy się trzem z nich:
 Najprostszą metodą dokumentowania kodu są komentarze. Podobnie jak w Pythonie i Ruby, tak w Elixirze komentarz 
 rozpoczyna się znakiem `#`, zwanym *kratką* albo *hashem*.
 
-Popatrzy na ten skrypt (greeting.exs):
+Popatrzymy na ten skrypt (greeting.exs):
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
@@ -204,7 +204,6 @@ Examples
 
 ### Instalacja
 
-Assuming all is well, and we're seeing the output above suggests that we are ready to set up ExDoc. Within our `mix.exs` file add the two required dependencies to get started; `:earmark` and `:ex_doc`.
 Wnioskując z powyższego komunikatu jesteśmy już gotowi by skonfigurować ExDoc. W pliku `mix.exs` musimy dodać dwie 
 zależności `:earmark` i `:ex_doc`.
 
@@ -228,8 +227,8 @@ to wymaga trochę dodatkowej konfiguracji, o której poczytasz [tutaj (ang.)](ht
 Idąc dalej w linii poleceń wydajemy dwie komendy:
 
 ```bash
-$ mix deps.get # gets ExDoc + Earmark.
-$ mix docs # makes the documentation.
+$ mix deps.get # pobiera ExDoc + Earmark.
+$ mix docs # generuje dokumentację.
 
 Docs successfully generated.
 View them at "doc/index.html".
@@ -250,7 +249,7 @@ Możemy ją teraz umieścić na GitHubie, naszej stronie, albo w serwisie [HexDo
 ## Dobre praktyki
 
 Zasady tworzenia dokumentacji powinny być opisane w przewodniku dobrych praktyk języka. Jednakże Elixir jest jeszcze
-bardzo młodym językiem i wiele elementów jego ekosystemu musi zostać zestandaryzowane, co oznacza, że dobre praktyki
+bardzo młodym językiem i wiele elementów jego ekosystemu musi zostać zestandaryzowanych, co oznacza, że dobre praktyki
 dla dokumentacji są tworzone przede wszystkim przez społeczność programistów. Można o tym poczytać, w dokumencie [The
 Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
