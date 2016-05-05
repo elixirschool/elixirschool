@@ -139,6 +139,7 @@ We'll start with a simple example of `with` and then look at something more:
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
+%{first: "Sean", last: "Callan"}
 iex> with {:ok, first} <- Map.fetch(user, :first),
 ...>      {:ok, last} <- Map.fetch(user, :last),
 ...>      do: last <> ", " <> first
