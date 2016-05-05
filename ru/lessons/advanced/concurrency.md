@@ -168,7 +168,7 @@ end
 iex> task = Task.async(Example, :double, [2000])
 %Task{pid: #PID<0.111.0>, ref: #Reference<0.0.8.200>}
 
-# Do some work
+# Делаем что-нибудь
 
 iex> Task.await(task)
 4000
