@@ -104,7 +104,6 @@ defmodule OurMacro do
 end
 ```
 
-Let's require our module and give our macro a whirl:
 Zaimportujmy więc nasz moduł i pozwólmy makru działać:
 
 ```elixir
