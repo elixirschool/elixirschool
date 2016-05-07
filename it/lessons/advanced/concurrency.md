@@ -6,9 +6,9 @@ order: 4
 lang: it
 ---
 
-Uno dei punti di forza di Elixir è il suo supporto alla concorrenza. Grazie alla ErlangVM, scrivere programmi concorrenti in Elixir è più semplice di quanto uno possa aspettarsi. Il modello di concorreza si basa sugli Attori, processi indipendenti che comunicano con altri processi, attraverso il passaggio di messaggi.
+Uno dei punti di forza di Elixir è il suo supporto alla concorrenza. Grazie alla ErlangVM, scrivere programmi concorrenti in Elixir è più semplice di quanto ci si possa aspettare. Il modello di concorrenza si basa sugli Attori, ovvero dei processi concorrenti che mantengono uno stato interno e comunicano con altri attori/processi attraverso lo scambio di messaggi.
 
-In questa lezione daremo un'occhiata ai moduli sulla concorrenza che vengono provveduti con l'installazione di Elixir. Nel prossimo capitolo, ci occupiamo dei _behaviour OTP_ che ci permettono di scrivere programmi concorrenti.
+In questa lezione daremo un'occhiata ai moduli relativi ai processi concorrenti che vengono forniti dall'installazione di Elixir. Nel prossimo capitolo, ci occuperemo dei behaviour OTP che li implementano.
 
 ## Tavola dei Contenuti
 
@@ -49,7 +49,7 @@ iex> spawn(Example, :add, [2, 3])
 
 ### Message Passing
 
-Per comunicare, i processi usano _message passing_. A riguardo, ritroviamo due componenti principali: `send/2` e `receive/1`. La funzione `send/2` ci permette di mandare message ad altri PID; per ascoltare per messaggi in arrivo, usiamo `receive/1` ed (opzionalmente) eseguiamo un _match_ sui messaggi in arrivo. Se un messaggio non soddisfa nessun _match_, il processo ignora il messaggio e continua ininterrotto.
+I processi utilizzano lo scambio di messaggi come metodo di comunicazione, facendo uso di due componenti principali: `send/2` e `receive/1`.  La funzione `send/2` ci permette di mandare messaggi ad altri PID, mentre `receive/1` ci consente di ascoltare quelli in arrivo effettuando un confronto (_match_) opzionale per determinare se il messaggio va considerato o ignorato.
 
 ```elixir
 defmodule Example do
@@ -73,7 +73,7 @@ iex> send pid, :ok
 
 ### Process Linking
 
-Un problema con `spawn` è sapere quando il processo lanciato muore. Per questo motivo, abbiamo bisogno di collegare i nostri processi, usando `spawn_link`. Due processi collegati riceveranno notifiche d'uscita vicendevolmente.
+Il componente `spawn` ha un problema: non ci informa quando un processo termina inaspettatamente. Per ovviare a questo inconveniente, possiamo utilizzare la funzione `spawn_link`: in questo modo i due processi collegati riceveranno i rispettivi messaggi di uscita.
 
 ```elixir
 defmodule Example do
@@ -87,7 +87,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) :kaboom
 ```
 
-A volte, non vogliamo che un processo collegato uccida il processo che l'ha creato. Per evitare questo, dobbiamo _intrappolare le uscite_ nel processo genitore. Quando intrappoliamo uscite in un processo, questo riceverà solo messaggi di notifica in questa forma: `{:EXIT, dal_pid, ragione}`.
+Talvolta non vogliamo che un processo "collegato" termini il processo che l'ha creato. Per evitare questa situazione, dobbiamo controllare i messaggi di uscita nel processo padre. Quando controlliamo i messaggi di uscita, questi verranno ricevuti nella seguente forma: `{:EXIT, dal_pid, ragione}`.
 
 ```elixir
 defmodule Example do
@@ -109,7 +109,7 @@ Exit reason: kaboom
 
 ### Process Monitoring
 
-Cosa facciamo quando non vogliamo che due processi siano collegati, ma rimangano comunque informati sull'altro? In questo caso, possiamo fare _process monitoring_ con `spawn_monitor`. Quando monitoriamo un processo, riceviamo un messaggio quando questo muore, senza preoccuparci di ripercussioni sul processo corrente, e senza dover intrappolare uscite.
+Cosa possiamo fare quando non vogliamo che due processi siano collegati, ma allo stesso tempo desideriamo venire informati di possibili terminazioni inaspettate? In questo caso, `spawn_monitor` viene in nostro aiuto, permettendoci di monitorare i processi. Quando monitoriamo un processo, veniamo informati da un messaggio quando questo termina, senza preoccuparci di ripercussioni sul processo corrente, e senza dover controllare esplicitamente i messaggi di uscita nei singoli processi.
 
 ```elixir
 defmodule Example do
@@ -130,7 +130,7 @@ Exit reason: kaboom
 
 ## Agenti
 
-Gli Agenti sono astrazioni attorno a dei processi di background, che mantengono uno stato interno. Possiamo accedere ad agenti da altri processi all'interno della nostra applicazione (e nodo). Lo stato di un agente è determinato dal valore di ritorno della funzione che lo inizializza, o aggiorna:
+Gli Agenti sono un'astrazione che permette di accedere e manipolare in maniera agevole delle informazioni riguardanti lo stato di una parte di applicazione. Possiamo accedere ad agenti da altri processi all'interno della nostra applicazione (e nodo). Lo stato di un agente è determinato dal valore di ritorno della funzione che lo inizializza o lo aggiorna:
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
@@ -155,7 +155,7 @@ iex> Agent.get(Numbers, &(&1))
 
 ## Task
 
-I Task rendono possibile eseguire una funzione in background, della quale possiamo ottenere il valore di ritorno in futuro. I Task possono essere particolarmente utili quando abbiamo a che fare con operazioni costose, e vogliamo evitare di bloccare l'esecuzione della nostra applicazione.
+I Task rendono possibile eseguire una funzione in background, dalla quale possiamo ottenere il valore di ritorno in un momento successivo. I Task possono essere particolarmente utili quando abbiamo a che fare con operazioni particolarmente onerose in termini di tempo di esecuzione (per esempio una richiesta HTTP), e vogliamo evitare di bloccare l'esecuzione della nostra applicazione.
 
 ```elixir
 defmodule Example do
