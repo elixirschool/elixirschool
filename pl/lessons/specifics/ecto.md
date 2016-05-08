@@ -6,29 +6,33 @@ order: 2
 lang: pl
 ---
 
-Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define models, insert and update records, and query them.
+Ecto jest oficjalnym projektem zespołu Elixira zapewniającym obsługę baz danych wraz z odpowiednim, zintegrowanym 
+językiem. Za pomocą Ecto możemy migrować dane, definiować modele, wstawiać, aktualizować i odpytywać bazę danych.
 
-## Table of Contents
+## Spis treści
 
-- [Setup](#setup)
-  - [Repository](#repository)
-  - [Supervisor](#supervisor)
-  - [Configuration](#configuration)
-- [Mix Tasks](#mix-tasks)
-- [Migrations](#migrations)
-- [Models](#models)
-- [Querying](#querying)
-  - [Basics](#basics)
-  - [Count](#count)
-  - [Group By](#group-by)
-  - [Order By](#order-by)
-  - [Joins](#joins)
-  - [Fragments](#fragments)
-- [Changesets](#changesets)
+- [Przygotowanie](#Przygotowanie)
+  - [Repozytorium](#Repozytorium)
+  - [Nadzorca](#Nadzorca)
+  - [Konfiguracja](#konfiguracja)
+- [Zadnie Mix](#Zadnie-Mix)
+- [Migracja](#Migracja)
+- [Modele](#modele)
+- [Zapytania](#Zapytania)
+  - [Podstawy](#podstawy)
+  - [Zliczanie](#Zliczanie)
+  - [Grupowanie](#Grupowanie)
+  - [Sortowanie](#Sortowanie)
+  - [Złączenia](#złączenia)
+  - [Fragmenty](#fragmenty)
+- [Aktualizacja danych](#Aktualizacja-danych)
 
-## Setup
+## Przygotowanie
 
-To get started we need to include Ecto and a database adapter in our project's `mix.exs`.  You can find a list of supported database adapters in the [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) section of the Ecto README.  For our example we'll use PostgreSQL:
+Zacznijmy od dodania Ecto oraz adaptera bazy do konfiguracji projektu w pliku `mix.exs`.  Lista wszystkich 
+dostępnych adapterów i wspieranych baz danych, w języku angielskim, znajduje się w sekcji 
+[Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) w pliku README projektu Ecto. W naszym 
+przykładzie użyjemy bazy PostgreSQL:
 
 ```elixir
 defp deps do
@@ -37,7 +41,7 @@ defp deps do
 end
 ```
 
-Now we can add Ecto and our adapter to the application list:
+Teraz możemy dodać Ecto i nasz adapter do listy aplikacji:
 
 ```elixir
 def application do
@@ -45,9 +49,11 @@ def application do
 end
 ```
 
-### Repository
+### Repozytorium
 
-Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo` task.  We'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
+W końcu musimy stworzyć repozytorium dla naszego projektu, które pełni rolę opakowania (ang. _wrapper_) bazy danych.  
+Możemy to zrobić wykorzystując polecenie `mix ecto.gen.repo`.  Zadania Ecto dla Mixa omówimy za chwilę. Moduł `Repo` 
+znajdziemy w `lib/<projectname>/repo.ex`:
 
 ```elixir
 defmodule ExampleApp.Repo do
@@ -56,11 +62,12 @@ defmodule ExampleApp.Repo do
 end
 ```
 
-### Supervisor
+### Nadzorca
 
-Once we've created our Repo we need to set up our supervisor tree, which is usually found in `lib/<project name>.ex`.
+Po stworzeniu repozytorium musimy jeszcze skonfigurować drzewo nadzorców, które znajdziemy w pliku`lib/<project name>.ex`.
 
-It is important to note that we set up the Repo as a supervisor with `supervisor/3` and _not_ `worker/3`.  If you generated your app with the `--sup` flag much of this exists already:
+Kluczowe jest wykorzystanie do tego funkcji `supervisor/3`, a _nie_ `worker/3`.  Jeżeli wygenerujemy aplikację z 
+flagą `--sup`, to większość konfiguracji będzie już gotowa:
 
 ```elixir
 defmodule ExampleApp.App do
@@ -79,11 +86,12 @@ defmodule ExampleApp.App do
 end
 ```
 
-For more info on supervisors check out the [OTP Supervisors](/lessons/advanced/otp-supervisors) lesson.
+Więcej o nadzorcach znajdziesz w lekcji [Nadzorcy OTP](/lessons/advanced/otp-supervisors).
 
-### Configuration
+### Konfiguracja
 
-To configure Ecto we need to add a section to our `config/config.exs`.  Here we'll specify the repository, adapter, database, and account information:
+By skonfigurować Ecto musimy dodać odpowiednią sekcję w pliku `config/config.exs`. Zawiera ona informacje o 
+repozytorium, adapterze, bazie danych oraz dane użytkownika:
 
 ```elixir
 config :example_app, ExampleApp.Repo,
@@ -94,9 +102,9 @@ config :example_app, ExampleApp.Repo,
   hostname: "localhost"
 ```
 
-## Mix Tasks
+## Zadnie Mix
 
-Ecto includes a number of helpful mix tasks for working with our database:
+Ecto zawiera wiele przydatnych zadań mix by wspomagać nas w pracy z bazą danych:
 
 ```shell
 mix ecto.create         # Create the storage for the repo
@@ -107,7 +115,7 @@ mix ecto.migrate        # Run migrations up on a repo
 mix ecto.rollback       # Rollback migrations from a repo
 ```
 
-## Migrations
+## Migracja
 
 The best way to a create migrations is the `mix ecto.gen.migration <name>` task.  If you're acquainted with ActiveRecord these will look familiar.
 
@@ -140,7 +148,7 @@ To apply our new migration run `mix ecto.migrate`.
 
 For more on migrations take a look at the [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) section of the docs.
 
-## Models
+## Modele
 
 Now that we have our migration we can move on to the model.  Models define our schema, helper methods, and our changesets.  We'll cover changesets more in the next sections.
 
@@ -175,7 +183,7 @@ end
 
 The schema we define in our model closely represents what we specified in our migration.  In addition to our database fields we're also including two virtual fields.  Virtual fields are not saved to the database but can be useful for things like validation.  We'll see the virtual fields in action in the [Changesets](#changesets) section.
 
-## Querying
+## Zapytania
 
 Before we can query our repository we need to import the Query API.  For now we only need to import `from/2`:
 
@@ -185,7 +193,7 @@ import Ecto.Query, only: [from: 2]
 
 The official documentation can be found at [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html).
 
-### Basics
+### Podstawy
 
 Ecto provides an excellent Query DSL that allows us to express queries clearly.  To find the usernames of all confirmed accounts we could use something like this:
 
@@ -201,7 +209,7 @@ Repo.all(query)
 
 In addition to `all/2`, Repo provides a number of callbacks including `one/2`, `get/3`, `insert/2`, and `delete/2`.  A complete list of callbacks can be found at [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
 
-### Count
+### Zliczanie
 
 ```elixir
 query = from u in User,
@@ -209,7 +217,7 @@ query = from u in User,
     select: count(u.id)
 ```
 
-### Group By
+### Grupowanie
 
 To group users by their confirmation status we can include the `group_by` option:
 
@@ -221,7 +229,7 @@ query = from u in User,
 Repo.all(query)
 ```
 
-### Order By
+### Sortowanie
 
 Ordering users by their creation date:
 
@@ -241,7 +249,7 @@ query = from u in User,
     select: [u.username, u.inserted_at]
 ```
 
-### Joins
+### Złączenia
 
 Assuming we had a profile associated with our user, let's find all confirmed account profiles:
 
@@ -251,7 +259,7 @@ query = from p in Profile,
     where: u.confirmed == true
 ```
 
-### Fragments
+### Fragmenty
 
 Sometimes, like when we need specific database functions, the Query API isn't enough.  The `fragment/1` function exists for this purpose:
 
@@ -263,7 +271,7 @@ query = from u in User,
 
 Additional query examples can be found in the [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html) module description.
 
-## Changesets
+## Aktualizacja danych
 
 In the previous section we learned how to retrieve data, but how about inserting and updating it?  For that we need Changesets.
 
