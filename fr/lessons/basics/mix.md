@@ -41,7 +41,7 @@ On peut lire dans les messages de sortie que mix a créé notre dossier et un ce
 * creating test/example_test.exs
 ```
 
-Dans cette leçon nous allons nous intéresser au fichier `mix.exs`, où on configure notre application, ses dépendances, environnement et version. Ouvrez le fichier dans votre éditeur préféré, vous devriez voir quelque chose comme ça (les commentaires ont été supprimés pour la concision):
+Dans cette leçon nous allons nous intéresser au fichier `mix.exs`, où on configure notre application, ses dépendances, son environnement et sa version. Ouvrez le fichier dans votre éditeur préféré, vous devriez voir quelque chose comme ça (les commentaires ont été supprimés pour plus de concision):
 
 ```elixir
 defmodule Example.Mixfile do
@@ -68,7 +68,7 @@ end
 
 La première section qui nous intéresse est `project`. On y définit le nom de notre application (`app`), on spécifie la version (`version`), la version d'Elixir (`elixir`), et enfin nos dépendances (`deps`).
 
-La section `application` est utilisée pendant la génération de notre fichier d'application, que nous convrirons par la suite.
+La section `application` est utilisée pendant la génération de notre fichier d'application, que nous verrons par la suite.
 
 ## <a name="interactif"></a>Intéractif
 
@@ -132,9 +132,9 @@ Mix, tout comme Bundler, supportes différents environnements. De base, mix fonc
 
 + `:dev` — L'environnement par défaut.
 + `:test` — Utilisé par `mix test`. Couvert plus loin dans la leçon suivante.
-+ `:prod` — Utilisé quand on envoie l'application en production.
++ `:prod` — Utilisé quand l'application fonctionne en production.
 
-L'environnement courant peut être accédé en utilisant `Mix.env`. Comme attendu, l'environnement peut être modifié via la variable d'environnemnt `MIX_ENV`:
+L'environnement courant peut être accédé en utilisant `Mix.env`. Il peut être modifié via la variable d'environnemnt `MIX_ENV`:
 
 ```bash
 $ MIX_ENV=prod mix compile
