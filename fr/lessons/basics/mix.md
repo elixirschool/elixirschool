@@ -12,11 +12,11 @@ Jusqu'ici nous avons travaillé exclusivement dans `iex`, ce qui a ses limitatio
 
 ## Table of Contents
 
-- [Nouveaux projets](#new-project)
+- [Nouveau projet](#nouveau-projet)
 - [Compilation](#compilation)
-- [Intéractif](#interactive)
-- [Gestion des dépendances](#manage-dependencies)
-- [Environnements](#environments)
+- [Intéractif](#interactif)
+- [Gestion des dépendances](#gestion-des-dependances)
+- [Environnements](#environnements)
 
 ## Nouveau projet
 
@@ -70,7 +70,7 @@ La première section qui nous intéresse est `project`. On y définit le nom de 
 
 La section `application` est utilisée pendant la génération de notre fichier d'application, que nous convrirons par la suite.
 
-## Interactif
+## <a name="interactif"></a>Intéractif
 
 Il peut être nécessaire d'utiliser `iex` dans le contexte de notre application. Heureusement, mix rend ça facile. On peut commencer une nouvelle session `iex`:
 
@@ -99,7 +99,7 @@ Generated example app
 
 Quand on compile un projet, mix crée un dossier `_build` pour nos artefacts. Si on regarde dans ce dossier `_build` on y trouve notre applicaton compilée `example.app`.
 
-## Gestion des dépendances
+## <a name="gestion-des-dependances"></a>Gestion des dépendances
 
 Notre projet n'a aucune dépendance mais en aura bientôt, donc allons-y et voyons comment définir des dépendances et les obtenir.
 
@@ -126,7 +126,7 @@ $ mix deps.get
 
 Et voilà ! Nous avons défini et obtenu nos dépendances. On est maintenant prêt à en ajouter quand cela sera nécessaire.
 
-## Environments
+## Environnements
 
 Mix, tout comme Bundler, supportes différents environnements. De base, mix fonctionne avec trois environnements: 
 
