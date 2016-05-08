@@ -12,11 +12,12 @@ What are Strings in Elixir, Char lists, Graphemes and Codepoints.
 
 - [Strings in Elixir](#strings-in-elixir)
 - [Char lists](#char-lists)
-- [Graphemes and Codepoints](#graphemes)
+- [Graphemes and Codepoints](#graphemes-and-codepoints)
 - [String functions](#string-functions)
   - [Length](#length)
   - [Replace](#replace)
   - [Duplicate](#duplicate)
+  - [Split](#split)
 - [Exercises](#exercises)
   - [Anagrams](#anagrams)
 
@@ -68,36 +69,36 @@ iex> String.graphemes string
 
 Let's review some of the most important and useful function the String module has for us.
 
-##### `length/1`
+##### Length
 
-Returns the number of Graphemes in the string.
+Returns the number of Graphemes in the string. Function definition is `length/1`.
 
 ```elixir
 iex> String.length "Hello"
 5
 ```
 
-##### `replace/4`
+##### Replace
 
-Returns a new string replacing a current pattern in the string for some new replacement string.
+Returns a new string replacing a current pattern in the string for some new replacement string. Function definition is `replace/4`.
 
 ```elixir
 iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-##### `duplicate/2`
+##### Duplicate
 
-Returns a new string repeated n times.
+Returns a new string repeated n times. Function definition is `duplicate/2`
 
 ```elixir
 iex> String.duplicate "Oh my ", 3
 "Oh my Oh my Oh my "
 ```
 
-##### `split/2`
+##### Split
 
-Returns an array of strings splitted by pattern
+Returns an array of strings splitted by pattern. Function definition is `split/2`
 
 ```elixir
 iex> String.split("Hello World", " ")
