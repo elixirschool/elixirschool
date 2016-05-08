@@ -8,7 +8,7 @@ lang: fr
 
 Installation, types de base et opérations.
 
-## Table of Contents
+## Table des matières
 
 - [Installation](#installation)
 	- [Installer Elixir](#installer-elixir)
