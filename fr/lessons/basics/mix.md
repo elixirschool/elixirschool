@@ -20,7 +20,7 @@ Jusqu'ici nous avons travaillé exclusivement dans `iex`, ce qui a ses limitatio
 
 ## Nouveau projet
 
-Mix rend facile la création de nouveau projet avec la commande `mix new`. Cela génére la structure de dossiers de notre projet et crée des fichiers de base. C'est tout simple, allons-y:
+Mix rend facile la création d'un nouveau projet avec la commande `mix new`. Cela génére la structure de dossiers de notre projet et crée les fichiers de base. C'est tout simple, allons-y:
 
 ```bash
 $ mix new example
@@ -82,7 +82,7 @@ Démarrer `iex` de cette façon va charger notre application et ses dépendances
 
 ## Compilation
 
-Mix est malin et compile ne compile que ce qui est nécessaire, mais il faut tout de même lancer la compilation de votre projet explicitement. Dans cette section nous verrons comment compiler notre projet et ce que fait la compilation.
+Mix est malin et ne compile que ce qui est nécessaire, mais il faut tout de même lancer la compilation de votre projet explicitement. Dans cette section nous verrons comment compiler notre projet et ce que fait la compilation.
 
 Pour compiler un projet mix nous avons simplement besoin de lancer `mix compile` dans notre répertoire de base:
 
