@@ -10,23 +10,23 @@ Elixir의 바다에 더 깊이 빠져들기 전에 먼저 mix를 공부해봐야
 
 여태까지 우리는 공부해오면서 여러 제약이 있는 `iex` 안에서만 작업해 왔었지요. 그렇지만 실제로 돌아가는 무엇인가를 만들어내기 위해서는 코드를 효율적으로 관리하도록 많은 파일로 나눌 필요가 있습니다. mix는 이렇게 프로젝트를 효율적으로 관리해낼 수 있게 해 줍니다.
 
-## Table of Contents
+## 목차
 
-- [New Projects](#new-project)
-- [Compilation](#compilation)
-- [Interactive](#interactive)
-- [Manage Dependencies](#manage-dependencies)
-- [Environments](#environments)
+- 프로젝트 시작하기
+- 대화형 셸에서 만나보기
+- 컴파일하기
+- 의존성 관리하기
+- 실행 환경
 
-## New Projects
+## 프로젝트 시작하기
 
-When we're ready to create a new Elixir project, mix makes it easy with the `mix new` command.  This will generate our project's folder structure and necessary boilerplate.  This is pretty straight forward, so let's get started:
+Elixir를 사용하여 프로젝트를 시작할 때, `mix new` 명령을 사용하여 새 프로젝트를 손쉽게 준비할 수 있습니다. 이 명령은 새로 만들어질 프로젝트의 폴더 구조와 공통적으로 필요한 파일들을 만들어냅니다. 참 솔직해서 알기 쉽네요. 이제 시작해봅시다:
 
 ```bash
 $ mix new example
 ```
 
-From the output we can see that mix has created our directory and a number of boilerplate files:
+출력하는 걸 보면 mix가 폴더와 함께 공통적으로 필요한 틀을 준비해낸 것을 확인할 수 있습니다.
 
 ```bash
 * creating README.md
@@ -41,7 +41,7 @@ From the output we can see that mix has created our directory and a number of bo
 * creating test/example_test.exs
 ```
 
-In this lesson we're going to focus our attention on `mix.exs`.  Here we configure our application, dependencies, environment, and version.  Open the file in your favorite editor, you should see something like this (comments removed for brevity):
+이번 수업에서는 `mix.exs` 파일에만 관심을 두고 살펴보도록 하겠습니다. 이 파일에서 우리가 방금 시작한 프로젝트와 프로젝트가 필요로 하는 의존성과 환경, 버전을 이해할 수 있습니다. 가장 좋아하는 에디터로 이 파일을 열었다면 이렇게 보일 것입니다. 주석은 생략하겠습니다:
 
 ```elixir
 defmodule Example.Mixfile do
@@ -66,38 +66,38 @@ defmodule Example.Mixfile do
 end
 ```
 
-The first section we'll look at is `project`.  Here we define the name of our application (`app`), specify our version (`version`), Elixir version (`elixir`), and finally our dependencies (`deps`).
+이 파일의 처음에 있는 `project`를 살펴봅시다. 이곳에는 이 프로젝트에서 만들고자 하는 애플리케이션의 이름(`app`)과 버전(`version`), 이 프로그램이 사용하는 Elixir 버전(`elixir`)과 의존성을 설정할 수 있습니다.
 
-The `application` section is used during the generation of our application file which we'll cover next.
+`appliciation`은 애플리케이션 파일을 생성해낼 때 쓰이는 부분인데, 조금 있다가 알아보도록 하겠습니다.
 
-## Interactive
+## 대화형 셸에서 만나보기
 
-It may be necessary to use `iex` within the context of our application.  Thankfully for us, mix makes this easy.  We can start a new `iex` session:
+응용 프로그램을 사용하고 설정할 수 있는 환경에서 `iex`을 사용하면 편할 때가 올 수도 있습니다. 다행스럽게도 mix를 사용해서 간단하게 사용할 수 있습니다. `iex` 세션을 이렇게 실행하게 되면:
 
 ```bash
 $ iex -S mix
 ```
 
-Starting `iex` this way will load your application and dependencies into the current runtime.
+현재 애플리케이션과 의존성을 현재 런타임으로 불러와 `iex`를 실행할 수 있습니다.
 
-## Compilation
+## 컴파일하기
 
-Mix is smart and will compile your changes when necessary, but it may still be necessary explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
+Mix는 바뀌는 부분이 있을 때 필요활 때마다 컴파일할 수 있을 정도로 독똑합니다. 하지만 명확하게 프로젝트를 컴파일하고 싶을 때가 있을 지도 모릅니다. 여기서는 컴파일이 무엇인지, 또 프로젝트를 어떻게 컴파일하는지를 다루어 보겠습니다.
 
-To compile a mix project we only need to run `mix compile` in our base directory:
+mix 프로젝트를 컴파일하려면 프로젝트의 맨 위 디렉터리에서 `mix compile`이라고 치기만 하면 됩니다.
 
 ```bash
 $ mix compile
 ```
 
-There isn't much to our project so the output isn't too exciting but it should complete successfully:
+프로젝트 안에 파일이 아주 많은 건 아니라 출력되는 내용이 그다지 재미있어 보이지는 않습니다. 그렇지만 컴파일이 잘 진행되었네요.
 
 ```bash
 Compiled lib/example.ex
 Generated example app
 ```
 
-When we compile a project mix creates a `_build` directory for our artifacts.  If we look inside `_build` we will see our compiled application: `example.app`.
+프로젝트를 컴파일하고 나면 mix가 컴파일 결과물을 `_build`라는 폴더를 만들어 담아둡니다. `_build` 폴더 안을 들여다 보면 컴파일된 애플리케이션인 `example.app`을 확인할 수 있습니다.
 
 ## Manage Dependencies
 
@@ -128,13 +128,13 @@ That's it!  We've defined and fetched our project dependencies.  Now we're prepa
 
 ## Environments
 
-Mix, much like Bundler, supports differing environments.  Out of the box mix works with three environments:
+Ruby에서 사용되는 Bundler처럼 mix는 실행 환경을 설정하고 바꿀 수 있습니다. mix로 크게 별다른 설정 없이 바로 사용할 수 있는 환경에는 세 가지가 있습니다:
 
-+ `:dev` — The default environment.
-+ `:test` — Used by `mix test`. Covered further in our next lesson.
-+ `:prod` — Used when we ship our application to production.
++ `:dev` — 기본적으로 적용하는 환경입니다.
++ `:test` — `mix test`를 실행할 때 사용합니다. 바로 다음 수업에서 다루겠습니다.
++ `:prod` — 실제 프로덕션에 애플리케이션을 내놓을 때 사용합니다.
 
-The current environment can be accessed using `Mix.env`.  As expected, the environment can be changed via the `MIX_ENV` environment variable:
+현재 실행 환경은 코드 내부에서 `Mix.env`를 통해 접근할 수 있습니다. 예상대로, `MIX_ENV` 환경 변수를 통해 실행 환경을 변경할 수 있습니다:
 
 ```bash
 $ MIX_ENV=prod mix compile
