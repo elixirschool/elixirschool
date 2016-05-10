@@ -6,9 +6,9 @@ order: 13
 lang: pl
 ---
 
-Odwzorowania kolekcji, zwane też wyrażeniami generatorowymi (ang. list comprehensions), są rozszerzeniem składni
-języka Elixir pozwalającym na wygodniejszą pracę z kolekcjami i danymi przeliczalnymi. W tej lekcji przyjrzymy się jak 
-mechanizm ten, ułatwia przetwarzanie oraz tworzenie kolekcji na bazie już istniejących.
+Składanie list(ang. list comprehensions), to lukier składniowy pozwalający na wygodniejszą pracę z kolekcjami i 
+danymi przeliczalnymi. W tej lekcji przyjrzymy się jak mechanizm ten, ułatwia przetwarzanie oraz tworzenie kolekcji 
+na bazie już istniejących.
 
 ## Spis treści
 
@@ -18,8 +18,8 @@ mechanizm ten, ułatwia przetwarzanie oraz tworzenie kolekcji na bazie już istn
 
 ## Podstawy
 
-Najczęściej odwzorowania są używane wraz z `Enum` i `Stream` to tworzenia zwięzłego kodu. Przyjrzyjmy się prostemu 
-porównaniu, a następnie omówmy jego elementy:
+Najczęściej składanie list używane jest do tworzenia bardziej zwięzłego kodu z wykorzystaniem `Enum` oraz `Stream`. 
+Przyjrzyjmy się prostemu porównaniu, a następnie omówmy jego elementy:
 
 ```elixir
 iex> list = [1, 2, 3, 4, 5]
@@ -28,9 +28,9 @@ iex> for x <- list, do: x*x
 ```
 
 Pierwsze co widać to użycie słowa kluczowego `for` i generatora. Czym jest generator?  Generatorem nazywamy wyrażenie
- `x <- [1, 2, 3, 4]` znajdujące się w odwzorowaniu. Odpowiada ono za dostarczenie kolejnych wartości.
+ `x <- [1, 2, 3, 4]` znajdujące się w liście składanej. Odpowiada ono za dostarczenie kolejnych wartości.
 
-Oczywiście odwzorowania można stosować nie tylko do list, ale do wszystkich kolekcji i danych binarnych:
+Oczywiście składania można stosować nie tylko do list, ale do wszystkich kolekcji i danych binarnych:
 
 ```elixir
 # Listy asocjacyjne
