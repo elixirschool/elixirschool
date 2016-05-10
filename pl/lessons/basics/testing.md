@@ -47,7 +47,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### assert
 
-Jeżeli kiedyś pisałeś już testy po zapewne znasz pojęcie `assert`; niektóre biblioteki używają `should` lub `expect` 
+Jeżeli kiedyś pisałeś już testy to zapewne znasz pojęcie `assert`; niektóre biblioteki używają `should` lub `expect` 
 zamiennie z `assert`.
 
 Makro `assert` sprawdza, czy wyrażenie jest prawdziwe. Jeżeli nie jest, to zwróci błąd, a nasz test nie powiedzie się.
@@ -82,7 +82,8 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 1 tests, 1 failures
 ```
 
-ExUnit dokładnie wskazuje gdzie nasz test, się nie powiódł, jaka była wartość oczekiwana, a jaka jest aktualnie.
+ExUnit dokładnie wskazuje miejsca, w których testy się nie powiodły, jakie były wartości oczekiwane, a jakie zostały 
+faktycznie zwrócone.
 
 ### refute
 
@@ -119,7 +120,7 @@ end
 
 ## Mockowanie
 
-W Elixirze mockom mówimy stanowcze nie.  Możesz mieć chęć wykorzystać mocki, ale są one niechętnie widziane w 
+W Elixirze mockom mówimy stanowcze nie. Możesz mieć chęć skorzystania z mocków,, ale są one niechętnie widziane w 
 społeczności Elixira i to nie bez powodu. Jeżeli będziesz podążać za wskazówkami, wzorcami i dobrymi praktykami to 
 testowanie funkcji w izolacji nie będzie trudne.
 
