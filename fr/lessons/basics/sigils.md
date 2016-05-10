@@ -131,7 +131,7 @@ iex> ~W/i love elixir school/
 ["i", "love", "elixir", "school"]
 ```
 
-On peut voir que ce qui est tapé entre les délimiteurs est séparée par des espaces et mis dans une liste. Pourtant, il n'y a pas de différence entre ces deux exemples. Encore une fois, la différence vient de l'interpolation et de l'échappement des séquences. Prenez l'exemple suivant:
+On peut voir que ce qui est tapé entre les délimiteurs est séparé par des espaces et mis dans une liste. Pourtant, il n'y a pas de différence entre ces deux exemples. Encore une fois, la différence vient de l'interpolation et de l'échappement des séquences. Prenez l'exemple suivant:
 
 ```elixir
 iex> ~w/i love #{'e'}lixir school/
