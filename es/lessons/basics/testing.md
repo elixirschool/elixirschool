@@ -8,14 +8,7 @@ lang: es
 
 Las pruebas son una parte importante en el desarrollo de software. En esta lección vamos a ver como hacer pruebas de nuestro código Elixir con ExUnit y también vamos a ver algunas buenas prácticas para hacer las pruebas.
 
-## Tabla de Contenidos
-
-- [ExUnit](#exunit)
-  - [assert](#assert)
-  - [refute](#refute)
-  - [assert_raise](#assertraise)
-- [Configuración de pruebas](#configuración-de-pruebas)
-- [Mocking](#mocking)
+{% include toc.html %}
 
 ## ExUnit
 

@@ -8,24 +8,7 @@ lang: no
 
 Installasjon, grunnleggende typer og operatorer.
 
-
-## Innholdsfortegnelse
-
-- [Installering](#installering)
-	- [Installere Elixir ](#installere-elixir)
-	- [Interaktiv Modus](#interaktiv-modus)
-- [Grunnleggende Typer](#grunnleggende-typer)
-	- [Heltall (integers)](#heltall-integers)
-	- [Flyttall (floats)](#flyttall-floats)
-	- [Boolske verdier (booleans)](#boolske-verdier-booleans)
-	- [Atomer (atoms)](#atomer-atoms)
-	- [Strenger (strings)](#strenger-strings)
-- [Grunnleggende Operatorer](#grunnleggende-operatorer)
-	- [Aritmetikk](#artmetikk)
-	- [Boolske operatorer](#boolske-operatorer-boolean)
-	- [Sammenligningsoperatorer](#sammenligningsoperatorer)
-	- [Strenginterpolering](#strenginterpolering-string-interpolation)
-	- [Strengsammensetning](#strengsammensetning-string-concatenation)
+{% include toc.html %}
 
 ## Installering
 

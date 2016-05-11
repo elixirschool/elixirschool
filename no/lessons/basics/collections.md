@@ -8,15 +8,7 @@ lang: no
 
 Lister, tupler, nøkkelord, kart og funksjonell kombinasjon.
 
-## Innholdsfortegnelse
-
-- [Lister (lists)](#lister-lists)
-	- [Listesammenf&oslash;yning (list concatenation)](#listesammenf%C3%B8yning-list-concatenation)
-	- [Listesubtrahering (list subtraction)](#listesubtrahering-list-subtraction)
-	- [Head / Tail](#head--tail)
-- [Tupler (tuples)](#tupler-tuples)
-- [Nøkkelordslister (keyword lists)](#nøkkelordslister-keyword-lists)
-- [Kart (maps)](#kart-maps)
+{% include toc.html %}
 
 ## Lister (lists)
 

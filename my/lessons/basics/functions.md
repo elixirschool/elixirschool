@@ -8,15 +8,7 @@ lang: my
 
 Di dalam Elixir dan kebanyakan bahasa aturcara kefungsian, fungsi adalah rakyat kelas pertama.  Kita akan belajar mengenai jenis-jenis fungsi di dalam Elixir, apa yang menyebabkan mereka berbeza, dan bagaimana menggunakan mereka.
 
-## Isi Kandungan
-
-- [Fungsi Tanpa Nama](#fungsi-tanpa-nama)
-  - [Shorthand &](#Shorthand--)
-- [Pemadanan Corak](#pemadan-corak)
-- [Fungsi Bernama](#fungsi-bernama)
-  - [Fungsi Terlindung](#fungsi-terlindung)
-  - [Klausa Kawalan](#klausa-kawalan)
-  - [Argumen Lalai](#argumen-lalai)
+{% include toc.html %}
 
 ## Fungsi Tanpa Nama
 

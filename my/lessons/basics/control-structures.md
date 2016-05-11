@@ -8,11 +8,7 @@ lang: my
 
 Dalam pelajaran ini kita akan melihat struktur kawalan yang dibekalkan oleh ELixir.
 
-## Kandungan
-
-- [`if` dan `unless`](#if-dan-unless)
-- [`case`](#case)
-- [`cond`](#cond)
+{% include toc.html %}
 
 ## `if` dan `unless`
 

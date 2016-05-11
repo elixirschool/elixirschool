@@ -8,14 +8,7 @@ lang: cn
 
 supervisors 是一种特殊的进程：专门来监控其他的进程。supervisors 能够自动重启出错的子进程，从而编写容错性高的程序。
 
-## 目录
-- [配置](#section-1)
-  - [策略](#section-2)
-  - [嵌套](#section-3)
-
-- [Task Supervisor](#task-supervisor)
-  - [Setup](#setup)
-  - [Supervised Tasks](#supervised-tasks)
+{% include toc.html %}
 
 ## 配置
 Supervisors 的魔力主要在 `Supervisor.start_link/2` 函数中，除了能启动 supervisor 和子进程之外，它还允许我们设置管理子进程的策略：

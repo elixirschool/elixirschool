@@ -8,14 +8,7 @@ lang: pl
 
 Tworzenie i praca z sigilami.
 
-## Spis treści.
-
-- [Czym są sigile](#Czym-są-sigile)
-  - [Listy znaków](#Listy-znaków)
-  - [Wyrażenia regularne](#Wyrażenia-regularne)
-  - [Ciągi znaków](#Ciągi-znaków)
-  - [Listy słów](#Listy-słów)
-- [Tworzenie sigili](#Tworzenie-sigili)
+{% include toc.html %}
 
 ## Czym są sigile
 

@@ -8,16 +8,7 @@ lang: es
 
 Sabemos por experiencia que es revoltoso tener nuestras funciones en el mismo archivo y alcance. En esta sección cubriremos cómo agrupar funciones y definir un mapa especializado conocido como estructura (struct), con el propósito de organizar nuestro código de manera eficiente.
 
-## Tabla de contenidos
-
-- [Módulos](#modules)
-  - [Atributos de módulo](#module-attributes)
-- [Estructuras](#structs)
-- [Composición](#composition)
-  - [`alias`](#alias)
-  - [`import`](#import)
-  - [`require`](#require)
-  - [`use`](#use)
+{% include toc.html %}
 
 ## Modulos
 

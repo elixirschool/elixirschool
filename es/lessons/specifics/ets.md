@@ -8,22 +8,7 @@ lang: es
 
 Almacenamiento de términos de Erlang, comúnmente conocido como ETS, es un potente motor de almacenamiento incorporado en OTP y disponible para utilizar en Elixir. En esta lección vamos a ver cómo interactuar con ETS y cómo se pueden emplear en nuestras aplicaciones.
 
-## Tabla de Contenidos
-
-- [Descripción General](#descripcin-general)
-- [Creando Tablas](#creando-tablas)
-  - [Tipos de Tablas](#tipos-de-tablas)
-  - [Controles de Acceso](#controles-de-acceso)
-- [Insertando Datos](#insertando-datos)
-- [Recuperación de Datos](#recuperacin-de-datos)
-  - [Búsqueda de Claves](#bsqueda-de-claves)
-  - [Concordancia Simple](#concordancia-simple)
-  - [Búsqueda Avanzada](#bsqueda-avanzada)
-- [Eliminando Datos](#eliminando-datos)
-  - [Removiendo Registros](#removiendo-registros)
-  - [Removiendo Tablas](#removiendo-tablas)
-- [Ejemplos de uso de ETS](#ejemplos-de-uso-de-ets)
-- [ETS basado en disco](#ets-basado-en-disco)
+{% include toc.html %}
 
 ## Descripción General
 

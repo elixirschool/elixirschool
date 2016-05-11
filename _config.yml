@@ -111,3 +111,19 @@ sitemap:
 
 elixir:
   version: 1.2.3
+
+toc:
+  en: Table of Contents
+  jp: 目次
+  cn: 目录
+  es: Tabla de contenidos
+  pt: Sumário
+  vi: Mục lục
+  ru: Содержание
+  sk: Obsah
+  fr: Table des matières
+  gr: Πίνακας περιεχομένων
+  it: Tavola dei Contenuti
+  my: Isi Kandungan
+  pl: Spis treści
+  no: Innholdsfortegnelse

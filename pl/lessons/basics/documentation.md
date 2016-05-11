@@ -8,17 +8,7 @@ lang: pl
 
 Jak dokumentować kod Elixira.
 
-## Spis treści
-
-- [Adnotacje](#Adnotacje)
-  - [Komentowanie kodu](#Komentowanie-kodu)
-  - [Dokumentowanie modułów](#Dokumentowanie-modułów)
-  - [Dokumentowanie funkcji](#Dokumentowanie-funkcji)
-- [ExDoc](#exdoc)
-  - [Instalacja](#Instalacja)
-  - [Generowanie dokumentacji](#Generowanie-dokumentacji)
-- [Best Practice](#Dobre-praktyki)
-
+{% include toc.html %}
 
 ## Adnotacje
 

@@ -8,12 +8,7 @@ lang: pl
 
 W tej lekcji przyjrzymy się strukturom sterującym dostępnym w Elixirze.
 
-## Spis Treści
-
-- [`if` i `unless`](#if-i-unless)
-- [`case`](#case)
-- [`cond`](#cond)
-- [`with`](#with)
+{% include toc.html %}
 
 ## `if` i `unless`
 

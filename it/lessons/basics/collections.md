@@ -8,15 +8,7 @@ lang: it
 
 Liste, tuple, liste di keywords, mappe, dizionari e combinatori funzionali.
 
-## Tavola dei Contenuti
-
-- [Liste](#liste)
-	- [Concatenazione di Liste](#concatenazione-di-liste)
-	- [Sottrazione tra Liste](#sottrazione-tra-liste)
-	- [Head / Tail](#head--tail)
-- [Tuple](#tuple)
-- [Liste di Keywords](#liste-di-keywords)
-- [Mappe](#mappe)
+{% include toc.html %}
 
 ## Liste
 

@@ -10,13 +10,7 @@ Sebelum kita belajar lebih mendalam mengenai Elixir kita perlu memahami tentang 
 
 Sehingga tahap ini kita telah bekerja dengan `iex` yang mempunyai banyak kekangan.  Untuk membina sesuatu yang berguna kita perlu memisahkan kod kita kepada banyak fail supaya mudah untuk diuruskan, dan mix memudahkan kita menguruskan projek-projek kita. 
 
-## Isi Kandungan
-
-- [Projek Baru](#projek-baru)
-- [Pengkompilan](#pengkompilan)
-- [Interaktif](#interaktif)
-- [Mengurus Komponen Sokongan](#mengurus-komponen-sokongan)
-- [Persekitaran](#persekitaran)
+{% include toc.html %}
 
 ## Projek Baru
 
