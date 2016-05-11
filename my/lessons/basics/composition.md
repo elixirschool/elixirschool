@@ -8,16 +8,7 @@ lang: my
 
 Kita tahu dari pengalaman bahawa menyimpan semua fungsi di dalam satu fail dan skop membawa kepada keadaan kelam-kabut.  Di dalam pelajaran ini kita akan melihat bagaimana untuk meletakkan beberapa fungsi ke dalam satu kumpulan dan menetapkan sejenis map khas yang dikenali sebagai struct dalam usaha untuk menguruskan kod kita dengan lebih efisien. 
 
-## Kandungan
-
-- [Modul](#modul)
-  - [Ciri-ciri Modul](#ciri-ciri-modul)
-- [Struct](#struct)
-- [Komposisi](#komposis)
-  - [`alias`](#alias)
-  - [`import`](#import)
-  - [`require`](#require)
-  - [`use`](#use)
+{% include toc.html %}
 
 ## Modul
 

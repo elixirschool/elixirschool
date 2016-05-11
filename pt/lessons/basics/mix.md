@@ -10,13 +10,7 @@ Antes de podermos mergulhar nas águas mais profundas de Elixir primeiro precisa
 
 Até agora trabalhamos exclusivamente dentro do `iex` que tem limitações. A fim de construir algo substancial precisamos dividir nosso código acima em outros arquivos para gerenciar de forma eficaz, mix nos permite fazer isso com projetos.
 
-## Sumário
-
-- [Novos projetos](#novos-projetos)
-- [Compilação](#compilacao)
-- [Interativo](#interativo)
-- [Gestão de dependências](#gestao-de-dependencias)
-- [Ambientes](#ambientes)
+{% include toc.html %}
 
 ## Novos Projetos
 
@@ -70,7 +64,7 @@ A primeira seção que iremos analisar é `project`. Aqui nós definimos o nome 
 
 A seção `application` é usada durante a geração do nosso arquivo de aplicação que iremos ver em breve.
 
-## <a name="compilacao"></a>Compilação
+## Compilação
 
 Mix é inteligente e irá compilar as alterações quando necessário, mas ainda pode ser necessário explicitamente compilar o seu projeto. Nesta seção, vamos cobrir a forma de compilar o nosso projeto e o que essa compilação faz.
 
@@ -98,7 +92,7 @@ $ iex -S mix
 
 Iniciando `iex` desta forma , carrega sua aplicação e dependências no atual ambiente de execução.
 
-## <a name="gestao-de-dependencias"></a>Gestão de dependências
+## Gestão de dependências
 
 Nosso projeto não tem nenhuma dependência, mas em breve irá ter, por isso iremos seguir em frente e cobrir a definição e busca de dependências.
 

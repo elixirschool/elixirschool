@@ -11,14 +11,7 @@ Metaprogramação é o processo de utilização de código para escrever código
 
 Uma palavra de cautela: Metaprogramação é complicado e só deve ser usado quando for absolutamente necessário. O uso excessivo certamente levará a um código complexo que é difícil de entender e debugar.
 
-## Sumário
-
-- [Quote](#quote)
-- [Unquote](#unquote)
-- [Macros](#macros)
-  - [Macros Privados](#macros-privados)
-  - [Higienização de Macros](#higienizacao-de-macros)
-  - [Binding](#binding)
+{% include toc.html %}
 
 ## Quote
 
@@ -143,7 +136,7 @@ end
 
 Embora não seja tão comum, Elixir suporta macros privadas. Um macro privado é definido com `defmacro` e só pode ser chamado a partir do módulo no qual ele foi definido. Macros privados devem ser definidas antes do código que as invoca.
 
-### <a name="higienizacao-de-macros">Higienização de Macros
+### Higienização de Macros
 
 A característica de como macros interagem com o contexto de quem o chamou quando expandido é conhecida como a higienização de macro. Por padrão macros no Elixir são higiênicos e não entrarão em conflito com nosso contexto:
 

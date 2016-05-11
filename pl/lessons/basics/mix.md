@@ -14,13 +14,7 @@ Dotychczas pracowaliśmy z interpreterem `iex`, który ma dość ograniczone mo�
 rozbudowanego, musimy nasz projekt podzielić na wiele plików, by móc zarządzać kodem. Mix pozwala nam na efektywne 
 zarządzanie projektem.   
 
-## Spis treści
-
-- [Nowy projekt](#Nowy_projekt)
-- [Tryb interaktywny](#Tryb-interaktywny)
-- [Kompilacja](#Kompilacja)
-- [Zarządzanie zależnościami](#Zarządzanie-zależnościami)
-- [Środowiska](#Środowiska)
+{% include toc.html %}
 
 ## Nowy projekt
 

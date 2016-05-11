@@ -8,20 +8,7 @@ lang: it
 
 Un insieme di algoritmi per enumerare le collezioni.
 
-## Tavola dei Contenuti
-
-- [Enum](#enum)
-  - [all?](#all)
-  - [any?](#any)
-  - [chunk](#chunk)
-  - [chunk_by](#chunk_by)
-  - [each](#each)
-  - [map](#map)
-  - [min](#min)
-  - [max](#max)
-  - [reduce](#reduce)
-  - [sort](#sort)
-  - [uniq](#uniq)
+{% include toc.html %}
 
 ## Enum
 

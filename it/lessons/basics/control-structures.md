@@ -8,11 +8,7 @@ lang: it
 
 In questa lezione affronteremo alle strutture di controllo disponibili in Elixir.
 
-## Tavola dei Contenuti
-
-- [`if` e `unless`](#if-e-unless)
-- [`case`](#case)
-- [`cond`](#cond)
+{% include toc.html %}
 
 ## `if` e `unless`
 

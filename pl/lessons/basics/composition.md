@@ -10,17 +10,7 @@ Doświadczenie podpowiada, że bardzo ciężko jest trzymać cały nasz kod w je
  grupować nasze funkcje w moduły oraz jak za pomocą wyspecjalizowanych map, zwanych strukturami, można 
  efektywnie zorganizować nasz kod. 
    
-
-## Spis treści
-
-- [Moduły](#Moduły)
-  - [Atrybuty modułów](#Atrybuty modułów)
-- [Struktury](#Struktury)
-- [Komponenty](#Komponenty)
-  - [`alias`](#alias)
-  - [`import`](#import)
-  - [`require`](#require)
-  - [`use`](#use)
+{% include toc.html %}
 
 ## Moduły
 

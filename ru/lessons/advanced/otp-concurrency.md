@@ -10,15 +10,7 @@ lang: ru
 
 В этом уроке мы сосредоточимся на двух важных частях: GenServer и GenEvent.
 
-## Содержание
-
-- [GenServer](#genserver)
-  - [Синхронные функции](#section-1)
-  - [Асинхронные функции](#section-2)
-- [GenEvent](#genevent)
-  - [Обработка событий](#section-3)
-  - [Вызов обработчиков](#section-4)
-  - [Использование GenEvents](#genevent-1)
+{% include toc.html %}
 
 ## GenServer
 

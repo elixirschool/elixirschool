@@ -8,20 +8,7 @@ lang: my
 
 Satu kumpulan algorithm untuk memproses satu persatu(enumerate) isi kandungan 'collection'.
 
-## Isi Kandungan
-
-- [Enum](#enum)
-  - [all?](#all)
-  - [any?](#any)
-  - [chunk](#chunk)
-  - [chunk_by](#chunk_by)
-  - [each](#each)
-  - [map](#map)
-  - [min](#min)
-  - [max](#max)
-  - [reduce](#reduce)
-  - [sort](#sort)
-  - [uniq](#uniq)
+{% include toc.html %}
 
 ## Enum
 

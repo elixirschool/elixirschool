@@ -10,25 +10,9 @@ Ecto é um projeto oficial do Elixir que fornece uma camada de banco de dados e
 linguagem integrada para consultas. Com Ecto podemos criar *migrations*, definir
 modelos, inserir e atualizar registos, e fazer consultas.
 
-## Sumário
+{% include toc.html %}
 
-- [Instalação](#instalacao)
-  - [Repositório](#repositorio)
-  - [Supervisor](#supervisor)
-  - [Configuração](#configuracao)
-- [Tarefas Mix](#tarefas-mix)
-- [Migrations](#migrations)
-- [Modelos](#modelos)
-- [Consultas](#consultas)
-  - [O básico](#basico)
-  - [Count](#count)
-  - [Group By](#group-by)
-  - [Order By](#order-by)
-  - [Joins](#joins)
-  - [Fragmentos](#fragmentos)
-- [Changesets](#changesets)
-
-## <a name="instalacao"></a>Instalação
+## Instalação
 
 Para começar precisamos incluir Ecto e um adaptador de banco de dados no `mix.exs`
 do nosso projeto. Você pode encontrar uma lista de adaptadores de banco de dados
@@ -50,7 +34,7 @@ def application do
 end
 ```
 
-### <a name="repositorio"></a>Repositório
+### Repositório
 
 Finalmente precisamos criar o repositório do nosso projeto, a camada de banco
 de dados. Isto pode ser feito rodando a tarefa `mix ecto.gen.repo`, falaremos sobre
@@ -91,7 +75,7 @@ end
 
 Para mais informações sobre supervisores, consulte a lição [Supervisores OTP](/lessons/advanced/otp-supervisors).
 
-### <a name="configuracao"></a>Configuração
+### Configuração
 
 Para configurar o Ecto precisamos adicionar uma secção no nosso `config/config.exs`.
 Aqui iremos especificar o repositório, o adaptador, o banco de dados e as informações
@@ -209,7 +193,7 @@ import Ecto.Query, only: [from: 2]
 
 A documentação oficial pode ser encontrada em [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html).
 
-### <a name="basico"></a>O Básico
+### O Básico
 
 Ecto fornece uma excelente DSL<sup>(domain-specific language)</sup> de consulta que nos permite expressar consultas de forma muito clara. Para encontrar os usernames de todas as contas confirmadas poderíamos usar algo como este:
 

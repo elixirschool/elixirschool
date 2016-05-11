@@ -8,23 +8,7 @@ lang: fr
 
 Installation, types de base et opérations.
 
-## Table des matières
-
-- [Installation](#installation)
-	- [Installer Elixir](#installer-elixir)
-	- [Mode Interactif](#mode-interactif)
-- [Types de base](#types-de-base)
-	- [Entiers](#entiers)
-	- [Nombres à virgule](#nombres-a-virgule)
-	- [Booléens](#booléens)
-	- [Atomes](#atomes)
-	- [Chaînes](#chaines)
-- [Opérations de base](#operations-de-base)
-	- [Arithmétique](#arithmetique)
-	- [Booléens](#booléens)
-	- [Comparaison](#comparaison)
-	- [Interpolation de chaînes](#interpolation-de-chaines)
-	- [Concaténation de chaînes](#concaténation-de-chaines)
+{% include toc.html %}
 
 ## Installation
 

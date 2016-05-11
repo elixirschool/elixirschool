@@ -8,11 +8,7 @@ lang: sk
 
 Operátor `|>` posiela výstup výrazu ako prvý parameter do iného výrazu.
 
-## Obsah
-
-- [Úvod](#vod)
-- [Príklady](#prklady)
-- [Best Practices](#best-practices)
+{% include toc.html %}
 
 ## Úvod
 
