@@ -8,14 +8,7 @@ lang: fr
 
 Utilisation et création de sigils.
 
-## Table des matières
-
-- [Vue d'ensemble des sigils](#vue-d-ensemble-des-sigils)
-  - [Listes de caractères](#listes-de-caracteres)
-  - [Expressions régulières](#expressions-regulieres)
-  - [Chaînes de caractères](#chaines-de-caracteres)
-  - [Listes de mots](#listes-de-mots)
-- [Création de sigils](#creation-de-sigils)
+{% include toc.html %}
 
 ## <a name="vue-d-ensemble-des-sigils"></a>Vue d'ensemble des sigils
 

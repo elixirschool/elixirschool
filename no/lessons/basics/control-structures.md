@@ -8,12 +8,7 @@ lang: no
 
 I denne leksjonen skal vi ta en nærmere titt på de forskjellige kontrollstrukturene Elixir har tilgjengelig.
 
-## Innholdsfortegnelse
-
-- [`if` og `unless`](#if-og-unless)
-- [`case`](#case)
-- [`cond`](#cond)
-- [`with`](#with)
+{% include toc.html %}
 
 ## `if` og `unless`
 
