@@ -10,11 +10,7 @@ Składanie list(ang. list comprehensions), to lukier składniowy pozwalający na
 danymi przeliczalnymi. W tej lekcji przyjrzymy się jak mechanizm ten, ułatwia przetwarzanie oraz tworzenie kolekcji 
 na bazie już istniejących.
 
-## Spis treści
-
-- [Podstawy](#podstawy)
-- [Filtrowanie](#filtrowanie)
-- [Użycie `:into`](#Użycie-into)
+{% include toc.html %}
 
 ## Podstawy
 

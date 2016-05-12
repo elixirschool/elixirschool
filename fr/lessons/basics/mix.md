@@ -10,13 +10,7 @@ Avant de plonger dans les profondeurs d'Elixir, nous devons d'abord apprendre mi
 
 Jusqu'ici nous avons travaillé exclusivement dans `iex`, ce qui a ses limitations. Dans le cas d'un projet réel nous avons besoin de séparer notre code dans différents fichiers, et mix est là pour nous aider à les gérer efficacement.
 
-## Table des matières
-
-- [Nouveau projet](#nouveau-projet)
-- [Compilation](#compilation)
-- [Intéractif](#interactif)
-- [Gestion des dépendances](#gestion-des-dependances)
-- [Environnements](#environnements)
+{% include toc.html %}
 
 ## Nouveau projet
 

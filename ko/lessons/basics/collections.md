@@ -8,15 +8,7 @@ lang: ko
 
 리스트, 튜플, 키워드, 맵 그리고 컴비네이터.
 
-## 목차
-
-- [리스트](#section-1)
-	- [리스트 이어붙이기](#section-2)
-	- [리스트 빼기](#section-3)
-	- [Head / Tail](#head--tail)
-- [튜플](#section-4)
-- [키워드 리스트](#section-5)
-- [맵](#section-6)
+{% include toc.html %}
 
 ## 리스트
 

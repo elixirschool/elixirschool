@@ -8,10 +8,7 @@ lang: no
 
 Mønstersammenligning (pattern matching) er en viktig del av Elixir, og lar oss matche enkle verdier, datastrukturer og funksjoner. Vi skal nå se nærmere på hva mønstersammenligning innebærer.
 
-## Innholdsfortegnelse
-
-- [Sammenligningsoperatoren (Match Operator)](#sammenligningsoperator-match-operator)
-- [Festeoperatoren (Pin operatoren)](#festeoperatoren-pin-operator)
+{% include toc.html %}
 
 ## Sammenligningsoperatoren (Match Operator)
 

@@ -9,14 +9,7 @@ lang: pl
 Testowanie kodu jest bardzo ważną częścią procesu produkcji oprogramowania. W tej lekcji przyjrzymy się zagadnieniu 
 testowania kodu w Elixirze z wykorzystaniem ExUnit. Poznamy też kilka dobrych praktyk z tym związanych.  
 
-## Spis treści
-
-- [ExUnit](#exunit)
-  - [assert](#assert)
-  - [refute](#refute)
-  - [assert_raise](#assertraise)
-- [Konfiguracja testów](#Konfiguracja-testów)
-- [Mockowanie](#Mockowanie)
+{% include toc.html %}
 
 ## ExUnit
 

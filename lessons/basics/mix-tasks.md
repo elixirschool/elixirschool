@@ -8,12 +8,7 @@ lang: en
 
 Creating custom Mix tasks for your Elixir projects.
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Setup](#setup)
-- [Custom Mix Task](#custom-mix-task)
-- [Mix Tasks in Action](#mix-tasks-in-action)
+{% include toc.html %}
 
 ## Introduction 
 
