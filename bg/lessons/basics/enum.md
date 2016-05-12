@@ -3,12 +3,12 @@ layout: page
 title: Enum
 category: basics
 order: 3
-lang: en
+lang: bg
 ---
 
-A set of algorithms for enumerating over collections.
+Набор от алгоритми за изброяване върху колекции.
 
-## Table of Contents
+## Съдържание
 
 - [Enum](#enum)
   - [all?](#all)
@@ -25,14 +25,14 @@ A set of algorithms for enumerating over collections.
 
 ## Enum
 
-The `Enum` module includes over one hundred functions for working with the collections we learned about in the last lesson.
+Модулът `Enum` съдържа над сто функции за работа с колекциите, за които учихме предният урок.
 
-This lesson will only cover a subset of the available functions, to see a complete set of functions visit the official [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html) module.
+Този урок ще покрие само част от достъпните функции, за да видите пълния набор от функции, посетете официалните [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html) документи; за мързеливо изброяване използвайте модула [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
 
 
 ### all?
 
-When using `all?`, and much of `Enum`, we supply a function to apply to our collection's items.  In the case of `all?`, the entire collection must evaluate to `true` otherwise `false` will be returned:
+Когато използваме `all?`, и голяма част от `Enum`, ние предоставяме функция, която да бъде приложена върху елементите на колекцията ни.  В случая с `all?`, цялата колекция трябва да бъде оценена като `true`, в друг случай се връща `false`:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -43,7 +43,7 @@ true
 
 ### any?
 
-Unlike the above, `any?` will return `true` if at least one item evaluates to `true`:
+За разлика от предходното, `any?` ще върне `true` ако поне един елемент е оценен като `true`:
 
 ```elixir
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
@@ -52,18 +52,18 @@ true
 
 ### chunk
 
-If you need to break your collection up into smaller groups, `chunk` is the function you're probably looking for:
+Ако се нуждаете да разбиете колекцията си на по-малки групи, то `chunk` е функцията, която най-вероятно търсите:
 
 ```elixir
 iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-There are a few options for `chunk` but we won't go into them, check out [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) in the official docs to learn more.
+Съществуват няколко опции за `chunk`, но няма да навлизаме в тях, вижте [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) в официалните документи, за да научите повече.
 
 ### chunk_by
 
-If we need to group our collection based on something other than size, we can use the `chunk_by` method:
+Ако се нуждаете да групирате колекцията си на базата на нещо друго освен размер може да използвате метода `chunk_by`:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -72,7 +72,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.leng
 
 ### each
 
-It may be necessary to iterate over a collection without producing a new value, for this case we use `each`:
+Може да е нужно да итерирате през колекция, без да издавате нова стойност, като в този случй се използва `each`:
 
 ```elixir
 iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
@@ -81,11 +81,11 @@ two
 three
 ```
 
-__Note__: The `each` method does return the atom `:ok`.
+__Забележка__: Методът `each` връща атома `:ok`.
 
 ### map
 
-To apply our function to each item and produce a new collection look to the `map` function:
+За да приложим нашата функция върху всеки елемент и издадем нова колекция, прегледайте функцията `map`:
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
@@ -94,7 +94,7 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-Find the `min` value in our collection:
+Намери минималната `min` стойност в нашата колекцията:
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
@@ -103,7 +103,7 @@ iex> Enum.min([5, 3, 0, -1])
 
 ### max
 
-Returns the `max` value in the collection:
+Връща максималната `max` стойност в колекцията:
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
@@ -112,7 +112,7 @@ iex> Enum.max([5, 3, 0, -1])
 
 ### reduce
 
-With `reduce` we can distill our collection down into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first value is used:
+Чрез `reduce` може да редуцираме колекцията си до една единствена стойност.  За да направим това подаваме опционален акумулатор (`10` в този пример), който да бъде подаден в нашата функция; ако няма подаден акумулатор се използва първата стойност:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
@@ -123,7 +123,7 @@ iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 
 ### sort
 
-Sorting our collections is made easy with not one, but two, `sort` functions.  The first option available to us uses Elixir's term ordering to determine the sorted order:
+Да сортираме нашите колекции е улеснена не чрез една, а две `sort` функции.  Първата достъпна за нас използва подредбата на термини на Elixir, за да установи сортираният ред:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -133,21 +133,21 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-The other option allows us to provide a sort function:
+Другата опция ни позволява да подадем сортираща функция:
 
 ```elixir
-# with our function
+# с нашата функция
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
 [%{val: 4}, %{val: 1}]
 
-# without
+# без
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
 ### uniq
 
-We can use `uniq` to remove duplicates from our collections:
+Може да ползваме `uniq`, за да премахнем повтарящите се елементи от нашите колекции:
 
 ```elixir
 iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
