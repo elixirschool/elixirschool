@@ -3,49 +3,49 @@ layout: page
 title: Basics
 category: basics
 order: 1
-lang: en
+lang: bg
 ---
 
-Setup, basic types and operations.
+Настройване, основни типове и операции.
 
-## Table of Contents
+## Съдържание
 
-- [Setup](#setup)
-	- [Install Elixir](#install-elixir)
-	- [Interactive Mode](#interactive-mode)
-- [Basic Types](#basic-types)
-	- [Integers](#integers)
-	- [Floats](#floats)
-	- [Booleans](#booleans)
-	- [Atom](#atoms)
-	- [String](#strings)
-- [Basic Operations](#basic-operations)
-	- [Arithmetic](#arithmetic)
-	- [Boolean](#boolean)
-	- [Comparison](#comparison)
-	- [String interpolation](#string-interpolation)
-	- [String concatenation](#string-concatenation)
+- [Настройване](#setup)
+	- [Инсталация на Elixir](#install-elixir)
+	- [Интерактивен Режим](#interactive-mode)
+- [Основни Типове](#basic-types)
+	- [Прости Числа](#integers)
+	- [Реални Числа](#floats)
+	- [Булеви стойности](#booleans)
+	- [Атом](#atoms)
+	- [Символни низове](#strings)
+- [Основни Операции](#basic-operations)
+	- [Аритметични](#arithmetic)
+	- [Булеви](#boolean)
+	- [Сравнения](#comparison)
+	- [Интерполация на символни низове](#string-interpolation)
+	- [Конкатениране на символни низове](#string-concatenation)
 
-## Setup
+## Настройване
 
-### Install Elixir
+### Инсталация на Elixir
 
-Installation instructions for each OS can be found on Elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
+Инструкции за инсларине за всяка операционна система могат да бъдат намерени на Elixir-lang.org в раздел [Installing Elixir](http://elixir-lang.org/install.html).
 
-### Interactive Mode
+### Интерактивен Режим
 
-Elixir comes with `iex`, an interactive shell, which allows us to evaluate Elixir expressions as we go.
+Elixir се инсталира заедно с `iex`, интерактивен команден ред, който ни позволява да изпълняваме код на Elixir в реално време.
 
-To get started, let's run `iex`:
+За да започнем, нека изпълним `iex`:
 
 	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
-## Basic Types
+## Основни Типове
 
-### Integers
+### Прости Числа
 
 ```elixir
 iex> 255
@@ -54,7 +54,7 @@ iex> 0xFF
 255
 ```
 
-Support for binary, octal, and hexadecimal numbers comes built in:
+Поддръжката на числа в бинарен, осмичен и шеснайсетичен вид са вградени:
 
 ```elixir
 iex> 0b0110
@@ -65,9 +65,9 @@ iex> 0x1F
 31
 ```
 
-### Floats
+### Реални Числа
 
-In Elixir, float numbers require a decimal after at least one digit; they have 64 bit double precision and support `e` for exponent numbers:
+При Elixir, реалните числа изискват десетична точка след поне една цифра; имат 64 битова прецизност и поддържат `e` за номера като експонента:
 
 ```elixir
 iex> 3.41
@@ -79,9 +79,9 @@ iex> 1.0e-10
 ```
 
 
-### Booleans
+### Булеви стойности
 
-Elixir supports `true` and `false` as booleans; everything is truthy except for `false` and `nil`:
+Elixir поддържа `true` и `false` като булеви стойности; всичко е истинно с изключение на `false` и `nil`:
 
 ```elixir
 iex> true
@@ -90,9 +90,9 @@ iex> false
 false
 ```
 
-### Atoms
+### Атоми
 
-An atom is a constant whose name is their value. If you're familiar with Ruby these are synonymous with Symbols:
+Атом е константа, чието име е стойност. Ако сте запознати с езика за програмиране Ruby, те са синонимни със символи (Symbols):
 
 ```elixir
 iex> :foo
@@ -101,7 +101,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTE: Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
+ЗАБЕЛЕЖКА: Булевите `true` и `false` са също така атомите `:true` и  респективно `:false`.
 
 ```elixir
 iex> true |> is_atom
@@ -112,9 +112,9 @@ iex> :true === true
 true
 ```
 
-### Strings
+### Символни низове
 
-Strings in Elixir are UTF-8 encoded and are wrapped in double quotes:
+Символните низове в Elixir са кодирани в UTF-8 и са поставени между двойни кавички:
 
 ```elixir
 iex> "Hello"
@@ -123,7 +123,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-Strings support line breaks and escape sequences:
+Символните низове поддържат нов ред и специални поредици:
 
 ```elixir
 iex> "foo
@@ -133,11 +133,11 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-## Basic Operations
+## Основни Операции
 
-### Arithmetic
+### Аритметични
 
-Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.  It's important to notice that `/` will always return a float:
+Elixir поддържа основните оператори `+`, `-`, `*`, и `/` както се очкава.  Важно е да се отбележи, че `/` винаги връща реално число:
 
 ```elixir
 iex> 2 + 2
@@ -150,7 +150,7 @@ iex> 10 / 5
 2.0
 ```
 
-If you need integer division or the division remainder, Elixir comes with two helpful functions to achieve this:
+Ако имате нужда от деление на прости числа или от остатъка при деление, Elixir разполага с две полезни функции да постигнете това:
 
 ```elixir
 iex> div(10, 5)
@@ -159,9 +159,9 @@ iex> rem(10, 3)
 1
 ```
 
-### Boolean
+### Булеви
 
-Elixir provides the `||`, `&&`, and `!` boolean operators. These support any types:
+Elixir предлага булевите оператори  `||`, `&&`, и `!`. Тези поддържат всякакви типове:
 
 ```elixir
 iex> -20 || true
@@ -180,7 +180,7 @@ iex> !false
 true
 ```
 
-There are three additional operators whose first argument _must_ be a boolean (`true` and `false`):
+Има три допълнителни оператора, чиито първи аргумент _трябва_ да е булев (`true` и `false`):
 
 ```elixir
 iex> true and 42
@@ -195,9 +195,9 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-### Comparison
+### Сравнения
 
-Elixir comes with all the comparisons operators we're used to: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` and `>`.
+Elixir идва с всички оператори за сравнение, с които сме свикнали: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` и `>`.
 
 ```elixir
 iex> 1 > 2
@@ -210,7 +210,7 @@ iex> 2 <= 3
 true
 ```
 
-For strict comparison of integers and floats use `===`:
+За стриктни сравнения между прости числа и реални използвайте  `===`:
 
 ```elixir
 iex> 2 == 2.0
@@ -219,13 +219,13 @@ iex> 2 === 2.0
 false
 ```
 
-An important feature of Elixir is that any two types can be compared, this is particularly useful in sorting.  We don't need to memorize the sort order but it is important to be aware of it:
+Важно свойство при Elixir е, че всеки две типа могат да бъдат сравнени, което е изклщчително полезно при сортиране. Не е нужно да запаметяваме реда на сортиране, но е важно да го имаме предвид:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
 
-This can lead to some interesting, and valid, comparisons you might not find in other languages:
+Това може да доведе до някои интересни и валидни сравнения, които може и да не намерите в други езици:
 
 ```elixir
 iex> :hello > 999
@@ -234,9 +234,9 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### String interpolation
+### Интерполация на символни низове
 
-If you've used Ruby, string interpolation in Elixir will look familiar:
+Ако сте ползвали Ruby, интерполацията на симвлни низове в Elixir ще изглежда позната:
 
 ```elixir
 iex> name = "Sean"
@@ -244,9 +244,9 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### String concatenation
+### Конкатенация на символни низове
 
-String concatenation uses the `<>` operator:
+Конкатенацията на символни низове използва оператора `<>`:
 
 ```elixir
 iex> name = "Sean"
