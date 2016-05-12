@@ -3,31 +3,31 @@ layout: page
 title: Collections
 category: basics
 order: 2
-lang: en
+lang: bg
 ---
 
-List, tuples, keywords, maps and functional combinators.
+Списъци, кортежи, ключови думи, асоциативни списъци и функционални комбинатори.
 
 ## Table of Contents
 
-- [Lists](#lists)
-	- [List concatenation](#list-concatenation)
-	- [List subtraction](#list-subtraction)
-	- [Head / Tail](#head--tail)
-- [Tuples](#tuples)
-- [Keyword lists](#keyword-lists)
-- [Maps](#maps)
+- [Списъци](#lists)
+	- [Конкатенация при списъци](#list-concatenation)
+	- [Разлика на списъци](#list-subtraction)
+	- [Начало / Край](#head--tail)
+- [Кортежи](#tuples)
+- [Списъци с ключови думи](#keyword-lists)
+- [Асоциативни списъци](#maps)
 
-## Lists
+## Списъци
 
-Lists are simple collections of values, they may include multiple types; lists may include non-unique values:
+Списъците са прости колекции от стойности, могат да се състоят от множество типове; списъците може да съдържат еднакви стойности:
 
 ```elixir
 iex> [3.41, :pie, "Apple"]
 [3.41, :pie, "Apple"]
 ```
 
-Elixir implements list as linked lists.  This means accessing the list length is an `O(n)` operation.  For this reason, it is typically faster to prepend than append:
+Elixir имплементира списъка като свързан списък.  Това означава, че дължината на списъка е операция от реда `O(n)`.  Поради тази причина по-принцип е по-бързо да се добавя в началото отколкото в края на списък:
 
 ```elixir
 iex> list = [3.41, :pie, "Apple"]
@@ -39,29 +39,29 @@ iex> list ++ ["Cherry"]
 ```
 
 
-### List Concatenation
+### Конкатенация на списъци
 
-List concatenation uses the `++/2` operator:
+Конкатенацията на списъци използва оператора `++/2`:
 
 ```elixir
 iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-### List Subtraction
+### Разлика на списъци
 
-Support for subtraction is provided via the `--/2` operator; it's safe to subtract a missing value:
+Поддръжката за субстракция е осигурено чрез оператора `--/2`; безопасно е да се извади липсваща стойност:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-**Note:** It uses [strict comparison](../basics/#comparison) to match the values.
+**Забележка:** Използва се [стриктно сравнение](../basics/#comparison) при сравнението на стойности.
 
-### Head / Tail
+### Начало / Край
 
-When using lists it is common to work with the list's head and tail.  The head is the first element of the list and the tail the remaining elements.  Elixir provides two helpful methods, `hd` and `tl`, for working with these parts:
+Когато използваме списъци е обичайно да работим с началото и края на списъка.  Началото е първият елемент на списъка, а краят останалите елементи.  Elixir предоставя два полезни метода, `hd` и `tl`, за работа с тези части:
 
 ```elixir
 iex> hd [3.41, :pie, "Apple"]
@@ -70,7 +70,7 @@ iex> tl [3.41, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-In addition to the aforementioned functions, you may use the pipe operator `|`; we'll see this pattern in later lessons:
+В допълнение към гореспоменатите функции, може да ползвате и оператора за пренасочване `|`; ще разгледаме този подход в следващи уроци:
 
 ```elixir
 iex> [h|t] = [3.41, :pie, "Apple"]
@@ -81,16 +81,16 @@ iex> t
 [:pie, "Apple"]
 ```
 
-## Tuples
+## Кортежи
 
-Tuples are similar to lists but are stored contiguously in memory.  This makes accessing their length fast but modification expensive; the new tuple must be copied entirely to memory.  Tuples are defined with curly braces:
+Кортежите са подобни на списъци, но се съхраняват последователно в паметта.  Поради това достъпваме тяхната дължина бързо, но модификациите са скъпи; новият кортеж трябва да бъде изцяло копиран наново в паметта.  Кортежите се дефинират с къдрави скоби:
 
 ```elixir
 iex> {3.41, :pie, "Apple"}
 {3.41, :pie, "Apple"}
 ```
 
-It is common for tuples to be used as a mechanism to return additional information from functions; the usefulness of this will be more apparent when we get into pattern matching:
+Обичайно за кортежите е да бъдат използвани като механизъм за връщане на допълнителна информация от функции; полезността от това ще стане по-ясна след като навлезем в съвпадането на шаблони:
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -99,9 +99,9 @@ iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
 
-## Keyword lists
+## Списъци с ключови думи
 
-Keywords and maps are the associative collections of Elixir.  In Elixir, a keyword list is a special list of tuples whose first element is an atom; they share performance with lists:
+Ключовите думи и асоциативните списъци са асоциативните колекции на Elixir.  В Elixir, списък от ключови думи е специален списък от кортежи, чиито първи елемент е атом; те имат производителността на списък:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -110,17 +110,17 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 [foo: "bar", hello: "world"]
 ```
 
-The three characteristics of keyword lists highlight their importance:
+Трите характеристики на списъци с ключови думи подчертават тяхната важност:
 
-+ Keys are atoms.
-+ Keys are ordered.
-+ Keys are not unique.
++ Ключовете са атоми.
++ Ключовете са подредени.
++ Ключовете не са уникални.
 
-For these reasons keyword lists are most commonly used to pass options to functions.
+Поради тези причини списъците с ключови думи най-често се ползват за предаване на опции към функции.
 
-## Maps
+## Асоциативни списъци
 
-In Elixir maps are the "go-to" key-value store, unlike keyword lists they allow keys of any type and they do not follow ordering.  You can define a map with the `%{}` syntax:
+В Elixir асоциативните списъци съхраняват стойности тип ключ-стойност "по подразбиране", за разлика от списъци с ключови думи, те позволяват ключове от всякакъв тип и не следват подреждане.  Може да дефинирате асоциативен списък със синтаксис `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -131,7 +131,7 @@ iex> map["hello"]
 :world
 ```
 
-As of Elixir 1.2 variables are allowed as map keys:
+Считано от  Elixir 1.2 променливи са допустими като ключове в асоциативния списък:
 
 ```elixir
 iex> key = "hello"
@@ -140,14 +140,14 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-If a duplicate is added to a map, it will replace the former value:
+Ако дубликат е добавен към асоциативен списък, той ще замени предходната стойност:
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-As we can see from the output above, there is a special syntax for maps containing only atom keys:
+Както може да видим от резултата по-горе, съществува специален синтаксис за асоциативни списъци, които съдържат само атоми като ключове:
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
