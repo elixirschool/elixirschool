@@ -8,10 +8,7 @@ lang: es
 
 La coincidencia de patrones es una parte poderosa de Elixir, nos permite coincidir valores simples, estructuras de datos, e incluso funciones. En esta lección vamos a comenzar a ver cómo es usada la coincidencia de patrones.
 
-## Tabla de Contenidos
-
-- [Operador de coincidencia](#operador-de-coincidencia)
-- [Operador Pin](#operador-pin)
+{% include toc.html %}
 
 ## Operador de coincidencia
 
@@ -34,7 +31,7 @@ iex> 2 = x
 Vamos a intentar esto con algunas de las colecciones que conocemos:
 
 ```elixir
-# Lists
+# Listas
 iex> list = [1, 2, 3]
 iex> [1, 2, 3] = list
 [1, 2, 3]
@@ -48,7 +45,7 @@ iex> tail
 iex> [2|_] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-# Tuples
+# Tuplas
 iex> {:ok, value} = {:ok, "Successful!"}
 {:ok, "Successful!"}
 iex> value

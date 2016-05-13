@@ -8,10 +8,7 @@ lang: sk
 
 Pattern matching je dôležitou a mocnou vymoženosťou Elixiru. Umožňuje nám hľadať a vyberať jednoduché hodnoty, dátové štruktúry a dokonca aj funkcie. V tejto lekcii si ukážeme, ako ho používať.
 
-## Obsah
-
-- [Match operator](#match-operator)
-- [Pin operator](#pin-operator)
+{% include toc.html %}
 
 ## Match operator
 

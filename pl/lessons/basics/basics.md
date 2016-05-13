@@ -8,23 +8,7 @@ lang: pl
 
 Przygotowanie środowiska, podstawowe typy danych i operacje
 
-## Spis treści
-
-- [Przygotowanie środowiska](#przygotowanie-srodowiska)
-	- [Instalacja](#instalacja)
-	- [Tryb interaktywny](#tryb-interaktywny)
-- [Podstawowe typy danych](#podstawowe-typy-danych)
-	- [Liczby całkowite](#liczby-całkowite)
-	- [Liczby zmiennoprzecinkowe](#liczby-zmiennoprzecinkowe)
-	- [Wartości logiczne](#wartości-logiczne)
-	- [Atomy](#atomy)
-	- [Ciągi znaków](#ciągi-znakþw)
-- [Podstawowe operacje](#podstawowe-operacje)
-	- [Arytmetyczne](#arytmetyczne)
-	- [Logiczne](#logiczne)
-	- [Porównania](#porownania)
-	- [Interpolacja ciągów znaków](#interpolacja-ciągów-znaków)
-	- [Łączenie ciągów znaków](#laczenie-ciągów-znaków)
+{% include toc.html %}
 
 ## Przygotowanie środowiska
 
@@ -40,7 +24,7 @@ By ją uruchomić wpisz w wierszu poleceń `iex`:
 
 	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
+	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
 ## Podstawowe typy danych
@@ -69,7 +53,7 @@ iex> 0x1F
 
 ### Liczby zmiennoprzecinkowe
 
-W Elixirze liczby zmiennoprzecinkowe (ang. _float_) oznaczamy pojedynczą kropką; mają one 64 bitową prezycję oraz możemy użyć notacji z `e` do wyrażenia potęg:
+W Elixirze liczby zmiennoprzecinkowe (ang. _float_) oznaczamy pojedynczą kropką; mają one 64 bitową precyzję oraz możemy użyć notacji z `e` do wyrażenia potęg:
 
 ```elixir
 iex> 3.41
@@ -94,7 +78,7 @@ false
 
 ### Atomy
 
-Atomy są to stałe posiadające nazwę. Jeżeli masz doświadczenie z językiem Ruby to atomy są tym samym co Symbole:
+Atomy są to stałe, których nazwa jest jednocześnie ich wartością. Jeżeli masz doświadczenie z językiem Ruby to atomy są tym samym co Symbole:
 
 ```elixir
 iex> :foo
@@ -182,7 +166,7 @@ iex> !false
 true
 ```
 
-Istnieją też trzy operatory, które _muszą_ być użyte tylko z wartościami logicznymi (`true` i `false`):
+Istnieją też trzy operatory, których pierwszym argumentem _muszi_ być wartość logiczna (`true` i `false`):
 
 ```elixir
 iex> true and 42
@@ -221,7 +205,7 @@ iex> 2 === 2.0
 false
 ```
 
-Ważną cechą Elixira jest to, że można porównać zmienne dowolngo typu, jest to szczególnie użyteczne przy sortowaniu. Nie musimy pamiętać kolejności przy sortowaniu, ale warto jest by mieć to na uwadze:
+Ważną cechą Elixira jest to, że można porównać zmienne dowolngo typu, co jest szczególnie użyteczne przy sortowaniu. Nie musimy pamiętać kolejności przy sortowaniu, ale warto jest by mieć to na uwadze:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring

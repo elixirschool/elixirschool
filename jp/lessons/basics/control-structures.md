@@ -8,11 +8,7 @@ lang: jp
 
 このレッスンではElixirで利用できる制御構造を見ていきます。
 
-## 目次
-
-- [`if`と`unless`](#ifunless)
-- [`case`](#case)
-- [`cond`](#cond)
+{% include toc.html %}
 
 ## `if`と`unless`
 

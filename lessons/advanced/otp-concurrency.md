@@ -10,15 +10,7 @@ We've looked at the Elixir abstractions for concurrency but sometimes we need gr
 
 In this lesson we'll focus on two important pieces: GenServers and GenEvents.
 
-## Table of Contents
-
-- [GenServer](#genserver)
-  - [Synchronous Functions](#synchronous-functions)
-  - [Asynchronous Functions](#asynchronous-functions)
-- [GenEvent](#genevent)
-  - [Handling Events](#handling-events)
-  - [Calling Handlers](#calling-handlers)
-  - [Using GenEvents](#using-genevents)
+{% include toc.html %}
 
 ## GenServer
 

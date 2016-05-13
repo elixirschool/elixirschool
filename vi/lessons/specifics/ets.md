@@ -8,22 +8,7 @@ lang: vi
 
 Erlang Term Storage, commonly referred to as ETS, is a powerful storage engine built into OTP and available to use in Elixir.  In this lesson we'll look at how to interface with ETS and how it can be employed in our applications.
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Creating Tables](#creating-tables)
-  - [Tables Types](#tables-types)
-  - [Access Controls](#access-controls)
-- [Inserting Data](#inserting-data)
-- [Data Retrieval](#data-retrieval)
-  - [Key Lookup](#key-lookup)
-  - [Simple Matches](#simple-matches)
-  - [Advanced Lookup](#advanced-lookup)
-- [Deleting Data](#deleting-data)
-  - [Removing Records](#removing-records)
-  - [Removing Tables](#removing-tables)
-- [Example ETS Usage](#example-ets-usage)
-- [Disk-based ETS](#disk-based-ets)
+{% include toc.html %}
 
 ## Overview
 
@@ -245,7 +230,7 @@ To demonstrate the cache we'll use a function that returns the system time and a
 ```elixir
 defmodule ExampleApp do
   def test do
-    :os.system(:seconds)
+    :os.system_time(:seconds)
   end
 end
 
@@ -253,13 +238,13 @@ iex> :ets.new(:simple_cache, [:named_table])
 :simple_cache
 iex> ExampleApp.test
 1451089115
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089119
 iex> ExampleApp.test
 1451089123
 iex> ExampleApp.test
 1451089127
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089119
 ```
 
@@ -268,7 +253,7 @@ After 10 seconds if we try again we should get a fresh result:
 ```elixir
 iex> ExampleApp.test
 1451089131
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089134
 ```
 

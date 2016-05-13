@@ -8,22 +8,7 @@ lang: es
 
 Almacenamiento de términos de Erlang, comúnmente conocido como ETS, es un potente motor de almacenamiento incorporado en OTP y disponible para utilizar en Elixir. En esta lección vamos a ver cómo interactuar con ETS y cómo se pueden emplear en nuestras aplicaciones.
 
-## Tabla de Contenidos
-
-- [Descripción General](#descripcin-general)
-- [Creando Tablas](#creando-tablas)
-  - [Tipos de Tablas](#tipos-de-tablas)
-  - [Controles de Acceso](#controles-de-acceso)
-- [Insertando Datos](#insertando-datos)
-- [Recuperación de Datos](#recuperacin-de-datos)
-  - [Búsqueda de Claves](#bsqueda-de-claves)
-  - [Concordancia Simple](#concordancia-simple)
-  - [Búsqueda Avanzada](#bsqueda-avanzada)
-- [Eliminando Datos](#eliminando-datos)
-  - [Removiendo Registros](#removiendo-registros)
-  - [Removiendo Tablas](#removiendo-tablas)
-- [Ejemplos de uso de ETS](#ejemplos-de-uso-de-ets)
-- [ETS basado en disco](#ets-basado-en-disco)
+{% include toc.html %}
 
 ## Descripción General
 
@@ -246,7 +231,7 @@ Para demostrar la caché vamos a utilizar una función que devuelve la hora del 
 ```elixir
 defmodule ExampleApp do
   def test do
-    :os.system(:seconds)
+    :os.system_time(:seconds)
   end
 end
 
@@ -254,13 +239,13 @@ iex> :ets.new(:simple_cache, [:named_table])
 :simple_cache
 iex> ExampleApp.test
 1451089115
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089119
 iex> ExampleApp.test
 1451089123
 iex> ExampleApp.test
 1451089127
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089119
 ```
 
@@ -269,7 +254,7 @@ Después de 10 segundos si intentamos de nuevo, deberíamos obtener resultados a
 ```elixir
 iex> ExampleApp.test
 1451089131
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089134
 ```
 

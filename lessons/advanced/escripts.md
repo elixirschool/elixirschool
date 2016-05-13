@@ -8,11 +8,7 @@ lang: en
 
 To build executables in Elixir we will be using escript. Escript produces an executable that can be run on any system with Erlang installed.
 
-## Table of Contents
-
-- [Getting Started](#getting-started)
-- [Parsing Args](#parsing-args)
-- [Building](#building)
+{% include toc.html %}
 
 ## Getting Started
 

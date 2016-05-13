@@ -8,24 +8,9 @@ lang: pt
 
 Erlang Term Storage, comumente referenciado como ETS, é um poderoso mecanismo de armazenamento, incorporado no OTP e disponível  para uso no Elixir. Nesta lição iremos ver como interagir com ETS e como podemos usá-lo nas nossas aplicações.
 
-## Sumário
+{% include toc.html %}
 
-- [Visão Geral](#visao-geral)
-- [Criando Tabelas](#criando-tabelas)
-  - [Tipos de Tabelas](#tipos-de-tabelas)
-  - [Controle de Acesso](#controle-de-acesso)
-- [Inserindo Dados](#inserindo-dados)
-- [Recuperando Dados](#recuperando-dados)
-  - [Pesquisa de chave](#pesquisa-de-chave)
-  - [Correspondências Simples](#correspondencias-simples)
-  - [Pesquisa Avançada](#pesquisa-avancada)
-- [Eliminando Dados](#eliminando-dados)
-  - [Removendo Registos](#removendo-registros)
-  - [Removendo Tabelas](#removendo-tabelas)
-- [Exemplos de uso do ETS](#exemplos-de-uso-do-ets)
-- [ETS baseado em Disco](#ets-baseado-em-disco)
-
-## <a name="visao-geral"></a> Visão Geral
+## Visão Geral
 
 ETS é um mecanismo de armazenamento em memória robusto para objetos do Elixir e do Erlang que já vem incluído. ETS é capaz de armazenar grandes quantidades de dados e oferecer um tempo constante para acesso aos dados.
 
@@ -100,7 +85,7 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
-### <a name="correspondencias-simples"></a> Correspondências Simples
+### Correspondências Simples
 
 ETS foi construído para o Erlang, logo, tenha em atenção que correspondência de variáveis pode parecer um _pouco_ desajeitado.
 
@@ -133,7 +118,7 @@ iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
-### <a name="pesquisa-avancada"></a> Pesquisa Avançada
+### Pesquisa Avançada
 
 Aprendemos sobre casos simples de fazer *match*, mas o que se quisermos algo mais parecido a uma consulta SQL? Felizmente existe uma sintaxe mais robusta disponível para nós. Para pesquisar nossos dados com `select/2` precisamos contruir uma lista de tuplas com três aridades. Estas tuplas representam o nosso padrão, zero ou mais guardas, e um formato de valor de retorno.
 
@@ -247,7 +232,7 @@ Para demostrar o uso do cache, iremos usar a função que retorna a hora do sist
 ```elixir
 defmodule ExampleApp do
   def test do
-    :os.system(:seconds)
+    :os.system_time(:seconds)
   end
 end
 
@@ -255,13 +240,13 @@ iex> :ets.new(:simple_cache, [:named_table])
 :simple_cache
 iex> ExampleApp.test
 1451089115
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089119
 iex> ExampleApp.test
 1451089123
 iex> ExampleApp.test
 1451089127
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089119
 ```
 
@@ -270,7 +255,7 @@ Depois de 10 segundos se não tentarmos novamente deveremos receber um novo resu
 ```elixir
 iex> ExampleApp.test
 1451089131
-iex> SimpleCache.get(SimpleCache, :test, [], ttl: 10)
+iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089134
 ```
 

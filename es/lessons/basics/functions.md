@@ -8,15 +8,7 @@ lang: es
 
 En Elixir y en muchos lenguajes funcionales, las funciones son ciudadanos de primera clase. Vamos a aprender acerca de los tipos de funciones en Elixir, qué los hace diferentes, y cómo usarlos.
 
-## Tabla de Contenidos
-
-- [Funciones anónimas](#funciones-anónimas)
-  - [El atajo &](#el--atajo)
-- [Coincidencia de patrones](#coincidencia-de-patrones)
-- [Funciones con nombre](#funciones-con-nombre)
-  - [Funciones privadas](#funciones-privadas)
-  - [Guardas](#guardas)
-  - [Argumentos por defecto](#argumentos-por-defecto)
+{% include toc.html %}
 
 ## Funciones anónimas
 

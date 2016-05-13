@@ -8,15 +8,7 @@ lang: jp
 
 テストはソフトウェア開発の重要な一部です。このレッスンではElixirコードをExUnitを用いてテストする方法と、そのためのベストプラクティスをいくつか見てきます。
 
-## 目次
-
-- [ExTest](#extest)
-  - [assert](#assert)
-  - [refute](#refute)
-  - [assert_raise](#assertraise)
-- [テストのセットアップ](#section-1)
-- [モック](#section-2)
-- [ベストプラクティス](#section-3)
+{% include toc.html %}
 
 ## ExTest
 

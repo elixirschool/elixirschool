@@ -11,14 +11,20 @@
     </div>
 
     <nav class="sidebar-nav">
+      {% if page.category == nil %}
+        {% assign current_category = site.sections[0].tag | strip %}
+      {% else %}
+        {% assign current_category = page.category | strip %}
+      {% endif %}
       {% for section in site.sections %}
         {% assign title = section.label[lang] %}
+        {% assign current_tag = section.tag | strip %}
         <div class="sidebar-nav-group {{section.tag}}">
           <div class="sidebar-nav-header">
-            <i class="fa fa-chevron-down"></i>
+            <i class="fa {% if current_category != current_tag %} fa-chevron-right {% else %} fa-chevron-down {% endif %}"></i>
             <span>{{title}}</span>
           </div>
-          <div class="sidebar-nav-list">
+          <div class="sidebar-nav-list" {% if current_category != current_tag %} style="display: none;" {% endif %}>
             {% assign list = site.pages | where: "category", section.tag | where: "lang", lang | sort: "order" %}
             {% for node in list %}
               <div class="sidebar-nav-item">

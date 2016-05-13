@@ -8,16 +8,7 @@ lang: cn
 
 列表、元组、关键字列表（keywords）、图（maps）、字典和函数组合子（combinators）
 
-## 目录
-
-- [列表](#section-1)
-	- [列表拼接](#section-2)
-	- [列表减法](#section-3)
-	- [头/尾](#section-4)
-- [元组](#section-5)
-- [关键字列表](#section-6)
-- [图](#section-7)
-- [字典](#section-8)
+{% include toc.html %}
 
 ## 列表
 

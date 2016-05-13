@@ -23,11 +23,13 @@ description:
   my: Pelajaran mengenai bahasa aturcara Elixir
   pl: Lekcje programowania w języku Elixir
   id: Pelajaran mengenai bahasa pemrograman Elixir
+  no: Leksjoner i programmeringsspråket Elixir
+  ko: 프로그래밍 언어 Elixir 배우기
 baseurl: /
 url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'id']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id']
 default_lang: en
 exclude_from_localization: []
 sections:
@@ -47,6 +49,8 @@ sections:
       it: Base
       pl: Podstawy
       id: Dasar
+      no: Grunnleggende
+      ko: 기초
   - tag: advanced
     label:
       en: Advanced
@@ -63,6 +67,8 @@ sections:
       it: Avanzato
       pl: Zaawansowane
       id: Lanjutan
+      no: Avansert
+      ko: 심화
   - tag: specifics
     label:
       en: Specifics
@@ -79,6 +85,8 @@ sections:
       it: Specifiche
       pl: Specyficzne
       id: Khusus
+      no: Detaljer
+      ko: 활용
 
 gems:
   - kramdown
@@ -104,3 +112,23 @@ sitemap:
       - '/index.html'
   change_frequency_name: 'change_frequency'
   priority_name: 'priority'
+
+elixir:
+  version: 1.2.3
+
+toc:
+  en: Table of Contents
+  jp: 目次
+  cn: 目录
+  es: Tabla de contenidos
+  pt: Sumário
+  vi: Mục lục
+  ru: Содержание
+  sk: Obsah
+  fr: Table des matières
+  gr: Πίνακας περιεχομένων
+  it: Tavola dei Contenuti
+  my: Isi Kandungan
+  pl: Spis treści
+  no: Innholdsfortegnelse
+  ko: 목차

@@ -8,14 +8,7 @@ lang: en
 
 Working with and creating sigils.
 
-## Table of Contents.
-
-- [Sigils Overview](#sigils-overview)
-  - [Char List](#char-list)
-  - [Regular Expressions](#regular-expressions)
-  - [String](#string)
-  - [Word List](#word-list)
-- [Creating Sigils](#creating-sigils)
+{% include toc.html %}
 
 ## Sigils Overview
 
@@ -27,10 +20,10 @@ A list of available sigils include:
   - `~c` Generates a character list **with** escaping and interpolation
   - `~R` Generates a regular expression **with no** escaping or interpolation
   - `~r` Generates a regular expression **with** escaping and interpolation
-  - `~S` Generates strings **with no** escaping or interpolation
-  - `~s` Generates string **with** escaping and interpolation
-  - `~W` Generates a list  **with no** escaping or interpolation
-  - `~w` Generates a list **with** escaping and interpolation
+  - `~S` Generates a string **with no** escaping or interpolation
+  - `~s` Generates a string **with** escaping and interpolation
+  - `~W` Generates a word list **with no** escaping or interpolation
+  - `~w` Generates a word list **with** escaping and interpolation
 
 A list of delimiters include:
 

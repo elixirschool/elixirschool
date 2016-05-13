@@ -23,12 +23,14 @@ Class names and proper nouns do not get translated.
 #### <a name="russian-elixir-related-terms"></a> Elixir-related terms
 
 - actors - модель акторов
+- alias - псевдоним
 - atom - атом
+- behaviour - поведение
 - function clauses - объявления функций
 - guard - ограничитель
 - guard operator - ограничивающий оператор
 - changeset - набор изменений
-- keyword list - список с ключами
+- keyword list - ключевой список
 - match operator - оператор сопоставления
 - pin operator - фиксирующий оператор
 - pipe operator - оператор конвейера
@@ -39,7 +41,10 @@ Class names and proper nouns do not get translated.
 #### <a name="russian-cs-terms"></a> CS terms
 
 - anonymous function - анонимная функция
+- attribute - атрибут
+- bitsring - битовая строка
 - boolean - логический тип
+- callback - функция обратного вызова
 - char list - список символов
 - collection - коллекция
 - concatenation - конкатенация
@@ -54,6 +59,8 @@ Class names and proper nouns do not get translated.
 - map - ассоциативный массив
 - metaprogramming - метапрограммирование
 - module - модуль
+- module - модуль
+- namespace - пространство имен
 - pattern matching - сопоставление с образцом
 - private (function) - закрытая (функция)
 - protected (function) - защищённая (функция)
@@ -61,12 +68,12 @@ Class names and proper nouns do not get translated.
 - rebind variable - переприсвоение переменной
 - signature - сигнатура (функции)
 - standard library - стандартная библиотека
+- struct - структура
 - subtraction - вычитание
 - supervision tree - дерево надзора
 - supervisor - супервизор
 - tail - хвост
 - worker - рабочий процесс
-
 
 ### <a name="glossary-portuguese"></a> Glossary - Portuguese
 

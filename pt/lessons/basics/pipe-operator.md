@@ -8,13 +8,9 @@ lang: pt
 
 O operador pipe `|>` passa o resultado de uma expressão como o primeiro parâmetro de outra expressão.
 
-## Sumário
+{% include toc.html %}
 
-- [Introdução](#introducao)
-- [Exemplos](#exemplos)
-- [Boas Práticas](#boas-praticas)
-
-## <a name="introducao"></a>Introdução
+## Introdução
 
 Programação pode se tornar algo bem confuso. Tão confuso que o fato de chamadas em funções podem ficar tão incorporadas a outras chamadas de função, tornando-se muito difícil de seguir. Tome em consideração as seguintes funções aninhadas:
 
@@ -55,7 +51,7 @@ iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
 
-## <a name="boas-praticas"></a>Boas Práticas
+## Boas Práticas
 
 Se a aridade de uma função é mais do que 1, certifique-se de usar parêntesis. Isso não importa muito para Elixir, porém é importante para outros programadores que podem interpretar mal o seu código. Se tomarmos o nosso segundo exemplo, e retirar os suportes do `Enum.map/2`, nos encontramos com o seguinte aviso:
 

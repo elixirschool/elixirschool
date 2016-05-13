@@ -8,13 +8,9 @@ lang: pt
 
 Determinados momentos um projeto pode ficar enorme, realmente enorme. A ferramenta de construção Mix nos permite dividir nosso código em vários aplicativos e fazer nossos projetos em Elixir mais manejáveis à medida que crescem.
 
-## Sumário
+{% include toc.html %}
 
-- [Introdução](#introducao)
-- [Projetos filho](#projetos-filho)
-- [IEx](#iex)
-
-## <a name="introducao"></a>Introdução
+## Introdução
 
 Para criar um projeto guarda-chuva nós iniciamos um projeto como se iniciássemos um projeto Mix normal, mas colocando o argumento `--umbrella`. Neste exemplo, faremos o *shell* de um kit de ferramentas de aprendizado de máquina. Por que um kit de ferramentas de aprendizado de máquina? Por que não? É composto de vários algoritmos de aprendizado e funções de utilidades diferentes.
 
@@ -209,7 +205,7 @@ Consolidated String.Chars
 Consolidated Enumerable
 Consolidated IEx.Info
 Consolidated Inspect
-Interactive Elixir (1.2.1) - press Ctrl+C to exit (type h() ENTER for help)
+Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
 iex> Datasets.hello
 Hello, I'm the datasets

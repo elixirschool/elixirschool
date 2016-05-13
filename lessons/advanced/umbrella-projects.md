@@ -8,11 +8,7 @@ lang: en
 
 Sometimes a project can get big, really big in fact. The Mix build tool allows us to split our code into multiple apps and make our Elixir projects more manageable as they grow.
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Child Projects](#child-projects)
-- [IEx](#iex)
+{% include toc.html %}
 
 ## Introduction
 
@@ -208,7 +204,7 @@ Consolidated String.Chars
 Consolidated Enumerable
 Consolidated IEx.Info
 Consolidated Inspect
-Interactive Elixir (1.2.1) - press Ctrl+C to exit (type h() ENTER for help)
+Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
 iex> Datasets.hello
 Hello, I'm the datasets

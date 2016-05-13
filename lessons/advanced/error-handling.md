@@ -12,17 +12,11 @@ In general the convention in Elixir is to create a function (`example/1`) which 
 
 This lesson will focus on interacting with the latter.
 
-## Table of Contents
-
-- [Error Handling](#error-handling)
-- [After](#after)
-- [New Errors](#new-errors)
-- [Throws](#throws)
-- [Exiting](#Exiting)
+{% include toc.html %}
 
 ## Error Handling
 
-Before we can handle errors we need to create them and the simpliest way to do so is with `raise/1`:
+Before we can handle errors we need to create them and the simplest way to do so is with `raise/1`:
 
 ```elixir
 iex> raise "Oh no!"
