@@ -10,14 +10,7 @@ Uno dei punti di forza di Elixir è il suo supporto alla concorrenza. Grazie all
 
 In questa lezione daremo un'occhiata ai moduli relativi ai processi concorrenti che vengono forniti dall'installazione di Elixir. Nel prossimo capitolo, ci occuperemo dei behaviour OTP che li implementano.
 
-## Tavola dei Contenuti
-
-- [Processi](#processi)
-  - [Message Passing](#message-passing)
-  - [Process Linking](#process-linking)
-  - [Process Monitoring](#process-monitoring)
-- [Agenti](#agenti)
-- [Task](#task)
+{% include toc.html %}
 
 ## Processi
 
