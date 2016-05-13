@@ -3,15 +3,12 @@ layout: page
 title: Pattern Matching
 category: basics
 order: 4
-lang: en
+lang: bg
 ---
 
 Pattern matching is a powerful part of Elixir, it allows us to match simple values, data structures, and even functions.  In this lesson we will begin to see how pattern matching is used.
 
-## Table of Contents
-
-- [Match operator](#match-operator)
-- [Pin operator](#pin-operator)
+{% include toc.html %}
 
 ## Match operator
 

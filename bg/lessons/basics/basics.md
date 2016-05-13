@@ -8,23 +8,7 @@ lang: bg
 
 Настройване, основни типове и операции.
 
-## Съдържание
-
-- [Настройване](#setup)
-	- [Инсталация на Elixir](#install-elixir)
-	- [Интерактивен Режим](#interactive-mode)
-- [Основни Типове](#basic-types)
-	- [Прости Числа](#integers)
-	- [Реални Числа](#floats)
-	- [Булеви стойности](#booleans)
-	- [Атом](#atoms)
-	- [Символни низове](#strings)
-- [Основни Операции](#basic-operations)
-	- [Аритметични](#arithmetic)
-	- [Булеви](#boolean)
-	- [Сравнения](#comparison)
-	- [Интерполация на символни низове](#string-interpolation)
-	- [Конкатениране на символни низове](#string-concatenation)
+{% include toc.html %}
 
 ## Настройване
 

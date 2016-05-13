@@ -3,21 +3,12 @@ layout: page
 title: Composition
 category: basics
 order: 8
-lang: en
+lang: bg
 ---
 
 We know from experience its unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
 
-## Table of Contents
-
-- [Modules](#modules)
-  - [Module attributes](#module-attributes)
-- [Structs](#structs)
-- [Composition](#composition)
-  - [`alias`](#alias)
-  - [`import`](#import)
-  - [`require`](#require)
-  - [`use`](#use)
+{% include toc.html %}
 
 ## Modules
 
@@ -215,11 +206,11 @@ defmodule Example do
 end
 ```
 
-If we attempt to call a macro that is not yet loaded Elixir will raise an error. 
+If we attempt to call a macro that is not yet loaded Elixir will raise an error.
 
 ### `use`
 
-The use macro invokes a special macro, called __using__/1, from the specified module. Here’s an example: 
+The use macro invokes a special macro, called __using__/1, from the specified module. Here’s an example:
 
 ```elixir
 # lib/use_import_require/use_me.ex
@@ -240,11 +231,11 @@ and we add this line to UseImportRequire:
 use UseImportRequire.UseMe
 ```
 
-Using UseImportRequire.UseMe defines a use_test/0 function through invocation of the __using__/1 macro. 
+Using UseImportRequire.UseMe defines a use_test/0 function through invocation of the __using__/1 macro.
 
-This is all that use does. However, it is common for the __using__ macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that __using__/1 may set up references to other modules, especially submodules. 
+This is all that use does. However, it is common for the __using__ macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that __using__/1 may set up references to other modules, especially submodules.
 
-The Phoenix framework makes use of use and __using__/1 to cut down on the need for repetitive alias and import calls in user defined modules. 
+The Phoenix framework makes use of use and __using__/1 to cut down on the need for repetitive alias and import calls in user defined modules.
 
 Here’s an nice and short example from the Ecto.Migration module:
 
@@ -258,6 +249,6 @@ defmacro __using__(_) do
 end
 ```
 
-The Ecto.Migration.__using__/1 macro includes an import call so that if use Ecto.Migration you also import Ecto.migration. It also sets up a module property which I assume control Ecto’s behavior. 
+The Ecto.Migration.__using__/1 macro includes an import call so that if use Ecto.Migration you also import Ecto.migration. It also sets up a module property which I assume control Ecto’s behavior.
 
-To recap: the use macro just invokes the __using__/1 macro of the specified module. To really understand what that does you need to read the __using__/1 macro. 
+To recap: the use macro just invokes the __using__/1 macro of the specified module. To really understand what that does you need to read the __using__/1 macro.

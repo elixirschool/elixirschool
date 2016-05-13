@@ -3,23 +3,12 @@ layout: page
 title: Strings
 category: basics
 order: 14
-lang: en
+lang: bg
 ---
 
 What are Strings in Elixir, Char lists, Graphemes and Codepoints.
 
-## Table of Contents
-
-- [Strings in Elixir](#strings-in-elixir)
-- [Char lists](#char-lists)
-- [Graphemes and Codepoints](#graphemes-and-codepoints)
-- [String functions](#string-functions)
-  - [Length](#length)
-  - [Replace](#replace)
-  - [Duplicate](#duplicate)
-  - [Split](#split)
-- [Exercises](#exercises)
-  - [Anagrams](#anagrams)
+{% include toc.html %}
 
 ## Strings in Elixir
 
@@ -111,9 +100,9 @@ Let's just get in action with two simple exercises to demostrate we are ready to
 
 ### Anagrams
 
-A and B are considered anagrams if there's a way that rearranging A or B, we can make them equals. For example: 
+A and B are considered anagrams if there's a way that rearranging A or B, we can make them equals. For example:
 A = super
-B = perus 
+B = perus
 
 If we re-arrange the characters on String A, we can get the string B, and viceversa.
 
@@ -154,4 +143,4 @@ iex> Anagram.anagrams?(3, 5)
     iex:2: Anagram.anagrams?(3, 5)
 ```
 
-As you can see, the last call to `anagrams?` cause a FunctionClauseError. This error is telling us that there is not a function in our module that meets the pattern of receiving two non-binary arguments, and that's exactly what we want, to just receive two strings, and nothing more. 
+As you can see, the last call to `anagrams?` cause a FunctionClauseError. This error is telling us that there is not a function in our module that meets the pattern of receiving two non-binary arguments, and that's exactly what we want, to just receive two strings, and nothing more.

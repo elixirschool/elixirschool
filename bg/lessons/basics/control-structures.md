@@ -3,17 +3,12 @@ layout: page
 title: Control Structures
 category: basics
 order: 5
-lang: en
+lang: bg
 ---
 
 In this lesson we will look at the control structures available to us in Elixir.
 
-## Table of Contents
-
-- [`if` and `unless`](#if-and-unless)
-- [`case`](#case)
-- [`cond`](#cond)
-- [`with`](#with)
+{% include toc.html %}
 
 ## `if` and `unless`
 
@@ -160,8 +155,8 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 Now let's look a larger example without `with` and then see how we can refactor it:
 
 ```elixir
-case Repo.insert(changeset) do 
-  {:ok, user} -> 
+case Repo.insert(changeset) do
+  {:ok, user} ->
     case Guardian.encode_and_sign(resource, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
@@ -174,7 +169,7 @@ end
 When we introduce `with` we end up with code that is easy to understand and has fewer lines:
 
 ```elixir
-with 
+with
   {:ok, user} <- Repo.insert(changeset),
   {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
   do: important_stuff(jwt, full_claims)

@@ -3,16 +3,12 @@ layout: page
 title: Comprehensions
 category: basics
 order: 13
-lang: en
+lang: bg
 ---
 
 List comprehensions are syntactic sugar for looping through enumerables in Elixir.  In this lesson we'll look at how we can use comprehensions for iteration and generation.
 
-## Table of Contents
-
-- [Basics](#basics)
-- [Filters](#filters)
-- [Using `:into`](#using-into)
+{% include toc.html %}
 
 ## Basics
 
