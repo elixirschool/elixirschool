@@ -1,32 +1,20 @@
 ---
 layout: page
-title: Functions
+title: 함수
 category: basics
 order: 7
 lang: ko
 ---
 
 Elixir를 포함한 많은 함수형 언어에서, 함수들은 일급 시민입니다. 우리는 Elixir를 특별하게 해주는 함수의 유형에 대해 배우고, 그것을 어떻게 이용하는지 배울 것입니다.
-In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
 
-## 목차
-
-- [Anonymous functions](#anonymous-functions)
-  - [The & shorthand](#the--shorthand)
-- [Pattern matching](#pattern-matching)
-- [Named functions](#named-functions)
-  - [Private functions](#private-functions)
-  - [Guards](#guards)
-  - [Default arguments](#default-arguments)
+{% include toc.html %}
 
 ## 익명 함수
-## Anonymous functions
 
-이름이 암시하는 것과 같이, 익명 함수는 이름이 없습니다. `Enum` 수업에서 보았듯이, 함수는 빈번히 다른 함수로 넘겨지게 됩니다. Elixir에서 익명 함수를 정의하기 위해, 우리는 `fn` 그리고 `end` 키워드가 필요합니다. 익명 함수 내에서 우리는 매개변수의 개수를 정의할 수 있고, 함수의 몸체는 `->`로 구분됩니다.
-Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, they are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
+이름이 암시하는 것과 같이, 익명 함수는 이름이 없습니다. `Enum` 수업에서 보았듯이, 함수는 빈번히 다른 함수로 넘겨지게 됩니다. Elixir에서 익명 함수를 정의하기 위해, `fn` 그리고 `end` 키워드가 필요합니다. 익명 함수 내에서 매개변수의 개수를 정의할 수 있으며, 함수의 몸체는 `->`로 구분됩니다.
 
-기초적인 예제를 보도록 하죠:
-Let's look at a basic example:
+기초적인 예제를 보도록 합시다:
 
 ```elixirre
 iex> sum = fn (a, b) -> a + b end
@@ -35,10 +23,8 @@ iex> sum.(2, 3)
 ```
 
 ### &으로 줄여쓰기
-### The & shorthand
 
-Elixir에서 줄여쓰기할 경우, 익명함수를 쓰는 것은 흔히 보이는 사례입니다:
-Using anonymous functions is such a common practice in Elixir there is shorthand for doing so:
+Elixir로 프로그래밍 하다보면, 익명함수를 이용하여 줄여쓰는 것을 흔히 볼 수 있습니다:
 
 ```elixir
 iex> sum = &(&1 + &2)
@@ -46,17 +32,13 @@ iex> sum.(2, 3)
 5
 ```
 
-여러분께서 추측하셨겠듯이, 줄여쓰기를 했을 때 매개변수들은 `&1`, `&2`, `&3`, 등과 같이 다룰 수 있습니다.
-As you probably already guessed, in the shorthand version our parameters are available to us as `&1`, `&2`, `&3`, and so on.
+여러분들께서 추측하셨겠듯이, 줄여쓰기를 했을 때 매개변수들은 `&1`, `&2`, `&3`, 등과 같이 다룰 수 있습니다.
 
-## 패턴 매칭
-## Pattern matching
+## 패턴매칭
 
-Elixir에서 패턴 매칭은 단순히 변수를 다루는 데서 그치지 않고, 함수의 시그니쳐에서도 적용될 수 있다는 것을 이 섹션에서 확인할 것입니다.
-Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
+Elixir에서 패턴매칭은 단순히 변수를 다루는 데서 그치지 않고, 함수 시그니처에서도 적용될 수 있다는 것을 이 섹션에서 확인할 것입니다.
 
-Elixir는 ??? 식별하기 위해 패턴 매칭을 사용합니다. 
-Elixir uses pattern matching to identify the first set of parameters which match and invokes the corresponding body:
+매칭하여 대응되는 함수를 불러일으키는 매개변수의 집합을 식별하기 위해 패턴매칭을 사용합니다: 
 
 ```elixir
 iex> handle_result = fn
@@ -73,13 +55,10 @@ An error has occurred!
 ```
 
 ## 이름이 있는 함수
-## Named functions
 
-우리는 차후에 호출할 수 있도록 모듈 내에서 `def` 키워드를 이용하여 함수에 이름을 부여할 수 있습니다. 지금은 이름이 있는 함수를 다루는 것에 집중하도록 하고, 다음 강의에서 모듈에 대해 더 배울 것입니다.
-We can define functions with names so we can refer to them later, these named functions are defined with the `def` keyword within a module.  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
+차후에 호출할 수 있도록 함수를 이름과 같이 정의할 수 있습니다. 이는 모듈 내에서 `def` 키워드로 정의됩니다. 지금은 이름이 있는 함수를 다루는 것에 집중하도록 하고, 다음 수업에서 모듈에 대해 더 배울 것입니다.
 
-모듈 내에서 정의된 함수는 다른 모듈에서 접근이 가능하며, 이는 Elixir에서 프로젝트를 구축할때 특히 유용합니다. 
-Functions defined within a module are available to other modules for use, this is a particularly useful building block in Elixir:
+모듈 내에서 정의된 함수는 다른 모듈에서 접근이 가능하며, 이는 Elixir에서 특히 유용한 요소 중 하나입니다. 
 
 ```elixir
 defmodule Greeter do
@@ -93,7 +72,6 @@ iex> Greeter.hello("Sean")
 ```
 
 만약 함수의 몸체를 한 줄로 쓰고 싶은 경우, 우리는 `do:`를 이용하여 축약할 수 있습니다.
-If our function body only spans one line, we can shorten it further with `do:`:
 
 ```elixir
 defmodule Greeter do
@@ -102,7 +80,6 @@ end
 ```
 
 패턴매칭에 대한 지식, 이름있는 함수를 이용하여 재귀를 맛보도록 하죠.
-Armed with our knowledge of pattern matching, let's explore recursion using named functions:
 
 ```elixir
 defmodule Length do
@@ -116,11 +93,9 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### 사적(private) 함수
-### Private functions
+### Private 함수
 
-다른 모듈에서 함수에 접근하는 것을 원하지 않는다면, 정의된 모듈 내에서만 호출될 수 있도록 사적(private) 함수를 이용할 수 있습니다. 엘릭서에서는 그것들을 `defd` 키워드를 이용하여 정의할 수 있습니다:
-When we don't want other modules accessing a function we can use private functions, which can only be called within their Module.  We can define them in Elixir with `defp`:
+다른 모듈에서 함수에 접근하는 것을 원하지 않는다면, 정의된 모듈 내에서만 호출될 수 있도록 private 함수를 이용할 수 있습니다. Elixir에서는 그것들을 `defp` 키워드를 이용하여 정의할 수 있습니다:
 
 ```elixir
 defmodule Greeter do
@@ -136,14 +111,11 @@ iex> Greeter.phrase
     Greeter.phrase()
 ```
 
-### 보호자(Guards)
-### Guards
+### 가드
 
-[제어 구조](../control-structures.md) 강의에서 guards에 대해 간략하게 다뤘으니, 지금은 이름이 있는 함수에 어떻게 적용할 수 있는지 알아보도록 하겠습니다. Elixir에서 함수가 매치되기만 하면, 존재하는 어떤 guards 든지 테스트될 것입니다.
-We briefly covered guards in the [Control Structures](../control-structures.md) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
+[제어 구조](../control-structures.md) 강의에서 가드에 대해 간략하게 다뤘으니, 이제 이름이 있는 함수에 어떻게 적용할 수 있는지 알아보도록 하겠습니다. Elixir에서 함수가 매치되기만 하면, 존재하는 어떤 가드든지 테스트될 것입니다.
 
-다음의 예제예서, 우리는 
-In the follow example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
+동일한 시그니쳐를 가진 두 함수가 정의된 다음의 예제에서, 인자의 타입에 따라 어떤 함수를 이용할 지 가드를 통해 결정합니다.
 
 ```elixir
 defmodule Greeter do
@@ -164,11 +136,10 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### 기본(Default) ?????
-### Default arguments
+### 디폴트 인자
 
+인자에 디폴트 값을 할당하고 싶다면, `인자 \\ 값` 문법을 이용할 수 있습니다:
 
-If we want a default value for an argument we use the `argument \\ value` syntax:
 
 ```elixir
 defmodule Greeter do
@@ -190,7 +161,9 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-When we combine our guard example with default arguments, we run into an issue.  Let's see what that might look like:
+
+가드 예제에 디폴트 인자를 적용한 경우를 다뤄보도록 합시다. 아마, 다음과 같이 나타낼 수 있을 겁니다.
+
 
 ```elixir
 defmodule Greeter do
@@ -211,7 +184,9 @@ end
 ** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
 ```
 
-Elixir doesn't like default arguments in multiple matching functions, it can be  confusing.  To handle this we add a function head with our default arguments:
+
+Elixir에서 여러 매칭 함수에 디폴트 인자가 들어가는 것을 권장하지 않습니다. 다소 헷갈릴 수 있기 때문입니다. 이를 다루기 위해서, 디폴트 인자가 들어있는 함수 선언문을 추가해봅시다.
+
 
 ```elixir
 defmodule Greeter do
