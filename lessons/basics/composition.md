@@ -187,7 +187,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arty pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
+In addition to the name/arity pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
 
 ```elixir
 import List, only: :functions
@@ -249,6 +249,6 @@ defmacro __using__(_) do
 end
 ```
 
-The Ecto.Migration.__using__/1 macro includes an import call so that if use Ecto.Migration you also import Ecto.migration. It also sets up a module property which I assume control Ecto’s behavior. 
+The Ecto.Migration.__using__/1 macro includes an import call so that if use Ecto.Migration you also import Ecto.migration. It also sets up a module property which I assume controls Ecto’s behavior.
 
 To recap: the use macro just invokes the __using__/1 macro of the specified module. To really understand what that does you need to read the __using__/1 macro. 

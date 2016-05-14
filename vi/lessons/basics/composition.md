@@ -187,7 +187,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arty pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
+In addition to the name/arity pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
 
 ```elixir
 import List, only: :functions
