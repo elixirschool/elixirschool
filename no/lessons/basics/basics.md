@@ -241,3 +241,38 @@ iex> "Hello " <> name
 "Hello Sean"
 ```
 
+iex> "Hello " <> name
+"Hello Sean"
+```
+
+
+Dette kan føre til noen interessante, men gyldige sammenligninger du kanskje ikke finner i andre programmeringsspråk:
+
+```elixir
+iex> :hello > 999
+true
+iex> {:hello, :world} > [1, 2, 3]
+false
+```
+
+### Strenginterpolering (String interpolation)
+
+Hvis du noen gang har programmert i Ruby, vil strenginterpolering i Elixir
+se kjent ut:
+
+```elixir
+iex> name = "Sean"
+iex> "Hello #{name}"
+"Hello Sean"
+```
+
+### Strengsammensetning (String concatenation)
+
+Strengsammensetning benytter `<>` operatoren:
+
+```elixir
+iex> name = "Sean"
+iex> "Hello " <> name
+"Hello Sean"
+```
+
