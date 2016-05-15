@@ -8,23 +8,7 @@ lang: it
 
 Configurazione, tipi di base ed operazioni di base.
 
-## Tavola dei Contenuti
-
-- [Configurazione](#configurazione)
-	- [Installare Elixir](#installare-elixir)
-	- [Modalità Interattiva](#modalit-interattiva)
-- [Tipi di Base](#tipi-di-base)
-	- [Interi](#interi)
-	- [Numeri in Virgola Mobile](#numeri-in-virgola-mobile)
-	- [Booleani](#booleani)
-	- [Atoms](#atoms)
-	- [Stringhe](#stringhe)
-- [Operazioni di Base](#operazioni-di-base)
-	- [Aritmetica](#aritmetica)
-	- [Logica Booleana](#logica-booleana)
-	- [Confronto](#confronto)
-	- [Interpolazione in una Stringa](#interpolazione-in-una-stringa)
-	- [Concatenazione di Stringhe](#concatenazione-di-stringhe)
+{% include toc.html %}
 
 ## Configurazione
 

@@ -10,13 +10,7 @@ Prima di approfondire ulteriormente Elixir, dobbiamo prima imparare a conoscere 
 
 Finora abbiamo lavorato esclusivamente con `iex` che però ha alcune limitazioni. Per costruire qualcosa di significativo dobbiamo dividere il nostro codice su più files in modo da poterli gestire meglio, mix ci permette di farlo con i progetti.
 
-## Tavola dei Contenuti
-
-- [Nuovi Progetti](#nuovi-progetti)
-- [Compilazione](#compilazione)
-- [Modalità Interattiva](#modalit-interattiva)
-- [Gestione delle Dipendenze](#gestione-delle-dipendenze)
-- [Ambienti](#ambienti)
+{% include toc.html %}
 
 ## Nuovi Progetti
 

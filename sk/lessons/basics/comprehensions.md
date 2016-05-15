@@ -8,11 +8,7 @@ lang: sk
 
 List comprehensions (*komprehenžny?*) sú syntaktickým zjednodučením cyklovania nad dátovými štruktúrami typu enumerable (kolekciami ako zoznamy a podobne). V tento lekcii sa naučíme, ako ich používať na iterovanie a generovanie.
 
-## Obsah
-
-- [Základy](#zklady)
-- [Filtre](#filtre)
-- [Použitie `:into`](#pouitie-into)
+{% include toc.html %}
 
 ## Základy
 

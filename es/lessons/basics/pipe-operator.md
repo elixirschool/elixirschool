@@ -8,11 +8,7 @@ lang: es
 
 El operador pipe `|>` pasa el resultado de una expresión como el primer parámetro de otra expresión.
 
-## Tabla de Contenidos
-
-- [Introducción](#introduction)
-- [Ejemplos](#examples)
-- [Buenas Prácticas](#best-practices)
+{% include toc.html %}
 
 ## Introducción
 

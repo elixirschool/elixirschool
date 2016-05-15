@@ -8,15 +8,7 @@ lang: en
 
 List, tuples, keywords, maps and functional combinators.
 
-## Table of Contents
-
-- [Lists](#lists)
-	- [List concatenation](#list-concatenation)
-	- [List subtraction](#list-subtraction)
-	- [Head / Tail](#head--tail)
-- [Tuples](#tuples)
-- [Keyword lists](#keyword-lists)
-- [Maps](#maps)
+{% include toc.html %}
 
 ## Lists
 

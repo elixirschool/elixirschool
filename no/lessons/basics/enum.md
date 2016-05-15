@@ -8,20 +8,7 @@ lang: no
 
 Et sett med algoritmer for å iterere over kolleksjoner.
 
-## Innholdsfortegnelse
-
-- [Enum](#enum)
-  - [all?](#all)
-  - [any?](#any)
-  - [chunk](#chunk)
-  - [chunk_by](#chunk_by)
-  - [each](#each)
-  - [map](#map)
-  - [min](#min)
-  - [max](#max)
-  - [reduce](#reduce)
-  - [sort](#sort)
-  - [uniq](#uniq)
+{% include toc.html %}
 
 ## Enum
 
@@ -60,7 +47,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Det finnes flere alternativer for `chunk`, men vi blir ikke å gå igjennom dem Se  [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) i den offisielle dokumentasjonen for å lære mer.
+Det finnes flere alternativer for `chunk`, men vi blir ikke å gå igjennom dem. Se  [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) i den offisielle dokumentasjonen for å lære mer.
 
 ### chunk_by
 

@@ -8,23 +8,7 @@ lang: cn
 
 安装，基本类型和基本操作。
 
-## 目录
-
-- [安装](#section-1)
-	- [安装 Elixir](#elixir)
-	- [交互模式](#section-2)
-- [基本类型](#section-3)
-	- [整数类型](#section-4)
-	- [浮点类型](#section-5)
-	- [布尔型](#section-6)
-	- [原子类型](#section-7)
-	- [字符串](#section-8)
-- [基本操作](#section-9)
-	- [算术操作](#section-10)
-	- [布尔操作](#section-11)
-	- [比较](#section-12)
-	- [字符串差值](#section-13)
-	- [字符串拼接](#section-14)
+{% include toc.html %}
 
 ## 安装
 

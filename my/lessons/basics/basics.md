@@ -8,25 +8,9 @@ lang: my
 
 Penyediaan, Jenis Data Asas dan Operasi.
 
-## Kandungan
+{% include toc.html %}
 
-- [Penyediaan](#penyediaan)
-	- [Pemasangan Elixir](#pemasangan-elixir)
-	- [Mod Interaktif](#mod-interaktif)
-- [Jenis Data Asas](#jenis-data-asas)
-	- [Angka Bulat](#angka-bulat)
-	- [Nombor Apungan](#nombor-apungan)
-	- [Boolean](#boolean)
-	- [Atom](#atom)
-	- [String](#string)
-- [Operasi Asas](#operasi-asas)
-	- [Arithmetik](#arithmetik)
-	- [Boolean](#boolean)
-	- [Perbandingan](#perbandingan)
-	- [Interpolasi String](#interpolasi-string)
-	- [Perangkaian String](#perangkaian-string)
-
-## Setup
+## Penyediaan
 
 ### Pemasangan Elixir
 

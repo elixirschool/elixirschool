@@ -8,16 +8,7 @@ lang: sk
 
 Zo skúsenosti vieme, že je dosť nepohodlné, mať všetky funkcie v jedinom súbore. V tejto lekcii sa naučíme, ako funkcie zoskupovať do *modulov*, ako moduly komponovať a ako používať špeciálny typ mapy, zvaný *Struct*.
 
-## Obsah
-
-- [Moduly](#moduly)
-  - [Attribúty modulov](#atribty-modulov)
-- [Structs](#structs)
-- [Skladanie modulov](#skladanie-modulov)
-  - [`alias`](#alias)
-  - [`import`](#import)
-  - [`require`](#require)
-  - [`use`](#use)
+{% include toc.html %}
 
 ## Moduly
 

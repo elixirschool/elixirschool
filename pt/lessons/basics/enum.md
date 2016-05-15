@@ -8,20 +8,7 @@ lang: pt
 
 Um conjunto de algoritmos para fazer enumeração em coleções.
 
-## Sumário
-
-- [Enum](#enum)
-  - [all?](#all)
-  - [any?](#any)
-  - [chunk](#chunk)
-  - [chunk_by](#chunk_by)
-  - [each](#each)
-  - [map](#map)
-  - [min](#min)
-  - [max](#max)
-  - [reduce](#reduce)
-  - [sort](#sort)
-  - [uniq](#uniq)
+{% include toc.html %}
 
 ## Enum
 
@@ -60,7 +47,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 
 Há algumas opções para `chunk` porém não vamos entrar nelas, revise [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) na documentação oficial para aprender mais.
 
-### <a name="chunk_by"></a>chunk_by
+### chunk_by
 
 Se necessita agrupar uma coleção baseado em algo diferente do tamanho, podemos usar a função `chunk_by`:
 

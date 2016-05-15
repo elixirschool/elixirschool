@@ -8,15 +8,7 @@ lang: jp
 
 Rubyをよくご存知なら、PlugはところどころSinatraの面影をもつRackだと考えることができます。PlugはWebアプリケーションのための仕様と、Webサーバーのためのアダプタを提供します。Elixirのコアの一部ではなく、公式のElixirプロジェクトです。
 
-## 目次
-
-- [インストール](#section-1)
-- [仕様](#section-2)
-- [Plugの作成](#plug)
-- [Plug.Routerの使用](#plugrouter)
-- [Webアプリの実行](#web)
-- [Plugのテスト](#plug-1)
-- [利用可能なPlug](#plug-2)
+{% include toc.html %}
 
 ## インストール
 

@@ -8,23 +8,7 @@ lang: vi
 
 Cài đặt, cái kiểu phổ thông và cơ chế hoạt động.
 
-## Mục lục
-
-- [Cài đặt](#setup)
-	- [Cài Elixir](#install-elixir)
-	- [Chế độ trực quan](#interactive-mode)
-- [Kiểu phổ thông](#basic-types)
-	- [Integer](#integers)
-	- [Float](#floats)
-	- [Boolean](#booleans)
-	- [Atom](#atoms)
-	- [String](#strings)
-- [Cơ chế vận hành phổ thông](#basic-operations)
-	- [Toán học](#arithmetic)
-	- [Boolean](#boolean)
-	- [So sánh](#comparison)
-	- [String Interpolation](#string-interpolation)
-	- [Sâu nối String](#string-concatenation)
+{% include toc.html %}
 
 ## Cài đặt
 
