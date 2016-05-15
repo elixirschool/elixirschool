@@ -8,17 +8,7 @@ lang: pl
 
 Czym są ciągi znaków w Elixirze, listy znaków, grafemy i jak wygląda obsługa kodowania znaków.
 
-## Spis treści
-
-- [Ciągi znaków](#Ciągi-znaków)
-- [Listy znaków](#Listy-znaków)
-- [Grafemy i kodowanie](#Grafemy-i-kodowanie)
-- [Popularne funkcje](#Popularne-funkcje)
-  - [Length](#length)
-  - [Replace](#replace)
-  - [Duplicate](#duplicate)
-- [Ćwiczenia](#Ćwiczenia)
-  - [anagramy](#anagramy)
+{% include toc.html %}
 
 ## Ciągi znaków
 
