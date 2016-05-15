@@ -10,15 +10,7 @@ Jedną z zalet działania w ramach maszyny wirtualnej erlanga jest bogactwo istn
 Interoperacyjność pozwala nam na wykorzystanie tych rozwiązań, jak i standardowej biblioteki Erlanga w naszym
 Elixirowym kodzie. W tej lekcji przyjrzymy się, jak możemy łączyć nasz kod z bibliotekami stworzonymi w Erlangu.
 
-## Spis treści
-
-- [Biblioteka standardowa](#Biblioteka-standardowa)
-- [Pakiety erlanga](#Pakiety-erlanga)
-- [Najważniejsze różnice](#Najważniejsze-różnice)
-  - [Atomy](#atomy)
-  - [Ciągi znaków](#ciągi-znaków)
-  - [Variables](#Zmienne)
-
+{% include toc.html %}
 
 ## Biblioteka standardowa
 
