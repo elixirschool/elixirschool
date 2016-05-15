@@ -13,14 +13,7 @@ o model aktorów, reprezentowanych przez procesy, które komunikują się, wymie
 W tej lekcji przyjrzymy się modułom, które służą do obsługi współbieżności, a w kolejnych omówimy i 
 zaimplementujemy zachowania OTP.
 
-## Spis treści
-
-- [Procesy](#Procesy)
-  - [Przekazywanie komunikatów](#Przekazywanie-komunikatów)
-  - [Łączenie procesów](#Łączenie-procesów)
-  - [Monitoring](#monitoring)
-- [Agenci](#Agenci)
-- [Zadania](#Zadania)
+{% include toc.html %}
 
 ## Procesy
 
