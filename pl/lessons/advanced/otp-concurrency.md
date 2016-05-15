@@ -11,15 +11,7 @@ tym, co się dzieje. Dlatego też Elixir ma obsługę zachowań OTP.
 
 W tej lekcji skupimy się na dwóch elementach: GenServers i GenEvents.
 
-## Spis treści
-
-- [GenServer](#genserver)
-  - [Funkcje synchroniczne](#Funkcje-synchroniczne)
-  - [Funkcje asynchroniczne](#Funkcje-asynchroniczne)
-- [GenEvent](#genevent)
-  - [Obsługa zdarzeń](#Obsługa-zdarzeń)
-  - [Wywoływanie zdarzeń](#Wywoływanie-zdarzeń)
-  - [Użycie GenEvents](#użycie-genevents)
+{% include toc.html %}
 
 ## GenServer
 
