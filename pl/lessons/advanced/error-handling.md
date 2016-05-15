@@ -14,13 +14,7 @@ reason}` oraz oddzielnej funkcji (`example!/1`), która zwróci bezpośrednio `r
 
 W tej lekcji skupimy się na pracy z takim podejściem.
 
-## Spis treści
-
-- [Obsługa błędów](#Obsługa-błędów)
-- [Blok `after`](#Blok-after)
-- [Własne błędy](#Własne-błędy)
-- [Zwracanie błędów](#Zwracanie-błędów)
-- [Kończenie procesu](#Kończenie-procesu)
+{% include toc.html %}
 
 ## Obsługa błędów
 
