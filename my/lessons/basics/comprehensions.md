@@ -8,11 +8,7 @@ lang: my
 
 'List comprehension' ialah 'syntactic sugar'(sintaks untuk memudahkan pembacaan dan penjelasan sesuatu topik) untuk menggelung 'enumerable' di dalam Elixir.  Di dalam pelajaran ini kita akan melihat bagaimana kita boleh menggunakan 'comprehension' untuk lelaran(iteration) dan penjanaan.
 
-## Isi Kandungan
-
-- [Asas](#asas)
-- [Tapisan](#tapisan)
-- [Menggunakan `:into`](#menggunakan-into)
+{% include toc.html %}
 
 ## Asas
 

@@ -8,19 +8,9 @@ lang: pt
 
 Mnesia é um sistema de gestão de banco de dados em tempo real de alto tráfego.
 
-## Sumário
+{% include toc.html %}
 
-- [Visão Geral](#visao-geral)
-- [Quando Usar](#quando-usar)
-- [Schema](#schema)
-- [Nós](#nos)
-- [Iniciando Mnesia](#iniciando-mnesia)
-- [Criando Tabelas](#criando-tabelas)
-- [A Maneira Suja](#a-maneira-suja)
-- [Transações](#transacoes)
-
-
-## <a name="visao-geral"></a> Visão Geral
+## Visão Geral
 
 Mnesia é um sistema de banco de dados (DBMS) que vem acompanhado da Runtime do Erlang, e por isso podemos utilizar naturalmente com Elixir. O *modelo de dados híbrido relacional e de objeto* do Mnesia é o que o torna adequado para o desenvolvimento de aplicações distribuídas de qualquer escala.
 
@@ -50,7 +40,7 @@ iex> Mnesia.create_schema([node()])
 
 Para esta lição, vamos tomar a última abordagem quando se trabalha com a API Mnesia. `Mnesia.create_schema/1` inicializa um novo schema vazio e passa em uma lista de nós. Neste caso, estamos passando o nó associado com a nossa sessão IEx.
 
-## <a name="nos"></a> Nós
+## Nós
 
 Uma vez que executar o comando`Mnesia.create_schema([node()])` via IEx, você deve ver uma pasta chamada **Mnesia.nonode@nohost** ou similar no seu diretório de trabalho atual. Você pode estar se perguntando o que o **nonode@nohost** significa já que não nos deparamos com isso antes. Vamos dar uma olhada.
 
@@ -89,7 +79,7 @@ $ iex --name learner@elixirschool.com
 
 Erlang/OTP 18 [erts-7.2.1] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-Interactive Elixir (1.2.1) - press Ctrl+C to exit (type h() ENTER for help)
+Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 iex(learner@elixirschool.com)> Node.self
 :"learner@elixirschool.com"
 ```
@@ -156,7 +146,7 @@ iex> Mnesia.dirty_read({Person, 4})
 Se nós tentarmos consultar um registro que não existe, Mnesia irá responder com uma lista vazia.
 
 
-## <a name="transacoes"></a> Transações
+## Transações
 
 Tradicionalmente nós usamos **transações** para encapsular nossas leituras no nosso banco de dados. Transações são uma parte importante para concepção de sistemas altamente distribuídos e tolerantes a falhas. Uma *transação* no Mnesia é um mecanismo através do qual uma série de operações da base de dados pode ser executada como um bloco funcional. Primeiro criamos uma função anônima, neste caso `data_to_write` e em seguida, passamos esta função para `Mnesia.transaction`.
 

@@ -8,18 +8,7 @@ lang: en
 
 Mnesia is a heavy duty real-time distributed database management system.
 
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to use](#when-to-use)
-- [Schema](#schema)
-- [Nodes](#nodes)
-- [Starting Mnesia](#starting-mnesia)
-- [Creating Tables](#creating-tables)
-- [The Dirty Way](#the-dirty-way)
-- [Transactions](#transactions)
-
+{% include toc.html %}
 
 ## Overview
 
@@ -90,7 +79,7 @@ $ iex --name learner@elixirschool.com
 
 Erlang/OTP 18 [erts-7.2.1] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-Interactive Elixir (1.2.1) - press Ctrl+C to exit (type h() ENTER for help)
+Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 iex(learner@elixirschool.com)> Node.self
 :"learner@elixirschool.com"
 ```

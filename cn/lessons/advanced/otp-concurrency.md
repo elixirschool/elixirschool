@@ -10,15 +10,7 @@ lang: cn
 
 这节课，我们主要讲两个东西：Genservers 和 GenEvents。
 
-# 目录
-- [GenServer](#genserver)
-  - [同步函数](#section-1)
-  - [异步函数](#section-2)
-
-- [GenEvent](#genevent)
-  - [处理事件](#section-3)
-  - [调用处理函数](#section-4)
-  - [使用GenEvents](#genevents)
+{% include toc.html %}
 
 # GenServer
 OTP server 是一个模块，包含了 Genserver 的主要行为，外加一系列的 callbacks。Genserver 最核心的内容是这样一个循环：每次迭代处理一个带有目标状态的请求。

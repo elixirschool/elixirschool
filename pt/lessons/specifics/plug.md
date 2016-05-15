@@ -8,17 +8,9 @@ lang: pt
 
 Se você estiver familiarizado com Ruby, você pode pensar sobre Plug como o Rack com uma pitada de Sinatra, ele fornece uma especificação para componentes de aplicação web e adaptadores para servidores web. Mesmo não fazendo parte do núcleo de Elixir, Plug é um projeto oficial de Elixir.
 
-## Sumário
+{% include toc.html %}
 
-- [Instalação](#instalacao)
-- [Especificação](#especificacao)
-- [Criando um Plug](#criando-um-plug)
-- [Usando Plug.Router](#usando-plugrouter)
-- [Executando nosso Web App](#executando-nosso-web-app)
-- [Testando Plugs](#testando-plugs)
-- [Plugs Disponíveis](#plugs-disponiveis)
-
-## <a name="instalacao"></a> Instalação
+## Instalação
 
 A instalação é uma brisa se você utilizar mix. Para instalar Plug nós precisamos fazer duas pequenas alterações no nosso `mix.exs`. A primeira coisa a fazer é adicionar tanto Plug quanto um servidor web para o nosso arquivo de dependências, vamos utilizar Cowboy:
 
@@ -37,7 +29,7 @@ def application do
 end
 ```
 
-## <a name="especificacao"></a> A especificação
+## A especificação
 
 A fim de começar a criar Plugs, nós precisamos saber e aderir a especificação Plug. Felizmente para nós, existem apenas duas funções necessárias: `init/1` e `call/2`.
 
@@ -231,6 +223,6 @@ defmodule RouterTest do
 end
 ```
 
-## <a name="plugs-disponiveis"></a> Plugs disponíveis
+## Plugs disponíveis
 
 Há um número de Plugs disponíveis e fáceis de utilizar, a lista completa pode ser encontrada na documentação do Plug [neste link](https://github.com/elixir-lang/plug#available-plugs).

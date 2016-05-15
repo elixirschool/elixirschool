@@ -9,15 +9,7 @@ lang: sk
 
 Listy, tuples, keywords, mapy, dictionaries a kombinátory.
 
-## Obsah
-
-- [Zoznamy](#zoznamy)
-	- [Spájanie zoznamov](#spjanie-zoznamov)
-	- [Odčítavanie zoznamov](#odtavanie-zoznamov)
-	- [Head / Tail](#head--tail)
-- [Tuples](#tuples)
-- [Keyword lists](#keyword-lists)
-- [Mapy](#mapy)
+{% include toc.html %}
 
 ## Zoznamy
 

@@ -8,23 +8,7 @@ lang: cn
 
 安装，基本类型和基本操作。
 
-## 目录
-
-- [安装](#section-1)
-	- [安装 Elixir](#elixir)
-	- [交互模式](#section-2)
-- [基本类型](#section-3)
-	- [整数类型](#section-4)
-	- [浮点类型](#section-5)
-	- [布尔型](#section-6)
-	- [原子类型](#section-7)
-	- [字符串](#section-8)
-- [基本操作](#section-9)
-	- [算术操作](#section-10)
-	- [布尔操作](#section-11)
-	- [比较](#section-12)
-	- [字符串差值](#section-13)
-	- [字符串拼接](#section-14)
+{% include toc.html %}
 
 ## 安装
 
@@ -40,7 +24,7 @@ Elixir 自带了 `iex` 这样一个交互 shell, 可以让我们随时计算 Eli
 
 	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
+	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
 ## 基本类型

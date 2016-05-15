@@ -8,11 +8,7 @@ lang: jp
 
 Elixirで実行ファイルをビルドするにはescriptを利用します。escriptはErlangがインストールされているあらゆるシステム上で動作する実行ファイルを生み出します。
 
-## 目次
-
-- [始めに](#section-1)
-- [引数の解析](#section-2)
-- [ビルド](#section-3)
+{% include toc.html %}
 
 ## 始めに
 

@@ -8,17 +8,7 @@ lang: en
 
 Documenting Elixir code.
 
-## Table of Contents.
-
-- [Annotation](#annotation)
-  - [Inline Documentation](#inline-documentation)
-  - [Documenting Modules](#documenting-modules)
-  - [Documenting Functions](#documenting-functions)
-- [ExDoc](#exdoc)
-  - [Installing](#installing)
-  - [Generating Documentation](#generating-documentation)
-- [Best Practice](#best-practice)
-
+{% include toc.html %}
 
 ## Annotation
 
@@ -136,7 +126,7 @@ Notice how you can use markup within out documentation and the terminal will ren
 
 ## ExDoc
 
-ExDoc is an official Elixir project that **produces HTML (HyperText Markup Language and online documentation for Elixir projects** that can be found on [GitHub](https://github.com/elixir-lang/ex_doc). First let's create a Mix project for our application:
+ExDoc is an official Elixir project that can be found on [GitHub](https://github.com/elixir-lang/ex_doc).  It produces **HTML (HyperText Markup Language) and online documentation** for Elixir projects.  First let's create a Mix project for our application:
 
 ```bash
 $ mix new greet_everyone

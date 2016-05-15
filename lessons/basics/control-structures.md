@@ -8,12 +8,7 @@ lang: en
 
 In this lesson we will look at the control structures available to us in Elixir.
 
-## Table of Contents
-
-- [`if` and `unless`](#if-and-unless)
-- [`case`](#case)
-- [`cond`](#cond)
-- [`with`](#with)
+{% include toc.html %}
 
 ## `if` and `unless`
 
@@ -139,6 +134,7 @@ We'll start with a simple example of `with` and then look at something more:
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
+%{first: "Sean", last: "Callan"}
 iex> with {:ok, first} <- Map.fetch(user, :first),
 ...>      {:ok, last} <- Map.fetch(user, :last),
 ...>      do: last <> ", " <> first

@@ -10,15 +10,7 @@ Já olhamos as abstrações em Elixir para concorrência, mas as vezes precisamo
 
 Nessa lição vamos nos focar em duas peças importantes: GenServers e GenEvents.
 
-## Sumário
-
-- [GenServer](#genserver)
-  - [Funções síncronas](#funcoes-sincronas)
-  - [Funções assíncronas](#funcoes-assincronas)
-- [GenEvent](#genevent)
-  - [Processando eventos](#processando-eventos)
-  - [Invocando processadores](#invocando-processadores)
-  - [Usando GenEvents](#usando-genevents)
+{% include toc.html %}
 
 ## GenServer
 
@@ -46,7 +38,7 @@ defmodule SimpleQueue do
 end
 ```
 
-### <a name='funcoes-sincronas'></a>Funções síncronas
+### Funções síncronas
 
 É geralmente necessário a interação com GenServers de uma maneira síncrona, chamando a função e esperando por sua resposta. Para processar mensagens síncronas nós precisamos implementar o *callback* `GenServer.handle_call/3` que recebe: a requisição, o PID do processo que chamou, um estado existente; é esperado o retorno na forma de uma tupla: `{:reply, resposta, estado}`.
 
@@ -100,7 +92,7 @@ iex> SimpleQueue.queue
 [3]
 ```
 
-### <a name="funcoes-assincronas"></a>Funções assíncronas
+### Funções assíncronas
 
 Requisições assíncronas são processadas pelo *callback* `handle_cast/2`. Funciona de forma parecida com `handle_call/3` mas não recebe o PID do processo que chama e não é esperada resposta.
 

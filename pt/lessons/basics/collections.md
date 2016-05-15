@@ -8,15 +8,7 @@ lang: pt
 
 Listas, tuplas, listas de palavras-chave, mapas, dicionários e combinadores funcionais.
 
-## Sumário
-
-- [Listas](#listas)
-	- [Concatenação de listas](#concatenacao-de-listas)
-	- [Subtração de listas](#subtracao-de-listas)
-	- [Topo / Cauda](#topo--cauda)
-- [Tuplas](#tuplas)
-- [Listas de palavras-chave](#listas-de-palavras-chave)
-- [Mapas](#mapas)
+{% include toc.html %}
 
 ## Listas
 
@@ -39,7 +31,7 @@ iex> list ++ ["Cherry"]
 ```
 
 
-### <a name="concatenacao-de-listas"></a>Concatenação de listas
+### Concatenação de listas
 
 A concatenação de listas usa o operador `++/2`.
 
@@ -48,7 +40,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-### <a name="subtracao-de-listas"></a>Subtração de listas
+### Subtração de listas
 
 O suporte para subtração é provido pelo operador `--/2`; é seguro subtrair um valor que não existe:
 

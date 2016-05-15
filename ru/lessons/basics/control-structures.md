@@ -8,12 +8,7 @@ lang: ru
 
 В этом уроке мы рассмотрим доступные в языке Elixir управляющие конструкции.
 
-## Содержание
-
-- [`if` и `unless`](#if--unless)
-- [`case`](#case)
-- [`cond`](#cond)
-- [`with`](#with)
+{% include toc.html %}
 
 ## `if` и `unless`
 
