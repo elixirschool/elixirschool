@@ -10,13 +10,7 @@ Nadzorcy to wyspecjalizowane procesy mające tylko jeden cel: monitorowanie inny
 tworzenie aplikacji odpornych na błędy, które będą samodzielnie restartować procesy, które zawiodły. 
 
 ## Spis treści
-
-- [Konfiguracja](#Konfiguracja)
-  - [Strategie](#Strategie)
-  - [Zagnieżdżanie](#Zagnieżdżanie)
-- [Nadzorcy zadań](#Nadzorcy-zadań)
-  - [Przygotowanie](#Przygotowanie)
-  - [Zadania nadzorowane](#Zadania-nadzorowane)
+{% include toc.html %}
 
 ## Konfiguracja
 
