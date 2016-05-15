@@ -9,7 +9,6 @@ lang: pl
 Nadzorcy to wyspecjalizowane procesy mające tylko jeden cel: monitorowanie innych procesów. Pozwalają oni na 
 tworzenie aplikacji odpornych na błędy, które będą samodzielnie restartować procesy, które zawiodły. 
 
-## Spis treści
 {% include toc.html %}
 
 ## Konfiguracja
