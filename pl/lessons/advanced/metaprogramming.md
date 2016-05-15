@@ -14,14 +14,7 @@ końcu wykorzystać zdobytą wiedzę do rozszerzania kodu za pomocą makr.
 Drobna uwaga:  metaprogramowanie jest zawiłe i powinno być stosowane tylko w ostateczności. Nadużywane wpędzi nasz w 
 kłopoty ze zrozumieniem i utrzymaniem zawiłego i skomplikowanego kodu.
 
-## Spis treści
-
-- [Reprezentacja wewnętrzna kodu](#Reprezentacja-wewnętrzna-kodu)
-- [Modyfikacja AST](#Modyfikacja-AST)
-- [Makra](#macros)
-	- [Makra prywatne](#Makra-prywatne)
-	- [Separacja makr](#Separacja-makr)
-	- [Spinanie](#Spinanie)
+{% include toc.html %}
 
 ## Reprezentacja wewnętrzna kodu
 
