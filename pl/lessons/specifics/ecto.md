@@ -9,23 +9,7 @@ lang: pl
 Ecto jest oficjalnym projektem zespołu Elixira zapewniającym obsługę baz danych wraz z odpowiednim, zintegrowanym 
 językiem. Za pomocą Ecto możemy migrować dane, definiować modele, wstawiać, aktualizować i odpytywać bazę danych.
 
-## Spis treści
-
-- [Przygotowanie](#Przygotowanie)
-  - [Repozytorium](#Repozytorium)
-  - [Nadzorca](#Nadzorca)
-  - [Konfiguracja](#konfiguracja)
-- [Zadnie Mix](#Zadnie-Mix)
-- [Migracja](#Migracja)
-- [Modele](#modele)
-- [Zapytania](#Zapytania)
-  - [Podstawy](#podstawy)
-  - [Zliczanie](#Zliczanie)
-  - [Grupowanie](#Grupowanie)
-  - [Sortowanie](#Sortowanie)
-  - [Złączenia](#złączenia)
-  - [Fragmenty](#fragmenty)
-- [Aktualizacja danych](#Aktualizacja-danych)
+{% include toc.html %}
 
 ## Przygotowanie
 
@@ -117,9 +101,10 @@ mix ecto.rollback       # Rollback migrations from a repo
 
 ## Migracja
 
-The best way to a create migrations is the `mix ecto.gen.migration <name>` task.  If you're acquainted with ActiveRecord these will look familiar.
+Najlepszą metodą do pracy z migracjami jest zadanie `mix ecto.gen.migration <name>`.  Jeżeli spotkałeś się ze wzorcem
+ ActiveRecord, to odkryjesz tu wiele podobieństw.
 
-Let's start by taking a look at a migration for a users table:
+Na początek przyjrzyjmy się migracji tabeli `users`:
 
 ```elixir
 defmodule ExampleApp.Repo.Migrations.CreateUser do
@@ -140,19 +125,21 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 end
 ```
 
-By default Ecto creates an auto-incrementing primary key called `id`.  Here we're using the default `change/0` callback but Ecto also supports `up/0` and `down/0` in the event you need more granular control.
+Ecto tworzy domyślnie przyrostowy klucz główny `id`.  W tej lekcji używamy funkcji `change/0`, ale Ecto  wspiera 
+też operacje `up/0` i `down/0`, pozwalające na większą i dokładniejszą kontrolę.
 
-As you might have guessed, adding `timestamps` to your migration will create and manage `created_at` and `updated_at` for you.
+Jak się domyślasz, dodanie `timestamps` do migracji wygeneruje kolumny `created_at` i `updated_at`..
 
-To apply our new migration run `mix ecto.migrate`.
+Możemy teraz uruchomić migrację poleceniem `mix ecto.migrate`.
 
-For more on migrations take a look at the [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) section of the docs.
+Więcej na temat migracji znajdziesz w dokumentacji [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content).
 
 ## Modele
 
-Now that we have our migration we can move on to the model.  Models define our schema, helper methods, and our changesets.  We'll cover changesets more in the next sections.
+Mają gotową migrację możemy przejść do modelu. Modele opisują nasze dane, funkcje pomocnicze oraz zmiany. Tymi 
+ostatnimi zajmiemy się w następnej kolejności.
 
-For now let's look at what the model for our migration might look like:
+Załóżmy, że model dla naszej migracji wygląda nastepujaco:
 
 ```elixir
 defmodule ExampleApp.User do
@@ -182,6 +169,9 @@ end
 ```
 
 The schema we define in our model closely represents what we specified in our migration.  In addition to our database fields we're also including two virtual fields.  Virtual fields are not saved to the database but can be useful for things like validation.  We'll see the virtual fields in action in the [Changesets](#changesets) section.
+To co przedstawia powyższa definicja pokrywa się z tym co mamy w migracji. Dodatkowo do naszej bazy danych dodaliśmy 
+dwa pola wirtualne.  Pola wirtualne nie są składowane w bazie danych, ale czasami przydają się np. w trakcie 
+walidacji. Przyjrzymy im się bliżej w części [aktualizacja danych](#Aktualizacja-danych).
 
 ## Zapytania
 
