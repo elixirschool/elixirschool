@@ -1,20 +1,20 @@
 ---
 layout: page
-title: Control Structures
+title: Контролни структури
 category: basics
 order: 5
 lang: bg
 ---
 
-In this lesson we will look at the control structures available to us in Elixir.
+В този урок ще разгледаме какви контролни структури са достъпни за нас в Elixir.
 
 {% include toc.html %}
 
-## `if` and `unless`
+## `if` и `unless`
 
-Chances are you've encountered `if/2` before, and if you've used Ruby you're familiar with `unless/2`.  In Elixir they work much the same way but they are defined as macros, not language constructs; You can find their implementation in the [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Най-вероятно сте срещали `if/2` преди, а ако сте ползвали Ruby сте запознати с `unless/2`.  При Elixir те работят по същия начин, но са дефинирани като макроси, а не конструкции на езика; Може да намерите тяхната имплементация в [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
 
-It should be noted that in Elixir, the only falsey values are `nil` and the boolean `false`.
+Трябва да се отбележи, че в Elixir единствените неверни стойности са `nil` и булевото `false`.
 
 ```elixir
 iex> if String.valid?("Hello") do
@@ -30,7 +30,7 @@ iex> if "a string value" do
 "Truthy"
 ```
 
-Using `unless/2` is like `if/2` only it works on the negative:
+По ползване `unless/2` е като `if/2`, само че работи върху невярното:
 
 ```elixir
 iex> unless is_integer("hello") do
@@ -41,7 +41,7 @@ iex> unless is_integer("hello") do
 
 ## `case`
 
-If it's necessary to match against multiple patterns we can use `case`:
+Ако е необходимо да се съпоставя върху няколко образеца, може да използваме `case`:
 
 ```elixir
 iex> case {:ok, "Hello World"} do
@@ -52,7 +52,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-The `_` variable is an important inclusion in `case` statements. Without it failure to find a match will raise an error:
+Променливата `_` е важна добавка в условията на `case`. Без нея при ненамиране на съпоставка ще се генерира грешка:
 
 ```elixir
 iex> case :even do
@@ -67,8 +67,8 @@ iex> case :even do
 "Not Odd"
 ```
 
-Consider `_` as the `else` that will match "everything else".
-Since `case` relies on pattern matching, all of the same rules and restrictions apply.  If you intend to match against existing variables you must use the pin `^` operator:
+Гледайте на `_` като на `else`, който ще се съпостави с "всичко друго".
+Понеже `case` разчита на съпоставка по образец, всички правила и рестрикции са валидни.  Ако възнамерявате да съпоставяте срещу съществуващи променливи, трябва да използвате оператора `^`:
 
 ```elixir
 iex> pie = 3.41
@@ -80,9 +80,9 @@ iex> case "cherry pie" do
 "I bet cherry pie is tasty"
 ```
 
-Another neat feature of `case` is its support for guard clauses:
+Друго добро свойство на `case` е неговата поддръжка за предпазващи клаузи:
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) guide._
+_Този пример е директно от официалното ръководство на Elixir [Начални стъпки](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -94,13 +94,13 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Check the official docs for [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Проветеве официалната документация за [Допустими изрази в предпазващи клаузи](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
 
 ## `cond`
 
-When we need to match conditions, and not values, we can turn to `cond`; this is akin to `else if` or `elsif` from other languages:
+Когато трябва да съпоставяме условия, а не стойности, може да се обърнем към `cond`; това е сходно с `else if` или `elsif` от други езици:
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
+_Този пример е директно от официалното ръководство на Elixir [Начални стъпки](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
 
 ```elixir
 iex> cond do
@@ -114,7 +114,7 @@ iex> cond do
 "But this will"
 ```
 
-Like `case`, `cond` will raise an error if there is no match.  To handle this, we can define a condition set to `true`:
+Както при `case`, `cond` ще генерира грешка, ако няма съпоставка.  За да се справим с това, може да дефинираме условия и да го устойностим като `true`:
 
 ```elixir
 iex> cond do
@@ -126,11 +126,11 @@ iex> cond do
 
 ## `with`
 
-The special form `with` is useful when you might use a nested `case` statement or situations that cannot cleanly be piped together. The `with` expression is composed of the keyword, generators, and finally an expression.
+Специалната форма `with` е полезна, когато бихте използвали внедрени `case` клаузи или при ситуации, които трудно могат да бъдат обвързани. Изразът `with` е съставен от ключовата дума, генератори и на последно място израз.
 
-We'll discuss generators more in the List Comprehensions lesson but for now we only need to know they use pattern matching to compare the right side of the `<-` to the left.
+Ще дискутираме генераторите повече в урока за обхващане на списъци (List Comprehensions), но засега имаме нужда само да знаем, че те използват съпоставка по образец, за да сравнят дясната страна откъм `<-` към лявата.
 
-We'll start with a simple example of `with` and then look at something more:
+Ще започнем с прост пример с `with` и след това ще разгледаме още няколко:
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
@@ -141,7 +141,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 "Callan, Sean"
 ```
 
-In the event that an expression fails to match, the non-matching value will be returned:
+В случай, че израз не може да бъде съпоставен, несъпоставената част ще бъде върната обратно:
 
 ```elixir
 iex> user = %{first: "doomspork"}
@@ -152,7 +152,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 :error
 ```
 
-Now let's look a larger example without `with` and then see how we can refactor it:
+Нека сега разгледаме по-голям пример без `with` и след това да опитаме да го пренапишем:
 
 ```elixir
 case Repo.insert(changeset) do
@@ -166,7 +166,7 @@ case Repo.insert(changeset) do
 end
 ```
 
-When we introduce `with` we end up with code that is easy to understand and has fewer lines:
+Когато използваме `with` разполагаме с код, който е лесен за разбиране и съдържа по-малко редове:
 
 ```elixir
 with
