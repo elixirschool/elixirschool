@@ -136,7 +136,7 @@ Więcej na temat migracji znajdziesz w dokumentacji [Ecto.Migration](http://hexd
 
 ## Modele
 
-Mają gotową migrację możemy przejść do modelu. Modele opisują nasze dane, funkcje pomocnicze oraz zmiany. Tymi 
+Mają gotową migrację możemy przejść do modelu. Modele opisują nasze dane, funkcje pomocnicze oraz zestawy zmian. Tymi 
 ostatnimi zajmiemy się w następnej kolejności.
 
 Załóżmy, że model dla naszej migracji wygląda nastepujaco:
@@ -168,24 +168,24 @@ defmodule ExampleApp.User do
 end
 ```
 
-The schema we define in our model closely represents what we specified in our migration.  In addition to our database fields we're also including two virtual fields.  Virtual fields are not saved to the database but can be useful for things like validation.  We'll see the virtual fields in action in the [Changesets](#changesets) section.
-To co przedstawia powyższa definicja pokrywa się z tym co mamy w migracji. Dodatkowo do naszej bazy danych dodaliśmy 
+To, co przedstawia powyższa definicja pokrywa się z tym, co mamy w migracji. Dodatkowo do naszej bazy danych dodaliśmy 
 dwa pola wirtualne.  Pola wirtualne nie są składowane w bazie danych, ale czasami przydają się np. w trakcie 
 walidacji. Przyjrzymy im się bliżej w części [aktualizacja danych](#Aktualizacja-danych).
 
 ## Zapytania
 
-Before we can query our repository we need to import the Query API.  For now we only need to import `from/2`:
+Zanim zaczniemy odpytywać repozytorium, musimy zaimportować `Ecto.Query`.  Na początek potrzebujemy tylko `from/2`:
 
 ```elixir
 import Ecto.Query, only: [from: 2]
 ```
 
-The official documentation can be found at [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html).
+Oficjalną dokumentację, w języku angielskim, znajdziesz na stronie [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html).
 
 ### Podstawy
 
-Ecto provides an excellent Query DSL that allows us to express queries clearly.  To find the usernames of all confirmed accounts we could use something like this:
+Ecto ma wspaniały DSL (ang. _Domain specific language_ – język domeny) do definiowania zapytań. Przykładowo by pobrać
+ wszystkie pola `username` dla użytkowników, którzy mają zatwierdzone konto, napiszemy:
 
 ```elixir
 alias ExampleApp.{Repo,User}
@@ -197,9 +197,12 @@ query = from u in User,
 Repo.all(query)
 ```
 
-In addition to `all/2`, Repo provides a number of callbacks including `one/2`, `get/3`, `insert/2`, and `delete/2`.  A complete list of callbacks can be found at [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
+Poza funkcją `all/2` Repo ma też m.in. `one/2`, `get/3`, `insert/2` i `delete/2`.  Pełną listę znajdziesz na stronie  
+[Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
 
 ### Zliczanie
+
+Jeżeli chcemy policzyć, ilu użytkowników ma zatwierdzone konta, możemy użyć `count/2`:
 
 ```elixir
 query = from u in User,
@@ -209,7 +212,8 @@ query = from u in User,
 
 ### Grupowanie
 
-To group users by their confirmation status we can include the `group_by` option:
+Funkcja `group_by` pozwala nam grupować dane wyliczone w funkcjach agregujących. Na przykład policzyć ilu 
+użytkowników ma konta zatwierdzone, a ilu niezatwierdzone:
 
 ```elixir
 query = from u in User,
@@ -221,7 +225,7 @@ Repo.all(query)
 
 ### Sortowanie
 
-Ordering users by their creation date:
+Sortowanie kont po dacie utworzenia:
 
 ```elixir
 query = from u in User,
@@ -231,7 +235,7 @@ query = from u in User,
 Repo.all(query)
 ```
 
-To order by `DESC`:
+W kolejności malejącej `DESC`:
 
 ```elixir
 query = from u in User,
@@ -241,7 +245,8 @@ query = from u in User,
 
 ### Złączenia
 
-Assuming we had a profile associated with our user, let's find all confirmed account profiles:
+Załóżmy, że mamy profil połączony z użytkownikiem, by odszukać wszystkie profile, które mają zatwierdzone konta 
+napiszemy:
 
 ```elixir
 query = from p in Profile,
@@ -251,7 +256,7 @@ query = from p in Profile,
 
 ### Fragmenty
 
-Sometimes, like when we need specific database functions, the Query API isn't enough.  The `fragment/1` function exists for this purpose:
+Czasami Query API nie wystarcza i musimy użyć funkcji dostępnej w bazie danych. Służy do tego funkcja `fragment/1`:
 
 ```elixir
 query = from u in User,
@@ -259,15 +264,16 @@ query = from u in User,
     select: u
 ```
 
-Additional query examples can be found in the [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html) module description.
+Na stronie [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html) znajdziesz więcej przykładów.
 
 ## Aktualizacja danych
 
-In the previous section we learned how to retrieve data, but how about inserting and updating it?  For that we need Changesets.
+W poprzednich częściach dowiedziałeś się jak pobierać dane, ale co ze wstawianiem ich i aktualizacją? Do tego służą 
+zestawy zmian.
 
-Changesets take care of filtering, validating, and maintaining constraints when changing a model.
+Zestawy zmian dbają o zachowanie ograniczeń, filtrowanie oraz walidację w momencie wprowadzania zmian do modelu.
 
-For this example we'll focus on the changeset for user account creation.  To start we need to update our model:
+W tym zestawie skupimy się na zestawie zmian potrzebnym do utworzenia konta. Zacznijmy od aktualizacji naszego modelu:
 
 ```elixir
 defmodule ExampleApp.User do
@@ -318,11 +324,16 @@ defmodule ExampleApp.User do
 end
 ```
 
-We've improved our `changeset/2` function and added three new helper functions: `validate_password_confirmation/1`, `password_mismatch_error/1`, and `password_incorrect_error/1`.
+Stworzyliśmy funkcję `changeset/2` oraz trzy funkcje pomocnicze: `validate_password_confirmation/1`, 
+`password_mismatch_error/1` i `password_incorrect_error/1`.
 
-As its name suggests, `changeset/2` creates a new changeset for us.  In it we use `cast/4` to convert our parameters to a changeset from a set of required and optional fields.  Next we validate the changeset's password length, we use our own function to validate the password confirmation matches, and we validate username uniqueness.  Finally we update our actual password database field.  For this we use `put_change/3` to update a value in the changeset.
+Jak sama nazwa sugeruje, `changeset/2` tworzy nowy zestaw zmian.  W ramach niego wywołujemy `cast/4` by 
+zamienić parametry na zestaw obowiązkowych i opcjonalnych pól, które zostaną zmienione. Następnie walidujemy długość 
+pola `password`. Sprawdzamy, czy pole to jest takie same jak `password_confirmation` oraz, czy `username` 
+nie istnieje już w bazie. Na końcu, na podstawie parametrów, aktualizujemy pole `encrypted_password` za pomocą 
+funkcji `put_change/3` dopisując je do zestawu zmian.
 
-Using `User.changeset/2` is relatively straightforward:
+Samo użycie `User.changeset/2` jest stosunkowo proste:
 
 ```elixir
 alias ExampleApp.{User,Repo}
@@ -339,4 +350,4 @@ case Repo.insert(changeset) do
 end
 ```
 
-That's it!  Now you're ready to save some data.
+I to wszystko! Możesz zapisać dane do bazy.
