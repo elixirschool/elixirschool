@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Basics
+title: Основи
 category: basics
 order: 1
 lang: bg

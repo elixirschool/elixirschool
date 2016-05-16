@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Collections
+title: Колекции
 category: basics
 order: 2
 lang: bg
