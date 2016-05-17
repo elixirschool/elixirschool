@@ -93,13 +93,13 @@ Generated example app
 
 프로젝트를 컴파일하고 나면 mix가 컴파일 결과물을 `_build`라는 폴더를 만들어 담아둡니다. `_build` 폴더 안을 들여다 보면 컴파일된 애플리케이션인 `example.app`을 확인할 수 있습니다.
 
-## Manage Dependencies
+## 의존성 관리하기
 
-Our project doesn't have any dependencies but will shortly, so we'll go ahead and cover defining dependencies and fetching them.
+이 프로젝트가 아직까지는 아무런 의존성을 갖고 있지 않지만 머지않아 갖게 되겠지요. 의존성을 관리하고 가져오는 길로 곧장 가 보도록 하겠습니다.
 
-To add a new dependency we need to first add it to our `mix.exs` in the `deps` section.  Our dependency list is comprised of tuples with two required values and one optional: The package name as an atom, the version string, and optional options.
+의존성을 더해 주려면 먼저 `mix.exs` 파일의 `deps` 단락에다가 내용을 채워넣으면 됩니다. 반드시 있어야 하는 값 둘(atom으로 된 패키지 이름과 버전 문자열)과 옵션으로 이루어진 튜플 여러 개로 의존성 리스트를 채워나갈 수 있습니다.
 
-For this example let's look at a project with dependencies, like [phoenix_slim](https://github.com/doomspork/phoenix_slim):
+의존성을 가진 [phoenix_slim](https://github.com/doomspork/phoenix_slim) 프로젝트를 한번 예로 들어서 살펴보겠습니다:
 
 ```elixir
 def deps do
@@ -110,17 +110,17 @@ def deps do
 end
 ```
 
-As you probably discerned from the dependencies above, the `cowboy` dependency is only necessary during development and test.
+위에 있는 의존성을 보면 `cowboy`는 개발하고 테스트 할 때에만 필요하다는 걸 알 수 있습니다. 
 
-Once we've defined our dependencies there is one final step, fetching them.  This is analogous to `bundle install`:
+의존성을 다 정해주고 나면 이제 해야 할 일은 가져오는 거, 딱 하나밖에 안 남았습니다. `bundle install`와 비슷한 일을 하지요:
 
 ```bash
 $ mix deps.get
 ```
 
-That's it!  We've defined and fetched our project dependencies.  Now we're prepared to add dependencies when the time comes.
+바로 이걸로요! 프로젝트에 필요한 의존성을 정하고 가져왔습니다. 이제 필요할 때라면 언제라도 의존성을 추가할 수 있게 되었습니다. 
 
-## Environments
+## 실행 환경
 
 Ruby에서 사용되는 Bundler처럼 mix는 실행 환경을 설정하고 바꿀 수 있습니다. mix로 크게 별다른 설정 없이 바로 사용할 수 있는 환경에는 세 가지가 있습니다:
 
