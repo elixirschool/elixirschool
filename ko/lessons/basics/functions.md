@@ -79,7 +79,7 @@ defmodule Greeter do
 end
 ```
 
-패턴매칭에 대한 지식, 이름있는 함수를 이용하여 재귀를 맛보도록 하죠.
+패턴매칭에 대한 지식과 이름있는 함수를 이용하여 재귀를 맛보도록 하죠.
 
 ```elixir
 defmodule Length do
