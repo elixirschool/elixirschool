@@ -8,11 +8,7 @@ lang: fr
 
 L'opérateur pipe `|>` passe le résultat d'une expression en tant que premier paramètre à une autre expression.
 
-## Table des matières
-
-- [Introduction](#introduction)
-- [Exemples](#exemples)
-- [Bonnes pratiques](#bonnes-pratiques)
+{% include toc.html %}
 
 ## Introduction
 

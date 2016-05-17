@@ -8,14 +8,7 @@ lang: sk
 
 Práca so sigilmi a ich vytváranie.
 
-## Obsah.
-
-- [Čo sú sigily](#o-s-sigily)
-  - [Zoznamy znakov](#zoznamy-znakov)
-  - [Regulárne výrazy](#regulrne-vrazy)
-  - [Reťazce](#reazce)
-  - [Zoznamy slov](#zoznamy-slov)
-- [Vlastné sigily](#vlastn-sigily)
+{% include toc.html %}
 
 ## Čo sú sigily
 

@@ -8,18 +8,7 @@ lang: en
 
 Mnesia is a heavy duty real-time distributed database management system.
 
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to use](#when-to-use)
-- [Schema](#schema)
-- [Nodes](#nodes)
-- [Starting Mnesia](#starting-mnesia)
-- [Creating Tables](#creating-tables)
-- [The Dirty Way](#the-dirty-way)
-- [Transactions](#transactions)
-
+{% include toc.html %}
 
 ## Overview
 

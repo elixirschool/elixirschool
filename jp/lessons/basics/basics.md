@@ -8,23 +8,7 @@ lang: jp
 
 セットアップ、基本型、そして演算。
 
-## 目次
-
-- [セットアップ](#section-1)
-	- [Elixirのインストール](#elixir)
-	- [対話モード](#section-2)
-- [基本型](#section-3)
-	- [整数](#section-4)
-	- [浮動小数](#section-5)
-	- [真理値](#section-6)
-	- [アトム](#section-7)
-	- [文字列](#section-8)
-- [基本の演算](#section-9)
-	- [算術](#section-10)
-	- [論理](#section-11)
-	- [比較](#section-12)
-	- [文字列への式展開](#section-13)
-	- [文字列の連結](#section-14)
+{% include toc.html %}
 
 ## セットアップ
 

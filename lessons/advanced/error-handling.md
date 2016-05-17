@@ -12,13 +12,7 @@ In general the convention in Elixir is to create a function (`example/1`) which 
 
 This lesson will focus on interacting with the latter.
 
-## Table of Contents
-
-- [Error Handling](#error-handling)
-- [After](#after)
-- [New Errors](#new-errors)
-- [Throws](#throws)
-- [Exiting](#Exiting)
+{% include toc.html %}
 
 ## Error Handling
 

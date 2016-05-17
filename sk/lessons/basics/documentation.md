@@ -8,16 +8,7 @@ lang: sk
 
 Komentovanie a dokumentovanie kódu v Elixire.
 
-## Obsah
-
-- [O dokumentovaní v Elixire](#o-dokumentovan-v-elixire)
-  - [Inline komentáre](#inline-komentre)
-  - [Dokumentovanie modulov](#dokumentovanie-modulov)
-  - [Dokumentovanie funkcií](#dokumentovanie-funkci)
-- [ExDoc](#exdoc)
-  - [Inštalácia](#intalcia)
-  - [Generovanie dokumentácie](#generovanie-dokumentcie)
-- [Best Practices](#best-practices)
+{% include toc.html %}
 
 
 ## O dokumentovaní v Elixire

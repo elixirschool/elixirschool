@@ -8,23 +8,7 @@ lang: sk
 
 Setup, základné typy a operácie.
 
-## Obsah
-
-- [Setup](#setup)
-	- [Inštalácia Elixiru](#intalcia-elixiru)
-	- [Interaktívny mód](#interaktvny-md)
-- [Základné dátové typy](#zkladn-dtov-typy)
-	- [Celé číslo](#cel-slo)
-	- [Desatinné číslo](#desatinn-slo)
-	- [Boolean](#boolean)
-	- [Atom](#atom)
-	- [Reťazec](#reazec)
-- [Základné operácie](#zkladn-opercie)
-	- [Aritmetické](#aritmetick)
-	- [Logické](#logick)
-	- [Porovnania](#porovnania)
-	- [Interpolácia reťazcov](#interpolcia-reazcov)
-	- [Spájanie reťazcov](#spjanie-reazcov)
+{% include toc.html %}
 
 ## Setup
 

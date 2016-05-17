@@ -8,14 +8,7 @@ lang: cn
 
 测试是软件开发重要的一部分，这节课我们会讲一下如何使用 ExUnit 测试 Elixir 代码，以及测试中的最佳实践方法。
 
-# 目录
-- [ExTest](#extest)
-  - [assert](#assert)
-  - [refute](#refute)
-  - [assert_raise](#assertraise)
-
-- [Test 配置](#test-)
-- [Mocking](#mocking)
+{% include toc.html %}
 
 # ExTest
 Elixir 自带的测试框架是 ExUnit，它包括的功能足够我们充分测试自己的代码。在继续讲解之前，有一点要注意：测试是通过 Elixir 脚本来执行的，所以测试文件的后缀名必须是 `.exs`。在运行测试之前，我们要先用 `ExUnit.start()` 来启动 ExUnit，这一般在 `test/test_helper.exs` 已经帮我们做了。

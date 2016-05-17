@@ -10,14 +10,7 @@ Salah satu faktor pelaris Elixir ialah sokongan kepada keserempakan(concurrency)
 
 Di dalam pelajaran ini kita akan lihat modul-modul keserempakan yang didatangkan dengan Elixir.  Di dalam bab seterusnya kita lihat kelakuan OTP yang melaksanakan mereka.
 
-## Isi Kandungan
-
-- [Proses](#proses)
-  - [Pengagihan Mesej](#pengagihan-mesej)
-  - [Perangkaian Proses](#perangkaian-proses)
-  - [Pengawasan Proses](#pengawasan-proses)
-- [Agents](#agents)
-- [Tasks](#tasks)
+{% include toc.html %}
 
 ## Proses
 

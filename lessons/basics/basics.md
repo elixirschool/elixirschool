@@ -8,23 +8,7 @@ lang: en
 
 Setup, basic types and operations.
 
-## Table of Contents
-
-- [Setup](#setup)
-	- [Install Elixir](#install-elixir)
-	- [Interactive Mode](#interactive-mode)
-- [Basic Types](#basic-types)
-	- [Integers](#integers)
-	- [Floats](#floats)
-	- [Booleans](#booleans)
-	- [Atom](#atoms)
-	- [String](#strings)
-- [Basic Operations](#basic-operations)
-	- [Arithmetic](#arithmetic)
-	- [Boolean](#boolean)
-	- [Comparison](#comparison)
-	- [String interpolation](#string-interpolation)
-	- [String concatenation](#string-concatenation)
+{% include toc.html %}
 
 ## Setup
 

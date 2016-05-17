@@ -8,14 +8,7 @@ lang: pl
 
 Tak jak w Ruby mamy ERB, a w Javie istnieje JSP, tak i Elixir ma EEx - Embedded Elixir. Dzięki EEx możemy osadzać kod Elixira w ciągach znaków.  
 
-## Spis Treści
-
-- [API](#API)
-	- [Ewaluacja](#ewaluacja)
-	- [Definiowanie funkcji](#definiowanie-funkcji)
-	- [Kompilacja](#kompilacja)
-- [Znaczniki](#znaczniki)
-- [Mechanizm](#mechanizm)
+{% include toc.html %}
 
 ## API
 

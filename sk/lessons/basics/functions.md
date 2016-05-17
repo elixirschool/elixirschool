@@ -8,15 +8,7 @@ lang: sk
 
 V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie ústredným konštruktom. Povieme si o rôznych typoch funkcií v Elixire, rozdieloch medzi nimi a ako ich používať.
 
-## Obsah
-
-- [Anonymné funkcie](#anonymn-funkcie)
-  - [Skratka &](#skratka-)
-- [Pattern matching](#pattern-matching)
-- [Pomenované funkcie](#pomenovan-funkcie)
-  - [Privátne funkcie](#privtne-funkcie)
-  - [Hraničné podmienky](#hranin-podmienky)
-  - [Východiskové argumenty](#vchodiskov-argumenty)
+{% include toc.html %}
 
 ## Anonymné funkcie
 

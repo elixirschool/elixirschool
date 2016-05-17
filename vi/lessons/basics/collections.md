@@ -8,15 +8,7 @@ lang: vi
 
 List (Danh sách), tuple, keyword (danh sách từ khoá), map, dict (từ điển) và functional combinators (toán tử kết hợp hướng chức năng)
 
-## Mục Lục
-
-- [List (Danh sách)](#lists)
-	- [Nối List](#list-concatenation)
-	- [Phép trừ List](#list-subtraction)
-	- [Phần tử Đầu / Đuôi](#head--tail)
-- [Tuple](#tuples)
-- [Keyword List (Danh sách từ khoá)](#keyword-lists)
-- [Map](#maps)
+{% include toc.html %}
 
 ## List (Danh sách)
 

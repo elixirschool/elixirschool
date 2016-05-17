@@ -8,16 +8,7 @@ lang: it
 
 Per esperienza sappiamo che è disordinato avere tutte le nostre funzioni nello stesso file o ambito. In questa lezione affronteremo come raggruppare le funzioni e definire una mappa specializzata conosciuta come struttura (_struct_) per organizzare il nostro codice in modo più efficiente.
 
-## Tavola dei Contenuti
-
-- [Moduli](#moduli)
-  - [Attributi dei Moduli](#attributi-dei-moduli)
-- [Strutture](#strutture)
-- [Composizione](#composizione)
-  - [`alias`](#alias)
-  - [`import`](#import)
-  - [`require`](#require)
-  - [`use`](#use)
+{% include toc.html %}
 
 ## Moduli
 

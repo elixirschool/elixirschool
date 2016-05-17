@@ -8,15 +8,7 @@ lang: en
 
 If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra.  It provides a specification for web application components and adapters for web servers. While not part of Elixir core, Plug is an official Elixir project.
 
-## Table of Contents
-
-- [Installation](#installation)
-- [The specification](#the-specification)
-- [Creating a Plug](#creating-a-plug)
-- [Using Plug.Router](#using-plugrouter)
-- [Running our web app](#running-our-web-app)
-- [Testing Plugs](#testing-plugs)
-- [Available Plugs](#available-plugs)
+{% include toc.html %}
 
 ## Installation
 
