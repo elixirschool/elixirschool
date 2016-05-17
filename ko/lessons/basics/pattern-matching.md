@@ -58,7 +58,7 @@ iex> {:ok, value} = {:error}
 
 우리는 방금 매치 연산자의 좌변에 변수가 포함되어 있을 때에는 값의 대입이 일어난다는 것을 알았습니다. 하지만 경우에 따라서는, 변수에 새로운 값이 대입되는 것을 원치 않을 수도 있습니다. 이러한 상황에서는 핀 연산자 `^`를 사용해야 합니다.
 
-When we pin a variable we match on the existing value rather than rebinding to a new one.  Let's take a look at how this works:
+핀 연산자를 이용하여 변수를 고정시키면 변수에 새 값을 대입하지 않고 기존의 값과 매칭을 하게 됩니다. 이것이 어떻게 동작하는지 봅시다.
 
 ```elixir
 iex> x = 1
@@ -71,7 +71,7 @@ iex> x
 2
 ```
 
-Elixir 1.2 introduced support for pins in map keys and function clauses:
+Elixir 1.2에서는 맵의 키와 함수의 절에 대한 핀이 도입되었습니다.
 
 ```elixir
 iex> key = "hello"
@@ -84,7 +84,7 @@ iex> %{^key => value} = %{:hello => "world"}
 ** (MatchError) no match of right hand side value: %{hello: "world"}
 ```
 
-An example of pinning in a function clause:
+아래는 함수의 절에 대한 핀 연산의 예입니다.
 
 ```elixir
 iex> greeting = "Hello"
