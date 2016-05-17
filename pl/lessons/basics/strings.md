@@ -24,7 +24,7 @@ iex> string = <<104,101,108,108,111>>
 ## Listy znaków
 
 Wewnętrznie Elixir przechowuje ciągi znaków jako sekwencja bajtów, a nie tablice znaków, posiada jednak osobny typ do
- reprezentowania listy znaków. Różnica polega na tym, że ciągi znaków tworzymy z użycie podwójnego cudzysłowu `"`, a 
+ reprezentowania listy znaków. Różnica polega na tym, że ciągi znaków tworzymy z użyciem podwójnego cudzysłowu `"`, a 
  listy za pomocą pojedynczego `'`.
 
 Jaka jest różnica pomiędzy nimi? Każdy element na liście znaków to pojedynczy znak ASCII, popatrzmy:
@@ -102,7 +102,6 @@ iex> String.split("Hello World", " ")
 
 ## Ćwiczenia
 
-Let's just get in action with two simple exercises to demostrate we are ready to go with Strings!
 Czas na dwa proste ćwiczenia by utrwalić naszą wiedzę o ciągach znaków i module `String`!
 
 ### Anagramy
@@ -131,7 +130,7 @@ defmodule Anagram do
 end
 ```
 
-Przyjrzyjmy się najpierw funkcji `anagrams?/2`. Na początek sprawdzamy, czy parametry są binarny, czy też nie. W 
+Przyjrzyjmy się najpierw funkcji `anagrams?/2`. Na początek sprawdzamy, czy parametry są binarne, czy też nie. W 
 Elixirze jest to sposób na weryfikację czy parametr jest ciągiem znaków, czy też nie. 
 
 Następnie wywołujemy funkcję, która posortuje litery alfabetycznie. Najpierw zamieni wszystkie znaki na małe, a 
