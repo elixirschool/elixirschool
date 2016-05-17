@@ -8,11 +8,7 @@ lang: no
 
 Pipeoperatoren `|>` fører resultatet av et utrykk som første parameter til et nytt utrykk.
 
-## Innholdsfortegnelse
-
-- [Introduksjon](#introduksjon)
-- [Eksempler](#eksempler)
-- [Beste Praksis](#beste-praksis)
+{% include toc.html %}
 
 ## Introduksjon
 
