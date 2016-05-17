@@ -1,25 +1,25 @@
 ---
 layout: page
-title: Pattern Matching
+title: 패턴 매칭
 category: basics
 order: 4
-lang: en
+lang: ko
 ---
 
-Pattern matching is a powerful part of Elixir, it allows us to match simple values, data structures, and even functions.  In this lesson we will begin to see how pattern matching is used.
+패턴 매칭은 Elixir의 강력한 기능입니다. 이를 이용하면 간단한 값, 자료 구조, 심지어는 함수까지도 매치시킬 수 있습니다. 이번 레슨에서는 패턴 매칭이 어떻게 사용되는지 알아보기로 합니다.
 
 {% include toc.html %}
 
-## Match operator
+## 매치 연산자
 
-Are you ready for a curveball?  In Elixir, the `=` operator is actually our match operator.  Through the match operator we can assign and then match values, let's take a look:
+변화구를 받을 준비가 되셨습니까? Elixir에서 `=`는 사실 매치 연산자입니다. 매치 연산자를 통해서 값을 대입하고 나서 매치시킬 수 있습니다. 아래 코드를 보십시오.
 
 ```elixir
 iex> x = 1
 1
 ```
 
-Now let's try some simple matching:
+이제 간단한 매칭을 한 번 해 봅시다.
 
 ```elixir
 iex> 1 = x
@@ -28,10 +28,10 @@ iex> 2 = x
 ** (MatchError) no match of right hand side value: 1
 ```
 
-Let's try that with some of the collections we know:
+이번에는 우리가 알고 있는 컬렉션들을 가지고 해 봅시다.
 
 ```elixir
-# Lists
+# 리스트
 iex> list = [1, 2, 3]
 iex> [1, 2, 3] = list
 [1, 2, 3]
@@ -45,7 +45,7 @@ iex> tail
 iex> [2|_] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-# Tuples
+# 튜플
 iex> {:ok, value} = {:ok, "Successful!"}
 {:ok, "Successful!"}
 iex> value
@@ -54,9 +54,9 @@ iex> {:ok, value} = {:error}
 ** (MatchError) no match of right hand side value: {:error}
 ```
 
-## Pin operator
+## 핀 연산자
 
-We just learned the match operator handles assignment when the left side of the match includes a variable.  In some cases this behavior, variable rebinding, is undesirable.  For these situations, we have the pin operator: `^`.
+우리는 방금 매치 연산자의 좌변에 변수가 포함되어 있을 때에는 값의 대입이 일어난다는 것을 알았습니다. 하지만 경우에 따라서는, 변수에 새로운 값이 대입되는 것을 원치 않을 수도 있습니다. 이러한 상황에서는 핀 연산자 `^`를 사용해야 합니다.
 
 When we pin a variable we match on the existing value rather than rebinding to a new one.  Let's take a look at how this works:
 
