@@ -1,25 +1,25 @@
 ---
 layout: page
-title: Executables
+title: 실행 파일
 category: advanced
 order: 3
-lang: en
+lang: ko
 ---
 
-To build executables in Elixir we will be using escript. Escript produces an executable that can be run on any system with Erlang installed.
+escript를 사용하여 Elixir로 짠 코드를 실행 파일로 빌드할 수 있습니다. 이렇게 빌드한 실행 파일은 Erlang이 설치된 모든 시스템에서 실행할 수 있게 됩니다.
 
 {% include toc.html %}
 
-## Getting Started
+## 시작하기
 
-To create an executable with escript there are only a few things we need to do: implement a `main/1` method and update our Mixfile.
+escript로 실행 파일을 만들어내기 위해 해야 할 일은 얼마 없어요. 그냥 `main/1` 메서드를 구현하고 Mixfile을 수정해주기만 하면 됩니다.
 
-We'll start by creating a module to serve as the entry point to our executable.  This is where we'll implement `main/1`:
+실행 파일에서 출발점 역할을 하는 모듈을 만드는 것부터 시작해봅시다. 바로 이 모듈에다가 `main/1`을 구현할 거예요.
 
 ```elixir
 defmodule ExampleApp.CLI do
   def main(args \\ []) do
-    # Do stuff
+    # 뭐라도 해보자
   end
 end
 ```
@@ -69,15 +69,15 @@ defmodule ExampleApp.CLI do
 end
 ```
 
-## Building
+## 빌드하기
 
-Once we've finished configuring our application to use escript, building our executable is a breeze with mix:
+애플리케이션이 escript를 사용하도록 설정을 끝내고 나면, mix를 사용해서 실행파일을 한방에 시원하게 만들 수 있습니다.
 
 ```elixir
 $ mix escript.build
 ```
 
-Let's take it for a spin:
+이제 시운전을 한번 해 봅시다.
 
 ```elixir
 $ ./example_app --upcase Hello
@@ -87,4 +87,4 @@ $ ./example_app Hi
 Hi
 ```
 
-That's it.  We've built our first executable in Elixir using escript.
+바로 이렇게요. escript를 사용하여 첫 Elixir 실행 파일을 빌드하는 법을 알아보았습니다.
