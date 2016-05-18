@@ -1,18 +1,18 @@
 ---
 layout: page
-title: Comprehensions
+title: 해석
 category: basics
 order: 13
-lang: en
+lang: ko
 ---
 
-List comprehensions are syntactic sugar for looping through enumerables in Elixir.  In this lesson we'll look at how we can use comprehensions for iteration and generation.
+리스트 해석 (List comprehensions)은 Elixir에서 열거형을 이용하여 반복하는 데 사용되는 편리한 문법입니다. 이번 레슨에서는 반복과 제너레이션을 위해 어떻게 해석을 사용하는지에 대해 알아봅니다.
 
 {% include toc.html %}
 
-## Basics
+## 기본
 
-Often times comprehensions can be used to produce more concise statements for `Enum` and `Stream` iteration.  Let's start by looking at a simple comprehension and then break it down:
+해석은 대체적으로 `Enum`과 `Stream` 반복보다 간결한 구문을 작성하기 위해 사용될 수 있습니다. 일단 간단한 해석을 보고 차근차근 파헤쳐 봅시다.
 
 ```elixir
 iex> list = [1, 2, 3, 4, 5]
@@ -20,32 +20,32 @@ iex> for x <- list, do: x*x
 [1, 4, 9, 16, 25]
 ```
 
-The first thing we notice is the use of `for` and a generator.  What is a generator?  Generators are the `x <- [1, 2, 3, 4]` expressions found in list comprehensions, they're responsible for generating the next value.
+가장 먼저 눈여겨 볼 것은 `for`의 사용과 제너레이터입니다. 제너레이터란 무엇일까요? 제너레이터란 리스트 해석에서 볼 수 있는 `x <- [1, 2, 3, 4]`과 같은 표현식입니다. 이들은 다음 값을 생성해내는 역할을 맡고 있습니다.
 
-Lucky for us comprehensions aren't limited to lists, in fact they'll work with any enumerable:
+다행스럽게도 해석은 리스트에 대해서만 사용할 수 있는 것이 아닙니다. 사실은 모든 열거형과 함께 사용할 수 있습니다.
 
 ```elixir
-# Keyword Lists
+# 키워드 리스트
 iex> for {_key, val} <- [one: 1, two: 2, three: 3], do: val
 [1, 2, 3]
 
-# Maps
+# 맵
 iex> for {k, v} <- %{"a" => "A", "b" => "B"}, do: {k, v}
 [{"a", "A"}, {"b", "B"}]
 
-# Binaries
+# 바이너리
 iex> for <<c <- "hello">>, do: <<c>>
 ["h", "e", "l", "l", "o"]
 ```
 
-As you may have noticed, generators rely on pattern matching to compare their input set to the left side variable.  In the event a match is not found, the value is ignored:
+눈치 채셨겠지만 제너레이터는 패턴 매칭에 의존하여 입력 값들의 세트를 왼쪽의 변수와 비교합니다. 패턴이 일치하지 않는 경우에는 해당 값은 무시됩니다.
 
 ```elixir
 iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], do: val
 ["Hello", "World"]
 ```
 
-It's possible to use multiple generators, much like nested loops:
+여러 개의 제너레이터를 사용하여 중첩된 반복도 수행할 수 있습니다.
 
 ```elixir
 iex> list = [1, 2, 3, 4]
@@ -55,7 +55,7 @@ iex> for n <- list, times <- 1..n do
 ["*", "*", "**", "*", "**", "***", "*", "**", "***", "****"]
 ```
 
-To better illustrate the looping that is occurring, let's use `IO.puts` to display the two generated values:
+실행되고 있는 루프를 더 잘 표현하기 위해 `IO.puts`를 사용하여 두 개의 생성된 값들을 표시해 봅시다.
 
 ```elixir
 iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
@@ -71,18 +71,18 @@ iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 4 - 4
 ```
 
-List comprehensions are syntactic sugar and should be used only when appropriate.
+리스트 해석은 간편 표기법이며, 적절한 곳에만 사용되어야 합니다.
 
-## Filters
+## 필터
 
-You can think of filters as a sort of guard for comprehensions.  When a filtered value returns `false` or `nil` it is excluded from the final list.  Let's loop over a range and only worry about even numbers:
+필터는 해석에 사용되는 가드의 일종이라고 볼 수 있습니다. 필터된 값이 `false`나 `nil`을 반환하는 경우에 그 값은 최종 리스트에서 제외됩니다. 범위 내에서 루프를 돌면서 짝수에만 신경을 써 봅시다.
 
 ```elixir
 iex> for x <- 1..10, rem(x, 2) == 0, do: x
 [2, 4, 6, 8, 10]
 ```
 
-Like generators, we can use multiple filters.  Let's example our range and filter out values that aren't even and cannot be divided evenly by 3:
+제너레이터와 마찬가지로, 필터도 여러 개를 사용할 수 있습니다. 아래의 예제에서는 범위 내에서 짝수가 아닌 수와 3으로 나누어 떨어지지 않는 수를 걸러냅니다.
 
 ```elixir
 iex> for x <- 1..100,
@@ -91,22 +91,22 @@ iex> for x <- 1..100,
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
 
-## Using `:into`
+## `:into` 사용하기
 
-What if we want to produce something other than a list?  Given the `:into` option we can do just that!  As a general rule of thumb, `:into` accepts any structure that implements the `Collectable` protocol.
+만약에 리스트가 아닌 다른 무언가를 만들고 싶다면 어떻게 해야 할까요? `:into` 옵션이 있다면 할 수 있습니다! 일반적인 경험 법칙에 따르면 `:into`에는 `Collectable` 프로토콜을 구현하는 어떤 구조체든 사용할 수 있습니다.
 
-Using `:into`, let's create a map from a keyword list:
+`:into`를 사용하여 키워드 리스트로부터 맵을 만들어 봅시다.
 
 ```elixir
 iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-Since bitstrings are enumerable we can use list comprehensions and `:into` to create strings:
+비트스트링은 열거형이기 때문에 리스트 해석과 `:into`를 사용하여 문자열을 만들 수 있습니다.
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-That's it!  List comprehensions are an easy way to iterate through collections in a concise manner.
+여기까지입니다! 리스트 해석은 컬렉션을 이용한 반복을 간결하게 하기 위한 쉬운 방법입니다.
