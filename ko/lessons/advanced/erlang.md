@@ -1,20 +1,20 @@
 ---
 layout: page
-title: Erlang Interoperability
+title: Erlang 상호 운용
 category: advanced
 order: 1
-lang: en
+lang: ko
 ---
 
-One of the added benefits to building on top of the ErlangVM is the plethora of existing libraries available to us.  Interoperability allows us to leverage those libraries and the Erlang standard lib from our Elixir code.  In this lesson we'll look at how to access functionality in the standard lib along with third-party Erlang packages.
+ErlangVM 위에서 작업하면서 추가된 이점 중 하나는 기존의 다양한 라이브러리를 사용할 수 있다는 점입니다. 상호 운용성은 우리의 Elixir 코드에서 이러한 라이브러리들과 Erlang 표준 라이브러리를 사용할 수 있도록 해줍니다. 이번 레슨에서는 서드파티 Erlang 패키지와 더불어 표준 라이브러리의 기능에 접근하는 법을 알아봅니다.
 
 {% include toc.html %}
 
-## Standard Library
+## 표준 라이브러리
 
-Erlang's extensive standard library can be accessed from any Elixir code in our application.  Erlang modules are represented by lowercase atoms such as `:os` and `:timer`.
+Erlang의 방대한 표준 라이브러리는 여러분의 애플리케이션의 어떤 Elixir 코드에서든지 접근할 수 있습니다. Erlang 모듈은 `:os`와 `:timer`와 같이 소문자 애텀으로 표현됩니다.
 
-Let's use `:timer.tc` to time execution of a given function:
+`:timer.tc`를 사용하여 주어진 함수의 실행 시간을 재 봅시다.
 
 ```elixir
 defmodule Example do
@@ -30,11 +30,11 @@ Time: 8ms
 Result: 1000000
 ```
 
-For a complete list of the modules available, see the [Erlang Reference Manual](http://erlang.org/doc/apps/stdlib/).
+사용할 수 있는 모든 모듈의 목록은 [Erlang Reference Manual](http://erlang.org/doc/apps/stdlib/)을 참조하십시오.
 
-## Erlang Packages
+## Erlang 패키지
 
-In a prior lesson we covered Mix and managing our dependencies.  Including Erlang libraries works the same way.  In the event the Erlang library has not been pushed to [Hex](https://hex.pm) you can refer to the git repository instead:
+앞의 레슨에서 Mix와 의존성을 관리하는 법을 배웠습니다. Erlang 라이브러리를 포함시키는 것도 동일하게 할 수 있습니다. Erlang 라이브러리가 [Hex](https://hex.pm)에 게시되지 않았을 때에는 git 저장소를 대신 참조할 수도 있습니다.
 
 ```elixir
 def deps do
@@ -42,7 +42,7 @@ def deps do
 end
 ```
 
-Now we can access our Erlang library:
+이제 우리가 포함시킨 Erlang 라이브러리를 사용할 수 있습니다.
 
 ```elixir
 png = :png.create(#{:size => {30, 30},
@@ -51,13 +51,13 @@ png = :png.create(#{:size => {30, 30},
                     :palette => palette}),
 ```
 
-## Notable Differences
+## 눈에 띄는 차이점
 
-Now that we know how to use Erlang we should cover some of the gotchas that come with Erlang interoperability.
+Erlang을 어떻게 사용하는지 배웠기 때문에, 이제 Erlang 상호 운용을 하면서 딸려오는 실수들에 대해 알아야 합니다.
 
-### Atoms
+### 애텀
 
-Erlang atoms look much like their Elixir counterparts without the colon (`:`).  They are represented by lowercase strings and underscores:
+Erlang의 애텀은 Elixir의 것과 상당히 비슷하지만 콜론 (`:`)이 없습니다. Erlang에서 애텀은 소문자 문자열과 언더스코어로 나타냅니다.
 
 Elixir:
 
@@ -71,9 +71,9 @@ Erlang:
 example.
 ```
 
-### Strings
+### 문자열
 
-In Elixir when we talk about strings we mean UTF-8 encoded binaries.  In Erlang, strings still use double quotes but refer to char lists:
+Elixir에서 문자열에 대한 이야기를 할 때는 UTF-8로 인코딩된 바이너리를 의미합니다. 반면에 Erlang에서도 문자열은 쌍따옴표를 사용하지만, 이는 문자 리스트를 가리킵니다.
 
 Elixir:
 
@@ -101,7 +101,7 @@ false
 true
 ```
 
-It's important to note that many older Erlang libraries may not support binaries so we need to convert Elixir strings to char lists.  Thankfully this is easy to accomplish with the `to_char_list/1` function:
+한 가지 중요한 점은, 대부분의 오래된 Erlang 라이브러리는 바이너리를 지원하지 않기 때문에 Elixir 문자열을 문자 리스트로 변환해야 한다는 것입니다. 다행스럽게도 이 작업은 `to_char_list/1` 함수를 이용하여 손쉽게 할 수 있습니다.
 
 ```elixir
 iex> :string.words("Hello World")
@@ -114,7 +114,7 @@ iex> "Hello World" |> to_char_list |> :string.words
 2
 ```
 
-### Variables
+### 변수
 
 Elixir:
 
@@ -136,4 +136,4 @@ Erlang:
 11
 ```
 
-That's it!  Leveraging Erlang from within our Elixir applications is easy and effectively doubles the number of libraries available to us.
+그렇죠! 우리의 Elixir 애플리케이션에서 Erlang을 사용하는 것은 쉬우면서도 우리가 사용할 수 있는 라이브러리의 수를 두 배 가까이 늘려 줍니다.
