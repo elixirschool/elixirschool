@@ -24,7 +24,7 @@ defmodule ExampleApp.CLI do
 end
 ```
 
-Next we need to update our Mixfile to include the `:escript` option for our project along with specifying our `:main_module`:
+그 다음 Mixfile에서 메인 모듈(`:main_module`)로 지정해 주고 이를 `:escript` 옵션으로 프로젝트 설정에 덧붙여주면 됩니다.
 
 ```elixir
 defmodule ExampleApp.Mixfile do
@@ -40,9 +40,9 @@ defmodule ExampleApp.Mixfile do
 end
 ```
 
-## Parsing Args
+## 명령행에서 주어진 인수 처리하기
 
-With our application set up we can move on to parsing the command line arguments.  To do this we'll use Elixir's `OptionParser.parse/2` with the `:switches` option to indicate that our flag is boolean:
+애플리케이션을 준비한다면 이제는 명령행에서 주어지는 인수를 다루는 법을 살펴볼 때가 되었습니다. Elixir에서는 `OptionParser.parse/2`를 사용하여 인수를 처리할 수 있는데요, 우리가 명령행에서 불리언 값으로 인수를 받을 것을 `:switches` 옵션에서 설정할 수 있습니다.
 
 ```elixir
 defmodule ExampleApp.CLI do
