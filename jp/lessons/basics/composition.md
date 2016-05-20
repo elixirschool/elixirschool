@@ -19,7 +19,7 @@ lang: jp
 ``` elixir
 defmodule Example do
   def greeting(name) do
-    ~s(Hello #{name}.)
+    "Hello #{name}."
   end
 end
 
@@ -104,4 +104,3 @@ iex> sean = %{steve | name: "Sean"}
 iex()> %{name: "Sean"} = sean
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
-

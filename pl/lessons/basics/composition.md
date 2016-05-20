@@ -6,8 +6,8 @@ order: 8
 lang: pl
 ---
 
-Doświadczenie podpowiada, że bardzo ciężko jest trzymać cały nasz kod w jednym pliku. W tej lekcji przyjrzymy się, jak grupować nasze funkcje w moduły oraz jak za pomocą wyspecjalizowanych map, zwanych strukturami, można efektywnie zorganizować nasz kod. 
-   
+Doświadczenie podpowiada, że bardzo ciężko jest trzymać cały nasz kod w jednym pliku. W tej lekcji przyjrzymy się, jak grupować nasze funkcje w moduły oraz jak za pomocą wyspecjalizowanych map, zwanych strukturami, można efektywnie zorganizować nasz kod.
+
 {% include toc.html %}
 
 ## Moduły
@@ -19,7 +19,7 @@ Przyjrzyjmy się prostemu przykładowi:
 ``` elixir
 defmodule Example do
   def greeting(name) do
-    ~s(Hello #{name}.)
+    "Hello #{name}."
   end
 end
 
@@ -107,7 +107,7 @@ iex> %{name: "Sean"} = sean
 
 ## Komponenty
 
-Skoro już wiemy jak tworzyć moduły oraz struktury przyjrzyjmy się jak wykorzystywać je w kodzie z pomocą komponentów. Elixir pozwala na współpracę pomiędzy modułami na kilka sposobów. Przyjrzyjmy się, z czego możemy skorzystać. 
+Skoro już wiemy jak tworzyć moduły oraz struktury przyjrzyjmy się jak wykorzystywać je w kodzie z pomocą komponentów. Elixir pozwala na współpracę pomiędzy modułami na kilka sposobów. Przyjrzyjmy się, z czego możemy skorzystać.
 
 ### `alias`
 
@@ -164,7 +164,7 @@ iex> last([1, 2, 3])
 
 #### Filtrowanie
 
-Domyślnie importowane są wszystkie funkcje i makra, ale możemy odfiltrować tylko część z nich za pomocą opcji `:only` i 
+Domyślnie importowane są wszystkie funkcje i makra, ale możemy odfiltrować tylko część z nich za pomocą opcji `:only` i
 `:except`.
 
 By zaimportować wskazane funkcje i makra, musimy podać nazwę/ilość argumentów jako parametry `:only` i `:except`.  
