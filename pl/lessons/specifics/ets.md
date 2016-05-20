@@ -6,11 +6,11 @@ order: 4
 lang: pl
 ---
 
-Erlang Term Storage, commonly referred to as ETS, is a powerful storage engine built into OTP and available to use in Elixir.  In this lesson we'll look at how to interface with ETS and how it can be employed in our applications.
-
+Erlang Term Storage, zwany ETS, jest potężnym mechanizmem składowania danych zbudowanym z użyciem OTP i gotowym do użycia w Elixirze. W tej lekcji przyjrzymy się jak możemy użyć ETS w naszej aplikacji.  
+ 
 {% include toc.html %}
 
-## Overview
+## Informacje wstępne
 
 ETS is a robust in-memory store for Elixir and Erlang objects that comes included.  ETS is capable of storing very large amounts of data and offers constant time data access.
 
@@ -34,7 +34,7 @@ iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
 :user_lookup
 ```
 
-### Table Types
+### Typy tabel
 
 There are four types of tables available in ETS:
 
@@ -43,7 +43,7 @@ There are four types of tables available in ETS:
 + `bag` — Many objects per key but only one instance of each object per key.
 + `duplicate_bag` — Many objects per key, with duplicates allowed.
 
-### Access Controls
+### Kontrola dostępu
 
 Access control in ETS is similar to access control within modules:
 
@@ -51,7 +51,7 @@ Access control in ETS is similar to access control within modules:
 + `protected` — Read available to all processes.  Only writable by owner process.  This is the default.
 + `private` — Read/Write limited to owner process.
 
-## Inserting data
+## Wstawianie informacji
 
 ETS has no schema.  The only limitation is that data must be stored as a tuple whose first element is the key.  To add new data we can use `insert/2`:
 
@@ -69,13 +69,13 @@ iex> :ets.insert_new(:user_lookup, {"3100", "", ["Elixir", "Ruby", "JavaScript"]
 true
 ```
 
-## Data Retrieval
+## Wyszukiwanie informacji
 
 ETS offers us a few convenient and flexible ways to retrieve our stored data.  We'll look at how to retrieve data by key and through different forms of pattern matching.
 
 The most efficient, and ideal, retrieval method is key lookup.  While useful, matching iterates through the table and should be used sparingly especially for very large data sets.
 
-### Key Lookup
+### Wyszukiwanie po kluczu
 
 Given a key, we can use `lookup/2` to retrieve all records with that key:
 
@@ -84,7 +84,7 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
-### Simple Matches
+### Proste porównania
 
 ETS was built for Erlang, so be warned that match variables may feel a _little_ clunky.
 
@@ -115,8 +115,8 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
+### Zaawansowane wyszukiwanie
 
-### Advanced Lookup
 
 We learned about simple match cases but what if we want something more akin to an SQL query?  Thankfully there is a more robust syntax available to us.  To lookup our data with `select/2` we need to construct a list of tuples with arity 3.  These tuples represent our pattern, zero or more guards, and a return value format.
 
@@ -148,9 +148,9 @@ iex> :ets.select(:user_lookup, fun)
 
 Want to learn more about the match specification?  Check out the official Erlang documentation for [match_spec](http://www.erlang.org/doc/apps/erts/match_spec.html).
 
-## Deleting Data
+## Usuwanie danych
 
-### Removing Records
+### Usuwanie rekordów 
 
 Deleting terms is as straightforward as `insert/2` and `lookup/2`.  With `delete/2` we only need our table and the key.  This deletes both the key and its values:
 
@@ -159,7 +159,7 @@ iex> :ets.delete(:user_lookup, "doomspork")
 true
 ```
 
-### Removing Tables
+### Usuwanie tabel
 
 ETS tables are not garbage collected unless the parent is terminated.  Sometimes it may be necessary to delete an entire table without terminating the owner process.  For this we can use `delete/1`:
 
@@ -168,7 +168,7 @@ iex> :ets.delete(:user_lookup)
 true
 ```
 
-## Example ETS Usage
+## Przykładowe użycie ETS
 
 Given what we've learned above, let's put everything together and build a simple cache for expensive operations.  We'll implement a `get/4` function to take a module, function, arguments, and options.  For now the only option we'll worry about is `:ttl`.
 
@@ -259,7 +259,7 @@ iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 
 As you see we are able to implement a scalable and fast cache without any external dependencies and this is only one of many uses for ETS.
 
-## Disk-based ETS
+## ETS, a dysk twardy
 
 We now know ETS is for in-memory term storage but what if we need disk-based storage? For that we have Disk Based Term Storage, or DETS for short.  The ETS and DETS APIs are interchangeable with the exception of how tables are created. DETS relies on `open_file/2` and doesn't require the `:named_table` option:
 
