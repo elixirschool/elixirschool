@@ -23,9 +23,7 @@ iex> string = <<104,101,108,108,111>>
 
 ## Listy znaków
 
-Wewnętrznie Elixir przechowuje ciągi znaków jako sekwencja bajtów, a nie tablice znaków, posiada jednak osobny typ do
- reprezentowania listy znaków. Różnica polega na tym, że ciągi znaków tworzymy z użyciem podwójnego cudzysłowu `"`, a 
- listy za pomocą pojedynczego `'`.
+Wewnętrznie Elixir przechowuje ciągi znaków jako sekwencja bajtów, a nie tablice znaków, posiada jednak osobny typ do reprezentowania listy znaków. Różnica polega na tym, że ciągi znaków tworzymy z użyciem podwójnego cudzysłowu `"`, a  listy za pomocą pojedynczego `'`.
 
 Jaka jest różnica pomiędzy nimi? Każdy element na liście znaków to pojedynczy znak ASCII, popatrzmy:
 
@@ -37,14 +35,11 @@ iex> Enum.reduce(char_list, "", fn char, acc -> acc <> to_string(char) <> "," en
 "104,101,108,108,111,"
 ```
 
-Listy znaków istnieją w Elixirze, ponieważ są wymagane przez niektóre moduły Erlanga. Na co dzień korzysta się z 
-ciągów znaków.
+Listy znaków istnieją w Elixirze, ponieważ są wymagane przez niektóre moduły Erlanga. Na co dzień korzysta się z ciągów znaków.
 
 ## Grafemy i kodowanie
 
-Znaki kodowe to zwyczajne znaki Unicode, które mogą być reprezentowane przez jeden albo dwa bajty. Na przykład znaki 
-z akcentem albo tyldą: `á, ñ, è`. 
-Grafemy zwierają jeden lub wiele znaków kodowych, które będą reprezentować pojedynczy znak (literę).
+Znaki kodowe to zwyczajne znaki Unicode, które mogą być reprezentowane przez jeden albo dwa bajty. Na przykład znaki z akcentem albo tyldą: `á, ñ, è`. Grafemy zwierają jeden lub wiele znaków kodowych, które będą reprezentować pojedynczy znak (literę).
 
 Moduł `String` ma dwie metody do ich obsługi `graphemes/1` i `codepoints/1`. Przyjrzyjmy się na przykładzie:
 
@@ -74,8 +69,7 @@ iex> String.length "Hello"
 
 ##### `replace/4`
 
-Zwraca nowy ciąg, w którym zmieniono fragmenty pasujące do wzorca na podane w parametrze. Czwarty parametr jest 
-opcjonalny.
+Zwraca nowy ciąg, w którym zmieniono fragmenty pasujące do wzorca na podane w parametrze. Czwarty parametr jest opcjonalny.
 
 ```elixir
 iex> String.replace("Hello", "e", "a")
@@ -130,11 +124,9 @@ defmodule Anagram do
 end
 ```
 
-Przyjrzyjmy się najpierw funkcji `anagrams?/2`. Na początek sprawdzamy, czy parametry są binarne, czy też nie. W 
-Elixirze jest to sposób na weryfikację czy parametr jest ciągiem znaków, czy też nie. 
+Przyjrzyjmy się najpierw funkcji `anagrams?/2`. Na początek sprawdzamy, czy parametry są binarne, czy też nie. W Elixirze jest to sposób na weryfikację czy parametr jest ciągiem znaków, czy też nie. 
 
-Następnie wywołujemy funkcję, która posortuje litery alfabetycznie. Najpierw zamieni wszystkie znaki na małe, a 
-następnie korzystając z `String.graphemes`, stworzy listę znaków, która zostanie posortowana. Proste, prawda?
+Następnie wywołujemy funkcję, która posortuje litery alfabetycznie. Najpierw zamieni wszystkie znaki na małe, a następnie korzystając z `String.graphemes`, stworzy listę znaków, która zostanie posortowana. Proste, prawda?
 
 Sprawdźmy wyniki w konsoli `iex`:
 
@@ -150,6 +142,4 @@ iex> Anagram.anagrams?(3, 5)
     iex:2: Anagram.anagrams?(3, 5)
 ```
 
-Ostatnie wywołanie `anagrams?` spowodowało `FunctionClauseError`. Błąd ten mówi, że nie można znaleźć dopasowania 
-funkcji, która mogłaby zostać wywołana z niebinarnymi argumentami. I oto nam chodzi, by naszą funkcję móc wywołać 
-tylko z ciągami znaków. 
+Ostatnie wywołanie `anagrams?` spowodowało `FunctionClauseError`. Błąd ten mówi, że nie można znaleźć dopasowania funkcji, która mogłaby zostać wywołana z niebinarnymi argumentami. I oto nam chodzi, by naszą funkcję móc wywołać tylko z ciągami znaków. 
