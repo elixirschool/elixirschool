@@ -12,7 +12,7 @@ Erlang Term Storage, zwany ETS, jest potężnym mechanizmem składowania danych 
 
 ## Informacje wstępne
 
-ETS is a robust in-memory store for Elixir and Erlang objects that comes included.  ETS is capable of storing very large amounts of data and offers constant time data access.
+ETS jest rozwiązaniem in-memory, które pozwala na składowanie obiektów Elixirowych i Erlangowych. ETS został zaprojektowany by obsługiwać nawet duże zbiory danych ze stałym czasem dostępu.
 
 Tables in ETS are created and owned by individual processes.  When an owner process terminates, its tables are destroyed.  By default ETS is limited to 1400 tables per node.
 
