@@ -14,7 +14,7 @@ Elixir를 준비하고, 기본적인 타입과 연산을 배워봅시다.
 
 ### Elixir 설치하기
 
-Elixir-lang.org 홈페이지의 [Elixir 설치 가이드](http://elixir-lang.org/install.html)에서 각 운영체제별로 설치하는 방법을 알아볼 수 있습니다.
+Elixir-lang.org 홈페이지의 [Installing Elixir](http://elixir-lang.org/install.html) 가이드에서 각 운영체제별로 설치하는 방법을 알아볼 수 있습니다.
 
 ### 대화형 모드
 
@@ -51,7 +51,7 @@ iex> 0x1F
 
 ### 부동 소수점
 
-Elixir에서는 64비트 정밀도(double precision)로써 부동 소수점 숫자를 처리하고, `e`를 사용하여 10의 지수를 표현할 수도 있습니다. 부동 소수점 숫자를 표현할 때에는 소수점 앞뒤로 숫자가 한 개 이상 필요합니다.
+Elixir에서는 배정밀도(64 bit double precision)로 부동 소수점 숫자를 처리하고, `e`를 사용하여 10의 지수를 표현할 수도 있습니다. 부동 소수점 숫자를 표현할 때에는 소수점 앞뒤로 숫자가 한 개 이상 필요합니다.
 
 ```elixir
 iex> 3.41
