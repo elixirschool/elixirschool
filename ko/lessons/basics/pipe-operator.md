@@ -1,67 +1,69 @@
 ---
 layout: page
-title: Pipe Operator 
+title: 파이프 연산자
 category: basics
-order: 6 
-lang: en
+order: 6
+lang: ko
 ---
 
-The pipe operator `|>` passes the result of an expression as the first parameter of another expression.
+파이프 연산자 `|>`는 수식의 결과를 다른 수식의 첫 번째 매개변수로 전달합니다.
 
 {% include toc.html %}
 
-## Introduction
+## 소개
 
-Programming can get messy. So messy in fact that function calls can get so embedded the function calls becomes very difficult to follow. Take the following nested functions into consideration:
+프로그래밍을 하다보면 코드가 지저분해집니다. 함수의 호출이 따라가기 힘들 정도로 많이 중첩되어 지저분해질 수도 있습니다. 아래 중첩된 함수 호출을 생각해 봅시다.
 
 ```elixir
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Here, we are passing the value `other_function/1` to `new_function/1`, and `new_function/1` to `baz/1`, `baz/1` to `bar/1`, and finally the result of `bar/1` to `foo/1`. Elixir takes a pragmatic approach to this syntactical chaos by giving us the pipe operator. The pipe operator which looks like `|>` *takes the result of one expression, and passes it on*. Let's take another look at the code snippet above rewritten with the pipe operator.
+여기서, `other_function/1`의 값은 `new_function/1`로 전달되고, `new_function/1`에서 `baz/1`로, `baz/1`에서 `bar/1`로, 그리고 마지막으로 `bar/1`의 결과가 `foo/1`로 전달됩니다. Elixir에서는 이런 문법적인 혼란을 해소하기 위한 유용한 수단으로서 파이프 연산자를 제공합니다. `|>` 처럼 생긴 파이프 연산자는 *수식으로부터 결과를 받아서 다음 수식으로 전달합니다*. 이번에는 위의 코드를 바탕으로 파이프 연산자를 이용하여 다시 작성한 코드를 봅시다.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
 ```
 
-The pipe takes the result on the left, and passes it to the right hand side.
+파이프가 왼쪽에서 결과를 받아 오른쪽으로 넘깁니다.
 
-## Examples
+## 예제
 
-For this set of examples, we will use Elixir's String module.
+이 예제를 위해 Elixir의 String 모듈을 이용하겠습니다.
 
-- Tokenize String (loosely)
+- 문자열 토큰화 (느슨하게)
 
 ```shell
 iex> "Elixir rocks" |> String.split
 ["Elixir", "rocks"]
 ```
 
-- Uppercase all the tokens
+- 모든 토큰을 대문자로
 
 ```shell
 iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
 ["ELIXIR", "ROCKS"]
 ```
 
-- Check ending
+- 문자열 끝 부분 검사
 
 ```shell
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
 
-## Best Practices
+## 좋은 습관
 
-If the arity of a function is more than 1, then make sure to use parenthesis. This doesn't matter much to the Elixir, but it matters to other programmers who may misinterpret your code. If we take our 2nd example, and remove the brackets from `Enum.map/2`, we are met with the following warning.
+함수의 애리티가 1 이상이면 반드시 괄호를 쓰는 것을 명심하십시오. 이는 Elixir에게는 큰 문제가 되지 않지만 다른 프로그래머가 여러분의 코드를 잘못 이해할 수도 있기 때문입니다. 두번째 예제에서 `Enum.map/2`의 괄호를 지우면 아래와 같은 경고를 보게 됩니다.
 
 ```shell
 iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
 iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+# [역주] 경고: 괄호를 사용하지 않고 함수 호출에 파이프하고 있으며, 의미가 모호해질 수 있습니다. 파이프하는 함수를 괄호로 묶어 주십시오. 예를 들면,
 
 foo 1 |> bar 2 |> baz 3
 
 Should be written as:
+# [역주] 위 코드는 아래와 같이 작성되어야 합니다.
 
 foo(1) |> bar(2) |> baz(3)
 
