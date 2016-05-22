@@ -1,31 +1,31 @@
 ---
 layout: page
-title: Strings
+title: 문자열
 category: basics
 order: 14
 lang: en
 ---
 
-What are Strings in Elixir, Char lists, Graphemes and Codepoints.
+Elixir에서의 문자열, 문자 리스트, 문자소 그리고 코드 포인트에 대해 다뤄 보겠습니다.
 
 {% include toc.html %}
 
-## Strings in Elixir
+## Elixir에서의 문자열
 
-Elixir strings are nothing but a sequence of bytes. Let's look at an example:
+Elixir에서 문자열은 바이트 시퀀스에 불과하지 않습니다. 다음의 예시를 봅시다:
 
 ```elixir
 iex> string = <<104,101,108,108,111>>
 "hello"
 ```
 
->NOTE: Using << >> syntax we are saying to the compiler that the elements inside those symbols are bytes.
+>NOTE: << >> 문법을 이용함으로써, 컴파일러에게 이 기호들로 감싸진 모든 원소들이 전부 바이트라는 것을 알리게 됩니다.
 
-## Char lists
+## 문자 리스트
 
-Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters, and also has a char list type (characters list). Elixir strings are created with double quotes, while char lists are with single quotes.
+Elixir 내부에서, 문자열은 문자의 배열이라기 보다는 바이트의 시퀀스로 나타납니다. 물론, 문자 리스트 타입은 별도로 있습니다. Elixir에서 문자열은 쌍따옴표로 생성이 되는 반면, 문자 리스트는 따옴표로 생성됩니다.
 
-What's the difference between them? Each value from a char list is the ASCII value from the character. Let's dig in:
+과연 무슨 차이가 있을까요? 문자 리스트의 각 항목은 각 문자의 ASCII 값으로 나타납니다. 그 내부를 보도록 하죠:
 
 ```elixir
 iex> char_list = 'hello'
@@ -35,13 +35,14 @@ iex> Enum.reduce(char_list, "", fn char, acc -> acc <> to_string(char) <> "," en
 "104,101,108,108,111,"
 ```
 
-When programming in Elixir, we are not usually using char lists but Strings. The char lists support is given because are required by some Erlang modules.
+Elixir로 프로그래밍할 때, 문자 리스트보다는 문자열을 자주 사용하게 됩니다. 문자 리스트는 몇몇 얼랭 모듈에서 사용되기 때문에 쓰입니다.
 
-## Graphemes and codepoints
 
-Codepoints are just simple Unicode characters, which may be represented by one or two bytes. For example, characters with a tilde or accents: `á, ñ, è`. Graphemes consists on multiple codepoints that look as a simple character.
+## 문자소와 코드 포인트
 
-The String module already provides two methods to obtain them, `graphemes/1` and `codepoints/1`. Let's look at the example:
+코드 포인트는 1바이트 혹은 2바이트로 나타낼 수 있는 유니코드 문자입니다. 예를 들어, 물결 무늬와 강조 부호가 들어간 문자가 있습니다: `á, ñ, è`. 문자소는 하나의 간단한 문자로 보이게 하는 여러 개의 코드 포인트로 구성되어 있습니다.
+
+문자열 모듈은 이것들을 가져오기 위해, `graphemes/1`와 `codepoints/1`, 이렇게 두 가지 메서드를 제공합니다. 다음의 예제에서 살펴보죠:
 
 ```elixir
 iex> string = "\u0061\u0301"
@@ -54,13 +55,13 @@ iex> String.graphemes string
 ["á"]
 ```
 
-## String functions
+## 문자열 함수
 
-Let's review some of the most important and useful function the String module has for us.
+문자열 모듈에서 가장 중요하고 쓸만한 몇 가지 함수들을 살펴보도록 합시다. 
 
 ### `length/1`
 
-Returns the number of Graphemes in the string.
+문자열이 가지는 문자소의 개수를 반환합니다.
 
 ```elixir
 iex> String.length "Hello"
@@ -69,7 +70,7 @@ iex> String.length "Hello"
 
 ### `replace/4`
 
-Returns a new string replacing a current pattern in the string for some new replacement string.
+문자열 내에서 발견되는 패턴을 다른 문자열로 치환하여 새 문자열을 반환합니다.
 
 ```elixir
 iex> String.replace("Hello", "e", "a")
@@ -78,7 +79,7 @@ iex> String.replace("Hello", "e", "a")
 
 ### `duplicate/2`
 
-Returns a new string repeated n times.
+n번 반복되는 새 문자열을 반환합니다.
 
 ```elixir
 iex> String.duplicate "Oh my ", 3
@@ -87,28 +88,29 @@ iex> String.duplicate "Oh my ", 3
 
 ### `split/2`
 
-Returns an array of strings splitted by pattern.
+문자열을 패턴에 따라 분리시켜 문자열의 배열을 반환합니다.
 
 ```elixir
 iex> String.split("Hello World", " ")
 ["Hello", "World"]
 ```
 
-## Exercises
+## 연습
 
-Let's just get in action with two simple exercises to demostrate we are ready to go with Strings!
+문자열을 다룰 준비가 되셨다면, 바로 2개의 간단한 예제들을 다루도록 하겠습니다!
 
-### Anagrams
 
-A and B are considered anagrams if there's a way that rearranging A or B, we can make them equals. For example: 
+### 애너그램
+
+A와 B를 재정렬하여 서로 같다는 것을 보일 수 있다면, A와 B는 애너그램이라 합니다. 다음의 예시를 보죠: 
 A = super
 B = perus 
 
-If we re-arrange the characters on String A, we can get the string B, and viceversa.
+문자열 A를 재정렬하면, 문자열 B를 얻을 수 있습니다. 반대로도 마찬가지입니다.
 
-So, what could be the way to check if two strings are Anagrams in Elixir?
+자, 그러면 Elixir에서 두 문자열이 애너그램인지 확인하고자 할 때, 어떤 방법이 있을까요?
 
-The easiest solution is to order the strings alphabetically and check if they are equals. Let's check the next example:
+가장 쉬운 접근 방식은 문자열들을 알파벳 순서대로 정렬하여 서로 같은 지 확인하는 것입니다. 다음의 예제에서 확인해보죠.
 
 ```elixir
 defmodule Anagram do
@@ -125,11 +127,11 @@ defmodule Anagram do
 end
 ```
 
-Let's first give a watch to `anagrams?/2`. We are checking whether the parameters we are receiving are binaries or not. That's the way we check if a parameter is a String in elixir.
+먼저 `anagrams?/2`에 주목해보죠. 전달받고 있는 인자들이 2진수인지 아닌지 확인하고 있습니다. Elixir에서 전달받는 인자가 문자열인지 확인할 때 이렇게 한다고 보시면 됩니다.
 
-After it, we are just calling a function that orders the strings in alphabetically order, first doing the string downcase and then using `String.graphemes`, which returns an array with the Graphemes of the string. Pretty straight right?
+그러고 나서, 문자들을 소문자로 만듭니다. 해당 문자열의 문자소의 배열을 반환하는 `String.graphemes` 함수를 호출하고, 문자열들을 알파벳 순서대로 정렬하는 함수를 호출합니다. 정말 직관적이지 않나요? 
 
-Let's check the output on iex:
+iex에서의 출력을 확인해봅시다:
 
 ```elixir
 iex> Anagram.anagrams?("Hello", "ohell")
@@ -141,6 +143,8 @@ true
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
     iex:2: Anagram.anagrams?(3, 5)
+** [역주] (함수절에러) 어떤 함수의 절도 Anagram.anagrams?/2에서 매치되지 않습니다
+	iex:2: Anagram.anagrams?(3, 5)
 ```
 
-As you can see, the last call to `anagrams?` cause a FunctionClauseError. This error is telling us that there is not a function in our module that meets the pattern of receiving two non-binary arguments, and that's exactly what we want, to just receive two strings, and nothing more. 
+방금 보셨겠듯이, 마지막에서 호출한 `anagrams?`는 FunctionClauseError를 일으킵니다. 이 에러는 2진수가 아닌 인자를 받는 패턴을 만족하는 함수가 모듈에 없다는 것을 알려줍니다. 단순히 두 문자열만 전달받는다면 바람직하다 할 수 있습니다.
