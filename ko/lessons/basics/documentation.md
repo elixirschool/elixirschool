@@ -3,7 +3,7 @@ layout: page
 title: 문서화
 category: basics
 order: 11
-lang: en
+lang: ko
 ---
 
 Elixir 코드 문서화하기.
@@ -220,9 +220,9 @@ Earmark가 마크다운을 렌더링하고 ExDoc가 이를 쓸만한 포멧으�
 
 Github에 배포할 수도 있고, 홈페이지에도 배포할 수 있지만, 흔하게는 [HexDocs](https://hexdocs.pm/)에 배포하기도 합니다.
 
-## 모범 사례
+## 좋은 습관
 
-Elixir의 모범 가이드 라인에 따라 주석을 달아야 합니다. Elixir는 확실히 역사가 오래되지 않은 언어이기 때문에, 생태계가 커져감에 따라 많은 표준들이  생겨날 것입니다. 커뮤니티에서도 모범 사례를 정립하기 위해 많은 노력을 기울여 왔습니다. 모범 사례들에 대해서 더 알아보고자 한다면 [엘릭서 스타일 가이드](https://github.com/niftyn8/elixir_style_guide)를 보세요. 
+Elixir의 모범 가이드 라인에 따라 주석을 달아야 합니다. Elixir는 확실히 역사가 오래되지 않은 언어이기 때문에, 생태계가 커져감에 따라 많은 표준들이  생겨날 것입니다. 커뮤니티에서도 좋은 습관을 정립하기 위해 많은 노력을 기울여 왔습니다. 좋은 습관들에 대해서 더 알아보고자 한다면 [엘릭서 스타일 가이드](https://github.com/niftyn8/elixir_style_guide)를 보세요. 
 
   - 항상 모듈을 문서화해두세요.
 
