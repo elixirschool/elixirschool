@@ -36,31 +36,31 @@ iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
 
 ### Typy tabel
 
-There are four types of tables available in ETS:
+W ETS wyróżniamy cztery typy tabel:
 
-+ `set` — This is the default table type.  One value per key.  Keys are unique.
-+ `ordered_set` — Similar to `set` but ordered by Erlang/Elixir term.  It is important to note that key comparison is different within `ordered_set`.  Keys need not match so long as they compare equally.  1 and 1.0 are considered equal.
-+ `bag` — Many objects per key but only one instance of each object per key.
-+ `duplicate_bag` — Many objects per key, with duplicates allowed.
++ `set` — Jest to typ domyślny. Jedna wartość na klucz. Klucze są unikalne.
++ `ordered_set` — Podobny do `set`, ale klucze są posortowanie w rozumieniu Erlanga/Elixira. Warto pamiętać, że klucze są inaczej porównywane w ramach `ordered_set`.  Przy czym zasada nierówności kluczy jest spójna. Przykładowo 1 i 1.0 są traktowane jako równe.
++ `bag` — Wiele wartości w kluczu, ale wartości te muszą być unikalne.
++ `duplicate_bag` — Wiele wartości w kluczu. Wartości mogą się powtarzać.
 
 ### Kontrola dostępu
 
-Access control in ETS is similar to access control within modules:
+Zasady dostępy w ETS są zbliżone do tych dla modułów:
 
-+ `public` — Read/Write available to all processes.
-+ `protected` — Read available to all processes.  Only writable by owner process.  This is the default.
-+ `private` — Read/Write limited to owner process.
++ `public` — Odczyt i zapis dla wszystkich procesów.
++ `protected` — Odczyt dla wszystkich procesów. Zapis tylko dla procesu zarządzającego. Jest to wartość domyślna.
++ `private` — Odczyt i zapis tylko dla procesu zarządzającego.
 
 ## Wstawianie informacji
 
-ETS has no schema.  The only limitation is that data must be stored as a tuple whose first element is the key.  To add new data we can use `insert/2`:
+ETS nie posiada schematu. Jedyne ograniczenie polega na tym, że dane są składowane jako krotki, w których pierwsza wartość to klucz. By dodać rekord, należy użyć funkcji `insert/2`:
 
 ```elixir
 iex> :ets.insert(:user_lookup, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
 true
 ```
 
-When we use `insert/2` with a `set` or `ordered_set` existing data will be replaced.  To avoid this there is `insert_new/2` which returns `false` for existing keys:
+Gdy użyjemy `insert/2` z`set` lub `ordered_set` istniejaca wartość zostanie zastąpiona. By temu zapobiec, należy użyć funkcji `insert_new/2`, która zwróci `false`, jeżeli klucz istnieje:
 
 ```elixir
 iex> :ets.insert_new(:user_lookup, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
