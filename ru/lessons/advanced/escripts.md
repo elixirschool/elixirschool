@@ -19,7 +19,7 @@ lang: ru
 ```elixir
 defmodule ExampleApp.CLI do
   def main(args \\ []) do
-    # Do stuff
+    # Делаем что-нибудь
   end
 end
 ```
