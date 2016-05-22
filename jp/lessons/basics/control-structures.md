@@ -123,3 +123,54 @@ iex> cond do
 ...> end
 "Catch all"
 ```
+
+## `with`
+
+特殊な形式の`with`はネストされた`case`文を使うような時やきれいにパイプできない状況に便利です。`with`式はキーワード, ジェネレータ, そして式から成り立っています。
+
+ジェネレータについてはリスト内包表記のレッスンでより詳しく述べますが、今は`<-`の右側と左側を比べるのにパターンマッチングが使われることだけ知っている必要があります。
+
+`with`の簡単な例から始め、その後さらなる例を見てみましょう:
+
+```elixir
+iex> user = %{first: "Sean", last: "Callan"}
+%{first: "Sean", last: "Callan"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+"Callan, Sean"
+```
+
+式がマッチに失敗した場合はマッチしない値が返されます:
+
+```elixir
+iex> user = %{first: "doomspork"}
+%{first: "doomspork"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+:error
+```
+
+それでは、`with`を使わない長めの例と、それをどのようにリファクタリングできるかを見てみましょう:
+
+```elixir
+case Repo.insert(changeset) do
+  {:ok, user} ->
+    case Guardian.encode_and_sign(resource, :token, claims) do
+      {:ok, jwt, full_claims} ->
+        important_stuff(jwt, full_claims)
+      error -> error
+    end
+  error -> error
+end
+```
+
+`with`を導入するとコードが短く、わかりやすくなります:
+
+```elixir
+with
+  {:ok, user} <- Repo.insert(changeset),
+  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+  do: important_stuff(jwt, full_claims)
+```
