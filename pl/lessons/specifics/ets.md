@@ -12,22 +12,22 @@ Erlang Term Storage, zwany ETS, jest potężnym mechanizmem składowania danych 
 
 ## Informacje wstępne
 
-ETS jest rozwiązaniem in-memory, które pozwala na składowanie obiektów Elixirowych i Erlangowych. ETS został zaprojektowany by obsługiwać nawet duże zbiory danych ze stałym czasem dostępu.
+ETS jest rozwiązaniem bazującym na pamięci operacyjnej, które pozwala na składowanie obiektów Elixirowych i Erlangowych. ETS został zaprojektowany, by obsługiwać nawet duże zbiory danych ze stałym czasem dostępu.
 
-Tables in ETS are created and owned by individual processes.  When an owner process terminates, its tables are destroyed.  By default ETS is limited to 1400 tables per node.
+Tabele ETS są tworzone i obsługiwane przez procesy. Kiedy proces zarządzający tabelą kończy się, to tabela jest usuwana.  Domyślnie istnieje ograniczenie do 1400 tabel na węzeł.
 
-## Creating Tables
+## Tworzenie tabel
 
-Tables are created with `new/2`, which accepts a table name, and a set of options, and returns a table identifier that we can use in subsequent operations.
+Do tworzenia tabel służy funkcja `new/2`, która jako parametry przyjmuje nazwę tabeli i zbiór opcji, a zwraca identyfikator tabeli, którego możemy używać w operacjach.
 
-For our example we'll create a table to store and look up users by their nickname:
+Przykładowo stwórzmy tabelę do składowania i wyszukiwania użytkowników po nicku:
 
 ```elixir
 iex> table = :ets.new(:user_lookup, [:set, :protected])
 8212
 ```
 
-Much like GenServers, there is a way to access ETS tables by name rather than identifier.  To do this we need to include the `:named_table` option.  Then we can access our table directly by name:
+Podobnie jak w GenServers, ETS umożliwia odwołanie się do tabeli po nazwie, a ne tylko identyfikatorze. By to zrobić, musimy dodać opcję `:named_table`. I teraz możemy odwołać się d naszej tabeli bezpośrednio po nazwie:
 
 ```elixir
 iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
