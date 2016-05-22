@@ -4,7 +4,7 @@
 
 Lessons can now be viewed on [ElixirSchool.com](https://elixirschool.com).
 
-_Feedback and participation is welcome. Please see [Contributing](CONTRIBUTIING.md) for more details on how to get involved._
+_Feedback and participation is welcome. Please see [Contributing](CONTRIBUTING.md) for more details on how to get involved._
 
 ### Running
 
