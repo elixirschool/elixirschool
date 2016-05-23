@@ -86,7 +86,7 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-Notice how we start the defmodule statement with `Mix.Tasks` and the name we want to call from the command line. One the second line we introduce the `use Mix.Task` which brings the `Mix.Task` behaviour into the namespace. We then declare a run function which ignores any arguements for now. Within this function, we call our `Hello` module and the `say` function.
+Notice how we start the defmodule statement with `Mix.Tasks` and the name we want to call from the command line. On the second line we introduce the `use Mix.Task` which brings the `Mix.Task` behaviour into the namespace. We then declare a run function which ignores any arguments for now. Within this function, we call our `Hello` module and the `say` function.
 
 ## Mix Tasks in Action
 
