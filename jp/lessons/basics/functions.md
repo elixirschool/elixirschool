@@ -2,7 +2,7 @@
 layout: page
 title: 関数
 category: basics
-order: 6
+order: 7
 lang: jp
 ---
 

@@ -2,7 +2,7 @@
 layout: page
 title: Mix
 category: basics
-order: 8
+order: 9
 lang: jp
 ---
 
