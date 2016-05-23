@@ -8,23 +8,7 @@ lang: en
 
 Setup, basic types and operations.
 
-## Table of Contents
-
-- [Setup](#setup)
-	- [Install Elixir](#install-elixir)
-	- [Interactive Mode](#interactive-mode)
-- [Basic Types](#basic-types)
-	- [Integers](#integers)
-	- [Floats](#floats)
-	- [Booleans](#booleans)
-	- [Atom](#atoms)
-	- [String](#strings)
-- [Basic Operations](#basic-operations)
-	- [Arithmetic](#arithmetic)
-	- [Boolean](#boolean)
-	- [Comparison](#comparison)
-	- [String interpolation](#string-interpolation)
-	- [String concatenation](#string-concatenation)
+{% include toc.html %}
 
 ## Setup
 
@@ -40,7 +24,7 @@ To get started, let's run `iex`:
 
 	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
+	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
 ## Basic Types

@@ -8,22 +8,7 @@ lang: jp
 
 Ectoは公式のElixirプロジェクトで、データベースのラッパと、総合的なクエリ言語を提供します。Ectoを用いることで、マイグレーションの作成やモデルの定義、レコードの挿入や更新、問合せが行えるようになります。
 
-## 目次
-
-- [セットアップ](#section-1)
-  - [リポジトリ](#section-2)
-  - [スーパーバイザ](#section-3)
-  - [設定](#section-4)
-- [Mixタスク](#mix)
-- [マイグレーション](#section-5)
-- [モデル](#section-6)
-- [クエリ](#section-7)
-  - [基本](#section-8)
-  - [Group By](#group-by)
-  - [Order By](#order-by)
-  - [Join](#join)
-  - [Fragment](#fragment)
-- [チェンジセット](#section-9)
+{% include toc.html %}
 
 ## セットアップ
 

@@ -8,25 +8,9 @@ lang: my
 
 Penyediaan, Jenis Data Asas dan Operasi.
 
-## Kandungan
+{% include toc.html %}
 
-- [Penyediaan](#penyediaan)
-	- [Pemasangan Elixir](#pemasangan-elixir)
-	- [Mod Interaktif](#mod-interaktif)
-- [Jenis Data Asas](#jenis-data-asas)
-	- [Angka Bulat](#angka-bulat)
-	- [Nombor Apungan](#nombor-apungan)
-	- [Boolean](#boolean)
-	- [Atom](#atom)
-	- [String](#string)
-- [Operasi Asas](#operasi-asas)
-	- [Arithmetik](#arithmetik)
-	- [Boolean](#boolean)
-	- [Perbandingan](#perbandingan)
-	- [Interpolasi String](#interpolasi-string)
-	- [Perangkaian String](#perangkaian-string)
-
-## Setup
+## Penyediaan
 
 ### Pemasangan Elixir
 
@@ -40,7 +24,7 @@ Untuk bermula, kita jalankan `iex`:
 
 	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
+	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
 ## Type Asas

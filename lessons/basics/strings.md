@@ -2,23 +2,13 @@
 layout: page
 title: Strings
 category: basics
-order: 9
+order: 14
 lang: en
 ---
 
 What are Strings in Elixir, Char lists, Graphemes and Codepoints.
 
-## Table of Contents
-
-- [Strings in Elixir](#strings-in-elixir)
-- [Char lists](#char-lists)
-- [Graphemes and Codepoints](#graphemes)
-- [String functions](#string-functions)
-  - [Length](#length)
-  - [Replace](#replace)
-  - [Duplicate](#duplicate)
-- [Exercises](#exercises)
-  - [Anagrams](#anagrams)
+{% include toc.html %}
 
 ## Strings in Elixir
 
@@ -68,7 +58,7 @@ iex> String.graphemes string
 
 Let's review some of the most important and useful function the String module has for us.
 
-##### `length/1`
+### `length/1`
 
 Returns the number of Graphemes in the string.
 
@@ -77,7 +67,7 @@ iex> String.length "Hello"
 5
 ```
 
-##### `replace/4`
+### `replace/4`
 
 Returns a new string replacing a current pattern in the string for some new replacement string.
 
@@ -86,7 +76,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-##### `duplicate/2`
+### `duplicate/2`
 
 Returns a new string repeated n times.
 
@@ -95,9 +85,9 @@ iex> String.duplicate "Oh my ", 3
 "Oh my Oh my Oh my "
 ```
 
-##### `split/2`
+### `split/2`
 
-Returns an array of strings splitted by pattern
+Returns an array of strings splitted by pattern.
 
 ```elixir
 iex> String.split("Hello World", " ")

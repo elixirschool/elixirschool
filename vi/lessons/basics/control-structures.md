@@ -8,11 +8,7 @@ lang: vi
 
 In this lesson we will look at the control structures available to us in Elixir.
 
-## Table of Contents
-
-- [`if` and `unless`](#if-and-unless)
-- [`case`](#case)
-- [`cond`](#cond)
+{% include toc.html %}
 
 ## `if` and `unless`
 

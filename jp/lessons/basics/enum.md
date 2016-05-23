@@ -8,20 +8,7 @@ lang: jp
 
 コレクションを列挙していくために用いる一連のアルゴリズム。
 
-## 目次
-
-- [Enum](#enum)
-  - [all?](#all)
-  - [any?](#any)
-  - [chunk](#chunk)
-  - [chunk_by](#chunk_by)
-  - [each](#each)
-  - [map](#map)
-  - [min](#min)
-  - [max](#max)
-  - [reduce](#reduce)
-  - [sort](#sort)
-  - [uniq](#uniq)
+{% include toc.html %}
 
 ## Enum
 
@@ -137,7 +124,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 ```elixir
 # ソート関数あり
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
-[%{count: 4}, %{count: 1}]
+[%{val: 4}, %{val: 1}]
 
 # なし
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])
