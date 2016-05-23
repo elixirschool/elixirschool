@@ -6,16 +6,13 @@ order: 8
 lang: pl
 ---
 
-Doświadczenie podpowiada, że bardzo ciężko jest trzymać cały nasz kod w jednym pliku. W tej lekcji przyjrzymy się, jak
- grupować nasze funkcje w moduły oraz jak za pomocą wyspecjalizowanych map, zwanych strukturami, można 
- efektywnie zorganizować nasz kod. 
+Doświadczenie podpowiada, że bardzo ciężko jest trzymać cały nasz kod w jednym pliku. W tej lekcji przyjrzymy się, jak grupować nasze funkcje w moduły oraz jak za pomocą wyspecjalizowanych map, zwanych strukturami, można efektywnie zorganizować nasz kod. 
    
 {% include toc.html %}
 
 ## Moduły
 
-Moduły to najlepsza metoda na zorganizowanie naszego kodu w ramach przestrzeni nazw. Dodatkowo poza grupowaniem 
-funkcji moduły pozwalają na definiowanie funkcji nazwanych oraz prywatnych, które poznaliśmy w poprzedniej lekcji.
+Moduły to najlepsza metoda na zorganizowanie naszego kodu w ramach przestrzeni nazw. Dodatkowo poza grupowaniem funkcji moduły pozwalają na definiowanie funkcji nazwanych oraz prywatnych, które poznaliśmy w poprzedniej lekcji.
 
 Przyjrzyjmy się prostemu przykładowi:
 
@@ -69,11 +66,9 @@ W Elixirze istnieją zarezerwowane nazwy dla atrybutów.  Trzy najpopularniejsze
 
 ## Struktury
 
-Struktury to wyspecjalizowane mapy, które zawierają zbiór kluczy i domyślnych wartości. Muszą być zdefiniowane w 
-module i mają taką samą jak on nazwę. Nierzadko struktura jest jedynym elementem zdefiniowanym w module.
+Struktury to wyspecjalizowane mapy, które zawierają zbiór kluczy i domyślnych wartości. Muszą być zdefiniowane w module i mają taką samą jak on nazwę. Nierzadko struktura jest jedynym elementem zdefiniowanym w module.
 
-By zdefiniować strukturę, używamy słowa kluczowego `defstruct` wraz z listą asocjacyjną zawierającą nazwy pól i 
-wartości domyślne:
+By zdefiniować strukturę, używamy słowa kluczowego `defstruct` wraz z listą asocjacyjną zawierającą nazwy pól i wartości domyślne:
 
 ```elixir
 defmodule Example.User do
@@ -112,8 +107,7 @@ iex> %{name: "Sean"} = sean
 
 ## Komponenty
 
-Skoro już wiemy jak tworzyć moduły oraz struktury przyjrzyjmy się jak wykorzystywać je w kodzie z pomocą komponentów.  
-Elixir pozwala na współpracę pomiędzy modułami na kilka sposobów. Przyjrzyjmy się, z czego możemy skorzystać. 
+Skoro już wiemy jak tworzyć moduły oraz struktury przyjrzyjmy się jak wykorzystywać je w kodzie z pomocą komponentów. Elixir pozwala na współpracę pomiędzy modułami na kilka sposobów. Przyjrzyjmy się, z czego możemy skorzystać. 
 
 ### `alias`
 
@@ -195,8 +189,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-Poza podaniem pary nazwa/liczba argumentów możemy też użyć dwóch atomów `:functions` i `:macros`, dzięki którym 
-zaimportujemy odpowiednio tylko funkcje lub tylko makra:
+Poza podaniem pary nazwa/liczba argumentów możemy też użyć dwóch atomów `:functions` i `:macros`, dzięki którym zaimportujemy odpowiednio tylko funkcje lub tylko makra:
 
 ```elixir
 import List, only: :functions
@@ -205,8 +198,7 @@ import List, only: :macros
 
 ### `require`
 
-Choć nie jest to zbyt często stosowana funkcja to `require/2` jest też bardzo ważna. Pozwala ona na wymuszenie 
-kompilacji i załadowania wskazanego modułu. Jest to szczególnie przydatne, jeżeli chcemy korzystać z makr:
+Choć nie jest to zbyt często stosowana funkcja to `require/2` jest też bardzo ważna. Pozwala ona na wymuszenie kompilacji i załadowania wskazanego modułu. Jest to szczególnie przydatne, jeżeli chcemy korzystać z makr:
 
 ```elixir
 defmodule Example do
@@ -220,9 +212,7 @@ Jeżeli spróbujemy wywołać makro, które jeszcze nie zostało załadowane, to
 
 ### `use`
 
-Pozwala na użycie modułu w aktualnym kontekście. Jest to szczególnie użyteczne, gdy moduł potrzebny jest do 
-konfiguracji.  Wywołując `use` odwołujemy się do zaczepu `__using__` wewnątrz modułu, pozwalając modułowi na zmiany w
- aktualnym kontekście:
+Pozwala na użycie modułu w aktualnym kontekście. Jest to szczególnie użyteczne, gdy moduł potrzebny jest do konfiguracji. Wywołując `use` odwołujemy się do zaczepu `__using__` wewnątrz modułu, pozwalając modułowi na zmiany w aktualnym kontekście:
 
 ```elixir
 defmodule MyModule do

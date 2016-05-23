@@ -122,7 +122,7 @@ Examples
 iex>
 ```
 
-Notice how you can use markup within out documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
+Notice how you can use markup within our documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
 
 ## ExDoc
 

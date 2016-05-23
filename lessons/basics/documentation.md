@@ -122,11 +122,11 @@ Examples
 iex>
 ```
 
-Notice how you can use markup within out documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
+Notice how you can use markup within our documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
 
 ## ExDoc
 
-ExDoc is an official Elixir project that **produces HTML (HyperText Markup Language and online documentation for Elixir projects** that can be found on [GitHub](https://github.com/elixir-lang/ex_doc). First let's create a Mix project for our application:
+ExDoc is an official Elixir project that can be found on [GitHub](https://github.com/elixir-lang/ex_doc).  It produces **HTML (HyperText Markup Language) and online documentation** for Elixir projects.  First let's create a Mix project for our application:
 
 ```bash
 $ mix new greet_everyone
