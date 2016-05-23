@@ -30,21 +30,21 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 
 이 예제를 위해 Elixir의 String 모듈을 이용하겠습니다.
 
-- 문자열 토큰화 (느슨하게)
+- 문자열 토큰화하기 (느슨하게)
 
 ```shell
 iex> "Elixir rocks" |> String.split
 ["Elixir", "rocks"]
 ```
 
-- 모든 토큰을 대문자로
+- 모든 토큰을 대문자로 만들기
 
 ```shell
 iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
 ["ELIXIR", "ROCKS"]
 ```
 
-- 문자열 끝 부분 검사
+- 문자열 끝 부분 검사하기
 
 ```shell
 iex> "elixir" |> String.ends_with?("ixir")
