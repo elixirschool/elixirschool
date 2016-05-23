@@ -145,7 +145,7 @@ iex> rem(10, 3)
 
 ### Boolean
 
-Elixir menyediakan operator boolean `||`, `&&`, dan `!`. Operator-operator ini mendukun tipe apapun:
+Elixir menyediakan operator boolean `||`, `&&`, dan `!`. Operator-operator ini mendukung tipe apapun:
 
 ```elixir
 iex> -20 || true
