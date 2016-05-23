@@ -71,9 +71,9 @@ true
 
 ## Wyszukiwanie informacji
 
-ETS offers us a few convenient and flexible ways to retrieve our stored data.  We'll look at how to retrieve data by key and through different forms of pattern matching.
+ETS posiada kilka wygodnych i elastycznych sposobów na wyszukiwanie danych. Przyjrzyjmy się jak pobierać dane po kluczu i z użyciem różnych form dopasowania wzorców.
 
-The most efficient, and ideal, retrieval method is key lookup.  While useful, matching iterates through the table and should be used sparingly especially for very large data sets.
+Najbardziej wydajną, idealną wręcz, metodą wyszukiwania danych jest użycie klucza. Wyszukiwania bazujące na dopasowanie, choć są wygodne, powinny być używane rozsądnie, ponieważ rzutują na wydajność, szczególnie przy dużych zbiorach danych.
 
 ### Wyszukiwanie po kluczu
 
