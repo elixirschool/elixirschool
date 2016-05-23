@@ -8,11 +8,7 @@ lang: id
 
 List comprehension adalah pemanis sintaks (syntactic sugar) untuk menjalani enumerable di Elixir.  Dalam pelajaran ini kita akan melihat bagaimana kita bisa menggunakannya untuk iterasi dan pembuatan enumerable.
 
-## Table of Contents
-
-- [Dasar](#dasar)
-- [Filter](#filter)
-- [Menggunakan `:into`](#menggunakan-into)
+{% include toc.html %}
 
 ## Dasar
 

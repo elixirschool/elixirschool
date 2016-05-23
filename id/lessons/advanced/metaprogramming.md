@@ -10,14 +10,7 @@ Metaprogramming adalah proses menggunakan code untuk menulis code.  Dalam Elixir
 
 Perhatian:  Metaprogramming itu tidak mudah dan hanya patut digunakan ketika teramat perlu.  Terlalu banyak menggunakannya hampir pasti hasilkan code yang kompleks dan sulit dipahami dan didebug.
 
-## Daftar Isi
-
-- [Quote](#quote)
-- [Unquote](#unquote)
-- [Macro](#macro)
-	- [Private Macro](#private-macro)
-	- [Macro Hygiene](#macro-hygiene)
-	- [Binding](#binding)
+{% include toc.html %}
 
 ## Quote
 

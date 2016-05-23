@@ -8,14 +8,7 @@ lang: id
 
 Sebagaimana Ruby punya ERB dan Java punya JSP, Elixir punya EEx atau Embedded Elixir.  Dengan EEx kita bisa memasukkan dan menjalankan Elixir di dalam string.
 
-## Daftar Isi
-
-- [API](#API)
-	- [Evaluasi](#evaluasi)
-	- [Definisi](#definisi)
-	- [Kompilasi](#kompilasi)
-- [Tag](#tag)
-- [Engine](#engine)
+{% include toc.html %}
 
 ## API
 

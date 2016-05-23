@@ -8,17 +8,7 @@ lang: id
 
 Mendokumentasikan Elixir code.
 
-## Daftar Isi
-
-- [Anotasi](#anotasi)
-  - [Dokumentasi Inline](#dokumentasi-inline)
-  - [Mendokumentasikan Modul](#mendokumentasikan-modul)
-  - [Mendokumentasikan Fungsi](#mendokumentasikan-fungsi)
-- [ExDoc](#exdoc)
-  - [Menginstal](#menginstal)
-  - [Membuat dokumentasi](#membuat-dokumentasi)
-- [Best Practice](#best-practice)
-
+{% include toc.html %}
 
 ## Anotasi
 

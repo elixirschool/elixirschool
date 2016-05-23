@@ -8,15 +8,7 @@ lang: id
 
 Kalau anda familiar dengan Ruby anda bisa menganggap Plug seperti Rack dengan sedikit Sinatra.  Plug memberi spesifikasi untuk komponen aplikasi web dan adapter untuk web server. Walau bukan bagian Elixir core, Plug adalah sebuah project resmi Elixir.
 
-## Daftar Isi
-
-- [Instalasi](#instalasi)
-- [Spesifikasi](#spesifikasi)
-- [Membuat sebuah Plug](#membuat-sebuah-plug)
-- [Menggunakan Plug.Router](#menggunakan-plugrouter)
-- [Menjalankan Web App Kita](#menjalankan-web-app-kita)
-- [Menguji Plug](#menguji-plug)
-- [Plug yang Tersedia](#plug-yang-tersedia)
+{% include toc.html %}
 
 ## Instalasi
 

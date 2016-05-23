@@ -12,13 +12,7 @@ Secara umum, konvensi dalam Elixir adalah untuk membuat sebuah fungsi (`example/
 
 Pelajaran ini akan fokus pada berinteraksi dengan yang terakhir.
 
-## Daftar Isi
-
-- [Penanganan Error](#penanganan-error)
-- [After](#after)
-- [Error Baru](#error-baru)
-- [Throw](#throw)
-- [Exit](#exit)
+{% include toc.html %}
 
 ## Penanganan Error
 

@@ -8,12 +8,7 @@ lang: id
 
 Dalam pelajaran ini kita akan melihat struktur kendali yang tersedia untuk kita di Elixir.
 
-## Daftar Isi
-
-- [`if` dan `unless`](#if-dan-unless)
-- [`case`](#case)
-- [`cond`](#cond)
-- [`with`](#with)
+{% include toc.html %}
 
 ## `if` dan `unless`
 

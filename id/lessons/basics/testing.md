@@ -8,14 +8,7 @@ lang: id
 
 Testing adalah bagian yang penting dalam mebuat software.  Di dalam pelajaran ini kita akan melihat cara melakukan tes pada code Elixir kita menggunakan ExUnit dan beberapa best practice untuk mengerjakannya.
 
-## Table of Contents
-
-- [ExUnit](#exunit)
-  - [assert](#assert)
-  - [refute](#refute)
-  - [assert_raise](#assertraise)
-- [Test Setup](#test-setup)
-- [Mocking](#mocking)
+{% include toc.html %}
 
 ## ExUnit
 

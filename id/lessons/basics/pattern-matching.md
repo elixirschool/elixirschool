@@ -8,10 +8,7 @@ lang: id
 
 Pencocokan pola (Pattern matching) adalah sebuah bagian Elixir yang powerful, memungkinkan kita mencocokkan value sederhana, struktur data, dan bahkan fungsi. Dalam pelajaran ini kita akan mulai melihat bagaimana pencocokan pola ini digunakan.
 
-## Daftar Isi
-
-- [Match operator](#match-operator)
-- [Pin operator](#pin-operator)
+{% include toc.html %}
 
 ## Match operator
 

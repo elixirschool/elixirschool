@@ -9,17 +9,7 @@ lang: id
 Mnesia adalah sebuah sistem manajemen database terdistribusi real-time yang kuat.
 
 
-## Daftar Isi
-
-- [Sekilas](#sekilas)
-- [Kapan Digunakan](#kapan-digunakan)
-- [Schema](#schema)
-- [Node](#node)
-- [Menjalankan Mnesia](#menjalankan-mnesia)
-- [Membuat Tabel](#membuat-tabel)
-- [Cara yang Kotor](#cara-yang-kotor)
-- [Transaksi](#transaksi)
-
+{% include toc.html %}
 
 ## Sekilas
 

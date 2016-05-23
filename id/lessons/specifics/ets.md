@@ -8,22 +8,7 @@ lang: id
 
 Erlang Term Storage, biasa disebut ETS, adalah sebuah engine penyimpanan yang powerful yang sudah termasuk dalam OTP dan tersedia untuk digunakan di Elixir.  Dalam pelajaran ini kita akan melihat bagaimana mengakses ETS dan bagaimana ETS bisa digunakan dalam aplikasi kita.
 
-## Daftar Isi
-
-- [Sekilas](#sekilas)
-- [Membuat Tabel](#membuat-tabel)
-  - [Tipe-tipe Tabel](#tipe-tipe-tabel)
-  - [Access Control](#access-control)
-- [Menambahkan Data](#menambahkan-data)
-- [Mengambil Data](#mengambil-data)
-  - [Key Lookup](#key-lookup)
-  - [Pencocokan Sederhana](#pencocokan-sederhana)
-  - [Lookup Tingkat Lanjut](#lookup-tingkat-lanjut)
-- [Menghapus Data](#menghapus-data)
-  - [Menghapus Record](#menghapus-record)
-  - [Menghapus Tabel](#menghapus-tabel)
-- [Contoh Penggunaan ETS](#contoh-penggunaan-ets)
-- [ETS Berbasis Disk](#ets-berbasis-disk)
+{% include toc.html %}
 
 ## Sekilas
 

@@ -10,14 +10,7 @@ Satu poin yang menjual dari Elixir adalah dukungannya terhadap konkurensi. Berka
 
 Dalam pelajaran ini kita akan melihat pada modul-modul konkurensi yang diluncurkan bersama Elixir.  Dalam bab selanjutnya kita membahas perilaku OTP yang mengimplementasikannya.
 
-## Daftar Isi
-
-- [Proses](#proses)
-  - [Pengiriman Pesan](#pengiriman-pesan)
-  - [Process Linking](#process-linking)
-  - [Process Monitoring](#process-monitoring)
-- [Agent](#agent)
-- [Task](#task)
+{% include toc.html %}
 
 ## Proses
 

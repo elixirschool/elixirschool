@@ -8,14 +8,7 @@ lang: id
 
 Menggunakan dan membuat sigil.
 
-## Daftar Isi
-
-- [Sekilas tentang Sigil](#sekilas-tentang-sigil)
-  - [Char List](#char-list)
-  - [Regular Expressions](#regular-expressions)
-  - [String](#string)
-  - [Word List](#word-list)
-- [Membuat Sigil](#membuat-sigil)
+{% include toc.html %}
 
 ## Sekilas tentang Sigil
 

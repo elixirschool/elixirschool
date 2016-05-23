@@ -8,15 +8,7 @@ lang: id
 
 Di Elixir dan banyak bahasa fungsional lainnya, fungsi adalah first class citizen. Kita akan pelajari tentang tipe-tipe fungsi di Elixir, apa yang membuatnya berbeda, dan bagaimana menggunakannya.
 
-## Table of Contents
-
-- [Fungsi anonim (Anonymous function)](#anonymous-function)
-  - [singkatan &](#the--shorthand)
-- [Pencocokan pola](#pencocokan-pola)
-- [Fungsi bernama](#fungsi-bernama)
-  - [Fungsi privat](#fungsi-privat)
-  - [Guard](#guard)
-  - [Argumen default](#argumen-default)
+{% include toc.html %}
 
 ## Anonymous function
 

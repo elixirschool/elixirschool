@@ -8,15 +8,7 @@ lang: id
 
 List, tuple, kata kunci, map dan kombinator fungsional.
 
-## Daftar Isi
-
-- [List](#list)
-	- [Penggandengan list](#penggandengan-list)
-	- [Pengurangan list](#pengurangan-list)
-	- [Head / Tail](#head--tail)
-- [Tuple](#tuple)
-- [Daftar kata kunci](#keyword-list)
-- [Map](#map)
+{% include toc.html %}
 
 ## List
 

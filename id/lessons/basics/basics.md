@@ -8,23 +8,7 @@ lang: id
 
 Setup, tipe-tipe dan operasi-operasi dasar.
 
-## Daftar Isi
-
-- [Setup](#setup)
-	- [Instalasi Elixir](#instalasi-elixir)
-	- [Moda Interaktif](#moda-interaktif)
-- [Tipe dasar](#tipe-dasar)
-	- [Integer (Bilangan Bulat)](#integer)
-	- [Float (Bilangan tidak bulat)](#float)
-	- [Boolean](#boolean)
-	- [Atom](#atom)
-	- [String](#string)
-- [Operasi-operasi dasar](#operasi-dasar)
-	- [Aritmetik](#aritmetik)
-	- [Boolean](#boolean)
-	- [Perbandingan](#perbandingan)
-	- [Interpolasi string](#interpolasi-string)
-	- [Perangkaian string](#perangkaian-string)
+{% include toc.html %}
 
 ## Setup
 

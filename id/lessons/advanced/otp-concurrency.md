@@ -10,15 +10,7 @@ Kita sudah melihat abstraksi Elixir untuk konkurensi tapi terkadang kita butuh k
 
 Dalam pelajaran ini kita akan fokus pada dua bagian penting: Genserver dan GenEvent.
 
-## Daftar Isi
-
-- [GenServer](#genserver)
-  - [Fungsi Sinkron](#fungsi-sinkron)
-  - [Fungsi Taksinkron](#fungsi-taksinkron)
-- [GenEvent](#genevent)
-  - [Menangani Event](#menangani-event)
-  - [Memanggil Handler](#memanggil-handler)
-  - [Menggunakan GenEvent](#using-genevent)
+{% include toc.html %}
 
 ## GenServer
 

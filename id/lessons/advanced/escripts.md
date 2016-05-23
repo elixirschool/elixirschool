@@ -8,11 +8,7 @@ lang: id
 
 Untuk membuat eksekutabel di Elixir kita akan menggunakan escript.  Escript menghasilkan sebuah eksekutabel yang bisa dijalankan pada sistem apapun yang sudah diinstali Erlang.
 
-## Daftar Isi
-
-- [Memulai](#memulai)
-- [Memparse Argumen](#memparse-argumen)
-- [Membuild](#membuild)
+{% include toc.html %}
 
 ## Memulai
 

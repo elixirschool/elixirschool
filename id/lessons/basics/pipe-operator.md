@@ -8,11 +8,7 @@ lang: id
 
 Operator pipe`|>` melewatkan hasil expression di sebelah kirinya sebagai parameter pertama untuk expression di sebelah kanannya.
 
-## Daftar Isi
-
-- [Perkenalan](#perkenalan)
-- [Contoh](#contoh)
-- [Best Practice](#best-practice)
+{% include toc.html %}
 
 ## Perkenalan
 

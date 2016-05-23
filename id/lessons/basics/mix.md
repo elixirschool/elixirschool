@@ -10,13 +10,7 @@ Sebelum kita bisa masuk ke pelajaran Elixir lebih mendalam pertama-tama kita har
 
 Sampai sekarang kita hanya bekerja dengan `iex` yang punya keterbatasan.  Untuk membuat sesuatu yang bermakna, kita perlu memecah code kita ke banyak file agar bisa mengaturnya dengan efektir. Mix memungkinkan kita melakukan hal itu dengan project.
 
-## Daftar Isi
-
-- [Project baru](#project-baru)
-- [Interaktif](#interaktif)
-- [Kompilasi](#kompilasi)
-- [Menata dependensi](#menata-dependensi)
-- [Environment](#environment)
+{% include toc.html %}
 
 ## Project Baru
 

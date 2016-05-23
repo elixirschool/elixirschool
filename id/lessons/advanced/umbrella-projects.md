@@ -8,11 +8,7 @@ lang: id
 
 Terkadang sebuah project bisa menjadi sangat besar. Perangkat build Mix memungkinkan kita untuk memecah code kita jadi beberapa aplikasi dan membuat project Elixir kita lebih tertata dalam pengembangannya.
 
-## Daftar Isi
-
-- [Perkenalan](#perkenalan)
-- [Project Anak](#project-anak)
-- [IEx](#iex)
+{% include toc.html %}
 
 ## Perkenalan
 

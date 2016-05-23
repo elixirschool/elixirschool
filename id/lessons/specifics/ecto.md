@@ -8,23 +8,7 @@ lang: id
 
 Ecto adalah sebuah project resmi Elixir yang memberikan sebuah wrapper (pembungkus) terhadap database dan bahasa query yang terintegrasi.  Dengan Ecto kita bisa membuat migrasi, mendefinisikan model, melakukan insert dan update data, dan melakukan query.
 
-## Daftar Isi
-
-- [Setup](#setup)
-  - [Repository](#repository)
-  - [Supervisor](#supervisor)
-  - [Konfigurasi](#konfigurasi)
-- [Mix Task](#mix-task)
-- [Migrasi](#migrasi)
-- [Model](#model)
-- [Query](#query)
-  - [Dasar](#dasar)
-  - [Count](#count)
-  - [Group By](#group-by)
-  - [Order By](#order-by)
-  - [Join](#join)
-  - [Fragment](#fragment)
-- [Changeset](#changeset)
+{% include toc.html %}
 
 ## Setup
 

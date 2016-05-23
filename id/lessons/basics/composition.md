@@ -8,16 +8,7 @@ lang: id
 
 Kita tahu dari pengalaman bahwa adalah menyusahkan jika kita mengumpulkan semua fungsi yang kita buat dalam file dan scope (cakupan) yang sama.  Dalam pelajaran ini kita akan mengulas bahgaimana mengelompokkan fungsi dan mendefinisikan suatu map khusus yang dikenal sebagai sebuah struct untuk mengorganisasikan code kita secara lebih efisien.
 
-## Daftar Isi
-
-- [Modul](#modul)
-  - [Atribut modul](#atribut-modul)
-- [Struct](#struct)
-- [Composition](#composition)
-  - [`alias`](#alias)
-  - [`import`](#import)
-  - [`require`](#require)
-  - [`use`](#use)
+{% include toc.html %}
 
 ## Modul
 

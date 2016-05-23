@@ -8,14 +8,7 @@ lang: id
 
 Supervisor adalah proses khusus yang memiliki satu peran: memonitor proses lain. Supervisor ini memungkinkan kita membuat aplikasi yang toleran-kegagalan (fault-tolerant) dengan secara otomatis menjalankan ulang proses anak (child process) jika proses anak itu fail (mengalami kegagalan).
 
-## Daftar Isi
-
-- [Konfigurasi](#konfigurasi)
-  - [Strategi](#strategi)
-  - [Penyarangan (nesting)](#nesting)
-- [Supervisor untuk Task](#supervisor-untuk-task)
-  - [Setup](#setup)
-  - [Task yang disupervisi](#supervised-tasks)
+{% include toc.html %}
 
 ## Konfigurasi
 
