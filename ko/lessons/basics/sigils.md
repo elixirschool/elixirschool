@@ -1,44 +1,44 @@
 ---
 layout: page
-title: Sigils
+title: 시길
 category: basics
 order: 10
-lang: en
+lang: ko
 ---
 
-Working with and creating sigils.
+시길을 이용하고 만드는 법.
 
 {% include toc.html %}
 
-## Sigils Overview
+## 시길 개요
 
-Elixir provides an alternative syntax for representing and working with literals. A sigil will start with a tilde `~` followed by a character. The Elixir core provides us with some built in sigils however, it is possible to create our own when we need to extend the language.
+Elixir에서는 리터럴을 표현하거나 리터럴을 가지고 작업을 하기위한 대체 문법을 제공합니다. 시길은 물결 문자 `~`와 그 뒤에 붙는 한 문자로 구성되어 있습니다. 몇 가지 시길은 Elixir 코어에서 기본적으로 제공되지만, 여러분이 언어를 확장할 필요가 있을 때 여러분만의 시길을 만들 수도 있습니다.
 
-A list of available sigils include:
+아래는 사용 가능한 시길의 목록입니다.
 
-  - `~C` Generates a character list **with no** escaping or interpolation
-  - `~c` Generates a character list **with** escaping and interpolation
-  - `~R` Generates a regular expression **with no** escaping or interpolation
-  - `~r` Generates a regular expression **with** escaping and interpolation
-  - `~S` Generates a string **with no** escaping or interpolation
-  - `~s` Generates a string **with** escaping and interpolation
-  - `~W` Generates a word list **with no** escaping or interpolation
-  - `~w` Generates a word list **with** escaping and interpolation
+  - `~C`는 이스케이프나 내부 식 전개 **없이** 문자 리스트를 생성합니다
+  - `~c`는 이스케이프나 내부 식 전개를 **하면서** 문자 리스트를 생성합니다
+  - `~R`는 이스케이프나 내부 식 전개 **없이** 정규 표현식을 생성합니다
+  - `~r`는 이스케이프나 내부 식 전개를 **하면서** 정규 표현식을 생성합니다
+  - `~S`는 이스케이프나 내부 식 전개 **없이** 문자열을 생성합니다
+  - `~s`는 이스케이프나 내부 식 전개를 **하면서** 문자열을 생성합니다
+  - `~W`는 이스케이프나 내부 식 전개 **없이** 단어 리스트를 생성합니다
+  - `~w`는 이스케이프나 내부 식 전개를 **하면서** 단어 리스트를 생성합니다
 
-A list of delimiters include:
+사용 가능한 구분자의 목록은 다음과 같습니다.
 
-  - `<...>` A pair of pointy brackets
-  - `{...}` A pair of curly brackets
-  - `[...]` A pair of square brackets
-  - `(...)` A pair of parenthesis
-  - `|...|` A pair of pipes
-  - `/.../` A pair of forward slashes
-  - `"..."` A pair of double quotes
-  - `'...'` A pair of single quotes
+  - `<...>` 꺽쇠 괄호 한 쌍
+  - `{...}` 중괄호 한 쌍
+  - `[...]` 대괄호 한 쌍
+  - `(...)` 소괄호 한 쌍
+  - `|...|` 파이프 한 쌍
+  - `/.../` 슬래시 한 쌍
+  - `"..."` 큰따옴표 한 쌍
+  - `'...'` 작은따옴표 한 쌍
 
-### Char List
+### 문자 리스트
 
-The `~c` and `~C` sigils generate character lists respectively. For example:
+`~c`와 `~C` 시길은 각각 문자 리스트를 생성합니다. 예를 들면,
 
 ```elixir
 iex> ~c/2 + 7 = #{2 + 7}/
@@ -48,6 +48,7 @@ iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = #{2 + 7}'
 ```
 
+소문자 `~c`는 수식을 계산하여 문자 리스트에 확장하지만, 대문자 시길 `~C`는 그렇지 않음을 알 수 있습니다. 
 We can see the lowercased `~c` interpolates the calculation, whereas the uppercased `~C` sigil does not. We will see that this uppercase / lowercase sequence is a common theme throughout the built in sigils.
 
 ### Regular Expressions
