@@ -6,15 +6,13 @@ order: 3
 lang: pl
 ---
 
-Do stworzenia pliku wykonywalnego w Elixirze służy escript. Escript generuje plik wykonywalny, który może zostać 
-uruchomiony na każdym komputerze, na którym zainstalowano Erlanga.
+Do stworzenia pliku wykonywalnego w Elixirze służy escript. Escript generuje plik wykonywalny, który może zostać uruchomiony na każdym komputerze, na którym zainstalowano Erlanga.
 
 {% include toc.html %}
 
 ## Na początek
 
-By utworzyć plik, który można uruchomić, za pomocą escriptu musimy zrobić tylko drobnych rzeczy: zaimplementować 
-funkcję `main/1` oraz zaktualizować konfigurację mixa.
+By utworzyć plik, który można uruchomić, za pomocą escriptu musimy zrobić tylko kilka drobnych rzeczy: zaimplementować funkcję `main/1` oraz zaktualizować konfigurację mixa.
 
 Na początek stwórzmy moduł, który będzie punktem startowym programu. W nim zaimplementujemy funkcję `main/1`:
 
@@ -44,8 +42,7 @@ end
 
 ## Parsowanie argumentów
 
-Do naszej aplikacji możemy przekazać pewne argumenty z linii poleceń. By je sparsować, użyjemy Elixirowego modułu  
-`OptionParser.parse/2` z opcją `:switches`, która zawiera informacje, iż nasz flaga jest typu logicznego:
+Do naszej aplikacji możemy przekazać pewne argumenty z linii poleceń. By je sparsować, użyjemy Elixirowego modułu `OptionParser.parse/2` z opcją `:switches`, która zawiera informacje, iż nasza flaga jest typu logicznego:
 
 ```elixir
 defmodule ExampleApp.CLI do
@@ -80,7 +77,7 @@ Jak już skonfigurujemy aplikację by używała escript, stworzenie pliku wykony
 $ mix escript.build
 ```
 
-Let's take it for a spin:
+Zobaczmy jak to działa:
 
 ```elixir
 $ ./example_app --upcase Hello
@@ -89,6 +86,4 @@ WORLD
 $ ./example_app Hi
 Hi
 ```
-
-
-
+I to wszystko! Właśnie stworzyliśmy nasz pierwszy program z użyciem escriptu.  
