@@ -299,7 +299,7 @@ defmodule Greeter do
 
     - name: 사람의 이름을 나타내는 문자열 입니다.
 
-  ## 예시
+  ## Examples
 
       iex> Greeter.hello("Sean")
       "Hello, Sean"
