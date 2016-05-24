@@ -6,17 +6,13 @@ order: 2
 lang: pl
 ---
 
-Ecto jest oficjalnym projektem zespołu Elixira zapewniającym obsługę baz danych wraz z odpowiednim, zintegrowanym 
-językiem. Za pomocą Ecto możemy migrować dane, definiować modele, wstawiać, aktualizować i odpytywać bazę danych.
+Ecto jest oficjalnym projektem zespołu Elixira zapewniającym obsługę baz danych wraz z odpowiednim, zintegrowanym językiem. Za pomocą Ecto możemy migrować dane, definiować modele, wstawiać, aktualizować i odpytywać bazę danych.
 
 {% include toc.html %}
 
 ## Przygotowanie
 
-Zacznijmy od dodania Ecto oraz adaptera bazy do konfiguracji projektu w pliku `mix.exs`.  Lista wszystkich 
-dostępnych adapterów i wspieranych baz danych, w języku angielskim, znajduje się w sekcji 
-[Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) w pliku README projektu Ecto. W naszym 
-przykładzie użyjemy bazy PostgreSQL:
+Zacznijmy od dodania Ecto oraz adaptera bazy do konfiguracji projektu w pliku `mix.exs`.  Lista wszystkich dostępnych adapterów i wspieranych baz danych, w języku angielskim, znajduje się w sekcji [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) w pliku README projektu Ecto. W naszym przykładzie użyjemy bazy PostgreSQL:
 
 ```elixir
 defp deps do
@@ -35,9 +31,7 @@ end
 
 ### Repozytorium
 
-W końcu musimy stworzyć repozytorium dla naszego projektu, które pełni rolę opakowania (ang. _wrapper_) bazy danych.  
-Możemy to zrobić wykorzystując polecenie `mix ecto.gen.repo`.  Zadania Ecto dla Mixa omówimy za chwilę. Moduł `Repo` 
-znajdziemy w `lib/<projectname>/repo.ex`:
+W końcu musimy stworzyć repozytorium dla naszego projektu, które pełni rolę opakowania (ang. _wrapper_) bazy danych.  Możemy to zrobić wykorzystując polecenie `mix ecto.gen.repo`.  Zadania Ecto dla Mixa omówimy za chwilę. Moduł `Repo` znajdziemy w `lib/<projectname>/repo.ex`:
 
 ```elixir
 defmodule ExampleApp.Repo do
@@ -50,8 +44,7 @@ end
 
 Po stworzeniu repozytorium musimy jeszcze skonfigurować drzewo nadzorców, które znajdziemy w pliku`lib/<project name>.ex`.
 
-Kluczowe jest wykorzystanie do tego funkcji `supervisor/3`, a _nie_ `worker/3`.  Jeżeli wygenerujemy aplikację z 
-flagą `--sup`, to większość konfiguracji będzie już gotowa:
+Kluczowe jest wykorzystanie do tego funkcji `supervisor/3`, a _nie_ `worker/3`.  Jeżeli wygenerujemy aplikację z flagą `--sup`, to większość konfiguracji będzie już gotowa:
 
 ```elixir
 defmodule ExampleApp.App do
@@ -74,8 +67,7 @@ Więcej o nadzorcach znajdziesz w lekcji [Nadzorcy OTP](/lessons/advanced/otp-su
 
 ### Konfiguracja
 
-By skonfigurować Ecto musimy dodać odpowiednią sekcję w pliku `config/config.exs`. Zawiera ona informacje o 
-repozytorium, adapterze, bazie danych oraz dane użytkownika:
+By skonfigurować Ecto musimy dodać odpowiednią sekcję w pliku `config/config.exs`. Zawiera ona informacje o repozytorium, adapterze, bazie danych oraz dane użytkownika:
 
 ```elixir
 config :example_app, ExampleApp.Repo,
@@ -101,8 +93,7 @@ mix ecto.rollback       # Rollback migrations from a repo
 
 ## Migracja
 
-Najlepszą metodą do pracy z migracjami jest zadanie `mix ecto.gen.migration <name>`.  Jeżeli spotkałeś się ze wzorcem
- ActiveRecord, to odkryjesz tu wiele podobieństw.
+Najlepszą metodą do pracy z migracjami jest zadanie `mix ecto.gen.migration <name>`.  Jeżeli spotkałeś się ze wzorcem ActiveRecord, to odkryjesz tu wiele podobieństw.
 
 Na początek przyjrzyjmy się migracji tabeli `users`:
 
@@ -125,8 +116,7 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 end
 ```
 
-Ecto tworzy domyślnie przyrostowy klucz główny `id`.  W tej lekcji używamy funkcji `change/0`, ale Ecto  wspiera 
-też operacje `up/0` i `down/0`, pozwalające na większą i dokładniejszą kontrolę.
+Ecto tworzy domyślnie przyrostowy klucz główny `id`.  W tej lekcji używamy funkcji `change/0`, ale Ecto  wspiera też operacje `up/0` i `down/0`, pozwalające na większą i dokładniejszą kontrolę.
 
 Jak się domyślasz, dodanie `timestamps` do migracji wygeneruje kolumny `created_at` i `updated_at`..
 
@@ -136,10 +126,9 @@ Więcej na temat migracji znajdziesz w dokumentacji [Ecto.Migration](http://hexd
 
 ## Modele
 
-Mają gotową migrację możemy przejść do modelu. Modele opisują nasze dane, funkcje pomocnicze oraz zestawy zmian. Tymi 
-ostatnimi zajmiemy się w następnej kolejności.
+Mają gotową migrację możemy przejść do modelu. Modele opisują nasze dane, funkcje pomocnicze oraz zestawy zmian. Tymi ostatnimi zajmiemy się w następnej kolejności.
 
-Załóżmy, że model dla naszej migracji wygląda nastepujaco:
+Załóżmy, że model dla naszej migracji wygląda następująco:
 
 ```elixir
 defmodule ExampleApp.User do
@@ -168,9 +157,7 @@ defmodule ExampleApp.User do
 end
 ```
 
-To, co przedstawia powyższa definicja pokrywa się z tym, co mamy w migracji. Dodatkowo do naszej bazy danych dodaliśmy 
-dwa pola wirtualne.  Pola wirtualne nie są składowane w bazie danych, ale czasami przydają się np. w trakcie 
-walidacji. Przyjrzymy im się bliżej w części [aktualizacja danych](#Aktualizacja-danych).
+To, co przedstawia powyższa definicja pokrywa się z tym, co mamy w migracji. Dodatkowo do naszej bazy danych dodaliśmy dwa pola wirtualne.  Pola wirtualne nie są składowane w bazie danych, ale czasami przydają się np. w trakcie walidacji. Przyjrzymy im się bliżej w części [aktualizacja danych](#Aktualizacja-danych).
 
 ## Zapytania
 
@@ -184,8 +171,7 @@ Oficjalną dokumentację, w języku angielskim, znajdziesz na stronie [Ecto.Quer
 
 ### Podstawy
 
-Ecto ma wspaniały DSL (ang. _Domain specific language_ – język domeny) do definiowania zapytań. Przykładowo by pobrać
- wszystkie pola `username` dla użytkowników, którzy mają zatwierdzone konto, napiszemy:
+Ecto ma wspaniały DSL (ang. _Domain specific language_ – język domeny) do definiowania zapytań. Przykładowo by pobrać wszystkie pola `username` dla użytkowników, którzy mają zatwierdzone konto, napiszemy:
 
 ```elixir
 alias ExampleApp.{Repo,User}
@@ -197,8 +183,7 @@ query = from u in User,
 Repo.all(query)
 ```
 
-Poza funkcją `all/2` Repo ma też m.in. `one/2`, `get/3`, `insert/2` i `delete/2`.  Pełną listę znajdziesz na stronie  
-[Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
+Poza funkcją `all/2` Repo ma też m.in. `one/2`, `get/3`, `insert/2` i `delete/2`.  Pełną listę znajdziesz na stronie [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
 
 ### Zliczanie
 
@@ -221,8 +206,7 @@ query = from u in User,
 
 ### Grupowanie
 
-Funkcja `group_by` pozwala nam grupować dane wyliczone w funkcjach agregujących. Na przykład policzyć ilu 
-użytkowników ma konta zatwierdzone, a ilu niezatwierdzone:
+Funkcja `group_by` pozwala nam grupować dane wyliczone w funkcjach agregujących. Na przykład policzyć ilu użytkowników ma konta zatwierdzone, a ilu niezatwierdzone:
 
 ```elixir
 query = from u in User,
@@ -254,8 +238,7 @@ query = from u in User,
 
 ### Złączenia
 
-Załóżmy, że mamy profil połączony z użytkownikiem, by odszukać wszystkie profile, które mają zatwierdzone konta 
-napiszemy:
+Załóżmy, że mamy profil połączony z użytkownikiem, by odszukać wszystkie profile, które mają zatwierdzone konta napiszemy:
 
 ```elixir
 query = from p in Profile,
@@ -277,8 +260,7 @@ Na stronie [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html) znajdzie
 
 ## Aktualizacja danych
 
-W poprzednich częściach dowiedziałeś się jak pobierać dane, ale co ze wstawianiem ich i aktualizacją? Do tego służą 
-zestawy zmian.
+W poprzednich częściach dowiedziałeś się jak pobierać dane, ale co ze wstawianiem ich i aktualizacją? Do tego służą zestawy zmian.
 
 Zestawy zmian dbają o zachowanie ograniczeń, filtrowanie oraz walidację w momencie wprowadzania zmian do modelu.
 
@@ -333,14 +315,9 @@ defmodule ExampleApp.User do
 end
 ```
 
-Stworzyliśmy funkcję `changeset/2` oraz trzy funkcje pomocnicze: `validate_password_confirmation/1`, 
-`password_mismatch_error/1` i `password_incorrect_error/1`.
+Stworzyliśmy funkcję `changeset/2` oraz trzy funkcje pomocnicze: `validate_password_confirmation/1`, `password_mismatch_error/1` i `password_incorrect_error/1`.
 
-Jak sama nazwa sugeruje, `changeset/2` tworzy nowy zestaw zmian.  W ramach niego wywołujemy `cast/4` by 
-zamienić parametry na zestaw obowiązkowych i opcjonalnych pól, które zostaną zmienione. Następnie walidujemy długość 
-pola `password`. Sprawdzamy, czy pole to jest takie same jak `password_confirmation` oraz, czy `username` 
-nie istnieje już w bazie. Na końcu, na podstawie parametrów, aktualizujemy pole `encrypted_password` za pomocą 
-funkcji `put_change/3` dopisując je do zestawu zmian.
+Jak sama nazwa sugeruje, `changeset/2` tworzy nowy zestaw zmian.  W ramach niego wywołujemy `cast/4` by zamienić parametry na zestaw obowiązkowych i opcjonalnych pól, które zostaną zmienione. Następnie walidujemy długość pola `password`. Sprawdzamy, czy pole to jest takie same jak `password_confirmation` oraz, czy `username` nie istnieje już w bazie. Na końcu, na podstawie parametrów, aktualizujemy pole `encrypted_password` za pomocą funkcji `put_change/3` dopisując je do zestawu zmian.
 
 Samo użycie `User.changeset/2` jest stosunkowo proste:
 
