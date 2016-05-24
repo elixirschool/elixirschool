@@ -202,13 +202,22 @@ Poza funkcją `all/2` Repo ma też m.in. `one/2`, `get/3`, `insert/2` i `delete/
 
 ### Zliczanie
 
-Jeżeli chcemy policzyć, ilu użytkowników ma zatwierdzone konta, możemy użyć `count/2`:
+Jeżeli chcemy policzyć, ilu użytkowników ma zatwierdzone konta, możemy użyć `count/1`:
 
 ```elixir
 query = from u in User,
     where: u.confirmed == true,
     select: count(u.id)
 ```
+
+Jest też funkcja `count/2`, która zlicza liczbę unikalnych rekordów:
+ 
+```elixir
+query = from u in User,
+    where: u.confirmed == true,
+    select: count(u.id, :distinct)
+```
+ 
 
 ### Grupowanie
 
