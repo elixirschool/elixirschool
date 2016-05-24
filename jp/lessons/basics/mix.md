@@ -2,7 +2,7 @@
 layout: page
 title: Mix
 category: basics
-order: 8
+order: 9
 lang: jp
 ---
 
@@ -10,13 +10,7 @@ lang: jp
 
 今まではもっぱら制限のある`iex`の内部で取り組んできました。何か実際に動くものを作るには、コードを複数のファイルに分けて効率的に管理する必要があります。そしてmixは複数のプロジェクトでそうした開発を支えます。
 
-## 目次
-
-- [新しいプロジェクト](#section-1)
-- [コンパイル](#section-2)
-- [対話的な方法](#section-3)
-- [依存関係を管理する](#section-4)
-- [環境](#section-5)
+{% include toc.html %}
 
 ## 新しいプロジェクト
 

@@ -10,15 +10,7 @@ lang: jp
 
 このレッスンではGenServerとGenEventという2つの重要な要素に焦点を当てます。
 
-## 目次
-
-- [GenServer](#genserver)
-  - [同期関数](#section-1)
-  - [非同期関数](#section-2)
-- [GenEvent](#genevent)
-  - [イベントの処理](#section-3)
-  - [ハンドラの呼び出し](#section-4)
-  - [GenEventの使用](#genevent-1)
+{% include toc.html %}
 
 ## GenServer
 

@@ -2,17 +2,13 @@
 layout: page
 title: 構成
 category: basics
-order: 7
+order: 8
 lang: jp
 ---
 
 私たちは経験的に、全ての関数を1つの同じファイルとスコープに持つと手に負えないことを知っています。このレッスンでは関数をまとめ、構造体として知られる特別なマップを定義することで、コードをより効率のよい形に組織化する方法を取り上げます。
 
-## 目次
-
-- [モジュール](#section-1)
-  - [モジュールの属性](#section-2)
-- [構造体](#section-3)
+{% include toc.html %}
 
 ## モジュール
 
@@ -23,7 +19,7 @@ lang: jp
 ``` elixir
 defmodule Example do
   def greeting(name) do
-    ~s(Hello #{name}.)
+    "Hello #{name}."
   end
 end
 
@@ -108,4 +104,3 @@ iex> sean = %{steve | name: "Sean"}
 iex()> %{name: "Sean"} = sean
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
-

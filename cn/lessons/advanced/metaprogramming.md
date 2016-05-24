@@ -10,13 +10,7 @@ lang: cn
 
 忠告：元编程非常难处理，只有在绝对需要的时候才去使用它。过度使用元编程会导致代码很复杂，不容易理解和调试。
 
-## 目录
-- [Quote](#quote)
-- [Unquote](#unquote)
-- [宏](#section-1)
-  - [私有宏](#section-2)
-  - [宏清洁](#section-3)
-  - [绑定](#section-4)
+{% include toc.html %}
 
 ## Quote
 学习元编程的第一步是理解表达式是怎么表示的。Elixir 的 AST（抽象语法树）是列表构成的。这些列表包含了三个部分：函数名称，metadata，还有函数的参数。

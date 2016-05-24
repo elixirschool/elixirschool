@@ -12,13 +12,7 @@ Em geral, a convenção em Elixir é criar uma função (`example/1`) que retorn
 
 Esta lição irá focar interagindo com o último.
 
-## Sumário
-
-- [Tratamento de Erros](#tratamento-de-erros)
-- [Depois](#depois)
-- [Novos Erros](#novos-erros)
-- [Lançar](#lancar)
-- [Saindo](#saindo)
+{% include toc.html %}
 
 ## Tratamento de Erros
 
@@ -110,7 +104,7 @@ iex> try do
 %ExampleError{message: "an example error has occurred"}
 ```
 
-## <a name="lancar"></a>Lançar
+## Lançar
 
 Outro mecanismo para trabalhar com erros no Elixir é `throw` e `catch`. Na prática, isso não ocorre frequentemente no código mais recente de Elixir. Mas, é importante conhecer e entendê-los mesmo assim.
 

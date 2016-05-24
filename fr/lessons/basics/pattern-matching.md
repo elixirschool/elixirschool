@@ -8,12 +8,9 @@ lang: fr
 
 Le Pattern matching est une partie très puissante d'Elixir, il nous permet de tester la correspondance de simples valeurs, de structures de données, et même de fonctions. Dans cette leçon nous allons voir comment on utilise le pattern matching.
 
-## Table des matières
+{% include toc.html %}
 
-- [L'opérateur Match](#match-operator)
-- [L'opérateur Pin](#pin-operator)
-
-## <a name="match-operator"></a>L'opérateur Match
+## L'opérateur Match
 
 En Elixir, `=` est l'opérateur de correspondance. Via l'opérateur de correspondance, nous pouvons assigner et faire correspondre des valeurs. Regardons ça:
 
@@ -57,7 +54,7 @@ iex> {:ok, value} = {:error}
 ** (MatchError) no match of right hand side value: {:error}
 ```
 
-## <a name="pin-operator"></a>L'opérateur Pin
+## L'opérateur Pin
 
 Nous venons de voir que l'opérateur de correspondance gère l'assignement lorsque la partie à gauche inclus une variable. Dans certains cas ce comportement, la re-assignation de variable, n'est pas désirable. Pour ces situations, nous avons l'opérateur pin: `^` (épingle).
 

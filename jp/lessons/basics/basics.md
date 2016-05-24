@@ -8,23 +8,7 @@ lang: jp
 
 セットアップ、基本型、そして演算。
 
-## 目次
-
-- [セットアップ](#section-1)
-	- [Elixirのインストール](#elixir)
-	- [対話モード](#section-2)
-- [基本型](#section-3)
-	- [整数](#section-4)
-	- [浮動小数](#section-5)
-	- [真理値](#section-6)
-	- [アトム](#section-7)
-	- [文字列](#section-8)
-- [基本の演算](#section-9)
-	- [算術](#section-10)
-	- [論理](#section-11)
-	- [比較](#section-12)
-	- [文字列への式展開](#section-13)
-	- [文字列の連結](#section-14)
+{% include toc.html %}
 
 ## セットアップ
 
@@ -196,6 +180,43 @@ iex> not 42
 ```
 
 ### 比較
+
+Elixirには私たちが慣れている全ての比較演算子が備わっています: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` そして `>` です。
+
+```elixir
+iex> 1 > 2
+false
+iex> 1 != 2
+true
+iex> 2 == 2
+true
+iex> 2 <= 3
+true
+```
+
+整数と浮動小数を厳密に比べるには `===` を使います:
+
+```elixir
+iex> 2 == 2.0
+true
+iex> 2 === 2.0
+false
+```
+
+Elixirの重要な特徴はどんな2つの型でも比べられるということで、これは特にソートにおいて有用です。ソートされる順序を覚える必要はありませんが、順序を気にするのは重要なことです:
+
+```elixir
+number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+```
+
+これは他の言語では見られないかもしれない、正当で興味深い比較を引き起こします:
+
+```elixir
+iex> :hello > 999
+true
+iex> {:hello, :world} > [1, 2, 3]
+false
+```
 
 ### 文字列への式展開
 

@@ -8,23 +8,7 @@ lang: en
 
 Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define models, insert and update records, and query them.
 
-## Table of Contents
-
-- [Setup](#setup)
-  - [Repository](#repository)
-  - [Supervisor](#supervisor)
-  - [Configuration](#configuration)
-- [Mix Tasks](#mix-tasks)
-- [Migrations](#migrations)
-- [Models](#models)
-- [Querying](#querying)
-  - [Basics](#basics)
-  - [Count](#count)
-  - [Group By](#group-by)
-  - [Order By](#order-by)
-  - [Joins](#joins)
-  - [Fragments](#fragments)
-- [Changesets](#changesets)
+{% include toc.html %}
 
 ## Setup
 
@@ -203,11 +187,23 @@ In addition to `all/2`, Repo provides a number of callbacks including `one/2`, `
 
 ### Count
 
+If we want to count the number of users that have confirmed account we could use `count/1`:
+
 ```elixir
 query = from u in User,
     where: u.confirmed == true,
     select: count(u.id)
 ```
+
+There is `count/2` function that counts the distinct values in given entry:
+
+```elixir
+query = from u in User,
+    where: u.confirmed == true,
+    select: count(u.id, :distinct)
+```
+
+
 
 ### Group By
 

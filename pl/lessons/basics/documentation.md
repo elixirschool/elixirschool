@@ -8,27 +8,13 @@ lang: pl
 
 Jak dokumentować kod Elixira.
 
-## Spis treści
-
-- [Adnotacje](#Adnotacje)
-  - [Komentowanie kodu](#Komentowanie-kodu)
-  - [Dokumentowanie modułów](#Dokumentowanie-modułów)
-  - [Dokumentowanie funkcji](#Dokumentowanie-funkcji)
-- [ExDoc](#exdoc)
-  - [Instalacja](#Instalacja)
-  - [Generowanie dokumentacji](#Generowanie-dokumentacji)
-- [Best Practice](#Dobre-praktyki)
-
+{% include toc.html %}
 
 ## Adnotacje
 
-Nie ważne jak wiele komentarzy piszemy i jak dobra jest dokumentacja, to zawsze jej jakość będzie niewystarczająca. 
-Pomimo to wszyscy wiemy, że dokumentacja jest istotna zarówno dla nas samych, jak i dla osób, które pracują lub będą 
-pracować z naszym kodem.
+Nie ważne jak wiele komentarzy piszemy i jak dobra jest dokumentacja, to zawsze jej jakość będzie niewystarczająca. Pomimo to wszyscy wiemy, że dokumentacja jest istotna zarówno dla nas samych, jak i dla osób, które pracują lub będą pracować z naszym kodem.
 
-Elixir traktuje dokumentację jako byt podstawowy (ang. *first-class citizen*), oferując zestaw funkcji 
-pozwalających na generowanie i pracę z dokumentacją w projekcie. Elixir dostarcza wiele różnych rozwiązań na 
-poziomie kodu do tworzenia dokumentacji. Przyjrzyjmy się trzem z nich: 
+Elixir traktuje dokumentację jako byt podstawowy (ang. *first-class citizen*), oferując zestaw funkcji pozwalających na generowanie i pracę z dokumentacją w projekcie. Elixir dostarcza wiele różnych rozwiązań na poziomie kodu do tworzenia dokumentacji. Przyjrzyjmy się trzem z nich: 
 
   - `#` - Służy do komentowania kodu.
   - `@moduledoc` - Pozwala na tworzenie dokumentacji modułów.
@@ -36,8 +22,7 @@ poziomie kodu do tworzenia dokumentacji. Przyjrzyjmy się trzem z nich:
 
 ### Komentowanie kodu
 
-Najprostszą metodą dokumentowania kodu są komentarze. Podobnie jak w Pythonie i Ruby, tak w Elixirze komentarz 
-rozpoczyna się znakiem `#`, zwanym *kratką* albo *hashem*.
+Najprostszą metodą dokumentowania kodu są komentarze. Podobnie jak w Pythonie i Ruby, tak w Elixirze komentarz rozpoczyna się znakiem `#`, zwanym *kratką* albo *hashem*.
 
 Popatrzymy na ten skrypt (greeting.exs):
 
@@ -46,16 +31,11 @@ Popatrzymy na ten skrypt (greeting.exs):
 IO.puts "Hello, " <> "chum."
 ```
 
-Gdy go uruchomimy, Elixir zignoruje wszystko od znaku `#` aż do końca linii, traktując jako nieistotny i 
-nieinterpretowany element. Komentarz nie ma żadnej wartości ani nie wpływa na szybkość wykonania kodu. Jednakże 
-pozwala innym zrozumieć nasz kod. Tego rodzaju komentarze powinny być używane z umiarem, ponieważ w dużej liczbie 
-zaśmiecają kod i zamiast pomagać, mogą przeszkadzać. Niektórzy programiści w ogóle nie uważają tego rodzaju komentarzy
- za przydatne.
+Gdy go uruchomimy, Elixir zignoruje wszystko od znaku `#` aż do końca linii, traktując jako nieistotny i nieinterpretowany element. Komentarz nie ma żadnej wartości ani nie wpływa na szybkość wykonania kodu. Jednakże pozwala innym zrozumieć nasz kod. Tego rodzaju komentarze powinny być używane z umiarem, ponieważ w dużej liczbie zaśmiecają kod i zamiast pomagać, mogą przeszkadzać. Niektórzy programiści w ogóle nie uważają tego rodzaju komentarzy za przydatne.
 
 ### Dokumentowanie modułów
 
-Adnotacja `@moduledoc` służy do dokumentowania modułów. Zazwyczaj umieszcza się ją w linii poniżej deklaracji 
-`defmodule` na górze pliku. Poniższy przykład ilustruje użycie `@moduledoc`.
+Adnotacja `@moduledoc` służy do dokumentowania modułów. Zazwyczaj umieszcza się ją w linii poniżej deklaracji `defmodule` na górze pliku. Poniższy przykład ilustruje użycie `@moduledoc`.
 
 ```elixir
 defmodule Greeter do
@@ -84,8 +64,7 @@ Provides a function hello/1 to greet a human
 
 ### Dokumentowanie funkcji
 
-Elixir poza adnotacją pozwalającą na dokumentowanie modułów ma też adnotację służącą do dokumentowania 
-poszczególnych funkcji. Adnotacja `@doc` jest umieszczana nad dokumentowaną funkcją.
+Elixir poza adnotacją pozwalającą na dokumentowanie modułów ma też adnotację służącą do dokumentowania poszczególnych funkcji. Adnotacja `@doc` jest umieszczana nad dokumentowaną funkcją.
 
 ```elixir
 defmodule Greeter do
@@ -143,15 +122,11 @@ Examples
 iex>
 ```
 
-Zauważ jak za pomocą znaczników, umożliwiliśmy terminalowi sformatowanie dokumentacji. Poza tym, że fajnie to
-wygląda i jest nowatorskim rozwiązaniem w ekosystemie Elixira, to daje nam duże możliwości przy generowaniu HTML-a z
-pomocą narzędzia ExDoc.
+Zauważ jak za pomocą znaczników, umożliwiliśmy terminalowi sformatowanie dokumentacji. Poza tym, że fajnie to wygląda i jest nowatorskim rozwiązaniem w ekosystemie Elixira, to daje nam duże możliwości przy generowaniu HTML-a z pomocą narzędzia ExDoc.
 
 ## ExDoc
 
-ExDoc jest oficjalnym projektem zespołu Elixira służącym do **generowania HTML-a (HyperText Markup Language) i 
-dokumentacji online dla projektów tworzonych w Elixirze**, które można znaleźć na [GitHub](https://github
-.com/elixir-lang/ex_doc). Na początek stwórzmy nowy projekt w mix-ie:
+ExDoc jest oficjalnym projektem zespołu Elixira służącym do **generowania HTML-a (HyperText Markup Language) i dokumentacji online dla projektów tworzonych w Elixirze**, które można znaleźć na [GitHub](https://github.com/elixir-lang/ex_doc). Na początek stwórzmy nowy projekt w mix-ie:
 
 ```bash
 $ mix new greet_everyone
@@ -179,8 +154,7 @@ $ cd greet_everyone
 
 ```
 
-Następnie skopiujmy adnotację `@doc` do pliku `lib/greeter.ex` i upewnijmy się, że nadal działa on z linii poleceń. 
-Jako że pracujemy z mixem uruchommy IEx korzystając z polecenia `iex -S mix` i wpiszmy:
+Następnie skopiujmy adnotację `@doc` do pliku `lib/greeter.ex` i upewnijmy się, że nadal działa on z linii poleceń. Jako że pracujemy z mixem uruchommy IEx korzystając z polecenia `iex -S mix` i wpiszmy:
 
 ```bash
 iex> h Greeter.hello
@@ -204,8 +178,7 @@ Examples
 
 ### Instalacja
 
-Wnioskując z powyższego komunikatu jesteśmy już gotowi by skonfigurować ExDoc. W pliku `mix.exs` musimy dodać dwie 
-zależności `:earmark` i `:ex_doc`.
+Wnioskując z powyższego komunikatu jesteśmy już gotowi by skonfigurować ExDoc. W pliku `mix.exs` musimy dodać dwie zależności `:earmark` i `:ex_doc`.
 
 ```elixir
   def deps do
@@ -214,13 +187,9 @@ zależności `:earmark` i `:ex_doc`.
   end
 ```
 
-Podając opcję `only: :dev` mówimy mixowi, że nie chcemy pobierać i kompilować tych zależności na środowisku innym niż
- deweloperskie. Ale czym jest Earmark? Earmark jest to parser znaczników napisany dla Elixira, który służy ExDocowi 
- na zamianę dokumentacji z adnotacji `@moduledoc` i `@doc` na elegancki kod HTML.
+Podając opcję `only: :dev` mówimy mixowi, że nie chcemy pobierać i kompilować tych zależności na środowisku innym niż deweloperskie. Ale czym jest Earmark? Earmark jest to parser znaczników napisany dla Elixira, który służy ExDocowi  na zamianę dokumentacji z adnotacji `@moduledoc` i `@doc` na elegancki kod HTML.
 
-Oczywiście nie jesteśmy ograniczeni tylko do Earmarka. Jak chcesz możesz zamienić go na Pandoc, Hoedown albo Cmark; 
-to wymaga trochę dodatkowej konfiguracji, o której poczytasz [tutaj (ang.)](https://github
-.com/elixir-lang/ex_doc#changing-the-markdown-tool). Na potrzeby tej lekcji pozostaniemy jednak przy Earmarku.
+Oczywiście nie jesteśmy ograniczeni tylko do Earmarka. Jak chcesz możesz zamienić go na Pandoc, Hoedown albo Cmark; to wymaga trochę dodatkowej konfiguracji, o której poczytasz [tutaj (ang.)](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Na potrzeby tej lekcji pozostaniemy jednak przy Earmarku.
 
 ### Generowanie dokumentacji
 
@@ -234,9 +203,7 @@ Docs successfully generated.
 View them at "doc/index.html".
 ```
 
-Jeżeli wszystko poszło zgodnie z planem powinieneś zobaczyć komunikat taki jak wyżej. Jeżeli zajrzymy teraz do 
-naszego projektu to w katalogu **doc/** odnajdziemy wygenerowaną dokumentację. Jeżeli otworzysz plik `index.html` w 
-przeglądarce powinieneś zobaczyć:
+Jeżeli wszystko poszło zgodnie z planem powinieneś zobaczyć komunikat taki jak wyżej. Jeżeli zajrzymy teraz do naszego projektu to w katalogu **doc/** odnajdziemy wygenerowaną dokumentację. Jeżeli otworzysz plik `index.html` w przeglądarce powinieneś zobaczyć:
 
 ![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
 
@@ -248,10 +215,7 @@ Możemy ją teraz umieścić na GitHubie, naszej stronie, albo w serwisie [HexDo
 
 ## Dobre praktyki
 
-Zasady tworzenia dokumentacji powinny być opisane w przewodniku dobrych praktyk języka. Jednakże Elixir jest jeszcze
-bardzo młodym językiem i wiele elementów jego ekosystemu musi zostać zestandaryzowanych, co oznacza, że dobre praktyki
-dla dokumentacji są tworzone przede wszystkim przez społeczność programistów. Można o tym poczytać, w dokumencie [The
-Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
+Zasady tworzenia dokumentacji powinny być opisane w przewodniku dobrych praktyk języka. Jednakże Elixir jest jeszcze bardzo młodym językiem i wiele elementów jego ekosystemu musi zostać zestandaryzowanych, co oznacza, że dobre praktyki dla dokumentacji są tworzone przede wszystkim przez społeczność programistów. Można o tym poczytać, w dokumencie [TheElixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
   - Zawsze dokumentuj moduły.
 
@@ -339,8 +303,6 @@ defmodule Greeter do
 end
 ```
 
- - Podawaj przykłady w dokumentacji. Pozwoli to też na wygenerowanie testów automatycznych na ich podstawie z użyciem
-  [ExUnit.DocTest][]. By to zrobić, należy wywołać makro `doctest/1`, lecz dokumentacja musi spełniać pewne warunki 
-  opisane w [oficjalniej dokumentacji][ExUnit.DocTest] narzędzia.
+ - Podawaj przykłady w dokumentacji. Pozwoli to też na wygenerowanie testów automatycznych na ich podstawie z użyciem [ExUnit.DocTest][]. By to zrobić, należy wywołać makro `doctest/1`, lecz dokumentacja musi spełniać pewne warunki opisane w [oficjalniej dokumentacji][ExUnit.DocTest] narzędzia.
 
 [ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html

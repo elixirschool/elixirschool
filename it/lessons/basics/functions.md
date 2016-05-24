@@ -8,15 +8,7 @@ lang: it
 
 In Elixir, ed in altri linguaggi funzionali, le funzioni sono oggetti di prima classe. Impareremo i vari tipi di funzioni in Elixir, cosa le rende differenti, e come possiamo usarle.
 
-## Tavola dei Contenuti
-
-- [Funzioni anonime](#funzioni-anonime)
-  - [L'abbreviazione `&`](#labbreviazione-)
-- [Pattern Matching](#pattern-matching)
-- [Funzioni con un nome](#funzioni-con-un-nome)
-  - [Funzioni private](#funzioni-private)
-  - [Guardie](#guardie)
-  - [Argomenti di default](#argomenti-di-default)
+{% include toc.html %}
 
 ## Funzioni anonime
 
