@@ -1,18 +1,18 @@
 ---
 layout: page
-title: Custom Mix Tasks 
+title: 커스텀 Mix 태스크
 category: basics
 order: 15
-lang: en
+lang: ko
 ---
 
-Creating custom Mix tasks for your Elixir projects.
+여러분의 Elixir 프로젝트를 위한 커스텀 Mix 태스크 만들기.
 
 {% include toc.html %}
 
-## Introduction 
+## 소개
 
-It's not uncommon to want to extend your Elixir applications functionality by adding custom Mix tasks. Before we learn about how to create specific Mix tasks for our projects, let's look at one that already exists:
+여러분의 애플리케이션에 커스텀 Mix 태스크를 추가하여 기능을 확장하고자 하는 것은 흔한 일입니다. 우리의 프로젝트에 어떻게 Mix 태스크를 추가하는지 배우기 전에, 이미 존재하는 것을 한 번 봅시다.
 
 ```shell
 $ mix phoenix.new my_phoenix_app
@@ -28,11 +28,11 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-As we can see from the shell command above, The Phoenix Framework has a custom Mix task to generate a new project. What if we could create something similar for our project? Well the great news is we can, and Elixir makes this very easy for us to do.
+위의 셸 명령에서 보다시피, Phoenix 프레임워크에는 새로운 프로젝트를 생성하는 커스텀 Mix 태스크가 있습니다. 만약에 우리가 비슷한 것을 우리의 프로젝트에 추가하고 싶다면 어떨까요? 좋은 소식이 있다면, 우리도 그렇게 할 수 있다는 것이고, Elixir를 이용하면 정말 쉽게 할 수 있다는 것입니다.
 
-## Setup
+## 준비하기
 
-Let's set up a very basic Mix application.
+매우 간단한 Mix 애플리케이션을 하나 만듭시다.
 
 ```shell
 $ mix new hello
@@ -57,7 +57,7 @@ mix test
 Run "mix help" for more commands.
 ```
 
-Now, in our **lib/hello.ex** file that Mix generated for us, let's create a simple function that will output "Hello, World!"
+이제, Mix가 생성해 준 **lib/hello.ex** 파일에서 "Hello, World!"를 출력하는 간단한 함수를 만들어 봅시다.
 
 ```elixir
 defmodule Hello do
@@ -71,9 +71,9 @@ defmodule Hello do
 end
 ```
 
-## Custom Mix Task
+## 커스텀 Mix 태스크
 
-Let's create our custom Mix task. Create a new directory and file **hello/lib/mix/tasks/hello.ex**. Within this file, let's insert these 7 lines of Elixir.
+이제 우리의 커스텀 Mix 태스크를 만들어 봅시다. **hello/lib/mix/tasks/hello.ex**라는 디렉토리와 파일을 만들고, 그 안에 7 줄의 Elixir 코드를 작성하세요.
 
 ```elixir
 defmodule Mix.Tasks.Hello do
@@ -81,7 +81,7 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Simply runs the Hello.say/0 command."
   def run(_) do
-    Hello.say # calling our Hello.say() function from earlier
+    Hello.say # 앞서 만든 Hello.say() 함수 호출하기
   end
 end
 ```
