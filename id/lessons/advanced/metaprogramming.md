@@ -187,13 +187,13 @@ iex> val
 -1
 ```
 
-Dengan menggunakan `var!/21 dalam macro kita kita memanipulasi nilai dari `val` tanpa mengirimkannya ke dalam macro kita (sebagai argumen misalnya).  Penggunaan macro non-higienis mesti dijaga tetap minimal.  Dengan menyertakan `var!/2` kita menaikkan resiko konflik variabel.
+Dengan menggunakan `var!/2` dalam macro kita, kita memanipulasi nilai dari `val` tanpa mengirimkannya ke dalam macro kita (sebagai argumen misalnya).  Penggunaan macro non-higienis mesti dijaga tetap minimal.  Dengan menggunakan `var!/2` kita menaikkan resiko konflik variabel.
 
 ### Binding
 
 Kita sudah membahas kegunaan `unquote/1`, tapi ada cara lain untuk menyisipkan value ke code kita: pengikatan (binding).  Dengan pengikatan variabel (variable binding) kita bisa menyertakan banyak variabel dalam macro kita dan memastikan variabel-variabel tersebut hanya di-unqote sekali, menghindari reevaluasi tanpa sengaja. Untuk menggunakan variabel yang diikat kita perlu memasukkan daftar keyword (keyword list) ke opsi `bind_quoted` di `quote/2`.
 
-Untuk melihat manfaat dari `bind_quote` dan untuk mendemonstrasikan masalah reevaluasi mari gunakan sebuah contoh.  Kita bisa mulai dengan membuat sebuah macro yang menuliskan ekspresinya dua kali:
+Untuk melihat manfaat dari `bind_quote` dan untuk mendemonstrasikan masalah reevaluasi, mari kita gunakan sebuah contoh.  Kita bisa mulai dengan membuat sebuah macro yang menuliskan ekspresinya dua kali:
 
 ```elixir
 defmodule Example do
