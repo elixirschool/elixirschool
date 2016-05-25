@@ -187,11 +187,23 @@ In addition to `all/2`, Repo provides a number of callbacks including `one/2`, `
 
 ### Count
 
+If we want to count the number of users that have confirmed account we could use `count/1`:
+
 ```elixir
 query = from u in User,
     where: u.confirmed == true,
     select: count(u.id)
 ```
+
+There is `count/2` function that counts the distinct values in given entry:
+
+```elixir
+query = from u in User,
+    where: u.confirmed == true,
+    select: count(u.id, :distinct)
+```
+
+
 
 ### Group By
 
