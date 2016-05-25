@@ -185,10 +185,20 @@ Repo.all(query)
 
 ### Количество
 
+Если мы хотим посчитать количество пользователей, подтвердивших учётные записи, мы можем использовать `count/1`:
+
 ```elixir
 query = from u in User,
     where: u.confirmed == true,
     select: count(u.id)
+```
+
+Также с помощью функции `count/2` можно считать уникальные значения:
+
+```elixir
+query = from u in User,
+    where: u.confirmed == true,
+    select: count(u.id, :distinct)
 ```
 
 ### Группировка
