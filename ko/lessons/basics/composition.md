@@ -1,20 +1,20 @@
 ---
 layout: page
-title: Composition
+title: 컴포지션
 category: basics
 order: 8
-lang: en
+lang: ko
 ---
 
-We know from experience its unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
+모든 함수가 같은 파일과 같은 표현 범위 안에 둔다면 함수 하나하나를 통제하기가 굉장히 힘들어 질 것이라는 걸 우리는 경험을 통해 알고 있습니다. 이번 수업에서는 함수를 묶고 구조체라는 특별한 맵을 만들어내어 작성한 코드를 더욱 효율적으로 관리하는 법을 알아보도록 하겠습니다.
 
 {% include toc.html %}
 
-## Modules
+## 모듈
 
-Modules are the best way to organize functions into a namespace.  In addition to grouping functions, they allow us to define named and private functions which we covered in the previous lesson.
+모듈은 함수를 한 이름공간에다가 구성할 수 있는 가장 좋은 방법입니다. 모듈을 사용하면 함수를 한 공간에다가 묶을 수 있는 것에서 한 걸음 더 나아가, 이전 수업에서 다루었던 이름이 있는 함수와 private 함수를 정의할 수도 있게 됩니다.
 
-Let's look at a basic example:
+기본적인 예제를 살펴보도록 하지요.
 
 ``` elixir
 defmodule Example do
@@ -27,7 +27,7 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
-It is possible to nest modules in Elixir, allowing you to further namespace your functionality:
+모듈 안에다가 모듈을 포개 넣어 기능에 따라 이름공간을 더 뻗어나갈 수도 있습니다.
 
 ```elixir
 defmodule Example.Greetings do
@@ -44,9 +44,9 @@ iex> Example.Greetings.morning "Sean"
 "Good morning Sean."
 ```
 
-### Module attributes
+### 모듈 속성
 
-Module attributes are most commonly used as constants in Elixir.  Let's take a look at a simple example:
+모듈 속성은 Elixir에서는 일반적으로 상수로 가장 널리 사용됩니다. 간단한 예제를 살펴보도록 하지요.
 
 ```elixir
 defmodule Example do
@@ -58,17 +58,17 @@ defmodule Example do
 end
 ```
 
-It is important to note there are reserved attributes in Elixir.  The three most common are:
+Elixir에서 언어 내부적인 용도로 만들어진 속성도 있다는 점을 알아두세요. 이렇게 언어 내부적으로 만들어진 속성 중 가장 널리 알려진 속성을 말하자면 아래처럼 세 가지를 꼽을 수 있겠습니다.
 
-+ `moduledoc` — Documents the current module.
-+ `doc` — Documentation for functions and macros.
-+ `behaviour` — Use an OTP or user-defined behaviour.
++ `moduledoc` — 현재 모듈을 설명하는 문서입니다.
++ `doc` — 함수와 매크로를 설명하는 문서입니다.
++ `behaviour` — OTP나 사용자가 따로 정의할 수 있는 행동에서 사용됩니다.
 
-## Structs
+## 구조체
 
-Structs are special maps with a defined set of keys and default values.  It must be defined within a module, which it takes its name from.  It is common for a struct to be the only thing defined within a module.
+구조체는 키와 기본값 쌍으로 이루어진 특별한 맵입니다. 구조체는 자신이 정의된 모듈의 이름을 가져오기 때문에, 정의할 때 반드시 모듈 안에서 정의해야 합니다. 모듈 안에다가 구조체 하나만 정의하는 일도 자주 있습니다.
 
-To define a struct we use `defstruct` along with a keyword list of fields and default values:
+`defstruct`와 함께 필드와 기본값으로 이루어진 키워드 리스트로 구조체를 정의할 수 있습니다.
 
 ```elixir
 defmodule Example.User do
@@ -76,7 +76,7 @@ defmodule Example.User do
 end
 ```
 
-Let's create some structs:
+구조체를 몇 개 만들어봅시다.
 
 ```elixir
 iex> %Example.User{}
@@ -89,7 +89,7 @@ iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
 %Example.User{name: "Steve", roles: [:admin, :owner]}
 ```
 
-We can update our struct just like we would a map:
+구조체의 내용도 맵을 편집할 때처럼 수정할 수 있습니다.
 
 ```elixir
 iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
@@ -98,20 +98,20 @@ iex> sean = %{steve | name: "Sean"}
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-Most importantly, you can match structs against maps:
+여기서 제일 중요한 부분은, 맵에 대해서도 구조체를 매칭할 수 있다는 점입니다.
 
 ```elixir
 iex> %{name: "Sean"} = sean
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-## Composition
+## 컴포지션
 
-Now that we know how to create modules and structs let's learn how to include existing functionality in them through composition.  Elixir provides us with a variety of different ways to interact with other modules, let's look at what we have available to us.
+이제 모듈과 구조체를 만드는 법을 배웠으니, 지금부터는 그 안에 이미 있는 기능들을 컴포지션을 사용해 가져오는 법을 배워보아요. Elixir에서는 다른 모듈과 상호작용할 수 있는 여러가지 방법이 있는데요, 바로 사용할 수 있는 것부터 살펴봅시다.
 
 ### `alias`
 
-Allows us to alias module names, used quite frequently in Elixir code:
+모듈 이름에 별칭(alias)을 지어줄 수 있습니다. Elixir 코드에서 꽤 자주 사용됩니다.
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -124,14 +124,14 @@ defmodule Example do
   def greeting(name), do: Greetings.basic(name)
 end
 
-# Without alias
+# 별칭을 사용하지 않는 경우
 
 defmodule Example do
   def greeting(name), do: Saying.Greetings.basic(name)
 end
 ```
 
-If there's a conflict with two aliases or you just wish to alias to a different name entirely, we can use the `:as` option:
+똑같은 별칭을 사용하게 되어 충돌이 생길 수 있거나 완전히 다른 별칭을 지어주고 싶을 때에는, `:as` 옵션을 사용하여 별칭을 다르게 정할 수 있습니다.
 
 ```elixir
 defmodule Example do
@@ -141,7 +141,7 @@ defmodule Example do
 end
 ```
 
-It's possible to alias multiple modules at once:
+여러 모듈에 한번에 별칭을 설정할 수도 있습니다.
 
 ```elixir
 defmodule Example do
@@ -151,7 +151,7 @@ end
 
 ### `import`
 
-If we want to import functions and macros rather than aliasing the module we can use `import/`:
+모듈에 별칭을 지어주는 것보다 해당 모듈 안에 있는 함수와 매크로를 불러오고(import) 싶을 때에는 `import/`를 사용할 수 있습니다.
 
 ```elixir
 iex> last([1, 2, 3])
@@ -162,11 +162,11 @@ iex> last([1, 2, 3])
 3
 ```
 
-#### Filtering
+#### 불러올 함수와 매크로 선택하기
 
-By default all functions and macros are imported but we can filter them using the `:only` and `:except` options.
+기본적으로는 모든 함수와 매크로가 불려오지만 `:only`나 `:except` 옵션을 사용해서 특정 함수나 매크로만  않을 수 있습니다.
 
-To import specific functions and macros, we must provide the name/arity pairs to `:only` and `:except`.  Let's start by importing only the `last/1` function:
+특정 함수나 매크로를 불러오려면, `:only`와 `:except`에 이름/애리티 쌍을 넘겨 주면 됩니다. `last/1` 함수만 불러오는 것부터 시작해보도록 하지요.
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -176,7 +176,7 @@ iex> last([1, 2, 3])
 3
 ```
 
-If we import everything except `last/1` and try the same functions as before:
+`last/1`을 뺀 모든 함수와 매크로를 불러온다면 어떻게 될까요? 아까전과 똑같이 함수를 호출해 봅시다.
 
 ```elixir
 iex> import List, except: [last: 1]
@@ -187,7 +187,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arity pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
+불러올 조건에 이름/애리티 쌍을 건네줄 수도 있지만, 여기서 한 걸음 더 나아가서 두 가지 특별한 애텀도 있습니다. `:functions`와 `:macros`를 사용해 함수만 불러오게 하거나 매크로만 불러오게 할 수도 있습니다.
 
 ```elixir
 import List, only: :functions
@@ -196,7 +196,7 @@ import List, only: :macros
 
 ### `require`
 
-Although used less frequently `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
+`require/2`는 위에 언급된 것들에 비해서는 덜 자주 사용되지만 그래도 중요합니다. 어떤 모듈을 필요하다고 선언(require)하면 컴파일을 한 뒤에 불러오게 됩니다. 특정 모듈에 있는 매크로에 접근할 때 굉장히 유용하게 사용할 수 있습니다.
 
 ```elixir
 defmodule Example do
@@ -206,7 +206,7 @@ defmodule Example do
 end
 ```
 
-If we attempt to call a macro that is not yet loaded Elixir will raise an error.
+아직 로드되지 않은 매크로에 접근하려고 하면 Elixir에서 오류를 일으킵니다.
 
 ### `use`
 
