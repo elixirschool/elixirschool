@@ -210,7 +210,7 @@ end
 
 ### `use`
 
-The use macro invokes a special macro, called __using__/1, from the specified module. Here’s an example:
+use 매크로를 사용하면 해당 모듈에서 __using__/1이란 이름을 가진 조금 특별한 매크로를 실행하게 합니다. 예를 들어 보도록 하지요.
 
 ```elixir
 # lib/use_import_require/use_me.ex
@@ -225,19 +225,19 @@ defmodule UseImportRequire.UseMe do
 end
 ```
 
-and we add this line to UseImportRequire:
+그리고 UseImportRequire 모듈에 이 줄을 추가해봅시다.
 
 ```elixir
 use UseImportRequire.UseMe
 ```
 
-Using UseImportRequire.UseMe defines a use_test/0 function through invocation of the __using__/1 macro.
+UseImportRequire.UseMe를 use한다고 함으로써 __using__/1 매크로가 실행되어 use_test/0 함수를 정의됩니다.
 
-This is all that use does. However, it is common for the __using__ macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that __using__/1 may set up references to other modules, especially submodules.
+use가 하는 일이라면 이게 전부입니다. 하지만 __using__ 매크로에서 alias나 require, import를 실행하게 하는 일이 자주 있습니다. __using__ 매크로가 사용(use)하는 모듈에 별칭을 만들거나 함수나 매크로를 불러오도록 하는 것이지요. 사용(use)되는 모듈은 이를 이용해 외부에서 모듈 안에 있는 함수와 매크로를 어떻게 참조할 지 방침을 정할 수 있습니다. 그렇기 때문에 __using__/1이 다른 모듈(특히 서브모듈)에 대한 참조를 상당히 유동적으로 만들어낼 수 있게 됩니다.
 
-The Phoenix framework makes use of use and __using__/1 to cut down on the need for repetitive alias and import calls in user defined modules.
+Phoenix 프레임워크에서는 use와 __using__/1을 사용해서, 사용자가 정의하는 모듈에서 alias나 import를 반복적으로 사용하는 일이 없도록 해 줍니다.
 
-Here’s an nice and short example from the Ecto.Migration module:
+Ecto.Migration 모듈에 use를 사용한 짤막하고 멋진 용례가 있습니다.
 
 ```elixir
 defmacro __using__(_) do
@@ -249,6 +249,6 @@ defmacro __using__(_) do
 end
 ```
 
-The Ecto.Migration.__using__/1 macro includes an import call so that if use Ecto.Migration you also import Ecto.migration. It also sets up a module property which I assume controls Ecto’s behavior.
+Ecto.Migration를 어떤 모듈에서 사용할 것이라고 선언(use)하면 Ecto.Migration.__using__/1 매크로가 import를 실행시켜 사용(use)하는 모듈에 Ecto.Migration 모듈 안에 있는 함수와 매크로를 불러오도록(import) 합니다. Ecto가 어떻게 행동할지에 대해 설정할 수 있는 것처럼 보이는 모듈 속성을 설정하기도 합니다.
 
-To recap: the use macro just invokes the __using__/1 macro of the specified module. To really understand what that does you need to read the __using__/1 macro.
+다시 말하자면, use 매크로는 해당 모듈의 __using__/1 매크로를 발동하기만 합니다. __using__/1 매크로가 정확히 무엇을 하는지 이해하려면 해당하는 부분의 코드를 읽어야 합니다.
