@@ -12,7 +12,7 @@ Ecto는 공식적인 Elixir 프로젝트로 데이터베이스를 감싸는 부�
 
 ## 설치하기
 
-우선 Ecto와 데이터베이스 어댑터를 프로젝트의 `mix.exs`에 추가해야 합니다. 대응하고 있는 데이터베이스 어댑터의 목록은 Exto의 README 에 있는 [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage)에서 확인할 수 있습니다. 이 예제에서는 PostgreSQL을 사용합니다:
+우선 Ecto와 데이터베이스 어댑터를 프로젝트의 `mix.exs`에 추가해야 합니다. 지원하는 데이터베이스 어댑터의 목록은 Ecto의 README에 있는 [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage)에서 확인할 수 있습니다. 이 예제에서는 PostgreSQL을 사용합니다:
 
 ```elixir
 defp deps do
@@ -31,7 +31,7 @@ end
 
 ### 저장소
 
-마지막으로 프로젝트의 저장소, 다시 말해 데이터베이스를 감싸는 부분을 생성해야 합니다. 이는 `mix ecto.gen.repo` 태스크로 생성할 수 있습니다. 이외의 다른 mix 태스크에 대해서는 나중에 알아보겠습니다. 생성된 저장소(Repo 모듈)는 `lib/<project name>/repo.ex`에 저장됩니다:
+마지막으로 프로젝트의 저장소, 다시 말해 데이터베이스를 감싸는 부분을 생성해야 합니다. 이는 `mix ecto.gen.repo` 태스크로 생성할 수 있습니다. 다른 mix 태스크에 대해서는 나중에 알아보겠습니다. 생성된 저장소(Repo 모듈)는 `lib/<project name>/repo.ex`에 저장됩니다:
 
 ```elixir
 defmodule ExampleApp.Repo do
@@ -44,7 +44,7 @@ end
 
 Repo를 생성한 뒤에는 슈퍼바이저 트리를 설정해야 합니다. 이는 보통 `lib/<project name>.ex`에 있습니다.
 
-Repo는 슈퍼바이저로 `worker/3`가 _아닌_, `supervisor/3`로 설정한다는 점이 중요합니다. 애플리케이션을 생성할 때에 `--sup` 플래그가 포함되어 있다면 이 설정은 거의 끝난 상태일 것입니다:
+Repo의 슈퍼바이저로 `worker/3`가 _아닌_, `supervisor/3`로 설정한다는 점이 중요합니다. 애플리케이션을 생성할 때에 `--sup` 플래그가 포함되어 있다면 이 설정은 거의 끝난 상태일 것입니다:
 
 ```elixir
 defmodule ExampleApp.App do
@@ -88,12 +88,12 @@ mix ecto.drop           # 저장소의 공간을 삭제합니다
 mix ecto.gen.migration  # 저장소의 새로운 마이그레이션을 생성합니다
 mix ecto.gen.repo       # 새로운 저장소를 생성합니다
 mix ecto.migrate        # 저장소의 마이그레이션을 실행합니다
-mix ecto.rollback       # 저장소의 마이그레이션을 취소(Rollback)합니다
+mix ecto.rollback       # 저장소의 마이그레이션을 롤백합니다
 ```
 
 ## 마이그레이션
 
-마이그레이션을 생성하는 가장 좋은 방법은 `mix ecto.gen.migration <name>` 태스크입니다. ActiveRecord를 사용해본 적이 있다면 무척 친숙할 것입니다.
+마이그레이션을 생성하는 가장 좋은 방법은 `mix ecto.gen.migration <name>` 태스크를 사용하는 것입니다. ActiveRecord를 사용해 보셨으면 무척 친숙할 것입니다.
 
 사용자 테이블의 마이그레이션을 확인해봅시다:
 
@@ -116,13 +116,13 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 end
 ```
 
-초기 상태에서 Ecto는 자동으로 증가하는 기본키 `id`를 생성합니다. 이 예제에서는 표준적인 `change/0` 콜백을 사용하고 있습니다만, Ecto에는 보다 세밀한 제어가 필요한 경우를 위해서 `up/0`과 `down/0`에도 지원하고 있습니다.
+초기 상태에서 Ecto는 자동으로 증가하는 기본키 `id`를 생성합니다. 이 예제에서는 표준적인 `change/0` 콜백을 사용하지만, Ecto에는 보다 세밀한 제어가 필요하다면 Ecto에는 `up/0`과 `down/0`도 지원하고 있습니다.
 
 `timestamps`를 마이그레이션에 추가하면 추측하신 대로, `created_at`과 `updated_at`을 생성하고 관리합니다.
 
 이 새로운 마이그레이션을 적용하려면 `mix ecto.migrate`를 실행해주세요.
 
-마이그레이션의 더 자세한 정보는 Ecto 문서의 [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content)를 참고해주세요.
+마이그레이션의 더 자세한 정보는 Ecto 문서의 [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content)을 참고해주세요.
 
 ## 모델
 
@@ -195,7 +195,7 @@ query = from u in User,
 
 ### Group By
 
-사용자의 이름을 승인된 날짜별로 묶고 싶은 경우에는 `group_by` 옵션을 추가하세요:
+사용자들을 승인 상태별로 묶고 싶은 경우에는 `group_by` 옵션을 추가하세요:
 
 ```elixir
 query = from u in User,
@@ -245,11 +245,11 @@ query = from u in User,
     select: u
 ```
 
-더 많은 질의 예시는 [phoenix-examples/ecto_query_library](https://github.com/phoenix-examples/ecto_query_library)에서 확인하실 수 있습니다.
+[phoenix-examples/ecto_query_library](https://github.com/phoenix-examples/ecto_query_library)에서 더 많은 질의 예제를 확인할 수 있습니다.
 
 ## Changeset
 
-앞에서는 데이터를 검색하는 방법에 대해서 배웠습니다만, 추가나 변경을 해야 하는 경우에는 어떻게 하면 좋을까요? 이럴 때 Changeset이 필요합니다.
+앞에서는 데이터를 검색하는 방법에 대해서 배웠습니다. 그렇다면 추가나 변경을 해야 하는 경우에는 어떻게 하면 좋을까요? 이럴 때 Changeset이 필요합니다.
 
 Changeset은 모델을 변경할 때 필터나 검증, 제약 조건의 유지를 담당합니다.
 
