@@ -77,7 +77,7 @@ Najbardziej wydajną, idealną wręcz, metodą wyszukiwania danych jest użycie 
 
 ### Wyszukiwanie po kluczu
 
-Given a key, we can use `lookup/2` to retrieve all records with that key:
+Mając klucz, możemy użyć funkcji `lookup/2`, by wyszukać wszystkie rekordy przypisane do tego klucza:
 
 ```elixir
 iex> :ets.lookup(:user_lookup, "doomspork")
@@ -86,18 +86,18 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 
 ### Proste porównania
 
-ETS was built for Erlang, so be warned that match variables may feel a _little_ clunky.
+ETS został zaprojektowany dla Erlanga, więc pamiętaj iż porównywanie zmiennych może wyglądać _trochę niezdarnie_.
 
-To specify a variable in our match we use the atoms `:"$1"`, `:"$2"`, `:"$3"`, and so on.  The variable number reflects the result position and not the match position.  For values we're not interested in, we use the `:"_"` variable.
+By wskazać, które zmienne będziemy porównywać, używamy atomów `:"$1"`, `:"$2"`, `:"$3"`, itd. Numer zmiennej odwołuje się do pozycji w wyniku, a nie pozycji w porównaniu. Jeżeli nie jesteśmy zainteresowaniu jakąś wartością, to używamy zmiennej `:"_"`.
 
-Values can also be used in matching, but only variables will be returned as part of our result.  Let's put it all together and see how it works:
+Wartości też mogą zostać użyte w dopasowaniu, ale tylko zmienne zostaną zwrócone jako część wyniku. Złóżmy to wszystko razem i zobaczmy, jak działa:
 
 ```elixir
 iex> :ets.match(:user_lookup, {:"$1", "Sean", :"_"})
 [["doomspork"]]
 ```
 
-Let's look at another example to see how variables influence the resulting list order:
+Przyjrzyjmy się jeszcze jednemu przykładowi, by zrozumieć wpływ zmiennych na kolejność rezultatów:
 
 ```elixir
 iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
@@ -105,7 +105,7 @@ iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
  ["", ["Elixir", "Ruby", "JavaScript"], "3100"]]
 ```
 
-What if we want our original object, not a list?  We can use `match_object/2`, which regardless of variables returns our entire object:
+A co, jeżeli chcemy otrzymać oryginalny obiekt, a nie listę? Możemy użyć funkcji `match_object/2`, która zwróci cały obiekt bez patrzenia na zmienne:
 
 ```elixir
 iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
@@ -117,12 +117,11 @@ iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
 ```
 ### Zaawansowane wyszukiwanie
 
+Wiemy już, jak wygląda proste wyszukiwanie, ale co jeżeli chcielibyśmy mieć coś w rodzaju SQL? Na całe szczęście mamy do dyspozycji elastyczniejsze rozwiązanie. Do przeszukiwania danych możemy użyć funkcji `select/2`, przyjmującej jako argument listę trójelementowych krotek. Krotki te reprezentują wzorzec, zero lub więcej strażników oraz format odpowiedzi.
 
-We learned about simple match cases but what if we want something more akin to an SQL query?  Thankfully there is a more robust syntax available to us.  To lookup our data with `select/2` we need to construct a list of tuples with arity 3.  These tuples represent our pattern, zero or more guards, and a return value format.
+Zmienne użyte w dopasowaniu oraz dwie nowe `:"$$"` i `:"$_"`, mogą być użyte do sformatowania wyniku. Te nowe zmienne są skróconym zapisem do formatowania wyniku; `:"$$"` zwraca wynik jako listę, a `:"$_"` zwróci oryginalny obiekt.
 
-Our match variables and two new variables, `:"$$"` and `:"$_"`, can be used to construct the return value.  These new variables are shortcuts for the result format; `:"$$"` gets results as lists and `:"$_"` gets the original data objects.
-
-Let's take one of our previous `match/2` examples and turn it into a `select/2`:
+Zmieńmy nasz poprzedni przykład z `match/2` tak, by użyć `select/2`:
 
 ```elixir
 iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
@@ -134,9 +133,9 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
  {"spork", 30, ["ruby", "elixir"]}]
 ```
 
-Although `select/2` allows for finer control over what and how we retrieve records, the syntax is quite unfriendly and will only become more so.  To handle this the ETS module includes `fun2ms/1`, which turns the functions into match_specs.  With `fun2ms/1` we can create queries using a familiar function syntax.
+Pomimo że `select/2` pozwala na precyzyjniejszą kontrolę rezultatów, to składnia tej funkcji jest nieprzyjazna szczególnie w złożonych przypadkach. Do ich obsługi ETS zawiera funkcję `fun2ms/1`, która zmienia funkcję w specyfikację zwaną `match_specs`.  Z pomocą`fun2ms/1` możemy tworzyć zapytania, używając lepiej nam znanej składni funkcyjnej. 
 
-Let's use `fun2ms/2` and `select/2` to find all usernames with 2 or more languages:
+Połączmy zatem`fun2ms/2` i `select/2`, by odszukać wszystkie `usernames` z dwoma lub więcej językami:
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
@@ -146,7 +145,7 @@ iex> :ets.select(:user_lookup, fun)
 ["doomspork", "3100"]
 ```
 
-Want to learn more about the match specification?  Check out the official Erlang documentation for [match_spec](http://www.erlang.org/doc/apps/erts/match_spec.html).
+Chcesz dowiedzieć się więcej o specyfikacji dopasowań? Zapoznaj się z oficjalną, erlngową, dokumentacją w języku angielskim [match_spec](http://www.erlang.org/doc/apps/erts/match_spec.html).
 
 ## Usuwanie danych
 
