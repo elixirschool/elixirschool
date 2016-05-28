@@ -218,7 +218,7 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### String interpolation
+### String Interpolation
 
 If you've used Ruby, string interpolation in Elixir will look familiar:
 
@@ -228,7 +228,7 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### String concatenation
+### String Concatenation
 
 String concatenation uses the `<>` operator:
 
