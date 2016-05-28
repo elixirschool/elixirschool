@@ -6,43 +6,43 @@ order: 5
 lang: pl
 ---
 
-Mnesia is a heavy duty real-time distributed database management system.
+Mnesia to rozwiązanie „wagi ciężkiej” do zarządzania w czasie rzeczywistym rozproszonymi bazami danych.
 
 {% include toc.html %}
 
-## Wtęp
+## Wstęp
 
-Mnesia is a Database Management System (DBMS) that ships with the Erlang Runtime System which we can use naturally with Elixir. The Mnesia *relational and object hybrid data model* is what makes it suitable for developing distributed applications of any scale.
+Mnesia to system zarządzania bazą danych (ang. _Database Management System_ – DBMS) dostarczany razem ze środowiskiem Erlanga, który możemy oczywiście wykorzystać w Elixirze. Mnesia ma *relacyjno-obiektowy, hybrydowy model danych* co czyni ją odpowiednim narzędziem do tworzenia rozproszonych aplikacji w dowolnej skali.
 
 ## Kiedy używać
 
-When to use a particular piece of technology is often a confusing pursuit. If you can answer 'yes' to any of the following questions, then this is a good indication to use Mnesia over ETS or DETS.
+Kiedy powinniśmy użyć konkretnej technologi? To często bardzo kłopotliwe pytanie. Jeżeli odpowiedź na jedno z poniższych pytań brzmi „tak”, to znak, że warto zastanowić się nad użyciem Mnesii zamiast ETS lub DETS.
 
-  - Do I need to roll back transactions?
-  - Do I need an easy to use syntax for reading and writing data?
-  - Should I store data across multiple nodes, rather than one?
-  - Do I need a choice where to store information (RAM or disk)?
+  - Czy potrzebujesz mieć możliwość wycofania transakcji?
+  - Czy potrzebujesz prostej w użyciu składni do odczytu i zapisu danych?
+  - Czy potrzebujesz przechowywać dane w wielu miejscach (węzłach) zamiast w jednym?
+  - Czy chcesz mieć możliwość określenia gdzie, dysk lub RAM, dane będą przechowywane?
 
 ## Schemat
 
-As Mnesia is part of the the Erlang core, rather than Elixir, we have to access it with the colon syntax (See Lesson: [Erlang Interoperability](https://elixirschool.com/lessons/advanced/erlang/)) as so:
+Ponieważ Mnesia jest częścią Erlanga, a nie Elixira, to odwołujemy się do niej z użyciem dwukropka (patrz: [Współpraca z Erlangiem](https://elixirschool.com/pl/lessons/advanced/erlang/)):
 
 ```shell
 
 iex> :mnesia.create_schema([node()])
 
-# or if you prefer the Elixir feel...
+# jeżeli jednak preferujesz Elixira...
 
 iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node()])
 
 ```
 
-For this lesson, we will take the latter approach when working with the Mnesia API. `Mnesia.create_schema/1` initializes a new empty schema and passes in a Node List. In this case, we are passing in the node associated with our IEx session.
+W tej lekcji skupimy się na pracy z API Mnesii. `Mnesia.create_schema/1` tworzy nowy, pusty schemat i umieszcza go w liście węzłów. W naszym przypadku węzłem jest aktualna sesja IEx.
 
 ## Węzły
 
-Once we run the `Mnesia.create_schema([node()])` command via IEx, you should see a folder called **Mnesia.nonode@nohost** or similar in your present working directory. You may be wondering what the **nonode@nohost** means as we haven't come across this before. Let's have a look.
+Gdy uruchamiamy `Mnesia.create_schema([node()])` poprzez IEx, powinniśmy zobaczyć folder **Mnesia.nonode@nohost**, lub podobny, w aktualnym katalogu. Możesz się zastanawiać, co oznacza katalog **nonode@nohost**, bo dotychczas się z nim nie spotkaliśmy. Zobaczmy zatem.
 
 ```shell
 $ iex --help
@@ -72,7 +72,7 @@ Usage: iex [options] [.exs file] [data]
 ** Options can be passed to the VM using ELIXIR_ERL_OPTIONS or --erl
 ```
 
-When we pass in the `--help` option to IEx from the command line we are presented with all the possible options. We can see that there is a `--name` and `--sname` options for assigning information to nodes. A node is just a running Erlang Virtual Machine which handles it's own communications, garbage collection, processing scheduling, memory and more. The node is being named as **nonode@nohost** simply by default.
+Kiedy wywołamy `--help` w IEx otrzymamy listę wszystkich możliwych opcji. Na liście są `--name` i `--sname` służące do konfigurowania informacji o węzłach. Węzeł to nic innego jak instancja maszyny wirtualnej Erlanga, która we własnym zakresie zarządza komunikacją, GC, zadaniami, pamięcią itd. Nazwa węzła **nonode@nohost** jest domyślną.
 
 ```shell
 $ iex --name learner@elixirschool.com
@@ -84,11 +84,11 @@ iex(learner@elixirschool.com)> Node.self
 :"learner@elixirschool.com"
 ```
 
-As we can now see, the node we are running is an atom called `:"learner@elixirschool.com"`. If we run `Mnesia.create_schema([node()])` again, we will see that it created another folder called **Mnesia.learner@elixirschool.com**. The purpose of this is quite simple. Nodes in Erlang are used to connect to other nodes to share (distribute) information and resources. This doesn't have to be restricted to the same machine and can communicate via LAN, the internet etc.
+Jak widzimy, uruchomiony przez nas węzeł nazywa się`:"learner@elixirschool.com"`. Jeżeli po raz kolejny wywołamy `Mnesia.create_schema([node()])`, to zobaczymy nowy folder o nazwie **Mnesia.learner@elixirschool.com**. Dzieje się to z prostej przyczyny. Węzły w Erlangu są używane do komunikacji pomiędzy maszynami wirtualnymi i współdzielenia (rozpraszania) informacji i zasobów. komunikacja ta nie jest ograniczona do jednej maszyny fizycznej (systemu operacyjnego), ale można komunikować się przez LAN lub internet.
 
 ## Uruchamianie Mnesii
 
-Now we have the background basics out of the way and set up the database, we are now in a position to start the Mnesia DBMS with the ```Mnesia.start/0``` command.
+Mamy już podstawową wiedzę i jesteśmy na dobrej drodze do uruchomienia bazy danych, uruchommy zatem Mnesia DBMS za pomocą polecenia `Mnesia.start/0`.
 
 ```shell
 iex> alias :mnesia, as: Mnesia
@@ -98,7 +98,7 @@ iex> Mnesia.start()
 :ok
 ```
 
-It is worth keeping in mind when running a distributed system with two or more participating nodes, the function `Mnesia.start/1` must be executed on all participating nodes.
+Musimy pamiętać, że jak pracujemy z systemem rozproszonym na dwóch lub więcej węzłach, to funkcja `Mnesia.start/1` musi byc wywołana na każdym z nich.
 
 ## Tworzenie tabel
 
