@@ -151,7 +151,7 @@ Chcesz dowiedzieć się więcej o specyfikacji dopasowań? Zapoznaj się z oficj
 
 ### Usuwanie rekordów 
 
-Deleting terms is as straightforward as `insert/2` and `lookup/2`.  With `delete/2` we only need our table and the key.  This deletes both the key and its values:
+Usuwanie rekordów jest zbliżone do wstawiania za pomocą `insert/2` i wyszukiwania za pomocą `lookup/2`. Wywołując `delete/2` przekazujemy nazwę tabeli i klucz. W wyniku usunięte zostaną zarówno dane, jak i klucz:
 
 ```elixir
 iex> :ets.delete(:user_lookup, "doomspork")
@@ -160,7 +160,7 @@ true
 
 ### Usuwanie tabel
 
-ETS tables are not garbage collected unless the parent is terminated.  Sometimes it may be necessary to delete an entire table without terminating the owner process.  For this we can use `delete/1`:
+Tabele ETS nie są usuwane, chyba że proces je obsługujący zakończy się. Czasami jednak musimy usunąć tabelę, ale nie zatrzymując procesu. Służy do tego funkcja `delete/1`:
 
 ```elixir
 iex> :ets.delete(:user_lookup)
@@ -169,9 +169,9 @@ true
 
 ## Przykładowe użycie ETS
 
-Given what we've learned above, let's put everything together and build a simple cache for expensive operations.  We'll implement a `get/4` function to take a module, function, arguments, and options.  For now the only option we'll worry about is `:ttl`.
+Wykorzystajmy naszą wiedzę w praktyce. Stwórzmy aplikację – prosty _cache_ dla drogich obliczeniowo operacji. Zaimplementujemy funkcję `get/4`, która jako argumenty przyjmuje moduł, funkcję, argumenty tej funkcji oraz opcje. Na początek obchodzi nas tylko opcja `:ttl`.  
 
-For this example we're assuming the ETS table has been created as part of another process, such as a supervisor:
+W przykładzie zakładamy, że tabela ETS została utworzona przez inny proces, na przykład nadzorcę:
 
 ```elixir
 defmodule SimpleCache do
@@ -224,7 +224,7 @@ defmodule SimpleCache do
 end
 ```
 
-To demonstrate the cache we'll use a function that returns the system time and a TTL of 10 seconds.  As you'll see in the example below, we get the cached result until the value has expired:
+Zademonstrujmy działanie naszego _cacha_ z użyciem funkcji zwracającej czas systemowy z 10-sekundową "pamięcią" (TTL). Jak widać na poniższym przykładzie, otrzymujemy wynik z pamięci podręcznej, do momentu aż wartość się nie zdezaktualizuje:
 
 ```elixir
 defmodule ExampleApp do
@@ -247,7 +247,7 @@ iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089119
 ```
 
-After 10 seconds if we try again we should get a fresh result:
+Gdy spróbujemy po 10 sekundach, otrzymamy nowy wynik:
 
 ```elixir
 iex> ExampleApp.test
@@ -256,11 +256,11 @@ iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 1451089134
 ```
 
-As you see we are able to implement a scalable and fast cache without any external dependencies and this is only one of many uses for ETS.
+Jak widać, udało nam się zaimplementować skalowalną i szybką pamięć podręczną bez żadnych zewnętrznych zależności, a to tylko jedno z zastosowań ETS.
 
 ## ETS, a dysk twardy
 
-We now know ETS is for in-memory term storage but what if we need disk-based storage? For that we have Disk Based Term Storage, or DETS for short.  The ETS and DETS APIs are interchangeable with the exception of how tables are created. DETS relies on `open_file/2` and doesn't require the `:named_table` option:
+Jak wiemy ETS do działania wykorzystuje pamięć RAM, a co jeżeli chcielibyśmy mieć rozwiązanie wykorzystujące dysk twardy? Do tego służy _Disk Based Term Storage_, w skrócie DETS. Interfejsy ETS i DETS mają spójne API z dokładnością do sposobu tworzenia tabel. DETS wykorzystuje `open_file/2` i nie wymaga opcji `:named_table`:
 
 ```elixir
 iex> {:ok, table} = :dets.open_file(:disk_storage, [type: :set])
@@ -273,11 +273,11 @@ iex> :dets.select(table, fun)
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
-If you exit `iex` and look in your local directory, you'll see a new file `disk_storage`:
+Jak wyjdziesz z `iex` i zajrzysz do lokalnego katalogu, to odkryjesz nowy plik `disk_storage`:
 
 ```shell
 $ ls | grep -c disk_storage
 1
 ```
 
-One last thing to note is that DETS does not support `ordered_set` like ETS, only `set`, `bag`, and `duplicate_bag`.
+Trzeba jeszcze zaznaczyć, że DETS nie wspiera `ordered_set` w przeciwieństwie do ETS, tylko `set`, `bag` i `duplicate_bag` są obsługiwane.
