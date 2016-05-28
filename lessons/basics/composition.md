@@ -249,6 +249,6 @@ defmacro __using__(_) do
 end
 ```
 
-The Ecto.Migration.__using__/1 macro includes an import call so that if use Ecto.Migration you also import Ecto.migration. It also sets up a module property which I assume controls Ecto’s behavior.
+The Ecto.Migration.__using__/1 macro includes an import call so that when you `use Ecto.Migration` you also `import Ecto.Migration`. It also sets up a module property which we assume controls Ecto’s behavior.
 
-To recap: the use macro just invokes the __using__/1 macro of the specified module. To really understand what that does you need to read the __using__/1 macro.
+To recap: the use macro simply invokes the __using__/1 macro of the specified module. To really understand what that does you need to read the __using__/1 macro.
