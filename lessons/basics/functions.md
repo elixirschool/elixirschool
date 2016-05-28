@@ -10,7 +10,7 @@ In Elixir and many functional languages, functions are first class citizens.  We
 
 {% include toc.html %}
 
-## Anonymous functions
+## Anonymous Functions
 
 Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, they are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
 
@@ -22,7 +22,7 @@ iex> sum.(2, 3)
 5
 ```
 
-### The & shorthand
+### The & Shorthand
 
 Using anonymous functions is such a common practice in Elixir there is shorthand for doing so:
 
@@ -34,7 +34,7 @@ iex> sum.(2, 3)
 
 As you probably already guessed, in the shorthand version our parameters are available to us as `&1`, `&2`, `&3`, and so on.
 
-## Pattern matching
+## Pattern Matching
 
 Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
 
@@ -54,7 +54,7 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-## Named functions
+## Named Functions
 
 We can define functions with names so we can refer to them later, these named functions are defined with the `def` keyword within a module.  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
 
@@ -93,7 +93,7 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### Private functions
+### Private Functions
 
 When we don't want other modules accessing a function we can use private functions, which can only be called within their Module.  We can define them in Elixir with `defp`:
 
@@ -136,7 +136,7 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### Default arguments
+### Default Arguments
 
 If we want a default value for an argument we use the `argument \\ value` syntax:
 
