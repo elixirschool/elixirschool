@@ -187,10 +187,20 @@ Repo.all(query)
 
 ### Count
 
+승인된 사용자의 숫자를 세고 싶은 경우에 `count/1`을 사용할 수 있습니다:
+
 ```elixir
 query = from u in User,
     where: u.confirmed == true,
     select: count(u.id)
+```
+
+주어진 엔트리에서 유일한 값만을 세는 `count/2` 함수도 있습니다:
+
+```elixir
+query = from u in User,
+    where: u.confirmed == true,
+    select: count(u.id, :distinct)
 ```
 
 ### Group By
