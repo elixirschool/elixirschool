@@ -102,21 +102,21 @@ Musimy pamiętać, że jak pracujemy z systemem rozproszonym na dwóch lub więc
 
 ## Tworzenie tabel
 
-The function `Mnesia.create_table/2` is used to create tables within our database. Below we create a table called `Person` and then pass a keyword list defining the table schema.
+Do tworzenia tabel w naszej bazie służy funkcja `Mnesia.create_table/2`. Poniżej tworzymy tabelę `Person` i przekazujemy listę asocjacyjną opisującą jej schemat.
 
 ```shell
 iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:atomic, :ok}
 ```
 
-We define the columns using the atoms `:id`, `:name`, and `:job`. When we execute `Mnesia.create_table/2`, it will return either one of the following responses:
+Kolumny definiujemy za pomocą atomów `:id`, `:name` i `:job`. Kiedy wywołamy `Mnesia.create_table/2`, otrzymamy jedną z poniższych odpowiedzi:
 
- - `{atomic, ok}` if the function executes successfully
- - `{aborted, Reason}` if the function failed
+ - `{atomic, ok}` – jeżeli wszystko się udało,
+ - `{aborted, Reason}` – jeżeli funkcja napotkała błąd.
 
-## Nie koszerne podejście 
+## „Niekoszerne” podejście 
 
-First of all we will look at the dirty way of reading and writing to an Mnesia table. This should generally be avoided as success is not guaranteed, but it should help us learn and become comfortable working with Mnesia. Let's add some entries to our **Person** table.
+Na początek rzućmy okiem na „nie koszerne” podejście do odczytu i zapisu danych do tabel. Zasadniczo powinno być ono unikane, ponieważ nie gwarantuje sukcesu operacji, ale pomoże nam w nauce i zapewni komfort w pracy z Mnesią. Dodajmy trochę danych do tabeli **Person**.
 
 ```shell
 iex> Mnesia.dirty_write({Person, 1, "Seymour Skinner", "Principal"})
@@ -129,7 +129,7 @@ iex> Mnesia.dirty_write({Person, 3, "Moe Szyslak", "Bartender"})
 :ok
 ```
 
-...and to retrieve the entries we can use `Mnesia.dirty_read/1`:
+...i odczytajmy je z użyciem `Mnesia.dirty_read/1`:
 
 ```shell
 iex> Mnesia.dirty_read({Person, 1})
@@ -145,11 +145,11 @@ iex> Mnesia.dirty_read({Person, 4})
 []
 ```
 
-If we try to query a record that doesn't exist Mnesia will respond with an empty list.
+Jeżeli spróbujemy pobrać nieistniejący rekord, Mnesia zwróci pustą listę.
 
 ## Transakcje
 
-Traditionally we use **transactions** to encapsulate our reads and writes to our database. Transactions are an important part of designing fault-tolerant, highly distributed systems. An Mnesia *transaction is a mechanism by which a series of database operations can be executed as one functional block*. First we create an anonymous function, in this case `data_to_write` and then pass it onto `Mnesia.transaction`.
+Tradycyjnie używamy **transakcji** do odizolowania odczytów i zapisów do bazy. Transakcje są bardzo istotnym elementem przy projektowaniu odpornych na błędy i silnie rozproszonych systemów. Dla Mnesii *transakcja jest mechanizmem pozwalającym na uruchomienie wielu operacji na danych w ramach jednego bloku funkcyjnego*. Najpierw stwórzmy anonimową funkcję, w tym przypadku `data_to_write` i przekażmy ją do `Mnesia.transaction`.
 
 ```shell
 iex> data_to_write = fn ->
@@ -163,7 +163,7 @@ iex> data_to_write = fn ->
 iex> Mnesia.transaction(data_to_write)
 {:atomic, :ok}
 ```
-Based on this transaction message, we can safely assume that we have written the data to our `Person` table. Let's use a transaction to read from the database now to make sure. We will use `Mnesia.read/1` to read from the database, but again from within an anonymous function.
+Bazując na informacji zwrotnej, możemy z satysfakcją stwierdzić, że zapisaliśmy dane do tabeli `Person`. Teraz użyjmy transakcji do odczytu danych. W tym celu użyjemy `Mnesia.read/1`, ale tak jak poprzednio w anonimowej funkcji.
 
 ```shell
 iex> data_to_read = fn ->
