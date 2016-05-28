@@ -2,8 +2,8 @@
 layout: page
 title: Sigils
 category: basics
-order: 10
-lang: ja
+order: 11
+lang: jp
 ---
 
 シギル(sigil)を使う/作る
