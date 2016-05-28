@@ -67,7 +67,7 @@ iex> String.length "Hello"
 5
 ```
 
-### `replace/4`
+### `replace/3`
 
 Returns a new string replacing a current pattern in the string for some new replacement string.
 
