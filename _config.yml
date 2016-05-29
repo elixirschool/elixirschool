@@ -24,11 +24,12 @@ description:
   pl: Lekcje programowania w języku Elixir
   no: Leksjoner i programmeringsspråket Elixir
   ko: 프로그래밍 언어 Elixir 배우기
+  th: บนเรียนเกี่ยวกับการเขียนโปรแกรมภาษา Elixir
 baseurl: /
 url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'th']
 default_lang: en
 exclude_from_localization: []
 sections:
@@ -49,6 +50,7 @@ sections:
       pl: Podstawy
       no: Grunnleggende
       ko: 기초
+      th: พื้นฐาน
   - tag: advanced
     label:
       en: Advanced
@@ -66,6 +68,7 @@ sections:
       pl: Zaawansowane
       no: Avansert
       ko: 심화
+      th: ขั้นสูง
   - tag: specifics
     label:
       en: Specifics
@@ -83,6 +86,7 @@ sections:
       pl: Specyficzne
       no: Detaljer
       ko: 활용
+      th: เฉพาะทาง
 
 gems:
   - kramdown
@@ -128,3 +132,4 @@ toc:
   pl: Spis treści
   no: Innholdsfortegnelse
   ko: 목차
+  th: สารบัญ
