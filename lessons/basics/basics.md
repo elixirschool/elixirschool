@@ -214,13 +214,13 @@ iex> 2 === 2.0
 false
 ```
 
-An important feature of Elixir is that any two types can be compared, this is particularly useful in sorting.  We don't need to memorize the sort order but it is important to be aware of it:
+An important feature of Elixir is that any two types can be compared; this is particularly useful in sorting.  We don't need to memorize the sort order, but it is important to be aware of it:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
 
-This can lead to some interesting, and valid, comparisons you might not find in other languages:
+This can lead to some interesting, yet valid, comparisons you may not find in other languages:
 
 ```elixir
 iex> :hello > 999
