@@ -12,7 +12,7 @@ Mnesia는 실시간 분산 데이터베이스 관리 시스템을 담당하고 �
 
 ## 개론
 
-Mnesia는 Elixir에서 이미 사용하고 있는 Erlang 런타임 시스템에서 동작하는 데이터베이스 관리 시스템(DBMS)입니다. Mnesia의 *관계 모델과 객체 모델을 섞어둔 하이브리드 모델*은 어떤 크기의 분산 애플리케이션을 개발할 수 있게 해줍니다.
+Mnesia는 Elixir에서 이미 사용하고 있는 Erlang 런타임 시스템에서 동작하는 데이터베이스 관리 시스템(DBMS)입니다. Mnesia의 *관계 모델과 객체 모델을 섞어둔 하이브리드 모델*은 어떤 크기의 분산 애플리케이션이든 개발할 수 있게 해줍니다.
 
 ## 언제 사용해야 하나요?
 
@@ -84,7 +84,7 @@ iex(learner@elixirschool.com)> Node.self
 :"learner@elixirschool.com"
 ```
 
-여기에서 볼 수 있듯, 지금 실행 중인 노드의 이름은  `:"learner@elixirschool.com"`라는 애텀입니다. 만약 우리가 `Mnesia.create_schema([node()])`를 다시 실행한다면 이제 **Mnesia.learner@elixirschool.com**라는 이름의 다른 폴더를 생성하는 것을 확인할 수 있습니다. 왜 이렇게 하는지는 무척 간단한 이유가 있습니다. Erlang에서의 노드는 (분산된) 정보나 자원을 공유하기 위해서 다른 노드들을 연결하곤 합니다. 이는 같은 기계에서 동작할 필요가 없으며, LAN이나 인터넷 등을 통해서 연결될 수도 있습니다.
+여기에서 볼 수 있듯, 지금 실행 중인 노드의 이름은  `:"learner@elixirschool.com"`라는 애텀입니다. 만약 우리가 `Mnesia.create_schema([node()])`를 다시 실행한다면 이제 **Mnesia.learner@elixirschool.com**라는 이름의 다른 폴더를 생성하는 것을 확인할 수 있습니다. 왜 이렇게 하는지는 무척 간단한 이유가 있습니다. Erlang에서의 노드는 (분산된) 정보나 자원을 공유하기 위해서 다른 노드들을 연결하곤 합니다. 이는 같은 기기에서 동작할 필요가 없으며, LAN이나 인터넷 등을 통해서 연결될 수도 있습니다.
 
 ## Mnesia 시작하기
 
