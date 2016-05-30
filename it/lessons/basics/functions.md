@@ -113,7 +113,7 @@ iex> Greeter.phrase
 
 ### Guardie
 
-Abbiamo trattato brevemente le guadie (_guards_) nella lezione sulle [Strutture di Controllo](../control-structures.md), ora vedremo come possiamo applicarle alle funzioni con un nome. Una volta che Elixir ha individuato una funzione, tutte le guardie verranno controllate.
+Abbiamo trattato brevemente le guadie (_guards_) nella lezione sulle [Strutture di Controllo](../control-structures), ora vedremo come possiamo applicarle alle funzioni con un nome. Una volta che Elixir ha individuato una funzione, tutte le guardie verranno controllate.
 
 Nell'esempio che segue abbiamo due funzioni con la stessa _signature_ (cioè accettano gli stessi argomenti), ma ci affidiamo alle guardie per determinare quale usare basandoci sul tipo di argomenti:
 

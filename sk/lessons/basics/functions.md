@@ -117,7 +117,7 @@ Volanie funkcie `Greeter.phrase` vyhodilo chybu, pretože bola definovaná ako p
 
 ### Hraničné podmienky
 
-Hraničných podmienok (*guards*) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](../control-structures.md). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
+Hraničných podmienok (*guards*) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](../control-structures). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
 
 Hraničné podmienky sú vyhodnocované hneď po tom, čo Elixir pattern matchingom vyberie jedno z definovaných tiel funkcie.
 

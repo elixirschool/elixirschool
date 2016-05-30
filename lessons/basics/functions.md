@@ -113,7 +113,7 @@ iex> Greeter.phrase
 
 ### Guards
 
-We briefly covered guards in the [Control Structures](../control-structures.md) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
+We briefly covered guards in the [Control Structures](../control-structures) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
 
 In the follow example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
 
