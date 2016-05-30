@@ -12,7 +12,7 @@ In Elixir and many functional languages, functions are first class citizens.  We
 
 ## Anonymous Functions
 
-Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, they are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
+Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, these are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
 
 Let's look at a basic example:
 
@@ -56,9 +56,9 @@ An error has occurred!
 
 ## Named Functions
 
-We can define functions with names so we can refer to them later, these named functions are defined with the `def` keyword within a module.  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
+We can define functions with names so we can easily refer to them later.  Named functions are defined within a module using the `def` keyword .  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
 
-Functions defined within a module are available to other modules for use, this is a particularly useful building block in Elixir:
+Functions defined within a module are available to other modules for use.  This is a particularly useful building block in Elixir:
 
 ```elixir
 defmodule Greeter do
@@ -95,7 +95,7 @@ iex> Length.of [1, 2, 3]
 
 ### Private Functions
 
-When we don't want other modules accessing a function we can use private functions, which can only be called within their Module.  We can define them in Elixir with `defp`:
+When we don't want other modules accessing a specific function we can make the function private.  Private functions can only be called from within their own Module.  We define them in Elixir with `defp`:
 
 ```elixir
 defmodule Greeter do
