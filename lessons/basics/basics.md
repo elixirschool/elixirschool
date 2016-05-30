@@ -22,10 +22,21 @@ Elixir comes with `iex`, an interactive shell, which allows us to evaluate Elixi
 
 To get started, let's run `iex`:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP 18 [erts-7.3] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-	iex>
+    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+    iex(1)>
+   
+Lets go ahead and give it a try now by typing in a few simple expressions:
+
+    iex(1)> 2+3
+    5
+    iex(2)> 2+3 == 5
+    true
+    iex(3)> String.length("The quick brown fox jumps over the lazy dog")
+    43
+
+Don't worry if you don't understand every expression yet, but hopefully you get the idea.
 
 ## Basic Types
 
