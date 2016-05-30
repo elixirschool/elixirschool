@@ -1,3 +1,4 @@
+
 ---
 layout: page
 title: Erlang Term Storage (ETS)
@@ -27,7 +28,7 @@ iex> table = :ets.new(:user_lookup, [:set, :protected])
 8212
 ```
 
-GenServer와 마찬가지로, ID 대신에 이름을 사용해서 ETS 테이블에 접근하는 방법이 있습니다. `:named_table` 옵션을 사용하면 이름을 통해 테이블에 접근할 수 있습니다:
+GenServer처럼 ID 대신에 이름을 사용해서 ETS 테이블에 접근하는 방법이 있습니다. `:named_table` 옵션을 사용하면 이름을 통해 테이블에 접근할 수 있습니다:
 
 ```elixir
 iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
@@ -39,7 +40,7 @@ iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
 ETS에서 사용할 수 있는 테이블의 타입은 4개가 있습니다:
 
 + `set` — 기본 테이블 타입입니다. 각 키당 하나의 값을 가지며, 키는 중복될 수 없습니다.
-+ `ordered_set` — `set`과 비슷합니다만, Erlang/Elixir의 용어로 정렬할 수 있습니다. 중요하므로 추가로 설명하자면, 키의 비교는 `ordered_set`에서의 그것과 다릅니다. 
++ `ordered_set` — `set`과 비슷합니다만, Erlang/Elixir의 용어로 정렬할 수 있습니다. 다만, `ordered_set` 내부에서의 키의 비교는 다르게 동작한다는 점을 알아 둘 필요가 있습니다. 동등하다고 판단되는 경우에는 별도로 매치하지 않습니다. 예를 들어, 1과 1.0은 동등하다고 취급합니다.
 + `bag` — 키에 많은 객체를 저장할 수 있습니다만, 하나의 객체에는 하나의 인스턴스만을 가질 수 있습니다.
 + `duplicate_bag` — 키에 많은 객체를 저장할 수 있으며, 중복을 허용합니다.
 
@@ -161,7 +162,7 @@ true
 
 ### 테이블 제거
 
-ETS 테이블은 부모가 종료될 때까지 가비지 컬렉션이 동작하지 않습니다. 때때로 소유하고 있는 프로세스를 종료하지 않고, 테이블 전체를 삭제해야 하는 경우도 있습니다. 그런 경우에는 `delete/1`을 사용할 수 있습니다:
+ETS 테이블은 부모 프로세스가 종료될 때까지 가비지 컬렉션이 동작하지 않습니다. 때때로 소유하고 있는 프로세스를 종료하지 않고, 테이블 전체를 삭제해야 하는 경우도 있습니다. 그런 경우에는 `delete/1`을 사용할 수 있습니다:
 
 ```elixir
 iex> :ets.delete(:user_lookup)
