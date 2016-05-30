@@ -6,17 +6,24 @@ order: 1
 lang: en
 ---
 
-Setup, basic types and operations.
+Getting started, basic data types and basic operations.
 
 {% include toc.html %}
 
-## Setup
+## Getting Started
 
-### Install Elixir
+### Installing Elixir
 
-Installation instructions for each OS can be found on Elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
+Installation instructions for each OS can be found on elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
 
-### Interactive Mode
+After Elixir is installed you can easily confirm the installed version.
+
+    % elixir -v
+    Erlang/OTP 18 [erts-7.3] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+    Elixir {{ site.elixir.version }}
+
+### Trying Interactive Mode
 
 Elixir comes with `iex`, an interactive shell, which allows us to evaluate Elixir expressions as we go.
 
@@ -38,7 +45,7 @@ Lets go ahead and give it a try now by typing in a few simple expressions:
 
 Don't worry if you don't understand every expression yet, but hopefully you get the idea.
 
-## Basic Types
+## Basic Data Types
 
 ### Integers
 
@@ -127,6 +134,8 @@ iex> "foo
 iex> "foo\nbar"
 "foo\nbar"
 ```
+
+Elixir also includes more complex data types.  We'll learn more about these when we learn about Collections and Functions.
 
 ## Basic Operations
 
