@@ -2,7 +2,7 @@
 layout: page
 title: Operator Potoku
 category: basics
-order: 6 
+order: 7
 lang: pl
 ---
 

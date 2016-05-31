@@ -2,7 +2,7 @@
 layout: page
 title: パイプライン演算子
 category: basics
-order: 6
+order: 7
 lang: jp
 ---
 
