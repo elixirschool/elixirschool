@@ -3,7 +3,7 @@ layout: page
 title: Testing
 category: basics
 order: 12
-lang: en
+lang: th
 ---
 
 Testing is an important part of developing software.  In this lesson we'll look at how to test our Elixir code with ExUnit and some best practices for doing so.
@@ -105,4 +105,3 @@ end
 The simple answer to mocking in Elixir: don't.  You may instinctively reach for mocks but they are highly discouraged in the Elixir community and for good reason.  If you follow good design principles the resulting code will be easy to test as individual components.
 
 Resist the urge.
-

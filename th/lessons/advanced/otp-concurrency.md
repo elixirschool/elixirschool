@@ -3,7 +3,7 @@ layout: page
 title: OTP Concurrency
 category: advanced
 order: 5
-lang: en
+lang: th
 ---
 
 We've looked at the Elixir abstractions for concurrency but sometimes we need greater control and for that we turn to the OTP behaviors that Elixir is built on.

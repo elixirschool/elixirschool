@@ -1,16 +1,16 @@
 ---
 layout: page
-title: Custom Mix Tasks 
+title: Custom Mix Tasks
 category: basics
 order: 15
-lang: en
+lang: th
 ---
 
 Creating custom Mix tasks for your Elixir projects.
 
 {% include toc.html %}
 
-## Introduction 
+## Introduction
 
 It's not uncommon to want to extend your Elixir applications functionality by adding custom Mix tasks. Before we learn about how to create specific Mix tasks for our projects, let's look at one that already exists:
 

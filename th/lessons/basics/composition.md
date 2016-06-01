@@ -3,7 +3,7 @@ layout: page
 title: Composition
 category: basics
 order: 8
-lang: en
+lang: th
 ---
 
 We know from experience its unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.

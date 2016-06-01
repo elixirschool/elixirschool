@@ -3,7 +3,7 @@ layout: page
 title: Ecto
 category: specifics
 order: 2
-lang: en
+lang: th
 ---
 
 Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define models, insert and update records, and query them.

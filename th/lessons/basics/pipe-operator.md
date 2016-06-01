@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Pipe Operator 
+title: Pipe Operator
 category: basics
-order: 6 
-lang: en
+order: 6
+lang: th
 ---
 
 The pipe operator `|>` passes the result of an expression as the first parameter of another expression.
@@ -67,4 +67,3 @@ foo(1) |> bar(2) |> baz(3)
 
 ["ELIXIR", "ROCKS"]
 ```
-

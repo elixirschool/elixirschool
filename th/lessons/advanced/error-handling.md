@@ -3,7 +3,7 @@ layout: page
 title: Error Handling
 category: advanced
 order: 2
-lang: en
+lang: th
 ---
 
 Although more common to return the `{:error, reason}` tuple, Elixir supports exceptions and in this lesson we'll look at how to handle errors and the different mechanisms available to us.

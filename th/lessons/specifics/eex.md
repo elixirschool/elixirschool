@@ -3,7 +3,7 @@ layout: page
 title: Embedded Elixir (EEx)
 category: specifics
 order: 3
-lang: en
+lang: th
 ---
 
 Much like Ruby has ERB and Java has JSPs, Elixir has EEx, or Embedded Elixir.  With EEx we can embed and evaluate Elixir inside strings.
