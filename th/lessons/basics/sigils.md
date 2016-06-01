@@ -3,7 +3,7 @@ layout: page
 title: Sigils
 category: basics
 order: 10
-lang: en
+lang: th
 ---
 
 Working with and creating sigils.

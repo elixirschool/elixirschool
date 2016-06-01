@@ -3,7 +3,7 @@ layout: page
 title: Mnesia
 category: specifics
 order: 5
-lang: en
+lang: th
 ---
 
 Mnesia is a heavy duty real-time distributed database management system.

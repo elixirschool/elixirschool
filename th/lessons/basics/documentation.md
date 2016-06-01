@@ -3,7 +3,7 @@ layout: page
 title: Documentation
 category: basics
 order: 11
-lang: en
+lang: th
 ---
 
 Documenting Elixir code.
@@ -22,7 +22,7 @@ Elixir treats documentation as a *first-class citizen*, offering various functio
 
 ### Inline Documentation
 
-Probably the simplest way to comment your code is with inline comments. Similar to Ruby or Python, Elixir's inline comment is denoted with a `#`, frequently known as a *pound*, or a *hash* depending on where you are from in the world. 
+Probably the simplest way to comment your code is with inline comments. Similar to Ruby or Python, Elixir's inline comment is denoted with a `#`, frequently known as a *pound*, or a *hash* depending on where you are from in the world.
 
 Take this Elixir Script (greeting.exs):
 

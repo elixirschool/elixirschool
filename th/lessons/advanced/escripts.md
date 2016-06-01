@@ -3,7 +3,7 @@ layout: page
 title: Executables
 category: advanced
 order: 3
-lang: en
+lang: th
 ---
 
 To build executables in Elixir we will be using escript. Escript produces an executable that can be run on any system with Erlang installed.

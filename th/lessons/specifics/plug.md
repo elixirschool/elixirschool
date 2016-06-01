@@ -3,7 +3,7 @@ layout: page
 title: Plug
 category: specifics
 order: 1
-lang: en
+lang: th
 ---
 
 If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra.  It provides a specification for web application components and adapters for web servers. While not part of Elixir core, Plug is an official Elixir project.

@@ -3,7 +3,7 @@ layout: page
 title: Collections
 category: basics
 order: 2
-lang: en
+lang: th
 ---
 
 List, tuples, keywords, maps and functional combinators.
