@@ -45,10 +45,10 @@ end
 Sekarang kita boleh mencapai pustaka Erlang tersebut:
 
 ```elixir
-png = :png.create(#{:size => {30, 30},
+png = :png.create(%{:size => {30, 30},
                     :mode => {:indexed, 8},
                     :file => file,
-                    :palette => palette}),
+                    :palette => palette})
 ```
 
 ## Perbezaan Nyata
