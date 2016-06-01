@@ -17,6 +17,10 @@ Elixirにおいて文字列とはバイトのシーケンスに他なりませ�
 ```elixir
 iex> string = <<104,101,108,108,111>>
 "hello"
+
+iex> string = <<227, 129, 147, 227, 130, 147, 227, 129, 171, 227, 129, 161, 227, 130, 143>>
+"こんにちわ"
+
 ```
 
 >註: << >>記法はコンパイラにこれらのシンボルで囲まれた中身はバイト列であることを示します。
@@ -56,6 +60,16 @@ iex> String.codepoints string
 
 iex> String.graphemes string
 ["á"]
+
+iex> string = "\uFF76\uFF9E"    # 半角カタカナ
+"ｶﾞ"
+
+iex> String.codepoints string   # コードポイントは半角の"ｶ"と"ﾞﾞ"にわかれる
+["ｶ", "ﾞ"]
+
+iex> String.graphemes string    # 書記素では1つと数えられる
+["ｶﾞ"]
+
 ```
 
 ## 文字列関数
@@ -68,6 +82,9 @@ iex> String.graphemes string
 
 ```elixir
 iex> String.length "Hello"
+5
+
+iex> String.length "こんにちわ"  # ひらがなでも正しく文字数が返る
 5
 ```
 
