@@ -65,7 +65,7 @@ iex> 1.0e-10
 
 ### Booleans
 
-Elixir supports `true` and `false` as booleans; everything is truthy except for `false` and `nil`:
+Elixir ใช้ `true` และ `false` แทนจริงหรือเท็จ; ทุกอย่างเป็นจริงหมดยกเว้น `false` และ `nil`:
 
 ```elixir
 iex> true
@@ -76,7 +76,7 @@ false
 
 ### Atoms
 
-An atom is a constant whose name is their value. If you're familiar with Ruby these are synonymous with Symbols:
+อะตอม(atom) เป็นตัวแปรที่มีชื่อเป็นค่าของตัวแปร คล้ายๆกับ Symbols ของภาษา Ruby
 
 ```elixir
 iex> :foo
@@ -85,7 +85,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTE: Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
+หมายเหตุ: Booleans `true` และ `false` สามารถแทนด้วยอะตอม `:true` และ `:false` ก็ได้เช่นกัน
 
 ```elixir
 iex> true |> is_atom
@@ -98,7 +98,7 @@ true
 
 ### Strings
 
-Strings in Elixir are UTF-8 encoded and are wrapped in double quotes:
+สตริงในภาษา Elixir ใช้ UTF-8 และอยู่ภายใต้เครื่องหมาย ""
 
 ```elixir
 iex> "Hello"
@@ -107,7 +107,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-Strings support line breaks and escape sequences:
+สตริงสามารถใช้ข้อความหลายบรรทัด หรือใช้ escape sequences ได้ (escape sequences เช่น \n, \t,...)
 
 ```elixir
 iex> "foo
@@ -117,11 +117,11 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-## Basic Operations
+## การดำเนินการพื้นฐานของตัวแปร
 
-### Arithmetic
+### Arithmetic (การคำนวณ)
 
-Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.  It's important to notice that `/` will always return a float:
+Elixir สามารถใช้ `+`, `-`, `*`, และ `/` แทนการบวก ลบ คูณ และหาร.  ข้อควรจำการหาร `/` ผลลัพธ์ที่ได้จะเป็นเลขทศนิยมเท่านั้น:
 
 ```elixir
 iex> 2 + 2
@@ -134,7 +134,7 @@ iex> 10 / 5
 2.0
 ```
 
-If you need integer division or the division remainder, Elixir comes with two helpful functions to achieve this:
+ถ้าต้องการหารจำนวนเต็มเพื่อเอาเศษ หรือ หารเพื่อเอาส่วนที่เหลือ Elixir เตรียมฟังก์ชั่นไว้ให้ใช้ ดังนี้
 
 ```elixir
 iex> div(10, 5)
@@ -143,9 +143,9 @@ iex> rem(10, 3)
 1
 ```
 
-### Boolean
+### Boolean (ตรรกะ)
 
-Elixir provides the `||`, `&&`, and `!` boolean operators. These support any types:
+Elixir เตรียม `||`, `&&`, และ `!` สำหรับการดำเนินการ 'หรือ', 'และ', 'ตรงกันข้าม'. และสนับสนุนหลายๆชนิดของข้อมูล ดังนี้:
 
 ```elixir
 iex> -20 || true
@@ -164,7 +164,7 @@ iex> !false
 true
 ```
 
-There are three additional operators whose first argument _must_ be a boolean (`true` and `false`):
+ถ้าต้องการใช้ and, or, not ข้างหน้าต้องเป็นตัวแปรแบบบูเลี่ยน(boolean) `true`, `false` เท่านั้น
 
 ```elixir
 iex> true and 42
@@ -179,9 +179,9 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-### Comparison
+### Comparison (การเปรียบเทียบ)
 
-Elixir comes with all the comparisons operators we're used to: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` and `>`.
+Elixir ใช้: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` และ `>`.
 
 ```elixir
 iex> 1 > 2
@@ -194,7 +194,7 @@ iex> 2 <= 3
 true
 ```
 
-For strict comparison of integers and floats use `===`:
+ถ้าต้องการเปรียบเทียบทั้งค่าและชนิดของตัวแปรให้ใช้ `===`:
 
 ```elixir
 iex> 2 == 2.0
@@ -203,13 +203,13 @@ iex> 2 === 2.0
 false
 ```
 
-An important feature of Elixir is that any two types can be compared, this is particularly useful in sorting.  We don't need to memorize the sort order but it is important to be aware of it:
+ถ้าหากต้องการเปรียบเทียบ ตัวแปรที่ประเภทของข้อมูลแตกต่างกัน จะเรียงกันตามลำดับ ข้างล่างนี้ จากน้อยไปหามาก
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
 
-This can lead to some interesting, and valid, comparisons you might not find in other languages:
+ยกตัวอย่างข้างล่างนี้ atom จะมีค่ามากกว่า ตัวเลข หรือ จำนวน ซึ่งจะไม่พบในภาษาโปรแกรมมิ่งอื่นๆ
 
 ```elixir
 iex> :hello > 999
@@ -218,9 +218,9 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### String interpolation
+### String interpolation (การแก้ไขหรือแทนที่สตริง)
 
-If you've used Ruby, string interpolation in Elixir will look familiar:
+ถ้าคุณเคยใช้ภาษา Ruby มาก่อน, การเชื่อมสตริงของภาษา Elixir ก็คล้ายๆกัน
 
 ```elixir
 iex> name = "Sean"
@@ -228,9 +228,9 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### String concatenation
+### String concatenation (การเชื่อมต่อสตริง)
 
-String concatenation uses the `<>` operator:
+ใช้ `<>` เป็นตัวดำเนินการ:
 
 ```elixir
 iex> name = "Sean"

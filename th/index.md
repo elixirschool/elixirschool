@@ -22,12 +22,10 @@ lang: th
 
 ## เกี่ยวกับ  Elixir
 
-"Elixir is a dynamic, functional language designed for building scalable and maintainable applications." — [elixir-lang.org](http://elixir-lang.org/)
-
-Elixir leverages the battle tested ErlangVM to build distributed and fault-tolerant systems with low-latency out of the box.
-
-Elixir เป็นภาษาที่ทรงพลัง, เขียนในรูปแบบ functional ถูกออกแบบมาเพื่องานขนาดใหญ่ที่เน้นการขยายตัวได้ง่ายและ
+Elixir เป็นภาษา dynamic, เป็นภาษาที่เขียนแบบ functional ถูกออกแบบมาเพื่องานขนาดใหญ่ที่เน้นการขยายตัวได้ง่ายและ
 ในขณะเดียวกันก็ต้อง ดูแล รักษา แก้ไขซอร์สโค้ดได้ง่ายเช่นกัน
+
+เว็บไซต์ของภาษาอยู่ที่ — [elixir-lang.org](http://elixir-lang.org/)
 
 โปรแกรมที่เขียนด้วย Elixir รันบน ErlangVM ที่มีชื่อเสียงในเรื่องการสร้างระบบกระจายตัวและระบบที่จะต้องไม่มีการผิดพลาดโดยเด็ดขาด
 
@@ -36,4 +34,4 @@ __คุณสมบัติ__:
 + Scalable (การขยายตัวได้)
 + Fault-tolerant (ป้องกันความผิดพลาด)
 + Functional Programming (การเขียนโปรแกรมแบบฟังก์ชั่น)
-+ Extensible (สามารถเขียนโปรแกรมโดยการเพิ่มได้ง่าย)
++ Extensible (สามารถเขียนโปรแกรมเพิ่มเติมได้ง่าย)
