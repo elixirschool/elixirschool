@@ -78,7 +78,7 @@ Odwzorowania są tylko tzw. lukrem składniowym i powinny być stosowane tylko w
 O filtrowaniu możemy myśleć jak o strażnikach dla odwzorowania. Gdy filtr zwraca wartość `false` lub `nil` to wartość ta jest wyłączana z przetwarzania przez odwzorowanie. Przefiltrujmy pewien zakres liczb tak, by uzyskać tylko liczby  parzyste:
 
 ```elixir
-iex> for x <- 1..10, rem(x, 2) == 0, do: x
+iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
@@ -86,7 +86,7 @@ Filtry, podobnie jak generatory, możemy łączyć. Przefiltrujmy liczby tak, by
 
 ```elixir
 iex> for x <- 1..100,
-...>   rem(x, 2) == 0,
+...>   is_even(x),
 ...>   rem(x, 3) == 0, do: x
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
