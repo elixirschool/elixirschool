@@ -80,7 +80,7 @@ Filtre môžeme brať ako guard výrazy pre komprehenžny. Keď filtrovací výr
 V nasledujúcom príklade budeme ignorovať všetky nepárne čísla:
 
 ```elixir
-iex> for x <- 1..10, rem(x, 2) == 0, do: x
+iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
@@ -88,7 +88,7 @@ Aj filtrov môžee použiť niekoľko naraz - napríklad takto by sme preskočil
 
 ```elixir
 iex> for x <- 1..100,
-...>   rem(x, 2) == 0,
+...>   is_even(x),
 ...>   rem(x, 3) == 0, do: x
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
