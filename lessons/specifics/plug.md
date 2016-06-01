@@ -160,7 +160,7 @@ defmodule Example do
   use Application
 
   def start(_type, _args) do
-    port = Application.get_env(:concoction, :cowboy_port, 8080)
+    port = Application.get_env(:example, :cowboy_port, 8080)
 
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Example.Plug.Router, [], port: port)
@@ -169,6 +169,14 @@ defmodule Example do
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
+```
+
+> (Optional) add `:cowboy_port` in `config/config.exs`
+
+```elixir
+use Mix.Config
+
+config :example, cowboy_port: 8080
 ```
 
 Now to run our application we can use:
