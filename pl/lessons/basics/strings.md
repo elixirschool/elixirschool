@@ -58,7 +58,7 @@ iex> String.graphemes string
 
 Przyjrzyjmy się teraz kilku popularnym i ważnym funkcjom z modułu `String`.
 
-##### `length/1`
+### `length/1`
 
 Zwraca liczbę grafemów w ciągu znaków.
 
@@ -67,7 +67,7 @@ iex> String.length "Hello"
 5
 ```
 
-##### `replace/4`
+### `replace/3`
 
 Zwraca nowy ciąg, w którym zmieniono fragmenty pasujące do wzorca na podane w parametrze. Czwarty parametr jest opcjonalny.
 
@@ -76,7 +76,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-##### `duplicate/2`
+### `duplicate/2`
 
 Tworzy nowy ciąg znaków będący n-krotnym powtórzeniem zadanego.
 
@@ -85,7 +85,7 @@ iex> String.duplicate "Oh my ", 3
 "Oh my Oh my Oh my "
 ```
 
-##### `split/2`
+### `split/2`
 
 Zwraca listę ciągów znaków, będącą wynikiem podziału ciągu według podanego wzorca. 
 
