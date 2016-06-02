@@ -67,7 +67,7 @@ iex> String.length "Hello"
 5
 ```
 
-### `replace/4`
+### `replace/3`
 
 Mengembalikan sebuah string baru, mengganti sebuah pola yang ada dalam string tersebut dngan string baru.
 
