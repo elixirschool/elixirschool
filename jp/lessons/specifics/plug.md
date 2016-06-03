@@ -160,7 +160,7 @@ defmodule Example do
   use Application
 
   def start(_type, _args) do
-    port = Application.get_env(:concoction, :cowboy_port, 8080)
+    port = Application.get_env(:example, :cowboy_port, 8080)
 
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Example.Plug.Router, [], port: port)
