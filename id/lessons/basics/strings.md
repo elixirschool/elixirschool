@@ -31,6 +31,12 @@ Apa beda antara keduanya? Setiap value dari char list adalah nilai ASCII dari ka
 iex> char_list = 'hello'
 'hello'
 
+iex> [hd|tl] = char_list
+'hello'
+
+iex> {hd, tl}
+{104, 'ello'}
+
 iex> Enum.reduce(char_list, "", fn char, acc -> acc <> to_string(char) <> "," end)
 "104,101,108,108,111,"
 ```
@@ -81,7 +87,7 @@ iex> String.replace("Hello", "e", "a")
 Mengembalikan sebuah string baru yang diulang n kali.
 
 ```elixir
-iex> String.duplicate "Oh my ", 3
+iex> String.duplicate("Oh my ", 3)
 "Oh my Oh my Oh my "
 ```
 
