@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 構成
+title: モジュール
 category: basics
 order: 8
 lang: jp
