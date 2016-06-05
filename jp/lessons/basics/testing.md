@@ -10,15 +10,16 @@ lang: jp
 
 {% include toc.html %}
 
-## ExTest
+## ExUnit
 
 Elixirに組み込まれているテストフレームワークはExUnitといい、コードを全面的にテストするのに必要なもの全てを含んでいます。ExUnitを見ていく前に重要なので言及しておきますが、テストはElixirスクリプトとして実装されるため、`.exs`をファイルの拡張子として使用する必要があります。テストを走らせる前にExUnitを`ExUnit.start()`で開始する必要があり、これは通常`test/test_helper.exs`内で行われます。
 
-プロジェクトを生成した時点で、mixは単純なテストを作ってくれていて、`test/concoction_test.exs`(訳注: concoctionは薬品の混合物などの意味。あなたのプロジェクト名で読み替えてください。)で見ることができます:
+プロジェクトを生成した時点で、mixは単純なテストを作ってくれていて、`test/example_test.exs`で見ることができます:
 
 ```elixir
-defmodule ConcoctionTest do
+defmodule ExampleTest do
   use ExUnit.Case
+  doctest Example
 
   test "the truth" do
     assert 1 + 1 == 2
@@ -40,8 +41,9 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 `assert`マクロは式が真であることをテストするために使います。真ではない場合は、エラーが発生してテストが失敗します。失敗するのを試すために、先ほどの例を変更して`mix test`を実行してみましょう:
 
 ```elixir
-defmodule ConcoctionTest do
+defmodule ExampleTest do
   use ExUnit.Case
+  doctest Example
 
   test "the truth" do
     assert 1 + 1 == 3
@@ -52,14 +54,14 @@ end
 今度は先ほどとはかなり異なった形の出力が得られるはずです:
 
 ```shell
-  1) test the truth (ConcoctionTest)
-     test/concoction_test.exs:4
+  1) test the truth (ExampleTest)
+     test/example_test.exs:5
      Assertion with == failed
      code: 1 + 1 == 3
      lhs:  2
      rhs:  3
      stacktrace:
-       test/concoction_test.exs:5
+       test/example_test.exs:6
 
 ......
 
@@ -84,8 +86,9 @@ ExUnitは失敗したアサーションがどこにあるか、期待された�
 この例として、`setup_all`を使うようにコードを変更します:
 
 ```elixir
-defmodule ConcoctionTest do
+defmodule ExampleTest do
   use ExUnit.Case
+  doctest Example
 
   setup_all do
     {:ok, number: 2}
@@ -102,5 +105,3 @@ end
 Elixirでのモックに対する単純な解答は、使うな、です。本能のままにモックへと手を伸ばしているかもしれませんが、Elixirのコミュニティや正当な理由からはとても推奨されていないものです。良いデザインの原則に従えば、その結果書かれるコードは個別の部品としてテストしやすいものになるでしょう。
 
 衝動を抑えましょう。
-
-## ベストプラクティス
