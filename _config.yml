@@ -116,6 +116,10 @@ sitemap:
 elixir:
   version: 1.2.3
 
+erlang:
+  OTP: 18
+  erts: 7.3
+
 toc:
   en: Table of Contents
   jp: 目次
