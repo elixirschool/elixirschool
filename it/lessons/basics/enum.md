@@ -14,12 +14,12 @@ Un insieme di algoritmi per enumerare le collezioni.
 
 Il modulo `Enum` contiene oltre un centinaio di funzioni per lavorare con le collezioni di cui abbiamo parlato nella scorsa lezione.
 
-Questa lezione tratterà solo una parte delle funzioni disponibili, per conoscere tutte le funzioni visita la documentazione ufficiale del modulo [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); per enumerare gli elementi a richiesta (_lazy enumeration_) puoi usare il modulo [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
+Questa lezione tratterà solo una parte delle funzioni disponibili, per conoscere tutte le funzioni visita la documentazione ufficiale del modulo [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); per enumerare gli elementi _a richiesta_ (_lazy enumeration_) puoi usare il modulo [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
 
 
 ### all?
 
-Quando si usa `all?`, come nella maggior parte delle funzioni di `Enum`, forniamo una funzione che verrà applicata su ciascun elemento della collezione. Nel caso di `all?`, la funzione che sarà chiamata sugli elmenti dell'intera collezione deve restituire `true`, altrimenti restituirà `false`:
+Quando si usa `all?`, come nella maggior parte delle funzioni di `Enum`, forniamo una funzione che verrà applicata su ciascun elemento della collezione. Nel caso di `all?`, la funzione che sarà chiamata sugli elementi dell'intera collezione deve restituire `true`, altrimenti `all?` restituirà `false`:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -30,7 +30,7 @@ true
 
 ### any?
 
-Diversamente da quanto visto, `any?` restituirà `true` se almeno un elemento sul quale viene chiamata la funzione restituisce `true`:
+Diversamente da quanto visto con `all?`, `any?` restituirà `true` se almeno un elemento sul quale viene chiamata la funzione restituisce `true`:
 
 ```elixir
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
@@ -46,7 +46,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Esistono alcune opzioni per `chunk` ma non le tratteremo, visita [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) nella documentazione ufficiale per approfondire.
+Esistono alcune opzioni per `chunk` ma non le tratteremo, visita la  [documentazione ufficiale di  `chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) per approfondire.
 
 ### chunk_by
 

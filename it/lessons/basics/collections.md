@@ -12,7 +12,7 @@ Liste, tuple, liste di keywords, mappe, dizionari e combinatori funzionali.
 
 ## Liste
 
-Le Liste sono semplici collezioni di valori, possono includere diversi tipi di dato; le liste possono includere valori ripetuti:
+Le liste (_lists_) sono semplici collezioni di valori, possono includere diversi tipi di dato e valori ripetuti:
 
 ```elixir
 iex> [3.41, :pie, "Apple"]
@@ -49,11 +49,11 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-**Nota:** viene usata la [strict comparison](../basics.md#confronto) per controllare i valori.
+**Nota:** viene usata la [strict comparison](../basics#confronto) per controllare i valori.
 
 ### Head / Tail
 
-Quando si usano le liste, è comune lavorare con la _testa_ (head) e la _coda_ (tail) della lista. La testa è il primo elemento della lista e la coda rappresenta gli elementi rimanenti. Elixir fornisce due metodi utili, `hd` e `tl`, per lavorare con queste parti:
+Quando si usano le liste, è comune lavorare con la _testa_ (_head_) e la _coda_ (_tail_) della lista. La testa è il primo elemento della lista e la coda rappresenta gli elementi rimanenti. Elixir fornisce due metodi utili, `hd` e `tl`, per lavorare con queste parti:
 
 ```elixir
 iex> hd [3.41, :pie, "Apple"]
@@ -75,7 +75,7 @@ iex> t
 
 ## Tuple
 
-Le tuple sono simili alle liste, ma sono conservate in memoria in modo adiancente. Ciò permette di accedere agli elementi in modo rapido, but rende le modifiche più dispendiose; la nuova tupla deve essere interamente copiata in memoria. Le tuple sono rappresentate con le parentesi graffe:
+Le tuple sono simili alle liste, ma sono conservate in memoria in modo adiancente. Ciò permette di accedere agli elementi in modo rapido, ma rende le modifiche più dispendiose perchè viene generata una nuova nuova tupla deve essere interamente copiata in memoria. Le tuple sono rappresentate con le parentesi graffe:
 
 ```elixir
 iex> {3.41, :pie, "Apple"}
@@ -93,7 +93,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Liste di Keywords
 
-Le liste di keywords e le mappe sono collezioni associative di Elixir; entrambe implementano il modulo `Dict`. In Elixir, una lista di keywords è una speciale lista di tuple che hanno un atom come primo elemento; condividono le performance con le liste:
+Le liste di keywords (_keyword lists_) e le mappe sono collezioni associative di Elixir; entrambe implementano il modulo `Dict`. In Elixir, una lista di keywords è una speciale lista di tuple che hanno un atom come primo elemento; hanno le stesse performance delle liste:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -112,7 +112,7 @@ Per queste ragioni, le liste di keywords sono comunemente utilizzate per passare
 
 ## Mappe
 
-In Elixir, le mappe sono il punto di riferimento per organizzare le coppie chiave-valore. Diversamente dalle liste di keywords, le mappe consentono di utilizzare qualsiasi tipo di dato come chiave e non seguono nessun ordinamento. Puoi definire una mappa con la sintassi `%{}`:
+In Elixir, le mappe (_maps_) sono il punto di riferimento per organizzare le coppie chiave-valore. Diversamente dalle liste di keywords, le mappe consentono di utilizzare qualsiasi tipo di dato come chiave e non seguono nessun ordinamento. Puoi definire una mappa con la sintassi `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}

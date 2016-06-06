@@ -51,7 +51,7 @@ iex> 0x1F
 
 ### Numeri in Virgola Mobile
 
-In Elixir, i numeri in virgola mobile richiedono un decimale dopo almeno una cifra; hanno una doppia precisione a 64 bit e supportano la `e` per i numeri con notazione esponenziale:
+In Elixir, i numeri in virgola mobile (_floats_) richiedono un decimale dopo almeno una cifra; hanno una doppia precisione a 64 bit e supportano la `e` per i numeri con notazione esponenziale:
 
 ```elixir
 iex> 3.41
@@ -76,7 +76,7 @@ false
 
 ### Atoms
 
-Un atom è una costante la quale nome è anche il suo valore. Se hai familiarità con Ruby, puoi considerare gli atoms come i Symbols:
+Un atom è una costante il cui nome è anche il suo valore. Se hai familiarità con Ruby, puoi considerare gli atoms come i Symbols:
 
 ```elixir
 iex> :foo
@@ -85,7 +85,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTA: I booleani `true` e `false` sono, rispettivamente, anche `:true` e `:false`.
+NOTA: I booleani `true` e `false` si possono esprimere in forma di atoms, rispettivamente come `:true` e `:false`.
 
 ```elixir
 iex> true |> is_atom
@@ -134,7 +134,7 @@ iex> 10 / 5
 2.0
 ```
 
-Se hai bisogno di fare una divisione tra interi o ottenere il resto di una divisione, Elixir offre due funzioni utili per questo scopo:
+Se hai bisogno di fare una divisione tra interi o calcolare il resto di una divisione, Elixir offre due funzioni utili per questo scopo:
 
 ```elixir
 iex> div(10, 5)
@@ -194,7 +194,7 @@ iex> 2 <= 3
 true
 ```
 
-Per una comparazione rigorosa (_strict_) tra interi e numeri in virogla mobile, usa `===`:
+Per una comparazione rigorosa (_strict_) tra interi e numeri in virgola mobile, usa `===`:
 
 ```elixir
 iex> 2 == 2.0
@@ -203,13 +203,13 @@ iex> 2 === 2.0
 false
 ```
 
-Una funzionalità importante di Elixir è che due valori di qualsiasi tipo possono essere confrontati, questo è particolarmente utile per l'ordinamento. Non abbiamo bisogno di memorizzare la sequenza di ordinamento, ma è importante esserne al corrente:
+Una funzionalità importante di Elixir è che due valori di qualsiasi tipo possono essere confrontati, questo è particolarmente utile per l'ordinamento. Non abbiamo bisogno di memorizzare l'ordine di precedenza, ma è importante esserne al corrente:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
 
-Questo può portare ad alcuni interessanti, e validi, confronti che potresti non trovare in altri linguaggi:
+Questo può portare ad alcuni interessanti e validi confronti che potresti non trovare in altri linguaggi:
 
 ```elixir
 iex> :hello > 999

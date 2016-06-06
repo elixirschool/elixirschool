@@ -6,13 +6,13 @@ order: 4
 lang: it
 ---
 
-_Pattern matching_ è un aspetto fondamentale di Elixir, permette di abbinare semplici valori, strutture dati e funzioni. In questa lezione inizieremo a vedere come viene usato il pattern matching.
+Il _Pattern matching_ è un aspetto fondamentale di Elixir, permette di abbinare semplici valori, strutture dati e funzioni. In questa lezione inizieremo a vedere come viene usato il pattern matching.
 
 {% include toc.html %}
 
 ## Operatore match
 
-Se pronto ad essere spiazzato? In Elixir, l'operatore `=` è in realtà un operatore match. Tramite l'operatore match possiamo assegnare ed abbinare valori, diamo uno sguardo:
+Sei pronto ad essere spiazzato? In Elixir, l'operatore `=` è in realtà un operatore match. Tramite l'operatore match possiamo assegnare ed abbinare valori, diamo uno sguardo:
 
 ```elixir
 iex> x = 1
@@ -54,9 +54,9 @@ iex> {:ok, value} = {:error}
 ** (MatchError) no match of right hand side value: {:error}
 ```
 
-## Operator pin
+## Operatore pin
 
-Abbiamo appena imparato che l'operatore match gestisce l'assegnazione quando la parte sinistra dell'abbinamento include una variabile. In alcuni casi questo comportamento, cambiare l'abbinamento di una variabile, non è desiderabile. Per queste situazioni, abbiamo l'operatore pin `^`.
+Abbiamo appena imparato che l'operatore match gestisce l'assegnazione quando la parte sinistra dell'abbinamento include una variabile. In alcuni casi, cambiare l'abbinamento di una variabile non è desiderabile. Per queste situazioni, abbiamo l'operatore pin `^`.
 
 Quando _fissiamo_ (_pin_) una variabile, abbiniamo il valore esistente invece di cambiare l'abbinamento con un nuovo valore. Vediamo come funziona:
 
@@ -71,7 +71,7 @@ iex> x
 2
 ```
 
-Elixir 1.2 ha introdotto il supporto per usare l'operatore pin per le chiavi delle mappe e nelle clausole delle funzioni:
+Elixir 1.2 ha introdotto il supporto per usare l'operatore pin per le chiavi delle mappe e nelle _clausole delle funzioni_ (_function clauses_):
 
 ```elixir
 iex> key = "hello"
