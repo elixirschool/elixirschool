@@ -4,27 +4,26 @@ title: الأساسيات
 category: basics
 order: 1
 lang: ar
-dir: rtl
 ---
 
 البدء، أنواع البيانات الأساسية والعمليات الأساسية.
 
 {% include toc.html %}
 
-## البداء
+<h2 id="getting-started">البداء</h2>
 
-### تثبيت إليكسير
+<h3 id="installing-elixir">تثبيت إليكسير</h3>
 
 يمكن إيجاد تعليمات التثبيت لكل نظام التشغيل على موقع elixir-lang.org في دليل [تثبيت إليكسير](http://elixir-lang.org/install.html).
 
-After Elixir is installed you can easily confirm the installed version.
+بعد تثبيت إليكسير تستطيع أن تتأكد من النسخة المثبتة.
 
     % elixir -v
     Erlang/OTP 18 [erts-7.3] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
-### Trying Interactive Mode
+### تجريب النمط التفاعلي
 
 Elixir comes with `iex`, an interactive shell, which allows us to evaluate Elixir expressions as we go.
 
