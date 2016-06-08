@@ -30,6 +30,7 @@ url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
 languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id']
+rtl_languages: ['ar']
 default_lang: en
 exclude_from_localization: []
 sections:
