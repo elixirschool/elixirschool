@@ -19,7 +19,7 @@ lang: jp
 Elixirがインストールされたら簡単にバージョンを確認できます。
 
     % elixir -v
-    Erlang/OTP 18 [erts-7.3] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
