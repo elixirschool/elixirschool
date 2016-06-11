@@ -22,7 +22,7 @@ Elixir dilengkapi dengan `iex`, sebuah shell interaktif, yang memungkinkan kita 
 
 Untuk memulai, kita jalankan `iex`:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>

@@ -78,7 +78,7 @@ Ketika kita berikan opsi `--help` ke IEx dari command line kita ditunjuki semua 
 ```shell
 $ iex --name learner@elixirschool.com
 
-Erlang/OTP 18 [erts-7.2.1] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 Interactive Elixir (1.2.1) - press Ctrl+C to exit (type h() ENTER for help)
 iex(learner@elixirschool.com)> Node.self
