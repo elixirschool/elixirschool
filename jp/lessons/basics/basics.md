@@ -64,7 +64,7 @@ iex> 0b0110
 iex> 0o644
 420
 iex> 0x1F
-255
+31
 ```
 
 ### 浮動小数
@@ -128,10 +128,10 @@ iex> "dziękuję"
 文字列は改行やエスケープシーケンスに対応しています:
 
 ```elixir
-iex(9)> "foo
-...(9)> bar"
+iex> "foo
+...> bar"
 "foo\nbar"
-iex(10)> "foo\nbar"
+iex> "foo\nbar"
 "foo\nbar"
 ```
 

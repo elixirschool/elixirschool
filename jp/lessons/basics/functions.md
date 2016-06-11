@@ -46,6 +46,7 @@ iex> handle_result = fn
 ...>   {:error} -> IO.puts "An error has occurred!"
 ...> end
 
+iex> some_result = 1
 iex> handle_result.({:ok, some_result})
 Handling result...
 
