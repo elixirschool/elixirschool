@@ -305,4 +305,4 @@ end
 
  - Попробуйте включить в документацию примеры использования. Это также позволит генерировать автоматические тесты из примеров кода, найденных в модуле, функции или макросе с помощью [ExUnit.DocTest][]. Для этого нужно вызвать макрос `doctest/1` из соответствующего теста и писать примеры согласно описанию, которое есть в [официальной документации][ExUnit.DocTest]
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
