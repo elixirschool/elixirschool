@@ -78,4 +78,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 Las asignaciones `EEx.SmartEngine` son útiles porque las asignaciones se pueden cambiar sin necesidad de compilación de plantilla:
 
-¿Interesado en escribir su propio motor? Echa un vistazo a el comportamiento de [`EEx.Engine`](http://elixir-lang.org/docs/v1.2/eex/EEx.Engine.html) para ver lo que se requiere.
+¿Interesado en escribir su propio motor? Echa un vistazo a el comportamiento de [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) para ver lo que se requiere.
