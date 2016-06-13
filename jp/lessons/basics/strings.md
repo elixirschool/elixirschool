@@ -81,7 +81,7 @@ iex> String.graphemes string    # 書記素では1つと数えられる
 
 ## 文字列関数
 
-では、Stringモジュールにある重要で役に立つ関数をいくつか見てみましょう。このレッスンでは数ある関数のうち一部のみ扱います。全ての関数を確認したい場合は、公式ドキュメントの [`String`](http://elixir-lang.org/docs/v1.0/elixir/String.html) を見てください。
+では、Stringモジュールにある重要で役に立つ関数をいくつか見てみましょう。このレッスンでは数ある関数のうち一部のみ扱います。全ての関数を確認したい場合は、公式ドキュメントの [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) を見てください。
 
 ### `length/1`
 
