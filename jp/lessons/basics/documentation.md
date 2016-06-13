@@ -305,4 +305,4 @@ end
 
   - ドキュメントにはいくつかコード例も含むように心がけてください。そうすることで、[ExUnit.DocTest][] を用いてモジュールや関数、マクロ内にあるコード例から自動テストを生成することもできるようになります。これには、テストケースから `doctest/1` マクロを呼び出し、ガイドラインに沿った例を書く必要があります。詳細は[公式ドキュメント][ExUnit.DocTest] にあります。
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
