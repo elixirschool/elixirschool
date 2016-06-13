@@ -171,6 +171,14 @@ defmodule Example do
 end
 ```
 
+> (オプション) `:cowboy_port` を `config/config.exs` に追加してください。
+
+```elixir
+use Mix.Config
+
+config :example, cowboy_port: 8080
+```
+
 これで、アプリケーションを起動するために、以下のコマンドを使用できます:
 
 ```shell
