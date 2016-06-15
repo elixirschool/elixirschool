@@ -19,7 +19,7 @@ Démosle un vistazo a un ejemplo básico:
 ``` elixir
 defmodule Example do
   def greeting(name) do
-    ~s(Hello #{name}.)
+    "Hello #{name}."
   end
 end
 

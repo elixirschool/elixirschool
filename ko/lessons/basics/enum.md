@@ -14,7 +14,7 @@ lang: ko
 
 `Enum` 모듈은 우리가 지난 강의에서 배웠던 컬렉션들을 이용하기 위한 100가지 이상의 함수들을 포함하고 있습니다.
 
-이 강의에서는 그 함수들 중에서도 일부분을 다룰 것입니다. 전체적인 부분을 학습하실 분들께서는 공식 [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html) 문서를 보시면 되겠습니다; 지연 열거(lazy enumeration)를 이용하시려면 [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html) 모듈을 이용해보세요.
+이 강의에서는 그 함수들 중에서도 일부분을 다룰 것입니다. 전체적인 부분을 학습하실 분들께서는 공식 [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) 문서를 보시면 되겠습니다; 지연 열거(lazy enumeration)를 이용하시려면 [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) 모듈을 이용해보세요.
 
 
 ### all?
@@ -46,7 +46,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk`에는 몇 가지 옵션이 있습니다만, 여기서는 이에 대해 다루지 않을 것입니다. 더 알아보고자 하신다면 [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) 공식 문서를 참고해보세요.
+`chunk`에는 몇 가지 옵션이 있습니다만, 여기서는 이에 대해 다루지 않을 것입니다. 더 알아보고자 하신다면 [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) 공식 문서를 참고해보세요.
 
 ### chunk_by
 

@@ -105,7 +105,7 @@ iex> h Greeter.hello
 
                 def hello(name)
 
-`hello/1` prints a hello message
+Prints a hello message
 
 Parameters
 
@@ -122,11 +122,11 @@ Examples
 iex>
 ```
 
-Notice how you can use markup within out documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
+Notice how you can use markup within our documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
 
 ## ExDoc
 
-ExDoc is an official Elixir project that can be found on [GitHub](https://github.com/elixir-lang/ex_doc).  It produces **HTML (HyperText Markup Language) and online documentation** for Elixir projects.  First let's create a Mix project for our application:
+ExDoc is an official Elixir project that can be found on [GitHub](https://github.com/elixir-lang/ex_doc). It produces **HTML (HyperText Markup Language) and online documentation** for Elixir projects. First let's create a Mix project for our application:
 
 ```bash
 $ mix new greet_everyone
@@ -187,7 +187,7 @@ Assuming all is well, and we're seeing the output above suggests that we are rea
   end
 ```
 
-We specify the `only: :dev` key-value pair as we don't want to download and compile these dependencies in a production environment. But why Earmark? Earmark is a Markdown parser for the elixir programming language that ExDoc utilizes to turn our documentation within `@moduledoc` and `@doc` to beautiful looking HTML.
+We specify the `only: :dev` key-value pair as we don't want to download and compile these dependencies in a production environment. But why Earmark? Earmark is a Markdown parser for the Elixir programming language that ExDoc utilizes to turn our documentation within `@moduledoc` and `@doc` to beautiful looking HTML.
 
 It is worth noting at this point, that you are not forced to use Earmark. You can change the markup tool to others such as Pandoc, Hoedown or Cmark; however you will need to do a little more configuration which you can read about [here](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). For this tutorial, we'll just stick with Earmark.
 
@@ -305,4 +305,4 @@ end
 
  - Try to include some code examples in your documentation, this also allows you to generate automatic tests from the code examples found in a module, function or macro with [ExUnit.DocTest][]. In order to do that, one needs to invoke the `doctest/1` macro from their test case and write their examples according to some guidelines, which are detailed in the [official documentation][ExUnit.DocTest]
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html

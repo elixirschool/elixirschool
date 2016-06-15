@@ -14,7 +14,7 @@ lang: jp
 
 `Enum`モジュールは前回のレッスンで学習したコレクションを取り扱うための、百を越える関数を含んでいます。
 
-このレッスンは利用可能な関数のうち一部分しか取り上げません。全ての関数を知りたい場合は公式ドキュメントの[`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html)を参照してください。尚、列挙の遅延処理では[`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html)モジュールを利用してください。
+このレッスンは利用可能な関数のうち一部分しか取り上げません。全ての関数を知りたい場合は公式ドキュメントの[`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html)を参照してください。尚、列挙の遅延処理では[`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html)モジュールを利用してください。
 
 ### all?
 
@@ -45,7 +45,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk`にはいくつかのオプションがありますが、ここでは触れませんので、詳しく学びたい場合には公式ドキュメントの[`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2)を調べてみてください。
+`chunk`にはいくつかのオプションがありますが、ここでは触れませんので、詳しく学びたい場合には公式ドキュメントの[`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2)を調べてみてください。
 
 ### chunk_by
 
@@ -124,7 +124,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 ```elixir
 # ソート関数あり
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
-[%{count: 4}, %{count: 1}]
+[%{val: 4}, %{val: 1}]
 
 # なし
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])

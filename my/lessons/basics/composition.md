@@ -6,20 +6,20 @@ order: 8
 lang: my
 ---
 
-Kita tahu dari pengalaman bahawa menyimpan semua fungsi di dalam satu fail dan skop membawa kepada keadaan kelam-kabut.  Di dalam pelajaran ini kita akan melihat bagaimana untuk meletakkan beberapa fungsi ke dalam satu kumpulan dan menetapkan sejenis map khas yang dikenali sebagai struct dalam usaha untuk menguruskan kod kita dengan lebih efisien. 
+Kita tahu dari pengalaman bahawa menyimpan semua fungsi di dalam satu fail dan skop membawa kepada keadaan kelam-kabut.  Di dalam pelajaran ini kita akan melihat bagaimana untuk meletakkan beberapa fungsi ke dalam satu kumpulan dan menetapkan sejenis map khas yang dikenali sebagai struct dalam usaha untuk menguruskan kod kita dengan lebih efisien.
 
 {% include toc.html %}
 
 ## Modul
 
-Penggunaan modul-modul adalah cara yang terbaik untuk menguruskan fungsi-fungsi di dalam satu namespace.  Tambahan kepada pengumpulan fungsi-fungsi, mereka juga membenarkan kita menetapkan fungsi bernama dan fungsi terlindung yang telah kita lihat dalam pelajaran lepas. 
+Penggunaan modul-modul adalah cara yang terbaik untuk menguruskan fungsi-fungsi di dalam satu namespace.  Tambahan kepada pengumpulan fungsi-fungsi, mereka juga membenarkan kita menetapkan fungsi bernama dan fungsi terlindung yang telah kita lihat dalam pelajaran lepas.
 
 Mari kita lihat satu contoh asas:
 
 ``` elixir
 defmodule Example do
   def greeting(name) do
-    ~s(Hello #{name}.)
+    "Hello #{name}."
   end
 end
 
@@ -120,7 +120,7 @@ end
 
 defmodule Example do
   alias Sayings.Greetings
-  
+
   def greeting(name), do: Greetings.basic(name)
 end
 
@@ -136,7 +136,7 @@ Jika terdapat konflik antara dua alias, atau anda cuma mahu membuat alias kepada
 ```elixir
 defmodule Example do
   alias Sayings.Greetings, as: Hi
-  
+
   def print_message(name), do: Hi.basic(name)
 end
 ```

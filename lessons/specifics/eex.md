@@ -78,4 +78,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 The `EEx.SmartEngine` assignments are useful because assignments can be changed without requiring template compilation.
 
-Interested in writing your own engine?  Check out the [`EEx.Engine`](http://elixir-lang.org/docs/v1.2/eex/EEx.Engine.html) behaviour to see what's required.
+Interested in writing your own engine?  Check out the [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) behaviour to see what's required.
