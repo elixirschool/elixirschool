@@ -1,20 +1,20 @@
 ---
 layout: page
-title: Functions
+title: Функции
 category: basics
 order: 7
 lang: bg
 ---
 
-In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
+При Elixir и много функционални езици, функциите са граждани "първа класа".  Ще научим за видовете функции в Elixir, какво ги отличава и как да ги използваме.
 
 {% include toc.html %}
 
-## Anonymous functions
+## Анонимни функции
 
-Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, they are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
+Както името подсказва, анонимната функция няма име.  Както видяхме в урока относно `Enum` , те често се предават към други функции.  За да дефинираме анонимна функция в Elixir се нуждаем от ключовите думи `fn` и `end`.  Между тях може да дефинираме всякакъв брой параметри и имплементации на функции, разграничени от `->`.
 
-Let's look at a basic example:
+Нека погледнем един прост пример:
 
 ```elixirre
 iex> sum = fn (a, b) -> a + b end
@@ -22,9 +22,9 @@ iex> sum.(2, 3)
 5
 ```
 
-### The & shorthand
+### Съкращението &
 
-Using anonymous functions is such a common practice in Elixir there is shorthand for doing so:
+Да се използват анонимни функции е толкова често срещано в  Elixir, че за употребата им има съкращение:
 
 ```elixir
 iex> sum = &(&1 + &2)
@@ -32,13 +32,13 @@ iex> sum.(2, 3)
 5
 ```
 
-As you probably already guessed, in the shorthand version our parameters are available to us as `&1`, `&2`, `&3`, and so on.
+Както сигурно сте се досетили, в съкратената версия параметрите ни са достъпни за нас като `&1`, `&2`, `&3`, и т.н.
 
-## Pattern matching
+## Съпоставка с образец
 
-Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
+Съпоставката с образец не е ограничена само до променливи в Elixir, тя може да се приложи и върху функции, както ще видим в тази секция.
 
-Elixir uses pattern matching to identify the first set of parameters which match and invokes the corresponding body:
+Elixir използва съпоставка с образец, за да идентифицира първия подходящ набор от параметри и извиква съответната имплементация:
 
 ```elixir
 iex> handle_result = fn
@@ -54,11 +54,11 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-## Named functions
+## Именовани функции
 
-We can define functions with names so we can refer to them later, these named functions are defined with the `def` keyword within a module.  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
+Можем да дефинираме функции с имена, за да ги достъпваме на по-късен етап, тези наименовани функции се дефинират с ключовата дума `def` в модул.  Ще научим повече за модулите в следващите уроци, засега ще се фокусираме само върху именовани функции.
 
-Functions defined within a module are available to other modules for use, this is a particularly useful building block in Elixir:
+Функции дефинирани в модул са достъпни и от други модули, това е изключително полезна конструкция в Elixir:
 
 ```elixir
 defmodule Greeter do
@@ -71,7 +71,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 ```
 
-If our function body only spans one line, we can shorten it further with `do:`:
+Ако нашата имплементация на функция е само един ред, може да я скъсим допълнително с `do:`:
 
 ```elixir
 defmodule Greeter do
@@ -79,7 +79,7 @@ defmodule Greeter do
 end
 ```
 
-Armed with our knowledge of pattern matching, let's explore recursion using named functions:
+Въоръжени със знанието за съпоставка с образци, нека разгледаме рекурсия използвайки именовани функции:
 
 ```elixir
 defmodule Length do
@@ -93,9 +93,9 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### Private functions
+### Частни функции
 
-When we don't want other modules accessing a function we can use private functions, which can only be called within their Module.  We can define them in Elixir with `defp`:
+Когато не желаем други модули да достъпват дадена функция може да ползваме частни функции, които могат да бъдат достъпвани само от техния модул.  Можем да ги дефинираме в Elixir посредством `defp`:
 
 ```elixir
 defmodule Greeter do
@@ -111,11 +111,11 @@ iex> Greeter.phrase
     Greeter.phrase()
 ```
 
-### Guards
+### Ограничители
 
-We briefly covered guards in the [Control Structures](../control-structures.md) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
+Бегло споменахме ограничители в урока [Контролни структури](../control-structures.md), сега ще видим как да ги приложим към именовани функции.  Веднъж като Elixir е намерило подходяща функция всички съществуващи ограничители ще бъдат тествани.
 
-In the follow example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
+В следващия пример имаме две еднакво разписани функции, разчитаме на ограничители, за да разберем коя да бъде използвана върху типа на аргумента:
 
 ```elixir
 defmodule Greeter do
@@ -136,9 +136,9 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### Default arguments
+### Аргументи по подразбиране
 
-If we want a default value for an argument we use the `argument \\ value` syntax:
+Ако искаме да имаме стойност по подразбиране за аргумент използваме синтаксиса `аргумент \\ стойност`:
 
 ```elixir
 defmodule Greeter do
@@ -160,7 +160,7 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-When we combine our guard example with default arguments, we run into an issue.  Let's see what that might look like:
+Когато комбинираме примера ни с ограничители със стойности по подразбиране, се сблъскваме с проблем.  Нека видим как изглежда:
 
 ```elixir
 defmodule Greeter do
@@ -181,7 +181,7 @@ end
 ** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
 ```
 
-Elixir doesn't like default arguments in multiple matching functions, it can be  confusing.  To handle this we add a function head with our default arguments:
+Elixir не харесва аргументи със стойност по подразбиране при наличие на няколко подходящи функции, това води до объркване.  За да се справим с това добавяме описателна функция с нашите стойности по подразбиране:
 
 ```elixir
 defmodule Greeter do
