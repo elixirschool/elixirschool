@@ -134,7 +134,7 @@ o callback padrão `change/0` mas Ecto também suporta `up/0` e `down/0` no caso
 precisar um controle mais granular.
 
 Como você deve ter adivinhado, adicionando `timestamps` na sua migration irá criar
-e gerir os campos `created_at` e `updated_at` por você.
+e gerir os campos `inserted_at` e `updated_at` por você.
 
 Para aplicar as alterações definidas na nossa migration, roda `mix ecto.migrate`.
 
