@@ -6,8 +6,7 @@ order: 5
 lang: pl
 ---
 
-Poznaliśmy już abstrakcję do obsługi współbieżności, jaką oferuje Elixir. Czasami potrzebujemy większej kontroli nad
-tym, co się dzieje. Dlatego też Elixir ma obsługę zachowań OTP.  
+Poznaliśmy już abstrakcję do obsługi współbieżności, jaką oferuje Elixir. Czasami potrzebujemy większej kontroli nad tym, co się dzieje. Dlatego też Elixir ma obsługę zachowań OTP.  
 
 W tej lekcji skupimy się na dwóch elementach: GenServers i GenEvents.
 
@@ -15,16 +14,11 @@ W tej lekcji skupimy się na dwóch elementach: GenServers i GenEvents.
 
 ## GenServer
 
-Serwer OTP zawiera moduł zachowań GenServer, który implementuje zestaw wywołań zwrotnych (ang. callback). W dużym 
-uproszczeniu GenServer to pętla, w której każda iteracja odpowiada obsłudze jednego żądania, które aktualizuje stan 
-aplikacji.  
+Serwer OTP zawiera moduł zachowań GenServer, który implementuje zestaw wywołań zwrotnych (ang. _callback_). W dużym uproszczeniu GenServer to pętla, w której każda iteracja odpowiada obsłudze jednego żądania, które aktualizuje stan aplikacji.  
 
-By pokazać jak działa GenServer, zaimplementujemy prostą kolejkę.
+Zademonstrujemy działanie GenServer, implementując prostą kolejkę.
 
-By uruchomić GenServer, musimy go wystartować oraz obsłużyć procedurę inicjacji. W większości przypadków chcemy 
-obsłużyć łączenie procesów, dlatego użyjemy `GenServer.start_link/3`. Przekażemy do modułu GenServer argumenty 
-startowe i niewielki zestaw opcji. Argumenty zostaną przekazane do funkcji `GenServer.init/1`, która na ich podstawie
- utworzy początkowy stan aplikacji. W naszym przykładzie argumenty i stan początkowy będą takie same:
+By uruchomić GenServer, musimy go wystartować oraz obsłużyć procedurę inicjacji. W większości przypadków chcemy obsłużyć łączenie procesów, dlatego użyjemy `GenServer.start_link/3`. Przekażemy do modułu GenServer argumenty startowe i niewielki zestaw opcji. Argumenty zostaną przekazane do funkcji `GenServer.init/1`, która na ich podstawie utworzy początkowy stan aplikacji. W naszym przykładzie argumenty i stan początkowy będą takie same:
 
 ```elixir
 defmodule SimpleQueue do
@@ -46,22 +40,17 @@ end
 
 ### Funkcje synchroniczne
 
-Czasami zadania zlecane GenServer muszą być wykonywane w sposób synchroniczny, czyli wywołujemy funkcję i czekamy na 
-rezultat. By sprostać temu wyzwaniu, musimy zaimplementować funkcję zwrotną `GenServer.handle_call/3`, która jako 
-parametry przyjmuje: 
+Czasami zadania zlecane GenServer muszą być wykonywane w sposób synchroniczny, czyli wywołujemy funkcję i czekamy na rezultat. By sprostać temu wyzwaniu, musimy zaimplementować funkcję zwrotną `GenServer.handle_call/3`, która jako parametry przyjmuje: 
 
- * żądanie
- * PID procesu wywołującego
- * stan
+ * żądanie,
+ * PID procesu wywołującego,
+ * stan.
  
 W odpowiedzi musi zwrócić krotkę w postaci: `{:reply, odpowiedź, stan}`.
 
-Wykorzystując dopasowania wzorców, możemy zdefiniować wiele wywołań zwrotnych, w zależności od żądania i stanu. Pełna
-dokumentacja zawierająca listę parametrów i zwracanych wartości znajduje się w dokumentacji [`GenServer.handle_call/3`]
-(http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#c:handle_call/3).
+Wykorzystując dopasowania wzorców, możemy zdefiniować wiele różnych wywołań zwrotnych, w zależności od żądania i stanu. Pełna dokumentacja zawierająca listę parametrów i zwracanych wartości znajduje się w dokumentacji [`GenServer.handle_call/3`](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#c:handle_call/3).
 
-By zademonstrować wywołanie synchroniczne, dodajmy do naszej kolejki, możliwość wyświetlenia zawartości i usunięcia 
-jednej z wartości:
+By zademonstrować wywołanie synchroniczne, dodajmy do naszej kolejki, możliwość wyświetlenia zawartości i usunięcia jednej z wartości:
 
 ```elixir
 defmodule SimpleQueue do
@@ -111,11 +100,9 @@ iex> SimpleQueue.queue
 
 ### Funkcje asynchroniczne
 
-Wywołania asynchroniczne są obsługiwane przez `handle_cast/2`.  Działają podobnie jak `handle_call/3`, a jedynymi 
-różnicami są brak PID wywołującego oraz to, że nie oczekujemy wartości zwracanej.
+Wywołania asynchroniczne są obsługiwane przez `handle_cast/2`.  Działają podobnie jak `handle_call/3`, a jedynymi różnicami są brak PID wywołującego oraz to, że nie oczekujemy wartości zwracanej.
 
-Zaimplementujmy dodawanie elementów do kolejki jako asynchroniczne. Dzięki temu, dodając element nie będziemy blokować
- działania programu:
+Zaimplementujmy dodawanie elementów do kolejki jako asynchroniczne. Dzięki temu, dodając element nie będziemy blokować działania programu:
 
 ```elixir
 defmodule SimpleQueue do
@@ -173,17 +160,13 @@ Więcej informacji znajdziesz w oficjalnej dokumentacji [GenServer](http://elixi
 
 ## GenEvent
 
-Wiemy już jak z pomocą GenServer obsługiwać żądania synchroniczne i asynchroniczne. Czym jest GenEvent? GenEvent to 
-generyczny manager zdarzeń, który po otrzymaniu informacji powiadamia zainteresowanych konsumentów. Posiada mechanizm
- do dynamicznego dodawania i usuwania obsługi konkretnych zdarzeń.  
+Wiemy już jak z pomocą GenServer obsługiwać żądania synchroniczne i asynchroniczne. Czym jest GenEvent? GenEvent to generyczny manager zdarzeń, który po otrzymaniu informacji powiadamia zainteresowanych konsumentów. Posiada mechanizm do dynamicznego dodawania i usuwania obsługi konkretnych zdarzeń.  
 
 ### Obsługa zdarzeń
 
-Najważniejszą funkcją zwrotną z jaką pracujemy w GenEvents, jest `handle_event/2`. Przyjmuje ona jako parametry 
-zdarzenie i aktualny stan, a zwraca krotkę: `{:ok, stan}`.
+Najważniejszą funkcją zwrotną z jaką pracujemy w GenEvents, jest `handle_event/2`. Przyjmuje ona jako parametry zdarzenie i aktualny stan, a zwraca krotkę: `{:ok, stan}`.
 
-By zademonstrować działanie, uruchomimy GenEvent z dwoma modułami obsługi zdarzeń. Pierwszy zapisze je do dziennika, a
- drugi utrwali je (czysto teoretycznie):
+By zademonstrować działanie, uruchomimy GenEvent z dwoma modułami obsługi zdarzeń. Pierwszy zapisze je do dziennika, a drugi utrwali je (czysto teoretycznie):
 
 ```elixir
 defmodule LoggerHandler do
@@ -210,10 +193,9 @@ end
 
 ### Wywoływanie zdarzeń
 
-Poza  `handle_event/2` GenEvents posiada też między innymi `handle_call/2`. Za pomocą `handle_call/2`
- możemy obsługiwać konkretne, synchroniczne wiadomości.
+Poza `handle_event/2` GenEvents posiada też między innymi `handle_call/2`. Z jej pomocą możemy synchronicznie obsługiwać konkretne wiadomości.
 
-Zaktualizujmy  `LoggerHandler` dodając metodę do pobierania bieżącej wiadomości z logu:
+Zaktualizujmy `LoggerHandler` dodając metodę do pobierania bieżącej wiadomości z logu:
 
 ```elixir
 defmodule LoggerHandler do
@@ -232,9 +214,7 @@ end
 
 ### Użycie GenEvent
 
-Mając nasze funkcje do obsługi zdarzeń, możemy przejść do innych istotnych funkcji GenEvent. Trzy najważniejsze z nich 
-to: `add_handler/3`, `notify/2` i `call/4`. Pozwalają one odpowiednio na dodawanie nowych funkcji obsługi zdarzeń, 
-rozgłaszanie wiadomości i wywoływanie konkretnych funkcji obsługi.
+Mając nasze funkcje do obsługi zdarzeń, możemy przejść do innych istotnych funkcji GenEvent. Trzy najważniejsze z nich to: `add_handler/3`, `notify/2` i `call/4`. Pozwalają one odpowiednio na dodawanie nowych funkcji obsługi zdarzeń, rozgłaszanie wiadomości i wywoływanie konkretnych funkcji do obsługi komunikatów przychodzących.
 
 Zbierzmy wszytko razem i zobaczmy jak w praktyce to działa:
 
@@ -251,5 +231,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-W oficjalnej dokumentacji [GenEvent](http://elixir-lang.org/docs/v1.1/elixir/GenEvent.html#content) znajduje się 
-pełna lista funkcji zwrotnych, których możemy użyć.
+W oficjalnej dokumentacji [GenEvent](http://elixir-lang.org/docs/v1.1/elixir/GenEvent.html#content) znajduje się pełna lista funkcji zwrotnych, których możemy użyć.
