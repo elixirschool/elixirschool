@@ -6,19 +6,15 @@ order: 6
 lang: pl
 ---
 
-Nadzorcy to wyspecjalizowane procesy mające tylko jeden cel: monitorowanie innych procesów. Pozwalają oni na 
-tworzenie aplikacji odpornych na błędy, które będą samodzielnie restartować procesy, które zawiodły. 
+Nadzorcy to wyspecjalizowane procesy mające tylko jeden cel: monitorowanie innych procesów. Pozwalają oni na tworzenie aplikacji odpornych na błędy, które będą samodzielnie restartować procesy, które zawiodły. 
 
 {% include toc.html %}
 
 ## Konfiguracja
 
-Cała "magia" nadzorców dzieje się w funkcji `Supervisor.start_link/2`.  Poza uruchomieniem nadzorcy i procesów 
-potomnych pozwala ona na określenie strategii użytej do zarządzania procesami potomnymi.
+Cała „magia” nadzorców dzieje się w funkcji `Supervisor.start_link/2`.  Poza uruchomieniem nadzorcy i procesów potomnych pozwala ona na określenie strategii użytej do zarządzania procesami potomnymi.
 
-Procesy potomne są przekazywane jako lista do funkcji `worker/3` zaimportowanej z  `Supervisor.Spec`. Funkcja 
-`worker/3` jako parametry przyjmuje moduł, argumenty wywołania oraz opcje. Technicznie funkcja `worker/3` wywołuje  
-`start_link/3` przekazując do niej podane przez nasz argumenty.
+Procesy potomne są przekazywane jako lista do funkcji `worker/3`, zaimportowanej z `Supervisor.Spec`. Funkcja `worker/3` jako parametry przyjmuje moduł, argumenty wywołania oraz opcje. W praktyce funkcja `worker/3` wywołuje `start_link/3` przekazując do niej podane przez nasz argumenty.
 
 Zmodyfikujmy przykład `SimpleQueue` z lekcji [Współbieżność OTP](/lessons/advanced/otp-concurrency):
 
@@ -32,8 +28,7 @@ children = [
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
 
-Jeżeli nadzorowany proces ulegnie awarii albo się zakończy, nadzorca automatycznie go zrestartuje, tak jak by nic 
-się nie stało.
+Jeżeli nadzorowany proces ulegnie awarii albo się zakończy, nadzorca automatycznie go zrestartuje, tak jak by nic się nie stało.
 
 ### Strategie
 
@@ -42,13 +37,11 @@ Do zarządzania procesami potomnymi nadzorca może wykorzystać jedną z czterec
 + `:one_for_one` - Ponownie uruchamia tylko uszkodzony proces potomny.
 + `:one_for_all` - Ponownie uruchamia wszystkie procesy potomne.
 + `:rest_for_one` - Uruchamia ponownie uszkodzony proces i wszystkie procesy, które zostały uruchomione po nim.
-+ `:simple_one_for_one` - Najlepszy przy dynamicznym tworzeniu procesów. Nadzorca zarządza tylko jednym procesem 
-potomnym.
++ `:simple_one_for_one` - Najlepszy przy dynamicznym tworzeniu procesów. Nadzorca zarządza tylko jednym procesem potomnym.
 
 ### Zagnieżdżanie
 
-Poza procesami potomnymi możemy też tworzyć nadzorców, którzy będą zarządzać innymi nadzorcami. W ten sposób tworzymy
- drzewo nadzorców. Jedyna różnica polega na użyciu funkcji `supervisor/3` zamiast `worker/3`:
+Poza procesami potomnymi możemy też tworzyć nadzorców, którzy będą zarządzać innymi nadzorcami. W ten sposób tworzymy drzewo nadzorców. Jedyna różnica polega na użyciu funkcji `supervisor/3` zamiast `worker/3`:
 
 ```elixir
 import Supervisor.Spec
@@ -63,8 +56,7 @@ children = [
 
 ## Nadzorcy zadań
 
-Zadania mają swojego wyspecjalizowanego nadzorcę `Task.Supervisor`. Zaprojektowany jest on z myślą o dynamicznym 
-tworzeniu zadań, przez co wewnętrznie używa strategii `:simple_one_for_one`.
+Zadania mają swojego wyspecjalizowanego nadzorcę `Task.Supervisor`. Zaprojektowany jest on z myślą o dynamicznym tworzeniu zadań, oznacza to, że używa strategii `:simple_one_for_one`.
 
 ### Przygotowanie
 
@@ -88,5 +80,4 @@ Mając uruchomionego nadzorcę możemy użyć funkcji `start_child/2`, by urucha
 {:ok, pid} = Task.Supervisor.start_child(ExampleApp.TaskSupervisor, fn -> background_work end)
 ```
 
-Jeżeli zadanie ulegnie awarii, to zostanie zrestartowane za nas. Jest to szczególnie przydatne, gdy pracujemy z
-zadaniami do obsługi połączeń przychodzących lub pracującymi w tle.
+Jeżeli zadanie ulegnie awarii, to zostanie automatycznie zrestartowane. Jest to szczególnie przydatne, gdy pracujemy z zadaniami do obsługi połączeń przychodzących lub pracującymi w tle.
