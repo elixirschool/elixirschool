@@ -43,6 +43,7 @@ Class names and proper nouns do not get translated.
 - anonymous function - анонимная функция
 - attribute - атрибут
 - bitsring - битовая строка
+- binding - контекст
 - boolean - логический тип
 - callback - функция обратного вызова
 - char list - список символов
