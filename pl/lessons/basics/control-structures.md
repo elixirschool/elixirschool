@@ -8,12 +8,7 @@ lang: pl
 
 W tej lekcji przyjrzymy się strukturom sterującym dostępnym w Elixirze.
 
-## Spis Treści
-
-- [`if` i `unless`](#if-i-unless)
-- [`case`](#case)
-- [`cond`](#cond)
-- [`with`](#with)
+{% include toc.html %}
 
 ## `if` i `unless`
 
@@ -134,8 +129,7 @@ iex> cond do
 
 Konstrukcja `with` jest to forma, którą możemy użyć zamiast zagnieżdżonych wyrażeń `case` albo w sytuacji, gdy nie mogą być one powiązane z jednoznaczny sposób. Wyrażenie `with` składa się ze słowa kluczowego, generatora i wyrażenia.
 
-Zajmiemy się jeszcze generatorami przy okazji omawiania list składanych, a na chwilę obecną jedyne co musimy wiedzieć
- to, że używają dopasowania wzorców, by połączyć elementy po prawej stronie `<-` z tymi po lewej.
+Zajmiemy się jeszcze generatorami przy okazji omawiania list składanych, a na chwilę obecną jedyne co musimy wiedzieć to, że używają dopasowania wzorców, by połączyć elementy po prawej stronie `<-` z tymi po lewej.
 
 Zacznijmy od prostego wyrażenia `with`:
 

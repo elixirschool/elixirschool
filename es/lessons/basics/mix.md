@@ -10,13 +10,7 @@ Antes que podamos sumergirnos en las profundas aguas de Elixir primero necesitam
 
 Hasta ahora hemos estado trabajando exclusivamente dentro de `iex` con sus limitaciones. Para construir algo sustancial necesitamos dividir nuestro código en varios archivos efectivamente y administrarlos, mix nos permite hacer eso con proyectos.
 
-## Tabla de Contenidos
-
-- [Nuevo Proyecto](#nuevo-proyecto)
-- [Compilación](#compilación)
-- [Interactivo](#interactivo)
-- [Administrar dependencias](#administrar-dependencias)
-- [Entornos](#entornos)
+{% include toc.html %}
 
 ## Nuevo proyecto
 

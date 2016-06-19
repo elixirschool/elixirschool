@@ -8,23 +8,7 @@ lang: ru
 
 Базовая настройка, типы и операторы.
 
-## Содержание
-
-- [Настройка](#section-1)
-  - [Установка Elixir](#elixir)
-  - [Интерактивный режим](#section-2)
-- [Базовые типы](#section-3)
-  - [Целые числа](#section-4)
-  - [Числа с плавающей запятой](#section-5)
-  - [Логический тип](#section-6)
-  - [Атомы](#section-7)
-  - [Строки](#section-8)
-- [Базовые операторы](#section-9)
-  - [Арифметические](#section-10)
-  - [Логические](#section-11)
-  - [Сравнение](#section-12)
-  - [Строковая интерполяция](#section-13)
-  - [Объединение строк](#section-14)
+{% include toc.html %}
 
 ## Настройка
 
@@ -37,9 +21,9 @@ lang: ru
 
 Для того чтобы начать, запустите `iex`:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
+	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
 ## Базовые типы

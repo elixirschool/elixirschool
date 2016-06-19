@@ -8,23 +8,7 @@ lang: fr
 
 Installation, types de base et opérations.
 
-## Table of Contents
-
-- [Installation](#installation)
-	- [Installer Elixir](#installer-elixir)
-	- [Mode Interactif](#mode-interactif)
-- [Types de base](#types-de-base)
-	- [Entiers](#entiers)
-	- [Nombres à virgule](#nombres-a-virgule)
-	- [Booléens](#booléens)
-	- [Atomes](#atomes)
-	- [Chaînes](#chaines)
-- [Opérations de base](#operations-de-base)
-	- [Arithmétique](#arithmetique)
-	- [Booléens](#booléens)
-	- [Comparaison](#comparaison)
-	- [Interpolation de chaînes](#interpolation-de-chaines)
-	- [Concaténation de chaînes](#concaténation-de-chaines)
+{% include toc.html %}
 
 ## Installation
 
@@ -38,9 +22,9 @@ Elixir viens avec `iex`, un shell interactif qui nous permet d'évaluer des expr
 
 Pour commencer, lançons `iex`:
 
-	Erlang/OTP 18 [erts-7.2.1] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-    Interactive Elixir (1.2.3) - press Ctrl+C to exit (type h() ENTER for help)
+    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
 ## Types de base

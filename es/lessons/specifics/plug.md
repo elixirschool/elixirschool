@@ -8,15 +8,7 @@ lang: es
 
 Si estás familiarizado con Ruby puedes imaginar que Plug es como Rack con un poquito de Sinatra, este proporciona una especificación para componentes de aplicaciones Web y adaptadores para servidores web. Si bien no forma parte del núcleo de Elixir, Plug es un proyecto Elixir oficial.
 
-## Tabla de contenido
-
-- [Instalación](#instalacin)
-- [La especificación](#la-especificacin)
-- [Creando un Plug](#creando-un-plug)
-- [Usando Plug.Router](#usando-plugrouter)
-- [Corriendo nuestra aplicacion web](#corriendo-nuestra-aplicacin-web)
-- [Testeando Plugs](#testeando-plugs)
-- [Plugs Disponibles](#plugs-disponibles)
+{% include toc.html %}
 
 ## Instalación
 
@@ -168,7 +160,7 @@ defmodule Example do
   use Application
 
   def start(_type, _args) do
-    port = Application.get_env(:concoction, :cowboy_port, 8080)
+    port = Application.get_env(:example, :cowboy_port, 8080)
 
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Example.Plug.Router, [], port: port)

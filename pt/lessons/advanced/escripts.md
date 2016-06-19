@@ -8,12 +8,9 @@ lang: pt
 
 Para criar executáveis em Elixir nós utilizaremos escript. Escript produz um executável que pode rodar em qualquer sistema que tenha Erlang instalado.
 
-## Sumário
-- [Começando](#comecando)
-- [Fazendo Parsing dos Argumentos](#fazendo-parsing-dos-argumentos)
-- [Criando o Executável](#criando-o-executavel)
+{% include toc.html %}
 
-## <a name="comecando"></a>Começando
+## Começando
 
 Para criar um executável com escript há poucas coisas que precisamos fazer: implementar um método `main/1` e atualizar nosso Mixfile.
 
@@ -64,7 +61,6 @@ defmodule ExampleApp.CLI do
     {opts, List.to_string(word)}
   end
 
-  defp response({opts, "Hello"}), do: response({opts, "World"})
   defp response({opts, word}) do
     if opts[:upcase], do: word = String.upcase(word)
     word
@@ -72,7 +68,7 @@ defmodule ExampleApp.CLI do
 end
 ```
 
-## <a name="criando-o-executavel"></a>Criando o Executável
+## Criando o Executável
 
 Quando terminamos de configurar nossa aplicação para usar escript, criar o executável é muito simples usando mix:
 
@@ -84,7 +80,7 @@ Vamos testar:
 
 ```elixir
 $ ./example_app --upcase Hello
-WORLD
+HELLO
 
 $ ./example_app Hi
 Hi

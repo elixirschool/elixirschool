@@ -8,12 +8,7 @@ lang: en
 
 In this lesson we will look at the control structures available to us in Elixir.
 
-## Table of Contents
-
-- [`if` and `unless`](#if-and-unless)
-- [`case`](#case)
-- [`cond`](#cond)
-- [`with`](#with)
+{% include toc.html %}
 
 ## `if` and `unless`
 
@@ -73,6 +68,7 @@ iex> case :even do
 ```
 
 Consider `_` as the `else` that will match "everything else".
+
 Since `case` relies on pattern matching, all of the same rules and restrictions apply.  If you intend to match against existing variables you must use the pin `^` operator:
 
 ```elixir
@@ -103,7 +99,7 @@ Check the official docs for [Expressions allowed in guard clauses](http://elixir
 
 ## `cond`
 
-When we need to match conditions, and not values, we can turn to `cond`; this is akin to `else if` or `elsif` from other languages:
+When we need to match conditions rather than values we can turn to `cond`; this is akin to `else if` or `elsif` from other languages:
 
 _This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
 
@@ -139,6 +135,7 @@ We'll start with a simple example of `with` and then look at something more:
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
+%{first: "Sean", last: "Callan"}
 iex> with {:ok, first} <- Map.fetch(user, :first),
 ...>      {:ok, last} <- Map.fetch(user, :last),
 ...>      do: last <> ", " <> first
@@ -156,7 +153,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 :error
 ```
 
-Now let's look a larger example without `with` and then see how we can refactor it:
+Now let's look at a larger example without `with` and then see how we can refactor it:
 
 ```elixir
 case Repo.insert(changeset) do 

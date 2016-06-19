@@ -100,3 +100,18 @@ a.sidebar-lesson:focus {
     padding: 0;
   }
 }
+
+/**
+ * Right-to-left languages
+ */
+body.rtl {
+    direction: rtl;
+    unicode-bidi: embed;
+}
+body.rtl pre {
+    direction: ltr;
+    text-align: left;
+}
+body.rtl .content {
+    margin-right: auto;
+}

@@ -1,5 +1,6 @@
 /*
  *= require jquery
+ *= require toc.js
  */
 
 var swap_icon = function(el) {
@@ -20,7 +21,11 @@ var toggle_section = function() {
 
 $(function() {
   $('.sidebar-nav-header').click(toggle_section);
-
-  $('.advanced .sidebar-nav-header').click();
-  $('.specifics .sidebar-nav-header').click();
+  $('#toc').toc({
+    listType: 'ul',
+    title: '',
+    headers: 'h1, h2, h3:not([id="social"]), h4, h5, h6',
+    noBackToTopLinks: true,
+    minimumHeaders: 0
+  });
 });

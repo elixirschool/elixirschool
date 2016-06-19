@@ -2,17 +2,13 @@
 layout: page
 title: Operator Paip 
 category: basics
-order: 6 
+order: 7
 lang: my
 ---
 
 Operator Paip `|>` menghantar hasil dari satu ungkapan(expression) sebagai paramater pertama kepada satu ungkapan lain.
 
-## Isi Kandungan
-
-- [Pengenalan](#pengenalan)
-- [Contoh](#contoh)
-- [Amalan Terbaik](#amalan-terbaik)
+{% include toc.html %}
 
 ## Pengenalan
 

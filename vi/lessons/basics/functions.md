@@ -2,21 +2,13 @@
 layout: page
 title: Functions
 category: basics
-order: 7
+order: 6
 lang: vi
 ---
 
 In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
 
-## Table of Contents
-
-- [Anonymous functions](#anonymous-functions)
-  - [The & shorthand](#the--shorthand)
-- [Pattern matching](#pattern-matching)
-- [Named functions](#named-functions)
-  - [Private functions](#private-functions)
-  - [Guards](#guards)
-  - [Default arguments](#default-arguments)
+{% include toc.html %}
 
 ## Anonymous functions
 
@@ -121,7 +113,7 @@ iex> Greeter.phrase
 
 ### Guards
 
-We briefly covered guards in the [Control Structures](../control-structures.md) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
+We briefly covered guards in the [Control Structures](../control-structures) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
 
 In the follow example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
 

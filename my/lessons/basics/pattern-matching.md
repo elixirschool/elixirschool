@@ -8,10 +8,7 @@ lang: my
 
 Pemadanan corak ialah satu komponen Elixir yang amat berkuasa, ia mengupayakan kita untuk membuat pemadanan nilai-nilai mudah, struktur data, dan juga fungsi-fungsi.
 
-## Isi Kandungan
-
-- [Operator Padanan](#operator-padanan)
-- [Operator Pin](#operator-pin)
+{% include toc.html %}
 
 ## Operator Padanan
 

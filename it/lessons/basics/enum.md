@@ -8,26 +8,13 @@ lang: it
 
 Un insieme di algoritmi per enumerare le collezioni.
 
-## Tavola dei Contenuti
-
-- [Enum](#enum)
-  - [all?](#all)
-  - [any?](#any)
-  - [chunk](#chunk)
-  - [chunk_by](#chunk_by)
-  - [each](#each)
-  - [map](#map)
-  - [min](#min)
-  - [max](#max)
-  - [reduce](#reduce)
-  - [sort](#sort)
-  - [uniq](#uniq)
+{% include toc.html %}
 
 ## Enum
 
 Il modulo `Enum` contiene oltre un centinaio di funzioni per lavorare con le collezioni di cui abbiamo parlato nella scorsa lezione.
 
-Questa lezione tratterà solo una parte delle funzioni disponibili, per conoscere tutte le funzioni visita la documentazione ufficiale del modulo [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); per enumerare gli elementi a richiesta (_lazy enumeration_) puoi usare il modulo [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
+Questa lezione tratterà solo una parte delle funzioni disponibili, per conoscere tutte le funzioni visita la documentazione ufficiale del modulo [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); per enumerare gli elementi a richiesta (_lazy enumeration_) puoi usare il modulo [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
 
 
 ### all?
@@ -59,7 +46,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Esistono alcune opzioni per `chunk` ma non le tratteremo, visita [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) nella documentazione ufficiale per approfondire.
+Esistono alcune opzioni per `chunk` ma non le tratteremo, visita [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) nella documentazione ufficiale per approfondire.
 
 ### chunk_by
 

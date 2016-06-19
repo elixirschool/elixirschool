@@ -8,15 +8,7 @@ lang: en
 
 One of the added benefits to building on top of the ErlangVM is the plethora of existing libraries available to us.  Interoperability allows us to leverage those libraries and the Erlang standard lib from our Elixir code.  In this lesson we'll look at how to access functionality in the standard lib along with third-party Erlang packages.
 
-## Table of Contents
-
-- [Standard Library](#standard-library)
-- [Erlang Packages](#erlang-packages)
-- [Notable Differences](#notable-differences)
-  - [Atoms](#atoms)
-  - [Strings](#strings)
-  - [Variables](#variables)
-
+{% include toc.html %}
 
 ## Standard Library
 
@@ -53,10 +45,10 @@ end
 Now we can access our Erlang library:
 
 ```elixir
-png = :png.create(#{:size => {30, 30},
+png = :png.create(%{:size => {30, 30},
                     :mode => {:indexed, 8},
                     :file => file,
-                    :palette => palette}),
+                    :palette => palette})
 ```
 
 ## Notable Differences

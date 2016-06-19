@@ -6,31 +6,22 @@ order: 1
 lang: jp
 ---
 
-セットアップ、基本型、そして演算。
+入門、基本データ型、そして基本的な演算。
 
-## 目次
+{% include toc.html %}
 
-- [セットアップ](#section-1)
-	- [Elixirのインストール](#elixir)
-	- [対話モード](#section-2)
-- [基本型](#section-3)
-	- [整数](#section-4)
-	- [浮動小数](#section-5)
-	- [真理値](#section-6)
-	- [アトム](#section-7)
-	- [文字列](#section-8)
-- [基本の演算](#section-9)
-	- [算術](#section-10)
-	- [論理](#section-11)
-	- [比較](#section-12)
-	- [文字列への式展開](#section-13)
-	- [文字列の連結](#section-14)
-
-## セットアップ
+## 入門
 
 ### Elixirのインストール
 
 各OS向けのインストール方法は Elixir-lang.org 上の[Installing Elixir](http://elixir-lang.org/install.html) で探すことができます。
+
+Elixirがインストールされたら簡単にバージョンを確認できます。
+
+    % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+    Elixir {{ site.elixir.version }}
 
 ### 対話モード
 
@@ -38,12 +29,23 @@ Elixirには`iex`という対話シェルが付属しており、入力したそ
 
 対話モードを開始するには、`iex`を起動しましょう:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
-	iex>
+    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+    iex(1)>
 
-## 基本型
+先に進み、試しにいくつかの簡単な式を入力してみましょう:
+
+    iex(1)> 2+3
+    5
+    iex(2)> 2+3 == 5
+    true
+    iex(3)> String.length("The quick brown fox jumps over the lazy dog")
+    43
+
+それぞれの式をまだ理解していなくても心配することはありませんが、うまくいけばやり方は分かるでしょう。
+
+## 基本データ型
 
 ### 整数
 
@@ -62,7 +64,7 @@ iex> 0b0110
 iex> 0o644
 420
 iex> 0x1F
-255
+31
 ```
 
 ### 浮動小数
@@ -126,12 +128,14 @@ iex> "dziękuję"
 文字列は改行やエスケープシーケンスに対応しています:
 
 ```elixir
-iex(9)> "foo
-...(9)> bar"
+iex> "foo
+...> bar"
 "foo\nbar"
-iex(10)> "foo\nbar"
+iex> "foo\nbar"
 "foo\nbar"
 ```
+
+また、Elixirにはより複雑なデータ型も含まれています。コレクションや関数について学ぶときにそれらについても詳しく学びます。
 
 ## 基本的な演算
 
@@ -196,6 +200,43 @@ iex> not 42
 ```
 
 ### 比較
+
+Elixirには私たちが慣れている全ての比較演算子が備わっています: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` そして `>` です。
+
+```elixir
+iex> 1 > 2
+false
+iex> 1 != 2
+true
+iex> 2 == 2
+true
+iex> 2 <= 3
+true
+```
+
+整数と浮動小数を厳密に比べるには `===` を使います:
+
+```elixir
+iex> 2 == 2.0
+true
+iex> 2 === 2.0
+false
+```
+
+Elixirの重要な特徴はどんな2つの型でも比べられるということで、これは特にソートにおいて有用です。ソートされる順序を覚える必要はありませんが、順序を気にするのは重要なことです:
+
+```elixir
+number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+```
+
+これは他の言語では見られないかもしれない、正当で興味深い比較を引き起こします:
+
+```elixir
+iex> :hello > 999
+true
+iex> {:hello, :world} > [1, 2, 3]
+false
+```
 
 ### 文字列への式展開
 

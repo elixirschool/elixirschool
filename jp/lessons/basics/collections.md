@@ -6,18 +6,9 @@ order: 2
 lang: jp
 ---
 
-リスト、タプル、キーワードリスト、マップ、ディクショナリ(辞書)、そしてコンビネータ。
+リスト、タプル、キーワードリスト、マップ、そしてコンビネータ。
 
-## 目次
-
-- [リスト](#section-1)
-	- [リストの連結](#section-2)
-	- [リストの減算](#section-3)
-	- [頭部 / 尾部](#section-4)
-- [タプル](#section-5)
-- [キーワードリスト](#section-6)
-- [マップ](#section-7)
-- [ディクショナリ(辞書)](#section-8)
+{% include toc.html %}
 
 ## リスト
 
@@ -58,6 +49,8 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+**参考:** 値のマッチには [strict comparison](../basics/#comparison) が使われています。
+
 ### 頭部 / 尾部
 
 リストを扱う際には、よくリストの頭部と尾部を利用したりします。頭部はそのリストの最初の要素で、尾部は残りの要素になります。Elixirはこれらを扱うために、`hd`と`tl`という2つの便利なメソッドを用意しています:
@@ -69,7 +62,7 @@ iex> tl [3.41, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-前述した関数に加えて、パイプ演算子`|`を使うこともできます。このパターンについては後のレッスンで取り上げます:
+前述した関数に加えて、リストを頭部と尾部に分けるのに[パターンマッチング](../pattern-matching/)やパイプ演算子`|`を使うこともできます。このパターンについては後のレッスンで取り上げます:
 
 ```elixir
 iex> [h|t] = [3.41, :pie, "Apple"]
@@ -100,7 +93,7 @@ iex> File.read("path/to/unknown/file")
 
 ## キーワードリスト
 
-キーワードとマップはElixirの連想コレクションで、どちらも`Dict`モジュールを実装しています。Elixirでは、キーワードリストは最初の要素がアトムのタプルからなる特別なリストで、リストと同様の性能になります:
+キーワードとマップはElixirの連想コレクションです。Elixirでは、キーワードリストは最初の要素がアトムのタプルからなる特別なリストで、リストと同様の性能になります:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -130,6 +123,15 @@ iex> map["hello"]
 :world
 ```
 
+Elixir 1.2では変数をマップのキーにすることができます:
+
+```elixir
+iex> key = "hello"
+"hello"
+iex> %{key => "world"}
+%{"hello" => "world"}
+```
+
 重複したキーが追加された場合は、前の値が置き換えられます:
 
 ```elixir
@@ -144,24 +146,5 @@ iex> %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
-true
-```
-
-## ディクショナリ(辞書)
-
-Elixirでは、キーワードリストとマップはどちらも`Dict`モジュールを実装しますが、そういうわけでこれらはまとめてディクショナリ(辞書)として知られています。もし独自のキーバリューストアを作る必要があるなら、`Dict`モジュールを実装するのが手始めとしては良い方法です。
-
-[`Dict`モジュール](http://elixir-lang.org/docs/stable/elixir/#!Dict.html)はこうしたディクショナリに触れたり、操作したりするために多くの便利な関数を用意しています:
-
-```elixir
-# キーワードリスト
-iex> Dict.put([foo: "bar"], :hello, "world")
-[hello: "world", foo: "bar"]
-
-# マップ
-iex> Dict.put(%{:foo => "bar"}, "hello", "world")
-%{:foo => "bar", "hello" => "world"}
-
-iex> Dict.has_key?(%{:foo => "bar"}, :foo)
 true
 ```
