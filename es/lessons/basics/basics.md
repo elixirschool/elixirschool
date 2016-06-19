@@ -8,23 +8,7 @@ lang: es
 
 Preparar el entorno, tipos básicos y operaciones.
 
-## Tabla de contenidos
-
-- [Preparar el entorno](#preparar-el-entorno)
-	- [Instalar Elixir](#instalar-elixir)
-	- [Modo interactivo](#modo-interactivo)
-- [Tipos Básicos](#tipos-basicos)
-	- [Enteros](#enteros)
-	- [Coma flotante](#coma-flotante)
-	- [Booleanos](#booleanos)
-	- [Atomos](#atomos)
-	- [Cadenas](#cadenas)
-- [Operaciones Básicas](#operaciones-basicas)
-	- [Aritmética](#aritmetica)
-	- [Booleanas](#booleanas)
-	- [Comparación](#comparacion)
-	- [Interpolación de cadenas](#interpolacion-de-cadenas)
-	- [Concatenación de cadenas](#concatenacion-de-cadenas)
+{% include toc.html %}
 
 ## Preparar el entorno
 
@@ -38,7 +22,7 @@ Elixir viene con `iex`, una consola interactiva, que nos permite evaluar expresi
 
 Para empezar, Ejecutamos `iex`:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>

@@ -8,11 +8,7 @@ lang: ru
 
 Для сборки исполняемых файлов в Elixir мы будем использовать escript. Escript создаёт исполняемый файл, который может быть запущен на любой системе с предустановленным Erlang.
 
-## Содержание
-
-- [Начало работы](#section-1)
-- [Разбор аргументов](#section-2)
-- [Сборка](#section-3)
+{% include toc.html %}
 
 ## Начало работы
 
@@ -23,7 +19,7 @@ lang: ru
 ```elixir
 defmodule ExampleApp.CLI do
   def main(args \\ []) do
-    # Do stuff
+    # Делаем что-нибудь
   end
 end
 ```
@@ -65,7 +61,6 @@ defmodule ExampleApp.CLI do
     {opts, List.to_string(word)}
   end
 
-  defp response({opts, "Hello"}), do: response({opts, "World"})
   defp response({opts, word}) do
     if opts[:upcase], do: word = String.upcase(word)
     word
@@ -85,7 +80,7 @@ $ mix escript.build
 
 ```elixir
 $ ./example_app --upcase Hello
-WORLD
+HELLO
 
 $ ./example_app Hi
 Hi

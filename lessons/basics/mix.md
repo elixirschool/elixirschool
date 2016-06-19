@@ -10,13 +10,7 @@ Before we can dive into the deeper waters of Elixir we first need to learn about
 
 Until now we've been working exclusively within `iex` which has limitations.  In order to build something substantial we need to divide our code up into many files to effectively manage it, mix let's us do that with projects.
 
-## Table of Contents
-
-- [New Projects](#new-project)
-- [Compilation](#compilation)
-- [Interactive](#interactive)
-- [Manage Dependencies](#manage-dependencies)
-- [Environments](#environments)
+{% include toc.html %}
 
 ## New Projects
 

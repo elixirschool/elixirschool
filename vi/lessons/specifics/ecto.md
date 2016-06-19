@@ -8,23 +8,7 @@ lang: vi
 
 Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define models, insert and update records, and query them.
 
-## Table of Contents
-
-- [Setup](#setup)
-  - [Repository](#repository)
-  - [Supervisor](#supervisor)
-  - [Configuration](#configuration)
-- [Mix Tasks](#mix-tasks)
-- [Migrations](#migrations)
-- [Models](#models)
-- [Querying](#querying)
-  - [Basics](#basics)
-  - [Count](#count)
-  - [Group By](#group-by)
-  - [Order By](#order-by)
-  - [Joins](#joins)
-  - [Fragments](#fragments)
-- [Changesets](#changesets)
+{% include toc.html %}
 
 ## Setup
 
@@ -134,7 +118,7 @@ end
 
 By default Ecto creates an `id` auto incrementing primary key.  Here we're using the default `change/0` callback but Ecto also supports `up/0` and `down/0` in the event you need more granular control.
 
-As you might have guessed adding `timestamps` to your migration will create and manage `created_at` and `updated_at` for you.
+As you might have guessed adding `timestamps` to your migration will create and manage `inserted_at` and `updated_at` for you.
 
 To apply our new migration run `mix ecto.migrate`.
 

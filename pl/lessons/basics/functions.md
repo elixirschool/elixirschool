@@ -2,29 +2,17 @@
 layout: page
 title: Funkcje
 category: basics
-order: 7
+order: 6
 lang: pl
 ---
 
-W Elixirze, tak jak w wielu innych językach funkcyjnych, funkcje należą do bytów podstawowych (ang. _first class 
-citizen_). W tej lekcji poznamy rodzaje funkcji, różnice pomiędzy nimi oraz zastosowania.
+W Elixirze, tak jak w wielu innych językach funkcyjnych, funkcje należą do bytów podstawowych (ang. _first class citizen_). W tej lekcji poznamy rodzaje funkcji, różnice pomiędzy nimi oraz zastosowania.
 
-## Spis treści
-
-- [Funkcje anonimowe](#Funkcje-anonimowe)
-  - [Znak & jako skrót](#Znak--jako-skrót)
-- [Dopasowanie wzorców](#Dopasowanie-wzorców)
-- [Funkcje nazwane](#Funkcje-nazwane)
-  - [Funkcje prywatne](#Funkcje-prywatne)
-  - [Strażnicy](#Strażnicy)
-  - [Argumenty domyślne](#Argumenty-domyślne)
+{% include toc.html %}
 
 ## Funkcje anonimowe
 
-Jak sama nazwa wskazuje, funkcje anonimowe nie mają nazw.  W lekcji `Enum` zobaczyliśmy, że funkcje często są 
-przekazywane do innych funkcji jako parametry. Jeżeli chcemy zdefiniować funkcję anonimową w Elixirze musimy użyć słów 
-kluczowych `fn` i `end`. Funkcja taka może posiadać wiele parametrów, które są oddzielone od jej ciała za pomocą 
-znaku `->`.  
+Jak sama nazwa wskazuje, funkcje anonimowe nie mają nazw.  W lekcji `Enum` zobaczyliśmy, że funkcje często są przekazywane do innych funkcji jako parametry. Jeżeli chcemy zdefiniować funkcję anonimową w Elixirze musimy użyć słów kluczowych `fn` i `end`. Funkcja taka może posiadać wiele parametrów, które są oddzielone od jej ciała za pomocą znaku `->`.  
 
 Przyjrzyjmy się prostemu przykładowi:
 
@@ -48,8 +36,7 @@ Jak można się domyślić, w skróconej formie zapisu argumenty funkcji są dos
 
 ## Dopasowanie wzorców
 
-Dopasowanie wzorców w Elixirze nie jest ograniczone tylko do zmiennych. Może zostać wykorzystane do dopasowania 
-funkcji na podstawie listy ich parametrów.
+Dopasowanie wzorców w Elixirze nie jest ograniczone tylko do zmiennych. Może zostać wykorzystane do dopasowania funkcji na podstawie listy ich parametrów.
 
 Elixir używa dopasowania wzorców, by odnaleźć pierwszy pasujący zestaw parametrów i wykonać połączony z nim kod:
 
@@ -69,9 +56,7 @@ An error has occurred!
 
 ## Funkcje nazwane
 
-Możemy zdefiniować funkcję i nadać jej nazwę, by móc się do niej później odwołać. Robimy to w ramach 
-modułu wykorzystując słowo kluczowe `def`. O modułach będziemy jeszcze mówić w kolejnych lekcjach. Teraz skupimy się 
-na samych funkcjach. 
+Możemy zdefiniować funkcję i nadać jej nazwę, by móc się do niej później odwołać. Robimy to w ramach modułu wykorzystując słowo kluczowe `def`. O modułach będziemy jeszcze mówić w kolejnych lekcjach. Teraz skupimy się na samych funkcjach. 
 
 Funkcje zdefiniowane w module są też domyślnie dostępne w innych modułach. Jest to szczególnie użyteczna cecha języka.
 
@@ -110,8 +95,7 @@ iex> Length.of [1, 2, 3]
 
 ### Funkcje prywatne
 
-Jeżeli nie chcemy, by inne moduły mogły wywołać naszą funkcję, możemy zdefiniować ją jako prywatną. Będzie można ją 
-użyć tylko w module, w którym została stworzona.  W Elixirze służy do tego słowo kluczowe `defp`:
+Jeżeli nie chcemy, by inne moduły mogły wywołać naszą funkcję, możemy zdefiniować ją jako prywatną. Będzie można ją użyć tylko w module, w którym została stworzona.  W Elixirze służy do tego słowo kluczowe `defp`:
 
 ```elixir
 defmodule Greeter do
@@ -129,12 +113,9 @@ iex> Greeter.phrase
 
 ### Strażnicy
 
-Pokrótce omówiliśmy strażników w lekcji o [strukturach kontrolnych](../control-structures.md), a teraz przyjrzymy 
-się bliżej, jak można wykorzystać ich w funkcjach. Elixir odszukując funkcję do wywołania, sprawdza warunki dla 
-wszystkich strażników.
+Pokrótce omówiliśmy strażników w lekcji o [strukturach kontrolnych](../control-structures), a teraz przyjrzymy się bliżej, jak można wykorzystać ich w funkcjach. Elixir odszukując funkcję do wywołania, sprawdza warunki dla wszystkich strażników.
 
-W poniższym przykładzie mamy dwie funkcje o takiej samej sygnaturze, ale wywołanie właściwej jest możliwe dzięki 
-strażnikom testującym typ argumentu:
+W poniższym przykładzie mamy dwie funkcje o takiej samej sygnaturze, ale wywołanie właściwej jest możliwe dzięki strażnikom testującym typ argumentu:
 
 ```elixir
 defmodule Greeter do
@@ -179,8 +160,7 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-Należy uważać, łącząc mechanizmy strażników i domyślnych argumentów, ponieważ może to spowodować błędy kompilacji. 
-Zobaczmy co stanie się, gdy połączymy nasze przykłady:
+Należy uważać, łącząc mechanizmy strażników i domyślnych argumentów, ponieważ może to spowodować błędy kompilacji. Zobaczmy co stanie się, gdy połączymy nasze przykłady:
 
 ```elixir
 defmodule Greeter do
@@ -201,8 +181,7 @@ end
 ** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
 ```
 
-Domyślne argumenty nie są preferowane przez Elixira w mechanizmach dopasowania wzorców, ponieważ mogą być mylące. By 
-temu zaradzić, możemy dodać dodatkową funkcję:
+Domyślne argumenty nie są preferowane przez Elixira w mechanizmach dopasowania wzorców, ponieważ mogą być mylące. By temu zaradzić, możemy dodać dodatkową funkcję:
 
 ```elixir
 defmodule Greeter do

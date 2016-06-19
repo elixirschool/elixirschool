@@ -2,25 +2,17 @@
 layout: page
 title: Functions
 category: basics
-order: 7
+order: 6
 lang: en
 ---
 
 In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
 
-## Table of Contents
+{% include toc.html %}
 
-- [Anonymous functions](#anonymous-functions)
-  - [The & shorthand](#the--shorthand)
-- [Pattern matching](#pattern-matching)
-- [Named functions](#named-functions)
-  - [Private functions](#private-functions)
-  - [Guards](#guards)
-  - [Default arguments](#default-arguments)
+## Anonymous Functions
 
-## Anonymous functions
-
-Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, they are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
+Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, these are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
 
 Let's look at a basic example:
 
@@ -30,7 +22,7 @@ iex> sum.(2, 3)
 5
 ```
 
-### The & shorthand
+### The & Shorthand
 
 Using anonymous functions is such a common practice in Elixir there is shorthand for doing so:
 
@@ -42,7 +34,7 @@ iex> sum.(2, 3)
 
 As you probably already guessed, in the shorthand version our parameters are available to us as `&1`, `&2`, `&3`, and so on.
 
-## Pattern matching
+## Pattern Matching
 
 Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
 
@@ -62,11 +54,11 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-## Named functions
+## Named Functions
 
-We can define functions with names so we can refer to them later, these named functions are defined with the `def` keyword within a module.  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
+We can define functions with names so we can easily refer to them later.  Named functions are defined within a module using the `def` keyword .  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
 
-Functions defined within a module are available to other modules for use, this is a particularly useful building block in Elixir:
+Functions defined within a module are available to other modules for use.  This is a particularly useful building block in Elixir:
 
 ```elixir
 defmodule Greeter do
@@ -101,9 +93,9 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### Private functions
+### Private Functions
 
-When we don't want other modules accessing a function we can use private functions, which can only be called within their Module.  We can define them in Elixir with `defp`:
+When we don't want other modules accessing a specific function we can make the function private.  Private functions can only be called from within their own Module.  We define them in Elixir with `defp`:
 
 ```elixir
 defmodule Greeter do
@@ -121,7 +113,7 @@ iex> Greeter.phrase
 
 ### Guards
 
-We briefly covered guards in the [Control Structures](../control-structures.md) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
+We briefly covered guards in the [Control Structures](../control-structures) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
 
 In the follow example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
 
@@ -144,7 +136,7 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### Default arguments
+### Default Arguments
 
 If we want a default value for an argument we use the `argument \\ value` syntax:
 

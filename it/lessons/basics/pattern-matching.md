@@ -8,10 +8,7 @@ lang: it
 
 _Pattern matching_ è un aspetto fondamentale di Elixir, permette di abbinare semplici valori, strutture dati e funzioni. In questa lezione inizieremo a vedere come viene usato il pattern matching.
 
-## Tavola dei Contenuti
-
-- [Operatore match](#operatore-match)
-- [Operatore pin](#operatore-pin)
+{% include toc.html %}
 
 ## Operatore match
 

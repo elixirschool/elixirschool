@@ -8,22 +8,7 @@ lang: jp
 
 Erlang Term Storage、略してETSは、OTP内部に組み込まれている強力なストレージエンジンで、Elixirから利用することができます。このレッスンではETSを呼び出す方法と、アプリケーションで使用する方法を見ていきます。
 
-## 目次
-
-- [概要](#section-1)
-- [テーブルの作成](#section-2)
-  - [テーブルの型](#section-3)
-  - [アクセス制御](#section-4)
-- [データの挿入](#section-5)
-- [データの復旧](#section-6)
-  - [キー探索](#section-7)
-  - [単純なマッチ](#section-8)
-  - [発展的な探索](#section-9)
-- [データの削除](#seciton-10)
-  - [レコードの除去](#section-11)
-  - [テーブルの除去](#section-12)
-- [ETSの使用例](#ets)
-- [ディスクを用いたETS](#ets-1)
+{% include toc.html %}
 
 ## 概要
 

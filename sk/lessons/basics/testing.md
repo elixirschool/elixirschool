@@ -8,14 +8,7 @@ lang: sk
 
 Testovanie je dôležitou súčasťou vývoja softvéru. V tejto lekcii sa pozrieme na to, ako testovať náš elixirový kód pomocou knižnice ExUnit a na testovacie *best practices*.
 
-## Obsah
-
-- [ExUnit](#exunit)
-  - [assert](#assert)
-  - [refute](#refute)
-  - [assert_raise](#assertraise)
-- [Setup](#setup)
-- [Mockovanie](#mockovanie)
+{% include toc.html %}
 
 ## ExUnit
 

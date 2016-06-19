@@ -8,11 +8,7 @@ lang: vi
 
 To build executables in Elixir we will be using escript. Escript produces an executable that can be run on any system with Erlang installed.
 
-## Table of Contents
-
-- [Getting Started](#getting-started)
-- [Parsing Args](#parsing-args)
-- [Building](#building)
+{% include toc.html %}
 
 ## Getting Started
 
@@ -65,7 +61,6 @@ defmodule ExampleApp.CLI do
     {opts, List.to_string(word)}
   end
 
-  defp response({opts, "Hello"}), do: response({opts, "World"})
   defp response({opts, word}) do
     if opts[:upcase], do: word = String.upcase(word)
     word
@@ -85,7 +80,7 @@ Let's take it for a spin:
 
 ```elixir
 $ ./example_app --upcase Hello
-WORLD
+HELLO
 
 $ ./example_app Hi
 Hi

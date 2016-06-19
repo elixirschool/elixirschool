@@ -8,23 +8,7 @@ lang: it
 
 Configurazione, tipi di base ed operazioni di base.
 
-## Tavola dei Contenuti
-
-- [Configurazione](#configurazione)
-	- [Installare Elixir](#installare-elixir)
-	- [Modalità Interattiva](#modalit-interattiva)
-- [Tipi di Base](#tipi-di-base)
-	- [Interi](#interi)
-	- [Numeri in Virgola Mobile](#numeri-in-virgola-mobile)
-	- [Booleani](#booleani)
-	- [Atoms](#atoms)
-	- [Stringhe](#stringhe)
-- [Operazioni di Base](#operazioni-di-base)
-	- [Aritmetica](#aritmetica)
-	- [Logica Booleana](#logica-booleana)
-	- [Confronto](#confronto)
-	- [Interpolazione in una Stringa](#interpolazione-in-una-stringa)
-	- [Concatenazione di Stringhe](#concatenazione-di-stringhe)
+{% include toc.html %}
 
 ## Configurazione
 
@@ -38,7 +22,7 @@ Elixir viene fornito con `iex`, una shell interattiva che permette di eseguire i
 
 Per cominciare, lanciamo il comando `iex`:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>

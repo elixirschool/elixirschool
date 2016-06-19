@@ -8,11 +8,7 @@ lang: jp
 
 Elixirで実行ファイルをビルドするにはescriptを利用します。escriptはErlangがインストールされているあらゆるシステム上で動作する実行ファイルを生み出します。
 
-## 目次
-
-- [始めに](#section-1)
-- [引数の解析](#section-2)
-- [ビルド](#section-3)
+{% include toc.html %}
 
 ## 始めに
 
@@ -65,7 +61,6 @@ defmodule ExampleApp.CLI do
     {opts, List.to_string(word)}
   end
 
-  defp response({opts, "Hello"}), do: response({opts, "World"})
   defp response({opts, word}) do
     if opts[:upcase], do: word = String.upcase(word)
     word
@@ -85,7 +80,7 @@ $ mix escript.build
 
 ```elixir
 $ ./example_app --upcase Hello
-WORLD
+HELLO
 
 $ ./example_app Hi
 Hi

@@ -10,15 +10,7 @@ lang: cn
 
 这节课，我们主要讲两个东西：Genservers 和 GenEvents。
 
-# 目录
-- [GenServer](#genserver)
-  - [同步函数](#section-1)
-  - [异步函数](#section-2)
-
-- [GenEvent](#genevent)
-  - [处理事件](#section-3)
-  - [调用处理函数](#section-4)
-  - [使用GenEvents](#genevents)
+{% include toc.html %}
 
 # GenServer
 OTP server 是一个模块，包含了 Genserver 的主要行为，外加一系列的 callbacks。Genserver 最核心的内容是这样一个循环：每次迭代处理一个带有目标状态的请求。
@@ -48,7 +40,7 @@ end
 ## 同步函数
 有时候需要和 Genservers 进行同步的交互：调用一个函数，然后等待它的响应返回。要处理同步请求，我们需要实现 `Genserver.handle_call/3` 函数，接受的参数是：请求、调用者的 PID，初始的状态，期望的返回值是 `{:reply, response, state}` 三元组。
 
-使用模式匹配，我们可以为不同的请求和状态定义不同的 callbacks，能够接受的所有返回值列表可以前往 [`Genserver.handle_call/3`](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#c:handle_call/3) 文档处查看。
+使用模式匹配，我们可以为不同的请求和状态定义不同的 callbacks，能够接受的所有返回值列表可以前往 [`Genserver.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) 文档处查看。
 
 为了演示同步请求，我们添加这样的功能：返回现在队列的状态以及删除队列中的一个值：
 
@@ -154,7 +146,7 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-可以前往官方的 [`GenServer`](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#content) 文档了解更多的信息。
+可以前往官方的 [`GenServer`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content) 文档了解更多的信息。
 
 # GenEvent
 我们刚学习到：Genservers 是维护状态并能够同步和异步处理请求的进程，但什么是 GenEcent 呢？GenEvents 是事件管理器：接受进来的事件，并通知订阅事件的消费者。这种机制能让我们动态地添加和删除事件的处理函数。
@@ -225,4 +217,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-阅读官方的 [GenEvent](http://elixir-lang.org/docs/v1.1/elixir/GenEvent.html#content) 文档查看完整的回调函数列表以及 GenEvent 的所有功能。
+阅读官方的 [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) 文档查看完整的回调函数列表以及 GenEvent 的所有功能。

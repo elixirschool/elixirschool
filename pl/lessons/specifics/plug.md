@@ -8,15 +8,7 @@ lang: pl
 
 Jeżeli masz doświadczenie z Ruby to Plug może być czymś w rodzaju Racka z domieszką Sinatry. Definiuje on specyfikację dla aplikacji webowych oraz adapterów dla serwerów. Choć nie jest częścią biblioteki standardowej, to Plug jest oficjalnym projektem zespołu odpowiedzialnego za Elixira.   
 
-## Spis treści
-
-- [Instalacja](#instalacja)
-- [Specyfikacja](#specyfikacja)
-- [Tworzenie Pluga](#tworzenie-pluga)
-- [Użycie Plug.Router](#użycie-plugrouter)
-- [Uruchomienie aplikacji web](#uruchomienie-aplikacji-web)
-- [Testowanie Plugów](#testowanie-plugów)
-- [Dostępne Plugi](#dostępne-plugi)
+{% include toc.html %}
 
 ## Instalacja
 
@@ -168,7 +160,7 @@ defmodule Example do
   use Application
 
   def start(_type, _args) do
-    port = Application.get_env(:concoction, :cowboy_port, 8080)
+    port = Application.get_env(:example, :cowboy_port, 8080)
 
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Example.Plug.Router, [], port: port)
