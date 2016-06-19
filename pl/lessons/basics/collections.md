@@ -8,15 +8,7 @@ lang: pl
 
 Listy, krotki, listy asocjacyjne, mapy i kombinatory funkcyjne.
 
-## Spis treści
-
-- [Listy](#listy)
-	- [Łączenie list](#Łączenie-list)
-	- [Usuwanie elementów](#Usuwanie-elementów)
-	- [Głowa i ogon](#Głowa-i-ogon)
-- [Krotki](#Krotki)
-- [Listy asocjacyjne](#Listy-asocjacyjne)
-- [Mapy](#Mapy)
+{% include toc.html %}
 
 ## Listy
 

@@ -8,15 +8,7 @@ lang: cn
 
 如果你熟悉 Ruby 你可以把 Plug 想成 Rack，再加上一点 Sinatra。它提供了编写 Web 应用组件的一组规范，以及接入 Web 服务器所需的一些适配器。虽然 Plug 不属于 Elixir 的核心库，但它依然是一个 Elixir 官方维护的项目。
 
-## 目录
-
-- [安装](#section-1)
-- [Plug 规范](#plug-)
-- [创建一个 Plug](#plug)
-- [使用 Plug.Router](#plugrouter)
-- [运行我们的 Web 程序](#web-)
-- [测试 Plug](#plug-1)
-- [可用的 Plug](#plug-2)
+{% include toc.html %}
 
 ## 安装
 
@@ -168,7 +160,7 @@ defmodule Example do
   use Application
 
   def start(_type, _args) do
-    port = Application.get_env(:concoction, :cowboy_port, 8080)
+    port = Application.get_env(:example, :cowboy_port, 8080)
 
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Example.Plug.Router, [], port: port)

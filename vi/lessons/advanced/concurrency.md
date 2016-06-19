@@ -10,14 +10,7 @@ One the selling points of Elixir is its support for concurrency. Thanks to the E
 
 In this lesson we'll look at the concurrency modules that ship with Elixir.  In the following chapter we cover the OTP behaviors that implement them.
 
-## Table of Contents
-
-- [Processes](#processes)
-  - [Message Passing](#message-passing)
-  - [Process Linking](#process-linking)
-  - [Process Monitoring](#process-monitoring)
-- [Agents](#agents)
-- [Tasks](#tasks)
+{% include toc.html %}
 
 ## Processes
 

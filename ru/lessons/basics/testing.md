@@ -8,14 +8,7 @@ lang: ru
 
 Тестирование &mdash; важная часть разработки.  В этом уроке мы узнаем, как тестировать наш Elixir код с помощью ExUnit, и познакомимся с некоторыми отличными приёмами.
 
-## Содержание
-
-- [ExUnit](#exunit)
-  - [assert](#assert)
-  - [refute](#refute)
-  - [assert_raise](#assertraise)
-- [Настройка теста](#section-1)
-- [Использование "заглушек"](#section-2)
+{% include toc.html %}
 
 ## ExUnit
 

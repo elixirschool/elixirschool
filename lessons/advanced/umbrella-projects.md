@@ -8,11 +8,7 @@ lang: en
 
 Sometimes a project can get big, really big in fact. The Mix build tool allows us to split our code into multiple apps and make our Elixir projects more manageable as they grow.
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Child Projects](#child-projects)
-- [IEx](#iex)
+{% include toc.html %}
 
 ## Introduction
 
@@ -198,7 +194,7 @@ end
 
 ```shell
 $ iex -S mix
-Erlang/OTP 18 [erts-7.2.1] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 ==> datasets
 Compiled lib/datasets.ex

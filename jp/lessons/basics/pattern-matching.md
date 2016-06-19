@@ -8,10 +8,7 @@ order: 4
 
 パターンマッチングはElixirの強力な部品で、単純な値やデータ構造、果ては関数でさえもマッチすることができます。このレッスンではパターンマッチングの使い方から見ていきます。
 
-## 目次
-
-- [マッチ演算子](#section-1)
-- [ピン演算子](#section-2)
+{% include toc.html %}
 
 ## マッチ演算子
 
@@ -59,9 +56,9 @@ iex> {:ok, value} = {:error}
 
 ## ピン演算子
 
-今学んだように、マッチ演算子は左辺に変数が含まれている時に代入操作を行います。この、変数を再び束縛するという挙動は望ましくない場合があります。そうした状況のために、`^`演算子があります:
+今学んだように、マッチ演算子は左辺に変数が含まれている時に代入操作を行います。この、変数を再び束縛するという挙動は望ましくない場合があります。そうした状況のために、ピン演算子: `^` があります。
 
-_この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/pattern-matching.html)ガイドから直接持ってきています。_
+ピン演算子で変数を固定すると、新しく再束縛するのではなく既存の値とマッチします。これがどのような働きをするのか見てみましょう:
 
 ```elixir
 iex> x = 1
@@ -72,4 +69,33 @@ iex> {x, ^x} = {2, 1}
 {2, 1}
 iex> x
 2
+```
+
+Elixir 1.2ではマップのキーや関数の節でのピン演算子がサポートされました。
+
+```elixir
+iex> key = "hello"
+"hello"
+iex> %{^key => value} = %{"hello" => "world"}
+%{"hello" => "world"}
+iex> value
+"world"
+iex> %{^key => value} = %{:hello => "world"}
+** (MatchError) no match of right hand side value: %{hello: "world"}
+```
+
+関数の節でのピン演算子の例:
+
+```elixir
+iex> greeting = "Hello"
+"Hello"
+iex> greet = fn
+...>   (^greeting, name) -> "Hi #{name}"
+...>   (greeting, name) -> "#{greeting}, #{name}"
+...> end
+#Function<12.54118792/2 in :erl_eval.expr/5>
+iex> greet.("Hello", "Sean")
+"Hi Sean"
+iex> greet.("Mornin'", "Sean")
+"Mornin', Sean"
 ```

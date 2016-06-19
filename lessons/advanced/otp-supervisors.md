@@ -8,14 +8,7 @@ lang: en
 
 Supervisors are specialized processes with one purpose: monitoring other processes. These supervisors enable us to create fault-tolerant applications by automatically restarting child processes when they fail.
 
-## Table of Contents
-
-- [Configuration](#configuration)
-  - [Strategies](#strategies)
-  - [Nesting](#nesting)
-- [Task Supervisor](#task-supervisor)
-  - [Setup](#setup)
-  - [Supervised Tasks](#supervised-tasks)
+{% include toc.html %}
 
 ## Configuration
 

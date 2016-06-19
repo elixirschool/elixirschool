@@ -8,15 +8,7 @@ lang: en
 
 List, tuples, keywords, maps and functional combinators.
 
-## Table of Contents
-
-- [Lists](#lists)
-	- [List concatenation](#list-concatenation)
-	- [List subtraction](#list-subtraction)
-	- [Head / Tail](#head--tail)
-- [Tuples](#tuples)
-- [Keyword lists](#keyword-lists)
-- [Maps](#maps)
+{% include toc.html %}
 
 ## Lists
 
@@ -61,7 +53,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 
 ### Head / Tail
 
-When using lists it is common to work with the list's head and tail.  The head is the first element of the list and the tail the remaining elements.  Elixir provides two helpful methods, `hd` and `tl`, for working with these parts:
+When using lists it is common to work with a list's head and tail.  The head is the list's first element while the tail is the remaining elements.  Elixir provides two helpful methods, `hd` and `tl`, for working with these parts:
 
 ```elixir
 iex> hd [3.41, :pie, "Apple"]
@@ -70,7 +62,7 @@ iex> tl [3.41, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-In addition to the aforementioned functions, you may use the pipe operator `|`; we'll see this pattern in later lessons:
+In addition to the aforementioned functions, you can use [pattern matching](../pattern-matching/) and the pipe operator `|` to split a list into head and tail; we'll learn more about this pattern in later lessons:
 
 ```elixir
 iex> [h|t] = [3.41, :pie, "Apple"]
@@ -120,7 +112,7 @@ For these reasons keyword lists are most commonly used to pass options to functi
 
 ## Maps
 
-In Elixir maps are the "go-to" key-value store, unlike keyword lists they allow keys of any type and they do not follow ordering.  You can define a map with the `%{}` syntax:
+In Elixir maps are the "go-to" key-value store. Unlike keyword lists they allow keys of any type and are un-ordered.  You can define a map with the `%{}` syntax:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}

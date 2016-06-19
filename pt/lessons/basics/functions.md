@@ -2,24 +2,15 @@
 layout: page
 title: Funções
 category: basics
-order: 7
+order: 6
 lang: pt
 ---
 
 Em Elixir e em várias linguagens funcionais, funções são cidadãos de primeira classe. Nós iremos aprender sobre os tipos de funções em Elixir, qual a diferença, e como usar elas.
 
-## Sumário
+{% include toc.html %}
 
-- [Funções anônimas](#funcoes-anonimas)
-  - [A & taquigrafia](#a--taquigrafia)
-- [Pattern matching](#pattern-matching)
-- [Funções nomeadas](#funcoes-nomeadas)
-  - [Funções privadas](#funcoes-privadas)
-  - [Guards](#guards)
-  - [Argumentos padrões](#argumentos-padroes)
-
-
-## <a name="funcoes-anonimas"></a>Funções anônimas
+## Funções anônimas
 
 Tal como o nome indica, uma função anônima não tem nome. Como vimos na lição `Enum`, elas são frequentemente passadas para outras funções. Para definir uma função anônima em Elixir nós precisamos das palavras-chave `fn` e `end`. Dentro destes, podemos definir qualquer número de parâmetros e corpos separados por `->`.
 
@@ -63,7 +54,7 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-## <a name="funcoes-nomeadas"></a>Funções nomeadas
+## Funções nomeadas
 
 Nós podemos definir funções com nomes para referir a elas no futuro, estas funções nomeadas são definidas com a palavra-chave `def` dentro de um modulo. Nós iremos aprender mais sobre Modulos nas próximas lições, por agora nós iremos focar apenas nas funções nomeadas.
 
@@ -101,7 +92,7 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### <a name="funcoes-privadas"></a>Funções privadas
+### Funções privadas
 
 Quando não quisermos que outros módulos acessem uma função, nós podemos usar funções privadas, que só podem ser chamadas dentro de seus módulos. Nós podemos definir elas em Elixir com `defp`:
 
@@ -121,7 +112,7 @@ iex> Greeter.phrase
 
 ### Guards
 
-Nós cobrimos brevemente guards nas lições de [Estruturas Condicionais](../control-structures.md), agora nós iremos ver como podemos aplicá-los em funções nomeadas. Uma vez que Elixir tem correspondência em uma função, qualquer guard existente irá ser testado.
+Nós cobrimos brevemente guards nas lições de [Estruturas Condicionais](../control-structures), agora nós iremos ver como podemos aplicá-los em funções nomeadas. Uma vez que Elixir tem correspondência em uma função, qualquer guard existente irá ser testado.
 
 No exempo a seguir nós temos duas funções com a mesma assinatura, contamos com guards para determinar qual usar com base no tipo do argumento:
 
@@ -144,7 +135,7 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### <a name="argumentos-padroes"></a>Argumentos padrões
+### Argumentos padrões
 
 Se nós quisermos um valor padrão para um argumento, nós usamos a sintaxe `argumento \\ valor`:
 

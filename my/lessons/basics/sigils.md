@@ -8,14 +8,7 @@ lang: my
 
 Membuat dan menggunakan sigil.
 
-## Isi Kandungan.
-
-- [Gambaran Keseluruhan Sigil](#gambaran-keseluruhan-sigil)
-  - [List Aksara](#list-aksara)
-  - [Ungkapan Nalar](#ungkapan-nalar)
-  - [String](#string)
-  - [List Perkataan](#list-perkataan)
-- [Membuat Sigil](#membuat-sigil)
+{% include toc.html %}
 
 ## Gambaran Keseluruhan Sigil
 

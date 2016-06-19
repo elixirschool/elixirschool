@@ -8,14 +8,7 @@ lang: pl
 
 Tworzenie i praca z sigilami.
 
-## Spis treści.
-
-- [Czym są sigile](#Czym-są-sigile)
-  - [Listy znaków](#Listy-znaków)
-  - [Wyrażenia regularne](#Wyrażenia-regularne)
-  - [Ciągi znaków](#Ciągi-znaków)
-  - [Listy słów](#Listy-słów)
-- [Tworzenie sigili](#Tworzenie-sigili)
+{% include toc.html %}
 
 ## Czym są sigile
 
@@ -115,9 +108,7 @@ iex> ~s/the cat in the hat on the mat/
 iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
-Jaka jest między nimi różnica? Taka sama jak w przypadku list znaków, które już omawialiśmy. Sigil pisany wielką 
-literą wykona się na ciągu już zinterpretowanym, w którym wykonano też sekwencje ucieczki. Przyjrzyjmy się temu na 
-kolejnym przykładzie:
+Jaka jest między nimi różnica? Taka sama jak w przypadku list znaków, które już omawialiśmy. Sigil pisany wielką literą wykona się na ciągu już zinterpretowanym, w którym wykonano też sekwencje ucieczki. Przyjrzyjmy się temu na kolejnym przykładzie:
 
 ```elixir
 iex> ~s/welcome to elixir #{String.downcase "school"}/
@@ -129,8 +120,7 @@ iex> ~S/welcome to elixir #{String.downcase "school"}/
 
 ### Listy słów
 
-Sigile służące do tworzenia listy słów, `~w` i `~W`, są czasami bardzo przydatne. Mogą oszczędzić nam mnóstwo czasu, 
-klepania w klawiaturę oraz zredukować złożoność naszego kodu. Na prostym przykładzie:
+Sigile służące do tworzenia listy słów, `~w` i `~W`, są czasami bardzo przydatne. Mogą oszczędzić nam mnóstwo czasu, klepania w klawiaturę oraz zredukować złożoność naszego kodu. Na prostym przykładzie:
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -140,8 +130,7 @@ iex> ~W/i love elixir school/
 ["i", "love", "elixir", "school"]
 ```
 
-Widać tu, że ciąg znaków został podzielony na słowa. Oczywiście pomiędzy tymi dwoma wywołaniami nie ma różnicy, bo 
-znowuż leży ona w interpolacji ciągu i użyciu znaków ucieczki, tak ja na poniższym przykładzie:
+Widać tu, że ciąg znaków został podzielony na słowa. Oczywiście pomiędzy tymi dwoma wywołaniami nie ma różnicy, bo znowuż leży ona w interpolacji ciągu i użyciu znaków ucieczki, tak ja na poniższym przykładzie:
 
 ```elixir
 iex> ~w/i love #{'e'}lixir school/
@@ -153,10 +142,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ## Tworzenie sigili
 
-Jednym z założeń Elixira jest możliwość łatwego rozszerzania języka. Zatem nie jest żadną niespodzianką możliwość 
-tworzenia własnych sigili w łatwy sposób. Nasz przykładowy sigil będzie zmieniać ciąg znaków na wielkie litery. 
-Oczywiście Elixir ma odpowiednią funkcję w standardowym API (`String.upcase/1`). Nasze rozwiązanie będzie z niego 
-korzystać.
+Jednym z założeń Elixira jest możliwość łatwego rozszerzania języka. Zatem nie jest żadną niespodzianką możliwość tworzenia własnych sigili w łatwy sposób. Nasz przykładowy sigil będzie zmieniać ciąg znaków na wielkie litery. Oczywiście Elixir ma odpowiednią funkcję w standardowym API (`String.upcase/1`). Nasze rozwiązanie będzie z niego korzystać.
 
 ```elixir
 
@@ -171,6 +157,4 @@ iex> ~u/elixir school/
 ELIXIR SCHOOL
 ```
 
-Najpierw zdefiniowaliśmy moduł `MySigils`, a w nim funkcję `sigil_u`. Nie ma sigila `~u` wśród istniejących, a zatem 
-możemy taki utworzyć. Zapis `_u` oznacza, że w nasz sigil będzie zapisywany jako `u` poprzedzone tyldą. Funkcja musi
- przyjmować dwa parametry, dane i listę. 
+Najpierw zdefiniowaliśmy moduł `MySigils`, a w nim funkcję `sigil_u`. Nie ma sigila `~u` wśród istniejących, a zatem możemy taki utworzyć. Zapis `_u` oznacza, że w nasz sigil będzie zapisywany jako `u` poprzedzone tyldą. Funkcja musi przyjmować dwa parametry, dane i listę. 

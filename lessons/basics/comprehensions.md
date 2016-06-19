@@ -8,11 +8,7 @@ lang: en
 
 List comprehensions are syntactic sugar for looping through enumerables in Elixir.  In this lesson we'll look at how we can use comprehensions for iteration and generation.
 
-## Table of Contents
-
-- [Basics](#basics)
-- [Filters](#filters)
-- [Using `:into`](#using-into)
+{% include toc.html %}
 
 ## Basics
 
@@ -79,18 +75,20 @@ List comprehensions are syntactic sugar and should be used only when appropriate
 
 ## Filters
 
-You can think of filters as a sort of guard for comprehensions.  When a filtered value returns `false` or `nil` it is excluded from the final list.  Let's loop over a range and only worry about even numbers:
+You can think of filters as a sort of guard for comprehensions.  When a filtered value returns `false` or `nil` it is excluded from the final list.  Let's loop over a range and only worry about even numbers.  We'll use the `is_even/1` function from the Integer module to check if a value is even or not.
 
 ```elixir
-iex> for x <- 1..10, rem(x, 2) == 0, do: x
+import Integer
+iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
-Like generators, we can use multiple filters.  Let's example our range and filter out values that aren't even and cannot be divided evenly by 3:
+Like generators, we can use multiple filters.  Let's expand our range and then filter only for values that are both even and evenly divisible by 3.
 
 ```elixir
+import Integer
 iex> for x <- 1..100,
-...>   rem(x, 2) == 0,
+...>   is_even(x),
 ...>   rem(x, 3) == 0, do: x
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```

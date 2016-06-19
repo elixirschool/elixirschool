@@ -2,17 +2,13 @@
 layout: page
 title: Operator Potoku
 category: basics
-order: 6 
+order: 7
 lang: pl
 ---
 
 Operator potoku `|>` przekazuje wynik jednego wyrażenia jako pierwszy parametr następnego wyrażenia.
 
-## Spis treści
-
-- [Wprowadzenie](#wprowadzenie)
-- [Przykłady](#przyklady)
-- [Najlepsze praktyki](#najlepsze-praktyki)
+{% include toc.html %}
 
 ## Wprowadzenie
 

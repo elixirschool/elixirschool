@@ -8,15 +8,7 @@ lang: jp
 
 ErlangVMの上で開発することによって得られる利点の1つに、既にある大量のライブラリが利用できるという事があげられます。相互運用できることで、そうしたライブラリやErlangの標準ライブラリをElixirコードから活用することができます。このレッスンではサードパーティのErlangパッケージも併せ、標準ライブラリの関数へアクセスする方法を見ていきます。
 
-## 目次
-
-- [標準ライブラリ](#section-1)
-- [Erlangパッケージ](#erlang)
-- [注目すべき違い](#section-2)
-  - [アトム](#section-3)
-  - [文字列](#section-4)
-  - [変数](#section-5)
-
+{% include toc.html %}
 
 ## 標準ライブラリ
 
@@ -53,10 +45,10 @@ end
 これでErlangライブラリにアクセスできるようになりました:
 
 ```elixir
-png = :png.create(#{:size => {30, 30},
+png = :png.create(%{:size => {30, 30},
                     :mode => {:indexed, 8},
                     :file => file,
-                    :palette => palette}),
+                    :palette => palette})
 ```
 
 ## 注目すべき違い
@@ -86,13 +78,27 @@ Erlangの文字列はシングルクォート(`''`)で表され、Elixirの文�
 Elixir:
 
 ```elixir
-"Example String"
+iex> is_list('Example')
+true
+iex> is_list("Example")
+false
+iex> is_binary("Example")
+true
+iex> <<"Example">> === "Example"
+true
 ```
 
 Erlang:
 
 ```erlang
-'Example String'.
+1> is_list('Example').
+false
+2> is_list("Example").
+true
+3> is_binary("Example").
+false
+4> is_binary(<<"Example">>).
+true
 ```
 
 重要なので注記しておくと、古いErlangライブラリではバイナリに対応していないものが多いため、Elixirの文字列は文字リストに変換する必要があります。ありがたいことに、これは`to_char_list/1`関数を用いて簡単に行うことができます:

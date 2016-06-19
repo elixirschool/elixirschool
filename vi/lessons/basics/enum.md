@@ -8,26 +8,13 @@ lang: vi
 
 Các thuật toán thao tác với các collection (tập dữ liệu)
 
-## Mục lục
-
-- [Enum](#enum)
-  - [all?](#all)
-  - [any?](#any)
-  - [chunk](#chunk)
-  - [chunk_by](#chunk_by)
-  - [each](#each)
-  - [map](#map)
-  - [min](#min)
-  - [max](#max)
-  - [reduce](#reduce)
-  - [sort](#sort)
-  - [uniq](#uniq)
+{% include toc.html %}
 
 ## Enum
 
 Module `Enum` bao gồm hơn một trăm hàm để dùng với các collection ta đã biết từ bài trước.
 
-Bài này sẽ chỉ thảo luận một vài trong số các hàm đó, xem đầy đủ các hàm tại trang tài liệu chính thức [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); xem thêm lazy enumeration (thao tác trì hoãn) tại trang [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html)
+Bài này sẽ chỉ thảo luận một vài trong số các hàm đó, xem đầy đủ các hàm tại trang tài liệu chính thức [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); xem thêm lazy enumeration (thao tác trì hoãn) tại trang [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html)
 
 ### all?
 
@@ -58,7 +45,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Có nhiều lựa chọn với hàm `chunk` nhưng ta sẽ không đi sâu vào chi tiết, xem trang chính thức [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) để biết thêm chi tiết.
+Có nhiều lựa chọn với hàm `chunk` nhưng ta sẽ không đi sâu vào chi tiết, xem trang chính thức [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) để biết thêm chi tiết.
 
 ### chunk_by
 

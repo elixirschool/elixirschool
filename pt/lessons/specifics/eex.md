@@ -8,20 +8,13 @@ lang: pt
 
 Do mesmo jeito que Ruby possui ERB e Java JSPs, Elixir tem EEx ou *Embedded Elixir (Elixir embutido)*. Com EEx podemos embutir e avaliar código Elixir dentro das *strings*.
 
-## Sumário
-
-- [API](#API)
-	- [Avaliação](#avaliacao)
-	- [Definições](#definicoes)
-	- [Compilação](#compilacao)
-- [Etiquetas](#etiquetas)
-- [Motor](#motor)
+{% include toc.html %}
 
 ## API
 
 A API EEX suporta trabalhar com cadeias de caracteres e arquivos directamente. A API está dividida em três componentes principais: avaliação simples, definicações de funções, e complilação para AST.
 
-### <a name="avaliacao"></a>Avaliação
+### Avaliação
 
 Usando `eval_string` e `eval_file` podemos realizar uma simples avaliação sobre uma string ou conteúdos de um arquivo. Este é a API mais simples mas lento uma vez que o código é interpretado e não compilado.
 
@@ -30,7 +23,7 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 "Hi, Sean"
 ```
 
-### <a name="definicoes"></a>Definições
+### Definições
 
 A mais rápida e preferida forma de usar o EEx é embutir nosso template dentro de um módulo assim ele pode ser compilado. Para isso precisamos do nosso template no momento da compilação e dos macros `function_from_string` e `function_from_file`.
 
@@ -49,7 +42,7 @@ iex> Example.greeting("Sean")
 "Hi, Sean"
 ```
 
-### <a name="compilacao"></a>Compilação
+### Compilação
 
 Por último, EEx fornece-nos uma forma para directamente gerar Elixir AST a partir de uma cadeia de caracteres usando `compile_string` ou `compile_file`. Esta API é usada principalmente pelas APIs acima mencionadas, mas está disponível caso deseje implementar seu próprio tratamento de Elixir embutido.
 
@@ -85,4 +78,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 As atribuições `EEx.SmartEngine` são úteis porque atribuições podem ser mudadas sem a necessidade de compilar o template:
 
-Interessado em escrever o seu próprio motor?  Confira o procedimento [`EEx.Engine`](http://elixir-lang.org/docs/v1.2/eex/EEx.Engine.html) para ver o que é necessário.
+Interessado em escrever o seu próprio motor?  Confira o procedimento [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) para ver o que é necessário.

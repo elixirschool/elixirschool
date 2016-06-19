@@ -8,16 +8,9 @@ lang: pt
 
 Supervisores são processos especializados com um propósito: monitorar outros processos. Estes supervisores nos possibilitam a criação de aplicações tolerantes a falhas automaticamente reiniciando processos filhos quando eles falham.
 
-## Sumário
+{% include toc.html %}
 
-- [Configuração](#configuracao)
-  - [Estratégias](#estrategias)
-  - [Nesting](#nesting)
-- [Tarefa Supervisora](#tarefa-supervisora)
-  - [Instalação](#instalacao)
-  - [Tarefas Supervisionadas](#tarefas-supervisionadas)
-
-## <a name="configuracao"></a>Configuração
+## Configuração
 
 A magia de Supervisores está na função `Supervisor.start_link/2`. Além de iniciar nosso supervisor e filhos, nos permite definir a estratégia que nosso supervisor irá usar para gerenciar os processos filhos.
 
@@ -37,7 +30,7 @@ children = [
 
 Se o nosso processo fosse falhar ou ser encerrado, nosso Supervisor iria automaticamente reiniciar este processo como se nada tivesse acontecido.
 
-### <a name="estrategias"></a>Estratégias
+### Estratégias
 
 Atualmente, existem quatro estratégias diferentes de reinicialização disponíveis aos supervisores:
 
@@ -68,7 +61,7 @@ children = [
 
 Tarefas têm o seu próprio Supervisor especializado, o `Task.Supervisor`. Projetado para tarefas criadas dinamicamente. O supervisor usa `:simple_one_for_one` por debaixo dos panos.
 
-### <a name="instalacao"></a>Instalação
+### Instalação
 
 Incluir o `Task.Supervisor` não é diferente de outros supervisores:
 
