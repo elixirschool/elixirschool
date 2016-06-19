@@ -6,24 +6,17 @@ order: 4
 lang: pl
 ---
 
-Jednym z najbardziej wartościowych elementów Elixira jest, to jak rozwiązano w nim obsługę współbieżności. Dzięki 
-temu, że działa on na maszynie wirtualnej Erlanga, zadanie top zostało bardzo uproszczone. Współbieżność oparta jest 
-o model aktorów, reprezentowanych przez procesy, które komunikują się, wymieniając wiadomości. 
+Jednym z najbardziej wartościowych elementów Elixira jest obsługa współbieżności. Dzięki temu, że działa on na maszynie wirtualnej Erlanga, zadanie to zostało bardzo uproszczone. Współbieżność oparta jest o model aktorów, reprezentowanych przez procesy, które komunikują się, wymieniając wiadomości. 
 
-W tej lekcji przyjrzymy się modułom, które służą do obsługi współbieżności, a w kolejnych omówimy i 
-zaimplementujemy zachowania OTP.
+W tej lekcji przyjrzymy się modułom, które służą do obsługi współbieżności, a w kolejnych omówimy i zaimplementujemy zachowania OTP.
 
 {% include toc.html %}
 
 ## Procesy
 
-Maszyna wirtualna Erlanga używa procesów lekkich, które mogą działać na wszystkich dostępnych dla niej procesorach. 
-Choć są one podobne do natywnych, systemowych, wątków, to jednak są prostsze i nie jest niczym niezwykłym, gdy w 
-aplikacji napisanej w Elixirze na raz działa kilka tysięcy procesów.
+Maszyna wirtualna Erlanga używa procesów lekkich, które mogą działać na wszystkich dostępnych dla niej procesorach. Choć są one podobne do natywnych, systemowych, wątków, to jednak są prostsze i nie jest niczym niezwykłym, gdy w aplikacji napisanej w Elixirze jednocześnie działa kilka tysięcy procesów.
 
-Najprostszą metodą na utworzenie nowego procesu jest wywołanie `spawn`, która jako argument przyjmuje funkcję nazwaną,
- jak i anonimową. Kiedy utworzy nowy proces zwróci _Identyfikator procesu_, czyli PID, który w sposób unikalny 
- identyfikuje proces w naszej aplikacji.
+Najprostszą metodą na utworzenie nowego procesu jest wywołanie `spawn`, która jako argument przyjmuje funkcję, nazwaną lub anonimową. Kiedy utworzy nowy proces zwróci _Identyfikator procesu_, czyli PID, który w sposób unikalny identyfikuje proces w naszej aplikacji.
 
 Zacznijmy od stworzenia nowego moduły i zdefiniowania w nim funkcji, którą będziemy uruchamiać:
 
@@ -49,10 +42,7 @@ iex> spawn(Example, :add, [2, 3])
 
 ### Przekazywanie komunikatów
 
-Komunikacja pomiędzy procesami bazuje na wymianie komunikatów. Istnieją dwa główne elementy tego mechanizmu: `send/2` i 
-`receive`. Funkcja `send/2` pozwalana na wysłanie komunikatu pod skazany PID. Przychodzących komunikatów nasłuchujemy
- za pomocą `receive` i dopasowujemy je do oczekiwanych wzorców. Jeżeli nie będzie dopasowania, to cały proces będzie 
- kontynuowany bez przerw.
+Komunikacja pomiędzy procesami bazuje na wymianie komunikatów. Istnieją dwa główne elementy tego mechanizmu: `send/2` i `receive`. Funkcja `send/2` pozwalana na wysłanie komunikatu pod skazany PID. Przychodzących komunikatów nasłuchujemy za pomocą `receive` i dopasowujemy je do wzorców. Jeżeli komunikat nie zostanie dopasowany, to proces zignoruje go i będzie kontynuować działanie, jak gdyby nic się nie stało.
 
 ```elixir
 defmodule Example do
@@ -76,9 +66,7 @@ iex> send pid, :ok
 
 ### Łączenie procesów
 
-Problemów z funkcją `spawn` polega na tym, że nie wiemy, kiedy proces ulegnie awarii.  Dlatego też potrzebujemy 
-procesów połączonych, które tworzy się z użyciem `spawn_link`.  Dwa połączone procesy będą nawzajem otrzymywać 
-komunikaty o swoim zakończeniu:
+Problem z funkcją `spawn` polega na tym, że nie wiemy, kiedy proces ulegnie awarii.  Dlatego też potrzebujemy procesów połączonych, które tworzy się z użyciem `spawn_link`.  Dwa połączone procesy będą nawzajem otrzymywać komunikaty o swoim zakończeniu:
 
 ```elixir
 defmodule Example do
@@ -92,9 +80,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) :kaboom
 ```
 
-Czasami nie chcemy by awaria jednego procesu, spowodowała zamknięcie połączonego z nim innego procesu. Dlatego też 
-musimy przechwycić informacje o zamknięciu. Wynikiem tej operacji jest wiadomość w postaci krotki: `{:EXIT, from_pid,
- reason}`.
+Czasami nie chcemy by awaria jednego procesu, spowodowała zamknięcie połączonego z nim innego procesu. Dlatego też musimy przechwycić informacje o zamknięciu. Wynikiem tej operacji jest wiadomość w postaci krotki: `{:EXIT, from_pid, reason}`.
 
 ```elixir
 defmodule Example do
@@ -116,9 +102,7 @@ Exit reason: kaboom
 
 ### Monitoring
 
-A co jeżeli nie chcemy łączyć procesów, ale chcemy nadal być informowani? Do tego służy mechanizm monitoringu 
-`spawn_monitor`.  Gdy monitorujemy inny proces z naszego procesu, to gdy otrzymamy wiadomość o jego awarii, nasz 
-proces nie ulegnie awarii ani też nie będziemy musieli jawnie obsłużyć sygnału zamknięcia.
+A co jeżeli nie chcemy łączyć procesów, ale chcemy nadal być informowani o awariach? Do tego służy mechanizm monitoringu `spawn_monitor`.  Gdy monitorujemy inny proces z naszego procesu, to gdy otrzymamy wiadomość o jego awarii, nasz proces nie ulegnie awarii ani też nie będziemy musieli jawnie obsłużyć sygnału zamknięcia.
 
 ```elixir
 defmodule Example do
@@ -139,9 +123,7 @@ Exit reason: kaboom
 
 ## Agenci
 
-Agenci są pewnego rodzaju abstrakcją nad procesami służącą do zarządzania ich stanem. Możemy się do nich odwołać z 
-poziomu innego procesu, aplikacji, albo innego węzła. Aktualny stan agenta jest równy ostatniej zwróconej przez 
-proces wartości:
+Agenci są pewnego rodzaju abstrakcją nad procesami służącą do zarządzania ich stanem. Możemy się do nich odwołać z poziomu innego procesu, aplikacji, albo innego węzła. Aktualny stan agenta jest równy ostatniej zwróconej przez proces wartości:
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
@@ -166,9 +148,7 @@ iex> Agent.get(Numbers, &(&1))
 
 ## Zadania
 
-Zadania pozwalają na wywołanie funkcji w tle i otrzymanie wyniku w późniejszym terminie. Jest to przydatne 
-szczególnie wtedy, gdy funkcja wykonuje jakieś długotrwałe obliczenia albo jest operacją blokującą. Można wtedy 
-wywołać ją bez blokowania całej aplikacji.
+Zadania pozwalają na wywołanie funkcji w tle i otrzymanie wyniku w późniejszym terminie. Jest to przydatne szczególnie wtedy, gdy funkcja wykonuje jakieś długotrwałe obliczenia albo jest operacją blokującą. Można wtedy wywołać ją bez blokowania całej aplikacji.
 
 ```elixir
 defmodule Example do
