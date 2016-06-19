@@ -6,9 +6,7 @@ order: 8
 lang: pl
 ---
 
-Z czasem projekt może stać się duży, naprawdę duży. Mix pozwala nam na podzielenie naszego projektu na mniejsze, 
-łatwiejsze w utrzymaniu i zarządzaniu. Projekty, które składają się z wielu mniejszych pod projektów, nazywamy 
-projektami zbiorczymi albo po angielsku _umbrella project_. 
+Z czasem projekt może stać się duży, naprawdę duży. Mix pozwala nam na podzielenie naszego projektu na mniejsze, łatwiejsze w utrzymaniu i zarządzaniu. Projekty, które składają się z wielu mniejszych pod projektów, nazywamy projektami zbiorczymi albo po angielsku _umbrella project_. 
 
 ## Spis treści
 
@@ -18,9 +16,7 @@ projektami zbiorczymi albo po angielsku _umbrella project_.
 
 ## Wprowadzenie
 
-Tworzenie projektu zbiorczego przebiega prawie tak samo, jak zwykłego, a jedyną różnicą jest flaga `--umbrella`. W 
-naszym przykładzie stworzymy *powłokę* na potrzeby narzędzia do nauki maszynowej. Dlaczego właśnie nauka maszynowa? A
- czemu by nie? Tego typu projekty zawierają zazwyczaj wiele algorytmów i funkcji narzędziowych.
+Tworzenie projektu zbiorczego przebiega prawie tak samo, jak zwykłego, a jedyną różnicą jest flaga `--umbrella`. W naszym przykładzie stworzymy *powłokę* na potrzeby narzędzia do nauki maszynowej. Dlaczego właśnie nauka maszynowa? A czemu by nie? Tego typu projekty zawierają zazwyczaj wiele algorytmów i funkcji narzędziowych.
 
 ```shell
 $ mix new machine_learning_toolkit --umbrella
@@ -47,8 +43,8 @@ for each application in the apps/ directory.
 
 Jak widać po wpisach w konsoli, Mix stworzył niewielki szkielet projektu zawierający dwa katalogi:
 
-  - `apps/` - gdzie będą znajdować się projekty potomne.
-  - `config/` - gdzie przechowywana jest konfiguracja projektu zbiorczego.
+  - `apps/` – gdzie będą znajdować się projekty potomne.
+  - `config/` – gdzie przechowywana jest konfiguracja projektu zbiorczego.
 
 
 ## Projekty potomne
@@ -163,9 +159,7 @@ $ tree
 └── mix.exs
 ```
 
-Jeżeli teraz wrócimy do katalogu projektu zbiorczego, będziemy mogli zobaczyć jak działają typowe zadania mixa jak 
-kompilacja. Jako że projekty potomne to zwyczajne aplikacje to zawsze możemy też wejść do ich katalogów i bez 
-żadnych problemów wywołać tam zadania mixa. 
+Jeżeli teraz wrócimy do katalogu projektu zbiorczego, będziemy mogli zobaczyć jak działają typowe zadania mixa jak kompilacja. Jako że projekty potomne to zwyczajne aplikacje to zawsze możemy też wejść do ich katalogów i bez żadnych problemów wywołać tam zadania mixa. 
 
 ```
 $ mix compile
@@ -192,9 +186,7 @@ Consolidated Inspect
 
 ## IEx
 
-Jeżeli myślisz, że praca z projektami zbiorczymi w IEx różni się w jakiś sposób od pracy ze zwykłymi projektami, to 
-jesteś w błędzie! Przejdźmy do głównego katalogu projektu i uruchommy IEx `iex -S mix` i już możemy pracować z 
-projektem bez żadnych przeszkód. Na przykład zmieńmy zawartości plku `apps/datasets/lib/datasets.ex`.
+Jeżeli myślisz, że praca z projektami zbiorczymi w IEx różni się w jakiś sposób od pracy ze zwykłymi projektami, to jesteś w błędzie! Przejdźmy do głównego katalogu projektu i uruchommy IEx `iex -S mix` i już możemy pracować z projektem bez żadnych przeszkód. Na przykład zmieńmy zawartości pliku `apps/datasets/lib/datasets.ex`.
 
 ```elixir
 defmodule Datasets do
