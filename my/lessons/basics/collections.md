@@ -8,15 +8,7 @@ lang: my
 
 List, tuples, keywords, maps, dicts dan functional combinators.
 
-## Kandungan
-
-- [List](#list)
-	- [Perangkaian List](#perangkaian-list)
-	- [Penolakan List](#penolakan-list)
-	- [Head / Tail](#head--tail)
-- [Tuple](#tuple)
-- [Kata-kunci list](#kata--kunci-list)
-- [Map](#map)
+{% include toc.html %}
 
 ## List
 

@@ -8,15 +8,7 @@ lang: en
 
 If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra.  It provides a specification for web application components and adapters for web servers. While not part of Elixir core, Plug is an official Elixir project.
 
-## Table of Contents
-
-- [Installation](#installation)
-- [The specification](#the-specification)
-- [Creating a Plug](#creating-a-plug)
-- [Using Plug.Router](#using-plugrouter)
-- [Running our web app](#running-our-web-app)
-- [Testing Plugs](#testing-plugs)
-- [Available Plugs](#available-plugs)
+{% include toc.html %}
 
 ## Installation
 
@@ -168,7 +160,7 @@ defmodule Example do
   use Application
 
   def start(_type, _args) do
-    port = Application.get_env(:concoction, :cowboy_port, 8080)
+    port = Application.get_env(:example, :cowboy_port, 8080)
 
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Example.Plug.Router, [], port: port)
@@ -177,6 +169,14 @@ defmodule Example do
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
+```
+
+> (Optional) add `:cowboy_port` in `config/config.exs`
+
+```elixir
+use Mix.Config
+
+config :example, cowboy_port: 8080
 ```
 
 Now to run our application we can use:

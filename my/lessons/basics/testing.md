@@ -8,14 +8,7 @@ lang: my
 
 Pengujian adalah aspek penting di dalam pembangunan perisian.  Di dalam pelajaran ini kita akan melihat bagaimana untuk menguji kod Elixir kita menggunakan ExUnit dan juga beberapa amalan terbaik untuk melaksanakannya.
 
-## Isi Kandungan
-
-- [ExUnit](#exunit)
-  - [assert](#assert)
-  - [refute](#refute)
-  - [assert_raise](#assertraise)
-- [Penyediaan Ujian](#penyediaan-ujian)
-- [Mocking](#mocking)
+{% include toc.html %}
 
 ## ExUnit
 

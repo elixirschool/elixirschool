@@ -4,7 +4,7 @@
 
 Lessons can now be viewed on [ElixirSchool.com](https://elixirschool.com).
 
-_Feedback and participation is welcome. Please see [Contributing](CONTRIBUTIING.md) for more details on how to get involved._
+_Feedback and participation is welcome. Please see [Contributing](CONTRIBUTING.md) for more details on how to get involved._
 
 ### Running
 
@@ -46,9 +46,9 @@ In addition to the steps above there are a few addition steps required for trans
   $ mkdir -p jp/lessons/{basics,advanced,specifics}
   ```
 
-1. Update `_config.yml` by including the 2 character code in `languages` and adding translations to `sections` and `description`:
+1. Update `_config.yml` by including the 2 character code in `languages` and adding translations to `sections`, `description` and `toc`:
 
-  ```md
+  ```yaml
   languages: ['en', 'jp']
   default_lang: en
   exclude_from_localization: []
@@ -57,9 +57,20 @@ In addition to the steps above there are a few addition steps required for trans
       label:
         en: Basics
         jp: 基本
-	description:
-	  en: Lessons about the Elixir programming language
-	  pt: Lições sobre a linguagem de programação Elixir
+
+  description:
+    en: Lessons about the Elixir programming language
+    jp: プログラミング言語Elixirのレッスン
+
+  toc:
+    en: Table of Contents
+    jp: 目次
+  ```
+
+1. If the new language is RTL (right-to-left) it should also be added to the `rtl_languages` list:
+
+  ```yaml
+  rtl_languages: ['ar']
   ```
 
 #### Translated Lesson

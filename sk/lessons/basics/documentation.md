@@ -8,16 +8,7 @@ lang: sk
 
 Komentovanie a dokumentovanie kódu v Elixire.
 
-## Obsah
-
-- [O dokumentovaní v Elixire](#o-dokumentovan-v-elixire)
-  - [Inline komentáre](#inline-komentre)
-  - [Dokumentovanie modulov](#dokumentovanie-modulov)
-  - [Dokumentovanie funkcií](#dokumentovanie-funkci)
-- [ExDoc](#exdoc)
-  - [Inštalácia](#intalcia)
-  - [Generovanie dokumentácie](#generovanie-dokumentcie)
-- [Best Practices](#best-practices)
+{% include toc.html %}
 
 
 ## O dokumentovaní v Elixire
@@ -320,4 +311,4 @@ defmodule Greeter do
 end
 ```
 
-  - Pokúste sa do dokumentácie priložiť aj nejaké príklady použitia. Okrem iného vám to umožní vygenerovať automatické testy funkcií, modulov, či makier pomocou nástroja [ExUnit.DocTest](http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html).
+  - Pokúste sa do dokumentácie priložiť aj nejaké príklady použitia. Okrem iného vám to umožní vygenerovať automatické testy funkcií, modulov, či makier pomocou nástroja [ExUnit.DocTest](http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html).

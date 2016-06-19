@@ -8,15 +8,7 @@ lang: fr
 
 Les Listes, Tuples, Keywords, Maps et les combinateurs fonctionnels.
 
-## Table des matières
-
-- [Listes](#listes)
-	- [Concaténation de listes](#concatenation-de-listes)
-	- [Soustraction de listes](#soustraction-de-listes)
-	- [Head / Tail](#head--tail)
-- [Tuples](#tuples)
-- [Listes de Keywords](#listes-de-keywords)
-- [Maps](#maps)
+{% include toc.html %}
 
 ## Listes
 

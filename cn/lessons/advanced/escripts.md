@@ -8,10 +8,7 @@ lang: cn
 
 要想在 Elixir 中生成可执行文件，我们要用 `escript`，`escript` 会生成的可执行文件，可以运行在任何安装了 Erlang 的平台。
 
-# 目录
-- [开始](#section-1)
-- [解析命令行参数](#section-2)
-- [构建](#section-3)
+{% include toc.html %}
 
 # 开始
 用 `escript` 创建可执行文件要做的事很少：实现一个 `main/1` 函数，更新一下 Mixfile。
@@ -62,7 +59,6 @@ defmodule ExampleApp.CLI do
     {opts, List.to_string(word)}
   end
 
-  defp response({opts, "Hello"}), do: response({opts, "World"})
   defp response({opts, word}) do
     if opts[:upcase], do: word = String.upcase(word)
     word
@@ -81,7 +77,7 @@ $ mix escript.build
 
 ```elixir
 $ ./example_app --upcase Hello
-WORLD
+HELLO
 
 $ ./example_app Hi
 Hi

@@ -8,23 +8,7 @@ lang: vi
 
 Cài đặt, cái kiểu phổ thông và cơ chế hoạt động.
 
-## Mục lục
-
-- [Cài đặt](#setup)
-	- [Cài Elixir](#install-elixir)
-	- [Chế độ trực quan](#interactive-mode)
-- [Kiểu phổ thông](#basic-types)
-	- [Integer](#integers)
-	- [Float](#floats)
-	- [Boolean](#booleans)
-	- [Atom](#atoms)
-	- [String](#strings)
-- [Cơ chế vận hành phổ thông](#basic-operations)
-	- [Toán học](#arithmetic)
-	- [Boolean](#boolean)
-	- [So sánh](#comparison)
-	- [String Interpolation](#string-interpolation)
-	- [Sâu nối String](#string-concatenation)
+{% include toc.html %}
 
 ## Cài đặt
 
@@ -38,7 +22,7 @@ Elixir đi kèm với `iex`, một shell trực quan, cho phép chúng ta chạy
 
 Để bắt đầu, hãy chạy `iex`:
 
-	Erlang/OTP 18 [erts-7.2.1] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 

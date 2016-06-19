@@ -8,10 +8,7 @@ lang: vi
 
 Pattern matching (so trùng mẫu) là chức năng lợi hại của Elixir, nó giúp chung ta so khớp các giá trị đơn giản, các kiểu cấu trúc dữ liệu và cả hàm. Trong bài này chúng ta sẽ cùng khám phá cách cơ chế này.
 
-## Mục lục
-
-- [Match operator (Toán tử khớp)](#match-operator)
-- [Pin operator (Toán tử ghim)](#pin-operator)
+{% include toc.html %}
 
 ## Match operator (Toán tử khớp)
 

@@ -8,14 +8,7 @@ lang: pt
 
 Testes são uma parte importante do desenvolvimento de software. Nesta lição nós veremos como testar nosso código Elixir com ExUnit e algumas das melhores práticas de como fazer isto.
 
-## Sumário
-
-- [ExUnit](#exunit)
-  - [assert](#assert)
-  - [refute](#refute)
-  - [assert_raise](#assertraise)
-- [Configuração de Teste](#configuracao-de-teste)
-- [Mocking](#mocking)
+{% include toc.html %}
 
 ## ExUnit
 
@@ -85,7 +78,7 @@ ExUnit nos diz exatamente onde nossos asserts falharam, qual era o valor esperad
 
 As vezes pode ser necessário afirmar que um erro foi levantado, podemos fazer isso com `assert_raise`. Vamos ver um exemplo de `assert_raise` na próxima lição sobre Plug.
 
-## <a name="configuracao-de-teste"></a>Configuração de Teste
+## Configuração de Teste
 
 Em alguns casos, pode ser necessária a realização de configuração antes de nossos testes. Para fazer isso acontecer, nós podemos usar o `setup` e `setup_all` macros. `setup` irá ser executado antes de cada teste, e `setup_all` uma vez antes da suite de testes. Espera-se que eles vão retornar uma tupla de `{:ok, state}`, o estado estará disponível para os nossos testes.
 

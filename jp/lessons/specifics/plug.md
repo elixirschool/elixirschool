@@ -8,15 +8,7 @@ lang: jp
 
 Rubyをよくご存知なら、PlugはところどころSinatraの面影をもつRackだと考えることができます。PlugはWebアプリケーションのための仕様と、Webサーバーのためのアダプタを提供します。Elixirのコアの一部ではなく、公式のElixirプロジェクトです。
 
-## 目次
-
-- [インストール](#section-1)
-- [仕様](#section-2)
-- [Plugの作成](#plug)
-- [Plug.Routerの使用](#plugrouter)
-- [Webアプリの実行](#web)
-- [Plugのテスト](#plug-1)
-- [利用可能なPlug](#plug-2)
+{% include toc.html %}
 
 ## インストール
 
@@ -168,7 +160,7 @@ defmodule Example do
   use Application
 
   def start(_type, _args) do
-    port = Application.get_env(:concoction, :cowboy_port, 8080)
+    port = Application.get_env(:example, :cowboy_port, 8080)
 
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Example.Plug.Router, [], port: port)
@@ -177,6 +169,14 @@ defmodule Example do
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
+```
+
+> (オプション) `:cowboy_port` を `config/config.exs` に追加してください。
+
+```elixir
+use Mix.Config
+
+config :example, cowboy_port: 8080
 ```
 
 これで、アプリケーションを起動するために、以下のコマンドを使用できます:

@@ -8,23 +8,7 @@ lang: pl
 
 Przygotowanie środowiska, podstawowe typy danych i operacje
 
-## Spis treści
-
-- [Przygotowanie środowiska](#przygotowanie-srodowiska)
-	- [Instalacja](#instalacja)
-	- [Tryb interaktywny](#tryb-interaktywny)
-- [Podstawowe typy danych](#podstawowe-typy-danych)
-	- [Liczby całkowite](#liczby-całkowite)
-	- [Liczby zmiennoprzecinkowe](#liczby-zmiennoprzecinkowe)
-	- [Wartości logiczne](#wartości-logiczne)
-	- [Atomy](#atomy)
-	- [Ciągi znaków](#ciągi-znakþw)
-- [Podstawowe operacje](#podstawowe-operacje)
-	- [Arytmetyczne](#arytmetyczne)
-	- [Logiczne](#logiczne)
-	- [Porównania](#porownania)
-	- [Interpolacja ciągów znaków](#interpolacja-ciągów-znaków)
-	- [Łączenie ciągów znaków](#laczenie-ciągów-znaków)
+{% include toc.html %}
 
 ## Przygotowanie środowiska
 
@@ -38,7 +22,7 @@ W Elixirze dostępna jest interaktywna powłoka `iex`, która pozwala nam na uru
 
 By ją uruchomić wpisz w wierszu poleceń `iex`:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>

@@ -8,15 +8,7 @@ lang: vi
 
 Một trong những lợi ích có được khi xây dựng dựa trên ErlangVM là sự phong phú của các thư viện có sẵn. Khả năng tương tác với Erlang cho phép ta sử dụng những thư viện này cũng như thư viện chuẩn của Erlang khi viết code bằng Elixir. Ở bài này, chúng ta sẽ xem xét việc truy cập những tính năng của thư viện chuẩn cũng như thư viện bên thứ ba của Erlang.
 
-## Mục lục
-
-- [Thư viện chuẩn](#standard-library)
-- [Erlang Packages](#erlang-packages)
-- [Những điểm khác biệt cần lưu ý](#notable-differences)
-  - [Atom](#atoms)
-  - [String](#strings)
-  - [Biến](#variables)
-
+{% include toc.html %}
 
 ## Thư viện chuẩn
 
@@ -53,10 +45,10 @@ end
 Và giờ ta có thể truy cập thư viện Erlang:
 
 ```elixir
-png = :png.create(#{:size => {30, 30},
+png = :png.create(%{:size => {30, 30},
                     :mode => {:indexed, 8},
                     :file => file,
-                    :palette => palette}),
+                    :palette => palette})
 ```
 
 ## Những điểm khác biệt cần lưu ý

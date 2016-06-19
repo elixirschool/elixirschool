@@ -10,15 +10,7 @@ We've looked at the Elixir abstractions for concurrency but sometimes we need gr
 
 In this lesson we'll focus on two important pieces: GenServers and GenEvents.
 
-## Table of Contents
-
-- [GenServer](#genserver)
-  - [Synchronous Functions](#synchronous-functions)
-  - [Asynchronous Functions](#asynchronous-functions)
-- [GenEvent](#genevent)
-  - [Handling Events](#handling-events)
-  - [Calling Handlers](#calling-handlers)
-  - [Using GenEvents](#using-genevents)
+{% include toc.html %}
 
 ## GenServer
 
@@ -50,7 +42,7 @@ end
 
 It's often necessary to interact with GenServers in a synchronous way, calling a function and waiting for it's response.  To handle synchronous requests we need to implement the `GenServer.handle_call/3` callback which takes: the request, caller's PID, and existing state; it is expected to reply by returning a tuple: `{:reply, response, state}`.
 
-With pattern matching we can define callbacks for many different requests and states. A complete list of accepted return values can be found in the [`GenServer.handle_call/3`](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#c:handle_call/3) docs.
+With pattern matching we can define callbacks for many different requests and states. A complete list of accepted return values can be found in the [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) docs.
 
 To demonstrate synchronous requests let's add the ability to display our current queue and to remove a value:
 
@@ -158,7 +150,7 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-For more information check out the official [GenServer](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#content) documentation.
+For more information check out the official [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content) documentation.
 
 ## GenEvent
 
@@ -233,4 +225,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-See the official [GenEvent](http://elixir-lang.org/docs/v1.1/elixir/GenEvent.html#content) documentation for a complete list of callbacks and GenEvent functionality.
+See the official [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) documentation for a complete list of callbacks and GenEvent functionality.

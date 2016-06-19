@@ -8,26 +8,13 @@ lang: ru
 
 Набор алгоритмов для операций с коллекциями.
 
-## Содержание
-
-- [Enum](#enum)
-  - [all?](#all)
-  - [any?](#any)
-  - [chunk](#chunk)
-  - [chunk_by](#chunk_by)
-  - [each](#each)
-  - [map](#map)
-  - [min](#min)
-  - [max](#max)
-  - [reduce](#reduce)
-  - [sort](#sort)
-  - [uniq](#uniq)
+{% include toc.html %}
 
 ## Enum
 
 Модуль `Enum` включает в себя более ста функций для работы с коллекциями, которые описаны в предыдущем уроке.
 
-Этот урок содержит только небольшую часть функций. Для того, чтобы увидеть полный список функций - посетите официальную документацию по [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html) . Для документации по "ленивым" операциям есть отдельная документация в модуле [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
+Этот урок содержит только небольшую часть функций. Для того, чтобы увидеть полный список функций - посетите официальную документацию по [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) . Для документации по "ленивым" операциям есть отдельная документация в модуле [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
 
 ### all?
 
@@ -58,7 +45,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Также есть несколько дополнительных опций, которые вы можете посмотреть в документации: [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2).
+Также есть несколько дополнительных опций, которые вы можете посмотреть в документации: [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2).
 
 ### chunk_by
 

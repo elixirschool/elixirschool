@@ -8,14 +8,7 @@ lang: vi
 
 Much like Ruby has ERB and Java JSPs, Elixir has EEx or Embedded Elixir.  With EEx we can embed and evaluate Elixir inside strings.
 
-## Table of Contents
-
-- [API](#API)
-	- [Evaluation](#evaluation)
-	- [Definitions](#definitions)
-	- [Compilation](#compilation)
-- [Tags](#tags)
-- [Engine](#engine)
+{% include toc.html %}
 
 ## API
 
@@ -85,5 +78,5 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 The `EEx.SmartEngine` assignments are useful because assignments can be changed without requiring template compilation:
 
-Interested in writing your own engine?  Check out the [`EEx.Engine`](http://elixir-lang.org/docs/v1.2/eex/EEx.Engine.html) behaviour to see what's required.
+Interested in writing your own engine?  Check out the [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) behaviour to see what's required.
 

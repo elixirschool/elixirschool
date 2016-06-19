@@ -2,17 +2,13 @@
 layout: page
 title: Operatore Pipe
 category: basics
-order: 6
+order: 7
 lang: it
 ---
 
 L'operatore pipe `|>` inoltra il risultato di un'espressione come primo parametro di un'altra espressione.
 
-## Tavola dei Contenuti
-
-- [Introduzione](#introduzione)
-- [Esempi](#esempi)
-- [Best Practices](#best-practices)
+{% include toc.html %}
 
 ## Introduzione
 

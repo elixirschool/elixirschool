@@ -8,11 +8,7 @@ lang: my
 
 'List comprehension' ialah 'syntactic sugar'(sintaks untuk memudahkan pembacaan dan penjelasan sesuatu topik) untuk menggelung 'enumerable' di dalam Elixir.  Di dalam pelajaran ini kita akan melihat bagaimana kita boleh menggunakan 'comprehension' untuk lelaran(iteration) dan penjanaan.
 
-## Isi Kandungan
-
-- [Asas](#asas)
-- [Tapisan](#tapisan)
-- [Menggunakan `:into`](#menggunakan-into)
+{% include toc.html %}
 
 ## Asas
 
@@ -82,7 +78,7 @@ List comprehensions adalah 'syntactic sugar' dan sepatutnya hanya digunakan apab
 Anda boleh anggapkan tapisan(filter) sebagai sejenis klausa kawalan untuk 'comprehension'.  Apabila satu nilai yang telah ditapis memulangkan nilai `false` atau `nil` ianya diabaikan dari list muktamad.  Mari gelungkan satu julat dan hanya pedulikan tentang nombor genap: 
 
 ```elixir
-iex> for x <- 1..10, rem(x, 2) == 0, do: x
+iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
@@ -90,7 +86,7 @@ Seperti dengan penjana, kita boleh gunakan pelbagai tapisan.  Mari proses julat 
 
 ```elixir
 iex> for x <- 1..100,
-...>   rem(x, 2) == 0,
+...>   is_even(x),
 ...>   rem(x, 3) == 0, do: x
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```

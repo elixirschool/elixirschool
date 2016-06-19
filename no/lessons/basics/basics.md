@@ -8,24 +8,7 @@ lang: no
 
 Installasjon, grunnleggende typer og operatorer.
 
-
-## Innholdsfortegnelse
-
-- [Installering](#installering)
-	- [Installere Elixir ](#installere-elixir)
-	- [Interaktiv Modus](#interaktiv-modus)
-- [Grunnleggende Typer](#grunnleggende-typer)
-	- [Heltall (integers)](#heltall-integers)
-	- [Flyttall (floats)](#flyttall-floats)
-	- [Boolske verdier (booleans)](#boolske-verdier-booleans)
-	- [Atomer (atoms)](#atomer-atoms)
-	- [Strenger (strings)](#strenger-strings)
-- [Grunnleggende Operatorer](#grunnleggende-operatorer)
-	- [Aritmetikk](#artmetikk)
-	- [Boolske operatorer](#boolske-operatorer-boolean)
-	- [Sammenligningsoperatorer](#sammenligningsoperatorer)
-	- [Strenginterpolering](#strenginterpolering-string-interpolation)
-	- [Strengsammensetning](#strengsammensetning-string-concatenation)
+{% include toc.html %}
 
 ## Installering
 
@@ -39,7 +22,7 @@ Elixir leveres med `iex`, et interaktivt skall som lar oss evaluere Elixirkoder 
 
 For å starte IEx skriver vi `iex` i terminalvinduet:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
@@ -227,6 +210,41 @@ Dette er spesielt nyttig ved sortering. Vi trenger ikke memorisere sorteringsrek
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
+
+Dette kan føre til noen interessante, men gyldige sammenligninger du kanskje ikke finner i andre programmeringsspråk:
+
+```elixir
+iex> :hello > 999
+true
+iex> {:hello, :world} > [1, 2, 3]
+false
+```
+
+### Strenginterpolering (String interpolation)
+
+Hvis du noen gang har programmert i Ruby, vil strenginterpolering i Elixir
+se kjent ut:
+
+```elixir
+iex> name = "Sean"
+iex> "Hello #{name}"
+"Hello Sean"
+```
+
+### Strengsammensetning (String concatenation)
+
+Strengsammensetning benytter `<>` operatoren:
+
+```elixir
+iex> name = "Sean"
+iex> "Hello " <> name
+"Hello Sean"
+```
+
+iex> "Hello " <> name
+"Hello Sean"
+```
+
 
 Dette kan føre til noen interessante, men gyldige sammenligninger du kanskje ikke finner i andre programmeringsspråk:
 

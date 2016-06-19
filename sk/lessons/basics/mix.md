@@ -10,13 +10,7 @@ Než sa pustíme do hlbokých vôd, je treba sa pozrieť na nástroj `mix`. Ak p
 
 Doteraz sme pracovali len s interaktívnym príkazovým riadkom `iex`, ktorý však má svoje limity. Pri každom skutočnom projekte potrebujeme svoj kód rozdeliť do samostatných súborov v rôznych adresároch podľa ich významu. Mix nám s tým pomôže.
 
-## Obsah
-
-- [Nový projekt](#nov-projekt)
-- [Kompilácia](#kompilcia)
-- [Interaktívny režim](#interaktvny-reim)
-- [Závistosti](#zvislosti)
-- [Prostredia](#prostredia)
+{% include toc.html %}
 
 ## Nový projekt
 

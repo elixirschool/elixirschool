@@ -2,21 +2,13 @@
 layout: page
 title: Funzioni
 category: basics
-order: 7
+order: 6
 lang: it
 ---
 
 In Elixir, ed in altri linguaggi funzionali, le funzioni sono oggetti di prima classe. Impareremo i vari tipi di funzioni in Elixir, cosa le rende differenti, e come possiamo usarle.
 
-## Tavola dei Contenuti
-
-- [Funzioni anonime](#funzioni-anonime)
-  - [L'abbreviazione `&`](#labbreviazione-)
-- [Pattern Matching](#pattern-matching)
-- [Funzioni con un nome](#funzioni-con-un-nome)
-  - [Funzioni private](#funzioni-private)
-  - [Guardie](#guardie)
-  - [Argomenti di default](#argomenti-di-default)
+{% include toc.html %}
 
 ## Funzioni anonime
 
@@ -121,7 +113,7 @@ iex> Greeter.phrase
 
 ### Guardie
 
-Abbiamo trattato brevemente le guadie (_guards_) nella lezione sulle [Strutture di Controllo](../control-structures.md), ora vedremo come possiamo applicarle alle funzioni con un nome. Una volta che Elixir ha individuato una funzione, tutte le guardie verranno controllate.
+Abbiamo trattato brevemente le guadie (_guards_) nella lezione sulle [Strutture di Controllo](../control-structures), ora vedremo come possiamo applicarle alle funzioni con un nome. Una volta che Elixir ha individuato una funzione, tutte le guardie verranno controllate.
 
 Nell'esempio che segue abbiamo due funzioni con la stessa _signature_ (cioè accettano gli stessi argomenti), ma ci affidiamo alle guardie per determinare quale usare basandoci sul tipo di argomenti:
 
