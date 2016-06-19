@@ -8,26 +8,13 @@ lang: sk
 
 Sada algoritmov pre iterovanie nad kolekciami.
 
-## Obsah
-
-- [Enum](#enum)
-  - [all?](#all)
-  - [any?](#any)
-  - [chunk](#chunk)
-  - [chunk_by](#chunk_by)
-  - [each](#each)
-  - [map](#map)
-  - [min](#min)
-  - [max](#max)
-  - [reduce](#reduce)
-  - [sort](#sort)
-  - [uniq](#uniq)
+{% include toc.html %}
 
 ## Enum
 
 Modul `Enum` obsahuje vyše stovku funkcií pre prácu s kolekciami, o ktorých sme sa dozvedeli v minulej lekcii.
 
-Táto lekcia pokrýva len malú podmnožinu týchto funkcií - kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html). Zaujímať vás môžu aj funkcie na prácu s "lazy enumeration" z modulu [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
+Táto lekcia pokrýva len malú podmnožinu týchto funkcií - kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html). Zaujímať vás môžu aj funkcie na prácu s "lazy enumeration" z modulu [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
 
 ### all?
 
@@ -58,7 +45,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Táto funckia má niekoľko možností použitia, pozrite sa do oficiálnej dokumentácie: [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2).
+Táto funckia má niekoľko možností použitia, pozrite sa do oficiálnej dokumentácie: [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2).
 
 ### chunk_by
 

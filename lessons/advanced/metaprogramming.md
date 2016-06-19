@@ -10,14 +10,7 @@ Metaprogramming is the process of using code to write code.  In Elixir this give
 
 A word of caution:  Metaprogramming is tricky and should only be used when absolutely necessary.  Overuse will almost certainly lead to complex code that is difficult to understand and debug.
 
-## Table of Contents
-
-- [Quote](#quote)
-- [Unquote](#unquote)
-- [Macros](#macros)
-	- [Private Macros](#private-macros)
-	- [Macro Hygiene](#macro-hygiene)
-	- [Binding](#binding)
+{% include toc.html %}
 
 ## Quote
 

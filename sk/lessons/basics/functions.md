@@ -2,21 +2,13 @@
 layout: page
 title: Funkcie
 category: basics
-order: 7
+order: 6
 lang: sk
 ---
 
 V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie ústredným konštruktom. Povieme si o rôznych typoch funkcií v Elixire, rozdieloch medzi nimi a ako ich používať.
 
-## Obsah
-
-- [Anonymné funkcie](#anonymn-funkcie)
-  - [Skratka &](#skratka-)
-- [Pattern matching](#pattern-matching)
-- [Pomenované funkcie](#pomenovan-funkcie)
-  - [Privátne funkcie](#privtne-funkcie)
-  - [Hraničné podmienky](#hranin-podmienky)
-  - [Východiskové argumenty](#vchodiskov-argumenty)
+{% include toc.html %}
 
 ## Anonymné funkcie
 
@@ -125,7 +117,7 @@ Volanie funkcie `Greeter.phrase` vyhodilo chybu, pretože bola definovaná ako p
 
 ### Hraničné podmienky
 
-Hraničných podmienok (*guards*) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](../control-structures.md). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
+Hraničných podmienok (*guards*) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](../control-structures). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
 
 Hraničné podmienky sú vyhodnocované hneď po tom, čo Elixir pattern matchingom vyberie jedno z definovaných tiel funkcie.
 

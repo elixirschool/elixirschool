@@ -8,10 +8,7 @@ lang: es
 
 La coincidencia de patrones es una parte poderosa de Elixir, nos permite coincidir valores simples, estructuras de datos, e incluso funciones. En esta lección vamos a comenzar a ver cómo es usada la coincidencia de patrones.
 
-## Tabla de Contenidos
-
-- [Operador de coincidencia](#operador-de-coincidencia)
-- [Operador Pin](#operador-pin)
+{% include toc.html %}
 
 ## Operador de coincidencia
 

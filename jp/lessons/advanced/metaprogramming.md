@@ -21,14 +21,7 @@ A word of caution:  Metaprogramming is tricky and should only be used when absol
 -->
 注意事項: メタプログラミングはトリッキーで、どうしても必要な場合にのみ使用してください。過度の使用は、ほぼ確実に、理解及びデバッグすることが困難な複雑なコードにつながります。
  
-## 目次
-
-- [Quote](#quote)
-- [Unquote](#unquote)
-- [マクロ](#section-1)
-	- [プライベートマクロ](#section-2)
-	- [衛生的なマクロ](#section-3)
-	- [Binding](#binding)
+{% include toc.html %}
 
 ## Quote
 

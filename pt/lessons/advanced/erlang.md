@@ -8,17 +8,9 @@ lang: pt
 
 Um dos benefícios adicionais em se construir em cima da ErlangVM é a abundância de bibliotecas existentes disponíveis para nós. A interoperabilidade nos permite usar essas bibliotecas e a biblioteca padrão Erlang a partir do nosso código Elixir. Nessa lição, nós vamos ver como acessar funcionalidades da biblioteca padrão juntamente com pacotes Erlang de terceiros.
 
-## Sumário
+{% include toc.html %}
 
-- [Biblioteca padrão](#biblioteca-padrao)
-- [Pacotes Erlang](#pacotes-erlang)
-- [Diferenças notáveis](#diferencas-notaveis)
-  - [Átomos](#atomos)
-  - [Strings](#strings)
-  - [Variáveis](#variaveis)
-
-
-## <a name="biblioteca-padrao"></a>Biblioteca padrão
+## Biblioteca padrão
 
 A extensiva biblioteca padrão Erlang pode ser acessada de qualquer código Elixir em nossa aplicação. Módulos Erlang são representados por *átomos* em caixa baixa como `:os` e `:timer`.
 
@@ -40,7 +32,7 @@ Result: 1000000
 
 Para uma lista completa de módulos disponíveis, olhe o [Manual de referência Erlang](http://erlang.org/doc/apps/stdlib/).
 
-## <a name="pacotes-erlang"></a>Pacotes Erlang
+## Pacotes Erlang
 
 Em uma lição anterior nós cobrimos Mix e como gerenciar nossas dependências, incluindo bibliotecas Erlang que funcionam da mesma forma. No evento a biblioteca Erlang não foi publicada no [Hex](https://hex.pm). Nesse caso você pode usar uma referência ao repositório git:
 
@@ -53,17 +45,17 @@ end
 Agora podemos acessar nossa biblioteca Erlang:
 
 ```elixir
-png = :png.create(#{:size => {30, 30},
+png = :png.create(%{:size => {30, 30},
                     :mode => {:indexed, 8},
                     :file => file,
-                    :palette => palette}),
+                    :palette => palette})
 ```
 
-## <a name="diferencas-notaveis"></a>Diferenças notáveis
+## Diferenças notáveis
 
 Agora que sabemos como usar Erlang nós devemos cobrir alguns contrapontos que vem com a interoperabilidade com Erlang.
 
-### <a name="atomos"></a>Átomos
+### Átomos
 
 Átomos Erlang são similares aos em Elixir, só que sem os dois pontos (`:`). Eles são representados por *strings* e *underscores* em caixa baixa:
 
@@ -122,7 +114,7 @@ iex> "Hello World" |> to_char_list |> :string.words
 2
 ```
 
-### <a name="variaveis"></a>Variáveis
+### Variáveis
 
 Elixir:
 

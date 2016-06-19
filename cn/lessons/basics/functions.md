@@ -2,21 +2,13 @@
 layout: page
 title: 函数
 category: basics
-order: 7
+order: 6
 lang: cn
 ---
 
 Elixir 和其他函数式语言一样，函数都是一等公民。我们将学习 Elixir 中不同类型的函数，它们与众不同的地方，以及如何使用它们。
 
-## 目录
-
-- [匿名函数](#section-1)
-  - [& 操作符](#section-2)
-- [模式匹配](#section-3)
-- [命名函数](#section-4)
-  - [私有函数](#section-5)
-  - [卫兵](#section-6)
-  - [参数默认值](#section-7)
+{% include toc.html %}
 
 ## 匿名函数
 
@@ -121,7 +113,7 @@ iex> Greeter.phrase
 
 ### 卫兵
 
-我们在[控制语句](../control-structures.md)那一个提过卫兵，现在我们就来看看怎么在命名函数中使用它们。当 Elixir 匹配某个函数之后，后面的卫兵都会被检测。
+我们在[控制语句](../control-structures)那一个提过卫兵，现在我们就来看看怎么在命名函数中使用它们。当 Elixir 匹配某个函数之后，后面的卫兵都会被检测。
 
 在下面的例子中，我们定义了两个有相同签名的函数，而依赖判断参数类型的卫兵来确定调用哪个函数：
 

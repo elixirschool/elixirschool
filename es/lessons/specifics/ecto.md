@@ -8,23 +8,7 @@ lang: es
 
 Ecto es un proyecto oficial de Elixir, provee un envoltorio a la base de datos y un lenguaje de consultas integrado. Con Ecto podemos crear migraciones, definir modelos, insertar, actualizar y consultar registros de nuestra base de datos.
 
-## Tabla de contenido
-
-- [Inicio](#inicio)
-  - [Repositorio](#repositorio)
-  - [Supervisor](#supervisor)
-  - [Configuración](#configuracin)
-- [Tareas Mix](#tareas-mix)
-- [Migraciones](#migraciones)
-- [Modelos](#modelos)
-- [Consultas](#consultas)
-  - [Básico](#bsico)
-  - [Count](#count)
-  - [Group By](#group-by)
-  - [Order By](#order-by)
-  - [Joins](#joins)
-  - [Fragmentos](#fragmentos)
-- [Set de cambios](#set-de-cambios)
+{% include toc.html %}
 
 ## Inicio
 
@@ -134,7 +118,7 @@ end
 
 Por omisión Ecto crea un `id` auto incremental como llave primaria. Acá estamos usando el _callback_ por omisión `change/0` pero Ecto también soporta `up/0` y `down/0` por si usted requiere un control más granular.
 
-Como usted seguramente ya habrá descubierto al agregar `timestamps` a su migración Ecto creará y manejará los campos `created_at` y `updated_at` por usted.
+Como usted seguramente ya habrá descubierto al agregar `timestamps` a su migración Ecto creará y manejará los campos `inserted_at` y `updated_at` por usted.
 
 Para aplicar nuestra nueva migración ejecute el comando `mix ecto.migrate`
 

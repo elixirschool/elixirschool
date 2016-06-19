@@ -2,21 +2,13 @@
 layout: page
 title: Fungsi
 category: basics
-order: 7
+order: 6
 lang: my
 ---
 
 Di dalam Elixir dan kebanyakan bahasa aturcara kefungsian, fungsi adalah rakyat kelas pertama.  Kita akan belajar mengenai jenis-jenis fungsi di dalam Elixir, apa yang menyebabkan mereka berbeza, dan bagaimana menggunakan mereka.
 
-## Isi Kandungan
-
-- [Fungsi Tanpa Nama](#fungsi-tanpa-nama)
-  - [Shorthand &](#Shorthand--)
-- [Pemadanan Corak](#pemadan-corak)
-- [Fungsi Bernama](#fungsi-bernama)
-  - [Fungsi Terlindung](#fungsi-terlindung)
-  - [Klausa Kawalan](#klausa-kawalan)
-  - [Argumen Lalai](#argumen-lalai)
+{% include toc.html %}
 
 ## Fungsi Tanpa Nama
 
@@ -122,7 +114,7 @@ iex> Greeter.phrase
 
 ### Klausa Kawalan
 
-Kita telah melihat sepintas lalu mengenai klausa kawalan(guard) di dalam bahagian [Control Structures](../control-structures.md), sekarang kita akan melihat bagaimana kita boleh aplikasikan mereka kepada fungsi-fungsi bernama.  Sebaik sahaja Elixir berjaya memadankan corak satu fungsi, apa-apa klausa kawalan pada fungsi tersebut akan diuji.
+Kita telah melihat sepintas lalu mengenai klausa kawalan(guard) di dalam bahagian [Control Structures](../control-structures), sekarang kita akan melihat bagaimana kita boleh aplikasikan mereka kepada fungsi-fungsi bernama.  Sebaik sahaja Elixir berjaya memadankan corak satu fungsi, apa-apa klausa kawalan pada fungsi tersebut akan diuji.
 
 Di dalam contoh di bawah kita ada dua fungsi yang mempunyai pengenalan yang sama, kita bergantung kepada klausa kawalan untuk menentukan yang mana satu akan digunakan berdasarkan kepada jenis argumen:
 

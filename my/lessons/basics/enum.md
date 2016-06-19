@@ -8,26 +8,13 @@ lang: my
 
 Satu kumpulan algorithm untuk memproses satu persatu(enumerate) isi kandungan 'collection'.
 
-## Isi Kandungan
-
-- [Enum](#enum)
-  - [all?](#all)
-  - [any?](#any)
-  - [chunk](#chunk)
-  - [chunk_by](#chunk_by)
-  - [each](#each)
-  - [map](#map)
-  - [min](#min)
-  - [max](#max)
-  - [reduce](#reduce)
-  - [sort](#sort)
-  - [uniq](#uniq)
+{% include toc.html %}
 
 ## Enum
 
 Modul `Enum` mengandungi lebih dari satu ratus fungsi-fungsi untuk bekerja dengan 'collection' yang telah kita pelajari dalam pelajaran lepas.
 
-Pelajaran ini cuma akan meliputi sedikit sahaja daripada fungsi-fungsi yang tersedia, untuk melihat fungsi-fungsi lengkap lawati [dokumentasi rasmi `Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); untuk kaedah 'lazy enumeration' gunakan modul [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
+Pelajaran ini cuma akan meliputi sedikit sahaja daripada fungsi-fungsi yang tersedia, untuk melihat fungsi-fungsi lengkap lawati [dokumentasi rasmi `Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); untuk kaedah 'lazy enumeration' gunakan modul [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
 
 ### all?
 
@@ -58,7 +45,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Terdapat beberapa pilihan untuk `chunk` tetapi kita tidak akan sebutkan di sini, lihat [dokumentasi rasmi `chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) untuk maklumat lebih lanjut.
+Terdapat beberapa pilihan untuk `chunk` tetapi kita tidak akan sebutkan di sini, lihat [dokumentasi rasmi `chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) untuk maklumat lebih lanjut.
 
 ### chunk_by
 

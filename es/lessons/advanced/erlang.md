@@ -8,15 +8,7 @@ lang: es
 
 Uno de los beneficios añadidos de Elixir al estar construido sobre ErlangVM es la gran cantidad de bibliotecas existentes que están disponibles para nosotros. La interoperabilidad nos permite aprovechar esas bibliotecas y la librería estándar de Erlang desde nuestro código Elixir. En esta lección vamos a ver como acceder a la funcionalidad en la librería estándar junto con los paquetes de Erlang de terceros.
 
-## Tabla de Contenido
-
-- [Librería Estándar](#librera-estndar)
-- [Paquetes Erlang](#paquetes-erlang)
-- [Diferencias Notables](#diferencias-notables)
-  - [Átomos](#tomos)
-  - [Cadenas](#cadenas)
-  - [Variables](#variables)
-
+{% include toc.html %}
 
 ## Librería Estándar
 
@@ -53,10 +45,10 @@ end
 Ahora podemos acceder a nuestra librería Erlang
 
 ```elixir
-png = :png.create(#{:size => {30, 30},
+png = :png.create(%{:size => {30, 30},
                     :mode => {:indexed, 8},
                     :file => file,
-                    :palette => palette}),
+                    :palette => palette})
 ```
 
 ## Diferencias Notables

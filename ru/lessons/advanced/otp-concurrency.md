@@ -10,15 +10,7 @@ lang: ru
 
 В этом уроке мы сосредоточимся на двух важных частях: GenServer и GenEvent.
 
-## Содержание
-
-- [GenServer](#genserver)
-  - [Синхронные функции](#section-1)
-  - [Асинхронные функции](#section-2)
-- [GenEvent](#genevent)
-  - [Обработка событий](#section-3)
-  - [Вызов обработчиков](#section-4)
-  - [Использование GenEvents](#genevent-1)
+{% include toc.html %}
 
 ## GenServer
 
@@ -50,7 +42,7 @@ end
 
 Часто необходимо взаимодействовать с GenServer в синхронном формате, вызывая функцию и ожидая ее ответа. Для обработки синхронных запросов важно имплементировать метод `GenServer.handle_call/3`, который передает запрос, PID вызывающего процесса и текущее состояние. Ожидается, что будет возвращен кортеж `{:reply, response, state}`.
 
-С помощью сопоставления с образцом можно определять функции обратного вызова для разных запросов и состояний. Полный список допустимых вариантов возврата есть в документации [`GenServer.handle_call/3`](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#c:handle_call/3).
+С помощью сопоставления с образцом можно определять функции обратного вызова для разных запросов и состояний. Полный список допустимых вариантов возврата есть в документации [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3).
 
 Для демонстрации синхронных запросов давайте добавим возможность отображать текущее состояние очереди и удаление значений:
 
@@ -158,7 +150,7 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-Для получения дополнительной информации можно обратиться к официальной документации [GenServer](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#content).
+Для получения дополнительной информации можно обратиться к официальной документации [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content).
 
 ## GenEvent
 
@@ -233,4 +225,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-В официальной документации по [GenEvent](http://elixir-lang.org/docs/v1.1/elixir/GenEvent.html#content) есть полный список функций обратного вызова и функциональности GenEvent.
+В официальной документации по [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) есть полный список функций обратного вызова и функциональности GenEvent.

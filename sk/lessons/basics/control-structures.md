@@ -9,11 +9,7 @@ lang: sk
 In this lesson we will look at the control structures available to us in Elixir.
 V tejto lekcii sa pozrieme na riadiace štruktúry jazyka Elixir.
 
-## Obsah
-
-- [`if` a `unless`](#if-a-unless)
-- [`case`](#case)
-- [`cond`](#cond)
+{% include toc.html %}
 
 ## `if` a `unless`
 

@@ -8,23 +8,7 @@ lang: sk
 
 Setup, základné typy a operácie.
 
-## Obsah
-
-- [Setup](#setup)
-	- [Inštalácia Elixiru](#intalcia-elixiru)
-	- [Interaktívny mód](#interaktvny-md)
-- [Základné dátové typy](#zkladn-dtov-typy)
-	- [Celé číslo](#cel-slo)
-	- [Desatinné číslo](#desatinn-slo)
-	- [Boolean](#boolean)
-	- [Atom](#atom)
-	- [Reťazec](#reazec)
-- [Základné operácie](#zkladn-opercie)
-	- [Aritmetické](#aritmetick)
-	- [Logické](#logick)
-	- [Porovnania](#porovnania)
-	- [Interpolácia reťazcov](#interpolcia-reazcov)
-	- [Spájanie reťazcov](#spjanie-reazcov)
+{% include toc.html %}
 
 ## Setup
 
@@ -38,7 +22,7 @@ Elixir obsahuje nástroj `iex`, interaktívny shell (príkazový riadok), ktorý
 
 Začnime teda jeho spustením príkazu `iex`:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>

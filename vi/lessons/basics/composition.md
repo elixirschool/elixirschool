@@ -8,16 +8,7 @@ lang: vi
 
 We know from experience its unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
 
-## Table of Contents
-
-- [Modules](#modules)
-  - [Module attributes](#module-attributes)
-- [Structs](#structs)
-- [Composition](#composition)
-  - [`alias`](#alias)
-  - [`import`](#import)
-  - [`require`](#require)
-  - [`use`](#use)
+{% include toc.html %}
 
 ## Modules
 
@@ -28,7 +19,7 @@ Let's look at a basic example:
 ``` elixir
 defmodule Example do
   def greeting(name) do
-    ~s(Hello #{name}.)
+    "Hello #{name}."
   end
 end
 
@@ -196,7 +187,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arty pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
+In addition to the name/arity pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
 
 ```elixir
 import List, only: :functions

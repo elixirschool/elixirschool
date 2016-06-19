@@ -8,22 +8,7 @@ lang: vi
 
 Erlang Term Storage, commonly referred to as ETS, is a powerful storage engine built into OTP and available to use in Elixir.  In this lesson we'll look at how to interface with ETS and how it can be employed in our applications.
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Creating Tables](#creating-tables)
-  - [Tables Types](#tables-types)
-  - [Access Controls](#access-controls)
-- [Inserting Data](#inserting-data)
-- [Data Retrieval](#data-retrieval)
-  - [Key Lookup](#key-lookup)
-  - [Simple Matches](#simple-matches)
-  - [Advanced Lookup](#advanced-lookup)
-- [Deleting Data](#deleting-data)
-  - [Removing Records](#removing-records)
-  - [Removing Tables](#removing-tables)
-- [Example ETS Usage](#example-ets-usage)
-- [Disk-based ETS](#disk-based-ets)
+{% include toc.html %}
 
 ## Overview
 

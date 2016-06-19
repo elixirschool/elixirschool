@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Composition
+title: Modules
 category: basics
 order: 8
 lang: en
@@ -8,16 +8,7 @@ lang: en
 
 We know from experience its unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
 
-## Table of Contents
-
-- [Modules](#modules)
-  - [Module attributes](#module-attributes)
-- [Structs](#structs)
-- [Composition](#composition)
-  - [`alias`](#alias)
-  - [`import`](#import)
-  - [`require`](#require)
-  - [`use`](#use)
+{% include toc.html %}
 
 ## Modules
 
@@ -28,7 +19,7 @@ Let's look at a basic example:
 ``` elixir
 defmodule Example do
   def greeting(name) do
-    ~s(Hello #{name}.)
+    "Hello #{name}."
   end
 end
 
@@ -53,9 +44,9 @@ iex> Example.Greetings.morning "Sean"
 "Good morning Sean."
 ```
 
-### Module attributes
+### Module Attributes
 
-Module attributes are most commonly used as constants in Elixir.  Let's take a look at a simple example:
+Module attributes are most commonly used as constants in Elixir.  Let's look at a simple example:
 
 ```elixir
 defmodule Example do
@@ -75,7 +66,7 @@ It is important to note there are reserved attributes in Elixir.  The three most
 
 ## Structs
 
-Structs are special maps with a defined set of keys and default values.  It must be defined within a module, which it takes its name from.  It is common for a struct to be the only thing defined within a module.
+Structs are special maps with a defined set of keys and default values.  A struct must be defined within a module, which it takes its name from.  It is common for a struct to be the only thing defined within a module.
 
 To define a struct we use `defstruct` along with a keyword list of fields and default values:
 
@@ -116,11 +107,11 @@ iex> %{name: "Sean"} = sean
 
 ## Composition
 
-Now that we know how to create modules and structs let's learn how to include existing functionality in them through composition.  Elixir provides us with a variety of different ways to interact with other modules, let's look at what we have available to us.
+Now that we know how to create modules and structs let's learn how to add existing functionality to them via composition.  Elixir provides us with a variety of different ways to interact with other modules.
 
 ### `alias`
 
-Allows us to alias module names, used quite frequently in Elixir code:
+Allows us to alias module names; used quite frequently in Elixir code:
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -140,7 +131,7 @@ defmodule Example do
 end
 ```
 
-If there's a conflict with two aliases or you just wish to alias to a different name entirely, we can use the `:as` option:
+If there's a conflict between two aliases or we just wish to alias to a different name entirely, we can use the `:as` option:
 
 ```elixir
 defmodule Example do
@@ -150,7 +141,7 @@ defmodule Example do
 end
 ```
 
-It's possible to alias multiple modules at once:
+It's even possible to alias multiple modules at once:
 
 ```elixir
 defmodule Example do
@@ -196,7 +187,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arty pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
+In addition to the name/arity pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
 
 ```elixir
 import List, only: :functions
@@ -219,18 +210,45 @@ If we attempt to call a macro that is not yet loaded Elixir will raise an error.
 
 ### `use`
 
-Uses the module in the current context.  This is particularly useful when a module needs to perform some setup.  By calling `use` we invoke the `__using__` hook within the module, providing the module an opportunity to modify our existing context:
+The use macro invokes a special macro, called __using__/1, from the specified module. Here’s an example:
 
 ```elixir
-defmodule MyModule do
-  defmacro __using__(opts) do
+# lib/use_import_require/use_me.ex
+defmodule UseImportRequire.UseMe do
+  defmacro __using__(_) do
     quote do
-      import MyModule.Foo
-      import MyModule.Bar
-      import MyModule.Baz
-
-      alias MyModule.Repo
+      def use_test do
+        IO.puts "use_test"
+      end
     end
   end
 end
 ```
+
+and we add this line to UseImportRequire:
+
+```elixir
+use UseImportRequire.UseMe
+```
+
+Using UseImportRequire.UseMe defines a use_test/0 function through invocation of the __using__/1 macro.
+
+This is all that use does. However, it is common for the __using__ macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that __using__/1 may set up references to other modules, especially submodules.
+
+The Phoenix framework makes use of use and __using__/1 to cut down on the need for repetitive alias and import calls in user defined modules.
+
+Here’s an nice and short example from the Ecto.Migration module:
+
+```elixir
+defmacro __using__(_) do
+  quote location: :keep do
+    import Ecto.Migration
+    @disable_ddl_transaction false
+    @before_compile Ecto.Migration
+  end
+end
+```
+
+The `Ecto.Migration.__using__/1` macro includes an import call so that when you `use Ecto.Migration` you also `import Ecto.Migration`. It also sets up a module property which we will assume controls Ecto’s behavior.
+
+To recap: the use macro simply invokes the __using__/1 macro of the specified module. To really understand what that does you need to read the __using__/1 macro.

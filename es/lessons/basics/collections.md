@@ -8,16 +8,7 @@ lang: es
 
 Listas, tuplas, listas de palabras clave, mapas, diccionarios y combinadores funcionales
 
-## Tabla de Contenidos
-
-- [Listas](#listas)
-	- [Concatenación de listas](#concatenación-de-listas)
-	- [Sustracción de listas](#sustraccion-de-listas)
-	- [Cabeza/Cola](#cabeza/cola)
-- [Tuplas](#tuplas)
-- [Listas de palabas claves](#listas-de-palabras-clave)
-- [Mapas](#mapas)
-- [Diccionarios](#diccionarios)
+{% include toc.html %}
 
 ## Listas
 

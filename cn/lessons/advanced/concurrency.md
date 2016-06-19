@@ -10,14 +10,7 @@ Elixir 的一大卖点就是对并发的支持。得益于 ErlangVM，Elixir 的
 
 这节课，我们会讲 Elixir 自带的并发模型。在后面的章节中，我们还会介绍底层的实现机制：OTP 行为（behaviors）。
 
-# 目录
-- [进程](#section-1)
-  - [消息传递](#section-2)
-  - [进程链接](#section-3)
-  - [进程监控](#section-4)
-
-- [Agents](#agents)
-- [Tasks](#tasks)
+{% include toc.html %}
 
 # 进程
 ErlangVM 的进程很轻量级，可以运行在所有 CPU 上。看起来有点像原生的线程，但是它们更简单，而且同时运行几千个 Elixir 进程也是常事。

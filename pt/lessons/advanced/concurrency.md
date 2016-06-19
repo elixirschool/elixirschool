@@ -10,14 +10,7 @@ Um dos pontos ofertados pelo Elixir é o suporte a concorrência. Graças à Erl
 
 Nesta aula nós veremos os módulos de concorrência que vêm com Elixir. No próximo capítulo nós cobriremos os comportamentos OTP que os implementam.
 
-## Sumário
-
-- [Processos](#processos)
-  - [Passagem de mensagem](#passagem-de-mensagem)
-  - [Vinculando Processos](#vinculando-processos)
-  - [Monitorando Processos](#monitorando-processos)
-- [Agentes](#agentes)
-- [Tarefas](#tarefas)
+{% include toc.html %}
 
 ## Processos
 
