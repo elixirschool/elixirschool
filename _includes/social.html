@@ -1,11 +1,17 @@
+{% assign lang = page.lang || site.default_lang %}
 {% if page.title == 'Elixir School' %}
-  {% assign lang = page.lang || site.default_lang %}
   {% assign title = site.description[lang] %}
 {% else %}
   {% assign title = page.title %}
 {% endif %}
 <hr />
-<h3 id="social">Share This Page</h3>
+<h3 id="social">
+  {% if site.share[lang] != nil %}
+    {{ site.share[lang] }}
+  {% else %}
+    {{ site.share[site.default_lang] }}
+  {% endif %}
+</h3>
 <div class="social__container">
   <div class="social__item">
     <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ title }}&summary=description&source={{ site.url }}" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
