@@ -1,0 +1,213 @@
+---
+layout: page
+title: 함수
+category: basics
+order: 7
+lang: ko
+---
+
+Elixir를 포함한 많은 함수형 언어에서, 함수들은 일급 시민입니다. 우리는 Elixir를 특별하게 해주는 함수의 유형에 대해 배우고, 그것을 어떻게 이용하는지 배울 것입니다.
+
+{% include toc.html %}
+
+## 익명 함수
+
+익명 함수는 말그대로 이름이 없습니다. `Enum` 수업에서 보았듯이, 함수는 빈번히 다른 함수로 넘겨지게 됩니다. Elixir에서 익명 함수를 정의하기 위해, `fn` 그리고 `end` 키워드가 필요합니다. 익명 함수 내에서 매개변수의 개수를 정의할 수 있으며, 함수의 몸체는 `->`로 구분됩니다.
+
+기초적인 예제를 보도록 합시다:
+
+```elixirre
+iex> sum = fn (a, b) -> a + b end
+iex> sum.(2, 3)
+5
+```
+
+### &으로 줄여쓰기
+
+Elixir로 프로그래밍 하다보면, 익명함수를 이용하여 줄여쓰는 것을 흔히 볼 수 있습니다:
+
+```elixir
+iex> sum = &(&1 + &2)
+iex> sum.(2, 3)
+5
+```
+
+줄여쓰기를 했을 때 매개변수들은 `&1`, `&2`, `&3`, 등과 같이 다룰 수 있다고 추측할 수 있습니다.
+
+## 패턴매칭
+
+Elixir에서 패턴매칭은 단순히 변수를 다루는 데서 그치지 않고, 함수 시그니처에서도 적용될 수 있다는 것을 이 섹션에서 확인할 것입니다.
+
+매칭하여 대응되는 함수를 불러일으키는 매개변수의 집합을 식별하기 위해 패턴매칭을 사용합니다: 
+
+```elixir
+iex> handle_result = fn
+...>   {:ok, result} -> IO.puts "Handling result..."
+...>   {:error} -> IO.puts "An error has occurred!"
+...> end
+
+iex> some_result = 1
+iex> handle_result.({:ok, some_result})
+Handling result...
+
+iex> handle_result.({:error})
+An error has occurred!
+```
+
+## 이름이 있는 함수
+
+차후에 호출할 수 있도록 함수를 이름과 같이 정의할 수 있습니다. 이는 모듈 내에서 `def` 키워드로 정의됩니다. 지금은 이름이 있는 함수를 다루는 것에 집중하도록 하고, 다음 수업에서 모듈에 대해 더 배울 것입니다.
+
+모듈 내에서 정의된 함수는 다른 모듈에서 접근이 가능하며, 이는 Elixir에서 특히 유용한 요소 중 하나입니다. 
+
+```elixir
+defmodule Greeter do
+  def hello(name) do
+    "Hello, " <> name
+  end
+end
+
+iex> Greeter.hello("Sean")
+"Hello, Sean"
+```
+
+만약 함수의 몸체를 한 줄로 쓰고 싶은 경우, 우리는 `do:`를 이용하여 축약할 수 있습니다.
+
+```elixir
+defmodule Greeter do
+  def hello(name), do: "Hello, " <> name
+end
+```
+
+패턴매칭에 대한 지식과 이름있는 함수를 이용하여 재귀를 맛보도록 하죠.
+
+```elixir
+defmodule Length do
+  def of([]), do: 0
+  def of([_|t]), do: 1 + of(t)
+end
+
+iex> Length.of []
+0
+iex> Length.of [1, 2, 3]
+3
+```
+
+### Private 함수
+
+다른 모듈에서 함수에 접근하는 것을 원하지 않는다면, 정의된 모듈 내에서만 호출될 수 있도록 private 함수를 이용할 수 있습니다. Elixir에서는 그것들을 `defp` 키워드를 이용하여 정의할 수 있습니다:
+
+```elixir
+defmodule Greeter do
+  def hello(name), do: phrase <> name
+  defp phrase, do: "Hello, "
+end
+
+iex> Greeter.hello("Sean")
+"Hello, Sean"
+
+iex> Greeter.phrase
+** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+    Greeter.phrase()
+```
+
+### 가드
+
+[제어 구조](../control-structures.md) 강의에서 가드에 대해 간략하게 다뤘으니, 이제 이름이 있는 함수에 어떻게 적용할 수 있는지 알아보도록 하겠습니다. Elixir에서 함수가 매치되기만 하면, 존재하는 어떤 가드든지 테스트될 것입니다.
+
+동일한 시그니쳐를 가진 두 함수가 정의된 다음의 예제에서, 인자의 타입에 따라 어떤 함수를 이용할 지 가드를 통해 결정합니다.
+
+```elixir
+defmodule Greeter do
+  def hello(names) when is_list(names) do
+    names
+    |> Enum.join(", ")
+    |> hello
+  end
+
+  def hello(name) when is_binary(name) do
+    phrase <> name
+  end
+
+  defp phrase, do: "Hello, "
+end
+
+iex> Greeter.hello ["Sean", "Steve"]
+"Hello, Sean, Steve"
+```
+
+### 디폴트 인자
+
+인자에 디폴트 값을 할당하고 싶다면, `인자 \\ 값` 문법을 이용할 수 있습니다:
+
+
+```elixir
+defmodule Greeter do
+  def hello(name, country \\ "en") do
+    phrase(country) <> name
+  end
+
+  defp phrase("en"), do: "Hello, "
+  defp phrase("es"), do: "Hola, "
+end
+
+iex> Greeter.hello("Sean", "en")
+"Hello, Sean"
+
+iex> Greeter.hello("Sean")
+"Hello, Sean"
+
+iex> Greeter.hello("Sean", "es")
+"Hola, Sean"
+```
+
+
+가드 예제에 디폴트 인자를 적용한 경우를 다뤄보도록 합시다. 아마, 다음과 같이 나타낼 수 있을 겁니다.
+
+
+```elixir
+defmodule Greeter do
+  def hello(names, country \\ "en") when is_list(names) do
+    names
+    |> Enum.join(", ")
+    |> hello(country)
+  end
+
+  def hello(name, country \\ "en") when is_binary(name) do
+    phrase(country) <> name
+  end
+
+  defp phrase("en"), do: "Hello, "
+  defp phrase("es"), do: "Hola, "
+end
+
+** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+```
+
+
+Elixir에서 여러 매칭 함수에 디폴트 인자가 들어가는 것을 권장하지 않습니다. 다소 헷갈릴 수 있기 때문입니다. 이를 다루기 위해서, 디폴트 인자가 들어있는 함수 선언문을 추가해봅시다.
+
+
+```elixir
+defmodule Greeter do
+  def hello(names, country \\ "en")
+  def hello(names, country) when is_list(names) do
+    names
+    |> Enum.join(", ")
+    |> hello(country)
+  end
+
+  def hello(name, country) when is_binary(name) do
+    phrase(country) <> name
+  end
+
+  defp phrase("en"), do: "Hello, "
+  defp phrase("es"), do: "Hola, "
+end
+
+iex> Greeter.hello ["Sean", "Steve"]
+"Hello, Sean, Steve"
+
+iex> Greeter.hello ["Sean", "Steve"], "es"
+"Hola, Sean, Steve"
+```
