@@ -3,7 +3,7 @@ layout: page
 title: OTP 동시성
 category: advanced
 order: 5
-lang: en
+lang: ko
 ---
 
 지난 레슨에서는 Elixir의 동시성에 대해 살펴보았습니다. 그러나, 여기서 더 정밀한 조작이 필요할 때도 있는데, 이런 경우에는 Elixir에 내장된 OTP 비헤이비어가 있습니다.
@@ -42,7 +42,7 @@ end
 
 ### 동기 함수
 
-함수를 호출하여 응답을 기다리면서 GenServer와 동기적으로 데이터를 주고 받는 것이 정말 중요합니다. 동기 요청을 다루기 위해, `GenServer.handle_call/3` 콜백을 구현해야 합니다. 이는 요청, 호출하는 함수의 PID, 현재 상태를 인자로 가집니다. `{:reply, response, state}` 같은 튜플을 반환하며, 응답할 것입니다.
+함수를 호출하여 응답을 기다리면서 GenServer와 동기적으로 데이터를 주고 받는 것이 정말 중요합니다. 동기 요청을 다루기 위해, `GenServer.handle_call/3` 콜백을 구현해야 합니다. 이는 요청, 호출하는 함수의 PID, 현재 상태를 인자로 가집니다. `{:reply, response, state}` 같은 튜플을 응답으로 반환하길 기대합니다.
 
 패턴매칭을 이용하여, 다양한 요청과 상태에 따라 콜백을 정의할 수 있습니다. [`GenServer.handle_call/3`](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#c:handle_call/3) 문서에서 허용되는 반환 값의 전체적인 리스트를 확인할 수 있습니다.
 
@@ -98,7 +98,7 @@ iex> SimpleQueue.queue
 
 ### 비동기 함수
 
-비동기적인 요청은 `handle_case/2` 콜백으로 다룰 수 있습니다. `handle_call/3`처럼 작동하는 것 같지만, 호출하는 함수를 인자로 받지 않으며, 응답도 보내지 않습니다.
+비동기적인 요청은 `handle_cast/2` 콜백으로 다룰 수 있습니다. `handle_call/3`처럼 작동하지만, 호출하는 함수를 인자로 받지 않으며, 응답도 보내지 않습니다.
 
 enqueue 기능을 비동기적으로 구현하여, 실행 중인 프로세스를 블록하지 않고 큐를 갱신해보겠습니다:
 
@@ -141,7 +141,7 @@ defmodule SimpleQueue do
 end
 ```
 
-새로 만든 기능을 적용해보도록 하죠:
+새로 만든 기능을 사용해보도록 하죠:
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])
@@ -158,11 +158,11 @@ iex> SimpleQueue.queue
 
 ## GenEvent
 
-GenServer가 상태를 유지하고 요청들을 동기/비동기적으로 처리하는 프로세스라는 것을 앞서 배웠습니다. 그렇다면, GenEvent는 뭘까요? GenEvent는 들어오는 이벤트를 수신하고 데이터를 전달받는 소비자에 알림을 주는 제네릭한 이벤트 매니저입니다. 핸들러를 이용하여 이벤트의 흐름을 동적으로 제어할 수 있습니다
+GenServer가 상태를 유지하고 요청들을 동기/비동기적으로 처리하는 프로세스라는 것을 앞서 배웠습니다. 그렇다면, GenEvent는 뭘까요? GenEvent는 들어오는 이벤트를 수신하고 데이터를 전달받는 소비자에 알림을 주는 범용 이벤트 매니저입니다. 핸들러를 이용하여 이벤트의 흐름을 동적으로 제어할 수 있습니다
 
 ### 이벤트 처리하기
 
-여러분도 짐작가시듯이, GenEvents에서 가장 중요한 콜백은 `handle_event/2`입니다. 이벤트와 핸들러의 현재 상태를 수신하고, `{:ok, state}`와 같은 튜플을 반환합니다.
+여러분도 짐작 가시듯이, GenEvents에서 가장 중요한 콜백은 `handle_event/2`입니다. 이벤트와 핸들러의 현재 상태를 수신하고, `{:ok, state}`와 같은 튜플을 반환합니다.
 
 GenEvent의 기능을 보이기 위해 두 개의 핸들러를 만들어 봅시다. 하나는 메시지를 계속해서 로깅하도록 하고, 다른 하나는 로깅을 (이론적으로)유지시키는 겁니다:
 
@@ -212,7 +212,7 @@ end
 
 ### GenEvent 사용하기
 
-핸들러가 준비되어 있다면, 몇 가지 GenEvent 함수에 익숙해져야 할 필요가 있습니다. 가장 중요한 함수는 세 가지 입니다: `add_handler/3`, `notify/2`, 그리고 `call/4`이죠. 각각 핸들러를 추가할 수 있고, 새로운 메시지를 브로드캐스트할 수 있고, 특정 핸들러의 함수를 호출할 수 있습니다.
+핸들러가 준비되어 있다면, 몇 가지 GenEvent 함수에 익숙해져야 할 필요가 있습니다. 가장 중요한 함수는 세 가지입니다: `add_handler/3`, `notify/2`, 그리고 `call/4`이죠. 각각 핸들러를 추가할 수 있고, 새로운 메시지를 브로드캐스트할 수 있고, 특정 핸들러의 함수를 호출할 수 있습니다.
 
 모두 적용해보면, 다음과 같이 핸들러들이 작동되는 것을 볼 수 있습니다:
 
@@ -229,4 +229,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-[GenEvent](http://elixir-lang.org/docs/v1.1/elixir/GenEvent.html#content) 공식 문서에서 콜백들의 리스트와 GenEvent의 기능들을 확인해보세요.
+[GenEvent](http://elixir-lang.org/docs/v1.1/elixir/GenEvent.html#content) 공식 문서에서 콜백의 목록과 GenEvent의 기능들을 확인해보세요.
