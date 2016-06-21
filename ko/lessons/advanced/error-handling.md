@@ -16,7 +16,7 @@ Elixir로 프로그래밍 할 때, 일반적으로 `{:ok, result}`와 `{:error, 
 
 ## 에러 처리
 
-에러를 처리하기 전에, 에러를 생성해야 할 필요가 있습니다. 가장 간단한 방법은 `raise/1`를 불러오는 것입니다:
+에러를 처리하기 전에, 에러를 생성해야 할 필요가 있습니다. 가장 간단한 방법은 `raise/1`를 사용하는 것입니다:
 
 ```elixir
 iex> raise "Oh no!"
@@ -59,7 +59,6 @@ end
 ## After
 
 간혹, 에러 발생여부와 상관없이 `try/rescue`가 끝난 뒤에 추가적인 액션을 수행해야 할 수도 있습니다. 그럴 경우에는 `try/after`를 씁니다. 여러분이 Ruby에 익숙하다면, `begin/rescue/ensure`와 비슷하다고 할 수 있습니다. Java에 익숙하다면, `try/catch/finally`와 비슷하다고도 할 수 있겠죠:
-At times it may be necessary to perform some action after our `try/rescue` regardless of error.  For this we have `try/after`.  If you're familiar with Ruby this is akin to `begin/rescue/ensure` or in Java `try/catch/finally`:
 
 ```elixir
 iex> try do
@@ -74,12 +73,12 @@ The end!
 :ok
 ```
 
-파일을 닫거나, 접속을 종료해야 할 때 가장 많이 사용됩니다, 
+파일을 닫거나, 접속을 종료해야 할 때 가장 많이 사용됩니다: 
 
 ```elixir
 {:ok, file} = File.open "example.json"
 try do
-   # Do hazardous work
+   # 위험이 큰 함수를 실행하세요
 after
    File.close(file)
 end
@@ -108,7 +107,7 @@ iex> try do
 
 ## Throws
 
-Elixir에서 에러를 다루는 또 다른 방법은 `throw`와 `catch`입니다. 실제로는, 요즘 Elixir 코드에서 많이 발견되지 않지만, 이들을 알고 이해하는 것이 중요합니다.
+Elixir에서 에러를 다루는 또 다른 방법은 `throw`와 `catch`입니다. 요즘 Elixir 코드에서는 많이 발견되지 않지만, 이들을 알고 이해하는 것이 중요합니다.
 
 `throw/1` 함수는 `catch`에 특정한 값을 넘겨서 실행을 종료할 수 있게 합니다:
 
@@ -129,7 +128,7 @@ iex> try do
 "Caught: 5"
 ```
 
-위에서 언급했다시피, `throw/catch`는 그리 많이 쓰이지 않으며, 라이브러리가 적당한 API를 제공하지 못할 때 임시방편의 용도로 많이 쓰입니다.
+위에서 언급했다시피, `throw/catch`는 그리 많이 쓰이지 않으며, 라이브러리가 적당한 API를 제공하지 못할 때 임시방편으로 많이 쓰입니다.
 
 ## 종료하기
 
