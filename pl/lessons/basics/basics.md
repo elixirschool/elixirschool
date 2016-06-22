@@ -166,7 +166,7 @@ iex> !false
 true
 ```
 
-Istnieją też trzy operatory, których pierwszym argumentem _muszi_ być wartość logiczna (`true` i `false`):
+Istnieją też trzy operatory, których pierwszym argumentem _musi_ być wartość logiczna (`true` i `false`):
 
 ```elixir
 iex> true and 42
@@ -205,13 +205,13 @@ iex> 2 === 2.0
 false
 ```
 
-Ważną cechą Elixira jest to, że można porównać zmienne dowolngo typu, co jest szczególnie użyteczne przy sortowaniu. Nie musimy pamiętać kolejności przy sortowaniu, ale warto jest by mieć to na uwadze:
+Ważną cechą Elixira jest to, że można porównać zmienne dowolnego typu, co jest szczególnie użyteczne przy sortowaniu. Nie musimy pamiętać kolejności przy sortowaniu, ale warto jest by mieć to na uwadze:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
 
-Pozwala to na stworzenie nietypowych, ale poprawnych konstrukcji porównań, które nie są dostępne w innych jezykach:
+Pozwala to na stworzenie nietypowych, ale poprawnych konstrukcji porównań, które nie są dostępne w innych językach:
 
 ```elixir
 iex> :hello > 999
