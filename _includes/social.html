@@ -1,11 +1,17 @@
+{% if page.title == 'Elixir School' %}
+  {% assign lang = page.lang || site.default_lang %}
+  {% assign title = site.description[lang] %}
+{% else %}
+  {% assign title = page.title %}
+{% endif %}
 <hr />
 <h3 id="social">Share This Page</h3>
 <div class="social__container">
   <div class="social__item">
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ page.title }}&summary=description&source={{ site.url }}" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ title }}&summary=description&source={{ site.url }}" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
   </div>
   <div class="social__item">
-    <a target="_blank" href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&via=elixirschool&text=ElixirSchool: {{ page.title }}&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+    <a target="_blank" href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&via=elixirschool&text=ElixirSchool: {{ title }}&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
   </div>
   <div class="social__item">
     <a target="_blank" href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
@@ -14,16 +20,16 @@
     <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" class="social__icon--facebook"><i class="icon--facebook"></i></a>
   </div>
   <div class="social__item">
-    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url={{ site.url }}{{ page.url }}&media={{ site.og_image }}&description=ElixirSchool: {{ page.title }}" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url={{ site.url }}{{ page.url }}&media={{ site.og_image }}&description=ElixirSchool: {{ title }}" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
   </div>
   <div class="social__item">
-    <a target="_blank" href="https://www.evernote.com/noteit.action?url={{ site.url }}{{ page.url }}&title=ElixirSchool: {{ page.title }}&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url={{ site.url }}{{ page.url }}&title=ElixirSchool: {{ title }}&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
   </div>
   <div class="social__item">
-    <a target="_blank" href="https://vk.com/share.php?url={{ site.url }}{{ page.url }}&title=ElixirSchool: {{ page.title }}&description=Check out '{{ page.title }}' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+    <a target="_blank" href="https://vk.com/share.php?url={{ site.url }}{{ page.url }}&title=ElixirSchool: {{ title }}&description=Check out '{{ title }}' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
   </div>
   <div class="social__item">
-    <a target="_blank" href="mailto:?&subject=ElixirSchool: {{ page.title }}&body=Check out '{{ page.title }}' on ElixirSchool%0D%0A%0D%0A{{ site.url }}{{ page.url }}" class="social__icon--email"><i class="icon--email"></i></a>
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: {{ title }}&body=Check out '{{ title }}' on ElixirSchool%0D%0A%0D%0A{{ site.url }}{{ page.url }}" class="social__icon--email"><i class="icon--email"></i></a>
   </div>
   <div class="social__item">
     <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
