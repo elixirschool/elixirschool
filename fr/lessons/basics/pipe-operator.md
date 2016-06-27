@@ -2,7 +2,7 @@
 layout: page
 title: L'opérateur Pipe
 category: basics
-order: 6
+order: 7
 lang: fr
 ---
 

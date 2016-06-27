@@ -74,7 +74,8 @@ config :example_app, ExampleApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "example_app",
   username: "postgres",
-  password: "postgres"
+  password: "postgres",
+  hostname: "localhost"
 ```
 
 ## Mixタスク
@@ -117,7 +118,7 @@ end
 
 初期状態ではEctoは自動でインクリメントする主キー`id`を作成します。この例では標準的な`change/0`コールバックを用いていますが、Ectoはより粒度の細かい制御が必要な場合のために、`up/0`と`down/0`にも対応しています。
 
-思った通りかもしれませんが、`timestamps`をマイグレーションに加えると、`created_at`と`updated_at`が作成、管理されます。
+思った通りかもしれませんが、`timestamps`をマイグレーションに加えると、`inserted_at`と`updated_at`が作成、管理されます。
 
 この新しいマイグレーションを適用するには`mix ecto.migrate`を実行してください。
 
@@ -131,10 +132,11 @@ end
 
 ```elixir
 defmodule ExampleApp.User do
-  use ExampleApp.Web, :model
+  use Ecto.Schema
+  import Ecto.Changeset
 
   schema "users" do
-    field :username, :string, unique: true
+    field :username, :string
     field :encrypted_password, :string
     field :email, :string
     field :confirmed, :boolean, default: false
@@ -144,21 +146,22 @@ defmodule ExampleApp.User do
     timestamps
   end
 
-  @required_fields ~w(username encrypted_password email confirmed)
+  @required_fields ~w(username encrypted_password email)
   @optional_fields ~w()
 
-  def changeset(model, params \\ :empty) do model
+  def changeset(user, params \\ :empty) do
+    user
     |> cast(params, @required_fields, @optional_fields)
+    |> unique_constraint(:username)
   end
 end
 ```
 
-モデル内で定義するスキーマはマイグレーションで記述したものを厳密に表現します。ここではデータベースのフィールドの他に、2つの仮想的なフィールドも加えています。仮想フィールドはデータベースには保存されませんが、バリデーションのような仕組みに役立てることができます。実際の仮想フィールドは[Changeset](#section-9)の項で見ることにします。
+モデル内で定義するスキーマはマイグレーションで記述したものを厳密に表現します。ここではデータベースのフィールドの他に、2つの仮想的なフィールドも加えています。仮想フィールドはデータベースには保存されませんが、バリデーションのような仕組みに役立てることができます。実際の仮想フィールドは[Changeset](#section-8)の項で見ることにします。
 
 ## クエリ
 
 リポジトリに問合せができるようになる前に、Query APIをインポートする必要がありますが、今のところは`from/2`をインポートするだけで良いです:
-Before we can query our repository we need to import the Query API, for now we only need to import `from/2`:
 
 ```elixir
 import Ecto.Query, only: [from: 2]
@@ -171,16 +174,20 @@ Query APIの公式ドキュメントは[Ecto.Query](http://hexdocs.pm/ecto/Ecto.
 Ectoは素晴らしいQuery DSLを提供しており、問合せをわかりやすく表現することができます。全ての確認済みアカウントのユーザ名を探す場合では、このような感じのクエリを用いることができるでしょう:
 
 ```elixir
+alias ExampleApp.{Repo,User}
+
 query = from u in User,
     where: u.confirmed == true,
     select: u.username
 
-Repo.all(User, query)
+Repo.all(query)
 ```
 
 `all/2`に加えて、Repoは`one/2`や`get/3`、`insert/2`、`delete/2`を含む多くのコールバックを提供しています。コールバックの全ての一覧は[Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks)で見つけることができます。
 
 ### Count
+
+確認済みのユーザ数を集計したい場合は、`count/1`を使うことができます:
 
 ```elixir
 query = from u in User,
@@ -188,17 +195,26 @@ query = from u in User,
     select: count(u.id)
 ```
 
+重複値を除いて集計したい場合は `count/2` 関数があります:
+
+```elixir
+query = from u in User,
+    where: u.confirmed == true,
+    select: count(u.id, :distinct)
+```
+
+
+
 ### Group By
 
 ユーザ名を作成日ごとにグループ化するには、`group_by`オプションを加えます:
 
 ```elixir
 query = from u in User,
-    group_by: u.created_at,
-    select: [u.username, u.created_at]
+    group_by: u.confirmed,
+    select: [u.confirmed, count(u.id)]
 
-
-Repo.all(User, query)
+Repo.all(query)
 ```
 
 ### Order By
@@ -207,19 +223,18 @@ Repo.all(User, query)
 
 ```elixir
 query = from u in User,
-    order_by: u.created_at,
-    select: [u.username, u.created_at]
+    order_by: u.inserted_at,
+    select: [u.username, u.inserted_at]
 
-
-Repo.all(User, query)
+Repo.all(query)
 ```
 
 `DESC`で順序付けするには:
 
 ```elixir
 query = from u in User,
-    order_by: [desc: u.created_at],
-    select: [u.username, u.created_at]
+    order_by: [desc: u.inserted_at],
+    select: [u.username, u.inserted_at]
 ```
 
 ### Join
@@ -254,10 +269,12 @@ Changesetはモデルが変更される際のフィルタやバリデーショ�
 
 ```elixir
 defmodule ExampleApp.User do
-  use ExampleApp.Web, :model
+  use Ecto.Schema
+  import Ecto.Changeset
+  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
   schema "users" do
-    field :username, :string, unique: true
+    field :username, :string
     field :encrypted_password, :string
     field :email, :string
     field :confirmed, :boolean, default: false
@@ -267,25 +284,34 @@ defmodule ExampleApp.User do
     timestamps
   end
 
-  @required_fields ~w(username encrypted_password email)
+  @required_fields ~w(username email password password_confirmation)
   @optional_fields ~w()
 
-  def changeset(model, params) do
-    model
+  def changeset(user, params \\ :empty) do
+    user
     |> cast(params, @required_fields, @optional_fields)
     |> validate_length(:password, min: 8)
-    |> validate_password_confirmation
+    |> validate_password_confirmation()
     |> unique_constraint(:username, name: :email)
-    |> put_change(:encrypted_password, Comeonin.Bcrypt.hashpwsalt(params[:password]))
+    |> put_change(:encrypted_password, hashpwsalt(params[:password]))
   end
 
   defp validate_password_confirmation(changeset) do
-    case Ecto.Changeset.get_change(changeset, :password_confirmation) do
-      nil -> password_mismatch_error(changeset)
+    case get_change(changeset, :password_confirmation) do
+      nil ->
+        password_mismatch_error(changeset)
       confirmation ->
-        password = Ecto.Changeset.get_field(changeset, :password)
+        password = get_field(changeset, :password)
         if confirmation == password, do: changeset, else: password_incorrect_error(changeset)
     end
+  end
+
+  defp password_mismatch_error(changeset) do
+    add_error(changeset, :password_confirmation, "Passwords does not match")
+  end
+
+  defp password_incorrect_error(changeset) do
+    add_error(changeset, :password, "is not valid")
   end
 end
 ```
@@ -297,6 +323,8 @@ end
 `User.changeset/2`は比較的簡単に使用できます:
 
 ```elixir
+alias ExampleApp.{User,Repo}
+
 pw = "passwords should be hard"
 changeset = User.changeset(%User{}, %{username: "doomspork",
                     email: "sean@seancallan.com",

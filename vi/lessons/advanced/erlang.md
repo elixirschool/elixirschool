@@ -45,10 +45,10 @@ end
 Và giờ ta có thể truy cập thư viện Erlang:
 
 ```elixir
-png = :png.create(#{:size => {30, 30},
+png = :png.create(%{:size => {30, 30},
                     :mode => {:indexed, 8},
                     :file => file,
-                    :palette => palette}),
+                    :palette => palette})
 ```
 
 ## Những điểm khác biệt cần lưu ý

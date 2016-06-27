@@ -22,7 +22,7 @@ W Elixirze dostępna jest interaktywna powłoka `iex`, która pozwala nam na uru
 
 By ją uruchomić wpisz w wierszu poleceń `iex`:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
@@ -166,7 +166,7 @@ iex> !false
 true
 ```
 
-Istnieją też trzy operatory, których pierwszym argumentem _muszi_ być wartość logiczna (`true` i `false`):
+Istnieją też trzy operatory, których pierwszym argumentem _musi_ być wartość logiczna (`true` i `false`):
 
 ```elixir
 iex> true and 42
@@ -205,13 +205,13 @@ iex> 2 === 2.0
 false
 ```
 
-Ważną cechą Elixira jest to, że można porównać zmienne dowolngo typu, co jest szczególnie użyteczne przy sortowaniu. Nie musimy pamiętać kolejności przy sortowaniu, ale warto jest by mieć to na uwadze:
+Ważną cechą Elixira jest to, że można porównać zmienne dowolnego typu, co jest szczególnie użyteczne przy sortowaniu. Nie musimy pamiętać kolejności przy sortowaniu, ale warto jest by mieć to na uwadze:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
 
-Pozwala to na stworzenie nietypowych, ale poprawnych konstrukcji porównań, które nie są dostępne w innych jezykach:
+Pozwala to na stworzenie nietypowych, ale poprawnych konstrukcji porównań, które nie są dostępne w innych językach:
 
 ```elixir
 iex> :hello > 999

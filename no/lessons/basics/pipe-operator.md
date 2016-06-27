@@ -2,7 +2,7 @@
 layout: page
 title: Pipeoperatoren
 category: basics
-order: 6
+order: 7
 lang: no
 ---
 

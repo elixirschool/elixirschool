@@ -2,7 +2,7 @@
 layout: page
 title: Operator Potoku
 category: basics
-order: 6 
+order: 7
 lang: pl
 ---
 
@@ -53,7 +53,7 @@ true
 
 ## Najlepsze praktyki 
 
-Jesli liczba argumentów funkcji jest większa niż 1, pamietaj o korzystaniu z nawiasów. Nawiasy w Elixierze nie są obowiązkowe, ale ich stosowanie poprawia czytelność kodu, co docenić mogą inni programiści. Jeśli z kodu, w przykładzie drugim, usuniemy nawiasy z funkcji `Enum.map/2`, zobaczymy poniższe ostrzeżenie.
+Jesli liczba argumentów funkcji jest większa niż 1, pamiętaj o korzystaniu z nawiasów. Nawiasy w Elixierze nie są obowiązkowe, ale ich stosowanie poprawia czytelność kodu, co docenić mogą inni programiści. Jeśli z kodu, w przykładzie drugim, usuniemy nawiasy z funkcji `Enum.map/2`, zobaczymy poniższe ostrzeżenie.
 
 ```shell
 iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1

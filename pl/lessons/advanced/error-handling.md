@@ -6,11 +6,9 @@ order: 2
 lang: pl
 ---
 
-Elixir wspiera obsługę wyjątków. Ta lekcja jest poświęcona mechanizmom do obsługi błędów, wśród których 
-najpopularniejszym jest zwracanie krotki `{:error, reason}`. 
+Elixir wspiera obsługę wyjątków. Ta lekcja jest poświęcona mechanizmom do obsługi błędów, wśród których najpopularniejszym jest zwracanie krotki `{:error, reason}`. 
 
-Ogólnie przyjętą w Elixirze zasadą jest tworzenie funkcji (`example/1`) zwracającej `{:ok, result}` albo `{:error, 
-reason}` oraz oddzielnej funkcji (`example!/1`), która zwróci bezpośrednio `result` albo zakończy się wyjątkiem.
+Ogólnie przyjętą w Elixirze zasadą jest tworzenie funkcji (`example/1`) zwracającej `{:ok, result}` albo `{:error, reason}` oraz oddzielnej funkcji (`example!/1`), która zwróci bezpośrednio `result` albo zakończy się wyjątkiem.
 
 W tej lekcji skupimy się na pracy z takim podejściem.
 
@@ -59,9 +57,7 @@ end
 
 ## Blok `after`
 
-Czasami musimy podjąć pewne dodatkowe działania po wykonaniu kodu w bloku `try/rescue`, niezależnie czy błąd się 
-pojawił, czy też nie.  Służy do tego konstrukcja `try/after`.  Odpowiada ona konstrukcji `begin/rescue/ensure` w Ruby 
-lub `try/catch/finally` w Javie:
+Czasami musimy podjąć pewne dodatkowe działania po wykonaniu kodu w bloku `try/rescue`, niezależnie czy błąd się pojawił, czy też nie.  Służy do tego konstrukcja `try/after`.  Odpowiada ona konstrukcji `begin/rescue/ensure` w Ruby lub `try/catch/finally` w Javie:
 
 ```elixir
 iex> try do
@@ -89,9 +85,7 @@ end
 
 ## Własne błędy
 
-Elixir zawiera wiele wbudowanych typów błędów jak na przykład `RuntimeError`, ale czasami zachodzi potrzeba 
-stworzenia nowego typu, specyficznego dla naszego projektu.  Stworzenie nowego błędu polega na wykorzystaniu makra  
-`defexception/1`, które przyjmuje opcję `:message` zawierającą komunikat:
+Elixir zawiera wiele wbudowanych typów błędów jak na przykład `RuntimeError`, ale czasami zachodzi potrzeba stworzenia nowego typu, specyficznego dla naszego projektu.  Stworzenie nowego błędu polega na wykorzystaniu makra  `defexception/1`, które przyjmuje opcję `:message` zawierającą komunikat:
 
 ```elixir
 defmodule ExampleError do
@@ -112,8 +106,7 @@ iex> try do
 
 ## Zwracanie błędów
 
-Innym mechanizmem związanym z błędami w Elixirze jest użycie `throw` i `catch`.  Nie występuje on za często, 
-szczególnie w nowszym kodzie, ale ważne jest, by wiedzieć, że istnieje i jak działa.
+Innym mechanizmem związanym z błędami w Elixirze jest użycie `throw` i `catch`.  Nie występuje on za często, szczególnie w nowszym kodzie, ale ważne jest, by wiedzieć, że istnieje i jak działa.
 
 Funkcja `throw/1` pozwala na przerwanie wykonania kodu i przekazanie do `catch` pewnej wartości:
 
@@ -134,13 +127,11 @@ iex> try do
 "Caught: 5"
 ```
 
-Jak już wspomnieliśmy, `throw/catch` jest rzadko używanym mechanizmem, który zazwyczaj pojawia się jako tymczasowe 
-rozwiązanie tam, gdzie biblioteki nie zapewniają odpowiedniego API .
+Jak już wspomnieliśmy, `throw/catch` jest rzadko używanym mechanizmem, który zazwyczaj pojawia się jako tymczasowe rozwiązanie tam, gdzie biblioteki nie zapewniają odpowiedniego API .
 
 ## Kończenie procesu
 
-W końcu Elixir posiada mechanizm kończenia procesów za pomocą `exit`. Sygnał wyjścia jest wysyłany za każdym razem, 
-kiedy kończy się proces i jest bardzo ważnym elementem związanym z odpornością na błędy.
+W końcu Elixir posiada mechanizm kończenia procesów za pomocą `exit`. Sygnał wyjścia jest wysyłany za każdym razem, kiedy kończy się proces i jest bardzo ważnym elementem związanym z odpornością na błędy.
 
 Możemy też jawnie wywołać `exit/1`:
 
@@ -149,8 +140,7 @@ iex> spawn_link fn -> exit("oh no") end
 ** (EXIT from #PID<0.101.0>) "oh no"
 ```
 
-Możliwe jest użycie `try/catch` do obsłużenia sygnału `exit`, ale takie zachowanie jest _bardzo_ rzadkie. Zazwyczaj 
-obsługą takiego zdarzenia powinien zająć się nadzorca procesów:
+Możliwe jest użycie `try/catch` do obsłużenia sygnału `exit`, ale takie zachowanie jest _bardzo_ rzadkie. Zazwyczaj obsługą takiego zdarzenia powinien zająć się nadzorca procesów:
 
 ```elixir
 iex> try do
