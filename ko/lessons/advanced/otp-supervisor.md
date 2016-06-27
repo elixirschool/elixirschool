@@ -28,7 +28,7 @@ children = [
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
 
-프로세스가 정지하거나, 종료되면 슈퍼바이저는 아무 일도 없었던 것처럼 프로세스를 재기동할 것입니다.
+프로세스가 정지하거나 종료되면, 슈퍼바이저는 아무 일도 없었던 것처럼 프로세스를 재기동할 것입니다.
 
 ### 전략
 
