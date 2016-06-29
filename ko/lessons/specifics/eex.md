@@ -16,7 +16,7 @@ EEx API는 문자열이나 파일을 직접 사용할 수 있게끔 지원합니
 
 ### 평가
 
-`eval_string`와 `eval_file`을 사용해서 문자열이나 파일에 대해서 단순 평가를 할 수 있습니다. 이는 가장 간단한 API이지만, 컴파일 없이 코드가 평가되기 때문에 가장 느립니다.
+`eval_string/3`와 `eval_file/2`을 사용해서 문자열이나 파일에 대해서 단순 평가를 할 수 있습니다. 이는 가장 간단한 API이지만, 컴파일 없이 코드가 평가되기 때문에 가장 느립니다.
 
 ```elixir
 iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
@@ -25,7 +25,7 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 
 ### 정의
 
-EEx를 사용하는 방법 중 가장 빠르고, 선호되는 것은 컴파일될 수 있도록 템플릿을 모듈에 삽입하는 것입니다. 이를 위해서는 컴파일 시간에 템플릿과 `function_from_string`, `function_from_file` 매크로가 필요합니다.
+EEx를 사용하는 방법 중 가장 빠르고, 선호되는 것은 컴파일될 수 있도록 템플릿을 모듈에 삽입하는 것입니다. 이를 위해서는 컴파일 시간에 템플릿과 `function_from_string/5`, `function_from_file/5` 매크로가 필요합니다.
 
 그럼 우리의 인사를 파일로 옮기고, 템플릿을 위한 함수를 생성해봅시다:
 
@@ -44,7 +44,7 @@ iex> Example.greeting("Sean")
 
 ### 컴파일
 
-마지막으로, EEx는 `compile_string`이나 `compile_file`를 통해 문자열이나 파일에서 Elixir AST를 직접 생성할 방법을 제공합니다. 이 API는 주로 위에서 설명한 API에서 사용하고 있습니다만, 내장 Elixir를 처리를 직접 하고 싶은 경우에도 사용 가능합니다.
+마지막으로, EEx는 `compile_string/2`이나 `compile_file/2`를 통해 문자열이나 파일에서 Elixir AST를 직접 생성할 방법을 제공합니다. 이 API는 주로 위에서 설명한 API에서 사용하고 있습니다만, 내장 Elixir를 처리를 직접 하고 싶은 경우에도 사용 가능합니다.
 
 ## 태그
 
