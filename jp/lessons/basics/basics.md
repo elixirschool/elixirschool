@@ -103,7 +103,7 @@ iex> :foo == :bar
 false
 ```
 
-注記: 真理値の`true`と`false`はそれぞれ、アトムの`:true`と`:false`でもあります。
+真理値の`true`と`false`はそれぞれ、アトムの`:true`と`:false`でもあります。
 
 ```elixir
 iex> true |> is_atom
@@ -112,6 +112,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Elixirのモジュールの名前もまたアトムです。`MyApp.MyModule`は、そのようなモジュールが宣言されていなくても有効ななアトムです。
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+アトムは、Erlangのビルトインのものも含めたライブラリのモジュールを参照するのにも使われます。
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### 文字列
