@@ -35,7 +35,7 @@ iex(6)>
 
 Notice the first three don't return tuples?  There are five literals that return themselves when quoted:
 
-```elixirunquote
+```elixir
 iex> :atom
 :atom
 iex> "string"
