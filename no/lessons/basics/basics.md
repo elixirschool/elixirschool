@@ -96,6 +96,21 @@ iex> :true === true
 true
 ```
 
+Navnet på moduler i Elixir er også atomer. `MinApp.MinModule` er en gyldig atom,
+selv om ingen slik module har blitt lagd.
+
+```elixir
+iex> is_atom(MinApp.MinModule)
+true
+```
+
+Atomer er også brukt for å referere til moduler fra Erlang biblioteket, men også til de innebygde modulene.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
+```
+
 ### Strenger (strings)
 
 Strenger i Elixir er UTF-8 innkodet, og skrives mellom doble anførselstegn:
@@ -275,4 +290,3 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
-
