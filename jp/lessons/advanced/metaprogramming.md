@@ -9,8 +9,8 @@ lang: jp
 <!--
  Metaprogramming is the process of using code to write code.  
  In Elixir this gives us the ability to extend the language to fit our needs and dynamically change the code.  
- We'll start by looking at how Elixir is represented under the hood, then how to modify it, 
- and finally we can use this knowledge to extend it. 
+ We'll start by looking at how Elixir is represented under the hood, then how to modify it,
+ and finally we can use this knowledge to extend it.
  -->
 メタプログラミングとはコード自体にコード記述させる機能です。
 Elixirでは、メタプログラミング機能によりニーズに合わせて言語を拡張し、動的にコードを変更することができます。
@@ -20,7 +20,7 @@ Elixirがフードの下でどのように表現されるかを見ることか�
 A word of caution:  Metaprogramming is tricky and should only be used when absolutely necessary.  Overuse will almost certainly lead to complex code that is difficult to understand and debug.
 -->
 注意事項: メタプログラミングはトリッキーで、どうしても必要な場合にのみ使用してください。過度の使用は、ほぼ確実に、理解及びデバッグすることが困難な複雑なコードにつながります。
- 
+
 {% include toc.html %}
 
 ## Quote
@@ -79,7 +79,7 @@ iex> {"hello", :world} # 2 element tuples
 Now that we can retrieve the internal structure of our code, how do we modify it?  
 To inject new code or values we rely use `unquote/1`.  
 When we unquote an expression it will be evaluated and injected into the AST.  
-To demonstrate `unqoute/1` let's look at some examples:
+To demonstrate `unquote/1` let's look at some examples:
 -->
 今、コードの内部構造を検索することができましたが、どのようにそれを修正しましょう？
 新しいコードまたは値を注入するために、`unquote/1` を使用します。
@@ -121,8 +121,8 @@ Imagine the macro being replaced with the quoted expression rather than called l
 マクロで、私たちはElixirを拡張し、動的に私たちのアプリケーションにコードを追加するために必要なすべてを持っています。
 
 <!--
-We begin by defining a macro using `defmacro/2` which itself is a macro, 
-like much of Elixir (let that sink in).  As an example we'll implement `unless` as a macro.  
+We begin by defining a macro using `defmacro/2` which itself is a macro,
+like much of Elixir (let that sink in).  As an example we'll implement `unless` as a macro.
 Remember that our macro needs to return a quoted expression:
 -->
 `defmacro/2`を使用してマクロの定義から始めます。`defmacro/2`自身がマクロであり、Elixrの多数の機能がマクロで出来ています。
@@ -138,7 +138,7 @@ defmodule OurMacro do
 end
 ```
 
-<!-- 
+<!--
 Let's require our module and give our macro a whirl:
 -->
 早速作ったモジュールをrequireして使ってみましょう:
@@ -221,7 +221,7 @@ Private macros must be defined before the code that invokes them.
 ### 衛生的なマクロ
 
 <!--
-How macros interact with the caller's context when expanded is known as macro hygiene. 
+How macros interact with the caller's context when expanded is known as macro hygiene.
 By default macros in Elixir are hygienic and will not conflict with our context:
 -->
 衛生なマクロは展開したとき、呼び出し元のコンテキストとどの様に相互作用するのでしょう。
@@ -371,4 +371,3 @@ With `bind_quoted` we get our expected outcome: the same time printed twice.
 Now that we've covered `quote/2`, `unquote/1`, and `defmacro/2` we have all the tools necessary to extend Elixir to suit our needs.
 -->
 これでカバーしてきた `quote/2`, `unquote/1`, `defmacro/2` により、ニーズに合わせてElixirを拡張するために必要なすべてのツールを持ちました。
-
