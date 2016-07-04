@@ -6,13 +6,13 @@ order: 8
 lang: ko
 ---
 
-Sometimes a project can get big, really big in fact. The Mix build tool allows us to split our code into multiple apps and make our Elixir projects more manageable as they grow.
+때로는 프로젝트가 커지고 커져서 아주아주 커질 수도 있습니다. Mix 빌드 도구를 사용해서 작성한 코드를 여러 앱으로 나누고, 이렇게 Elixir 프로젝트가 계속해서 커져나가도 관리하기 쉽도록 유지할 수 있습니다.
 
 {% include toc.html %}
 
-## Introduction
+## 시작하기
 
-To create an umbrella project we start a project as if we were going to start a normal Mix project but pass in the `--umbrella` flag. For this example, we are going to make *the shell* of a machine learning toolkit. Why a machine learning toolkit? Why not? It is made up of various different learning algorithms and utility functions.
+엄브렐라 프로젝트를 시작하려면 평범한 Mix 프로젝트를 시작할 때 입력했던 명령어에서 `--umbrella` 플래그만 덧붙여주면 됩니다. 이번 예제로는 머신 러닝 툴킷의 **껍데기**를 구현해보도록 하겠습니다. 왜 하필 머신 러닝 툴킷이냐고요? 그러지 말라는 법이 없잖아요? 머신 러닝 툴킷에는 다양한 학습 알고리즘과 유틸리티 함수가 필요하기 때문에 이번 예제에 적절하기 때문이에요.
 
 ```shell
 $ mix new machine_learning_toolkit --umbrella
@@ -35,12 +35,16 @@ where you can create and host many apps:
 Commands like "mix compile" and "mix test" when executed
 in the umbrella project root will automatically run
 for each application in the apps/ directory.
+# (역자) 엄브렐라 프로젝트의 최상위 경로에서
+# "mix compile" 명령이나 "mix test" 명령을 실행하면
+# apps/ 경로 안에 있는 각각 애플리케이션에 대해서도
+# 해당 명령을 자동으로 실행합니다.
 ```
 
-As you can see from the shell command, Mix created a small skeleton project for us with two directories:
+셸 명령어를 입력했을 때 결과에서 보신 것처럼, Mix가 디렉터리 두 개로 된 프로젝트의 작은 뼈대를 만들었습니다.
 
-  - `apps/` - where our sub (child) projects will reside
-  - `config/` - where our umbrella projects configuration will live
+  - `apps/` - 서프 프로젝트(자녀 프로젝트)가 위치해 있는 곳
+  - `config/` - 엄브렐라 프로젝트의 설정이 위치하는 곳
 
 
 ## Child projects
