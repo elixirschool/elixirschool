@@ -12,9 +12,9 @@ Faire des tests est une partie importante du développement informatique. Dans c
 
 ## ExUnit
 
-L'outil de test intégré dans Elixir est ExUnit et il contient tout ce qu'il faut pour tester rigoureusement le code.  Avant de continuer, il est important de noter que les tests sont implémentés comme tout script Elixir donc nous utilisons l'éxtension `.exs`.  Avant de pouvoir lancer nos tests, il nous faut démarrer ExUnit avec `ExUnit.start()` que l'on place généralement dans `test/test_helper.exs`.
+L'outil de test intégré dans Elixir est ExUnit et il contient tout ce qu'il faut pour tester rigoureusement le code.  Avant de continuer, il est important de noter que les tests sont implémentés comme tout script Elixir donc nous utilisons l'extension `.exs`.  Avant de pouvoir lancer nos tests, il nous faut démarrer ExUnit avec `ExUnit.start()` que l'on place généralement dans `test/test_helper.exs`.
 
-Quand nous avons généré notre projet d'éxemple dans la leçon précédente, mix nous a aidé en créant un test simple que nous pouvons trouver dans `test/example_test.exs`:
+Quand nous avons généré notre projet d'exemple dans la leçon précédente, mix nous a aidé en créant un test simple que nous pouvons trouver dans `test/example_test.exs`:
 
 ```elixir
 defmodule ExampleTest do
@@ -27,7 +27,7 @@ defmodule ExampleTest do
 end
 ```
 
-Nous pouvons alors lançer les tests de notre projet avec `mix test`.  Si nous éxécutons cela maintenant, nous devrions afficher une sortie similaire à la suivante:
+Nous pouvons alors lancer les tests de notre projet avec `mix test`.  Si nous exécutons cela maintenant, nous devrions voir la sortie suivante:
 
 ```shell
 Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
@@ -36,9 +36,9 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### assert
 
-Si vous avez déjà ecrit des tests auparavant, vous êtes certainement habitué à `assert`; dans certains frameworks `should` ou `expect` prend la place de `assert`.
+Si vous avez déjà écrit des tests auparavant, vous êtes certainement habitués à `assert`; dans certains frameworks `should` ou `expect` prennent la place de `assert`.
 
-Nous utilisons `assert` pour vérifier qu'une expression est correcte.  Dans le cas ou cette dernière ne l'est pas, une erreur sera remontée et le test va échouer.  Pour tester un echec, modifions l'éxemple comme suit et lançons `mix test`:
+Nous utilisons `assert` pour vérifier qu'une expression est correcte.  Dans le cas ou cette dernière ne l'est pas, une erreur sera remontée et le test va échouer.  Pour tester un échec, modifions l'exemple comme suit et lançons `mix test`:
 
 ```elixir
 defmodule ExampleTest do
@@ -73,7 +73,7 @@ ExUnit nous dira exactement où nos tests ont échoués, quelle était la valeur
 
 ### refute
 
-`refute` est pour `assert` ce que `unless` est pour `if`.  Utilisez `refute` pour vous assureR qu'une expression est fausse.
+`refute` est à `assert` ce que `unless` est à `if`.  Utilisez `refute` pour vous assurer qu'une expression est fausse.
 
 ### assert_raise
 
@@ -81,7 +81,7 @@ Il est parfois nécessaire d'affirmer qu'une erreur est soulevée et nous pouvon
 
 ## Configuration de test
 
-Sur certaines instances, il peut être nécessaire de définir la configuration avant de lançer nos tests.  Pour cela, nous allons utiliser `setup` et `setup_all`.  `setup` sera éxécuté avant chaque test et `setup_all` une fois avant l'ensemble.  Ceux-ci doivent retourner un tuple de `{:ok, state}`, où state sera accessible dans nos tests.
+Dans certains cas, il peut être nécessaire de définir la configuration avant de lancer nos tests.  Pour cela, nous allons utiliser `setup` et `setup_all`.  `setup` sera exécuté avant chaque test et `setup_all` une fois avant la suite.  Ceux-ci doivent retourner un tuple de `{:ok, state}`, où state sera accessible dans nos tests.
 
 Pour cet exemple, nous allons changer le code pour utiliser `setup_all`:
 
@@ -102,6 +102,6 @@ end
 
 ## Mocking
 
-La réponse à l'utilisation des mocks dans Elixir est: ne le faite pas.  Vous pourriez vouloir les utiliser par instict mais cela est fortement découragé par la communauté Elixir et pour de bonnes raisons.  Si vous suivez les principes d'une bonne architecture, le code résultant sera facile à tester en tant que composant individuel.
+L'utilisation des mocks avec Elixir est fortement déconseillée.  Vous pourriez vouloir les utiliser par instict mais cela est fortement découragé par la communauté Elixir et pour de bonnes raisons.  Si vous suivez les principes d'une bonne architecture, le code résultant sera facile à tester en tant que composant individuel.
 
 Résistez donc à l'envie.
