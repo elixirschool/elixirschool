@@ -28,7 +28,7 @@ Your umbrella project was created successfully.
 Inside your project, you will find an apps/ directory
 where you can create and host many apps:
 # (역주) 새 엄브렐라 프로젝트가 성공적으로 만들어졌습니다.
-# 프로젝트 안에서 apps/ 디렉터리리 안에서
+# 프로젝트의 apps/ 디렉터리 안에서
 # 여러 애플리케이션을 두거나 만들 수 있습니다.
 
     cd machine_learning_toolkit
