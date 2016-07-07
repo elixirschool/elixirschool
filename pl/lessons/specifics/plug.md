@@ -97,7 +97,7 @@ Ostatnim elementem jest prywatna funkcja `verify_request!/2`, która sprawdza cz
 
 ## Użycie Plug.Router
 
-Teraz gdy mamy nasz plug `VerifyRequest`, możemy przejść do routera. Jak zaraz zobaczymy nie potrzebujemy dodatkowego frameworku jak Sinatra, ponieważ w Elixirze mamy dostępny Plug. 
+Teraz gdy mamy nasz plug `VerifyRequest`, możemy przejść do routera. Jak zaraz zobaczymy nie potrzebujemy dodatkowego narzędzia jak Sinatra, ponieważ w Elixirze mamy dostępny Plug. 
 
 Na początku stwórzmy plik `lib/plug/router.ex` i skopiujmy do niego następujący kod:
 

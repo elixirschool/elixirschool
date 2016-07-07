@@ -43,12 +43,15 @@ Class names and proper nouns do not get translated.
 - anonymous function - анонимная функция
 - attribute - атрибут
 - bitsring - битовая строка
+- binding - контекст
 - boolean - логический тип
 - callback - функция обратного вызова
 - char list - список символов
+- codepoint - кодовая точка
 - collection - коллекция
 - concatenation - конкатенация
 - exception - исключение
+- grapheme - графема
 - float - число с плавающей запятой
 - function body - тело функции
 - head - голова

@@ -6,16 +6,13 @@ order: 1
 lang: pl
 ---
 
-Jedną z zalet działania w ramach maszyny wirtualnej erlanga jest bogactwo istniejących rozwiązań.
-Interoperacyjność pozwala nam na wykorzystanie tych rozwiązań, jak i standardowej biblioteki Erlanga w naszym
-Elixirowym kodzie. W tej lekcji przyjrzymy się, jak możemy łączyć nasz kod z bibliotekami stworzonymi w Erlangu.
+Jedną z zalet działania w ramach maszyny wirtualnej erlanga jest bogactwo istniejących rozwiązań. Interoperacyjność pozwala nam na wykorzystanie tych rozwiązań, jak i standardowej biblioteki Erlanga w naszym Elixirowym kodzie. W tej lekcji przyjrzymy się, jak możemy łączyć nasz kod z bibliotekami stworzonymi w Erlangu.
 
 {% include toc.html %}
 
 ## Biblioteka standardowa
 
-Do kodu napisanego w Erlangu możemy odwołać się w dowolnym miejscu naszego kodu. Moduły Erlanga są reprezentowane 
-przez atomy, pisane małymi literami, na przykład `:os` czy `:timer`.
+Do kodu napisanego w Erlangu możemy odwołać się w dowolnym miejscu naszego kodu. Moduły Erlanga są reprezentowane przez atomy, pisane małymi literami, na przykład `:os` czy `:timer`.
 
 Użyjmy `:timer.tc` by zmierzyć czas wykonania funkcji:
 
@@ -37,9 +34,7 @@ Pełna lista modułów jest dostępna w podręczniku [Erlang Reference Manual](h
 
 ## Pakiety erlanga
 
-W jednej z poprzednich lekcji poznaliśmy narzędzie Mix służące do zarządzania zależnościami. Dodawanie zależności do 
-bibliotek erlangowych działa w taki sam sposób. Jedyny wyjątek stanowi to, że biblioteki erlanga nie są opublikowane 
-w [Hex](https://hex.pm), ale można się do nich odwołać podając nazwę repozytorium na githubie:
+W jednej z poprzednich lekcji poznaliśmy narzędzie Mix służące do zarządzania zależnościami. Dodawanie zależności do bibliotek Erlangowych działa w taki sam sposób. Jedyny wyjątek stanowi to, że biblioteki erlanga nie są opublikowane w [Hex](https://hex.pm), ale można się do nich odwołać podając nazwę repozytorium na githubie:
 
 
 ```elixir
@@ -63,8 +58,7 @@ Jak już wiemy jak korzystać z Erlanga musimy jeszcze poznać pewne pułapki wy
 
 ### Atomy
 
-Atomy w Erlangu wyglądają bardzo podobnie do tych z Elixira. Nie zawierają dwukropka (`:`), są pisane małymi literami
- i można w nich użyć znaku podkreślenia:
+Atomy w Erlangu wyglądają bardzo podobnie do tych z Elixira. Nie zawierają dwukropka (`:`), są pisane małymi literami i można w nich użyć znaku podkreślenia:
 
 Elixir:
 
@@ -80,8 +74,7 @@ example.
 
 ### Ciągi znaków
 
-W Elixirze, gdy mówimy o ciągach znaków mamy na myśli dane bitowe interpretowane jako UTF-8. W Erlangu ciągi znaków 
-też używają cudzysłowów, ale są listami znaków:
+W Elixirze, gdy mówimy o ciągach znaków mamy na myśli dane bitowe interpretowane jako UTF-8. W Erlangu ciągi znaków też używają cudzysłowów, ale są listami znaków:
 
 Elixir:
 
@@ -109,8 +102,7 @@ false
 true
 ```
 
-Musimy pamiętać, że wiele starszych bibliotek Erlanga, nie wspiera formy binarnej i musimy zamienić ciągi znaków z 
-Elixira na listy.  Na całe szczęście mamy do tego odpowiednią funkcję `to_char_list/1`:
+Musimy pamiętać, że wiele starszych bibliotek Erlanga, nie wspiera formy binarnej i musimy zamienić ciągi znaków z Elixira na listy.  Na całe szczęście mamy do tego odpowiednią funkcję `to_char_list/1`:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -145,5 +137,4 @@ Erlang:
 11
 ```
 
-I to wszystko! Możliwość wykorzystania Erlanga z kodu aplikacji pisanych w Elixirze jest proste i efektywnie zwiększa
- ilość bibliotek, które możemy wykorzystać.
+I to wszystko! Możliwość wykorzystania Erlanga z kodu aplikacji pisanych w Elixirze jest proste i efektywnie zwiększa ilość bibliotek, które możemy wykorzystać.

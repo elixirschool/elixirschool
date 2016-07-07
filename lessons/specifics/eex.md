@@ -16,7 +16,7 @@ The EEx API supports working with strings and files directly.  The API is divide
 
 ### Evaluation
 
-Using `eval_string` and `eval_file` we can perform a simple evaluation against a string or file contents.  This is the simplest API but the slowest since code is evaluated and not compiled.
+Using `eval_string/3` and `eval_file/2` we can perform a simple evaluation against a string or file contents.  This is the simplest API but the slowest since code is evaluated and not compiled.
 
 ```elixir
 iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
@@ -25,7 +25,7 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 
 ### Definitions
 
-The fastest, and preferred, method of using EEx is to embed our template into a module so it can be compiled.  For this we need our template at compile time, along with the `function_from_string` and `function_from_file` macros.
+The fastest, and preferred, method of using EEx is to embed our template into a module so it can be compiled.  For this we need our template at compile time, along with the `function_from_string/5` and `function_from_file/5` macros.
 
 Let's move our greeting to another file and generate a function for our template:
 
@@ -44,7 +44,7 @@ iex> Example.greeting("Sean")
 
 ### Compilation
 
-Lastly, EEx provides us a way to directly generate Elixir AST from a string or file using `compile_string` or `compile_file`.  This API is primarily used by the aforementioned APIs but is available should you wish to implement your own handling of embedded Elixir.
+Lastly, EEx provides us a way to directly generate Elixir AST from a string or file using `compile_string/2` or `compile_file/2`.  This API is primarily used by the aforementioned APIs but is available should you wish to implement your own handling of embedded Elixir.
 
 ## Tags
 

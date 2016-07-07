@@ -148,3 +148,14 @@ iex> %{foo: "bar", hello: "world"}
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
+
+Mapy posiadają też własną składnię służącą do dostępu i aktualizacji kluczy:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
+```

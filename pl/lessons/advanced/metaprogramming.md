@@ -50,7 +50,7 @@ iex> {"hello", :world} # 2 element tuples
 
 ## Modyfikacja AST
 
-Skoro wiemy już jak uzyskać wewnętrzną reprezentację kodu, to pojawia się pytanie, jak ją modyfikować? By wstawić do kodu nową wartość lub wyrażenie użyjemy `unquote/1`. Zostanie ono wyliczone, a następnie wstawione w odpowiednie miejsce AST. Zobaczmy, jak działa `unqoute/1` na poniższym przykładzie:
+Skoro wiemy już jak uzyskać wewnętrzną reprezentację kodu, to pojawia się pytanie, jak ją modyfikować? By wstawić do kodu nową wartość lub wyrażenie użyjemy `unquote/1`. Zostanie ono wyliczone, a następnie wstawione w odpowiednie miejsce AST. Zobaczmy, jak działa `unquote/1` na poniższym przykładzie:
 
 ```elixir
 iex> denominator = 2

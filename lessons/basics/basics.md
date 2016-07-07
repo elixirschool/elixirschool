@@ -103,7 +103,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTE: Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
+Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
 
 ```elixir
 iex> true |> is_atom
@@ -112,6 +112,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Names of modules in Elixir are also atoms. `MyApp.MyModule` is a valid atom, even if no such module has been declared yet.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Atoms are also used to reference modules from Erlang libraries, including built in ones.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### Strings
