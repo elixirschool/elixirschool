@@ -14,7 +14,7 @@ Elixir를 시작합시다. 기본적인 타입과 연산자를 배워봅시다.
 
 ### Elixir 설치하기
 
-elixir-lang.org 홈페이지의 [Installing Elixir](http://elixir-lang.org/install.html) 가이드에서 각 운영체제별로 설치하는 방법을 알아볼 수 있습니다.
+elixir-lang.org 홈페이지의 [Installing Elixir](http://elixir-lang.org/install.html) 가이드에서 운영체제별로 설치하는 방법을 알아볼 수 있습니다.
 
 Elixir를 설치하고 나서 어떤 버전이 설치되었는지 손쉽게 확인할 수 있습니다.
 
@@ -34,7 +34,7 @@ Elixir를 설치하면 대화형 셸인 `iex`가 함께 설치됩니다. `iex`�
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
 
-여기서 계속 나아가봅시다. 간단한 코드를 조금 써 보면서 한번 체험해보세요.
+여기서 계속 나아가봅시다. 간단한 코드를 조금 써 보면서 체험해보세요.
 
     iex(1)> 2+3
     5
@@ -43,7 +43,7 @@ Elixir를 설치하면 대화형 셸인 `iex`가 함께 설치됩니다. `iex`�
     iex(3)> String.length("The quick brown fox jumps over the lazy dog")
     43
 
-여기서 입력해 본 모든 코드를 이해하지 못하더라도 벌써부터 걱정하지는 마시고, 어떤 느낌인지 감만 잡아보세요.
+여기서 입력해 본 모든 코드를 이해하지 못하더라도 벌써부터 걱정하지 마시고, 어떤 느낌인지 감만 잡아보세요.
 
 ## 기본적인 데이터 타입
 
