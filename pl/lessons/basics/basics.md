@@ -87,7 +87,7 @@ iex> :foo == :bar
 false
 ```
 
-UWAGA: Wartości `true` i `false` są też atomami odpowiednio`:true` i `:false`.
+Wartości `true` i `false` są też atomami odpowiednio`:true` i `:false`.
 
 ```elixir
 iex> true |> is_atom
@@ -97,6 +97,20 @@ true
 iex> :true === true
 true
 ```
+
+Nazwy modułów w Elixirze są atomami. Na przykład `MyApp.MyModule` jest poprawnym atomem nawet wtedy, gdy moduł o takiej nazwie nie istnieje.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Atomy służą też jako odwołania do bibliotek Erlanga, również tych wbudowanych.
+ 
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
+``` 
 
 ### Ciągi znaków
 
