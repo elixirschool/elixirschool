@@ -105,7 +105,7 @@ iex> is_atom(MyApp.MyModule)
 true
 ```
 
-Atomy służą też jako odwołania do bibliotek Erlanga, równierz tych wbudowanych.
+Atomy służą też jako odwołania do bibliotek Erlanga, również tych wbudowanych.
  
 ```elixir
 iex> :crypto.rand_bytes 3
