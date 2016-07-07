@@ -109,7 +109,7 @@ defmodule Example.Plug.Router do
   plug :dispatch
 
   get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Opps!")
+  match _, do: send_resp(conn, 404, "Oops!")
 end
 ```
 
@@ -131,7 +131,7 @@ defmodule Example.Plug.Router do
 
   get "/", do: send_resp(conn, 200, "Welcome")
   post "/upload", do: send_resp(conn, 201, "Uploaded")
-  match _, do: send_resp(conn, 404, "Opps!")
+  match _, do: send_resp(conn, 404, "Oops!")
 end
 ```
 
