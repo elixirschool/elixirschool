@@ -113,7 +113,7 @@ iex> Greeter.phrase
 
 ### Guard
 
-Kita sudah sekilas menyinggung guard di pelajaran [Struktur Kendali](../control-structures.md), sekarang kita akan melihat bagaimana menerapkannya dalam fungsi bernama.  Saat Elixir sudah menemukan fungsi yang cocok, guard yang ada akan diuji.
+Kita sudah sekilas menyinggung guard di pelajaran [Struktur Kendali](../control-structures), sekarang kita akan melihat bagaimana menerapkannya dalam fungsi bernama.  Saat Elixir sudah menemukan fungsi yang cocok, guard yang ada akan diuji.
 
 Dalam contoh berikut kita memiliki dua fungsi yang memiliki penanda (signature) yang sama, kita bergantung pada guard untuk menentukan mana yang akan digunakan berdasarkan tipe argumen/parameternya:
 
