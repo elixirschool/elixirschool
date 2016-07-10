@@ -30,7 +30,6 @@ iex> quote do: 1 + 2
 iex> quote do: if value, do: "True", else: "False"
 {:if, [context: Elixir, import: Kernel],
  [{:value, [], Elixir}, [do: "True", else: "False"]]}
-iex(6)>
 ```
 
 Заметили, что первые три не возвращают кортеж? Есть всего пять выражений, которые возвращают сами себя при использовании `quote/2`:

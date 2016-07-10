@@ -53,7 +53,6 @@ iex> quote do: 1 + 2
 iex> quote do: if value, do: "True", else: "False"
 {:if, [context: Elixir, import: Kernel],
  [{:value, [], Elixir}, [do: "True", else: "False"]]}
-iex(6)>
 ```
 <!--
 Notice the first three don't return tuples?  There are five literals that return themselves when quoted:
