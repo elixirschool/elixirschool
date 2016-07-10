@@ -30,7 +30,6 @@ iex> quote do: 1 + 2
 iex> quote do: if value, do: "True", else: "False"
 {:if, [context: Elixir, import: Kernel],
  [{:value, [], Elixir}, [do: "True", else: "False"]]}
-iex(6)>
 ```
 
 처음의 3개는 튜플을 반환하지 않는 것을 확인하셨나요? 이 함수를 호출했을 때 자기 자신을 반환하는 리터럴이 다섯 가지 존재합니다.

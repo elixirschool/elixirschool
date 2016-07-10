@@ -29,7 +29,6 @@ iex> quote do: 1 + 2
 iex> quote do: if value, do: "True", else: "False"
 {:if, [context: Elixir, import: Kernel],
  [{:value, [], Elixir}, [do: "True", else: "False"]]}
-iex(6)>
 ```
 
 注意到前面三个并没有返回列表？有五个原语使用 quote 的返回值是它们自身：
