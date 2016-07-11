@@ -96,6 +96,20 @@ iex> :true === true
 true
 ```
 
+Elixir 模块的名字也是原子，及时实际上还不存在这个模块，`MyApp.MyModule` 是一个合法的原子名称。
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+原子也可以用来直接引用 Erlang 标准库的模块，包括内置的模块。
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
+```
+
 ### 字符串
 
 Elixir 的字符串是 UTF-8 编码的，用双引号包住：
