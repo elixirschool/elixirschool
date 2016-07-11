@@ -157,3 +157,14 @@ iex> Dict.put(%{:foo => "bar"}, "hello", "world")
 iex> Dict.has_key?(%{:foo => "bar"}, :foo)
 true
 ```
+
+字典另一个有趣的特性是：它们提供了自己更新和获取原子键（key）的语法：
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
+```
