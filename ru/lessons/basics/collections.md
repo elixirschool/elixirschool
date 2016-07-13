@@ -146,3 +146,14 @@ iex> %{foo: "bar", hello: "world"}
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
+
+Ещё одно интересное свойство ассоциативных массивов &mdash; это особенный синтаксис для получения и обновления ключей-атомов:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
+```
