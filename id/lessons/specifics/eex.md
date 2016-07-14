@@ -16,7 +16,7 @@ API EEx mendukung pengerjaan dengan string dan file secara langsung.  API terseb
 
 ### Evaluasi
 
-Menggunakan `eval_string` dan `eval_file` kita dapat melakukan evaluasi sederhana terhadap sebuah string atau isi file.  Ini adalah API paling sederhana tetapi yang paling lambat karena code dievaluasi dan bukan dikompilasi.
+Menggunakan `eval_string/3` dan `eval_file/2` kita dapat melakukan evaluasi sederhana terhadap sebuah string atau isi file.  Ini adalah API paling sederhana tetapi yang paling lambat karena code dievaluasi dan bukan dikompilasi.
 
 ```elixir
 iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
@@ -25,7 +25,7 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 
 ### Definisi
 
-Metode paling cepat, dan paling disukai, untuk menggunakan EEx adalah memasukkan template ke dalam sebuah modul sehingga dapat dikompilasi.  Untuk hal ini kita perlukan template kita pada saat kompilasi, bersama macro `function_from_string` dan `function_from_file`.
+Metode paling cepat, dan paling disukai, untuk menggunakan EEx adalah memasukkan template ke dalam sebuah modul sehingga dapat dikompilasi.  Untuk hal ini kita perlukan template kita pada saat kompilasi, bersama macro `function_from_string/5` dan `function_from_file/5`.
 
 Mari pindahkan ucapan salam di atas ke file terpisah dan hasilkan sebuah fungsi untuk template kita:
 
@@ -44,7 +44,7 @@ iex> Example.greeting("Sean")
 
 ### Kompilasi
 
-Terakhir, EEx memberi kita sebuah cara untuk secara langsung menghasilkan AST Elixir dari sebuah string atau file menggunakan `compile_string` atau `compile_file`. API ini utamanya digunakan oleh API yang sudah dibahas di awal tetapi juga tersedia jika anda ingin mengimplementasi penanganan sendiri terhadap Elixir yang diembed.
+Terakhir, EEx memberi kita sebuah cara untuk secara langsung menghasilkan AST Elixir dari sebuah string atau file menggunakan `compile_string/2` atau `compile_file/2`. API ini utamanya digunakan oleh API yang sudah dibahas di awal tetapi juga tersedia jika anda ingin mengimplementasi penanganan sendiri terhadap Elixir yang diembed.
 
 ## Tag
 

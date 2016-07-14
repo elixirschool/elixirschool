@@ -97,7 +97,7 @@ Ostatnim elementem jest prywatna funkcja `verify_request!/2`, która sprawdza cz
 
 ## Użycie Plug.Router
 
-Teraz gdy mamy nasz plug `VerifyRequest`, możemy przejść do routera. Jak zaraz zobaczymy nie potrzebujemy dodatkowego frameworku jak Sinatra, ponieważ w Elixirze mamy dostępny Plug. 
+Teraz gdy mamy nasz plug `VerifyRequest`, możemy przejść do routera. Jak zaraz zobaczymy nie potrzebujemy dodatkowego narzędzia jak Sinatra, ponieważ w Elixirze mamy dostępny Plug. 
 
 Na początku stwórzmy plik `lib/plug/router.ex` i skopiujmy do niego następujący kod:
 
@@ -109,7 +109,7 @@ defmodule Example.Plug.Router do
   plug :dispatch
 
   get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Opps!")
+  match _, do: send_resp(conn, 404, "Oops!")
 end
 ```
 
@@ -131,7 +131,7 @@ defmodule Example.Plug.Router do
 
   get "/", do: send_resp(conn, 200, "Welcome")
   post "/upload", do: send_resp(conn, 201, "Uploaded")
-  match _, do: send_resp(conn, 404, "Opps!")
+  match _, do: send_resp(conn, 404, "Oops!")
 end
 ```
 

@@ -101,7 +101,7 @@ iex> sean = %{steve | name: "Sean"}
 最も重要なことですが、構造体はマップに対してマッチすることができます:
 
 ```elixir
-iex()> %{name: "Sean"} = sean
+iex> %{name: "Sean"} = sean
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 

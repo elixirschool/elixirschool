@@ -16,7 +16,7 @@ API EEx pozwala na pracę zarówno z ciągami znaków jak i plikami. Jest ono po
 
 ### Ewaluacja
 
-Używając funkcji `eval_string` i `eval_file` możemy ewaluować ciągi znaków jak i pliki. Jest to najprostsze podejście, ale też najwolniejsze ponieważ kod jest tylko interpretowany, a nie kompilowany.
+Używając funkcji `eval_string/3` i `eval_file/2` możemy ewaluować ciągi znaków jak i pliki. Jest to najprostsze podejście, ale też najwolniejsze ponieważ kod jest tylko interpretowany, a nie kompilowany.
 
 ```elixir
 iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
@@ -25,7 +25,7 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 
 ### Definiowanie funkcji
 
-Najszybszą, i preferowaną, metodą użycia EEx jest osadzenie szablonu w module dzięki czemu można go skompilować. By to zrobić potrzebujemy w czasie kompilacji modułu pliku z szablonem oraz makr `function_from_string` i `function_from_file`.
+Najszybszą, i preferowaną, metodą użycia EEx jest osadzenie szablonu w module dzięki czemu można go skompilować. By to zrobić potrzebujemy w czasie kompilacji modułu pliku z szablonem oraz makr `function_from_string/5` i `function_from_file/5`.
 
 Przenieśmy nasze powitanie do osobnego pliku, szablonu, i zdefiniujmy dla niego funkcję w module: 
 
@@ -44,7 +44,7 @@ iex> Example.greeting("Sean")
 
 ### Kompilacja
 
-W końcu, EEx pozwala nam na bezpośrednie stworzenie AST Elixira z ciągu znaków lub z pliku za pomocą funkcji, odpowiednio `compile_string` i `compile_file`.  Funkcje  te są przede wszystkim używane przez wyżej opisane API, ale są też dostępne jeżeli chcemy stworzyć własną obsługę wbudowanego Elixira.
+W końcu, EEx pozwala nam na bezpośrednie stworzenie AST Elixira z ciągu znaków lub z pliku za pomocą funkcji, odpowiednio `compile_string/2` i `compile_file/2`.  Funkcje  te są przede wszystkim używane przez wyżej opisane API, ale są też dostępne jeżeli chcemy stworzyć własną obsługę wbudowanego Elixira.
 
 ## Znaczniki
 

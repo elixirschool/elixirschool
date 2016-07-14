@@ -110,10 +110,10 @@ iex> "dziękuję"
 As strings suportam quebras de linha e caracteres de escape:
 
 ```elixir
-iex(9)> "foo
-...(9)> bar"
+iex> "foo
+...> bar"
 "foo\nbar"
-iex(10)> "foo\nbar"
+iex> "foo\nbar"
 "foo\nbar"
 ```
 

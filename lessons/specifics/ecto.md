@@ -118,7 +118,7 @@ end
 
 By default Ecto creates an auto-incrementing primary key called `id`.  Here we're using the default `change/0` callback but Ecto also supports `up/0` and `down/0` in the event you need more granular control.
 
-As you might have guessed, adding `timestamps` to your migration will create and manage `created_at` and `updated_at` for you.
+As you might have guessed, adding `timestamps` to your migration will create and manage `inserted_at` and `updated_at` for you.
 
 To apply our new migration run `mix ecto.migrate`.
 

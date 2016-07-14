@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Odwzorowania kolekcji
+title: Składanie kolekcji
 category: basics
 order: 13
 lang: pl
@@ -71,7 +71,7 @@ iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 4 - 4
 ```
 
-Odwzorowania są tylko tzw. lukrem składniowym i powinny być stosowane tylko w razie potrzeby.
+Składanie list, to tzw. lukier składniowy i powinno być stosowane tylko w razie potrzeby.
 
 ## Filtrowanie
 
@@ -102,11 +102,12 @@ iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-Jako że binarne ciągi znaków są przeliczalne, możemy zatem użyć odwzorowania w połączeniu z `:into` by stworzyć ciąg znaków:
+Jako że binarne ciągi znaków są przeliczalne, możemy zatem użyć składania w połączeniu z `:into` by stworzyć ciąg 
+znaków:
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-I to wszystko! Odwzorowania są mechanizmem pozwalającym na tworzenie zwięzłego kodu do obsługi kolekcji.  
+I to wszystko! Składania są mechanizmem pozwalającym na tworzenie zwięzłego kodu do obsługi kolekcji.  

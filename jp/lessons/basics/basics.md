@@ -32,15 +32,15 @@ Elixirには`iex`という対話シェルが付属しており、入力したそ
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-    iex(1)>
+    iex>
 
 先に進み、試しにいくつかの簡単な式を入力してみましょう:
 
-    iex(1)> 2+3
+    iex> 2+3
     5
-    iex(2)> 2+3 == 5
+    iex> 2+3 == 5
     true
-    iex(3)> String.length("The quick brown fox jumps over the lazy dog")
+    iex> String.length("The quick brown fox jumps over the lazy dog")
     43
 
 それぞれの式をまだ理解していなくても心配することはありませんが、うまくいけばやり方は分かるでしょう。

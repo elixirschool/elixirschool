@@ -53,7 +53,6 @@ iex> quote do: 1 + 2
 iex> quote do: if value, do: "True", else: "False"
 {:if, [context: Elixir, import: Kernel],
  [{:value, [], Elixir}, [do: "True", else: "False"]]}
-iex(6)>
 ```
 <!--
 Notice the first three don't return tuples?  There are five literals that return themselves when quoted:
@@ -79,7 +78,7 @@ iex> {"hello", :world} # 2 element tuples
 Now that we can retrieve the internal structure of our code, how do we modify it?  
 To inject new code or values we rely use `unquote/1`.  
 When we unquote an expression it will be evaluated and injected into the AST.  
-To demonstrate `unqoute/1` let's look at some examples:
+To demonstrate `unquote/1` let's look at some examples:
 -->
 今、コードの内部構造を検索することができましたが、どのようにそれを修正しましょう？
 新しいコードまたは値を注入するために、`unquote/1` を使用します。
@@ -122,7 +121,7 @@ Imagine the macro being replaced with the quoted expression rather than called l
 
 <!--
 We begin by defining a macro using `defmacro/2` which itself is a macro,
-like much of Elixir (let that sink in).  As an example we'll implement `unless` as a macro.  
+like much of Elixir (let that sink in).  As an example we'll implement `unless` as a macro.
 Remember that our macro needs to return a quoted expression:
 -->
 `defmacro/2`を使用してマクロの定義から始めます。`defmacro/2`自身がマクロであり、Elixrの多数の機能がマクロで出来ています。
@@ -206,6 +205,53 @@ But if we disable logging the resulting code would be:
 def test do
 end
 ```
+
+## デバッグ
+
+私たちはたった今`quote/2`や`unquote/1`の使い方を知り、マクロを書きました。しかし、もし巨大なquoteされたコードがあり、それを理解したい場合はどうすればいいでしょうか？このような場合、`Macro.to_string/2`を使うことができます。次の例を見てください:
+
+```elixir
+iex> Macro.to_string(quote(do: foo.bar(1, 2, 3)))
+"foo.bar(1, 2, 3)"
+```
+
+マクロで生成されたコードを見たいときは、与えられたquoteされたコードのマクロを展開する`Macro.expand/2`や`Macro.expand_once/2`と組み合わせます。前者はマクロを複数回展開するかもしれませんが、後者は一度だけ展開します。例えば、前のセクションの`unless`の例を変更してみましょう:
+
+```elixir
+defmodule OurMacro do
+  defmacro unless(expr, do: block) do
+    quote do
+      if !unquote(expr), do: unquote(block)
+    end
+  end
+end
+
+require OurMacro
+quoted = quote do
+  OurMacro.unless true, do: "Hi"
+end
+```
+
+```
+iex> quoted |> Macro.expand_once(__ENV__) |> Macro.to_string |> IO.puts
+if(!true) do
+  "Hi"
+end
+```
+
+しかし、同じコードを`Macro.expand/2`で実行すると、興味深い結果になります:
+
+```elixir
+iex> quoted |> Macro.expand(__ENV__) |> Macro.to_string |> IO.puts
+case(!true) do
+  x when x in [false, nil] ->
+    nil
+  _ ->
+    "Hi"
+end
+```
+
+もしかしたら`if`はElixirのマクロであると述べたのを思い出したかもしれません。これを見れば`if`が基本的な`case`文に展開されるのが分かります。
 
 ### プライベートマクロ
 

@@ -32,15 +32,15 @@ To get started, let's run `iex`:
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-    iex(1)>
+    iex>
    
 Lets go ahead and give it a try now by typing in a few simple expressions:
 
-    iex(1)> 2+3
+    iex> 2+3
     5
-    iex(2)> 2+3 == 5
+    iex> 2+3 == 5
     true
-    iex(3)> String.length("The quick brown fox jumps over the lazy dog")
+    iex> String.length("The quick brown fox jumps over the lazy dog")
     43
 
 Don't worry if you don't understand every expression yet, but hopefully you get the idea.
@@ -103,7 +103,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTE: Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
+Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
 
 ```elixir
 iex> true |> is_atom
@@ -112,6 +112,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Names of modules in Elixir are also atoms. `MyApp.MyModule` is a valid atom, even if no such module has been declared yet.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Atoms are also used to reference modules from Erlang libraries, including built in ones.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### Strings

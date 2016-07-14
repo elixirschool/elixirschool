@@ -19,7 +19,7 @@ lang: ko
 
 ### all?
 
-흔히들 `Enum` 모듈을 이용할 때 `all?`을 사용하면, 컬렉션의 아이템에 적용할 함수를 넘기게 됩니다. 컬렉션의 모든 요소가 `true`로 평가되지 않으면, `all?`은 `false`로 반환될 것입니다:
+흔히들 `Enum` 모듈을 이용할 때 `all?`을 사용하면, 컬렉션의 아이템에 적용할 함수를 넘기게 됩니다. 컬렉션의 모든 요소가 `true`로 평가되지 않으면, `all?`은 `false`를 반환할 것입니다:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
