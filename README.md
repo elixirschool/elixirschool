@@ -73,6 +73,12 @@ In addition to the steps above there are a few addition steps required for trans
   rtl_languages: ['ar']
   ```
 
+1. Add it to list in `index.md`:
+
+  ```markdown
+  Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl] [Português][pt], [Русском][ru] and [Bahasa Melayu][my] and other.
+  ```
+
 #### Translated Lesson
 
 1. Translated lessons must include `lang: XX` in the page meta data.  For example `/jp/lessons/basics/basics.md`:
