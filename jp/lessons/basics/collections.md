@@ -148,3 +148,15 @@ iex> %{foo: "bar", hello: "world"}
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
+
+Another interesting property of maps is that they provide their own syntax for updating and accessing atom keys:
+マップのもう一つの興味深い特性は、マップの更新やアトムのキーへのアクセスのための固有の構文があることです:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
+```
