@@ -114,7 +114,7 @@ iex> :true === true
 true
 ```
 
-Elixirのモジュールの名前もまたアトムです。`MyApp.MyModule`は、そのようなモジュールが宣言されていなくても有効ななアトムです。
+Elixirのモジュールの名前もまたアトムです。`MyApp.MyModule`は、そのようなモジュールが宣言されていなくても有効なアトムです。
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
