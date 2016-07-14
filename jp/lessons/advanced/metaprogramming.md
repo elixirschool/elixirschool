@@ -206,6 +206,53 @@ def test do
 end
 ```
 
+## デバッグ
+
+私たちはたった今`quote/2`や`unquote/1`の使い方を知り、マクロを書きました。しかし、もし巨大なquoteされたコードがあり、それを理解したい場合はどうすればいいでしょうか？このような場合、`Macro.to_string/2`を使うことができます。次の例を見てください:
+
+```elixir
+iex> Macro.to_string(quote(do: foo.bar(1, 2, 3)))
+"foo.bar(1, 2, 3)"
+```
+
+マクロで生成されたコードを見たいときは、与えられたquoteされたコードのマクロを展開する`Macro.expand/2`や`Macro.expand_once/2`と組み合わせます。前者はマクロを複数回展開するかもしれませんが、後者は一度だけ展開します。例えば、前のセクションの`unless`の例を変更してみましょう:
+
+```elixir
+defmodule OurMacro do
+  defmacro unless(expr, do: block) do
+    quote do
+      if !unquote(expr), do: unquote(block)
+    end
+  end
+end
+
+require OurMacro
+quoted = quote do
+  OurMacro.unless true, do: "Hi"
+end
+```
+
+```
+iex> quoted |> Macro.expand_once(__ENV__) |> Macro.to_string |> IO.puts
+if(!true) do
+  "Hi"
+end
+```
+
+しかし、同じコードを`Macro.expand/2`で実行すると、興味深い結果になります:
+
+```elixir
+iex> quoted |> Macro.expand(__ENV__) |> Macro.to_string |> IO.puts
+case(!true) do
+  x when x in [false, nil] ->
+    nil
+  _ ->
+    "Hi"
+end
+```
+
+もしかしたら`if`はElixirのマクロであると述べたのを思い出したかもしれません。これを見れば`if`が基本的な`case`文に展開されるのが分かります。
+
 ### プライベートマクロ
 
 <!--
