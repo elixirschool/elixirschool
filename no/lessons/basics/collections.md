@@ -154,3 +154,13 @@ iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
+En interessant egenskap ved kart er at de har en egen syntaks for å oppdatere og aksessere atomnøkler:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
+```
