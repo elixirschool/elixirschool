@@ -149,7 +149,7 @@ iex> SimpleQueue.queue
 可以前往官方的 [`GenServer`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content) 文档了解更多的信息。
 
 # GenEvent
-我们刚学习到：Genservers 是维护状态并能够同步和异步处理请求的进程，但什么是 GenEcent 呢？GenEvents 是事件管理器：接受进来的事件，并通知订阅事件的消费者。这种机制能让我们动态地添加和删除事件的处理函数。
+我们刚学习到：Genservers 是维护状态并能够同步和异步处理请求的进程，但什么是 GenEvent 呢？GenEvents 是事件管理器：接受进来的事件，并通知订阅事件的消费者。这种机制能让我们动态地添加和删除事件的处理函数。
 
 ## 处理事件
 可以想象，GenEvents 最重要的 callbacks 就是 `handle_event/2`，它接受一个事件和处理器当前的状态，并返回元组`{:ok, state}`。
