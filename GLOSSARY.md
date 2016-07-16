@@ -87,9 +87,9 @@ Class names and proper nouns do not get translated.
 
 #### <a name="ukrainian-elixir-related-terms"></a> Elixir-related terms
 
-- actors - 
+- actors - модель акторів
 - alias - 
-- atom - 
+- atom - атом
 - behaviour - 
 - function clauses - 
 - guard - 
@@ -109,7 +109,7 @@ Class names and proper nouns do not get translated.
 - attribute - 
 - bitsring - 
 - binding - 
-- boolean - 
+- boolean - логічний тип даних
 - callback - 
 - char list - 
 - codepoint - 
@@ -117,15 +117,15 @@ Class names and proper nouns do not get translated.
 - concatenation - 
 - exception - 
 - grapheme - 
-- float - 
+- float - число з плаваючою точкою
 - function body - 
 - head - 
-- integer - 
+- integer - ціле число
 - interpolation - 
-- list - список
+- list - 
 - list comprehension - 
-- map - ассоциативный 
-- metaprogramming - 
+- map -  
+- metaprogramming - метапрограмування
 - module - 
 - module - 
 - namespace - 
@@ -134,9 +134,10 @@ Class names and proper nouns do not get translated.
 - protected (function) - 
 - public (function) - 
 - rebind variable - 
-- signature - 
+- signature - сигнатура (функції)
 - standard library - 
 - struct - 
+- string - рядок
 - subtraction - 
 - supervision tree - 
 - supervisor - 
