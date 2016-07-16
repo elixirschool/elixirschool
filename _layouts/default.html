@@ -1,9 +1,8 @@
 <!DOCTYPE html>
+{% assign lang = page.lang || site.default_lang %}
 <html lang="en-us">
-
   {% include head.html %}
 
-  {% assign lang = page.lang || site.default_lang %}
   {% if site.rtl_languages contains lang %}
     {% assign body_class = 'rtl' %}
   {% endif %}
