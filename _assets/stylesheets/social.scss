@@ -100,3 +100,16 @@ div.social__item a[class^="social__icon"] {
   padding: 0;
   font-size: 1.2em;
 }
+
+#github_ribbon img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+
+@media print {
+  #social, .social__container, #github_ribbon {
+    display: none;
+  }
+}
