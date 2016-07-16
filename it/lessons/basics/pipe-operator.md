@@ -41,7 +41,7 @@ iex> "Elixir rocks" |> String.split
 - Trasformare in maiuscolo ciascuna parola
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 

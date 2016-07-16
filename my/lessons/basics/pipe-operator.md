@@ -40,7 +40,7 @@ iex> "Elixir rocks" |> String.split
 - Menukar semua token ke dalam huruf besar
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 
