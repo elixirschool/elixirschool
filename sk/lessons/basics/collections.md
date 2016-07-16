@@ -116,8 +116,10 @@ Na uchovávanie informácií typu kľúč-hodnota (key-value store) slúžia v E
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
 %{:foo => "bar", "hello" => :world}
+
 iex> map[:foo]
 "bar"
+
 iex> map["hello"]
 :world
 ```
@@ -127,6 +129,7 @@ Od verzie 1.2 povoľuje Elixir použiť ako kľúče aj premenné:
 ```elixir
 iex> key = "hello"
 "hello"
+
 iex> %{key => "world"}
 %{"hello" => "world"}
 ```
@@ -146,4 +149,17 @@ iex> %{foo: "bar", hello: "world"}
 
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
+```
+
+A rovnako existuje skrátená syntax pre prístup k hodnotám v takýchto mapách a pre ich zmenu:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+
+iex> map.hello
+"world"
+
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
 ```
