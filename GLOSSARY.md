@@ -12,8 +12,11 @@ Class names and proper nouns do not get translated.
 ### Table of Contents
 
 - [Glossary - Russian](#glossary-russian)
-	- [Elixir-related terms](#russian-elixir-related-terms)
-	- [CS terms](#russian-cs-terms)
+  - [Elixir-related terms](#russian-elixir-related-terms)
+  - [CS terms](#russian-cs-terms)
+- [Glossary - Ukrainian](#glossary-ukrainian)
+  - [Elixir-related terms](#ukrainian-elixir-related-terms)
+  - [CS terms](#ukrainian-cs-terms)
 - [Glossary - Portuguese](#glossary-portuguese)
   - [Elixir-related terms](#portuguese-elixir-related-terms)
   - [CS terms](#portuguese-cs-terms)
@@ -78,6 +81,67 @@ Class names and proper nouns do not get translated.
 - supervisor - супервизор
 - tail - хвост
 - worker - рабочий процесс
+
+
+### <a name="glossary-ukrainian"></a> Glossary - Ukrainian
+
+#### <a name="ukrainian-elixir-related-terms"></a> Elixir-related terms
+
+- actors - 
+- alias - 
+- atom - 
+- behaviour - 
+- function clauses - 
+- guard - 
+- guard operator - 
+- changeset - 
+- keyword list - 
+- match operator - 
+- pin operator - 
+- pipe operator - 
+- sigil - 
+- schema - 
+- tuple - 
+
+#### <a name="ukrainian-cs-terms"></a> CS terms
+
+- anonymous function - 
+- attribute - 
+- bitsring - 
+- binding - 
+- boolean - 
+- callback - 
+- char list - 
+- codepoint - 
+- collection - 
+- concatenation - 
+- exception - 
+- grapheme - 
+- float - 
+- function body - 
+- head - 
+- integer - 
+- interpolation - 
+- list - список
+- list comprehension - 
+- map - ассоциативный 
+- metaprogramming - 
+- module - 
+- module - 
+- namespace - 
+- pattern matching - 
+- private (function) - 
+- protected (function) - 
+- public (function) - 
+- rebind variable - 
+- signature - 
+- standard library - 
+- struct - 
+- subtraction - 
+- supervision tree - 
+- supervisor - 
+- tail - 
+- worker - 
 
 ### <a name="glossary-portuguese"></a> Glossary - Portuguese
 
