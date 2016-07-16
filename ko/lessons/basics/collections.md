@@ -148,3 +148,14 @@ iex> %{foo: "bar", hello: "world"}
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
+
+맵에는 또다른 특별한 문법이 있는데, 이로써 애텀 키를 통해 맵 내부를 열람하거나 수정할 수 있습니다.
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
+```
