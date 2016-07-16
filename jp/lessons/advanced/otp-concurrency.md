@@ -2,7 +2,7 @@
 layout: page
 title: OTPの並行性
 category: advanced
-order: 4
+order: 5
 lang: jp
 ---
 

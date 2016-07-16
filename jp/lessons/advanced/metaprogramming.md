@@ -2,7 +2,7 @@
 layout: page
 title: メタプログラミング
 category: advanced
-order: 6
+order: 7
 lang: jp
 ---
 
