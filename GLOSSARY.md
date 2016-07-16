@@ -62,7 +62,6 @@ Class names and proper nouns do not get translated.
 - map - ассоциативный массив
 - metaprogramming - метапрограммирование
 - module - модуль
-- module - модуль
 - namespace - пространство имен
 - pattern matching - сопоставление с образцом
 - private (function) - закрытая (функция)
