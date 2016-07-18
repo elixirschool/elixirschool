@@ -28,7 +28,7 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-Comme nous pouvons le voir dans la commande ci-dessus, le framework Phoenix dispose d'une tâche Mix pour générer un nouveau projet. Et si nous pouvions faire pareil dans notre projet? Et bien, la bonne nouvelle c'est que cela est possible et d'une manière très simple.
+Comme nous pouvons le voir dans la commande ci-dessus, le framework Phoenix dispose d'une tâche Mix pour générer un nouveau projet. Et si nous pouvions faire pareil dans notre projet? Et bien, la bonne nouvelle c'est que c'est possible et de façon très simple.
 
 ## Initialisation
 
@@ -86,7 +86,7 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-Notez comment nous avons déclaré defmodule avec `Mix.Tasks` et le nom que nous voulons donner à la commande. Sur la seconde ligne, nous avons ajouté `use Mix.Task` qui inclut les fonctionnalités de `Mix.Task` dans l'espace de nom. Ensuite, nous déclarons la function `run`qui ne prend aucun argument pour le moment. Dans cette fonction, nous appellons le module `Hello` et sa fonction `say`.
+Notez comment nous avons déclaré `defmodule` avec `Mix.Tasks` et le nom que nous voulons donner à la commande. Sur la seconde ligne, nous avons ajouté `use Mix.Task` qui inclut les fonctionnalités de `Mix.Task` dans l'espace de noms. Ensuite, nous déclarons la function `run`qui ne prend aucun argument pour le moment. Dans cette fonction, nous appellons le module `Hello` et sa fonction `say`.
 
 ## Tâches Mix en Action
 
