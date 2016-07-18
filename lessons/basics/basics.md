@@ -6,28 +6,46 @@ order: 1
 lang: en
 ---
 
-Setup, basic types and operations.
+Getting started, basic data types and basic operations.
 
 {% include toc.html %}
 
-## Setup
+## Getting Started
 
-### Install Elixir
+### Installing Elixir
 
-Installation instructions for each OS can be found on Elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
+Installation instructions for each OS can be found on elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
 
-### Interactive Mode
+After Elixir is installed you can easily confirm the installed version.
+
+    % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+    Elixir {{ site.elixir.version }}
+
+### Trying Interactive Mode
 
 Elixir comes with `iex`, an interactive shell, which allows us to evaluate Elixir expressions as we go.
 
 To get started, let's run `iex`:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-	iex>
+    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+    iex>
+   
+Lets go ahead and give it a try now by typing in a few simple expressions:
 
-## Basic Types
+    iex> 2+3
+    5
+    iex> 2+3 == 5
+    true
+    iex> String.length("The quick brown fox jumps over the lazy dog")
+    43
+
+Don't worry if you don't understand every expression yet, but hopefully you get the idea.
+
+## Basic Data Types
 
 ### Integers
 
@@ -85,7 +103,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTE: Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
+Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
 
 ```elixir
 iex> true |> is_atom
@@ -94,6 +112,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Names of modules in Elixir are also atoms. `MyApp.MyModule` is a valid atom, even if no such module has been declared yet.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Atoms are also used to reference modules from Erlang libraries, including built in ones.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### Strings
@@ -116,6 +148,8 @@ iex> "foo
 iex> "foo\nbar"
 "foo\nbar"
 ```
+
+Elixir also includes more complex data types.  We'll learn more about these when we learn about Collections and Functions.
 
 ## Basic Operations
 
@@ -203,13 +237,13 @@ iex> 2 === 2.0
 false
 ```
 
-An important feature of Elixir is that any two types can be compared, this is particularly useful in sorting.  We don't need to memorize the sort order but it is important to be aware of it:
+An important feature of Elixir is that any two types can be compared; this is particularly useful in sorting.  We don't need to memorize the sort order, but it is important to be aware of it:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
 
-This can lead to some interesting, and valid, comparisons you might not find in other languages:
+This can lead to some interesting, yet valid, comparisons you may not find in other languages:
 
 ```elixir
 iex> :hello > 999
@@ -218,7 +252,7 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### String interpolation
+### String Interpolation
 
 If you've used Ruby, string interpolation in Elixir will look familiar:
 
@@ -228,7 +262,7 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### String concatenation
+### String Concatenation
 
 String concatenation uses the `<>` operator:
 

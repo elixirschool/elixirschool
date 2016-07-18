@@ -2,7 +2,7 @@
 layout: page
 title: 関数
 category: basics
-order: 7
+order: 6
 lang: jp
 ---
 
@@ -46,6 +46,7 @@ iex> handle_result = fn
 ...>   {:error} -> IO.puts "An error has occurred!"
 ...> end
 
+iex> some_result = 1
 iex> handle_result.({:ok, some_result})
 Handling result...
 
@@ -94,7 +95,7 @@ iex> Length.of [1, 2, 3]
 
 ### プライベート関数
 
-他のモジュールから関数へアクセスさせたくない時にはプライベート関数を使うことができます。これは自身のモジュール内部からのみ呼び出せるようにするものです。Elixirでは`defp`を用いて定義することができます:
+他のモジュールから特定の関数へアクセスさせたくない時には関数をプライベートにすることができます。プライベート関数はそのモジュール自身の内部からのみ呼び出すことが出来ます。Elixirでは`defp`を用いて定義することができます:
 
 ```elixir
 defmodule Greeter do
@@ -112,7 +113,7 @@ iex> Greeter.phrase
 
 ### ガード
 
-[制御構造](../control-structures.md)レッスンでもガードについて少しだけ触れましたが、これを名前付き関数に適用する方法を見ていきます。Elixirはある関数にマッチするとそのガードを全てテストします。
+[制御構造](../control-structures)レッスンでもガードについて少しだけ触れましたが、これを名前付き関数に適用する方法を見ていきます。Elixirはある関数にマッチするとそのガードを全てテストします。
 
 以下の例では同じ名前を持つ2つの関数があります。ガードを頼りにして、引数の型に基づいてどちらを使うべきか決定します:
 

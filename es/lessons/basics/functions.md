@@ -2,7 +2,7 @@
 layout: page
 title: Funciones
 category: basics
-order: 7
+order: 6
 lang: es
 ---
 
@@ -113,7 +113,7 @@ iex> Greeter.phrase
 
 ### Guardas
 
-Hemos cubierto brevemente las guardas en la lección [Estructuras de control](../control-structures.md), ahora veremos cómo aplicarlas a las funciones con nombre. Una vez Elixir ha coincidido una función algunas guardas serán evaluadas.
+Hemos cubierto brevemente las guardas en la lección [Estructuras de control](../control-structures), ahora veremos cómo aplicarlas a las funciones con nombre. Una vez Elixir ha coincidido una función algunas guardas serán evaluadas.
 
 En el siguiente ejemplo tenemos dos funciones con la misma firma, confiamos en las guardas para determinar cuál usar basándonos en el tipo de los argumentos:
 

@@ -109,7 +109,7 @@ defmodule Example.Plug.Router do
   plug :dispatch
 
   get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Opps!")
+  match _, do: send_resp(conn, 404, "Oops!")
 end
 ```
 
@@ -131,7 +131,7 @@ defmodule Example.Plug.Router do
 
   get "/", do: send_resp(conn, 200, "Welcome")
   post "/upload", do: send_resp(conn, 201, "Uploaded")
-  match _, do: send_resp(conn, 404, "Opps!")
+  match _, do: send_resp(conn, 404, "Oops!")
 end
 ```
 
@@ -160,7 +160,7 @@ defmodule Example do
   use Application
 
   def start(_type, _args) do
-    port = Application.get_env(:concoction, :cowboy_port, 8080)
+    port = Application.get_env(:example, :cowboy_port, 8080)
 
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Example.Plug.Router, [], port: port)
@@ -169,6 +169,14 @@ defmodule Example do
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
+```
+
+> (オプション) `:cowboy_port` を `config/config.exs` に追加してください。
+
+```elixir
+use Mix.Config
+
+config :example, cowboy_port: 8080
 ```
 
 これで、アプリケーションを起動するために、以下のコマンドを使用できます:

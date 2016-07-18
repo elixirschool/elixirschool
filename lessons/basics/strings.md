@@ -6,11 +6,11 @@ order: 14
 lang: en
 ---
 
-What are Strings in Elixir, Char lists, Graphemes and Codepoints.
+Strings, Char Lists, Graphemes and Codepoints.
 
 {% include toc.html %}
 
-## Strings in Elixir
+## Strings
 
 Elixir strings are nothing but a sequence of bytes. Let's look at an example:
 
@@ -21,27 +21,33 @@ iex> string = <<104,101,108,108,111>>
 
 >NOTE: Using << >> syntax we are saying to the compiler that the elements inside those symbols are bytes.
 
-## Char lists
+## Char Lists
 
-Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters, and also has a char list type (characters list). Elixir strings are created with double quotes, while char lists are with single quotes.
+Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters. Elixir also has a char list type (characters list). Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
 
-What's the difference between them? Each value from a char list is the ASCII value from the character. Let's dig in:
+What's the difference? Each value from a char list is the ASCII value from the character. Let's dig in:
 
 ```elixir
 iex> char_list = 'hello'
 'hello'
 
+iex> [hd|tl] = char_list
+'hello'
+
+iex> {hd, tl}
+{104, 'ello'}
+
 iex> Enum.reduce(char_list, "", fn char, acc -> acc <> to_string(char) <> "," end)
 "104,101,108,108,111,"
 ```
 
-When programming in Elixir, we are not usually using char lists but Strings. The char lists support is given because are required by some Erlang modules.
+When programming in Elixir, we usually use Strings, not char lists. The char lists support is mainly included because it is required for some Erlang modules.
 
-## Graphemes and codepoints
+## Graphemes and Codepoints
 
-Codepoints are just simple Unicode characters, which may be represented by one or two bytes. For example, characters with a tilde or accents: `á, ñ, è`. Graphemes consists on multiple codepoints that look as a simple character.
+Codepoints are just simple Unicode characters, which may be represented by one or two bytes. For example, characters with a tilde or accents: `á, ñ, è`. Graphemes consist of multiple codepoints that look as a simple character.
 
-The String module already provides two methods to obtain them, `graphemes/1` and `codepoints/1`. Let's look at the example:
+The String module already provides two methods to obtain them, `graphemes/1` and `codepoints/1`. Let's look at an example:
 
 ```elixir
 iex> string = "\u0061\u0301"
@@ -54,9 +60,9 @@ iex> String.graphemes string
 ["á"]
 ```
 
-## String functions
+## String Functions
 
-Let's review some of the most important and useful function the String module has for us.
+Let's review some of the most important and useful functions of the String module. This lesson will only cover a subset of the available functions; to see a complete set of functions visit the official [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) docs.
 
 ### `length/1`
 
@@ -67,9 +73,9 @@ iex> String.length "Hello"
 5
 ```
 
-### `replace/4`
+### `replace/3`
 
-Returns a new string replacing a current pattern in the string for some new replacement string.
+Returns a new string replacing a current pattern in the string with some new replacement string.
 
 ```elixir
 iex> String.replace("Hello", "e", "a")
@@ -81,13 +87,13 @@ iex> String.replace("Hello", "e", "a")
 Returns a new string repeated n times.
 
 ```elixir
-iex> String.duplicate "Oh my ", 3
+iex> String.duplicate("Oh my ", 3)
 "Oh my Oh my Oh my "
 ```
 
 ### `split/2`
 
-Returns an array of strings splitted by pattern.
+Returns a list of strings split by a pattern.
 
 ```elixir
 iex> String.split("Hello World", " ")
@@ -96,24 +102,23 @@ iex> String.split("Hello World", " ")
 
 ## Exercises
 
-Let's just get in action with two simple exercises to demostrate we are ready to go with Strings!
+Let's walk through a simple exercises to demonstrate we are ready to go with Strings!
 
 ### Anagrams
 
-A and B are considered anagrams if there's a way that rearranging A or B, we can make them equals. For example: 
-A = super
-B = perus 
+A and B are considered anagrams if there's a way to rearrange A or B making them equal. For example:
 
-If we re-arrange the characters on String A, we can get the string B, and viceversa.
++ A = super
++ B = perus 
 
-So, what could be the way to check if two strings are Anagrams in Elixir?
+If we re-arrange the characters on String A, we can get the string B, and vice versa.
 
-The easiest solution is to order the strings alphabetically and check if they are equals. Let's check the next example:
+So, how could we check if two strings are Anagrams in Elixir?  The easiest solution is to just sort the graphemes of each string alphabetically and then check if they both lists are equal. Let's try that:
 
 ```elixir
 defmodule Anagram do
   def anagrams?(a, b) when is_binary(a) and is_binary(b) do
-  	sort_string(a) == sort_string(b)
+    sort_string(a) == sort_string(b)
   end
 
   def sort_string(string) do
@@ -125,9 +130,9 @@ defmodule Anagram do
 end
 ```
 
-Let's first give a watch to `anagrams?/2`. We are checking whether the parameters we are receiving are binaries or not. That's the way we check if a parameter is a String in elixir.
+Let's first give a watch to `anagrams?/2`. We are checking whether the parameters we are receiving are binaries or not. That's the way we check if a parameter is a String in Elixir.
 
-After it, we are just calling a function that orders the strings in alphabetically order, first doing the string downcase and then using `String.graphemes`, which returns an array with the Graphemes of the string. Pretty straight right?
+After it, we are just calling a function that orders the strings in alphabetical order, first doing the string lowercase and then using `String.graphemes`, which returns a list with the Graphemes of the string. Pretty straight, right?
 
 Let's check the output on iex:
 
@@ -143,4 +148,4 @@ iex> Anagram.anagrams?(3, 5)
     iex:2: Anagram.anagrams?(3, 5)
 ```
 
-As you can see, the last call to `anagrams?` cause a FunctionClauseError. This error is telling us that there is not a function in our module that meets the pattern of receiving two non-binary arguments, and that's exactly what we want, to just receive two strings, and nothing more. 
+As you can see, the last call to `anagrams?` caused a FunctionClauseError. This error is telling us that there is no function in our module that meets the pattern of receiving two non-binary arguments, and that's exactly what we want, to just receive two strings, and nothing more.

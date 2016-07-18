@@ -2,7 +2,7 @@
 layout: page
 title: Operátor pipe
 category: basics
-order: 6
+order: 7
 lang: sk
 ---
 
@@ -38,7 +38,7 @@ iex> "Elixir rocks" |> String.split
 - Prevedenie slov na veľké písmená
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 

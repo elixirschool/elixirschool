@@ -22,7 +22,7 @@ Elixir obsahuje nástroj `iex`, interaktívny shell (príkazový riadok), ktorý
 
 Začnime teda jeho spustením príkazu `iex`:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
@@ -70,7 +70,7 @@ iex> false
 
 ### Atom
 
-Atom je konštanta, ktorej meno je zároveň jej hodnotou. Ak poznáte Ruby, tak Atom je ekvivalentom Symbolov:
+Atom je konštanta, ktorej meno je zároveň jej hodnotou. Ak poznáte Ruby, tak atom je ekvivalentom Symbolov:
 
 ```elixir
 iex> :foo
@@ -79,7 +79,7 @@ iex> :foo == :bar
 false
 ```
 
-POZNÁMKA: Boolean hodnoty `true` a `false` sú zároveň Atómami `:true` a `:false`.
+Boolean hodnoty `true` a `false` sú zároveň atomami `:true` a `:false`.
 
 ```elixir
 iex> true |> is_atom
@@ -88,6 +88,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Názvy modulov v Elixire sú tiež atomy. `MyApp.MyModule` je valídnym atomom, dokonca aj keď taký modul ešte nebol deklarovaný:
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Atomy sú užitočné aj pri používaní modulov z Erlangu, vrátane tých vstavaných. Napríklad takto by sme použili funkciu `rand_bytes` z Erlangového modulu `crypto`:
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### Reťazec

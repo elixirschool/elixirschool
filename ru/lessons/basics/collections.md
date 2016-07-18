@@ -47,7 +47,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-+**Замечание:** Для сопоставления элементов используется [строгое сравнение](../basics.md#section-12).
++**Замечание:** Для сопоставления элементов используется [строгое сравнение](../basics#section-11).
 
 ### Голова / Хвост
 
@@ -145,4 +145,15 @@ iex> %{foo: "bar", hello: "world"}
 
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
+```
+
+Ещё одно интересное свойство ассоциативных массивов &mdash; это особенный синтаксис для получения и обновления ключей-атомов:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
 ```

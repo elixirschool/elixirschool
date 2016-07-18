@@ -305,4 +305,4 @@ end
 
  - Try to include some code examples in your documentation, this also allows you to generate automatic tests from the code examples found in a module, function or macro with [ExUnit.DocTest][]. In order to do that, one needs to invoke the `doctest/1` macro from their test case and write their examples according to some guidelines, which are detailed in the [official documentation][ExUnit.DocTest]
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html

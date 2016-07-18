@@ -2,7 +2,7 @@
 layout: page
 title: Operador Pipe
 category: basics
-order: 6
+order: 7
 lang: pt
 ---
 
@@ -40,7 +40,7 @@ iex> "Elixir rocks" |> String.split
 - Converte palavras para letras maiúsculas
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 

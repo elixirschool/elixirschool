@@ -77,18 +77,19 @@ Pozor: komprehenžny sú stále len syntaktickým cukrom a mali by sme ich použ
 
 Filtre môžeme brať ako guard výrazy pre komprehenžny. Keď filtrovací výraz vráti pre niektorú hodnotu `false` alebo `nil`, bude daná hodnota ignorovaná a v `do` bloku preskočená.
 
-V nasledujúcom príklade budeme ignorovať všetky nepárne čísla:
+V nasledujúcom príklade budeme ignorovať všetky nepárne čísla (využijeme funkciu `is_even` z modulu Integer):
 
 ```elixir
-iex> for x <- 1..10, rem(x, 2) == 0, do: x
+import Integer
+iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
-Aj filtrov môžee použiť niekoľko naraz - napríklad takto by sme preskočili všetky hodnoty, ktoré nie sú násobkom čísel 2 a zároveň 3:
+Aj filtrov môžee použiť niekoľko naraz - napríklad takto by sme preskočili všetky hodnoty, ktoré nie sú párne a zároveň násobkom čísla 3:
 
 ```elixir
 iex> for x <- 1..100,
-...>   rem(x, 2) == 0,
+...>   is_even(x),
 ...>   rem(x, 3) == 0, do: x
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```

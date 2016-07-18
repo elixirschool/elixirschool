@@ -8,14 +8,19 @@ lang: en
 
 Lessons about the Elixir programming language, inspired by Twitter's [Scala School](http://twitter.github.io/scala_school/).
 
-Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][jp], [Português][pt] and [Bahasa Melayu][my] 
+Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Melayu][my], [한국어][ko], [L'italiano][it] and other.
 
-[cn]: https://elixirschool.com/cn/
-[es]: https://elixirschool.com/es/
-[jp]: https://elixirschool.com/jp/
-[pt]: https://elixirschool.com/pt/
-[vi]: https://elixirschool.com/vi/
-[my]: https://elixirschool.com/my/
+  [cn]: {{ site.url }}/cn/
+  [es]: {{ site.url }}/es/
+  [it]: {{ site.url }}/it/
+  [jp]: {{ site.url }}/jp/
+  [ko]: {{ site.url }}/ko/
+  [pl]: {{ site.url }}/pl/
+  [pt]: {{ site.url }}/pt/
+  [ru]: {{ site.url }}/ru/
+  [sk]: {{ site.url }}/sk/
+  [vi]: {{ site.url }}/vi/
+  [my]: {{ site.url }}/my/
 
 _Your feedback and participation is encouraged!_
 

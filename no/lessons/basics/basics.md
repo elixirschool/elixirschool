@@ -22,7 +22,7 @@ Elixir leveres med `iex`, et interaktivt skall som lar oss evaluere Elixirkoder 
 
 For å starte IEx skriver vi `iex` i terminalvinduet:
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
@@ -94,6 +94,21 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Navnet på moduler i Elixir er også atomer. `MinApp.MinModule` er en gyldig atom,
+selv om ingen slik module har blitt lagd.
+
+```elixir
+iex> is_atom(MinApp.MinModule)
+true
+```
+
+Atomer er også brukt for å referere til moduler fra Erlang biblioteket, men også til de innebygde modulene.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### Strenger (strings)
@@ -275,4 +290,3 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
-

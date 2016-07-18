@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Odwzorowania kolekcji
+title: Składanie kolekcji
 category: basics
 order: 13
 lang: pl
@@ -71,14 +71,14 @@ iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 4 - 4
 ```
 
-Odwzorowania są tylko tzw. lukrem składniowym i powinny być stosowane tylko w razie potrzeby.
+Składanie list, to tzw. lukier składniowy i powinno być stosowane tylko w razie potrzeby.
 
 ## Filtrowanie
 
 O filtrowaniu możemy myśleć jak o strażnikach dla odwzorowania. Gdy filtr zwraca wartość `false` lub `nil` to wartość ta jest wyłączana z przetwarzania przez odwzorowanie. Przefiltrujmy pewien zakres liczb tak, by uzyskać tylko liczby  parzyste:
 
 ```elixir
-iex> for x <- 1..10, rem(x, 2) == 0, do: x
+iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
@@ -86,7 +86,7 @@ Filtry, podobnie jak generatory, możemy łączyć. Przefiltrujmy liczby tak, by
 
 ```elixir
 iex> for x <- 1..100,
-...>   rem(x, 2) == 0,
+...>   is_even(x),
 ...>   rem(x, 3) == 0, do: x
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
@@ -102,11 +102,12 @@ iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-Jako że binarne ciągi znaków są przeliczalne, możemy zatem użyć odwzorowania w połączeniu z `:into` by stworzyć ciąg znaków:
+Jako że binarne ciągi znaków są przeliczalne, możemy zatem użyć składania w połączeniu z `:into` by stworzyć ciąg 
+znaków:
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-I to wszystko! Odwzorowania są mechanizmem pozwalającym na tworzenie zwięzłego kodu do obsługi kolekcji.  
+I to wszystko! Składania są mechanizmem pozwalającym na tworzenie zwięzłego kodu do obsługi kolekcji.  

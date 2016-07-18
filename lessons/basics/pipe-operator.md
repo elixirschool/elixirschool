@@ -2,7 +2,7 @@
 layout: page
 title: Pipe Operator 
 category: basics
-order: 6 
+order: 7
 lang: en
 ---
 
@@ -18,7 +18,7 @@ Programming can get messy. So messy in fact that function calls can get so embed
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Here, we are passing the value `other_function/1` to `new_function/1`, and `new_function/1` to `baz/1`, `baz/1` to `bar/1`, and finally the result of `bar/1` to `foo/1`. Elixir takes a pragmatic approach to this syntactical chaos by giving us the pipe operator. The pipe operator which looks like `|>` *takes the result of one expression, and passes it on*. Let's take another look at the code snippet above rewritten with the pipe operator.
+Here, we are passing the value `other_function/1` to `new_function/1`, and `new_function/1` to `baz/1`, `baz/1` to `bar/1`, and finally the result of `bar/1` to `foo/1`. Elixir takes a pragmatic approach to this syntactical chaos by giving us the pipe operator. The pipe operator which looks like `|>` *takes the result of one expression, and passes it on*. Let's take another look at the code snippet above rewritten using the pipe operator.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
@@ -32,21 +32,21 @@ For this set of examples, we will use Elixir's String module.
 
 - Tokenize String (loosely)
 
-```shell
+```elixir
 iex> "Elixir rocks" |> String.split
 ["Elixir", "rocks"]
 ```
 
 - Uppercase all the tokens
 
-```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+```elixir
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 
 - Check ending
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```

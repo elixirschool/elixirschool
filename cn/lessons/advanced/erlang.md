@@ -43,10 +43,10 @@ end
 然后我们就可以用 Erlang 的库了：
 
 ```elixir
-png = :png.create(#{:size => {30, 30},
+png = :png.create(%{:size => {30, 30},
                     :mode => {:indexed, 8},
                     :file => file,
-                    :palette => palette}),
+                    :palette => palette})
 ```
 
 # 区别

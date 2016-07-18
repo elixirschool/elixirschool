@@ -2,7 +2,7 @@
 layout: page
 title: Оператор конвейера
 category: basics
-order: 6
+order: 7
 lang: ru
 ---
 
@@ -40,7 +40,7 @@ iex> "Elixir rocks" |> String.split
 - Перевод всех слов строки в верхний регистр
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 

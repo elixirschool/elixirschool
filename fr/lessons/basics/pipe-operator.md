@@ -2,7 +2,7 @@
 layout: page
 title: L'opérateur Pipe
 category: basics
-order: 6
+order: 7
 lang: fr
 ---
 
@@ -40,7 +40,7 @@ iex> "Elixir rocks" |> String.split
 - Transformation des tokens en majuscules
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 

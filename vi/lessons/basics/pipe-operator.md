@@ -2,7 +2,7 @@
 layout: page
 title: Pipe Operator 
 category: basics
-order: 6 
+order: 7
 lang: vi 
 ---
 
@@ -40,7 +40,7 @@ iex> "Elixir rocks" |> String.split
 - Uppercase all the tokens
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 

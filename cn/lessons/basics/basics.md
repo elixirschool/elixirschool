@@ -22,7 +22,7 @@ Elixir 自带了 `iex` 这样一个交互 shell, 可以让我们随时计算 Eli
 
 运行 `iex` 命令，让我们开始教程：
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
@@ -94,6 +94,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Elixir 模块的名字也是原子，及时实际上还不存在这个模块，`MyApp.MyModule` 是一个合法的原子名称。
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+原子也可以用来直接引用 Erlang 标准库的模块，包括内置的模块。
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### 字符串

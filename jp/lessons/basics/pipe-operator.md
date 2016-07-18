@@ -2,7 +2,7 @@
 layout: page
 title: パイプライン演算子
 category: basics
-order: 6
+order: 7
 lang: jp
 ---
 
@@ -34,21 +34,21 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 
 - おおまかに文字列をトークン化する
 
-```shell
+```elixir
 iex> "Elixir rocks" |> String.split
 ["Elixir", "rocks"]
 ```
 
 - 全てのトークンを大文字にする
 
-```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+```elixir
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 
 - 文字列の終わりを調べる
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
@@ -57,7 +57,7 @@ true
 
 関数のアリティが1より多いなら括弧を使うようにしてください。括弧の有無はElixirにおいてはたいした問題ではありませんが、あなたのコードを誤解するかもしれない他のプログラマにとっては問題です。もし2つ目の例で`Enum.map/2`から括弧を削除すると, 以下のように警告されます。
 
-```shell
+```elixir
 iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
 iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
 

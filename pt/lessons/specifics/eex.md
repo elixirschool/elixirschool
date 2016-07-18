@@ -16,7 +16,7 @@ A API EEX suporta trabalhar com cadeias de caracteres e arquivos directamente. A
 
 ### Avaliação
 
-Usando `eval_string` e `eval_file` podemos realizar uma simples avaliação sobre uma string ou conteúdos de um arquivo. Este é a API mais simples mas lento uma vez que o código é interpretado e não compilado.
+Usando `eval_string/3` e `eval_file/2` podemos realizar uma simples avaliação sobre uma string ou conteúdos de um arquivo. Este é a API mais simples mas lento uma vez que o código é interpretado e não compilado.
 
 ```elixir
 iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
@@ -25,7 +25,7 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 
 ### Definições
 
-A mais rápida e preferida forma de usar o EEx é embutir nosso template dentro de um módulo assim ele pode ser compilado. Para isso precisamos do nosso template no momento da compilação e dos macros `function_from_string` e `function_from_file`.
+A mais rápida e preferida forma de usar o EEx é embutir nosso template dentro de um módulo assim ele pode ser compilado. Para isso precisamos do nosso template no momento da compilação e dos macros `function_from_string/5` e `function_from_file/5`.
 
 Vamos nover nossa saudação para outro arquivo e gerar uma função para nosso template:
 
@@ -44,7 +44,7 @@ iex> Example.greeting("Sean")
 
 ### Compilação
 
-Por último, EEx fornece-nos uma forma para directamente gerar Elixir AST a partir de uma cadeia de caracteres usando `compile_string` ou `compile_file`. Esta API é usada principalmente pelas APIs acima mencionadas, mas está disponível caso deseje implementar seu próprio tratamento de Elixir embutido.
+Por último, EEx fornece-nos uma forma para directamente gerar Elixir AST a partir de uma cadeia de caracteres usando `compile_string/2` ou `compile_file/2`. Esta API é usada principalmente pelas APIs acima mencionadas, mas está disponível caso deseje implementar seu próprio tratamento de Elixir embutido.
 
 ## Etiquetas
 
@@ -78,4 +78,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 As atribuições `EEx.SmartEngine` são úteis porque atribuições podem ser mudadas sem a necessidade de compilar o template:
 
-Interessado em escrever o seu próprio motor?  Confira o procedimento [`EEx.Engine`](http://elixir-lang.org/docs/v1.2/eex/EEx.Engine.html) para ver o que é necessário.
+Interessado em escrever o seu próprio motor?  Confira o procedimento [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) para ver o que é necessário.

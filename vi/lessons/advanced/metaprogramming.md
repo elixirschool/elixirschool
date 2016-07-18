@@ -30,7 +30,6 @@ iex> quote do: 1 + 2
 iex> quote do: if value, do: "True", else: "False"
 {:if, [context: Elixir, import: Kernel],
  [{:value, [], Elixir}, [do: "True", else: "False"]]}
-iex(6)>
 ```
 
 Notice the first three don't return tuples?  There are five literals that return themselves when quoted:
@@ -50,7 +49,7 @@ iex> {"hello", :world} # 2 element tuples
 
 ## Unquote
 
-Now that we can retrieve the internal structure of our code, how do we modify it?  To inject new code or values we rely use `unquote/1`.  When we unquote an expression it will be evaluated and injected into the AST.  To demonstrate `unqoute/1` let's look at some examples:
+Now that we can retrieve the internal structure of our code, how do we modify it?  To inject new code or values we rely use `unquote/1`.  When we unquote an expression it will be evaluated and injected into the AST.  To demonstrate `unquote/1` let's look at some examples:
 
 ```elixir
 iex> denominator = 2
