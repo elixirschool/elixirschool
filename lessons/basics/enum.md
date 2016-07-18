@@ -50,11 +50,13 @@ There are a few options for `chunk` but we won't go into them, check out [`chunk
 
 ### chunk_by
 
-If we need to group our collection based on something other than size, we can use the `chunk_by` method:
+If we need to group our collection based on something other than size, we can use the `chunk_by` method. It takes a given enumerable and a function, and when the return on that function changes a new group is started and begins the creation of the next:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
