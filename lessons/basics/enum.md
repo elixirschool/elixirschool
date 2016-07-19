@@ -12,9 +12,95 @@ A set of algorithms for enumerating over collections.
 
 ## Enum
 
-The `Enum` module includes over one hundred functions for working with the collections we learned about in the last lesson.
+The `Enum` module includes nearly 100 functions for working with the collections we learned about in the last lesson.
 
-This lesson will only cover a subset of the available functions, to see a complete set of functions visit the official [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) module.
+This lesson will only cover a subset of the available functions, however we can actually enamine them ourselves.
+Let's do a little experiment in IEx.
+
+```elixir
+$ iex
+iex(1)> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+...(1)>   IO.puts "#{function}/#{arity}"
+...(1)> end)
+all?/1
+all?/2
+any?/1
+any?/2
+at/2
+at/3
+...
+```
+We can take this even further.
+By enumerating in this manner we can even get the documentation for every function of a given module by leveraging the `h` operator, which prints docs.
+
+```elixir
+$ iex
+iex(1)> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+...(1)>   Code.eval_string("require IEx.Helpers; IEx.Helpers.h Enum.#{function}")
+...(1)> end)
+
+
+Invokes the given fun for each item in the enumerable. It stops the iteration
+at the first invocation that returns false or nil. It returns false if at least
+one invocation returns false or nil. Otherwise returns true.
+
+Examples
+
+┃ iex> Enum.all?([2, 4, 6], fn(x) -> rem(x, 2) == 0 end)
+┃ true
+┃
+┃ iex> Enum.all?([2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
+┃ false
+
+If no function is given, it defaults to checking if all items in the enumerable
+are truthy values.
+
+┃ iex> Enum.all?([1, 2, 3])
+┃ true
+┃
+┃ iex> Enum.all?([1, nil, 3])
+┃ false
+
+
+                   def all?(enumerable, fun \\ fn x -> x end)
+                   
+Invokes the given fun for each item in the enumerable. It stops the iteration
+at the first invocation that returns false or nil. It returns false if at least
+one invocation returns false or nil. Otherwise returns true.
+                   
+Examples
+
+┃ iex> Enum.all?([2, 4, 6], fn(x) -> rem(x, 2) == 0 end)
+┃ true
+┃
+┃ iex> Enum.all?([2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
+┃ false
+                       
+If no function is given, it defaults to checking if all items in the enumerable
+are truthy values.
+
+┃ iex> Enum.all?([1, 2, 3])
+┃ true
+┃
+┃ iex> Enum.all?([1, nil, 3])
+┃ false
+
+.. # the list goes through all 82
+```
+
+* Note that you should NEVER use Code.eval_string/1 or any of it's brethren in the real world, ever. *
+We can also use a similar trick to see how many functions a module has:
+
+```elixir
+$ iex
+iex(1)> Map.__info__(:functions) |> Enum.count
+31
+```
+
+Enumeration is at the core of functional programming and is an incredibly useful thing.
+By leveraging it combined with other perks of Elixir, such as documentation being a first class citizen as we just saw, it can be incredibly empowering to the developer as well.
+
+For a full list of functions visit the official [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) module.
 
 
 ### all?
