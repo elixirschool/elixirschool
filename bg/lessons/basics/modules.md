@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Composition
+title: Modules
 category: basics
 order: 8
 lang: bg

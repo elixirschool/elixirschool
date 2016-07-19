@@ -2,7 +2,7 @@
 layout: page
 title: Поточен оператор
 category: basics
-order: 6
+order: 7
 lang: bg
 ---
 
