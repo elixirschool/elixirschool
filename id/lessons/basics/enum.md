@@ -50,7 +50,7 @@ Ada beberapa opsi untuk `chunk` tapi kita tidak akan membahas lebih dalam, lihat
 
 ### chunk_by
 
-Jika kita butuh mengelompokkan collection kita berdasar selain ukuran, kita dapat gunakan fungsi `chunk_by`:
+Jika kita butuh mengelompokkan collection kita berdasar selain ukuran, kita dapat gunakan fungsi `chunk_by`. Fungsi ini menerima sebuah enumerable dan sebuah fungsi, dan ketika return dari fungsi tersebut berubah maka pembentukan grup baru akan dimulai:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
