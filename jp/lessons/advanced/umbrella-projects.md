@@ -45,7 +45,7 @@ for each application in the apps/ directory.
 
 ## 子プロジェクト
 
-プロジェクトの machine_learning_toolkit/app ディレクトリに移動し、Mixでこのように通常のプロジェクトを3つ作ります:
+プロジェクトの `machine_learning_toolkit/app` ディレクトリに移動し、Mixでこのように通常のプロジェクトを3つ作ります:
 
 ```shell
 $ mix new utilities --sup
