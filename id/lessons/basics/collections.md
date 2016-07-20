@@ -132,7 +132,7 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-Jika sebuah duplikasi ditambahkan ke sebuah mapl data yang baru menimpa yang lama:
+Jika sebuah duplikasi ditambahkan ke sebuah map data yang baru menimpa yang lama:
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
@@ -147,4 +147,15 @@ iex> %{foo: "bar", hello: "world"}
 
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
+```
+
+Hal menarik lain mengenai map adalah map telah menyediakan sintaks untuk memperbaharui dan mengakses kunci atom:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
 ```
