@@ -102,10 +102,10 @@ Para este exemplo vamos ver um projeto com dependências, como  [phoenix_slim](h
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 0.16"},
-   {:phoenix_html, "~> 2.1"},
-   {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slim_fast, ">= 0.6.0"}]
+  [{:phoenix, "~> 1.1 or ~> 1.2"},
+   {:phoenix_html, "~> 2.3"},
+   {:cowboy, "~> 1.0"},
+   {:slime, "~> 0.14"}]
 end
 ```
 
