@@ -49,11 +49,13 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 
 ### chunk_by
 
-Если нужно разделить коллекцию по какому-то другому признаку кроме количества, есть метод `chunk_by`:
+Если нужно разделить коллекцию по какому-то другому признаку кроме количества, есть метод `chunk_by/2`. Он принимает коллекцию и функцию. Когда возвращаемое функцией значение изменяется, начинается формирование новой группы:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
