@@ -8,7 +8,7 @@ lang: my
 
 Sebelum kita belajar lebih mendalam mengenai Elixir kita perlu memahami tentang mix.  Jika anda biasa dengan Ruby, mix adalah gabungan Bundler, RubyGems dan Rake.  Ia adalah elemen penting di dalam mana-mana projek Elixir dan di dalam pelajaran ini kita akan meneroka beberapa cirinya yang hebat.  Untuk melihat apa yang dibekalkan oleh mix, jalankan `mix help`.
 
-Sehingga tahap ini kita telah bekerja dengan `iex` yang mempunyai banyak kekangan.  Untuk membina sesuatu yang berguna kita perlu memisahkan kod kita kepada banyak fail supaya mudah untuk diuruskan, dan mix memudahkan kita menguruskan projek-projek kita. 
+Sehingga tahap ini kita telah bekerja dengan `iex` yang mempunyai banyak kekangan.  Untuk membina sesuatu yang berguna kita perlu memisahkan kod kita kepada banyak fail supaya mudah untuk diuruskan, dan mix memudahkan kita menguruskan projek-projek kita.
 
 {% include toc.html %}
 
@@ -103,10 +103,10 @@ Sebagai contoh mari kita lihat satu projek yang mengandungi komponen sokongan, s
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 0.16"},
-   {:phoenix_html, "~> 2.1"},
-   {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slim_fast, ">= 0.6.0"}]
+  [{:phoenix, "~> 1.1 or ~> 1.2"},
+   {:phoenix_html, "~> 2.3"},
+   {:cowboy, "~> 1.0"},
+   {:slime, "~> 0.14"}]
 end
 ```
 
