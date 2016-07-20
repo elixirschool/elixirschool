@@ -85,7 +85,7 @@ iex> :foo == :bar
 false
 ```
 
-CATATAN: Nilai boolean `true` dan `false` masing-masing adalah juga atom `:true` dan `:false`.
+Nilai boolean `true` dan `false` masing-masing adalah juga atom `:true` dan `:false`.
 
 ```elixir
 iex> true |> is_atom
@@ -94,6 +94,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Nama modul dalam Elixir adalah juga atom. `MyApp.MyModule` adalah atom yang sah, walaupun modul tersebut belum dideklarasikan.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Atom juga digunakan untuk mereferensi modul dari librari erlang, termasuk apa yang sudah ada.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### String
