@@ -50,11 +50,11 @@ Ada beberapa opsi untuk `chunk` tapi kita tidak akan membahas lebih dalam, lihat
 
 ### chunk_by
 
-Jika kita butuh mengelompokkan collection kita berdasar selain ukuran, kita dapat gunakan fungsi `chunk_by`:
+Jika kita butuh mengelompokkan collection kita berdasar selain ukuran, kita dapat gunakan fungsi `chunk_by/2`. `chunk_by/2` menerima sebuah enumerable dan sebuah fungsi, yang jika hasil pemanggilan fungsi tersebut berubah maka sebuah kelompok baru akan dibuat:
 
 ```elixir
-iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
-[["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
