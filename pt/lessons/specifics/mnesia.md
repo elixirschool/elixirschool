@@ -25,7 +25,7 @@ Quando usar uma determinada peça de tecnologia é muitas vezes um exercício co
 
 ## Schema
 
-Como Mnesia faz parte do núcleo do Erlang, ao invés de Elixir, temos que acessá-lo com a sintaxe de dois pontos (Ver lição: [Erlang Interoperability](https://elixirschool.com/lessons/advanced/erlang/)) como a seguir:
+Como Mnesia faz parte do núcleo do Erlang, ao invés de Elixir, temos que acessá-lo com a sintaxe de dois pontos (Ver lição: [Erlang Interoperability](/pt/lessons/advanced/erlang/)) como a seguir:
 
 ```shell
 
@@ -35,7 +35,6 @@ iex> :mnesia.create_schema([node()])
 
 iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node()])
-
 ```
 
 Para esta lição, vamos tomar a última abordagem quando se trabalha com a API Mnesia. `Mnesia.create_schema/1` inicializa um novo schema vazio e passa em uma lista de nós. Neste caso, estamos passando o nó associado com a nossa sessão IEx.
@@ -110,8 +109,8 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 ```
 Nós definimos as colunas usando os átomos `:id`, `:name`, e `:job`. Quando executamos `Mnesia.create_table/2`, ele irá retornar qualquer uma das seguinte respostas:
 
- - `{atomic, ok}` se a função foi executada com êxito
- - `{aborted, Reason}` se a função falhou
+ - `{:atomic, :ok}` se a função foi executada com êxito
+ - `{:aborted, Reason}` se a função falhou
 
 ## A Maneira Suja
 
