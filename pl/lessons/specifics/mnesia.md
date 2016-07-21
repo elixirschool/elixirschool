@@ -25,7 +25,7 @@ Kiedy powinniśmy użyć konkretnej technologi? To często bardzo kłopotliwe py
 
 ## Schemat
 
-Ponieważ Mnesia jest częścią Erlanga, a nie Elixira, to odwołujemy się do niej z użyciem dwukropka (patrz: [Współpraca z Erlangiem](https://elixirschool.com/pl/lessons/advanced/erlang/)):
+Ponieważ Mnesia jest częścią Erlanga, a nie Elixira, to odwołujemy się do niej z użyciem dwukropka (patrz: [Współpraca z Erlangiem](/pl/lessons/advanced/erlang/)):
 
 ```shell
 
@@ -35,7 +35,6 @@ iex> :mnesia.create_schema([node()])
 
 iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node()])
-
 ```
 
 W tej lekcji skupimy się na pracy z API Mnesii. `Mnesia.create_schema/1` tworzy nowy, pusty schemat i umieszcza go w liście węzłów. W naszym przypadku węzłem jest aktualna sesja IEx.
@@ -111,8 +110,8 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 
 Kolumny definiujemy za pomocą atomów `:id`, `:name` i `:job`. Kiedy wywołamy `Mnesia.create_table/2`, otrzymamy jedną z poniższych odpowiedzi:
 
- - `{atomic, ok}` – jeżeli wszystko się udało,
- - `{aborted, Reason}` – jeżeli funkcja napotkała błąd.
+ - `{:atomic, :ok}` – jeżeli wszystko się udało,
+ - `{:aborted, Reason}` – jeżeli funkcja napotkała błąd.
 
 ## „Niekoszerne” podejście 
 
