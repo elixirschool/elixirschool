@@ -78,7 +78,7 @@ List comprehensions are syntactic sugar and should be used only when appropriate
 You can think of filters as a sort of guard for comprehensions.  When a filtered value returns `false` or `nil` it is excluded from the final list.  Let's loop over a range and only worry about even numbers:
 
 ```elixir
-iex> for x <- 1..10, rem(x, 2) == 0, do: x
+iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
@@ -86,7 +86,7 @@ Like generators, we can use multiple filters.  Let's example our range and filte
 
 ```elixir
 iex> for x <- 1..100,
-...>   rem(x, 2) == 0,
+...>   is_even(x),
 ...>   rem(x, 3) == 0, do: x
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
