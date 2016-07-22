@@ -49,11 +49,11 @@ Táto funckia má niekoľko možností použitia, pozrite sa do oficiálnej doku
 
 ### chunk_by
 
-Ak potrebujete rozdeliť kolekciu do menších na základe niečoho iného, než ich veľkosť, použite funkciu `chunk_by`:
+Ak potrebujete rozdeliť kolekciu do menších na základe niečoho iného, než ich veľkosť, použite funkciu `chunk_by`. Ako argumenty funkcia berie kolekciu (Enum) a funkciu - ak sa zmení jej výstup, ukončí sa aktuálna podkolekcia a začne sa vytvárať ďalšia:
 
 ```elixir
-iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
-[["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
