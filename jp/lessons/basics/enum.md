@@ -49,11 +49,13 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 
 ### chunk_by
 
-コレクションを要素数ではない何か他のものでグループにする必要がある場合には、`chunk_by`メソッドを使うことができます:
+コレクションを要素数ではない何か他のものでグループにする必要がある場合には、`chunk_by/2`メソッドを使うことができます。この関数は列挙可能な値と関数を引数に取り、その関数の返り値が変わると新しいグループが始まります:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
