@@ -115,7 +115,7 @@ We define the columns using the atoms `:id`, `:name`, and `:job`. When we execut
 
 ## The Dirty Way
 
-First of all we will look at the dirty way of reading and writing to an Mnesia table. This should generally be avoided as success is not guaranteed, but it should help us learn and become comfortable working with Mnesia. Let's add some entries to our **Person** table.
+First of all we will look at the dirty way of reading and writing to a Mnesia table. This should generally be avoided as success is not guaranteed, but it should help us learn and become comfortable working with Mnesia. Let's add some entries to our **Person** table.
 
 ```shell
 iex> Mnesia.dirty_write({Person, 1, "Seymour Skinner", "Principal"})
