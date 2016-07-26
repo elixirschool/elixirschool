@@ -54,9 +54,9 @@ iex> 0x1F
 In Elixir, i numeri in virgola mobile richiedono un decimale dopo almeno una cifra; hanno una doppia precisione a 64 bit e supportano la `e` per i numeri con notazione esponenziale:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14 
+ 3.14
+iex> .14 
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10

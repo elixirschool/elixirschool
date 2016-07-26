@@ -16,19 +16,19 @@ Listy, tuples, keywords, mapy, dictionaries a kombinátory.
 Zoznamy (lists) sú jednoduché kolekcie hodnôt, ktoré môžu obsahovať viacero dátových typov. Môžu tiež obsahovať neunikátne hodnoty (t.j. prvky sa môžu opakovať):
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 V Elixire sú zoznamy implementované ako linked lists. To znamená, že prístup k prvkom zoznamu je operácia so zložitosťou `O(n)` (lineárna zložitosť). Z tohto dôvodu je zvyčajne rýchlejšie nové prvky pridávať na začiatok zoznamu, než na jeho koniec:
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 
@@ -55,19 +55,19 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 Pri práci so zoznamami je veľmi bežné pristupovanie k tzv. Head a Tail zoznamu. Head (hlava) je prvý element zoznamu, Tail (chvost) je jeho zvyšok. Elixir nám na prístup k týmto častiam poskytuje dve užitočné funkcie `hd` a `tl`:
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
 Naviac, ako si ukážeme v neskorších lekciách, sa na tento účel dá krásne použiť operátor pipe (`|`):
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -77,8 +77,8 @@ iex> t
 Tuples sú podobné zoznamom, no v pamäti sú ulošené ako súvislá oblasť. Vďaka tomu je prístup k ich prvkom veľmi rýchly, rovnako ako zisťovanie ich dĺžky (size). Na duhú stranu, modifikácia tuplov je náročná a pomalá, pretože nový (zmenený) tuple musí byť v pamäti kompletne prekopírovaný. Tuples definujeme pomocou zložených zátvoriek:
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 Veľmi bežne sa tuples používajú ako návratové hodnoty z funkcií - v kapitole o pattern matchingu si ukážeme, ako veľmi užitočný mechanizmus to je:

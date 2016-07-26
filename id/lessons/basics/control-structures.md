@@ -71,8 +71,8 @@ Anggaplah `_` sebagai `else` yang akan cocok dengan "semua yang lain.
 Karena `case` bergantung pada pencocokan pola, semua aturan dan batasan yang sama berlaku.  Jika anda berniat untuk mencocokkan terhadap variabel yang sudah ada isinya anda harus menggunakan operator pin `^`:
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14 
+ 3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"

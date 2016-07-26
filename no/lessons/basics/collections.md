@@ -15,20 +15,20 @@ Lister, tupler, nøkkelord, kart og funksjonell kombinasjon.
 Lister er enkle kolleksjoner av verdier, som kan bestå av forskjellige typer. Listene kan inneholde ikke-unike verdier:
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir implementerer listene som lenkede lister. Dette betyr at for å få lengden av en liste, må man bruke en `O(n)` operasjon for å aksessere den.
 På grunn av dette er det ofte raskere å foranstille enn å tilføye til listen.
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 
@@ -57,9 +57,9 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 Når vi jobber med lister er det vanlig å referere til listens head og tail (hode og hale). Head er det første elementet i listen, mens tail er de resterende elementene. Elixir gir oss to hjelpsomme metoder - `hd` og `tl` som vi kan benytte oss av når vi jobber med head og tail i ei liste:
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
@@ -67,10 +67,10 @@ I tillegg til de tidligere nevnte funksjonene, kan vi også bruke
 pipe operatoren `|` - Vi kommer tilbake til denne operatoren i en senere leksjon:
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -81,8 +81,8 @@ Tupler ligner på lister, men er lagret i datamaskinens minne. Dette gjør at vi
 Vi definerer tupler ved å skrive de mellom klammeparantes:
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 Tupler brukes ofte til å returnere tilleggsinformasjon fra funksjoner. Bruksnytten av dette vil bli tydeligere når vi starter med mønstergjenkjenning:

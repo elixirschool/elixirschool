@@ -15,19 +15,19 @@ lang: ko
 리스트(list)는 값들의 간단한 컬렉션입니다. 리스트는 여러 타입을 포함할 수 있으며 중복된 값들도 포함할 수 있습니다.
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir는 연결 리스트로서의 리스트를 구현합니다. 따라서 리스트의 길이를 구하는 것은 `O(n)` 연산이고, 이 때문에 보통 리스트의 앞에 값을 추가하는 것이 뒤에 추가하는 것보다 빠릅니다.
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 
@@ -56,19 +56,19 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 리스트를 사용할 때 리스트의 머리와 꼬리를 가지고 작업을 하는 경우가 많습니다. 머리는 리스트의 맨 첫 번째 원소이고, 꼬리는 그 나머지 원소들입니다. Elixir에서는 이러한 작업을 위해 `hd`와 `tl` 이 두 개의 유용한 메서드를 제공합니다.
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
 앞서 언급한 함수들과 더불어서, 파이프 연산자 `|`를 이용할 수도 있습니다. 이러한 패턴은 차후 레슨에서 보게 될 것입니다.
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -78,8 +78,8 @@ iex> t
 튜플(tuples)은 리스트와 비슷하지만 메모리에 연속적으로 저장됩니다. 이 때문에 튜플의 길이를 구하는 것은 빠르지만 수정하는 것은 비용이 비쌉니다. 새로운 튜플이 통째로 메모리에 복사되어야 하기 때문이지요. 튜플은 중괄호를 사용해서 정의합니다.
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 튜플은 함수가 추가 정보를 반환하는 수단으로 자주 사용됩니다. 이것의 유용함은 패턴 매칭(pattern matching)을 배울 때 더 명확해질 것입니다.

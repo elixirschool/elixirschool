@@ -72,9 +72,9 @@ iex> 0x1F
 In Elixir, float numbers require a decimal after at least one digit; they have 64 bit double precision and support `e` for exponent numbers:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10

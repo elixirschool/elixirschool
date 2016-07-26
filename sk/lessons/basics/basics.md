@@ -52,8 +52,8 @@ iex> 0x1F
 V Elixire vyžadujú desatinné čísla aspoň jednu číslicu pred desatinnou bodkou, sú 64 bitové a podporujú zápis exponenta pomocou znaku `e`:
 
 ```elixir
-iex> 3.41
-iex> .41
+iex> 3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 ```

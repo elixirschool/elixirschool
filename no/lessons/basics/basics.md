@@ -54,9 +54,9 @@ iex> 0x1F
 flyttall krever et desimal med minimum et siffer. De har 64 bit dobbel nøyaktighet, og støtter `e` for å lage eksponenter:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14 
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10
