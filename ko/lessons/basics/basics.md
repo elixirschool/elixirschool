@@ -72,9 +72,9 @@ iex> 0x1F
 Elixir에서는 배정밀도(64 bit double precision)로 부동 소수점 숫자를 처리하고, `e`를 사용하여 10의 지수를 표현할 수도 있습니다. 부동 소수점 숫자를 표현할 때에는 소수점 앞뒤로 숫자가 한 개 이상 필요합니다.
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10

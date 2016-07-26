@@ -71,8 +71,8 @@ Anggapkan `_` sebagai `else` yang akan dipadankan dengan "yang lain-lain".
 Oleh kerana `case` bergantung kepada pemadanan corak, semua undang-undang dan restriction adalah digunapakai.  Jika anda berhasrat untuk membuat padanan kepada pembolehubah sedia ada anda perlu menggunakan operator pin `^`:
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14
+3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"

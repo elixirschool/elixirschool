@@ -70,8 +70,8 @@ iex> case :even do
 如果你想匹配已经定义的变量，一定要使用 pin 操作符 `^`：
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14 
+ 3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"
