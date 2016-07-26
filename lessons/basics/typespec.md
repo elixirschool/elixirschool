@@ -109,3 +109,13 @@ Using specifications with tools to static code analysis helps us to make code th
 
 ## Custom types
 
+Writing specification is nice, but sometimes our functions works with more complex data structures than simple numbers or collections. In that cases definition in `@spec` could be hard to understand and very hard to change by other developers. Sometimes functions needs to take many parameters or return complex data. Long parameters list is one of bad smells in code. In object oriented languages like Ruby or Java we could easily define classes that helps us to solve this problems. Elixir hasn't classes but because is easy to extends that we could define our types.
+  
+Out of box Elixir contains some basic types like `integer` or `pid`. You  can find full list of available types in [documentation](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+ 
+### Defining custom type
+  
+Let's modify our `sum_times` function and introduce some extra params:
+
+
+
