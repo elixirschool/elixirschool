@@ -6,7 +6,6 @@ order: 14
 lang: sk
 ---
 
-Strings, Char Lists, Graphemes and Codepoints.
 Reťazce, charlisty, grafémy a codepointy
 
 {% include toc.html %}
