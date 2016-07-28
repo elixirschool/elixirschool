@@ -20,7 +20,7 @@ However in some cases specification is going to be quite big and complicated. If
 
 If you have experience with Java or Ruby you could think about specification as an `interface`. Specification defines what should be type of function parameters and return value.
 
-To define input and output types we use `@spec` directive placed right before function definition and taking as a _params_ name of function, list of parameter types, and after `::` type of return value.  
+To define input and output types we use `@spec` directive placed right before function definition and taking as a `params` name of function, list of parameter types, and after `::` type of return value.  
 
 Let's take a look at example:
 
