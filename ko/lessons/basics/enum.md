@@ -50,11 +50,13 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 
 ### chunk_by
 
-컬렉션을 크기가 아닌 다른 기준에 근거해서 묶을 필요가 있다면, `chunk_by`를 사용할 수 있습니다:
+컬렉션을 크기가 아닌 다른 기준에 근거해서 묶을 필요가 있다면, `chunk_by/2`를 사용할 수 있습니다. 열거할 수 있는 컬렉션과 함수를 받아와서, 주어진 함수의 결과값이 변할 때마다 그룹을 새로 시작합니다.
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
