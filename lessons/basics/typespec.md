@@ -14,7 +14,7 @@ If you want to define 'interface' like in Java or Ruby, Elixir contains syntax f
 
 It's not uncommon you would like to describe interface of your function. Of course You can use [@doc annotation](/lessons/basic/documentation), but it is only information for other developers that is not checked in compilation time. For this purpose Elixir has `@spec` annotation to describe specification of function that will be checked by compiler.
 
-However in some cases specification is going to be quite big and complicated. If you would like to reduce complexity, you want to introduce custom type definition. Elixir has `@type` annotation for that.
+However in some cases specification is going to be quite big and complicated. If you would like to reduce complexity, you want to introduce custom type definition. Elixir has `@type` annotation for that. In the other hand, Elixir is still dynamic language. That means all information about type will be ignored by compiler, but could be used by other tools.   
 
 ## Specification
 
@@ -117,5 +117,81 @@ Out of box Elixir contains some basic types like `integer` or `pid`. You  can fi
   
 Let's modify our `sum_times` function and introduce some extra params:
 
+```elixir
+@spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
+def sum_times(a, params) do
+    for i <- params.first..params.last do
+        i
+    end
+       |> Enum.map(fn el -> el * a end)
+       |> Enum.sum
+       |> round
+end
+```
 
+We introduce struct in `Examples` module that contains two fields `first` and `last`. That is simpler version of struct from `Range` module. About structures we talk when discussing [modules](lessons/basics/modules/#structs). Lets imagine that we need to specification with `Examples` struct many times. It will be very annoying and could be source of bugs. Solution of this problem is `@type`.
+ 
+Elixir has three directives for types:
 
+  - `@type` – simple, public type. Internal structure of type is public. 
+  - `@typep` – type is private and could be used only in module where is defined. 
+  - `@opaque` – type is public, but internal structure is private. 
+
+Let define our type:
+
+```elixir
+defmodule Examples do
+
+    defstruct first: nil, last: nil
+
+    @type t :: %Examples{first: integer, last: integer}
+
+    @type t(first, last) :: %Examples{first: first, last: last}
+
+end
+```
+
+We defined two types. First `t` is representation of `%Examples{first: integer, last: integer}`. Second is `t(first, last)` that is an alias to `%Examples{first: first, last: last}`. What is a difference? First one represents struct `Examples` of which the two keys are `integer`. Second one represents struct which keys could has any type. That means code like this:
+  
+```elixir
+@spec sum_times(integer, Examples.t) :: integer
+def sum_times(a, params) do
+    for i <- params.first..params.last do
+        i
+    end
+       |> Enum.map(fn el -> el * a end)
+       |> Enum.sum
+       |> round
+end
+```
+
+Is equal to code like:
+
+```elixir
+@spec sum_times(integer, Examples.t(integer, integer)) :: integer
+def sum_times(a, params) do
+    for i <- params.first..params.last do
+        i
+    end
+       |> Enum.map(fn el -> el * a end)
+       |> Enum.sum
+       |> round
+end
+```
+
+### Documentation of types
+
+Last element that we need to talk about is how to document our types. As we know from [documentation](/lessons/basic/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules. For documenting ou types we can use `@typedoc`:
+
+```elixir
+defmodule Examples do
+    
+    @typedoc """
+        Type that represents Examples struct with :first as integer and :last as integer.
+    """
+    @type t :: %Examples{first: integer, last: integer}
+
+end
+```
+
+Directive `@typedoc` is similar to `@doc` and `@moduldoc`.
