@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Functions
+title: Συναρτήσεις
 category: basics
 order: 6
-lang: en
+lang: gr
 ---
 
-In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
+Στην Elixir όπως και σε άλλες συναρτησιακές γλώσσες, οι συναρτήσεις είναι απόλυτα υποστηριζόμενες.  Θα μάθουμε για τους τύπους των συναρτήσεων στην Elixir, τι τις κάνει διαφορετικές και πως να τις χρησιμοποιούμε.
 
 {% include toc.html %}
 
