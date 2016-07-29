@@ -35,7 +35,6 @@ $ mix new example
 * creating test/example_test.exs
 ```
 
-In this lesson we're going to focus our attention on `mix.exs`.  Here we configure our application, dependencies, environment, and version.  Open the file in your favorite editor, you should see something like this (comments removed for brevity):
 Σε αυτό το μάθημα θα εστιάσουμε την προσοχή μας στο `mix.exs`.  Εδώ ρυθμίζουμε την εφαρμογή, τις εξαρτήσεις, το περιβάλλον και την έκδοση.  Ανοίξτε το αρχείο στον αγαπημένο σας επεξεργαστή κειμένου, θα πρέπει να βλέπετε κάτι σαν και αυτό (τα σχόλια έχουν αφαιρεθεί για συντομία):
 
 ```elixir
