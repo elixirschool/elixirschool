@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Specifications and types
-category: basics
-order: 16
+category: advanced
+order: 9
 lang: en
 ---
 
