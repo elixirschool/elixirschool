@@ -6,7 +6,7 @@ order: 8
 lang: pl
 ---
 
-Z czasem projekt może stać się duży, naprawdę duży. Mix pozwala nam na podzielenie naszego projektu na mniejsze, łatwiejsze w utrzymaniu i zarządzaniu. Projekty, które składają się z wielu mniejszych pod projektów, nazywamy projektami zbiorczymi albo po angielsku _umbrella project_. 
+Z czasem projekt może stać się duży, naprawdę duży. Mix pozwala nam na podzielenie naszego projektu na mniejsze, łatwiejsze w utrzymaniu i zarządzaniu. Projekty, które składają się z wielu mniejszych pod projektów, nazywamy projektami zbiorczymi albo po angielsku _umbrella project_.
 
 ## Spis treści
 
@@ -49,7 +49,7 @@ Jak widać po wpisach w konsoli, Mix stworzył niewielki szkielet projektu zawie
 
 ## Projekty potomne
 
-Przejdźmy do katalogu `machine_learning_toolkit/app` i za pomocą Mixa stwórzmy trzy zwykłe projekty:
+Przejdźmy do katalogu `machine_learning_toolkit/apps` i za pomocą Mixa stwórzmy trzy zwykłe projekty:
 
 ```shell
 $ mix new utilities --sup
@@ -159,7 +159,7 @@ $ tree
 └── mix.exs
 ```
 
-Jeżeli teraz wrócimy do katalogu projektu zbiorczego, będziemy mogli zobaczyć jak działają typowe zadania mixa jak kompilacja. Jako że projekty potomne to zwyczajne aplikacje to zawsze możemy też wejść do ich katalogów i bez żadnych problemów wywołać tam zadania mixa. 
+Jeżeli teraz wrócimy do katalogu projektu zbiorczego, będziemy mogli zobaczyć jak działają typowe zadania mixa jak kompilacja. Jako że projekty potomne to zwyczajne aplikacje to zawsze możemy też wejść do ich katalogów i bez żadnych problemów wywołać tam zadania mixa.
 
 ```
 $ mix compile
