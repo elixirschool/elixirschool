@@ -57,6 +57,7 @@ Class names and proper nouns do not get translated.
 - head - голова
 - integer - целое число
 - interpolation - интерполяция
+- linked list - связный список
 - list - список
 - list comprehension - списковое включение
 - map - ассоциативный массив
