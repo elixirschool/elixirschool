@@ -109,7 +109,7 @@ end
 
 ### Documentation of types
 
-Last element that we need to talk about is how to document our types. As we know from [documentation](/lessons/basic/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules. For documenting ou types we can use `@typedoc`:
+Last element that we need to talk about is how to document our types. As we know from [documentation](/lessons/basic/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules. For documenting our types we can use `@typedoc`:
 
 ```elixir
 defmodule Examples do
@@ -122,4 +122,4 @@ defmodule Examples do
 end
 ```
 
-Directive `@typedoc` is similar to `@doc` and `@moduldoc`.
+Directive `@typedoc` is similar to `@doc` and `@moduledoc`.
