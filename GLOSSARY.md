@@ -37,6 +37,7 @@ Class names and proper nouns do not get translated.
 - sigil - строковая метка
 - schema - структура
 - tuple - кортеж
+- umbrella project - зонтичный проект
 
 #### <a name="russian-cs-terms"></a> CS terms
 
