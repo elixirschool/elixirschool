@@ -51,17 +51,17 @@ true
 
 ## Best Practices
 
-Ak je arita (počet argumentov) funkcie väčšia, než 1, použite vo volaní funkcie zátvorky. Ide hlavne o čitateľnosť pre ostatných programátorov, ktorým by chýbajúce zátvorky mohli spôsobiť zmätok pri čítaní nášho kódu. Ak si zoberieme druhý príklad a odstránime zátvorky z volania `Enum.map`, dostaneme nasledujúce varovanie o nejednoznačnosti volania:
+Ak je arita (počet argumentov) funkcie väčšia, než 1, použite vo volaní funkcie zátvorky. Ide hlavne o čitateľnosť pre ostatných programátorov, ktorým by chýbajúce zátvorky mohli spôsobiť zmätok pri čítaní nášho kódu. Ak si zoberieme tretí príklad a odstránime zátvorky z volania `String.ends_with?/2`, dostaneme nasledujúce varovanie o nejednoznačnosti volania:
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
-iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+iex> "elixir" |> String.ends_with? "ixir"
+warning: parentheses are required when piping into a function call. For example:
 
-foo 1 |> bar 2 |> baz 3
+  foo 1 |> bar 2 |> baz 3
 
-Should be written as:
+is ambiguous and should be written as
 
-foo(1) |> bar(2) |> baz(3)
+  foo(1) |> bar(2) |> baz(3)
 
-["ELIXIR", "ROCKS"]
+true
 ```
