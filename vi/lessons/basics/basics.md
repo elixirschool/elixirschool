@@ -33,8 +33,6 @@ Elixir đi kèm với `iex`, một shell trực quan, cho phép chúng ta chạy
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Có hỗ trợ số nhị phân, bát phân, thập lục phân:

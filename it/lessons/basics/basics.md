@@ -34,8 +34,6 @@ Per cominciare, lanciamo il comando `iex`:
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Il supporto per numeri in notazione binaria, ottale ed esadecimale è già incluso:

@@ -34,8 +34,6 @@ Elixir 自带了 `iex` 这样一个交互 shell, 可以让我们随时计算 Eli
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Elixir 语言本身就支持二进制、八进制和十六进制的整数：

@@ -33,7 +33,7 @@ Začnime teda jeho spustením príkazu `iex`:
 
 ```elixir
 iex> 255
-iex> 0xFF
+255
 ```
 
 Zabudovaná podpora pre binárne, oktalové (osmičkové) a hexadecimálne čisla:
