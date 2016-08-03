@@ -2,7 +2,7 @@
 layout: page
 title: 実行ファイル
 category: advanced
-order: 2
+order: 3
 lang: jp
 ---
 
@@ -70,7 +70,7 @@ end
 
 ## ビルド
 
-escriptを用いるようにアプリケーションを設定し終えたら、実行ファイルのビルドはmixのおかげで楽勝です:
+escriptを用いるようにアプリケーションを設定し終えたら、実行ファイルのビルドはMixのおかげで楽勝です:
 
 ```elixir
 $ mix escript.build

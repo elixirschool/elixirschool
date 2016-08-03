@@ -32,15 +32,15 @@ To get started, let's run `iex`:
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-    iex(1)>
+    iex>
    
 Lets go ahead and give it a try now by typing in a few simple expressions:
 
-    iex(1)> 2+3
+    iex> 2+3
     5
-    iex(2)> 2+3 == 5
+    iex> 2+3 == 5
     true
-    iex(3)> String.length("The quick brown fox jumps over the lazy dog")
+    iex> String.length("The quick brown fox jumps over the lazy dog")
     43
 
 Don't worry if you don't understand every expression yet, but hopefully you get the idea.
@@ -72,9 +72,9 @@ iex> 0x1F
 In Elixir, float numbers require a decimal after at least one digit; they have 64 bit double precision and support `e` for exponent numbers:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10

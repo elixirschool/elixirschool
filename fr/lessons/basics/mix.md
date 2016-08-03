@@ -103,10 +103,10 @@ Pour cet exemple, regardons les dépendances d'un projet existant, comme [phoeni
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 0.16"},
-   {:phoenix_html, "~> 2.1"},
+  [{:phoenix, "~> 1.1 or ~> 1.2"},
+   {:phoenix_html, "~> 2.3"},
    {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slim_fast, ">= 0.6.0"}]
+   {:slime, "~> 0.14"}]
 end
 ```
 
@@ -122,7 +122,7 @@ Et voilà ! Nous avons défini et obtenu nos dépendances. On est maintenant pr�
 
 ## Environnements
 
-Mix, tout comme Bundler, supportes différents environnements. De base, mix fonctionne avec trois environnements: 
+Mix, tout comme Bundler, supportes différents environnements. De base, mix fonctionne avec trois environnements:
 
 + `:dev` — L'environnement par défaut.
 + `:test` — Utilisé par `mix test`. Couvert plus loin dans la leçon suivante.

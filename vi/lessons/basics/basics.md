@@ -55,9 +55,9 @@ Trong Elixir, số Float được thể hiện bằng một số thập phân đ
 CHÚ THÍCH: Dấu phân số theo hệ toán học Anh là `.` chứ không phải dấu `,`
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14 
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10

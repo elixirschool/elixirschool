@@ -127,7 +127,7 @@ end
 # Without alias
 
 defmodule Example do
-  def greeting(name), do: Saying.Greetings.basic(name)
+  def greeting(name), do: Sayings.Greetings.basic(name)
 end
 ```
 
@@ -210,7 +210,7 @@ If we attempt to call a macro that is not yet loaded Elixir will raise an error.
 
 ### `use`
 
-The use macro invokes a special macro, called __using__/1, from the specified module. Here’s an example:
+The use macro invokes a special macro, called `__using__/1`, from the specified module. Here’s an example:
 
 ```elixir
 # lib/use_import_require/use_me.ex
@@ -231,11 +231,11 @@ and we add this line to UseImportRequire:
 use UseImportRequire.UseMe
 ```
 
-Using UseImportRequire.UseMe defines a use_test/0 function through invocation of the __using__/1 macro.
+Using UseImportRequire.UseMe defines a use_test/0 function through invocation of the `__using__/1` macro.
 
-This is all that use does. However, it is common for the __using__ macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that __using__/1 may set up references to other modules, especially submodules.
+This is all that use does. However, it is common for the `__using__` macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that `__using__/1` may set up references to other modules, especially submodules.
 
-The Phoenix framework makes use of use and __using__/1 to cut down on the need for repetitive alias and import calls in user defined modules.
+The Phoenix framework makes use of use and `__using__/1` to cut down on the need for repetitive alias and import calls in user defined modules.
 
 Here’s an nice and short example from the Ecto.Migration module:
 
@@ -251,4 +251,4 @@ end
 
 The `Ecto.Migration.__using__/1` macro includes an import call so that when you `use Ecto.Migration` you also `import Ecto.Migration`. It also sets up a module property which we will assume controls Ecto’s behavior.
 
-To recap: the use macro simply invokes the __using__/1 macro of the specified module. To really understand what that does you need to read the __using__/1 macro.
+To recap: the use macro simply invokes the `__using__/1` macro of the specified module. To really understand what that does you need to read the `__using__/1` macro.

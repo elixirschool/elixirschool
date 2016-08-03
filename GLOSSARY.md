@@ -37,6 +37,7 @@ Class names and proper nouns do not get translated.
 - sigil - строковая метка
 - schema - структура
 - tuple - кортеж
+- umbrella project - зонтичный проект
 
 #### <a name="russian-cs-terms"></a> CS terms
 
@@ -57,11 +58,11 @@ Class names and proper nouns do not get translated.
 - head - голова
 - integer - целое число
 - interpolation - интерполяция
+- linked list - связный список
 - list - список
 - list comprehension - списковое включение
 - map - ассоциативный массив
 - metaprogramming - метапрограммирование
-- module - модуль
 - module - модуль
 - namespace - пространство имен
 - pattern matching - сопоставление с образцом

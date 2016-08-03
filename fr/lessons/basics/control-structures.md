@@ -71,8 +71,8 @@ Considérez `_` comme le `else` qui correspondra à "tout les autres valeurs".
 Comme `case` se base sur le pattern matching, les mêmes règles et restrictions s'appliquent. Si vous voulez tester une valeur par rapport à une variable existante, vous devez utiliser l'opérateur pin `^`:
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14 
+ 3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"

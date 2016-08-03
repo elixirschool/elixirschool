@@ -42,7 +42,7 @@ iex> "Elixir rocks" |> String.split
 - 全てのトークンを大文字にする
 
 ```elixir
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 

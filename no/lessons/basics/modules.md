@@ -211,7 +211,7 @@ Hvis vi prøver å kalle en makro som ikke er lastet, så vil Elixir heve en fei
 
 ### `use`
 
-use makroen kaller en spesiell makro, kalt __using__/1, i den spesifiserte modulen. Her er et eksempel:
+use makroen kaller en spesiell makro, kalt `__using__/1`, i den spesifiserte modulen. Her er et eksempel:
 
 ```elixir
 # lib/use_import_require/use_me.ex
@@ -232,11 +232,11 @@ og vi legger denne linjen til UseImportRequire:
 use UseImportRequire.UseMe
 ```
 
-Å bruke UseImportRequire.UseMe definerer en use_test/0 funksjon gjennom invokasjon av __using__/1 makroen.
+Å bruke UseImportRequire.UseMe definerer en use_test/0 funksjon gjennom invokasjon av `__using__/1` makroen.
 
-Det er alt det use gjør. Men, det er vanlig at __using__ makroen kaller på alias, require eller import. Dette vil lage aliaser eller importere det som kreves i using modulen. Dette tillater modulen til å bli brukt til å definere en retningslinje for hvordan deres funksjoner og makroer burde bli referert til. Dette kan være svært fleksibelt i det at __using__/1 kan sette opp referanser til andre moduler, spesielt undermoduler.
+Det er alt det use gjør. Men, det er vanlig at `__using__` makroen kaller på alias, require eller import. Dette vil lage aliaser eller importere det som kreves i using modulen. Dette tillater modulen til å bli brukt til å definere en retningslinje for hvordan deres funksjoner og makroer burde bli referert til. Dette kan være svært fleksibelt i det at `__using__/1` kan sette opp referanser til andre moduler, spesielt undermoduler.
 
-Phoenix rammeverket bruker use og __using__/1 for å kutte ned bruken av repetitive alias og import kall i bruker definerte moduler.
+Phoenix rammeverket bruker use og `__using__/1` for å kutte ned bruken av repetitive alias og import kall i bruker definerte moduler.
 
 Her er et godt eksempel fra Ecto.Migration modulen:
 
@@ -252,4 +252,4 @@ end
 
 `Ecto.Migration.__using__/1` makroen inkluderer et importkall slik at når du bruker `use Ecto.Migration` så vil den også kalle `import Ecto.Migration`. Den setter også opp modul attributer som vi kan anta kontrollerer Ecto sin atferd.
 
-For å oppsumere: use invokerer __using__/1 i den spesifiserte modulen. For å virkelig forstå hva den gjør så anbefales det at du leser om __using__/1.
+For å oppsumere: use invokerer `__using__/1` i den spesifiserte modulen. For å virkelig forstå hva den gjør så anbefales det at du leser om `__using__/1`.

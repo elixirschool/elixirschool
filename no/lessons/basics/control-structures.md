@@ -72,8 +72,8 @@ Variabelen `_` blir som `else` og vil matche "alt annet".
 Siden `case` avhenger av mønstersammenligning, gjelder de samme reglene og restriksjonene. Hvis du ønsker å sammenligne med en eksisterende variabel, må festeoperatoren `^` benyttes:
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14 
+3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"

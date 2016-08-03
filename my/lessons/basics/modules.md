@@ -127,7 +127,7 @@ end
 # tanpa alias
 
 defmodule Example do
-  def greeting(name), do: Saying.Greetings.basic(name)
+  def greeting(name), do: Sayings.Greetings.basic(name)
 end
 ```
 
@@ -211,7 +211,7 @@ Jika kita cuba memanggil satu makro yang masih belum dipasang Elixir akan menimb
 
 ### `use`
 
-Menggunakan modul dalam konteks semasa.  Ianya amat berguna apabila satu modul perlu melakukan beberapa tetapan.  Dengan memanggil `use`, kita juga secara spontan memanggil 'hook'`__using` di dalam modul tersebut, memberikan peluang kepada modul tersebut untuk membuat perubahan kepada konteks semasa:  
+Menggunakan modul dalam konteks semasa.  Ianya amat berguna apabila satu modul perlu melakukan beberapa tetapan.  Dengan memanggil `use`, kita juga secara spontan memanggil 'hook'`__using__` di dalam modul tersebut, memberikan peluang kepada modul tersebut untuk membuat perubahan kepada konteks semasa:  
 
 ```elixir
 defmodule MyModule do

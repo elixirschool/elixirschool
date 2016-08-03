@@ -46,7 +46,7 @@ Como você pode ver a partir do comando Mix no shell, foi criado um pequeno proj
 
 ## Projetos filho
 
-Vamos mudar para o diretório de projetos machine_learning_toolkit/app e criar 3 aplicações normais usando Mix desta forma:
+Vamos mudar para o diretório de projetos `machine_learning_toolkit/apps` e criar 3 aplicações normais usando Mix desta forma:
 
 ```shell
 $ mix new utilities --sup

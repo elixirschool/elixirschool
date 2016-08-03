@@ -15,19 +15,19 @@ Les Listes, Tuples, Keywords, Maps et les combinateurs fonctionnels.
 Les listes sont de simples collections de valeurs, elles peuvent inclure différents types. Les listes peuvent aussi inclure plusieurs fois la même valeur.
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir implémente les listes sous forme de liste chainée. Par conséquent, calculer la taille d'une liste est une opération `O(n)`. Pour cette raison, il est généralement plus rapide d'ajouter un élément en début de liste plutôt qu'à la fin:
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 
@@ -54,19 +54,19 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 Il est commun d'utiliser head et tail lorsque nous utilisons des listes. Head (la tête) est le premier élément de la liste et tail (la queue) les éléments restants. Elixir nous fournis deux fonctions, `hd` et `tl`:
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
 En plus des fonctions ci-dessus, vous pouvez utiliser un pipe `|` pour déstructurer une liste. Nous verrons cet idiome dans les leçons suivantes:
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -76,8 +76,8 @@ iex> t
 Les tuples sont similaires aux listes mais sont stockés de manière adjacente en mémoire. On peux calculer leur taille plus rapidement mais cela rends leur modification plus couteuse, le nouveau tuple devant être copié entièrement en mémoire. Les tuples sont définis avec des accolades :
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 Les tuples sont souvent utilisés comme un méchanisme pour retourner des informations additionnelles d'une fonction. Leur utilité deviendra plus apparente lorsque nous verrons le pattern matching :

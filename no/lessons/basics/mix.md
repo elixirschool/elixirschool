@@ -99,10 +99,10 @@ I dette eksemplet skal vi se på et prosjekt med tilleggspakker - [phoenix_slim]
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 0.16"},
-   {:phoenix_html, "~> 2.1"},
+  [{:phoenix, "~> 1.1 or ~> 1.2"},
+   {:phoenix_html, "~> 2.3"},
    {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slim_fast, ">= 0.6.0"}]
+   {:slime, "~> 0.14"}]
 end
 ```
 Som du sikkert ser fra listen av tilleggspakker ovenfor, er `cowboy` kun nødvendig under utvikling og testing. Når vi har definert våre tilleggspakker gjenstår det kun et siste steg - å hente dem. Om du er kjent med Ruby, er dette ekvivalent med `bundle install`:

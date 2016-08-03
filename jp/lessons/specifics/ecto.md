@@ -207,7 +207,7 @@ query = from u in User,
 
 ### Group By
 
-ユーザ名を作成日ごとにグループ化するには、`group_by`オプションを加えます:
+ユーザを確認済みかどうかでグループ化するには`group_by`オプションを加えます:
 
 ```elixir
 query = from u in User,
@@ -316,7 +316,7 @@ defmodule ExampleApp.User do
 end
 ```
 
-2つの新たな関数、`changeset/2`と`validate_password_confirmation/1`を追加しました。
+`changeset/2`関数を改良し、`validate_password_confirmation/1`と `password_mismatch_error/1`と`password_incorrect_error/1`の3つのヘルパー関数を追加しました。
 
 `changeset/2`の名前から推測されるように、これは新しいチェンジセットを作成します。この中で、`cast/4`を用いて、一連の必要あるいはオプションのフィールドからパラメータをチェンジセットへと変換します。次に、チェンジセットのパスワードの長さと、独自実装した関数を用いてパスワード確認のマッチ、そしてユーザ名が一意であるかを検証します。最後に、実際のデータベースのパスワードフィールドを更新します。ここで、チェンジセットにある値を更新するために、`put_change/3`を使用しています。
 

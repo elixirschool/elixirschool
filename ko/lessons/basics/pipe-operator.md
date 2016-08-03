@@ -40,7 +40,7 @@ iex> "Elixir rocks" |> String.split
 - 모든 토큰을 대문자로 만들기
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 

@@ -127,7 +127,7 @@ end
 # Without alias
 
 defmodule Example do
-  def greeting(name), do: Saying.Greetings.basic(name)
+  def greeting(name), do: Sayings.Greetings.basic(name)
 end
 ```
 

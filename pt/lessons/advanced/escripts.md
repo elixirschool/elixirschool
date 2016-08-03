@@ -70,7 +70,7 @@ end
 
 ## Criando o Executável
 
-Quando terminamos de configurar nossa aplicação para usar escript, criar o executável é muito simples usando mix:
+Quando terminamos de configurar nossa aplicação para usar escript, criar o executável é muito simples usando Mix:
 
 ```elixir
 $ mix escript.build

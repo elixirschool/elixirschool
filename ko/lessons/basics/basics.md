@@ -6,28 +6,46 @@ order: 1
 lang: ko
 ---
 
-Elixir를 준비하고, 기본적인 타입과 연산자를 배워봅시다.
+Elixir를 시작합시다. 기본적인 타입과 연산자를 배워봅시다.
 
 {% include toc.html %}
 
-## 준비
+## 시작하기
 
 ### Elixir 설치하기
 
-Elixir-lang.org 홈페이지의 [Installing Elixir](http://elixir-lang.org/install.html) 가이드에서 각 운영체제별로 설치하는 방법을 알아볼 수 있습니다.
+elixir-lang.org 홈페이지의 [Installing Elixir](http://elixir-lang.org/install.html) 가이드에서 운영체제별로 설치하는 방법을 알아볼 수 있습니다.
 
-### 대화형 모드
+Elixir를 설치하고 나서 어떤 버전이 설치되었는지 손쉽게 확인할 수 있습니다.
+
+    % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}  [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+    Elixir {{ site.elixir.version }}
+
+### 대화형 모드 건드려보기
 
 Elixir를 설치하면 대화형 셸인 `iex`가 함께 설치됩니다. `iex`를 사용하여 Elixir 코드를 입력하면서 바로바로 실행할 수 있습니다.
 
 `iex`를 실행하는 걸로 시작해보아요.
 
-	Erlang/OTP 17 [erts-6.4] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-	iex>
+    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+    iex>
 
-## 기본 타입
+여기서 계속 나아가봅시다. 간단한 코드를 조금 써 보면서 체험해보세요.
+
+    iex(1)> 2+3
+    5
+    iex(2)> 2+3 == 5
+    true
+    iex(3)> String.length("The quick brown fox jumps over the lazy dog")
+    43
+
+여기서 입력해 본 모든 코드를 이해하지 못하더라도 벌써부터 걱정하지 마시고, 어떤 느낌인지 감만 잡아보세요.
+
+## 기본적인 데이터 타입
 
 ### 정수
 
@@ -54,9 +72,9 @@ iex> 0x1F
 Elixir에서는 배정밀도(64 bit double precision)로 부동 소수점 숫자를 처리하고, `e`를 사용하여 10의 지수를 표현할 수도 있습니다. 부동 소수점 숫자를 표현할 때에는 소수점 앞뒤로 숫자가 한 개 이상 필요합니다.
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10
@@ -85,7 +103,7 @@ iex> :foo == :bar
 false
 ```
 
-참고: 부울 값 `true`와 `false`도 애텀입니다. 각각 `:true`와 `:false`로도 표현할 수 있습니다.
+부울 값 `true`와 `false`도 애텀입니다. 각각 `:true`와 `:false`로도 표현할 수 있습니다.
 
 ```elixir
 iex> true |> is_atom
@@ -94,6 +112,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Elixir에서 사용하는 모듈의 이름도 애텀입니다. `Myapp.MyModule` 같은 경우처럼 아직 정의하지 않았다고 하더라도 올바른 애텀으로 간주합니다.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+애텀은 Erlang 라이브러리에서 모듈을 (내장된 것도 포함해서) 참조할 때에도 사용합니다.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### 문자열
@@ -116,6 +148,8 @@ iex> "foo
 iex> "foo\nbar"
 "foo\nbar"
 ```
+
+Elixir에는 이보다 더 복잡한 데이터 타입도 있습니다. 이런 부분은 컬렉션이나 함수를 다룰 때 조금 더 알아보도록 하겠습니다.
 
 ## 기본적인 연산
 

@@ -44,6 +44,7 @@ In addition to the steps above there are a few addition steps required for trans
   ```shell
   $ cd elixir_school
   $ mkdir -p jp/lessons/{basics,advanced,specifics}
+  $ touch jp/lessons/{basics,advanced,specifics}/.gitignore
   ```
 
 1. Update `_config.yml` by including the 2 character code in `languages` and adding translations to `sections`, `description` and `toc`:
@@ -71,6 +72,12 @@ In addition to the steps above there are a few addition steps required for trans
 
   ```yaml
   rtl_languages: ['ar']
+  ```
+
+1. Add it to list in `index.md`:
+
+  ```markdown
+  Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl] [Português][pt], [Русском][ru] and [Bahasa Melayu][my] and other.
   ```
 
 #### Translated Lesson

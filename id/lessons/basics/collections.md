@@ -15,19 +15,19 @@ List, tuple, kata kunci, map dan kombinator fungsional.
 List adalah kumpulan sederhana dari nilai-nilai, bisa berisi beberapa tipe sekaligus; list bisa berisi nilai yang tidak unik (bisa berisi duplikat):
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir mengimplementasikan list sebagai `linked list`. Hal ini berarti operasi untuk mendapatkan panjang sebuah list merupakan operasi yang `O(n)`.  Karenanya, biasanya lebih cepat menambahkan anggota baru di awal list daripada di akhir list:
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 
@@ -56,19 +56,19 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 Ketika menggunakan list, kita sering menggunakan head dan tail dari list tersebut. Head adalah elemen pertama dari list dan tail adalah sisanya. Elixir memberikan dua fungsi, `hd` dan `tl`, untuk mengakses keduanya:
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
 Di samping kedua fungsi tersebut, anda juga bisa menggunakan operator `|`; kita akan melihat pola ini di pelajaran-pelajaran selanjutnya:
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -78,8 +78,8 @@ iex> t
 Tuple mirip dengan list tetapi disimpan secara berturutan di memori. Ini membuat pengaksesan panjangnya jadi cepat tetapi modifikasinya jadi lambat; tuple yang baru harus disalin keseluruhannya ke memori baru. Tuple didefinisikan menggunakan kurung kurawal:
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 Umumnya tuple digunakan sebagai mekanisme untuk mengembalikan informasi tambahan dari fungsi; manfaat dari ini akan lebih jelas ketika kita masuk ke pencocokan pola (pattern matching):
@@ -132,7 +132,7 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-Jika sebuah duplikasi ditambahkan ke sebuah mapl data yang baru menimpa yang lama:
+Jika sebuah duplikasi ditambahkan ke sebuah map data yang baru menimpa yang lama:
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
@@ -147,4 +147,15 @@ iex> %{foo: "bar", hello: "world"}
 
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
+```
+
+Hal menarik lain mengenai map adalah map telah menyediakan sintaks untuk memperbaharui dan mengakses kunci atom:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
 ```

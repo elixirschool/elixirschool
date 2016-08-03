@@ -115,11 +115,11 @@ sitemap:
   priority_name: 'priority'
 
 elixir:
-  version: 1.2.3
+  version: 1.3.2
 
 erlang:
-  OTP: 18
-  erts: 7.3
+  OTP: 20
+  erts: 8.0.1
 
 toc:
   en: Table of Contents
@@ -138,3 +138,15 @@ toc:
   no: Innholdsfortegnelse
   ko: 목차
   id: Daftar Isi
+
+share:
+  en: Share This Page
+  ru: Поделиться
+  ko: 이 페이지 공유하기
+  jp: このページをシェアする
+  no: Del denne siden
+  cn: 分享本页面
+  sk: Zdieľaj túto stránku
+  fr: Partager cette page
+  pl: Podziel się
+  id: Bagikan Halaman Ini

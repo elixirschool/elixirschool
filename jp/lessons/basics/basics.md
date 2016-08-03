@@ -32,15 +32,15 @@ Elixirには`iex`という対話シェルが付属しており、入力したそ
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-    iex(1)>
+    iex>
 
 先に進み、試しにいくつかの簡単な式を入力してみましょう:
 
-    iex(1)> 2+3
+    iex> 2+3
     5
-    iex(2)> 2+3 == 5
+    iex> 2+3 == 5
     true
-    iex(3)> String.length("The quick brown fox jumps over the lazy dog")
+    iex> String.length("The quick brown fox jumps over the lazy dog")
     43
 
 それぞれの式をまだ理解していなくても心配することはありませんが、うまくいけばやり方は分かるでしょう。
@@ -72,9 +72,9 @@ iex> 0x1F
 Elixirでは、浮動小数点数は少なくとも1桁の数字とその後に続く小数を必要とし、 64ビットの倍精度で、指数`e`に対応しています:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14 
+3.14
+iex> .14 
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10
@@ -103,7 +103,7 @@ iex> :foo == :bar
 false
 ```
 
-注記: 真理値の`true`と`false`はそれぞれ、アトムの`:true`と`:false`でもあります。
+真理値の`true`と`false`はそれぞれ、アトムの`:true`と`:false`でもあります。
 
 ```elixir
 iex> true |> is_atom
@@ -112,6 +112,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Elixirのモジュールの名前もまたアトムです。`MyApp.MyModule`は、そのようなモジュールが宣言されていなくても有効なアトムです。
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+アトムは、Erlangのビルトインのものも含めたライブラリのモジュールを参照するのにも使われます。
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### 文字列

@@ -2,7 +2,7 @@
 layout: page
 title: OTPスーパーバイザ
 category: advanced
-order: 5
+order: 6
 lang: jp
 ---
 
