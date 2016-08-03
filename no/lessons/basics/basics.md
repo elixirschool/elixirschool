@@ -34,8 +34,6 @@ For å starte IEx skriver vi `iex` i terminalvinduet:
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Elixir støtter binære, oktale og heksdesimale heltall:

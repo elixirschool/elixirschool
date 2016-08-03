@@ -34,8 +34,6 @@ Untuk bermula, kita jalankan `iex`:
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Sokongan untuk nombor-nombor binari, oktal dan heksadesimal disertakan secara lalai(default):

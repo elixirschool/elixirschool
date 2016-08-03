@@ -34,8 +34,6 @@ Pour commencer, lançons `iex`:
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Il y a également le support des notations binaires, octales et hexadécimales : 

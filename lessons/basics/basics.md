@@ -52,8 +52,6 @@ Don't worry if you don't understand every expression yet, but hopefully you get 
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Support for binary, octal, and hexadecimal numbers comes built in:

@@ -36,8 +36,6 @@ ang. _Integer_
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Elixir pozwala też na używanie liczb w notacji binarnej, ósemkowej i szesnastkowej:  
