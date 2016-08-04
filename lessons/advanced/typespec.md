@@ -6,7 +6,7 @@ order: 9
 lang: en
 ---
 
-If you want to define 'interface' like in Java or Ruby, Elixir contains syntax for that. More, if you want to define your custom type you can do that too. In this lesson we will learn about `@spec` and `@type` syntax.
+In this lesson we will learn about `@spec` and `@type` syntax. First is more syntax complement for writing documentation that could by analyzed by tools. Second helps us to write more readable and easier to understand code.
 
 {% include toc.html %}
 
