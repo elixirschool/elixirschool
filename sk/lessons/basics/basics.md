@@ -53,9 +53,11 @@ V Elixire vyžadujú desatinné čísla aspoň jednu číslicu pred desatinnou b
 
 ```elixir
 iex> 3.14
+3.14
 iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
+1.0e-10
 ```
 
 
@@ -65,7 +67,9 @@ Elixir ma boolean hodnoty `true` a `false`; všetky hodnoty, okrem `false` a `ni
 
 ```elixir
 iex> true
+true
 iex> false
+false
 ```
 
 ### Atom
