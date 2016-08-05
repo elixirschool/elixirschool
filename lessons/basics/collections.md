@@ -40,6 +40,9 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
+A side note about the name (`++/2`) format used above: In Elixir (and Erlang, upon which Elixir is built), a function or operator name has two components: the name you give it (here `++`) and the number of arguments it takes (two in this case), combined with a slash. (The number of arguments is often referred to as "arity.") We'll talk more about this later; this knowledge will help you understand the notation for now.
+
+
 ### List Subtraction
 
 Support for subtraction is provided via the `--/2` operator; it's safe to subtract a missing value:
