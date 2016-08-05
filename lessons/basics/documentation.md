@@ -22,7 +22,7 @@ Elixir treats documentation as a *first-class citizen*, offering various functio
 
 ### Inline Documentation
 
-Probably the simplest way to comment your code is with inline comments. Similar to Ruby or Python, Elixir's inline comment is denoted with a `#`, frequently known as a *pound*, or a *hash* depending on where you are from in the world. 
+Probably the simplest way to comment your code is with inline comments. Similar to Ruby or Python, Elixir's inline comment is denoted with a `#`, frequently known as a *pound*, or a *hash* depending on where you are from in the world.
 
 Take this Elixir Script (greeting.exs):
 
@@ -95,7 +95,7 @@ defmodule Greeter do
 end
 ```
 
-If we kick into IEx again and use the helper command (`h`) on the function prepended with the module name, we should see the following.
+If we kick into IEx again and use the helper command (`h`) on the function prepended with the module name, we should see the following:
 
 ```elixir
 iex> c("greeter.ex")
@@ -178,7 +178,7 @@ Examples
 
 ### Installing
 
-Assuming all is well, and we're seeing the output above suggests that we are ready to set up ExDoc. Within our `mix.exs` file add the two required dependencies to get started; `:earmark` and `:ex_doc`.
+Assuming all is well and we're seeing the output above, we are now ready to set up ExDoc. In the `mix.exs` file, add the two required dependencies to get started: `:earmark` and `:ex_doc`.
 
 ```elixir
   def deps do
@@ -189,7 +189,7 @@ Assuming all is well, and we're seeing the output above suggests that we are rea
 
 We specify the `only: :dev` key-value pair as we don't want to download and compile these dependencies in a production environment. But why Earmark? Earmark is a Markdown parser for the Elixir programming language that ExDoc utilizes to turn our documentation within `@moduledoc` and `@doc` to beautiful looking HTML.
 
-It is worth noting at this point, that you are not forced to use Earmark. You can change the markup tool to others such as Pandoc, Hoedown or Cmark; however you will need to do a little more configuration which you can read about [here](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). For this tutorial, we'll just stick with Earmark.
+It is worth noting at this point that you are not forced to use Earmark. You can change the markup tool to others such as Pandoc, Hoedown, or Cmark; however you will need to do a little more configuration which you can read about [here](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). For this tutorial, we'll just stick with Earmark.
 
 ### Generating Documentation
 
@@ -207,11 +207,11 @@ Hopefully, if everything went to plan, you should see a similar message as to th
 
 ![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
 
-We can see that Earmark has rendered our markdown and ExDoc is now displaying it in a useful format.
+We can see that Earmark has rendered our Markdown and ExDoc is now displaying it in a useful format.
 
 ![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
 
-We can now deploy this to GitHub, our own website, more commonly [HexDocs](https://hexdocs.pm/).
+We can now deploy this to GitHub, our own website, or more commonly [HexDocs](https://hexdocs.pm/).
 
 ## Best Practice
 
@@ -228,7 +228,7 @@ defmodule Greeter do
 end
 ```
 
-  - If you do not intend to document a module, **do not** leave it blank. Consider annotating the module `false` as so:
+  - If you do not intend to document a module, **do not** leave it blank. Consider annotating the module `false`, like so:
 
 ```elixir
 defmodule Greeter do
@@ -303,6 +303,6 @@ defmodule Greeter do
 end
 ```
 
- - Try to include some code examples in your documentation, this also allows you to generate automatic tests from the code examples found in a module, function or macro with [ExUnit.DocTest][]. In order to do that, one needs to invoke the `doctest/1` macro from their test case and write their examples according to some guidelines, which are detailed in the [official documentation][ExUnit.DocTest]
+ - Try to include some code examples in your documentation. This also allows you to generate automatic tests from the code examples found in a module, function, or macro with [ExUnit.DocTest][]. In order to do that, you need to invoke the `doctest/1` macro from your test case and write your examples according to some guidelines as detailed in the [official documentation][ExUnit.DocTest].
 
 [ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
