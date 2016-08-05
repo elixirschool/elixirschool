@@ -40,7 +40,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-A side note about the name (`++/2`) format used above: In Elixir (and Erlang, upon which Elixir is built), a function or operator name has two components: the name you give it (here `++`) and the number of arguments it takes (two in this case), combined with a slash. (The number of arguments is often referred to as "arity.") We'll talk more about this later; this knowledge will help you understand the notation for now.
+A side note about the name (`++/2`) format used above: In Elixir (and Erlang, upon which Elixir is built), a function or operator name has two components: the name you give it (here `++`) and its _arity_. Arity is a core part of speaking about Elixir (and Erlang) code. It is the number of arguments a given function takes (two in this case). Arity and the given name are combined with a slash. We'll talk more about this later; this knowledge will help you understand the notation for now.
 
 
 ### List Subtraction
