@@ -33,8 +33,8 @@ To get started, let's run `iex`:
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
-   
-Lets go ahead and give it a try now by typing in a few simple expressions:
+
+Let's go ahead and give it a try now by typing in a few simple expressions:
 
     iex> 2+3
     5
@@ -196,7 +196,7 @@ iex> !false
 true
 ```
 
-There are three additional operators whose first argument _must_ be a boolean (`true` and `false`):
+There are three additional operators whose first argument _must_ be a boolean (`true` or `false`):
 
 ```elixir
 iex> true and 42
