@@ -23,7 +23,7 @@ iex> string = <<104,101,108,108,111>>
 
 ## Char Lists
 
-Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters. Elixir also has a char list type (characters list). Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
+Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters. Elixir also has a char list type (character list). Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
 
 What's the difference? Each value from a char list is the ASCII value from the character. Let's dig in:
 
@@ -62,7 +62,7 @@ iex> String.graphemes string
 
 ## String Functions
 
-Let's review some of the most important and useful functions of the String module. This lesson will only cover a subset of the available functions; to see a complete set of functions visit the official [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) docs.
+Let's review some of the most important and useful functions of the String module. This lesson will only cover a subset of the available functions. To see a complete set of functions visit the official [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) docs.
 
 ### `length/1`
 
@@ -109,7 +109,7 @@ Let's walk through a simple exercises to demonstrate we are ready to go with Str
 A and B are considered anagrams if there's a way to rearrange A or B making them equal. For example:
 
 + A = super
-+ B = perus 
++ B = perus
 
 If we re-arrange the characters on String A, we can get the string B, and vice versa.
 
