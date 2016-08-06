@@ -46,7 +46,7 @@ Pri programovaní v Elixire zvyčajne používame reťazce, nie charlisty. Podpo
 
 ## Grafémy a codepointy
 
-Codepointy sú len obyčajné Unicode znaky, ktoré môžu byť reprezentované jedným alebo dvoma bajtami. Napríklad znaky s diakritikou, ako `á, ñ, è` a podobne. Grafémy pozostávajú z viacerých codepointov, ktoré vyzerajú ako obyčajné znaky.
+Codepointy sú unicode znaky reprezentované jedným alebo viacerými bajtami, v závislosti od kódovania. Znaky mimo rozsahu ASCII sú vždy reprezentované minimálne dvoma bajtmi. Napríklad znaky abecedy s diakritikou (`á`, `ñ`, `è`, ...) bývajú kôdované dvoma bajtami, znaky ázijských jazykov (napr. čínske znaky) dokonca troma až štyrmi bajtmi. Graféma pozostáva z viacerých codepointov, ktoré sú však vo výsledku vykreslené ako jediný znak.
 
 Modul String poskytuje dve metódy, ktorými ich vieme získať: `graphemes/1` a `codepoints/1`. Ukážme si použitie:
 
