@@ -16,7 +16,7 @@ _Du oppfordres til å delta, samt gi tilbakemeldinger!_
 "Elixir er et dynamisk, funksjonelt språk utviklet for å bygge skalerbare og vedlikeholdsvennlige applikasjoner." [elixir-lang.org](http://elixir-lang.org/)
 
 
-Elixir benytter den bunnsolide ErlangVM til å bygge distribuerte og feiltolerante systemer med lav forsinkelse, rett ut av boksen.
+Elixir benytter den bunnsolide Erlang VM (BEAM) til å bygge distribuerte og feiltolerante systemer med lav forsinkelse, rett ut av boksen.
 
 __Funksjoner__:
 

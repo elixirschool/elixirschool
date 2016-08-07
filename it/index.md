@@ -14,7 +14,7 @@ _Sei incoraggiato a commentare o partecipare!_
 
 "Elixir è un linguaggio dinamico e funzionale, progettato per costruire applicazioni scalabili e manutenibili." — [elixir-lang.org](http://elixir-lang.org/)
 
-Elixir adotta la robusta ErlangVM per costruire sistemi distribuiti, tolleranti ai guasti e con bassa latenza.
+Elixir adotta la robusta Erlang VM (BEAM) per costruire sistemi distribuiti, tolleranti ai guasti e con bassa latenza.
 
 __Features__:
 
