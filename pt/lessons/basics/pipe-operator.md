@@ -53,17 +53,17 @@ true
 
 ## Boas Práticas
 
-Se a aridade de uma função é mais do que 1, certifique-se de usar parêntesis. Isso não importa muito para Elixir, porém é importante para outros programadores que podem interpretar mal o seu código. Se tomarmos o nosso segundo exemplo, e retirar os suportes do `Enum.map/2`, nos encontramos com o seguinte aviso:
+Se a aridade de uma função é mais do que 1, certifique-se de usar parêntesis. Isso não importa muito para Elixir, porém é importante para outros programadores que podem interpretar mal o seu código. Se tomarmos o nosso terceiro exemplo, e retirar os suportes do `String.ends_with?/2`, nos encontramos com o seguinte aviso:
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
-iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+iex> "elixir" |> String.ends_with? "ixir"
+warning: parentheses are required when piping into a function call. For example:
 
-foo 1 |> bar 2 |> baz 3
+  foo 1 |> bar 2 |> baz 3
 
-Should be written as:
+is ambiguous and should be written as
 
-foo(1) |> bar(2) |> baz(3)
+  foo(1) |> bar(2) |> baz(3)
 
-["ELIXIR", "ROCKS"]
+true
 ```

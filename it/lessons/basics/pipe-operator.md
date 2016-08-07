@@ -54,17 +54,17 @@ true
 
 ## Best Practices
 
-Se il numero di parametri accettati da una funzione (_arity_) è maggiore di 1, assicurati di usare le parentesi. Questo non ha a che fare con Elixir, ma è importante per altri programmatori che potrebbero confondersi con il tuo codice. Se prendiamo il nostro secondo esempio, e rimuoviamo le parentesi da `Enum.map/2`, riceveremo il seguente avviso:
+Se il numero di parametri accettati da una funzione (_arity_) è maggiore di 1, assicurati di usare le parentesi. Questo non ha a che fare con Elixir, ma è importante per altri programmatori che potrebbero confondersi con il tuo codice. Se prendiamo il nostro terzo esempio, e rimuoviamo le parentesi da `String.ends_with?/2`, riceveremo il seguente avviso:
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
-iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+iex> "elixir" |> String.ends_with? "ixir"
+warning: parentheses are required when piping into a function call. For example:
 
-foo 1 |> bar 2 |> baz 3
+  foo 1 |> bar 2 |> baz 3
 
-Should be written as:
+is ambiguous and should be written as
 
-foo(1) |> bar(2) |> baz(3)
+  foo(1) |> bar(2) |> baz(3)
 
-["ELIXIR", "ROCKS"]
+true
 ```
