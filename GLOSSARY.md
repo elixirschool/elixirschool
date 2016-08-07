@@ -48,7 +48,7 @@ Class names and proper nouns do not get translated.
 - boolean - логический тип
 - callback - функция обратного вызова
 - char list - список символов
-- codepoint - кодовая точка
+- codepoint - код символа
 - collection - коллекция
 - concatenation - конкатенация
 - exception - исключение
