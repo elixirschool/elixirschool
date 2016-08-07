@@ -66,9 +66,8 @@ Class names and proper nouns do not get translated.
 - module - модуль
 - namespace - пространство имен
 - pattern matching - сопоставление с образцом
-- private (function) - закрытая (функция)
-- protected (function) - защищённая (функция)
-- public (function) - общедоступная (функция)
+- private - закрытая
+- public - общедоступная
 - rebind variable - переприсвоение переменной
 - signature - сигнатура (функции)
 - standard library - стандартная библиотека
@@ -112,9 +111,8 @@ Class names and proper nouns do not get translated.
 - metaprogramming - metaprogramação
 - module - módulo
 - pattern matching - correspondência de padrão
-- private (function) - privada (função)
-- protected (function) - protegida (função)
-- public (function) - pública (função)
+- private - privada
+- public - pública
 - rebind variable - associar variável novamente
 - subtraction - subtração
 - signature - assinatura (função)
