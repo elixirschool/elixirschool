@@ -14,7 +14,7 @@ _Maklumbalas dan penyertaan anda amat dialu-alukan!_
 
 "Elixir ialah satu bahasa aturcara kefungsian(functional language) yang dinamik direka untuk membina aplikasi yang mudah untuk dinaiktaraf(scalable) dan mudah untuk diselenggara." - [elixir-lang.org](http://elixir-lang.org/)
 
-Elixir menuilkan kelebihan ErlangVM untuk membina sistem yang bersifat mudah-agih(distributed) dan berdayatahan(fault-tolerant) serta mempunyai redah-kependaman(low-latency) yang disiap-pasang.
+Elixir menuilkan kelebihan Erlang VM (BEAM) untuk membina sistem yang bersifat mudah-agih(distributed) dan berdayatahan(fault-tolerant) serta mempunyai redah-kependaman(low-latency) yang disiap-pasang.
 
 __Ciri-ciri__:
 

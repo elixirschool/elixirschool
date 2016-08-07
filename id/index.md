@@ -14,7 +14,7 @@ _Feedback dan partisipasi anda sangat diharapkan!_
 
 "Elixir adalah sebuah bahasa fungsional dinamis, didesain untuk membuat aplikasi yang skalabel dan terawat (maintainable)." — [elixir-lang.org](http://elixir-lang.org/)
 
-Elixir memanfaatkan ErlangVM yang sudah teruji untuk membangun sistem terdistribusi dan toleran-kegagalan (fault tolerant) dengan latensi yang rendah sejak awalnya.
+Elixir memanfaatkan Erlang VM (BEAM) yang sudah teruji untuk membangun sistem terdistribusi dan toleran-kegagalan (fault tolerant) dengan latensi yang rendah sejak awalnya.
 
 __Fitur__:
 

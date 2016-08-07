@@ -6,7 +6,7 @@ order: 4
 lang: it
 ---
 
-Uno dei punti di forza di Elixir è il suo supporto alla concorrenza. Grazie alla ErlangVM, scrivere programmi concorrenti in Elixir è più semplice di quanto ci si possa aspettare. Il modello di concorrenza si basa sugli Attori, ovvero dei processi concorrenti che mantengono uno stato interno e comunicano con altri attori/processi attraverso lo scambio di messaggi.
+Uno dei punti di forza di Elixir è il suo supporto alla concorrenza. Grazie alla Erlang VM (BEAM), scrivere programmi concorrenti in Elixir è più semplice di quanto ci si possa aspettare. Il modello di concorrenza si basa sugli Attori, ovvero dei processi concorrenti che mantengono uno stato interno e comunicano con altri attori/processi attraverso lo scambio di messaggi.
 
 In questa lezione daremo un'occhiata ai moduli relativi ai processi concorrenti che vengono forniti dall'installazione di Elixir. Nel prossimo capitolo, ci occuperemo dei behaviour OTP che li implementano.
 
@@ -14,7 +14,7 @@ In questa lezione daremo un'occhiata ai moduli relativi ai processi concorrenti 
 
 ## Processi
 
-I processi che vivono nella ErlangVM sono leggeri, e possono tenere occupate tutte le CPU del sistema. Nonostante questi possano sembrare thread nativi, i processi Erlang sono più semplici, e non è raro trovare migliaia di processi concorrenti in un'applicazione Elixir.
+I processi che vivono nella Erlang VM sono leggeri, e possono tenere occupate tutte le CPU del sistema. Nonostante questi possano sembrare thread nativi, i processi Erlang sono più semplici, e non è raro trovare migliaia di processi concorrenti in un'applicazione Elixir.
 
 Il modo più semplice per lanciare un processo è attraverso il comando `spawn`, che accetta una funzione anonima o pre-definita. Quando creiamo un processo, il suo _Process Identifier_, o PID, ci viene restituito; con esso, possiamo identificare unicamente il processo creato all'interno della nostra applicazione.
 

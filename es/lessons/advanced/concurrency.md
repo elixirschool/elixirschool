@@ -6,7 +6,7 @@ order: 4
 lang: es
 ---
 
-Una de las características más llamativas de Elixir es su soporte para concurrencia. Gracias a la ErlangVM, la concurrencia en Elixir es más fácil de lo esperado. El modelo de concurrencia se basa en Actores, un proceso contenido que se comunica con otro proceso por medio de paso de mensajes.
+Una de las características más llamativas de Elixir es su soporte para concurrencia. Gracias a la Erlang VM (BEAM), la concurrencia en Elixir es más fácil de lo esperado. El modelo de concurrencia se basa en Actores, un proceso contenido que se comunica con otro proceso por medio de paso de mensajes.
 
 En esta lección revisaremos los módulos de concurrencia incluidos en Elixir. En el siguiente capítulo cubriremos los comportamientos de OTP que los implementan.
 
@@ -14,7 +14,7 @@ En esta lección revisaremos los módulos de concurrencia incluidos en Elixir. E
 
 ## Procesos
 
-Los procesos en la ErlangVM son ligeros y se ejecutan usando todos los CPUs. Pese a que pueden parecer hilos nativos, son más simples y no es raro tener miles de procesos concurrentes en una aplicación de Elixir.
+Los procesos en la Erlang VM (BEAM) son ligeros y se ejecutan usando todos los CPUs. Pese a que pueden parecer hilos nativos, son más simples y no es raro tener miles de procesos concurrentes en una aplicación de Elixir.
 
 La manera más fácil de crear un nuevo proceso es `spawn`, el cual recibe una función anónima o una función con nombre. Cuando creamos un nuevo proceso se devuelve un _Identificador de Proceso_ o PID, para identificarlo de manera única dentro de nuestra aplicación.
 
