@@ -88,61 +88,60 @@ Class names and proper nouns do not get translated.
 #### <a name="ukrainian-elixir-related-terms"></a> Elixir-related terms
 
 - actors - модель акторів
-- alias - 
+- alias - псевдонім
 - atom - атом
-- behaviour - 
-- function clauses - 
-- guard - 
-- guard operator - 
-- changeset - 
-- keyword list - 
-- match operator - 
-- pin operator - 
-- pipe operator - 
-- sigil - 
-- schema - 
-- tuple - 
+- behaviour - поведінка
+- function clauses - оголошення функції
+- guard - обмеження
+- guard operator - оператор обмеження
+- changeset - набір змін
+- keyword list - ключовий список
+- match operator - оператор зіставлення
+- pin operator - оператор закріплення
+- pipe operator - конвеєр
+- sigil - рядкова позначка
+- schema - схема
+- tuple - кортеж
 
 #### <a name="ukrainian-cs-terms"></a> CS terms
 
-- anonymous function - 
-- attribute - 
-- bitsring - 
-- binding - 
+- anonymous function - анонімна функція
+- attribute - атрибут
+- bitsring - бітовий рядок
+- binding - контекст
 - boolean - логічний тип даних
-- callback - 
-- char list - 
-- codepoint - 
-- collection - 
-- concatenation - 
-- exception - 
-- grapheme - 
+- callback - зворотній виклик
+- char list - список символів
+- codepoint - [значення Unicode](http://unicode.org/glossary/#code_point)
+- collection - колекція
+- concatenation - конкатенація (об'єднання)
+- exception - виняток
+- grapheme - [графема](https://uk.wikipedia.org/wiki/%D0%93%D1%80%D0%B0%D1%84%D0%B5%D0%BC%D0%B0)
 - float - число з плаваючою точкою
-- function body - 
-- head - 
+- function body - тіло функції
+- head - голова
 - integer - ціле число
-- interpolation - 
-- list - 
-- list comprehension - 
-- map -  
+- interpolation - інтерполяція
+- list - список
+- list comprehension - [списковий вираз](https://uk.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BA%D0%BE%D0%B2%D1%96_%D0%B2%D0%B8%D1%80%D0%B0%D0%B7%D0%B8)
+- map - асоціативний масив
 - metaprogramming - метапрограмування
-- module - 
-- module - 
-- namespace - 
-- pattern matching - 
-- private (function) - 
-- protected (function) - 
-- public (function) - 
-- rebind variable - 
-- signature - сигнатура (функції)
-- standard library - 
-- struct - 
+- module - модуль
+- namespace - простір імен
+- pattern matching - зіставлення зі зразком
+- private - приватний
+- protected - захищений
+- public - публічний
+- rebind variable - перевизначення змінної
+- signature - оголошення (функції)
+- standard library - стандартна бібліотека
+- struct - структура
 - string - рядок
-- subtraction - 
-- supervision tree - 
-- supervisor - 
-- tail - 
-- worker - 
+- subtraction - віднімання
+- supervision tree - дерево нагляду
+- supervisor - наглядач
+- tail - хвіст
+- worker - робочий процес
 
 ### <a name="glossary-portuguese"></a> Glossary - Portuguese
 
