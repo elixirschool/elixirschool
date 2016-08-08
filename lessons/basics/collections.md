@@ -49,6 +49,13 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+Be mindful of duplicate values. For every element on the right, the first occurence of it gets removed from the left:
+
+```elixir
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
+```
+
 **Note:** It uses [strict comparison](../basics/#comparison) to match the values.
 
 ### Head / Tail
