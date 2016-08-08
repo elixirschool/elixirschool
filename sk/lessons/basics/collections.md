@@ -20,7 +20,7 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-V Elixire sú zoznamy implementované ako linked lists. To znamená, že prístup k prvkom zoznamu je operácia so zložitosťou `O(n)` (lineárna zložitosť). Z tohto dôvodu je zvyčajne rýchlejšie nové prvky pridávať na začiatok zoznamu, než na jeho koniec:
+V Elixire sú zoznamy implementované ako lineárne zoznamy (*linked lists*). To znamená, že prístup k prvkom zoznamu je operácia so zložitosťou `O(n)` (lineárna zložitosť). Z tohto dôvodu je zvyčajne rýchlejšie nové prvky pridávať na začiatok zoznamu, než na jeho koniec:
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
@@ -61,7 +61,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-Naviac, ako si ukážeme v neskorších lekciách, sa na tento účel dá krásne použiť operátor pipe (`|`):
+Naviac, ako si ukážeme v neskorších lekciách, sa na tento účel dá krásne použiť operátor `|` (cons):
 
 ```elixir
 iex> [h|t] = [3.14, :pie, "Apple"]
