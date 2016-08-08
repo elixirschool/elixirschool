@@ -53,7 +53,7 @@ true
 
 ## Najlepsze praktyki 
 
-Jeśli liczba argumentów funkcji jest większa niż 1, pamiętaj o korzystaniu z nawiasów. Nawiasy w Elixierze nie są obowiązkowe, ale ich stosowanie poprawia czytelność kodu, co docenić mogą inni programiści. Jeśli z kodu, w trzecim drugim, usuniemy nawiasy z funkcji `Enum.ends_with/2`, zobaczymy poniższe ostrzeżenie.
+Jeśli liczba argumentów funkcji jest większa niż 1, pamiętaj o korzystaniu z nawiasów. Nawiasy w Elixierze nie są obowiązkowe, ale ich stosowanie poprawia czytelność kodu, co docenić mogą inni programiści. Jeśli z kodu, w trzecim przykładzie, usuniemy nawiasy z funkcji `Enum.ends_with/2`, zobaczymy poniższe ostrzeżenie.
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"
