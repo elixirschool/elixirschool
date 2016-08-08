@@ -53,18 +53,18 @@ true
 
 ## Najlepsze praktyki 
 
-Jesli liczba argumentów funkcji jest większa niż 1, pamiętaj o korzystaniu z nawiasów. Nawiasy w Elixierze nie są obowiązkowe, ale ich stosowanie poprawia czytelność kodu, co docenić mogą inni programiści. Jeśli z kodu, w przykładzie drugim, usuniemy nawiasy z funkcji `Enum.map/2`, zobaczymy poniższe ostrzeżenie.
+Jeśli liczba argumentów funkcji jest większa niż 1, pamiętaj o korzystaniu z nawiasów. Nawiasy w Elixierze nie są obowiązkowe, ale ich stosowanie poprawia czytelność kodu, co docenić mogą inni programiści. Jeśli z kodu, w trzecim przykładzie, usuniemy nawiasy z funkcji `Enum.ends_with/2`, zobaczymy poniższe ostrzeżenie.
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
-iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+iex> "elixir" |> String.ends_with? "ixir"
+warning: parentheses are required when piping into a function call. For example:
 
-foo 1 |> bar 2 |> baz 3
+  foo 1 |> bar 2 |> baz 3
 
-Should be written as:
+is ambiguous and should be written as
 
-foo(1) |> bar(2) |> baz(3)
+  foo(1) |> bar(2) |> baz(3)
 
-["ELIXIR", "ROCKS"]
+true
 ```
 
