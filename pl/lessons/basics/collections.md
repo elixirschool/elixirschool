@@ -73,6 +73,8 @@ iex> t
 [:pie, "Apple"]
 ```
 
+_Uwaga_: znak `|` w tym przypadku oznacza operator _cons_ (od ang. _construct_) – tworzenia, a nie operator _pipe_ – łączenia.  
+
 ## Krotki
 
 Krotki są podobne do list, ale zajmują ciągły obszar pamięci.  Powoduje to, że odczyt jest bardzo szybki, lecz kodyfikacja kosztowna; zmiana wartości oznacza stworzenie nowej krotki i skopiowanie elementów starej.  Krotki definiujemy za pomocą klamer:
