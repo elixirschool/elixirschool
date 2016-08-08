@@ -72,14 +72,16 @@ defmodule Examples do
 
     defstruct first: nil, last: nil
 
-    @type t :: %Examples{first: integer, last: integer}
-
     @type t(first, last) :: %Examples{first: first, last: last}
+
+    @type t :: %Examples{first: integer, last: integer}
 
 end
 ```
 
-We defined two types. First `t` is representation of `%Examples{first: integer, last: integer}`. Second is `t(first, last)` that is an alias to `%Examples{first: first, last: last}`. What is a difference? First one represents struct `Examples` of which the two keys are `integer`. Second one represents struct which keys could has any type. That means code like this:
+We defined type `t(first, last)` that is representation of struct `%Examples{first: first, last: last}`. At this point we see types could takes parameters, but we defined type `t` as well and this time it is representation of struct `%Examples{first: integer, last: integer}`.   
+
+What is a difference? First one represents struct `Examples` of which the two keys could be any type. Second one represents struct which keys are `integers`. That means code like this:
   
 ```elixir
 @spec sum_times(integer, Examples.t) :: integer
