@@ -94,7 +94,7 @@ iex> :true === true
 true
 ```
 
-Elixir 模块的名字也是原子，及时实际上还不存在这个模块，`MyApp.MyModule` 是一个合法的原子名称。
+Elixir 模块的名字也是原子，即使实际上还不存在这个模块，`MyApp.MyModule` 是一个合法的原子名称。
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
