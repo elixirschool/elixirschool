@@ -45,7 +45,7 @@ Listy znaków istnieją w Elixirze, ponieważ są wymagane przez niektóre modu�
 
 ## Grafemy i kodowanie
 
-Znaki kodowe to zwyczajne znaki Unicode, które mogą być reprezentowane przez jeden albo dwa bajty. Na przykład znaki z akcentem albo tyldą: `á, ñ, è`. Grafemy zwierają jeden lub wiele znaków kodowych, które będą reprezentować pojedynczy znak (literę).
+Znaki kodowe to zwyczajne znaki Unicode, które mogą być reprezentowane przez jeden albo więcej bajtów, w zależności od tego w której części tabeli UTF-8 się znajdują. Znaki spoza zakresu US ASCII zawsze są zapisywane na co najmniej dwóch bajty. Na przykład znaki z akcentem albo tyldą: `á, ñ, è` są zazwyczaj zapisywane na dwóch bajtach. Znaki z języków azjatyckich są najczęściej zapisywane na trzech albo czterech bajtach. Grafemy zwierają jeden lub wiele znaków kodowych, które będą reprezentować pojedynczy znak (literę).
 
 Moduł `String` ma dwie metody do ich obsługi `graphemes/1` i `codepoints/1`. Przyjrzyjmy się na przykładzie:
 
