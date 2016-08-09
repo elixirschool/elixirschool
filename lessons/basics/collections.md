@@ -57,17 +57,19 @@ When using lists it is common to work with a list's head and tail.  The head is 
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
-3.14ex> tl [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-In addition to the aforementioned functions, you can use [pattern matching](../pattern-matching/) and the cons operator `|` to split a list into head and tail; we'll learn more about this pattern in later lessons:
+In addition to the aforementioned functions, you can use [pattern matching](../pattern-matching/) and the pipe operator `|` to split a list into head and tail; we'll learn more about this pattern in later lessons:
 
 ```elixir
 iex> [h|t] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 iex> h
-3.14ex> t
+3.14
+iex> t
 [:pie, "Apple"]
 ```
 
