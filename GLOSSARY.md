@@ -12,8 +12,11 @@ Class names and proper nouns do not get translated.
 ### Table of Contents
 
 - [Glossary - Russian](#glossary-russian)
-	- [Elixir-related terms](#russian-elixir-related-terms)
-	- [CS terms](#russian-cs-terms)
+  - [Elixir-related terms](#russian-elixir-related-terms)
+  - [CS terms](#russian-cs-terms)
+- [Glossary - Ukrainian](#glossary-ukrainian)
+  - [Elixir-related terms](#ukrainian-elixir-related-terms)
+  - [CS terms](#ukrainian-cs-terms)
 - [Glossary - Portuguese](#glossary-portuguese)
   - [Elixir-related terms](#portuguese-elixir-related-terms)
   - [CS terms](#portuguese-cs-terms)
@@ -77,6 +80,67 @@ Class names and proper nouns do not get translated.
 - supervisor - супервизор
 - tail - хвост
 - worker - рабочий процесс
+
+
+### <a name="glossary-ukrainian"></a> Glossary - Ukrainian
+
+#### <a name="ukrainian-elixir-related-terms"></a> Elixir-related terms
+
+- actors - модель акторів
+- alias - псевдонім
+- atom - атом
+- behaviour - поведінка
+- function clauses - оголошення функції
+- guard - обмеження
+- guard operator - оператор обмеження
+- changeset - набір змін
+- keyword list - ключовий список
+- match operator - оператор зіставлення
+- pin operator - оператор закріплення
+- pipe operator - конвеєр
+- sigil - рядкова позначка
+- schema - схема
+- tuple - кортеж
+
+#### <a name="ukrainian-cs-terms"></a> CS terms
+
+- anonymous function - анонімна функція
+- attribute - атрибут
+- bitsring - бітовий рядок
+- binding - контекст
+- boolean - логічний тип даних
+- callback - зворотній виклик
+- char list - список символів
+- codepoint - [значення Unicode](http://unicode.org/glossary/#code_point)
+- collection - колекція
+- concatenation - конкатенація (об'єднання)
+- exception - виняток
+- grapheme - [графема](https://uk.wikipedia.org/wiki/%D0%93%D1%80%D0%B0%D1%84%D0%B5%D0%BC%D0%B0)
+- float - число з плаваючою точкою
+- function body - тіло функції
+- head - голова
+- integer - ціле число
+- interpolation - інтерполяція
+- list - список
+- list comprehension - [списковий вираз](https://uk.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BA%D0%BE%D0%B2%D1%96_%D0%B2%D0%B8%D1%80%D0%B0%D0%B7%D0%B8)
+- map - асоціативний масив
+- metaprogramming - метапрограмування
+- module - модуль
+- namespace - простір імен
+- pattern matching - зіставлення зі зразком
+- private - приватний
+- protected - захищений
+- public - публічний
+- rebind variable - перевизначення змінної
+- signature - оголошення (функції)
+- standard library - стандартна бібліотека
+- struct - структура
+- string - рядок
+- subtraction - віднімання
+- supervision tree - дерево нагляду
+- supervisor - наглядач
+- tail - хвіст
+- worker - робочий процес
 
 ### <a name="glossary-portuguese"></a> Glossary - Portuguese
 
