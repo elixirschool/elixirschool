@@ -57,7 +57,8 @@ When using lists it is common to work with a list's head and tail.  The head is 
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
-3.14ex> tl [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
@@ -67,7 +68,8 @@ In addition to the aforementioned functions, you can use [pattern matching](../p
 iex> [h|t] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 iex> h
-3.14ex> t
+3.14
+iex> t
 [:pie, "Apple"]
 ```
 
