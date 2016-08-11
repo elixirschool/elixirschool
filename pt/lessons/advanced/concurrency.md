@@ -14,7 +14,7 @@ Nesta aula nós veremos os módulos de concorrência que vêm com Elixir. No pr�
 
 ## Processos
 
-Processos no ErlanVM são leves e executam em todas as CPUs. Enquanto eles podem parecer como threads nativas, eles são bastantes simples e não é incomum ter milhares de processos concorrentes em uma aplicação Elixir.
+Processos no Erlang VM são leves e executam em todas as CPUs. Enquanto eles podem parecer como threads nativas, eles são bastantes simples e não é incomum ter milhares de processos concorrentes em uma aplicação Elixir.
 
 A forma mais fácil para criar um novo processo é o `spawn` na qual tem tanto uma função nomeada ou anônima. Quando criamos um novo processo ele retorna um _Process Identifier_ ou PID, para exclusivamente identificá-lo dentro de nossa aplicação.
 
