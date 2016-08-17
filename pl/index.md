@@ -14,7 +14,7 @@ _Zachęcamy do dzielenia się opiniami i wspraciem projektu!_
 
 "Elixir to dynamiczny, funkcyjny język zaprojektowany z myślą o budowie skalowalnych i łatwych w utrzymaniu aplikacji." — [elixir-lang.org](http://elixir-lang.org/)
 
-Elixir wykorzystuje sprawdzoną w boju maszynę wirtualną Erlanga (ErlangVM) do budowy rozproszonych i odpornych na błędy systemów z naciskiem na niskie opóźnienia. 
+Elixir wykorzystuje sprawdzoną w boju maszynę wirtualną Erlanga (Erlang VM (BEAM)) do budowy rozproszonych i odpornych na błędy systemów z naciskiem na niskie opóźnienia. 
 
 __Cechy__:
 

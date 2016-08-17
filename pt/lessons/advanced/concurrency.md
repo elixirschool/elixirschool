@@ -6,7 +6,7 @@ order: 4
 lang: pt
 ---
 
-Um dos pontos ofertados pelo Elixir é o suporte a concorrência. Graças à ErlangVM, concorrência no Elixir é mais fácil do que esperamos. O modelo de concorrência replica sobre Atores, um processo constante que se comunica com outros processos através de passagem de mensagem. 
+Um dos pontos ofertados pelo Elixir é o suporte a concorrência. Graças à Erlang VM (BEAM), concorrência no Elixir é mais fácil do que esperamos. O modelo de concorrência replica sobre Atores, um processo constante que se comunica com outros processos através de passagem de mensagem. 
 
 Nesta aula nós veremos os módulos de concorrência que vêm com Elixir. No próximo capítulo nós cobriremos os comportamentos OTP que os implementam.
 
@@ -14,7 +14,7 @@ Nesta aula nós veremos os módulos de concorrência que vêm com Elixir. No pr�
 
 ## Processos
 
-Processos no ErlanVM são leves e executam em todas as CPUs. Enquanto eles podem parecer como threads nativas, eles são bastantes simples e não é incomum ter milhares de processos concorrentes em uma aplicação Elixir.
+Processos no Erlang VM são leves e executam em todas as CPUs. Enquanto eles podem parecer como threads nativas, eles são bastantes simples e não é incomum ter milhares de processos concorrentes em uma aplicação Elixir.
 
 A forma mais fácil para criar um novo processo é o `spawn` na qual tem tanto uma função nomeada ou anônima. Quando criamos um novo processo ele retorna um _Process Identifier_ ou PID, para exclusivamente identificá-lo dentro de nossa aplicação.
 

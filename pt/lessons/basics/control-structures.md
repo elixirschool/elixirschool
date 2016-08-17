@@ -68,8 +68,8 @@ Considere `_` como o `else` que irá igualar com "todo o resto".
 Já que `case` depende de combinação de padrões, todas as mesmas regras e retrições são aplicadas. Se você pretende procurar padrões em variáveis que já existem, você irá precisar utilizar o operador pin `^`:
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14
+3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"

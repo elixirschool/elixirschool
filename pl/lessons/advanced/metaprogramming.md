@@ -30,7 +30,6 @@ iex> quote do: 1 + 2
 iex> quote do: if value, do: "True", else: "False"
 {:if, [context: Elixir, import: Kernel],
  [{:value, [], Elixir}, [do: "True", else: "False"]]}
-iex(6)>
 ```
 
 Zauważyłeś, że pierwsze trzy wywołania nie zwróciły krotek? Istnieje pięć elementów języka, które zachowują się w ten sposób:

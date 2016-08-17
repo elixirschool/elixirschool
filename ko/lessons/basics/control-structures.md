@@ -72,8 +72,8 @@ iex> case :even do
 `case`는 패턴 매칭에 의존하기 때문에 같은 규칙과 제약이 모두 적용됩니다. 만약 기존의 변수에 매치하고자 한다면 핀 연산자 `^`를 사용해야 합니다.
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14 
+3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"

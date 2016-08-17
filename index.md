@@ -8,14 +8,20 @@ lang: en
 
 Lessons about the Elixir programming language, inspired by Twitter's [Scala School](http://twitter.github.io/scala_school/).
 
-Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][jp], [Português][pt] and [Bahasa Melayu][my] 
+Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Melayu][my], [Українською][ua], [한국어][ko], [L'italiano][it] and other.
 
-[cn]: {{ site.url }}/cn/
-[es]: {{ site.url }}/es/
-[jp]: {{ site.url }}/jp/
-[pt]: {{ site.url }}/pt/
-[vi]: {{ site.url }}/vi/
-[my]: {{ site.url }}/my/
+  [cn]: {{ site.url }}/cn/
+  [es]: {{ site.url }}/es/
+  [it]: {{ site.url }}/it/
+  [jp]: {{ site.url }}/jp/
+  [ko]: {{ site.url }}/ko/
+  [pl]: {{ site.url }}/pl/
+  [pt]: {{ site.url }}/pt/
+  [ru]: {{ site.url }}/ru/
+  [sk]: {{ site.url }}/sk/
+  [vi]: {{ site.url }}/vi/
+  [my]: {{ site.url }}/my/
+  [ua]: {{ site.url }}/ua/
 
 _Your feedback and participation is encouraged!_
 
@@ -23,7 +29,7 @@ _Your feedback and participation is encouraged!_
 
 "Elixir is a dynamic, functional language designed for building scalable and maintainable applications." — [elixir-lang.org](http://elixir-lang.org/)
 
-Elixir leverages the battle tested ErlangVM to build distributed and fault-tolerant systems with low-latency out of the box.
+Elixir leverages the battle tested Erlang VM (BEAM) to build distributed and fault-tolerant systems with low-latency out of the box.
 
 __Features__:
 

@@ -270,7 +270,7 @@ iex> :dets.insert_new(table, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
 true
 iex> select_all = :ets.fun2ms(&(&1))
 [{:"$1", [], [:"$1"]}]
-iex> :dets.select(table, fun)
+iex> :dets.select(table, select_all)
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 

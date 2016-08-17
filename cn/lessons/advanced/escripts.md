@@ -67,7 +67,7 @@ end
 ```
 
 # 构建
-一旦我们的应用配置好了 escript，使用 mix 构建可执行文件就易如反掌了：
+一旦我们的应用配置好了 escript，使用 Mix 构建可执行文件就易如反掌了：
 
 ```elixir
 $ mix escript.build

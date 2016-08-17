@@ -14,7 +14,7 @@ _Mọi tham gia đóng góp đều được trân trọng!_
 
 "Elixir là một ngôn ngữ lập trình hướng chức năng động thiết kế cho xây dựng ứng dụng với khả năng mở rộng và dễ bảo trì." — [elixir-lang.org](http://elixir-lang.org/)
 
-Elixir dựa trên nền tảng ErlangVM ổn định để xây dựng các hệ thống phân tán có khả năng chịu lỗi với độ trễ thấp.
+Elixir dựa trên nền tảng Erlang VM (BEAM) ổn định để xây dựng các hệ thống phân tán có khả năng chịu lỗi với độ trễ thấp.
 
 __Chức năng__:
 

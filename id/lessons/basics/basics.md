@@ -34,8 +34,6 @@ Untuk memulai, kita jalankan `iex`:
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Dukungan terhadap bilangan biner, oktal, dan heksadesimal sudah tersedia secara default:
@@ -54,9 +52,9 @@ iex> 0x1F
 Dalam Elixir, bilangan tidak bulat (float) membutuhkan sebuah titik desimal setelah setidaknya satu digit; bilangan ini memiliki tingkat presisi 64 bit double precision dan mendukung `e` untuk bilangan eksponen:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14 
+ 3.14
+iex> .14 
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10
@@ -85,7 +83,7 @@ iex> :foo == :bar
 false
 ```
 
-CATATAN: Nilai boolean `true` dan `false` masing-masing adalah juga atom `:true` dan `:false`.
+Nilai boolean `true` dan `false` masing-masing adalah juga atom `:true` dan `:false`.
 
 ```elixir
 iex> true |> is_atom
@@ -94,6 +92,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Nama modul dalam Elixir adalah juga atom. `MyApp.MyModule` adalah atom yang sah, walaupun modul tersebut belum dideklarasikan.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Atom juga digunakan untuk mereferensi modul dari librari erlang, termasuk apa yang sudah ada.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### String

@@ -34,8 +34,6 @@ Elixir 自带了 `iex` 这样一个交互 shell, 可以让我们随时计算 Eli
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Elixir 语言本身就支持二进制、八进制和十六进制的整数：
@@ -54,9 +52,9 @@ iex> 0x1F
 在 Elixir 语言中，浮点数要求小数点之前必须有至少一个数字；支持 64 位多精度和 `e` 表示的科学计数：
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14 
+ 3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10
@@ -94,6 +92,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Elixir 模块的名字也是原子，即使实际上还不存在这个模块，`MyApp.MyModule` 是一个合法的原子名称。
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+原子也可以用来直接引用 Erlang 标准库的模块，包括内置的模块。
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### 字符串

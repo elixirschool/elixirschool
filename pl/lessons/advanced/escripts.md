@@ -71,7 +71,7 @@ end
 
 ## Tworzenie plików wykonywalnych
 
-Jak już skonfigurujemy aplikację by używała escript, stworzenie pliku wykonywalnego z mixem jest banalne:
+Jak już skonfigurujemy aplikację by używała escript, stworzenie pliku wykonywalnego z Mixem jest banalne:
 
 ```elixir
 $ mix escript.build

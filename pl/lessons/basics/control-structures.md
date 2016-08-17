@@ -72,8 +72,8 @@ Konstrukcja `_` działa tak samo, jak `else`, czyli dopasuje "wszystko inne".
 Jako że `case` wykorzystuje dopasowanie wzorców, wszystkie zasady tam obowiązujące są zachowane.  Jeżeli chcesz dopasować istniejącą zmienną, to musisz użyć operatora `^`:
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14 
+ 3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"

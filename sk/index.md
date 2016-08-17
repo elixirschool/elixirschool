@@ -14,7 +14,7 @@ _Tvoj feedback a pomoc sú vítané!_
 
 "Elixir je dynamický funkcionálny jazyk navrhnutý pre tvorbu dobre škálovateľných a udržovateľných aplikácii." — [elixir-lang.org](http://elixir-lang.org/)
 
-Elixir stojí na ramenách dekádami overeného ErlangVM - umožňuje tak vyvíjať distribuované a chybám-vzdorné systémy s nízkou latenciou.
+Elixir stojí na ramenách dekádami overeného Erlang VM (BEAM) - umožňuje tak vyvíjať distribuované a chybám-vzdorné systémy s nízkou latenciou.
 
 __Vlastnosti__:
 

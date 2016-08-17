@@ -25,7 +25,7 @@ When to use a particular piece of technology is often a confusing pursuit. If yo
 
 ## Schema
 
-As Mnesia is part of the the Erlang core, rather than Elixir, we have to access it with the colon syntax (See Lesson: [Erlang Interoperability](https://elixirschool.com/lessons/advanced/erlang/)) as so:
+As Mnesia is part of the the Erlang core, rather than Elixir, we have to access it with the colon syntax (See Lesson: [Erlang Interoperability](/lessons/advanced/erlang/)) as so:
 
 ```shell
 
@@ -35,7 +35,6 @@ iex> :mnesia.create_schema([node()])
 
 iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node()])
-
 ```
 
 For this lesson, we will take the latter approach when working with the Mnesia API. `Mnesia.create_schema/1` initializes a new empty schema and passes in a Node List. In this case, we are passing in the node associated with our IEx session.
@@ -111,12 +110,12 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 
 We define the columns using the atoms `:id`, `:name`, and `:job`. When we execute `Mnesia.create_table/2`, it will return either one of the following responses:
 
- - `{atomic, ok}` if the function executes successfully
- - `{aborted, Reason}` if the function failed
+ - `{:atomic, :ok}` if the function executes successfully
+ - `{:aborted, Reason}` if the function failed
 
 ## The Dirty Way
 
-First of all we will look at the dirty way of reading and writing to an Mnesia table. This should generally be avoided as success is not guaranteed, but it should help us learn and become comfortable working with Mnesia. Let's add some entries to our **Person** table.
+First of all we will look at the dirty way of reading and writing to a Mnesia table. This should generally be avoided as success is not guaranteed, but it should help us learn and become comfortable working with Mnesia. Let's add some entries to our **Person** table.
 
 ```shell
 iex> Mnesia.dirty_write({Person, 1, "Seymour Skinner", "Principal"})

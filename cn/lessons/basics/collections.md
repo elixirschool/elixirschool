@@ -15,19 +15,19 @@ lang: cn
 列表是值的简单集合，可以包含不同的数据类型，而且可能包含相同的值。
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir 内部用链表实现列表，这表明获取列表长度是 `O(n)` 的操作。同样的原因，在头部插入比在尾部插入要快。
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 
@@ -55,19 +55,19 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 Elixir 提供了两个函数 `hd` 和 `tl` 来获取这两个部分。
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
 除了上面的提到的函数，你还可以使用 `|` 操作符，我们在后面的教程中还会看到这种用法。
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -77,8 +77,8 @@ iex> t
 定义元组要用花括号：
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 元组一个很常见的用法是作为函数的返回值，来返回额外的信息。当介绍到模式匹配的时候，这种用法的好处就显而易见了。
@@ -156,4 +156,15 @@ iex> Dict.put(%{:foo => "bar"}, "hello", "world")
 
 iex> Dict.has_key?(%{:foo => "bar"}, :foo)
 true
+```
+
+字典另一个有趣的特性是：它们提供了自己更新和获取原子键（key）的语法：
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
 ```

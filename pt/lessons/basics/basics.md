@@ -34,8 +34,6 @@ Para iniciar, executamos `iex`:
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 O suporte para números binários, octais e hexadecimais também estão inclusos:
@@ -54,9 +52,9 @@ iex> 0x1F
 Em Elixir, os ponto flutuantes requerem um decimal depois de pelo menos um dígito; estes possuem uma precisão de 64 bits e suportam `e` para números exponenciais.
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14 
+ 3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10
@@ -110,10 +108,10 @@ iex> "dziękuję"
 As strings suportam quebras de linha e caracteres de escape:
 
 ```elixir
-iex(9)> "foo
-...(9)> bar"
+iex> "foo
+...> bar"
 "foo\nbar"
-iex(10)> "foo\nbar"
+iex> "foo\nbar"
 "foo\nbar"
 ```
 

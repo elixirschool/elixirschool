@@ -48,7 +48,7 @@ ETS에서 사용할 수 있는 테이블의 타입은 4개가 있습니다:
 ETS에서의 접근 제어는 모듈 내부의 접근 제어와 닮았습니다:
 
 + `public` - 모든 프로세스에서 읽기/쓰기가 가능합니다.
-+ `protected` - 모든 프로세서에서 읽기가 가능합니다. 소유하고 있는 프로세스에서만 쓰기가 가능합니다. 이것이 기본 옵션입니다.
++ `protected` - 모든 프로세스에서 읽기가 가능합니다. 소유하고 있는 프로세스에서만 쓰기가 가능합니다. 이것이 기본 옵션입니다.
 + `private` - 읽기/쓰기 모두 소유하고 있는 프로세스로 제한됩니다.
 
 ## 데이터 추가
@@ -269,7 +269,7 @@ iex> :dets.insert_new(table, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
 true
 iex> select_all = :ets.fun2ms(&(&1))
 [{:"$1", [], [:"$1"]}]
-iex> :dets.select(table, fun)
+iex> :dets.select(table, select_all)
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 

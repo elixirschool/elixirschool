@@ -72,8 +72,8 @@ Consider `_` as the `else` that will match "everything else".
 Since `case` relies on pattern matching, all of the same rules and restrictions apply.  If you intend to match against existing variables you must use the pin `^` operator:
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14 
+ 3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"

@@ -37,11 +37,11 @@ lang: ru
 
 Попробуем написать несколько простых выражений:
 
-    iex(1)> 2+3
+    iex> 2+3
     5
-    iex(2)> 2+3 == 5
+    iex> 2+3 == 5
     true
-    iex(3)> String.length("The quick brown fox jumps over the lazy dog")
+    iex> String.length("The quick brown fox jumps over the lazy dog")
     43
 
 Не стоит волноваться, если пока вы поняли не все выражения.
@@ -52,8 +52,6 @@ lang: ru
 
 ```elixir
 iex> 255
-255
-iex> 0xFF
 255
 ```
 
@@ -73,9 +71,9 @@ iex> 0x1F
 В Elixir числа с плавающей запятой требуют наличия хотя бы одной цифры перед точкой. Также они поддерживают `e` для описания экспонентной части:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 컴포지션
+title: 모듈
 category: basics
 order: 8
 lang: ko
@@ -107,7 +107,7 @@ iex> %{name: "Sean"} = sean
 
 ## 컴포지션
 
-이제 모듈과 구조체를 만드는 법을 배웠으니, 지금부터는 그 안에 이미 있는 기능들을 컴포지션을 사용해 가져오는 법을 배워봅시다. Elixir에는 다른 모듈과 상호작용할 수 있는 여러가지 방법이 있는데요, 바로 사용할 수 있는 것부터 살펴봅시다.
+이제 모듈과 구조체를 만드는 법을 배웠으니, 지금부터는 그 안에 이미 있는 기능들을 컴포지션을 사용해 추가하는 법을 배워봅시다. Elixir에는 다른 모듈과 상호작용할 수 있는 여러가지 방법이 있습니다.
 
 ### `alias`
 
@@ -127,11 +127,11 @@ end
 # 별칭을 사용하지 않는 경우
 
 defmodule Example do
-  def greeting(name), do: Saying.Greetings.basic(name)
+  def greeting(name), do: Sayings.Greetings.basic(name)
 end
 ```
 
-동일한 별칭으로 충돌이 생길 수 있거나 완전히 다른 별칭을 지어주고 싶을 때에는, `:as` 옵션을 사용하여 별칭을 다르게 정할 수 있습니다.
+동일한 별칭끼리 충돌이 생길 수 있거나 완전히 다른 별칭을 지어주고 싶을 때에는, `:as` 옵션을 사용하여 별칭을 다르게 정할 수 있습니다.
 
 ```elixir
 defmodule Example do
@@ -210,7 +210,7 @@ end
 
 ### `use`
 
-use 매크로는 해당 모듈에서 __using__/1이란 이름을 가진 조금 특별한 매크로를 실행합니다. 예를 들어 보도록 하지요.
+use 매크로는 해당 모듈에서 `__using__/1`이란 이름을 가진 조금 특별한 매크로를 실행합니다. 예를 들어 보도록 하지요.
 
 ```elixir
 # lib/use_import_require/use_me.ex
@@ -231,11 +231,11 @@ end
 use UseImportRequire.UseMe
 ```
 
-UseImportRequire.UseMe를 use 매크로로 선언하면 __using__/1 매크로가 실행되어 `use_test/0` 함수를 정의합니다.
+UseImportRequire.UseMe를 use 매크로로 선언하면 `__using__/1` 매크로가 실행되어 `use_test/0` 함수를 정의합니다.
 
-use가 하는 일이라면 이게 전부입니다. 하지만 __using__ 매크로에서 alias나 require, import를 실행하게 하는 일이 자주 있습니다. __using__ 매크로가 사용(use)하는 모듈에 별칭을 만들거나 함수나 매크로를 불러오도록 하는 것이지요. 사용(use)되는 모듈은 이를 이용해 외부에서 모듈 안에 있는 함수와 매크로를 어떻게 참조할 지 방침을 정할 수 있습니다. 그렇기 때문에 __using__/1이 다른 모듈(특히 서브모듈)에 대한 참조를 상당히 유동적으로 만들어낼 수 있게 됩니다.
+use가 하는 일이라면 이게 전부입니다. 하지만 `__using__` 매크로에서 alias나 require, import를 실행하게 하는 일이 자주 있습니다. `__using__` 매크로가 사용(use)하는 모듈에 별칭을 만들거나 함수나 매크로를 불러오도록 하는 것이지요. 사용(use)되는 모듈은 이를 이용해 외부에서 모듈 안에 있는 함수와 매크로를 어떻게 참조할 지 방침을 정할 수 있습니다. 그렇기 때문에 `__using__/1`이 다른 모듈(특히 서브모듈)에 대한 참조를 상당히 유동적으로 만들어낼 수 있게 됩니다.
 
-Phoenix 프레임워크에서는 use와 __using__/1을 사용해서, 사용자가 정의하는 모듈에서 alias나 import를 반복적으로 사용하지 않도록 해 줍니다.
+Phoenix 프레임워크에서는 use와 `__using__/1`을 사용해서, 사용자가 정의하는 모듈에서 alias나 import를 반복적으로 사용하지 않도록 해 줍니다.
 
 Ecto.Migration 모듈에 use를 사용한 짤막하고 멋진 용례가 있습니다.
 
@@ -249,6 +249,6 @@ defmacro __using__(_) do
 end
 ```
 
-Ecto.Migration를 어떤 모듈에서 사용할 것이라고 선언(use)하면 Ecto.Migration.__using__/1 매크로가 import를 실행시켜 사용(use)하는 모듈에 Ecto.Migration 모듈 안에 있는 함수와 매크로를 불러오도록(import) 합니다. Ecto가 어떻게 작동할 지 정할 수 있는 것처럼 보이는 모듈 속성을 정의하기도 합니다.
+Ecto.Migration를 어떤 모듈에서 사용할 것이라고 선언(use)하면 `Ecto.Migration.__using__/1` 매크로가 import를 실행시켜 사용(use)하는 모듈에 Ecto.Migration 모듈 안에 있는 함수와 매크로를 불러오도록(import) 합니다. Ecto가 어떻게 작동할 지 정할 수 있는 것처럼 보이는 모듈 속성을 정의하기도 합니다.
 
-다시 말하자면, use 매크로는 해당 모듈의 __using__/1 매크로를 실행하기만 합니다. __using__/1 매크로가 정확히 무엇을 하는지 이해하려면 해당하는 부분의 코드를 읽어야 합니다.
+다시 말하자면, use 매크로는 해당 모듈의 `__using__/1` 매크로를 실행하기만 합니다. `__using__/1` 매크로가 정확히 무엇을 하는지 이해하려면 해당하는 부분의 코드를 읽어야 합니다.

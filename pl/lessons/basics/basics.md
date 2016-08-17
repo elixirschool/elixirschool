@@ -36,8 +36,6 @@ ang. _Integer_
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Elixir pozwala też na używanie liczb w notacji binarnej, ósemkowej i szesnastkowej:  
@@ -56,9 +54,9 @@ iex> 0x1F
 W Elixirze liczby zmiennoprzecinkowe (ang. _float_) oznaczamy pojedynczą kropką; mają one 64 bitową precyzję oraz możemy użyć notacji z `e` do wyrażenia potęg:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10

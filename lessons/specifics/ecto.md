@@ -93,7 +93,7 @@ mix ecto.rollback       # Rollback migrations from a repo
 
 ## Migrations
 
-The best way to a create migrations is the `mix ecto.gen.migration <name>` task.  If you're acquainted with ActiveRecord these will look familiar.
+The best way to create migrations is the `mix ecto.gen.migration <name>` task.  If you're acquainted with ActiveRecord these will look familiar.
 
 Let's start by taking a look at a migration for a users table:
 

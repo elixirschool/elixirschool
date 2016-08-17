@@ -6,7 +6,7 @@ order: 1
 lang: cn
 ---
 
-在 ErlangVM 上构建 Elixir 的好处之一就是已经有大量的库可以供我们使用。互操作性允许我们在 Elixir 代码中直接使用 Erlang 的标准库和三方库。这节课，我们就讲讲如何来做。
+在 Erlang VM (BEAM) 上构建 Elixir 的好处之一就是已经有大量的库可以供我们使用。互操作性允许我们在 Elixir 代码中直接使用 Erlang 的标准库和三方库。这节课，我们就讲讲如何来做。
 
 {% include toc.html %}
 

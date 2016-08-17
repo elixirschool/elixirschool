@@ -34,8 +34,6 @@ Pour commencer, lançons `iex`:
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Il y a également le support des notations binaires, octales et hexadécimales : 
@@ -56,9 +54,9 @@ le support de la notation `e` pour les exponentielles.
 
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14 
+ 3.14
+iex> .14 
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10

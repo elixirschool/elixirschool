@@ -12,8 +12,11 @@ Class names and proper nouns do not get translated.
 ### Table of Contents
 
 - [Glossary - Russian](#glossary-russian)
-	- [Elixir-related terms](#russian-elixir-related-terms)
-	- [CS terms](#russian-cs-terms)
+  - [Elixir-related terms](#russian-elixir-related-terms)
+  - [CS terms](#russian-cs-terms)
+- [Glossary - Ukrainian](#glossary-ukrainian)
+  - [Elixir-related terms](#ukrainian-elixir-related-terms)
+  - [CS terms](#ukrainian-cs-terms)
 - [Glossary - Portuguese](#glossary-portuguese)
   - [Elixir-related terms](#portuguese-elixir-related-terms)
   - [CS terms](#portuguese-cs-terms)
@@ -37,6 +40,7 @@ Class names and proper nouns do not get translated.
 - sigil - строковая метка
 - schema - структура
 - tuple - кортеж
+- umbrella project - зонтичный проект
 
 #### <a name="russian-cs-terms"></a> CS terms
 
@@ -47,7 +51,7 @@ Class names and proper nouns do not get translated.
 - boolean - логический тип
 - callback - функция обратного вызова
 - char list - список символов
-- codepoint - кодовая точка
+- codepoint - код символа
 - collection - коллекция
 - concatenation - конкатенация
 - exception - исключение
@@ -57,17 +61,16 @@ Class names and proper nouns do not get translated.
 - head - голова
 - integer - целое число
 - interpolation - интерполяция
+- linked list - связный список
 - list - список
 - list comprehension - списковое включение
 - map - ассоциативный массив
 - metaprogramming - метапрограммирование
 - module - модуль
-- module - модуль
 - namespace - пространство имен
 - pattern matching - сопоставление с образцом
-- private (function) - закрытая (функция)
-- protected (function) - защищённая (функция)
-- public (function) - общедоступная (функция)
+- private - закрытая
+- public - общедоступная
 - rebind variable - переприсвоение переменной
 - signature - сигнатура (функции)
 - standard library - стандартная библиотека
@@ -77,6 +80,67 @@ Class names and proper nouns do not get translated.
 - supervisor - супервизор
 - tail - хвост
 - worker - рабочий процесс
+
+
+### <a name="glossary-ukrainian"></a> Glossary - Ukrainian
+
+#### <a name="ukrainian-elixir-related-terms"></a> Elixir-related terms
+
+- actors - модель акторів
+- alias - псевдонім
+- atom - атом
+- behaviour - поведінка
+- function clauses - оголошення функції
+- guard - обмеження
+- guard operator - оператор обмеження
+- changeset - набір змін
+- keyword list - ключовий список
+- match operator - оператор зіставлення
+- pin operator - оператор закріплення
+- pipe operator - конвеєр
+- sigil - рядкова позначка
+- schema - схема
+- tuple - кортеж
+
+#### <a name="ukrainian-cs-terms"></a> CS terms
+
+- anonymous function - анонімна функція
+- attribute - атрибут
+- bitsring - бітовий рядок
+- binding - контекст
+- boolean - логічний тип даних
+- callback - зворотній виклик
+- char list - список символів
+- codepoint - [значення Unicode](http://unicode.org/glossary/#code_point)
+- collection - колекція
+- concatenation - конкатенація (об'єднання)
+- exception - виняток
+- grapheme - [графема](https://uk.wikipedia.org/wiki/%D0%93%D1%80%D0%B0%D1%84%D0%B5%D0%BC%D0%B0)
+- float - число з плаваючою точкою
+- function body - тіло функції
+- head - голова
+- integer - ціле число
+- interpolation - інтерполяція
+- list - список
+- list comprehension - [списковий вираз](https://uk.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BA%D0%BE%D0%B2%D1%96_%D0%B2%D0%B8%D1%80%D0%B0%D0%B7%D0%B8)
+- map - асоціативний масив
+- metaprogramming - метапрограмування
+- module - модуль
+- namespace - простір імен
+- pattern matching - зіставлення зі зразком
+- private - приватний
+- protected - захищений
+- public - публічний
+- rebind variable - перевизначення змінної
+- signature - оголошення (функції)
+- standard library - стандартна бібліотека
+- struct - структура
+- string - рядок
+- subtraction - віднімання
+- supervision tree - дерево нагляду
+- supervisor - наглядач
+- tail - хвіст
+- worker - робочий процес
 
 ### <a name="glossary-portuguese"></a> Glossary - Portuguese
 
@@ -111,9 +175,8 @@ Class names and proper nouns do not get translated.
 - metaprogramming - metaprogramação
 - module - módulo
 - pattern matching - correspondência de padrão
-- private (function) - privada (função)
-- protected (function) - protegida (função)
-- public (function) - pública (função)
+- private - privada
+- public - pública
 - rebind variable - associar variável novamente
 - subtraction - subtração
 - signature - assinatura (função)

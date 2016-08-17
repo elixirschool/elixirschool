@@ -6,7 +6,7 @@ order: 4
 lang: my
 ---
 
-Salah satu faktor pelaris Elixir ialah sokongan kepada keserempakan(concurrency).  Terima kasih kepada ErlangVM, keserempakan di dalam Elixir adalah lebih mudah dari yang dijangkakan.  Model keserempakan bergantung kepada Actor, satu proses yang berkomunikasi dengan proses-proses lain melalui pengagihan mesej.
+Salah satu faktor pelaris Elixir ialah sokongan kepada keserempakan(concurrency).  Terima kasih kepada Erlang VM (BEAM), keserempakan di dalam Elixir adalah lebih mudah dari yang dijangkakan.  Model keserempakan bergantung kepada Actor, satu proses yang berkomunikasi dengan proses-proses lain melalui pengagihan mesej.
 
 Di dalam pelajaran ini kita akan lihat modul-modul keserempakan yang didatangkan dengan Elixir.  Di dalam bab seterusnya kita lihat kelakuan OTP yang melaksanakan mereka.
 
@@ -14,7 +14,7 @@ Di dalam pelajaran ini kita akan lihat modul-modul keserempakan yang didatangkan
 
 ## Proses
 
-Proses-proses di dalam ErlangVM adalah ringan dan memanafaatkan kesemua CPU apabila dijalankan.  Walaupun mereka nampak seperti 'native thread',  mereka sebenarnya adalah lebih ringkas dan ianya tidak janggal jika terdapat ribuan proses yang berjalan secara keserempakan di dalam aplikasi Elixir.
+Proses-proses di dalam Erlang VM adalah ringan dan memanafaatkan kesemua CPU apabila dijalankan.  Walaupun mereka nampak seperti 'native thread',  mereka sebenarnya adalah lebih ringkas dan ianya tidak janggal jika terdapat ribuan proses yang berjalan secara keserempakan di dalam aplikasi Elixir.
 
 Cara paling mudah untuk membuat satu proses baru ialah menggunakan `spawn`, yang mengambil satu fungsi tanpa nama atau fungsi bernama.  Apabila kita membuat satu proses baru ia akan memulangkan satu _Process Identifier_, atau PID,  sebagai pengenalan unik untuk proses itu di dalam aplikasi kita.
 

@@ -15,19 +15,19 @@ List (Danh sách), tuple, keyword (danh sách từ khoá), map, dict (từ đi�
 List (danh sách) là một tập hợp các giá trị, có thể bao gồm nhiều kiểu dữ liệu; có thể bao gồm giá trị lặp:
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir triển khai list như những linked list (danh sách liên kết). Có nghĩa là việc truy cập độ dài của list là thao tác có độ phức tạp `O(n)`. Vì lý do này, chèn phần tử vào đầu list thường nhanh hơn so với thêm vào cuối list:
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 ### Nối list
@@ -53,19 +53,19 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 Khi sử dụng danh sách, ta thường phải dùng tới đầu và đuôi của danh sách. Đầu là phần tử đầu tiên của danh sách và đuôi là danh sách những phần tử còn lại. Elixir hỗ trợ hai hàm hữu dụng, `hd` và `tl`, để truy cập đầu và đuôi:
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
 Bên cạnh những hàm đã nói ở trên, bạn có thể dùng toán tử ống dẫn `|`; chúng ta sẽ còn gặp lại toán tử này trong các bài sau:
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -75,8 +75,8 @@ iex> t
 Tuple cũng tương tự như list nhưng được lưu trữ một cách liên tục trên bộ nhớ. Điều này dẫn tới việc truy cập kích thước tuple rất nhanh nhưng thay đổi thì chậm. Sau khi thay đổi, tuple mới phải được copy toàn bộ vào bộ nhớ:
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 Thông thường, tuple được sử dụng như một cơ chế để trả về các thông tin bổ sung từ các hàm; sự hữu dụng của nó trở nên rõ ràng hơn khi chúng ta đụng tới pattern matching (so khớp mẫu):

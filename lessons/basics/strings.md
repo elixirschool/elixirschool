@@ -23,7 +23,7 @@ iex> string = <<104,101,108,108,111>>
 
 ## Char Lists
 
-Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters. Elixir also has a char list type (characters list). Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
+Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters. Elixir also has a char list type (character list). Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
 
 What's the difference? Each value from a char list is the ASCII value from the character. Let's dig in:
 
@@ -45,7 +45,7 @@ When programming in Elixir, we usually use Strings, not char lists. The char lis
 
 ## Graphemes and Codepoints
 
-Codepoints are just simple Unicode characters, which may be represented by one or two bytes. For example, characters with a tilde or accents: `á, ñ, è`. Graphemes consist of multiple codepoints that look as a simple character.
+Codepoints are just simple Unicode characters which are represented by one or more bytes, depending on the UTF-8 encoding. Characters outside of the US ASCII character set will always encode as more than one byte. For example, Latin characters with a tilde or accents (`á, ñ, è`) are typically encoded as two bytes. Characters from Asian languages are often encoded as three or four bytes. Graphemes consist of multiple codepoints that are rendered as a single character.
 
 The String module already provides two methods to obtain them, `graphemes/1` and `codepoints/1`. Let's look at an example:
 
@@ -62,7 +62,7 @@ iex> String.graphemes string
 
 ## String Functions
 
-Let's review some of the most important and useful functions of the String module. This lesson will only cover a subset of the available functions; to see a complete set of functions visit the official [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) docs.
+Let's review some of the most important and useful functions of the String module. This lesson will only cover a subset of the available functions. To see a complete set of functions visit the official [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) docs.
 
 ### `length/1`
 
@@ -109,7 +109,7 @@ Let's walk through a simple exercises to demonstrate we are ready to go with Str
 A and B are considered anagrams if there's a way to rearrange A or B making them equal. For example:
 
 + A = super
-+ B = perus 
++ B = perus
 
 If we re-arrange the characters on String A, we can get the string B, and vice versa.
 
@@ -132,7 +132,7 @@ end
 
 Let's first give a watch to `anagrams?/2`. We are checking whether the parameters we are receiving are binaries or not. That's the way we check if a parameter is a String in Elixir.
 
-After it, we are just calling a function that orders the strings in alphabetically order, first doing the string lowercase and then using `String.graphemes`, which returns a list with the Graphemes of the string. Pretty straight, right?
+After it, we are just calling a function that orders the strings in alphabetical order, first doing the string lowercase and then using `String.graphemes`, which returns a list with the Graphemes of the string. Pretty straight, right?
 
 Let's check the output on iex:
 

@@ -71,7 +71,7 @@ end
 
 ## Membuild
 
-Sesudah kita selesai mengkonfigurasi aplikasi kita untuk menggunakan escript, membuild eksekutabel kita adalah mudah dengan mix:
+Sesudah kita selesai mengkonfigurasi aplikasi kita untuk menggunakan escript, membuild eksekutabel kita adalah mudah dengan Mix:
 
 ```elixir
 $ mix escript.build

@@ -72,8 +72,8 @@ Considera `_` como el `else` que coincidirá con "todo lo demás".
 Ya que `case` se basa en la coincidencia de patrones, las mismas reglas y restricciones se aplican. Si intentas coincidir con variables existentes debes usar el operador pin `^`:
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14 
+ 3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"

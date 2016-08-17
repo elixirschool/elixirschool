@@ -42,7 +42,7 @@ iex> "Elixir rocks" |> String.split
 - 全てのトークンを大文字にする
 
 ```elixir
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 
@@ -55,17 +55,17 @@ true
 
 ## ベストプラクティス
 
-関数のアリティが1より多いなら括弧を使うようにしてください。括弧の有無はElixirにおいてはたいした問題ではありませんが、あなたのコードを誤解するかもしれない他のプログラマにとっては問題です。もし2つ目の例で`Enum.map/2`から括弧を削除すると, 以下のように警告されます。
+関数のアリティが1より多いなら括弧を使うようにしてください。括弧の有無はElixirにおいてはたいした問題ではありませんが、あなたのコードを誤解するかもしれない他のプログラマにとっては問題です。もし3つ目の例で`String.ends_with?/2`から括弧を削除すると, 以下のように警告されます。
 
-```elixir
-iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
-iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+```shell
+iex> "elixir" |> String.ends_with? "ixir"
+warning: parentheses are required when piping into a function call. For example:
 
-foo 1 |> bar 2 |> baz 3
+  foo 1 |> bar 2 |> baz 3
 
-Should be written as:
+is ambiguous and should be written as
 
-foo(1) |> bar(2) |> baz(3)
+  foo(1) |> bar(2) |> baz(3)
 
-["ELIXIR", "ROCKS"]
+true
 ```
