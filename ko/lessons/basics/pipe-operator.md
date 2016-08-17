@@ -54,6 +54,7 @@ true
 ## 좋은 습관
 
 함수의 애리티가 1 이상이면 반드시 괄호를 쓰는 것을 명심하십시오. 이는 Elixir에게는 큰 문제가 되지 않지만 다른 프로그래머가 여러분의 코드를 잘못 이해할 수도 있기 때문입니다. 세번째 예제에서 `String.ends_with?/2`의 괄호를 지우면 아래와 같은 경고를 보게 됩니다.
+
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"
 warning: parentheses are required when piping into a function call. For example:
