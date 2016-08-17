@@ -63,6 +63,7 @@ iex> tl [3.14, :pie, "Apple"]
 ```
 
 앞서 언급한 함수들과 더불어서, cons 연산자 `|`를 이용할 수도 있습니다. 이러한 패턴은 차후 레슨에서 보게 될 것입니다.
+
 [역주] : [cons](http://jtra.cz/stuff/lisp/sclr/cons.html)는 Lisp 계열 언어에서 리스트를 연결할 때 쓰이는 연산입니다.
 
 ```elixir
