@@ -53,20 +53,20 @@ true
 
 ## 좋은 습관
 
-함수의 애리티가 1 이상이면 반드시 괄호를 쓰는 것을 명심하십시오. 이는 Elixir에게는 큰 문제가 되지 않지만 다른 프로그래머가 여러분의 코드를 잘못 이해할 수도 있기 때문입니다. 두번째 예제에서 `Enum.map/2`의 괄호를 지우면 아래와 같은 경고를 보게 됩니다.
+함수의 애리티가 1 이상이면 반드시 괄호를 쓰세요. 이는 Elixir에게는 큰 문제가 되지 않지만 다른 프로그래머가 여러분의 코드를 잘못 이해할 수도 있기 때문입니다. 세 번째 예제에서 `String.ends_with?/2`의 괄호를 지우면 아래와 같은 경고를 보게 됩니다.
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
-iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
-# [역주] 경고: 괄호를 사용하지 않고 함수 호출에 파이프하고 있으며, 의미가 모호해질 수 있습니다. 파이프하는 함수를 괄호로 묶어 주십시오. 예를 들면,
+iex> "elixir" |> String.ends_with? "ixir"
+warning: parentheses are required when piping into a function call. For example:
+# [역주] 경고: 함수 호출을 파이프로 연결할 때에는 괄호를 사용하세요. 예를 들면,
 
 foo 1 |> bar 2 |> baz 3
 
-Should be written as:
-# [역주] 위 코드는 아래와 같이 작성되어야 합니다.
+is ambiguous and should be written as
+# [역주] 위 코드는 모호하므로 아래와 같이 작성되어야 합니다.
 
 foo(1) |> bar(2) |> baz(3)
 
-["ELIXIR", "ROCKS"]
+true
 ```
 
