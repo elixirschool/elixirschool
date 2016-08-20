@@ -62,7 +62,7 @@ defmodule ExampleApp.App do
   end
 end
 ```
-Чтоб узнать больше о супервизорах советуем посетить урок [Cупервизоры](/lessons/advanced/otp-supervisors).
+Чтоб узнать больше о супервизорах советуем посетить урок [Cупервизоры](/ru/lessons/advanced/otp-supervisors).
 
 ### Настройка
 
