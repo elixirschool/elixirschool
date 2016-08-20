@@ -26,11 +26,12 @@ description:
   no: Leksjoner i programmeringsspråket Elixir
   ko: 프로그래밍 언어 Elixir 배우기
   ua: Навчальні матеріали про мову програмування Elixir
+  tr: Elixir programlama dili dersleri
 baseurl: /
 url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'ua']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'ua', 'tr']
 rtl_languages: ['ar']
 default_lang: en
 exclude_from_localization: []
@@ -54,6 +55,7 @@ sections:
       no: Grunnleggende
       ko: 기초
       ua: Основи
+      tr: Temeller
   - tag: advanced
     label:
       en: Advanced
@@ -73,6 +75,7 @@ sections:
       no: Avansert
       ko: 심화
       ua: Просунуті
+      tr: Gelişmiş
   - tag: specifics
     label:
       en: Specifics
@@ -92,6 +95,7 @@ sections:
       no: Detaljer
       ko: 활용
       ua: Конкретика
+      tr: Spesifik
 
 gems:
   - kramdown
@@ -143,6 +147,8 @@ toc:
   ko: 목차
   id: Daftar Isi
   ua: Зміст
+  tr: İçerik
+
 
 share:
   en: Share This Page
@@ -156,3 +162,4 @@ share:
   pl: Podziel się
   id: Bagikan Halaman Ini
   ua: Поділитися
+  tr: Paylaş
