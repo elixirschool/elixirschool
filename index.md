@@ -8,7 +8,7 @@ lang: en
 
 Lessons about the Elixir programming language, inspired by Twitter's [Scala School](http://twitter.github.io/scala_school/).
 
-Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Melayu][my], [Українською][ua], [한국어][ko], [L'italiano][it] and other.
+Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Melayu][my], [Українською][uk], [한국어][ko], [L'italiano][it] and other.
 
   [cn]: {{ site.url }}/cn/
   [es]: {{ site.url }}/es/
@@ -21,7 +21,7 @@ Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk]
   [sk]: {{ site.url }}/sk/
   [vi]: {{ site.url }}/vi/
   [my]: {{ site.url }}/my/
-  [ua]: {{ site.url }}/ua/
+  [uk]: {{ site.url }}/uk/
 
 _Your feedback and participation is encouraged!_
 
