@@ -3,7 +3,7 @@ layout: page
 title: Основи
 category: basics
 order: 1
-lang: ua
+lang: uk
 ---
 
 Встановлення Elixir, базові типи даних та прості операції.
@@ -33,7 +33,7 @@ Elixir поставляється з утилітою `iex`, інтеракти�
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
-   
+
 Давайте спробуємо як мова працює з простими виразами:
 
     iex> 2+3
