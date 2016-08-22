@@ -49,11 +49,11 @@ Jest dostępne kilka wersji `chunk`, ale nie będziemy ich zgłębiać. By dowie
 
 ### chunk_by
 
-Jeżeli chcemy pogrupować elementy kolekcji inaczej niż po wielkości możemy użyć funkcji `chunk_by`:
+Jeżeli chcemy pogrupować elementy kolekcji inaczej niż po wielkości, możemy użyć funkcji `chunk_by`. Jako argumenty przyjmuje ona kolekcję oraz funkcję. Grupy tworzone są na podstawie wyniku działania funkcji. Jeżeli wynik zmienia się, to tworzona jest nowa grupa, nawet jeżeli wcześniej istniała grupa dla danego wyniku funkcji:
 
 ```elixir
-iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
-[["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
