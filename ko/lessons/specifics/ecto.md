@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-슈퍼바이저에 대한 더 자세한 정보는 [OTP 슈퍼바이저](/lessons/advanced/otp-supervisors) 수업을 확인해주세요.
+슈퍼바이저에 대한 더 자세한 정보는 [OTP 슈퍼바이저](/ko/lessons/advanced/otp-supervisors) 수업을 확인해주세요.
 
 ### 설정
 

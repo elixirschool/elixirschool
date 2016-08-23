@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-Więcej o nadzorcach znajdziesz w lekcji [Nadzorcy OTP](/lessons/advanced/otp-supervisors).
+Więcej o nadzorcach znajdziesz w lekcji [Nadzorcy OTP](/pl/lessons/advanced/otp-supervisors).
 
 ### Konfiguracja
 

@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-Untuk info lebih lanjut tentang supervisor lihatlah pelajaran [OTP Supervisors](/lessons/advanced/otp-supervisors).
+Untuk info lebih lanjut tentang supervisor lihatlah pelajaran [OTP Supervisors](/id/lessons/advanced/otp-supervisors).
 
 ### Konfigurasi
 
