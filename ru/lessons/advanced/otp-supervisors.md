@@ -16,7 +16,7 @@ lang: ru
 
 Потомки определяются при помощи списка и функции `worker/3`, которую мы импортировали из `Supervisor.Spec`.  Функция `worker/3` принимает модуль, аргументы и набор опций.  Под капотом `worker/3` вызывает `start_link/3` с нашими аргументами во время инициализации.
 
-Давайте начнём, используя SimpleQueue из урока [OTP Concurrency](/lessons/advanced/otp-concurrency):
+Давайте начнём, используя SimpleQueue из урока [OTP Concurrency](/ru/lessons/advanced/otp-concurrency):
 
 ```elixir
 import Supervisor.Spec

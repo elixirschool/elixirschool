@@ -16,7 +16,7 @@ Inti Supervisor adalah fungsi `Supervisor.start_link/2`.  Di samping menjalankan
 
 Proses-proses anak didefinisikan menggunakan sebuah list dan fungsi `worker/3` yang kita import dari `Supervisor.Spec`.  Fungsi `worker/3` ini menerima sebuah modul, argumen, dan sekumpulang opsi.  Di dalamnya `worker/3` memanggil `start_link/3` dengan argumen-argumen kita dalam inisialisasi.
 
-Menggunakan SimpleQueue dari pelajaran [OTP Concurrency](/lessons/advanced/otp-concurrency) mari kita mulai:
+Menggunakan SimpleQueue dari pelajaran [OTP Concurrency](/id/lessons/advanced/otp-concurrency) mari kita mulai:
 
 ```elixir
 import Supervisor.Spec

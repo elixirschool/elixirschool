@@ -15,7 +15,7 @@ Supervisors 的魔力主要在 `Supervisor.start_link/2` 函数中，除了能�
 
 子进程使用列表和从 `Supervisor.Spec` 库中导进来的 `worker/3` 共同定义，其中 `worker/3` 函数接受模块名，参数列表，和其他选项作为自己的参数。在初始化的时候，`worker/3` 内部会调用 `start_link/3` ，并传进去刚才的参数列表。
 
-使用在 [`OTP 并发`](/lessons/advanced/otp-concurrency) 课程中实现的 SimpleQueue，我们来测试一下：
+使用在 [`OTP 并发`](/cn/lessons/advanced/otp-concurrency) 课程中实现的 SimpleQueue，我们来测试一下：
 
 ```elixir
 import Supervisor.Spec
