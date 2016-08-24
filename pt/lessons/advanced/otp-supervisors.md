@@ -16,7 +16,7 @@ A magia de Supervisores está na função `Supervisor.start_link/2`. Além de in
 
 Filhos são definidos usando uma lista e a função `worker/3` que nós importamos de `Supervisor.Spec`. A função `worker/3` pega um módulo, argumentos e um conjunto de opções. Por baixo dos panos, `worker/3` chama `start_link/3` com nossos argumentos durante a inicialização.
 
-Usando o SimpleQueue da lição [OTP Concurrency](/lessons/advanced/otp-concurrency) vamos começar:
+Usando o SimpleQueue da lição [OTP Concurrency](/pt/lessons/advanced/otp-concurrency) vamos começar:
 
 ```elixir
 import Supervisor.Spec
