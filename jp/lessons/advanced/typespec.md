@@ -31,10 +31,52 @@ def sum_product(a) do
     |> Enum.map(fn el -> el * a end)
     |> Enum.sum
 end
+```
 
-@spec simple_div(integer, integer) :: {atom, integer}
-def simple_div(a,b) do
-    
-    a + b
+この関数を呼べば有効な結果が返って万事OKそう、に見えますが、関数 `Enum.sum` は `integer` ではなく `number` を返します。バグの元になるところでした! コードを静的解析してこのようなバグを見つける手助けをしてくれる Dialyzer のようなツールもあります。それについてはまた別のレッスンで。
+
+## 独自の型
+
+仕様を書くのはよいことですが時として我々が作った関数は単なる数やコレクション以上に複雑なデータ構造で動作します。そのような関数を `@spec` で定義すると他の開発者が理解する、あるいは変更することが極めて難しくなってしまうかもしれません。関数は数多くの引数をとり複雑なデータを返さなければならないことがあります。長い引数のリストは潜在的にコードの中でヤバそうな匂いを漂わせるものです。RubyやJavaのようなオブジェクト指向言語ではこの問題を解決するのを助けるために簡単にクラスを定義できます。Elixirにはクラスはありませんが、それは型を定義することで簡単に言語仕様が拡張できるからです。
+
+初期状態のElixirには `integer` や `pid` といった基本的な型があります。全ての利用できる型のリストは[ドキュメント](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax)にあります。
+
+### 独自の型を定義する
+
+では先ほどの `sum_times` 関数を変更していくつか引数を新しく追加しましょう。
+
+```elixir
+@spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
+def sum_times(a, params) do
+    for i <- params.first..params.last do
+        i
+    end
+       |> Enum.map(fn el -> el * a end)
+       |> Enum.sum
+       |> round
 end
 ```
+
+`Examples` というモジュールの中に `first` と `last` というフィールドを持った構造体を導入しました。これは `Range` モジュールの構造体の簡易版です。 `構造体` については[モジュール](lessons/basics/modules/#structs)で述べます。さて、`Examples`構造体の仕様をあちこちで書かなくてはならなくなったとしましょう。長くて複雑な仕様を書くのは面倒ですしバグの元になりかねません。この問題を解決するのが `@type` です。
+
+Elixirには3つの型の指定方法があります:
+
+  - `@type` - 単純な、公開された(public)型です。型の内部の構造は公開されます。
+  - `@typep` - 型は非公開(private)で定義されたモジュール内部でのみ使えます。
+  - `@opaque` - 型は公開されますが内部の構造は非公開です。
+
+では我々の型を定義してみましょう:
+
+```elixir
+defmodule Examples do
+
+    defstruct first: nil, last: nil
+
+    @type t(first, last) :: %Examples{first: first, last: last}
+
+    @type t :: %Examples{first: integer, last: integer}
+
+end
+```
+
+これで`t(first, last)`型、つまり構造体 `%Examples{first: first, last: last}` を表すものが定義できました。ここで
