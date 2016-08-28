@@ -18,7 +18,7 @@ lang: ja
 
 ## 仕様(specification)
 
-もし、あなたがJavaまたはRubyの経験をお持ちなら仕様を｀interface`だと考えてよいでしょう。仕様は関数の取るべき引数と戻り値の型を定義します。
+もし、あなたがJavaまたはRubyの経験をお持ちなら仕様を `interface` だと考えてよいでしょう。仕様は関数の取るべき引数と戻り値の型を定義します。
 
 入出力の型を定義するには `@spec` ディレクティブを関数定義の直前に置いて `引数` として関数名、引数の型のリスト、そして `::` の後に戻り値の型を描きます。
 
@@ -37,9 +37,9 @@ end
 
 ## 独自の型
 
-仕様を書くのはよいことですが時として我々が作った関数は単なる数やコレクション以上に複雑なデータ構造で動作します。そのような関数を `@spec` で定義すると他の開発者が理解する、あるいは変更することが極めて難しくなってしまうかもしれません。関数は数多くの引数をとり複雑なデータを返さなければならないことがあります。長い引数のリストは潜在的にコードの中でヤバそうな匂いを漂わせるものです。RubyやJavaのようなオブジェクト指向言語ではこの問題を解決するのを助けるために簡単にクラスを定義できます。Elixirにはクラスはありませんが、それは型を定義することで簡単に言語仕様が拡張できるからです。
+仕様を書くのはよいことですが時として我々が作った関数は単なる数やコレクションよりも複雑なデータ構造を使って動作します。そのような関数を `@spec` で定義すると他の開発者が理解する、あるいは変更することが極めて難しくなってしまうかもしれません。関数は数多くの引数をとり複雑なデータを返さなければならないことがあります。長い引数のリストは潜在的にコードの中でヤバそうな匂いを漂わせるものです。RubyやJavaのようなオブジェクト指向言語ではこの問題を解決するのを助けるために容易にクラスを定義できます。Elixirにはクラスはありません。それは型を定義することで簡単に言語仕様が拡張できるからです。
 
-初期状態のElixirには `integer` や `pid` といった基本的な型があります。全ての利用できる型のリストは[ドキュメント](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax)にあります。
+Elixirには何もせずとも最初から `integer` や `pid` といった基本的な型があります。全ての利用できる型の一覧は[公式ドキュメント](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax)にあります。
 
 ### 独自の型を定義する
 
@@ -79,4 +79,50 @@ defmodule Examples do
 end
 ```
 
-これで`t(first, last)`型、つまり構造体 `%Examples{first: first, last: last}` を表すものが定義できました。ここで
+これで`t(first, last)`型、つまり構造体 `%Examples{first: first, last: last}` を表すものが定義できました。ここで型には引数を取ることができることが見て取れますが、型 `t` について今度は構造体 `%Examples{first: integer, last: integer}` を表すようにも定義しています。
+
+この違いは何でしょう? 最初のものは構造体 `Examples` で2つの、任意の型になれるキーを持つものを表しています。2番めのものは構造体でキーがどちらも `integer` であるものを表しています。即ち以下のコードは:
+
+```elixir
+@spec sum_times(integer, Examples.t) :: integer
+def sum_times(a, params) do
+    for i <- params.first..params.last do
+        i
+    end
+       |> Enum.map(fn el -> el * a end)
+       |> Enum.sum
+       |> round
+end
+```
+
+以下のコードと等価であるということを意味します。
+
+```elixir
+@spec sum_times(integer, Examples.t(integer, integer)) :: integer
+def sum_times(a, params) do
+    for i <- params.first..params.last do
+        i
+    end
+       |> Enum.map(fn el -> el * a end)
+       |> Enum.sum
+       |> round
+end
+```
+
+### 型ドキュメント
+
+最後にお話しなくてはいけない項目はどのように我々が定義した型をドキュメントにするかということです。我々は既に[ドキュメント](lessons/basic/documentation)のレッスンによって、関数やモジュールに関するドキュメントを作成するためには `@doc` 及び `@moduledoc` アノテーションがあることを知っていますね。型をドキュメント化するには `@typedoc` を使います:
+
+```elixir
+defmodule Examples do
+    
+    @typedoc """
+        Type that represents Examples struct with :first as integer and :last as integer.
+        Examplesを表す型は:firstを整数型、:lastを整数型として取る構造体を表す。
+    """
+    @type t :: %Examples{first: integer, last: integer}
+
+end
+```
+
+命令 `@typedoc` は `@doc` 及び `@moduledoc` と同じようなものです。
