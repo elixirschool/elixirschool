@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-Για περισσότερες πληροφορίες στους επιτηρητές ελέγξτε το μάθημα [Επιτηρητές OTP](/lessons/advanced/otp-supervisors).
+Για περισσότερες πληροφορίες στους επιτηρητές ελέγξτε το μάθημα [Επιτηρητές OTP](/gr/lessons/advanced/otp-supervisors).
 
 ### Ρύθμιση
 
