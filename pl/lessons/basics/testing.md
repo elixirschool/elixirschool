@@ -12,7 +12,7 @@ Testowanie kodu jest bardzo ważną częścią procesu produkcji oprogramowania.
 
 ## ExUnit
 
-Elixir posiada wbudowaną bibliotekę ExUnit, która zawiera wszystko, co potrzebne do pisania testów. Zanim zagłębimy się w ten temat, musimy wspomnieć, że testy są w Elixirze tworzone w postaci skryptów w plikach '.exs'. Zanim uruchomimy nasze testy, musimy wystartować ExUnita za pomocą 'ExUnit.start()', jest to zazwyczaj robione w skrypcie 'test/test_helper.exs'.
+Elixir posiada wbudowaną bibliotekę ExUnit, która zawiera wszystko, co potrzebne do pisania testów. Zanim zagłębimy się w ten temat, musimy wspomnieć, że testy są w Elixirze tworzone w postaci skryptów w plikach `.exs`. Zanim uruchomimy nasze testy, musimy wystartować ExUnita za pomocą `ExUnit.start()`, jest to zazwyczaj robione w skrypcie `test/test_helper.exs`.
 
 Generując projekt w poprzedniej lekcji, mix był na tyle miły, że utworzył plik `test/example_test.exs` zawierający prosty test:
 
@@ -38,7 +38,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 Jeżeli kiedyś pisałeś już testy to zapewne znasz pojęcie `assert`; niektóre biblioteki używają `should` lub `expect` zamiennie z `assert`.
 
-Makro `assert` sprawdza, czy wyrażenie jest prawdziwe. Jeżeli nie jest, to zwróci błąd, a nasz test nie powiedzie się. By to sprawdzić, zmieńmy nasz przykładowy test i uruchommy polecenie 'mix test':
+Makro `assert` sprawdza, czy wyrażenie jest prawdziwe. Jeżeli nie jest, to zwróci błąd, a nasz test nie powiedzie się. By to sprawdzić, zmieńmy nasz przykładowy test i uruchommy polecenie `mix test`:
 
 ```elixir
 defmodule ExampleTest do
@@ -102,7 +102,7 @@ end
 
 ## Mockowanie
 
-W Elixirze mockom mówimy stanowcze nie. Możesz mieć chęć skorzystania z mocków,, ale są one niechętnie widziane w społeczności Elixira i to nie bez powodu. Jeżeli będziesz podążać za wskazówkami, wzorcami i dobrymi praktykami to testowanie funkcji w izolacji nie będzie trudne.
+W Elixirze mockom mówimy stanowcze nie. Możesz mieć chęć skorzystania z mocków, ale są one niechętnie widziane w społeczności Elixira i to nie bez powodu. Jeżeli będziesz podążać za wskazówkami, wzorcami i dobrymi praktykami to testowanie funkcji w izolacji nie będzie trudne.
 
 Na serio, nie używaj mocków.
 

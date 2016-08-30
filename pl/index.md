@@ -8,7 +8,7 @@ lang: pl
 
 Lekcje programowania w języku Elixir, inspirowane lekcjami Twittera [Scala School](http://twitter.github.io/scala_school/). 
 
-_Zachęcamy do dzielenia się opiniami i wspraciem projektu!_
+_Zachęcamy do dzielenia się opiniami i wsparciem projektu!_
 
 ## O Elixirze
 

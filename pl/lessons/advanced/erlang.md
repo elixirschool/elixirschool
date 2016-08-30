@@ -6,7 +6,7 @@ order: 1
 lang: pl
 ---
 
-Jedną z zalet działania w ramach maszyny wirtualnej erlanga jest bogactwo istniejących rozwiązań. Interoperacyjność pozwala nam na wykorzystanie tych rozwiązań, jak i standardowej biblioteki Erlanga w naszym Elixirowym kodzie. W tej lekcji przyjrzymy się, jak możemy łączyć nasz kod z bibliotekami stworzonymi w Erlangu.
+Jedną z zalet działania w ramach maszyny wirtualnej Erlanga jest bogactwo istniejących rozwiązań. Interoperacyjność pozwala nam na wykorzystanie tych rozwiązań, jak i standardowej biblioteki Erlanga w naszym Elixirowym kodzie. W tej lekcji przyjrzymy się, jak możemy łączyć nasz kod z bibliotekami stworzonymi w Erlangu.
 
 {% include toc.html %}
 
@@ -32,9 +32,9 @@ Result: 1000000
 
 Pełna lista modułów jest dostępna w podręczniku [Erlang Reference Manual](http://erlang.org/doc/apps/stdlib/).
 
-## Pakiety erlanga
+## Pakiety Erlanga
 
-W jednej z poprzednich lekcji poznaliśmy narzędzie Mix służące do zarządzania zależnościami. Dodawanie zależności do bibliotek Erlangowych działa w taki sam sposób. Jedyny wyjątek stanowi to, że biblioteki erlanga nie są opublikowane w [Hex](https://hex.pm), ale można się do nich odwołać podając nazwę repozytorium na githubie:
+W jednej z poprzednich lekcji poznaliśmy narzędzie Mix służące do zarządzania zależnościami. Dodawanie zależności do bibliotek Erlangowych działa w taki sam sposób. Jedyny wyjątek stanowi to, że biblioteki Erlanga nie są opublikowane w [Hex](https://hex.pm), ale można się do nich odwołać podając nazwę repozytorium na githubie:
 
 
 ```elixir

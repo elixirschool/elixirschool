@@ -122,11 +122,11 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 Druga pozwala na przekazanie jako parametr funkcji określającej kolejność:
 
 ```elixir
-# with our function
+# z naszą funkcją
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
 [%{val: 4}, %{val: 1}]
 
-# without
+# bez naszej funkcji
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```

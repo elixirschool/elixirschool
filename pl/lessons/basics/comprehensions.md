@@ -41,7 +41,8 @@ iex> for <<c <- "hello">>, do: <<c>>
 Jak zapewne zauważyłeś, generatory opierają się o dopasowanie wzorców, by przypisać dane do zmiennej po lewej stronie. Jeżeli jakiś element nie zostanie dopasowany, to jest po prostu ignorowany:
 
 ```elixir
-iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], do: val
+iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], 
+...> do: val
 ["Hello", "World"]
 ```
 

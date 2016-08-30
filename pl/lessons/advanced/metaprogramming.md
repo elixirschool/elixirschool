@@ -8,7 +8,7 @@ lang: pl
 
 Metaprogramowanie to proces tworzenia kodu, którego zadaniem jest generowanie kodu. W Elixirze mamy możliwość rozszerzania języka tak, by dynamicznie generowany kod dostosowywał się do naszych bieżących potrzeb. Najpierw przyjrzymy się, jaka jest wewnętrzna reprezentacja kodu Elixira, następnie zobaczmy, jak można ją modyfikować, by w końcu wykorzystać zdobytą wiedzę do rozszerzania kodu za pomocą makr.
 
-Drobna uwaga:  metaprogramowanie jest zawiłe i powinno być stosowane tylko w ostateczności. Nadużywane wpędzi nasz w kłopoty ze zrozumieniem i utrzymaniem zawiłego i skomplikowanego kodu.
+Drobna uwaga:  metaprogramowanie jest zawiłe i powinno być stosowane tylko w ostateczności. Nadużywane wpędzi nas w kłopoty ze zrozumieniem i utrzymaniem zawiłego i skomplikowanego kodu.
 
 {% include toc.html %}
 
@@ -66,7 +66,7 @@ W pierwszym przykładzie zmienna `denominator` jest elementem drzewa AST i zosta
 
 Jak już rozumiemy `quote/2` i `unquote/1`, to możemy przyjrzeć się makrom. Ważną rzeczą do zapamiętania jest to, że makra tak jak całe metaprogramowanie powinny być używane oszczędnie.
 
-Najprościej mówiąc makro to rodzaj funkcji, która zwraca fragment AST, które może zostać wstawione do naszego kodu. Przy czym makro zostanie zamienione na nasz kod, a nie wywołane jak zwykła funkcja. Dysponując makramy mamy wszystkie niezbędne narzędzia, by dynamicznie dodawać kod w naszych aplikacjach.
+Najprościej mówiąc makro to rodzaj funkcji, która zwraca fragment AST, które może zostać wstawione do naszego kodu. Przy czym makro zostanie zamienione na nasz kod, a nie wywołane jak zwykła funkcja. Dysponując makrami mamy wszystkie niezbędne narzędzia, by dynamicznie dodawać kod w naszych aplikacjach.
 
 By zdefiniować makro, użyjemy `defmacro/2`, które, jak wiele rzeczy w Elixirze, samo też jest makrem. W naszym przykładzie zaimplementujemy `unless` jako makro. Pamiętaj, że makro musi zwrócić fragment AST:
 
