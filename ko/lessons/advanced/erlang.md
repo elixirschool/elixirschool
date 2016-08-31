@@ -45,7 +45,7 @@ end
 이제 우리가 포함시킨 Erlang 라이브러리를 사용할 수 있습니다.
 
 ```elixir
-png = :png.create(#{:size => {30, 30},
+png = :png.create(%{:size => {30, 30},
                     :mode => {:indexed, 8},
                     :file => file,
                     :palette => palette}),
