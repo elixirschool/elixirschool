@@ -2,7 +2,7 @@
 layout: page
 title: 파이프 연산자
 category: basics
-order: 6
+order: 7
 lang: ko
 ---
 

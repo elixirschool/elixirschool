@@ -6,9 +6,9 @@ order: 5
 lang: ko
 ---
 
-지난 레슨에서는 Elixir의 동시성에 대해 살펴보았습니다. 그러나, 여기서 더 정밀한 조작이 필요할 때도 있는데, 이런 경우에는 Elixir에 내장된 OTP 비헤이비어가 있습니다.
+지난 강의에서는 Elixir의 동시성에 대해 살펴보았습니다. 그러나, 여기서 더 정밀한 조작이 필요할 때도 있는데, 이런 경우에는 Elixir에 내장된 OTP 비헤이비어가 있습니다.
 
-이번 레슨에서는 두 가지 중요한 부분인 GenServers와 GenEvents에 대해서 다루겠습니다.
+이번 강의에서는 두 가지 중요한 부분인 GenServers와 GenEvents에 대해서 다루겠습니다.
 
 {% include toc.html %}
 

@@ -2,7 +2,7 @@
 layout: page
 title: 함수
 category: basics
-order: 7
+order: 6
 lang: ko
 ---
 
