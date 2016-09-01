@@ -33,7 +33,7 @@ def sum_product(a) do
 end
 ```
 
-전부 다 괜찮아 보이고, 함수를 호출하면 올바른 값이 리턴되겠지요. 하지만 `Enum.sum` 함수는 `@spec`에서 예상했던 `integer`가 아니라 `number`를 리턴합니다. 이런 부분에서 버그가 생겨날 수 있어요! 코드를 정적 분석해주는 Dialyzer 같은 도구를 사용해서 이런 종류의 버그를 찾아낼 수 있습니다. 다른 수업에서 이런 정적 분석 도구를 사용하는 법에 대해서는 다루어 보겠습니다.
+전부 다 괜찮아 보이고, 함수를 호출하면 올바른 값이 리턴되겠지요. 하지만 `Enum.sum` 함수는 `@spec`에서 예상했던 `integer`가 아니라 `number`를 리턴합니다. 이런 부분에서 버그가 생겨날 수 있어요! 코드를 정적 분석해주는 Dialyzer 같은 도구를 사용해서 이런 종류의 버그를 찾아낼 수 있습니다. 이런 정적 분석 도구를 사용하는 법에 대해서는 다른 수업에서 다루어 보겠습니다.
  
 ## 커스텀 타입
 
@@ -111,17 +111,17 @@ end
 
 ### 타입 문서화하기
 
-The last element that we need to talk about is how to document our types. As we know from [documentation](/lessons/basic/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules. For documenting our types we can use `@typedoc`:
+이번에 이야기할 것들 중 가장 마지막 주제는 '어떻게 타입을 문서화할 것인가'입니다. [문서화](/ko/lessons/basic/documentation) 수업에서 함수와 모듈를 문서화할 때에는 `@doc`과 `@moduledoc`을 사용한다는 것을 배웠었지요. 타입을 문서화할 때에는 `@typedoc`을 사용할 수 있습니다.
 
 ```elixir
 defmodule Examples do
     
     @typedoc """
-        Type that represents Examples struct with :first as integer and :last as integer.
+        integer인 :first와 integer인 :last를 갖고 있는 Examples 구조체를 대표하는 타입.
     """
     @type t :: %Examples{first: integer, last: integer}
 
 end
 ```
 
-Directive `@typedoc` is similar to `@doc` and `@moduledoc`.
+`@typedoc` 주석은 `@doc`이나 `@moduledoc`과 비슷합니다.
