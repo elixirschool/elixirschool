@@ -25,7 +25,7 @@ Mnesia는 Elixir에서 이미 사용하고 있는 Erlang 런타임 시스템에�
 
 ## 스키마
 
-Mnesia는 Elixir의 한 부분이라기보다는 Erlang 핵심의 일부이므로, 우리는 콜론 문법을 사용해야 합니다(다음 레슨을 참고하세요: [Erlang 상호운용](/ko/lessons/advanced/erlang/)):
+Mnesia는 Elixir의 한 부분이라기보다는 Erlang 핵심의 일부이므로, 우리는 콜론 문법을 사용해야 합니다(다음 강의를 참고하세요: [Erlang 상호운용](/ko/lessons/advanced/erlang/)):
 
 ```shell
 
@@ -37,7 +37,7 @@ iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node()])
 ```
 
-이 레슨에서는 Mnesia API를 사용할 때에 후자의 방법을 사용할 것입니다. `Mnesia.create_schema/`는 새로운 스키마를 생성하며, 노드 리스트를 집어 넣습니다. 여기에서는 IEx 세션과 연결된 노드 리스트를 넘겼습니다. 
+이 강의에서는 Mnesia API를 사용할 때에 후자의 방법을 사용할 것입니다. `Mnesia.create_schema/`는 새로운 스키마를 생성하며, 노드 리스트를 집어 넣습니다. 여기에서는 IEx 세션과 연결된 노드 리스트를 넘겼습니다.
 
 ## 노드들
 

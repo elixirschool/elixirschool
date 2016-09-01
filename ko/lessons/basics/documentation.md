@@ -23,7 +23,7 @@ Elixir에서는 문서화를 *일급 시민*으로 취급하고 있습니다. �
 
 ### 인라인 문서화
 
-코드에 주석을 다는 가장 심플한 방법은 인라인 주석일 겁니다. Ruby, Python과 비슷하게 Elixir의 인라인 주석은 `#`로 나타낼 수 있습니다. 이는 환경에 따라 다르지만 우물정자 또는 해시 로 알려져 있기도 합니다. 
+코드에 주석을 다는 가장 심플한 방법은 인라인 주석일 겁니다. Ruby, Python과 비슷하게 Elixir의 인라인 주석은 `#`로 나타낼 수 있습니다. 이는 환경에 따라 다르지만 우물정자 또는 해시 로 알려져 있기도 합니다.
 
 다음의 Elixir 스크립트를 봅시다(greeting.exs):
 
@@ -60,7 +60,7 @@ iex> h Greeter
 
                 Greeter
 
-사람을 반기는 함수 hello/1 를 제공합니다. 
+사람을 반기는 함수 hello/1 를 제공합니다.
 ```
 
 ### 함수 문서화하기
@@ -157,7 +157,7 @@ $ cd greet_everyone
 ```
 
 
-이제 `@doc` 레슨에서 보았던 코드들을 `lib/greeter.ex`라는 파일에 복사/붙여넣기하고, 모든 코드들이 여전히 잘 동작하는지 커맨드라인으로 확인해보세요. Mix 프로젝트 폴더 내에 있으므로, `iex -S mix` 명령 시퀀스로 조금 색다르게 IEx를 시작해야 합니다.
+이제 `@doc` 강의에서 보았던 코드들을 `lib/greeter.ex`라는 파일에 복사/붙여넣기하고, 모든 코드들이 여전히 잘 동작하는지 커맨드라인으로 확인해보세요. Mix 프로젝트 폴더 내에 있으므로, `iex -S mix` 명령 시퀀스로 조금 색다르게 IEx를 시작해야 합니다.
 
 
 ```bash
@@ -214,7 +214,7 @@ View them at "doc/index.html".
 
 ![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
 
-Earmark가 마크다운을 렌더링하고 ExDoc가 이를 쓸만한 포멧으로 표시하는 것을 볼 수 있습니다. 
+Earmark가 마크다운을 렌더링하고 ExDoc가 이를 쓸만한 포멧으로 표시하는 것을 볼 수 있습니다.
 
 ![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
 
@@ -222,7 +222,7 @@ Github에 배포할 수도 있고, 홈페이지에도 배포할 수 있지만, �
 
 ## 좋은 습관
 
-Elixir의 모범 가이드 라인에 따라 주석을 달아야 합니다. Elixir는 확실히 역사가 오래되지 않은 언어이기 때문에, 생태계가 커져감에 따라 많은 표준들이  생겨날 것입니다. 커뮤니티에서도 좋은 습관을 정립하기 위해 많은 노력을 기울여 왔습니다. 좋은 습관들에 대해서 더 알아보고자 한다면 [엘릭서 스타일 가이드](https://github.com/niftyn8/elixir_style_guide)를 보세요. 
+Elixir의 모범 가이드 라인에 따라 주석을 달아야 합니다. Elixir는 확실히 역사가 오래되지 않은 언어이기 때문에, 생태계가 커져감에 따라 많은 표준들이  생겨날 것입니다. 커뮤니티에서도 좋은 습관을 정립하기 위해 많은 노력을 기울여 왔습니다. 좋은 습관들에 대해서 더 알아보고자 한다면 [Elixir 스타일 가이드](https://github.com/niftyn8/elixir_style_guide)를 보세요.
 
   - 항상 모듈을 문서화해두세요.
 
@@ -316,6 +316,6 @@ end
 ```
 
  - 여러분의 문서에 코드 예제를 첨삭하도록 해보세요. 모듈, 함수 혹은 [ExUnit.DocTest][] 매크로 내에서 코드 예제를 발견하여 자동화된 테스트를 생성할 수 있습니다. 매크로를 이용하고자 한다면, 테스트 케이스로부터  `doctest/1` 매크로를 불러온 후 [공식 문서][ExUnit.DocTest]에 명시된 가이드라인에 따라 예시 코드를 작성할 필요가 있습니다.
- 
+
 [ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html
 

@@ -6,7 +6,7 @@ order: 5
 lang: ko
 ---
 
-이번 레슨에서는 우리가 Elixir에서 사용할 수 있는 제어 구조들에 대해 알아봅니다.
+이번 강의에서는 우리가 Elixir에서 사용할 수 있는 제어 구조들에 대해 알아봅니다.
 
 {% include toc.html %}
 
@@ -14,8 +14,7 @@ lang: ko
 
 여러분은 이전에 `if/2`를 본 적이 있을 것입니다. 그리고 Ruby를 써 본 적이 있다면 `unless/2`에도 익숙하겠지요. Elixir에서도 이 둘은 거의 똑같이 동작하지만, 언어 구조가 아닌 매크로로서 정의되어 있습니다. [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html)에서 이것들이 어떻게 정의되어 있는지 볼 수 있습니다.
 
-Elixir에서는 `nil`과 논리값 `false`만이 거짓으로 간주됨을 유의하십시오.
-
+Elixir에서는 `nil`과 부울 값 `false`만이 거짓으로 간주됨을 유의하십시오.
 
 ```elixir
 iex> if String.valid?("Hello") do
@@ -69,10 +68,11 @@ iex> case :even do
 ```
 
 `_`를 "그 외의 모든 것"에 매치되는 `else`처럼 생각하십시오.
+
 `case`는 패턴 매칭에 의존하기 때문에 같은 규칙과 제약이 모두 적용됩니다. 만약 기존의 변수에 매치하고자 한다면 핀 연산자 `^`를 사용해야 합니다.
 
 ```elixir
-iex> pie = 3.14 
+iex> pie = 3.14
 3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
@@ -128,7 +128,7 @@ iex> cond do
 
 특별한 구문인 `with`는 중첩된 `case` 구문이 쓰일만한 곳이나 깔끔하게 파이프 연산을 할 수 없는 상황에서 유용합니다. `with`식은 키워드, 제너레이터, 그리고 식으로 구성되어 있습니다.
 
-제너레이터에 대해서는 리스트 해석 레슨에서 살펴 볼 것이지만, 지금은 `<-`의 오른쪽을 왼쪽과 비교하기 위해 패턴 매칭을 사용한다는 것만 알아두시면 됩니다.
+제너레이터에 대해서는 리스트 해석 강의에서 살펴 볼 것이지만, 지금은 `<-`의 오른쪽을 왼쪽과 비교하기 위해 패턴 매칭을 사용한다는 것만 알아두시면 됩니다.
 
 일단 `with`의 간단한 예제를 보고 차근차근 알아보기로 합시다.
 
@@ -155,8 +155,8 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 이제 `with`가 없는 더 큰 예제를 보고, 이것을 어떻게 리팩토링할 수 있는지 봅시다.
 
 ```elixir
-case Repo.insert(changeset) do 
-  {:ok, user} -> 
+case Repo.insert(changeset) do
+  {:ok, user} ->
     case Guardian.encode_and_sign(resource, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
@@ -169,7 +169,7 @@ end
 `with`를 도입하면 더 짧으면서도 이해하기 쉬운 코드를 작성할 수 있습니다.
 
 ```elixir
-with 
+with
   {:ok, user} <- Repo.insert(changeset),
   {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
   do: important_stuff(jwt, full_claims)

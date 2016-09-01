@@ -6,7 +6,7 @@ lang: ko
 
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
-프로그래밍 언어 Elixir 레슨, Twitter의 [Scala School](http://twitter.github.io/scala_school/)에서 아이디어를 받아 만들었습니다.
+프로그래밍 언어 Elixir 강의, Twitter의 [Scala School](http://twitter.github.io/scala_school/)에서 아이디어를 받아 만들었습니다.
 
 _의견을 주시거나 참여해주시길 부탁드립니다!_
 

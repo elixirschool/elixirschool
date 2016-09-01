@@ -6,7 +6,7 @@ order: 4
 lang: ko
 ---
 
-Erlang Term Storage, 줄여서 ETS는 OTP 내부에 포함된 강력한 저장용 엔진으로, Elixir에서 이용할 수 있습니다. 이 레슨에서는 ETS를 호출하는 방법과 애플리케이션에서 사용하는 방법에 관해서 설명합니다.
+Erlang Term Storage, 줄여서 ETS는 OTP 내부에 포함된 강력한 저장용 엔진으로, Elixir에서 이용할 수 있습니다. 이 강의에서는 ETS를 호출하는 방법과 애플리케이션에서 사용하는 방법에 관해서 설명합니다.
 
 {% include toc.html %}
 
