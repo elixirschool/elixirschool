@@ -111,7 +111,7 @@ end
 
 ### Documentation of types
 
-The last element that we need to talk about is how to document our types. As we know from [documentation](/lessons/basic/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules. For documenting our types we can use `@typedoc`:
+The last element that we need to talk about is how to document our types. As we know from [documentation](/lessons/basics/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules. For documenting our types we can use `@typedoc`:
 
 ```elixir
 defmodule Examples do
