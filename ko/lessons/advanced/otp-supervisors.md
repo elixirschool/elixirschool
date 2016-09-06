@@ -14,7 +14,7 @@ lang: ko
 
 슈퍼바이저의 마법은 `Supervisor.start_link` 함수의 내부에 있습니다. 슈퍼바이저 프로세스를 실행하면서, 슈퍼바이저가 자식을 관리하기 위해 사용할 전략을 정의할 수 있습니다.
 
-자식 프로세스는 리스트와 `Supervisor.Spec`에 포함된 `worker/3` 함수를 사용해서 정의됩니다. `worker/3` 함수는 모듈, 인수, 그리고 옵션을 받습니다. 내부에서는 `worker/3`를 초기화하며 주어진 인수를 사용해서 `start_link/3`을 호출합니다.
+자식 프로세스는 리스트와 `Supervisor.Spec`에 포함된 `worker/3` 함수를 사용해서 정의됩니다. `worker/3` 함수는 모듈, 인자, 그리고 옵션을 받습니다. 내부에서는 `worker/3`를 초기화하며 주어진 인자를 사용해서 `start_link/3`을 호출합니다.
 
 [OTP의 동시성](/ko/lessons/advanced/otp-concurrency)에서 구현한 SimpleQueue를 사용해서 시작해봅시다:
 

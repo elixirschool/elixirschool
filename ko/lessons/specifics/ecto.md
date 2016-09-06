@@ -316,7 +316,7 @@ end
 
 `changeset/2` 함수를 약간 개선하고, 3개의 새 헬퍼 함수를 추가했습니다: `validate_password_confirmation/1`, `password_mismatch_error/1`, 그리고 `password_incorrect_error/1`입니다.
 
-이름에서도 추측할 수 있듯이, `changeset/2`는 새로운 changeset을 생성합니다. 내부에서 `cast/4`를 통해 필수 또는 옵션인 인수들을 changeset으로 변환합니다. 다음으로 changeset의 비밀번호의 길이를 검증하고, 비밀번호와 확인용 비밀번호가 일치하는지를 확인한 뒤, 사용자의 이름이 유일한지 검증합니다. 마지막으로 데이터베이스에 실제로 저장될 비밀번호 필드를 변경합니다. changeset의 값을 변경하기 위해서 `put_change/3`을 사용했습니다.
+이름에서도 추측할 수 있듯이, `changeset/2`는 새로운 changeset을 생성합니다. 내부에서 `cast/4`를 통해 필수 또는 옵션인 인자들을 changeset으로 변환합니다. 다음으로 changeset의 비밀번호의 길이를 검증하고, 비밀번호와 확인용 비밀번호가 일치하는지를 확인한 뒤, 사용자의 이름이 유일한지 검증합니다. 마지막으로 데이터베이스에 실제로 저장될 비밀번호 필드를 변경합니다. changeset의 값을 변경하기 위해서 `put_change/3`을 사용했습니다.
 
 `User.changeset/2`는 비교적 간단하게 사용할 수 있습니다:
 

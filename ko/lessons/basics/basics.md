@@ -196,7 +196,7 @@ iex> !false
 true
 ```
 
-반면 `and`, `or`, `not`은 **반드시** 첫번째 인수가 부울 값(`true`나 `false`)이어야 합니다.
+반면 `and`, `or`, `not`은 **반드시** 첫번째 인자가 부울 값(`true`나 `false`)이어야 합니다.
 
 ```elixir
 iex> true and 42
