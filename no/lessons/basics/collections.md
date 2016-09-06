@@ -50,6 +50,13 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+Vær oppmerksom på duplikate verdier. For hvert element på høyre side, så vil den første forekomsten av dette elementet bli fjernet fra venstre siden:
+
+```elixir
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
+```
+
 **Merk:**  Operatoren bruker [nøyaktig sammenligning](../basics/#sammenligningsoperatorer) for å matche verdiene.
 
 ### Head / Tail
