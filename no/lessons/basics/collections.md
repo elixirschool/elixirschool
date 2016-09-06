@@ -64,7 +64,7 @@ iex> tl [3.14, :pie, "Apple"]
 ```
 
 I tillegg til de tidligere nevnte funksjonene, kan vi også bruke
-pipe operatoren `|` - Vi kommer tilbake til denne operatoren i en senere leksjon:
+cons operatoren `|` - Vi kommer tilbake til denne operatoren i en senere leksjon:
 
 ```elixir
 iex> [h|t] = [3.14, :pie, "Apple"]
