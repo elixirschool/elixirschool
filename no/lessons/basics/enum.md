@@ -51,11 +51,13 @@ Det finnes flere alternativer for `chunk`, men vi blir ikke å gå igjennom dem.
 
 ### chunk_by
 
-Hvis vi trenger å gruppere kolleksjonen vår basert på noe annet enn størrelse, kan vi bruke funksjonen `chunk_by`:
+Hvis vi trenger å gruppere kolleksjonen vår basert på noe annet enn størrelse, kan vi bruke funksjonen `chunk_by`. Den tar en gitt kolleksjon og en funksjon som argument, og når retur verdien av funksjonen endrer seg så vil en ny gruppe bli lagd og den starter så å lage den neste gruppen:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
@@ -141,4 +143,3 @@ Vi kan benytte oss av `uniq` for å fjerne duplikater fra kolleksjonen vår:
 iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
 [1, 2, 3, 4]
 ```
-
