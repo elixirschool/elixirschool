@@ -12,7 +12,7 @@ Ruby를 잘 알고 계신다면 Plug는 여러 부분에서 Sinatra의 영향을
 
 ## 설치하기
 
-mix를 사용하여 간단하게 설치할 수 있습니다. Plug를 설치하기 위해서는 `mix.exs`에 두 가지 작은 수정을 해야 합니다. 우선 Plug와 Web 서버에 대한 의존성을 추가합니다. Web 서버는 Cowboy를 사용합니다:
+mix를 사용하여 간단하게 설치할 수 있습니다. Plug를 설치하기 위해서는 `mix.exs`에 두 가지 작은 수정을 해야 합니다. 우선 Plug와 Web 서버에 대한 의존성을 추가합니다. Web 서버는 Cowboy를 사용합니다.
 
 ```elixir
 defp deps do
@@ -21,7 +21,7 @@ defp deps do
 end
 ```
 
-다음으로 Web 서버와 Plug를 함께 OTP 애플리케이션에 추가만 하면 됩니다:
+다음으로 Web 서버와 Plug를 함께 OTP 애플리케이션에 추가만 하면 됩니다.
 
 ```elixir
 def application do
@@ -35,7 +35,7 @@ Plug를 만들기 위해서는 Plug의 명세를 알고 그것을 올바르게 �
 
 `init/1` 함수는 Plug의 옵션을 초기화하기 위해서 사용되며, 그 옵션은 `call/2` 함수의 두 번째 인자로 넘겨집니다. `call/2` 함수는 초기화된 옵션과 함께 `%Plug.Conn`를 첫 번째 인자로 하고, 커넥션을 돌려줄 것이라고 가정하고 있습니다.
 
-다음은 "Hello World!"를 돌려주는 간단한 Plug입니다:
+다음은 "Hello World!"를 돌려주는 간단한 Plug입니다.
 
 ```elixir
 defmodule HelloWorldPlug do
@@ -57,7 +57,7 @@ end
 
 _노트_: Plug는 모든 요청에 대해서 사용됩니다. 이것이 각 요청을 확인하고, 실제로 필요한 일부에 대해서만 검증을 적용하는 이유입니다. 요청을 가공하지 않으려면 그저 그 커넥션을 무시하세요.
 
-구현이 끝난 Plug를 살펴보면서 그것이 실제로 어떻게 동작하는지를 설명해나가겠습니다. Plug를 `lib/plug/verify_request.ex`에 만듭니다:
+구현이 끝난 Plug를 살펴보면서 그것이 실제로 어떻게 동작하는지를 설명해나가겠습니다. Plug를 `lib/plug/verify_request.ex`에 만듭니다.
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
@@ -99,7 +99,7 @@ end
 
 `VerifyRequest` Plug가 완성되었으므로 라우터로 넘어가 봅시다. Plug가 라우터를 무료로 제공하고 있으므로 Elixir에서는 Sinatra와 같은 프레임워크를 필요로 하지 않습니다.
 
-우선 `lib/plug/router.ex`를 만들고 다음의 코드를 복사하세요:
+우선 `lib/plug/router.ex`를 만들고 다음의 코드를 복사하세요.
 
 ```elixir
 defmodule Example.Plug.Router do
@@ -115,7 +115,7 @@ end
 
 이것은 가장 작은 크기의 라우터입니다만, 코드 자체가 자기 자신을 잘 설명하고 있습니다. `use Plug.Router`에서 매크로를 몇 개 불러오고, 2개의 내장 Plug, `:match`와 `:dispatch`를 불러옵니다. 2개의 라우터가 정의되고, 하나는 최상위 경로로 들어오는 GET의 반환 값을 제어합니다. 두 번째 라우터는 그 이외의 모든 요청에 대해서 404 메시지를 반환하고 있습니다.
 
-이 라우터에 Plug를 추가해보죠:
+이 라우터에 Plug를 추가해보죠.
 
 ```elixir
 defmodule Example.Plug.Router do
@@ -143,7 +143,7 @@ end
 
 애플리케이션을 실행하려면, 우선 Web 서버, 여기에서는 Cowboy의 설치와 설정을 해야 합니다. 지금 시점에서는 단순히 동작할 수 있도록 필요한 수정을 적용할 뿐입니다만, 이후의 강의에서 더 자세히 살펴볼 것입니다.
 
-`mix.exs`의 `application` 부분을 변경하여 Elixir에게 애플리케이션에 대해서 알려주고, 환경변수를 설정하는 부분에서부터 시작해봅시다. 코드는 다음과 같이 수정될 것입니다:
+`mix.exs`의 `application` 부분을 변경하여 Elixir에게 애플리케이션에 대해서 알려주고, 환경변수를 설정하는 부분에서부터 시작해봅시다. 코드는 다음과 같이 수정될 것입니다.
 
 ```elixir
 def application do
@@ -153,7 +153,7 @@ def application do
 end
 ```
 
-그리고 Cowboy를 실행하고 관리하기 위해서 `lib/example.ex`를 수정해야 합니다:
+그리고 Cowboy를 실행하고 관리하기 위해서 `lib/example.ex`를 수정해야 합니다.
 
 ```elixir
 defmodule Example do
@@ -171,7 +171,7 @@ defmodule Example do
 end
 ```
 
-이걸로 애플리케이션을 실행하기 위한 명령을 사용할 수 있습니다:
+이걸로 애플리케이션을 실행하기 위한 명령을 사용할 수 있습니다.
 
 ```shell
 $ mix run --no-halt
@@ -181,7 +181,7 @@ $ mix run --no-halt
 
 Plug의 테스트는 `Plug.Test` 덕분에 무척 간단합니다. 테스트를 간편하게 만들어주는 편리한 함수가 다수 포함되어 있습니다.
 
-라우터의 테스트를 이해할 수 있는지 확인해보세요:
+라우터의 테스트를 이해할 수 있는지 확인해보세요.
 
 ```elixir
 defmodule RouterTest do
