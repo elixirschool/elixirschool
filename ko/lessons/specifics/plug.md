@@ -89,7 +89,7 @@ defmodule Example.Plug.VerifyRequest do
 end
 ```
 
-우선 주목해야 할 부분은 새로운 예외 `IncompleteRequestError`를 정의한다는 점과, 그 옵션 중에 `:plug_status`가 있다는 점입니다. 이벤트에서 예외가 발생한 경우 이 옵션이 사용되어 Plug가 HTTP 상태 코드를 돌려주게 됩니다. 
+우선 주목해야 할 부분은 새로운 예외 `IncompleteRequestError`를 정의한다는 점과, 그 옵션 중에 `:plug_status`가 있다는 점입니다. 이벤트에서 예외가 발생한 경우 이 옵션이 사용되어 Plug가 HTTP 상태 코드를 돌려주게 됩니다.
 
 그 다음은 `call/2` 메소드로, 이는 검증을 적용할지 말지를 결정하는 곳입니다. 요청 경로가 `:paths` 옵션에 포함되는 경우에만 `verify_request!/2`를 호출합니다.
 

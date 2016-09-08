@@ -85,7 +85,7 @@ end
 
 ## 새로운 에러
 
-Elixir가 `RuntimeError`와 같은 내장 에러 타입을 여럿 포함하고 있지만, 필요하다면 그에 맞는 에러를 만들수 있어야 합니다. `defexception/1` 매크로를 이용하여 새로운 에러를 쉽게 만들수 있습니다. `defexception/1` 매크로는 `:message` 옵션을 인자로 받아, 편리하게 기본 에러 메시지를 설정할 수 있습니다.
+Elixir가 `RuntimeError`와 같은 내장 에러 타입을 여럿 포함하고 있지만, 필요하다면 그에 맞는 에러를 만들 수 있어야 합니다. `defexception/1` 매크로를 이용하여 새로운 에러를 쉽게 만들 수 있습니다. `defexception/1` 매크로는 `:message` 옵션을 인자로 받아, 편리하게 기본 에러 메시지를 설정할 수 있습니다.
 
 ```elixir
 defmodule ExampleError do
