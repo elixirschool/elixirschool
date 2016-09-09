@@ -50,6 +50,8 @@ defmodule Example do
     receive do
       {:ok, "hello"} -> IO.puts "World"
     end
+
+    listen
   end
 end
 
@@ -63,6 +65,8 @@ World
 iex> send pid, :ok
 :ok
 ```
+
+You may notice that the `listen` function is recursive, if we remove the recursive call in the end, the process will exit right after it finish handling the first message, so we use a recursive call to make the process able to handle multiple messages.
 
 ### Process Linking
 
