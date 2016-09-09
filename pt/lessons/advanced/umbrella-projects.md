@@ -71,7 +71,7 @@ You can use "mix" to compile it, test it, and more:
 Run "mix help" for more commands.
 
 
-$ mix new datasets
+$ mix new datasets --sup
 
 * creating README.md
 * creating .gitignore
