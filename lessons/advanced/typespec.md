@@ -6,7 +6,7 @@ order: 9
 lang: en
 ---
 
-In this lesson we will learn about `@spec` and `@type` syntax. First is more syntax complement for writing documentation that could by analyzed by tools. Second helps us to write more readable and easier to understand code.
+In this lesson we will learn about `@spec` and `@type` syntax. First is more syntax complement for writing documentation that could be analyzed by tools. Second helps us to write more readable and easier to understand code.
 
 {% include toc.html %}
 
