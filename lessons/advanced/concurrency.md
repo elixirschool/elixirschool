@@ -66,7 +66,7 @@ iex> send pid, :ok
 :ok
 ```
 
-You may notice that the `listen` function is recursive, if we remove the recursive call in the end, the process will exit right after it finish handling the first message, so we use a recursive call to make the process able to handle multiple messages.
+You may notice that the `listen/0` function is recursive, this allows our process to handle multiple messages. Without recursion our process would exit after handling the first message.
 
 ### Process Linking
 
