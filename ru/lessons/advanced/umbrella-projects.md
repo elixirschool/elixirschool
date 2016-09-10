@@ -48,7 +48,7 @@ for each application in the apps/ directory.
 Давайте перейдём в директорию `machine_learning_toolkit/apps` нашего примера, и создадим там три обычных приложения с помощью `Mix`, следующим образом:
 
 ```shell
-$ mix new utilities --sup
+$ mix new utilities
 
 * creating README.md
 * creating .gitignore
@@ -91,7 +91,7 @@ You can use "mix" to compile it, test it, and more:
 
 Run "mix help" for more commands.
 
-$ mix new svm --sup
+$ mix new svm
 
 * creating README.md
 * creating .gitignore

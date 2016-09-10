@@ -52,7 +52,7 @@ Jak widać po wpisach w konsoli, Mix stworzył niewielki szkielet projektu zawie
 Przejdźmy do katalogu `machine_learning_toolkit/apps` i za pomocą Mixa stwórzmy trzy zwykłe projekty:
 
 ```shell
-$ mix new utilities --sup
+$ mix new utilities
 
 * creating README.md
 * creating .gitignore
@@ -95,7 +95,7 @@ You can use "mix" to compile it, test it, and more:
 
 Run "mix help" for more commands.
 
-$ mix new svm --sup
+$ mix new svm
 
 * creating README.md
 * creating .gitignore
