@@ -49,7 +49,7 @@ Como você pode ver a partir do comando Mix no shell, foi criado um pequeno proj
 Vamos mudar para o diretório de projetos `machine_learning_toolkit/apps` e criar 3 aplicações normais usando Mix desta forma:
 
 ```shell
-$ mix new utilities --sup
+$ mix new utilities
 
 * creating README.md
 * creating .gitignore
@@ -92,7 +92,7 @@ You can use "mix" to compile it, test it, and more:
 
 Run "mix help" for more commands.
 
-$ mix new svm --sup
+$ mix new svm
 
 * creating README.md
 * creating .gitignore

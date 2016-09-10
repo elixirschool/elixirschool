@@ -55,7 +55,7 @@ for each application in the apps/ directory.
 `machine_learning_toolkit` 프로젝트 안에 있는 `app` 디렉터리로 이동해서, 아래처럼 Mix를 사용해 평범한 애플리케이션을 3개 만들어 봅시다.
 
 ```shell
-$ mix new utilities --sup
+$ mix new utilities
 
 * creating README.md
 * creating .gitignore
@@ -98,7 +98,7 @@ You can use "mix" to compile it, test it, and more:
 
 Run "mix help" for more commands.
 
-$ mix new svm --sup
+$ mix new svm
 
 * creating README.md
 * creating .gitignore
