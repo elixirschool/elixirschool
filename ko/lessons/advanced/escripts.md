@@ -40,9 +40,9 @@ defmodule ExampleApp.Mixfile do
 end
 ```
 
-## 명령행에서 주어진 인수 처리하기
+## 커맨드 라인 인자 처리하기
 
-애플리케이션을 준비한다면 이제는 명령행에서 주어지는 인수를 다루는 법을 살펴볼 때가 되었습니다. Elixir에서는 `OptionParser.parse/2`를 사용하여 인수를 처리할 수 있는데요, 우리가 명령행에서 불리언 값으로 인수를 받을 것을 `:switches` 옵션에서 설정할 수 있습니다.
+애플리케이션을 준비했다면 커맨드 라인 인자를 다루는 법을 살펴볼 때가 되었습니다. Elixir에서는 `OptionParser.parse/2`를 사용하여 인자를 처리할 수 있고, `:switches` 옵션으로 플래그가 부울 값임을 알릴 수 있습니다.
 
 ```elixir
 defmodule ExampleApp.CLI do
@@ -87,4 +87,4 @@ $ ./example_app Hi
 Hi
 ```
 
-바로 이렇게요. escript를 사용하여 첫 Elixir 실행 파일을 빌드하는 법을 알아보았습니다.
+이게 전부입니다. escript를 사용하여 첫 Elixir 실행 파일을 빌드해 보았습니다.
