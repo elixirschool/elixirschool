@@ -6,7 +6,7 @@ order: 8
 lang: es
 ---
 
-Sabemos por experiencia que es revoltoso tener nuestras funciones en el mismo archivo y alcance. En esta sección cubriremos cómo agrupar funciones y definir un mapa especializado conocido como estructura (struct), con el propósito de organizar nuestro código de manera eficiente.
+Sabemos por experiencia que es incontrolable tener todas nuestras funciones en el mismo archivo y alcance. En esta sección cubriremos cómo agrupar funciones y definir un mapa especializado conocido como estructura (struct), con el propósito de organizar nuestro código de manera eficiente.
 
 {% include toc.html %}
 
@@ -60,7 +60,7 @@ defmodule Example do
 end
 ```
 
-Es importante notar que hay atributos reservados en Elixir. Los tres más comunes son:
+Es importante destacar que hay atributos reservados en Elixir. Los tres más comunes son:
 
 
 + `moduledoc` — Documenta el módulo actual.
@@ -69,9 +69,9 @@ Es importante notar que hay atributos reservados en Elixir. Los tres más comune
 
 ## Estructuras
 
-Las estructuras son mapas especiales con un conjunto definido de llaves y valores por defecto. Deben ser definidas dentro de un módulo, y tomarán su nombre. Es común que una estructura sea definida únicamente dentro de un módulo.
+Las estructuras son mapas especiales con un conjunto definido de claves y valores por defecto. Deben ser definidas dentro de un módulo, y tomarán su nombre. Es común que una estructura sea definida únicamente dentro de un módulo.
 
-Para definir una estructura utilizamos `defstruct` junto con una lista de llaves y valores por defecto:
+Para definir una estructura utilizamos `defstruct` junto con una lista de claves y valores por defecto:
 
 ```elixir
 defmodule Example.User do
@@ -101,7 +101,7 @@ iex> sean = %{steve | name: "Sean"}
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-Algo muy importante es que podemos hacer match entre estructuras y mapas:
+Algo muy importante es que podemos hacer coincidencia entre estructuras y mapas:
 
 ```elixir
 iex> %{name: "Sean"} = sean
@@ -110,7 +110,7 @@ iex> %{name: "Sean"} = sean
 
 ## Composición
 
-Ahora que sabemos cómo crear módulos y estrucutras, aprendamos cómo incluir funcionalidad existente dentro de ellos con composición.
+Ahora que sabemos cómo crear módulos y estructuras, aprendamos cómo incluir funcionalidad existente dentro de ellos con composición.
 Elixir nos provee una variedad de diferentes formas para interactuar con otros módulos, démosle un vistazo a lo que tenemos disponible:
 
 ### `alias`
@@ -209,11 +209,11 @@ defmodule Example do
 end
 ```
 
-Si intentamos hacer un llamado a una macro que no está cargada aún, Elixir arrojará un error.
+Si intentamos hacer un llamado a una macro que no está cargada aún, Elixir lanzará un error.
 
 ### `use`
 
-Utiliza el módulo en el contexto actual. Esto es particularmente utilizado cuando un módulo necesita realizar algún setup. Llamando `use`, invocamos el hook `__using__` dentro del módulo, dándole al módulo una oportunidad para modificar nuestro contexto actual.
+Utiliza el módulo en el contexto actual. Esto es particularmente utilizado cuando un módulo necesita realizar alguna configuración. Llamando `use`, invocamos el hook `__using__` dentro del módulo, dándole al módulo una oportunidad para modificar nuestro contexto actual.
 
 ```elixir
 defmodule MyModule do
