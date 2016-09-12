@@ -52,7 +52,7 @@ iex> 0x1F
 在 Elixir 语言中，浮点数要求小数点之前必须有至少一个数字；支持 64 位多精度和 `e` 表示的科学计数：
 
 ```elixir
-iex> 3.14 
+iex> 3.14
  3.14
 iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
@@ -193,9 +193,9 @@ iex> not 42
 
 ### 比较
 
-### 字符串差值
+### 字符串插值
 
-如果你使用过 Ruby，那么 Elixir 的字符串差值看起来会很熟悉：
+如果你使用过 Ruby，那么 Elixir 的字符串插值看起来会很熟悉：
 
 ```elixir
 iex> name = "Sean"
