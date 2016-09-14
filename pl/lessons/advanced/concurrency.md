@@ -50,6 +50,7 @@ defmodule Example do
     receive do
       {:ok, "hello"} -> IO.puts "World"
     end
+    listen
   end
 end
 
@@ -63,6 +64,8 @@ World
 iex> send pid, :ok
 :ok
 ```
+
+Funkcja `listen/0` jest rekurencyjna. Dzięki temu może ona obsługiwać kolejno nadchodzące wiadomości. Bez tego mechanizmu proces zakończyłby działanie po obsłużeniu pierwszej wiadomości.
 
 ### Łączenie procesów
 
