@@ -49,6 +49,13 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+Jeżeli na liście występują duplikaty, to zostanie usunięty pierwszy z nich:
+
+```elixir
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
+```
+
 **Uwaga:** Operacja używa [dokładnego porównania](../basics/#comparison) przy wyszukiwaniu wartości.
 
 ### Głowa i ogon
