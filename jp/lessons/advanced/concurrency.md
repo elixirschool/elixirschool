@@ -50,6 +50,8 @@ defmodule Example do
     receive do
       {:ok, "hello"} -> IO.puts "World"
     end
+
+    listen
   end
 end
 
@@ -63,6 +65,8 @@ World
 iex> send pid, :ok
 :ok
 ```
+
+`listen/0`関数が再帰的であることに気づいたかもしれません。これはプロセスで複数のメッセージを扱うためです。再帰がないと、プロセスは初めのメッセージを受け取り処理した後に終了するでしょう。
 
 ### プロセスのリンク
 
