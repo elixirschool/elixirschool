@@ -50,6 +50,8 @@ defmodule Example do
     receive do
       {:ok, "hello"} -> IO.puts "World"
     end
+
+    listen
   end
 end
 
@@ -63,6 +65,8 @@ World
 iex> send pid, :ok
 :ok
 ```
+
+`listen/0` 함수를 재귀적으로 호출하므로 여러 메시지를 처리할 수 있습니다. 스스로 호출하지 않으면 프로세스는 첫 메시지를 처리한 후에 종료될 것입니다.
 
 ### 프로세스 연결
 
