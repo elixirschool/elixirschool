@@ -79,6 +79,46 @@ ExUnit will tells us exactly where our failed assertions are, what the expected 
 
 Sometimes it may be necessary to assert that an error has been raised.  We can do this with `assert_raise`.  We'll see an example of `assert_raise` in the next lesson on Plug.
 
+### assert_receive
+
+In Elixir applications consist of actors/processes that send messages to each other, thus often you want to test the messages being sent. Since ExUnit runs in its own process it can receive messages just like any other process and you can assert on it with the `assert_received` macro:
+
+```elixir
+defmodule SendingProcess do
+  def run(pid) do
+    send pid, :ping
+  end
+end
+
+defmodule TestReceive do
+  use ExUnit.Case
+
+  test "receives ping" do
+    SendingProcess.run(self)
+    assert_received :ping
+  end
+end
+```
+
+`assert_received` does not wait for messages, with `assert_receive` you can specify a timeout.
+
+## capture_io and capture_log
+
+Capturing an application's output is possible with `ExUnit.captureIO` without changing the original application. Simply pass the function generating the output in:
+
+```elixir
+defmodule OutputTest do
+  use ExUnit.Case
+  import ExUnit.CaptureIO
+
+  test "outputs Hello World" do
+    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+  end
+end
+```
+
+`ExUnit.CaptureLog` is the equivalent for capturing output to `Logger`.
+
 ## Test Setup
 
 In some instances it may be necessary to perform setup before our tests.  To accomplish this we can use the `setup` and `setup_all` macros.  `setup` will be run before each test and `setup_all` once before the suite.  It is expected that they will return a tuple of `{:ok, state}`, the state will be available to our tests.
