@@ -142,6 +142,8 @@ end
 
 ## Mocking
 
-The simple answer to mocking in Elixir: don't.  You may instinctively reach for mocks but they are highly discouraged in the Elixir community and for good reason.  If you follow good design principles the resulting code will be easy to test as individual components.
+The simple answer to mocking in Elixir is: don't.  You may instinctively reach for mocks but they are highly discouraged in the Elixir community and for good reason. 
 
-Resist the urge.
+For a longer discussion there is this [excellent article](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/). The gist is, that instead of mocking away dependencies for testing (mock as a *verb*), it has many advantages to explicitly define interfaces (behaviors) for code outside your application and using Mock (as a *noun*) implementations in your client code for testing.
+
+To switch the implementations in your application code, the preferred way is to pass the module as arguments and use a default value. If that does not work, use the built-in configuration mechanism. For creating these mock implementations, you don't need a special mocking library, only behaviours and callbacks. 
