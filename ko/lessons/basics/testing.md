@@ -79,6 +79,46 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 에러가 발생하는 상황을 테스트로 작성해야 할 때가 있습니다. 이럴 때 `assert_raise`를 사용하면 됩니다. 나중에 Plug를 다룰 수업에서 `assert_raise`를 사용하는 예제를 살펴보겠습니다.
 
+### assert_receive
+
+메시지를 주고 받는 엑터와 프로세스로 구성된 Elixir 애플리케이션에서는 메시지를 보낸 후를 테스트 하고 싶을 때가 많습니다. ExUnit이 자신의 프로세스 안에서 실행되기 때문에 다른 프로세스 처럼 메시지를 받을 수 있고 `assert_receive` 메크로로 assert할 수 있습니다.
+
+```elixir
+defmodule SendingProcess do
+  def run(pid) do
+    send pid, :ping
+  end
+end
+
+defmodule TestReceive do
+  use ExUnit.Case
+
+  test "receives ping" do
+    SendingProcess.run(self)
+    assert_received :ping
+  end
+end
+```
+
+`assert_received`는 메시지를 기다리지 않습니다. `assert_receive`는 타임아웃을 지정할 수 있습니다.
+
+## capture_io, capture_log
+
+애플리케이션 출력의 캡쳐는 원본 애플리케이션을 변경하지 않아도 `ExUnit.captureIO`로 할 수 있습니다. 출력을 만드는 함수를 넘겨보세요.
+
+```elixir
+defmodule OutputTest do
+  use ExUnit.Case
+  import ExUnit.CaptureIO
+
+  test "outputs Hello World" do
+    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+  end
+end
+```
+
+비슷하게 `ExUnit.CaptureLog`는 `Logger`의 출력을 켑쳐합니다.
+
 ## 테스트 준비
 
 몇몇 인스턴스를 테스트하려면 테스트하기 전에 준비 과정을 거치고 싶을 때가 있는데, 이럴 때에는 `setup`과 `setup_all` 매크로를 사용하면 됩니다. `setup`은 매 테스트를 수행하기 전에 실행되고, `setup_all`은 해당 테스트 스위트 전체를 수행하기 전에 실행됩니다. 여기에서 `{:ok, state}` 형식으로 된 튜플을 반환받아서 `state`를 테스트에서 사용할 수 있습니다.
@@ -102,6 +142,8 @@ end
 
 ## 모의 객체 만들기
 
-Elixir에서 모의 객체(mock)를 만들어서 테스트를 진행하는 가장 깔끔한 방법은 "안 하는 것"입니다. 다른 언어에서 테스트를 다루어 보셨다면 지금쯤 모의 객체를 다룰 때가 되었다고 본능적으로 느끼셨겠지만, Elixir 커뮤니티에서 사용하지 말자는 의견이 크기도 하고, 사용하지 않을 만한 멋진 이유도 있기 때문이에요. 좋은 설계 원칙을 지켜 코딩을 한다면 그 결과물도 각 부분으로 나누어 테스트하기 쉬워질 테니까요.
+Elixir에서 모의 객체(mock)를 만들어서 테스트를 진행하는 가장 깔끔한 방법은 "안 하는 것"입니다. 다른 언어에서 테스트를 다루어 보셨다면 지금쯤 모의 객체를 다룰 때가 되었다고 본능적으로 느끼셨겠지만, Elixir 커뮤니티에서 사용하지 말자는 의견이 크기도 하고, 사용하지 않을 만한 멋진 이유도 있기 때문이에요.
 
-모의 객체에 대한 끓어오르는 열망을 억누르도록 하세요.
+더 긴 논의가 보고 싶으시면, 이 [훌륭한 글](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/)이 있습니다. 요약하면, 테스트를 위해 의존성을 모의 객체로 만드는 것 보다, 명시적으로 인터페이스(비헤이비어)를 선언하는 것이 애플리케이션 외부의 코드에서 사용할 때나 테스트를 위한 클라이언트 코드에서의 모의 객체 구현에 많은 이점이 있다는 것입니다.
+
+애플리케이션 코드에서 구현을 바꾸려면, 올바른 방법은 모듈을 인자로 넘기고 기본 값을 사용하는 것입니다. 이렇게 할 수 없으면, 내장된 설정 메카니즘을 사용하세요. 모의 객체를 구현하기위해 특별한 모의 객체 라이브러리를 사용할 필요가 없습니다. 그냥 비헤이비어와 콜백을 쓰세요.
