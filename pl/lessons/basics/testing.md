@@ -142,7 +142,8 @@ end
 
 ## Mockowanie
 
-W Elixirze mockom mówimy stanowcze nie. Możesz mieć chęć skorzystania z mocków, ale są one niechętnie widziane w społeczności Elixira i to nie bez powodu. Jeżeli będziesz podążać za wskazówkami, wzorcami i dobrymi praktykami to testowanie funkcji w izolacji nie będzie trudne.
+W Elixirze mockom mówimy stanowcze nie. Możesz mieć chęć skorzystania z mocków, ale są one niechętnie widziane w społeczności Elixira i to nie bez powodu. 
 
-Na serio, nie używaj mocków.
+Temat ten w wyczerpujący sposób został omówiony w [artykule](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/) autorstwa José Valima. Istotą problemu jest użycie mocków, które wymusza jawne zdefiniowanie interfejsów pomiędzy naszym kodem i kodem klienta. Mocki są w takim przypadku specyficznymi, ponieważ służą tylko do testowania, implementacjami kodu klienta. 
 
+Rozwiązaniem jest taka implementacja po naszej stronie, by przekazywać moduł jako argument i używać wartości domyślnych. Jeżeli takie rozwiązanie nie jest wystarczające, to możemy użyć wbudowanego mechanizmu konfiguracji, by utworzyć odpowiednie mocki. Jednocześnie nie potrzebujemy żadnej dodatkowej biblioteki do tworzenia mocków dla naszych zachowań i wywołań zwrotnych.
