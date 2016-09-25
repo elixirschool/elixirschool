@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Specifications and types
+title: 스펙과 타입
 category: advanced
 order: 9
 lang: ko
