@@ -3,7 +3,7 @@ layout: page
 title: 仕様と型
 category: advanced
 order: 9
-lang: ja
+lang: jp
 ---
 
 このレッスンでは `@spec` と `@type` の文法について学びます。最初の `@spec` はツールによって解析できるドキュメントを書くための文法をより完全にするものです。二番目の `@type` はコードをより読みやすく理解しやすいものにする手助けをしてくれます。
