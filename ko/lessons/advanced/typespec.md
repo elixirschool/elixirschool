@@ -36,8 +36,7 @@ end
 전부 다 괜찮아 보이고, 함수를 호출하면 올바른 값이 리턴되겠지요. 하지만 `Enum.sum` 함수는 `@spec`에서 예상했던 `integer`가 아니라 `number`를 리턴합니다. 이런 부분에서 버그가 생겨날 수 있어요! 코드를 정적 분석해주는 Dialyzer 같은 도구를 사용해서 이런 종류의 버그를 찾아낼 수 있습니다. 이런 정적 분석 도구를 사용하는 법에 대해서는 다른 수업에서 다루어 보겠습니다.
  
 ## 커스텀 타입
-
-Writing specifications is nice, but sometimes our functions works with more complex data structures than simple numbers or collections. In that definition's case in `@spec` it could be very hard to understand and/or change for other developers. Sometimes functions need to take in a large number of parameters or return complex data. A long parameters list is one of many potential bad smells in one's code. In object oriented-languages like Ruby or Java we could easily define classes that help us to solve this problem. Elixir hasn't classes but because is easy to extends that we could define our types.
+스펙을 작성하는 것도 좋지만, 때로는 우리들이 구현한 함수가 간단한 함수나 컬렉션보다 복잡한 자료 구조를 처리해야 할 수도 있습니다. 이런 함수를 `@spec`으로 정의한다면, 다른 개발자들이 이해하거나 수정하기가 굉장히 힘들어질 수 있습니다. 종종 함수가 많은 파라메터를 필요로 하거나, 복잡한 데이터를 리턴해야 할 때가 있습니다. 하지만 파라메터 목록이 길어질수록 코드의 품질이 떨어질 가능성도 점점 커집니다. Ruby나 Java 같은 객체 지향 언어를 사용했더라면, 간편하게 클래스를 구현해서 문제를 해결할 수 있었을 것입니다. Elixir에서는 클래스가 없고, 대신에 타입을 정의해서 언어를 확장할 수 있습니다.
 
 막 설치를 끝내고 난 Elixir에는 `integer`나 `pid` 같은 기본적인 타입이 있는데요. [공식 문서(Types and Their Syntax)](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax)에서 사용할 수 있는 타입의 전체 목록을 찾아볼 수 있습니다.
  
@@ -57,7 +56,7 @@ def sum_times(a, params) do
 end
 ```
 
-We introduced a struct in `Examples` module that contains two fields `first` and `last`. That is simpler version of struct from `Range` module. We will talk about `structs` when we get into discussing [modules](lessons/basics/modules/#structs). Lets imagine that we need to specification with `Examples` struct in many places. It would be very annoying to write long, complex specifications and could be a source of bugs. A solution to this problem is `@type`.
+`Range` 모듈 안에 있는 구조체를 단순하게 만들어, `Examples` 모듈 안에 `first`와 `last` 필드를 가진 구조체를 도입하였습니다. 구조체는 [모듈](lessons/basics/modules/#structs)에서 한번 이야기해 본 적이 있었습니다. 그런데, 코드의 여러 부분에서 `Examples` 구조체에 대한 스펙을 정의해야 하는 상황을 상상해 봅시다. 길고 복잡한 스펙을 쓰자니 성가실 뿐더러, 이 부분에서 버그가 생겨날 가능성이 커질 수도 있습니다. 이 문제를 해결하기 위해서 `@type`을 사용할 수 있습니다.
 
 Elixir에서 타입을 지정하는 방법에는 세 가지가 있습니다.
 
@@ -65,7 +64,7 @@ Elixir에서 타입을 지정하는 방법에는 세 가지가 있습니다.
   - `@typep` – 공개하지 않은 타입이고, 이 타입을 정의하고 있는 모듈 안에서만 사용할 수 있습니다.
   - `@opaque` – 타입은 공개되어 있지만, 타입의 내부 구조는 숨겨져 있습니다.
 
-Let define our type:
+이제 타입을 정의해 봅시다.
 
 ```elixir
 defmodule Examples do
@@ -79,9 +78,9 @@ defmodule Examples do
 end
 ```
 
-We defined the type `t(first, last)` already, which is a representation of the struct `%Examples{first: first, last: last}`. At this point we see types could takes parameters, but we defined type `t` as well and this time it is a representation of the struct `%Examples{first: integer, last: integer}`.   
+구조체 `%Examples{first: first, last: last}`를 나타내는 타입 `t(first, last`를 정의하였습니다. 여기에서 타입이 인수를 취할 수 있다는 걸 알 수 있지만, 이번에는 타입 `t`도 정의한 데다가 이번에는 `%Examples{first: integer, last: integer}` 구조체를 나타내는 타입입니다.
 
-What is a difference? First one represents the struct `Examples` of which the two keys could be any type. Second one represents struct which keys are `integers`. That means code like this:
+이 둘의 차이는 무엇일까요? 첫번째는 두 키가 어떤 타입이라도 될 수 있는 `Examples` 구조체를 뜻하고, 두번째는 두 키가 `integer`인 구조체를 말합니다. 다시 말해 아래처럼 코드를 작성하면
   
 ```elixir
 @spec sum_times(integer, Examples.t) :: integer
@@ -95,7 +94,7 @@ def sum_times(a, params) do
 end
 ```
 
-Is equal to code like:
+아래 코드와 똑같이 작동합니다.
 
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer
