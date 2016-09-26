@@ -124,6 +124,8 @@ iex>
 
 문서 내에서 마크업을 어떻게 이용하고, 터미널이 이를 어떻게 렌더링하는지 주목하세요. 더욱 세련되어지거나 Elixir 생태계에 멋진 기능들이 추가되는 것들을 떠나서, ExDoc가 HTML 문서를 한번에 생성한다는 것이 엄청 흥미롭게 느껴질 겁니다.
 
+**Note:** `@spec` 어노테이션은 코드의 정적 분석에 사용됩니다. 여기에 대해 배우려면, [사양과 타입](../advanced/typespec) 강의를 확인하세요.
+
 ## ExDoc
 
 ExDoc는 **HTML(HyperText Markup Language) 문서를 생성하여 Elixir 프로젝트를 위한 온라인 문서를 제공하는** 공식 Elixir 프로젝트 입니다. 물론, [Github](https://github.com/elixir-lang/ex_doc)에서 찾을 수 있는 프로젝트입니다. 먼저, 어플리케이션을 만들기 위해 Mix 프로젝트를 생성해 봅시다.
