@@ -8,6 +8,21 @@ lang: bg
 
 Уроци за езика за програмиране Elixir, вдъхновени от [Scala School](http://twitter.github.io/scala_school/) на Twitter.
 
+Преведен и на [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Melayu][my], [Українською][uk], [한국어][ko], [L'italiano][it] и други.
+
+  [cn]: {{ site.url }}/cn/
+  [es]: {{ site.url }}/es/
+  [it]: {{ site.url }}/it/
+  [jp]: {{ site.url }}/jp/
+  [ko]: {{ site.url }}/ko/
+  [pl]: {{ site.url }}/pl/
+  [pt]: {{ site.url }}/pt/
+  [ru]: {{ site.url }}/ru/
+  [sk]: {{ site.url }}/sk/
+  [vi]: {{ site.url }}/vi/
+  [my]: {{ site.url }}/my/
+  [uk]: {{ site.url }}/uk/
+
 _Обратната връзка и участие са желателни!_
 
 ## Относно Elixir
