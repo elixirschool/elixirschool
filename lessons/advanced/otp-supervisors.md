@@ -40,7 +40,7 @@ There are currently four different restart strategies available to supervisors:
 
 + `:rest_for_one` - Restart the failed process and any process started after it.
 
-+ `:simple_one_for_one` - Best for dynamically attached children. Supervisor is required to contain only one child.
++ `:simple_one_for_one` - Best for dynamically attached children. Supervisor spec is required to contain only one child, but this child can be spawned multiple times. This strategy is intended to be used when you need to dynamically start and stop supervised children.
 
 ### Nesting
 
