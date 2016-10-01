@@ -59,6 +59,15 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 [["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
+### map_every
+
+Sometimes chunking out a collection isn't enough for exactly what we may need. If this is the case, `map_every/3` can be very useful to hit only specific items if your collection has an ordering that such is necessary or useful.
+
+```elixir
+iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
+[2, 2, 6, 4]
+```
+
 ### each
 
 It may be necessary to iterate over a collection without producing a new value, for this case we use `each`:
@@ -83,20 +92,34 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-Find the `min` value in our collection:
+`min/1` finds the `min` value in the collection.
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
+`min/2` does the same, but allows us to specify a default value to `Enum` in an anonymous function that is passed.
+
+```elixir
+iex> Enum.min([], fn -> :foo end)
+:foo
+```
+
 ### max
 
-Returns the `max` value in the collection:
+`max/1` returns the `max` value in the collection:
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
+```
+
+`max/2` does the same, and behaves as `min/2` does as well, allowing us to pass an anonymous function to provide a default value to `Enum`.
+
+```elixir
+Enum.max([], fn -> :bar end)
+:bar
 ```
 
 ### reduce
@@ -134,11 +157,13 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq
+### uniq_by
 
-We can use `uniq` to remove duplicates from our collections:
+We can use `uniq_by/2` to remove duplicates from our collections:
 
 ```elixir
-iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
-[1, 2, 3, 4]
+iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+[1, 2, 3]
 ```
+
+This was previously known as `uniq/1`, which is deprecated as of Elixir 1.4, but still available (with warnings).
