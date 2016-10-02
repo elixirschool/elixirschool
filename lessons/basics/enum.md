@@ -31,6 +31,7 @@ at/3
 ...
 ```
 
+Using this, its clear that we have a vas amount of functionality, and that is for a clear reason.
 Enumeration is at the core of functional programming and is an incredibly useful thing.
 By leveraging it combined with other perks of Elixir, such as documentation being a first class citizen as we just saw, it can be incredibly empowering to the developer as well.
 
