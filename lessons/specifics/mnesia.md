@@ -113,6 +113,15 @@ We define the columns using the atoms `:id`, `:name`, and `:job`. When we execut
  - `{:atomic, :ok}` if the function executes successfully
  - `{:aborted, Reason}` if the function failed
 
+In particular, if the table already exists, the reason will be of the form
+`{:already_exists, table}` so if we try to create this table a second time,
+we will get:
+
+```shell
+iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
+{:aborted, {:already_exists, Person}}
+```
+
 ## The Dirty Way
 
 First of all we will look at the dirty way of reading and writing to a Mnesia table. This should generally be avoided as success is not guaranteed, but it should help us learn and become comfortable working with Mnesia. Let's add some entries to our **Person** table.
@@ -173,3 +182,87 @@ iex> data_to_read = fn ->
 iex> Mnesia.transaction(data_to_read)
 {:atomic, [{Person, 6, "Monty Burns", "Businessman"}]}
 ```
+## Using indices
+
+Mnesia support indices on non-key columns and data can then be queried against
+those indices. So we can add an index against the `:job` column of the `Person`
+table:
+
+```shell
+iex> Mnesia.add_table_index(Person, :job)
+{:atomic, :ok}
+```
+
+The result is similar to the one returned by `create_table`:
+
+ - `{:atomic, :ok}` if the function executes successfully
+ - `{:aborted, Reason}` if the function failed
+
+In particular, if the index already exists, the reason will be of the form
+`{:already_exists, table, attribute_index}` so if we try to add this index a second time,
+we will get:
+
+```shell
+iex> Mnesia.add_table_index(Person, :job)
+{:aborted, {:already_exists, Person, 4}}
+```
+
+Once the index is successfully created, we can read against it and retrieve a
+list of all principals:
+
+```shell
+iex> Mnesia.transaction(
+...>   fn ->
+...>     Mnesia.index_read(Person, "Principal", :job)
+...>   end
+...> )
+{:atomic, [{Person, 1, "Seymour Skinner", "Principal"}]}
+```
+
+## Match and select
+
+Mnesia supports complex queries to retrieve data from a table in the form of
+matching and ad-hoc select functions.
+
+The `match_object/1` function returns all records that match the given pattern.
+If any of the columns in the table have indices, it can make use of them to make
+the query more efficient. Use the special atom `:_` to identify columns that don't
+participate in the match.
+
+```shell
+iex> Mnesia.transaction(
+...>   fn ->
+...>     Mnesia.match_object({Person, :_, "Marge Simpson", :_})
+...>   end
+...> )
+{:atomic, [{Person, 4, "Marge Simpson", "home maker"}]}
+```
+
+The `select/2` function allows you to specify a custom query using any operator or
+function in the Elixir language (or Erlang for that matter). Let's look at an example
+to select all records that have a key that is greater than 3:
+
+```shell
+iex> Mnesia.transaction(
+...>   fn ->
+...>     Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}])
+...>   end
+...> )
+{:atomic, [[7, "Waylon Smithers", "Executive assistant"], [4, "Marge Simpson", "home maker"], [6, "Monty Burns", "Businessman"], [5, "Hans Moleman", "unknown"]]}
+```
+
+Let's unpack this. The first attribute is the table, `Person`, the second attribute
+is a triple of the form `{match, [guard], [result]}`:
+
+- `match` is the same as what you'd pass to the `match_object/1` function; however,
+  note the special atoms `:"$n"` that specify positional parameters that are used
+  by the remainder of the query
+- the `guard` list is a list of tuples that specifies what guard functions to apply,
+  in this case the `:>` (greater than) built in function with the first positional
+  parameter `:"$1"` and the constant `3` as attributes
+- the `result` list is the list of fields that are returned by the query, in the form
+  of positional parameters of the special atom `:"$$"` to reference all fields so
+  you could use `[:"$1", :"$2"]` to return the first two fields or `[:"$$"]` to
+  return all fields
+
+For more details, see [the Erlang Mnesia documentation for select/2](http://erlang.org/doc/man/mnesia.html#select-2).
