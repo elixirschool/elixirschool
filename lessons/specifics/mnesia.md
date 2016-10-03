@@ -182,6 +182,17 @@ iex> data_to_read = fn ->
 iex> Mnesia.transaction(data_to_read)
 {:atomic, [{Person, 6, "Monty Burns", "Businessman"}]}
 ```
+
+Note that if you want to update data, you just need to call `Mnesia.write/1` with the same key as an existing record. Therefore, to update the record for Hans, you can do:
+
+```shell
+iex> Mnesia.transaction(
+...>   fn ->
+...>     Mnesia.write({Person, 5, "Hans Moleman", "Ex-Mayor"})
+...>   end
+...> )
+```
+
 ## Using indices
 
 Mnesia support indices on non-key columns and data can then be queried against
