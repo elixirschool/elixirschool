@@ -200,7 +200,7 @@ iex> Mnesia.add_table_index(Person, :job)
 {:atomic, :ok}
 ```
 
-The result is similar to the one returned by `create_table`:
+The result is similar to the one returned by `Mnesia.create_table/2`:
 
  - `{:atomic, :ok}` if the function executes successfully
  - `{:aborted, Reason}` if the function failed
@@ -227,7 +227,7 @@ iex> Mnesia.transaction(
 
 Mnesia supports complex queries to retrieve data from a table in the form of matching and ad-hoc select functions.
 
-The `match_object/1` function returns all records that match the given pattern. If any of the columns in the table have indices, it can make use of them to make the query more efficient. Use the special atom `:_` to identify columns that don't participate in the match.
+The `Mnesia.match_object/1` function returns all records that match the given pattern. If any of the columns in the table have indices, it can make use of them to make the query more efficient. Use the special atom `:_` to identify columns that don't participate in the match.
 
 ```shell
 iex> Mnesia.transaction(
@@ -238,7 +238,7 @@ iex> Mnesia.transaction(
 {:atomic, [{Person, 4, "Marge Simpson", "home maker"}]}
 ```
 
-The `select/2` function allows you to specify a custom query using any operator or function in the Elixir language (or Erlang for that matter). Let's look at an example to select all records that have a key that is greater than 3:
+The `Mnesia.select/2` function allows you to specify a custom query using any operator or function in the Elixir language (or Erlang for that matter). Let's look at an example to select all records that have a key that is greater than 3:
 
 ```shell
 iex> Mnesia.transaction(
@@ -251,7 +251,7 @@ iex> Mnesia.transaction(
 
 Let's unpack this. The first attribute is the table, `Person`, the second attribute is a triple of the form `{match, [guard], [result]}`:
 
-- `match` is the same as what you'd pass to the `match_object/1` function; however, note the special atoms `:"$n"` that specify positional parameters that are used   by the remainder of the query
+- `match` is the same as what you'd pass to the `Mnesia.match_object/1` function; however, note the special atoms `:"$n"` that specify positional parameters that are used   by the remainder of the query
 - the `guard` list is a list of tuples that specifies what guard functions to apply,   in this case the `:>` (greater than) built in function with the first positional parameter `:"$1"` and the constant `3` as attributes
 - the `result` list is the list of fields that are returned by the query, in the form of positional parameters of the special atom `:"$$"` to reference all fields so you could use `[:"$1", :"$2"]` to return the first two fields or `[:"$$"]` to return all fields
 
