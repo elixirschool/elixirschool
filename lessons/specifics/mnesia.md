@@ -277,3 +277,42 @@ is a triple of the form `{match, [guard], [result]}`:
   return all fields
 
 For more details, see [the Erlang Mnesia documentation for select/2](http://erlang.org/doc/man/mnesia.html#select-2).
+
+## Data initialisation and migration
+
+With every software solution, there will come a time when you need to upgrade the software and migrate the data stored in your database. For example, we may want to add an `:age` column to our `Person` table in v2 of our app. We can't create the `Person` table once it's been created but we can transform it. For this we need to know when to transform, which we can do when creating the table. To do this, we can use the `Mnesia.table_info/2` function to retrieve the current structure of the table and the `Mnesia.transform_table/3` function to transform it to the new structure.
+
+The code below does this by implementing the following logic:
+* Create the table with the v2 attributes: `[:id, :name, :job, :age]`
+* Handle the creation result:
+  * `{:atomic, :ok}`: initialise the table by creating indices on `:job` and `:age`
+  * `{:aborted, {:already_exists, Person}}`: check what the attributes are in the current table and act accordingly:
+    * if it's the v1 list (`[:id, :name, :job]`), transform the table giving everybody an age of 21 and add a new index on `:age`
+    * if it's the v2 list, do nothing, we're good
+    * if it's something else, bail out
+
+The `Mnesia.transform_table/3` function takes as attributes the name of the table, a function that transforms a record from the old to the new format and the list of new attributes.
+
+```shell
+iex> case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
+...>   {:atomic, :ok} ->
+...>     Mnesia.add_table_index(Person, :job)
+...>     Mnesia.add_table_index(Person, :age)
+...>   {:aborted, {:already_exists, Person}} ->
+...>     case Mnesia.table_info(Person, :attributes) do
+...>       [:id, :name, :job] ->
+...>         Mnesia.transform_table(
+...>           Person,
+...>           fn ({Person, id, name, job}) ->
+...>             {Person, id, name, job, 21}
+...>           end,
+...>           [:id, :name, :job, :age]
+...>           )
+...>         Mnesia.add_table_index(Person, :age)
+...>       [:id, :name, :job, :age] ->
+...>         :ok
+...>       other ->
+...>         {:error, other}
+...>     end
+...> end
+```
