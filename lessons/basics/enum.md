@@ -61,7 +61,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-Sometimes chunking out a collection isn't enough for exactly what we may need. If this is the case, `map_every/3` can be very useful to hit only specific items if your collection has an ordering that such is necessary or useful.
+Sometimes chunking out a collection isn't enough for exactly what we may need. If this is the case, `map_every/3` can be very useful to hit only specific items if your collection has an ordering that such is necessary or useful:
 
 ```elixir
 iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
