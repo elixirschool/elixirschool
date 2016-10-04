@@ -27,7 +27,7 @@ When to use a particular piece of technology is often a confusing pursuit. If yo
 
 As Mnesia is part of the the Erlang core, rather than Elixir, we have to access it with the colon syntax (See Lesson: [Erlang Interoperability](/lessons/advanced/erlang/)) as so:
 
-```shell
+```elixir
 
 iex> :mnesia.create_schema([node()])
 
@@ -89,7 +89,7 @@ As we can now see, the node we are running is an atom called `:"learner@elixirsc
 
 Now we have the background basics out of the way and set up the database, we are now in a position to start the Mnesia DBMS with the ```Mnesia.start/0``` command.
 
-```shell
+```elixir
 iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node])
 :ok
@@ -103,7 +103,7 @@ It is worth keeping in mind when running a distributed system with two or more p
 
 The function `Mnesia.create_table/2` is used to create tables within our database. Below we create a table called `Person` and then pass a keyword list defining the table schema.
 
-```shell
+```elixir
 iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:atomic, :ok}
 ```
@@ -115,7 +115,7 @@ We define the columns using the atoms `:id`, `:name`, and `:job`. When we execut
 
 In particular, if the table already exists, the reason will be of the form `{:already_exists, table}` so if we try to create this table a second time, we will get:
 
-```shell
+```elixir
 iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:aborted, {:already_exists, Person}}
 ```
@@ -124,7 +124,7 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 
 First of all we will look at the dirty way of reading and writing to a Mnesia table. This should generally be avoided as success is not guaranteed, but it should help us learn and become comfortable working with Mnesia. Let's add some entries to our **Person** table.
 
-```shell
+```elixir
 iex> Mnesia.dirty_write({Person, 1, "Seymour Skinner", "Principal"})
 :ok
 
@@ -137,7 +137,7 @@ iex> Mnesia.dirty_write({Person, 3, "Moe Szyslak", "Bartender"})
 
 ...and to retrieve the entries we can use `Mnesia.dirty_read/1`:
 
-```shell
+```elixir
 iex> Mnesia.dirty_read({Person, 1})
 [{Person, 1, "Seymour Skinner", "Principal"}]
 
@@ -157,7 +157,7 @@ If we try to query a record that doesn't exist Mnesia will respond with an empty
 
 Traditionally we use **transactions** to encapsulate our reads and writes to our database. Transactions are an important part of designing fault-tolerant, highly distributed systems. An Mnesia *transaction is a mechanism by which a series of database operations can be executed as one functional block*. First we create an anonymous function, in this case `data_to_write` and then pass it onto `Mnesia.transaction`.
 
-```shell
+```elixir
 iex> data_to_write = fn ->
 ...>   Mnesia.write({Person, 4, "Marge Simpson", "home maker"})
 ...>   Mnesia.write({Person, 5, "Hans Moleman", "unknown"})
@@ -171,7 +171,7 @@ iex> Mnesia.transaction(data_to_write)
 ```
 Based on this transaction message, we can safely assume that we have written the data to our `Person` table. Let's use a transaction to read from the database now to make sure. We will use `Mnesia.read/1` to read from the database, but again from within an anonymous function.
 
-```shell
+```elixir
 iex> data_to_read = fn ->
 ...>   Mnesia.read({Person, 6})
 ...> end
@@ -183,7 +183,7 @@ iex> Mnesia.transaction(data_to_read)
 
 Note that if you want to update data, you just need to call `Mnesia.write/1` with the same key as an existing record. Therefore, to update the record for Hans, you can do:
 
-```shell
+```elixir
 iex> Mnesia.transaction(
 ...>   fn ->
 ...>     Mnesia.write({Person, 5, "Hans Moleman", "Ex-Mayor"})
@@ -195,7 +195,7 @@ iex> Mnesia.transaction(
 
 Mnesia support indices on non-key columns and data can then be queried against those indices. So we can add an index against the `:job` column of the `Person` table:
 
-```shell
+```elixir
 iex> Mnesia.add_table_index(Person, :job)
 {:atomic, :ok}
 ```
@@ -207,14 +207,14 @@ The result is similar to the one returned by `Mnesia.create_table/2`:
 
 In particular, if the index already exists, the reason will be of the form `{:already_exists, table, attribute_index}` so if we try to add this index a second time, we will get:
 
-```shell
+```elixir
 iex> Mnesia.add_table_index(Person, :job)
 {:aborted, {:already_exists, Person, 4}}
 ```
 
 Once the index is successfully created, we can read against it and retrieve a list of all principals:
 
-```shell
+```elixir
 iex> Mnesia.transaction(
 ...>   fn ->
 ...>     Mnesia.index_read(Person, "Principal", :job)
@@ -229,7 +229,7 @@ Mnesia supports complex queries to retrieve data from a table in the form of mat
 
 The `Mnesia.match_object/1` function returns all records that match the given pattern. If any of the columns in the table have indices, it can make use of them to make the query more efficient. Use the special atom `:_` to identify columns that don't participate in the match.
 
-```shell
+```elixir
 iex> Mnesia.transaction(
 ...>   fn ->
 ...>     Mnesia.match_object({Person, :_, "Marge Simpson", :_})
@@ -240,7 +240,7 @@ iex> Mnesia.transaction(
 
 The `Mnesia.select/2` function allows you to specify a custom query using any operator or function in the Elixir language (or Erlang for that matter). Let's look at an example to select all records that have a key that is greater than 3:
 
-```shell
+```elixir
 iex> Mnesia.transaction(
 ...>   fn ->
 ...>     Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}])
@@ -272,7 +272,7 @@ The code below does this by implementing the following logic:
 
 The `Mnesia.transform_table/3` function takes as attributes the name of the table, a function that transforms a record from the old to the new format and the list of new attributes.
 
-```shell
+```elixir
 iex> case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
 ...>   {:atomic, :ok} ->
 ...>     Mnesia.add_table_index(Person, :job)
