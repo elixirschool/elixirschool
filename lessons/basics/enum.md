@@ -92,7 +92,7 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-`min/1` finds the `min` value in the collection.
+`min/1` finds the `min` value in the collection:
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
