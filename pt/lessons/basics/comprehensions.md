@@ -6,7 +6,7 @@ order: 13
 lang: pt
 ---
 
-Comprehensions de listas são um 'syntactic sugar' (uma forma mais simples de escrever) para realizar loops em Enumerables em Elixir. Nessa lição veremos como podemos fazer iterações e gerar os resultados utilizando comprehensions.
+Comprehensions são um 'syntactic sugar' (uma forma mais simples de escrever) para realizar loops em Enumerables em Elixir. Nessa lição veremos como podemos fazer iterações e gerar os resultados utilizando comprehensions.
 
 {% include toc.html %}
 
@@ -20,7 +20,7 @@ iex> for x <- list, do: x*x
 [1, 4, 9, 16, 25]
 ```
 
-A primeira coisa que observamos é o uso de `for` e um generator (gerador). O que é um generator? Generators são as expressões `x <- [1, 2, 3, 4]` encontradas em comprehensions de listas. Eles são responsáveis por gerar o próximo valor.
+A primeira coisa que observamos é o uso de `for` e um generator (gerador). O que é um generator? Generators são as expressões `x <- [1, 2, 3, 4]` encontradas em comprehensions. Eles são responsáveis por gerar o próximo valor.
 
 Para nossa sorte, comprehensions não são limitadas a listas; na verdade elas funcionam com qualquer enumerable:
 
@@ -71,11 +71,11 @@ iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 4 - 4
 ```
 
-Comprehensions de listas são _syntactic sugar_ e devem ser utilizadas apenas quando for apropriado.
+Comprehensions são _syntactic sugar_ e devem ser utilizadas apenas quando for apropriado.
 
 ## Filtros
 
-Você pode pensar em filtros como um tipo de _guard_ para comprehensions. Quando um valor filtrado retorna `falso` ou `nil` ele é excluido da lista final. Vamos iterar por um intervalo e olhar apenas os números pares. Nós vamos usar a função `is_even/1` do módulo Integer para checar se um valor é par ou não.
+Você pode pensar em filtros como um tipo de _guard_ para comprehensions. Quando um valor filtrado retorna `false` ou `nil` ele é excluido da lista final. Vamos iterar por um intervalo e olhar apenas os números pares. Nós vamos usar a função `is_even/1` do módulo Integer para checar se um valor é par ou não.
 
 ```elixir
 import Integer
@@ -104,11 +104,11 @@ iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-Como bitstrings implementam enumerable nós podemos usar comprehensions de listas e `:into` para criar strings:
+Como bitstrings implementam enumerable nós podemos usar comprehensions e `:into` para criar strings:
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-É isso! Comprehensions de listas são um modo fácil de iterar por coleções de maneira concisa.
+É isso! Comprehensions são um modo fácil de iterar por coleções de maneira concisa.
