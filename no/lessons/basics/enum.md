@@ -109,6 +109,8 @@ iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+"cba1"
 ```
 
 ### sort
