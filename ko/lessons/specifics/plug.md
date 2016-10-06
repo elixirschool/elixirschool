@@ -55,7 +55,7 @@ end
 
 이 예제에서는 요청이 몇몇 필요한 인자를 가졌는지 아닌지를 확인하는 Plug를 만듭니다. Plug에 검증 기능을 구현하여 유효한 요청만을 애플리케이션에 넘겨줄 수 있습니다. 여기에서 만드는 Plug는 두 개의 옵션, `:paths`와 `:fields`로 초기화된다고 가정합니다. 이들은 검증을 적용할 경로와 필요한 필드를 가리킵니다.
 
-_노트_: Plug는 모든 요청에 대해서 사용됩니다. 이것이 각 요청을 확인하고, 실제로 필요한 일부에 대해서만 검증을 적용하는 이유입니다. 요청을 가공하지 않으려면 그저 그 커넥션을 무시하세요.
+_주의_: Plug는 모든 요청에 대해서 사용됩니다. 이것이 각 요청을 확인하고, 실제로 필요한 일부에 대해서만 검증을 적용하는 이유입니다. 요청을 가공하지 않으려면 그저 그 커넥션을 무시하세요.
 
 구현이 끝난 Plug를 살펴보면서 그것이 실제로 어떻게 동작하는지를 설명해나가겠습니다. Plug를 `lib/plug/verify_request.ex`에 만듭니다.
 
@@ -169,6 +169,14 @@ defmodule Example do
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
+```
+
+> (필수는 아님) `config/config.exs`에 `:cowboy_port`를 추가하세요.
+
+```elixir
+use Mix.Config
+
+config :example, cowboy_port: 8080
 ```
 
 이걸로 애플리케이션을 실행하기 위한 명령을 사용할 수 있습니다.
