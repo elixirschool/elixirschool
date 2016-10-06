@@ -203,8 +203,6 @@ query = from u in User,
     select: count(u.id, :distinct)
 ```
 
-
-
 ### Group By
 
 To group users by their confirmation status we can include the `group_by` option:
