@@ -130,6 +130,53 @@ def test do
 end
 ```
 
+## 디버깅
+
+좋아요. 이제 `quote/2`, `unquote/1`의 사용법과 매크로 작성법을 배웠습니다. 하지만 큰 덩어리의 감싸진 코드가 있고 그걸 이해해야 한다면 어떻게 해야할까요? 이 경우 `Macro.to_string/2`를 사용할 수 있습니다. 이 예제를 살펴봅시다.
+
+```elixir
+iex> Macro.to_string(quote(do: foo.bar(1, 2, 3)))
+"foo.bar(1, 2, 3)"
+```
+
+그리고 매크로로 생성된 코드를 확인하고 싶다면, 코드를 `Macro.expand/2`, `Macro.expand_once/2`로 합칠 수 있습니다. 이 함수는 주어진 감싸진 코드로 매크로를 확장합니다. 첫 번째는 여러 번 확장됩니다. 하지만 뒤에 것은 한번만 확장됩니다. 예를 들어, 이 전 단락의 `unless` 예제를 수정해 봅시다.
+
+```elixir
+defmodule OurMacro do
+  defmacro unless(expr, do: block) do
+    quote do
+      if !unquote(expr), do: unquote(block)
+    end
+  end
+end
+
+require OurMacro
+quoted = quote do
+  OurMacro.unless true, do: "Hi"
+end
+```
+
+```
+iex> quoted |> Macro.expand_once(__ENV__) |> Macro.to_string |> IO.puts
+if(!true) do
+  "Hi"
+end
+```
+
+하지만 같은 코드를 `Macro.expand/2`로 실행하면, 흥미로운 결과가 나옵니다.
+
+```elixir
+iex> quoted |> Macro.expand(__ENV__) |> Macro.to_string |> IO.puts
+case(!true) do
+  x when x in [false, nil] ->
+    nil
+  _ ->
+    "Hi"
+end
+```
+
+Elixir에서 `if`는 매크로라 했던 것을 기억하시나요? 여기에서 기저의 `case` 구문으로 확장되는 것을 확인할 수 있습니다.
+
 ### Private 매크로
 
 일반적이지는 않지만, Elixir는 Private 매크로도 지원합니다. `defmacrop`를 사용해서 정의할 수 있으며, 정의된 모듈에서만 호출할 수 있습니다. Private 매크로는 반드시 호출되기 전에 정의되어야 합니다.

@@ -81,7 +81,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### assert_receive
 
-메시지를 주고 받는 엑터와 프로세스로 구성된 Elixir 애플리케이션에서는 메시지를 보낸 후를 테스트 하고 싶을 때가 많습니다. ExUnit이 자신의 프로세스 안에서 실행되기 때문에 다른 프로세스 처럼 메시지를 받을 수 있고 `assert_receive` 메크로로 assert할 수 있습니다.
+메시지를 주고 받는 엑터와 프로세스로 구성된 Elixir 애플리케이션에서는 메시지를 보낸 후를 테스트 하고 싶을 때가 많습니다. ExUnit이 자신의 프로세스 안에서 실행되기 때문에 다른 프로세스 처럼 메시지를 받을 수 있고 `assert_receive` 매크로로 assert할 수 있습니다.
 
 ```elixir
 defmodule SendingProcess do

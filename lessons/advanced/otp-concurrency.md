@@ -76,7 +76,6 @@ defmodule SimpleQueue do
   def queue, do: GenServer.call(__MODULE__, :queue)
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
 end
-
 ```
 
 Let's start our SimpleQueue and test out our new dequeue functionality:
