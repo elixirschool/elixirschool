@@ -205,7 +205,7 @@ Docs successfully generated.
 View them at "doc/index.html".
 ```
 
-Hopefully, if everything went to plan, you should see a similar message as to the output message in the above example. Let's now look inside our Mix project and we should see that there is another directory called **doc/**. Inside is our generated documentation. If we visit the index page in our browser we should see the following:
+If everything went to plan, you should see a similar message as to the output message in the above example. Let's now look inside our Mix project and we should see that there is another directory called **doc/**. Inside is our generated documentation. If we visit the index page in our browser we should see the following:
 
 ![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
 
@@ -217,7 +217,7 @@ We can now deploy this to GitHub, our own website, or more commonly [HexDocs](ht
 
 ## Best Practice
 
-Adding documentation should be added within the Best practices guidelines of the language. Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows. The community, however, has made efforts to establish best practices. To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
+Adding documentation should be added within the Best practices guidelines of the language. Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows. The community, however, tried to establish best practices. To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
   - Always document a module.
 
