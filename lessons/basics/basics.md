@@ -43,7 +43,7 @@ Let's go ahead and give it a try now by typing in a few simple expressions:
     iex> String.length("The quick brown fox jumps over the lazy dog")
     43
 
-Don't worry if you don't understand every expression yet, but hopefully you get the idea.
+Don't worry if you don't understand every expression yet, but we hope you get the idea.
 
 ## Basic Data Types
 

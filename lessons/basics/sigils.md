@@ -101,7 +101,8 @@ iex> ~s/the cat in the hat on the mat/
 iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
-But what is the difference? The difference is similar to the Character List sigil that we looked at. The answer is interpolation and the use of escape sequences. If we take another example:
+
+What is the difference? The difference is similar to the Character List sigil that we looked at. The answer is interpolation and the use of escape sequences. If we take another example:
 
 ```elixir
 iex> ~s/welcome to elixir #{String.downcase "school"}/
@@ -113,7 +114,7 @@ iex> ~S/welcome to elixir #{String.downcase "school"}/
 
 ### Word List
 
-The word list sigil can come in very handy time to time. It can save both time, keystrokes and arguably reduce the complexity within the codebase. Take this simple example:
+The word list sigil can come in handy time to time. It can save both time, keystrokes and arguably reduce the complexity within the codebase. Take this simple example:
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -135,7 +136,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ## Creating Sigils
 
-One of the goals of Elixir is to be an extensible programming language. It should come as no surprise then that you can easily create your own custom sigils. In this example, we will create a sigil to convert a string to uppercase. As there is already a function for this in the Elixir Core (`String.upcase/1`), we will wrap our sigil around that function.
+One of the goals of Elixir is to be an extendable programming language. It should come as no surprise then that you can easily create your own custom sigils. In this example, we will create a sigil to convert a string to uppercase. As there is already a function for this in the Elixir Core (`String.upcase/1`), we will wrap our sigil around that function.
 
 ```elixir
 

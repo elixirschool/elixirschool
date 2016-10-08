@@ -51,7 +51,7 @@ defmodule ExampleTest do
 end
 ```
 
-Now we should see a very different kind of output:
+Now we should see a different kind of output:
 
 ```shell
   1) test the truth (ExampleTest)

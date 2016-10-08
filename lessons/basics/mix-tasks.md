@@ -28,7 +28,7 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-As we can see from the shell command above, The Phoenix Framework has a custom Mix task to generate a new project. What if we could create something similar for our project? Well the great news is we can, and Elixir makes this very easy for us to do.
+As we can see from the shell command above, The Phoenix Framework has a custom Mix task to generate a new project. What if we could create something similar for our project? Well the great news is we can, and Elixir makes this easy for us to do.
 
 ## Setup
 
