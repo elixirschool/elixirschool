@@ -243,7 +243,7 @@ The `Mnesia.select/2` function allows you to specify a custom query using any op
 ```elixir
 iex> Mnesia.transaction(
 ...>   fn ->
-...>     Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}])
+...>     {% raw %}Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}]){% endraw %}
 ...>   end
 ...> )
 {:atomic, [[7, "Waylon Smithers", "Executive assistant"], [4, "Marge Simpson", "home maker"], [6, "Monty Burns", "Businessman"], [5, "Hans Moleman", "unknown"]]}
