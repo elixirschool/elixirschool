@@ -28,11 +28,12 @@ description:
   uk: Навчальні матеріали про мову програмування Elixir
   tr: Elixir programlama dili dersleri
   bg: Уроци за езика за програмиране Elixir
+  de: Übungen zur Programmiersprache Elixir
 baseurl: /
 url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'uk', 'tr', 'bg']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'uk', 'tr', 'bg', 'de']
 rtl_languages: ['ar']
 default_lang: en
 exclude_from_localization: []
@@ -58,6 +59,7 @@ sections:
       uk: Основи
       tr: Temeller
       bg: Основи
+      de: Grundlagen
   - tag: advanced
     label:
       en: Advanced
@@ -79,6 +81,7 @@ sections:
       uk: Просунуті
       tr: Gelişmiş
       bg: За Напреднали
+      de: Erweitert
   - tag: specifics
     label:
       en: Specifics
@@ -100,6 +103,7 @@ sections:
       uk: Конкретика
       tr: Spesifik
       bg: Спесифики
+      de: Einzelheiten
 
 gems:
   - kramdown
@@ -153,6 +157,7 @@ toc:
   uk: Зміст
   tr: İçerik
   bg: Съдържание
+  de: Inhaltsverzeichnis
 
 
 share:
