@@ -56,6 +56,15 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 [["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
+### map_every
+
+Czasami grupowanie elementów kolekcji nie jest dokładnie tym, o co nam chodzi. W takim przypadku funkcja `map_every/3` pozwoli nam na pracę z konkretnymi elementami kolekcji. Jeżeli nasza kolekcja jest w jakiś sposób uporządkowana, to funkcja ta może być bardzo przydatna:
+  
+```elixir
+iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
+[2, 2, 6, 4]
+```  
+
 ### each
 
 Jeżeli chcemy przejść przez kolekcję bez zwracania nowej wartości, to używamy funkcji `each`:
@@ -80,21 +89,38 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-Funkcja `min` znajduje najmniejszą wartość w kolekcji:
+Funkcja `min/1` znajduje najmniejszą wartość w kolekcji:
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
+Funkcja `min/2` robi dokładnie to samo, ale jako drugi argument przyjmuje funkcję anonimową zwracającą wartość domyślną dla `Enum`:
+  
+```exliir
+iex> Enum.min([], fn -> :foo end)
+:foo  
+  
+```
+
 ### max
 
-Funkcja `max` znajduje największą wartość w kolekcji:
+Funkcja `max/1` znajduje największą wartość w kolekcji:
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
 ```
+
+Funkcja `max/2` działa na tej samej zasadzie co `min/2`, czyli jako drugi argument przyjmuje funkcję anonimową, która zwróci wartość domyślną: 
+
+```exliir
+iex> Enum.max([], fn -> :bar end)
+:bar  
+  
+```
+
 
 ### reduce
 
@@ -133,11 +159,13 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq
+### uniq_by
 
-Jeżeli chcemy usunąć duplikaty z kolekcji możemy użyć funkcji `uniq`:
+Jeżeli chcemy usunąć duplikaty z kolekcji możemy użyć funkcji `uniq_by/2`:
 
 ```elixir
-iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
-[1, 2, 3, 4]
+iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+[1, 2, 3]
 ```
+
+Funkcja `uniq/1`, która miała takie samo działanie, została oznaczona jako przestarzała w Elixirze 1.4, a jej użycie wygeneruje ostrzeżenie kompilatora.
