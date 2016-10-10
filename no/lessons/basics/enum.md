@@ -104,6 +104,7 @@ Funksjonen `min/2` gjør det samme, men tillater oss å spesifisere en standard 
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
+:foo
 ```
 
 ### max
