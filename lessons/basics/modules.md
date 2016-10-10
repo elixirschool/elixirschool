@@ -253,4 +253,4 @@ The `Ecto.Migration.__using__/1` macro includes an import call so that when you 
 
 To recap: the use macro simply invokes the `__using__/1` macro of the specified module. To really understand what that does you need to read the `__using__/1` macro.
 
-**Note**: `quote` is a macro used when we work with [metaprogramming](../advanced/metaprogramming).
+**Note**: `quote`, `alias`, `use`, `require` are a macro used when we work with [metaprogramming](../advanced/metaprogramming).
