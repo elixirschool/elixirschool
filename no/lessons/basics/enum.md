@@ -60,6 +60,15 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 [["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
+### map_every
+
+Noen ganger så vil det å dele opp en kolleksjon, ikke være akkurat det vi trenger. Hvis dette er tilfellet så kan `map_every/3` brukes til å kun endre på spesifikke elementer.
+
+```elixir
+iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
+[2, 2, 6, 4]
+```
+
 ### each
 
 Det kan bli nøvendig å måtte iterere over en kolleksjon uten å produsere en verdi. Vi kan da bruke funksjonen `each`:
@@ -84,20 +93,35 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-For å finne den minste verdien i kolleksjonen vår kan vi bruke `min`:
+For å finne den minste verdien i kolleksjonen vår kan vi bruke `min/1`:
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
+Funksjonen `min/2` gjør det samme, men tillater oss å spesifisere en standard verdi til `Enum` i en anonym funksjon som blir sendt inn:
+
+```elixir
+iex> Enum.min([], fn -> :foo end)
+```
+
 ### max
 
-`max` returnerer den største verdien i kolleksjonen:
+`max/1` returnerer den største verdien i kolleksjonen:
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
+```
+
+`max/2` gjør det samme og oppfører seg som `min/2`,
+den tillater oss å sende inn en anonym funksjon med en standard verdi til `Enum`:
+
+
+```elixir
+Enum.max([], fn -> :bar end)
+:bar
 ```
 
 ### reduce
@@ -137,11 +161,13 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq
+### uniq_by
 
-Vi kan benytte oss av `uniq` for å fjerne duplikater fra kolleksjonen vår:
+Vi kan benytte oss av `uniq_by/2` for å fjerne duplikater fra kolleksjonen vår:
 
 ```elixir
-iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
-[1, 2, 3, 4]
+iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+[1, 2, 3]
 ```
+
+Denne funksjonen var tidligere kjent som `uniq/1` som vil bli deprekert i Elixir 1.4, men fortsatt tilgjengelig (med advarsler).
