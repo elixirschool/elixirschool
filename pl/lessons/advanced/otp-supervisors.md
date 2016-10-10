@@ -37,7 +37,7 @@ Do zarządzania procesami potomnymi nadzorca może wykorzystać jedną z czterec
 + `:one_for_one` - Ponownie uruchamia tylko uszkodzony proces potomny.
 + `:one_for_all` - Ponownie uruchamia wszystkie procesy potomne.
 + `:rest_for_one` - Uruchamia ponownie uszkodzony proces i wszystkie procesy, które zostały uruchomione po nim.
-+ `:simple_one_for_one` - Najlepszy przy dynamicznym tworzeniu procesów. Nadzorca zarządza tylko jednym procesem potomnym.
++ `:simple_one_for_one` - Najlepszy przy dynamicznym tworzeniu procesów. Specyfikacja nadzorcy pozwala na zarządzanie tylko jednym procesem potomnym, ale proces ten może być uruchomiony wiele razy. Strategia ta może być stosowana, gdy chcemy dynamicznie uruchamiać i zatrzymywać proces potomny.  
 
 ### Zagnieżdżanie
 
