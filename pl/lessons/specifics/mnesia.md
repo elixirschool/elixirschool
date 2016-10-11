@@ -27,7 +27,7 @@ Kiedy powinniśmy użyć konkretnej technologi? To często bardzo kłopotliwe py
 
 Ponieważ Mnesia jest częścią Erlanga, a nie Elixira, to odwołujemy się do niej z użyciem dwukropka (patrz: [Współpraca z Erlangiem](/pl/lessons/advanced/erlang/)):
 
-```shell
+```elixir
 
 iex> :mnesia.create_schema([node()])
 
@@ -89,7 +89,7 @@ Jak widzimy, uruchomiony przez nas węzeł nazywa się`:"learner@elixirschool.co
 
 Mamy już podstawową wiedzę i jesteśmy na dobrej drodze do uruchomienia bazy danych, uruchommy zatem Mnesia DBMS za pomocą polecenia `Mnesia.start/0`.
 
-```shell
+```elixir
 iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node])
 :ok
@@ -103,7 +103,7 @@ Musimy pamiętać, że jak pracujemy z systemem rozproszonym na dwóch lub więc
 
 Do tworzenia tabel w naszej bazie służy funkcja `Mnesia.create_table/2`. Poniżej tworzymy tabelę `Person` i przekazujemy listę asocjacyjną opisującą jej schemat.
 
-```shell
+```elixir
 iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:atomic, :ok}
 ```
@@ -111,13 +111,20 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 Kolumny definiujemy za pomocą atomów `:id`, `:name` i `:job`. Kiedy wywołamy `Mnesia.create_table/2`, otrzymamy jedną z poniższych odpowiedzi:
 
  - `{:atomic, :ok}` – jeżeli wszystko się udało,
- - `{:aborted, Reason}` – jeżeli funkcja napotkała błąd.
+ - `{:aborted, PRZYCZYNA}` – jeżeli funkcja napotkała błąd.
+ 
+W szczególności, jeżeli tabela, to funkcja jako przyczynę zwróci `{:already_exists, table}`. Przykładowo, jeżeli spróbujemy powtórnie utworzyć tabelę, otrzymamy:  
+
+```elixir
+iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
+{:aborted, {:already_exists, Person}}
+```
 
 ## „Niekoszerne” podejście 
 
 Na początek rzućmy okiem na „nie koszerne” podejście do odczytu i zapisu danych do tabel. Zasadniczo powinno być ono unikane, ponieważ nie gwarantuje sukcesu operacji, ale pomoże nam w nauce i zapewni komfort w pracy z Mnesią. Dodajmy trochę danych do tabeli **Person**.
 
-```shell
+```elixir
 iex> Mnesia.dirty_write({Person, 1, "Seymour Skinner", "Principal"})
 :ok
 
@@ -130,7 +137,7 @@ iex> Mnesia.dirty_write({Person, 3, "Moe Szyslak", "Bartender"})
 
 ...i odczytajmy je z użyciem `Mnesia.dirty_read/1`:
 
-```shell
+```elixir
 iex> Mnesia.dirty_read({Person, 1})
 [{Person, 1, "Seymour Skinner", "Principal"}]
 
@@ -150,7 +157,7 @@ Jeżeli spróbujemy pobrać nieistniejący rekord, Mnesia zwróci pustą listę.
 
 Tradycyjnie używamy **transakcji** do odizolowania odczytów i zapisów do bazy. Transakcje są bardzo istotnym elementem przy projektowaniu odpornych na błędy i silnie rozproszonych systemów. Dla Mnesii *transakcja jest mechanizmem pozwalającym na uruchomienie wielu operacji na danych w ramach jednego bloku funkcyjnego*. Najpierw stwórzmy anonimową funkcję, w tym przypadku `data_to_write` i przekażmy ją do `Mnesia.transaction`.
 
-```shell
+```elixir
 iex> data_to_write = fn ->
 ...>   Mnesia.write({Person, 4, "Marge Simpson", "home maker"})
 ...>   Mnesia.write({Person, 5, "Hans Moleman", "unknown"})
@@ -164,7 +171,7 @@ iex> Mnesia.transaction(data_to_write)
 ```
 Bazując na informacji zwrotnej, możemy z satysfakcją stwierdzić, że zapisaliśmy dane do tabeli `Person`. Teraz użyjmy transakcji do odczytu danych. W tym celu użyjemy `Mnesia.read/1`, ale tak jak poprzednio w anonimowej funkcji.
 
-```shell
+```elixir
 iex> data_to_read = fn ->
 ...>   Mnesia.read({Person, 6})
 ...> end
@@ -172,4 +179,13 @@ iex> data_to_read = fn ->
 
 iex> Mnesia.transaction(data_to_read)
 {:atomic, [{Person, 6, "Monty Burns", "Businessman"}]}
+```
+
+Warto zwrócić uwagę, że jak chcemy zaktualizować rekord, wystarczy wywołać funkcję `Mnesia.write/1` przekazując klucz do istniejącego rekordu. Przykładowo, jeżeli chcemy zaktualizować rekord Hansa, wystarczy wywołać:
+ 
+```elixir
+iex> Mnesia.transaction(
+...>   fn ->
+...>     Mnesia.write({Person, 5, "Hans Moleman", "Ex-Mayor"})
+...>   end
 ```
