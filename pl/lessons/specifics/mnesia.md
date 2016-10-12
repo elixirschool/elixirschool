@@ -221,3 +221,37 @@ iex> Mnesia.transaction(
 ...> )
 {:atomic, [{Person, 1, "Seymour Skinner", "Principal"}]}
 ```
+
+## Dopasowania i wyszukiwanie
+
+Mnesia pozwala na tworzenie złożonych zapytań za pomocą dopasowań i definiowanych ad-hoc funkcji wyszukujących.
+
+Funkcja `Mnesia.match_object/1` zwraca wszystkie rekordy pasujące do podanego wzorca. Jeżeli jakakolwiek kolumna w tabeli posiada indeks, możemy go wykorzystać do stworzenia bardziej efektywnego zapytania. Dodatkowo specjalny atom `:_` służy do określenia, które kolumny nie powinny być brane pod uwagę w czasie dopasowania.
+
+```elixir
+iex> Mnesia.transaction(
+...>   fn ->
+...>     Mnesia.match_object({Person, :_, "Marge Simpson", :_})
+...>   end
+...> )
+{:atomic, [{Person, 4, "Marge Simpson", "home maker"}]}
+```
+
+Funkcja `Mnesia.select/2` pozwala na stworzenie zapytania z użyciem dowolnej funkcji istniejącej w Elixirze (oczywiście można użyć funkcji z Erlanga). Przyjrzyjmy się przykładowemu zapytaniu, które wyszuka rekordy, których klucz jest większy niż 3:
+ 
+```elixir
+iex> Mnesia.transaction(
+...>   fn ->
+...>     {% raw %}Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}]){% endraw %}
+...>   end
+...> )
+{:atomic, [[7, "Waylon Smithers", "Executive assistant"], [4, "Marge Simpson", "home maker"], [6, "Monty Burns", "Businessman"], [5, "Hans Moleman", "unknown"]]}
+```
+
+Rozłóżmy ten kod na elementy pierwsze. Pierwszym parametrem jest nazwa tabeli, `Person`, drugim trójka `{match, [guard], [result]}`:
+
+ - `match` – pełni tą samą rolę co dopasowanie w funkcji `Mnesia.match_object/2`, ale należy zwrócić tu szczególną uwagę na specjalne atomy `:"$n"`, które pełnią funkcję parametrów pozycyjnych i są przekazywane do kolejnych części zapytania,
+ - `guard` – lista krotek, które definiują jakie funkcje zostaną użyte do dopasowania, w tym przypadku jest to standardowa funkcja `:>` (większy niż), która jako argumenty przyjmie wartość na pierwszej pozycji `:$1` oraz liczbę `3`,
+ - `result` – lista pól, kolumn, które zostaną zwrócone. Za pomocą parametrów pozycyjnych możemy wyszczególnić konkretne kolumny i ich kolejność, zapis `[:"$1", :"$2"]` zwróci dwie pierwsze kolumny, albo za pomocą wartości `[:"$$"]` zwrócić wszystkie.
+     
+Więcej informacji, w języku angielskim, znajdziesz [w dokumentacji Erlang Mnesia do funkcji select/2](http://erlang.org/doc/man/mnesia.html#select-2).     
