@@ -187,5 +187,37 @@ Warto zwrócić uwagę, że jak chcemy zaktualizować rekord, wystarczy wywoła�
 iex> Mnesia.transaction(
 ...>   fn ->
 ...>     Mnesia.write({Person, 5, "Hans Moleman", "Ex-Mayor"})
+...>   end)
+```
+
+## Indeksy
+
+Mnesia pozwala na tworzenie indeksów dla kolumn, które nie są częścią klucza i tworzenie zapytań na podstawie tych indeksów. Dodajmy zatem indeks do kolumny `:job` w tabeli `Person`: 
+
+```elixir
+iex> Mnesia.add_table_index(Person, :job)
+{:atomic, :ok}
+```
+
+Rezultat tej operacji ma strukturę podobną do `Mnesia.create_table/2`:
+
+ - `{:atomic, :ok}` – jeżeli wszystko się udało, 
+ - `{:aborted, PRZYCZYNA}` – jeżeli funkcja napotkała błąd. 
+ 
+I podobnie jak w przypadku tworzenia tabeli, próba ponownego stworzenia indeksu spowoduje błąd `{:already_exists, table, attribute_index}`:
+
+```elixir
+iex> Mnesia.add_table_index(Person, :job)
+{:aborted, {:already_exists, Person, 4}}
+```
+
+Jak już indeks zostanie stworzony, możemy odpytać dane bazując na nowym indeksie:
+
+```elixir
+iex> Mnesia.transaction(
+...>   fn ->
+...>     Mnesia.index_read(Person, "Principal", :job)
 ...>   end
+...> )
+{:atomic, [{Person, 1, "Seymour Skinner", "Principal"}]}
 ```
