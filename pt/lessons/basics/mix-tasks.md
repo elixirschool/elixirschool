@@ -73,7 +73,7 @@ end
 
 ## Tarefa Mix Customizada
 
-Vamos criar nossa tarefa Mix customizada. Crie um novo diretório e um arquivo **hello/lib/mix/tasks/hello.ex**. Neste arquivo, vamos inserir estas 7 linhas do Elixir.
+Vamos criar nossa tarefa Mix customizada. Crie um novo diretório e um arquivo **hello/lib/mix/tasks/hello.ex**. Neste arquivo, vamos inserir estas 7 linhas de Elixir.
 
 ```elixir
 defmodule Mix.Tasks.Hello do
@@ -90,14 +90,14 @@ Note que agora nós começamos o código do defmodule com `Mix.Tasks` e o nome q
 
 ## Tarefas Mix em Ação
 
-Vamos verificar nossa tarefa Mix. Enquanto estivermos no diretório, ela deve funcionar. Na linha de comando, digite `mix hello` e então, deveremos ver o seguinte:
+Vamos verificar nossa tarefa Mix. Enquanto estivermos no diretório, ela deve funcionar. Na linha de comando, digite `mix hello` e então, devemos ver o seguinte:
 
 ```shell
 $ mix hello
 Hello, World!
 ```
 
-O Mix é bastante amigável por padrão. Ele sabe que todos podem ter um erro de ortografia, então ele usa uma técnica chamada "fuzzy string matching" (strings difusas, em uma tradução literal) para fazer recomendações:
+O Mix é bastante amigável por padrão. Ele sabe que todos podem cometer um erro de ortografia, então ele usa uma técnica chamada "fuzzy string matching" (strings difusas, em uma tradução literal) para fazer recomendações:
 
 ```shell
 $ mix hell
@@ -105,7 +105,7 @@ $ mix hell
 ```
 
 Você notou que nós introduzimos um novo atributo, `@shortdoc`, no módulo?
-Isto facilita quando a aplicação está pronta. Por exemplo, quando um usuário executa o comando `mix help`.
+Isto facilita quando a aplicação está pronta. Por exemplo, quando um usuário executa o comando `mix help` no terminal.
 
 ```shell
 $ mix help
