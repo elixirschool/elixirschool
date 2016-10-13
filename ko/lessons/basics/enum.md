@@ -12,9 +12,30 @@ lang: ko
 
 ## Enum
 
-`Enum` 모듈은 우리가 지난 강의에서 배웠던 컬렉션들을 이용하기 위한 100가지 이상의 함수들을 포함하고 있습니다.
+`Enum` 모듈은 우리가 지난 강의에서 배웠던 컬렉션들을 이용하기 위한 100개 조금 넘는 함수들을 포함하고 있습니다.
 
-이 강의에서는 그 함수들 중에서도 일부분을 다룰 것입니다. 전체적인 부분을 학습하실 분들께서는 공식 [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) 문서를 보시면 되겠습니다; 지연 열거(lazy enumeration)를 이용하시려면 [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) 모듈을 이용해보세요.
+이 강의에서는 그 함수들 중에서도 일부분을 다룰 것입니다. 하지만 실제로 시험해 볼 수 있습니다.
+IEx에서 조금 시험에 보죠.
+
+```elixir
+iex
+iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+...>   IO.puts "#{function}/#{arity}"
+...> end)
+all?/1
+all?/2
+any?/1
+any?/2
+at/2
+at/3
+...
+```
+
+이 것을 사용해 아주 많은 기능이 있고 기능마다 분명한 이유가 있음이 자명해 졌습니다.
+열거형은 함수형 프로그래밍의 핵심이며, 놀랍도록 유용합니다.
+By leveraging it combined with other perks of Elixir, such as documentation being a first class citizen as we just saw, it can be incredibly empowering to the developer as well.
+
+전체 목록을 보시려면 공식 [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) 문서를 보시면 됩니다. 지연 열거(lazy enumeration)는 [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) 모듈을 이용해보세요.
 
 
 ### all?
