@@ -30,7 +30,6 @@ iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
 
-
 ### Concatenação de listas
 
 A concatenação de listas usa o operador `++/2`.
@@ -51,7 +50,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 
 ### Topo / Cauda
 
-Quando usamos listas é comum trabalhar com o topo e o fim da lista. O topo é o primeiro elemento da lista e a cauda são os elementos restantes. Elixir provê funções úteis,  `hd` e `tl`, para trabalhar com essas partes:
+Quando usamos listas é comum trabalhar com o topo e o fim da lista. O topo é o primeiro elemento da lista e a cauda são os elementos restantes. Elixir provê funções úteis, `hd` e `tl`, para trabalhar com essas partes:
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -59,7 +58,8 @@ iex> hd [3.14, :pie, "Apple"]
 iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
-Além das funções citadas, pode-se usar o operador pipe `|`; veremos este padrão em futuras lições:
+
+Além das funções citadas, pode-se usar [pattern matching](../pattern-matching) e o operador cons `|` para dividir a lista em topo e cauda; veremos este padrão em futuras lições:
 
 ```elixir
 iex> [h|t] = [3.14, :pie, "Apple"]
