@@ -97,7 +97,7 @@ $ mix hello
 Hello, World!
 ```
 
-O Mix é bastante amigável por padrão. Ele sabe que todos podem cometer um erro de ortografia, então ele usa uma técnica chamada "fuzzy string matching" (strings difusas, em uma tradução literal) para fazer recomendações:
+O Mix é bastante amigável por padrão. Ele sabe que todos podem cometer um erro de ortografia, então ele usa uma técnica chamada "fuzzy string matching" para fazer recomendações:
 
 ```shell
 $ mix hell
