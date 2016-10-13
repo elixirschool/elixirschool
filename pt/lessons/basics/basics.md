@@ -74,7 +74,7 @@ false
 
 ### Átomos
 
-Um Átomo é uma constante cujo o nome é seu valor, se está familiarizado com Ruby, estes são equivalentes aos Símbolos:
+Um Átomo é uma constante cujo o nome é seu valor. Se está familiarizado com Ruby, estes são equivalentes aos Símbolos:
 
 ```elixir
 iex> :foo
@@ -83,7 +83,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTA: Booleanos `true` e `false` também são átomos `:true` e `:false` respectivamente.
+Booleanos `true` e `false` também são átomos `:true` e `:false`, respectivamente.
 
 ```elixir
 iex> true |> is_atom
@@ -92,6 +92,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Nomes de módulos em Elixir também são átomos. `MyApp.MyModule` é um átomo válido, mesmo se tal módulo ainda não tenha sido declarado.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Átomos também são usados para referenciar módulos de bibliotecas Erlang, incluindo as bibliotecas integradas.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### Strings
