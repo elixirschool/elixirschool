@@ -40,7 +40,7 @@ Atualmente, existem quatro estratégias diferentes de reinicialização disponí
 
 + `:rest_for_one` - Reinicia o processo que falhou e qualquer processo que começou depois deste.
 
-+ `:simple_one_for_one` - O melhor para processos filhos dinamicamente adicionados. É requerido que o Supervisor tenha apenas um filho.
++ `:simple_one_for_one` - O melhor para processos filhos dinamicamente adicionados. É requerido que o Supervisor.Spec tenha apenas um filho, mas este filho pode ser gerado múltiplas vezes. Esta estratégia se destina a ser usada quando precisamos dinamicamente iniciar ou parar filhos supervisionados.
 
 ### Nesting
 
