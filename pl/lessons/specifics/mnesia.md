@@ -254,4 +254,44 @@ Rozłóżmy ten kod na elementy pierwsze. Pierwszym parametrem jest nazwa tabeli
  - `guard` – lista krotek, które definiują jakie funkcje zostaną użyte do dopasowania, w tym przypadku jest to standardowa funkcja `:>` (większy niż), która jako argumenty przyjmie wartość na pierwszej pozycji `:$1` oraz liczbę `3`,
  - `result` – lista pól, kolumn, które zostaną zwrócone. Za pomocą parametrów pozycyjnych możemy wyszczególnić konkretne kolumny i ich kolejność, zapis `[:"$1", :"$2"]` zwróci dwie pierwsze kolumny, albo za pomocą wartości `[:"$$"]` zwrócić wszystkie.
      
-Więcej informacji, w języku angielskim, znajdziesz [w dokumentacji Erlang Mnesia do funkcji select/2](http://erlang.org/doc/man/mnesia.html#select-2).     
+Więcej informacji, w języku angielskim, znajdziesz [w dokumentacji Erlang Mnesia do funkcji select/2](http://erlang.org/doc/man/mnesia.html#select-2).   
+  
+## Dane początkowe i migracja danych
+
+W każdej trakcie życia każdej aplikacji nadchodzi moment, gdy musimy zaktualizować model przechowywanych danych. Przykładowo, tworząc drugą wersję naszej aplikacji, chcemy dodać kolumnę `:age` do naszej tabeli `Person`. Nie możemy raz jeszcze utworzyć tabeli `Person`, ale możemy ją transformować. W tym celu musimy wiedzieć jakie transformacje możemy zastosować przy tworzeniu tabeli. Możemy użyć funkcji `Mnesia.rable_info/2` by otrzymać informację o aktualnej strukturze tabeli, a następnie funkcji `Mnesia.transform_table/3` by dokonać transformacji tabeli.
+    
+Kod będzie działał zgodnie z poniższym algorytmem:
+* Utwórz drugą wersję (dalej v2) tabeli z kolumnami: `[:id, :name, :job, :age]`,
+* Obsłuż wyniki operacji w następujący sposób:
+    * `{:atomic, :ok}` – dodaj indeksy do kolumn `:job` i `:age`
+    * `{:aborted, {:already_exists, Person}}` – sprawdź, które kolumny już istnieją i następnie:
+        * Jeżeli tabela zawiera tylko kolumny z pierwotnej wersji (`[:id, :name, :job]`), transformują ją do v2 dodając kolumnę `:age` z wartością domyślną 21 i indeksem, 
+        * Jeżeli tabela jest już w nowej wersji, nic nie rób,
+        * W innym przypadku zwróć błąd.
+        
+Funkcja `Mnesia.transform_table/3` jako argumenty przyjmuje nazwę tabeli, funkcję transformującą pomiędzy starym a nowym formatem danych, oraz listę nowych kolumn.
+
+```elixir
+iex> case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
+...>   {:atomic, :ok} ->
+...>     Mnesia.add_table_index(Person, :job)
+...>     Mnesia.add_table_index(Person, :age)
+...>   {:aborted, {:already_exists, Person}} ->
+...>     case Mnesia.table_info(Person, :attributes) do
+...>       [:id, :name, :job] ->
+...>         Mnesia.transform_table(
+...>           Person,
+...>           fn ({Person, id, name, job}) ->
+...>             {Person, id, name, job, 21}
+...>           end,
+...>           [:id, :name, :job, :age]
+...>           )
+...>         Mnesia.add_table_index(Person, :age)
+...>       [:id, :name, :job, :age] ->
+...>         :ok
+...>       other ->
+...>         {:error, other}
+...>     end
+...> end
+```
+         
