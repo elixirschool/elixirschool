@@ -50,6 +50,7 @@ defmodule ExampleTest do
   end
 end
 ```
+
 Agora nós devemos ver uma saída bem diferente:
 
 ```shell
@@ -76,11 +77,11 @@ ExUnit nos diz exatamente onde nossos asserts falharam, qual era o valor esperad
 
 ### assert_raise
 
-As vezes pode ser necessário afirmar que um erro foi levantado, podemos fazer isso com `assert_raise`. Vamos ver um exemplo de `assert_raise` na próxima lição sobre Plug.
+Às vezes pode ser necessário afirmar que um erro foi levantado, podemos fazer isso com `assert_raise`. Vamos ver um exemplo de `assert_raise` na próxima lição sobre Plug.
 
 ## Configuração de Teste
 
-Em alguns casos, pode ser necessária a realização de configuração antes de nossos testes. Para fazer isso acontecer, nós podemos usar o `setup` e `setup_all` macros. `setup` irá ser executado antes de cada teste, e `setup_all` uma vez antes da suite de testes. Espera-se que eles vão retornar uma tupla de `{:ok, state}`, o estado estará disponível para os nossos testes.
+Em alguns casos, pode ser necessária a realização de configuração antes de nossos testes. Para fazer isso acontecer, nós podemos usar as macros `setup` e `setup_all`. `setup` irá ser executado antes de cada teste, e `setup_all` uma vez antes da suite de testes. Espera-se que eles vão retornar uma tupla de `{:ok, state}`, o estado estará disponível para os nossos testes.
 
 Por uma questão de exemplo, vamos mudar o nosso código para usar `setup_all`:
 
@@ -101,6 +102,8 @@ end
 
 ## Mocking
 
-A resposta simples para mocking no Elixir é: não faça isso.Você pode instintivamente querer utilizar mocks, porém eles são altamente desaconselhados na comunidade Elixir por uma boa razão. Se você seguir bons princípios de design o código resultante será fácil para testar os componentes individuais.
+A resposta simples para mocking no Elixir é: não faça isso. Você pode instintivamente querer utilizar mocks, porém eles são altamente desaconselhados na comunidade Elixir por uma boa razão.
 
-Resista à tentação.
+Para uma discussão mais longa, temos este [excelente artigo](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/). O ponto principal é que ao invés de mockar dependências para testar (mock como *verbo*), existem muitas vantagens em explicitamente definir interfaces (comportamentos) para código fora da aplicação e usar implementações mockadas (mock como *nome*) no nosso código cliente para testar.
+
+Para alternar entre as implementações no código da aplicação, a maneira preferida é passar o módulo como argumento e usar um valor padrão. Se isto não funcionar, use o mecanismo de configuração embutido. Para criar estas implementações mockadas, você não precisa de uma biblioteca especial de mocking, apenas comportamentos e callbacks.
