@@ -27,7 +27,7 @@ Kiedy powinniśmy użyć konkretnej technologi? To często bardzo kłopotliwe py
 
 Ponieważ Mnesia jest częścią Erlanga, a nie Elixira, to odwołujemy się do niej z użyciem dwukropka (patrz: [Współpraca z Erlangiem](/pl/lessons/advanced/erlang/)):
 
-```shell
+```elixir
 
 iex> :mnesia.create_schema([node()])
 
@@ -89,7 +89,7 @@ Jak widzimy, uruchomiony przez nas węzeł nazywa się`:"learner@elixirschool.co
 
 Mamy już podstawową wiedzę i jesteśmy na dobrej drodze do uruchomienia bazy danych, uruchommy zatem Mnesia DBMS za pomocą polecenia `Mnesia.start/0`.
 
-```shell
+```elixir
 iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node])
 :ok
@@ -103,7 +103,7 @@ Musimy pamiętać, że jak pracujemy z systemem rozproszonym na dwóch lub więc
 
 Do tworzenia tabel w naszej bazie służy funkcja `Mnesia.create_table/2`. Poniżej tworzymy tabelę `Person` i przekazujemy listę asocjacyjną opisującą jej schemat.
 
-```shell
+```elixir
 iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:atomic, :ok}
 ```
@@ -111,13 +111,20 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 Kolumny definiujemy za pomocą atomów `:id`, `:name` i `:job`. Kiedy wywołamy `Mnesia.create_table/2`, otrzymamy jedną z poniższych odpowiedzi:
 
  - `{:atomic, :ok}` – jeżeli wszystko się udało,
- - `{:aborted, Reason}` – jeżeli funkcja napotkała błąd.
+ - `{:aborted, PRZYCZYNA}` – jeżeli funkcja napotkała błąd.
+ 
+W szczególności, jeżeli tabela, to funkcja jako przyczynę zwróci `{:already_exists, table}`. Przykładowo, jeżeli spróbujemy powtórnie utworzyć tabelę, otrzymamy:  
+
+```elixir
+iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
+{:aborted, {:already_exists, Person}}
+```
 
 ## „Niekoszerne” podejście 
 
-Na początek rzućmy okiem na „nie koszerne” podejście do odczytu i zapisu danych do tabel. Zasadniczo powinno być ono unikane, ponieważ nie gwarantuje sukcesu operacji, ale pomoże nam w nauce i zapewni komfort w pracy z Mnesią. Dodajmy trochę danych do tabeli **Person**.
+Na początek rzućmy okiem na „niekoszerne” podejście do odczytu i zapisu danych do tabel. Zasadniczo powinno być ono unikane, ponieważ nie gwarantuje sukcesu operacji, ale pomoże nam w nauce i zapewni komfort w pracy z Mnesią. Dodajmy trochę danych do tabeli **Person**.
 
-```shell
+```elixir
 iex> Mnesia.dirty_write({Person, 1, "Seymour Skinner", "Principal"})
 :ok
 
@@ -130,7 +137,7 @@ iex> Mnesia.dirty_write({Person, 3, "Moe Szyslak", "Bartender"})
 
 ...i odczytajmy je z użyciem `Mnesia.dirty_read/1`:
 
-```shell
+```elixir
 iex> Mnesia.dirty_read({Person, 1})
 [{Person, 1, "Seymour Skinner", "Principal"}]
 
@@ -150,7 +157,7 @@ Jeżeli spróbujemy pobrać nieistniejący rekord, Mnesia zwróci pustą listę.
 
 Tradycyjnie używamy **transakcji** do odizolowania odczytów i zapisów do bazy. Transakcje są bardzo istotnym elementem przy projektowaniu odpornych na błędy i silnie rozproszonych systemów. Dla Mnesii *transakcja jest mechanizmem pozwalającym na uruchomienie wielu operacji na danych w ramach jednego bloku funkcyjnego*. Najpierw stwórzmy anonimową funkcję, w tym przypadku `data_to_write` i przekażmy ją do `Mnesia.transaction`.
 
-```shell
+```elixir
 iex> data_to_write = fn ->
 ...>   Mnesia.write({Person, 4, "Marge Simpson", "home maker"})
 ...>   Mnesia.write({Person, 5, "Hans Moleman", "unknown"})
@@ -164,7 +171,7 @@ iex> Mnesia.transaction(data_to_write)
 ```
 Bazując na informacji zwrotnej, możemy z satysfakcją stwierdzić, że zapisaliśmy dane do tabeli `Person`. Teraz użyjmy transakcji do odczytu danych. W tym celu użyjemy `Mnesia.read/1`, ale tak jak poprzednio w anonimowej funkcji.
 
-```shell
+```elixir
 iex> data_to_read = fn ->
 ...>   Mnesia.read({Person, 6})
 ...> end
@@ -173,3 +180,118 @@ iex> data_to_read = fn ->
 iex> Mnesia.transaction(data_to_read)
 {:atomic, [{Person, 6, "Monty Burns", "Businessman"}]}
 ```
+
+Warto zwrócić uwagę, że jak chcemy zaktualizować rekord, wystarczy wywołać funkcję `Mnesia.write/1` przekazując klucz do istniejącego rekordu. Przykładowo, jeżeli chcemy zaktualizować rekord Hansa, wystarczy wywołać:
+ 
+```elixir
+iex> Mnesia.transaction(
+...>   fn ->
+...>     Mnesia.write({Person, 5, "Hans Moleman", "Ex-Mayor"})
+...>   end)
+```
+
+## Indeksy
+
+Mnesia pozwala na tworzenie indeksów dla kolumn, które nie są częścią klucza i tworzenie zapytań na podstawie tych indeksów. Dodajmy zatem indeks do kolumny `:job` w tabeli `Person`: 
+
+```elixir
+iex> Mnesia.add_table_index(Person, :job)
+{:atomic, :ok}
+```
+
+Rezultat tej operacji ma strukturę podobną do `Mnesia.create_table/2`:
+
+ - `{:atomic, :ok}` – jeżeli wszystko się udało, 
+ - `{:aborted, PRZYCZYNA}` – jeżeli funkcja napotkała błąd. 
+ 
+I podobnie jak w przypadku tworzenia tabeli, próba ponownego stworzenia indeksu spowoduje błąd `{:already_exists, table, attribute_index}`:
+
+```elixir
+iex> Mnesia.add_table_index(Person, :job)
+{:aborted, {:already_exists, Person, 4}}
+```
+
+Jak już indeks zostanie stworzony, możemy odpytać dane bazując na nowym indeksie:
+
+```elixir
+iex> Mnesia.transaction(
+...>   fn ->
+...>     Mnesia.index_read(Person, "Principal", :job)
+...>   end
+...> )
+{:atomic, [{Person, 1, "Seymour Skinner", "Principal"}]}
+```
+
+## Dopasowania i wyszukiwanie
+
+Mnesia pozwala na tworzenie złożonych zapytań za pomocą dopasowań i definiowanych ad-hoc funkcji wyszukujących.
+
+Funkcja `Mnesia.match_object/1` zwraca wszystkie rekordy pasujące do podanego wzorca. Jeżeli jakakolwiek kolumna w tabeli posiada indeks, możemy go wykorzystać do stworzenia bardziej efektywnego zapytania. Dodatkowo specjalny atom `:_` służy do określenia, które kolumny nie powinny być brane pod uwagę w czasie dopasowania.
+
+```elixir
+iex> Mnesia.transaction(
+...>   fn ->
+...>     Mnesia.match_object({Person, :_, "Marge Simpson", :_})
+...>   end
+...> )
+{:atomic, [{Person, 4, "Marge Simpson", "home maker"}]}
+```
+
+Funkcja `Mnesia.select/2` pozwala na stworzenie zapytania z użyciem dowolnej funkcji istniejącej w Elixirze (oczywiście można użyć funkcji z Erlanga). Przyjrzyjmy się przykładowemu zapytaniu, które wyszuka rekordy, których klucz jest większy niż 3:
+ 
+```elixir
+iex> Mnesia.transaction(
+...>   fn ->
+...>     {% raw %}Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}]){% endraw %}
+...>   end
+...> )
+{:atomic, [[7, "Waylon Smithers", "Executive assistant"], [4, "Marge Simpson", "home maker"], [6, "Monty Burns", "Businessman"], [5, "Hans Moleman", "unknown"]]}
+```
+
+Rozłóżmy ten kod na elementy pierwsze. Pierwszym parametrem jest nazwa tabeli, `Person`, drugim trójka `{match, [guard], [result]}`:
+
+ - `match` – pełni tą samą rolę co dopasowanie w funkcji `Mnesia.match_object/2`, ale należy zwrócić tu szczególną uwagę na specjalne atomy `:"$n"`, które pełnią funkcję parametrów pozycyjnych i są przekazywane do kolejnych części zapytania,
+ - `guard` – lista krotek, które definiują jakie funkcje zostaną użyte do dopasowania, w tym przypadku jest to standardowa funkcja `:>` (większy niż), która jako argumenty przyjmie wartość na pierwszej pozycji `:$1` oraz liczbę `3`,
+ - `result` – lista pól, kolumn, które zostaną zwrócone. Za pomocą parametrów pozycyjnych możemy wyszczególnić konkretne kolumny i ich kolejność, zapis `[:"$1", :"$2"]` zwróci dwie pierwsze kolumny, albo za pomocą wartości `[:"$$"]` zwrócić wszystkie.
+     
+Więcej informacji, w języku angielskim, znajdziesz [w dokumentacji Erlang Mnesia do funkcji select/2](http://erlang.org/doc/man/mnesia.html#select-2).   
+  
+## Dane początkowe i migracja danych
+
+W każdej trakcie życia każdej aplikacji nadchodzi moment, gdy musimy zaktualizować model przechowywanych danych. Przykładowo, tworząc drugą wersję naszej aplikacji, chcemy dodać kolumnę `:age` do naszej tabeli `Person`. Nie możemy raz jeszcze utworzyć tabeli `Person`, ale możemy ją transformować. W tym celu musimy wiedzieć jakie transformacje możemy zastosować przy tworzeniu tabeli. Możemy użyć funkcji `Mnesia.table_info/2` by otrzymać informację o aktualnej strukturze tabeli, a następnie funkcji `Mnesia.transform_table/3` by dokonać transformacji tabeli.
+    
+Kod będzie działał zgodnie z poniższym algorytmem:
+* Utwórz drugą wersję (dalej v2) tabeli z kolumnami: `[:id, :name, :job, :age]`,
+* Obsłuż wyniki operacji w następujący sposób:
+    * `{:atomic, :ok}` – dodaj indeksy do kolumn `:job` i `:age`
+    * `{:aborted, {:already_exists, Person}}` – sprawdź, które kolumny już istnieją i następnie:
+        * Jeżeli tabela zawiera tylko kolumny z pierwotnej wersji (`[:id, :name, :job]`), transformują ją do v2 dodając kolumnę `:age` z wartością domyślną 21 i indeksem, 
+        * Jeżeli tabela jest już w nowej wersji, nic nie rób,
+        * W innym przypadku zwróć błąd.
+        
+Funkcja `Mnesia.transform_table/3` jako argumenty przyjmuje nazwę tabeli, funkcję transformującą pomiędzy starym a nowym formatem danych, oraz listę nowych kolumn.
+
+```elixir
+iex> case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
+...>   {:atomic, :ok} ->
+...>     Mnesia.add_table_index(Person, :job)
+...>     Mnesia.add_table_index(Person, :age)
+...>   {:aborted, {:already_exists, Person}} ->
+...>     case Mnesia.table_info(Person, :attributes) do
+...>       [:id, :name, :job] ->
+...>         Mnesia.transform_table(
+...>           Person,
+...>           fn ({Person, id, name, job}) ->
+...>             {Person, id, name, job, 21}
+...>           end,
+...>           [:id, :name, :job, :age]
+...>           )
+...>         Mnesia.add_table_index(Person, :age)
+...>       [:id, :name, :job, :age] ->
+...>         :ok
+...>       other ->
+...>         {:error, other}
+...>     end
+...> end
+```
+         
