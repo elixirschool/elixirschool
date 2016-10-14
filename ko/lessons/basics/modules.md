@@ -252,3 +252,5 @@ end
 Ecto.Migration를 어떤 모듈에서 사용할 것이라고 선언(use)하면 `Ecto.Migration.__using__/1` 매크로가 import를 실행시켜 사용(use)하는 모듈에 Ecto.Migration 모듈 안에 있는 함수와 매크로를 불러오도록(import) 합니다. Ecto가 어떻게 작동할 지 정할 수 있는 것처럼 보이는 모듈 속성을 정의하기도 합니다.
 
 다시 말하자면, use 매크로는 해당 모듈의 `__using__/1` 매크로를 실행하기만 합니다. `__using__/1` 매크로가 정확히 무엇을 하는지 이해하려면 해당하는 부분의 코드를 읽어야 합니다.
+
+**주의**: `quote`, `alias`, `use`, `require`는 [메타 프로그래밍](../advanced/metaprogramming)에서 사용한 매크로입니다.
