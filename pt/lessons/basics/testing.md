@@ -106,4 +106,4 @@ A resposta simples para mocking no Elixir é: não faça isso. Você pode instin
 
 Para uma discussão mais longa, temos este [excelente artigo](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/). O ponto principal é que ao invés de mockar dependências para testar (mock como *verbo*), existem muitas vantagens em explicitamente definir interfaces (comportamentos) para código fora da aplicação e usar implementações mockadas (mock como *nome*) no nosso código cliente para testar.
 
-Para alternar entre as implementações no código da aplicação, a maneira preferida é passar o módulo como argumento e usar um valor padrão. Se isto não funcionar, use o mecanismo de configuração embutido. Para criar estas implementações mockadas, você não precisa uma biblioteca especial de mocking, apenas comportamentos e callbacks.
+Para alternar entre as implementações no código da aplicação, a maneira preferida é passar o módulo como argumento e usar um valor padrão. Se isto não funcionar, use o mecanismo de configuração embutido. Para criar estas implementações mockadas, você não precisa de uma biblioteca especial de mocking, apenas comportamentos e callbacks.
