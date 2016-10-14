@@ -258,7 +258,7 @@ Więcej informacji, w języku angielskim, znajdziesz [w dokumentacji Erlang Mnes
   
 ## Dane początkowe i migracja danych
 
-W każdej trakcie życia każdej aplikacji nadchodzi moment, gdy musimy zaktualizować model przechowywanych danych. Przykładowo, tworząc drugą wersję naszej aplikacji, chcemy dodać kolumnę `:age` do naszej tabeli `Person`. Nie możemy raz jeszcze utworzyć tabeli `Person`, ale możemy ją transformować. W tym celu musimy wiedzieć jakie transformacje możemy zastosować przy tworzeniu tabeli. Możemy użyć funkcji `Mnesia.rable_info/2` by otrzymać informację o aktualnej strukturze tabeli, a następnie funkcji `Mnesia.transform_table/3` by dokonać transformacji tabeli.
+W każdej trakcie życia każdej aplikacji nadchodzi moment, gdy musimy zaktualizować model przechowywanych danych. Przykładowo, tworząc drugą wersję naszej aplikacji, chcemy dodać kolumnę `:age` do naszej tabeli `Person`. Nie możemy raz jeszcze utworzyć tabeli `Person`, ale możemy ją transformować. W tym celu musimy wiedzieć jakie transformacje możemy zastosować przy tworzeniu tabeli. Możemy użyć funkcji `Mnesia.table_info/2` by otrzymać informację o aktualnej strukturze tabeli, a następnie funkcji `Mnesia.transform_table/3` by dokonać transformacji tabeli.
     
 Kod będzie działał zgodnie z poniższym algorytmem:
 * Utwórz drugą wersję (dalej v2) tabeli z kolumnami: `[:id, :name, :job, :age]`,
