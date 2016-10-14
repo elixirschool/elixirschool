@@ -194,7 +194,7 @@ iex> Mnesia.transaction(
 
 ## 인덱스 사용하기
 
-Mnesia 키가 아닌 컬럼에 인덱스를 지원하고 이 데이터에 대해 쿼리를 던질 수 있습니다. `Person` 테이블에 `:job` 컬럼에 인덱스를 추가해 봅시다.
+Mnesia 키가 아닌 컬럼에 인덱스를 지원하고 이 데이터에 대해 쿼리를 던질 수 있습니다. `Person` 테이블의 `:job` 컬럼에 인덱스를 추가해 봅시다.
 
 ```elixir
 iex> Mnesia.add_table_index(Person, :job)
@@ -203,10 +203,10 @@ iex> Mnesia.add_table_index(Person, :job)
 
 `Mnesia.create_table/2`의 결과와 비슷해 보입니다.
 
- - `{:atomic, :ok}` 함수가 성공적으로 실행 됨
+ - `{:atomic, :ok}` 함수가 성공적으로 실행됨
  - `{:aborted, Reason}` 함수가 실패함
 
-일반적으로 키가 이미 존재하면, `{:already_exists, table, attribute_index}` 형식의 응답이 돌아옵니다. 두 번째 이 인덱스를 넣으려 했다면, 이런 결과를 받게 됩니다.
+일반적으로 키가 이미 존재하면, `{:already_exists, table, attribute_index}` 형식의 응답이 돌아옵니다. 이 인덱스를 한번 더 넣으려 하면, 이런 결과를 받게 됩니다.
 
 ```elixir
 iex> Mnesia.add_table_index(Person, :job)
@@ -260,18 +260,18 @@ iex> Mnesia.transaction(
 
 ## 데이터 초기화와 이관
 
-모든 소프트웨어 제품이 그렇듯이 소프트웨어를 업그레이드하고 데이터베이스에 저장된 데이터를 이관해야할 때가 있습니다. 예를 들어 앱을 v2로 버전업하면서 `Person` 테이블에 `:age` 컬럼을 추가해야 한다고 해봅시다. 테이블이 이미 있으므로 `Person` 테이블을 만들수는 없지만 변환할 수는 있습니다. 이를 위해서는 테이블을 생성할 때 무엇을 할 수 있는 지, 언제 변환해야 하는 지 알아야 합니다. `Mnesia.table_info/2` 함수를 사용해 현재 테이블의 구조를 검색하고 `Mnesia.transform_table/3`로 새 구조로 변환할 수 있습니다.
+모든 소프트웨어 제품이 그렇듯이 소프트웨어를 업그레이드하고 데이터베이스에 저장된 데이터를 이관해야할 때가 있습니다. 예를 들어 앱을 v2로 버전업하면서 `Person` 테이블의 `:age` 컬럼을 추가해야 한다고 해봅시다. 테이블이 이미 있으므로 `Person` 테이블을 만들수는 없지만 변환할 수는 있습니다. 이를 위해서는 테이블을 생성할 때 무엇을 할 수 있는 지, 언제 변환해야 하는 지 알아야 합니다. `Mnesia.table_info/2` 함수를 사용해 현재 테이블의 구조를 검색하고 `Mnesia.transform_table/3`로 새 구조로 변환할 수 있습니다.
 
 아래에 있는 코드는 다음 로직을 구현합니다.
 * v2 인자 `[:id, :name, :job, :age]`로 테이블 생성
 * 생성 결과를 처리
   * `{:atomic, :ok}`: `:job`, `:age`에 인덱스를 생성해 테이블 초기화
-  * `{:aborted, {:already_exists, Person}}`: 현재 테이블에 어떤 인자가 있고 올바르게 동작하는 지 확인
+  * `{:aborted, {:already_exists, Person}}`: 현재 테이블에 어떤 인자가 있고 올바르게 동작하는지 확인
     * v1의 목록(`[:id, :name, :job]`)이라면 모든 레코드의 나이를 21를 설정하고 `:age`에 새 인덱스를 설정해 변환
     * v2의 목록이라면 아무것도 하지 않음
     * 다른 결과면 종료
 
-`Mnesia.transform_table/3` 함수는 인자로 테이블의 이름, 레코드를 옛날 것에서 새것으로 변환하는 함수, 새 인자의 리스트를 받습니다.
+`Mnesia.transform_table/3` 함수는 테이블 이름, 이전 레코드를 새 레코드로 변환하는 함수, 새 인자의 리스트를 인자로 받습니다.
 
 ```elixir
 iex> case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
