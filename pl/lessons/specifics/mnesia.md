@@ -122,7 +122,7 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 
 ## „Niekoszerne” podejście 
 
-Na początek rzućmy okiem na „nie koszerne” podejście do odczytu i zapisu danych do tabel. Zasadniczo powinno być ono unikane, ponieważ nie gwarantuje sukcesu operacji, ale pomoże nam w nauce i zapewni komfort w pracy z Mnesią. Dodajmy trochę danych do tabeli **Person**.
+Na początek rzućmy okiem na „niekoszerne” podejście do odczytu i zapisu danych do tabel. Zasadniczo powinno być ono unikane, ponieważ nie gwarantuje sukcesu operacji, ale pomoże nam w nauce i zapewni komfort w pracy z Mnesią. Dodajmy trochę danych do tabeli **Person**.
 
 ```elixir
 iex> Mnesia.dirty_write({Person, 1, "Seymour Skinner", "Principal"})
