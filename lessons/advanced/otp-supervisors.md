@@ -42,6 +42,18 @@ There are currently four different restart strategies available to supervisors:
 
 + `:simple_one_for_one` - Best for dynamically attached children. Supervisor spec is required to contain only one child, but this child can be spawned multiple times. This strategy is intended to be used when you need to dynamically start and stop supervised children.
 
+### Restart values
+
+There are several approaches for handling child process crashes:
+
++ `:permanent` - Child is always restarted.
+
++ `:temporary` - Child process is never restarted.
+
++ `:transient` - Child process is restarted only if it terminates abnormally.
+
+It's not a required option, by default it's `:permanent`.
+
 ### Nesting
 
 In addition to worker processes, we can also supervise supervisors to create a supervisor tree.  The only difference to us is swapping `supervisor/3` for `worker/3`:
@@ -69,11 +81,13 @@ Including the `Task.Supervisor` is no different than other supervisors:
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]]),
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
+
+The major difference between `Supervisor` and `Task.Supervisor` is that its default restart strategy is `:temporary` (tasks would never be restarted).
 
 ### Supervised Tasks
 
