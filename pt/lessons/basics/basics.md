@@ -67,9 +67,9 @@ iex> 0x1F
 255
 ```
 
-### Ponto Flutuantes
+### Pontos Flutuantes
 
-Em Elixir, os ponto flutuantes requerem um decimal depois de pelo menos um dígito; estes possuem uma precisão de 64 bits e suportam `e` para números exponenciais.
+Em Elixir, os números de ponto flutuante requerem um decimal depois de pelo menos um dígito; estes possuem uma precisão de 64 bits e suportam `e` para números exponenciais:
 
 ```elixir
 iex> 3.14
@@ -130,7 +130,7 @@ iex> :crypto.rand_bytes 3
 
 ### Strings
 
-As strings em Elixir são codificadas em utf-8 e são representadas com aspas duplas:
+As strings em Elixir são codificadas em UTF-8 e são representadas com aspas duplas:
 
 ```elixir
 iex> "Hello"
@@ -148,6 +148,8 @@ iex> "foo
 iex> "foo\nbar"
 "foo\nbar"
 ```
+
+Elixir também inclui tipos de dados mais complexos. Nós vamos aprender mais sobre estes quando aprendermos sobre Collections e Functions.
 
 ## Operações Básicas
 
