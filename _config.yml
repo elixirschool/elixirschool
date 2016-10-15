@@ -100,6 +100,11 @@ sections:
       uk: Конкретика
       tr: Spesifik
       bg: Спесифики
+  - tag: libraries
+    label:
+      en: Libraries
+      ru: Библиотеки
+      uk: Бібліотеки
 
 gems:
   - kramdown
@@ -153,7 +158,6 @@ toc:
   uk: Зміст
   tr: İçerik
   bg: Съдържание
-
 
 share:
   en: Share This Page
