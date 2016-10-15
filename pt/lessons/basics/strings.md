@@ -130,7 +130,7 @@ defmodule Anagram do
 end
 ```
 
-Primeiro vamos olhar para `anagrams?/2`. Estamos checando se os parâmetros que recebemos são binários ou não. Essa é a forma de verificar se uma parâmetro é uma String em Elixir.
+Primeiro vamos olhar para `anagrams?/2`. Estamos verificando se os parâmetros que recebemos são binários ou não. Essa é a forma de verificar se uma parâmetro é uma String em Elixir.
 
 Depois disso, estamos chamando a função que ordena as strings em ordem alfabética, primeiro deixando a string em letras minúsculas e então usando `String.graphemes`, que retorna a lista com os Graphemes da string. Bastante simples, não acha?
 
