@@ -12,7 +12,7 @@ Strings, listas de caracteres, Graphemes e Codepoints.
 
 ## Strings
 
-Strings no Elixir são nada mais que uma sequência de bytes. Vamos ver um exemplo:
+Strings em Elixir são nada mais que uma sequência de bytes. Vamos ver um exemplo:
 
 ```elixir
 iex> string = <<104,101,108,108,111>>
@@ -25,7 +25,7 @@ iex> string = <<104,101,108,108,111>>
 
 Internamente, as strings em Elixir são representadas como uma sequência de bytes ao invés de um array de caracteres. Elixir também tem um tipo char list (lista de caracteres). Strings em Elixir são delimitadas por aspas duplas, enquanto listas de caracteres são delimitadas por aspas simples.
 
-Qual a diferença? Cada valor de uma lista de caracteres é um valor ASCII do caractere. Vamos ver isso mais a fundo:
+Qual a diferença? Cada valor de uma lista de caracteres é o valor ASCII do caractere. Vamos ver isso mais a fundo:
 
 ```elixir
 iex> char_list = 'hello'
@@ -45,7 +45,7 @@ Ao programar em Elixir, geralmente usamos Strings ao invés de listas de caracte
 
 ## Graphemes e Codepoints
 
-Codepoints são apenas caracteres Unicode simples que são representados por um ou mais bytes, dependendo do encoding UTF-8. Caracteres fora do conjunto US ASCII sempre serão codificados como mais de um byte. Por exemplo, caracteres latinos com til ou acentos (`á, ñ, è`) são tipicamente codificados como dois bytes. Caracteres de linguagens asiáticas são geralmente codificados como três ou quatro bytes. Graphemes  consistem de múltiplos codepoints que são renderizados como um único caractere.
+Codepoints são apenas caracteres Unicode simples que são representados por um ou mais bytes, dependendo do encoding UTF-8. Caracteres fora do conjunto US ASCII sempre serão codificados como mais de um byte. Por exemplo, caracteres latinos com til ou acentos (`á, ñ, è`) são tipicamente codificados como dois bytes. Caracteres de linguagens asiáticas são geralmente codificados como três ou quatro bytes. Graphemes consistem de múltiplos codepoints que são renderizados como um único caractere.
 
 O módulo String já fornece dois métodos para obtê-los, `graphemes/1` e `codepoints/1`. Vamos ver um exemplo:
 
@@ -113,7 +113,7 @@ A e B são considerados anagramas se há alguma forma de rearranjar A ou B para 
 
 Se nós rearranjarmos os caracteres da string A, podemos obter a string B, e vice-versa.
 
-Então, como podemos checar se duas strings são Anagramas em Elixir? A solução mais fácil é apenas ordenar os graphemes de cada string em ordem alfabética e então checar se as duas listas são iguais. Vamos tentar:
+Então, como podemos verificar se duas strings são Anagramas em Elixir? A solução mais fácil é apenas ordenar os graphemes de cada string em ordem alfabética e então verificar se as duas listas são iguais. Vamos tentar:
 
 ```elixir
 defmodule Anagram do
@@ -130,11 +130,11 @@ defmodule Anagram do
 end
 ```
 
-Primeiro vamos olhar para `anagrams?/2`. Estamos checando se os parâmetros que recebemos são binários ou não. Essa é a forma de checar se uma parâmetro é uma String em Elixir.
+Primeiro vamos olhar para `anagrams?/2`. Estamos checando se os parâmetros que recebemos são binários ou não. Essa é a forma de verificar se uma parâmetro é uma String em Elixir.
 
 Depois disso, estamos chamando a função que ordena as strings em ordem alfabética, primeiro deixando a string em letras minúsculas e então usando `String.graphemes`, que retorna a lista com os Graphemes da string. Bastante simples, não acha?
 
-Vamos checar a saída dessa função no iex:
+Vamos verificar a saída dessa função no iex:
 
 ```elixir
 iex> Anagram.anagrams?("Hello", "ohell")
