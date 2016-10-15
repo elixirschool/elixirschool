@@ -6,15 +6,22 @@ order: 1
 lang: pt
 ---
 
-Instalação, tipos básicos e operações básicas.
+Primeiros Passos, tipos básicos e operações básicas.
 
 {% include toc.html %}
 
-## Instalação
+## Primeiros Passos
 
-### Instalar Elixir
+### Instalando Elixir
 
-As instruções para instalação de cada sistema operacional podem ser encontradas em [Elixir-lang.org](http://elixir-lang.org) na aba [Install](http://elixir-lang.org/install.html).
+As instruções para instalação em cada sistema operacional podem ser encontradas em [Elixir-lang.org](http://elixir-lang.org) na aba [Install](http://elixir-lang.org/install.html).
+
+Após instalar o Elixir, você pode facilmente confirmar a versão instalada.
+
+		% elixir -v
+		Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+		Elixir {{ site.elixir.version }}
 
 ### Modo Interativo
 
@@ -26,6 +33,19 @@ Para iniciar, executamos `iex`:
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
+
+Vamos testar e digitar algumas expressões simples:
+
+```elixir
+iex> 2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
+
+Não se preocupe se não entender cada expressão, mas esperamos que você compreenda a ideia.
 
 ## Tipos Básicos
 
@@ -52,7 +72,7 @@ iex> 0x1F
 Em Elixir, os ponto flutuantes requerem um decimal depois de pelo menos um dígito; estes possuem uma precisão de 64 bits e suportam `e` para números exponenciais.
 
 ```elixir
-iex> 3.14 
+iex> 3.14
  3.14
 iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
