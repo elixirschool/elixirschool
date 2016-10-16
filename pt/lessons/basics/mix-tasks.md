@@ -28,7 +28,7 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-Como podemos ver no comando shell acima, o Framework Phoenix tem uma tarefa Mix customizada para criar um novo projeto. E se quiséssemos criar algo parecido para o nosso projeto? Bem, a boa notícia é que nós podemos, e o Elixir permite fazermos isso de modo fácil.
+Como podemos ver no comando shell acima, o Framework Phoenix tem uma tarefa Mix customizada para criar um novo projeto. E se quiséssemos criar algo parecido para o nosso projeto? Bem, a boa notícia é que nós podemos, e o Elixir permite fazer isso de um modo fácil.
 
 ## Configurações
 
@@ -57,7 +57,7 @@ mix test
 Run "mix help" for more commands.
 ```
 
-Agora, no arquivo **lib/hello.ex** que o Mix criaou para nós, vamos criar uma função simples que irá imprimir "Hello, World!"
+Agora, no arquivo **lib/hello.ex** que o Mix criou para nós, vamos criar uma função simples que irá imprimir "Hello, World!"
 
 ```elixir
 defmodule Hello do
