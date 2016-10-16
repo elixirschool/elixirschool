@@ -58,7 +58,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.leng
 
 ### map_every
 
-Algumas vezes quebrar uma coleção não é o suficiente para exatamente o que você precisa. Se este é o caso, `map_every/3` pode ser muito útil para tratar apenas itens específicos se sua coleção possui uma ordenação que possa ser necessária ou útil:
+Algumas vezes quebrar uma coleção não é o suficiente para fazer exatamente o que você precisa. Se este é o caso, `map_every/3` pode ser muito útil para tratar apenas itens específicos se sua coleção possui uma ordenação que possa ser necessária ou útil:
 
 ```elixir
 iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
