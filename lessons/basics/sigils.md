@@ -24,7 +24,7 @@ A list of available sigils include:
   - `~s` Generates a string **with** escaping and interpolation
   - `~W` Generates a word list **with no** escaping or interpolation
   - `~w` Generates a word list **with** escaping and interpolation
-  - `~N` Generates a `NativeDateTime` struct
+  - `~N` Generates a `NaiveDateTime` struct
 
 A list of delimiters include:
 
@@ -135,11 +135,11 @@ iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
 ```
 
-### NativeDateTime
+### NaiveDateTime
 
-A [NativeDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) can be useful for quickly creating a struct to represent a `DateTime` **without** a timezone.
+A [NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) can be useful for quickly creating a struct to represent a `DateTime` **without** a timezone.
 
-For the most part, we should avoid creating a `NativeDateTime` struct directly. However, it is very useful for pattern matching. For example:
+For the most part, we should avoid creating a `NaiveDateTime` struct directly. However, it is very useful for pattern matching. For example:
 
 ```elixir
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
