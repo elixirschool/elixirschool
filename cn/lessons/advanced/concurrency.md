@@ -64,8 +64,6 @@ iex> send pid, :ok
 :ok
 ```
 
-You may notice that the `listen/0` function is recursive, this allows our process to handle multiple messages. Without recursion our process would exit after handling the first message.
-
 你可能注意到 `listen/0` 函数是递归的，这样可以让一个进程处理多个消息。如果没有递归调用，上面的进程处理完第一个消息就会退出。
 
 ## 进程链接
