@@ -48,6 +48,8 @@ defmodule Example do
     receive do
       {:ok, "hello"} -> IO.puts "World"
     end
+
+    listen
   end
 end
 
@@ -61,6 +63,10 @@ World
 iex> send pid, :ok
 :ok
 ```
+
+You may notice that the `listen/0` function is recursive, this allows our process to handle multiple messages. Without recursion our process would exit after handling the first message.
+
+你可能注意到 `listen/0` 函数是递归的，这样可以让一个进程处理多个消息。如果没有递归调用，上面的进程处理完第一个消息就会退出。
 
 ## 进程链接
 当进程崩溃的时候，`spawn` 就会有问题（译者注：父进程不知道子进程出错会导致程序异常）。为了解决这个问题，我们可以用 `spawn_link` 把进程链接起来。两个链接起来的进程能收到相互的退出通知。
