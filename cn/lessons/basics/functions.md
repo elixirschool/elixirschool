@@ -93,6 +93,28 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
+### 函数名字和元数
+
+我们之前提到过，函数名称方式由名字和元数组成，这也表明你可以这么做：
+
+```elixir
+defmodule Greeter2 do
+  def hello(), do: "Hello, anonymous person!"   # hello/0
+  def hello(name), do: "Hello, " <> name        # hello/1
+  def hello(name1, name2), do: "Hello, #{name1} and #{name2}"
+                                                # hello/2
+end
+
+iex> Greeter2.hello()
+"Hello, anonymous person!"
+iex> Greeter2.hello("Fred")
+"Hello, Fred"
+iex> Greeter2.hello("Fred", "Jane")
+"Hello, Fred and Jane"
+```
+
+我们在上面代码注释中列出了函数的全称。第一个函数不接受任何参数，因此是 `hello/0`；第二个函数接受一个参数，因此是 `hello/1`，以此类推。不同于其他语言的函数重载，这些函数被认为是不同的。（刚刚提到过的模式匹配，只有当函数名字和接受的参数个数都匹配的时候才成立。）
+
 ### 私有函数
 
 如果我们不想其他模块使用某个函数，我们可以使用私有函数，也就是只能被它所在模块调用的函数。在 Elixir 中，我们可以用 `defp` 来定义私有函数：
