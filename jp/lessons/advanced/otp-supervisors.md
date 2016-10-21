@@ -16,7 +16,7 @@ Supervisorの魔術は`Supervisor.start_link`関数の中にあります。ス�
 
 子プロセスはリストと、`Supervisor.Spec`から取り込まれた`worker/3`関数を使って定義されます。`worker/3`関数はモジュール、引数、そして一連のオプションを受け取ります。内部では、`worker/3`は初期化時に、与えられた引数を用いて`start_link/3`を呼び出します。
 
-[OTPの並行性](/jp/lessons/advanced/otp-concurrency)レッスンで実装したSimpleQueueを用いて、始めていきましょう:
+[OTPの並行性](../../advanced/otp-concurrency)レッスンで実装したSimpleQueueを用いて、始めていきましょう:
 
 ```elixir
 import Supervisor.Spec

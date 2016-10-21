@@ -25,7 +25,7 @@ Mnesia는 Elixir에서 이미 사용하고 있는 Erlang 런타임 시스템에�
 
 ## 스키마
 
-Mnesia는 Elixir의 한 부분이라기보다는 Erlang 핵심의 일부이므로, 우리는 콜론 문법을 사용해야 합니다.(다음 강의를 참고하세요. [Erlang 상호운용](/ko/lessons/advanced/erlang/))
+Mnesia는 Elixir의 한 부분이라기보다는 Erlang 핵심의 일부이므로, 우리는 콜론 문법을 사용해야 합니다.(다음 강의를 참고하세요. [Erlang 상호운용](../../advanced/erlang/))
 
 ```elixir
 
