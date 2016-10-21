@@ -25,7 +25,7 @@ Kiedy powinniśmy użyć konkretnej technologi? To często bardzo kłopotliwe py
 
 ## Schemat
 
-Ponieważ Mnesia jest częścią Erlanga, a nie Elixira, to odwołujemy się do niej z użyciem dwukropka (patrz: [Współpraca z Erlangiem](/pl/lessons/advanced/erlang/)):
+Ponieważ Mnesia jest częścią Erlanga, a nie Elixira, to odwołujemy się do niej z użyciem dwukropka (patrz: [Współpraca z Erlangiem](../../advanced/erlang/)):
 
 ```elixir
 

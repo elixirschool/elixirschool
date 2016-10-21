@@ -25,7 +25,7 @@ When to use a particular piece of technology is often a confusing pursuit. If yo
 
 ## Schema
 
-As Mnesia is part of the Erlang core, rather than Elixir, we have to access it with the colon syntax (See Lesson: [Erlang Interoperability](/lessons/advanced/erlang/)):
+As Mnesia is part of the Erlang core, rather than Elixir, we have to access it with the colon syntax (See Lesson: [Erlang Interoperability](../../advanced/erlang/)):
 
 ```elixir
 

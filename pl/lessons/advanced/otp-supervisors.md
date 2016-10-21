@@ -16,7 +16,7 @@ Cała „magia” nadzorców dzieje się w funkcji `Supervisor.start_link/2`.  P
 
 Procesy potomne są przekazywane jako lista do funkcji `worker/3`, zaimportowanej z `Supervisor.Spec`. Funkcja `worker/3` jako parametry przyjmuje moduł, argumenty wywołania oraz opcje. W praktyce funkcja `worker/3` wywołuje `start_link/3` przekazując do niej podane przez nasz argumenty.
 
-Zmodyfikujmy przykład `SimpleQueue` z lekcji [Współbieżność OTP](/pl/lessons/advanced/otp-concurrency):
+Zmodyfikujmy przykład `SimpleQueue` z lekcji [Współbieżność OTP](../../advanced/otp-concurrency):
 
 ```elixir
 import Supervisor.Spec

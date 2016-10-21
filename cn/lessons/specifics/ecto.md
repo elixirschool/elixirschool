@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-关于 Supervisor 可以参阅 [OTP Supervisors](/cn/lessons/advanced/otp-supervisors) 的课程。
+关于 Supervisor 可以参阅 [OTP Supervisors](../../advanced/otp-supervisors) 的课程。
 
 ### 配置
 
