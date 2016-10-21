@@ -10,18 +10,18 @@ lang: bg
 
 Преведен и на [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Melayu][my], [Українською][uk], [한국어][ko], [L'italiano][it] и други.
 
-  [cn]: {{ site.url }}/cn/
-  [es]: {{ site.url }}/es/
-  [it]: {{ site.url }}/it/
-  [jp]: {{ site.url }}/jp/
-  [ko]: {{ site.url }}/ko/
-  [pl]: {{ site.url }}/pl/
-  [pt]: {{ site.url }}/pt/
-  [ru]: {{ site.url }}/ru/
-  [sk]: {{ site.url }}/sk/
-  [vi]: {{ site.url }}/vi/
-  [my]: {{ site.url }}/my/
-  [uk]: {{ site.url }}/uk/
+  [cn]: /cn/
+  [es]: /es/
+  [it]: /it/
+  [jp]: /jp/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [my]: /my/
+  [uk]: /uk/
 
 _Обратната връзка и участие са желателни!_
 
