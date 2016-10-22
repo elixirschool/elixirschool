@@ -37,12 +37,15 @@ lang: ru
 
 Попробуем написать несколько простых выражений:
 
-    iex> 2+3
-    5
-    iex> 2+3 == 5
-    true
-    iex> String.length("The quick brown fox jumps over the lazy dog")
-    43
+```elixir
+iex>
+2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+ ```
 
 Не стоит волноваться, если пока вы поняли не все выражения.
 

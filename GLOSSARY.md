@@ -45,6 +45,7 @@ Class names and proper nouns do not get translated.
 #### <a name="russian-cs-terms"></a> CS terms
 
 - anonymous function - анонимная функция
+- arity - арность
 - attribute - атрибут
 - bitsring - битовая строка
 - binding - контекст
