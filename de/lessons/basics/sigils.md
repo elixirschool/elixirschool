@@ -24,6 +24,7 @@ Die Liste vorhandener sigils beinhaltet:
   - `~s` Erstellt einen String **mit** escaping oder Interpolation
   - `~W` Erstellt eine Wörterliste **ohne** escaping oder Interpolation
   - `~w` Erstellt eine Wörterliste **mit** escaping und Interpolation
+  - `~N` Erstellt ein `NaiveDateTime` struct
 
 Eine Liste an Trennzeichen beinhaltet:
 
@@ -132,6 +133,16 @@ iex> ~w/i love #{'e'}lixir school/
 
 iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
+```
+
+### NaiveDateTime
+
+[NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) kann nützlich sein, um schnell **ohne** Zeitzone ein struct zu erstellen, das `DateTime` repräsentiert.
+
+In den meisten Fällen werden wir es vermeiden ein `NaiveDateTime` struct direkt zu benutzen. Für pattern matching ist es jedoch sinnvoll. Zum Beispiel:
+
+```elixir
+iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
 ```
 
 ## Sigils erstellen
