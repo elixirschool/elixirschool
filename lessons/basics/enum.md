@@ -12,9 +12,30 @@ A set of algorithms for enumerating over collections.
 
 ## Enum
 
-The `Enum` module includes over one hundred functions for working with the collections we learned about in the last lesson.
+The `Enum` module includes nearly 100 functions for working with the collections we learned about in the last lesson.
 
-This lesson will only cover a subset of the available functions, to see a complete set of functions visit the official [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) module.
+This lesson will only cover a subset of the available functions, however we can actually examine them ourselves.
+Let's do a little experiment in IEx.
+
+```elixir
+iex
+iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+...>   IO.puts "#{function}/#{arity}"
+...> end)
+all?/1
+all?/2
+any?/1
+any?/2
+at/2
+at/3
+...
+```
+
+Using this, its clear that we have a vast amount of functionality, and that is for a clear reason.
+Enumeration is at the core of functional programming and is an incredibly useful thing.
+By leveraging it combined with other perks of Elixir, such as documentation being a first class citizen as we just saw, it can be incredibly empowering to the developer as well.
+
+For a full list of functions visit the official [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) module.
 
 
 ### all?
@@ -108,6 +129,8 @@ iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+"cba1"
 ```
 
 ### sort

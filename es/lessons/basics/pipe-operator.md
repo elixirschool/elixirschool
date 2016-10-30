@@ -12,7 +12,7 @@ El operador pipe `|>` pasa el resultado de una expresión como el primer paráme
 
 ## Introducción
 
-La programación puede ser desordenada. De hecho, los llamados de función que están contenidos dentro de otra función se vuelven muy difíciles de seguir. Por ejemplo, tome las siguientes funciones anidadas en consideración:
+La programación puede ser desordenada. De hecho, las llamadas de función que están contenidas dentro de otra función se vuelven muy difíciles de seguir. Por ejemplo, tome las siguientes funciones anidadas en consideración:
 
 
 ```elixir
@@ -54,7 +54,7 @@ true
 
 ## Buenas Prácticas
 
-Si la función recibe más de 1 parámetro, asegúrese de usar paréntesis. Honestamente no importa mucho en elixir, pero es importante para otros programadores que pueden malinterpretar nuestro código. Si en el tercer ejemplo removemos los paréntesis de `String.ends_with?`, tendríamos la siguiente advertencia.
+Si la función recibe más de 1 parámetro, asegúrese de usar paréntesis. Honestamente no importa mucho en elixir, pero es importante para otros programadores que pueden malinterpretar nuestro código. Si en el tercer ejemplo eliminamos los paréntesis de `String.ends_with?`, tendríamos la siguiente advertencia.
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"

@@ -25,12 +25,15 @@ description:
   id: Pelajaran mengenai bahasa pemrograman Elixir
   no: Leksjoner i programmeringsspråket Elixir
   ko: 프로그래밍 언어 Elixir 배우기
-  ua: Навчальні матеріали про мову програмування Elixir
+  uk: Навчальні матеріали про мову програмування Elixir
+  tr: Elixir programlama dili dersleri
+  bg: Уроци за езика за програмиране Elixir
+  de: Übungen zur Programmiersprache Elixir
 baseurl: /
 url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'ua']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'uk', 'tr', 'bg', 'de']
 rtl_languages: ['ar']
 default_lang: en
 exclude_from_localization: []
@@ -53,7 +56,10 @@ sections:
       id: Dasar
       no: Grunnleggende
       ko: 기초
-      ua: Основи
+      uk: Основи
+      tr: Temeller
+      bg: Основи
+      de: Grundlagen
   - tag: advanced
     label:
       en: Advanced
@@ -72,12 +78,15 @@ sections:
       id: Lanjutan
       no: Avansert
       ko: 심화
-      ua: Просунуті
+      uk: Просунуті
+      tr: Gelişmiş
+      bg: За Напреднали
+      de: Erweitert
   - tag: specifics
     label:
       en: Specifics
       jp: 詳細
-      cn: 详情
+      cn: 专题
       es: Específico
       pt: Específico
       vi: Cụ thể
@@ -91,7 +100,10 @@ sections:
       id: Khusus
       no: Detaljer
       ko: 활용
-      ua: Конкретика
+      uk: Конкретика
+      tr: Spesifik
+      bg: Спесифики
+      de: Einzelheiten
 
 gems:
   - kramdown
@@ -119,7 +131,7 @@ sitemap:
   priority_name: 'priority'
 
 elixir:
-  version: 1.3.2
+  version: 1.3.4
 
 erlang:
   OTP: 20
@@ -142,7 +154,11 @@ toc:
   no: Innholdsfortegnelse
   ko: 목차
   id: Daftar Isi
-  ua: Зміст
+  uk: Зміст
+  tr: İçerik
+  bg: Съдържание
+  de: Inhaltsverzeichnis
+
 
 share:
   en: Share This Page
@@ -155,4 +171,7 @@ share:
   fr: Partager cette page
   pl: Podziel się
   id: Bagikan Halaman Ini
-  ua: Поділитися
+  uk: Поділитися
+  tr: Paylaş
+  bg: Споделете тази страница
+  pt: Compartilhe essa página

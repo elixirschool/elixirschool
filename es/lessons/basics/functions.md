@@ -12,7 +12,7 @@ En Elixir y en muchos lenguajes funcionales, las funciones son ciudadanos de pri
 
 ## Funciones anónimas
 
-Tal como el nombre sugiere, una función anónima no tiene nombre. Como vimos en la lección `Enum`, ellas son pasadas frecuentemente a otras funciones. Para definir una función anónima en Elixir necesitamos las palabras clave `fn` y `end`. Dentro de estos podemos definir, separados por `->`, cualquier número de parámetros y el cuerpo de la función.
+Tal como el nombre sugiere, una función anónima no tiene nombre. Como vimos en la lección `Enum`, son pasadas frecuentemente a otras funciones. Para definir una función anónima en Elixir necesitamos las palabras clave `fn` y `end`. Dentro de estos podemos definir, separados por `->`, cualquier número de parámetros y el cuerpo de la función.
 
 Vamos a ver un ejemplo básico:
 
@@ -32,7 +32,7 @@ iex> sum.(2, 3)
 5
 ```
 
-Como probablemente ya has adivinado, en la versión reducida nuestros parámetros están disponible como: `&1`, `&2`, `&3`.
+Como probablemente ya has adivinado, en la versión reducida nuestros parámetros están disponibles como: `&1`, `&2`, `&3`.
 
 ## Coincidencia de patrones
 
@@ -111,11 +111,11 @@ iex> Greeter.phrase
     Greeter.phrase()
 ```
 
-### Guardas
+### Guardias
 
-Hemos cubierto brevemente las guardas en la lección [Estructuras de control](../control-structures), ahora veremos cómo aplicarlas a las funciones con nombre. Una vez Elixir ha coincidido una función algunas guardas serán evaluadas.
+Hemos cubierto brevemente las guardias en la lección [Estructuras de control](../control-structures), ahora veremos cómo aplicarlas a las funciones con nombre. Una vez Elixir ha coincidido una función algunas guardias serán evaluadas.
 
-En el siguiente ejemplo tenemos dos funciones con la misma firma, confiamos en las guardas para determinar cuál usar basándonos en el tipo de los argumentos:
+En el siguiente ejemplo tenemos dos funciones con la misma firma, confiamos en las guardias para determinar cuál usar basándonos en el tipo de los argumentos:
 
 ```elixir
 defmodule Greeter do
@@ -160,7 +160,7 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-Cuando combinamos nuestro ejemplo de guardas con argumentos por defecto, nos encontramos con un problema, vamos a ver algo que podría ser similar:
+Cuando combinamos nuestro ejemplo de guardias con argumentos por defecto, nos encontramos con un problema, vamos a ver algo que podría ser similar:
 
 ```elixir
 defmodule Greeter do
@@ -181,7 +181,7 @@ end
 ** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
 ```
 
-A Elixir no le gusta los parámetros por defecto en múltiples coincidencias de funciones, esto puede ser confuso. Para manejar esto podemos agregar una función al inicio con nuestros argumentos por defecto:
+A Elixir no le gustan los parámetros por defecto en múltiples coincidencias de funciones, esto puede ser confuso. Para manejar esto podemos agregar una función al inicio con nuestros argumentos por defecto:
 
 ```elixir
 defmodule Greeter do

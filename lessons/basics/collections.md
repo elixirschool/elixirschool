@@ -40,6 +40,8 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
+A side note about the name (`++/2`) format used above: In Elixir (and Erlang, upon which Elixir is built), a function or operator name has two components: the name you give it (here `++`) and its _arity_. Arity is a core part of speaking about Elixir (and Erlang) code. It is the number of arguments a given function takes (two in this case). Arity and the given name are combined with a slash. We'll talk more about this later; this knowledge will help you understand the notation for now.
+
 ### List Subtraction
 
 Support for subtraction is provided via the `--/2` operator; it's safe to subtract a missing value:
@@ -47,6 +49,13 @@ Support for subtraction is provided via the `--/2` operator; it's safe to subtra
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
+```
+
+Be mindful of duplicate values. For every element on the right, the first occurrence of it gets removed from the left:
+
+```elixir
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
 ```
 
 **Note:** It uses [strict comparison](../basics/#comparison) to match the values.

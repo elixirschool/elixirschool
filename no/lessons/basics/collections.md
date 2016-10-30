@@ -50,6 +50,13 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+Vær oppmerksom på duplikate verdier. For hvert element på høyre side, så vil den første forekomsten av dette elementet bli fjernet fra venstre siden:
+
+```elixir
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
+```
+
 **Merk:**  Operatoren bruker [nøyaktig sammenligning](../basics/#sammenligningsoperatorer) for å matche verdiene.
 
 ### Head / Tail
@@ -64,7 +71,7 @@ iex> tl [3.14, :pie, "Apple"]
 ```
 
 I tillegg til de tidligere nevnte funksjonene, kan vi også bruke
-pipe operatoren `|` - Vi kommer tilbake til denne operatoren i en senere leksjon:
+cons operatoren `|` - Vi kommer tilbake til denne operatoren i en senere leksjon:
 
 ```elixir
 iex> [h|t] = [3.14, :pie, "Apple"]

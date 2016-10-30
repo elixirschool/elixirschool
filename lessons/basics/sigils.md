@@ -24,6 +24,7 @@ A list of available sigils include:
   - `~s` Generates a string **with** escaping and interpolation
   - `~W` Generates a word list **with no** escaping or interpolation
   - `~w` Generates a word list **with** escaping and interpolation
+  - `~N` Generates a `NaiveDateTime` struct
 
 A list of delimiters include:
 
@@ -101,7 +102,8 @@ iex> ~s/the cat in the hat on the mat/
 iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
-But what is the difference? The difference is similar to the Character List sigil that we looked at. The answer is interpolation and the use of escape sequences. If we take another example:
+
+What is the difference? The difference is similar to the Character List sigil that we looked at. The answer is interpolation and the use of escape sequences. If we take another example:
 
 ```elixir
 iex> ~s/welcome to elixir #{String.downcase "school"}/
@@ -113,7 +115,7 @@ iex> ~S/welcome to elixir #{String.downcase "school"}/
 
 ### Word List
 
-The word list sigil can come in very handy time to time. It can save both time, keystrokes and arguably reduce the complexity within the codebase. Take this simple example:
+The word list sigil can come in handy time to time. It can save both time, keystrokes and arguably reduce the complexity within the codebase. Take this simple example:
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -133,9 +135,19 @@ iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
 ```
 
+### NaiveDateTime
+
+A [NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) can be useful for quickly creating a struct to represent a `DateTime` **without** a timezone.
+
+For the most part, we should avoid creating a `NaiveDateTime` struct directly. However, it is very useful for pattern matching. For example:
+
+```elixir
+iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
+```
+
 ## Creating Sigils
 
-One of the goals of Elixir is to be an extensible programming language. It should come as no surprise then that you can easily create your own custom sigils. In this example, we will create a sigil to convert a string to uppercase. As there is already a function for this in the Elixir Core (`String.upcase/1`), we will wrap our sigil around that function.
+One of the goals of Elixir is to be an extendable programming language. It should come as no surprise then that you can easily create your own custom sigils. In this example, we will create a sigil to convert a string to uppercase. As there is already a function for this in the Elixir Core (`String.upcase/1`), we will wrap our sigil around that function.
 
 ```elixir
 

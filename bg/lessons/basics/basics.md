@@ -16,16 +16,37 @@ lang: bg
 
 Инструкции за инсларине за всяка операционна система могат да бъдат намерени на Elixir-lang.org в раздел [Installing Elixir](http://elixir-lang.org/install.html).
 
+След като Elixir е записан, може лесно да се потвърди инсталираната версия:
+
+    % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+    Elixir {{ site.elixir.version }}
+
 ### Интерактивен Режим
 
-Elixir се инсталира заедно с `iex`, интерактивен команден ред, който ни позволява да изпълняваме код на Elixir в реално време.
+Elixir инсталира и `iex`, интерактивен команден ред, който ни позволява да изпълняваме код на Elixir в реално време.
 
 За да започнем, нека изпълним `iex`:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-	iex>
+    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+    iex>
+
+Нека го изпробваме, с няколко прости израза:
+
+```elixir
+iex>
+2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+ ```
+
+Не се притеснявайте, ако не разбирате всичко, надяваме се просто да схванете идеята.
 
 ## Основни Типове
 
@@ -83,7 +104,7 @@ iex> :foo == :bar
 false
 ```
 
-ЗАБЕЛЕЖКА: Булевите `true` и `false` са също така атомите `:true` и  респективно `:false`.
+Булевите `true` и `false` са също така атомите `:true` и  респективно `:false`.
 
 ```elixir
 iex> true |> is_atom
@@ -94,6 +115,19 @@ iex> :true === true
 true
 ```
 
+Имената на модулите в Elixir са също атоми. `MyApp.MyModule` е валиден атом, въпреки, че такъв модул още не е деклариран.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Атомите се използват също за рефериране към модули от Erlang библиотеки, включително вградените.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
+```
 ### Символни низове
 
 Символните низове в Elixir са кодирани в UTF-8 и са поставени между двойни кавички:
@@ -114,6 +148,8 @@ iex> "foo
 iex> "foo\nbar"
 "foo\nbar"
 ```
+
+Elixir също има, по-сложни типове данни. За тях, ще научим повече, когато разглеждаме Колекции и Функции.
 
 ## Основни Операции
 
@@ -192,7 +228,7 @@ iex> 2 <= 3
 true
 ```
 
-За стриктни сравнения между прости числа и реални използвайте  `===`:
+За стриктни сравнения на прости числа и реални използвайте  `===`:
 
 ```elixir
 iex> 2 == 2.0
@@ -201,13 +237,13 @@ iex> 2 === 2.0
 false
 ```
 
-Важно свойство при Elixir е, че всеки две типа могат да бъдат сравнени, което е изклщчително полезно при сортиране. Не е нужно да запаметяваме реда на сортиране, но е важно да го имаме предвид:
+Важно свойство при Elixir е, че всеки две типа могат да бъдат сравнени, което е изключително полезно при сортиране. Не е нужно да запаметяваме реда на сортиране, но е важно да го имаме предвид:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
 ```
 
-Това може да доведе до някои интересни и валидни сравнения, които може и да не намерите в други езици:
+Това може да доведе до някои интересни, но валидни сравнения, които може и да не намерите в други езици:
 
 ```elixir
 iex> :hello > 999
@@ -218,7 +254,7 @@ false
 
 ### Интерполация на символни низове
 
-Ако сте ползвали Ruby, интерполацията на симвлни низове в Elixir ще изглежда позната:
+Ако сте ползвали Ruby, интерполацията на симвлни низове в Elixir ще ви изглежда позната:
 
 ```elixir
 iex> name = "Sean"

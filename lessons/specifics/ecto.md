@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-For more info on supervisors check out the [OTP Supervisors](/lessons/advanced/otp-supervisors) lesson.
+For more info on supervisors check out the [OTP Supervisors](../../advanced/otp-supervisors) lesson.
 
 ### Configuration
 
@@ -202,8 +202,6 @@ query = from u in User,
     where: u.confirmed == true,
     select: count(u.id, :distinct)
 ```
-
-
 
 ### Group By
 

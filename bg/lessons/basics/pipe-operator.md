@@ -12,7 +12,7 @@ lang: bg
 
 ## Въведение
 
-Програмирането може да бъде объркващо. Толкова объркващо, че обръщения към функции могат да бъдат толкова дълбоко вложение, че обръщенията към функции стават много трудни за проследяване. Вземете например следните вградени функции под внимание:
+Програмирането може да бъде объркващо. Толкова объркващо, че обръщения към функции могат да бъдат толкова дълбоко вложени, че  стават много трудни за проследяване. Вземете например следните вградени функции под внимание:
 
 ```elixir
 foo(bar(baz(new_function(other_function()))))
@@ -53,18 +53,17 @@ true
 
 ## Добри практики
 
-Ако арността на функция е повече от 1, то тогава използвайте скоби. Това не е от особено значение за Elixir, но е важно за други програмисти, които може погрешно да разчетат кода ви. Ако използваме вторият ни пример и премахнем скобите от `Enum.map/2`, ни посреща следното предупреждение.
+Ако arity на функция е повече от 1, то тогава използвайте скоби. Това не е от особено значение за Elixir, но е важно за други програмисти, които може погрешно да разчетат кода ви. Ако използваме вторият ни пример и премахнем скобите от `Enum.ends_with?/2`, ни посреща следното предупреждение.
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
-iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+iex> "elixir" |> String.ends_with? "ixir"
+warning: parentheses are required when piping into a function call. For example:
 
-foo 1 |> bar 2 |> baz 3
+  foo 1 |> bar 2 |> baz 3
 
-Should be written as:
+is ambiguous and should be written as
 
-foo(1) |> bar(2) |> baz(3)
+  foo(1) |> bar(2) |> baz(3)
 
-["ELIXIR", "ROCKS"]
+true
 ```
-

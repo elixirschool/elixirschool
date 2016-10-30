@@ -49,6 +49,13 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+Tenga en cuenta los valores duplicados. Para cada elemento de la derecha, la primera ocurrencia de la misma se retira de la izquierda.
+
+```elixir
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
+```
+
 ### Cabeza/Cola
 
 Cuando usas listas es común trabajar con la cabeza y la cola de la lista. La cabeza es el primer elemento de la lista y la cola son los elementos restantes. Elixir provee dos funciones útiles, `hd` y `tl`, para trabajar con estas partes:
@@ -102,15 +109,15 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 
 Las tres características resaltantes de las listas de palabras clave son:
 
-+ Las llaves son átomos.
-+ Las llaves están ordenadas.
-+ Las llaves no son únicas.
++ Las claves son átomos.
++ Las claves están ordenadas.
++ Las claves no son únicas.
 
 Por estas razones las listas de palabras clave son comúnmente usadas para pasar opciones a funciones.
 
 ## Mapas
 
-A diferencia de las listas de palabras clave estos permiten llaves de cualquier tipo y no siguen un orden. Tú puedes definir un mapa con la sintaxis `%{}`:
+A diferencia de las listas de palabras clave estos permiten claves de cualquier tipo y no siguen un orden. Puedes definir un mapa con la sintaxis `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -128,7 +135,7 @@ iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-Como podemos ver de la salida anterior, hay una sintaxis especial para los mapas que solo contienen átomos como llaves:
+Como podemos ver de la salida anterior, hay una sintaxis especial para los mapas que solo contienen átomos como claves:
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}

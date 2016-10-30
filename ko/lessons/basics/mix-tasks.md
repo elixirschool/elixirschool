@@ -6,7 +6,7 @@ order: 15
 lang: ko
 ---
 
-여러분의 Elixir 프로젝트를 위한 커스텀 Mix 태스크 만들기.
+Elixir 프로젝트를 위한 커스텀 Mix 태스크 만들어 봅시다.
 
 {% include toc.html %}
 
@@ -28,7 +28,7 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-위의 셸 명령에서 보다시피, Phoenix 프레임워크에는 새로운 프로젝트를 생성하는 커스텀 Mix 태스크가 있습니다. 만약에 우리 프로젝트에 비슷한 것을 추가하고 싶다면 어떻게 할까요? 좋은 소식이 있다면, 우리도 그렇게 할 수 있다는 것이고, Elixir를 이용하면 정말 쉽게 할 수 있다는 것입니다.
+위의 셸 명령에서 보다시피, Phoenix 프레임워크에는 새로운 프로젝트를 생성하는 커스텀 Mix 태스크가 있습니다. 만약 프로젝트에 비슷한 것을 추가하고 싶다면 어떻게 해야 할까요? 좋은 소식은 할 수 있고 Elixir가 하기 쉽게 만들어 준다는 것입니다.
 
 ## 준비하기
 
@@ -57,7 +57,7 @@ mix test
 Run "mix help" for more commands.
 ```
 
-이제, Mix가 생성해 준 **lib/hello.ex** 파일에서 "Hello, World!"를 출력하는 간단한 함수를 만들어 봅시다.
+이제 Mix가 생성해 준 **lib/hello.ex** 파일에서 "Hello, World!"를 출력하는 간단한 함수를 만들어 봅시다.
 
 ```elixir
 defmodule Hello do
@@ -73,7 +73,7 @@ end
 
 ## 커스텀 Mix 태스크
 
-이제 우리의 커스텀 Mix 태스크를 만들어 봅시다. **hello/lib/mix/tasks/hello.ex**라는 디렉토리와 파일을 만들고, 그 안에 7 줄의 Elixir 코드를 작성하세요.
+이제 커스텀 Mix 태스크를 만들어 봅시다. **hello/lib/mix/tasks/hello.ex**라는 디렉토리와 파일을 만들고, 그 안에 7 줄의 Elixir 코드를 넣으세요.
 
 ```elixir
 defmodule Mix.Tasks.Hello do
@@ -104,7 +104,7 @@ $ mix hell
 ** (Mix) The task "hell" could not be found. Did you mean "hello"?
 ```
 
-또한, 앞의 코드에서 `@shortdoc`이라는 새로운 모듈 속성을 사용했다는 것을 알아채셨습니까? 이 속성은 여러분이 애플리케이션을 배포할 때 유용할 것입니다. 예를 들면 사용자가 터미널에서 `mix help` 명령을 실행할 때 말이지요.
+또한, 앞의 코드에서 `@shortdoc`이라는 새로운 모듈 속성을 사용했다는 것을 알아채셨습니까? 이 속성은 애플리케이션을 배포할 때 유용할 것입니다. 예를 들면 사용자가 터미널에서 `mix help` 명령을 실행할 때 말이지요.
 
 ```shell
 $ mix help

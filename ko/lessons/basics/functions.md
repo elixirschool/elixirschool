@@ -2,7 +2,7 @@
 layout: page
 title: 함수
 category: basics
-order: 7
+order: 6
 lang: ko
 ---
 
@@ -14,7 +14,7 @@ Elixir를 포함한 많은 함수형 언어에서, 함수들은 일급 시민입
 
 익명 함수는 말그대로 이름이 없습니다. `Enum` 수업에서 보았듯이, 함수는 빈번히 다른 함수로 넘겨지게 됩니다. Elixir에서 익명 함수를 정의하기 위해, `fn` 그리고 `end` 키워드가 필요합니다. 익명 함수 내에서 매개변수의 개수를 정의할 수 있으며, 함수의 몸체는 `->`로 구분됩니다.
 
-기초적인 예제를 보도록 합시다:
+기초적인 예제를 보도록 합시다.
 
 ```elixirre
 iex> sum = fn (a, b) -> a + b end
@@ -24,7 +24,7 @@ iex> sum.(2, 3)
 
 ### &으로 줄여쓰기
 
-Elixir로 프로그래밍 하다보면, 익명함수를 이용하여 줄여쓰는 것을 흔히 볼 수 있습니다:
+Elixir로 프로그래밍 하다보면, 익명 함수를 이용하여 줄여쓰는 것을 흔히 볼 수 있습니다.
 
 ```elixir
 iex> sum = &(&1 + &2)
@@ -38,7 +38,7 @@ iex> sum.(2, 3)
 
 Elixir에서 패턴매칭은 단순히 변수를 다루는 데서 그치지 않고, 함수 시그니처에서도 적용될 수 있다는 것을 이 섹션에서 확인할 것입니다.
 
-매칭하여 대응되는 함수를 불러일으키는 매개변수의 집합을 식별하기 위해 패턴매칭을 사용합니다: 
+Elixir에서는 매칭하여 대응되는 함수를 불러일으키는 매개변수의 집합을 식별하기 위해 패턴매칭을 사용합니다.
 
 ```elixir
 iex> handle_result = fn
@@ -58,7 +58,7 @@ An error has occurred!
 
 차후에 호출할 수 있도록 함수를 이름과 같이 정의할 수 있습니다. 이는 모듈 내에서 `def` 키워드로 정의됩니다. 지금은 이름이 있는 함수를 다루는 것에 집중하도록 하고, 다음 수업에서 모듈에 대해 더 배울 것입니다.
 
-모듈 내에서 정의된 함수는 다른 모듈에서 접근이 가능하며, 이는 Elixir에서 특히 유용한 요소 중 하나입니다. 
+모듈 내에서 정의된 함수는 다른 모듈에서 접근이 가능하며, 이는 Elixir에서 특히 유용한 요소 중 하나입니다.
 
 ```elixir
 defmodule Greeter do
@@ -93,9 +93,31 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
+### 함수 이름짓기와 인자 개수
+
+앞서 함수는 주어진 이름과 인자 개수를 조합해 이름짓는다는 이야기를 했습니다. 이 말은 이렇게 할 수 있다는 이야기입니다.
+
+```elixir
+defmodule Greeter2 do
+  def hello(), do: "Hello, anonymous person!"   # hello/0
+  def hello(name), do: "Hello, " <> name        # hello/1
+  def hello(name1, name2), do: "Hello, #{name1} and #{name2}"
+                                                # hello/2
+end
+
+iex> Greeter2.hello()
+"Hello, anonymous person!"
+iex> Greeter2.hello("Fred")
+"Hello, Fred"
+iex> Greeter2.hello("Fred", "Jane")
+"Hello, Fred and Jane"
+```
+
+함수 이름을 주석으로 달아두었습니다. 첫 번째 구현은 인자를 받지 않습니다. 그래서 `hello/0`라 합니다. 두 번째는 하나의 인자를 받고 `hello/1`라 하고 계속 이런 식입니다. 다른 언어의 함수 오버로드와는 다르게 3개의 서로 _다른_ 함수가 존재합니다.(아까 전에 설명했던 패턴매칭은 인자 개수가 같은 함수의 선언이 여러 번 있을 때만 적용됩니다.)
+
 ### Private 함수
 
-다른 모듈에서 함수에 접근하는 것을 원하지 않는다면, 정의된 모듈 내에서만 호출될 수 있도록 private 함수를 이용할 수 있습니다. Elixir에서는 그것들을 `defp` 키워드를 이용하여 정의할 수 있습니다:
+다른 모듈에서 함수에 접근하는 것을 원하지 않는다면, 정의된 모듈 내에서만 호출될 수 있도록 private 함수를 이용할 수 있습니다. Elixir에서는 그것들을 `defp` 키워드를 이용하여 정의할 수 있습니다.
 
 ```elixir
 defmodule Greeter do
@@ -136,10 +158,9 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### 디폴트 인자
+### 기본값 인자
 
-인자에 디폴트 값을 할당하고 싶다면, `인자 \\ 값` 문법을 이용할 수 있습니다:
-
+인자에 기본값을 할당하고 싶다면, `인자 \\ 값` 문법을 이용할 수 있습니다.
 
 ```elixir
 defmodule Greeter do
@@ -161,9 +182,7 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-
-가드 예제에 디폴트 인자를 적용한 경우를 다뤄보도록 합시다. 아마, 다음과 같이 나타낼 수 있을 겁니다.
-
+가드 예제에 기본값 인자를 적용한 경우를 다뤄보도록 합시다. 아마 다음과 같이 나타낼 수 있을 겁니다.
 
 ```elixir
 defmodule Greeter do
@@ -184,9 +203,7 @@ end
 ** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
 ```
 
-
-Elixir에서 여러 매칭 함수에 디폴트 인자가 들어가는 것을 권장하지 않습니다. 다소 헷갈릴 수 있기 때문입니다. 이를 다루기 위해서, 디폴트 인자가 들어있는 함수 선언문을 추가해봅시다.
-
+Elixir에서는 여러 매칭 함수에 기본값 인자가 들어가는 것을 권장하지 않습니다. 혼동할 수 있기 때문입니다. 이를 다루기 위해서, 기본값 인자가 들어있는 함수 선언문을 추가해봅시다.
 
 ```elixir
 defmodule Greeter do
@@ -211,4 +228,3 @@ iex> Greeter.hello ["Sean", "Steve"]
 iex> Greeter.hello ["Sean", "Steve"], "es"
 "Hola, Sean, Steve"
 ```
-

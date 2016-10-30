@@ -12,7 +12,7 @@ The pipe operator `|>` passes the result of an expression as the first parameter
 
 ## Introduction
 
-Programming can get messy. So messy in fact that function calls can get so embedded that they become very difficult to follow. Take the following nested functions into consideration:
+Programming can get messy. So messy in fact that function calls can get so embedded that they become difficult to follow. Take the following nested functions into consideration:
 
 ```elixir
 foo(bar(baz(new_function(other_function()))))

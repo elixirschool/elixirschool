@@ -6,7 +6,7 @@ order: 4
 lang: en
 ---
 
-One the selling points of Elixir is its support for concurrency. Thanks to the Erlang VM (BEAM), concurrency in Elixir is easier than expected.  The concurrency model relies on Actors, a contained process that communicates with other processes through message passing.
+One of the selling points of Elixir is its support for concurrency. Thanks to the Erlang VM (BEAM), concurrency in Elixir is easier than expected.  The concurrency model relies on Actors, a contained process that communicates with other processes through message passing.
 
 In this lesson we'll look at the concurrency modules that ship with Elixir.  In the following chapter we cover the OTP behaviors that implement them.
 
@@ -50,6 +50,8 @@ defmodule Example do
     receive do
       {:ok, "hello"} -> IO.puts "World"
     end
+
+    listen
   end
 end
 
@@ -63,6 +65,8 @@ World
 iex> send pid, :ok
 :ok
 ```
+
+You may notice that the `listen/0` function is recursive, this allows our process to handle multiple messages. Without recursion our process would exit after handling the first message.
 
 ### Process Linking
 

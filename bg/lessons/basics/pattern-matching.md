@@ -31,7 +31,7 @@ iex> 2 = x
 Нека опитаме същото с някои от познатите ни колекции:
 
 ```elixir
-# Листи
+# Списъци
 iex> list = [1, 2, 3]
 iex> [1, 2, 3] = list
 [1, 2, 3]
@@ -45,7 +45,7 @@ iex> tail
 iex> [2|_] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-# Кортежи
+# Tuples
 iex> {:ok, value} = {:ok, "Successful!"}
 {:ok, "Successful!"}
 iex> value

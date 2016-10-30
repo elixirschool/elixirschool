@@ -16,7 +16,7 @@ A magia de Supervisores está na função `Supervisor.start_link/2`. Além de in
 
 Filhos são definidos usando uma lista e a função `worker/3` que nós importamos de `Supervisor.Spec`. A função `worker/3` pega um módulo, argumentos e um conjunto de opções. Por baixo dos panos, `worker/3` chama `start_link/3` com nossos argumentos durante a inicialização.
 
-Usando o SimpleQueue da lição [OTP Concurrency](/lessons/advanced/otp-concurrency) vamos começar:
+Usando o SimpleQueue da lição [OTP Concurrency](../../advanced/otp-concurrency) vamos começar:
 
 ```elixir
 import Supervisor.Spec
@@ -40,7 +40,7 @@ Atualmente, existem quatro estratégias diferentes de reinicialização disponí
 
 + `:rest_for_one` - Reinicia o processo que falhou e qualquer processo que começou depois deste.
 
-+ `:simple_one_for_one` - O melhor para processos filhos dinamicamente adicionados. É requerido que o Supervisor tenha apenas um filho.
++ `:simple_one_for_one` - O melhor para processos filhos dinamicamente adicionados. É requerido que o Supervisor.Spec tenha apenas um filho, mas este filho pode ser gerado múltiplas vezes. Esta estratégia se destina a ser usada quando precisamos dinamicamente iniciar ou parar filhos supervisionados.
 
 ### Nesting
 

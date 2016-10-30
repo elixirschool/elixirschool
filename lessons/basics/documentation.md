@@ -124,6 +124,8 @@ iex>
 
 Notice how you can use markup within our documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
 
+**Note:** the `@spec` annotation is used to static analysis of code. To learn more about it, check out the [Specifications and types](../advanced/typespec) lesson.
+
 ## ExDoc
 
 ExDoc is an official Elixir project that can be found on [GitHub](https://github.com/elixir-lang/ex_doc). It produces **HTML (HyperText Markup Language) and online documentation** for Elixir projects. First let's create a Mix project for our application:
@@ -203,7 +205,7 @@ Docs successfully generated.
 View them at "doc/index.html".
 ```
 
-Hopefully, if everything went to plan, you should see a similar message as to the output message in the above example. Let's now look inside our Mix project and we should see that there is another directory called **doc/**. Inside is our generated documentation. If we visit the index page in our browser we should see the following:
+If everything went to plan, you should see a similar message as to the output message in the above example. Let's now look inside our Mix project and we should see that there is another directory called **doc/**. Inside is our generated documentation. If we visit the index page in our browser we should see the following:
 
 ![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
 
@@ -215,7 +217,7 @@ We can now deploy this to GitHub, our own website, or more commonly [HexDocs](ht
 
 ## Best Practice
 
-Adding documentation should be added within the Best practices guidelines of the language. Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows. The community, however, has made efforts to establish best practices. To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
+Adding documentation should be added within the Best practices guidelines of the language. Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows. The community, however, tried to establish best practices. To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
   - Always document a module.
 

@@ -12,14 +12,35 @@ lang: ko
 
 ## Enum
 
-`Enum` 모듈은 우리가 지난 강의에서 배웠던 컬렉션들을 이용하기 위한 100가지 이상의 함수들을 포함하고 있습니다.
+`Enum` 모듈은 우리가 지난 강의에서 배웠던 컬렉션들을 이용하기 위한 100개 조금 넘는 함수들을 포함하고 있습니다.
 
-이 강의에서는 그 함수들 중에서도 일부분을 다룰 것입니다. 전체적인 부분을 학습하실 분들께서는 공식 [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) 문서를 보시면 되겠습니다; 지연 열거(lazy enumeration)를 이용하시려면 [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) 모듈을 이용해보세요.
+이 강의에서는 그 함수들 중에서도 일부분만 다루지만 실제로 시험해 가며 해보도록 하겠습니다.
+IEx에서 조금 시험에 보죠.
+
+```elixir
+iex
+iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+...>   IO.puts "#{function}/#{arity}"
+...> end)
+all?/1
+all?/2
+any?/1
+any?/2
+at/2
+at/3
+...
+```
+
+이를 통해 아주 많은 기능이 있고 기능마다 분명한 이유가 있음이 자명해 졌습니다.
+열거형은 함수형 프로그래밍의 핵심이며, 놀랍도록 유용합니다.
+방금 본 문서화 같은 다른 Elixir의 자랑과 함께 열거형은 개발에 매우 도움이 됩니다.
+
+전체 목록을 보시려면 공식 [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) 문서를 보시면 됩니다. 지연 열거(lazy enumeration)는 [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) 모듈을 이용해보세요.
 
 
 ### all?
 
-흔히들 `Enum` 모듈을 이용할 때 `all?`을 사용하면, 컬렉션의 아이템에 적용할 함수를 넘기게 됩니다. 컬렉션의 모든 요소가 `true`로 평가되지 않으면, `all?`은 `false`를 반환할 것입니다:
+흔히들 `Enum` 모듈을 이용할 때 `all?`을 사용하면, 컬렉션의 아이템에 적용할 함수를 넘기게 됩니다. 컬렉션의 모든 요소가 `true`로 평가되지 않으면, `all?`은 `false`를 반환할 것입니다.
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -30,7 +51,7 @@ true
 
 ### any?
 
-위에서 설명한 것과는 다르게, `true`로 평가되는 아이템이 하나라도 있으면 `any?`는 `true`를 반환할 것입니다:
+위의 것과 다르게, `true`로 평가되는 아이템이 하나라도 있으면 `any?`는 `true`를 반환할 것입니다.
 
 ```elixir
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
@@ -39,7 +60,7 @@ true
 
 ### chunk
 
-컬렉션을 작은 묶음으로 쪼개야 할 필요가 있다면, `chunk`는 여러분이 찾고 있을 그 함수라 할 수 있습니다:
+컬렉션을 작은 묶음으로 쪼개야 할 필요가 있다면, `chunk`가 찾고 있을 그 함수입니다.
 
 ```elixir
 iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
@@ -61,7 +82,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### each
 
-새로운 값을 만들어내지 않고 컬렉션에 대해 반복하는 건 중요할 수도 있습니다. 이런 경우에는 `each`를 사용합니다:
+새로운 값을 만들어내지 않고 컬렉션에 대해 반복하는 건 중요할 수도 있습니다. 이런 경우에는 `each`를 사용합니다.
 
 ```elixir
 iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
@@ -74,7 +95,7 @@ __참고__: `each` 메서드는 `:ok`라는 애텀을 반환합니다.
 
 ### map
 
-각 아이템마다 함수를 적용하여 새로운 컬렉션을 만들어내고자 한다면 `map` 함수를 써보세요:
+각 아이템마다 함수를 적용하여 새로운 컬렉션을 만들어내고자 한다면 `map` 함수를 써보세요.
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
@@ -83,7 +104,7 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-컬렉션 내의 `최소(min)` 값을 찾아보세요:
+컬렉션 내의 `최소(min)` 값을 찾습니다.
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
@@ -92,7 +113,7 @@ iex> Enum.min([5, 3, 0, -1])
 
 ### max
 
-컬렉션 내의 `최대(max)` 값을 반환합니다:
+컬렉션 내의 `최대(max)` 값을 반환합니다.
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
@@ -101,13 +122,15 @@ iex> Enum.max([5, 3, 0, -1])
 
 ### reduce
 
-`reduce`를 이용하면, 컬렉션을 하나의 값으로 추려낼 수 있습니다. 이를 이용하려면, 선택사항으로 축적자를(예를 들면 `10`) 함수에 전달합니다; 만약 축적자가 제공되지 않는다면, 컬렉션의 첫번째 원소가 대신 그 역할을 합니다:  
+`reduce`를 이용하면, 컬렉션을 하나의 값으로 추려낼 수 있습니다. 이를 이용하려면, 선택사항으로 축적자를(예를 들면 `10`) 함수에 전달합니다. 축적자를 제공하지 않으면, 컬렉션의 첫 번째 원소가 그 역할을 대신합니다.
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+"cba1"
 ```
 
 ### sort
@@ -122,21 +145,21 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-또 하나의 옵션은 우리에게 정렬 함수를 제공할 수 있게 합니다:
+또 하나의 옵션은 정렬 함수를 제공할 수 있게 합니다.
 
 ```elixir
-# with our function
+# 함수 사용
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
 [%{val: 4}, %{val: 1}]
 
-# without
+# 함수를 사용하지 않음
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
 ### uniq
 
-우리는 `uniq`를 이용하여 컬렉션 내의 중복요소를 제거할 수 있습니다:
+`uniq`를 이용하여 컬렉션 내의 중복요소를 제거할 수 있습니다.
 
 ```elixir
 iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
