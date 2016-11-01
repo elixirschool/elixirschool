@@ -44,7 +44,7 @@ iex> 2+3 == 5
 true
 iex> String.length("The quick brown fox jumps over the lazy dog")
 43
- ```
+```
 
 それぞれの式をまだ理解していなくても心配することはありませんが、うまくいけばやり方は分かるでしょう。
 
