@@ -36,12 +36,14 @@ Zum Loslegen starten wir `iex`:
 
 Lass uns fortfahren und ein paar einfache Audrücke ausprobieren:
 
-    iex> 2+3
-    5
-    iex> 2+3 == 5
-    true
-    iex> String.length("Franz jagt im komplett verwahrlosten Taxi quer durch Bayern")
-    59
+```elixir
+iex> 2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("Franz jagt im komplett verwahrlosten Taxi quer durch Bayern")
+59
+```
 
 Falls du momentan noch nicht jeden Ausdruck versteht, mach dir darüber keine Gedanken. Wir denken du wirst bald ein Bild davon bekommen.
 

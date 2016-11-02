@@ -14,8 +14,26 @@ Ein Satz Algorithmen, um über collections zu gehen.
 
 Das `Enum`-Modul besitzt über hundert Funktionen, um mit collections zu arbeiten, die wir im letzten Kapitel kennen gelernt haben.
 
-Diese Lektion wird nur einen kleinen Teil der verfügbaren Funktionen behandeln. Um eine komplette Liste der Funktionen zu sehen besuche die offizielle [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html)-Dokumentation; für lazy enumeration nimm das [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html)-Modul.
+Diese Lektion wird nur einen kleinen Teil der verfügbaren Funktionen behandeln, wir können sie jedoch alle genauer anschauen. Lass uns ein kleines Experiment in IEx machen.
 
+```elixir
+iex
+iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+...>   IO.puts "#{function}/#{arity}"
+...> end)
+all?/1
+all?/2
+any?/1
+any?/2
+at/2
+at/3
+...
+```
+
+Hieran sieht man, dass wir viel Funktionalität haben, und das aus gutem Grund. Enumeration ist die Basis funktionaler Programmierung und ein unglaublich nützliches Ding.
+Durch Ausnutzen davon zusammen mit anderen Vorteilen Elixirs, wie dass Dokumentation als `Bürger erster Klasse` behandelt wird, kann es auch den Entwickler enorm unterstützen.
+
+Um eine komplette Liste der Funktionen zu sehen besuche die offizielle [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html)-Dokumentation; für lazy enumeration nimm das [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html)-Modul.
 
 ### all?
 
