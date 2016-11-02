@@ -250,8 +250,8 @@ iex> Mnesia.transaction(
 
 Vamos analisar isto. O primeiro atributo é a tabela, `Person`, e o segundo atributo é uma tripla da forma `{match, [guard], [result]}`:
 
-- `match` é o mesmo que você passaria para a função `Mnesia.match_object/1`. entretanto, note os átomos especiais `:"$n"` que especificam parâmetros posicionais que são usados no restante da consulta
-- a lista `guard` é uma lista de tuplas que especificam qual funções guarda aplicar, neste caso a função integrada `:>` (maior que) com o primeiro parâmetro posicional `:"$1"` e a constante `3` como atributos
+- `match` é o mesmo que você passaria para a função `Mnesia.match_object/1`. Entretanto, note os átomos especiais `:"$n"` que especificam parâmetros posicionais que são usados no restante da consulta
+- a lista `guard` é uma lista de tuplas que especifica quais funções guarda aplicar, neste caso a função integrada `:>` (maior que) com o primeiro parâmetro posicional `:"$1"` e a constante `3` como atributos
 - a lista `result` que é a lista de campos que serão retornados pela consulta, na forma de parâmetros posicionais do átomo especial `:"$$"` para referenciar todos os campos. Você poderia usar `[:"$1", :"$2"]` para retornar os primeiros dois campos ou `[:"$$"]` para retornar todos os campos
 
 Para mais detalhes, veja [a documentação para select/2 do Mnesia Erlang](http://erlang.org/doc/man/mnesia.html#select-2).
