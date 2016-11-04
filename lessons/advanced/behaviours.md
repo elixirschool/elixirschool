@@ -1,6 +1,6 @@
 ---
 layout: page
-title: behaviours
+title: Behaviours
 category: advanced
 order: 10
 lang: en
