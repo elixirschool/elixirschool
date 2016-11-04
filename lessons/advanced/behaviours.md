@@ -2,7 +2,7 @@
 layout: page
 title: behaviours
 category: advanced
-order:
+order: 10
 lang: en
 ---
 
