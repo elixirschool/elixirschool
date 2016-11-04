@@ -84,7 +84,7 @@ $ touch lib/genstage_example/producer.ex
 
 Now we can add the code:
 
-```
+```elixir
 defmodule GenstageExample.Producer do
   alias Experimental.GenStage
 
@@ -117,7 +117,7 @@ $ touch lib/genstage_example/producer_consumer.ex
 
 Let's update our file to look like the example code:
 
-```
+```elixir
 defmodule GenstageExample.ProducerConsumer  do
   alias Experimental.GenStage
   use GenStage
