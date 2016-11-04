@@ -1,18 +1,18 @@
 ---
 layout: page
 title: GenStage
-category: specifics
+category: advanced
 order: 11
 lang: en
 ---
 
-In this lesson we're going to take a closer look at the GenStage, what role it serves, and how we can leverage it in our applications. 
+In this lesson we're going to take a closer look at the GenStage, what role it serves, and how we can leverage it in our applications.
 
 {% include toc.html %}
 
 ## Introduction
 
-So what is GenStage?  From the official documentation, it is a "specification and computational flow for Elixir", but what does that mean to us?  
+So what is GenStage?  From the official documentation, it is a "specification and computational flow for Elixir", but what does that mean to us?
 
 What it means is that GenStage provides a way for us to define a pipeline of work to be carried out by independent steps (or stages) in a separate processes; if you've worked with pipelines before then some of these concepts should be familiar.
 
@@ -87,9 +87,9 @@ Now we can add the code:
 ```
 defmodule GenstageExample.Producer do
   alias Experimental.GenStage
-  
+
   use GenStage
-  
+
   def start_link(initial \\ 0) do
     GenStage.start_link(__MODULE__, initial, name: __MODULE__)
   end
@@ -121,22 +121,22 @@ Let's update our file to look like the example code:
 defmodule GenstageExample.ProducerConsumer  do
   alias Experimental.GenStage
   use GenStage
-  
+
   require Integer
-  
+
   def start_link do
     GenStage.start_link(__MODULE__, :state_doesnt_matter, name: __MODULE__)
   end
-  
+
   def init(state) do
     {:producer_consumer, state, subscribe_to: [GenstageExample.Producer]}
   end
 
   def handle_events(events, _from, state) do
-    numbers = 
-    	events 
+    numbers =
+    	events
     	|> Enum.filter(&Integer.is_even/1)
-    	
+
     {:noreply, numbers, state}
   end
 end
@@ -173,7 +173,7 @@ defmodule GenstageExample.Consumer do
     for event <- events do
       IO.inspect {self(), event, state}
     end
-    
+
     # As a consumer we never emit events
     {:noreply, [], state}
   end
@@ -218,7 +218,7 @@ $ mix run --no-halt
 
 We did it!  As we expected our application only omits even numbers and it does so _quickly_.
 
-At this point we have a working pipeline.  There is a producer emitting numbers, a producer-consumber discarding odd numbers, and a consumer is displaying all of this and continuing the flow.   We mentioned in the introduction that it was possible to have more than one producer or consumer, let's take a look at just that.  
+At this point we have a working pipeline.  There is a producer emitting numbers, a producer-consumber discarding odd numbers, and a consumer is displaying all of this and continuing the flow.   We mentioned in the introduction that it was possible to have more than one producer or consumer, let's take a look at just that.
 
 If we examine the `IO.inspect/1` output from our example we see that every event is handled by a single PID. Let's make some adjustments for multiple workers by modifying `lib/genstage_example.ex`:
 
