@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-关于 Supervisor 可以参阅 [OTP Supervisors](/cn/lessons/advanced/otp-supervisors) 的课程。
+关于 Supervisor 可以参阅 [OTP Supervisors](../../advanced/otp-supervisors) 的课程。
 
 ### 配置
 
@@ -187,10 +187,20 @@ Repo.all(query)
 
 ### Count
 
+如果我们要统计已经确认账户信息的用户个数，可以使用 `count/1`：
+
 ```elixir
 query = from u in User,
     where: u.confirmed == true,
     select: count(u.id)
+```
+
+`count/2` 函数可以统计不同元素的个数：
+
+```elixir
+query = from u in User,
+    where: u.confirmed == true,
+    select: count(u.id, :distinct)
 ```
 
 ### Group By

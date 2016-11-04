@@ -25,7 +25,7 @@ Kiedy powinniśmy użyć konkretnej technologi? To często bardzo kłopotliwe py
 
 ## Schemat
 
-Ponieważ Mnesia jest częścią Erlanga, a nie Elixira, to odwołujemy się do niej z użyciem dwukropka (patrz: [Współpraca z Erlangiem](/pl/lessons/advanced/erlang/)):
+Ponieważ Mnesia jest częścią Erlanga, a nie Elixira, to odwołujemy się do niej z użyciem dwukropka (patrz: [Współpraca z Erlangiem](../../advanced/erlang/)):
 
 ```elixir
 
@@ -261,6 +261,7 @@ Więcej informacji, w języku angielskim, znajdziesz [w dokumentacji Erlang Mnes
 W każdej trakcie życia każdej aplikacji nadchodzi moment, gdy musimy zaktualizować model przechowywanych danych. Przykładowo, tworząc drugą wersję naszej aplikacji, chcemy dodać kolumnę `:age` do naszej tabeli `Person`. Nie możemy raz jeszcze utworzyć tabeli `Person`, ale możemy ją transformować. W tym celu musimy wiedzieć jakie transformacje możemy zastosować przy tworzeniu tabeli. Możemy użyć funkcji `Mnesia.table_info/2` by otrzymać informację o aktualnej strukturze tabeli, a następnie funkcji `Mnesia.transform_table/3` by dokonać transformacji tabeli.
     
 Kod będzie działał zgodnie z poniższym algorytmem:
+
 * Utwórz drugą wersję (dalej v2) tabeli z kolumnami: `[:id, :name, :job, :age]`,
 * Obsłuż wyniki operacji w następujący sposób:
     * `{:atomic, :ok}` – dodaj indeksy do kolumn `:job` i `:age`

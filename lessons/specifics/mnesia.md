@@ -25,7 +25,7 @@ When to use a particular piece of technology is often a confusing pursuit. If yo
 
 ## Schema
 
-As Mnesia is part of the Erlang core, rather than Elixir, we have to access it with the colon syntax (See Lesson: [Erlang Interoperability](/lessons/advanced/erlang/)):
+As Mnesia is part of the Erlang core, rather than Elixir, we have to access it with the colon syntax (See Lesson: [Erlang Interoperability](../../advanced/erlang/)):
 
 ```elixir
 
@@ -251,8 +251,8 @@ iex> Mnesia.transaction(
 
 Let's unpack this. The first attribute is the table, `Person`, the second attribute is a triple of the form `{match, [guard], [result]}`:
 
-- `match` is the same as what you'd pass to the `Mnesia.match_object/1` function; however, note the special atoms `:"$n"` that specify positional parameters that are used   by the remainder of the query
-- the `guard` list is a list of tuples that specifies what guard functions to apply,   in this case the `:>` (greater than) built in function with the first positional parameter `:"$1"` and the constant `3` as attributes
+- `match` is the same as what you'd pass to the `Mnesia.match_object/1` function; however, note the special atoms `:"$n"` that specify positional parameters that are used by the remainder of the query
+- the `guard` list is a list of tuples that specifies what guard functions to apply, in this case the `:>` (greater than) built in function with the first positional parameter `:"$1"` and the constant `3` as attributes
 - the `result` list is the list of fields that are returned by the query, in the form of positional parameters of the special atom `:"$$"` to reference all fields so you could use `[:"$1", :"$2"]` to return the first two fields or `[:"$$"]` to return all fields
 
 For more details, see [the Erlang Mnesia documentation for select/2](http://erlang.org/doc/man/mnesia.html#select-2).
@@ -262,13 +262,14 @@ For more details, see [the Erlang Mnesia documentation for select/2](http://erla
 With every software solution, there will come a time when you need to upgrade the software and migrate the data stored in your database. For example, we may want to add an `:age` column to our `Person` table in v2 of our app. We can't create the `Person` table once it's been created but we can transform it. For this we need to know when to transform, which we can do when creating the table. To do this, we can use the `Mnesia.table_info/2` function to retrieve the current structure of the table and the `Mnesia.transform_table/3` function to transform it to the new structure.
 
 The code below does this by implementing the following logic:
+
 * Create the table with the v2 attributes: `[:id, :name, :job, :age]`
 * Handle the creation result:
-  * `{:atomic, :ok}`: initialize the table by creating indices on `:job` and `:age`
-  * `{:aborted, {:already_exists, Person}}`: check what the attributes are in the current table and act accordingly:
-    * if it's the v1 list (`[:id, :name, :job]`), transform the table giving everybody an age of 21 and add a new index on `:age`
-    * if it's the v2 list, do nothing, we're good
-    * if it's something else, bail out
+    * `{:atomic, :ok}`: initialize the table by creating indices on `:job` and `:age`
+    * `{:aborted, {:already_exists, Person}}`: check what the attributes are in the current table and act accordingly:
+        * if it's the v1 list (`[:id, :name, :job]`), transform the table giving everybody an age of 21 and add a new index on `:age`
+        * if it's the v2 list, do nothing, we're good
+        * if it's something else, bail out
 
 The `Mnesia.transform_table/3` function takes as attributes the name of the table, a function that transforms a record from the old to the new format and the list of new attributes.
 

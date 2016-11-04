@@ -10,12 +10,12 @@ lang: uk
 
 Доступно також [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][jp], [Português][pt], [Bahasa Melayu][my] та інших мовах.
 
-[cn]: {{ site.url }}/cn/
-[es]: {{ site.url }}/es/
-[jp]: {{ site.url }}/jp/
-[pt]: {{ site.url }}/pt/
-[vi]: {{ site.url }}/vi/
-[my]: {{ site.url }}/my/
+[cn]: /cn/
+[es]: /es/
+[jp]: /jp/
+[pt]: /pt/
+[vi]: /vi/
+[my]: /my/
 
 _Зворотній зв'язок та допомога завжди потрібні!_
 

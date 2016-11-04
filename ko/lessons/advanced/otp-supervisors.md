@@ -16,7 +16,7 @@ lang: ko
 
 자식 프로세스는 리스트와 `Supervisor.Spec`에 포함된 `worker/3` 함수를 사용해서 정의됩니다. `worker/3` 함수는 모듈, 인자, 옵션을 받습니다. 내부적으로 `worker/3`는 초기화할 때 주어진 인자를 사용해서 `start_link/3`을 호출합니다.
 
-[OTP의 동시성](/ko/lessons/advanced/otp-concurrency)에서 구현한 SimpleQueue를 사용해서 시작해봅시다.
+[OTP의 동시성](../../advanced/otp-concurrency)에서 구현한 SimpleQueue를 사용해서 시작해봅시다.
 
 ```elixir
 import Supervisor.Spec
@@ -41,6 +41,18 @@ children = [
 + `:rest_for_one` - 실패한 프로세스와 그 프로세스보다 이후에 생성된 모든 프로세스를 재기동합니다.
 
 + `:simple_one_for_one` - 자식 프로세스가 동적으로 추가된다면 최적입니다. 슈퍼바이저 사양은 자식을 단 하나만 가질 필요가 있습니다만 자식은 여러번 생성할 수 있습니다. 이 전략은 동적으로 관리되는 자식을 시작하고 멈춰야 하는 경우에 사용할 의도로 만들어졌습니다.
+
+### 재시작 값
+
+자식 프로세스의 충돌을 처리하는 방법은 여럿 있습니다.
+
++ `:permanent` - 자식은 언제나 재시작합니다.
+
++ `:temporary` - 자식을 재시작하지 않습니다.
+
++ `:transient` - 자식이 비정상적으로 종료되었을 때만 재시작합니다.
+
+필수 옵션은 아니며, 기본 값은 `:permanent`입니다.
 
 ### 중첩
 
@@ -69,11 +81,13 @@ Task는 전용 슈퍼바이저인 `Task.Supervisor`를 가지고 있습니다. �
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]]),
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
+
+`Supervisor`와 `Task.Supervisor`의 중요한 차이점은 기본 재시작 전략이 `:temporary` (태스크를 절대 재시작하지 않음)라는 점입니다.
 
 ### 관리되는 태스크
 

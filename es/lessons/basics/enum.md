@@ -126,7 +126,7 @@ La otra opción nos permite proveer una función de ordenación:
 
 ```elixir
 # con nuestra función
-iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
+iex> Enum.sort([%{:count => 4}, %{:count => 1}], fn(x, y) -> x[:count] > y[:count] end)
 [%{count: 4}, %{count: 1}]
 
 # sin nuestra función
