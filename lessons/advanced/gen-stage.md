@@ -44,7 +44,7 @@ Now that we've covered the roles within GenStage let's start on our application.
 
 ## Getting Started
 
-In this example we'll be constructing a GenStage application that emits numbers, sort out the prime numbers, and finally print them.
+In this example we'll be constructing a GenStage application that emits numbers, sort out the even numbers, and finally print them.
 
 For our application we'll use all three GenStage roles.  Our producer will be responsible for counting and emits numbers.  We'll use a producer-consumer to filter out only the even numbers and later respond to demand from downsteam.  Last we'll build a consumer to display the remaining numbers for us.
 
