@@ -38,7 +38,7 @@ As we've read, the role we give our stage is important.  The GenStage specificat
 
 + `:consumer` — A sink.  A consumer requests and receives data from producers.
 
-Notice that our producers _wait_ for demand?  With GenStage our consumers send demand upstream and process the data from our producer.  This faciliates a mechanism known as back-pressure.  Back-pressure puts the onerous on the producer to not over-pressure when consumers are busy.
+Notice that our producers _wait_ for demand?  With GenStage our consumers send demand upstream and process the data from our producer.  This faciliates a mechanism known as back-pressure.  Back-pressure puts the onus on the producer to not over-pressure when consumers are busy.
 
 Now that we've covered the roles within GenStage let's start on our application.
 
@@ -46,7 +46,7 @@ Now that we've covered the roles within GenStage let's start on our application.
 
 In this example we'll be constructing a GenStage application that emits numbers, sort out the even numbers, and finally print them.
 
-For our application we'll use all three GenStage roles.  Our producer will be responsible for counting and emits numbers.  We'll use a producer-consumer to filter out only the even numbers and later respond to demand from downsteam.  Last we'll build a consumer to display the remaining numbers for us.
+For our application we'll use all three GenStage roles.  Our producer will be responsible for counting and emitting numbers.  We'll use a producer-consumer to filter the even numbers and later respond to demand from downsteam.  Last we'll build a consumer to display the remaining numbers for us.
 
 We'll begin by generating a project with a supervision tree:
 
@@ -65,7 +65,7 @@ Let's update our dependencies in `mix.exs` to include `gen_stage`:
   end
 ```
 
-We should fetch our dependencies and compile before go much further:
+We should fetch our dependencies and compile before going much further:
 
 ```shell
 $ mix do deps.get, compile
@@ -105,11 +105,11 @@ end
 
 The two most important parts to take note of here are `init/1` and `handle_demand/2`.  In `init/1` we set the initial state as we've done in our GenServers but more importantly we label ourselves as a producer.  The response from our `init/1` function is what GenStage relies upon to classify our process.
 
-The `handle_demand/2` function is where the majority of our producer and must be implemented by all GenStage producers.  Here we return the set of numbers demanded by our consumers and increment our counter.  The demand from consumers, `demand` in our code above, is represented as a integer corresponding to the number of events they can handle, it defaults to 1000.
+The `handle_demand/2` function forms the majority of our producer and must be implemented by all GenStage producers.  Here we return the set of numbers demanded by our consumers and increment our counter.  The demand from consumers, `demand` in our code above, is represented as a integer corresponding to the number of events they can handle; it defaults to 1000.
 
 ## Producer Consumer
 
-Now that we have have a number generating producer let's move on to our producer-consumer.  We'll want to request numbers from our producer, filter out the odd one, and respond to demand.
+Now that we have a number generating producer let's move on to our producer-consumer.  We'll want to request numbers from our producer, filter out the odd ones, and respond to demand.
 
 ```shell
 $ touch lib/genstage_example/producer_consumer.ex
@@ -216,9 +216,9 @@ $ mix run --no-halt
 {#PID<0.109.0>, 229066, :state_doesnt_matter}
 ```
 
-We did it!  As we expected our application only omits even numbers and it does so _quickly_.
+We did it!  As we expected our application only emits even numbers and it does so _quickly_.
 
-At this point we have a working pipeline.  There is a producer emitting numbers, a producer-consumber discarding odd numbers, and a consumer is displaying all of this and continuing the flow.   We mentioned in the introduction that it was possible to have more than one producer or consumer, let's take a look at just that.
+At this point we have a working pipeline.  There is a producer emitting numbers, a producer-consumer discarding odd numbers, and a consumer displaying all of this and continuing the flow.   We mentioned in the introduction that it was possible to have more than one producer or consumer, let's take a look at just that.
 
 If we examine the `IO.inspect/1` output from our example we see that every event is handled by a single PID. Let's make some adjustments for multiple workers by modifying `lib/genstage_example.ex`:
 
