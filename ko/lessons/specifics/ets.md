@@ -136,7 +136,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 `select/2`는 레코드를 좀 더 정밀하게 다룰 수 있게 해줍니다만, 구문이 무척 불친절하며 점점 불편해질 뿐입니다. 이를 제어하기 위해서 ETS 모듈은 `fun2ms/1`를 가지고 있으며, 이는 함수를 매치 스펙(match_spec)으로 변환해 줍니다. `fun2ms/1`를 사용하면 좀 더 알아보기 쉬운 함수 구문으로 질의를 작성할 수 있습니다.
 
-`fun2ms/2`와 `select/2`를 사용하여 2개 이상의 언어를 알고 있는 모든 사용자를 찾아봅시다.
+`fun2ms/1`와 `select/2`를 사용하여 2개 이상의 언어를 알고 있는 모든 사용자를 찾아봅시다.
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
