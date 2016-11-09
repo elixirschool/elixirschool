@@ -2,7 +2,7 @@
 layout: page
 title: Guardian (Basics)
 category: specifics
-order: 6
+order: 7
 lang: en
 ---
 
@@ -12,21 +12,20 @@ lang: en
 
 ## JWTs
 
-JWT provides a rich token for authentication. Where many authentication systems provide access to only a subject identifier for the resource, JWTs provide this along with other information like:
+A JWT can provide a rich token for authentication. Where many authentication systems provide access to only a subject identifier for the resource, JWTs provide this along with other information like:
 
 * Who issued the token
 * Who is the token for
 * Which system should use the token
 * What time was it issued
-* What time should you consider it valid
 * What time does the token expire
 
-In addition to these fields Guardian provides some other fields to facilitate additional functionality.
+In addition to these fields Guardian provides some other fields to facilitate additional functionality:
 
 * What type is the token
 * What permissions does the bearer have
 
-These are just the basic fields in a JWT. You're free to add any additional information that your application requires. Just remember to keep it short. The JWT has to fit in the HTTP header.
+These are just the basic fields in a JWT. You're free to add any additional information that your application requires. Just remember to keep it short, as JWT has to fit in the HTTP header.
 
 This richness means that you can pass JWTs around in your system as a fully contained unit of credentials. 
 
@@ -42,8 +41,7 @@ JWT tokens can be used to authenticate any part of your application.
 * Inter-process
 * 3rd Party access (OAuth)
 * Remember me functionality
-* Other interfaces - raw TCP, UDP etc
-* Command line (if you _really_ want)
+* Other interfaces - raw TCP, UDP, CLI, etc
 
 JWT tokens can be used everywhere in your application where you need to provide verifiable authentication.
 
@@ -53,21 +51,21 @@ You do not need to track JWT via a database. You can simply rely on the issued a
 
 For example, if you were going to use JWT to authenticate communication on a UDP socket you likely wouldn't use a database. Encode all the information you need directly into the token when you issue it. Once you verify it (check that it's signed correctly) you're good to go.
 
-You _can_ however use a database to track JWT. If you do, you gain the ability to verify that the token is still valid - that is - it has not been revoked. Or you could use the records in the db to force a logout of all tokens for user 5. This is made simple in Guardian by using [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb uses Guardians 'Hooks' to perform validation checks, save and delete from the db. We'll cover that later.
+You _can_ however use a database to track JWT. If you do, you gain the ability to verify that the token is still valid - that is - it has not been revoked. Or you could use the records in the DB to force a log out of all tokens for user 5. This is made simple in Guardian by using [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb uses Guardians 'Hooks' to perform validation checks, save and delete from the DB. We'll cover that later.
 
-### Can I use someone elses token?
+### Can I use someone else's token?
 
-Often folks wonder if it's appropriate to use an OAuth token from Facebook or Google as their authentication token. It is not. The behaviours of those tokens, their validity is defined outside your application. There's a more security focused reason though. Anyone who obtains the token not only has access to your site, they also have access to Facebook/Google/Some Provider. 
+Often folks wonder if it's appropriate to use an OAuth token from Facebook or Google as their authentication token. It is not. The behaviors of those token and their validity are defined outside your application. There's a more security focused reason, though. Anyone who obtains the token not only has access to your site, they also have access to Facebook/Google/Some Provider. 
 
 Always use your own tokens, other applications tokens are useful to identify someone and make requests against their systems.
 
 ## Setup
 
-There are many options for setting up Guardian. We'll cover them at some point but lets start with a very simple setup.
+There are many options for setting up Guardian. We'll cover them at some point but let's start with a very simple setup.
 
 ### Minimal Setup
 
-To get started there are a handlful of things that you'll need. 
+To get started there are a handful of things that you'll need. 
 
 #### Configuration
 
@@ -98,7 +96,7 @@ config :guardian, Guardian,
   serializer: MyApp.GuardianSerializer
 ```
 
-This is the minimum set of information you need to provide Guardian with to operate. You shouldn't encode your secret key directly into your top level config. Instead each environment should have it's own key. I tend to use the Mix environment for secrets in dev and test. Staging and production however I use secrets generated with `mix phoenix.gen.secret`. 
+This is the minimum set of information you need to provide Guardian with to operate. You shouldn't encode your secret key directly into your top-level config. Instead, each environment should have its own key. It's common to use the Mix environment for secrets in dev and test. Staging and production, however, should use secrets generated with `mix phoenix.gen.secret`. 
 
 `lib/my_app/guardian_serializer.ex`
 
@@ -123,15 +121,15 @@ That's it for the minimum configuration. There's plenty more you can do if you n
 
 #### Application Usage
 
-Now that we have the configuration in place to use Guardian, we need to integrate it into the application. Since this is the miminum setup, lets first consider HTTP requests.
+Now that we have the configuration in place to use Guardian, we need to integrate it into the application. Since this is the minimum setup, let's first consider HTTP requests.
 
 ## HTTP requests
 
-Guardian provides a number of Plugs to facilitate integration into HTTP requests. Guardian doesn't require Phoenix, but using Phoenix in the following examples will be easiest to demonstrate.
+Guardian provides a number of Plugs to facilitate integration into HTTP requests. You can learn about Plug in a [separate lesson](../specifics/plug/). Guardian doesn't require Phoenix, but using Phoenix in the following examples will be easiest to demonstrate.
 
-The easiest way to integrate into HTTP is via the router. Since Guardians HTTP integrations are all based on plugs, you can use these anywhere a plug could be used.
+The easiest way to integrate into HTTP is via the router. Since Guardian's HTTP integrations are all based on plugs, you can use these anywhere a plug could be used.
 
-The general flow of Guardians plugs is:
+The general flow of Guardian plug is:
 
 1. Find a token in the request (somewhere) and verify it: `Verify*` plugs
 2. Optionally load the resource identified in the token: `LoadResource` plug
@@ -139,7 +137,7 @@ The general flow of Guardians plugs is:
 
 To meet all the needs of application developers, Guardian implements these phases separately. To find the token use the `Verify*` plugs.
 
-Lets create some pipelines.
+Let's create some pipelines.
 
 ```elixir
 pipeline :maybe_browser_auth do
@@ -155,7 +153,7 @@ end
 
 These pipelines can be used to compose different authentication requirements. The first pipeline tries to find a token first in the session and then falls back to a header. If it finds one, it will load the resource for you.
 
-The second pipeline requires that there is a valid, verified token present, and that it is of type "access". To use these, add them to your scope.
+The second pipeline requires that there is a valid, verified token present and that it is of type "access". To use these, add them to your scope.
 
 ```elixir
 scope "/", MyApp do
@@ -173,7 +171,7 @@ scope "/", MyApp do
 end
 ```
 
-The login routes above will have the authenticated user if there is one. The second scope ensures that there is an valid token passed for all actions.
+The login routes above will have the authenticated user if there is one. The second scope ensures that there is a valid token passed for all actions.
 You don't _have_ to put them in pipelines, you could put them in your controllers for super flexible customization but we're doing a minimal setup.
 
 We're missing one piece so far. The error handler we added on the `EnsureAuthenticated` plug. This is a very simple module that responds to 
@@ -185,7 +183,7 @@ Both these functions receive a Plug.Conn struct and a params map and should hand
 
 #### In the controller
 
-Inside the controller there are a couple of options for how to access the currently logged in user. Lets start with the simplest. 
+Inside the controller, there are a couple of options for how to access the currently logged in user. Let's start with the simplest. 
 
 ```elixir
 defmodule MyApp.MyController do
@@ -228,7 +226,7 @@ def create(conn, params) do
       |> Guardian.Plug.sign_in(user, :access) # Use access tokens. Other tokens can be used, like :refresh etc
       |> respond_somehow()
     {:error, reason} ->
-      # handle not verifying the users credentials
+      # handle not verifying the user's credentials
   end
 end
 
@@ -250,7 +248,7 @@ def create(conn, params) do
       conn
       |> respond_somehow({token: jwt})
     {:error, reason} ->
-      # handle not verifying the users credentials
+      # handle not verifying the user's credentials
   end
 end
 
