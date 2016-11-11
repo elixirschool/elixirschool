@@ -60,7 +60,7 @@ Let's update our dependencies in `mix.exs` to include `gen_stage`:
 ```elixir
   defp deps do
     [
-      {:gen_stage, "~> 0.7},
+      {:gen_stage, "~> 0.7"},
     ]
   end
 ```
