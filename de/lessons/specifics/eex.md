@@ -76,6 +76,6 @@ In Elixir ist die `EEx.SmartEngine` voreingestellt, diese beinhaltet Unterstütz
 iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 "Hi, Sean"
 ```
-Die `EEx.SmartEngine`-Zuweisungen sind nützlich da sie geändert werden können ohne rekompilierung des Templates zu erfordern.
+Die `EEx.SmartEngine`-Zuweisungen sind nützlich da sie geändert werden können ohne erneute Kompilierung des Templates zu erfordern.
 
-Willst du deine eigene Engine schreiben? Schau dir das Behaviour [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) an um zu sehen was du dafür benötigst.
+Willst du deine eigene Engine schreiben? Schau dir das Behaviour [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) an, um zu sehen was du dafür benötigst.
