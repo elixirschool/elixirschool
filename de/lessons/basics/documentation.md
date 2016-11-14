@@ -124,7 +124,7 @@ iex>
 
 Ist dir aufgefallen, wie du Markup innerhalb unserer Dokumentation nutzen kannst und das Terminal wird es rendern? Nicht nur ist das cool und eine neue Ergänzung zu dem großen Ökosystem von Elixir, es wird noch viel interessanter, wenn wir uns ExDoc anschauen, um HTML-Dokumentation auf die Schnelle zu generieren.
 
-**Note:** Die `@spec` Anmerkung wird dazu genutzt, statische Codeanalyse durchzuführen. Um mehr darüber zu lernen, schau doch in das Kapitel [Spezifikationen und Typen](../advanced/typespec).
+**Note:** Die `@spec` Anmerkung wird dazu genutzt, statische Codeanalyse durchzuführen. Um mehr darüber zu lernen, schau doch in das Kapitel [Spezifikationen und Typen](../../advanced/typespec).
 
 ## ExDoc
 
