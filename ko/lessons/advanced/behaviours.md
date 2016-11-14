@@ -12,7 +12,7 @@ lang: ko
 
 ## 용도
 
-가끔 공개 API를 공유하는 모듈을 만들어야 할 때가 있습니다. Elixir에서 이런 경우의 해결책은 비헤이비어입니다. 비헤이비어는 두 주요 역할을 수행합니다.
+가끔 공개 API를 공유하는 모듈을 만들어야 할 때가 있는데, Elixir에서는 비헤이비어를 사용해서 이런 모듈을 만들 수 있습니다. 비헤이비어가 하는 일은 크게 두 가지입니다.
 
 + 구현해야만 하는 함수의 목록을 정의
 + 그 함수가 실제로 구현되었는지 확인
@@ -66,7 +66,7 @@ defmodule Example.Downloader do
 end
 ```
 
-아니면 파일의 목록을 압축하는 워커는 어떨까요? 그것도 가능합니다.
+아니면 여러 파일을 압축하는 워커는 어떨까요? 그것도 가능합니다.
 
 ```elixir
 defmodule Example.Compressor do
@@ -108,7 +108,7 @@ defmodule Example.Compressor do
 end
 ```
 
-이제 컴파일하면 경고를 보실 수 있습니다.
+이제 컴파일하면 필요한 함수가 구현되지 않았다는 경고를 확인할 수 있습니다.
 
 ```shell
 lib/example/compressor.ex:1: warning: undefined behaviour function init/1 (for behaviour Example.Worker)
