@@ -16,7 +16,7 @@ Drobna uwaga:  metaprogramowanie jest zawiłe i powinno być stosowane tylko w o
 
 Pierwszym krokiem w metaprogramowaniu jest zrozumienie, jak reprezentowana jest składnia programu. W Elixirze drzewo składniowe (ang. _Abstract Syntax Tree_ – AST) jest wewnętrznie reprezentowane w postaci zagnieżdżonych krotek. Każda z nich ma trzy elementy: nazwę funkcji, metadane i argumenty.
 
-Byśmy zobaczyć tę wewnętrzną strukturę, Elixir udostępnia funkcję `quote/2`.  Używając `quote/2` możemy zamienić kod Elixira tak by była dla nas zrozumiała:
+By zobaczyć tę wewnętrzną strukturę, Elixir udostępnia funkcję `quote/2`.  Używając `quote/2` możemy zamienić kod Elixira tak by była dla nas zrozumiała:
 
 ```elixir
 iex> quote do: 42
@@ -91,7 +91,7 @@ iex> OurMacro.unless false, do: "Hi"
 "Hi"
 ```
 
-Ponieważ makra podmieniają kod w naszej aplikacji, zatem mamy wpływ na to, co i kiedy zostanie skompilowane. Przykład tego typu zabiegów znajdziemy w module `Logger`.  Kiedy logowanie jest wyłączone, to żaden kod nie zostanie dopisany i rezultacie nasza aplikacja nie będzie miała śladu po wywołaniach loggera. Takie zachowanie wyróżnia Elixira wśród innych języków, w których nadal istnieje narzut związany z wywołaniem funkcji, które z powodu konfiguracji nic nie robią.
+Ponieważ makra podmieniają kod w naszej aplikacji, zatem mamy wpływ na to, co i kiedy zostanie skompilowane. Przykład tego typu zabiegów znajdziemy w module `Logger`.  Kiedy logowanie jest wyłączone, to żaden kod nie zostanie dopisany i w rezultacie nasza aplikacja nie będzie miała śladu po wywołaniach loggera. Takie zachowanie wyróżnia Elixira wśród innych języków, w których nadal istnieje narzut związany z wywołaniem funkcji, które z powodu konfiguracji nic nie robią.
 
 By zademonstrować to zachowanie, stwórzmy prosty logger, który będzie można włączyć i wyłączyć:
 
@@ -132,7 +132,7 @@ end
 
 ### Makra prywatne
 
-Niespotykanym rozwiązaniem w innych językach jest wspierany przez Elixira mechanizm mark prywatnych. Makro prywatne definiujemy za pomocą `defmacrop` i można je wywołać tylko w module, w którym zostało zdefiniowane.
+Niespotykanym rozwiązaniem w innych językach jest wspierany przez Elixira mechanizm makr prywatnych. Makro prywatne definiujemy za pomocą `defmacrop` i można je wywołać tylko w module, w którym zostało zdefiniowane.
 
 ### Separacja makr
 
