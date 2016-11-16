@@ -84,7 +84,7 @@ _Uwaga_: znak `|` w tym przypadku oznacza operator _cons_ (od ang. _construct_) 
 
 ## Krotki
 
-Krotki są podobne do list, ale zajmują ciągły obszar pamięci.  Powoduje to, że odczyt jest bardzo szybki, lecz kodyfikacja kosztowna; zmiana wartości oznacza stworzenie nowej krotki i skopiowanie elementów starej.  Krotki definiujemy za pomocą klamer:
+Krotki są podobne do list, ale zajmują ciągły obszar pamięci.  Powoduje to, że odczyt jest bardzo szybki, lecz modyfikacja kosztowna; zmiana wartości oznacza stworzenie nowej krotki i skopiowanie elementów starej.  Krotki definiujemy za pomocą klamer:
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
