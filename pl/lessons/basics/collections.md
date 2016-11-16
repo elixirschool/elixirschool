@@ -132,7 +132,7 @@ iex> map["hello"]
 :world
 ```
 
-Od wersji 1.2 Elixir zmienne mogą być użyte jako klucz:
+Od wersji 1.2 Elixira zmienne mogą być użyte jako klucz:
 
 ```elixir
 iex> key = "hello"
