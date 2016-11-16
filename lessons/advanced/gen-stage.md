@@ -109,7 +109,7 @@ The `handle_demand/2` function is where the majority of our producer and must be
 
 ## Producer Consumer
 
-Now that we have have a number generating producer let's move on to our producer-consumer.  We'll want to request numbers from our producer, filter out the odd one, and respond to demand.
+Now that we have a number generating producer let's move on to our producer-consumer.  We'll want to request numbers from our producer, filter out the odd one, and respond to demand.
 
 ```shell
 $ touch lib/genstage_example/producer_consumer.ex
@@ -134,8 +134,8 @@ defmodule GenstageExample.ProducerConsumer  do
 
   def handle_events(events, _from, state) do
     numbers =
-    	events
-    	|> Enum.filter(&Integer.is_even/1)
+      events
+      |> Enum.filter(&Integer.is_even/1)
 
     {:noreply, numbers, state}
   end
