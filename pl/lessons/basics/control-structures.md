@@ -30,7 +30,7 @@ iex> if "a string value" do
 "Truthy"
 ```
 
-Użycie `unless/2` jest takie samo `if/2` tylko, że warunek działa w przeciwnym kierunku:
+Użycie `unless/2` jest takie samo jak `if/2` tylko, że warunek działa w przeciwnym kierunku:
 
 ```elixir
 iex> unless is_integer("hello") do
@@ -99,7 +99,7 @@ Więcej szczegółów znajdziesz w dokumentacji, w języku angielskim, [Expressi
 
 ## `cond`
 
-Jeżeli chcemy sprawdzić wiele warunków, ale nie są to wartości, o należy użyć `cond`; odpowiada on konstrukcjom `else if` czy `elsif` z innych języków:
+Jeżeli chcemy sprawdzić wiele warunków, ale nie są to wartości, to należy użyć `cond`; odpowiada on konstrukcjom `else if` czy `elsif` z innych języków:
 
 _Ten przykład pochodzi z oficjalnego przewodnika po języku Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
 
@@ -127,7 +127,7 @@ iex> cond do
 
 ## `with`
 
-Konstrukcja `with` jest to forma, którą możemy użyć zamiast zagnieżdżonych wyrażeń `case` albo w sytuacji, gdy nie mogą być one powiązane z jednoznaczny sposób. Wyrażenie `with` składa się ze słowa kluczowego, generatora i wyrażenia.
+Konstrukcja `with` jest to forma, którą możemy użyć zamiast zagnieżdżonych wyrażeń `case` albo w sytuacji, gdy nie mogą być one powiązane w jednoznaczny sposób. Wyrażenie `with` składa się ze słowa kluczowego, generatora i wyrażenia.
 
 Zajmiemy się jeszcze generatorami przy okazji omawiania list składanych, a na chwilę obecną jedyne co musimy wiedzieć to, że używają dopasowania wzorców, by połączyć elementy po prawej stronie `<-` z tymi po lewej.
 
