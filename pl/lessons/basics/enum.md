@@ -124,7 +124,7 @@ iex> Enum.max([], fn -> :bar end)
 
 ### reduce
 
-Funkcja `reduce` pozwala na zredukowanie kolekcji do pojedynczej wartości. By tego dokonać, możemy opcjonalnie podać akumulator (przykładowo `10`), by został przekazany do naszej funkcji; Jeżeli nie podamy akumulatora, to zostanie zastąpiony przez pierwszy element kolekcji:
+Funkcja `reduce` pozwala na zredukowanie kolekcji do pojedynczej wartości. By tego dokonać, możemy opcjonalnie podać akumulator (przykładowo `10`), by został przekazany do naszej funkcji. Jeżeli nie podamy akumulatora, to zostanie zastąpiony przez pierwszy element kolekcji:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
