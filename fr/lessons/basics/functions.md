@@ -118,7 +118,7 @@ iex> Greeter.phrase
 ### Guards
 
 Nous avons brièvement couvert les guards (prosaïquement traduit par « gardes » dans <u>Programmer en Erlang</u>, Pearson, 2010) dans la leçon sur les
-[Structures de contrôle](../control-structures.md).
+[Structures de contrôle](../control-structures).
 Nous allons à présent voir comment nous pouvons les appliquer aux fonctions.
 
 L'exemple ci-dessous contient deux fonctions avec la même signature. Nous allons nous servir des guards pour déterminer laquelle des deux utiliser, en
