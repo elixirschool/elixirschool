@@ -24,7 +24,7 @@ Lista dostępnych sigili to:
   - `~s` Tworzy ciąg znaków **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
   - `~W` Tworzy listę słów **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
   - `~w` Tworzy listę słów **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
-  - `~N` Tworzy strukturę `NaiveDateTIme`.
+  - `~N` Tworzy strukturę `NaiveDateTime`.
 
 Listę możemy utworzyć korzystając ze znaków:
 
