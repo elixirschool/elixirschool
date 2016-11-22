@@ -143,8 +143,7 @@ W większości wypadków nie powinniśmy tworzyć tej struktury w bezpośredni s
 
 ```elixir
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
-``
-
+```
 
 ## Tworzenie sigili
 
