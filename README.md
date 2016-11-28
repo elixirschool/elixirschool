@@ -43,8 +43,8 @@ In addition to the steps above there are a few addition steps required for trans
 
   ```shell
   $ cd elixir_school
-  $ mkdir -p jp/lessons/{basics,advanced,specifics}
-  $ touch jp/lessons/{basics,advanced,specifics}/.gitignore
+  $ mkdir -p jp/lessons/{basics,advanced,specifics,libraries}
+  $ touch jp/lessons/{basics,advanced,specifics,libraries}/.gitignore
   ```
 
 1. Update `_config.yml` by including the 2 character code in `languages` and adding translations to `sections`, `description` and `toc`:

@@ -104,6 +104,11 @@ sections:
       tr: Spesifik
       bg: Спесифики
       de: Einzelheiten
+  - tag: libraries
+    label:
+      en: Libraries
+      ru: Библиотеки
+      uk: Бібліотеки
 
 gems:
   - kramdown
@@ -158,7 +163,6 @@ toc:
   tr: İçerik
   bg: Съдържание
   de: Inhaltsverzeichnis
-
 
 share:
   en: Share This Page
