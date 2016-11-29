@@ -110,6 +110,7 @@ sections:
       ru: Библиотеки
       uk: Бібліотеки
       gr: Βιβλιοθήκες
+      it: Librerie
 
 gems:
   - kramdown
