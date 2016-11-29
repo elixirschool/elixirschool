@@ -109,6 +109,7 @@ sections:
       en: Libraries
       ru: Библиотеки
       uk: Бібліотеки
+      gr: Βιβλιοθήκες
 
 gems:
   - kramdown
