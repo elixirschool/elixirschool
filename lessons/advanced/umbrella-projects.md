@@ -12,7 +12,7 @@ Sometimes a project can get big, really big in fact. The Mix build tool allows u
 
 ## Introduction
 
-To create an umbrella project we start a project as if we were going to start a normal Mix project but pass in the `--umbrella` flag. For this example, we are going to make *the shell* of a machine learning toolkit. Why a machine learning toolkit? Why not? It is made up of various different learning algorithms and utility functions.
+To create an umbrella project we start a project as if we were going to start a normal Mix project but pass in the `--umbrella` flag. For this example, we are going to make *the shell* of a machine learning toolkit. Why a machine learning toolkit? Why not? It is made up of various learning algorithms and utility functions.
 
 ```shell
 $ mix new machine_learning_toolkit --umbrella

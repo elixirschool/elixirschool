@@ -105,6 +105,8 @@ iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+"cba1"
 ```
 
 ### sort
@@ -124,7 +126,7 @@ A outra opção nos permite prover uma função de ordenação:
 ```elixir
 # with our function
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
-[%{count: 4}, %{count: 1}]
+[%{val: 4}, %{val: 1}]
 
 # without
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])

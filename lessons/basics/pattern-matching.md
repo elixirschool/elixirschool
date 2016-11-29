@@ -12,7 +12,7 @@ Pattern matching is a powerful part of Elixir.  It allows us to match simple val
 
 ## Match Operator
 
-Are you ready for a curveball?  In Elixir, the `=` operator is actually a match operator.  Through the match operator we can assign and then match values, let's take a look:
+Are you ready for a curveball? In Elixir, the `=` operator is actually a match operator, comparable to the equals sign in algebra. Writing it turns the whole expression into an equation and makes Elixir match the values on the left hand with the values on the right hand. If the match succeeds, it returns the value of the equation. Otherwise, it throws an error. Let's take a look:
 
 ```elixir
 iex> x = 1

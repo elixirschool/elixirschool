@@ -12,7 +12,7 @@ In this lesson we will learn about `@spec` and `@type` syntax. First is more syn
 
 ## Introduction 
 
-It's not uncommon you would like to describe interface of your function. Of course You can use [@doc annotation](/lessons/basics/documentation), but it is only information for other developers that is not checked in compilation time. For this purpose Elixir has `@spec` annotation to describe specification of function that will be checked by compiler.
+It's not uncommon you would like to describe interface of your function. Of course You can use [@doc annotation](../../basics/documentation), but it is only information for other developers that is not checked in compilation time. For this purpose Elixir has `@spec` annotation to describe specification of function that will be checked by compiler.
 
 However in some cases specification is going to be quite big and complicated. If you would like to reduce complexity, you want to introduce custom type definition. Elixir has `@type` annotation for that. In the other hand, Elixir is still dynamic language. That means all information about type will be ignored by compiler, but could be used by other tools.   
 
@@ -37,7 +37,7 @@ Everything looks ok and when we call valid result will be return, but function `
  
 ## Custom types
 
-Writing specifications is nice, but sometimes our functions works with more complex data structures than simple numbers or collections. In that definition's case in `@spec` it could be very hard to understand and/or change for other developers. Sometimes functions need to take in a large number of parameters or return complex data. A long parameters list is one of many potential bad smells in one's code. In object oriented-languages like Ruby or Java we could easily define classes that help us to solve this problem. Elixir hasn't classes but because is easy to extends that we could define our types.
+Writing specifications is nice, but sometimes our functions works with more complex data structures than simple numbers or collections. In that definition's case in `@spec` it could be hard to understand and/or change for other developers. Sometimes functions need to take in a large number of parameters or return complex data. A long parameters list is one of many potential bad smells in one's code. In object oriented-languages like Ruby or Java we could easily define classes that help us to solve this problem. Elixir hasn't classes but because is easy to extends that we could define our types.
   
 Out of box Elixir contains some basic types like `integer` or `pid`. You  can find full list of available types in [documentation](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
  
@@ -57,7 +57,7 @@ def sum_times(a, params) do
 end
 ```
 
-We introduced a struct in `Examples` module that contains two fields `first` and `last`. That is simpler version of struct from `Range` module. We will talk about `structs` when we get into discussing [modules](lessons/basics/modules/#structs). Lets imagine that we need to specification with `Examples` struct in many places. It would be very annoying to write long, complex specifications and could be a source of bugs. A solution to this problem is `@type`.
+We introduced a struct in `Examples` module that contains two fields `first` and `last`. That is simpler version of struct from `Range` module. We will talk about `structs` when we get into discussing [modules](../../basics/modules/#structs). Lets imagine that we need to specification with `Examples` struct in many places. It would be annoying to write long, complex specifications and could be a source of bugs. A solution to this problem is `@type`.
  
 Elixir has three directives for types:
 
@@ -111,7 +111,7 @@ end
 
 ### Documentation of types
 
-The last element that we need to talk about is how to document our types. As we know from [documentation](/lessons/basics/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules. For documenting our types we can use `@typedoc`:
+The last element that we need to talk about is how to document our types. As we know from [documentation](../../basics/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules. For documenting our types we can use `@typedoc`:
 
 ```elixir
 defmodule Examples do

@@ -12,7 +12,7 @@ Erlang Term Storage, commonly referred to as ETS, is a powerful storage engine b
 
 ## Overview
 
-ETS is a robust in-memory store for Elixir and Erlang objects that comes included.  ETS is capable of storing very large amounts of data and offers constant time data access.
+ETS is a robust in-memory store for Elixir and Erlang objects that comes included.  ETS is capable of storing large amounts of data and offers constant time data access.
 
 Tables in ETS are created and owned by individual processes.  When an owner process terminates, its tables are destroyed.  By default ETS is limited to 1400 tables per node.
 
@@ -136,7 +136,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 Although `select/2` allows for finer control over what and how we retrieve records, the syntax is quite unfriendly and will only become more so.  To handle this the ETS module includes `fun2ms/1`, which turns the functions into match_specs.  With `fun2ms/1` we can create queries using a familiar function syntax.
 
-Let's use `fun2ms/2` and `select/2` to find all usernames with 2 or more languages:
+Let's use `fun2ms/1` and `select/2` to find all usernames with more than 2 languages:
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)

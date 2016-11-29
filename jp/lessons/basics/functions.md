@@ -93,6 +93,28 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
+### 関数の命名とアリティ
+
+以前言及したとおり、関数は名前とアリティ(引数の数)の組み合わせで命名されます。つまり、以下のようなことができるということです:
+
+```elixir
+defmodule Greeter2 do
+  def hello(), do: "Hello, anonymous person!"   # hello/0
+  def hello(name), do: "Hello, " <> name        # hello/1
+  def hello(name1, name2), do: "Hello, #{name1} and #{name2}"
+                                                # hello/2
+end
+
+iex> Greeter2.hello()
+"Hello, anonymous person!"
+iex> Greeter2.hello("Fred")
+"Hello, Fred"
+iex> Greeter2.hello("Fred", "Jane")
+"Hello, Fred and Jane"
+```
+
+関数名の一覧を上記のコメントに載せました。例えば、1つめの実装は引数を取らないので`hello/0`、2つ目は1つの引数を取るので`hello/1`となります。他の言語におけるオーバーロードとは違い、これらは互いに _異なる_ 関数として扱われます。(さっき扱ったパターンマッチングは _同じ_ 数の引数を取る関数定義が複数ある場合のみ適用されます)
+
 ### プライベート関数
 
 他のモジュールから特定の関数へアクセスさせたくない時には関数をプライベートにすることができます。プライベート関数はそのモジュール自身の内部からのみ呼び出すことが出来ます。Elixirでは`defp`を用いて定義することができます:

@@ -40,6 +40,8 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
+关于上面使用到的 `++/2` 格式的说明：在 Elixir 中（以及 Elixir 的基础语言 Erlang），函数和操作符的名字由两部分组成：名字和元数(arity)。元数是 Elixir 和 Erlang 代码非常核心的部分，它代表了给定函数接受的参数个数（比如这里的 2），元数和名字之间通过斜线分割。我们后面会讲到更多这方面的内容，知道这些已经能帮你理解它的含义了。
+
 ### 列表减法
 
 `--/2` 操作符支持列表的减法，而且减去不存在的值也是安全的。
@@ -48,6 +50,14 @@ iex> [1, 2] ++ [3, 4, 1]
 iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
+
+要注意重复值的处理：对于左边列表中的每个值，右边只有首次出现的这个值会被删除：
+
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
+
+注意：这里的比较 是否相同使用的是[严格比较(strict comparison)](https://github.com/doomspork/elixir-school/blob/9321df59a92a765bf64363badab6fddfdb4fe11e/lessons/basics/#comparison)。
+
 
 ### 头/尾
 
@@ -122,6 +132,13 @@ iex> map["hello"]
 :world
 ```
 
+Elixir 1.2 版本中，也可以把变量作为图的键（key）：
+
+iex> key = "hello"
+"hello"
+iex> %{key => "world"}
+%{"hello" => "world"}
+
 如果重复的键添加到图中，后面的值会覆盖之前的值：
 
 ```elixir
@@ -139,26 +156,7 @@ iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-## 字典
-
-在 Elixir 中，关键字列表和图都实现了 `Dict` 模块，因此它们也被统称为字典。如果你需要创建自己的键值数据结构，自己实现 `Dict` 模块是不错的选择。
-
-[`Dict` 模块](http://elixir-lang.org/docs/stable/elixir/#!Dict.html) 提供了一些有用的函数交互和操作这些字典（关键字列表和图）。
-
-```elixir
-# keyword lists
-iex> Dict.put([foo: "bar"], :hello, "world")
-[hello: "world", foo: "bar"]
-
-# maps
-iex> Dict.put(%{:foo => "bar"}, "hello", "world")
-%{:foo => "bar", "hello" => "world"}
-
-iex> Dict.has_key?(%{:foo => "bar"}, :foo)
-true
-```
-
-字典另一个有趣的特性是：它们提供了自己更新和获取原子键（key）的语法：
+图另一个有趣的特性是：它们提供了自己更新和获取原子键（key）的语法：
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}

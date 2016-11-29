@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-スーパーバイザについてのさらなる情報は、[OTPスーパーバイザ](/jp/lessons/advanced/otp-supervisors)レッスンを確認してください。
+スーパーバイザについてのさらなる情報は、[OTPスーパーバイザ](../../advanced/otp-supervisors)レッスンを確認してください。
 
 ### 設定
 

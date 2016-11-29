@@ -10,7 +10,7 @@ Ecto는 공식적인 Elixir 프로젝트로 데이터베이스를 감싸는 부�
 
 {% include toc.html %}
 
-## 설치하기
+## 설정하기
 
 우선 Ecto와 데이터베이스 어댑터를 프로젝트의 `mix.exs`에 추가해야 합니다. 지원하는 데이터베이스 어댑터의 목록은 Ecto의 README에 있는 [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage)에서 확인할 수 있습니다. 이 예제에서는 PostgreSQL을 사용합니다.
 
@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-슈퍼바이저에 대한 더 자세한 정보는 [OTP 슈퍼바이저](/ko/lessons/advanced/otp-supervisors) 수업을 확인해주세요.
+슈퍼바이저에 대한 더 자세한 정보는 [OTP 슈퍼바이저](../../advanced/otp-supervisors) 수업을 확인해주세요.
 
 ### 설정
 

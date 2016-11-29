@@ -49,7 +49,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-**Nota:** viene usata la [strict comparison](../basics.md#confronto) per controllare i valori.
+**Nota:** viene usata la [strict comparison](../basics#confronto) per controllare i valori.
 
 ### Head / Tail
 

@@ -36,12 +36,14 @@ Elixir를 설치하면 대화형 셸인 `iex`가 함께 설치됩니다. `iex`�
 
 여기서 계속 나아가봅시다. 간단한 코드를 조금 써 보면서 체험해보세요.
 
-    iex(1)> 2+3
-    5
-    iex(2)> 2+3 == 5
-    true
-    iex(3)> String.length("The quick brown fox jumps over the lazy dog")
-    43
+```elixir
+iex(1)> 2+3
+5
+iex(2)> 2+3 == 5
+true
+iex(3)> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
 
 여기서 입력해 본 모든 코드를 이해하지 못하더라도 벌써부터 걱정하지 마시고, 어떤 느낌인지 감만 잡아보세요.
 

@@ -73,7 +73,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-Para mais informações sobre supervisores, consulte a lição [Supervisores OTP](/pt/lessons/advanced/otp-supervisors).
+Para mais informações sobre supervisores, consulte a lição [Supervisores OTP](../../advanced/otp-supervisors).
 
 ### Configuração
 

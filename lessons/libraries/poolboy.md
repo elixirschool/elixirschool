@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Poolboy
-category: specifics
-order: 1
+category: libraries
+order: 2
 lang: en
 ---
 
@@ -10,11 +10,11 @@ You can easily exhaust your system resources if you allow concurrent processes t
 
 ## Why should use Poolboy?
 
-Let's think of a specific example for a moment. You are tasked to build an application for saving user profile information to the database. If you've created a process for every user registration, you would create unbounded number of connections to your database. And at some point those connections start competing for the limited resources available in your database server. Eventually your application gets timeouts and various exceptions due to the overhead from that contention.
+Let's think of a specific example for a moment. You are tasked to build an application for saving user profile information to the database. If you've created a process for every user registration, you would create unbounded number of connections. And at some point those connections start competing for the limited resources available in your database server. Eventually your application gets timeouts and various exceptions due to the overhead from that contention.
 
 The solution to this problem is using set of workers (processes) to limit the number of connections instead of creating a process for every user registration. Then you can easily avoid running out of your system resources.
 
-That's where Poolboy comes in. It creates a pool of workers managed by a `Supervisor` without an effort on your part to create and manage it manually. Matter of fact there are many libraries use Poolboy under the covers. For example; `postgrex`'s connection pool *(which in turn leveraged by Ecto when using psql)* `redis_poolex` *(Redis connection pool)* are some of the popular libraries use Poolboy.
+That's where Poolboy comes in. It creates a pool of workers managed by a `Supervisor` without an effort on your part to do it manually. Matter of fact there are many libraries use Poolboy under the covers. For example; `postgrex`'s connection pool *(which in turn leveraged by Ecto when using psql)*, `redis_poolex` *(Redis connection pool)* are some of the popular libraries use Poolboy.
 
 {% include toc.html %}
 

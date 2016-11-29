@@ -36,14 +36,16 @@ To get started, let's run `iex`:
 
 Let's go ahead and give it a try now by typing in a few simple expressions:
 
-    iex> 2+3
-    5
-    iex> 2+3 == 5
-    true
-    iex> String.length("The quick brown fox jumps over the lazy dog")
-    43
+```elixir
+iex> 2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
 
-Don't worry if you don't understand every expression yet, but hopefully you get the idea.
+Don't worry if you don't understand every expression yet, but we hope you get the idea.
 
 ## Basic Data Types
 

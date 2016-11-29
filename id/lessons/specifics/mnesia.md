@@ -26,7 +26,7 @@ Kapan kita menggunakan sebuah teknologi seringkali jadi masalah yang membingungk
 
 ## Schema
 
-Karena Mnesia adalah bagian dari Erlang core, bukannya Elixir, kita harus mengaksesnya dengan sintaks colon (Lihat Pelajaran: [Erlang Interoperability](/id/lessons/advanced/erlang/)) seperti ini:
+Karena Mnesia adalah bagian dari Erlang core, bukannya Elixir, kita harus mengaksesnya dengan sintaks colon (Lihat Pelajaran: [Erlang Interoperability](../../advanced/erlang/)) seperti ini:
 
 ```shell
 

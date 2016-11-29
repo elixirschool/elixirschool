@@ -8,7 +8,7 @@ lang: en
 
 Metaprogramming is the process of using code to write code.  In Elixir this gives us the ability to extend the language to fit our needs and dynamically change the code.  We'll start by looking at how Elixir is represented under the hood, then how to modify it, and finally we can use this knowledge to extend it.
 
-A word of caution:  Metaprogramming is tricky and should only be used when absolutely necessary.  Overuse will almost certainly lead to complex code that is difficult to understand and debug.
+A word of caution:  Metaprogramming is tricky and should only be used when necessary. Overuse will almost certainly lead to complex code that is difficult to understand and debug.
 
 {% include toc.html %}
 
@@ -123,7 +123,7 @@ def test do
 end
 ```
 
-But if we disable logging the resulting code would be:
+If we disable logging the resulting code would be:
 
 ```elixir
 def test do
@@ -163,7 +163,7 @@ if(!true) do
 end
 ```
 
-But if we run the same code with `Macro.expand/2`, it's intriguing:
+If we run the same code with `Macro.expand/2`, it's intriguing:
 
 ```elixir
 iex> quoted |> Macro.expand(__ENV__) |> Macro.to_string |> IO.puts
@@ -202,7 +202,7 @@ iex> val
 42
 ```
 
-But what if we wanted to manipulate the value of `val`?  To mark a variable as being unhygienic we can use `var!/2`.  Let's update our example to include another macro utilizing `var!/2`:
+What if we wanted to manipulate the value of `val`?  To mark a variable as being unhygienic we can use `var!/2`.  Let's update our example to include another macro utilizing `var!/2`:
 
 ```elixir
 defmodule Example do

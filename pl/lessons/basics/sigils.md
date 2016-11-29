@@ -24,6 +24,7 @@ Lista dostępnych sigili to:
   - `~s` Tworzy ciąg znaków **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
   - `~W` Tworzy listę słów **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
   - `~w` Tworzy listę słów **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
+  - `~N` Tworzy strukturę `NaiveDateTime`.
 
 Listę możemy utworzyć korzystając ze znaków:
 
@@ -132,6 +133,16 @@ iex> ~w/i love #{'e'}lixir school/
 
 iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
+```
+
+### Struktura `NaiveDateTime`
+
+Struktura [NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) jest uproszczeniem `DateTime`, które nie posiada informacji o strefie czasowej.
+
+W większości wypadków nie powinniśmy tworzyć tej struktury w bezpośredni sposób, ale wyjątek stanowi tu użycie jej w dopasowaniach wzorców:
+
+```elixir
+iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
 ```
 
 ## Tworzenie sigili

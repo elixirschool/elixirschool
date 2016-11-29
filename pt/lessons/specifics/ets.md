@@ -138,7 +138,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 Apesar do `select/2` um controle mais fino sobre o que e como recuperamos registros, a sinaxe é um bastante hostil e tende a ser pior. Para lidar com isso, o módulo ETS inclui `fun2ms/1`, para transformar as funções em *match_specs*. Com `fun2ms/1` podemos criar consultas usando uma sintaxe de função mais familiar.
 
-Vamos usar `fun2ms/2` e `select/2` para encontrar todos os usuários com 2 ou mais línguas:
+Vamos usar `fun2ms/1` e `select/2` para encontrar todos os usuários com 2 ou mais línguas:
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)

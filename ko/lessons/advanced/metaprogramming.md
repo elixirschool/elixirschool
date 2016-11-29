@@ -8,7 +8,7 @@ lang: ko
 
 메타 프로그래밍은 코드를 사용해서 코드를 작성하는 방법입니다. 이를 통해 Elixir에서는 필요에 따라 언어를 확장할 수 있으며, 동적으로 코드를 변경할 수도 있습니다. Elixir가 어떤 식으로 표현되고 있는지를 확인하는 부분부터 시작해서, 이를 변경하고 확장하는 법을 배워보겠습니다.
 
-주의: 메타 프로그래밍은 다루기 어려우며, 정말 필요할 때에만 사용해야 합니다. 과도한 사용은 이해하기도 어렵고 디버깅하기도 어려운 복잡한 코드를 만듭니다.
+주의: 메타 프로그래밍은 다루기 어려우며, 필요할 때에만 사용해야 합니다. 과도한 사용은 이해하기도 어렵고 디버깅하기도 어려운 복잡한 코드를 만듭니다.
 
 {% include toc.html %}
 
@@ -123,12 +123,59 @@ def test do
 end
 ```
 
-하지만 로깅을 비활성화하는 경우, 코드는 다음처럼 생성됩니다.
+로깅을 비활성화하는 경우, 코드는 다음처럼 생성됩니다.
 
 ```elixir
 def test do
 end
 ```
+
+## 디버깅
+
+좋아요. 이제 `quote/2`, `unquote/1`의 사용법과 매크로 작성법을 배웠습니다. 하지만 큰 덩어리의 감싸진 코드가 있고 그걸 이해해야 한다면 어떻게 해야할까요? 이 경우 `Macro.to_string/2`를 사용할 수 있습니다. 이 예제를 살펴봅시다.
+
+```elixir
+iex> Macro.to_string(quote(do: foo.bar(1, 2, 3)))
+"foo.bar(1, 2, 3)"
+```
+
+그리고 매크로로 생성된 코드를 확인하고 싶다면, 코드를 `Macro.expand/2`, `Macro.expand_once/2`로 합칠 수 있습니다. 이 함수는 주어진 감싸진 코드로 매크로를 확장합니다. 첫 번째는 여러 번 확장됩니다. 하지만 뒤에 것은 한번만 확장됩니다. 예를 들어, 이 전 단락의 `unless` 예제를 수정해 봅시다.
+
+```elixir
+defmodule OurMacro do
+  defmacro unless(expr, do: block) do
+    quote do
+      if !unquote(expr), do: unquote(block)
+    end
+  end
+end
+
+require OurMacro
+quoted = quote do
+  OurMacro.unless true, do: "Hi"
+end
+```
+
+```
+iex> quoted |> Macro.expand_once(__ENV__) |> Macro.to_string |> IO.puts
+if(!true) do
+  "Hi"
+end
+```
+
+같은 코드를 `Macro.expand/2`로 실행하면, 흥미로운 결과가 나옵니다.
+
+```elixir
+iex> quoted |> Macro.expand(__ENV__) |> Macro.to_string |> IO.puts
+case(!true) do
+  x when x in [false, nil] ->
+    nil
+  _ ->
+    "Hi"
+end
+```
+
+Elixir에서 `if`는 매크로라 했던 것을 기억하시나요? 여기에서 기저의 `case` 구문으로 확장되는 것을 확인할 수 있습니다.
 
 ### Private 매크로
 
@@ -155,7 +202,7 @@ iex> val
 42
 ```
 
-하지만 `val`을 조작하고 싶은 경우에는 어떻까요? 청결하지 않은 변수를 원한다는 것을 알리기 위해서 `var!/2`를 사용하면 됩니다. `var!/2`를 사용하도록 예제를 고쳐봅시다.
+`val`을 조작하고 싶은 경우에는 어떻까요? 청결하지 않은 변수를 원한다는 것을 알리기 위해서 `var!/2`를 사용하면 됩니다. `var!/2`를 사용하도록 예제를 고쳐봅시다.
 
 ```elixir
 defmodule Example do

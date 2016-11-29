@@ -12,7 +12,7 @@ Le Pattern matching est une partie très puissante d'Elixir, il nous permet de t
 
 ## L'opérateur Match
 
-En Elixir, `=` est l'opérateur de correspondance. Via l'opérateur de correspondance, nous pouvons assigner et faire correspondre des valeurs. Regardons ça:
+Êtes-vous prêt pour un peu d'inattendu ? En Elixir, `=` est l'opérateur de correspondance, comparable au signe égal dans l'algèbre. L'utiliser transforme toute l'expression en une équation, et Elixir évalue l'équivalence des éléments à gauche et à droite du signe égal. S'il y a correspondance, il retourne la valeur de l'equation. Sinon il génère une erreur. Regardons ça :
 
 ```elixir
 iex> x = 1

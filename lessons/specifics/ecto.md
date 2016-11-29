@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-For more info on supervisors check out the [OTP Supervisors](/lessons/advanced/otp-supervisors) lesson.
+For more info on supervisors check out the [OTP Supervisors](../../advanced/otp-supervisors) lesson.
 
 ### Configuration
 
@@ -203,8 +203,6 @@ query = from u in User,
     select: count(u.id, :distinct)
 ```
 
-
-
 ### Group By
 
 To group users by their confirmation status we can include the `group_by` option:
@@ -299,10 +297,10 @@ defmodule ExampleApp.User do
   defp validate_password_confirmation(changeset) do
     case get_change(changeset, :password_confirmation) do
       nil ->
-        password_mismatch_error(changeset)
+        password_incorrect_error(changeset)
       confirmation ->
         password = get_field(changeset, :password)
-        if confirmation == password, do: changeset, else: password_incorrect_error(changeset)
+        if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
     end
   end
 

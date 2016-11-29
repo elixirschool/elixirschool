@@ -36,12 +36,15 @@ Elixirには`iex`という対話シェルが付属しており、入力したそ
 
 先に進み、試しにいくつかの簡単な式を入力してみましょう:
 
-    iex> 2+3
-    5
-    iex> 2+3 == 5
-    true
-    iex> String.length("The quick brown fox jumps over the lazy dog")
-    43
+```elixir
+iex>
+2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
 
 それぞれの式をまだ理解していなくても心配することはありませんが、うまくいけばやり方は分かるでしょう。
 
