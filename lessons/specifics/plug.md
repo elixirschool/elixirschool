@@ -21,12 +21,11 @@ defp deps do
 end
 ```
 
-The last thing we need to do is add both our web server and Plug to our OTP application:
+At the command line, run the following mix task
+to pull in these new dependencies:
 
-```elixir
-def application do
-  [applications: [:cowboy, :logger, :plug]]
-end
+```shell
+$ mix deps.get
 ```
 
 ## The specification
@@ -61,7 +60,6 @@ We'll start by looking at our finished Plug and then discuss how it works.  We'l
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
-  import Plug.Conn
 
   defmodule IncompleteRequestError do
     @moduledoc """
@@ -143,7 +141,7 @@ For now our `/upload` endpoint isn't very useful but we've seen how to create an
 
 Before we can run our application we need to set up and configure our web server, which in this instance is Cowboy.  For now we'll just make the code changes necessary to run everything, and we'll dig into specifics in later lessons.
 
-Let's start by updating the `application` portion of our `mix.exs` to tell Elixir about our application and set an application env variable.  With those changes in place our code should look something like this:
+Let's start by updating the `application` portion of `mix.exs` to tell Elixir about our application and set an application env variable.  With those changes in place our code should look something like this:
 
 ```elixir
 def application do
@@ -152,6 +150,10 @@ def application do
    env: [cowboy_port: 8080]]
 end
 ```
+
+Our application is configured with the
+`mod: {Example, []}` line. Notice that we're
+also starting up the `cowboy` and `plug` applications.
 
 Next we need to update `lib/example.ex` to start and supervise Cowboy:
 
