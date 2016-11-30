@@ -35,7 +35,7 @@ JWT tokens can be used to authenticate any part of your application.
 
 * Single page applications
 * Controllers (via browser session)
-* Controllers (via authoirzation headers - API)
+* Controllers (via authorization headers - API)
 * Phoenix Channels
 * Service to Service requests
 * Inter-process
@@ -45,7 +45,7 @@ JWT tokens can be used to authenticate any part of your application.
 
 JWT tokens can be used everywhere in your application where you need to provide verifiable authentication.
 
-### Do I have to use a database
+### Do I have to use a database?
 
 You do not need to track JWT via a database. You can simply rely on the issued and expiry timestamps for controlling access. Often you'll end up using a database to look up your user resource but the JWT itself does not require it.
 
