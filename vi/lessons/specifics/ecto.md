@@ -287,10 +287,10 @@ defmodule ExampleApp.User do
   defp validate_password_confirmation(changeset) do
     case get_change(changeset, :password_confirmation) do
       nil ->
-        password_mismatch_error(changeset)
+        password_incorrect_error(changeset)
       confirmation ->
         password = get_field(changeset, :password)
-        if confirmation == password, do: changeset, else: password_incorrect_error(changeset)
+        if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
     end
   end
 
