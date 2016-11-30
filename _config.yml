@@ -107,10 +107,12 @@ sections:
   - tag: libraries
     label:
       en: Libraries
+      jp: ライブラリー
       ru: Библиотеки
       uk: Бібліотеки
       gr: Βιβλιοθήκες
       it: Librerie
+      ko: 라이브러리
 
 gems:
   - kramdown
