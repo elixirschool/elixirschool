@@ -113,6 +113,7 @@ sections:
       gr: Βιβλιοθήκες
       it: Librerie
       ko: 라이브러리
+      pl: Biblioteki
 
 gems:
   - kramdown
