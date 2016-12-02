@@ -135,7 +135,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 Pomimo że `select/2` pozwala na precyzyjniejszą kontrolę rezultatów, to składnia tej funkcji jest nieprzyjazna szczególnie w złożonych przypadkach. Do ich obsługi ETS zawiera funkcję `fun2ms/1`, która zmienia funkcję w specyfikację zwaną `match_specs`.  Z pomocą`fun2ms/1` możemy tworzyć zapytania, używając lepiej nam znanej składni funkcyjnej. 
 
-Połączmy zatem`fun2ms/1` i `select/2`, by odszukać wszystkie `usernames` z dwoma lub więcej językami:
+Połączmy zatem `fun2ms/1` i `select/2`, by odszukać wszystkie `usernames` z dwoma lub więcej językami:
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
