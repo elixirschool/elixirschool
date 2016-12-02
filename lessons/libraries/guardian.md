@@ -179,7 +179,7 @@ We're missing one piece so far. The error handler we added on the `EnsureAuthent
 * `unauthenticated/2`
 * `unauthorized/2`
 
-Both these functions receive a Plug.Conn struct and a params map and should handle their respective errors. You can even use a Phoneix controller!
+Both these functions receive a Plug.Conn struct and a params map and should handle their respective errors. You can even use a Phoenix controller!
 
 #### In the controller
 
