@@ -224,7 +224,7 @@ def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
       conn
-      |> Guardian.Plug.sign_in(user, :access) # Χρησιμοποιήστε κέρματα πρόσβασης. Άλλα κέρματα μπορούν να χρησιμοποιηθούν, όπως τα :refrech κ.α.
+      |> Guardian.Plug.sign_in(user, :access) # Χρησιμοποιήστε κέρματα πρόσβασης. Άλλα κέρματα μπορούν να χρησιμοποιηθούν, όπως τα :refresh κ.α.
       |> respond_somehow()
     {:error, reason} ->
       # χειριστείτε την μη επικύρωση των διαπιστευτηρίων του χρήστη.
