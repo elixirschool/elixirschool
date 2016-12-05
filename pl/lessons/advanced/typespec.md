@@ -18,7 +18,7 @@ Jednakże w niektórych przypadkach specyfikacje mogą być dość złożone. Je
 
 ## Specyfikacje
 
-Jeżeli masz doświadczenie w innych językach, jak Java bądź Ruby, to możesz rozumieć specyfikacje jak konstrukcje `interface`. Specyfikacja określa, jaki jest typ parametrów i wartości zwracanej. 
+Jeżeli masz doświadczenie w innych językach, jak Java bądź Ruby, to możesz rozumieć specyfikacje jak interfejsy. Specyfikacja określa, jaki jest typ parametrów i wartości zwracanej. 
 
 By zdefiniować typy wejściowe i wyjściowe, musimy umieścić dyrektywę `@spec` tuż przed definicją funkcji. Jako parametry przyjmuje ona nazwę funkcji, listę typów parametrów i po `::` typ wartości zwracanej. 
 
@@ -35,15 +35,15 @@ end
 
 Wszystko wygląda poprawnie i gdy wywołamy funkcję, to otrzymamy wynik, ale funkcja `Enum.sum` zwraca `number`, a nie `integer` jak określiliśmy w specyfikacji. To może być źródłem błędów! Możemy zatem wykorzystać narzędzia, takie jak Dialyzer, by odszukać tego typu błędy. O narzędziach porozmawiamy w innej lekcji. 
  
-## Custom types
+## Własne typy
 
-Writing specifications is nice, but sometimes our functions works with more complex data structures than simple numbers or collections. In that definition's case in `@spec` it could be hard to understand and/or change for other developers. Sometimes functions need to take in a large number of parameters or return complex data. A long parameters list is one of many potential bad smells in one's code. In object oriented-languages like Ruby or Java we could easily define classes that help us to solve this problem. Elixir hasn't classes but because is easy to extends that we could define our types.
+Tworzenie specyfikacji jest fajne, ale czasami nasze funkcje używają bardziej skomplikowanych struktur danych niż liczby czy kolekcje. W takich przypadkach informacje zdefiniowane w `@spec` będą trudne to zrozumienia i zmiany przez innych programistów. Czasami funkcja przyjmuje wiele parametrów albo zwraca złożoną strukturę. Długa lista parametrów jest też przykładem złego zapachu w kodzie. W językach obiektowych jak Ruby czy Java możemy z łatwością zdefiniować klasę, która opakuje nam dane i pomoże rozwiązać problem. W Elixirze nie ma klas, ale że jest on łatwy do rozszerzenia, to możemy zdefiniować własny typ.
   
-Out of box Elixir contains some basic types like `integer` or `pid`. You  can find full list of available types in [documentation](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Elixir ma zdefiniowane pewne podstawowe typu jak `integer` czy `pid`. Ich pełna lista jest dostępna w [dokumentacji](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
  
-### Defining custom type
+### Definiowanie typu
   
-Let's modify our `sum_times` function and introduce some extra params:
+Zmodyfikujmy naszą funkcję `sum_times` wprowadzając kilka dodatkowych parametrów:
 
 ```elixir
 @spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
@@ -57,15 +57,15 @@ def sum_times(a, params) do
 end
 ```
 
-We introduced a struct in `Examples` module that contains two fields `first` and `last`. That is simpler version of struct from `Range` module. We will talk about `structs` when we get into discussing [modules](../../basics/modules/#structs). Lets imagine that we need to specification with `Examples` struct in many places. It would be annoying to write long, complex specifications and could be a source of bugs. A solution to this problem is `@type`.
+Użyliśmy tu struktury z modułu `Examples`, która zawiera dwa pola `first` i `last`. Jest to uproszczona wersja struktury z modułu `Range`. Będziemy jeszcze mówić o strukturach przy okazji lekcji o [modułach]((../../basics/modules/#structs)). Załóżmy, że potrzebujemy specyfikacji używającej `Examples` w wielu miejscach. Oznacza to dużo pisania, a w dodatku łatwo o błąd. Rozwiązaniem jest użycie `@type`. 
  
-Elixir has three directives for types:
+Elixir ma trzy dyrektywy opisujące typ:
 
-  - `@type` – simple, public type. Internal structure of type is public. 
-  - `@typep` – type is private and could be used only in the module where is defined. 
-  - `@opaque` – type is public, but internal structure is private. 
+  - `@type` – najprostszy, publiczny typ. Jego wewnętrzna struktura jest też publiczna.
+  - `@typep` – typ jest prywatny i może być użyty tylko w module, w którym został zdefiniowany. 
+  - `@opaque` – typ jest publiczny, ale jego wewnętrzna struktura jest prywatna. 
 
-Let define our type:
+Zdefiniujmy zatem nasz typ:
 
 ```elixir
 defmodule Examples do
@@ -79,9 +79,9 @@ defmodule Examples do
 end
 ```
 
-We defined the type `t(first, last)` already, which is a representation of the struct `%Examples{first: first, last: last}`. At this point we see types could takes parameters, but we defined type `t` as well and this time it is a representation of the struct `%Examples{first: integer, last: integer}`.   
+Zdefiniowaliśmy typ `t(first, last)`, który reprezentuje strukturę `%Examples{first: first, last: last}`. Jak widać typ może być sparametryzowany i dlatego zdefiniowaliśmy też typ `t`, który reprezentuje strukturę `%Examples{first: integer, last: integer}`.   
 
-What is a difference? First one represents the struct `Examples` of which the two keys could be any type. Second one represents struct which keys are `integers`. That means code like this:
+Na czym polega różnica? Pierwszy z nich opisuje strukturę `Examples`, w której klucze mogą być dowolnego typu. Drugi określa, że klucze mają typ `integers`. Co oznacza, że kod:
   
 ```elixir
 @spec sum_times(integer, Examples.t) :: integer
@@ -95,7 +95,7 @@ def sum_times(a, params) do
 end
 ```
 
-Is equal to code like:
+Jest równoważny:
 
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer
@@ -109,9 +109,9 @@ def sum_times(a, params) do
 end
 ```
 
-### Documentation of types
+### Dokumentowanie typów
 
-The last element that we need to talk about is how to document our types. As we know from [documentation](../../basics/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules. For documenting our types we can use `@typedoc`:
+Ostatnią rzeczą, o którą należy omówić, jest sposób dokumentowania typów. Jak wiemy z lekcji o [dokumentacji](../../basics/documentation), mamy do dyspozycji adnotacje `@doc` i `@moduledoc` służące do tworzenia dokumentacji dla funkcji i modułów. Aby dokumentować typ, używamy `@typedoc`:
 
 ```elixir
 defmodule Examples do
@@ -124,4 +124,4 @@ defmodule Examples do
 end
 ```
 
-Directive `@typedoc` is similar to `@doc` and `@moduledoc`.
+Dyrektywa `@typedoc` działa na tej samej zasadzie co `@doc` i `@moduledoc`.
