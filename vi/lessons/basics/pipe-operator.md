@@ -53,7 +53,7 @@ true
 
 ## Best Practices
 
-If the arity of a function is more than 1, then make sure to use parenthesis. This doesn't matter much to the Elixir, but it matters to other programmers who may misinterpret your code. If we take our 2nd example, and remove the brackets from `Enum.map/2`, we are met with the following warning.
+If the arity of a function is more than 1, then make sure to use parenthesis. This doesn't matter much to the Elixir compiler, but it matters to other programmers who may misinterpret your code. If we take our 2nd example, and remove the brackets from `Enum.map/2`, we are met with the following warning.
 
 ```shell
 iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
