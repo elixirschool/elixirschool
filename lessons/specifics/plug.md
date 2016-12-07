@@ -8,6 +8,9 @@ lang: en
 
 If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra.  It provides a specification for web application components and adapters for web servers. While not part of Elixir core, Plug is an official Elixir project.
 
+We'll start by creating a minimal Plug-based web application. After that, we'll
+learn about Plug's router and how to add a Plug to an existing web application.
+
 {% include toc.html %}
 
 ## Installation
@@ -28,7 +31,7 @@ to pull in these new dependencies:
 $ mix deps.get
 ```
 
-## The specification
+## The Specification
 
 In order to begin creating Plugs, we need to know, and adhere to, the Plug spec.  Thankfully for us, there are only two functions necessary: `init/1` and `call/2`.
 
@@ -37,7 +40,7 @@ The `init/1` function is used to initialize our Plug's options, which are passed
 Here's a simple Plug that returns "Hello World!":
 
 ```elixir
-defmodule HelloWorldPlug do
+defmodule Example.HelloWorldPlug do
   import Plug.Conn
 
   def init(options), do: options
@@ -50,7 +53,101 @@ defmodule HelloWorldPlug do
 end
 ```
 
-## Creating a Plug
+Save the file to `lib/example/hello_world_plug.ex`.
+
+Since we're starting a Plug application from scratch, we need to define the application module.
+Update `lib/example.ex` to start and supervise Cowboy:
+
+```elixir
+defmodule Example do
+  use Application
+  require Logger
+
+  def start(_type, _args) do
+    children = [
+      Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
+    ]
+
+    Logger.info "Started application"
+
+    Supervisor.start_link(children, strategy: :one_for_one)
+  end
+end
+```
+
+This supervises Cowboy, and in turn, supervises our `HelloWorldPlug`.
+
+Now, the `application` portion of `mix.exs` needs two things: 1) A list of
+dependency applications (`cowboy`, `logger`, and `plug`) that need to start up,
+and 2) Configuration for our own application, which should also start up automatically.
+Let's update the `application` portion of `mix.exs` to do that:
+
+```elixir
+def application do
+  [
+    applications: [:cowboy, :logger, :plug],
+    mod: {Example, []}
+  ]
+end
+```
+
+We're ready to try out this minimalistic, plug-based web server. On the
+command line, run:
+
+```shell
+$ mix run --no-halt
+```
+
+Once everything is finished compiling, and `[info]  Started app` appears, open a web
+browser to `localhost:8080`. It should display:
+
+```
+Hello World!
+```
+
+## Plug.Router
+
+For most applications, like a web site or REST API, you'll want a router to
+route request for different paths and HTTP verbs to different handlers.
+`Plug` provides a router to do that. As we are about to see, we don't need a
+framework like Sinatra in Elixir since we get that for free with Plug.
+
+To start let's create a file at `lib/example/router.ex` and copy the following into it:
+
+```elixir
+defmodule Example.Router do
+  use Plug.Router
+
+  plug :match
+  plug :dispatch
+
+  get "/", do: send_resp(conn, 200, "Welcome")
+  match _, do: send_resp(conn, 404, "Oops!")
+end
+```
+
+This is a bare minimum Router but the code should be pretty self-explanatory.  We've included some macros through `use Plug.Router` and then set up two of the built-in Plugs: `:match` and `:dispatch`.   There are two defined routes, one for handling GET requests to the root and the second for matching all other requests so we can return a 404 message.
+
+Back in `mix.exs`, we need to tell Elixir about our router. Swap out the `Example.HelloWorldPlug` plug
+with the new router:
+
+```elixir
+def application do
+  [applications: [:cowboy, :logger, :plug],
+   mod: {Example.Router, []}]
+end
+```
+
+Start the server again, stopping the previous one if it's running
+(press `Ctrl+C` twice).
+
+Now in a web browser, go to `localhost:8080`. It should output `Welcome`. Then, go to
+`localhost:8080/waldo`, or any other path. It should output `Oops!` with a 404 response.
+
+## Adding Another Plug
+
+It is common to create Plugs to intercept all requests or a subset of requests,
+to handle common request handling logic.
 
 For this example we'll create a Plug to verify whether or not the request has some set of required parameters.  By implementing our validation in a Plug we can be assured that only valid requests will make it through to our application.  We will expect our Plug to be initialized with two options: `:paths` and `:fields`.  These will represent the paths we apply our logic to and which fields to require.
 
@@ -93,30 +190,12 @@ The second portion of our Plug is the `call/2` method.  This is where we decide 
 
 The last portion of our plug is the private function `verify_request!/2` which verifies whether the required `:fields` are all present.  In the event that some are missing, we raise `IncompleteRequestError`.
 
-## Using Plug.Router
+We've set up our Plug to verify that all requests to `/upload` include both `"content"` and `"mimetype"`.  Only then will the route code be executed.
 
-Now that we have our `VerifyRequest` plug, we can move on to our router.  As we are about to see, we don't need a framework like Sinatra in Elixir since we get that for free with Plug.
-
-To start let's create a file at `lib/plug/router.ex` and copy the following into it:
+Next, we need to tell the router about the new Plug. Edit `lib/example/router.ex` and make the following changes:
 
 ```elixir
-defmodule Example.Plug.Router do
-  use Plug.Router
-
-  plug :match
-  plug :dispatch
-
-  get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Oops!")
-end
-```
-
-This is a bare minimum Router but the code should be pretty self-explanatory.  We've included some macros through `use Plug.Router` and then set up two of the built-in Plugs: `:match` and `:dispatch`.   There are two defined routes, one for handling GET requests to the root and the second for matching all other requests so we can return a 404 message.
-
-Let's add our Plug to the router:
-
-```elixir
-defmodule Example.Plug.Router do
+defmodule Example.Router do
   use Plug.Router
 
   alias Example.Plug.VerifyRequest
@@ -124,6 +203,7 @@ defmodule Example.Plug.Router do
   plug Plug.Parsers, parsers: [:urlencoded, :multipart]
   plug VerifyRequest, fields: ["content", "mimetype"],
                       paths:  ["/upload"]
+
   plug :match
   plug :dispatch
 
@@ -133,13 +213,11 @@ defmodule Example.Plug.Router do
 end
 ```
 
-That's it!  We've set up our Plug to verify that all requests to `/upload` include both `"content"` and `"mimetype"`.  Only then will the route code be executed.
+## Making The HTTP Port Configurable
 
-For now our `/upload` endpoint isn't very useful but we've seen how to create and integrate our Plug.
-
-## Running our web app
-
-Before we can run our application we need to set up and configure our web server, which in this instance is Cowboy.  For now we'll just make the code changes necessary to run everything, and we'll dig into specifics in later lessons.
+Back when we defined the `Example` module and application, the HTTP port was
+hard-coded in the module. It's considered good practice to make the port
+configurable by putting it in a configuration file.
 
 Let's start by updating the `application` portion of `mix.exs` to tell Elixir about our application and set an application env variable.  With those changes in place our code should look something like this:
 
@@ -155,7 +233,8 @@ Our application is configured with the
 `mod: {Example, []}` line. Notice that we're
 also starting up the `cowboy` and `plug` applications.
 
-Next we need to update `lib/example.ex` to start and supervise Cowboy:
+Next we need to update `lib/example.ex` read the port configuration
+value, and pass it to Cowboy:
 
 ```elixir
 defmodule Example do
@@ -172,6 +251,9 @@ defmodule Example do
   end
 end
 ```
+
+The third argument of `Application.get_env` is the default value, for when
+the configuration directive is undefined.
 
 > (Optional) add `:cowboy_port` in `config/config.exs`
 
@@ -194,11 +276,11 @@ Testing Plugs is pretty straightforward thanks to `Plug.Test`.  It includes a nu
 See if you can follow along with the router test:
 
 ```elixir
-defmodule RouterTest do
+defmodule Example.RouterTest do
   use ExUnit.Case
   use Plug.Test
 
-  alias Example.Plug.Router
+  alias Example.Router
 
   @content "<html><body>Hi!</body></html>"
   @mimetype "text/html"
