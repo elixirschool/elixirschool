@@ -21,7 +21,7 @@ Elixir includes a number of behaviours such as GenServer, but in this lesson we'
 
 ## Defining a behaviour
 
-To better understand beahaviors let's implement one for a worker module.  These workers will be expected to implement two functions: `init/1` and `perform/2`.
+To better understand behaviours let's implement one for a worker module.  These workers will be expected to implement two functions: `init/1` and `perform/2`.
 
 In order to accomplish this, we'll use the `@callback` directive with syntax similar to `@spec`, this defines a __required__ method; for macros we can use `@macrocallback`.  Let's specify the `init/1` and `perform/2` methods for our workers:
 
