@@ -19,20 +19,22 @@
       {% for section in site.sections %}
         {% assign title = section.label[lang] %}
         {% assign current_tag = section.tag | strip %}
-        <div class="sidebar-nav-group {{section.tag}}">
-          <div class="sidebar-nav-header">
-            <i class="fa {% if current_category != current_tag %} fa-chevron-right {% else %} fa-chevron-down {% endif %}"></i>
-            <span>{{title}}</span>
+        {% assign list = site.pages | where: "category", current_tag | where: "lang", lang | sort: "order" %}
+        {% unless list == empty %}
+          <div class="sidebar-nav-group {{section.tag}}">
+            <div class="sidebar-nav-header">
+              <i class="fa {% if current_category != current_tag %} fa-chevron-right {% else %} fa-chevron-down {% endif %}"></i>
+              <span>{{title}}</span>
+            </div>
+            <div class="sidebar-nav-list" {% if current_category != current_tag %} style="display: none;" {% endif %}>
+              {% for node in list %}
+                <div class="sidebar-nav-item">
+                  {{node.order}}. <a class="sidebar-lesson {% if page.url == node.url %} active{% endif %}" href="{{node.url}}">{{node.title}}</a>
+                </div>
+              {% endfor %}
+            </div>
           </div>
-          <div class="sidebar-nav-list" {% if current_category != current_tag %} style="display: none;" {% endif %}>
-            {% assign list = site.pages | where: "category", section.tag | where: "lang", lang | sort: "order" %}
-            {% for node in list %}
-              <div class="sidebar-nav-item">
-                {{node.order}}. <a class="sidebar-lesson {% if page.url == node.url %} active{% endif %}" href="{{node.url}}">{{node.title}}</a>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
+        {% endunless %}
       {% endfor %}
     </nav>
 

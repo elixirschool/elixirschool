@@ -38,7 +38,7 @@ As we've read, the role we give our stage is important.  The GenStage specificat
 
 + `:consumer` — A sink.  A consumer requests and receives data from producers.
 
-Notice that our producers _wait_ for demand?  With GenStage our consumers send demand upstream and process the data from our producer.  This faciliates a mechanism known as back-pressure.  Back-pressure puts the onerous on the producer to not over-pressure when consumers are busy.
+Notice that our producers _wait_ for demand?  With GenStage our consumers send demand upstream and process the data from our producer.  This faciliates a mechanism known as back-pressure.  Back-pressure puts the onus on the producer to not over-pressure when consumers are busy.
 
 Now that we've covered the roles within GenStage let's start on our application.
 
@@ -60,7 +60,7 @@ Let's update our dependencies in `mix.exs` to include `gen_stage`:
 ```elixir
   defp deps do
     [
-      {:gen_stage, "~> 0.7},
+      {:gen_stage, "~> 0.7"},
     ]
   end
 ```
@@ -109,7 +109,7 @@ The `handle_demand/2` function is where the majority of our producer and must be
 
 ## Producer Consumer
 
-Now that we have have a number generating producer let's move on to our producer-consumer.  We'll want to request numbers from our producer, filter out the odd one, and respond to demand.
+Now that we have a number generating producer let's move on to our producer-consumer.  We'll want to request numbers from our producer, filter out the odd one, and respond to demand.
 
 ```shell
 $ touch lib/genstage_example/producer_consumer.ex
@@ -134,8 +134,8 @@ defmodule GenstageExample.ProducerConsumer  do
 
   def handle_events(events, _from, state) do
     numbers =
-    	events
-    	|> Enum.filter(&Integer.is_even/1)
+      events
+      |> Enum.filter(&Integer.is_even/1)
 
     {:noreply, numbers, state}
   end
@@ -144,7 +144,7 @@ end
 
 You may have noticed with our producer-consumer we've introduced a new function `handle_events/3` and option in `init/1`.  With the `subscribe_to` option we instruct GenStage to put us into communcation with a specific producer.
 
-The `handle_events/3` method is our workhorse, where we receive our incoming events, process them, and return our transformed set.  As we'll see consumers are implemented in much the same way but the important difference is what our `handle_events/2` method returns and how it's used.   When we label our process a process-consumer the second argument of our tuple, `numbers` in our case, is used to meet the demand of consumers downstream.  In consumers this value is discarded.
+The `handle_events/3` method is our workhorse, where we receive our incoming events, process them, and return our transformed set.  As we'll see consumers are implemented in much the same way but the important difference is what our `handle_events/3` method returns and how it's used.   When we label our process a process-consumer the second argument of our tuple, `numbers` in our case, is used to meet the demand of consumers downstream.  In consumers this value is discarded.
 
 ## Consumer
 

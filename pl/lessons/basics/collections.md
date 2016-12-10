@@ -30,7 +30,6 @@ iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
 
-
 ### Łączenie list
 
 Do łączenia list służy operator `++/2`:
@@ -39,6 +38,8 @@ Do łączenia list służy operator `++/2`:
 iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
+
+Na marginesie należy wspomnieć o formacie nazwy użytym powyżej (`++/2`). W Elixirze, jak i w Erlangu, na którym bazuje Elixir, każda nazwa funkcji lub operatora składa się z dwóch elementów – z nazwy, tu `++` i liczby argumentów (arności, argumentowości). Arność wraz z nazwą funkcji zapisaną z użyciem slasha jest kluczową kwestią, jeżeli chcemy mówić o kodzie Elixira (jak i Erlanga). Będziemy jeszcze o tym mówić, a na chwilę obecną ułatwi nam to zrozumienie używanej notacji.   
 
 ### Usuwanie elementów
 
@@ -84,7 +85,7 @@ _Uwaga_: znak `|` w tym przypadku oznacza operator _cons_ (od ang. _construct_) 
 
 ## Krotki
 
-Krotki są podobne do list, ale zajmują ciągły obszar pamięci.  Powoduje to, że odczyt jest bardzo szybki, lecz kodyfikacja kosztowna; zmiana wartości oznacza stworzenie nowej krotki i skopiowanie elementów starej.  Krotki definiujemy za pomocą klamer:
+Krotki są podobne do list, ale zajmują ciągły obszar pamięci.  Powoduje to, że odczyt jest bardzo szybki, lecz modyfikacja kosztowna; zmiana wartości oznacza stworzenie nowej krotki i skopiowanie elementów starej.  Krotki definiujemy za pomocą klamer:
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
@@ -132,7 +133,7 @@ iex> map["hello"]
 :world
 ```
 
-Od wersji 1.2 Elixir zmienne mogą być użyte jako klucz:
+Od wersji 1.2 Elixira zmienne mogą być użyte jako klucz:
 
 ```elixir
 iex> key = "hello"

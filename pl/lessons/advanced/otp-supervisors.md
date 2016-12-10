@@ -39,6 +39,16 @@ Do zarządzania procesami potomnymi nadzorca może wykorzystać jedną z czterec
 + `:rest_for_one` - Uruchamia ponownie uszkodzony proces i wszystkie procesy, które zostały uruchomione po nim.
 + `:simple_one_for_one` - Najlepszy przy dynamicznym tworzeniu procesów. Specyfikacja nadzorcy pozwala na zarządzanie tylko jednym procesem potomnym, ale proces ten może być uruchomiony wiele razy. Strategia ta może być stosowana, gdy chcemy dynamicznie uruchamiać i zatrzymywać proces potomny.  
 
+### Restart procesu potomnego
+
+Restart procesu potomnego można obsłużyć na kilka sposobów:
+
++ `:permanent` – proces potomny jest zawsze restartowany,
++ `:temporary` – proces potomny nigdy nie jest restartowany,
++ `:transient` – proces potomny zostanie zrestartowany, tylko jeżeli zakończył się w wyniku awarii.
+ 
+Konfiguracja ta jest opcjonalna, a wartością domyślną jest `:permanent`. 
+
 ### Zagnieżdżanie
 
 Poza procesami potomnymi możemy też tworzyć nadzorców, którzy będą zarządzać innymi nadzorcami. W ten sposób tworzymy drzewo nadzorców. Jedyna różnica polega na użyciu funkcji `supervisor/3` zamiast `worker/3`:
