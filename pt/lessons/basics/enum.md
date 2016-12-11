@@ -49,7 +49,7 @@ Há algumas opções para `chunk` porém não vamos entrar nelas, revise [`chunk
 
 ### chunk_by
 
-Se necessita agrupar uma coleção baseado em algo diferente do tamanho, podemos usar a função `chunk_by/2`. Ela recebe um enumerável e uma função, e quando o retorno desta função muda um novo grupo é iniciado e começa a criação do próximo:
+Se necessita agrupar uma coleção baseado em algo diferente do tamanho, podemos usar a função `chunk_by/2`. Ela recebe um enumerável e uma função, e quando o retorno desta função muda, um novo grupo é iniciado e começa a criação do próximo:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
