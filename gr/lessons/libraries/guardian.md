@@ -6,7 +6,6 @@ order: 1
 lang: gr
 ---
 
-[Guardian](https://github.com/ueberauth/guardian) is a widely used authentication library based on [JWT](https://jwt.io/) (Javascript Web Token).
 Η [Guardian](https://github.com/ueberauth/guardian) είναι μια ευρέως διαδεδομένη βιβλιοθήκη πιστοποίησης βασισμένη στο [JWT](https://jwt.io/) (Javascript Web Token).
 
 {% include toc.html %}
