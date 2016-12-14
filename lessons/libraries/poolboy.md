@@ -8,6 +8,8 @@ lang: en
 
 You can easily exhaust your system resources if you allow concurrent processes to run arbitrarily. Poolboy prevents having to incur the overhead by creating a pool of workers to limit the number of concurrent processes.
 
+{% include toc.html %}
+
 ## Why use Poolboy?
 
 Let's think of a specific example for a moment. You are tasked to build an application for saving user profile information to the database. If you've created a process for every user registration, you would create unbounded number of connections. At some point those connections start competing for the limited resources available in your database server. Eventually your application gets timeouts and various exceptions due to the overhead from that contention.
@@ -15,8 +17,6 @@ Let's think of a specific example for a moment. You are tasked to build an appli
 The solution to this problem is using set of workers (processes) to limit the number of connections instead of creating a process for every user registration. Then you can easily avoid running out of your system resources.
 
 That's where Poolboy comes in. It creates a pool of workers managed by a `Supervisor` without any effort on your part to do it manually. There are many libraries which use Poolboy under the covers. For example, `postgrex`'s connection pool *(which is leveraged by Ecto when using psql)* and `redis_poolex` *(Redis connection pool)* are some popular libraries which use Poolboy.
-
-{% include toc.html %}
 
 ## Installation
 
