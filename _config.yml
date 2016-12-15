@@ -29,11 +29,12 @@ description:
   tr: Elixir programlama dili dersleri
   bg: Уроци за езика за програмиране Elixir
   de: Übungen zur Programmiersprache Elixir
+  bn: এলিক্সির স্কুল
 baseurl: /
 url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'uk', 'tr', 'bg', 'de']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'uk', 'tr', 'bg', 'de', 'bn']
 rtl_languages: ['ar']
 default_lang: en
 exclude_from_localization: []
@@ -60,6 +61,7 @@ sections:
       tr: Temeller
       bg: Основи
       de: Grundlagen
+      bn: সাধারণ জ্ঞান
   - tag: advanced
     label:
       en: Advanced
@@ -82,6 +84,7 @@ sections:
       tr: Gelişmiş
       bg: За Напреднали
       de: Erweitert
+      bn: দক্ষ পর্যায়
   - tag: specifics
     label:
       en: Specifics
@@ -104,6 +107,7 @@ sections:
       tr: Spesifik
       bg: Спесифики
       de: Einzelheiten
+      bn: নিয়মাবলি
   - tag: libraries
     label:
       en: Libraries
@@ -114,7 +118,7 @@ sections:
       it: Librerie
       ko: 라이브러리
       pl: Biblioteki
-
+      bn: লাইব্রেরিস
 gems:
   - kramdown
   - jekyll-assets
@@ -168,7 +172,7 @@ toc:
   tr: İçerik
   bg: Съдържание
   de: Inhaltsverzeichnis
-
+  bn: তালিকা
 share:
   en: Share This Page
   ru: Поделиться
@@ -184,3 +188,4 @@ share:
   tr: Paylaş
   bg: Споделете тази страница
   pt: Compartilhe essa página
+  bn: পৃষ্ঠা শেয়ার করুন
