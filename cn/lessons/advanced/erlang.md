@@ -82,7 +82,7 @@ Erlang:
 'Example String'.
 ```
 
-需要特别注意的是，有些 Erlang 的库不支持 binaries，我们要把 Elixir 字符串转换成字符列表，不过还好 `to_char_list/1` 函数可以帮我们完成这个转换。
+需要特别注意的是，有些 Erlang 的库不支持 binaries，我们要把 Elixir 字符串转换成字符列表，不过还好 `to_charlist/1` 函数可以帮我们完成这个转换。
 
 ```elixir
 iex> :string.words("Hello World")
@@ -91,7 +91,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

@@ -101,7 +101,7 @@ false
 true
 ```
 
-重要なので注記しておくと、古いErlangライブラリではバイナリに対応していないものが多いため、Elixirの文字列は文字リストに変換する必要があります。ありがたいことに、これは`to_char_list/1`関数を用いて簡単に行うことができます:
+重要なので注記しておくと、古いErlangライブラリではバイナリに対応していないものが多いため、Elixirの文字列は文字リストに変換する必要があります。ありがたいことに、これは`to_charlist/1`関数を用いて簡単に行うことができます:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -110,7 +110,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 
