@@ -4,7 +4,7 @@ title: Elixir School
 lang: fr
 ---
 
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 Leçons sur le langage de programmation Elixir, inspiré de la [Scala School](http://twitter.github.io/scala_school/) de Twitter.
 

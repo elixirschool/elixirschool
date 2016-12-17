@@ -4,7 +4,7 @@ title: Elixir School
 lang: cn
 ---
 
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 Elixir 基础知识教程，受 Twitter 的 [Scala School](http://twitter.github.io/scala_school/) 启发编写。
 

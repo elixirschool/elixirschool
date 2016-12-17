@@ -4,7 +4,7 @@ title: Elixir School 한국어판
 lang: ko
 ---
 
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 프로그래밍 언어 Elixir 강의, Twitter의 [Scala School](http://twitter.github.io/scala_school/)에서 아이디어를 받아 만들었습니다.
 
