@@ -4,7 +4,7 @@ title: Elixir School
 lang: ru
 ---
 
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 Базовые знания о языке Elixir, навеяно [Scala School](http://twitter.github.io/scala_school/) от Twitter.
 
