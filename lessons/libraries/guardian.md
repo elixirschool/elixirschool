@@ -53,12 +53,6 @@ For example, if you were going to use JWT to authenticate communication on a UDP
 
 You _can_ however use a database to track JWT. If you do, you gain the ability to verify that the token is still valid - that is - it has not been revoked. Or you could use the records in the DB to force a log out of all tokens for user 5. This is made simple in Guardian by using [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb uses Guardians 'Hooks' to perform validation checks, save and delete from the DB. We'll cover that later.
 
-### Can I use someone else's token?
-
-Often folks wonder if it's appropriate to use an OAuth token from Facebook or Google as their authentication token. It is not. The behaviors of those token and their validity are defined outside your application. There's a more security focused reason, though. Anyone who obtains the token not only has access to your site, they also have access to Facebook/Google/Some Provider. 
-
-Always use your own tokens, other applications tokens are useful to identify someone and make requests against their systems.
-
 ## Setup
 
 There are many options for setting up Guardian. We'll cover them at some point but let's start with a very simple setup.
