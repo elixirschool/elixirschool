@@ -101,7 +101,7 @@ false
 true
 ```
 
-Es ist wichtig sich zu merken, dass viele ältere Erlang-Bibliotheken keine binaries unterstützen und wir somit Elixir strings in char lists umwandeln müssen. Glücklicherweise ist das mit der `to_char_list/1`-Funktion kein Problem:
+Es ist wichtig sich zu merken, dass viele ältere Erlang-Bibliotheken keine binaries unterstützen und wir somit Elixir strings in char lists umwandeln müssen. Glücklicherweise ist das mit der `to_charlist/1`-Funktion kein Problem:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -110,7 +110,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

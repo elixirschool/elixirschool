@@ -101,7 +101,7 @@ false
 true
 ```
 
-Многие старые библиотеки Erlang могут не поддерживать бинарные строки, потому нужно рассмотреть как превращать строки Elixir в строковые списки. К счастью, это легко достигается функцией `to_char_list/1`:
+Многие старые библиотеки Erlang могут не поддерживать бинарные строки, потому нужно рассмотреть как превращать строки Elixir в строковые списки. К счастью, это легко достигается функцией `to_charlist/1`:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -110,7 +110,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

@@ -101,7 +101,7 @@ false
 true
 ```
 
-한 가지 중요한 점은, 대부분의 오래된 Erlang 라이브러리는 바이너리를 지원하지 않기 때문에 Elixir 문자열을 문자 리스트로 변환해야 한다는 것입니다. 다행스럽게도 이 작업은 `to_char_list/1` 함수를 이용하여 손쉽게 할 수 있습니다.
+한 가지 중요한 점은, 대부분의 오래된 Erlang 라이브러리는 바이너리를 지원하지 않기 때문에 Elixir 문자열을 문자 리스트로 변환해야 한다는 것입니다. 다행스럽게도 이 작업은 `to_charlist/1` 함수를 이용하여 손쉽게 할 수 있습니다.
 
 ```elixir
 iex> :string.words("Hello World")
@@ -110,7 +110,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 
