@@ -175,3 +175,22 @@ with
   {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
   do: important_stuff(jwt, full_claims)
 ```
+
+
+As of Elixir 1.3, `with` statements support `else`:
+
+```elixir
+import Integer
+
+m = %{a: 1, c: 3}
+
+a = with {:ok, res} <- Map.fetch(m, :a),
+  true <- Integer.is_even(res) do
+    IO.puts "Divided by 2 it is #{div(res, 2)}"
+else 
+  :error -> IO.puts "We don't have this item in map"
+  _ -> IO.puts "It's not odd"
+end
+```
+
+It helps to handle errors by providing `case`-like pattern matching in it. The value passed is the first non-matched expression.
