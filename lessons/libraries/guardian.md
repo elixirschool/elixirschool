@@ -90,7 +90,7 @@ config :guardian, Guardian,
   serializer: MyApp.GuardianSerializer
 ```
 
-This is the minimum set of information you need to provide Guardian with to operate. You shouldn't encode your secret key directly into your top-level config. Instead, each environment should have its own key. It's common to use the Mix environment for secrets in dev and test. Staging and production, however, should use secrets generated with `mix phoenix.gen.secret`. 
+This is the minimum set of information you need to provide Guardian with to operate. You shouldn't encode your secret key directly into your top-level config. Instead, each environment should have its own key. It's common to use the Mix environment for secrets in dev and test. Staging and production, however, must use strong secrets. (e.g. generated with `mix phoenix.gen.secret`)
 
 `lib/my_app/guardian_serializer.ex`
 
@@ -190,9 +190,9 @@ defmodule MyApp.MyController do
 end
 ```
 
-By using the `Guardian.Phoenix.Controller` module, your actions will receive two additional arguments that you can pattern match on. Remember, if you didn't EnsureAuthentication you may have a nil user and claims.
+By using the `Guardian.Phoenix.Controller` module, your actions will receive two additional arguments that you can pattern match on. Remember, if you didn't use `EnsureAuthenticated` you may have a nil user and claims.
 
-The other - more flexible/verbose version - is to use Guardians plug helpers.
+The other - more flexible/verbose version - is to use plug helpers.
 
 ```elixir
 defmodule MyApp.MyController do
@@ -232,7 +232,7 @@ end
 ```
 
 When using API login, it's slightly different because there's no session and you need to provide the raw token back to the client. 
-For API login you'll likely use the Authorization header to provide the token to your application. This method is useful when you do not intend on using a session.
+For API login you'll likely use the `Authorization` header to provide the token to your application. This method is useful when you do not intend on using a session.
 
 ```elixir
 def create(conn, params) do
