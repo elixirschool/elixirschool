@@ -16,7 +16,7 @@ Let's think of a specific example for a moment. You are tasked to build an appli
 
 The solution to this problem is using set of workers (processes) to limit the number of connections instead of creating a process for every user registration. Then you can easily avoid running out of your system resources.
 
-That's where Poolboy comes in. It creates a pool of workers managed by a `Supervisor` without any effort on your part to do it manually. There are many libraries which use Poolboy under the covers. For example, `postgrex`'s connection pool *(which is leveraged by Ecto when using psql)* and `redis_poolex` *(Redis connection pool)* are some popular libraries which use Poolboy.
+That's where Poolboy comes in. It creates a pool of workers managed by a `Supervisor` without any effort on your part to do it manually. There are many libraries which use Poolboy under the covers. For example, `postgrex`'s connection pool *(which is leveraged by Ecto when using PostgreSQL)* and `redis_poolex` *(Redis connection pool)* are some popular libraries which use Poolboy.
 
 ## Installation
 
