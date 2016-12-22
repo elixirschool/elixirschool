@@ -218,7 +218,7 @@ $ mix run --no-halt
 
 We did it!  As we expected our application only omits even numbers and it does so _quickly_.
 
-At this point we have a working pipeline.  There is a producer emitting numbers, a producer-consumber discarding odd numbers, and a consumer displaying all of this and continuing the flow.
+At this point we have a working pipeline.  There is a producer emitting numbers, a producer-consumer discarding odd numbers, and a consumer displaying all of this and continuing the flow.
 
 ## Multiple Producers or Consumers
 
