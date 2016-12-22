@@ -49,11 +49,11 @@ end
 
 We need to know a little bit about the various configuration options in order to start using Poolboy.
 
-* `name:` the pool name. Scope can be `:local`, `:global`, or `:via`.
-* `worker_module:` the module that represents the worker.
-* `size:` maximum pool size.
-* `max_overflow:` maximum number of workers created if pool is empty. (optional)
-* `strategy:` `:lifo` or `:fifo`, determines whether checked in workers should be placed first or last in the line of available workers. Default is `:lifo`. (optional)
+* `:name` - the pool name. Scope can be `:local`, `:global`, or `:via`.
+* `:worker_module` - the module that represents the worker.
+* `:size` - maximum pool size.
+* `:max_overflow` - maximum number of workers created if pool is empty. (optional)
+* `:strategy` - `:lifo` or `:fifo`, determines whether checked in workers should be placed first or last in the line of available workers. Default is `:lifo`. (optional)
 
 ## Configuring Poolboy
 
