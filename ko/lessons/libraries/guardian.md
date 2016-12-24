@@ -47,7 +47,7 @@ JWT 토큰은 애플리케이션의 인증이 필요한 모든 부분에 사용�
 
 ### 데이터베이스를 사용해야 하나요
 
-데이터베이스를 통해 JWT를 추적할 필요가 없습니다. 발급 및 만료 시간 타임스탬프만으로 억세스 제어를 할 수 있습니다. 종종 사용자 자원을 조회에 데이터베이스를 사용하게 되지만 JWT 자체에서는 필요하지 않습니다.
+데이터베이스를 통해 JWT를 추적할 필요가 없습니다. 발급 및 만료 시간 타임스탬프만으로 액세스 제어를 할 수 있습니다. 종종 사용자 자원을 조회에 데이터베이스를 사용하게 되지만 JWT 자체에서는 필요하지 않습니다.
 
 예를 들어, JWT를 사용하여 UDP 소켓에서 통신을 인증하려는 경우 데이터베이스를 사용하지 않을 가능성이 높습니다. 토큰을 발행할 때 토큰에 필요한 모든 정보를 직접 인코딩하세요. 올바르게 서명했는지 확인했다면 그걸로 됩니다.
 
@@ -146,7 +146,7 @@ pipeline :maybe_browser_auth do
   plug Guardian.Plug.LoadResource
 end
 
-pipeline :ensure_authed_acces do
+pipeline :ensure_authed_access do
   plug Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler}
 end
 ```
@@ -196,7 +196,7 @@ defmodule MyApp.MyController do
 end
 ```
 
-`Guardian.Phoenix.Controller` 모듈을 사용하려면, 패턴매칭에 사용할 액션에 인자를 두개 추가할 필요가 있습니다. EnsureAuthentication을 하지 않으면 nil 유저나 클래임을 받을 수 있다는 걸 기억하세요.
+`Guardian.Phoenix.Controller` 모듈을 사용하려면, 패턴매칭에 사용할 액션에 인자를 두개 추가할 필요가 있습니다. EnsureAuthentication을 하지 않으면 nil 유저나 클레임을 받을 수 있다는 걸 기억하세요.
 
 더 유연하고 장황한 다른 방법은 Guardian의 plug 핼퍼를 사용하는 것입니다.
 
