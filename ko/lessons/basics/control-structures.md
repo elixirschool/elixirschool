@@ -174,3 +174,23 @@ with
   {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
   do: important_stuff(jwt, full_claims)
 ```
+
+
+Elixir 1.3부터 `with`구문에서 `else`를 사용할 수 있습니다.
+
+```elixir
+import Integer
+
+m = %{a: 1, c: 3}
+
+a = with {:ok, res} <- Map.fetch(m, :a),
+  true <- Integer.is_even(res) do
+    IO.puts "Divided by 2 it is #{div(res, 2)}"
+else
+  :error -> IO.puts "We don't have this item in map"
+  _ -> IO.puts "It's not odd"
+end
+```
+
+이는 오류 처리할 때 `case`같은 패턴매칭을 사용할 수 있도록 도와줍니다. 넘겨지는
+값는 첫 번째 매치하지 않은 표현식입니다.
