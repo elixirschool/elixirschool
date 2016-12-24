@@ -174,3 +174,21 @@ with
   {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
   do: important_stuff(jwt, full_claims)
 ```
+
+Elixir od wersji 1.3 pozwala też na użycie `else` w wyrażeniu `with`:
+
+```elixir
+import Integer
+
+m = %{a: 1, c: 3}
+
+a = with {:ok, res} <- Map.fetch(m, :a),
+  true <- Integer.is_even(res) do
+    IO.puts "Divided by 2 it is #{div(res, 2)}"
+else 
+  :error -> IO.puts "We don't have this item in map"
+  _ -> IO.puts "It's not odd"
+end
+```
+
+Pozwala to na łatwiejszą obsługę błędów, która jest podobna do wyrażenia `case`. Przekazywana wartość to pierwsze niedopasowane wyrażenie.
