@@ -115,7 +115,14 @@ iex > :debugger.start()
 {:ok, #PID<0.307.0>}
 ```
 
-The `:debugger` is Erlang module that give us access to debugger. Next step is to attach our module to debugger:
+The `:debugger` is Erlang module that give us access to debugger. We could use function `start/1` to configure debugger:
+ 
++ If an argument is path to file, string, then configuration will be read from that file. 
++ If an argument is `:local` or `:global` then debugger will:
+    + `:global` – debugger will interprets code on all known nodes. This is default value.
+    + `:local` – debugger will interprets code only on current node
+
+Next step is to attach our module to debugger:
 
 ```elixir
 iex > :int.ni(Example)
@@ -180,5 +187,4 @@ The same operations are available from debugger window. In top menu __Break__ we
 + Conditional breakpoint – like line breakpoint but debugger suspend only when specified condition is reached; we use `:int.get_binding/2`,
 + Function breakpoint – debugger suspend on first line of function; we use `:int.break_in/3`.
 
-Line breakpoints and function breakpoint don't need extra work if we would like to set them up. We just put module name and line or module name, function name and arity and we are ready. However conditional breakpoint  
-
+That's all! Happy debugging!
