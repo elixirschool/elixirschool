@@ -81,3 +81,104 @@ done (passed successfully)
 ```
 
 Using specifications with tools to static code analysis helps us to make code that is self tested and contains less bugs.  
+
+## Debugging
+
+Sometimes static analysis of code is not enough. We need to know what is a real flow of code, because we would like find bugs. Simplest way is to put in code `IO.puts` to track values and code flow, but this technique is pretty primitive and limited. In Elixir we have could use erlang debugger to debug code. 
+
+Let’s look at a basic module:
+
+```elixir
+defmodule Example do
+
+  def cpu_burns(a, b, c) do
+    x = a * 2
+    y = b * 3
+    z = c * 5
+    
+    x + y + z
+  end
+
+end
+```
+
+Then run `iex`:
+ 
+```bash
+$ iex -S mix
+```
+
+And run debugger:
+
+```elixir
+iex > :debugger.start()
+{:ok, #PID<0.307.0>}
+```
+
+The `:debugger` is Erlang module that give us access to debugger. Next step is to attach our module to debugger:
+
+```elixir
+iex > :int.ni(Example)
+{:module, Example}
+```
+
+The `:int` is an interpreter that gives us possibility to create breakpoint and stepwise execution of code. 
+
+When you start debugger you will see new window like this:
+
+![Debugger Screenshot 1]({{ site.url }}/assets/debugger_1.png)
+
+After attaching our module to debugger it is available in menu on left side:
+
+![Debugger Screenshot 2]({{ site.url }}/assets/debugger_2.png)
+
+### Creating breakpoints
+
+We have two ways to create breakpoint, place where debugger will suspend code execution
+
++ we could call `:int.break/2`,
++ we could use debugger window.
+
+Let's try to create breakpoint from iex:
+
+```elixir
+iex > :int.break(Example, 8)
+:ok
+```
+
+We set breakpoint in line 8 of module `Example` (it is `x + y + z` line). And now when we call our function:
+ 
+```elixir
+iex > Example.cpu_burns(1, 1, 1)
+```
+
+The iex suspends and no result appeared, but in debugger window we see:
+
+![Debugger Screenshot 3]({{ site.url }}/assets/debugger_3.png)
+
+In addition the window with source code of our module appeared:
+
+![Debugger Screenshot 4]({{ site.url }}/assets/debugger_4.png)
+
+In this window we could find current value of variables, go forward to next line or evaluate expressions. When we would like to disable breakpoint we could write:
+
+```elixir
+iex > :int.disable_break(Example, 8)
+:ok
+```
+
+To enable breakpoint we call `:int.enable_break/2` or when we would like to remove breakpoint:
+
+```elixir
+iex > :int.delete_break(Example, 8)
+:ok
+```
+
+The same operations are available from debugger window. In top menu __Break__ we should select __Line Break__ and setup breakpoint. If we select line that not contains code then breakpoint will be ignored, but it appear in debugger window. There are three types of breakpoints:
+
++ Line breakpoint – debugger suspend execution when we reach line; we set it up by `:int.break/2`,
++ Conditional breakpoint – like line breakpoint but debugger suspend only when specified condition is reached; we use `:int.get_binding/2`,
++ Function breakpoint – debugger suspend on first line of function; we use `:int.break_in/3`.
+
+Line breakpoints and function breakpoint don't need extra work if we would like to set them up. We just put module name and line or module name, function name and arity and we are ready. However conditional breakpoint  
+
