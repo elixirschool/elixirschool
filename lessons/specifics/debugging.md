@@ -22,7 +22,7 @@ Let's add Dialixyr to our project. The simples way is to add dependency to `mix.
  
 ```elixir
 defp deps do
-  [{:dialyxir, "~> 0.3.5", only: [:dev]}]
+  [{:dialyxir, "~> 0.4", only: [:dev]}]
 end
 ```
 
