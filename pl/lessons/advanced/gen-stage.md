@@ -220,11 +220,11 @@ Udało się! Nasza aplikacja, zgodnie z oczekiwaniami, wyświetla liczby parzyst
 
 Mamy zatem działający  potok. Jest w nim producent emitujący liczby, producent-konsument odrzucający liczby nieparzyste oraz konsument, który wyświetla je wyświetla.
 
-## Multiple Producers or Consumers
+## Wielu producentów i konsumentów
 
-We mentioned in the introduction that it was possible to have more than one producer or consumer. Let's take a look at just that.
+Jak wspomnieliśmy na wstępie, możliwe jest stworzenie wielu producentów i konsumentów. Przyjrzyjmy się temu.
 
-If we examine the `IO.inspect/1` output from our example we see that every event is handled by a single PID. Let's make some adjustments for multiple workers by modifying `lib/genstage_example.ex`:
+Wykorzystując `IO.inspect/1` w naszym przykładzie możemy stwierdzić, że zdarzenia są obsługiwane przez jeden PID. Zmieńmy `lib/genstage_example.ex` tak, by utworzyć wiele procesów do obsługi:
 
 ```elixir
 children = [
@@ -235,7 +235,7 @@ children = [
 ]
 ```
 
-Now that we've configured two consumers, let's see what we get if we run our application now:
+W naszej konfiguracji mamy teraz dwóch konsumentów. Gdy uruchomimy aplikację, to zobaczymy:
 
 ```shell
 $ mix run --no-halt
@@ -250,16 +250,16 @@ $ mix run --no-halt
 {#PID<0.120.0>, 86482, :state_doesnt_matter}
 ```
 
-As you can see we now have multiple PIDs, simply by adding a line of code and giving our consumers IDs.
+Jak widać mamy dwa PIDy, a dodaliśmy raptem jedną linię i nadaliśmy naszym konsumentom identyfikatory.
 
-## Use Cases
+## Przypadki użycia
 
-Now that we've covered GenStage and built our first example application, what are some of the _real_ use cases for GenStage?
+Stworzyliśmy naszą pierwszą, prostą, aplikację GenStage, ale jakie rzeczywiste zastosowania ma to rozwiązanie? 
 
-+ Data Transformation Pipeline — Producers don't have to be simple number generators. We could produce events from a database or even another source like Apache's Kafka.  With a combination of producer-consumers and consumers, we could process, sort, catalog, and store metrics as they become available.
++ Potoki transformacji danych — producenci nie są tu prostymi generatorami liczb. Możemy generować dane wykorzystując, bazy danych albo rozwiązania w rodzaju Apache Kafka. Łącząc wielu producentów-konsumentów i konsumentów możemy przetwarzać, sortować, katalogować różne dane.
 
-+ Work Queue — Since events can be anything, we could produce works of unit to be completed by a series of consumers.
++ Kolejki — zdarzenia mogą być różnorodne, a naszym zadaniem jest ich obsługa za pomocą serii konsumentów.
 
-+ Event Processing — Similar to a data pipeline, we could recieve, process, sort, and take action on events emitted in real time from our sources.
++ Obsługa zdarzeń — zbliżona do obsługi danych, lecz tym razem przetwarzamy, sortujemy i obsługujemy zdarzenia generowane w czasie rzeczywistym. 
 
-These are just a _few_ of the possibilities for GenStage.
+A to tylko __kilka__ z wielu zastosowań GenStage.
