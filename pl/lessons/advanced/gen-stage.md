@@ -144,17 +144,17 @@ end
 
 Jak łatwo zauważyć w funkcji `init/1` dodaliśmy nową opcję oraz zdefiniowaliśmy funkcję `handle_events/3`.  Za pomocą opcji `subscribe_to` instruujemy GenStage, że chcemy komunikować się z określonym producentem.
 
-Funkcja `handle_events/3` to nasz koń roboczy. Obsługujemy tutaj przychodzące odpowiedzi, transformując zbiór danych. Jak widać konsumenci są implementowani w podobny sposób, ale ważną różnicą jest to co zwraca funkcja `handle_events/3` i to jak jest używana. Jeżeli oznaczymy nasz proces jako producenta-konsumenta, drugi argument w krotce, tu `numbers`, zostanie wykorzystany do odpowiadania na żądania. W przypadku konsumentów będzie on zignorowany.
+Funkcja `handle_events/3` to nasz koń roboczy. Obsługujemy tutaj przychodzące odpowiedzi, transformując zbiór danych. Jak widać, konsumenci są implementowani w podobny sposób, ale ważną różnicą jest to, co zwraca funkcja `handle_events/3` i to, jak jest używana. Jeżeli oznaczymy nasz proces jako producenta-konsumenta, drugi argument w krotce, tu `numbers`, zostanie wykorzystany do odpowiadania na żądania. W przypadku konsumentów będzie on zignorowany.
 
-## Consumer
+## Konsument
 
-Last but not least we have our consumer.  Let's get started:
+W końcu konsument:
 
 ```shell
 $ touch lib/genstage_example/consumer.ex
 ```
 
-Since consumers and producer-consumers are so similar our code won't look much different:
+Jako że producent-konsument i konsument są bardzo podobne, to kod nie będzie się różnił w znaczący sposób:
 
 ```elixir
 defmodule GenstageExample.Consumer do
@@ -180,7 +180,7 @@ defmodule GenstageExample.Consumer do
 end
 ```
 
-As we covered in the previous section, our consumer does not emit events, so the second value in our tuple will be discarded.
+Jak wspomniano w poprzednim punkcie, nasz konsument nie emituje zdarzeń, więc drugi element w krotce zostanie zignorowany.
 
 ## Putting It All Together
 
