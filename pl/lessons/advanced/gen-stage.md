@@ -73,16 +73,16 @@ $ mix do deps.get, compile
 
 I już jesteśmy gotowi by stworzyć naszego producenta!
 
-## Producer
+## Producent
 
-The first step of our GenStage application is creating our producer.  As we discussed before, we want to create a producer that emits a constant stream of numbers.  Let's create our producer file:
+Pierwszym krokiem w naszej aplikacji jest stworzenie producenta. Tak jak wcześniej zaplanowaliśmy, chcemy stworzyć producenta, który będzie emitował stały strumień liczb. Stworzymy zatem plik modułu: 
 
 ```shell
 $ mkdir lib/genstage_example
 $ touch lib/genstage_example/producer.ex
 ```
 
-Now we can add the code:
+I dodajmy kod:
 
 ```elixir
 defmodule GenstageExample.Producer do
@@ -103,9 +103,9 @@ defmodule GenstageExample.Producer do
 end
 ```
 
-The two most important parts to take note of here are `init/1` and `handle_demand/2`.  In `init/1` we set the initial state as we've done in our GenServers, but more importantly we label ourselves as a producer.  The response from our `init/1` function is what GenStage relies upon to classify our process.
+Dwa najważniejsze elementy, na które trzeba zwrócić uwagę to `init/1` i `handle_demand/2`. W funkcji `init/1` ustawiamy stan początkowy, ale co ważniejsze określamy moduł jako producenta. Odpowiedź z `init/1` pozwala GenStage na klasyfikację procesu.
 
-The `handle_demand/2` function is where the majority of our producer and must be implemented by all GenStage producers.  Here we return the set of numbers demanded by our consumers and increment our counter.  The demand from consumers, `demand` in our code above, is represented as an integer corresponding to the number of events they can handle; it defaults to 1000.
+W funkcji `handle_demand/2` jest centrum logiki producenta i musi być zaimplementowana we wszystkich producentach GenStage. To tutaj zwracamy zbiór numerów żądanych przez konsumentów i zwiększamy licznik. Żądanie ze strony konsumentów, parametr `demand`, odpowiada liczbie całkowitej określającej maksymalną ilość zdarzeń, której mogą oni podołać. Domyślnie jest to 1000. 
 
 ## Producer Consumer
 
