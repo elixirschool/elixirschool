@@ -182,11 +182,11 @@ end
 
 Jak wspomniano w poprzednim punkcie, nasz konsument nie emituje zdarzeń, więc drugi element w krotce zostanie zignorowany.
 
-## Putting It All Together
+## Wszystko razem
 
-Now that we have our producer, producer-consumer, and consumer built, we're ready to wire everything together.
+Mamy już producenta, producenta-konsumenta i konsumenta, a zatem najwyższy czas by zebrać wszystkie te elementy do kupy.
 
-Let's start by opening `lib/genstage_example.ex` and adding our new processes to the supervisor tree:
+Najpierw w `lib/genstage_example.ex` dodajmy nasz proces do drzewa nadzorców:
 
 ```elixir
 def start(_type, _args) do
@@ -203,7 +203,7 @@ def start(_type, _args) do
 end
 ```
 
-If things are all correct, we can run our project and we should see everything working:
+Jeżeli wszystko prawidłowo zaimplementowaliśmy, to po uruchomieniu naszego projektu powinniśmy zobaczyć:
 
 ```shell
 $ mix run --no-halt
@@ -216,9 +216,9 @@ $ mix run --no-halt
 {#PID<0.109.0>, 229066, :state_doesnt_matter}
 ```
 
-We did it!  As we expected our application only omits even numbers and it does so _quickly_.
+Udało się! Nasza aplikacja, zgodnie z oczekiwaniami, wyświetla liczby parzyste i robi to bardzo sprawnie.
 
-At this point we have a working pipeline.  There is a producer emitting numbers, a producer-consumer discarding odd numbers, and a consumer displaying all of this and continuing the flow.
+Mamy zatem działający  potok. Jest w nim producent emitujący liczby, producent-konsument odrzucający liczby nieparzyste oraz konsument, który wyświetla je wyświetla.
 
 ## Multiple Producers or Consumers
 
