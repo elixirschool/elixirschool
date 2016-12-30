@@ -38,7 +38,7 @@ As we've read, the role we give our stage is important.  The GenStage specificat
 
 + `:consumer` — A sink.  A consumer requests and receives data from producers.
 
-Notice that our producers __wait__ for demand?  With GenStage our consumers send demand upstream and process the data from our producer.  This faciliates a mechanism known as back-pressure.  Back-pressure puts the onus on the producer to not over-pressure when consumers are busy.
+Notice that our producers __wait__ for demand?  With GenStage our consumers send demand upstream and process the data from our producer.  This facilitates a mechanism known as back-pressure.  Back-pressure puts the onus on the producer to not over-pressure when consumers are busy.
 
 Now that we've covered the roles within GenStage let's start on our application.
 
