@@ -34,7 +34,7 @@ Jak już wiemy role, które przypisujemy do poszczególnych etapów, są bardzo 
 
 + `:producer` — źródło. Producent oczekuje na zapotrzebowanie zgłoszone przez konsumentów i odpowiada żądanym zasobem.
 
-+ `:producer_consumer` — źródło jak i cel. Producent-konsument potrafi odpowiadać na żądania innych konsumentów jak i samemu wysyłać je do innych producentów.
++ `:producer_consumer` — źródło, jak i cel. Producent-konsument potrafi odpowiadać na żądania innych konsumentów, jak i samemu wysyłać je do innych producentów.
 
 + `:consumer` — cel. Wysyła żądania do producentów oraz przetwarza otrzymane dane.
 
@@ -65,7 +65,7 @@ Następnie zmieńmy `mix.exs` dodając zależność do `gen_stage`:
   end
 ```
 
-Musimy pobrać i skompilować zależności zanim przejdziemy dalej: 
+Zanim przejdziemy dalej musimy pobrać i skompilować zależności: 
 
 ```shell
 $ mix do deps.get, compile
@@ -184,7 +184,7 @@ Jak wspomniano w poprzednim punkcie, nasz konsument nie emituje zdarzeń, więc 
 
 ## Wszystko razem
 
-Mamy już producenta, producenta-konsumenta i konsumenta, a zatem najwyższy czas by zebrać wszystkie te elementy do kupy.
+Mamy już producenta, producenta-konsumenta i konsumenta, a zatem najwyższy czas, by zebrać wszystkie te elementy do kupy.
 
 Najpierw w `lib/genstage_example.ex` dodajmy nasz proces do drzewa nadzorców:
 
@@ -218,7 +218,7 @@ $ mix run --no-halt
 
 Udało się! Nasza aplikacja, zgodnie z oczekiwaniami, wyświetla liczby parzyste i robi to bardzo sprawnie.
 
-Mamy zatem działający  potok. Jest w nim producent emitujący liczby, producent-konsument odrzucający liczby nieparzyste oraz konsument, który wyświetla je wyświetla.
+Mamy zatem działający  potok. Jest w nim producent emitujący liczby, producent-konsument odrzucający liczby nieparzyste oraz konsument, który je wyświetla.
 
 ## Wielu producentów i konsumentów
 
@@ -256,7 +256,7 @@ Jak widać mamy dwa PIDy, a dodaliśmy raptem jedną linię i nadaliśmy naszym 
 
 Stworzyliśmy naszą pierwszą, prostą, aplikację GenStage, ale jakie rzeczywiste zastosowania ma to rozwiązanie? 
 
-+ Potoki transformacji danych — producenci nie są tu prostymi generatorami liczb. Możemy generować dane wykorzystując, bazy danych albo rozwiązania w rodzaju Apache Kafka. Łącząc wielu producentów-konsumentów i konsumentów możemy przetwarzać, sortować, katalogować różne dane.
++ Potoki transformacji danych — producenci nie są tu prostymi generatorami liczb. Możemy generować dane, wykorzystując bazy danych albo rozwiązania w rodzaju Apache Kafka. Łącząc wielu producentów-konsumentów i konsumentów możemy przetwarzać, sortować, katalogować różne dane.
 
 + Kolejki — zdarzenia mogą być różnorodne, a naszym zadaniem jest ich obsługa za pomocą serii konsumentów.
 
