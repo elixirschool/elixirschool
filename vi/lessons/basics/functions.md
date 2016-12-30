@@ -1,30 +1,30 @@
 ---
 layout: page
-title: Functions
+title: Hàm
 category: basics
 order: 6
-lang: en
+lang: vi
 ---
 
-In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
+Trong Elixir và nhiều ngôn ngữ lập trình hàm, hàm là "first class citizen". Chúng ta sẽ học về các kiểu hàm trong Elixir, chúng khác nhau như thế nào, và dùng chúng ra sao.
 
 {% include toc.html %}
 
-## Anonymous Functions
+## Hàm nặc danh (Anonymous function)
 
-Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, these are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
+Cái tên nói lên tất cả, hàm nặc danh là một hàm không có tên. Như chúng ta đã thấy ở bài `Enum`, chúng thường xuyên được truyền vào các hàm khác. Để định nghĩa một hàm nặc danh trong Elixir chúng ta dùng từ khóa `fn` và `end`, với bất kì tham số nào và nội dung hàm được viết sau `->`.
 
-Let's look at a basic example:
+Ta xem thử một ví dụ cơ bản:
 
-```elixirre
+```elixir
 iex> sum = fn (a, b) -> a + b end
 iex> sum.(2, 3)
 5
 ```
 
-### The & Shorthand
+### Cách viết tắt dùng &
 
-Using anonymous functions is such a common practice in Elixir there is shorthand for doing so:
+Hàm nặc danh được sử dụng thường xuyên đến nỗi Elixir có hẳn cách viết tắt cho nó:
 
 ```elixir
 iex> sum = &(&1 + &2)
@@ -32,54 +32,54 @@ iex> sum.(2, 3)
 5
 ```
 
-As you probably already guessed, in the shorthand version our parameters are available to us as `&1`, `&2`, `&3`, and so on.
+Chắc bạn cũng đoán được, trong cách viết tắt ta có thể gọi các tham số bằng cách dùng `&1`, `&2`, `&3`, vv.
 
 ## Pattern Matching
 
-Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
+Pattern matching không chỉ giới hạn cho biến trong Elixir, nó còn có thể dùng cho hàm như ví dụ trong phần này.
 
-Elixir uses pattern matching to identify the first set of parameters which match and invokes the corresponding body:
+Elixir dùng pattern matching để xác định tập tham số trùng hợp đầu tiên và gọi nội dung hàm tương ứng:
 
 ```elixir
 iex> handle_result = fn
-...>   {:ok, result} -> IO.puts "Handling result..."
-...>   {:error} -> IO.puts "An error has occurred!"
+...>   {:ok, result} -> IO.puts "Đang xử lý lỗi..."
+...>   {:error} -> IO.puts "Lỗi đã xảy ra!"
 ...> end
 
 iex> some_result = 1
 iex> handle_result.({:ok, some_result})
-Handling result...
+"Đang xử lý lỗi..."
 
 iex> handle_result.({:error})
-An error has occurred!
+"Lỗi đã xảy ra!"
 ```
 
-## Named Functions
+# Hàm được đặt tên (Named function)
 
-We can define functions with names so we can easily refer to them later.  Named functions are defined within a module using the `def` keyword .  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
+Chúng ta có thể định nghĩa hàm với tên mà ta có thể gọi chúng sau, những hàm được đặt tên này được định nghĩa với từ khóa `def` trong module. Chúng ta sẽ học về Modules trong bài tiếp theo, ở đây ta chỉ tập trung vào hàm được đặt tên.
 
-Functions defined within a module are available to other modules for use.  This is a particularly useful building block in Elixir:
+Hàm được định nghĩa trong một module có thể được dùng cho các module khác, đây là một phần cơ bản và được dùng rất nhiều trong Elixir.
 
 ```elixir
 defmodule Greeter do
   def hello(name) do
-    "Hello, " <> name
+    "Chào " <> name
   end
 end
 
-iex> Greeter.hello("Sean")
-"Hello, Sean"
+iex> Greeter.hello("Minh")
+"Chào Minh"
 ```
 
-If our function body only spans one line, we can shorten it further with `do:`:
+Nếu hàm chỉ có một dòng, ta có thể viết ngắn bằng cách dùng `do:`:
 
 ```elixir
 defmodule Greeter do
-  def hello(name), do: "Hello, " <> name
+  def hello(name), do: "Chào " <> name
 end
 ```
 
-Armed with our knowledge of pattern matching, let's explore recursion using named functions:
+Với những kiến thức về pattern matching đã biết, chúng ta hãy khám phá cách viết đệ quy dùng hàm được đặt tên:
 
 ```elixir
 defmodule Length do
@@ -93,9 +93,9 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### Function Naming and Arity
+### Việc đặt tên hàm và Arity
 
-We mentioned earlier that functions are named by the combination of given name and arity (number of arguments). This means you can do things like this:
+Chúng ta đã đề cập trước đó là hàm có thể được đặt tên bằng cách kết hợp tên của nó và arity (số lượng tham số). Điều đó có nghĩa bạn có thể làm như sau:
 
 ```elixir
 defmodule Greeter2 do
@@ -113,20 +113,20 @@ iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
 
-We've listed the function names in comments above. The first implementation takes no arguments, so it is known as `hello/0`; the second takes one argument so it is known as `hello/1`, and so on. Unlike function overloads in some other languages, these are thought of as _different_ functions from each other. (Pattern matching, described just a moment ago, applies only when multiple definitions are provided for function definitions with the _same_ number of arguments.)
+Chúng ta đã liệt kê tên của các hàm trong phần comment ở trên. Hàm đầu tiên không nhận tham số, nên nó được xem là `hello/0`, hàm thứ hai nhận một tham số nên nó là `hello/1`, vv. Không giống như việc overload hàm trong các ngôn ngữ khác, nó được xem là những hàm _khác nhau_. (Pattern matching, đã được đề cập ở bài trước, chỉ áp dụng khi các định nghĩa hàm có cùng tên lẫn số lượng tham số)
 
-### Private Functions
+### Hàm Private (Private function)
 
-When we don't want other modules accessing a specific function we can make the function private.  Private functions can only be called from within their own Module.  We define them in Elixir with `defp`:
+Khi chúng ta không muốn những module khác truy cập vào một hàm chúng ta dùng hàm private, và nó chỉ có thể được gọi nội trong module đó. Ta có thể định nghĩa chúng trong Elixir với `defp`:
 
 ```elixir
 defmodule Greeter do
   def hello(name), do: phrase <> name
-  defp phrase, do: "Hello, "
+  defp phrase, do: "Chào "
 end
 
-iex> Greeter.hello("Sean")
-"Hello, Sean"
+iex> Greeter.hello("Minh")
+"Chào Minh"
 
 iex> Greeter.phrase
 ** (UndefinedFunctionError) undefined function: Greeter.phrase/0
@@ -135,9 +135,9 @@ iex> Greeter.phrase
 
 ### Guards
 
-We briefly covered guards in the [Control Structures](../control-structures) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
+Ta đã xem sơ qua guards trong bài [Cấu trúc điều khiển](../control-structures), giờ ta sẽ xem cách chúng ta áp dụng chúng cho hàm được đặt tên.  Một khi Elixir so trùng được một hàm các guard sẽ được kiểm tra.
 
-In the following example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
+Trong ví dụ tiếp theo ta có hai function với signature giống nhau, ta phải dựa vào guard để xác định cái nào sẽ được dùng dựa vào kiểu của tham số:
 
 ```elixir
 defmodule Greeter do
@@ -151,63 +151,63 @@ defmodule Greeter do
     phrase <> name
   end
 
-  defp phrase, do: "Hello, "
+  defp phrase, do: "Chào "
 end
 
-iex> Greeter.hello ["Sean", "Steve"]
-"Hello, Sean, Steve"
+iex> Greeter.hello ["Minh", "Phú"]
+"Chào Minh, Phú"
 ```
 
-### Default Arguments
+### Tham số mặc định
 
-If we want a default value for an argument we use the `argument \\ value` syntax:
+Nếu chúng ta muốn có một giá trị mặc định cho tham số ta dùng cú pháp `tham số \\ giá trị`:
 
 ```elixir
 defmodule Greeter do
-  def hello(name, country \\ "en") do
+  def hello(name, country \\ "vn") do
     phrase(country) <> name
   end
 
+  defp phrase("vn"), do: "Chào, "
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
 end
 
-iex> Greeter.hello("Sean", "en")
-"Hello, Sean"
+iex> Greeter.hello("Minh", "en")
+"Hello, Minh"
 
 iex> Greeter.hello("Sean")
-"Hello, Sean"
+"Chào Minh"
 
-iex> Greeter.hello("Sean", "es")
-"Hola, Sean"
+iex> Greeter.hello("Sean", "vn")
+"Chào Minh"
 ```
 
-When we combine our guard example with default arguments, we run into an issue.  Let's see what that might look like:
+Khi chúng ta kết hợp ví dụ guard với tham số mặc định, ta sẽ gặp phải một vấn đề. Ta xem thử nó thế nào:
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en") when is_list(names) do
+  def hello(names, country \\ "vn") when is_list(names) do
     names
     |> Enum.join(", ")
     |> hello(country)
   end
 
-  def hello(name, country \\ "en") when is_binary(name) do
+  def hello(name, country \\ "vn") when is_binary(name) do
     phrase(country) <> name
   end
 
+  defp phrase("vn"), do: "Chào "
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
 end
 
 ** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
 ```
 
-Elixir doesn't like default arguments in multiple matching functions, it can be  confusing.  To handle this we add a function head with our default arguments:
+Elixir không xử lý được trong trường hợp có nhiều hàm trùng khớp với tham số mặc định. Để xử lý điều này ta thêm một hàm trước tham số mặc định:
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en")
+  def hello(names, country \\ "vn")
   def hello(names, country) when is_list(names) do
     names
     |> Enum.join(", ")
@@ -218,13 +218,13 @@ defmodule Greeter do
     phrase(country) <> name
   end
 
+  defp phrase("es"), do: "Chào "
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
 end
 
-iex> Greeter.hello ["Sean", "Steve"]
-"Hello, Sean, Steve"
+iex> Greeter.hello ["Minh", "Phú"]
+"Chào Minh, Phú"
 
-iex> Greeter.hello ["Sean", "Steve"], "es"
-"Hola, Sean, Steve"
+iex> Greeter.hello ["Sean", "Steve"], "en"
+"Hello, Sean, Steve"
 ```
