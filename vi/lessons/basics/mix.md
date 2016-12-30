@@ -31,7 +31,7 @@ Từ output chúng ta có thể thấy mix đã tạo ra thư mục mới và r�
 * creating test/test_helper.exs
 * creating test/example_test.exs
 ```
-Trong bài này chúng ta tập trung vào file `mix.exs`. Ở đây chúng ta có thể  chương trình của chúng ta, các phụ thuộc, biến môi trường, version. Mở file đó ra bằng editor yêu thích của bạn, bạn sẽ thấy như dưới đây:
+Trong bài này chúng ta tập trung vào file `mix.exs`. Ở đây chúng ta có thể thay đổi cấu hình của chương trình của chúng ta, các phụ thuộc, biến môi trường, version. Mở file đó ra bằng editor yêu thích của bạn, bạn sẽ thấy như dưới đây:
 
 ```elixir
 defmodule Example.Mixfile do
