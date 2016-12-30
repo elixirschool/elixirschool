@@ -107,15 +107,15 @@ Dwa najważniejsze elementy, na które trzeba zwrócić uwagę to `init/1` i `ha
 
 W funkcji `handle_demand/2` jest centrum logiki producenta i musi być zaimplementowana we wszystkich producentach GenStage. To tutaj zwracamy zbiór numerów żądanych przez konsumentów i zwiększamy licznik. Żądanie ze strony konsumentów, parametr `demand`, odpowiada liczbie całkowitej określającej maksymalną ilość zdarzeń, której mogą oni podołać. Domyślnie jest to 1000. 
 
-## Producer Consumer
+## Producent-konsument
 
-Now that we have a number-generating producer, let's move on to our producer-consumer.  We'll want to request numbers from our producer, filter out the odd one, and respond to demand.
+Teraz gdy mamy już naszego producenta generującego liczby, możemy zająć się producentem-konsumentem. Będzie on żądać od producenta zbioru liczb, wybierać tylko parzyste i odsyłać tak odfiltrowany zbiór na żądanie konsumenta.
 
 ```shell
 $ touch lib/genstage_example/producer_consumer.ex
 ```
 
-Let's update our file to look like the example code:
+Po utworzeniu pliku dodajmy kod:
 
 ```elixir
 defmodule GenstageExample.ProducerConsumer  do
@@ -142,9 +142,9 @@ defmodule GenstageExample.ProducerConsumer  do
 end
 ```
 
-You may have noticed with our producer-consumer we've introduced a new option in `init/1` and a new function: `handle_events/3`.  With the `subscribe_to` option, we instruct GenStage to put us into communcation with a specific producer.
+Jak łatwo zauważyć w funkcji `init/1` dodaliśmy nową opcję oraz zdefiniowaliśmy funkcję `handle_events/3`.  Za pomocą opcji `subscribe_to` instruujemy GenStage, że chcemy komunikować się z określonym producentem.
 
-The `handle_events/3` method is our workhorse, where we receive our incoming events, process them, and return our transformed set.  As we'll see consumers are implemented in much the same way, but the important difference is what our `handle_events/3` method returns and how it's used.   When we label our process a process-consumer, the second argument of our tuple — `numbers` in our case — is used to meet the demand of consumers downstream.  In consumers this value is discarded.
+Funkcja `handle_events/3` to nasz koń roboczy. Obsługujemy tutaj przychodzące odpowiedzi, transformując zbiór danych. Jak widać konsumenci są implementowani w podobny sposób, ale ważną różnicą jest to co zwraca funkcja `handle_events/3` i to jak jest używana. Jeżeli oznaczymy nasz proces jako producenta-konsumenta, drugi argument w krotce, tu `numbers`, zostanie wykorzystany do odpowiadania na żądania. W przypadku konsumentów będzie on zignorowany.
 
 ## Consumer
 
