@@ -38,24 +38,24 @@ Jak już wiemy role, które przypisujemy do poszczególnych etapów, są bardzo 
 
 + `:consumer` — cel. Wysyła żądania do producentów oraz przetwarza otrzymane dane.
 
-Notice that our producers _wait_ for demand?  With GenStage our consumers send demand upstream and process the data from our producer.  This faciliates a mechanism known as back-pressure.  Back-pressure puts the onus on the producer to not over-pressure when consumers are busy.
+Co znaczy, że producenci __oczekują__ na żądania? Konsumenci GenStage wysyłają strumień żądań i następnie przetwarzają dane otrzymane od producentów. Mechanizm ten znany jest jako ciśnienie wsteczne (ang. back-pressure). Ciśnienie wsteczne przenosi ciężar na producentów, chroniąc aplikację przed przeciążeniem, gdy konsumenci są zajęci. 
 
-Now that we've covered the roles within GenStage let's start on our application.
+Gdy wiemy już, czym są role w GenStage, możemy rozpocząć pisanie aplikacji.
 
-## Getting Started
+## Pierwsze kroki
 
-In this example we'll be constructing a GenStage application that emits numbers, sorts out the even numbers, and finally prints them.
+Nasza przykładowa aplikacja używająca GenStage będzie generować strumień liczb, sortować numery parzyste i w końcu wypisywać je.
 
-For our application we'll use all three GenStage roles.  Our producer will be responsible for counting and emitting numbers.  We'll use a producer-consumer to filter out only the even numbers and later respond to demand from downsteam.  Last we'll build a consumer to display the remaining numbers for us.
+Użyjemy wszystkich ról GenStage. Producent będzie odliczać i emitować kolejne numery. Użyjemy producenta-konsumenta do odfiltrowania numerów parzystych oraz późniejszego ich odesłania do konsumenta, który będzie wyświetlać je na ekranie. 
 
-We'll begin by generating a project with a supervision tree:
+Naszą pracę zaczniemy od stworzenia projektu z wykorzystaniem drzewa nadzorców:
 
 ```shell
 $ mix new genstage_example --sup
 $ cd genstage_example
 ```
 
-Let's update our dependencies in `mix.exs` to include `gen_stage`:
+Następnie zmieńmy `mix.exs` dodając zależność do `gen_stage`:
 
 ```elixir
   defp deps do
@@ -65,13 +65,13 @@ Let's update our dependencies in `mix.exs` to include `gen_stage`:
   end
 ```
 
-We should fetch our dependencies and compile before going much further:
+Musimy pobrać i skompilować zależności zanim przejdziemy dalej: 
 
 ```shell
 $ mix do deps.get, compile
 ```
 
-Now we're ready to build our producer!
+I już jesteśmy gotowi by stworzyć naszego producenta!
 
 ## Producer
 
