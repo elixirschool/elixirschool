@@ -216,7 +216,7 @@ $ mix run --no-halt
 {#PID<0.109.0>, 229066, :state_doesnt_matter}
 ```
 
-We did it!  As we expected our application only omits even numbers and it does so _quickly_.
+We did it!  As we expected our application only omits even numbers and it does so __quickly__.
 
 At this point we have a working pipeline.  There is a producer emitting numbers, a producer-consumer discarding odd numbers, and a consumer displaying all of this and continuing the flow.
 
