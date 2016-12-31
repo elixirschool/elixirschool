@@ -14,7 +14,7 @@ To build executables in Elixir we will be using escript. Escript produces an exe
 
 To create an executable with escript there are only a few things we need to do: implement a `main/1` method and update our Mixfile.
 
-We'll start by creating a module to serve as the entry point to our executable, this is where we'll implement `main/1`:
+We'll start by creating a module to serve as the entry point to our executable.  This is where we'll implement `main/1`:
 
 ```elixir
 defmodule ExampleApp.CLI do
@@ -42,7 +42,7 @@ end
 
 ## Parsing Args
 
-With our application setup we can move on to parsing the command line arguments.  To do this we'll use Elixir's `OptionParser.parse/2` and the `:switches` option to indicate that our flag is boolean:
+With our application set up we can move on to parsing the command line arguments.  To do this we'll use Elixir's `OptionParser.parse/2` with the `:switches` option to indicate that our flag is boolean:
 
 ```elixir
 defmodule ExampleApp.CLI do
@@ -85,4 +85,4 @@ $ ./example_app Hi
 Hi
 ```
 
-That's it, we've built our first executable in Elixir using escript.
+That's it. We've built our first executable in Elixir using escript.

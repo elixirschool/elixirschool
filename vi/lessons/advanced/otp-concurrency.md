@@ -6,7 +6,7 @@ order: 5
 lang: vi
 ---
 
-We've looked at the Elixir abstractions for concurrency but sometimes we need greater control and for that we turn to the OTP behaviors that Elixir built on.
+We've looked at the Elixir abstractions for concurrency but sometimes we need greater control and for that we turn to the OTP behaviors that Elixir is built on.
 
 In this lesson we'll focus on two important pieces: GenServers and GenEvents.
 
@@ -14,11 +14,11 @@ In this lesson we'll focus on two important pieces: GenServers and GenEvents.
 
 ## GenServer
 
-An OTP server is a module with the GenServer behavior that implements a set of callbacks.  At it's most basic level a GenServer is a loop that handles one request per iteration passing along an updated state.
+An OTP server is a module with the GenServer behavior that implements a set of callbacks.  At its most basic level a GenServer is a loop that handles one request per iteration passing along an updated state.
 
 To demonstrate the GenServer API we'll implement a basic queue to store and retrieve values.
 
-To begin our GenServer we need to start it and handle the initialization. In most cases we'll want to link processes so we use `GenServer.start_link/3`.  We pass in the GenServer module we're starting, initial arguments, and a set of GenServer options.  The arguments are be passed to `GenServer.init/1` which sets the initial state through it's return value.  In our example the arguments will be our initial state:
+To begin our GenServer we need to start it and handle the initialization. In most cases we'll want to link processes so we use `GenServer.start_link/3`.  We pass in the GenServer module we're starting, initial arguments, and a set of GenServer options.  The arguments will be passed to `GenServer.init/1` which sets the initial state through its return value.  In our example the arguments will be our initial state:
 
 ```elixir
 defmodule SimpleQueue do
@@ -40,7 +40,7 @@ end
 
 ### Synchronous Functions
 
-It's often necessary to interact with GenServers in a synchronous way, calling a function and waiting for it's response.  To handle synchronous requests we need to implement the `GenServer.handle_call/3` callback which takes: the request, caller's PID, and existing state; it is expected to reply by returning a tuple: `{:reply, response, state}`.
+It's often necessary to interact with GenServers in a synchronous way, calling a function and waiting for its response.  To handle synchronous requests we need to implement the `GenServer.handle_call/3` callback which takes: the request, the caller's PID, and the existing state; it is expected to reply by returning a tuple: `{:reply, response, state}`.
 
 With pattern matching we can define callbacks for many different requests and states. A complete list of accepted return values can be found in the [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) docs.
 
@@ -76,7 +76,6 @@ defmodule SimpleQueue do
   def queue, do: GenServer.call(__MODULE__, :queue)
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
 end
-
 ```
 
 Let's start our SimpleQueue and test out our new dequeue functionality:
@@ -94,7 +93,7 @@ iex> SimpleQueue.queue
 
 ### Asynchronous Functions
 
-Asynchronous requests are handled with the `handle_cast/2` callback.  This works much like `handle_cast/3` but does not receive the caller and is not expected to reply.
+Asynchronous requests are handled with the `handle_cast/2` callback.  This works much like `handle_call/3` but does not receive the caller and is not expected to reply.
 
 We'll implement our enqueue functionality to be asynchronous, updating the queue but not blocking our current execution:
 
@@ -154,7 +153,7 @@ For more information check out the official [GenServer](http://elixir-lang.org/d
 
 ## GenEvent
 
-We learned that GenServers are processes that can maintain state and handle synchronous and asynchronous requests so what is a GenEvent?  GenEvents are generic event managers that receive incoming events and notify subscribed consumers.  They provide a mechanism for dynamically adding and removing handlers to flow of events.
+We learned that GenServers are processes that can maintain state and handle synchronous and asynchronous requests.  So what is a GenEvent?  GenEvents are generic event managers that receive incoming events and notify subscribed consumers.  They provide a mechanism for dynamically adding and removing handlers to flows of events.
 
 ### Handling Events
 
