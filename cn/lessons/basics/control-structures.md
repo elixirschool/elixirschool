@@ -96,7 +96,7 @@ iex> case {1, 2, 3} do
 参考官方的文档来看[卫兵支持的表达式](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses)
 
 ## `cond`
-当我们需要匹配条件而不是值的时候，可以使用 `cond`，这和其他语言的 `eles if` 或者 `elif` 相似：
+当我们需要匹配条件而不是值的时候，可以使用 `cond`，这和其他语言的 `else if` 或者 `elsif` 相似：
 
 _这个例子直接取自 Elixir 官方教程的 [上手指南](Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)_
 
