@@ -6,15 +6,16 @@ order: 12
 lang: vi
 ---
 
-Testing is an important part of developing software.  In this lesson we'll look at how to test our Elixir code with ExUnit and some best practices for doing so.
+Testing là một phần quan trọng của phát triển phần mềm. Trong bài này, chúng ta sẽ học các để test code Elixir với ExUnit và một vài best practices để làm chuyện đó.
 
 {% include toc.html %}
 
 ## ExUnit
 
-Elixir's built-in test framework is ExUnit and it includes everything we need to thoroughly test our code.  Before moving on it is important to note that tests are implemented as Elixir scripts so we need to use the `.exs` file extension.  Before we can run our tests we need to start ExUnit with `ExUnit.start()`, this is most commonly done in `test/test_helper.exs`.
+Thư viện test được đính kèm với Elixir là ExUnit, và nó cũng bao gồm tất cả mọi thứ mà chúng ta cần để test code. Trước khi đi tiếp, cần đặc biệt chú ý là các file test được cài đặt như là một Elixir scripts, vì thế chúng ta cần đặt tên các file này với phần mở rộng là `.exs`. Để có thể chạy các test, chúng ta cần khởi động ExUnit bằng cách gọi `ExUnit.start()`, thông thường chúng ta để việc khởi động này trong file `test/test_helper.exs`.
 
-When we generated our example project in the previous lesson, mix was helpful enough to create a simple test for us, we can find it at `test/example_test.exs`:
+Khi chúng ta sinh ra dự án mẫu trong bài học trước, mix đã tự động tạo các test đơn giản, chúng ta có thể thấy nó trong `test/example_test.exs`:
+
 
 ```elixir
 defmodule ExampleTest do
@@ -27,7 +28,7 @@ defmodule ExampleTest do
 end
 ```
 
-We can run our project's tests with `mix test`.  If we do that now we should see an output similar to:
+Chúng ta có thể chạy toàn bộ test bằng lệnh `mix test`. Nếu chúng ta làm vậy, chúng ta sẽ thấy output như dưới đây:
 
 ```shell
 Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
@@ -36,9 +37,10 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### assert
 
-If you've written tests before then you're familiar with `assert`; in some frameworks `should` or `expect` fill the role of `assert`.
+Nếu bạn muốn viết các test thì trước hệt bạn cần làm quen với `assert`, trong một vài frameworks `should` hoặc là `expect` sẽ đóng vai trò của `assert`.
 
-We use the `assert` macro to test that the expression is true.  In the event that it is not, an error will be raised and our tests will fail.  To test a failure let's change our sample and then run `mix test`:
+Chúng ta sử dụng `assert` macro để test tính đúng đắn của một biểu thức. Nếu biểu thức là không đúng, một lỗi sẽ được văng ra, và bộ test sẽ thất bại. Hãy cùng sửa ví dụ của chúng ta để bộ test thất bại:
+
 
 ```elixir
 defmodule ExampleTest do
@@ -51,7 +53,7 @@ defmodule ExampleTest do
 end
 ```
 
-Now we should see a very different kind of output:
+Giờ nếu chạy `mix test`, chúng ta có thể thấy output tương tự như sau:
 
 ```shell
   1) test the truth (ExampleTest)
@@ -69,21 +71,22 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 1 tests, 1 failures
 ```
 
-ExUnit will tells us exactly where our failed assertions are, what the expected value was, and what the actual was.
+ExUnit sẽ nói cho chúng ta biết chính xác test sai ở đâu, giá trí mong muốn là gì, và giá trị thực tế là gì.
 
 ### refute
 
-`refute` is to `assert` as `unless` is to `if`.  Use `refute` when you want to ensure a statement is always false.
+`refute` đối với `assert` giống như `unless` với `if`.  Dùng `refute` khi bạn muốn đảm bảo một lệnh là luôn luôn sai.
+
 
 ### assert_raise
 
-Sometimes it may be necessary to assert that an error has been raised, we can do this with `assert_raise`.  We'll see an example of `assert_raise` in the next lesson on Plug.
+Đôi khi, chúng ta cần assert rằng một lỗi sẽ bị văng ra, chúng ta có thể làm điều đó với `assert_raise`. Hãy cùng xem ví dụ với `assert_raise` trong bài học tới về Plug.
 
-## Test Setup
+## Cấu hình Test
 
-In some instances it may be necessary to perform setup before our tests.  To accomplish this we can use the `setup` and `setup_all` macros.  `setup` will be run before each test and `setup_all` once before the suite.  It is expected that they will return a tuple of `{:ok, state}`, the state will be available to our tests.
+Trong một số trường hợp, chúng ta sẽ cần phải thực hiện việc cấu hình trước khi test. Để làm điểu này, chúng ta sử dụng `setup` và `setup_all` macro. `setup` sẽ trả được chạy trước mọi test và `setup_all` sẽ chỉ chạy duy nhất một lần cho cả bộ test. Các hàm này mong muốn trả về một tuple `{:ok, state}`, trong đó state sẽ được sử dụng cho các test của chúng ta.
 
-For the sake of example, we'll change our code to use `setup_all`:
+Để lấy ví dụ, chúng ta sử lại code như sau:
 
 ```elixir
 defmodule ExampleTest do
@@ -102,6 +105,4 @@ end
 
 ## Mocking
 
-The simple answer to mocking in Elixir: don't.  You may instinctively reach for mocks but they are highly discouraged in the Elixir community and for good reason.  If you follow good design principles the resulting code will be easy to test as individual components.
-
-Resist the urge.
+Câu trả lời đơn giản với mocking trong Elixir là: đừng sử dụng nó. Bạn có thể muốn tìm tới mock một cách tự nhiên, nhưng trong Elixir cộng đồng không khuyến khích bạn làm chuyện đó. Nếu bạn tuân thủ theo những nguyên tắc thiết kế chuẩn, thì code của bạn có thể dễ dàng test như là các thành phần độc lập.
