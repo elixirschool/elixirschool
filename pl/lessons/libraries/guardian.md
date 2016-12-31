@@ -45,13 +45,13 @@ JWT token może być użyty do uwierzytelniania w dowolnym miejscu systemu i w d
 
 Tokeny JWT mogą zatem zostać użyte wszędzie tam, gdzie potrzebujemy weryfikacji uwierzytelniania.
 
-### Do I have to use a database?
+### Czy potrzebuję bazy danych?
 
-You do not need to track JWT via a database. You can simply rely on the issued and expiry timestamps for controlling access. Often you'll end up using a database to look up your user resource but the JWT itself does not require it.
+Nie ma potrzeby przechowywania JWT w bazie danych. Na podstawie danych z tokena takich jak, żądający i data wygaśnięcia, można kontrolować udostępniane zasoby. Zazwyczaj korzystamy z bazy danych, bo tam składowane są zasoby, ale samo JWT tego nie wymaga.
 
-For example, if you were going to use JWT to authenticate communication on a UDP socket you likely wouldn't use a database. Encode all the information you need directly into the token when you issue it. Once you verify it (check that it's signed correctly) you're good to go.
+Na przykład, jeżeli chcemy użyć JWT do uwierzytelniania komunikacji po UDP, to nie będziemy używać bazy danych. W zamian zapiszemy wszystkie informacje bezpośrednio w tokenie. Po weryfikacji, zakładając, że jest on poprawnie podpisany, możemy już udostępnić zasoby. 
 
-You _can_ however use a database to track JWT. If you do, you gain the ability to verify that the token is still valid - that is - it has not been revoked. Or you could use the records in the DB to force a log out of all tokens for user 5. This is made simple in Guardian by using [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb uses Guardians 'Hooks' to perform validation checks, save and delete from the DB. We'll cover that later.
+Jeżeli jednak zdecydujesz się na użycie bazy danych do przechowywania JWT, to otrzymasz możliwość weryfikacji czy token jest nadal prawidłowy, inaczej czy nie został on unieważniony. Można też wykorzystać bazę danych, by przykładowo unieważnić wszystkie tokeny danego użytkownika. W tym celu Guardian wykorzystuje [GuardianDB](https://github.com/hassox/guardian_db). Samo GuardianDb używa 'zaczepów' Guardian, by przeprowadzić walidację i zapisać lub usunąć dane z bazy. Będziemy jeszcze o tym mówić.  
 
 ## Setup
 
