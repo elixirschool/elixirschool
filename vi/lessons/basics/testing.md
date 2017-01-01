@@ -6,7 +6,7 @@ order: 12
 lang: vi
 ---
 
-Testing là một phần quan trọng của phát triển phần mềm. Trong bài này, chúng ta sẽ học các để test code Elixir với ExUnit và một vài best practices để làm chuyện đó.
+Testing là một phần quan trọng của phát triển phần mềm. Trong bài này, chúng ta sẽ học cách để test code Elixir với ExUnit và một vài best practice để làm chuyện này.
 
 {% include toc.html %}
 
@@ -82,6 +82,46 @@ ExUnit sẽ nói cho chúng ta biết chính xác test sai ở đâu, giá trí 
 
 Đôi khi, chúng ta cần assert rằng một lỗi sẽ bị văng ra, chúng ta có thể làm điều đó với `assert_raise`. Hãy cùng xem ví dụ với `assert_raise` trong bài học tới về Plug.
 
+### assert_receive
+
+Trong ứng dụng Elixir chứa các actors/processes mà chúng gửi thông điệp tới nhau, bạn thường muốn test xem message nào được gửi đi. Từ việc ExUnit được chạy trong chính một process, nó có thể nhận message như bất cứ process nào khác, do vậy bạn có thể assert bằng cách dùng macro `assert_received`:
+
+```elixir
+defmodule SendingProcess do
+  def run(pid) do
+    send pid, :ping
+  end
+end
+
+defmodule TestReceive do
+  use ExUnit.Case
+
+  test "receives ping" do
+    SendingProcess.run(self)
+    assert_received :ping
+  end
+end
+```
+
+`assert_received` không đợi các thông điệp, với `assert_receive` bạn có thể xác định một khoảng thời gian chờ.
+
+## capture_io and capture_log
+
+Có thể lấy ra output của một ứng dụng với `ExUnit.captureIO` mà không cần thay đổi ứng dụng. Đơn giản chỉ cần truyền hàm để sinh output vào:
+
+```elixir
+defmodule OutputTest do
+  use ExUnit.Case
+  import ExUnit.CaptureIO
+
+  test "outputs Hello World" do
+    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+  end
+end
+```
+
+`ExUnit.CaptureLog` là tương đương, nhưng để lấy ra output của `Logger`.
+
 ## Cấu hình Test
 
 Trong một số trường hợp, chúng ta sẽ cần phải thực hiện việc cấu hình trước khi test. Để làm điểu này, chúng ta sử dụng `setup` và `setup_all` macro. `setup` sẽ trả được chạy trước mọi test và `setup_all` sẽ chỉ chạy duy nhất một lần cho cả bộ test. Các hàm này mong muốn trả về một tuple `{:ok, state}`, trong đó state sẽ được sử dụng cho các test của chúng ta.
@@ -105,4 +145,8 @@ end
 
 ## Mocking
 
-Câu trả lời đơn giản với mocking trong Elixir là: đừng sử dụng nó. Bạn có thể muốn tìm tới mock một cách tự nhiên, nhưng trong Elixir cộng đồng không khuyến khích bạn làm chuyện đó. Nếu bạn tuân thủ theo những nguyên tắc thiết kế chuẩn, thì code của bạn có thể dễ dàng test như là các thành phần độc lập.
+Câu trả lời đơn giản với mocking trong Elixir là: đừng sử dụng nó. Bạn có thể muốn tìm tới mock một cách tự nhiên, nhưng cộng đồng Elixir không khuyến khích bạn làm chuyện đó.
+
+Bạn có thể đọc chi tiết hơn trong [bài viết rất hay này](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/). Tóm lại, thay vì mock một phụ thuộc để test (mock như một *động từ*), có rất nhiều lợi ích nếu định nghĩa một giao diện củ thể cho các code ở bên ngoài ứng dụng của chúng ta, và sử dụng Mock (như là *danh từ*) để cài đặt test.
+
+Để thay đổi các cài đặt trong ứng dụng, cách được đưa ra là truyền module như là một tham số, và sử dụng một giá trị mặc định. Nếu điều này không khả thi, hãy sử dụng cơ chế cấu hình mặc định. Để tạo ra các cài đặt mock, bạn không cần thiết phải sử dụng một thư viện mock đặc biệt, chỉ cần sử dụng behaviour và callback là đủ.
