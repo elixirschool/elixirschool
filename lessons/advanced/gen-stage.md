@@ -38,7 +38,7 @@ As we've read, the role we give our stage is important.  The GenStage specificat
 
 + `:consumer` — A sink.  A consumer requests and receives data from producers.
 
-Notice that our producers _wait_ for demand?  With GenStage our consumers send demand upstream and process the data from our producer.  This faciliates a mechanism known as back-pressure.  Back-pressure puts the onus on the producer to not over-pressure when consumers are busy.
+Notice that our producers __wait__ for demand?  With GenStage our consumers send demand upstream and process the data from our producer.  This facilitates a mechanism known as back-pressure.  Back-pressure puts the onus on the producer to not over-pressure when consumers are busy.
 
 Now that we've covered the roles within GenStage let's start on our application.
 
@@ -46,7 +46,7 @@ Now that we've covered the roles within GenStage let's start on our application.
 
 In this example we'll be constructing a GenStage application that emits numbers, sorts out the even numbers, and finally prints them.
 
-For our application we'll use all three GenStage roles.  Our producer will be responsible for counting and emitting numbers.  We'll use a producer-consumer to filter out only the even numbers and later respond to demand from downsteam.  Last we'll build a consumer to display the remaining numbers for us.
+For our application we'll use all three GenStage roles.  Our producer will be responsible for counting and emitting numbers.  We'll use a producer-consumer to filter out only the even numbers and later respond to demand from downstream.  Last we'll build a consumer to display the remaining numbers for us.
 
 We'll begin by generating a project with a supervision tree:
 
@@ -142,7 +142,7 @@ defmodule GenstageExample.ProducerConsumer  do
 end
 ```
 
-You may have noticed with our producer-consumer we've introduced a new option in `init/1` and a new function: `handle_events/3`.  With the `subscribe_to` option, we instruct GenStage to put us into communcation with a specific producer.
+You may have noticed with our producer-consumer we've introduced a new option in `init/1` and a new function: `handle_events/3`.  With the `subscribe_to` option, we instruct GenStage to put us into communication with a specific producer.
 
 The `handle_events/3` method is our workhorse, where we receive our incoming events, process them, and return our transformed set.  As we'll see consumers are implemented in much the same way, but the important difference is what our `handle_events/3` method returns and how it's used.   When we label our process a process-consumer, the second argument of our tuple — `numbers` in our case — is used to meet the demand of consumers downstream.  In consumers this value is discarded.
 
@@ -216,7 +216,7 @@ $ mix run --no-halt
 {#PID<0.109.0>, 229066, :state_doesnt_matter}
 ```
 
-We did it!  As we expected our application only omits even numbers and it does so _quickly_.
+We did it!  As we expected our application only omits even numbers and it does so __quickly__.
 
 At this point we have a working pipeline.  There is a producer emitting numbers, a producer-consumer discarding odd numbers, and a consumer displaying all of this and continuing the flow.
 
@@ -260,6 +260,6 @@ Now that we've covered GenStage and built our first example application, what ar
 
 + Work Queue — Since events can be anything, we could produce works of unit to be completed by a series of consumers.
 
-+ Event Processing — Similar to a data pipeline, we could recieve, process, sort, and take action on events emitted in real time from our sources.
++ Event Processing — Similar to a data pipeline, we could receive, process, sort, and take action on events emitted in real time from our sources.
 
-These are just a _few_ of the possibilities for GenStage.
+These are just a __few__ of the possibilities for GenStage.
