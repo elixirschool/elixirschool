@@ -31,12 +31,12 @@ Ví dụ:
 IO.puts "Hello, " <> "chum."
 ```
 
-Elixir khi chạy đoạn script trên sẽ bỏ qua tất cả những đoạn code trong dòng bắt đầu từ `#`, coi chúng như là những dữ liệu được bỏ đi. Inline comment không thêm bất cứ giá trị nào vào hoạt động của đoạn script, tuy nhiên khi mà đoạn code bạn viết không thể hiện rõ những gì nó chạy, lập trình viên có thể biết thông qua việc đọc comment của bạn. Tuy nhiên, không nên lạm dụng inline comment. Comment bừa bãi có thể khiến codebase trở thành ác mộng. Nó nên được sử dụng tốt nhất trong chừng mực.
+Elixir khi chạy đoạn script trên sẽ bỏ qua tất cả những đoạn code trong dòng bắt đầu từ `#`, coi chúng như là những dữ liệu được bỏ đi. Inline comment không thêm bất cứ giá trị nào vào hoạt động và tốc độ của đoạn script, tuy nhiên khi mà đoạn code bạn viết không thể hiện rõ những gì nó chạy, lập trình viên có thể biết thông qua việc đọc comment của bạn. Tuy nhiên, không nên lạm dụng inline comment. Comment bừa bãi có thể khiến codebase trở thành ác mộng. Nó nên được sử dụng tốt nhất trong chừng mực.
 
 
 ### Documenting Modules
 
-`@moduledoc` được dùng để có thể tài liệu hoá mở mức module. Nó thường nằm ngay dưới dòng định nghĩa module `defmodule` ở đầu file. Ví dụ dưới đây mô tả comment một dòng trong `@moduledoc`.
+`@moduledoc` được dùng để có thể tài liệu hoá ở mức module. Nó thường nằm ngay dưới dòng định nghĩa module `defmodule` ở đầu file. Ví dụ dưới đây mô tả comment một dòng trong `@moduledoc`.
 
 ```elixir
 defmodule Greeter do

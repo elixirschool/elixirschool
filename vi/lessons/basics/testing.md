@@ -37,7 +37,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### assert
 
-Nếu bạn muốn viết các test thì trước hệt bạn cần làm quen với `assert`, trong một vài frameworks `should` hoặc là `expect` sẽ đóng vai trò của `assert`.
+Nếu bạn muốn viết các test thì trước hết bạn cần làm quen với `assert`, trong một vài frameworks `should` hoặc là `expect` sẽ đóng vai trò của `assert`.
 
 Chúng ta sử dụng `assert` macro để test tính đúng đắn của một biểu thức. Nếu biểu thức là không đúng, một lỗi sẽ được văng ra, và bộ test sẽ thất bại. Hãy cùng sửa ví dụ của chúng ta để bộ test thất bại:
 
@@ -71,7 +71,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 1 tests, 1 failures
 ```
 
-ExUnit sẽ nói cho chúng ta biết chính xác test sai ở đâu, giá trí mong muốn là gì, và giá trị thực tế là gì.
+ExUnit sẽ nói cho chúng ta biết chính xác test sai ở đâu, giá trị mong muốn là gì, và giá trị thực tế là gì.
 
 ### refute
 
@@ -147,6 +147,6 @@ end
 
 Câu trả lời đơn giản với mocking trong Elixir là: đừng sử dụng nó. Bạn có thể muốn tìm tới mock một cách tự nhiên, nhưng cộng đồng Elixir không khuyến khích bạn làm chuyện đó.
 
-Bạn có thể đọc chi tiết hơn trong [bài viết rất hay này](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/). Tóm lại, thay vì mock một phụ thuộc để test (mock như một *động từ*), có rất nhiều lợi ích nếu định nghĩa một giao diện củ thể cho các code ở bên ngoài ứng dụng của chúng ta, và sử dụng Mock (như là *danh từ*) để cài đặt test.
+Bạn có thể đọc chi tiết hơn trong [bài viết rất hay này](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/). Tóm lại, thay vì mock một phụ thuộc để test (mock như một *động từ*), có rất nhiều lợi ích nếu định nghĩa một giao diện cụ thể cho các code ở bên ngoài ứng dụng của chúng ta, và sử dụng Mock (như là *danh từ*) để cài đặt test.
 
 Để thay đổi các cài đặt trong ứng dụng, cách được đưa ra là truyền module như là một tham số, và sử dụng một giá trị mặc định. Nếu điều này không khả thi, hãy sử dụng cơ chế cấu hình mặc định. Để tạo ra các cài đặt mock, bạn không cần thiết phải sử dụng một thư viện mock đặc biệt, chỉ cần sử dụng behaviour và callback là đủ.

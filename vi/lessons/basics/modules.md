@@ -60,10 +60,10 @@ defmodule Example do
 end
 ```
 
-Cần đặc biết chú ý rằng: có một vài thuộc tính đặc biệt trong Elixir. Ba thuộc tính phổ thông nhất là:
+Cần đặc biệt chú ý rằng: có một vài thuộc tính đặc biệt trong Elixir. Ba thuộc tính phổ thông nhất là:
 
 + `moduledoc` — Định nghĩa tài liệu cho module hiện tại
-+ `doc` — Định nghĩa tài liêu cho hàm và macro.
++ `doc` — Định nghĩa tài liệu cho hàm và macro.
 + `behaviour` — Sử dụng trong OTP hoặc định nghĩa các behaviour
 
 ## Structs
@@ -110,7 +110,7 @@ iex> %{name: "Sean"} = sean
 
 ## Composition
 
-Giờ chúng ta đã biết cách để tạo các module và struct. Hãy cùng học cách để thêm cách tinh năng đã tồn tại vào trong chúng thông qua composition. Elixir cung cấp cho chúng ta một vài cách để tương tác giữa các module với nhau.
+Giờ chúng ta đã biết cách để tạo các module và struct. Hãy cùng học cách để thêm cách tính năng đã tồn tại vào trong chúng thông qua composition. Elixir cung cấp cho chúng ta một vài cách để tương tác giữa các module với nhau.
 
 ### `alias`
 
