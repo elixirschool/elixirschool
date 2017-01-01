@@ -53,17 +53,17 @@ Na przykład, jeżeli chcemy użyć JWT do uwierzytelniania komunikacji po UDP, 
 
 Jeżeli jednak zdecydujesz się na użycie bazy danych do przechowywania JWT, to otrzymasz możliwość weryfikacji czy token jest nadal prawidłowy, inaczej czy nie został on unieważniony. Można też wykorzystać bazę danych, by przykładowo unieważnić wszystkie tokeny danego użytkownika. W tym celu Guardian wykorzystuje [GuardianDB](https://github.com/hassox/guardian_db). Samo GuardianDb używa 'zaczepów' Guardian, by przeprowadzić walidację i zapisać lub usunąć dane z bazy. Będziemy jeszcze o tym mówić.  
 
-## Setup
+## Konfiguracja
 
-There are many options for setting up Guardian. We'll cover them at some point but let's start with a very simple setup.
+Konfiguracja Guardiana jest rozbudowana i ma wiele opcji. Zajmiemy się nimi za chwilę, ale najpierw przygotujmy coś prostego. 
 
-### Minimal Setup
+### Minimalna konfiguracja
 
-To get started there are a handful of things that you'll need. 
+Aby rozpocząć, musimy ustawić kilka rzeczy.
 
-#### Configuration
+#### Konfiguracja środowiska
 
-`mix.exs`
+W pliku `mix.exs`:
 
 ```elixir
 def application do
@@ -81,18 +81,18 @@ def deps do
 end
 ```
 
-`config/config.ex`
+W pliku `config/config.ex`:
 
 ```elixir
 config :guardian, Guardian,
   issuer: "MyAppId",
-  secret_key: Mix.env, # in each environment config file you should overwrite this if it's external
+  secret_key: Mix.env, # Nadpisz tą wartość w plikach konfiguracyjnych dla poszczególnych środowisk
   serializer: MyApp.GuardianSerializer
 ```
 
-This is the minimum set of information you need to provide Guardian with to operate. You shouldn't encode your secret key directly into your top-level config. Instead, each environment should have its own key. It's common to use the Mix environment for secrets in dev and test. Staging and production, however, must use strong secrets. (e.g. generated with `mix phoenix.gen.secret`)
+Oto minimalna ilość informacji potrzebnych Guardianowi do działania. Oczywiście nie powinniśmy podawać sekretnego klucza w głównym pliku konfiguracyjnym. Każde środowisko powinno mieć własny klucz. O ile typowym jest używanie tego samego klucza w środowisku dev i test, to już środowisko produkcyjne powinno mieć własny, silny klucz wygenerowany na przykład za pomocą polecenia `mix phoenix.gen.secret`.
 
-`lib/my_app/guardian_serializer.ex`
+Stwórzmy teraz serializer `lib/my_app/guardian_serializer.ex`:
 
 ```elixir
 defmodule MyApp.GuardianSerializer do
@@ -108,30 +108,30 @@ defmodule MyApp.GuardianSerializer do
   def from_token(_), do: { :error, "Unknown resource type" }
 end
 ```
-Your serializer is responsible for finding the resource identified in the `sub` (subject) field. This could be a lookup from a db, an API, or even a simple string.
-It's also responsible for serializing a resource into the `sub` field.
 
-That's it for the minimum configuration. There's plenty more you can do if you need to but to get started that's enough.
+Jest on odpowiedzialny za odnalezienie zasobu, którego identyfikator znajduje się w polu `sub` (od _subject_). Może on wykorzystać w tym celu bazę danych, zewnętrzne API, albo nawet ciąg znaków. Jest on też odpowiedzialny za zapis identyfikatora do pola `sub`.
 
-#### Application Usage
+Tak wygląda minimalna konfiguracja. Oczywiście można tu zrobić znacznie więcej, ale na start wystarczy.
 
-Now that we have the configuration in place to use Guardian, we need to integrate it into the application. Since this is the minimum setup, let's first consider HTTP requests.
+#### Użycie w aplikacji
 
-## HTTP requests
+Gdy mamy już naszą konfigurację na miejscu, musimy jakoś zintegrować Guardiana z aplikacją. Jako że wykorzystujemy minimalną konfigurację, to zajmijmy się najpierw żądaniami HTTP.
 
-Guardian provides a number of Plugs to facilitate integration into HTTP requests. You can learn about Plug in a [separate lesson](../specifics/plug/). Guardian doesn't require Phoenix, but using Phoenix in the following examples will be easiest to demonstrate.
+## Żądania HTTP
 
-The easiest way to integrate into HTTP is via the router. Since Guardian's HTTP integrations are all based on plugs, you can use these anywhere a plug could be used.
+Guardian udostępnia pewną ilość plugów, pozwalających na integrację z protokołem HTTP. O plugach możesz poczytać [w lekcji im poświęconej](../specifics/plug/). Guardian nie wymaga Phoenixa, ale użyjemy go tutaj by uprościć przykład.
 
-The general flow of Guardian plug is:
+Najprostszą metodą integracji jest użycie routera, ale jako że sam proces integracji opiera się o mechanizm plugów, to można go użyć wszędzie tam, gdzie mają zastosowanie plugi.
 
-1. Find a token in the request (somewhere) and verify it: `Verify*` plugs
-2. Optionally load the resource identified in the token: `LoadResource` plug
-3. Ensure that there is a valid token for the request and refuse access if not. `EnsureAuthenticated` plug
+Zasadniczo zasada działania plugu Guardiana jest następująca:
 
-To meet all the needs of application developers, Guardian implements these phases separately. To find the token use the `Verify*` plugs.
+1. Znajdź token gdzieś w żądaniu: plugi `Verify*`
+2. Opcjonalnie załaduj identyfikator zasobu: plug `LoadResource` 
+3. Sprawdź, czy token z żądania jest poprawny i jeżeli nie jest, zablokuj dostęp. Plug `EnsureAuthenticated`.
 
-Let's create some pipelines.
+By zaspokoić wszystkie wymagania programistów, Guardian implementuje powyższe fazy w oddzielnych plugach. By znaleźć token używamy plugów `Verify*`.
+
+Stwórzmy potok pracy.
 
 ```elixir
 pipeline :maybe_browser_auth do
@@ -145,9 +145,11 @@ pipeline :ensure_authed_access do
 end
 ```
 
-These pipelines can be used to compose different authentication requirements. The first pipeline tries to find a token first in the session and then falls back to a header. If it finds one, it will load the resource for you.
+Potoki te pozwalają na zaspokojenie różnych potrzeb związanych z uwierzytelnianiem. Pierwszy próbuje odnaleźć token w sesji, kolejny w nagłówku, a gdy token zostanie odnaleziony, to ładowane są odpowiednie zasoby.
 
-The second pipeline requires that there is a valid, verified token present and that it is of type "access". To use these, add them to your scope.
+Drugi z potoków spełnia wymagania co do weryfikacji poprawności tokenu, sprawdzając, czy jego typ, pole `typ` ma wartość `access`. 
+
+By ich użyć, dodajmy je do naszej aplikacji:
 
 ```elixir
 scope "/", MyApp do
