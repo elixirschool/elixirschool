@@ -6,15 +6,15 @@ order: 8
 lang: vi
 ---
 
-We know from experience it's unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
+Chúng ta biết từ kinh nghiệm là để tất cả các hàm vào trong một file khá là không tốt. Trong bài học này, chúng ta sẽ học cách nhóm các hàm lại với nhau, và định nghĩa một loại map đặc biệt là `struct` để tổ chức code một cách hiệu quả hơn.
 
 {% include toc.html %}
 
 ## Modules
 
-Modules are the best way to organize functions into a namespace.  In addition to grouping functions, they allow us to define named and private functions which we covered in the previous lesson.
+Module là cách tốt nhất để tổ chức các hàm vào một namespace. Ngoài việc nhóm các hàm với nhau, nó còn cho phép chúng ta định nghĩa các "named function" public và private như chúng ta đã học ở bài học trước.
 
-Let's look at a basic example:
+Hãy cùng xem một ví dụ cơ bản:
 
 ``` elixir
 defmodule Example do
@@ -27,7 +27,8 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
-It is possible to nest modules in Elixir, allowing you to further namespace your functionality:
+Trong Elixir, chúng ta có thể tạo các module lòng này, điều này cho phép bạn có thể dễ dàng phân chia các tính năng hơn.
+
 
 ```elixir
 defmodule Example.Greetings do
@@ -44,9 +45,10 @@ iex> Example.Greetings.morning "Sean"
 "Good morning Sean."
 ```
 
-### Module Attributes
+### Thuộc tính của module
 
-Module attributes are most commonly used as constants in Elixir.  Let's look at a simple example:
+Thuộc tính của module phần lớn được dùng như hằng số trong Elixir. Hãy cùng xem một ví dụ đơn giản:
+
 
 ```elixir
 defmodule Example do
@@ -58,17 +60,17 @@ defmodule Example do
 end
 ```
 
-It is important to note there are reserved attributes in Elixir.  The three most common are:
+Cần đặc biệt chú ý rằng: có một vài thuộc tính đặc biệt trong Elixir. Ba thuộc tính phổ thông nhất là:
 
-+ `moduledoc` — Documents the current module.
-+ `doc` — Documentation for functions and macros.
-+ `behaviour` — Use an OTP or user-defined behaviour.
++ `moduledoc` — Định nghĩa tài liệu cho module hiện tại
++ `doc` — Định nghĩa tài liệu cho hàm và macro.
++ `behaviour` — Sử dụng trong OTP hoặc định nghĩa các behaviour
 
 ## Structs
 
-Structs are special maps with a defined set of keys and default values.  A struct must be defined within a module, which it takes its name from.  It is common for a struct to be the only thing defined within a module.
+Struct là các map đặc biệt được định nghĩa như một tập các khoá và các giá trị mặc định. Một struct phải được định nghĩa trong một module, từ đó tên của struct sẽ là tên của module. Rất là bình thường nếu như struct là thứ duy nhất mà module định nghĩa trong nó.
 
-To define a struct we use `defstruct` along with a keyword list of fields and default values:
+Để định nghĩa một struct, chúng ta sử dụng macro `defstruct` cùng với một keyword list của các trường và các giá trị mặc định:
 
 ```elixir
 defmodule Example.User do
@@ -76,7 +78,8 @@ defmodule Example.User do
 end
 ```
 
-Let's create some structs:
+Hãy cùng tạo một vài structs:
+
 
 ```elixir
 iex> %Example.User{}
@@ -89,7 +92,7 @@ iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
 %Example.User{name: "Steve", roles: [:admin, :owner]}
 ```
 
-We can update our struct just like we would a map:
+Chúng ta cũng có thể cập nhật struct giống như chúng ta làm với một map:
 
 ```elixir
 iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
@@ -98,7 +101,7 @@ iex> sean = %{steve | name: "Sean"}
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-Most importantly, you can match structs against maps:
+Quan trọng nhất, chúng ta có thể so trùng mẫu struct với map:
 
 ```elixir
 iex> %{name: "Sean"} = sean
@@ -107,11 +110,11 @@ iex> %{name: "Sean"} = sean
 
 ## Composition
 
-Now that we know how to create modules and structs let's learn how to add existing functionality to them via composition.  Elixir provides us with a variety of different ways to interact with other modules.
+Giờ chúng ta đã biết cách để tạo các module và struct. Hãy cùng học cách để thêm cách tính năng đã tồn tại vào trong chúng thông qua composition. Elixir cung cấp cho chúng ta một vài cách để tương tác giữa các module với nhau.
 
 ### `alias`
 
-Allows us to alias module names; used quite frequently in Elixir code:
+Cho phép chúng ta có thể "alias" tên của một module, "alias" được sử dụng khá thường xuyên trong Elixir:
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -131,7 +134,7 @@ defmodule Example do
 end
 ```
 
-If there's a conflict between two aliases or we just wish to alias to a different name entirely, we can use the `:as` option:
+Nếu như có xung đột giữa 2 alias, hoặc chúng ta muốn alias với một tên hoàn toàn khác, chúng ta có thể sử dụng lựa chọn `:as`:
 
 ```elixir
 defmodule Example do
@@ -141,7 +144,7 @@ defmodule Example do
 end
 ```
 
-It's even possible to alias multiple modules at once:
+Chúng ta thậm chí có thể alias nhiều module cùng một lúc:
 
 ```elixir
 defmodule Example do
@@ -151,7 +154,7 @@ end
 
 ### `import`
 
-If we want to import functions and macros rather than aliasing the module we can use `import/`:
+Nếu chúng ta muốn import nhiều hàm và macros thay vì alias module, chúng ta có thể dùng `import/`
 
 ```elixir
 iex> last([1, 2, 3])
@@ -164,9 +167,9 @@ iex> last([1, 2, 3])
 
 #### Filtering
 
-By default all functions and macros are imported but we can filter them using the `:only` and `:except` options.
+Mặc định tất cả các hàm và macro sẽ được import vào, nhưng chúng ta có thể lọc chúng ra bằng cách sử dung lựa chọn `:only` và `:except`.
 
-To import specific functions and macros, we must provide the name/arity pairs to `:only` and `:except`.  Let's start by importing only the `last/1` function:
+Để import các hàm và macro cụ thể, chúng ta sẽ phải cung cấp một cặp tên/số tham số (arity) cho `:only` và `:except`. Hãy cùng import chỉ nguyên hàm `last/1`:
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -176,7 +179,7 @@ iex> last([1, 2, 3])
 3
 ```
 
-If we import everything except `last/1` and try the same functions as before:
+Nếu chúng ta import tất cả mọi thứ trừ `last/1`, chúng ta có thể làm như sau:
 
 ```elixir
 iex> import List, except: [last: 1]
@@ -187,7 +190,8 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arity pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
+Bên cạnh các cặp tên/arity, có 2 atom đặc biệt, `:functions` và `:macros` được dùng để chỉ import các hàm hoặc các macro tương ứng:
+
 
 ```elixir
 import List, only: :functions
@@ -196,7 +200,7 @@ import List, only: :macros
 
 ### `require`
 
-Although used less frequently `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
+Mặc dùng ít khi sử dụng, `require/2` dù sao cũng khá quan trong để yêu cầu một module đảm bảo rằng nó được biên dịch vào nạp vào. Điều này đặc biệt hữu dụng nếu chúng ta muốn truy cập vào các macro của một module:
 
 ```elixir
 defmodule Example do
@@ -206,11 +210,12 @@ defmodule Example do
 end
 ```
 
-If we attempt to call a macro that is not yet loaded Elixir will raise an error.
+Nếu chúng ta có gắng gọi một macro chưa được nạp trong Elixir, một lỗi sẽ bị văng ra.
 
 ### `use`
 
-The use macro invokes a special macro, called `__using__/1`, from the specified module. Here’s an example:
+`use` macro sẽ gọi tới một macro đặc biệt, được gọi là `__using__/1` từ module được chỉ định. Đây là một ví dụ:
+
 
 ```elixir
 # lib/use_import_require/use_me.ex
@@ -225,19 +230,20 @@ defmodule UseImportRequire.UseMe do
 end
 ```
 
-and we add this line to UseImportRequire:
+và chúng ta có thể thêm dòng này vào trong `UseImportRequire`
 
 ```elixir
 use UseImportRequire.UseMe
 ```
 
-Using UseImportRequire.UseMe defines a use_test/0 function through invocation of the `__using__/1` macro.
+sử dụng module UseImportRequire.UseMe để định nghĩa một hàm `use_test/0` thông qua việc gọi tới macro `__using__/1`.
 
-This is all that use does. However, it is common for the `__using__` macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that `__using__/1` may set up references to other modules, especially submodules.
+Đó là tất cả những gì mà `use` làm. Ngoài ra, `__using__` được sử dụng khá là phổ biến để gọi tới các `alias`, `require` và `import`. Những macro này sẽ tạo các alias, hoặc là import trong module đươc sử dụng. Điều này cho phép module có thể được sử dụng để định nghĩa một chính sách để các hàm các các macros có thể tham chiếu lẫn nhau. Nó khá là linh động khi `__using__/1` có thể được sử dụng để cấu hình việc tham chiếu tới các module khác, đặc biệt là các module con (submodule).
 
-The Phoenix framework makes use of use and `__using__/1` to cut down on the need for repetitive alias and import calls in user defined modules.
+Phoenix framework sử dụng `__using__/1` để giảm bớt việc phải lặp lại các alias và import call trong các module do lập trình viên định nghĩa.
 
-Here’s an nice and short example from the Ecto.Migration module:
+Sau đây là một ví dụ rất ngắn gọi từ trong module `Ecto.Migration`:
+
 
 ```elixir
 defmacro __using__(_) do
@@ -249,8 +255,8 @@ defmacro __using__(_) do
 end
 ```
 
-The `Ecto.Migration.__using__/1` macro includes an import call so that when you `use Ecto.Migration` you also `import Ecto.Migration`. It also sets up a module property which we will assume controls Ecto’s behavior.
+Macro `Ecto.Migration.__using__/1` bao gồm một lời gọi import, do vậy khi bạn gọi `use Ecto.Migration`, bạn cũng gọi tới `import Ecto.Migration`. Nó cũng cấu hình một thuộc tính của module từ đó chúng ta sẽ điều khiển hoạt động của Ecto.
 
-To recap: the use macro simply invokes the `__using__/1` macro of the specified module. To really understand what that does you need to read the `__using__/1` macro.
+Nói tóm lại: `use` macro đơn giản gọi tới `__using__/1` macro của module cụ thể. Để thực sử hiều nó làm những gì, bạn cần đọc vào module `__using__/1`
 
-**Note**: `quote`, `alias`, `use`, `require` are a macro used when we work with [metaprogramming](../../advanced/metaprogramming).
+**Note**: `quote`, `alias`, `use`, `require` là các macro được sử dụng khi chúng ta làm việc với [metaprogramming](../../advanced/metaprogramming).
