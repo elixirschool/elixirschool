@@ -1,0 +1,118 @@
+---
+layout: page
+title: Поведение
+category: advanced
+order: 10
+lang: ru
+---
+
+В предыдущем уроке мы познакомились со спецификациями, теперь мы узнаем, как можно потребовать от модуля реализовывать определённые спецификации. В Elixir такой функционал называется поведением.
+
+{% include toc.html %}
+
+## Использование
+
+Иногда вам необходимо, чтобы модули реализовывали определённое публичное API, в Elixir это достигается при помощи поведения. Поведение выполняет две основных задачи:
+
++ Определяет набор функций, которые должны быть реализованы
++ Контролирует чтобы эти функции действительно были реализованы
+
+Elixir уже включает некоторое количество поведений, например в случае с `GenServer`, но в данном уроке мы сосредоточимся на создании нашего собственного поведения.
+
+## Определяем поведение
+
+Чтобы лучше понять поведения, давайте создадим одно для модуля &mdash; рабочего процесса. Наши рабочие процессы должны будут реализовывать две функции: `init/1` и `perform/2`.
+
+Для решения этой задачи используем директиву `@callback`, её синтаксис аналогичен директиве `@spec`, директива помогает задать наш __требуемый__ метод. Для макросов существует другая директива &mdash; `@macrocallback`. Давайте зададим методы `init/1` и `perform/2` для наших рабочих процессов:
+
+```elixir
+defmodule Example.Worker do
+  @callback init(state :: term) :: {:ok, new_state :: term} | {:error, reason :: term}
+  @callback perform(args :: term, state :: term) :: {:ok, result :: term, new_state :: term} | {:error, reason :: term, new_state :: term}
+end
+```
+
+Здесь мы задали `init/1` как метод, который может принимать любое значение в качестве аргумента и возвращать кортеж вида `{:ok, state}` либо `{:error, reason}`, - это довольно стандартное определение. Наш метод `perform/2` будет принимать какие-то аргументы для рабочего процесса вместе с заданным начальным состоянием, мы ожидаем что `perform/2` вернёт `{:ok, result, state}` либо `{:error, reason, state}`, подобно `GenServer`.
+
+## Используем поведение
+
+Теперь, когда мы определили наше поведение, можно использовать его для создания разнообразных модулей, реализующих общее публичное API. Добавить поведение в наш модуль можно при помощи атрибута `@behaviour`.
+
+Давайте используем поведение создав модуль, задачей которого будет скачивание файла и его сохранение на диск:
+
+```elixir
+defmodule Example.Downloader do
+  @behaviour Example.Worker
+
+  def init(opts), do: {:ok, opts}
+
+  def perform(url, opts) do
+    url
+    |> HTTPoison.get!
+    |> Map.fetch(:body)
+    |> write_file(opts[:path])
+    |> respond(opts)
+  end
+
+  defp write_file(:error, _), do: {:error, :missing_body}
+  defp write_file({:ok, contents}, path) do
+    path
+    |> Path.expand
+    |> File.write(contents)
+  end
+
+  defp respond(:ok, opts), do: {:ok, opts[:path], opts}
+  defp respond({:error, reason}, opts), do: {:error, reason, opts}
+end
+```
+
+А как насчет рабочего процесса, который выполняет сжатие файлов переданных в виде массива? Такое тоже возможно:
+
+```elixir
+defmodule Example.Compressor do
+  @behaviour Example.Worker
+
+  def init(opts), do: {:ok, opts}
+
+  def perform(payload, opts) do
+    payload
+    |> compress
+    |> respond(opts)
+  end
+
+  defp compress({name, files}), do: :zip.create(name, files)
+
+  defp respond({:ok, path}, opts), do: {:ok, path, opts}
+  defp respond({:error, reason}, opts), do: {:error, reason, opts}
+end
+```
+
+Несмотря на то, что данные модули выполняют различные задачи, они реализуют одинаковое публичное API, и любой код может взаимодействовать с ними заранее зная, что результат будет соответствовать заданному. Это даёт нам возможность написать любое количество рабочих процессов, выполняющих различные задачи, но имеющих одинаковое публичное API.
+
+Если же мы добавим в наш модуль поведение, но не реализуем все требуемые им функции, то получим предупреждение во время компиляции кода. Для того чтобы увидеть его в действии, давайте модифицируем наш пример `Example.Compressor`, удалив из него функцию `init/1`:
+
+```elixir
+defmodule Example.Compressor do
+  @behaviour Example.Worker
+
+  def perform(payload, opts) do
+    payload
+    |> compress
+    |> respond(opts)
+  end
+
+  defp compress({name, files}), do: :zip.create(name, files)
+
+  defp respond({:ok, path}, opts), do: {:ok, path, opts}
+  defp respond({:error, reason}, opts), do: {:error, reason, opts}
+end
+```
+
+Теперь во время компиляции кода мы получим предупреждение вида:
+
+```shell
+lib/example/compressor.ex:1: warning: undefined behaviour function init/1 (for behaviour Example.Worker)
+Compiled lib/example/compressor.ex
+```
+
+Это всё! Теперь вы готовы создавать и делится своими поведениями с другими.
