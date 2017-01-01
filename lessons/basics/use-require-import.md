@@ -6,15 +6,15 @@ order: 16
 lang: en
 ---
 
-In Elixir, we commonly use several macros that give us some built-in conveniences.
-These are `import`, `require`, and `use`.
-These keywords all sound very similar, but do quite different things in action.
-In this lesson we will investigate how each of these work.
+In Elixir, we commonly use several macros that give us some built-in conveniences to pull in functionality from other parts of our code.
+The most common of these are `import`, `require`, and `use`.
+These keywords all sound very similar, but do quite different things in action when we utilize them.
+In this lesson we will investigate how each of these works.
 
 {% include toc.html %}
 
 ## Import
-Import brings in frunctions and macros from other modules.
+Import brings in functions and macros from other modules.
 If we are using several functions from a given module, we could import it to not have to call it repeatedly and instead be able to just make a local call.
 For example:
 
@@ -27,7 +27,7 @@ iex> flatten([[1, 2, 3], [4, 5, 6]])
 [1, 2, 3, 4, 5, 6]
 ```
 
-This is most common when we simply just dont want to have to continuously keep calling the same module and we are using its functions quite a bit.
+This is most common when we simply just dont want be forced into continuously calling the same module and we are using its functions quite a bit.
 We can also filter to import only macros or functions with the `only` option:
 
 ```elixir
@@ -67,7 +67,7 @@ end
 And with this simple import we can use our own specially created `if` macro if we had defined it in `MyMacros`.
 
 ## Use
-`use` uses a module that is given in the current context.
+`use` uses a module that is given to it in the current context.
 This is a very useful macro for building up composable, reuseable modules.
 The most common use case a beginning use would see is in ExUnit.
 If we generate a new mix project, we get a boilerplate test that looks something like this:
@@ -90,16 +90,16 @@ We could define our own module to include that wraps this so we could call it in
 ```elixir
 # test/foo_test.exs
 defmodule TestWrapper do
-	defmacro __using__ do
-		quote do
-			use ExUnit.Case, async: true
-			@some_attributes "foobar"
+  defmacro __using__ do
+    quote do
+      use ExUnit.Case, async: true
+      @some_attributes "foobar"
     end
   end
 end
 
 defmodule FooTest do
-	use TestWrapper
+  use TestWrapper
 
   test "the truth" do
     1 + 1 == 2
@@ -139,4 +139,3 @@ end
 Usually a module shouldnt be required before usage, unless youre calling macros from it.
 A common example of this is `IEx` and `IEx.pry`.
 `require/2` accepts an `as:` option to automatically set up an alias, as well.
-
