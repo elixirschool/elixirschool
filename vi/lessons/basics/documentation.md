@@ -6,36 +6,37 @@ order: 11
 lang: vi
 ---
 
-Documenting Elixir code.
+Viết tài liệu cho code Elixir
 
 {% include toc.html %}
 
 ## Annotation
 
-How much we comment and what makes quality documentation remains a contentious issue within the programming world. However, we can all agree that documentation is important for ourselves and those working with our codebase.
+Chúng ta nên comment nhiều ra sao, và điều gì làm nên các tài liệu chất lượng là một vấn đề gây tranh cãi trong thế giới lập trình. Tuy nhiên, tất cả chúng ta có thể đồng ý là tài liệu rất quan trọng với chúng ta và những người cùng làm việc trên code base do chúng ta viết.
 
-Elixir treats documentation as a *first-class citizen*, offering various functions to access and generate documentation for your projects. The Elixir core provides us with many different attributes to annotate a codebase. Let's look at 3 ways:
+Elixir coi tài liệu là *công dân hạng nhất*, và đưa ra rất nhiều chức năng để có thể truy cập và sinh ra tài liệu cho các dự án. Elixir core cung cấp cho chúng ta nhiều thuộc tính khác nhau để có thể đánh dấu vào trong trong code. Hãy cùng xem xét 3 cách dưới đây:
 
-  - `#` - For inline documentation.
-  - `@moduledoc` - For module-level documentation.
-  - `@doc` - For function-level documentation.
+  - `#` - Viết tài liệu inline (ở mức từng dòng code)
+  - `@moduledoc` - Viết tài liệu ở mức module.
+  - `@doc` - Viết tài liệu ở mức function/macro.
 
 ### Inline Documentation
 
-Probably the simplest way to comment your code is with inline comments. Similar to Ruby or Python, Elixir's inline comment is denoted with a `#`, frequently known as a *pound*, or a *hash* depending on where you are from in the world.
+Có lẽ cách đơn giản nhất để comment code là dùng inline comment. Giống như Python hoặc Ruby, inline comment trong Elixir được bắt đầu với một ký tự `#`, thường được gọi là một *pound*, hoặc một *hash* phụ thuộc vào nơi bạn sống.
 
-Take this Elixir Script (greeting.exs):
+Ví dụ:
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
 IO.puts "Hello, " <> "chum."
 ```
 
-Elixir, when running this script will ignore everything from `#` to the end of the line, treating it as throw away data. It may add no value to the operation or performance of the script, however when it's not so obvious what is happening a programmer should know from reading your comment. Be mindful not to abuse the single line comment! Littering a codebase could become an unwelcome nightmare for some. It is best used in moderation.
+Elixir khi chạy đoạn script trên sẽ bỏ qua tất cả những đoạn code trong dòng bắt đầu từ `#`, coi chúng như là những dữ liệu được bỏ đi. Inline comment không thêm bất cứ giá trị nào vào hoạt động của đoạn script, tuy nhiên khi mà đoạn code bạn viết không thể hiện rõ những gì nó chạy, lập trình viên có thể biết thông qua việc đọc comment của bạn. Tuy nhiên, không nên lạm dụng inline comment. Comment bừa bãi có thể khiến codebase trở thành ác mộng. Nó nên được sử dụng tốt nhất trong chừng mực.
+
 
 ### Documenting Modules
 
-The `@moduledoc` annotator allows for inline documentation at a module level. It typically sits just under the `defmodule` declaration at the top of a file. The below example shows a one line comment within the `@moduledoc` decorator.
+`@moduledoc` được dùng để có thể tài liệu hoá mở mức module. Nó thường nằm ngay dưới dòng định nghĩa module `defmodule` ở đầu file. Ví dụ dưới đây mô tả comment một dòng trong `@moduledoc`.
 
 ```elixir
 defmodule Greeter do
@@ -49,7 +50,7 @@ defmodule Greeter do
 end
 ```
 
-We (or others) can access this module documentation using the `h` helper function within IEx.
+Chúng ta (hoặc những người khác) có thể truy cập vào tài liệu của module sử dụng hàm `h` trong IEx.
 
 ```elixir
 iex> c("greeter.ex")
@@ -64,7 +65,8 @@ Provides a function hello/1 to greet a human
 
 ### Documenting Functions
 
-Just as Elixir gives us the ability for module level annotation, it also enables similar annotations for documenting functions. The `@doc` annotator allows for inline documentation at a function level. The `@doc` annotator sits just above the function it is annotating.
+Elixir ngoài việc cho chúng ta khả năng viết tài liệu ở mức module, còn cho phép chúng ta viết tài liệu ở mức hàm. `@doc` được sử dụng để mô tả tài liệu cho từng hàm hoặc macro. `@doc` thường nằm ngay trên hàm mà nó muốn mô tả.
+
 
 ```elixir
 defmodule Greeter do
@@ -95,7 +97,7 @@ defmodule Greeter do
 end
 ```
 
-If we kick into IEx again and use the helper command (`h`) on the function prepended with the module name, we should see the following.
+Nếu chúng ta vào IEx lần nữa, và sử dụng lệnh `h` trên một hàm trong module, chúng ta có thể thấy:
 
 ```elixir
 iex> c("greeter.ex")
@@ -122,11 +124,11 @@ Examples
 iex>
 ```
 
-Notice how you can use markup within our documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
+Chú ý cách bạn có thể sử dụng markup trong tài liệu, và cách mà terminal hiển thị nó. Bên cách việc trở nên rất xịn và hữu dụng trong hệ sinh thái của Elixir, nó càng hấp dẫn hơn khi chúng ta xem xét các mà ExDoc sinh ra tài liệu HTML.
 
 ## ExDoc
 
-ExDoc is an official Elixir project that **produces HTML (HyperText Markup Language and online documentation for Elixir projects** that can be found on [GitHub](https://github.com/elixir-lang/ex_doc). First let's create a Mix project for our application:
+ExDoc là một dự án của Elixir để **cung cấp HTML (HyperText Markup Language) và các tài liệu trực tuyến cho các dự án Elixir**, bạn có thể xem xét mã nguồn của ExDoc ở [GitHub](https://github.com/elixir-lang/ex_doc). Hãy cùng tạo một Mix project cho dự án của chúng ta:
 
 ```bash
 $ mix new greet_everyone
@@ -154,7 +156,7 @@ $ cd greet_everyone
 
 ```
 
-Now copy and paste the code from the `@doc` annotator lesson into a file called `lib/greeter.ex` and make sure everything is still working from the command line. Now that we are working within a Mix project we need to start IEx a little differently using the `iex -S mix` command sequence:
+Giờ copy và paste đoạn code từ các `@doc` annotator vào một file gọi là `lib/greeter.ex` và hãy đảm bảo là một thứ vẫn làm việc từ dòng lệnh. Bây giờ, chúng ta đang làm việc trong một Mix project, chúng ta cần khởi động IEx bằng lệnh `iex -S mix`:
 
 ```bash
 iex> h Greeter.hello
@@ -178,7 +180,7 @@ Examples
 
 ### Installing
 
-Assuming all is well, and we're seeing the output above suggests that we are ready to set up ExDoc. Within our `mix.exs` file add the two required dependencies to get started; `:earmark` and `:ex_doc`.
+Giả sử rằng tất cả mọi việc đều tốt đẹp, chúng ta sẽ thấy output như trên thông báo rằng chúng ta đã sẵn sàng để cài đặt ExDoc. Trong file `mix.exs`, chúng ta thêm 2 phụ thuộc khác để bắt đầu: `:earmark` và `:ex_doc`.
 
 ```elixir
   def deps do
@@ -187,13 +189,14 @@ Assuming all is well, and we're seeing the output above suggests that we are rea
   end
 ```
 
-We specify the `only: :dev` key-value pair as we don't want to download and compile these dependencies in a production environment. But why Earmark? Earmark is a Markdown parser for the elixir programming language that ExDoc utilizes to turn our documentation within `@moduledoc` and `@doc` to beautiful looking HTML.
+Chúng ta xác định `only: :dev` vì chúng ta không muốn phải tải và biên dịch những phụ thuộc này trên môi trường production. Nhưng Earmakr là cái gì? Earmark là một một bộ parser Markdown cho ngôn ngữ Elixir mà ExDoc sử dụng để biến tài liệu trong `@moduledoc` và `@doc` thành những HTML đẹp đẽ.
 
-It is worth noting at this point, that you are not forced to use Earmark. You can change the markup tool to others such as Pandoc, Hoedown or Cmark; however you will need to do a little more configuration which you can read about [here](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). For this tutorial, we'll just stick with Earmark.
+Cần chú ý ở điểm này, bạn không bắt buộc phải sử dụng Earmark. Bạn có thể thay đổi công cụ markup với các tool khác như Pandoc, Hoedown, hoặc là Cmark, tuy nhiên bạn sẽ phải cấu hình thêm một số thứ khác, có thể đọc thêm về điều này ở [đây](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Trong bài viết này, chúng ta vẫn sẽ chỉ sử dụng Earmark.
+
 
 ### Generating Documentation
 
-Carrying on, from the command line run the following two commands:
+Chạy tiếp từ dòng lệnh 2 lệnh sau:
 
 ```bash
 $ mix deps.get # gets ExDoc + Earmark.
@@ -203,21 +206,21 @@ Docs successfully generated.
 View them at "doc/index.html".
 ```
 
-Hopefully, if everything went to plan, you should see a similar message as to the output message in the above example. Let's now look inside our Mix project and we should see that there is another directory called **doc/**. Inside is our generated documentation. If we visit the index page in our browser we should see the following:
+Hy vọng rằng, mọi thứ vẫn như kế hoạch, bạn có thể thấy những nội dung tương tự như ví dụ ở trên. Hãy cùng xem xét ở bên trong dự án Mix của chúng ta, và chúng ta sẽ thấy một thư mục được tạo ở gọi là **doc/**. Trong thư mục này chính là các tài liệu được sinh ra. Nếu chúng ta mở trang index bằng trình duyệt, chúng ta có thể thấy:
 
 ![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
 
-We can see that Earmark has rendered our markdown and ExDoc is now displaying it in a useful format.
+Chúng ta thấy Earmark đã hiển thị markdown, và ExDoc dưới định khác tốt hơn.
 
 ![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
 
-We can now deploy this to GitHub, our own website, more commonly [HexDocs](https://hexdocs.pm/).
+Giờ đây chúng ta có thể triển khai dự án này lên Github, hoặc phổ biến hơn là [HexDocs](https://hexdocs.pm/).
 
 ## Best Practice
 
-Adding documentation should be added within the Best practices guidelines of the language. Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows. The community, however, has made efforts to establish best practices. To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
+Việc thêm tài liệu nên được nằm trong hướng dẫn về Best practices của một ngôn ngữ. Từ việc Elixir là một ngôn ngữ còn khá non trẻ, rất nhiều chuẩn còn đang được khai phá, cũng như hệ sinh thái đang phát triển. Tuy nhiên, công đồng đã nỗ lực để có thể tạo ra những Best Practice. Để đọc thêm về những Best Practice, có thể xem [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
-  - Always document a module.
+  - Luôn luôn viết tài liệu cho một module
 
 ```elixir
 defmodule Greeter do
@@ -228,7 +231,7 @@ defmodule Greeter do
 end
 ```
 
-  - If you do not intend to document a module, **do not** leave it blank. Consider annotating the module `false` as so:
+  - Nếu bạn không muốn viết tài liệu cho một module, đừng để trông nó, lúc đó, có thể sử dụng `false` như sau:
 
 ```elixir
 defmodule Greeter do
@@ -237,7 +240,7 @@ defmodule Greeter do
 end
 ```
 
- - When referring to functions within module documentation, use backticks like so:
+ - Khi muốn trỏ tới một hàm trong module, có thể sử dụng dấu `\`` như sau:
 
 ```elixir
 defmodule Greeter do
@@ -253,7 +256,7 @@ defmodule Greeter do
 end
 ```
 
- - Separate any and all code one line under the `@moduledoc` as so:
+ - Phân tách tất cả các code một dòng trong `@moduledoc` như sau:
 
 ```elixir
 defmodule Greeter do
@@ -272,7 +275,7 @@ defmodule Greeter do
 end
 ```
 
- - Use markdown within functions that will make it easier to read either via IEx or ExDoc.
+ - Sử dụng markdown trong các tài liệu sẽ làm nó dễ đọc hơn qua IEx và ExDoc.
 
 ```elixir
 defmodule Greeter do
@@ -303,6 +306,6 @@ defmodule Greeter do
 end
 ```
 
- - Try to include some code examples in your documentation, this also allows you to generate automatic tests from the code examples found in a module, function or macro with [ExUnit.DocTest][]. In order to do that, one needs to invoke the `doctest/1` macro from their test case and write their examples according to some guidelines, which are detailed in the [official documentation][ExUnit.DocTest]
+ - Cố gắng thêm một vài code ví dụ vào trong tài liệu của bạn, nó cũng cho phép bạn có thể sinh ra các test tự động từ code ví dụ tìm thấy trong module, hàm hoặc là macro với [ExUnit.DocTest][]. Để làm điều đó, bạn sẽ cần phải gọi tới `doctest/1` macro trong file test, và viết các ví dụ tuân theo một vài hướng dẫn, chi tiết được mô tả trong [tài liệu chuẩn][ExUnit.DocTest]
 
 [ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
