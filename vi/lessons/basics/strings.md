@@ -6,26 +6,26 @@ order: 14
 lang: vi
 ---
 
-Strings, Char Lists, Graphemes and Codepoints.
+String, Chuỗi kí tự (Char List), Chữ cái (Graphemes) và Codepoints.
 
 {% include toc.html %}
 
 ## Strings
 
-Elixir strings are nothing but a sequence of bytes. Let's look at an example:
+String trong Elixir đơn giản là một chuỗi các byte. Ví dụ như:
 
 ```elixir
 iex> string = <<104,101,108,108,111>>
 "hello"
 ```
 
->NOTE: Using << >> syntax we are saying to the compiler that the elements inside those symbols are bytes.
+>NOTE: Khi dùng cú pháp << >>, chúng ta đang khai báo cho trình biên dịch biết rằng những thành phần bên trong << >> là các byte.
 
-## Char Lists
+## Chuỗi kí tự (Char Lists)
 
-Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters. Elixir also has a char list type (character list). Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
+String bên trong Elixir được biểu diễn với một chuỗi các byte hơn là một dãy (array) các kí tự. Elixir cũng có một kiểu dữ liệu **khác** dành cho chuỗi kí tự. String của Elixir được bọc trong dấu ngoặc kép, trong khi chuỗi kí tự được bọc trong dấu ngoặc đơn.
 
-What's the difference? Each value from a char list is the ASCII value from the character. Let's dig in:
+Chúng khác nhau như thế nào? Mỗi giá trị trong chuỗi kí tự là giá trị ASCII của kí tự đó. Ta hãy đi sâu vào một chút:
 
 ```elixir
 iex> char_list = 'hello'
@@ -41,13 +41,13 @@ iex> Enum.reduce(char_list, "", fn char, acc -> acc <> to_string(char) <> "," en
 "104,101,108,108,111,"
 ```
 
-When programming in Elixir, we usually use Strings, not char lists. The char lists support is mainly included because it is required for some Erlang modules.
+Khi lập trình với Elixir, ta thường dùng String mà không phải chuỗi kí tự. Chuỗi kí tự được hỗ trợ chủ yếu vì một số Erlang module cần có nó.
 
-## Graphemes and Codepoints
+## Graphemes và Codepoints
 
-Codepoints are just simple Unicode characters which are represented by one or more bytes, depending on the UTF-8 encoding. Characters outside of the US ASCII character set will always encode as more than one byte. For example, Latin characters with a tilde or accents (`á, ñ, è`) are typically encoded as two bytes. Characters from Asian languages are often encoded as three or four bytes. Graphemes consist of multiple codepoints that are rendered as a single character.
+Codepoints đơn giản chỉ là những kí tự Unicode mà được biểu diễn bằng một hoặc nhiều byte, tùy vào định dạng UTF-8. Các kí tự không thuộc tập US ASCII luôn luôn được định dạng nhiều hơn một byte. Ví dụ như kí tự Latin có dấu như (`á`, `è`, `ô`) thường được định dạng hai byte. Kí tự của các ngôn ngữ Châu Á cũng thường được định dạng ba hoặc bốn byte. Grapheme bao gồm nhiều codepoints được hiển thị ra như là một kí tự.
 
-The String module already provides two methods to obtain them, `graphemes/1` and `codepoints/1`. Let's look at an example:
+String module cung cấp hai phương thức để lấy chúng là `graphemes/1` and `codepoints/1`. Chúng ta cũng xem ví dụ:
 
 ```elixir
 iex> string = "\u0061\u0301"
@@ -60,13 +60,13 @@ iex> String.graphemes string
 ["á"]
 ```
 
-## String Functions
+## Các hàm của String
 
-Let's review some of the most important and useful functions of the String module. This lesson will only cover a subset of the available functions. To see a complete set of functions visit the official [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) docs.
+Chúng ta hãy cùng xem qua một số hàm quan trọng và hữu ích nhất của String module. Bài này chỉ đề cập một số các hàm có sẵn. Các bạn có thể xem đầy đủ tại tài liệu chính thức [`String`](http://elixir-lang.org/docs/stable/elixir/String.html).
 
 ### `length/1`
 
-Returns the number of Graphemes in the string.
+Trả về số Grapheme trong string.
 
 ```elixir
 iex> String.length "Hello"
@@ -75,7 +75,7 @@ iex> String.length "Hello"
 
 ### `replace/3`
 
-Returns a new string replacing a current pattern in the string with some new replacement string.
+Trả về một string mới với các mẫu trùng đã được thay thế.
 
 ```elixir
 iex> String.replace("Hello", "e", "a")
@@ -84,7 +84,7 @@ iex> String.replace("Hello", "e", "a")
 
 ### `duplicate/2`
 
-Returns a new string repeated n times.
+Trả về một string mới được lặp lại n lần.
 
 ```elixir
 iex> String.duplicate("Oh my ", 3)
@@ -93,27 +93,27 @@ iex> String.duplicate("Oh my ", 3)
 
 ### `split/2`
 
-Returns a list of strings split by a pattern.
+Tách chuỗi được ngăn cách bởi một mẫu nào đó.
 
 ```elixir
 iex> String.split("Hello World", " ")
 ["Hello", "World"]
 ```
 
-## Exercises
+## Bài tập
 
-Let's walk through a simple exercises to demonstrate we are ready to go with Strings!
+Ta hãy cùng lướt qua một số bài tập để xem liệu mình đã sẵn sàng với String!
 
 ### Anagrams
 
-A and B are considered anagrams if there's a way to rearrange A or B making them equal. For example:
+A và B được xem là anagram nếu có một sách sắp xếp A hoặc B sao cho chúng giống nhau. Ví dụ:
 
 + A = super
 + B = perus
 
-If we re-arrange the characters on String A, we can get the string B, and vice versa.
+Nếu chúng ta hoán đổi vị trí các kí tự của String A, chúng ta có string B, và ngược lại.
 
-So, how could we check if two strings are Anagrams in Elixir?  The easiest solution is to just sort the graphemes of each string alphabetically and then check if they both lists are equal. Let's try that:
+Vậy làm sao để chúng ta kiểu tra hai chuỗi có là anagram trong Elixir? Cách đơn giản nhất là sắp xếp các chữ cái của từng string theo thứ tự ABC và sau đó kiểm tra liệu chúng có giống nhau. Thử xem nào:
 
 ```elixir
 defmodule Anagram do
@@ -130,11 +130,11 @@ defmodule Anagram do
 end
 ```
 
-Let's first give a watch to `anagrams?/2`. We are checking whether the parameters we are receiving are binaries or not. That's the way we check if a parameter is a String in Elixir.
+Với `anagrams?/2`, ta sẽ kiểm tra tham số ta nhận được có phải binaries hay không. Đây là cách mà chúng ta kiểm tra một tham số có là String trong Elixir.
 
-After it, we are just calling a function that orders the strings in alphabetical order, first doing the string lowercase and then using `String.graphemes`, which returns a list with the Graphemes of the string. Pretty straight, right?
+Sau đó chúng ta sẽ gọi hàm sắp sếp chuỗi theo thứ tự ABC, trước hết ta sẽ biến string thành kiểu viết thường và sau đó dùng `String.graphemes` để trả về danh sách chữ cái của string. Cũng đơn giản mà chứ nhỉ?
 
-Let's check the output on iex:
+Chúng ta cũng kiểm tra kết quả trên iex:
 
 ```elixir
 iex> Anagram.anagrams?("Hello", "ohell")
@@ -148,4 +148,4 @@ iex> Anagram.anagrams?(3, 5)
     iex:2: Anagram.anagrams?(3, 5)
 ```
 
-As you can see, the last call to `anagrams?` caused a FunctionClauseError. This error is telling us that there is no function in our module that meets the pattern of receiving two non-binary arguments, and that's exactly what we want, to just receive two strings, and nothing more.
+Như bạn thấy, lần gọi cuối cùng của `anagrams?` văng lỗi FunctionClauseError. Lỗi này có nghĩa là không có hàm trong module của chúng ta thỏa điều kiện hai tham số không phải binary, đó chính là thứ mà ta cần: chỉ nhận hai string mà không phải thứ gì khác.
