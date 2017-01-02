@@ -13,7 +13,7 @@ List comprehension là một cú pháp hỗ trợ việc lặp qua các phần t
 
 ## Cơ bản
 
-Comprehension thường được dùng để cung cấp các lời gọi ngắn gọi cho `Enum` và `Stream`. Hãy cùng bắt đầu với việc xem cách sử dụng comprehension đơn giản, rồi sau đó sẽ chia nhỏ nó:
+Comprehension thường được dùng để cung cấp các lời gọi ngắn gọn cho `Enum` và `Stream`. Hãy cùng bắt đầu với việc xem cách sử dụng comprehension đơn giản, rồi sau đó sẽ chia nhỏ nó:
 
 
 ```elixir
