@@ -1,126 +1,195 @@
 ---
 layout: page
-title: Control Structures
+title: Cấu trúc điều khiển
 category: basics
 order: 5
 lang: vi
 ---
 
-In this lesson we will look at the control structures available to us in Elixir.
+Trong bài này ta sẽ xem qua các loại cấu trúc điều khiểu có sẵn trong Elixir.
 
 {% include toc.html %}
 
-## `if` and `unless`
+## `if` và `unless`
 
-Chances are you've encountered `if/2` before, and if you've used Ruby you're familiar with `unless/2`.  In Elixir they work much the same way but they are defined as macros, not language constructs; You can find their implementation in the [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Hẳn là bạn đã từng biết đến `if/2` trước đây, và nếu bạn từng sử dụng Ruby hẳn bạn cũng chẳng lạ gì `unless/2`. Trong Elixir chúng vẫn được xử lý như thế nhưng khác ở chỗ chúng được định nghĩa như là marco, không phải cấu trúc ngôn ngữ. Bạn có thể xem cách cài đặt chúng tại [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
 
-It should be noted that in Elixir, the only falsey values are `nil` and the boolean `false`.
+Chú ý là trong Elixir, giá trị mang tính phủ định là `nil` và boolean `false`.
 
 ```elixir
-iex> if String.valid?("Hello") do
-...>   "Valid string!"
+iex> if String.valid?("Xin chào!") do
+...>   "Chuỗi hợp lệ!"
 ...> else
-...>   "Invalid string."
+...>   "Chuỗi không hợp lệ."
 ...> end
-"Valid string!"
+"Chuỗi hợp lệ!"
 
-iex> if "a string value" do
-...>   "Truthy"
+iex> if "một giá trị chuỗi" do
+...>   "Chuẩn quá!"
 ...> end
-"Truthy"
+"Chuẩn quá!"
 ```
 
-Using `unless/2` is like `if/2` only it works on the negative:
+`unless/2` cũng được dùng giống như `if/2`, chỉ khác là nó xử lý ngược lại:
 
 ```elixir
-iex> unless is_integer("hello") do
-...>   "Not an Int"
+iex> unless is_integer("xin chào") do
+...>   "Không phải Int"
 ...> end
-"Not an Int"
+"Không phải Int"
 ```
 
 ## `case`
 
-If it's necessary to match against multiple patterns we can use `case`:
+Nếu cần thiết phải so trùng (match) nhiều mẫu (pattern) ta có thể dùng case:
 
 ```elixir
-iex> case {:ok, "Hello World"} do
+iex> case {:ok, "Xin chào!"} do
 ...>   {:ok, result} -> result
-...>   {:error} -> "Uh oh!"
-...>   _ -> "Catch all"
+...>   {:error} -> "Úi chà!"
+...>   _ -> "Cân hết."
 ...> end
-"Hello World"
+"Xin chào"
 ```
 
-The `_` variable is an important inclusion in `case` statements. Without it failure to find a match will raise an error:
+Việc bao gồm biến `_` là một phần quan trong mệnh đề `case`. Không có nó Elixir sẽ văng lỗi nếu không tìm thấy mẫu trùng khớp:
 
 ```elixir
-iex> case :even do
-...>   :odd -> "Odd"
+iex> case :cam do
+...>   :chanh -> "Chanh"
 ...> end
-** (CaseClauseError) no case clause matching: :even
+** (CaseClauseError) no case clause matching: :cam
 
-iex> case :even do
-...>   :odd -> "Odd"
-...>   _ -> "Not Odd"
+iex> case :cam do
+...>   :chanh -> "Chanh"
+...>   _ -> "Không phải chanh"
 ...> end
-"Not Odd"
+"Không phải chanh"
 ```
 
-Consider `_` as the `else` that will match "everything else".
-Since `case` relies on pattern matching, all of the same rules and restrictions apply.  If you intend to match against existing variables you must use the pin `^` operator:
+Có thể xem `_` như là `else`, nó sẽ khớp với mọi trường hợp ngoại lệ.
+Vì `case` phụ thuộc vào pattern matching nên nó cũng có tất cả những luật và hạn chế tương tự. Nếu bạn muốn so trùng một biến đã tồn tại bạn phải dùng toán tử pin `^`:
 
 ```elixir
-iex> pie = 3.14
-3.14
-iex> case "cherry pie" do
-...>   ^pie -> "Not so tasty"
-...>   pie -> "I bet #{pie} is tasty"
+iex> sauce = "nước tương"
+"nước tương"
+iex> case "mắm tôm" do
+...>   ^sauce -> "Không ngon lắm"
+...>   sauce -> "#{sauce} ngon tuyệt"
 ...> end
-"I bet cherry pie is tasty"
+"mắm tôm ngon tuyệt"
 ```
 
-Another neat feature of `case` is its support for guard clauses:
+Một tính năng hay của `case` là nó hỗ trợ mệnh đề guard (guard clause):
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) guide._
+_Ví dụ này được dẫn trực tiếp từ trang chủ của Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) guide._
 
 ```elixir
 iex> case {1, 2, 3} do
 ...>   {1, x, 3} when x > 0 ->
-...>     "Will match"
+...>     "Trùng"
 ...>   _ ->
-...>     "Won't match"
+...>     "Không trùng"
 ...> end
-"Will match"
+"Trùng"
 ```
 
-Check the official docs for [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Xem tài liệu tại trang chủ về [Biểu thức hợp lệ trong mệnh đề guard](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
 
 
 ## `cond`
 
-When we need to match conditions, and not values, we can turn to `cond`; this is akin to `else if` or `elsif` from other languages:
+Khi chúng ta cần so trùng điều kiện mà không phải giá trị, chúng ta chuyển sang dùng `cond`. Nó giống với `else if` hay `elsif` của các ngôn ngữ khác:
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
+_Ví dụ này được dẫn trực tiếp từ trang chủ của Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
 
 ```elixir
 iex> cond do
 ...>   2 + 2 == 5 ->
-...>     "This will not be true"
+...>     "Điều này không bao giờ đúng"
 ...>   2 * 2 == 3 ->
-...>     "Nor this"
+...>     "Điều này cũng không"
 ...>   1 + 1 == 2 ->
-...>     "But this will"
+...>     "Nhưng điều này thì chuẩn không cần chỉnh"
 ...> end
-"But this will"
+"Nhưng điều này thì chuẩn không cần chỉnh"
 ```
 
-Like `case`, `cond` will raise an error if there is no match.  To handle this, we can define a condition set to `true`:
+Giống như `case`, `cond` cũng sẽ văng lỗi nếu không có mẫu trùng khớp. Để xử lý chuyện này, chúng ta định nghĩa ra một điều kiện là `true`
 
 ```elixir
 iex> cond do
-...>   7 + 1 == 0 -> "Incorrect"
-...>   true -> "Catch all"
+...>   7 + 1 == 0 -> "Không đúng"
+...>   true -> "Luôn đúng"
 ...> end
-"Catch all"
+"Luôn đúng"
 ```
+
+## `with`
+
+`with` được dùng khi bạn muốn sử dụng một mệnh đề `case` lồng ghép hay những trường hợp không thể nó không thể kết nối lại một cách trơn tru được. Biểu thức `with` là sự kết hợp của từ khóa, generators và cuối cùng là một biểu thức.
+
+Chúng ta sẽ xem thêm về generators ở bài List Comprehensions but bây giờ ta chỉ cần biết là chúng dùng pattern matching để so sánh biểu thức bên phải với biểu thức bên trái (cách nhau bởi dấu `<-`)
+
+Chúng ta sẽ bắt đầu mới một ví dụ về `with`, sau đó xem qua các thứ khác:
+
+```elixir
+iex> user = %{first: "Sean", last: "Callan"}
+%{first: "Sean", last: "Callan"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+"Callan, Sean"
+```
+
+Trường hợp mà một biểu thức không thể match được, giá trị không match được sẽ được trả về.
+
+```elixir
+iex> user = %{first: "doomspork"}
+%{first: "doomspork"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+:error
+```
+
+Chúng ta xem qua về một ví dụ không dùng `with` và sau đó là cách refactor nó:
+
+```elixir
+case Repo.insert(changeset) do
+  {:ok, user} ->
+    case Guardian.encode_and_sign(resource, :token, claims) do
+      {:ok, jwt, full_claims} ->
+        important_stuff(jwt, full_claims)
+      error -> error
+    end
+  error -> error
+end
+```
+
+Khi chúng ta dùng `with`, code sẽ dễ đọc hơn và có ít dòng hơn:
+
+```elixir
+with
+  {:ok, user} <- Repo.insert(changeset),
+  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+  do: important_stuff(jwt, full_claims)
+```
+
+Với Elixir 1.3, biểu thức `with` bắt đầu hỗ trợ `else`:
+
+```elixir
+import Integer
+
+m = %{a: 1, c: 3}
+
+a = with {:ok, res} <- Map.fetch(m, :a),
+  true <- Integer.is_even(res) do
+    IO.puts "Divided by 2 it is #{div(res, 2)}"
+else
+  :error -> IO.puts "We don't have this item in map"
+  _ -> IO.puts "It's not odd"
+end
+```
+
+Nó giúp việc xử lý lỗi dễ hơn bằng cách dùng pattern matching kiểu `case`. Giá trị truyền vào sẽ là biểu thức không match đầu tiên.
