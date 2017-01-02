@@ -91,7 +91,7 @@ iex> OurMacro.unless false, do: "Hi"
 "Hi"
 ```
 
-Bởi vì macro thay thế code trong ứng dụng, chúng ta có thể điều khiển khi nào và cái gì sẽ được biên dịch. Một ví dụ cho chuyện này có thể tìm thấy trong `Logger` module. Khi logging bị tắt đi, sẽ không có đoạn code nào được chèn thêm vào, và kết quả là ứng dụng sẽ không chứa bất cứ tham chiếu hoặc lời gọi nào để log. Đây chính là điểm khác biệệt với các ngôn ngữ khác, khi mà vẫn có một vài chi phí cho lời gọi hàm thậm chí khi mà việc cài đặt là không cần đến nó.
+Bởi vì macro thay thế code trong ứng dụng, chúng ta có thể điều khiển khi nào và cái gì sẽ được biên dịch. Một ví dụ cho chuyện này có thể tìm thấy trong `Logger` module. Khi logging bị tắt đi, sẽ không có đoạn code nào được chèn thêm vào, và kết quả là ứng dụng sẽ không chứa bất cứ tham chiếu hoặc lời gọi nào để log. Đây chính là điểm khác biệt với các ngôn ngữ khác, khi mà vẫn có một vài chi phí cho lời gọi hàm thậm chí khi mà việc cài đặt là không cần đến nó.
 
 Để mô tả, chúng ta sẽ tạo ra một logger đơn giá có thể tắt hoặc bật:
 
@@ -233,7 +233,7 @@ iex> val
 -1
 ```
 
-Bằng cách thêm vào `var!/2` trong macro `unhygienic`, chúng ta đã có thể thay đổi giá trị của biến `val` mà không cần truyền nó vào trong macro. Việc sử dụng các macro "nhiểm khuẩn" như trên nên được hạn chế. Việc sử dụng `var!/2` đã làm tăng thêm rủi ro cho xung đột khi phân giải các biến.
+Bằng cách thêm vào `var!/2` trong macro `unhygienic`, chúng ta đã có thể thay đổi giá trị của biến `val` mà không cần truyền nó vào trong macro. Việc sử dụng các macro "nhiễm khuẩn" như trên nên được hạn chế. Việc sử dụng `var!/2` đã làm tăng thêm rủi ro cho xung đột khi phân giải các biến.
 
 ### Binding
 
