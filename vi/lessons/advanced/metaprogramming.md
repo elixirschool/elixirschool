@@ -14,7 +14,7 @@ Cảnh báo: Metaprogramming khá là khó hiểu, và chỉ nên sử dụng kh
 
 ## Quote
 
-Bước đầu tiên của metaprograming đó là hiểu cách mà các biểu thức được biểu diễn. Trong Elixir, cây cú pháp (AST), dạng biểu diễn nội tại cho code của chúng ta, được tạo bởi các tuple. Những tuple này chứa ba thành phần: tên hàm, metadata, và các tham số của hàm.
+Bước đầu tiên của metaprogramming đó là hiểu cách mà các biểu thức được biểu diễn. Trong Elixir, cây cú pháp (AST), dạng biểu diễn nội tại cho code của chúng ta, được tạo bởi các tuple. Những tuple này chứa ba thành phần: tên hàm, metadata, và các tham số của hàm.
 
 Để xem các cấu trúc nội tại này, Elixir cung cấp hàm `quote/2`. Sử dụng `quote/2`, chúng ta có thể chuyển code Elixir về dạng biểu diễn bên dưới của nó:
 
@@ -64,7 +64,7 @@ Trong ví dụ đầu tiên, biến `denominator` bị quote, do đó kết qu�
 
 ## Macros
 
-Khi chúng ta đã hiểu `quote/2` và `unquote/1`, chúng ta sẵn sàng để học thêm về macro. Cần nhớ rằng macro, cũng như metaprograming, nên được sử dụng một cách chọn lọc.
+Khi chúng ta đã hiểu `quote/2` và `unquote/1`, chúng ta sẵn sàng để học thêm về macro. Cần nhớ rằng macro, cũng như metaprogramming, nên được sử dụng một cách chọn lọc.
 
 Nói một cách đơn giản nhất, macro là các hàm đặc biệt được thiết kế để trả về các biểu thức đã bị quote, và các biểu thức đó sẽ được chèn vào code ứng dụng. Tưởng tượng, macro sẽ được thay thế bằng một biểu thức bị quote thay vì gọi như một hàm. Với macro, chúng ta có tất cả những gì cần thiết để mở rộng Elixir và có thể thêm các đoạn code động vào trong ứng dụng.
 
@@ -91,7 +91,7 @@ iex> OurMacro.unless false, do: "Hi"
 "Hi"
 ```
 
-Bởi vì macro thay thế code trong ứng dụng, chúng ta có thể điều khiển khi nào và cái gì sẽ được biên dịch. Một ví dụ cho chuyện này có thể tìm thấy trong `Logger` module. Khi logging bị tắt đi, sẽ không có đoạn code nào được chèn thêm vào, và kết quả là ứng dụng sẽ không chứa bất cứ tham chiếu hoặc lời gọi nào để log. Đây chính là điểm khác biết với các ngôn ngữ khác, khi mà vẫn có một vài chi phí cho lời gọi hàm thậm chí khi mà việc cài đặt là không cần đến nó.
+Bởi vì macro thay thế code trong ứng dụng, chúng ta có thể điều khiển khi nào và cái gì sẽ được biên dịch. Một ví dụ cho chuyện này có thể tìm thấy trong `Logger` module. Khi logging bị tắt đi, sẽ không có đoạn code nào được chèn thêm vào, và kết quả là ứng dụng sẽ không chứa bất cứ tham chiếu hoặc lời gọi nào để log. Đây chính là điểm khác biệệt với các ngôn ngữ khác, khi mà vẫn có một vài chi phí cho lời gọi hàm thậm chí khi mà việc cài đặt là không cần đến nó.
 
 Để mô tả, chúng ta sẽ tạo ra một logger đơn giá có thể tắt hoặc bật:
 
