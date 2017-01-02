@@ -6,13 +6,14 @@ order: 13
 lang: vi
 ---
 
-List comprehensions are syntactic sugar for looping through enumerables in Elixir.  In this lesson we'll look at how we can use comprehensions for iteration and generation.
+List comprehension là một cú pháp hỗ trợ việc lặp qua các phần tử trong Elixir. Trong bài này, chúng ta sẽ cùng xem cách sử dụng comprehension cho iteration và generation.
 
 {% include toc.html %}
 
-## Basics
+## Cơ bản
 
-Often times comprehensions can be used to produce more concise statements for `Enum` and `Stream` iteration.  Let's start by looking at a simple comprehension and then break it down:
+Comprehension thường được dùng để cung cấp các lời gọi ngắn gọn cho `Enum` và `Stream`. Hãy cùng bắt đầu với việc xem cách sử dụng comprehension đơn giản, rồi sau đó sẽ chia nhỏ nó:
+
 
 ```elixir
 iex> list = [1, 2, 3, 4, 5]
@@ -20,9 +21,9 @@ iex> for x <- list, do: x*x
 [1, 4, 9, 16, 25]
 ```
 
-The first thing we notice is the use of `for` and a generator.  What is a generator?  Generators are the `x <- [1, 2, 3, 4]` expressions found in list comprehensions.  They're responsible for generating the next value.
+Điều đầu tiên chúng ta chú ý đó là việc sử dụng `for` và một generator. Generator là gì? Generator là biểu thức `x <- [1, 2, 3, 4]` được sử dụng trong list comprehension. Chúng chịu trách nhiệm cho việc sinh ra giá trị tiếp theo.
 
-Lucky for us, comprehensions aren't limited to lists; in fact they'll work with any enumerable:
+May mắn cho chúng ta, comprehension không chỉ bị giới hạn trong các list, thực tế chúng có thể làm việc với bất cứ kiểu enumerable nào:
 
 ```elixir
 # Keyword Lists
@@ -38,14 +39,14 @@ iex> for <<c <- "hello">>, do: <<c>>
 ["h", "e", "l", "l", "o"]
 ```
 
-Like many other things in Elixir, generators rely on pattern matching to compare their input set to the left side variable.  In the event a match is not found, the value is ignored:
+Giống như rất nhiều thứ khác trong Elixir, generator dựa vào pattern matching để so sánh giá trị input với các biến bên trái. Nếu chúng không thể so trùng với nhau, các giá trị sẽ bị bỏ qua:
 
 ```elixir
 iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], do: val
 ["Hello", "World"]
 ```
 
-It's possible to use multiple generators, much like nested loops:
+Chúng ta có thể sử dụng nhiều generator, cũng như sử dụng các vòng lặp lồng nhau:
 
 ```elixir
 iex> list = [1, 2, 3, 4]
@@ -55,7 +56,7 @@ iex> for n <- list, times <- 1..n do
 ["*", "*", "**", "*", "**", "***", "*", "**", "***", "****"]
 ```
 
-To better illustrate the looping that is occurring, let's use `IO.puts` to display the two generated values:
+Để mô tả chi tiết hơn cách vòng lặp thực hiện, hãy cùng sử dung `IO.puts` để hiện thị 2 giá trị được sinh ra:
 
 ```elixir
 iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
@@ -71,11 +72,12 @@ iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 4 - 4
 ```
 
-List comprehensions are syntactic sugar and should be used only when appropriate.
+List comprehension là một cú pháp hỗ trợ, và nên được sử dụng chỉ khi cần thiết.
 
-## Filters
+## Các bộ lọc
 
-You can think of filters as a sort of guard for comprehensions.  When a filtered value returns `false` or `nil` it is excluded from the final list.  Let's loop over a range and only worry about even numbers.  We'll use the `is_even/1` function from the Integer module to check if a value is even or not.
+Bạn có thể nghĩ các bộ lọc như là các bảo vệ cho comprehension. Khi một giá trị lọc trả về `false` hoặc `nil` nó sẽ bị loại bỏ khỏi list kết quả. Hãy cùng lặp qua một khoảng, và trả về các số chẵn. Chúng ta sẽ sử dụng hàm `is_even/1` từ module Integer để kiểm tra xem một số là chẵn hay lẻ.
+
 
 ```elixir
 import Integer
@@ -83,7 +85,7 @@ iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
-Like generators, we can use multiple filters.  Let's expand our range and then filter only for values that are both even and evenly divisible by 3.
+Giống như các generator, chúng ta có thể sử dụng các bộ lọc nhiều lần. Hãy cùng mở rộng khoảng của chúng ta, và chỉ lấy các số vừa chẵn và vừa chia hết cho 3.
 
 ```elixir
 import Integer
@@ -93,22 +95,23 @@ iex> for x <- 1..100,
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
 
-## Using `:into`
+## Sử dụng `:into`
 
-What if we want to produce something other than a list?  Given the `:into` option we can do just that!  As a general rule of thumb, `:into` accepts any structure that implements the `Collectable` protocol.
+Nếu muốn cung cấp các kết quả khác thay vì chỉ một list, chúng ta sẽ sử dụng lựa chọn `:into` để làm điều đó. `:into` chấp nhận bất cứ cấu trúc nào cài đặt protocol `Collectable`.
 
-Using `:into`, let's create a map from a keyword list:
+Sử dụng `:into`, chúng ta sẽ tạo nên một map từ một keyword list:
+
 
 ```elixir
 iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-Since bitstrings are enumerable we can use list comprehensions and `:into` to create strings:
+Từ việc bitstring cũng là enumerable, chúng ta có thể sử dụng list comprehension và `:into` để tạo nên các xâu:
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-That's it!  List comprehensions are an easy way to iterate through collections in a concise manner.
+Vậy là hết chương rồi. List comprehension là một cách đơn giản để duyệt qua các bộ theo một cách ngắn gọn.
