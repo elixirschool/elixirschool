@@ -8,7 +8,6 @@ lang: vi
 
 List comprehension là một cú pháp hỗ trợ việc lặp qua các phần tử trong Elixir. Trong bài này, chúng ta sẽ cùng xem cách sử dụng comprehension cho iteration và generation.
 
-
 {% include toc.html %}
 
 ## Cơ bản
