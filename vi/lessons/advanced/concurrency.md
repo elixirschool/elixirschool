@@ -1,24 +1,25 @@
 ---
 layout: page
-title: Concurrency
+title: Xử lý đồng thời
 category: advanced
 order: 4
 lang: vi
 ---
 
-One of the selling points of Elixir is its support for concurrency. Thanks to the Erlang VM (BEAM), concurrency in Elixir is easier than expected.  The concurrency model relies on Actors, a contained process that communicates with other processes through message passing.
+Một trong những điểm nổi bật của Elixir đó là việc hỗ trợ xử lý đồng thời. Nhờ có máy ảo Erlang (BEAM), việc xử lý đồng thời trong Elixir dễ hơn rất nhiều so với mong đợi. Mô hình xử lý đồng thời dựa và Actor, một process có thể tương tác với các process khác thông qua việc truyền thông điệp.
 
-In this lesson we'll look at the concurrency modules that ship with Elixir.  In the following chapter we cover the OTP behaviors that implement them.
+Trong bài học này, chúng ta xem cách các module xử lý đồng thời làm việc trong Elixir. Trong chương kế tiếp chúng ta sẽ học về OTP, và cách cài đặt chúng.
+
 
 {% include toc.html %}
 
 ## Processes
 
-Processes in the Erlang VM are lightweight and run across all CPUs.  While they may seem like native threads, they're simpler and it's not uncommon to have thousands of concurrent processes in an Elixir application.
+Process trong máy ảo Erlang là nhẹ (nhẹ ở đây hiểu theo nghĩa nó là process được cài đặt ở không gian của người dùng, thay vì không gian của nhân hệ điều hành) và chạy trên tất cả các CPU. Trong khi chúng có vẻ như là các native thread, chúng đơn giản hơn nhiều, và khá là bình thường nếu một ứng dụng Elixir có hàng ngàn process chạy cùng nhau.
 
-The easiest way to create a new process is `spawn`, which takes either an anonymous or named function.  When we create a new process it returns a _Process Identifier_, or PID, to uniquely identify it within our application.
+Cách dễ nhất để tạo mới một process đó là `spawn`, hàm này sẽ nhận vào một hàm anonymous hoặc là một hàm có tên. Khi chúng ta tạo mới một process, nó sẽ trả về một _Process Identifier_, hoặc là PID, giá trị này là duy nhất trong ứng dụng của chúng ta.
 
-To start we'll create a module and define a function we'd like to run:
+Để bắt đầu, chúng ta sẽ tạo ra một module, và định nghĩa một hàm chúng ta muốn chạy:
 
 ```elixir
 defmodule Example do
@@ -32,7 +33,7 @@ iex> Example.add(2, 3)
 :ok
 ```
 
-To evaluate the function asynchronously we use `spawn/3`:
+Để chạy hàm này một cách bất đồng bộ, chúng ta sử dung `spawn/3`:
 
 ```elixir
 iex> spawn(Example, :add, [2, 3])
@@ -40,9 +41,9 @@ iex> spawn(Example, :add, [2, 3])
 #PID<0.80.0>
 ```
 
-### Message Passing
+### Truyền thông điệp
 
-To communicate, processes rely on message passing. There are two main components to this: `send/2` and `receive`.  The `send/2` function allows us to send messages to PIDs.  To listen we use `receive` to match messages.  If no match is found the execution continues uninterrupted.
+Để tương tác với nhau, các process dựa vào cơ chế truyền thông điệp. Có hai thành phần chính để làm chuyện này: `send/2` và `receive`. Hàm `send/2` cho phép chúng ta truyền một thông điệp tới PID. Để lắng nghe, chúng ta sử dụng `receive` và so trùng thông điệp. Nếu không có thông điệp vào được so trùng, việc hoạt động của process vẫn được tiến hành mà không bị ngưng lại.
 
 ```elixir
 defmodule Example do
@@ -66,11 +67,11 @@ iex> send pid, :ok
 :ok
 ```
 
-You may notice that the `listen/0` function is recursive, this allows our process to handle multiple messages. Without recursion our process would exit after handling the first message.
+Bạn có thể chú ý rằng hàm `listen/0` là đệ quy, điều này cho phép process của chúng ta có thể xử lý nhiều thông điệp. Nếu không có đệ quy, process sẽ bị thoát ra sau khi xử lý thông điệp đầu tiên.
 
-### Process Linking
+### Liên kết các process
 
-One problem with `spawn` is knowing when a process crashes.  For that we need to link our processes using `spawn_link`.  Two linked processes will receive exit notifications from one another:
+Một vấn đề của `spawn` đó là cần phải biết khi một process bị crash. Để làm điều này, chúng ta sẽ cần liên kết các process lại với nhau bằng hàm `spawn_link`. Hai process được liên kết với nhau sẽ nhận được thông báo khi process kia bị thoát:
 
 ```elixir
 defmodule Example do
@@ -84,7 +85,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) :kaboom
 ```
 
-Sometimes we don't want our linked process to crash the current one.  For that we need to trap the exits.  When trapping exits they will be received as a tuple message: `{:EXIT, from_pid, reason}`.
+Đôi khi, chúng ta không muốn process được liên kết làm cho process hiện tại bị crash. Vì thế chúng ta cần đánh bẫy sự thoát ra của process kia. Khi đánh bẫy sự thoát ra, chúng ta sẽ nhận được một thông điệp dạng tuple như sau: `{:EXIT, from_pid, reason}`.
 
 ```elixir
 defmodule Example do
@@ -104,9 +105,11 @@ Exit reason: kaboom
 :ok
 ```
 
-### Process Monitoring
+### Giám sát process
 
-What if we don't want to link two processes but still be kept informed? For that we can use process monitoring with `spawn_monitor`.  When we monitor a process we get a message if the process crashes without our current process crashing or needing to explicitly trap exits.
+Vậy nếu chúng ta không muốn liên kết hai process, nhưng vẫn muốn được thông báo? Trong trường hợp này, chúng ta có thể giám sát process bằng hàm `spawn_monitor`. Khi chúng ta giám sát một process, chúng ta sẽ nhận được một thông điệp nếu process bị crash mà không làm process hiện tại bị crash hoặc là cần phải đánh bẫy thoát một cách minh bạch.
+
+Khi giám sát một process, nếu process đó bị crash, process hiện tại sẽ nhận được một thông điệp dạng `{:DOWN, ref, :process, from_pid, reason}`.
 
 ```elixir
 defmodule Example do
@@ -127,7 +130,7 @@ Exit reason: kaboom
 
 ## Agents
 
-Agents are an abstraction around background processes maintaining state.  We can access them from other processes within our application and node.  The state of our Agent is set to our function's return value:
+Agents là một mức trừu tượng hoá lên các process nền để lưu giữ trạng thái. Chúng ta có thể truy cập chúng từ các process khác trong ứng dụng và các node. Trạng thái của một Agent được gán bằng giá trị trả về của hàm:
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
@@ -140,7 +143,7 @@ iex> Agent.get(agent, &(&1))
 [1, 2, 3, 4, 5]
 ```
 
-When we name an Agent we can refer to it by that instead of its PID:
+Khi chúng ta đặt tên một Agent, chúng ta có thể trỏ tới nó bằng tên thay vì PID:
 
 ```elixir
 iex> Agent.start_link(fn -> [1, 2, 3] end, name: Numbers)
@@ -152,7 +155,8 @@ iex> Agent.get(Numbers, &(&1))
 
 ## Tasks
 
-Tasks provide a way to execute a function in the background and retrieve its return value later.  They can be particularly useful when handling expensive operations without blocking the application execution.
+Tasks cung cấp một cách để chạy một hàm dưới nền, và lấy ra giá trị trả về lúc sau. Chúng có thể cực kỳ hữu dụng khi muốn xử lý các hoạt động tốn chi phí mà không làm chậm lại ứng dụng.
+
 
 ```elixir
 defmodule Example do
