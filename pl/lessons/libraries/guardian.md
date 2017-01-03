@@ -167,19 +167,18 @@ scope "/", MyApp do
 end
 ```
 
-The login routes above will have the authenticated user if there is one. The second scope ensures that there is a valid token passed for all actions.
-You don't _have_ to put them in pipelines, you could put them in your controllers for super flexible customization but we're doing a minimal setup.
+Powyższa konfiguracja dla procesu logowania pozwala na uwierzytelnienie użytkownika, jeżeli tylko istnieje. Druga z konfiguracji sprawdza, czy przesłano poprawny token. Oczywiście nie musimy używać potoków i zamiast nich dodać odpowiednie elementy bezpośrednio do kontrolerów, by uzyskać bardzo elastyczne do konfiguracji rozwiązanie, ale tu wybraliśmy najprostsze rozwiązanie.
 
-We're missing one piece so far. The error handler we added on the `EnsureAuthenticated` plug. This is a very simple module that responds to 
+Jak na razie kompletnie pominęliśmy jedną rzecz. Obsługę błędów dodaną w plugu `EnsureAuthenticated`. Jest to bardzo prosty moduł zawierający dwie funkcje: 
 
 * `unauthenticated/2`
 * `unauthorized/2`
 
-Both these functions receive a Plug.Conn struct and a params map and should handle their respective errors. You can even use a Phoenix controller!
+Obie te funkcje jako parametry otrzymują strukturę Plug.Conn oraz mapę parametrów żądania. Powinny obsłużyć odpowiedni rodzaj błędów. Innym rozwiązaniem jest użycie kontrolera z Phoenixa.  
 
-#### In the controller
+#### W kontrolerze
 
-Inside the controller, there are a couple of options for how to access the currently logged in user. Let's start with the simplest. 
+W kontrolerze mamy kilka różnych sposobów, by otrzymać informacje o aktualnie zalogowanym użytkowniku. Zacznijmy od najprostszego.  
 
 ```elixir
 defmodule MyApp.MyController do
@@ -192,9 +191,9 @@ defmodule MyApp.MyController do
 end
 ```
 
-By using the `Guardian.Phoenix.Controller` module, your actions will receive two additional arguments that you can pattern match on. Remember, if you didn't use `EnsureAuthenticated` you may have a nil user and claims.
+Używając modułu `Guardian.Phoenix.Controller`, możemy otrzymać dwa dodatkowe argumenty i wykorzystać dopasowanie wzorców. Należy jednak pamiętać, że jeżeli nie używamy `EnsureAuthenticated`, to możemy otrzymać `nil` jako użytkownika.
 
-The other - more flexible/verbose version - is to use plug helpers.
+Inną, bardziej elastyczną i bogatszą w informacje, metodą jest użycie kodu pomocniczego dla plugów.
 
 ```elixir
 defmodule MyApp.MyController do
@@ -210,9 +209,9 @@ defmodule MyApp.MyController do
 end
 ```
 
-#### Login/Logout
+#### Logowanie i wylogowanie
 
-Logging in and out of a browser session is very simple. In your login controller:
+Zalogowanie i wylogowanie z wykorzystaniem sesji przeglądarki jest banalnie proste. Kod kontrolera służącego do zalogowania:
 
 ```elixir
 def create(conn, params) do
@@ -233,8 +232,7 @@ def delete(conn, params) do
 end
 ```
 
-When using API login, it's slightly different because there's no session and you need to provide the raw token back to the client. 
-For API login you'll likely use the `Authorization` header to provide the token to your application. This method is useful when you do not intend on using a session.
+Użycie login API jest trochę inne, ponieważ nie ma tam sesji i musimy samodzielnie odesłać token do użytkownika. W tym celu login API używa nagłówka `Authorization`. Metoda ta jest przydatna, gdy nie chcemy lub nie możemy wykorzystać mechanizmu sesji.
 
 ```elixir
 def create(conn, params) do
@@ -255,4 +253,4 @@ def delete(conn, params) do
 end
 ```
 
-The browser session login calls `encode_and_sign` under the hood so you can use them the same way.
+Mechanizm sesji wykorzystuje pod spodem `encode_and_sign`, a tu robimy to samodzielnie.
