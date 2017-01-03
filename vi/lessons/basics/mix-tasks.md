@@ -1,18 +1,18 @@
 ---
 layout: page
-title: Custom Mix Tasks
+title: Tác vụ Mix tùy biến
 category: basics
 order: 15
 lang: vi
 ---
 
-Creating custom Mix tasks for your Elixir projects.
+Tạo ra một tác vụ tùy biến cho dự án Elixir của bạn.
 
 {% include toc.html %}
 
-## Introduction
+## Giới thiệu
 
-It's not uncommon to want to extend your Elixir applications functionality by adding custom Mix tasks. Before we learn about how to create specific Mix tasks for our projects, let's look at one that already exists:
+Sẽ không có gì là lạ nếu bạn muốn mở rộng ứng dụng Elixir bằng cách thêm một số tác vụ Mix. Trước khi học cách tạo ra một tác vụ Mix cụ thể, ta hãy xem qua những tác vụ có sẵn:
 
 ```shell
 $ mix phoenix.new my_phoenix_app
@@ -28,11 +28,11 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-As we can see from the shell command above, The Phoenix Framework has a custom Mix task to generate a new project. What if we could create something similar for our project? Well the great news is we can, and Elixir makes this easy for us to do.
+Như ở trên, Phoenix Framework cung cấp một tác vụ Mix để sinh dự án mới. Ồ vậy thì chúng ta có thể tự tạo cái gì đó tương tự cho dự án của chúng ta không nhỉ? Vâng câu trả lời là được, mà còn dễ như bỡn nữa là đằng khác.
 
 ## Setup
 
-Let's set up a very basic Mix application.
+Chúng ta hãy dựng một ứng dụng Mix đơn giản.
 
 ```shell
 $ mix new hello
@@ -57,7 +57,7 @@ mix test
 Run "mix help" for more commands.
 ```
 
-Now, in our **lib/hello.ex** file that Mix generated for us, let's create a simple function that will output "Hello, World!"
+Bây giờ trong file **lib/hello.ex** mà Mix sinh ra cho chúng ta, hãy viết một hàm đơn giản để xuất ra "Hello, World!".
 
 ```elixir
 defmodule Hello do
@@ -71,9 +71,9 @@ defmodule Hello do
 end
 ```
 
-## Custom Mix Task
+## Tác vụ Mix tùy biến
 
-Let's create our custom Mix task. Create a new directory and file **hello/lib/mix/tasks/hello.ex**. Within this file, let's insert these 7 lines of Elixir.
+Giờ thì ta tiến hành tạo tác vụ Mix của chính chúng ta nào. Hãy tạo mới một thư mục và file **hello/lib/mix/tasks/hello.ex**. Trong file này, hãy thêm vào 7 dòng code Elixir.
 
 ```elixir
 defmodule Mix.Tasks.Hello do
@@ -86,25 +86,25 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-Notice how we start the defmodule statement with `Mix.Tasks` and the name we want to call from the command line. On the second line we introduce the `use Mix.Task` which brings the `Mix.Task` behaviour into the namespace. We then declare a run function which ignores any arguments for now. Within this function, we call our `Hello` module and the `say` function.
+Chú ý rằng defmodule bắt đầu với `Mix.Tasks` và tên mà chúng ta muốn gọi từ command line. Ở dòng thử hai, `use Mix.Task` sẽ cho chúng ta các tính năng của `Mix.Task`. Sau đó khai báo một hàm run mà ta tạm thời bỏ qua các tham số. Trong hàm này, ta gọi module `Hello` cùng với hàm `say`.
 
-## Mix Tasks in Action
+## Chạy tác vụ Mix
 
-Let's checkout our mix task. As long as we are in the directory it should work. From the command line, run `mix hello`, and we should see the following:
+Ta hãy thử kiểm tra mix task vừa được tạo. Nó sẽ chạy ngon lành chỉ cần ta đứng trong thư mục. Từ command line, chạy lệnh `mix hello`, và ta sẽ thấy kết quả như sau:
 
 ```shell
 $ mix hello
 Hello, World!
 ```
 
-Mix is quite friendly by default. It knows that everyone can make a spelling error now and then, so it uses a technique called fuzzy string matching to make recommendations:
+Mix khá là thân thiện. Nó biết rằng ai thì cũng sẽ có lúc viết sai chính tả, nên nó dùng một kĩ thuật gọi là fuzzy string matching (tạm dịch: so trùng các chuỗi gần nhau) để gợi ý.
 
 ```shell
 $ mix hell
 ** (Mix) The task "hell" could not be found. Did you mean "hello"?
 ```
 
-Did you also notice that we introduced an new module attribute, `@shortdoc`? This comes in handy when shipping our application, such as when a user runs the `mix help` command from the terminal.
+Bạn có để ý là chúng ta vừa giới thiệu một thuộc tính module mới là `@shortdoc`? Nó sẽ có ích khi ta đưa ứng dụng ra sử dụng, như khi user chạy lệnh `mix help` từ terminal.
 
 ```shell
 $ mix help
