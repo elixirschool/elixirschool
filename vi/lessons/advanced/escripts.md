@@ -12,7 +12,7 @@ lang: vi
 
 ## Bắt đầu
 
-Để tạo một thực thi với escript có một vài điều chúng ta cần làm: thực hiện một hàm `main/1` và cập nhật Mixfile của chúng ta.
+Để tạo một file thực thi với escript có một vài điều chúng ta cần làm: cài đặt hàm `main/1` và cập nhật Mixfile của chúng ta.
 
 Chúng ta sẽ bắt đầu bằng cách tạo một module để phục vụ như là một điểm khởi đầu để thực thi. Đây là nơi chúng ta sẽ thực hiện `main/1`:
 
