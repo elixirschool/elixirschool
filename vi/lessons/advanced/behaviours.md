@@ -12,7 +12,7 @@ Chúng ta đã học về Typespecs trong bài học trước, trong bài này, 
 
 ## Sử dụng
 
-Đôi khi, bạn muốn các module cùng chia sẻ một public API, giải pháp cho vấn đề này trong Elixir là behaviours. Behaviour thực thi hai vai trò chính:
+Đôi khi, bạn muốn các module cùng chia sẻ một public API, giải pháp cho vấn đề này trong Elixir là behaviours. Behaviours thực thi hai vai trò chính:
 
 + Định nghĩa một tập các hàm bắt buộc phải cài đặt
 + Kiểm tra xem tập đó có được cài đặt hay không
@@ -38,7 +38,7 @@ end
 
 Giờ đây chúng ta đã định nghĩa behaviour, chúng ta có thể sử dụng nó để tạo ra một số module mà tất cả chia sẻ cùng một public API. Thêm một behaviour vào module khá là dễ với thuộc tính `@behaviour`.
 
-Sử dụng behaviour mới, chúng ta sẽ tạo ra một module để tải một file, sau đó lưu nó lại.
+Sử dụng behaviour mới, chúng ta sẽ tạo ra một module để tải một file, sau đó lưu nó lại:
 
 ```elixir
 defmodule Example.Downloader do
