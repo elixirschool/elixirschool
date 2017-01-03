@@ -6,24 +6,24 @@ order: 10
 lang: vi
 ---
 
-We learned about Typespecs in the previous lesson, here we'll learn how to require a module to implement those specifications.  In Elixir, this functionality is referred to as behaviours.
+Chúng ta đã học về Typespecs trong bài học trước, trong bài này, chúng ta sẽ học về cách để yêu cầu một module cài đặt những tiêu chuẩn đó. Trong Elixir, tính năng này thường được gọi bằng Behaviours.
 
 {% include toc.html %}
 
-## Uses
+## Sử dụng
 
-Sometimes you want modules to share a public API, the solution for this in Elixir is behaviours. Behaviours perform two primary roles:
+Đôi khi, bạn muốn các module cùng chia sẻ một public API, giải pháp cho vấn đề này trong Elixir là behaviours. Behaviour thực thi hai vai trò chính:
 
-+ Defining a set of function that must be implemented
-+ Checking whether that set was actually implemented
++ Định nghĩa một tập các hàm bắt buộc phải cài đặt
++ Kiểm tra xem tập đó có được cài đặt hay không
 
-Elixir includes a number of behaviours such as GenServer, but in this lesson we'll focus on creating our own instead.
+Elixir đã bao gồm một tập các behaviours ví dụ như GenServer, nhưng trong bài học này, chúng ta sẽ tập trung vào việc tạo ra các Behaviour cho riêng chúng ta.
 
-## Defining a behaviour
+## Định nghĩa một behaviour
 
-To better understand behaviours let's implement one for a worker module.  These workers will be expected to implement two functions: `init/1` and `perform/2`.
+Để hiểu rõ về behaviour hơn, hãy cùng cài đặt một worker module. Những worker này được kỳ vọng sẽ cài đặt 2 hàm `init/1` và `perform/2`.
 
-In order to accomplish this, we'll use the `@callback` directive with syntax similar to `@spec`, this defines a __required__ method; for macros we can use `@macrocallback`.  Let's specify the `init/1` and `perform/2` methods for our workers:
+Để đạt được điều đó, chúng ta sẽ sử dụng `@callback` với cú pháp tương tự như `@spec`, để định nghĩa các hàm bắt buộc (__required__ method), đối với macro, chúng ta có thể sử dụng `@macrocallback`. Hãy cùng xác định `init/1` và `perform/2` cho các worker của chúng ta:
 
 ```elixir
 defmodule Example.Worker do
@@ -32,13 +32,13 @@ defmodule Example.Worker do
 end
 ```
 
-Here we've defined `init/1` as accepting any value and returning a tuple of either `{:ok, state}` or `{:error, reason}`, this is a pretty standard initialization.  Our `perform/2` method will receive some arguments for the worker along with the state we initialized, we'll expect `perform/2` to return `{:ok, result, state}` or `{:error, reason, state}` much like GenServers.
+Ở đây chúng ta định nghĩa `init/1` chấp nhận bất cứ giá trị nào, và trả về một tuple hoặc là `{:ok, state}` hoặc là `{:error, reason}`, đây là tiêu chuẩn cho việc khởi tạo. Hàm `perform/2` sẽ nhận vào một vài tham số cho worker cùng với trạng thái mà chúng ta đã khởi tạo, chúng ta kỳ vọng rằng `perform/2` sẽ trả về `{:ok, result, state}` hoặc là `{:error, reason, state}` giống như GenServer.
 
-## Using behaviours
+## Sử dụng behaviours
 
-Now that we've defined our behaviour we can use it to create a variety of modules that all share the same public API.  Adding a behaviour to our module is easy with the `@behaviour` attribute.
+Giờ đây chúng ta đã định nghĩa behaviour, chúng ta có thể sử dụng nó để tạo ra một số module mà tất cả chia sẻ cùng một public API. Thêm một behaviour vào module khá là dễ với thuộc tính `@behaviour`.
 
-Using our new behaviour let's create a module's task will be downloading a remote file and saving it locally:
+Sử dụng behaviour mới, chúng ta sẽ tạo ra một module để tải một file, sau đó lưu nó lại.
 
 ```elixir
 defmodule Example.Downloader do
@@ -66,7 +66,7 @@ defmodule Example.Downloader do
 end
 ```
 
-Or how about a worker that compresses an array of files?  That's possible too:
+Vậy còn một worker để nén một mảng các file thì sao? Chúng ta cũng có thể làm như sau:
 
 ```elixir
 defmodule Example.Compressor do
@@ -87,9 +87,9 @@ defmodule Example.Compressor do
 end
 ```
 
-While the work performed is different, the public facing API isn't, and any code leveraging these modules can interact with them knowing they'll respond as expected.  This gives us the ability to create any number of workers, all performing different tasks, but conforming to the same public API.
+Trong khi các công việc được thực hiện là khác nhau, nhưng public API thì không, và bất cứ đoạn code nào sử dụng các module này, để có thể tương tác với những module đó và biết rằng chúng sẽ nhận được kết quả trả về như mong muốn. Điều này cho phép chúng ta khả năng tạo ra rất nhiều loại worker, thực hiện những nhiệm vụ khác nhau, nhưng cùng sử dụng chúng một public API.
 
-If we happen to add a behaviour but fail to implement all of the required functions, a compile time warning will be raised.  To see this in action let's modify our `Example.Compressor` code by removing the `init/1` function:
+Nếu chúng ta muốn thêm vào một behaviour, nhưng lại không cài đặt đủ tất cả các hàm cần thết, một cảnh báo sẽ được văng ra lúc biên dịch. Hãy cùng thay đổi `Example.Compressor` bằng cách bỏ đi hàm `init/1`:
 
 ```elixir
 defmodule Example.Compressor do
@@ -108,11 +108,11 @@ defmodule Example.Compressor do
 end
 ```
 
-Now when we compile our code we should see a warning:
+Giờ đây khi biên dịch đoạn code trên, chúng ta có thể thấy cảnh báo:
 
 ```shell
 lib/example/compressor.ex:1: warning: undefined behaviour function init/1 (for behaviour Example.Worker)
 Compiled lib/example/compressor.ex
 ```
 
-That's it! Now we're ready to build and share behaviours with others.
+Vậy là hết rồi. Giờ chúng ta đã sẵn sàng để tạo mới và chia sẻ behaviour với các module khác.
