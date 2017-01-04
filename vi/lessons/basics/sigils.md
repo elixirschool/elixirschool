@@ -10,11 +10,11 @@ Làm việc cùng và tạo mới sigils.
 
 {% include toc.html %}
 
-## Tổng quan về Sigils.
+## Tổng quan về Sigils
 
 Elixir cung cấp cho chúng ta một cú pháp thay thế để mô tả và làm việc với chuỗi kí tự. Một sigil sẽ bắt đầu với dấu ngã `~` theo sau bởi một kí tự. Elixir cung cấp cho chúng ta một số sigils ban đầu, tuy nhiên chúng ta có thể tự tạo thêm các sigils khi cần thiết để mở rộng ngôn ngữ.
 
-Chuỗi sigils được cung cấp ban đầu bao gồm 
+Chuỗi sigils được cung cấp ban đầu bao gồm:
 
   - `~C` Sinh ra một chuỗi các kí tự **không gồm** kí tự escape và kí tự nội suy (interpolation)
   - `~c` Sinh ra một chuỗi các kí tự **gồm** kí tự escape và kí tự nội suy (interpolation)
@@ -48,7 +48,7 @@ iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = #{2 + 7}'
 ```
 
-Chúng ta có thể thấy kí tự thường `~c` sẽ nội suy phần tính toán, trong khi kĩ tự hoa `~C` không. Chúng ta sẽ thấy kí chuỗi tự hoa/ thường sẽ là chủ đề thường thấy của các sigils có sẵn. 
+Chúng ta có thể thấy kí tự thường `~c` sẽ nội suy phần tính toán, trong khi kĩ tự hoa `~C` không. Chúng ta sẽ thấy chuỗi kí tự hoa / thường sẽ là chủ đề thường thấy của các sigils có sẵn. 
 
 ### Biểu thức chính qui 
 `~r` và `~R` sigils thường được sử dụng để biểu diễn biểu thức chính qui. Biểu thức chính qui đó được tạo ra ngay lúc chạy hoặc là để sử dụng bên trong hàm `Regex`. Ví dụ:
@@ -101,7 +101,7 @@ iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
 
-Vậy hai biễu diễn khác gì nhau? Điểm khác nhau tương tự như sigil cho chuỗi các kí tự mà chúng ta đã xem ở trên. Câu trả lời nằm ở việc nội suy và sử dụng chuỗi escape. Hãy xem một ví dụ khác:
+Vậy hai biểu diễn khác gì nhau? Điểm khác nhau tương tự như sigil cho chuỗi các kí tự mà chúng ta đã xem ở trên. Câu trả lời nằm ở việc nội suy và sử dụng chuỗi escape. Hãy xem một ví dụ khác:
 
 ```elixir
 iex> ~s/welcome to elixir #{String.downcase "school"}/

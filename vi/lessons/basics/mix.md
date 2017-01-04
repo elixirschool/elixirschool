@@ -6,7 +6,7 @@ order: 9
 lang: vi
 ---
 
-Trước khi đi sâu vào Elixir thì chúng ta cần tìm hiều về mix đầu tiên. Nếu bạn đã quen thuộc với Ruby thì mix tương ứng với Bundler, Rubygems và Rake hợp lại. Mix là một phần quan trọng trong bất cứ dự án Elixir nào và trong bài này chúng ta sẽ đi vào một vài tính năng thú vị của nó. Để xem mix có tất cả nhứng chức năng gì thì chúng ta chạy `mix help`.
+Trước khi đi sâu vào Elixir thì chúng ta cần tìm hiều về mix đầu tiên. Nếu bạn đã quen thuộc với Ruby thì mix tương ứng với Bundler, Rubygems và Rake hợp lại. Mix là một phần quan trọng trong bất cứ dự án Elixir nào và trong bài này chúng ta sẽ đi vào một vài tính năng thú vị của nó. Để xem mix có tất cả những chức năng gì thì chúng ta chạy `mix help`.
 
 Tính cho đến thời điểm hiện tại thì chúng ta làm việc hoàn toàn bên trong `iex`, tuy nhiên việc đó có rất nhiều hạn chế. Để tạo được một dự án có ý nghĩa hơn thì chúng ta cần chia code ra thành nhiều file cho dễ quản lý, và mix giúp chúng ta làm việc đó với chức năng projects.
 {% include toc.html %}
@@ -56,7 +56,7 @@ defmodule Example.Mixfile do
 end
 ```
 
-Đầu tiên chúng ta hãy nhìn vào phần `project`. Tại đây chúng ta định nghĩa tên của application (`app`), chỉ định version (`version`), Elixir version (`elixir`), và cuối cùng là phụ thuộc của dự án (`deps`).
+Đầu tiên chúng ta hãy nhìn vào phần `project`. Tại đây chúng ta định nghĩa tên của ứng  (`app`), chỉ định phiên  (`version`), phiên bản Elixir (`elixir`), và cuối cùng là thư viện phụ thuộc của dự án (`deps`).
 
 Phần `application` được sử dụng xuyên suốt các phần tiếp theo mà chúng ta sẽ sinh ra các file cho dự án.
 
@@ -84,7 +84,7 @@ $ iex -S mix
 ```
 Khởi tạo `iex` theo cách này sẽ tải chương trình và toàn bộ phụ thuộc vào runtime hiện tại.
 
-## Quản lý phụ 
+## Quản lý phụ thuộc
 Dự án của chúng ta hiện tại chưa có phụ thuộc nào, nhưng ngay sau đây chúng ta sẽ tiến tiếp và định nghĩa phụ thuộc, cũng như tải chúng về.
 
 Để tạo phụ thuộc mới, điều đầu tiên cần làm là thêm vào file `mix.exs`, phần `deps`. Danh sách phụ thuộc sẽ là một danh sách các tuples với hai biến cần thiết, và 1 biến tuỳ ý: Tên của package dưới dạng atom, chuỗi kí tự version, và các lựa chọn tuỳ ý.
@@ -111,9 +111,9 @@ Vậy đó! Chúng ta đã định nghĩa và tải về phụ thuộc của d�
 ## Môi trường 
 Mix, cũng như bundler hỗ trợ nhiều môi trường khác nhau. Ở trạng thái ban đầu thì mix hỗ trợ ba loại môi trường:
 
-+ `:dev` — The default environment.
-+ `:test` — Used by `mix test`. Covered further in our next lesson.
-+ `:prod` — Used when we ship our application to production.
++ `:dev` — Môi trường phát triển mặc định
++ `:test` — Được sử dụng bởi `mix test`. Sẽ được nói rõ hơn trong các bài học tiếp.
++ `:prod` — Được sử dụng khi ứng dụng được tải lên môi trường chạy sản phẩm (production).
 
 Môi trường hiện tại có thể được truy cập sử dụng `Mix.env`. Và không nằm ngoài dự đoán, môi trường cũng có thể được thay đổi thông qua biến môi trường `MIX_ENV`.
 
