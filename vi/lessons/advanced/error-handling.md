@@ -1,36 +1,36 @@
 ---
 layout: page
-title: Error Handling
+title: Xử Lý Lỗi
 category: advanced
 order: 2
 lang: vi
 ---
 
-Although more common to return the `{:error, reason}` tuple, Elixir supports exceptions and in this lesson we'll look at how to handle errors and the different mechanisms available to us.
+Mặc dù có nhiều ảnh hưởng để trả về tuple `{:error, reason}`, Elixir hỗ trợ nhiều ngoại lệ và trong bài học này chúng ta sẽ xem làm thế nào để xử lý lỗi và các cơ chế khác nhau có sẵn cho chúng ta.
 
-In general the convention in Elixir is to create a function (`example/1`) which returns `{:ok, result}` and `{:error, reason}` and a separate function (`example!/1`) that returns the unwrapped `result` or raises an error.
+Nói chung quy ước trong Elixir là tạo ra một hàm (`example/1`) mà trả về `{:ok, result}` và `{:error, reason}` và một hàm riêng biệt (`example!/1`) trả về `result` hoặc đưa ra một lỗi.
 
-This lesson will focus on interacting with the latter.
+Trong bài học này sẽ tập trung tương tác với sau cùng.
 
 {% include toc.html %}
 
-## Error Handling
+## Xử Lý Lỗi
 
-Before we can handle errors we need to create them and the simplest way to do so is with `raise/1`:
+Trước khi chúng ta có thể xử lý lỗi chúng ta cần phải tạo ra chúng và cách đơn giản nhất để làm như vậy là với `raise/1`: 
 
 ```elixir
 iex> raise "Oh no!"
 ** (RuntimeError) Oh no!
 ```
 
-If we want to specify the type and message, we need to use `raise/2`:
+Nếu chúng ta muốn xác định loại và thông điệp, chúng ta cần sử dụng `raise/2`:
 
 ```elixir
 iex> raise ArgumentError, message: "the argument value is invalid"
 ** (ArgumentError) the argument value is invalid
 ```
 
-When we know an error may occur, we can handle it using `try/rescue` and pattern matching:
+Khi chúng ta biết một lỗi có thể xảy ra, chúng ta có thể xử lý chúng bằng cách sử dụng `try/rescue` và so trùng mẫu (pattern matching):
 
 ```elixir
 iex> try do
@@ -42,7 +42,7 @@ An error occurred: Oh no!
 :ok
 ```
 
-It's possible to match multiple errors in a single rescue:
+Nó có thể kết hợp nhiều lỗi trong một giải pháp duy nhất:
 
 ```elixir
 try do
@@ -57,7 +57,7 @@ end
 
 ## After
 
-At times it may be necessary to perform some action after our `try/rescue` regardless of error.  For this we have `try/after`.  If you're familiar with Ruby this is akin to `begin/rescue/ensure` or in Java `try/catch/finally`:
+Đôi khi nó có thể cần thiết để thực hiện một số hành động sau khi chúng ta `try/rescue` bất kể lỗi. Đối với điều này chúng ta có `try/after`. Nếu bạn đã quen thuộc với Ruby giống như là `begin/rescue/ensure` hoặc `try/catch/finally` trong Java:
 
 ```elixir
 iex> try do
@@ -72,7 +72,7 @@ The end!
 :ok
 ```
 
-This is most commonly used with files or connections that should be closed:
+Điều này thường được sử dụng nhiều với các tập tin (files) hoặc các kết nối cần phải được đóng:
 
 ```elixir
 {:ok, file} = File.open "example.json"
@@ -83,9 +83,9 @@ after
 end
 ```
 
-## New Errors
+## Lỗi Mới
 
-While Elixir includes a number of builtin error types like `RuntimeError`, we maintain the ability to create our own if we need something specific.  Creating a new error is easy with the `defexception/1` macro which conveniently accepts the `:message` option to set a default error message:
+Trong khi Elixir bao gồm một số lỗi được xây dựng sẵn như `RuntimeError`, chúng ta có khả năng bảo trì cái mà được chúng ta tạo ra nếu chúng ta cần một cái gì đó cụ thể. Tạo một lỗi mới rất là dễ dàng với macro `defexception/1` mà thuận tiện nhận tùy chọn `:message` để thiết lập một thông báo lỗi mặc định:
 
 ```elixir
 defmodule ExampleError do
@@ -93,7 +93,7 @@ defmodule ExampleError do
 end
 ```
 
-Let's take our new error for a spin:
+Giờ hãy cùng thử xem lỗi mới của chúng ta ra sao:
 
 ```elixir
 iex> try do
@@ -106,9 +106,9 @@ iex> try do
 
 ## Throws
 
-Another mechanism for working with errors in Elixir is `throw` and `catch`.  In practice these occur very infrequently in newer Elixir code but it's important to know and understand them nonetheless.
+Một cơ chế khác để làm việc với các lỗi trong Elixir là `throw` và `catch`. Trong thực tế các lỗi xảy ra rất thường xuyên trong code Elixir mới hơn nhưng tuy nhiên điều quan trọng là phải biết và hiểu chúng.
 
-The `throw/1` function gives us the ability to exit execution with a specific value we can `catch` and use:
+Hàm `throw/1` cung cấp cho chúng ta khả năng để thoát khỏi thực thi với một giá trị cụ thể, chúng ta có thể sử dụng `catch`:
 
 ```elixir
 iex> try do
@@ -127,20 +127,20 @@ iex> try do
 "Caught: 5"
 ```
 
-As mentioned, `throw/catch` are quite uncommon and typically exist as stopgaps when libraries fail to provide adequate APIs.
+Như đã đề cập, `throw/catch` không phổ biến và điển hình tồn tại như stopgaps khi thư viện không cung cấp đủ APIs.
 
 ## Exiting
 
-The final error mechanism Elixir provides us with is `exit`.  Exit signals occur whenever a process dies and are an important part of the fault tolerance of Elixir.
+Cơ chế lỗi cuối cùng mà Elixir cung cấp cho chúng ta là `exit`. Dấu hiệu thoát khỏi xảy ra bất cứ khi nào một process chết và là một phần quan trọng lỗi của Elixir.
 
-To explicitly exit we can use `exit/1`:
+Để thoát khỏi một cách rõ ràng chúng ta có thể sử dụng `exit/1`:
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
 ** (EXIT from #PID<0.101.0>) "oh no"
 ```
 
-While it is possible to catch an exit with `try/catch` doing so is _extremely_ rare.  In almost all cases it is advantageous to let the supervisor handle the process exit:
+Trong khi nó có thể bắt và thoát khỏi với `try/catch` làm như vậy là _cựckỳ_ hiếm. Trong hầu hết các trường hợp, nó có ích để cho supervisor xử lý thoát khỏi process:
 
 ```elixir
 iex> try do
