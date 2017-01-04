@@ -127,7 +127,7 @@ iex> try do
 "Caught: 5"
 ```
 
-Như đã đề cập, `throw/catch` không phổ biến và điển hình tồn tại giải pháp tạm thời khi thư viện không cung cấp đủ APIs.
+Như đã đề cập, `throw/catch` không phổ biến và điển hình tồn tại như một giải pháp tạm thời khi thư viện không cung cấp đủ APIs.
 
 ## Exiting
 
