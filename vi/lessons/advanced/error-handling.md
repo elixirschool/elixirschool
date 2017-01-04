@@ -6,11 +6,11 @@ order: 2
 lang: vi
 ---
 
-Mặc dù có nhiều ảnh hưởng để trả về tuple `{:error, reason}`, Elixir hỗ trợ nhiều ngoại lệ và trong bài học này chúng ta sẽ xem làm thế nào để xử lý lỗi và các cơ chế khác nhau có sẵn cho chúng ta.
+Mặc dù trong Elixir để trả về lỗi, chúng ta thường dùng {:error, reason}, nhưng Elixir cũng hỗ trợ các exceptions (tạm dịch ngoại lệ), trong bài học này chúng ta sẽ xem xét các cách để xử lý lỗi, và những cơ chế khác nhau để làm chuyện này.
 
-Nói chung quy ước trong Elixir là tạo ra một hàm (`example/1`) mà trả về `{:ok, result}` và `{:error, reason}` và một hàm riêng biệt (`example!/1`) trả về `result` hoặc đưa ra một lỗi.
+Nói chung quy ước trong Elixir là tạo ra một hàm (`example/1`) mà trả về `{:ok, result}` và `{:error, reason}` và một hàm riêng biệt (`example!/1`) trả về `result` hoặc văng ra một lỗi.
 
-Trong bài học này sẽ tập trung tương tác với sau cùng.
+Trong bài học này chúng ta sẽ tập trung vào việc xử lý lỗi.
 
 {% include toc.html %}
 
@@ -23,7 +23,7 @@ iex> raise "Oh no!"
 ** (RuntimeError) Oh no!
 ```
 
-Nếu chúng ta muốn xác định loại và thông điệp, chúng ta cần sử dụng `raise/2`:
+Nếu chúng ta muốn xác định kiểu và thông điệp, chúng ta cần sử dụng `raise/2`:
 
 ```elixir
 iex> raise ArgumentError, message: "the argument value is invalid"
@@ -57,7 +57,7 @@ end
 
 ## After
 
-Đôi khi nó có thể cần thiết để thực hiện một số hành động sau khi chúng ta `try/rescue` bất kể lỗi. Đối với điều này chúng ta có `try/after`. Nếu bạn đã quen thuộc với Ruby giống như là `begin/rescue/ensure` hoặc `try/catch/finally` trong Java:
+Đôi khi nó có thể cần thiết để thực hiện một số hành động sau khi chúng ta `try/rescue` mà không cần quan tâm tới lỗi. Đối với điều này chúng ta có `try/after`. Cách làm này giống như là `begin/rescue/ensure` hoặc là `try/catch/finally` trong Java:
 
 ```elixir
 iex> try do
@@ -85,7 +85,7 @@ end
 
 ## Lỗi Mới
 
-Trong khi Elixir bao gồm một số lỗi được xây dựng sẵn như `RuntimeError`, chúng ta có khả năng bảo trì cái mà được chúng ta tạo ra nếu chúng ta cần một cái gì đó cụ thể. Tạo một lỗi mới rất là dễ dàng với macro `defexception/1` mà thuận tiện nhận tùy chọn `:message` để thiết lập một thông báo lỗi mặc định:
+Trong khi Elixir bao gồm một số lỗi được xây dựng sẵn như `RuntimeError`, chúng ta vẫn có thể tạo thêm kiểu lỗi mới nếu muốn. Chúng ta có thể làm điểu này dễ dàng với macro `defexception/1`, macro này cũng chấp nhận tuỳ chọn `:message`:
 
 ```elixir
 defmodule ExampleError do
@@ -106,7 +106,7 @@ iex> try do
 
 ## Throws
 
-Một cơ chế khác để làm việc với các lỗi trong Elixir là `throw` và `catch`. Trong thực tế các lỗi xảy ra rất thường xuyên trong code Elixir mới hơn nhưng tuy nhiên điều quan trọng là phải biết và hiểu chúng.
+Một cơ chế khác để làm việc với các lỗi trong Elixir là `throw` và `catch`. Trong thực tế, cách làm này rất là hiếm thấy trong những đoạn code của các phiên bản mới của Elixir, tuy nhiên việc hiểu nó vẫn là rất quan trọng.
 
 Hàm `throw/1` cung cấp cho chúng ta khả năng để thoát khỏi thực thi với một giá trị cụ thể, chúng ta có thể sử dụng `catch`:
 
@@ -131,7 +131,7 @@ Như đã đề cập, `throw/catch` không phổ biến và điển hình tồn
 
 ## Exiting
 
-Cơ chế lỗi cuối cùng mà Elixir cung cấp cho chúng ta là `exit`. Dấu hiệu thoát khỏi xảy ra bất cứ khi nào một process chết và là một phần quan trọng lỗi của Elixir.
+Cơ chế lỗi cuối cùng mà Elixir cung cấp cho chúng ta là `exit`. Exit signal (tạm dịch tín hiệu thoát) xuất hiện bất cứ khi nào một process bị chết, và là một phần quan trọng của cơ chế fault tolerance (tạm dịch là cơ chế chống chịu lỗi) của Elixir.
 
 Để thoát khỏi một cách rõ ràng chúng ta có thể sử dụng `exit/1`:
 
@@ -140,7 +140,7 @@ iex> spawn_link fn -> exit("oh no") end
 ** (EXIT from #PID<0.101.0>) "oh no"
 ```
 
-Trong khi nó có thể bắt và thoát khỏi với `try/catch` làm như vậy là _cựckỳ_ hiếm. Trong hầu hết các trường hợp, nó có ích để cho supervisor xử lý thoát khỏi process:
+Trong khi có thể bắt một exit với try/catch, cách làm này là _cực kỳ_ hiếm. Trong hầu hết các trường hợp, sẽ tốt hơn nếu chúng ta để cho supervisor xử lý chuyện này.
 
 ```elixir
 iex> try do
