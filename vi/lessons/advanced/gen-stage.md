@@ -6,56 +6,56 @@ order: 11
 lang: vi
 ---
 
-In this lesson we're going to take a closer look at the GenStage, what role it serves, and how we can leverage it in our applications.
+Trong bài này ta sẽ có cái nhìn cận cảnh về GenStage, nó đóng vai trò gì, và chúng ta có thể dùng nó như thế nào trong ứng dụng.
 
 {% include toc.html %}
 
-## Introduction
+## Giới thiệu
 
-So what is GenStage?  From the official documentation, it is a "specification and computational flow for Elixir", but what does that mean to us?
+Vậy GenStage là gì? Nói một cách sách vở thì nó là một "cách đặc tả luồng tính toán của Elixir", nhưng nó có nghĩa gì với chúng ta?
 
-What it means is that GenStage provides a way for us to define a pipeline of work to be carried out by independent steps (or stages) in a separate processes; if you've worked with pipelines before then some of these concepts should be familiar.
+Nó có nghĩa là GenState cung cấp cho chúng ta cách định nghĩa luồng công việc cần làm thành các bước (giai đoạn) độc lập trong những process riêng biệt. Nếu bạn từng làm việc với pipelines trước đó thì sẽ không lạ gì khái niệm này.
 
-To better understand how this works, let's visualize a simple producer-consumer flow:
+Để hiểu rõ hơn cách nó làm việc, ta hãy hình dung một mô hình producer-consumer (tạm dịch: mô hình sản xuất - tiêu thụ) đơn giản:
 
 ```
 [A] -> [B] -> [C]
 ```
 
-In this example we have three stages: `A` a producer, `B` a producer-consumer, and `C` a consumer.  `A` produces a value which is consumed by `B`, `B` performs some work and returns a new value which is received by our consumer `C`; the role of our stage is important as we'll see in the next section.
+Trong ví dụ này chúng ta có ba giai đoạn: `A` là một producer, `B` là một producer-consumer và `C` là một consumer. `A` cung cấp một giá trị được tiêu thụ bởi `B`, `B` thực hiện một số việc và trả giá trị mới cho consumer `C`; vai trò của mỗi giai đoạn đều quan trọng và chúng ta sẽ xem tiếp nó trong phần tiếp theo.
 
-While our example is 1-to-1 producer-to-consumer it's possible to both have multiple producers and multiple consumers at any given stage.
+Ví dụ của chúng ta là mô hình producer-to-consumer 1-đối-1 nên không có vấn đề khi có nhiều producer và nhiều consumer ở bất kì giai đoạn nào.
 
-To better illustrate these concepts we'll be constructing a pipeline with GenStage but first let's explore the roles that GenStage relies upon a bit further.
+Để có thể dễ dàng hình dung những khái niệm này, ta sẽ cấu trúc một luồng với GenStage nhưng trước hết, ta hãy xem qua các vai trò trong GenStage một chút:
 
-## Consumers and Producers
+## Consumers và Producers
 
-As we've read, the role we give our stage is important.  The GenStage specification recognizes three roles:
+Như đã đọc, vai trò mà ta trao cho mỗi giai đoạn là quan trọng. Đặc tả của GenStage nhận ba vai trò:
 
-+ `:producer` — A source.  Producers wait for demand from consumers and respond with the requested events.
++ `:producer` — Một nguồn. Một Producer sẽ đợi yêu cầu từ consumer và trả lời các sự kiện được yêu cầu.
 
-+ `:producer_consumer` — Both a source and a sink.  Producer-consumers can respond to demand from other consumers as well as request events from producers.
++ `:producer_consumer` — Vừa là nguồn vừa là hồ chứa. Producer-consumer vừa có thể trả lời yêu cầu cho các consumer, vừa có thể yêu cầu sự kiện từ các producer khác.
 
-+ `:consumer` — A sink.  A consumer requests and receives data from producers.
++ `:consumer` — Một hồ chứa. Một Consumer sẽ gửi yêu cầu và nhận kết quả từ producer.
 
-Notice that our producers _wait_ for demand?  With GenStage our consumers send demand upstream and process the data from our producer.  This faciliates a mechanism known as back-pressure.  Back-pressure puts the onus on the producer to not over-pressure when consumers are busy.
+Ai đó vừa nói rằng các producer _đợi_ yêu cầu ư? Với GenStage các consumer gửi yêu cầu ngược lên và xử lý dữ liệu từ producer. Cơ chế này được gọi là back-pressure (tạm dịch: phản áp lực). Back-pressure giúp cho producer không tạo quá nhiều áp lực khi các consumer đang bận.
 
-Now that we've covered the roles within GenStage let's start on our application.
+Và ta đã xem xong các vai trò trong GenStage, giờ hãy bắt đầu với ứng dụng.
 
-## Getting Started
+## Bắt đầu
 
-In this example we'll be constructing a GenStage application that emits numbers, sorts out the even numbers, and finally prints them.
+Ở ví dụ này ta sẽ xây dựng một ứng dụng GenStage mà nó xuất ra các con số, lựa chọn các con số chẵn và cuối cùng in chúng ra.
 
-For our application we'll use all three GenStage roles.  Our producer will be responsible for counting and emitting numbers.  We'll use a producer-consumer to filter out only the even numbers and later respond to demand from downsteam.  Last we'll build a consumer to display the remaining numbers for us.
+Với ứng dụng này chúng ta sẽ sử dụng cả ba vai trò trong GenStage. Producer sẽ chịu trách nhiệm đếm và xuất các con số. Một producer-consumer sẽ lọc ra những con số chẵn và sau đó trả lời yêu cầu từ bên dưới. Cuối cùng ta sẽ tạo một consumer để hiển thị các con số còn lại.
 
-We'll begin by generating a project with a supervision tree:
+Chúng ta sẽ bắt đầu với việc sinh ra một dự án với supervision tree (tạm dịch: cây giám sát).
 
 ```shell
 $ mix new genstage_example --sup
 $ cd genstage_example
 ```
 
-Let's update our dependencies in `mix.exs` to include `gen_stage`:
+Sau đó thêm `gen_stage` vào các thư viện trong `mix.exs`
 
 ```elixir
   defp deps do
@@ -65,24 +65,24 @@ Let's update our dependencies in `mix.exs` to include `gen_stage`:
   end
 ```
 
-We should fetch our dependencies and compile before going much further:
+Chúng ta cần tải thư viện về và biên dịch trước khi xem tiếp:
 
 ```shell
 $ mix do deps.get, compile
 ```
 
-Now we're ready to build our producer!
+Giờ thì ta đã sẵn sàng để viết producer rồi!
 
 ## Producer
 
-The first step of our GenStage application is creating our producer.  As we discussed before, we want to create a producer that emits a constant stream of numbers.  Let's create our producer file:
+Bước đầu tiên của ứng dụng GenStage là tạo producer. Như đã nói từ trước, chúng ta muốn tạo một producer xuất một dãy các con số. File producer là như sau:
 
 ```shell
 $ mkdir lib/genstage_example
 $ touch lib/genstage_example/producer.ex
 ```
 
-Now we can add the code:
+Sau đó thêm code vào:
 
 ```elixir
 defmodule GenstageExample.Producer do
@@ -103,19 +103,19 @@ defmodule GenstageExample.Producer do
 end
 ```
 
-The two most important parts to take note of here are `init/1` and `handle_demand/2`.  In `init/1` we set the initial state as we've done in our GenServers, but more importantly we label ourselves as a producer.  The response from our `init/1` function is what GenStage relies upon to classify our process.
+Có hai phần quan trọng cần chú ý ở đây là `init/1` và `handle_demand/2`. Trong `init/1` ta thiết lập trạng thái khởi tạo như vẫn thường làm với GenServer, nhưng quan trọng hơn là ta phải đánh dấu nó là một producer. GenStage sẽ dựa vào kết quả trả về từ hàm `init/1` của chúng ta để phân loại process.
 
-The `handle_demand/2` function is where the majority of our producer and must be implemented by all GenStage producers.  Here we return the set of numbers demanded by our consumers and increment our counter.  The demand from consumers, `demand` in our code above, is represented as an integer corresponding to the number of events they can handle; it defaults to 1000.
+Hàm `handle_demand/2` là phần chủ yếu và **phải được cài đặt** của tất cả producer của GenStage. Ở đây ta sẽ trả về một dãy các số theo yêu cầu của consumer và nâng cờ đếm (`counter`) lên. Yêu cầu của consumer (`demand` trong đoạn code trên) được đại diện bởi một số nguyên tùy vào số sự kiện mà nó có thể xử lý, mặc định là 1000.
 
 ## Producer Consumer
 
-Now that we have a number-generating producer, let's move on to our producer-consumer.  We'll want to request numbers from our producer, filter out the odd one, and respond to demand.
+Giờ ta đã có một producer để sinh các con số rồi, tiếp đến sẽ là producer-consumer. Chúng ta sẽ muốn gửi yêu cầu các con số từ producer, sau đó lọc ra các con số chẵn, rồi cuối cùng trả lời các yêu cầu.
 
 ```shell
 $ touch lib/genstage_example/producer_consumer.ex
 ```
 
-Let's update our file to look like the example code:
+Ta cập nhật file cho nó giống với đoạn code bên dưới:
 
 ```elixir
 defmodule GenstageExample.ProducerConsumer  do
@@ -142,19 +142,20 @@ defmodule GenstageExample.ProducerConsumer  do
 end
 ```
 
-You may have noticed with our producer-consumer we've introduced a new option in `init/1` and a new function: `handle_events/3`.  With the `subscribe_to` option, we instruct GenStage to put us into communcation with a specific producer.
+Chú ý là producer-consumer mà ta vừa viết có một tùy chỉnh mới trong `init/1` và một hàm mới `handle_event/3`. Trong tùy chỉnh `subscribe_to`, ta chỉ ra cho GenStage biết là producer-consumer cần được giao tiếp với một producer cụ thể nào.
 
-The `handle_events/3` method is our workhorse, where we receive our incoming events, process them, and return our transformed set.  As we'll see consumers are implemented in much the same way, but the important difference is what our `handle_events/3` method returns and how it's used.   When we label our process a process-consumer, the second argument of our tuple — `numbers` in our case — is used to meet the demand of consumers downstream.  In consumers this value is discarded.
+Phương thức `handle_event/3` sẽ chịu trách nhiệm xử lý chính, là nơi mà ta nhận các sự kiện tiếp theo, xử lý chúng và trả dữ liệu đã xử lý về. Ta thấy rằng consumer cũng được cài đặt theo cách khá giống nhau, nhưng cái khác nằm ở chỗ dữ liệu `handle_event/3` trả về và cách nó được sử dụng.
+Khi ta đánh dấu process là một producer-consumer, tham số thứ hai của tuple (`numbers` trong trường hợp này) được dùng để trả lời cho yêu cầu của consumer ở bên dưới. Trong consumer giá trị này sẽ được loại bỏ.
 
 ## Consumer
 
-Last but not least we have our consumer.  Let's get started:
+Và giờ thì tới lượt consumer:
 
 ```shell
 $ touch lib/genstage_example/consumer.ex
 ```
 
-Since consumers and producer-consumers are so similar our code won't look much different:
+Vì consumer và producer-consumer khá giống nhau nên code của chúng ta trông không khác nhau lắm:
 
 ```elixir
 defmodule GenstageExample.Consumer do
@@ -180,13 +181,13 @@ defmodule GenstageExample.Consumer do
 end
 ```
 
-As we covered in the previous section, our consumer does not emit events, so the second value in our tuple will be discarded.
+Như ta đã nói qua ở phần trước, consumer không tạo sự kiện, nên giá trị thứ hai trong tuple sẽ được loại bỏ:
 
-## Putting It All Together
+## Ráp chúng lại với nhau
 
-Now that we have our producer, producer-consumer, and consumer built, we're ready to wire everything together.
+Bây giờ producer, producer-consumer và consumer đã sẵn sàng, ta sẽ ráp chúng lại với nhau.
 
-Let's start by opening `lib/genstage_example.ex` and adding our new processes to the supervisor tree:
+Ta bắt đầu bằng việc mở file `lib/genstage_example.ex` và thêm process mới vào supervisor tree:
 
 ```elixir
 def start(_type, _args) do
@@ -203,7 +204,7 @@ def start(_type, _args) do
 end
 ```
 
-If things are all correct, we can run our project and we should see everything working:
+Nếu mọi thứ được cài đặt chính xác, ta có thể chạy dự án và nó sẽ hoạt động như bên dưới:
 
 ```shell
 $ mix run --no-halt
@@ -216,15 +217,15 @@ $ mix run --no-halt
 {#PID<0.109.0>, 229066, :state_doesnt_matter}
 ```
 
-We did it!  As we expected our application only omits even numbers and it does so _quickly_.
+Xong rồi! Ứng dụng sẽ chỉ xuất các con số chẵn như ta mong đợi và nó chạy quá _mượt_.
 
-At this point we have a working pipeline.  There is a producer emitting numbers, a producer-consumer discarding odd numbers, and a consumer displaying all of this and continuing the flow.
+Lúc này thì ta đã chạy được một pipeline với một producer xuất các con số, một producer-consumer loại bỏ các con số lẻ và một consumer hiển thị các thứ này và tiếp tục chạy theo luồng.
 
-## Multiple Producers or Consumers
+## Chạy đa Producer và Consumer
 
-We mentioned in the introduction that it was possible to have more than one producer or consumer. Let's take a look at just that.
+Như đã đề cập trong phần Giới thiệu, ta có thể có nhiều hơn một producer hoặc consumer. Hãy cùng xem lại ví dụ lúc nãy.
 
-If we examine the `IO.inspect/1` output from our example we see that every event is handled by a single PID. Let's make some adjustments for multiple workers by modifying `lib/genstage_example.ex`:
+Nếu ta thử chạy `IO.inspec/1` trong ví dụ ta sẽ thấy tất cả sự kiện đều được xử lý bởi một PID duy nhất. Ta hãy chỉnh sửa file `lib/genstage_example.ex` một chút để chạy nhiều worker.
 
 ```elixir
 children = [
@@ -235,7 +236,7 @@ children = [
 ]
 ```
 
-Now that we've configured two consumers, let's see what we get if we run our application now:
+Bây giờ thì ta đã cấu hình xong hai consumer, ta hãy cùng xem nó hiển thị gì khi chạy ứng dụng:
 
 ```shell
 $ mix run --no-halt
@@ -250,16 +251,16 @@ $ mix run --no-halt
 {#PID<0.120.0>, 86482, :state_doesnt_matter}
 ```
 
-As you can see we now have multiple PIDs, simply by adding a line of code and giving our consumers IDs.
+Như bạn thấy giờ ta đã có nhiều PID, đơn giản bằng cách thêm một dòng code và cấp ID cho các consumer.
 
-## Use Cases
+## Ứng dụng thực tiễn
 
-Now that we've covered GenStage and built our first example application, what are some of the _real_ use cases for GenStage?
+Giờ ta đã biết GenStage và dựng được ứng dụng đầu tiên, nhưng ứng dụng _thực tiễn_ của GenStage là gì?
 
-+ Data Transformation Pipeline — Producers don't have to be simple number generators. We could produce events from a database or even another source like Apache's Kafka.  With a combination of producer-consumers and consumers, we could process, sort, catalog, and store metrics as they become available.
++ Data Transformation Pipeline - Producer không nhất thiết phải là bộ sinh số đơn giản. Chúng ta có thể tạo ra các sự kiện từ database và thậm chí từ các nguồn như Kafka của Apache. Kết hợp với producer-consumer và consumer, ta có thể xử lý, sắp xếp, phân loại và lưu trữ thông số khi có dữ liệu.
 
-+ Work Queue — Since events can be anything, we could produce works of unit to be completed by a series of consumers.
++ Work Queue - Vì sự kiện có thể là bất cứ thứ gì, ta có thể sinh ra một loạt các công việc sẽ được hoàn thành bởi một loạt các consumer.
 
-+ Event Processing — Similar to a data pipeline, we could recieve, process, sort, and take action on events emitted in real time from our sources.
++ Event Processing - Tương tự như data pipeline, ta có thể nhận, xử lý, sắp xếp hay thao tác các sự kiện được tạo ra theo thời gian thực từ các nguồn.
 
-These are just a _few_ of the possibilities for GenStage.
+Và đó chỉ là _một vài_ ví dụ đơn giản của GenStage.
