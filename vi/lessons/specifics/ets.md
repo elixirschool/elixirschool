@@ -6,19 +6,19 @@ order: 4
 lang: vi
 ---
 
-Erlang Term Storage, thường được biết như ETS, là hệ thống lưu trữ mạnh mẽ được xây dựng dựa trên OTP và sử dụng đươc trong Elixir. Trong bài này chúng ta sẽ tìm hiểu làm thế nào để kết nối tới ETS và sử dụng trong ứng dụng của bạn.
+Erlang Term Storage, thường được biết như ETS, là hệ thống lưu trữ mạnh mẽ được xây dựng dựa trên OTP và sử dụng được trong Elixir. Trong bài này chúng ta sẽ tìm hiểu làm thế nào để kết nối tới ETS và sử dụng trong ứng dụng của bạn.
 
 {% include toc.html %}
 
 ## Tổng quan
 
-ETS là một kiểu lưu trữ trong bộ nhớ mạnh mẽ cho những objects trong Elixir và Erlang. ETS có khả năng lưu trữ một lượng lỡn dữ liệu và hỗ trợ truy cập với thời gian cố định.
+ETS là một kiểu lưu trữ trong bộ nhớ mạnh mẽ cho những objects trong Elixir và Erlang. ETS có khả năng lưu trữ một lượng lớn dữ liệu và hỗ trợ truy cập với thời gian hằng số.
 
-Bảng trong ETS được tạo và sở hữu bởi các process riêng biệt. Khi một process kết thúc, những bảng của nó sẽ bị xoá. Mặc định ETS giới hạn 1400 bảng cho mỗi node.
+Mỗi một bảng ETS được tạo và sở hữu bởi một process riêng biệt. Khi một process kết thúc, những bảng của nó sẽ bị xoá. Mặc định ETS giới hạn 1400 bảng cho mỗi node.
 
 ## Tạo bảng
 
-Bảng được tạo với `new/2`, với tên bảng, các tuỳ chỉnh và trả về một nhận diện để bạn có thể thực hiện các thao tác sau đó:
+Bảng được tạo với `new/2`, với tên bảng, các tuỳ chỉnh và trả về một nhận diện để bạn có thể thực hiện các thao tác sau đó.
 
 Ví dụ chúng ta tạo bảng để lưu trữ và tìm những users thông qua nickname của họ:
 
@@ -89,7 +89,7 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 
 ETS được xây dựng trên Erlang, vì vậy cẩn thận với match những tham số khá là _kì lạ_.
 
-Để chỉ ra biến trong việc match, chúng ta sử dụng atoms `:"$1"`, `:"$2"`, `:"$3"` và tương tự vậy. Biến số phản ánh kết quả không phải là vị trí. 
+Để chỉ ra biến trong việc match, chúng ta sử dụng atoms `:"$1"`, `:"$2"`, `:"$3"` và tương tự vậy. Biến số phản ánh kết quả không phải là vị trí. Với những giá trị mà chúng ta không quan tâm, chúng ta sử dụng `:"_"`.
 
 Những giá trị có thể được sử dụng trong matching, nhưng chỉ duy nhất biến sẽ được trả về như là một phần của kết quả. Đặt nó lại với nhau và xem cách nó hoạt động:
 
@@ -106,7 +106,7 @@ iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
  ["", ["Elixir", "Ruby", "JavaScript"], "3100"]]
 ```
 
-Điều gì nếu chúng ta muốn object gốc của chúng ta ko phải là danh sách? Chúng ta có thể sử dụng `match_object/2`, mặc dầu những biến này trả về toàn bộ object.
+Nếu chúng ta muốn lấy ra object gốc mà không phải một list thì sao? Chúng ta có thể sử dụng `match_object/2`, mặc dù những biến này trả về toàn bộ object.
 
 ```elixir
 iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
@@ -119,7 +119,7 @@ iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
 
 ### Tìm kiếm nâng cao
 
-Chúng ta đã học về cách match những trường hợp đơn giản, nhưng nếu chúng ta muốn thứ gì đó giống với SQL query? Rất may có một syntax mạnh mẽ hơn cho chúng ta. Để tìm kiếm dữ liệu với `select/2` chúng ta cần phải tạo một dánh sách các tuple với 3 tham số. Những tuple đại diễn cho pattern của chúng ta, dữ liệu rỗng hay nâng cao hơn và trả về kiểu giá trị. 
+Chúng ta đã học về cách match những trường hợp đơn giản, nhưng nếu chúng ta muốn thứ gì đó giống với SQL query? Rất may có một syntax mạnh mẽ hơn cho chúng ta. Để tìm kiếm dữ liệu với `select/2` chúng ta cần phải tạo một danh sách các tuple với 3 tham số. Những tuple đại diện cho pattern của chúng ta, dữ liệu rỗng hay nâng cao hơn và trả về kiểu giá trị. 
 
 `:"$$"` và `:"$"` có thể được sử dụng để tạo nên giá trị trả về. Những biến mới này là những shortcut cho kiểu giá trị; `:"$$"` lấy kết quả như là một dánh sách và `:"$"` lấy dữ liệu gốc.  
 
@@ -135,7 +135,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
  {"spork", 30, ["ruby", "elixir"]}]
 ```
 
-Mặc dầu `select/2` cho phép điều khiển sâu hơn cách mà chúng ta lấy những kết quả, syntax mặc dù không thân thiện và chỉ càng phức tạp hơn. Để xử lý vấn đề này ETS thêm vào `fun2ms/1`, biến functions thành match_specs. Với `fun2ms/1` chúng ta có thể tạo queries với những syntax cho function quen thuộc.
+Mặc dù `select/2` cho phép điều khiển sâu hơn cách mà chúng ta lấy những kết quả, syntax này không thân thiện và chỉ càng phức tạp hơn. Để xử lý vấn đề này ETS thêm vào `fun2ms/1`, biến functions thành match_specs. Với `fun2ms/1` chúng ta có thể tạo queries với những syntax cho function quen thuộc.
 
 Hãy sử dụng `fun2ms/1` và `select/2` để tìm tất cả usernames với nhiều hơn 2 ngôn ngữ:
 
@@ -173,7 +173,7 @@ true
 
 Tổng kết lại những gì chúng ta đã học ở trên, kết hợp mọi thứ lại và tạo một cache đơn giản cho những tính toán phức tạp. Chúng ta sẽ cài đặt `get/4` với tham số là module, function, arguments và options. Từ đây chúng ta chỉ quan tâm về `:ttl`
 
-Với vị dụ này chúng ta giả sử bảng ETS đã được tạo như một phần của process như là supervisor:
+Với ví dụ này chúng ta giả sử bảng ETS đã được tạo như một phần của process như là supervisor:
 
 ```elixir
 defmodule SimpleCache do
@@ -282,4 +282,4 @@ $ ls | grep -c disk_storage
 1
 ```
 
-Điều cuối cùng cần lưu ý là DETS không hỗ trợ `ordered_set` giống như ETS, chỉ có `set`, `bag` và `duplicated_bag`.
+Điều cuối cùng cần lưu ý là DETS không support `ordered_set` giống như ETS, chỉ có `set`, `bag` và `duplicated_bag`.
