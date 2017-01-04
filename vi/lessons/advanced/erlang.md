@@ -6,7 +6,7 @@ order: 1
 lang: vi
 ---
 
-Một trong những lợi ích của việc xây dựng dựa trên Erlang VM (BEAM) chính là việc có rất nhiều những thư viện mà chúng ta có thể sử dụng. Tính tương tác này giúp chúng ta có thể tận dụng những thư viện đó cũng như thư viện chuẩn của Erlang từ Elixir code. Trong bài này chúng ta sẽ xem làm thế nào để sử dụng được những tính năng bên trong thư viện chuẩn cũng như thư viện của bên thứ ba từ Erlang.
+Một trong những lợi ích của việc xây dựng dựa trên Erlang VM (Beam) chính là việc có rất nhiều những thư viện mà chúng ta có thể sử dụng. Tính tương tác này giúp chúng ta có thể tận dụng những thư viện đó cũng như thư viện chuẩn của Erlang từ Elixir code. Trong bài này chúng ta sẽ xem làm thế nào để sử dụng được những tính năng bên trong thư viện chuẩn cũng như thư viện của bên thứ ba từ Erlang.
 
 {% include toc.html %}
 
@@ -31,7 +31,7 @@ Result: 1000000
 
 Để xem những module nào có thể sử dụng được, hãy xem [Hướng dẫn tham khảo Erlang](http://erlang.org/doc/apps/stdlib/).
 
-## Gói thư viện Erlang
+## Gói thư viện erlang
 
 Ở bài trước chúng ta đã học về Mix và quản lý thư viện phụ thuộc. Thêm thư viện Erlang vào cũng tương tự như vậy. Trong trường hợp mà thư viện Erlang không nằm trên [Hex](https://hex.pm) bạn có thể tham khảo về cách sử dụng git repository như dưới đây: 
 
@@ -56,7 +56,7 @@ Khi chúng ta đã biết cách sử dụng Erlang, chúng ta cũng nên xem c�
 
 ### Atoms
 
-Atoms của Erlang vẻ ngoài nhìn giống như bản sao bên Elixir khi không có dấu hai chấm (`:`). Chúng được biểu diễn bởi chuỗi kí tự không viết hoa và dấu gạch dưới:
+Atoms của erlang vẻ ngoài nhìn giống như bản sao bên Elixir khi không có dấu hai chấm (`:`). Chúng được biểu diễn bởi chuỗi kí tự không hoa và dấu gạch dưới:
 
 Elixir:
 
@@ -72,7 +72,7 @@ example.
 
 ### Chuỗi kí tự
 
-Ở Elixir khi chúng ta nói về chuỗi kí tự chúng ta nói về chuỗi binary được mã hoá dưới dạng UTF-8. Với Erlang, chuỗi kí tự vẫn được biểu diễn bởi dấu ngoặc kép, nhưng thực tế lại được chỉ đến một chuỗi các kí tự đơn (char list):
+Ở Elixir khi chúng ta nói về chuỗi kí tự chúng ta nói về chuỗi binary được mã hoá dưới dạng UTF-8. Với Erlang, chuỗi kí tự vẫn được biểu diễn bởi dấu ngoặc kép, nhưng thực tế lại được chỉ đến một chuỗi các kí tự đơn:
 
 Elixir:
 
