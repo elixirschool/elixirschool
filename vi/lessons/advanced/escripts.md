@@ -85,4 +85,4 @@ $ ./example_app Hi
 Hi
 ```
 
-Chính là như vậy. Chúng ta đã xây dựng thực thi đầu tiên trong Elixir sử dụng escript.
+Chính là như vậy. Chúng ta đã xây dựng file thực thi đầu tiên trong Elixir sử dụng escript.
