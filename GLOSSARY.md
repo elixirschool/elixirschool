@@ -37,6 +37,7 @@ Class names and proper nouns do not get translated.
 - match operator - оператор сопоставления
 - pin operator - фиксирующий оператор
 - pipe operator - оператор конвейера
+- pool - пул
 - sigil - строковая метка
 - schema - структура
 - tuple - кортеж
