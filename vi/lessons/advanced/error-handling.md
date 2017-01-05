@@ -42,7 +42,7 @@ An error occurred: Oh no!
 :ok
 ```
 
-Nó có thể kết hợp nhiều lỗi trong một giải pháp duy nhất:
+Có thể kết hợp nhiều lỗi trong một giải pháp:
 
 ```elixir
 try do
