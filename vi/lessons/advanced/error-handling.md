@@ -6,7 +6,7 @@ order: 2
 lang: vi
 ---
 
-Mặc dù trong Elixir để trả về lỗi, chúng ta thường dùng {:error, reason}, nhưng Elixir cũng hỗ trợ các exceptions (tạm dịch ngoại lệ), trong bài học này chúng ta sẽ xem xét các cách để xử lý lỗi, và những cơ chế khác nhau để làm chuyện này.
+Mặc dù trong Elixir để trả về lỗi, chúng ta thường dùng `{:error, reason}`, nhưng Elixir cũng hỗ trợ các exceptions (tạm dịch ngoại lệ), trong bài học này chúng ta sẽ xem xét các cách để xử lý lỗi, và những cơ chế khác nhau để làm chuyện này.
 
 Nói chung quy ước trong Elixir là tạo ra một hàm (`example/1`) mà trả về `{:ok, result}` và `{:error, reason}` và một hàm riêng biệt (`example!/1`) trả về `result` hoặc văng ra một lỗi.
 

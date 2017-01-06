@@ -113,7 +113,7 @@ A và B được xem là anagram nếu có một sách sắp xếp A hoặc B sa
 
 Nếu chúng ta hoán đổi vị trí các kí tự của String A, chúng ta có string B, và ngược lại.
 
-Vậy làm sao để chúng ta kiểu tra hai chuỗi có là anagram trong Elixir? Cách đơn giản nhất là sắp xếp các chữ cái của từng string theo thứ tự ABC và sau đó kiểm tra liệu chúng có giống nhau. Thử xem nào:
+Vậy làm sao để chúng ta kiểm tra hai chuỗi có là anagram trong Elixir? Cách đơn giản nhất là sắp xếp các chữ cái của từng string theo thứ tự ABC và sau đó kiểm tra liệu chúng có giống nhau. Thử xem nào:
 
 ```elixir
 defmodule Anagram do

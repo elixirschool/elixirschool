@@ -129,7 +129,7 @@ iex> cond do
 
 `with` được dùng khi bạn muốn sử dụng một mệnh đề `case` lồng ghép hay những trường hợp không thể nó không thể kết nối lại một cách trơn tru được. Biểu thức `with` là sự kết hợp của từ khóa, generators và cuối cùng là một biểu thức.
 
-Chúng ta sẽ xem thêm về generators ở bài List Comprehensions but bây giờ ta chỉ cần biết là chúng dùng pattern matching để so sánh biểu thức bên phải với biểu thức bên trái (cách nhau bởi dấu `<-`)
+Chúng ta sẽ xem thêm về generators ở bài List Comprehensions nhưng bây giờ ta chỉ cần biết là chúng dùng pattern matching để so sánh biểu thức bên phải với biểu thức bên trái (cách nhau bởi dấu `<-`)
 
 Chúng ta sẽ bắt đầu mới một ví dụ về `with`, sau đó xem qua các thứ khác:
 

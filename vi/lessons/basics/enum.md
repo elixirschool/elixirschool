@@ -52,7 +52,7 @@ Có nhiều lựa chọn với hàm `chunk` nhưng ta sẽ không đi sâu vào 
 Nếu cần nhóm các phần tử theo một tính năng khác không phải kích thước, ta có thể dùng `chunk_by`:
 
 ```elixir
-iex> Enum.chunk_by(["one", "twoóm", "three", "four", "five"], fn(x) -> String.length(x) end)
+iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"]]
 ```
 
