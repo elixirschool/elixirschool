@@ -6,13 +6,13 @@ order: 2
 lang: vi
 ---
 
-Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define models, insert and update records, and query them.
+Ecto là một dự án chính thức của Elixir cung cấp một database wrapper (tạm dịch: lớp bọc cho cơ sở dữ liệu) và ngôn ngữ truy vấn tích hợp. Với Ecto ta có thể tạo các migration, định nghĩa model, ghi và cập nhật các bản ghi, và truy vấn chúng.
 
 {% include toc.html %}
 
-## Setup
+## Cài đặt
 
-To get started we need to include Ecto and a database adapter in our project's `mix.exs`.  You can find a list of supported database adapters in the [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) section of the Ecto README.  For our example we'll use PostgreSQL:
+Để bắt đầu ta cần thêm Ecto và một database adapter trong file `mix.exs` của dự án. Bạn có thể tìm thấy một danh sách database adapter được hỗ trợ trong phần [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) trong Ecto README. Trong ví dụ này ta sẽ dùng PostgreSQL:
 
 ```elixir
 defp deps do
@@ -21,7 +21,7 @@ defp deps do
 end
 ```
 
-Now we can add Ecto and our adapter to the application list:
+Bây giờ ta có thể thêm Ecto và adapter vào danh sách trong `application`:
 
 ```elixir
 def application do
@@ -31,7 +31,7 @@ end
 
 ### Repository
 
-Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo` task.  We'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
+Trước hết ta cần tạo repository (database wrapper) của dự án bằng cách dùng tác vụ `mix ecto.gen.repo`. Ta sẽ xem các tác vụ của Ecto sau. Repo của chúng ta có thể được tìm thấy ở `lib/<tên project>/repo.ex`
 
 ```elixir
 defmodule ExampleApp.Repo do
@@ -42,9 +42,9 @@ end
 
 ### Supervisor
 
-Once we've created our Repo we need to set up our supervisor tree, which is usually found in `lib/<project name>.ex`.
+Khi đã tạo xong Repo ta cần cài đặt cây giám sát, thường nằm trong file `lib/<project name>.ex`.
 
-It is important to note that we set up the Repo as a supervisor with `supervisor/3` and _not_ `worker/3`.  If you generated your app with the `--sup` flag much of this exists already:
+Một điều quan trọng là ta phải cài đặt Repo là một supervisor với `supervisor/3` mà không phải `worker/3`. Thông thường nếu bạn sinh ứng dụng với tùy chọn `--sup` thì nó đã có sẵn:
 
 ```elixir
 defmodule ExampleApp.App do
@@ -63,11 +63,11 @@ defmodule ExampleApp.App do
 end
 ```
 
-For more info on supervisors check out the [OTP Supervisors](../../advanced/otp-supervisors) lesson.
+Để tìm hiểu kĩ hơn về supervisor, bạn có thêm xem lại bài [OTP Supervisors](../../advanced/otp-supervisors).
 
-### Configuration
+### Cấu hình
 
-To configure Ecto we need to add a section to our `config/config.exs`.  Here we'll specify the repository, adapter, database, and account information:
+Để cấu hình Ecto ta cần thêm một chút vào file `config/config.exs`. Ở đây ta sẽ cung cấp các thông tin về repository, adapter, database và thông tin truy cập:
 
 ```elixir
 config :example_app, ExampleApp.Repo,
@@ -78,24 +78,24 @@ config :example_app, ExampleApp.Repo,
   hostname: "localhost"
 ```
 
-## Mix Tasks
+## Tác vụ Mix
 
-Ecto includes a number of helpful mix tasks for working with our database:
+Ecto cung cấp một loạt những tác vụ hữu ích để làm việc với database:
 
 ```shell
-mix ecto.create         # Create the storage for the repo
-mix ecto.drop           # Drop the storage for the repo
-mix ecto.gen.migration  # Generate a new migration for the repo
-mix ecto.gen.repo       # Generate a new repository
-mix ecto.migrate        # Run migrations up on a repo
-mix ecto.rollback       # Rollback migrations from a repo
+mix ecto.create         # Tạo database
+mix ecto.drop           # Xóa database
+mix ecto.gen.migration  # Sinh một migration mới cho repo
+mix ecto.gen.repo       # Sinh một repo mới
+mix ecto.migrate        # Chạy migration
+mix ecto.rollback       # Rollback migration
 ```
 
 ## Migrations
 
-The best way to create migrations is the `mix ecto.gen.migration <name>` task.  If you're acquainted with ActiveRecord these will look familiar.
+Cách tốt nhất để tạo migration là dùng tác vụ `mix ecto.gen.migration <tên>`. Nếu bạn biết ActiveRecord thì cũng sẽ không lạ gì tác vụ này.
 
-Let's start by taking a look at a migration for a users table:
+Ta hãy bắt đầu với một migration cho bảng user:
 
 ```elixir
 defmodule ExampleApp.Repo.Migrations.CreateUser do
@@ -116,19 +116,19 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 end
 ```
 
-By default Ecto creates an auto-incrementing primary key called `id`.  Here we're using the default `change/0` callback but Ecto also supports `up/0` and `down/0` in the event you need more granular control.
+Mặc định Ecto sẽ tạo một khóa chính tự động tăng (auto-incrementing primary key) tên là `id`. Ở đây ta dùng callback `change/0` nhưng Ecto cũng hỗ trợ `up/0` và `down/0` nếu như bạn muốn tùy chỉnh nhiều hơn.
 
-As you might have guessed, adding `timestamps` to your migration will create and manage `inserted_at` and `updated_at` for you.
+Chắc bạn cũng có thể đoán được là `timestamps` sẽ giúp bạn tạo và quản lý `inserted_at` và `updated_at`.
 
-To apply our new migration run `mix ecto.migrate`.
+Để chạy migration ta dùng lệnh `mix ecto.migrate`.
 
-For more on migrations take a look at the [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) section of the docs.
+Để biết thêm về migration bạn có thể xem [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) trên tài liệu chính thức.
 
 ## Models
 
-Now that we have our migration we can move on to the model.  Models define our schema, helper methods, and our changesets.  We'll cover changesets more in the next sections.
+Sau khi có migration ta có thể chuyển qua phần model. Model định nghĩa cấu trúc của bảng, các hàm bổ trợ, và changeset (tập thay đổi). Ta sẽ xem changeset ở phần tiếp theo.
 
-For now let's look at what the model for our migration might look like:
+Giờ ta sẽ xem model cho migration của chúng ta trông thế nào:
 
 ```elixir
 defmodule ExampleApp.User do
@@ -157,21 +157,21 @@ defmodule ExampleApp.User do
 end
 ```
 
-The schema we define in our model closely represents what we specified in our migration.  In addition to our database fields we're also including two virtual fields.  Virtual fields are not saved to the database but can be useful for things like validation.  We'll see the virtual fields in action in the [Changesets](#changesets) section.
+Cấu trúc schema mà ta định nghĩa trong model rất giống với những gì ta đã viết trong migration. Ngoài các trường trong database ta còn thêm hai trường ảo. Các trường ảo sẽ không được lưu vào database nhưng lại có ích trong một số trường hợp, ví dụ như validation (tạm dịch: kiểm tra lỗi). Chúng ta sẽ xem các trường ảo được dùng trong thực tế như thế nào trong phần [Changesets](#changesets).
 
-## Querying
+## Truy vấn
 
-Before we can query our repository we need to import the Query API.  For now we only need to import `from/2`:
+Trước khi có thể truy vấn ta cần import các hàm hỗ trợ truy vấn vào. Ở đây ta có thể import `from/2`:
 
 ```elixir
 import Ecto.Query, only: [from: 2]
 ```
 
-The official documentation can be found at [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html).
+Tài liệu chính thức có thể xem tại [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html).
 
-### Basics
+### Cơ bản
 
-Ecto provides an excellent Query DSL that allows us to express queries clearly.  To find the usernames of all confirmed accounts we could use something like this:
+Ecto cung cấp một DSL tuyệt vời để ta viết truy vấn một các rõ ràng. Để tìm username của tất cả các tài khoản đã xác nhận ta có thể viết như sau:
 
 ```elixir
 alias ExampleApp.{Repo,User}
@@ -183,11 +183,11 @@ query = from u in User,
 Repo.all(query)
 ```
 
-In addition to `all/2`, Repo provides a number of callbacks including `one/2`, `get/3`, `insert/2`, and `delete/2`.  A complete list of callbacks can be found at [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
+Ngoài `all/2`. Repo còn cung cấp một số hàm callback như `one/2`, `get/3`, `insert/2`, and `delete/2`. Bạn có thể đọc danh sách callback hoàn chỉnh tại [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
 
 ### Count
 
-If we want to count the number of users that have confirmed account we could use `count/1`:
+Nếu muốn đếm số người dùng đã xác nhận tài khoản ta có thể dùng `count/1`:
 
 ```elixir
 query = from u in User,
@@ -195,7 +195,7 @@ query = from u in User,
     select: count(u.id)
 ```
 
-There is `count/2` function that counts the distinct values in given entry:
+Hoặc hàm `count/2` nếu bạn muốn đếm các giá trị riêng biệt trong một tập xác định:
 
 ```elixir
 query = from u in User,
@@ -205,7 +205,7 @@ query = from u in User,
 
 ### Group By
 
-To group users by their confirmation status we can include the `group_by` option:
+Để gom các người dùng theo trạng thái xác nhận của họ, ta có thể dùng tùy chọn `group_by`:
 
 ```elixir
 query = from u in User,
@@ -217,7 +217,7 @@ Repo.all(query)
 
 ### Order By
 
-Ordering users by their creation date:
+Sắp xếp người dùng theo ngày tạo tài khoản của họ:
 
 ```elixir
 query = from u in User,
@@ -227,7 +227,7 @@ query = from u in User,
 Repo.all(query)
 ```
 
-To order by `DESC`:
+Để sắp theo thứ tự từ lớn đến bé:
 
 ```elixir
 query = from u in User,
@@ -237,7 +237,7 @@ query = from u in User,
 
 ### Joins
 
-Assuming we had a profile associated with our user, let's find all confirmed account profiles:
+Ví dụ như ta có bảng Profile liên kết với User, ta hãy tìm tất cả thông tin tài khoản của các tài khoản đã xác nhận:
 
 ```elixir
 query = from p in Profile,
@@ -247,7 +247,7 @@ query = from p in Profile,
 
 ### Fragments
 
-Sometimes, like when we need specific database functions, the Query API isn't enough.  The `fragment/1` function exists for this purpose:
+Đôi lúc nếu ta cần các hàm có sẵn trong cơ sở dữ liệu thì các hàm hỗ trợ Query sẽ là không đủ. Hàm `fragment/1` sẽ giúp ta làm điều đó:
 
 ```elixir
 query = from u in User,
@@ -255,15 +255,15 @@ query = from u in User,
     select: u
 ```
 
-Additional query examples can be found in the [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html) module description.
+Các ví dụ truy vấn khác bạn có thể xem tại [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html).
 
 ## Changesets
 
-In the previous section we learned how to retrieve data, but how about inserting and updating it?  For that we need Changesets.
+Ở phần trước ta đã học cách để lấy dữ liệu, những làm sao để ghi và cập nhật nó? Để làm việc đó ta cần Changeset.
 
-Changesets take care of filtering, validating, and maintaining constraints when changing a model.
+Changeset đóng vai trò lọc, kiểm tra, và giữ các ràng buộc khi thay đổi model.
 
-For this example we'll focus on the changeset for user account creation.  To start we need to update our model:
+Với ví dụ này ta sẽ tập trung vào changeset cho việc tạo tài khoản người dùng. Ta sẽ sửa model của chúng ta một chút:
 
 ```elixir
 defmodule ExampleApp.User do
@@ -314,11 +314,11 @@ defmodule ExampleApp.User do
 end
 ```
 
-We've improved our `changeset/2` function and added three new helper functions: `validate_password_confirmation/1`, `password_mismatch_error/1`, and `password_incorrect_error/1`.
+Ta đã nâng cấp hàm `changeset/2` và thêm vào ba hàm tiện ích: `validate_password_confirmation/1`, `password_mismatch_error/1` và `password_incorrect_error/1`.
 
-As its name suggests, `changeset/2` creates a new changeset for us.  In it we use `cast/4` to convert our parameters to a changeset from a set of required and optional fields.  Next we validate the changeset's password length, we use our own function to validate the password confirmation matches, and we validate username uniqueness.  Finally we update our actual password database field.  For this we use `put_change/3` to update a value in the changeset.
+Đúng như nghĩa đen của cái tên, `changeset/2` tạo ra một changeset mới cho chúng ta. Trong đó ta dùng hàm `cast/4` để chuyển các tham số thành changeset từ một tập các trường bắt buộc và không bắt buộc. Sau đó ta kiểm tra điều kiện độ dài của chuỗi mật khẩu của changeset, ta dùng hàm của riêng mình để kiểm tra liệu việc xác nhận mật khẩu đã chính xác, và ta kiểm tra liệu username có bị trùng lặp. Cuối cùng ta cập nhận trường mật khẩu thật sự. Ở đây ta dùng hàm `put_change/3` để cập nhật một giá trị trong changeset.
 
-Using `User.changeset/2` is relatively straightforward:
+Dùng `User.changeset/2` nhìn cũng khá đơn giản:
 
 ```elixir
 alias ExampleApp.{User,Repo}
@@ -335,4 +335,4 @@ case Repo.insert(changeset) do
 end
 ```
 
-That's it!  Now you're ready to save some data.
+Xong rồi! Và bây giờ bạn đã sẵn sàng để lưu dữ liệu rồi đấy.
