@@ -6,7 +6,7 @@ order: 1
 lang: en
 ---
 
-[Guardian](https://github.com/ueberauth/guardian) is a widely used authentication library based on [JWT](https://jwt.io/) (Javascript Web Token).
+[Guardian](https://github.com/ueberauth/guardian) is a widely used authentication library based on [JWT](https://jwt.io/) (JSON Web Tokens).
 
 {% include toc.html %}
 
@@ -51,7 +51,7 @@ You do not need to track JWT via a database. You can simply rely on the issued a
 
 For example, if you were going to use JWT to authenticate communication on a UDP socket you likely wouldn't use a database. Encode all the information you need directly into the token when you issue it. Once you verify it (check that it's signed correctly) you're good to go.
 
-You _can_ however use a database to track JWT. If you do, you gain the ability to verify that the token is still valid - that is - it has not been revoked. Or you could use the records in the DB to force a log out of all tokens for user 5. This is made simple in Guardian by using [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb uses Guardians 'Hooks' to perform validation checks, save and delete from the DB. We'll cover that later.
+You _can_ however use a database to track JWT. If you do, you gain the ability to verify that the token is still valid - that is - it has not been revoked. Or you could use the records in the DB to force a log out of all tokens a for user. This is made simple in Guardian by using [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb uses Guardians 'Hooks' to perform validation checks, save and delete from the DB. We'll cover that later.
 
 ## Setup
 
