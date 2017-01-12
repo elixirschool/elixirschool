@@ -6,30 +6,30 @@ order: 2
 lang: vi
 ---
 
-You can easily exhaust your system resources if you allow concurrent processes to run arbitrarily. Poolboy prevents having to incur the overhead by creating a pool of workers to limit the number of concurrent processes.
+Bạn có thể dễ dàng hao tổn hết tài nguyên của hệ thống nếu bạn cho phép các tiến trình đồng thời (concurrent process) chạy một cách tùy ý. Poolboy giúp chúng ta tránh việc hao tổn quá mức đó bằng cách tạo ra một tập worker (worker pool) để giới hạn các tiến trình đồng thời.
 
 {% include toc.html %}
 
-## Why use Poolboy?
+## Vì sao dùng Poolboy?
 
-Let's think of a specific example for a moment. You are tasked to build an application for saving user profile information to the database. If you've created a process for every user registration, you would create unbounded number of connections. At some point those connections start competing for the limited resources available in your database server. Eventually your application gets timeouts and various exceptions due to the overhead from that contention.
+Chúng ta hãy bàn về một ví dụ cụ thể. Bạn được giao nhiệm vụ phải thiết kế một ứng dụng để lưu thông tin tài khoản người dùng vào database. Nếu với mỗi lần user đăng ký bạn đều tạo một tiến trình, bạn sẽ không thể điều khiển được số lượng kết nối. Ở một thời điểm nào đó, những kết nối trên bắt đầu giành nhau những tài nguyên có hạn sẵn dùng trên database server. Chẳng mấy chốc thì ứng dụng của bạn bị timeout vì những overhead gây ra bởi việc tranh giành đó.
 
-The solution to this problem is using set of workers (processes) to limit the number of connections instead of creating a process for every user registration. Then you can easily avoid running out of your system resources.
+Giải pháp cho vấn đề trên là dùng một tập worker (tiến trình) để giới hạn số lượng kết nối thay vì tạo ra một tiến trình cho mỗi lần user đăng ký. Như vậy bạn sẽ dễ dàng tránh được việc hao tổn tài nguyên hệ thống.
 
-That's where Poolboy comes in. It creates a pool of workers managed by a `Supervisor` without any effort on your part to do it manually. There are many libraries which use Poolboy under the covers. For example, `postgrex`'s connection pool *(which is leveraged by Ecto when using PostgreSQL)* and `redis_poolex` *(Redis connection pool)* are some popular libraries which use Poolboy.
+Đó là lý do Poolboy tồn tại. Nó tạo một một tập các worker được quản lý bởi một `Supervisor` (và cái hay là bạn không cần phải tự tay làm nó). Có rất nhiều thư viên sử dụng Poolboy ở bên dưới nó như tập kết nối `postgrex` *(cái mà Ecto dùng để làm việc PostgreSQL)* và `redis_poolex` *(tập kết nối cho Redis)* là một trong những thư viện điển hình dùng Poolboy.
 
-## Installation
+## Cài đặt
 
-Installation is a breeze with mix. All we need to do is add Poolboy as a dependency to our `mix.exs`.  
+Cài đặt là việc quá dễ với mix. Đơn giản là thêm Poolboy làm thư viện trong file `mix.exs`.
 
-Let's create an application first:
+Trước hết ta hãy tạo một ứng dụng:
 
 ```
 $ mix new poolboy_app --sup
 $ mix deps.get
 ```
 
-Add Poolboy as a dependency to our `mix.exs`.  
+Thêm Poolboy vào thư viện trong file `mix.exs`.  
 
 ```elixir
 defp deps do
@@ -37,7 +37,7 @@ defp deps do
 end
 ```
 
-And add Poolboy to our OTP application:
+Thêm Poolboy vào ứng dụng OTP:
 
 ```elixir
 def application do
@@ -45,21 +45,21 @@ def application do
 end
 ```
 
-## The configuration options
+## Các tùy chọn cài đặt
 
-We need to know a little bit about the various configuration options in order to start using Poolboy.
+Chúng ta chỉ cần biết chút ít về các tùy chọn cài đặt để bắt đầu làm việc với Poolboy.
 
-* `:name` - the pool name. Scope can be `:local`, `:global`, or `:via`.
-* `:worker_module` - the module that represents the worker.
-* `:size` - maximum pool size.
-* `:max_overflow` - maximum number of workers created if pool is empty. (optional)
-* `:strategy` - `:lifo` or `:fifo`, determines whether checked in workers should be placed first or last in the line of available workers. Default is `:lifo`. (optional)
+* `:name` - tên của tập. Phạm vi (scope) có thể là `:local`, `:global` hoặc `:via`.
+* `:worker_module` - tên module của worker.
+* `:size` - kích thước tối đa của tập.
+* `:max_overflow` - số worker tối đa sẽ được tạo khi tập không còn worker sẵn dùng. (không bắt buộc)
+* `:strategy` - `:lifo` hoặc `:fifo`, định nghĩa việc các worker mới đăng ký sẽ được đặt trước hay đặt sau các worker có sẵn. Mặc định là `:lifo`. (không bắt buộc)
 
-## Configuring Poolboy
+## Cấu hình Poolboy
 
-For this example, we'll create a pool of workers that are responsible for handling requests to calculate the square root of a number. We'll keep the example simple so that we can keep our focus on Poolboy.
+Trong ví dụ này ta sẽ tạo ra một tập worker để xử lý các yêu cầu tính căn của một số. Ta sẽ dùng ví dụ đơn giản để tập trung vào Poolboy.
 
-Let's define the Poolboy configuration options and add it as a child worker as part of our application start.
+Ta hãy định nghĩa các tùy chọn cấu hình Poolboy và thêm nó là một worker con khi ứng dụng chạy.
 
 ```elixir
 defmodule PoolboyApp do
@@ -85,14 +85,14 @@ defmodule PoolboyApp do
 end
 ```
 
-The first thing we defined is the configuration options for the pool. We assigned a unique pool `:name`, set the `:scope` to local, and the `:size` of the pool to have total of five workers. Also, in case all workers are under load, we tell it to create two more workers to help with the load using the `:max_overflow` option. *(`overflow` workers do go away once they complete their work.)*
+Thứ đầu tiên ta định nghĩa là tùy chọn cấu hình cho tập. Ta gán vào `:name` tên duy nhất của tập, cấu hình phạm vi `:scope` thành local và kích thước `:size` của tập là năm worker. Và trong trường hợp mọi worker đều đang bận, ta bảo nó tạo thêm hai worker khác để giúp đỡ bằng cách sử dụng tùy chọn `:max_overflow`. *(các worker `overflow` sẽ được xóa sau khi nó xong việc.)*
 
-Next, we added `poolboy.child_spec/3` function to the array of children so that the pool of workers will be started when the application starts.
+Sau đó ta thêm hàm `pollboy.child_spec/3` vào mảng các con để tập worker có thể chạy khi ứng dụng chạy.
 
-The `child_spec/3` function takes three arguments; Name of the pool, pool configuration, and the third argument that is passed to the `worker.start_link` function. In our case, it is just an empty list.
+Hàm `child_spec/3` nhận ba tham số: Tên của tập, cấu hình của tập và tham số thứ ba là cái sẽ được truyền vào hàm `worker.start_link`. Trong trường hợp của chúng ta là một mảng rỗng.
 
-## Creating Worker
-The worker module will be a simple GenServer calculating the square root of a number, sleeping for one second, and printing out the pid of the worker:
+## Tạo worker
+Worker module sẽ là một GenServer đơn giản tính căn của một số, sleep một giây và sau đó in ra số pid của worker.
 
 ```elixir
 defmodule Worker do
@@ -114,9 +114,9 @@ defmodule Worker do
 end
 ```
 
-## Using Poolboy
+## Dùng Poolboy
 
-Now that we have our `Worker`, we can test Poolboy. Let's create a simple module that creates concurrent processes using `:poolboy.transaction` function:
+Sau khi có `Worker`, ta có thể chạy thử Poolboy. Ta hãy tạo ra một module đơn giản để tạo ra các tiến trình đồng thời dùng hàm `:poolboy.transaction`:
 
 ```elixir
 defmodule Test do
@@ -131,8 +131,8 @@ defmodule Test do
      Enum.each(tasks, fn(task) -> IO.puts(Task.await(task, @timeout)) end)
   end
 end
-
 ```
-If you do not have available pool workers, Poolboy will timeout after the default timeout period (five seconds) and won't accept any new requests. In our example, we've increased the default timeout to one minute in order to demonstrate how we can change the default timeout value.
 
-Even though we're attempting to create multiple processes *(total of twenty in the example above)* `:poolboy.transaction` function will limit the total of created processes to five *(plus two overflow workers if needed)* as we defined it in our configuration. All requests will be handled by the pool of workers rather than creating a new process for each and every request.
+Nếu bạn không có các worker sẵn dùng trong tập, Poolboy sẽ timeout một thời gian mặc định (năm giây) và không nhận thêm yêu cầu mới nào cả. Ở ví dụ của chúng ta, việc ta tăng thời gian timeout lên một phút chỉ là để mô phỏng cách ta thay đổi giá trị mặc định của nó như thế nào.
+
+Ngay cả khi ta cố ý tạo ra nhiều tiến trình *(như ở trên có tổng cộng hai mươi cái)*, hàm `:poolboy.transaction` sẽ giới hạn số tiến trình được tạo ra là năm *(cộng thêm hai overflow worker nếu cần thiết)* như ta đã định nghĩa trong cấu hình. Tất cả yêu cầu sẽ được xử lý bởi tập worker thay vì tạo ra một tiến trình mới cho mỗi một yêu cầu.
