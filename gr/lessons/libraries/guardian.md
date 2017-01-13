@@ -6,7 +6,7 @@ order: 1
 lang: gr
 ---
 
-Η [Guardian](https://github.com/ueberauth/guardian) είναι μια ευρέως διαδεδομένη βιβλιοθήκη πιστοποίησης βασισμένη στο [JWT](https://jwt.io/) (Javascript Web Token).
+Η [Guardian](https://github.com/ueberauth/guardian) είναι μια ευρέως διαδεδομένη βιβλιοθήκη πιστοποίησης βασισμένη στο [JWT](https://jwt.io/) (JSON Web Token).
 
 {% include toc.html %}
 
