@@ -6,19 +6,19 @@ order: 5
 lang: vi
 ---
 
-We've looked at the Elixir abstractions for concurrency but sometimes we need greater control and for that we turn to the OTP behaviors that Elixir is built on.
+Chúng ta đã xem về các trừu tượng hoá của Elixir cho xử lý đồng thời (concurrency), nhưng đôi khi chúng ta cần quyền điều khiển lớn hơn, bởi thế chúng ta sẽ đi sâu vào tìm hiểu hành vi của OTP mà đã có sẵn ở trong Elixir.
 
-In this lesson we'll focus on two important pieces: GenServers and GenEvents.
+Trong bài này, chúng ta sẽ tập trung vào hai phần chính: GenServers và GenEvents.
 
 {% include toc.html %}
 
 ## GenServer
 
-An OTP server is a module with the GenServer behavior that implements a set of callbacks.  At its most basic level a GenServer is a loop that handles one request per iteration passing along an updated state.
+Một OTP server là một module với hành vi của GenServer mà được thực thi bởi một chuỗi các callbacks (tạm dịch: gọi ngược). GenServer khi nhìn vào mặt cơ bản nhất chỉ là một vòng lặp mà xử lý từng yêu cầu một mỗi lần, kèm với việc truyền ra trạng thái mới nhất (updated state).
 
-To demonstrate the GenServer API we'll implement a basic queue to store and retrieve values.
+Để minh hoạ về GenServer API, chúng ta sẽ thực hiện một hàng đợi (queue) cơ bản để lưu trữ và lấy ra các giá trị.
 
-To begin our GenServer we need to start it and handle the initialization. In most cases we'll want to link processes so we use `GenServer.start_link/3`.  We pass in the GenServer module we're starting, initial arguments, and a set of GenServer options.  The arguments will be passed to `GenServer.init/1` which sets the initial state through its return value.  In our example the arguments will be our initial state:
+Để bắt đầu một GenServer chúng ta sẽ cần khởi động nó, và xử lý phần khởi tạo. Trong hầu hết các trường hợp, chúng ta sẽ muốn kết nối các tiến trình (process), bởi vậy chúng ta sẽ dùng `GenServer.start_link/3`. Chúng ta sẽ truyền vào GenServer module mà chúng ta đang khởi động, các biến khởi tạo và một chuỗi các lựa chọn (option) của GenServer. Các đối số sẽ được truyền vào `GenServer/init/1` mà ở trong đó sẽ cài đặt trạng thái ban đầu dựa vào giá trị trả về của nó. Trong ví dụ của chúng ta, các đối số sẽ là trạng thái khởi tạo:
 
 ```elixir
 defmodule SimpleQueue do
@@ -38,13 +38,13 @@ defmodule SimpleQueue do
 end
 ```
 
-### Synchronous Functions
+### Các hàm tuần tự
 
-It's often necessary to interact with GenServers in a synchronous way, calling a function and waiting for its response.  To handle synchronous requests we need to implement the `GenServer.handle_call/3` callback which takes: the request, the caller's PID, and the existing state; it is expected to reply by returning a tuple: `{:reply, response, state}`.
+Sẽ có những trường hợp cần thiết để tương tác với GenServers theo một cách tuần tự, gọi một hàm và đợi trả về của nó. Để xử lý yêu cầu một cách tuần tự, chúng ta cần thực thi `GenServer.handle_call/3` callback mà nhận vào: yêu cầu, PID của người gọi, và trạng thái hiện tại; một tuple sẽ được mong đợi để trả về: `{:reply, response, state}`.
 
-With pattern matching we can define callbacks for many different requests and states. A complete list of accepted return values can be found in the [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) docs.
+Với việc sử dụng so trùng mẫu (pattern matching), chúng ta có thể định nghĩa callbacks cho rất nhiều yêu cầu và trạng thái. Một chuỗi hoàn chỉnh của các giá trị được phép trả về có thể được tìm thấy trong tài liệu [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) 
 
-To demonstrate synchronous requests let's add the ability to display our current queue and to remove a value:
+Để minh hoạ về yêu cầu tuần tự, hãy thêm vào tính năng để hiển thị trạng thái hiện tại của hàng đợi và xoá một giá trị:
 
 ```elixir
 defmodule SimpleQueue do
@@ -78,7 +78,7 @@ defmodule SimpleQueue do
 end
 ```
 
-Let's start our SimpleQueue and test out our new dequeue functionality:
+Hãy khởi động SimpleQueue và kiểm thử tính năng dequeue nào:
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])
@@ -91,11 +91,10 @@ iex> SimpleQueue.queue
 [3]
 ```
 
-### Asynchronous Functions
+### Hàm bất đồng bộ
+Các yêu cầu bất đồng bộ sẽ được xử lý bởi callback `handle_cast/2`. Việc này cũng gần như `handle_call/3` nhưng không nhận vào người gọi (caller), và không mong đợi việc trả lời lại.
 
-Asynchronous requests are handled with the `handle_cast/2` callback.  This works much like `handle_call/3` but does not receive the caller and is not expected to reply.
-
-We'll implement our enqueue functionality to be asynchronous, updating the queue but not blocking our current execution:
+Chúng ta sẽ thực hiện hàm enqueue sao cho nó là bất đồng bộ, cập nhật hàng đợi nhưng không làm nghẽn xử lý hiện tại:
 
 ```elixir
 defmodule SimpleQueue do
@@ -136,7 +135,7 @@ defmodule SimpleQueue do
 end
 ```
 
-Let's put our new functionality to use:
+Hãy thử sử dụng chức năng mới này nào:
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])
@@ -148,18 +147,17 @@ iex> SimpleQueue.enqueue(20)
 iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
-
-For more information check out the official [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content) documentation.
+Để biết thêm thông tin, hãy xem tài liệu chính thức tại [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content).
 
 ## GenEvent
 
-We learned that GenServers are processes that can maintain state and handle synchronous and asynchronous requests.  So what is a GenEvent?  GenEvents are generic event managers that receive incoming events and notify subscribed consumers.  They provide a mechanism for dynamically adding and removing handlers to flows of events.
+Chúng ta đã học được rằng GenServers là các tiến trình mà cần lưu giữ trạng thái và có thể xử lý được các yêu cầu đồng bộ cũng như bất đồng bộ. Vậy GenEvent là gì? GenEvents để quản lý các sự kiện (event) mà nó sẽ nhận vào một sự kiện, sau đó sẽ thông báo cho những consumers (tạm dịch: tiền trình tiêu dùng) đã đăng ký. Nhờ đó chúng ta có một cơ chế để thêm và xoá các hàm xử lý (handlers) động cho các sự kiện.
 
-### Handling Events
+### Xử lý các sự kiện
 
-The most important callback in GenEvents as you can imagine is `handle_event/2`.  This receives the event and the handler's current state and is expected to return a tuple: `{:ok, state}`.
+Hàm callback quan trọng nhất trong GenEvents mà bạn có thể hình dung là `handle_event/2`. Hàm này nhận vào sự kiện cùng với trạng thái hiện tại của hàm xử lý, sau đó sẽ trả lại một tuple: `{:ok, state}`.
 
-To demonstrate the GenEvent functionality let's start by creating two handlers, one to keep a log of messages and the other to persist them (theoretically):
+Để minh hoạ tính năng của GenEvent, chúng ta hãy bắt đầu bằng việc tạo hai hàm xử lý (handlers), một hàm dành để giữ log của những thông tin đến, và một để lưu trữ chúng lại (trên lý thuyết): 
 
 ```elixir
 defmodule LoggerHandler do
@@ -184,11 +182,11 @@ defmodule PersistenceHandler do
 end
 ```
 
-### Calling Handlers
+### Gọi các hàm xử lý
 
-In addition to `handle_event/2` GenEvents also support `handle_call/2` among other callbacks.  With `handle_call/2` we can handle specific synchronous messages with our handler.
+Ngoài `handle_event/2` ra, GenEvents đồng thời cũng hỗ trợ hàm `handle_call/2`. Với hàm `handle_call/2` chúng ta có thể xử lý các thông điệp đồng bộ được chỉ định bên trong hàm xử lý đó.
 
-Let's update our `LoggerHandler` to include a method for retrieving the current message log:
+Hãy cập nhật `LoggerHandler` để thêm vào hàm dùng để nhận log của thông điệp hiện tại:
 
 ```elixir
 defmodule LoggerHandler do
@@ -205,11 +203,11 @@ defmodule LoggerHandler do
 end
 ```
 
-### Using GenEvents
+### Sử dụng GenEvents
 
-With our handlers ready to go we need to familiarize ourselves with a few of GenEvent's functions.  The three most important functions are: `add_handler/3`, `notify/2`, and `call/4`.  These allow us to add handlers, broadcast new messages, and call specific handler functions respectively.
+Với các hàm xử lý vừa làm, chúng ta cần làm quen thêm với một vài hàm mà GenEvent có sẵn. Ba hàm quan trọng nhất là: `add_handler/3`, `notify/2` và `call/4`. Những hàm đó cho phép chúng ta thêm vào các hàm xử lý, phát tán (broadcast) một thông điệp, và gọi một hàm xử lý nhất định nào đó. 
 
-If we put it all together we can see our handlers in action:
+Nếu chúng ta gộp tất cả lại thì sẽ nhìn thấy các hàm xử lý trên thực tế như dưới đây:
 
 ```elixir
 iex> {:ok, pid} = GenEvent.start_link([])
@@ -224,4 +222,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-See the official [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) documentation for a complete list of callbacks and GenEvent functionality.
+Bạn có thể xem tài liệu chính thức tại [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) để xem danh mục tất cả các callback và các hàm mà GenEvent hỗ trợ.
