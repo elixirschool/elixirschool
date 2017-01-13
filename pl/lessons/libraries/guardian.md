@@ -6,13 +6,13 @@ order: 1
 lang: pl
 ---
 
-[Guardian](https://github.com/ueberauth/guardian) jest szeroko używaną biblioteką do obsługi uwierzytelniania bazującą na [JWT](https://jwt.io/) (Javascript Web Token).
+[Guardian](https://github.com/ueberauth/guardian) jest szeroko używaną biblioteką do obsługi uwierzytelniania bazującą na [JWT](https://jwt.io/) (JSON Web Token).
 
 {% include toc.html %}
 
 ## JWT
 
-JWT umożliwia użycie rozbudowanego tokenu uwierzytelniania. W przeciwieństwie do innych systemów uwierzytelniania, które udostępniają jedynie informacje o identyfikatorze podmiotu i zasobu, JWT udostępnia dodatkowo: 
+JWT umożliwia użycie rozbudowanego tokenu uwierzytelniania. W przeciwieństwie do innych systemów uwierzytelniania, które udostępniają jedynie informacje o identyfikatorze podmiotu i zasobu, JWT udostępnia dodatkowo:
 
 * Kto wystąpił o token,
 * Dla kogo przeznaczony jest token,
@@ -31,7 +31,7 @@ Tak rozbudowana funkcjonalność pozwala na przekazywanie tokenów JWT w ramach 
 
 ### Gdzie używać?
 
-JWT token może być użyty do uwierzytelniania w dowolnym miejscu systemu i w dowolnej aplikacji. 
+JWT token może być użyty do uwierzytelniania w dowolnym miejscu systemu i w dowolnej aplikacji.
 
 * Aplikacje SPA
 * Kontrolery (poprzez sesję przeglądarki)
@@ -49,13 +49,13 @@ Tokeny JWT mogą zatem zostać użyte wszędzie tam, gdzie potrzebujemy weryfika
 
 Nie ma potrzeby przechowywania JWT w bazie danych. Na podstawie danych z tokena takich jak, żądający i data wygaśnięcia, można kontrolować udostępniane zasoby. Zazwyczaj korzystamy z bazy danych, bo tam składowane są zasoby, ale samo JWT tego nie wymaga.
 
-Na przykład, jeżeli chcemy użyć JWT do uwierzytelniania komunikacji po UDP, to nie będziemy używać bazy danych. W zamian zapiszemy wszystkie informacje bezpośrednio w tokenie. Po weryfikacji, zakładając, że jest on poprawnie podpisany, możemy już udostępnić zasoby. 
+Na przykład, jeżeli chcemy użyć JWT do uwierzytelniania komunikacji po UDP, to nie będziemy używać bazy danych. W zamian zapiszemy wszystkie informacje bezpośrednio w tokenie. Po weryfikacji, zakładając, że jest on poprawnie podpisany, możemy już udostępnić zasoby.
 
 Jeżeli jednak zdecydujesz się na użycie bazy danych do przechowywania JWT, to otrzymasz możliwość weryfikacji czy token jest nadal prawidłowy, inaczej czy nie został on unieważniony. Można też wykorzystać bazę danych, by przykładowo unieważnić wszystkie tokeny danego użytkownika. W tym celu Guardian wykorzystuje [GuardianDB](https://github.com/hassox/guardian_db). Samo GuardianDb używa 'zaczepów' Guardian, by przeprowadzić walidację i zapisać lub usunąć dane z bazy. Będziemy jeszcze o tym mówić.  
 
 ## Konfiguracja
 
-Konfiguracja Guardiana jest rozbudowana i ma wiele opcji. Zajmiemy się nimi za chwilę, ale najpierw przygotujmy coś prostego. 
+Konfiguracja Guardiana jest rozbudowana i ma wiele opcji. Zajmiemy się nimi za chwilę, ale najpierw przygotujmy coś prostego.
 
 ### Minimalna konfiguracja
 
@@ -126,7 +126,7 @@ Najprostszą metodą integracji jest użycie routera, ale jako że sam proces in
 Zasadniczo zasada działania plugu Guardiana jest następująca:
 
 1. Znajdź token gdzieś w żądaniu: plugi `Verify*`
-2. Opcjonalnie załaduj identyfikator zasobu: plug `LoadResource` 
+2. Opcjonalnie załaduj identyfikator zasobu: plug `LoadResource`
 3. Sprawdź, czy token z żądania jest poprawny i jeżeli nie jest, zablokuj dostęp. Plug `EnsureAuthenticated`.
 
 By zaspokoić wszystkie wymagania programistów, Guardian implementuje powyższe fazy w oddzielnych plugach. By znaleźć token używamy plugów `Verify*`.
@@ -147,14 +147,14 @@ end
 
 Potoki te pozwalają na zaspokojenie różnych potrzeb związanych z uwierzytelnianiem. Pierwszy próbuje odnaleźć token w sesji, kolejny w nagłówku, a gdy token zostanie odnaleziony, to ładowane są odpowiednie zasoby.
 
-Drugi z potoków spełnia wymagania co do weryfikacji poprawności tokenu, sprawdzając, czy jego typ, pole `typ` ma wartość `access`. 
+Drugi z potoków spełnia wymagania co do weryfikacji poprawności tokenu, sprawdzając, czy jego typ, pole `typ` ma wartość `access`.
 
 By ich użyć, dodajmy je do naszej aplikacji:
 
 ```elixir
 scope "/", MyApp do
   pipe_through [:browser, :maybe_browser_auth]
-  
+
   get "/login", LoginController, :new
   post "/login", LoginController, :create
   delete "/login", LoginController, :delete
@@ -162,14 +162,14 @@ end
 
 scope "/", MyApp do
   pipe_through [:browser, :maybe_browser_auth, :ensure_authed_access]
-  
+
   resource "/protected/things", ProtectedController
 end
 ```
 
 Powyższa konfiguracja dla procesu logowania pozwala na uwierzytelnienie użytkownika, jeżeli tylko istnieje. Druga z konfiguracji sprawdza, czy przesłano poprawny token. Oczywiście nie musimy używać potoków i zamiast nich dodać odpowiednie elementy bezpośrednio do kontrolerów, by uzyskać bardzo elastyczne do konfiguracji rozwiązanie, ale tu wybraliśmy najprostsze rozwiązanie.
 
-Jak na razie kompletnie pominęliśmy jedną rzecz. Obsługę błędów dodaną w plugu `EnsureAuthenticated`. Jest to bardzo prosty moduł zawierający dwie funkcje: 
+Jak na razie kompletnie pominęliśmy jedną rzecz. Obsługę błędów dodaną w plugu `EnsureAuthenticated`. Jest to bardzo prosty moduł zawierający dwie funkcje:
 
 * `unauthenticated/2`
 * `unauthorized/2`
@@ -184,7 +184,7 @@ W kontrolerze mamy kilka różnych sposobów, by otrzymać informacje o aktualni
 defmodule MyApp.MyController do
   use MyApp.Web, :controller
   use Guardian.Phoenix.Controller
-  
+
   def some_action(conn, params, user, claims) do
     # do stuff
   end
@@ -198,7 +198,7 @@ Inną, bardziej elastyczną i bogatszą w informacje, metodą jest użycie kodu 
 ```elixir
 defmodule MyApp.MyController do
   use MyApp.Web, :controller
-  
+
   def some_action(conn, params) do
     if Guardian.Plug.authenticated?(conn) do
       user = Guardian.Plug.current_resource(conn)
