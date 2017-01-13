@@ -6,7 +6,7 @@ order: 1
 lang: ko
 ---
 
-[Guardian](https://github.com/ueberauth/guardian)은 [JWT](https://jwt.io/) (Javascript Web Token)에 기반한 널리 사용되는 인증 라이브러리입니다.
+[Guardian](https://github.com/ueberauth/guardian)은 [JWT](https://jwt.io/) (JSON Web Token) 에 기반한 널리 사용되는 인증 라이브러리입니다.
 
 {% include toc.html %}
 
