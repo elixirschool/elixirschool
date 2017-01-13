@@ -6,7 +6,7 @@ order: 5
 lang: vi
 ---
 
-Chúng ta đã xem về các trừu tượng hoá của Elixir cho tính toán song song (concurrency), nhưng đôi khi chúng ta cần quyền điều khiển lớn hơn, bởi thế chúng ta sẽ đi sâu vào tìm hiểu hành vi của OTP mà đã có sẵn ở trong Elixir.
+Chúng ta đã xem về các trừu tượng hoá của Elixir cho xử lý đồng thời (concurrency), nhưng đôi khi chúng ta cần quyền điều khiển lớn hơn, bởi thế chúng ta sẽ đi sâu vào tìm hiểu hành vi của OTP mà đã có sẵn ở trong Elixir.
 
 Trong bài này, chúng ta sẽ tập trung vào hai phần chính: GenServers và GenEvents.
 
@@ -14,9 +14,9 @@ Trong bài này, chúng ta sẽ tập trung vào hai phần chính: GenServers v
 
 ## GenServer
 
-Một OTP server là một module với hành vi của GenServer mà được thực thi bởi một chuỗi các callbacks (tạm dịch: gọi ngược). GenServer khi nhìn vào mặt cơ bản nhất chỉ là một vòng lặp mà xủ lý từng yêu cầu một mỗi lần, kèm với việc truyền ra trạng thái mới nhất (updated state).
+Một OTP server là một module với hành vi của GenServer mà được thực thi bởi một chuỗi các callbacks (tạm dịch: gọi ngược). GenServer khi nhìn vào mặt cơ bản nhất chỉ là một vòng lặp mà xử lý từng yêu cầu một mỗi lần, kèm với việc truyền ra trạng thái mới nhất (updated state).
 
-Để trình diễn về GenServer API, chúng ta sẽ thực hiện một hàng đợi (queue) cơ bản để lưu trữ và lấy ra các giá trị.
+Để minh hoạ về GenServer API, chúng ta sẽ thực hiện một hàng đợi (queue) cơ bản để lưu trữ và lấy ra các giá trị.
 
 Để bắt đầu một GenServer chúng ta sẽ cần khởi động nó, và xử lý phần khởi tạo. Trong hầu hết các trường hợp, chúng ta sẽ muốn kết nối các tiến trình (process), bởi vậy chúng ta sẽ dùng `GenServer.start_link/3`. Chúng ta sẽ truyền vào GenServer module mà chúng ta đang khởi động, các biến khởi tạo và một chuỗi các lựa chọn (option) của GenServer. Các đối số sẽ được truyền vào `GenServer/init/1` mà ở trong đó sẽ cài đặt trạng thái ban đầu dựa vào giá trị trả về của nó. Trong ví dụ của chúng ta, các đối số sẽ là trạng thái khởi tạo:
 
@@ -42,9 +42,9 @@ end
 
 Sẽ có những trường hợp cần thiết để tương tác với GenServers theo một cách tuần tự, gọi một hàm và đợi trả về của nó. Để xử lý yêu cầu một cách tuần tự, chúng ta cần thực thi `GenServer.handle_call/3` callback mà nhận vào: yêu cầu, PID của người gọi, và trạng thái hiện tại; một tuple sẽ được mong đợi để trả về: `{:reply, response, state}`.
 
-Với việc sử dụng so trùng mẫu (pattern matching), chúng ta có thể định nghĩa callbacks cho rất nhiều yêu cầu và trạng thái. Một chuỗi hoản chỉnh của các giá trị được phép trả về có thể được tìm thấy trong tài liệu [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) 
+Với việc sử dụng so trùng mẫu (pattern matching), chúng ta có thể định nghĩa callbacks cho rất nhiều yêu cầu và trạng thái. Một chuỗi hoàn chỉnh của các giá trị được phép trả về có thể được tìm thấy trong tài liệu [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) 
 
-Để trình diễn về yêu cầu tuần tự, hãy thêm vào tính năng để hiển thị trạng thái hiện tại của hàng đợi và xoá một giá trị:
+Để minh hoạ về yêu cầu tuần tự, hãy thêm vào tính năng để hiển thị trạng thái hiện tại của hàng đợi và xoá một giá trị:
 
 ```elixir
 defmodule SimpleQueue do
@@ -92,7 +92,7 @@ iex> SimpleQueue.queue
 ```
 
 ### Hàm bất đồng bộ
-Các yêu cầu bất đồng bộ sẽ được sử lý bởi callback `handle_cast/2`. Việc này cũng gần như `handle_call/3` nhưng không nhận vào người gọi (caller), và không mong đợi việc trả lời lại.
+Các yêu cầu bất đồng bộ sẽ được xử lý bởi callback `handle_cast/2`. Việc này cũng gần như `handle_call/3` nhưng không nhận vào người gọi (caller), và không mong đợi việc trả lời lại.
 
 Chúng ta sẽ thực hiện hàm enqueue sao cho nó là bất đồng bộ, cập nhật hàng đợi nhưng không làm nghẽn xử lý hiện tại:
 
@@ -147,7 +147,7 @@ iex> SimpleQueue.enqueue(20)
 iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
-Để biết thêm thông tin, hãy xem tài liệu chính thức tại [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content) tại [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content).
+Để biết thêm thông tin, hãy xem tài liệu chính thức tại [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content).
 
 ## GenEvent
 
@@ -157,7 +157,7 @@ Chúng ta đã học được rằng GenServers là các tiến trình mà cần
 
 Hàm callback quan trọng nhất trong GenEvents mà bạn có thể hình dung là `handle_event/2`. Hàm này nhận vào sự kiện cùng với trạng thái hiện tại của hàm xử lý, sau đó sẽ trả lại một tuple: `{:ok, state}`.
 
-Để trình diễn tính năng của GenEvent, chúng ta hãy bắt đầu bằng việc tạo hai hàm xử lý (handlers), một hàm dành để giữ log của những thông tin đến, và một để lưu trữ chúng lại (trên lý thuyết): 
+Để minh hoạ tính năng của GenEvent, chúng ta hãy bắt đầu bằng việc tạo hai hàm xử lý (handlers), một hàm dành để giữ log của những thông tin đến, và một để lưu trữ chúng lại (trên lý thuyết): 
 
 ```elixir
 defmodule LoggerHandler do
@@ -184,7 +184,7 @@ end
 
 ### Gọi các hàm xử lý
 
-Ngoài `handle_event/2` ra, GenEvents đồng thời cũng hỗ trợ hàm `handle_call/2`. Với hàm `handle_call/2` chúng ta cõ thể xử lý các thông điệp đồng bộ được chỉ định bên trong hàm xử lý đó.
+Ngoài `handle_event/2` ra, GenEvents đồng thời cũng hỗ trợ hàm `handle_call/2`. Với hàm `handle_call/2` chúng ta có thể xử lý các thông điệp đồng bộ được chỉ định bên trong hàm xử lý đó.
 
 Hãy cập nhật `LoggerHandler` để thêm vào hàm dùng để nhận log của thông điệp hiện tại:
 
