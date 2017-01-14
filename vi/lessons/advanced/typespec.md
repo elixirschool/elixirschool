@@ -1,28 +1,28 @@
 ---
 layout: page
-title: Specifications and types
+title: Đặc tả và kiểu
 category: advanced
 order: 9
 lang: vi
 ---
 
-In this lesson we will learn about `@spec` and `@type` syntax. First is more syntax complement for writing documentation that could be analyzed by tools. Second helps us to write more readable and easier to understand code.
+Trong bài học này, chúng ta sẽ học về cú pháp `@spec` và `@type`. `@spec` giống như là một cú pháp hỗ trợ để viết tài liệu, và có thể được phân tích bởi các công cụ khác, `@type` giúp chúng ta viết các code dễ đọc và dễ hiểu hơn.
 
 {% include toc.html %}
 
-## Introduction
+## Giới thiệu
 
-It's not uncommon you would like to describe interface of your function. Of course You can use [@doc annotation](../../basics/documentation), but it is only information for other developers that is not checked in compilation time. For this purpose Elixir has `@spec` annotation to describe specification of function that will be checked by compiler.
+Thông thường, bạn sẽ muốn mô tả giao diện cho hàm của bạn. Tất nhiện bạn có thể sử dụng [@doc annotation](../../basics/documentation), tuy nhiên nó chỉ là các thông tin cho các lập trình viên khác, mà không được kiểm tra trong lúc biên dịch. Cho mục đích này, Elixir cung cấp `@spec` annotation để mô tả các đặc tả của hàm sẽ được kiểm tra bởi trình biên dịch
 
-However in some cases specification is going to be quite big and complicated. If you would like to reduce complexity, you want to introduce custom type definition. Elixir has `@type` annotation for that. In the other hand, Elixir is still dynamic language. That means all information about type will be ignored by compiler, but could be used by other tools.   
+Tuy nhiên, trong một số trường hợp, các đặc tả sẽ trở nên khá lớn và phức tạp. Nếu bạn muốn giảm bớt tính phức tạp, nhưng vẫn muốn đưa ra định nghĩa cho các kiểu mới, Elixir cung cấp anotiation(tạm dịch là ký tự chú thích)`@type` để làm việc này. Nói cách khác, Elixir vẫn là một ngôn ngữ kiểu động (dynamic language). Nghĩa là tất cả các thông tin về kiểu sẽ bị trình biên dịch bỏ qua, nhưng nó có thể được sử dụng bởi các công cụ khác.
 
-## Specification
+## Đặc tả
 
-If you have experience with Java or Ruby you could think about specification as an `interface`. Specification defines what should be type of function parameters and return value.
+Nếu đã có kinh nghiệm với Java và Ruby, bạn có thể coi đặc tả như là một `interface`. Đặc tả định nghĩa kiểu của các tham số của hàm, cũng như kiểu của giá trị trả về.
 
-To define input and output types we use `@spec` directive placed right before function definition and taking as a `params` name of function, list of parameter types, and after `::` type of return value.  
+Để định nghĩa kiểu đầu vào và đầu ra, chúng ta sử dụng `@spec` ngay trước định nghĩa hàm, các tham số cho `@spec` sẽ là tên của hàm, danh sách kiểu của các tham số cho hàm đó, tiếp theo là `::`, cuối cùng là kiểu của giá trị trả về
 
-Let's take a look at example:
+Hãy cùng xem ví dụ dưới đây:
 
 ```elixir
 @spec sum_product(integer) :: integer
@@ -33,17 +33,17 @@ def sum_product(a) do
 end
 ```
 
-Everything looks ok and when we call valid result will be return, but function `Enum.sum` returns `number` not `integer` as we expected in `@spec`. It could be source of bugs! There are tools like Dialyzer to static analysis of code that helps us to find this type of bugs. We will talk about them in another lesson.
+Mọi thứ trông vẫn tốt, và khi chúng ta gọi hàm này, một giá trị hợp lệ sẽ được trả về, nhưng hàm `Enum.sum` trả về `number` chứ không phải là `integer` như chúng ta mong muốn ở trong `@spec`. Đây có thể nguồn gốc của các lỗi! Có những công cụ như Dialyzer để phân tích tĩnh (static analysis) code có thể giúp chúng ta tìm những lỗi kiểu này. Chúng ta sẽ nói về chúng trong một bài học khác.
 
-## Custom types
+## Kiểu tuỳ biến
 
-Writing specifications is nice, but sometimes our functions works with more complex data structures than simple numbers or collections. In that definition's case in `@spec` it could be hard to understand and/or change for other developers. Sometimes functions need to take in a large number of parameters or return complex data. A long parameters list is one of many potential bad smells in one's code. In object oriented-languages like Ruby or Java we could easily define classes that help us to solve this problem. Elixir hasn't classes but because is easy to extends that we could define our types.
+Các đặc tả là rất tốt, tuy nhiên đôi khi các hàm của chúng ta làm việc với nhiều cấu trúc dữ liệu phức tạp hơn là các số hoặc là các tập hợp (collections). Trong trường hợp này, `@spec` có thể sẽ trở nên rất khó hiểu, hoặc khó thay đổi đối với các lập trình viên khác. Đôi khi các hàm cần nhận vào một lượng lớn các tham số, hoặc là trả về một dữ liệu phức tạp. Một danh sách dài các tham số có thể là một trong những chỗ "bốc mùi" (code smell) trong code. Trong các ngôn ngữ hướng đối tượng giống như Ruby và Java, chúng ta có thể dễ dàng định nghĩa các class để giải quyết vấn đề này. Elixir không có class những bởi vì nó rất dễ để mở rộng, chúng ta có thể định nghĩa kiểu của riêng chúng ta.
 
-Out of box Elixir contains some basic types like `integer` or `pid`. You  can find full list of available types in [documentation](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Ngoài ra, Elixir chứa một vài kiểu cơ bản như `integer`, hoặc là `pid`. Bạn có thể tìm hiểu về danh sách các kiểu có sẵn của Elixir trong [tài liệu](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
 
-### Defining custom type
+### Định nghĩa kiểu tuỳ biến
 
-Let's modify our `sum_times` function and introduce some extra params:
+Hãy cùng thay đổi hàm `sum_times` và giới thiệu thêm một vài tham số mới:
 
 ```elixir
 @spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
@@ -57,15 +57,15 @@ def sum_times(a, params) do
 end
 ```
 
-We introduced a struct in `Examples` module that contains two fields `first` and `last`. That is simpler version of struct from `Range` module. We will talk about `structs` when we get into discussing [modules](../../basics/modules/#structs). Lets imagine that we need to specification with `Examples` struct in many places. It would be annoying to write long, complex specifications and could be a source of bugs. A solution to this problem is `@type`.
+Chúng ta giới thiệu thêm một struct trong `Examples` module, chứa hai trường `first` và `last`. Đây là phiên bản đơn giản hơn của module `Range`. Chúng ta sẽ nói về `struct` khi chúng ta thảo luận về [modules](../../basics/modules/#structs). Tưởng tượng rằng, chúng ta muốn mô tả đặc tả với `Examples` struct trong rất nhiều chỗ. Những đặc tả này có thể sẽ rất dài, phức tạp, và có thể là cội nguồn của các bug. Một giải pháp cho chuyện này là dùng `@type`.
 
-Elixir has three directives for types:
+Elixir cung cấp ba cách dùng để định nghĩa kiểu:
 
-  - `@type` – simple, public type. Internal structure of type is public.
-  - `@typep` – type is private and could be used only in the module where is defined.
-  - `@opaque` – type is public, but internal structure is private.
+  - `@type` – kiểu public. Các cấu trúc nội tại của kiểu là public
+  - `@typep` – kiểu private, và chỉ có thể sử dụng trong module mà nó được định nghĩa.
+  - `@opaque` – kiểu public, but cấu trúc nội tại là private
 
-Let define our type:
+Hãy cùng định nghĩa kiểu của chúng ta:
 
 ```elixir
 defmodule Examples do
@@ -79,9 +79,9 @@ defmodule Examples do
 end
 ```
 
-We defined the type `t(first, last)` already, which is a representation of the struct `%Examples{first: first, last: last}`. At this point we see types could takes parameters, but we defined type `t` as well and this time it is a representation of the struct `%Examples{first: integer, last: integer}`.   
+Chúng ta định nghĩa kiểu `t(first, last)` để đại diện cho struct `%Examples{first: first, last: last}`. Lúc này, chúng ta thấy các kiểu có thể nhận vào các parameter, nhưng chúng ta cũng định nghĩa kiểu `t`, và lúc này nó đại diện cho struct `%Examples{first: integer, last: integer}`.
 
-What is a difference? First one represents the struct `Examples` of which the two keys could be any type. Second one represents struct which keys are `integers`. That means code like this:
+Điểm khác nhau là gì? Cái đầu tiên đại diện cho `Examples` struct mà hai khoá có thể là bất cứ kiểu này. Cái thứ hai đại diện cho struct, trong đó các khoá là các `integer`. Điều này có nghĩa là đoạn code sau:
 
 ```elixir
 @spec sum_times(integer, Examples.t) :: integer
@@ -95,7 +95,7 @@ def sum_times(a, params) do
 end
 ```
 
-Is equal to code like:
+Tương đương với:
 
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer
@@ -109,9 +109,10 @@ def sum_times(a, params) do
 end
 ```
 
-### Documentation of types
+### Viết tài liệu cho kiểu
 
-The last element that we need to talk about is how to document our types. As we know from [documentation](../../basics/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules. For documenting our types we can use `@typedoc`:
+Thành phần cuối cùng chúng ta muốn thảo luận là về các để viết tài liệu cho kiểu. Như chúng ta đã biết từ bài [documentation](../../basics/documentation), chúng ta có `@doc` và `@moduledoc` để viết các tài liệu cho hàm và cho module. Để viết tài liệu cho kiểu, chúng ta có thể dùng `@typedoc`:
+
 
 ```elixir
 defmodule Examples do
@@ -124,4 +125,4 @@ defmodule Examples do
 end
 ```
 
-Directive `@typedoc` is similar to `@doc` and `@moduledoc`.
+`@typedoc` là tương tự `@doc` and `@moduledoc`.

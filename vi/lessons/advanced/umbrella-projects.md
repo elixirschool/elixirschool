@@ -1,18 +1,18 @@
 ---
 layout: page
-title: Umbrella Projects
+title: Các dự án ô
 category: advanced
 order: 8
 lang: vi
 ---
 
-Sometimes a project can get big, really big in fact. The Mix build tool allows us to split our code into multiple apps and make our Elixir projects more manageable as they grow.
+Đôi khi một dự án có thể trở nên rất lớn. Công cụ Mix cho phép chúng ta có thể chia nhỏ code thành nhiều ứng dụng, nó giúp cho các dự án Elixir của chúng ta có thể dễ dàng quản lý khi mà chúng phát triển.
 
 {% include toc.html %}
 
-## Introduction
+## Giới thiệu
 
-To create an umbrella project we start a project as if we were going to start a normal Mix project but pass in the `--umbrella` flag. For this example, we are going to make *the shell* of a machine learning toolkit. Why a machine learning toolkit? Why not? It is made up of various learning algorithms and utility functions.
+Để tạo ra một umberella project (tạm dịch là "Dự án ô"), chúng ta bắt đầu một dự án như là chúng một dự án Mix bình thường, nhưng truyền vào tham số `--umbrella`. Để ví dụ, chúng ta sẽ tạo ra một bộ công cụ cho học máy (machine learning). Tại sao lại là một bộ công cụ học máy? Tại sao không? Nó sẽ được tạo ra bởi rất nhiều thuật toán, và các hàm hỗ trợ.
 
 ```shell
 $ mix new machine_learning_toolkit --umbrella
@@ -37,15 +37,15 @@ in the umbrella project root will automatically run
 for each application in the apps/ directory.
 ```
 
-As you can see from the shell command, Mix created a small skeleton project for us with two directories:
+Như bạn thấy từ shell command ở trên, Mix tạo ra một dự án khung cho chúng ta với 2 thư mục:
 
-  - `apps/` - where our sub (child) projects will reside
-  - `config/` - where our umbrella projects configuration will live
+  - `apps/` - nơi chứa các dự án con
+  - `config/` - nơi chứa các file cấu hình cho dự án ô
 
 
-## Child projects
+## Các dự án con
 
-Let's change into the projects `machine_learning_toolkit/apps` directory and create 3 normal applications using Mix as so:
+Hãy cùng chuyển vào thư mục `machine_learning_toolkit/apps` và tạo 3 ứng dụng thông thường với Mix như sau:
 
 ```shell
 $ mix new utilities
@@ -113,7 +113,7 @@ You can use "mix" to compile it, test it, and more:
 Run "mix help" for more commands.
 ```
 
-We should now have a project tree like so:
+Giờ chúng ta sẽ có cây dự án như sau:
 
 ```shell
 $ tree
@@ -155,7 +155,7 @@ $ tree
 └── mix.exs
 ```
 
-If we change back to the umbrella projects root, we can see that we can call all the typical commands such as compile. As the sub projects are just normal applications, you can change into their directories and do all the same stuff as usual that Mix enables you to do.
+Nếu chúng ta quay trở về thư mục gốc của dự án ô, chúng ta có thể gọi tất cả các lệnh thông thường của Mix, ví dụ như `mix compile`. Vì các dự án con cũng là các ứng dụng bình thường, bạn có thể đi vào từng thư mục, và làm tất cả những việc mà Mix cho phép bạn làm.
 
 ```
 $ mix compile
@@ -182,7 +182,8 @@ Consolidated Inspect
 
 ## IEx
 
-You may think that interacting with the apps would be a little different in an umbrella project. Well believe it or not, you would be wrong! If we change directory into the top level directory, and start IEx with the `iex -S mix` we can interact with all the projects normally. Let's alter the contents of `apps/datasets/lib/datasets.ex` for this simple example.
+Bạn có thể nghĩ rằng tương tác với các ứng dụng có thể hơi khác khi làm việc trong một dự án ô. Dù tin hay không, thì giả thiết này là không chính xác. Nếu chúng ta quay trở về thư mục gốc của dự án, và khởi động IEx bằng cách `iex -S mix`, chúng ta có thể tương tác với tất cả các dự án bình thường. Hãy cùng thay đổi nội dụng của `apps/datasets/lib/datasets.ex` cho ví dụ đơn giản sau:
+
 
 ```elixir
 defmodule Datasets do
