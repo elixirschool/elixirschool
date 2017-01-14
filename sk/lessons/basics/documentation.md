@@ -311,4 +311,4 @@ defmodule Greeter do
 end
 ```
 
-  - Pokúste sa do dokumentácie priložiť aj nejaké príklady použitia. Okrem iného vám to umožní vygenerovať automatické testy funkcií, modulov, či makier pomocou nástroja [ExUnit.DocTest](http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html).
+  - Pokúste sa do dokumentácie priložiť aj nejaké príklady použitia. Okrem iného vám to umožní vygenerovať automatické testy funkcií, modulov, či makier pomocou nástroja [ExUnit.DocTest](http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html).

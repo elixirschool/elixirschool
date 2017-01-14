@@ -12,7 +12,7 @@ Dopasowanie wzorców, to jeden z najmocniejszych elementów Elixira, który pozw
 
 ## Operator dopasowania
 
-Gotowi na niespodziankę?  W Elixirze używamy operatora `=` też jako operatora dopasowania.  Operator ten pozwala na przypisanie, a następnie dopasowanie wartości jak poniżej:
+Gotowi na niespodziankę?  W Elixirze używamy operatora `=` to w rzeczywistości operator dopasowania, który można porównać do znaku równości w algebrze. Wykorzystanie go w zapisie powoduje, że wyrażenie zostanie potraktowane jak równanie. Elixir przypisze wartości po lewej stronie wartość po prawej. Jeżeli przypisanie się powiedzie, to zostanie zwrócony jego wynik. W przypadku zostanie zwrócony błąd:
 
 ```elixir
 iex> x = 1

@@ -12,10 +12,10 @@ En esta lección veremos las estructuras de control disponibles en Elixir
 
 ## `if` y `unless`
 
-Es probable que hayas visto `if/2` antes, y si has utilizado Ruby, estás familiarizado con `unless/2`. En Elixir ellos funcionan de la misma forma pero están definidos como macros, no son construcciones propias del lenguaje; puedes encontrar su implementación en el [módulo Kernel](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Es probable que hayas visto `if/2` antes, y si has utilizado Ruby, estás familiarizado con `unless/2`. En Elixir ambos funcionan de la misma forma pero están definidos como macros, no son construcciones propias del lenguaje; puedes encontrar su implementación en el [módulo Kernel](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
 
 
-Debería tomarse en cuenta que en Elixir, los únicos valores falsos son `nil` y el booleano `false`.
+Debería tenerse en cuenta que en Elixir, los únicos valores falsos son `nil` y el booleano `false`.
 
 ```elixir
 iex> if String.valid?("Hello") do
@@ -53,7 +53,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-La variable `_` es una inclusión importante en la declaración `case`. Sin esto, cuando no se encuentre una coincidencia, se alzará un error:
+La variable `_` es una inclusión importante en la declaración `case`. Sin esto, cuando no se encuentre una coincidencia, se lanzará un error:
 
 ```elixir
 iex> case :even do
@@ -69,11 +69,11 @@ iex> case :even do
 ```
 
 Considera `_` como el `else` que coincidirá con "todo lo demás".
-Ya que `case` se basa en la coincidencia de patrones, las mismas reglas y restricciones se aplican. Si intentas coincidir con variables existentes debes usar el operador pin `^`:
+Ya que `case` se basa en la coincidencia de patrones, se aplican las mismas reglas y restricciones. Si intentas coincidir con variables existentes debes usar el operador pin `^`:
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14
+ 3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"
@@ -83,7 +83,7 @@ iex> case "cherry pie" do
 
 Otra característica interesante de `case` es que este soporta cláusulas de guardia:
 
-_Este ejemplo viene directamente de la guía oficina de Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
+_Este ejemplo proviene directamente de la guía oficial de Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -100,9 +100,9 @@ Revisa la documentación oficial para [Expresiones permitidas en cláusulas de g
 
 ## `cond`
 
-Cuando necesitamos condiciones con coincidencia, y no valores, podemos cambiar a `cond`; esto es parecido a `else if` o `elsif` en otros lenguajes:
+Cuando necesitamos coincidencias con condiciones, y no valores, podemos cambiar a `cond`; esto es parecido a `else if` o `elsif` en otros lenguajes:
 
-_Este ejemplo viene directamente de la guía oficial de Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
+_Este ejemplo proviene directamente de la guía oficial de Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
 
 ```elixir
 iex> cond do
@@ -116,7 +116,7 @@ iex> cond do
 "But this will"
 ```
 
-Como `case`, `cond` alzará un error si no hay una coincidencia, para manejar esto, podemos definir una condición cuyo valor es `true`:
+Como `case`, `cond` lanzará un error si no hay una coincidencia, para manejar esto, podemos definir una condición cuyo valor es `true`:
 
 ```elixir
 iex> cond do

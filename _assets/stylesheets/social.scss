@@ -10,41 +10,47 @@
 // List of icon unicode symbols from the icon font
 // and background colours for the icons
 $icon-list: (
-    twitter "\F309" #32b9e7,
-    facebook "\F30C" #4b70ab,
-    googleplus "\F30F" #fa5432,
-    pintrest "\F312" #d63533,
-    linkedin "\F318" #0087be,
-    evernote "\F333" #aaca62,
-    email "\2709" #FB7629,
-    print "\e716" #167ab6,
+  twitter "\F309" #32b9e7,
+  facebook "\F30C" #4b70ab,
+  googleplus "\F30F" #fa5432,
+  pinterest "\F312" #d63533,
+  linkedin "\F318" #0087be,
+  evernote "\F333" #aaca62,
+  email "\2709" #fb7629,
+  print "\e716" #167ab6,
+  vk "\f354" #507299
 );
 
 // Each loop for creating the icon CSS
 @each $icon, $unicode, $icon-background in $icon-list {
 
-    .icon--#{$icon} {
-        &::before {
-            content: $unicode;
-        }
+  .icon--#{$icon} {
+    &::before {
+      content: $unicode;
+    }
+  }
+
+  .social__icon--#{$icon} {
+    background-color: $icon-background;
+
+    &:hover {
+      // Swap black for white to make the icons lighter on hover
+      background-color: mix(black, $icon-background, 15%);
     }
 
-    .social__icon--#{$icon} {
-      background-color: $icon-background;
-
-        &:hover {
-          // Swap black for white to make the icons lighter on hover
-          background-color: mix(black, $icon-background, 15%);
-        }
-
-    }
+  }
 
 }
 
 // Display icons next to each other
 .social__item {
-    display: inline-block;
-    margin-right: 0.4em;
+  display: inline-block;
+  margin-right: 0.4em;
+}
+
+div.social__item a[class^="social__icon"] {
+  text-decoration: none;
+  color: #fff;
 }
 
 // Basic icon style
@@ -73,7 +79,7 @@ $icon-list: (
   color: white;
   text-decoration: none;
   // Remove border radius to make icons square
-  border-radius:100%;
+  border-radius: 100%;
   width: 1.6em;
   height: 1.6em;
   text-align: center;
@@ -93,4 +99,17 @@ $icon-list: (
 .social__container {
   padding: 0;
   font-size: 1.2em;
+}
+
+#github_ribbon img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+
+@media print {
+  #social, .social__container, #github_ribbon {
+    display: none;
+  }
 }

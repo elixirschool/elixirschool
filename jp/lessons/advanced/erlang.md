@@ -6,7 +6,7 @@ order: 1
 lang: jp
 ---
 
-ErlangVMの上で開発することによって得られる利点の1つに、既にある大量のライブラリが利用できるという事があげられます。相互運用できることで、そうしたライブラリやErlangの標準ライブラリをElixirコードから活用することができます。このレッスンではサードパーティのErlangパッケージも併せ、標準ライブラリの関数へアクセスする方法を見ていきます。
+Erlang VM (BEAM)の上で開発することによって得られる利点の1つに、既にある大量のライブラリが利用できるという事があげられます。相互運用できることで、そうしたライブラリやErlangの標準ライブラリをElixirコードから活用することができます。このレッスンではサードパーティのErlangパッケージも併せ、標準ライブラリの関数へアクセスする方法を見ていきます。
 
 {% include toc.html %}
 
@@ -73,21 +73,35 @@ example.
 
 ### 文字列
 
-Erlangの文字列はシングルクォート(`''`)で表され、Elixirの文字リストによく似ています。Erlangの文字列と記法を共用していることに加えて、文字リストのより一般的な用途はErlangコードと接続する際に用いられるというものです。
+ElixirのstringはUTF-8でエンコードされたバイナリを意味しています。Erlangでもstringはダブルクオートを使って表しますが、文字リストのことを指します:
 
 Elixir:
 
 ```elixir
-"Example String"
+iex> is_list('Example')
+true
+iex> is_list("Example")
+false
+iex> is_binary("Example")
+true
+iex> <<"Example">> === "Example"
+true
 ```
 
 Erlang:
 
 ```erlang
-'Example String'.
+1> is_list('Example').
+false
+2> is_list("Example").
+true
+3> is_binary("Example").
+false
+4> is_binary(<<"Example">>).
+true
 ```
 
-重要なので注記しておくと、古いErlangライブラリではバイナリに対応していないものが多いため、Elixirの文字列は文字リストに変換する必要があります。ありがたいことに、これは`to_char_list/1`関数を用いて簡単に行うことができます:
+重要なので注記しておくと、古いErlangライブラリではバイナリに対応していないものが多いため、Elixirの文字列は文字リストに変換する必要があります。ありがたいことに、これは`to_charlist/1`関数を用いて簡単に行うことができます:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -96,7 +110,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

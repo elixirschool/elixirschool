@@ -6,7 +6,7 @@ order: 1
 lang: my
 ---
 
-Salah satu faedah tambahan daripada membina di atas ErlangVM ialah lambakan pustaka sedia ada yang tersedia untuk kita.  Kesalingbolehgunaan(Interoperability) mengupayakan kita untuk menuilkan(leverage) pustaka-pustaka tersebut dan pustaka rasmi Erlang daripada kod Elixir kita.  Di dalam pelajaran ini kita akan melihat bagaimana untuk mencapai kefungsian di dalam pustaka rasmi dan juga pustaka-pustaka pihak ketiga Erlang.  
+Salah satu faedah tambahan daripada membina di atas Erlang VM (BEAM) ialah lambakan pustaka sedia ada yang tersedia untuk kita.  Kesalingbolehgunaan(Interoperability) mengupayakan kita untuk menuilkan(leverage) pustaka-pustaka tersebut dan pustaka rasmi Erlang daripada kod Elixir kita.  Di dalam pelajaran ini kita akan melihat bagaimana untuk mencapai kefungsian di dalam pustaka rasmi dan juga pustaka-pustaka pihak ketiga Erlang.  
 
 {% include toc.html %}
 
@@ -101,7 +101,7 @@ false
 true
 ```
 
-Penting untuk diperhatikan bahawa banyak pustaka Erlang yang lama mungkin tidak menyokong 'binary' jadi kita perlu menukarkan string Elixir kepada list aksara.  Nasib baik ianya mudah untuk dilakukan dengan menggunakan fungsi `to_char_list/1`:
+Penting untuk diperhatikan bahawa banyak pustaka Erlang yang lama mungkin tidak menyokong 'binary' jadi kita perlu menukarkan string Elixir kepada list aksara.  Nasib baik ianya mudah untuk dilakukan dengan menggunakan fungsi `to_charlist/1`:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -110,7 +110,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

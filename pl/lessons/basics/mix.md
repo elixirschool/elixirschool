@@ -84,7 +84,7 @@ Do skompilowania projektu wystarczy polecenie `mix compile` wywołane w katalogu
 $ mix compile
 ```
 
-Nasz projekt nie zawiera zbyt wielu elementów, a zatem komunikat nie będzie zbyt ekscytujący, ale jednak liczymy na sukces: 
+Nasz projekt nie zawiera zbyt wielu elementów, a zatem komunikat nie będzie zbyt ekscytujący, ale jednak liczymy na sukces:
 
 ```bash
 Compiled lib/example.ex
@@ -97,16 +97,16 @@ W trakcie kompilacji mix tworzy katalog `_build`, w którym umieści wyniki. Jak
 
 Jak na razie nasz projekt nie ma żadnych zależności, ale nic nie stoi nam na przeszkodzie, by je dodać.
 
-Dodanie nowej zależności odbywa się w sekcji `deps` w pliku `mix.exs`. Lista zależności zawiera krotki o dwóch obowiązkowych elementach i jednym opcjonalnym: atomie reprezentującym nazwę pakietu, ciągu znaków określającym wersję oraz opcjonalnych przełącznikach. 
-    
+Dodanie nowej zależności odbywa się w sekcji `deps` w pliku `mix.exs`. Lista zależności zawiera krotki o dwóch obowiązkowych elementach i jednym opcjonalnym: atomie reprezentującym nazwę pakietu, ciągu znaków określającym wersję oraz opcjonalnych przełącznikach.
+
 Rzućmy okiem na przykład na projekt [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 0.16"},
-   {:phoenix_html, "~> 2.1"},
+  [{:phoenix, "~> 1.1 or ~> 1.2"},
+   {:phoenix_html, "~> 2.3"},
    {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slim_fast, ">= 0.6.0"}]
+   {:slime, "~> 0.14"}]
 end
 ```
 

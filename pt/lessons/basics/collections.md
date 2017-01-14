@@ -15,21 +15,20 @@ Listas, tuplas, listas de palavras-chave, mapas, dicionários e combinadores fun
 As listas são simples coleções de valores, elas podem incluir múltiplos tipos; listas podem incluir valores não-exclusivos:
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir implementa listas como listas encadeadas. Isso significa que acessar a profundidade da lista é uma operação `O(n)`. Por essa razão, é normalmente mais rápido inserir um elemento no início do que no final.
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
-
 
 ### Concatenação de listas
 
@@ -51,21 +50,22 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 
 ### Topo / Cauda
 
-Quando usamos listas é comum trabalhar com o topo e o fim da lista. O topo é o primeiro elemento da lista e a cauda são os elementos restantes. Elixir provê funções úteis,  `hd` e `tl`, para trabalhar com essas partes:
+Quando usamos listas é comum trabalhar com o topo e o fim da lista. O topo é o primeiro elemento da lista e a cauda são os elementos restantes. Elixir provê funções úteis, `hd` e `tl`, para trabalhar com essas partes:
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
-Além das funções citadas, pode-se usar o operador pipe `|`; veremos este padrão em futuras lições:
+
+Além das funções citadas, pode-se usar [pattern matching](../pattern-matching) e o operador cons `|` para dividir a lista em topo e cauda; veremos este padrão em futuras lições:
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -75,8 +75,8 @@ iex> t
 As tuplas são similares as listas porém são armazenadas de maneira contígua em memória. Isto permite acessar a sua profundidade de forma rápida porém sua modificação é custosa; a nova tupla deve ser armazenada inteira na memória. As tuplas são definidas com chaves.
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 É comum usar tuplas como um mecanismo que retorna informação adicional de funções; a utilidade disso ficará mais aparente quando vermos pattern matching:
@@ -144,4 +144,15 @@ iex> %{foo: "bar", hello: "world"}
 
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
+```
+
+Outra propriedade interessante de mapas é que eles têm sua própria sintaxe para atualizar e acessar átomos como chaves:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
 ```

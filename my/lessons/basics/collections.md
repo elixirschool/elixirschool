@@ -15,19 +15,19 @@ List, tuples, keywords, maps, dicts dan functional combinators.
 List adalah senarai nilai ringkas, mereka boleh mengandungi pelbagai jenis data; list dibolehkan untuk mengandungi nilai-nilai yang bukan unik:
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir melaksanakan list sebagai 'linked list'.  Ini bermakna mencapai saiz list ialah satu operasi `0(n)`.  Oleh sebab ini selalunya lebih cepat untuk melakukan operasi penambahan awalan(prepend) dari melakukan operasi lampiran(append):
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 
@@ -54,19 +54,19 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 Apabila menggunakan list ianya biasa untuk melakukan kerja menggunakan `head` dan `tail` sesatu list.  `Head` ialah elemen pertama sesatu list dan `tail` ialah elemen-elemen seterusnya.  Elixir membekalkan dua kaedah yang berguna, `hd` dan `tl`, untuk bekerja dengan kedua-dua komponen tersebut:
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
 Sebagai tambahan kepada fungsi-fungsi yang telah disebutkan, anda juga dibenarkan menggunakan aksara paip `|`; kita akan melihat penggunaan corak ini di dalam pelajaran seterusnya:
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -76,8 +76,8 @@ iex> t
 Tuple adalah sama dengan list tetapi disimpan secara berturutan di dalam ingatan.  Ini membuatkan capaian ke atas nilai panjang mereka laju tetapi membuat kemaskini adalah mahal; satu tuple baru mestilah disalin keseluruhannya ke dalam ingatan.  Tuple diisytiharkan menggunakan curly braces:
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 Menjadi kebiasaan untuk menggunakan tuple sebagai mekanisma untuk memulangkan maklumat tambahan dari fungsi-fungsi;  Kebaikan penggunaan ini akan lebih jelas apabila kita masuk kepada pemadanan corak:

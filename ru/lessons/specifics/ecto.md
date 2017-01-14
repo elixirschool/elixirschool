@@ -44,7 +44,7 @@ end
 
 После создания репозитория, необходимо создать дерево надзора. Файл находится в `lib/<project name>.ex`.
 
-Важно, чтоб мы настроили репозиторий, как супервизор с помощью `supervisor/3` метода, а не `worker/3`. Если создать приложение с флагом `--sup`, большинство нужного кода для нас уже будет сгенерировано.
+Важно, чтобы мы настроили репозиторий, как супервизор с помощью `supervisor/3` метода, а не `worker/3`. Если создать приложение с флагом `--sup`, большинство нужного кода для нас уже будет сгенерировано.
 
 ```elixir
 defmodule ExampleApp.App do
@@ -62,11 +62,11 @@ defmodule ExampleApp.App do
   end
 end
 ```
-Чтоб узнать больше о супервизорах советуем посетить урок [Cупервизоры](/lessons/advanced/otp-supervisors).
+Чтобы узнать больше о супервизорах советуем посетить урок [Cупервизоры](../../advanced/otp-supervisors).
 
 ### Настройка
 
-Чтоб настроить Ecto, необходимо добавить конфигурацию в файл `config/config.exs`. В конфигурации необходимо указать репозиторий, адаптер, базу данных и информацию об аккаунте.
+Чтобы настроить Ecto, необходимо добавить конфигурацию в файл `config/config.exs`. В конфигурации необходимо указать репозиторий, адаптер, базу данных и информацию об аккаунте.
 
 ```elixir
 config :example_app, ExampleApp.Repo,
@@ -117,7 +117,7 @@ end
 
 Ecto по умолчанию создает первичный автоинкрементируемый ключ под названием id. Также по умолчанию используется `change/0` callback, но для большего контроля можно использовать `up/0` и `down/0`.
 
-Вы уже могли догадаться, что при добавлении `timestamps` к миграции у Вас появляется возможность создать и управлять полями `created_at` и `updated_at`.
+Вы уже могли догадаться, что при добавлении `timestamps` к миграции у Вас появляется возможность создать и управлять полями `inserted_at` и `updated_at`.
 
 Следующим шагом будет запуск только что созданной миграции с помощью команды `mix ecto.migrate`.
 
@@ -295,10 +295,10 @@ defmodule ExampleApp.User do
   defp validate_password_confirmation(changeset) do
     case get_change(changeset, :password_confirmation) do
       nil ->
-        password_mismatch_error(changeset)
+        password_incorrect_error(changeset)
       confirmation ->
         password = get_field(changeset, :password)
-        if confirmation == password, do: changeset, else: password_incorrect_error(changeset)
+        if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
     end
   end
 

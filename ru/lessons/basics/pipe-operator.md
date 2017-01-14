@@ -18,13 +18,13 @@ lang: ru
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Тут передан результат вызова `other_function/1` в `new_function/1`, `new_function/1` в `baz/1`, `baz/1` в `bar/1` и, наконец, результат вызова `bar/1` становится аргументом `foo/1`. Elixir подходит к решению этой проблемы прагматично - добавлением оператора конвейера. Оператор, выглядящий как `|>` *получает результат одного выражения, и передает его дальше*. Давайте еще раз посмотрим на тот же пример, переписанный с использованием этого оператора.
+Тут передан результат вызова `other_function/1` в `new_function/1`, `new_function/1` в `baz/1`, `baz/1` в `bar/1` и, наконец, результат вызова `bar/1` становится аргументом `foo/1`. Elixir прагматично подходит к решению этой проблемы путём добавления оператора конвейера. Оператор, выглядящий как `|>` *получает результат одного выражения, и передает его дальше*. Давайте ещё раз посмотрим на тот же пример, переписанный с использованием этого оператора.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
 ```
 
-Оператор конвейера получает результат выражения слева и передает его в правую часть.
+Оператор конвейера получает результат выражения слева и передаёт его в правую часть.
 
 ## Примеры
 
@@ -40,11 +40,11 @@ iex> "Elixir rocks" |> String.split
 - Перевод всех слов строки в верхний регистр
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 
-- Проверка кончается ли строка на "ixir"
+- Проверка, кончается ли строка на "ixir"
 
 ```shell
 iex> "elixir" |> String.ends_with?("ixir")
@@ -53,17 +53,17 @@ true
 
 ## Советы
 
-Если строка получает больше одного параметра - используйте скобки. Это абсолютно не имеет значения для языка, но важно для других разработчиков, которые могут неправильно понять код. Если взять второй пример и убрать оттуда скобки из вызова `Enum.map/2` -  будет предупреждение:
+Если строка получает больше одного параметра, используйте скобки. Это абсолютно не имеет значения для языка, но важно для других разработчиков, которые могут неправильно понять код. Если взять третий пример и убрать оттуда скобки из вызова `String.ends_with?/2`, возникнет предупреждение:
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
-iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+iex> "elixir" |> String.ends_with? "ixir"
+warning: parentheses are required when piping into a function call. For example:
 
-foo 1 |> bar 2 |> baz 3
+  foo 1 |> bar 2 |> baz 3
 
-Should be written as:
+is ambiguous and should be written as
 
-foo(1) |> bar(2) |> baz(3)
+  foo(1) |> bar(2) |> baz(3)
 
-["ELIXIR", "ROCKS"]
+true
 ```

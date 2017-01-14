@@ -51,7 +51,7 @@ defmodule ExampleTest do
 end
 ```
 
-Now we should see a very different kind of output:
+Now we should see a different kind of output:
 
 ```shell
   1) test the truth (ExampleTest)
@@ -69,7 +69,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 1 tests, 1 failures
 ```
 
-ExUnit will tells us exactly where our failed assertions are, what the expected value was, and what the actual was.
+ExUnit will tells us exactly where our failed assertions are, what the expected value was, and what the actual value was.
 
 ### refute
 
@@ -77,7 +77,47 @@ ExUnit will tells us exactly where our failed assertions are, what the expected 
 
 ### assert_raise
 
-Sometimes it may be necessary to assert that an error has been raised, we can do this with `assert_raise`.  We'll see an example of `assert_raise` in the next lesson on Plug.
+Sometimes it may be necessary to assert that an error has been raised.  We can do this with `assert_raise`.  We'll see an example of `assert_raise` in the next lesson on Plug.
+
+### assert_receive
+
+In Elixir applications consist of actors/processes that send messages to each other, thus often you want to test the messages being sent. Since ExUnit runs in its own process it can receive messages just like any other process and you can assert on it with the `assert_received` macro:
+
+```elixir
+defmodule SendingProcess do
+  def run(pid) do
+    send pid, :ping
+  end
+end
+
+defmodule TestReceive do
+  use ExUnit.Case
+
+  test "receives ping" do
+    SendingProcess.run(self)
+    assert_received :ping
+  end
+end
+```
+
+`assert_received` does not wait for messages, with `assert_receive` you can specify a timeout.
+
+## capture_io and capture_log
+
+Capturing an application's output is possible with `ExUnit.captureIO` without changing the original application. Simply pass the function generating the output in:
+
+```elixir
+defmodule OutputTest do
+  use ExUnit.Case
+  import ExUnit.CaptureIO
+
+  test "outputs Hello World" do
+    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+  end
+end
+```
+
+`ExUnit.CaptureLog` is the equivalent for capturing output to `Logger`.
 
 ## Test Setup
 
@@ -102,7 +142,8 @@ end
 
 ## Mocking
 
-The simple answer to mocking in Elixir: don't.  You may instinctively reach for mocks but they are highly discouraged in the Elixir community and for good reason.  If you follow good design principles the resulting code will be easy to test as individual components.
+The simple answer to mocking in Elixir is: don't.  You may instinctively reach for mocks but they are highly discouraged in the Elixir community and for good reason. 
 
-Resist the urge.
+For a longer discussion there is this [excellent article](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/). The gist is, that instead of mocking away dependencies for testing (mock as a *verb*), it has many advantages to explicitly define interfaces (behaviors) for code outside your application and using Mock (as a *noun*) implementations in your client code for testing.
 
+To switch the implementations in your application code, the preferred way is to pass the module as arguments and use a default value. If that does not work, use the built-in configuration mechanism. For creating these mock implementations, you don't need a special mocking library, only behaviours and callbacks. 

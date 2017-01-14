@@ -14,7 +14,7 @@ Un ensemble d'algorithmes pour énumérer sur les collections.
 
 Le module `Enum` inclus plus de 100 fonctions pour travailler sur les collections que nous avons vues dans la leçon précédente.
 
-Cette leçon ne couvre qu'une partie des fonctions disponibles, pour la liste complète des fonctions voir la documentation officielle du module [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); pour l'énumération paresseuse utilisez le module [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
+Cette leçon ne couvre qu'une partie des fonctions disponibles, pour la liste complète des fonctions voir la documentation officielle du module [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); pour l'énumération paresseuse utilisez le module [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
 
 
 ### all?
@@ -46,7 +46,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Il existe quelques options pour `chunk` que vous pouvez consulter dans la documentation officielle de [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) de la fonction.
+Il existe quelques options pour `chunk` que vous pouvez consulter dans la documentation officielle de [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) de la fonction.
 
 ### chunk_by
 
@@ -106,6 +106,8 @@ iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+"cba1"
 ```
 
 ### sort

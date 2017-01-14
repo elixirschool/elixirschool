@@ -32,18 +32,20 @@ To get started, let's run `iex`:
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-    iex(1)>
-   
-Lets go ahead and give it a try now by typing in a few simple expressions:
+    iex>
 
-    iex(1)> 2+3
-    5
-    iex(2)> 2+3 == 5
-    true
-    iex(3)> String.length("The quick brown fox jumps over the lazy dog")
-    43
+Let's go ahead and give it a try now by typing in a few simple expressions:
 
-Don't worry if you don't understand every expression yet, but hopefully you get the idea.
+```elixir
+iex> 2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
+
+Don't worry if you don't understand every expression yet, but we hope you get the idea.
 
 ## Basic Data Types
 
@@ -51,8 +53,6 @@ Don't worry if you don't understand every expression yet, but hopefully you get 
 
 ```elixir
 iex> 255
-255
-iex> 0xFF
 255
 ```
 
@@ -72,9 +72,9 @@ iex> 0x1F
 In Elixir, float numbers require a decimal after at least one digit; they have 64 bit double precision and support `e` for exponent numbers:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10
@@ -103,7 +103,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTE: Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
+Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
 
 ```elixir
 iex> true |> is_atom
@@ -112,6 +112,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Names of modules in Elixir are also atoms. `MyApp.MyModule` is a valid atom, even if no such module has been declared yet.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Atoms are also used to reference modules from Erlang libraries, including built in ones.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### Strings
@@ -184,7 +198,7 @@ iex> !false
 true
 ```
 
-There are three additional operators whose first argument _must_ be a boolean (`true` and `false`):
+There are three additional operators whose first argument _must_ be a boolean (`true` or `false`):
 
 ```elixir
 iex> true and 42

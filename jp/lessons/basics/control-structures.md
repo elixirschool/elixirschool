@@ -68,11 +68,12 @@ iex> case :even do
 ```
 
 `_`を"他の全て"にマッチする`else`と考えましょう。
+
 `case`はパターンマッチングに依存しているため、パターンマッチングと同じルールや制限が全て適用されます。既存の変数に対してマッチさせようという場合にはピン`^`演算子を使わなくてはいけません:
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14 
+3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"

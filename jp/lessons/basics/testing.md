@@ -2,7 +2,7 @@
 layout: page
 title: テスト
 category: basics
-order: 10
+order: 12
 lang: jp
 ---
 

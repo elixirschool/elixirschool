@@ -16,7 +16,7 @@ The magic to Supervisors is in the `Supervisor.start_link/2` function.  In addit
 
 Children are defined using a list and the `worker/3` function we imported from `Supervisor.Spec`.  The `worker/3` function takes a module, arguments, and a set of options.  Under the hood `worker/3` calls `start_link/3` with our arguments during initialization.
 
-Using the SimpleQueue from the [OTP Concurrency](/lessons/advanced/otp-concurrency) lesson let's get started:
+Using the SimpleQueue from the [OTP Concurrency](../../advanced/otp-concurrency) lesson let's get started:
 
 ```elixir
 import Supervisor.Spec

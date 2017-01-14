@@ -6,7 +6,7 @@ order: 1
 lang: vi
 ---
 
-Một trong những lợi ích có được khi xây dựng dựa trên ErlangVM là sự phong phú của các thư viện có sẵn. Khả năng tương tác với Erlang cho phép ta sử dụng những thư viện này cũng như thư viện chuẩn của Erlang khi viết code bằng Elixir. Ở bài này, chúng ta sẽ xem xét việc truy cập những tính năng của thư viện chuẩn cũng như thư viện bên thứ ba của Erlang.
+Một trong những lợi ích có được khi xây dựng dựa trên Erlang VM (BEAM) là sự phong phú của các thư viện có sẵn. Khả năng tương tác với Erlang cho phép ta sử dụng những thư viện này cũng như thư viện chuẩn của Erlang khi viết code bằng Elixir. Ở bài này, chúng ta sẽ xem xét việc truy cập những tính năng của thư viện chuẩn cũng như thư viện bên thứ ba của Erlang.
 
 {% include toc.html %}
 
@@ -108,7 +108,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

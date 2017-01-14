@@ -14,7 +14,7 @@ lang: jp
 
 `Enum`モジュールは前回のレッスンで学習したコレクションを取り扱うための、百を越える関数を含んでいます。
 
-このレッスンは利用可能な関数のうち一部分しか取り上げません。全ての関数を知りたい場合は公式ドキュメントの[`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html)を参照してください。尚、列挙の遅延処理では[`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html)モジュールを利用してください。
+このレッスンは利用可能な関数のうち一部分しか取り上げません。全ての関数を知りたい場合は公式ドキュメントの[`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html)を参照してください。尚、列挙の遅延処理では[`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html)モジュールを利用してください。
 
 ### all?
 
@@ -45,15 +45,17 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk`にはいくつかのオプションがありますが、ここでは触れませんので、詳しく学びたい場合には公式ドキュメントの[`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2)を調べてみてください。
+`chunk`にはいくつかのオプションがありますが、ここでは触れませんので、詳しく学びたい場合には公式ドキュメントの[`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2)を調べてみてください。
 
 ### chunk_by
 
-コレクションを要素数ではない何か他のものでグループにする必要がある場合には、`chunk_by`メソッドを使うことができます:
+コレクションを要素数ではない何か他のものでグループにする必要がある場合には、`chunk_by/2`メソッドを使うことができます。この関数は列挙可能な値と関数を引数に取り、その関数の返り値が変わると新しいグループが始まります:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
@@ -105,6 +107,8 @@ iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+"cba1"
 ```
 
 ### sort

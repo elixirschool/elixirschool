@@ -14,7 +14,7 @@ Un conjunto de algoritmos para hacer enumeración sobre colecciones.
 
 El módulo `Enum` incluye más de cien funciones para trabajar con las colecciones que aprendimos en la última lección.
 
-Esta lección solo cubrirá un subconjunto de las funciones disponibles. Para ver la lista completa de funciones visita la documentación oficial [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); para enumeración perezosa usa el módulo [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
+Esta lección solo cubrirá un subconjunto de las funciones disponibles. Para ver la lista completa de funciones visita la documentación oficial [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); para enumeración diferida usa el módulo [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
 
 
 ### all?
@@ -39,14 +39,14 @@ true
 
 ### chunk
 
-Si necesitas romper tu colección en pequeños grupos, `chunk` es la función que probablemente estás buscando:
+Si necesitas dividir tu colección en pequeños grupos, `chunk` es la función que probablemente estás buscando:
 
 ```elixir
 iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Hay algunas opciones para `chunk` pero no vamos a entrar en ellas, revisa [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) en la documentación oficial para aprender más.
+Hay algunas opciones para `chunk` pero no vamos a entrar en ellas, revisa [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) en la documentación oficial para aprender más.
 
 ### chunk_by
 
@@ -99,13 +99,15 @@ iex> Enum.max([5, 3, 0, -1])
 
 ### reduce
 
-Con `reduce` podemos destilar nuestra colección en un único valor, para hacer esto aplicamos un acumulador opcional (`10` en este ejemplo) que será pasado a nuestra función; si no es provisto un acumulador, el primer valor es usado:
+Con `reduce` podemos transformar nuestra colección a un único valor, para hacer esto aplicamos un acumulador opcional (`10` en este ejemplo) que será pasado a nuestra función; si no se provee un acumulador, el primer valor es usado:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+"cba1"
 ```
 
 ### sort
@@ -124,7 +126,7 @@ La otra opción nos permite proveer una función de ordenación:
 
 ```elixir
 # con nuestra función
-iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
+iex> Enum.sort([%{:count => 4}, %{:count => 1}], fn(x, y) -> x[:count] > y[:count] end)
 [%{count: 4}, %{count: 1}]
 
 # sin nuestra función

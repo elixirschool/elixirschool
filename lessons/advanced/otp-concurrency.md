@@ -42,7 +42,7 @@ end
 
 It's often necessary to interact with GenServers in a synchronous way, calling a function and waiting for its response.  To handle synchronous requests we need to implement the `GenServer.handle_call/3` callback which takes: the request, the caller's PID, and the existing state; it is expected to reply by returning a tuple: `{:reply, response, state}`.
 
-With pattern matching we can define callbacks for many different requests and states. A complete list of accepted return values can be found in the [`GenServer.handle_call/3`](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#c:handle_call/3) docs.
+With pattern matching we can define callbacks for many different requests and states. A complete list of accepted return values can be found in the [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) docs.
 
 To demonstrate synchronous requests let's add the ability to display our current queue and to remove a value:
 
@@ -76,7 +76,6 @@ defmodule SimpleQueue do
   def queue, do: GenServer.call(__MODULE__, :queue)
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
 end
-
 ```
 
 Let's start our SimpleQueue and test out our new dequeue functionality:
@@ -150,7 +149,7 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-For more information check out the official [GenServer](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#content) documentation.
+For more information check out the official [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content) documentation.
 
 ## GenEvent
 
@@ -225,4 +224,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-See the official [GenEvent](http://elixir-lang.org/docs/v1.1/elixir/GenEvent.html#content) documentation for a complete list of callbacks and GenEvent functionality.
+See the official [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) documentation for a complete list of callbacks and GenEvent functionality.

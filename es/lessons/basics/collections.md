@@ -15,19 +15,19 @@ Listas, tuplas, listas de palabras clave, mapas, diccionarios y combinadores fun
 Las listas son simples colecciones de valores. Estas pueden incluir múltiples tipos; las listas pueden incluir valores no únicos:
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir implementa las listas como listas enlazadas. Esto significa que acceder a la longitud de la lista es una operación `O(n)`. Por esta razón, normalmente es más rápido agregar un elemento al inicio que al final:
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 
@@ -49,24 +49,31 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+Tenga en cuenta los valores duplicados. Para cada elemento de la derecha, la primera ocurrencia de la misma se retira de la izquierda.
+
+```elixir
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
+```
+
 ### Cabeza/Cola
 
 Cuando usas listas es común trabajar con la cabeza y la cola de la lista. La cabeza es el primer elemento de la lista y la cola son los elementos restantes. Elixir provee dos funciones útiles, `hd` y `tl`, para trabajar con estas partes:
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
 Además de la funciones citadas, puedes usar el operador tubería `|`; veremos este patrón en futuras lecciones:
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -76,8 +83,8 @@ iex> t
 Las tuplas son similares a las listas pero son guardadas de manera contigua en memoria. Esto permite acceder a su longitud de forma rápida pero hace su modificación costosa; la nueva tupla debe ser copiada entera en memoria. Las tuplas son definidas con llaves.
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 Es común para las tuplas ser usadas como un mecanismo que retorna información adicional de funciones; la utilidad de esto será mas aparente cuando entremos en la coincidencia de patrones:
@@ -102,15 +109,15 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 
 Las tres características resaltantes de las listas de palabras clave son:
 
-+ Las llaves son átomos.
-+ Las llaves están ordenadas.
-+ Las llaves no son únicas.
++ Las claves son átomos.
++ Las claves están ordenadas.
++ Las claves no son únicas.
 
 Por estas razones las listas de palabras clave son comúnmente usadas para pasar opciones a funciones.
 
 ## Mapas
 
-A diferencia de las listas de palabras clave estos permiten llaves de cualquier tipo y no siguen un orden. Tú puedes definir un mapa con la sintaxis `%{}`:
+A diferencia de las listas de palabras clave estos permiten claves de cualquier tipo y no siguen un orden. Puedes definir un mapa con la sintaxis `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -128,7 +135,7 @@ iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-Como podemos ver de la salida anterior, hay una sintaxis especial para los mapas que solo contienen átomos como llaves:
+Como podemos ver de la salida anterior, hay una sintaxis especial para los mapas que solo contienen átomos como claves:
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}

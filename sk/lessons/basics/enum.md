@@ -14,7 +14,7 @@ Sada algoritmov pre iterovanie nad kolekciami.
 
 Modul `Enum` obsahuje vyše stovku funkcií pre prácu s kolekciami, o ktorých sme sa dozvedeli v minulej lekcii.
 
-Táto lekcia pokrýva len malú podmnožinu týchto funkcií - kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html). Zaujímať vás môžu aj funkcie na prácu s "lazy enumeration" z modulu [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
+Táto lekcia pokrýva len malú podmnožinu týchto funkcií - kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html). Zaujímať vás môžu aj funkcie na prácu s "lazy enumeration" z modulu [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
 
 ### all?
 
@@ -45,15 +45,17 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Táto funckia má niekoľko možností použitia, pozrite sa do oficiálnej dokumentácie: [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2).
+Táto funckia má niekoľko možností použitia, pozrite sa do oficiálnej dokumentácie: [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2).
 
 ### chunk_by
 
-Ak potrebujete rozdeliť kolekciu do menších na základe niečoho iného, než ich veľkosť, použite funkciu `chunk_by`:
+Ak potrebujete rozdeliť kolekciu do menších na základe niečoho iného, než ich veľkosť, použite funkciu `chunk_by`. Ako argumenty funkcia berie kolekciu (Enum) a funkciu - ak sa zmení jej výstup, ukončí sa aktuálna podkolekcia a začne sa vytvárať ďalšia:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
@@ -105,6 +107,8 @@ iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+"cba1"
 ```
 
 ### sort

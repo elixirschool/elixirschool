@@ -71,8 +71,8 @@ iex> case :even do
 Keďže výraz `case` je založený na pattern matchingu, platia preň všetky jeho pravidlá a obmedzenia. Ak chceme matchovať oproti existujúcim premenným (t.j. nepriraďovať do nich), musíme použiť operátor *pin* (`^`):
 
 ```elixir
-iex> pie = 3.41
-3.41
+iex> pie = 3.14 
+3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
 ...>   pie -> "I bet #{pie} is tasty"

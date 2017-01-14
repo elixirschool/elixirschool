@@ -73,7 +73,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-Para mais informações sobre supervisores, consulte a lição [Supervisores OTP](/lessons/advanced/otp-supervisors).
+Para mais informações sobre supervisores, consulte a lição [Supervisores OTP](../../advanced/otp-supervisors).
 
 ### Configuração
 
@@ -134,7 +134,7 @@ o callback padrão `change/0` mas Ecto também suporta `up/0` e `down/0` no caso
 precisar um controle mais granular.
 
 Como você deve ter adivinhado, adicionando `timestamps` na sua migration irá criar
-e gerir os campos `created_at` e `updated_at` por você.
+e gerir os campos `inserted_at` e `updated_at` por você.
 
 Para aplicar as alterações definidas na nossa migration, roda `mix ecto.migrate`.
 
@@ -311,10 +311,10 @@ defmodule ExampleApp.User do
   defp validate_password_confirmation(changeset) do
     case get_change(changeset, :password_confirmation) do
       nil ->
-        password_mismatch_error(changeset)
+        password_incorrect_error(changeset)
       confirmation ->
         password = get_field(changeset, :password)
-        if confirmation == password, do: changeset, else: password_incorrect_error(changeset)
+        if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
     end
   end
 

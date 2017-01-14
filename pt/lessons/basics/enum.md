@@ -14,7 +14,7 @@ Um conjunto de algoritmos para fazer enumeração em coleções.
 
 O módulo `Enum` inclui mais de cem funções para trabalhar com as coleções que aprendemos na última lição.
 
-Essa lição somente mostrará um subconjunto das funções disponíveis, para ver a lista completa de funções visite a documentação oficial [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html); para enumeração preguiçosa use o módulo[`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html).
+Essa lição somente mostrará um subconjunto das funções disponíveis, para ver a lista completa de funções visite a documentação oficial [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); para enumeração preguiçosa use o módulo[`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
 
 ### all?
 
@@ -45,15 +45,15 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Há algumas opções para `chunk` porém não vamos entrar nelas, revise [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) na documentação oficial para aprender mais.
+Há algumas opções para `chunk` porém não vamos entrar nelas, revise [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) na documentação oficial para aprender mais.
 
 ### chunk_by
 
-Se necessita agrupar uma coleção baseado em algo diferente do tamanho, podemos usar a função `chunk_by`:
+Se necessita agrupar uma coleção baseado em algo diferente do tamanho, podemos usar a função `chunk_by/2`. Ela recebe um enumerável e uma função, e quando o retorno desta função muda, um novo grupo é iniciado e começa a criação do próximo:
 
 ```elixir
-iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
-[["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
@@ -105,6 +105,8 @@ iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+"cba1"
 ```
 
 ### sort
@@ -124,7 +126,7 @@ A outra opção nos permite prover uma função de ordenação:
 ```elixir
 # with our function
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
-[%{count: 4}, %{count: 1}]
+[%{val: 4}, %{val: 1}]
 
 # without
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])

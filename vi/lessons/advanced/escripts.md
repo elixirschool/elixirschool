@@ -62,15 +62,14 @@ defmodule ExampleApp.CLI do
   end
 
   defp response({opts, word}) do
-    if opts[:upcase], do: word = String.upcase(word)
-    word
+    if opts[:upcase], do: String.upcase(word), else: word
   end
 end
 ```
 
 ## Building
 
-Once we've finished configuring our application to use escript, building our executable is a breeze with mix:
+Once we've finished configuring our application to use escript, building our executable is a breeze with Mix:
 
 ```elixir
 $ mix escript.build

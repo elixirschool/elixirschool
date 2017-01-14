@@ -12,9 +12,7 @@ Tworzenie i praca z sigilami.
 
 ## Czym są sigile
 
-Elixir posiada specjalną składnię pozwalającą na pracę z literałami. Sigil, bo o nim mowa,  rozpoczyna się znakiem 
-tyldy `~`, a po nim następuje pojedyncza litera. Biblioteka standardowa Elixira dostarcza predefiniowane sigile, ale 
-można też stworzyć własne, gdy potrzebujemy w jakiś sposób rozszerzyć możliwości języka. 
+Elixir posiada specjalną składnię pozwalającą na pracę z literałami. Sigil, bo o nim mowa,  rozpoczyna się znakiem tyldy `~`, a po nim następuje pojedyncza litera. Biblioteka standardowa Elixira dostarcza predefiniowane sigile, ale można też stworzyć własne, gdy potrzebujemy w jakiś sposób rozszerzyć możliwości języka. 
 
 Lista dostępnych sigili to:
 
@@ -26,6 +24,7 @@ Lista dostępnych sigili to:
   - `~s` Tworzy ciąg znaków **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
   - `~W` Tworzy listę słów **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
   - `~w` Tworzy listę słów **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
+  - `~N` Tworzy strukturę `NaiveDateTime`.
 
 Listę możemy utworzyć korzystając ze znaków:
 
@@ -50,9 +49,7 @@ iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = #{2 + 7}'
 ```
 
-Jak widać sigil `~c`, pisany małą literą, przeprowadza obliczenia, w przeciwieństwie do `~C`, pisany wielką literą.
- Konwencja wyliczania wartości, bądź nie, z pomocą użycia odpowiedniej małej albo wielkiej litery jest taka sama dla 
- wszystkich sigili.
+Jak widać sigil `~c`, pisany małą literą, przeprowadza obliczenia, w przeciwieństwie do `~C`, pisany wielką literą. Konwencja wyliczania wartości, bądź nie, z pomocą użycia odpowiedniej małej albo wielkiej litery jest taka sama dla wszystkich sigili.
 
 ### Wyrażenia regularne
 
@@ -69,9 +66,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Jak widzimy pierwszy test nie powiódł się. ponieważ `Elixir` nie pasuje do wyrażenia, gdyż to uwzględnia wielkość 
-liter. Ponieważ Elixir wspiera wyrażenia regularne kompatybilne z Perlem (PCRE - Perl Compatible Regular Expressions)
-, możemy dodać `i` na końcu sigila by dopasowanie nie brało pod uwagę wielkości liter. 
+Jak widzimy pierwszy test nie powiódł się. ponieważ `Elixir` nie pasuje do wyrażenia, gdyż to uwzględnia wielkość liter. Ponieważ Elixir wspiera wyrażenia regularne kompatybilne z Perlem (PCRE - Perl Compatible Regular Expressions), możemy dodać `i` na końcu sigila by dopasowanie nie brało pod uwagę wielkości liter. 
 
 ```elixir
 iex> re = ~r/elixir/i
@@ -138,6 +133,16 @@ iex> ~w/i love #{'e'}lixir school/
 
 iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
+```
+
+### Struktura `NaiveDateTime`
+
+Struktura [NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) jest uproszczeniem `DateTime`, które nie posiada informacji o strefie czasowej.
+
+W większości wypadków nie powinniśmy tworzyć tej struktury w bezpośredni sposób, ale wyjątek stanowi tu użycie jej w dopasowaniach wzorców:
+
+```elixir
+iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
 ```
 
 ## Tworzenie sigili

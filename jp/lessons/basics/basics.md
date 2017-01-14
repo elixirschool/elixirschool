@@ -6,15 +6,22 @@ order: 1
 lang: jp
 ---
 
-セットアップ、基本型、そして演算。
+入門、基本データ型、そして基本的な演算。
 
 {% include toc.html %}
 
-## セットアップ
+## 入門
 
 ### Elixirのインストール
 
 各OS向けのインストール方法は Elixir-lang.org 上の[Installing Elixir](http://elixir-lang.org/install.html) で探すことができます。
+
+Elixirがインストールされたら簡単にバージョンを確認できます。
+
+    % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+    Elixir {{ site.elixir.version }}
 
 ### 対話モード
 
@@ -22,19 +29,31 @@ Elixirには`iex`という対話シェルが付属しており、入力したそ
 
 対話モードを開始するには、`iex`を起動しましょう:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-	iex>
+    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+    iex>
 
-## 基本型
+先に進み、試しにいくつかの簡単な式を入力してみましょう:
+
+```elixir
+iex>
+2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
+
+それぞれの式をまだ理解していなくても心配することはありませんが、うまくいけばやり方は分かるでしょう。
+
+## 基本データ型
 
 ### 整数
 
 ```elixir
 iex> 255
-255
-iex> 0xFF
 255
 ```
 
@@ -46,7 +65,7 @@ iex> 0b0110
 iex> 0o644
 420
 iex> 0x1F
-255
+31
 ```
 
 ### 浮動小数
@@ -54,9 +73,9 @@ iex> 0x1F
 Elixirでは、浮動小数点数は少なくとも1桁の数字とその後に続く小数を必要とし、 64ビットの倍精度で、指数`e`に対応しています:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14 
+3.14
+iex> .14 
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10
@@ -85,7 +104,7 @@ iex> :foo == :bar
 false
 ```
 
-注記: 真理値の`true`と`false`はそれぞれ、アトムの`:true`と`:false`でもあります。
+真理値の`true`と`false`はそれぞれ、アトムの`:true`と`:false`でもあります。
 
 ```elixir
 iex> true |> is_atom
@@ -94,6 +113,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Elixirのモジュールの名前もまたアトムです。`MyApp.MyModule`は、そのようなモジュールが宣言されていなくても有効なアトムです。
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+アトムは、Erlangのビルトインのものも含めたライブラリのモジュールを参照するのにも使われます。
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### 文字列
@@ -110,12 +143,14 @@ iex> "dziękuję"
 文字列は改行やエスケープシーケンスに対応しています:
 
 ```elixir
-iex(9)> "foo
-...(9)> bar"
+iex> "foo
+...> bar"
 "foo\nbar"
-iex(10)> "foo\nbar"
+iex> "foo\nbar"
 "foo\nbar"
 ```
+
+また、Elixirにはより複雑なデータ型も含まれています。コレクションや関数について学ぶときにそれらについても詳しく学びます。
 
 ## 基本的な演算
 

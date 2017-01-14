@@ -34,8 +34,6 @@ Untuk bermula, kita jalankan `iex`:
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Sokongan untuk nombor-nombor binari, oktal dan heksadesimal disertakan secara lalai(default):
@@ -54,9 +52,9 @@ iex> 0x1F
 Dalam Elixir, nombor apungan memerlukan satu desimal selepas sekurang-kurangnya satu digit; mereka mempunyai 64 bit double precision dan menyokong penggunaan `e` untuk nombor eksponen:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10

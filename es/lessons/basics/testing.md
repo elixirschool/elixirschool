@@ -27,7 +27,7 @@ defmodule ExampleTest do
 end
 ```
 
-Podemos ejecutar las pruebas de nuestro proyecto con `mix test`. Si hacemos esto ahora deberíamos ver una salida similiar a:
+Podemos ejecutar las pruebas de nuestro proyecto con `mix test`. Si hacemos esto ahora deberíamos ver una salida similar a:
 
 ```shell
 Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
@@ -36,9 +36,9 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### assert
 
-Si has escrito pruebas antes entonces debes estar familiarizado con `assert`; en algunos frameworks `should` o `expect` cumplen el rol de `assert`.
+Si has escrito pruebas antes, entonces debes estar familiarizado con `assert`; en algunos frameworks `should` o `expect` cumplen el rol de `assert`.
 
-Usamos el macro `assert` para probar que la expresión es verdadera. En el caso que no lo sea, un error será lanzado y nuestras pruebas fallarán. Para probar una falla vamos a cambiar nuestro ejemplo y luego ejecutamos `mix test`:
+Usamos el macro `assert` para probar que la expresión es verdadera. En el caso que no lo sea, un error será lanzado y nuestras pruebas fallarán. Para probar un error vamos a cambiar nuestro ejemplo y luego ejecutamos `mix test`:
 
 ```elixir
 defmodule ExampleTest do
@@ -100,8 +100,8 @@ defmodule ExampleTest do
 end
 ```
 
-## Mocking
+## Mocking (simulaciones)
 
 Hay una simple respuesta para mocking en Elixir: No lo hagas. Instintivamente puedes llegar a los mocks pero estos son altamente desaprobados en la comunidad de Elixir por una buena razón. Si sigues buenos principios de diseño el código resultante será fácil de probar como componentes individuales.
 
-Resiste la urgencia.
+Resiste la tentación.

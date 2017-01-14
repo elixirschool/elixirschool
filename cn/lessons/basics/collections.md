@@ -15,19 +15,19 @@ lang: cn
 列表是值的简单集合，可以包含不同的数据类型，而且可能包含相同的值。
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir 内部用链表实现列表，这表明获取列表长度是 `O(n)` 的操作。同样的原因，在头部插入比在尾部插入要快。
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 
@@ -40,6 +40,8 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
+关于上面使用到的 `++/2` 格式的说明：在 Elixir 中（以及 Elixir 的基础语言 Erlang），函数和操作符的名字由两部分组成：名字和元数(arity)。元数是 Elixir 和 Erlang 代码非常核心的部分，它代表了给定函数接受的参数个数（比如这里的 2），元数和名字之间通过斜线分割。我们后面会讲到更多这方面的内容，知道这些已经能帮你理解它的含义了。
+
 ### 列表减法
 
 `--/2` 操作符支持列表的减法，而且减去不存在的值也是安全的。
@@ -49,25 +51,33 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+要注意重复值的处理：对于左边列表中的每个值，右边只有首次出现的这个值会被删除：
+
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
+
+注意：这里的比较 是否相同使用的是[严格比较(strict comparison)](https://github.com/doomspork/elixir-school/blob/9321df59a92a765bf64363badab6fddfdb4fe11e/lessons/basics/#comparison)。
+
+
 ### 头/尾
 
 使用列表的时候，经常要和头部和尾部打交道：列表的头部是列表的第一个元素；尾部是除去第一个元素剩下的列表。
 Elixir 提供了两个函数 `hd` 和 `tl` 来获取这两个部分。
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
 除了上面的提到的函数，你还可以使用 `|` 操作符，我们在后面的教程中还会看到这种用法。
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -77,8 +87,8 @@ iex> t
 定义元组要用花括号：
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 元组一个很常见的用法是作为函数的返回值，来返回额外的信息。当介绍到模式匹配的时候，这种用法的好处就显而易见了。
@@ -105,7 +115,7 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 
 + 键（key）都是原子
 + 键（key）是有序的（定义后，顺序不会改变）
-+ 键（key）是唯一的
++ 键（key）不是唯一的
 
 因为这些原因，关键字列表最常见的用法是作为参数传递给函数。
 
@@ -121,6 +131,13 @@ iex> map[:foo]
 iex> map["hello"]
 :world
 ```
+
+Elixir 1.2 版本中，也可以把变量作为图的键（key）：
+
+iex> key = "hello"
+"hello"
+iex> %{key => "world"}
+%{"hello" => "world"}
 
 如果重复的键添加到图中，后面的值会覆盖之前的值：
 
@@ -139,21 +156,13 @@ iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-## 字典
-
-在 Elixir 中，关键字列表和图都实现了 `Dict` 模块，因此它们也被统称为字典。如果你需要创建自己的键值数据结构，自己实现 `Dict` 模块是不错的选择。
-
-[`Dict` 模块](http://elixir-lang.org/docs/stable/elixir/#!Dict.html) 提供了一些有用的函数交互和操作这些字典（关键字列表和图）。
+图另一个有趣的特性是：它们提供了自己更新和获取原子键（key）的语法：
 
 ```elixir
-# keyword lists
-iex> Dict.put([foo: "bar"], :hello, "world")
-[hello: "world", foo: "bar"]
-
-# maps
-iex> Dict.put(%{:foo => "bar"}, "hello", "world")
-%{:foo => "bar", "hello" => "world"}
-
-iex> Dict.has_key?(%{:foo => "bar"}, :foo)
-true
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
 ```

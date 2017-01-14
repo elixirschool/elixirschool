@@ -16,7 +16,7 @@ The magic of Supervisors is in the `Supervisor.start_link/2` function.  In addit
 
 Children are defined using a list and the `worker/3` function we imported from `Supervisor.Spec`.  The `worker/3` function takes a module, arguments, and a set of options.  Under the hood `worker/3` calls `start_link/3` with our arguments during initialization.
 
-Using the SimpleQueue from the [OTP Concurrency](/lessons/advanced/otp-concurrency) lesson let's get started:
+Using the SimpleQueue from the [OTP Concurrency](../../advanced/otp-concurrency) lesson let's get started:
 
 ```elixir
 import Supervisor.Spec
@@ -40,7 +40,19 @@ There are currently four different restart strategies available to supervisors:
 
 + `:rest_for_one` - Restart the failed process and any process started after it.
 
-+ `:simple_one_for_one` - Best for dynamically attached children. Supervisor is required to contain only one child.
++ `:simple_one_for_one` - Best for dynamically attached children. Supervisor spec is required to contain only one child, but this child can be spawned multiple times. This strategy is intended to be used when you need to dynamically start and stop supervised children.
+
+### Restart values
+
+There are several approaches for handling child process crashes:
+
++ `:permanent` - Child is always restarted.
+
++ `:temporary` - Child process is never restarted.
+
++ `:transient` - Child process is restarted only if it terminates abnormally.
+
+It's not a required option, by default it's `:permanent`.
 
 ### Nesting
 
@@ -69,11 +81,13 @@ Including the `Task.Supervisor` is no different than other supervisors:
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]]),
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
+
+The major difference between `Supervisor` and `Task.Supervisor` is that its default restart strategy is `:temporary` (tasks would never be restarted).
 
 ### Supervised Tasks
 

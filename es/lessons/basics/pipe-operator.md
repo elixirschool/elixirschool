@@ -12,7 +12,7 @@ El operador pipe `|>` pasa el resultado de una expresión como el primer paráme
 
 ## Introducción
 
-La programación puede ser desordenada. De hecho, los llamados de función que están contenidos dentro de otra función se vuelven muy difíciles de seguir. Por ejemplo, tome las siguientes funciones anidadas en consideración:
+La programación puede ser desordenada. De hecho, las llamadas de función que están contenidas dentro de otra función se vuelven muy difíciles de seguir. Por ejemplo, tome las siguientes funciones anidadas en consideración:
 
 
 ```elixir
@@ -54,17 +54,17 @@ true
 
 ## Buenas Prácticas
 
-Si la función recibe más de 1 parámetro, asegúrese de usar paréntesis. Honestamente no importa mucho en elixir, pero es importante para otros programadores que pueden malinterpretar nuestro código. Si en el segundo ejemplo removemos los paréntesis de `Enum.map/2`, tendríamos la siguiente advertencia.
+Si la función recibe más de 1 parámetro, asegúrese de usar paréntesis. Honestamente no importa mucho en elixir, pero es importante para otros programadores que pueden malinterpretar nuestro código. Si en el tercer ejemplo eliminamos los paréntesis de `String.ends_with?`, tendríamos la siguiente advertencia.
 
 ```shell
-iex> "Elixir language" |> String.split |> Enum.map &String.upcase/1
-iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+iex> "elixir" |> String.ends_with? "ixir"
+warning: parentheses are required when piping into a function call. For example:
 
-foo 1 |> bar 2 |> baz 3
+  foo 1 |> bar 2 |> baz 3
 
-Should be written as:
+is ambiguous and should be written as
 
-foo(1) |> bar(2) |> baz(3)
+  foo(1) |> bar(2) |> baz(3)
 
-["ELIXIR", "LANGUAGE"]
+true
 ```

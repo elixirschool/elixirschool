@@ -20,9 +20,9 @@ iex> for x <- list, do: x*x
 [1, 4, 9, 16, 25]
 ```
 
-The first thing we notice is the use of `for` and a generator.  What is a generator?  Generators are the `x <- [1, 2, 3, 4]` expressions found in list comprehensions, they're responsible for generating the next value.
+The first thing we notice is the use of `for` and a generator.  What is a generator?  Generators are the `x <- [1, 2, 3, 4]` expressions found in list comprehensions.  They're responsible for generating the next value.
 
-Lucky for us comprehensions aren't limited to lists, in fact they'll work with any enumerable:
+Lucky for us, comprehensions aren't limited to lists; in fact they'll work with any enumerable:
 
 ```elixir
 # Keyword Lists
@@ -38,7 +38,7 @@ iex> for <<c <- "hello">>, do: <<c>>
 ["h", "e", "l", "l", "o"]
 ```
 
-As you may have noticed, generators rely on pattern matching to compare their input set to the left side variable.  In the event a match is not found, the value is ignored:
+Like many other things in Elixir, generators rely on pattern matching to compare their input set to the left side variable.  In the event a match is not found, the value is ignored:
 
 ```elixir
 iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], do: val

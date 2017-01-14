@@ -14,8 +14,8 @@ lang: cn
 
 `Enum` 模块提供了超过一百个函数，和我们上节课提到的集合交互。
 
-这篇课程只会讲其中的一部分，要想了解全部的函数，请访问官方的 [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html) 文档。
-而要想了解懒枚举（lazy enumeration），访问 [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html) 模块。
+这篇课程只会讲其中的一部分，要想了解全部的函数，请访问官方的 [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) 文档。
+而要想了解懒枚举（lazy enumeration），访问 [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) 模块。
 
 ### all?
 使用 `all?` 的时候，我们要提供一个函数来作用到要操作的集合上。只有当函数在所有的元素上都返回 `true` 的时候，`all?` 才会返回 `true`，否则结果就是 `false`。
@@ -44,15 +44,18 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk` 还有其他选项，在这里不深入介绍。如果感兴趣，前往 [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) 的官方文档去了解。
+`chunk` 还有其他选项，在这里不深入介绍。如果感兴趣，前往 [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) 的官方文档去了解。
 
 ### chunk_by
 
-如果不按照数量分组（每组的元素数量相同），我们可以使用 `chunk_by` 方法：
+如果不按照数量分组（每组的元素数量相同），我们可以使用 `chunk_by` 方法。它接受一个枚举值和一个函数作为参数，
+如果函数的返回值变了，就是从新从后开始分组：
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"]]
+iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
 ### each
@@ -104,6 +107,8 @@ iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+"cba1"
 ```
 
 ### sort

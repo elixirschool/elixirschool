@@ -6,7 +6,7 @@ order: 1
 lang: pt
 ---
 
-Um dos benefícios adicionais em se construir em cima da ErlangVM é a abundância de bibliotecas existentes disponíveis para nós. A interoperabilidade nos permite usar essas bibliotecas e a biblioteca padrão Erlang a partir do nosso código Elixir. Nessa lição, nós vamos ver como acessar funcionalidades da biblioteca padrão juntamente com pacotes Erlang de terceiros.
+Um dos benefícios adicionais em se construir em cima da Erlang VM (BEAM) é a abundância de bibliotecas existentes disponíveis para nós. A interoperabilidade nos permite usar essas bibliotecas e a biblioteca padrão Erlang a partir do nosso código Elixir. Nessa lição, nós vamos ver como acessar funcionalidades da biblioteca padrão juntamente com pacotes Erlang de terceiros.
 
 {% include toc.html %}
 
@@ -101,7 +101,7 @@ false
 true
 ```
 
-É importante notar que muitas bibliotecas Erlang antigas podem não suportar binários, então precisamos converter *strings* Elixir em lista de caracteres. Felizmente isso é fácil de conseguir com a função `to_char_list/1`:
+É importante notar que muitas bibliotecas Erlang antigas podem não suportar binários, então precisamos converter *strings* Elixir em lista de caracteres. Felizmente isso é fácil de conseguir com a função `to_charlist/1`:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -110,7 +110,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

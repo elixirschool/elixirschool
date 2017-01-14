@@ -12,14 +12,14 @@ La coincidencia de patrones es una parte poderosa de Elixir, nos permite coincid
 
 ## Operador de coincidencia
 
-¿Estás listo para una bola curva? En Elixir, el operador `=` es actualmente nuestro operador de coincidencia. A través del operador de coincidencia podemos asignar y luego coincidir valores, echemos un vistazo:
+¿Estás listo para algo un poco sorprendente? En Elixir, el operador `=` es en realidad un operador de coincidencia. A través del operador de coincidencia podemos asignar y luego coincidir valores, echemos un vistazo:
 
 ```elixir
 iex> x = 1
 1
 ```
 
-Ahora vamos a intentar con una coincidencia simple:
+Ahora vamos a intentarlo con una coincidencia simple:
 
 ```elixir
 iex> 1 = x
@@ -56,7 +56,7 @@ iex> {:ok, value} = {:error}
 
 ## Operador Pin
 
-Como hemos aprendido, el operador de coincidencia maneja la asignación cuando el lado izquierdo de la coincidencia incluye una variable. En algunos casos este comportamiento, re-enlazamiento de variable, no es el deseado. Para esas situaciones, tenemos el operador `^`.
+Como hemos aprendido, el operador de coincidencia realiza una asignación cuando el lado izquierdo de la coincidencia incluye una variable. En algunos casos reenlazar la variable no es el comportamiento deseado. Para esas situaciones, tenemos el operador `^` (pin).
 
 Cuando usamos el operador pin con una variable, hacemos una coincidencia sobre el valor existente en lugar de enlazarlo a uno nuevo. Vamos a ver cómo funciona esto:
 
@@ -71,7 +71,7 @@ iex> x
 2
 ```
 
-Elixir 1.2 introduce soporte para usar el operador pin en las llaves de los mapas y en las cláusulas de función:
+Elixir 1.2 introduce soporte para usar el operador pin en las claves de los mapas y en las cláusulas de función:
 
 ```elixir
 iex> key = "hello"

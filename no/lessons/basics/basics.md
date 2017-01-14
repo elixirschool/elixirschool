@@ -34,8 +34,6 @@ For å starte IEx skriver vi `iex` i terminalvinduet:
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 Elixir støtter binære, oktale og heksdesimale heltall:
@@ -54,9 +52,9 @@ iex> 0x1F
 flyttall krever et desimal med minimum et siffer. De har 64 bit dobbel nøyaktighet, og støtter `e` for å lage eksponenter:
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14 
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10
@@ -94,6 +92,21 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Navnet på moduler i Elixir er også atomer. `MinApp.MinModule` er en gyldig atom,
+selv om ingen slik module har blitt lagd.
+
+```elixir
+iex> is_atom(MinApp.MinModule)
+true
+```
+
+Atomer er også brukt for å referere til moduler fra Erlang biblioteket, men også til de innebygde modulene.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### Strenger (strings)
@@ -275,4 +288,3 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
-

@@ -45,10 +45,10 @@ Sebagaimana yang bisa anda lihat dari perintah shell tersebut, Mix membuat sebua
 
 ## Project Anak
 
-Mari pindah ke direktori project machine_learning_toolkit/app directory dan buat 3 aplikasi normal menggunakan Mix seperti berikut:
+Mari pindah ke direktori project `machine_learning_toolkit/apps` directory dan buat 3 aplikasi normal menggunakan Mix seperti berikut:
 
 ```shell
-$ mix new utilities --sup
+$ mix new utilities
 
 * creating README.md
 * creating .gitignore
@@ -91,7 +91,7 @@ You can use "mix" to compile it, test it, and more:
 
 Run "mix help" for more commands.
 
-$ mix new svm --sup
+$ mix new svm
 
 * creating README.md
 * creating .gitignore

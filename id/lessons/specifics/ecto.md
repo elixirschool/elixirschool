@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-Untuk info lebih lanjut tentang supervisor lihatlah pelajaran [OTP Supervisors](/lessons/advanced/otp-supervisors).
+Untuk info lebih lanjut tentang supervisor lihatlah pelajaran [OTP Supervisors](../../advanced/otp-supervisors).
 
 ### Konfigurasi
 
@@ -118,7 +118,7 @@ end
 
 Secara default Ecto membuat sebuah primary key yang auto-increment bernama `id`.  Di sini kita menggunakan callback default `change/0` tetapi Ecto juga mendukung `up/0` dan `down/0` jika anda perlu mengendalikan secara lebih rinci.
 
-Sebagaimana yang anda mungkin sudah terka, menambahkan `timestamps` ke migrasi anda akan membuat dan mengelola `created_at` dan `updated_at`.
+Sebagaimana yang anda mungkin sudah terka, menambahkan `timestamps` ke migrasi anda akan membuat dan mengelola `inserted_at` dan `updated_at`.
 
 Untuk menjalankan migrasi kita yang baru jalankanlah `mix ecto.migrate`.
 
@@ -287,10 +287,10 @@ defmodule ExampleApp.User do
   defp validate_password_confirmation(changeset) do
     case get_change(changeset, :password_confirmation) do
       nil ->
-        password_mismatch_error(changeset)
+        password_incorrect_error(changeset)
       confirmation ->
         password = get_field(changeset, :password)
-        if confirmation == password, do: changeset, else: password_incorrect_error(changeset)
+        if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
     end
   end
 

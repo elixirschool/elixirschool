@@ -62,15 +62,14 @@ defmodule ExampleApp.CLI do
   end
 
   defp response({opts, word}) do
-    if opts[:upcase], do: word = String.upcase(word)
-    word
+    if opts[:upcase], do: String.upcase(word), else: word
   end
 end
 ```
 
 ## Сборка
 
-Как только мы закончили настройку нашего приложения для использования escript, до сборки исполняемого файла остался всего один шаг с mix:
+Как только мы закончили настройку нашего приложения для использования escript, до сборки исполняемого файла остался всего один шаг с Mix:
 
 ```elixir
 $ mix escript.build

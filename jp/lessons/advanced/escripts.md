@@ -2,7 +2,7 @@
 layout: page
 title: 実行ファイル
 category: advanced
-order: 2
+order: 3
 lang: jp
 ---
 
@@ -62,15 +62,14 @@ defmodule ExampleApp.CLI do
   end
 
   defp response({opts, word}) do
-    if opts[:upcase], do: word = String.upcase(word)
-    word
+    if opts[:upcase], do: String.upcase(word), else: word
   end
 end
 ```
 
 ## ビルド
 
-escriptを用いるようにアプリケーションを設定し終えたら、実行ファイルのビルドはmixのおかげで楽勝です:
+escriptを用いるようにアプリケーションを設定し終えたら、実行ファイルのビルドはMixのおかげで楽勝です:
 
 ```elixir
 $ mix escript.build

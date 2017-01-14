@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Odwzorowania kolekcji
+title: Składanie kolekcji
 category: basics
 order: 13
 lang: pl
 ---
 
-Składanie list(ang. list comprehensions), to lukier składniowy pozwalający na wygodniejszą pracę z kolekcjami i danymi przeliczalnymi. W tej lekcji przyjrzymy się jak mechanizm ten, ułatwia przetwarzanie oraz tworzenie kolekcji na bazie już istniejących.
+Składanie list (ang. list comprehensions), to lukier składniowy pozwalający na wygodniejszą pracę z kolekcjami i danymi przeliczalnymi. W tej lekcji przyjrzymy się jak mechanizm ten, ułatwia przetwarzanie oraz tworzenie kolekcji na bazie już istniejących.
 
 {% include toc.html %}
 
@@ -41,7 +41,8 @@ iex> for <<c <- "hello">>, do: <<c>>
 Jak zapewne zauważyłeś, generatory opierają się o dopasowanie wzorców, by przypisać dane do zmiennej po lewej stronie. Jeżeli jakiś element nie zostanie dopasowany, to jest po prostu ignorowany:
 
 ```elixir
-iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], do: val
+iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], 
+...> do: val
 ["Hello", "World"]
 ```
 
@@ -71,7 +72,7 @@ iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 4 - 4
 ```
 
-Odwzorowania są tylko tzw. lukrem składniowym i powinny być stosowane tylko w razie potrzeby.
+Składanie list, to tzw. lukier składniowy i powinno być stosowane tylko w razie potrzeby.
 
 ## Filtrowanie
 
@@ -102,11 +103,12 @@ iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-Jako że binarne ciągi znaków są przeliczalne, możemy zatem użyć odwzorowania w połączeniu z `:into` by stworzyć ciąg znaków:
+Jako że binarne ciągi znaków są przeliczalne, możemy zatem użyć składania w połączeniu z `:into` by stworzyć ciąg 
+znaków:
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-I to wszystko! Odwzorowania są mechanizmem pozwalającym na tworzenie zwięzłego kodu do obsługi kolekcji.  
+I to wszystko! Składania są mechanizmem pozwalającym na tworzenie zwięzłego kodu do obsługi kolekcji.  

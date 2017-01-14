@@ -4,18 +4,26 @@ title: Elixir School
 lang: en
 ---
 
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 Lessons about the Elixir programming language, inspired by Twitter's [Scala School](http://twitter.github.io/scala_school/).
 
-Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][jp], [Português][pt] and [Bahasa Melayu][my] 
+Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Melayu][my], [Українською][uk], [한국어][ko], [L'italiano][it], [Deutsch](de), [বাংলা](bn) and other.
 
-[cn]: {{ site.url }}/cn/
-[es]: {{ site.url }}/es/
-[jp]: {{ site.url }}/jp/
-[pt]: {{ site.url }}/pt/
-[vi]: {{ site.url }}/vi/
-[my]: {{ site.url }}/my/
+  [cn]: /cn/
+  [es]: /es/
+  [it]: /it/
+  [jp]: /jp/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [my]: /my/
+  [uk]: /uk/
+  [de]: /de/
+  [bn]: /bn/
 
 _Your feedback and participation is encouraged!_
 
@@ -23,7 +31,7 @@ _Your feedback and participation is encouraged!_
 
 "Elixir is a dynamic, functional language designed for building scalable and maintainable applications." — [elixir-lang.org](http://elixir-lang.org/)
 
-Elixir leverages the battle tested ErlangVM to build distributed and fault-tolerant systems with low-latency out of the box.
+Elixir leverages the battle tested Erlang VM (BEAM) to build distributed and fault-tolerant systems with low-latency out of the box.
 
 __Features__:
 

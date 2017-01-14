@@ -15,19 +15,19 @@ List, tuples, keywords, maps and functional combinators.
 Lists are simple collections of values, they may include multiple types; lists may include non-unique values:
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir implements list as linked lists.  This means accessing the list length is an `O(n)` operation.  For this reason, it is typically faster to prepend than append:
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 
@@ -40,6 +40,8 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
+A side note about the name (`++/2`) format used above: In Elixir (and Erlang, upon which Elixir is built), a function or operator name has two components: the name you give it (here `++`) and its _arity_. Arity is a core part of speaking about Elixir (and Erlang) code. It is the number of arguments a given function takes (two in this case). Arity and the given name are combined with a slash. We'll talk more about this later; this knowledge will help you understand the notation for now.
+
 ### List Subtraction
 
 Support for subtraction is provided via the `--/2` operator; it's safe to subtract a missing value:
@@ -49,6 +51,13 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+Be mindful of duplicate values. For every element on the right, the first occurrence of it gets removed from the left:
+
+```elixir
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
+```
+
 **Note:** It uses [strict comparison](../basics/#comparison) to match the values.
 
 ### Head / Tail
@@ -56,19 +65,19 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 When using lists it is common to work with a list's head and tail.  The head is the list's first element while the tail is the remaining elements.  Elixir provides two helpful methods, `hd` and `tl`, for working with these parts:
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-In addition to the aforementioned functions, you can use [pattern matching](../pattern-matching/) and the pipe operator `|` to split a list into head and tail; we'll learn more about this pattern in later lessons:
+In addition to the aforementioned functions, you can use [pattern matching](../pattern-matching/) and the cons operator `|` to split a list into head and tail; we'll learn more about this pattern in later lessons:
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -78,8 +87,8 @@ iex> t
 Tuples are similar to lists but are stored contiguously in memory.  This makes accessing their length fast but modification expensive; the new tuple must be copied entirely to memory.  Tuples are defined with curly braces:
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 It is common for tuples to be used as a mechanism to return additional information from functions; the usefulness of this will be more apparent when we get into pattern matching:
@@ -147,4 +156,15 @@ iex> %{foo: "bar", hello: "world"}
 
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
+```
+
+Another interesting property of maps is that they provide their own syntax for updating and accessing atom keys:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+iex> map.hello
+"world"
 ```

@@ -136,7 +136,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 `select/2`はレコードのどれをどう扱うかについて先ほどよりはまともな管理を可能にしますが、構文は極めて不親切ですし、後々もっとひどくなるはずです。これを制御するため、ETSモジュールは`fun2ms/1`を備えています。これは関数をマッチスペック(match_spec)に置き換えるものです。`fun2ms/1`を使うとより親しみやすい関数の構文を用いてクエリを作成することができます。
 
-`fun2ms/2`と`select/2`を用いて、2言語以上を知っている全てのユーザ名を探してみましょう:
+`fun2ms/1`と`select/2`を用いて、2言語以上を知っている全てのユーザ名を探してみましょう:
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
@@ -270,7 +270,7 @@ iex> :dets.insert_new(table, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
 true
 iex> select_all = :ets.fun2ms(&(&1))
 [{:"$1", [], [:"$1"]}]
-iex> :dets.select(table, fun)
+iex> :dets.select(table, select_all)
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 

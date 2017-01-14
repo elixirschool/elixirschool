@@ -15,19 +15,19 @@ Liste, tuple, liste di keywords, mappe, dizionari e combinatori funzionali.
 Le Liste sono semplici collezioni di valori, possono includere diversi tipi di dato; le liste possono includere valori ripetuti:
 
 ```elixir
-iex> [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 ```
 
 Elixir implementa le liste come liste linkate (_linked lists_). Questo significa che l'accesso ad un elemento di una lista è un'operazione `O(n)`. Per questa ragione, è solitamente più veloce inserire rispetto ad appendere un nuovo elemento:
 
 ```elixir
-iex> list = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> list = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> ["π"] ++ list
-["π", 3.41, :pie, "Apple"]
+["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
-[3.41, :pie, "Apple", "Cherry"]
+[3.14, :pie, "Apple", "Cherry"]
 ```
 
 
@@ -49,26 +49,26 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-**Nota:** viene usata la [strict comparison](../basics.md#confronto) per controllare i valori.
+**Nota:** viene usata la [strict comparison](../basics#confronto) per controllare i valori.
 
 ### Head / Tail
 
 Quando si usano le liste, è comune lavorare con la _testa_ (head) e la _coda_ (tail) della lista. La testa è il primo elemento della lista e la coda rappresenta gli elementi rimanenti. Elixir fornisce due metodi utili, `hd` e `tl`, per lavorare con queste parti:
 
 ```elixir
-iex> hd [3.41, :pie, "Apple"]
-3.41
-iex> tl [3.41, :pie, "Apple"]
+iex> hd [3.14, :pie, "Apple"]
+3.14
+iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
 Oltre alle funzioni menzionate in precedenza, puoi usare l'operatore _pipe_ `|`; vedremo questo operatore nelle lezioni successive:
 
 ```elixir
-iex> [h|t] = [3.41, :pie, "Apple"]
-[3.41, :pie, "Apple"]
+iex> [h|t] = [3.14, :pie, "Apple"]
+[3.14, :pie, "Apple"]
 iex> h
-3.41
+3.14
 iex> t
 [:pie, "Apple"]
 ```
@@ -78,8 +78,8 @@ iex> t
 Le tuple sono simili alle liste, ma sono conservate in memoria in modo adiancente. Ciò permette di accedere agli elementi in modo rapido, but rende le modifiche più dispendiose; la nuova tupla deve essere interamente copiata in memoria. Le tuple sono rappresentate con le parentesi graffe:
 
 ```elixir
-iex> {3.41, :pie, "Apple"}
-{3.41, :pie, "Apple"}
+iex> {3.14, :pie, "Apple"}
+{3.14, :pie, "Apple"}
 ```
 
 È comune usare le tuple come meccanismo per ricevere informazioni addizionali dalle funzioni; l'utilità di questo sarà più evidente quando parleremo di _pattern matching_.

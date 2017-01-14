@@ -62,15 +62,14 @@ defmodule ExampleApp.CLI do
   end
 
   defp response({opts, word}) do
-    if opts[:upcase], do: word = String.upcase(word)
-    word
+    if opts[:upcase], do: String.upcase(word), else: word
   end
 end
 ```
 
 ## Construyendo
 
-Una vez que hemos finalizado de configurar nuestra aplicación para usar escript, construir nuestro ejecutable es sencillo utilizando mix:
+Una vez que hemos finalizado de configurar nuestra aplicación para usar escript, construir nuestro ejecutable es sencillo utilizando Mix:
 
 ```elixir
 $ mix escript.build

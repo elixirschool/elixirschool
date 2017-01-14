@@ -63,7 +63,7 @@ defmodule ExampleApp.App do
 end
 ```
 
-For more info on supervisors check out the [OTP Supervisors](/lessons/advanced/otp-supervisors) lesson.
+For more info on supervisors check out the [OTP Supervisors](../../advanced/otp-supervisors) lesson.
 
 ### Configuration
 
@@ -93,7 +93,7 @@ mix ecto.rollback       # Rollback migrations from a repo
 
 ## Migrations
 
-The best way to a create migrations is the `mix ecto.gen.migration <name>` task.  If you're acquainted with ActiveRecord these will look familiar.
+The best way to create migrations is the `mix ecto.gen.migration <name>` task.  If you're acquainted with ActiveRecord these will look familiar.
 
 Let's start by taking a look at a migration for a users table:
 
@@ -118,7 +118,7 @@ end
 
 By default Ecto creates an auto-incrementing primary key called `id`.  Here we're using the default `change/0` callback but Ecto also supports `up/0` and `down/0` in the event you need more granular control.
 
-As you might have guessed, adding `timestamps` to your migration will create and manage `created_at` and `updated_at` for you.
+As you might have guessed, adding `timestamps` to your migration will create and manage `inserted_at` and `updated_at` for you.
 
 To apply our new migration run `mix ecto.migrate`.
 
@@ -202,8 +202,6 @@ query = from u in User,
     where: u.confirmed == true,
     select: count(u.id, :distinct)
 ```
-
-
 
 ### Group By
 
@@ -299,10 +297,10 @@ defmodule ExampleApp.User do
   defp validate_password_confirmation(changeset) do
     case get_change(changeset, :password_confirmation) do
       nil ->
-        password_mismatch_error(changeset)
+        password_incorrect_error(changeset)
       confirmation ->
         password = get_field(changeset, :password)
-        if confirmation == password, do: changeset, else: password_incorrect_error(changeset)
+        if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
     end
   end
 

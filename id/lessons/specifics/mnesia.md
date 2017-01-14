@@ -26,7 +26,7 @@ Kapan kita menggunakan sebuah teknologi seringkali jadi masalah yang membingungk
 
 ## Schema
 
-Karena Mnesia adalah bagian dari Erlang core, bukannya Elixir, kita harus mengaksesnya dengan sintaks colon (Lihat Pelajaran: [Erlang Interoperability](https://elixirschool.com/lessons/advanced/erlang/)) seperti ini:
+Karena Mnesia adalah bagian dari Erlang core, bukannya Elixir, kita harus mengaksesnya dengan sintaks colon (Lihat Pelajaran: [Erlang Interoperability](../../advanced/erlang/)) seperti ini:
 
 ```shell
 
@@ -36,7 +36,6 @@ iex> :mnesia.create_schema([node()])
 
 iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node()])
-
 ```
 
 Untuk pelajaran ini, kita akan mengambil pendekatan yang terakhir ketika bekerja dengan API Mnesia. `Mnesia.create_schema/1` menginisialisasikan sebuah schema kosong yang baru dan memasukkan sebuah Node List. Dalam kasus ini, kita memasukkan node yang terasosiasikan dengan sesi IEx kita.
@@ -112,8 +111,8 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 
 Kita mendefinisikan kolom-kolom menggunakan atom-atom `:id`, `:name`, dan `:job`. Ketika kita menjalankan `Mnesia.create_table/2`, fungsi tersebut akan mengembalikan salah satu dari respons berikut:
 
- - `{atomic, ok}` jika fungsi tersebut selesai dengan baik
- - `{aborted, Reason}` jika fungsi tersebut gagal
+ - `{:atomic, :ok}` jika fungsi tersebut selesai dengan baik
+ - `{:aborted, Reason}` jika fungsi tersebut gagal
 
 ## Cara yang Kotor
 

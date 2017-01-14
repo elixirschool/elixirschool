@@ -1,4 +1,4 @@
-# Elixir School [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+# Elixir School [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 > Lessons about the Elixir programming language, inspired by Twitter's [Scala School](http://twitter.github.io/scala_school/).
 
@@ -43,12 +43,13 @@ In addition to the steps above there are a few addition steps required for trans
 
   ```shell
   $ cd elixir_school
-  $ mkdir -p jp/lessons/{basics,advanced,specifics}
+  $ mkdir -p jp/lessons/{basics,advanced,specifics,libraries}
+  $ touch jp/lessons/{basics,advanced,specifics,libraries}/.gitignore
   ```
 
 1. Update `_config.yml` by including the 2 character code in `languages` and adding translations to `sections`, `description` and `toc`:
 
-  ```md
+  ```yaml
   languages: ['en', 'jp']
   default_lang: en
   exclude_from_localization: []
@@ -59,12 +60,24 @@ In addition to the steps above there are a few addition steps required for trans
         jp: 基本
 
   description:
-	en: Lessons about the Elixir programming language
-	pt: Lições sobre a linguagem de programação Elixir
+    en: Lessons about the Elixir programming language
+    jp: プログラミング言語Elixirのレッスン
 
   toc:
     en: Table of Contents
     jp: 目次
+  ```
+
+1. If the new language is RTL (right-to-left) it should also be added to the `rtl_languages` list:
+
+  ```yaml
+  rtl_languages: ['ar']
+  ```
+
+1. Add it to list in `index.md`:
+
+  ```markdown
+  Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl] [Português][pt], [Русском][ru] and [Bahasa Melayu][my] and other.
   ```
 
 #### Translated Lesson

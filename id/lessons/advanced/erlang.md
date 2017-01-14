@@ -45,7 +45,7 @@ end
 Sekarang kita bisa mengakses librari Erlang kita:
 
 ```elixir
-png = :png.create(#{:size => {30, 30},
+png = :png.create(%{:size => {30, 30},
                     :mode => {:indexed, 8},
                     :file => file,
                     :palette => palette}),
@@ -101,7 +101,7 @@ false
 true
 ```
 
-Adalah penting dicatat bahwa banyak librari Erlang yang lawas mungkin tidak mendukung binary sehingga kita perlu mengkonversi string Elixir ke char list.  Untungnya hal ini mudah dikerjakan dengan fungsi `to_char_list/1`:
+Adalah penting dicatat bahwa banyak librari Erlang yang lawas mungkin tidak mendukung binary sehingga kita perlu mengkonversi string Elixir ke char list.  Untungnya hal ini mudah dikerjakan dengan fungsi `to_charlist/1`:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -110,7 +110,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

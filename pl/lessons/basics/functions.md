@@ -93,6 +93,28 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
+### Nazywanie i arność funkcji
+
+Jak już wspominaliśmy wcześniej pełna nazwa funkcji jest kombinacją jej nazwy i arności (liczby argumentów). Można to rozumieć w nastepujacy sposób:
+
+```elixir
+defmodule Greeter2 do
+  def hello(), do: "Hello, anonymous person!"   # hello/0
+  def hello(name), do: "Hello, " <> name        # hello/1
+  def hello(name1, name2), do: "Hello, #{name1} and #{name2}"
+                                                # hello/2
+end
+
+iex> Greeter2.hello()
+"Hello, anonymous person!"
+iex> Greeter2.hello("Fred")
+"Hello, Fred"
+iex> Greeter2.hello("Fred", "Jane")
+"Hello, Fred and Jane"
+```
+
+Wypisaliśmy pełne nazwy funkcji w komentarzach powyżej. Pierwsza z nie przyjmuje żadnego argumentu, zatem jest nazwana `hello/0`, druga przyjmuje jeden argument zatem nazwa to `hello/1` i tak dalej. Nie należy mylić tego z przeciążaniem funkcji w innych językach. Każda z tych funkcji jest _niezależna_ od innych. Dopasowanie wzorców, o którym przed chwilą mówiliśmy, zostanie zastosowane jedynie wtedy, gdy mamy wiele definicji funkcji o takich samych nazwach i liczbie argumentów.    
+
 ### Funkcje prywatne
 
 Jeżeli nie chcemy, by inne moduły mogły wywołać naszą funkcję, możemy zdefiniować ją jako prywatną. Będzie można ją użyć tylko w module, w którym została stworzona.  W Elixirze służy do tego słowo kluczowe `defp`:

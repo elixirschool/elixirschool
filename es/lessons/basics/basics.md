@@ -34,8 +34,6 @@ Para empezar, Ejecutamos `iex`:
 ```elixir
 iex> 255
 255
-iex> 0xFF
-255
 ```
 
 El soporte para números binarios, octales y hexadecimales también viene incluido:
@@ -54,9 +52,9 @@ iex> 0x1F
 En Elixir, los números con coma flotante requieren un decimal después de al menos un dígito; estos tienen una precisión de 64 bits y soportan `e` para números exponenciales.
 
 ```elixir
-iex> 3.41
-3.41
-iex> .41
+iex> 3.14 
+ 3.14
+iex> .14 
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10
@@ -110,10 +108,10 @@ iex> "dziękuję"
 Las cadenas soportan saltos de línea y secuencias de escape:
 
 ```elixir
-iex(9)> "foo
-...(9)> bar"
+iex> "foo
+...> bar"
 "foo\nbar"
-iex(10)> "foo\nbar"
+iex> "foo\nbar"
 "foo\nbar"
 ```
 
