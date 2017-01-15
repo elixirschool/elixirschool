@@ -7,7 +7,7 @@ lang: en
 ---
 
 Bugs are an inherent part of any project, that's why we need debugging. In this lesson we'll learn about debugging Elixir code as well as static analysis tools to help find potential bugs. 
-
+                                                     
 {% include toc.html %}
 
 # Dialyxir and Dialyzer
@@ -34,9 +34,9 @@ $ mix deps.get
 $ mix deps.compile
 ```
 
-First command download and install Dialyxir. You could be asked for installing Hex. Second compile Dialyxir app. If you want to install Dialyxir as global app, please read [documentation](https://github.com/jeremyjh/dialyxir#installation).
+The first command will download and install Dialyxir. You may be asked for to install Hex along with it. The second compiles the Dialyxir application. If you want to install Dialyxir globally, please read its [documentation](https://github.com/jeremyjh/dialyxir#installation).
 
-Last step is to run Dialyzer to rebuild PLT. You need to do this every time after installation of new version of Erlang or Elixir. Thanks to this Dialyzer will not be try to analyse standard library every time that you try to use it. It takes few minutes.
+The last step is to run Dialyzer to rebuild the PLT (Persistent Lookup Table). You need to do this every time after installation of a new version of Erlang or Elixir. Thanks to this Dialyzer will no try to analyze standard library every time that you try to use it. It takes a few minutes for the download to complete.
 
 ```shell
 $ mix dialyzer.plt
