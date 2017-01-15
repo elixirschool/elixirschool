@@ -6,7 +6,7 @@ order: 6
 lang: en
 ---
 
-Bugs are an inherent part of any project. That why we need to debugging. In this lesson we will learn about debugging Elixir code and tools for static analysis that helps to find bugs. 
+Bugs are an inherent part of any project, that's why we need debugging. In this lesson we'll learn about debugging Elixir code as well as static analysis tools to help find potential bugs. 
 
 {% include toc.html %}
 
