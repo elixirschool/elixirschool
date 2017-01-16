@@ -50,7 +50,7 @@ done (warnings were emitted)
 
 ### Static analysis of code
  
-Now we're ready to use Dialyxir::
+Now we're ready to use Dialyxir:
  
 ```shell
 $ mix dialyzer
@@ -155,7 +155,7 @@ iex > :int.break(Example, 8)
 :ok
 ```
 
-This sets a breakpoint on line 8 of the `Example` module. Now when we call our function::
+This sets a breakpoint on line 8 of the `Example` module. Now when we call our function:
  
 ```elixir
 iex > Example.cpu_burns(1, 1, 1)
