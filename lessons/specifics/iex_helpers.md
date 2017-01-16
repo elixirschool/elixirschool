@@ -1,22 +1,24 @@
 ---
 layout: page
 title: IEx Helpers
-category: specifics
-order: 6
+category: basics
+order: 16
 lang: en
 ---
 
 {% include toc.html %}
 
 ## Overview
+
 As you begin to work in Elixir, IEx is your best friend.
 It is a REPL, but it has many advanced features that can make life easier when exploring new code or developing your own work as you go.
 There are a slew of built-in helpers that we will go over in this lesson.
 
 ### Autocomplete
+
 When working in the shell, you often might find yourself using a new module that you are unfamiliar with.
 To understand some of what is available to you, the autocomplete functionality is wonderful.
-Simply type a module name and then `.` and press `Tab`:
+Simply type a module name followed by `.` then press `Tab`:
 
 ```elixir
 iex> Map. # press Tab
@@ -35,42 +37,41 @@ update!/3            update/4             values/1
 And now we know the functions we have and their arity!
 
 ### `.iex.exs`
-Every time IEx starts, it will look for a `.iex.exs` file.
-If this is not present in the current directory, it will look at `~/.iex.exs` as a fallback.
-Anything inside it will be loaded in the shell that is started up.
-Lets say for some reason we really wanted to have a function called `fuzzy_bunnies/0` to be available all the time for some reason in a new project in a given namespace and have it print a message to us when we start our shell.
 
-We could simply do this:
+Every time IEx starts it will look for a .iex.exs configuration file. If it's not present in the current directory, then the user's home directory (~/.iex.exs) will be used as the fallback.
 
-```shell
-$ mix new my_project
-$ cd my_project
-```
+Configuration options and code defined within this file will be available to us when the IEx shell starts up. For instance if we want some helper functions available to us in IEx, we can open up .iex.exs and make some changes.
 
-And now we set it up:
+Let's start by adding a module with a few helper methods:
 
 ```elixir
-defmodule Fuzzy do
-  def fuzzy_bunnies do
-    IO.puts "FUZZY BUNNIES"
-  end
+defmodule IExHelpers do
+  def whats_this?(term) when is_nil(term), do: "Type: Nil"
+  def whats_this?(term) when is_binary(term), do: "Type: Binary"
+  def whats_this?(term) when is_boolean(term), do: "Type: Boolean"
+  def whats_this?(term) when is_atom(term), do: "Type: Atom"
+  def whats_this?(_term), do: "Type: Unknown"
 end
-Fuzzy.fuzzy_bunnies
 ```
 
-And when we run IEx:
+Now when we run IEx we'll have the IExHelpers module available to us from the start. Open up IEx and let's try out our new helpers:
 
-```shell
+```elixir
 $ iex
-Erlang/OTP 19 [erts-8.1] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+{{ site.erlang.OTP }} [{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-Interactive Elixir (1.3.3) - press Ctrl+C to exit (type h() ENTER for help)
-fuzzy bunnies
+Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+iex> IExHelpers.whats_this?("a string")
+"Type: Binary"
+iex> IExHelpers.whats_this?(%{})
+"Type: Unknown"
+iex> IExHelpers.whats_this?(:test)
+"Type: Atom"
 ```
-
-And we see our message printed and know we have that available.
+As we can see we don't need to do anything special to require or import our helpers, IEx handles that for us.
 
 ### `h`
+
 `h` is one of the most useful tools our Elixir shell gives us.
 Due to the language's fantastic first class support for documentation, the docs for any code can be reached using this helper.
 To see it in action is simple:
@@ -146,10 +147,11 @@ Examples
 ┃ %{a: 3, b: 2, d: 4}
 ```
 
-And as you can see, we not only found out what was offered by the module but exactly how to work what we were after with a working example!
+As we can see we were not only able to find what functions were available as part of the module but we were able to access individual function docs, many of which include example usage.
 
 ### `i`
-Since we already have another tool to learn about this and its valid Elixir code, why not use `h` to learn about `i`? Here we go:
+
+Let's put some of our new found knowledge to use by employing `h` to learn a bit more about the `i` helper:
 
 ```elixir
 iex> h i
@@ -182,8 +184,8 @@ Reference modules
   Module, Atom
 ```
 
-So now we have a bunch more information about `Map`, including all the way down to where its source is stored and the modules it references.
-This is quite useful when exploring custom and foreign data types and new functions.
+Now we have a bunch of information about Map including where its source is stored and the modules it references.  This is quite useful when exploring custom, foreign data types, and new functions.
+
 The individual headings can be dense, but at a high level we can gather some relevent information:
 
 - Its an atom data type
@@ -193,11 +195,11 @@ The individual headings can be dense, but at a high level we can gather some rel
 - How to access it
 - What other modules it references
 
-This is a lot to work with, and much better than going in blind.
+This gives us a lot to work with and is better than going in blind.
 
 ### `r`
-`r` is our helper for recompiling a given module.
-Say you have changed some code and simply want to run the new function you added, you could save the file then run:
+
+If we want to recompile a particular module we can use the `r` helper.  Let's say we've changed some code and want to run a new function we've added. To do that we need to save our changes and recompile with r:
 
 ```elixir
 iex> r MyProject
@@ -208,8 +210,8 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 ```
 
 ### `s`
-`s` gives us type spec information for a given module or function.
-This way we can know what it is expecting:
+
+With `s` we can retrieve the type spec information for a  module or function, we can use this to know it expects:
 
 ```elixir
 iex> s Map.merge/2
@@ -225,7 +227,8 @@ iex> s Map
 ```
 
 ### `t`
-`t` Tells us about Types available in a given module:
+
+The `t` helper tells us about Types available in a given module:
 
 ```elixir
 iex> t Map
@@ -246,5 +249,4 @@ defmodule Map do
 
 This is a simple example, stating that keys and values per the implementation can be any type, but it is useful to know.
 
-## Conclusion
-By leveraging all these built-in niceties, it can become a lot easier to explore and write new code. IEx is very robust, and does a lot to empower developers. With these tools in your toolbox, exploring and building should be even more fun!
+By leveraging all these built-in niceties we can easily explore the code and learn more about how things work. IEx is very powerful and robust tool that empower developers. With these tools in our toolbox, exploring, and building can be even more fun!
