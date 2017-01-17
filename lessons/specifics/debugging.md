@@ -18,7 +18,7 @@ The [Dialyxir](https://github.com/jeremyjh/dialyxir) is a mix task to simplify u
 
 Specification helps tools like Dialyzer to understand code better. Unlike documentation that is readable and understandable only for other humans (if only exists and is good written), `@spec` use more formal syntax and could be understand by machine.
 
-Let's add Dialixyr to our project. The simples way is to add dependency to `mix.exs` file:
+Let's add Dialixyr to our project. The simplest way is to add dependency to `mix.exs` file:
  
 ```elixir
 defp deps do
@@ -34,12 +34,12 @@ $ mix deps.get
 $ mix deps.compile
 ```
 
-The first command will download and install Dialyxir. You may be asked for to install Hex along with it. The second compiles the Dialyxir application. If you want to install Dialyxir globally, please read its [documentation](https://github.com/jeremyjh/dialyxir#installation).
+The first command will download and install Dialyxir. You may be asked to install Hex along with it. The second compiles the Dialyxir application. If you want to install Dialyxir globally, please read its [documentation](https://github.com/jeremyjh/dialyxir#installation).
 
-The last step is to run Dialyzer to rebuild the PLT (Persistent Lookup Table). You need to do this every time after installation of a new version of Erlang or Elixir. Thanks to this Dialyzer will no try to analyze standard library every time that you try to use it. It takes a few minutes for the download to complete.
+The last step is to run Dialyzer to rebuild the PLT (Persistent Lookup Table). You need to do this every time after installation of a new version of Erlang or Elixir. Fortunately, Dialyzer will not try to analyze standard library every time that you try to use it. It takes a few minutes for the download to complete.
 
 ```shell
-$ mix dialyzer.plt
+$ mix dialyzer --plt
 Starting PLT Core Build ... this will take awhile
 dialyzer --build_plt --output_plt /.dialyxir_core_18_1.3.2.plt --apps erts kernel stdlib crypto public_key -r /Elixir/lib/elixir/../eex/ebin /Elixir/lib/elixir/../elixir/ebin /Elixir/lib/elixir/../ex_unit/ebin /Elixir/lib/elixir/../iex/ebin /Elixir/lib/elixir/../logger/ebin /Elixir/lib/elixir/../mix/ebin
   Creating PLT /.dialyxir_core_18_1.3.2.plt ...
@@ -59,9 +59,9 @@ examples.ex:3: Invalid type specification for function 'Elixir.Examples':sum_tim
 ...
 ```
 
-The message from Dialyzer is clear: the return type of our function s`um_times/1` is different than declared. This is because `Enum.sum/1` returns a `number` and not a `integer` but the return type of `sum_times/1` is `integer`.
+The message from Dialyzer is clear: the return type of our function `sum_times/1` is different than declared. This is because `Enum.sum/1` returns a `number` and not a `integer` but the return type of `sum_times/1` is `integer`.
 
-Since `number` is not `integer` so we get an error. How do we fix it? We need to use the `round/1` function to change our `number` to an `integer`:
+Since `number` is not `integer` we get an error. How do we fix it? We need to use the `round/1` function to change our `number` to an `integer`:
 
 ```elixir
 @spec sum_times(integer) :: integer
@@ -82,11 +82,11 @@ $ mix dialyzer
 done (passed successfully)
 ```
 
-Using specifications with tools to perform static code analysis helps us make code that is self tested and contains less bugs.  
+Using specifications with tools to perform static code analysis helps us make code that is self-tested and contains less bugs.
 
 ## Debugging
 
-Sometimes static analysis of code is not enough. Sometimes it's necessary to understand the execution flow in order to find bugs. The simplest way is to put output statements in our code like `IO.puts/2` to track values and code flow, but this technique is primitive and has limitations. Thankfully for us, we can use the Erlang debugger to debug our Elixir.
+Sometimes static analysis of code is not enough. It may be necessary to understand the execution flow in order to find bugs. The simplest way is to put output statements in our code like `IO.puts/2` to track values and code flow, but this technique is primitive and has limitations. Thankfully for us, we can use the Erlang debugger to debug our Elixir code.
 
 Let’s look at a basic module:
 
@@ -117,21 +117,21 @@ iex > :debugger.start()
 {:ok, #PID<0.307.0>}
 ```
 
-The Erlang `:debugger` module provides access to the debugger. To configure our debugger we can use the `start/1` function:
+The Erlang `:debugger` module provides access to the debugger. We can use the `start/1` function to configure it:
  
-+ We can use an external configuration file by passing the file path. 
-+ If an argument is `:local` or `:global` then debugger will:
-    + `:global` – debugger will interprets code on all known nodes. This is default value.
-    + `:local` – debugger will interprets code only on current node
++ An external configuration file can be used by passing the file path.
++ If the argument is `:local` or `:global` then debugger will:
+    + `:global` – debugger will interpret code on all known nodes. This is default value.
+    + `:local` – debugger will interpret code only on current node.
 
-Next step is to attach our module to debugger:
+The next step is to attach our module to debugger:
 
 ```elixir
 iex > :int.ni(Example)
 {:module, Example}
 ```
 
-The `:int` module an interpreter that gives us the ability to create breakpoints and step through the execution of the code.
+The `:int` module is an interpreter that gives us the ability to create breakpoints and step through the execution of the code.
 
 When you start the debugger you will see a new window like this:
 
@@ -143,10 +143,10 @@ After we've attached our module to the debugger it will be available in the menu
 
 ### Creating breakpoints
 
-A breakpoint is a point in the code where execution will be halted, we have two ways of creating breakpoints:
+A breakpoint is a point in the code where execution will be halted. We have two ways of creating breakpoints:
 
-+ We can use `:int.break/2` in our code
-+ We can use the debugger's UI
++ `:int.break/2` in our code
++ The debugger's UI
 
 Let's try to create a breakpoint in IEx:
 
@@ -169,7 +169,7 @@ An additional window with our source code will appear:
 
 ![Debugger Screenshot 4]({{ site.url }}/assets/debugger_4.png)
 
-In this window we can look up the value of variables, step forward to next line, or evaluate expressions. To disable a breakpoint:
+In this window we can look up the value of variables, step forward to next line, or evaluate expressions. `:int.disable_break/2` can be called in order to disable a breakpoint:
 
 ```elixir
 iex > :int.disable_break(Example, 8)
