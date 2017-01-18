@@ -151,7 +151,7 @@ end
 
 ### `import`
 
-If we want to import functions and macros rather than aliasing the module we can use `import/`:
+If we want to import functions and macros rather than aliasing the module we can use `import`:
 
 ```elixir
 iex> last([1, 2, 3])
@@ -194,9 +194,26 @@ import List, only: :functions
 import List, only: :macros
 ```
 
+It is also worth noting that `import` is lexical in scope.
+
+```elixir
+iex> defmodule MyModule do
+...>   def func_a do
+...>     import List, only: [duplicate: 2]
+...>     duplicate(:ok, 10)
+...>   end
+...>
+...>   def func_b do
+...>     duplicate(:ok, 10)
+...>   end
+...> end
+** (CompileError) iex: undefined function duplicate/2
+```
+Before we had access to that function from import, but in our second function it blew up.
+
 ### `require`
 
-Although used less frequently `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
+Although used less frequently `require` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
 
 ```elixir
 defmodule Example do
@@ -206,7 +223,7 @@ defmodule Example do
 end
 ```
 
-If we attempt to call a macro that is not yet loaded Elixir will raise an error.
+If we attempt to call a macro that is not yet loaded Elixir will raise an error.  The most commonly used bit that needs `require` due to use of macros is `require IEx; IEx.pry`.
 
 ### `use`
 
@@ -225,15 +242,20 @@ defmodule UseImportRequire.UseMe do
 end
 ```
 
-and we add this line to UseImportRequire:
+and we add this line to use `UseImportRequire`:
 
 ```elixir
 use UseImportRequire.UseMe
 ```
 
-Using UseImportRequire.UseMe defines a use_test/0 function through invocation of the `__using__/1` macro.
+Using `UseImportRequire.UseMe` defines a `use_test/0` function through invocation of the `__using__/1` macro.
+This is all that use does. However, it is common for the `__using__` macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that `__using__/1` may set up references to other modules, especially submodules.  We can now call `use_test/0` simply:
 
-This is all that use does. However, it is common for the `__using__` macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that `__using__/1` may set up references to other modules, especially submodules.
+```elixir
+iex> UseImportRequire.use_test
+use_test
+:ok
+```
 
 The Phoenix framework makes use of use and `__using__/1` to cut down on the need for repetitive alias and import calls in user defined modules.
 
@@ -251,6 +273,55 @@ end
 
 The `Ecto.Migration.__using__/1` macro includes an import call so that when you `use Ecto.Migration` you also `import Ecto.Migration`. It also sets up a module property which we will assume controls Ecto’s behavior.
 
-To recap: the use macro simply invokes the `__using__/1` macro of the specified module. To really understand what that does you need to read the `__using__/1` macro.
+We can also override a given function that is given to use with `__using__/1`.  This is done by using `defoverridable`.  Let's implement this:
 
-**Note**: `quote`, `alias`, `use`, `require` are a macro used when we work with [metaprogramming](../../advanced/metaprogramming).
+```elixir
+iex> defmodule Foo do
+...>   defmacro __using__(_) do
+...>     quote do
+...>       def bar do
+...>         2
+...>       end
+...>       defoverridable [bar: 0]
+...>     end
+...>   end
+...> end
+{:module, Foo,
+ <<. . .>>, {:__using__, 1}}
+iex> defmodule Baz do
+...>   use Foo
+...>   def bar do
+...>     super() + 2
+...>   end
+...> end
+{:module, Baz,
+ <<. . .>>, {:bar, 0}}
+iex> Baz.bar
+4
+```
+
+As you can see are able to override the default method `bar/0` from `use`, and even can call `super` to get the original functionality.  It is worth noting that `super` must be called with the same number of arguments as the parent method being overridden.  It also must be placed _after_ the functions being overridden.
+
+### Delegation
+It is possible to define a function that delegates to another module.  Using defdelegate we can define a public function and delegate it to another module's function, let's see it in action:.
+
+```elixir
+iex> defmodule MyModule do
+...>   def hello, do: "hello from my module"
+...> end
+{:module, MyModule,
+ <<70, ... >>, {:hello, 0}}
+iex> defmodule SomeOtherModule do
+...>   defdelegate world, to: MyModule, as: :hello
+...> end
+{:module, SomeOtherModule,
+ <<70, ... >>, [world: 0]}
+iex> IO.puts SomeOtherModule.world
+hello from my module
+```
+
+As you can see our calls to `SomeOtherModule.world/0` are delegated to `MyModule.hello/0`.
+
+To recap: the `use` macro simply invokes the `__using__/1` macro of the specified module.  To really understand what that does you need to read the `__using__/1` macro.
+
+**Note**: `quote`, `alias`, `use`, `require` are macros used when we work with [metaprogramming](../../advanced/metaprogramming).
