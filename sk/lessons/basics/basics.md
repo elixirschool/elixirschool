@@ -218,7 +218,7 @@ false
 Dôležitou vlastnosťou Elixiru je, že umožńuje porovnať hodnoty akýchkoľvek dvoch typov, čo sa obzvlášť hodí pri zoraďovaní (sortingu). Nie je nutné učiť sa spamäti poradie typov pri sortingu, ale je dobré o ňom vedieť:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Toto môže viesť k niektorým zaujímavým a valídnym porovnaniam, aké v iných jazykoch nenájdete:

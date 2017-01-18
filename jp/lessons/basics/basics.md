@@ -241,7 +241,7 @@ false
 Elixirの重要な特徴はどんな2つの型でも比べられるということで、これは特にソートにおいて有用です。ソートされる順序を覚える必要はありませんが、順序を気にするのは重要なことです:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 これは他の言語では見られないかもしれない、正当で興味深い比較を引き起こします:

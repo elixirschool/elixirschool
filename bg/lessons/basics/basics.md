@@ -240,7 +240,7 @@ false
 Важно свойство при Elixir е, че всеки две типа могат да бъдат сравнени, което е изключително полезно при сортиране. Не е нужно да запаметяваме реда на сортиране, но е важно да го имаме предвид:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Това може да доведе до някои интересни, но валидни сравнения, които може и да не намерите в други езици:

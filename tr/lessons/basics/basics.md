@@ -237,7 +237,7 @@ false
 Elixir'in önemli bir özelliği de, iki değişken tipini karşılaştırabiliyor olmasıdır. Sıralama işlemleri için kolaylık sağlar. Aşağıdaki sıralamayı ezberlemek gerekmez ama bunun farkında olmakta yarar vardır:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Tüm bunlar başka dillerde bulamayacağınız, ilginç fakat tamamen geçerli bir sonuca yol açar:

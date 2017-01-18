@@ -218,7 +218,7 @@ false
 Sebuah fitur penting dari Elixir adalah bahwa segala macam tipe dapat dibandingkan, ini berguna dalam pengurutan (sorting). Kita tidak perlu menghafalkan urutannya tapi penting untuk dipahami:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Ini bisa menghasilkan perbandingan yang menarik, dan valid, yang mungkin tidak anda temukan di bahasa lain:

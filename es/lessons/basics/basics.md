@@ -204,7 +204,7 @@ false
 Una característica importante de Elixir es que cualquier par de tipos se pueden comparar, esto es útil particularmente en ordenación. No necesitamos memorizar el orden pero es importante ser consciente de este:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Esto puede conducir a algunas interesantes y válidas comparaciones que no puedes encontrar en otros lenguajes:

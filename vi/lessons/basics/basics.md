@@ -204,7 +204,7 @@ false
 Một chức năng quan trọng của Elixir là hai kiểu có thể được so sánh với nhau, thực sự rất là hữu dụng cho việc sắp xếp. Chúng ta không cần phải nhớ thứ tự sắp xếp nhưng nên lưu ý:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Điều này có thể dẫn đến một vài trường hợp so sánh hợp lệ nhưng khá xa lạ so với các ngôn ngữ khác:

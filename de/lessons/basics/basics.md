@@ -240,7 +240,7 @@ false
 Ein wichtiges Feature von Elixir ist, dass jegliche zwei Typen miteinander verglichen werden können. Das ist beispielsweise dann praktisch, wenn man die Typen sortieren möchte. Wir müssen uns nicht an die Sortierreihenfolge erinnern, aber es ist wichtig zu wissen, dass es sie gibt:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Das führt mitunter zu interessanten, aber gültigen, Vergleichen, welche es so in anderen Sprachen nicht gibt:

@@ -204,7 +204,7 @@ false
 Satu ciri penting Elixir ialah mana-mana dua bentuk jenis data boleh dibandingkan, ini adalah amat berguna ketika membuat penyusunan.  Kita tidak perlu menghafal susunan tetapi penting untuk diberikan perhatian:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Ini boleh membawa kepada beberapa perbandingan yang menarik, dan sah, yang anda mungkin tidak akan jumpai dalam bahasa aturcara lain: 
