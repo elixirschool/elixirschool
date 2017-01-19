@@ -221,7 +221,7 @@ En viktig egenskap i Elixir, er at alle typer kan bli sammenlignet med hverandre
 Dette er spesielt nyttig ved sortering. Vi trenger ikke memorisere sorteringsrekkefølgen, men det er greit å være kjent med den:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Dette kan føre til noen interessante, men gyldige sammenligninger du kanskje ikke finner i andre programmeringsspråk:

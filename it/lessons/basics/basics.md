@@ -204,7 +204,7 @@ false
 Una funzionalità importante di Elixir è che due valori di qualsiasi tipo possono essere confrontati, questo è particolarmente utile per l'ordinamento. Non abbiamo bisogno di memorizzare la sequenza di ordinamento, ma è importante esserne al corrente:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Questo può portare ad alcuni interessanti, e validi, confronti che potresti non trovare in altri linguaggi:

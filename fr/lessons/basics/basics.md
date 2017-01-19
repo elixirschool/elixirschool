@@ -208,7 +208,7 @@ Une fonctionnalité importante d'Elixir est que deux types peuvent être compar�
 Nous n'avons pas besoin de mémoriser l'ordre de tri mais il est important d'en être conscient : 
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Cela peut ainsi mener à d'intéressantes comparaisons que vous ne trouveriez pas dans d'autres langages :

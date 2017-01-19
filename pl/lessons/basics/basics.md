@@ -220,7 +220,7 @@ false
 Ważną cechą Elixira jest to, że można porównać zmienne dowolnego typu, co jest szczególnie użyteczne przy sortowaniu. Nie musimy pamiętać kolejności przy sortowaniu, ale warto jest by mieć to na uwadze:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Pozwala to na stworzenie nietypowych, ale poprawnych konstrukcji porównań, które nie są dostępne w innych językach:
