@@ -25,17 +25,12 @@ description:
   id: Pelajaran mengenai bahasa pemrograman Elixir
   no: Leksjoner i programmeringsspråket Elixir
   ko: 프로그래밍 언어 Elixir 배우기
-  uk: Навчальні матеріали про мову програмування Elixir
-  tr: Elixir programlama dili dersleri
-  bg: Уроци за езика за програмиране Elixir
-  de: Übungen zur Programmiersprache Elixir
-  bn: এলিক্সির স্কুল
+  ar: دروس عن لغة برمجة إليكسير
 baseurl: /
 url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'uk', 'tr', 'bg', 'de', 'bn']
-rtl_languages: ['ar']
+languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'ar']
 default_lang: en
 exclude_from_localization: []
 sections:
@@ -57,11 +52,7 @@ sections:
       id: Dasar
       no: Grunnleggende
       ko: 기초
-      uk: Основи
-      tr: Temeller
-      bg: Основи
-      de: Grundlagen
-      bn: সাধারণ জ্ঞান
+      ar: الأساسيات
   - tag: advanced
     label:
       en: Advanced
@@ -80,16 +71,12 @@ sections:
       id: Lanjutan
       no: Avansert
       ko: 심화
-      uk: Просунуті
-      tr: Gelişmiş
-      bg: За Напреднали
-      de: Erweitert
-      bn: দক্ষ পর্যায়
+      ar: الموضوعات المتقدّمة
   - tag: specifics
     label:
       en: Specifics
       jp: 詳細
-      cn: 专题
+      cn: 详情
       es: Específico
       pt: Específico
       vi: Cụ thể
@@ -103,22 +90,8 @@ sections:
       id: Khusus
       no: Detaljer
       ko: 활용
-      uk: Конкретика
-      tr: Spesifik
-      bg: Спесифики
-      de: Einzelheiten
-      bn: নিয়মাবলি
-  - tag: libraries
-    label:
-      en: Libraries
-      jp: ライブラリー
-      ru: Библиотеки
-      uk: Бібліотеки
-      gr: Βιβλιοθήκες
-      it: Librerie
-      ko: 라이브러리
-      pl: Biblioteki
-      bn: লাইব্রেরিস
+      ar: التفاصيل
+
 gems:
   - kramdown
   - jekyll-assets
@@ -145,11 +118,11 @@ sitemap:
   priority_name: 'priority'
 
 elixir:
-  version: 1.4.0
+  version: 1.2.3
 
 erlang:
-  OTP: 19
-  erts: 8.0.2
+  OTP: 18
+  erts: 7.3
 
 toc:
   en: Table of Contents
@@ -168,24 +141,4 @@ toc:
   no: Innholdsfortegnelse
   ko: 목차
   id: Daftar Isi
-  uk: Зміст
-  tr: İçerik
-  bg: Съдържание
-  de: Inhaltsverzeichnis
-  bn: তালিকা
-share:
-  en: Share This Page
-  ru: Поделиться
-  ko: 이 페이지 공유하기
-  jp: このページをシェアする
-  no: Del denne siden
-  cn: 分享本页面
-  sk: Zdieľaj túto stránku
-  fr: Partager cette page
-  pl: Podziel się
-  id: Bagikan Halaman Ini
-  uk: Поділитися
-  tr: Paylaş
-  bg: Споделете тази страница
-  pt: Compartilhe essa página
-  bn: পৃষ্ঠা শেয়ার করুন
+  ar: جدول المحتويات
