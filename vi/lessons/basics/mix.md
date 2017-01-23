@@ -6,21 +6,18 @@ order: 9
 lang: vi
 ---
 
-Before we can dive into the deeper waters of Elixir we first need to learn about mix. If you're familiar with Ruby mix is Bundler, RubyGems, and Rake combined. It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of it's great features. To see all that mix has to offer run `mix help`.
+Trước khi đi sâu vào Elixir thì chúng ta cần tìm hiều về mix đầu tiên. Nếu bạn đã quen thuộc với Ruby thì mix tương ứng với Bundler, Rubygems và Rake hợp lại. Mix là một phần quan trọng trong bất cứ dự án Elixir nào và trong bài này chúng ta sẽ đi vào một vài tính năng thú vị của nó. Để xem mix có tất cả những chức năng gì thì chúng ta chạy `mix help`.
 
-Until now we've been working exclusively within `iex` which has limitations.  In order to build something substantial we need to divide our code up into many files to effectively manage it, mix let's us do that with projects.
-
+Tính cho đến thời điểm hiện tại thì chúng ta làm việc hoàn toàn bên trong `iex`, tuy nhiên việc đó có rất nhiều hạn chế. Để tạo được một dự án có ý nghĩa hơn thì chúng ta cần chia code ra thành nhiều file cho dễ quản lý, và mix giúp chúng ta làm việc đó với chức năng projects.
 {% include toc.html %}
 
-## New Projects
-
-When we're ready to create a new Elixir project, mix makes it easy with the `mix new` command.  This will generate our project's folder structure and necessary boilerplate.  This is pretty straight forward, so let's get started:
+## Tạo Projects 
+Khi chúng ta tạo một dự án Elixir mới, mix khiến việc đó trở nên vô cùng dễ dàng với câu lệnh `mix new`. Câu lệnh đó sẽ tạo ra cấu trúc thư mục project và những gì cần thiết ban đầu. Việc này khá dễ hiểu, vậy hãy bắt đầu thôi:
 
 ```bash
 $ mix new example
 ```
-
-From the output we can see that mix has created our directory and a number of boilerplate files:
+Từ output chúng ta có thể thấy mix đã tạo ra thư mục mới và rất nhiều file khởi tạo:
 
 ```bash
 * creating README.md
@@ -34,15 +31,14 @@ From the output we can see that mix has created our directory and a number of bo
 * creating test/test_helper.exs
 * creating test/example_test.exs
 ```
-
-In this lesson we're going to focus our attention on `mix.exs`.  Here we configure our application, dependencies, environment, and version.  Open the file in your favorite editor, you should see something like this (comments removed for brevity):
+Trong bài này chúng ta tập trung vào file `mix.exs`. Ở đây chúng ta có thể thay đổi cấu hình của chương trình của chúng ta, các phụ thuộc, biến môi trường, version. Mở file đó ra bằng editor yêu thích của bạn, bạn sẽ thấy như dưới đây:
 
 ```elixir
 defmodule Example.Mixfile do
   use Mix.Project
 
-  def project do
-    [app: :example,
+  def project do
+    [app: :example,
      version: "0.0.1",
      elixir: "~> 1.0",
      build_embedded: Mix.env == :prod,
@@ -60,46 +56,40 @@ defmodule Example.Mixfile do
 end
 ```
 
-The first section we'll look at is `project`.  Here we define the name of our application (`app`), specify our version (`version`), Elixir version (`elixir`), and finally our dependencies (`deps`).
+Đầu tiên chúng ta hãy nhìn vào phần `project`. Tại đây chúng ta định nghĩa tên của ứng  (`app`), chỉ định phiên  (`version`), phiên bản Elixir (`elixir`), và cuối cùng là thư viện phụ thuộc của dự án (`deps`).
 
-The `application` section is used during the generation of our application file which we'll cover next.
+Phần `application` được sử dụng xuyên suốt các phần tiếp theo mà chúng ta sẽ sinh ra các file cho dự án.
 
-## Compilation
+## Biên dịch 
+Mix rất thông minh và sẽ biên dịch phần thay đổi của dự án khi cần thiết, tuy nhiên đôi khi chúng ta cũng cần chỉ định biên dịch một cách rõ ràng (explicitly). Ở phần này chúng ta sẽ đi vào việc biên dịch dự án của bạn và những gì được thực hiện trong quá trình biên dịch đó.
 
-Mix is smart and will compile your changes when necessary, but it may still be necessary explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
-
-To compile a mix project we only need to run `mix compile` in our base directory:
+Để biên dịch một dự án mix, chúng ta sẽ cần chạy `mix compile` tại thư mục gốc:
 
 ```bash
 $ mix compile
 ```
-
-There isn't much to our project so the output isn't too exciting but it should complete successfully:
+Dự án hiện tại của chúng ta không có quá nhiều thứ, vậy nên những gì được output ra cũng không quá thú vị, tuy nhiên chắc chắn là việc biên dịch sẽ diễn ra suôn sẻ:
 
 ```bash
 Compiled lib/example.ex
 Generated example app
 ```
+Khi chúng ta biên dịch, mix sẽ tạo một thư mục `_build` cho thành quả biên dịch. Nếu nhìn vào bên trong `_build` chúng ta sẽ thấy application của chúng ta đã được biện dịch dưới dạng `example.app`.
 
-When we compile a project mix creates a `_build` directory for our artifacts.  If we look inside `_build` we will see our compiled application: `example.app`.
-
-## Interactive
-
-It may be necessary to use `iex` within the context of our application.  Thankfully for us, mix makes this easy.  With our application compiled we can start a new `iex` session:
+## Tương tác 
+Sử dụng `iex` bên trong ngữ cảnh của chương trình của chúng ta có thể sẽ cần thiết. Rất may mắn là mix đã làm cho việc này trở nên vô cùng dễ dàng. Sau khi application đã được biên dịch, chúng ta có thể tạo một `iex` session mới:
 
 ```bash
 $ iex -S mix
 ```
+Khởi tạo `iex` theo cách này sẽ tải chương trình và toàn bộ phụ thuộc vào runtime hiện tại.
 
-Starting `iex` this way will loads your application and dependencies into the current runtime.
+## Quản lý phụ thuộc
+Dự án của chúng ta hiện tại chưa có phụ thuộc nào, nhưng ngay sau đây chúng ta sẽ tiến tiếp và định nghĩa phụ thuộc, cũng như tải chúng về.
 
-## Manage Dependencies
+Để tạo phụ thuộc mới, điều đầu tiên cần làm là thêm vào file `mix.exs`, phần `deps`. Danh sách phụ thuộc sẽ là một danh sách các tuples với hai biến cần thiết, và 1 biến tuỳ ý: Tên của package dưới dạng atom, chuỗi kí tự version, và các lựa chọn tuỳ ý.
 
-Our project doesn't have any dependencies but will shortly, so we'll go ahead and cover defining dependencies and fetching them.
-
-To add a new dependency we need to first add it to our `mix.exs` in the `deps` section.  Our dependency list is comprised of tuples with two required values and one optional: The package name as an atom, the version string, and optional options.
-
-For this example let's look at a project with dependencies, like [phoenix_slim](https://github.com/doomspork/phoenix_slim):
+Trong ví dụ này hãy xem một dự án với các phụ thuộc như là [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 
 ```elixir
 def deps do
@@ -109,26 +99,23 @@ def deps do
    {:slime, "~> 0.14"}]
 end
 ```
+Chúng ta có thể nhận thấy trong ví dụ về phụ thuộc ở trên, phụ thuộc `cowboy` chỉ cần thiết trong quá trình phát triển cũng như test.
 
-As you probably discerned from the dependencies above, the `cowboy` dependency is only necessary during development and test.
-
-Once we've defined our dependencies there is one final step, fetching them.  This is analogous to `bundle install`:
+Sau khi đã định nghĩa danh sách phụ thuộc xong, việc cuối cùng chính là tải chúng về. Quá trình này cũng tương tự như `bundle install` trong ruby:
 
 ```bash
 $ mix deps.get
 ```
+Vậy đó! Chúng ta đã định nghĩa và tải về phụ thuộc của dự án. Như vậy từ nay về sau chúng ta có thể thêm các phụ thuộc vào bất kì khi nào cần thiết.
 
-That's it!  We've defined and fetched our project dependencies.  Now we're prepared to add dependencies when the time comes.
+## Môi trường 
+Mix, cũng như bundler hỗ trợ nhiều môi trường khác nhau. Ở trạng thái ban đầu thì mix hỗ trợ ba loại môi trường:
 
-## Environments
++ `:dev` — Môi trường phát triển mặc định
++ `:test` — Được sử dụng bởi `mix test`. Sẽ được nói rõ hơn trong các bài học tiếp.
++ `:prod` — Được sử dụng khi ứng dụng được tải lên môi trường chạy sản phẩm (production).
 
-Mix, much like Bundler, supports differing environments.  Out of the box mix works with three environments:
-
-+ `:dev` — The default environment.
-+ `:test` — Used by `mix test`. Covered further in our next lesson.
-+ `:prod` — Used when we ship our application to production.
-
-The current environment can be accessed using `Mix.env`.  As expected, the environment can be changed via the `MIX_ENV` environment variable:
+Môi trường hiện tại có thể được truy cập sử dụng `Mix.env`. Và không nằm ngoài dự đoán, môi trường cũng có thể được thay đổi thông qua biến môi trường `MIX_ENV`.
 
 ```bash
 $ MIX_ENV=prod mix compile

@@ -6,13 +6,13 @@ order: 1
 lang: vi
 ---
 
-If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra, it provides a specification for web application components and adapters for web servers. While not part of Elixir core, Plug is an official Elixir project.
+Nếu bạn biết Ruby bạn có thể nghĩ Plug như là Rack với một chút Sinatra. Nó cung cấp một đặc tả cho các thành phần ứng dụng web và kết nối nó với web servers. Tuy không nằm trong phần cốt lõi nhưng Plug là một dự án chính thức của Elixir.
 
 {% include toc.html %}
 
-## Installation
+## Cài đặt
 
-Installation is a breeze with mix.  To install Plug we need to make two small changes to our `mix.exs`.  The first thing to do is add both Plug and a web server to our file as dependencies, we'll be using Cowboy:
+Cài đặt Plug với Mix khá đơn giản. Để cài đặt ta chỉ cần thay đổi hai chỗ trong file `mix.exs`. Đầu tiên là thêm Plug và một web server nào đó (ở đây ta dùng Cowboy) làm thư viện.
 
 ```elixir
 defp deps do
@@ -21,7 +21,7 @@ defp deps do
 end
 ```
 
-The last thing we need to do is add both our web server and Plug to our OTP application:
+Cuối cùng là thêm cả web server lẫn Plug vào ứng dụng OTP.
 
 ```elixir
 def application do
@@ -29,13 +29,13 @@ def application do
 end
 ```
 
-## The specification
+## Đặc tả
 
-In order to begin creating Plugs we need to know, and adhere to, the Plug spec.  Thankfully for us, there are only two functions necessary: `init/1` and `call/2`.
+Trước khi tạo ra các plug thì ta cần biết về đặc tả của Plug. Nó chỉ gồm hai hàm chủ yếu: `init/1` và `call/2`.
 
-The `init/1` function is used to initialize our Plug's options, passed as the second argument to our `call/2` function.  In addition to our initialized options the `call/2` function receives a `%Plug.Conn` as it's first argument and is expected to return a connection.
+Hàm `init/1` được dùng để khởi tạo các tùy chọn cho Plug, thứ mà sau đó sẽ được truyền vào hàm `call/2` như là tham số thứ hai. Ngoài tùy chỉnh khởi tạo đó, hàm `call/2` còn nhận tham số đầu tiên có kiểu là `%Plug.Conn` và hàm này sẽ trả phải về một kết nối.
 
-Here's a simple Plug that returns "Hello World!":
+Dưới đây là một Plug đơn giản trả về dòng chữ "Hello World!":
 
 ```elixir
 defmodule HelloWorldPlug do
@@ -51,13 +51,13 @@ defmodule HelloWorldPlug do
 end
 ```
 
-## Creating a Plug
+## Tạo một Plug
 
-For this example we'll create a Plug to verify whether or not the request has some set of required parameters.  By implementing our validation in a Plug we can be assured that only valid requests will make it through to our application.  We will expect our Plug to be initialized with two options: `:paths` and `:fields`.  These will represent the paths we apply our logic to and which fields to require.
+Với ví dụ này ta sẽ viết một Plug để kiểm tra request có các tham số bắt buộc chưa. Cài đặt việc kiểm tra trong một Plug ta có thể biết chắc rằng chỉ có những request hợp lệ mới được đi vào ứng dụng. Plug của chúng ta sẽ được khởi tạo với hai tùy chọn: `:paths` và `:fields`. Chúng đại diện cho các đường dẫn mà ta sẽ áp dụng các logic vào và các trường cần thiết.
 
-_Note_: Plugs are applied to all requests which is why we will handle filtering requests and applying our logic to only a subset of them.  To ignore a request we simply pass the connection through.
+_Chú ý_: Plug được chạy cho tất cả request, đó là lý do vì sao ta phải lọc request và áp dụng logic vào phần đã được lọc. Để bỏ qua một request nào đó ta chỉ cần đơn giản trả về kết nối.
 
-We'll start by looking at our finished Plug and then discuss how it works, we'll create it at `lib/plug/verify_request.ex`:
+Ta sẽ bắt đầu xem một Plug hoàn chỉnh và sau đó tìm hiểu cách nó hoạt động. Ta sẽ viết nó ở file `lib/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
@@ -89,17 +89,17 @@ defmodule Example.Plug.VerifyRequest do
 end
 ```
 
-The first thing to note is we have defined a new exception `IncompleteRequestError` and that one of it's options is `:plug_status`.  When available this option is used by Plug to set the HTTP status code in the event of an exception.
+Đầu tiên ta định nghĩa ra một kiểu lỗi mới tên `IncompleteRequestError` và một trong những tùy chọn của nó là `:plug_status`. Tùy chọn này sẽ được Plug dùng để cài đặt _HTTP status code_ trong trường hợp có lỗi.
 
-The second portion of our Plug is the `call/2` method, this is where we handle whether or not to apply our verification logic.  Only when the request's path is contained in our `:paths` option will we call `verify_request!/2`.
+Phần thứ hai của Plug là hàm `call/2`. Đây là nơi mà ta quyết định xem có áp dụng logic của chúng ta vào không. Chỉ khi nào request có chứa đường dẫn trong tùy chọn `:paths` ta mới gọi `verify_request!/2`.
 
-The last portion of our plug is the private function `verify_request!/2` which verifies whether the required `:fields` are all present.  In the event that some are missing, we raise `IncompleteRequestError`.
+Phần cuối là hàm private `verify_request!/2`, nó sẽ kiểm tra liệu các trường bắt buộc đã có đầy đủ trong `:fields` chưa. Trong trường hợp bị thiếu, ta sẽ văng lỗi `IncompleteRequestError`.
 
-## Using Plug.Router
+## Dùng Plug.Router
 
-Now that we have our `VerifyRequest` plug, we can move on to our router.  As we are about to see we don't need a framework like Sinatra in Elixir, we get that for free with Plug.
+Giờ ta đã có plug tên là `VerifyRequest`, ta có thể tiếp tục đi vào router (tạm dịch: bộ định tuyến). Với Plug thì trong Elixir ta không cần một framework như Sinatra nữa.
 
-To start let's create a file at `lib/plug/router.ex` and copy the following into it:
+Để bắt đầu ta tạo một file `lib/plug/router.ex` và copy đoạn code ở dưới vào:
 
 ```elixir
 defmodule Example.Plug.Router do
@@ -113,9 +113,9 @@ defmodule Example.Plug.Router do
 end
 ```
 
-This is a bare minimum Router but the code should be pretty self explanatory.  We've included some macros through `use Plug.Router` and then set up two of the built-in Plugs: `:match` and `:dispatch`.   There are two defined routes, one for handling GET returns to the root and the second for matching all other requests so we can return a 404 message.
+Đây là một Router tối thiểu nhưng code đọc cũng khá dễ hiểu. Ta đã kèm vào một số macros thông qua `use Plug.Router` và sau đó dùng hai Plug có sẵn là `:match` và `:dispatch`. Có hai đường dẫn được định nghĩa ở đây, một để xử lý các request GET ở root và một để match các request còn lại và trả về lỗi 404.
 
-Let's add our Plug to the router:
+Và ta thêm Plug của chúng ta vào router:
 
 ```elixir
 defmodule Example.Plug.Router do
@@ -135,15 +135,15 @@ defmodule Example.Plug.Router do
 end
 ```
 
-That's it!  We've setup our Plug to verify that all requests to `/upload` include both `"content"` and `"mimetype"`, only then will route code be executed.
+Xong! Ta đã cài đặt Plug của chúng ta để kiểm tra tất cả những request vào `/upload` để đảm bảo chúng có cả `"content"` lần `"mimetype"`. Kế đến ta sẽ chạy đoạn code router.
 
-For now our `/upload` endpoint isn't very useful but we've seen how to create and integrate our Plug.
+Lúc này thì đường dẫn `/upload` không thực sự hữu dụng lắm nhưng ta đã biết cách tạo và tích hợp Plug vào như thế nào.
 
-## Running our web app
+## Chạy ứng dụng web
 
-Before we can run our application we need to setup and configure our web server, in this instance Cowboy.  For now we'll just make the code changes necessary to run everything, we'll dig into specifics in later lessons.
+Trước khi ta có thể chạy ứng dụng ta cần cài đặt và cấu hình web server, ở đây là Cowboy. Hiện tại thì ta chỉ đủ viết code để chạy mọi thứ, ta sẽ tìm hiểu sâu hơn trong những bài học tiếp theo.
 
-Let's start by updating the `application` portion of our `mix.exs` to tell Elixir about our application and set an application env variable.  With those changes in place our code should look something like this:
+Ta hãy bắt đầu bằng cách chỉnh sửa phần `application` trong `mix.exs` để thông báo cho Elixir về ứng dụng của chúng ta và tạo một biến môi trường. Code của chúng trông như sau:
 
 ```elixir
 def application do
@@ -153,7 +153,7 @@ def application do
 end
 ```
 
-Next we need to update `lib/example.ex` to start and supervisor Cowboy:
+Tiếp theo ta chỉnh `lib/example.ex` để bắt đầu và giám sát Cowboy:
 
 ```elixir
 defmodule Example do
@@ -171,17 +171,25 @@ defmodule Example do
 end
 ```
 
+> (Không bắt buộc) ta có thể thêm `:cowboy_port` vào `config/config.exs`
+
+```elixir
+use Mix.Config
+
+config :example, cowboy_port: 8080
+```
+
 Now to run our application we can use:
 
 ```shell
 $ mix run --no-halt
 ```
 
-## Testing a Plug
+## Kiểm thử Plug
 
-Testing Plugs is pretty straight forward thanks to `Plug.Test`, it includes a number of convenience functions to make testing easy.
+Kiểm thử Plug khá đơn giản với `Plug.Test`. Nó chứa một số hàm tiện ích giúp việc kiểm thử trở nên dễ dàng.
 
-See if you can follow along with router test:
+Xem qua đoạn code kiểm thử router ở dưới đây nhé:
 
 ```elixir
 defmodule RouterTest do
@@ -222,6 +230,6 @@ defmodule RouterTest do
 end
 ```
 
-## Available Plugs
+## Các Plug sẵn dùng
 
-There are a number of Plugs available out-of-the-box, the complete list can be found in the Plug docs [here](https://github.com/elixir-lang/plug#available-plugs).
+Có một số Plug đã được viết sẵn, danh sách hoàn chỉnh bạn có thể tìm thấy trong tài liệu của Plug [ở đây](https://github.com/elixir-lang/plug#available-plugs).

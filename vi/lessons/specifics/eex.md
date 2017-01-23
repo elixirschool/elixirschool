@@ -6,28 +6,28 @@ order: 3
 lang: vi
 ---
 
-Much like Ruby has ERB and Java JSPs, Elixir has EEx or Embedded Elixir.  With EEx we can embed and evaluate Elixir inside strings.
+Như ERB của Ruby hay JSPs của Java, Elixir cũng có EEx hãy Embedded Elixir (tạm dịch: Elixir nhúng). Với EEx ta có thể nhúng hay thực thi lệnh Elixir trong string.
 
 {% include toc.html %}
 
 ## API
 
-The EEx API supports working with strings and files directly.  The API is divided into three main components: simple evaluation, function definitions, and compilation to AST.
+API của EEx hỗ trợ làm việc trực tiếp với string hay tập tin. API này được chia ra thành ba phần chính: Tính toán đơn giản, định nghĩa hàm và biên dịch thành cây AST.
 
-### Evaluation
+### Tính toán
 
-Using `eval_string/3` and `eval_file/2` we can perform a simple evaluation against a string or file contents.  This is the simplest API but the slowest since code is evaluated and not compiled.
+Dùng hàm `eval_string/3` hay `eval_file/2` ta có thể thực hiện một lệnh tính toán trong một string hay nội dụng của file. Đây là API đơn giản nhất nhưng chậm nhất bởi code được tính toán mà không thông qua biên dịch.
 
 ```elixir
 iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 "Hi, Sean"
 ```
 
-### Definitions
+### Định nghĩa
 
-The fastest, and preferred, method of using EEx is to embed our template into a module so it can be compiled.  For this we need our template at compile time and the `function_from_string/5` and `function_from_file/5` macros.
+Nhanh nhất và được khuyến khích sử dụng, cách dùng EEx này là nhúng một template (tạm dịch: bản mẫu) vào trong một module nên nó được biên dịch. Với EEx ta sẽ cần có template tại thời điểm biên dịch, cùng với các hàm `function_from_string/5` và `function_from_file/5`.
 
-Let's move our greeting to another file and generate a function for our template:
+Ta hãy đưa hàm xuất lời chào sang một tập tin khác và sinh một hàm cho template của chúng ta:
 
 ```elixir
 # greeting.eex
@@ -42,22 +42,22 @@ iex> Example.greeting("Sean")
 "Hi, Sean"
 ```
 
-### Compilation
+### Biên dịch
 
-Lastly, EEx provides us a way to directly generate Elixir AST from a string or file using `compile_string/2` or `compile_file/2`.  This API is primarily used by the aforementioned APIs but is available should you wish to implement your own handling of embedded Elixir.
+Cuối cùng, EEx cho chúng ta một cách để sinh cây AST của Elixir từ một string hoặc file dùng `compile_string/2` hay `compile_file/2`. API này chủ yếu được dùng bởi các API đã đề cập trước đó nhưng chỉ khi bạn muốn cài đặt cách nhúng Elixir của riêng bạn.
 
 ## Tags
 
-By default there are four supported tags in EEx:
+Mặc định có bốn tag được hỗ trợ trong EEx:
 
 ```elixir
-<% Elixir expression - inline with output %>
-<%= Elixir expression - replace with result %>
-<%% EEx quotation - returns the contents inside %>
-<%# Comments - they are discarded from source %>
+<% Biểu thức Elixir - nhưng sẽ không xuất kết quả gì %>
+<%= Biểu thức Elixir - sẽ xuất kết quả %>
+<%% Trích dẫn code Elixir - xuất nội dung bên trong tag %>
+<%# Comment - sẽ bị bỏ qua trong code %>
 ```
 
-All expressions that wish to output __must__ use the equals sign (`=`).  It's important to note that while other templating languages treat clauses like `if` in a special way, EEx does not.  Without `=` nothing will be outputted:
+Mọi biểu thực mà bạn muốn xuất quả quả __đều phải__ dùng kí hiệu bằng (`=`). Chú ý rằng các ngôn ngữ template khác có thể có một cách xử lý riêng với `if` nhưng EEx thì không. Không có `=` sẽ **không có gì** được xuất ra:
 
 ```elixir
 <%= if true do %>
@@ -67,16 +67,15 @@ All expressions that wish to output __must__ use the equals sign (`=`).  It's im
 <% end %>
 ```
 
-## Engine
+## Engine (Bộ máy)
 
-By default Elixir used the `EEx.SmartEngine` which includes support for assignments (like `@name`):
+Mặc định Elixir sử dụng `EEx.SmartEngine`, cùng với việc hỗ trợ phép gán (như `@name`):
 
 ```elixir
 iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 "Hi, Sean"
 ```
 
-The `EEx.SmartEngine` assignments are useful because assignments can be changed without requiring template compilation:
+Phép gán của bộ `EEx.SmartEngine` rất có ích bởi vì các giá trị gán có thể được thay đổi mà không cần biên dịch lại.
 
-Interested in writing your own engine?  Check out the [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) behaviour to see what's required.
-
+Bạn muốn tự viết một engine của riêng bạn? Xem qua behaviour [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) để xem các thứ cần thiết.
