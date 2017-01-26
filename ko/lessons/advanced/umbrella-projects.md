@@ -52,7 +52,7 @@ for each application in the apps/ directory.
 
 ## 자식 프로젝트
 
-`machine_learning_toolkit` 프로젝트 안에 있는 `app` 디렉터리로 이동해서, 아래처럼 Mix를 사용해 평범한 애플리케이션을 3개 만들어 봅시다.
+`machine_learning_toolkit` 프로젝트 안에 있는 `apps` 디렉터리로 이동해서, 아래처럼 Mix를 사용해 평범한 애플리케이션을 3개 만들어 봅시다.
 
 ```shell
 $ mix new utilities
