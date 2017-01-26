@@ -96,7 +96,7 @@ Iniciando `iex` desta forma , carrega sua aplicação e dependências no atual a
 
 Nosso projeto não tem nenhuma dependência, mas em breve irá ter, por isso iremos seguir em frente e cobrir a definição e busca de dependências.
 
-Para adicionar uma nova dependência, primeiro precisamos adicioná-la ao nosso `mix.ex` na seção `deps`. Nossa lista de dependência é composta por tuplas com 2 valores obrigatórios e um opcional: O nome do pacote como um *atom*, a versão como *string* e opções opcionais.
+Para adicionar uma nova dependência, primeiro precisamos adicioná-la ao nosso `mix.exs` na seção `deps`. Nossa lista de dependência é composta por tuplas com 2 valores obrigatórios e um opcional: O nome do pacote como um *atom*, a versão como *string* e opções opcionais.
 
 Para este exemplo vamos ver um projeto com dependências, como  [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 
