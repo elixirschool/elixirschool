@@ -8,7 +8,7 @@ lang: en
 
 We've looked at the Elixir abstractions for concurrency but sometimes we need greater control and for that we turn to the OTP behaviors that Elixir is built on.
 
-In this lesson we'll focus on two important pieces: GenServers and GenEvents.
+In this lesson we'll focus on GenServers.
 
 {% include toc.html %}
 
@@ -17,6 +17,7 @@ In this lesson we'll focus on two important pieces: GenServers and GenEvents.
 An OTP server is a module with the GenServer behavior that implements a set of callbacks.  At its most basic level a GenServer is a loop that handles one request per iteration passing along an updated state.
 
 To demonstrate the GenServer API we'll implement a basic queue to store and retrieve values.
+From there, to show off a creative use of it, we will build a simple cron server to execute tasks.
 
 To begin our GenServer we need to start it and handle the initialization. In most cases we'll want to link processes so we use `GenServer.start_link/3`.  We pass in the GenServer module we're starting, initial arguments, and a set of GenServer options.  The arguments will be passed to `GenServer.init/1` which sets the initial state through its return value.  In our example the arguments will be our initial state:
 
@@ -66,8 +67,6 @@ defmodule SimpleQueue do
   def handle_call(:dequeue, _from, []), do: {:reply, nil, []}
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
-
-  ### Client API / Helper methods
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -123,8 +122,7 @@ defmodule SimpleQueue do
   """
   def handle_cast({:enqueue, value}, state) do
     {:noreply, state ++ [value]}
-  end
-
+  end 
   ### Client API / Helper methods
 
   def start_link(state \\ []) do
@@ -149,79 +147,120 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
+### A Simple Cron Server
+Lets say we have a project that needs to regularly run some task then say the work is completed.
+We will give a simple example of how to do this without having to worry about dependencies or any large amounts of complexity.
+
+To start, lets make a simple mix project with a supervision tree:
+
+```
+$ mix new silly_worker --sup
+$ cd silly_worker
+$ mix test
+```
+
+To start, let's create a simple `CronJob` GenServer in `lib/silly_worker/cron_job.ex`:
+
+```elixir
+defmodule SillyWorker.CronJob do
+  use GenServer
+
+  def start_link(module, function, args, interval) do
+    GenServer.start_link(__MODULE__, {module, function, args, interval})
+  end
+
+  def init({module, function, args, interval}) do
+    schedule_work(interval)
+    {:ok, {module, function, args, interval}}
+  end
+
+  def handle_info(:perform_job, {module, function, args, interval}) do
+    apply(module, function, args)
+    schedule_work(interval)
+    {:noreply, {module, function, args, interval}}
+  end
+
+  defp schedule_work(interval) do
+    Process.send_after(self(), :perform_job, interval)
+  end
+end
+```
+
+There are a few pieces here.
+Let's go over them individually.
+
+#### Startup
+We want to take in a given module, function, argument list, and interval to run the task in.
+From here, we start a GenServer with those are the beginning state:
+
+```elixir
+  def start_link(module, function, args, interval) do
+    GenServer.start_link(__MODULE__, {module, function, args, interval})
+  end
+```
+
+#### Scheduling and Performing Job
+Next we set up a way to schedule our work and handle the call with [`handle_info/2`](https://hexdocs.pm/elixir/GenServer.html#c:handle_info/2):
+
+```elixir
+  def handle_info(:perform_job, {module, function, args, interval}) do
+    apply(module, function, args)
+    schedule_work(interval)
+    {:noreply, {module, function, args, interval}}
+  end
+
+  defp schedule_work(interval) do
+    Process.send_after(self(), :perform_job, interval)
+  end
+```
+
+#### Running The Job Indefinitely
+And finally, we set up our `init/1` to just call those with the given interval:
+
+```elixir
+  def init({module, function, args, interval}) do
+    schedule_work(interval)
+    {:ok, {module, function, args, interval}}
+  end
+```
+
+Now, lets create a worker to pass into this worker for once we get it into our tree in `lib/silly_worker.ex`.
+
+#### Making A Worker Task
+This is very simple, we aren't going to be doing any real work but we can see the functionality.
+
+```elixir
+defmodule SillyWorker do
+  def do_work(job_name) do
+    # do some work
+    # ...
+    require Logger
+    Logger.log(:info, "#{job_name} Complete!")
+    :ok
+  end
+end
+```
+
+#### Setting Up Our Worker
+Finally we just set up our worker to run in the given interval we choose in our `application.ex` file:
+
+```elixir
+    children = [
+      worker(SillyWorker.CronJob, [SillyWorker, :do_work, ["Job Number 1"], 1000]),
+    ]
+```
+
+Now if we just run IEx the worker will run that function on our module every second in its own process under the supervision tree:
+
+```
+$ iex -S mix
+iex(1)>
+20:39:27.732 [info]  Job Done
+
+20:39:28.232 [info]  Job Done
+```
+
+Thats it!
+Check out a working example of the CronJob app [here](https://github.com/ybur-yug/genserver_periodic_worker_example).
+
 For more information check out the official [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content) documentation.
-
-## GenEvent
-
-We learned that GenServers are processes that can maintain state and handle synchronous and asynchronous requests.  So what is a GenEvent?  GenEvents are generic event managers that receive incoming events and notify subscribed consumers.  They provide a mechanism for dynamically adding and removing handlers to flows of events.
-
-### Handling Events
-
-The most important callback in GenEvents as you can imagine is `handle_event/2`.  This receives the event and the handler's current state and is expected to return a tuple: `{:ok, state}`.
-
-To demonstrate the GenEvent functionality let's start by creating two handlers, one to keep a log of messages and the other to persist them (theoretically):
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts "Logging new message: #{msg}"
-    {:ok, [msg|messages]}
-  end
-end
-
-defmodule PersistenceHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, state) do
-    IO.puts "Persisting log message: #{msg}"
-
-    # Save message
-
-    {:ok, state}
-  end
-end
-```
-
-### Calling Handlers
-
-In addition to `handle_event/2` GenEvents also support `handle_call/2` among other callbacks.  With `handle_call/2` we can handle specific synchronous messages with our handler.
-
-Let's update our `LoggerHandler` to include a method for retrieving the current message log:
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts "Logging new message: #{msg}"
-    {:ok, [msg|messages]}
-  end
-
-  def handle_call(:messages, messages) do
-    {:ok, Enum.reverse(messages), messages}
-  end
-end
-```
-
-### Using GenEvents
-
-With our handlers ready to go we need to familiarize ourselves with a few of GenEvent's functions.  The three most important functions are: `add_handler/3`, `notify/2`, and `call/4`.  These allow us to add handlers, broadcast new messages, and call specific handler functions respectively.
-
-If we put it all together we can see our handlers in action:
-
-```elixir
-iex> {:ok, pid} = GenEvent.start_link([])
-iex> GenEvent.add_handler(pid, LoggerHandler, [])
-iex> GenEvent.add_handler(pid, PersistenceHandler, [])
-
-iex> GenEvent.notify(pid, {:msg, "Hello World"})
-Logging new message: Hello World
-Persisting log message: Hello World
-
-iex> GenEvent.call(pid, LoggerHandler, :messages)
-["Hello World"]
-```
-
-See the official [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) documentation for a complete list of callbacks and GenEvent functionality.
