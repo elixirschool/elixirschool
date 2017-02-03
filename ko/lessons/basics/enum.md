@@ -80,6 +80,15 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 [["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
+### map_every
+
+가끔 컬랙션을 뽑아내는 것으로 정확히 원하는 것을 얻기 힘들 때가 있습니다. `map_every/3`은 그런 경우에 매우 유용할 수 있습니다. 컬랙션이 정렬 되어있다면 원하는 아이템만 고를 수 있습니다.
+
+```elixir
+iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
+[2, 2, 6, 4]
+```
+
 ### each
 
 새로운 값을 만들어내지 않고 컬렉션에 대해 반복하는 건 중요할 수도 있습니다. 이런 경우에는 `each`를 사용합니다.
@@ -104,20 +113,34 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-컬렉션 내의 `최소(min)` 값을 찾습니다.
+`min/1`은 컬렉션 내의 `최소(min)` 값을 찾습니다.
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
+`min/2`는 같은 일을 합니다만, 넘겨진 익명 함수로 `Enum`의 기본 값을 지정할 수 있습니다.
+
+```elixir
+iex> Enum.min([], fn -> :foo end)
+:foo
+```
+
 ### max
 
-컬렉션 내의 `최대(max)` 값을 반환합니다.
+`max/1`은 컬렉션 내의 `최대(max)` 값을 반환합니다.
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
+```
+
+`max/2`는 같은 일을 하고 `min/2`처럼 동작해, 넘겨진 익명 함수로 `Enum`의 기본 값을 지정할 수 있습니다.
+
+```elixir
+Enum.max([], fn -> :bar end)
+:bar
 ```
 
 ### reduce
@@ -157,11 +180,13 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq
+### uniq_by
 
-`uniq`를 이용하여 컬렉션 내의 중복요소를 제거할 수 있습니다.
+`uniq_by/2`를 이용하여 컬렉션 내의 중복요소를 제거할 수 있습니다.
 
 ```elixir
-iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
-[1, 2, 3, 4]
+iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+[1, 2, 3]
 ```
+
+이 함수는 전에는 `uniq/1`이었지만, Elixir 1.4에서 폐기예정이 되었습니다. 하지만 아직 (경고는 나오지만) 사용할 수 있습니다.
