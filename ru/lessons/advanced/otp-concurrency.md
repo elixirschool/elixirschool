@@ -8,7 +8,7 @@ lang: ru
 
 Мы уже рассматривали абстракции языка Elixir для параллельного выполнения, но иногда нужна более широкая функциональность и тогда мы обращаемся к поведениям OTP в языке.
 
-В этом уроке мы сосредоточимся на двух важных частях: GenServer и GenEvent.
+В этом уроке мы сосредоточимся на важнейшей части &mdash; GenServer.
 
 {% include toc.html %}
 
@@ -151,78 +151,3 @@ iex> SimpleQueue.queue
 ```
 
 Для получения дополнительной информации можно обратиться к официальной документации [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content).
-
-## GenEvent
-
-Мы уже изучили, что GenServer - это процессы, которые могут поддерживать состояние и обрабатывать синхронные и асинхронные запросы. Что же такое GenEvent? GenEvent &mdash; это обобщённые менеджеры событий, которые получают входящие сообщения и сообщают о них подписчикам. Они предоставляют механизм динамического добавления и удаления обработчиков к потоку событий.
-
-### Обработка событий
-
-Самым важным обработчиком обратного вызова в GenEvent является `handle_event/2`. Он получает событие и текущее состояние обработчика. Предполагается, что он вернет кортеж `{:ok, state}`.
-
-Для демонстрации функциональности GenEvent давайте начнем с создания двух обработчиков: одного для хранения истории сообщений и второго для их сохранения (теоретически):
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts "Вывожу новое сообщение: #{msg}"
-    {:ok, [msg|messages]}
-  end
-end
-
-defmodule PersistenceHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, state) do
-    IO.puts "Сохраняю сообщение: #{msg}"
-
-    # Сохранение сообщения
-
-    {:ok, state}
-  end
-end
-```
-
-### Вызов обработчиков
-
-Вдобавок к `handle_event/2`, GenEvent кроме всего прочего поддерживает и `handle_call/2`. С помощью `handle_call/2` можно обработать особые синхронные сообщения.
-
-Давайте добавим к `LoggerHandler` метод для получения текущей истории сообщений:
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts "Вывожу новое сообщение: #{msg}"
-    {:ok, [msg|messages]}
-  end
-
-  def handle_call(:messages, messages) do
-    {:ok, Enum.reverse(messages), messages}
-  end
-end
-```
-
-### Использование GenEvent
-
-С уже готовыми обработчиками нужно разобраться как использовать остальные функции GenEvent. Тремя основными функциями являются `add_handler/3`, `notify/2`, и `call/4`. Они соответственно позволяют: добавлять обработчики, рассылать новые сообщения и вызывать особые функции-обработчики.
-
-Если использовать их вместе, то можно увидеть наши обработчики в действии:
-
-```elixir
-iex> {:ok, pid} = GenEvent.start_link([])
-iex> GenEvent.add_handler(pid, LoggerHandler, [])
-iex> GenEvent.add_handler(pid, PersistenceHandler, [])
-
-iex> GenEvent.notify(pid, {:msg, "Hello World"})
-Вывожу новое сообщение: Hello World
-Сохраняю сообщение: Hello World
-
-iex> GenEvent.call(pid, LoggerHandler, :messages)
-["Hello World"]
-```
-
-В официальной документации по [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) есть полный список функций обратного вызова и функциональности GenEvent.
