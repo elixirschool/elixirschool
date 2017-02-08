@@ -186,7 +186,7 @@ Reference modules
 
 Now we have a bunch of information about Map including where its source is stored and the modules it references.  This is quite useful when exploring custom, foreign data types, and new functions.
 
-The individual headings can be dense, but at a high level we can gather some relevent information:
+The individual headings can be dense, but at a high level we can gather some relevant information:
 
 - Its an atom data type
 - Where the source code is
