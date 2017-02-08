@@ -8,7 +8,7 @@ lang: ko
 
 지난 강의에서는 Elixir의 동시성에 대해 살펴보았습니다만, 더 정밀한 조작이 필요한 경우가 있습니다. 그럴 때에는 Elixir의 바탕이 된 OTP 비헤이비어를 사용할 수 있습니다.
 
-이번 강의에서는 두 가지 중요한 부분인 GenServers와 GenEvents에 대해서 다루겠습니다.
+이번 강의에서는 가장 큰 부분인 GenServer에 대해서 다루겠습니다.
 
 {% include toc.html %}
 
@@ -150,78 +150,3 @@ iex> SimpleQueue.queue
 ```
 
 자세한 내용은 [GenServer](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#content) 공식 문서에서 확인해보세요.
-
-## GenEvent
-
-GenServer가 상태를 유지하고 요청들을 동기/비동기적으로 처리하는 프로세스라는 것을 앞서 배웠습니다. 그렇다면, GenEvent는 뭘까요? GenEvent는 들어오는 이벤트를 수신하고 데이터를 전달받는 소비자에 알림을 주는 범용 이벤트 매니저입니다. 핸들러를 이용하여 이벤트의 흐름을 동적으로 제어할 수 있습니다.
-
-### 이벤트 처리하기
-
-여러분도 짐작 하시듯이, GenEvents에서 가장 중요한 콜백은 `handle_event/2`입니다. 이벤트와 핸들러의 현재 상태를 수신하고, `{:ok, state}`와 같은 튜플을 반환합니다.
-
-GenEvent의 기능을 보기 위해 두 개의 핸들러를 만들어 봅시다. 하나는 메시지를 계속해서 로깅하도록 하고, 다른 하나는 로깅을 (이론적으로)유지시키는 겁니다.
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts "Logging new message: #{msg}"
-    {:ok, [msg|messages]}
-  end
-end
-
-defmodule PersistenceHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, state) do
-    IO.puts "Persisting log message: #{msg}"
-
-    # 메시지를 저장합니다
-
-    {:ok, state}
-  end
-end
-```
-
-### 핸들러 호출하기
-
-GenEvents는 `handle_event/2` 뿐만 아니라 `handle_call/2`도 지원합니다. `handle_call/2`가 있다면, 동기적으로 오가는 특정 메시지들을 핸들러로 다룰 수 있습니다.
-
-현재 메시지 로그를 가져오는 메소드를 포함하도록 `LoggerHandler`를 수정해봅시다.
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts "Logging new message: #{msg}"
-    {:ok, [msg|messages]}
-  end
-
-  def handle_call(:messages, messages) do
-    {:ok, Enum.reverse(messages), messages}
-  end
-end
-```
-
-### GenEvent 사용하기
-
-핸들러가 준비되어 있다면, 몇 가지 GenEvent 함수에 익숙해져야 할 필요가 있습니다. 가장 중요한 함수는 `add_handler/3`, `notify/2`, `call/4`입니다. 각각 핸들러를 추가할 수 있고, 새로운 메시지를 브로드캐스트할 수 있고, 특정 핸들러의 함수를 호출할 수 있습니다.
-
-모두 적용해보면, 다음과 같이 핸들러들이 작동되는 것을 볼 수 있습니다.
-
-```elixir
-iex> {:ok, pid} = GenEvent.start_link([])
-iex> GenEvent.add_handler(pid, LoggerHandler, [])
-iex> GenEvent.add_handler(pid, PersistenceHandler, [])
-
-iex> GenEvent.notify(pid, {:msg, "Hello World"})
-Logging new message: Hello World
-Persisting log message: Hello World
-
-iex> GenEvent.call(pid, LoggerHandler, :messages)
-["Hello World"]
-```
-
-[GenEvent](http://elixir-lang.org/docs/v1.1/elixir/GenEvent.html#content) 공식 문서에서 콜백의 전체 목록과 GenEvent의 기능들을 확인해보세요.
