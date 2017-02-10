@@ -110,6 +110,6 @@ iex> to_atom(%{foo: "bar"})
 :foo
 ```
 
-It is worth noting that although underneath structs are Maps, but they do not share protocol implementations with Maps. They are not enumerable, they cannot be accessed.
+It is worth it to note, that although underneath structs are Maps, they do not share protocol implementations with Maps. They are not enumerable, they cannot be accessed.
 
 As we can see, protocols are a powerful way to achieve polymorphism.
