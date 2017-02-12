@@ -1,4 +1,5 @@
 ---
+version: 0.9.0
 layout: page
 title: 仕様と型
 category: advanced

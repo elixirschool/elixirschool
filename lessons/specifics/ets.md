@@ -1,4 +1,5 @@
 ---
+version: 1.0.0
 layout: page
 title: Erlang Term Storage (ETS)
 category: specifics

@@ -1,4 +1,5 @@
 ---
+version: 0.9.0
 layout: page
 title: OTP 슈퍼바이저
 category: advanced

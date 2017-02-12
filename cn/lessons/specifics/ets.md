@@ -1,4 +1,5 @@
 ---
+version: 0.9.0
 layout: page
 title: Erlang 项式存储 (ETS)
 category: specifics
