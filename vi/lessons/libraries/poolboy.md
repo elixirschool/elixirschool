@@ -30,7 +30,7 @@ $ mix new poolboy_app --sup
 $ mix deps.get
 ```
 
-Thêm Poolboy vào thư viện trong file `mix.exs`.  
+Thêm Poolboy vào thư viện trong file `mix.exs`.
 
 ```elixir
 defp deps do
