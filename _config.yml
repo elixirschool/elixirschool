@@ -120,6 +120,7 @@ sections:
       ko: 라이브러리
       pl: Biblioteki
       bn: লাইব্রেরিস
+      cn: 程序库
 gems:
   - kramdown
   - jekyll-assets

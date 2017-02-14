@@ -45,7 +45,7 @@ Ao programar em Elixir, geralmente usamos Strings ao invés de listas de caracte
 
 ## Graphemes e Codepoints
 
-Codepoints são apenas caracteres Unicode simples que são representados por um ou mais bytes, dependendo do encoding UTF-8. Caracteres fora do conjunto US ASCII sempre serão codificados como mais de um byte. Por exemplo, caracteres latinos com til ou acentos (`á, ñ, è`) são tipicamente codificados como dois bytes. Caracteres de linguagens asiáticas são geralmente codificados como três ou quatro bytes. Graphemes consistem de múltiplos codepoints que são renderizados como um único caractere.
+Codepoints são apenas caracteres Unicode simples que são representados por um ou mais bytes. Por exemplo, caracteres com o til ou acentos: `á, ñ, è`. Graphemes consistem de múltiplos codepoints que são renderizados como um único caractere.
 
 O módulo String já fornece dois métodos para obtê-los, `graphemes/1` e `codepoints/1`. Vamos ver um exemplo:
 

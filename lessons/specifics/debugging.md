@@ -6,20 +6,20 @@ order: 6
 lang: en
 ---
 
-Bugs are an inherent part of any project, that's why we need debugging. In this lesson we'll learn about debugging Elixir code as well as static analysis tools to help find potential bugs. 
-                                                     
+Bugs are an inherent part of any project, that's why we need debugging. In this lesson we'll learn about debugging Elixir code as well as static analysis tools to help find potential bugs.
+
 {% include toc.html %}
 
 # Dialyxir and Dialyzer
 
 The [Dialyzer](http://erlang.org/doc/man/dialyzer.html), a **DI**screpancy **A**nal**YZ**er for **ER**lang programs is a tool for static code analysis. In other words they _read_ but do not _run_ code and analyse it e.g. looking for some bugs, dead, unnecessary or unreachable code.
-   
-The [Dialyxir](https://github.com/jeremyjh/dialyxir) is a mix task to simplify usage of Dialyzer in Elixir.  
+
+The [Dialyxir](https://github.com/jeremyjh/dialyxir) is a mix task to simplify usage of Dialyzer in Elixir.
 
 Specification helps tools like Dialyzer to understand code better. Unlike documentation that is readable and understandable only for other humans (if only exists and is good written), `@spec` use more formal syntax and could be understand by machine.
 
 Let's add Dialixyr to our project. The simplest way is to add dependency to `mix.exs` file:
- 
+
 ```elixir
 defp deps do
   [{:dialyxir, "~> 0.4", only: [:dev]}]
@@ -48,10 +48,10 @@ dialyzer --build_plt --output_plt /.dialyxir_core_18_1.3.2.plt --apps erts kerne
 done (warnings were emitted)
 ```
 
-### Static analysis of code
- 
+## Static analysis of code
+
 Now we're ready to use Dialyxir:
- 
+
 ```shell
 $ mix dialyzer
 ...
@@ -84,7 +84,7 @@ done (passed successfully)
 
 Using specifications with tools to perform static code analysis helps us make code that is self-tested and contains less bugs.
 
-## Debugging
+# Debugging
 
 Sometimes static analysis of code is not enough. It may be necessary to understand the execution flow in order to find bugs. The simplest way is to put output statements in our code like `IO.puts/2` to track values and code flow, but this technique is primitive and has limitations. Thankfully for us, we can use the Erlang debugger to debug our Elixir code.
 
@@ -97,7 +97,7 @@ defmodule Example do
     x = a * 2
     y = b * 3
     z = c * 5
-    
+
     x + y + z
   end
 
@@ -105,7 +105,7 @@ end
 ```
 
 Then run `iex`:
- 
+
 ```bash
 $ iex -S mix
 ```
@@ -118,7 +118,7 @@ iex > :debugger.start()
 ```
 
 The Erlang `:debugger` module provides access to the debugger. We can use the `start/1` function to configure it:
- 
+
 + An external configuration file can be used by passing the file path.
 + If the argument is `:local` or `:global` then debugger will:
     + `:global` – debugger will interpret code on all known nodes. This is default value.
@@ -141,7 +141,7 @@ After we've attached our module to the debugger it will be available in the menu
 
 ![Debugger Screenshot 2]({{ site.url }}/assets/debugger_2.png)
 
-### Creating breakpoints
+## Creating breakpoints
 
 A breakpoint is a point in the code where execution will be halted. We have two ways of creating breakpoints:
 
@@ -156,7 +156,7 @@ iex > :int.break(Example, 8)
 ```
 
 This sets a breakpoint on line 8 of the `Example` module. Now when we call our function:
- 
+
 ```elixir
 iex > Example.cpu_burns(1, 1, 1)
 ```

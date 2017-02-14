@@ -6,7 +6,7 @@ order: 1
 lang: vi
 ---
 
-[Guardian](https://github.com/ueberauth/guardian) là một thư viện xác thực danh tính người dùng được sử dụng rộng rãi dựa trên chuẩn [JWT](https://jwt.io/) (Javascript Web Token).
+[Guardian](https://github.com/ueberauth/guardian) là một thư viện xác thực danh tính người dùng được sử dụng rộng rãi dựa trên chuẩn [JWT](https://jwt.io/) (JSON Web Token).
 
 {% include toc.html %}
 
