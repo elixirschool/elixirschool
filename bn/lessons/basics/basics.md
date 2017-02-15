@@ -14,8 +14,7 @@ lang: bn
 
 ### ইন্সটলেশন
 
-শুরুতেই আমাদের এলিক্সির ইন্সটল করতে হবে । আলাদা আলাদা অপারেটিং সিস্টেমের জন্য ইন্সটলেশনের বিস্তারিত নির্দেশনা পাওয়া যাবে এলিক্সির এর অফিশিয়াল ওয়েব সাইটের এই সেকশনে - [Installing Elixir](http://elixir-lang.org/install.html) । 
-এই গাইডলাইন অনুসরন করে প্রথমে এলিক্সির ইন্সটল করে নিন । 
+শুরুতেই আমাদের এলিক্সির ইন্সটল করতে হবে । আলাদা আলাদা অপারেটিং সিস্টেমের জন্য ইন্সটলেশনের বিস্তারিত নির্দেশনা পাওয়া যাবে এলিক্সির এর অফিশিয়াল ওয়েব সাইটের এই সেকশনে - [Installing Elixir](http://elixir-lang.org/install.html) । এই গাইডলাইন অনুসরন করে প্রথমে এলিক্সির ইন্সটল করে নিন । 
 
 এলিক্সির ইন্সটল করা হয়ে গেলে নিচের মত করে কমান্ড ব্যবহার করে আপনি এলিক্সির এর ভার্সন নাম্বার দেখতে পাবেন - 
 
@@ -26,16 +25,16 @@ lang: bn
 
 ### ইন্টারএ্যাক্টিভ মোড
 
-Elixir comes with `iex`, an interactive shell, which allows us to evaluate Elixir expressions as we go.
+এলিক্সিরের ইন্টারএ্যাক্টিভ শেল এর নাম `iex` - এই ইন্টারএ্যাক্টিভ প্রম্পট এ আমরা এলিক্সির এক্সপ্রেশন টাইপ করে সাথে সাথে আউটপুট পেতে পারি । 
 
-To get started, let's run `iex`:
+ইন্টারএ্যাক্টিভ শেল চালু করত টাইপ করুন - `iex`:
 
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
 
-Let's go ahead and give it a try now by typing in a few simple expressions:
+আসুন আমরা কিছু এক্সপ্রেশন টাইপ করি এবং সেগুলোর আউটপুট দেখে নেই :
 
 ```elixir
 iex> 2+3
@@ -46,18 +45,18 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-Don't worry if you don't understand every expression yet, but we hope you get the idea.
+উপরের সব গুলো এক্সপ্রেশন এর অর্থ না বুঝলেও চিন্তার কোন কারন নেই, আস্তে আস্তে আমরা এই এক্সপ্রেশন গুলো চিনবো ও ব্যবহার করতে শিখবো । 
 
-## Basic Data Types
+## ব্যাসিক ডাটা টাইপ
 
-### Integers
+### ইন্টিজার
 
 ```elixir
 iex> 255
 255
 ```
 
-Support for binary, octal, and hexadecimal numbers comes built in:
+এছাড়া বাইনারি, অক্টাল এবং হেক্সাডেসিমেল নাম্বার সাপোর্টও বিল্ট ইন: 
 
 ```elixir
 iex> 0b0110
@@ -68,9 +67,9 @@ iex> 0x1F
 31
 ```
 
-### Floats
+### ফ্লোট
 
-In Elixir, float numbers require a decimal after at least one digit; they have 64 bit double precision and support `e` for exponent numbers:
+এলিক্সিরে ফ্লোট টাইপের জন্য দশমিক এর আগে অন্তত একটা ডিজিট থাকতে হবে । এই নাম্বার গুলো ৬৪ বিট ডাবল প্রেসিশন এবং এক্সপোনেন্ট এর জন্য `e` ব্যবহার করে: 
 
 ```elixir
 iex> 3.14
@@ -82,9 +81,9 @@ iex> 1.0e-10
 ```
 
 
-### Booleans
+### বুলিয়ানস
 
-Elixir supports `true` and `false` as booleans; everything is truthy except for `false` and `nil`:
+এলিক্সির এর বুলিয়ান টাইপের ভ্যালু হতে পারে `true` অথবা `false` । `false` এবং `nil` ভ্যালু বাদে সব ভ্যালুই ট্রুথি - অর্থাৎ বুলিয়ান টাইপে `true` হিসেবে বিবেচ্য হবে । 
 
 ```elixir
 iex> true
@@ -93,9 +92,9 @@ iex> false
 false
 ```
 
-### Atoms
+### এ্যাটমস
 
-An atom is a constant whose name is their value. If you're familiar with Ruby these are synonymous with Symbols:
+এ্যাটম মূলত কন্সট্যান্ট - এ্যাটমের নামই তার ভ্যালু । রুবি তে যারা কাজ করেছেন, তাদের কাছে এ্যাটম আর সিম্বলের কনসেপ্ট একই রকম মনে হবে । 
 
 ```elixir
 iex> :foo
@@ -104,7 +103,8 @@ iex> :foo == :bar
 false
 ```
 
-Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
+বুলিয়ান `true` ও `false` আসলে দুইটা এ্যাটম - `:true` এবং `:false` ।
+
 
 ```elixir
 iex> true |> is_atom
@@ -115,23 +115,24 @@ iex> :true === true
 true
 ```
 
-Names of modules in Elixir are also atoms. `MyApp.MyModule` is a valid atom, even if no such module has been declared yet.
+
+এলিক্সিরে মডিউল এর নামগুলোও এ্যাটম টাইপ । যেমন: `MyApp.MyModule` একটা ভ্যালিড এ্যাটম যদিও আমরা এই নামে কোন মডিউল এখনো তৈরি করিনি ।  
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
 true
 ```
 
-Atoms are also used to reference modules from Erlang libraries, including built in ones.
+আর্ল্যাং এর বিল্ট ইন বা থার্ড পার্টি লাইব্রেরী থেকে মডিউল রেফার করার জন্য আমরা সব সময়ই এ্যাটম ব্যবহার করি । 
 
 ```elixir
 iex> :crypto.rand_bytes 3
 <<23, 104, 108>>
 ```
 
-### Strings
+### স্ট্রিংস
 
-Strings in Elixir are UTF-8 encoded and are wrapped in double quotes:
+এলিক্সিরে স্ট্রিং `UTF-8` এনকোডেড এবং ডাবল কোট ব্যবহার করে স্ট্রিং তৈরি করতে হয়: 
 
 ```elixir
 iex> "Hello"
@@ -140,7 +141,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-Strings support line breaks and escape sequences:
+স্ট্রিং লাইন ব্রেক এবং এস্কেইপ সিকুয়েন্স সাপোর্ট করে: 
 
 ```elixir
 iex> "foo
@@ -150,13 +151,14 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir also includes more complex data types.  We'll learn more about these when we learn about Collections and Functions.
 
-## Basic Operations
+এগুলো ছাড়াও এলিক্সির আরও নানা কম্প্লেক্স টাইপ আছে যেগুলো সম্পর্কে আমরা আরও জানতে পারবো কালেকশন এবং ফাংশন শেখার সময় । 
 
-### Arithmetic
+## ব্যাসিক অপারেশনস
 
-Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.  It's important to notice that `/` will always return a float:
+### এ্যারিথমেটিক 
+
+এলিক্সির ব্যাসিক এ্যারিথমেটিক অপারেশন সাপোর্ট করে, যেমন যোগ, বিয়োগ, গুন, ভাগ - `+`, `-`, `*` এবং `/` - তবে একটা জিনিস লক্ষ্য রাখতে হবে ভাগ এর সময় `/` অপারেটর ব্যবহার করলে আমরা সব সময় ফ্লোট টাইপ পাবো । 
 
 ```elixir
 iex> 2 + 2
@@ -169,7 +171,7 @@ iex> 10 / 5
 2.0
 ```
 
-If you need integer division or the division remainder, Elixir comes with two helpful functions to achieve this:
+ যদি আমরা ভাগফল ইন্টিজারে পেতে চাই বা ভাগশেষ জানতে চাই সেক্ষেত্রে আমরা `div` এবং `rem` ফাংশন ব্যবহার করতে পারি: 
 
 ```elixir
 iex> div(10, 5)
@@ -178,9 +180,9 @@ iex> rem(10, 3)
 1
 ```
 
-### Boolean
+### বুলিয়ান
 
-Elixir provides the `||`, `&&`, and `!` boolean operators. These support any types:
+এলিক্সির `||`, `&&`, এবং `!` অপারেটর সাপোর্ট করে যেগুলো যে কোন টাইপের সাথে ব্যবহার করা যায়:
 
 ```elixir
 iex> -20 || true
@@ -199,7 +201,7 @@ iex> !false
 true
 ```
 
-There are three additional operators whose first argument _must_ be a boolean (`true` or `false`):
+এছাড়াও তিনটা এ্যাডিশনাল অপারেটর আছে যেগুলোর প্রথম আর্গুমেন্ট _অবশ্যই_ বুলিয়ান ভ্যালু (`true` or `false`) হতে হবে: 
 
 ```elixir
 iex> true and 42
@@ -214,9 +216,9 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-### Comparison
+### কম্প্যারিজন
 
-Elixir comes with all the comparisons operators we're used to: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` and `>`.
+এলিক্সির গতানুগতিক সব কম্প্যারিজন অপারেটর সাপোর্ট করে : `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` এবং `>`.
 
 ```elixir
 iex> 1 > 2
@@ -229,7 +231,7 @@ iex> 2 <= 3
 true
 ```
 
-For strict comparison of integers and floats use `===`:
+ইন্টিজার এবং ফ্লোটের ক্ষেত্রে স্ট্রিক্ট কম্প্যারিজন এর জন্য `===` ব্যবহার করতে হয়:
 
 ```elixir
 iex> 2 == 2.0
@@ -238,13 +240,13 @@ iex> 2 === 2.0
 false
 ```
 
-An important feature of Elixir is that any two types can be compared; this is particularly useful in sorting.  We don't need to memorize the sort order, but it is important to be aware of it:
+একটা গুরুত্বপূর্ন জিনিস - এলিক্সির এ যে কোন দুইটা টাইপের ভিতরে কম্পেয়ার করা যায় । বিশেষ করে সর্টিং এর সময় এই জিনিসটা বেশ কাজে লাগে । নিচের এই সর্টিং অর্ডারটা আমাদের মুখস্থ রাখতে হবে না, তবে জেনে রাখলে কাজে দিবে পরবর্তীতে - 
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
-This can lead to some interesting, yet valid, comparisons you may not find in other languages:
+এর ফলে আমরা বেশ ইন্টারেস্টিং কিন্তু ভ্যালিড কম্প্যারিজন অপারেশন চালাতে পারি যেটা হয়তো অন্য ল্যাঙ্গুয়েজে সম্ভব হতো না: 
 
 ```elixir
 iex> :hello > 999
@@ -253,9 +255,9 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### String Interpolation
+###  স্ট্রিং ইন্টারপোলেশন
 
-If you've used Ruby, string interpolation in Elixir will look familiar:
+রুবি ব্যবহারকারীদের কাছে এলিক্সির এর স্ট্রিং ইন্টারপোলেশন একই রকম মনে হবে:
 
 ```elixir
 iex> name = "Sean"
@@ -263,9 +265,9 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### String Concatenation
+### স্ট্রিং কনক্যাটিনেশন
 
-String concatenation uses the `<>` operator:
+দুইটা স্ট্রিং কে জোড়া লাগাতে আমরা `<>` অপারেটর ব্যবহার করা হয়: 
 
 ```elixir
 iex> name = "Sean"
