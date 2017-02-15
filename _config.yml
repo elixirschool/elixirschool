@@ -61,7 +61,7 @@ sections:
       tr: Temeller
       bg: Основи
       de: Grundlagen
-      bn: সাধারণ জ্ঞান
+      bn: ব্যাসিকস
   - tag: advanced
     label:
       en: Advanced
@@ -174,7 +174,7 @@ toc:
   tr: İçerik
   bg: Съдържание
   de: Inhaltsverzeichnis
-  bn: তালিকা
+  bn: সূচীপত্র
 share:
   en: Share This Page
   ru: Поделиться
