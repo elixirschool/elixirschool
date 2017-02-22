@@ -122,7 +122,7 @@ iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` ও একই কাজ করে, কিন্তু এটি আমাদের একটি সুযোগ দেয় `Enum` এ একটি ডিফল্ট ভ্যালু দিবার যে এনয়নিমাস ফাংশন দেয়া হয়েছে তাতে ।
+`min/2` ও একই কাজ করে, কিন্তু এটি আমাদের একটি সুযোগ দেয় `Enum` এ একটি ডিফল্ট ভ্যালু দিবার একটি এনয়নিমাস ফাংশন এর ভিতর ।
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
@@ -132,13 +132,14 @@ iex> Enum.min([], fn -> :foo end)
 ### max
 
 `max/1` returns the `max` value in the collection:
+`max/1` একটা কালেকশন থেকে `max` ভ্যালু রিটার্ন করে।
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-`max/2` does the same, and behaves as `min/2` does as well, allowing us to pass an anonymous function to provide a default value to `Enum`:
+আবার `max/2` ও একই রকম কাজ করে কিন্তু এটি `min/2` এর মতন আচরণ করে। এই ফাংশনে আমরা একটা এনয়নিমাস ফাংশন পাঠাতে পারি এবং এতে একটা ডিফল্ট ভ্যালু পাঠাতে পারি।
 
 ```elixir
 Enum.max([], fn -> :bar end)
@@ -147,7 +148,7 @@ Enum.max([], fn -> :bar end)
 
 ### reduce
 
-With `reduce` we can distill our collection down into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first value is used:
+`reduce` ফাংশন ব্যাবহার করে আমরা কালেকশনকে শুধু মাত্র একটি সিঙ্গেল ভ্যালু বানাতে পারি। এটি করবার জন্য, আমারা একটি অপশনাল একুমেলটর ( `10` এই উদাহরণের জন্য ) পাঠাতে হয়। আর যদি কোন একুমেলটর পাঠানো না হয় তাহলে প্রথম ভ্যালু কে নিয়ে কাজ করা হয়।
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
