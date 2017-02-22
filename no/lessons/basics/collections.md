@@ -6,7 +6,7 @@ order: 2
 lang: no
 ---
 
-Lister, tupler, nøkkelord, kart og funksjonell kombinasjon.
+Lister, tupler, nøkkelord, map og funksjonell kombinasjon.
 
 {% include toc.html %}
 
@@ -103,7 +103,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Nøkkelordslister (keyword lists)
 
-Nøkkelord (keywords) og kart (maps) er assosiative kolleksjoner i Elixir.
+Nøkkelord (keywords) og map (maps) er assosiative kolleksjoner i Elixir.
 Ei nøkkelordsliste er ei liste som består av tupler, hvor det første elementet (nøkkelen) er et atom. Nøkkelordslister har samme ytelse som ei vanlig liste:
 
 ```elixir
@@ -121,10 +121,10 @@ I ei nøkkelordsliste er:
 
 På grunn av dette er det vanlig å bruke nøkkelordslister til å gi forskjellige innstillinger til funksjoner.
 
-## Kart (maps)
+## map (maps)
 
-I tillegg til nøkkelordslister kan vi også benytte oss av kart. Kart lar oss lagre nøkler med forskjellige typer, og de følger heller ikke en bestemt rekkefølge.
-Vi definerer kart ved å bruke syntaksen `%{}`:
+I tillegg til nøkkelordslister kan vi også benytte oss av map. map lar oss lagre nøkler med forskjellige typer, og de følger heller ikke en bestemt rekkefølge.
+Vi definerer map ved å bruke syntaksen `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -135,7 +135,7 @@ iex> map["hello"]
 :world
 ```
 
-I Elixir 1.2 kan variabler brukes som kartnøkler:
+I Elixir 1.2 kan variabler brukes som mapnøkler:
 
 ```elixir
 iex> key = "hello"
@@ -144,14 +144,14 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-Om et nøkkelduplikat blir lagt til kartet, vil den tidligere verdien bli erstattet:
+Om et nøkkelduplikat blir lagt til mapet, vil den tidligere verdien bli erstattet:
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-Som vi kan se fra eksemplene over, er det en spesiell syntaks for kart som kun inneholder atomnøkler:
+Som vi kan se fra eksemplene over, er det en spesiell syntaks for map som kun inneholder atomnøkler:
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
@@ -161,7 +161,7 @@ iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-En interessant egenskap ved kart er at de har en egen syntaks for å oppdatere og aksessere atomnøkler:
+En interessant egenskap ved map er at de har en egen syntaks for å oppdatere og aksessere atomnøkler:
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}

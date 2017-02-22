@@ -96,21 +96,21 @@ Strengen `"100_000_000"` er splittet på understreken takket være `~r/_/` sigil
 `~s` og `~S` sigilene er brukt for å lage en større mengde med tekst, for eksempel:
 
 ```elixir
-iex> ~s/Katten i hatten på matta/
-"Katten i hatten på matta"
+iex> ~s/the cat in the hat on the mat/
+"the cat in the hat on the mat"
 
-iex> ~S/Katten i hatten på matta/
-"Katten i hatten på matta"
+iex> ~S/the cat in the hat on the mat/
+"the cat in the hat on the mat"
 ```
 
 Forskjellen er likt med karakter liste sigilet som vi så på tidligere. Det som er forskjellig er bruken av avsnitt og slike sekvenser. For eksempel:
 
 ```elixir
-iex> ~s/Velkommen til elixir #{String.downcase "skolen"}/
-"velkommen til elixir skolen"
+iex> ~s/welcome to elixir #{String.downcase "school"}/
+"welcome to elixir school"
 
-iex> ~S/velkommen til elixir #{String.downcase "skolen"}/
-"velkommen til elixir \#{String.downcase \"skolen\"}"
+iex> ~S/welcome to elixir #{String.downcase "school"}/
+"welcome to elixir \#{String.downcase \"school\"}"
 ```
 
 ### Ordlister
@@ -118,21 +118,35 @@ iex> ~S/velkommen til elixir #{String.downcase "skolen"}/
 Ordlistesigilet kan spare både tid og antall tastetrykk. For eksempel:
 
 ```elixir
-iex> ~w/jeg elsker elixir skolen/
-["jeg", "elsker", "elixir", "skolen"]
+iex> ~w/i love elixir school/
+["i", "love", "elixir", "school"]
 
-iex> ~W/jeg elsker elixir skolen/
-["jeg", "elsker", "elixir", "skolen"]
+iex> ~W/i love elixir school/
+["i", "love", "elixir", "school"]
 ```
 
 Vi kan se at det som er skilt med skilletegn er separert med mellomrom til en liste. Men, det er ingen forskjell mellom disse to eksemplene. Forskjellen kommer med tekstinterpolering og avsnittssekvenser. Ta det følgende eksempelet:
 
 ```elixir
-iex> ~w/jeg elsker #{'e'}lixir skolen/
+iex> ~w/i love #{'e'}lixir school/
 ["i", "love", "elixir", "school"]
 
-iex> ~W/jeg elsker #{'e'}lixir skolen/
-["jeg", "elsker", "\#{'e'}lixir", "skolen"]
+iex> ~W/i love #{'e'}lixir school/
+["i", "love", "\#{'e'}lixir", "school"]
+```
+
+### NaiveDateTime
+
+En
+[NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html)
+kan være nyttig for å fort lage en struct til å representere en `DateTime` **uten**
+en tidssone.
+
+Som oftest, så burde man unngå å lage `NaiveDateTime` structer direkte. Men den er veldig nyttig ved mønstersammenligning.
+For eksempel:
+
+```elixir
+iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
 ```
 
 ## Å Lage Sigiler
@@ -141,15 +155,15 @@ Et av målene til Elixir er å være et utvidtbart programmeringsspråk. I dette
 
 ```elixir
 
-iex> defmodule MineSigiler do
+iex> defmodule MySigils do
 ...>   def sigil_u(string, []), do: String.upcase(string)
 ...> end
 
-iex> import MineSigiler
+iex> import MySigils
 nil
 
-iex> ~u/elixir skolen/
-ELIXIR SKOLEN
+iex> ~u/elixir school/
+ELIXIR SCHOOL
 ```
 
 Først definerer vi en modul med navnet `MineSigiler`. Vi lager så en funksjon med navnet `sigil_u`. Siden Elixir ikke har en standard `~u` sigil, kan vi bruke dette tegnet. `_u` endelsen i funksjonen indikerer at vi ønsker å benytte bokstaven `u` etter tilde ~ tegnet for å benytte sigilen. Når man lager en egen funksjon som skal fungere som en sigil, kreves det to argumenter - et input, og en liste.

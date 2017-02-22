@@ -72,7 +72,7 @@ Variabelen `_` blir som `else` og vil matche "alt annet".
 Siden `case` avhenger av mønstersammenligning, gjelder de samme reglene og restriksjonene. Hvis du ønsker å sammenligne med en eksisterende variabel, må festeoperatoren `^` benyttes:
 
 ```elixir
-iex> pie = 3.14 
+iex> pie = 3.14
 3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
@@ -130,7 +130,7 @@ iex> cond do
 
 ## `with`
 
-`with` er nyttig hvis vi for eksempel benytter oss av et nestet `case` statement eller forhold som ikke enkelt kan transporteres sammen. `with` består av nøkkelord, generatorer og et utrykk.
+`with` er nyttig hvis vi for eksempel benytter oss av et nestet `case` statement eller forhold som ikke enkelt kan transporteres sammen. `with` består av nøkkelord, generatorer og et uttrykk.
 
 Vi vil diskutere generatorer nærmere i en senere leksjon, men alt vi trenger å vite nå er at de benytter mønstersammenligning til å sammenligne den høyre siden `<-` med den venstre.
 
