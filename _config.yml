@@ -31,7 +31,7 @@ description:
   de: Übungen zur Programmiersprache Elixir
   bn: এলিক্সির স্কুল
 baseurl: /
-url: http://localhost:4000
+url: https://elixirschool.com
 og_image: https://elixirschool.com/assets/fb_share.jpg
 permalink: pretty
 languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'uk', 'tr', 'bg', 'de', 'bn']

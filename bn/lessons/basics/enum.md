@@ -113,8 +113,6 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-`min/1` finds the `min` value in the collection:
-
 `min/1` কালেকশন থেকে খুঁজে বের করে সবচেয়ে `min` ভ্যালটিু :
 
 ```elixir
@@ -131,7 +129,6 @@ iex> Enum.min([], fn -> :foo end)
 
 ### max
 
-`max/1` returns the `max` value in the collection:
 `max/1` একটা কালেকশন থেকে `max` ভ্যালু রিটার্ন করে।
 
 ```elixir
@@ -161,7 +158,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 ### sort
 
-Sorting our collections is made easy with not one, but two, `sort` functions.  The first option available to us uses Elixir's term ordering to determine the sorted order:
+কালেকশন সর্ট করা আমাদের জন্য খুবি সহজ হয়ে গেছে একটি না বরং দুটি `sort` ফাংশন এর জন্য। প্রথমটি এলিক্সির এর টার্ম যা কিনা অর্ডার নির্ধারণ করে নিজে থেকেই।
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -171,7 +168,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-The other option allows us to provide a sort function:
+আরেকটি আমাদের একটি নিজস্ব ফাংশন পাঠানোর সুযোগ করে দেয়।
 
 ```elixir
 # with our function
@@ -185,11 +182,10 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 
 ### uniq_by
 
-We can use `uniq_by/2` to remove duplicates from our collections:
+আমরা `uniq_by/2` ব্যাবহার করে কালেকশন থেকে ডুপ্লিকেশন দুর করতে পারি।
 
 ```elixir
 iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
 [1, 2, 3]
 ```
-
-This was previously known as `uniq/1`, which is deprecated as of Elixir 1.4, but still available (with warnings).
+এর আগে এই ফাংশন পরিচিত ছিল `uniq/1` নামে। যা কিনা ডেপ্রিকেটেড হয়ে গেছে এলিক্সির ১.৪ হতে কিন্তু এখনো ব্যাবহার যোগ্য ( ওয়ার্নিং এর সাথে )
