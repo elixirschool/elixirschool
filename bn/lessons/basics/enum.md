@@ -1,21 +1,22 @@
 ---
 layout: page
-title: Enum (TODO)
+title: ইনাম
 category: basics
 order: 3
 lang: bn
 ---
 
-A set of algorithms for enumerating over collections.
+কালেকশন এ ইনামুরেট এর সুবিধা নিবার  জন্য কিছু এলগোরিদম ।
 
 {% include toc.html %}
 
-## Enum
+## ইনাম `Enum`
 
-The `Enum` module includes nearly 100 functions for working with the collections we learned about in the last lesson.
+ইনাম `Enum` মডিউলে প্রায় ১০০ টার উপরে ফাংশন আছে যা দিয়ে কালেকশন এর সাথে কাজ করা যায় এবং এই ব্যাপারে আমরা এর আগের চ্যাপ্টারে কথা বলেছি।
 
-This lesson will only cover a subset of the available functions, however we can actually examine them ourselves.
-Let's do a little experiment in IEx.
+এই চ্যাপ্টারে আমারা শুধু অল্প কিছু ফাংশন নিয়ে আলোচনা করবো । এবং বাকি ফাংশন গুলো আমরা নিজেরা পরে দেখে নিতে পারবো।
+
+তাহলে, আসুন আমরা IEx নিয়ে ছোট একটা পরীক্ষা শুরু করি ।
 
 ```elixir
 iex
@@ -31,16 +32,15 @@ at/3
 ...
 ```
 
-Using this, its clear that we have a vast amount of functionality, and that is for a clear reason.
-Enumeration is at the core of functional programming and is an incredibly useful thing.
-By leveraging it combined with other perks of Elixir, such as documentation being a first class citizen as we just saw, it can be incredibly empowering to the developer as well.
+এই কাজটি করে আমরা নিজেরা এতক্ষণে নিশ্চয়ই বুঝতে পেরেছি যে , আমদের সামনে আসলে অসংখ্য ফাংশন আছে। আর এটি হয়েছে কারণ হল যে Enumeration হল ফাংশনাল প্রোগ্রামিং এর একেবারে মূল একটা বিষয় আর আসলেই এর ব্যাবহারের ক্ষেত্র ও বিশাল।
 
-For a full list of functions visit the official [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) module.
+Elixir এর আরও সব সুবিধা গুলোর সাথে যদি আমরা এর সঠিক সমন্বয় করে ব্যাবহার করতে পারি তাহলে আমরা ডেভেলপার হিসাবে এর অনেক সহজেই অনেক বেশি সুবিধা পাব। আমরা এমনটা এর মধ্যে এরই ভিতর দেখতে পারলাম ডকুমেন্ট ইনফো এর মাধ্যমে।
 
+ইনাম এর ফাংশন গুলোর পুরো লিস্ট দিখবার জন্য , আপনি যেতে পারেন ,[`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) ডকুমেন্ট এ, আর lazy enumeration ব্যাবহার করে,  [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) মডিউল।
 
 ### all?
 
-When using `all?`, and much of `Enum`, we supply a function to apply to our collection's items.  In the case of `all?`, the entire collection must evaluate to `true` otherwise `false` will be returned:
+যখন আমরা `all?` ব্যাবহার করি `Enum` এর সাথেে। আসলে এই সময় আমরা কালেকশন এর আইটেম গুলির সাথে একটা ফাংশন এপ্লাই করি । এক্ষেত্রে মূলোতো `all?` এর জন্য কালেকশন ফলাফল দেয় , `true` বা `false` এ ।  
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -51,7 +51,7 @@ true
 
 ### any?
 
-Unlike the above, `any?` will return `true` if at least one item evaluates to `true`:
+আবার, উপরের মতন এই `any?` ফলাফল `true` রিটার্ন করে যদি শুধুমাত্র একটি ও আইটেম এর ফলাফল `true` হয় ।
 
 ```elixir
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
@@ -60,18 +60,18 @@ true
 
 ### chunk
 
-If you need to break your collection up into smaller groups, `chunk` is the function you're probably looking for:
+যদি কালেকশনকে ভেঙ্গে ছোট গ্রুপ তৈরি করতে হয় তাহলে, `chunk` ফাংশনটি ই আপনার দরকার।
 
 ```elixir
 iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-There are a few options for `chunk` but we won't go into them, check out [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) in the official docs to learn more.
+`chunk` এর আরও কিছু অপশন আছে, কিন্তু আমরা সেগুলোতে আমরা এখন নাই যাই, আপনারা সেগুলো দেখে নিতে পারবেন এখানে,[`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) এই অফিসিয়াল ডকুমেন্ট এ ।
 
 ### chunk_by
 
-If we need to group our collection based on something other than size, we can use the `chunk_by/2` method. It takes a given enumerable and a function, and when the return on that function changes a new group is started and begins the creation of the next:
+যদি আমরা কালেকশনকে সাইজ ছাড়া অন্য কিছুর উপর ভিত্তি করে ছোট গ্রুপ এ ভাগ করতে চাই তাহলে আমরা `chunk_by/2` মেথড টি ব্যাবহার করতে পারি। এটি একটি ইনাম এবং ফাংশন এ কাজ করে কালেকশন কে ক্রমান্বয়ে ছোট ছোট গ্রুপে ভাগ করে।
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -82,7 +82,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-Sometimes chunking out a collection isn't enough for exactly what we may need. If this is the case, `map_every/3` can be very useful to hit only specific items if your collection has an ordering that such is necessary or useful:
+কখনো কখনো দেখা যায় যে শুধু মাত্র কালেকশন কে ছোট গ্রুপ এ ভাগ করে কাজ শেষ হয় না । এরকম সময় , `map_every/3` একটি দারুণ ফাংশন কারণ এটি শুধু নির্ধারিত একটা আইটেম কে হিট করবে যদি কালেকশন এ সেরকম অরডারিং থাকে এবং দরকার হয়।
 
 ```elixir
 iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
@@ -91,7 +91,7 @@ iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
 
 ### each
 
-It may be necessary to iterate over a collection without producing a new value, for this case we use `each`:
+কখনো কোন কালেকশন এর উপর ইটারেট কবার দরকার হলে আমরা `each` ব্যাবহার করতে পারি এবং এতে নতুন ভ্যালু তৈরি হয় না।
 
 ```elixir
 iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
@@ -100,11 +100,11 @@ two
 three
 ```
 
-__Note__: The `each` method does return the atom `:ok`.
+__Note__: `each` মেথড একটি এটম রিটার্ন করে `:ok`.
 
 ### map
 
-To apply our function to each item and produce a new collection look to the `map` function:
+যদি আমরা কালেকশন এর প্রতিটি আইটেম এর উপর ফাংশন প্রয়োগ করতে চাই তাহলে `map` মেথড ব্যাবহার করতে পারি।
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
@@ -113,14 +113,14 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-`min/1` finds the `min` value in the collection:
+`min/1` কালেকশন থেকে খুঁজে বের করে সবচেয়ে `min` ভ্যালটিু :
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` does the same, but allows us to specify a default value to `Enum` in an anonymous function that is passed:
+`min/2` ও একই কাজ করে, কিন্তু এটি আমাদের একটি সুযোগ দেয় `Enum` এ একটি ডিফল্ট ভ্যালু দিবার একটি এনয়নিমাস ফাংশন এর ভিতর ।
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
@@ -129,14 +129,14 @@ iex> Enum.min([], fn -> :foo end)
 
 ### max
 
-`max/1` returns the `max` value in the collection:
+`max/1` একটা কালেকশন থেকে `max` ভ্যালু রিটার্ন করে।
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-`max/2` does the same, and behaves as `min/2` does as well, allowing us to pass an anonymous function to provide a default value to `Enum`:
+আবার `max/2` ও একই রকম কাজ করে কিন্তু এটি `min/2` এর মতন আচরণ করে। এই ফাংশনে আমরা একটা এনয়নিমাস ফাংশন পাঠাতে পারি এবং এতে একটা ডিফল্ট ভ্যালু পাঠাতে পারি।
 
 ```elixir
 Enum.max([], fn -> :bar end)
@@ -145,7 +145,7 @@ Enum.max([], fn -> :bar end)
 
 ### reduce
 
-With `reduce` we can distill our collection down into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first value is used:
+`reduce` ফাংশন ব্যাবহার করে আমরা কালেকশনকে শুধু মাত্র একটি সিঙ্গেল ভ্যালু বানাতে পারি। এটি করবার জন্য, আমারা একটি অপশনাল একুমেলটর ( `10` এই উদাহরণের জন্য ) পাঠাতে হয়। আর যদি কোন একুমেলটর পাঠানো না হয় তাহলে প্রথম ভ্যালু কে নিয়ে কাজ করা হয়।
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
@@ -158,7 +158,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 ### sort
 
-Sorting our collections is made easy with not one, but two, `sort` functions.  The first option available to us uses Elixir's term ordering to determine the sorted order:
+কালেকশন সর্ট করা আমাদের জন্য খুবি সহজ হয়ে গেছে একটি না বরং দুটি `sort` ফাংশন এর জন্য। প্রথমটি এলিক্সির এর টার্ম যা কিনা অর্ডার নির্ধারণ করে নিজে থেকেই।
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -168,7 +168,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-The other option allows us to provide a sort function:
+আরেকটি আমাদের একটি নিজস্ব ফাংশন পাঠানোর সুযোগ করে দেয়।
 
 ```elixir
 # with our function
@@ -182,11 +182,10 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 
 ### uniq_by
 
-We can use `uniq_by/2` to remove duplicates from our collections:
+আমরা `uniq_by/2` ব্যাবহার করে কালেকশন থেকে ডুপ্লিকেশন দুর করতে পারি।
 
 ```elixir
 iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
 [1, 2, 3]
 ```
-
-This was previously known as `uniq/1`, which is deprecated as of Elixir 1.4, but still available (with warnings).
+এর আগে এই ফাংশন পরিচিত ছিল `uniq/1` নামে। যা কিনা ডেপ্রিকেটেড হয়ে গেছে এলিক্সির ১.৪ হতে কিন্তু এখনো ব্যাবহার যোগ্য ( ওয়ার্নিং এর সাথে )
