@@ -6,13 +6,13 @@ order: 4
 lang: no
 ---
 
-Mønstersammenligning (pattern matching) er en viktig del av Elixir, og lar oss matche enkle verdier, datastrukturer og funksjoner. Vi skal nå se nærmere på hva mønstersammenligning innebærer.
+Mønstersammenligning (pattern matching) er en viktig del av Elixir, og lar oss sammenligne enkle verdier, datastrukturer og funksjoner. Vi skal nå se nærmere på hva mønstersammenligning innebærer.
 
 {% include toc.html %}
 
 ## Sammenligningsoperatoren (Match Operator)
 
-Operatoren `=` er i Elixirs tilfelle en sammenligningsoperator, og vi bruker den til å tildele og matche verdier. La oss se på noen eksempler:
+Operatoren `=` er i Elixirs tilfelle en sammenligningsoperator, og vi bruker den til å tildele og sammenligne verdier. La oss se på noen eksempler:
 
 ```elixir
 #tildeling
@@ -72,7 +72,7 @@ iex> x
 2
 ```
 
-Elixir 1.2 introduserte støtte for festing i kartnøkler og funksjonsklausuler:
+Elixir 1.2 introduserte støtte for festing av mapnøkler og funksjonsklausuler:
 
 ```elixir
 iex> key = "hello"

@@ -6,7 +6,7 @@ order: 8
 lang: no
 ---
 
-Vi vet fra erfaring at det er besværlig å ha alle våre funksjoner i samme fil og skop. I denne leksjonen skal vi dekke hvordan vi grupperer funksjoner, og definerer en spesialisert form for kart kjent som struct for å kunne organiserer koden vår mer effektivt.
+Vi vet fra erfaring at det er besværlig å ha alle våre funksjoner i samme fil og skop. I denne leksjonen skal vi dekke hvordan vi grupperer funksjoner, og definerer en spesialisert form for map kjent som struct for å kunne organiserer koden vår mer effektivt.
 
 {% include toc.html %}
 
@@ -66,7 +66,7 @@ Det er viktig å notere at det er reserverte attributer i Elixir. De tre vanligs
 
 ## Structs
 
-Structs er et spesielle kart som definerer en mengde av nøkler og standard verdier. En struct må være definert i en egen modul, som den også får navnet sitt fra. Det er normalt at en struct er det eneste som er definert i en modul.
+Structs er et spesielle map som definerer en mengde av nøkler og standard verdier. En struct må være definert i en egen modul, som den også får navnet sitt fra. Det er normalt at en struct er det eneste som er definert i en modul.
 
 For å definere en struct bruker vi `defstruct` sammen med en nøkkelord liste av felt og standard verdier.
 
@@ -89,7 +89,7 @@ iex> %Eksempel.Bruker{navn: "Steve", roller: [:admin, :eier]}
 %Eksempel.Bruker{navn: "Steve", roller: [:admin, :eier]}
 ```
 
-Vi kan oppdatere vår struct akkurat som med kart:
+Vi kan oppdatere vår struct akkurat som med map:
 
 ```elixir
 iex> steve = %Eksempel.Bruker{navn: "Steve", roller: [:admin, :eier]}
