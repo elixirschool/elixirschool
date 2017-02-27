@@ -133,7 +133,7 @@ This is a bare minimum Router but the code should be pretty self-explanatory.
 We've included some macros through `use Plug.Router` and then set up two of the built-in Plugs: `:match` and `:dispatch`.
 There are two defined routes, one for handling GET requests to the root and the second for matching all other requests so we can return a 404 message.
 
-Back in `lib/exmaple.ex`, we need to add `Example.Router` into the web server supervisor tree.
+Back in `lib/example.ex`, we need to add `Example.Router` into the web server supervisor tree.
 Swap out the `Example.HelloWorldPlug` plug with the new router:
 
 ```elixir
