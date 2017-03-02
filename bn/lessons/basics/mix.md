@@ -1,26 +1,26 @@
 ---
 layout: page
-title: Mix (TODO)
+title: মিক্স
 category: basics
 order: 9
 lang: bn
 ---
+এলিক্সির নিয়ে আরও গভীরে যাওয়ার আগে আমাদের "মিক্স" সম্পর্কে জানা উচিত। যদি আপনি রুবীর সাথে পরিচিত হয়ে থাকেন তাহলে মিক্সকে ধরে নিতে পারেন বান্ডলার, রুবী-জেম ও রেইকের সমন্বয় হিসেবে। যে কোন এলিক্সির প্রজেক্টের জন্য এটি অত্যন্ত গুরুত্বপূর্ণ এবং এই অধ্যায়ে আমরা মিক্সের বিশাল ফাংশনালিটির মধ্যে কতিপয় কিছু নিয়ে আলোচনা করব। মিক্স সংক্রান্ত অন্যান্য বিষয় জানতে রান করুন  `mix help`। 
 
-Before we can dive into the deeper waters of Elixir we first need to learn about mix. If you're familiar with Ruby mix is Bundler, RubyGems, and Rake combined. It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of its great features. To see all that mix has to offer run `mix help`.
-
-Until now we've been working exclusively within `iex` which has limitations.  In order to build something substantial we need to divide our code up into many files to effectively manage it; mix lets us do that with projects.
+এই পর্যন্ত আমরা শুধুমাত্র `iex` নিয়ে আমাদের কাজ চালিয়ে নিয়েছি, কিন্তু `iex` এর কিছু লিমিটেশন রয়েছে। বড় কিছু তৈরি করতে আমাদের কোডকে ভাগ করে নিতে হবে অনেকগুলি ফাইলে, সহজতর ব্যবস্থাপনার জন্যে। মিক্স দিয়ে ঠিক সেই কাজটিই করা যায়। 
 
 {% include toc.html %}
 
-## New Projects
+## নতুন প্রজেক্ট 
 
-When we're ready to create a new Elixir project, mix makes it easy with the `mix new` command.  This will generate our project's folder structure and necessary boilerplate.  This is pretty straightforward, so let's get started:
+যখন আমরা নতুন একটি এলিক্সির প্রজেক্ট শুরু করতে চাই, তা আমরা `mix new` চালিয়ে শুরু করব। এতে করে সৃষ্টি হবে আমাদের প্রজেক্টের ফোল্ডার কাঠামো ও অন্যান্য বয়লারপ্লেট। তো শুরু করা যাক-
+
 
 ```bash
 $ mix new example
 ```
 
-From the output we can see that mix has created our directory and a number of boilerplate files:
+আউটপুট থেকে দেখছি যে মিক্স একটি নতুন ফোল্ডার ও কিছু ফাইল বানিয়েছে- 
 
 ```bash
 * creating README.md
@@ -35,7 +35,7 @@ From the output we can see that mix has created our directory and a number of bo
 * creating test/example_test.exs
 ```
 
-In this lesson we're going to focus our attention on `mix.exs`.  Here we configure our application, dependencies, environment, and version.  Open the file in your favorite editor, you should see something like this (comments removed for brevity):
+আমরা একটু `mix.exs` ফাইলটি খুলে দেখি। এই ফাইলটির মাধ্যমে আমরা আমাদের অ্যাপ্লিকেশান, ডিপেন্ডেন্সি, এনভারনমেন্ট ও ভার্সন কনফিগার করে থাকি। ফাইলটির কন্টেন্ট নীচে দেখানো হয়েছে (কমেন্ট সরিয়ে দেয়া হয়েছে সংক্ষিপ্ততার জন্য)- 
 
 ```elixir
 defmodule Example.Mixfile do
@@ -60,46 +60,44 @@ defmodule Example.Mixfile do
 end
 ```
 
-The first section we'll look at is `project`.  Here we define the name of our application (`app`), specify our version (`version`), Elixir version (`elixir`), and finally our dependencies (`deps`).
+প্রথম সেকশন হল `project`। এখানে আমরা আমাদের অ্যাপ্লিকেশানের নাম (`app`), ভার্সন (`version`), এলিক্সিরের ভার্সন (`elixir`) এবং ডিপেন্ডেন্সি (`deps`) বলে থাকি। 
 
-The `application` section is used during the generation of our application file which we'll cover next.
+## ইন্টার‍্যাক্টিভ 
 
-## Interactive
-
-It may be necessary to use `iex` within the context of our application.  Thankfully for us, mix makes this easy.  We can start a new `iex` session:
+আমাদের অ্যাপ্লিকেশানের প্রেক্ষিতে `iex` ব্যবহার করা লাগতে পারে। মিক্স দিয়ে এটি সহজেই করা যায়।
 
 ```bash
 $ iex -S mix
 ```
 
-Starting `iex` this way will load your application and dependencies into the current runtime.
+এভাবে `iex` শুরু করলে তা আপনার অ্যাপ্লিকেশান এবং ডিপেন্ডেন্সি সমেত শুরু হবে। 
 
-## Compilation
+## কম্পাইলেশান 
 
-Mix is smart and will compile your changes when necessary, but it may still be necessary explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
+মিক্স বেশ স্মার্ট এবং তা আপনার প্রজেক্টকে দরকারমত কম্পাইল করে নিবে, কিন্তু অনেক সময়ে হয়ত আপনাকে নিজ থেকে কম্পাইল করতে হতে পারে। এই সেকশনে আমরা আলোচনা করব কিভাবে প্রজেক্টকে কম্পাইল করতে হয় এবং ওই কম্পাইলেশান কী করে?
 
-To compile a mix project we only need to run `mix compile` in our base directory:
+একটি মিক্স প্রজেক্টকে কম্পাইল করতে হলে আমাদের বেইস ফোল্ডারে গিয়ে `mix compile` রান করতে হবে।
 
 ```bash
 $ mix compile
 ```
 
-There isn't much to our project so the output isn't too exciting but it should complete successfully:
+যেহেতু প্রজেক্টে আমরা তেমন কিছু করিনি তাই আউটপুট তেমন আহামরি কিছু না, তবে কম্পাইল ঠিক মতই হবে-
 
 ```bash
 Compiled lib/example.ex
 Generated example app
 ```
 
-When we compile a project mix creates a `_build` directory for our artifacts.  If we look inside `_build` we will see our compiled application: `example.app`.
+যখন আমরা কোন প্রজেক্ট কম্পাইল করি তখন মিক্স `_build` নামক একটি ফোল্ডার সৃষ্টি করে এবং সমস্ত আর্টিফ্যাক্ট সেখানে সেভ করে। ওই ফোল্ডারটি খুললে আমরা আমাদের কম্পাইলকৃত অ্যাপ্লিকেশানটি দেখতে পাব- `example.app`.
 
-## Managing Dependencies
+## ডিপেন্ডেন্সি ম্যানেজমেন্ট 
 
-Our project doesn't have any dependencies but will shortly, so we'll go ahead and cover defining dependencies and fetching them.
+আমাদের প্রজেক্টটির কোন ডিপেন্ডেন্সি নেই তাই এখন আমরা কিছু ডিপেন্ডেন্সি উল্লেখ করব। ডিপেন্ডেন্সি বানিয়ে ডাউনলোড করার পদ্ধতি নিয়ে এবার কথা বলি। 
 
-To add a new dependency we need to first add it to our `mix.exs` in the `deps` section.  Our dependency list is comprised of tuples with two required values and one optional: the package name as an atom, the version string, and optional options.
+ডিপেন্ডেন্সি যোগ করতে হলে প্রথমে আমরা আমাদের `mix.exs` এর `deps` সেকশনে তা যোগ করি। আমাদের ডিপেন্ডেন্সি লিস্ট হচ্ছে টাপলের সমন্বয়ে তৈরি একটি লিস্ট, যেখানে প্রতিটি টাপল একটি ডিপেন্ডেন্সি যার প্রথম এলিমেন্ট হল প্যাকেজের নাম (অ্যাটম হিসেবে), দ্বিতীয়টি হল ওই প্যাকেজটির ভার্সন। তৃতীয় ও অপশনাল আরেকটি এলিমেন্ট থাকতে পারে যা অতিরিক্ত তথ্য উল্লেখে ব্যবহৃত হয়।
 
-For this example let's look at a project with dependencies, like [phoenix_slim](https://github.com/doomspork/phoenix_slim):
+চলুন একটি প্রজেক্টের ([phoenix_slim](https://github.com/doomspork/phoenix_slim)) ডিপেন্ডেন্সি দেখে নেই -
 
 ```elixir
 def deps do
@@ -110,25 +108,25 @@ def deps do
 end
 ```
 
-As you probably discerned from the dependencies above, the `cowboy` dependency is only necessary during development and test.
+বুঝাই যাচ্ছে যে `cowboy` ডিপেন্ডেন্সিটি শুধুমাত্র ডেভেলপমেন্ট ও টেস্টের সময়েই  ব্যবহৃত হবে।
 
-Once we've defined our dependencies there is one final step: fetching them.  This is analogous to `bundle install`:
+একবার ডিপেন্ডেন্সি বলে দেয়া হলে শেষ আরেকটি  ধাপ রয়েছে, তাদেরকে ফেচ করা। এটি `bundle install` এর মত। 
 
 ```bash
 $ mix deps.get
 ```
 
-That's it!  We've defined and fetched our project dependencies.  Now we're prepared to add dependencies when the time comes.
+শেষ! আমরা আমাদের প্রজেক্টের ডিপেন্ডেন্সি বর্ণনা ও ফেচ করা দেখলাম। এখন আমরা দরকারমত ডিপেন্ডেন্সি যোগ করতে পারব। 
 
-## Environments
+## এনভায়রনমেন্ট 
 
-Mix, much like Bundler, supports differing environments.  Out of the box mix works with three environments:
+বান্ডলারের মতই মিক্স অনেকগুলি এনভায়রনমেন্ট সাপোর্ট করে থাকে। সরাসরি তিনটি এনভায়রনমেন্ট মিক্স আমাদের দিয়ে থাকে- 
 
-+ `:dev` — The default environment.
-+ `:test` — Used by `mix test`. Covered further in our next lesson.
-+ `:prod` — Used when we ship our application to production.
++ `:dev` — ডিফল্ট এনভায়রনমেন্ট
++ `:test` — `mix test` এর জন্য। পরবর্তী অধ্যায়ে দেখান হবে। 
++ `:prod` — প্রডাকশনের জন্য। 
 
-The current environment can be accessed using `Mix.env`.  As expected, the environment can be changed via the `MIX_ENV` environment variable:
+কারেন্ট এনভায়রনমেন্টকে পেতে হলে `Mix.env` ব্যবহার করব। এনভায়রনমেন্ট পরিবর্তন করতে হলে `MIX_ENV` এনভায়রনমেন্ট ভেরিয়েবল দিয়ে করতে পারি। 
 
 ```bash
 $ MIX_ENV=prod mix compile
