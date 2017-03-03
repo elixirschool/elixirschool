@@ -114,3 +114,61 @@ body.rtl pre {
 body.rtl .content {
     margin-right: auto;
 }
+
+/**
+ * Versioning
+ */
+
+$version-green-color: #9f0;
+$version-yellow-color: #fc3;
+$version-orange-color: #f60;
+$version-red-color: #f00;
+
+.version-difference-indicator {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px 7px 0;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.version-difference-none {
+  background-color: $version-green-color;
+}
+
+.version-difference-major {
+  background-color: $version-red-color;
+}
+
+.version-difference-minor {
+  background-color: $version-orange-color;
+}
+
+.version-difference-patch {
+  background-color: $version-yellow-color;
+}
+
+.version-info {
+  width: 100%;
+  font-size: 0.75em;
+  margin-bottom: 0.75em;
+  padding: 0.5em;
+  border: 1px solid transparent;
+}
+
+.version-info-none {
+  border-color: $version-green-color;
+}
+
+.version-info-major {
+  border-color: $version-red-color;
+}
+
+.version-info-minor {
+  border-color: $version-orange-color;
+}
+
+.version-info-patch {
+  border-color: $version-yellow-color;
+}
