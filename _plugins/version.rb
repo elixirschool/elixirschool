@@ -14,14 +14,19 @@ Jekyll::Hooks.register :pages, :pre_render do |page, payload|
   master_version = page.site.config["versions"][category][order]
   page_version   = data["version"] || "0.0.0"
 
-  if master_version
+  if default_lang != lang && master_version
     severity = compare_versions(master_version, page_version)
-    unless severity == "same"
-      warnings      = page.site.config["warnings"]
+    unless severity == "none"
+      warnings      = page.site.config["version_messages"]
       lang_warnings = warnings[lang] || warnings[default_lang]
       msg           = lang_warnings[severity]
+      outdated_msg  = lang_warnings["outdated"]
 
-      payload["page"]["old_version_warning"] = msg
+      payload["page"]["version_data"] = {
+        "outdated_message" => outdated_msg,
+        "severity" => severity,
+        "severity_message" => msg
+      }
     end
   end
 end
@@ -35,7 +40,7 @@ def compare_versions(site, page)
   elsif site[2] > version[2]
     "patch"
   else
-    "same"
+    "none"
   end
 end
 

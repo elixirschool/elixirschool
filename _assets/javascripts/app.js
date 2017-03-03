@@ -19,6 +19,19 @@ var toggle_section = function() {
   toggle_lessons(parent);
 };
 
+var show_vcs_history = function() {
+  var base = 'https://github.com/doomspork/elixir-school/commits/master/lessons/',
+      path = window.location
+    .toString()
+    .split('/')
+    .filter(function(e) {
+      return "" !== e;
+    })
+    .slice(-2)
+    .join('/');
+  window.open(base + path + '.md');
+};
+
 $(function() {
   $('.sidebar-nav-header').click(toggle_section);
   $('#toc').toc({
@@ -28,4 +41,5 @@ $(function() {
     noBackToTopLinks: true,
     minimumHeaders: 0
   });
+  $('.version-info').click(show_vcs_history);
 });
