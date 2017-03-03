@@ -249,4 +249,4 @@ defmodule Map do
 
 This is a simple example, stating that keys and values per the implementation can be any type, but it is useful to know.
 
-By leveraging all these built-in niceties we can easily explore the code and learn more about how things work. IEx is very powerful and robust tool that empower developers. With these tools in our toolbox, exploring, and building can be even more fun!
+By leveraging all these built-in niceties we can easily explore the code and learn more about how things work. IEx is a very powerful and robust tool that empowers developers. With these tools in our toolbox, exploring, and building can be even more fun!
