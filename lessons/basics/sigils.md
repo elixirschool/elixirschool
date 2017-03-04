@@ -57,7 +57,7 @@ The `~r` and `~R` sigils are used to represent Regular Expressions. We create th
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -70,7 +70,7 @@ We can see that in the first test for equality, that `Elixir` does not match wit
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true
