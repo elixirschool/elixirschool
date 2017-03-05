@@ -46,7 +46,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 Wir können sehen, dass das kleingeschriebene `~c` die Berechnung interpoliert, wohingegen das großgeschriebene `~C` sigil dieses nicht tut. Wir werden sehen, dass diese Großschreibung/Kleinschreibung ein oft verwendetes Motiv bei eingebauten sigils ist.
@@ -57,7 +57,7 @@ Die `~r` und `~R` sigils werden für reguläre Ausdrücke benutzt. Wir erstellen
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -70,7 +70,7 @@ Wir können im ersten Test auf Gleichheit sehen, dass `Elixir` nicht auf den reg
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true

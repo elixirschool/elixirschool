@@ -46,7 +46,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 소문자 `~c`는 수식을 계산하여 문자 리스트에 확장하지만, 대문자 시길 `~C`는 그렇지 않음을 알 수 있습니다. 앞으로 살펴볼 내장 시길에서도 소문자/대문자로 수식 확장을 하는가 안 하는가를 구별할 수 있을 것입니다.
@@ -57,7 +57,7 @@ iex> ~C/2 + 7 = #{2 + 7}/
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -70,7 +70,7 @@ true
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true

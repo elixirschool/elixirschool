@@ -47,7 +47,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 Môžeme si všimnúť, že sigil s malým `~c` aplikuje interpoláciu, sigil s veľkým `~C` však nie. Tento vzor (malé/veľké písmeno) je pri zabudovaných sigiloch pravidlom.
@@ -60,7 +60,7 @@ Na reprezentáciu regulárnych výrazov (regexpov) slúžia v Elixire sigily `~r
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -73,7 +73,7 @@ Prvý test vráti `false`, pretože testovaný reťazec má prvé písmeno veľk
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true

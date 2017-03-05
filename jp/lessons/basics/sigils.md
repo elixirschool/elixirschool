@@ -46,7 +46,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 小文字の`~c`は計算結果を埋め込みますが一方で大文字の`~C`は埋め込まないことがわかります。この大文字/小文字による結果は組み込まれたシギル
@@ -60,7 +60,7 @@ iex> ~C/2 + 7 = #{2 + 7}/
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -75,7 +75,7 @@ ElixirはPerl Compatible Regular Expressions (Perl互換正規表現式, PCRE)�
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true

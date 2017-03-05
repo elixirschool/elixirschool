@@ -45,7 +45,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 On peut voir que le `~c` en minuscule interpole le calcul, au contraire du `~C` majuscule. Nous verrons que ce comportement majuscule / minuscule est commun pour tous les sigils pré-définis.
@@ -56,7 +56,7 @@ Les sigils `~r` et `~R` sont utilisés pour représenter des Expressions Réguli
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -69,7 +69,7 @@ On peut voir dans le premier test d'égalité, que `Elixir` n'a pas de correspon
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true
