@@ -45,7 +45,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 Kita bisa melihat bahwa `~c` menginterpolasi (menyisipkan) hasil kalkulasi sedangkan `~C` tidak. Kita akan melihat pola huruf kecil / kapital ini adalah pola umum di seluruh sigil yang built in.
@@ -56,7 +56,7 @@ Sigil `~r` and `~R` digunakan untuk merepresentasikan Regular Expression. Kita m
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -69,7 +69,7 @@ Kita bisa melihat bahwa pada tes persamaan pertama, `Elixir` tidak cocok dengan 
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true

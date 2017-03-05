@@ -46,7 +46,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 Jak widać sigil `~c`, pisany małą literą, przeprowadza obliczenia, w przeciwieństwie do `~C`, pisany wielką literą. Konwencja wyliczania wartości, bądź nie, z pomocą użycia odpowiedniej małej albo wielkiej litery jest taka sama dla wszystkich sigili.
@@ -57,7 +57,7 @@ Sigile `~r` i `~R` służą do tworzenia wyrażeń regularnych. Można też w ty
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -70,7 +70,7 @@ Jak widzimy pierwszy test nie powiódł się. ponieważ `Elixir` nie pasuje do w
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true

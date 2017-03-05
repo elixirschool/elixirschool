@@ -45,7 +45,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 Chúng ta có thể thấy kí tự thường `~c` sẽ nội suy phần tính toán, trong khi kĩ tự hoa `~C` không. Chúng ta sẽ thấy chuỗi kí tự hoa / thường sẽ là chủ đề thường thấy của các sigils có sẵn. 
@@ -55,7 +55,7 @@ Chúng ta có thể thấy kí tự thường `~c` sẽ nội suy phần tính t
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -68,7 +68,7 @@ Chúng ta có thể thấy trong ví dụ đầu tiên kiểm tra về mặt đ�
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true
