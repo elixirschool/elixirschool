@@ -252,4 +252,4 @@ end
 
 আবারো বলা হচ্ছে- ইউজ ম্যাক্রো শুধুমাত্র ওই মডিউলের `__using__/1` কল করে। ভালভাবে বুঝতে হলে পড়ে নিন `__using__/1` এর ডকুমেন্টেশান। 
 
-**Note**: `quote`, `alias`, `use`, `require` are a macro used when we work with [metaprogramming](../../advanced/metaprogramming).
+**নোট**: `quote`, `alias`, `use`, `require` হল ম্যাক্রো যা [মেটাপ্রোগ্রামিংয়ের](../../advanced/metaprogramming) সময়ে ব্যবহৃত হয়।
