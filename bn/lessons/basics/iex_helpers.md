@@ -1,6 +1,6 @@
 ---
 layout: page
-title: IEx Helpers (TODO)
+title: IEx হেল্পার 
 category: basics
 order: 16
 lang: bn
@@ -8,17 +8,13 @@ lang: bn
 
 {% include toc.html %}
 
-## Overview
+## সূচনা 
 
-As you begin to work in Elixir, IEx is your best friend.
-It is a REPL, but it has many advanced features that can make life easier when exploring new code or developing your own work as you go.
-There are a slew of built-in helpers that we will go over in this lesson.
+এলিক্সিরে কাজ করার সময়ে `IEx` আপনার সবচেয়ে গুরুত্বপূর্ণ সঙ্গী। এটি একটি `REPL (Read Evaluate Print Loop)` তবে এর অনেক বীল্ট-ইন সুবিধা রয়েছে যা আপনার এলিক্সির একপেরিয়েন্সকে সম্রিদ্ধ করবে। IEx এর  কিছু প্রয়োজনীয় বীল্ট-ইন হেল্পারের বর্ণনা এই অধ্যায়ে আমরা দিব। 
 
-### Autocomplete
+### অটোকমপ্লিট 
 
-When working in the shell, you often might find yourself using a new module that you are unfamiliar with.
-To understand some of what is available to you, the autocomplete functionality is wonderful.
-Simply type a module name followed by `.` then press `Tab`:
+শেলে কাজ করার সময়ে আমরা প্রায়েই নতুন একটি মডিউলের সম্মুখীন হতে পারি যার সম্পর্কে আমাদের ধারণা নেই অথবা কম। আমরা একটি মডিউলের নামের শেষে একটি ডট (`.`) এবং তারপর ট্যাব প্রেস করে লিস্ট পেতে পারি সেই মডিউলের সদস্যের (ফাংশন, ম্যাক্রো ইত্যাদি)। 
 
 ```elixir
 iex> Map. # press Tab
@@ -34,15 +30,11 @@ split/2              take/2               to_list/1
 update!/3            update/4             values/1
 ```
 
-And now we know the functions we have and their arity!
-
 ### `.iex.exs`
 
-Every time IEx starts it will look for a .iex.exs configuration file. If it's not present in the current directory, then the user's home directory (~/.iex.exs) will be used as the fallback.
+প্রতিবার IEx শুরু হওয়ার সময়ে `.iex.exs` কনফিগারেশান ফাইলটি খুঁজে নেয় কি কি লোড করতে হবে তার জন্য। যদি কারেন্ট ডিরেক্টরিতে তা না থাকে, তাহলে তা খুঁজবে ইউজারের হোম ডিরেক্টরিতে (`~/.iex.exs`) 
 
-Configuration options and code defined within this file will be available to us when the IEx shell starts up. For instance if we want some helper functions available to us in IEx, we can open up .iex.exs and make some changes.
-
-Let's start by adding a module with a few helper methods:
+কনফিগারেশান অপশন ও কোড যা এই ফাইলে ডিফাইন করা হবে তা আমাদের `IEx` সেশানে পাওয়া যাবে সেশান শুরু করা মাত্রই। যেমন আমরা যদি নীচের মত করে কিছু ফাংশন বর্ণনা করি `.iex.exs` ফাইলে, তাহলে আমরা যতবার `IEx` খুলব, ততবার এই ফাংশনগুলিকে সরাসরি পাব। 
 
 ```elixir
 defmodule IExHelpers do
@@ -54,7 +46,7 @@ defmodule IExHelpers do
 end
 ```
 
-Now when we run IEx we'll have the IExHelpers module available to us from the start. Open up IEx and let's try out our new helpers:
+এখন থেকে `IEx` সেশানে `IExHelpers` মডিউল আমাদের কাছে থাকবে ব্যবহারের জন্য। তাহলে `IEx` এর একটি সেশান খুলে দেখা যাক- 
 
 ```elixir
 $ iex
@@ -68,13 +60,12 @@ iex> IExHelpers.whats_this?(%{})
 iex> IExHelpers.whats_this?(:test)
 "Type: Atom"
 ```
-As we can see we don't need to do anything special to require or import our helpers, IEx handles that for us.
+
+দেখতেই পাচ্ছি যে আমাদের আলাদাভাবে `IExHelpers` কে `require` অথবা `import` করা লাগেনি। সরাসরিই পেয়ে গিয়েছি। 
 
 ### `h`
 
-`h` is one of the most useful tools our Elixir shell gives us.
-Due to the language's fantastic first class support for documentation, the docs for any code can be reached using this helper.
-To see it in action is simple:
+`h` সম্ভবত সবচেয়ে গুরুতপূর্ন হেল্পারগুলোর মধ্যে একটি। এলিক্সির ডকুমেন্টেশানের জন্য ল্যাঙ্গুয়েজ প্রদত্ত সুবিধা দিয়ে থাকে যার ফলে যে কোন কোডের ডকুমেন্টেশান আমরা এই কমান্ড দিয়ে পেতে পারি। 
 
 ```elixir
 iex> h Enum
@@ -104,8 +95,9 @@ functions, as they can potentially run forever. For example:
 ┃ Enum.each Stream.cycle([1, 2, 3]), &IO.puts(&1)
 ```
 
-And now we can even combine this with the autocomplete features of our shell.
-Imagine we were exploring Map for the first time:
+এখন এই কমান্ড ও পূর্ববর্ণীত অটোকমপ্লিট কমান্ড একত্রিত করে আমরা যে কোন মডিউলের সাথে সহজেই পরিচিত হতে পারি। 
+
+মনে করুন আমরা জীবনে প্রথমবারের মত ম্যাপ `Map` দেখেছি। একটু এক্সপ্লোর করা যাক একে- 
 
 ```elixir
 iex> h Map
@@ -147,11 +139,11 @@ Examples
 ┃ %{a: 3, b: 2, d: 4}
 ```
 
-As we can see we were not only able to find what functions were available as part of the module but we were able to access individual function docs, many of which include example usage.
+দেখাই যাচ্ছে যে আমরা শুধুমাত্র মডিউলের ফাংশন না, বরং প্রতিটি ফাংশনের ডকুমেন্টেশান (উদাহরণসহ) দেখতে পাচ্ছি `h` এর মাধ্যমে। 
 
 ### `i`
 
-Let's put some of our new found knowledge to use by employing `h` to learn a bit more about the `i` helper:
+আমাদের সদ্য পরিচিত হওয়া `h` এর ব্যবহার করা যাক এবং এর মাধ্যমে  `i` সম্পর্কে পরিচিত হওয়া যাক- 
 
 ```elixir
 iex> h i
@@ -184,22 +176,22 @@ Reference modules
   Module, Atom
 ```
 
-Now we have a bunch of information about Map including where its source is stored and the modules it references.  This is quite useful when exploring custom, foreign data types, and new functions.
+এখন আমাদের হাতে রয়েছে আরও কিছু তথ্য ম্যাপ সম্পর্কে, যেমন এর সোর্স কোডের লোকেশান এবং এর রেফারেন্সকৃত মডিউলসমূহ। এটি অনেক কাজে আসে যখন আমরা কাস্টম অথবা বহিরাগত ডেটা টাইপ অথবা নতুন ফাংশন নিয়ে কাজ করি তখন। 
 
-The individual headings can be dense, but at a high level we can gather some relevant information:
+নীচে কিছু তথ্য দেয়া হল যা আমরা পেতে পারি `i` এর মাধ্যমে- 
 
-- Its an atom data type
-- Where the source code is
-- The version, and compile options
-- A general description
-- How to access it
-- What other modules it references
+- এর অ্যাটম ডেটা টাইপ
+- সোর্স কোড এর অবস্থান 
+- ভার্সন ও কম্পাইল অপশান 
+- সাধারণ বর্ণনা 
+- কিভাবে অ্যাক্সেস করা যায় 
+- আর কি কি মডিউলকে এটি রেফার করে 
 
-This gives us a lot to work with and is better than going in blind.
+না জেনে কাজ করা থেকে অনেক সুবিধা পাব আমরা যদি আমরা এই হেল্পারটি থেকে আমাদের ফাংশন অথবা মডিউল ঘাটতে পারি। 
 
 ### `r`
 
-If we want to recompile a particular module we can use the `r` helper.  Let's say we've changed some code and want to run a new function we've added. To do that we need to save our changes and recompile with r:
+`IEx` সেশান খোলা অবস্থায় আমরা যদি কোন মডিউলকে পুনঃকম্পাইল করতে চাই তাহলে এই হেল্পারের আশ্রয় নিব। ধরুন আমরা `IEx` আওতাধীন কোন মডিউলের কিছু কোড চেঞ্জ করেছি (ফাংশন অ্যাড করেছি) এবং এই নতুন ফাংশন রান করতে চাই ওই `IEx` এ। তাহলে আমরা এডিটরে চেঞ্জ ও সেভ করে অতঃপর খোলা `IEx` সেশানে গিয়ে লিখব- 
 
 ```elixir
 iex> r MyProject
@@ -211,7 +203,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 
 ### `s`
 
-With `s` we can retrieve the type spec information for a  module or function, we can use this to know it expects:
+`s` দিয়ে আমরা কোন মডিউল অথবা ফাংশনের টাইপ স্পেক সংক্রান্ত তথ্য জানতে পারি। জানতে পারি তারা কি ধরণের ইনপুট আশা করে। 
 
 ```elixir
 iex> s Map.merge/2
@@ -228,7 +220,7 @@ iex> s Map
 
 ### `t`
 
-The `t` helper tells us about Types available in a given module:
+`t` হেল্পারের মাধ্যমে আমরা একটি মডিউলের টাইপ সম্পর্কে জানতে পারি। 
 
 ```elixir
 iex> t Map
@@ -236,8 +228,9 @@ iex> t Map
 @type value() :: any()
 ```
 
-And now we know that Map defines key and value types in its implementation.
-If we go and look at the source of `Map`:
+আমরা জানলাম যে ম্যাপ (`Map`) "কী"ও "ভ্যালু" টাইপকে ডিফাইন করে থাকে। 
+
+আর যদি আমরা ম্যাপ এর সোর্স কোড দেখি- 
 
 ```elixir
 defmodule Map do
@@ -247,6 +240,6 @@ defmodule Map do
 # ...
 ```
 
-This is a simple example, stating that keys and values per the implementation can be any type, but it is useful to know.
+এটি একটি সহজ উদাহরণ যা দেখায় যে প্রতি ইম্লিমেন্টেশানের কী ও ভ্যালু যে কোন টাইপের হতে পারে।
 
-By leveraging all these built-in niceties we can easily explore the code and learn more about how things work. IEx is a very powerful and robust tool that empowers developers. With these tools in our toolbox, exploring, and building can be even more fun!
+উপরিউক্ত সকল বীল্ট-ইন ফিচারের মাধ্যমে আমরা সহজেই আমাদের কোড সম্পর্কে জানতে পারব এবং আরও ভালভাবে জানতে পারব যে এলিক্সির কিভাবে কাজ করে। `IEx` অত্যন্ত শক্তিশালী একটি টুল যার দ্বারা প্রোগ্রামাররা সক্ষম হয় অনেক কিছু সরাসরি দেখে নিতে কোন এডিটর না খুলেই। এর মাধ্যমে আমরা এলিক্সির কোডকে আরও সহজে এক্সপ্লোর করতে ও শিখতে পারি। 
