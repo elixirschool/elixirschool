@@ -1,45 +1,45 @@
 ---
 layout: page
-title: Sigils (TODO)
+title: সিজিল 
 category: basics
 order: 10
 lang: bn
 ---
 
-Working with and creating sigils.
+এই অধ্যায়ে আমরা সিজিল দিয়ে কাজ করা ও সিজিল তৈরি করা নিয়ে আলোচনা করব। 
 
 {% include toc.html %}
 
 ## Sigils Overview
 
-Elixir provides an alternative syntax for representing and working with literals. A sigil will start with a tilde `~` followed by a character. The Elixir core provides us with some built in sigils however, it is possible to create our own when we need to extend the language.
+লিটেরাল দিয়ে কাজ করার একটি ভিন্ন ধরনের পন্থা এলিক্সির দিয়ে থাকে, তা হল সিজিল। সিজিল শুরু হয় টিল্ডা ~ অপারেটর দিয়ে যার পরে একটি ক্যারেক্টার আসে। এলিক্সির নিজে কিছু বীল্ট-ইন সিজিল দেয়, তবে আমরা নিজেরাও সিজিল দরকারমত তৈরী করে নিতে পারি। সিজিল এলিক্সির ল্যাঙ্গুয়েজকে কাস্টমাইজ ও বর্ধিত করার অন্যতম একটি পন্থা।
 
-A list of available sigils include:
+বীল্ট-ইন সিজিলের একটি লিস্ট নীচে দেয়া হয়েছে- 
 
-  - `~C` Generates a character list **with no** escaping or interpolation
-  - `~c` Generates a character list **with** escaping and interpolation
-  - `~R` Generates a regular expression **with no** escaping or interpolation
-  - `~r` Generates a regular expression **with** escaping and interpolation
-  - `~S` Generates a string **with no** escaping or interpolation
-  - `~s` Generates a string **with** escaping and interpolation
-  - `~W` Generates a word list **with no** escaping or interpolation
-  - `~w` Generates a word list **with** escaping and interpolation
-  - `~N` Generates a `NaiveDateTime` struct
+  - `~C` এস্কেপ অথবা ইন্টারপোলেশান **ছাড়া** ক্যারেক্টার লিস্ট জেনারেট করে
+  - `~c` এস্কেপ অথবা ইন্টারপোলেশান **সহ** ক্যারেক্টার লিস্টজেনারেট করে
+  - `~R` এস্কেপ অথবা ইন্টারপোলেশান **ছাড়া** রেগুলার এক্সপ্রেশান জেনারেট করে
+  - `~r` এস্কেপ অথবা ইন্টারপোলেশান **সহ** রেগুলার এক্সপ্রেশান জেনারেট করে
+  - `~S` এস্কেপ অথবা ইন্টারপোলেশান **ছাড়া** স্ট্রিং জেনারেট করে
+  - `~s` এস্কেপ অথবা ইন্টারপোলেশান **সহ** স্ট্রিং জেনারেট করে
+  - `~W` এস্কেপ অথবা ইন্টারপোলেশান **ছাড়া** ওয়ার্ড লিস্ট জেনারেট করে
+  - `~w` এস্কেপ অথবা ইন্টারপোলেশান **সহ** ওয়ার্ড লিস্ট জেনারেট করে
+  - `~N` নাইভ ডেট টাইম `NaiveDateTime` স্ট্রাক্ট জেনারেট করে
 
-A list of delimiters include:
+আর ডেলিমিটারের লিস্ট হল- 
 
-  - `<...>` A pair of pointy brackets
-  - `{...}` A pair of curly brackets
-  - `[...]` A pair of square brackets
-  - `(...)` A pair of parenthesis
-  - `|...|` A pair of pipes
-  - `/.../` A pair of forward slashes
-  - `"..."` A pair of double quotes
-  - `'...'` A pair of single quotes
+  - `<...>` এক জোড়া পয়েন্টী ব্র্যাকেট
+  - `{...}` এক জোড়া কার্লী ব্র্যাকেট
+  - `[...]` এক জোড়া স্কোয়ার ব্র্যাকেট
+  - `(...)` এক জোড়া প্যারেনথেসিস
+  - `|...|` এক জোড়া পাইপ
+  - `/.../` এক জোড়া ফরওয়ার্ড স্ল্যাশ
+  - `"..."` এক জোড়া ডাবল কোট
+  - `'...'` এক জোড়া সিংগল কোট
 
-### Char List
+### কার লিস্ট 
 
-The `~c` and `~C` sigils generate character lists respectively. For example:
+`~c` আর `~C` ক্যারেক্টার লিস্ট সৃষ্টি করে যেমন-
 
 ```elixir
 iex> ~c/2 + 7 = #{2 + 7}/
@@ -49,11 +49,11 @@ iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = \#{2 + 7}'
 ```
 
-We can see the lowercased `~c` interpolates the calculation, whereas the uppercased `~C` sigil does not. We will see that this uppercase / lowercase sequence is a common theme throughout the built in sigils.
+লক্ষ্য করুন `~c` ক্যাল্কুলেশান করে থাকে কিন্তু  `~C` তা করে না। পরবর্তীতে আমরা দেখব যে আপার কেইস ও লোয়ার কেইস প্রায়েই ব্যবহৃত হয় বীল্ট-ইন সিজিলে।
 
-### Regular Expressions
+### রেগুলার এক্সপ্রেশান 
 
-The `~r` and `~R` sigils are used to represent Regular Expressions. We create them either on the fly or for use within the `Regex` functions. For example:
+`~r` ও `~R` সিজিল দিয়ে রেগুলার এক্সপ্রেশান সৃষ্টি করা হয়।  আমরা হয় সরাসরি অথবা  `Regex` ফাংশনে তা ব্যবহার করি-
 
 ```elixir
 iex> re = ~r/elixir/
@@ -66,7 +66,7 @@ iex> "elixir" =~ re
 true
 ```
 
-We can see that in the first test for equality, that `Elixir` does not match with the regular expression. This is because it is capitalized. Because Elixir supports Perl Compatible Regular Expressions (PCRE), we can append `i` to the end of our sigil to turn off case sensitivity.
+দেখা যাচ্ছে যে প্রথমে আমরা সমতা টেস্ট করছি, অর্থাৎ এলিক্সির রেগুলার এক্সপ্রেশানেরসাথে ম্যাচ করছে না। এর কারণ এটি ক্যাপিটালাইজড। আর যেহেতু এলিক্সির পার্ল কম্প্যাটিবল রেগুলার এক্সপ্রেশান (PCRE) সাপোর্ট করে, আমরা সিজিলের শেষে `i` অ্যাড করে সিজিলকে জানিয়ে দিতে পারি যে কেইস সেনসিটিভ হওয়ার দরকার নেই। 
 
 ```elixir
 iex> re = ~r/elixir/i
@@ -79,7 +79,9 @@ iex> "elixir" =~ re
 true
 ```
 
-Further, Elixir provides the [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API which is built on top of Erlang's regular expression library. Let's implement `Regex.split/2` using a regex sigil:
+আবার এলিক্সির [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) এপিআই দিয়ে থাকে যা এরল্যাঙ্গের রেগুলার এক্সপ্রেশান লাইব্রেরীর উপর তৈরি। 
+
+চলুন `Regex.split/2` কে রেজেক্স সিজিল দিয়ে বানাই- 
 
 ```elixir
 iex> string = "100_000_000"
@@ -89,11 +91,11 @@ iex> Regex.split(~r/_/, string)
 ["100", "000", "000"]
 ```
 
-As we can see, the string `"100_000_000"` is split on the underscore thanks to our `~r/_/` sigil. The `Regex.split` function returns a list.
+`"100_000_000"` কে আন্ডারস্কোরের মাধ্যমে স্প্লিট করা হয়েছে  `~r/_/` সিজিলের সাহায্যে। `Regex.split` ফাংশন লিস্ট প্রদান করে থাকে।
 
-### String
+### স্ট্রিং 
 
-The `~s` and `~S` sigils are used to generate string data. For example:
+স্ট্রিং ডাটা আপনি পাবেন সিজিল `~s` ও `~S` এর মাধ্যমে- 
 
 ```elixir
 iex> ~s/the cat in the hat on the mat/
@@ -103,7 +105,7 @@ iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
 
-What is the difference? The difference is similar to the Character List sigil that we looked at. The answer is interpolation and the use of escape sequences. If we take another example:
+পার্থক্য হল এস্কেপ সিকুয়েন্সে। নীচের দুটি উদাহরণ দেখা যাক- 
 
 ```elixir
 iex> ~s/welcome to elixir #{String.downcase "school"}/
@@ -113,9 +115,9 @@ iex> ~S/welcome to elixir #{String.downcase "school"}/
 "welcome to elixir \#{String.downcase \"school\"}"
 ```
 
-### Word List
+### ওয়ার্ড লিস্ট 
 
-The word list sigil can come in handy time to time. It can save both time, keystrokes and arguably reduce the complexity within the codebase. Take this simple example:
+ওয়ার্ড লিস্ট অনেক ক্ষেত্রে ব্যবহৃত হয় যা সময় ও কী-স্টোক দুটোই বাচায় এবং আমাদের কোডবেইসের জটিলতা অনেকাংশে লাঘব করে- 
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -125,7 +127,7 @@ iex> ~W/i love elixir school/
 ["i", "love", "elixir", "school"]
 ```
 
-We can see that what is typed between the delimiters is separated by whitespace into a list. However, there is no difference between these two examples. Again, the difference comes with the interpolation and escape sequences. Take the following example:
+ডেলিমিটারের ভেতর স্পেইস নির্ণয় করে লিস্ট বিভাজন। উপরের উদাহরণ দুটিতে কোন পার্থক্য না থাকলেও এক্সেপ সিকুয়েন্স ও ইন্টারপলেশন ভেদে পার্থক্য হবে যেমন- 
 
 ```elixir
 iex> ~w/i love #{'e'}lixir school/
@@ -135,19 +137,19 @@ iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
 ```
 
-### NaiveDateTime
+### নাইভ ডেট টাইম 
 
-A [NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) can be useful for quickly creating a struct to represent a `DateTime` **without** a timezone.
+[নাইভ ডেট টাইম](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) দিয়ে আমরা তাড়াতাড়ি স্ট্রাক্ট তৈরি করতে পারি যা ডেট টাইম কে রিপ্রেজেন্ট করে টাইমজোন ছাড়া। 
 
-For the most part, we should avoid creating a `NaiveDateTime` struct directly. However, it is very useful for pattern matching. For example:
+বেশীরভাগ ক্ষেত্রেই আমরা সরাসরি `NaiveDateTime` স্ট্রাক্ট ব্যবহার করব কিন্তু প্যাটার্ন ম্যাচিং করার সময়ে সিজিল অনেক কাজে আসে- 
 
 ```elixir
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
 ```
 
-## Creating Sigils
+## নিজস্ব সিজিল তৈরি
 
-One of the goals of Elixir is to be an extendable programming language. It should come as no surprise then that you can easily create your own custom sigils. In this example, we will create a sigil to convert a string to uppercase. As there is already a function for this in the Elixir Core (`String.upcase/1`), we will wrap our sigil around that function.
+এলিক্সিরের অন্যতম উদ্দেশ্য হল অত্যন্ত এক্সটেনসিবল অর্থাৎ বর্ধনশীল ল্যাঙ্গুয়েজ হিসেবে ব্যবহৃত হওয়া। কাজেই অবাক হবার কিছুই নেই যে আমরা নিজেরাই কাস্টম সিজিল ব্যবহার করতে পারি। এই উদাহরণে আমরা কাস্টম সিজিল ব্যবহার করব যা একটি স্ট্রিংকে আপার কেইসে পরিণত করবে। যেহেতু এলিক্সিএরর স্ট্রিং মডিউলে একটি ফাংশন (`String.upcase/1`) রয়েছে এ কাজের জন্য তাই আমরা সেটিই ব্যবহার করব। 
 
 ```elixir
 
@@ -162,4 +164,5 @@ iex> ~u/elixir school/
 ELIXIR SCHOOL
 ```
 
-First we define a module called `MySigils` and within that module, we created a function called `sigil_u`. As there is no existing `~u` sigil in the existing sigil space, we will use it. The `_u` indicates that we wish use `u` as the character after the tilde. The function definition must take two arguments, an input and a list.
+প্রথমে আমরা `MySigils` নামক একটি মডিউল সৃষ্টি করে এর ভেতর `sigil_u` নামে একটি ফাংশন বানিয়েছি। যেহেতু `~u` সিজিলের কোন অস্তিত্ব নেই তাই সেটিকে আমরা আমাদের উদ্দেশ্যে ব্যবহার করলাম। `_u` দিয়ে বুঝানো হয়েছে যে টিল্ডার (~) পর ব্যবহৃত ক্যারেক্টার হবে `u`। শর্ত হল যে ফাংশন ২ টি আর্গুমেন্ট নিবে, একটি হল ইনপুট আর শেষেরটি হল লিস্ট। 
+
