@@ -60,9 +60,9 @@ end
 
 উল্লেখ্য এলিক্সির এর কিছু রিজার্ভড আট্রিবিউট রয়েছে। এর মধ্যে তিনটি কমন আট্রিবিউট হল- 
 
-+ `moduledoc` — Documents the current module.
-+ `doc` — Documentation for functions and macros.
-+ `behaviour` — Use an OTP or user-defined behaviour.
++ `moduledoc` — মডিউলকে ডকুমেন্ট করে
++ `doc` — ফাংশন ও ম্যাক্রো ডকুমেন্টেশানের জন্য ব্যবহৃত
++ `behaviour` — OTP অথবা ইউজার ডিফাইন্ড বিহেভিয়ার তৈরি করতে সাহায্য করে
 
 ## স্ট্রাক্ট 
 
