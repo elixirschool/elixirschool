@@ -1,20 +1,20 @@
 ---
 layout: page
-title: Modules (TODO)
+title: মডিউল 
 category: basics
 order: 8
 lang: bn
 ---
 
-We know from experience it's unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
+অভিজ্ঞতা থেকে আমরা জানি যে এক ফাইল ও স্কোপে সমস্ত ফাংশন রাখা ঠিক না। এই অধ্যায়ে আমরা আলোচনা করব কিভাবে কিছু ফাংশনকে একত্রিত করা যায় এবং এরপর একটি বিশেষ ম্যাপ, স্ট্রাক্ট নিয়ে কথা বলব যা আমাদের কোড সংগঠনকে আরও সুগঠিত রাখতে সাহায্য করবে। 
 
 {% include toc.html %}
 
-## Modules
+## মডিউল 
 
-Modules are the best way to organize functions into a namespace.  In addition to grouping functions, they allow us to define named and private functions which we covered in the previous lesson.
+মডিউল হল সর্বোত্তম উপায় আমাদের ফাংশনকে নেইমস্পেসে সুগঠিত করে রাখার। ফাংশন গ্রুপিং ছাড়াও তারা "নামসহ" এবং প্রাইভেট ফাংশন বানাতে দেয় যা আমরা পূর্ববর্তী অধ্যায়ে শিখেছি। 
 
-Let's look at a basic example:
+একটি বেসিক উদাহরণ দেখা যাক- 
 
 ``` elixir
 defmodule Example do
@@ -27,7 +27,7 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
-It is possible to nest modules in Elixir, allowing you to further namespace your functionality:
+এলিক্সিরে মডিউল নেস্টিং করা সম্ভব- 
 
 ```elixir
 defmodule Example.Greetings do
@@ -44,9 +44,9 @@ iex> Example.Greetings.morning "Sean"
 "Good morning Sean."
 ```
 
-### Module Attributes
+### মডিউল আট্রিবিউট 
 
-Module attributes are most commonly used as constants in Elixir.  Let's look at a simple example:
+মডিউল আট্রিবিউট এলিক্সিরের সবচেয়ে বেশী ব্যবহৃত কনস্ট্যান্ট। একটি উদাহরণ দেখা যাক-
 
 ```elixir
 defmodule Example do
@@ -58,17 +58,17 @@ defmodule Example do
 end
 ```
 
-It is important to note there are reserved attributes in Elixir.  The three most common are:
+উল্লেখ্য এলিক্সির এর কিছু রিজার্ভড আট্রিবিউট রয়েছে। এর মধ্যে তিনটি কমন আট্রিবিউট হল- 
 
 + `moduledoc` — Documents the current module.
 + `doc` — Documentation for functions and macros.
 + `behaviour` — Use an OTP or user-defined behaviour.
 
-## Structs
+## স্ট্রাক্ট 
 
-Structs are special maps with a defined set of keys and default values.  A struct must be defined within a module, which it takes its name from.  It is common for a struct to be the only thing defined within a module.
+স্ট্রাক্ট হচ্ছে বিশেষ এক প্রকার ম্যাপ যার রয়েছে পূর্ববর্ণীত কী এবং ডিফল্ট ভ্যালু। একটি স্ট্রাক্ট অবশ্যই ব্যবহৃত হয় মডিউলের ভেতর এবং ওই মডিউলের নামই হয়ে থাকে স্ট্রাক্টের নাম। অনেক ক্ষেত্রেই দেখা পাওয়া যায় এমন মডিউলের যার কেবল মাত্র একটি মাত্র সদস্যই রয়েছে যা হল এর স্ট্রাক্ট। 
 
-To define a struct we use `defstruct` along with a keyword list of fields and default values:
+`defstruct` দিয়ে আমরা স্ট্রাক্ট ডিফাইন করে থাকি, সাথে বলে দেই এর ফিল্ড সমূহ (কী-ওয়ার্ড লিস্টের মাধ্যমে) এবং ডিফল্ট ভ্যালুসমূহ- 
 
 ```elixir
 defmodule Example.User do
@@ -76,7 +76,7 @@ defmodule Example.User do
 end
 ```
 
-Let's create some structs:
+এবার কিছু স্ট্রাক্ট তৈরি করা যাক- 
 
 ```elixir
 iex> %Example.User{}
@@ -88,8 +88,7 @@ iex> %Example.User{name: "Steve"}
 iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
 %Example.User{name: "Steve", roles: [:admin, :owner]}
 ```
-
-We can update our struct just like we would a map:
+স্ট্রাক্টকে আমরা ঠিক ম্যাপের মতই আপডেট করতে পারি- 
 
 ```elixir
 iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
@@ -98,20 +97,20 @@ iex> sean = %{steve | name: "Sean"}
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-Most importantly, you can match structs against maps:
+স্ট্রাক্টকে আপনি ম্যাপের সাথে ম্যাচ করাতে পারেন-
 
 ```elixir
 iex> %{name: "Sean"} = sean
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-## Composition
+## কম্পোজিশান 
 
-Now that we know how to create modules and structs let's learn how to add existing functionality to them via composition.  Elixir provides us with a variety of different ways to interact with other modules.
+আমরা স্ট্রাক্ট ও মডিউল তৈরি করতে পারি। এবার আমরা দেখব কিভাবে কম্পোজিশানের মাধ্যমে আমরা বিদ্যমান ফাংশনালিটি যোগ করতে পারি। এলিক্সিরে তা বেশ কয়েকভাবে করা যায়- 
 
 ### `alias`
 
-Allows us to alias module names; used quite frequently in Elixir code:
+`alias` দিয়ে আমরা মডিউল নাম আলিয়াসিং করতে পারি। যা এলিক্সিরে অনেক ব্যবহৃত হয়। 
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -124,14 +123,14 @@ defmodule Example do
   def greeting(name), do: Greetings.basic(name)
 end
 
-# Without alias
+# অ্যালিয়াস ছাড়া 
 
 defmodule Example do
   def greeting(name), do: Sayings.Greetings.basic(name)
 end
 ```
 
-If there's a conflict between two aliases or we just wish to alias to a different name entirely, we can use the `:as` option:
+যদি দুটি অ্যালিয়াস একই নামের হয় অথবা আমরা কোন অ্যালিয়াসকে ভিন্ন নাম দিতে চাই তাহলে আমরা `:as` অপশন ব্যবহার করব। 
 
 ```elixir
 defmodule Example do
@@ -141,7 +140,7 @@ defmodule Example do
 end
 ```
 
-It's even possible to alias multiple modules at once:
+একাধিক মডিউলকে একসাথে অ্যালিয়াস করা যায় যেমন-  
 
 ```elixir
 defmodule Example do
@@ -151,7 +150,7 @@ end
 
 ### `import`
 
-If we want to import functions and macros rather than aliasing the module we can use `import/`:
+অ্যালিয়াস না করে যদি আমরা সরাসরি ফাংশন ও ম্যাক্রো ইম্পোর্ট করতে চাই তাহলে `import/1` ব্যবহার করব। 
 
 ```elixir
 iex> last([1, 2, 3])
@@ -162,11 +161,11 @@ iex> last([1, 2, 3])
 3
 ```
 
-#### Filtering
+#### ফিল্টারিং 
 
-By default all functions and macros are imported but we can filter them using the `:only` and `:except` options.
+ইম্পোর্ট করলে সমস্ত ফাংশন ও ম্যাক্রো চলে আসে, কিন্তু আমরা `:only` ও `:except` এর মাধ্যমে ইম্পোর্টকৃত ফাংশন অথবা ম্যাক্রোর উপর ফিল্টার করতে পারি- 
 
-To import specific functions and macros, we must provide the name/arity pairs to `:only` and `:except`.  Let's start by importing only the `last/1` function:
+বিশেষ কিছু ফাংশন ও ম্যাক্রো ইম্পোর্ট করতে হলে তাদের নাম/অ্যারিটি যুগলকে `:only` ও `:except` কে জানিয়ে দিতে হবে। নীচে একটি উদাহরণ দেখান হয়েছে যেখানে শুধু `last/1` কে ইম্পোর্ট করা হয়েছে-
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -176,7 +175,7 @@ iex> last([1, 2, 3])
 3
 ```
 
-If we import everything except `last/1` and try the same functions as before:
+আর যদি আমরা `last/1` ছাড়া বাকি সব ইম্পোর্ট করতে চাই তাহলে- 
 
 ```elixir
 iex> import List, except: [last: 1]
@@ -187,7 +186,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arity pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
+নাম/অ্যারিটি যুগলকে `:only` ও `:except` কেই শুধু না, `:functions` আর `:macros` কে দিয়ে আমরা ফিল্টার করতে পারি যে শুধু ফাংশনকে নিব নাকি ম্যাক্রোকে-
 
 ```elixir
 import List, only: :functions
@@ -196,7 +195,7 @@ import List, only: :macros
 
 ### `require`
 
-Although used less frequently `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
+কম ব্যবহৃত হলেও `require/2` গুরুত্বপূর্ণ। `require/2` এর মাধ্যমে আমরা নির্দেশ দেই যেন উল্লেখিত মডিউলটি অবশ্যই কম্পাইলড হয়। ম্যাক্রো আনয়নের সময়ে এটি ব্যবহার করা হয়- 
 
 ```elixir
 defmodule Example do
@@ -206,11 +205,11 @@ defmodule Example do
 end
 ```
 
-If we attempt to call a macro that is not yet loaded Elixir will raise an error.
+লোড না করে ম্যাক্রো ব্যবহার করলে এরর পেতে হবে। 
 
 ### `use`
 
-The use macro invokes a special macro, called `__using__/1`, from the specified module. Here’s an example:
+ইউজ ম্যাক্রো একটি বিশেষ ম্যাক্রো `__using__/1` কে কল করে। 
 
 ```elixir
 # lib/use_import_require/use_me.ex
@@ -225,19 +224,19 @@ defmodule UseImportRequire.UseMe do
 end
 ```
 
-and we add this line to UseImportRequire:
+এরপর আমরা এই লাইনকে `UseImportRequire` এ ব্যবহার করতে পারি। 
 
 ```elixir
 use UseImportRequire.UseMe
 ```
 
-Using UseImportRequire.UseMe defines a use_test/0 function through invocation of the `__using__/1` macro.
+`UseImportRequire.UseMe` একটি ফাংশন `use_test/0` কে ডিফাইন করে `__using__/1` ম্যাক্রোর মাধ্যমে। 
 
-This is all that use does. However, it is common for the `__using__` macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that `__using__/1` may set up references to other modules, especially submodules.
+ইউজ এই একটি কাজই করে। `__using__` ম্যাক্রো প্রায়শ ব্যবহৃত হয় অ্যালিয়াস, রিকুয়ার, অথবা ইম্পোর্ট কল করতে। এটি দ্বারা মডিউল কিভাবে, কি কি ফাংশন কিভাবে ব্যবহার করবে তার পলিসি স্থাপন করা যায়। `__using__/1` দিয়ে অন্যান্য মডিউল এমনকি সাব-মডিউলকেও রেফার করা যায়। 
 
-The Phoenix framework makes use of use and `__using__/1` to cut down on the need for repetitive alias and import calls in user defined modules.
+ফিনিক্স ফ্রেমওয়ার্ক `__using__/1` এর ব্যবহার দিয়ে বারংবার অ্যালিয়াস ও ইম্পোর্ট কল করা থেকে প্রোগ্রামারকে বিরত রাখে। 
 
-Here’s an nice and short example from the Ecto.Migration module:
+`Ecto.Migration` মডিউলের একটি ছোট উদাহরণ নীচে দেয়া হয়েছে-
 
 ```elixir
 defmacro __using__(_) do
@@ -249,8 +248,8 @@ defmacro __using__(_) do
 end
 ```
 
-The `Ecto.Migration.__using__/1` macro includes an import call so that when you `use Ecto.Migration` you also `import Ecto.Migration`. It also sets up a module property which we will assume controls Ecto’s behavior.
+`Ecto.Migration.__using__/1` ম্যাক্রো একটি ইম্পোর্ট ব্যবহার করে যার ফলে যখন আমরা `use Ecto.Migration` লিখি তখন আমরাও `import Ecto.Migration` ব্যবহার করে ফেলি।
 
-To recap: the use macro simply invokes the `__using__/1` macro of the specified module. To really understand what that does you need to read the `__using__/1` macro.
+আবারো বলা হচ্ছে- ইউজ ম্যাক্রো শুধুমাত্র ওই মডিউলের `__using__/1` কল করে। ভালভাবে বুঝতে হলে পড়ে নিন `__using__/1` এর ডকুমেন্টেশান। 
 
 **Note**: `quote`, `alias`, `use`, `require` are a macro used when we work with [metaprogramming](../../advanced/metaprogramming).
