@@ -6,7 +6,9 @@
 </h1>
 <div class="version-info {{ version_info_class }}">
     <span>
-      {{ page.version_data.outdated_message }}<br/>
+      {% unless page.version_data.severity == "none" %}
+        {{ page.version_data.outdated_message }}<br/>
+      {% endunless %}
       {{ page.version_data.severity_message }}
     </span>
 </div>
