@@ -1,31 +1,29 @@
 ---
 layout: page
-title: Strings (TODO)
+title: স্ট্রিং 
 category: basics
 order: 14
 lang: bn
 ---
 
-Strings, Char Lists, Graphemes and Codepoints.
+স্ট্রিং, কার লিস্ট, গ্রাফীম ও কোড পয়েন্ট। 
 
 {% include toc.html %}
 
 ## Strings
 
-Elixir strings are nothing but a sequence of bytes. Let's look at an example:
+এলিক্সিরে স্ট্রিং হচ্ছে বাইটের একটি সিকুয়েন্সমাত্র। 
 
 ```elixir
 iex> string = <<104,101,108,108,111>>
 "hello"
 ```
 
->NOTE: Using << >> syntax we are saying to the compiler that the elements inside those symbols are bytes.
+>নোট- << >> সিনট্যাক্সের মাধ্যমে আমরা কম্পাইলারকে বলে দিচ্ছি যে এর ভেতরকার সদস্যরা বাইট। 
 
-## Char Lists
+## কার লিস্ট 
 
-Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters. Elixir also has a char list type (character list). Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
-
-What's the difference? Each value from a char list is the ASCII value from the character. Let's dig in:
+অভ্যন্তরীনভাবে, এলিক্সির স্ট্রিংসমূহ বাইটের সিকুয়েন্স হিসেবে ব্যবহৃত হয়, ক্যারেক্টার অ্যারে হিসেবে নয়। এলিক্সিরের আবার ক্যারেক্টার অ্যারে টাইপ রয়েছে। এলিক্সিরে স্ট্রিংকে ডাবল কোট ও ক্যারেক্টার লিস্টকে সিঙ্গেল কোট দিয়ে প্রকাশ করা হয়। এদের মাঝে পার্থক্য হল যে কার লিস্টে প্রতিটি ভ্যালু ASCII ভ্যালুরূপে চিহ্নিত। 
 
 ```elixir
 iex> char_list = 'hello'
@@ -41,13 +39,13 @@ iex> Enum.reduce(char_list, "", fn char, acc -> acc <> to_string(char) <> "," en
 "104,101,108,108,111,"
 ```
 
-When programming in Elixir, we usually use Strings, not char lists. The char lists support is mainly included because it is required for some Erlang modules.
+এলিক্সিরে প্রোগ্রামিং করার সময়ে আমরা সাধারণত স্ট্রিং ব্যবহার করে থাকই, কার-লিস্ট শুধুমাত্র রয়েছে এরল্যাঙ্গের মডিউল নিয়ে কাজ করার জন্যে। 
 
-## Graphemes and Codepoints
+## গ্রাফীম ও কোড পয়েন্ট 
 
-Codepoints are just simple Unicode characters which are represented by one or more bytes, depending on the UTF-8 encoding. Characters outside of the US ASCII character set will always encode as more than one byte. For example, Latin characters with a tilde or accents (`á, ñ, è`) are typically encoded as two bytes. Characters from Asian languages are often encoded as three or four bytes. Graphemes consist of multiple codepoints that are rendered as a single character.
+কোড পয়েন্ট হল সাধারণ ইউনিকোড ক্যারেক্টার যা এক বা একাধিক বাইট দ্বারা প্রকাশিত (UTF-8 ভেদে)। US ASCII বহির্ভুত ক্যারেক্টাররা সবসময়েই একাধিক বাইট সমন্বিত হয়ে থাকে। যেমন ল্যাটিন ক্যারেক্টার যাদের টিল্ডা অথবা অ্যাক্সেন্ট চিহ্ন (`á, ñ, è`) রয়েছে তারা সাধারণত ২ বাইট, কিছু এশিয়ান ল্যাঙ্গুয়েজ এর সঙ্কেত ৩ অথবা ৪ বাইট হতে পারে। গ্রাফীম হল একাধিক কোড পয়েন্টের সমন্বয় যা একটি ক্যারেক্টার হিসেবে প্রকাশিত।   
 
-The String module already provides two methods to obtain them, `graphemes/1` and `codepoints/1`. Let's look at an example:
+স্ট্রিং মডিউলে এদের সাথে কাজ করার ফাংশন রয়েছে- `graphemes/1` আর `codepoints/1` যার উদাহরণ নীচে দেয়া হয়েছে- 
 
 ```elixir
 iex> string = "\u0061\u0301"
@@ -60,13 +58,13 @@ iex> String.graphemes string
 ["á"]
 ```
 
-## String Functions
+## স্ট্রিং ফাংশন 
 
-Let's review some of the most important and useful functions of the String module. This lesson will only cover a subset of the available functions. To see a complete set of functions visit the official [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) docs.
+চলুন স্ট্রিং মডিউলের সবচেয়ে দরকারি কিছু ফাংশনের সাথে পরিচিত হই। অন্যান্য ফাংশন সম্পর্কে জানতে হলে দেখুন অফিসিয়াল ডকুমেন্টেশান  [`স্ট্রিংয়ের`](http://elixir-lang.org/docs/stable/elixir/String.html)
 
 ### `length/1`
 
-Returns the number of Graphemes in the string.
+স্ট্রিংয়ের গ্রাফীম সংখ্যা রিটার্ন করে 
 
 ```elixir
 iex> String.length "Hello"
@@ -75,7 +73,7 @@ iex> String.length "Hello"
 
 ### `replace/3`
 
-Returns a new string replacing a current pattern in the string with some new replacement string.
+নতুন একটি স্ট্রিং রিটার্ন করে যা একটি স্ট্রিংয়ের প্যাটার্নপ্রাপ্ত অংশকে আরেকটি স্ট্রিং দিয়ে রিপ্লেস করে। 
 
 ```elixir
 iex> String.replace("Hello", "e", "a")
@@ -84,7 +82,7 @@ iex> String.replace("Hello", "e", "a")
 
 ### `duplicate/2`
 
-Returns a new string repeated n times.
+একটি স্ট্রিংকে `n` সংখ্যক বার রিপিট করে 
 
 ```elixir
 iex> String.duplicate("Oh my ", 3)
@@ -93,27 +91,25 @@ iex> String.duplicate("Oh my ", 3)
 
 ### `split/2`
 
-Returns a list of strings split by a pattern.
+প্যাটার্ন অনুযায়ী একটি স্ট্রিংয়ের লিস্ট কে বিভাজিত করে 
 
 ```elixir
 iex> String.split("Hello World", " ")
 ["Hello", "World"]
 ```
 
-## Exercises
+### অ্যানাগ্রাম 
 
-Let's walk through a simple exercises to demonstrate we are ready to go with Strings!
-
-### Anagrams
-
-A and B are considered anagrams if there's a way to rearrange A or B making them equal. For example:
+A ও B পরস্পর অ্যানাগ্রাম হবে যদি এদেরকে পুনঃবিন্যস্ত করে একে অপরের সমান একটি বিন্যাস পাওয়া যায়। যেমন  
 
 + A = super
 + B = perus
 
-If we re-arrange the characters on String A, we can get the string B, and vice versa.
+আমরা যদি স্ট্রিং A কে পুনবিন্যাস করি তবে আমরা B পেতে পারি। উলটা টাও সম্ভব। 
 
-So, how could we check if two strings are Anagrams in Elixir?  The easiest solution is to just sort the graphemes of each string alphabetically and then check if they both lists are equal. Let's try that:
+তাহলে আমরা কি করে একটি প্রোগ্রাম লিখতে পারি যা অ্যানাগ্রাম নির্ণয় করবে? 
+
+সহজতম উপায় হল এদের গ্রাফীমকে বর্ণের ক্রমানুসারে সর্ট করা এবং দেখা যে তারা সমান কিনা। চেষ্টা করা যাক-  
 
 ```elixir
 defmodule Anagram do
@@ -130,11 +126,11 @@ defmodule Anagram do
 end
 ```
 
-Let's first give a watch to `anagrams?/2`. We are checking whether the parameters we are receiving are binaries or not. That's the way we check if a parameter is a String in Elixir.
+`anagrams?/2` একটু দেখি। আমরা প্রথমে চেক করছি যে এর প্যারামিটার বাইনারি কি না। এটি একটি এলিক্সির কোড স্টাইল যা নির্ণয় করে কোন প্যারামিটার স্ট্রিং কি না। 
 
-After it, we are just calling a function that orders the strings in alphabetical order, first doing the string lowercase and then using `String.graphemes`, which returns a list with the Graphemes of the string. Pretty straight, right?
+এরপর আমরা একটি ফাংশন ব্যবহার করছি যা স্ট্রিংগুলিকে বর্ণের ক্রমানুযায়ী সাজায়। প্রথমে এদেরকে ছোট হাতের অক্ষরে পরিণত করে অতঃপর `String.graphemes` দিয়ে গ্রাফীমগুলিকে আলাদা করেছি এবং সবশেষে `Enum.sort` এর মাধ্যমে সর্ট করে নিয়েছি। 
 
-Let's check the output on iex:
+iex এ অউটপুট দেখে নেই- 
 
 ```elixir
 iex> Anagram.anagrams?("Hello", "ohell")
@@ -148,4 +144,4 @@ iex> Anagram.anagrams?(3, 5)
     iex:2: Anagram.anagrams?(3, 5)
 ```
 
-As you can see, the last call to `anagrams?` caused a FunctionClauseError. This error is telling us that there is no function in our module that meets the pattern of receiving two non-binary arguments, and that's exactly what we want, to just receive two strings, and nothing more.
+`anagrams?` এর শেষ কলে  `FunctionClauseError` প্রদর্শীত হয়েছে কারণ ফাংশনের বর্ণনার সময়ে কোন প্যাটার্ন পাওয়া যায়নি যা কিনা বাইনারি ব্যতিরেকে কোন প্যারামিটার গ্রহণ করে। আমরা ঠিক তা-ই চেয়েছিলাম। 
