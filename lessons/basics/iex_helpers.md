@@ -186,7 +186,7 @@ Reference modules
 
 Now we have a bunch of information about Map including where its source is stored and the modules it references.  This is quite useful when exploring custom, foreign data types, and new functions.
 
-The individual headings can be dense, but at a high level we can gather some relevent information:
+The individual headings can be dense, but at a high level we can gather some relevant information:
 
 - Its an atom data type
 - Where the source code is
@@ -249,4 +249,4 @@ defmodule Map do
 
 This is a simple example, stating that keys and values per the implementation can be any type, but it is useful to know.
 
-By leveraging all these built-in niceties we can easily explore the code and learn more about how things work. IEx is very powerful and robust tool that empower developers. With these tools in our toolbox, exploring, and building can be even more fun!
+By leveraging all these built-in niceties we can easily explore the code and learn more about how things work. IEx is a very powerful and robust tool that empowers developers. With these tools in our toolbox, exploring, and building can be even more fun!

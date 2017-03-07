@@ -133,15 +133,16 @@ This is a bare minimum Router but the code should be pretty self-explanatory.
 We've included some macros through `use Plug.Router` and then set up two of the built-in Plugs: `:match` and `:dispatch`.
 There are two defined routes, one for handling GET requests to the root and the second for matching all other requests so we can return a 404 message.
 
-Back in `mix.exs`, we need to tell Elixir about our router.
+Back in `lib/example.ex`, we need to add `Example.Router` into the web server supervisor tree.
 Swap out the `Example.HelloWorldPlug` plug with the new router:
 
 ```elixir
-def application do
-  [
-    applications: [:cowboy, :logger, :plug],
-    mod: {Example.Router, []}
-  ]
+def start(_type, _args) do
+    children = [
+      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+    ]
+    Logger.info "Started application"
+    Supervisor.start_link(children, strategy: :one_for_one)
 end
 ```
 

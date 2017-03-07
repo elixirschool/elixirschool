@@ -61,7 +61,7 @@ sections:
       tr: Temeller
       bg: Основи
       de: Grundlagen
-      bn: সাধারণ জ্ঞান
+      bn: ব্যাসিকস
   - tag: advanced
     label:
       en: Advanced
@@ -112,6 +112,7 @@ sections:
     label:
       vi: Thư viện
       en: Libraries
+      pt: Bibliotecas
       jp: ライブラリー
       ru: Библиотеки
       uk: Бібліотеки
@@ -120,6 +121,7 @@ sections:
       ko: 라이브러리
       pl: Biblioteki
       bn: লাইব্রেরিস
+      cn: 程序库
 gems:
   - kramdown
   - jekyll-assets
@@ -173,7 +175,7 @@ toc:
   tr: İçerik
   bg: Съдържание
   de: Inhaltsverzeichnis
-  bn: তালিকা
+  bn: সূচীপত্র
 share:
   en: Share This Page
   ru: Поделиться

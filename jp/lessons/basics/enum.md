@@ -12,9 +12,30 @@ lang: jp
 
 ## Enum
 
-`Enum`モジュールは前回のレッスンで学習したコレクションを取り扱うための、百を越える関数を含んでいます。
+`Enum`モジュールは前回のレッスンで学習したコレクションを取り扱うための、およそ100の関数を含んでいます。
 
-このレッスンは利用可能な関数のうち一部分しか取り上げません。全ての関数を知りたい場合は公式ドキュメントの[`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html)を参照してください。尚、列挙の遅延処理では[`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html)モジュールを利用してください。
+このレッスンは利用可能な関数のうち一部分しか取り上げませんが、実は全ての関数を自分自身で調べることができます。
+IExでちょっとした実験をしてみましょう。
+
+```elixir
+iex
+iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+...>   IO.puts "#{function}/#{arity}"
+...> end)
+all?/1
+all?/2
+any?/1
+any?/2
+at/2
+at/3
+...
+```
+
+これを見れば`Enum`モジュールに大量の機能があるのが明らかで、これには明確な理由があります。
+リストなどの列挙は関数型プログラミングの核で、信じられないほど有用です。
+おまけにリストなどの列挙は、以前見たような言語レベルでサポートされているドキュメントといった、Elixirの他の要素と共に活用することで、信じられないような効果をもたらします。
+
+全ての関数を知りたい場合は公式ドキュメントの[`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html)を参照してください。尚、列挙の遅延処理では[`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html)モジュールを利用してください。
 
 ### all?
 
