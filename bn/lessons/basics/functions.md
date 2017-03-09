@@ -1,20 +1,20 @@
 ---
 layout: page
-title: Functions (TODO)
+title: ফাংশন 
 category: basics
 order: 6
 lang: bn
 ---
 
-In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
+এলিক্সির এবং অন্যান্য ফাংশনাল ল্যাঙ্গুয়েজে ফাংশন হল প্রথম শ্রেণীর নাগরিক। এই অধ্যায়ে আমরা এলিক্সিরের বিভিন্ন ধরণের ফাংশন নিয়ে কথা বলব এবং আলোচনা করব এদের পার্থক্য ও ব্যবহার নিয়ে। 
 
 {% include toc.html %}
 
-## Anonymous Functions
+## নামহীন ফাংশন (Anonymous Function)
 
-Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, these are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
+নাম থেকেই বুঝা যাচ্ছে যে নামহীন ফাংশনের কোন নাম নেই। যেমনটি আমরা দেখেছিলাম `Enum` অধ্যায়ে, এরা প্রায়েই ব্যবহৃত হয় অন্যান্য ফাংশনে। এলিক্সিরে এই ধরনের নামহীন ফাংশন বানাতে হলে আমাদের দুইটি কী-ওয়ার্ড লাগবে- `fn` ও `end`। এদের মাধ্যমে আমরা যে কোন প্যারামিটার লিস্ট ও ফাংশন বডিকে ডিফাইন করতে পারি তাদের `->` দিয়ে আলাদা করে। 
 
-Let's look at a basic example:
+একটি সাধারণ উদাহরণ দেখা যাক- 
 
 ```elixirre
 iex> sum = fn (a, b) -> a + b end
@@ -22,9 +22,9 @@ iex> sum.(2, 3)
 5
 ```
 
-### The & Shorthand
+### `&` শর্ট-হ্যান্ড  
 
-Using anonymous functions is such a common practice in Elixir there is shorthand for doing so:
+নামহীন ফাংশন এতটাই ব্যবহৃত হয় যে এলিক্সির একটি শর্টকাট দিয়ে থাকে তাদের তৈরি করার জন্য- 
 
 ```elixir
 iex> sum = &(&1 + &2)
@@ -32,13 +32,13 @@ iex> sum.(2, 3)
 5
 ```
 
-As you probably already guessed, in the shorthand version our parameters are available to us as `&1`, `&2`, `&3`, and so on.
+দেখেই বুঝা যাচ্ছে যে প্যারামিটার হিসেবে ব্যবহৃত হয় `&1`, `&2`, `&3` ইত্যাদি। 
 
-## Pattern Matching
+## প্যাটার্ন ম্যাচিং 
 
-Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
+শুধুমাত্র বেরিয়েবলের ক্ষেত্রেই নয়, ফাংশন বানানোর সময়েও প্যাটার্ন ম্যাচিং কাজে আসে। 
 
-Elixir uses pattern matching to identify the first set of parameters which match and invokes the corresponding body:
+এলিক্সির প্যাটার্ন ম্যাচিংয়ের মাধ্যমে প্রথম সারির প্যারামিটার মিলিয়ে থাকে সংশ্লিষ্ট বডির সাথে- 
 
 ```elixir
 iex> handle_result = fn
@@ -54,11 +54,11 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-## Named Functions
+## নেইমড ফাংশন 
 
-We can define functions with names so we can easily refer to them later.  Named functions are defined within a module using the `def` keyword .  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
+নামহীন ফাংশন তো দেখলাম, এবার নামওয়ালা ফাংশন তথা নেইমড ফাংশন দেখা যাক। এলিক্সিরে নেইমড ফাংশন ব্যবহৃত হয় মডিউলের ভেতর, `def` কী-ওয়ার্ডের মধ্য দিয়ে। আগামী অধ্যায়ে আমরা মডিউল নিয়ে কথা বলব, তাই আপাতত শুধু ফাংশনের দিকে আলোকপাত করা যাক। 
 
-Functions defined within a module are available to other modules for use.  This is a particularly useful building block in Elixir:
+এক মডিউলের ভেতর সৃষ্ট ফাংশন অন্যান্য মডিউলে ব্যবহারযোগ্য। এটি এলিক্সিরের একটি বেশ প্রয়োজনীয় বিল্ডিং ব্লক। 
 
 ```elixir
 defmodule Greeter do
@@ -71,7 +71,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 ```
 
-If our function body only spans one line, we can shorten it further with `do:`:
+যদি আমাদের ফাংশন শুধু এক লাইনের হয়ে থাকে, তবে আমরা একে সংক্ষিপ্ত করতে পারি `do:` এর মাধ্যমে। 
 
 ```elixir
 defmodule Greeter do
@@ -79,7 +79,7 @@ defmodule Greeter do
 end
 ```
 
-Armed with our knowledge of pattern matching, let's explore recursion using named functions:
+প্যাটার্ন ম্যাচিংয়ের জ্ঞান দিয়ে চলুন রিকারসনের একটি উদাহরণ দেখি আমরা, নেইমড ফাংশনের মাধ্যমে- 
 
 ```elixir
 defmodule Length do
@@ -93,9 +93,9 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### Function Naming and Arity
+### ফাংশন নামকরণ ও অ্যারিটি 
 
-We mentioned earlier that functions are named by the combination of given name and arity (number of arguments). This means you can do things like this:
+আমরা আগেই বলেছি যে এলিক্সিরে ফাংশনের পরিচয়  হল তার নাম ও অ্যারিটির জুটি। এর মানে আপনি নিম্নবর্ণিত কাজ করতে পারেন- 
 
 ```elixir
 defmodule Greeter2 do
@@ -113,11 +113,13 @@ iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
 
-We've listed the function names in comments above. The first implementation takes no arguments, so it is known as `hello/0`; the second takes one argument so it is known as `hello/1`, and so on. Unlike function overloads in some other languages, these are thought of as _different_ functions from each other. (Pattern matching, described just a moment ago, applies only when multiple definitions are provided for function definitions with the _same_ number of arguments.)
+ফাংশনের নামগুলো আমরা কমেন্টে দিয়েছি। ফাংশনের প্রথম রূপ কোন প্যারামিটার নেয় না, তাই এটি পরিচিত হবে `hello/0` হিসেবে; দ্বিতীয়টি একটি আর্গুমেন্ট নেয় বিধায় একে আমরা ডাকব `hello/1`। অন্যান্য ল্যাঙ্গুয়েজের ফাংশন ওভারলোডিংয়ের মত নয় এরা, এরা আসলে ভিন্ন ভিন্ন ফাংশন। 
 
-### Private Functions
+প্যাটার্ন ম্যাচিং শুধুমাত্র তখনি ব্যবহৃত হয় যখন একাধিক প্যাটার্ন সম-আর্গুমেন্ট বিশিষ্ট ফাংশনের উপর ব্যবহৃত হয়। 
 
-When we don't want other modules accessing a specific function we can make the function private.  Private functions can only be called from within their own Module.  We define them in Elixir with `defp`:
+### প্রাইভেট ফাংশন 
+
+যদি আমরা কোন ফাংশনকে শুধুমাত্র তার নিজস্ব মডিউলে ব্যবহার করতে চাই (অন্য মডিউল থেকে নয়) তখন আমরা তাদের প্রাইভেট হিসেবে ঘোষণা করব। এলিক্সিরে আমরা `defp` দিয়ে প্রাইভেট ফাংশন তৈরি করি। 
 
 ```elixir
 defmodule Greeter do
@@ -133,11 +135,13 @@ iex> Greeter.phrase
     Greeter.phrase()
 ```
 
-### Guards
+### গার্ড 
 
-We briefly covered guards in the [Control Structures](../control-structures) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
+[কন্ট্রোল স্ট্রাকচার](../control-structures) অধ্যায়ে আমরা গার্ড নিয়ে কিছু কথা বলেছিলাম। এখন আমরা দেখব কি করে এদেরকে নেইমড ফাংশনে ব্যবহার করা হয়। 
 
-In the following example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
+এলিক্সির যখনি কোন ফাংশন ম্যাচ করে, এরপর সংশ্লিষ্ট গার্ড চেক করা হবে। 
+
+নীচের ফাংশন দুইটি একই প্যাটার্ন ফলো করে, কিন্তু এদের মধ্যে পার্থক্য করা হয় গার্ডের ভিন্নতা (যেমন আর্গুমেন্ট টাইপ) দিয়ে। 
 
 ```elixir
 defmodule Greeter do
@@ -158,9 +162,9 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### Default Arguments
+### ডিফল্ট আর্গুমেন্ট 
 
-If we want a default value for an argument we use the `argument \\ value` syntax:
+আমরা ডিফল্ট আর্গুমেন্ট প্রদান করি `argument \\ value` সিনট্যাক্স দিয়ে:
 
 ```elixir
 defmodule Greeter do
@@ -182,7 +186,7 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-When we combine our guard example with default arguments, we run into an issue.  Let's see what that might look like:
+যখন আমরা গার্ড ও ডিফল্ট আর্গুমেন্টের সমন্বয় সাধন করি তখন একটি সমস্যার সৃষ্টি হয়। সেটা কী তা দেখা যাক- 
 
 ```elixir
 defmodule Greeter do
@@ -203,7 +207,7 @@ end
 ** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
 ```
 
-Elixir doesn't like default arguments in multiple matching functions, it can be  confusing.  To handle this we add a function head with our default arguments:
+এলিক্সির ডিফল্ট আর্গুমেন্ট ও একাধিক ম্যাচিং ফাংশনকে একত্রে ব্যবহার করতে দেয় না, কারণ তা কিছু কনফিউসনের সৃষ্টি করে। এ ধরনের সমাধানের জন্য আমরা একটি ফাংশন হেড অ্যাড করব আমাদের ডিফল্ট আর্গুমেন্টের সাথে- 
 
 ```elixir
 defmodule Greeter do
