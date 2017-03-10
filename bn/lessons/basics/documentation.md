@@ -1,16 +1,16 @@
 ---
 layout: page
-title: Documentation (TODO)
+title: ডকুমেন্টেশান 
 category: basics
 order: 11
 lang: bn
 ---
 
-Documenting Elixir code.
+আপনার কোডকে ডকুমেন্ট করুন।
 
 {% include toc.html %}
 
-## Annotation
+## অ্যানোটেশান 
 
 How much we comment and what makes quality documentation remains a contentious issue within the programming world. However, we can all agree that documentation is important for ourselves and those working with our codebase.
 
@@ -20,7 +20,7 @@ Elixir treats documentation as a *first-class citizen*, offering various functio
   - `@moduledoc` - For module-level documentation.
   - `@doc` - For function-level documentation.
 
-### Inline Documentation
+### ইনলাইন ডকুমেন্টেশান 
 
 Probably the simplest way to comment your code is with inline comments. Similar to Ruby or Python, Elixir's inline comment is denoted with a `#`, frequently known as a *pound*, or a *hash* depending on where you are from in the world.
 
@@ -33,7 +33,7 @@ IO.puts "Hello, " <> "chum."
 
 Elixir, when running this script will ignore everything from `#` to the end of the line, treating it as throwaway data. It may add no value to the operation or performance of the script, however when it's not so obvious what is happening a programmer should know from reading your comment. Be mindful not to abuse the single line comment! Littering a codebase could become an unwelcome nightmare for some. It is best used in moderation.
 
-### Documenting Modules
+### মডিউল ডকুমেন্টেশান 
 
 The `@moduledoc` annotator allows for inline documentation at a module level. It typically sits just under the `defmodule` declaration at the top of a file. The below example shows a one line comment within the `@moduledoc` decorator.
 
@@ -62,7 +62,7 @@ iex> h Greeter
 Provides a function hello/1 to greet a human
 ```
 
-### Documenting Functions
+### ফাংশন ডকুমেন্টেশান 
 
 Just as Elixir gives us the ability for module level annotation, it also enables similar annotations for documenting functions. The `@doc` annotator allows for inline documentation at a function level. The `@doc` annotator sits just above the function it is annotating.
 
@@ -126,7 +126,7 @@ Notice how you can use markup within our documentation and the terminal will ren
 
 **Note:** the `@spec` annotation is used to static analysis of code. To learn more about it, check out the [Specifications and types](../../advanced/typespec) lesson.
 
-## ExDoc
+## এক্সডক 
 
 ExDoc is an official Elixir project that can be found on [GitHub](https://github.com/elixir-lang/ex_doc). It produces **HTML (HyperText Markup Language) and online documentation** for Elixir projects. First let's create a Mix project for our application:
 
@@ -178,7 +178,7 @@ Examples
     "Hello, pete"
 ```
 
-### Installing
+### ইন্সটল 
 
 Assuming all is well and we're seeing the output above, we are now ready to set up ExDoc. In the `mix.exs` file, add the two required dependencies to get started: `:earmark` and `:ex_doc`.
 
@@ -193,7 +193,7 @@ We specify the `only: :dev` key-value pair as we don't want to download and comp
 
 It is worth noting at this point that you are not forced to use Earmark. You can change the markup tool to others such as Pandoc, Hoedown, or Cmark; however you will need to do a little more configuration which you can read about [here](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). For this tutorial, we'll just stick with Earmark.
 
-### Generating Documentation
+### ডক জেনারাশান 
 
 Carrying on, from the command line run the following two commands:
 
@@ -215,7 +215,7 @@ We can see that Earmark has rendered our Markdown and ExDoc is now displaying it
 
 We can now deploy this to GitHub, our own website, or more commonly [HexDocs](https://hexdocs.pm/).
 
-## Best Practice
+## বেস্ট প্র্যাকটিস 
 
 Adding documentation should be added within the Best practices guidelines of the language. Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows. The community, however, tried to establish best practices. To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
