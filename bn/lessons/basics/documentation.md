@@ -12,13 +12,13 @@ lang: bn
 
 ## অ্যানোটেশান 
 
-How much we comment and what makes quality documentation remains a contentious issue within the programming world. However, we can all agree that documentation is important for ourselves and those working with our codebase.
+আপনার কোডে কতটুকু কমেন্টিং করবেন এবং ভাল ডকুমেন্টেশানের মাপকাঠি কী তা নিয়ে যুক্তিতর্কের শেষ নেই। কিন্তু একটা বিষয়ে সকলে একমত যে ডকুমেন্টেশানের গুরুত্ব অপরিসীম। এলিক্সিরের কোর ডেভেলপাররা এটি আগেই বুঝতে পেরেছিলেন যার ফলে ল্যাঙ্গুয়েজটিতে ডকুমেন্টেশানের হরেক রকমের ব্যবস্থা। ডকুমেন্টেশান এলিক্সিরে *প্রথম শ্রেণীর নাগরিক* এবং ডকুমেন্টেশান প্রণালীকে আরামদায়ক করার জন্য রয়েছে বহু ধরণের ব্যবস্থা তথা মডিউল ও ফাংশন। 
 
-Elixir treats documentation as a *first-class citizen*, offering various functions to access and generate documentation for your projects. The Elixir core provides us with many different attributes to annotate a codebase. Let's look at 3 ways:
+এলিক্সিরের তিনটি প্রধান ডকুমেন্টেশান ব্যবস্থা হল- 
 
-  - `#` - For inline documentation.
-  - `@moduledoc` - For module-level documentation.
-  - `@doc` - For function-level documentation.
+  - `#` - ইনলাইন ডকুমেন্টেশানের জন্য 
+  - `@moduledoc` - মডিউল ডকুমেন্টেশানের জন্য 
+  - `@doc` - ফাংশন ডকুমেন্টেশানের জন্য
 
 ### ইনলাইন ডকুমেন্টেশান 
 
