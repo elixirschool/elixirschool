@@ -1,59 +1,59 @@
 ---
 layout: page
-title: Pipe Operator (TODO)
+title: পাইপ অপারেটর 
 category: basics
 order: 7
 lang: bn
 ---
 
-The pipe operator `|>` passes the result of an expression as the first parameter of another expression.
+পাইপ অপারেটর (`|>`) এক এক্সপ্রেশানের রেসাল্টকে আরেক এক্সপ্রেশানের প্রথম প্যারামিটার হিসেবে পাঠিয়ে দেয়। অনেকটা ইউনিক্সের পাইপ অপারেটরের (`|`) মত। 
 
 {% include toc.html %}
 
 ## Introduction
 
-Programming can get messy. So messy in fact that function calls can get so embedded that they become difficult to follow. Take the following nested functions into consideration:
+প্রোগ্রামিং করার সময়ে আমরা অনেক সময়ে বেশ অগোছাল কোড লিখে ফেলি। মাঝে মাঝে এক ফাংশনের ভেতর অন্য ফাংশনের নেস্টিং এতটাই গভীরে যায় যে কোডের মূল উদ্দেশ্য বুঝে উঠা মুশকিল হয়ে পরে। নীচের ফাংশনটিকেই দেখুন- 
 
 ```elixir
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Here, we are passing the value `other_function/1` to `new_function/1`, and `new_function/1` to `baz/1`, `baz/1` to `bar/1`, and finally the result of `bar/1` to `foo/1`. Elixir takes a pragmatic approach to this syntactical chaos by giving us the pipe operator. The pipe operator which looks like `|>` *takes the result of one expression, and passes it on*. Let's take another look at the code snippet above rewritten using the pipe operator.
+এখানে আমরা `other_function/1` এর আউটপুটকে `new_function/1` এর ভেতর, অতঃপর `new_function/1` এর আউটপুটকে `baz/1` ও `baz/1` থেকে `bar/1` এ, এবং অবশেষে `bar/1` এর রেসাল্টকে দিয়েছি `foo/1` এর প্যারামিটার হিসেবে। ফাংশনাল প্রোগ্রামিং করার সময়ে এরকম পরিস্থিতির শিকার হতেই পারেন। এলিক্সির আপনাকে এই সিনট্যাক্সের বেড়াজাল থেকে খুব সুন্দরভাবে রক্ষা করে পাইপ অপারেটরের মাধ্যমে। পাইপ অপারেটর হল- `|>` যার কাজ একটি এক্সপ্রেশানের রেসাল্টকে দিয়ে দেয়া পরবর্তী ফাংশনের প্রথমে। উপরের কোডের সমকক্ষ কোড পাইপ অপারেটরে দাঁড়ায়- 
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
 ```
 
-The pipe takes the result on the left, and passes it to the right hand side.
+পাইপ বাম দিকের রেসাল্টকে নিয়ে ডান দিকে দেয়, এবং একই কাজ করতে থাকে সর্বডানে আসার আগ পর্যন্ত। 
 
-## Examples
+## উদাহরণ 
 
-For this set of examples, we will use Elixir's String module.
+এলিক্সিরের স্ট্রিং মডুলের কিছু উদাহরণ দেখা যাক- 
 
-- Tokenize String (loosely)
+- স্ট্রিং টোকেনাইজেশান- 
 
 ```elixir
 iex> "Elixir rocks" |> String.split
 ["Elixir", "rocks"]
 ```
 
-- Uppercase all the tokens
+- সমস্ত টোকেনকে বড় হাতের (Upper Case) অক্ষরে পরিণত করা- 
 
 ```elixir
 iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 
-- Check ending
+- "ixir" দিয়ে শেষ হয়েছে কি? 
 
 ```elixir
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
 
-## Best Practices
+## বেস্ট প্র্যাকটিস 
 
-If the arity of a function is more than 1, then make sure to use parentheses. This doesn't matter much to the Elixir, but it matters to other programmers who may misinterpret your code. If we take our 3rd example, and remove the brackets from `String.ends_with?/2`, we are met with the following warning.
+যদি আপনার ফাংশনের "অ্যারিটি" ১ এর অধিক হয়ে থাকে, তাহলে অবশ্যই প্যারেনথেসিস ব্যবহার করবেন। অন্যথায় "সিনট্যাক্স এরর" হবে না তবে অন্যান্য প্রোগ্রামাররা আপনার কোডকে ভুলভাবে ইন্টারপ্রেট করতে পারে। যদি আমরা উপরের তৃতীয় উদাহরণটিতে `String.ends_with?/2` থেকে পারেনথেসিস সরিয়ে ফেলি তাহলে নীচের ওয়ার্নিং পাওয়া যাবে- 
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"
@@ -61,7 +61,7 @@ warning: parentheses are required when piping into a function call. For example:
 
   foo 1 |> bar 2 |> baz 3
 
-is ambiguous and should be written as
+এটি ভুল ধারনা দিতে পারে এবং একে লিখা উচিৎ ব্র্যাকেট দিয়ে যেমন- 
 
   foo(1) |> bar(2) |> baz(3)
 

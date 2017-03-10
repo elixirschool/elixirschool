@@ -1,18 +1,18 @@
 ---
 layout: page
-title: Comprehensions (TODO)
+title: কম্প্রিহেনশান 
 category: basics
 order: 13
 lang: bn
 ---
 
-List comprehensions are syntactic sugar for looping through enumerables in Elixir.  In this lesson we'll look at how we can use comprehensions for iteration and generation.
+লিস্ট কম্প্রিহেনশান হল সিন্ট্যাক্টিক সুগার যা এলিক্সির এনুমেরাবলে লুপিং করতে সহায়তা করে। এই অধ্যায়ে আমরা দেখব কি করে লিস্ট কম্প্রিহেনশানকে ব্যবহার করতে হয় ইটারেশান ও জেনারেশানের জন্য। 
 
 {% include toc.html %}
 
 ## Basics
 
-Often times comprehensions can be used to produce more concise statements for `Enum` and `Stream` iteration.  Let's start by looking at a simple comprehension and then break it down:
+`Enum` এবং `Stream` এর মধ্যে লুপিং করতে প্রায়েই কম্প্রিহেনশান ব্যবহৃত হয় এর সিন্ট্যাক্সিয় সংক্ষিপ্ততার জন্য। একটি সরল কম্প্রিহেনশান দেখা যাক-
 
 ```elixir
 iex> list = [1, 2, 3, 4, 5]
@@ -20,9 +20,9 @@ iex> for x <- list, do: x*x
 [1, 4, 9, 16, 25]
 ```
 
-The first thing we notice is the use of `for` and a generator.  What is a generator?  Generators are the `x <- [1, 2, 3, 4]` expressions found in list comprehensions.  They're responsible for generating the next value.
+প্রথমেই যা আমাদের চোখে পরে তা হল `for` এবং তৎপরবর্তী জেনারেটর। জেনারেটর হল `x <- [1, 2, 3, 4]` এক্সপ্রেশান যা কম্প্রিহেনশানে অবস্থান করে। এদের কাজ হল পরের ভ্যালু প্রদান করা। 
 
-Lucky for us, comprehensions aren't limited to lists; in fact they'll work with any enumerable:
+লিস্ট কম্প্রিহেনশান শুধুমাত্র লিস্টের মধ্যে সীমাবদ্ধ নয়। এরা যে কোন এনুমেরেবলের সাথেই কাজ করতে পারে। 
 
 ```elixir
 # Keyword Lists
@@ -38,14 +38,14 @@ iex> for <<c <- "hello">>, do: <<c>>
 ["h", "e", "l", "l", "o"]
 ```
 
-Like many other things in Elixir, generators rely on pattern matching to compare their input set to the left side variable.  In the event a match is not found, the value is ignored:
+প্যাটার্ন ম্যাচিং এলিক্সিরের একটি বিশেষত্ব যার উপর এর বহু সিনট্যাক্সিয় ফিচার নির্ভরশীল। জেনারেটর এর ব্যতিক্রম নয়। জেনারেটররা তাদের ইনপুট সেটকে বাম পার্শ্বীয় ভেরিয়েবলের সাথে ম্যাচ করে, ম্যাচ পাওয়া না গেলে তা ইগনর করা হয়। 
 
 ```elixir
 iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], do: val
 ["Hello", "World"]
 ```
 
-It's possible to use multiple generators, much like nested loops:
+একাধিক জেনারেটর ব্যবহার করা সম্ভব, ঠিক নেস্টেড লুপের মত। 
 
 ```elixir
 iex> list = [1, 2, 3, 4]
@@ -55,7 +55,7 @@ iex> for n <- list, times <- 1..n do
 ["*", "*", "**", "*", "**", "***", "*", "**", "***", "****"]
 ```
 
-To better illustrate the looping that is occurring, let's use `IO.puts` to display the two generated values:
+আভ্যন্তরীণ লুপিংকে আরও ভালভাবে বুঝানোর জন্য আমরা `IO.puts` দিয়ে জেনারেটেড ভ্যালু দেখাতে পারি। 
 
 ```elixir
 iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
@@ -71,11 +71,11 @@ iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 4 - 4
 ```
 
-List comprehensions are syntactic sugar and should be used only when appropriate.
+লিস্ট কম্প্রিহেনশান হল সিন্ট্যাক্টিক সুগার যা শুধুমাত্র প্রয়োজনভেদে ও যথাস্থানে ব্যবহার করা উচিৎ। 
 
-## Filters
+## ফিল্টার 
 
-You can think of filters as a sort of guard for comprehensions.  When a filtered value returns `false` or `nil` it is excluded from the final list.  Let's loop over a range and only worry about even numbers.  We'll use the `is_even/1` function from the Integer module to check if a value is even or not.
+ফিল্টারকে আপনি মনে করতে পারেন লিস্ট কম্প্রিহেনশানের গার্ডস্বরপ। ফিল্টারকৃৎ ভ্যালু যদি  `false` অথবা `nil` হয় তবে তা রেজাল্ট লিস্ট থেকে বাদ পরে যায়। আমরা এখন একটি রেঞ্জের উপর লুপ করে শুধুমাত্র জোড় সংখ্যা বের করব লিস্ট কম্প্রিহেনশান ও ফিল্টার দিয়ে। এর জন্য আমরা `is_even/1` ফাংশন ব্যবহার করব। 
 
 ```elixir
 import Integer
@@ -83,7 +83,7 @@ iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
-Like generators, we can use multiple filters.  Let's expand our range and then filter only for values that are both even and evenly divisible by 3.
+জেনারেটরের মত ফিল্টারও একাধিক ব্যবহার করা যায়। যদি আমরা আমাদের রেঞ্জকে বর্ধিত করি এবং শুধুমাত্র সেগুলিকে দেখতে চাই যারা জোড় এবং ৩ দ্বারা বিভাজ্য দুটোই তাহলে নীচের মত করে কোড সাজাব- 
 
 ```elixir
 import Integer
@@ -93,22 +93,22 @@ iex> for x <- 1..100,
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
 
-## Using `:into`
+## `:into` এর ব্যবহার 
 
-What if we want to produce something other than a list?  Given the `:into` option we can do just that!  As a general rule of thumb, `:into` accepts any structure that implements the `Collectable` protocol.
+আমরা যদি লিস্ট ব্যতীত অন্য কিছু রিটার্ন করতে চাই তাহলে তা কিভাবে করব? উত্তর হল `:into`। `:into` এর মাধ্যমে আমরা যে কোন `Collectable` প্রোটোকল মেনে চলা স্ট্রাকচারে আমাদের জেনারেটর প্রদত্ত রেজাল্ট ধারণ করতে পারি। 
 
-Using `:into`, let's create a map from a keyword list:
+`:into` দিয়ে ম্যাপ থেকে কীওয়ার্ড লিস্টে পরিণত করা যাক কিছু ডেটা- 
 
 ```elixir
 iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-Since bitstrings are enumerable we can use list comprehensions and `:into` to create strings:
+যেহেতু বিটস্ট্রিংরাও এনুমেরেবল সেহেতু আমরা লিস্ট কম্প্রিহেনশান ও `:into` দিয়ে স্ট্রিং প্রস্তুত করতে পারি। 
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-That's it!  List comprehensions are an easy way to iterate through collections in a concise manner.
+শেষ! লিস্ট কম্প্রিহেনশান দিয়ে আমরা লুপিং ও ইটারেশান করতে পারি বোধগম্য ও সংক্ষিপ্ত সিনট্যাক্স দিয়ে। 

@@ -45,7 +45,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 Kita dapat lihat apabila menggunakan huruf kecil, iaitu `~c`, ia akan membuat interpolasi(menjalankan proses dan memulangkan hasil proses) pengiraan di dalam string tersebut, sementara sigil huruf besar `~C` tidak melakukan interpolasi.  Kita akan dapat melihat bagaimana penggunaan huruf kecil/huruf besar ini menjadi tema lazim di dalam keseluruhan sigil-sigil yang disiap-pasang.
@@ -56,7 +56,7 @@ Sigil-sigil `~r` dan `~R` digunakan untuk mewakili Ungkapan Nalar(Regular Expres
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -69,7 +69,7 @@ Kita dapat lihat di dalam ujian persamaan yang pertama, perkataan `Elixir` tidak
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true

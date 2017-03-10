@@ -120,7 +120,7 @@ iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` does the same, but allows us to specify a default value to `Enum` in an anonymous function that is passed:
+`min/2` does the same, but allows us to specify the calculation that will produce the minimum via an anonymous function:
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
@@ -136,7 +136,7 @@ iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-`max/2` does the same, and behaves as `min/2` does as well, allowing us to pass an anonymous function to provide a default value to `Enum`:
+`max/2` does the same, and behaves as `min/2` does as well, allowing us to specify the calculation that will produce the maximum via an anonymous function:
 
 ```elixir
 Enum.max([], fn -> :bar end)

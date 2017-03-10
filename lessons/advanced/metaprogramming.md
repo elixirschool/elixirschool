@@ -156,7 +156,7 @@ quoted = quote do
 end
 ```
 
-```
+```elixir
 iex> quoted |> Macro.expand_once(__ENV__) |> Macro.to_string |> IO.puts
 if(!true) do
   "Hi"

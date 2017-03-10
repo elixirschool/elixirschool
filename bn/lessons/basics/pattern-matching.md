@@ -1,25 +1,24 @@
 ---
 layout: page
-title: Pattern Matching (TODO)
+title: প্যাটার্ন ম্যাচিং 
 category: basics
 order: 4
 lang: bn
 ---
-
-Pattern matching is a powerful part of Elixir.  It allows us to match simple values, data structures, and even functions.  In this lesson we will begin to see how pattern matching is used.
+এলিক্সিরের সবচেয়ে শক্তিশালী বৈশিষ্ট্যের মধ্যে একটি হল প্যাটার্ন ম্যাচিং। এর মাধ্যমে আমরা ভ্যালু, ডাটা স্ট্রাকচার, এমনকি ফাংশনকে ম্যাচ করতে পারি। এই অধ্যায়ে আমরা প্যাটার্ন ম্যাচিং শুরু করতে যাচ্ছি।
 
 {% include toc.html %}
 
-## Match Operator
+## ম্যাচ অপারেটর 
 
-Are you ready for a curveball? In Elixir, the `=` operator is actually a match operator, comparable to the equals sign in algebra. Writing it turns the whole expression into an equation and makes Elixir match the values on the left hand with the values on the right hand. If the match succeeds, it returns the value of the equation. Otherwise, it throws an error. Let's take a look:
+এলিক্সিরে `=` অপারেটর আসলে ম্যাচিংয়ের জন্য ব্যবহৃত হয়। একে আমরা তুলনা করতে পারি বীজগণিতের সমান চিহ্নের সাথে। এটি সম্পূর্ণ এক্সপ্রেশানকে একটি সমীকরণে পরিণত করে এবং বামপক্ষের সাথে ডানপক্ষ মিলিয়ে থাকে। যদি সমান চিহ্নের দুই পাশ মিলে যায়, তাহলে সেই সমীকরণের মান রিটার্ন করা হয়, অন্যথায় এরর। দেখা যাক- 
 
 ```elixir
 iex> x = 1
 1
 ```
 
-Now let's try some simple matching:
+এবার কিছু সাধারণ ম্যাচ দেখা যাক- 
 
 ```elixir
 iex> 1 = x
@@ -28,7 +27,7 @@ iex> 2 = x
 ** (MatchError) no match of right hand side value: 1
 ```
 
-Let's try that with some of the collections we know:
+আমাদের পরিচিত কিছু কালেকশনের উপর ম্যাচ যেভাবে কাজ করে- 
 
 ```elixir
 # Lists
@@ -54,11 +53,11 @@ iex> {:ok, value} = {:error}
 ** (MatchError) no match of right hand side value: {:error}
 ```
 
-## Pin Operator
+## পিন অপারেটর
 
-We just learned the match operator performs assignment when the left side of the match includes a variable.  In some cases this variable rebinding behavior is undesirable.  For these situations we have the pin operator: `^`.
+আমরা দেখলাম ম্যাচ অপারেটর অ্যাসাইনমেন্টের কাজ কওরে যখন বামপক্ষে কোন ভেরিয়েবল থাকে। তবে কোন কোন ক্ষেত্রে আমরা তা নাও চাইতে পারি, বরং সেই ভেরিয়েবলের মানের সাথে ম্যাচিং করতে চাইতে পারি। এই আচরণের জন্য ব্যবহৃত হয় পিন অপারেটর- `^`
 
-When we pin a variable we match on the existing value rather than rebinding to a new one.  Let's take a look at how this works:
+যখন আমরা কোন ভেরিয়েবলকে পিন করি তখন সেই ভেরিয়েবলের তৎকালীন মান ব্যবহৃত হয় ম্যাচের জন্যে, নতুন মান অ্যাসাইন করা হয় না। নীচে এর উদাহরণ দেয়া হয়েছে- 
 
 ```elixir
 iex> x = 1
@@ -71,7 +70,7 @@ iex> x
 2
 ```
 
-Elixir 1.2 introduced support for pins in map keys and function clauses:
+এলিক্সির ১.২ থেকে আমরা ম্যাপ কী ও ফাংশন ক্লজের উপরও পিন ব্যবহার করতে পারি-
 
 ```elixir
 iex> key = "hello"
@@ -84,7 +83,7 @@ iex> %{^key => value} = %{:hello => "world"}
 ** (MatchError) no match of right hand side value: %{hello: "world"}
 ```
 
-An example of pinning in a function clause:
+ফাংশন ক্লজের  উপর পিনের অ্যাপ্লিকেশানের উদাহরণ- 
 
 ```elixir
 iex> greeting = "Hello"
