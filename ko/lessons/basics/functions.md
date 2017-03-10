@@ -1,4 +1,5 @@
 ---
+version: 0.9.0
 layout: page
 title: 함수
 category: basics

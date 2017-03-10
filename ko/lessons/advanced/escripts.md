@@ -1,4 +1,5 @@
 ---
+version: 0.9.0
 layout: page
 title: 실행 파일
 category: advanced

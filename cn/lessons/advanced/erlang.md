@@ -1,4 +1,5 @@
 ---
+version: 0.9.0
 layout: page
 title: 和 Erlang 互操作
 category: advanced

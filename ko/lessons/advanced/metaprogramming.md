@@ -1,4 +1,5 @@
 ---
+version: 0.9.0
 layout: page
 title: 메타 프로그래밍
 category: advanced

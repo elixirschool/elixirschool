@@ -1,4 +1,5 @@
 ---
+version: 0.9.0
 layout: page
 title: Pattern matching (so trùng mẫu)
 category: basics

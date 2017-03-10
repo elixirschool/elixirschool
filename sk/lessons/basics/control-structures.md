@@ -1,4 +1,5 @@
 ---
+version: 0.9.0
 layout: page
 title: Riadiace štruktúry
 category: basics

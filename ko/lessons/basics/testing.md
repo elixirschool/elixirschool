@@ -1,4 +1,5 @@
 ---
+version: 0.9.0
 layout: page
 title: 테스트
 category: basics
