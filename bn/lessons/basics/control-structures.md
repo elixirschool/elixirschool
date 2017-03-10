@@ -1,20 +1,21 @@
 ---
 layout: page
-title: Control Structures (TODO)
+title: কন্ট্রোল স্ট্রাকচার 
 category: basics
 order: 5
 lang: bn
 ---
 
-In this lesson we will look at the control structures available to us in Elixir.
+এই অধ্যায়ে আমরা এলিক্সিরে ব্যবহৃত কন্ট্রোল স্ট্রাকচার নিয়ে কথা বলব। 
 
 {% include toc.html %}
 
-## `if` and `unless`
+## `if` ও `unless`
 
-Chances are you've encountered `if/2` before, and if you've used Ruby you're familiar with `unless/2`.  In Elixir they work much the same way but they are defined as macros, not language constructs; You can find their implementation in the [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+`if/2` বহুল ব্যবহৃত একটি কন্ট্রোল স্ট্রাকচার যা প্রায় সমস্ত ল্যাঙ্গুয়েজেই রয়েছে। কিছু কিছু ল্যাঙ্গুয়েজ যেমন রুবী ও পার্লে এর উল্টো তথা `unless/2` এর ব্যবস্থা রয়েছে। এলিক্সিরে `if/2` ও `unless/2` অন্যান্য ল্যাঙ্গুয়েজের মতই মূলত কাজ করে কিন্তু এরা ল্যাঙ্গুয়েজের কোন গঠন নয়, বরং ম্যাক্রো। এরা কিভাবে কাজ করে তা জানতে ভিজিট করুন [কার্নেল মডিউল](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html) পেইজটিতে। 
 
-It should be noted that in Elixir, the only falsey values are `nil` and the boolean `false`.
+
+জেনে রাখা ভাল যে এলিক্সিরে "ফলসি" ভ্যালু মাত্র দুইটি- `nil` এবং `false`। এই ফলসি ভ্যালুর উপর নির্ভর করে কন্ট্রোল স্ট্রাকচারের পাস অথবা ফেইল করা। 
 
 ```elixir
 iex> if String.valid?("Hello") do
@@ -30,7 +31,7 @@ iex> if "a string value" do
 "Truthy"
 ```
 
-Using `unless/2` is like `if/2` only it works on the negative:
+`unless/2` আর `if/2` এর কার্যপ্রণালি একই, তবে `unless/2` শুধু "ফলসি" ভ্যালুকেই গ্রুহণ করে।
 
 ```elixir
 iex> unless is_integer("hello") do
@@ -41,7 +42,7 @@ iex> unless is_integer("hello") do
 
 ## `case`
 
-If it's necessary to match against multiple patterns we can use `case`:
+একাধিক প্যাটার্নের সাথে ম্যাচ করতে হলে আমরা `case` ব্যবহার করব। 
 
 ```elixir
 iex> case {:ok, "Hello World"} do
@@ -52,7 +53,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-The `_` variable is an important inclusion in `case` statements. Without it failure to find a match will raise an error:
+শেষের `_` ভেরিয়েবল গুরুত্বপূর্ণ এই স্ট্রাকচারে। অন্য কেউ না ম্যাচ করতে পারলে এর আওতাধীন লজিক কাজ করে। একে ছাড়া এরর রেইজড হবে যদি উপরের কেউ ম্যাচ করতে না পারে।  
 
 ```elixir
 iex> case :even do
@@ -67,9 +68,9 @@ iex> case :even do
 "Not Odd"
 ```
 
-Consider `_` as the `else` that will match "everything else".
+`_` কে আপনি `else` হিসেবে চিন্তা করতে পারেন। অর্থাৎ অন্য সব কন্ডিশানকে যারা ফেইল করে, তাদের এরা ম্যাচ করে। 
 
-Since `case` relies on pattern matching, all of the same rules and restrictions apply.  If you intend to match against existing variables you must use the pin `^` operator:
+`case` যেহেতু প্যাটার্ন ম্যাচ করে কাজেই প্যাটার্নের সমস্ত নিয়ম এর উপর প্রযোজ্য। যেমন কোন ভেরিয়েবলের সাথে ম্যাচ করতে চাইলে `^` অর্থাৎ পিন অপারেটর ব্যবহার করতে হয়। 
 
 ```elixir
 iex> pie = 3.14 
@@ -81,9 +82,9 @@ iex> case "cherry pie" do
 "I bet cherry pie is tasty"
 ```
 
-Another neat feature of `case` is its support for guard clauses:
+`case` এর আরেকটি ফিচার হল গার্ডের ব্যবহার। 
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) guide._
+_এই উদাহরণটি সরাসরি এলিক্সিরের অফিসিয়াল ডকুমেন্টেশান থেকে নেয়া [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) গাইড থেকে।_
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -95,13 +96,13 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Check the official docs for [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+আরও জানতে হলে অফিসিয়াল ডকুমেন্টেশানের [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses) চ্যাপ্টারটি দেখুন। 
 
 ## `cond`
 
-When we need to match conditions rather than values we can turn to `cond`; this is akin to `else if` or `elsif` from other languages:
+যখন আমরা একাধিক কন্ডিশানের সাথে আমাদের ম্যাচিং করতে হবে তখন `cond` ব্যবহার করব যা অন্যান্য ল্যাঙ্গুয়েজের `else if`, `elsif`, `elif` ইত্যাদির মত করে কাজ করে। 
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
+_এই উদাহরণটি সরাসরি এলিক্সিরের অফিসিয়াল ডকুমেন্টেশান থেকে নেয়া [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) গাইড থেকে।_
 
 ```elixir
 iex> cond do
@@ -115,7 +116,7 @@ iex> cond do
 "But this will"
 ```
 
-Like `case`, `cond` will raise an error if there is no match.  To handle this, we can define a condition set to `true`:
+`case` এর মত `cond` ও এরর রেইজ করবে যদি কোন ম্যাচ পাওয়া না যায়। `case` এর `_` এর সমকক্ষ হিসেবে আমরা `true` ব্যবহার করতে পারি যা ফলব্যাক হিসেবে কাজ করবে যখন কোন কন্ডিশান না মিলে।
 
 ```elixir
 iex> cond do
@@ -127,11 +128,11 @@ iex> cond do
 
 ## `with`
 
-The special form `with` is useful when you might use a nested `case` statement or situations that cannot cleanly be piped together. The `with` expression is composed of the keyword, generators, and finally an expression.
+কখনো কখনো  আমরা এমন পরিস্থিতিতে পরি যখন `case` স্টেটমেন্ট এর ক্লোজগুলি সুন্দর মত পাইপ করা যায় না এবং নেস্টেড হয়ে যায়। `with` এক্সপ্রেশানের আবির্ভাব হয়েছে এই ধরণের অবস্থা হ্যান্ডল করার জন্য। এটি হল `with` কী-ওয়ার্ড, সংশ্লিষ্ট জেনারেটরসমূহ এবং একটি এক্সপ্রেশানের সমন্বয়।  
 
-We'll discuss generators more in the List Comprehensions lesson but for now we only need to know they use pattern matching to compare the right side of the `<-` to the left.
+জেনারেটর নিয়ে আমরা লিস্ট কম্প্রিহেনশান অধ্যায়ে কথা বলব। আপাতত এতটুকু জেনে রাখি যে এরা প্যাটার্ন ম্যাচিং দিয়ে `<-` এর ডান হাতের এক্সপ্রেশানকে কম্পেয়ার করে বাম হাথের এক্সপ্রেশানের সাথে। 
 
-We'll start with a simple example of `with` and then look at something more:
+`with` এর একটি সহজ উদাহরণ দিয়ে শুরু করা যাক- 
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
@@ -142,7 +143,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 "Callan, Sean"
 ```
 
-In the event that an expression fails to match, the non-matching value will be returned:
+কোন এক্সপ্রেশান ম্যাচ করতে সক্ষম না হলে ম্যাচ না হওয়া ভ্যালু রিটার্ন করা হয়।  
 
 ```elixir
 iex> user = %{first: "doomspork"}
@@ -153,7 +154,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 :error
 ```
 
-Now let's look at a larger example without `with` and then see how we can refactor it:
+`with` ছাড়া ব্যবহৃত একটি উদাহরণ দিয়ে দেখা যাক কিভাবে `with` আমাদের উপকারে আসে- 
 
 ```elixir
 case Repo.insert(changeset) do 
@@ -167,7 +168,7 @@ case Repo.insert(changeset) do
 end
 ```
 
-When we introduce `with` we end up with code that is easy to understand and has fewer lines:
+এবার রিফ্যাক্টর করে `with` কে নিয়ে আসা যাক- 
 
 ```elixir
 with 
@@ -176,8 +177,9 @@ with
   do: important_stuff(jwt, full_claims)
 ```
 
+উপরিউক্ত কোডটি যেমন ছোট তেমনি বোধগম্য। 
 
-As of Elixir 1.3, `with` statements support `else`:
+এলিক্সির ১.৩ থেকে `with` স্টেটমেন্টে `else` কে আনা হয়েছে। 
 
 ```elixir
 import Integer
@@ -193,4 +195,7 @@ else
 end
 ```
 
-It helps to handle errors by providing `case`-like pattern matching in it. The value passed is the first non-matched expression.
+এটি আমাদের `case` এর মত প্যাটার্ন ম্যাচিং কার্যপ্রণালী প্রদান করে যা গ্রহণ করে প্রথম সেই ভ্যালু যা ম্যাচড হয়নি।  
+
+
+
