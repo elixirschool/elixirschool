@@ -22,16 +22,15 @@ lang: bn
 
 ### ইনলাইন ডকুমেন্টেশান 
 
-Probably the simplest way to comment your code is with inline comments. Similar to Ruby or Python, Elixir's inline comment is denoted with a `#`, frequently known as a *pound*, or a *hash* depending on where you are from in the world.
+ডকুমেন্টেশানের সহজতম উপায় হল ইনলাইন কমেন্টিং। রুবি, পাইথন, পার্ল ইত্যাদির মত `#` দিয়ে এলিক্সিরের ইনলাইন কমেন্ট ব্যবহৃত হয়ে থাকে। একে আপনি পাউন্ড অথবা হ্যাশ ডাকতে পারেন। 
 
-Take this Elixir Script (greeting.exs):
+নীচের এলিক্সির স্ক্রিপ্টটি দেখি- 
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
 IO.puts "Hello, " <> "chum."
 ```
-
-Elixir, when running this script will ignore everything from `#` to the end of the line, treating it as throwaway data. It may add no value to the operation or performance of the script, however when it's not so obvious what is happening a programmer should know from reading your comment. Be mindful not to abuse the single line comment! Littering a codebase could become an unwelcome nightmare for some. It is best used in moderation.
+এলিক্সির কোড রান করার সময়ে স্ক্রিপ্টটি `#` পরবর্তী সমস্ত কথা বাদ দিয়ে দেয়। কিন্তু যদি আপনি ঠিকমত কমেন্ট করেন তাহলে আপনার কোডে কী হচ্ছে তা অন্যান্য প্রোগ্রামাররা বুঝতে পারবে। তবে, অযথা কমেন্ট না করাই ভাল কারণ তা পরবর্তীতে বিরক্তির কারণ হয়ে দাঁড়াবে। দরকার বুঝে সংক্ষিপ্ত ভাষায় ইনলাইন কমেন্ট করাই উত্তম। 
 
 ### মডিউল ডকুমেন্টেশান 
 
