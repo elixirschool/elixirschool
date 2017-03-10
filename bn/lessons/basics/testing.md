@@ -1,20 +1,20 @@
 ---
 layout: page
-title: Testing (TODO)
+title: Testing
 category: basics
 order: 12
 lang: bn
 ---
 
-Testing is an important part of developing software.  In this lesson we'll look at how to test our Elixir code with ExUnit and some best practices for doing so.
+সফটওয়ার ডেভেলপমেন্ট এ টেস্টিং একটি গুঁড়ত্তপূর্ণ ভূমিকা রাখে। এই অধ্যায়ে আমরা দেখব কিভাবে এলিক্সির ল্যাঙ্গুয়েজ এ এক্সইউনিট ব্যবহার করে টেস্ট করা যায় এবং এগুলো করবার কিছু বেস্ট প্র্যাকটিস।
 
 {% include toc.html %}
 
 ## ExUnit
 
-Elixir's built-in test framework is ExUnit and it includes everything we need to thoroughly test our code.  Before moving on it is important to note that tests are implemented as Elixir scripts so we need to use the `.exs` file extension.  Before we can run our tests we need to start ExUnit with `ExUnit.start()`, this is most commonly done in `test/test_helper.exs`.
+এলিক্সির এর বিল্ট ইন একটা টেস্ট ফ্রেমওয়ার্ক আছে এবং এটিতে টেস্ট কোড লিখবার জন্য সবকিছু দিয়ে দেয়া আছে। শুরু করবার আগে বলে নেয়া ভাল যে , টেস্ট কোড ফাইল গুলো এলিক্সির স্ক্রিপ্ট ফাইল আকারে কাজ করে তাই আমাদের `.exs` ফাইল এক্সটেনশন ব্যবহার করতে হবে। এবং টেস্ট কোড চালানোর আগে `test/test_helper.exs` ফাইলে `ExUnit.start()` লিখে এক্সইউনিট শুরু করে দিয়ে আস্তে হবে।
 
-When we generated our example project in the previous lesson, mix was helpful enough to create a simple test for us, we can find it at `test/example_test.exs`:
+এর আগের অধ্যায়ে যখন আমরা একটি example প্রোজেক্ট তৈরি করেছিলাম তখনি মিক্স আমাদের প্রজেক্টে সাধারণ কিছু টেস্ট কোড তৈরি করে দিয়েছিল। এগুলো আমরা পাবো , `test/example_test.exs` এই খানেঃ
 
 ```elixir
 defmodule ExampleTest do
@@ -27,7 +27,7 @@ defmodule ExampleTest do
 end
 ```
 
-We can run our project's tests with `mix test`.  If we do that now we should see an output similar to:
+এখন আমরা `mix test` চালাতে পারি এবং টেস্ট কোড এর আউটপুট দেখতে পারি।
 
 ```shell
 Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
@@ -36,9 +36,9 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### assert
 
-If you've written tests before then you're familiar with `assert`; in some frameworks `should` or `expect` fill the role of `assert`.
+যদি আপনি এর আগে কখনো টেস্ট কোড লিখে থাকেন তাহলে আপনি `assert` এর সাথে পরিচিত আছেন । অন্যান্য ফ্রেমওয়ার্ক গুলিতে এটিকে লিখে `should` বা `expect` দিয়ে।
 
-We use the `assert` macro to test that the expression is true.  In the event that it is not, an error will be raised and our tests will fail.  To test a failure let's change our sample and then run `mix test`:
+`assert` ম্যাক্রো ব্যবহার করে আমরা একটি এক্সপ্রেশন সত্যি কিনা সেটি যাচাই করি। যদি সত্যি না হয় সেক্ষেত্রে একটি এরর তৈরি হয় এবং টেস্ট ফেইল হয়। আসুন আমরা আমাদের টেস্ট টিকে ফেইল করানোর জন্য কিছু জিনিস পরিবর্তন করি এবং `mix test` দিয়ে সেটি চালাই।
 
 ```elixir
 defmodule ExampleTest do
@@ -51,8 +51,7 @@ defmodule ExampleTest do
 end
 ```
 
-Now we should see a different kind of output:
-
+এখন আমরা আসলে একটু ভিন্ন রকম আউটপুট দেখতে পাবো।
 ```shell
   1) test the truth (ExampleTest)
      test/example_test.exs:5
@@ -69,19 +68,18 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 1 tests, 1 failures
 ```
 
-ExUnit will tells us exactly where our failed assertions are, what the expected value was, and what the actual value was.
-
+এক্সইউনিট আমাদের বলবে আসলে ঠিক কোন জায়গাতে ভুল হয়েছে এবং আসলে কই হবার কথা ছিল এবং কোন ভয়ালু ষে পেয়েছে।
 ### refute
 
-`refute` is to `assert` as `unless` is to `if`.  Use `refute` when you want to ensure a statement is always false.
+`refute` হল অনেকটা `unless` এর মতন। আমরা `refute` ব্যাবহার করে কোন স্টেটমেন্ট এর ভুল ফলাফল আশা করতে পারি।
 
 ### assert_raise
 
-Sometimes it may be necessary to assert that an error has been raised.  We can do this with `assert_raise`.  We'll see an example of `assert_raise` in the next lesson on Plug.
+মাঝে মাঝে এমনটা দরকার হয় যে আসলে আমাদের assert একটি এররে তৈরি করবে। এমনটা দরকার হলে আমরা `assert_raise` ব্যাবহার করতে পারি। আমরা এর একটি উদাহরণ দেখতে পাবো আগামী অধ্যায়ে যা কিনা প্লাগ নিয়ে আলোচনা করেছে।
 
 ### assert_receive
 
-In Elixir applications consist of actors/processes that send messages to each other, thus often you want to test the messages being sent. Since ExUnit runs in its own process it can receive messages just like any other process and you can assert on it with the `assert_received` macro:
+এলিক্সির এপ্লিকেশন এ অনেক actors/processes থাকে যা কিনা একে অপরকে মেসেজ আদান প্রদান করে। তো এমন ক্ষেত্রে আমরা চেক করতে পারি যে আসলেই আমাদের মেসেজ পাঠানো হয়েছে কিনা। যেহেতু এলিক্সির এর এক্স ইউনিট আলাদা একটি নিজস্ব প্রসেস এ চলে তাই এটি মেসেজ গ্রহণ করতে পারে আর যে কোন প্রসেস এর মতন আর এটি আমরা চেক করতে পারি , `assert_received` ম্যাক্রো দিয়ে।
 
 ```elixir
 defmodule SendingProcess do
@@ -100,11 +98,11 @@ defmodule TestReceive do
 end
 ```
 
-`assert_received` does not wait for messages, with `assert_receive` you can specify a timeout.
+`assert_received` মেসেজ এর জন্য অপেক্ষা করে না । তবে আমরা `assert_receive` দিয়ে টাইম আউট নির্ধারণ করে দিতে পারি।
 
 ## capture_io and capture_log
 
-Capturing an application's output is possible with `ExUnit.captureIO` without changing the original application. Simply pass the function generating the output in:
+এপ্লিকেশন এর আউটপুট কয়াপচার করবার জন্য আমরা `ExUnit.captureIO` ব্যাবহার করতে পারি এপ্লিকেশন পরিবর্তন না করেই। আমরা শুধু ফাংশন টি দিলেই হবে।
 
 ```elixir
 defmodule OutputTest do
@@ -117,13 +115,13 @@ defmodule OutputTest do
 end
 ```
 
-`ExUnit.CaptureLog` is the equivalent for capturing output to `Logger`.
+`ExUnit.CaptureLog` অনেকটা `Logger` মতন করে কাজ করে।
 
 ## Test Setup
 
-In some instances it may be necessary to perform setup before our tests.  To accomplish this we can use the `setup` and `setup_all` macros.  `setup` will be run before each test and `setup_all` once before the suite.  It is expected that they will return a tuple of `{:ok, state}`, the state will be available to our tests.
+কিছু ইন্সট্যানস এ এটি আসলেই দরকার হয়ে পরে যে আমরা একটি সেটআপ চালাবো টেস্ট চালানোর আগে। এই কাজটি করবার জন্য আমরা `setup` এবং `setup_all` ম্যাক্রো ব্যবহার করবো। `setup` প্রত্যেক টেস্ট এর আগে চলবে আর `setup_all` চলবে শুধু একবার। ধরে নেয়া হয় এরা একটি tuple `{:ok, state}` রিটার্ন করে। আর এই state আমাদের টেস্ট এ থাকে।
 
-For the sake of example, we'll change our code to use `setup_all`:
+এখানে উদাহরণের জন্য আমরা শুধু `setup_all` ব্যাবহার করেছি।
 
 ```elixir
 defmodule ExampleTest do
@@ -142,8 +140,8 @@ end
 
 ## Mocking
 
-The simple answer to mocking in Elixir is: don't.  You may instinctively reach for mocks but they are highly discouraged in the Elixir community and for good reason. 
+এলিক্সির এ মকিং কে ব্যাবহার করতে নিষেধ করা হয়। কোন সময় এটি আপণী করতে চাইলেউ এলিক্সির কমুইনিটি মকিং কে না বলে একটি ভাল কারণে।
 
-For a longer discussion there is this [excellent article](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/). The gist is, that instead of mocking away dependencies for testing (mock as a *verb*), it has many advantages to explicitly define interfaces (behaviors) for code outside your application and using Mock (as a *noun*) implementations in your client code for testing.
+আরঊ জানবার জন্য আপনি দেখতে পারেন [excellent article](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/) । এই গিস্টে আসলে বলা হচ্ছে যে , মকিং বাদ দিয়ে (mock as a *verb*) আমরা আরও ভাল কাজ করবো যদি আমরা ইন্টারফেছ গুলিকে তৈরি করে নেই যেগুলো আমাদের এপ্লিকেশন এর বাইরে আছে এবং মক কে (as a *noun*) ব্যাবহার করি আমাদের ক্লায়েন্ট কোড কে টেস্ট করবার জন্য।
 
-To switch the implementations in your application code, the preferred way is to pass the module as arguments and use a default value. If that does not work, use the built-in configuration mechanism. For creating these mock implementations, you don't need a special mocking library, only behaviours and callbacks. 
+এপ্লিকেশনে কোডের ইমপ্লিমেন্টেশন পরিবর্তন করবার জন্য , উপযুক্ত উপায় হল মডিউল কে আর্গুমেন্ট আকারে পাস করা এবং একটি ডিফল্ট ভ্যলু ব্যবহার করা। যদি এতে কাজ না হয় তো আমরা বিল্ট ইন কনফিগারেশন ব্যাবহার করতে পারি যাতে করে এই মক ইমপ্লিমেন্টেশন গুলো করা যায়। আমাদের কোন আলাদা মকিং লাইব্রেরি এর দরকার নেই । শুধু আচরণ গুলি এবং কলব্যাক গুলি হলেই কাজ হয়ে যাবে।
