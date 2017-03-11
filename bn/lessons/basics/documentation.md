@@ -1,41 +1,40 @@
 ---
 layout: page
-title: Documentation (TODO)
+title: ডকুমেন্টেশান 
 category: basics
 order: 11
 lang: bn
 ---
 
-Documenting Elixir code.
+আপনার কোডকে ডকুমেন্ট করুন।
 
 {% include toc.html %}
 
-## Annotation
+## অ্যানোটেশান 
 
-How much we comment and what makes quality documentation remains a contentious issue within the programming world. However, we can all agree that documentation is important for ourselves and those working with our codebase.
+আপনার কোডে কতটুকু কমেন্টিং করবেন এবং ভাল ডকুমেন্টেশানের মাপকাঠি কী তা নিয়ে যুক্তিতর্কের শেষ নেই। কিন্তু একটা বিষয়ে সকলে একমত যে ডকুমেন্টেশানের গুরুত্ব অপরিসীম। এলিক্সিরের কোর ডেভেলপাররা এটি আগেই বুঝতে পেরেছিলেন যার ফলে ল্যাঙ্গুয়েজটিতে ডকুমেন্টেশানের হরেক রকমের ব্যবস্থা। ডকুমেন্টেশান এলিক্সিরে *প্রথম শ্রেণীর নাগরিক* এবং ডকুমেন্টেশান প্রণালীকে আরামদায়ক করার জন্য রয়েছে বহু ধরণের ব্যবস্থা তথা মডিউল ও ফাংশন। 
 
-Elixir treats documentation as a *first-class citizen*, offering various functions to access and generate documentation for your projects. The Elixir core provides us with many different attributes to annotate a codebase. Let's look at 3 ways:
+এলিক্সিরের তিনটি প্রধান ডকুমেন্টেশান ব্যবস্থা হল- 
 
-  - `#` - For inline documentation.
-  - `@moduledoc` - For module-level documentation.
-  - `@doc` - For function-level documentation.
+  - `#` - ইনলাইন ডকুমেন্টেশানের জন্য 
+  - `@moduledoc` - মডিউল ডকুমেন্টেশানের জন্য 
+  - `@doc` - ফাংশন ডকুমেন্টেশানের জন্য
 
-### Inline Documentation
+### ইনলাইন ডকুমেন্টেশান 
 
-Probably the simplest way to comment your code is with inline comments. Similar to Ruby or Python, Elixir's inline comment is denoted with a `#`, frequently known as a *pound*, or a *hash* depending on where you are from in the world.
+ডকুমেন্টেশানের সহজতম উপায় হল ইনলাইন কমেন্টিং। রুবি, পাইথন, পার্ল ইত্যাদির মত `#` দিয়ে এলিক্সিরের ইনলাইন কমেন্ট ব্যবহৃত হয়ে থাকে। একে আপনি পাউন্ড অথবা হ্যাশ ডাকতে পারেন। 
 
-Take this Elixir Script (greeting.exs):
+নীচের এলিক্সির স্ক্রিপ্টটি দেখি- 
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
 IO.puts "Hello, " <> "chum."
 ```
 
-Elixir, when running this script will ignore everything from `#` to the end of the line, treating it as throwaway data. It may add no value to the operation or performance of the script, however when it's not so obvious what is happening a programmer should know from reading your comment. Be mindful not to abuse the single line comment! Littering a codebase could become an unwelcome nightmare for some. It is best used in moderation.
+এলিক্সির কোড রান করার সময়ে স্ক্রিপ্টটি `#` পরবর্তী সমস্ত কথা বাদ দিয়ে দেয়। কিন্তু যদি আপনি ঠিকমত কমেন্ট করেন তাহলে আপনার কোডে কী হচ্ছে তা অন্যান্য প্রোগ্রামাররা বুঝতে পারবে। তবে, অযথা কমেন্ট না করাই ভাল কারণ তা পরবর্তীতে বিরক্তির কারণ হয়ে দাঁড়াবে। দরকার বুঝে সংক্ষিপ্ত ভাষায় ইনলাইন কমেন্ট করাই উত্তম। 
 
-### Documenting Modules
-
-The `@moduledoc` annotator allows for inline documentation at a module level. It typically sits just under the `defmodule` declaration at the top of a file. The below example shows a one line comment within the `@moduledoc` decorator.
+### মডিউল ডকুমেন্টেশান 
+`@moduledoc` অ্যানোটেটরের মাধ্যমে আমরা মডিউল লেভেলে ইনলাইন ডকুমেন্টেশান করতে পারি। এটি সাধারণত `defmodule` ডিক্লেয়ারের পরপরই অবস্থান করে। নীচে এমন একটি এক লাইনের কমেন্ট দেখুন- 
 
 ```elixir
 defmodule Greeter do
@@ -49,7 +48,7 @@ defmodule Greeter do
 end
 ```
 
-We (or others) can access this module documentation using the `h` helper function within IEx.
+আমরা এই মডিউলকে অ্যাক্সেস করতে পারি `IEx` এ গিয়ে `h` কমান্ডের সাহায্যে। 
 
 ```elixir
 iex> c("greeter.ex")
@@ -62,9 +61,9 @@ iex> h Greeter
 Provides a function hello/1 to greet a human
 ```
 
-### Documenting Functions
+### ফাংশন ডকুমেন্টেশান 
 
-Just as Elixir gives us the ability for module level annotation, it also enables similar annotations for documenting functions. The `@doc` annotator allows for inline documentation at a function level. The `@doc` annotator sits just above the function it is annotating.
+মডিউলের মত ফাংশনকেও আমরা ডকুমেন্ট করতে পারি যার কার্যপ্রনালি মোটামটি একই রকম। এর জন্য আমাদের `@doc` এর সহায়তা নিতে হবে যা ঠিক ফাংশন ডেফিনিসানের উপরে অবস্থান করে। 
 
 ```elixir
 defmodule Greeter do
@@ -95,7 +94,7 @@ defmodule Greeter do
 end
 ```
 
-If we kick into IEx again and use the helper command (`h`) on the function prepended with the module name, we should see the following:
+পুনরায় `IEx` চালু করে `h` কমান্ড দিয়ে আমরা একে দেখতে পারব। উল্লেখ্য শুধু ফাংশনের ডকুমেন্টেশান দেখতে চাইলে আমরা `h` এর পর ফাংশনের নাম (মডিউলসহ, ডটের মাধ্যমে) লিখব। 
 
 ```elixir
 iex> c("greeter.ex")
@@ -122,13 +121,15 @@ Examples
 iex>
 ```
 
-Notice how you can use markup within our documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
+দেখুন কিভাবে আমরা মার্কআপ ব্যবহার করতে পারি ডকুমেন্টেশানিয় কমেন্টের ভেতর। আবার টার্মিনাল তা রেন্ডারও করে। শুধু তাই না, এক্সডকের (`ExDoc`) মাধ্যমে আমরা এহেন ডকুমেন্টেশানকে এইচটিএমএল পেইজে রেন্ডার করতে পারব যা আমাদের পরবর্তী আলোচনার বিষয়বস্তু। 
 
-**Note:** the `@spec` annotation is used to static analysis of code. To learn more about it, check out the [Specifications and types](../../advanced/typespec) lesson.
+**দ্রষ্টব্য:** `@spec` অ্যানোটেশান দিয়ে আমরা কোডের স্ট্যাটিক অ্যানালাইসিস করতে পারি। [স্পেসিফিকেইশান ও টাইপ-স্পেক](../../advanced/typespec) নামক অধ্যায়ে এই বিষয়ে আমরা আরও জানব। 
 
-## ExDoc
+## এক্সডক 
 
-ExDoc is an official Elixir project that can be found on [GitHub](https://github.com/elixir-lang/ex_doc). It produces **HTML (HyperText Markup Language) and online documentation** for Elixir projects. First let's create a Mix project for our application:
+এলিক্সিরের অফিসিয়াল প্রোজেক্টসমূহের একটি হল এক্সডক। এর কাজ হল এলিক্সির প্রোজেক্টের সংশ্লিষ্ট **এইচটিএমএল ও অনলাইন ডকুমেন্টেশান** জেনারেট করা। একে [গিটহাব](https://github.com/elixir-lang/ex_doc) এ পাওয়া যাবে। 
+
+চলুন এক্সডক নিয়ে কাজ করি। প্রথম ধাপ- একটি মিক্স প্রোজেক্ট তৈরি- 
 
 ```bash
 $ mix new greet_everyone
@@ -156,7 +157,7 @@ $ cd greet_everyone
 
 ```
 
-Now copy and paste the code from the `@doc` annotator lesson into a file called `lib/greeter.ex` and make sure everything is still working from the command line. Now that we are working within a Mix project we need to start IEx a little differently using the `iex -S mix` command sequence:
+এবার পূর্বের কোডগুলিকে `lib/greeter.ex` নামক ফাইলে কপি করি এবং চেক করে নেই যে সবকিছু ঠিকঠাক মত চলে। যেহেতু এবার মিক্স নিয়ে কাজ করছি তাই মিক্সসহ `IEx` চালু করা যাক (`iex -S mix` কমান্ড থেকে )-
 
 ```bash
 iex> h Greeter.hello
@@ -178,9 +179,9 @@ Examples
     "Hello, pete"
 ```
 
-### Installing
+### ইন্সটল 
 
-Assuming all is well and we're seeing the output above, we are now ready to set up ExDoc. In the `mix.exs` file, add the two required dependencies to get started: `:earmark` and `:ex_doc`.
+যদি উপরের সমস্ত ধাপ ঠিকমত চলে তাহলে এবার আমরা অগ্রসর হতে পারি এক্সডক ইন্সটলেশানের দিকে। মিক্সের `mix.exs` ফাইলে দুটি ডিপেন্ডেন্সি (`:earmark` ও `:ex_doc`) প্রথমে যুক্ত করি। 
 
 ```elixir
   def deps do
@@ -189,13 +190,16 @@ Assuming all is well and we're seeing the output above, we are now ready to set 
   end
 ```
 
-We specify the `only: :dev` key-value pair as we don't want to download and compile these dependencies in a production environment. But why Earmark? Earmark is a Markdown parser for the Elixir programming language that ExDoc utilizes to turn our documentation within `@moduledoc` and `@doc` to beautiful looking HTML.
+`only: :dev` যুগলের উদ্দেশ্য হল এরা প্রোডাকশানের সময়ে ডাউনলোডকৃত হবে না। এদের কাজ শুধু ডকুমেন্টেশান তৈরিতে সহায়তা করা। কিন্তু `Earmark` কেন? এর কাজ হল মার্কডাউন পার্স করা যা আমাদের কমেন্টে ব্যবহৃত হয় এবং সুন্দরভাবে ফর্ম্যাটেড হয় সেয় কমেন্টগুলি ডকুমেন্টেশান আকারে। 
 
-It is worth noting at this point that you are not forced to use Earmark. You can change the markup tool to others such as Pandoc, Hoedown, or Cmark; however you will need to do a little more configuration which you can read about [here](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). For this tutorial, we'll just stick with Earmark.
+কিন্তু বলে রাখা উচিৎ যে আপনি শুধু `Earmark` এ সীমাবদ্ধ না। অন্যান্য মার্কআপ টুল আপনি ব্যবহার করতে পারেন যেমন `Pandoc`, `Hoedown`, `Cmark` ইত্যাদি, যদিও কিছু কনফিগারেশান করতে হবে আপনাকে। এ সম্পর্কে জানতে [এইখানে](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool) ভিজিট করুন। 
 
-### Generating Documentation
+এই টিউটোরিয়ালে আমরা `Earmark` ব্যবহার করব। 
 
-Carrying on, from the command line run the following two commands:
+
+### ডক জেনারাশান 
+
+প্রথমে আমাদের ডিপেন্ডেন্সিকে ডাউনলোড করে নেই এবং এর পর `mix docs` নামক কমান্ড ব্যবহার করলেই জানা যাবে কোথায় তা জেনারেট হয়েছে। 
 
 ```bash
 $ mix deps.get # gets ExDoc + Earmark.
@@ -215,11 +219,11 @@ We can see that Earmark has rendered our Markdown and ExDoc is now displaying it
 
 We can now deploy this to GitHub, our own website, or more commonly [HexDocs](https://hexdocs.pm/).
 
-## Best Practice
+## বেস্ট প্র্যাকটিস 
 
-Adding documentation should be added within the Best practices guidelines of the language. Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows. The community, however, tried to establish best practices. To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
+ল্যাঙ্গুয়েজের বেস্ট প্র্যাকটিস তালিকায় ডকুমেন্টেশান উল্লেখযোগ্য একটি বিষয়। এলিক্সির একটি নতুন ল্যাঙ্গুয়েজ হবার ফলে এর বেস্ট প্র্যাকটিস তালিকা এখনো ক্রমবর্ধ্মান এবং প্রতি নিয়ত সুগঠিত হচ্ছে, আর যুক্ত হচ্ছে নতুন নতুন প্র্যাকটিস, কমিউনিটির এক্সপিরিয়েন্সের সাথে সাথে। তারপরও কমিউনিটি নির্মিত একটি গাইডলাইনের সন্ধান পাবেন এইখানে- [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide)। যাই হোক, এলিক্সির ডকুমেন্টেশানের জন্য বেস্ট প্র্যাকটিসের কিছু তালিকে নিম্নরূপ- 
 
-  - Always document a module.
+  - সব সময়ে মডিউলদের ডকুমেন্ট করবেন। 
 
 ```elixir
 defmodule Greeter do
@@ -230,7 +234,7 @@ defmodule Greeter do
 end
 ```
 
-  - If you do not intend to document a module, **do not** leave it blank. Consider annotating the module `false`, like so:
+  - যদি আপনি কোন মডিউলকে ডকুমেন্ট করতে না চান তবে তাকে ব্ল্যাংক না রেখে, `false` দিয়ে অ্যানোটেট করুন। 
 
 ```elixir
 defmodule Greeter do
@@ -239,7 +243,7 @@ defmodule Greeter do
 end
 ```
 
- - When referring to functions within module documentation, use backticks like so:
+ - মডিউল ডকুমেন্টেশানে কোন ফাংশনকে রেফার করলে তার নাম ব্যাকটিক দিয়ে আবদ্ধ করুন- 
 
 ```elixir
 defmodule Greeter do
@@ -255,7 +259,7 @@ defmodule Greeter do
 end
 ```
 
- - Separate any and all code one line under the `@moduledoc` as so:
+ - `@moduledoc` থেকে এক লাইন নীচ দিয়ে কোড শুরু করুন। 
 
 ```elixir
 defmodule Greeter do
@@ -274,7 +278,7 @@ defmodule Greeter do
 end
 ```
 
- - Use markdown within functions that will make it easier to read either via IEx or ExDoc.
+ - `IEx` এবং `ExDoc` এ সুন্দরভাবে রেন্ডার করতে চাইলে মার্ক ডাউন ব্যবহার করুন ডকুমেন্টেশান অ্যানোটেশানের ভেতর। 
 
 ```elixir
 defmodule Greeter do
@@ -305,6 +309,4 @@ defmodule Greeter do
 end
 ```
 
- - Try to include some code examples in your documentation. This also allows you to generate automatic tests from the code examples found in a module, function, or macro with [ExUnit.DocTest][]. In order to do that, you need to invoke the `doctest/1` macro from your test case and write your examples according to some guidelines as detailed in the [official documentation][ExUnit.DocTest].
-
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+ - চেষ্টা করুন ডকুমেন্টেশানে কিছু কোডের উদাহরণ দেওয়ার। এতে আপনার ডকুমেন্টেশানের পাঠক যে উপকৃত হবেন তাই শুধু না, বরং `ExUnit.DocTest` এর মাধ্যমে আপনি ওই কোডের টেস্টিংও করতে পারবেন যেখানে আপনার কমেন্টের দেওয়া কোড ও এর আউটপুট (যা `IEx` সেশানে প্রাপ্ত ইনপুট/আউটপুট ফরম্যাটিংয়ের মত) এর যথার্থতা যাচাই করবে। আরও জানুন অফিসিয়াল ডকুমেন্টেশান থেকে [ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
