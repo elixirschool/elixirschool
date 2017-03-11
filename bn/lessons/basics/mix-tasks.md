@@ -1,18 +1,18 @@
 ---
 layout: page
-title: Custom Mix Tasks (TODO)
+title: মিক্স টাস্ক 
 category: basics
 order: 15
 lang: bn
 ---
 
-Creating custom Mix tasks for your Elixir projects.
+মিক্স দিয়ে নিজস্ব টাস্ক তৈরি করা হবে এই অধ্যায়ের মূল বিষয়। 
 
 {% include toc.html %}
 
-## Introduction 
+## সূচনা  
 
-It's not uncommon to want to extend your Elixir applications functionality by adding custom Mix tasks. Before we learn about how to create specific Mix tasks for our projects, let's look at one that already exists:
+প্রচলিত কিছু মিক্স টাস্কের উদাহরণ দেখা যাক- 
 
 ```shell
 $ mix phoenix.new my_phoenix_app
@@ -28,12 +28,12 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-As we can see from the shell command above, The Phoenix Framework has a custom Mix task to generate a new project. What if we could create something similar for our project? Well the great news is we can, and Elixir makes this easy for us to do.
+উপরের শেল কমান্ড থেকে আমরা দেখতে পাচ্ছি যে, ফিনিক্স ফ্রেইমওয়ার্ক কাস্টম মিক্স টাস্ক দিয়ে প্রজেক্ট সৃষ্টির কাজটি করে থাকে। আমরা যদি আমাদের প্রোজেক্টের জন্য এমন কিছু করই তাহলে কেমন হয়? এলিক্সির মিক্স ট্যাস্ক দিয়ে এ ধরনের কাজ করতে দেয় খুব সহজেই। 
 
-## Setup
+## সেটআপ 
 
-Let's set up a very basic Mix application.
-
+একটি খুব ছোট মিক্স অ্যাপ্লিকেশান তৈরি করি।
+ 
 ```shell
 $ mix new hello
 
@@ -57,7 +57,7 @@ mix test
 Run "mix help" for more commands.
 ```
 
-Now, in our **lib/hello.ex** file that Mix generated for us, let's create a simple function that will output "Hello, World!"
+উপরিউক্ত কমান্ড থেকে সদ্য তৈরি করা **lib/hello.ex** ফাইলের মডিউলে একটি ফাংশন তৈরি করি যা  "Hello, World!" আউটপুট দিবে- 
 
 ```elixir
 defmodule Hello do
@@ -71,9 +71,9 @@ defmodule Hello do
 end
 ```
 
-## Custom Mix Task
+## কাস্টম মিক্স টাস্ক বর্ণনা 
 
-Let's create our custom Mix task. Create a new directory and file **hello/lib/mix/tasks/hello.ex**. Within this file, let's insert these 7 lines of Elixir.
+এবার আমাদের কাস্টম মিক্স টাস্ক তৈরি করি। **`mix/tasks`** নামক একটি নতুন ডিরেক্টরি তৈরি করি ও এতে **hello.ex** নামের একটি ফাইল বানাই (**hello/lib/mix/tasks/hello.ex** হয়ে যাবে ফাইলের অন্তিম লোকেশান)। ফাইলটিতে নিম্নক্ত লাইনগুলি লিখি। 
 
 ```elixir
 defmodule Mix.Tasks.Hello do
@@ -86,25 +86,25 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-Notice how we start the defmodule statement with `Mix.Tasks` and the name we want to call from the command line. On the second line we introduce the `use Mix.Task` which brings the `Mix.Task` behaviour into the namespace. We then declare a run function which ignores any arguments for now. Within this function, we call our `Hello` module and the `say` function.
+আমরা কিন্তু `defmodule` স্টেটমেন্ট এ `Mix.Tasks` অ্যাড করেছি মডিউল নামের পূর্বে। আর মডিউলের মূল নাম হল যে নামে আমরা কমান্ড লাইনে আমাদের টাস্ককে ডাকতে চাই সেটি। এবার লক্ষ্য করি `use Mix.Task` এর দিকে- এর মাধ্যমে `Mix.Task` বিহেভিয়রকে আমাদের নেইমস্পেইসে আনা হয়। অবশেষে আমরা `run` ফাংশনটি বানাই যা (আপাতত) কোন আর্গুমেন্ট নেয় না। এই ফাংশনের ভেতরে আমরা `Hello.say/0` ব্যবহার করেছি। 
 
-## Mix Tasks in Action
+## মিক্স টাস্ক রান করা 
 
-Let's checkout our mix task. As long as we are in the directory it should work. From the command line, run `mix hello`, and we should see the following:
+এবার আমাদের মিক্স টাস্কটি রান করা যাক। মিক্সে প্রোজেক্টের টপ লেভেল ডিরেক্টরিতে থাকলে এই কমান্ডটি রান করবে। কাজেই, কমান্ড লাইন থেকে `mix hello` রান করে পাই-  
 
 ```shell
 $ mix hello
 Hello, World!
 ```
 
-Mix is quite friendly by default. It knows that everyone can make a spelling error now and then, so it uses a technique called fuzzy string matching to make recommendations:
+মিক্স কিন্তু আবার বেশ স্মার্ট। যদি কখনো বানান ভুল করেন আপনার কমান্ডটি লিখার সময় তাহলে ফাজি স্ট্রিং ম্যাচিংয়ের মাধ্যমে আপনাকে মিক্স রিকমেন্ড করবে যেমন- 
 
 ```shell
 $ mix hell
 ** (Mix) The task "hell" could not be found. Did you mean "hello"?
 ```
 
-Did you also notice that we introduced an new module attribute, `@shortdoc`? This comes in handy when shipping our application, such as when a user runs the `mix help` command from the terminal.
+`@shortdoc` নামক একটি নতুন অ্যাট্রিবিউট দেখেছি আমরা আমাদের টাস্ক মডিউলে। এর কাজ হল সেই মেসেজকে বলে দেওয়া যা আমাদের কমান্ড `mix help` এর উত্তরে দিবে। 
 
 ```shell
 $ mix help
