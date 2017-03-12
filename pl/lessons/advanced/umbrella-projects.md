@@ -162,7 +162,7 @@ $ tree
 
 Jeżeli teraz wrócimy do katalogu projektu zbiorczego, będziemy mogli zobaczyć jak działają typowe zadania mixa jak kompilacja. Jako że projekty potomne to zwyczajne aplikacje to zawsze możemy też wejść do ich katalogów i bez żadnych problemów wywołać tam zadania mixa.
 
-```
+```bash
 $ mix compile
 
 ==> svm

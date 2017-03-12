@@ -159,7 +159,7 @@ $ tree
 
 Se voltarmos para raíz do projeto guarda-chuva, vemos que podemos chamar todos os comandos típicos, tais como o de compilação. Como os sub-projetos são apenas aplicações normais, você pode entrar nos diretórios e fazer todas as mesmas coisas usuais que o Mix permite fazer.
 
-```
+```bash
 $ mix compile
 
 ==> svm

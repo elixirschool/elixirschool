@@ -25,7 +25,7 @@ Cài đặt là việc quá dễ với mix. Đơn giản là thêm Poolboy làm 
 
 Trước hết ta hãy tạo một ứng dụng:
 
-```
+```bash
 $ mix new poolboy_app --sup
 $ mix deps.get
 ```

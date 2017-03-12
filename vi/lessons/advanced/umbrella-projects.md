@@ -158,7 +158,7 @@ $ tree
 
 Nếu chúng ta quay trở về thư mục gốc của dự án ô, chúng ta có thể gọi tất cả các lệnh thông thường của Mix, ví dụ như `mix compile`. Vì các dự án con cũng là các ứng dụng bình thường, bạn có thể đi vào từng thư mục, và làm tất cả những việc mà Mix cho phép bạn làm.
 
-```
+```bash
 $ mix compile
 
 ==> svm

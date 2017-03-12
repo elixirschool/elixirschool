@@ -25,7 +25,7 @@ A instalação é uma brisa com o mix. Tudo o que precisamos fazer é adicionar 
 
 Primeiro vamos criar um aplicativo:
 
-```
+```bash
 $ mix new poolboy_app --sup
 $ mix deps.get
 ```

@@ -25,7 +25,7 @@ lang: gr
 
 Ας δημιουργήσουμε μια εφαρμογή πρώτα:
 
-```
+```bash
 $ mix new poolboy_app --sup
 $ mix deps.get
 ```

@@ -158,7 +158,7 @@ $ tree
 
 Falls wir zurück zur Wurzel unseres Umbrella-Projekts wechseln, können wir sehen, dass wir jeden üblichen Befehl wie etwa compile aufrufen können. Da Unterprojekte auch nur normale Anwendungen sind, kannst du in ihr Verzeichnis wechseln und all die bekannten Sachen machen, die dir Mix erlaubt.
 
-```
+```bash
 $ mix compile
 
 ==> svm
