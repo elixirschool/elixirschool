@@ -25,7 +25,7 @@ lang: ru
 
 Для начала создадим приложение:
 
-```
+```bash
 $ mix new poolboy_app --sup
 $ mix deps.get
 ```

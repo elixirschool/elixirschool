@@ -25,7 +25,7 @@ lang: ko
 
 애플리케이션을 먼저 만들어 봅시다.
 
-```
+```bash
 $ mix new poolboy_app --sup
 $ mix deps.get
 ```

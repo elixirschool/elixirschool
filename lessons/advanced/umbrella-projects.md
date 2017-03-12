@@ -158,7 +158,7 @@ $ tree
 
 If we change back to the umbrella projects root, we can see that we can call all the typical commands such as compile. As the sub projects are just normal applications, you can change into their directories and do all the same stuff as usual that Mix enables you to do.
 
-```
+```bash
 $ mix compile
 
 ==> svm

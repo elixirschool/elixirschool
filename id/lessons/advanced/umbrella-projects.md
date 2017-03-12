@@ -158,7 +158,7 @@ $ tree
 
 Jika kita pindah kembali ke direktori root project payungnya, kita bisa melihat bahwa kita bisa memanggil semua perintah yang biasa seperti compile. Karena subproject adalah aplikasi normal biasa, anda bisa pindah ke direktorinya dan melakukan semua kegiatan yang biasanya dimungkinkan oleh Mix untuk kita lakukan.
 
-```
+```bash
 $ mix compile
 
 ==> svm

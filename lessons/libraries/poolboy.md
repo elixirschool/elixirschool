@@ -25,7 +25,7 @@ Installation is a breeze with mix. All we need to do is add Poolboy as a depende
 
 Let's create an application first:
 
-```
+```bash
 $ mix new poolboy_app --sup
 $ mix deps.get
 ```
