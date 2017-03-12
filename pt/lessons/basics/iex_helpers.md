@@ -38,7 +38,7 @@ E agora sabemos as funções que temos e seus números de argumentos!
 
 Toda vez que o IEx inicia, ele irá procurar por um arquivo de configuração .iex.exs. Se não estiver presente no diretório atual, então o (~/.iex.exs) do diretório home do usuário será usado como alternativa.
 
-Opções de configurações e código definido dentro deste arquivo estarão disponíveis para nós quando o shell do IEx iniciar. Por exemplo, se quiséssemos alguma função helper disponível para no IEx, poderíamos abrir o arquivo .iex.exs e fazer algumas mudanças.
+Opções de configurações e código definido dentro deste arquivo estarão disponíveis para nós quando o shell do IEx iniciar. Por exemplo, se quiséssemos alguma função helper disponível no IEx, poderíamos abrir o arquivo .iex.exs e fazer algumas mudanças.
 
 Vamos começar adicionando um módulo com alguns métodos helper.
 
@@ -183,7 +183,7 @@ Reference modules
   Module, Atom
 ```
 
-Agora nós temos bastante informações sobre o Map, incluindo onde seu código-fonte está salvo e os módulos que ele faz referência.
+Agora nós temos bastante informação sobre o Map, incluindo onde seu código-fonte está salvo e os módulos que ele faz referência.
 Isto é bastante útil ao explorar tipos de dados personalizados e externos, e novas funções.
 
 Os cabeçalhos individuais podem ser densos, mas em um alto nível podemos coletar algumas informações relevantes:
