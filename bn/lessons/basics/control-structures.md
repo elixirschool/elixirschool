@@ -1,4 +1,5 @@
 ---
+version: 1.0.0
 layout: page
 title: কন্ট্রোল স্ট্রাকচার 
 category: basics

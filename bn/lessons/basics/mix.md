@@ -1,4 +1,5 @@
 ---
+version: 1.0.0
 layout: page
 title: মিক্স
 category: basics

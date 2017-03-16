@@ -1,4 +1,5 @@
 ---
+version: 1.0.0
 layout: page
 title: পাইপ অপারেটর 
 category: basics

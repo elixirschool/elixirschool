@@ -1,4 +1,5 @@
 ---
+version: 1.0.0
 layout: page
 title: কম্প্রিহেনশান 
 category: basics
