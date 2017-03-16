@@ -16,7 +16,6 @@ Jekyll::Hooks.register :pages, :pre_render do |page, payload|
 
   if default_lang != lang && master_version
     severity = compare_versions(master_version, page_version)
-    unless severity == "none"
       warnings      = page.site.config["version_messages"]
       lang_warnings = warnings[lang] || warnings[default_lang]
       msg           = lang_warnings[severity]
@@ -27,7 +26,6 @@ Jekyll::Hooks.register :pages, :pre_render do |page, payload|
         "severity" => severity,
         "severity_message" => msg
       }
-    end
   end
 end
 
