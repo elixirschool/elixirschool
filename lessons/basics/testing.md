@@ -105,7 +105,7 @@ end
 
 ## capture_io and capture_log
 
-Capturing an application's output is possible with `ExUnit.captureIO` without changing the original application. Simply pass the function generating the output in:
+Capturing an application's output is possible with `ExUnit.CaptureIO` without changing the original application. Simply pass the function generating the output in:
 
 ```elixir
 defmodule OutputTest do
