@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Βοηθοί IEx
 category: basics
@@ -35,7 +35,7 @@ split/2              take/2               to_list/1
 update!/3            update/4             values/1
 ```
 
-Και τώρα ξέρουμε τις συναρτήσεις που έχουμε και την υπογραφή τους.
+Και τώρα ξέρουμε τις συναρτήσεις που έχουμε και την τάξη τους.
 
 ### `.iex.exs`
 
