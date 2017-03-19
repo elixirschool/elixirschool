@@ -17,7 +17,7 @@ lang: gr
 
 Ας δούμε ένα βασικό παράδειγμα:
 
-```elixirre
+```elixir
 iex> sum = fn (a, b) -> a + b end
 iex> sum.(2, 3)
 5

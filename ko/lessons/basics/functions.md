@@ -17,7 +17,7 @@ Elixir를 포함한 많은 함수형 언어에서, 함수들은 일급 시민입
 
 기초적인 예제를 보도록 합시다.
 
-```elixirre
+```elixir
 iex> sum = fn (a, b) -> a + b end
 iex> sum.(2, 3)
 5

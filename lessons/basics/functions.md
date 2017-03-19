@@ -17,7 +17,7 @@ Just as the name implies, an anonymous function has no name.  As we saw in the `
 
 Let's look at a basic example:
 
-```elixirre
+```elixir
 iex> sum = fn (a, b) -> a + b end
 iex> sum.(2, 3)
 5
