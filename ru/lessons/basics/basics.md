@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Основы
 category: basics
@@ -39,8 +39,7 @@ lang: ru
 Попробуем написать несколько простых выражений:
 
 ```elixir
-iex>
-2+3
+iex> 2+3
 5
 iex> 2+3 == 5
 true
