@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Управляющие конструкции
 category: basics
@@ -135,6 +135,7 @@ iex> cond do
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
+%{first: "Sean", last: "Callan"}
 iex> with {:ok, first} <- Map.fetch(user, :first),
 ...>      {:ok, last} <- Map.fetch(user, :last),
 ...>      do: last <> ", " <> first
