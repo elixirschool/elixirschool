@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Plug
 category: specifics
@@ -134,15 +134,16 @@ end
 Έχουμε συμπεριλάβει μερικές μακροεντολές μέσω της `use Plug.Router` και μετά ορίσαμε δύο από τα προυπάρχοντα Plugs: τα `:match` και `:dispatch`.
 Υπάρχουν δύο ορισμένες διαδρομές, μία για το χειρισμό αιτήσεων GET στην πηγαία διαδρομή (root) και η δεύτερη για το ταίριασμα όλων των άλλων αιτήσεων ώστε να επιστρέψουμε ένα μήνυμα 404.
 
-Πίσω στο `mix.exs`, πρέπει να πούμε στην Elixir για το δρομολογητή μας.
+Πίσω στο `lib/example.ex`, πρέπει να προσθέσουμε τον `Example.Router` μας στο δέντρο επιτήρησης του εξυπηρετητή web.
 Αλλάξτε το plug `Example.HelloWorldPlug` με το νέο μας δρομολογητή:
 
 ```elixir
-def application do
-  [
-    application: [:cowboy, :logger, :plug],
-    mod: {Example.Router, []}
-  ]
+def start(_type, _args) do
+    children = [
+      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+    ]
+    Logger.info "Started application"
+    Supervisor.start_link(children, strategy: :one_for_one)
 end
 ```
 

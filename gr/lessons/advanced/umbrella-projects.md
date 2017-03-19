@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Projects Ομπρέλας
 category: advanced
@@ -40,7 +40,7 @@ for each application in the apps/ directory.
 
 Όπως μπορείτε να δείτε από την εντολή τερματικού, το Mix μας δημιούργησε ένα μικρό σκελετό project με δύο φακέλους:
 
-  - `apps/` - εδώ εδρέυουν τα υπό projects
+  - `apps/` - εδώ εδρέυουν τα υπό (παιδιά) projects
   - `config/` - εδώ εδρέυει η ρύθμιση των projects ομπρέλας
 
 
