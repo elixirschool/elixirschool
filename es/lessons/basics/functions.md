@@ -17,7 +17,7 @@ Tal como el nombre sugiere, una función anónima no tiene nombre. Como vimos en
 
 Vamos a ver un ejemplo básico:
 
-```elixirre
+```elixir
 iex> sum = fn (a, b) -> a + b end
 iex> sum.(2, 3)
 5

@@ -16,7 +16,7 @@ lang: bn
 
 একটি সাধারণ উদাহরণ দেখা যাক- 
 
-```elixirre
+```elixir
 iex> sum = fn (a, b) -> a + b end
 iex> sum.(2, 3)
 5

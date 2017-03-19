@@ -17,7 +17,7 @@ Ako ich naznačuje už ich názov, tieto funkcie nemajú priradené meno. V kapi
 
 Pozrime sa na jednoduchý príklad:
 
-```elixirre
+```elixir
 iex> sum = fn (a, b) -> a + b end
 iex> sum.(2, 3)
 5
