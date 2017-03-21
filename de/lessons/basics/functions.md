@@ -153,7 +153,7 @@ defmodule Greeter do
     phrase <> name
   end
 
-  defp phrase, do: "Hello, "
+  defp phrase(), do: "Hello, "
 end
 
 iex> Greeter.hello ["Sean", "Steve"]
