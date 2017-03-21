@@ -108,7 +108,7 @@ end
 
 ## capture_io and capture_log
 
-Có thể lấy ra output của một ứng dụng với `ExUnit.captureIO` mà không cần thay đổi ứng dụng. Đơn giản chỉ cần truyền hàm để sinh output vào:
+Có thể lấy ra output của một ứng dụng với `ExUnit.CaptureIO` mà không cần thay đổi ứng dụng. Đơn giản chỉ cần truyền hàm để sinh output vào:
 
 ```elixir
 defmodule OutputTest do
