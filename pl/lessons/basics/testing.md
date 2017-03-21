@@ -105,7 +105,7 @@ end
 
 ## capture_io and capture_log
 
-Przechwytywanie informacji produkowanych przez aplikację jest możliwe za pomocą `ExUnit.captureIO` bez konieczności ingerowania w jej kod. Wystarczy jako argument przekazać funkcję, która wypisuje informacje na standardowe wyjście:  
+Przechwytywanie informacji produkowanych przez aplikację jest możliwe za pomocą `ExUnit.CaptureIO` bez konieczności ingerowania w jej kod. Wystarczy jako argument przekazać funkcję, która wypisuje informacje na standardowe wyjście:  
 
 ```elixir
 defmodule OutputTest do
