@@ -105,7 +105,7 @@ end
 
 ## capture_io, capture_log
 
-애플리케이션 출력의 캡쳐는 원본 애플리케이션을 변경하지 않아도 `ExUnit.captureIO`로 할 수 있습니다. 출력을 만드는 함수를 넘겨보세요.
+애플리케이션 출력의 캡쳐는 원본 애플리케이션을 변경하지 않아도 `ExUnit.CaptureIO`로 할 수 있습니다. 출력을 만드는 함수를 넘겨보세요.
 
 ```elixir
 defmodule OutputTest do
