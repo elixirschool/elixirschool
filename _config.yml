@@ -201,3 +201,9 @@ version_messages:
     minor: "Several minor changes were applied to the original lesson since the last update."
     patch: "Several patches were applied to the original lesson since the last update."
     none: "This translation is up to date."
+  gr:
+    outdated: "Ίσως υπάρχει περιεχόμενο σε αυτή τη μετάφραση που δεν είναι ενημερωμένο."
+    major: "Υπάρχουν αρκετές μεγάλες αλλαγές στο αρχικό μάθημα μετά την τελευταία ενημέρωση."
+    minor: "Υπάρχουν αρκετές μικρές αλλαγές στο αρχικό μάθημα μετά την τελευταία ενημέρωση."
+    patch: "Υπάρχουν αρκετές διορθωτικές αλλαγές στο αρχικό μάθημα μετά την τελευταία ενημέρωση."
+    none: "Αυτή η μετάφραση είναι πλήρως ενημερωμένη."
