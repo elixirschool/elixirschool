@@ -213,3 +213,9 @@ version_messages:
     minor: "С момента последнего обновления перевода в оригинальный урок были внесены небольшие изменения."
     patch: "С момента последнего обновления перевода в оригинальный урок были внесены небольшие правки."
     none: "Это перевод актуальной версии оригинального урока."
+  de:
+    outdated: "Teile dieser Übersetzung könnten veraltet sein."
+    major: "Einige größere Änderungen wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
+    minor: "Einige kleinere Änderungen wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
+    patch: "Einige Patches wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
+    none: "Diese Übersetzung ist aktuell."
