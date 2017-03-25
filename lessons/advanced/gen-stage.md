@@ -61,7 +61,7 @@ Let's update our dependencies in `mix.exs` to include `gen_stage`:
 ```elixir
   defp deps do
     [
-      {:gen_stage, "~> 0.7"},
+      {:gen_stage, "~> 0.11"},
     ]
   end
 ```
@@ -87,8 +87,6 @@ Now we can add the code:
 
 ```elixir
 defmodule GenstageExample.Producer do
-  alias Experimental.GenStage
-
   use GenStage
 
   def start_link(initial \\ 0) do
@@ -120,7 +118,6 @@ Let's update our file to look like the example code:
 
 ```elixir
 defmodule GenstageExample.ProducerConsumer  do
-  alias Experimental.GenStage
   use GenStage
 
   require Integer
@@ -159,7 +156,6 @@ Since consumers and producer-consumers are so similar our code won't look much d
 
 ```elixir
 defmodule GenstageExample.Consumer do
-  alias Experimental.GenStage
   use GenStage
 
   def start_link do
