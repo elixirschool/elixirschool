@@ -83,10 +83,14 @@ end
 
 This supervises Cowboy, and in turn, supervises our `HelloWorldPlug`.
 
-Now, the `application` portion of `mix.exs` needs two things:
+In the `Plug.Adapters.Cowboy.child_spec/4` call, the third argument will be passed to `Example.HelloWorldPlug.init/1`.
+In turn, the value returned from `Example.HelloWorldPlug.init/1` will be passed to `Example.HelloWorldPlug.call/2` as the second argument. For now, it's just an empty List that is ignored.
+
+We're not finished yet. Open `mix.exs`, and find the `applications` function.
+For now, it'll provide two things:
 1) A list of dependency applications (`cowboy`, `logger`, and `plug`) that need to start up, and
 2) Configuration for our own application, which should also start up automatically.
-Let's update the `application` portion of `mix.exs` to do that:
+Let's update it to do that:
 
 ```elixir
 def application do
@@ -243,14 +247,14 @@ With those changes in place our code should look something like this:
 
 ```elixir
 def application do
-  [applications: [:cowboy, :plug],
+  [applications: [:cowboy, :logger, :plug],
    mod: {Example, []},
    env: [cowboy_port: 8080]]
 end
 ```
 
 Our application is configured with the `mod: {Example, []}` line.
-Notice that we're also starting up the `cowboy` and `plug` applications.
+Notice that we're also starting up the `cowboy`, `logger` and `plug` applications.
 
 Next we need to update `lib/example.ex` read the port configuration value, and pass it to Cowboy:
 
