@@ -134,15 +134,16 @@ end
 `use plug.Router`를 통해 매크로를 넣어 `match`와`dispatch` 두 가지 플러그인을 설정했습니다.
 루트에 대한 GET 요청을 처리하는 라우트와 다른 모든 요청과 매치해 404를 반환하는 두 번째 라우트가 정의되어 있습니다.
 
-다시 `mix.exs`안에서 Elixir에 우리의 라우터를 알려줄 필요가 있습니다.
+다시 `lib/example.ex`로 돌아가서, `Example.Router`를 웹 서버 수퍼바이저 트리에 넣어 주어야 합니다.
 `Example.HelloWorldPlug` plug를 새로운 라우터로 교채해 봅시다.
 
 ```elixir
-def application do
-  [
-    applications: [:cowboy, :logger, :plug],
-    mod: {Example.Router, []}
-  ]
+def start(_type, _args) do
+    children = [
+      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+    ]
+    Logger.info "Started application"
+    Supervisor.start_link(children, strategy: :one_for_one)
 end
 ```
 
