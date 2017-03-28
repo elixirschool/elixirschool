@@ -16,10 +16,21 @@ After that, we'll learn about Plug's router and how to add a Plug to an existing
 
 {% include toc.html %}
 
-## Installation
+## Prerequisites
 
-Installation is a breeze with mix.
-To install Plug we need to make two small changes to our `mix.exs`.
+This tutorial assumes you have Elixir and `mix` installed already.
+
+If you don't have a project started, create one like this:
+
+```shell
+mix new example
+cd example
+```
+
+## Dependencies
+
+Adding dependencies is a breeze with mix.
+To install Plug we need to make two small changes to the `mix.exs` file.
 The first thing to do is add both Plug and a web server (we'll be using Cowboy) to our file as dependencies:
 
 ```elixir
