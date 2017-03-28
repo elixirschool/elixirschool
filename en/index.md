@@ -1,6 +1,7 @@
 ---
+layout: page
 title: Elixir School
-redirect_from: /
+lang: en
 ---
 
 [![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
@@ -24,6 +25,7 @@ Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk]
   [uk]: /uk/
   [de]: /de/
   [bn]: /bn/
+  [tr]: /tr/
 
 _Your feedback and participation is encouraged!_
 
