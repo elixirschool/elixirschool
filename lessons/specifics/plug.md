@@ -51,9 +51,6 @@ $ mix deps.get
 In order to begin creating Plugs, we need to know, and adhere to, the Plug spec.
 Thankfully for us, there are only two functions necessary: `init/1` and `call/2`.
 
-The `init/1` function is used to initialize our Plug's options, which are passed as the second argument to our `call/2` function.
-In addition to our initialized options the `call/2` function receives a `%Plug.Conn` as its first argument and is expected to return a connection.
-
 Here's a simple Plug that returns "Hello World!":
 
 ```elixir
@@ -71,6 +68,15 @@ end
 ```
 
 Save the file to `lib/example/hello_world_plug.ex`.
+
+The `init/1` function is used to initialize our Plug's options. It is called by supervision tree, which is explained in the next section. For now, it'll be an empty List that is ignored.
+
+The value returned from `init/1` will eventually be passed to `call/2` as its second argument.
+
+The `call/2` function is called for every new request that comes in from the web server, Cowboy.
+It receives a `%Plug.Conn{}` connection struct as its first argument and is expected to return a `%Plug.Conn{}` connection struct.
+
+## Configuring the Project's Application Module
 
 Since we're starting a Plug application from scratch, we need to define the application module.
 Update `lib/example.ex` to start and supervise Cowboy:
@@ -95,9 +101,8 @@ end
 This supervises Cowboy, and in turn, supervises our `HelloWorldPlug`.
 
 In the `Plug.Adapters.Cowboy.child_spec/4` call, the third argument will be passed to `Example.HelloWorldPlug.init/1`.
-In turn, the value returned from `Example.HelloWorldPlug.init/1` will be passed to `Example.HelloWorldPlug.call/2` as the second argument. For now, it's just an empty List that is ignored.
 
-We're not finished yet. Open `mix.exs`, and find the `applications` function.
+We're not finished yet. Open `mix.exs` again, and find the `applications` function.
 For now, it'll provide two things:
 1) A list of dependency applications (`cowboy`, `logger`, and `plug`) that need to start up, and
 2) Configuration for our own application, which should also start up automatically.
