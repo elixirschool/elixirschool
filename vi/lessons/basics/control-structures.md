@@ -171,10 +171,9 @@ end
 Khi chúng ta dùng `with`, code sẽ dễ đọc hơn và có ít dòng hơn:
 
 ```elixir
-with
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```
 
 Với Elixir 1.3, biểu thức `with` bắt đầu hỗ trợ `else`:

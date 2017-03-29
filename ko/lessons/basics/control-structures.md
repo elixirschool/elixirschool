@@ -170,10 +170,9 @@ end
 `with`를 도입하면 더 짧으면서도 이해하기 쉬운 코드를 작성할 수 있습니다.
 
 ```elixir
-with
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```
 
 

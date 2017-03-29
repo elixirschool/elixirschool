@@ -172,10 +172,9 @@ end
 এবার রিফ্যাক্টর করে `with` কে নিয়ে আসা যাক- 
 
 ```elixir
-with 
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```
 
 উপরিউক্ত কোডটি যেমন ছোট তেমনি বোধগম্য। 
