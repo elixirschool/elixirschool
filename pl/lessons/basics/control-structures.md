@@ -170,10 +170,9 @@ end
 Dzięki wprowadzeniu `with` nasz końcowy kod jest krótszy i łatwiejszy do zrozumienia:
 
 ```elixir
-with 
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```
 
 Elixir od wersji 1.3 pozwala też na użycie `else` w wyrażeniu `with`:

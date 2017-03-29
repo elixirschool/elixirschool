@@ -171,10 +171,9 @@ end
 Όταν εισάγουμε την `with`, καταλήγουμε με κώδικα που είναι έυκολο να καταλάβουμε και έχει λιγότερες γραμμές:
 
 ```elixir
-with
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```
 
 

@@ -169,8 +169,7 @@ end
 Ketika kita menggunakan `with` kita dapati code yang mudah dipahami dan menggunakan jumlah line yang lebih sedikit:
 
 ```elixir
-with 
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```
