@@ -219,3 +219,9 @@ version_messages:
     minor: "Einige kleinere Änderungen wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
     patch: "Einige Patches wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
     none: "Diese Übersetzung ist aktuell."
+  es:
+    outdated: "Algunos contenidos de esta tradución podrian estar desactualizados"
+    major: "Varios cambios mayores fueron aplicados a la lección original desde la última actualización."
+    minor: "Varios cambios menores fueron aplicados a la lección original desde la última actualización."
+    patch: "Varios parches fueron aplicados a la lección original desde la última actualización"
+    none: "Esta traducción está actualizada."
