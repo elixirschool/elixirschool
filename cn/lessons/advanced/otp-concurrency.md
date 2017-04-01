@@ -91,7 +91,7 @@ iex> SimpleQueue.queue
 ```
 
 ## 异步函数
-`handle_cast/2` 是处理异步函数的，  这个函数和 `handle_case/3` 的用法一样，除了它不接受调用者作为参数而且没有返回值。
+`handle_cast/2` 是处理异步函数的，  这个函数和 `handle_call/3` 的用法一样，除了它不接受调用者作为参数而且没有返回值。
 
 我们把 enqueue 功能设计成异步的：更新 queue 的内容，但并不阻塞当前程序的运行：
 
