@@ -7,7 +7,7 @@ order: 6
 lang: pt
 ---
 
-Os bugs são uma parte inerente de qualquer projeto, é por isso que precisamos de depurar o problema. Nesta sessão vamos aprender sobre como fazer debug no código Elixir, bem como ferramentas de análise de estática para ajudar a encontrar possíveis bugs.
+Às vezes, os bugs estão presentes em nosso projeto, é por isso que precisamos investigar o problema. Nesta sessão vamos aprender sobre como fazer debug no código Elixir, bem como ferramentas de análise de estática para ajudar a encontrar possíveis bugs.
 
 {% include toc.html %}
 
@@ -19,7 +19,7 @@ desnecessários ou inacessíveis.
 
 O [Dialyxir](https://github.com/jeremyjh/dialyxir) é uma tarefa mix para simplificar o uso do Dialyzer em Elixir.
 
-Ferramentas de especificação como o Dialyzer ajuda a enteder melhor o código. Este é um exemplo do que é legível e compreensível apenas para outros seres humanos (se apenas existe e é bom escrito), `@spec` usar sintaxe mais formal e que pode ser entendido pela máquina.
+Ferramentas de especificação como o Dialyzer ajudam a enteder melhor o código. Este é um exemplo do que é legível e compreensível apenas para outros seres humanos (se apenas existe e é bem escrito), `@spec` usar sintaxe mais formal e que pode ser entendido pela máquina.
 
 Vamos adicionar Dialixyr ao nosso projeto. A maneira mais simples é adicionar dependência ao arquivo `mix.exs`:
 
@@ -147,7 +147,7 @@ Depois de ter anexado o nosso módulo para o depurador estará disponível no me
 
 ## Criando breakpoints
 
-Um breakpoint um ponto no código onde a execução será interrompida. Temos duas maneiras de criar breakpoints:
+Um breakpoint é um ponto no código onde a execução será interrompida. Temos duas maneiras de criar breakpoints:
 
 + `:int.break/2` em nosso código
 + O IU do depurador
