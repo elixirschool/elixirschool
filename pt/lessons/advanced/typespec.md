@@ -13,9 +13,9 @@ Nessa lição vamos aprender sobre a sintaxe de `@spec` e `@type`. O primeiro é
 
 ## Introdução
 
-Não é incomum querer descrever a interface de sua função. Claro, você pode utilizar [@doc annotation](../../basics/documentation), mas isso é somente informação para outros desenvolvedores. Isso não será chegado em tempo de compilação. Para isso, Elixir tem uma anotação chamada `@spec` para descrever especificação de função que vai ser analisada pelo compilador.
+Não é incomum querer descrever a interface de sua função. Claro, você pode utilizar [@doc annotation](../../basics/documentation), mas isso é somente informação para outros desenvolvedores. Isso não será checado em tempo de compilação. Para isso, Elixir tem uma anotação chamada `@spec` para descrever especificação de função que vai ser analisada pelo compilador.
 
-Em alguns casos, a especificação é grande e complicada. Se você quiser reduzir a complexidade, você deverá introduzir um tipo de definição personalizada. Elixir tem a anotação `@type` para isso. Em contar partida, Elixir é uma linguagem dinâmica. Isso significa que toda informação a respeito do tipo será ignorado pelo compilador, mas pode ser utilizada por outras ferramentas.
+Em alguns casos, a especificação é grande e complicada. Se você quiser reduzir a complexidade, você deverá introduzir um tipo de definição personalizada. Elixir tem a anotação `@type` para isso. Em contra partida, Elixir é uma linguagem dinâmica. Isso significa que toda informação a respeito do tipo será ignorado pelo compilador, mas pode ser utilizada por outras ferramentas.
 
 ## Especificação
 
