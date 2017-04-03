@@ -193,6 +193,7 @@ share:
   pt: Compartilhe essa página
   bn: পৃষ্ঠা শেয়ার করুন
   vi: Chia sẻ trang này
+  pt: Compartilhe essa página
 
 version_messages:
   en:
@@ -219,3 +220,9 @@ version_messages:
     minor: "Einige kleinere Änderungen wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
     patch: "Einige Patches wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
     none: "Diese Übersetzung ist aktuell."
+  pt:
+    outdated: "Alguns conteúdos desta tradução podem estar desatualizados."
+    major: "Várias alterações importantes foram aplicadas à lição original desde a última atualização."
+    minor: "Várias pequenas alterações foram aplicadas à lição original desde a última atualização."
+    patch: "Vários patches foram aplicados à lição original desde a última atualização."
+    none: "Esta tradução está atualizada."
