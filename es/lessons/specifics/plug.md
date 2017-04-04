@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Plug
 category: specifics
@@ -9,11 +9,16 @@ lang: es
 
 Si estás familiarizado con Ruby puedes imaginar que Plug es como Rack con un poquito de Sinatra, este proporciona una especificación para componentes de aplicaciones Web y adaptadores para servidores web. Si bien no forma parte del núcleo de Elixir, Plug es un proyecto Elixir oficial.
 
+Empezaremos creando una aplicación web mínima basada en Plug.
+Despues de eso, aprenderemos acerca del enrutador de Plug y como agregar Plug a una aplicación web existente.
+
 {% include toc.html %}
 
 ## Instalación
 
-La instalación es cosa fácil con mix. Para instalar Plug tenemos que hacer dos pequeños cambios en nuestro `mix.exs`. Lo primero que se debe hacer es añadir Plug y un servidor web en nuestro archivo como dependencias, usaremos Cowboy:
+La instalación es cosa fácil con mix.
+Para instalar Plug tenemos que hacer dos pequeños cambios en nuestro `mix.exs`.
+Lo primero que se debe hacer es añadir Plug y un servidor web en nuestro archivo como dependencias, usaremos Cowboy:
 
 ```elixir
 defp deps do
@@ -22,24 +27,24 @@ defp deps do
 end
 ```
 
-La última cosa que necesitamos hacer es añadir nuestro servidor web y Plug a nuestra aplicación OTP:
+En la línea de comando, ejecuta la siguiente tarea de mix para actualizar las dependencias:
 
-```elixir
-def application do
-  [applications: [:cowboy, :logger, :plug]]
-end
+```shell
+$ mix deps.get
 ```
 
 ## La especificación
 
-Para comenzar a crear Plugs necesitamos saber, y adherirse a la especificación Plug. Afortunadamente para nosotros, sólo hay dos funciones necesarias: `init/1` y `call/2`.
+Para comenzar a crear Plugs necesitamos saber, y adherirse a la especificación Plug. 
+Afortunadamente para nosotros, sólo hay dos funciones necesarias: `init/1` y `call/2`.
 
-La función `init/1` se utiliza para inicializar las opciones de nuestros Plugs, pasándose como segundo argumento a nuestra función `call/2`. Además de nuestras opciones inicializadas la función `call/2` recibe un `%Plug.Conn` ya que es el primer argumento y se espera que retorne una conexión.
+La función `init/1` se utiliza para inicializar las opciones de nuestros Plugs, pasándose como segundo argumento a nuestra función `call/2`. 
+Además de nuestras opciones inicializadas la función `call/2` recibe un `%Plug.Conn` ya que es el primer argumento y se espera que retorne una conexión.
 
 Aquí hay un Plug simple que devuelve "Hello World!":
 
 ```elixir
-defmodule HelloWorldPlug do
+defmodule Example.HelloWorldPlug do
   import Plug.Conn
 
   def init(options), do: options
@@ -52,7 +57,104 @@ defmodule HelloWorldPlug do
 end
 ```
 
-## Creando un Plug
+Guarda el archivo en `lib/example/hello_world_plug.ex`.
+
+Debido a que estamos iniciando nuestra aplicación plug desde cero, necesitamos definir el modulo de la aplicación.
+Actualiza `lib/example.ex` para iniciar y supervizar Cowboy:
+
+```elixir
+defmodule Example do
+  use Application
+  require Logger
+
+  def start(_type, _args) do
+    children = [
+      Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
+    ]
+
+    Logger.info "Started application"
+
+    Supervisor.start_link(children, strategy: :one_for_one)
+  end
+end
+```
+
+Esto superviza Cowboy, y a su vez, superviza nuestro  `HelloWorldPlug`.
+
+Ahora la parte de `aplication` en `mix.exs` necesita dos cosas:
+1) Una lista de aplicaciones de dependencia  (`cowboy`, `logger`, and `plug`) que necesintan iniciar, y
+2) Configuración para nuestra aplicación, la cual también deberá iniciar automáticamente. Vamos a actualizar la parte de `aplication` en `mix.exs` para hacerlo:
+
+```elixir
+def application do
+  [
+    applications: [:cowboy, :logger, :plug],
+    mod: {Example, []}
+  ]
+end
+```
+
+Estamos listos para probar este servidor web, minimalístico basado en Plug.
+En la línea de comando ejecuta:
+
+```shell
+$ mix run --no-halt
+```
+
+Cuando todo termine de compilar, y el mensaje `[info]  Started app` aparece, abre el explorador web en `localhost:8080`. Este debera de desplegar:
+
+```
+Hello World!
+```
+
+## Plug.Router
+
+Para la mayorìa de aplicaciones, como un sitio web o un API REST, necesitaras un enrutador que enrute las solicitudes para las distintas rutas y verbos HTTP hacia los distintos manejadores.
+`Plug` provee un enrutador para hacer esto. Como estamos a punto de ver, no necesitamos un framework como Sinatra en Elix ya que lo conseguimos fácilmente con Plug.
+
+Para empezar vamos a crear un archivo en `lib/example/router.ex` y copia lo siguiente en el mismo:
+
+```elixir
+defmodule Example.Router do
+  use Plug.Router
+
+  plug :match
+  plug :dispatch
+
+  get "/", do: send_resp(conn, 200, "Welcome")
+  match _, do: send_resp(conn, 404, "Oops!")
+end
+```
+
+Este es un router mínimo pero el código se explica por si mismo.
+Hemos incluido algunas macros a través de `use Plug.Router` y luego hemos configurado dos de los Plugs incorporados:`:match` y `:dispatch`.
+
+Hay dos rutas definidas, una para manejar las llamadas GET a la raiz y la segunda para coincidir todas las demás solicitudes y devolver un mensage 404.
+
+De vuelta en `lib/example.ex`, necesitamos agregar `Example.Router` en el árbol de supervisión del servidor web.
+Cambia el plug `Example.HelloWorldPlug` al nuevo enrutador:
+
+```elixir
+def start(_type, _args) do
+    children = [
+      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+    ]
+    Logger.info "Started application"
+    Supervisor.start_link(children, strategy: :one_for_one)
+end
+```
+
+Inicia el servidor de nuevo, detén el anterior si aún sigue corriendo.(Presiona `Ctrl+C` dos veces).
+
+
+Ahora en un navegador web ve a `localhost:8080`.
+Deberá de mostrar `Welcome`.
+Ahora, ve a `localhost:8080/waldo`, o cualquier otra ruta.
+Esta deberá de mostrar `Oops!` con una repuesta 404.
+
+## Agregando otro Plug
+
+Es muy común crear Plugs que inetrcepten todos los request o un conjunto de estos, para manejo la lógica de manejo de llamadas comunes.
 
 Para este ejemplo vamos a crear un plug que verifica si la solicitud tiene algún conjunto de parámetros requeridos. Mediante la implementación de nuestra validación en un Plug podemos estar seguros de que sólo las solicitudes válidas se hacen a través de nuestra aplicación. Esperamos que nuestro Plug sea inicializado con dos opciones: `:paths` y `:fields`. Estos representarán las rutas que aplicamos a nuestra lógica y los campos que se requieren.
 
