@@ -92,7 +92,7 @@ Bây giờ chúng ta đã có kiến thức căn bản về cách thiết lập 
 
 ```elixir
 iex> alias :mnesia, as: Mnesia
-iex> Mnesia.create_schema([node])
+iex> Mnesia.create_schema([node()])
 :ok
 iex> Mnesia.start()
 :ok
