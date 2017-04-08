@@ -163,4 +163,4 @@ iex> ~u/elixir school/
 ELIXIR SCHOOL
 ```
 
-First we define a module called `MySigils` and within that module, we created a function called `sigil_u`. As there is no existing `~u` sigil in the existing sigil space, we will use it. The `_u` indicates that we wish use `u` as the character after the tilde. The function definition must take two arguments, an input and a list.
+First we define a module called `MySigils` and within that module, we created a function called `sigil_u`. As there is no existing `~u` sigil in the existing sigil space, we will use it. The `_u` indicates that we wish to use `u` as the character after the tilde. The function definition must take two arguments, an input and a list.
