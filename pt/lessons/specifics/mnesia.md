@@ -92,7 +92,7 @@ Agora que temos o conhecimento básico e criação do banco de dados, estamos ag
 
 ```elixir
 iex> alias :mnesia, as: Mnesia
-iex> Mnesia.create_schema([node])
+iex> Mnesia.create_schema([node()])
 :ok
 iex> Mnesia.start()
 :ok

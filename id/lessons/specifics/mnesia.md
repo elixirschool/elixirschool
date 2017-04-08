@@ -93,7 +93,7 @@ Sekarang setelah kita mahami dasar-dasarnya dan sudah mensetup databasenya, kita
 
 ```shell
 iex> alias :mnesia, as: Mnesia
-iex> Mnesia.create_schema([node])
+iex> Mnesia.create_schema([node()])
 :ok
 iex> Mnesia.start()
 :ok

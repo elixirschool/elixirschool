@@ -92,7 +92,7 @@ iex(learner@elixirschool.com)> Node.self
 
 ```shell
 iex> alias :mnesia, as: Mnesia
-iex> Mnesia.create_schema([node])
+iex> Mnesia.create_schema([node()])
 :ok
 iex> Mnesia.start()
 :ok
