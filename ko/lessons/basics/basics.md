@@ -20,7 +20,7 @@ elixir-lang.org 홈페이지의 [Installing Elixir](http://elixir-lang.org/insta
 Elixir를 설치하고 나서 어떤 버전이 설치되었는지 손쉽게 확인할 수 있습니다.
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}  [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}]  [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
