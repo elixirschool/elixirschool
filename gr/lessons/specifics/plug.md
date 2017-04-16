@@ -24,8 +24,8 @@ lang: gr
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.0.0"},
-   {:plug, "~> 1.0"}]
+  [{:cowboy, "~> 1.1.2"},
+   {:plug, "~> 1.3.4"}]
 end
 ```
 
@@ -68,14 +68,14 @@ end
 defmodule Example do
   use Application
   require Logger
-  
+
   def start(_type, _args) do
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
     ]
-    
+
     Logger.info "Started application"
-    
+
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
@@ -121,10 +121,10 @@ Hello World!
 ```elixir
 defmodule Example.Router do
   use Plug.Router
-  
+
   plug :match
   plug :dispatch
-  
+
   get "/", do: send_resp(conn, 200, "Welcome")
   match _, do: send_resp(conn, 404, "Oops!")
 end
@@ -223,7 +223,7 @@ defmodule Example.Router do
   plug Plug.Parsers, parsers: [:urlencoded, :multipart]
   plug VerifyRequest, fields: ["content", "mimetype"],
                       paths:  ["/upload"]
-                      
+
   plug :match
   plug :dispatch
 
