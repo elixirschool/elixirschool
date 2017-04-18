@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 layout: page
 title: Plug
 category: specifics
@@ -16,10 +16,21 @@ After that, we'll learn about Plug's router and how to add a Plug to an existing
 
 {% include toc.html %}
 
-## Installation
+## Prerequisites
 
-Installation is a breeze with mix.
-To install Plug we need to make two small changes to our `mix.exs`.
+This tutorial assumes you have Elixir and `mix` installed already.
+
+If you don't have a project started, create one like this:
+
+```shell
+mix new example
+cd example
+```
+
+## Dependencies
+
+Adding dependencies is a breeze with mix.
+To install Plug we need to make two small changes to the `mix.exs` file.
 The first thing to do is add both Plug and a web server (we'll be using Cowboy) to our file as dependencies:
 
 ```elixir
@@ -40,9 +51,6 @@ $ mix deps.get
 In order to begin creating Plugs, we need to know, and adhere to, the Plug spec.
 Thankfully for us, there are only two functions necessary: `init/1` and `call/2`.
 
-The `init/1` function is used to initialize our Plug's options, which are passed as the second argument to our `call/2` function.
-In addition to our initialized options the `call/2` function receives a `%Plug.Conn` as its first argument and is expected to return a connection.
-
 Here's a simple Plug that returns "Hello World!":
 
 ```elixir
@@ -60,6 +68,15 @@ end
 ```
 
 Save the file to `lib/example/hello_world_plug.ex`.
+
+The `init/1` function is used to initialize our Plug's options. It is called by supervision tree, which is explained in the next section. For now, it'll be an empty List that is ignored.
+
+The value returned from `init/1` will eventually be passed to `call/2` as its second argument.
+
+The `call/2` function is called for every new request that comes in from the web server, Cowboy.
+It receives a `%Plug.Conn{}` connection struct as its first argument and is expected to return a `%Plug.Conn{}` connection struct.
+
+## Configuring the Project's Application Module
 
 Since we're starting a Plug application from scratch, we need to define the application module.
 Update `lib/example.ex` to start and supervise Cowboy:
@@ -83,10 +100,13 @@ end
 
 This supervises Cowboy, and in turn, supervises our `HelloWorldPlug`.
 
-Now, the `application` portion of `mix.exs` needs two things:
+In the `Plug.Adapters.Cowboy.child_spec/4` call, the third argument will be passed to `Example.HelloWorldPlug.init/1`.
+
+We're not finished yet. Open `mix.exs` again, and find the `applications` function.
+For now, it'll provide two things:
 1) A list of dependency applications (`cowboy`, `logger`, and `plug`) that need to start up, and
 2) Configuration for our own application, which should also start up automatically.
-Let's update the `application` portion of `mix.exs` to do that:
+Let's update it to do that:
 
 ```elixir
 def application do
@@ -243,14 +263,14 @@ With those changes in place our code should look something like this:
 
 ```elixir
 def application do
-  [applications: [:cowboy, :plug],
+  [applications: [:cowboy, :logger, :plug],
    mod: {Example, []},
    env: [cowboy_port: 8080]]
 end
 ```
 
 Our application is configured with the `mod: {Example, []}` line.
-Notice that we're also starting up the `cowboy` and `plug` applications.
+Notice that we're also starting up the `cowboy`, `logger` and `plug` applications.
 
 Next we need to update `lib/example.ex` read the port configuration value, and pass it to Cowboy:
 
