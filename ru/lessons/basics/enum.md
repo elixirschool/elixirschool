@@ -66,7 +66,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 ```elixir
 iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
 [2, 2, 6, 4]
-``` 
+```
 
 ### each
 
@@ -79,7 +79,7 @@ two
 three
 ```
 
-__Замечание__: Метод `each` не возвращает атом `:ok`.
+__Замечание__: Метод `each` возвращает атом `:ok`.
 
 ### map
 
@@ -163,7 +163,7 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 ### uniq_by
 
 Мы можем использовать `uniq_by/2` для удаления дубликатов из коллекций:
- 
+
 ```elixir
 iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
 [1, 2, 3]
