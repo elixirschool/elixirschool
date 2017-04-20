@@ -310,7 +310,7 @@ $ mix run --no-halt
 Probar un plug es muy sencillo gracias a `Plug.test`.
 Este incluye un numero de funciones convenientes que facilitan las pruebas.
 
-Comprueba si puedes ***entender la pueba del router:
+Comprueba si puedes darle seguimiento a la pueba del router:
 
 ```elixir
 defmodule Example.RouterTest do
