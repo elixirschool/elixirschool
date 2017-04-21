@@ -99,6 +99,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Note__: `each` মেথড একটি এটম রিটার্ন করে `:ok`.

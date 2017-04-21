@@ -69,6 +69,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Σημείωση__: Η συνάρτηση `each` επιστρέφει το άτομο `:ok`.

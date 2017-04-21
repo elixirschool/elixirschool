@@ -89,6 +89,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __注記__: `each`メソッドは`:ok`というアトムを返します。
