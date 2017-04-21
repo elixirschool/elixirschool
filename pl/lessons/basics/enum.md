@@ -60,7 +60,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 ### map_every
 
 Czasami grupowanie elementów kolekcji nie jest dokładnie tym, o co nam chodzi. W takim przypadku funkcja `map_every/3` pozwoli nam na pracę z konkretnymi elementami kolekcji. Jeżeli nasza kolekcja jest w jakiś sposób uporządkowana, to funkcja ta może być bardzo przydatna:
-  
+
 ```elixir
 iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
 [2, 2, 6, 4]
@@ -75,6 +75,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Uwaga__: Funkcja `each` zwraca atom `:ok`.
@@ -98,11 +99,11 @@ iex> Enum.min([5, 3, 0, -1])
 ```
 
 Funkcja `min/2` robi dokładnie to samo, ale jako drugi argument przyjmuje funkcję anonimową zwracającą wartość domyślną dla `Enum`:
-  
+
 ```exliir
 iex> Enum.min([], fn -> :foo end)
 :foo  
-  
+
 ```
 
 ### max
@@ -114,12 +115,12 @@ iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-Funkcja `max/2` działa na tej samej zasadzie co `min/2`, czyli jako drugi argument przyjmuje funkcję anonimową, która zwróci wartość domyślną: 
+Funkcja `max/2` działa na tej samej zasadzie co `min/2`, czyli jako drugi argument przyjmuje funkcję anonimową, która zwróci wartość domyślną:
 
 ```exliir
 iex> Enum.max([], fn -> :bar end)
 :bar  
-  
+
 ```
 
 

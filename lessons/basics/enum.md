@@ -99,6 +99,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Note__: The `each` method does return the atom `:ok`.
