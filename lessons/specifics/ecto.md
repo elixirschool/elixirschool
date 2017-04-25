@@ -7,7 +7,7 @@ order: 2
 lang: en
 ---
 
-Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define models, insert and update records, and query them.
+Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define schemas, insert and update records, and query them.
 
 {% include toc.html %}
 
@@ -22,37 +22,28 @@ defp deps do
 end
 ```
 
-Now we can add Ecto and our adapter to the application list:
-
-```elixir
-def application do
-  [applications: [:ecto, :postgrex]]
-end
-```
-
 ### Repository
 
-Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo` task.  We'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
+Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo -r <ProjectName>.Repo` task.  We'll cover more Ecto mix tasks next.  After running the task the Repo can be found in `lib/<project name>/repo.ex`:
 
 ```elixir
 defmodule ExampleApp.Repo do
-  use Ecto.Repo,
-    otp_app: :example_app
+  use Ecto.Repo, otp_app: :example_app
 end
 ```
 
 ### Supervisor
 
-Once we've created our Repo we need to set up our supervisor tree, which is usually found in `lib/<project name>.ex`.
+Once we've created our Repo we need to set up our supervisor tree, which is usually found in `lib/<project name>/application.ex`.
 
 It is important to note that we set up the Repo as a supervisor with `supervisor/3` and _not_ `worker/3`.  If you generated your app with the `--sup` flag much of this exists already:
 
 ```elixir
-defmodule ExampleApp.App do
+defmodule ExampleApp.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec
+    import Supervisor.Spec, warn: false
 
     children = [
       supervisor(ExampleApp.Repo, [])
@@ -71,6 +62,10 @@ For more info on supervisors check out the [OTP Supervisors](../../advanced/otp-
 To configure Ecto we need to add a section to our `config/config.exs`.  Here we'll specify the repository, adapter, database, and account information:
 
 ```elixir
+
+config :example_app,
+  ecto_repos: [ExampleApp.Repo]
+
 config :example_app, ExampleApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "example_app",
@@ -92,9 +87,11 @@ mix ecto.migrate        # Run migrations up on a repo
 mix ecto.rollback       # Rollback migrations from a repo
 ```
 
+Run `mix ecto.create` now to create your database.
+
 ## Migrations
 
-The best way to create migrations is the `mix ecto.gen.migration <name>` task.  If you're acquainted with ActiveRecord these will look familiar.
+The best way to create migrations is the `mix ecto.gen.migration <name>` task. By default migrations will be added to `priv/repo/migrations`.  If you're acquainted with ActiveRecord these will look familiar.
 
 Let's start by taking a look at a migration for a users table:
 
@@ -109,7 +106,7 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
       add :email, :string
       add :confirmed, :boolean, default: false
 
-      timestamps
+      timestamps()
     end
 
     create unique_index(:users, [:username], name: :unique_usernames)
@@ -119,17 +116,17 @@ end
 
 By default Ecto creates an auto-incrementing primary key called `id`.  Here we're using the default `change/0` callback but Ecto also supports `up/0` and `down/0` in the event you need more granular control.
 
-As you might have guessed, adding `timestamps` to your migration will create and manage `inserted_at` and `updated_at` for you.
+As you might have guessed, adding `timestamps()` to your migration will create and manage `inserted_at` and `updated_at` for you.
 
 To apply our new migration run `mix ecto.migrate`.
 
 For more on migrations take a look at the [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) section of the docs.
 
-## Models
+## Schemas
 
-Now that we have our migration we can move on to the model.  Models define our schema, helper methods, and our changesets.  We'll cover changesets more in the next sections.
+Now that we have our migration we can move on to the schema.  Schemas define our fields, helper methods, and our changesets.  We'll cover changesets more in the next sections.
 
-For now let's look at what the model for our migration might look like:
+For now let's look at what the schema for our migration might look like:
 
 ```elixir
 defmodule ExampleApp.User do
@@ -149,7 +146,6 @@ defmodule ExampleApp.User do
 
   @required_fields ~w(username encrypted_password email)
   @optional_fields ~w()
-
   def changeset(user, params \\ :empty) do
     user
     |> cast(params, @required_fields, @optional_fields)
@@ -158,7 +154,7 @@ defmodule ExampleApp.User do
 end
 ```
 
-The schema we define in our model closely represents what we specified in our migration.  In addition to our database fields we're also including two virtual fields.  Virtual fields are not saved to the database but can be useful for things like validation.  We'll see the virtual fields in action in the [Changesets](#changesets) section.
+The schema we defined closely represents what we specified in our migration.  In addition to our database fields we're also including two virtual fields.  Virtual fields are not saved to the database but can be useful for things like validation.  We'll see the virtual fields in action in the [Changesets](#changesets) section.
 
 ## Querying
 
@@ -262,9 +258,9 @@ Additional query examples can be found in the [Ecto.Query.API](http://hexdocs.pm
 
 In the previous section we learned how to retrieve data, but how about inserting and updating it?  For that we need Changesets.
 
-Changesets take care of filtering, validating, and maintaining constraints when changing a model.
+Changesets take care of filtering, validating, and maintaining constraints when changing a record.
 
-For this example we'll focus on the changeset for user account creation.  To start we need to update our model:
+For this example we'll focus on the changeset for user account creation.  To start we need to update our schema:
 
 ```elixir
 defmodule ExampleApp.User do
@@ -331,7 +327,7 @@ changeset = User.changeset(%User{}, %{username: "doomspork",
                     password_confirmation: pw})
 
 case Repo.insert(changeset) do
-  {:ok, model}        -> # Inserted with success
+  {:ok, record}        -> # Inserted with success
   {:error, changeset} -> # Something went wrong
 end
 ```
