@@ -9,7 +9,7 @@ lang: es
 
 Si estás familiarizado con Ruby puedes imaginar que Plug es como Rack con un poquito de Sinatra.
 Este proporciona una especificación para componentes de aplicaciones web y adaptadores para servidores web.
-Si bien no forma parte del núcleo de Elixir, Plug es un proyecto Elixir oficial.
+Si bien no forma parte del núcleo de Elixir, Plug es un proyecto oficial de Elixir.
 
 Empezaremos creando una aplicación web mínima basada en Plug.
 Despues de eso, aprenderemos acerca del enrutador de Plug y como agregar Plug a una aplicación web existente.
@@ -78,8 +78,8 @@ La función `call/2` es ejecutada por cada llamada que viene desde el servidor w
 
 ## Configurando el Módulo de Aplicación del proyecto
 
-Debido a que estamos iniciando nuestra aplicación plug desde cero, necesitamos definir el modulo de la aplicación.
-Actualiza `lib/example.ex` para iniciar y supervizar Cowboy:
+Debido a que estamos iniciando nuestra aplicación plug desde cero, necesitamos definir el módulo de la aplicación.
+Actualiza `lib/example.ex` para iniciar y supervisar Cowboy:
 
 ```elixir
 defmodule Example do
@@ -98,7 +98,7 @@ defmodule Example do
 end
 ```
 
-Esto superviza Cowboy, y a su vez, superviza nuestro  `HelloWorldPlug`.
+Esto supervisa Cowboy, y a su vez, supervisa nuestro  `HelloWorldPlug`.
 
 En la llamada `Plug.Adapters.Cowboy.child_spec/4`, el tercer argumento será pasado a  `Example.HelloWorldPlug.init/1`.
 
@@ -177,7 +177,7 @@ Esta deberá de mostrar `Oops!` con una repuesta 404.
 
 ## Agregando otro Plug
 
-Es muy común crear Plugs que inetrcepten todos los request o un conjunto de estos, para controlar la lógica de manejo de llamadas comunes.
+Es muy común crear Plugs que intercepten todos las llamadas o un conjunto de estas, para controlar la lógica de manejo de llamadas comunes.
 
 Para este ejemplo vamos a crear un plug que verifica si la solicitud tiene algún conjunto de parámetros requeridos.
 Mediante la implementación de nuestra validación en un Plug podemos estar seguros de que sólo las solicitudes válidas se hacen a través de nuestra aplicación.
@@ -219,7 +219,7 @@ end
 ```
 
 La primera cosa a destacar es que hemos definido una nueva excepción `IncompleteRequestError` y una de sus opciones es `:plug_status`.
-Cuando esté disponible esta opción sera utilizada por Plug para establecer el código de estado HTTP en el caso de una excepción.
+Cuando esté disponible esta opción será utilizada por Plug para establecer el código de estado HTTP en el caso de una excepción.
 
 La segunda parte de nuestro Plug es el método `call/2`.
 Aquí es donde nos encargamos de decidir si aplicaremos nuestra lógica de verificación.
@@ -292,7 +292,7 @@ end
 
 El tercer argumento the `Application.get_env` es el valor predeterminado, para cuando la directiva de configuración no esté definida.
 
-> (Optional) add `:cowboy_port` in `config/config.exs`
+> (Opcional) agregar `:cowboy_port` en `config/config.exs`
 
 ```elixir
 use Mix.Config
@@ -308,7 +308,7 @@ $ mix run --no-halt
 ## Probando un Plug
 
 Probar un plug es muy sencillo gracias a `Plug.test`.
-Este incluye un numero de funciones convenientes que facilitan las pruebas.
+Este incluye un número de funciones convenientes que facilitan las pruebas.
 
 Comprueba si puedes darle seguimiento a la pueba del router:
 
