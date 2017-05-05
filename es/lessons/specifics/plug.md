@@ -70,11 +70,11 @@ end
 
 Guarda el archivo en `lib/example/hello_world_plug.ex`.
 
-La función `init/1` se utiliza para inicializar las opciones de nuestros Plugs. Esta es llamada por el árbol de supervisión, el cual se explica en la siguiente sección. De momento, está será una Lista vacía que es ignorada.
+La función `init/1` se utiliza para inicializar las opciones de nuestros Plugs. Esta es llamada por el árbol de supervisión, el cual se explica en la siguiente sección. De momento, está será una lista vacía que es ignorada.
 
 El valor retornado por la función `init/1` eventualmente será pasado a `call/2` como su segundo argumento.
 
-La función `call/2` es ejecutada por cada llamada que viene desde el servidor web, Cowboy. Esta recibe una estructura de conexión `%Plug.Conn{}` como su primer argumento y se espera que retorne una estructura de conexión `%Plug.Conn{}`.
+La función `call/2` es ejecutada por cada petición que viene desde el servidor web, Cowboy. Esta recibe una estructura de conexión `%Plug.Conn{}` como su primer argumento y se espera que retorne una estructura de conexión `%Plug.Conn{}`.
 
 ## Configurando el Módulo de Aplicación del proyecto
 
@@ -100,7 +100,7 @@ end
 
 Esto supervisa Cowboy, y a su vez, supervisa nuestro  `HelloWorldPlug`.
 
-En la llamada `Plug.Adapters.Cowboy.child_spec/4`, el tercer argumento será pasado a  `Example.HelloWorldPlug.init/1`.
+En la petición a `Plug.Adapters.Cowboy.child_spec/4`, el tercer argumento será pasado a  `Example.HelloWorldPlug.init/1`.
 
 Aún no hemos terminado. Abre `mix.exs` de nuevo, y busca la función `applications`.
 De momento la parte de `aplication` en `mix.exs` necesita dos cosas:
@@ -177,7 +177,7 @@ Esta deberá de mostrar `Oops!` con una repuesta 404.
 
 ## Agregando otro Plug
 
-Es muy común crear Plugs que intercepten todos las llamadas o un conjunto de estas, para controlar la lógica de manejo de llamadas comunes.
+Es muy común crear Plugs que intercepten todas las peticiones o un conjunto de estas, para controlar la lógica de manejo de peticiones comunes.
 
 Para este ejemplo vamos a crear un plug que verifica si la solicitud tiene algún conjunto de parámetros requeridos.
 Mediante la implementación de nuestra validación en un Plug podemos estar seguros de que sólo las solicitudes válidas se hacen a través de nuestra aplicación.
@@ -228,7 +228,7 @@ Sólo cuando la ruta de la solicitud figure en nuestro `:paths` vamos a llamar `
 La última parte de nuestro plug es la función privada `verify_request!/2` que verifica si los `:fields` requeridos están todos presentes.
 En el caso de que falte alguno, levantamos la excepción `IncompleteRequestError`.
 
-Hemos configurado nuestro Plug para verficar que todas las llamadas a `/upload` incluyan tanto `"content"` como `"mimetype"`.
+Hemos configurado nuestro Plug para verficar que todas las peticiones a `/upload` incluyan tanto `"content"` como `"mimetype"`.
 Solo en estos casos el código del router será ejecutado.
 
 Ahora, le indicamos al router del nuevo Plug.
