@@ -17,8 +17,8 @@ Zacznijmy od dodania Ecto oraz adaptera bazy do konfiguracji projektu w pliku `m
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 2.1.4"},
+   {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -197,13 +197,13 @@ query = from u in User,
 ```
 
 Jest też funkcja `count/2`, która zlicza liczbę unikalnych rekordów:
- 
+
 ```elixir
 query = from u in User,
     where: u.confirmed == true,
     select: count(u.id, :distinct)
 ```
- 
+
 
 ### Grupowanie
 

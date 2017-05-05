@@ -67,6 +67,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Catatan__: Fungsi `each` mengembalikan atom `:ok`.

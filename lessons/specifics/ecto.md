@@ -17,8 +17,8 @@ To get started we need to include Ecto and a database adapter in our project's `
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 2.1.4"},
+   {:postgrex, ">= 0.13.2"}]
 end
 ```
 

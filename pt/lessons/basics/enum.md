@@ -75,6 +75,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Nota__: A função `each` retorna um átomo `:ok`.
@@ -97,7 +98,7 @@ iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` faz o mesmo, porém permite especificar um valor padrão para `Enum` através de uma função anônima: 
+`min/2` faz o mesmo, porém permite especificar um valor padrão para `Enum` através de uma função anônima:
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)

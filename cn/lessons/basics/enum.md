@@ -68,6 +68,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __注意__：`each` 函数会返回原子 `:ok`

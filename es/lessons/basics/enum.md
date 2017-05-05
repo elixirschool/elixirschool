@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Enum
 category: basics
@@ -15,7 +15,28 @@ Un conjunto de algoritmos para hacer enumeración sobre colecciones.
 
 El módulo `Enum` incluye más de cien funciones para trabajar con las colecciones que aprendimos en la última lección.
 
-Esta lección solo cubrirá un subconjunto de las funciones disponibles. Para ver la lista completa de funciones visita la documentación oficial [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); para enumeración diferida usa el módulo [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+Este sección solamente incluirá un subconjunto de las funciones disponibles, sin embargo puedes examinarlas tu mismo.
+
+Hagamos un pequeño experimento en IEx.
+
+```elixir
+iex
+iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+...>   IO.puts "#{function}/#{arity}"
+...> end)
+all?/1
+all?/2
+any?/1
+any?/2
+at/2
+at/3
+...
+```
+
+Viendo esto queda claro que existe una gran cantidad de funcionalidad para `Enum` y esto es debido a una razón clara. La enumeración forma parte de la esencia de la programación funcional y es una recurso muy utilizado.
+Al aprovecharlo y combinarlo con otras ventajas de Elixir, como que la documentación es un ciudadano de primera clase así como se acaba de demostrar, es increiblemente empoderador para el programador.
+
+Para ver la lista completa de funciones visita la documentación oficial [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); para enumeración diferida usa el módulo [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
 
 
 ### all?
@@ -47,7 +68,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Hay algunas opciones para `chunk` pero no vamos a entrar en ellas, revisa [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) en la documentación oficial para aprender más.
+Hay algunas opciones para `chunk` pero no vamos a entrar en detalle, revisa [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) en la documentación oficial para aprender más.
 
 ### chunk_by
 
@@ -59,7 +80,14 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.leng
 
 iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"], ["six"]]
+```
+### map_every
 
+Algunas veces hacer chunk a una collección no es suficiente para lograr lo que necesitas. Si este es el caso, `map_every/3` puede ser muy útil para ejecutarce en elementos específicos si tu colección posee un orden en el que esto sea necesario o útil':
+
+```elixir
+iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
+[2, 2, 6, 4]
 ```
 
 ### each
@@ -71,6 +99,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Nota__: La función `each` retorna el átomo `:ok`.
@@ -86,20 +115,34 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-Retorna el mínimo valor de la colección:
+`min/1` encuentra el mínimo valor de la colección:
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
+`min/2` realiza lo mismo, pero mermite que se especifique el cálculo que producirá el mínimo por medio de una función anómima.
+
+```elixir
+iex> Enum.min([], fn -> :foo end)
+:foo
+```
+
 ### max
 
-Retorna el máximo valor de la colección:
+`max/1` retorna el máximo valor de la colección:
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
+```
+
+`max/2` realiza lo mismo, y se comporta de la misma manera que  `min/2`, pues te permite especificar el calculo que producirá el valor máximo por medio de una función anónima:
+
+```elixir
+Enum.max([], fn -> :bar end)
+:bar
 ```
 
 ### reduce
@@ -111,7 +154,7 @@ iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
-iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+iex> Enum.reduce(["a","b","c"], "1", fn(x,acc) -> x <> acc end)
 "cba1"
 ```
 
@@ -139,11 +182,12 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq
+### uniq_by
 
-Podemos usar `uniq` para eliminar duplicados de nuestras colecciones:
+Podemos usar `uniq_by/2` para eliminar duplicados de nuestras colecciones:
 
 ```elixir
-iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
-[1, 2, 3, 4]
+iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+[1, 2, 3]
 ```
+Esta función fue anteriormente conocida como `uniq/1`, la cual fue deprecada a partir de Elixir 1.4, aunque aún es permitida (con advertencias).

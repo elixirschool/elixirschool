@@ -17,8 +17,8 @@ A instalação é uma brisa se você utilizar mix. Para instalar Plug nós preci
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.0.0"},
-   {:plug, "~> 1.0"}]
+  [{:cowboy, "~> 1.1.2"},
+   {:plug, "~> 1.3.4"}]
 end
 ```
 

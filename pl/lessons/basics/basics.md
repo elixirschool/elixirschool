@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Podstawy
 category: basics
@@ -17,6 +17,13 @@ Przygotowanie środowiska, podstawowe typy danych i operacje
 
 Proces instalacji środowiska dla poszczególnych systemów operacyjnych jest opisany, w języku angielskim, na stronie Elixir-lang.org w sekcji [Installing Elixir](http://elixir-lang.org/install.html).
 
+Po zakończeniu procesu instalacji możemy w łatwy sposób sprawdzić, którą wersję zainstalowaliśmy:
+ 
+     % elixir -v
+     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+ 
+     Elixir {{ site.elixir.version }}
+
 ### Tryb interaktywny
 
 W Elixirze dostępna jest interaktywna powłoka `iex`, która pozwala nam na uruchamianie kodu w konsoli.   
@@ -27,6 +34,17 @@ By ją uruchomić wpisz w wierszu poleceń `iex`:
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
+	
+Spróbujmy wykonać kilka prostych operacji:
+	
+```elixir
+iex> 2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
 
 ## Podstawowe typy danych
 
