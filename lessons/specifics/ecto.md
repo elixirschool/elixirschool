@@ -242,7 +242,7 @@ Assuming we had a profile associated with our user, let's find all confirmed acc
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 
