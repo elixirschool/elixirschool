@@ -69,6 +69,7 @@ iex> IExHelpers.whats_this?(%{})
 iex> IExHelpers.whats_this?(:test)
 "Type: Atom"
 ```
+
 As we can see we don't need to do anything special to require or import our helpers, IEx handles that for us.
 
 ### `h`
@@ -185,7 +186,7 @@ Reference modules
   Module, Atom
 ```
 
-Now we have a bunch of information about Map including where its source is stored and the modules it references.  This is quite useful when exploring custom, foreign data types, and new functions.
+Now we have a bunch of information about Map including where its source is stored and the modules it references. This is quite useful when exploring custom, foreign data types, and new functions.
 
 The individual headings can be dense, but at a high level we can gather some relevant information:
 
@@ -200,7 +201,7 @@ This gives us a lot to work with and is better than going in blind.
 
 ### `r`
 
-If we want to recompile a particular module we can use the `r` helper.  Let's say we've changed some code and want to run a new function we've added. To do that we need to save our changes and recompile with r:
+If we want to recompile a particular module we can use the `r` helper. Let's say we've changed some code and want to run a new function we've added. To do that we need to save our changes and recompile with r:
 
 ```elixir
 iex> r MyProject
@@ -212,7 +213,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 
 ### `s`
 
-With `s` we can retrieve the type spec information for a  module or function, we can use this to know it expects:
+With `s` we can retrieve the type spec information for a module or function, we can use this to know it expects:
 
 ```elixir
 iex> s Map.merge/2
