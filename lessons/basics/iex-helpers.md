@@ -39,9 +39,9 @@ And now we know the functions we have and their arity!
 
 ### `.iex.exs`
 
-Every time IEx starts it will look for a .iex.exs configuration file. If it's not present in the current directory, then the user's home directory (~/.iex.exs) will be used as the fallback.
+Every time IEx starts it will look for a `.iex.exs` configuration file. If it's not present in the current directory, then the user's home directory (`~/.iex.exs`) will be used as the fallback.
 
-Configuration options and code defined within this file will be available to us when the IEx shell starts up. For instance if we want some helper functions available to us in IEx, we can open up .iex.exs and make some changes.
+Configuration options and code defined within this file will be available to us when the IEx shell starts up. For instance if we want some helper functions available to us in IEx, we can open up `.iex.exs` and make some changes.
 
 Let's start by adding a module with a few helper methods:
 
@@ -186,7 +186,7 @@ Reference modules
   Module, Atom
 ```
 
-Now we have a bunch of information about Map including where its source is stored and the modules it references. This is quite useful when exploring custom, foreign data types, and new functions.
+Now we have a bunch of information about `Map` including where its source is stored and the modules it references. This is quite useful when exploring custom, foreign data types, and new functions.
 
 The individual headings can be dense, but at a high level we can gather some relevant information:
 
@@ -238,7 +238,7 @@ iex> t Map
 @type value() :: any()
 ```
 
-And now we know that Map defines key and value types in its implementation.
+And now we know that `Map` defines key and value types in its implementation.
 If we go and look at the source of `Map`:
 
 ```elixir
