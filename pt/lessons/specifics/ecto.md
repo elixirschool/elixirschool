@@ -256,7 +256,7 @@ Assumindo que temos um perfil associado ao nosso utilizador, iremos encontramos 
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 
