@@ -232,7 +232,7 @@ Dengan asumsi kita punya profil yang terkait dengan user kita, mari dapatkan sem
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 
