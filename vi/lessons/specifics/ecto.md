@@ -242,7 +242,7 @@ Ví dụ như ta có bảng Profile liên kết với User, ta hãy tìm tất c
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 
