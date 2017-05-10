@@ -213,7 +213,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 
 ### `s`
 
-`s`를 사용하여 모듈이나 함수의 타입 정보를 확인하고, 이것들이 무엇을 기대하는지 확인할 수 있습니다.
+`s`를 사용하여 모듈이나 함수의 명세를 확인하고, 이것들이 무엇을 기대하는지 확인할 수 있습니다.
 
 ```elixir
 iex> s Map.merge/2
