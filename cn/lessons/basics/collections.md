@@ -75,11 +75,11 @@ iex> tl [3.14, :pie, "Apple"]
 除了上面的提到的函数，你还可以使用[模式匹配(pattern matching)](../pattern-matching/) 和 `|` 操作符来把一个列表分成头尾两部分；我们在后面的教程中还会看到这种用法。
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

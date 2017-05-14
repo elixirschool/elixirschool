@@ -66,11 +66,11 @@ iex> tl [3.14, :pie, "Apple"]
 Di samping kedua fungsi tersebut, anda juga bisa menggunakan operator `|`; kita akan melihat pola ini di pelajaran-pelajaran selanjutnya:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 
