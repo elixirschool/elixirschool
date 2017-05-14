@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: 仕様と型
 category: advanced
@@ -40,7 +40,7 @@ end
 
 仕様を書くのはよいことですが時として我々が作った関数は単なる数やコレクションよりも複雑なデータ構造を使って動作します。そのような関数を `@spec` で定義すると他の開発者が理解する、あるいは変更することが極めて難しくなってしまうかもしれません。関数は数多くの引数をとり複雑なデータを返さなければならないことがあります。長い引数のリストは潜在的にコードの中でヤバそうな匂いを漂わせるものです。RubyやJavaのようなオブジェクト指向言語ではこの問題を解決するのを助けるために容易にクラスを定義できます。Elixirにはクラスはありません。それは型を定義することで簡単に言語仕様が拡張できるからです。
 
-Elixirには何もせずとも最初から `integer` や `pid` といった基本的な型があります。全ての利用できる型の一覧は[公式ドキュメント](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax)にあります。
+Elixirには何もせずとも最初から `integer` や `pid` といった基本的な型があります。全ての利用できる型の一覧は[公式ドキュメント](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax)にあります。
 
 ### 独自の型を定義する
 

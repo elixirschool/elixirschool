@@ -63,7 +63,7 @@ iex> String.graphemes string
 
 # Streng funksjoner
 
-La oss ta en titt på noen av de viktigste og mest brukbare funksjonene i String modulen. Vi vil kun gå gjennom et par av funksjonene tilgjengelig i String modulen. For å se alle tilgjengelige funksjoner kan du se på den offisielle [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) dokumentasjonen.
+La oss ta en titt på noen av de viktigste og mest brukbare funksjonene i String modulen. Vi vil kun gå gjennom et par av funksjonene tilgjengelig i String modulen. For å se alle tilgjengelige funksjoner kan du se på den offisielle [`String`](https://hexdocs.pm/elixir/String.html) dokumentasjonen.
 
 ### `length/1`
 

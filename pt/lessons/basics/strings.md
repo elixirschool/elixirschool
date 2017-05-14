@@ -63,7 +63,7 @@ iex> String.graphemes string
 
 ## Funções de String
 
-Vamos rever duas das funções mais importantes e úteis do módulo String. Essa lição cobrirá apenas uma parte das funções disponíveis. Para ver a lista completa de funções visite a documentação oficial de [`String`](http://elixir-lang.org/docs/stable/elixir/String.html).
+Vamos rever duas das funções mais importantes e úteis do módulo String. Essa lição cobrirá apenas uma parte das funções disponíveis. Para ver a lista completa de funções visite a documentação oficial de [`String`](https://hexdocs.pm/elixir/String.html).
 
 ### `length/1`
 

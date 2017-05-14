@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: সিজিল 
 category: basics
@@ -80,7 +80,7 @@ iex> "elixir" =~ re
 true
 ```
 
-আবার এলিক্সির [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) এপিআই দিয়ে থাকে যা এরল্যাঙ্গের রেগুলার এক্সপ্রেশান লাইব্রেরীর উপর তৈরি। 
+আবার এলিক্সির [Regex](https://hexdocs.pm/elixir/Regex.html) এপিআই দিয়ে থাকে যা এরল্যাঙ্গের রেগুলার এক্সপ্রেশান লাইব্রেরীর উপর তৈরি। 
 
 চলুন `Regex.split/2` কে রেজেক্স সিজিল দিয়ে বানাই- 
 
@@ -140,7 +140,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ### নাইভ ডেট টাইম 
 
-[নাইভ ডেট টাইম](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) দিয়ে আমরা তাড়াতাড়ি স্ট্রাক্ট তৈরি করতে পারি যা ডেট টাইম কে রিপ্রেজেন্ট করে টাইমজোন ছাড়া। 
+[নাইভ ডেট টাইম](https://hexdocs.pm/elixir/NaiveDateTime.html) দিয়ে আমরা তাড়াতাড়ি স্ট্রাক্ট তৈরি করতে পারি যা ডেট টাইম কে রিপ্রেজেন্ট করে টাইমজোন ছাড়া। 
 
 বেশীরভাগ ক্ষেত্রেই আমরা সরাসরি `NaiveDateTime` স্ট্রাক্ট ব্যবহার করব কিন্তু প্যাটার্ন ম্যাচিং করার সময়ে সিজিল অনেক কাজে আসে- 
 

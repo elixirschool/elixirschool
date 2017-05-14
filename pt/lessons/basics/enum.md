@@ -15,7 +15,7 @@ Um conjunto de algoritmos para fazer enumeração em coleções.
 
 O módulo `Enum` inclui mais de cem funções para trabalhar com as coleções que aprendemos na última lição.
 
-Essa lição somente mostrará um subconjunto das funções disponíveis, para ver a lista completa de funções visite a documentação oficial [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); para enumeração preguiçosa use o módulo[`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+Essa lição somente mostrará um subconjunto das funções disponíveis, para ver a lista completa de funções visite a documentação oficial [`Enum`](https://hexdocs.pm/elixir/Enum.html); para enumeração preguiçosa use o módulo[`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 ### all?
 
@@ -46,7 +46,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Há algumas opções para `chunk` porém não vamos entrar nelas, revise [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) na documentação oficial para aprender mais.
+Há algumas opções para `chunk` porém não vamos entrar nelas, revise [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) na documentação oficial para aprender mais.
 
 ### chunk_by
 

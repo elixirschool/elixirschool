@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Enum
 category: basics
@@ -36,7 +36,7 @@ Using this, its clear that we have a vast amount of functionality, and that is f
 Enumeration is at the core of functional programming and is an incredibly useful thing.
 By leveraging it combined with other perks of Elixir, such as documentation being a first class citizen as we just saw, it can be incredibly empowering to the developer as well.
 
-For a full list of functions visit the official [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) module.
+For a full list of functions visit the official [`Enum`](https://hexdocs.pm/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](https://hexdocs.pm/elixir/Stream.html) module.
 
 
 ### all?
@@ -68,7 +68,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-There are a few options for `chunk` but we won't go into them, check out [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) in the official docs to learn more.
+There are a few options for `chunk` but we won't go into them, check out [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) in the official docs to learn more.
 
 ### chunk_by
 

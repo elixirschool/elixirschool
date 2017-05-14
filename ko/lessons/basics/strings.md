@@ -63,7 +63,7 @@ iex> String.graphemes string
 
 ## 문자열 함수
 
-문자열 모듈에서 가장 중요하고 쓸만한 몇 가지 함수들을 살펴보도록 합시다. 이 강좌에서는 사용할 수 있는 함수의 일부만 다룹니다. 사용할 수 있는 함수의 전체 목록을 보시려면, 공식 [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) 문서를 확인하세요.
+문자열 모듈에서 가장 중요하고 쓸만한 몇 가지 함수들을 살펴보도록 합시다. 이 강좌에서는 사용할 수 있는 함수의 일부만 다룹니다. 사용할 수 있는 함수의 전체 목록을 보시려면, 공식 [`String`](https://hexdocs.pm/elixir/String.html) 문서를 확인하세요.
 
 ### `length/1`
 

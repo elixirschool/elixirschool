@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: 스펙과 타입
 category: advanced
@@ -40,7 +40,7 @@ end
 
 스펙을 작성하는 것도 좋지만, 때로는 우리들이 구현한 함수가 간단한 함수나 컬렉션보다 복잡한 자료 구조를 처리해야 할 수도 있습니다. 이런 함수를 `@spec`으로 정의한다면, 다른 개발자들이 이해하거나 수정하기가 힘들어질 수 있습니다. 종종 함수가 많은 파라메터를 필요로 하거나, 복잡한 데이터를 리턴해야 할 때가 있습니다. 하지만 파라메터 목록이 길어질수록 코드의 품질이 떨어질 가능성도 점점 커집니다. Ruby나 Java 같은 객체 지향 언어를 사용했더라면, 간편하게 클래스를 구현해서 문제를 해결할 수 있었을 것입니다. Elixir에서는 클래스가 없고, 대신에 타입을 정의해서 언어를 확장할 수 있습니다.
 
-막 설치를 끝내고 난 Elixir에는 `integer`나 `pid` 같은 기본적인 타입이 있는데요. [공식 문서(Types and Their Syntax)](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax)에서 사용할 수 있는 타입의 전체 목록을 찾아볼 수 있습니다.
+막 설치를 끝내고 난 Elixir에는 `integer`나 `pid` 같은 기본적인 타입이 있는데요. [공식 문서(Types and Their Syntax)](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax)에서 사용할 수 있는 타입의 전체 목록을 찾아볼 수 있습니다.
  
 ### 커스텀 타입 정의하기
 

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Strings
 category: basics
@@ -63,7 +63,7 @@ iex> String.graphemes string
 
 ## String Functions
 
-Let's review some of the most important and useful functions of the String module. This lesson will only cover a subset of the available functions. To see a complete set of functions visit the official [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) docs.
+Let's review some of the most important and useful functions of the String module. This lesson will only cover a subset of the available functions. To see a complete set of functions visit the official [`String`](https://hexdocs.pm/elixir/String.html) docs.
 
 ### `length/1`
 

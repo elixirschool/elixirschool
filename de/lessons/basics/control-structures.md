@@ -13,7 +13,7 @@ In dieser Lektion werden wir schauen welche Kontrollstrukturen in Elixir vorhand
 
 ## `if` und `unless`
 
-Die Chancen stehen gut, dass du bereits über `if/2` gestolpert bist und falls du mit Ruby vertraut bist, kennst du auch schon `unless/2`. In Elixir arbeiten diese beiden Konstrukte ähnlich, sind aber als Makros definiert und nicht wie in Ruby als Sprachkonstrukte. Du kannst ihre Implementierung in der Dokumentation des [Kernel Moduls](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html) nachschlagen.
+Die Chancen stehen gut, dass du bereits über `if/2` gestolpert bist und falls du mit Ruby vertraut bist, kennst du auch schon `unless/2`. In Elixir arbeiten diese beiden Konstrukte ähnlich, sind aber als Makros definiert und nicht wie in Ruby als Sprachkonstrukte. Du kannst ihre Implementierung in der Dokumentation des [Kernel Moduls](https://hexdocs.pm/elixir/#!Kernel.html) nachschlagen.
 
 Es sollte darauf geachtet werden, dass in Elixir die einzigen "falsey" Werte `nil` und der Boolesche Wert `false` sind.
 

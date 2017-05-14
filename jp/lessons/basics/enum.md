@@ -36,7 +36,7 @@ at/3
 リストなどの列挙は関数型プログラミングの核で、信じられないほど有用です。
 おまけにリストなどの列挙は、以前見たような言語レベルでサポートされているドキュメントといった、Elixirの他の要素と共に活用することで、信じられないような効果をもたらします。
 
-全ての関数を知りたい場合は公式ドキュメントの[`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html)を参照してください。尚、列挙の遅延処理では[`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html)モジュールを利用してください。
+全ての関数を知りたい場合は公式ドキュメントの[`Enum`](https://hexdocs.pm/elixir/Enum.html)を参照してください。尚、列挙の遅延処理では[`Stream`](https://hexdocs.pm/elixir/Stream.html)モジュールを利用してください。
 
 ### all?
 
@@ -67,7 +67,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk`にはいくつかのオプションがありますが、ここでは触れませんので、詳しく学びたい場合には公式ドキュメントの[`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2)を調べてみてください。
+`chunk`にはいくつかのオプションがありますが、ここでは触れませんので、詳しく学びたい場合には公式ドキュメントの[`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2)を調べてみてください。
 
 ### chunk_by
 

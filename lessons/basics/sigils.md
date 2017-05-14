@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Sigils
 category: basics
@@ -80,7 +80,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Further, Elixir provides the [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API which is built on top of Erlang's regular expression library. Let's implement `Regex.split/2` using a regex sigil:
+Further, Elixir provides the [Regex](https://hexdocs.pm/elixir/Regex.html) API which is built on top of Erlang's regular expression library. Let's implement `Regex.split/2` using a regex sigil:
 
 ```elixir
 iex> string = "100_000_000"
@@ -138,7 +138,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ### NaiveDateTime
 
-A [NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) can be useful for quickly creating a struct to represent a `DateTime` **without** a timezone.
+A [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) can be useful for quickly creating a struct to represent a `DateTime` **without** a timezone.
 
 For the most part, we should avoid creating a `NaiveDateTime` struct directly. However, it is very useful for pattern matching. For example:
 

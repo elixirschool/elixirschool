@@ -43,7 +43,7 @@ end
 
 Seringkali kita perlu berinteraksi dengan GenServer dengan cara yang sinkron, memanggil fungsi dan menunggu jawabannya.  Untuk menangani permintaan (request) yang sinkron kita perlu mengimplementasikan callback `GenServer.handle_call/3` yang menerima parameter: permintaan tersebut (request), PID pemanggil, dan state yang sedang ada; yang dikembalikan adalah sebuah tuple: `{:reply, response, state}`.
 
-Dengan pencocokan pola kita bisa mendefinisikan callback untuk banyak request dan state. Daftar lengkap value pengembalian (return value) yang dapat diterima bisa dilihat di dokumentasi [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3).
+Dengan pencocokan pola kita bisa mendefinisikan callback untuk banyak request dan state. Daftar lengkap value pengembalian (return value) yang dapat diterima bisa dilihat di dokumentasi [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3).
 
 Untuk mendemonstrasikan request yang sinkron, mari kita tambahkan kemampuan untuk menampilkan antrian kita saat ini dan untuk mengeluarkan sebuah entri:
 
@@ -151,7 +151,7 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-Untuk informasi lebih lanjut kunjungi dokumentasi resmi [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content).
+Untuk informasi lebih lanjut kunjungi dokumentasi resmi [GenServer](https://hexdocs.pm/elixir/GenServer.html#content).
 
 ## GenEvent
 
@@ -226,4 +226,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-Lihat dokumentasi resmi [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) untuk daftar lengkap callback dan fungsionalitas GenEvent.
+Lihat dokumentasi resmi [GenEvent](https://hexdocs.pm/elixir/GenEvent.html#content) untuk daftar lengkap callback dan fungsionalitas GenEvent.

@@ -306,4 +306,4 @@ end
 
  - Опитайте се да добавите примери във вашата документация. Това също ви позволява да генерирате автоматични тестове от примерите в модули, функции или макрота с [ExUnit.DocTest][ExUnit.DocTest]. За да се направи това, трябва да извикате макрото `doctest/1` от вашия тест и да напишете примерите следвайки описанията в [официалната документаци][ExUnit.DocTest].
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

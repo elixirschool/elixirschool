@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Struktury sterujące
 category: basics
@@ -13,7 +13,7 @@ W tej lekcji przyjrzymy się strukturom sterującym dostępnym w Elixirze.
 
 ## `if` i `unless`
 
-Zapewne spotkałeś się już z `if/2` w innych językach, a jeżeli znasz Ruby to `unless/2` nie będzie ci obca.  W Elixirze działają w podobny sposób, ale nie są elementem języka, a makrami; Ich implementacje znajdziesz w dokumentacji [modułu jądra](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Zapewne spotkałeś się już z `if/2` w innych językach, a jeżeli znasz Ruby to `unless/2` nie będzie ci obca.  W Elixirze działają w podobny sposób, ale nie są elementem języka, a makrami; Ich implementacje znajdziesz w dokumentacji [modułu jądra](https://hexdocs.pm/elixir/#!Kernel.html).
 
 Przypomnijmy, że w Elixirze, jedynymi wartościami fałszywymi są `nil` i wartość logiczna `false`.
 

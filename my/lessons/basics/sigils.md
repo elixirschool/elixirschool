@@ -79,7 +79,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Seterusnya, Elixir menyediakan API [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) yang dibina di atas pustaka ungkapan nalar Erlang.  Mari kita laksanakan `Regex.split/2` menggunakan sigil ungkapan nalar:
+Seterusnya, Elixir menyediakan API [Regex](https://hexdocs.pm/elixir/Regex.html) yang dibina di atas pustaka ungkapan nalar Erlang.  Mari kita laksanakan `Regex.split/2` menggunakan sigil ungkapan nalar:
 
 ```elixir
 iex> string = "100_000_000"
