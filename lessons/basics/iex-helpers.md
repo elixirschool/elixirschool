@@ -43,7 +43,7 @@ Every time IEx starts it will look for a `.iex.exs` configuration file. If it's 
 
 Configuration options and code defined within this file will be available to us when the IEx shell starts up. For instance if we want some helper functions available to us in IEx, we can open up `.iex.exs` and make some changes.
 
-Let's start by adding a module with a few helper methods:
+Let's start by adding a module with a few helper functions:
 
 ```elixir
 defmodule IExHelpers do

@@ -94,7 +94,7 @@ defimpl AsAtom, for: Map do
 end
 ```
 
-Here we've defined our protocol and it's expected method, `to_atom/1`, along with implementations for a few types.
+Here we've defined our protocol and it's expected function, `to_atom/1`, along with implementations for a few types.
 Now that we have our protocol, let's put it to use in IEx:
 
 ```elixir

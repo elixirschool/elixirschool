@@ -48,7 +48,7 @@ When programming in Elixir, we usually use Strings, not char lists. The char lis
 
 Codepoints are just simple Unicode characters which are represented by one or more bytes, depending on the UTF-8 encoding. Characters outside of the US ASCII character set will always encode as more than one byte. For example, Latin characters with a tilde or accents (`á, ñ, è`) are typically encoded as two bytes. Characters from Asian languages are often encoded as three or four bytes. Graphemes consist of multiple codepoints that are rendered as a single character.
 
-The String module already provides two methods to obtain them, `graphemes/1` and `codepoints/1`. Let's look at an example:
+The String module already provides two functions to obtain them, `graphemes/1` and `codepoints/1`. Let's look at an example:
 
 ```elixir
 iex> string = "\u0061\u0301"

@@ -95,7 +95,7 @@ defimpl AsAtom, for: Map do
 end
 ```
 
-Aqui definimos o nosso protocolo e o método esperado, `to_atom/1`, juntamente com implementações para alguns tipos.
+Aqui definimos o nosso protocolo e a função esperado, `to_atom/1`, juntamente com implementações para alguns tipos.
 Agora que temos o nosso protocolo, vamos colocá-lo para usar em IEx:
 
 ```elixir

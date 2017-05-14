@@ -91,7 +91,7 @@ end
 ```
 A primeira coisa a ser notada é que definimos uma nova exceção `IncompleteRequestError` e que uma de suas opções é `:plug_status`. Quando disponível esta opção é usada pelo Plug para definir o código de status do HTTP no caso de uma exceção.
 
-A segunda parte do nosso Plug é o método `call/2`, este é o lugar onde nós lidamos quando aplicar ou não nossa lógica de verificação. Somente quando o caminho do pedido está contido em nossa opção `:paths` iremos chamar `verify_request/2`.
+A segunda parte do nosso Plug é a função `call/2`, este é o lugar onde nós lidamos quando aplicar ou não nossa lógica de verificação. Somente quando o caminho do pedido está contido em nossa opção `:paths` iremos chamar `verify_request/2`.
 
 A última parte do nosso Plug é a função privada `verify_request!/2` no qual verifica quando os campos requeridos `:fields` estão todos presentes. No caso em que algum dos campos requeridos estiver em falta, nós acionamos `IncompleteRequestError`.
 

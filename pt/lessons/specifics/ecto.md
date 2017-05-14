@@ -145,7 +145,7 @@ da documentação.
 ## Modelos
 
 Agora que temos nossa migration podemos continuar para o modelo. Modelos definem o
-nosso esquema, métodos auxiliares, e nosso *changeset*. Iremos falar mais sobre
+nosso esquema, funções auxiliares, e nosso *changeset*. Iremos falar mais sobre
 *changesets* nas próximas secções.
 
 Por agora vamos dar uma olhada em como o modelo para nossa migration se parece:

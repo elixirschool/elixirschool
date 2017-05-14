@@ -13,7 +13,7 @@ To build executables in Elixir we will be using escript. Escript produces an exe
 
 ## Getting Started
 
-To create an executable with escript there are only a few things we need to do: implement a `main/1` method and update our Mixfile.
+To create an executable with escript there are only a few things we need to do: implement a `main/1` function and update our Mixfile.
 
 We'll start by creating a module to serve as the entry point to our executable.  This is where we'll implement `main/1`:
 

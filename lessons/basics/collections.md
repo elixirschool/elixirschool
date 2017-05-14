@@ -63,7 +63,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 
 ### Head / Tail
 
-When using lists it is common to work with a list's head and tail.  The head is the list's first element while the tail is the remaining elements.  Elixir provides two helpful methods, `hd` and `tl`, for working with these parts:
+When using lists it is common to work with a list's head and tail.  The head is the list's first element while the tail is the remaining elements.  Elixir provides two helpful functions, `hd` and `tl`, for working with these parts:
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
