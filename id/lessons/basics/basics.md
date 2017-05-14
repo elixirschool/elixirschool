@@ -19,7 +19,7 @@ Instruksi instalasi untuk masing-masing OS dapat dilihat di Elixir-lang.org bagi
 
 ### Moda Interaktif
 
-Elixir dilengkapi dengan `iex`, sebuah shell interaktif, yang memungkinkan kita mencoba perintah Elixir.
+Elixir dilengkapi dengan IEx, sebuah shell interaktif, yang memungkinkan kita mencoba perintah Elixir.
 
 Untuk memulai, kita jalankan `iex`:
 

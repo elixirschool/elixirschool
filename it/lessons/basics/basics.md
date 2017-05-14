@@ -19,7 +19,7 @@ Le istruzioni per l'installazione per ciascun sistema operativo sono disponibili
 
 ### Modalità Interattiva
 
-Elixir viene fornito con `iex`, una shell interattiva che permette di eseguire istruzioni di Elixir in tempo reale.
+Elixir viene fornito con IEx, una shell interattiva che permette di eseguire istruzioni di Elixir in tempo reale.
 
 Per cominciare, lanciamo il comando `iex`:
 
