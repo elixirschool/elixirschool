@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 layout: page
 title: Collections
 category: basics
@@ -7,7 +7,7 @@ order: 2
 lang: en
 ---
 
-Lists, tuples, keywords, maps and functional combinators.
+Lists, tuples, keyword lists and maps.
 
 {% include toc.html %}
 
@@ -92,7 +92,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-It is common for tuples to be used as a mechanism to return additional information from functions; the usefulness of this will be more apparent when we get into pattern matching:
+It is common for tuples to be used as a mechanism to return additional information from functions; the usefulness of this will be more apparent when we get into [pattern matching](../pattern-matching/):
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -103,7 +103,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Keyword lists
 
-Keywords and maps are the associative collections of Elixir.  In Elixir, a keyword list is a special list of tuples whose first element is an atom; they share performance with lists:
+Keyword lists and maps are the associative collections of Elixir.  In Elixir, a keyword list is a special list of two-element tuples whose first element is an atom; they share performance with lists:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
