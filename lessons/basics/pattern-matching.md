@@ -43,7 +43,7 @@ iex> [1|tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]
-iex> [2|_] = list
+iex> [2 | _] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
 # Tuples

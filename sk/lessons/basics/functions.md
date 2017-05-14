@@ -87,7 +87,7 @@ Vyzbrojení pattern matchingom, vyskúšajme si rekurziu pomocou pomenovaných f
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
