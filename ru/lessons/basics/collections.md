@@ -73,11 +73,11 @@ iex> tl [3.14, :pie, "Apple"]
 Того же результата можно добиться с использованием оператора cons &mdash; `|`. Мы будем часто его встречать в последующих уроках.
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

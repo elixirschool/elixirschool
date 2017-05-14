@@ -75,11 +75,11 @@ iex> tl [3.14, :pie, "Apple"]
 Zusätzlich zu den bereits erwähnten Funktionen kannst du [Pattern Matching](../pattern-matching/) und den Cons-Operator `|` dazu benutzen eine Liste in `head` und `tail` zu teilen; wir werden in späteren Kapiteln mehr über dieses Pattern lernen:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

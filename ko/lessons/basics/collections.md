@@ -77,11 +77,11 @@ iex> tl [3.14, :pie, "Apple"]
 > [역주] : `cons`는 Lisp 계열 언어에서 애텀과 리스트를 연결할 때 쓰이는 연산입니다. 첫번째 매개변수로 주어지는 애텀을 두번째 매개변수로 주어지는 리스트의 head 부분에 삽입하게 됩니다. `(cons 1 (2 3)) == (cons 1 (cons 2 (cons 3 nil))))`
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

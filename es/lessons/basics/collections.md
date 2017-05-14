@@ -71,11 +71,11 @@ iex> tl [3.14, :pie, "Apple"]
 Además de la funciones citadas, puedes usar el operador tubería `|`; veremos este patrón en futuras lecciones:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 
