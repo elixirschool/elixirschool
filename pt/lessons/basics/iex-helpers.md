@@ -40,7 +40,7 @@ Toda vez que o IEx inicia, ele irá procurar por um arquivo de configuração `.
 
 Opções de configurações e código definido dentro deste arquivo estarão disponíveis para nós quando o shell do IEx iniciar. Por exemplo, se quiséssemos alguma função helper disponível no IEx, poderíamos abrir o arquivo `.iex.exs` e fazer algumas mudanças.
 
-Vamos começar adicionando um módulo com alguns métodos helper.
+Vamos começar adicionando um módulo com alguns funções auxiliares.
 
 ```elixir
 defmodule IExHelpers do

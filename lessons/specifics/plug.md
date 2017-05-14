@@ -221,7 +221,7 @@ end
 The first thing to note is we have defined a new exception `IncompleteRequestError` and that one of its options is `:plug_status`.
 When available this option is used by Plug to set the HTTP status code in the event of an exception.
 
-The second portion of our Plug is the `call/2` method.
+The second portion of our Plug is the `call/2` function.
 This is where we decide whether or not to apply our verification logic.
 Only when the request's path is contained in our `:paths` option will we call `verify_request!/2`.
 
