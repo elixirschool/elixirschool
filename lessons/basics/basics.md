@@ -26,7 +26,7 @@ After Elixir is installed you can easily confirm the installed version.
 
 ### Trying Interactive Mode
 
-Elixir comes with `iex`, an interactive shell, which allows us to evaluate Elixir expressions as we go.
+Elixir comes with IEx, an interactive shell, which allows us to evaluate Elixir expressions as we go.
 
 To get started, let's run `iex`:
 
