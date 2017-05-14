@@ -7,7 +7,7 @@ order: 2
 lang: en
 ---
 
-List, tuples, keywords, maps and functional combinators.
+Lists, tuples, keywords, maps and functional combinators.
 
 {% include toc.html %}
 
