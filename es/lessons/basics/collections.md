@@ -41,7 +41,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-Una anotación acerca del formato (`++/2`) utilizado en Elixir (y Erlang, sobre el que está construido Elixir), el nombre de una función u operador tiene dos componentes: El nombre que le das (en este caso `++`) y su _aridad_. Aridad es una parte básica al hablar de código de Elixir (y Erlang). Es el número de argumentos que una función dada tomará (dos en este caso). Aridad y el nombre de la función combinadas con una diagonal. Hablaremos mas acerca de esto posteriorente, este conocimiento te ayudará a entender la notación por ahora.
+Una anotación acerca del formato (`++/2`) utilizado en Elixir (y Erlang, sobre el que está construido Elixir), el nombre de una función u operador tiene dos componentes: El nombre que le das (en este caso `++`) y su _aridad_. Aridad es una parte básica al hablar de código de Elixir (y Erlang). Es el número de argumentos que una función dada tomará (dos en este caso). Aridad y el nombre de la función son combinadas con una diagonal. Hablaremos mas acerca de esto posteriorente, este conocimiento te ayudará a entender la notación por ahora.
 
 ### Sustracción de listas
 
