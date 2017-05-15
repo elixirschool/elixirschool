@@ -1,5 +1,4 @@
----
-version: 1.0.1
+version: 1.1.0
 layout: page
 title: Control Structures
 category: basics
@@ -42,7 +41,7 @@ iex> unless is_integer("hello") do
 
 ## `case`
 
-If it's necessary to match against multiple patterns we can use `case`:
+If it's necessary to match against multiple patterns we can use `case/2`:
 
 ```elixir
 iex> case {:ok, "Hello World"} do
@@ -53,7 +52,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-The `_` variable is an important inclusion in `case` statements. Without it failure to find a match will raise an error:
+The `_` variable is an important inclusion in `case/2` statements. Without it failure to find a match will raise an error:
 
 ```elixir
 iex> case :even do
@@ -70,7 +69,7 @@ iex> case :even do
 
 Consider `_` as the `else` that will match "everything else".
 
-Since `case` relies on pattern matching, all of the same rules and restrictions apply.  If you intend to match against existing variables you must use the pin `^` operator:
+Since `case/2` relies on pattern matching, all of the same rules and restrictions apply.  If you intend to match against existing variables you must use the pin `^/1` operator:
 
 ```elixir
 iex> pie = 3.14 
@@ -82,7 +81,7 @@ iex> case "cherry pie" do
 "I bet cherry pie is tasty"
 ```
 
-Another neat feature of `case` is its support for guard clauses:
+Another neat feature of `case/2` is its support for guard clauses:
 
 _This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) guide._
 
@@ -100,7 +99,7 @@ Check the official docs for [Expressions allowed in guard clauses](http://elixir
 
 ## `cond`
 
-When we need to match conditions rather than values we can turn to `cond`; this is akin to `else if` or `elsif` from other languages:
+When we need to match conditions rather than values we can turn to `cond/1`; this is akin to `else if` or `elsif` from other languages:
 
 _This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
 
@@ -116,7 +115,7 @@ iex> cond do
 "But this will"
 ```
 
-Like `case`, `cond` will raise an error if there is no match.  To handle this, we can define a condition set to `true`:
+Like `case/2`, `cond/1` will raise an error if there is no match.  To handle this, we can define a condition set to `true`:
 
 ```elixir
 iex> cond do
@@ -128,11 +127,11 @@ iex> cond do
 
 ## `with`
 
-The special form `with` is useful when you might use a nested `case` statement or situations that cannot cleanly be piped together. The `with` expression is composed of the keyword, generators, and finally an expression.
+The special form `with/1` is useful when you might use a nested `case/2` statement or situations that cannot cleanly be piped together. The `with/1` expression is composed of the keywords, the generators, and finally an expression.
 
-We'll discuss generators more in the List Comprehensions lesson but for now we only need to know they use pattern matching to compare the right side of the `<-` to the left.
+We'll discuss generators more in the (list comprehensions lesson)[../comprehensions/], but for now we only need to know they use [pattern matching](../pattern-matching/) to compare the right side of the `<-` to the left.
 
-We'll start with a simple example of `with` and then look at something more:
+We'll start with a simple example of `with/1` and then look at something more:
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
@@ -154,43 +153,50 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 :error
 ```
 
-Now let's look at a larger example without `with` and then see how we can refactor it:
+Now let's look at a larger example without `with/1` and then see how we can refactor it:
 
 ```elixir
 case Repo.insert(changeset) do 
   {:ok, user} -> 
     case Guardian.encode_and_sign(resource, :token, claims) do
-      {:ok, jwt, full_claims} ->
-        important_stuff(jwt, full_claims)
+      {:ok, token, full_claims} ->
+        important_stuff(token, full_claims)
       error -> error
     end
   error -> error
 end
 ```
 
-When we introduce `with` we end up with code that is easy to understand and has fewer lines:
+When we introduce `with/1` we end up with code that is easy to understand and has fewer lines:
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-     do: important_stuff(jwt, full_claims)
+     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token) do
+  important_stuff(token, full_claims)
+end
 ```
 
 
-As of Elixir 1.3, `with` statements support `else`:
+As of Elixir 1.3, `with/1` statements support `else`:
 
 ```elixir
 import Integer
 
 m = %{a: 1, c: 3}
 
-a = with {:ok, res} <- Map.fetch(m, :a),
-  true <- Integer.is_even(res) do
-    IO.puts "Divided by 2 it is #{div(res, 2)}"
-else 
-  :error -> IO.puts "We don't have this item in map"
-  _ -> IO.puts "It's not odd"
-end
+a =
+  with {:ok, number} <- Map.fetch(m, :a),
+    true <- Integer.is_even(number) do
+      IO.puts "#{number} divided by 2 is #{div(number, 2)}"
+      :even
+  else
+    :error ->
+      IO.puts "We don't have this item in map"
+      :error
+    _ ->
+      IO.puts "It is odd"
+      :odd
+  end
 ```
 
 It helps to handle errors by providing `case`-like pattern matching in it. The value passed is the first non-matched expression.
