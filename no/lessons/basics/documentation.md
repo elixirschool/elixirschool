@@ -309,4 +309,4 @@ end
 
  - Forsøk å legge til noen kodeeksempler i dokumentasjonen. Dette vil også gjøre at du kan generere automatiske tester fra kodeeksemplene i en modul, funksjon eller makro med [ExUnit.DocTest][]. For å gjøre det, må du kalle `doctest/1` makroen fra testen, og skrive eksemplene etter retningslinjene i [den offisielle dokumentasjonen][ExUnit.DocTest].
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

@@ -306,4 +306,4 @@ end
 
  - Upayakan untuk memasukkan beberapa contoh code dalam dokumentasi anda, ini juga memungkinkan anda menghasilkan test secara otomatis dari contoh yang ditemukan di dalam sebuah modul, fungsi, maupun macro menggunakan [ExUnit.DocTest][]. Untuk melakukan hal itu, kita perlu memanggil macro `doctest/1` dari test case kita dan menulis contoh mengikuti beberapa panduan yang didetailkan di [dokumentasi resmi][ExUnit.DocTest]
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

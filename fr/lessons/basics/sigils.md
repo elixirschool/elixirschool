@@ -79,7 +79,7 @@ iex> "elixir" =~ re
 true
 ```
 
-De plus, Elixir fournit l'API [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) construite sur la bibliothèque d'expressions régulières d'Erlang. Implémentons `Regex.split/2` en utilisant un sigil regex:
+De plus, Elixir fournit l'API [Regex](https://hexdocs.pm/elixir/Regex.html) construite sur la bibliothèque d'expressions régulières d'Erlang. Implémentons `Regex.split/2` en utilisant un sigil regex:
 
 ```elixir
 iex> string = "100_000_000"

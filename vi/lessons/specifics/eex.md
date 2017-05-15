@@ -79,4 +79,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 Phép gán của bộ `EEx.SmartEngine` rất có ích bởi vì các giá trị gán có thể được thay đổi mà không cần biên dịch lại.
 
-Bạn muốn tự viết một engine của riêng bạn? Xem qua behaviour [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) để xem các thứ cần thiết.
+Bạn muốn tự viết một engine của riêng bạn? Xem qua behaviour [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html) để xem các thứ cần thiết.

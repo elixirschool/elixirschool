@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Строковые метки
 category: basics
@@ -80,7 +80,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Также Elixir поддерживает [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API, основанный на библиотеке регулярных выражений из Erlang. Попробуем воспользоваться `Regex.split/2` на строковой метке регулярного выражения:
+Также Elixir поддерживает [Regex](https://hexdocs.pm/elixir/Regex.html) API, основанный на библиотеке регулярных выражений из Erlang. Попробуем воспользоваться `Regex.split/2` на строковой метке регулярного выражения:
 
 ```elixir
 iex> string = "100_000_000"
@@ -137,7 +137,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ### NaiveDateTime
 
-[NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) используется для быстрого создания структуры, представляющей собой `DateTime` **без** часового пояса.
+[NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) используется для быстрого создания структуры, представляющей собой `DateTime` **без** часового пояса.
 
 Как правило, стоит избегать создания `NaiveDateTime` напрямую. Однако это может пригодиться для сопоставления с образцом. Например:
 

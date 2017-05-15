@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Enum
 category: basics
@@ -36,7 +36,7 @@ at/3
 Viendo esto queda claro que existe una gran cantidad de funcionalidad para `Enum` y esto es debido a una razón clara. La enumeración forma parte de la esencia de la programación funcional y es una recurso muy utilizado.
 Al aprovecharlo y combinarlo con otras ventajas de Elixir, como que la documentación es un ciudadano de primera clase así como se acaba de demostrar, es increiblemente empoderador para el programador.
 
-Para ver la lista completa de funciones visita la documentación oficial [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); para enumeración diferida usa el módulo [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+Para ver la lista completa de funciones visita la documentación oficial [`Enum`](https://hexdocs.pm/elixir/Enum.html); para enumeración diferida usa el módulo [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 
 ### all?
@@ -68,7 +68,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Hay algunas opciones para `chunk` pero no vamos a entrar en detalle, revisa [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) en la documentación oficial para aprender más.
+Hay algunas opciones para `chunk` pero no vamos a entrar en detalle, revisa [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) en la documentación oficial para aprender más.
 
 ### chunk_by
 

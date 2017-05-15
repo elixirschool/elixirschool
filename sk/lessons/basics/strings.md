@@ -64,7 +64,7 @@ iex> String.graphemes string
 
 ## Funkcie pre prácu s reťazcami
 
-Ukážme si niektoré z najdôležitejších fukcií z modulu String. Ich kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`String`](http://elixir-lang.org/docs/stable/elixir/String.html).
+Ukážme si niektoré z najdôležitejších fukcií z modulu String. Ich kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`String`](https://hexdocs.pm/elixir/String.html).
 
 ### `length/1`
 

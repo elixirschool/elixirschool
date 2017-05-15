@@ -12,7 +12,7 @@ lang: cn
 {% include toc.html %}
 
 ## `if` 和 `unless`
-你之前可能遇到过 `if/2`了，如果你使用过 Ruby，也会很熟悉 `unless`。它们在 Elixir 使用方式也一样，只不过它们在 Elixir 里是宏定义，不是语言本身的语句。你可以在 [Kernel 模块](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html) 找到它们的实现。
+你之前可能遇到过 `if/2`了，如果你使用过 Ruby，也会很熟悉 `unless`。它们在 Elixir 使用方式也一样，只不过它们在 Elixir 里是宏定义，不是语言本身的语句。你可以在 [Kernel 模块](https://hexdocs.pm/elixir/Kernel.html) 找到它们的实现。
 
 需要注意的是，Elixir 中唯一为假的值是 `nil` 和 布尔值 `false`。
 

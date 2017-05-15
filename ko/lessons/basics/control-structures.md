@@ -13,7 +13,7 @@ lang: ko
 
 ## `if` 와 `unless`
 
-여러분은 이전에 `if/2`를 본 적이 있을 것입니다. 그리고 Ruby를 써 본 적이 있다면 `unless/2`에도 익숙하겠지요. Elixir에서도 이 둘은 거의 똑같이 동작하지만, 언어 구조가 아닌 매크로로서 정의되어 있습니다. [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html)에서 이것들이 어떻게 정의되어 있는지 볼 수 있습니다.
+여러분은 이전에 `if/2`를 본 적이 있을 것입니다. 그리고 Ruby를 써 본 적이 있다면 `unless/2`에도 익숙하겠지요. Elixir에서도 이 둘은 거의 똑같이 동작하지만, 언어 구조가 아닌 매크로로서 정의되어 있습니다. [Kernel module](https://hexdocs.pm/elixir/Kernel.html)에서 이것들이 어떻게 정의되어 있는지 볼 수 있습니다.
 
 Elixir에서는 `nil`과 부울 값 `false`만이 거짓으로 간주됨을 유의하십시오.
 

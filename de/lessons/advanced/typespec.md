@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Spezifikationen und Typen
 category: advanced
@@ -39,7 +39,7 @@ Das sieht auf den ersten Blick alles OK aus, jedoch gibt die Funktion `Enum.sum`
 ## Benutzerdefinierte Typen
 
 Spezifikationen schreiben ist ganz nett, aber manchmal arbeiten unsere Funktionen mit komplexeren Datenstrukturen als einfache Nummern oder collections. In diesem Fall wäre die Definition in `@spec` schwer für andere Entwickler zu verstehen oder zu ändern. Manchmal müssen Funktionen eine große Zahl Parameter entgegennehmen oder komplexe Daten zurückgeben. Eine lange Parameterliste ist eine der vielen Möglichkeiten für code smells im Code. In objektorientieren Sprachen wie Ruby oder Java könnten wir einfach Klassen definieren, die uns dabei helfen, dieses Problem zu lösen. Elixir kennt keine Klassen, ist aber einfach zu erweitern, so dass wir unsere Typen definieren können.
-Standardmäßig bietet Elixir einfache Typen wie `integer` oder `pid`. Du findest eine Liste aller Typen in der [Dokumentation](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Standardmäßig bietet Elixir einfache Typen wie `integer` oder `pid`. Du findest eine Liste aller Typen in der [Dokumentation](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax).
 
 ### Typen definieren
 

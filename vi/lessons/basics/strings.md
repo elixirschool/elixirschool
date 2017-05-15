@@ -63,7 +63,7 @@ iex> String.graphemes string
 
 ## Các hàm của String
 
-Chúng ta hãy cùng xem qua một số hàm quan trọng và hữu ích nhất của String module. Bài này chỉ đề cập một số các hàm có sẵn. Các bạn có thể xem đầy đủ tại tài liệu chính thức [`String`](http://elixir-lang.org/docs/stable/elixir/String.html).
+Chúng ta hãy cùng xem qua một số hàm quan trọng và hữu ích nhất của String module. Bài này chỉ đề cập một số các hàm có sẵn. Các bạn có thể xem đầy đủ tại tài liệu chính thức [`String`](https://hexdocs.pm/elixir/String.html).
 
 ### `length/1`
 

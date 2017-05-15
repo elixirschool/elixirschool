@@ -36,7 +36,7 @@ at/3
 열거형은 함수형 프로그래밍의 핵심이며, 놀랍도록 유용합니다.
 방금 본 문서화 같은 다른 Elixir의 자랑과 함께 열거형은 개발에 매우 도움이 됩니다.
 
-전체 목록을 보시려면 공식 [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) 문서를 보시면 됩니다. 지연 열거(lazy enumeration)는 [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) 모듈을 이용해보세요.
+전체 목록을 보시려면 공식 [`Enum`](https://hexdocs.pm/elixir/Enum.html) 문서를 보시면 됩니다. 지연 열거(lazy enumeration)는 [`Stream`](https://hexdocs.pm/elixir/Stream.html) 모듈을 이용해보세요.
 
 
 ### all?
@@ -68,7 +68,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk`에는 몇 가지 옵션이 있습니다만, 여기서는 이에 대해 다루지 않을 것입니다. 더 알아보고자 하신다면 [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) 공식 문서를 참고해보세요.
+`chunk`에는 몇 가지 옵션이 있습니다만, 여기서는 이에 대해 다루지 않을 것입니다. 더 알아보고자 하신다면 [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) 공식 문서를 참고해보세요.
 
 ### chunk_by
 

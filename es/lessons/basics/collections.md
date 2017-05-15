@@ -150,7 +150,7 @@ true
 
 En Elixir, ambos, listas de palabras claves y mapas implementan el módulo `Dict`; tales se conocen colectivamente como diccionarios. Si necesitas construir tu propio almacenamiento clave-valor, implementar el módulo `Dict` es un buen lugar para empezar.
 
-El [módulo `Dict`](http://elixir-lang.org/docs/stable/elixir/#!Dict.html) provee un número de funciones útiles para interactuar y manipular esos diccionarios:
+El [módulo `Dict`](https://hexdocs.pm/elixir/#!Dict.html) provee un número de funciones útiles para interactuar y manipular esos diccionarios:
 
 ```elixir
 # keyword lists

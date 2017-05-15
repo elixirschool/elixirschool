@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Specifications and types
 category: advanced
@@ -40,7 +40,7 @@ Everything looks ok and when we call valid result will be return, but function `
 
 Writing specifications is nice, but sometimes our functions works with more complex data structures than simple numbers or collections. In that definition's case in `@spec` it could be hard to understand and/or change for other developers. Sometimes functions need to take in a large number of parameters or return complex data. A long parameters list is one of many potential bad smells in one's code. In object oriented-languages like Ruby or Java we could easily define classes that help us to solve this problem. Elixir hasn't classes but because is easy to extends that we could define our types.
   
-Out of box Elixir contains some basic types like `integer` or `pid`. You  can find full list of available types in [documentation](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Out of box Elixir contains some basic types like `integer` or `pid`. You  can find full list of available types in [documentation](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax).
  
 ### Defining custom type
   

@@ -13,7 +13,7 @@ lang: jp
 
 ## `if`と`unless`
 
-ひょっとすると以前に`if/2`と出くわしているかもしれませんし、Rubyを使っていれば`unless/2`をご存知でしょう。Elixirではこの2つはほとんど同じように作用しますが、言語の構成要素としてではなく、マクロとして定義されています。この実装は[Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html)で知ることができます。
+ひょっとすると以前に`if/2`と出くわしているかもしれませんし、Rubyを使っていれば`unless/2`をご存知でしょう。Elixirではこの2つはほとんど同じように作用しますが、言語の構成要素としてではなく、マクロとして定義されています。この実装は[Kernel module](https://hexdocs.pm/elixir/Kernel.html)で知ることができます。
 
 Elixirでは偽とみなされる値は`nil`と真理値の`false`だけだということに、留意すべきです。
 

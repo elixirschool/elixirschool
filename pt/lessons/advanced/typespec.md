@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Especificações e tipos
 category: advanced
@@ -40,7 +40,7 @@ Depois de tudo ok, quando chamamos, o resultado válido vai ser retornado, mas a
 
 Escrever especificações é bom, mas algumas vezes nossas funções trabalham com mais estruturas de dados complexos do que simplesmente números ou coleções. Nesses casos de definição em `@spec` isso poderá ser difícil de entender e/ou alterar para outros desenvolvedores. Algumas funções precisam ter um número grande de parâmetros ou retornar dados complexos. Uma longa lista de parâmetros é um de muitos problemas em potencial em um código. Em liguagens orientadas como Ruby ou Java, podemos facilmente definir classes que nos ajudam a resolver esse problema. Elixir não tem classes, mas por conta disso é fácil extender o que define nossos tipos.
 
-Elixir contém alguns tipos básicos como `integer` ou `pid`. Você pode encontrar uma lista completa de tipos disponíveis em  [documentation](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Elixir contém alguns tipos básicos como `integer` ou `pid`. Você pode encontrar uma lista completa de tipos disponíveis em  [documentation](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax).
 
 ### Definindo tipos personalizados
 

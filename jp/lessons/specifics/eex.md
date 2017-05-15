@@ -78,4 +78,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 `EEx.SmartEngine`の代入はテンプレートのコンパイルを必要とせず代入結果を変えられるので非常に便利です。
 
-あなた自身でエンジンを書いてみたくなりましたか?  [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html)ビヘイビアを調べて何が必要か見てみてください。
+あなた自身でエンジンを書いてみたくなりましたか?  [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html)ビヘイビアを調べて何が必要か見てみてください。

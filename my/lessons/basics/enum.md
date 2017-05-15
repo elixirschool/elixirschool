@@ -15,7 +15,7 @@ Satu kumpulan algorithm untuk memproses satu persatu(enumerate) isi kandungan 'c
 
 Modul `Enum` mengandungi lebih dari satu ratus fungsi-fungsi untuk bekerja dengan 'collection' yang telah kita pelajari dalam pelajaran lepas.
 
-Pelajaran ini cuma akan meliputi sedikit sahaja daripada fungsi-fungsi yang tersedia, untuk melihat fungsi-fungsi lengkap lawati [dokumentasi rasmi `Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); untuk kaedah 'lazy enumeration' gunakan modul [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+Pelajaran ini cuma akan meliputi sedikit sahaja daripada fungsi-fungsi yang tersedia, untuk melihat fungsi-fungsi lengkap lawati [dokumentasi rasmi `Enum`](https://hexdocs.pm/elixir/Enum.html); untuk kaedah 'lazy enumeration' gunakan modul [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 ### all?
 
@@ -46,7 +46,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Terdapat beberapa pilihan untuk `chunk` tetapi kita tidak akan sebutkan di sini, lihat [dokumentasi rasmi `chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) untuk maklumat lebih lanjut.
+Terdapat beberapa pilihan untuk `chunk` tetapi kita tidak akan sebutkan di sini, lihat [dokumentasi rasmi `chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) untuk maklumat lebih lanjut.
 
 ### chunk_by
 

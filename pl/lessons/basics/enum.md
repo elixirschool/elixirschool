@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Enum
 category: basics
@@ -15,7 +15,7 @@ Algorytmy pomagające przetwarzać kolekcje.
 
 Moduł `Enum` zawiera ponad sto funkcji wspomagających pracę z kolekcjami, które omawialiśmy w poprzedniej lekcji.
 
-W tej lekcji przyjrzymy się tylko niektórym z funkcji. Pełna lista jest dostępna w dokumentacji modułu [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); do leniwego przetwarzania kolekcji służy moduł [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+W tej lekcji przyjrzymy się tylko niektórym z funkcji. Pełna lista jest dostępna w dokumentacji modułu [`Enum`](https://hexdocs.pm/elixir/Enum.html); do leniwego przetwarzania kolekcji służy moduł [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 ### all?
 
@@ -46,7 +46,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Jest dostępne kilka wersji `chunk`, ale nie będziemy ich zgłębiać. By dowiedzieć się więcej, zajrzyj do oficjalnej dokumentacji [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2).
+Jest dostępne kilka wersji `chunk`, ale nie będziemy ich zgłębiać. By dowiedzieć się więcej, zajrzyj do oficjalnej dokumentacji [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2).
 
 ### chunk_by
 

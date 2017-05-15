@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Documentation
 category: basics
@@ -308,4 +308,4 @@ end
 
  - Try to include some code examples in your documentation. This also allows you to generate automatic tests from the code examples found in a module, function, or macro with [ExUnit.DocTest][]. In order to do that, you need to invoke the `doctest/1` macro from your test case and write your examples according to some guidelines as detailed in the [official documentation][ExUnit.DocTest].
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

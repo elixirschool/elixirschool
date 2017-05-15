@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Enum 模块
 category: basics
@@ -36,7 +36,7 @@ at/3
 集合在函数式编程中处于核心地位，同时也是非常有用的部分。
 通过利用它与Elixir的其他优势相结合，比如我们刚看到的，文档是一等公民，可以赋予开发人员非常强大的能力。
 
-要想了解全部的函数，请访问官方的 [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) 文档。而要想了解惰性枚举（lazy enumeration），访问 [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) 模块。
+要想了解全部的函数，请访问官方的 [`Enum`](https://hexdocs.pm/elixir/Enum.html) 文档。而要想了解惰性枚举（lazy enumeration），访问 [`Stream`](https://hexdocs.pm/elixir/Stream.html) 模块。
 
 
 ### all?
@@ -68,7 +68,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk` 还有其他选项，在这里不深入介绍。如果感兴趣，前往 [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) 的官方文档去了解。
+`chunk` 还有其他选项，在这里不深入介绍。如果感兴趣，前往 [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) 的官方文档去了解。
 
 ### chunk_by
 

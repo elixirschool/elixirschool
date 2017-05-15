@@ -83,7 +83,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Okrem toho Elixir poskytuje [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API postavené na Erlangovej knižnici na prácu s regulárnymi výrazmi. V nasledujúcom príklade použijeme z tohto API funkciu `Regex.split/2` (rozdelí reťazec podľa regulárneho výrazu), ktorej ako argumenty posunieme `~r` sigil a reťazec, ktorý chceme rozdeliť:
+Okrem toho Elixir poskytuje [Regex](https://hexdocs.pm/elixir/Regex.html) API postavené na Erlangovej knižnici na prácu s regulárnymi výrazmi. V nasledujúcom príklade použijeme z tohto API funkciu `Regex.split/2` (rozdelí reťazec podľa regulárneho výrazu), ktorej ako argumenty posunieme `~r` sigil a reťazec, ktorý chceme rozdeliť:
 
 ```elixir
 iex> string = "100_000_000"
