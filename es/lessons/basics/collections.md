@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Colecciones
 category: basics
@@ -7,7 +7,7 @@ order: 2
 lang: es
 ---
 
-Listas, tuplas, listas de palabras clave, mapas y combinadores funcionales.
+Listas, tuplas, listas de palabras clave y mapas.
 
 {% include toc.html %}
 
@@ -41,7 +41,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-Una anotación acerca del formato (`++/2`) utilizado en Elixir (y Erlang, sobre el que está construido Elixir), el nombre de una función u operador tiene dos componentes: El nombre que le das (en este caso `++`) y su _aridad_. Aridad es una parte básica al hablar de código de Elixir (y Erlang). Es el número de argumentos que una función dada tomará (dos en este caso). Aridad y el nombre de la función combinadas con una diagonal. Hablaremos mas acerca de esto posteriorente, este conocimiento te ayudará a entender la notación por ahora.
+Una anotación acerca del formato (`++/2`) utilizado en Elixir (y Erlang, sobre el que está construido Elixir), el nombre de una función u operador tiene dos componentes: El nombre que le das (en este caso `++`) y su _aridad_. Aridad es una parte básica al hablar de código de Elixir (y Erlang). Es el número de argumentos que una función dada tomará (dos en este caso). Aridad y el nombre de la función combinadas con una diagonal. Hablaremos más acerca de esto posteriorente, este conocimiento te ayudará a entender la notación por ahora.
 
 ### Sustracción de listas
 
@@ -92,7 +92,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-Es común para las tuplas ser usadas como un mecanismo que retorna información adicional de funciones; la utilidad de esto será mas aparente cuando entremos en la coincidencia de patrones:
+Es común para las tuplas ser usadas como un mecanismo que retorna información adicional de funciones; la utilidad de esto será mas aparente cuando entremos en [coincidencia de patrones](../pattern-matching/):
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -103,7 +103,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Listas de palabras clave
 
-Las listas de palabras clave y los mapas son colecciones asociativas de Elixir. En Elixir, una lista de palabras clave es una lista especial de tuplas cuyo primer elemento es un átomo; estas comparten el rendimiento de las listas:
+Las listas de palabras clave y los mapas son colecciones asociativas de Elixir. En Elixir, una lista de palabras clave es una lista especial de tuplas de dos elementos cuyo primer elemento es un átomo; estas comparten el rendimiento de las listas:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
