@@ -18,7 +18,7 @@ After that, we'll learn about Plug's router and how to add a Plug to an existing
 
 ## Prerequisites
 
-This tutorial assumes you have Elixir and `mix` installed already.
+This tutorial assumes you have Elixir 1.4 or higher, and `mix` installed already.
 
 If you don't have a project started, create one like this:
 
@@ -35,8 +35,10 @@ The first thing to do is add both Plug and a web server (we'll be using Cowboy) 
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.1.2"},
-   {:plug, "~> 1.3.4"}]
+  [
+    {:cowboy, "~> 1.1.2"},
+    {:plug, "~> 1.3.4"},
+  ]
 end
 ```
 
@@ -62,7 +64,7 @@ defmodule Example.HelloWorldPlug do
   def call(conn, _opts) do
     conn
     |> put_resp_content_type("text/plain")
-    |> send_resp(200, "Hello World!")
+    |> send_resp(200, "Hello World!\n")
   end
 end
 ```
@@ -103,15 +105,14 @@ This supervises Cowboy, and in turn, supervises our `HelloWorldPlug`.
 In the `Plug.Adapters.Cowboy.child_spec/4` call, the third argument will be passed to `Example.HelloWorldPlug.init/1`.
 
 We're not finished yet. Open `mix.exs` again, and find the `applications` function.
-For now, it'll provide two things:
-1) A list of dependency applications (`cowboy`, `logger`, and `plug`) that need to start up, and
-2) Configuration for our own application, which should also start up automatically.
+We need to add configuration for our own application, which should also cause it to start up automatically.
+
 Let's update it to do that:
 
 ```elixir
 def application do
   [
-    applications: [:cowboy, :logger, :plug],
+    extra_applications: [:logger],
     mod: {Example, []}
   ]
 end
@@ -159,11 +160,11 @@ Swap out the `Example.HelloWorldPlug` plug with the new router:
 
 ```elixir
 def start(_type, _args) do
-    children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
-    ]
-    Logger.info "Started application"
-    Supervisor.start_link(children, strategy: :one_for_one)
+  children = [
+    Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+  ]
+  Logger.info "Started application"
+  Supervisor.start_link(children, strategy: :one_for_one)
 end
 ```
 
@@ -247,9 +248,9 @@ defmodule Example.Router do
   plug :match
   plug :dispatch
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  post "/upload", do: send_resp(conn, 201, "Uploaded")
-  match _, do: send_resp(conn, 404, "Oops!")
+  get "/", do: send_resp(conn, 200, "Welcome\n")
+  post "/upload", do: send_resp(conn, 201, "Uploaded\n")
+  match _, do: send_resp(conn, 404, "Oops!\n")
 end
 ```
 
@@ -263,9 +264,11 @@ With those changes in place our code should look something like this:
 
 ```elixir
 def application do
-  [applications: [:cowboy, :logger, :plug],
-   mod: {Example, []},
-   env: [cowboy_port: 8080]]
+  [
+    extra_applications: [:logger],
+    mod: {Example, []},
+    env: [cowboy_port: 8080]
+  ]
 end
 ```
 
@@ -282,7 +285,7 @@ defmodule Example do
     port = Application.get_env(:example, :cowboy_port, 8080)
 
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.Plug.Router, [], port: port)
+      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: port)
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one)
@@ -311,7 +314,7 @@ $ mix run --no-halt
 Testing Plugs is pretty straightforward thanks to `Plug.Test`.
 It includes a number of convenience functions to make testing easy.
 
-See if you can follow along with the router test:
+Write the following test to `test/example/router_test.exs`:
 
 ```elixir
 defmodule Example.RouterTest do
@@ -350,6 +353,12 @@ defmodule Example.RouterTest do
     assert conn.status == 404
   end
 end
+```
+
+Run it with this:
+
+```shell
+mix test test/example/router_test.exs
 ```
 
 ## Available Plugs
