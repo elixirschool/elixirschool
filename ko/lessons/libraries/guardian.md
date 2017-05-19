@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Guardian (Basics)
 category: libraries
@@ -191,9 +191,9 @@ defmodule MyApp.MyController do
 end
 ```
 
-`Guardian.Phoenix.Controller` 모듈을 사용하려면, 패턴매칭에 사용할 액션에 인자를 두개 추가할 필요가 있습니다. `EnsureAuthentication`을 사용하지 않으면 nil 유저나 클레임을 받을 수 있다는 걸 기억하세요.
+`Guardian.Phoenix.Controller` 모듈을 사용하려면, 패턴매칭에 사용할 액션에 인자를 두개 추가할 필요가 있습니다. `EnsureAuthenticated`을 사용하지 않으면 nil 유저나 클레임을 받을 수 있다는 걸 기억하세요.
 
-더 유연하고 장황한 다른 방법은 plug 핼퍼를 사용하는 것입니다.
+더 유연하고 장황한 다른 방법은 Plug 헬퍼를 사용하는 것입니다.
 
 ```elixir
 defmodule MyApp.MyController do
