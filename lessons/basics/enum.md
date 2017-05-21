@@ -122,7 +122,7 @@ iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` does the same, but allows us to specify the calculation that will produce the minimum via an anonymous function:
+`min/2` does the same, but allows us to specify a fallback calculation in case the enumerable is empty that will produce the minimum via an anonymous function:
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
@@ -138,7 +138,7 @@ iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-`max/2` does the same, and behaves as `min/2` does as well, allowing us to specify the calculation that will produce the maximum via an anonymous function:
+`max/2` does the same, and behaves as `min/2` does as well, allowing us to specify the fallback calculation that will produce the maximum incase the enumrable is empty via an anonymous function:
 
 ```elixir
 Enum.max([], fn -> :bar end)
