@@ -186,13 +186,11 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-We can use `uniq_by/2` to remove duplicates from our enumerables:
+We can use `uniq/1` to remove duplicates from our enumerables:
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
 ```
-
-This was previously known as `uniq/1`, which is deprecated as of Elixir 1.4, but still available (with warnings).
