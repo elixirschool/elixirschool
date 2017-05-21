@@ -154,18 +154,24 @@ As we can see from the output above, there is a special syntax for maps containi
 ```elixir
 iex> %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
-
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-Another interesting property of maps is that they provide their own syntax for updating and accessing atom keys:
+In addition, there is special syntax for accessing atom keys:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> map.hello
+"world"
+```
+
+Another interesting property of maps is that they provide their own syntax for updates.
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 iex> %{map | foo: "baz"}
 %{foo: "baz", hello: "world"}
-iex> map.hello
-"world"
 ```
