@@ -13,7 +13,7 @@ We know from experience it's unruly to have all of our functions in the same fil
 
 ## Modules
 
-Modules are the best way to organize functions into a namespace.  In addition to grouping functions, they allow us to define named and private functions which we covered in the previous lesson.
+Modules allow us organize functions into a namespace. In addition to grouping functions, they allow us to define named and private functions which we covered in the previous lesson.
 
 Let's look at a basic example:
 
