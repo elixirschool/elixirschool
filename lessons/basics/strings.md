@@ -18,7 +18,11 @@ Elixir strings are nothing but a sequence of bytes. Let's look at an example:
 ```elixir
 iex> string = <<104,101,108,108,111>>
 "hello"
+iex> string <> <<0>>
+<<104, 101, 108, 108, 111, 0>>
 ```
+
+By concatenating the string with the byte 0, IEx displays the string as a binary because it is not a valid string anymore. This trick can help us view the underlying bytes of any string.
 
 >NOTE: Using << >> syntax we are saying to the compiler that the elements inside those symbols are bytes.
 
@@ -26,23 +30,20 @@ iex> string = <<104,101,108,108,111>>
 
 Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters. Elixir also has a char list type (character list). Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
 
-What's the difference? Each value from a char list is the ASCII value from the character. Let's dig in:
+What's the difference? Each value in a char list is the unicode code point of a character whereas in a binary, the codepoints are encoded as UTF-8. Let's dig in:
 
 ```elixir
-iex> char_list = 'hello'
-'hello'
-
-iex> [hd|tl] = char_list
-'hello'
-
-iex> {hd, tl}
-{104, 'ello'}
-
-iex> Enum.reduce(char_list, "", fn char, acc -> acc <> to_string(char) <> "," end)
-"104,101,108,108,111,"
+iex(5)> 'hełło'         
+[104, 101, 322, 322, 111]
+iex(6)> "hełło" <> <<0>>
+<<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
-When programming in Elixir, we usually use Strings, not char lists. The char lists support is mainly included because it is required for some Erlang modules.
+322 is the unicode codepoint for ł but it is encoded in UTF-8 as the two bytes 197, 130.
+
+When programming in Elixir, we usually use strings, not char lists. The char lists support is mainly included because it is required for some Erlang modules.
+
+For further information, see the [`binaries, strings and char lists docs`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
 
 ## Graphemes and Codepoints
 
