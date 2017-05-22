@@ -13,11 +13,11 @@ lang: ko
 
 # Dialyxir와 Dialyzer
 
-[Dialyzer](http://erlang.org/doc/man/dialyzer.html), 얼랭 프로그램을 위한 모순 분석기(**DI**screpancy **A**nal**YZ**er for **ER**lang programs)는 정적 코드 분석을 위한 도구입니다. 말하자면 코드를 _읽지만_  코드를 _실행해서_ 분석하지는 않습니다. 버그를 찾는다거나, 죽어있거나 사용하지않거나 도달하지 못하는 코드를 찾을 수도 없습니다.
+[Dialyzer](http://erlang.org/doc/man/dialyzer.html), 얼랭 프로그램을 위한 모순 분석기(**DI**screpancy **A**nal**YZ**er for **ER**lang programs)는 정적 코드 분석을 위한 도구입니다. 말하자면 코드를 _읽지만_  코드를 _실행해서_ 분석하지는 않습니다. 버그나, 죽어있거나 사용하지 않거나, 도달할 수 없는 코드를 찾습니다.
 
-[Dialyxir](https://github.com/jeremyjh/dialyxir)는 Elixir에서 Dialyzer를 간편히 사용하기위한 mix 테스크입니다.
+[Dialyxir](https://github.com/jeremyjh/dialyxir)는 Elixir에서 Dialyzer를 간편히 사용하기 위한 mix 테스크입니다.
 
-사양은 Dialyzer같은 도구가 코드를 이해하기 쉽게해 줍니다. 다른 사람의 읽고 이해하는 편의성만 고려하는 문서와는 다르게(물론 있고 잘 쓰여있어야 합니다), `@spec`은 좀 더 형식적인 문법을 사용하며 기계에 의해 해석 가능합니다.
+사양은 Dialyzer같은 도구가 코드를 이해하기 쉽게 해 줍니다. 사람이 읽고 이해할 수 있으면 되는 문서와는 다르게(물론 있고 잘 쓰여있어야 합니다), `@spec`은 더 형식적인 문법을 사용해 기계적으로 해석할 수 있습니다.
 
 
 프로젝트에 Dialyxir를 추가해봅시다. 제일 간단한 방법은 의존성을 `mix.exs` 파일에 넣는 것입니다.
@@ -36,9 +36,9 @@ $ mix deps.get
 $ mix deps.compile
 ```
 
-첫 번째 명령어는 Dialyxir를 다운로드하고 설치할 것입니다. Hex도 같이 설치할 것인지 물어볼 수도 있습니다. 두 번째 명령어는 Dialyxir 애플리케이션을 컴파일할 것 입니다. Dialyxir를 전역적으로 설치하고 싶으면, [문서](https://github.com/jeremyjh/dialyxir#installation)를 읽어보세요.
+첫 번째 명령어는 Dialyxir를 다운로드하고 설치할 것입니다. Hex도 같이 설치할 것인지 물어볼 수도 있습니다. 두 번째 명령어는 Dialyxir 애플리케이션을 컴파일할 것 입니다. Dialyxir를 전역으로 설치하고 싶으면, [문서](https://github.com/jeremyjh/dialyxir#installation)를 읽어보세요.
 
-마지막으로 Dialyzer를 실행해 PLT(Persistent Lookup Table)를 다시 빌드합니다. Erlang이나 Elixir의 새버전을 설치할 때마다 이작업이 필요합니다. 다행이도, Dialyzer는 사용할 때마다 표준 라이브러리를 분석 하려하지 않습니다. 전부 다운로드하는데에는 조금 시간이 걸립니다.
+마지막으로 Dialyzer를 실행해 PLT(Persistent Lookup Table)를 다시 빌드합니다. Erlang이나 Elixir의 새버전을 설치할 때마다 이 작업이 필요합니다. 다행이도, Dialyzer는 사용할 때마다 표준 라이브러리를 분석 하려하지 않습니다. 전부 다운로드하는데에는 조금 시간이 걸립니다.
 
 ```shell
 $ mix dialyzer --plt
@@ -84,11 +84,11 @@ $ mix dialyzer
 done (passed successfully)
 ```
 
-사양과 정적 분석 도구로 코드를 스스로 테스트하고 버그가 적도록 만들 수 있습니다.
+사양과 정적 분석 도구로 코드를 스스로 테스트하고 버그가 적게 유지할 수 있습니다.
 
 # 디버깅
 
-코드의 정적분석만으로 충분하지 않을 때가 있습니다. 버그를 찾기 위해 실행 흐름을 이해할 필요가 있을 수도 있습니다. 이것을 하는 가장 쉬운 방법은 코드의 흐름과 값을 확인하기 위해 `IO.puts/2`같은 출력문을 사용하는 것이지만, 이 기술은 원시적이고 한계가 있습니다. 고맙게도 Elixir 코드를 디버깅하기위해 Erlang의 디버거를 사용할 수 있습니다.
+정적분석만으로 충분하지 않을 때가 있습니다. 버그를 찾기 위해 실행 흐름을 이해할 필요가 있을 때가 있는데, 이럴 때 가장 쉬운 방법은 코드의 흐름과 값을 확인하기 위해 `IO.puts/2`같은 출력문을 사용하는 것이지만, 이 기술은 원시적이고 한계가 있습니다. 고맙게도 Elixir 코드를 디버깅하기위해 Erlang의 디버거를 사용할 수 있습니다.
 
 기초적인 모듈이 있다고 합시다.
 
@@ -134,7 +134,7 @@ iex > :int.ni(Example)
 {:module, Example}
 ```
 
-`:int` 모듈은 브레이크 포인트를 만들고 코드 실행 단계를 따라갈 수 있게하는 인터프리터입니다.
+`:int` 모듈은 브레이크 포인트를 만들고 코드 실행 단계를 따라갈 수 있게 하는 인터프리터입니다.
 
 디버거를 시작하면 이런 창을 볼 수 있습니다.
 
@@ -186,9 +186,9 @@ iex > :int.delete_break(Example, 8)
 :ok
 ```
 
-같은 조작이 디버거 창에서도 가능합니다. 상위 메뉴 __Break__ 에서 __Line Break__ 를 선택해 브레이크 포인트를 설정합니다. 코드가 없는 줄을 선택하면 브래이크 포인트는 무시됩니다. 하지만 디버거 창에서는 나타날 것입니다. 3 종류의 브레이크 포인트가 있습니다.
+같은 조작이 디버거 창에서도 가능합니다. 상위 메뉴 __Break__ 에서 __Line Break__ 를 선택해 브레이크 포인트를 설정합니다. 코드가 없는 줄을 선택하면 브레이크 포인트는 무시되지만, 디버거 창에서는 나타납니다. 3 종류의 브레이크 포인트가 있습니다.
 
-+ Line breakpoint — 측정 줄에 도달했을 때, 디버거가 실행을 정지합니다. `:int.break/2`로 설정합니다.
++ Line breakpoint — 특정 줄에 도달했을 때, 디버거가 실행을 정지합니다. `:int.break/2`로 설정합니다.
 + Conditional breakpoint — line breakpoint와 비슷하지만 디버거가 특정 조건을 만족했을 때만 정지합니다. 조건은 `:int.get_binding/2`으로 설정합니다.
 + Function breakpoint — 디버거는 함수의 첫 번째 줄에서 실행을 정지합니다. `:int.break_in/3`으로 설정합니다.
 
