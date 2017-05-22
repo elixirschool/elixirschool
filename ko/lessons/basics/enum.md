@@ -115,7 +115,7 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-`min/1`은 컬렉션 내의 `최소(minimal)` 값을 찾습니다.
+`min/1`은 컬렉션 내의 `최소` 값을 찾습니다.
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
@@ -131,7 +131,7 @@ iex> Enum.min([], fn -> :foo end)
 
 ### max
 
-`max/1`은 컬렉션 내의 `최대(maximal)` 값을 반환합니다.
+`max/1`은 컬렉션 내의 `최대` 값을 반환합니다.
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
