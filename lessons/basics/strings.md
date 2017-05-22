@@ -134,7 +134,7 @@ end
 
 Let's first give a watch to `anagrams?/2`. We are checking whether the parameters we are receiving are binaries or not. That's the way we check if a parameter is a String in Elixir.
 
-After it, we are just calling a function that orders the strings in alphabetical order, first doing the string lowercase and then using `String.graphemes`, which returns a list with the Graphemes of the string. Pretty straight, right?
+After that, we are just calling a function that orders the strings in alphabetical order, first doing the string lowercase and then using `String.graphemes`, which returns a list with the Graphemes of the string. Pretty straight, right?
 
 Let's check the output on iex:
 
