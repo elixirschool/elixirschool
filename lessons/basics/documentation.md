@@ -275,7 +275,7 @@ defmodule Greeter do
 end
 ```
 
- - Use markdown within functions that will make it easier to read either via IEx or ExDoc.
+ - Use markdown within docs that will make it easier to read either via IEx or ExDoc.
 
 ```elixir
 defmodule Greeter do
