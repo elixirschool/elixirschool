@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 layout: page
 title: 컬렉션
 category: basics
@@ -7,7 +7,7 @@ order: 2
 lang: ko
 ---
 
-리스트, 튜플, 키워드, 맵 그리고 컴비네이터.
+리스트, 튜플, 키워드 리스트, 맵.
 
 {% include toc.html %}
 
@@ -94,7 +94,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-튜플은 함수가 추가 정보를 반환하는 수단으로 자주 사용됩니다. 이것의 유용함은 패턴 매칭(pattern matching)을 배울 때 더 명확해질 것입니다.
+튜플은 함수가 추가 정보를 반환하는 수단으로 자주 사용됩니다. 이것의 유용함은 [패턴 매칭(pattern matching)](../pattern-matching/)을 배울 때 더 명확해질 것입니다.
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -105,7 +105,7 @@ iex> File.read("path/to/unknown/file")
 
 ## 키워드 리스트
 
-키워드(keyword)와 맵(map)은 Elixir의 연관 컬렉션입니다. Elixir에서 키워드 리스트란 첫번째 원소가 atom인 특별한 튜플들의 리스트입니다. 따라서 키워드 리스트는 리스트와 성능이 비슷합니다.
+키워드 리스트(keyword list)와 맵(map)은 Elixir의 연관 컬렉션입니다. Elixir에서 키워드 리스트란 첫번째 원소가 애텀이고, 2개의 원소를 가지는 특별한 튜플들의 리스트입니다. 따라서 키워드 리스트는 리스트와 성능이 비슷합니다.
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -116,7 +116,7 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 
 키워드 리스트의 아래 세 가지 특징은 매우 중요합니다.
 
-+ 모든 키는 atom입니다.
++ 모든 키는 애텀입니다.
 + 키는 정렬되어 있습니다.
 + 키는 중복될 수 있습니다.
 
@@ -151,7 +151,7 @@ iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-위의 출력에서 볼 수 있듯이, 모든 키가 atom인 맵을 정의하기 위한 특별한 문법도 존재합니다.
+위의 출력에서 볼 수 있듯이, 모든 키가 애텀인 맵을 정의하기 위한 특별한 문법도 존재합니다.
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
