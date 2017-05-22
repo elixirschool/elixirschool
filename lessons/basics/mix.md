@@ -7,7 +7,7 @@ order: 9
 lang: en
 ---
 
-Before we can dive into the deeper waters of Elixir we first need to learn about mix. If you're familiar with Ruby mix is Bundler, RubyGems, and Rake combined. It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of its great features. To see all that mix has to offer run `mix help`.
+Before we can dive into the deeper waters of Elixir we first need to learn about mix. If you're familiar with Ruby, mix is Bundler, RubyGems, and Rake combined. It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of its great features. To see all that mix has to offer run `mix help`.
 
 Until now we've been working exclusively within `iex` which has limitations.  In order to build something substantial we need to divide our code up into many files to effectively manage it; mix lets us do that with projects.
 
