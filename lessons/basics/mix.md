@@ -77,7 +77,7 @@ Starting `iex` this way will load your application and dependencies into the cur
 
 ## Compilation
 
-Mix is smart and will compile your changes when necessary, but it may still be necessary explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
+Mix is smart and will compile your changes when necessary, but it may still be necessary to explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
 
 To compile a mix project we only need to run `mix compile` in our base directory:
 
