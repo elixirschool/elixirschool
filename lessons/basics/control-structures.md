@@ -1,3 +1,4 @@
+---
 version: 1.1.0
 layout: page
 title: Control Structures
@@ -72,7 +73,7 @@ Consider `_` as the `else` that will match "everything else".
 Since `case/2` relies on pattern matching, all of the same rules and restrictions apply.  If you intend to match against existing variables you must use the pin `^/1` operator:
 
 ```elixir
-iex> pie = 3.14 
+iex> pie = 3.14
  3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
@@ -156,8 +157,8 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 Now let's look at a larger example without `with/1` and then see how we can refactor it:
 
 ```elixir
-case Repo.insert(changeset) do 
-  {:ok, user} -> 
+case Repo.insert(changeset) do
+  {:ok, user} ->
     case Guardian.encode_and_sign(resource, :token, claims) do
       {:ok, token, full_claims} ->
         important_stuff(token, full_claims)
