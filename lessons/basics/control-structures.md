@@ -130,7 +130,7 @@ iex> cond do
 
 The special form `with/1` is useful when you might use a nested `case/2` statement or situations that cannot cleanly be piped together. The `with/1` expression is composed of the keywords, the generators, and finally an expression.
 
-We'll discuss generators more in the (list comprehensions lesson)[../comprehensions/], but for now we only need to know they use [pattern matching](../pattern-matching/) to compare the right side of the `<-` to the left.
+We'll discuss generators more in the [list comprehensions lesson](../comprehensions/), but for now we only need to know they use [pattern matching](../pattern-matching/) to compare the right side of the `<-` to the left.
 
 We'll start with a simple example of `with/1` and then look at something more:
 
