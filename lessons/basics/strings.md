@@ -39,9 +39,9 @@ iex(6)> "hełło" <> <<0>>
 <<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
-322 is the Unicode codepoint for ł but it is encoded in UTF-8 as the two bytes 197, 130.
+`322` is the Unicode codepoint for ł but it is encoded in UTF-8 as the two bytes `197`, `130`.
 
-When programming in Elixir, we usually use strings, not char lists. The char lists support is mainly included because it is required for some Erlang modules.
+When programming in Elixir, we usually use strings, not charlists. The charlist support is mainly included because it is required for some Erlang modules.
 
 For further information, see the official [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
 

@@ -158,7 +158,7 @@ iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-In addition, there is special syntax for accessing atom keys:
+In addition, there is a special syntax for accessing atom keys:
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
