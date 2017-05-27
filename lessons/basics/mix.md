@@ -7,21 +7,21 @@ order: 9
 lang: en
 ---
 
-Before we can dive into the deeper waters of Elixir we first need to learn about mix. If you're familiar with Ruby, mix is Bundler, RubyGems, and Rake combined. It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of its great features. To see all that mix has to offer run `mix help`.
+Before we can dive into the deeper waters of Elixir we first need to learn about Mix. If you're familiar with Ruby, Mix is Bundler, RubyGems, and Rake combined. It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of its great features. To see all that Mix has to offer run `mix help`.
 
-Until now we've been working exclusively within `iex` which has limitations.  In order to build something substantial we need to divide our code up into many files to effectively manage it; mix lets us do that with projects.
+Until now we've been working exclusively within `iex` which has limitations.  In order to build something substantial we need to divide our code up into many files to effectively manage it; Mix lets us do that with projects.
 
 {% include toc.html %}
 
 ## New Projects
 
-When we're ready to create a new Elixir project, mix makes it easy with the `mix new` command.  This will generate our project's folder structure and necessary boilerplate.  This is pretty straightforward, so let's get started:
+When we're ready to create a new Elixir project, Mix makes it easy with the `mix new` command.  This will generate our project's folder structure and necessary boilerplate.  This is pretty straightforward, so let's get started:
 
 ```bash
 $ mix new example
 ```
 
-From the output we can see that mix has created our directory and a number of boilerplate files:
+From the output we can see that Mix has created our directory and a number of boilerplate files:
 
 ```bash
 * creating README.md
@@ -67,7 +67,7 @@ The `application` section is used during the generation of our application file 
 
 ## Interactive
 
-It may be necessary to use `iex` within the context of our application.  Thankfully for us, mix makes this easy.  We can start a new `iex` session:
+It may be necessary to use `iex` within the context of our application.  Thankfully for us, Mix makes this easy.  We can start a new `iex` session:
 
 ```bash
 $ iex -S mix
@@ -79,7 +79,7 @@ Starting `iex` this way will load your application and dependencies into the cur
 
 Mix is smart and will compile your changes when necessary, but it may still be necessary explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
 
-To compile a mix project we only need to run `mix compile` in our base directory:
+To compile a Mix project we only need to run `mix compile` in our base directory:
 
 ```bash
 $ mix compile
@@ -92,7 +92,7 @@ Compiled lib/example.ex
 Generated example app
 ```
 
-When we compile a project mix creates a `_build` directory for our artifacts.  If we look inside `_build` we will see our compiled application: `example.app`.
+When we compile a project Mix creates a `_build` directory for our artifacts.  If we look inside `_build` we will see our compiled application: `example.app`.
 
 ## Managing Dependencies
 
