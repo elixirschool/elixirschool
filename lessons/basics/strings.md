@@ -22,15 +22,15 @@ iex> string <> <<0>>
 <<104, 101, 108, 108, 111, 0>>
 ```
 
-By concatenating the string with the byte 0, IEx displays the string as a binary because it is not a valid string anymore. This trick can help us view the underlying bytes of any string.
+By concatenating the string with the byte `0`, IEx displays the string as a binary because it is not a valid string anymore. This trick can help us view the underlying bytes of any string.
 
 >NOTE: Using << >> syntax we are saying to the compiler that the elements inside those symbols are bytes.
 
-## Char Lists
+## Charlists
 
 Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters. Elixir also has a char list type (character list). Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
 
-What's the difference? Each value in a char list is the unicode code point of a character whereas in a binary, the codepoints are encoded as UTF-8. Let's dig in:
+What's the difference? Each value in a charlist is the Unicode code point of a character whereas in a binary, the codepoints are encoded as UTF-8. Let's dig in:
 
 ```elixir
 iex(5)> 'hełło'         
@@ -39,11 +39,11 @@ iex(6)> "hełło" <> <<0>>
 <<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
-322 is the unicode codepoint for ł but it is encoded in UTF-8 as the two bytes 197, 130.
+322 is the Unicode codepoint for ł but it is encoded in UTF-8 as the two bytes 197, 130.
 
 When programming in Elixir, we usually use strings, not char lists. The char lists support is mainly included because it is required for some Erlang modules.
 
-For further information, see the [`binaries, strings and char lists docs`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+For further information, see the official [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
 
 ## Graphemes and Codepoints
 
@@ -134,7 +134,7 @@ end
 
 Let's first give a watch to `anagrams?/2`. We are checking whether the parameters we are receiving are binaries or not. That's the way we check if a parameter is a String in Elixir.
 
-After that, we are just calling a function that orders the strings in alphabetical order, first doing the string lowercase and then using `String.graphemes`, which returns a list with the Graphemes of the string. Pretty straight, right?
+After that, we are calling a function that orders the string alphabetically. It first converts the string to lowercase and then uses `String.graphemes/1` to get a list of the graphemes in the string. Finally, it pipes that list into `Enum.sort/1`. Pretty straight, right?
 
 Let's check the output on iex:
 

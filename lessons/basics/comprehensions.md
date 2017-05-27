@@ -105,7 +105,7 @@ iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-Since binaries are collectable we can use list comprehensions and `:into` to create strings:
+Since binaries are collectables we can use list comprehensions and `:into` to create strings:
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
