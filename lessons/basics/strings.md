@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.1.0
 layout: page
 title: Strings
 category: basics
