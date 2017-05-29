@@ -3,7 +3,7 @@ layout: page
 title: Egnedefinerte Mix Tasks
 category: basics
 order: 15
-lang: no
+lang: "no"
 ---
 
 Å lage egendefinerte Mix tasks for dine Elixir prosjekter.

@@ -4,7 +4,7 @@ layout: page
 title: Enum
 category: basics
 order: 3
-lang: no
+lang: "no"
 ---
 
 Et sett med algoritmer for å iterere over kolleksjoner.

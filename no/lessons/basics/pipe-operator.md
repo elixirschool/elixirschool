@@ -4,7 +4,7 @@ layout: page
 title: Pipeoperatoren
 category: basics
 order: 7
-lang: no
+lang: "no"
 ---
 
 Pipeoperatoren `|>` fører resultatet av et utrykk som første parameter til et nytt utrykk.

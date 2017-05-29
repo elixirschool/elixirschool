@@ -4,7 +4,7 @@ layout: page
 title: IEx Hjelpere
 category: basics
 order: 16
-lang: no
+lang: "no"
 ---
 
 {% include toc.html %}

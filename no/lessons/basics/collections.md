@@ -4,7 +4,7 @@ layout: page
 title: Kolleksjoner
 category: basics
 order: 2
-lang: no
+lang: "no"
 ---
 
 Lister, tupler, nøkkelord, kart og funksjonell kombinasjon.
