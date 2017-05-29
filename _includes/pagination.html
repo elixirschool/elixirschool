@@ -1,0 +1,17 @@
+{% unless page.pagination == nil %}
+  <hr />
+  <ul class="pagination">
+    {% unless page.pagination.previous == nil %}
+      {% assign previous = page.pagination.previous %}
+      <li class="pagination-prev">
+        <a href="{{ previous.path }}" title="{{ previous.title }}">← {{ previous.title }}</a>
+      </li>
+    {% endunless %}
+    {% unless page.pagination.next == nil %}
+      {% assign next = page.pagination.next %}
+      <li class="pagination-next">
+        <a href="{{ next.path }}" title="{{ next.title }}">{{ next.title }} →</a>
+      </li>
+    {% endunless %}
+  </ul>
+{% endunless %}
