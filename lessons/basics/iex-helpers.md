@@ -213,7 +213,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 
 ### `s`
 
-With `s` we can retrieve the type spec information for a module or function, we can use this to know it expects:
+With `s` we can retrieve the type spec information for a module or function. We can use this to know what it expects:
 
 ```elixir
 iex> s Map.merge/2

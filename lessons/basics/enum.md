@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 layout: page
 title: Enum
 category: basics
@@ -122,7 +122,7 @@ iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` does the same, but allows us to specify the calculation that will produce the minimum via an anonymous function:
+`min/2` does the same, but in case the enumerable is empty, it allows us to specify a function to produce the minimum value.
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
@@ -138,7 +138,7 @@ iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-`max/2` does the same, and behaves as `min/2` does as well, allowing us to specify the calculation that will produce the maximum via an anonymous function:
+`max/2` is to `max/1` what `min/2` is to `min/1`:
 
 ```elixir
 Enum.max([], fn -> :bar end)
@@ -186,13 +186,11 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-We can use `uniq_by/2` to remove duplicates from our enumerables:
+We can use `uniq/1` to remove duplicates from our enumerables:
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
 ```
-
-This was previously known as `uniq/1`, which is deprecated as of Elixir 1.4, but still available (with warnings).
