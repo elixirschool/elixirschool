@@ -43,12 +43,11 @@ Elixir uses pattern matching to identify the first set of parameters which match
 
 ```elixir
 iex> handle_result = fn
-...>   {:ok, result} -> IO.puts "Handling result..."
+...>   {:ok} -> IO.puts "Handling result..."
 ...>   {:error} -> IO.puts "An error has occurred!"
 ...> end
 
-iex> some_result = 1
-iex> handle_result.({:ok, some_result})
+iex> handle_result.({:ok})
 Handling result...
 
 iex> handle_result.({:error})
