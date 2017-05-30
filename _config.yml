@@ -231,3 +231,9 @@ version_messages:
     minor: "마지막 갱신 이후로 원본 문서에 작은 변경사항이 있습니다."
     patch: "마지막 갱신 이후로 원본 문서에 사소한 변경사항이 있습니다."
     none: "이 번역은 최신입니다."
+  pl:
+    outdated: "Od ostatniej aktualizacji wprowadzono wiele zmian i tłumaczenie może być nieaktualne."
+    major: "Od ostatniej aktualizacji wprowadzono kilka dużych zmian."
+    minor: "Od ostatniej aktualizacji wprowadzono kilka drobnych poprawek."
+    patch: "Od ostatniej aktualizacji wprowadzono kilka zmian."
+    none: "To tłumaczenie jest aktualne."
