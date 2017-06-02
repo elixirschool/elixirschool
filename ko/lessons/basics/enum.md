@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 layout: page
 title: Enum
 category: basics
@@ -122,7 +122,7 @@ iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2`는 같은 일을 합니다만, 넘겨진 익명 함수로 `Enum`의 기본 값을 지정할 수 있습니다.
+`min/2`는 같은 일을 합니다만, 열거할 컬렉션이 비어있는 경우에 반환할 최소값을 익명 함수로 지정할 수 있습니다.
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
@@ -138,7 +138,7 @@ iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-`max/2`는 같은 일을 하고 `min/2`처럼 동작해, 넘겨진 익명 함수로 `Enum`의 기본 값을 지정할 수 있습니다.
+`max/2`는 `max/1`에 대해서 `min/2`가 `min/1`의 관계처럼 동작합니다.
 
 ```elixir
 Enum.max([], fn -> :bar end)
@@ -184,13 +184,11 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-`uniq_by/2`를 이용하여 열거 가능한 집합 내의 중복요소를 제거할 수 있습니다.
+`uniq/1`를 이용하여 열거 가능한 집합 내의 중복요소를 제거할 수 있습니다.
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
 ```
-
-이 함수는 전에는 `uniq/1`이었지만, Elixir 1.4에서 폐기예정이 되었습니다. 하지만 아직 (경고는 나오지만) 사용할 수 있습니다.

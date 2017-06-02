@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 layout: page
 title: Comprehensions
 category: basics
@@ -105,7 +105,7 @@ iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-비트스트링은 열거형이기 때문에 List comprehension과 `:into`를 사용하여 문자열을 만들 수 있습니다.
+바이너리는 `Collectable` 프로토콜을 지원하기 때문에 List comprehension과 `:into`를 사용하여 문자열을 만들 수 있습니다.
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>

@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 layout: page
 title: 컬렉션
 category: basics
@@ -156,18 +156,24 @@ iex> %{:foo => "bar", :foo => "hello world"}
 ```elixir
 iex> %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
-
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-맵에는 또다른 특별한 문법이 있는데, 이로써 애텀 키를 통해 맵 내부를 열람하거나 수정할 수 있습니다.
+그리고 애텀 키에 접근하기 위한 특별한 문법이 있습니다.
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> map.hello
+"world"
+```
+
+맵의 또다른 흥미로운 부분은 경샌을 위한 자신만의 문법입니다.
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 iex> %{map | foo: "baz"}
 %{foo: "baz", hello: "world"}
-iex> map.hello
-"world"
 ```
