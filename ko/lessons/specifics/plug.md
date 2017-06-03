@@ -20,7 +20,7 @@ Elixir 코어의 일부가 아닌, Elixir의 공식 프로젝트입니다.
 
 이 강의는 Elixir와 `mix`가 설치되어 있다고 가정합니다.
 
-만약 새 프로젝트를 만든적이 없다면 다음의 명령과 같이 입력하세요.
+새 프로젝트를 만든적이 없다면 다음의 명령과 같이 입력하세요.
 
 ```shell
 mix new example
@@ -228,7 +228,7 @@ end
 요청 경로가 `:paths` 옵션에 포함되는 경우에만 `verify_request!/2`를 호출합니다.
 
 마지막으로는 비공개 함수인 `verify_request!/2`로 필요한 `:fields`가 전부 존재하고 있는지를 확인합니다.
-만약 부족한 필드가 있는 경우에는 `Incompleterequesterror`를 발생시킵니다.
+부족한 필드가 있는 경우에는 `Incompleterequesterror`를 발생시킵니다.
 
 `/upload`에 대한 모든 요청에 `"content"` 와`"mimetype"` 둘 다 있는지 확인하기 위해 Plug를 설정했습니다.
 확인된 경우에만 라우트 코드가 실행됩니다.

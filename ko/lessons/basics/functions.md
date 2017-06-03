@@ -72,7 +72,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 ```
 
-만약 함수의 몸체를 한 줄로 쓰고 싶은 경우, 우리는 `do:`를 이용하여 축약할 수 있습니다.
+함수의 몸체를 한 줄로 쓰고 싶은 경우, 우리는 `do:`를 이용하여 축약할 수 있습니다.
 
 ```elixir
 defmodule Greeter do
