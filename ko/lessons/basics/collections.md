@@ -144,7 +144,7 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-만약 중복된 키가 맵에 추가되면 이전의 값을 새 값으로 교체합니다.
+중복된 키가 맵에 추가되면 이전의 값을 새 값으로 교체합니다.
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
