@@ -19,9 +19,9 @@ Návod na inštaláciu pre každý OS sú k dispozícii na Elixir-lang.org v sek
 
 ### Interaktívny mód
 
-Elixir obsahuje nástroj `iex`, interaktívny shell (príkazový riadok), ktorý dovoľuje skúšať a vyhodnocovať rôzne výrazy a konštrutky v Elixire..
+Elixir obsahuje nástroj `iex`, interaktívny shell (príkazový riadok), ktorý dovoľuje skúšať a vyhodnocovať rôzne výrazy a konštrukty v Elixire.
 
-Začnime teda jeho spustením príkazu `iex`:
+Začnime teda jeho spustením príkazom `iex`:
 
 	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
@@ -50,7 +50,7 @@ iex> 0x1F
 
 ### Desatinné číslo
 
-V Elixire vyžadujú desatinné čísla aspoň jednu číslicu pred desatinnou bodkou, sú 64 bitové a podporujú zápis exponenta pomocou znaku `e`:
+V Elixire vyžadujú desatinné čísla aspoň jednu číslicu pred desatinnou bodkou, sú 64 bitové a podporujú zápis exponentu pomocou znaku `e`:
 
 ```elixir
 iex> 3.14
@@ -207,7 +207,7 @@ iex> 2 <= 3
 true
 ```
 
-Pre striktné porovnávanie celých a desatinných čisel použite `===`:
+Pre striktné porovnávanie celých a desatinných čísiel použite `===`:
 
 ```elixir
 iex> 2 == 2.0
@@ -216,7 +216,7 @@ iex> 2 === 2.0
 false
 ```
 
-Dôležitou vlastnosťou Elixiru je, že umožńuje porovnať hodnoty akýchkoľvek dvoch typov, čo sa obzvlášť hodí pri zoraďovaní (sortingu). Nie je nutné učiť sa spamäti poradie typov pri sortingu, ale je dobré o ňom vedieť:
+Dôležitou vlastnosťou Elixiru je, že umožňuje porovnať hodnoty akýchkoľvek dvoch typov, čo sa obzvlášť hodí pri zoraďovaní (sortingu). Nie je nutné učiť sa spamäti poradie typov pri sortingu, ale je dobré o ňom vedieť:
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
