@@ -13,7 +13,7 @@ V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie ústredným kon�
 
 ## Anonymné funkcie
 
-Ako ich naznačuje už ich názov, tieto funkcie nemajú priradené meno. V kapitole o `Enum` sme videli, že sa často odovzdávajú ako argumenty iným funkciám. Na definovanie anonymnej funkcie slúžia v Elixire kľúčové slová `fn` a `end`. Medzi nimi môžeme definovať ľubovoľné množstvo sád parametrov a tiel funkcií - oddelených operátorom `->`.
+Ako naznačuje už ich názov, tieto funkcie nemajú priradené meno. V kapitole o `Enum` sme videli, že sa často odovzdávajú ako argumenty iným funkciám. Na definovanie anonymnej funkcie slúžia v Elixire kľúčové slová `fn` a `end`. Medzi nimi môžeme definovať ľubovoľné množstvo sád parametrov a tiel funkcií - oddelených operátorom `->`.
 
 Pozrime sa na jednoduchý príklad:
 
@@ -27,7 +27,7 @@ Všimnite si, že anonymnú funkciu je nutné volať cez `.`.
 
 ### Skratka &
 
-Používanie anonymných funkcií je v Elexire natoľko bežné, že na ich definovanie existuje skrátený zápis pomocou `&`:
+Používanie anonymných funkcií je v Elixire natoľko bežné, že na ich definovanie existuje skrátený zápis pomocou `&`:
 
 ```elixir
 iex> sum = &(&1 + &2)
