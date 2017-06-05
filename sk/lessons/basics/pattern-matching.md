@@ -13,7 +13,7 @@ Pattern matching je dôležitou a mocnou vymoženosťou Elixiru. Umožňuje nám
 
 ## Match operator
 
-Pripravení na prekvapko? V Elixire je operátor `=` v skutočnosti match operátorom. Pomocou neho môžeme nachádzať, vyberať a pridaďovať časti vyhovujúce našim kritériam.
+Pripravení na prekvapko? V Elixire je operátor `=` v skutočnosti match operátorom. Pomocou neho môžeme nachádzať, vyberať a priraďovať časti vyhovujúce našim kritériam.
 
 Nasledujúcim spôsobom matchneme hocičo (nešpecifikujeme žiadne kritériá) a priradíme to do premennej `x`:
 
