@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: IEx Helpers
 category: basics
@@ -39,11 +39,11 @@ And now we know the functions we have and their arity!
 
 ### `.iex.exs`
 
-Every time IEx starts it will look for a .iex.exs configuration file. If it's not present in the current directory, then the user's home directory (~/.iex.exs) will be used as the fallback.
+Every time IEx starts it will look for a `.iex.exs` configuration file. If it's not present in the current directory, then the user's home directory (`~/.iex.exs`) will be used as the fallback.
 
-Configuration options and code defined within this file will be available to us when the IEx shell starts up. For instance if we want some helper functions available to us in IEx, we can open up .iex.exs and make some changes.
+Configuration options and code defined within this file will be available to us when the IEx shell starts up. For instance if we want some helper functions available to us in IEx, we can open up `.iex.exs` and make some changes.
 
-Let's start by adding a module with a few helper methods:
+Let's start by adding a module with a few helper functions:
 
 ```elixir
 defmodule IExHelpers do
@@ -69,6 +69,7 @@ iex> IExHelpers.whats_this?(%{})
 iex> IExHelpers.whats_this?(:test)
 "Type: Atom"
 ```
+
 As we can see we don't need to do anything special to require or import our helpers, IEx handles that for us.
 
 ### `h`
@@ -185,7 +186,7 @@ Reference modules
   Module, Atom
 ```
 
-Now we have a bunch of information about Map including where its source is stored and the modules it references.  This is quite useful when exploring custom, foreign data types, and new functions.
+Now we have a bunch of information about `Map` including where its source is stored and the modules it references. This is quite useful when exploring custom, foreign data types, and new functions.
 
 The individual headings can be dense, but at a high level we can gather some relevant information:
 
@@ -200,7 +201,7 @@ This gives us a lot to work with and is better than going in blind.
 
 ### `r`
 
-If we want to recompile a particular module we can use the `r` helper.  Let's say we've changed some code and want to run a new function we've added. To do that we need to save our changes and recompile with r:
+If we want to recompile a particular module we can use the `r` helper. Let's say we've changed some code and want to run a new function we've added. To do that we need to save our changes and recompile with r:
 
 ```elixir
 iex> r MyProject
@@ -212,7 +213,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 
 ### `s`
 
-With `s` we can retrieve the type spec information for a  module or function, we can use this to know it expects:
+With `s` we can retrieve the type spec information for a module or function. We can use this to know what it expects:
 
 ```elixir
 iex> s Map.merge/2
@@ -237,7 +238,7 @@ iex> t Map
 @type value() :: any()
 ```
 
-And now we know that Map defines key and value types in its implementation.
+And now we know that `Map` defines key and value types in its implementation.
 If we go and look at the source of `Map`:
 
 ```elixir

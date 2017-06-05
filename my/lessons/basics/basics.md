@@ -19,7 +19,7 @@ Arahan-arahan pemasangan untuk setiap jenis OS boleh didapati di Elixir-lang.org
 
 ### Mod Interaktif
 
-Elixir disertakan dengan `iex`, satu shell interaktif, yang membenarkan kita untuk menilai ekspresi Elixir.
+Elixir disertakan dengan IEx, satu shell interaktif, yang membenarkan kita untuk menilai ekspresi Elixir.
 
 Untuk bermula, kita jalankan `iex`:
 

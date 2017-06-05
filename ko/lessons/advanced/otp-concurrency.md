@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.1
 layout: page
 title: OTP 동시성
 category: advanced
@@ -41,9 +41,9 @@ end
 
 ### 동기 함수
 
-GenServer와 동기적(함수를 호출하여 응답을 기다리림)으로 데이터를 주고 받아야 할 때가 종종 있습니다. 동기 요청을 다루기 위해, `GenServer.handle_call/3` 콜백을 구현해야 합니다. 이는 요청, 함수를 호출하는 프로세스의 PID, 현재 상태를 인자로 가집니다. `{:reply, response, state}` 같은 튜플을 응답으로 반환하길 기대합니다.
+GenServer와 동기적(함수를 호출하여 응답을 기다림)으로 데이터를 주고 받아야 할 때가 종종 있습니다. 동기 요청을 다루기 위해, `GenServer.handle_call/3` 콜백을 구현해야 합니다. 이는 요청, 함수를 호출하는 프로세스의 PID, 현재 상태를 인자로 가집니다. `{:reply, response, state}` 같은 튜플을 응답으로 반환하길 기대합니다.
 
-패턴매칭을 이용하여, 다양한 요청과 상태에 따라 콜백을 정의할 수 있습니다. [`GenServer.handle_call/3`](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#c:handle_call/3) 문서에서 허용되는 반환 값의 전체 목록을 확인할 수 있습니다.
+패턴매칭을 이용하여, 다양한 요청과 상태에 따라 콜백을 정의할 수 있습니다. [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) 문서에서 허용되는 반환 값의 전체 목록을 확인할 수 있습니다.
 
 현재 큐의 상태를 보여주는 기능과 값을 제거하는 기능을 추가해, 동기 응답이 어떻게 동작하는지 보죠.
 
@@ -68,7 +68,7 @@ defmodule SimpleQueue do
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -126,7 +126,7 @@ defmodule SimpleQueue do
     {:noreply, state ++ [value]}
   end
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -150,4 +150,4 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-자세한 내용은 [GenServer](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#content) 공식 문서에서 확인해보세요.
+자세한 내용은 [GenServer](https://hexdocs.pm/elixir/GenServer.html#content) 공식 문서에서 확인해보세요.

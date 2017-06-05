@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: GenStage
 category: advanced
@@ -61,7 +61,7 @@ Sau đó thêm `gen_stage` vào các thư viện trong `mix.exs`
 ```elixir
   defp deps do
     [
-      {:gen_stage, "~> 0.7"},
+      {:gen_stage, "~> 0.11"},
     ]
   end
 ```
@@ -87,8 +87,6 @@ Sau đó thêm code vào:
 
 ```elixir
 defmodule GenstageExample.Producer do
-  alias Experimental.GenStage
-
   use GenStage
 
   def start_link(initial \\ 0) do
@@ -120,7 +118,6 @@ Ta cập nhật file cho nó giống với đoạn code bên dưới:
 
 ```elixir
 defmodule GenstageExample.ProducerConsumer  do
-  alias Experimental.GenStage
   use GenStage
 
   require Integer
@@ -160,7 +157,6 @@ Vì consumer và producer-consumer khá giống nhau nên code của chúng ta t
 
 ```elixir
 defmodule GenstageExample.Consumer do
-  alias Experimental.GenStage
   use GenStage
 
   def start_link do

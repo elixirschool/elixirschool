@@ -25,7 +25,7 @@ defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  Start our queue and link it.  This is a helper method
+  Start our queue and link it.  This is a helper function
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -41,7 +41,7 @@ end
 ## 同步函数
 有时候需要和 Genservers 进行同步的交互：调用一个函数，然后等待它的响应返回。要处理同步请求，我们需要实现 `Genserver.handle_call/3` 函数，接受的参数是：请求、调用者的 PID，初始的状态，期望的返回值是 `{:reply, response, state}` 三元组。
 
-使用模式匹配，我们可以为不同的请求和状态定义不同的 callbacks，能够接受的所有返回值列表可以前往 [`Genserver.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) 文档处查看。
+使用模式匹配，我们可以为不同的请求和状态定义不同的 callbacks，能够接受的所有返回值列表可以前往 [`Genserver.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) 文档处查看。
 
 为了演示同步请求，我们添加这样的功能：返回现在队列的状态以及删除队列中的一个值：
 
@@ -66,7 +66,7 @@ defmodule SimpleQueue do
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -91,7 +91,7 @@ iex> SimpleQueue.queue
 ```
 
 ## 异步函数
-`handle_cast/2` 是处理异步函数的，  这个函数和 `handle_case/3` 的用法一样，除了它不接受调用者作为参数而且没有返回值。
+`handle_cast/2` 是处理异步函数的，  这个函数和 `handle_call/3` 的用法一样，除了它不接受调用者作为参数而且没有返回值。
 
 我们把 enqueue 功能设计成异步的：更新 queue 的内容，但并不阻塞当前程序的运行：
 
@@ -123,7 +123,7 @@ defmodule SimpleQueue do
     {:noreply, state ++ [value]}
   end
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -147,7 +147,7 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-可以前往官方的 [`GenServer`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content) 文档了解更多的信息。
+可以前往官方的 [`GenServer`](https://hexdocs.pm/elixir/GenServer.html#content) 文档了解更多的信息。
 
 # GenEvent
 我们刚学习到：Genservers 是维护状态并能够同步和异步处理请求的进程，但什么是 GenEvent 呢？GenEvents 是事件管理器：接受进来的事件，并通知订阅事件的消费者。这种机制能让我们动态地添加和删除事件的处理函数。
@@ -218,4 +218,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-阅读官方的 [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) 文档查看完整的回调函数列表以及 GenEvent 的所有功能。
+阅读官方的 [GenEvent](https://hexdocs.pm/elixir/GenEvent.html#content) 文档查看完整的回调函数列表以及 GenEvent 的所有功能。

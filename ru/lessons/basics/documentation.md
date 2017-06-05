@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Документирование
 category: basics
@@ -306,4 +306,4 @@ end
 
  - Попробуйте включить в документацию примеры использования. Это также позволит генерировать автоматические тесты из примеров кода, найденных в модуле, функции или макросе с помощью [ExUnit.DocTest][]. Для этого нужно вызвать макрос `doctest/1` из соответствующего теста и писать примеры согласно описанию, которое есть в [официальной документации][ExUnit.DocTest]
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

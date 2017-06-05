@@ -63,7 +63,7 @@ iex> String.graphemes string
 
 ## 字符串函数
 
-这个部分我们看一下 `String` 模块最常用的一些函数。本课程只会介绍其中的一部分，如果要了解所有的函数，请参考[官方 `String` 文档](http://elixir-lang.org/docs/stable/elixir/String.html)。
+这个部分我们看一下 `String` 模块最常用的一些函数。本课程只会介绍其中的一部分，如果要了解所有的函数，请参考[官方 `String` 文档](https://hexdocs.pm/elixir/String.html)。
 
 ### `length/1`
 

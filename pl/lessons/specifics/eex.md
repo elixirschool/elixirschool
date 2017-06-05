@@ -79,4 +79,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 Przypisania obecne w `EEx.SmartEngine` są bardzo przydatne ponieważ pozwalają wprowadzać zmiany bez konieczności rekompilacji szablonu.
 
-Zainteresowany stworzeniem własnego silnika? Sprawdź jak działa [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) by zobaczyć co jest wymagane. 
+Zainteresowany stworzeniem własnego silnika? Sprawdź jak działa [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html) by zobaczyć co jest wymagane. 

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.2.0
 layout: page
 title: Collections
 category: basics
@@ -7,7 +7,7 @@ order: 2
 lang: en
 ---
 
-List, tuples, keywords, maps and functional combinators.
+Lists, tuples, keyword lists and maps.
 
 {% include toc.html %}
 
@@ -63,7 +63,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 
 ### Head / Tail
 
-When using lists it is common to work with a list's head and tail.  The head is the list's first element while the tail is the remaining elements.  Elixir provides two helpful methods, `hd` and `tl`, for working with these parts:
+When using lists it is common to work with a list's head and tail.  The head is the list's first element while the tail is the remaining elements.  Elixir provides two helpful functions, `hd` and `tl`, for working with these parts:
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -75,11 +75,11 @@ iex> tl [3.14, :pie, "Apple"]
 In addition to the aforementioned functions, you can use [pattern matching](../pattern-matching/) and the cons operator `|` to split a list into head and tail; we'll learn more about this pattern in later lessons:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 
@@ -92,7 +92,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-It is common for tuples to be used as a mechanism to return additional information from functions; the usefulness of this will be more apparent when we get into pattern matching:
+It is common for tuples to be used as a mechanism to return additional information from functions; the usefulness of this will be more apparent when we get into [pattern matching](../pattern-matching/):
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -103,7 +103,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Keyword lists
 
-Keywords and maps are the associative collections of Elixir.  In Elixir, a keyword list is a special list of tuples whose first element is an atom; they share performance with lists:
+Keyword lists and maps are the associative collections of Elixir.  In Elixir, a keyword list is a special list of two-element tuples whose first element is an atom; they share performance with lists:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -154,18 +154,24 @@ As we can see from the output above, there is a special syntax for maps containi
 ```elixir
 iex> %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
-
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-Another interesting property of maps is that they provide their own syntax for updating and accessing atom keys:
+In addition, there is a special syntax for accessing atom keys:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> map.hello
+"world"
+```
+
+Another interesting property of maps is that they provide their own syntax for updates.
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 iex> %{map | foo: "baz"}
 %{foo: "baz", hello: "world"}
-iex> map.hello
-"world"
 ```

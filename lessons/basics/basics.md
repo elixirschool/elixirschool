@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 layout: page
 title: Basics
 category: basics
@@ -26,7 +26,7 @@ After Elixir is installed you can easily confirm the installed version.
 
 ### Trying Interactive Mode
 
-Elixir comes with `iex`, an interactive shell, which allows us to evaluate Elixir expressions as we go.
+Elixir comes with IEx, an interactive shell, which allows us to evaluate Elixir expressions as we go.
 
 To get started, let's run `iex`:
 
@@ -150,7 +150,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir also includes more complex data types.  We'll learn more about these when we learn about Collections and Functions.
+Elixir also includes more complex data types.  We'll learn more about these when we learn about [collections](../collections/) and [functions](../functions/).
 
 ## Basic Operations
 

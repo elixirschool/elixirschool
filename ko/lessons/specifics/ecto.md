@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Ecto
 category: specifics
@@ -17,8 +17,8 @@ Ecto는 공식적인 Elixir 프로젝트로 데이터베이스를 감싸는 부�
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 2.1.4"},
+   {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -158,7 +158,7 @@ defmodule ExampleApp.User do
 end
 ```
 
-모델 내에서 정의된 스키마는 마이그레이션에 기술했던 것과 밀접하게 표현됩니다. 여기에서는 데이터베이스의 필드 이외에도 2개의 가상 필드가 추가되어 있습니다. 가상 필드는 데이터베이스에는 저장되지 않습니다만, 검증과 같은 작업에서 도움이 됩니다. 가상 필드에 대해서는 [Changeset](#section-9)에서 살펴봅니다.
+모델 내에서 정의된 스키마는 마이그레이션에 기술했던 것과 밀접하게 표현됩니다. 여기에서는 데이터베이스의 필드 이외에도 2개의 가상 필드가 추가되어 있습니다. 가상 필드는 데이터베이스에는 저장되지 않습니다만, 검증과 같은 작업에서 도움이 됩니다. 가상 필드에 대해서는 [Changeset](#changeset)에서 살펴봅니다.
 
 ## 질의
 
@@ -242,7 +242,7 @@ query = from u in User,
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

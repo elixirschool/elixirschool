@@ -101,7 +101,7 @@ end
 
 ## capture_io 和 capture_log
 
-使用 `ExUnit.captureIO` 可以在不改变原来应用的情况下，捕获应用的输出。只要把生成输出的函数作为参数传进去就行：
+使用 `ExUnit.CaptureIO` 可以在不改变原来应用的情况下，捕获应用的输出。只要把生成输出的函数作为参数传进去就行：
 
 ```elixir
 defmodule OutputTest do

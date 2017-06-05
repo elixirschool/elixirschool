@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 layout: page
 title: Modules
 category: basics
@@ -13,7 +13,7 @@ We know from experience it's unruly to have all of our functions in the same fil
 
 ## Modules
 
-Modules are the best way to organize functions into a namespace.  In addition to grouping functions, they allow us to define named and private functions which we covered in the previous lesson.
+Modules allow us to organize functions into a namespace. In addition to grouping functions, they allow us to define named and private functions which we covered in the [functions lesson](../functions.md).
 
 Let's look at a basic example:
 

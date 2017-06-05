@@ -24,7 +24,7 @@ Elixir includes a number of behaviours such as GenServer, but in this lesson we'
 
 To better understand behaviours let's implement one for a worker module.  These workers will be expected to implement two functions: `init/1` and `perform/2`.
 
-In order to accomplish this, we'll use the `@callback` directive with syntax similar to `@spec`, this defines a __required__ method; for macros we can use `@macrocallback`.  Let's specify the `init/1` and `perform/2` methods for our workers:
+In order to accomplish this, we'll use the `@callback` directive with syntax similar to `@spec`, this defines a __required__ function; for macros we can use `@macrocallback`.  Let's specify the `init/1` and `perform/2` functions for our workers:
 
 ```elixir
 defmodule Example.Worker do
@@ -33,7 +33,7 @@ defmodule Example.Worker do
 end
 ```
 
-Here we've defined `init/1` as accepting any value and returning a tuple of either `{:ok, state}` or `{:error, reason}`, this is a pretty standard initialization.  Our `perform/2` method will receive some arguments for the worker along with the state we initialized, we'll expect `perform/2` to return `{:ok, result, state}` or `{:error, reason, state}` much like GenServers.
+Here we've defined `init/1` as accepting any value and returning a tuple of either `{:ok, state}` or `{:error, reason}`, this is a pretty standard initialization.  Our `perform/2` function will receive some arguments for the worker along with the state we initialized, we'll expect `perform/2` to return `{:ok, result, state}` or `{:error, reason, state}` much like GenServers.
 
 ## Using behaviours
 

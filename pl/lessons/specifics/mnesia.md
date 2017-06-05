@@ -92,7 +92,7 @@ Mamy już podstawową wiedzę i jesteśmy na dobrej drodze do uruchomienia bazy 
 
 ```elixir
 iex> alias :mnesia, as: Mnesia
-iex> Mnesia.create_schema([node])
+iex> Mnesia.create_schema([node()])
 :ok
 iex> Mnesia.start()
 :ok

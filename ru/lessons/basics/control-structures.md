@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Управляющие конструкции
 category: basics
@@ -13,7 +13,7 @@ lang: ru
 
 ## `if` и `unless`
 
-Скорее всего, вы уже встречали оператор `if/2`, а если использовали Ruby, то встречали и `unless/2`. В Elixir они функционируют также, но определены как макрос, а не конструкция языка. Код реализации можно увидеть в модуле [Kernel](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Скорее всего, вы уже встречали оператор `if/2`, а если использовали Ruby, то встречали и `unless/2`. В Elixir они функционируют также, но определены как макрос, а не конструкция языка. Код реализации можно увидеть в модуле [Kernel](https://hexdocs.pm/elixir/Kernel.html).
 
 Стоит заметить что в Elixir единственными ложными значениями являются `nil` и `false`.
 
@@ -170,10 +170,9 @@ end
 А теперь благодаря `with` мы в итоге получим короткий и простой для понимания код:
 
 ```elixir
-with
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```
 
 Начиная с версии Elixir 1.3, конструкция `with` также начала поддерживать `else`:

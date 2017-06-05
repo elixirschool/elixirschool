@@ -61,7 +61,7 @@ Let's update our dependencies in `mix.exs` to include `gen_stage`:
 ```elixir
   defp deps do
     [
-      {:gen_stage, "~> 0.7"},
+      {:gen_stage, "~> 0.11"},
     ]
   end
 ```
@@ -87,8 +87,6 @@ Now we can add the code:
 
 ```elixir
 defmodule GenstageExample.Producer do
-  alias Experimental.GenStage
-
   use GenStage
 
   def start_link(initial \\ 0) do
@@ -120,7 +118,6 @@ Let's update our file to look like the example code:
 
 ```elixir
 defmodule GenstageExample.ProducerConsumer  do
-  alias Experimental.GenStage
   use GenStage
 
   require Integer
@@ -145,7 +142,7 @@ end
 
 You may have noticed with our producer-consumer we've introduced a new option in `init/1` and a new function: `handle_events/3`.  With the `subscribe_to` option, we instruct GenStage to put us into communication with a specific producer.
 
-The `handle_events/3` method is our workhorse, where we receive our incoming events, process them, and return our transformed set.  As we'll see consumers are implemented in much the same way, but the important difference is what our `handle_events/3` method returns and how it's used.   When we label our process a producer_consumer, the second argument of our tuple — `numbers` in our case — is used to meet the demand of consumers downstream.  In consumers this value is discarded.
+The `handle_events/3` function is our workhorse, where we receive our incoming events, process them, and return our transformed set.  As we'll see consumers are implemented in much the same way, but the important difference is what our `handle_events/3` function returns and how it's used.   When we label our process a producer_consumer, the second argument of our tuple — `numbers` in our case — is used to meet the demand of consumers downstream.  In consumers this value is discarded.
 
 ## Consumer
 
@@ -159,7 +156,6 @@ Since consumers and producer-consumers are so similar our code won't look much d
 
 ```elixir
 defmodule GenstageExample.Consumer do
-  alias Experimental.GenStage
   use GenStage
 
   def start_link do

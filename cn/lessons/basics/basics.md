@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: 基础
 category: basics
@@ -15,7 +15,14 @@ lang: cn
 
 ### 安装 Elixir
 
-各个 os 的安装说明可以在 Elixir-lang.org 网站上 [Installing Elixir](http://elixir-lang.org/install.html) 部分找到。
+各个 os 的安装说明可以在 elixir-lang.org 网站上 [Installing Elixir](http://elixir-lang.org/install.html) 部分找到。
+
+安装后你可以很轻松的确认所安装的版本。
+
+    % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+    Elixir {{ site.elixir.version }}
 
 ### 交互模式
 
@@ -23,10 +30,23 @@ Elixir 自带了 `iex` 这样一个交互 shell, 可以让我们随时计算 Eli
 
 运行 `iex` 命令，让我们开始教程：
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-	iex>
+    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+    iex>
+
+让我们继续输入几个简单的表达式试试：
+
+```elixir
+iex> 2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
+
+如果你现在还无法理解所有的表达式，请不要担心，不过我们希望你能有所体会。
 
 ## 基本类型
 
@@ -130,6 +150,8 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
+Elixir 还包含很多复杂的数据类型。当我们学到集合和函数的时候我们会学到更多关于这方面的知识。
+
 ## 基本操作
 
 ### 算术运算
@@ -177,7 +199,7 @@ iex> !false
 true
 ```
 
-还有三个操作符（`and`、`or`、`not`），它们的第一个参数必须是布尔类型（`true` 和 `false`）:
+还有三个操作符（`and`、`or`、`not`），它们的第一个参数_必须_是布尔类型（`true` 和 `false`）:
 
 ```elixir
 iex> true and 42
@@ -193,6 +215,43 @@ iex> not 42
 ```
 
 ### 比较
+
+Elixir 有我们习惯的一切比较运算符 ：`==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` 和 `>`。
+
+```elixir
+iex> 1 > 2
+false
+iex> 1 != 2
+true
+iex> 2 == 2
+true
+iex> 2 <= 3
+true
+```
+
+对于整数和浮点数的严格比较，可以使用 `===` ：
+
+```elixir
+iex> 2 == 2.0
+true
+iex> 2 === 2.0
+false
+```
+
+Elixir 有一个很重要的特性，那就是任意两个类型之间都可以进行比较，这在排序的时候非常有用。我们没有必要去记住比较的优先级，但是知道了也没坏处 ：
+
+```elixir
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
+```
+
+这个特性可以导致一些非常有趣但是完全合法，而且在其他语言中很难看到的比较 ：
+
+```elixir
+iex> :hello > 999
+true
+iex> {:hello, :world} > [1, 2, 3]
+false
+```
 
 ### 字符串插值
 

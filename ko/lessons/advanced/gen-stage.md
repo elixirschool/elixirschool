@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: GenStage
 category: advanced
@@ -61,7 +61,7 @@ $ cd genstage_example
 ```elixir
   defp deps do
     [
-      {:gen_stage, "~> 0.7"},
+      {:gen_stage, "~> 0.11"},
     ]
   end
 ```
@@ -87,8 +87,6 @@ $ touch lib/genstage_example/producer.ex
 
 ```elixir
 defmodule GenstageExample.Producer do
-  alias Experimental.GenStage
-
   use GenStage
 
   def start_link(initial \\ 0) do
@@ -120,7 +118,6 @@ $ touch lib/genstage_example/producer_consumer.ex
 
 ```elixir
 defmodule GenstageExample.ProducerConsumer  do
-  alias Experimental.GenStage
   use GenStage
 
   require Integer
@@ -159,7 +156,6 @@ $ touch lib/genstage_example/consumer.ex
 
 ```elixir
 defmodule GenstageExample.Consumer do
-  alias Experimental.GenStage
   use GenStage
 
   def start_link do

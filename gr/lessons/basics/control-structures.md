@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.1
 layout: page
 title: Δομές Ελέγχου
 category: basics
@@ -13,9 +13,9 @@ lang: gr
 
 ## `if` και `unless`
 
-Λογικά έχετε συναντήσει την `if/2` ξάνα, και αν έχετε χρησιμοποιήσει την Ruby είστε εξοικειομένοι με την `unless/2`.  Στην Elixir δουλεύουν σχεδόν το ίδιο, αλλά είναι ορισμένες ως μακροεντολές, όχι σαν δομές της γλώσσας.  Μπορείτε να βρείτε την υλοποίησή τους στην [ενότητα Kernel](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Λογικά έχετε συναντήσει την `if/2` ξάνα, και αν έχετε χρησιμοποιήσει την Ruby είστε εξοικειομένοι με την `unless/2`.  Στην Elixir δουλεύουν σχεδόν το ίδιο, αλλά είναι ορισμένες ως μακροεντολές, όχι σαν δομές της γλώσσας.  Μπορείτε να βρείτε την υλοποίησή τους στην [ενότητα Kernel](https://hexdocs.pm/elixir/Kernel.html).
 
-Θα πρέπει να σημειώθεί ότι στην Elixir, οι μόνες τιμές που περνάνε ως false είναι η `nil` και η δυαδική `false`.
+Θα πρέπει να σημειωθεί ότι στην Elixir, οι μόνες τιμές που περνάνε ως false είναι η `nil` και η δυαδική `false`.
 
 ```elixir
 iex> if String.valid?("Hello") do
@@ -171,8 +171,26 @@ end
 Όταν εισάγουμε την `with`, καταλήγουμε με κώδικα που είναι έυκολο να καταλάβουμε και έχει λιγότερες γραμμές:
 
 ```elixir
-with
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```
+
+
+Από την Elixir 1.3 και μετά, οι εκφράσεις `with` υποστηρίζουν την `else`:
+
+```elixir
+import Integer
+
+m = %{a: 1, c: 3}
+
+a = with {:ok, res} <- Map.fetch(m, :a),
+  true <- Integer.is_even(res) do
+    IO.puts "Divided by 2 it is #{div(res, 2)}"
+else 
+  :error -> IO.puts "We don't have this item in map"
+  _ -> IO.puts "It's not odd"
+end
+```
+
+Βοηθάει στον έλεγχο σφαλμάτων με την παροχή αντιπαραβολής προτύπων τύπου `case`. Η τιμή που περνάει σε αυτήν είναι η πρώτη μη-αντιπαραβλημένη έκφραση.

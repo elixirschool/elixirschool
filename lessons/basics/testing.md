@@ -82,7 +82,7 @@ Sometimes it may be necessary to assert that an error has been raised.  We can d
 
 ### assert_receive
 
-In Elixir applications consist of actors/processes that send messages to each other, thus often you want to test the messages being sent. Since ExUnit runs in its own process it can receive messages just like any other process and you can assert on it with the `assert_received` macro:
+In Elixir, applications consist of actors/processes that send messages to each other, thus often you want to test the messages being sent. Since ExUnit runs in its own process it can receive messages just like any other process and you can assert on it with the `assert_received` macro:
 
 ```elixir
 defmodule SendingProcess do
@@ -105,7 +105,7 @@ end
 
 ## capture_io and capture_log
 
-Capturing an application's output is possible with `ExUnit.captureIO` without changing the original application. Simply pass the function generating the output in:
+Capturing an application's output is possible with `ExUnit.CaptureIO` without changing the original application. Simply pass the function generating the output in:
 
 ```elixir
 defmodule OutputTest do

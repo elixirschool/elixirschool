@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: 함수
 category: basics
@@ -72,7 +72,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 ```
 
-만약 함수의 몸체를 한 줄로 쓰고 싶은 경우, 우리는 `do:`를 이용하여 축약할 수 있습니다.
+함수의 몸체를 한 줄로 쓰고 싶은 경우, 우리는 `do:`를 이용하여 축약할 수 있습니다.
 
 ```elixir
 defmodule Greeter do
@@ -85,7 +85,7 @@ end
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -149,7 +149,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "

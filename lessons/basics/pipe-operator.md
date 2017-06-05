@@ -54,7 +54,7 @@ true
 
 ## Best Practices
 
-If the arity of a function is more than 1, then make sure to use parentheses. This doesn't matter much to the Elixir, but it matters to other programmers who may misinterpret your code. If we take our 3rd example, and remove the parentheses from `String.ends_with?/2`, we are met with the following warning.
+If the arity of a function is more than 1, then make sure to use parentheses. This doesn't matter much to the Elixir, but it matters to other programmers who may misinterpret your code. It does matter with the pipe operator though. For example, if we take our third example, and remove the parentheses from `String.ends_with?/2`, we are met with the following warning.
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"

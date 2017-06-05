@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.1
 layout: page
 title: Dopasowanie wzorców
 category: basics
@@ -39,7 +39,7 @@ iex> [1, 2, 3] = list
 iex> [] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-iex> [1|tail] = list
+iex> [1 | tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]

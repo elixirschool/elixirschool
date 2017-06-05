@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.2.0
 layout: page
 title: Enum
 category: basics
@@ -7,19 +7,18 @@ order: 3
 lang: en
 ---
 
-A set of algorithms for enumerating over collections.
+A set of algorithms for enumerating over enumerables.
 
 {% include toc.html %}
 
 ## Enum
 
-The `Enum` module includes nearly 100 functions for working with the collections we learned about in the last lesson.
+The `Enum` module includes over 70 functions for working with enumerables.  All the collections that we learned about in the [previous lesson](../collections/), with the exception of tuples, are enumerables.
 
 This lesson will only cover a subset of the available functions, however we can actually examine them ourselves.
 Let's do a little experiment in IEx.
 
 ```elixir
-iex
 iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
 ...>   IO.puts "#{function}/#{arity}"
 ...> end)
@@ -36,12 +35,12 @@ Using this, its clear that we have a vast amount of functionality, and that is f
 Enumeration is at the core of functional programming and is an incredibly useful thing.
 By leveraging it combined with other perks of Elixir, such as documentation being a first class citizen as we just saw, it can be incredibly empowering to the developer as well.
 
-For a full list of functions visit the official [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) module.
+For a full list of functions visit the official [`Enum`](https://hexdocs.pm/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](https://hexdocs.pm/elixir/Stream.html) module.
 
 
 ### all?
 
-When using `all?`, and much of `Enum`, we supply a function to apply to our collection's items.  In the case of `all?`, the entire collection must evaluate to `true` otherwise `false` will be returned:
+When using `all?/2`, and much of `Enum`, we supply a function to apply to our collection's items.  In the case of `all?/2`, the entire collection must evaluate to `true` otherwise `false` will be returned:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -52,7 +51,7 @@ true
 
 ### any?
 
-Unlike the above, `any?` will return `true` if at least one item evaluates to `true`:
+Unlike the above, `any?/2` will return `true` if at least one item evaluates to `true`:
 
 ```elixir
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
@@ -61,18 +60,18 @@ true
 
 ### chunk
 
-If you need to break your collection up into smaller groups, `chunk` is the function you're probably looking for:
+If you need to break your collection up into smaller groups, `chunk/2` is the function you're probably looking for:
 
 ```elixir
 iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-There are a few options for `chunk` but we won't go into them, check out [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) in the official docs to learn more.
+There are a few options for `chunk/2` but we won't go into them, check out [`the official documentation of this function`](https://hexdocs.pm/elixir/Enum.html#chunk/2) to learn more.
 
 ### chunk_by
 
-If we need to group our collection based on something other than size, we can use the `chunk_by/2` method. It takes a given enumerable and a function, and when the return on that function changes a new group is started and begins the creation of the next:
+If we need to group our collection based on something other than size, we can use the `chunk_by/2` function. It takes a given enumerable and a function, and when the return on that function changes a new group is started and begins the creation of the next:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -83,29 +82,31 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-Sometimes chunking out a collection isn't enough for exactly what we may need. If this is the case, `map_every/3` can be very useful to hit only specific items if your collection has an ordering that such is necessary or useful:
+Sometimes chunking out a collection isn't enough for exactly what we may need. If this is the case, `map_every/3` can be very useful to hit every `nth` items, always hitting the first one:
 
 ```elixir
-iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
-[2, 2, 6, 4]
+# Apply function every three items
+iex> Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
+[1001, 2, 3, 1004, 5, 6, 1007, 8]
 ```
 
 ### each
 
-It may be necessary to iterate over a collection without producing a new value, for this case we use `each`:
+It may be necessary to iterate over a collection without producing a new value, for this case we use `each/2`:
 
 ```elixir
 iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
-__Note__: The `each` method does return the atom `:ok`.
+__Note__: The `each/2` function does return the atom `:ok`.
 
 ### map
 
-To apply our function to each item and produce a new collection look to the `map` function:
+To apply our function to each item and produce a new collection look to the `map/2` function:
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
@@ -114,14 +115,14 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-`min/1` finds the `min` value in the collection:
+`min/1` finds the minimal value in the collection:
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` does the same, but allows us to specify the calculation that will produce the minimum via an anonymous function:
+`min/2` does the same, but in case the enumerable is empty, it allows us to specify a function to produce the minimum value.
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
@@ -130,14 +131,14 @@ iex> Enum.min([], fn -> :foo end)
 
 ### max
 
-`max/1` returns the `max` value in the collection:
+`max/1` returns the maximal value in the collection:
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-`max/2` does the same, and behaves as `min/2` does as well, allowing us to specify the calculation that will produce the maximum via an anonymous function:
+`max/2` is to `max/1` what `min/2` is to `min/1`:
 
 ```elixir
 Enum.max([], fn -> :bar end)
@@ -146,20 +147,24 @@ Enum.max([], fn -> :bar end)
 
 ### reduce
 
-With `reduce` we can distill our collection down into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first value is used:
+With `reduce/3` we can distill our collection down into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first element in the enumerable is used:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
+
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+
 iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 "cba1"
 ```
 
 ### sort
 
-Sorting our collections is made easy with not one, but two, `sort` functions.  The first option available to us uses Elixir's term ordering to determine the sorted order:
+Sorting our collections is made easy with not one, but two, sorting functions.
+
+`sort/1` uses Erlang's term ordering to determine the sorted order:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -169,7 +174,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-The other option allows us to provide a sort function:
+While `sort/2` allows us to provide a sorting function of our own:
 
 ```elixir
 # with our function
@@ -181,13 +186,11 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-We can use `uniq_by/2` to remove duplicates from our collections:
+We can use `uniq/1` to remove duplicates from our enumerables:
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
 ```
-
-This was previously known as `uniq/1`, which is deprecated as of Elixir 1.4, but still available (with warnings).

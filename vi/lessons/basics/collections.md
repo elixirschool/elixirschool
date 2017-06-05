@@ -63,11 +63,11 @@ iex> tl [3.14, :pie, "Apple"]
 Bên cạnh những hàm đã nói ở trên, bạn có thể dùng toán tử ống dẫn `|`; chúng ta sẽ còn gặp lại toán tử này trong các bài sau:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

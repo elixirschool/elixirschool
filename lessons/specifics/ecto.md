@@ -17,8 +17,8 @@ To get started we need to include Ecto and a database adapter in our project's `
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 2.1.4"},
+   {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -127,7 +127,7 @@ For more on migrations take a look at the [Ecto.Migration](http://hexdocs.pm/ect
 
 ## Models
 
-Now that we have our migration we can move on to the model.  Models define our schema, helper methods, and our changesets.  We'll cover changesets more in the next sections.
+Now that we have our migration we can move on to the model.  Models define our schema, helper functions, and our changesets.  We'll cover changesets more in the next sections.
 
 For now let's look at what the model for our migration might look like:
 
@@ -242,7 +242,7 @@ Assuming we had a profile associated with our user, let's find all confirmed acc
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

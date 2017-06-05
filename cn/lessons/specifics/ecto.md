@@ -17,8 +17,8 @@ Ecto 是 Elixir 官方维护的一个项目，它提供了对数据库的封装�
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 2.1.4"},
+   {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -242,7 +242,7 @@ query = from u in User,
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

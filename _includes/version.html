@@ -1,0 +1,14 @@
+{% assign version_difference_class = 'version-difference-' | append: page.version_data.severity %}
+{% assign version_info_class = 'version-info-' | append: page.version_data.severity %}
+<h1 class="page-title">
+  <span class="version-difference-indicator {{ version_difference_class }}"></span>
+  {{ page.title }}
+</h1>
+<div class="version-info {{ version_info_class }}">
+    <span>
+      {% unless page.version_data.severity == "none" %}
+        {{ page.version_data.outdated_message }}<br/>
+      {% endunless %}
+      {{ page.version_data.severity_message }}
+    </span>
+</div>

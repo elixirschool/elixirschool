@@ -75,11 +75,11 @@ I tillegg til de tidligere nevnte funksjonene, kan vi også bruke
 cons operatoren `|` - Vi kommer tilbake til denne operatoren i en senere leksjon:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

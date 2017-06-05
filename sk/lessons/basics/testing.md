@@ -80,7 +80,7 @@ Niekedy potrebujeme testovať, že kód vyhodí chybu (prípadne konkrétny typ 
 
 ## Setup
 
-Niekedy potrebujeme pred samotnými testami vykonať nejaké pomocné činnosti. S tým nám pomôžu makrá `setup` a `setup_all`. Blok kódu v makre `setup` sa vykoná pred každým jednotlivým testom, blok v makre `setup_all` sa vykoná len raz - na začiatku pred spustením prvého testu. ba bloky by mali vrátiť tuple v tvare `{:ok. stav}`, pričom `stav` bude dostupný v jednotlivých testoch.
+Niekedy potrebujeme pred samotnými testami vykonať nejaké pomocné činnosti. S tým nám pomôžu makrá `setup` a `setup_all`. Blok kódu v makre `setup` sa vykoná pred každým jednotlivým testom, blok v makre `setup_all` sa vykoná len raz - na začiatku pred spustením prvého testu. Oba bloky by mali vrátiť tuple v tvare `{:ok. stav}`, pričom `stav` bude dostupný v jednotlivých testoch.
 
 Ako príklad si do nášho súboru s testami doplníme blok `setup_all`:
 

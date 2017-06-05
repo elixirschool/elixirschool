@@ -1,4 +1,5 @@
 ---
+version: 0.9.0
 layout: page
 title: Testing
 category: basics
@@ -104,7 +105,7 @@ end
 
 ## capture_io og capture_log
 
-Det er mulig å få tak i en applikasjons output med `ExUnit.captureIO` uten å må endre på original applikasjonen. Du trenger bare å gi en funksjon med det du ønsker å skrive ut:
+Det er mulig å få tak i en applikasjons output med `ExUnit.CaptureIO` uten å må endre på original applikasjonen. Du trenger bare å gi en funksjon med det du ønsker å skrive ut:
 
 ```elixir
 defmodule OutputTest do

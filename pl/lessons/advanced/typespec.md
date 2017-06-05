@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.1
 layout: page
 title: Specyfikacje i typy
 category: advanced
@@ -40,7 +40,7 @@ Wszystko wygląda poprawnie i gdy wywołamy funkcję, to otrzymamy wynik, ale fu
 
 Tworzenie specyfikacji jest fajne, ale czasami nasze funkcje używają bardziej skomplikowanych struktur danych niż liczby czy kolekcje. W takich przypadkach informacje zdefiniowane w `@spec` będą trudne to zrozumienia i zmiany przez innych programistów. Czasami funkcja przyjmuje wiele parametrów albo zwraca złożoną strukturę. Długa lista parametrów jest też przykładem złego zapachu w kodzie. W językach obiektowych jak Ruby czy Java możemy z łatwością zdefiniować klasę, która opakuje nam dane i pomoże rozwiązać problem. W Elixirze nie ma klas, ale że jest on łatwy do rozszerzenia, to możemy zdefiniować własny typ.
   
-Elixir ma zdefiniowane pewne podstawowe typu jak `integer` czy `pid`. Ich pełna lista jest dostępna w [dokumentacji](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Elixir ma zdefiniowane pewne podstawowe typu jak `integer` czy `pid`. Ich pełna lista jest dostępna w [dokumentacji](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax).
  
 ### Definiowanie typu
   

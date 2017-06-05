@@ -193,3 +193,47 @@ share:
   pt: Compartilhe essa página
   bn: পৃষ্ঠা শেয়ার করুন
   vi: Chia sẻ trang này
+
+version_messages:
+  en:
+    outdated: "Some contents of this translation may be outdated."
+    major: "Several major changes were applied to the original lesson since the last update."
+    minor: "Several minor changes were applied to the original lesson since the last update."
+    patch: "Several patches were applied to the original lesson since the last update."
+    none: "This translation is up to date."
+  gr:
+    outdated: "Ίσως υπάρχει περιεχόμενο σε αυτή τη μετάφραση που δεν είναι ενημερωμένο."
+    major: "Υπάρχουν αρκετές μεγάλες αλλαγές στο αρχικό μάθημα μετά την τελευταία ενημέρωση."
+    minor: "Υπάρχουν αρκετές μικρές αλλαγές στο αρχικό μάθημα μετά την τελευταία ενημέρωση."
+    patch: "Υπάρχουν αρκετές διορθωτικές αλλαγές στο αρχικό μάθημα μετά την τελευταία ενημέρωση."
+    none: "Αυτή η μετάφραση είναι πλήρως ενημερωμένη."
+  ru:
+    outdated: "Некоторое содержимое этого урока может оказаться устаревшим."
+    major: "С момента последнего обновления перевода в оригинальный урок были внесены серьёзные изменения."
+    minor: "С момента последнего обновления перевода в оригинальный урок были внесены небольшие изменения."
+    patch: "С момента последнего обновления перевода в оригинальный урок были внесены небольшие правки."
+    none: "Это перевод актуальной версии оригинального урока."
+  de:
+    outdated: "Teile dieser Übersetzung könnten veraltet sein."
+    major: "Einige größere Änderungen wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
+    minor: "Einige kleinere Änderungen wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
+    patch: "Einige Patches wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
+    none: "Diese Übersetzung ist aktuell."
+  es:
+    outdated: "Algunos contenidos de esta tradución pueden estar desactualizados"
+    major: "Varios cambios mayores fueron aplicados a la lección original desde la última actualización."
+    minor: "Varios cambios menores fueron aplicados a la lección original desde la última actualización."
+    patch: "Varios parches fueron aplicados a la lección original desde la última actualización"
+    none: "Esta traducción está actualizada."
+  ko:
+    outdated: "이 번역의 일부는 유효하지 않을 수 있습니다."
+    major: "마지막 갱신 이후로 원본 문서에 중요한 변경사항이 있습니다."
+    minor: "마지막 갱신 이후로 원본 문서에 작은 변경사항이 있습니다."
+    patch: "마지막 갱신 이후로 원본 문서에 사소한 변경사항이 있습니다."
+    none: "이 번역은 최신입니다."
+  pl:
+    outdated: "Od ostatniej aktualizacji wprowadzono wiele zmian i tłumaczenie może być nieaktualne."
+    major: "Od ostatniej aktualizacji wprowadzono kilka dużych zmian."
+    minor: "Od ostatniej aktualizacji wprowadzono kilka drobnych poprawek."
+    patch: "Od ostatniej aktualizacji wprowadzono kilka zmian."
+    none: "To tłumaczenie jest aktualne."

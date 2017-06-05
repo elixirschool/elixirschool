@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: OTP Concurrency
 category: advanced
@@ -26,7 +26,7 @@ defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  Start our queue and link it.  This is a helper method
+  Start our queue and link it.  This is a helper function
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -43,7 +43,7 @@ end
 
 It's often necessary to interact with GenServers in a synchronous way, calling a function and waiting for its response.  To handle synchronous requests we need to implement the `GenServer.handle_call/3` callback which takes: the request, the caller's PID, and the existing state; it is expected to reply by returning a tuple: `{:reply, response, state}`.
 
-With pattern matching we can define callbacks for many different requests and states. A complete list of accepted return values can be found in the [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) docs.
+With pattern matching we can define callbacks for many different requests and states. A complete list of accepted return values can be found in the [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) docs.
 
 To demonstrate synchronous requests let's add the ability to display our current queue and to remove a value:
 
@@ -68,7 +68,7 @@ defmodule SimpleQueue do
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -126,7 +126,7 @@ defmodule SimpleQueue do
     {:noreply, state ++ [value]}
   end
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -150,4 +150,4 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-For more information check out the official [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content) documentation.
+For more information check out the official [GenServer](https://hexdocs.pm/elixir/GenServer.html#content) documentation.

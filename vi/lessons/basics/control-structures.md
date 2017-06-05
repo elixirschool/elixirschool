@@ -13,7 +13,7 @@ Trong bài này ta sẽ xem qua các loại cấu trúc điều khiểu có sẵ
 
 ## `if` và `unless`
 
-Hẳn là bạn đã từng biết đến `if/2` trước đây, và nếu bạn từng sử dụng Ruby hẳn bạn cũng chẳng lạ gì `unless/2`. Trong Elixir chúng vẫn được xử lý như thế nhưng khác ở chỗ chúng được định nghĩa như là marco, không phải cấu trúc ngôn ngữ. Bạn có thể xem cách cài đặt chúng tại [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Hẳn là bạn đã từng biết đến `if/2` trước đây, và nếu bạn từng sử dụng Ruby hẳn bạn cũng chẳng lạ gì `unless/2`. Trong Elixir chúng vẫn được xử lý như thế nhưng khác ở chỗ chúng được định nghĩa như là marco, không phải cấu trúc ngôn ngữ. Bạn có thể xem cách cài đặt chúng tại [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
 
 Chú ý là trong Elixir, giá trị mang tính phủ định là `nil` và boolean `false`.
 
@@ -171,10 +171,9 @@ end
 Khi chúng ta dùng `with`, code sẽ dễ đọc hơn và có ít dòng hơn:
 
 ```elixir
-with
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```
 
 Với Elixir 1.3, biểu thức `with` bắt đầu hỗ trợ `else`:

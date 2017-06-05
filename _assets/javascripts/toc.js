@@ -9,9 +9,11 @@
       listType: 'ol', // values: [ol|ul]
       showEffect: 'show', // values: [show|slideDown|fadeIn|none]
       showSpeed: 'slow', // set to 0 to deactivate effect
-      classes: { list: '',
-                 item: ''
-               }
+      classes: {
+        list: '',
+        item: ''
+      },
+      backToTopClasses: 'icon-arrow-up back-to-top'
     },
     settings = $.extend(defaults, options);
 
@@ -20,9 +22,10 @@
         return '%' + c.charCodeAt(0).toString(16);
       });
     }
-    
+
     function createLink (header) {
-      return "<a href='#" + fixedEncodeURIComponent(header.id) + "'>" + header.innerHTML + "</a>";
+      var innerText = (header.textContent === undefined) ? header.innerText : header.textContent;
+      return "<a href='#" + fixedEncodeURIComponent(header.id) + "'>" + innerText + "</a>";
     }
 
     var headers = $(settings.headers).filter(function() {
@@ -50,8 +53,7 @@
     };
 
     var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10); };
-    var highest_level = headers.map(function(_, ele) { return get_level(ele); }).get().sort()[0];
-    var return_to_top = '<i class="icon-arrow-up back-to-top"> </i>';
+    var return_to_top = '<i class="' + settings.backToTopClasses + '"> </i>';
 
     var level = get_level(headers[0]),
       this_level,
@@ -64,13 +66,13 @@
     .addClass('clickable-header')
     .each(function(_, header) {
       this_level = get_level(header);
-      if (!settings.noBackToTopLinks && this_level === highest_level) {
-        $(header).addClass('top-level-header').after(return_to_top);
+      if (!settings.noBackToTopLinks) {
+        $(header).after(return_to_top);
       }
       if (this_level === level) // same level as before; same indenting
         html += "<li class=\"" + settings.classes.item + "\">" + createLink(header);
       else if (this_level <= level){ // higher level than before; end parent ol
-        for(i = this_level; i < level; i++) {
+        for(var i = this_level; i < level; i++) {
           html += "</li></"+settings.listType+">"
         }
         html += "<li class=\"" + settings.classes.item + "\">" + createLink(header);

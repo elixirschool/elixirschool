@@ -22,8 +22,8 @@ do README do Ecto. Para o nosso exemplo iremos usar o PostgreSQL:
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 2.1.4"},
+   {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -145,7 +145,7 @@ da documentação.
 ## Modelos
 
 Agora que temos nossa migration podemos continuar para o modelo. Modelos definem o
-nosso esquema, métodos auxiliares, e nosso *changeset*. Iremos falar mais sobre
+nosso esquema, funções auxiliares, e nosso *changeset*. Iremos falar mais sobre
 *changesets* nas próximas secções.
 
 Por agora vamos dar uma olhada em como o modelo para nossa migration se parece:
@@ -256,7 +256,7 @@ Assumindo que temos um perfil associado ao nosso utilizador, iremos encontramos 
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

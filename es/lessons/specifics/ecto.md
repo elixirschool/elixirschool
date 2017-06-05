@@ -127,7 +127,7 @@ Para mayor detalle acerca de las migraciones vea la sección [Ecto.Migration](ht
 
 ## Modelos
 
-Ahora que tenemos nuestra migración podemos movernos a nuestro modelo. Los modelos definen nuestro esquema, métodos auxiliares y nuestro _set de cambios_, cubriremos más acerca del _set de cambios_ en secciones subsiguientes.
+Ahora que tenemos nuestra migración podemos movernos a nuestro modelo. Los modelos definen nuestro esquema, funciones auxiliares y nuestro _set de cambios_, cubriremos más acerca del _set de cambios_ en secciones subsiguientes.
 
 Por ahora veamos como luce el modelo para nuestra migración:
 
@@ -232,7 +232,7 @@ Asumiendo que tenemos un perfil asociado a nuestro usuario, busquemos todos los 
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

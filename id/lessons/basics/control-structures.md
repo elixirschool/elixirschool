@@ -13,7 +13,7 @@ Dalam pelajaran ini kita akan melihat struktur kendali yang tersedia untuk kita 
 
 ## `if` dan `unless`
 
-Besar kemungkinan anda sudah bertemu `if/2` sebelumnya, dan jika sudah terbiasa dengan Ruby anda juga sudah familiar dengan `unless/2`.  Dalam Elixir keduanya berfungsi cukup mirip tetapi keduanya didefinisikan sebagai macro, bukannya fasilitas bahasa; Anda dapat melihat implementasinya di [modul Kernel](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Besar kemungkinan anda sudah bertemu `if/2` sebelumnya, dan jika sudah terbiasa dengan Ruby anda juga sudah familiar dengan `unless/2`.  Dalam Elixir keduanya berfungsi cukup mirip tetapi keduanya didefinisikan sebagai macro, bukannya fasilitas bahasa; Anda dapat melihat implementasinya di [modul Kernel](https://hexdocs.pm/elixir/Kernel.html).
 
 Harus dicatat bahwa di Elixir, nilai yang dianggap false (falsey value) hanyalah `nil` dan boolean `false`.
 
@@ -169,8 +169,7 @@ end
 Ketika kita menggunakan `with` kita dapati code yang mudah dipahami dan menggunakan jumlah line yang lebih sedikit:
 
 ```elixir
-with 
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```

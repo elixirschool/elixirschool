@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Plug
 category: specifics
@@ -24,8 +24,8 @@ lang: gr
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.0.0"},
-   {:plug, "~> 1.0"}]
+  [{:cowboy, "~> 1.1.2"},
+   {:plug, "~> 1.3.4"}]
 end
 ```
 
@@ -68,14 +68,14 @@ end
 defmodule Example do
   use Application
   require Logger
-  
+
   def start(_type, _args) do
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
     ]
-    
+
     Logger.info "Started application"
-    
+
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
@@ -121,10 +121,10 @@ Hello World!
 ```elixir
 defmodule Example.Router do
   use Plug.Router
-  
+
   plug :match
   plug :dispatch
-  
+
   get "/", do: send_resp(conn, 200, "Welcome")
   match _, do: send_resp(conn, 404, "Oops!")
 end
@@ -134,15 +134,16 @@ end
 Έχουμε συμπεριλάβει μερικές μακροεντολές μέσω της `use Plug.Router` και μετά ορίσαμε δύο από τα προυπάρχοντα Plugs: τα `:match` και `:dispatch`.
 Υπάρχουν δύο ορισμένες διαδρομές, μία για το χειρισμό αιτήσεων GET στην πηγαία διαδρομή (root) και η δεύτερη για το ταίριασμα όλων των άλλων αιτήσεων ώστε να επιστρέψουμε ένα μήνυμα 404.
 
-Πίσω στο `mix.exs`, πρέπει να πούμε στην Elixir για το δρομολογητή μας.
+Πίσω στο `lib/example.ex`, πρέπει να προσθέσουμε τον `Example.Router` μας στο δέντρο επιτήρησης του εξυπηρετητή web.
 Αλλάξτε το plug `Example.HelloWorldPlug` με το νέο μας δρομολογητή:
 
 ```elixir
-def application do
-  [
-    application: [:cowboy, :logger, :plug],
-    mod: {Example.Router, []}
-  ]
+def start(_type, _args) do
+    children = [
+      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+    ]
+    Logger.info "Started application"
+    Supervisor.start_link(children, strategy: :one_for_one)
 end
 ```
 
@@ -222,7 +223,7 @@ defmodule Example.Router do
   plug Plug.Parsers, parsers: [:urlencoded, :multipart]
   plug VerifyRequest, fields: ["content", "mimetype"],
                       paths:  ["/upload"]
-                      
+
   plug :match
   plug :dispatch
 

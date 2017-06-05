@@ -85,7 +85,7 @@ end
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -149,7 +149,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "

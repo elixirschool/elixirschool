@@ -14,7 +14,7 @@ V tejto lekcii sa pozrieme na riadiace štruktúry jazyka Elixir.
 
 ## `if` a `unless`
 
-Na funkciu `if` ste už pravdepodobne narazili a ak ste pracovali s Ruby, poznáte aj `unless`. V Elixire fungujú úplne rovnako, no sú implementované ako makrá, nie sú to skutočné jazykové konštrukty. Ich implementáciu si môžete pozrieť v dokumentácii [modulu Kernel](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Na funkciu `if` ste už pravdepodobne narazili a ak ste pracovali s Ruby, poznáte aj `unless`. V Elixire fungujú úplne rovnako, no sú implementované ako makrá, nie sú to skutočné jazykové konštrukty. Ich implementáciu si môžete pozrieť v dokumentácii [modulu Kernel](https://hexdocs.pm/elixir/Kernel.html).
 
 Len pre pripomenutie: je dôležité si uvedomiť, že jediné hodnoty, ktoré Elixir vyhodnotí ako `false` (v angličtine sa používa výraz *falsey*), sú hodnoty `nil` a `false`. Všetko ostatné sa vyhodnotí ako `true` (*truthy*).
 

@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.1.0
 layout: page
 title: 기본
 category: basics
@@ -20,13 +20,13 @@ elixir-lang.org 홈페이지의 [Installing Elixir](http://elixir-lang.org/insta
 Elixir를 설치하고 나서 어떤 버전이 설치되었는지 손쉽게 확인할 수 있습니다.
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}  [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}]  [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
 ### 대화형 모드 건드려보기
 
-Elixir를 설치하면 대화형 셸인 `iex`가 함께 설치됩니다. `iex`를 사용하여 Elixir 코드를 입력하면서 바로바로 실행할 수 있습니다.
+Elixir를 설치하면 대화형 셸인 `IEx`가 함께 설치됩니다. `IEx`를 사용하여 Elixir 코드를 입력하면서 바로바로 실행할 수 있습니다.
 
 `iex`를 실행하는 걸로 시작해보아요.
 
@@ -150,7 +150,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir에는 이보다 더 복잡한 데이터 타입도 있습니다. 이런 부분은 컬렉션이나 함수를 다룰 때 조금 더 알아보도록 하겠습니다.
+Elixir에는 이보다 더 복잡한 데이터 타입도 있습니다. 이런 부분은 [컬렉션](../collections/)이나 [함수](../functions/)를 다룰 때 조금 더 알아보도록 하겠습니다.
 
 ## 기본적인 연산
 

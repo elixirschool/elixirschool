@@ -17,8 +17,8 @@ Ecto là một dự án chính thức của Elixir cung cấp một database wra
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 2.1.4"},
+   {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -242,7 +242,7 @@ Ví dụ như ta có bảng Profile liên kết với User, ta hãy tìm tất c
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

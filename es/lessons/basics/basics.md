@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 layout: page
 title: Básico
 category: basics
@@ -17,9 +17,16 @@ Preparar el entorno, tipos básicos y operaciones.
 
 Las instrucciones para cada sistema operativo pueden ser encontradas en [Elixir-lang.org](http://elixir-lang.org) en la guía [Instalando Elixir](http://elixir-lang.org/install.html).
 
-### Modo Interactivo
+Después de que Elixir haya sido instalado, puedes confirmar la versión instalada fácilmente.
 
-Elixir viene con `iex`, una consola interactiva, que nos permite evaluar expresiones Elixir.
+    % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+    Elixir {{ site.elixir.version }}
+
+### Probando el Modo Interactivo
+
+Elixir viene con `iex`, una consola interactiva, que nos permite evaluar expresiones Elixir mientras lo ejecutamos.
 
 Para empezar, Ejecutamos `iex`:
 
@@ -27,6 +34,19 @@ Para empezar, Ejecutamos `iex`:
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
+
+Avancemos y hagamos una prueba escribiendo unas cuantas expresiones sencillas:
+
+```elixir
+iex> 2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
+
+No te preocupes si no entiendas cada expresión aún, pero esperamos que puedas captar la idea.
 
 ## Tipos Básicos
 
@@ -84,7 +104,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTA: Booleanos `true` y `false` son también los átomos `:true` y `:false` respectivamente.
+Los booleanos `true` y `false` son también los átomos `:true` y `:false` respectivamente.
 
 ```elixir
 iex> true |> is_atom
@@ -93,6 +113,20 @@ iex> :true |> is_boolean
 true
 iex> :true === true
 true
+```
+
+Los nombres de módulos en Elixir tambien son átomos. `MyApp.MyModule` es un átomo válido, incluso si el módulo no ha sido declarado aún.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Los átomos también son usados para hacer referencia a módulos de las librerias de Erlang, incluyendo las nativas.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
 ```
 
 ### Cadenas
@@ -115,6 +149,8 @@ iex> "foo
 iex> "foo\nbar"
 "foo\nbar"
 ```
+
+Elixir también incluye tipos de datos más complejos.  Aprenderemos más sobre ellos cuando veamos [collecciones](../collections/) and [funciones](../functions/).
 
 ## Operaciones Básicas
 

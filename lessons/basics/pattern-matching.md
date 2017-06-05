@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 layout: page
 title: Pattern Matching
 category: basics
@@ -39,11 +39,11 @@ iex> [1, 2, 3] = list
 iex> [] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-iex> [1|tail] = list
+iex> [1 | tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]
-iex> [2|_] = list
+iex> [2 | _] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
 # Tuples
@@ -57,7 +57,7 @@ iex> {:ok, value} = {:error}
 
 ## Pin Operator
 
-We just learned the match operator performs assignment when the left side of the match includes a variable.  In some cases this variable rebinding behavior is undesirable.  For these situations we have the pin operator: `^`.
+The match operator performs assignment when the left side of the match includes a variable.  In some cases this variable rebinding behavior is undesirable.  For these situations we have the pin operator: `^`.
 
 When we pin a variable we match on the existing value rather than rebinding to a new one.  Let's take a look at how this works:
 

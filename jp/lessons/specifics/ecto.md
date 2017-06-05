@@ -17,8 +17,8 @@ Ectoは公式のElixirプロジェクトで、データベースのラッパと�
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 2.1.4"},
+   {:postgrex, ">= 0.13.4"}]
 end
 ```
 
@@ -244,7 +244,7 @@ query = from u in User,
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

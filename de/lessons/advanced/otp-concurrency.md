@@ -26,7 +26,7 @@ defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  Start our queue and link it.  This is a helper method
+  Start our queue and link it.  This is a helper function
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -43,7 +43,7 @@ end
 
 Oft ist es notwendig mit unserem GenServer in einer synchronen Art und Weise zu interagieren, etwa eine Funktion aufrufen und auf das Ergebnis warten. Um synchrone Requests zu verwalten müssen wir den `GenServer.handle_call/3`-Callback benutzen, welcher benötigt: Den Request, den PID des Aufrufers und den vorhandenen Status; es wird davon ausgegangen, dass er ein Tupel zurückgibt: `{:reply, response, state}`.
 
-Mit pattern matching können wir Callbacks für viele verschiedene Requests und Stati definieren. Eine komplette Liste akzeptierter Rückgabewerte findet sich in der [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3)-Dokumentation.
+Mit pattern matching können wir Callbacks für viele verschiedene Requests und Stati definieren. Eine komplette Liste akzeptierter Rückgabewerte findet sich in der [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3)-Dokumentation.
 
 Um synchrone Requests zu demonstrieren lass uns die Möglichkeit einbauen, unsere aktuelle Queue anzusehen und einen Wert rauszunehmen:
 
@@ -68,7 +68,7 @@ defmodule SimpleQueue do
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -126,7 +126,7 @@ defmodule SimpleQueue do
     {:noreply, state ++ [value]}
   end
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -150,7 +150,7 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-Für mehr Informationen sieh in die offizielle  [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content)-Dokumentation.
+Für mehr Informationen sieh in die offizielle  [GenServer](https://hexdocs.pm/elixir/GenServer.html#content)-Dokumentation.
 
 ## GenEvent
 
@@ -225,4 +225,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-Schau in die offizielle [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content)-Dokumentation für eine komplette Liste an Callbacks und GenEvent-Funktionalität.
+Schau in die offizielle [GenEvent](https://hexdocs.pm/elixir/GenEvent.html#content)-Dokumentation für eine komplette Liste an Callbacks und GenEvent-Funktionalität.
