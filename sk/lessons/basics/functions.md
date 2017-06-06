@@ -55,7 +55,7 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-V príklade sme si definovali funkciu s dvoma telami. Pri jej prvom volaní sa použilo prvé telo, keďže sme jej ako parameter poslali tuple v tvare `{:ok, result}`. Pri duhom volaní sa použilo druhé telo, keďže ako parameter od nás dostala tuple v tvare `{:error}`.
+V príklade sme si definovali funkciu s dvoma telami. Pri jej prvom volaní sa použilo prvé telo, keďže sme jej ako parameter poslali tuple v tvare `{:ok, result}`. Pri druhom volaní sa použilo druhé telo, keďže ako parameter od nás dostala tuple v tvare `{:error}`.
 
 ## Pomenované funkcie
 
@@ -190,7 +190,7 @@ end
 ** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
 ```
 
-Elixir nevídí rád východiskové argumenty vo viacerých zhodných hlavičkách funkcie, pretože to môže byť mätúce. Riešenie spočíva v pridaní hlavičky s východiskovými argumentami, pričom z pôvodných hlavičiek východiskové argumenty odstránime:
+Elixir nevidí rád východiskové argumenty vo viacerých zhodných hlavičkách funkcie, pretože to môže byť mätúce. Riešenie spočíva v pridaní hlavičky s východiskovými argumentami, pričom z pôvodných hlavičiek východiskové argumenty odstránime:
 
 ```elixir
 defmodule Greeter do
