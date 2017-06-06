@@ -52,7 +52,7 @@ true
 
 ## Best Practices
 
-Ak je arita (počet argumentov) funkcie väčšia, než 1, použite vo volaní funkcie zátvorky. Ide hlavne o čitateľnosť pre ostatných programátorov, ktorým by chýbajúce zátvorky mohli spôsobiť zmätok pri čítaní nášho kódu. Ak si zoberieme tretí príklad a odstránime zátvorky z volania `String.ends_with?/2`, dostaneme nasledujúce varovanie o nejednoznačnosti volania:
+Ak je arita (počet argumentov) funkcie väčšia než 1, použite vo volaní funkcie zátvorky. Ide hlavne o čitateľnosť pre ostatných programátorov, ktorým by chýbajúce zátvorky mohli spôsobiť zmätok pri čítaní nášho kódu. Ak si zoberieme tretí príklad a odstránime zátvorky z volania `String.ends_with?/2`, dostaneme nasledujúce varovanie o nejednoznačnosti volania:
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"
