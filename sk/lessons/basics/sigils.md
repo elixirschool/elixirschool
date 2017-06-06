@@ -33,7 +33,7 @@ Po tilde a znaku určujúcom druh sigilu nasleduje vstup sigilu ohraničený odd
   - `[...]` Pár hranatých zátvoriek
   - `(...)` Pár okrúhlych zátvoriek
   - `|...|` Pár pajp
-  - `/.../` Pár pár lomítok (nie spätných!)
+  - `/.../` Pár lomítok (nie spätných!)
   - `"..."` Pár dvojitých úvodzoviek
   - `'...'` Pár jednoduchých úvodzoviek
 
@@ -70,7 +70,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Prvý test vráti `false`, pretože testovaný reťazec má prvé písmeno veľké, no výraz hľadá slovo `elixir` s malým `e`. Keďže Elixir používa regulárne výrazy podľa štandardu PCRE (Perl Complatible Regular Expressions), môžeme na koniec sigilu pripojiť modifikátor `i`, ktorým vypneme citlivosť na malé/veľké písmená (case sensitivity):
+Prvý test vráti `false`, pretože testovaný reťazec má prvé písmeno veľké, no výraz hľadá slovo `elixir` s malým `e`. Keďže Elixir používa regulárne výrazy podľa štandardu PCRE (Perl Compatible Regular Expressions), môžeme na koniec sigilu pripojiť modifikátor `i`, ktorým vypneme citlivosť na malé/veľké písmená (case sensitivity):
 
 ```elixir
 iex> re = ~r/elixir/i
@@ -144,7 +144,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ## Vlastné sigily
 
-Jedeným z cieľov pri návrhu jazyka Elixir bola jeho jednoduchá rozšíriteľnosť. Nie je teda prekvapujúce, že nám umožňuje aj ľahko si vytvoriť vlastné druhy sigilov. V nasledujúcom príklade si vytvoríme špeciálny sigil na konverziu reťazcov na veľké písmená. V Elixire už na tento účel existuje funkcia `String.upcase/1`, takže ju v našom sigile použijeme:
+Jedným z cieľov pri návrhu jazyka Elixir bola jeho jednoduchá rozšíriteľnosť. Nie je teda prekvapujúce, že nám umožňuje aj ľahko si vytvoriť vlastné druhy sigilov. V nasledujúcom príklade si vytvoríme špeciálny sigil na konverziu reťazcov na veľké písmená. V Elixire už na tento účel existuje funkcia `String.upcase/1`, takže ju v našom sigile použijeme:
 
 ```elixir
 
