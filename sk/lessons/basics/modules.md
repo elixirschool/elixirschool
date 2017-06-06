@@ -63,7 +63,7 @@ Dôležitá poznámka: v Elixire existujú vyhradené modulové atribúty, ktor�
 
 + `moduledoc` — Slúži na dokumentáciu modulu.
 + `doc` — Dokumentácia funkcie alebo makra.
-+ `behaviour` — Indikuje použitie OTP, alebo iného behavaiour (chovania).
++ `behaviour` — Indikuje použitie OTP, alebo iného behaviour (chovania).
 
 ## Structs
 
