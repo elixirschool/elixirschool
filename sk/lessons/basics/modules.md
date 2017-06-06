@@ -215,7 +215,7 @@ Ak by sme sa totiž pokúsili zavolať makro, ktoré ešte nie je načítané, E
 
 ### `use`
 
-Použije modul v aktuálnom kontexte. Hodí sa nám to keď chceme, aby cieľový modul pri importovaní niečo vykonal. Volaním príkazu `use` totiž spustíme funkciu `__using__` daného modulu (ak nejakú má), čo mu poskytuje možnosť ovplyvniť náš modul - napríklad vložiť doňho nejaké importy, aliasy a podobne:
+Použije modul v aktuálnom kontexte. Hodí sa nám to keď chceme, aby cieľový modul pri importovaní niečo vykonal. Volaním príkazu `use` totiž spustíme makro `__using__` daného modulu (ak nejaké má), čo mu poskytuje možnosť ovplyvniť náš modul - napríklad vložiť doňho nejaké importy, aliasy a podobne:
 
 ```elixir
 defmodule HelloModule do
