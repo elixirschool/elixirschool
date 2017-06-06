@@ -96,7 +96,7 @@ Struct môžeme meniť rovnako, ako mapu:
 iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
 %Example.User{name: "Steve", roles: [:admin, :owner]}
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", password: nil, roles: [:admin, :owner]}
+%Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
 Veľmi dôležitou vlastnosťou structov je, že ich môžeme pattern matchovať s mapami:
