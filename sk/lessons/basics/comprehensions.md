@@ -97,7 +97,7 @@ iex> for x <- 1..100,
 
 ## Použitie `:into`
 
-Čo ak chceme v komprehenžne pracovať s niečim iným, než zoznamom? Použijeme parameter `:into`! Tento parameter akceptuje ľubovoľnú štruktúru, ktorá implementuje protokol `Collectable`.
+Čo ak chceme, aby výsledkom komprehenžnu bolo niečo iné ako zoznam? Použijeme parameter `:into`! Tento parameter akceptuje ľubovoľnú štruktúru, ktorá implementuje protokol `Collectable`.
 
 Skúsme takto zmeniť keyword list na mapu:
 
