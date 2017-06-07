@@ -86,7 +86,7 @@ iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
-Aj filtrov môžee použiť niekoľko naraz - napríklad takto by sme preskočili všetky hodnoty, ktoré nie sú párne a zároveň násobkom čísla 3:
+Aj filtrov môžeme použiť niekoľko naraz - napríklad takto by sme preskočili všetky hodnoty, ktoré nie sú párne a zároveň násobkom čísla 3:
 
 ```elixir
 iex> for x <- 1..100,
