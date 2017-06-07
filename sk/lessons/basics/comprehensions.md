@@ -113,4 +113,4 @@ iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-To je všetko! Komprehenžny sú jednoduchým a stručným spôsobom, ako iterovať cez kolekciue.
+To je všetko! Komprehenžny sú jednoduchým a stručným spôsobom, ako iterovať cez kolekcie.
