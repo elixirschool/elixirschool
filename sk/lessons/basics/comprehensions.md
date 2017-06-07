@@ -21,7 +21,7 @@ iex> for x <- zoznam, do: x*x
 [1, 4, 9, 16, 25]
 ```
 
-Vidíme, že je použité kľúčové slovo `for` nasledované generátorom. Čo je generátor? Je to výraz, ktorý generuje vždy ďalší prvok pre každú novú iteráciu. V našom príklade to je `x <- [1, 2, 3, 4]`.
+Vidíme, že je použité kľúčové slovo `for` nasledované generátorom. Čo je generátor? Je to výraz, ktorý generuje vždy ďalší prvok pre každú novú iteráciu. V našom príklade to je `x <- [1, 2, 3, 4, 5]`.
 
 Samozrejme, komprehenžny nie sú limitované na zoznamy, môžeme ich použiť na ľubovoľnú štruktúru typu enumerable:
 
