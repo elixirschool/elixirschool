@@ -101,6 +101,6 @@ end
 
 ## Mockovanie
 
-Niektoré testovacie framoworky využívajú techniku mockovania, čiže podsúvania atráp roznych objektov a funkcií testovanému kódu. Elixir sa však tomuto vyhýba a vývojárov od nej odradzuje. Ak vo svojom kóde dodrživate zásady dobrého funkcionálneho návrhu, mockovanie nikdy potrebovať nebudete, pretože svoje moduly a funkcie budete môcť jednoducho testovať na individuálnej úrovni.
+Niektoré testovacie frameworky využívajú techniku mockovania, čiže podsúvania atráp rôznych objektov a funkcií testovanému kódu. Elixir sa však tomuto vyhýba a vývojárov od nej odradzuje. Ak vo svojom kóde dodrživate zásady dobrého funkcionálneho návrhu, mockovanie nikdy potrebovať nebudete, pretože svoje moduly a funkcie budete môcť jednoducho testovať na individuálnej úrovni.
 
 Odolajte pokušeniu.
