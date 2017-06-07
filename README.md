@@ -1,4 +1,4 @@
-# Elixir School [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+# Elixir School
 
 > Lessons about the Elixir programming language, inspired by Twitter's [Scala School](http://twitter.github.io/scala_school/).
 
