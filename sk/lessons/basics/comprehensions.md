@@ -7,7 +7,7 @@ order: 13
 lang: sk
 ---
 
-List comprehensions (*komprehenžny?*) sú syntaktickým zjednodučením cyklovania nad dátovými štruktúrami typu enumerable (kolekciami ako zoznamy a podobne). V tento lekcii sa naučíme, ako ich používať na iterovanie a generovanie.
+List comprehensions (*komprehenžny?*) sú syntaktickým zjednodušením cyklovania nad dátovými štruktúrami typu enumerable (kolekciami ako zoznamy a podobne). V tento lekcii sa naučíme, ako ich používať na iterovanie a generovanie.
 
 {% include toc.html %}
 
