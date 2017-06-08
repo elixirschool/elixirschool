@@ -23,7 +23,7 @@ description:
   my: Pelajaran mengenai bahasa aturcara Elixir
   pl: Lekcje programowania w języku Elixir
   id: Pelajaran mengenai bahasa pemrograman Elixir
-  no: Leksjoner i programmeringsspråket Elixir
+  nor: Leksjoner i programmeringsspråket Elixir
   ko: 프로그래밍 언어 Elixir 배우기
   uk: Навчальні матеріали про мову програмування Elixir
   tr: Elixir programlama dili dersleri
@@ -55,7 +55,7 @@ sections:
       it: Base
       pl: Podstawy
       id: Dasar
-      no: Grunnleggende
+      nor: Grunnleggende
       ko: 기초
       uk: Основи
       tr: Temeller
@@ -78,7 +78,7 @@ sections:
       it: Avanzato
       pl: Zaawansowane
       id: Lanjutan
-      no: Avansert
+      nor: Avansert
       ko: 심화
       uk: Просунуті
       tr: Gelişmiş
@@ -101,7 +101,7 @@ sections:
       it: Specifiche
       pl: Specyficzne
       id: Khusus
-      no: Detaljer
+      nor: Detaljer
       ko: 활용
       uk: Конкретика
       tr: Spesifik
@@ -169,7 +169,7 @@ toc:
   it: Tavola dei Contenuti
   my: Isi Kandungan
   pl: Spis treści
-  no: Innholdsfortegnelse
+  nor: Innholdsfortegnelse
   ko: 목차
   id: Daftar Isi
   uk: Зміст
@@ -182,7 +182,7 @@ share:
   ru: Поделиться
   ko: 이 페이지 공유하기
   jp: このページをシェアする
-  no: Del denne siden
+  nor: Del denne siden
   cn: 分享本页面
   sk: Zdieľaj túto stránku
   fr: Partager cette page
