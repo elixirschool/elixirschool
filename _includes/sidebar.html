@@ -38,17 +38,19 @@
       {% endfor %}
     </nav>
 
-    <p>
-      {% if page.lang == site.default_lang %}
-        {% assign url = page.url %}
-      {% else %}
-        {% assign url = page.url | slice: 3, 99 %}
-      {% endif %}
-
-      {% for lang in site.languages %}
-        <a href="{% if lang == site.default_lang %} {{url}} {% else %} /{{lang}}{{url}} {% endif %}">{{lang}}</a>
-      {% endfor %}
-    </p>
+    <div id="languages">
+      {% assign lang_with_slashes = '/' | append: lang %}
+      {% assign url = page.url | remove_first: lang_with_slashes %}
+      <p>
+        {% for site_lang in site.languages %}
+          {% if site_lang == lang %}
+            <strong style="font-color: #fff;">{{site_lang}}</strong>
+          {% else %}
+            <a href="/{{site_lang}}{{url}}">{{site_lang}}</a>
+          {% endif %}
+        {% endfor %}
+      </p>
+    </div>
 
     <p>&copy; {{ site.time | date: '%Y' }} <a href="https://github.com/doomspork">Sean Callan</a></p>
   </div>
