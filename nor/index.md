@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Elixir School
-lang: no
+lang: nor
+redirect_from:
+  - /no/
 ---
 
 [![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
