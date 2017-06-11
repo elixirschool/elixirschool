@@ -1,55 +1,36 @@
-{% assign _lang_with_slashes = lang | prepend: '/' %}
-{% assign url_with_no_lang = page.url | remove_first: _lang_with_slashes %}
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       <h1>
-        <a href="{{site.baseurl}}{{lang}}/">
-          {{locale.title}}
+        <a href="{{ site.baseurl }}{{ lang }}/">
+          {{ locale.title }}
         </a>
       </h1>
-      <p class="lead">{{locale.description}}</p>
+      <p class="lead">{{ locale.description }}</p>
     </div>
 
     <nav class="sidebar-nav">
-      {% assign _url_base = site.empty_array | push: lang | push: "lessons" %}
-      {% assign _url_lang_lessons = _url_base | join: '/' | prepend: '/' | append: '/' %}
-
-      {% assign chapters_in_this_lang = site.empty_array %}
-      {% for p in site.pages %}
-        {% if p.url contains _url_lang_lessons %}
-          {% assign chapters_in_this_lang = chapters_in_this_lang | push: p %}
-        {% endif %}
-      {% endfor %}
-
-      {% for sections in site.data.chapters %}
-        {% assign loop_section = sections[0] | strip %}
-        {% for loop_chapter in sections[1] %}
+      {% for sections in site.menu[lang] %}
+        {% assign _section = sections[0] | strip %}
+        {% for _chapter in sections[1] %}
           {% if forloop.first %}
-            {% assign header_status = "display" %}
+            <div class="sidebar-nav-group {{ _section }}">
+              <div class="sidebar-nav-header">
+                <i class="fa {% if section != _section %} fa-chevron-right {% else %} fa-chevron-down {% endif %}"></i>
+                <span>{{ locale.sections[_section] }}</span>
+              </div>
+              <div class="sidebar-nav-list" {% if section != _section %} style="display: none;" {% endif %}>
           {% endif %}
 
-          {% assign loop_url = _url_base | push: loop_section | push: loop_chapter | join: '/' | prepend: '/' | append: '/' %}
-{% comment %}
-TODO: see if i can build a new array with only url and title, cause that's all we need
-{% endcomment %}
-          {% assign _chapter = chapters_in_this_lang | where: "url", loop_url | first %}
+              <div class="sidebar-nav-item">
+                {% if page.url == _chapter[1].url %}
+                  {{ _chapter[1].chapter_number }}. <span class="sidebar-lesson active">{{ _chapter[1].title }}</span>
+                {% else %}
+                  {{ _chapter[1].chapter_number }}. <a class="sidebar-lesson" href="{{ _chapter[1].url }}">{{ _chapter[1].title }}</a>
+                {% endif %}
+              </div>
 
-          {% if _chapter %}
-            {% if header_status == "display" %}
-              <div class="sidebar-nav-group {{loop_section}}">
-                <div class="sidebar-nav-header">
-                  <i class="fa {% if section != loop_section %} fa-chevron-right {% else %} fa-chevron-down {% endif %}"></i>
-                  <span>{{locale.sections[loop_section]}}</span>
-                </div>
-                <div class="sidebar-nav-list" {% if section != _section %} style="display: none;" {% endif %}>
-                {% assign header_status = "displayed" %}
-            {% endif %}
-                <div class="sidebar-nav-item">
-                  {{forloop.index}}. <a class="sidebar-lesson {% if page.url == loop_url %} active{% endif %}" href="{{loop_url}}">{{_chapter.title}}</a>
-                </div>
-          {% endif %}
-          {% if forloop.last and header_status == "displayed" %}
+          {% if forloop.last %}
               </div>
             </div>
           {% endif%}
@@ -59,22 +40,14 @@ TODO: see if i can build a new array with only url and title, cause that's all w
 
     <div id="locales">
       <p>
-        {% for lang_code in site.locales %}
-          {% assign lang_title = site.empty_array %}
-          {% if site.data.interlang[lang][lang_code] %}
-            {% assign lang_title = lang_title | push: site.data.interlang[lang][lang_code] %}
-          {% endif %}
-          {% if site.data.interlang[lang_code][lang_code] %}
-            {% assign lang_title = lang_title | push: site.data.interlang[lang_code][lang_code] %}
-          {% endif %}
-          {% if lang_title.size > 0 %}
-            {% assign lang_title = lang_title | uniq | join: ' / ' %}
-          {% endif %}
+        {% for _interlang_chapter in site.tree[lang][section][chapter]['interlang'] %}
+          {% assign _lang = _interlang_chapter[0] %}
+          {% assign _lang_name = site.interlang_names[lang][_lang]['combined'] %}
 
-          {% if lang_code == lang %}
-            <strong style="font-color: #fff;" {% if lang_title %}title="{{lang_title}}"{% endif %}>{{lang_code}}</strong>
+          {% if _lang == lang %}
+            <strong {% if _lang_name %}title="{{ _lang_name }}"{% endif %}>{{ _lang }}</strong>
           {% else %}
-            <a href="/{{lang_code}}{{url_with_no_lang}}" {% if lang_title %}title="{{lang_title}}"{% endif %}>{{lang_code}}</a>
+            <a href="{{ _interlang_chapter[1]['url'] }}" {% if _lang_name %}title="{{ _lang_name }}"{% endif %}>{{ _lang }}</a>
           {% endif %}
         {% endfor %}
       </p>

@@ -1,16 +1,12 @@
-{% assign lang = page.lang || site.default_lang %}
-{% if page.title == 'Elixir School' %}
-  {% assign title = site.description[lang] %}
+{% if page.title == locale.title or page.title == "Elixir School" %}
+  {% assign title = locale.description %}
 {% else %}
-  {% assign title = page.title %}
+  {% assign title = page.title |%}
 {% endif %}
+{{ locale | inspect }}
 <hr />
 <h3 id="social">
-  {% if site.share[lang] != nil %}
-    {{ site.share[lang] }}
-  {% else %}
-    {{ site.share[site.default_lang] }}
-  {% endif %}
+  {{ locale.share }}
 </h3>
 <div class="social__container">
   <div class="social__item">
