@@ -1,3 +1,8 @@
 port: 4001
-url: http://127.0.0.1:4001
-og_image: http://127.0.0.1:4001/assets/fb_share.jpg
+url: http://localhost
+og_image: http://localhost:4001/assets/fb_share.jpg
+
+# assets:
+#   compress:
+#     css: false
+#     js:  false
