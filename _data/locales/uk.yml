@@ -1,0 +1,16 @@
+script_direction: ltr
+title: Elixir School
+description: Навчальні матеріали про мову програмування Elixir
+toc: Зміст
+share: Поділитися
+sections:
+  basics: Основи
+  advanced: Просунуті
+  specifics: Конкретика
+  libraries: Бібліотеки
+version_messages:
+  outdated: "Some contents of this translation may be outdated."
+  major: "Several major changes were applied to the original lesson since the last update."
+  minor: "Several minor changes were applied to the original lesson since the last update."
+  patch: "Several patches were applied to the original lesson since the last update."
+  none: "This translation is up to date."

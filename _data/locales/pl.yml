@@ -1,0 +1,16 @@
+script_direction: ltr
+title: Elixir School
+description: Lekcje programowania w języku Elixir
+toc: Spis treści
+share: Podziel się
+sections:
+  basics: Podstawy
+  advanced: Zaawansowane
+  specifics: Specyficzne
+  libraries: Biblioteki
+version_messages:
+  outdated: "Od ostatniej aktualizacji wprowadzono wiele zmian i tłumaczenie może być nieaktualne."
+  major: "Od ostatniej aktualizacji wprowadzono kilka dużych zmian."
+  minor: "Od ostatniej aktualizacji wprowadzono kilka drobnych poprawek."
+  patch: "Od ostatniej aktualizacji wprowadzono kilka zmian."
+  none: "To tłumaczenie jest aktualne."
