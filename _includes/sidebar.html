@@ -2,24 +2,24 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       <h1>
-        <a href="{{ site.baseurl }}{{ lang }}/">
-          {{ locale.title }}
+        <a href="{{ site.baseurl }}{{ page.lang }}/">
+          {{ page.locale.title }}
         </a>
       </h1>
-      <p class="lead">{{ locale.description }}</p>
+      <p class="lead">{{ page.locale.description }}</p>
     </div>
 
     <nav class="sidebar-nav">
-      {% for sections in site.menu[lang] %}
+      {% for sections in site.menu[page.lang] %}
         {% assign _section = sections[0] | strip %}
         {% for _chapter in sections[1] %}
           {% if forloop.first %}
             <div class="sidebar-nav-group {{ _section }}">
               <div class="sidebar-nav-header">
-                <i class="fa {% if section != _section %} fa-chevron-right {% else %} fa-chevron-down {% endif %}"></i>
-                <span>{{ locale.sections[_section] }}</span>
+                <i class="fa {% if page.section != _section %} fa-chevron-right {% else %} fa-chevron-down {% endif %}"></i>
+                <span>{{ page.locale.sections[_section] }}</span>
               </div>
-              <div class="sidebar-nav-list" {% if section != _section %} style="display: none;" {% endif %}>
+              <div class="sidebar-nav-list" {% if page.section != _section %} style="display: none;" {% endif %}>
           {% endif %}
 
               <div class="sidebar-nav-item">
@@ -40,11 +40,11 @@
 
     <div id="locales">
       <p>
-        {% for _interlang_chapter in site.tree[lang][section][chapter]['interlang'] %}
+        {% for _interlang_chapter in site.tree[page.lang][page.section][page.chapter]['interlang'] %}
           {% assign _lang = _interlang_chapter[0] %}
-          {% assign _lang_name = site.interlang_names[lang][_lang]['combined'] %}
+          {% assign _lang_name = site.interlang_names[page.lang][_lang]['combined'] %}
 
-          {% if _lang == lang %}
+          {% if _lang == page.lang %}
             <strong {% if _lang_name %}title="{{ _lang_name }}"{% endif %}>{{ _lang }}</strong>
           {% else %}
             <a href="{{ _interlang_chapter[1]['url'] }}" {% if _lang_name %}title="{{ _lang_name }}"{% endif %}>{{ _lang }}</a>

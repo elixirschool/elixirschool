@@ -1,12 +1,11 @@
-{% if page.title == locale.title or page.title == "Elixir School" %}
-  {% assign title = locale.description %}
+{% if page.title == page.locale.title or page.title == "Elixir School" %}
+  {% assign title = page.locale.description %}
 {% else %}
   {% assign title = page.title |%}
 {% endif %}
-{{ locale | inspect }}
 <hr />
 <h3 id="social">
-  {{ locale.share }}
+  {{ page.locale.share }}
 </h3>
 <div class="social__container">
   <div class="social__item">
