@@ -2,7 +2,7 @@ module Languages
   class Generator < Jekyll::Generator
     def generate(site)
       languages = languages(site)
-      # Assign global variable site.languages
+      # Assign global variables
       site.config['languages'] = languages
 
       # Build chapter tree of the whole site
@@ -27,6 +27,12 @@ module Languages
         lang    = get_lang_from_url(site, page.url)
         section = get_section_from_url(site, page.url)
         chapter_name = get_chapter_from_url(site, page.url)
+
+        # set page variables
+        page.data['lang'] = lang
+        page.data['section'] = section
+        page.data['chapter'] = chapter_name
+        page.data['locale'] = site.data['locales'][lang]
 
         if section and chapter_name
           site.config['tree'][lang] ||= {}
@@ -54,8 +60,6 @@ module Languages
       site
     end
 
-    # ANY MODIFICATION IN get_lang_from_url, get_section_from_url, get_chapter_from_url
-    # SHOULD BE REFLECTED IN _includes/global_vars.html in variables: lang, section, chapter
     def get_lang_from_url(site, url)
       url_split = url.split('/')
 
