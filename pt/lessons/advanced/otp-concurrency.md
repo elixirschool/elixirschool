@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Concorrência OTP
-category: advanced
-order: 5
-lang: pt
 ---
 
 Já olhamos as abstrações em Elixir para concorrência, mas as vezes precisamos de um controle maior e para isso nós temos os comportamentos OTP no qual Elixir é construída em cima.

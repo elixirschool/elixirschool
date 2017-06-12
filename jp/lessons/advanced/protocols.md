@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: プロトコル
-category: advanced
-order: 12
-lang: jp
 ---
 
 このレッスンではプロトコルがどんなものなのか、そして Elixir でどのように使うのかを見ていきます。

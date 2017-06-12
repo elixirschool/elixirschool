@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Funkcie
-category: basics
-order: 6
-lang: sk
 ---
 
 V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie ústredným konštruktom. Povieme si o rôznych typoch funkcií v Elixire, rozdieloch medzi nimi a ako ich používať.

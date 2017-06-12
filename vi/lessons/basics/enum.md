@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Enum
-category: basics
-order: 3
-lang: vi
 ---
 
 Các thuật toán thao tác với các collection (tập dữ liệu)

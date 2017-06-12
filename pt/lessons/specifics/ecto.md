@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Ecto
-category: specifics
-order: 2
-lang: pt
 ---
 
 Ecto é um projeto oficial do Elixir que fornece uma camada de banco de dados e

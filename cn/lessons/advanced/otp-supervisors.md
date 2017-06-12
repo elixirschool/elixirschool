@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: OTP Supervisors
-category: advanced
-order: 5
-lang: cn
 ---
 
 supervisors 是一种特殊的进程：专门来监控其他的进程。supervisors 能够自动重启出错的子进程，从而编写容错性高的程序。

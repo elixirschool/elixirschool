@@ -1,10 +1,6 @@
 ---
 version: 1.2.0
-layout: page
 title: Коллекции
-category: basics
-order: 2
-lang: ru
 ---
 
 Списки, кортежи, ключевые списки и ассоциативные массивы.

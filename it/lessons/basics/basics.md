@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Base
-category: basics
-order: 1
-lang: it
 ---
 
 Configurazione, tipi di base ed operazioni di base.

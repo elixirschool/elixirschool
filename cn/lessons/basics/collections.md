@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: 集合
-category: basics
-order: 2
-lang: cn
 ---
 
 列表、元组、关键字列表（keywords）、图（maps）、字典和函数组合子（combinators）

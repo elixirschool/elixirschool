@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Erlang Term Storage (ETS)
-category: specifics
-order: 4
-lang: jp
 ---
 
 Erlang Term Storage、略してETSは、OTP内部に組み込まれている強力なストレージエンジンで、Elixirから利用することができます。このレッスンではETSを呼び出す方法と、アプリケーションで使用する方法を見ていきます。

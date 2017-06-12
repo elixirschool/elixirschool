@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Współbieżność z OTP
-category: advanced
-order: 5
-lang: pl
 ---
 
 Poznaliśmy już abstrakcję do obsługi współbieżności, jaką oferuje Elixir. Czasami potrzebujemy większej kontroli nad tym, co się dzieje. Dlatego też Elixir ma obsługę zachowań OTP.  

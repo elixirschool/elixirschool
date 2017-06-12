@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Struktury sterujące
-category: basics
-order: 5
-lang: pl
 ---
 
 W tej lekcji przyjrzymy się strukturom sterującym dostępnym w Elixirze.

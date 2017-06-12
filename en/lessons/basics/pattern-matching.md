@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Pattern Matching
-category: basics
-order: 4
-lang: en
 redirect_from:
   - /lessons/basics/pattern-matching
 ---

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Keserempakan
-category: advanced
-order: 4
-lang: my
 ---
 
 Salah satu faktor pelaris Elixir ialah sokongan kepada keserempakan(concurrency).  Terima kasih kepada Erlang VM (BEAM), keserempakan di dalam Elixir adalah lebih mudah dari yang dijangkakan.  Model keserempakan bergantung kepada Actor, satu proses yang berkomunikasi dengan proses-proses lain melalui pengagihan mesej.

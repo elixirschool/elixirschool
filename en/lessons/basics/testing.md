@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Testing
-category: basics
-order: 12
-lang: en
 redirect_from:
   - /lessons/basics/testing
 ---

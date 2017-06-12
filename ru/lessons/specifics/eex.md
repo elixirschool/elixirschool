@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Embedded Elixir (EEx)
-category: specifics
-order: 3
-lang: ru
 ---
 
 По аналогии с ERB в Ruby и JSP в Java, в Elixir есть EEx или Embedded Elixir ("встраиваемый" Elixir код). С помощью EEx мы можем встраивать и интерпретировать код Elixir внутри любого другого текста.

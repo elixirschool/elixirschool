@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: L'opérateur Pipe
-category: basics
-order: 7
-lang: fr
 ---
 
 L'opérateur pipe `|>` passe le résultat d'une expression en tant que premier paramètre à une autre expression.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Embedded Elixir (EEx)
-category: specifics
-order: 3
-lang: pl
 ---
 
 Tak jak w Ruby mamy ERB, a w Javie istnieje JSP, tak i Elixir ma EEx - Embedded Elixir. Dzięki EEx możemy osadzać kod Elixira w ciągach znaków.  

@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Error Handling
-category: advanced
-order: 2
-lang: en
 redirect_from:
 - /lessons/advanced/error-handling
 ---

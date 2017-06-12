@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Guardian (Basics)
-category: libraries
-order: 1
-lang: en
 redirect_from:
   - /lessons/libraries/guardian
 ---

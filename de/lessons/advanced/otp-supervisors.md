@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: OTP Supervisors
-category: advanced
-order: 6
-lang: de
 ---
 
 Supervisors sind besondere Prozesse mit einem Zweck: Andere Prozesse zu überwachen. Diese supervisors erlauben uns fehlertolerante Anwendungen zu erstellen, indem sie Kindprozesse automatisch neu starten, falls diese abbrechen.

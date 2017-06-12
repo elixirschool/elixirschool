@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Umbrella Projects
-category: advanced
-order: 8
-lang: id
 ---
 
 Terkadang sebuah project bisa menjadi sangat besar. Perangkat build Mix memungkinkan kita untuk memecah code kita jadi beberapa aplikasi dan membuat project Elixir kita lebih tertata dalam pengembangannya.

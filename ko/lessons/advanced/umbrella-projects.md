@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: 엄브렐라 프로젝트
-category: advanced
-order: 8
-lang: ko
 ---
 
 때로는 프로젝트가 커지고 커져서 아주아주 커질 수도 있습니다. Mix 빌드 도구를 사용해서 작성한 코드를 여러 앱으로 나누고, 이렇게 Elixir 프로젝트가 계속해서 커져나가도 관리하기 쉽도록 유지할 수 있습니다.

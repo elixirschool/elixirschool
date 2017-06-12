@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Mix
-category: basics
-order: 9
-lang: sk
 ---
 
 Než sa pustíme do hlbokých vôd, je treba sa pozrieť na nástroj `mix`. Ak poznáte Ruby, mix vám bude pripomínať kombináciu nástrojov Bundler, RubyGems a Rake. Je kľúčovou súčasťou každého elixirového projektu a v tejto lekcii si ukážeme niekoľko jeho najdôležitejších funkcií. Vyčerpávajúci zoznam všetkých jeho možností získate príkazom `mix help`.

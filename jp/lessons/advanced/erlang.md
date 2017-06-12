@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Erlangとの相互運用
-category: advanced
-order: 1
-lang: jp
 ---
 
 Erlang VM (BEAM)の上で開発することによって得られる利点の1つに、既にある大量のライブラリが利用できるという事があげられます。相互運用できることで、そうしたライブラリやErlangの標準ライブラリをElixirコードから活用することができます。このレッスンではサードパーティのErlangパッケージも併せ、標準ライブラリの関数へアクセスする方法を見ていきます。

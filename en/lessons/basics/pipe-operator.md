@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Pipe Operator
-category: basics
-order: 7
-lang: en
 redirect_from:
   - /lessons/basics/pipe-operator
 ---

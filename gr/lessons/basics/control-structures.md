@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Δομές Ελέγχου
-category: basics
-order: 5
-lang: gr
 ---
 
 Σε αυτό το μάθημα θα δούμε τις δομές ελέγχου που μας παρέχει η Elixir.

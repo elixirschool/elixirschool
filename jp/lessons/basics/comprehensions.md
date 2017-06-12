@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 内包表記
-category: basics
-order: 13
-lang: jp
 ---
 
 リスト内包表記は Elixir で列挙体 (enumerable) をループするための糖衣構文です。このレッスンでは反復や生成に内包表記を用いる方法を見ていきます。

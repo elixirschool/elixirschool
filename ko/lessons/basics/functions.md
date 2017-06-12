@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: 함수
-category: basics
-order: 6
-lang: ko
 ---
 
 Elixir를 포함한 많은 함수형 언어에서, 함수들은 일급 시민입니다. 우리는 Elixir를 특별하게 해주는 함수의 유형에 대해 배우고, 그것을 어떻게 이용하는지 배울 것입니다.

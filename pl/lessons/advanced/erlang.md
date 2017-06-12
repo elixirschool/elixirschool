@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Współpraca z Erlangiem
-category: advanced
-order: 1
-lang: pl
 ---
 
 Jedną z zalet działania w ramach maszyny wirtualnej Erlanga jest bogactwo istniejących rozwiązań. Interoperacyjność pozwala nam na wykorzystanie tych rozwiązań, jak i standardowej biblioteki Erlanga w naszym Elixirowym kodzie. W tej lekcji przyjrzymy się, jak możemy łączyć nasz kod z bibliotekami stworzonymi w Erlangu.

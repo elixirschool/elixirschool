@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Документация
-category: basics
-order: 11
-lang: bg
 ---
 
 Документиране на Elixir код.

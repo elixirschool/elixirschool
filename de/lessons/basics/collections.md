@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Collections
-category: basics
-order: 2
-lang: de
 ---
 
 Listen, Tupel, Keywords, Maps und funktionale Kombinatoren.

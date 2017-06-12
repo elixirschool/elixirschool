@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Dokumentasjon
-category: basics
-order: 11
-lang: no
 ---
 
 Dokumentering av elixir kode.

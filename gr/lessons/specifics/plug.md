@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Plug
-category: specifics
-order: 1
-lang: gr
 ---
 
 Αν είστε εξοικειομένοι με τη Ruby μπορείτε να σκεφτείτε το Plug σαν το Rack με λίγο Sinatra.

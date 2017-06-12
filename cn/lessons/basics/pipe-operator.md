@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 管道操作符
-category: basics
-order: 7
-lang: cn
 ---
 
 管道操作符 `|>` 把前面表达式的结果传递给后面的表达式作为第一个参数。

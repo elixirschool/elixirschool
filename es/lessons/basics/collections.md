@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Colecciones
-category: basics
-order: 2
-lang: es
 ---
 
 Listas, tuplas, listas de palabras clave, mapas, diccionarios y combinadores funcionales

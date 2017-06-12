@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Comprehensions
-category: basics
-order: 13
-lang: no
 ---
 
 List comprehension er syntaktisk sukker for å iterere seg gjennom en kolleksjon i Elixir. I denne leksjonen så vil vi se på hvordan vi kan bruke comprehensions for både iterering over verdier, men også generering av verdier.

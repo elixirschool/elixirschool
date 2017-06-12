@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 基本
-category: basics
-order: 1
-lang: jp
 ---
 
 入門、基本データ型、そして基本的な演算。

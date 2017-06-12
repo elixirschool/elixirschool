@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Spezifikationen und Typen
-category: advanced
-order: 9
-lang: de
 ---
 
 In dieser Lektion werden wir die `@spec`- und `@type`-Syntax kennen lernen. Die Erste ist eine Ergänzung um Dokumentation zu schreiben, die von Tools ausgewertet werden kann. Die Zweite hilft uns lesbareren und einfacheren Code zu schreiben.

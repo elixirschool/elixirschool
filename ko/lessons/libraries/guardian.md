@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Guardian (Basics)
-category: libraries
-order: 1
-lang: ko
 ---
 
 [Guardian](https://github.com/ueberauth/guardian)은 [JWT](https://jwt.io/) (JSON Web Tokens) 에 기반한 널리 사용되는 인증 라이브러리입니다.

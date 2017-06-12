@@ -1,7 +1,5 @@
 ---
-layout: page
 title: Elixir School 日本語訳
-lang: jp
 ---
 
 [![ライセンス](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Pengujian
-category: basics
-order: 12
-lang: my
 ---
 
 Pengujian adalah aspek penting di dalam pembangunan perisian.  Di dalam pelajaran ini kita akan melihat bagaimana untuk menguji kod Elixir kita menggunakan ExUnit dan juga beberapa amalan terbaik untuk melaksanakannya.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Struktur Kawalan
-category: basics
-order: 5
-lang: my
 ---
 
 Dalam pelajaran ini kita akan melihat struktur kawalan yang dibekalkan oleh ELixir.

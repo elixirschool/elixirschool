@@ -1,7 +1,5 @@
 ---
-layout: page
 title: Elixir School 한국어판
-lang: ko
 ---
 
 [![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)

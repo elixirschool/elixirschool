@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Hàm
-category: basics
-order: 6
-lang: vi
 ---
 
 Trong Elixir và nhiều ngôn ngữ lập trình hàm, hàm là "first class citizen". Chúng ta sẽ học về các kiểu hàm trong Elixir, chúng khác nhau như thế nào, và dùng chúng ra sao.

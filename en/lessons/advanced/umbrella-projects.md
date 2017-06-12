@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Umbrella Projects
-category: advanced
-order: 8
-lang: en
 redirect_from:
   - /lessons/advanced/umbrella-projects
 ---

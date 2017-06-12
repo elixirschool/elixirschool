@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Koleksi
-category: basics
-order: 2
-lang: id
 ---
 
 List, tuple, kata kunci, map dan kombinator fungsional.

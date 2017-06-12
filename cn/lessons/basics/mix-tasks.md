@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: 自定义 Mix 任务
-category: basics
-order: 15
-lang: cn
 ---
 
 为你的 Elixir 项目创建 Mix 自定义任务。

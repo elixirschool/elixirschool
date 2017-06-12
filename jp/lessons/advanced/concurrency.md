@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 並行性
-category: advanced
-order: 4
-lang: jp
 ---
 
 Elixirの売りの1つは並行性(コンカレンシー)に対応していることです。Erlang VM (BEAM)のおかげで、並行処理はElixirでは思ったよりも簡単です。並行性のモデルはアクターに依存しています。アクターとはメッセージパッシングによって他のプロセスと相互通信を行う、制御されたプロセスのことです。

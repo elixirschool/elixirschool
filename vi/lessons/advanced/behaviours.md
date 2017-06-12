@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Behaviours
-category: advanced
-order: 10
-lang: vi
 ---
 
 Chúng ta đã học về Typespecs trong bài học trước, trong bài này, chúng ta sẽ học về cách để yêu cầu một module cài đặt những tiêu chuẩn đó. Trong Elixir, tính năng này thường được gọi bằng Behaviours.

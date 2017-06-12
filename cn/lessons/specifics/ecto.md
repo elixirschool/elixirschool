@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Ecto
-category: specifics
-order: 2
-lang: cn
 ---
 
 Ecto 是 Elixir 官方维护的一个项目，它提供了对数据库的封装以及一个自带的查询语言。通过 Ecto 我们可以创建迁移，定义模型，添加／更新或查询记录。

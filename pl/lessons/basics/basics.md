@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Podstawy
-category: basics
-order: 1
-lang: pl
 ---
 
 Przygotowanie środowiska, podstawowe typy danych i operacje

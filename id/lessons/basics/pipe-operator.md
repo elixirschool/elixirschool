@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Operator pipe
-category: basics
-order: 7
-lang: id
 ---
 
 Operator pipe`|>` melewatkan hasil expression di sebelah kirinya sebagai parameter pertama untuk expression di sebelah kanannya.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: テスト
-category: basics
-order: 12
-lang: jp
 ---
 
 テストはソフトウェア開発の重要な一部です。このレッスンではElixirコードをExUnitを用いてテストする方法と、そのためのベストプラクティスをいくつか見てきます。

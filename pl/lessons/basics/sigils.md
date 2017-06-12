@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Sigile
-category: basics
-order: 10
-lang: pl
 ---
 
 Tworzenie i praca z sigilami.

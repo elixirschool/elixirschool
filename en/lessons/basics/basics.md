@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Basics
-category: basics
-order: 1
-lang: en
 redirect_from:
   - /lessons/basics/basics
 ---

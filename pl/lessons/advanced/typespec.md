@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Specyfikacje i typy
-category: advanced
-order: 9
-lang: pl
 ---
 
 W tej lekcji przyjrzymy się składni `@spec` i `@type`. Pierwszy służy jako dodatek do składni, który pozwala na analizę kodu przez automatyczne narzędzia. Drugi pozwala na pisanie kodu, który jest bardziej czytelny i prostszy w zrozumieniu.

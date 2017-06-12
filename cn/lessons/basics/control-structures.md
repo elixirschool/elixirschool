@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 控制语句
-category: basics
-order: 5
-lang: cn
 ---
 
 这篇教程，我们将学习 Elixir 语言中的控制语句。

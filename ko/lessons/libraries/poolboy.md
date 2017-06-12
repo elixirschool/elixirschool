@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Poolboy
-category: libraries
-order: 2
-lang: ko
 ---
 
 동시에 실행 되는 프로세스를 임의로 실행하도록 허용하면 시스템 리소스를 쉽게 소모할 수 있습니다. Poolboy는 워커 풀을 만들어 동시에 실행 되는 프로세스의 수를 제한해 오버헤드가 발생하지 않도록 합니다.

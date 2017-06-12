@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Dokumentasi
-category: basics
-order: 11
-lang: my
 ---
 
 Mendokumentasi kod Elixir.

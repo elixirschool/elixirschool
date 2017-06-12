@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Πρωτόκολλα
-category: advanced
-order: 12
-lang: gr
 ---
 
 Σε αυτό το μάθημα θα δούμε τα Πρωτόκολλα, τί ακριβώς είναι, και πως τα χρησιμοποιούμε στην Elixir.

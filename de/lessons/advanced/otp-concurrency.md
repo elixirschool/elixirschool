@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: OTP Nebenläufigkeit
-category: advanced
-order: 5
-lang: de
 ---
 
 Wir haben uns die Elixir-Abstraktion für Nebenläufigkeit angesehen, aber manchmal hätten wir gern mehr Kontrolle und dafür sehen wir uns OTP behaviors an, auf denen Elixir gebaut wurde.

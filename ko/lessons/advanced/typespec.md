@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: 스펙과 타입
-category: advanced
-order: 9
-lang: ko
 ---
 
 이번 수업에서 `@spec`과 `@type` 구문을 공부해보도록 하겠습니다. `@spec`이 문서화 도구가 코드를 분석해서 문서화에 힘을 실어주는 구문이라면, `@type`은 읽고 이해하기에 더 쉬운 코드를 쓸 수 있게 도와주는 구문입니다.

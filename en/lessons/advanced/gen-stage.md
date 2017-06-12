@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: GenStage
-category: advanced
-order: 11
-lang: en
 redirect_from:
   - /lessons/advanced/gen-stage
 ---

@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Control Structures
-category: basics
-order: 5
-lang: en
 redirect_from:
   - /lessons/basics/control-structures
 ---

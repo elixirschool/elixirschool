@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: স্ট্রিং 
-category: basics
-order: 14
-lang: bn
 ---
 
 স্ট্রিং, কার লিস্ট, গ্রাফীম ও কোড পয়েন্ট। 

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Funções
-category: basics
-order: 6
-lang: pt
 ---
 
 Em Elixir e em várias linguagens funcionais, funções são cidadãos de primeira classe. Nós iremos aprender sobre os tipos de funções em Elixir, qual a diferença, e como usar elas.

@@ -1,10 +1,6 @@
 ---
 version: 1.1.1
-layout: page
 title: Plug
-category: specifics
-order: 1
-lang: en
 redirect_from:
   - /lessons/specifics/plug
 ---

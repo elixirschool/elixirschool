@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Executables
-category: advanced
-order: 3
-lang: en
 redirect_from:
   - /lessons/advanced/escripts
 ---

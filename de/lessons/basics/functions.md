@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Funktionen
-category: basics
-order: 6
-lang: de
 ---
 
 In Elixir und vielen anderen funktionalen Sprachen sind Funktionen "Bürger erster Klasse". Wir werden mehr über die Typen von Funktionen in Elixir lernen, was sie unterscheidet und wie man sie benutzt.

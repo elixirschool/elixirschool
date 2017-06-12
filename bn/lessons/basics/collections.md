@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: কালেকশন 
-category: basics
-order: 2
-lang: bn
 ---
 
 লিস্ট, টাপ্ল, কীওয়ার্ড, ম্যাপ এবং ফাংশনাল কম্বিনেটর।

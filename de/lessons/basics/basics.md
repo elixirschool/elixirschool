@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Grundlagen
-category: basics
-order: 1
-lang: de
 ---
 
 Zum Anfang: Grundlegende Datentypen und Operationen.

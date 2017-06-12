@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Sigily
-category: basics
-order: 10
-lang: sk
 ---
 
 Práca so sigilmi a ich vytváranie.

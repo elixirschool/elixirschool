@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Concurrencia
-category: advanced
-order: 4
-lang: es
 ---
 
 Una de las características más llamativas de Elixir es su soporte para concurrencia. Gracias a la Erlang VM (BEAM), la concurrencia en Elixir es más fácil de lo esperado. El modelo de concurrencia se basa en Actores, un proceso contenido que se comunica con otro proceso por medio de paso de mensajes.

@@ -1,10 +1,6 @@
 ---
 version: 1.2.0
-layout: page
 title: Collections
-category: basics
-order: 2
-lang: en
 redirect_from:
   - /lessons/basics/collections
 ---

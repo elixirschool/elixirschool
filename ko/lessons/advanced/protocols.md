@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: 프로토콜
-category: advanced
-order: 12
-lang: ko
 ---
 
 여기에서는 프로토콜을 들여다보고, 이것이 무엇인지, Elixir에서 어떻게 사용하는지에 대해서 알아봅니다.

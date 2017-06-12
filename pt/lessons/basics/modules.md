@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Composição
-category: basics
-order: 8
-lang: pt
 ---
 
 Sabemos por experiência o quanto é incontrolável ter todas as nossas funções no mesmo arquivo e escopo. Nesta lição vamos cobrir como agrupar funções e definir um mapa especializado conhecido como struct, a fim de organizar o nosso código eficientemente.
