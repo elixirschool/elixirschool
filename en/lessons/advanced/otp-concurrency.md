@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: OTP Concurrency
-category: advanced
-order: 5
-lang: en
 redirect_from:
   - /lessons/advanced/otp-concurrency
 ---

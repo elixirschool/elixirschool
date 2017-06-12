@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Metaprogramming
-category: advanced
-order: 7
-lang: en
 redirect_from:
   - /lessons/advanced/metaprogramming
 ---

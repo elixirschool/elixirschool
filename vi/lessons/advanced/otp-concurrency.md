@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: OTP Concurrency
-category: advanced
-order: 5
-lang: vi
 ---
 
 Chúng ta đã xem về các trừu tượng hoá của Elixir cho xử lý đồng thời (concurrency), nhưng đôi khi chúng ta cần quyền điều khiển lớn hơn, bởi thế chúng ta sẽ đi sâu vào tìm hiểu hành vi của OTP mà đã có sẵn ở trong Elixir.

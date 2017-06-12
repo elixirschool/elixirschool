@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Modules
-category: basics
-order: 8
-lang: en
 redirect_from:
   - /lessons/basics/modules
 ---

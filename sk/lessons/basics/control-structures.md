@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Riadiace štruktúry
-category: basics
-order: 5
-lang: sk
 ---
 
 In this lesson we will look at the control structures available to us in Elixir.

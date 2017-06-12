@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Erlang Term Storage (ETS)
-category: specifics
-order: 4
-lang: en
 redirect_from:
   - /lessons/specifics/ets
 ---

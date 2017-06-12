@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Funkcje
-category: basics
-order: 6
-lang: pl
 ---
 
 W Elixirze, tak jak w wielu innych językach funkcyjnych, funkcje należą do bytów podstawowych (ang. _first class citizen_). W tej lekcji poznamy rodzaje funkcji, różnice pomiędzy nimi oraz zastosowania.

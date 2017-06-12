@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: OTP Supervisors
-category: advanced
-order: 6
-lang: en
 redirect_from:
   - /lessons/advanced/otp-supervisors
 ---

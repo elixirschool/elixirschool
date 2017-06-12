@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Embedded Elixir (EEx)
-category: specifics
-order: 3
-lang: id
 ---
 
 Sebagaimana Ruby punya ERB dan Java punya JSP, Elixir punya EEx atau Embedded Elixir.  Dengan EEx kita bisa memasukkan dan menjalankan Elixir di dalam string.

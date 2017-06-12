@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Βασικά
-category: basics
-order: 1
-lang: gr
 ---
 
 Κάνοντας την αρχή, βασικοί τύποι δεδομένων και βασικές λειτουργίες.

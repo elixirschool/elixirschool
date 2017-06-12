@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Tarefas Mix Customizadas
-category: basics
-order: 15
-lang: pt
 ---
 
 Criando tarefas Mix customizadas para seus projetos Elixir.

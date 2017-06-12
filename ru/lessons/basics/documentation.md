@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Документирование
-category: basics
-order: 11
-lang: ru
 ---
 
 Документирование кода на Elixir.

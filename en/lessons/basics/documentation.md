@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Documentation
-category: basics
-order: 11
-lang: en
 redirect_from:
   - /lessons/basics/documentation
 ---

@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: IEx Hjelpere
-category: basics
-order: 16
-lang: no
 ---
 
 {% include toc.html %}

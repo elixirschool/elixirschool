@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Functions
-category: basics
-order: 6
-lang: en
 redirect_from:
   - /lessons/basics/functions
 ---

@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Строковые метки
-category: basics
-order: 10
-lang: ru
 ---
 
 Создание и использование строковых меток.

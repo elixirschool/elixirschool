@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: GenStage
-category: advanced
-order: 11
-lang: ko
 ---
 
 이 강좌에서는 GenStage가 어떤 역할을 하고, 애플리케이션에서 어떻게 사용하는지 자세히 살펴보도록 하겠습니다.

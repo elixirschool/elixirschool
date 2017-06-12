@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Plug
-category: specifics
-order: 1
-lang: pl
 ---
 
 Jeżeli masz doświadczenie z Ruby to Plug może być czymś w rodzaju Racka z domieszką Sinatry. Definiuje on specyfikację dla aplikacji webowych oraz adapterów dla serwerów. Choć nie jest częścią biblioteki standardowej, to Plug jest oficjalnym projektem zespołu odpowiedzialnego za Elixira.   

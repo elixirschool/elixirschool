@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Specifications and types
-category: advanced
-order: 9
-lang: en
 redirect_from:
   - /lessons/advanced/typespec
 ---

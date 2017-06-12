@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: GenStage
-category: advanced
-order: 11
-lang: ru
 ---
 
 В этом уроке мы поближе рассмотрим GenStage, узнаем, какую роль он выполняет, и как мы можем использовать его в наших приложениях.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Plug
-category: specifics
-order: 1
-lang: id
 ---
 
 Kalau anda familiar dengan Ruby anda bisa menganggap Plug seperti Rack dengan sedikit Sinatra.  Plug memberi spesifikasi untuk komponen aplikasi web dan adapter untuk web server. Walau bukan bagian Elixir core, Plug adalah sebuah project resmi Elixir.

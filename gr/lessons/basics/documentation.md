@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Τεκμηρίωση
-category: basics
-order: 11
-lang: gr
 ---
 
 Τεκμηρίωση κώδικα Elixir.

@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: 비헤이비어
-category: advanced
-order: 10
-lang: ko
 ---
 
 이전 강좌에서 타입스펙에 관해 배웠습니다. 여기서는 그 사양을 구현하기 위해 모듈을 요청하는 방법을 배우겠습니다. Elixir에서 이 기능은 비헤이비어라는 이름으로 불립니다.

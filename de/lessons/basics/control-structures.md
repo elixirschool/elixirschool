@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Kontrollstrukturen
-category: basics
-order: 5
-lang: de
 ---
 
 In dieser Lektion werden wir schauen welche Kontrollstrukturen in Elixir vorhanden sind.

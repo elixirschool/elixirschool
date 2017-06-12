@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Strings
-category: basics
-order: 14
-lang: vi
 ---
 
 String, Chuỗi kí tự (Char List), Chữ cái (Graphemes) và Codepoints.

@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: 문자열
-category: basics
-order: 14
-lang: ko
 ---
 
 Elixir에서의 문자열, 문자 리스트, 문자소, 코드 포인트에 대해 다뤄 보겠습니다.

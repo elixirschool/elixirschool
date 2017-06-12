@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: GenStage
-category: advanced
-order: 11
-lang: jp
 ---
 
 このレッスンでは、GenStage をどのように扱うのか、アプリケーションでどのように活用できるのかを詳しく見ていきます。

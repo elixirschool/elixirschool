@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: 파이프 연산자
-category: basics
-order: 7
-lang: ko
 ---
 
 파이프 연산자 `|>`는 수식의 결과를 다른 수식의 첫 번째 매개변수로 전달합니다.

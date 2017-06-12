@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Strings
-category: basics
-order: 14
-lang: en
 redirect_from:
   - /lessons/basics/strings
 ---

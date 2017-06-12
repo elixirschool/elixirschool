@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Concorrência
-category: advanced
-order: 4
-lang: pt
 ---
 
 Um dos pontos ofertados pelo Elixir é o suporte a concorrência. Graças à Erlang VM (BEAM), concorrência no Elixir é mais fácil do que esperamos. O modelo de concorrência replica sobre Atores, um processo constante que se comunica com outros processos através de passagem de mensagem. 

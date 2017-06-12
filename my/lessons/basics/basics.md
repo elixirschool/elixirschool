@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Asas
-category: basics
-order: 1
-lang: my
 ---
 
 Penyediaan, Jenis Data Asas dan Operasi.

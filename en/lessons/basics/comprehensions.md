@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Comprehensions
-category: basics
-order: 13
-lang: en
 redirect_from:
   - /lessons/basics/comprehensions
 ---

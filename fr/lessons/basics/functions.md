@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Fonctions
-category: basics
-order: 6
-lang: fr
 ---
 
 En Elixir, comme dans tous les langages fonctionnels, les fonctions sont des citoyens de premier ordre. Nous verrons les différents types de fonctions en

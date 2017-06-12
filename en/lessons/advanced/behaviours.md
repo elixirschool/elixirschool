@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Behaviours
-category: advanced
-order: 10
-lang: en
 redirect_from:
   - /lessons/advanced/behaviours
 ---

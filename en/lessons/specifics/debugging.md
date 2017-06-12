@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Debugging
-category: specifics
-order: 6
-lang: en
 redirect_from:
   - /lessons/specifics/debugging
 ---

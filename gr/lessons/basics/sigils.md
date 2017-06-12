@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Σφραγίδες
-category: basics
-order: 10
-lang: gr
 ---
 
 Εργασία με τις σφραγίδες και δημιουργία τους.

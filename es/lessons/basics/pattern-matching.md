@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Coincidencia de Patrones
-category: basics
-order: 4
-lang: es
 ---
 
 La coincidencia de patrones es una parte poderosa de Elixir, nos permite coincidir valores simples, estructuras de datos, e incluso funciones. En esta lección vamos a comenzar a ver cómo es usada la coincidencia de patrones.

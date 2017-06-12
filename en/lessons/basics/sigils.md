@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Sigils
-category: basics
-order: 10
-lang: en
 redirect_from:
   - /lessons/basics/sigils
 ---

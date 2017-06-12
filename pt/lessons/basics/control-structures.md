@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Estruturas de Controle
-category: basics
-order: 5
-lang: pt
 ---
 
 Nesta lição iremos conhecer algumas estruturas de controle disponíveis em Elixir.

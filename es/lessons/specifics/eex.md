@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Elixir Embebido (EEx)
-category: specifics
-order: 3
-lang: es
 ---
 
 Al igual que Ruby tiene ERB y Java JSP, Elixir tiene EEx o Elixir Embebido. Con EEx podemos integrar y evaluar Elixir dentro de las cadenas.

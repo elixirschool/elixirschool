@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Kolleksjoner
-category: basics
-order: 2
-lang: no
 ---
 
 Lister, tupler, nøkkelord, kart og funksjonell kombinasjon.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Executáveis
-category: advanced
-order: 3
-lang: pt
 ---
 
 Para criar executáveis em Elixir nós utilizaremos escript. Escript produz um executável que pode rodar em qualquer sistema que tenha Erlang instalado.

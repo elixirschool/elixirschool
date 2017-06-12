@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Collezioni
-category: basics
-order: 2
-lang: it
 ---
 
 Liste, tuple, liste di keywords, mappe, dizionari e combinatori funzionali.

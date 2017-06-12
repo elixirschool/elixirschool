@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 字符串
-category: basics
-order: 14
-lang: cn
 ---
 
 字符串、字符列表、字素(Graphemes) 和字码点（Codepoints）。

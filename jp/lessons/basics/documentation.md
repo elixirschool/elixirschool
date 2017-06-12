@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: ドキュメント
-category: basics
-order: 11
-lang: jp
 ---
 
 Elixir コードのドキュメント。

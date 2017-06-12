@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Enum
-category: basics
-order: 3
-lang: sk
 ---
 
 Sada algoritmov pre iterovanie nad kolekciami.

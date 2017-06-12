@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: IEx Helpers
-category: basics
-order: 16
-lang: en
 redirect_from:
   - /lessons/basics/iex-helpers
 ---

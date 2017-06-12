@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Enums
-category: basics
-order: 3
-lang: de
 ---
 
 Ein Satz Algorithmen, um über collections zu gehen.

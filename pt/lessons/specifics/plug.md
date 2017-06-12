@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Plug
-category: specifics
-order: 1
-lang: pt
 ---
 
 Se você estiver familiarizado com Ruby, você pode pensar sobre Plug como o Rack com uma pitada de Sinatra, ele fornece uma especificação para componentes de aplicação web e adaptadores para servidores web. Mesmo não fazendo parte do núcleo de Elixir, Plug é um projeto oficial de Elixir.

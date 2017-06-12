@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Enum 模块
-category: basics
-order: 3
-lang: cn
 ---
 
 一些枚举集合元素的算法。

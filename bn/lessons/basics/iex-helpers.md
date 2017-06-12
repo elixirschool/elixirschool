@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: IEx হেল্পার 
-category: basics
-order: 16
-lang: bn
 ---
 
 {% include toc.html %}

@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Protocols
-category: advanced
-order: 12
-lang: pt
 ---
 
 Nesta lição nós iremos aprender um pouco sobre Protocols, o que eles são e como usamos ele em Elixir.

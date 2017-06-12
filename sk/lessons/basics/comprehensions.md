@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Comprehensions
-category: basics
-order: 13
-lang: sk
 ---
 
 List comprehensions (*komprehenžny?*) sú syntaktickým zjednodušením cyklovania nad dátovými štruktúrami typu enumerable (kolekciami ako zoznamy a podobne). V tento lekcii sa naučíme, ako ich používať na iterovanie a generovanie.

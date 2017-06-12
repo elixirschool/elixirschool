@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Колекции
-category: basics
-order: 2
-lang: bg
 ---
 
 Списъци, tuples, ключови думи, асоциативни списъци и функционални комбинатори.

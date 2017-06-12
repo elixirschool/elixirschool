@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Pipeoperatoren
-category: basics
-order: 7
-lang: no
 ---
 
 Pipeoperatoren `|>` fører resultatet av et utrykk som første parameter til et nytt utrykk.

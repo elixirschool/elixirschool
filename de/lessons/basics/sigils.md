@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Sigils
-category: basics
-order: 10
-lang: de
 ---
 
 Arbeiten mit sigils und erstellen dieser.

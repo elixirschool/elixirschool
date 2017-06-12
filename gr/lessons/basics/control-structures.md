@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Δομές Ελέγχου
-category: basics
-order: 5
-lang: gr
 ---
 
 Σε αυτό το μάθημα θα δούμε τις δομές ελέγχου που μας παρέχει η Elixir.
@@ -190,7 +186,7 @@ a =
     true <- Integer.is_even(number) do
       IO.puts "#{number} διαιρούμενο με το 2 ισούται με #{div(number, 2)}"
       :even
-  else 
+  else
     :error ->
       IO.puts "Δεν έχουμε αυτό το στοιχείο στο χάρτη"
       :error

@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Debugging
-category: specifics
-order: 6
-lang: pt
 ---
 
 Às vezes, os bugs estão presentes em nosso projeto, é por isso que precisamos investigar o problema. Nesta sessão vamos aprender sobre como fazer debug no código Elixir, bem como ferramentas de análise de estática para ajudar a encontrar possíveis bugs.

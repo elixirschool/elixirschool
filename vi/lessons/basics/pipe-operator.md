@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Pipe Operator
-category: basics
-order: 7
-lang: vi
 ---
 
 Toán tử pipe `|>` truyền kết quả của một biểu thức như là tham số đầu tiên của một biểu thức khác.

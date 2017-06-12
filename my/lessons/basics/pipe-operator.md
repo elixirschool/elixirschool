@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Operator Paip 
-category: basics
-order: 7
-lang: my
 ---
 
 Operator Paip `|>` menghantar hasil dari satu ungkapan(expression) sebagai paramater pertama kepada satu ungkapan lain.

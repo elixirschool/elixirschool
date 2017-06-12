@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Embedded Elixir (EEx)
-category: specifics
-order: 3
-lang: vi
 ---
 
 Như ERB của Ruby hay JSPs của Java, Elixir cũng có EEx hãy Embedded Elixir (tạm dịch: Elixir nhúng). Với EEx ta có thể nhúng hay thực thi lệnh Elixir trong string.

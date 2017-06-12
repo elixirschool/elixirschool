@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Tác vụ Mix tùy biến
-category: basics
-order: 15
-lang: vi
 ---
 
 Tạo ra một tác vụ tùy biến cho dự án Elixir của bạn.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Mnesia
-category: specifics
-order: 5
-lang: pt
 ---
 
 Mnesia é um sistema de gestão de banco de dados em tempo real de alto tráfego.

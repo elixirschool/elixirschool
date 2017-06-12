@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Bases
-category: basics
-order: 1
-lang: fr
 ---
 
 Installation, types de base et opérations.

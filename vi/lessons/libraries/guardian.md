@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Guardian (Cơ bản)
-category: libraries
-order: 1
-lang: vi
 ---
 
 [Guardian](https://github.com/ueberauth/guardian) là một thư viện xác thực danh tính người dùng được sử dụng rộng rãi dựa trên chuẩn [JWT](https://jwt.io/) (JSON Web Token).

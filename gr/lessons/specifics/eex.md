@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Ένθετη Elixir (EEx)
-category: specifics
-order: 3
-lang: gr
 ---
 
 Όπως η Ruby έχει το ERB και η Java τα JSP, η Elixir έχει τα EEx, ή Ένθετη Elixir.  Με την EEx μπορούμε να ενσωματώσουμε και τρέξουμε κώδικα Elixir μέσα σε αλφαριθμητικά.

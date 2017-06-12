@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Poolboy
-category: libraries
-order: 2
-lang: pt
 ---
 
 Você pode facilmente esgotar os recursos do seu sistema se você permitir que os processos concorrentes sejam executados arbitrariamente. Poolboy impede que aconteça uma sobrecarga, criando um pool de gerenciadores para limitar o número de processos simultâneos.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Контролни структури
-category: basics
-order: 5
-lang: bg
 ---
 
 В този урок ще разгледаме какви контролни структури са достъпни за нас в Elixir.

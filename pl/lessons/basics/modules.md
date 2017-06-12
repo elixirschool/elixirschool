@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Organizacja kodu
-category: basics
-order: 8
-lang: pl
 ---
 
 Doświadczenie podpowiada, że bardzo ciężko jest trzymać cały nasz kod w jednym pliku. W tej lekcji przyjrzymy się, jak grupować nasze funkcje w moduły oraz jak za pomocą wyspecjalizowanych map, zwanych strukturami, można efektywnie zorganizować nasz kod.

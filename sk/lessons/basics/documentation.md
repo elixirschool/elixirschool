@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Dokumentácia
-category: basics
-order: 11
-lang: sk
 ---
 
 Komentovanie a dokumentovanie kódu v Elixire.

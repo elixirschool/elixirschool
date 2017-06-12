@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: OTP Concurrency
-category: advanced
-order: 5
-lang: id
 ---
 
 Kita sudah melihat abstraksi Elixir untuk konkurensi tapi terkadang kita butuh kendali lebih dan untuk itu kita beralih ke perilaku OTP yang mana Elixir dibangun di atasnya.

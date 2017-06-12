@@ -1,10 +1,6 @@
 ---
 version: 1.2.0
-layout: page
 title: Enum
-category: basics
-order: 3
-lang: gr
 ---
 
 Μια συλλογή αλγορίθμων για την απαρίθμηση συλλογών.

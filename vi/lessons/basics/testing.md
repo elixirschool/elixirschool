@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Testing
-category: basics
-order: 12
-lang: vi
 ---
 
 Testing là một phần quan trọng của phát triển phần mềm. Trong bài này, chúng ta sẽ học cách để test code Elixir với ExUnit và một vài best practice để làm chuyện này.

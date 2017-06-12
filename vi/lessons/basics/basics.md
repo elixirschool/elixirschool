@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Cơ bản
-category: basics
-order: 1
-lang: vi
 ---
 
 Cài đặt, cái kiểu phổ thông và cơ chế hoạt động.

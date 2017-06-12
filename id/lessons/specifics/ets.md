@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Erlang Term Storage (ETS)
-category: specifics
-order: 4
-lang: id
 ---
 
 Erlang Term Storage, biasa disebut ETS, adalah sebuah engine penyimpanan yang powerful yang sudah termasuk dalam OTP dan tersedia untuk digunakan di Elixir.  Dalam pelajaran ini kita akan melihat bagaimana mengakses ETS dan bagaimana ETS bisa digunakan dalam aplikasi kita.

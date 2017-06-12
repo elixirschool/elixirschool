@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: ব্যাসিকস
-category: basics
-order: 1
-lang: bn
 ---
 
 ইন্সটলেশন, ইন্টারএ্যাক্টিভ প্রম্পট, ব্যাসিক ডাটা টাইপ ও ব্যাসিক অপারেশন

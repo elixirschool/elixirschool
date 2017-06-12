@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: 基础
-category: basics
-order: 1
-lang: cn
 ---
 
 安装，基本类型和基本操作。

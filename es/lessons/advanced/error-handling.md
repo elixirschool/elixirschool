@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Manejo de errores
-category: advanced
-order: 2
-lang: es
 ---
 
 Aunque es más común devolver una tupla `{:error, reason}`, Elixir soporta excepciones, y en esta lección revisaremos como manejar errores y los diferentes mecanismos a nuestra disposición.

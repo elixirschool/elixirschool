@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Sigil
-category: basics
-order: 10
-lang: my
 ---
 
 Membuat dan menggunakan sigil.

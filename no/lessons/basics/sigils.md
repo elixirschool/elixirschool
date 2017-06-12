@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Sigiler
-category: basics
-order: 10
-lang: no
 ---
 
 Bruke og lage sigiler.

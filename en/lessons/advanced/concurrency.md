@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Concurrency
-category: advanced
-order: 4
-lang: en
 redirect_from:
   - /lessons/advanced/concurrency
 ---

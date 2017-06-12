@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Elixir embutido (EEx)
-category: specifics
-order: 3
-lang: pt
 ---
 
 Do mesmo jeito que Ruby possui ERB e Java JSPs, Elixir tem EEx ou *Embedded Elixir (Elixir embutido)*. Com EEx podemos embutir e avaliar código Elixir dentro das *strings*.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Tâches Mix Personnalisées
-category: basics
-order: 15
-lang: fr
 ---
 
 Créer des tâches Mix personnalisées pour votre projet Elixir.

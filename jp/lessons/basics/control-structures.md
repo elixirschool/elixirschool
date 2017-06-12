@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 制御構造
-category: basics
-order: 5
-lang: jp
 ---
 
 このレッスンではElixirで利用できる制御構造を見ていきます。

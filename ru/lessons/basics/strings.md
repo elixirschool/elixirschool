@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Строки
-category: basics
-order: 14
-lang: ru
 ---
 
 Строки, списки символов, графемы и коды символов.

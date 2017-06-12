@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: File thực thi
-category: advanced
-order: 3
-lang: vi
 ---
 
 Để tạo các file thực thi trong Elixir chúng ta sẽ sử dụng escript. Escript tạo một thực thi mà có thể chạy trên bất kỳ hệ thống nào với Erlang được cài đặt. 

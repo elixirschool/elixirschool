@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 埋め込みElixir (EEx)
-category: specifics
-order: 3
-lang: jp
 ---
 
 RubyにERBが、そしてJavaにJSPがあるようにElixirにもEEx即ち埋め込みElixirがあります。EExを使って文字列の中にElixirを埋め込んで評価することができます。
