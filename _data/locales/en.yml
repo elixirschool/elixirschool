@@ -1,0 +1,17 @@
+script_direction: ltr
+title: Elixir School
+description: Lessons about the Elixir programming language
+toc: Table of Contents
+share: Share This Page
+sections:
+  home: Home
+  basics: Basics
+  advanced: Advanced
+  specifics: Specifics
+  libraries: Libraries
+version_messages:
+  outdated: "Some contents of this translation may be outdated."
+  major: "Several major changes were applied to the original lesson since the last update."
+  minor: "Several minor changes were applied to the original lesson since the last update."
+  patch: "Several patches were applied to the original lesson since the last update."
+  none: "This translation is up to date."
