@@ -126,6 +126,7 @@ gems:
   - kramdown
   - jekyll-assets
   - jekyll-sitemap
+  - jekyll-redirect-from
 
 # Markdown Config
 markdown: kramdown
