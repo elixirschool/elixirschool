@@ -10,13 +10,15 @@
 
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:site_name" content="ElixirSchool">
-  <meta property="og:title" content="{% include title.html %}">
+  <meta property="og:title" content="{{locale.title}}">
   <meta property="og:description" content="{{ site.description[lang] }}">
   <meta property="og:image" content="{{ site.og_image }}">
 
-  <title>
-    {% include title.html %}
-  </title>
+  {% if locale.title == page.title or page.title == nil %}
+    <title>{{ locale.title }}</title>
+  {% else %}
+    <title>{{ page.title }} &middot; {{ locale.title }}</title>
+  {% endif %}
 
   <!-- CSS -->
   {% stylesheet app %}
