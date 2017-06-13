@@ -13,7 +13,7 @@
         list: '',
         item: ''
       },
-      backToTopClasses: 'icon-arrow-up back-to-top'
+      backToTopClasses: 'icon-chevron-up2 back-to-top'
     },
     settings = $.extend(defaults, options);
 

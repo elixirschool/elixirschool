@@ -16,7 +16,7 @@
           {% if forloop.first %}
             <div class="sidebar-nav-group {{ _section }}">
               <div class="sidebar-nav-header">
-                <i class="fa {% if page.section != _section %} fa-chevron-right {% else %} fa-chevron-down {% endif %}"></i>
+                <i class="icon {% if page.section != _section %} icon-chevron-right {% else %} icon-chevron-down {% endif %}"></i>
                 <span>{{ page.locale.sections[_section] }}</span>
               </div>
               <div class="sidebar-nav-list" {% if page.section != _section %} style="display: none;" {% endif %}>
