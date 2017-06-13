@@ -148,7 +148,7 @@ sitemap:
   priority_name: 'priority'
 
 elixir:
-  version: 1.4.0
+  version: 1.4.4
 
 erlang:
   OTP: 19
