@@ -71,7 +71,6 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
-  font-awesome-sass
   jekyll
   jekyll-assets
   jekyll-redirect-from
