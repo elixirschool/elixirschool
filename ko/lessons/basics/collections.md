@@ -169,7 +169,7 @@ iex> map.hello
 "world"
 ```
 
-맵의 또다른 흥미로운 부분은 경샌을 위한 자신만의 문법입니다.
+맵의 또다른 흥미로운 부분은 갱신을 위한 자신만의 문법입니다.
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
