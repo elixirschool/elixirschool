@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 layout: page
 title: Kolekcie
 category: basics
@@ -75,7 +75,7 @@ iex> tail
 
 ## Tuples
 
-Tuples sú podobné zoznamom, no v pamäti sú ulošené ako súvislá oblasť. Vďaka tomu je prístup k ich prvkom veľmi rýchly, rovnako ako zisťovanie ich dĺžky (size). Na duhú stranu, modifikácia tuplov je náročná a pomalá, pretože nový (zmenený) tuple musí byť v pamäti kompletne prekopírovaný. Tuples definujeme pomocou zložených zátvoriek:
+Tuples sú podobné zoznamom, no v pamäti sú uložené ako súvislá oblasť. Vďaka tomu je prístup k ich prvkom veľmi rýchly, rovnako ako zisťovanie ich dĺžky (size). Na druhú stranu, modifikácia tuplov je náročná a pomalá, pretože nový (zmenený) tuple musí byť v pamäti kompletne prekopírovaný. Tuples definujeme pomocou zložených zátvoriek:
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
@@ -93,7 +93,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Keyword lists
 
-Keyword lists (keywordové zoznamy) a Mapy sú asociatívnymi kolekciami Elixiru. Obe dátové štruktúry implementujú modul `Dict`. Keyword listy sú zoznamami dvojprvkových tuplov, pričom prvým prvkom v každom tuple je vždy Atom. Z hľadiska výkonu sú na tom teda rovnako, ako zoznamy (rýchle čítanie, pomalé modifikácie):
+Keyword lists (zoznamy kľúčových slov) a Mapy sú asociatívnymi kolekciami Elixiru. Obe dátové štruktúry implementujú modul `Dict`. Keyword listy sú zoznamami dvojprvkových tuplov, pričom prvým prvkom v každom tuple je vždy Atom. Z hľadiska výkonu sú na tom teda rovnako, ako zoznamy (rýchle čítanie, pomalé modifikácie):
 
 ```elixir
 iex> [foo: "bar", hello: "world"]

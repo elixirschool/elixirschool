@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 layout: page
 title: Dokumentácia
 category: basics
@@ -14,7 +14,7 @@ Komentovanie a dokumentovanie kódu v Elixire.
 
 ## O dokumentovaní v Elixire
 
-Čo všetko a ako podrobne komentovať a dukumentovať zostáva vo svete programovania stále otvorenou otázkou. Všetci sa však asi zhodneme na tom, že dokumentovanie kódu je dôležité pre nás samotných a aj ďalších ľudí, ktorí budú s našim kódom pracovať.
+Čo všetko a ako podrobne komentovať a dokumentovať zostáva vo svete programovania stále otvorenou otázkou. Všetci sa však asi zhodneme na tom, že dokumentovanie kódu je dôležité pre nás samotných a aj ďalších ľudí, ktorí budú s našim kódom pracovať.
 
 Elixir berie dokumentáciu ako svoju plnohodnotnú súčasť (*first-class citizen*) a ponúka rôzne funkcie pre jej generovanie a jednoduchý prístup k nej. Jadro jazyka ponúka viacero možností anotácie kódu, pozrime sa na základné tri:
 

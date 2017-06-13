@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 layout: page
 title: Enum
 category: basics
@@ -19,7 +19,7 @@ Táto lekcia pokrýva len malú podmnožinu týchto funkcií - kompletný zoznam
 
 ### all?
 
-Funkcia `all?`, rovnako ako väčšina ostatných funkcii z modulu `Enum`, berie ako svoj argument funkciu, ktorú potom aplikuje na všetky prvky kolekcie. Ak táto funkcia vráti pre *všetky prvky* `true`, funkcia `all?` vráti hodnotu `true`, inak `false`:
+Funkcia `all?`, rovnako ako väčšina ostatných funkcií z modulu `Enum`, berie ako svoj argument funkciu, ktorú potom aplikuje na všetky prvky kolekcie. Ak táto funkcia vráti pre *všetky prvky* `true`, funkcia `all?` vráti hodnotu `true`, inak `false`:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -46,7 +46,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Táto funckia má niekoľko možností použitia, pozrite sa do oficiálnej dokumentácie: [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2).
+Táto funkcia má niekoľko možností použitia, pozrite sa do oficiálnej dokumentácie: [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2).
 
 ### chunk_by
 
@@ -75,7 +75,7 @@ __Poznámka__: Funkcia `each` vracia atom `:ok`.
 
 ### map
 
-Aplikuje poskutnutú funkciu na každý prvok kolekcie a vráti novú kolekciu s výsledkami týchto aplikácií:
+Aplikuje poskytnutú funkciu na každý prvok kolekcie a vráti novú kolekciu s výsledkami týchto aplikácií:
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x * 2 end)

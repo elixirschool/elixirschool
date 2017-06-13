@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 layout: page
 title: Comprehensions
 category: basics
@@ -7,7 +7,7 @@ order: 13
 lang: sk
 ---
 
-List comprehensions (*komprehenžny?*) sú syntaktickým zjednodučením cyklovania nad dátovými štruktúrami typu enumerable (kolekciami ako zoznamy a podobne). V tento lekcii sa naučíme, ako ich používať na iterovanie a generovanie.
+List comprehensions (*komprehenžny?*) sú syntaktickým zjednodušením cyklovania nad dátovými štruktúrami typu enumerable (kolekciami ako zoznamy a podobne). V tento lekcii sa naučíme, ako ich používať na iterovanie a generovanie.
 
 {% include toc.html %}
 
@@ -21,7 +21,7 @@ iex> for x <- zoznam, do: x*x
 [1, 4, 9, 16, 25]
 ```
 
-Vidíme, že je použité kľúčové slovo `for` nasledované generátorom. Čo je generátor? Je to výraz, ktorý generuje vždy ďalší prvok pre každú novú iteráciu. V našom príklade to je `x <- [1, 2, 3, 4]`.
+Vidíme, že je použité kľúčové slovo `for` nasledované generátorom. Čo je generátor? Je to výraz, ktorý generuje vždy ďalší prvok pre každú novú iteráciu. V našom príklade to je `x <- [1, 2, 3, 4, 5]`.
 
 Samozrejme, komprehenžny nie sú limitované na zoznamy, môžeme ich použiť na ľubovoľnú štruktúru typu enumerable:
 
@@ -86,7 +86,7 @@ iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
-Aj filtrov môžee použiť niekoľko naraz - napríklad takto by sme preskočili všetky hodnoty, ktoré nie sú párne a zároveň násobkom čísla 3:
+Aj filtrov môžeme použiť niekoľko naraz - napríklad takto by sme preskočili všetky hodnoty, ktoré nie sú párne a zároveň násobkom čísla 3:
 
 ```elixir
 iex> for x <- 1..100,
@@ -97,7 +97,7 @@ iex> for x <- 1..100,
 
 ## Použitie `:into`
 
-Čo ak chceme v komprehenžne pracovať s niečim iným, než zoznamom? Použijeme parameter `:into`! Tento parameter akceptuje ľubovoľnú štruktúru, ktorá implementuje protokol `Collectable`.
+Čo ak chceme, aby výsledkom komprehenžnu bolo niečo iné ako zoznam? Použijeme parameter `:into`! Tento parameter akceptuje ľubovoľnú štruktúru, ktorá implementuje protokol `Collectable`.
 
 Skúsme takto zmeniť keyword list na mapu:
 
@@ -113,4 +113,4 @@ iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-To je všetko! Komprehenžny sú jednoduchým a stručným spôsobom, ako iterovať cez kolekciue.
+To je všetko! Komprehenžny sú jednoduchým a stručným spôsobom, ako iterovať cez kolekcie.

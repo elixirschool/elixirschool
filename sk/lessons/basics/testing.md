@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 layout: page
 title: Testovanie
 category: basics
@@ -80,7 +80,7 @@ Niekedy potrebujeme testovať, že kód vyhodí chybu (prípadne konkrétny typ 
 
 ## Setup
 
-Niekedy potrebujeme pred samotnými testami vykonať nejaké pomocné činnosti. S tým nám pomôžu makrá `setup` a `setup_all`. Blok kódu v makre `setup` sa vykoná pred každým jednotlivým testom, blok v makre `setup_all` sa vykoná len raz - na začiatku pred spustením prvého testu. Oba bloky by mali vrátiť tuple v tvare `{:ok. stav}`, pričom `stav` bude dostupný v jednotlivých testoch.
+Niekedy potrebujeme pred samotnými testami vykonať nejaké pomocné činnosti. S tým nám pomôžu makrá `setup` a `setup_all`. Blok kódu v makre `setup` sa vykoná pred každým jednotlivým testom, blok v makre `setup_all` sa vykoná len raz - na začiatku pred spustením prvého testu. Oba bloky by mali vrátiť tuple v tvare `{:ok, stav}`, pričom `stav` bude dostupný v jednotlivých testoch.
 
 Ako príklad si do nášho súboru s testami doplníme blok `setup_all`:
 
@@ -101,6 +101,6 @@ end
 
 ## Mockovanie
 
-Niektoré testovacie framoworky využívajú techniku mockovania, čiže podsúvania atráp roznych objektov a funkcií testovanému kódu. Elixir sa však tomuto vyhýba a vývojárov od nej odradzuje. Ak vo svojom kóde dodrživate zásady dobrého funkcionálneho návrhu, mockovanie nikdy potrebovať nebudete, pretože svoje moduly a funkcie budete môcť jednoducho testovať na individuálnej úrovni.
+Niektoré testovacie frameworky využívajú techniku mockovania, čiže podsúvania atráp rôznych objektov a funkcií testovanému kódu. Elixir sa však tomuto vyhýba a vývojárov od nej odradzuje. Ak vo svojom kóde dodrživate zásady dobrého funkcionálneho návrhu, mockovanie nikdy potrebovať nebudete, pretože svoje moduly a funkcie budete môcť jednoducho testovať na individuálnej úrovni.
 
 Odolajte pokušeniu.
