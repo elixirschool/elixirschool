@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: Уроци за езика за програмиране Elixir
-toc: Съдържание
+project:
+  title: Elixir School
+  description: Уроци за езика за програмиране Elixir
+table_of_contents: Съдържание
 share: Споделете тази страница
 sections:
+  home: Home
   basics: Основи
   advanced: За Напреднали
   specifics: Спесифики

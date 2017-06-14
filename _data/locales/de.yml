@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: Übungen zur Programmiersprache Elixir
-toc: Inhaltsverzeichnis
+project:
+  title: Elixir School
+  description: Übungen zur Programmiersprache Elixir
+table_of_contents: Inhaltsverzeichnis
 share: Share This Page
 sections:
+  home: Home
   basics: Grundlagen
   advanced: Erweitert
   specifics: Einzelheiten

@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: Pelajaran mengenai bahasa aturcara Elixir
-toc: Isi Kandungan
+project:
+  title: Elixir School
+  description: Pelajaran mengenai bahasa aturcara Elixir
+table_of_contents: Isi Kandungan
 share: Share This Page
 sections:
+  home: Home
   basics: Asas
   advanced: Lanjutan
   specifics: Khusus

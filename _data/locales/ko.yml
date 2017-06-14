@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: 프로그래밍 언어 Elixir 배우기
-toc: 목차
+project:
+  title: Elixir School
+  description: 프로그래밍 언어 Elixir 배우기
+table_of_contents: 목차
 share: 이 페이지 공유하기
 sections:
+  home: Home
   basics: 기초
   advanced: 심화
   specifics: 활용

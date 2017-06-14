@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: Elixir programlama dili dersleri
-toc: İçerik
+project:
+  title: Elixir School
+  description: Elixir programlama dili dersleri
+table_of_contents: İçerik
 share: Paylaş
 sections:
+  home: Home
   basics: Temeller
   advanced: Gelişmiş
   specifics: Spesifik

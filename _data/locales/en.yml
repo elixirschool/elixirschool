@@ -1,7 +1,8 @@
 script_direction: ltr
-title: Elixir School
-description: Lessons about the Elixir programming language
-toc: Table of Contents
+project:
+  title: Elixir School
+  description: Lessons about the Elixir programming language
+table_of_contents: Table of Contents
 share: Share This Page
 sections:
   home: Home

@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: Μαθήματα προγραμματισμού της γλώσσας Elixir
-toc: Πίνακας περιεχομένων
+project:
+  title: Elixir School
+  description: Μαθήματα προγραμματισμού της γλώσσας Elixir
+table_of_contents: Πίνακας περιεχομένων
 share: Share This Page
 sections:
+  home: Home
   basics: Βασικά
   advanced: Προχωρημένα
   specifics: Ιδιαιτερότητες

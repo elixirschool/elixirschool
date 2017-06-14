@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: Lekcje programowania w języku Elixir
-toc: Spis treści
+project:
+  title: Elixir School
+  description: Lekcje programowania w języku Elixir
+table_of_contents: Spis treści
 share: Podziel się
 sections:
+  home: Home
   basics: Podstawy
   advanced: Zaawansowane
   specifics: Specyficzne

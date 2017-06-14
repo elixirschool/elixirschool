@@ -5,19 +5,19 @@
 
   <link href="http://gmpg.org/xfn/11" rel="profile">
 
-  <meta name="description" content="{{ page.locale.description }}">
+  <meta name="description" content="{{ page.locale.project.description }}">
   <meta name="author" content="Sean Callan">
 
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:site_name" content="ElixirSchool">
-  <meta property="og:title" content="{{ page.locale.title }}">
-  <meta property="og:description" content="{{ page.locale.description }}">
+  <meta property="og:title" content="{{ page.locale.project.title }}">
+  <meta property="og:description" content="{{ page.locale.project.description }}">
   <meta property="og:image" content="{{ site.og_image }}">
 
-  {% if page.locale.title == page.title or page.title == nil %}
-    <title>{{ page.locale.title }}</title>
+  {% if page.locale.project.title == page.title or page.title == nil %}
+    <title>{{ page.locale.project.title }}</title>
   {% else %}
-    <title>{{ page.title }} &middot; {{ page.locale.title }}</title>
+    <title>{{ page.title }} &middot; {{ page.locale.project.title }}</title>
   {% endif %}
 
   <!-- CSS -->
