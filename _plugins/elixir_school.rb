@@ -1,4 +1,4 @@
-module Languages
+module ElixirSchool
   class Generator < Jekyll::Generator
     def generate(site)
       languages = languages(site)
