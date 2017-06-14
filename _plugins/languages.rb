@@ -11,10 +11,10 @@ module Languages
 
       # Build menu and interlang names
       # Assign global variable site.menu and site.interlang_names
-      site.config['menu'] = {}
+      site.config['contents'] = {}
       site.config['interlang_names'] = {}
       languages.each do |lang|
-        site.config['menu'][lang] = menu(site, lang)
+        site.config['contents'][lang] = contents(site, lang)
         site.config['interlang_names'][lang] = interlang_names(site, lang, " / ")
       end
     end
@@ -34,6 +34,7 @@ module Languages
         page.data['chapter'] = chapter_name
         page.data['locale'] = site.data['locales'][lang]
 
+        # Chapter data
         if section and chapter_name
           site.config['tree'][lang] ||= {}
           site.config['tree'][lang][section] ||= {}
@@ -49,6 +50,7 @@ module Languages
         end
       end
 
+      # Interlang data
       site.config['tree'].each do |lang, sections|
         sections.each do |section, chapters|
           chapters.each do |chapter_name, chapter|
@@ -57,6 +59,7 @@ module Languages
           end
         end
       end
+
       site
     end
 
@@ -94,20 +97,35 @@ module Languages
       end
     end
 
-    # builds the menu based on the order given in `chapters` datafile
-    def menu(site, lang)
-      menu = Hash.new
-      site.data['chapters'].each do |section, chapters|
+    # builds the contents based on the order given in `contents` datafile
+    def contents(site, lang)
+      previous = nil
+
+      contents = {}
+      site.data['contents'].each do |section, chapters|
         chapters.each_with_index do |chapter_name, index|
           if chapter = get_chapter(site, lang, section, chapter_name)
             chapter['chapter_number'] = index + 1
-            menu ||= {}
-            menu[section] ||= {}
-            menu[section][chapter_name] = chapter
+            current = [section, chapter_name]
+
+            contents[section] ||= {}
+            contents[section][chapter_name] = chapter
+            # insert 'previous' in current chapter
+            contents[section][chapter_name]['previous'] = previous
+            # insert 'next' in previous chapter
+            if previous != nil
+              contents[previous[0]][previous[1]]['next'] = current
+            end
+
+            # update previous for next iteration
+            previous = current
           end
         end
       end
-      menu
+      # set 'next' for last contents entry
+      contents[previous[0]][previous[1]]['next'] = nil
+
+      contents
     end
 
     def get_chapter(site, lang, section, chapter_name)
