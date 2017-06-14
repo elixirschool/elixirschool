@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: Giáo trình cho ngôn ngữ lập trình Elixir
-toc: Mục lục
+project:
+  title: Elixir School
+  description: Giáo trình cho ngôn ngữ lập trình Elixir
+table_of_contents: Mục lục
 share: Chia sẻ trang này
 sections:
+  home: Home
   basics: Cơ bản
   advanced: Nâng cao
   specifics: Cụ thể

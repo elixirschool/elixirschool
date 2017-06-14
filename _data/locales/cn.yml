@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: Elixir 编程语言教程
-toc: 目录
+project:
+  title: Elixir School
+  description: Elixir 编程语言教程
+table_of_contents: 目录
 share: 分享本页面
 sections:
+  home: Home
   basics: 基础
   advanced: 高级
   specifics: 专题

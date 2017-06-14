@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: এলিক্সির স্কুল
-toc: সূচীপত্র
+project:
+  title: Elixir School
+  description: এলিক্সির স্কুল
+table_of_contents: সূচীপত্র
 share: পৃষ্ঠা শেয়ার করুন
 sections:
+  home: Home
   basics: ব্যাসিকস
   advanced: দক্ষ পর্যায়
   specifics: নিয়মাবলি

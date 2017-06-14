@@ -1,7 +1,7 @@
-{% if page.title == page.locale.title or page.title == "Elixir School" %}
-  {% assign title = page.locale.description %}
+{% if page.title == page.locale.project.title or page.title == "Elixir School" %}
+  {% assign title = page.locale.project.description %}
 {% else %}
-  {% assign title = page.title |%}
+  {% assign title = page.title %}
 {% endif %}
 <hr />
 <h3 id="social">

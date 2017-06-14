@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: Навчальні матеріали про мову програмування Elixir
-toc: Зміст
+project:
+  title: Elixir School
+  description: Навчальні матеріали про мову програмування Elixir
+table_of_contents: Зміст
 share: Поділитися
 sections:
+  home: Home
   basics: Основи
   advanced: Просунуті
   specifics: Конкретика

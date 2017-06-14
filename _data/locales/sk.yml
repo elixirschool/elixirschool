@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: Lekcie o programovacom jazyku Elixir
-toc: Obsah
+project:
+  title: Elixir School
+  description: Lekcie o programovacom jazyku Elixir
+table_of_contents: Obsah
 share: Zdieľaj túto stránku
 sections:
+  home: Home
   basics: Základy
   advanced: Pokročilé
   specifics: Špecifiká

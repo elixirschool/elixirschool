@@ -1,9 +1,11 @@
 script_direction: ltr
-title: Elixir School
-description: プログラミング言語Elixirのレッスン
-toc: 目次
+project:
+  title: Elixir School
+  description: プログラミング言語Elixirのレッスン
+table_of_contents: 目次
 share: このページをシェアする
 sections:
+  home: Home
   basics: 基礎
   advanced: 上級
   specifics: 詳細
