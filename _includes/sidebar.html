@@ -10,31 +10,33 @@
     </div>
 
     <nav class="sidebar-nav">
-      {% for sections in site.menu[page.lang] %}
+      {% for sections in site.contents[page.lang] %}
         {% assign _section = sections[0] | strip %}
-        {% for _chapter in sections[1] %}
-          {% if forloop.first %}
-            <div class="sidebar-nav-group {{ _section }}">
-              <div class="sidebar-nav-header">
-                <i class="icon {% if page.section != _section %} icon-chevron-right {% else %} icon-chevron-down {% endif %}"></i>
-                <span>{{ page.locale.sections[_section] }}</span>
-              </div>
-              <div class="sidebar-nav-list" {% if page.section != _section %} style="display: none;" {% endif %}>
-          {% endif %}
+        {% if _section != 'home' %}
+          {% for _chapter in sections[1] %}
+            {% if forloop.first %}
+              <div class="sidebar-nav-group {{ _section }}">
+                <div class="sidebar-nav-header">
+                  <i class="icon {% if page.section != _section %} icon-chevron-right {% else %} icon-chevron-down {% endif %}"></i>
+                  <span>{{ page.locale.sections[_section] }}</span>
+                </div>
+                <div class="sidebar-nav-list" {% if page.section != _section %} style="display: none;" {% endif %}>
+            {% endif %}
 
-              <div class="sidebar-nav-item">
-                {% if page.url == _chapter[1].url %}
-                  {{ _chapter[1].chapter_number }}. <span class="sidebar-lesson active">{{ _chapter[1].title }}</span>
-                {% else %}
-                  {{ _chapter[1].chapter_number }}. <a class="sidebar-lesson" href="{{ _chapter[1].url }}">{{ _chapter[1].title }}</a>
-                {% endif %}
-              </div>
+                <div class="sidebar-nav-item">
+                  {% if page.url == _chapter[1].url %}
+                    {{ _chapter[1].chapter_number }}. <span class="sidebar-lesson active">{{ _chapter[1].title }}</span>
+                  {% else %}
+                    {{ _chapter[1].chapter_number }}. <a class="sidebar-lesson" href="{{ _chapter[1].url }}">{{ _chapter[1].title }}</a>
+                  {% endif %}
+                </div>
 
-          {% if forloop.last %}
+            {% if forloop.last %}
+                </div>
               </div>
-            </div>
-          {% endif%}
-        {% endfor %}
+            {% endif%}
+          {% endfor %}
+        {% endif %}
       {% endfor %}
     </nav>
 
