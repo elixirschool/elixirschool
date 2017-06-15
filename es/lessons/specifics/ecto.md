@@ -64,7 +64,9 @@ defmodule ExampleApp.App do
 end
 ```
 
+<!-- TODO: Remove this as a comment, once advanced/otp-supervisors  is translated to Spanish
 Para mayor información acerca de supervisores revisa la lección [Supervisores OTP](../../advanced/otp-supervisors).
+-->
 
 ### Configuración
 

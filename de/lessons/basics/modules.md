@@ -252,4 +252,4 @@ Das `Ecto.Migration.__using__/1`-Makro inkludiert einen import-Aufruf, so dass w
 
 Nochmal zur Wiederholung: Das use-Makro ruft einfach nur das `__using__/1`-Makro auf dem angegebenen Modul auf. Um wirklich zu verstehen, was es tut, musst du das `__using__/1`-Makro lesen.
 
-**Notiz**: `quote`, `require`, `use` und `alias` sind Makros, die wir bei der [Metaprogrammierung](../advanced/metaprogramming) brauchen. 
+**Notiz**: `quote`, `require`, `use` und `alias` sind Makros, die wir bei der [Metaprogrammierung](../../advanced/metaprogramming) brauchen. 

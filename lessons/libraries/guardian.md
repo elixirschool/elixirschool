@@ -120,7 +120,7 @@ Now that we have the configuration in place to use Guardian, we need to integrat
 
 ## HTTP requests
 
-Guardian provides a number of Plugs to facilitate integration into HTTP requests. You can learn about Plug in a [separate lesson](../specifics/plug/). Guardian doesn't require Phoenix, but using Phoenix in the following examples will be easiest to demonstrate.
+Guardian provides a number of Plugs to facilitate integration into HTTP requests. You can learn about Plug in a [separate lesson](../../specifics/plug/). Guardian doesn't require Phoenix, but using Phoenix in the following examples will be easiest to demonstrate.
 
 The easiest way to integrate into HTTP is via the router. Since Guardian's HTTP integrations are all based on plugs, you can use these anywhere a plug could be used.
 

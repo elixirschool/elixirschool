@@ -13,7 +13,7 @@ We know from experience it's unruly to have all of our functions in the same fil
 
 ## Modules
 
-Modules allow us to organize functions into a namespace. In addition to grouping functions, they allow us to define named and private functions which we covered in the [functions lesson](../functions.md).
+Modules allow us to organize functions into a namespace. In addition to grouping functions, they allow us to define named and private functions which we covered in the [functions lesson](../functions/).
 
 Let's look at a basic example:
 

@@ -126,7 +126,8 @@ iex>
 
 La du merke til hvordan vi kan designe dokumentasjon med markup, og at terminalen printer det ut? Bortsett fra at at dette er skikkelig kult, og en fantastisk del av Elixir's store økosystem, blir det straks mer interessant når vi utforsker ExDoc, som genererer HTML dokumentasjon for oss!
 
-**Merk:** `@spec` brukes for statistisk analyse av kode. For å lære mer, sjekk ut [Spesifikasjoner og Typer](../../advanced/typespec).
+**Merk:** `@spec` brukes for statistisk analyse av kode. <!-- TODO: Remove this as a comment, once advanced/typespec  is translated
+For å lære mer, sjekk ut [Spesifikasjoner og Typer](../../advanced/typespec/). -->
 
 ## ExDoc
 

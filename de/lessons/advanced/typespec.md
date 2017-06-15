@@ -57,7 +57,7 @@ def sum_times(a, params) do
 end
 ```
 
-Wir haben ein struct im `Examples`-Modul hinzugefügt, das die beiden Felder `first` und `last` beinhaltet. Das ist die einfachere Version des structs aus dem `Range`-Modul. Wir sprechen noch über `structs`, wenn wir [Module](lessons/basics/modules/#structs) besprechen. Lass uns davon ausgehen, dass wir das `Examples`-struct an vielen Stellen brauchen und es nervtötend ist lange, komplexe Spezifikationen zu schreiben, die Bugs herbeiführen könnten. Eine Lösung für dieses Problem ist `@type`.
+Wir haben ein struct im `Examples`-Modul hinzugefügt, das die beiden Felder `first` und `last` beinhaltet. Das ist die einfachere Version des structs aus dem `Range`-Modul. Wir sprechen noch über `structs`, wenn wir [Module](../../basics/modules/#structs) besprechen. Lass uns davon ausgehen, dass wir das `Examples`-struct an vielen Stellen brauchen und es nervtötend ist lange, komplexe Spezifikationen zu schreiben, die Bugs herbeiführen könnten. Eine Lösung für dieses Problem ist `@type`.
 
 Elixir hat drei Direktiven für Typen:
 
