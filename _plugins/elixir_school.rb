@@ -1,9 +1,12 @@
 module ElixirSchool
   class Generator < Jekyll::Generator
     def generate(site)
+      default_lang = site.config['default_lang']
       languages = languages(site)
+
       # Assign global variables
       site.config['languages'] = languages
+      site.config['default_locale'] = site.data['locales'][default_lang]
 
       # Build chapter tree of the whole site
       # Assign global variable site.tree
@@ -22,6 +25,7 @@ module ElixirSchool
     private
     def build_tree(site)
       site.config['tree'] = {}
+      default_lang = site.config['default_lang']
 
       site.pages.each do |page|
         lang    = get_lang_from_url(site, page.url)
@@ -41,7 +45,13 @@ module ElixirSchool
           site.config['tree'][lang][section][chapter_name] =
             { 'url'     => page.url,
               'title'   => page['title'],
-              'version' => page['version'],
+              'version' =>
+                if page['version']
+                  page['version'].split(".").map(&:to_i)
+                else
+                  nil
+                end,
+              'version_severity' => nil,
               'lang'    => lang,
               'section' => section,
               'chapter' => chapter_name,
@@ -50,14 +60,35 @@ module ElixirSchool
         end
       end
 
-      # Interlang data
+      # Add additional data once the tree has been built
       site.config['tree'].each do |lang, sections|
         sections.each do |section, chapters|
           chapters.each do |chapter_name, chapter|
+            # Interlang data
             site.config['tree'][lang][section][chapter_name]['interlang'] =
               interlang(site, section, chapter_name)
+
+            # Version severity
+            if default_lang == lang
+              version_severity = "none"
+            else
+              reference_version = site.config['tree'][default_lang][section][chapter_name]['version']
+              version_severity = version_severity(reference_version, chapter['version'])
+            end
+            site.config['tree'][lang][section][chapter_name]['version_severity'] = version_severity
           end
         end
+      end
+
+      # last pass to define page.data['leaf']
+      site.pages.each do |page|
+        lang = page.data['lang']
+        section = page.data['section']
+        chapter_name = page.data['chapter']
+        leaf = site.config['tree'][lang][section][chapter_name]
+
+        page.data['leaf'] = leaf
+        page.data['version_severity'] = leaf['version_severity']
       end
 
       site
@@ -171,6 +202,24 @@ module ElixirSchool
         end
       end
       names
+    end
+
+    def version_severity(reference_version, version)
+      if reference_version.is_a?(Array) and version.is_a?(Array)
+        if reference_version == version
+          "none"
+        elsif reference_version[0] > version[0]
+          "major"
+        elsif reference_version[1] > version[1]
+          "minor"
+        elsif reference_version[2] > version[2]
+          "patch"
+        else
+          "error"
+        end
+      else
+        "error"
+      end
     end
   end
 end

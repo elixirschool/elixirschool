@@ -16,3 +16,4 @@ version_messages:
   minor: "Varios cambios menores fueron aplicados a la lección original desde la última actualización."
   patch: "Varios parches fueron aplicados a la lección original desde la última actualización."
   none: "Esta traducción está actualizada."
+  error: "There is an error in the version definition of this chapter."
