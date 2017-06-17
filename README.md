@@ -42,7 +42,7 @@ In addition to the steps above there are a few addition steps required for trans
 1. Create a folder using the 2 character code (e.g. jp, en, es, etc) with lesson subfolders:
 
   ```shell
-  $ cd elixir_school
+  $ cd elixir-school
   $ mkdir -p jp/lessons/{basics,advanced,specifics,libraries}
   $ touch jp/lessons/{basics,advanced,specifics,libraries}/.gitignore
   ```
