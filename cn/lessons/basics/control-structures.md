@@ -99,7 +99,7 @@ iex> case {1, 2, 3} do
 ## `cond`
 当我们需要匹配条件而不是值的时候，可以使用 `cond`，这和其他语言的 `else if` 或者 `elsif` 相似：
 
-_这个例子直接取自 Elixir 官方教程的 [上手指南](Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)_
+_这个例子直接取自 Elixir 官方教程的 [上手指南](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)_
 
 ```elixir
 iex> cond do

@@ -120,7 +120,7 @@ Gdy mamy już naszą konfigurację na miejscu, musimy jakoś zintegrować Guardi
 
 ## Żądania HTTP
 
-Guardian udostępnia pewną ilość plugów, pozwalających na integrację z protokołem HTTP. O plugach możesz poczytać [w lekcji im poświęconej](../specifics/plug/). Guardian nie wymaga Phoenixa, ale użyjemy go tutaj by uprościć przykład.
+Guardian udostępnia pewną ilość plugów, pozwalających na integrację z protokołem HTTP. O plugach możesz poczytać [w lekcji im poświęconej](../../specifics/plug/). Guardian nie wymaga Phoenixa, ale użyjemy go tutaj by uprościć przykład.
 
 Najprostszą metodą integracji jest użycie routera, ale jako że sam proces integracji opiera się o mechanizm plugów, to można go użyć wszędzie tam, gdzie mają zastosowanie plugi.
 

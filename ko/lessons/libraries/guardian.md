@@ -120,7 +120,7 @@ serializer는 `sub`(subject) 필드에서 식별 된 자원을 찾는 역활을 
 
 ## HTTP 요청
 
-Guardian은 HTTP 요청에 쉽게 통합할 수 있도록 다양한 Plug를 제공합니다. [다른 강좌](../specifics/plug/)에서 Plug를 배울 수 있습니다. Guardian은 Phoenix를 요구하지 않지만, 다음 예제에서는 가장 쉽게 보여주기 위해 Phoenix를 사용하겠습니다.
+Guardian은 HTTP 요청에 쉽게 통합할 수 있도록 다양한 Plug를 제공합니다. [다른 강좌](../../specifics/plug/)에서 Plug를 배울 수 있습니다. Guardian은 Phoenix를 요구하지 않지만, 다음 예제에서는 가장 쉽게 보여주기 위해 Phoenix를 사용하겠습니다.
 
 HTTP에 통합하는 가장 쉬운 방법은 라우터를 사용하는 것입니다. Guardian의 HTTP 통합은 모두 Plug 기반이기 때문에 Plug를 사용할 수 있는 곳이라면 어디서나 사용할 수  있습니다.
 

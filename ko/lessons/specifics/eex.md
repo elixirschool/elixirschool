@@ -79,4 +79,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 `EEx.SmartEngine` 할당은 템플릿 컴파일 없이 할당하는 값을 변경할 수 있으므로 유용합니다.
 
-자신만의 엔진을 만드는 것에 흥미가 있으신가요? 무엇이 필요한지 알아보기 위해, [`EEx.Engine`]((https://hexdocs.pm/eex/EEx.Engine.html)가 어떻게 동작하는지 확인해보세요.
+자신만의 엔진을 만드는 것에 흥미가 있으신가요? 무엇이 필요한지 알아보기 위해, [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html)가 어떻게 동작하는지 확인해보세요.

@@ -253,4 +253,6 @@ end
 
 আবারো বলা হচ্ছে- ইউজ ম্যাক্রো শুধুমাত্র ওই মডিউলের `__using__/1` কল করে। ভালভাবে বুঝতে হলে পড়ে নিন `__using__/1` এর ডকুমেন্টেশান। 
 
-**নোট**: `quote`, `alias`, `use`, `require` হল ম্যাক্রো যা [মেটাপ্রোগ্রামিংয়ের](../../advanced/metaprogramming) সময়ে ব্যবহৃত হয়।
+**নোট**: `quote`, `alias`, `use`, `require` হল ম্যাক্রো যা মেটাপ্রোগ্রামিংয়ের সময়ে ব্যবহৃত হয়।
+<!-- TODO: Add link we advanced/metaprogramming is translated
+[মেটাপ্রোগ্রামিংয়ের](../../advanced/metaprogramming) সময়ে ব্যবহৃত হয়। -->
