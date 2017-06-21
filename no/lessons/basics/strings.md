@@ -4,7 +4,7 @@ layout: page
 title: Strenger
 category: basics
 order: 14
-lang: no
+lang: "no"
 ---
 
 Strenger, Karakter lister, Grafemer og Kode punkter.

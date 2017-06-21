@@ -4,7 +4,7 @@ layout: page
 title: Sigiler
 category: basics
 order: 10
-lang: no
+lang: "no"
 ---
 
 Bruke og lage sigiler.

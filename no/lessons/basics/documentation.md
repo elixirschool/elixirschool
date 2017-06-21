@@ -4,7 +4,7 @@ layout: page
 title: Dokumentasjon
 category: basics
 order: 11
-lang: no
+lang: "no"
 ---
 
 Dokumentering av elixir kode.

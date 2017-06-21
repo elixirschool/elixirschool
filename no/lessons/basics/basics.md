@@ -4,7 +4,7 @@ layout: page
 title: Grunnleggende Elixir
 category: basics
 order: 1
-lang: no
+lang: "no"
 ---
 
 Installasjon, grunnleggende typer og operatorer.
