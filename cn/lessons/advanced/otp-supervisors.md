@@ -39,7 +39,7 @@ children = [
 - `:simple_one_for_one` - supervisor 只能包含一个子进程
 
 ### 嵌套
-除了 worker 进程，我们还可以监控 supervisors，从而生成 supervisor 树。和之前的唯一不同就是，用 `worker/3` 来替换 `supervisor/3`：
+除了 worker 进程，我们还可以监控 supervisors，从而生成 supervisor 树。和之前的唯一不同就是，用 `supervisor/3` 来替换 `worker/3` ：
 
 ```elixir
 import Supervisor.Spec
