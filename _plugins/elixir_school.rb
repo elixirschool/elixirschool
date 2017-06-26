@@ -137,7 +137,10 @@ module ElixirSchool
         chapters.each_with_index do |chapter_name, index|
           if chapter = get_chapter(site, lang, section, chapter_name)
             chapter['chapter_number'] = index + 1
-            current = [section, chapter_name]
+            current = {
+              'section' => section,
+              'chapter' => chapter_name
+            }
 
             contents[section] ||= {}
             contents[section][chapter_name] = chapter
@@ -145,7 +148,7 @@ module ElixirSchool
             contents[section][chapter_name]['previous'] = previous
             # insert 'next' in previous chapter
             if previous != nil
-              contents[previous[0]][previous[1]]['next'] = current
+              contents[previous['section']][previous['chapter']]['next'] = current
             end
 
             # update previous for next iteration
@@ -154,7 +157,7 @@ module ElixirSchool
         end
       end
       # set 'next' for last contents entry
-      contents[previous[0]][previous[1]]['next'] = nil
+      contents[previous['section']][previous['chapter']]['next'] = nil
 
       contents
     end

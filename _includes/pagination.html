@@ -1,0 +1,18 @@
+{% assign pagination = page.leaf %}
+{% unless pagination.previous == nil and pagination.next == nil %}
+<hr />
+<ul class="pagination">
+    {% unless pagination.previous == nil %}
+    {% assign previous = site.tree[page.lang][pagination.previous.section][pagination.previous.chapter] %}
+    <li class="pagination-prev">
+        <a href="{{ previous.url }}" title="{{ previous.title }}">← {{ previous.title }}</a>
+    </li>
+    {% endunless %}
+    {% unless pagination.next == nil %}
+    {% assign next = site.tree[page.lang][pagination.next.section][pagination.next.chapter] %}
+    <li class="pagination-next">
+        <a href="{{ next.url }}" title="{{ next.title }}">{{ next.title }} →</a>
+    </li>
+    {% endunless %}
+</ul>
+{% endunless %}
