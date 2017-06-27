@@ -12,15 +12,20 @@
     <nav class="sidebar-nav">
       {% for sections in site.contents[page.lang] %}
         {% assign _section = sections[0] | strip %}
+        {% if page.section == _section or (page.section == "home" and _section == "basics") %}
+          {% assign opened = true %}
+        {% else %}
+          {% assign opened = false %}
+        {% endif %}
         {% if _section != 'home' %}
           {% for _chapter in sections[1] %}
             {% if forloop.first %}
               <div class="sidebar-nav-group {{ _section }}">
                 <div class="sidebar-nav-header">
-                  <i class="icon {% if page.section != _section %} icon-chevron-right {% else %} icon-chevron-down {% endif %}"></i>
+                  <i class="icon {% if opened %} icon-chevron-down {% else %} icon-chevron-right {% endif %}"></i>
                   <span>{{ page.locale.sections[_section] }}</span>
                 </div>
-                <div class="sidebar-nav-list" {% if page.section != _section %} style="display: none;" {% endif %}>
+                <div class="sidebar-nav-list" {% unless opened %} style="display: none;" {% endunless %}>
             {% endif %}
 
                 <div class="sidebar-nav-item">
