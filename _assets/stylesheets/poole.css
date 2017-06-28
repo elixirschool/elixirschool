@@ -386,7 +386,7 @@ tbody tr:nth-child(odd) th {
   overflow: hidden; /* clearfix */
   width: 100%;
   display: block;
-  padding: 0px;
+  padding: 0;
 }
 
 .pagination li {
@@ -397,7 +397,12 @@ tbody tr:nth-child(odd) th {
   float: left;
   margin-left: 0.5rem;
 }
+
 .pagination-next {
   float: right;
   margin-right: 0.5rem;
+}
+
+ul.pagination a.pagination-link {
+  text-decoration: none;
 }
