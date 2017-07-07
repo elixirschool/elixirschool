@@ -152,8 +152,10 @@ Enum.max([], fn -> :bar end)
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
+
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+
 iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 "cba1"
 ```
@@ -161,6 +163,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 ### sort
 
 Η ταξινόμηση των συλλογών μας γίνεται εύκολη όχι με μία, αλλά με δύο συναρτήσεις ταξινόμησης.
+
 Η `sort/1` χρησιμοποιεί την ταξινόμηση όρων της Erlang για να καθορίσει την σειρά ταξινόμησης:
 
 ```elixir
