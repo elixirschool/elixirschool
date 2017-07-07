@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Enum
-category: basics
-order: 3
-lang: jp
 ---
 
 コレクションを列挙していくために用いる一連のアルゴリズム。

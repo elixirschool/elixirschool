@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Reťazce
-category: basics
-order: 14
-lang: sk
 ---
 
 Reťazce, charlisty, grafémy a codepointy

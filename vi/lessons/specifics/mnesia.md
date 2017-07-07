@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Mnesia
-category: specifics
-order: 5
-lang: vi
 ---
 
 Mnesia là một hệ thống nặng kí trong việc quản trị cơ sở dữ liệu thời gian thực.

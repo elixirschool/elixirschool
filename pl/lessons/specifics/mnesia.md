@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Mnesia
-category: specifics
-order: 5
-lang: pl
 ---
 
 Mnesia to rozwiązanie „wagi ciężkiej” do zarządzania w czasie rzeczywistym rozproszonymi bazami danych.

@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Управляющие конструкции
-category: basics
-order: 5
-lang: ru
 ---
 
 В этом уроке мы рассмотрим доступные в языке Elixir управляющие конструкции.

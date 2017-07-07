@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Funzioni
-category: basics
-order: 6
-lang: it
 ---
 
 In Elixir, ed in altri linguaggi funzionali, le funzioni sono oggetti di prima classe. Impareremo i vari tipi di funzioni in Elixir, cosa le rende differenti, e come possiamo usarle.

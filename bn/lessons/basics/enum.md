@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: ইনাম
-category: basics
-order: 3
-lang: bn
 ---
 
 কালেকশন এ ইনামুরেট এর সুবিধা নিবার  জন্য কিছু এলগোরিদম ।

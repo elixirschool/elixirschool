@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Embedded Elixir (EEx)
-category: specifics
-order: 3
-lang: de
 ---
 
 So wie Ruby ERB und Java JSPs hat, hat Elixir EEx. EEx steht für "Embedded Elixir". Mit EEx können wir Elixir-Ausdrücke innerhalb von Strings einbetten und auswerten.

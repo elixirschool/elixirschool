@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Plug
-category: specifics
-order: 1
-lang: ko
 ---
 
 Ruby를 잘 알고 계신다면 Plug는 여러 부분에서 Sinatra의 영향을 받은 Rack이라고 생각해도 좋습니다.

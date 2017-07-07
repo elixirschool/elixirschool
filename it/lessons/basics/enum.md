@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Enumerazioni
-category: basics
-order: 3
-lang: it
 ---
 
 Un insieme di algoritmi per enumerare le collezioni.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Testovanie
-category: basics
-order: 12
-lang: sk
 ---
 
 Testovanie je dôležitou súčasťou vývoja softvéru. V tejto lekcii sa pozrieme na to, ako testovať náš elixirový kód pomocou knižnice ExUnit a na testovacie *best practices*.

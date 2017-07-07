@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Guardian (Βασικά)
-category: libraries
-order: 1
-lang: gr
 ---
 
 Η [Guardian](https://github.com/ueberauth/guardian) είναι μια ευρέως διαδεδομένη βιβλιοθήκη πιστοποίησης βασισμένη στο [JWT](https://jwt.io/) (JSON Web Token).

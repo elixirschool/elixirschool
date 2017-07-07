@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Основи
-category: basics
-order: 1
-lang: bg
 ---
 
 Настройване, основни типове и операции.

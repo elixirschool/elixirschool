@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Dokumentation
-category: basics
-order: 11
-lang: de
 ---
 
 Wie dokumentiert man Elixir Code?

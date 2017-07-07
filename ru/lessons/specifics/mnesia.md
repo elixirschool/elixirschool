@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Mnesia
-category: specifics
-order: 5
-lang: ru
 ---
 
 Mnesia &mdash; это распределённая система управления базами данных реального времени.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Struktur Kendali
-category: basics
-order: 5
-lang: id
 ---
 
 Dalam pelajaran ini kita akan melihat struktur kendali yang tersedia untuk kita di Elixir.

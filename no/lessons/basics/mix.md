@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Mix
-category: basics
-order: 9
-lang: no
 ---
 
 Før vi kan dykke dypere i Elixir, må vi første lære om Mix. Hvis du er kjent med Ruby, så er Mix ekvivalent med Bundler, RubyGems og Rake kombinert sammen. Mix er en kritisk del av hvilket som helst Elixir prosjekt, og i denne leksjonen vil vi gå igjennom et par av Mix sine fantastiske funksjonaliteter. For å se alt det mix har å tilby kjør `mix help`.

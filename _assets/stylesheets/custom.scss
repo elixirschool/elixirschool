@@ -30,6 +30,7 @@ a.sidebar-lesson:focus {
 
 .sidebar-lesson.active {
   font-weight: bold;
+  color: #fff;
 }
 
 .page-title {
@@ -168,7 +169,8 @@ $version_color_map: (
   "major": "#f00",
   "minor": "#f60",
   "patch": "#fc3",
-  "none": "#9f0"
+  "none": "#9f0",
+  "error": "#f00",
 );
 
 @each $severity, $color in $version_color_map {

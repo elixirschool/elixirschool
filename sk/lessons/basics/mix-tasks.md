@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Mix tasky 
-category: basics
-order: 15
-lang: sk
 ---
 
 Vytváranie vlastných Mix taskov (skriptov) pre vaše Elixirové projekty

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Strings
-category: basics
-order: 14
-lang: jp
 ---
 
 Elixirにおいて文字列とは何でしょうか。文字のリスト、書記素、コードポイントとは。

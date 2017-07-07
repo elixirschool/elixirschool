@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: 커스텀 Mix 태스크
-category: basics
-order: 15
-lang: ko
 ---
 
 Elixir 프로젝트를 위한 커스텀 Mix 태스크 만들어 봅시다.

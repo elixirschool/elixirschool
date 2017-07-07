@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Mnesia
-category: specifics
-order: 5
-lang: id
 ---
 
 Mnesia adalah sebuah sistem manajemen database terdistribusi real-time yang kuat.

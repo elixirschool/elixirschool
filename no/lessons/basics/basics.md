@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Grunnleggende Elixir
-category: basics
-order: 1
-lang: no
 ---
 
 Installasjon, grunnleggende typer og operatorer.

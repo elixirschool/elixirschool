@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Základy
-category: basics
-order: 1
-lang: sk
 ---
 
 Setup, základné typy a operácie.

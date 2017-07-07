@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Erlang Term Storage (ETS)
-category: specifics
-order: 4
-lang: ru
 ---
 
 Erlang Term Storage (ETS) - это мощный инструмент для хранения данных. Он встроен в OTP и доступен для использования в Elixir. В этом уроке мы рассмотрим: как с ним работать, и как он может быть задействован в наших приложениях.

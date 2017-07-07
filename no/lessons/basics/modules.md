@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Moduler
-category: basics
-order: 8
-lang: no
 ---
 
 Vi vet fra erfaring at det er besværlig å ha alle våre funksjoner i samme fil og skop. I denne leksjonen skal vi dekke hvordan vi grupperer funksjoner, og definerer en spesialisert form for map kjent som struct for å kunne organiserer koden vår mer effektivt.

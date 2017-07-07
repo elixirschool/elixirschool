@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: GenStage
-category: advanced
-order: 11
-lang: pl
 ---
 
 W tej lekcji przyjrzymy się z bliska GenStage, jaką pełni funkcję i jak może mieć wpływ na nasze aplikacje. 

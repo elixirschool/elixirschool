@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Básico
-category: basics
-order: 1
-lang: pt
 ---
 
 Primeiros Passos, tipos básicos e operações básicas.

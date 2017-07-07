@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Plug
-category: specifics
-order: 1
-lang: es
 ---
 
 Si estás familiarizado con Ruby puedes imaginar que Plug es como Rack con un poquito de Sinatra.

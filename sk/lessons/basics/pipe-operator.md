@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Operátor pipe
-category: basics
-order: 7
-lang: sk
 ---
 
 Operátor `|>` posiela výstup výrazu ako prvý parameter do iného výrazu.

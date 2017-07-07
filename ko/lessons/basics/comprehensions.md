@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Comprehensions
-category: basics
-order: 13
-lang: ko
 ---
 
 List comprehension은 Elixir에서 열거형을 이용하여 반복하는 데 사용되는 Syntactic sugar입니다. 이번 강의에서는 반복과 제너레이션을 위해 어떻게 comprehension을 사용하는지에 대해 알아봅니다.

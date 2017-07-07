@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Βοηθοί IEx
-category: basics
-order: 16
-lang: gr
 ---
 
 {% include toc.html %}

@@ -1,0 +1,19 @@
+script_direction: ltr
+project:
+  title: Elixir School
+  description: Leçons sur le langage de programmation Elixir
+table_of_contents: Table des matières
+share: Partager cette page
+sections:
+  home: Home
+  basics: Bases
+  advanced: Avancé
+  specifics: Spécificités
+  libraries: Libraries
+version_messages:
+  outdated: "Some contents of this translation may be outdated."
+  major: "Several major changes were applied to the original lesson since the last update."
+  minor: "Several minor changes were applied to the original lesson since the last update."
+  patch: "Several patches were applied to the original lesson since the last update."
+  none: "This translation is up to date."
+  error: "There is an error in the version definition of this chapter."

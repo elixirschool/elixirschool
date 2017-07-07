@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Erlang 项式存储 (ETS)
-category: specifics
-order: 4
-lang: cn
 base_commit: 035ee14
 ---
 

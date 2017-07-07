@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Testowanie kodu
-category: basics
-order: 12
-lang: pl
 ---
 
 Testowanie kodu jest bardzo ważną częścią procesu produkcji oprogramowania. W tej lekcji przyjrzymy się zagadnieniu testowania kodu w Elixirze z wykorzystaniem ExUnit. Poznamy też kilka dobrych praktyk z tym związanych.  

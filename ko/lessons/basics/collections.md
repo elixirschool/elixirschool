@@ -1,10 +1,6 @@
 ---
 version: 1.2.0
-layout: page
 title: 컬렉션
-category: basics
-order: 2
-lang: ko
 ---
 
 리스트, 튜플, 키워드 리스트, 맵.

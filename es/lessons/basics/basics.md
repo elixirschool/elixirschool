@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Básico
-category: basics
-order: 1
-lang: es
 ---
 
 Preparar el entorno, tipos básicos y operaciones.

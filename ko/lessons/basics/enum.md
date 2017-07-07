@@ -1,10 +1,6 @@
 ---
 version: 1.2.0
-layout: page
 title: Enum
-category: basics
-order: 3
-lang: ko
 ---
 
 열거 가능한 것들을 열거하기 위한 일련의 알고리즘.

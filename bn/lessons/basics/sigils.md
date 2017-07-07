@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: সিজিল 
-category: basics
-order: 10
-lang: bn
 ---
 
 এই অধ্যায়ে আমরা সিজিল দিয়ে কাজ করা ও সিজিল তৈরি করা নিয়ে আলোচনা করব। 

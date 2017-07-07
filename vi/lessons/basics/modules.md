@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Modules
-category: basics
-order: 8
-lang: vi
 ---
 
 Chúng ta biết từ kinh nghiệm là để tất cả các hàm vào trong một file khá là không tốt. Trong bài học này, chúng ta sẽ học cách nhóm các hàm lại với nhau, và định nghĩa một loại map đặc biệt là `struct` để tổ chức code một cách hiệu quả hơn.

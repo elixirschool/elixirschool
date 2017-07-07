@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: 시길
-category: basics
-order: 10
-lang: ko
 ---
 
 시길을 이용하고 만드는 법.

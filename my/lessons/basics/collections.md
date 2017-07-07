@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Collections
-category: basics
-order: 2
-lang: my
 ---
 
 List, tuples, keywords, maps, dicts dan functional combinators.

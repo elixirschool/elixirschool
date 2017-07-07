@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Guardian (Основы)
-category: libraries
-order: 1
-lang: ru
 ---
 
 [Guardian](https://github.com/ueberauth/guardian) &mdash; часто используемая библиотека, основанная на [JWT](https://jwt.io/) (JSON Web Token).

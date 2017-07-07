@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Các tập dữ liệu
-category: basics
-order: 2
-lang: vi
 ---
 
 List (Danh sách), tuple, keyword (danh sách từ khoá), map, dict (từ điển) và functional combinators (toán tử kết hợp hướng chức năng)

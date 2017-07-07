@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: 문서화
-category: basics
-order: 11
-lang: ko
 ---
 
 Elixir 코드 문서화하기.

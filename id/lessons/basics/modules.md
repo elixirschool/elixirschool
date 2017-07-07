@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Composition
-category: basics
-order: 8
-lang: id 
 ---
 
 Kita tahu dari pengalaman bahwa adalah menyusahkan jika kita mengumpulkan semua fungsi yang kita buat dalam file dan scope (cakupan) yang sama.  Dalam pelajaran ini kita akan mengulas bahgaimana mengelompokkan fungsi dan mendefinisikan suatu map khusus yang dikenal sebagai sebuah struct untuk mengorganisasikan code kita secara lebih efisien.

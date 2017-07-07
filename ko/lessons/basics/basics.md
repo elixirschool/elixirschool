@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: 기본
-category: basics
-order: 1
-lang: ko
 ---
 
 Elixir를 시작합시다. 기본적인 타입과 연산자를 배워봅시다.

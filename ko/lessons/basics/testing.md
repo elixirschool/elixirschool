@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: 테스트
-category: basics
-order: 12
-lang: ko
 ---
 
 소프트웨어 개발에서 테스트는 아주 중요합니다. 이번 수업에서는 ExUnit을 사용해서 Elixir 코드를 테스트하는 방법과 테스트하는 데 있어서 가장 효율적인 절차를 함께 살펴보도록 하겠습니다.

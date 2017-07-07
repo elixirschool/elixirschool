@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Протоколы
-category: advanced
-order: 12
-lang: ru
 ---
 
 В этом уроке мы рассмотрим протоколы в языке Elixir: что это такое и как их использовать.

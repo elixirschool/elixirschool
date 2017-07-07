@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Strenger
-category: basics
-order: 14
-lang: no
 ---
 
 Strenger, Karakter lister, Grafemer og Kode punkter.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Comprehension
-category: basics
-order: 13
-lang: my
 ---
 
 'List comprehension' ialah 'syntactic sugar'(sintaks untuk memudahkan pembacaan dan penjelasan sesuatu topik) untuk menggelung 'enumerable' di dalam Elixir.  Di dalam pelajaran ini kita akan melihat bagaimana kita boleh menggunakan 'comprehension' untuk lelaran(iteration) dan penjanaan.

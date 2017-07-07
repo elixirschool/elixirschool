@@ -1,0 +1,91 @@
+# LANGUAGE_CODE:
+#  bg: 
+#  bn: 
+#  cn: 
+#  de: 
+#  en: 
+#  es: 
+#  fr: 
+#  gr: 
+#  id: 
+#  it: 
+#  jp: 
+#  ko: 
+#  my: 
+#  "no": 
+#  pl: 
+#  pt: 
+#  ru: 
+#  sk: 
+#  tr: 
+#  uk: 
+#  vi: 
+
+en:
+  bg: Bulgarian
+  bn: Bengali
+  cn: Chinese
+  de: German
+  en: English
+  es: Spanish
+  fr: French
+  gr: Greek
+  id: Indonesian
+  it: Italian
+  jp: Japanese
+  ko: Korean
+  my: Malaysian
+  "no": Norwegian
+  pl: Polish
+  pt: Portuguese
+  ru: Russian
+  sk: Slovak
+  tr: Turkish
+  uk: Ukranian
+  vi: Vietnamese
+
+es:
+  bg: Búlgaro
+  bn: Bengalí
+  cn: Chino
+  de: Alemán
+  en: Inglés
+  es: Español
+  fr: Francés
+  gr: Griego
+  id: Indonesio
+  it: Italiano
+  jp: Japonés
+  ko: Coreano
+  my: Malayo
+  "no": Noruego
+  pl: Polaco
+  pt: Portugués
+  ru: Ruso
+  sk: Eslovaco
+  tr: Turco
+  uk: Ucraniano
+  vi: Vietnamita
+
+id:
+ bg: Bahasa Bulgaria
+ bn: Bahasa Bengali
+ cn: Bahasa China
+ de: Bahasa Jerman
+ en: Bahasa Inggris
+ es: Bahasa Spanyol
+ fr: Bahasa Perancis
+ gr: Bahasa Yunani
+ id: Bahasa Indonesia
+ it: Bahasa Italia
+ jp: Bahasa Jepang
+ ko: Bahasa Korea
+ my: Bahasa Malaysia
+ "no": Bahasa Norwegia
+ pl: Bahasa Poland
+ pt: Bahasa Portugis
+ ru: Bahasa Rusia
+ sk: Bahasa Slovakia
+ tr: Bahasa Turki
+ uk: Bahasa Ukraina
+ vi: Bahasa Vietnam

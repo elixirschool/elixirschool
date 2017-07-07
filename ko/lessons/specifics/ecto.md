@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Ecto
-category: specifics
-order: 2
-lang: ko
 ---
 
 Ecto는 공식적인 Elixir 프로젝트로 데이터베이스를 감싸는 부분과 종합적인 질의 언어를 제공합니다. Ecto를 사용하면 마이그레이션의 생성과 모델의 정의, 레코드의 추가와 삭제, 그리고 질의를 할 수 있게 됩니다.

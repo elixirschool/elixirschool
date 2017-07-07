@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Documentation
-category: basics
-order: 11
-lang: id
 ---
 
 Mendokumentasikan Elixir code.

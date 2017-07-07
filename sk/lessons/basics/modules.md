@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Kompozícia
-category: basics
-order: 8
-lang: sk
 ---
 
 Zo skúsenosti vieme, že je dosť nepohodlné, mať všetky funkcie v jedinom súbore. V tejto lekcii sa naučíme, ako funkcie zoskupovať do *modulov*, ako moduly komponovať a ako používať špeciálny typ mapy, zvaný *Struct*.

@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: Enum
-category: basics
-order: 3
-lang: es
 ---
 
 Un conjunto de algoritmos para hacer enumeración sobre colecciones.

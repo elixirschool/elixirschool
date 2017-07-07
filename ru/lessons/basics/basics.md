@@ -1,10 +1,6 @@
 ---
 version: 1.1.0
-layout: page
 title: Основы
-category: basics
-order: 1
-lang: ru
 ---
 
 Базовая настройка, типы и операторы.

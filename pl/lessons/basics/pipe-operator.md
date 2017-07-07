@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Operator Potoku
-category: basics
-order: 7
-lang: pl
 ---
 
 Operator potoku `|>` przekazuje wynik jednego wyrażenia jako pierwszy parametr następnego wyrażenia.

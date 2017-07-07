@@ -1,10 +1,6 @@
 ---
 version: 0.9.1
-layout: page
 title: Kolekcie
-category: basics
-order: 2
-lang: sk
 ---
 
 

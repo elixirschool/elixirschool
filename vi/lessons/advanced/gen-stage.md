@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: GenStage
-category: advanced
-order: 11
-lang: vi
 ---
 
 Trong bài này ta sẽ có cái nhìn cận cảnh về GenStage, nó đóng vai trò gì, và chúng ta có thể dùng nó như thế nào trong ứng dụng.

@@ -1,10 +1,6 @@
 ---
 version: 1.0.1
-layout: page
 title: ডকুমেন্টেশান 
-category: basics
-order: 11
-lang: bn
 ---
 
 আপনার কোডকে ডকুমেন্ট করুন।

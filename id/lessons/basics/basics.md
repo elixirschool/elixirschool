@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Dasar
-category: basics
-order: 1
-lang: id
 ---
 
 Setup, tipe-tipe dan operasi-operasi dasar.

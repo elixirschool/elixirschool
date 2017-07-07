@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Kolekcje
-category: basics
-order: 2
-lang: pl
 ---
 
 Listy, krotki, listy asocjacyjne, mapy i kombinatory funkcyjne.

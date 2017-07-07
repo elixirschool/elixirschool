@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 函数
-category: basics
-order: 6
-lang: cn
 ---
 
 Elixir 和其他函数式语言一样，函数都是一等公民。我们将学习 Elixir 中不同类型的函数，它们与众不同的地方，以及如何使用它们。

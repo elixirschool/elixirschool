@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Cấu trúc điều khiển
-category: basics
-order: 5
-lang: vi
 ---
 
 Trong bài này ta sẽ xem qua các loại cấu trúc điều khiểu có sẵn trong Elixir.

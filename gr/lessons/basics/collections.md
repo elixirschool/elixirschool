@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Συλλογές
-category: basics
-order: 2
-lang: gr
 ---
 
 Λίστες, tuples, λέξεις κλειδί, χάρτες και συναρτησιακοί συνδυαστές.

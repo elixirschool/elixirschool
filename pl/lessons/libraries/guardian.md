@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Guardian (Podstawy)
-category: libraries
-order: 1
-lang: pl
 ---
 
 [Guardian](https://github.com/ueberauth/guardian) jest szeroko używaną biblioteką do obsługi uwierzytelniania bazującą na [JWT](https://jwt.io/) (JSON Web Token).

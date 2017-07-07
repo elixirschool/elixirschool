@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: OTPの並行性
-category: advanced
-order: 5
-lang: jp
 ---
 
 並行性(コンカレンシー)に関するElixirの抽象化を見てきましたが、さらなる制御が必要になることもあります。そうした時のために、Elixirに組み込まれているOTPの振る舞いに目を向けます。

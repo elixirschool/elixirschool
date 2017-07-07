@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Dokumentowanie kodu
-category: basics
-order: 11
-lang: pl
 ---
 
 Jak dokumentować kod Elixira.
