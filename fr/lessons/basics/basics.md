@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Bases
-category: basics
-order: 1
-lang: fr
 ---
 
 Installation, types de base et opérations.
@@ -15,7 +11,7 @@ Installation, types de base et opérations.
 
 ### Installer Elixir
 
-Les instructions d'installation pour chaque système d'exploitation peuvent être trouvées sur [elixir-lang.org](shttp://elixir-lang.org/install.html). 
+Les instructions d'installation pour chaque système d'exploitation peuvent être trouvées sur [elixir-lang.org](http://elixir-lang.org/install.html). 
 
 ### Mode Interactif
 

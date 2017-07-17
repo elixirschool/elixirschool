@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Documentation
-category: basics
-order: 11
-lang: vi
 ---
 
 Viết tài liệu cho code Elixir
@@ -309,4 +305,4 @@ end
 
  - Cố gắng thêm một vài code ví dụ vào trong tài liệu của bạn, nó cũng cho phép bạn có thể sinh ra các test tự động từ code ví dụ tìm thấy trong module, hàm hoặc là macro với [ExUnit.DocTest][]. Để làm điều đó, bạn sẽ cần phải gọi tới `doctest/1` macro trong file test, và viết các ví dụ tuân theo một vài hướng dẫn, chi tiết được mô tả trong [tài liệu chuẩn][ExUnit.DocTest]
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

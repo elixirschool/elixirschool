@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 测试
-category: basics
-order: 12
-lang: cn
 ---
 
 测试是软件开发重要的一部分，这节课我们会讲一下如何使用 ExUnit 测试 Elixir 代码，以及测试中的最佳实践方法。

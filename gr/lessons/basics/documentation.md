@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Τεκμηρίωση
-category: basics
-order: 11
-lang: gr
 ---
 
 Τεκμηρίωση κώδικα Elixir.
@@ -307,4 +303,4 @@ end
 
  - Προσπαθήστε να συμπεριλάβετε μερικά παραδείγματα στην τεκμηρίωσή σας, αυτό σας επιτρέπει να παράγετε αυτόματα τεστ από τα παραδείγματα κώδικα που βρίσκονται σε μία ενότητα, συνάρτηση, ή μακροεντολή με το [ExUnit.DocTest][].  Για να γίνει αυτό, πρέπει να καλέσετε την μακροεντολή `doctest/1` από την περίπτωση του τεστ και να γράψετε τα παραδείγματά σας με βάση κάποιες οδηγίες, οι οποίες αναλύονται στην [επίσημη τεκμηρίωση][ExUnit.DocTest]
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: মিক্স টাস্ক 
-category: basics
-order: 15
-lang: bn
 ---
 
 মিক্স দিয়ে নিজস্ব টাস্ক তৈরি করা হবে এই অধ্যায়ের মূল বিষয়। 

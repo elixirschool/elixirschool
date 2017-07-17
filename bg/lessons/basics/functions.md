@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Функции
-category: basics
-order: 6
-lang: bg
 ---
 
 В Elixir и много функционални езици, функциите са граждани "първи клас".  Ще научим за видовете функции в Elixir, какво ги отличава и как да ги използваме.
@@ -85,7 +81,7 @@ end
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -149,7 +145,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "

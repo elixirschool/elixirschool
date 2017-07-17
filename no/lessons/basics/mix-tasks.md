@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: Egnedefinerte Mix Tasks
-category: basics
-order: 15
-lang: no
 ---
 
 Å lage egendefinerte Mix tasks for dine Elixir prosjekter.

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Reťazce
-category: basics
-order: 14
-lang: sk
 ---
 
 Reťazce, charlisty, grafémy a codepointy
@@ -25,7 +21,7 @@ iex> string = <<104,101,108,108,111>>
 ## Charlisty
 
 Doslova: zoznamy znakov.
-Reťazce sú v Elixire interne reprezentované ako sekvenciami bajtov, nie poľami znakov ako v iných jazykoch. Elixir má však aj aj typ char list (zoznam znakov). Kým reťazce sú uzavreté v dvojitých úvodzovkách, charlisty sú uzavreté v úvodzovkách jednoduchých.
+Reťazce sú v Elixire interne reprezentované sekvenciami bajtov, nie poľami znakov ako v iných jazykoch. Elixir má však aj aj typ char list (zoznam znakov). Kým reťazce sú uzavreté v dvojitých úvodzovkách, charlisty sú uzavreté v úvodzovkách jednoduchých.
 
 Aký je medzi nimi rozdiel? Každá hodnota v charliste je ASCII hodnotou daného znaku. Príklad:
 
@@ -47,7 +43,7 @@ Pri programovaní v Elixire zvyčajne používame reťazce, nie charlisty. Podpo
 
 ## Grafémy a codepointy
 
-Codepointy sú unicode znaky reprezentované jedným alebo viacerými bajtami, v závislosti od kódovania. Znaky mimo rozsahu ASCII sú vždy reprezentované minimálne dvoma bajtmi. Napríklad znaky abecedy s diakritikou (`á`, `ñ`, `è`, ...) bývajú kôdované dvoma bajtami, znaky ázijských jazykov (napr. čínske znaky) dokonca troma až štyrmi bajtmi. Graféma pozostáva z viacerých codepointov, ktoré sú však vo výsledku vykreslené ako jediný znak.
+Codepointy sú unicode znaky reprezentované jedným alebo viacerými bajtami, v závislosti od kódovania. Znaky mimo rozsahu ASCII sú vždy reprezentované minimálne dvoma bajtmi. Napríklad znaky abecedy s diakritikou (`á`, `ñ`, `è`, ...) bývajú kódované dvoma bajtami, znaky ázijských jazykov (napr. čínske znaky) dokonca troma až štyrmi bajtmi. Graféma pozostáva z viacerých codepointov, ktoré sú však vo výsledku vykreslené ako jediný znak.
 
 Modul String poskytuje dve metódy, ktorými ich vieme získať: `graphemes/1` a `codepoints/1`. Ukážme si použitie:
 
@@ -64,7 +60,7 @@ iex> String.graphemes string
 
 ## Funkcie pre prácu s reťazcami
 
-Ukážme si niektoré z najdôležitejších fukcií z modulu String. Ich kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`String`](http://elixir-lang.org/docs/stable/elixir/String.html).
+Ukážme si niektoré z najdôležitejších fukcií z modulu String. Ich kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`String`](https://hexdocs.pm/elixir/String.html).
 
 ### `length/1`
 
@@ -131,7 +127,7 @@ end
 ```
 
 Najprv sa pozrime na funkciu `anagrams?/2`. Hneď v hlavičke kontrolujeme, či sú prijaté hodnoty argumentov binary (sekvencie bajtov) - takto v Elixire zisťujeme, či je hodnota reťazec.
-V tele funkcie voláme pre kažný z argumentov funkciu `sort_string?/1`, ktorá reťazec konvertuje na malé písmená (lowercase), potom z neho spraví zoznam grafém a ten utriedi podľa abecedy. Oba takto získané zoznamy nakoniec porovnáme. Jednoduché, však? 
+V tele funkcie voláme pre každý z argumentov funkciu `sort_string?/1`, ktorá reťazec konvertuje na malé písmená (lowercase), potom z neho spraví zoznam grafém a ten utriedi podľa abecedy. Oba takto získané zoznamy nakoniec porovnáme. Jednoduché, však? 
 
 Pozrime sa na výstup v iex:
 

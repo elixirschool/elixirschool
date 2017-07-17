@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Dasar
-category: basics
-order: 1
-lang: id
 ---
 
 Setup, tipe-tipe dan operasi-operasi dasar.
@@ -19,13 +15,13 @@ Instruksi instalasi untuk masing-masing OS dapat dilihat di Elixir-lang.org bagi
 
 ### Moda Interaktif
 
-Elixir dilengkapi dengan `iex`, sebuah shell interaktif, yang memungkinkan kita mencoba perintah Elixir.
+Elixir dilengkapi dengan IEx, sebuah shell interaktif, yang memungkinkan kita mencoba perintah Elixir.
 
 Untuk memulai, kita jalankan `iex`:
 
 	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
+	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
 ## Tipe dasar

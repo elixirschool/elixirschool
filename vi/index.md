@@ -1,7 +1,5 @@
 ---
-layout: page
 title: Elixir School (Việt ngữ)
-lang: vi
 ---
 
 [![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)

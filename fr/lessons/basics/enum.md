@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Enum
-category: basics
-order: 3
-lang: fr
 ---
 
 Un ensemble d'algorithmes pour énumérer sur les collections.
@@ -15,7 +11,7 @@ Un ensemble d'algorithmes pour énumérer sur les collections.
 
 Le module `Enum` inclus plus de 100 fonctions pour travailler sur les collections que nous avons vues dans la leçon précédente.
 
-Cette leçon ne couvre qu'une partie des fonctions disponibles, pour la liste complète des fonctions voir la documentation officielle du module [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); pour l'énumération paresseuse utilisez le module [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+Cette leçon ne couvre qu'une partie des fonctions disponibles, pour la liste complète des fonctions voir la documentation officielle du module [`Enum`](https://hexdocs.pm/elixir/Enum.html); pour l'énumération paresseuse utilisez le module [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 
 ### all?
@@ -47,7 +43,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Il existe quelques options pour `chunk` que vous pouvez consulter dans la documentation officielle de [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) de la fonction.
+Il existe quelques options pour `chunk` que vous pouvez consulter dans la documentation officielle de [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) de la fonction.
 
 ### chunk_by
 
@@ -67,6 +63,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Note__: La fonction `each` retourne l'atom `:ok`.

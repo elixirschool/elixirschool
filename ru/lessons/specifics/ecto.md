@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Ecto
-category: specifics
-order: 2
-lang: ru
 ---
 
 Ecto - официальный проект от создателей Elixir. Это оболочка, которая предоставляет возможность коммуникации с базой данных. Ecto позволяет создавать миграции, объявлять модели, вносить и обновлять данные, а также посылать запросы к ним.
@@ -240,7 +236,7 @@ query = from u in User,
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

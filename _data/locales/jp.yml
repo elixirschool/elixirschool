@@ -1,0 +1,19 @@
+script_direction: ltr
+project:
+  title: Elixir School
+  description: プログラミング言語Elixirのレッスン
+table_of_contents: 目次
+share: このページをシェアする
+sections:
+  home: Home
+  basics: 基礎
+  advanced: 上級
+  specifics: 詳細
+  libraries: ライブラリー
+version_messages:
+  outdated: "Some contents of this translation may be outdated."
+  major: "Several major changes were applied to the original lesson since the last update."
+  minor: "Several minor changes were applied to the original lesson since the last update."
+  patch: "Several patches were applied to the original lesson since the last update."
+  none: "This translation is up to date."
+  error: "There is an error in the version definition of this chapter."

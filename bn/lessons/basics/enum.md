@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: ইনাম
-category: basics
-order: 3
-lang: bn
 ---
 
 কালেকশন এ ইনামুরেট এর সুবিধা নিবার  জন্য কিছু এলগোরিদম ।
@@ -37,7 +33,7 @@ at/3
 
 Elixir এর আরও সব সুবিধা গুলোর সাথে যদি আমরা এর সঠিক সমন্বয় করে ব্যাবহার করতে পারি তাহলে আমরা ডেভেলপার হিসাবে এর অনেক সহজেই অনেক বেশি সুবিধা পাব। আমরা এমনটা এর মধ্যে এরই ভিতর দেখতে পারলাম ডকুমেন্ট ইনফো এর মাধ্যমে।
 
-ইনাম এর ফাংশন গুলোর পুরো লিস্ট দিখবার জন্য , আপনি যেতে পারেন ,[`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) ডকুমেন্ট এ, আর lazy enumeration ব্যাবহার করে,  [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) মডিউল।
+ইনাম এর ফাংশন গুলোর পুরো লিস্ট দিখবার জন্য , আপনি যেতে পারেন ,[`Enum`](https://hexdocs.pm/elixir/Enum.html) ডকুমেন্ট এ, আর lazy enumeration ব্যাবহার করে,  [`Stream`](https://hexdocs.pm/elixir/Stream.html) মডিউল।
 
 ### all?
 
@@ -68,7 +64,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk` এর আরও কিছু অপশন আছে, কিন্তু আমরা সেগুলোতে আমরা এখন নাই যাই, আপনারা সেগুলো দেখে নিতে পারবেন এখানে,[`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) এই অফিসিয়াল ডকুমেন্ট এ ।
+`chunk` এর আরও কিছু অপশন আছে, কিন্তু আমরা সেগুলোতে আমরা এখন নাই যাই, আপনারা সেগুলো দেখে নিতে পারবেন এখানে,[`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) এই অফিসিয়াল ডকুমেন্ট এ ।
 
 ### chunk_by
 
@@ -99,6 +95,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Note__: `each` মেথড একটি এটম রিটার্ন করে `:ok`.

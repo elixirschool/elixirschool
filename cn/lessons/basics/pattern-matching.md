@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 模式匹配
-category: basics
-order: 4
-lang: cn
 ---
 
 模式匹配是 Elixir 很强大的特性，它允许我们匹配简单值、数据结构、甚至函数。这篇课程，我们介绍如何使用模式匹配。
@@ -40,7 +36,7 @@ iex> [1, 2, 3] = list
 iex> [] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-iex> [1|tail] = list
+iex> [1 | tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]

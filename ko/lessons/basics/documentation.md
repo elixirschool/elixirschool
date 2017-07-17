@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: 문서화
-category: basics
-order: 11
-lang: ko
 ---
 
 Elixir 코드 문서화하기.
@@ -308,4 +304,4 @@ end
 
  - 여러분의 문서에 코드 예제를 첨삭하도록 해보세요. 모듈, 함수 혹은 [ExUnit.DocTest][] 매크로 내에서 코드 예제를 발견하여 자동화된 테스트를 생성할 수 있습니다. 매크로를 이용하고자 한다면, 테스트 케이스로부터  `doctest/1` 매크로를 불러온 후 [공식 문서][ExUnit.DocTest]에 명시된 가이드라인에 따라 예시 코드를 작성할 필요가 있습니다.
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

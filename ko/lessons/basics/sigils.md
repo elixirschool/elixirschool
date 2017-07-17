@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: 시길
-category: basics
-order: 10
-lang: ko
 ---
 
 시길을 이용하고 만드는 법.
@@ -80,7 +76,7 @@ iex> "elixir" =~ re
 true
 ```
 
-더 나아가서, Elixir는 Erlang의 정규 표현식 라이브러리를 기반으로 만들어진 [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API를 제공합니다. 정규 표현식 시길을 사용하여 `Regex.split/2`를 사용해 봅시다.
+더 나아가서, Elixir는 Erlang의 정규 표현식 라이브러리를 기반으로 만들어진 [Regex](https://hexdocs.pm/elixir/Regex.html) API를 제공합니다. 정규 표현식 시길을 사용하여 `Regex.split/2`를 사용해 봅시다.
 
 ```elixir
 iex> string = "100_000_000"
@@ -138,7 +134,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ### NaiveDateTime
 
-[NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html)으로 타임존 **없는** DateTime을 나타내는 구조체를 빠르게 만드는데 유용하게 사용할 수 있습니다.
+[NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html)으로 타임존 **없는** DateTime을 나타내는 구조체를 빠르게 만드는데 유용하게 사용할 수 있습니다.
 
 대부분의 경우, `NaiveDateTime` 구조체를 직접 만드는 것은 피해야 합니다. 하지만, 패턴 매칭에는 매우 유용합니다. 예를 봅시다.
 

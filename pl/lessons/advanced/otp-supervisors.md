@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Nadzorcy OTP
-category: advanced
-order: 6
-lang: pl
 ---
 
 Nadzorcy to wyspecjalizowane procesy mające tylko jeden cel: monitorowanie innych procesów. Pozwalają oni na tworzenie aplikacji odpornych na błędy, które będą samodzielnie restartować procesy, które zawiodły. 

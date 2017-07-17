@@ -5,8 +5,8 @@
 
 var swap_icon = function(el) {
   el.find('i')
-    .toggleClass('fa-chevron-down')
-    .toggleClass('fa-chevron-right');
+    .toggleClass('icon-chevron-down')
+    .toggleClass('icon-chevron-right');
 };
 
 var toggle_lessons = function(el) {
@@ -38,8 +38,9 @@ $(function() {
     listType: 'ul',
     title: '',
     headers: 'h1, h2, h3:not([id="social"]), h4, h5, h6',
-    noBackToTopLinks: true,
-    minimumHeaders: 0
+    noBackToTopLinks: false,
+    minimumHeaders: 0,
+    backToTopClasses: 'icon icon-chevron-up2 back-to-top'
   });
   $('.version-info').click(show_vcs_history);
 });

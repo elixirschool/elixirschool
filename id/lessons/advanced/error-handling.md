@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Penanganan Error 
-category: advanced
-order: 2
-lang: id 
 ---
 
 Walaupun lebih umum menggunakan pengembalian tuple `{:error, reason}`, Elixir mendukung exception dan dalam pelajaran ini kita akan melihat bagaimana menangani error dan berbagai mekanisme yang tersedia untuk kita.

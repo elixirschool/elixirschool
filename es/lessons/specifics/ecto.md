@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Ecto
-category: specifics
-order: 2
-lang: es
 ---
 
 Ecto es un proyecto oficial de Elixir, provee un envoltorio a la base de datos y un lenguaje de consultas integrado. Con Ecto podemos crear migraciones, definir modelos, insertar, actualizar y consultar registros de nuestra base de datos.
@@ -64,7 +60,9 @@ defmodule ExampleApp.App do
 end
 ```
 
+<!-- TODO: Remove this as a comment, once advanced/otp-supervisors  is translated to Spanish
 Para mayor información acerca de supervisores revisa la lección [Supervisores OTP](../../advanced/otp-supervisors).
+-->
 
 ### Configuración
 
@@ -127,7 +125,7 @@ Para mayor detalle acerca de las migraciones vea la sección [Ecto.Migration](ht
 
 ## Modelos
 
-Ahora que tenemos nuestra migración podemos movernos a nuestro modelo. Los modelos definen nuestro esquema, métodos auxiliares y nuestro _set de cambios_, cubriremos más acerca del _set de cambios_ en secciones subsiguientes.
+Ahora que tenemos nuestra migración podemos movernos a nuestro modelo. Los modelos definen nuestro esquema, funciones auxiliares y nuestro _set de cambios_, cubriremos más acerca del _set de cambios_ en secciones subsiguientes.
 
 Por ahora veamos como luce el modelo para nuestra migración:
 
@@ -232,7 +230,7 @@ Asumiendo que tenemos un perfil asociado a nuestro usuario, busquemos todos los 
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Fungsi
-category: basics
-order: 6
-lang: my
 ---
 
 Di dalam Elixir dan kebanyakan bahasa aturcara kefungsian, fungsi adalah rakyat kelas pertama.  Kita akan belajar mengenai jenis-jenis fungsi di dalam Elixir, apa yang menyebabkan mereka berbeza, dan bagaimana menggunakan mereka.
@@ -86,7 +82,7 @@ Bersedia dengan pengetahuan mengenai pemadanan corak, kita akan meneroka rekursi
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -128,7 +124,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "

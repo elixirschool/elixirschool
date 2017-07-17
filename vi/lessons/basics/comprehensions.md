@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Comprehensions
-category: basics
-order: 13
-lang: vi
 ---
 
 List comprehension là một cú pháp hỗ trợ việc lặp qua các phần tử trong Elixir. Trong bài này, chúng ta sẽ cùng xem cách sử dụng comprehension cho iteration và generation.

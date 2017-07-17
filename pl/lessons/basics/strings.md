@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Ciągi znaków
-category: basics
-order: 14
-lang: pl
 ---
 
 Czym są ciągi znaków w Elixirze, listy znaków, grafemy i jak wygląda obsługa kodowania znaków.

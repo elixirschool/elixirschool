@@ -79,7 +79,8 @@ html {
 }
 
 /* Sidebar links */
-.sidebar a {
+.sidebar a,
+#locales strong {
   color: #fff;
 }
 

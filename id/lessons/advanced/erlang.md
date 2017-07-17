@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Interoperabilitas dengan Erlang
-category: advanced
-order: 1
-lang: id
 ---
 
 Salah satu keuntungan tambahan dari membangun di atas VM Erlang adalah banyaknya librari yang sudah ada yang bisa kita pakai. Interoperabilitas memungkinkan kita memanfaatkan librari-librari tersebut dan juga librari standar Erlang dari code Elixir kita.  Dalam pelajaran ini kita akan melihat bagaimana mengakses fungsi dalam librari standar dan juga paket Erlang buatan pihak lain (third party).

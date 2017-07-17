@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.0
 title: 동시성
-category: advanced
-order: 4
-lang: ko
 ---
 
 Elixir의 매력적인 부분 중 하나는 동시성(Concurrency) 지원입니다. Erlang VM (BEAM) 덕분에, Elixir에서의 동시성은 여러분이 생각하는 것보다 간단합니다. 동시성 모델은 액터(Actor) 모델에 의존하고 있습니다. 액터는 메시지를 전달하여 다른 프로세스들과 통신하는 독립적인 프로세스입니다.

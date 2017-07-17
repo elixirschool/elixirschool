@@ -1,0 +1,19 @@
+script_direction: ltr
+project:
+  title: Elixir School
+  description: Pelajaran mengenai bahasa aturcara Elixir
+table_of_contents: Isi Kandungan
+share: Share This Page
+sections:
+  home: Home
+  basics: Asas
+  advanced: Lanjutan
+  specifics: Khusus
+  libraries: Libraries
+version_messages:
+  outdated: "Some contents of this translation may be outdated."
+  major: "Several major changes were applied to the original lesson since the last update."
+  minor: "Several minor changes were applied to the original lesson since the last update."
+  patch: "Several patches were applied to the original lesson since the last update."
+  none: "This translation is up to date."
+  error: "There is an error in the version definition of this chapter."

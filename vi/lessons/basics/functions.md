@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Hàm
-category: basics
-order: 6
-lang: vi
 ---
 
 Trong Elixir và nhiều ngôn ngữ lập trình hàm, hàm là "first class citizen". Chúng ta sẽ học về các kiểu hàm trong Elixir, chúng khác nhau như thế nào, và dùng chúng ra sao.
@@ -85,7 +81,7 @@ Với những kiến thức về pattern matching đã biết, chúng ta hãy kh
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -149,7 +145,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Chào "

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Funkcie
-category: basics
-order: 6
-lang: sk
 ---
 
 V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie ústredným konštruktom. Povieme si o rôznych typoch funkcií v Elixire, rozdieloch medzi nimi a ako ich používať.
@@ -13,7 +9,7 @@ V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie ústredným kon�
 
 ## Anonymné funkcie
 
-Ako ich naznačuje už ich názov, tieto funkcie nemajú priradené meno. V kapitole o `Enum` sme videli, že sa často odovzdávajú ako argumenty iným funkciám. Na definovanie anonymnej funkcie slúžia v Elixire kľúčové slová `fn` a `end`. Medzi nimi môžeme definovať ľubovoľné množstvo sád parametrov a tiel funkcií - oddelených operátorom `->`.
+Ako naznačuje už ich názov, tieto funkcie nemajú priradené meno. V kapitole o `Enum` sme videli, že sa často odovzdávajú ako argumenty iným funkciám. Na definovanie anonymnej funkcie slúžia v Elixire kľúčové slová `fn` a `end`. Medzi nimi môžeme definovať ľubovoľné množstvo sád parametrov a tiel funkcií - oddelených operátorom `->`.
 
 Pozrime sa na jednoduchý príklad:
 
@@ -27,7 +23,7 @@ Všimnite si, že anonymnú funkciu je nutné volať cez `.`.
 
 ### Skratka &
 
-Používanie anonymných funkcií je v Elexire natoľko bežné, že na ich definovanie existuje skrátený zápis pomocou `&`:
+Používanie anonymných funkcií je v Elixire natoľko bežné, že na ich definovanie existuje skrátený zápis pomocou `&`:
 
 ```elixir
 iex> sum = &(&1 + &2)
@@ -55,7 +51,7 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-V príklade sme si definovali funkciu s dvoma telami. Pri jej prvom volaní sa použilo prvé telo, keďže sme jej ako parameter poslali tuple v tvare `{:ok, result}`. Pri duhom volaní sa použilo druhé telo, keďže ako parameter od nás dostala tuple v tvare `{:error}`.
+V príklade sme si definovali funkciu s dvoma telami. Pri jej prvom volaní sa použilo prvé telo, keďže sme jej ako parameter poslali tuple v tvare `{:ok, result}`. Pri druhom volaní sa použilo druhé telo, keďže ako parameter od nás dostala tuple v tvare `{:error}`.
 
 ## Pomenované funkcie
 
@@ -87,7 +83,7 @@ Vyzbrojení pattern matchingom, vyskúšajme si rekurziu pomocou pomenovaných f
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -133,7 +129,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "
@@ -190,7 +186,7 @@ end
 ** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
 ```
 
-Elixir nevídí rád východiskové argumenty vo viacerých zhodných hlavičkách funkcie, pretože to môže byť mätúce. Riešenie spočíva v pridaní hlavičky s východiskovými argumentami, pričom z pôvodných hlavičiek východiskové argumenty odstránime:
+Elixir nevidí rád východiskové argumenty vo viacerých zhodných hlavičkách funkcie, pretože to môže byť mätúce. Riešenie spočíva v pridaní hlavičky s východiskovými argumentami, pričom z pôvodných hlavičiek východiskové argumenty odstránime:
 
 ```elixir
 defmodule Greeter do

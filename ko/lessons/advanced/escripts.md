@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.0
 title: 실행 파일
-category: advanced
-order: 3
-lang: ko
 ---
 
 escript를 사용하여 Elixir로 짠 코드를 실행 파일로 빌드할 수 있습니다. 이렇게 빌드한 실행 파일은 Erlang이 설치된 모든 시스템에서 실행할 수 있게 됩니다.

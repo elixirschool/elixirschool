@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Enums
-category: basics
-order: 3
-lang: de
 ---
 
 Ein Satz Algorithmen, um über collections zu gehen.
@@ -34,7 +30,7 @@ at/3
 Hieran sieht man, dass wir viel Funktionalität haben, und das aus gutem Grund. Enumeration ist die Basis funktionaler Programmierung und ein unglaublich nützliches Ding.
 Durch Ausnutzen davon zusammen mit anderen Vorteilen Elixirs, wie dass Dokumentation als `Bürger erster Klasse` behandelt wird, kann es auch den Entwickler enorm unterstützen.
 
-Um eine komplette Liste der Funktionen zu sehen besuche die offizielle [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html)-Dokumentation; für lazy enumeration nimm das [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html)-Modul.
+Um eine komplette Liste der Funktionen zu sehen besuche die offizielle [`Enum`](https://hexdocs.pm/elixir/Enum.html)-Dokumentation; für lazy enumeration nimm das [`Stream`](https://hexdocs.pm/elixir/Stream.html)-Modul.
 
 ### all?
 
@@ -66,7 +62,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 ```
 
 
-`chunk` hat einige Optionen, aber diese werden wir nicht besprechen. Falls du mehr darüber erfahren möchtest, sieh dir [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) in der offiziellen Dokumentation an, um mehr darüber zu erfahren.
+`chunk` hat einige Optionen, aber diese werden wir nicht besprechen. Falls du mehr darüber erfahren möchtest, sieh dir [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) in der offiziellen Dokumentation an, um mehr darüber zu erfahren.
 
 ### chunk_by
 
@@ -88,6 +84,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Hinweis__: Die Methode `each` gibt das Atom `:ok` zurück.

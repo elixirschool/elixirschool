@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Funktionen
-category: basics
-order: 6
-lang: de
 ---
 
 In Elixir und vielen anderen funktionalen Sprachen sind Funktionen "Bürger erster Klasse". Wir werden mehr über die Typen von Funktionen in Elixir lernen, was sie unterscheidet und wie man sie benutzt.
@@ -85,7 +81,7 @@ Mit unserem Wissen über pattern matching bewaffnet, lass uns mit Hilfe von bena
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -150,7 +146,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "

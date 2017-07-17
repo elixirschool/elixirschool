@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: カスタムMixタスク
-category: basics
-order: 15
-lang: jp
 ---
 
 あなたのElixirプロジェクトのためのカスタムのMixタスクの作成

@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Функции
-category: basics
-order: 6
-lang: ru
 ---
 
 В Elixir, как и в многих других функциональных языках, функции являются полноценными объектами. В этом уроке мы рассмотрим типы функций в Elixir, чем они отличаются и как их использовать.
@@ -85,7 +81,7 @@ end
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -149,7 +145,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "

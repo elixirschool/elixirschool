@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Komposisi
-category: basics
-order: 8
-lang: my
 ---
 
 Kita tahu dari pengalaman bahawa menyimpan semua fungsi di dalam satu fail dan skop membawa kepada keadaan kelam-kabut.  Di dalam pelajaran ini kita akan melihat bagaimana untuk meletakkan beberapa fungsi ke dalam satu kumpulan dan menetapkan sejenis map khas yang dikenali sebagai struct dalam usaha untuk menguruskan kod kita dengan lebih efisien.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Nebenläufigkeit
-category: advanced
-order: 4
-lang: de
 ---
 
 Einer der wichtigsten Gründe für den Einsatz von Elixir ist die eingebaute Unterstützung von Nebenläufigkeit. Dank der Erlang VM (BEAM) ist Nebenläufigkeit in Elixir einfacher als erwartet. Die Nebenläufigkeit basiert auf dem Actor Model, bei dem ein abgeschlossener Prozess mit anderen Prozessen durch message passing kommuniziert.

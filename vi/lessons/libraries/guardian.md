@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Guardian (Cơ bản)
-category: libraries
-order: 1
-lang: vi
 ---
 
 [Guardian](https://github.com/ueberauth/guardian) là một thư viện xác thực danh tính người dùng được sử dụng rộng rãi dựa trên chuẩn [JWT](https://jwt.io/) (JSON Web Token).
@@ -120,7 +116,7 @@ Lúc này chúng ta đã cấu hình xong Guardian, chúng ta cần tích hợp 
 
 ## Các yêu cầu trong giao thức HTTP
 
-Guardian cung cấp một số Plugs để dễ dàng nhúng vào HTTP requests. Bạn có thể học về Plug tại đây [separate lesson](../specifics/plug/). Guardian làm việc không nhất thiết cần Phoenix, nhưng chúng ta sử dụng Phoenix trong ví dụ dưới đây sẽ dễ dàng mô tả cách hoạt động.
+Guardian cung cấp một số Plugs để dễ dàng nhúng vào HTTP requests. Bạn có thể học về Plug tại đây [separate lesson](../../specifics/plug/). Guardian làm việc không nhất thiết cần Phoenix, nhưng chúng ta sử dụng Phoenix trong ví dụ dưới đây sẽ dễ dàng mô tả cách hoạt động.
 
 Dễ nhất là sử dụng HTTP qua router - module route của Phoenix. Bởi vì Guardian tích hợp HTTP hoàn toàn dựa trên plugs, bạn có thể sử dụng nó bất kỳ chỗ nào có sử dụng plug.
 

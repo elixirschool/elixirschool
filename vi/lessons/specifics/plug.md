@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Plug
-category: specifics
-order: 1
-lang: vi
 ---
 
 Nếu bạn biết Ruby bạn có thể nghĩ Plug như là Rack với một chút Sinatra. Nó cung cấp một đặc tả cho các thành phần ứng dụng web và kết nối nó với web servers. Tuy không nằm trong phần cốt lõi nhưng Plug là một dự án chính thức của Elixir.
@@ -17,8 +13,8 @@ Cài đặt Plug với Mix khá đơn giản. Để cài đặt ta chỉ cần t
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.0.0"},
-   {:plug, "~> 1.0"}]
+  [{:cowboy, "~> 1.1.2"},
+   {:plug, "~> 1.3.4"}]
 end
 ```
 

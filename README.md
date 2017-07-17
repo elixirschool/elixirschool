@@ -1,4 +1,4 @@
-# Elixir School [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+# Elixir School
 
 > Lessons about the Elixir programming language, inspired by Twitter's [Scala School](http://twitter.github.io/scala_school/).
 
@@ -42,7 +42,7 @@ In addition to the steps above there are a few addition steps required for trans
 1. Create a folder using the 2 character code (e.g. jp, en, es, etc) with lesson subfolders:
 
   ```shell
-  $ cd elixir_school
+  $ cd elixir-school
   $ mkdir -p jp/lessons/{basics,advanced,specifics,libraries}
   $ touch jp/lessons/{basics,advanced,specifics,libraries}/.gitignore
   ```

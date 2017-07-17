@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Dokumentasi
-category: basics
-order: 11
-lang: my
 ---
 
 Mendokumentasi kod Elixir.
@@ -305,4 +301,4 @@ end
 
  - Cuba untuk memasukkan contoh-contoh kod ke dalam dokumetasi anda, ini juga memudahkan anda menjana ujian-ujian otomatik daripada kod-kod contoh di dalam sesatu modul, fungsi atau makro menggunakan [ExUnit.DocTest][ExUnit.DocTest].  Untuk melaksanakannya, anda perlu memanggil makro `doctest/1` daripada kes ujian dan tuliskan contoh-contoh berpandukan kepada [dokumentasi rasmi][ExUnit.DocTest].
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

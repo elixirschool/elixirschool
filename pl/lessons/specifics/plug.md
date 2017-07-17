@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Plug
-category: specifics
-order: 1
-lang: pl
 ---
 
 Jeżeli masz doświadczenie z Ruby to Plug może być czymś w rodzaju Racka z domieszką Sinatry. Definiuje on specyfikację dla aplikacji webowych oraz adapterów dla serwerów. Choć nie jest częścią biblioteki standardowej, to Plug jest oficjalnym projektem zespołu odpowiedzialnego za Elixira.   
@@ -17,8 +13,8 @@ Instalacja z użyciem mix jest bardzo prosta. By zainstalować Plug musimy zmody
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.0.0"},
-   {:plug, "~> 1.0"}]
+  [{:cowboy, "~> 1.1.2"},
+   {:plug, "~> 1.3.4"}]
 end
 ```
 
@@ -94,11 +90,11 @@ Na początku definiujemy nowy wyjątek `IncompleteRequestError` który ma opcję
 
 Drugim elementem naszego pluga jest metoda `call/2`. To w niej decydujemy czy wykonana zostanie weryfikacja czy też pominiemy tę logikę. Tylko w przypadku gdy ścieżka żądania znajduje się w opcji `:paths` wywołamy `verify_request!/2`.
 
-Ostatnim elementem jest prywatna funkcja `verify_request!/2`, która sprawdza czy żądanie zawiera wszystkie pola wymienione w `:fields`. Jeżeli jakieś pole nie istnieje wyrzuca wyjątek `IncompleteRequestError`. 
+Ostatnim elementem jest prywatna funkcja `verify_request!/2`, która sprawdza czy żądanie zawiera wszystkie pola wymienione w `:fields`. Jeżeli jakieś pole nie istnieje wyrzuca wyjątek `IncompleteRequestError`.
 
 ## Użycie Plug.Router
 
-Teraz gdy mamy nasz plug `VerifyRequest`, możemy przejść do routera. Jak zaraz zobaczymy nie potrzebujemy dodatkowego narzędzia jak Sinatra, ponieważ w Elixirze mamy dostępny Plug. 
+Teraz gdy mamy nasz plug `VerifyRequest`, możemy przejść do routera. Jak zaraz zobaczymy nie potrzebujemy dodatkowego narzędzia jak Sinatra, ponieważ w Elixirze mamy dostępny Plug.
 
 Na początku stwórzmy plik `lib/plug/router.ex` i skopiujmy do niego następujący kod:
 
@@ -114,7 +110,7 @@ defmodule Example.Plug.Router do
 end
 ```
 
-Jest to minimalna konfiguracja lecz dzięki temu bardzo dobrze widać co się dzieje. Najpierw dołączyliśmy makro `use Plug.Router` i następnie dwa wbudowane plugi: `:match` i `:dispatch`. Obsługujemy dwie ścieżki. Pierwsza to żądanie GET do strony głównej, a druga to wszystkie inne żądania, które zwrócą kod HTTP 404 z odpowiednią wiadomością 
+Jest to minimalna konfiguracja lecz dzięki temu bardzo dobrze widać co się dzieje. Najpierw dołączyliśmy makro `use Plug.Router` i następnie dwa wbudowane plugi: `:match` i `:dispatch`. Obsługujemy dwie ścieżki. Pierwsza to żądanie GET do strony głównej, a druga to wszystkie inne żądania, które zwrócą kod HTTP 404 z odpowiednią wiadomością
 
 Dodajmy nasz plug do routera:
 

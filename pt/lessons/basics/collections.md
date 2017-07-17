@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Coleções
-category: basics
-order: 2
-lang: pt
 ---
 
 Listas, tuplas, listas de palavras-chave, mapas, dicionários e combinadores funcionais.
@@ -63,11 +59,11 @@ iex> tl [3.14, :pie, "Apple"]
 Além das funções citadas, pode-se usar [pattern matching](../pattern-matching) e o operador cons `|` para dividir a lista em topo e cauda; veremos este padrão em futuras lições:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

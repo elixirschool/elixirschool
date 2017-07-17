@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.0
 title: 에러 처리
-category: advanced
-order: 2
-lang: ko
 ---
 
 `{:error, reason}` 튜플을 반환하는 것이 더 흔하지만, Elixir는 예외를 지원합니다. 이번 강의에서는 에러를 어떻게 처리할 것인지, 에러를 처리하는 다양한 원리들을 다룰 것입니다.

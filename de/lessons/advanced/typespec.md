@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Spezifikationen und Typen
-category: advanced
-order: 9
-lang: de
 ---
 
 In dieser Lektion werden wir die `@spec`- und `@type`-Syntax kennen lernen. Die Erste ist eine Ergänzung um Dokumentation zu schreiben, die von Tools ausgewertet werden kann. Die Zweite hilft uns lesbareren und einfacheren Code zu schreiben.
@@ -39,7 +35,7 @@ Das sieht auf den ersten Blick alles OK aus, jedoch gibt die Funktion `Enum.sum`
 ## Benutzerdefinierte Typen
 
 Spezifikationen schreiben ist ganz nett, aber manchmal arbeiten unsere Funktionen mit komplexeren Datenstrukturen als einfache Nummern oder collections. In diesem Fall wäre die Definition in `@spec` schwer für andere Entwickler zu verstehen oder zu ändern. Manchmal müssen Funktionen eine große Zahl Parameter entgegennehmen oder komplexe Daten zurückgeben. Eine lange Parameterliste ist eine der vielen Möglichkeiten für code smells im Code. In objektorientieren Sprachen wie Ruby oder Java könnten wir einfach Klassen definieren, die uns dabei helfen, dieses Problem zu lösen. Elixir kennt keine Klassen, ist aber einfach zu erweitern, so dass wir unsere Typen definieren können.
-Standardmäßig bietet Elixir einfache Typen wie `integer` oder `pid`. Du findest eine Liste aller Typen in der [Dokumentation](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Standardmäßig bietet Elixir einfache Typen wie `integer` oder `pid`. Du findest eine Liste aller Typen in der [Dokumentation](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax).
 
 ### Typen definieren
 
@@ -57,7 +53,7 @@ def sum_times(a, params) do
 end
 ```
 
-Wir haben ein struct im `Examples`-Modul hinzugefügt, das die beiden Felder `first` und `last` beinhaltet. Das ist die einfachere Version des structs aus dem `Range`-Modul. Wir sprechen noch über `structs`, wenn wir [Module](lessons/basics/modules/#structs) besprechen. Lass uns davon ausgehen, dass wir das `Examples`-struct an vielen Stellen brauchen und es nervtötend ist lange, komplexe Spezifikationen zu schreiben, die Bugs herbeiführen könnten. Eine Lösung für dieses Problem ist `@type`.
+Wir haben ein struct im `Examples`-Modul hinzugefügt, das die beiden Felder `first` und `last` beinhaltet. Das ist die einfachere Version des structs aus dem `Range`-Modul. Wir sprechen noch über `structs`, wenn wir [Module](../../basics/modules/#structs) besprechen. Lass uns davon ausgehen, dass wir das `Examples`-struct an vielen Stellen brauchen und es nervtötend ist lange, komplexe Spezifikationen zu schreiben, die Bugs herbeiführen könnten. Eine Lösung für dieses Problem ist `@type`.
 
 Elixir hat drei Direktiven für Typen:
 

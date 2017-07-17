@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.0
 title: Erlang 상호 운용
-category: advanced
-order: 1
-lang: ko
 ---
 
 Erlang VM (BEAM) 위에서 작업하면서 추가된 이점 중 하나는 기존의 다양한 라이브러리를 사용할 수 있다는 점입니다. 상호 운용성은 우리의 Elixir 코드에서 이러한 라이브러리들과 Erlang 표준 라이브러리를 사용할 수 있도록 해줍니다. 이번 강의에서는 서드파티 Erlang 패키지와 더불어 표준 라이브러리의 기능에 접근하는 법을 알아봅니다.

@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Συναρτήσεις
-category: basics
-order: 6
-lang: gr
 ---
 
 Στην Elixir όπως και σε άλλες συναρτησιακές γλώσσες, οι συναρτήσεις είναι απόλυτα υποστηριζόμενες.  Θα μάθουμε για τους τύπους των συναρτήσεων στην Elixir, τι τις κάνει διαφορετικές και πως να τις χρησιμοποιούμε.
@@ -85,7 +81,7 @@ end
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -149,7 +145,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Γειά, "

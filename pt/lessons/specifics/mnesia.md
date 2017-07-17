@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Mnesia
-category: specifics
-order: 5
-lang: pt
 ---
 
 Mnesia é um sistema de gestão de banco de dados em tempo real de alto tráfego.
@@ -92,7 +88,7 @@ Agora que temos o conhecimento básico e criação do banco de dados, estamos ag
 
 ```elixir
 iex> alias :mnesia, as: Mnesia
-iex> Mnesia.create_schema([node])
+iex> Mnesia.create_schema([node()])
 :ok
 iex> Mnesia.start()
 :ok

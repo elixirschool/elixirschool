@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Struktur Kawalan
-category: basics
-order: 5
-lang: my
 ---
 
 Dalam pelajaran ini kita akan melihat struktur kawalan yang dibekalkan oleh ELixir.
@@ -13,7 +9,7 @@ Dalam pelajaran ini kita akan melihat struktur kawalan yang dibekalkan oleh ELix
 
 ## `if` dan `unless`
 
-Kemungkinan besar anda telah menemui `if/2` sebelum ini, dan jika anda pernah menggunakan Ruby anda sudah biasa dengan `unless/2`.  Dalam Elixir mereka berfungsi lebih kurang sama tetapi mereka adalah ditetapkan sebagai makro, bukan komponen asas bahasa itu sendiri;  Anda akan menjumpai pelaksanaan mereka dalam [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Kemungkinan besar anda telah menemui `if/2` sebelum ini, dan jika anda pernah menggunakan Ruby anda sudah biasa dengan `unless/2`.  Dalam Elixir mereka berfungsi lebih kurang sama tetapi mereka adalah ditetapkan sebagai makro, bukan komponen asas bahasa itu sendiri;  Anda akan menjumpai pelaksanaan mereka dalam [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
 
 Perlu diingat di dalam Elixir, hanya `nil` dan boolean `false` mempunyai nilai false.
 

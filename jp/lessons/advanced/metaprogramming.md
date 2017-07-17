@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: メタプログラミング
-category: advanced
-order: 7
-lang: jp
 ---
 
 メタプログラミングとはコード自体にコードを記述させる機能です。

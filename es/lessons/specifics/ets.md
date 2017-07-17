@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Almacenamiento de términos de Erlang (ETS)
-category: specifics
-order: 4
-lang: es
 ---
 
 Almacenamiento de términos de Erlang, comúnmente conocido como ETS, es un potente motor de almacenamiento incorporado en OTP y disponible para utilizar en Elixir. En esta lección vamos a ver cómo interactuar con ETS y cómo se pueden emplear en nuestras aplicaciones.
@@ -200,7 +196,7 @@ defmodule SimpleCache do
   """
   defp lookup(mod, fun, args) do
     case :ets.lookup(:simple_cache, [mod, fun, args]) do
-      [result|_] -> check_freshness(result)
+      [result | _] -> check_freshness(result)
       [] -> nil
     end
   end

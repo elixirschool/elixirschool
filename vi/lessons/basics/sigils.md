@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Sigils
-category: basics
-order: 10
-lang: vi
 ---
 
 Làm việc cùng và tạo mới sigils.
@@ -78,7 +74,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Hơn nữa, Elixir cung cấp [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API được xây dựng trên nền của thư viện biểu thức chính qui của Erlang. Hãy thử thực hành hàm `Regex.split/2` sử dụng regex sigil nào:
+Hơn nữa, Elixir cung cấp [Regex](https://hexdocs.pm/elixir/Regex.html) API được xây dựng trên nền của thư viện biểu thức chính qui của Erlang. Hãy thử thực hành hàm `Regex.split/2` sử dụng regex sigil nào:
 
 ```elixir
 iex> string = "100_000_000"

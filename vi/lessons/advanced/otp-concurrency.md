@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: OTP Concurrency
-category: advanced
-order: 5
-lang: vi
 ---
 
 Chúng ta đã xem về các trừu tượng hoá của Elixir cho xử lý đồng thời (concurrency), nhưng đôi khi chúng ta cần quyền điều khiển lớn hơn, bởi thế chúng ta sẽ đi sâu vào tìm hiểu hành vi của OTP mà đã có sẵn ở trong Elixir.
@@ -26,7 +22,7 @@ defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  Start our queue and link it.  This is a helper method
+  Start our queue and link it.  This is a helper function
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -43,7 +39,7 @@ end
 
 Sẽ có những trường hợp cần thiết để tương tác với GenServers theo một cách tuần tự, gọi một hàm và đợi trả về của nó. Để xử lý yêu cầu một cách tuần tự, chúng ta cần thực thi `GenServer.handle_call/3` callback mà nhận vào: yêu cầu, PID của người gọi, và trạng thái hiện tại; một tuple sẽ được mong đợi để trả về: `{:reply, response, state}`.
 
-Với việc sử dụng so trùng mẫu (pattern matching), chúng ta có thể định nghĩa callbacks cho rất nhiều yêu cầu và trạng thái. Một chuỗi hoàn chỉnh của các giá trị được phép trả về có thể được tìm thấy trong tài liệu [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) 
+Với việc sử dụng so trùng mẫu (pattern matching), chúng ta có thể định nghĩa callbacks cho rất nhiều yêu cầu và trạng thái. Một chuỗi hoàn chỉnh của các giá trị được phép trả về có thể được tìm thấy trong tài liệu [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) 
 
 Để minh hoạ về yêu cầu tuần tự, hãy thêm vào tính năng để hiển thị trạng thái hiện tại của hàng đợi và xoá một giá trị:
 
@@ -148,7 +144,7 @@ iex> SimpleQueue.enqueue(20)
 iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
-Để biết thêm thông tin, hãy xem tài liệu chính thức tại [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content).
+Để biết thêm thông tin, hãy xem tài liệu chính thức tại [GenServer](https://hexdocs.pm/elixir/GenServer.html#content).
 
 ## GenEvent
 
@@ -223,4 +219,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-Bạn có thể xem tài liệu chính thức tại [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) để xem danh mục tất cả các callback và các hàm mà GenEvent hỗ trợ.
+Bạn có thể xem tài liệu chính thức tại [GenEvent](https://hexdocs.pm/elixir/GenEvent.html#content) để xem danh mục tất cả các callback và các hàm mà GenEvent hỗ trợ.

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Контролни структури
-category: basics
-order: 5
-lang: bg
 ---
 
 В този урок ще разгледаме какви контролни структури са достъпни за нас в Elixir.
@@ -13,7 +9,7 @@ lang: bg
 
 ## `if` и `unless`
 
-Най-вероятно сте срещали `if/2` преди, а ако сте ползвали Ruby сте запознати с `unless/2`.  При Elixir те работят по същия начин, но са дефинирани като макроси, а не конструкции на езика; Може да намерите тяхната имплементация в [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Най-вероятно сте срещали `if/2` преди, а ако сте ползвали Ruby сте запознати с `unless/2`.  При Elixir те работят по същия начин, но са дефинирани като макроси, а не конструкции на езика; Може да намерите тяхната имплементация в [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
 
 Трябва да се отбележи, че в Elixir единствените неверни стойности са `nil` и булевото `false`.
 
@@ -170,8 +166,7 @@ end
 Когато използваме `with` разполагаме с код, който е лесен за разбиране и съдържа по-малко редове:
 
 ```elixir
-with
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```

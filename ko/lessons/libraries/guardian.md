@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.0
 title: Guardian (Basics)
-category: libraries
-order: 1
-lang: ko
 ---
 
 [Guardian](https://github.com/ueberauth/guardian)은 [JWT](https://jwt.io/) (JSON Web Tokens) 에 기반한 널리 사용되는 인증 라이브러리입니다.
@@ -120,7 +116,7 @@ serializer는 `sub`(subject) 필드에서 식별 된 자원을 찾는 역활을 
 
 ## HTTP 요청
 
-Guardian은 HTTP 요청에 쉽게 통합할 수 있도록 다양한 Plug를 제공합니다. [다른 강좌](../specifics/plug/)에서 Plug를 배울 수 있습니다. Guardian은 Phoenix를 요구하지 않지만, 다음 예제에서는 가장 쉽게 보여주기 위해 Phoenix를 사용하겠습니다.
+Guardian은 HTTP 요청에 쉽게 통합할 수 있도록 다양한 Plug를 제공합니다. [다른 강좌](../../specifics/plug/)에서 Plug를 배울 수 있습니다. Guardian은 Phoenix를 요구하지 않지만, 다음 예제에서는 가장 쉽게 보여주기 위해 Phoenix를 사용하겠습니다.
 
 HTTP에 통합하는 가장 쉬운 방법은 라우터를 사용하는 것입니다. Guardian의 HTTP 통합은 모두 Plug 기반이기 때문에 Plug를 사용할 수 있는 곳이라면 어디서나 사용할 수  있습니다.
 
@@ -191,9 +187,9 @@ defmodule MyApp.MyController do
 end
 ```
 
-`Guardian.Phoenix.Controller` 모듈을 사용하려면, 패턴매칭에 사용할 액션에 인자를 두개 추가할 필요가 있습니다. `EnsureAuthentication`을 사용하지 않으면 nil 유저나 클레임을 받을 수 있다는 걸 기억하세요.
+`Guardian.Phoenix.Controller` 모듈을 사용하려면, 패턴매칭에 사용할 액션에 인자를 두개 추가할 필요가 있습니다. `EnsureAuthenticated`을 사용하지 않으면 nil 유저나 클레임을 받을 수 있다는 걸 기억하세요.
 
-더 유연하고 장황한 다른 방법은 plug 핼퍼를 사용하는 것입니다.
+더 유연하고 장황한 다른 방법은 Plug 헬퍼를 사용하는 것입니다.
 
 ```elixir
 defmodule MyApp.MyController do

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Básico
-category: basics
-order: 1
-lang: pt
 ---
 
 Primeiros Passos, tipos básicos e operações básicas.
@@ -26,7 +22,7 @@ Após instalar o Elixir, você pode facilmente confirmar a versão instalada.
 
 ### Modo Interativo
 
-Elixir vem com `iex`, um console interativo, que nos permite avaliar expressões em Elixir.
+Elixir vem com IEx, um console interativo, que nos permite avaliar expressões em Elixir.
 
 Para iniciar, executamos `iex`:
 
@@ -150,7 +146,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir também inclui tipos de dados mais complexos. Nós vamos aprender mais sobre estes quando aprendermos sobre Collections e Functions.
+Elixir também inclui tipos de dados mais complexos. Nós vamos aprender mais sobre estes quando aprendermos sobre [coleções](../collections/) e [funções](../functions/).
 
 ## Operações Básicas
 

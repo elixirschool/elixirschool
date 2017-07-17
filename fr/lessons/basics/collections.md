@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Collections
-category: basics
-order: 2
-lang: fr
 ---
 
 Les Listes, Tuples, Keywords, Maps et les combinateurs fonctionnels.
@@ -64,11 +60,11 @@ iex> tl [3.14, :pie, "Apple"]
 En plus des fonctions ci-dessus, vous pouvez utiliser un pipe `|` pour déstructurer une liste. Nous verrons cet idiome dans les leçons suivantes:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

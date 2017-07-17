@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Collections
-category: basics
-order: 2
-lang: my
 ---
 
 List, tuples, keywords, maps, dicts dan functional combinators.
@@ -64,11 +60,11 @@ iex> tl [3.14, :pie, "Apple"]
 Sebagai tambahan kepada fungsi-fungsi yang telah disebutkan, anda juga dibenarkan menggunakan aksara paip `|`; kita akan melihat penggunaan corak ini di dalam pelajaran seterusnya:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

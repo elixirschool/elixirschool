@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Koleksi
-category: basics
-order: 2
-lang: id
 ---
 
 List, tuple, kata kunci, map dan kombinator fungsional.
@@ -66,11 +62,11 @@ iex> tl [3.14, :pie, "Apple"]
 Di samping kedua fungsi tersebut, anda juga bisa menggunakan operator `|`; kita akan melihat pola ini di pelajaran-pelajaran selanjutnya:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

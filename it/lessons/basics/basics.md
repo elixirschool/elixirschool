@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Base
-category: basics
-order: 1
-lang: it
 ---
 
 Configurazione, tipi di base ed operazioni di base.
@@ -19,7 +15,7 @@ Le istruzioni per l'installazione per ciascun sistema operativo sono disponibili
 
 ### Modalità Interattiva
 
-Elixir viene fornito con `iex`, una shell interattiva che permette di eseguire istruzioni di Elixir in tempo reale.
+Elixir viene fornito con IEx, una shell interattiva che permette di eseguire istruzioni di Elixir in tempo reale.
 
 Per cominciare, lanciamo il comando `iex`:
 

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Plug
-category: specifics
-order: 1
-lang: cn
 ---
 
 如果你熟悉 Ruby 你可以把 Plug 想成 Rack，再加上一点 Sinatra。它提供了编写 Web 应用组件的一组规范，以及接入 Web 服务器所需的一些适配器。虽然 Plug 不属于 Elixir 的核心库，但它依然是一个 Elixir 官方维护的项目。
@@ -17,8 +13,8 @@ lang: cn
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.0.0"},
-   {:plug, "~> 1.0"}]
+  [{:cowboy, "~> 1.1.2"},
+   {:plug, "~> 1.3.4"}]
 end
 ```
 

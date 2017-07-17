@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Pemadanan Corak
-category: basics
-order: 4
-lang: my
 ---
 
 Pemadanan corak ialah satu komponen Elixir yang amat berkuasa, ia mengupayakan kita untuk membuat pemadanan nilai-nilai mudah, struktur data, dan juga fungsi-fungsi.
@@ -39,7 +35,7 @@ iex> [1, 2, 3] = list
 iex> [] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-iex> [1|tail] = list
+iex> [1 | tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]

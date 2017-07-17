@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: GenStage
-category: advanced
-order: 11
-lang: gr
 ---
 
 Σε αυτό το μάθημα θα δούμε πιο αναλυτικά το GenStage, τι ρόλο παίζει και πως θα το αξιοποιήσουμε στις εφαρμογές μας.

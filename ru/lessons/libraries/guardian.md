@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Guardian (Основы)
-category: libraries
-order: 1
-lang: ru
 ---
 
 [Guardian](https://github.com/ueberauth/guardian) &mdash; часто используемая библиотека, основанная на [JWT](https://jwt.io/) (JSON Web Token).
@@ -114,7 +110,7 @@ end
 
 ## HTTP запросы
 
-Guardian предоставляет различные Plug для интеграции в HTTP запросы. О Plug можно почитать в [другом уроке](../specifics/plug/). Guardian не требует Phoenix, с ним легче всего будет привести следующие примеры, потому мы будем его использовать.
+Guardian предоставляет различные Plug для интеграции в HTTP запросы. О Plug можно почитать в [другом уроке](../../specifics/plug/). Guardian не требует Phoenix, с ним легче всего будет привести следующие примеры, потому мы будем его использовать.
 
 Самый легкий способ интеграции &mdash; роутер. Так как HTTP интеграции Guardian основаны на plug-ах, их можно использовать в любом совместимом инструментарии.
 

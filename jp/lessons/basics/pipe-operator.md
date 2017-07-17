@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: パイプライン演算子
-category: basics
-order: 7
-lang: jp
 ---
 
 パイプライン演算子(`|>`)はある式の結果を別の式に1つ目の引数として渡します。

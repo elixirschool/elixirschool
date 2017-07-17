@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Ένθετη Elixir (EEx)
-category: specifics
-order: 3
-lang: gr
 ---
 
 Όπως η Ruby έχει το ERB και η Java τα JSP, η Elixir έχει τα EEx, ή Ένθετη Elixir.  Με την EEx μπορούμε να ενσωματώσουμε και τρέξουμε κώδικα Elixir μέσα σε αλφαριθμητικά.
@@ -79,4 +75,4 @@ iex> EEx.eval_string "Γειά σου, <%= @name %>", assigns: [name: "Sean"]
 
 Οι αναθέσεις `EEx.SmartEngine` είναι χρήσιμες επειδή οι αναθέσεις μπορούν να αλλαχθούν χωρίς να χρειαστεί σύνταξη προτύπου.
 
-Ενδιαφέρεστε να γράψετε την δική σας μηχανή;  Ελέγξτε την συμπεριφορά της [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) για να δείτε τι απαιτείται.
+Ενδιαφέρεστε να γράψετε την δική σας μηχανή;  Ελέγξτε την συμπεριφορά της [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html) για να δείτε τι απαιτείται.

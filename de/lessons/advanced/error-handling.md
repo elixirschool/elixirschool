@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Fehlerbehandlung
-category: advanced
-order: 2
-lang: de
 ---
 
 Obwohl es üblich ist das `{:error, reason}`-Tupel zurückzugeben unterstützt Elixir Exceptions und in dieser Lektion werden wir lernen, wie man Fehler behandelt und welche verschiedenen Möglichkeiten wir haben.

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Enum
-category: basics
-order: 3
-lang: sk
 ---
 
 Sada algoritmov pre iterovanie nad kolekciami.
@@ -15,11 +11,11 @@ Sada algoritmov pre iterovanie nad kolekciami.
 
 Modul `Enum` obsahuje vyše stovku funkcií pre prácu s kolekciami, o ktorých sme sa dozvedeli v minulej lekcii.
 
-Táto lekcia pokrýva len malú podmnožinu týchto funkcií - kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html). Zaujímať vás môžu aj funkcie na prácu s "lazy enumeration" z modulu [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+Táto lekcia pokrýva len malú podmnožinu týchto funkcií - kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`Enum`](https://hexdocs.pm/elixir/Enum.html). Zaujímať vás môžu aj funkcie na prácu s "lazy enumeration" z modulu [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 ### all?
 
-Funkcia `all?`, rovnako ako väčšina ostatných funkcii z modulu `Enum`, berie ako svoj argument funkciu, ktorú potom aplikuje na všetky prvky kolekcie. Ak táto funkcia vráti pre *všetky prvky* `true`, funkcia `all?` vráti hodnotu `true`, inak `false`:
+Funkcia `all?`, rovnako ako väčšina ostatných funkcií z modulu `Enum`, berie ako svoj argument funkciu, ktorú potom aplikuje na všetky prvky kolekcie. Ak táto funkcia vráti pre *všetky prvky* `true`, funkcia `all?` vráti hodnotu `true`, inak `false`:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -46,7 +42,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Táto funckia má niekoľko možností použitia, pozrite sa do oficiálnej dokumentácie: [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2).
+Táto funkcia má niekoľko možností použitia, pozrite sa do oficiálnej dokumentácie: [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2).
 
 ### chunk_by
 
@@ -68,13 +64,14 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Poznámka__: Funkcia `each` vracia atom `:ok`.
 
 ### map
 
-Aplikuje poskutnutú funkciu na každý prvok kolekcie a vráti novú kolekciu s výsledkami týchto aplikácií:
+Aplikuje poskytnutú funkciu na každý prvok kolekcie a vráti novú kolekciu s výsledkami týchto aplikácií:
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x * 2 end)

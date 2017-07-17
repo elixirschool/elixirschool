@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Dokumentasjon
-category: basics
-order: 11
-lang: no
 ---
 
 Dokumentering av elixir kode.
@@ -126,7 +122,8 @@ iex>
 
 La du merke til hvordan vi kan designe dokumentasjon med markup, og at terminalen printer det ut? Bortsett fra at at dette er skikkelig kult, og en fantastisk del av Elixir's store økosystem, blir det straks mer interessant når vi utforsker ExDoc, som genererer HTML dokumentasjon for oss!
 
-**Merk:** `@spec` brukes for statistisk analyse av kode. For å lære mer, sjekk ut [Spesifikasjoner og Typer](../../advanced/typespec).
+**Merk:** `@spec` brukes for statistisk analyse av kode. <!-- TODO: Remove this as a comment, once advanced/typespec  is translated
+For å lære mer, sjekk ut [Spesifikasjoner og Typer](../../advanced/typespec/). -->
 
 ## ExDoc
 
@@ -309,4 +306,4 @@ end
 
  - Forsøk å legge til noen kodeeksempler i dokumentasjonen. Dette vil også gjøre at du kan generere automatiske tester fra kodeeksemplene i en modul, funksjon eller makro med [ExUnit.DocTest][]. For å gjøre det, må du kalle `doctest/1` makroen fra testen, og skrive eksemplene etter retningslinjene i [den offisielle dokumentasjonen][ExUnit.DocTest].
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

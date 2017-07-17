@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Funciones
-category: basics
-order: 6
-lang: es
 ---
 
 En Elixir y en muchos lenguajes funcionales, las funciones son ciudadanos de primera clase. Vamos a aprender acerca de los tipos de funciones en Elixir, qué los hace diferentes, y cómo usarlos.
@@ -85,7 +81,7 @@ Armados con nuestro conocimiento de coincidencia de patrones, vamos a explorar l
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -127,7 +123,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Erlang 项式存储 (ETS)
-category: specifics
-order: 4
-lang: cn
 base_commit: 035ee14
 ---
 
@@ -200,7 +196,7 @@ defmodule SimpleCache do
   """
   defp lookup(mod, fun, args) do
     case :ets.lookup(:simple_cache, [mod, fun, args]) do
-      [result|_] -> check_freshness(result)
+      [result | _] -> check_freshness(result)
       [] -> nil
     end
   end

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Pattern Matching
-category: basics
-order: 4
-lang: sk
 ---
 
 Pattern matching je dôležitou a mocnou vymoženosťou Elixiru. Umožňuje nám hľadať a vyberať jednoduché hodnoty, dátové štruktúry a dokonca aj funkcie. V tejto lekcii si ukážeme, ako ho používať.
@@ -13,7 +9,7 @@ Pattern matching je dôležitou a mocnou vymoženosťou Elixiru. Umožňuje nám
 
 ## Match operator
 
-Pripravení na prekvapko? V Elixire je operátor `=` v skutočnosti match operátorom. Pomocou neho môžeme nachádzať, vyberať a pridaďovať časti vyhovujúce našim kritériam.
+Pripravení na prekvapko? V Elixire je operátor `=` v skutočnosti match operátorom. Pomocou neho môžeme nachádzať, vyberať a priraďovať časti vyhovujúce našim kritériam.
 
 Nasledujúcim spôsobom matchneme hocičo (nešpecifikujeme žiadne kritériá) a priradíme to do premennej `x`:
 
@@ -43,7 +39,7 @@ iex> [1, 2, 3] = list
 iex> [] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-iex> [1|tail] = list
+iex> [1 | tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]

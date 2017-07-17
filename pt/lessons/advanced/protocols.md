@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Protocols
-category: advanced
-order: 12
-lang: pt
 ---
 
 Nesta lição nós iremos aprender um pouco sobre Protocols, o que eles são e como usamos ele em Elixir.
@@ -95,7 +91,7 @@ defimpl AsAtom, for: Map do
 end
 ```
 
-Aqui definimos o nosso protocolo e o método esperado, `to_atom/1`, juntamente com implementações para alguns tipos.
+Aqui definimos o nosso protocolo e a função esperado, `to_atom/1`, juntamente com implementações para alguns tipos.
 Agora que temos o nosso protocolo, vamos colocá-lo para usar em IEx:
 
 ```elixir

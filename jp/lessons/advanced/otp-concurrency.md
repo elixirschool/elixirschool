@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: OTPの並行性
-category: advanced
-order: 5
-lang: jp
 ---
 
 並行性(コンカレンシー)に関するElixirの抽象化を見てきましたが、さらなる制御が必要になることもあります。そうした時のために、Elixirに組み込まれているOTPの振る舞いに目を向けます。
@@ -43,7 +39,7 @@ end
 
 GenServerと同期的な方法、つまり関数を呼びその返答を待つという方法でやりとりをする必要がよくあります。同期リクエストを処理するには、`GenServer.handle_call/3`コールバックを実装する必要があります。これはリクエスト、呼び出し側のPIDと、既存の状態を受け取ります。そして返答は`{:reply, response, state}`のタプルを返すことが期待されます。
 
-パターンマッチングを用いて、多くの異なるリクエストや状態へのコールバックを定義することができます。認められている戻り値の一覧は[`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3)のドキュメントで見つけることができます。
+パターンマッチングを用いて、多くの異なるリクエストや状態へのコールバックを定義することができます。認められている戻り値の一覧は[`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3)のドキュメントで見つけることができます。
 
 同期的なリクエストを実演するために、現在のキューを表示できて、値を取り除くことができる能力を付け加えましょう:
 
@@ -151,7 +147,7 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-より詳しい情報については、公式の[GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content)ドキュメントを調べてみてください。
+より詳しい情報については、公式の[GenServer](https://hexdocs.pm/elixir/GenServer.html#content)ドキュメントを調べてみてください。
 
 ## GenEvent
 
@@ -226,4 +222,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-コールバックとGenEvent機能の一覧については、公式の[GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content)ドキュメントを参照してください。
+コールバックとGenEvent機能の一覧については、公式の[GenEvent](https://hexdocs.pm/elixir/GenEvent.html#content)ドキュメントを参照してください。

@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Sigils
-category: basics
-order: 10
-lang: jp
 ---
 
 シギル(sigil)を使う/作る
@@ -85,7 +81,7 @@ iex> "elixir" =~ re
 true
 ```
 
-さらに、ElixirはErlangの正規表現ライブラリを元に作られた[Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html)APIを
+さらに、ElixirはErlangの正規表現ライブラリを元に作られた[Regex](https://hexdocs.pm/elixir/Regex.html)APIを
 提供しています。正規表現シギルを使って`Regex.split/2`を実装してみましょう。
 
 ```elixir

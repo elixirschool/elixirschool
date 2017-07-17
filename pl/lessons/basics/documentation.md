@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Dokumentowanie kodu
-category: basics
-order: 11
-lang: pl
 ---
 
 Jak dokumentować kod Elixira.
@@ -306,4 +302,4 @@ end
 
  - Podawaj przykłady w dokumentacji. Pozwoli to też na wygenerowanie testów automatycznych na ich podstawie z użyciem [ExUnit.DocTest][]. By to zrobić, należy wywołać makro `doctest/1`, lecz dokumentacja musi spełniać pewne warunki opisane w [oficjalniej dokumentacji][ExUnit.DocTest] narzędzia.
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

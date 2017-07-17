@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Plug
-category: specifics
-order: 1
-lang: pt
 ---
 
 Se você estiver familiarizado com Ruby, você pode pensar sobre Plug como o Rack com uma pitada de Sinatra, ele fornece uma especificação para componentes de aplicação web e adaptadores para servidores web. Mesmo não fazendo parte do núcleo de Elixir, Plug é um projeto oficial de Elixir.
@@ -17,8 +13,8 @@ A instalação é uma brisa se você utilizar mix. Para instalar Plug nós preci
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.0.0"},
-   {:plug, "~> 1.0"}]
+  [{:cowboy, "~> 1.1.2"},
+   {:plug, "~> 1.3.4"}]
 end
 ```
 
@@ -91,7 +87,7 @@ end
 ```
 A primeira coisa a ser notada é que definimos uma nova exceção `IncompleteRequestError` e que uma de suas opções é `:plug_status`. Quando disponível esta opção é usada pelo Plug para definir o código de status do HTTP no caso de uma exceção.
 
-A segunda parte do nosso Plug é o método `call/2`, este é o lugar onde nós lidamos quando aplicar ou não nossa lógica de verificação. Somente quando o caminho do pedido está contido em nossa opção `:paths` iremos chamar `verify_request/2`.
+A segunda parte do nosso Plug é a função `call/2`, este é o lugar onde nós lidamos quando aplicar ou não nossa lógica de verificação. Somente quando o caminho do pedido está contido em nossa opção `:paths` iremos chamar `verify_request/2`.
 
 A última parte do nosso Plug é a função privada `verify_request!/2` no qual verifica quando os campos requeridos `:fields` estão todos presentes. No caso em que algum dos campos requeridos estiver em falta, nós acionamos `IncompleteRequestError`.
 

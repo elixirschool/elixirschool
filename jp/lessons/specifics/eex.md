@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 埋め込みElixir (EEx)
-category: specifics
-order: 3
-lang: jp
 ---
 
 RubyにERBが、そしてJavaにJSPがあるようにElixirにもEEx即ち埋め込みElixirがあります。EExを使って文字列の中にElixirを埋め込んで評価することができます。
@@ -78,4 +74,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 `EEx.SmartEngine`の代入はテンプレートのコンパイルを必要とせず代入結果を変えられるので非常に便利です。
 
-あなた自身でエンジンを書いてみたくなりましたか?  [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html)ビヘイビアを調べて何が必要か見てみてください。
+あなた自身でエンジンを書いてみたくなりましたか?  [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html)ビヘイビアを調べて何が必要か見てみてください。

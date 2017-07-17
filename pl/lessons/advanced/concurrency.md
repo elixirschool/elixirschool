@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Współbieżność
-category: advanced
-order: 4
-lang: pl
 ---
 
 Jednym z najbardziej wartościowych elementów Elixira jest obsługa współbieżności. Dzięki temu, że działa on na maszynie wirtualnej Erlanga, zadanie to zostało bardzo uproszczone. Współbieżność oparta jest o model aktorów, reprezentowanych przez procesy, które komunikują się, wymieniając wiadomości. 

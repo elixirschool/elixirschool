@@ -1,7 +1,5 @@
 ---
-layout: page
 title: Elixir School
-lang: ru
 ---
 
 [![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)

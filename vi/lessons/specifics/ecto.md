@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Ecto
-category: specifics
-order: 2
-lang: vi
 ---
 
 Ecto là một dự án chính thức của Elixir cung cấp một database wrapper (tạm dịch: lớp bọc cho cơ sở dữ liệu) và ngôn ngữ truy vấn tích hợp. Với Ecto ta có thể tạo các migration, định nghĩa model, ghi và cập nhật các bản ghi, và truy vấn chúng.
@@ -17,8 +13,8 @@ Ecto là một dự án chính thức của Elixir cung cấp một database wra
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 2.1.4"},
+   {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -242,7 +238,7 @@ Ví dụ như ta có bảng Profile liên kết với User, ta hãy tìm tất c
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

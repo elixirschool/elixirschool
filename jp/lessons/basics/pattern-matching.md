@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: パターンマッチング
-lang: jp
-category: basics
-order: 4
 ---
 
 パターンマッチングはElixirの強力な部品で、単純な値やデータ構造、果ては関数でさえもマッチすることができます。このレッスンではパターンマッチングの使い方から見ていきます。
@@ -39,7 +35,7 @@ iex> [1, 2, 3] = list
 iex> [] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-iex> [1|tail] = list
+iex> [1 | tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]

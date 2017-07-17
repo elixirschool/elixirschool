@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Temeller
-category: basics
-order: 1
-lang: tr
 ---
 
 Temel veri tipleri ve temel operasyonlar ile başlayalım.

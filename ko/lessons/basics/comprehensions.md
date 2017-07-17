@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.1.0
 title: Comprehensions
-category: basics
-order: 13
-lang: ko
 ---
 
 List comprehension은 Elixir에서 열거형을 이용하여 반복하는 데 사용되는 Syntactic sugar입니다. 이번 강의에서는 반복과 제너레이션을 위해 어떻게 comprehension을 사용하는지에 대해 알아봅니다.
@@ -96,7 +92,7 @@ iex> for x <- 1..100,
 
 ## `:into` 사용하기
 
-만약에 리스트가 아닌 다른 것을 만들고 싶다면 어떻게 해야 할까요? `:into` 옵션이 있다면 할 수 있습니다! 일반적으로 우리가 흔히 겪는 것과 비슷하게, `:into`에는 `Collectable` 프로토콜을 구현하는 어떤 구조체든 사용할 수 있습니다.
+리스트가 아닌 다른 것을 만들고 싶다면 어떻게 해야 할까요? `:into` 옵션이 있다면 할 수 있습니다! 일반적으로 우리가 흔히 겪는 것과 비슷하게, `:into`에는 `Collectable` 프로토콜을 구현하는 어떤 구조체든 사용할 수 있습니다.
 
 `:into`를 사용하여 키워드 리스트로부터 맵을 만들어 봅시다.
 
@@ -105,7 +101,7 @@ iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-비트스트링은 열거형이기 때문에 List comprehension과 `:into`를 사용하여 문자열을 만들 수 있습니다.
+바이너리는 `Collectable` 프로토콜을 지원하기 때문에 List comprehension과 `:into`를 사용하여 문자열을 만들 수 있습니다.
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>

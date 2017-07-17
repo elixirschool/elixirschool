@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Dokumentácia
-category: basics
-order: 11
-lang: sk
 ---
 
 Komentovanie a dokumentovanie kódu v Elixire.
@@ -14,7 +10,7 @@ Komentovanie a dokumentovanie kódu v Elixire.
 
 ## O dokumentovaní v Elixire
 
-Čo všetko a ako podrobne komentovať a dukumentovať zostáva vo svete programovania stále otvorenou otázkou. Všetci sa však asi zhodneme na tom, že dokumentovanie kódu je dôležité pre nás samotných a aj ďalších ľudí, ktorí budú s našim kódom pracovať.
+Čo všetko a ako podrobne komentovať a dokumentovať zostáva vo svete programovania stále otvorenou otázkou. Všetci sa však asi zhodneme na tom, že dokumentovanie kódu je dôležité pre nás samotných a aj ďalších ľudí, ktorí budú s našim kódom pracovať.
 
 Elixir berie dokumentáciu ako svoju plnohodnotnú súčasť (*first-class citizen*) a ponúka rôzne funkcie pre jej generovanie a jednoduchý prístup k nej. Jadro jazyka ponúka viacero možností anotácie kódu, pozrime sa na základné tri:
 
@@ -312,4 +308,4 @@ defmodule Greeter do
 end
 ```
 
-  - Pokúste sa do dokumentácie priložiť aj nejaké príklady použitia. Okrem iného vám to umožní vygenerovať automatické testy funkcií, modulov, či makier pomocou nástroja [ExUnit.DocTest](http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html).
+  - Pokúste sa do dokumentácie priložiť aj nejaké príklady použitia. Okrem iného vám to umožní vygenerovať automatické testy funkcií, modulov, či makier pomocou nástroja [ExUnit.DocTest](https://hexdocs.pm/ex_unit/ExUnit.DocTest.html).

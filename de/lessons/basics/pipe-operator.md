@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Pipe Operator
-category: basics
-order: 7
-lang: de
 ---
 
 Der pipe-Operator `|>` gibt das Resultat des vorherigen Ausdrucks als ersten Parameter an den neuen Ausdrucks weiter.

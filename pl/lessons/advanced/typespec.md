@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Specyfikacje i typy
-category: advanced
-order: 9
-lang: pl
 ---
 
 W tej lekcji przyjrzymy się składni `@spec` i `@type`. Pierwszy służy jako dodatek do składni, który pozwala na analizę kodu przez automatyczne narzędzia. Drugi pozwala na pisanie kodu, który jest bardziej czytelny i prostszy w zrozumieniu.
@@ -40,7 +36,7 @@ Wszystko wygląda poprawnie i gdy wywołamy funkcję, to otrzymamy wynik, ale fu
 
 Tworzenie specyfikacji jest fajne, ale czasami nasze funkcje używają bardziej skomplikowanych struktur danych niż liczby czy kolekcje. W takich przypadkach informacje zdefiniowane w `@spec` będą trudne to zrozumienia i zmiany przez innych programistów. Czasami funkcja przyjmuje wiele parametrów albo zwraca złożoną strukturę. Długa lista parametrów jest też przykładem złego zapachu w kodzie. W językach obiektowych jak Ruby czy Java możemy z łatwością zdefiniować klasę, która opakuje nam dane i pomoże rozwiązać problem. W Elixirze nie ma klas, ale że jest on łatwy do rozszerzenia, to możemy zdefiniować własny typ.
   
-Elixir ma zdefiniowane pewne podstawowe typu jak `integer` czy `pid`. Ich pełna lista jest dostępna w [dokumentacji](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Elixir ma zdefiniowane pewne podstawowe typu jak `integer` czy `pid`. Ich pełna lista jest dostępna w [dokumentacji](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax).
  
 ### Definiowanie typu
   
@@ -58,7 +54,7 @@ def sum_times(a, params) do
 end
 ```
 
-Użyliśmy tu struktury z modułu `Examples`, która zawiera dwa pola `first` i `last`. Jest to uproszczona wersja struktury z modułu `Range`. Będziemy jeszcze mówić o strukturach przy okazji lekcji o [modułach]((../../basics/modules/#structs)). Załóżmy, że potrzebujemy specyfikacji używającej `Examples` w wielu miejscach. Oznacza to dużo pisania, a w dodatku łatwo o błąd. Rozwiązaniem jest użycie `@type`. 
+Użyliśmy tu struktury z modułu `Examples`, która zawiera dwa pola `first` i `last`. Jest to uproszczona wersja struktury z modułu `Range`. Będziemy jeszcze mówić o strukturach przy okazji lekcji o [modułach](../../basics/modules/#structs). Załóżmy, że potrzebujemy specyfikacji używającej `Examples` w wielu miejscach. Oznacza to dużo pisania, a w dodatku łatwo o błąd. Rozwiązaniem jest użycie `@type`. 
  
 Elixir ma trzy dyrektywy opisujące typ:
 

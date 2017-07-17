@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: ফাংশন 
-category: basics
-order: 6
-lang: bn
 ---
 
 এলিক্সির এবং অন্যান্য ফাংশনাল ল্যাঙ্গুয়েজে ফাংশন হল প্রথম শ্রেণীর নাগরিক। এই অধ্যায়ে আমরা এলিক্সিরের বিভিন্ন ধরণের ফাংশন নিয়ে কথা বলব এবং আলোচনা করব এদের পার্থক্য ও ব্যবহার নিয়ে। 
@@ -85,7 +81,7 @@ end
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -153,7 +149,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "

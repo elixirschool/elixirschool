@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Erlang Interoperability
-category: advanced
-order: 1
-lang: vi
 ---
 
 Một trong những lợi ích của việc xây dựng dựa trên Erlang VM (BEAM) chính là việc có rất nhiều những thư viện mà chúng ta có thể sử dụng. Tính tương tác này giúp chúng ta có thể tận dụng những thư viện đó cũng như thư viện chuẩn của Erlang từ Elixir code. Trong bài này chúng ta sẽ xem làm thế nào để sử dụng được những tính năng bên trong thư viện chuẩn cũng như thư viện của bên thứ ba từ Erlang.

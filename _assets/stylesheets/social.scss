@@ -4,21 +4,21 @@
   box-sizing: border-box;
 }
 
-// Import icon font, I've used Entypo (http://entypo.com/)
-@import url(/assets/entypo.css);
-
 // List of icon unicode symbols from the icon font
 // and background colours for the icons
 $icon-list: (
-  twitter "\F309" #32b9e7,
-  facebook "\F30C" #4b70ab,
-  googleplus "\F30F" #fa5432,
-  pinterest "\F312" #d63533,
-  linkedin "\F318" #0087be,
-  evernote "\F333" #aaca62,
-  email "\2709" #fb7629,
-  print "\e716" #167ab6,
-  vk "\f354" #507299
+  linkedin "\e907" #0087be,
+  twitter "\e909" #32b9e7,
+  google "\e90c" #fa5432,
+  facebook "\e903" #4b70ab,
+  facebook-with-circle "\e90a" #4b70ab,
+  facebook2 "\f09a" #4b70ab,
+  facebook-f "\f09a" #4b70ab,
+  pinterest2 "\e90e" #d63533,
+  evernote "\e902" #aaca62,
+  vk "\e905"#507299,
+  mail "\e900" #fb7629,
+  print "\e901" #167ab6,
 );
 
 // Each loop for creating the icon CSS
@@ -55,7 +55,7 @@ div.social__item a[class^="social__icon"] {
 
 // Basic icon style
 .icon {
-  font-family: 'entypo';
+  font-family: 'icomoon';
   speak: none;
   font-style: normal;
   font-weight: normal;

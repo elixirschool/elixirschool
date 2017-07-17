@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Dokumentation
-category: basics
-order: 11
-lang: de
 ---
 
 Wie dokumentiert man Elixir Code?
@@ -307,4 +303,4 @@ end
 
  - Versuche ein paar Codebeispiele in deiner Dokumentation zu schreiben. Das erlaubt es dir zudem automatisch Tests aus Codebeispielen zu generieren. Das ist in Modulen, Funktionen oder Makros durch [ExUnit.DocTest][] möglich. Um das zu tun, musst du das `doctest/1`-Makro in deinem Testcode aufrufen und die Beispiele so schreiben, wie es die Richtlinien in der [offiziellen Dokumentation][ExUnit.DocTest] beschreiben.
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

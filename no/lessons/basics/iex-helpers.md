@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: IEx Hjelpere
-category: basics
-order: 16
-lang: no
 ---
 
 {% include toc.html %}
@@ -38,7 +34,7 @@ og nå kjenner vi til modulen sine funksjoner og deres aritet.
 
 ### `.iex.exs`
 
-Hver gang IEx starter så vil den se etter en .iex.exs konfigurasjons fil. Hvis den ikke er tilgjengelig i nåværende direktiv, så vil den sjekke brukerens hjemmedirektiv (~/.iex.exs) og ta den i bruk.
+Hver gang IEx starter så vil den se etter en `.iex.exs` konfigurasjons fil. Hvis den ikke er tilgjengelig i nåværende direktiv, så vil den sjekke brukerens hjemmedirektiv (`~/.iex.exs`) og ta den i bruk.
 
 La oss starte ved å legge til et bare hjelpe metoder:
 
@@ -66,6 +62,7 @@ iex> IExHelpers.whats_this?(%{})
 iex> IExHelpers.whats_this?(:test)
 "Type: Atom"
 ```
+
 Som vi kan se, så trenger vi ikke å gjøre noe spesielt for å få tak i våre hjelpere, IEx håndterer det for oss.
 
 ### `h`
@@ -181,7 +178,7 @@ Reference modules
   Module, Atom
 ```
 
-Vi har en god del informasjon om Map inkludert hvor kildekoden er lagret og modulene den refererer. Dette er veldig brukbart når vi utforsker andres kode, moduler og funksjoner.
+Vi har en god del informasjon om `Map` inkludert hvor kildekoden er lagret og modulene den refererer. Dette er veldig brukbart når vi utforsker andres kode, moduler og funksjoner.
 
 De første linjene kan være kompakte, men på et høyt nivå så kan vi ekstrahere veldig relevant informasjon:
 
