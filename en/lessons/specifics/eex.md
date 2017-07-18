@@ -2,7 +2,7 @@
 version: 1.0.1
 title: Embedded Elixir (EEx)
 redirect_from:
-  - /lessons/specifics/eex
+  - /lessons/specifics/eex/
 ---
 
 Much like Ruby has ERB and Java has JSPs, Elixir has EEx, or Embedded Elixir.  With EEx we can embed and evaluate Elixir inside strings.

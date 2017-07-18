@@ -2,7 +2,7 @@
 version: 1.0.0
 title: Mnesia
 redirect_from:
-  - /lessons/specifics/mnesia
+  - /lessons/specifics/mnesia/
 ---
 
 Mnesia is a heavy duty real-time distributed database management system.

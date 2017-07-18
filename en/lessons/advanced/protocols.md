@@ -2,7 +2,7 @@
 version: 1.0.0
 title: Protocols
 redirect_from:
-  - /lessons/advanced/protocols
+  - /lessons/advanced/protocols/
 ---
 
 In this lesson we are going to look at Protocols, what they are, and how we use them in Elixir.

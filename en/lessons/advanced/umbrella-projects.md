@@ -2,7 +2,7 @@
 version: 1.0.0
 title: Umbrella Projects
 redirect_from:
-  - /lessons/advanced/umbrella-projects
+  - /lessons/advanced/umbrella-projects/
 ---
 
 Sometimes a project can get big, really big in fact. The Mix build tool allows us to split our code into multiple apps and make our Elixir projects more manageable as they grow.

@@ -2,7 +2,7 @@
 version: 1.0.0
 title: OTP Supervisors
 redirect_from:
-  - /lessons/advanced/otp-supervisors
+  - /lessons/advanced/otp-supervisors/
 ---
 
 Supervisors are specialized processes with one purpose: monitoring other processes. These supervisors enable us to create fault-tolerant applications by automatically restarting child processes when they fail.

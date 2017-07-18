@@ -2,7 +2,7 @@
 version: 1.1.1
 title: Plug
 redirect_from:
-  - /lessons/specifics/plug
+  - /lessons/specifics/plug/
 ---
 
 If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra.

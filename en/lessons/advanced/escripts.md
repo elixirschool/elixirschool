@@ -2,7 +2,7 @@
 version: 1.0.0
 title: Executables
 redirect_from:
-  - /lessons/advanced/escripts
+  - /lessons/advanced/escripts/
 ---
 
 To build executables in Elixir we will be using escript. Escript produces an executable that can be run on any system with Erlang installed.

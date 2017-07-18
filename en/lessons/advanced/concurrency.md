@@ -2,7 +2,7 @@
 version: 1.0.0
 title: Concurrency
 redirect_from:
-  - /lessons/advanced/concurrency
+  - /lessons/advanced/concurrency/
 ---
 
 One of the selling points of Elixir is its support for concurrency. Thanks to the Erlang VM (BEAM), concurrency in Elixir is easier than expected.  The concurrency model relies on Actors, a contained process that communicates with other processes through message passing.

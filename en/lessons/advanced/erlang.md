@@ -2,7 +2,7 @@
 version: 1.0.0
 title: Erlang Interoperability
 redirect_from:
-  - /lessons/advanced/erlang
+  - /lessons/advanced/erlang/
 ---
 
 One of the added benefits to building on top of the Erlang VM (BEAM) is the plethora of existing libraries available to us.  Interoperability allows us to leverage those libraries and the Erlang standard lib from our Elixir code.  In this lesson we'll look at how to access functionality in the standard lib along with third-party Erlang packages.

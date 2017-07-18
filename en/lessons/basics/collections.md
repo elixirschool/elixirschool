@@ -2,7 +2,7 @@
 version: 1.2.0
 title: Collections
 redirect_from:
-  - /lessons/basics/collections
+  - /lessons/basics/collections/
 ---
 
 Lists, tuples, keyword lists and maps.
