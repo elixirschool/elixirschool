@@ -2,7 +2,7 @@
 version: 1.0.1
 title: Specifications and types
 redirect_from:
-  - /lessons/advanced/typespec
+  - /lessons/advanced/typespec/
 ---
 
 In this lesson we will learn about `@spec` and `@type` syntax. First is more syntax complement for writing documentation that could be analyzed by tools. Second helps us to write more readable and easier to understand code.

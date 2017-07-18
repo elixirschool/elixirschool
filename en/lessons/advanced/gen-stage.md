@@ -2,7 +2,7 @@
 version: 1.0.0
 title: GenStage
 redirect_from:
-  - /lessons/advanced/gen-stage
+  - /lessons/advanced/gen-stage/
 ---
 
 In this lesson we're going to take a closer look at the GenStage, what role it serves, and how we can leverage it in our applications.

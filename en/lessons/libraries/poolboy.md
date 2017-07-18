@@ -2,7 +2,7 @@
 version: 1.0.0
 title: Poolboy
 redirect_from:
-  - /lessons/libraries/poolboy
+  - /lessons/libraries/poolboy/
 ---
 
 You can easily exhaust your system resources if you allow concurrent processes to run arbitrarily. Poolboy prevents having to incur the overhead by creating a pool of workers to limit the number of concurrent processes.

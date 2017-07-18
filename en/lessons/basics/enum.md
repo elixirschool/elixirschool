@@ -2,7 +2,7 @@
 version: 1.2.0
 title: Enum
 redirect_from:
-  - /lessons/basics/enum
+  - /lessons/basics/enum/
 ---
 
 A set of algorithms for enumerating over enumerables.

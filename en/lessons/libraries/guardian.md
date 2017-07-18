@@ -2,7 +2,7 @@
 version: 1.0.0
 title: Guardian (Basics)
 redirect_from:
-  - /lessons/libraries/guardian
+  - /lessons/libraries/guardian/
 ---
 
 [Guardian](https://github.com/ueberauth/guardian) is a widely used authentication library based on [JWT](https://jwt.io/) (JSON Web Tokens).

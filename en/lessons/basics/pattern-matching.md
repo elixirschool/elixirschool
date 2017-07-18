@@ -2,7 +2,7 @@
 version: 1.0.1
 title: Pattern Matching
 redirect_from:
-  - /lessons/basics/pattern-matching
+  - /lessons/basics/pattern-matching/
 ---
 
 Pattern matching is a powerful part of Elixir.  It allows us to match simple values, data structures, and even functions.  In this lesson we will begin to see how pattern matching is used.

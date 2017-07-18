@@ -2,7 +2,7 @@
 version: 1.1.0
 title: Strings
 redirect_from:
-  - /lessons/basics/strings
+  - /lessons/basics/strings/
 ---
 
 Strings, Char Lists, Graphemes and Codepoints.

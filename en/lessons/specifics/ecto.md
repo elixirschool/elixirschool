@@ -2,7 +2,7 @@
 version: 1.0.0
 title: Ecto
 redirect_from:
-  - /lessons/specifics/ecto
+  - /lessons/specifics/ecto/
 ---
 
 Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define models, insert and update records, and query them.

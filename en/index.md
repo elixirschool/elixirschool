@@ -1,7 +1,6 @@
 ---
 title: Elixir School
-# Temporarily disabled. See /index.html for more info
-# redirect_from: /
+redirect_from: /
 ---
 
 [![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)

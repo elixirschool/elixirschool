@@ -2,7 +2,7 @@
 version: 1.0.1
 title: OTP Concurrency
 redirect_from:
-  - /lessons/advanced/otp-concurrency
+  - /lessons/advanced/otp-concurrency/
 ---
 
 We've looked at the Elixir abstractions for concurrency but sometimes we need greater control and for that we turn to the OTP behaviors that Elixir is built on.

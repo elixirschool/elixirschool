@@ -2,7 +2,7 @@
 version: 1.0.1
 title: Documentation
 redirect_from:
-  - /lessons/basics/documentation
+  - /lessons/basics/documentation/
 ---
 
 Documenting Elixir code.

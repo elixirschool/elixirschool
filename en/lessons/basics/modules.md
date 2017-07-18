@@ -2,7 +2,7 @@
 version: 1.1.0
 title: Modules
 redirect_from:
-  - /lessons/basics/modules
+  - /lessons/basics/modules/
 ---
 
 We know from experience it's unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
