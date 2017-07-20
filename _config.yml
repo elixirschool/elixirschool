@@ -14,7 +14,7 @@ author:
   twitter: doomspork
   github: doomspork
 
-gems:
+plugins:
   - jekyll-assets
   - jekyll-redirect-from
   - jekyll-sitemap
