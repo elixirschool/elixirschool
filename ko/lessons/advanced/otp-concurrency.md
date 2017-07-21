@@ -22,7 +22,7 @@ defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  큐로 프로세스를 연결하세요. 이것은 헬퍼 메서드 입니다.
+  큐로 프로세스를 연결하세요. 이것은 헬퍼 함수 입니다.
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
