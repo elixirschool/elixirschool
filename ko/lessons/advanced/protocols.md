@@ -47,7 +47,7 @@ to_string({:foo})
 ```elixir
 defimpl String.Chars, for: Tuple do
   def to_string(tuple) do
-    interior = 
+    interior =
       tuple
       |> Tuple.to_list
       |> Enum.map(&Kernel.to_string/1)
@@ -91,7 +91,7 @@ defimpl AsAtom, for: Map do
 end
 ```
 
-여기에서는 프로토콜을 정의하고 이 프로토콜이 구현할 것이라고 기대하는 메소드인 `to_atom/1`를 몇몇 타입에 대해서 구현하고 있습니다.
+여기에서는 프로토콜을 정의하고 이 프로토콜이 구현할 것이라고 기대하는 함수인 `to_atom/1`를 몇몇 타입에 대해서 구현하고 있습니다.
 이제 프로토콜을 만들었으니, IEx에서 사용해봅시다.
 
 ```elixir
