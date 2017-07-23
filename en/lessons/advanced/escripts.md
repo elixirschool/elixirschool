@@ -11,11 +11,24 @@ To build executables in Elixir we will be using escript. Escript produces an exe
 
 ## Getting Started
 
-To create an executable with escript there are only a few things we need to do: implement a `main/1` function and update our Mixfile.
+For a given Mix project, to create an executable with escript there are only a few things we need to do: implement a `main/1` function and update our Mixfile.
 
-We'll start by creating a module to serve as the entry point to our executable.  This is where we'll implement `main/1`:
+We'll begin by generating a project with a supervision tree:
+
+```shell
+$ mix new example_app
+$ cd example_app
+```
+
+We'll start by creating a module to serve as the entry point to our executable.  This is where we'll implement `main/1`. This module can be a separate file within the `lib` directory, or simply added to the default module like shown below.
+
 
 ```elixir
+# ./lib/example_app.ex
+defmodule ExampleApp do
+  # omitted default code here...
+end
+
 defmodule ExampleApp.CLI do
   def main(args \\ []) do
     # Do stuff
@@ -26,6 +39,7 @@ end
 Next we need to update our Mixfile to include the `:escript` option for our project along with specifying our `:main_module`:
 
 ```elixir
+# ./mix.exs
 defmodule ExampleApp.Mixfile do
   def project do
     [app: :example_app,
@@ -73,6 +87,8 @@ Once we've finished configuring our application to use escript, building our exe
 ```elixir
 $ mix escript.build
 ```
+
+An executable file, with the name of your project will be generated at the root of your project.
 
 Let's take it for a spin:
 
