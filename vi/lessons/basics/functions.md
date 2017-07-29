@@ -161,8 +161,8 @@ Nếu chúng ta muốn có một giá trị mặc định cho tham số ta dùng
 
 ```elixir
 defmodule Greeter do
-  def hello(name, country \\ "vn") do
-    phrase(country) <> name
+  def hello(name, language_code \\ "vn") do
+    phrase(language_code) <> name
   end
 
   defp phrase("vn"), do: "Chào, "
@@ -183,14 +183,14 @@ Khi chúng ta kết hợp ví dụ guard với tham số mặc định, ta sẽ 
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "vn") when is_list(names) do
+  def hello(names, language_code \\ "vn") when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country \\ "vn") when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code \\ "vn") when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("vn"), do: "Chào "
@@ -204,15 +204,15 @@ Elixir không xử lý được trong trường hợp có nhiều hàm trùng kh
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "vn")
-  def hello(names, country) when is_list(names) do
+  def hello(names, language_code \\ "vn")
+  def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country) when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code) when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("es"), do: "Chào "
