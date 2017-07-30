@@ -101,7 +101,7 @@ true
 Atomy sú užitočné aj pri používaní modulov z Erlangu, vrátane tých vstavaných. Napríklad takto by sme použili funkciu `rand_bytes` z Erlangového modulu `crypto`:
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 

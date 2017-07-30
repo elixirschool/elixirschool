@@ -121,7 +121,7 @@ true
 애텀은 Erlang 라이브러리에서 모듈을 (내장된 것도 포함해서) 참조할 때에도 사용합니다.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 

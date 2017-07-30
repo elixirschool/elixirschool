@@ -118,7 +118,7 @@ true
 
 Atomlar aynı zamanda Erlang kütüphanelerine erişmek için de kullanılır.
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 

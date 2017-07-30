@@ -101,7 +101,7 @@ true
 Atom juga digunakan untuk mereferensi modul dari librari erlang, termasuk apa yang sudah ada.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 

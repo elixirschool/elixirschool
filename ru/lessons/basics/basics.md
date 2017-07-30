@@ -124,7 +124,7 @@ true
 Также атомы используются в качестве ссылок на модули из библиотек Erlang, в том числе и встроенные.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 

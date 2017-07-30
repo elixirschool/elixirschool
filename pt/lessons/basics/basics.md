@@ -121,7 +121,7 @@ true
 Átomos também são usados para referenciar módulos de bibliotecas Erlang, incluindo as bibliotecas integradas.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
