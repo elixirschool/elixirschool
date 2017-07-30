@@ -161,8 +161,8 @@ iex> Greeter.hello ["Sean", "Steve"]
 
 ```elixir
 defmodule Greeter do
-  def hello(name, country \\ "en") do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
@@ -183,14 +183,14 @@ iex> Greeter.hello("Sean", "es")
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en") when is_list(names) do
+  def hello(names, language_code \\ "en") when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country \\ "en") when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
@@ -204,15 +204,15 @@ Elixir не поддерживает аргументы по умолчанию 
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en")
-  def hello(names, country) when is_list(names) do
+  def hello(names, language_code \\ "en")
+  def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country) when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code) when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "

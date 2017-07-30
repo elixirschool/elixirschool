@@ -142,8 +142,8 @@ Se vogliamo un valore di default per un argomento, usiamo la sintassi `argomento
 
 ```elixir
 defmodule Greeter do
-  def hello(name, country \\ "en") do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
@@ -164,14 +164,14 @@ Quando combiniamo il nostro esempio sulle guardie, con gli argomenti di default,
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en") when is_list(names) do
+  def hello(names, language_code \\ "en") when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country \\ "en") when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
@@ -185,15 +185,15 @@ Elixir non apprezza gli argomenti di default in funzioni che combaciano più vol
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en")
-  def hello(names, country) when is_list(names) do
+  def hello(names, language_code \\ "en")
+  def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country) when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code) when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
