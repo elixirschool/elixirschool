@@ -122,7 +122,7 @@ true
 アトムは、Erlangのビルトインのものも含めたライブラリのモジュールを参照するのにも使われます。
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 

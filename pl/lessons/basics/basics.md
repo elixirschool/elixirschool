@@ -121,7 +121,7 @@ true
 Atomy służą też jako odwołania do bibliotek Erlanga, również tych wbudowanych.
  
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ``` 
 

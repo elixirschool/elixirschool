@@ -123,7 +123,7 @@ true
 Атоми також використовуються для доступу до Erlang бібліотек та модулів:
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 

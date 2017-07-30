@@ -102,7 +102,7 @@ true
 Atomer er også brukt for å referere til moduler fra Erlang biblioteket, men også til de innebygde modulene.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 

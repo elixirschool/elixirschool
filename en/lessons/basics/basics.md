@@ -123,7 +123,7 @@ true
 Atoms are also used to reference modules from Erlang libraries, including built in ones.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 

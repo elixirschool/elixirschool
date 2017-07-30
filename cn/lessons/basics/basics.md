@@ -121,7 +121,7 @@ true
 原子也可以用来直接引用 Erlang 标准库的模块，包括内置的模块。
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 

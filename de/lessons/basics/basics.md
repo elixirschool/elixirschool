@@ -121,7 +121,7 @@ true
 Atoms werden auch dazu genutzt, um Module aus Erlangbibiliotheken zu referenzieren. Dies gilt auch für in Erlang bereits vorhandenen Bibiliotheken.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
