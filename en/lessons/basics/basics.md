@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Basics
 redirect_from:
   - /lessons/basics/basics/
