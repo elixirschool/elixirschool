@@ -5,20 +5,20 @@ redirect_from:
   - /lessons/basics/collections/
 ---
 
-Lists, tuples, keyword lists and maps.
+Lists, tuples, keyword lists, and maps.
 
 {% include toc.html %}
 
 ## Lists
 
-Lists are simple collections of values, they may include multiple types; lists may include non-unique values:
+Lists are simple collections of values which may include multiple types; lists may also include non-unique values:
 
 ```elixir
 iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implements list as linked lists.  This means accessing the list length is an `O(n)` operation.  For this reason, it is typically faster to prepend than append:
+Elixir implements list collections as linked lists.  This means that accessing the list length is an `O(n)` operation.  For this reason, it is typically faster to prepend than append:
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
@@ -39,7 +39,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-A side note about the name (`++/2`) format used above: In Elixir (and Erlang, upon which Elixir is built), a function or operator name has two components: the name you give it (here `++`) and its _arity_. Arity is a core part of speaking about Elixir (and Erlang) code. It is the number of arguments a given function takes (two in this case). Arity and the given name are combined with a slash. We'll talk more about this later; this knowledge will help you understand the notation for now.
+A side note about the name (`++/2`) format used above: In Elixir (and Erlang, upon which Elixir is built), a function or operator name has two components: the name you give it (here `++`) and its _arity_. Arity is a core part of speaking about Elixir (and Erlang) code. It is the number of arguments a given function takes (two, in this case). Arity and the given name are combined with a slash. We'll talk more about this later; this knowledge will help you understand the notation for now.
 
 ### List Subtraction
 
@@ -57,11 +57,11 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Note:** It uses [strict comparison](../basics/#comparison) to match the values.
+**Note:** List subtraction uses [strict comparison](../basics/#comparison) to match the values.
 
 ### Head / Tail
 
-When using lists it is common to work with a list's head and tail.  The head is the list's first element while the tail is the remaining elements.  Elixir provides two helpful functions, `hd` and `tl`, for working with these parts:
+When using lists, it is common to work with a list's head and tail.  The head is the list's first element, while the tail is a list containing the remaining elements.  Elixir provides two helpful functions, `hd` and `tl`, for working with these parts:
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -70,7 +70,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-In addition to the aforementioned functions, you can use [pattern matching](../pattern-matching/) and the cons operator `|` to split a list into head and tail; we'll learn more about this pattern in later lessons:
+In addition to the aforementioned functions, you can use [pattern matching](../pattern-matching/) and the cons operator `|` to split a list into head and tail. We'll learn more about this pattern in later lessons:
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -83,7 +83,7 @@ iex> tail
 
 ## Tuples
 
-Tuples are similar to lists but are stored contiguously in memory.  This makes accessing their length fast but modification expensive; the new tuple must be copied entirely to memory.  Tuples are defined with curly braces:
+Tuples are similar to lists, but are stored contiguously in memory.  This makes accessing their length fast but modification expensive; the new tuple must be copied entirely to memory.  Tuples are defined with curly braces:
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
@@ -114,13 +114,13 @@ The three characteristics of keyword lists highlight their importance:
 
 + Keys are atoms.
 + Keys are ordered.
-+ Keys are not unique.
++ Keys may not be unique.
 
-For these reasons keyword lists are most commonly used to pass options to functions.
+For these reasons, keyword lists are most commonly used to pass options to functions.
 
 ## Maps
 
-In Elixir maps are the "go-to" key-value store. Unlike keyword lists they allow keys of any type and are un-ordered.  You can define a map with the `%{}` syntax:
+In Elixir, maps are the "go-to" key-value store. Unlike keyword lists, they allow keys of any type and are un-ordered.  You can define a map with the `%{}` syntax:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -131,7 +131,7 @@ iex> map["hello"]
 :world
 ```
 
-As of Elixir 1.2 variables are allowed as map keys:
+As of Elixir 1.2, variables are allowed as map keys:
 
 ```elixir
 iex> key = "hello"
@@ -165,7 +165,7 @@ iex> map.hello
 "world"
 ```
 
-Another interesting property of maps is that they provide their own syntax for updates.
+Another interesting property of maps is that they provide their own syntax for updates:
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
