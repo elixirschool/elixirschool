@@ -5,7 +5,7 @@ redirect_from:
   - /lessons/basics/basics/
 ---
 
-Getting started, basic data types and basic operations.
+Getting started, basic data types, and basic operations.
 
 {% include toc.html %}
 
@@ -15,7 +15,7 @@ Getting started, basic data types and basic operations.
 
 Installation instructions for each OS can be found on elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
 
-After Elixir is installed you can easily confirm the installed version.
+After Elixir is installed, you can easily confirm the installed version.
 
     % elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
@@ -68,7 +68,7 @@ iex> 0x1F
 
 ### Floats
 
-In Elixir, float numbers require a decimal after at least one digit; they have 64 bit double precision and support `e` for exponent numbers:
+In Elixir, floating point numbers require a decimal after at least one digit; they have 64-bit double precision and support `e` for exponent values:
 
 ```elixir
 iex> 3.14
@@ -93,7 +93,7 @@ false
 
 ### Atoms
 
-An atom is a constant whose name is their value. If you're familiar with Ruby these are synonymous with Symbols:
+An atom is a constant whose name is its value. If you're familiar with Ruby, these are synonymous with Symbols:
 
 ```elixir
 iex> :foo
@@ -102,7 +102,7 @@ iex> :foo == :bar
 false
 ```
 
-Booleans `true` and `false` are also the atoms `:true` and `:false` respectively.
+The booleans `true` and `false` are also the atoms `:true` and `:false`, respectively.
 
 ```elixir
 iex> true |> is_atom
@@ -154,7 +154,7 @@ Elixir also includes more complex data types.  We'll learn more about these when
 
 ### Arithmetic
 
-Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.  It's important to notice that `/` will always return a float:
+Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.  It's important to remember that `/` will always return a float:
 
 ```elixir
 iex> 2 + 2
@@ -167,7 +167,7 @@ iex> 10 / 5
 2.0
 ```
 
-If you need integer division or the division remainder, Elixir comes with two helpful functions to achieve this:
+If you need integer division or the division remainder (i.e., modulo), Elixir comes with two helpful functions to achieve this:
 
 ```elixir
 iex> div(10, 5)
@@ -214,7 +214,7 @@ iex> not 42
 
 ### Comparison
 
-Elixir comes with all the comparisons operators we're used to: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` and `>`.
+Elixir comes with all the comparison operators we're used to: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<`, and `>`.
 
 ```elixir
 iex> 1 > 2
@@ -227,7 +227,7 @@ iex> 2 <= 3
 true
 ```
 
-For strict comparison of integers and floats use `===`:
+For strict comparison of integers and floats, use `===`:
 
 ```elixir
 iex> 2 == 2.0
