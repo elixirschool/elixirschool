@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.3.0
 title: Enum
 redirect_from:
   - /lessons/basics/enum/
@@ -192,5 +192,3 @@ We can use `uniq_by/2` to remove duplicates from our enumerables:
 iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
 [1, 2, 3]
 ```
-
-This function was previously known as `uniq/1`, which is obsolete from Elixir 1.4, but is still available (with alerts).
