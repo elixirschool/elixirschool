@@ -36,14 +36,6 @@ defp deps do
 end
 ```
 
-And add Poolboy to our OTP application:
-
-```elixir
-def application do
-  [applications: [:logger, :poolboy]]
-end
-```
-
 ## The configuration options
 
 We need to know a little bit about the various configuration options in order to start using Poolboy.
@@ -61,21 +53,21 @@ For this example, we'll create a pool of workers that are responsible for handli
 Let's define the Poolboy configuration options and add it as a child worker as part of our application start.
 
 ```elixir
-defmodule PoolboyApp do
+defmodule PoolboyApp.Application do
+  @moduledoc false
+
   use Application
 
   defp poolboy_config do
     [{:name, {:local, :worker}},
-      {:worker_module, Worker},
+      {:worker_module, PoolboyApp.Worker},
       {:size, 5},
       {:max_overflow, 2}]
   end
 
   def start(_type, _args) do
-    import Supervisor.Spec, warn: false
-
     children = [
-      :poolboy.child_spec(:worker, poolboy_config, [])
+      :poolboy.child_spec(:worker, poolboy_config(), [])
     ]
 
     opts = [strategy: :one_for_one, name: PoolboyApp.Supervisor]
@@ -94,7 +86,7 @@ The `child_spec/3` function takes three arguments; Name of the pool, pool config
 The worker module will be a simple GenServer calculating the square root of a number, sleeping for one second, and printing out the pid of the worker:
 
 ```elixir
-defmodule Worker do
+defmodule PoolboyApp.Worker do
   use GenServer
 
   def start_link(_) do
@@ -106,7 +98,7 @@ defmodule Worker do
   end
 
   def handle_call({:square_root, x}, _from, state) do
-    IO.puts "process #{inspect self} calculating square root of #{x}"
+    IO.puts "process #{inspect self()} calculating square root of #{x}"
     :timer.sleep(1000)
     {:reply, :math.sqrt(x), state}
   end
@@ -118,7 +110,7 @@ end
 Now that we have our `Worker`, we can test Poolboy. Let's create a simple module that creates concurrent processes using `:poolboy.transaction` function:
 
 ```elixir
-defmodule Test do
+defmodule PoolboyApp.Test do
   @timeout 60000
 
   def start do
@@ -130,7 +122,6 @@ defmodule Test do
      Enum.each(tasks, fn(task) -> IO.puts(Task.await(task, @timeout)) end)
   end
 end
-
 ```
 If you do not have available pool workers, Poolboy will timeout after the default timeout period (five seconds) and won't accept any new requests. In our example, we've increased the default timeout to one minute in order to demonstrate how we can change the default timeout value.
 
