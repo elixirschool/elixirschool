@@ -5,17 +5,17 @@ redirect_from:
   - /lessons/libraries/poolboy/
 ---
 
-You can easily exhaust your system resources if you allow concurrent processes to run arbitrarily. Poolboy prevents having to incur the overhead by creating a pool of workers to limit the number of concurrent processes.
+You can easily exhaust your system resources if you do not limit the maximum number of concurrent processes that your program can spawn. [Poolboy](https://github.com/devinus/poolboy) is a widely used lightweight, generic pooling library for Erlang that addresses this issue.
 
 {% include toc.html %}
 
 ## Why use Poolboy?
 
-Let's think of a specific example for a moment. You are tasked to build an application for saving user profile information to the database. If you've created a process for every user registration, you would create unbounded number of connections. At some point those connections start competing for the limited resources available in your database server. Eventually your application gets timeouts and various exceptions due to the overhead from that contention.
+Let's think of a specific example for a moment. You are tasked to build an application for saving user profile information to the database. If you've created a process for every user registration, you would create unbounded number of connections. At some point the number of those connections can exceed the capacity of your database server. Eventually your application can get timeouts and various exceptions.
 
-The solution to this problem is using set of workers (processes) to limit the number of connections instead of creating a process for every user registration. Then you can easily avoid running out of your system resources.
+The solution is to use a set of workers (processes) to limit the number of connections instead of creating a process for every user registration. Then you can easily avoid running out of your system resources.
 
-That's where Poolboy comes in. It creates a pool of workers managed by a `Supervisor` without any effort on your part to do it manually. There are many libraries which use Poolboy under the covers. For example, `postgrex`'s connection pool *(which is leveraged by Ecto when using PostgreSQL)* and `redis_poolex` *(Redis connection pool)* are some popular libraries which use Poolboy.
+That's where Poolboy comes in. It allows you to easily set up a pool of workers managed by a `Supervisor` without much effort on your part. There are many libraries which use Poolboy under the covers. For example, `postgrex`'s connection pool *(which is leveraged by Ecto when using PostgreSQL)* and `redis_poolex` *(Redis connection pool)* are some popular libraries which use Poolboy.
 
 ## Installation
 
@@ -23,9 +23,8 @@ Installation is a breeze with mix. All we need to do is add Poolboy as a depende
 
 Let's create an application first:
 
-```bash
+```shell
 $ mix new poolboy_app --sup
-$ mix deps.get
 ```
 
 Add Poolboy as a dependency to our `mix.exs`.
@@ -36,6 +35,11 @@ defp deps do
 end
 ```
 
+Then fetch dependencies, including Poolboy.
+```shell
+$ mix deps.get
+```
+
 ## The configuration options
 
 We need to know a little bit about the various configuration options in order to start using Poolboy.
@@ -43,14 +47,14 @@ We need to know a little bit about the various configuration options in order to
 * `:name` - the pool name. Scope can be `:local`, `:global`, or `:via`.
 * `:worker_module` - the module that represents the worker.
 * `:size` - maximum pool size.
-* `:max_overflow` - maximum number of workers created if pool is empty. (optional)
-* `:strategy` - `:lifo` or `:fifo`, determines whether checked in workers should be placed first or last in the line of available workers. Default is `:lifo`. (optional)
+* `:max_overflow` - maximum number of temporary workers created when the pool is empty. (optional)
+* `:strategy` - `:lifo` or `:fifo`, determines whether the workers that return to the pool should be placed first or last in the line of available workers. Default is `:lifo`. (optional)
 
 ## Configuring Poolboy
 
-For this example, we'll create a pool of workers that are responsible for handling requests to calculate the square root of a number. We'll keep the example simple so that we can keep our focus on Poolboy.
+For this example, we'll create a pool of workers responsible for handling requests to calculate the square root of a number. We'll keep the example simple so that we can keep our focus on Poolboy.
 
-Let's define the Poolboy configuration options and add it as a child worker as part of our application start.
+Let's define the Poolboy configuration options and add the Poolboy worker pool as a child worker of our application. Edit `lib/poolboy_app/application.ex`:
 
 ```elixir
 defmodule PoolboyApp.Application do
@@ -67,7 +71,7 @@ defmodule PoolboyApp.Application do
 
   def start(_type, _args) do
     children = [
-      :poolboy.child_spec(:worker, poolboy_config(), [])
+      :poolboy.child_spec(:worker, poolboy_config())
     ]
 
     opts = [strategy: :one_for_one, name: PoolboyApp.Supervisor]
@@ -76,14 +80,12 @@ defmodule PoolboyApp.Application do
 end
 ```
 
-The first thing we defined is the configuration options for the pool. We assigned a unique pool `:name`, set the `:scope` to local, and the `:size` of the pool to have total of five workers. Also, in case all workers are under load, we tell it to create two more workers to help with the load using the `:max_overflow` option. *(`overflow` workers do go away once they complete their work.)*
+The first thing we defined is the configuration options for the pool. We named our pool `:worker` and set the `:scope` to `:local`. Then we designated `PoolboyApp.Worker` module as the `:worker_module` that this pool should use. We also set the `:size` of the pool to have total of `5` workers. Also, in case all workers are under load, we tell it to create `2` more workers to help with the load using the `:max_overflow` option. *(`overflow` workers do go away once they complete their work.)*
 
-Next, we added `poolboy.child_spec/3` function to the array of children so that the pool of workers will be started when the application starts.
-
-The `child_spec/3` function takes three arguments; Name of the pool, pool configuration, and the third argument that is passed to the `worker.start_link` function. In our case, it is just an empty list.
+Next, we added `:poolboy.child_spec/2` function to the array of children so that the pool of workers will be started when the application starts. It takes two arguments: name of the pool, and pool configuration.
 
 ## Creating Worker
-The worker module will be a simple GenServer calculating the square root of a number, sleeping for one second, and printing out the pid of the worker:
+The worker module will be a simple `GenServer` that calculates the square root of a number, sleeps for one second, and prints out the pid of the worker. Create `lib/poolboy_app/worker.ex`:
 
 ```elixir
 defmodule PoolboyApp.Worker do
@@ -107,22 +109,46 @@ end
 
 ## Using Poolboy
 
-Now that we have our `Worker`, we can test Poolboy. Let's create a simple module that creates concurrent processes using `:poolboy.transaction` function:
+Now that we have our `PoolboyApp.Worker`, we can test Poolboy. Let's create a simple module that creates concurrent processes using Poolboy. `:poolboy.transaction/3` is the function that you can use to interface with the worker pool. Create `lib/poolboy_app/test.ex`:
 
 ```elixir
 defmodule PoolboyApp.Test do
   @timeout 60000
 
   def start do
-     tasks = Enum.map(1..20, fn(i) ->
-        Task.async(fn -> :poolboy.transaction(:worker,
-          &(GenServer.call(&1, {:square_root, i})), @timeout)
-        end)
-     end)
-     Enum.each(tasks, fn(task) -> IO.puts(Task.await(task, @timeout)) end)
+    1..20
+    |> Enum.map(fn(i) -> async_call_square_root(i) end)
+    |> Enum.each(fn(task) -> await_and_inspect(task) end)
   end
+
+  defp async_call_square_root(i) do
+    Task.async(fn ->
+      :poolboy.transaction(:worker, fn(pid) -> GenServer.call(pid, {:square_root, i}) end, @timeout)
+    end)
+  end
+
+  defp await_and_inspect(task), do: task |> Task.await(@timeout) |> IO.inspect()
 end
 ```
-If you do not have available pool workers, Poolboy will timeout after the default timeout period (five seconds) and won't accept any new requests. In our example, we've increased the default timeout to one minute in order to demonstrate how we can change the default timeout value.
 
-Even though we're attempting to create multiple processes *(total of twenty in the example above)* `:poolboy.transaction` function will limit the total of created processes to five *(plus two overflow workers if needed)* as we defined it in our configuration. All requests will be handled by the pool of workers rather than creating a new process for each and every request.
+Run the test function to see the result.
+
+```shell
+$ iex -S mix
+```
+
+```elixir
+iex> PoolboyApp.Test.start()
+process #PID<0.182.0> calculating square root of 7
+process #PID<0.181.0> calculating square root of 6
+process #PID<0.157.0> calculating square root of 2
+process #PID<0.155.0> calculating square root of 4
+process #PID<0.154.0> calculating square root of 5
+process #PID<0.158.0> calculating square root of 1
+process #PID<0.156.0> calculating square root of 3
+...
+```
+
+If no worker is available in the pool, Poolboy will timeout after the default timeout period (five seconds) and won't accept any new requests. In our example, we've increased the default timeout to one minute in order to demonstrate how we can change the default timeout value. In case of this app, you can observe the error if you change the value of `@timeout` to less than 1000.
+
+Even though we're attempting to create multiple processes *(total of twenty in the example above)* `:poolboy.transaction/3` function will limit the maximum number of created processes to five *(plus two overflow workers if needed)* as we have defined in our configuration. All requests will be handled using the pool of workers rather than creating a new process for each and every request.
