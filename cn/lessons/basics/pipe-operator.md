@@ -15,7 +15,7 @@ title: 管道操作符
 foo(bar(baz(new_function(other_function()))))
 ```
 
-这个例子中，我们把 `other_function/1` 的值传递给 `new_function/1`，把 `new_function/1` 的值传递给 `baz/1`，把 `baz/1` 的值传递给 `bar/1`，最后把 `bar/1` 的结果传递给 `foo/1`。Elixir 给我们提供了管道操作符来解决这个语法上的混乱。管道操作符 `|>` *获取一个表达式的结果，并把它往后传递。* 我们把上面的代码用管道重写看看：
+这个例子中，我们把 `other_function/0` 的值传递给 `new_function/1`，把 `new_function/1` 的值传递给 `baz/1`，把 `baz/1` 的值传递给 `bar/1`，最后把 `bar/1` 的结果传递给 `foo/1`。Elixir 给我们提供了管道操作符来解决这个语法上的混乱。管道操作符 `|>` *获取一个表达式的结果，并把它往后传递。* 我们把上面的代码用管道重写看看：
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()

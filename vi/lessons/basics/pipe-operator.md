@@ -15,7 +15,7 @@ Việc lập trình có thể trở nên rối tung, rối đến nỗi mà vi�
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Ở đây, ta đang truyền giá trị của `other_function/1` vào `new_function/1`, của `new_function/1` và `baz/1`, của `baz/1` vào `bar/1` và cuối cùng là `bar/1` vào `foo/1`. Trong Elixir có cách giải quyết hay cho cách viết rối tung (mà thực tế) này bằng cách sử dụng toán từ pipe. Toán tử pipe (`|>`) *nhận kết quả của một biểu thức, và truyền nó đi*. Ta hãy xem đoạn code ở trên sau khi được viết lại bằng toán tử pipe.
+Ở đây, ta đang truyền giá trị của `other_function/0` vào `new_function/1`, của `new_function/1` và `baz/1`, của `baz/1` vào `bar/1` và cuối cùng là `bar/1` vào `foo/1`. Trong Elixir có cách giải quyết hay cho cách viết rối tung (mà thực tế) này bằng cách sử dụng toán từ pipe. Toán tử pipe (`|>`) *nhận kết quả của một biểu thức, và truyền nó đi*. Ta hãy xem đoạn code ở trên sau khi được viết lại bằng toán tử pipe.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()

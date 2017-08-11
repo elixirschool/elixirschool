@@ -15,7 +15,7 @@ Le code peut vite devenir confus. L'appel à une fonction peut être tellement i
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Ici nous passons le résultat de `other_function/1` à `new_function/1`, puis de `new_function/1` à `baz/1`, de `baz/1` à `bar/1` et enfin le résultat de `bar/1` à `foo/1`. Elixir propose une alternative pragmatique à ce chaos syntaxique: l'opérateur pipe. L'opérateur pipe `|>` *prends le résultat d'une expression, et le passe à la suivante*. Regardons maintenant le bout de code au dessus re-écrit avec l'opérateur pipe.
+Ici nous passons le résultat de `other_function/0` à `new_function/1`, puis de `new_function/1` à `baz/1`, de `baz/1` à `bar/1` et enfin le résultat de `bar/1` à `foo/1`. Elixir propose une alternative pragmatique à ce chaos syntaxique: l'opérateur pipe. L'opérateur pipe `|>` *prends le résultat d'une expression, et le passe à la suivante*. Regardons maintenant le bout de code au dessus re-écrit avec l'opérateur pipe.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()

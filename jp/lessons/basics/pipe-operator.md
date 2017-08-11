@@ -15,7 +15,7 @@ title: パイプライン演算子
 foo(bar(baz(new_function(other_function()))))
 ```
 
-ここでは、`other_function/1`の値を`new_function/1`に、`new_function/1`の値を`baz/1`に、`baz/1`の値を`bar/1`に、そして最後に`bar/1`の結果を`foo/1`に渡しています。
+ここでは、`other_function/0`の値を`new_function/1`に、`new_function/1`の値を`baz/1`に、`baz/1`の値を`bar/1`に、そして最後に`bar/1`の結果を`foo/1`に渡しています。
 Elixirではパイプライン演算子を使うことによって構文的な混沌に対し現実的にアプローチします。
 パイプライン演算子(`|>`)は *一つの式の結果を取り、それを渡します*。先ほどのコードスニペットをパイプライン演算子で書き直すとどうなるか、見てみましょう。
 

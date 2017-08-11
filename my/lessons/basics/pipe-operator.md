@@ -15,7 +15,7 @@ Pengaturcaraan boleh menjadi tidak teratur.  Keadaan menjadi berkecamuk apabila 
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Di sini, kita menghantar nilai `other_function/1` kepada `new_function/1`, dan `new_function/1` kepada `baz/1`, `baz/1` kepada `bar/1` dan akhir sekali hasil dari `bar/1` kepada `foo/1`.  Elixir mengambil pendekatan pragmatik untuk menguruskan keadaan kelam-kabut ini dengan memberikan operator paip kepada kita.  Operator paip `|>` *mengambil hasil dari satu ungkapan dan menghantarnya ke depan*.  Mari lihat bagaimana suntingan kod di atas ditulis semula menggunakan operator paip.  
+Di sini, kita menghantar nilai `other_function/0` kepada `new_function/1`, dan `new_function/1` kepada `baz/1`, `baz/1` kepada `bar/1` dan akhir sekali hasil dari `bar/1` kepada `foo/1`.  Elixir mengambil pendekatan pragmatik untuk menguruskan keadaan kelam-kabut ini dengan memberikan operator paip kepada kita.  Operator paip `|>` *mengambil hasil dari satu ungkapan dan menghantarnya ke depan*.  Mari lihat bagaimana suntingan kod di atas ditulis semula menggunakan operator paip.  
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
