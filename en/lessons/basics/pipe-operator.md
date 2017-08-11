@@ -17,7 +17,7 @@ Programming can get messy. So messy in fact that function calls can get so embed
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Here, we are passing the value `other_function/1` to `new_function/1`, and `new_function/1` to `baz/1`, `baz/1` to `bar/1`, and finally the result of `bar/1` to `foo/1`. Elixir takes a pragmatic approach to this syntactical chaos by giving us the pipe operator. The pipe operator which looks like `|>` *takes the result of one expression, and passes it on*. Let's take another look at the code snippet above rewritten using the pipe operator.
+Here, we are passing the value `other_function/0` to `new_function/1`, and `new_function/1` to `baz/1`, `baz/1` to `bar/1`, and finally the result of `bar/1` to `foo/1`. Elixir takes a pragmatic approach to this syntactical chaos by giving us the pipe operator. The pipe operator which looks like `|>` *takes the result of one expression, and passes it on*. Let's take another look at the code snippet above rewritten using the pipe operator.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()

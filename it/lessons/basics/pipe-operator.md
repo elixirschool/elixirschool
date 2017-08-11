@@ -16,7 +16,7 @@ Consideriamo le seguenti funzioni innestate:
 foo(bar(baz(new_function(other_function()))))
 ```
 
-In questo caso, stiamo passando il valore `other_function/1` a `new_function/1`, e `new_function/1` a `baz/1`, `baz/1` a `bar/1`, ed infine il risultato di `bar/1` a `foo/1`. Elixir adotta un approccio pragmatico a questo caos sintattico offrendo l'operatore pipe. L'operatore pipe, che viene rappresentato con `|>` *prende il risultato di un'espressione, e la inoltra*. Diamo un altro sguardo al pezzo di codice precedente riscritto con l'operatore pipe:
+In questo caso, stiamo passando il valore `other_function/0` a `new_function/1`, e `new_function/1` a `baz/1`, `baz/1` a `bar/1`, ed infine il risultato di `bar/1` a `foo/1`. Elixir adotta un approccio pragmatico a questo caos sintattico offrendo l'operatore pipe. L'operatore pipe, che viene rappresentato con `|>` *prende il risultato di un'espressione, e la inoltra*. Diamo un altro sguardo al pezzo di codice precedente riscritto con l'operatore pipe:
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
