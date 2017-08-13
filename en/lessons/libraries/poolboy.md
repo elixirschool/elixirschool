@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 title: Poolboy
 redirect_from:
   - /lessons/libraries/poolboy/
