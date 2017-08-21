@@ -20,7 +20,7 @@ var toggle_section = function() {
 };
 
 var show_vcs_history = function() {
-  var base = 'https://github.com/doomspork/elixir-school/commits/master/lessons/',
+  var base = 'https://github.com/elixirschool/elixirschool/commits/master/lessons/',
       path = window.location
     .toString()
     .split('/')
