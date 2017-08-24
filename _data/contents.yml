@@ -37,6 +37,7 @@ specifics:
   - ets
   - mnesia
   - debugging
+  - benchmarking
 libraries:
   - guardian
   - poolboy
