@@ -61,7 +61,7 @@ iex> 0b0110
 iex> 0o644
 420
 iex> 0x1F
-255
+31
 ```
 
 ### Pontos Flutuantes
