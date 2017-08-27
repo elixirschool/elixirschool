@@ -29,7 +29,6 @@ kramdown:
   syntax_highlighter: rouge
 
 # Assets
-exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'Procfile', 'Rakefile', 'vendor']
 assets:
   compress:
     css: sass
