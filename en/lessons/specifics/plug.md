@@ -124,7 +124,7 @@ $ mix run --no-halt
 ```
 
 Once everything is finished compiling, and `[info]  Started app` appears, open a web
-browser to `localhost:8080`. It should display:
+browser to `127.0.0.1:8080`. It should display:
 
 ```
 Hello World!
@@ -168,9 +168,9 @@ end
 
 Start the server again, stopping the previous one if it's running (press `Ctrl+C` twice).
 
-Now in a web browser, go to `localhost:8080`.
+Now in a web browser, go to `127.0.0.1:8080`.
 It should output `Welcome`.
-Then, go to `localhost:8080/waldo`, or any other path.
+Then, go to `127.0.0.1:8080/waldo`, or any other path.
 It should output `Oops!` with a 404 response.
 
 ## Adding Another Plug
