@@ -93,5 +93,8 @@ DEPENDENCIES
   rake
   sprockets-es6
 
+RUBY VERSION
+   ruby 2.3.1p112
+
 BUNDLED WITH
-   1.14.6
+   1.15.4
