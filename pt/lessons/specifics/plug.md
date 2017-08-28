@@ -117,7 +117,7 @@ No terminal, execute:
 $ mix run --no-halt
 ```
 
-Quando a compilação estiver terminado, e aparecer `[info]  Started app`, abra o navegador em `localhost:8080`. Ele deve exibir:
+Quando a compilação estiver terminado, e aparecer `[info]  Started app`, abra o navegador em `127.0.0.1:8080`. Ele deve exibir:
 
 ```
 Hello World!
@@ -160,9 +160,9 @@ end
 
 Reinicie o servidor, pare o anterior se ele estiver rodando (pressione duas vezes `Ctrl+C`).
 
-Agora no navegador, digite `localhost:8080`.
+Agora no navegador, digite `127.0.0.1:8080`.
 Você deve ver `Welcome`.
-Então, digite `localhost:8080/waldo`, ou qualquer outro path. Isto deve retornar `Oops!` com uma resposta 404.
+Então, digite `127.0.0.1:8080/waldo`, ou qualquer outro path. Isto deve retornar `Oops!` com uma resposta 404.
 
 ## Adicionando outro Plug
 
