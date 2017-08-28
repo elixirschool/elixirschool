@@ -121,7 +121,7 @@ En la línea de comando ejecuta:
 $ mix run --no-halt
 ```
 
-Cuando todo termine de compilar, y el mensaje `[info]  Started app` aparece, abre el explorador web en `localhost:8080`. Este debera de desplegar:
+Cuando todo termine de compilar, y el mensaje `[info]  Started app` aparece, abre el explorador web en `127.0.0.1:8080`. Este debera de desplegar:
 
 ```
 Hello World!
@@ -166,9 +166,9 @@ end
 Inicia el servidor de nuevo, detén el anterior si aún sigue corriendo.(Presiona `Ctrl+C` dos veces).
 
 
-Ahora en un navegador web ve a `localhost:8080`.
+Ahora en un navegador web ve a `127.0.0.1:8080`.
 Deberá de mostrar `Welcome`.
-Ahora, ve a `localhost:8080/waldo`, o cualquier otra ruta.
+Ahora, ve a `127.0.0.1:8080/waldo`, o cualquier otra ruta.
 Esta deberá de mostrar `Oops!` con una repuesta 404.
 
 ## Agregando otro Plug
