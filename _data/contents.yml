@@ -39,5 +39,6 @@ specifics:
   - debugging
 libraries:
   - guardian
+  - guardian.0.14.x
   - poolboy
   - benchee
