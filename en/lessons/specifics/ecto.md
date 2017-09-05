@@ -5,7 +5,7 @@ redirect_from:
   - /lessons/specifics/ecto/
 ---
 
-Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define models, insert and update records, and query them.
+Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define schemas, insert and update records, and query them.
 
 {% include toc.html %}
 
@@ -15,8 +15,8 @@ To get started we need to include Ecto and a database adapter in our project's `
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 2.1.4"},
-   {:postgrex, ">= 0.13.2"}]
+  [{:ecto, "~> 2.2"},
+   {:postgrex, ">= 0.0.0"}]
 end
 ```
 
@@ -123,11 +123,11 @@ To apply our new migration run `mix ecto.migrate`.
 
 For more on migrations take a look at the [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) section of the docs.
 
-## Models
+## Schemas
 
-Now that we have our migration we can move on to the model.  Models define our schema, helper functions, and our changesets.  We'll cover changesets more in the next sections.
+Now that we have our migration we can move on to the schema. Schema is a module, that defines mappings to the underlying database table and it's fields, helper functions, and our changesets.  We'll cover changesets more in the next sections.
 
-For now let's look at what the model for our migration might look like:
+For now let's look at what the schema for our migration might look like:
 
 ```elixir
 defmodule ExampleApp.User do
@@ -156,7 +156,7 @@ defmodule ExampleApp.User do
 end
 ```
 
-The schema we define in our model closely represents what we specified in our migration.  In addition to our database fields we're also including two virtual fields.  Virtual fields are not saved to the database but can be useful for things like validation.  We'll see the virtual fields in action in the [Changesets](#changesets) section.
+The schema we define closely represents what we specified in our migration.  In addition to our database fields we're also including two virtual fields.  Virtual fields are not saved to the database but can be useful for things like validation.  We'll see the virtual fields in action in the [Changesets](#changesets) section.
 
 ## Querying
 
@@ -260,9 +260,9 @@ Additional query examples can be found in the [Ecto.Query.API](http://hexdocs.pm
 
 In the previous section we learned how to retrieve data, but how about inserting and updating it?  For that we need Changesets.
 
-Changesets take care of filtering, validating, and maintaining constraints when changing a model.
+Changesets take care of filtering, validating, and maintaining constraints when changing a schema.
 
-For this example we'll focus on the changeset for user account creation.  To start we need to update our model:
+For this example we'll focus on the changeset for user account creation.  To start we need to update our schema:
 
 ```elixir
 defmodule ExampleApp.User do
@@ -329,7 +329,7 @@ changeset = User.changeset(%User{}, %{username: "doomspork",
                     password_confirmation: pw})
 
 case Repo.insert(changeset) do
-  {:ok, model}        -> # Inserted with success
+  {:ok, record}       -> # Inserted with success
   {:error, changeset} -> # Something went wrong
 end
 ```
