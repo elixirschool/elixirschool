@@ -210,11 +210,11 @@ View them at "doc/index.html".
 
 Ak príkaz zbehol, mali by sme v našom projekte vidieť nový adresár `doc/` a v ňom naša vygenerovaná HTML dokumentácia projektu. Otvorme si súbor `doc/index.html` a mali by sme vidieť niečo takéto:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Vidíme, že text je vďaka Earmarku pekne formátovaný.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Teraz môžeme dokumentáciu hodiť na GitHub, náš vlastný web, alebo na [HexDocs](https://hexdocs.pm/) (ak sme vytvorili verejný balíček).
 

@@ -203,11 +203,11 @@ View them at "doc/index.html".
 
 Λογικά, αν όλα πήγαν καλά, θα πρέπει να βλέπετε ένα παρόμοιο μήνυμα με το μήνυμα εξόδου στο από πάνω παράδειγμα.  Ας δούμε τώρα μεσα στο Mix project μας και θα πρέπει να δούμε ότι υπάρχει ένας ακόμα φάκελος που ονομάζεται **doc/**.  Μέσα του βρίσκεται η δημιουργημένη τεκμηρίωσή μας.  Αν επισκεφθούμε την σελίδα index στο browser μας θα πρέπει να δούμε τα παρακάτω:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 We can see that Earmark has rendered our markdown and ExDoc is now displaying it in a useful format.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Μπορούμε να το διαθέσουμε στο GitHub, στο website μας, πιο ειδικά στα [HexDocs](https://hexdocs.pm/).
 

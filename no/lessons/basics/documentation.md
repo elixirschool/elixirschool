@@ -206,11 +206,11 @@ View them at "doc/index.html".
 
 Hvis alt gikk som det skal, vil du se en lignende melding i terminalen, som i eksemplet over. Hvis vi nå tar en titt i vårt Mix prosjekt, ser vi en ny mappe som heter **doc/**. I denne mappen ligger vår nygenererte dokumentasjon. Hvis vi besøker index siden i nettleseren ser vi følgende:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Vi kan se at Earmark og ExDoc har tatt dokumentasjonen i koden vår, og generert nydelig HTML dokumentasjon.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Vi kan på dette tidspunktet legge det ut på GitHub, vår egen nettside, eller [HexDocs](https://hexdocs.pm/).
 
