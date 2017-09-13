@@ -40,3 +40,4 @@ specifics:
 libraries:
   - guardian
   - poolboy
+  - benchee
