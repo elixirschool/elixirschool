@@ -3,13 +3,13 @@ version: 1.0.0
 title: Benchee
 ---
 
-Nie możemy po prostu przypuszczać, które funkcje są szybkie a które są powolne - aby to ustalić potrzebujemy rzeczywistych pomiarów. Tu z pomoca przychodzi analiza porównacza. W tej lekcji nauczymy się jak łatwo jest zmierzyć szybkość naszego kodu.
+Nie możemy po prostu przypuszczać, które funkcje są szybkie a które są powolne - aby to ustalić potrzebujemy rzeczywistych pomiarów. Tu z pomocą przychodzi analiza porównacza. W tej lekcji nauczymy się jak łatwo jest zmierzyć szybkość naszego kodu.
 
 {% include toc.html %}
 
 # O Benchee
 
-Chociaż istnieje [funkcja w Erlangu](http://erlang.org/doc/man/timer.html#tc-1), która może być użyta do bardzo podstawowego pomiaru czasu wykonania funkcji, nie jest tak latwa w użytkowaniu jak niektóre z dostępnych narzędzi. Nie daje Ci wielu pomiarów, ktore sa niezbedne do prawodłowego przeprowadzenia statystyk, dlatego skorzystamy z [Benchee](https://github.com/PragTob/benchee). Benchee dostarcza nam wielu statystyk z łatwymi do porównania scenariuszami, wspaniałą cechą, która pozwala nam przetestować różne dane wejściowe na funkcjach które testujemy i kilka różnych formaterów, które możemy wykorzystać do wyświetlania naszych wyników.
+Chociaż istnieje [funkcja w Erlangu](http://erlang.org/doc/man/timer.html#tc-1), która może być użyta do bardzo podstawowego pomiaru czasu wykonania funkcji, nie jest tak latwa w użytkowaniu jak niektóre z dostępnych narzędzi. Nie daje Ci wielu pomiarów, ktore są niezbedne do prawidłowego przeprowadzenia statystyk, dlatego skorzystamy z [Benchee](https://github.com/PragTob/benchee). Benchee dostarcza nam wielu statystyk z łatwymi do porównania scenariuszami, wspaniałą cechą, która pozwala nam przetestować różne dane wejściowe na funkcjach które testujemy i kilka różnych formaterów, które możemy wykorzystać do wyświetlania naszych wyników.
 
 # Użytkowanie
 
@@ -29,7 +29,7 @@ $ mix deps.get
 $ mix compile
 ```
 
-Pierwsze polecenie pobiera i instaluje Benchee. Możesz zostać poproszony o zainstalowanie Hex wraz z nim. Druga kompiluje aplikację Benchee. Teraz jesteśmy gotowi napisać nasz pierwszy test wydajości!
+Pierwsze polecenie pobiera i instaluje Benchee. Możesz zostać poproszony o zainstalowanie Hex wraz z nim. Drugie kompiluje aplikację Benchee. Teraz jesteśmy gotowi napisać nasz pierwszy test wydajości!
 
 **Ważna uwaga przed rozpoczęciem:** Podczas testów wydajności bardzo ważne jest, aby nie używać `iex`, ponieważ zachowuje się inaczej i często jest dużo wolniejsze niż to, jak twój kod jest używany w produkcji. Stwórzmy plik który nazwiemy "benchmark.exs", a w tym pliku dodamy następujący kod:
 
@@ -80,7 +80,7 @@ map.flatten        0.56 K - 1.85x slower
 
 Oczywiście informacje o twoim systemie oraz rezultaty mogą być inne w zależności od specyfikacji Twojej maszyny, ale generalne informacje powinny być takie same.
 
-Na pierwszy rzut oka sekcja `Comparison` pokazuje nam, że nasza wersja `map.flatten` jest wolniejsza o 1.85x od `` flat_map` - jest to bardzo pomocna informacja! Spójrzmy jednak na inne statystyki, które otrzymaliśmy:
+Na pierwszy rzut oka sekcja `Comparison` pokazuje nam, że nasza wersja `map.flatten` jest wolniejsza o 1.85x od `flat_map` - jest to bardzo pomocna informacja! Spójrzmy jednak na inne statystyki, które otrzymaliśmy:
 
 * **ips** - oznacza "iteracje na sekundę", która mówi, jak często dana funkcja może być wykonana w ciągu jednej sekundy. Dla tej metryki im wyższy numer tym lepiej.
 * **average** - jest to średni czas wykonania danej funkcji. Dla tego wskaźnika im mniejsza liczba tym lepiej.
@@ -91,7 +91,7 @@ Istnieją również inne dostępne statystyki, ale te cztery są często najbard
 
 # Konfiguracja
 
-Jedną z najlepszych części Benchee są wszystkie dostępne opcje konfiguracji. Zaczniemy do podstaw, ponieważ nie wymagają przykładów kodu, a następnie pokażemy, jak wykorzystać jedną z najlepszych funkcji Benchee - wejść.
+Jedną z najlepszych części Benchee są wszystkie dostępne opcje konfiguracji. Zaczniemy od podstaw, ponieważ nie wymagają przykładów kodu, a następnie pokażemy, jak wykorzystać jedną z najlepszych funkcji Benchee - wejść.
 
 ## Podstawy
 
@@ -122,14 +122,14 @@ Dostępne są następujące opcje (także udokumentowane w [hexdocs](https://hex
 * **time** - czas w sekundach, jak długo powinien być uruchamiany i mierzony każdy indywidualny scenariusz porównawczy. Domyślnie 5 sekund.
 * **inputs** - mapa z łańcuchami reprezentującymi nazwę wejściową jako klucze i rzeczywiste dane wejściowe jako wartości. Domyślnie `nil`. W dalszej części omówimy to szczegółowo.
 * **parallel** - liczba procesów używanych do testu wydajności danej funkcjonalności. Więc jeśli ustawisz 'parallel: 4', wtedy zostaną stworzone cztery procesy, które wykonują tę samą funkcję dla danego `time`. Kiedy skończą się, na następnej funkcji zostaną uruchomione cztery nowe procesy. Daje to więcej danych w tym samym czasie, ale także powoduje obciążenie systemu zakłócające wyniki testów. Może to być przydatne do symulacji systemu pod obciążeniem, które jest czasem pomocne, ale powinno być stosowane z pewną ostrożnością, ponieważ może to wpływać na wyniki w nieprzewidywalny sposoby. Domyślnie 1 (co oznacza brak równoległej realizacji).
-* **formatters** - lista funkcji formatyzacji, które chcesz uruchomić, aby uzyskać wyniki testów porównawczych pakietu przy użyciu polecenia `Benchee.run / 2`. Funkcje muszą zaakceptować jeden argument (czyli pakiet porównawczy z wszystkimi danymi), a następnie użyć go do produkcji danych wyjściowych. Domyślny formater to: `Benchee.Formatters.Console.output / 1`. Omówimy to w dalszej części.
+* **formatters** - lista funkcji formatyzacji, które chcesz uruchomić, aby uzyskać wyniki testów porównawczych pakietu przy użyciu polecenia `Benchee.run/2`. Funkcje muszą zaakceptować jeden argument (czyli pakiet porównawczy z wszystkimi danymi), a następnie użyć go do produkcji danych wyjściowych. Domyślny formater to: `Benchee.Formatters.Console.output/1`. Omówimy to w dalszej części.
 * **print** - mapa lub lista słów kluczowych z następującymi opcjami jako atomy dla kluczy i wartości `true` lub `false`. Pozwala to kontrolować, czy dane wyjściowe identyfikowane przez atom zostaną wydrukowane podczas standardowego procesu analizy porównawczej. Wszystkie opcje są domyślnie włączone (true). Dostępne opcje to:
   * **benchmarking** - drukowanie, gdy Benchee zacznie testować nowe zadanie.
   * **configuration** - przed rozpoczęciem analizy porównawczej drukowane jest podsumowanie konfiguracji opcji analizy porównawczej, w tym szacowany całkowity czas pracy.
   * **fast_warning** - wyświetlane są ostrzeżenia, jeśli funkcje są wykonywane zbyt szybko, co może prowadzić do niedokładnych pomiarów.
 * **console** - mapa lub lista słów kluczowych z następującymi opcjami jako atomy dla kluczy i wartości zmiennych. Dostępne wartości są wymienione w każdej z opcji:
   * **comparison** - jeśli porównane porównanie różnych prac benchmarkingu (x razy wolniej niż) ma być pokazane. Domyślnie to `true`, ale można też ustawić na `false`.
-  * **unit_scaling** - strategia wyboru jednostki czasowej i liczników. Podczas skalowania wartości Benchee znajduje jednostkę "najlepiej pasującą" (największą jednostką, dla której wynik wynosi co najmniej 1). Na przykład "1_200_000" skaluje się do 1,2 M, podczas gdy `800_000` skaluje do 800 K. Strategia skalowania jednostek decyduje o tym, jak Benchee wybiera najlepszą jednostkę dopasowania dla całej listy wartości, gdy poszczególne wartości na liście mogą mieć inne najlepsze dopasowane jednostki. Są cztery strategie, wszystkie podane jako atomy, domyślnie `: best`:
+  * **unit_scaling** - strategia wyboru jednostki czasowej i liczników. Podczas skalowania wartości Benchee znajduje jednostkę "najlepiej pasującą" (największą jednostką, dla której wynik wynosi co najmniej 1). Na przykład "1_200_000" skaluje się do 1,2 M, podczas gdy `800_000` skaluje do 800 K. Strategia skalowania jednostek decyduje o tym, jak Benchee wybiera najlepszą jednostkę dopasowania dla całej listy wartości, gdy poszczególne wartości na liście mogą mieć inne najlepsze dopasowane jednostki. Są cztery strategie, wszystkie podane jako atomy, domyślnie `:best`:
     * **best** - najczęściej stosowana jednostka najlepiej dopasowana. Remis spowoduje wybranie większej jednostki.
     * **largest** - zostanie użyta największa jednostka dopasowania
     * **smallest** - najmniejsza jednostka najlepiej dopasowana będzie używana
@@ -137,7 +137,7 @@ Dostępne są następujące opcje (także udokumentowane w [hexdocs](https://hex
 
 ## Wejścia
 
-Bardzo ważne jest, aby testować wydajność fukcji na danych wieklością odpowiadających danym które będą używane w produkcji. Często funkcja może zachowywać się inaczej na małych zestawach danych w porównaniu do dużych zbiorów danych! Tu z pomocą przychodzi `inputs`. Pozwala to na testowanie tej samej funkcji, ale różnymi rodzajami danych wejściowych. Następnie wyniku testów można porównać.
+Bardzo ważne jest, aby testować wydajność funkcji na danych wielkością odpowiadających danym które będą używane w produkcji. Często funkcja może zachowywać się inaczej na małych zestawach danych w porównaniu do dużych zbiorów danych! Tu z pomocą przychodzi `inputs`. Pozwala to na testowanie tej samej funkcji, ale różnymi rodzajami danych wejściowych. Następnie wyniku testów można porównać.
 
 Przyjrzyjmy się więc naszemu pierwotnemu przykładowi:
 
@@ -167,7 +167,7 @@ Benchee.run(%{
 }, inputs: inputs)
 ```
 
-Zauważysz dwie różnice. Najpierw mamy mapę `input` zawierającą informacje o naszych danych wejściowych. Przekazujemy tę mapę jako opcję konfiguracji do `Benchee.run / 2`.
+Zauważysz dwie różnice. Najpierw mamy mapę `input` zawierającą informacje o naszych danych wejściowych. Przekazujemy tę mapę jako opcję konfiguracji do `Benchee.run/2`.
 
 Ponieważ nasze funkcje wymagają argumentu, musimy zaktualizować nasze funkcje tak, aby przyjmowały argument:
 
@@ -187,7 +187,7 @@ Uruchommy to ponownie:
 $ mix run benchmark.exs
 ```
 
-Teraz powinieneś zobaczy następujące dane w konsoli:
+Teraz powinieneś zobaczyć następujące dane w konsoli:
 
 ```shell
 Operating System: macOS
@@ -244,24 +244,17 @@ flat_map         122.71 K
 map.flatten       86.39 K - 1.42x slower
 ```
 
-Teraz możemy zobaczyć informacje o naszych benchmarkach pogrupowane według danych wejściowych. Ten prosty
-przykład nie dostarcza imponujących spostrzeżeń, ale może Cię zaskoczyę jak bardzo pomiary wydajności zależą od wielkości danych wejsciowych!
+Teraz możemy zobaczyć informacje o naszych benchmarkach pogrupowane według danych wejściowych. Ten prosty przykład nie dostarcza imponujących spostrzeżeń, ale może Cię zaskoczyę jak bardzo pomiary wydajności zależą od wielkości danych wejsciowych!
 
 # Formatery
 
-Wyjście konsoli, które widzieliśmy, jest bardzo pomocne podczas pomiaru
-czasy wykonywania Twoich funkcji, ale to nie jedyna opcja! W tej sekcji zapoznamy się z trzema innymi formaterami, a także dowiesz się co
-musisz zrobić, aby napisać własny formater, jeśli chcesz.
+Wyjście konsoli, które widzieliśmy, jest bardzo pomocne podczas pomiaru czasy wykonywania Twoich funkcji, ale to nie jedyna opcja! W tej sekcji zapoznamy się z trzema innymi formaterami, a także dowiesz się co musisz zrobić, aby napisać własny formater, jeśli chcesz.
 
 ## Inne formatery
 
-Benchee ma wbudowany formater konsolowy, co widzieliśmy już wcześniej, ale
-istnieją trzy inne oficjalne formaty - `benchee_csv`,
-`benchee_json` i `benchee_html`. Każdy z nich zapisuje wyniki do plików danego formatu, dzięki czemu możesz pracować
-z Twoimi wynikami w dowolnym formacie.
+Benchee ma wbudowany formater konsolowy, co widzieliśmy już wcześniej, ale istnieją trzy inne oficjalne formaty - `benchee_csv`, `benchee_json` i `benchee_html`. Każdy z nich zapisuje wyniki do plików danego formatu, dzięki czemu możesz pracować z Twoimi wynikami w dowolnym formacie.
 
-Każdy z tych formatów znajduje się w osobnej paczce, więc aby nich korzystać trzeba dodać je
-jako zależności do pliku `mix.exs`:
+Każdy z tych formatów znajduje się w osobnej paczce, więc aby nich korzystać trzeba dodać je jako zależności do pliku `mix.exs`:
 
 ```elixir
 defp deps do
