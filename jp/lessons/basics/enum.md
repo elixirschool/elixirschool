@@ -54,16 +54,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every/2
 
-コレクションを小さなグループに分割する必要があるなら、恐らく`chunk`こそが探し求めている関数でしょう:
+コレクションを小さなグループに分割する必要があるなら、恐らく`chunk_every/2`こそが探し求めている関数でしょう:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk`にはいくつかのオプションがありますが、ここでは触れませんので、詳しく学びたい場合には公式ドキュメントの[`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2)を調べてみてください。
+`chunk_every/2`にはいくつかのオプションがありますが、ここでは触れませんので、詳しく学びたい場合には公式ドキュメントの[`chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4)を調べてみてください。
 
 ### chunk_by
 
