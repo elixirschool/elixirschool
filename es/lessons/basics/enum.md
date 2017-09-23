@@ -55,16 +55,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every/2
 
-Si necesitas dividir tu colección en pequeños grupos, `chunk` es la función que probablemente estás buscando:
+Si necesitas dividir tu colección en pequeños grupos, `chunk_every/2` es la función que probablemente estás buscando:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Hay algunas opciones para `chunk` pero no vamos a entrar en detalle, revisa [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) en la documentación oficial para aprender más.
+Hay algunas opciones para `chunk_every/2` pero no vamos a entrar en detalle, revisa [`chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) en la documentación oficial para aprender más.
 
 ### chunk_by
 
@@ -79,7 +79,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 ```
 ### map_every
 
-Algunas veces hacer chunk a una collección no es suficiente para lograr lo que necesitas. Si este es el caso, `map_every/3` puede ser muy útil para ejecutarce en elementos específicos si tu colección posee un orden en el que esto sea necesario o útil':
+Algunas veces hacer chunk_every/2 a una collección no es suficiente para lograr lo que necesitas. Si este es el caso, `map_every/3` puede ser muy útil para ejecutarce en elementos específicos si tu colección posee un orden en el que esto sea necesario o útil':
 
 ```elixir
 iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)

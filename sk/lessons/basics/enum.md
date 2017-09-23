@@ -33,16 +33,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every/2
 
-Keď potrebujete rozbiť kolekciu do niekoľkých menších, hodí sa vám funckia `chunk`:
+Keď potrebujete rozbiť kolekciu do niekoľkých menších, hodí sa vám funckia `chunk_every/2`:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Táto funkcia má niekoľko možností použitia, pozrite sa do oficiálnej dokumentácie: [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2).
+Táto funkcia má niekoľko možností použitia, pozrite sa do oficiálnej dokumentácie: [`chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4).
 
 ### chunk_by
 

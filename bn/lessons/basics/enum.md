@@ -55,16 +55,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every
 
-যদি কালেকশনকে ভেঙ্গে ছোট গ্রুপ তৈরি করতে হয় তাহলে, `chunk` ফাংশনটি ই আপনার দরকার।
+যদি কালেকশনকে ভেঙ্গে ছোট গ্রুপ তৈরি করতে হয় তাহলে, `chunk_every/2` ফাংশনটি ই আপনার দরকার।
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk` এর আরও কিছু অপশন আছে, কিন্তু আমরা সেগুলোতে আমরা এখন নাই যাই, আপনারা সেগুলো দেখে নিতে পারবেন এখানে,[`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) এই অফিসিয়াল ডকুমেন্ট এ ।
+`chunk_every/2` এর আরও কিছু অপশন আছে, কিন্তু আমরা সেগুলোতে আমরা এখন নাই যাই, আপনারা সেগুলো দেখে নিতে পারবেন এখানে,[`chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) এই অফিসিয়াল ডকুমেন্ট এ ।
 
 ### chunk_by
 
