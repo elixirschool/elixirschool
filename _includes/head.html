@@ -12,7 +12,7 @@
   <meta property="og:site_name" content="ElixirSchool">
   <meta property="og:title" content="{{ page.locale.project.title }}">
   <meta property="og:description" content="{{ page.locale.project.description }}">
-  <meta property="og:image" content="{{ site.og_image }}">
+  <meta property="og:image" content="{{ site.url }}{% asset_path 'og_image.jpg' %}">
 
   {% if page.locale.project.title == page.title or page.title == nil %}
     <title>{{ page.locale.project.title }}</title>

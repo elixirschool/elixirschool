@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('#{$icomoon-font-path}/icomoon.eot?6e0xvi');
-  src:  url('#{$icomoon-font-path}/icomoon.eot?6e0xvi#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/icomoon.ttf?6e0xvi') format('truetype'),
-    url('#{$icomoon-font-path}/icomoon.woff?6e0xvi') format('woff'),
-    url('#{$icomoon-font-path}/icomoon.svg?6e0xvi#icomoon') format('svg');
+  src:  url(asset_path('icomoon.eot?6e0xvi'));
+  src:  url(asset_path('icomoon.eot?6e0xvi#iefix')) format('embedded-opentype'),
+    url(asset_path('icomoon.ttf?6e0xvi')) format('truetype'),
+    url(asset_path('icomoon.woff?6e0xvi')) format('woff'),
+    url(asset_path('icomoon.svg?6e0xvi#icomoon')) format('svg');
   font-weight: normal;
   font-style: normal;
 }
