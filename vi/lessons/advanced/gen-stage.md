@@ -180,7 +180,7 @@ Như ta đã nói qua ở phần trước, consumer không tạo sự kiện, n�
 
 Bây giờ producer, producer-consumer và consumer đã sẵn sàng, ta sẽ ráp chúng lại với nhau.
 
-Ta bắt đầu bằng việc mở file `lib/genstage_example.ex` và thêm process mới vào supervisor tree:
+Ta bắt đầu bằng việc mở file `lib/genstage_example/application.ex` và thêm process mới vào supervisor tree:
 
 ```elixir
 def start(_type, _args) do
@@ -218,7 +218,7 @@ Lúc này thì ta đã chạy được một pipeline với một producer xuấ
 
 Như đã đề cập trong phần Giới thiệu, ta có thể có nhiều hơn một producer hoặc consumer. Hãy cùng xem lại ví dụ lúc nãy.
 
-Nếu ta thử chạy `IO.inspec/1` trong ví dụ ta sẽ thấy tất cả sự kiện đều được xử lý bởi một PID duy nhất. Ta hãy chỉnh sửa file `lib/genstage_example.ex` một chút để chạy nhiều worker.
+Nếu ta thử chạy `IO.inspec/1` trong ví dụ ta sẽ thấy tất cả sự kiện đều được xử lý bởi một PID duy nhất. Ta hãy chỉnh sửa file `lib/genstage_example/application.ex` một chút để chạy nhiều worker.
 
 ```elixir
 children = [

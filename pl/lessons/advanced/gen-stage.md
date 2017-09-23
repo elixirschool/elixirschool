@@ -179,7 +179,7 @@ Jak wspomniano w poprzednim punkcie, nasz konsument nie emituje zdarzeń, więc 
 
 Mamy już producenta, producenta-konsumenta i konsumenta, a zatem najwyższy czas, by zebrać wszystkie te elementy do kupy.
 
-Najpierw w `lib/genstage_example.ex` dodajmy nasz proces do drzewa nadzorców:
+Najpierw w `lib/genstage_example/application.ex` dodajmy nasz proces do drzewa nadzorców:
 
 ```elixir
 def start(_type, _args) do
@@ -217,7 +217,7 @@ Mamy zatem działający  potok. Jest w nim producent emitujący liczby, producen
 
 Jak wspomnieliśmy na wstępie, możliwe jest stworzenie wielu producentów i konsumentów. Przyjrzyjmy się temu.
 
-Wykorzystując `IO.inspect/1` w naszym przykładzie możemy stwierdzić, że zdarzenia są obsługiwane przez jeden PID. Zmieńmy `lib/genstage_example.ex` tak, by utworzyć wiele procesów do obsługi:
+Wykorzystując `IO.inspect/1` w naszym przykładzie możemy stwierdzić, że zdarzenia są obsługiwane przez jeden PID. Zmieńmy `lib/genstage_example/application.ex` tak, by utworzyć wiele procesów do obsługi:
 
 ```elixir
 children = [
