@@ -181,7 +181,7 @@ end
 
 现在我们有了生产者, 生产者-消费者和消费者, 我们已经准备好把所有东西捆绑在一起了.
 
-首先, 打开 `lib/genstage_example.ex` 并添加我们的新进程到监控树:
+首先, 打开 `lib/genstage_example/application.ex` 并添加我们的新进程到监控树:
 
 ```elixir
 def start(_type, _args) do
@@ -219,7 +219,7 @@ $ mix run --no-halt
 
 在简介里, 我们有提到可以同时有多个生产者或消费者. 让我们来看看是怎么一回事.
 
-如果我们检查上面例子里 `IO.inspect/1` 的输出, 会发现所有的事件都是由同一个进程来处理的.  让我们修改 `lib/genstage_example.ex` 以配置多个 worker:
+如果我们检查上面例子里 `IO.inspect/1` 的输出, 会发现所有的事件都是由同一个进程来处理的.  让我们修改 `lib/genstage_example/application.ex` 以配置多个 worker:
 
 ```elixir
 children = [

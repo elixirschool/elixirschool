@@ -181,7 +181,7 @@ As we covered in the previous section, our consumer does not emit events, so the
 
 Now that we have our producer, producer-consumer, and consumer built, we're ready to wire everything together.
 
-Let's start by opening `lib/genstage_example.ex` and adding our new processes to the supervisor tree:
+Let's start by opening `lib/genstage_example/application.ex` and adding our new processes to the supervisor tree:
 
 ```elixir
 def start(_type, _args) do
@@ -219,7 +219,7 @@ At this point we have a working pipeline.  There is a producer emitting numbers,
 
 We mentioned in the introduction that it was possible to have more than one producer or consumer. Let's take a look at just that.
 
-If we examine the `IO.inspect/1` output from our example we see that every event is handled by a single PID. Let's make some adjustments for multiple workers by modifying `lib/genstage_example.ex`:
+If we examine the `IO.inspect/1` output from our example we see that every event is handled by a single PID. Let's make some adjustments for multiple workers by modifying `lib/genstage_example/application.ex`:
 
 ```elixir
 children = [
