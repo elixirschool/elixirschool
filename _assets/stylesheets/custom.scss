@@ -63,7 +63,7 @@ i.back-to-top {
  * Overrides theme's sidebar so content isn't cut off
  */
 .sidebar {
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .sidebar::-webkit-scrollbar {
