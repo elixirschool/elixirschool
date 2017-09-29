@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.1
 title: 基础
 ---
 
@@ -11,9 +11,9 @@ title: 基础
 
 ### 安装 Elixir
 
-各个 os 的安装说明可以在 elixir-lang.org 网站上 [Installing Elixir](http://elixir-lang.org/install.html) 部分找到。
+每个操作系统的安装说明可以在 elixir-lang.org 网站上 [Installing Elixir](http://elixir-lang.org/install.html) 部分找到。
 
-安装后你可以很轻松的确认所安装的版本。
+安装后你可以很轻松地确认所安装的版本。
 
     % elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
@@ -93,7 +93,7 @@ false
 
 ### 原子类型
 
-原子类型是名字和代表的值相同的常量，如果你熟悉 Ruby，它们和符号类型同义。
+原子类型是名字和代表的值相同的常量，如果你熟悉 Ruby，它们和Ruby中的符号是同义的。
 
 ```elixir
 iex> :foo
@@ -113,7 +113,7 @@ iex> :true === true
 true
 ```
 
-Elixir 模块的名字也是原子，即使实际上还不存在这个模块，`MyApp.MyModule` 是一个合法的原子名称。
+Elixir 模块的名字也是原子，即使实际上还不存在这个模块，`MyApp.MyModule` 也是一个合法的原子名称。
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
@@ -148,7 +148,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir 还包含很多复杂的数据类型。当我们学到集合和函数的时候我们会学到更多关于这方面的知识。
+Elixir 还包含很多复杂的数据类型。当我们学到[集合](../collections/)和[函数](../functions/)的时候我们会学到更多关于这方面的知识。
 
 ## 基本操作
 
