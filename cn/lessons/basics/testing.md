@@ -95,7 +95,7 @@ end
 
 `assert_reveived` 并不会等待消息，如果需要，你可以使用 `assert_reveive` 并指定超时时间。
 
-## capture_io 和 capture_log
+### capture_io 和 capture_log
 
 使用 `ExUnit.CaptureIO` 可以在不改变原来应用的情况下，捕获应用的输出。只要把生成输出的函数作为参数传进去就行：
 

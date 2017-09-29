@@ -101,7 +101,7 @@ end
 
 `assert_received` does not wait for messages, with `assert_receive` you can specify a timeout.
 
-## capture_io and capture_log
+### capture_io and capture_log
 
 Capturing an application's output is possible with `ExUnit.CaptureIO` without changing the original application. Simply pass the function generating the output in:
 
