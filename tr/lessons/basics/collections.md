@@ -1,10 +1,8 @@
 ---
 version: 1.0.0
-layout: page
 title: Collections
-category: basics
-order: 2
-lang: tr
+redirect_from:
+  - /lessons/basics/collections/
 ---
 
 Listeler (List), Demetler (Tuples), Anahtar Kelimeler (keywords), Haritalar (maps) ve islevsel baglaclar.

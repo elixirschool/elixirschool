@@ -1,10 +1,8 @@
 ---
 version: 1.0.0
-layout: page
 title: Enum
-category: basics
-order: 3
-lang: tr
+redirect_from:
+  - /lessons/basics/enum/
 ---
 
 Koleksiyonlarin numaralandirilmasi icin kullanilan sabit degerler algoritmalari.
@@ -33,14 +31,14 @@ at/3
 ...
 ```
 
-Yukaridaki methodu IEx'te calistirdiginizda, yukarida bir kismini gordugunuz enum fonksiyonlarinin listesini, 
+Yukaridaki methodu IEx'te calistirdiginizda, yukarida bir kismini gordugunuz enum fonksiyonlarinin listesini,
 muazzam bir sekilde organize edilmis, fonksiyonel methodlari goreceksiniz. Bunun bir nedeni mevcut, o da numaralandirmanin (enumaration)
-fonksiyonel programlamanin cekirdegini olusturmasi ve inanilmaz derece kullanisli olmasidir. 
+fonksiyonel programlamanin cekirdegini olusturmasi ve inanilmaz derece kullanisli olmasidir.
 
 Elixir'in de avantajlari ile birlesip gelistiricilere inanilmaz bir guc vermektedir.
 
 Tum fonksiyon listesi icin resmi dokumana [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) goz atabilirsiniz.
-Lazy enumeration icin bu [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) sayfaya goz atabilirsiniz. 
+Lazy enumeration icin bu [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) sayfaya goz atabilirsiniz.
 
 
 ### all?
@@ -78,7 +76,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 
 ### chunk_by
 
-Eger koleksiyonu buyukluk olarak degilde baska bir sekilde gruplamak istersek, `chunk_by/2` methodu kullanilabilir. 
+Eger koleksiyonu buyukluk olarak degilde baska bir sekilde gruplamak istersek, `chunk_by/2` methodu kullanilabilir.
 Bu metod verilen degerleri ve fonksiyonu alir, ve fonksiyonun dondurdugu deger degistinde yeni grup yaratip bir digerinin olusturulmasina gecer.
 
 Asagida "bir" ve "iki"nin karakter uzunlugu (string.length) 3 iken, "uc"un uzunlugu 2dir, boylece ilk iki sayi bir grup olusturken, ucuncusu yeni bir grup olusturur.
@@ -118,7 +116,7 @@ __Not__: `each` methodu sonda `:ok` atomu da donmektedir.
 
 ### map
 
-Herbir degere bir fonksiyon uygulamak icin `map` fonksiyonunu kullaniriz. 
+Herbir degere bir fonksiyon uygulamak icin `map` fonksiyonunu kullaniriz.
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
