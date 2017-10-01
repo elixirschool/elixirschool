@@ -99,7 +99,7 @@ end
 
 `assert_received` venter ikke på meldinger, men med `assert_receive` så kan du spesifisere en timeout.
 
-## capture_io og capture_log
+### capture_io og capture_log
 
 Det er mulig å få tak i en applikasjons output med `ExUnit.CaptureIO` uten å må endre på original applikasjonen. Du trenger bare å gi en funksjon med det du ønsker å skrive ut:
 

@@ -97,7 +97,7 @@ end
 
 `assert_received` মেসেজ এর জন্য অপেক্ষা করে না । তবে আমরা `assert_receive` দিয়ে টাইম আউট নির্ধারণ করে দিতে পারি।
 
-## capture_io and capture_log
+### capture_io and capture_log
 
 এপ্লিকেশন এর আউটপুট কয়াপচার করবার জন্য আমরা `ExUnit.CaptureIO` ব্যাবহার করতে পারি এপ্লিকেশন পরিবর্তন না করেই। আমরা শুধু ফাংশন টি দিলেই হবে।
 

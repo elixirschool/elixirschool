@@ -99,7 +99,7 @@ end
 
 `assert_received` nie czeka na wiadomość, a wykorzystując `assert_receive` możemy określić maksymalny czas oczekiwania na wiadomość (timeout).
 
-## capture_io and capture_log
+### capture_io i capture_log
 
 Przechwytywanie informacji produkowanych przez aplikację jest możliwe za pomocą `ExUnit.CaptureIO` bez konieczności ingerowania w jej kod. Wystarczy jako argument przekazać funkcję, która wypisuje informacje na standardowe wyjście:  
 
