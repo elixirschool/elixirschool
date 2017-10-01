@@ -10,13 +10,13 @@ title: Elixir School - โรงเรียน Elixir
 
 ## เกี่ยวกับ Elixir
 
-"Elixir เป็นภาษาที่ dynamic และ functional ซึ่งออกแบบมาเพื่อสร้างแอพพลิเคชันที่สามารถขยายขนาดและดูแลรักษาได้ง่าย" — [elixir-lang.org](http://elixir-lang.org/)
+"Elixir เป็นภาษาที่ dynamic และ functional ซึ่งออกแบบมาเพื่อสร้างแอพพลิเคชันที่สามารถขยายระบบและดูแลรักษาได้ง่าย" — [elixir-lang.org](http://elixir-lang.org/)
 
-Elixir ใช้ประโยชน์จาก Erlang VM ที่ได้ผ่านการใช้งานมาอย่างโชกโชน (battle-tested Erlang VM: BEAM) ที่มีความสามารถในการสร้างระบบกระจาย (distributed system) ที่ทนต่อความผิดพลาด (fault-tolerant) พร้อมความล่าช้าที่ต่ำ (low-latency) ติดมากับตัว
+Elixir ใช้ประโยชน์จาก Erlang VM (BEAM) ที่ได้ผ่านการใช้งานมาอย่างโชกโชน เพื่อใช้ในการสร้างระบบกระจายที่ทนต่อความผิดพลาด (fault-tolerant) และมี latentency ที่ต่ำติดมากับตัว
 
 __Features__:
 
-+ ขยายขนาดได้ง่าย (scalable)
++ ขยายระบบได้ง่าย (scalable)
 + ทนต่อความผิดพลาด (fault-tolerant)
-+ รองรับการเขียนโปรแกรมเขิงฟังก์ชัน (functional programming)
++ รองรับการเขียนโปรแกรมเชิงฟังก์ชัน (functional programming)
 + ต่อเติมได้ง่าย (extensible)
