@@ -69,7 +69,7 @@ end
 
 Save the file to `lib/example/hello_world_plug.ex`.
 
-The `init/1` function is used to initialize our Plug's options. It is called by supervision tree, which is explained in the next section. For now, it'll be an empty List that is ignored.
+The `init/1` function is used to initialize our Plug's options. It is called by a supervision tree, which is explained in the next section. For now, it'll be an empty List that is ignored.
 
 The value returned from `init/1` will eventually be passed to `call/2` as its second argument.
 
