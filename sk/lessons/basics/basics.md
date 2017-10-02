@@ -1,21 +1,28 @@
 ---
-version: 0.9.1
+version: 1.1.2
 title: Základy
 ---
 
-Setup, základné typy a operácie.
+Inštalácia, základné dátové typy a operácie.
 
 {% include toc.html %}
 
-## Setup
+## Príprava
 
 ### Inštalácia Elixiru
 
 Návod na inštaláciu pre každý OS sú k dispozícii na Elixir-lang.org v sekcii [Installing Elixir](http://elixir-lang.org/install.html).
 
+Po tom ako sa Elixir nainštaloval, môžeme jednoducho overiť verziu.
+
+	$ elixir -v
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+	Elixir {{ site.elixir.version }}
+
 ### Interaktívny mód
 
-Elixir obsahuje nástroj `iex`, interaktívny shell (príkazový riadok), ktorý dovoľuje skúšať a vyhodnocovať rôzne výrazy a konštrukty v Elixire.
+Elixir obsahuje nástroj `iex`, interaktívny shell (príkazový riadok), ktorý dovoľuje skúšať a vyhodnocovať rôzne výrazy.
 
 Začnime teda jeho spustením príkazom `iex`:
 
@@ -26,7 +33,7 @@ Začnime teda jeho spustením príkazom `iex`:
 
 ## Základné dátové typy
 
-### Celé číslo
+### Celé čísla
 
 ```elixir
 iex> 255
@@ -44,7 +51,7 @@ iex> 0x1F
 31
 ```
 
-### Desatinné číslo
+### Desatinné čísla
 
 V Elixire vyžadujú desatinné čísla aspoň jednu číslicu pred desatinnou bodkou, sú 64 bitové a podporujú zápis exponentu pomocou znaku `e`:
 
@@ -58,9 +65,9 @@ iex> 1.0e-10
 ```
 
 
-### Boolean
+### Booleany
 
-Elixir ma boolean hodnoty `true` a `false`; všetky hodnoty, okrem `false` a `nil` sú pravdivé (t.j. vyhodnotia sa ako `true`):
+Elixir podporuje `true` a `false` ako boolean hodnoty; všetky hodnoty, okrem `false` a `nil` sú pravdivé (t.j. vyhodnotia sa ako `true`):
 
 ```elixir
 iex> true
@@ -69,9 +76,9 @@ iex> false
 false
 ```
 
-### Atom
+### Atómy
 
-Atom je konštanta, ktorej meno je zároveň jej hodnotou. Ak poznáte Ruby, tak atom je ekvivalentom Symbolov:
+Atóm je konštanta, ktorej meno je zároveň jej hodnotou. Ak poznáte Ruby, tak atóm je ekvivalentom Symbolov:
 
 ```elixir
 iex> :foo
@@ -80,7 +87,7 @@ iex> :foo == :bar
 false
 ```
 
-Boolean hodnoty `true` a `false` sú zároveň atomami `:true` a `:false`.
+Boolean hodnoty `true` a `false` sú zároveň atómami `:true` a `:false`.
 
 ```elixir
 iex> true |> is_atom
@@ -91,21 +98,21 @@ iex> :true === true
 true
 ```
 
-Názvy modulov v Elixire sú tiež atomy. `MyApp.MyModule` je valídnym atomom, dokonca aj keď taký modul ešte nebol deklarovaný:
+Názvy modulov v Elixire sú tiež atómy. `MyApp.MyModule` je valídny atóm, dokonca aj keď taký modul ešte nebol deklarovaný.
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
 true
 ```
 
-Atomy sú užitočné aj pri používaní modulov z Erlangu, vrátane tých vstavaných. Napríklad takto by sme použili funkciu `rand_bytes` z Erlangového modulu `crypto`:
+Atómy sa tiež používajú na označenie modulov z knižníc Erlangu, vrátane vstavaných.
 
 ```elixir
 iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
-### Reťazec
+### Reťazce
 
 V Elixire sú reťazce enkódované v UTF-8 a ohraničené dvojitými úvodzovkami (double quotes):
 
@@ -116,7 +123,7 @@ iex> "guľôčka"
 "guľôčka"
 ```
 
-Reťazce tiež podporujú zlomy riadkov a escapované sekvencie:
+Reťazce podporujú zalomenie riadkov a escapované sekvencie:
 
 ```elixir
 iex> "foo
@@ -126,11 +133,13 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
+Elixir tiež obsahuje zložitejšie dátové typy. O tých sa viac naučíme pri [kolekciách]() a [funkciách]().
+
 ## Základné operácie
 
-### Aritmetické
+### Aritmetika
 
-Elixir podporuje základné operátory `+`, `-`, `*`, a `/` tak, ako by ste očakávali. Dôležitý detail: `/` vždy vráti Float (desatinné číslo):
+Elixir podporuje základné operátory `+`, `-`, `*`, a `/` tak, ako by ste očakávali. Dôležitý detail: `/` vždy vráti desatinné číslo:
 
 ```elixir
 iex> 2 + 2
@@ -143,7 +152,7 @@ iex> 10 / 5
 2.0
 ```
 
-Pre celočíselné delenie (a zvyšok po ňom) poskytuje Elixir tieto dve funkcie:
+Ak potrebujete celočíselné delenie, alebo zvyšok po ňom (modulo), poskytuje na to Elixir tieto dve funkcie:
 
 ```elixir
 iex> div(10, 5)
@@ -154,7 +163,7 @@ iex> rem(10, 3)
 
 ### Logické
 
-V Elixire existujú tri základné logické operátory `||`, `&&`, a `!` - dokážu pracovať s ľubovoľnými typmi (keďže všetko okrem `false` a `nil` je pravdivé):
+Elixir poskytuje `||`, `&&`, a `!` ako logické operátory. Tie podporujú akékoľvek typy:
 
 ```elixir
 iex> -20 || true
@@ -188,9 +197,9 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-### Porovnania
+### Porovnávanie
 
-Elixir poskytuje všetky obvyklé porovnávacie operátory: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` a `>`.
+Elixir poskytuje všetky obvyklé porovnávacie operátory, na ktoré sme zvyknutí: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` a `>`.
 
 ```elixir
 iex> 1 > 2
@@ -212,7 +221,7 @@ iex> 2 === 2.0
 false
 ```
 
-Dôležitou vlastnosťou Elixiru je, že umožňuje porovnať hodnoty akýchkoľvek dvoch typov, čo sa obzvlášť hodí pri zoraďovaní (sortingu). Nie je nutné učiť sa spamäti poradie typov pri sortingu, ale je dobré o ňom vedieť:
+Dôležitou vlastnosťou Elixiru je, že umožňuje porovnať hodnoty akýchkoľvek dvoch typov, čo je obzvlášť užitočné pri zoraďovaní. Nie je nutné učiť sa spamäti poradie typov pri zoraďovaní, ale je dobré o ňom vedieť:
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
@@ -239,7 +248,7 @@ iex> "Hello #{name}"
 
 ### Spájanie reťazcov
 
-Na spájanie reťazcov v Elixire slúži operátor `<>`:
+Spájanie reťazcov používa operátor `<>`:
 
 ```elixir
 iex> name = "Sean"
