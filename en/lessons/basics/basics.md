@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Basics
 redirect_from:
   - /lessons/basics/basics/
@@ -17,7 +17,7 @@ Installation instructions for each OS can be found on elixir-lang.org in the [In
 
 After Elixir is installed, you can easily confirm the installed version.
 
-    % elixir -v
+    $ elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
