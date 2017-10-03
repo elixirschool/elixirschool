@@ -8,7 +8,9 @@
   };
 
   $.fn.contributors = function() {
-    var filePath = window.location.pathname.replace(/^\/(.*)\/$/, "$1.md");
+    var strippedPath = window.location.pathname.replace(/^\/(.*)\/$/, "$1");
+    var isIndex = strippedPath.indexOf('/') === -1
+    var filePath = isIndex ? strippedPath + '/index.md' : strippedPath + '.md'
     var commitsApiEndpoint = "https://api.github.com/repos/elixirschool/elixirschool/commits?path=" + filePath + "&per_page=100";
     var self = this;
     var statusElement = $(self).find(".status");
