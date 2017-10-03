@@ -1,6 +1,7 @@
 /*
  *= require jquery
  *= require toc.js
+ *= require contributors.js
  */
 
 var swap_icon = function(el) {
@@ -42,5 +43,6 @@ $(function() {
     minimumHeaders: 0,
     backToTopClasses: 'icon icon-chevron-up2 back-to-top'
   });
+  $("#contributors").contributors();
   $('.version-info').click(show_vcs_history);
 });
