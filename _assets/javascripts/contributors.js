@@ -22,15 +22,16 @@
         return commit.author.login;
       });
 
-      unique(usernames).forEach(function(username) {
-        var content = "" +
-          "<a class=\"tooltip\" href=\"https://github.com/" + username + "\">" +
-            "<img src=\"https://github.com/" + username + ".png?size=50\" >" +
-            "<span class=\"tooltiptext\">" + username + "</span>" +
-          "</a>";
+      var content = unique(usernames)
+        .reduce(function(accHtml, username) {
+          return accHtml +
+            "<a class=\"tooltip\" href=\"https://github.com/" + username + "\">" +
+              "<img src=\"https://github.com/" + username + ".png?size=50\" >" +
+              "<span class=\"tooltiptext\">" + username + "</span>" +
+            "</a>";
+        }, "")
 
-        $(self).append(content);
-      })
+      $(self).append(content);
     }
 
     try {
