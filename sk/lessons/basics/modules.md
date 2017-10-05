@@ -1,15 +1,15 @@
 ---
-version: 0.9.1
+version: 1.1.0
 title: Kompozícia
 ---
 
-Zo skúsenosti vieme, že je dosť nepohodlné, mať všetky funkcie v jedinom súbore. V tejto lekcii sa naučíme, ako funkcie zoskupovať do *modulov*, ako moduly komponovať a ako používať špeciálny typ mapy, zvaný *Struct*.
+Zo skúsenosti vieme, že je dosť nepohodlné, mať všetky funkcie v jedinom súbore. V tejto lekcii sa naučíme, ako funkcie zoskupovať a definovať špeciálny typ mapy, zvaný *struct* aby sme mohli usporiadať náš kód efektívne.
 
 {% include toc.html %}
 
 ## Moduly
 
-Moduly umožňujú organizovať funkcie do menných priestorov (*namespaces*). Definujeme v nich pomenované a privátne funkcie, o ktorých sme si povedali v minulej lekcii.
+Moduly nám umožňujú organizovať funkcie do menných priestorov (*namespaces*). Definujeme v nich pomenované a privátne funkcie, o ktorých sme si povedali v [lekcii o funkciách](../functions/).
 
 Pozrime sa na jednoduchý príklad:
 
@@ -55,17 +55,17 @@ defmodule Example do
 end
 ```
 
-Dôležitá poznámka: v Elixire existujú vyhradené modulové atribúty, ktoré majú špeciálny význam. Najbežnejšie tri sú tieto:
+Je dôležité zapamätať si, že v Elixire existujú vyhradené modulové atribúty. Najbežnejšie tri sú tieto:
 
 + `moduledoc` — Slúži na dokumentáciu modulu.
 + `doc` — Dokumentácia funkcie alebo makra.
-+ `behaviour` — Indikuje použitie OTP, alebo iného behaviour (chovania).
++ `behaviour` — Indikuje použitie OTP, alebo iného behaviour (chovania) definovaného užívateľom.
 
 ## Structs
 
-Struct je špeciálny typ dátovej štruktúry *mapa* s preddefinovanými kľúčami a ich default hodnotami. Struct musí byť definovaný v module - z tohto modulu získa svoj názov. V tomto module sa potom už väčšinou nič iné nedefinuje.
+Structs sú špeciálny typ *máp* s definovanými kľúčmi a ich východiskovými hodnotami. Struct musí byť definovaný v module, z ktorého získa svoj názov. Je bežné, že struct je jediná vec definovaná v module.
 
-Na definovanie structu používame kľúčové slovo `defstruct` nasledované zoznamom polí a ich default hodnôt:
+Na definovanie structu používame kľúčové slovo `defstruct` nasledované zoznamom kľúčových slov a ich východiskových hodnôt:
 
 ```elixir
 defmodule Example.User do
@@ -73,7 +73,7 @@ defmodule Example.User do
 end
 ```
 
-Teraz si vytvorme niekoľko exemplárov tohto structu:
+Teraz si vytvorme niekoľko príkladov tohto structu:
 
 ```elixir
 iex> %Example.User{}
@@ -115,7 +115,7 @@ defmodule Sayings.Greetings do
   def basic(name), do: "Hi, #{name}"
 end
 
-# s použitím aliasu
+# S použitím aliasu
 
 defmodule Example do
   alias Sayings.Greetings
@@ -123,14 +123,14 @@ defmodule Example do
   def greeting(name), do: Greetings.basic(name)
 end
 
-# bez použitia aliasu
+# Bez použitia aliasu
 
 defmodule Example do
   def greeting(name), do: Sayings.Greetings.basic(name)
 end
 ```
 
-V príklade je vidieť, že ak nešpecifikujeme inak, ako alias sa použije posledná časť mena modulu. napríklad z modulu `Sayings.Greetings` sa stane `Greetings`. Ak chceme vytvoriť vlastný alias (napríklad aby sme sa vyhli konfliktu mien), použijeme parameter `as:`:
+Ak existuje konflikt medzi dvoma aliasmi alebo iba chceme aliasy pomenovať úplne inak, môžeme tak urobiť pomocou `:as`:
 
 ```elixir
 defmodule Example do
@@ -161,8 +161,6 @@ iex> last([1, 2, 3])
 3
 ```
 
-Ak by sme v uvedenom príklade nepoužili `import`, museli by sme funkciu `last` volať ako `List.last`.
-
 #### Filtrovanie
 
 Normálne sa pri importe do nášho modulu dostanú úplne všetky funkcie a makrá z modulu, ktorý importujeme. Môžeme však použiť filtre `:only` (iba) a `:except` (okrem), ktorými vieme presnejšie špecifikovať, o čo z cieľového modulu máme záujem.
@@ -177,7 +175,7 @@ iex> last([1, 2, 3])
 3
 ```
 
-Takto zasa naimportujeme z modulu `List` *všetko okrem* funkcie `last/1`:
+Ak zasa naimportujeme *všetko okrem* funkcie `last/1` a teraz vyskúšame rovnaké funkcie ako predtým dostaneme:
 
 ```elixir
 iex> import List, except: [last: 1]
@@ -211,20 +209,48 @@ Ak by sme sa totiž pokúsili zavolať makro, ktoré ešte nie je načítané, E
 
 ### `use`
 
-Použije modul v aktuálnom kontexte. Hodí sa nám to keď chceme, aby cieľový modul pri importovaní niečo vykonal. Volaním príkazu `use` totiž spustíme makro `__using__` daného modulu (ak nejaké má), čo mu poskytuje možnosť ovplyvniť náš modul - napríklad vložiť doňho nejaké importy, aliasy a podobne:
+Macro use vyvolá špeciálne macro, nazvané `__using__/1`, z špecifikovaného modulu. Tu je príklad:
 
 ```elixir
-defmodule HelloModule do
-  defmacro __using__(opts) do
+# lib/use_import_require/use_me.ex
+defmodule UseImportRequire.UseMe do
+  defmacro __using__(_) do
     quote do
-      import HelloModule.Foo
-      import HelloModule.Bar
-      import HelloModule.Baz
-
-      alias HelloModule.Repo
+      def use_test do
+        IO.puts "use_test"
+      end
     end
   end
 end
 ```
 
-Ak by sme teda v našom module zavolali `use HelloModule`, HelloModule nám doňho importne svoje podmoduly `Foo`, `Bar` a `Baz`, plus vytvorí alias `Repo`.
+a pridáme tento riadok do UseImportRequire:
+
+```elixir
+use UseImportRequire.UseMe
+```
+
+Použitím UseImportRequire.UseMe definuje funkciu `use_test/0` tým že vyvolá macro `__using__/1`.
+
+To je všetko čo use spraví. Ale, je bežné pre macro `__using__` použiť ho na zavolanie alias, require alebo import. To vytvorí v module zadané aliasy alebo importy. Umožní nám modul použiť na definovanie politiky, ako máme odkazovať na funkcie a makrá.
+
+Phoenix framework využíva use a `__using__/1` na odstránenie opakovania sa pri aliasoch a importoch v moduloch definovaných používateľom.
+
+Tu je krátka ukážka z modulu Ecto.Migration:
+
+```elixir
+defmacro __using__(_) do
+  quote location: :keep do
+    import Ecto.Migration
+    @disable_ddl_transaction false
+    @before_compile Ecto.Migration
+  end
+end
+```
+
+Macro `Ecto.Migration.__using__/1` obsahuje volanie import a keď zavoláme `use Ecto.Migration` tiež zavoláme aj `import Ecto.Migration`. To pripraví aj atribúty modulu, ktorý ovláda správanie Ecta.
+
+Na zopakovanie: použitie macra jednoducho zavolá
+`__using__/1` špecifikovaného modulu. Aby sme ale naozaj vedeli čo vykoná musíme si prečítať macro `__using__/1`.
+
+**Poznámka**: `quote`, `alias`, `use` a `require` sú makrá použité keď pracujeme s metaprogramovaním.
