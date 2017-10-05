@@ -74,7 +74,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Μερικές φορές δεν θέλουμε τις συνδεδεμένες διεργασίες μας να κρασάρουν την τρέχουσα.  Για αυτό πρέπει να παγιδεύσουμε τις εξόδους.  Όταν παγιδεύουμε τις εξόδους αυτές θα ληφθούν σαν ένα μήνυμα με μορφή τούπλας: `{:EXIT, from_pid, reason}`.

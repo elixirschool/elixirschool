@@ -134,7 +134,7 @@ Untuk keluar secara eksplisit kita bisa gunakan `exit/1`:
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 Walau adalah mungkin menangkap sebuah exit dengan `try/catch`, melakukannya adalah _sangat_ jarang.  Dalam hampir semua kasus lebih baik membiarkan supervisor menangani exit proses tersebut:
