@@ -80,7 +80,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Sometimes we don't want our linked process to crash the current one.  For that we need to trap the exits.  When trapping exits they will be received as a tuple message: `{:EXIT, from_pid, reason}`.
