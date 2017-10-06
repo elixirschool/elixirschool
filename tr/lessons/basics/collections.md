@@ -1,6 +1,6 @@
 ---
-version: 1.0.0
-title: Collections
+version: 1.2.1
+title: Kolleksiyonlar
 redirect_from:
   - /lessons/basics/collections/
 ---
@@ -27,7 +27,7 @@ iex> liste = [3.14, :kek, "Elma"]
 iex> ["π"] ++ liste
 ["π", 3.14, :kek, "Elma"]
 iex> liste ++ ["Kiraz"]
-[3.14, :kek, "Apple", "Kiraz"]
+[3.14, :kek, "Elma", "Kiraz"]
 ```
 
 
@@ -99,7 +99,7 @@ iex> {3.14, :kek, "Elma"}
 {3.14, :kek, "Elma"}
 ```
 
-Demetlerin fonksiyonlardan ek bilgi dondurme mekanizmasi olarak kullanilmasi yaygindir; bunun faydalarini Ornegini Bulma - Pattern Matching konusunda inceleyecegiz.
+Demetlerin fonksiyonlardan ek bilgi dondurme mekanizmasi olarak kullanilmasi yaygindir; bunun faydalarini [Ornegini Bulma - Pattern Matching](../pattern-matching/) konusunda inceleyecegiz.
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -108,7 +108,7 @@ iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
 
-## Anahtar Kelime Listeleri
+## Anahtar Kelime Listeleri (Keyword lists)
 
 Elixir'de Anahtar Kelimeler (keywords) ve haritalar (maps) ilisikli koleksiyonlardir. Yani kendi iclerinde degere ulasmak icin anahtar bulundururlar. Elixir'de anahtar kelime listesi ozel bir demet (tuple) listesidir ve ilk degeri bir atomdur (:foo gibi, kendi degerini tasiyan bir sembol diyelim)
 
