@@ -5,7 +5,7 @@ redirect_from:
   - /lessons/basics/pattern-matching/
 ---
 
-Pattern Matching เป็นส่วนที่ทรงพลังมากส่วนนึงของ Elixir นั้นทำให้เราสามารถเปรียบเทียบค่า, โครงสร้างข้อมูล หรือแม้แต่functionได้ ในบทนี้เราจะมาดูกันว่า Pattern Matching มันใช้งานอย่างไร
+Pattern Matching เป็นส่วนที่ทรงพลังมากส่วนนึงของ Elixir นั้นทำให้เราสามารถเปรียบเทียบค่า, โครงสร้างข้อมูล หรือแม้แต่ function ได้ ในบทนี้เราจะมาดูกันว่า Pattern Matching มันใช้งานอย่างไร
 
 {% include toc.html %}
 
@@ -55,7 +55,7 @@ iex> {:ok, value} = {:error}
 
 ## Pin Operator
 
-match operator ใช้สำหรับการกำหนดค่าให้กับตัวแปรฝั่งซ้าย ในบางสถานการณ์เราอาจจะไม่ต้องการให้ตัวแปร rebinding กับค่าใหม่ ซึ่งสามารถทำได้ด้วย pin operator `^`
+match operator ใช้สำหรับการกำหนดค่าให้กับตัวแปรฝั่งซ้าย ในบางสถานการณ์เราอาจจะไม่ต้องการให้ตัวแปร rebind กับค่าใหม่ ซึ่งสามารถทำได้ด้วย pin operator `^`
 
 เมื่อเรา pin ตัวแปร นั่นหมายความว่าเราจะ match ค่าที่มีอยู่แล้วแทนที่จะผูกค่าใหม่ให้กับมัน มาดูตัวอย่างกันดีกว่า
 
@@ -84,7 +84,7 @@ iex> %{^key => value} = %{:hello => "world"}
 ** (MatchError) no match of right hand side value: %{hello: "world"}
 ```
 
-ตัวอย่างการปักหมุดในfunction:
+ตัวอย่างการปักหมุดใน function:
 
 ```elixir
 iex> greeting = "Hello"
