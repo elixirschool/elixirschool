@@ -16,7 +16,7 @@ Proces instalacji środowiska dla poszczególnych systemów operacyjnych jest op
 Po zakończeniu procesu instalacji możemy w łatwy sposób sprawdzić, którą wersję zainstalowaliśmy:
  
      % elixir -v
-     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
  
      Elixir {{ site.elixir.version }}
 

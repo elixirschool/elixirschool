@@ -16,7 +16,7 @@ title: ব্যাসিকস
 এলিক্সির ইন্সটল করা হয়ে গেলে নিচের মত করে কমান্ড ব্যবহার করে আপনি এলিক্সির এর ভার্সন নাম্বার দেখতে পাবেন - 
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
