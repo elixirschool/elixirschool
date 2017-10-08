@@ -78,7 +78,7 @@ iex> 1.0e-10
 
 ### Mantıksal Tipler (Booleans)
 
-Elixir de mantıksal `true` ve `false` değerleri bulunur; `false` and `nil` dışında herşey true olarak kabul edilir:
+Elixir de mantıksal `true` ve `false` değerleri bulunur; `false` ve `nil` dışında herşey true olarak kabul edilir:
 
 ```elixir
 iex> true
