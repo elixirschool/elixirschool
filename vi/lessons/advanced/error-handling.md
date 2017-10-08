@@ -134,7 +134,7 @@ Cơ chế lỗi cuối cùng mà Elixir cung cấp cho chúng ta là `exit`. Exi
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 Trong khi có thể bắt một exit với try/catch, cách làm này là _cực kỳ_ hiếm. Trong hầu hết các trường hợp, sẽ tốt hơn nếu chúng ta để cho supervisor xử lý chuyện này.

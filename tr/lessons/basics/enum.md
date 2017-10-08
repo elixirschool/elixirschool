@@ -37,8 +37,8 @@ fonksiyonel programlamanin cekirdegini olusturmasi ve inanilmaz derece kullanisl
 
 Elixir'in de avantajlari ile birlesip gelistiricilere inanilmaz bir guc vermektedir.
 
-Tum fonksiyon listesi icin resmi dokumana [`Enum`](https://hexdocs.pm/elixir/Enum.html) goz atabilirsiniz.
-Lazy enumeration icin bu [`Stream`](https://hexdocs.pm/elixir/Stream.html) sayfaya goz atabilirsiniz.
+Tum fonksiyon listesi icin resmi dokumana [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) goz atabilirsiniz.
+Lazy enumeration icin bu [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) sayfaya goz atabilirsiniz.
 
 
 ### all?

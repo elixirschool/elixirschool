@@ -134,7 +134,7 @@ Elixirが提供している最後のエラー処理機構は`exit`です。終�
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 `try/catch`で終了を捕捉できますが、そうすることは _非常に_ まれです。ほとんど全ての場合ではsupervisorにプロセスの終了をハンドリングさせるほうが都合がいいでしょう:

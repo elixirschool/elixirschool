@@ -99,6 +99,7 @@ iex> {3.14, :kek, "Elma"}
 {3.14, :kek, "Elma"}
 ```
 
+
 Demetlerin fonksiyonlardan ek bilgi dondurme mekanizmasi olarak kullanilmasi yaygindir; bunun faydalarini [Ornegini Bulma - Pattern Matching](../pattern-matching/) konusunda inceleyecegiz.
 
 ```elixir
@@ -107,6 +108,7 @@ iex> File.read("path/to/existing/file")
 iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
+
 
 ## Anahtar Kelime Listeleri (Keyword lists)
 
