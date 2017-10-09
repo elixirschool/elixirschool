@@ -65,32 +65,32 @@ end
 
 ## Interactive
 
-It may be necessary to use `iex` within the context of our application.  Thankfully for us, Mix makes this easy.  We can start a new `iex` session:
+บางทีเราก็จำเป็นที่จะต้องใช้ `iex` กับ context ของ application เรา โอ้ขอบคุณสวรรค์ Mix ช่วยให้เราทำเรื่องนี้ได้ง่าย เราสามารถเริ่ม `iex` session ใหม่ด้วย context ของเราด้วยคำสั่ง
 
 ```bash
 $ iex -S mix
 ```
 
-Starting `iex` this way will load your application and dependencies into the current runtime.
+รัน `iex` ด้วยวิธีนี้จะโหลด application ของคุณและ dependencies ต่างๆเข้าไปใน runtime ปัจจุบัน
 
 ## Compilation
 
-Mix is smart and will compile your changes when necessary, but it may still be necessary to explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
+Mix นั้นฉลาดและจะ compile ตามการแก้ไขของคุณเมื่อจำเป็น แต่การ compile โปรเจคของคุณเองก็ยังคงเป็นสิ่งจำเป็นอยู่ ในส่วนนี้เราจะพูดถึงการจะ compile project ของเราอย่างไร และกระบวนการ compile นั้นทำอะไรบ้าง
 
-To compile a Mix project we only need to run `mix compile` in our base directory:
+การ compile Mix project เราแค่ต้องรันคำสั่ง `mix compile` ใน base directory ของเรา
 
 ```bash
 $ mix compile
 ```
 
-There isn't much to our project so the output isn't too exciting but it should complete successfully:
+โปรเจคเรายังไม่มีอะไรมากดังนั้นผลลัพธ์เลยยังไม่มีอะไรน่าตื่นเต้นเท่าไหร่แต่มันควรจะเสร็จสมบูรณ์
 
 ```bash
 Compiled lib/example.ex
 Generated example app
 ```
 
-When we compile a project Mix creates a `_build` directory for our artifacts.  If we look inside `_build` we will see our compiled application: `example.app`.
+เมื่อเรา compile โปรเจค Mix จะสร้าง directory `_build` ขึ้นมาสำหรับเก็บของที่ถูก compile ถ้าเราเข้าไปดูใน `_build` เราจะเจอกับ application ของเราที่ถูก compile แล้ว: `example.app`
 
 ## Managing Dependencies
 
