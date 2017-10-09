@@ -5,16 +5,15 @@ redirect_from:
   - /lessons/basics/enum/
 ---
 
-A set of algorithms for enumerating over enumerables.
+ชุดของ algorithm สำหรับใช้งานกับ `Enum`
 
 {% include toc.html %}
 
 ## Enum
 
-The `Enum` module includes over 70 functions for working with enumerables.  All the collections that we learned about in the [previous lesson](../collections/), with the exception of tuples, are enumerables.
+โมดูล `Enum` มีมากกว่า 70 function ให้ใช้งาน colllection ทั้งหมดนอกจาก tuple ที่เราได้เรียนกันมาใน [บทที่แล้ว](../collections/) ล้วนแล้วแต่เป็น `Enum`
 
-This lesson will only cover a subset of the available functions, however we can actually examine them ourselves.
-Let's do a little experiment in IEx.
+บทนี้จะครอบคลุมเพียงแค่ function บางส่วน แต่คุณก็สามารถไปศึกษาเพิ่มได้เอง เอาล่ะ มาทำลองเล่นใน IEx กันสักหน่อยดีกว่า
 
 ```elixir
 iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
@@ -29,16 +28,16 @@ at/3
 ...
 ```
 
-Using this, its clear that we have a vast amount of functionality, and that is for a clear reason.
-Enumeration is at the core of functional programming and is an incredibly useful thing.
-By leveraging it combined with other perks of Elixir, such as documentation being a first class citizen as we just saw, it can be incredibly empowering to the developer as well.
+จากที่ลองจะเห็นว่ามี function มากมายให้เราใช้งานจริง ๆ  `Enum` นับเป็น core ของการเขียนโปรแกรมแบบ functional แล้วมันก็มีประโยชน์มาก ๆ เลยทีเดียว 
 
-For a full list of functions visit the official [`Enum`](https://hexdocs.pm/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](https://hexdocs.pm/elixir/Stream.html) module.
+หากเราใช้มันร่วมกับสิ่งเยี่ยมยอดอื่น ๆ ของ Elixir มันจะทำให้ developer ทำงานได้อย่างมีประสิทธิภาพมากเลยทีเดียว
+
+สำหรับรายชื่อ function ทั้งหมด สามารถเข้าไปอ่านเพิ่มได้ที่ [`Enum`](https://hexdocs.pm/elixir/Enum.html) สำหรับ lazy enumeration ใช้โมดูล [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 
 ### all?
 
-When using `all?/2`, and much of `Enum`, we supply a function to apply to our collection's items.  In the case of `all?/2`, the entire collection must evaluate to `true` otherwise `false` will be returned:
+เมื่อเราใช้ `all?/2` กับ `Enum` จำนวนมาก เราสามารถใช้งาน function กับ item ทั้งหมดของ collection ได้ โดยจะตอบ `true` เมื่อ item ใน collection ทั้งหมดเป็น `true` นอกจากนั้นจะเป็น `false`
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -49,7 +48,7 @@ true
 
 ### any?
 
-Unlike the above, `any?/2` will return `true` if at least one item evaluates to `true`:
+`any?/2` จะคืนค่า `true` ถ้ามีตัวใดตัวนึงใน collection เป็น `true`
 
 ```elixir
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
@@ -58,18 +57,18 @@ true
 
 ### chunk_every
 
-If you need to break your collection up into smaller groups, `chunk_every/2` is the function you're probably looking for:
+ถ้าคุณต้องการแบ่ง collection เป็นกลุ่มเล็ก ๆ `chunk_every/2` เป็น function ที่คุณกำลังตามหา
 
 ```elixir
 iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-There are a few options for `chunk_every/4` but we won't go into them, check out [`the official documentation of this function`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) to learn more.
+มีตัวเลือกเล็กน้อยสำหรับ `chunk_every/4` แต่เราจะไม่พูดถึงมันตรงนี้ ดูเพิ่มเติมที่ [`the official documentation of this function`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4)
 
 ### chunk_by
 
-If we need to group our collection based on something other than size, we can use the `chunk_by/2` function. It takes a given enumerable and a function, and when the return on that function changes a new group is started and begins the creation of the next:
+ถ้าเราต้องการจับกลุ่ม collection ของเราด้วยค่าอื่นนอกเหนือจาก size ของมัน เราสามารถใช้ function `chunk_by/2` ได้. มันรับ enumerable และ function เข้าไป และคืนค่าเมื่อ function สร้างกลุ่มใหม่ แล้วเริ่มทำกับตัวต่อไป
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -80,17 +79,17 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-Sometimes chunking out a collection isn't enough for exactly what we may need. If this is the case, `map_every/3` can be very useful to hit every `nth` items, always hitting the first one:
+บางครั้งการดึงค่าเป็นก้อน ๆ จาก collection ไม่เพียงพอกับสิ่งที่เราต้องการ ในสถานการณ์นี้ `map_every/3` มีประโยชน์มากในการเข้าถึง item ทุก ๆ `nth` ครั้ง เริ่มโดยเข้าถึงตัวแรกสุดก่อน
 
 ```elixir
-# Apply function every three items
+# ใช้ function ทุก ๆ 3 ค่า
 iex> Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
 [1001, 2, 3, 1004, 5, 6, 1007, 8]
 ```
 
 ### each
 
-It may be necessary to iterate over a collection without producing a new value, for this case we use `each/2`:
+มันอาจจะจำเป็นที่จะใช้ค่าแต่ละตัวใน collection โดยไม่สร้างค่าใหม่ สำหรับสถานการณ์นี้เราสามารถใช้ `each/2` ได้
 
 ```elixir
 iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
@@ -100,11 +99,11 @@ three
 :ok
 ```
 
-__Note__: The `each/2` function does return the atom `:ok`.
+__หมายเหตุ__: function `each/2` จะคืนค่า atom `:ok`
 
 ### map
 
-To apply our function to each item and produce a new collection look to the `map/2` function:
+เราสามารถใช้ function กับแต่ละ item เพื่อสร้างเป็น collection ใหม่ได้ด้วย function `map/2`
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
@@ -113,14 +112,14 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-`min/1` finds the minimal value in the collection:
+`min/1` หาค่าน้อยที่สุดใน collection
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` does the same, but in case the enumerable is empty, it allows us to specify a function to produce the minimum value.
+`min/2` ทำเหมือนกัน แต่ถ้า enumerable เป็นค่าว่างมันจะคืนค่าของ function ที่เราใส่เข้าไปแทน
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
@@ -129,14 +128,14 @@ iex> Enum.min([], fn -> :foo end)
 
 ### max
 
-`max/1` returns the maximal value in the collection:
+`max/1` คืนค่ามากที่สุดของ collection:
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-`max/2` is to `max/1` what `min/2` is to `min/1`:
+`max/2` กลายเป็น `max/1` ถ้า enumerable มีค่า เช่นเดียวกันกับ `min/2` ที่จะกลายเป็น `min/1`:
 
 ```elixir
 Enum.max([], fn -> :bar end)
@@ -145,7 +144,7 @@ Enum.max([], fn -> :bar end)
 
 ### reduce
 
-With `reduce/3` we can distill our collection down into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first element in the enumerable is used:
+ด้วย function  `reduce/3` ทำให้เราสามารถรวบ collection ให้เหลือเพียงค่าเดียวได้ การที่จะรวบ collection เราสามารถส่ง accumulator (`10` ในตัวอย่างด้านล่างนี้) เข้าไปใน function ถ้าไม่ได้กำหนด accumulator มันจะใช้ตัวแรกเป็น accumulator แทน
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
@@ -160,7 +159,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 ### sort
 
-Sorting our collections is made easy with not one, but two, sorting functions.
+การ sort collection สามารถทำได้ง่ายนิดเดียวด้วย 2 function ที่ Elixir มีไว้ให้ใช้
 
 `sort/1` ใช้ term ของ Erlang ในการจัดลำดับ
 uses Erlang's term ordering to determine the sorted order:
@@ -176,11 +175,11 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 เราสามารถใช้ sort function ที่เราสร้างขึ้นมาเองได้ใน `sort/2` 
 
 ```elixir
-# ใช้ฟังก์ชัน
+# ใช้ function
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
 [%{val: 4}, %{val: 1}]
 
-# โดยไม่ใช้ฟังก์ชัน
+# โดยไม่ใช้ function
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
