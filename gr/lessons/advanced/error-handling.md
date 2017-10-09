@@ -134,7 +134,7 @@ iex> try do
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 Παρόλο που είναι πιθανόν να πιάσουμε την έξοδο με τις `try/catch`, αυτό είναι _εξαιρετικά_ σπάνιο.  Σχεδόν σε όλες τις περιπτώσεις είναι επωφελές να αφήσουμε τον διαχειριστή να χειριστεί την έξοδο της διεργασίας:

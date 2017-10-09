@@ -17,13 +17,13 @@ title: Διαλειτουργικότητα με την Erlang
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Χρόνος: #{time}ms"
+    IO.puts "Χρόνος: #{time} μs"
     IO.puts "Αποτέλεσμα: #{result}"
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Χρόνος: 8ms
+Χρόνος: 8 μs
 Αποτέλεσμα: 1000000
 ```
 

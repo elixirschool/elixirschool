@@ -74,7 +74,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Terkadang kita tidak ingin proses kita yang terkait untuk mengakibatkan proses yang sekarang ada ikut crash.  Untuk itu kita perlu menjebak (trap) exit.  Ketika menjebak exit proses akan menerima sebagai sebuah pesan tuple: `{:EXIT, from_pid, reason}`.
