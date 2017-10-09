@@ -78,7 +78,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 연결된 프로세스가 다른 프로세스와 충돌하지 않도록 하고 싶을 때도 있습니다. 이런 경우에는, 종료 신호를 trap 해야할 필요가 있습니다. 종료 신호를 trap할 때, 다음과 같은 튜플 메시지를 수신하게 될 것입니다. `{:EXIT, from_pid, reason}`

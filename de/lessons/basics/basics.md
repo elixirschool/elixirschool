@@ -16,7 +16,7 @@ Installationsanleitungen für jedes Betriebssystem können auf elixir-lang.org u
 Nachdem Elixir installiert ist, kann die installierte Version einfach überprüft werden.
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
@@ -26,7 +26,7 @@ Elixir kommt mit `iex`, einer interaktiven Shell, welche uns erlaubt Ausdrücke 
 
 Zum Loslegen starten wir `iex`:
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>

@@ -16,7 +16,7 @@ Her işletim sistemi için uygun kurulum talimatlarını elixir-lang.org sitesin
 Elixir yüklendikten sonra aşağıdaki komut ile kolayca kurulu sürümü doğrulayabilirsiniz.
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
@@ -26,7 +26,7 @@ Elixir `iex` isimli, Elixir ifadelerini kolayca çalıştırmanız için etkile�
 
 `iex` komutunu çalıştıralım:
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
@@ -78,7 +78,7 @@ iex> 1.0e-10
 
 ### Mantıksal Tipler (Booleans)
 
-Elixir de mantıksal `true` ve `false` değerleri bulunur; `false` and `nil` dışında herşey true olarak kabul edilir:
+Elixir de mantıksal `true` ve `false` değerleri bulunur; `false` ve `nil` dışında herşey true olarak kabul edilir:
 
 ```elixir
 iex> true

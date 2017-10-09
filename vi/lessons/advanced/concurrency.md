@@ -79,7 +79,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Đôi khi, chúng ta không muốn process được liên kết làm cho process hiện tại bị crash. Vì thế chúng ta cần đánh bẫy sự thoát ra của process kia. Khi đánh bẫy sự thoát ra, chúng ta sẽ nhận được một thông điệp dạng tuple như sau: `{:EXIT, from_pid, reason}`.
