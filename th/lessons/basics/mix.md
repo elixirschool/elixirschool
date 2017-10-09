@@ -94,11 +94,11 @@ Generated example app
 
 ## Managing Dependencies
 
-Our project doesn't have any dependencies but will shortly, so we'll go ahead and cover defining dependencies and fetching them.
+ตอนนี้โปรเจคของเรายังไม่มี dependencies ดังนั้นเราจะใส่ dependencies เข้าไปและ fetching มันลงมา
 
-To add a new dependency we need to first add it to our `mix.exs` in the `deps` section.  Our dependency list is comprised of tuples with two required values and one optional: the package name as an atom, the version string, and optional options.
+การจะเพิ่ม dependency เข้าไป อย่างแรกเราต้องเพิ่มเข้าไปในไฟล์ `mix.exs` ของเราในส่วน `deps` ลิสของ dependency ของเราจะถูกระบุอยู่ในรูปของ tuples ด้วยค่าที่ต้องการสองค่าและค่าเสริมอีกหนึ่งค่า ซึ่งก็คือ: ชื่อของ package ในรูปของ atom, เวอร์ชั่นในรูปของ string และสุดท้ายคือ options ที่ใส่หรือไม่ใส่ก็ได้
 
-For this example let's look at a project with dependencies, like [phoenix_slim](https://github.com/doomspork/phoenix_slim):
+สำหรับตัวอย่างสามารถดูได้จากโปรเจคที่มี dependencies เช่น [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 
 ```elixir
 def deps do
@@ -109,25 +109,25 @@ def deps do
 end
 ```
 
-As you probably discerned from the dependencies above, the `cowboy` dependency is only necessary during development and test.
+จากที่คุณได้เห็นจาก dependencies ข้างบน `cowboy` dependency นั้นจำเป็นแค่ตอน development และ test
 
-Once we've defined our dependencies there is one final step: fetching them.  This is analogous to `bundle install`:
+เมื่อเราประกาศ dependencies ของเราเสร็จเราก็เหลืออีกหนึ่งขึ้นตอน fetching มัน ซึ่งจะเหมือนกับ `bundle install`
 
 ```bash
 $ mix deps.get
 ```
 
-That's it!  We've defined and fetched our project dependencies.  Now we're prepared to add dependencies when the time comes.
+แค่นั้นเอง! เมื่อเราประกาศและ fetched dependencies ของโปรเจคเราแล้ว ตอนนี้เราก็พร้อมที่จะเพิ่ม dependencies เมื่อไหร่ก็ตามที่ต้องการ
 
 ## Environments
 
-Mix, much like Bundler, supports differing environments.  Out of the box mix works with three environments:
+Mix นั้นเหมือนกับ Bundler ตรงที่รองรับ environments หลายๆแบบ โดย environments ที่มีมาให้ในตัวเลยมีสามแบบ
 
-+ `:dev` — The default environment.
-+ `:test` — Used by `mix test`. Covered further in our next lesson.
-+ `:prod` — Used when we ship our application to production.
++ `:dev` — environment พื้นฐาน
++ `:test` — ถูกใช้โดย `mix test` เราจะพูดถึงในบทถัดๆไป
++ `:prod` — ใช้เมื่อเราเอา application ของเราขึ้น production
 
-The current environment can be accessed using `Mix.env`.  As expected, the environment can be changed via the `MIX_ENV` environment variable:
+สามารถอ่านค่า environment ปัจจุบันได้จาก `Mix.env` และแน่นอน environment สามารถเปลี่ยนได้ผ่าน environment variable `MIX_ENV`
 
 ```bash
 $ MIX_ENV=prod mix compile
