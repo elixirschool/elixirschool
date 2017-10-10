@@ -74,7 +74,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Kadang-kadang kita tidak mahu proses yang dirangkaikan meruntuhkan proses sedia ada.  Untuk itu kita perlu untk memerangkap 'exit' tersebut.  'Exit' yang diperangkap akan diterima sebagai satu mesej dalam bentuk tuple: `{:Exit, from_pid, reason}`.

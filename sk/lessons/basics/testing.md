@@ -1,15 +1,15 @@
 ---
-version: 0.9.1
+version: 1.0.0
 title: Testovanie
 ---
 
-Testovanie je dôležitou súčasťou vývoja softvéru. V tejto lekcii sa pozrieme na to, ako testovať náš elixirový kód pomocou knižnice ExUnit a na testovacie *best practices*.
+Testovanie je dôležitou súčasťou vývoja softvéru. V tejto lekcii sa pozrieme na to, ako testovať náš Elixir kód pomocou knižnice ExUnit a na testovacie *best practices*.
 
 {% include toc.html %}
 
 ## ExUnit
 
-Elixir má zabudovaný testovací framework ExUnit, ktorý obsahuje všetko, čo potrebujeme na dôkladné otestovanie nášho kódu. Než s ním začneme, je dôležité spomenúť, že ExUnit testy sa implementujú ako elixirové skripty, takže pre súbory s testami musíme použiť príponu `.exs`. Pred spustením testov ešte musíme naštartovať samotný ExUnit. Bežne sa to robí v súbore `test/test_helper.exs`.
+Elixir má zabudovaný testovací framework ExUnit, ktorý obsahuje všetko, čo potrebujeme na dôkladné otestovanie nášho kódu. Než s ním začneme, je dôležité spomenúť, že ExUnit testy sa implementujú ako Elixir skripty, takže pre súbory s testami musíme použiť príponu `.exs`. Pred spustením testov ešte musíme naštartovať samotný ExUnit s `ExUnit.start()`. Bežne sa to robí v súbore `test/test_helper.exs`.
 
 Keď sme si v minulej lekcii vygenerovali nový projekt, mix nám vygeneroval rovno aj jednoduché základné testy v súbore `test/example_test.exs`.
 
@@ -33,7 +33,9 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### assert
 
-Každý kto sa už niekedy stretol s automatickými testami softvéru, určite pozná príkaz `assert` (v niektorých testovacích frameworkoch `should`, či `expect`). Toto makro testuje, či sa daný výraz vyhodnotí ako `true`. Ak nie, vyhodí chybu a test zlyhá. Pozrime sa na príklad takéhoto zlyhania - upravme náš test a spustime ho príkazom `mix test`:
+Každý kto sa už niekedy stretol s automatickými testami softvéru, určite pozná príkaz `assert` (v niektorých testovacích frameworkoch `should`, či `expect`).
+
+Toto makro testuje, či sa daný výraz vyhodnotí ako `true`. Ak nie, vyhodí chybu a test zlyhá. Pozrime sa na príklad takéhoto zlyhania - upravme náš test a spustime ho príkazom `mix test`:
 
 ```elixir
 defmodule ExampleTest do
@@ -72,11 +74,51 @@ Opakom príkazu `assert` je príkaz `refute`. Použijeme ho v prípade, že chce
 
 ### assert_raise
 
-Niekedy potrebujeme testovať, že kód vyhodí chybu (prípadne konkrétny typ chyby) - na to sa nám hodí príkaz `assert_raise`. Príklad použitia je v lekcii o knižnici Plug.
+Niekedy potrebujeme testovať, že kód vyhodí chybu (prípadne konkrétny typ chyby) - na to sa nám hodí príkaz `assert_raise`. Príklad použitia `assert_raise` je v lekcii o knižnici Plug.
 
-## Setup
+### assert_receive
 
-Niekedy potrebujeme pred samotnými testami vykonať nejaké pomocné činnosti. S tým nám pomôžu makrá `setup` a `setup_all`. Blok kódu v makre `setup` sa vykoná pred každým jednotlivým testom, blok v makre `setup_all` sa vykoná len raz - na začiatku pred spustením prvého testu. Oba bloky by mali vrátiť tuple v tvare `{:ok, stav}`, pričom `stav` bude dostupný v jednotlivých testoch.
+V Elixire, aplikácie pozostávajú z actorov/procesov, ktorí posielajú správy medzi sebou a často chceme otestovať odosielanú správu. Keďže ExUnit beží ako vlastný proces, môže prijímať správy tak ako každý iný proces a môžeme assertnúť pomocou makra `assert_received`:
+
+```elixir
+defmodule SendingProcess do
+  def run(pid) do
+    send pid, :ping
+  end
+end
+
+defmodule TestReceive do
+  use ExUnit.Case
+
+  test "receives ping" do
+    SendingProcess.run(self())
+    assert_received :ping
+  end
+end
+```
+
+`assert_received` nečaká na správy, s `assert_receive` však môžeme špecifikovať kedy čas na prijatie správy vyprší.
+
+### capture_io and capture_log
+
+Zachytávanie výstup aplikácie je možné s pomocou `ExUnit.CaptureIO` bez zmien v pôvodnej aplikácii. Jednoducho vložíme funkciu, ktorá generuje výstup ako argument:
+
+```elixir
+defmodule OutputTest do
+  use ExUnit.Case
+  import ExUnit.CaptureIO
+
+  test "outputs Hello World" do
+    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+  end
+end
+```
+
+`ExUnit.CaptureLog` je ekvivalent použitý, keď chceme zachytávať výstup do `Logger`.
+
+## Test Setup
+
+Niekedy potrebujeme pred samotnými testami vykonať nejaké pomocné činnosti. S tým nám pomôžu makrá `setup` a `setup_all`. Blok kódu v makre `setup` sa vykoná pred každým jednotlivým testom, blok v makre `setup_all` sa vykoná len raz - na začiatku pred spustením celej sady testov. Oba bloky by mali vrátiť tuple v tvare `{:ok, stav}`, pričom stav bude dostupný v jednotlivých testoch.
 
 Ako príklad si do nášho súboru s testami doplníme blok `setup_all`:
 
@@ -97,6 +139,8 @@ end
 
 ## Mockovanie
 
-Niektoré testovacie frameworky využívajú techniku mockovania, čiže podsúvania atráp rôznych objektov a funkcií testovanému kódu. Elixir sa však tomuto vyhýba a vývojárov od nej odradzuje. Ak vo svojom kóde dodrživate zásady dobrého funkcionálneho návrhu, mockovanie nikdy potrebovať nebudete, pretože svoje moduly a funkcie budete môcť jednoducho testovať na individuálnej úrovni.
+Jednoduchá odpoveď na mockovanie v Elixire je: nerobte to. Inštinktívne možno siahnete na mocky, ale v komunita Elixiru dôrazne neodporúča z dobrého dôvodu.
 
-Odolajte pokušeniu.
+Na dlhšiu diskusiu je tu [výborný článok](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/).
+
+Ak vo svojom kóde dodrživate zásady dobrého funkcionálneho návrhu, mockovanie nikdy potrebovať nebudete, pretože svoje moduly a funkcie budete môcť jednoducho testovať na individuálnej úrovni.

@@ -77,7 +77,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Czasami nie chcemy by awaria jednego procesu, spowodowała zamknięcie połączonego z nim innego procesu. Dlatego też musimy przechwycić informacje o zamknięciu. Wynikiem tej operacji jest wiadomość w postaci krotki: `{:EXIT, from_pid, reason}`.

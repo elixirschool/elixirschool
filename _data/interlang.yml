@@ -17,11 +17,14 @@
 #  pt: 
 #  ru: 
 #  sk: 
+#  ta: 
+#  th: 
 #  tr: 
 #  uk: 
 #  vi: 
 
 en:
+  ar: Arabiс
   bg: Bulgarian
   bn: Bengali
   cn: Chinese
@@ -40,9 +43,11 @@ en:
   pt: Portuguese
   ru: Russian
   sk: Slovak
+  ta: Tamil
   tr: Turkish
   uk: Ukranian
   vi: Vietnamese
+  th: Thai
 
 es:
   bg: Búlgaro
@@ -89,3 +94,27 @@ id:
  tr: Bahasa Turki
  uk: Bahasa Ukraina
  vi: Bahasa Vietnam
+
+th:
+  bg: ภาษาบัลแกเรีย
+  bn: ภาษาเบงกอล
+  cn: ภาษาจีน
+  de: ภาษาเยอรมัน
+  en: ภาษาอังกฤษ
+  es: ภาษาสเปน
+  fr: ภาษาฝรั่งเศส
+  gr: ภาษากรีก
+  id: ภาษาอินโดนิเซีย
+  it: ภาษาอิตาลี
+  jp: ภาษาญี่ปุ่น
+  ko: ภาษาเกาหลี
+  my: ภาษามาเลเซีย
+  "no": ภาษานอร์เวย์
+  pl: ภาษาโปแลนด์
+  pt: ภาษาโปรตุเกส
+  ru: ภาษารัสเซีย
+  sk: ภาษาสโลวาเกีย
+  th: ภาษาไทย
+  tr: ภาษาตุรกี
+  uk: ภาษายูเครน
+  vi: ภาษาเวียดนาม

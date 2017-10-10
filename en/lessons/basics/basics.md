@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Basics
 redirect_from:
   - /lessons/basics/basics/
@@ -17,9 +17,6 @@ Installation instructions for each OS can be found on elixir-lang.org in the [In
 
 After Elixir is installed, you can easily confirm the installed version.
 
-    % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
-    
     Elixir {{ site.elixir.version }}
 
 ### Trying Interactive Mode
@@ -27,10 +24,6 @@ After Elixir is installed, you can easily confirm the installed version.
 Elixir comes with IEx, an interactive shell, which allows us to evaluate Elixir expressions as we go.
 
 To get started, let's run `iex`:
-
-> if you use Windows, please use `iex.bat --werl` instead
-
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>

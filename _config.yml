@@ -47,11 +47,11 @@ sitemap:
   priority_name: 'priority'
 
 elixir:
-  version: 1.5.1
+  version: 1.5.2
 
 erlang:
   OTP: 20
-  erts: 9.0
+  erts: 9.1
 
 defaults:
   -

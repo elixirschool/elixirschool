@@ -99,7 +99,7 @@ end
 
 `assert_received` wartet nicht auf Nachrichten, mit `assert_receive` kannst du einen Timeout festlegen.
 
-## capture_io und capture_log
+### capture_io und capture_log
 
 Die Ausgabe einer Anwendung aufzuzeichen ist mit `ExUnit.CaptureIO` möglich, ohne die Originalanwendung umzuschreiben. Gib ihr einfach nur die Funktion, die die Ausgabe generiert:
 
