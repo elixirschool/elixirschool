@@ -155,11 +155,11 @@ defmodule ExampleTest do
   doctest Example
 
   setup_all do
-    {:ok, number: 2}
+    {:ok, recipient: :world}
   end
 
-  test "the truth", state do
-    assert 1 + 1 == state[:number]
+  test "greets", state do
+    assert Example.hello() == state[:recipient]
   end
 end
 ```
