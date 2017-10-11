@@ -19,7 +19,7 @@ redirect_from:
 $ mix new example
 ```
 
-จาก output เราจะเห็นว่า Mix ได้สร้าง directory และไฟล์ boilerplate จำนวนนึงให้เรา:
+จาก output เราจะเห็นว่า Mix ได้สร้าง folder และไฟล์ boilerplate จำนวนนึงให้เรา:
 
 ```bash
 * creating README.md
@@ -34,7 +34,7 @@ $ mix new example
 * creating test/example_test.exs
 ```
 
-ในบทนี้เราจะเน้นกันไปที่ไฟล์ `mix.exs` ในไฟล์นี้เราสามารถ configure application ของเรา, dependencies, environment, และ version เมื่อเปิดไฟล์ `mix.exs` ใน editor ที่คุณชอบแล้วคุณจะเจอโค้ดหน้าตาแบบนี้ (comments ถูกลบออกเผื่อให้กระชับขึ้น):
+ในบทนี้เราจะเน้นไปที่ไฟล์ `mix.exs` ไฟล์นี้เราสามารถ configure application ของเรา, dependency, environment, และ version เมื่อเปิดไฟล์ `mix.exs` ใน editor ที่คุณชอบ คุณจะเจอโค้ดหน้าตาแบบนี้ (comments ถูกลบออกเผื่อให้กระชับขึ้น):
 
 ```elixir
 defmodule Example.Mixfile do
@@ -59,7 +59,7 @@ defmodule Example.Mixfile do
 end
 ```
 
-ส่วนแรกที่เราจะมาดูกันคือ `project` ในส่วนนี้เราจะระบุชื่อ application ของเรา (`app`), ระบุ version (`version`), Elixir version (`elixir`), และสุดท้าย dependencies (`deps`)
+ส่วนแรกที่เราจะมาดูกันคือ `project` ในส่วนนี้เราจะระบุชื่อ application ของเรา (`app`), ระบุ version (`version`), Elixir version (`elixir`) และ dependency (`deps`)
 
 ส่วน `application` จะถูกใช้ตอนสร้างไฟล์ของ application ซึ่งเราจะพูดถึงถัดไป
 
@@ -71,11 +71,11 @@ end
 $ iex -S mix
 ```
 
-รัน `iex` ด้วยวิธีนี้จะโหลด application ของคุณและ dependencies ต่างๆเข้าไปใน runtime ปัจจุบัน
+รัน `iex` ด้วยวิธีนี้จะโหลด application ของคุณและ dependency ต่างๆเข้าไปใน runtime ปัจจุบัน
 
 ## Compilation
 
-Mix นั้นฉลาดและจะ compile เมื่อไหร่ก็ตามที่คุณแก้ไขและจำเป็นต้อง compile ใหม่ แต่การ compile โปรเจคได้เองก็ยังคงเป็นสิ่งจำเป็นอยู่ ในส่วนนี้เราจะพูดถึงการ compile โปรเจคของเราเองอย่างไร และกระบวนการ compile นั้นทำเกิดอะไรขึ้นบ้าง
+Mix นั้นฉลาดและจะ compile เมื่อคุณแก้ไขหรือจำเป็นต้อง compile ใหม่ แต่การ compile โปรเจคได้เอง ก็ยังคงเป็นสิ่งจำเป็นอยู่ ในส่วนนี้เราจะพูดถึงวิธี compile เอง และเมื่อ compile มันจะเกิดอะไรขึ้นบ้าง
 
 การ compile โปรเจค Mix เราแค่ต้องรันคำสั่ง `mix compile` ใน base directory ของเรา
 
@@ -94,11 +94,11 @@ Generated example app
 
 ## Managing Dependencies
 
-ตอนนี้โปรเจคของเรายังไม่มี dependencies ดังนั้นเราจะใส่ dependencies เข้าไปและ fetching มันลงมา
+ตอนนี้โปรเจคของเรายังไม่มี dependency ดังนั้นเราจะใส่ dependency เข้าไปและ fetch มันลงมา
 
-การจะเพิ่ม dependency เข้าไป อย่างแรกเราต้องเพิ่มเข้าไปในไฟล์ `mix.exs` ของเรา ในส่วน `deps` ซึ่งลิสของ dependency ของเราจะถูกระบุอยู่ในรูปของ tuples ด้วยค่าที่จำเป็นสองค่าและค่าเสริมอีกหนึ่งค่า ซึ่งก็คือ: ชื่อของ package ในรูปของ atom, เวอร์ชั่นในรูปของ string และสุดท้ายคือ options ที่ใส่หรือไม่ใส่ก็ได้
+การจะเพิ่ม dependency เข้าไป อย่างแรกเราต้องเพิ่มเข้าไปในไฟล์ `mix.exs` ของเรา ในส่วน `deps` ซึ่งลิสต์ของ dependency จะถูกระบุอยู่ในรูปของ tuples ด้วยค่าที่จำเป็นสองค่าและค่าเสริมอีกหนึ่งค่า ซึ่งก็คือ: ชื่อของ package ในรูปของ atom, เวอร์ชั่นในรูปของ string และสุดท้ายคือ options ที่ใส่หรือไม่ใส่ก็ได้
 
-สำหรับตัวอย่างสามารถดูได้จากโปรเจคที่มี dependencies เช่น [phoenix_slim](https://github.com/doomspork/phoenix_slim):
+สำหรับตัวอย่างสามารถดูได้จากโปรเจคที่มี dependency เช่น [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 
 ```elixir
 def deps do
@@ -109,15 +109,15 @@ def deps do
 end
 ```
 
-จากที่คุณได้เห็นจาก dependencies ข้างบน `cowboy` dependency นั้นจำเป็นแค่ตอน development และ test
+จากที่คุณได้เห็นจาก dependency ข้างบน `cowboy` นั้นจำเป็นแค่ตอน development และ test
 
-เมื่อเราประกาศ dependencies ของเราเสร็จเราก็เหลืออีกหนึ่งขึ้นตอนคือ fetching มัน ซึ่งมันเหมือนกับ `bundle install`
+เมื่อเราประกาศ dependency ของเราเสร็จเราก็เหลืออีกหนึ่งขึ้นตอนคือ fetch มัน ซึ่งเหมือนกับ `bundle install`
 
 ```bash
 $ mix deps.get
 ```
 
-แค่นั้นเอง! เมื่อเราประกาศและ fetched dependencies ของโปรเจคเราแล้ว ตอนนี้เราก็พร้อมที่จะเพิ่ม dependencies เมื่อไหร่ก็ตามที่เราต้องการ
+แค่นั้นเอง! เมื่อเราประกาศและ fetch dependency ของโปรเจคเราแล้ว ตอนนี้เราก็พร้อมที่จะเพิ่ม dependency เมื่อไหร่ก็ตามที่เราต้องการ
 
 ## Environments
 
