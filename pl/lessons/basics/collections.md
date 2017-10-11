@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: Kolekcje
-category: basics
-order: 2
-lang: pl
 ---
 
 Listy, krotki, listy asocjacyjne, mapy i kombinatory funkcyjne.
@@ -73,11 +70,11 @@ iex> tl [3.14, :pie, "Apple"]
 Poza wyżej wymienionymi funkcjami możemy też użyć operatora `|`; spotkamy się z nim w kolejnych lekcjach:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

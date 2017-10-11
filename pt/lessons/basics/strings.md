@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Strings
-category: basics
-order: 14
-lang: pt
 ---
 
 Strings, listas de caracteres, Graphemes e Codepoints.
@@ -45,9 +42,9 @@ Ao programar em Elixir, geralmente usamos Strings ao invés de listas de caracte
 
 ## Graphemes e Codepoints
 
-Codepoints são apenas caracteres Unicode simples que são representados por um ou mais bytes, dependendo do encoding UTF-8. Caracteres fora do conjunto US ASCII sempre serão codificados como mais de um byte. Por exemplo, caracteres latinos com til ou acentos (`á, ñ, è`) são tipicamente codificados como dois bytes. Caracteres de linguagens asiáticas são geralmente codificados como três ou quatro bytes. Graphemes consistem de múltiplos codepoints que são renderizados como um único caractere.
+Codepoints são apenas caracteres Unicode simples que são representados por um ou mais bytes. Por exemplo, caracteres com o til ou acentos: `á, ñ, è`. Graphemes consistem de múltiplos codepoints que são renderizados como um único caractere.
 
-O módulo String já fornece dois métodos para obtê-los, `graphemes/1` e `codepoints/1`. Vamos ver um exemplo:
+O módulo String já fornece dois funções para obtê-los, `graphemes/1` e `codepoints/1`. Vamos ver um exemplo:
 
 ```elixir
 iex> string = "\u0061\u0301"
@@ -62,7 +59,7 @@ iex> String.graphemes string
 
 ## Funções de String
 
-Vamos rever duas das funções mais importantes e úteis do módulo String. Essa lição cobrirá apenas uma parte das funções disponíveis. Para ver a lista completa de funções visite a documentação oficial de [`String`](http://elixir-lang.org/docs/stable/elixir/String.html).
+Vamos rever duas das funções mais importantes e úteis do módulo String. Essa lição cobrirá apenas uma parte das funções disponíveis. Para ver a lista completa de funções visite a documentação oficial de [`String`](https://hexdocs.pm/elixir/String.html).
 
 ### `length/1`
 

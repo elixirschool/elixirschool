@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Uruchamianie programów
-category: advanced
-order: 3
-lang: pl
 ---
 
 Do stworzenia pliku wykonywalnego w Elixirze służy escript. Escript generuje plik wykonywalny, który może zostać uruchomiony na każdym komputerze, na którym zainstalowano Erlanga.

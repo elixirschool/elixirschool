@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Temeller
-category: basics
-order: 1
-lang: tr
 ---
 
 Temel veri tipleri ve temel operasyonlar ile başlayalım.
@@ -19,7 +16,7 @@ Her işletim sistemi için uygun kurulum talimatlarını elixir-lang.org sitesin
 Elixir yüklendikten sonra aşağıdaki komut ile kolayca kurulu sürümü doğrulayabilirsiniz.
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
@@ -29,7 +26,7 @@ Elixir `iex` isimli, Elixir ifadelerini kolayca çalıştırmanız için etkile�
 
 `iex` komutunu çalıştıralım:
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
@@ -81,7 +78,7 @@ iex> 1.0e-10
 
 ### Mantıksal Tipler (Booleans)
 
-Elixir de mantıksal `true` ve `false` değerleri bulunur; `false` and `nil` dışında herşey true olarak kabul edilir:
+Elixir de mantıksal `true` ve `false` değerleri bulunur; `false` ve `nil` dışında herşey true olarak kabul edilir:
 
 ```elixir
 iex> true
@@ -121,7 +118,7 @@ true
 
 Atomlar aynı zamanda Erlang kütüphanelerine erişmek için de kullanılır.
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -237,7 +234,7 @@ false
 Elixir'in önemli bir özelliği de, iki değişken tipini karşılaştırabiliyor olmasıdır. Sıralama işlemleri için kolaylık sağlar. Aşağıdaki sıralamayı ezberlemek gerekmez ama bunun farkında olmakta yarar vardır:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Tüm bunlar başka dillerde bulamayacağınız, ilginç fakat tamamen geçerli bir sonuca yol açar:

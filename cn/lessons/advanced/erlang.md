@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: 和 Erlang 互操作
-category: advanced
-order: 1
-lang: cn
 ---
 
 在 Erlang VM (BEAM) 上构建 Elixir 的好处之一就是已经有大量的库可以供我们使用。互操作性允许我们在 Elixir 代码中直接使用 Erlang 的标准库和三方库。这节课，我们就讲讲如何来做。
@@ -19,13 +16,13 @@ lang: cn
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
+    IO.puts "Time: #{time} μs"
     IO.puts "Result: #{result}"
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Time: 8ms
+Time: 8 μs
 Result: 1000000
 ```
 
@@ -82,7 +79,7 @@ Erlang:
 'Example String'.
 ```
 
-需要特别注意的是，有些 Erlang 的库不支持 binaries，我们要把 Elixir 字符串转换成字符列表，不过还好 `to_char_list/1` 函数可以帮我们完成这个转换。
+需要特别注意的是，有些 Erlang 的库不支持 binaries，我们要把 Elixir 字符串转换成字符列表，不过还好 `to_charlist/1` 函数可以帮我们完成这个转换。
 
 ```elixir
 iex> :string.words("Hello World")
@@ -91,7 +88,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

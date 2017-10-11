@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: 基本
-category: basics
-order: 1
-lang: jp
 ---
 
 入門、基本データ型、そして基本的な演算。
@@ -19,7 +16,7 @@ lang: jp
 Elixirがインストールされたら簡単にバージョンを確認できます。
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
@@ -29,7 +26,7 @@ Elixirには`iex`という対話シェルが付属しており、入力したそ
 
 対話モードを開始するには、`iex`を起動しましょう:
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
@@ -125,7 +122,7 @@ true
 アトムは、Erlangのビルトインのものも含めたライブラリのモジュールを参照するのにも使われます。
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -241,7 +238,7 @@ false
 Elixirの重要な特徴はどんな2つの型でも比べられるということで、これは特にソートにおいて有用です。ソートされる順序を覚える必要はありませんが、順序を気にするのは重要なことです:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 これは他の言語では見られないかもしれない、正当で興味深い比較を引き起こします:

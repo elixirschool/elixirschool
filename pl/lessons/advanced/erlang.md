@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Współpraca z Erlangiem
-category: advanced
-order: 1
-lang: pl
 ---
 
 Jedną z zalet działania w ramach maszyny wirtualnej Erlanga jest bogactwo istniejących rozwiązań. Interoperacyjność pozwala nam na wykorzystanie tych rozwiązań, jak i standardowej biblioteki Erlanga w naszym Elixirowym kodzie. W tej lekcji przyjrzymy się, jak możemy łączyć nasz kod z bibliotekami stworzonymi w Erlangu.
@@ -20,13 +17,13 @@ Użyjmy `:timer.tc` by zmierzyć czas wykonania funkcji:
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
+    IO.puts "Time: #{time} μs"
     IO.puts "Result: #{result}"
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Time: 8ms
+Time: 8 μs
 Result: 1000000
 ```
 
@@ -102,7 +99,7 @@ false
 true
 ```
 
-Musimy pamiętać, że wiele starszych bibliotek Erlanga, nie wspiera formy binarnej i musimy zamienić ciągi znaków z Elixira na listy.  Na całe szczęście mamy do tego odpowiednią funkcję `to_char_list/1`:
+Musimy pamiętać, że wiele starszych bibliotek Erlanga, nie wspiera formy binarnej i musimy zamienić ciągi znaków z Elixira na listy.  Na całe szczęście mamy do tego odpowiednią funkcję `to_charlist/1`:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -111,7 +108,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

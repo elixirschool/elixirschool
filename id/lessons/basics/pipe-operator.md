@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Operator pipe
-category: basics
-order: 7
-lang: id
 ---
 
 Operator pipe`|>` melewatkan hasil expression di sebelah kirinya sebagai parameter pertama untuk expression di sebelah kanannya.
@@ -18,7 +15,7 @@ Pembuatan program bisa sangat rumit. Begitu rumitnya sehingga pemanggilan fungsi
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Di sini, kita meneruskan nilai dari `other_function/1` ke `new_function/1`, dan `new_function/1` ke `baz/1`, `baz/1` ke `bar/1`, dan akhirnya hasil dari `bar/1` ke `foo/1`. Elixir mengambil pendekatan pragmatis terhadap kekacauan sintaksis ini dengan memberi kita operator pipe. Operator pipe yang tampak seperti `|>` *mengambil hasil dari satu expression dan meneruskannya*. Mari lihat lagi snippet di atas kalau ditulis dengan operator pipe.
+Di sini, kita meneruskan nilai dari `other_function/0` ke `new_function/1`, dan `new_function/1` ke `baz/1`, `baz/1` ke `bar/1`, dan akhirnya hasil dari `bar/1` ke `foo/1`. Elixir mengambil pendekatan pragmatis terhadap kekacauan sintaksis ini dengan memberi kita operator pipe. Operator pipe yang tampak seperti `|>` *mengambil hasil dari satu expression dan meneruskannya*. Mari lihat lagi snippet di atas kalau ditulis dengan operator pipe.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()

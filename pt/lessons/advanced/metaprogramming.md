@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Metaprogramação
-category: advanced
-order: 7
-lang: pt
 ---
 
 Metaprogramação é o processo de utilização de código para escrever código. Em Elixir isso nos dá a capacidade de estender a linguagem para se adequar às nossas necessidades e dinamicamente alterar o código. Vamos começar observando como Elixir é representado por debaixo dos panos, em seguida como modificá-lo, e finalmente, como podemos usar esse conhecimento para estendê-la.

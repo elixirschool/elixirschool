@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: 控制语句
-category: basics
-order: 5
-lang: cn
 ---
 
 这篇教程，我们将学习 Elixir 语言中的控制语句。
@@ -11,7 +8,7 @@ lang: cn
 {% include toc.html %}
 
 ## `if` 和 `unless`
-你之前可能遇到过 `if/2`了，如果你使用过 Ruby，也会很熟悉 `unless`。它们在 Elixir 使用方式也一样，只不过它们在 Elixir 里是宏定义，不是语言本身的语句。你可以在 [Kernel 模块](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html) 找到它们的实现。
+你之前可能遇到过 `if/2`了，如果你使用过 Ruby，也会很熟悉 `unless`。它们在 Elixir 使用方式也一样，只不过它们在 Elixir 里是宏定义，不是语言本身的语句。你可以在 [Kernel 模块](https://hexdocs.pm/elixir/Kernel.html) 找到它们的实现。
 
 需要注意的是，Elixir 中唯一为假的值是 `nil` 和 布尔值 `false`。
 
@@ -96,9 +93,9 @@ iex> case {1, 2, 3} do
 参考官方的文档来看[卫兵支持的表达式](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses)
 
 ## `cond`
-当我们需要匹配条件而不是值的时候，可以使用 `cond`，这和其他语言的 `eles if` 或者 `elif` 相似：
+当我们需要匹配条件而不是值的时候，可以使用 `cond`，这和其他语言的 `else if` 或者 `elsif` 相似：
 
-_这个例子直接取自 Elixir 官方教程的 [上手指南](Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)_
+_这个例子直接取自 Elixir 官方教程的 [上手指南](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)_
 
 ```elixir
 iex> cond do

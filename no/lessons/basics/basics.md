@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Grunnleggende Elixir
-category: basics
-order: 1
-lang: no
 ---
 
 Installasjon, grunnleggende typer og operatorer.
@@ -22,9 +19,9 @@ Elixir leveres med `iex`, et interaktivt skall som lar oss evaluere Elixirkoder 
 
 For å starte IEx skriver vi `iex` i terminalvinduet:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
+	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
 ## Grunnleggende Typer
@@ -105,7 +102,7 @@ true
 Atomer er også brukt for å referere til moduler fra Erlang biblioteket, men også til de innebygde modulene.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -221,7 +218,7 @@ En viktig egenskap i Elixir, er at alle typer kan bli sammenlignet med hverandre
 Dette er spesielt nyttig ved sortering. Vi trenger ikke memorisere sorteringsrekkefølgen, men det er greit å være kjent med den:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Dette kan føre til noen interessante, men gyldige sammenligninger du kanskje ikke finner i andre programmeringsspråk:

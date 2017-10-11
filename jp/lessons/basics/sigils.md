@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Sigils
-category: basics
-order: 10
-lang: jp
 ---
 
 シギル(sigil)を使う/作る
@@ -46,7 +43,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 小文字の`~c`は計算結果を埋め込みますが一方で大文字の`~C`は埋め込まないことがわかります。この大文字/小文字による結果は組み込まれたシギル
@@ -60,7 +57,7 @@ iex> ~C/2 + 7 = #{2 + 7}/
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -75,7 +72,7 @@ ElixirはPerl Compatible Regular Expressions (Perl互換正規表現式, PCRE)�
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true
@@ -84,7 +81,7 @@ iex> "elixir" =~ re
 true
 ```
 
-さらに、ElixirはErlangの正規表現ライブラリを元に作られた[Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html)APIを
+さらに、ElixirはErlangの正規表現ライブラリを元に作られた[Regex](https://hexdocs.pm/elixir/Regex.html)APIを
 提供しています。正規表現シギルを使って`Regex.split/2`を実装してみましょう。
 
 ```elixir

@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Sigil
-category: basics
-order: 10
-lang: id 
 ---
 
 Menggunakan dan membuat sigil.
@@ -45,7 +42,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 Kita bisa melihat bahwa `~c` menginterpolasi (menyisipkan) hasil kalkulasi sedangkan `~C` tidak. Kita akan melihat pola huruf kecil / kapital ini adalah pola umum di seluruh sigil yang built in.
@@ -56,7 +53,7 @@ Sigil `~r` and `~R` digunakan untuk merepresentasikan Regular Expression. Kita m
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -69,7 +66,7 @@ Kita bisa melihat bahwa pada tes persamaan pertama, `Elixir` tidak cocok dengan 
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true
@@ -78,7 +75,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Lebih jauh, Elixir menyediakan API [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) yang dibangun di atas library regular expression nya Erlang. Mari implementasikan `Regex.split/2` menggunakan sebuah sigil regex:
+Lebih jauh, Elixir menyediakan API [Regex](https://hexdocs.pm/elixir/Regex.html) yang dibangun di atas library regular expression nya Erlang. Mari implementasikan `Regex.split/2` menggunakan sebuah sigil regex:
 
 ```elixir
 iex> string = "100_000_000"

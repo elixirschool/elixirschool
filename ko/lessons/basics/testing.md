@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: 테스트
-category: basics
-order: 12
-lang: ko
 ---
 
 소프트웨어 개발에서 테스트는 아주 중요합니다. 이번 수업에서는 ExUnit을 사용해서 Elixir 코드를 테스트하는 방법과 테스트하는 데 있어서 가장 효율적인 절차를 함께 살펴보도록 하겠습니다.
@@ -94,7 +91,7 @@ defmodule TestReceive do
   use ExUnit.Case
 
   test "receives ping" do
-    SendingProcess.run(self)
+    SendingProcess.run(self())
     assert_received :ping
   end
 end
@@ -102,9 +99,9 @@ end
 
 `assert_received`는 메시지를 기다리지 않습니다. `assert_receive`는 타임아웃을 지정할 수 있습니다.
 
-## capture_io, capture_log
+### capture_io, capture_log
 
-애플리케이션 출력의 캡쳐는 원본 애플리케이션을 변경하지 않아도 `ExUnit.captureIO`로 할 수 있습니다. 출력을 만드는 함수를 넘겨보세요.
+애플리케이션 출력의 캡쳐는 원본 애플리케이션을 변경하지 않아도 `ExUnit.CaptureIO`로 할 수 있습니다. 출력을 만드는 함수를 넘겨보세요.
 
 ```elixir
 defmodule OutputTest do

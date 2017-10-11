@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Sigils
-category: basics
-order: 10
-lang: pt
 ---
 
 Trabalhando e criando sigils.
@@ -45,7 +42,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 Podemos ver em letra minúscula `~c` interpolando o cálculo, enquanto um sigil de letra maiúscula `~C`  não. Veremos que esta sequência maiúscula / minúscula é um tema comum em toda a construção de sigils.
@@ -56,7 +53,7 @@ O `~r` e `~R` sigils são usados para representar Expressões Regulares. Nós cr
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -69,7 +66,7 @@ Podemos ver que no primeiro teste de igualdade, `Elixir` não coincide com a exp
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true
@@ -78,7 +75,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Além disso, Elixir fornece a API [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html), que é construída em cima da biblioteca de expressão regular do Erlang. Vamos implementar `Regex.split/2` usando um sigil regex.
+Além disso, Elixir fornece a API [Regex](https://hexdocs.pm/elixir/Regex.html), que é construída em cima da biblioteca de expressão regular do Erlang. Vamos implementar `Regex.split/2` usando um sigil regex.
 
 ```elixir
 iex> string = "100_000_000"

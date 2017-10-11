@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: Mix
-category: basics
-order: 9
-lang: gr
 ---
 
 Για να μπορέσουμε να μπούμε στα βαθιά νερά της Elixir πρέπει πρώτα να μάθουμε για το mix.  Αν είστε εξοικειωμένοι με την Ruby, το mix είναι σαν το Bundler, το RubyGems και το Rake συνδυασμένα.  Είναι ζωτικό μέρος κάθε Elixir project και σε αυτό το μάθημα θα εξερευνήσουμε μόλις λίγα από τα εξαιρετικά χαρακτηριστικά του.  Για να δείτε όλα όσα έχει να προσφέρει το mix τρέξτε την εντολή `mix help`.
@@ -42,20 +39,25 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
-    []
+    [
+
+    ]
   end
 end
 ```
@@ -72,7 +74,7 @@ end
 $ iex -S mix
 ```
 
-Ξεκινόντας την `iex` με αυτό τον τρόπο θα φορτώσετε την εφαρμογή και τις εξαρτήσεις της στην τρέχουσα εκτέλεση.
+Ξεκινώντας την `iex` με αυτό τον τρόπο θα φορτώσετε την εφαρμογή και τις εξαρτήσεις της στην τρέχουσα εκτέλεση.
 
 ## Σύνταξη
 

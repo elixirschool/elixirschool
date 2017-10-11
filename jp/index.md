@@ -1,10 +1,8 @@
 ---
-layout: page
 title: Elixir School 日本語訳
-lang: jp
 ---
 
-[![ライセンス](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![ライセンス](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 この、Elixir基礎レッスンは、Twitterの [Scala School](http://twitter.github.io/scala_school/)にインスパイアされたものです。
 

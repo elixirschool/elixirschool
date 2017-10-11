@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Concorrenza
-category: advanced
-order: 4
-lang: it
 ---
 
 Uno dei punti di forza di Elixir è il suo supporto alla concorrenza. Grazie alla Erlang VM (BEAM), scrivere programmi concorrenti in Elixir è più semplice di quanto ci si possa aspettare. Il modello di concorrenza si basa sugli Attori, ovvero dei processi concorrenti che mantengono uno stato interno e comunicano con altri attori/processi attraverso lo scambio di messaggi.
@@ -77,7 +74,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Talvolta non vogliamo che un processo "collegato" termini il processo che l'ha creato. Per evitare questa situazione, dobbiamo controllare i messaggi di uscita nel processo padre. Quando controlliamo i messaggi di uscita, questi verranno ricevuti nella seguente forma: `{:EXIT, dal_pid, ragione}`.

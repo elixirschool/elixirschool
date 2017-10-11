@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Grundlagen
-category: basics
-order: 1
-lang: de
 ---
 
 Zum Anfang: Grundlegende Datentypen und Operationen.
@@ -19,7 +16,7 @@ Installationsanleitungen für jedes Betriebssystem können auf elixir-lang.org u
 Nachdem Elixir installiert ist, kann die installierte Version einfach überprüft werden.
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
@@ -29,7 +26,7 @@ Elixir kommt mit `iex`, einer interaktiven Shell, welche uns erlaubt Ausdrücke 
 
 Zum Loslegen starten wir `iex`:
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
@@ -124,7 +121,7 @@ true
 Atoms werden auch dazu genutzt, um Module aus Erlangbibiliotheken zu referenzieren. Dies gilt auch für in Erlang bereits vorhandenen Bibiliotheken.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -240,7 +237,7 @@ false
 Ein wichtiges Feature von Elixir ist, dass jegliche zwei Typen miteinander verglichen werden können. Das ist beispielsweise dann praktisch, wenn man die Typen sortieren möchte. Wir müssen uns nicht an die Sortierreihenfolge erinnern, aber es ist wichtig zu wissen, dass es sie gibt:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Das führt mitunter zu interessanten, aber gültigen, Vergleichen, welche es so in anderen Sprachen nicht gibt:

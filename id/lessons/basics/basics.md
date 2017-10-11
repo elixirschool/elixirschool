@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Dasar
-category: basics
-order: 1
-lang: id
 ---
 
 Setup, tipe-tipe dan operasi-operasi dasar.
@@ -18,13 +15,13 @@ Instruksi instalasi untuk masing-masing OS dapat dilihat di Elixir-lang.org bagi
 
 ### Moda Interaktif
 
-Elixir dilengkapi dengan `iex`, sebuah shell interaktif, yang memungkinkan kita mencoba perintah Elixir.
+Elixir dilengkapi dengan IEx, sebuah shell interaktif, yang memungkinkan kita mencoba perintah Elixir.
 
 Untuk memulai, kita jalankan `iex`:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
+	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
 
 ## Tipe dasar
@@ -104,7 +101,7 @@ true
 Atom juga digunakan untuk mereferensi modul dari librari erlang, termasuk apa yang sudah ada.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -218,7 +215,7 @@ false
 Sebuah fitur penting dari Elixir adalah bahwa segala macam tipe dapat dibandingkan, ini berguna dalam pengurutan (sorting). Kita tidak perlu menghafalkan urutannya tapi penting untuk dipahami:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Ini bisa menghasilkan perbandingan yang menarik, dan valid, yang mungkin tidak anda temukan di bahasa lain:

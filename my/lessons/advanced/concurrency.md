@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Keserempakan
-category: advanced
-order: 4
-lang: my
 ---
 
 Salah satu faktor pelaris Elixir ialah sokongan kepada keserempakan(concurrency).  Terima kasih kepada Erlang VM (BEAM), keserempakan di dalam Elixir adalah lebih mudah dari yang dijangkakan.  Model keserempakan bergantung kepada Actor, satu proses yang berkomunikasi dengan proses-proses lain melalui pengagihan mesej.
@@ -77,7 +74,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Kadang-kadang kita tidak mahu proses yang dirangkaikan meruntuhkan proses sedia ada.  Untuk itu kita perlu untk memerangkap 'exit' tersebut.  'Exit' yang diperangkap akan diterima sebagai satu mesej dalam bentuk tuple: `{:Exit, from_pid, reason}`.

@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: Mix
-category: basics
-order: 9
-lang: ko
 ---
 
 Elixir의 바다에 더 깊이 빠져들기 전에 먼저 mix를 공부해봐야 할 필요가 있어요. Ruby에 익숙하신 분들이시라면 mix를 보셨을 때 Bundler와 RubyGem, Rake를 합쳐놓았다는 느낌을 받으실 거예요. Elixir로 프로젝트를 진행하는 데 정말 중요한 부분이라, 이번 강의에서는 mix가 갖고 있는 멋진 기능을 익혀보도록 하겠습니다. `mix help` 를 실행하면 mix가 할 수 있는 모든 기능을 보실 수 있습니다.
@@ -42,20 +39,25 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
-    []
+    [
+
+    ]
   end
 end
 ```

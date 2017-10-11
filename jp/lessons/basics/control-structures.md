@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: 制御構造
-category: basics
-order: 5
-lang: jp
 ---
 
 このレッスンではElixirで利用できる制御構造を見ていきます。
@@ -12,7 +9,7 @@ lang: jp
 
 ## `if`と`unless`
 
-ひょっとすると以前に`if/2`と出くわしているかもしれませんし、Rubyを使っていれば`unless/2`をご存知でしょう。Elixirではこの2つはほとんど同じように作用しますが、言語の構成要素としてではなく、マクロとして定義されています。この実装は[Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html)で知ることができます。
+ひょっとすると以前に`if/2`と出くわしているかもしれませんし、Rubyを使っていれば`unless/2`をご存知でしょう。Elixirではこの2つはほとんど同じように作用しますが、言語の構成要素としてではなく、マクロとして定義されています。この実装は[Kernel module](https://hexdocs.pm/elixir/Kernel.html)で知ることができます。
 
 Elixirでは偽とみなされる値は`nil`と真理値の`false`だけだということに、留意すべきです。
 
@@ -170,8 +167,7 @@ end
 `with`を導入するとコードが短く、わかりやすくなります:
 
 ```elixir
-with
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```

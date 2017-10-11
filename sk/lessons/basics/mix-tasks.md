@@ -1,22 +1,35 @@
 ---
-layout: page
-title: Mix tasky 
-category: basics
-order: 15
-lang: sk
+version: 1.0.0
+title: Vlastné Mix Tasky
 ---
 
-Vytváranie vlastných Mix taskov (skriptov) pre vaše Elixirové projekty
+Vytváranie vlastných Mix taskov pre vaše Elixir projekty
 
 {% include toc.html %}
 
 ## Úvod
 
-Občas sa stáva, že do svojho projektu potrebujete pridať vlastné špeciálne Mix tasky. Predtým, než si ukážeme, ako takéto vlastné tasky vytvárať, pozrime sa na tie, ktoré sú od začiatku k dispozícii v každom Elixirovom projekte:
+Občas sa stáva, že do svojho projektu potrebujete pridať vlastné špeciálnu funkcionalitu pridaním Mix taskov. Predtým, než si ukážeme, ako takéto vlastné Mix tasky vytvárať, pozrime sa na tie, ktoré už existujú:
 
-## Založenie nového projektu
+```shell
+$ mix phoenix.new my_phoenix_app
 
-Task `new` nám vygeneruje základnú kostru Elixirového projektu:
+* creating my_phoenix_app/config/config.exs
+* creating my_phoenix_app/config/dev.exs
+* creating my_phoenix_app/config/prod.exs
+* creating my_phoenix_app/config/prod.secret.exs
+* creating my_phoenix_app/config/test.exs
+* creating my_phoenix_app/lib/my_phoenix_app.ex
+* creating my_phoenix_app/lib/my_phoenix_app/endpoint.ex
+* creating my_phoenix_app/test/views/error_view_test.exs
+...
+```
+
+Ako môžeme vidieť z výstupu príkazu vyššie, framework Phoenix má vlastný Mix task určený na generovanie nového projektu. Čo keby sme mohli vytvoriť niečo podobné aj pre náš projekt? Dobrá správa! Elixir je na to pripravený, tak si poďme ukázať ako na to.
+
+## Nový projekt
+
+Vytvorme si veľmi jednoduchú Mix aplikáciu.
 
 ```shell
 $ mix new hello
@@ -41,7 +54,7 @@ mix test
 Run "mix help" for more commands.
 ```
 
-Teraz si otvorme novo vygenerovaný súbor **lib/hello.ex** a pridajme doňho novú funkciu, ktorá vypíše reťazec "Hello, World!"
+V súbore **lib/hello.ex**, ktorý nám Mix vygeneroval, vytvorme jednoduchú funkciu ktorá nám vypíše reťazec "Hello, World!"
 
 ```elixir
 defmodule Hello do
@@ -55,9 +68,9 @@ defmodule Hello do
 end
 ```
 
-## Vlastný Mix task
+## Vlastný Mix Task
 
-Vytvorme si teraz vlastný Mix task. V adresári **hello/lib/mix/tasks/hello.ex** vytvoríme súbor **hello.ex** a doňho vložíme nasledujúci kód:
+Teraz si vytvorme vlastný Mix task. Vytvorme nový adresár a súbor **hello/lib/mix/tasks/hello.ex**. Do tohto súboru vložíme nasledujúci kód:
 
 ```elixir
 defmodule Mix.Tasks.Hello do
@@ -70,12 +83,12 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-Všimnite si, že názov modulu začína na `Mix.Task` a nasleduje meno, ktorým chceme náš task spúšťať z príkazového riadku (teda v tomto prípade `Hello`). Nasleduje uvedenie modulu `Mix.Task`, ktorým do nášho modulu vnesieme rovnomenný behaviour (niečo ako interface v objektových jazykoch). Ďalej implementujeme povinnú funkciu `run` (každý Elixir task ju musí obsahovať - vykoná sa pri jeho spustení), ktorá bude nateraz ignorovať svoje argumenty. V tejto funkcii už len zavoláme našu funkciu `say` z modulu `Hello`.
+Všimnite si, že názov modulu začína na `Mix.Task` a nasleduje meno, ktorým chceme náš task spúšťať z príkazového riadku (teda v tomto prípade `Hello`). Nasleduje uvedenie modulu `Mix.Task`, ktorým do nášho modulu vnesieme rovnomenný behaviour (niečo ako interface v objektových jazykoch). Ďalej implementujeme povinnú funkciu run, ktorá bude nateraz ignorovať svoje argumenty. V tejto funkcii už len zavoláme našu funkciu `say` z modulu `Hello`.
 
 
-## Mix tasky v akcii
+## Mix Tasky v Akcii
 
-Nadišiel čas náš nový task vyskúšať. Na príkazovom riadku zadajme `mix hello` a mali by sme vidieť nasledovné:
+Nadišiel čas náš nový task vyskúšať. V príkazovom riadku zadajme `mix hello` a mali by sme vidieť nasledovné:
 
 ```shell
 $ mix hello

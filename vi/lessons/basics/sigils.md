@@ -1,62 +1,58 @@
 ---
-layout: page
+version: 0.9.0
 title: Sigils
-category: basics
-order: 10
-lang: vi
 ---
 
-Working with and creating sigils.
+Làm việc cùng và tạo mới sigils.
 
 {% include toc.html %}
 
-## Sigils Overview
+## Tổng quan về Sigils
 
-Elixir provides an alternative syntax for representing and working with literals. A sigil will start with a tilde `~` followed by a character. The Elixir core provides us with some built in sigils however, it is possible to create our own when we need to extend the language.
+Elixir cung cấp cho chúng ta một cú pháp thay thế để mô tả và làm việc với chuỗi kí tự. Một sigil sẽ bắt đầu với dấu ngã `~` theo sau bởi một kí tự. Elixir cung cấp cho chúng ta một số sigils ban đầu, tuy nhiên chúng ta có thể tự tạo thêm các sigils khi cần thiết để mở rộng ngôn ngữ.
 
-A list of available sigils include:
+Chuỗi sigils được cung cấp ban đầu bao gồm:
 
-  - `~C` Generates a character list **with no** escaping or interpolation
-  - `~c` Generates a character list **with** escaping and interpolation
-  - `~R` Generates a regular expression **with no** escaping or interpolation
-  - `~r` Generates a regular expression **with** escaping and interpolation
-  - `~S` Generates strings **with no** escaping or interpolation
-  - `~s` Generates string **with** escaping and interpolation
-  - `~W` Generates a list  **with no** escaping or interpolation
-  - `~w` Generates a list **with** escaping and interpolation
+  - `~C` Sinh ra một chuỗi các kí tự **không gồm** kí tự escape và kí tự nội suy (interpolation)
+  - `~c` Sinh ra một chuỗi các kí tự **gồm** kí tự escape và kí tự nội suy (interpolation)
+  - `~R` Sinh ra một chuỗi biểu thức chính qui **không gồm** kí tự escape và kí tự nội suy (interpolation)
+  - `~r` Sinh ra một chuỗi biểu thức chính qui **gồm** kí tự escape và kí tự nội suy (interpolation)
+  - `~S` Sinh ra một string **không gồm** kí tự escape và kí tự nội suy (interpolation)
+  - `~s` Sinh ra một string **gồm** kí tự escape và kí tự nội suy (interpolation)
+  - `~W` Sinh ra một list **không gồm** kí tự escape và kí tự nội suy (interpolation)
+  - `~w` Sinh ra một list **gồm** kí tự escape và kí tự nội suy (interpolation)
 
-A list of delimiters include:
+Chuỗi phân tách bao gồm:
 
-  - `<...>` A pair of pointy brackets
-  - `{...}` A pair of curly brackets
-  - `[...]` A pair of square brackets
-  - `(...)` A pair of parenthesis
-  - `|...|` A pair of pipes
-  - `/.../` A pair of forward slashes
-  - `"..."` A pair of double quotes
-  - `'...'` A pair of single quotes
+  - `<...>` Một cặp dấu ngoặc nhọn
+  - `{...}` Một cặp dấu ngoặc xoắn
+  - `[...]` Một cặp dấu ngoặc vuông
+  - `(...)` Một cặp dấu ngoặc tròn
+  - `|...|` Một cặp dấu đường ống
+  - `/.../` Một cặp dấu gạch chéo
+  - `"..."` Một cặp dấu trích dẫn kép
+  - `'...'` Một cặp dấu trích dẫn đơn
 
-### Char List
+### Chuỗi kí tự
 
-The `~c` and `~C` sigils generate character lists respectively. For example:
+Kí tự `~c` và `~C` sigils sinh ra chuỗi kí tự tương ứng. Ví dụ:
 
 ```elixir
 iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
-We can see the lowercased `~c` interpolates the calculation, whereas the uppercased `~C` sigil does not. We will see that this uppercase / lowercase sequence is a common theme throughout the built in sigils.
+Chúng ta có thể thấy kí tự thường `~c` sẽ nội suy phần tính toán, trong khi kĩ tự hoa `~C` không. Chúng ta sẽ thấy chuỗi kí tự hoa / thường sẽ là chủ đề thường thấy của các sigils có sẵn. 
 
-### Regular Expressions
-
-The `~r` and `~R` sigils are used to represent Regular Expressions. We create them either on the fly or for use within the `Regex` functions. For example:
+### Biểu thức chính qui 
+`~r` và `~R` sigils thường được sử dụng để biểu diễn biểu thức chính qui. Biểu thức chính qui đó được tạo ra ngay lúc chạy hoặc là để sử dụng bên trong hàm `Regex`. Ví dụ:
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -65,11 +61,11 @@ iex> "elixir" =~ re
 true
 ```
 
-We can see that in the first test for equality, that `Elixir` does not match with the regular expression. This is because it is capitalized. Because Elixir supports Perl Compatible Regular Expressions (PCRE), we can append `i` to the end of our sigil to turn on case sensitivity.
+Chúng ta có thể thấy trong ví dụ đầu tiên kiểm tra về mặt đẳng thức, `Elixir` không khớp với biểu thức chính qui, bởi vì nó được viết hoa. Do Elixir hỗ trợ biểu thức chính qui theo chuẩn Perl ( Perl Compatible Regular Expressions (PCRE)), chúng ta có thể thêm `i` vào cuối của sigils để bật chế độ kiểm tra không phụ thuộc vào viết hoa.
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true
@@ -78,7 +74,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Further, Elixir provides the [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API which is built on top of Erlang's regular expression library. Let's implement `Regex.split/2` using a regex sigil:
+Hơn nữa, Elixir cung cấp [Regex](https://hexdocs.pm/elixir/Regex.html) API được xây dựng trên nền của thư viện biểu thức chính qui của Erlang. Hãy thử thực hành hàm `Regex.split/2` sử dụng regex sigil nào:
 
 ```elixir
 iex> string = "100_000_000"
@@ -88,11 +84,11 @@ iex> Regex.split(~r/_/, string)
 ["100", "000", "000"]
 ```
 
-As we can see, the string `"100_000_000"` is split on the underscore thanks to our `~r/_/` sigil. The `Regex.split` function returns a list.
+Như chúng ta có thể thấy, chuỗi `"100_000_000"` được chia tại dấu gạch dưới nhờ có sự giúp đỡ của `~r/_/` sigil. Hàm `Regex.split` trả lại một chuỗi.
 
-### String
+### Chuỗi
 
-The `~s` and `~S` sigils are used to generate string data. For example:
+`~s` và `~S` sigils được sử dụng để sinh dữ liệu chuỗi. Ví dụ:
 
 ```elixir
 iex> ~s/the cat in the hat on the mat/
@@ -101,7 +97,8 @@ iex> ~s/the cat in the hat on the mat/
 iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
-But what is the difference? The difference is similar to the Character List sigil that we looked at. The answer is interpolation and the use of escape sequences. If we take another example:
+
+Vậy hai biểu diễn khác gì nhau? Điểm khác nhau tương tự như sigil cho chuỗi các kí tự mà chúng ta đã xem ở trên. Câu trả lời nằm ở việc nội suy và sử dụng chuỗi escape. Hãy xem một ví dụ khác:
 
 ```elixir
 iex> ~s/welcome to elixir #{String.downcase "school"}/
@@ -111,9 +108,9 @@ iex> ~S/welcome to elixir #{String.downcase "school"}/
 "welcome to elixir \#{String.downcase \"school\"}"
 ```
 
-### Word List
+### Chuỗi các từ
 
-The word list sigil can come in very handy time to time. It can save both time, keystrokes and arguably reduce the complexity within the codebase. Take this simple example:
+Chuỗi từ sigil rất tiện dụng trong nhiều hoàn cảnh. Nhờ nó chúng ta có thể tiết kiệm thời gian, số lượng phím bấm và thậm chí có thể giảm được sự phức tạp bên trong dự án. Hãy xem ví dụ đơn giản dưới đây:
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -123,7 +120,7 @@ iex> ~W/i love elixir school/
 ["i", "love", "elixir", "school"]
 ```
 
-We can see that what is typed between the delimiters is separated by whitespace into a list. However, there is no difference between these two examples. Again, the difference comes with the interpolation and escape sequences. Take the following example:
+Chúng ta có thể thấy những thứ được phân tách bởi dấu cách sẽ thành một phần tử trong chuỗi. Tuy nhiên, không có nhiều khác biệt giữa hai ví dụ. Một lần nữa, sự khác biệt lại chính là việc nội suy và chuỗi kí tự escape. Hãy xem ví dụ dưới đây:
 
 ```elixir
 iex> ~w/i love #{'e'}lixir school/
@@ -133,9 +130,8 @@ iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
 ```
 
-## Creating Sigils
-
-One of the goals of Elixir is to be an extensible programming language. It should come as no surprise then that you can easily create your own custom sigils. In this example, we will create a sigil to convert a string to uppercase. As there is already a function for this in the Elixir Core (`String.upcase/1`), we will wrap our sigil around that function.
+## Tạo mới Sigils
+Một trong những mục tiêu của Elixir là trở thành một ngôn ngữ có thể mở rộng được. Do đó mà không hề ngạc nhiên khi chúng ta có thể tự tạo mới sigils. Trong ví dụ dưới đây, chúng ta sẽ tạo mới sigil để chuyển một chuỗi sang dạng viết hoa. Do chúng ta đã có sẵn hàm để làm việc đó trong Elixir (`String.upcase/1`), chúng ta sẽ bọc hàm đó lại bởi sigil.
 
 ```elixir
 
@@ -150,4 +146,4 @@ iex> ~u/elixir school/
 ELIXIR SCHOOL
 ```
 
-First we define a module called `MySigils` and within that module, we created a function called `sigil_u`. As there is no existing `~u` sigil in the existing sigil space, we will use it. The `_u` indicates that we wish use `u` as the character after the tilde. The function definition must take two arguments, an input and a list.
+Đầu tiên chúng ta định nghĩa một module tên là `MySigils` và bên trong module đó, chúng ta tạo một hàm tên là `sigil_u`. Do chưa có `~u` nào có sẵn trong không gian sigil, chúng ta sẽ có thể sử dụng được kí tự đó. Phần `_u` nói lên rằng chúng ta muốn sử dụng kí tự `u` sau dấu ngã của sigil. Định nghĩa của hàm sẽ phải nhận vào 2 biến, một input và một chuỗi.

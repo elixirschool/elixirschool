@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Embedded Elixir (EEx)
-category: specifics
-order: 3
-lang: pl
 ---
 
 Tak jak w Ruby mamy ERB, a w Javie istnieje JSP, tak i Elixir ma EEx - Embedded Elixir. Dzięki EEx możemy osadzać kod Elixira w ciągach znaków.  
@@ -76,6 +73,6 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 "Hi, Sean"
 ```
 
-Przypisania obecne w `EEx.SmartEngine` są bardzo przydatne ponieważ pozwalają wprowadzać zmiany bez konieczności rekompilacji szblonu.
+Przypisania obecne w `EEx.SmartEngine` są bardzo przydatne ponieważ pozwalają wprowadzać zmiany bez konieczności rekompilacji szablonu.
 
-Zainteresowany stworzeniem własnego silnika? Sprawdź jak działa [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) by zobaczyć co jest wymagane. 
+Zainteresowany stworzeniem własnego silnika? Sprawdź jak działa [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html) by zobaczyć co jest wymagane. 

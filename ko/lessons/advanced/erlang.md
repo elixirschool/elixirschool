@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: Erlang 상호 운용
-category: advanced
-order: 1
-lang: ko
 ---
 
 Erlang VM (BEAM) 위에서 작업하면서 추가된 이점 중 하나는 기존의 다양한 라이브러리를 사용할 수 있다는 점입니다. 상호 운용성은 우리의 Elixir 코드에서 이러한 라이브러리들과 Erlang 표준 라이브러리를 사용할 수 있도록 해줍니다. 이번 강의에서는 서드파티 Erlang 패키지와 더불어 표준 라이브러리의 기능에 접근하는 법을 알아봅니다.
@@ -20,13 +17,13 @@ Erlang의 방대한 표준 라이브러리는 애플리케이션의 어떤 Elixi
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
+    IO.puts "Time: #{time} μs"
     IO.puts "Result: #{result}"
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Time: 8ms
+Time: 8 μs
 Result: 1000000
 ```
 
@@ -101,7 +98,7 @@ false
 true
 ```
 
-한 가지 중요한 점은, 대부분의 오래된 Erlang 라이브러리는 바이너리를 지원하지 않기 때문에 Elixir 문자열을 문자 리스트로 변환해야 한다는 것입니다. 다행스럽게도 이 작업은 `to_char_list/1` 함수를 이용하여 손쉽게 할 수 있습니다.
+한 가지 중요한 점은, 대부분의 오래된 Erlang 라이브러리는 바이너리를 지원하지 않기 때문에 Elixir 문자열을 문자 리스트로 변환해야 한다는 것입니다. 다행스럽게도 이 작업은 `to_charlist/1` 함수를 이용하여 손쉽게 할 수 있습니다.
 
 ```elixir
 iex> :string.words("Hello World")
@@ -110,7 +107,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

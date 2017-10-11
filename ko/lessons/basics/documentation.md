@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.1
 title: 문서화
-category: basics
-order: 11
-lang: ko
 ---
 
 Elixir 코드 문서화하기.
@@ -207,11 +204,11 @@ View them at "doc/index.html".
 
 모든 것이 예정대로 되었다면, 위의 예제 출력 메시지와 비슷한 메시지를 볼 수 있을 것입니다. Mix 프로젝트 내부에, **doc/**라는 디렉터리를 확인할 수 있고, 안에는 자동으로 생성된 문서가 있습니다. 웹 브라우저로 색인 페이지를 열어보면 다음과 같은 화면을 보게 될 것입니다.
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Earmark가 마크다운을 렌더링하고 ExDoc가 이를 쓸만한 포멧으로 표시하는 것을 볼 수 있습니다.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Github에 배포할 수도 있고, 홈페이지에도 배포할 수 있지만, 보통은 [HexDocs](https://hexdocs.pm/)에 배포 합니다.
 
@@ -307,4 +304,4 @@ end
 
  - 여러분의 문서에 코드 예제를 첨삭하도록 해보세요. 모듈, 함수 혹은 [ExUnit.DocTest][] 매크로 내에서 코드 예제를 발견하여 자동화된 테스트를 생성할 수 있습니다. 매크로를 이용하고자 한다면, 테스트 케이스로부터  `doctest/1` 매크로를 불러온 후 [공식 문서][ExUnit.DocTest]에 명시된 가이드라인에 따라 예시 코드를 작성할 필요가 있습니다.
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

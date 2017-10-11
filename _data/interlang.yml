@@ -1,0 +1,120 @@
+# LANGUAGE_CODE:
+#  bg: 
+#  bn: 
+#  cn: 
+#  de: 
+#  en: 
+#  es: 
+#  fr: 
+#  gr: 
+#  id: 
+#  it: 
+#  jp: 
+#  ko: 
+#  my: 
+#  "no": 
+#  pl: 
+#  pt: 
+#  ru: 
+#  sk: 
+#  ta: 
+#  th: 
+#  tr: 
+#  uk: 
+#  vi: 
+
+en:
+  ar: Arabiс
+  bg: Bulgarian
+  bn: Bengali
+  cn: Chinese
+  de: German
+  en: English
+  es: Spanish
+  fr: French
+  gr: Greek
+  id: Indonesian
+  it: Italian
+  jp: Japanese
+  ko: Korean
+  my: Malaysian
+  "no": Norwegian
+  pl: Polish
+  pt: Portuguese
+  ru: Russian
+  sk: Slovak
+  ta: Tamil
+  tr: Turkish
+  uk: Ukranian
+  vi: Vietnamese
+  th: Thai
+
+es:
+  bg: Búlgaro
+  bn: Bengalí
+  cn: Chino
+  de: Alemán
+  en: Inglés
+  es: Español
+  fr: Francés
+  gr: Griego
+  id: Indonesio
+  it: Italiano
+  jp: Japonés
+  ko: Coreano
+  my: Malayo
+  "no": Noruego
+  pl: Polaco
+  pt: Portugués
+  ru: Ruso
+  sk: Eslovaco
+  tr: Turco
+  uk: Ucraniano
+  vi: Vietnamita
+
+id:
+ bg: Bahasa Bulgaria
+ bn: Bahasa Bengali
+ cn: Bahasa China
+ de: Bahasa Jerman
+ en: Bahasa Inggris
+ es: Bahasa Spanyol
+ fr: Bahasa Perancis
+ gr: Bahasa Yunani
+ id: Bahasa Indonesia
+ it: Bahasa Italia
+ jp: Bahasa Jepang
+ ko: Bahasa Korea
+ my: Bahasa Malaysia
+ "no": Bahasa Norwegia
+ pl: Bahasa Poland
+ pt: Bahasa Portugis
+ ru: Bahasa Rusia
+ sk: Bahasa Slovakia
+ tr: Bahasa Turki
+ uk: Bahasa Ukraina
+ vi: Bahasa Vietnam
+
+th:
+  bg: ภาษาบัลแกเรีย
+  bn: ภาษาเบงกอล
+  cn: ภาษาจีน
+  de: ภาษาเยอรมัน
+  en: ภาษาอังกฤษ
+  es: ภาษาสเปน
+  fr: ภาษาฝรั่งเศส
+  gr: ภาษากรีก
+  id: ภาษาอินโดนิเซีย
+  it: ภาษาอิตาลี
+  jp: ภาษาญี่ปุ่น
+  ko: ภาษาเกาหลี
+  my: ภาษามาเลเซีย
+  "no": ภาษานอร์เวย์
+  pl: ภาษาโปแลนด์
+  pt: ภาษาโปรตุเกส
+  ru: ภาษารัสเซีย
+  sk: ภาษาสโลวาเกีย
+  th: ภาษาไทย
+  tr: ภาษาตุรกี
+  uk: ภาษายูเครน
+  vi: ภาษาเวียดนาม

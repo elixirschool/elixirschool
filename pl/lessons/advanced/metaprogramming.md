@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Metaprogramowanie
-category: advanced
-order: 7
-lang: pl
 ---
 
 Metaprogramowanie to proces tworzenia kodu, którego zadaniem jest generowanie kodu. W Elixirze mamy możliwość rozszerzania języka tak, by dynamicznie generowany kod dostosowywał się do naszych bieżących potrzeb. Najpierw przyjrzymy się, jaka jest wewnętrzna reprezentacja kodu Elixira, następnie zobaczmy, jak można ją modyfikować, by w końcu wykorzystać zdobytą wiedzę do rozszerzania kodu za pomocą makr.

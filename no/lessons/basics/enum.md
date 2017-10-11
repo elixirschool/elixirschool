@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Enum
-category: basics
-order: 3
-lang: no
 ---
 
 Et sett med algoritmer for å iterere over kolleksjoner.
@@ -14,7 +11,7 @@ Et sett med algoritmer for å iterere over kolleksjoner.
 
 Modulen `Enum` inneholder over hundre funksjoner som vi kan benytte av oss når vi jobber med kolleksjoner.
 
-Denne leksjonen vil kun dekke en brøkdel av de tilgjengelige funksjonene. For en komplett liste av alle funksjonene, se den offisielle  [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) dokumentasjonen, eller [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) for lazy enums.
+Denne leksjonen vil kun dekke en brøkdel av de tilgjengelige funksjonene. For en komplett liste av alle funksjonene, se den offisielle  [`Enum`](https://hexdocs.pm/elixir/Enum.html) dokumentasjonen, eller [`Stream`](https://hexdocs.pm/elixir/Stream.html) for lazy enums.
 
 
 ### all?
@@ -38,16 +35,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every/2
 
-Hvis vi trenger å dele opp kolleksjonen i mindre deler, kan vi benytte oss av funksjonen `chunk`:
+Hvis vi trenger å dele opp kolleksjonen i mindre deler, kan vi benytte oss av funksjonen `chunk_every/2`:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Det finnes flere alternativer for `chunk`, men vi blir ikke å gå igjennom dem. Se  [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) i den offisielle dokumentasjonen for å lære mer.
+Det finnes flere alternativer for `chunk_every/2`, men vi blir ikke å gå igjennom dem. Se  [`chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) i den offisielle dokumentasjonen for å lære mer.
 
 ### chunk_by
 
@@ -78,6 +75,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Merk__: Funksjonen `each` returnerer atomet `:ok`.

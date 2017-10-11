@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Dokumentation
-category: basics
-order: 11
-lang: de
 ---
 
 Wie dokumentiert man Elixir Code?
@@ -207,11 +204,11 @@ View them at "doc/index.html".
 
 Falls alles nach Plan abläuft solltest du eine ähnliche Meldung wie in der Ausgabe aus obigem Beispiel lesen können. Lass uns nun in's Mix-Projekt schauen, und wir werden sehen, dass es dort einen neuen Ordner namens **doc/** gibt. Darin ist unsere generierte Dokumentation. Falls wir die Indexseite in unserem Browser aufrufen, sollten wir das folgende sehen:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Wir können sehen, dass Earmark unser Markdown gerendert hat und ExDoc es in einem sinnvollen Format anzeigt.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Jetzt können wir es auf GitHub, unserer eigenen Webseite oder auch wie üblich [HexDocs](https://hexdocs.pm/) hochladen.
 
@@ -306,4 +303,4 @@ end
 
  - Versuche ein paar Codebeispiele in deiner Dokumentation zu schreiben. Das erlaubt es dir zudem automatisch Tests aus Codebeispielen zu generieren. Das ist in Modulen, Funktionen oder Makros durch [ExUnit.DocTest][] möglich. Um das zu tun, musst du das `doctest/1`-Makro in deinem Testcode aufrufen und die Beispiele so schreiben, wie es die Richtlinien in der [offiziellen Dokumentation][ExUnit.DocTest] beschreiben.
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

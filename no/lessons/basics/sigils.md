@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Sigiler
-category: basics
-order: 10
-lang: no
 ---
 
 Bruke og lage sigiler.
@@ -46,7 +43,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 Vi kan se at `~c` tekst interpolerer regnestykket, mens ~`C` ikke gjør det. Slike forskjeller mellom små og store bokstaver er ganske vanlig med de innebygde sigilene.
@@ -57,7 +54,7 @@ Sigilene `~r` og `~R` er brukt til å representere regulære uttrykk. Vi kan ent
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -70,7 +67,7 @@ I den første testen tester vi for ekvalitet, og vi ser at Elixir ikke er ekviva
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true
@@ -79,7 +76,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Elixir har en innebygd Regex modul [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) som bygger videre på Erlang sitt regulære uttrykk bibliotek. La oss implementere Regex.split/2 ved å bruke en regex sigil
+Elixir har en innebygd Regex modul [Regex](https://hexdocs.pm/elixir/Regex.html) som bygger videre på Erlang sitt regulære uttrykk bibliotek. La oss implementere Regex.split/2 ved å bruke en regex sigil
 
 ```elixir
 iex> string = "100_000_000"

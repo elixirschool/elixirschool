@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Colecciones
-category: basics
-order: 2
-lang: es
 ---
 
 Listas, tuplas, listas de palabras clave, mapas, diccionarios y combinadores funcionales
@@ -70,11 +67,11 @@ iex> tl [3.14, :pie, "Apple"]
 Además de la funciones citadas, puedes usar el operador tubería `|`; veremos este patrón en futuras lecciones:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 
@@ -149,7 +146,7 @@ true
 
 En Elixir, ambos, listas de palabras claves y mapas implementan el módulo `Dict`; tales se conocen colectivamente como diccionarios. Si necesitas construir tu propio almacenamiento clave-valor, implementar el módulo `Dict` es un buen lugar para empezar.
 
-El [módulo `Dict`](http://elixir-lang.org/docs/stable/elixir/#!Dict.html) provee un número de funciones útiles para interactuar y manipular esos diccionarios:
+El [módulo `Dict`](https://hexdocs.pm/elixir/#!Dict.html) provee un número de funciones útiles para interactuar y manipular esos diccionarios:
 
 ```elixir
 # keyword lists

@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Asas
-category: basics
-order: 1
-lang: my
 ---
 
 Penyediaan, Jenis Data Asas dan Operasi.
@@ -18,11 +15,11 @@ Arahan-arahan pemasangan untuk setiap jenis OS boleh didapati di Elixir-lang.org
 
 ### Mod Interaktif
 
-Elixir disertakan dengan `iex`, satu shell interaktif, yang membenarkan kita untuk menilai ekspresi Elixir.
+Elixir disertakan dengan IEx, satu shell interaktif, yang membenarkan kita untuk menilai ekspresi Elixir.
 
 Untuk bermula, kita jalankan `iex`:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
@@ -204,7 +201,7 @@ false
 Satu ciri penting Elixir ialah mana-mana dua bentuk jenis data boleh dibandingkan, ini adalah amat berguna ketika membuat penyusunan.  Kita tidak perlu menghafal susunan tetapi penting untuk diberikan perhatian:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Ini boleh membawa kepada beberapa perbandingan yang menarik, dan sah, yang anda mungkin tidak akan jumpai dalam bahasa aturcara lain: 

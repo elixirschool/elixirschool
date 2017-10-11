@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.1
 title: 시길
-category: basics
-order: 10
-lang: ko
 ---
 
 시길을 이용하고 만드는 법.
@@ -46,7 +43,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 소문자 `~c`는 수식을 계산하여 문자 리스트에 확장하지만, 대문자 시길 `~C`는 그렇지 않음을 알 수 있습니다. 앞으로 살펴볼 내장 시길에서도 소문자/대문자로 수식 확장을 하는가 안 하는가를 구별할 수 있을 것입니다.
@@ -57,7 +54,7 @@ iex> ~C/2 + 7 = #{2 + 7}/
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -70,7 +67,7 @@ true
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true
@@ -79,7 +76,7 @@ iex> "elixir" =~ re
 true
 ```
 
-더 나아가서, Elixir는 Erlang의 정규 표현식 라이브러리를 기반으로 만들어진 [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API를 제공합니다. 정규 표현식 시길을 사용하여 `Regex.split/2`를 사용해 봅시다.
+더 나아가서, Elixir는 Erlang의 정규 표현식 라이브러리를 기반으로 만들어진 [Regex](https://hexdocs.pm/elixir/Regex.html) API를 제공합니다. 정규 표현식 시길을 사용하여 `Regex.split/2`를 사용해 봅시다.
 
 ```elixir
 iex> string = "100_000_000"
@@ -137,7 +134,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ### NaiveDateTime
 
-[NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html)으로 타임존 **없는** DateTime을 나타내는 구조체를 빠르게 만드는데 유용하게 사용할 수 있습니다.
+[NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html)으로 타임존 **없는** DateTime을 나타내는 구조체를 빠르게 만드는데 유용하게 사용할 수 있습니다.
 
 대부분의 경우, `NaiveDateTime` 구조체를 직접 만드는 것은 피해야 합니다. 하지만, 패턴 매칭에는 매우 유용합니다. 예를 봅시다.
 

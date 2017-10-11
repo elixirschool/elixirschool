@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: 메타 프로그래밍
-category: advanced
-order: 7
-lang: ko
 ---
 
 메타 프로그래밍은 코드를 사용해서 코드를 작성하는 방법입니다. 이를 통해 Elixir에서는 필요에 따라 언어를 확장할 수 있으며, 동적으로 코드를 변경할 수도 있습니다. Elixir가 어떤 식으로 표현되고 있는지를 확인하는 부분부터 시작해서, 이를 변경하고 확장하는 법을 배워보겠습니다.
@@ -156,7 +153,7 @@ quoted = quote do
 end
 ```
 
-```
+```elixir
 iex> quoted |> Macro.expand_once(__ENV__) |> Macro.to_string |> IO.puts
 if(!true) do
   "Hi"

@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: Mix
-category: basics
-order: 9
-lang: ru
 ---
 
 До того как мы начнем углубляться в специфику Elixir, сначала нужно изучить mix. Если вы знакомы с Ruby, то этот инструмент очень похож на Bundler, RubyGems и Rake, вместе взятые. Это ключевая часть любого Elixir проекта. В этом уроке мы откроем для себя лишь некоторые его возможности. Для получения полного списка возможностей в mix есть команда `mix help`.
@@ -42,20 +39,25 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
-    []
+    [
+
+    ]
   end
 end
 ```

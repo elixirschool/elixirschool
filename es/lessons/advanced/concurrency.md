@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Concurrencia
-category: advanced
-order: 4
-lang: es
 ---
 
 Una de las características más llamativas de Elixir es su soporte para concurrencia. Gracias a la Erlang VM (BEAM), la concurrencia en Elixir es más fácil de lo esperado. El modelo de concurrencia se basa en Actores, un proceso contenido que se comunica con otro proceso por medio de paso de mensajes.
@@ -77,7 +74,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 A veces no queremos que nuestro proceso enlazado termine el proceso actual. Para ello necesitamos atrapar las salidas. Cuando atrapamos las salidas se recibirán como una tupla en un mensaje: `{:EXIT, from_pid, reason}`.

@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Operador Pipe
-category: basics
-order: 7
-lang: pt
 ---
 
 O operador pipe `|>` passa o resultado de uma expressão como o primeiro parâmetro de outra expressão.
@@ -18,7 +15,7 @@ Programação pode se tornar algo bem confuso. Tão confuso que o fato de chamad
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Aqui, nós estamos passando o valor `other_function/1` para `new_function/1`, e `new_function/1` para `baz/1`, `baz/1` para `bar/1`, e finalmente o resultado de `bar/1` para `foo/1`. Elixir possui um modo pragmático para esse caos sintático, permitindo-nos a utilização do operador pipe. O operador pipe é representado por `|>`, *recebe o resultado de uma expressão e passa ele adiante*. Vamos dar mais uma olhada no trecho de código acima reescrito com o operador pipe.
+Aqui, nós estamos passando o valor `other_function/0` para `new_function/1`, e `new_function/1` para `baz/1`, `baz/1` para `bar/1`, e finalmente o resultado de `bar/1` para `foo/1`. Elixir possui um modo pragmático para esse caos sintático, permitindo-nos a utilização do operador pipe. O operador pipe é representado por `|>`, *recebe o resultado de uma expressão e passa ele adiante*. Vamos dar mais uma olhada no trecho de código acima reescrito com o operador pipe.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()

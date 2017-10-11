@@ -1,10 +1,8 @@
 ---
-layout: page
 title: Elixir School
-lang: gr
 ---
 
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 Μαθήματα της γλώσσας προγραμματισμού Elixir, εμπνευσμένα από το [Scala School](http://twitter.github.io/scala_school/) του Twitter.
 

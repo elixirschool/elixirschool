@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Erlang Term Storage (ETS)
-category: specifics
-order: 4
-lang: id
 ---
 
 Erlang Term Storage, biasa disebut ETS, adalah sebuah engine penyimpanan yang powerful yang sudah termasuk dalam OTP dan tersedia untuk digunakan di Elixir.  Dalam pelajaran ini kita akan melihat bagaimana mengakses ETS dan bagaimana ETS bisa digunakan dalam aplikasi kita.
@@ -198,7 +195,7 @@ defmodule SimpleCache do
   """
   defp lookup(mod, fun, args) do
     case :ets.lookup(:simple_cache, [mod, fun, args]) do
-      [result|_] -> check_freshness(result)
+      [result | _] -> check_freshness(result)
       [] -> nil
     end
   end

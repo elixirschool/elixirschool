@@ -1,10 +1,8 @@
 ---
-layout: page
 title: Elixir School
-lang: my
 ---
 
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 Pelajaran mengenai bahasa aturcara Elixir, diinspirasikan oleh [Sekolah Scala Twitter](http://twitter.github.io/scala_school/).
 

@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Mix
-category: basics
-order: 9
-lang: cn
 ---
 
 在更深入了解 Elixir 之前，我们必须先学习 mix。如果你熟悉 Ruby 的话，mix 就是 Bundler，RubyGems 和 Rake 的结合。mix 对于开发 Elixir 至关重要，我们在这篇课程只会介绍它的部分特性。要了解 mix 的所有功能，可以执行 `mix help` 查看。
@@ -43,20 +40,25 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
-    []
+    [
+
+    ]
   end
 end
 ```

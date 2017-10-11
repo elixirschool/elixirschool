@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: OTP Supervisors
-category: advanced
-order: 6
-lang: id
 ---
 
 Supervisor adalah proses khusus yang memiliki satu peran: memonitor proses lain. Supervisor ini memungkinkan kita membuat aplikasi yang toleran-kegagalan (fault-tolerant) dengan secara otomatis menjalankan ulang proses anak (child process) jika proses anak itu fail (mengalami kegagalan).

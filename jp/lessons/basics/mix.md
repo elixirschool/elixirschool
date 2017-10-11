@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Mix
-category: basics
-order: 9
-lang: jp
 ---
 
 私たちがElixirの深海へと潜れるようになる前に、まずmixについて学ぶ必要があります。Rubyに詳しければ、mixとはBundlerとRubyGems、そしてRakeが組み合わさったものです。あらゆるElixirプロジェクトに欠かせない部分であり、このレッスンではその素晴らしい機能のうち、ほんの一部を探検していきます。mixが提供する全ての機能を知るには`mix help`を実行してください。
@@ -42,20 +39,25 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
-    []
+    [
+
+    ]
   end
 end
 ```

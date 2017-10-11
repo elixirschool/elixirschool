@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Ecto
-category: specifics
-order: 2
-lang: jp
 ---
 
 Ectoは公式のElixirプロジェクトで、データベースのラッパと、総合的なクエリ言語を提供します。Ectoを用いることで、マイグレーションの作成やモデルの定義、レコードの挿入や更新、問合せが行えるようになります。
@@ -16,8 +13,8 @@ Ectoは公式のElixirプロジェクトで、データベースのラッパと�
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 2.1.4"},
+   {:postgrex, ">= 0.13.4"}]
 end
 ```
 
@@ -243,7 +240,7 @@ query = from u in User,
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

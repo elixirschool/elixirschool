@@ -1,70 +1,66 @@
 ---
-layout: page
-title: Pipe Operator 
-category: basics
-order: 7
-lang: vi 
+version: 0.9.0
+title: Pipe Operator
 ---
 
-The pipe operator `|>` passes the result of an expression as the first parameter of another expression.
+Toán tử pipe `|>` truyền kết quả của một biểu thức như là tham số đầu tiên của một biểu thức khác.
 
 {% include toc.html %}
 
-## Introduction
+## Giới thiệu
 
-Programming can get messy. So messy in fact that function calls can get so embedded the function calls becomes very difficult to follow. Take the following nested functions into consideration:
+Việc lập trình có thể trở nên rối tung, rối đến nỗi mà việc gọi hàm trở nên lồng ghép và khó đọc hiểu. Ta hãy xem qua cách lồng ghép hàm dưới đây:
 
 ```elixir
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Here, we are passing the value `other_function/1` to `new_function/1`, and `new_function/1` to `baz/1`, `baz/1` to `bar/1`, and finally the result of `bar/1` to `foo/1`. Elixir takes a pragmatic approach to this syntactical chaos by giving us the pipe operator. The pipe operator which looks like `|>` *takes the result of one expression, and passes it on*. Let's take another look at the code snippet above rewritten with the pipe operator.
+Ở đây, ta đang truyền giá trị của `other_function/0` vào `new_function/1`, của `new_function/1` và `baz/1`, của `baz/1` vào `bar/1` và cuối cùng là `bar/1` vào `foo/1`. Trong Elixir có cách giải quyết hay cho cách viết rối tung (mà thực tế) này bằng cách sử dụng toán từ pipe. Toán tử pipe (`|>`) *nhận kết quả của một biểu thức, và truyền nó đi*. Ta hãy xem đoạn code ở trên sau khi được viết lại bằng toán tử pipe.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
 ```
 
-The pipe takes the result on the left, and passes it to the right hand side.
+Pipe nhận kết quả bên trái, và truyền nó qua bên phải.
 
-## Examples
+## Ví dụ
 
-For this set of examples, we will use Elixir's String module.
+Với những ví dụ dưới đây ta sẽ dùng String module của Elixir.
 
-- Tokenize String (loosely)
+- Tách chuỗi
 
-```shell
+```elixir
 iex> "Elixir rocks" |> String.split
 ["Elixir", "rocks"]
 ```
 
-- Uppercase all the tokens
+- Viết hoa kết hợp tách chuỗi
 
-```shell
+```elixir
 iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 
-- Check ending
+- Kiểm tra mẫu kết thúc
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
 
-## Best Practices
+## Cách dùng thực tiễn
 
-If the arity of a function is more than 1, then make sure to use parenthesis. This doesn't matter much to the Elixir compiler, but it matters to other programmers who may misinterpret your code. If we take our 2nd example, and remove the brackets from `Enum.map/2`, we are met with the following warning.
+Nếu arity của một hàm lớn hơn 1 thì hãy ta nên dùng dấu ngoặc. Điều này không ảnh hướng đến Elixir, nhưng nó ảnh hưởng đến các lập trình viên khác và có thể khiến họ hiểu nhầm code của bạn. Nếu chúng ta xem ví dụ số 3, mà bỏ đi dấu ngoặc của `String.ends_with?/2`, chúng ta sẽ gặp phải câu cảnh báo sau.
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
-iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+iex> "elixir" |> String.ends_with? "ixir"
+warning: parentheses are required when piping into a function call. For example:
 
-foo 1 |> bar 2 |> baz 3
+  foo 1 |> bar 2 |> baz 3
 
-Should be written as:
+is ambiguous and should be written as
 
-foo(1) |> bar(2) |> baz(3)
+  foo(1) |> bar(2) |> baz(3)
 
-["ELIXIR", "ROCKS"]
+true
 ```
-

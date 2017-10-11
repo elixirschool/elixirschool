@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Ecto
-category: specifics
-order: 2
-lang: id
 ---
 
 Ecto adalah sebuah project resmi Elixir yang memberikan sebuah wrapper (pembungkus) terhadap database dan bahasa query yang terintegrasi.  Dengan Ecto kita bisa membuat migrasi, mendefinisikan model, melakukan insert dan update data, dan melakukan query.
@@ -231,7 +228,7 @@ Dengan asumsi kita punya profil yang terkait dengan user kita, mari dapatkan sem
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

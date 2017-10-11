@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Custom Mix Tasks 
-category: basics
-order: 15
-lang: id
 ---
 
 Membuat task Mix custom untuk project Elixir anda.

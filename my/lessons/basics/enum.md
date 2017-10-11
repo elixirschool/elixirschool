@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Enum
-category: basics
-order: 3
-lang: my
 ---
 
 Satu kumpulan algorithm untuk memproses satu persatu(enumerate) isi kandungan 'collection'.
@@ -14,7 +11,7 @@ Satu kumpulan algorithm untuk memproses satu persatu(enumerate) isi kandungan 'c
 
 Modul `Enum` mengandungi lebih dari satu ratus fungsi-fungsi untuk bekerja dengan 'collection' yang telah kita pelajari dalam pelajaran lepas.
 
-Pelajaran ini cuma akan meliputi sedikit sahaja daripada fungsi-fungsi yang tersedia, untuk melihat fungsi-fungsi lengkap lawati [dokumentasi rasmi `Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); untuk kaedah 'lazy enumeration' gunakan modul [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+Pelajaran ini cuma akan meliputi sedikit sahaja daripada fungsi-fungsi yang tersedia, untuk melihat fungsi-fungsi lengkap lawati [dokumentasi rasmi `Enum`](https://hexdocs.pm/elixir/Enum.html); untuk kaedah 'lazy enumeration' gunakan modul [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 ### all?
 
@@ -36,16 +33,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every/2
 
-Jika anda perlu untuk menceraikan 'collection' kepada kumpulan-kumpulan kecil, gunakan fungsi `chunk`:
+Jika anda perlu untuk menceraikan 'collection' kepada kumpulan-kumpulan kecil, gunakan fungsi `chunk_every/2`:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Terdapat beberapa pilihan untuk `chunk` tetapi kita tidak akan sebutkan di sini, lihat [dokumentasi rasmi `chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) untuk maklumat lebih lanjut.
+Terdapat beberapa pilihan untuk `chunk_every/2` tetapi kita tidak akan sebutkan di sini, lihat [dokumentasi rasmi `chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) untuk maklumat lebih lanjut.
 
 ### chunk_by
 
@@ -65,6 +62,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Nota__: Fungsi `each` akan memulangkan atom `:ok`.

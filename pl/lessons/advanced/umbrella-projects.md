@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Projekty zbiorcze
-category: advanced
-order: 8
-lang: pl
 ---
 
 Z czasem projekt może stać się duży, naprawdę duży. Mix pozwala nam na podzielenie naszego projektu na mniejsze, łatwiejsze w utrzymaniu i zarządzaniu. Projekty, które składają się z wielu mniejszych pod projektów, nazywamy projektami zbiorczymi albo po angielsku _umbrella project_.
@@ -161,7 +158,7 @@ $ tree
 
 Jeżeli teraz wrócimy do katalogu projektu zbiorczego, będziemy mogli zobaczyć jak działają typowe zadania mixa jak kompilacja. Jako że projekty potomne to zwyczajne aplikacje to zawsze możemy też wejść do ich katalogów i bez żadnych problemów wywołać tam zadania mixa.
 
-```
+```bash
 $ mix compile
 
 ==> svm

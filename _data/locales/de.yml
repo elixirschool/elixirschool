@@ -1,0 +1,20 @@
+script_direction: ltr
+project:
+  title: Elixir School
+  description: Übungen zur Programmiersprache Elixir
+table_of_contents: Inhaltsverzeichnis
+share: Share This Page
+sections:
+  home: Home
+  basics: Grundlagen
+  advanced: Erweitert
+  specifics: Einzelheiten
+  libraries: Libraries
+version_messages:
+  outdated: "Teile dieser Übersetzung könnten veraltet sein."
+  major: "Einige größere Änderungen wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
+  minor: "Einige kleinere Änderungen wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
+  patch: "Einige Patches wurden der originalen Lektion seit der letzten Aktualisierung hinzugefügt."
+  none: "Diese Übersetzung ist aktuell."
+  error: "There is an error in the version definition of this chapter."
+  

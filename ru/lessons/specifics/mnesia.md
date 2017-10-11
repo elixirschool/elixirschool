@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: Mnesia
-category: specifics
-order: 5
-lang: ru
 ---
 
 Mnesia &mdash; это распределённая система управления базами данных реального времени.
@@ -91,7 +88,7 @@ iex(learner@elixirschool.com)> Node.self
 
 ```elixir
 iex> alias :mnesia, as: Mnesia
-iex> Mnesia.create_schema([node])
+iex> Mnesia.create_schema([node()])
 :ok
 iex> Mnesia.start()
 :ok

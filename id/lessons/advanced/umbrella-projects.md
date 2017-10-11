@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Umbrella Projects
-category: advanced
-order: 8
-lang: id
 ---
 
 Terkadang sebuah project bisa menjadi sangat besar. Perangkat build Mix memungkinkan kita untuk memecah code kita jadi beberapa aplikasi dan membuat project Elixir kita lebih tertata dalam pengembangannya.
@@ -157,7 +154,7 @@ $ tree
 
 Jika kita pindah kembali ke direktori root project payungnya, kita bisa melihat bahwa kita bisa memanggil semua perintah yang biasa seperti compile. Karena subproject adalah aplikasi normal biasa, anda bisa pindah ke direktorinya dan melakukan semua kegiatan yang biasanya dimungkinkan oleh Mix untuk kita lakukan.
 
-```
+```bash
 $ mix compile
 
 ==> svm
@@ -204,7 +201,7 @@ Consolidated String.Chars
 Consolidated Enumerable
 Consolidated IEx.Info
 Consolidated Inspect
-Interactive Elixir (1.2.1) - press Ctrl+C to exit (type h() ENTER for help)
+Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
 iex> Datasets.hello
 Hello, I'm the datasets

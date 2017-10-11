@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Enum
-category: basics
-order: 3
-lang: id
 ---
 
 Sekumpulan algoritma untuk melakukan enumerasi atas collection.
@@ -14,7 +11,7 @@ Sekumpulan algoritma untuk melakukan enumerasi atas collection.
 
 Modul `Enum` berisi lebih dari seratus fungsi untuk bekerja dengan koleksi yang sudah kita pelajari di pelajaran sebelumnya.
 
-Pelajaran ini akan hanya mencakup sebagian dari fungsi yang ada, untuk melihat daftar fungsi yang lengkap kunjungi dokumentasi resmi [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); untuk enumerasi yang lazy gunakan modul [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+Pelajaran ini akan hanya mencakup sebagian dari fungsi yang ada, untuk melihat daftar fungsi yang lengkap kunjungi dokumentasi resmi [`Enum`](https://hexdocs.pm/elixir/Enum.html); untuk enumerasi yang lazy gunakan modul [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 
 ### all?
@@ -37,16 +34,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every/2
 
-Jika anda perlu memecah collection jadi kelompok-kelompok yang lebih kecil, `chunk` adalah fungsi yang dibutuhkan:
+Jika anda perlu memecah collection jadi kelompok-kelompok yang lebih kecil, `chunk_every/2` adalah fungsi yang dibutuhkan:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Ada beberapa opsi untuk `chunk` tapi kita tidak akan membahas lebih dalam, lihatlah [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) di dokumentasi resmi untuk belajar lebih jauh.
+Ada beberapa opsi untuk `chunk_every/2` tapi kita tidak akan membahas lebih dalam, lihatlah [`chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) di dokumentasi resmi untuk belajar lebih jauh.
 
 ### chunk_by
 
@@ -66,6 +63,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Catatan__: Fungsi `each` mengembalikan atom `:ok`.

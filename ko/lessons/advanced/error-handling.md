@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: 에러 처리
-category: advanced
-order: 2
-lang: ko
 ---
 
 `{:error, reason}` 튜플을 반환하는 것이 더 흔하지만, Elixir는 예외를 지원합니다. 이번 강의에서는 에러를 어떻게 처리할 것인지, 에러를 처리하는 다양한 원리들을 다룰 것입니다.
@@ -137,7 +134,7 @@ iex> try do
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 `try/catch`를 이용하여 종료를 잡아내는 것이 가능하지만, 그런 경우는 _극히_ 드뭅니다. 대부분의 경우, 수퍼바이저가 프로세스 종료를 다루도록 하는 것이 유리합니다.

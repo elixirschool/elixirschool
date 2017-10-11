@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.1.0
 title: 기본
-category: basics
-order: 1
-lang: ko
 ---
 
 Elixir를 시작합시다. 기본적인 타입과 연산자를 배워봅시다.
@@ -19,17 +16,17 @@ elixir-lang.org 홈페이지의 [Installing Elixir](http://elixir-lang.org/insta
 Elixir를 설치하고 나서 어떤 버전이 설치되었는지 손쉽게 확인할 수 있습니다.
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}  [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}]  [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
 ### 대화형 모드 건드려보기
 
-Elixir를 설치하면 대화형 셸인 `iex`가 함께 설치됩니다. `iex`를 사용하여 Elixir 코드를 입력하면서 바로바로 실행할 수 있습니다.
+Elixir를 설치하면 대화형 셸인 `IEx`가 함께 설치됩니다. `IEx`를 사용하여 Elixir 코드를 입력하면서 바로바로 실행할 수 있습니다.
 
 `iex`를 실행하는 걸로 시작해보아요.
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
@@ -37,11 +34,11 @@ Elixir를 설치하면 대화형 셸인 `iex`가 함께 설치됩니다. `iex`�
 여기서 계속 나아가봅시다. 간단한 코드를 조금 써 보면서 체험해보세요.
 
 ```elixir
-iex(1)> 2+3
+iex> 2+3
 5
-iex(2)> 2+3 == 5
+iex> 2+3 == 5
 true
-iex(3)> String.length("The quick brown fox jumps over the lazy dog")
+iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
@@ -124,7 +121,7 @@ true
 애텀은 Erlang 라이브러리에서 모듈을 (내장된 것도 포함해서) 참조할 때에도 사용합니다.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -149,7 +146,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir에는 이보다 더 복잡한 데이터 타입도 있습니다. 이런 부분은 컬렉션이나 함수를 다룰 때 조금 더 알아보도록 하겠습니다.
+Elixir에는 이보다 더 복잡한 데이터 타입도 있습니다. 이런 부분은 [컬렉션](../collections/)이나 [함수](../functions/)를 다룰 때 조금 더 알아보도록 하겠습니다.
 
 ## 기본적인 연산
 

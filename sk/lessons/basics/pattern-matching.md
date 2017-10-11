@@ -1,20 +1,15 @@
 ---
-layout: page
+version: 1.0.1
 title: Pattern Matching
-category: basics
-order: 4
-lang: sk
 ---
 
-Pattern matching je dôležitou a mocnou vymoženosťou Elixiru. Umožňuje nám hľadať a vyberať jednoduché hodnoty, dátové štruktúry a dokonca aj funkcie. V tejto lekcii si ukážeme, ako ho používať.
+Pattern matching je dôležitou a užitočnou časťou Elixiru. Umožňuje nám hľadať a vyberať jednoduché hodnoty, dátové štruktúry a dokonca aj funkcie. V tejto lekcii si ukážeme, ako ho používať.
 
 {% include toc.html %}
 
 ## Match operator
 
-Pripravení na prekvapko? V Elixire je operátor `=` v skutočnosti match operátorom. Pomocou neho môžeme nachádzať, vyberať a pridaďovať časti vyhovujúce našim kritériam.
-
-Nasledujúcim spôsobom matchneme hocičo (nešpecifikujeme žiadne kritériá) a priradíme to do premennej `x`:
+Pripravení na prekvapko? V Elixire je operátor `=` v skutočnosti match operátorom, porovnateľný so znamienkom rovná sa v algebre. Jeho napísaním sa zmení celý výraz na rovnicu a donúti Elixir nachádzať a vyberať časti vľavo z hodnôt ktoré sú na pravej strane. Ak nastane zhoda a match je úspešný, vráti hodnotu výrazu. Inak vyhodí chybu. Pozrime sa na to:
 
 ```elixir
 iex> x = 1
@@ -32,7 +27,7 @@ iex> 2 = x
 
 Druhý výraz zlyhal, pretože v premennej `x` už bola hodnota `1`, takže nenastala zhoda (match).
 
-Teraz to skúsme s nejakou kolekciou:
+Skúsme to s nejakou kolekciou, ktorú poznáme:
 
 ```elixir
 # Zoznamy
@@ -42,7 +37,7 @@ iex> [1, 2, 3] = list
 iex> [] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-iex> [1|tail] = list
+iex> [1 | tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]
@@ -60,7 +55,7 @@ iex> {:ok, value} = {:error}
 
 ## Pin operator
 
-Práve sme sa naučili, že *match* operátor vykoná priradenie, ak sa na jeho ľavej strane nachádza premenná. Niekedy je však toto chovanie (tzv. *variable rebinding*) nežiadúce - pre tieto prípady existuje v Elixire operátor *pin*: `^`.
+Práve sme sa naučili, že *match* operátor vykoná priradenie, ak sa na jeho ľavej strane nachádza premenná. Niekedy je však toto správanie (tzv. *variable rebinding*) nežiadúce a pre tieto prípady existuje v Elixire operátor pin: `^`.
 
 Keď pri pattern matchingu dáme pred premennú pin (`^`), tak tým Elixiru povieme, aby jej hodnotu len použil pri porovnávaní, no nemenil ju:
 
@@ -103,5 +98,3 @@ iex> greet.("Hello", "Sean")
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
 ```
-
-V príklade sme si definovali funkciu `greet` dvojitým spôsobom - ak ako prvý parameter prijme reťazec `"Hello"`, vykoná sa prvá verzia tela, inak sa použije druhá.

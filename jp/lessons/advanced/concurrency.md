@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: 並行性
-category: advanced
-order: 4
-lang: jp
 ---
 
 Elixirの売りの1つは並行性(コンカレンシー)に対応していることです。Erlang VM (BEAM)のおかげで、並行処理はElixirでは思ったよりも簡単です。並行性のモデルはアクターに依存しています。アクターとはメッセージパッシングによって他のプロセスと相互通信を行う、制御されたプロセスのことです。
@@ -81,7 +78,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 リンクしたプロセスに現在のプロセスを強制終了させたくない場合もあるでしょう。そのためには終了を捕捉する必要があります。終了を捕捉すると、`{:EXIT, from_pid, reason}`というタプルのメッセージとして受け取ります。

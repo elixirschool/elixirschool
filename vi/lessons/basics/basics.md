@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Cơ bản
-category: basics
-order: 1
-lang: vi
 ---
 
 Cài đặt, cái kiểu phổ thông và cơ chế hoạt động.
@@ -22,7 +19,7 @@ Elixir đi kèm với `iex`, một shell trực quan, cho phép chúng ta chạy
 
 Để bắt đầu, hãy chạy `iex`:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
@@ -204,7 +201,7 @@ false
 Một chức năng quan trọng của Elixir là hai kiểu có thể được so sánh với nhau, thực sự rất là hữu dụng cho việc sắp xếp. Chúng ta không cần phải nhớ thứ tự sắp xếp nhưng nên lưu ý:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Điều này có thể dẫn đến một vài trường hợp so sánh hợp lệ nhưng khá xa lạ so với các ngôn ngữ khác:

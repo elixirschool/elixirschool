@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: Ecto
-category: specifics
-order: 2
-lang: gr
 ---
 
 Το Ecto είναι ένα επίσημο Elixir project το οποίο παρέχει ένα κάλυμμα βάσης δεδομένων και μια ενσωματωμένη γλώσσα ερωτημάτων.  Με το Ecto είμαστε σε θέση να δημιουργούμε μετατροπές, να ορίζουμε μοντέλα, να εισάγουμε και επεξεργαζόμαστε εγγραφές και να τις εξετάζουμε.
@@ -12,12 +9,12 @@ lang: gr
 
 ## Εγκατάσταση
 
-Για να ξεκινήσουμε πρέπει να συμπεριλάβουμε το Ecto και έναν αντάπτορα βάσης δεδομένο στο `mix.exs` του project μας.  Μπορείτε να βρείτε μια λίστα υποστηριζόμενων ανταπτόρων στον τομέα [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) του Ecto README.  Για το παράδειγμά μας θα χρησιμοποιήσυμε την PostgreSQL:
+Για να ξεκινήσουμε πρέπει να συμπεριλάβουμε το Ecto και έναν αντάπτορα βάσης δεδομένων στο `mix.exs` του project μας.  Μπορείτε να βρείτε μια λίστα υποστηριζόμενων ανταπτόρων στον τομέα [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) του Ecto README.  Για το παράδειγμά μας θα χρησιμοποιήσυμε την PostgreSQL:
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 2.1.4"},
+   {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -187,7 +184,7 @@ Repo.all(query)
 
 ### Μέτρηση
 
-Αν θέλουμε να μετρήσουμε τον αριθμό χρηστών που έχουν επιβεβαιωμένο λογαριασμού θα μπορούσαμε να χρησιμοποιήσουμε την `count/1`:
+Αν θέλουμε να μετρήσουμε τον αριθμό χρηστών που έχουν επιβεβαιωμένο λογαριασμό θα μπορούσαμε να χρησιμοποιήσουμε την `count/1`:
 
 ```elixir
 query = from u in User,
@@ -243,7 +240,7 @@ query = from u in User,
 
 ```elixir
 query = from p in Profile,
-    join: u in assoc(profile, :user),
+    join: u in assoc(p, :user),
     where: u.confirmed == true
 ```
 

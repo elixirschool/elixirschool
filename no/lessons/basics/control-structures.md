@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Kontrollstrukturer
-category: basics
-order: 5
-lang: no
 ---
 
 I denne leksjonen skal vi ta en nærmere titt på de forskjellige kontrollstrukturene Elixir har tilgjengelig.
@@ -12,7 +9,7 @@ I denne leksjonen skal vi ta en nærmere titt på de forskjellige kontrollstrukt
 
 ## `if` og `unless`
 
-Sannsynligheten er stor for at du har vært borti `if/2` tidligere, og har du tidligere programmert i Ruby kjenner du til `unless/2`. De virker på samme måte i Elixir, men er her definert som makroer, og ikke språk konstruksjoner. Du kan finne implementeringen i [Kernel modulen](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Sannsynligheten er stor for at du har vært borti `if/2` tidligere, og har du tidligere programmert i Ruby kjenner du til `unless/2`. De virker på samme måte i Elixir, men er her definert som makroer, og ikke språk konstruksjoner. Du kan finne implementeringen i [Kernel modulen](https://hexdocs.pm/elixir/Kernel.html).
 
 Det er verdt å merke seg at kun verdien `nil` og den boolske verdien `false` er "usant" i Elixir.
 
@@ -173,9 +170,8 @@ end
 Når vi introduserer `with` til eksemplet, ender vi opp med kode som er enklere å lese, og som består av færre linjer:
 
 ```elixir
-with
-  {:ok, user} <- Repo.insert(changeset),
-  {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-  do: important_stuff(jwt, full_claims)
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     do: important_stuff(jwt, full_claims)
 ```
 

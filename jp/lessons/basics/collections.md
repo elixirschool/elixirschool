@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: コレクション
-category: basics
-order: 2
-lang: jp
 ---
 
 リスト、タプル、キーワードリスト、マップ、そしてコンビネータ。
@@ -74,11 +71,11 @@ iex> tl [3.14, :pie, "Apple"]
 前述した関数に加えて、リストを頭部と尾部に分けるのに[パターンマッチング](../pattern-matching/)やcons演算子(`|`)を使うこともできます。このパターンについては後のレッスンで取り上げます:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

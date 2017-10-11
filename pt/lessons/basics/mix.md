@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Mix
-category: basics
-order: 9
-lang: pt
 ---
 
 Antes de podermos mergulhar nas águas mais profundas de Elixir primeiro precisamos aprender a utilizar o mix. Se você estiver familiarizado com Ruby, mix é o Bundler, RubyGems e o Rake juntos. É uma parte crucial de qualquer projeto Elixir e nesta lição vamos explorar apenas algumas das suas grandes funcionalidades. Para ver tudo que o mix tem para oferecer, execute `mix help`.
@@ -42,20 +39,25 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
-    []
+    [
+
+    ]
   end
 end
 ```
@@ -96,7 +98,7 @@ Iniciando `iex` desta forma , carrega sua aplicação e dependências no atual a
 
 Nosso projeto não tem nenhuma dependência, mas em breve irá ter, por isso iremos seguir em frente e cobrir a definição e busca de dependências.
 
-Para adicionar uma nova dependência, primeiro precisamos adicioná-la ao nosso `mix.ex` na seção `deps`. Nossa lista de dependência é composta por tuplas com 2 valores obrigatórios e um opcional: O nome do pacote como um *atom*, a versão como *string* e opções opcionais.
+Para adicionar uma nova dependência, primeiro precisamos adicioná-la ao nosso `mix.exs` na seção `deps`. Nossa lista de dependência é composta por tuplas com 2 valores obrigatórios e um opcional: O nome do pacote como um *atom*, a versão como *string* e opções opcionais.
 
 Para este exemplo vamos ver um projeto com dependências, como  [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 

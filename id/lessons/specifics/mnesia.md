@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Mnesia
-category: specifics
-order: 5
-lang: id
 ---
 
 Mnesia adalah sebuah sistem manajemen database terdistribusi real-time yang kuat.
@@ -79,7 +76,7 @@ $ iex --name learner@elixirschool.com
 
 Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-Interactive Elixir (1.2.1) - press Ctrl+C to exit (type h() ENTER for help)
+Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 iex(learner@elixirschool.com)> Node.self
 :"learner@elixirschool.com"
 ```
@@ -92,7 +89,7 @@ Sekarang setelah kita mahami dasar-dasarnya dan sudah mensetup databasenya, kita
 
 ```shell
 iex> alias :mnesia, as: Mnesia
-iex> Mnesia.create_schema([node])
+iex> Mnesia.create_schema([node()])
 :ok
 iex> Mnesia.start()
 :ok

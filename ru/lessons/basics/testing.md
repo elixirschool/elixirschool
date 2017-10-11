@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: Тестирование
-category: basics
-order: 12
-lang: ru
 ---
 
 Тестирование &mdash; важная часть разработки.  В этом уроке мы узнаем, как тестировать наш Elixir код с помощью ExUnit, и познакомимся с некоторыми отличными приёмами.
@@ -94,7 +91,7 @@ defmodule TestReceive do
   use ExUnit.Case
 
   test "receives ping" do
-    SendingProcess.run(self)
+    SendingProcess.run(self())
     assert_received :ping
   end
 end
@@ -102,9 +99,9 @@ end
 
 `assert_received` не ждет сообщений по умолчанию, но можно указать время ожидания.
 
-## capture_io и capture_log
+### capture_io и capture_log
 
-Получение вывода приложения возможно с использованием `ExUnit.captureIO` без изменения кода приложения. Просто передайте функцию, генерирующую вывод в качестве параметра:
+Получение вывода приложения возможно с использованием `ExUnit.CaptureIO` без изменения кода приложения. Просто передайте функцию, генерирующую вывод в качестве параметра:
 
 ```elixir
 defmodule OutputTest do

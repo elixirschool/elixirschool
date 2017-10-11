@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Operator Potoku
-category: basics
-order: 7
-lang: pl
 ---
 
 Operator potoku `|>` przekazuje wynik jednego wyrażenia jako pierwszy parametr następnego wyrażenia.
@@ -18,7 +15,7 @@ Programowanie może być chaotyczne. Tak chaotyczne, że kolejne, zagnieżdżone
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Najpierw przekazujemy wartość funkcji `other_function/1` do `new_function/1`, następnie `new_function/1` do `baz/1`, z `baz/1` do `bar/1`, i ostatecznie wynik funkcji `bar/1` do `foo/1`. Elixir przyjmuje pragmatyczne podejście do tego składniowego chaosu, dostarczając operator potoku. Operator ten, `|>`, *przyjmuje wynik jednego wyrażenia i przekazuje go dalej*. Przyjrzyjmy się wcześniejszemu fragmentowi kodu, przepisanemu z wykorzystaniem operatora potoku:
+Najpierw przekazujemy wartość funkcji `other_function/0` do `new_function/1`, następnie `new_function/1` do `baz/1`, z `baz/1` do `bar/1`, i ostatecznie wynik funkcji `bar/1` do `foo/1`. Elixir przyjmuje pragmatyczne podejście do tego składniowego chaosu, dostarczając operator potoku. Operator ten, `|>`, *przyjmuje wynik jednego wyrażenia i przekazuje go dalej*. Przyjrzyjmy się wcześniejszemu fragmentowi kodu, przepisanemu z wykorzystaniem operatora potoku:
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()

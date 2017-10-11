@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Sigil
-category: basics
-order: 10
-lang: my
 ---
 
 Membuat dan menggunakan sigil.
@@ -45,7 +42,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 Kita dapat lihat apabila menggunakan huruf kecil, iaitu `~c`, ia akan membuat interpolasi(menjalankan proses dan memulangkan hasil proses) pengiraan di dalam string tersebut, sementara sigil huruf besar `~C` tidak melakukan interpolasi.  Kita akan dapat melihat bagaimana penggunaan huruf kecil/huruf besar ini menjadi tema lazim di dalam keseluruhan sigil-sigil yang disiap-pasang.
@@ -56,7 +53,7 @@ Sigil-sigil `~r` dan `~R` digunakan untuk mewakili Ungkapan Nalar(Regular Expres
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -69,7 +66,7 @@ Kita dapat lihat di dalam ujian persamaan yang pertama, perkataan `Elixir` tidak
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true
@@ -78,7 +75,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Seterusnya, Elixir menyediakan API [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) yang dibina di atas pustaka ungkapan nalar Erlang.  Mari kita laksanakan `Regex.split/2` menggunakan sigil ungkapan nalar:
+Seterusnya, Elixir menyediakan API [Regex](https://hexdocs.pm/elixir/Regex.html) yang dibina di atas pustaka ungkapan nalar Erlang.  Mari kita laksanakan `Regex.split/2` menggunakan sigil ungkapan nalar:
 
 ```elixir
 iex> string = "100_000_000"

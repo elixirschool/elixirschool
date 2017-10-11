@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Основи
-category: basics
-order: 1
-lang: uk
 ---
 
 Встановлення Elixir, базові типи даних та прості операції.
@@ -19,7 +16,7 @@ lang: uk
 Після того як мову встановлено, можно перевірити яку саме версію було встановлено:
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
@@ -29,7 +26,7 @@ Elixir поставляється з утилітою `iex`, інтеракти�
 
 Для початку запустимо утиліту `iex`:
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
@@ -126,7 +123,7 @@ true
 Атоми також використовуються для доступу до Erlang бібліотек та модулів:
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -242,7 +239,7 @@ false
 Важливою особливістю Elixir є той факт, що будь-які два типи можуть бути порівняні. Це дуже корисно при сортуванні. Не має сенсу запам'ятовувати порядок сортування, але варто знати що він є:
 
 ```elixir
-number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
 Це веде до неочевидних порівнянь, яких немає в інших мовах программування:

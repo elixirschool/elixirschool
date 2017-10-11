@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Pattern Matching
-category: basics
-order: 4
-lang: fr
 ---
 
 Le Pattern matching est une partie très puissante d'Elixir, il nous permet de tester la correspondance de simples valeurs, de structures de données, et même de fonctions. Dans cette leçon nous allons voir comment on utilise le pattern matching.
@@ -38,7 +35,7 @@ iex> [1, 2, 3] = list
 iex> [] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-iex> [1|tail] = list
+iex> [1 | tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]

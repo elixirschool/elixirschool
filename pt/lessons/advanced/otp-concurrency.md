@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Concorrência OTP
-category: advanced
-order: 5
-lang: pt
 ---
 
 Já olhamos as abstrações em Elixir para concorrência, mas as vezes precisamos de um controle maior e para isso nós temos os comportamentos OTP no qual Elixir é construída em cima.
@@ -25,7 +22,7 @@ defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  Start our queue and link it.  This is a helper method
+  Start our queue and link it.  This is a helper function
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -42,7 +39,7 @@ end
 
 É geralmente necessário a interação com GenServers de uma maneira síncrona, chamando a função e esperando por sua resposta. Para processar mensagens síncronas nós precisamos implementar o *callback* `GenServer.handle_call/3` que recebe: a requisição, o PID do processo que chamou, um estado existente; é esperado o retorno na forma de uma tupla: `{:reply, resposta, estado}`.
 
-Com casamento de padrão nós podemos definir *callbacks* para muitas diferentes requisições e estados. Uma completa lista de valores de retorno aceitos pode ser encontrada na [documentação do `GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3).
+Com casamento de padrão nós podemos definir *callbacks* para muitas diferentes requisições e estados. Uma completa lista de valores de retorno aceitos pode ser encontrada na [documentação do `GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3).
 
 Para demonstrar as requisições síncronas, vamos adicionar as habilidades de mostrar nossa fila atual e remover um valor:
 
@@ -67,7 +64,7 @@ defmodule SimpleQueue do
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -126,7 +123,7 @@ defmodule SimpleQueue do
     {:noreply, state ++ [value]}
   end
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -150,7 +147,7 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-Para mais informações olhe a documentação oficial do [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content).
+Para mais informações olhe a documentação oficial do [GenServer](https://hexdocs.pm/elixir/GenServer.html#content).
 
 ## GenEvent
 
@@ -225,4 +222,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-Veja a documentação oficial do [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) para uma lista completa de *callbacks* e funcionalidades.
+Veja a documentação oficial do [GenEvent](https://hexdocs.pm/elixir/GenEvent.html#content) para uma lista completa de *callbacks* e funcionalidades.

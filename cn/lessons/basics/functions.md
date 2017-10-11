@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: 函数
-category: basics
-order: 6
-lang: cn
 ---
 
 Elixir 和其他函数式语言一样，函数都是一等公民。我们将学习 Elixir 中不同类型的函数，它们与众不同的地方，以及如何使用它们。
@@ -84,7 +81,7 @@ end
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -129,7 +126,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 
 iex> Greeter.phrase
-** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
     Greeter.phrase()
 ```
 
@@ -148,7 +145,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "
@@ -164,8 +161,8 @@ iex> Greeter.hello ["Sean", "Steve"]
 
 ```elixir
 defmodule Greeter do
-  def hello(name, country \\ "en") do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
@@ -186,36 +183,48 @@ iex> Greeter.hello("Sean", "es")
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en") when is_list(names) do
+  def hello(names, language_code \\ "en") when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country \\ "en") when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+
+    def foo(:first_clause, b \\ :default) do ... end
+    def foo(:second_clause, b) do ... end
+
+one should write:
+
+    def foo(a, b \\ :default)
+    def foo(:first_clause, b) do ... end
+    def foo(:second_clause, b) do ... end
+
+def hello/2 has multiple clauses and defines defaults in one or more clauses
+    iex:31: (module)
 ```
 
 Elixir 在处理多个匹配函数的时候，不喜欢默认参数这种模式，因为它很容易让人混淆。要处理这种情况，我们可以添加一个设置了默认参数值的函数头部：
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en")
-  def hello(names, country) when is_list(names) do
+  def hello(names, language_code \\ "en")
+  def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country) when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code) when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "

@@ -1,12 +1,9 @@
 ---
-layout: page
+version: 0.9.0
 title: Moduler
-category: basics
-order: 8
-lang: no
 ---
 
-Vi vet fra erfaring at det er besværlig å ha alle våre funksjoner i samme fil og skop. I denne leksjonen skal vi dekke hvordan vi grupperer funksjoner, og definerer en spesialisert form for kart kjent som struct for å kunne organiserer koden vår mer effektivt.
+Vi vet fra erfaring at det er besværlig å ha alle våre funksjoner i samme fil og skop. I denne leksjonen skal vi dekke hvordan vi grupperer funksjoner, og definerer en spesialisert form for map kjent som struct for å kunne organiserer koden vår mer effektivt.
 
 {% include toc.html %}
 
@@ -17,31 +14,31 @@ Moduler er den beste måten å organisere funksjoner inn i egne navnområder. I 
 La oss se på et enkelt eksempel:
 
 ``` elixir
-defmodule Eksempel do
-  def hils(navn) do
-    "Hei #{navn}."
+defmodule Example do
+  def greeting(name) do
+    "Hello #{name}."
   end
 end
 
-iex> Eksempel.hils "Sean"
-"Hei Sean."
+iex> Example.greeting "Sean"
+"Hello Sean."
 ```
 
-Det er mulig å nøste moduler i Elixir:
+I Elixir så er det mulig å nøste moduler i hverandre:
 
 ```elixir
-defmodule Eksempel.Hils do
-  def morgen(navn) do
-    "God morgen #{navn}."
+defmodule Example.Greetings do
+  def morning(name) do
+    "Good morning #{name}."
   end
 
-  def kveld(navn) do
-    "God natt #{navn}."
+  def evening(name) do
+    "Good night #{name}."
   end
 end
 
-iex> Eksempel.Hils.morgen "Sean"
-"God morgen Sean."
+iex> Example.Greetings.morning "Sean"
+"Good morning Sean."
 ```
 
 ### Modul Attributer
@@ -49,11 +46,11 @@ iex> Eksempel.Hils.morgen "Sean"
 Modul attributer er som oftest brukt som konstanter i Elixir. La oss se på et enkelt eksempel:
 
 ```elixir
-defmodule Eksempel do
-  @hils "Hei"
+defmodule Example do
+  @greeting "Hello"
 
-  def hils(navn) do
-    ~s(#{@hils} #{navn}.)
+  def greeting(name) do
+    ~s(#{@greeting} #{name}.)
   end
 end
 ```
@@ -66,36 +63,36 @@ Det er viktig å notere at det er reserverte attributer i Elixir. De tre vanligs
 
 ## Structs
 
-Structs er et spesielle kart som definerer en mengde av nøkler og standard verdier. En struct må være definert i en egen modul, som den også får navnet sitt fra. Det er normalt at en struct er det eneste som er definert i en modul.
+Structs er en spesielle form for map, de definerer en mengde av nøkler og standard verdier. En struct må være definert i en egen modul, som den også får navnet sitt fra. Det er normalt at en struct er det eneste som er definert i en modul.
 
 For å definere en struct bruker vi `defstruct` sammen med en nøkkelord liste av felt og standard verdier.
 
 ```elixir
-defmodule Eksempel.Bruker do
-  defstruct navn: "Sean", roller: []
+defmodule Example.User do
+  defstruct name: "Sean", roles: []
 end
 ```
 
 La oss lage noen structs:
 
 ```elixir
-iex> %Eksempel.Bruker{}
-%Eksempel.Bruker{navn: "Sean", roller: []}
+iex> %Example.User{}
+%Example.User{name: "Sean", roles: []}
 
-iex> %Eksempel.Bruker{navn: "Steve"}
-%Eksempel.Bruker{navn: "Steve", roller: []}
+iex> %Example.User{name: "Steve"}
+%Example.User{name: "Steve", roles: []}
 
-iex> %Eksempel.Bruker{navn: "Steve", roller: [:admin, :eier]}
-%Eksempel.Bruker{navn: "Steve", roller: [:admin, :eier]}
+iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
+%Example.User{name: "Steve", roles: [:admin, :owner]}
 ```
 
-Vi kan oppdatere vår struct akkurat som med kart:
+Vi kan oppdatere vår struct akkurat som med en map:
 
 ```elixir
-iex> steve = %Eksempel.Bruker{navn: "Steve", roller: [:admin, :eier]}
-%Eksempel.Bruker{navn: "Steve", roller: [:admin, :eier]}
-iex> sean = %Bruker{steve | navn: "Sean"}
-%Eksempel.Bruker{navn: "Sean", roller: [:admin, :eier]}
+iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
+%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> sean = %{steve | name: "Sean"}
+%Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
 Det viktigste er at du kan matche structs mot maps:
@@ -115,38 +112,38 @@ Nå som vi vet hvordan vi lager moduler og structs, la oss lære oss hvordan vi 
 Tillater oss å gi alias til modulnavn; noe som er veldig ofte brukt i Elixir.
 
 ```elixir
-defmodule Hilsnader.Hilsing do
-  def enkel(navn), do: "Hei, #{navn}"
+defmodule Sayings.Greetings do
+  def basic(name), do: "Hi, #{name}"
 end
 
-defmodule Eksempel do
-  alias Hilsnader.Hilsing
+defmodule Example do
+  alias Sayings.Greetings
 
-  def hilse(navn), do: Hilsing.enkel(navn)
+  def greeting(name), do: Greetings.basic(name)
 end
 
 # Uten alias
 
-defmodule Eksempel do
-  def hilse(navn), do: Hilsnader.Hilsing.enkel(navn)
+defmodule Example do
+  def greeting(name), do: Sayings.Greetings.basic(name)
 end
 ```
 
 Hvis det oppstår en konflikt mellom to alias, eller om vi ønsker å bruke et alias til noe annet, så kan vi bruke `:as`:
 
 ```elixir
-defmodule Eksempel do
-  alias Hilsnader.Hilsing, as: Hei
+defmodule Example do
+  alias Sayings.Greetings, as: Hi
 
-  def print_melding(navn), do: Hei.enkel(navn)
+  def print_message(name), do: Hi.basic(name)
 end
 ```
 
 Det er også mulig å bruke et alias på flere moduler i en tilordning:
 
 ```elixir
-defmodule Eksempel do
-  alias Hilsnader.{Hilsing, Farvel}
+defmodule Example do
+  alias Sayings.{Greetings, Farewells}
 end
 ```
 
@@ -187,6 +184,7 @@ iex> first([1, 2, 3])
 iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
+
 I tillegg til navn/aritet paret så er det to spesielle atomer, `:functions` og `:macros`, som importerer kun de funksjonene eller makroene:
 
 ```elixir
@@ -234,7 +232,7 @@ use UseImportRequire.UseMe
 
 Å bruke UseImportRequire.UseMe definerer en use_test/0 funksjon gjennom invokasjon av `__using__/1` makroen.
 
-Det er alt det use gjør. Men, det er vanlig at `__using__` makroen kaller på alias, require eller import. Dette vil lage aliaser eller importere det som kreves i using modulen. Dette tillater modulen til å bli brukt til å definere en retningslinje for hvordan deres funksjoner og makroer burde bli referert til. Dette kan være svært fleksibelt i det at `__using__/1` kan sette opp referanser til andre moduler, spesielt undermoduler.
+Det er alt det use gjør. Men, det er vanlig at `__using__` makroen kaller på alias, require eller import. Dette vil lage aliaser eller importere det som kreves i using modulen. Dette tillater modulen til å bli brukt til å definere en retningslinje for hvordan deres funksjoner og makroer burde bli referert til. Dette kan være svært fleksibelt i det at `__using__/1` kan sette opp referanser til andre moduler, spesielt submoduler.
 
 Phoenix rammeverket bruker use og `__using__/1` for å kutte ned bruken av repetitive alias og import kall i bruker definerte moduler.
 
@@ -252,4 +250,4 @@ end
 
 `Ecto.Migration.__using__/1` makroen inkluderer et importkall slik at når du bruker `use Ecto.Migration` så vil den også kalle `import Ecto.Migration`. Den setter også opp modul attributer som vi kan anta kontrollerer Ecto sin atferd.
 
-For å oppsumere: use invokerer `__using__/1` i den spesifiserte modulen. For å virkelig forstå hva den gjør så anbefales det at du leser om `__using__/1`.
+For å oppsumere: use invokerer `__using__/1` i den spesifiserte modulen. For å virkelig forstå hva den gjør så anbefales det at du leser om `__using__/1` makroen.

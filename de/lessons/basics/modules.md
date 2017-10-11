@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Module
-category: basics
-order: 8
-lang: de
 ---
 
 Wir wir aus Erfahrung wissen ist es unschön alle unsere Funktionen in der gleichen Datei und im gleichen scope zu haben. In dieser Lektion werden wir uns ansehen, wie man Funktionen aufteilt und definieren eine spezielle map, genauer ein struct, um unseren Code effektiver zu strukturieren.
@@ -251,4 +248,4 @@ Das `Ecto.Migration.__using__/1`-Makro inkludiert einen import-Aufruf, so dass w
 
 Nochmal zur Wiederholung: Das use-Makro ruft einfach nur das `__using__/1`-Makro auf dem angegebenen Modul auf. Um wirklich zu verstehen, was es tut, musst du das `__using__/1`-Makro lesen.
 
-**Notiz**: `quote`, `require`, `use` und `alias` sind Makros, die wir bei der [Metaprogrammierung](../advanced/metaprogramming) brauchen. 
+**Notiz**: `quote`, `require`, `use` und `alias` sind Makros, die wir bei der [Metaprogrammierung](../../advanced/metaprogramming) brauchen. 

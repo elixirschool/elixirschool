@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: Ειδικές Εργασίες Mix
-category: basics
-order: 15
-lang: gr
 ---
 
 Δημιουργία ειδικών εργασιών Mix για τα Elixir projects σας.

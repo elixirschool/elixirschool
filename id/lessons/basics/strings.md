@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Strings
-category: basics
-order: 14
-lang: id
 ---
 
 Tentang String di Elixir, Char list, Grapheme, dan Codepoint.
@@ -47,7 +44,7 @@ Ketika membuat program di Elixir, kita biasanya tidak memakai char list melainka
 
 Codepoint adalah karakter Unicode sederhana, yang bisa direpresentasikan dengan satu atau dua byte. Sebagai contoh, karakter dengan tilde atau aksen: `á, ñ, è`. Grapheme terdiri dari beberapa codepoint yang tampak sebagai satu karakter sederhana.
 
-Modul String sudah menyediakan dua method untuk menggunakannya, `graphemes/1` and `codepoints/1`. Mari kita lihat contohnya:
+Modul String sudah menyediakan dua fungsi untuk menggunakannya, `graphemes/1` and `codepoints/1`. Mari kita lihat contohnya:
 
 ```elixir
 iex> string = "\u0061\u0301"

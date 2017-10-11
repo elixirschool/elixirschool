@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Mix Tasks
-category: basics
-order: 15
-lang: bg
 ---
 
 Създаване на Mix tasks за вашите Elixir проекти.

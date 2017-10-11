@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Enumerazioni
-category: basics
-order: 3
-lang: it
 ---
 
 Un insieme di algoritmi per enumerare le collezioni.
@@ -14,7 +11,7 @@ Un insieme di algoritmi per enumerare le collezioni.
 
 Il modulo `Enum` contiene oltre un centinaio di funzioni per lavorare con le collezioni di cui abbiamo parlato nella scorsa lezione.
 
-Questa lezione tratterà solo una parte delle funzioni disponibili, per conoscere tutte le funzioni visita la documentazione ufficiale del modulo [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); per enumerare gli elementi a richiesta (_lazy enumeration_) puoi usare il modulo [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+Questa lezione tratterà solo una parte delle funzioni disponibili, per conoscere tutte le funzioni visita la documentazione ufficiale del modulo [`Enum`](https://hexdocs.pm/elixir/Enum.html); per enumerare gli elementi a richiesta (_lazy enumeration_) puoi usare il modulo [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 
 ### all?
@@ -37,16 +34,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every/2
 
-Se hai bisogno di dividere la tua collezione in gruppi più piccoli, `chunk` è la funzione di cui hai bisogno:
+Se hai bisogno di dividere la tua collezione in gruppi più piccoli, `chunk_every/2` è la funzione di cui hai bisogno:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Esistono alcune opzioni per `chunk` ma non le tratteremo, visita [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) nella documentazione ufficiale per approfondire.
+Esistono alcune opzioni per `chunk_every/2` ma non le tratteremo, visita [`chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) nella documentazione ufficiale per approfondire.
 
 ### chunk_by
 
@@ -66,6 +63,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Nota__: La funzione `each` non restituisce l'atom `:ok`.

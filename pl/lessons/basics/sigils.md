@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Sigile
-category: basics
-order: 10
-lang: pl
 ---
 
 Tworzenie i praca z sigilami.
@@ -46,7 +43,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 '2 + 7 = 9'
 
 iex> ~C/2 + 7 = #{2 + 7}/
-'2 + 7 = #{2 + 7}'
+'2 + 7 = \#{2 + 7}'
 ```
 
 Jak widać sigil `~c`, pisany małą literą, przeprowadza obliczenia, w przeciwieństwie do `~C`, pisany wielką literą. Konwencja wyliczania wartości, bądź nie, z pomocą użycia odpowiedniej małej albo wielkiej litery jest taka sama dla wszystkich sigili.
@@ -57,7 +54,7 @@ Sigile `~r` i `~R` służą do tworzenia wyrażeń regularnych. Można też w ty
 
 ```elixir
 iex> re = ~r/elixir/
-~/elixir
+~r/elixir/
 
 iex> "Elixir" =~ re
 false
@@ -70,7 +67,7 @@ Jak widzimy pierwszy test nie powiódł się. ponieważ `Elixir` nie pasuje do w
 
 ```elixir
 iex> re = ~r/elixir/i
-~/elixir
+~r/elixir/i
 
 iex> "Elixir" =~ re
 true
@@ -79,7 +76,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Elixir posiada też moduł [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html), którego API jest oparte o 
+Elixir posiada też moduł [Regex](https://hexdocs.pm/elixir/Regex.html), którego API jest oparte o 
 bibliotekę do obsługi wyrażeń  regularnych z Erlanga. Zaimplementujmy funkcję `Regex.split/2` z użyciem sigila:  
 
 ```elixir
@@ -137,7 +134,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ### Struktura `NaiveDateTime`
 
-Struktura [NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) jest uproszczeniem `DateTime`, które nie posiada informacji o strefie czasowej.
+Struktura [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) jest uproszczeniem `DateTime`, które nie posiada informacji o strefie czasowej.
 
 W większości wypadków nie powinniśmy tworzyć tej struktury w bezpośredni sposób, ale wyjątek stanowi tu użycie jej w dopasowaniach wzorców:
 

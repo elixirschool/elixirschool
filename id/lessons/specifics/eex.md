@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Embedded Elixir (EEx)
-category: specifics
-order: 3
-lang: id
 ---
 
 Sebagaimana Ruby punya ERB dan Java punya JSP, Elixir punya EEx atau Embedded Elixir.  Dengan EEx kita bisa memasukkan dan menjalankan Elixir di dalam string.
@@ -78,4 +75,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 Assignment di `EEx.SmartEngine` berguna karena assignment bisa diubah tanpa mengkompilasi template.
 
-Tertarik untuk menulis engine sendiri?  Lihatlah perilaku [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) untuk melihat apa saja yang dibutuhkan.
+Tertarik untuk menulis engine sendiri?  Lihatlah perilaku [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html) untuk melihat apa saja yang dibutuhkan.

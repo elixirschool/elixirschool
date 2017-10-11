@@ -1,10 +1,8 @@
 ---
-layout: page
 title: Elixir School (Việt ngữ)
-lang: vi
 ---
 
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 Các bài học về ngôn ngữ lập trình Elixir, lấy cảm hứng từ [Scala School](http://twitter.github.io/scala_school/) của Twitter.
 

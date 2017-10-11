@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.1
 title: Τεκμηρίωση
-category: basics
-order: 11
-lang: gr
 ---
 
 Τεκμηρίωση κώδικα Elixir.
@@ -206,11 +203,11 @@ View them at "doc/index.html".
 
 Λογικά, αν όλα πήγαν καλά, θα πρέπει να βλέπετε ένα παρόμοιο μήνυμα με το μήνυμα εξόδου στο από πάνω παράδειγμα.  Ας δούμε τώρα μεσα στο Mix project μας και θα πρέπει να δούμε ότι υπάρχει ένας ακόμα φάκελος που ονομάζεται **doc/**.  Μέσα του βρίσκεται η δημιουργημένη τεκμηρίωσή μας.  Αν επισκεφθούμε την σελίδα index στο browser μας θα πρέπει να δούμε τα παρακάτω:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 We can see that Earmark has rendered our markdown and ExDoc is now displaying it in a useful format.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Μπορούμε να το διαθέσουμε στο GitHub, στο website μας, πιο ειδικά στα [HexDocs](https://hexdocs.pm/).
 
@@ -306,4 +303,4 @@ end
 
  - Προσπαθήστε να συμπεριλάβετε μερικά παραδείγματα στην τεκμηρίωσή σας, αυτό σας επιτρέπει να παράγετε αυτόματα τεστ από τα παραδείγματα κώδικα που βρίσκονται σε μία ενότητα, συνάρτηση, ή μακροεντολή με το [ExUnit.DocTest][].  Για να γίνει αυτό, πρέπει να καλέσετε την μακροεντολή `doctest/1` από την περίπτωση του τεστ και να γράψετε τα παραδείγματά σας με βάση κάποιες οδηγίες, οι οποίες αναλύονται στην [επίσημη τεκμηρίωση][ExUnit.DocTest]
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

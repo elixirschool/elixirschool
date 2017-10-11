@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Custom Mix Tasks
-category: basics
-order: 15
-lang: de
 ---
 
 Wie man custom Mix tasks für ein Elixir-Projekt erstellt.

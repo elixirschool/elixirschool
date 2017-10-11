@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: 엄브렐라 프로젝트
-category: advanced
-order: 8
-lang: ko
 ---
 
 때로는 프로젝트가 커지고 커져서 아주아주 커질 수도 있습니다. Mix 빌드 도구를 사용해서 작성한 코드를 여러 앱으로 나누고, 이렇게 Elixir 프로젝트가 계속해서 커져나가도 관리하기 쉽도록 유지할 수 있습니다.
@@ -52,7 +49,7 @@ for each application in the apps/ directory.
 
 ## 자식 프로젝트
 
-`machine_learning_toolkit` 프로젝트 안에 있는 `app` 디렉터리로 이동해서, 아래처럼 Mix를 사용해 평범한 애플리케이션을 3개 만들어 봅시다.
+`machine_learning_toolkit` 프로젝트 안에 있는 `apps` 디렉터리로 이동해서, 아래처럼 Mix를 사용해 평범한 애플리케이션을 3개 만들어 봅시다.
 
 ```shell
 $ mix new utilities
@@ -164,7 +161,7 @@ $ tree
 
 다시 엄브렐라 프로젝트 최상위 폴더로 이동해 보면, `compile` 과 같은 일반적인 Mix 명령을 계속해서 사용할 수 있다는 걸 알 수 있습니다. 엄브렐라 프로젝트 안에 있는 서브프로젝트는 전부 일반적인 애플리케이션이기 때문에, 프로젝트의 경로로 들어가서 Mix가 제공하는 똑같은 것들을 그대로 할 수 있습니다.
 
-```
+```bash
 $ mix compile
 
 ==> svm

@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Plug
-category: specifics
-order: 1
-lang: id
 ---
 
 Kalau anda familiar dengan Ruby anda bisa menganggap Plug seperti Rack dengan sedikit Sinatra.  Plug memberi spesifikasi untuk komponen aplikasi web dan adapter untuk web server. Walau bukan bagian Elixir core, Plug adalah sebuah project resmi Elixir.
@@ -16,8 +13,8 @@ Instalasi menggunakan Mix sangat mudah.  Untuk menginstal Plug kita perlu membua
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.0.0"},
-   {:plug, "~> 1.0"}]
+  [{:cowboy, "~> 1.1.2"},
+   {:plug, "~> 1.3.4"}]
 end
 ```
 
@@ -91,7 +88,7 @@ end
 
 Hal pertama yang perlu dicatat adalah bahwa kita telah mendefinisikan sebuah exception baru `IncompleteRequestError` dan bahwa salah satu opsinya adalah `:plug_status`.  Jika tersedia opsi ini digunakan oleh Plug untuk menset kode status HTTP jika terjadi exception.
 
-Bagian kedua dari Plug kita adalah method `call/2`.  Di sinilah kita memutuskan apakah akan menerapkan logika verifikasi kita atau tidak.  Hanya jika path dari request tersebut ada dalam opsi `:paths` kita sajalah kita akan memanggil `verify_request!/2`.
+Bagian kedua dari Plug kita adalah fungsi `call/2`.  Di sinilah kita memutuskan apakah akan menerapkan logika verifikasi kita atau tidak.  Hanya jika path dari request tersebut ada dalam opsi `:paths` kita sajalah kita akan memanggil `verify_request!/2`.
 
 Bagian terakhir dari plug kita adalah fungsi privat `verify_request!/2` yang memverifikasi apakah `:fields` yang dibutuhkan semuanya ada.  Jika ada yang tidak ada, kita memunculkan exception `IncompleteRequestError`.
 

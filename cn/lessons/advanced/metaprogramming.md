@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: 元编程
-category: advanced
-order: 6
-lang: cn
 ---
 
 元编程是指用代码来写代码的过程。在 Elixir 中，这说明我们可以扩展该语言，动态地修改该语言。我们会先看看 Elixir 底层是怎么实现的，然后讲怎么修改它，最后会使用刚学过的只是来扩展它。
@@ -13,7 +10,7 @@ lang: cn
 {% include toc.html %}
 
 ## Quote
-学习元编程的第一步是理解表达式是怎么表示的。Elixir 的 AST（抽象语法树）是列表构成的。这些列表包含了三个部分：函数名称，metadata，还有函数的参数。
+学习元编程的第一步是理解表达式是怎么表示的。Elixir 的 AST（抽象语法树）是元祖构成的。这些元祖包含了三个部分：函数名称，metadata，还有函数的参数。
 
 Elixir 提供了 `quote/2` 函数，可以让我们看到这些内部结构，也就是说 `quote/2` 能把 Elixir 代码转换成对顶的底层表示形式。
 

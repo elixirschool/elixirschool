@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Mnesia
-category: specifics
-order: 5
-lang: pl
 ---
 
 Mnesia to rozwiązanie „wagi ciężkiej” do zarządzania w czasie rzeczywistym rozproszonymi bazami danych.
@@ -91,7 +88,7 @@ Mamy już podstawową wiedzę i jesteśmy na dobrej drodze do uruchomienia bazy 
 
 ```elixir
 iex> alias :mnesia, as: Mnesia
-iex> Mnesia.create_schema([node])
+iex> Mnesia.create_schema([node()])
 :ok
 iex> Mnesia.start()
 :ok

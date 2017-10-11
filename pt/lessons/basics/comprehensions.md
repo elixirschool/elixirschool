@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Comprehensions
-category: basics
-order: 13
-lang: pt
 ---
 
 Comprehensions são um 'syntactic sugar' (uma forma mais simples de escrever) para realizar loops em Enumerables em Elixir. Nessa lição veremos como podemos fazer iterações e gerar os resultados utilizando comprehensions.

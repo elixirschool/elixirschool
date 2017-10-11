@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Własne funkcje Mix'a 
-category: basics
-order: 15
-lang: pl
 ---
 
 Tworzenie własnych funkcji Mix'a dla projektów w Elixirze.

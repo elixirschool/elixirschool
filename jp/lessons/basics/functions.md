@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: 関数
-category: basics
-order: 6
-lang: jp
 ---
 
 Elixirや多くの関数型言語では、関数は第一級市民(≒ファーストクラスオブジェクト)です。Elixirにおける関数の種類について、それぞれどう異なっていて、どのように使うのかを学んでいきます。
@@ -16,7 +13,7 @@ Elixirや多くの関数型言語では、関数は第一級市民(≒ファー�
 
 基本的な例を見てみましょう:
 
-```elixirre
+```elixir
 iex> sum = fn (a, b) -> a + b end
 iex> sum.(2, 3)
 5
@@ -84,7 +81,7 @@ end
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -129,7 +126,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 
 iex> Greeter.phrase
-** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
     Greeter.phrase()
 ```
 
@@ -148,7 +145,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "
@@ -164,8 +161,8 @@ iex> Greeter.hello ["Sean", "Steve"]
 
 ```elixir
 defmodule Greeter do
-  def hello(name, country \\ "en") do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
@@ -186,36 +183,48 @@ iex> Greeter.hello("Sean", "es")
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en") when is_list(names) do
+  def hello(names, language_code \\ "en") when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country \\ "en") when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+
+    def foo(:first_clause, b \\ :default) do ... end
+    def foo(:second_clause, b) do ... end
+
+one should write:
+
+    def foo(a, b \\ :default)
+    def foo(:first_clause, b) do ... end
+    def foo(:second_clause, b) do ... end
+
+def hello/2 has multiple clauses and defines defaults in one or more clauses
+    iex:31: (module)
 ```
 
 Elixirは複数のマッチング関数にデフォルト引数があるのを好みません。混乱の元になる可能性があります。これに対処するには、デフォルト引数付きの関数を先頭に追加します:
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en")
-  def hello(names, country) when is_list(names) do
+  def hello(names, language_code \\ "en")
+  def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country) when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code) when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "

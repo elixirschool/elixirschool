@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Documentation
-category: basics
-order: 11
-lang: cn 
 ---
 
 Documenting Elixir code.

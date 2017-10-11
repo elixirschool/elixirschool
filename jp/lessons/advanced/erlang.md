@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Erlangとの相互運用
-category: advanced
-order: 1
-lang: jp
 ---
 
 Erlang VM (BEAM)の上で開発することによって得られる利点の1つに、既にある大量のライブラリが利用できるという事があげられます。相互運用できることで、そうしたライブラリやErlangの標準ライブラリをElixirコードから活用することができます。このレッスンではサードパーティのErlangパッケージも併せ、標準ライブラリの関数へアクセスする方法を見ていきます。
@@ -20,13 +17,13 @@ Erlangの豊富な標準ライブラリはアプリケーション内のどのEl
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
+    IO.puts "Time: #{time} μs"
     IO.puts "Result: #{result}"
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Time: 8ms
+Time: 8 μs
 Result: 1000000
 ```
 
@@ -101,7 +98,7 @@ false
 true
 ```
 
-重要なので注記しておくと、古いErlangライブラリではバイナリに対応していないものが多いため、Elixirの文字列は文字リストに変換する必要があります。ありがたいことに、これは`to_char_list/1`関数を用いて簡単に行うことができます:
+重要なので注記しておくと、古いErlangライブラリではバイナリに対応していないものが多いため、Elixirの文字列は文字リストに変換する必要があります。ありがたいことに、これは`to_charlist/1`関数を用いて簡単に行うことができます:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -110,7 +107,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

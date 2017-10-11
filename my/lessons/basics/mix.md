@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Mix
-category: basics
-order: 9
-lang: my
 ---
 
 Sebelum kita belajar lebih mendalam mengenai Elixir kita perlu memahami tentang mix.  Jika anda biasa dengan Ruby, mix adalah gabungan Bundler, RubyGems dan Rake.  Ia adalah elemen penting di dalam mana-mana projek Elixir dan di dalam pelajaran ini kita akan meneroka beberapa cirinya yang hebat.  Untuk melihat apa yang dibekalkan oleh mix, jalankan `mix help`.
@@ -42,20 +39,25 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
-    []
+    [
+
+    ]
   end
 end
 ```

@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Pruebas
-category: basics
-order: 12
-lang: es
 ---
 
 Las pruebas son una parte importante en el desarrollo de software. En esta lección vamos a ver como hacer pruebas de nuestro código Elixir con ExUnit y también vamos a ver algunas buenas prácticas para hacer las pruebas.

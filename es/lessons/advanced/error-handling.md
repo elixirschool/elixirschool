@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Manejo de errores
-category: advanced
-order: 2
-lang: es
 ---
 
 Aunque es más común devolver una tupla `{:error, reason}`, Elixir soporta excepciones, y en esta lección revisaremos como manejar errores y los diferentes mecanismos a nuestra disposición.
@@ -137,7 +134,7 @@ Para salir de manera explícita podemos usar `exit/1`:
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 Pese a que es posible manejar una salida con `try/catch`, hacerlo es _extremadamente_ raro. En casi todos los casos es ventajoso permitir al supervisor manejar la salida del proceso:

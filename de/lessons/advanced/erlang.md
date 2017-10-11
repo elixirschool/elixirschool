@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Erlang-Interoperabilität
-category: advanced
-order: 1
-lang: de
 ---
 
 Einer der Vorteile davon, wenn man auf die Erlang VM (BEAM) aufbaut, ist der große Reichtum an vorhandenen Bibiliotheken, die wir benutzen können. Interoperabilität erlaubt uns sowohl diese als auch die Erlang-Standardbibliothek von unserem Elixir Code zu benutzen. In dieser Lektion werden wir sehen, wie man auf die Funktionalität der Standardbibliothek und Drittanbieter-Erlang-Pakete zugreift.
@@ -20,13 +17,13 @@ Lass uns `:timer.tc` benutzen, um die Ausführungszeit einer gegebenen Funktion 
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
+    IO.puts "Time: #{time} μs"
     IO.puts "Result: #{result}"
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Time: 8ms
+Time: 8 μs
 Result: 1000000
 ```
 
@@ -101,7 +98,7 @@ false
 true
 ```
 
-Es ist wichtig sich zu merken, dass viele ältere Erlang-Bibliotheken keine binaries unterstützen und wir somit Elixir strings in char lists umwandeln müssen. Glücklicherweise ist das mit der `to_char_list/1`-Funktion kein Problem:
+Es ist wichtig sich zu merken, dass viele ältere Erlang-Bibliotheken keine binaries unterstützen und wir somit Elixir strings in char lists umwandeln müssen. Glücklicherweise ist das mit der `to_charlist/1`-Funktion kein Problem:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -110,7 +107,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_char_list |> :string.words
+iex> "Hello World" |> to_charlist |> :string.words
 2
 ```
 

@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: 测试
-category: basics
-order: 12
-lang: cn
 ---
 
 测试是软件开发重要的一部分，这节课我们会讲一下如何使用 ExUnit 测试 Elixir 代码，以及测试中的最佳实践方法。
@@ -79,7 +76,7 @@ ExUnit 会告诉我们错误断言出现的行数，期望的值是什么，实�
 
 在 Elixir 语言中，会有很多 actors/processes 之间互相发送消息，因此有时候需要测试某些消息是否被发送。因为 ExUnit 是运行在自己的 process 的，因此可以像其他 process 那样接受消息。你可以使用 `assert_received` 来断言消息：
 
-```
+```elixir
 defmodule SendingProcess do
   def run(pid) do
     send pid, :ping
@@ -90,7 +87,7 @@ defmodule TestReceive do
   use ExUnit.Case
 
   test "receives ping" do
-    SendingProcess.run(self)
+    SendingProcess.run(self())
     assert_received :ping
   end
 end
@@ -98,11 +95,11 @@ end
 
 `assert_reveived` 并不会等待消息，如果需要，你可以使用 `assert_reveive` 并指定超时时间。
 
-## capture_io 和 capture_log
+### capture_io 和 capture_log
 
-使用 `ExUnit.captureIO` 可以在不改变原来应用的情况下，捕获应用的输出。只要把生成输出的函数作为参数传进去就行：
+使用 `ExUnit.CaptureIO` 可以在不改变原来应用的情况下，捕获应用的输出。只要把生成输出的函数作为参数传进去就行：
 
-```
+```elixir
 defmodule OutputTest do
   use ExUnit.Case
   import ExUnit.CaptureIO

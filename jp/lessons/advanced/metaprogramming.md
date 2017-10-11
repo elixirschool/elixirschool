@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: メタプログラミング
-category: advanced
-order: 7
-lang: jp
 ---
 
 メタプログラミングとはコード自体にコードを記述させる機能です。
@@ -173,7 +170,7 @@ quoted = quote do
 end
 ```
 
-```
+```elixir
 iex> quoted |> Macro.expand_once(__ENV__) |> Macro.to_string |> IO.puts
 if(!true) do
   "Hi"

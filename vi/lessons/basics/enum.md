@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Enum
-category: basics
-order: 3
-lang: vi
 ---
 
 Các thuật toán thao tác với các collection (tập dữ liệu)
@@ -14,7 +11,7 @@ Các thuật toán thao tác với các collection (tập dữ liệu)
 
 Module `Enum` bao gồm hơn một trăm hàm để dùng với các collection ta đã biết từ bài trước.
 
-Bài này sẽ chỉ thảo luận một vài trong số các hàm đó, xem đầy đủ các hàm tại trang tài liệu chính thức [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); xem thêm lazy enumeration (thao tác trì hoãn) tại trang [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html)
+Bài này sẽ chỉ thảo luận một vài trong số các hàm đó, xem đầy đủ các hàm tại trang tài liệu chính thức [`Enum`](https://hexdocs.pm/elixir/Enum.html); xem thêm lazy enumeration (thao tác trì hoãn) tại trang [`Stream`](https://hexdocs.pm/elixir/Stream.html)
 
 ### all?
 
@@ -36,23 +33,23 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every/2
 
-Để chia collection thành các nhóm nhỏ, bạn có thể dùng hàm `chunk`:
+Để chia collection thành các nhóm nhỏ, bạn có thể dùng hàm `chunk_every/2`:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Có nhiều lựa chọn với hàm `chunk` nhưng ta sẽ không đi sâu vào chi tiết, xem trang chính thức [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) để biết thêm chi tiết.
+Có nhiều lựa chọn với hàm `chunk_every/2` nhưng ta sẽ không đi sâu vào chi tiết, xem trang chính thức [`chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) để biết thêm chi tiết.
 
 ### chunk_by
 
 Nếu cần nhóm các phần tử theo một tính năng khác không phải kích thước, ta có thể dùng `chunk_by`:
 
 ```elixir
-iex> Enum.chunk_by(["one", "twoóm", "three", "four", "five"], fn(x) -> String.length(x) end)
+iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"]]
 ```
 
@@ -65,6 +62,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Lưu ý__: Hàm `each` thực ra luôn trả về atom `:ok`.

@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 0.9.0
 title: Съпоставка с образец
-category: basics
-order: 4
-lang: bg
 ---
 
 Съпоставката с образец (pattern matching) е мощна част от Elixir, тя ни позволчва да съпоставяме прости стойности, структури от даннии дори функции.  В този урок ще започнем да разбираме как съпоставянето с образец се използва.
@@ -38,7 +35,7 @@ iex> [1, 2, 3] = list
 iex> [] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-iex> [1|tail] = list
+iex> [1 | tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]

@@ -1,3 +1,10 @@
+# Setup
+baseurl: /
+url: https://elixirschool.com
+permalink: pretty
+default_lang: en
+exclude_from_localization: []
+
 # Author
 author:
   name: Sean Callan
@@ -6,119 +13,12 @@ author:
   twitter: doomspork
   github: doomspork
 
-# Setup
-title: Elixir School
-description:
-  en: Lessons about the Elixir programming language
-  jp: プログラミング言語Elixirのレッスン
-  cn: Elixir 编程语言教程
-  es: Lecciones acerca del lenguaje de programación Elixir
-  pt: Lições sobre a linguagem de programação Elixir
-  vi: Giáo trình cho ngôn ngữ lập trình Elixir
-  ru: Уроки программирования на языке Elixir
-  sk: Lekcie o programovacom jazyku Elixir
-  fr: Leçons sur le langage de programmation Elixir
-  gr: Μαθήματα προγραμματισμού της γλώσσας Elixir
-  it: Lezioni sul linguaggio di programmazione Elixir
-  my: Pelajaran mengenai bahasa aturcara Elixir
-  pl: Lekcje programowania w języku Elixir
-  id: Pelajaran mengenai bahasa pemrograman Elixir
-  no: Leksjoner i programmeringsspråket Elixir
-  ko: 프로그래밍 언어 Elixir 배우기
-  uk: Навчальні матеріали про мову програмування Elixir
-  tr: Elixir programlama dili dersleri
-  bg: Уроци за езика за програмиране Elixir
-  de: Übungen zur Programmiersprache Elixir
-baseurl: /
-url: https://elixirschool.com
-og_image: https://elixirschool.com/assets/fb_share.jpg
-permalink: pretty
-languages: ['en', 'jp', 'cn', 'es', 'pt', 'vi', 'ru', 'sk', 'fr', 'gr', 'it', 'pl', 'my', 'no', 'ko', 'id', 'uk', 'tr', 'bg', 'de']
-rtl_languages: ['ar']
-default_lang: en
-exclude_from_localization: []
-sections:
-  - tag: basics
-    label:
-      en: Basics
-      jp: 基礎
-      cn: 基础
-      es: Básico
-      pt: Básico
-      vi: Cơ bản
-      ru: Основы
-      my: Asas
-      sk: Základy
-      fr: Bases
-      gr: Βασικά
-      it: Base
-      pl: Podstawy
-      id: Dasar
-      no: Grunnleggende
-      ko: 기초
-      uk: Основи
-      tr: Temeller
-      bg: Основи
-      de: Grundlagen
-  - tag: advanced
-    label:
-      en: Advanced
-      jp: 上級
-      cn: 高级
-      es: Avanzado
-      pt: Avançado
-      vi: Nâng cao
-      ru: Продвинутый
-      my: Lanjutan
-      sk: Pokročilé
-      fr: Avancé
-      gr: Προχωρημένα
-      it: Avanzato
-      pl: Zaawansowane
-      id: Lanjutan
-      no: Avansert
-      ko: 심화
-      uk: Просунуті
-      tr: Gelişmiş
-      bg: За Напреднали
-      de: Erweitert
-  - tag: specifics
-    label:
-      en: Specifics
-      jp: 詳細
-      cn: 专题
-      es: Específico
-      pt: Específico
-      vi: Cụ thể
-      ru: Специфика
-      my: Khusus
-      sk: Špecifiká
-      fr: Spécificités
-      gr: Ιδιαιτερότητες
-      it: Specifiche
-      pl: Specyficzne
-      id: Khusus
-      no: Detaljer
-      ko: 활용
-      uk: Конкретика
-      tr: Spesifik
-      bg: Спесифики
-      de: Einzelheiten
-  - tag: libraries
-    label:
-      en: Libraries
-      jp: ライブラリー
-      ru: Библиотеки
-      uk: Бібліотеки
-      gr: Βιβλιοθήκες
-      it: Librerie
-      ko: 라이브러리
-      pl: Biblioteki
-
-gems:
-  - kramdown
+plugins:
   - jekyll-assets
+  - jekyll-redirect-from
   - jekyll-sitemap
+  - kramdown
+  - uglifier
 
 # Markdown Config
 markdown: kramdown
@@ -127,60 +27,48 @@ kramdown:
   syntax_highlighter: rouge
 
 # Assets
-exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
+exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'Procfile', 'Rakefile', 'vendor']
 assets:
   compress:
     css: sass
     js:  uglifier
+  digest: true
+  sources:
+    - _assets/images
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _assets/fonts/icomoon
 
 sitemap:
   file: '/sitemap.xml'
   include_posts:
-      - '/index.html'
+    - '/index.html'
   change_frequency_name: 'change_frequency'
   priority_name: 'priority'
 
 elixir:
-  version: 1.3.4
+  version: 1.5.2
 
 erlang:
   OTP: 20
-  erts: 8.0.1
+  erts: 9.1
 
-toc:
-  en: Table of Contents
-  jp: 目次
-  cn: 目录
-  es: Tabla de contenidos
-  pt: Sumário
-  vi: Mục lục
-  ru: Содержание
-  sk: Obsah
-  fr: Table des matières
-  gr: Πίνακας περιεχομένων
-  it: Tavola dei Contenuti
-  my: Isi Kandungan
-  pl: Spis treści
-  no: Innholdsfortegnelse
-  ko: 목차
-  id: Daftar Isi
-  uk: Зміст
-  tr: İçerik
-  bg: Съдържание
-  de: Inhaltsverzeichnis
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      layout: "default"
+  -
+    scope:
+      type: "pages"
+    values:
+      layout: "page"
+  -
+    scope:
+      type: "posts"
+    values:
+      layout: "post"
 
-share:
-  en: Share This Page
-  ru: Поделиться
-  ko: 이 페이지 공유하기
-  jp: このページをシェアする
-  no: Del denne siden
-  cn: 分享本页面
-  sk: Zdieľaj túto stránku
-  fr: Partager cette page
-  pl: Podziel się
-  id: Bagikan Halaman Ini
-  uk: Поділитися
-  tr: Paylaş
-  bg: Споделете тази страница
-  pt: Compartilhe essa página
+# Helpers
+empty_array: []

@@ -1,9 +1,6 @@
 ---
-layout: page
+version: 1.0.0
 title: Пользовательские Mix задачи
-category: basics
-order: 15
-lang: ru
 ---
 
 Создание пользовательских Mix задач для ваших Elixir проектов.
