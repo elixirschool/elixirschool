@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Основы
 ---
 
@@ -15,7 +15,7 @@ title: Основы
 
 После того, как Elixir установлен, вы с лёгкостью можете проверить, какая именно версия была установлена.
 
-    % elixir -v
+    $ elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
