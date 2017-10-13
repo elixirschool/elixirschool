@@ -17,12 +17,14 @@
 #  pt: 
 #  ru: 
 #  sk: 
+#  ta: 
 #  th: 
 #  tr: 
 #  uk: 
 #  vi: 
 
 en:
+  ar: Arabiс
   bg: Bulgarian
   bn: Bengali
   cn: Chinese
@@ -41,6 +43,7 @@ en:
   pt: Portuguese
   ru: Russian
   sk: Slovak
+  ta: Tamil
   tr: Turkish
   uk: Ukranian
   vi: Vietnamese
