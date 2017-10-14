@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.0
 title: Funkcie
 ---
 
@@ -92,6 +92,29 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
+### Pomenovanie funkcií a počet parametrov
+
+Už sme si spomenuli skôr, že funkcie sú pomenované kombináciou ich mena a počtom parametrov (`arity`). To znamená, že môžeme spraviť aj niečo ako:
+
+```elixir
+defmodule Greeter2 do
+  def hello(), do: "Hello, anonymous person!"   # hello/0
+  def hello(name), do: "Hello, " <> name        # hello/1
+  def hello(name1, name2), do: "Hello, #{name1} and #{name2}"
+                                                # hello/2
+end
+
+iex> Greeter2.hello()
+"Hello, anonymous person!"
+iex> Greeter2.hello("Fred")
+"Hello, Fred"
+iex> Greeter2.hello("Fred", "Jane")
+"Hello, Fred and Jane"
+```
+
+V komentároch máme mená funkcii vyššie. Prvá implementácia nemá žiadne argumenty, tak je označená ako `hello/0`. Druhá funkcia má jeden argument, takže jej názov je `hello/1` atď.
+Narozdiel od iných jazykov, kde by takéto niečo bolo považované za preťaženie funkcie, no v Elixire sú považované za úplne od seba _rôzne_ funkcie. (Pattern matching, spomenutý vyššie je použitý iba vtedy, keď poskytneme viac definícií pre funkciu s _rovnakým_ počtom argumentov.)
+
 ### Privátne funkcie
 
 Ak nechceme, aby naša funkcia mohla byť volaná z iných modulov, môžeme ju zadefinovať ako privátnu - takto ju bude možné volať len z vnútra jej vlastného modulu. Na definovanie privátnych funkcií slúži kľúčové slovo `defp`:
@@ -106,17 +129,14 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 
 iex> Greeter.phrase
-** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
     Greeter.phrase()
 ```
-
-Volanie funkcie `Greeter.phrase` vyhodilo chybu, pretože bola definovaná ako privátna a my sme ju zavolali zvonka.
 
 ### Hraničné podmienky
 
 Hraničných podmienok (*guards*) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](../control-structures). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
-
-Hraničné podmienky sú vyhodnocované hneď po tom, čo Elixir pattern matchingom vyberie jedno z definovaných tiel funkcie.
+Keď Elixir vybral funkciu, akékoľvek existujúce hraničné podmienky budú otestované.
 
 V nasledujúcom príklade máme dve funkcie s tou istou hlavičkou, no rôznymi hraničnými podmienkami testujeme typ argumentu:
 
@@ -138,8 +158,6 @@ end
 iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
-
-Prvé telo sa použije, ak je argument typu zoznam, druhé ak je argumentom reťazec.
 
 ### Východiskové argumenty
 
@@ -183,10 +201,22 @@ defmodule Greeter do
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+
+    def foo(:first_clause, b \\ :default) do ... end
+    def foo(:second_clause, b) do ... end
+
+one should write:
+
+    def foo(a, b \\ :default)
+    def foo(:first_clause, b) do ... end
+    def foo(:second_clause, b) do ... end
+
+def hello/2 has multiple clauses and defines defaults in one or more clauses
+    iex:31: (module)
 ```
 
-Elixir nevidí rád východiskové argumenty vo viacerých zhodných hlavičkách funkcie, pretože to môže byť mätúce. Riešenie spočíva v pridaní hlavičky s východiskovými argumentami, pričom z pôvodných hlavičiek východiskové argumenty odstránime:
+Elixir nerád vidí východiskové argumenty vo viacerých zhodných hlavičkách funkcie, pretože to môže byť mätúce. Riešenie spočíva v pridaní hlavičky s východiskovými argumentami, pričom z pôvodných hlavičiek východiskové argumenty odstránime:
 
 ```elixir
 defmodule Greeter do

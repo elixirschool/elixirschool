@@ -1,28 +1,28 @@
 ---
-version: 0.9.1
+version: 1.1.0
 title: Comprehensions
 ---
 
-List comprehensions (*komprehenžny?*) sú syntaktickým zjednodušením cyklovania nad dátovými štruktúrami typu enumerable (kolekciami ako zoznamy a podobne). V tento lekcii sa naučíme, ako ich používať na iterovanie a generovanie.
+List comprehensions sú syntaktickým zjednodušením prechádzania kolekciami v Elixire. V tejto lekcii sa naučíme, ako ich používať na iterovanie a generovanie.
 
 {% include toc.html %}
 
 ## Základy
 
-Častým použitím komprehenžnov je stručnejší zápis iterovania nad `Enum` a `Stream`. Pozrime sa na jednoduchý príklad:
+Častým použitím comprehensions je stručnejší zápis iterovania nad `Enum` a `Stream`. Pozrime sa na jednoduchý príklad:
 
 ```elixir
-iex> zoznam = [1, 2, 3, 4, 5]
-iex> for x <- zoznam, do: x*x
+iex> list = [1, 2, 3, 4, 5]
+iex> for x <- list, do: x*x
 [1, 4, 9, 16, 25]
 ```
 
 Vidíme, že je použité kľúčové slovo `for` nasledované generátorom. Čo je generátor? Je to výraz, ktorý generuje vždy ďalší prvok pre každú novú iteráciu. V našom príklade to je `x <- [1, 2, 3, 4, 5]`.
 
-Samozrejme, komprehenžny nie sú limitované na zoznamy, môžeme ich použiť na ľubovoľnú štruktúru typu enumerable:
+Samozrejme, comprehensions nie sú limitované na zoznamy, môžeme ich použiť s ľubovoľnou kolekciou:
 
 ```elixir
-# kľúčované zoznamy
+# Zoznamy kľúčových slov
 iex> for {_key, val} <- [one: 1, two: 2, three: 3], do: val
 [1, 2, 3]
 
@@ -30,7 +30,7 @@ iex> for {_key, val} <- [one: 1, two: 2, three: 3], do: val
 iex> for {k, v} <- %{"a" => "A", "b" => "B"}, do: {k, v}
 [{"a", "A"}, {"b", "B"}]
 
-# Reťazce
+# Binárne zoznamy
 iex> for <<c <- "hello">>, do: <<c>>
 ["h", "e", "l", "l", "o"]
 ```
@@ -45,9 +45,9 @@ iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], do: val
 Môžeme dokonca použiť viacero generátorov - funguje to podobne, ako vnorené cykly:
 
 ```elixir
-iex> zoznam = [1, 2, 3, 4]
-iex> for n <- zoznam, pocet <- 1..n do
-...>   String.duplicate("*", pocet)
+iex> list = [1, 2, 3, 4]
+iex> for n <- list, times <- 1..n do
+...>   String.duplicate("*", times)
 ...> end
 ["*", "*", "**", "*", "**", "***", "*", "**", "***", "****"]
 ```
@@ -55,7 +55,7 @@ iex> for n <- zoznam, pocet <- 1..n do
 Na lepšiu ilustráciu použime funkciu `IO.puts` na zobrazenie oboch vygenerovaných hodnôt:
 
 ```elixir
-iex> for n <- zoznam, pocet <- 1..n, do: IO.puts "#{n} - #{pocet}"
+iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 1 - 1
 2 - 1
 2 - 2
@@ -68,13 +68,11 @@ iex> for n <- zoznam, pocet <- 1..n, do: IO.puts "#{n} - #{pocet}"
 4 - 4
 ```
 
-Pozor: komprehenžny sú stále len syntaktickým cukrom a mali by sme ich použitie vždy dobre zvážiť.
+Comprehensions sú stále len syntaktickým zjednodušením a mali by sme ich použitie vždy dobre zvážiť.
 
 ## Filtre
 
-Filtre môžeme brať ako guard výrazy pre komprehenžny. Keď filtrovací výraz vráti pre niektorú hodnotu `false` alebo `nil`, bude daná hodnota ignorovaná a v `do` bloku preskočená.
-
-V nasledujúcom príklade budeme ignorovať všetky nepárne čísla (využijeme funkciu `is_even` z modulu Integer):
+Filtre môžeme brať ako guard výrazy pre comprehensions. Keď filtrovací výraz vráti pre niektorú hodnotu `false` alebo `nil`, bude daná hodnota ignorovaná a v `do` bloku preskočená. Poďme iterovať cez rozsah čísel od 1 do 10 a extrahovať iba párne čísla. Použijeme funkciu `is_even/1` z modulu Integer na kontrolu, či je číslo párne alebo nie.
 
 ```elixir
 import Integer
@@ -82,7 +80,7 @@ iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
-Aj filtrov môžeme použiť niekoľko naraz - napríklad takto by sme preskočili všetky hodnoty, ktoré nie sú párne a zároveň násobkom čísla 3:
+Ako pri generátoroch, aj filtrov môžeme použiť naraz niekoľko - rozšírme rozsah čísel a potom filtrujme iba párne čísla ktoré sú zároveň deliteľné číslom 3.
 
 ```elixir
 iex> for x <- 1..100,
@@ -93,20 +91,20 @@ iex> for x <- 1..100,
 
 ## Použitie `:into`
 
-Čo ak chceme, aby výsledkom komprehenžnu bolo niečo iné ako zoznam? Použijeme parameter `:into`! Tento parameter akceptuje ľubovoľnú štruktúru, ktorá implementuje protokol `Collectable`.
+Čo ak chceme, aby výsledkom comprehension bolo niečo iné ako zoznam? Použijeme parameter `:into`! Tento parameter akceptuje ľubovoľnú štruktúru, ktorá implementuje protokol `Collectable`.
 
-Skúsme takto zmeniť keyword list na mapu:
+S pomocou `:into` skúsme zmeniť zoznam kľúčových slov na mapu:
 
 ```elixir
 iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-Keďže bitstringy sú typu enumerable, môžeme ich pomocou komprehenžny s parametrom `:into` zmeniť na normálne reťazce:
+Keďže bitstringy implementujú protokol `Collectable`, môžeme ich pomocou comprehension s parametrom `:into` zmeniť na normálne reťazce:
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-To je všetko! Komprehenžny sú jednoduchým a stručným spôsobom, ako iterovať cez kolekcie.
+To je všetko! Comprehensions sú jednoduchým a stručným spôsobom, ako iterovať cez kolekcie.

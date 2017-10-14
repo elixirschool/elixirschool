@@ -78,7 +78,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Иногда мы не хотим, чтобы связанный процесс завершал текущий.  Для этого нужно перехватывать попытки завершения.  Перехваченные попытки будут получены в виде сообщения-кортежа: `{:EXIT, from_pid, reason}`.
