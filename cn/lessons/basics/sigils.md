@@ -1,6 +1,6 @@
 ---
 version: 1.0.1
-title: Sigils
+title: 魔符(Sigil)
 ---
 
 使用和定义魔符。
