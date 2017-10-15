@@ -45,6 +45,7 @@ iex> ~c/2 + 7 = #{2 + 7}/
 iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = \#{2 + 7}'
 ```
+
 可以看到，`~c`小写c对应的魔符处理了字符列表中的插入值，然而`~C`大写C对应的魔符没有处理。在内置的魔符中，这种大小写代表相反的场景的例子很常见。
 
 ### 正则表达式
@@ -61,6 +62,7 @@ false
 iex> "elixir" =~ re
 true
 ```
+
 
 在第一个例子中，"Elixir"并不与`re`的值相等。 这是因为正则表达式是大小写敏感的。由于Elixir支持 Perl Compatible Regular Expressions (PCRE), 因此可以在魔符的末尾加`i`来关闭大小写敏感。
 
@@ -129,6 +131,7 @@ iex> ~w/i love #{'e'}lixir school/
 iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
 ```
+
 ### 真·时间日期
 
 当需要创建**不带**时区的时间格式的数据结构时，魔符 [真·时间日期](https://hexdocs.pm/elixir/NaiveDateTime.html) 将很有用。 
@@ -138,6 +141,7 @@ iex> ~W/i love #{'e'}lixir school/
 ```elixir
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
 ```
+
 ## 定义你自己的魔符
 
 Elixir这门语言有一个目的就是让Elixir成为一门可扩展的语言。因此你能够定义或者是创建自己的魔符并不是什么奇怪的事情。 在下面这个例子中，我们将定义一个魔符，它能够将小写字符串转化为大写字符串。尽管已经有一个函数 (`String.upcase/1`)实现了这个功能，我们仍将对那个函数进行包装，让它变成一个语法糖。
