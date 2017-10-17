@@ -5,13 +5,13 @@ redirect_from:
   - /lessons/advanced/gen-stage/
 ---
 
-Nesta lição, vamos examinar de perto o GenStage, para que serve e como podemos usá-lo em nossas aplicações.
+Nesta lição vamos examinar de perto o GenStage, para que serve e como podemos usá-lo em nossas aplicações.
 
 {% include toc.html %}
 
 ## Introdução
 
-Então, o que é GenStage? De acordo com a documentação oficial, ele é uma "especificação e um fluxo computacional para o Elixir", mas o que isso significa pra gente?
+Então, o que é GenStage? De acordo com a documentação oficial, ele é uma "especificação e um fluxo computacional para o Elixir", mas o que isso significa pra nós?
 
 Significa que o GenStage nos fornece uma forma de definir um pipeline de trabalho a ser realizado por passos independentes (ou etapas) em processos separados; se você já trabalhou com pipelines anteriormente, então alguns desses conceitos devem ser familiares.
 
@@ -33,17 +33,17 @@ Conforme lemos, o papel que damos à nossa etapa é importante. A especificaçã
 
 + `:producer` — Uma fonte. Produtores esperam por demanda de consumidores e respondem com os eventos solicitados.
 
-+ `:producer_consumer` — Tanto uma fonte como um destino. Produtor-consumidores podem responder por demandas de outros consumidores assim como solicitar eventos de produtores.
++ `:producer_consumer` — Tanto uma fonte como um tanque. Produtor-consumidores podem responder por demandas de outros consumidores assim como solicitar eventos de produtores.
 
-+ `:consumer` — A sink. Um consumidor solicita e receve dados de produtores.
++ `:consumer` — Um tanque. Um consumidor solicita e recebe dados de produtores.
 
-Notou que nossos produtores __esperam__ por demanda? Com o GenStage nossos consumidores enviam demanda e processam os dados de nosso produtor. Isso facilita o mecanismo conhecido como contrapressão. Contrapressão coloca o ônus no produtor a não gerar sobrepressão quando consumidores estão ocupados.
+Notou que nossos produtores __esperam__ por demanda? Com o GenStage nossos consumidores enviam demanda e processam os dados de nosso produtor. Isso facilita o mecanismo conhecido como _back-pressure_. _Back-pressure_ coloca o ônus no produtor a não gerar sobrepressão quando consumidores estão ocupados.
 
 Agora que cobrimos os papéis dentro do GenStage, vamos começar a nossa aplicação.
 
 ## Começando
 
-Neste exemplo construiremos uma aplicação GenStage que emite números, ordena os números pares, e finalmente os imprime.
+Neste exemplo construiremos uma aplicação GenStage que emite números, separa os números pares, e finalmente os imprime.
 
 Para nossa aplicação usaremos todos os três papéis do GenStage. Nosso produtor será responsável por contar e emitir números. Usaremos um produtor-consumidor para filtrar somente os números pares e depois responder à demanda. Por último, vamos construir um consumidor para nos mostrar os números restantes.
 
@@ -74,7 +74,7 @@ Agora estamos prontos para construir nosso produtor!
 
 ## Produtor
 
-O primeiro passo da nossa aplicação GenStage é criar nosso produtor. Conforme falamos antes, queremos criar um produtor que emite um fluxo constante de números. Vamos criar a vida do nosso produtor:
+O primeiro passo da nossa aplicação GenStage é criar nosso produtor. Conforme falamos antes, queremos criar um produtor que emite um fluxo constante de números. Vamos criar o arquivo do nosso produtor:
 
 ```shell
 $ mkdir lib/genstage_example
@@ -102,7 +102,7 @@ end
 
 As duas partes mais importantes para tomar nota aqui são `init/1` e `handle_demand/2`. No `init/1` definimos o estado inicial como fizemos em nossos GenServers, mas mais importante, nos rotulamos como produtores. A resposta da nossa função `init/1` é o que o GenStage confia para classificar nossos processo.
 
-A função `handle_demand/2` é onde a maioria de nosso produtor está definida. Ela precisa ser implementada por todos os produtores GenStage. Aqui retornamos o conjunto de números demandados pelos nossos consumidores e incrementamos nosso contador. A demanda de consumidores, `demand` no nosso código acima, é representada como um inteiro correspondendo ao número de eventos que eles podem tratar; seu padrão é 1000.
+A função `handle_demand/2` é onde a maioria de nosso produtor está definida. Ela precisa ser implementada por todos os produtores GenStage. Aqui retornamos o conjunto de números demandados pelos nossos consumidores e incrementamos nosso contador. A demanda dos consumidores, `demand` no nosso código acima, é representada como um inteiro correspondendo ao número de eventos que eles podem tratar; seu padrão é 1000.
 
 ## Produtor Consumidor
 
@@ -251,9 +251,9 @@ Como você pode ver, agora nós temos múltiplos PIDs, simplesmente adicionando 
 
 Agora que cobrimos o GenStage e construímos nossa primeira aplicação exemplo, quais são alguns casos de uso _reais_ do GenStage?
 
-+ Pipeline de Transformação de Dados — Produtores não precisam ser simples geradores de números. Poderíamos produzir eventos de um banco de dados ou mesmo de outra fonte como Apache Kafka. Como uma combinação de produtor-consumidores e consumidores, podemos processar, ordenar, catalogar, e armazenar métricas à medida que elas ficam disponíveis.
++ Pipeline de Transformação de Dados — Produtores não precisam ser simples geradores de números. Poderíamos produzir eventos de um banco de dados ou mesmo de outra fonte como Apache Kafka. Com uma combinação de produtor-consumidores e consumidores, podemos processar, ordenar, catalogar, e armazenar métricas à medida que elas ficam disponíveis.
 
-+ Filas de trabalho — Uma vez que eventos podem ser qualquer coisa, poderíamos produzir unidades de trabalho para serem completadas por uma séries de consumidores.
++ Filas de Trabalho — Uma vez que eventos podem ser qualquer coisa, poderíamos produzir unidades de trabalho para serem completadas por uma séries de consumidores.
 
 + Processamento de Eventos — Semelhante a um pipeline de dados, poderíamos receber, processar, classificar e agir em eventos emitidos em tempo real de nossas fontes.
 
