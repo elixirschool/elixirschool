@@ -302,6 +302,6 @@ defmodule Greeter do
 end
 ```
 
- - 尝试在你的文档里面加入一些测试代码。 这将能够让你在模块 [ExUnit.DocTest][]的帮助下对模块、函数、宏等sheng'c自动测试。为了做到这一点，你需要在你的测试用例中使用`doctest/1`这个宏。当然，你首先得看一下[ExUnit的官方文档][ExUnit.DocTest]。
+ - 尝试在你的文档里面加入一些测试代码。 这将能够让你在模块 [ExUnit.DocTest][]的帮助下对模块、函数、宏等生成自动测试。为了做到这一点，你需要在你的测试用例中使用`doctest/1`这个宏。当然，你首先得看一下[ExUnit的官方文档][ExUnit.DocTest]。
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html
