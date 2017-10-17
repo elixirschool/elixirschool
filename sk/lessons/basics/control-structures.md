@@ -154,7 +154,7 @@ Teraz máme väčší príklad bez `with/1` a potom sa pozrieme ako ho môžeme 
 ```elixir
 case Repo.insert(changeset) do
   {:ok, user} ->
-    case Guardian.encode_and_sign(resource, :token, claims) do
+    case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, token, full_claims} ->
         important_stuff(token, full_claims)
       error -> error
@@ -167,7 +167,7 @@ Keď zavedieme `with/1`, dostaneme kód, ktorý je ľahšie pochopiteľný, čit
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token) do
+     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token, claims) do
   important_stuff(token, full_claims)
 end
 ```
