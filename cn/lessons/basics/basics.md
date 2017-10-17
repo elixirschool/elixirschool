@@ -117,6 +117,13 @@ iex> is_atom(MyApp.MyModule)
 true
 ```
 
+Elixir 以大写字母开始的别名也是原子。
+
+```elixir
+iex> is_atom(JustMyAliasTest)
+true
+```
+
 原子也可以用来直接引用 Erlang 标准库的模块，包括内置的模块。
 
 ```elixir
