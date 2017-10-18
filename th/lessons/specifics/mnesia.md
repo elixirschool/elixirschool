@@ -11,14 +11,14 @@ Mnesia เป็นระบบจัดการ distributed database ที่
 
 ## ภาพรวม
 
-Mnesia เป็น Database Management System (DBMS) ที่มาพร้อมกับ Erlang Runtime System ซึ่งเราก็สามารถใช้มันได้กับ Elixir ทันที *relational and object hybrid data model* เป็นสิ่งที่ทำให้ Mnesia เหมาะกับการสร้างแอพแบบ distributed ในทุกระดับ
+Mnesia เป็น database management system (DBMS) ที่มาพร้อมกับ Erland runtime system ซึ่งเราก็สามารถใช้มันได้กับ Elixir ทันที *relational and object hybrid data model* เป็นสิ่งที่ทำให้ Mnesia เหมาะกับการสร้างแอพแบบ distributed ในทุกระดับ
 
 ## เมื่อไหร่ที่ควรใช้
 
-เมื่อไหร่ที่ควรเลืิอกใช้ส่วนต่าง ๆ ของเทคโนโลยี เป็นสิ่งที่ทำให้เราสับสนมาตลอด ดังนั้นถ้าคุณตอบว่า 'ใช่' สำหรับคำถามต่อไปนี้ นั่นแหละเป็นตัววัดที่ดีว่าควรจะใช้ Mnesia แทน ETS หรือ DETS
+เมื่อไหร่ที่ควรเลืิอกใช้ส่วนต่างๆ ของเทคโนโลยี เป็นสิ่งที่ทำให้เราสับสนมาตลอด ถ้าคุณตอบว่า "ใช่" สำหรับคำถามต่อไปนี้ นั่นแหละเป็นตัววัดที่ดีว่าควรจะใช้ Mnesia แทน ETS หรือ DETS
 
   - คุณต้องการ roll back transaction ไหม?
-  - คุณต้องการ syntax ที่ใช้ง่ายสำหรับการอ่านและเขียนข้อมูลไหม ?
+  - คุณต้องการ syntax ที่ใช้ง่ายสำหรับการอ่านและเขียนข้อมูลไหม?
   - คุณต้องการจะเก็บข้อมูลระหว่าง node หรือมากกว่า 1 node ไหม?
   - คุณต้องการตัวเลือกว่าจะเก็บข้อมูลไว้ที่ไหนไหม (RAM หรือ disk)?
 
@@ -36,11 +36,11 @@ iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node()])
 ```
 
-สำรหับบทนี้ เราจะมาดูกันต่อเกี่ยวกับการใช้งาน Mnesia API `Mnesia.create_schema/1` จะสร้าง schema เปล่าใหม่ แล้วส่งไปให้ Node List ณ จุดนี้ เราจะส่งระหว่าง node ที่อยู่ใน IEx session ของเรา
+สำหรับบทนี้ เราจะมาดูกันต่อเกี่ยวกับการใช้งาน Mnesia API `Mnesia.create_schema/1` จะสร้าง schema ว่างๆ ขึ้นมาใหม่ แล้วส่งไปให้ Node List ณ จุดนี้ เราจะส่งระหว่าง node ที่อยู่ใน IEx session ของเรา
 
 ## Nodes
 
-หลังจากที่เรา run คำสั่ง `Mnesia.create_schema([node()])` ผ่าน IEx คุณควรจะเห็น folder ชื่อ **Mnesia.nonode@nohost** หรืออะไรที่คล้าย ๆ กัน ใน directory ที่คุณใช้งานอยู่ คุณอาจจะสงสัยว่า **nonode@nohost**  คืออะไร เพราะเราไม่เคยเห็นมันมาก่อน ดังนั้น มาดูสักหน่อย
+หลังจากที่เรา run คำสั่ง `Mnesia.create_schema([node()])` ผ่าน IEx คุณควรจะเห็น folder ชื่อ **Mnesia.nonode@nohost** หรืออะไรที่คล้ายๆ กัน ใน directory ที่คุณใช้งานอยู่ คุณอาจจะสงสัยว่า **nonode@nohost**  คืออะไร เพราะเราไม่เคยเห็นมันมาก่อน ดังนั้น มาดูสักหน่อย
 
 ```shell
 $ iex --help
@@ -70,7 +70,7 @@ Usage: iex [options] [.exs file] [data]
 ** Options can be passed to the VM using ELIXIR_ERL_OPTIONS or --erl
 ```
 
-เมื่อเราส่งค่า `--help` option เข้าไปใน IEx ผ่าน command line เราก็จะเห็น option ทั้งหมดที่เราใช้งานได้ เราจะเห็น option `--name` และ `--sname` สำหรับการกำหนดข้อมูลให้กับ node. node คือ Erlang Virtual Machine ที่ทำการดูแลการสื่อสาร, garbage collection, process scheduling, memory และอีกมากมาย โดย node จะมีชื่อ **nonode@nohost** ง่าย ๆ โดย default
+เมื่อเราส่งค่า `--help` option เข้าไปใน IEx ผ่าน command line เราก็จะเห็น option ทั้งหมดที่เราใช้งานได้ เราจะเห็น option `--name` และ `--sname` สำหรับการกำหนดข้อมูลให้กับ node node คือ Erlang virtual machine ที่ทำการดูแลการสื่อสาร, garbage collection, process scheduling, memory และอีกมากมาย โดย node จะมีชื่อ **nonode@nohost** ง่ายๆ โดย default
 
 ```shell
 $ iex --name learner@elixirschool.com
@@ -82,7 +82,7 @@ iex(learner@elixirschool.com)> Node.self
 :"learner@elixirschool.com"
 ```
 
-อย่างที่เราได้เห็นกัน node ที่เรากำลัง run คือ atom ชื่อ `:"learner@elixirschool.com"`. ถ้าเราสั่ง run `Mnesia.create_schema([node()])` อีกครั้ง เราจะเห็นว่ามันจะสร้าง folder ใหม่ขึ้นมาชื่อ **Mnesia.learner@elixirschool.com** จุดประสงค์ของมันง่ายนิดเดียว นั่นคือ node ใน Erlang จะเชื่อมต่อกับ node  อื่น ๆ เพื่อ share (distribute) ข้อมูลและ resources กันและกัน. และมันไม่ได้จำกัดอยู่แค่ภายในเครื่องเดียวกัน มันสามารถสื่อสารกันผ่าน LAN หรือ internet
+อย่างที่เราได้เห็นกัน node ที่เรากำลัง run คือ atom ชื่อ `:"learner@elixirschool.com"` ถ้าเราสั่ง run `Mnesia.create_schema([node()])` อีกครั้ง เราจะเห็นว่ามันจะสร้าง folder ใหม่ขึ้นมาชื่อ **Mnesia.learner@elixirschool.com** จุดประสงค์ของมันง่ายนิดเดียว นั่นคือ node ใน Erlang จะเชื่อมต่อกับ node  อื่นๆ เพื่อ share (distribute) ข้อมูลและ resources กันและกัน. และมันไม่ได้จำกัดอยู่แค่ภายในเครื่องเดียวกัน มันสามารถสื่อสารกันผ่าน LAN หรือ internet
 
 ## Starting Mnesia
 
@@ -107,7 +107,7 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:atomic, :ok}
 ```
 
-เราได้กำหนดคอลัมน์ โดยใช้ atom `:id`, `:name`, และ `:job` เมื่อเรารัน `Mnesia.create_table/2` มันจะคืนค่าใดค่านึงต่อไปนี้ออกมา
+เราได้กำหนด column โดยใช้ atom `:id`, `:name`, และ `:job` เมื่อเรารัน `Mnesia.create_table/2` มันจะคืนค่าใดค่าหนึ่งต่อไปนี้ออกมา
 
  - `{:atomic, :ok}` ถ้า function ทำงานสำเร็จ
  - `{:aborted, Reason}` ถ้า function ทำงานล้มเหลว
@@ -154,7 +154,7 @@ iex> Mnesia.dirty_read({Person, 4})
 
 ## Transactions
 
-ปกติแล้วเราจะใช้ **transaction** เพื่อ encapsulate การเขียนหรืออ่านกับ database ของเรา Transaction เป็นส่วนสำคัญของการออกแบบ fault-tolerant, highly distributed systems. *Transaction ของ Mnesia มีกลไกที่ทำให้ database operation ทำงานตามลำดับแบบ functional block* เริ่มจากสร้าง anonymous function ในที่นี้คือ `data_to_write` และส่งเข้าไปใน `Mnesia.transaction`
+ปกติแล้วเราจะใช้ **transaction** เพื่อ encapsulate การเขียนหรืออ่านกับ database ของเรา Transaction เป็นส่วนสำคัญของการออกแบบ fault-tolerant, highly distributed systems *Transaction ของ Mnesia มีกลไกที่ทำให้ database operation ทำงานตามลำดับแบบ functional block* เริ่มจากสร้าง anonymous function ในที่นี้คือ `data_to_write` และส่งเข้าไปใน `Mnesia.transaction`
 
 ```elixir
 iex> data_to_write = fn ->
@@ -192,7 +192,7 @@ iex> Mnesia.transaction(
 
 ## Using indices
 
-Mnesia รองรับการทำงานกับ index สำหรับคอลัมน์ที่ไม่มี key และข้อมูลจะถูก query ตาม index นั้น ๆ ดังนั้นเราสามารถเพิ่ม index ให้กับคอลัมน์ `:job` ในตาราง `Person` ได้
+Mnesia รองรับการทำงานกับ index สำหรับ columnที่ไม่มี key และข้อมูลจะถูก query ตาม index นั้นๆ ดังนั้นเราสามารถเพิ่ม index ให้กับ column `:job` ในตาราง `Person` ได้
 
 ```elixir
 iex> Mnesia.add_table_index(Person, :job)
@@ -226,7 +226,7 @@ iex> Mnesia.transaction(
 
 Mnesia รองรับการ query แบบซับซ้อน เพื่อที่จะดึงข้อมูลออกมาจากตารางในรูปของ matching และ function การเลือกแบบเฉพาะเจาะจง
 
-function `Mnesia.match_object/1` จะคืนค่า record ทั้งหมดที่ match กับ pattern ที่กำหนดให้ ถ้ามีคอลัมน์ไหนในตารางมี index มันก็จะใช้ index เพื่อทำให้การ query มีประสิทธิภาพมากขึ้น ใช้ atom แบบพิเศษ `:_` เพื่อระบุคอลัมน์ที่ไม่ต้องการใช้ในการ match
+function `Mnesia.match_object/1` จะคืนค่า record ทั้งหมดที่ match กับ pattern ที่กำหนดให้ ถ้ามี columnไหนในตารางมี index มันก็จะใช้ index เพื่อทำให้การ query มีประสิทธิภาพมากขึ้น ใช้ atom แบบพิเศษ `:_` เพื่อระบุ columnที่ไม่ต้องการใช้ในการ match
 
 ```elixir
 iex> Mnesia.transaction(
@@ -237,7 +237,7 @@ iex> Mnesia.transaction(
 {:atomic, [{Person, 4, "Marge Simpson", "home maker"}]}
 ```
 
-function `Mnesia.select/2` อนุญาติให้ระบุ custom query โดยใช้ operator หรือ function ใดใดใน Elixir (หรือ Erlang ที่ใช้ได้) ลองดูตัวอย่างของการเอา row ทั้งหมดที่มี key มากกว่า 3:
+function `Mnesia.select/2` อนุญาตให้ระบุ custom query โดยใช้ operator หรือ function ใดๆ ใน Elixir (หรือ Erlang ที่ใช้ได้) ลองดูตัวอย่างของการเอา row ทั้งหมดที่มี key มากกว่า 3:
 
 ```elixir
 iex> Mnesia.transaction(
@@ -251,16 +251,16 @@ iex> Mnesia.transaction(
 มาแกะดูกันดีกว่า attribute แรกคือชื่อตาราง `Person` attribute ที่สองคือ 3 ค่าในรูปแบบของ `{match, [guard], [result]}`:
 
 - `match` คือสิ่งเดียวกับที่เราส่งผ่าน function `Mnesia.match_object/1`; อย่างไรก็ตามจงจำไว้ว่า atom แบบพิเศษ​ `:"$n"` ใช้สำหรับระบุตำแหน่งของ parameter ที่จะใช้ในส่วนที่เหลือของการ query
-- `guard` list คือ list ของ tuple ที่ใช้ในการระบุ function guard ที่จะใช้ในการ query, ในที่นี้คือ `:>` (มากกว่า) function แบบ built in ตามมาด้วย parameter สำหรับบอกตำแหน่งคอลัมน์ `:"$1"` และค่าคงที่ `3` เป็น attribute
+- `guard` list คือ list ของ tuple ที่ใช้ในการระบุ function guard ที่จะใช้ในการ query, ในที่นี้คือ `:>` (มากกว่า) function แบบ built in ตามมาด้วย parameter สำหรับบอกตำแหน่ง column `:"$1"` และค่าคงที่ `3` เป็น attribute
 - `result` list คือ list ของ field ที่จะให้คืนออกมาจากการ query ในรูปแบบของตำแหน่ง parameter, atom แบบพิเศษ `:"$$"` ใช้สำหรับอ้างถึงทุก field ดังนั้นคุณอาจจะใช้ `[:"$1", :"$2"]` เพื่อเอาค่าของ 2 ตัวแรกใน field หรือ `[:"$$"]` เพื่อเอาทุกค่าก็ได้
 
 รายละเอียดเพิ่มเติม ดูที่ [the Erlang Mnesia documentation for select/2](http://erlang.org/doc/man/mnesia.html#select-2).
 
 ## Data initialization and migration
 
-ในทุก ๆ solution ของ software จะต้องมีช่วงเวลาที่จะต้อง upgrade หรือ migrate ข้อมูลที่อยู่ใน database ของคุณ ยกตัวอย่างเช่น เราอาจจะอยากเพิ่มคอลัมน์ `:age` เข้าไปในตาราง `Person` ใน v2 ของแอพ เราไม่สามารถสร้างตาราง `Person` อีกครั้งได้ แต่เราสามารถเปลี่ยนมันได้ สำหรับการเปลี่ยนรูปแบบตารางเราจะต้องรู้ว่าตอนไหนควรจะเปลี่ยน โดยเราสามารถทำได้ตอนที่เราสร้างตารางแล้ว นั่นคือการใช้ function `Mnesia.table_info/2` เพื่อดูโครงสร้างปัจจุบันของตารางและใช้ function `Mnesia.transform_table/3` เพื่อแปลงให้เป็นโครงสร้างใหม่
+ในทุกๆ solution ของ software จะต้องมีช่วงเวลาที่จะต้อง upgrade หรือ migrate ข้อมูลที่อยู่ใน database ของคุณ ยกตัวอย่างเช่น เราอาจจะอยากเพิ่ม column `:age` เข้าไปในตาราง `Person` ใน v2 ของแอพ เราไม่สามารถสร้างตาราง `Person` อีกครั้งได้ แต่เราสามารถเปลี่ยนมันได้ สำหรับการเปลี่ยนรูปแบบตารางเราจะต้องรู้ว่าตอนไหนควรจะเปลี่ยน โดยเราสามารถทำได้ตอนที่เราสร้างตารางแล้ว นั่นคือการใช้ function `Mnesia.table_info/2` เพื่อดูโครงสร้างปัจจุบันของตารางและใช้ function `Mnesia.transform_table/3` เพื่อแปลงให้เป็นโครงสร้างใหม่
 
-Code ด้านล่างจะทำสิ่งนี้ด้วยการใช้ logic ต่อไปนี้
+code ด้านล่างจะทำสิ่งนี้ด้วยการใช้ logic ต่อไปนี้
 
 * สร้างตารางสำหรับ attribute ใน v2: `[:id, :name, :job, :age]`
 * Handle ผลลัพธ์ของการสร้างตาราง
