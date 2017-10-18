@@ -5,13 +5,15 @@ redirect_from:
   - /lessons/advanced/erlang/
 ---
 
-หนึ่งในประโยชน์ของการสร้างบน Erlang VM (BEAM) คือมี library ให้เลือกใช้มากมายก่ายกอง ความสามารถในการทำงานร่วมกับ ทำให้เราเราสามารถใช้ library และ Erlang standard lib ได้ใน code Elixir ในบทนี้เราจะมาดูวิธีการใช้งาน funtion ใน standard lib ไปพร้อม ๆ กับ แพ็คเกจเสริมของ Erlang
+หนึ่งในประโยชน์ของการสร้างบน Erlang VM (BEAM) คือมี library ให้เลือกใช้มากมายก่ายกอง ความสามารถในการทำงานร่วมกับ Erlang ทำให้เราเราสามารถใช้ library และ Erlang standard lib ได้ใน code Elixir 
+
+ในบทนี้เราจะมาดูวิธีการใช้งาน funtion ใน standard lib ไปพร้อมๆ กับ แพ็คเกจ third-party ของ Erlang
 
 {% include toc.html %}
 
 ## Standard Library
 
-standard library เสริมของ ของ Erlang สามารถใช้งานได้ทุกที่ใน code Elixir ของ application เรา. Module Erlang จะอยู่ในรูปของ atom แบบ lowercase เช่น `:os`, และ `:timer`
+standard library เสริมของ ของ Erlang สามารถใช้งานได้ทุกที่ใน code Elixir ของ application เรา โมดูล Erlang จะอยู่ในรูปของ atom แบบ lowercase เช่น `:os` และ `:timer`
 
 ลองใช้ `:timer.tc` เพื่อดูเวลาการทำงานของ function ที่ใช้
 
@@ -33,7 +35,7 @@ Result: 1000000
 
 ## Erlang Packages
 
-ในบทก่อน เราได้พูดถึง Mix และการจัดการกับ dependency ไปแล้ว library ของ Erlang ก็ทำงานเช่นเดียวกัน ในสถานการณ์ที่ library ขอ Erlang ไม่ได้อยู่ใน [Hex](https://hex.pm) คุณสามารถดึงมันจาก repository git แทนได้
+ในบทก่อน เราได้พูดถึง Mix และการจัดการกับ dependency ไปแล้ว library ของ Erlang ก็ทำงานเช่นเดียวกัน ในสถานการณ์ที่ library ขอ Erlang ไม่ได้อยู่ใน [Hex](https://hex.pm) คุณสามารถดึงมันจาก git repository แทนได้
 
 ```elixir
 def deps do
@@ -52,7 +54,7 @@ png = :png.create(%{:size => {30, 30},
 
 ## Notable Differences
 
-ตอนนี้เรารู้แล้วว่าเราจะใช้ Erlang ยังไง เราควรจะรู้ลูกเล่นอื่น ๆ ที่มาพร้อมกับ Erlang interoperability
+ตอนนี้เรารู้แล้วว่าเราจะใช้ Erlang ยังไง เราควรจะรู้ลูกเล่นอื่นๆ ที่มาพร้อมกับ Erlang interoperability
 
 ### Atoms
 
@@ -72,7 +74,7 @@ example.
 
 ### Strings
 
-ใน Elixir เมื่อเราพูดถึง string เราจะหมายถึง UTF-8 encoded binaries แต่ใน Erlang, string ยังใช้ double quote แต่จะหมายถึง char list แทน
+ใน Elixir เมื่อเราพูดถึง string เราจะหมายถึง UTF-8 encoded binaries แต่ใน Erlang string ยังใช้ double quote แต่จะหมายถึง char list แทน
 
 Elixir:
 
@@ -100,7 +102,7 @@ false
 true
 ```
 
-สำคัญมากถ้าจะจำไว้ว่า library ของ Erlang เก่า ๆ หลายตัวที่ไม่ได้รองรับ binary ดังนั้นเราต้องแปลง string ของ Elixir ให้กลายเป็น chat list ก่อน และแน่นอนว่าต้องขอขอบคุณที่มีวิธีง่าย ๆ ในการทำอย่างนั้น นั่นคือ function `to_charlist/1`:
+เรื่องสำคัญที่ควรจำคือ library ของ Erlang เก่าๆ หลายตัวที่ไม่ได้รองรับ binary ดังนั้นเราต้องแปลง string ของ Elixir ให้กลายเป็น chat list ก่อน และแน่นอนว่าต้องขอบคุณที่มีวิธีง่ายๆ ในการทำอย่างนั้น นั่นคือ function `to_charlist/1`:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -135,4 +137,4 @@ Erlang:
 11
 ```
 
-แค่นั้นเลย การใช้ประโยชน์ Erlang ในแอพ Elixir ของเรา ช่างง่ายและมีประสิทธิภาพอะไรเช่นนี้ มันยังเพิ่มจำนวน library ให้เราใช้งานอีกมากมายเลยทีเดียว
+แค่นั้นเลย การใช้ประโยชน์ Erlang ในแอพ Elixir ของเรา ช่างง่ายและยังเพิ่มจำนวน library ให้เราใช้งานได้อย่างมีประสิทธิภาพอีกด้วย
