@@ -154,7 +154,7 @@ Teraz przyjrzyjmy się większemu przykładowi bez `with`, a następnie zrefakto
 ```elixir
 case Repo.insert(changeset) do 
   {:ok, user} -> 
-    case Guardian.encode_and_sign(resource, :token, claims) do
+    case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
       error -> error
@@ -167,7 +167,7 @@ Dzięki wprowadzeniu `with` nasz końcowy kod jest krótszy i łatwiejszy do zro
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token, claims),
      do: important_stuff(jwt, full_claims)
 ```
 

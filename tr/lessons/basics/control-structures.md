@@ -161,7 +161,7 @@ Simdi de `with/1` olmayan daha buyuk bir kod ornegini inceleyip, nasil daha iyi 
 ```elixir
 case Repo.insert(changeset) do
   {:ok, user} ->
-    case Guardian.encode_and_sign(resource, :token, claims) do
+    case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, token, full_claims} ->
         important_stuff(token, full_claims)
       error -> error
@@ -174,7 +174,7 @@ Yukaridaki kodu `with/1` ile yazdigimizda daha kisa, basit ve kolay anlasilir bi
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token) do
+     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token, claims) do
   important_stuff(token, full_claims)
 end
 ```
