@@ -1,19 +1,19 @@
 ---
-version: 0.9.0
+version: 1.0.0
 title: Tratamento de Erros
 ---
 
-Embora seja mais comum o retorno da tupla `{: erro, reason}`, Elixir suporta exceções e nesta lição veremos como lidar com erros e os diferentes mecanismos disponíveis para nós.
+Embora seja mais comum o retorno da tupla `{:error, reason}`, o Elixir suporta exceções e nesta lição veremos como lidar com erros e os diferentes mecanismos disponíveis para nós.
 
-Em geral, a convenção em Elixir é criar uma função (`example/1`) que retorna` {: ok, result} `e` {: error, reason} `e uma função separada (`example!/1`) que retorna o `result` desembrulhado ou gerará um erro.
+Em geral, a convenção em Elixir é criar uma função (`example/1`) que retorna` {:ok, result} ` e ` {:error, reason} ` e uma função separada (`example!/1`) que retorna o `result` desempacotado ou levanta um erro.
 
-Esta lição irá focar interagindo com o último.
+Esta lição irá focar na interação com o último.
 
 {% include toc.html %}
 
 ## Tratamento de Erros
 
-Antes de podermos lidar com erros, precisamos criá-los e a maneira mais simples de fazer isso é com o `raise/1`:
+Antes de podermos lidar com os erros, precisamos criá-los e a maneira mais simples de fazer isso é com o `raise/1`:
 
 ```elixir
 iex> raise "Oh no!"
@@ -27,7 +27,7 @@ iex> raise ArgumentError, message: "the argument value is invalid"
 ** (ArgumentError) the argument value is invalid
 ```
 
-Se sabemos que um erro pode ocorrer, podemos lidar com isso usando `try/rescue` e padrões semelhantes:
+Se sabemos que um erro pode ocorrer, podemos lidar com isso usando `try/rescue` e *pattern matching*:
 
 ```elixir
 iex> try do
@@ -54,7 +54,7 @@ end
 
 ## Depois
 
-Às vezes pode ser necessário para executar alguma ação depois de nossa `try/rescue` independentemente do erro, por isso temos `try/after`. Se você estiver familiarizado com Ruby este é semelhante ao `begin/rescue/ensure` ou em Java `try/catch/finally`:
+Às vezes pode ser necessário executar alguma ação depois do nosso `try/rescue` independentemente do erro. Para isso temos `try/after`. Se você estiver familiarizado com Ruby isso é semelhante ao `begin/rescue/ensure` ou em Java `try/catch/finally`:
 
 ```elixir
 iex> try do
@@ -82,7 +82,7 @@ end
 
 ## Novos Erros
 
-Enquanto Elixir inclui uma série de tipos de erro nativos como `RuntimeError`, mantemos a capacidade de criar a nossa própria se precisamos de algo específico. Criar um novo erro é fácil com o `defexception/1` macro que aceita convenientemente `:message` opções para definir uma mensagem de erro padrão:
+Enquanto o Elixir inclui uma série de tipos de erro nativos, como `RuntimeError`, nós mantemos a capacidade de criar a nosso próprio se precisamos de algo específico. Criar um novo erro é fácil com o `defexception/1` macro que aceita convenientemente a opção `:message` para definir uma mensagem de erro padrão:
 
 ```elixir
 defmodule ExampleError do
@@ -103,9 +103,9 @@ iex> try do
 
 ## Lançar
 
-Outro mecanismo para trabalhar com erros no Elixir é `throw` e `catch`. Na prática, isso não ocorre frequentemente no código mais recente de Elixir. Mas, é importante conhecer e entendê-los mesmo assim.
+Outro mecanismo para trabalhar com erros no Elixir é o `throw` e o `catch`. Na prática, isso não ocorre frequentemente no código mais recente de Elixir. Mas, é importante conhecer e entendê-los mesmo assim.
 
-A função `throw/1` nos dá a capacidade para sair de execução com um valor específico que podemos usar com o `catch`:
+A função `throw/1` nos dá a capacidade para sair da execução com um valor específico que podemos `catch`(pegar) e usar:
 
 ```elixir
 iex> try do
@@ -128,7 +128,7 @@ Como mencionado, `throw/catch` são bastante incomuns e normalmente existem como
 
 ## Saindo
 
-O mecanismo de erro final que Elixir fornece é o `exit`. Sinais de saída ocorrem sempre que um processo morre e são uma parte importante da tolerância a falhas do Elixir.
+O mecanismo de erro final que o Elixir fornece é o `exit`. Sinais de saída ocorrem sempre que um processo morre e são uma parte importante da tolerância a falhas do Elixir.
 
 Para sair explicitamente podemos usar `exit/1`:
 
@@ -137,7 +137,7 @@ iex> spawn_link fn -> exit("oh no") end
 ** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
-Embora seja possível pegar uma saída com `try/catch` fazê-lo é extremamente raro. Em quase todos os casos, isso é vantajoso para permitir que o supervisor possa lidar com a saída do processo:
+Embora seja possível pegar uma saída com `try/catch` fazê-lo é _extremamente_ raro. Em quase todos os casos é vantajoso deixar o supervisor controlar a saída do processo:
 
 ```elixir
 iex> try do
