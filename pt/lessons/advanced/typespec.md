@@ -15,7 +15,7 @@ Em alguns casos, a especificação é grande e complicada. Se você quiser reduz
 
 ## Especificação
 
-Se você tem experiência com Java ou Ruby, você poderá pensar em especificação como uma `interface`. Especificação define o que deve ser tipo d parâmetros de função e o valor de retorno.
+Se você tem experiência com Java ou Ruby, você poderá pensar em especificação como uma `interface`. A especificação define quais os tipos de parâmetros da função e o valor de retorno.
 
 Para definir tipos de entrada e saída, usamos a diretiva `@spec` localizada antes da definição da função e tomando como um `params` nome da função, lista de tipos de parâmetros, e depois `::` tipo de valor de retorno.
 
