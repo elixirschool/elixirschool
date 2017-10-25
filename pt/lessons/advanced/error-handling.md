@@ -5,7 +5,7 @@ title: Tratamento de Erros
 
 Embora seja mais comum o retorno da tupla `{:error, reason}`, o Elixir suporta exceções e nesta lição veremos como lidar com erros e os diferentes mecanismos disponíveis para nós.
 
-Em geral, a convenção em Elixir é criar uma função (`example/1`) que retorna` {:ok, result} ` e ` {:error, reason} ` e uma função separada (`example!/1`) que retorna o `result` desempacotado ou levanta um erro.
+Em geral, a convenção em Elixir é criar uma função (`example/1`) que retorna `{:ok, result}` e `{:error, reason}` e uma função separada (`example!/1`) que retorna o `result` desempacotado ou levanta um erro.
 
 Esta lição irá focar na interação com o último.
 
@@ -82,7 +82,7 @@ end
 
 ## Novos Erros
 
-Enquanto o Elixir inclui uma série de tipos de erro nativos, como `RuntimeError`, nós mantemos a capacidade de criar a nosso próprio se precisamos de algo específico. Criar um novo erro é fácil com o `defexception/1` macro que aceita convenientemente a opção `:message` para definir uma mensagem de erro padrão:
+Enquanto o Elixir inclui uma série de tipos de erro nativos, como `RuntimeError`, nós mantemos a capacidade de criar o nosso próprio se precisamos de algo específico. Criar um novo erro é fácil com o `defexception/1` macro que aceita convenientemente a opção `:message` para definir uma mensagem de erro padrão:
 
 ```elixir
 defmodule ExampleError do
@@ -105,7 +105,7 @@ iex> try do
 
 Outro mecanismo para trabalhar com erros no Elixir é o `throw` e o `catch`. Na prática, isso não ocorre frequentemente no código mais recente de Elixir. Mas, é importante conhecer e entendê-los mesmo assim.
 
-A função `throw/1` nos dá a capacidade para sair da execução com um valor específico que podemos `catch`(pegar) e usar:
+A função `throw/1` nos dá a capacidade para sair da execução com um valor específico que podemos `catch` (pegar) e usar:
 
 ```elixir
 iex> try do
