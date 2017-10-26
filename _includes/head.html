@@ -14,6 +14,14 @@
   <meta property="og:description" content="{{ page.locale.project.description }}">
   <meta property="og:image" content="{{ site.url }}{% asset_path 'og_image.jpg' %}">
 
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ site.url }}{% asset_path 'favicons/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}{% asset_path 'favicons/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ site.url }}{% asset_path 'favicons/favicon-16x16.png' %}">
+  <link rel="manifest" href="{{ site.url }}{% asset_path 'favicons/manifest.json' %}">
+  <link rel="shortcut icon" href="{{ site.url }}{% asset_path 'favicons/favicon.ico' %}">
+  <meta name="msapplication-config" content="{{ site.url }}{% asset_path 'favicons/browserconfig.xml' %}">
+  <meta name="theme-color" content="#ffffff">
+
   {% if page.locale.project.title == page.title or page.title == nil %}
     <title>{{ page.locale.project.title }}</title>
   {% else %}
