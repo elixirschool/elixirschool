@@ -27,17 +27,17 @@ Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk]
   [tr]: /tr/
   [th]: /th/
 
-_Your feedback and participation is encouraged!_
+_歡迎您的回饋和參與!_
 
-## About Elixir
+## 關於 Elixir
 
-"Elixir is a dynamic, functional language designed for building scalable and maintainable applications." — [elixir-lang.org](http://elixir-lang.org/)
+"Elixir 是一個動態的函數式程式語言，設計來建造可擴充和能維護的應用程式。" — [elixir-lang.org](http://elixir-lang.org/)
 
-Elixir leverages the battle tested Erlang VM (BEAM) to build distributed and fault-tolerant systems with low-latency out of the box.
+Elixir 利用 Erlang VM (BEAM) 的實戰經驗來構建分散式且啟動時即低延遲的容錯系統。
 
-__Features__:
+__特色__:
 
-+ Scalable
-+ Fault-tolerant
-+ Functional Programming
-+ Extensible
++ 可擴充
++ 故障容錯
++ 函數程式設計
++ 可延伸
