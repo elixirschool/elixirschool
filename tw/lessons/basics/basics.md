@@ -1,34 +1,34 @@
 ---
 version: 1.1.2
-title: Basics
+title: 基礎
 redirect_from:
   - /lessons/basics/basics/
 ---
 
-Getting started, basic data types, and basic operations.
+入門、基本資料型別和操作。
 
 {% include toc.html %}
 
-## Getting Started
+## 入門
 
-### Installing Elixir
+### 安裝 Elixir
 
-Installation instructions for each OS can be found on elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
+有關每個作業系統的安裝說明，請參見 elixir-lang.org 網站中的 [Installing Elixir](http://elixir-lang.org/install.html) 指南。
 
-After Elixir is installed, you can easily confirm the installed version.
+在安裝 Elixir 後，您可以簡便確認安裝的版本。
 
     Elixir {{ site.elixir.version }}
 
-### Trying Interactive Mode
+### 試用交談模式
 
-Elixir comes with IEx, an interactive shell, which allows us to evaluate Elixir expressions as we go.
+Elixir 自帶 IEx，一個交談模式 shell，可以讓我們隨時計算 Elixir 陳述式。
 
-To get started, let's run `iex`:
+輸入 `iex` 開始使用：
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
 
-Let's go ahead and give it a try now by typing in a few simple expressions:
+讓我們繼續嘗試，現在輸入幾個簡單的陳述式：
 
 ```elixir
 iex> 2+3
@@ -39,18 +39,19 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-Don't worry if you don't understand every expression yet, but we hope you get the idea.
+如果你不了解每一個式子，不用擔心，但我們希望你有些想法了
+。
 
-## Basic Data Types
+## 基本資料型別
 
-### Integers
+### 整數
 
 ```elixir
 iex> 255
 255
 ```
 
-Support for binary, octal, and hexadecimal numbers comes built in:
+內建支援二進位、八進位和十六進位：
 
 ```elixir
 iex> 0b0110
@@ -61,9 +62,9 @@ iex> 0x1F
 31
 ```
 
-### Floats
+### 浮點數
 
-In Elixir, floating point numbers require a decimal after at least one digit; they have 64-bit double precision and support `e` for exponent values:
+Elixir 中，浮點數的小數點前至少需要一位數字；浮點數具有64位元雙精度，並支援以科學記號 `e` 表示指數值：
 
 ```elixir
 iex> 3.14
@@ -75,9 +76,9 @@ iex> 1.0e-10
 ```
 
 
-### Booleans
+### 布林
 
-Elixir supports `true` and `false` as booleans; everything is truthy except for `false` and `nil`:
+Elixir 支援 `true` 和 `false` 做為布林的值；除了 `false` 和 `nil`，一切為真。
 
 ```elixir
 iex> true
@@ -88,7 +89,7 @@ false
 
 ### Atoms
 
-An atom is a constant whose name is its value. If you're familiar with Ruby, these are synonymous with Symbols:
+Atom 是一個常數，其名稱是它的值。如果你熟悉 Ruby，這些符號是同義詞：
 
 ```elixir
 iex> :foo
@@ -97,7 +98,7 @@ iex> :foo == :bar
 false
 ```
 
-The booleans `true` and `false` are also the atoms `:true` and `:false`, respectively.
+布林的 `true` 和 `false`  在 atoms 中也分別是 `:true` 和 `:false`。
 
 ```elixir
 iex> true |> is_atom
@@ -108,23 +109,23 @@ iex> :true === true
 true
 ```
 
-Names of modules in Elixir are also atoms. `MyApp.MyModule` is a valid atom, even if no such module has been declared yet.
+Elixir 中的模組名稱也是 atoms。 `MyApp.MyModule` 是一個有效的 atom， 即使這樣的模組沒有被宣告過。
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
 true
 ```
 
-Atoms are also used to reference modules from Erlang libraries, including built in ones.
+Atoms 也用於引用來自 Erlang 函式庫的模組，其包括內建的模組。
 
 ```elixir
 iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
-### Strings
+### 字串
 
-Strings in Elixir are UTF-8 encoded and are wrapped in double quotes:
+Elixir 中的字串為 UTF-8 編碼，並以雙引號圍繞。
 
 ```elixir
 iex> "Hello"
@@ -133,7 +134,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-Strings support line breaks and escape sequences:
+字串支援換行和轉義序列：
 
 ```elixir
 iex> "foo
@@ -143,13 +144,13 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir also includes more complex data types.  We'll learn more about these when we learn about [collections](../collections/) and [functions](../functions/).
+Elixir 還包括更複雜的資料型別。當我們學習 [collections](../collections/) 和 [functions](../functions/) 時我們將進一步了解這些。
 
-## Basic Operations
+## 基本運算
 
-### Arithmetic
+### 算術運算
 
-Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.  It's important to remember that `/` will always return a float:
+Elixir 如你所料支援基本運算子 `+` 、 `-` 、 `*` 和 `/`。  重要的是記住 `/` 將永遠回傳一個浮點數：
 
 ```elixir
 iex> 2 + 2
@@ -162,7 +163,7 @@ iex> 10 / 5
 2.0
 ```
 
-If you need integer division or the division remainder (i.e., modulo), Elixir comes with two helpful functions to achieve this:
+如果您需要整數除法或除法餘數（即模數），Elixir 以兩個有用的功能來實現：
 
 ```elixir
 iex> div(10, 5)
@@ -171,9 +172,9 @@ iex> rem(10, 3)
 1
 ```
 
-### Boolean
+### 布林運算
 
-Elixir provides the `||`, `&&`, and `!` boolean operators. These support any types:
+Elixir 提供 `||` 、 `&&` 和 `!` 布林運算子。 這些支援任何型別：
 
 ```elixir
 iex> -20 || true
@@ -192,7 +193,7 @@ iex> !false
 true
 ```
 
-There are three additional operators whose first argument _must_ be a boolean (`true` or `false`):
+有三個運算子的第一個參數 _必須_ 為布林型別 (`true` 或 `false`)：
 
 ```elixir
 iex> true and 42
@@ -207,9 +208,9 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-### Comparison
+### 比較運算
 
-Elixir comes with all the comparison operators we're used to: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<`, and `>`.
+Elixir 帶有我們習慣的所有比較運算子： `==` 、 `!=` 、 `===` 、 `!==` 、 `<=` 、 `>=` 、 `<` 和 `>`。
 
 ```elixir
 iex> 1 > 2
@@ -222,7 +223,7 @@ iex> 2 <= 3
 true
 ```
 
-For strict comparison of integers and floats, use `===`:
+為了嚴謹比較整數和浮點數，請使用 `===`：
 
 ```elixir
 iex> 2 == 2.0
@@ -231,13 +232,13 @@ iex> 2 === 2.0
 false
 ```
 
-An important feature of Elixir is that any two types can be compared; this is particularly useful in sorting.  We don't need to memorize the sort order, but it is important to be aware of it:
+Elixir 的一個重要特點是可以比較任意兩種型別；這在排序中特別有用。我們不需要記住排序順序，但還是要注意它的重要性:
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
-This can lead to some interesting, yet valid, comparisons you may not find in other languages:
+這個特點可能會導致一些詭異但合乎語法，而您在其他語言中找不到的的比較運算：
 
 ```elixir
 iex> :hello > 999
@@ -246,9 +247,9 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### String Interpolation
+### 字串插值
 
-If you've used Ruby, string interpolation in Elixir will look familiar:
+如果您使用 Ruby，Elixir 中的字串插值方法將會很熟悉：
 
 ```elixir
 iex> name = "Sean"
@@ -256,9 +257,9 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### String Concatenation
+### 字串串接
 
-String concatenation uses the `<>` operator:
+字串串接使用 `<>` 運算子：
 
 ```elixir
 iex> name = "Sean"
