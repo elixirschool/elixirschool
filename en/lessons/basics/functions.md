@@ -219,6 +219,7 @@ Elixir doesn't like default arguments in multiple matching functions, it can be 
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

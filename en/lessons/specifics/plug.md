@@ -35,7 +35,7 @@ The first thing to do is add both Plug and a web server (we'll be using Cowboy) 
 defp deps do
   [
     {:cowboy, "~> 1.1.2"},
-    {:plug, "~> 1.3.4"},
+    {:plug, "~> 1.3.4"}
   ]
 end
 ```
@@ -91,7 +91,7 @@ defmodule Example do
       Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
     ]
 
-    Logger.info "Started application"
+    Logger.info("Started application")
 
     Supervisor.start_link(children, strategy: :one_for_one)
   end
@@ -141,11 +141,11 @@ To start let's create a file at `lib/example/router.ex` and copy the following i
 defmodule Example.Router do
   use Plug.Router
 
-  plug :match
-  plug :dispatch
+  plug(:match)
+  plug(:dispatch)
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Oops!")
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -161,7 +161,8 @@ def start(_type, _args) do
   children = [
     Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
   ]
-  Logger.info "Started application"
+
+  Logger.info("Started application")
   Supervisor.start_link(children, strategy: :one_for_one)
 end
 ```
@@ -190,7 +191,6 @@ We'll create it at `lib/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
-
   defmodule IncompleteRequestError do
     @moduledoc """
     Error raised when a required field is missing.
@@ -207,10 +207,12 @@ defmodule Example.Plug.VerifyRequest do
   end
 
   defp verify_request!(body_params, fields) do
-    verified = body_params
-               |> Map.keys
-               |> contains_fields?(fields)
-    unless verified, do: raise IncompleteRequestError
+    verified =
+      body_params
+      |> Map.keys()
+      |> contains_fields?(fields)
+
+    unless verified, do: raise(IncompleteRequestError)
   end
 
   defp contains_fields?(keys, fields), do: Enum.all?(fields, &(&1 in keys))
@@ -239,16 +241,20 @@ defmodule Example.Router do
 
   alias Example.Plug.VerifyRequest
 
-  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
-  plug VerifyRequest, fields: ["content", "mimetype"],
-                      paths:  ["/upload"]
+  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
 
-  plug :match
-  plug :dispatch
+  plug(
+    VerifyRequest,
+    fields: ["content", "mimetype"],
+    paths: ["/upload"]
+  )
 
-  get "/", do: send_resp(conn, 200, "Welcome\n")
-  post "/upload", do: send_resp(conn, 201, "Uploaded\n")
-  match _, do: send_resp(conn, 404, "Oops!\n")
+  plug(:match)
+  plug(:dispatch)
+
+  get("/", do: send_resp(conn, 200, "Welcome\n"))
+  post("/upload", do: send_resp(conn, 201, "Uploaded\n"))
+  match(_, do: send_resp(conn, 404, "Oops!\n"))
 end
 ```
 
@@ -327,25 +333,28 @@ defmodule Example.RouterTest do
   @opts Router.init([])
 
   test "returns welcome" do
-    conn = conn(:get, "/", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 200
   end
 
   test "returns uploaded" do
-    conn = conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
-           |> put_req_header("content-type", "application/x-www-form-urlencoded")
-           |> Router.call(@opts)
+    conn =
+      conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
+      |> put_req_header("content-type", "application/x-www-form-urlencoded")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 201
   end
 
   test "returns 404" do
-    conn = conn(:get, "/missing", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/missing", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 404

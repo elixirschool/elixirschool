@@ -186,7 +186,7 @@ You may think that interacting with the apps would be a little different in an u
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "Hello, I'm the datasets"
+    IO.puts("Hello, I'm the datasets")
   end
 end
 ```
