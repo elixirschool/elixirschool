@@ -193,7 +193,7 @@ iex> !false
 true
 ```
 
-有三個運算子的第一個參數 _必須_ 為布林型別 (`true` 或 `false`)：
+有三個運算子的第一個引數 _必須_ 為布林型別 (`true` 或 `false`)：
 
 ```elixir
 iex> true and 42
