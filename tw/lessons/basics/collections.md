@@ -1,24 +1,24 @@
 ---
 version: 1.2.1
-title: Collections
+title: 集合
 redirect_from:
   - /lessons/basics/collections/
 ---
 
-Lists, tuples, keyword lists, and maps.
+列表、元組、關鍵字列表和映射。
 
 {% include toc.html %}
 
-## Lists
+## 列表
 
-Lists are simple collections of values which may include multiple types; lists may also include non-unique values:
+列表是可以包含多種型別的簡單值集​​合；列表還可能包含相同的值：
 
 ```elixir
 iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implements list collections as linked lists.  This means that accessing the list length is an `O(n)` operation.  For this reason, it is typically faster to prepend than append:
+Elixir 以串列實現列表集合。這意味著存取列表長度是一個 `O(n)` 運算。  因此，通常前置插入比後綴置入更快：
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
@@ -30,38 +30,38 @@ iex> list ++ ["Cherry"]
 ```
 
 
-### List Concatenation
+### 列表串接
 
-List concatenation uses the `++/2` operator:
+列表串接使用 `++/2` 運算子：
 
 ```elixir
 iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-A side note about the name (`++/2`) format used above: In Elixir (and Erlang, upon which Elixir is built), a function or operator name has two components: the name you give it (here `++`) and its _arity_. Arity is a core part of speaking about Elixir (and Erlang) code. It is the number of arguments a given function takes (two, in this case). Arity and the given name are combined with a slash. We'll talk more about this later; this knowledge will help you understand the notation for now.
+關於上述使用 (`++/2`) 格式的註釋： 在 Elixir (同時 Erlang，Elixir 是構建在這上面)， 一個函數或運算子名稱有兩個元件：你給它的名字 (這裡是 `++`) 和它的 _arity_。 Arity 是在說明 Elixir (和 Erlang) 程式碼的核心部份。它指所給定函數的引數數量 (2，在這個例子中)。Arity和所給定的名稱以斜線合併。我們之後會再多談論；上述知識將幫助您了解目前的符號。
 
-### List Subtraction
+### 列表減法
 
-Support for subtraction is provided via the `--/2` operator; it's safe to subtract a missing value:
+通過提供 `--/2` 運算子支援減法;即使減去不存在的值也是安全的：
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-Be mindful of duplicate values. For every element on the right, the first occurrence of it gets removed from the left:
+注意重複的值。對於右邊的每個元素，左邊中第一個出現將被移除：
 
 ```elixir
 iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Note:** List subtraction uses [strict comparison](../basics/#comparison) to match the values.
+**注意：** 列表減法使用 [strict comparison](../basics/#comparison) 來匹配它的值。
 
-### Head / Tail
+### 頭 / 尾
 
-When using lists, it is common to work with a list's head and tail.  The head is the list's first element, while the tail is a list containing the remaining elements.  Elixir provides two helpful functions, `hd` and `tl`, for working with these parts:
+使用列表時，常常操作列表的頭和尾。頭是列表的第一個元素，而尾是包含剩餘元素的列表。在這個部份的操作中 Elixir 提供了兩個有用的函式 `hd` 和 `tl` ：
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -70,7 +70,8 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-In addition to the aforementioned functions, you can use [pattern matching](../pattern-matching/) and the cons operator `|` to split a list into head and tail. We'll learn more about this pattern in later lessons:
+除了上述函式外，您還可以使用 [pattern matching](../pattern-matching/)  cons 運算子 `|` 
+將列表分成頭和尾。我們將在之後的課程中學習更多這種用法：
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -81,16 +82,16 @@ iex> tail
 [:pie, "Apple"]
 ```
 
-## Tuples
+## 元組
 
-Tuples are similar to lists, but are stored contiguously in memory.  This makes accessing their length fast but modification expensive; the new tuple must be copied entirely to memory.  Tuples are defined with curly braces:
+元組與列表相似，但以連續的方式儲存在內部記憶體中。這能快速存取它的長度，但當需要修改時則付出昂貴代價；新的元組必須完整複製到內部記體中。元組使用大括號定義：
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-It is common for tuples to be used as a mechanism to return additional information from functions; the usefulness of this will be more apparent when we get into [pattern matching](../pattern-matching/):
+元組常見於作為從函數返回額外信息的機制；當我們使用 [pattern matching](../pattern-matching/) 這個用處會更加明顯：
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -99,9 +100,9 @@ iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
 
-## Keyword lists
+## 關鍵字列表
 
-Keyword lists and maps are the associative collections of Elixir.  In Elixir, a keyword list is a special list of two-element tuples whose first element is an atom; they share performance with lists:
+關鍵詞列表和映射是 Elixir 的關聯集合。在 Elixir 中，關鍵字列表是一個特殊的2元素元組列表，列表中第一個元素是一個 atom；它們與列表共享效能：
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -110,17 +111,17 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 [foo: "bar", hello: "world"]
 ```
 
-The three characteristics of keyword lists highlight their importance:
+關鍵字列表的三個特點彰顯了它們的重要性：
 
-+ Keys are atoms.
-+ Keys are ordered.
-+ Keys may not be unique.
++ 鍵 (Keys) 為 atoms。
++ 鍵 (Keys) 為有序。
++ 鍵 (Keys) 可不是唯一。
 
-For these reasons, keyword lists are most commonly used to pass options to functions.
+由於這些原因，關鍵字列表最常用於將選項傳遞給函數。
 
-## Maps
+## 映射
 
-In Elixir, maps are the "go-to" key-value store. Unlike keyword lists, they allow keys of any type and are un-ordered.  You can define a map with the `%{}` syntax:
+Elixir 中，映射是 "go-to" key-value store。與關鍵字列表不同，它允許任何資料型別做為鍵並且不需排序。你可以用 `%{}` 語法，來定義一個映射：
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -131,7 +132,7 @@ iex> map["hello"]
 :world
 ```
 
-As of Elixir 1.2, variables are allowed as map keys:
+從 Elixir 1.2 開始，變數被允許作為映射鍵值：
 
 ```elixir
 iex> key = "hello"
@@ -140,14 +141,14 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-If a duplicate is added to a map, it will replace the former value:
+如果將一個重複的鍵值添加到映射中，它將替換以前的值：
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-As we can see from the output above, there is a special syntax for maps containing only atom keys:
+從上面的輸出中可以看到，對於只包含一個 atom 鍵值的映射，有一個特殊的語法：
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
@@ -156,7 +157,7 @@ iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-In addition, there is a special syntax for accessing atom keys:
+另外，還有一個存取 atom 鍵的特殊語法：
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
@@ -165,7 +166,7 @@ iex> map.hello
 "world"
 ```
 
-Another interesting property of maps is that they provide their own syntax for updates:
+映射的另一個有趣的特性是它提供了自身的更新語法：
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
