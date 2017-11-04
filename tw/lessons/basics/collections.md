@@ -1,6 +1,6 @@
 ---
 version: 1.2.1
-title: 集合
+title: 群集
 redirect_from:
   - /lessons/basics/collections/
 ---
@@ -11,14 +11,14 @@ redirect_from:
 
 ## 列表
 
-列表是可以包含多種型別的簡單值集​​合；列表還可能包含相同的值：
+列表是可以包含多種型別的簡單值群集​​；列表還可能包含相同的值：
 
 ```elixir
 iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir 以串列實現列表集合。這意味著存取列表長度是一個 `O(n)` 運算。  因此，通常前置插入比後綴置入更快：
+Elixir 以串列實現群集列表。這意味著存取列表長度是一個 `O(n)` 運算。  因此，通常前置插入比後綴置入更快：
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
@@ -102,7 +102,7 @@ iex> File.read("path/to/unknown/file")
 
 ## 關鍵字列表
 
-關鍵詞列表和映射是 Elixir 的關聯集合。在 Elixir 中，關鍵字列表是一個特殊的2元素元組列表，列表中第一個元素是一個 atom；它們與列表共享效能：
+關鍵詞列表和映射是 Elixir 的關聯群集。在 Elixir 中，關鍵字列表是一個特殊的2元素元組列表，列表中第一個元素是一個 atom；它們與列表共享效能：
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
