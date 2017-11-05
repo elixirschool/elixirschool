@@ -182,7 +182,7 @@ m = %{a: 1, c: 3}
 
 a =
   with {:ok, res} <- Map.fetch(m, :a),
-    true <- Integer.is_even(res) do
+    true <- is_even(res) do
       IO.puts "Divided by 2 it is #{div(res, 2)}"
       :even
   else
