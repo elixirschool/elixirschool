@@ -1,17 +1,16 @@
 ---
 version: 1.0.1
-title: Pattern Matching
+title: 模式比對
 redirect_from:
   - /lessons/basics/pattern-matching/
 ---
 
-Pattern matching is a powerful part of Elixir.  It allows us to match simple values, data structures, and even functions.  In this lesson we will begin to see how pattern matching is used.
-
+模式比對是 Elixir 中一個強大的部分。它使我們能夠比對簡單的值、資料結構甚至函數。在本課中，我們將開始了解如何使用模式比對。
 {% include toc.html %}
 
 ## Match Operator
 
-Are you ready for a curveball? In Elixir, the `=` operator is actually a match operator, comparable to the equals sign in algebra. Writing it turns the whole expression into an equation and makes Elixir match the values on the left hand with the values on the right hand. If the match succeeds, it returns the value of the equation. Otherwise, it throws an error. Let's take a look:
+你準備好了嗎? In Elixir, the `=` operator is actually a match operator, comparable to the equals sign in algebra. Writing it turns the whole expression into an equation and makes Elixir match the values on the left hand with the values on the right hand. If the match succeeds, it returns the value of the equation. Otherwise, it throws an error. Let's take a look:
 
 ```elixir
 iex> x = 1
