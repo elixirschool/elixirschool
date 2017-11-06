@@ -21,8 +21,8 @@ This tutorial assumes you have Elixir 1.4 or higher, and `mix` installed already
 If you don't have a project started, create one like this:
 
 ```shell
-mix new example
-cd example
+$ mix new example
+$ cd example
 ```
 
 ## Dependencies
@@ -356,7 +356,7 @@ end
 Run it with this:
 
 ```shell
-mix test test/example/router_test.exs
+$ mix test test/example/router_test.exs
 ```
 
 ## Available Plugs
