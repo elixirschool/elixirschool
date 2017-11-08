@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Benchee
 redirect_from:
   - /lessons/libraries/benchee/

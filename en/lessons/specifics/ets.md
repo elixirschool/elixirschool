@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Erlang Term Storage (ETS)
 redirect_from:
   - /lessons/specifics/ets/

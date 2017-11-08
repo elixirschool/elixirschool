@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Debugging
 redirect_from:
   - /lessons/specifics/debugging/
