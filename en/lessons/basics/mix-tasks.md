@@ -60,11 +60,12 @@ Now, in our **lib/hello.ex** file that Mix generated for us, let's create a simp
 
 ```elixir
 defmodule Hello do
+
   @doc """
   Output's `Hello, World!` everytime.
   """
   def say do
-    IO.puts("Hello, World!")
+    IO.puts "Hello, World!"
   end
 end
 ```
@@ -79,8 +80,7 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Simply runs the Hello.say/0 command."
   def run(_) do
-    # calling our Hello.say() function from earlier
-    Hello.say()
+    Hello.say # calling our Hello.say() function from earlier
   end
 end
 ```

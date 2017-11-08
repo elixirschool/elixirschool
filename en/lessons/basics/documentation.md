@@ -27,7 +27,7 @@ Take this Elixir Script (greeting.exs):
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
-IO.puts("Hello, " <> "chum.")
+IO.puts "Hello, " <> "chum."
 ```
 
 Elixir, when running this script will ignore everything from `#` to the end of the line, treating it as throwaway data. It may add no value to the operation or performance of the script, however when it's not so obvious what is happening a programmer should know from reading your comment. Be mindful not to abuse the single line comment! Littering a codebase could become an unwelcome nightmare for some. It is best used in moderation.
@@ -87,7 +87,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t()) :: String.t()
+  @spec hello(String.t) :: String.t
   def hello(name) do
     "Hello, " <> name
   end
@@ -249,7 +249,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts("Hello, " <> name)
+    IO.puts "Hello, " <> name
   end
 end
 ```
@@ -268,7 +268,7 @@ defmodule Greeter do
   # and so on...
 
   def hello(name) do
-    IO.puts("Hello, " <> name)
+    IO.puts "Hello, " <> name
   end
 end
 ```
@@ -297,7 +297,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t()) :: String.t()
+  @spec hello(String.t) :: String.t
   def hello(name) do
     "Hello, " <> name
   end

@@ -63,12 +63,10 @@ defmodule PoolboyApp.Application do
   use Application
 
   defp poolboy_config do
-    [
-      {:name, {:local, :worker}},
+    [{:name, {:local, :worker}},
       {:worker_module, PoolboyApp.Worker},
       {:size, 5},
-      {:max_overflow, 2}
-    ]
+      {:max_overflow, 2}]
   end
 
   def start(_type, _args) do
@@ -102,7 +100,7 @@ defmodule PoolboyApp.Worker do
   end
 
   def handle_call({:square_root, x}, _from, state) do
-    IO.puts("process #{inspect(self())} calculating square root of #{x}")
+    IO.puts "process #{inspect self()} calculating square root of #{x}"
     :timer.sleep(1000)
     {:reply, :math.sqrt(x), state}
   end
@@ -119,17 +117,13 @@ defmodule PoolboyApp.Test do
 
   def start do
     1..20
-    |> Enum.map(fn i -> async_call_square_root(i) end)
-    |> Enum.each(fn task -> await_and_inspect(task) end)
+    |> Enum.map(fn(i) -> async_call_square_root(i) end)
+    |> Enum.each(fn(task) -> await_and_inspect(task) end)
   end
 
   defp async_call_square_root(i) do
     Task.async(fn ->
-      :poolboy.transaction(
-        :worker,
-        fn pid -> GenServer.call(pid, {:square_root, i}) end,
-        @timeout
-      )
+      :poolboy.transaction(:worker, fn(pid) -> GenServer.call(pid, {:square_root, i}) end, @timeout)
     end)
   end
 

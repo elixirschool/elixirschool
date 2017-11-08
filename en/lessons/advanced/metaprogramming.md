@@ -150,11 +150,9 @@ defmodule OurMacro do
 end
 
 require OurMacro
-
-quoted =
-  quote do
-    OurMacro.unless(true, do: "Hi")
-  end
+quoted = quote do
+  OurMacro.unless true, do: "Hi"
+end
 ```
 
 ```elixir
@@ -246,8 +244,8 @@ To see the benefit of `bind_quote` and to demonstrate the revaluation issue let'
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts(unquote(expr))
-      IO.puts(unquote(expr))
+      IO.puts unquote(expr)
+      IO.puts unquote(expr)
     end
   end
 end
@@ -267,8 +265,8 @@ The times are different!  What happened?  Using `unquote/1` on the same expressi
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts(expr)
-      IO.puts(expr)
+      IO.puts expr
+      IO.puts expr
     end
   end
 end

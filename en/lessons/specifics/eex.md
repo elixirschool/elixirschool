@@ -34,7 +34,7 @@ Hi, <%= name %>
 
 defmodule Example do
   require EEx
-  EEx.function_from_file(:def, :greeting, "greeting.eex", [:name])
+  EEx.function_from_file :def, :greeting, "greeting.eex", [:name]
 end
 
 iex> Example.greeting("Sean")

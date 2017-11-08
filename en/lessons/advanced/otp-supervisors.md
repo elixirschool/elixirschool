@@ -21,7 +21,7 @@ Using the SimpleQueue from the [OTP Concurrency](../../advanced/otp-concurrency)
 import Supervisor.Spec
 
 children = [
-  worker(SimpleQueue, [], name: SimpleQueue)
+  worker(SimpleQueue, [], [name: SimpleQueue])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -80,7 +80,7 @@ Including the `Task.Supervisor` is no different than other supervisors:
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]])
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]]),
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
