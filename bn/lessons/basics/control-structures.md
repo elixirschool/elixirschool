@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: কন্ট্রোল স্ট্রাকচার 
 ---
 
@@ -154,14 +154,18 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 `with` ছাড়া ব্যবহৃত একটি উদাহরণ দিয়ে দেখা যাক কিভাবে `with` আমাদের উপকারে আসে- 
 
 ```elixir
-case Repo.insert(changeset) do 
-  {:ok, user} -> 
+case Repo.insert(changeset) do
+  {:ok, user} ->
     case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -182,13 +186,14 @@ import Integer
 
 m = %{a: 1, c: 3}
 
-a = with {:ok, res} <- Map.fetch(m, :a),
-  true <- Integer.is_even(res) do
-    IO.puts "Divided by 2 it is #{div(res, 2)}"
-else 
-  :error -> IO.puts "We don't have this item in map"
-  _ -> IO.puts "It's not odd"
-end
+a =
+  with {:ok, res} <- Map.fetch(m, :a),
+       true <- Integer.is_even(res) do
+    IO.puts("Divided by 2 it is #{div(res, 2)}")
+  else
+    :error -> IO.puts("We don't have this item in map")
+    _ -> IO.puts("It's not odd")
+  end
 ```
 
 এটি আমাদের `case` এর মত প্যাটার্ন ম্যাচিং কার্যপ্রণালী প্রদান করে যা গ্রহণ করে প্রথম সেই ভ্যালু যা ম্যাচড হয়নি।  
