@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.0
 title: Error Handling
 redirect_from:
 - /lessons/advanced/error-handling/

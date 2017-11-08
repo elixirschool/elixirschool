@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.1.1
 title: Plug
 redirect_from:
   - /lessons/specifics/plug/

@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.1
 title: Embedded Elixir (EEx)
 redirect_from:
   - /lessons/specifics/eex/

@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.0
 title: Functions
 redirect_from:
   - /lessons/basics/functions/

@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.1
 title: OTP Concurrency
 redirect_from:
   - /lessons/advanced/otp-concurrency/

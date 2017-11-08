@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.0
 title: Mix
 redirect_from:
   - /lessons/basics/mix/

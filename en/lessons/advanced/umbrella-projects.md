@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.0
 title: Umbrella Projects
 redirect_from:
   - /lessons/advanced/umbrella-projects/
