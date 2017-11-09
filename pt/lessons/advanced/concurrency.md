@@ -74,7 +74,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Derterminados momentos não queremos que nosso processo vinculado falhe o atual. Para isso, precisamos interceptar as saídas. Quando saídas são interceptadas elas serão recebidas como uma mensagem de conjunto de variáveis: `{:EXIT, from_pid, reason}`. 

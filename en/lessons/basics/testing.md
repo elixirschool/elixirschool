@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.1
 title: Testing
 redirect_from:
   - /lessons/basics/testing/
@@ -20,8 +20,8 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "greets the world" do
+    assert Example.hello() == :world
   end
 end
 ```
@@ -29,8 +29,33 @@ end
 We can run our project's tests with `mix test`.  If we do that now we should see an output similar to:
 
 ```shell
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 0 failures
+..
+
+Finished in 0.03 seconds
+2 tests, 0 failures
+```
+
+Why there are two tests in output? Let's look at `lib/example.ex`. Mix created there another test for us, some doctest.
+
+```elixir
+defmodule Example do
+  @moduledoc """
+  Documentation for Example.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Example.hello
+      :world
+
+  """
+  def hello do
+    :world
+  end
+end
 ```
 
 ### assert
@@ -44,8 +69,8 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "the truth" do
-    assert 1 + 1 == 3
+  test "greets the world" do
+    assert Example.hello() == :word
   end
 end
 ```
@@ -53,19 +78,19 @@ end
 Now we should see a different kind of output:
 
 ```shell
-  1) test the truth (ExampleTest)
+  1) test greets the world (ExampleTest)
      test/example_test.exs:5
      Assertion with == failed
-     code: 1 + 1 == 3
-     lhs:  2
-     rhs:  3
+     code:  assert Example.hello() == :word
+     left:  :world
+     right: :word
      stacktrace:
-       test/example_test.exs:6
+       test/example_test.exs:6 (test)
 
-......
+.
 
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 1 failures
+Finished in 0.03 seconds
+2 tests, 1 failures
 ```
 
 ExUnit will tells us exactly where our failed assertions are, what the expected value was, and what the actual value was.
@@ -85,7 +110,7 @@ In Elixir, applications consist of actors/processes that send messages to each o
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -101,7 +126,7 @@ end
 
 `assert_received` does not wait for messages, with `assert_receive` you can specify a timeout.
 
-## capture_io and capture_log
+### capture_io and capture_log
 
 Capturing an application's output is possible with `ExUnit.CaptureIO` without changing the original application. Simply pass the function generating the output in:
 
@@ -111,7 +136,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```
@@ -130,11 +155,11 @@ defmodule ExampleTest do
   doctest Example
 
   setup_all do
-    {:ok, number: 2}
+    {:ok, recipient: :world}
   end
 
-  test "the truth", state do
-    assert 1 + 1 == state[:number]
+  test "greets", state do
+    assert Example.hello() == state[:recipient]
   end
 end
 ```

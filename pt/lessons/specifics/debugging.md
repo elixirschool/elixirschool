@@ -135,11 +135,11 @@ O modulo `:int` é um intérprete que nos dá a capacidade de criar pontos de in
 
 Quando você inicia o depurador, você verá uma nova janela como esta:
 
-![Debugger Screenshot 1]({{ site.url }}/assets/debugger_1.png)
+![Debugger Screenshot 1]({% asset_path "debugger_1.png" %})
 
 Depois de ter anexado o nosso módulo para o depurador estará disponível no menu à esquerda:
 
-![Debugger Screenshot 2]({{ site.url }}/assets/debugger_2.png)
+![Debugger Screenshot 2]({% asset_path "debugger_2.png" %})
 
 ## Criando breakpoints
 
@@ -163,11 +163,11 @@ iex > Example.cpu_burns(1, 1, 1)
 
 A execução será pausada no IEx e a janela do depurador deverá ter esta aparência:
 
-![Debugger Screenshot 3]({{ site.url }}/assets/debugger_3.png)
+![Debugger Screenshot 3]({% asset_path "debugger_3.png" %})
 
 Aparecerá uma janela adicional com o nosso código fonte:
 
-![Debugger Screenshot 4]({{ site.url }}/assets/debugger_4.png)
+![Debugger Screenshot 4]({% asset_path "debugger_4.png" %})
 
 Nesta janela, podemos procurar o valor das variáveis, avançar para a próxima linha ou avaliar expressões. `:int.disable_break/2` pode ser chamado para desabilitar um breakpoint:
 

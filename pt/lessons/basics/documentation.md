@@ -202,11 +202,11 @@ View them at "doc/index.html".
 
 Com esperança, se tudo correu como planejado, você deve ver uma mensagem semelhante como a mensagem de saída no exemplo acima. Vamos agora olhar para dentro do nosso projeto Mix e devemos ver que há um outro diretório chamado **doc/**. Dentro estará nossa documentação gerada. Se visitarmos a página index em nosso navegador devemos ver o seguinte:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Podemos ver que Earmark converteu nosso markdown e ExDoc agora é exibido em um formato útil.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Agora nós podemos implantar isso para GitHub, o nosso próprio site, mais comumente no [HexDocs][HexDocs](https://hexdocs.pm/).
 

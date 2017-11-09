@@ -134,7 +134,7 @@ iex> try do
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 `try/catch`를 이용하여 종료를 잡아내는 것이 가능하지만, 그런 경우는 _극히_ 드뭅니다. 대부분의 경우, 수퍼바이저가 프로세스 종료를 다루도록 하는 것이 유리합니다.

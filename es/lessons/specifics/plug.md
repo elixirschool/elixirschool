@@ -19,8 +19,8 @@ Este tutorial asume que ya tienes Elixir y `mix` instalado.
 Si no has iniciado un proyecto, crea uno de la siguiente manera:
 
 ```shell
-mix new example
-cd example
+$ mix new example
+$ cd example
 ```
 
 

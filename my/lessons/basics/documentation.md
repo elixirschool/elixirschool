@@ -201,11 +201,11 @@ View them at "doc/index.html".
 ```
 Harap-harap, jika semuanya mengikut rancangan, anda sepatutnya dapa melihat mesej yang sama dengan paparan mesej di dalam contoh di atas.  Sekarang kita akan lihat ke dalam projek Mix kita dan kita akan dapat melihat lagi satu direktori bernama **doc/**.  Di dalamnya ialah dokumentasi yang dijanakan.  Jika kita capai page indeks di dalam browser kita sepatutnya dapat melihat paparan seperti berikut:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Kita dapat lihat bahawa Earmark telah memproses markdown kita dan ExDoc memaparkannnya di dalam format yang berguna.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Sekarang kita boleh melakukan deploy ke Github, laman web kita sendiri, atau [HexDocs](https://hexdocs.pm/). 
 

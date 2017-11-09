@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.1.0
 title: Testowanie kodu
 ---
 
@@ -18,8 +18,8 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "greets the world" do
+    assert Example.hello() == :world
   end
 end
 ```
@@ -27,8 +27,33 @@ end
 Możemy uruchomić nasze test za pomocą `mix test`.  Powinniśmy otrzymać komunikat podobny do poniższego:
 
 ```shell
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 0 failures
+..
+
+Finished in 0.03 seconds
+2 tests, 0 failures
+```
+
+Dlaczego w wyniku otrzymujemy, że dwa testy zostały uruchomione? Zajrzyjmy do pliku `lib/example.ex`. Mix utworzył tam dla nas kolejny test, doctest.
+
+```elixir
+defmodule Example do
+  @moduledoc """
+  Documentation for Example.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Example.hello
+      :world
+
+  """
+  def hello do
+    :world
+  end
+end
 ```
 
 ### assert
@@ -42,8 +67,8 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "the truth" do
-    assert 1 + 1 == 3
+  test "greets the world" do
+    assert Example.hello() == :word
   end
 end
 ```
@@ -64,6 +89,21 @@ W efekcie otrzymamy zupełnie inny komunikat:
 
 Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 1 tests, 1 failures
+```
+```shell
+  1) test greets the world (ExampleTest)
+     test/example_test.exs:5
+     Assertion with == failed
+     code:  assert Example.hello() == :word
+     left:  :world
+     right: :word
+     stacktrace:
+       test/example_test.exs:6 (test)
+
+.
+
+Finished in 0.03 seconds
+2 tests, 1 failures
 ```
 
 ExUnit dokładnie wskazuje miejsca, w których testy się nie powiodły, jakie były wartości oczekiwane, a jakie zostały faktycznie zwrócone.
@@ -99,7 +139,7 @@ end
 
 `assert_received` nie czeka na wiadomość, a wykorzystując `assert_receive` możemy określić maksymalny czas oczekiwania na wiadomość (timeout).
 
-## capture_io and capture_log
+### capture_io i capture_log
 
 Przechwytywanie informacji produkowanych przez aplikację jest możliwe za pomocą `ExUnit.CaptureIO` bez konieczności ingerowania w jej kod. Wystarczy jako argument przekazać funkcję, która wypisuje informacje na standardowe wyjście:  
 
@@ -128,11 +168,11 @@ defmodule ExampleTest do
   doctest Example
 
   setup_all do
-    {:ok, number: 2}
+    {:ok, recipient: :world}
   end
 
-  test "the truth", state do
-    assert 1 + 1 == state[:number]
+  test "greets", state do
+    assert Example.hello() == state[:recipient]
   end
 end
 ```

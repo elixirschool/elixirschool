@@ -179,7 +179,7 @@ end
 
 이제 프로듀서, 프로듀서-컨슈머, 컨슈머를 만들었으니 전부 다 합쳐야 합니다.
 
-`lib/genstage_example.ex` 파일을 열어 슈퍼바이저 트리에 새 프로세스를 넣어봅시다.
+`lib/genstage_example/application.ex` 파일을 열어 슈퍼바이저 트리에 새 프로세스를 넣어봅시다.
 
 ```elixir
 def start(_type, _args) do
@@ -215,7 +215,7 @@ $ mix run --no-halt
 
 ## 여러 프로듀서나 컨슈머
 
-예제의 `IO.inspect/1` 출력을 조사해 보면 모든 이벤트가 단일 PID로 처리되는 것을 알 수 있습니다. `lib/genstage_example.ex`를 조금 수정해 여러 워커를 사용하도록 바꿔봅시다.
+예제의 `IO.inspect/1` 출력을 조사해 보면 모든 이벤트가 단일 PID로 처리되는 것을 알 수 있습니다. `lib/genstage_example/application.ex`를 조금 수정해 여러 워커를 사용하도록 바꿔봅시다.
 
 ```elixir
 children = [

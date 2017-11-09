@@ -27,8 +27,9 @@ keys/1               merge/2              merge/3
 new/0                new/1                new/2
 pop/2                pop/3                pop_lazy/3
 put/3                put_new/3            put_new_lazy/3
-split/2              take/2               to_list/1
-update!/3            update/4             values/1
+replace!/3           replace/3            split/2
+take/2               to_list/1            update!/3
+update/4             values/1
 ```
 
 그러면 지금 사용 가능한 함수와 각각의 애리티를 확인할 수 있습니다.

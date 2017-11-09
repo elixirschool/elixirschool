@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.3.0
 title: Enum
 ---
 
@@ -9,13 +9,32 @@ Sada algoritmov pre iterovanie nad kolekciami.
 
 ## Enum
 
-Modul `Enum` obsahuje vyše stovku funkcií pre prácu s kolekciami, o ktorých sme sa dozvedeli v minulej lekcii.
+Modul `Enum` obsahuje viac ako 70 funkcií pre prácu s kolekciami. Všetky kolekcie, o ktoré sme spomínali v [predchádzajúcej lekcii](../collections/), okrem tuples, sú iterovateľné.
 
-Táto lekcia pokrýva len malú podmnožinu týchto funkcií - kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`Enum`](https://hexdocs.pm/elixir/Enum.html). Zaujímať vás môžu aj funkcie na prácu s "lazy enumeration" z modulu [`Stream`](https://hexdocs.pm/elixir/Stream.html).
+Táto lekcia pokrýva len zopár dostupných funkcii, ale môžeme ich preskúmať aj sami.
+Spravme malý experiment v IEx.
+
+```elixir
+iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+...>   IO.puts "#{function}/#{arity}"
+...> end)
+all?/1
+all?/2
+any?/1
+any?/2
+at/2
+at/3
+...
+```
+
+Teraz vidíme, že máme obrovské množstvo funkcionality vďaka veľmi dobrému dôvodu. Iterovanie nad kolekciami je jadrom funkcionálneho programovania a veľmi užitočná vec.
+Pri použití s ďalšími výhodami Elixiru, ako je napríklad dokumentácia, ktorá nie je občanom druhej triedy, ako sme mohli vidieť, to môže byť tiež neuveriteľným posilnením pre vývojára.
+
+Kompletný zoznam funkcií nájdete v oficiálnej dokumentácii modulu [`Enum`](https://hexdocs.pm/elixir/Enum.html). Na prácu s "lazy enumeration" použite funkcie z modulu [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 ### all?
 
-Funkcia `all?`, rovnako ako väčšina ostatných funkcií z modulu `Enum`, berie ako svoj argument funkciu, ktorú potom aplikuje na všetky prvky kolekcie. Ak táto funkcia vráti pre *všetky prvky* `true`, funkcia `all?` vráti hodnotu `true`, inak `false`:
+Funkcia `all?/2`, rovnako ako väčšina ostatných funkcií z modulu `Enum`, berie ako svoj argument funkciu, ktorú potom postupne aplikuje na všetky prvky kolekcie. V prípade `all?/2`, všetky prvky musia vrátiť `true`, inak funkcia vráti hodnotu `false`:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -26,27 +45,27 @@ true
 
 ### any?
 
-Na rozdiel od predošlej, vráti funkcia `any?` hodnotu `true` vtedy, ak sa *aspoň jeden* prvok kolekcie vyhodnotí ako `true`.
+Na rozdiel od predošlej funkcie, `any?/2` vráti `true` vtedy, ak sa *aspoň jeden* prvok kolekcie vyhodnotí ako `true`:
 
 ```elixir
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every
 
-Keď potrebujete rozbiť kolekciu do niekoľkých menších, hodí sa vám funckia `chunk`:
+Keď potrebujete rozbiť kolekciu do niekoľkých menších skupín, `chunk_every/2` je pravdepodobne funckia, ktorú hľadáte:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Táto funkcia má niekoľko možností použitia, pozrite sa do oficiálnej dokumentácie: [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2).
+Táto funkcia má niekoľko možností použitia, ale tu ich nebudeme rozoberať, môžete si ich pozrieť v [oficiálnej dokumentácii tejto funkcie](https://hexdocs.pm/elixir/Enum.html#chunk_every/4).
 
 ### chunk_by
 
-Ak potrebujete rozdeliť kolekciu do menších na základe niečoho iného, než ich veľkosť, použite funkciu `chunk_by`. Ako argumenty funkcia berie kolekciu (Enum) a funkciu - ak sa zmení jej výstup, ukončí sa aktuálna podkolekcia a začne sa vytvárať ďalšia:
+Ak potrebujete rozdeliť kolekciu do menších skupín na základe niečoho iného, než ich veľkosť, môžeme použiť funkciu `chunk_by/2`. Ako argumenty funkcia berie kolekciu a funkciu. Ak sa zmení vrátená hodnota funkcie, začne sa vytvárať ďalšia kolekcia:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -55,9 +74,19 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 [["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
+### map_every
+
+Niekedy rozdeľovanie kolekcie nie je presne to čo potrebujeme. V tomto prípade, môže byť `map_every/3` veľmi užitočná kde vykoná operáciu vo funkcii iba na každom `ntom` prvku, vždy začínajúc prvým:
+
+```elixir
+# Vykonaj funkciu na každom treťom prvku
+iex> Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
+[1001, 2, 3, 1004, 5, 6, 1007, 8]
+```
+
 ### each
 
-Často sa stretnete s potrebou cyklovať nad kolekciu bez toho, aby ste vracali nejakú novú hodnotu. Na tento účel je ideálna funckia `each`:
+Často sa stretnete s potrebou prechádzať kolekciu bez toho, aby ste vracali nejakú novú hodnotu. V tomto prípade použijeme `each/2`:
 
 ```elixir
 iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
@@ -67,51 +96,69 @@ three
 :ok
 ```
 
-__Poznámka__: Funkcia `each` vracia atom `:ok`.
+__Pozn.__: Funkcia `each/2` vracia atóm `:ok`.
 
 ### map
 
-Aplikuje poskytnutú funkciu na každý prvok kolekcie a vráti novú kolekciu s výsledkami týchto aplikácií:
+Aplikuje našu funkciu na každý prvok kolekcie a vytvorí novú kolekciu s hodnotami, ktoré vrátila funkcia:
 
 ```elixir
-iex> Enum.map([0, 1, 2, 3], fn(x) -> x * 2 end)
-[0, 2, 4, 6]
+iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
+[-1, 0, 1, 2]
 ```
 
 ### min
 
-Nájde a vráti najmenšiu hodnotu v kolekcii:
+`min/1` nájde najmenšiu hodnotu v kolekcii:
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
+`min/2` vykoná to isté, ale v prípade, že kolekcia je prázdna, dovoľuje nám špecifikovať funkciu, ktorá vráti minimálnu hodnotu.
+
+```elixir
+iex> Enum.min([], fn -> :foo end)
+:foo
+```
+
 ### max
 
-Nájde a vráti najväčšiu hodnotu v kolekcii:
+`max/1` vráti najväčšiu hodnotu v kolekcii:
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
+`max/2` je pre `max/1` to isté, ako je `min/2` pre `min/1`:
+
+```elixir
+Enum.max([], fn -> :bar end)
+:bar
+```
+
 ### reduce
 
-Postupne zredukuje kolekciu na jedinú hodnotu. Na vstupe očakáva kolekciu, počiatočnú hodnotu akumulátora (ak žiadna nie je poskytnutá, použije sa prvý prvok kolekcie) a funkciu. Táto funkcia dostane ako argumenty vždy ďalší prvok kolekcie a aktuálnu hodnotu akumulátora. Vráti novú hodnotu akumulátora, ktorá sa zasa použije v ďalšom kole cyklu:
+S `reduce/3` môžeme našu kolekciu zredukovať na jedinú hodnotu. Spravíme to tým, že poskytneme funkcii počiatočnú hodnotu akumulátora (`10` v príklade nižšie). Ak nedodáme žiadny akumulátor je použitý prvý prvok kolekcie:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
+
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+
 iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 "cba1"
 ```
 
 ### sort
 
-Na triedenie kolekcií máme k dispozícii dve `sort` funkcie. Prvá používa na určenie poradia prvkov *term ordering* jazyka Elixir (t.j. triedi podľa priority dátových typov):
+Na triedenie kolekcií máme k dispozícii dve sort funkcie.
+
+`sort/1` používa Erlangovo term ordering (triedenie podľa priority dátových typov) na určenie poradia prvkov:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -121,7 +168,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-Druhá možnosť je poskytnúť ako druhý argument triediacu funkciu:
+Zatiaľ čo `sort/2` nám umožňuje dodať vlastnú funkciu na určenie poradia prvkov:
 
 ```elixir
 # s triediacou funkciou
@@ -133,11 +180,11 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq
+### uniq_by
 
-Odstráni z kolekcie duplikáty:
+Môžeme použiť `uniq_by/2` na odstránenie duplikátov z našich kolekcii:
 
 ```elixir
-iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
-[1, 2, 3, 4]
+iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+[1, 2, 3]
 ```

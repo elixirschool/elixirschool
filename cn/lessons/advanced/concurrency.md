@@ -75,7 +75,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 有时候我们不希望链接的进程导致当前进程跟着崩溃，这时候就要捕捉进程的错误退出。当进程错误退出时，会向上层发送 `{:EXIT, from_pid, reason}` 三元组的消息。

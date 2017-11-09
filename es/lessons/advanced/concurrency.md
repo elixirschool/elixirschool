@@ -74,7 +74,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 A veces no queremos que nuestro proceso enlazado termine el proceso actual. Para ello necesitamos atrapar las salidas. Cuando atrapamos las salidas se recibirán como una tupla en un mensaje: `{:EXIT, from_pid, reason}`.

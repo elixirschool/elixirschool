@@ -29,7 +29,7 @@ at/3
 ...
 ```
 
-Using this, its clear that we have a vast amount of functionality, and that is for a clear reason.
+Using this, it's clear that we have a vast amount of functionality, and that is for a clear reason.
 Enumeration is at the core of functional programming and is an incredibly useful thing.
 By leveraging it combined with other perks of Elixir, such as documentation being a first class citizen as we just saw, it can be incredibly empowering to the developer as well.
 
@@ -56,16 +56,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every
 
-If you need to break your collection up into smaller groups, `chunk/2` is the function you're probably looking for:
+If you need to break your collection up into smaller groups, `chunk_every/2` is the function you're probably looking for:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-There are a few options for `chunk/2` but we won't go into them, check out [`the official documentation of this function`](https://hexdocs.pm/elixir/Enum.html#chunk/2) to learn more.
+There are a few options for `chunk_every/4` but we won't go into them, check out [`the official documentation of this function`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) to learn more.
 
 ### chunk_by
 

@@ -54,16 +54,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every/2
 
-컬렉션을 작은 묶음으로 쪼개야 할 필요가 있다면, `chunk/2`가 찾고 있을 그 함수입니다.
+컬렉션을 작은 묶음으로 쪼개야 할 필요가 있다면, `chunk_every/4`가 찾고 있을 그 함수입니다.
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk/2`에는 몇 가지 옵션이 있습니다만, 여기서는 이에 대해 다루지 않을 것입니다. 더 알아보고자 하신다면 [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) 공식 문서를 참고해보세요.
+`chunk_every/4`에는 몇 가지 옵션이 있습니다만, 여기서는 이에 대해 다루지 않을 것입니다. 더 알아보고자 하신다면 [`chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) 공식 문서를 참고해보세요.
 
 ### chunk_by
 

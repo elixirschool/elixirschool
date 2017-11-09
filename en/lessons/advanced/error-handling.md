@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Error Handling
 redirect_from:
 - /lessons/advanced/error-handling/
@@ -47,10 +47,10 @@ It's possible to match multiple errors in a single rescue:
 try do
   opts
   |> Keyword.fetch!(:source_file)
-  |> File.read!
+  |> File.read!()
 rescue
-  e in KeyError -> IO.puts "missing :source_file option"
-  e in File.Error -> IO.puts "unable to read source file"
+  e in KeyError -> IO.puts("missing :source_file option")
+  e in File.Error -> IO.puts("unable to read source file")
 end
 ```
 
@@ -74,11 +74,12 @@ The end!
 This is most commonly used with files or connections that should be closed:
 
 ```elixir
-{:ok, file} = File.open "example.json"
+{:ok, file} = File.open("example.json")
+
 try do
-   # Do hazardous work
+  # Do hazardous work
 after
-   File.close(file)
+  File.close(file)
 end
 ```
 
@@ -136,7 +137,7 @@ To explicitly exit we can use `exit/1`:
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 While it is possible to catch an exit with `try/catch` doing so is _extremely_ rare.  In almost all cases it is advantageous to let the supervisor handle the process exit:

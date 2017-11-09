@@ -55,16 +55,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every/2
 
-如果你想把你的集合拆分成小的分组，`chunk` 就是你要找的函数：
+如果你想把你的集合拆分成小的分组，`chunk_every/2` 就是你要找的函数：
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk` 还有其他选项，在这里不深入介绍。如果感兴趣，前往 [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) 的官方文档去了解。
+`chunk_every/2` 还有其他选项，在这里不深入介绍。如果感兴趣，前往 [`chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) 的官方文档去了解。
 
 ### chunk_by
 

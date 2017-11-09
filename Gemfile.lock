@@ -77,6 +77,8 @@ GEM
       babel-source (>= 5.8.11)
       babel-transpiler
       sprockets (>= 3.0.0)
+    uglifier (3.2.0)
+      execjs (>= 0.3.0, < 3)
 
 PLATFORMS
   ruby
@@ -92,6 +94,10 @@ DEPENDENCIES
   rack-jekyll
   rake
   sprockets-es6
+  uglifier
+
+RUBY VERSION
+   ruby 2.3.1p112
 
 BUNDLED WITH
-   1.14.6
+   1.15.4
