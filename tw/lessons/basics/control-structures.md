@@ -1,19 +1,19 @@
 ---
 version: 1.1.0
-title: Control Structures
+title: 控制語句
 redirect_from:
   - /lessons/basics/control-structures/
 ---
 
-In this lesson we will look at the control structures available to us in Elixir.
+在本課中，我們將專注在 Elixir 中可用的控制語句。
 
 {% include toc.html %}
 
-## `if` and `unless`
+## `if` 和 `unless`
 
-Chances are you've encountered `if/2` before, and if you've used Ruby you're familiar with `unless/2`.  In Elixir they work much the same way but they are defined as macros, not language constructs; You can find their implementation in the [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
+可能你之前使用過 `if/2`，而如果你使用過 Ruby，那麼你應該很熟悉 `unless/2`。 在 Elixir 中，它們的工作方式大致相同，但它們被定義為宏 (macros) 而不是語言結構；你可以在 [Kernel module](https://hexdocs.pm/elixir/Kernel.html) 中找到它們的實現 (implementation)。
 
-It should be noted that in Elixir, the only falsey values are `nil` and the boolean `false`.
+應該小心的是，在 Elixir 中，唯一的 falsey 值是 `nil` 與布林的 `false`。
 
 ```elixir
 iex> if String.valid?("Hello") do
@@ -29,7 +29,7 @@ iex> if "a string value" do
 "Truthy"
 ```
 
-Using `unless/2` is like `if/2` only it works on the negative:
+`unless/2` 使用方法和 `if/2` 一樣，只在 negative 時才會執行：
 
 ```elixir
 iex> unless is_integer("hello") do
@@ -40,7 +40,7 @@ iex> unless is_integer("hello") do
 
 ## `case`
 
-If it's necessary to match against multiple patterns we can use `case/2`:
+如果有必要比對多種樣式，我們可以使用 `case/2`：
 
 ```elixir
 iex> case {:ok, "Hello World"} do
@@ -51,7 +51,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-The `_` variable is an important inclusion in `case/2` statements. Without it failure to find a match will raise an error:
+`_` 變數是 `case/2` 語句中的重要內涵。 缺少 `_` 比對時將失敗，進而引發一個錯誤訊息：
 
 ```elixir
 iex> case :even do
@@ -66,9 +66,10 @@ iex> case :even do
 "Not Odd"
 ```
 
-Consider `_` as the `else` that will match "everything else".
+想像 `_` 做為 `else` 將會比對 "所有一切"。
 
-Since `case/2` relies on pattern matching, all of the same rules and restrictions apply.  If you intend to match against existing variables you must use the pin `^/1` operator:
+
+由於 `case/2` 依賴於模式比對，因此相同的規則和限制都適用。如果你打算比對已存在變數，你必須使用 pin `^/1` 運算子：
 
 ```elixir
 iex> pie = 3.14
@@ -80,9 +81,9 @@ iex> case "cherry pie" do
 "I bet cherry pie is tasty"
 ```
 
-Another neat feature of `case/2` is its support for guard clauses:
+另一個 `case/2` 很酷的特點是它支援看守 (guard) 子句：
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) guide._
+_以下例子直接來自官方 Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) 指南。_
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -94,13 +95,13 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Check the official docs for [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+查看官方文件來獲得 [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses) 資訊。
 
 ## `cond`
 
-When we need to match conditions rather than values we can turn to `cond/1`; this is akin to `else if` or `elsif` from other languages:
+當我們需要比對的是條件 (conditions) 而不是值 (values) 時，我們可以轉為用 `cond/1`；這與其他語言的 `else if` 或 `elsif` 類似：
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
+_以下例子直接來自官方 [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) 指南。_
 
 ```elixir
 iex> cond do
@@ -114,7 +115,7 @@ iex> cond do
 "But this will"
 ```
 
-Like `case/2`, `cond/1` will raise an error if there is no match.  To handle this, we can define a condition set to `true`:
+像 `case/2` 一樣，如果比對沒有結果， `cond/1` 將會產生一個錯誤訊息。為了處理這個問題，我們可以定義並設置一個為 `true`的條件：
 
 ```elixir
 iex> cond do
@@ -126,11 +127,11 @@ iex> cond do
 
 ## `with`
 
-The special form `with/1` is useful when you might use a nested `case/2` statement or situations that cannot cleanly be piped together. The `with/1` expression is composed of the keywords, the generators, and finally an expression.
+當你可能使用一個巢狀但無法清楚互相傳遞 (piped) 的 `case/2` 陳述語句或情況時，特殊形式的 `with/1` 是非常有用的。`with/1` 表達式由關鍵字，生成器 (generators) 以及表達式構成。
 
-We'll discuss generators more in the [list comprehensions lesson](../comprehensions/), but for now we only need to know they use [pattern matching](../pattern-matching/) to compare the right side of the `<-` to the left.
+我們將在 [list comprehensions lesson](../comprehensions/) 中更廣泛地探討生成器，但是現在我們只需要知道它使用 [pattern matching](../pattern-matching/) 以 `<-` 的右側來與左邊做比對。
 
-We'll start with a simple example of `with/1` and then look at something more:
+我們將以 `with/1` 的一個簡單例子開始，然後再看看更多的東西：
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
@@ -141,7 +142,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 "Callan, Sean"
 ```
 
-In the event that an expression fails to match, the non-matching value will be returned:
+在表達式比對結果失敗的情況下，將回傳無法比對的值：
 
 ```elixir
 iex> user = %{first: "doomspork"}
@@ -152,7 +153,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 :error
 ```
 
-Now let's look at a larger example without `with/1` and then see how we can refactor it:
+現在我們來看一個較複雜沒有使用 `with/1` 的例子，看看我們是如何重構它的：
 
 ```elixir
 case Repo.insert(changeset) do
@@ -166,7 +167,7 @@ case Repo.insert(changeset) do
 end
 ```
 
-When we introduce `with/1` we end up with code that is easy to understand and has fewer lines:
+當我們引用 `with/1` 時，我們將得到更少行數並且很容易理解的程式碼：
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
@@ -176,7 +177,7 @@ end
 ```
 
 
-As of Elixir 1.3, `with/1` statements support `else`:
+從 Elixir 1.3 開始， `with/1` 陳述句支援 `else` 語法：
 
 ```elixir
 import Integer
@@ -198,4 +199,4 @@ a =
   end
 ```
 
-It helps to handle errors by providing `case`-like pattern matching in it. The value passed is the first non-matched expression.
+藉由在類似 `case` 中提供模式比對來協助處理錯誤。第一個不相配的表達式將是被傳遞的值。
