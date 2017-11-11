@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Erlang Interoperability
 redirect_from:
   - /lessons/advanced/erlang/
@@ -19,8 +19,8 @@ Let's use `:timer.tc` to time execution of a given function:
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time} μs"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time} μs")
+    IO.puts("Result: #{result}")
   end
 end
 
@@ -44,10 +44,8 @@ end
 Now we can access our Erlang library:
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## Notable Differences

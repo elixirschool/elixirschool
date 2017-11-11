@@ -16,8 +16,8 @@ Este tutorial assume que você já tenha Elixir 1.4 ou superior e o `mix` instal
 Se você não tem um projeto iniciado, crie um:
 
 ```shell
-mix new example
-cd example
+$ mix new example
+$ cd example
 ```
 
 ## Dependências
@@ -338,7 +338,7 @@ end
 Execute com o comando:
 
 ```shell
-mix test test/example/router_test.exs
+$ mix test test/example/router_test.exs
 ```
 
 ## Plugs disponíveis
