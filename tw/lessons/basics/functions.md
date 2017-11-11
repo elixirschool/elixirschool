@@ -1,19 +1,19 @@
 ---
 version: 1.0.0
-title: Functions
+title: 函數
 redirect_from:
   - /lessons/basics/functions/
 ---
 
-In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
+在 Elixir 和許多函數式語言中，函數是一等公民。本課程將會學習 Elixir 中的函數類型、它們因何與眾不同，以及如何使用它們。
 
 {% include toc.html %}
 
-## Anonymous Functions
+## 匿名 (Anonymous) 函數
 
-Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, these are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
+正如函數名稱所暗示的，匿名函數沒有名字。同時與我們在 `Enum` 課程中看到的那樣，匿名函數經常被傳遞給其他函數。 為了在 Elixir 中定義一個名函數，我們需要 `fn` 和 `end` 來做為關鍵字。在這兩個關鍵字之間，我們可以定義任意數量由 `->` 分隔的參數 (parameters) 和函數主體 (bodies)。
 
-Let's look at a basic example:
+現在來看一個基本的例子：
 
 ```elixir
 iex> sum = fn (a, b) -> a + b end
@@ -21,9 +21,9 @@ iex> sum.(2, 3)
 5
 ```
 
-### The & Shorthand
+###  & 簡寫符號
 
-Using anonymous functions is such a common practice in Elixir there is shorthand for doing so:
+在 Elixir 中使用匿名函數是非常普遍的做法，因此有一個使用簡寫符號的書寫法：
 
 ```elixir
 iex> sum = &(&1 + &2)
@@ -31,13 +31,13 @@ iex> sum.(2, 3)
 5
 ```
 
-As you probably already guessed, in the shorthand version our parameters are available to us as `&1`, `&2`, `&3`, and so on.
+正如你可能猜到的那樣，在簡寫變體中我們的參數可以用 `&1` 、 `&2` 和 `&3` 等等。
 
-## Pattern Matching
+## 模式比對
 
-Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
+模式比對不僅限於 Elixir 中的變數，同時可以應用於函數簽章 (signatures)，我們將在本節中看到。
 
-Elixir uses pattern matching to identify the first set of parameters which match and invokes the corresponding body:
+Elixir 使用模式比對來識別相配的第一組參數，接著執行相對應的函數：
 
 ```elixir
 iex> handle_result = fn
@@ -53,11 +53,11 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-## Named Functions
+## 命名 (Named) 函數
 
-We can define functions with names so we can easily refer to them later.  Named functions are defined within a module using the `def` keyword .  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
+我們可以用名字來定義函數，以便稍後可以很容易地引用它們。在模組中，定義命名函數使用 `def` 做為關鍵字。我們將在接下來的課程中學習更多關於模組的內容，現在我們將單單專注於命名函數。
 
-Functions defined within a module are available to other modules for use.  This is a particularly useful building block in Elixir:
+在模組中定義的函數可供其他模組使用。這是 Elixir 中一個特別有用的構建區塊 (building block)：
 
 ```elixir
 defmodule Greeter do
@@ -70,7 +70,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 ```
 
-If our function body only spans one line, we can shorten it further with `do:`:
+如果函數主體只有一行，可以用 `do:` 來進一步縮短：
 
 ```elixir
 defmodule Greeter do
@@ -78,7 +78,7 @@ defmodule Greeter do
 end
 ```
 
-Armed with our knowledge of pattern matching, let's explore recursion using named functions:
+借助我們對模式比對的了解，讓我們探索使用命名函數的遞迴：
 
 ```elixir
 defmodule Length do
@@ -92,9 +92,9 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### Function Naming and Arity
+### 函數命名和引數數目 (Arity)
 
-We mentioned earlier that functions are named by the combination of given name and arity (number of arguments). This means you can do things like this:
+我們前面提到，函數是通過給定名稱和引數數目 (arity) 的組合來命名的。這意味著你可以做這樣的事情：
 
 ```elixir
 defmodule Greeter2 do
@@ -112,11 +112,11 @@ iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
 
-We've listed the function names in comments above. The first implementation takes no arguments, so it is known as `hello/0`; the second takes one argument so it is known as `hello/1`, and so on. Unlike function overloads in some other languages, these are thought of as _different_ functions from each other. (Pattern matching, described just a moment ago, applies only when multiple definitions are provided for function definitions with the _same_ number of arguments.)
+我們在上面的註釋中列出了函數名稱。第一個實現 (implementation) 不接受引數 (arguments)，所以它被稱為 `hello/0`；第二個則接受一個引數，所以它被稱為 `hello/1`，依此類推。與某些其他語言中的函數重載 (function overloads) 不同，這些被認為是彼此 _不同_ 的函數。前面提過的模式比對只有當函數名字與引數數量都 _相同_ 時才適用）。
 
-### Private Functions
+### 私有 (Private) 函數
 
-When we don't want other modules accessing a specific function we can make the function private.  Private functions can only be called from within their own Module.  We define them in Elixir with `defp`:
+當我們不想讓其他模組存取某個特定的函數時，我們可以讓這個函數被保密。私有函數只能從自己的模組中呼用。在 Elixir 中，我們使用 `defp` 來定義：
 
 ```elixir
 defmodule Greeter do
@@ -132,11 +132,11 @@ iex> Greeter.phrase
     Greeter.phrase()
 ```
 
-### Guards
+### 監視 (Guards)
 
-We briefly covered guards in the [Control Structures](../control-structures) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
+我們在 [Control Structures](../control-structures) 課程中簡要地介紹了監視 (guards)，現在我們來看看如何應用到命名函數上。一旦 Elixir 配對了一個函數，任何現有的監視語句 (guards) 都將被檢驗。
 
-In the following example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
+在下面的例子中，我們有兩個具有相同簽章的函數，我們依靠監視 (guards) 來決定使用何種引數類型 (argument's type) 的函數：
 
 ```elixir
 defmodule Greeter do
@@ -157,9 +157,9 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### Default Arguments
+### 預設 (Default) 引數值
 
-If we want a default value for an argument we use the `argument \\ value` syntax:
+如果我們需要定義引數的預設值，使用 `argument \\ value` 語法：
 
 ```elixir
 defmodule Greeter do
@@ -181,7 +181,7 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-When we combine our guard example with default arguments, we run into an issue.  Let's see what that might look like:
+當我們把監視的用法和預設的引數值結合起來時，會遇到一個問題。現在來看看會是什麼樣的情形：
 
 ```elixir
 defmodule Greeter do
@@ -214,7 +214,7 @@ def hello/2 has multiple clauses and defines defaults in one or more clauses
     iex:31: (module)
 ```
 
-Elixir doesn't like default arguments in multiple matching functions, it can be  confusing.  To handle this we add a function head with our default arguments:
+Elixir 不喜歡多重比對函數中的預設引數值，因可能會造成混淆。我們加上一個帶有預設引數值的函數標頭 (head) 來處理這個問題：
 
 ```elixir
 defmodule Greeter do
