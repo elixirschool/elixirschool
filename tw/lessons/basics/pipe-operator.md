@@ -1,58 +1,59 @@
 ---
 version: 1.0.0
-title: Pipe Operator
+title: 管線運算子
 redirect_from:
   - /lessons/basics/pipe-operator/
 ---
 
-The pipe operator `|>` passes the result of an expression as the first parameter of another expression.
+管線運算子 `|>` ，傳遞一個表達式的結果作為另一個表達式的第一個參數 (parameter)。
 
 {% include toc.html %}
 
-## Introduction
+## 簡介
 
-Programming can get messy. So messy in fact that function calls can get so embedded that they become difficult to follow. Take the following nested functions into consideration:
+編寫程式的過程可能變得雜亂。實際上，函數呼用是能夠混亂的難以判讀。參見以下巢狀函數：
 
 ```elixir
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Here, we are passing the value `other_function/0` to `new_function/1`, and `new_function/1` to `baz/1`, `baz/1` to `bar/1`, and finally the result of `bar/1` to `foo/1`. Elixir takes a pragmatic approach to this syntactical chaos by giving us the pipe operator. The pipe operator which looks like `|>` *takes the result of one expression, and passes it on*. Let's take another look at the code snippet above rewritten using the pipe operator.
+在這裡，我們將 `other_function/0` 的值傳遞給 `new_function/1`，而 `new_function/1` 傳給 `baz/1` 接著 `baz/1` ，傳給 `bar/1`，最後 `bar/1` 傳到 `foo/1`。 Elixir 通過管線運算子來解決這個語法混亂的問題。管線運算子看起來像 `|>` *採用一個表達式的結果，並將其傳遞*。 來看看上述範例改用管線運算子重寫後的程式碼片段。
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
 ```
 
-The pipe takes the result on the left, and passes it to the right hand side.
+管線運算子採用它左側的結果，並將其傳遞到右側。
 
-## Examples
+## 範例
 
-For this set of examples, we will use Elixir's String module.
+我們將使用 Elixir String 模組做為這組範例。
 
-- Tokenize String (loosely)
+- Tokenize 字串 (loosely)
 
 ```elixir
 iex> "Elixir rocks" |> String.split
 ["Elixir", "rocks"]
 ```
 
-- Uppercase all the tokens
+- 大寫 (Uppercase) 所有的 tokens
 
 ```elixir
 iex> "Elixir rocks" |> String.upcase |> String.split
 ["ELIXIR", "ROCKS"]
 ```
 
-- Check ending
+- 驗證字串末端
 
 ```elixir
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
 
-## Best Practices
+## 最佳實踐
 
-If the arity of a function is more than 1, then make sure to use parentheses. This doesn't matter much to the Elixir, but it matters to other programmers who may misinterpret your code. It does matter with the pipe operator though. For example, if we take our third example, and remove the parentheses from `String.ends_with?/2`, we are met with the following warning.
+如果函數的引數數目 (arity) 超過 1，則確保使用括號。這對於 Elixir 來說無關緊要，但是對於其他可能會誤解你程式碼的程式設計師來說，這很重要。
+這對管線運算子來說也確實很重要。例如，如果我們拿第三個例子，並從 `String.ends_with?/2` 中刪除括號，我們會遇到下面的警告。
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"
