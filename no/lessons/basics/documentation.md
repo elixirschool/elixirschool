@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Dokumentasjon
 ---
 
@@ -26,7 +26,7 @@ For eksempel (greeting.exs):
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum.")
 ```
 
 Når du kjører scriptet ditt, vil Elixir ignorere alt fra `#` til slutten av linjen. Enkeltlinjekommentaren påvirker ikke ytelsen av scriptet, og når det ikke er helt klart hva koden din gjør, vil en liten kommentar gjøre det mye lettere for de som leser koden. Vær forsiktig med å ikke misbruke enkeltlinjekommentarer. Ingen liker forsøplet kode.  
@@ -86,7 +86,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -182,10 +182,9 @@ Examples
 Forutsatt at alt virket som det skal, og at terminalen printet ut riktig, kan vi nå installere ExDoc. Vi behøver to Hex pakker, `:earmark` og `:ex_doc`. Legg de til i `mix.exs` filen inn i funksjonen `deps`:
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Med `only: :dev` spesifiserer vi at pakkene kun benyttes i utvikling, og ikke i produksjon. Men hvorfor Earmark? Earmark er en Markdown parser for Elixir, som ExDoc bruker for å gjøre om dokumentasjonen i `@moduledoc` og `@doc` til HTML.
@@ -264,7 +263,7 @@ defmodule Greeter do
   This module also has a `hello/1` function.
   """
 
-  alias Goodbye.bye_bye
+  alias Goodbye.bye_bye()
   # and so on...
 
   def hello(name) do
@@ -297,7 +296,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
