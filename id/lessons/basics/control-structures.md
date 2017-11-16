@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Struktur Kendali
 ---
 
@@ -151,14 +151,18 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 Sekarang mari lihat contoh yang lebih besar tanpa `with` dan kemudian melihat bagaimana kita bisa merefaktornya:
 
 ```elixir
-case Repo.insert(changeset) do 
-  {:ok, user} -> 
+case Repo.insert(changeset) do
+  {:ok, user} ->
     case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 

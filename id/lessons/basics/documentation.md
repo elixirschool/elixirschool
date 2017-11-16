@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Documentation
 ---
 
@@ -85,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -178,10 +178,9 @@ Examples
 Mengasumsikan bahwa semuanya berjalan baik, dan kita melihat output di atas mengindikasikan bahwa kita siap mensetup ExDoc. Di dalam file `mix.exs` kita tambahkan kedua dependensi yang dibutuhkan untuk memulai; `:earmark` dan `:ex_doc`.
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Kita menspesifikasikan pasangan key-value `only: :dev` karena kita tidak ingin mengunduh dan mengkompilkasi dependensi ini di production. Tapi kenapa Earmark? Earmark adalah sebuah parser Markdown untuk Elixir yang digunakan ExDoc untuk mengubah dokumentasi kita di dalam `@moduledoc` dan `@doc` menjadi HTML yang cantik.
@@ -245,7 +244,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -260,11 +259,11 @@ defmodule Greeter do
   This module also has a `hello/1` function.
   """
 
-  alias Goodbye.bye_bye
+  alias Goodbye.bye_bye()
   # and so on...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -293,7 +292,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
