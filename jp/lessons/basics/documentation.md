@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: ドキュメント
 ---
 
@@ -85,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -180,10 +180,9 @@ Hello メッセージを表示します
 全てがうまくいき、上記のような出力が表示されていれば、ExDoc の構築準備ができていることを意味します。 `mix.exs` ファイルに、 `:earmark` と `:ex_doc` の2つの必要な依存関係を追加してください:
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 `only: :dev`というキーバリューのペアを指定することで、本番環境ではこれらの依存パッケージをダウンロードしたりコンパイルしたりしないようにします。それはそれとして、Earmark はなぜ必要なのでしょう。これは Elixir プログラミング言語向けの Markdown パーサで、ExDoc が `@moduledoc` や `@doc` 内のドキュメントを綺麗な見た目の HTML に変換するためのものです。
@@ -247,7 +246,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -262,11 +261,11 @@ defmodule Greeter do
   このモジュールには `hello/1` 関数もあります。
   """
 
-  alias Goodbye.bye_bye
+  alias Goodbye.bye_bye()
   # などなど...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -295,7 +294,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end

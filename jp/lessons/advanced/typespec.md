@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 仕様と型
 ---
 
@@ -24,9 +24,9 @@ title: 仕様と型
 ```elixir
 @spec sum_product(integer) :: integer
 def sum_product(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
 end
 ```
 
@@ -45,12 +45,12 @@ Elixirには何もせずとも最初から `integer` や `pid` といった基�
 ```elixir
 @spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -66,13 +66,11 @@ Elixirには3つの型の指定方法があります:
 
 ```elixir
 defmodule Examples do
+  defstruct first: nil, last: nil
 
-    defstruct first: nil, last: nil
+  @type t(first, last) :: %Examples{first: first, last: last}
 
-    @type t(first, last) :: %Examples{first: first, last: last}
-
-    @type t :: %Examples{first: integer, last: integer}
-
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 
@@ -81,14 +79,14 @@ end
 この違いは何でしょう? 最初のものは構造体 `Examples` で2つの、任意の型になれるキーを持つものを表しています。2番めのものは構造体でキーがどちらも `integer` であるものを表しています。即ち以下のコードは:
 
 ```elixir
-@spec sum_times(integer, Examples.t) :: integer
+@spec sum_times(integer, Examples.t()) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -97,12 +95,12 @@ end
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -112,13 +110,11 @@ end
 
 ```elixir
 defmodule Examples do
-
-    @typedoc """
-        Type that represents Examples struct with :first as integer and :last as integer.
-        Examplesを表す型は:firstを整数型、:lastを整数型として取る構造体を表す。
-    """
-    @type t :: %Examples{first: integer, last: integer}
-
+  @typedoc """
+      Type that represents Examples struct with :first as integer and :last as integer.
+      Examplesを表す型は:firstを整数型、:lastを整数型として取る構造体を表す。
+  """
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 
