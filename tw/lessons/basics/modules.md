@@ -1,19 +1,20 @@
 ---
-version: 1.1.0
-title: Modules
+version: 1.2.0
+title: 模組
 redirect_from:
   - /lessons/basics/modules/
 ---
 
-We know from experience it's unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
+我們從經驗中知道，把所有的功能放在同一個文件和範圍 (scope) 內是不合理的。
+在本課程中，我們將介紹如何對函數進行分組，並定義一個稱為函數體 (struct) 的特殊映射，以便更有效地組織我們的程式碼。
 
 {% include toc.html %}
 
-## Modules
+## 模組
 
-Modules allow us to organize functions into a namespace. In addition to grouping functions, they allow us to define named and private functions which we covered in the [functions lesson](../functions/).
+模組允許我們將函數整合到一個名稱空間 (namespace) 中。除了對函數進行分組之外，它同時允許我們定義在 [functions lesson](../functions/) 中介紹的命名函數和私有函數。
 
-Let's look at a basic example:
+現在來看看一個基本的例子：
 
 ``` elixir
 defmodule Example do
@@ -26,7 +27,7 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
-It is possible to nest modules in Elixir, allowing you to further namespace your functionality:
+在 Elixir 中能夠使用巢狀模組，使您可以進一步定義多層命名空間：
 
 ```elixir
 defmodule Example.Greetings do
@@ -43,9 +44,9 @@ iex> Example.Greetings.morning "Sean"
 "Good morning Sean."
 ```
 
-### Module Attributes
+### 模組屬性
 
-Module attributes are most commonly used as constants in Elixir.  Let's look at a simple example:
+模組屬性在 Elixir 中最常用作常數。現在來看一個簡單的例子：
 
 ```elixir
 defmodule Example do
@@ -57,17 +58,18 @@ defmodule Example do
 end
 ```
 
-It is important to note there are reserved attributes in Elixir.  The three most common are:
+注意 Elixir 有保留某些屬性 (reserved attributes)。最常見的三個是：
 
-+ `moduledoc` — Documents the current module.
-+ `doc` — Documentation for functions and macros.
-+ `behaviour` — Use an OTP or user-defined behaviour.
++ `moduledoc` — 記錄當前模組。
++ `doc` — 文件的功能和巨集 (macros)。
++ `behaviour` — 使用 OTP 或使用者定義的行為。
 
-## Structs
+## 結構體 (Structs)
 
-Structs are special maps with a defined set of keys and default values.  A struct must be defined within a module, which it takes its name from.  It is common for a struct to be the only thing defined within a module.
+結構體是具有一組被定義的鍵 (keys) 和預設值的特殊映射。
+結構體必須定義在一個模組中，因此必須通過模組來存取。在模組中，單只定義結構體是常見用法。
 
-To define a struct we use `defstruct` along with a keyword list of fields and default values:
+為了定義一個結構體，我們使用 `defstruct` 和關鍵字列表以及預設值：
 
 ```elixir
 defmodule Example.User do
@@ -75,7 +77,7 @@ defmodule Example.User do
 end
 ```
 
-Let's create some structs:
+現在來創建一些結構：
 
 ```elixir
 iex> %Example.User{}
@@ -88,7 +90,7 @@ iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
 %Example.User{name: "Steve", roles: [:admin, :owner]}
 ```
 
-We can update our struct just like we would a map:
+我們可以像更新映射一樣更新結構體：
 
 ```elixir
 iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
@@ -97,20 +99,21 @@ iex> sean = %{steve | name: "Sean"}
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-Most importantly, you can match structs against maps:
+最重要的是，你可以將結構體與映射配對：
 
 ```elixir
 iex> %{name: "Sean"} = sean
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-## Composition
+## 合成 (Composition)
 
-Now that we know how to create modules and structs let's learn how to add existing functionality to them via composition.  Elixir provides us with a variety of different ways to interact with other modules.
+我們已經知道如何創建模組和結構體，現在讓我們學習如何通過合成來加入已存在的功能。
+Elixir 提供了多種不同的方式來與其他模組進行互動。
 
-### `alias`
+### `別名 (alias)`
 
-Allows us to alias module names; used quite frequently in Elixir code:
+允許在模組名稱中使用別名；這在 Elixir 程式碼中使用相當頻繁：
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -130,7 +133,7 @@ defmodule Example do
 end
 ```
 
-If there's a conflict between two aliases or we just wish to alias to a different name entirely, we can use the `:as` option:
+如果兩個別名之間有衝突，或者我們只是想完全使用別名，我們可以使用 `:as` 選項：
 
 ```elixir
 defmodule Example do
@@ -140,7 +143,7 @@ defmodule Example do
 end
 ```
 
-It's even possible to alias multiple modules at once:
+同時為多個模組套用別名是可行的：
 
 ```elixir
 defmodule Example do
@@ -148,9 +151,9 @@ defmodule Example do
 end
 ```
 
-### `import`
+### `導入 (import)`
 
-If we want to import functions and macros rather than aliasing the module we can use `import/`:
+如果我們想導入函數和巨集 (macros) 而不是別名 (aliasing) 這個模組，我們可以使用 `import/`：
 
 ```elixir
 iex> last([1, 2, 3])
@@ -161,11 +164,11 @@ iex> last([1, 2, 3])
 3
 ```
 
-#### Filtering
+#### 篩選 (Filtering)
 
-By default all functions and macros are imported but we can filter them using the `:only` and `:except` options.
+預設情況下，所有的函數和巨集都會被導入，但是我們可以使用 `:only` 和 `:except` 選項進行篩選。
 
-To import specific functions and macros, we must provide the name/arity pairs to `:only` and `:except`.  Let's start by importing only the `last/1` function:
+要導入特定的函數和巨集，我們必須提供一對 (pairs) 名稱/引數數目給 `:only` 和 `:except`。讓我們從只導入 `last/1` 函數開始:
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -175,7 +178,7 @@ iex> last([1, 2, 3])
 3
 ```
 
-If we import everything except `last/1` and try the same functions as before:
+導入除了 `last/1` 之外的所有內容，並嘗試與之前相同的函數：
 
 ```elixir
 iex> import List, except: [last: 1]
@@ -186,16 +189,16 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arity pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
+除了一對的名稱/引數數之外，還有兩個特殊的 atoms， `:functions` 和 `:macros` 分別只導入函數和巨集：
 
 ```elixir
 import List, only: :functions
 import List, only: :macros
 ```
 
-### `require`
+### `請求 (require)`
 
-Although used less frequently `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
+雖然不常使用，但 `require/2` 其實非常重要。請求 (Requiring) 一個模組來確保它被編譯和載入。當我們需要存取模組的巨集時，這是非常有用的語法：
 
 ```elixir
 defmodule Example do
@@ -205,51 +208,73 @@ defmodule Example do
 end
 ```
 
-If we attempt to call a macro that is not yet loaded Elixir will raise an error.
+如果我們試圖呼用一個尚未載入的巨集，Elixir 將會出現錯誤訊息。
 
-### `use`
+### `呼用 (use)`
 
-The use macro invokes a special macro, called `__using__/1`, from the specified module. Here’s an example:
+使用 `use` 巨集，我們可以讓另一個模組修改我們目前模組的定義。
+當我們在程式碼中呼用 `use` 時，實際上是呼用由所提供模組定義的 `__using__/1` 回呼函數。
+巨集 `__using__/1` 的結果將成為我們模組定義的一部分。
+為了更好地理解實際上是如何運作的，現在來看一個簡單的例子：
 
 ```elixir
-# lib/use_import_require/use_me.ex
-defmodule UseImportRequire.UseMe do
-  defmacro __using__(_) do
+defmodule Hello do
+  defmacro __using__(_opts) do
     quote do
-      def use_test do
-        IO.puts "use_test"
-      end
+      def hello(name), do: "Hi, #{name}"
     end
   end
 end
 ```
 
-and we add this line to UseImportRequire:
+這裡我們創設了一個 `Hello` 模組，它定義了 `__using__/1` 回呼函數，而我們在其內部同時定義了一個 `hello/1` 函式。
+讓我們創設一個新的模組，以便我們可以試用我們的新程式碼：
 
 ```elixir
-use UseImportRequire.UseMe
+defmodule Example do
+  use Hello
+end
 ```
 
-Using UseImportRequire.UseMe defines a use_test/0 function through invocation of the `__using__/1` macro.
-
-This is all that use does. However, it is common for the `__using__` macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that `__using__/1` may set up references to other modules, especially submodules.
-
-The Phoenix framework makes use of use and `__using__/1` to cut down on the need for repetitive alias and import calls in user defined modules.
-
-Here’s an nice and short example from the Ecto.Migration module:
+如果在 IEx 中試用我們的程式碼，會看到  `Example` 模組上的 `hello/1` ：
 
 ```elixir
-defmacro __using__(_) do
-  quote location: :keep do
-    import Ecto.Migration
-    @disable_ddl_transaction false
-    @before_compile Ecto.Migration
+iex> Example.hello("Sean")
+"Hi, Sean"
+```
+
+這裡可以看到 `use` 在 `Hello` 上呼用 `__using__/1` 回呼函數，然後將執行後的程式碼加入到模組中。
+我們已經展示了一個基本的例子，現在更新我們的程式碼來看看 `__using__/1` 如何支援其它選項。
+我們將通過加入一個選項 `greeting` 來實做：
+
+```elixir
+defmodule Hello do
+  defmacro __using__(opts) do
+    greeting = Keyword.get(opts, :greeting, "Hi")
+
+    quote do
+      def hello(name), do: unquote(greeting) <> ", " <> name
+    end
   end
 end
 ```
 
-The `Ecto.Migration.__using__/1` macro includes an import call so that when you `use Ecto.Migration` you also `import Ecto.Migration`. It also sets up a module property which we will assume controls Ecto’s behavior.
+現在更新我們的 `Example` 模組以包含新創設的選項 `greeting` ：
 
-To recap: the use macro simply invokes the `__using__/1` macro of the specified module. To really understand what that does you need to read the `__using__/1` macro.
+```elixir
+defmodule Example do
+  use Hello, greeting: "Hola"
+end
+```
 
-**Note**: `quote`, `alias`, `use`, `require` are a macro used when we work with [metaprogramming](../../advanced/metaprogramming).
+如果現在我們在 IEx 試用，應該會看到 greeting 已經改變了：
+
+```
+iex> Example.hello("Sean")
+"Hola, Sean"
+```
+
+這些簡單的例子說明了 `use` 是如何運作的，它是 Elixir 工具箱中一個非常強大的工具。
+當你繼續學習 Elixir 的時候，留意一下 `use` ，你肯定會看到一個例子，就是 `use ExUnit.Case, async: true`。
+
+**註**： `quote`, `alias`, `use`, `require` 是我們使用 [metaprogramming](../../advanced/metaprogramming) 時引用的巨集。
