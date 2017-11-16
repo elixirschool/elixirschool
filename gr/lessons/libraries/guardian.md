@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Guardian (Βασικά)
 ---
 
@@ -98,11 +98,11 @@ defmodule MyApp.GuardianSerializer do
   alias MyApp.Repo
   alias MyApp.User
 
-  def for_token(user = %User{}), do: { :ok, "User:#{user.id}" }
-  def for_token(_), do: { :error, "Unknown resource type" }
+  def for_token(user = %User{}), do: {:ok, "User:#{user.id}"}
+  def for_token(_), do: {:error, "Unknown resource type"}
 
-  def from_token("User:" <> id), do: { :ok, Repo.get(User, id) }
-  def from_token(_), do: { :error, "Unknown resource type" }
+  def from_token("User:" <> id), do: {:ok, Repo.get(User, id)}
+  def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
 Ο serializer σας είναι υπέυθυνος για την έυρεση της πηγής που ορίζεται στο πεδίο `sub` (υποκείμενο). Αυτό θα μπορεί να είναι μια αναζήτηση στη βάση δεδομένων, ένα API, ή ακόμα ένα απλό αλφαριθμητικό.
@@ -132,13 +132,13 @@ end
 
 ```elixir
 pipeline :maybe_browser_auth do
-  plug Guardian.Plug.VerifySession
-  plug Guardian.Plug.VerifyHeader, realm: "Bearer"
-  plug Guardian.Plug.LoadResource
+  plug(Guardian.Plug.VerifySession)
+  plug(Guardian.Plug.VerifyHeader, realm: "Bearer")
+  plug(Guardian.Plug.LoadResource)
 end
 
 pipeline :ensure_authed_access do
-  plug Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler}
+  plug(Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler})
 end
 ```
 
@@ -148,17 +148,17 @@ end
 
 ```elixir
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth]
-  
-  get "/login", LoginController, :new
-  post "/login", LoginController, :create
-  delete "/login", LoginController, :delete
+  pipe_through([:browser, :maybe_browser_auth])
+
+  get("/login", LoginController, :new)
+  post("/login", LoginController, :create)
+  delete("/login", LoginController, :delete)
 end
 
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth, :ensure_authed_access]
-  
-  resource "/protected/things", ProtectedController
+  pipe_through([:browser, :maybe_browser_auth, :ensure_authed_access])
+
+  resource("/protected/things", ProtectedController)
 end
 ```
 
@@ -180,7 +180,7 @@ end
 defmodule MyApp.MyController do
   use MyApp.Web, :controller
   use Guardian.Phoenix.Controller
-  
+
   def some_action(conn, params, user, claims) do
     # Κάντε διάφορα
   end
@@ -194,7 +194,7 @@ end
 ```elixir
 defmodule MyApp.MyController do
   use MyApp.Web, :controller
-  
+
   def some_action(conn, params) do
     if Guardian.Plug.authenticated?(conn) do
       user = Guardian.Plug.current_resource(conn)
@@ -213,10 +213,14 @@ end
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
+      # Χρησιμοποιήστε κέρματα πρόσβασης. Άλλα κέρματα μπορούν να χρησιμοποιηθούν, όπως τα :refresh κ.α.
       conn
-      |> Guardian.Plug.sign_in(user, :access) # Χρησιμοποιήστε κέρματα πρόσβασης. Άλλα κέρματα μπορούν να χρησιμοποιηθούν, όπως τα :refresh κ.α.
+      |> Guardian.Plug.sign_in(user, :access)
       |> respond_somehow()
+
     {:error, reason} ->
+      nil
+
       # χειριστείτε την μη επικύρωση των διαπιστευτηρίων του χρήστη.
   end
 end
@@ -236,9 +240,13 @@ def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
       {:ok, jwt, _claims} = Guardian.encode_and_sign(user, :access)
+
       conn
-      |> respond_somehow({token: jwt})
+      |> respond_somehow(%{token: jwt})
+
     {:error, reason} ->
+      nil
+
       # χειριστείτε την μη επικύρωση των διαπιστευτηρίων του χρήστη
   end
 end

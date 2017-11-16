@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Plug
 ---
 
@@ -89,7 +89,7 @@ defmodule Example do
       Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
     ]
 
-    Logger.info "Η εφαρμογή ξεκίνησε"
+    Logger.info("Η εφαρμογή ξεκίνησε")
 
     Supervisor.start_link(children, strategy: :one_for_one)
   end
@@ -139,11 +139,11 @@ browser στη σελίδα `127.0.0.1:8080`. Θα πρέπει να εμφαν�
 defmodule Example.Router do
   use Plug.Router
 
-  plug :match
-  plug :dispatch
+  plug(:match)
+  plug(:dispatch)
 
-  get "/", do: send_resp(conn, 200, "Καλώς ήρθατε")
-  match _, do: send_resp(conn, 404, "Ουπς!")
+  get("/", do: send_resp(conn, 200, "Καλώς ήρθατε"))
+  match(_, do: send_resp(conn, 404, "Ουπς!"))
 end
 ```
 
@@ -156,11 +156,12 @@ end
 
 ```elixir
 def start(_type, _args) do
-    children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
-    ]
-    Logger.info "Η εφαρμογή ξεκίνησε"
-    Supervisor.start_link(children, strategy: :one_for_one)
+  children = [
+    Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+  ]
+
+  Logger.info("Η εφαρμογή ξεκίνησε")
+  Supervisor.start_link(children, strategy: :one_for_one)
 end
 ```
 
@@ -188,7 +189,6 @@ _Σημείωση_: Τα Plugs εφαρμόζονται σε όλες τις α�
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
-
   defmodule IncompleteRequestError do
     @moduledoc """
     Σηκώνεται ένα σφάλμα όταν ένα απαιτούμενο πεδίο λείπει
@@ -205,10 +205,12 @@ defmodule Example.Plug.VerifyRequest do
   end
 
   defp verify_request!(body_params, fields) do
-    verified = body_params
-               |> Map.keys
-               |> contains_fields?(fields)
-    unless verified, do: raise IncompleteRequestError
+    verified =
+      body_params
+      |> Map.keys()
+      |> contains_fields?(fields)
+
+    unless verified, do: raise(IncompleteRequestError)
   end
 
   defp contains_fields?(keys, fields), do: Enum.all?(fields, &(&1 in keys))
@@ -237,16 +239,20 @@ defmodule Example.Router do
 
   alias Example.Plug.VerifyRequest
 
-  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
-  plug VerifyRequest, fields: ["content", "mimetype"],
-                      paths:  ["/upload"]
+  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
 
-  plug :match
-  plug :dispatch
+  plug(
+    VerifyRequest,
+    fields: ["content", "mimetype"],
+    paths: ["/upload"]
+  )
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  post "/upload", do: send_resp(conn, 201, "Uploaded")
-  match _, do: send_resp(conn, 404, "Oops!")
+  plug(:match)
+  plug(:dispatch)
+
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  post("/upload", do: send_resp(conn, 201, "Uploaded"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -325,25 +331,28 @@ defmodule Example.RouterTest do
   @opts Router.init([])
 
   test "returns welcome" do
-    conn = conn(:get, "/", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 200
   end
 
   test "returns uploaded" do
-    conn = conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
-           |> put_req_header("content-type", "application/x-www-form-urlencoded")
-           |> Router.call(@opts)
+    conn =
+      conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
+      |> put_req_header("content-type", "application/x-www-form-urlencoded")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 201
   end
 
   test "returns 404" do
-    conn = conn(:get, "/missing", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/missing", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 404
