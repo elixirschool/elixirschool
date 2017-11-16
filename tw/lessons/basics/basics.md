@@ -19,16 +19,16 @@ redirect_from:
 
     Elixir {{ site.elixir.version }}
 
-### 試用交談模式
+### 試用互動模式
 
-Elixir 自帶 IEx，一個交談模式 shell，可以讓我們隨時計算 Elixir 陳述式。
+Elixir 自帶 IEx，一個互動模式 shell，可以讓我們隨時計算 Elixir 表達式。
 
 輸入 `iex` 開始使用：
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
 
-讓我們繼續嘗試，現在輸入幾個簡單的陳述式：
+讓我們繼續嘗試，現在輸入幾個簡單的表達式：
 
 ```elixir
 iex> 2+3
@@ -39,7 +39,7 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-如果你不了解每一個式子，不用擔心，但我們希望你有些想法了
+如果你不了解每一個式子，不用擔心，但我們希望你有些概念了
 。
 
 ## 基本資料型別
