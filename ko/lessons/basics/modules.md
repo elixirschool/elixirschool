@@ -207,9 +207,9 @@ end
 
 ### `use`
 
-`use` 매크로로 현재 모듈의 정의을 다른 모듈이 수정할 수 있게 합니다.
-코드에서`use`를 호출하면 실제로 제공된 모듈에 의해 정의 된`__using__/1` 콜백을 호출합니다.
-`__using__/1` 매크로의 결과는 모듈 정의의 일부가됩니다.
+`use` 매크로로 현재 모듈의 정의를 다른 모듈이 수정할 수 있게 합니다.
+코드에서 `use`를 호출하면 실제로 제공된 모듈에 의해 정의된 `__using__/1` 콜백을 호출합니다.
+`__using__/1` 매크로의 결과는 모듈 정의의 일부가 됩니다.
 이것이 어떻게 작동하는지 더 잘 이해하기 위해 간단한 예를 살펴 보겠습니다.
 
 ```elixir
@@ -222,7 +222,7 @@ defmodule Hello do
 end
 ```
 
-여기서 내부에서 `hello/1` 함수를 정의하는`__using__/1` 콜백을 가진 `Hello` 모듈을 만들었습니다.
+여기서 내부에서 `hello/1` 함수를 정의하는 `__using__/1` 콜백을 가진 `Hello` 모듈을 만들었습니다.
 이 새로운 코드를 시험해 볼 수 있도록 새 모듈을 만들어 보겠습니다.
 
 ```elixir
@@ -231,15 +231,15 @@ defmodule Example do
 end
 ```
 
-우리가 IEx에서 코드를 시험해 보면`hello/1`이`Example` 모듈에서 사용 가능하다는 것을 알 수 있습니다.
+우리가 IEx에서 코드를 시험해 보면 `hello/1`이 `Example` 모듈에서 사용 가능하다는 것을 알 수 있습니다.
 
 ```elixir
 iex> Example.hello("Sean")
 "Hi, Sean"
 ```
 
-여기서 `use`가`Hello`에서`__using__/1` 콜백을 호출하고 결과 코드를 모듈에 추가 한 것을 볼 수 있습니다.
-이제 기본 예제를 설명 했으므로 코드를 갱신하여`__using__/1`이 옵션을 지원하는 방법을 살펴 보겠습니다.
+여기서 `use`가 `Hello`에서 `__using__/1` 콜백을 호출하고 결과 코드를 모듈에 추가 한 것을 볼 수 있습니다.
+이제 기본 예제를 설명 했으므로 코드를 갱신하여 `__using__/1`이 옵션을 지원하는 방법을 살펴 보겠습니다.
 `greeting` 옵션을 추가해 보겠습니다.
 
 ```elixir
@@ -254,7 +254,7 @@ defmodule Hello do
 end
 ```
 
-새로 만든 `greeting` 옵션을 넣기 위해`Example` 모듈을 갱신해 봅시다.
+새로 만든 `greeting` 옵션을 넣기 위해 `Example` 모듈을 갱신해 봅시다.
 
 ```elixir
 defmodule Example do
@@ -269,7 +269,7 @@ iex> Example.hello("Sean")
 "Hola, Sean"
 ```
 
-이것들은`use`가 어떻게 작동하는지 보여주는 간단한 예제이지만 Elixir 툴박스에서 매우 강력한 도구입니다.
-Elixir를 계속 공부하신다면 `use`를 여기저기서 보게 될 것 입니다. 한 가지 예를 들면`use ExUnit.Case, async: true`입니다.
+이것들은 `use`가 어떻게 작동하는지 보여주는 간단한 예제이지만 Elixir 툴박스에서 매우 강력한 도구입니다.
+Elixir를 계속 공부하신다면 `use`를 여기저기서 보게 될 것 입니다. 한 가지 예를 들면 `use ExUnit.Case, async: true`입니다.
 
 **주의**: `quote`, `alias`, `use`, `require`는 [메타 프로그래밍](../../advanced/metaprogramming)에서 사용한 매크로입니다.
