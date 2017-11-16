@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: 모듈
 ---
 
@@ -215,7 +215,7 @@ defmodule UseImportRequire.UseMe do
   defmacro __using__(_) do
     quote do
       def use_test do
-        IO.puts "use_test"
+        IO.puts("use_test")
       end
     end
   end
