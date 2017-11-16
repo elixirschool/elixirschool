@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Composición
 ---
 
@@ -202,7 +202,7 @@ Aunque `require/2` no es usado frecuentemente, es bastante importante. Haciendo 
 defmodule Example do
   require SuperMacros
 
-  SuperMacros.do_stuff
+  SuperMacros.do_stuff()
 end
 ```
 
