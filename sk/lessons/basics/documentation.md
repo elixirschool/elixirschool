@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Dokumentácia
 ---
 
@@ -24,7 +24,7 @@ Najjednoduchším spôsobom dokumentácie kódu sú inline komentáre. Podobne a
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum")
 ```
 
 Pri spracovaní tohto kódu Elixir riadok s komentárom odignoruje. Komentár kód nespomalí, no programátorovi ušetrí čas, ktorý by musel stráviť lúštením významu kódu. Treba ich však používať s mierou a nezneužívať ich na rozsiahlejšiu dokumentáciu.
@@ -84,7 +84,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -181,10 +181,9 @@ Examples
 Ak všetko prebehlo hladko, môžeme nainštalovať samotný ExDoc. V súbore `mix.exs` pridáme do závislostí projektu dva balíčky - `:earmark` a `:ex_doc`:
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Pri oboch balíčkoch sme pomocou `only: :dev` špecifikovali, že ich nechceme sťahovať a kompilovať v produkčnom prostredí. Balíček Earmark je parser markdownu pre Elixir používaný ExDocom, ktorý nám umožňuje formátovať text dokumentácie vo vnútri `@moduledoc` a `@doc` na pekne vyzerajúce HTML.
@@ -263,7 +262,7 @@ defmodule Greeter do
   Tento modul obsahuje funkciu `hello/1`.
   """
 
-  alias Goodbye.bye_bye
+  alias Goodbye.bye_bye()
   # a tak ďalej...
 
   def hello(name) do
@@ -296,7 +295,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
