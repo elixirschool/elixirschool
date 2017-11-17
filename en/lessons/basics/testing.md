@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Testing
 redirect_from:
   - /lessons/basics/testing/
@@ -110,7 +110,7 @@ In Elixir, applications consist of actors/processes that send messages to each o
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -136,7 +136,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```

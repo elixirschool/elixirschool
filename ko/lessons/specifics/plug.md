@@ -19,8 +19,8 @@ Plug는 Elixir 코어의 일부가 아닌, Elixir의 공식 프로젝트입니�
 새 프로젝트를 만든적이 없다면 다음과 같이 입력하세요.
 
 ```shell
-mix new example
-cd example
+$ mix new example
+$ cd example
 ```
 
 ## 의존성

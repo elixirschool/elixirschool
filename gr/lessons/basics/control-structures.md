@@ -187,7 +187,7 @@ m = %{a: 1, c: 3}
 
 a =
   with {:ok, number} <- Map.fetch(m, :a),
-       true <- Integer.is_even(number) do
+       true <- is_even(res) do
     IO.puts("#{number} διαιρούμενο με το 2 ισούται με #{div(number, 2)}")
     :even
   else

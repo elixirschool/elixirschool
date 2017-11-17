@@ -16,8 +16,8 @@ title: Plug
 Если у вас еще нет проекта, создайте его:
 
 ```shell
-mix new example
-cd example
+$ mix new example
+$ cd example
 ```
 
 ## Зависимости
@@ -343,7 +343,7 @@ end
 И запустим командой:
 
 ```shell
-mix test test/example/router_test.exs
+$ mix test test/example/router_test.exs
 ```
 
 ## Доступные модули Plug

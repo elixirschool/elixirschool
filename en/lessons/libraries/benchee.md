@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Benchee
 redirect_from:
   - /lessons/libraries/benchee/
@@ -35,11 +35,11 @@ The first command will download and install Benchee. You may be asked to install
 
 ```elixir
 list = Enum.to_list(1..10_000)
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
 
 Benchee.run(%{
   "flat_map"    => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten end
+  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
 })
 ```
 
@@ -142,28 +142,32 @@ So, let's look at our original example again:
 
 ```elixir
 list = Enum.to_list(1..10_000)
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
 
 Benchee.run(%{
   "flat_map"    => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten end
+  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
 })
 ```
 
 In that example we're only using a single list of the integers from 1 to 10,000. Let's update that to use a couple different inputs so we can see what happens with smaller and larger lists. So, open that file, and we're going to change it to look like this:
 
 ```elixir
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
+
 inputs = %{
   "small list" => Enum.to_list(1..100),
   "medium list" => Enum.to_list(1..10_000),
   "large list" => Enum.to_list(1..1_000_000)
 }
 
-Benchee.run(%{
-  "flat_map"    => fn(list) -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn(list) -> list |> Enum.map(map_fun) |> List.flatten end
-}, inputs: inputs)
+Benchee.run(
+  %{
+    "flat_map" => fn list -> Enum.flat_map(list, map_fun) end,
+    "map.flatten" => fn list -> list |> Enum.map(map_fun) |> List.flatten() end
+  },
+  inputs: inputs
+)
 ```
 
 You'll notice two differences. First, we now have an `inputs` map that contains the information for our inputs to our functions. We're passing that inputs map as a configuration option to `Benchee.run/2`.
@@ -175,7 +179,7 @@ fn -> Enum.flat_map(list, map_fun) end
 
 we now have:
 ```elixir
-fn(list) -> Enum.flat_map(list, map_fun) end
+fn list -> Enum.flat_map(list, map_fun) end
 ```
 
 Let's run this again using:
@@ -266,9 +270,9 @@ them as dependencies to your `mix.exs` file like so:
 ```elixir
 defp deps do
   [
-    {:benchee_csv,  "~> 0.6", only: :dev},
+    {:benchee_csv, "~> 0.6", only: :dev},
     {:benchee_json, "~> 0.3", only: :dev},
-    {:benchee_html, "~> 0.3", only: :dev},
+    {:benchee_html, "~> 0.3", only: :dev}
   ]
 end
 ```
@@ -286,13 +290,13 @@ defmodule Custom.Formatter do
   def output(suite) do
     suite
     |> format
-    |> IO.write
+    |> IO.write()
 
     suite
   end
 
   defp format(suite) do
-    Enum.map_join(suite.scenarios, "\n", fn(scenario) ->
+    Enum.map_join(suite.scenarios, "\n", fn scenario ->
       "Average for #{scenario.job_name}: #{scenario.run_time_statistics.average}"
     end)
   end
@@ -303,12 +307,15 @@ And then we could run our benchmark like this:
 
 ```elixir
 list = Enum.to_list(1..10_000)
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
 
-Benchee.run(%{
-  "flat_map"    => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten end
-}, formatters: [&Custom.Formatter.output/1])
+Benchee.run(
+  %{
+    "flat_map" => fn -> Enum.flat_map(list, map_fun) end,
+    "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
+  },
+  formatters: [&Custom.Formatter.output/1]
+)
 ```
 
 And when we run now with our custom formatter, we would see:

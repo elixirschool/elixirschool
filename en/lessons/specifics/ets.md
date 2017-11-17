@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Erlang Term Storage (ETS)
 redirect_from:
   - /lessons/specifics/ets/
@@ -188,7 +188,9 @@ defmodule SimpleCache do
       nil ->
         ttl = Keyword.get(opts, :ttl, 3600)
         cache_apply(mod, fun, args, ttl)
-      result -> result
+
+      result ->
+        result
     end
   end
 

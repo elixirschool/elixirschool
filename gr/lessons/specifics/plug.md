@@ -19,8 +19,8 @@ title: Plug
 Αν δεν έχετε ξεκινήσει ένα project ήδη, δημιουργήστε ένα ως εξής:
 
 ```shell
-mix new example
-cd example
+$ mix new example
+$ cd example
 ```
 
 ## Εξαρτήσεις
@@ -363,7 +363,7 @@ end
 Τρέξτε το με αυτή την εντολή:
 
 ```shell
-mix test test/example/router_test.exs
+$ mix test test/example/router_test.exs
 ```
 
 ## Διαθέσιμα Plugs
