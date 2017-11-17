@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Metaprogramação
 ---
 
@@ -196,8 +196,8 @@ Para ver o benefício de `bind_quote` e para demonstrar o problema de reavaliaç
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts unquote(expr)
-      IO.puts unquote(expr)
+      IO.puts(unquote(expr))
+      IO.puts(unquote(expr))
     end
   end
 end
@@ -217,8 +217,8 @@ Os tempos são diferentes! O que aconteceu? Usando `unquote/1` na mesma express�
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts expr
-      IO.puts expr
+      IO.puts(expr)
+      IO.puts(expr)
     end
   end
 end

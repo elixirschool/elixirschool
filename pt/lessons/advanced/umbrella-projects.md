@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Projetos Guarda-chuva
 ---
 
@@ -185,7 +185,7 @@ Você pode pensar que a interação com os aplicativos poderia ser um pouco dife
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "Hello, I'm the datasets"
+    IO.puts("Hello, I'm the datasets")
   end
 end
 ```
