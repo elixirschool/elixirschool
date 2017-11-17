@@ -260,7 +260,7 @@ defmodule Greeter do
   Αυτή η ενότητα επίσης έχει μια συνάρτηση `hello/1`
   """
 
-  alias Goodbye.bye_bye()
+  alias Goodbye.bye_bye
   # και ούτω καθεξής
 
   def hello(name) do

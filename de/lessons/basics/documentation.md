@@ -260,7 +260,7 @@ defmodule Greeter do
   Dieses Modul hat auch eine `hello/1` Funktion.
   """
 
-  alias Goodbye.bye_bye()
+  alias Goodbye.bye_bye
   # und so weiter...
 
   def hello(name) do

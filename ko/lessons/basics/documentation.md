@@ -261,7 +261,7 @@ defmodule Greeter do
   이 모듈도 `hello/1` 함수를 가지고 있습니다.
   """
 
-  alias Goodbye.bye_bye()
+  alias Goodbye.bye_bye
   # 기타 등등...
 
   def hello(name) do

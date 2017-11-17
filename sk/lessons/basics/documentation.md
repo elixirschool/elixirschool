@@ -262,7 +262,7 @@ defmodule Greeter do
   Tento modul obsahuje funkciu `hello/1`.
   """
 
-  alias Goodbye.bye_bye()
+  alias Goodbye.bye_bye
   # a tak ďalej...
 
   def hello(name) do
