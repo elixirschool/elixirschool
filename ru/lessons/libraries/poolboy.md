@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Poolboy
 ---
 
@@ -63,10 +63,7 @@ defmodule PoolboyApp do
   use Application
 
   defp poolboy_config do
-    [{:name, {:local, :worker}},
-      {:worker_module, Worker},
-      {:size, 5},
-      {:max_overflow, 2}]
+    [{:name, {:local, :worker}}, {:worker_module, Worker}, {:size, 5}, {:max_overflow, 2}]
   end
 
   def start(_type, _args) do
@@ -105,7 +102,7 @@ defmodule Worker do
   end
 
   def handle_call({:square_root, x}, _from, state) do
-    IO.puts "процесс #{inspect self} считает квадратный корень из #{x}"
+    IO.puts("процесс #{inspect(self)} считает квадратный корень из #{x}")
     :timer.sleep(1000)
     {:reply, :math.sqrt(x), state}
   end
@@ -121,15 +118,16 @@ defmodule Test do
   @timeout 60000
 
   def start do
-     tasks = Enum.map(1..20, fn(i) ->
-        Task.async(fn -> :poolboy.transaction(:worker,
-          &(GenServer.call(&1, {:square_root, i})), @timeout)
+    tasks =
+      Enum.map(1..20, fn i ->
+        Task.async(fn ->
+          :poolboy.transaction(:worker, &GenServer.call(&1, {:square_root, i}), @timeout)
         end)
-     end)
-     Enum.each(tasks, fn(task) -> IO.puts(Task.await(task, @timeout)) end)
+      end)
+
+    Enum.each(tasks, fn task -> IO.puts(Task.await(task, @timeout)) end)
   end
 end
-
 ```
 
 Если в пуле не останется свободных процессов, Poolboy вызовет таймаут после периода таймаута по умолчанию (пять секунд) и не будет принимать новые запросы. В нашем примере мы увеличили период таймаута до минуты, чтобы показать, как можно менять это значение.

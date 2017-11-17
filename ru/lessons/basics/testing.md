@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Тестирование
 ---
 
@@ -83,7 +83,7 @@ ExUnit покажет, какое именно утверждение было �
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 

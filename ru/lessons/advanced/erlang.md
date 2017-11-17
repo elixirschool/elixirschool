@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Взаимодействие с Erlang
 ---
 
@@ -17,8 +17,8 @@ title: Взаимодействие с Erlang
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time}ms")
+    IO.puts("Result: #{result}")
   end
 end
 
@@ -42,10 +42,8 @@ end
 Теперь библиотека Erlang доступна:
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## Заметные различия
