@@ -1,44 +1,44 @@
 ---
 version: 1.0.1
-title: Sigils
+title: 符咒 (Sigils)
 redirect_from:
   - /lessons/basics/sigils/
 ---
 
-Working with and creating sigils.
+使用和創設符咒 (sigils)。
 
 {% include toc.html %}
 
-## Sigils Overview
+## 符咒概述
 
-Elixir provides an alternative syntax for representing and working with literals. A sigil will start with a tilde `~` followed by a character. The Elixir core provides us with some built in sigils however, it is possible to create our own when we need to extend the language.
+Elixir 提供了用於表示和使用文字的替代語法。 一個符咒 (sigil) 將以代用符號 `~` 開頭。Elixir 核心已經提供一些內建的符咒，不過當我們需要時，也可以自行創造所需的符咒。。
 
-A list of available sigils include:
+可用符咒清單如下：
 
-  - `~C` Generates a character list **with no** escaping or interpolation
-  - `~c` Generates a character list **with** escaping and interpolation
-  - `~R` Generates a regular expression **with no** escaping or interpolation
-  - `~r` Generates a regular expression **with** escaping and interpolation
-  - `~S` Generates a string **with no** escaping or interpolation
-  - `~s` Generates a string **with** escaping and interpolation
-  - `~W` Generates a word list **with no** escaping or interpolation
-  - `~w` Generates a word list **with** escaping and interpolation
-  - `~N` Generates a `NaiveDateTime` struct
+  - `~C` 生成一個 **不運算** 轉義 (escaping) 或內插 (interpolation) 的符號列表 (character list)
+  - `~c` 生成一個 **運算** 轉義或內插的符號列表
+  - `~R` 生成一個 **不運算** 轉義或內插的正規表達式 (regular expression)
+  - `~r` 生成一個 **運算** 轉義或內插的正規表達式
+  - `~S` 生成一個 **不運算** 轉義或內插的字串 (string)
+  - `~s` 生成一個 **運算** 轉義或內插的字串
+  - `~W` 生成一個 **不運算** 轉義或內插的字串列表 (word list)
+  - `~w` 生成一個 **運算** 轉義或內插的字串列表
+  - `~N` 生成一個 `NaiveDateTime` 結構體
 
-A list of delimiters include:
+分隔符號清單如下：
 
-  - `<...>` A pair of pointy brackets
-  - `{...}` A pair of curly brackets
-  - `[...]` A pair of square brackets
-  - `(...)` A pair of parenthesis
-  - `|...|` A pair of pipes
-  - `/.../` A pair of forward slashes
-  - `"..."` A pair of double quotes
-  - `'...'` A pair of single quotes
+  - `<...>` 尖括號 (pointy brackets)
+  - `{...}` 大括號 (curly brackets)
+  - `[...]` 中括號 (square brackets)
+  - `(...)` 小括號 (parenthesis)
+  - `|...|` 管線符號 (pipes)
+  - `/.../` 斜線 (forward slashes)
+  - `"..."` 雙引號 (double quotes)
+  - `'...'` 單引號 (single quotes)
 
-### Char List
+### 符號列表 (Char List)
 
-The `~c` and `~C` sigils generate character lists respectively. For example:
+符咒 `~c` 和 `~C` 分別生成不同的符號列表 (character lists)。 例如：
 
 ```elixir
 iex> ~c/2 + 7 = #{2 + 7}/
@@ -48,11 +48,11 @@ iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = \#{2 + 7}'
 ```
 
-We can see the lowercased `~c` interpolates the calculation, whereas the uppercased `~C` sigil does not. We will see that this uppercase / lowercase sequence is a common theme throughout the built in sigils.
+可以看到小寫字母的 `~c` 內插了計算結果，而大寫的 `~C` 則沒有。我們將發現，字母大寫/小寫系列是整個內建符咒的常見樣式。
 
-### Regular Expressions
+### 正規表達式 (Regular Expressions)
 
-The `~r` and `~R` sigils are used to represent Regular Expressions. We create them either on the fly or for use within the `Regex` functions. For example:
+符咒 `~r` 和 `~R` 用來表示正規表達式。我們能在動態情況創設或在 `Regex` 函數中使用。 例如：
 
 ```elixir
 iex> re = ~r/elixir/
@@ -65,7 +65,7 @@ iex> "elixir" =~ re
 true
 ```
 
-We can see that in the first test for equality, that `Elixir` does not match with the regular expression. This is because it is capitalized. Because Elixir supports Perl Compatible Regular Expressions (PCRE), we can append `i` to the end of our sigil to turn off case sensitivity.
+我們可以看到，在第一個等式查驗中，`Elixir` 與正規表達式沒有相配。 這是因為它使用大寫字母。由於 Elixir 支援相容 Perl 的正規表達式（Perl Compatible Regular Expressions, PCRE），所以我們可以在符咒末尾加上 `i` 來關閉大小寫字母敏感。
 
 ```elixir
 iex> re = ~r/elixir/i
@@ -78,7 +78,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Further, Elixir provides the [Regex](https://hexdocs.pm/elixir/Regex.html) API which is built on top of Erlang's regular expression library. Let's implement `Regex.split/2` using a regex sigil:
+此外，Elixir 提供構建在 Erlang 正規表達式函式庫之上的 [Regex](https://hexdocs.pm/elixir/Regex.html) API。現在使用正規表達式符咒 (regex sigil) 來實現 `Regex.split/2` ：
 
 ```elixir
 iex> string = "100_000_000"
@@ -88,11 +88,11 @@ iex> Regex.split(~r/_/, string)
 ["100", "000", "000"]
 ```
 
-As we can see, the string `"100_000_000"` is split on the underscore thanks to our `~r/_/` sigil. The `Regex.split` function returns a list.
+感謝我們的符咒 `~r/_/`。正如我們所看到的，字串 `"100_000_000"` 藉由下底線 (underscore) 被分割。函數 `Regex.split` 回傳了一個列表。
 
-### String
+### 字串 (String)
 
-The `~s` and `~S` sigils are used to generate string data. For example:
+符咒 `~s` 和 `~S` 被用來產生字串資料。 例如：
 
 ```elixir
 iex> ~s/the cat in the hat on the mat/
@@ -102,7 +102,8 @@ iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
 
-What is the difference? The difference is similar to the Character List sigil that we looked at. The answer is interpolation and the use of escape sequences. If we take another example:
+兩者有什麼不同？答案是內插和轉義序列 (escape sequences) 的用法，其差別與我們所看到的符咒符號列表相似。
+如果我們再舉一個例子：
 
 ```elixir
 iex> ~s/welcome to elixir #{String.downcase "school"}/
@@ -112,9 +113,9 @@ iex> ~S/welcome to elixir #{String.downcase "school"}/
 "welcome to elixir \#{String.downcase \"school\"}"
 ```
 
-### Word List
+### 字串列表 (Word List)
 
-The word list sigil can come in handy time to time. It can save both time, keystrokes and arguably reduce the complexity within the codebase. Take this simple example:
+字串列表符咒 (word list sigil) 時不時的會派上用場。它可以節省敲擊鍵盤的次數與時間，同時減少程式庫的複雜性。來看看這個簡單的例子：
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -124,7 +125,8 @@ iex> ~W/i love elixir school/
 ["i", "love", "elixir", "school"]
 ```
 
-We can see that what is typed between the delimiters is separated by whitespace into a list. However, there is no difference between these two examples. Again, the difference comes with the interpolation and escape sequences. Take the following example:
+我們可以看到在分隔符號之間鍵入的內容被空格分隔成一個列表。實際上，這兩個例子沒有什麼區別。
+而再一次，它們的差異來自內插和轉義序列。現在來看下面的例子：
 
 ```elixir
 iex> ~w/i love #{'e'}lixir school/
@@ -134,19 +136,21 @@ iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
 ```
 
-### NaiveDateTime
+### 真日期時間 (NaiveDateTime)
 
-A [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) can be useful for quickly creating a struct to represent a `DateTime` **without** a timezone.
+一個 [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) 可以快速創設一個結構體 (struct) 來表示 **不帶** 時區的 `DateTime` 。
 
-For the most part, we should avoid creating a `NaiveDateTime` struct directly. However, it is very useful for pattern matching. For example:
+在大多數情況下，我們應該避免直接創設一個 `NaiveDateTime` 結構體。
+不過，在模式比對下非常有用。例如：
 
 ```elixir
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
 ```
 
-## Creating Sigils
+## 自訂符咒 (Creating Sigils)
 
-One of the goals of Elixir is to be an extendable programming language. It should come as no surprise then that you can easily create your own custom sigils. In this example, we will create a sigil to convert a string to uppercase. As there is already a function for this in the Elixir Core (`String.upcase/1`), we will wrap our sigil around that function.
+Elixir 的目標之一是成為一種可擴展 (extendable) 的程式語言。
+因此您應該不會對於可以輕鬆自訂你自己的客製化符咒感到驚訝。在這個例子中，我們將自訂一個符咒將字串轉換為大寫字母。儘管在 Elixir 核心函式庫中存在這個 (`String.upcase/1`) 函數來實現，不過我們依然將圍繞著這個函數來自訂我們的符咒。
 
 ```elixir
 
@@ -161,4 +165,4 @@ iex> ~u/elixir school/
 ELIXIR SCHOOL
 ```
 
-First we define a module called `MySigils` and within that module, we created a function called `sigil_u`. As there is no existing `~u` sigil in the existing sigil space, we will use it. The `_u` indicates that we wish to use `u` as the character after the tilde. The function definition must take two arguments, an input and a list.
+首先我們定義一個名為 `MySigils` 的模組，並在該模組中創設一個名為 `sigil_u` 的函數。由於現存的符咒空間 (sigil space) 中並不存在 `~u` 符咒，所以我們使用這個名字。這個 `_u` 表示我們希望使用 `u` 作為代用符號 (tilde) 之後的符號 (character)。在這個函數的定義中，函數本身必須有兩個參數 (arguments)，一個輸入和一個列表。
