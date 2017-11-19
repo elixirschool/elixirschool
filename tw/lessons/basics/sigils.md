@@ -11,7 +11,7 @@ redirect_from:
 
 ## 符咒概述
 
-Elixir 提供了用於表示和使用文字的替代語法。 一個符咒 (sigil) 將以代用符號 `~` 開頭。Elixir 核心已經提供一些內建的符咒，不過當我們需要時，也可以自行創造所需的符咒。。
+Elixir 提供了用於表示和使用文字的替代語法。 一個符咒 (sigil) 將以波浪符號 `~` 開頭。Elixir 核心已經提供一些內建的符咒，不過當我們需要時，也可以自行創造所需的符咒。。
 
 可用符咒清單如下：
 
@@ -48,7 +48,7 @@ iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = \#{2 + 7}'
 ```
 
-可以看到小寫字母的 `~c` 內插了計算結果，而大寫的 `~C` 則沒有。我們將發現，字母大寫/小寫系列是整個內建符咒的常見樣式。
+可以看到小寫字母的 `~c` 內插了計算結果，而大寫字母的 `~C` 則沒有。我們將發現，字母大寫/小寫系列是整個內建符咒的常見樣式。
 
 ### 正規表達式 (Regular Expressions)
 
@@ -65,7 +65,7 @@ iex> "elixir" =~ re
 true
 ```
 
-我們可以看到，在第一個等式查驗中，`Elixir` 與正規表達式沒有相配。 這是因為它使用大寫字母。由於 Elixir 支援相容 Perl 的正規表達式（Perl Compatible Regular Expressions, PCRE），所以我們可以在符咒末尾加上 `i` 來關閉大小寫字母敏感。
+我們可以看到，在第一個等式查驗中，`Elixir` 與正規表達式沒有相配。 這是因為它使用大寫字母。由於 Elixir 支援相容 Perl 正規表達式（Perl Compatible Regular Expressions, PCRE），所以我們可以在符咒末尾加上 `i` 來關閉大小寫字母敏感。
 
 ```elixir
 iex> re = ~r/elixir/i
@@ -102,7 +102,7 @@ iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
 
-兩者有什麼不同？答案是內插和轉義序列 (escape sequences) 的用法，其差別與我們所看到的符咒符號列表相似。
+兩者有什麼不同？答案是內插和轉義序列 (escape sequences) 的用法，其差別與我們所看到的符號列表符咒相似。
 如果我們再舉一個例子：
 
 ```elixir
@@ -165,4 +165,4 @@ iex> ~u/elixir school/
 ELIXIR SCHOOL
 ```
 
-首先我們定義一個名為 `MySigils` 的模組，並在該模組中創設一個名為 `sigil_u` 的函數。由於現存的符咒空間 (sigil space) 中並不存在 `~u` 符咒，所以我們使用這個名字。這個 `_u` 表示我們希望使用 `u` 作為代用符號 (tilde) 之後的符號 (character)。在這個函數的定義中，函數本身必須有兩個參數 (arguments)，一個輸入和一個列表。
+首先我們定義一個名為 `MySigils` 的模組，並在該模組中創設一個名為 `sigil_u` 的函數。由於現存的符咒空間 (sigil space) 中並不存在 `~u` 符咒，所以我們使用這個名字。這個 `_u` 表示我們希望使用 `u` 作為波浪符號 (tilde) 之後的符號 (character)。在這個函數的定義中，函數本身必須有兩個參數 (arguments)，一個輸入和一個列表。

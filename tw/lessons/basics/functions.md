@@ -78,7 +78,7 @@ defmodule Greeter do
 end
 ```
 
-借助我們對模式比對的了解，讓我們探索使用命名函數的遞迴：
+借助我們對模式比對的了解，讓我們探索使用命名函數的遞迴 (recursion)：
 
 ```elixir
 defmodule Length do
@@ -112,7 +112,7 @@ iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
 
-我們在上面的註釋中列出了函數名稱。第一個實現 (implementation) 不接受引數 (arguments)，所以它被稱為 `hello/0`；第二個則接受一個引數，所以它被稱為 `hello/1`，依此類推。與某些其他語言中的函數重載 (function overloads) 不同，這些被認為是彼此 _不同_ 的函數。前面提過的模式比對只有當函數名字與引數數量都 _相同_ 時才適用）。
+我們在上面的註釋中列出了函數名稱。第一個實現 (implementation) 不接受引數 (arguments)，所以它被稱為 `hello/0`；第二個則接受一個引數，所以它被稱為 `hello/1`，依此類推。與某些其他語言中的函數重載 (function overloads) 不同，這些被認為是彼此 _不同_ 的函數。(前面提過的模式比對只有當函數名字與引數數量都 _相同_ 時才適用）。
 
 ### 私有 (Private) 函數
 

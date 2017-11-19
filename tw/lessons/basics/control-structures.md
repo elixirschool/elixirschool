@@ -5,13 +5,13 @@ redirect_from:
   - /lessons/basics/control-structures/
 ---
 
-在本課中，我們將專注在 Elixir 中可用的控制語句。
+在本課中，我們將專注在 Elixir 中可用的控制語句 (Control Structures)。
 
 {% include toc.html %}
 
 ## `if` 和 `unless`
 
-可能你之前使用過 `if/2`，而如果你使用過 Ruby，那麼你應該很熟悉 `unless/2`。 在 Elixir 中，它們的工作方式大致相同，但它們被定義為宏 (macros) 而不是語言結構；你可以在 [Kernel module](https://hexdocs.pm/elixir/Kernel.html) 中找到它們的實現 (implementation)。
+可能你之前使用過 `if/2`，而如果你使用過 Ruby，那麼你應該很熟悉 `unless/2`。 在 Elixir 中，它們的工作方式大致相同，但它們被定義為巨集 (macros) 而不是語言結構；你可以在 [Kernel module](https://hexdocs.pm/elixir/Kernel.html) 中找到它們的實現 (implementation)。
 
 應該小心的是，在 Elixir 中，唯一的 falsey 值是 `nil` 與布林的 `false`。
 
@@ -81,7 +81,7 @@ iex> case "cherry pie" do
 "I bet cherry pie is tasty"
 ```
 
-另一個 `case/2` 很酷的特點是它支援看守 (guard) 子句：
+另一個 `case/2` 很酷的特點是它支援監視 (guard) 子句：
 
 _以下例子直接來自官方 Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) 指南。_
 
@@ -127,7 +127,7 @@ iex> cond do
 
 ## `with`
 
-當你可能使用一個巢狀但無法清楚互相傳遞 (piped) 的 `case/2` 陳述語句或情況時，特殊形式的 `with/1` 是非常有用的。`with/1` 表達式由關鍵字，生成器 (generators) 以及表達式構成。
+當你可能使用一個巢狀但無法清楚互相傳遞 (piped) 的 `case/2` 陳述語句或情況時，特殊形式的 `with/1` 是非常有用的。`with/1` 表達式由關鍵字、生成器 (generators) 以及表達式構成。
 
 我們將在 [list comprehensions lesson](../comprehensions/) 中更廣泛地探討生成器，但是現在我們只需要知道它使用 [pattern matching](../pattern-matching/) 以 `<-` 的右側來與左邊做比對。
 
@@ -153,7 +153,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 :error
 ```
 
-現在我們來看一個較複雜沒有使用 `with/1` 的例子，看看我們是如何重構它的：
+現在我們來看一個較複雜且沒有使用 `with/1` 的例子，看看我們是如何重構它的：
 
 ```elixir
 case Repo.insert(changeset) do
@@ -199,4 +199,4 @@ a =
   end
 ```
 
-藉由在類似 `case` 中提供模式比對來協助處理錯誤。第一個不相配的表達式將是被傳遞的值。
+藉由在 `case` 中提供類似模式比對來協助處理錯誤。第一個不相配的表達式將是被傳遞的值。

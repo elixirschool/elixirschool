@@ -17,7 +17,7 @@ redirect_from:
 foo(bar(baz(new_function(other_function()))))
 ```
 
-在這裡，我們將 `other_function/0` 的值傳遞給 `new_function/1`，而 `new_function/1` 傳給 `baz/1` 接著 `baz/1` ，傳給 `bar/1`，最後 `bar/1` 傳到 `foo/1`。 Elixir 通過管線運算子來解決這個語法混亂的問題。管線運算子看起來像 `|>` *採用一個表達式的結果，並將其傳遞*。 來看看上述範例改用管線運算子重寫後的程式碼片段。
+在這裡，我們將 `other_function/0` 的值傳遞給 `new_function/1`，而 `new_function/1` 傳給 `baz/1` ，接著 `baz/1` 傳給 `bar/1`，最後 `bar/1` 傳到 `foo/1`。 Elixir 通過管線運算子來解決這個語法混亂的問題。管線運算子看起來像 `|>` *採用一個表達式的結果，並將其傳遞*。 來看看上述範例改用管線運算子重寫後的程式碼片段。
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()

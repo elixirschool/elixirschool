@@ -5,8 +5,8 @@ redirect_from:
   - /lessons/basics/modules/
 ---
 
-我們從經驗中知道，把所有的功能放在同一個文件和範圍 (scope) 內是不合理的。
-在本課程中，我們將介紹如何對函數進行分組，並定義一個稱為函數體 (struct) 的特殊映射，以便更有效地組織我們的程式碼。
+我們從經驗中知道，把所有的函數放在同一個文件和範圍 (scope) 內是不合理的。
+在本課程中，我們將介紹如何對函數進行分組，並定義一個稱為結構體 (struct) 的特殊映射，以便更有效地組織我們的程式碼。
 
 {% include toc.html %}
 
@@ -44,7 +44,7 @@ iex> Example.Greetings.morning "Sean"
 "Good morning Sean."
 ```
 
-### 模組屬性
+### 模組屬性 (Module Attributes)
 
 模組屬性在 Elixir 中最常用作常數。現在來看一個簡單的例子：
 
@@ -60,8 +60,8 @@ end
 
 注意 Elixir 有保留某些屬性 (reserved attributes)。最常見的三個是：
 
-+ `moduledoc` — 記錄當前模組。
-+ `doc` — 文件的功能和巨集 (macros)。
++ `moduledoc` — 當前模組的文件 (Documents)。
++ `doc` — 函數和巨集 (macros) 的文件 (Documentation)。
 + `behaviour` — 使用 OTP 或使用者定義的行為。
 
 ## 結構體 (Structs)
@@ -77,7 +77,7 @@ defmodule Example.User do
 end
 ```
 
-現在來創建一些結構：
+現在來創設一些結構：
 
 ```elixir
 iex> %Example.User{}
@@ -113,7 +113,7 @@ Elixir 提供了多種不同的方式來與其他模組進行互動。
 
 ### `別名 (alias)`
 
-允許在模組名稱中使用別名；這在 Elixir 程式碼中使用相當頻繁：
+允許在模組名稱中使用別名；這在 Elixir 的程式碼中使用相當頻繁：
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -227,7 +227,7 @@ defmodule Hello do
 end
 ```
 
-這裡我們創設了一個 `Hello` 模組，它定義了 `__using__/1` 回呼函數，而我們在其內部同時定義了一個 `hello/1` 函式。
+這裡我們創設了一個 `Hello` 模組，它定義了 `__using__/1` 回呼函數，而我們在其內部同時定義了一個 `hello/1` 函數。
 讓我們創設一個新的模組，以便我們可以試用我們的新程式碼：
 
 ```elixir

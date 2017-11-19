@@ -148,7 +148,7 @@ Elixir 還包括更複雜的資料型別。當我們學習 [collections](../coll
 
 ## 基本運算
 
-### 算術運算
+### 算術運算 (Arithmetic)
 
 Elixir 如你所料支援基本運算子 `+` 、 `-` 、 `*` 和 `/`。  重要的是記住 `/` 將永遠回傳一個浮點數：
 
@@ -172,7 +172,7 @@ iex> rem(10, 3)
 1
 ```
 
-### 布林運算
+### 布林運算 (Boolean)
 
 Elixir 提供 `||` 、 `&&` 和 `!` 布林運算子。 這些支援任何型別：
 
@@ -193,7 +193,7 @@ iex> !false
 true
 ```
 
-有三個運算子的第一個引數 _必須_ 為布林型別 (`true` 或 `false`)：
+有三個運算子的第一個引數 (argument) _必須_ 為布林型別 (`true` 或 `false`)：
 
 ```elixir
 iex> true and 42
@@ -208,7 +208,7 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-### 比較運算
+### 比較運算 (Comparison)
 
 Elixir 帶有我們習慣的所有比較運算子： `==` 、 `!=` 、 `===` 、 `!==` 、 `<=` 、 `>=` 、 `<` 和 `>`。
 
@@ -247,7 +247,7 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
-### 字串插值
+### 字串插值 (String Interpolation)
 
 如果您使用 Ruby，Elixir 中的字串插值方法將會很熟悉：
 
@@ -257,7 +257,7 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### 字串串接
+### 字串串接 (String Concatenation)
 
 字串串接使用 `<>` 運算子：
 
