@@ -1,6 +1,6 @@
 # Setup
 baseurl: /
-url: http://localhost:4000
+url: https://elixirschool.com
 permalink: pretty
 default_lang: en
 exclude_from_localization: []
