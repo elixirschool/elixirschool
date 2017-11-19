@@ -1,17 +1,17 @@
 ---
 version: 1.3.0
-title: 列舉
+title: 列舉 (Enum)
 redirect_from:
   - /lessons/basics/enum/
 ---
 
-A set of algorithms for enumerating over enumerables.
+一組在可列舉函數中的列舉演算法。
 
 {% include toc.html %}
 
 ## 列舉 (Enum)
 
-`Enum` 模組包含超過 70 個能使可列舉(enumerables)的工作函數。我們在 [previous lesson](../collections/)，中了解到的所有群集，除了元組之外，都為可列舉。
+`Enum` 模組包含超過 70 個可列舉 (enumerables) 的工作函數。我們在 [previous lesson](../collections/)，中了解到的所有群集，除了元組之外，都為可列舉。
 
 這個課程只涵蓋可用函數中的一個子集，但我們其實可以自己去測試它們。
 讓我們在 IEx 中做一個小實驗。
@@ -31,12 +31,12 @@ at/3
 
 經由上述指令，很明顯的我們有很多函數，而且它們都有明確的存在原因。列舉法 (Enumeration) 是函數式程式設計的核心，而且不可思議的有用。通過將其與 Elixir 的其他特性結合起來，如同我們剛才看到的文檔是一等公民，這也賦與開發者強大的能力。
 
-有關函式的完整列表，請參考官方 [`Enum`](https://hexdocs.pm/elixir/Enum.html) 文件；惰性列舉 (lazy enumeration) 請使用 [`Stream`](https://hexdocs.pm/elixir/Stream.html) 模組。
+有關函數的完整列表，請參考官方 [`Enum`](https://hexdocs.pm/elixir/Enum.html) 文件；惰性列舉 (lazy enumeration) 請使用 [`Stream`](https://hexdocs.pm/elixir/Stream.html) 模組。
 
 
 ### all?
 
-當使用 `all?/2`， 和眾多 `Enum` 時，我們提供一個適用於我們群集項目的函式。在 `all?/2` 這個例子中，全部的群集必須回傳 `true` 否則只有 `false` 將被回傳：
+當使用 `all?/2`， 和眾多 `Enum` 時，我們提供一個適用於我們群集項目的函數。在 `all?/2` 這個例子中，全部的群集必須回傳 `true` 否則只有 `false` 將被回傳：
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -56,7 +56,7 @@ true
 
 ### chunk_every
 
-如果你需要把群集分成更小的群組，`chunk_every/2` 就可能是你正在尋找的功能：
+如果你需要把群集分成更小的群組，`chunk_every/2` 就可能是你正在尋找的函數：
 
 ```elixir
 iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
@@ -67,7 +67,7 @@ iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 
 ### chunk_by
 
-如果我們需要根據大小以外的東西對我們的群集進行分組，我們可以使用 `chunk_by/2` 函式。 它需要一個給定的列舉和一個函數，而當該函數回傳值改變時，一個新群組將被觸發並開始創建下一個：
+如果我們需要根據大小以外的東西對我們的群集進行分組，我們可以使用 `chunk_by/2` 函數。 它需要一個給定的列舉和一個函數，而當該函數回傳值改變時，一個新群組將被觸發並開始創建下一個：
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -78,7 +78,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-有時候，分類群集仍無法滿足我們的需求。在這個例子中 `map_every/3` ，能夠非常有效的擊中每一個 `nth` 項目，且總是準確擊中第一個需要被改變的值：
+有時候，分類群集仍無法滿足我們的需求。在這個例子中 `map_every/3` ，能夠非常有效的對中 (hit) 每一個 `nth` 項目，且總是準確對中第一個需要被改變的值：
 
 ```elixir
 # Apply function every three items
@@ -88,7 +88,7 @@ iex> Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
 
 ### each
 
-可能有必要迭代一個群集而不產生新的值，對於這個例子我們使用 `each/2` ：
+可能有必要迭代 (iterate) 一個群集而不產生新的值，對於這個例子我們使用 `each/2` ：
 
 ```elixir
 iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
@@ -98,7 +98,7 @@ three
 :ok
 ```
 
-__注意__: The `each/2` 函式回傳 atom `:ok`。
+__註__: `each/2` 函數回傳 atom `:ok`。
 
 ### map
 
@@ -134,7 +134,7 @@ iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-`max/2` 對 `max/1` 就如同 `min/2` 對 `min/1` 一樣：
+`max/2` 相對 `max/1` 就如同 `min/2` 相對 `min/1` 一樣：
 
 ```elixir
 Enum.max([], fn -> :bar end)
@@ -160,7 +160,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 排序群集時有二個排序函數會較為簡易。
 
-`sort/1` 使用 Erlang 的術語來排序確定的排序：
+`sort/1` 使用 Erlang 術語來排序確定的序列：
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -170,7 +170,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-`sort/2` 則允許我們提供我們自己的排序函式：
+`sort/2` 則允許我們提供自己的排序函數：
 
 ```elixir
 # with our function
