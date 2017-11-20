@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Nebenläufigkeit
 ---
 
@@ -45,7 +45,7 @@ Zur Kommunikation benutzen Prozesse message passing. Zwei Komponenten werden hie
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
 
     listen
@@ -86,12 +86,13 @@ Manchmal wollen wir nicht, dass ein abgestürzter Prozess den aktuelle Prozess z
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -108,11 +109,12 @@ Was wenn wir zwei Prozesse nicht verbinden wollen, aber dennoch informiert werde
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end

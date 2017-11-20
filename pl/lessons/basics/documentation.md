@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Dokumentowanie kodu
 ---
 
@@ -25,7 +25,7 @@ Popatrzymy na ten skrypt (greeting.exs):
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum.")
 ```
 
 Gdy go uruchomimy, Elixir zignoruje wszystko od znaku `#` aż do końca linii, traktując jako nieistotny i nieinterpretowany element. Komentarz nie ma żadnej wartości ani nie wpływa na szybkość wykonania kodu. Jednakże pozwala innym zrozumieć nasz kod. Tego rodzaju komentarze powinny być używane z umiarem, ponieważ w dużej liczbie zaśmiecają kod i zamiast pomagać, mogą przeszkadzać. Niektórzy programiści w ogóle nie uważają tego rodzaju komentarzy za przydatne.
@@ -85,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -178,10 +178,9 @@ Examples
 Wnioskując z powyższego komunikatu jesteśmy już gotowi by skonfigurować ExDoc. W pliku `mix.exs` musimy dodać dwie zależności `:earmark` i `:ex_doc`.
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Podając opcję `only: :dev` mówimy mixowi, że nie chcemy pobierać i kompilować tych zależności na środowisku innym niż deweloperskie. Ale czym jest Earmark? Earmark jest to parser znaczników napisany dla Elixira, który służy ExDocowi  na zamianę dokumentacji z adnotacji `@moduledoc` i `@doc` na elegancki kod HTML.
@@ -245,7 +244,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -264,7 +263,7 @@ defmodule Greeter do
   # and so on...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -293,7 +292,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end

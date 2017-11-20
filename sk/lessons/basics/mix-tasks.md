@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Vlastné Mix Tasky
 ---
 
@@ -58,12 +58,11 @@ V súbore **lib/hello.ex**, ktorý nám Mix vygeneroval, vytvorme jednoduchú fu
 
 ```elixir
 defmodule Hello do
-
   @doc """
   Output's `Hello, World!` everytime.
   """
   def say do
-    IO.puts "Hello, World!"
+    IO.puts("Hello, World!")
   end
 end
 ```
@@ -78,7 +77,8 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Spustí funkciu Hello.say/0."
   def run(_) do
-    Hello.say # calling our Hello.say() function from earlier
+    # calling our Hello.say() function from earlier
+    Hello.say()
   end
 end
 ```

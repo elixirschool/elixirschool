@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Benchee
 ---
 
@@ -34,11 +34,11 @@ $ mix compile
 
 ```elixir
 list = Enum.to_list(1..10_000)
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
 
 Benchee.run(%{
-  "flat_map"    => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten end
+  "flat_map" => fn -> Enum.flat_map(list, map_fun) end,
+  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
 })
 ```
 
@@ -96,13 +96,14 @@ map.flatten        0.56 K - 1.85x slower
 Το Benchee δέχεται μια πληθώρα επιλογών ρυθμίσεων. Στην πιο συχνή διεπαφή `Benchee.run/2`, αυτές περνάνε ως το δεύτερο όρισμα στη μορφή μιας προαιρετικές λίστας λέξεων κλειδί:
 
 ```elixir
-Benchee.run(%{"example function" => fn -> "hi!" end}, [
+Benchee.run(
+  %{"example function" => fn -> "hi!" end},
   warmup: 4,
   time: 10,
   inputs: nil,
   parallel: 1,
   formatters: [&Benchee.Formatters.Console.output/1],
-  print: [ 
+  print: [
     benchmarking: true,
     configuration: true,
     fast_warning: true
@@ -111,7 +112,7 @@ Benchee.run(%{"example function" => fn -> "hi!" end}, [
     comparison: true,
     unit_scaling: :best
   ]
-])
+)
 ```
 
 Οι διαθέσιμες επιλογές είναι οι ακόλουθες (επίσης τεκμηριωμένες στα [hexdocs](https://hexdocs.pm/benchee/Benchee.Configuration.html#init/1)).
@@ -141,28 +142,32 @@ Benchee.run(%{"example function" => fn -> "hi!" end}, [
 
 ```elixir
 list = Enum.to_list(1..10_000)
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
 
 Benchee.run(%{
-  "flat_map"    => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten end
+  "flat_map" => fn -> Enum.flat_map(list, map_fun) end,
+  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
 })
 ```
 
 Σε αυτό το παράδειγμα χρησιμοποιούμε μόνο μια μονή λίστα ακέραιων από το 1 έως το 10,000. Ας το αλλάξουμε ώστε να χρησιμοποιούμε μερικές διαφορετικές εισόδους ώστε να δούμε τι συμβαίνει με τις μικρότερες και μεγαλύτερες λίστες. Έτσι, ανοίξτε το αρχείο, και αλλάξτε το ώστε να μοιάζει ως εξής:
 
 ```elixir
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
+
 inputs = %{
   "small list" => Enum.to_list(1..100),
   "medium list" => Enum.to_list(1..10_000),
   "large list" => Enum.to_list(1..1_000_000)
 }
 
-Benchee.run(%{
-  "flat_map"    => fn(list) -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn(list) -> list |> Enum.map(map_fun) |> List.flatten end
-}, inputs: inputs)
+Benchee.run(
+  %{
+    "flat_map" => fn list -> Enum.flat_map(list, map_fun) end,
+    "map.flatten" => fn list -> list |> Enum.map(map_fun) |> List.flatten() end
+  },
+  inputs: inputs
+)
 ```
 
 Θα παρατηρήσετε δύο διαφορές. Πρώτον, τώρα έχουμε ένα χάρτη `inputs` που περιέχει την πληροφορία για τις εισαγωγές των συναρτήσεών μας. Αυτό τον χάρτη εισόδου τον περνάμε σαν επιλογή ρυθμίσεων στην `Benchee.run/2`.
@@ -265,9 +270,9 @@ map.flatten       86.39 K - 1.42x slower
 ```elixir
 defp deps do
   [
-    {:benchee_csv,  "~> 0.6", only: :dev},
+    {:benchee_csv, "~> 0.6", only: :dev},
     {:benchee_json, "~> 0.3", only: :dev},
-    {:benchee_html, "~> 0.3", only: :dev},
+    {:benchee_html, "~> 0.3", only: :dev}
   ]
 end
 ```
@@ -285,13 +290,13 @@ defmodule Custom.Formatter do
   def output(suite) do
     suite
     |> format
-    |> IO.write
+    |> IO.write()
 
     suite
   end
 
   defp format(suite) do
-    Enum.map_join(suite.scenarios, "\n", fn(scenario) ->
+    Enum.map_join(suite.scenarios, "\n", fn scenario ->
       "Average for #{scenario.job_name}: #{scenario.run_time_statistics.average}"
     end)
   end
@@ -302,12 +307,15 @@ end
 
 ```elixir
 list = Enum.to_list(1..10_000)
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
 
-Benchee.run(%{
-  "flat_map"    => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten end
-}, formatters: [&Custom.Formatter.output/1])
+Benchee.run(
+  %{
+    "flat_map" => fn -> Enum.flat_map(list, map_fun) end,
+    "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
+  },
+  formatters: [&Custom.Formatter.output/1]
+)
 ```
 
 Και όταν τρέξουμε τώρα με τον τρέχων μορφοποιητή, θα πρέπει να δούμε:

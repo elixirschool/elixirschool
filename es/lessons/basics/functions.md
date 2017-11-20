@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Funciones
 ---
 
@@ -195,6 +195,7 @@ A Elixir no le gustan los parámetros por defecto en múltiples coincidencias de
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

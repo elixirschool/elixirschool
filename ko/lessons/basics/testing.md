@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: 테스트
 ---
 
@@ -83,7 +83,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -109,7 +109,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```

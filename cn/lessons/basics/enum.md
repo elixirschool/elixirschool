@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Enum 模块
 ---
 
@@ -137,7 +137,7 @@ iex> Enum.max([5, 3, 0, -1])
 `max/2` 也一样，而且像 `min/2` 一样，它允许我们提供一个匿名函数指定计算最大值的方法：
 
 ```elixir
-Enum.max([], fn -> :bar end)
+iex> Enum.max([], fn -> :bar end)
 :bar
 ```
 

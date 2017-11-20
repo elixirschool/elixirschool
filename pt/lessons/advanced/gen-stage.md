@@ -59,7 +59,7 @@ Vamos atualizar nossas dependências no `mix.exs` para incluir `gen_stage`:
 ```elixir
 defp deps do
   [
-    {:gen_stage, "~> 0.11"},
+    {:gen_stage, "~> 0.11"}
   ]
 end
 ```

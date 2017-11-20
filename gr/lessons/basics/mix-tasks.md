@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Ειδικές Εργασίες Mix
 ---
 
@@ -58,12 +58,11 @@ Run "mix help" for more commands.
 
 ```elixir
 defmodule Hello do
-
   @doc """
   Εμφανίζει το "Γειά σου, Κόσμε!" κάθε φορά.
   """
   def say do
-    IO.puts "Γειά σου, Κόσμε!"
+    IO.puts("Γειά σου, Κόσμε!")
   end
 end
 ```
@@ -78,7 +77,8 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Απλά τρέχει την εντολή Hello.say/0 ."
   def run(_) do
-    Hello.say # καλεί την συνάρτηση Hello.say() από πριν
+    # καλεί την συνάρτηση Hello.say() από πριν
+    Hello.say()
   end
 end
 ```

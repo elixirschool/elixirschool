@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Hàm
 ---
 
@@ -217,6 +217,7 @@ Elixir không xử lý được trong trường hợp có nhiều hàm trùng kh
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "vn")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

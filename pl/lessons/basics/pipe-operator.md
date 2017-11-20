@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Operator Potoku
 ---
 
@@ -30,14 +30,14 @@ W poniższym zestawie przykładów wykorzystamy Elixirowy moduł String.
 - Tokenizacja ciągu znaków
 
 ```shell
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Zamiana na wielkie litery we wszystkich tokenach
 
 ```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

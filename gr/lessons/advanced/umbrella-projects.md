@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Projects Ομπρέλας
 ---
 
@@ -184,7 +184,7 @@ Consolidated Inspect
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "Γεια, είμαι το Dataset"
+    IO.puts("Γεια, είμαι το Dataset")
   end
 end
 ```

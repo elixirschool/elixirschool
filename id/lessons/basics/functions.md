@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Fungsi
 ---
 
@@ -195,6 +195,7 @@ Elixir tidak suka dengan argumen default dalam fungsi yang tercocok rangkap (mul
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

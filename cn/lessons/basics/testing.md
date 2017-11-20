@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: 测试
 ---
 
@@ -79,7 +79,7 @@ ExUnit 会告诉我们错误断言出现的行数，期望的值是什么，实�
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -105,7 +105,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```

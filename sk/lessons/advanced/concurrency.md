@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Konkurentnosť
 ---
 
@@ -45,7 +45,7 @@ Procesy sa spoliehajú na posielanie správ, ktoré im umožňuje medzi sebou ko
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
 
     listen
@@ -108,11 +108,12 @@ Exit reason: kaboom
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end

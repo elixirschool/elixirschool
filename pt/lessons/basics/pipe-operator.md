@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Operador Pipe
 ---
 
@@ -30,14 +30,14 @@ Por este conjunto de exemplos, nós iremos usar o módulo String de Elixir.
 - Tokenize String (vagamente)
 
 ```shell
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Converte palavras para letras maiúsculas
 
 ```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

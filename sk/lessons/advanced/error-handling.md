@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Spracovanie Chýb
 ---
 
@@ -45,10 +45,10 @@ Je možné zachytiť viacero chýb v jednom bloku rescue:
 try do
   opts
   |> Keyword.fetch!(:source_file)
-  |> File.read!
+  |> File.read!()
 rescue
-  e in KeyError -> IO.puts "missing :source_file option"
-  e in File.Error -> IO.puts "unable to read source file"
+  e in KeyError -> IO.puts("missing :source_file option")
+  e in File.Error -> IO.puts("unable to read source file")
 end
 ```
 
@@ -72,11 +72,12 @@ The end!
 Bežne sa after používa pri práci so súbormi alebo pripojeniami, ktoré by mali byť zatvorené:
 
 ```elixir
-{:ok, file} = File.open "example.json"
+{:ok, file} = File.open("example.json")
+
 try do
-   # Do hazardous work
+  # Do hazardous work
 after
-   File.close(file)
+  File.close(file)
 end
 ```
 

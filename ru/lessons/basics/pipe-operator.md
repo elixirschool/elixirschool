@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Оператор конвейера
 ---
 
@@ -30,14 +30,14 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 - Разбиение строки на слова
 
 ```shell
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Перевод всех слов строки в верхний регистр
 
 ```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

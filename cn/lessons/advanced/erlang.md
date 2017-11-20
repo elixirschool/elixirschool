@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: 和 Erlang 互操作
 ---
 
@@ -16,8 +16,8 @@ title: 和 Erlang 互操作
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time} μs"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time} μs")
+    IO.puts("Result: #{result}")
   end
 end
 
@@ -40,10 +40,8 @@ end
 然后我们就可以用 Erlang 的库了：
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 # 区别
@@ -88,7 +86,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:378: :string.strip/3
     (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_charlist |> :string.words
+iex> "Hello World" |> to_charlist() |> :string.words()
 2
 ```
 

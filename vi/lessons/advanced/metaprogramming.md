@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Metaprogramming
 ---
 
@@ -148,9 +148,11 @@ defmodule OurMacro do
 end
 
 require OurMacro
-quoted = quote do
-  OurMacro.unless true, do: "Hi"
-end
+
+quoted =
+  quote do
+    OurMacro.unless(true, do: "Hi")
+  end
 ```
 
 ```elixir
@@ -243,8 +245,8 @@ Với việc binding biến, chúng ta có thể thêm vào nhiều biến trong
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts unquote(expr)
-      IO.puts unquote(expr)
+      IO.puts(unquote(expr))
+      IO.puts(unquote(expr))
     end
   end
 end
@@ -264,8 +266,8 @@ Kết quả lại không như vậy! Chuyện gì đã xảy ra thế này. Sử
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts expr
-      IO.puts expr
+      IO.puts(expr)
+      IO.puts(expr)
     end
   end
 end
