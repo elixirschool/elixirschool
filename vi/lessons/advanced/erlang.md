@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Erlang Interoperability
 ---
 
@@ -16,8 +16,8 @@ Hãy thử sử dụng `:timer.tc` để đo thời gian chạy của một hàm
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time}ms")
+    IO.puts("Result: #{result}")
   end
 end
 
@@ -41,10 +41,8 @@ end
 Sau đó chúng ta có thể truy cập vào thư viện Erlang:
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## Những khác biệt đáng chú ý

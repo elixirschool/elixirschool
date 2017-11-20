@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Ecto
 ---
 
@@ -13,8 +13,7 @@ Ecto는 공식적인 Elixir 프로젝트로 데이터베이스를 감싸는 부�
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 2.1.4"},
-   {:postgrex, ">= 0.13.2"}]
+  [{:ecto, "~> 2.1.4"}, {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -32,8 +31,7 @@ end
 
 ```elixir
 defmodule ExampleApp.Repo do
-  use Ecto.Repo,
-    otp_app: :example_app
+  use Ecto.Repo, otp_app: :example_app
 end
 ```
 
@@ -100,15 +98,15 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 
   def change do
     create table(:users) do
-      add :username, :string, unique: true
-      add :encrypted_password, :string, null: false
-      add :email, :string
-      add :confirmed, :boolean, default: false
+      add(:username, :string, unique: true)
+      add(:encrypted_password, :string, null: false)
+      add(:email, :string)
+      add(:confirmed, :boolean, default: false)
 
       timestamps
     end
 
-    create unique_index(:users, [:username], name: :unique_usernames)
+    create(unique_index(:users, [:username], name: :unique_usernames))
   end
 end
 ```
@@ -133,12 +131,12 @@ defmodule ExampleApp.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -171,11 +169,14 @@ import Ecto.Query, only: [from: 2]
 Ecto은 멋진 질의 DSL을 제공하고 있으며, 질의를 이해하기 쉬운 형태로 표현할 수 있습니다. 모든 승인된 계정의 사용자 이름을 검색하는 경우, 다음과 같은 질의를 사용할 수 있을 겁니다.
 
 ```elixir
-alias ExampleApp.{Repo,User}
+alias ExampleApp.{Repo, User}
 
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: u.username
+  )
 
 Repo.all(query)
 ```
@@ -187,17 +188,23 @@ Repo.all(query)
 승인된 사용자의 숫자를 세고 싶은 경우에 `count/1`을 사용할 수 있습니다.
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id)
+  )
 ```
 
 주어진 엔트리에서 유일한 값만을 세는 `count/2` 함수도 있습니다.
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id, :distinct)
+  )
 ```
 
 ### Group By
@@ -205,9 +212,12 @@ query = from u in User,
 사용자들을 승인 상태별로 묶고 싶은 경우에는 `group_by` 옵션을 추가하세요.
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     group_by: u.confirmed,
     select: [u.confirmed, count(u.id)]
+  )
 
 Repo.all(query)
 ```
@@ -217,9 +227,12 @@ Repo.all(query)
 사용자를 작성일 순서로 정렬하려면 이렇게 하시면 됩니다.
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: u.inserted_at,
     select: [u.username, u.inserted_at]
+  )
 
 Repo.all(query)
 ```
@@ -227,9 +240,12 @@ Repo.all(query)
 `DESC`로 정렬하려면 이렇게 하세요.
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: [desc: u.inserted_at],
     select: [u.username, u.inserted_at]
+  )
 ```
 
 ### 조인
@@ -237,9 +253,12 @@ query = from u in User,
 사용자에 연관된 프로필이 있다고 가정하고, 모든 승인된 계정의 프로필을 검색해보죠.
 
 ```elixir
-query = from p in Profile,
+query =
+  from(
+    p in Profile,
     join: u in assoc(p, :user),
     where: u.confirmed == true
+  )
 ```
 
 ### Fragment
@@ -247,9 +266,12 @@ query = from p in Profile,
 때때로, 예를 들어 특정 데이터베이스에서만 사용 가능한 함수를 쓰고 싶은 경우 등, 질의 API로는 충분하지 않은 경우가 있습니다. `fragment/1` 함수는 이럴 때 사용할 수 있습니다.
 
 ```elixir
-query = from u in User,
-    where: fragment("downcase(?)", u.username) == ^username
+query =
+  from(
+    u in User,
+    where: fragment("downcase(?)", u.username) == ^username,
     select: u
+  )
 ```
 
 [phoenix-examples/ecto_query_library](https://github.com/phoenix-examples/ecto_query_library)에서 더 많은 질의 예제를 확인할 수 있습니다.
@@ -269,12 +291,12 @@ defmodule ExampleApp.User do
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -295,6 +317,7 @@ defmodule ExampleApp.User do
     case get_change(changeset, :password_confirmation) do
       nil ->
         password_incorrect_error(changeset)
+
       confirmation ->
         password = get_field(changeset, :password)
         if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
@@ -318,13 +341,17 @@ end
 `User.changeset/2`는 비교적 간단하게 사용할 수 있습니다.
 
 ```elixir
-alias ExampleApp.{User,Repo}
+alias ExampleApp.{User, Repo}
 
 pw = "passwords should be hard"
-changeset = User.changeset(%User{}, %{username: "doomspork",
-                    email: "sean@seancallan.com",
-                    password: pw,
-                    password_confirmation: pw})
+
+changeset =
+  User.changeset(%User{}, %{
+    username: "doomspork",
+    email: "sean@seancallan.com",
+    password: pw,
+    password_confirmation: pw
+  })
 
 case Repo.insert(changeset) do
   {:ok, model}        -> # Inserted with success

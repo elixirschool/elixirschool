@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Funkcje
 ---
 
@@ -217,6 +217,7 @@ Domyślne argumenty nie są preferowane przez Elixira w mechanizmach dopasowania
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

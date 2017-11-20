@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: OTPスーパーバイザ
 ---
 
@@ -19,7 +19,7 @@ Supervisorの魔術は`Supervisor.start_link`関数の中にあります。ス�
 import Supervisor.Spec
 
 children = [
-  worker(SimpleQueue, [], [name: SimpleQueue])
+  worker(SimpleQueue, [], name: SimpleQueue)
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -66,7 +66,7 @@ Taskはそれ専用のスーパーバイザ、`Task.Supervisor`を持ってい�
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)

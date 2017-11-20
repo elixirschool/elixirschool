@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Operátor pipe
 ---
 
@@ -30,14 +30,14 @@ V nasledujúcich príkladoch budeme používať modul String v interaktívnom pr
 - Rozdelenie reťazca na slová
 
 ```elixir
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Prevedenie slov na veľké písmená
 
 ```elixir
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: 함수
 ---
 
@@ -217,6 +217,7 @@ Elixir에서는 여러 매칭 함수에 기본값 인자가 들어가는 것을 
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

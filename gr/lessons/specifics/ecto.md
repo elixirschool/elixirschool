@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Ecto
 ---
 
@@ -13,8 +13,7 @@ title: Ecto
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 2.1.4"},
-   {:postgrex, ">= 0.13.2"}]
+  [{:ecto, "~> 2.1.4"}, {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -32,8 +31,7 @@ end
 
 ```elixir
 defmodule ExampleApp.Repo do
-  use Ecto.Repo,
-    otp_app: :example_app
+  use Ecto.Repo, otp_app: :example_app
 end
 ```
 
@@ -100,15 +98,15 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 
   def change do
     create table(:users) do
-      add :username, :string, unique: true
-      add :encrypted_password, :string, null: false
-      add :email, :string
-      add :confirmed, :boolean, default: false
+      add(:username, :string, unique: true)
+      add(:encrypted_password, :string, null: false)
+      add(:email, :string)
+      add(:confirmed, :boolean, default: false)
 
       timestamps
     end
 
-    create unique_index(:users, [:username], name: :unique_usernames)
+    create(unique_index(:users, [:username], name: :unique_usernames))
   end
 end
 ```
@@ -133,12 +131,12 @@ defmodule ExampleApp.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -171,11 +169,14 @@ import Ecto.Query, only: [from: 2]
 Το Ecto παρέχει μία εξαιρετική DSL Ερωτημάτων που μας επιτρέπει να εκφράζουμε ξεκάθαρα τα ερωτήματα.  Για να βρούμε τα ονόματα χρήστη από όλους τους επιβεβαιωμένους λογαριασμούς θα μπορούσαμε να χρησιμοποιήσουμα κάτι σαν αυτό:
 
 ```elixir
-alias ExampleApp.{Repo,User}
+alias ExampleApp.{Repo, User}
 
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: u.username
+  )
 
 Repo.all(query)
 ```
@@ -187,17 +188,23 @@ Repo.all(query)
 Αν θέλουμε να μετρήσουμε τον αριθμό χρηστών που έχουν επιβεβαιωμένο λογαριασμό θα μπορούσαμε να χρησιμοποιήσουμε την `count/1`:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id)
+  )
 ```
 
 Υπάρχει η συνάρτηση `count/2` που μετράει τις ξεχωριστές τιμές σε μια δωσμένη εγγραφή:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id, :distinct)
+  )
 ```
 
 
@@ -207,9 +214,12 @@ query = from u in User,
 Για να ομαδοποιήσουμε χρήστες με βάση την κατάσταση επιβεβαίωσης μπορούμε να συμπεριλάβουμε την επιλογή `group_by`:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     group_by: u.confirmed,
     select: [u.confirmed, count(u.id)]
+  )
 
 Repo.all(query)
 ```
@@ -219,9 +229,12 @@ Repo.all(query)
 Η ταξινόμηση των χρηστών με βάση την ημερομηνία δημιουργίας:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: u.inserted_at,
     select: [u.username, u.inserted_at]
+  )
 
 Repo.all(query)
 ```
@@ -229,9 +242,12 @@ Repo.all(query)
 Για να ταξινομήσουμε κατά φθίνουσα σειρά:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: [desc: u.inserted_at],
     select: [u.username, u.inserted_at]
+  )
 ```
 
 ### Ενώσεις
@@ -239,9 +255,12 @@ query = from u in User,
 Υποθέτωντας ότι έχουμε ένα προφίλ συσχετισμένο με τον χρήστη μας, ας βρούμε όλα τα προφίλ επιβεβαιωμένων λογαριασμών:
 
 ```elixir
-query = from p in Profile,
+query =
+  from(
+    p in Profile,
     join: u in assoc(p, :user),
     where: u.confirmed == true
+  )
 ```
 
 ### Κομμάτια
@@ -249,9 +268,12 @@ query = from p in Profile,
 Μερικές φορές, όπως όταν χρειαζόμαστε συγκεκριμμένες συναρτήσεις βάσης δεδομένων, το API ερωτημάτων δεν είναι αρκετό.  Η συνάρτηση `fragment/1` υπάρχει για αυτό το σκοπό:
 
 ```elixir
-query = from u in User,
-    where: fragment("downcase(?)", u.username) == ^username
+query =
+  from(
+    u in User,
+    where: fragment("downcase(?)", u.username) == ^username,
     select: u
+  )
 ```
 
 Επιπρόσθετα παραδείγματα ερωτημάτων μπορούν να βρεθούν στην περιγραφή ενότητας [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html).
@@ -271,12 +293,12 @@ defmodule ExampleApp.User do
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -297,6 +319,7 @@ defmodule ExampleApp.User do
     case get_change(changeset, :password_confirmation) do
       nil ->
         password_incorrect_error(changeset)
+
       confirmation ->
         password = get_field(changeset, :password)
         if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
@@ -320,13 +343,17 @@ end
 Η χρήση της `User.changeset/2` είναι αρκετά απλή:
 
 ```elixir
-alias ExampleApp.{User,Repo}
+alias ExampleApp.{User, Repo}
 
 pw = "οι κωδικοί πρέπει να είναι δύσκολοι"
-changeset = User.changeset(%User{}, %{username: "doomspork",
-                    email: "sean@seancallan.com",
-                    password: pw,
-                    password_confirmation: pw})
+
+changeset =
+  User.changeset(%User{}, %{
+    username: "doomspork",
+    email: "sean@seancallan.com",
+    password: pw,
+    password_confirmation: pw
+  })
 
 case Repo.insert(changeset) do
   {:ok, model}        -> # Επιτυχής εισαγωγή

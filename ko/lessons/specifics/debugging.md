@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: 디버깅
 ---
 
@@ -64,10 +64,10 @@ Dialyzer의 메세지는 명확합니다. `sum_times/1`함수의 반환값이 �
 ```elixir
 @spec sum_times(integer) :: integer
 def sum_times(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
-    |> round
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -90,7 +90,6 @@ done (passed successfully)
 
 ```elixir
 defmodule Example do
-
   def cpu_burns(a, b, c) do
     x = a * 2
     y = b * 3
@@ -98,7 +97,6 @@ defmodule Example do
 
     x + y + z
   end
-
 end
 ```
 

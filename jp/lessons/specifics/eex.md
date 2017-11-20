@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: 埋め込みElixir (EEx)
 ---
 
@@ -32,7 +32,7 @@ Hi, <%= name %>
 
 defmodule Example do
   require EEx
-  EEx.function_from_file :def, :greeting, "greeting.eex", [:name]
+  EEx.function_from_file(:def, :greeting, "greeting.eex", [:name])
 end
 
 iex> Example.greeting("Sean")

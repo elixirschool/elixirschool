@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: 字符串
 ---
 
@@ -66,7 +66,7 @@ iex> String.graphemes string
 返回字符串中的字素的数量：
 
 ```elixir
-iex> String.length "Hello"
+iex> String.length("Hello")
 5
 ```
 
@@ -120,9 +120,9 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```

@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 스펙과 타입
 ---
 
@@ -24,9 +24,9 @@ Java나 Ruby를 사용해보신 분들이라면 specification을 `interface`처�
 ```elixir
 @spec sum_product(integer) :: integer
 def sum_product(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
 end
 ```
 
@@ -45,12 +45,12 @@ end
 ```elixir
 @spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -66,13 +66,11 @@ Elixir에서 타입을 지정하는 방법에는 세 가지가 있습니다.
 
 ```elixir
 defmodule Examples do
+  defstruct first: nil, last: nil
 
-    defstruct first: nil, last: nil
+  @type t(first, last) :: %Examples{first: first, last: last}
 
-    @type t(first, last) :: %Examples{first: first, last: last}
-
-    @type t :: %Examples{first: integer, last: integer}
-
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 
@@ -81,14 +79,14 @@ end
 어떻게 다를까요? 첫번째는 아무 타입이나 가질 수 있는 두 키를 가진 `Example` 구조체입니다. 한편 두번째는 키가 정수(`integer`)인 구조체를 나타냅니다. 다시 말해 아래처럼 코드를 작성하면
   
 ```elixir
-@spec sum_times(integer, Examples.t) :: integer
+@spec sum_times(integer, Examples.t()) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -97,12 +95,12 @@ end
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -112,12 +110,10 @@ end
 
 ```elixir
 defmodule Examples do
-    
-    @typedoc """
-        integer인 :first와 integer인 :last를 갖고 있는 Examples 구조체를 대표하는 타입.
-    """
-    @type t :: %Examples{first: integer, last: integer}
-
+  @typedoc """
+      integer인 :first와 integer인 :last를 갖고 있는 Examples 구조체를 대표하는 타입.
+  """
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 

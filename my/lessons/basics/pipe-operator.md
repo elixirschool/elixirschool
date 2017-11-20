@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Operator Paip 
 ---
 
@@ -30,14 +30,14 @@ Untuk contoh-contoh berikut, kita akan menggunakan modul String Elixir.
 - Memecahkan string kepada token (secara longgar)
 
 ```shell
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Menukar semua token ke dalam huruf besar
 
 ```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 
