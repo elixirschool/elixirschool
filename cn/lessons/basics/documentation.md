@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 文档模块
 ---
 
@@ -25,7 +25,7 @@ Elixir把文档看作是*一等公民*，它提供了大量的函数来为项目
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum.")
 ```
 
 对于每一行，Elixir会忽略`#`到行末的所有内容。这种注释不会影响到程序的执行，但是别人在阅读代码时它可能不会很容易地被看到。因此不要滥用单行注释。乱用注释可能成为别人的噩梦。适度使用就很好。
@@ -85,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -180,10 +180,9 @@ Examples
 假设一切都正常工作，那么你将看到和上面一样的输出，现在我们将配置ExDoc。在文件`mix.exs`中，添加两个依赖`:earmark` 和 `:ex_doc`。
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 使用`only: :dev`是因为我们不想在生产环境下下载和编译这些依赖。为什么需要Earmark呢？Earmark是一个使用Elixir编写的markdown分析器，ExDoc使用它来将带有`@moduledoc` 和 `@doc`的注释转换成漂亮的HTML页面。
@@ -247,7 +246,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -266,7 +265,7 @@ defmodule Greeter do
   # 就像上面这样...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -295,7 +294,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end

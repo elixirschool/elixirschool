@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Benchee
 ---
 
@@ -34,11 +34,11 @@ $ mix compile
 
 ```elixir
 list = Enum.to_list(1..10_000)
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
 
 Benchee.run(%{
-  "flat_map"    => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten end
+  "flat_map" => fn -> Enum.flat_map(list, map_fun) end,
+  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
 })
 ```
 
@@ -96,13 +96,14 @@ map.flatten        0.56 K - 1.85x slower
 `Benchee` использует для настройки параметры конфигурации. В основном интерфейсе `Benchee.run/2` они передаются вторым аргументом в виде опционального ключевого списка.
 
 ```elixir
-Benchee.run(%{"example function" => fn -> "hi!" end}, [
+Benchee.run(
+  %{"example function" => fn -> "hi!" end},
   warmup: 4,
   time: 10,
   inputs: nil,
   parallel: 1,
   formatters: [&Benchee.Formatters.Console.output/1],
-  print: [ 
+  print: [
     benchmarking: true,
     configuration: true,
     fast_warning: true
@@ -111,7 +112,7 @@ Benchee.run(%{"example function" => fn -> "hi!" end}, [
     comparison: true,
     unit_scaling: :best
   ]
-])
+)
 ```
 
 Список доступных параметров (также описан в [документации](https://hexdocs.pm/benchee/Benchee.Configuration.html#init/1)):
@@ -141,28 +142,32 @@ Benchee.run(%{"example function" => fn -> "hi!" end}, [
 
 ```elixir
 list = Enum.to_list(1..10_000)
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
 
 Benchee.run(%{
-  "flat_map"    => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten end
+  "flat_map" => fn -> Enum.flat_map(list, map_fun) end,
+  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
 })
 ```
 
 В нём мы используем один-единственный список целых чисел от 1 до 10 000. Давайте вместо него используем несколько разных аргументов, чтобы можно было сравнить результаты на малых и больших списках. Должно получиться так:
 
 ```elixir
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
+
 inputs = %{
   "small list" => Enum.to_list(1..100),
   "medium list" => Enum.to_list(1..10_000),
   "large list" => Enum.to_list(1..1_000_000)
 }
 
-Benchee.run(%{
-  "flat_map"    => fn(list) -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn(list) -> list |> Enum.map(map_fun) |> List.flatten end
-}, inputs: inputs)
+Benchee.run(
+  %{
+    "flat_map" => fn list -> Enum.flat_map(list, map_fun) end,
+    "map.flatten" => fn list -> list |> Enum.map(map_fun) |> List.flatten() end
+  },
+  inputs: inputs
+)
 ```
 
 Можно заметить два существенных различия. Во-первых, мы создали ассоциативный массив `inputs`, в котором хранится информация о наборах входных данных. Во-вторых, мы передаём его в виде настройки в `Benchee.run/2`.
@@ -277,13 +282,13 @@ defmodule Custom.Formatter do
   def output(suite) do
     suite
     |> format
-    |> IO.write
+    |> IO.write()
 
     suite
   end
 
   defp format(suite) do
-    Enum.map_join(suite.scenarios, "\n", fn(scenario) ->
+    Enum.map_join(suite.scenarios, "\n", fn scenario ->
       "Average for #{scenario.job_name}: #{scenario.run_time_statistics.average}"
     end)
   end

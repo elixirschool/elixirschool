@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Dokumentasi
 ---
 
@@ -25,7 +25,7 @@ Lihat skrip Elixir ini (greeting.exs):
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum.")
 ```
 
 Apabila menjalankan skrip ini, Elixir tidak akan mempedulikan semua dari `#` hingga ke pengakhir line tersebut, melayannya sebagai data pakai buang.  Ia mungkin tidak menambah nilai kepada operasi atau prestasi skrip tersebut, tetapi walaupun ianya tidak ketara apa yang sedang berlaku seorang pengaturcara sepatutnya tahu dari membaca komen anda.  Berhati-hati supaya tidak abuse komen satu baris tersebut!  Mencomotkan satu codebase mungkin tidak dialu-alukan oleh sesetengah pihak.  Sebaiknya gunakanlah dengan berimbang. 
@@ -85,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -178,10 +178,9 @@ Examples
 Dengan anggapan semuaya berfungsi dengan baik, dan kita dapat melihat paparan sebagaimana di atas kita telah bersedia untuk memasang ExDoc.  Di dalam fail `mix.exs` kita, tambahkan dua dependency yang diperlukan untuk bermula; `:earmark` and `:ex_doc`.
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Kita menetapkan pasangan key-value `only: :dev` sebab kita tidak mahu untuk memuatturun dan mengkompil dependency tersebut di dalam persekitaran pengeluaran(production environment).
@@ -244,7 +243,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -263,7 +262,7 @@ defmodule Greeter do
   # and so on...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -292,7 +291,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end

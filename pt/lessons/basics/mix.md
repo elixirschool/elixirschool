@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Mix
 ---
 
@@ -43,7 +43,7 @@ defmodule Example.Mixfile do
       app: :example,
       version: "0.1.0",
       elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
   end
@@ -55,9 +55,7 @@ defmodule Example.Mixfile do
   end
 
   defp deps do
-    [
-
-    ]
+    []
   end
 end
 ```
@@ -104,10 +102,12 @@ Para este exemplo vamos ver um projeto com dependências, como  [phoenix_slim](h
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 1.1 or ~> 1.2"},
-   {:phoenix_html, "~> 2.3"},
-   {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slime, "~> 0.14"}]
+  [
+    {:phoenix, "~> 1.1 or ~> 1.2"},
+    {:phoenix_html, "~> 2.3"},
+    {:cowboy, "~> 1.0", only: [:dev, :test]},
+    {:slime, "~> 0.14"}
+  ]
 end
 ```
 

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Benchee
 ---
 
@@ -35,11 +35,11 @@ Pierwsze polecenie pobiera i instaluje Benchee. Możesz zostać poproszony o zai
 
 ```elixir
 list = Enum.to_list(1..10_000)
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
 
 Benchee.run(%{
-  "flat_map"    => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten end
+  "flat_map" => fn -> Enum.flat_map(list, map_fun) end,
+  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
 })
 ```
 
@@ -98,13 +98,14 @@ Jedną z najlepszych części Benchee są wszystkie dostępne opcje konfiguracji
 Benchee ma wiele opcji konfiguracyjnych. W najbardziej popularnym interfejsie `Benchee.run/2`, są one przekazywane jako drugi argument w formie listy słów kluczowych:
 
 ```elixir
-Benchee.run(%{"example function" => fn -> "hi!" end}, [
+Benchee.run(
+  %{"example function" => fn -> "hi!" end},
   warmup: 4,
   time: 10,
   inputs: nil,
   parallel: 1,
   formatters: [&Benchee.Formatters.Console.output/1],
-  print: [ 
+  print: [
     benchmarking: true,
     configuration: true,
     fast_warning: true
@@ -113,7 +114,7 @@ Benchee.run(%{"example function" => fn -> "hi!" end}, [
     comparison: true,
     unit_scaling: :best
   ]
-])
+)
 ```
 
 Dostępne są następujące opcje (także udokumentowane w [hexdocs](https://hexdocs.pm/benchee/Benchee.Configuration.html#init/1)).
@@ -143,28 +144,32 @@ Przyjrzyjmy się więc naszemu pierwotnemu przykładowi:
 
 ```elixir
 list = Enum.to_list(1..10_000)
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
 
 Benchee.run(%{
-  "flat_map"    => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten end
+  "flat_map" => fn -> Enum.flat_map(list, map_fun) end,
+  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
 })
 ```
 
 W tym przykładzie używamy tylko jednej listy liczb całkowitych od 1 do 10,000. Zaktualizujmy to aby użyć kilku różnych wejść, dzięki czemu możemy zobaczyć, co się dzieje z mniejszymi i większymi listami. Otworzymy ten plik i zmienimy go w następujący sposób:
 
 ```elixir
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
+
 inputs = %{
   "small list" => Enum.to_list(1..100),
   "medium list" => Enum.to_list(1..10_000),
   "large list" => Enum.to_list(1..1_000_000)
 }
 
-Benchee.run(%{
-  "flat_map"    => fn(list) -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn(list) -> list |> Enum.map(map_fun) |> List.flatten end
-}, inputs: inputs)
+Benchee.run(
+  %{
+    "flat_map" => fn list -> Enum.flat_map(list, map_fun) end,
+    "map.flatten" => fn list -> list |> Enum.map(map_fun) |> List.flatten() end
+  },
+  inputs: inputs
+)
 ```
 
 Zauważysz dwie różnice. Najpierw mamy mapę `input` zawierającą informacje o naszych danych wejściowych. Przekazujemy tę mapę jako opcję konfiguracji do `Benchee.run/2`.
@@ -259,9 +264,9 @@ Każdy z tych formatów znajduje się w osobnej paczce, więc aby nich korzysta�
 ```elixir
 defp deps do
   [
-    {:benchee_csv,  "~> 0.6", only: :dev},
+    {:benchee_csv, "~> 0.6", only: :dev},
     {:benchee_json, "~> 0.3", only: :dev},
-    {:benchee_html, "~> 0.3", only: :dev},
+    {:benchee_html, "~> 0.3", only: :dev}
   ]
 end
 ```
@@ -279,13 +284,13 @@ defmodule Custom.Formatter do
   def output(suite) do
     suite
     |> format
-    |> IO.write
+    |> IO.write()
 
     suite
   end
 
   defp format(suite) do
-    Enum.map_join(suite.scenarios, "\n", fn(scenario) ->
+    Enum.map_join(suite.scenarios, "\n", fn scenario ->
       "Average for #{scenario.job_name}: #{scenario.run_time_statistics.average}"
     end)
   end
@@ -296,12 +301,15 @@ Następnie możemy uruchomić nasze testy wydajności w naspępujący sposób:
 
 ```elixir
 list = Enum.to_list(1..10_000)
-map_fun = fn(i) -> [i, i * i] end
+map_fun = fn i -> [i, i * i] end
 
-Benchee.run(%{
-  "flat_map"    => fn -> Enum.flat_map(list, map_fun) end,
-  "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten end
-}, formatters: [&Custom.Formatter.output/1])
+Benchee.run(
+  %{
+    "flat_map" => fn -> Enum.flat_map(list, map_fun) end,
+    "map.flatten" => fn -> list |> Enum.map(map_fun) |> List.flatten() end
+  },
+  formatters: [&Custom.Formatter.output/1]
+)
 ```
 
 Dzięki naszemu nowemu formaterowi ukaże się nam następujący widok:

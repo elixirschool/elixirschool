@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: 제어 구조
 ---
 
@@ -157,9 +157,13 @@ case Repo.insert(changeset) do
     case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, token, full_claims} ->
         important_stuff(token, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -182,15 +186,16 @@ m = %{a: 1, c: 3}
 
 a =
   with {:ok, res} <- Map.fetch(m, :a),
-    true <- is_even(res) do
-      IO.puts "Divided by 2 it is #{div(res, 2)}"
-      :even
+       true <- is_even(res) do
+    IO.puts("Divided by 2 it is #{div(res, 2)}")
+    :even
   else
     :error ->
-      IO.puts "We don't have this item in map"
+      IO.puts("We don't have this item in map")
       :error
+
     _ ->
-      IO.puts "It's not odd"
+      IO.puts("It's not odd")
       :odd
   end
 ```

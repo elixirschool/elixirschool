@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Funkcie
 ---
 
@@ -221,6 +221,7 @@ Elixir nerád vidí východiskové argumenty vo viacerých zhodných hlavičkác
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

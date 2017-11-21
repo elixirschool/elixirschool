@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Module
 ---
 
@@ -197,7 +197,7 @@ Obwohl weniger gebr√§uchlich, ist `require/2` dennoch wichtig. Ein Modul zu ben√
 defmodule Example do
   require SuperMacros
 
-  SuperMacros.do_stuff
+  SuperMacros.do_stuff()
 end
 ```
 
@@ -213,7 +213,7 @@ defmodule UseImportRequire.UseMe do
   defmacro __using__(_) do
     quote do
       def use_test do
-        IO.puts "use_test"
+        IO.puts("use_test")
       end
     end
   end

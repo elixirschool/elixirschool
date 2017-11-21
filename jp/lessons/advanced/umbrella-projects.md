@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: アンブレラプロジェクト
 ---
 
@@ -184,7 +184,7 @@ Consolidated Inspect
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "Hello, I'm the datasets"
+    IO.puts("Hello, I'm the datasets")
   end
 end
 ```

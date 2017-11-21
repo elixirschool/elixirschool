@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Τεκμηρίωση
 ---
 
@@ -86,7 +86,7 @@ defmodule Greeter do
       "Γειά σου, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Γειά σου, " <> name
   end
@@ -179,10 +179,9 @@ iex> h Greeter.hello
 Λαμβάνοντας υπόψιν μας ότι όλα είναι οκ, και ότι βλέπουμε την έξοδο από πάνω σημαίνει ότι είμαστε έτοιμοι να εγκαταστήσουμε το ExDoc.  Μέσα στο αρχείο `mix.exs` προσθέστε τις δύο απαιτόυμενες εξαρτήσεις για να ξεκινήσετε: `:earmark` και `:ex_doc`.
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Καθορίζουμε το ζευγάρι κλειδί-τιμή `only: :dev` καθώς δεν θέλουμε να κατεβάσουμε και να συντάξουμε τις εξαρτήσεις αυτές σε ένα περιβάλλον παραγωγής.  Αλλά γιατί το Earmark; Το Earmark είναι ένας αναλυτής Markdown για την Elixir ο οποίος χρησιμοποιεί το ExDoc για να μετατρέψει την τεκμηρίωσή μας μέσα στα `@moduledoc` και `@doc` για να έχουμε πανέμορφη στην εμφάνιση HTML.
@@ -246,7 +245,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Γειά σου, " <> name
+    IO.puts("Γειά σου, " <> name)
   end
 end
 ```
@@ -265,7 +264,7 @@ defmodule Greeter do
   # και ούτω καθεξής
 
   def hello(name) do
-    IO.puts "Γειά σου, " <> name
+    IO.puts("Γειά σου, " <> name)
   end
 end
 ```
@@ -294,7 +293,7 @@ defmodule Greeter do
       "Γειά σου, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Γειά σου, " <> name
   end

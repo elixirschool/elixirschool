@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Cấu trúc điều khiển
 ---
 
@@ -158,9 +158,13 @@ case Repo.insert(changeset) do
     case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -179,13 +183,14 @@ import Integer
 
 m = %{a: 1, c: 3}
 
-a = with {:ok, res} <- Map.fetch(m, :a),
-  true <- is_even(res) do
-    IO.puts "Divided by 2 it is #{div(res, 2)}"
-else
-  :error -> IO.puts "We don't have this item in map"
-  _ -> IO.puts "It's not odd"
-end
+a =
+  with {:ok, res} <- Map.fetch(m, :a),
+       true <- is_even(res) do
+    IO.puts("Divided by 2 it is #{div(res, 2)}")
+  else
+    :error -> IO.puts("We don't have this item in map")
+    _ -> IO.puts("It's not odd")
+  end
 ```
 
 Nó giúp việc xử lý lỗi dễ hơn bằng cách dùng pattern matching kiểu `case`. Giá trị truyền vào sẽ là biểu thức không match đầu tiên.

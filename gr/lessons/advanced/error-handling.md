@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Διαχείριση Σφαλμάτων
 ---
 
@@ -45,10 +45,10 @@ iex> try do
 try do
   opts
   |> Keyword.fetch!(:source_file)
-  |> File.read!
+  |> File.read!()
 rescue
-  e in KeyError -> IO.puts "Λείπει η επιλογή :source_file"
-  e in File.Error -> IO.puts "Αδύνατη η ανάγνωση από το πηγαίο αρχείο"
+  e in KeyError -> IO.puts("Λείπει η επιλογή :source_file")
+  e in File.Error -> IO.puts("Αδύνατη η ανάγνωση από το πηγαίο αρχείο")
 end
 ```
 
@@ -72,11 +72,12 @@ An error occurred: Ώχ όχι!
 Είναι πολύ συχνή η χρήση της με αρχεία η συνδέσεις που πρέπει να κλείσουν:
 
 ```elixir
-{:ok, file} = File.open "example.json"
+{:ok, file} = File.open("example.json")
+
 try do
-   # Κάντε κάτι καταστροφικό
+  # Κάντε κάτι καταστροφικό
 after
-   File.close(file)
+  File.close(file)
 end
 ```
 

@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: 関数
 ---
 
@@ -217,6 +217,7 @@ Elixirは複数のマッチング関数にデフォルト引数があるのを�
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Τελεστής Σωλήνα
 ---
 
@@ -30,14 +30,14 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 - Κερματισμός Αλφαρηθμητικών (χαλαρός)
 
 ```elixir
-iex> "Η Elixir τα σπάει" |> String.split
+iex> "Η Elixir τα σπάει" |> String.split()
 ["Η", "Elixir", "τα", "σπάει"]
 ```
 
 - Αλλαγή σε κεφαλαία των κερμάτων
 
 ```elixir
-iex> "Η Elixir τα σπάει" |> String.upcase |> String.split
+iex> "Η Elixir τα σπάει" |> String.upcase() |> String.split()
 ["Η", "ELIXIR", "ΤΑ", "ΣΠΑΕΙ"]
 ```
 

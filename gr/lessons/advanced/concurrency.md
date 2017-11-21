@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Συγχρονισμός
 ---
 
@@ -45,7 +45,7 @@ iex> spawn(Example, :add, [2, 3])
 defmodule Example do
   def listen do
     receive do
-      {:ok, "γεια"} -> IO.puts "Κόσμε"
+      {:ok, "γεια"} -> IO.puts("Κόσμε")
     end
   end
 end
@@ -82,12 +82,13 @@ iex> spawn_link(Example, :explode, [])
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Λόγος εξόδου: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Λόγος εξόδου: #{reason}")
     end
   end
 end
@@ -104,11 +105,12 @@ iex> Example.run
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Λόγος Εξόδου: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Λόγος Εξόδου: #{reason}")
     end
   end
 end

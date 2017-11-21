@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Funções
 ---
 
@@ -194,6 +194,7 @@ Elixir não gosta de argumentos padrões em multiplas funções, pode ser confus
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: 並行性
 ---
 
@@ -45,7 +45,7 @@ iex> spawn(Example, :add, [2, 3])
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
 
     listen
@@ -86,12 +86,13 @@ iex> spawn_link(Example, :explode, [])
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -108,11 +109,12 @@ Exit reason: kaboom
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
