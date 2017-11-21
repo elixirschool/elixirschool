@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: 自定义 Mix 任务
 ---
 
@@ -58,12 +58,11 @@ Run "mix help" for more commands.
 
 ```elixir
 defmodule Hello do
-
   @doc """
   每次调用都会输出 `Hello, World!`
   """
   def say do
-    IO.puts "Hello, World!"
+    IO.puts("Hello, World!")
   end
 end
 ```
@@ -78,7 +77,8 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Simply runs the Hello.say/0 command."
   def run(_) do
-    Hello.say # 调用我们刚才创建的　Hello.say 函数
+    # 调用我们刚才创建的　Hello.say 函数
+    Hello.say()
   end
 end
 ```

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Guardian (Basics)
 ---
 
@@ -81,9 +81,10 @@ end
 `config/config.ex`
 
 ```elixir
+# 공개하는 코드라면 각 환경 설정에서 덮어써야 합니다
 config :guardian, Guardian,
   issuer: "MyAppId",
-  secret_key: Mix.env, # 공개하는 코드라면 각 환경 설정에서 덮어써야 합니다
+  secret_key: Mix.env(),
   serializer: MyApp.GuardianSerializer
 ```
 
@@ -98,11 +99,11 @@ defmodule MyApp.GuardianSerializer do
   alias MyApp.Repo
   alias MyApp.User
 
-  def for_token(user = %User{}), do: { :ok, "User:#{user.id}" }
-  def for_token(_), do: { :error, "Unknown resource type" }
+  def for_token(user = %User{}), do: {:ok, "User:#{user.id}"}
+  def for_token(_), do: {:error, "Unknown resource type"}
 
-  def from_token("User:" <> id), do: { :ok, Repo.get(User, id) }
-  def from_token(_), do: { :error, "Unknown resource type" }
+  def from_token("User:" <> id), do: {:ok, Repo.get(User, id)}
+  def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
 serializer는 `sub`(subject) 필드에서 식별 된 자원을 찾는 역활을 합니다. 이것은 db, API, 심지어 간단한 문자열에서 조회될 수 있습니다.
@@ -132,13 +133,13 @@ Guardian은 애플리케이션 개발자의 요구를 모두 충족시키기 위
 
 ```elixir
 pipeline :maybe_browser_auth do
-  plug Guardian.Plug.VerifySession
-  plug Guardian.Plug.VerifyHeader, realm: "Bearer"
-  plug Guardian.Plug.LoadResource
+  plug(Guardian.Plug.VerifySession)
+  plug(Guardian.Plug.VerifyHeader, realm: "Bearer")
+  plug(Guardian.Plug.LoadResource)
 end
 
 pipeline :ensure_authed_access do
-  plug Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler}
+  plug(Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler})
 end
 ```
 
@@ -148,17 +149,17 @@ end
 
 ```elixir
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth]
+  pipe_through([:browser, :maybe_browser_auth])
 
-  get "/login", LoginController, :new
-  post "/login", LoginController, :create
-  delete "/login", LoginController, :delete
+  get("/login", LoginController, :new)
+  post("/login", LoginController, :create)
+  delete("/login", LoginController, :delete)
 end
 
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth, :ensure_authed_access]
+  pipe_through([:browser, :maybe_browser_auth, :ensure_authed_access])
 
-  resource "/protected/things", ProtectedController
+  resource("/protected/things", ProtectedController)
 end
 ```
 
@@ -213,10 +214,13 @@ end
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
+      # Use access tokens. Other tokens can be used, like :refresh etc
       conn
-      |> Guardian.Plug.sign_in(user, :access) # Use access tokens. Other tokens can be used, like :refresh etc
+      |> Guardian.Plug.sign_in(user, :access)
       |> respond_somehow()
+
     {:error, reason} ->
+      nil
       # handle not verifying the user's credentials
   end
 end
@@ -236,9 +240,12 @@ def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
       {:ok, jwt, _claims} = Guardian.encode_and_sign(user, :access)
+
       conn
-      |> respond_somehow({token: jwt})
+      |> respond_somehow(%{token: jwt})
+
     {:error, reason} ->
+      nil
       # handle not verifying the user's credentials
   end
 end

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Erlang 상호 운용
 ---
 
@@ -17,8 +17,8 @@ Erlang의 방대한 표준 라이브러리는 애플리케이션의 어떤 Elixi
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time} μs"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time} μs")
+    IO.puts("Result: #{result}")
   end
 end
 
@@ -42,10 +42,8 @@ end
 이제 우리가 포함시킨 Erlang 라이브러리를 사용할 수 있습니다.
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette}),
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## 눈에 띄는 차이점

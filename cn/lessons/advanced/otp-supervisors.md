@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: OTP Supervisors
 ---
 
@@ -58,7 +58,7 @@ Tasks 有它们自己特殊的 Supervisor，叫做 `Task.Supervisor`。作为专
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)

@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Mix
 ---
 
@@ -39,7 +39,7 @@ defmodule Example.Mixfile do
       app: :example,
       version: "0.1.0",
       elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
   end
@@ -51,9 +51,7 @@ defmodule Example.Mixfile do
   end
 
   defp deps do
-    [
-
-    ]
+    []
   end
 end
 ```

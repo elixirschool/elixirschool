@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Dokumentation
 ---
 
@@ -25,7 +25,7 @@ Nimm etwa dieses Elixirskript (greeting.exs):
 
 ```elixir
 # Gibt 'Hello, chum.' auf der Konsole aus.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum.")
 ```
 
 Wenn Elixir dieses Skript ausführt, wird jedes Zeichen hinterhalb von `#` bis zum Ende der Zeile ignorieren. Es ändert nichts an der Ausführung oder Performance des Skripts, falls jedoch nicht klar ist, was an dieser Stelle passiert, so kann ein anderer Programmierer durch Lesen des Kommentars den Code eher verstehen. Sei bedacht bei der Benutzung von einzeiligen Kommentaren! Das "Zumüllen" der Codebasis durch einzeilige Kommentare resultiert in einem Albtraum für Leute, die sich in die Codebasis einarbeiten müssen. Am besten werden sie spärlich eingesetzt.
@@ -85,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -180,10 +180,9 @@ Beispiele
 Davon ausgehend, dass soweit alles funktioniert und wir die Ausgabe wie oben sehen, können wir nun ExDoc aufsetzen. In der `mix.exs`-Datei füge zwei Abhängigkeiten hinzu, um zu starten: `:earmark` und `:ex_doc`.
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Wir spezifizieren das `only: :dev` key-value-Paar, da wir diese Abhängigkeiten nicht in einer Produktionsumgebung herunterladen und kompilieren wollen. Aber wieso Earmark? Earmark ist ein Markdown-Parser für Elixir, den ExDoc benutzt, um unsere Dokumentation innerhalb von `@moduledoc` und `@doc` in schönes HTML zu verwandeln.
@@ -246,7 +245,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -265,7 +264,7 @@ defmodule Greeter do
   # und so weiter...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -294,7 +293,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end

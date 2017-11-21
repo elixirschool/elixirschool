@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Pipe Operator
 ---
 
@@ -37,7 +37,7 @@ iex> "Elixir rocks" |> String.split
 - Alle Zeichen in Großbuchstaben umwandeln
 
 ```elixir
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: OTP Concurrency
 ---
 
@@ -57,9 +57,10 @@ defmodule SimpleQueue do
   @doc """
   GenServer.handle_call/3 callback
   """
-  def handle_call(:dequeue, _from, [value|state]) do
+  def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
   end
+
   def handle_call(:dequeue, _from, []), do: {:reply, nil, []}
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
@@ -73,7 +74,6 @@ defmodule SimpleQueue do
   def queue, do: GenServer.call(__MODULE__, :queue)
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
 end
-
 ```
 
 Mari memulai SimpleQueue kita dan mencoba fungsi dequeue kita yang baru:
@@ -109,9 +109,10 @@ defmodule SimpleQueue do
   @doc """
   GenServer.handle_call/3 callback
   """
-  def handle_call(:dequeue, _from, [value|state]) do
+  def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
   end
+
   def handle_call(:dequeue, _from, []), do: {:reply, nil, []}
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
@@ -128,6 +129,7 @@ defmodule SimpleQueue do
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
+
   def queue, do: GenServer.call(__MODULE__, :queue)
   def enqueue(value), do: GenServer.cast(__MODULE__, {:enqueue, value})
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
@@ -164,8 +166,8 @@ defmodule LoggerHandler do
   use GenEvent
 
   def handle_event({:msg, msg}, messages) do
-    IO.puts "Logging new message: #{msg}"
-    {:ok, [msg|messages]}
+    IO.puts("Logging new message: #{msg}")
+    {:ok, [msg | messages]}
   end
 end
 
@@ -173,7 +175,7 @@ defmodule PersistenceHandler do
   use GenEvent
 
   def handle_event({:msg, msg}, state) do
-    IO.puts "Persisting log message: #{msg}"
+    IO.puts("Persisting log message: #{msg}")
 
     # Save message
 
@@ -193,8 +195,8 @@ defmodule LoggerHandler do
   use GenEvent
 
   def handle_event({:msg, msg}, messages) do
-    IO.puts "Logging new message: #{msg}"
-    {:ok, [msg|messages]}
+    IO.puts("Logging new message: #{msg}")
+    {:ok, [msg | messages]}
   end
 
   def handle_call(:messages, messages) do

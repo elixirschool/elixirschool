@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Funktionen
 ---
 
@@ -64,7 +64,7 @@ defmodule Greeter do
   end
 end
 
-iex> Greeter.hello("Sean")
+iex > Greeter.hello("Sean")
 "Hello, Sean"
 ```
 
@@ -152,7 +152,7 @@ defmodule Greeter do
   defp phrase, do: "Hello, "
 end
 
-iex> Greeter.hello ["Sean", "Steve"]
+iex> Greeter.hello(["Sean", "Steve"])
 "Hello, Sean, Steve"
 ```
 
@@ -218,6 +218,7 @@ Elixir kann Defaultargumente in mehreren matchenden Funktionen nicht auseinander
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

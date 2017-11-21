@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: OTP 슈퍼바이저
 ---
 
@@ -19,7 +19,7 @@ title: OTP 슈퍼바이저
 import Supervisor.Spec
 
 children = [
-  worker(SimpleQueue, [], [name: SimpleQueue])
+  worker(SimpleQueue, [], name: SimpleQueue)
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -78,7 +78,7 @@ Task는 전용 슈퍼바이저인 `Task.Supervisor`를 가지고 있습니다. �
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)

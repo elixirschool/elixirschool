@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: 函数
 ---
 
@@ -217,6 +217,7 @@ Elixir 在处理多个匹配函数的时候，不喜欢默认参数这种模式�
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

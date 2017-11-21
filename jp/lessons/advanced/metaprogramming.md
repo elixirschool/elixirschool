@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: メタプログラミング
 ---
 
@@ -165,9 +165,11 @@ defmodule OurMacro do
 end
 
 require OurMacro
-quoted = quote do
-  OurMacro.unless true, do: "Hi"
-end
+
+quoted =
+  quote do
+    OurMacro.unless(true, do: "Hi")
+  end
 ```
 
 ```elixir
@@ -270,8 +272,8 @@ iex> val
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts unquote(expr)
-      IO.puts unquote(expr)
+      IO.puts(unquote(expr))
+      IO.puts(unquote(expr))
     end
   end
 end
@@ -293,8 +295,8 @@ iex> Example.double_puts(:os.system_time)
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts expr
-      IO.puts expr
+      IO.puts(expr)
+      IO.puts(expr)
     end
   end
 end

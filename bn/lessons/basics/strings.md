@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: স্ট্রিং 
 ---
 
@@ -116,9 +116,9 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```

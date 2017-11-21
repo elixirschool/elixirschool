@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: 엄브렐라 프로젝트
 ---
 
@@ -191,7 +191,7 @@ Consolidated Inspect
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "안녕하세요, 저는 데이터셋입니다."
+    IO.puts("안녕하세요, 저는 데이터셋입니다.")
   end
 end
 ```
