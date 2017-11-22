@@ -50,7 +50,7 @@ You do not need to track tokens via a database. You can simply rely on the issue
 
 For example, if you were going to use JWT to authenticate communication on a UDP socket you likely wouldn't use a database. Encode all the information you need directly into the token when you issue it. Once you verify it (check that it's signed correctly) you're good to go.
 
-You _can_ however use a database to track JWT. If you do, you gain the ability to verify that the token is still valid - that is - it has not been revoked. Or you could use the records in the DB to force a log out of all tokens a for user. This is made simple in Guardian by using [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb uses Guardians callbacks too hook into the lifecycle to perform validation checks, save and delete from the DB. We'll cover that later.
+You _can_ however use a database to track JWT. If you do, you gain the ability to verify that the token is still valid - that is - it has not been revoked. Or you could use the records in the DB to force a log out of all tokens a for user. This is made simple in Guardian by using [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb uses Guardians callbacks to hook into the lifecycle to perform validation checks, save and delete from the DB. We'll cover that later.
 
 ## Setup
 
@@ -83,17 +83,9 @@ end
 `config/config.ex`
 
 ```elixir
-<<<<<<< HEAD
-# in each environment config file you should overwrite this if it's external
-config :guardian, Guardian,
-  issuer: "MyAppId",
-  secret_key: Mix.env(),
-  serializer: MyApp.GuardianSerializer
-=======
 config :guardian, MyApp.Guardian,
   issuer: "MyAppId",
   secret_key: Mix.env, # in each environment config file you should overwrite this if it's external
->>>>>>> Add a section for guardian v1
 ```
 
 This is the minimum set of information you need to provide Guardian with to operate. You shouldn't encode your secret key directly into your top-level config. Instead, each environment should have its own key. It's common to use the Mix environment for secrets in dev and test. Staging and production, however, must use strong secrets. (e.g. generated with `mix guardian.gen.secret`)
@@ -102,24 +94,16 @@ This is the minimum set of information you need to provide Guardian with to oper
 
 ```elixir
 defmodule MyApp.Guardian do
-  use Guardain, otp_app: :my_app
+  use Guardian, otp_app: :my_app
 
   alias MyApp.Repo
   alias MyApp.User
 
-<<<<<<< HEAD
-  def for_token(user = %User{}), do: {:ok, "User:#{user.id}"}
-  def for_token(_), do: {:error, "Unknown resource type"}
-
-  def from_token("User:" <> id), do: {:ok, Repo.get(User, id)}
-  def from_token(_), do: {:error, "Unknown resource type"}
-=======
   def subject_for_token(user = %User{}, _claims), do: { :ok, "User:#{user.id}" }
   def subject_for_token(_, _), do: { :error, "Unknown resource type" }
 
   def resource_from_claims(%{"sub" => "User:" <> id}), do: { :ok, Repo.get(User, id) }
   def resource_from_claims(_claims), do: { :error, "Unknown resource type" }
->>>>>>> Add a section for guardian v1
 end
 ```
 
@@ -164,9 +148,9 @@ end
 This pipeline will
 
 * look for a token first in the session, if found it will verify it before moving on
-* If one is not found in the session it will look in the header and verify it if found. (In the Authorization header with value of "Bearer jwt")
-* Ensure authenticated will make sure that a token was found _somewhere_
-* Load resource will use the information in the token to fetch the resource. The `ensure: true` will cause a failure if there was a token but no resource was found
+* If one is not found in the session it will look in the header and verify it if found. (In the Authorization header with value of "Bearer JWT")
+* `EnsureAuthenticated` will make sure that a token was found _somewhere_
+* `LoadResource` will use the information in the token to fetch the resource. The `allow_blank: true` option will not cause a failure if a resource was not loaded.
 
 At the end of this pipeline, you'll have a `token`, `claims` and `resource` loaded onto your connection.
 
@@ -188,21 +172,11 @@ Wiring it into Phoenix at this point is simple.
 
 ```elixir
 pipeline :maybe_browser_auth do
-<<<<<<< HEAD
-  plug(Guardian.Plug.VerifySession)
-  plug(Guardian.Plug.VerifyHeader, realm: "Bearer")
-  plug(Guardian.Plug.LoadResource)
-end
-
-pipeline :ensure_authed_access do
-  plug(Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler})
-=======
   plug MyApp.Guardian.MaybePipeline
 end
 
 pipeline :ensure_authed_access do
   plug MyApp.Guardian.StandardAuthentication
->>>>>>> Add a section for guardian v1
 end
 ```
 
@@ -220,11 +194,7 @@ scope "/", MyApp do
 end
 
 scope "/", MyApp do
-<<<<<<< HEAD
-  pipe_through([:browser, :maybe_browser_auth, :ensure_authed_access])
-=======
   pipe_through [:browser, :ensure_authed_access]
->>>>>>> Add a section for guardian v1
 
   resource("/protected/things", ProtectedController)
 end
@@ -280,15 +250,11 @@ Logging in and out of a browser session is very simple. In your login controller
 
 ```elixir
 def create(conn, params) do
-  case find_the_user_and_verify_them_from_params(params) do
+  case find_the_user_and_verify_them_from_params(params) do # this function is not provided by Guardian
     {:ok, user} ->
       # Use access tokens. Other tokens can be used, like :refresh etc
       conn
-<<<<<<< HEAD
-      |> Guardian.Plug.sign_in(user, :access)
-=======
       |> Guardian.Plug.sign_in(user) # Use access tokens. Other tokens can be used, like :refresh etc
->>>>>>> Add a section for guardian v1
       |> respond_somehow()
 
     {:error, reason} ->
@@ -304,30 +270,4 @@ def delete(conn, params) do
 end
 ```
 
-<<<<<<< HEAD
-When using API login, it's slightly different because there's no session and you need to provide the raw token back to the client.
-For API login you'll likely use the `Authorization` header to provide the token to your application. This method is useful when you do not intend on using a session.
-
-```elixir
-def create(conn, params) do
-  case find_the_user_and_verify_them_from_params(params) do
-    {:ok, user} ->
-      {:ok, jwt, _claims} = Guardian.encode_and_sign(user, :access)
-      conn |> respond_somehow(%{token: jwt})
-
-    {:error, reason} ->
-      # handle not verifying the user's credentials
-  end
-end
-
-def delete(conn, params) do
-  jwt = Guardian.Plug.current_token(conn)
-  Guardian.revoke!(jwt)
-  respond_somehow(conn)
-end
-```
-
-The browser session login calls `encode_and_sign` under the hood so you can use them the same way.
-=======
-The sign_in function is ok to use with or without sessions. If there is a session it will store the token in the session but if not it will just create the token and set it on the connection so you can then provide it to your client.
->>>>>>> Add a section for guardian v1
+The `sign_in` function is ok to use with or without sessions. If there is a session it will store the token in the session but if not it will just create the token and set it on the connection so you can then provide it to your client.
