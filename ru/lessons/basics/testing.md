@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.1
 title: Тестирование
 ---
 
@@ -18,8 +18,8 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "greets the world" do
+    assert Example.hello() == :world
   end
 end
 ```
@@ -27,8 +27,33 @@ end
 Тесты проекта можно запустить с помощью `mix test`.  Если мы сделаем это, то увидим примерно следующее:
 
 ```shell
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 0 failures
+..
+
+Finished in 0.03 seconds
+2 tests, 0 failures
+```
+
+Откуда в выводе появился второй тест? Взглянем на `lib/example.ex`. Mix создал ещё один тест для нас &mdash; doctest.
+
+```elixir
+defmodule Example do
+  @moduledoc """
+  Documentation for Example.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Example.hello
+      :world
+
+  """
+  def hello do
+    :world
+  end
+end
 ```
 
 ### assert
@@ -42,8 +67,8 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "the truth" do
-    assert 1 + 1 == 3
+  test "greets the world" do
+    assert Example.hello() == :word
   end
 end
 ```
@@ -51,19 +76,19 @@ end
 Сейчас мы увидим другой результат:
 
 ```shell
-  1) test the truth (ExampleTest)
+  1) test greets the world (ExampleTest)
      test/example_test.exs:5
      Assertion with == failed
-     code: 1 + 1 == 3
-     lhs:  2
-     rhs:  3
+     code:  assert Example.hello() == :word
+     left:  :world
+     right: :word
      stacktrace:
-       test/example_test.exs:6
+       test/example_test.exs:6 (test)
 
-......
+.
 
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 1 failures
+Finished in 0.03 seconds
+2 tests, 1 failures
 ```
 
 ExUnit покажет, какое именно утверждение было ошибочным, какое значение ожидалось и какое было получено на самом деле.
@@ -83,7 +108,7 @@ ExUnit покажет, какое именно утверждение было �
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -109,7 +134,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```
@@ -128,11 +153,11 @@ defmodule ExampleTest do
   doctest Example
 
   setup_all do
-    {:ok, number: 2}
+    {:ok, recipient: :world}
   end
 
-  test "the truth", state do
-    assert 1 + 1 == state[:number]
+  test "greets", state do
+    assert Example.hello() == state[:recipient]
   end
 end
 ```

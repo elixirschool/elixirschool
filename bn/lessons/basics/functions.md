@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: ফাংশন 
 ---
 
@@ -221,6 +221,7 @@ def hello/2 has multiple clauses and defines defaults in one or more clauses
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

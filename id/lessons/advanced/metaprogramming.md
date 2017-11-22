@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Metaprogramming
 ---
 
@@ -195,8 +195,8 @@ Untuk melihat manfaat dari `bind_quote` dan untuk mendemonstrasikan masalah reev
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts unquote(expr)
-      IO.puts unquote(expr)
+      IO.puts(unquote(expr))
+      IO.puts(unquote(expr))
     end
   end
 end
@@ -216,8 +216,8 @@ Waktunya berbeda!  Ada apa?  Menggunakan `unquote/1` pada ekspresi yang sama beb
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts expr
-      IO.puts expr
+      IO.puts(expr)
+      IO.puts(expr)
     end
   end
 end

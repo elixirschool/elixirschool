@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Egnedefinerte Mix Tasks
 ---
 
@@ -59,12 +59,11 @@ I vår **lib/hello.ex** fil som Mix lagde for oss, la oss lage en enkel funksjon
 
 ```elixir
 defmodule Hello do
-
   @doc """
   Output's `Hello, World!` everytime.
   """
   def say do
-    IO.puts "Hello, World!"
+    IO.puts("Hello, World!")
   end
 end
 ```
@@ -79,7 +78,8 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Simply runs the Hello.say/0 command."
   def run(_) do
-    Hello.say # Kaller vår Hello.say() funksjon fra tidligere
+    # Kaller vår Hello.say() funksjon fra tidligere
+    Hello.say()
   end
 end
 ```

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Testovanie
 ---
 
@@ -83,7 +83,7 @@ V Elixire, aplikácie pozostávajú z actorov/procesov, ktorí posielajú správ
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 

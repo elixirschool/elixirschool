@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Debugging
 ---
 
@@ -66,10 +66,10 @@ Como `number` não é `integer`, obtemos um erro. Como podemos consertar isso? P
 ```elixir
 @spec sum_times(integer) :: integer
 def sum_times(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
-    |> round
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -92,7 +92,6 @@ Vejamos um módulo básico:
 
 ```elixir
 defmodule Example do
-
   def cpu_burns(a, b, c) do
     x = a * 2
     y = b * 3
@@ -100,7 +99,6 @@ defmodule Example do
 
     x + y + z
   end
-
 end
 ```
 
