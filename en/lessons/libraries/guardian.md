@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 2.0.0
 title: Guardian (Basics)
 redirect_from:
   - /lessons/libraries/guardian/
@@ -107,7 +107,7 @@ defmodule MyApp.Guardian do
 end
 ```
 
-Your implementation module is responsible for finding the resource identified in the `sub` (subject) field. This could be a lookup from a db, an API, or even a simple string. Serializing your resource into the `sub` field and provides many callbacks to interact with a token throughout it's lifecycle which we'll get to later.
+Your implementation module is responsible for finding the resource identified in the `sub` (subject) field. This could be a lookup from a db, an API, or even a simple string. Your module handles serializing your resource into the `sub` field and provides many callbacks to interact with a token throughout it's lifecycle which we'll get to later.
 
 That's it for the minimum configuration. There's plenty more you can do if you need to but to get started that's enough.
 

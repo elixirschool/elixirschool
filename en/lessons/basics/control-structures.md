@@ -157,11 +157,7 @@ Now let's look at a larger example without `with/1` and then see how we can refa
 ```elixir
 case Repo.insert(changeset) do
   {:ok, user} ->
-<<<<<<< HEAD
-    case Guardian.encode_and_sign(user, :token, claims) do
-=======
     case MyApp.Guardian.encode_and_sign(resource, :token, claims) do
->>>>>>> Add a section for guardian v1
       {:ok, token, full_claims} ->
         important_stuff(token, full_claims)
 
@@ -178,11 +174,7 @@ When we introduce `with/1` we end up with code that is easy to understand and ha
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-<<<<<<< HEAD
-     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token, claims) do
-=======
      {:ok, token, full_claims} <- MyApp.Guardian.encode_and_sign(user, :token) do
->>>>>>> Add a section for guardian v1
   important_stuff(token, full_claims)
 end
 ```
