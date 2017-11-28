@@ -30,7 +30,7 @@ Für die folgenden Beispielen wählen wir Elixirs Stringmodul.
 - String trennen
 
 ```elixir
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
