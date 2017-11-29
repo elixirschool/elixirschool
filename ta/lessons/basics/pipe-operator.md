@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: குழாய் செயல்பாடு
 ---
 
@@ -30,14 +30,14 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 - சரத்தினை சிறுகூறுகளாக உடைக்க
 
 ```elixir
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - சரத்தின் கூறுகளனைத்தையும் பெரியஎழுத்துக்கு மாற்ற
 
 ```elixir
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 
