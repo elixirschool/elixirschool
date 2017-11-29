@@ -89,7 +89,7 @@ false
 
 ### Atoms
 
-Atom 是一個常數，其名稱是它的值。如果你熟悉 Ruby，這些符號是同義詞：
+Atom 是一個常數，其名稱是它的值。如果你熟悉 Ruby，這與 Ruby 的符號 (Symbols) 是同義詞：
 
 ```elixir
 iex> :foo
