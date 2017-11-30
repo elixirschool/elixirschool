@@ -1,0 +1,19 @@
+script_direction: ltr
+project:
+  title: Elixir School
+  description: Elixir 程式語言課程
+table_of_contents: 目錄
+share: 分享本頁面
+sections:
+  home: Home
+  basics: 基礎
+  advanced: 進階
+  specifics: 特色
+  libraries: 函式庫
+version_messages:
+  outdated: "Some contents of this translation may be outdated."
+  major: "Several major changes were applied to the original lesson since the last update."
+  minor: "Several minor changes were applied to the original lesson since the last update."
+  patch: "Several patches were applied to the original lesson since the last update."
+  none: "This translation is up to date."
+  error: "There is an error in the version definition of this chapter."
