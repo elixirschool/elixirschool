@@ -26,10 +26,10 @@ Als nächstes müssen wir für unser Projekt in unserem Mixfile die `:escript` O
 ```elixir
 defmodule ExampleApp.Mixfile do
   def project do
-    [app: :example_app, version: "0.0.1", escript: escript]
+    [app: :example_app, version: "0.0.1", escript: escript()]
   end
 
-  def escript do
+  defp escript do
     [main_module: ExampleApp.CLI]
   end
 end
