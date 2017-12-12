@@ -26,10 +26,10 @@ Tiếp theo chúng ta cần cập nhật Mixfile để chèn vào tùy chọn `:
 ```elixir
 defmodule ExampleApp.Mixfile do
   def project do
-    [app: :example_app, version: "0.0.1", escript: escript]
+    [app: :example_app, version: "0.0.1", escript: escript()]
   end
 
-  def escript do
+  defp escript do
     [main_module: ExampleApp.CLI]
   end
 end
