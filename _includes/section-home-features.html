@@ -1,0 +1,17 @@
+<!-- Section -->
+<section>
+  <header class="major">
+    <h2>{{ page.feature-section.title }}</h2>
+  </header>
+  <div class="features">
+    {% for feature in page.feature-section.features %}
+    <article>
+      <span class="icon fa-{{feature.icon}}"></span>
+      <div class="content">
+        <h3>{{ feature.name }}</h3>
+        <p>{{ feature.description}}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>

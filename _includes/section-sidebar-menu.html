@@ -1,0 +1,48 @@
+
+<!-- Menu -->
+<nav id="menu">
+  <header class="major">
+    <h2>Menu</h2>
+    <p>{{ locale.project.description }}</p>
+  </header>
+  <ul>
+
+  {% for sections in site.contents[language] %}
+    {% assign section = sections[0] | strip %}
+    {% assign chapters = sections[1] %}
+    {% if page.section %}
+      {% assign visiting = page.section %}
+    {% else %}
+      {% assign visiting = "appendix" %}
+    {% endif %}
+    {% if visiting == section or (visiting == "home" and section == "basics") %}
+      {% assign opened = true %}
+    {% else %}
+      {% assign opened = false %}
+    {% endif %}
+    {% unless section == "home" %}
+      {% for chapter in chapters %}
+        {% if forloop.first %}
+        <li>
+          <span class="opener{% if opened %} active{% endif %}{% unless locale.disable_transform %} up{%endunless%}">{{ locale.sections[section] }}</span>
+          <ul>
+        {% endif %}
+            <li>
+              {% if page.url == chapter[1].url %}
+              <span class="active">{{ chapter[1].chapter_number }}. {{ chapter[1].title }}</span>
+              {% else %}
+              <a href="{{ chapter[1].url }}">{{ chapter[1].chapter_number }}. {{ chapter[1].title }}</a>
+              {% endif %}
+            </li>
+        {% if forloop.last %}
+          </ul>
+        </li>
+        {% endif%}
+      {% endfor %}
+    {% endunless %}
+  {% endfor %}
+    <li>
+      <a href="/appendix/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "appendix" or page.layout == "post" %}active{% endif %}">{{ site.data['locales']['en']['sections']['appendix']}}</a>
+    </li>
+  </ul>
+</nav>
