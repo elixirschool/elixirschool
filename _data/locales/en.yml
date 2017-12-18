@@ -10,6 +10,8 @@ sections:
   advanced: Advanced
   specifics: Specifics
   libraries: Libraries
+  appendix: Appendix
+
 version_messages:
   outdated: "Some contents of this translation may be outdated."
   major: "Several major changes were applied to the original lesson since the last update."

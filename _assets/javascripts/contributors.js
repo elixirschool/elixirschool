@@ -41,4 +41,5 @@
       statusElement.text('fail to fetch contributors from github');
     }
   };
+  $("#contributors").contributors();
 })(jQuery);

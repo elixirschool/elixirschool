@@ -1,6 +1,22 @@
 ---
 title: Elixir School
 redirect_from: /
+layout: home
+feature-section:
+  title: Why Elixir?
+  features:
+    - name: Scalable
+      description:
+      icon: diamond
+    - name: Fault-tolerant
+      description:
+      icon: paper-plane
+    - name: Functional programming
+      description:
+      icon: rocket
+    - name: Extensible
+      description:
+      icon: signal
 ---
 
 [![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
@@ -34,10 +50,3 @@ _Your feedback and participation is encouraged!_
 "Elixir is a dynamic, functional language designed for building scalable and maintainable applications." — [elixir-lang.org](http://elixir-lang.org/)
 
 Elixir leverages the battle tested Erlang VM (BEAM) to build distributed and fault-tolerant systems with low-latency out of the box.
-
-__Features__:
-
-+ Scalable
-+ Fault-tolerant
-+ Functional Programming
-+ Extensible
