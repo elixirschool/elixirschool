@@ -1,0 +1,19 @@
+---
+title: Appendix
+layout: appendix
+disable_transform: true
+---
+<section>
+  <div class="posts">
+    {% for post in site.posts %}
+    <article>
+      <a href="{{ post.url }}" class="image">{% img "{{ post.preview }}" width=nil height=nil %}</a>
+      <h3>{{ post.title }}</h3>
+      {{ post.excerpt }}
+      <ul class="actions">
+        <li><a href="{{ post.url }}" class="button{% unless page.disable_transform %} up{%endunless%}">Read more</a></li>
+      </ul>
+    </article>
+    {% endfor %}
+  </div>
+</section>

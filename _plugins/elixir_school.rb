@@ -1,5 +1,6 @@
 module ElixirSchool
   class Generator < Jekyll::Generator
+
     def generate(site)
       default_lang = site.config['default_lang']
       languages = languages(site)
@@ -28,6 +29,7 @@ module ElixirSchool
       default_lang = site.config['default_lang']
 
       site.pages.each do |page|
+        next if site.config['exclude_from_chapters'].include? page.name
         lang    = get_lang_from_url(site, page.url)
         section = get_section_from_url(site, page.url)
         chapter_name = get_chapter_from_url(site, page.url)
@@ -82,6 +84,7 @@ module ElixirSchool
 
       # last pass to define page.data['leaf']
       site.pages.each do |page|
+        next if site.config['exclude_from_chapters'].include? page.name
         lang = page.data['lang']
         section = page.data['section']
         chapter_name = page.data['chapter']
