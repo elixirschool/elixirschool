@@ -83,7 +83,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-Sometimes we don't want our linked process to crash the current one. For that we need to trap the exits. To trap the exits, we use `Process/flag2`. This module uses erlang's [process_flag](http://erlang.org/doc/man/erlang.html#process_flag-2) function for the `trap_exit` flag. When trapping exits (`trap_exit` is set to `true`), exit signals will be received as a tuple message: `{:EXIT, from_pid, reason}`.
+Sometimes we don't want our linked process to crash the current one. For that we need to trap the exits using `Process.flag/2`. It uses erlang's [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) function for the `trap_exit` flag. When trapping exits (`trap_exit` is set to `true`), exit signals will be received as a tuple message: `{:EXIT, from_pid, reason}`.
 
 ```elixir
 defmodule Example do
