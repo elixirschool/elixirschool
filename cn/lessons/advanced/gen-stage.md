@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: GenStage
-redirect_from:
-  - /lessons/advanced/gen-stage/
 ---
 
 本课, 我们将学习 GenStage, 它的作用, 以及如何在我们的应用中使用它.

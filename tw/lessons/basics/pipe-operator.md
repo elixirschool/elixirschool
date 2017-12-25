@@ -1,8 +1,6 @@
 ---
 version: 1.0.0
 title: 管線運算子
-redirect_from:
-  - /lessons/basics/pipe-operator/
 ---
 
 管線運算子 `|>` ，傳遞一個表達式的結果作為另一個表達式的第一個參數 (parameter)。

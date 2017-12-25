@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Sigilos
-redirect_from:
-  - /lessons/basics/sigils/
 ---
 
 Usando y creando sigilos.

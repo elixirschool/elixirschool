@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Pipe Operator
-redirect_from:
-  - /lessons/basics/pipe-operator/
 ---
 
 pipe operator `|>` นั้นใช้สำหรับส่งผลลัพธ์ของ expression ไปเป็น argument ตัวแรกของ expression ถัดไป
