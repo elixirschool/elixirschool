@@ -5,15 +5,15 @@ redirect_from:
   - /lessons/basics/testing/
 ---
 
-測試 (Testing) 是開發軟體的一個重要部分。在本課中，我們將介紹如何使用 ExUnit 測試 Elixir 程式碼，以及一些很棒的測試方法。
+測試 (Testing) 是開發軟體的一個重要部分。在本課程中，將介紹如何使用 ExUnit 測試 Elixir 程式碼，以及一些很棒的測試方法。
 
 {% include toc.html %}
 
 ## ExUnit
 
-Elixir 的內建測試 frameworks 是 ExUnit，它包含徹底測試程式碼所需的一切。在繼續之前，需要注意的是，測試是以 Elixir scripts 的形式實現，所以我們需要使用  `.exs` 做為檔案副檔名。在執行測試之前，需要用 `ExUnit.start()` 來啟動 ExUnit，這通常在 `test/test_helper.exs` 中完成設定。
+Elixir 的內建測試 frameworks 是 ExUnit，它包含徹底測試程式碼所需的一切。在繼續之前，需要注意的是，測試是以 Elixir scripts 的形式實現，所以需要使用  `.exs` 做為檔案副檔名。在執行測試之前，需要用 `ExUnit.start()` 來啟動 ExUnit，這通常在 `test/test_helper.exs` 中完成設定。
 
-當我們在上個課程中生成範例專案時，mix 已經創建了一個簡單的測試，可以在 `test/example_test.exs` 找到它：
+當我們在上個課程中生成範例專案時，mix 已經建立了一個簡單的測試，可以在 `test/example_test.exs` 找到它：
 
 ```elixir
 defmodule ExampleTest do
@@ -35,7 +35,7 @@ Finished in 0.03 seconds
 2 tests, 0 failures
 ```
 
-為什麼在輸出訊息中出現兩個測試 (tests)？現在來看一下 `lib/example.ex`。因為 Mix 同時創建了另一個測試，一些文件測試 (doctest)。
+為什麼在輸出訊息中出現兩個測試 (tests)？現在來看一下 `lib/example.ex`。因為 Mix 同時建立了另一個測試，一些文件測試 (doctest)。
 
 ```elixir
 defmodule Example do
@@ -60,7 +60,7 @@ end
 
 ### 斷言 (assert)
 
-如果你有過編寫測試的經驗，那麼你是熟悉 `assert` 的；在某些 frameworks 中使用 `should` 或 `expect` 替代 `assert`。
+如果你有過編寫測試的經驗，那麼你是熟悉 `assert` 的；在某些 frameworks 中是使用 `should` 或 `expect` 來替代 `assert`。
 
 使用 `assert` 巨集來測試表達式是否為真。如果測試事件結果不為真，就會出現錯誤訊息，測試結果將為失敗 (fail)。為了測試失敗情境，讓我們改變範例內容，然後再次執行 `mix test`：
 
@@ -75,7 +75,7 @@ defmodule ExampleTest do
 end
 ```
 
-現在我們應該看到不同的輸出訊息：
+現在應該看到不同的輸出訊息：
 
 ```shell
   1) test greets the world (ExampleTest)
@@ -93,7 +93,7 @@ Finished in 0.03 seconds
 2 tests, 1 failures
 ```
 
-ExUnit 會告訴我們失敗 (failed) 斷言 (assertions) 出現的位置、期望值 (expected value) 是多少，以及實際值 (actual value) 是多少。
+ExUnit 會告訴我們失敗斷言 (failed assertions) 出現的行數、期望的值 (expected value)，以及實際的值 (actual value) 是多少。
 
 ### refute
 

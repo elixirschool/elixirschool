@@ -17,7 +17,7 @@ Elixir 將文件視為*一等公民*，提供多樣的函數來存取和生成�
 
   - `#` - 行內註解
   - `@moduledoc` - 模組層 (module-level) 註解文件。
-  - `@doc` - 函數 (function-level) 註解文件。
+  - `@doc` - 函數內 (function-level) 註解文件。
 
 ### 行內註解 (Inline Documentation)
 
@@ -129,7 +129,7 @@ iex>
 
 ## ExDoc
 
-ExDoc 是一個官方 Elixir 專案，可以在 [GitHub](https://github.com/elixir-lang/ex_doc) 找到。它能為 Elixir 專案生成 **HTML (HyperText Markup Language)）和線上文件**。首先讓我們為應用程式創設一個 Mix 專案：
+ExDoc 是一個官方 Elixir 專案，可以在 [GitHub](https://github.com/elixir-lang/ex_doc) 找到。它能為 Elixir 專案生成 **HTML (HyperText Markup Language)）和線上文件**。首先讓我們為應用程式建立一個 Mix 專案：
 
 ```bash
 $ mix new greet_everyone
@@ -190,9 +190,9 @@ Examples
   end
 ```
 
-我們指定一對鍵值 `only: :dev` ，因為我們不想在 production 環境中下載和編譯這些耦合性。但為什麼需要 Earmark？ Earmark 是 Elixir 程式語言的 Markdown 解析器 (parser)，ExDoc 利用它將 `@moduledoc` 和 `@doc` 的文件內容轉換為美麗的 HTML。
+指定一對鍵值 `only: :dev` ，因為我們不想在 production 環境中下載和編譯這些耦合性。但為什麼需要 Earmark？ Earmark 是 Elixir 程式語言的 Markdown 解析器 (parser)，ExDoc 利用它將 `@moduledoc` 和 `@doc` 的文件內容轉換為美麗的 HTML。
 
-值得注意的一點是，並不強迫你使用 Earmark。你可以更改為其它的 markup 工具，如 Pandoc、Hoedown 或 Cmark；不過如果要這樣你將會需要做更多的設定工作，相關資訊可以參考 [here](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool)。而對於本課程，我們將保持使用 Earmark。
+值得注意的一點是，並不強迫使用 Earmark。你可以更改為其它的 markup 工具，如 Pandoc、Hoedown 或 Cmark；不過如果要這樣你將會需要做更多的設定工作，相關資訊可以參考 [這裡](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool)。而對於本課程，我們將保持使用 Earmark。
 
 ### 產生文件 (Generating Documentation)
 
@@ -206,12 +206,12 @@ Docs successfully generated.
 View them at "doc/index.html".
 ```
 
-如果一切都按計劃進行，則應在上例中看到類似於輸出訊息的資訊。現在來看看我們的 Mix 專案，應該會看到一個名為 **doc/**的目錄。裡面是那些被生成的文件。
+如果一切都按計劃進行，則應在上例中看到類似於輸出訊息的資訊。現在來看看我們的 Mix 專案，應該會看到一個名為 **doc/** 的目錄。裡面是那些被生成的文件。
 如果我們在瀏覽器中存取索引頁面 (index page)，應該會看到以下內容：
 
 ![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
-我們可以看到，Earmark 已經完成渲染 Markdown 因而 ExDoc 現在顯示為一個有用易讀的格式。
+可以看到，Earmark 已經完成渲染 Markdown 因而 ExDoc 現在顯示為一個可用易讀的格式。
 
 ![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 

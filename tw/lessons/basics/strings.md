@@ -41,7 +41,7 @@ iex(6)> "hełło" <> <<0>>
 
 `322` 是  ł 的 Unicode 碼位，但以 UTF-8 格式分別編碼為 `197` 和 `130` 兩個位元組。
 
-在 Elixir 中撰寫程式時，我們通常使用字串 (strings)，而不是字元列表 (charlists)。不過 Elixir 也包括對字元列表的支援，因為一些 Erlang 模組需要它。
+在 Elixir 中撰寫程式時，通常使用字串 (strings)，而不是字元列表 (charlists)。不過 Elixir 也包括對字元列表的支援，因為一些 Erlang 模組需要它。
 
 欲了解更多資訊，請參閱官方 [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
 
@@ -105,7 +105,7 @@ iex> String.split("Hello World", " ")
 
 ## 練習 (Exercises)
 
-讓我們通過一個簡單的練習來展示，我們已經準備好使用字串！
+現在通過一個簡單的練習來展示，我們已經準備好使用字串！
 
 ### 回文構詞字串 (Anagrams)
 
@@ -114,9 +114,9 @@ iex> String.split("Hello World", " ")
 + A = super
 + B = perus
 
-如果我們重新安排字串 A 上的字元，我們可以得到字串 B，反之亦然。
+如果重新安排字串 A 上的字元，可以得到字串 B，反之亦然。
 
-那麼，我們怎麼能檢查兩個字串是不是 Elixir 中的回文構詞字串呢？最簡單的解決方法是按字母順序排序每個字串的字位，然後檢查兩個列表是否相等。現在來試試看：
+那麼，怎麼能檢查兩個字串是不是 Elixir 中的回文構詞字串呢？最簡單的解決方法是按字母順序排序每個字串的字位，然後檢查兩個列表是否相等。現在來試試看：
 
 ```elixir
 defmodule Anagram do
@@ -151,4 +151,4 @@ iex> Anagram.anagrams?(3, 5)
     iex:2: Anagram.anagrams?(3, 5)
 ```
 
-正如你所看到的，最後一次呼用 `anagrams?` 時觸發了一個 FunctionClauseError。這個錯誤訊息告訴我們，在目前模組中沒有函數符合所接收的兩個非二進制參數 (non-binary arguments) 的 pattern。但對這兩個所接收的字串，這正是我們不偏不倚想要的結果。
+正如所看到的，最後一次呼用 `anagrams?` 時觸發了一個 FunctionClauseError。這個錯誤訊息告訴我們，在目前模組中沒有函數符合所接收的兩個非二進制參數 (non-binary arguments) 的 pattern。但對這兩個所接收的字串，這正是我們不偏不倚想要的結果。
