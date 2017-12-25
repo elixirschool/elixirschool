@@ -5,13 +5,13 @@ redirect_from:
   - /lessons/basics/mix-tasks/
 ---
 
-為你的 Elixir 專案建立自訂 Mix 工作 (custom Mix tasks)。
+為 Elixir 專案建立自訂 Mix 工作 (custom Mix tasks)。
 
 {% include toc.html %}
 
 ## 簡介
 
-想要通過加入自訂的 Mix 工作來擴展 Elixir 應用程式功能是很平常的。在了解如何為我們的專案建立特定的 Mix 工作之前，先來看看已經存在的一個：
+想要通過加入自訂的 Mix 工作來擴展 Elixir 應用程式功能是很平常的。在了解如何為專案建立特定的 Mix 工作之前，先來看看已經存在的一個：
 
 ```shell
 $ mix phoenix.new my_phoenix_app
@@ -56,7 +56,7 @@ mix test
 Run "mix help" for more commands.
 ```
 
-現在，在 Mix 生成的 **lib/hello.ex** 檔案中，讓我們建立一個簡單並能輸出 "Hello, World!" 的函數。
+現在，在 Mix 生成的 **lib/hello.ex** 檔案中，讓建立一個簡單並能輸出 "Hello, World!" 的函數。
 
 ```elixir
 defmodule Hello do
@@ -72,7 +72,7 @@ end
 ## 自訂 Mix 工作
 
 現在來建立我們自己的自訂 Mix 工作。首先建立一個新的目錄和檔案 **hello/lib/mix/tasks/hello.ex**。
-而在這個檔案中，讓我們插入以下 7 行 Elixir 程式碼。
+而在這個檔案中，插入以下 7 行 Elixir 程式碼。
 
 ```elixir
 defmodule Mix.Tasks.Hello do
@@ -86,9 +86,9 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-注意如何用 `Mix.Tasks` 和想要從命令列呼用的名稱來開始 defmodule 語句。在第二行中，我們引進 `use Mix.Task`，並將 `Mix.Task` 行為帶入命名空間 (namespace)。接著我們宣告一個忽略任何引數的運行函數。在這個函數中，我們呼用 `Hello` 模組和 `say` 函數。
+注意如何用 `Mix.Tasks` 和想要從命令列呼用的名稱來開始 defmodule 語句。在第二行中，我們引進 `use Mix.Task`，並將 `Mix.Task` 行為帶入命名空間 (namespace)。接著宣告一個忽略任何引數的運行函數。在這個函數中，呼用 `Hello` 模組和 `say` 函數。
 
-## 使用 Mix 工作
+## 使用自訂 Mix 工作
 
 現在來看看我們的 mix 工作。只要我們位於該目錄下，它應該能被執行。從命令列執行 `mix hello`，應該會看到以下內容：
 

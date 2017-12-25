@@ -5,7 +5,7 @@ redirect_from:
   - /lessons/basics/comprehensions/
 ---
 
-列表解析 (List comprehensions) 是在 Elixir 中通過列舉來循環 (looping) 的語法糖 (syntactic sugar)。在本課中，我們將看看如何使用解析 (comprehensions) 來進行疊代 (iteration) 和生成 (generation)。
+列表解析 (List comprehensions) 是在 Elixir 中通過列舉來循環 (looping) 的語法糖 (syntactic sugar)。在本課程中，我們將看看如何使用解析 (comprehensions) 來進行疊代 (iteration) 和生成 (generation)。
 
 {% include toc.html %}
 
@@ -74,7 +74,7 @@ iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 
 ## 篩選器 (Filters)
 
-你可以把篩選器看作是解析式的監視 (guard)。當篩選值回傳 `false` 或 `nil` 時，它將被排除在最終列表之外。讓我們在一個範圍內循環，並只注意偶數。我們將使用 Integer 模組中的 `is_even/1` 函數來檢查一個值是否是偶數。
+可以把篩選器看作是解析式的監視 (guard)。當篩選值回傳 `false` 或 `nil` 時，它將被排除在最終列表之外。讓我們在一個範圍內循環，並只注意偶數。我們將使用 Integer 模組中的 `is_even/1` 函數來檢查一個值是否是偶數。
 
 ```elixir
 import Integer
@@ -82,7 +82,7 @@ iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
-如同生成器 (generators)，可以同時使用多個篩選器。讓我們擴展範圍，然後僅對偶數且可被 3 整除的值進行篩選。
+如同生成器 (generators)，可以同時使用多個篩選器。現在擴展範圍，然後僅對偶數且可被 3 整除的值進行篩選。
 
 ```elixir
 import Integer
@@ -94,16 +94,16 @@ iex> for x <- 1..100,
 
 ## 使用 `:into`
 
-如果我們想產生一個列表 (list) 以外的東西呢？加入 `:into` 選項，我們就可以做到這一點！經驗上來說， `:into` 接受任何能實現 `Collectable` 協定的結構。
+如果想產生一個列表 (list) 以外的東西呢？加入 `:into` 選項，就可以做到這一點！經驗上來說， `:into` 接受任何能實現 `Collectable` 協定的結構。
 
-要使用 `:into`，讓我們從關鍵字列表中創建一個映射：
+要使用 `:into`，讓我們從關鍵字列表中建立一個映射：
 
 ```elixir
 iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-由於二進位也是可群集 (collectables) 的，所以可以使用列表解析和 `:into` 來創設字串：
+由於二進位 (binaries) 也是可群集 (collectables) 的，所以可以使用列表解析和 `:into` 來建立字串：
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
