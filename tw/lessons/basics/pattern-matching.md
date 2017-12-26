@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: 模式比對
-redirect_from:
-  - /lessons/basics/pattern-matching/
 ---
 
 模式比對是 Elixir 中一個強大的部分。它使我們能夠比對簡單的值、資料結構甚至函數。在本課中，我們將開始了解如何使用模式比對。

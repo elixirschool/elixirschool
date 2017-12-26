@@ -1,8 +1,6 @@
 ---
 version: 1.2.1
 title: Kolleksiyonlar
-redirect_from:
-  - /lessons/basics/collections/
 ---
 
 Listeler (List), Demetler (Tuples), Anahtar Kelimeler (keywords), Haritalar (maps) ve islevsel baglaclar.

@@ -1,8 +1,6 @@
 ---
 version: 1.0.2
 title: GenStage
-redirect_from:
-  - /lessons/advanced/gen-stage/
 ---
 
 Nesta lição vamos examinar de perto o GenStage, para que serve e como podemos usá-lo em nossas aplicações.
