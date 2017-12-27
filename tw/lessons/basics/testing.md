@@ -1,8 +1,6 @@
 ---
 version: 1.1.1
 title: 測試
-redirect_from:
-  - /lessons/basics/testing/
 ---
 
 測試 (Testing) 是開發軟體的一個重要部分。在本課程中，將介紹如何使用 ExUnit 測試 Elixir 程式碼，以及一些很棒的測試方法。

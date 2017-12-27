@@ -1,8 +1,6 @@
 ---
 version: 1.0.2
 title: 文件
-redirect_from:
-  - /lessons/basics/documentation/
 ---
 
 註解 (Documenting) Elixir 程式碼。
