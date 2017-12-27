@@ -1,8 +1,6 @@
 ---
 version: 1.3.0
 title: 列舉 (Enum)
-redirect_from:
-  - /lessons/basics/enum/
 ---
 
 一組在可列舉函數中的列舉演算法。

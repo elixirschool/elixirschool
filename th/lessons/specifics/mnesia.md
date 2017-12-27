@@ -1,8 +1,6 @@
 ---
 version: 1.0.0
 title: Mnesia
-redirect_from:
-  - /lessons/specifics/mnesia/
 ---
 
 Mnesia เป็นระบบจัดการ distributed database ที่ทำงานแบบ real-time

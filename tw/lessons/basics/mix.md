@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Mix
-redirect_from:
-  - /lessons/basics/mix/
 ---
 
 在我們能夠潛入 Elixir 的深處之前，我們首先需要了解 Mix。如果你熟悉 Ruby，Mix 就是 Bundler、RubyGems 和 Rake 的綜合。

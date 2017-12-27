@@ -41,3 +41,4 @@ libraries:
   - guardian
   - poolboy
   - benchee
+  - bypass

@@ -1,8 +1,6 @@
 ---
 version: 1.1.2
 title: 基礎
-redirect_from:
-  - /lessons/basics/basics/
 ---
 
 入門、基本資料型別和操作。
