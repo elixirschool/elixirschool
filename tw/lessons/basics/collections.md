@@ -1,8 +1,6 @@
 ---
 version: 1.2.1
 title: 群集
-redirect_from:
-  - /lessons/basics/collections/
 ---
 
 列表、元組、關鍵字列表和映射。

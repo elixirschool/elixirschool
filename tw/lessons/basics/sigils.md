@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: 符咒 (Sigils)
-redirect_from:
-  - /lessons/basics/sigils/
 ---
 
 使用和創設符咒 (sigils)。

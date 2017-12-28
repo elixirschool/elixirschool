@@ -1,8 +1,6 @@
 ---
 version: 1.2.0
 title: 模組
-redirect_from:
-  - /lessons/basics/modules/
 ---
 
 我們從經驗中知道，把所有的函數放在同一個文件和範圍 (scope) 內是不合理的。

@@ -1,8 +1,6 @@
 ---
 version: 1.1.1
 title: 字串
-redirect_from:
-  - /lessons/basics/strings/
 ---
 
 字串 (Strings)、字元列表 (Char Lists)、字位 (Graphemes) 和碼位 (Codepoints)。
