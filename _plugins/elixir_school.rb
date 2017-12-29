@@ -209,14 +209,14 @@ module ElixirSchool
 
     def version_severity(reference_version, version)
       if reference_version.is_a?(Array) and version.is_a?(Array)
-        if reference_version == version
-          "none"
-        elsif reference_version[0] > version[0]
+        if reference_version[0] > version[0]
           "major"
         elsif reference_version[1] > version[1]
           "minor"
         elsif reference_version[2] > version[2]
           "patch"
+        elsif reference_version == version or reference_version[2] < version[2]
+          "none"
         else
           "error"
         end

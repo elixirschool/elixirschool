@@ -1,8 +1,6 @@
 ---
 version: 1.0.0
 title: ฟังก์ชัน(Functions)
-redirect_from:
-  - /lessons/basics/functions/
 ---
 
 ใน Elixir และ functional language ตัวอื่นๆ ฟังก์ชันมีความสำคัญอันดับแรกๆ ในบทเรียนนี้จะเรียนรู้เกี่ยวกับประเภทของฟังก์ชั่นใน Elixir ว่าแตกต่างกันอย่างไร?และวิธีการใช้

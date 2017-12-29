@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: การใช้งานร่วมกับ Erlang
-redirect_from:
-  - /lessons/advanced/erlang/
 ---
 
 หนึ่งในประโยชน์ของการสร้างบน Erlang VM (BEAM) คือมี library ให้เลือกใช้มากมายก่ายกอง ความสามารถในการทำงานร่วมกับ Erlang ทำให้เราเราสามารถใช้ library และ Erlang standard lib ได้ใน code Elixir 

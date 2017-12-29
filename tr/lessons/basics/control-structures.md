@@ -1,8 +1,6 @@
 ---
 version: 1.1.1
 title: Kontrol Yapilari
-redirect_from:
-  - /lessons/basics/control-structures/
 ---
 
 Burada Elixir'in bize sundugu kontrol yapilarini inceleyecegiz.

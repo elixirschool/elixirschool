@@ -83,23 +83,18 @@ In addition to the steps above there are a few addition steps required for trans
 #### Translated Lesson
 
 1. Translated lessons must include the page metadata.
-   * `layout`, `category` and `order` should be copied from the original lesson.
-   * `lang` should be a 2 character code previously selected on the folder creation step.
    * `title` should be a translation of the original lesson's `title`.
    * `version` should consist of three digits: `major.minor.patch`, so:
      * if this is a initial lesson translation, the version should be set to `1.0.0`;
      * if you apply the original lesson updates to the translation, the version should be copied from the corresponding state of the original lesson;
      * else bump one of the version numbers depending on how important is your change.
+   * `redirect_from` should be removed since it is used only for English lessons that earlier were hosted in a separate folder without a language prefix.
 
    For example `/jp/lessons/basics/basics.md`:
 
   ```yaml
   ---
-  layout: page
   title: 基本
-  category: basics
-  order: 1
-  lang: jp
   version: 1.0.0
   ---
   ```

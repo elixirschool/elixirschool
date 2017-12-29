@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: L'opérateur Pipe
 ---
 
@@ -30,14 +30,14 @@ Nous allons utiliser le module String d'Elixir pour les exemples suivants.
 - Segmentation de String
 
 ```shell
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Transformation des tokens en majuscules
 
 ```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

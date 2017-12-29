@@ -1,8 +1,6 @@
 ---
 version: 1.3.0
 title: Enum
-redirect_from:
-  - /lessons/basics/enum/
 ---
 
 ชุดของ algorithm สำหรับใช้งานกับ `Enum`

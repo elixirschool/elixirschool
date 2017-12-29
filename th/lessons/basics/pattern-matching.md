@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: การจับคู่รูปแบบ (Pattern Matching)
-redirect_from:
-  - /lessons/basics/pattern-matching/
 ---
 
 Pattern Matching เป็นส่วนที่ทรงพลังมากส่วนนึงของ Elixir นั้นทำให้เราสามารถเปรียบเทียบค่า, โครงสร้างข้อมูล หรือแม้แต่ function ได้ ในบทนี้เราจะมาดูกันว่า Pattern Matching มันใช้งานอย่างไร
