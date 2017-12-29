@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Interoperabilitas dengan Erlang
 ---
 
@@ -17,8 +17,8 @@ Mari gunakan `:timer.tc` untuk mengukur waktu eksekusi dari sebuah fungsi yang a
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time} μs"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time} μs")
+    IO.puts("Result: #{result}")
   end
 end
 
@@ -42,10 +42,8 @@ end
 Sekarang kita bisa mengakses librari Erlang kita:
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette}),
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## Perbedaan yang Nampak

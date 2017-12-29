@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Δομές Ελέγχου
 ---
 
@@ -158,9 +158,13 @@ case Repo.insert(changeset) do
     case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -183,15 +187,16 @@ m = %{a: 1, c: 3}
 
 a =
   with {:ok, number} <- Map.fetch(m, :a),
-    true <- Integer.is_even(number) do
-      IO.puts "#{number} διαιρούμενο με το 2 ισούται με #{div(number, 2)}"
-      :even
+       true <- is_even(res) do
+    IO.puts("#{number} διαιρούμενο με το 2 ισούται με #{div(number, 2)}")
+    :even
   else
     :error ->
-      IO.puts "Δεν έχουμε αυτό το στοιχείο στο χάρτη"
+      IO.puts("Δεν έχουμε αυτό το στοιχείο στο χάρτη")
       :error
+
     _ ->
-      IO.puts "Είναι μονός"
+      IO.puts("Είναι μονός")
       :odd
   end
 ```

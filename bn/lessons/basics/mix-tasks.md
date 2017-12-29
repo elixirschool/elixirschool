@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: মিক্স টাস্ক 
 ---
 
@@ -58,12 +58,11 @@ Run "mix help" for more commands.
 
 ```elixir
 defmodule Hello do
-
   @doc """
   Output's `Hello, World!` everytime.
   """
   def say do
-    IO.puts "Hello, World!"
+    IO.puts("Hello, World!")
   end
 end
 ```
@@ -78,7 +77,8 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Simply runs the Hello.say/0 command."
   def run(_) do
-    Hello.say # calling our Hello.say() function from earlier
+    # calling our Hello.say() function from earlier
+    Hello.say()
   end
 end
 ```

@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Comportamentos
-redirect_from:
-  - /lessons/advanced/behaviours/
 ---
 
 Aprendemos sobre _Typespecs_ na lição anterior, aqui vamos aprender como exigir que um módulo implemente essas especificações. No Elixir, essa funcionalidade é referenciada como comportamentos.
@@ -27,7 +25,9 @@ A fim de conseguir isso, vamos usar a diretiva `@callback` com uma sintaxe simil
 ```elixir
 defmodule Example.Worker do
   @callback init(state :: term) :: {:ok, new_state :: term} | {:error, reason :: term}
-  @callback perform(args :: term, state :: term) :: {:ok, result :: term, new_state :: term} | {:error, reason :: term, new_state :: term}
+  @callback perform(args :: term, state :: term) ::
+              {:ok, result :: term, new_state :: term}
+              | {:error, reason :: term, new_state :: term}
 end
 ```
 
@@ -47,16 +47,17 @@ defmodule Example.Downloader do
 
   def perform(url, opts) do
     url
-    |> HTTPoison.get!
+    |> HTTPoison.get!()
     |> Map.fetch(:body)
     |> write_file(opts[:path])
     |> respond(opts)
   end
 
   defp write_file(:error, _), do: {:error, :missing_body}
+
   defp write_file({:ok, contents}, path) do
     path
-    |> Path.expand
+    |> Path.expand()
     |> File.write(contents)
   end
 

@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Operador Pipe
 ---
 
@@ -31,14 +31,14 @@ Para este grupo de ejemplos, usaremos el módulo String de elixir.
 - Separar Cadenas (Tokenize String)
 
 ```shell
-iex> "Elixir language" |> String.split
+iex> "Elixir language" |> String.split()
 ["Elixir", "language"]
 ```
 
 - Mayúsculas a todos los caracteres (Uppercase all the tokens)
 
 ```shell
-iex> "Elixir language" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir language" |> String.upcase() |> String.split()
 ["ELIXIR", "LANGUAGE"]
 ```
 

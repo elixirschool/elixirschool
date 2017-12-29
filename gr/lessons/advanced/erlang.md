@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Διαλειτουργικότητα με την Erlang
 ---
 
@@ -17,8 +17,8 @@ title: Διαλειτουργικότητα με την Erlang
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Χρόνος: #{time} μs"
-    IO.puts "Αποτέλεσμα: #{result}"
+    IO.puts("Χρόνος: #{time} μs")
+    IO.puts("Αποτέλεσμα: #{result}")
   end
 end
 
@@ -42,10 +42,8 @@ end
 Τώρα μπορούμε να έχουμε πρόσβαση στην βιβλιοθήκη της Erlang:
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## Αξιοσημείωτες Διαφορές

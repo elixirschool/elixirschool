@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Interoperabilita s Erlangom
 ---
 
@@ -17,8 +17,8 @@ Skúsme použiť `:timer.tc`, aby sme odmerali ako dlho trvalo vykonanie danej f
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time}ms")
+    IO.puts("Result: #{result}")
   end
 end
 
@@ -42,10 +42,8 @@ end
 Teraz môžeme pristupovať k našej Erlang knižnici:
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## Významné Rozdiely

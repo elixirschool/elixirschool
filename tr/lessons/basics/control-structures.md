@@ -1,8 +1,6 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Kontrol Yapilari
-redirect_from:
-  - /lessons/basics/control-structures/
 ---
 
 Burada Elixir'in bize sundugu kontrol yapilarini inceleyecegiz.
@@ -164,9 +162,13 @@ case Repo.insert(changeset) do
     case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, token, full_claims} ->
         important_stuff(token, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -189,15 +191,16 @@ m = %{a: 1, c: 3}
 
 a =
   with {:ok, number} <- Map.fetch(m, :a),
-    true <- Integer.is_even(number) do
-      IO.puts "#{number}, 2 ile bolumu : #{div(number, 2)}"
-      :cift
+       true <- is_even(number) do
+    IO.puts("#{number}, 2 ile bolumu : #{div(number, 2)}")
+    :cift
   else
     :error ->
-      IO.puts "Bu deger mapte mevcut degil"
+      IO.puts("Bu deger mapte mevcut degil")
       :error
+
     _ ->
-      IO.puts "tek sayi"
+      IO.puts("tek sayi")
       :tek
   end
 ```

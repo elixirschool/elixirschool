@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Συμπεριφορές
 ---
 
@@ -25,7 +25,9 @@ title: Συμπεριφορές
 ```elixir
 defmodule Example.Worker do
   @callback init(state :: term) :: {:ok, new_state :: term} | {:error, reason :: term}
-  @callback perform(args :: term, state :: term) :: {:ok, result :: term, new_state :: term} | {:error, reason :: term, new_state :: term}
+  @callback perform(args :: term, state :: term) ::
+              {:ok, result :: term, new_state :: term}
+              | {:error, reason :: term, new_state :: term}
 end
 ```
 
@@ -45,16 +47,17 @@ defmodule Example.Downloader do
 
   def perform(url, opts) do
     url
-    |> HTTPoison.get!
+    |> HTTPoison.get!()
     |> Map.fetch(:body)
     |> write_file(opts[:path])
     |> respond(opts)
   end
 
   defp write_file(:error, _), do: {:error, :missing_body}
+
   defp write_file({:ok, contents}, path) do
     path
-    |> Path.expand
+    |> Path.expand()
     |> File.write(contents)
   end
 

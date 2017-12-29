@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Pipe Operator
 redirect_from:
   - /lessons/basics/pipe-operator/
@@ -32,14 +32,14 @@ For this set of examples, we will use Elixir's String module.
 - Tokenize String (loosely)
 
 ```elixir
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Uppercase all the tokens
 
 ```elixir
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

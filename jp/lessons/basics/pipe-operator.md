@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: パイプライン演算子
 ---
 
@@ -32,14 +32,14 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 - おおまかに文字列をトークン化する
 
 ```elixir
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - 全てのトークンを大文字にする
 
 ```elixir
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

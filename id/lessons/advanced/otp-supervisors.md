@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: OTP Supervisors
 ---
 
@@ -19,7 +19,7 @@ Menggunakan SimpleQueue dari pelajaran [OTP Concurrency](../../advanced/otp-conc
 import Supervisor.Spec
 
 children = [
-  worker(SimpleQueue, [], [name: SimpleQueue])
+  worker(SimpleQueue, [], name: SimpleQueue)
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -66,7 +66,7 @@ Menggunakan `Task.Supervisor` tidak beda dengan supervisor lain:
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)

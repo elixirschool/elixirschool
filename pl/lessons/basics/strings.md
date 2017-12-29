@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Ciągi znaków
 ---
 
@@ -115,14 +115,14 @@ Najprościej jest posortować litery alfabetycznie i sprawdzić czy takie listy 
 ```elixir
 defmodule Anagram do
   def anagrams?(a, b) when is_binary(a) and is_binary(b) do
-  	sort_string(a) == sort_string(b)
+    sort_string(a) == sort_string(b)
   end
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```

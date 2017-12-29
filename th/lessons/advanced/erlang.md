@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: การใช้งานร่วมกับ Erlang
-redirect_from:
-  - /lessons/advanced/erlang/
 ---
 
 หนึ่งในประโยชน์ของการสร้างบน Erlang VM (BEAM) คือมี library ให้เลือกใช้มากมายก่ายกอง ความสามารถในการทำงานร่วมกับ Erlang ทำให้เราเราสามารถใช้ library และ Erlang standard lib ได้ใน code Elixir 
@@ -21,8 +19,8 @@ standard library เสริมของ ของ Erlang สามารถใ
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time} μs"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time} μs")
+    IO.puts("Result: #{result}")
   end
 end
 
@@ -46,10 +44,8 @@ end
 คราวนี้เราก็สามารถใช้งาน library Erlang ได้แล้ว
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## Notable Differences

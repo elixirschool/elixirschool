@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: GenStage
 ---
 
@@ -55,11 +55,11 @@ $ cd genstage_example
 Давайте обновим наши зависимости в `mix.exs`, добавив `gen_stage`:
 
 ```elixir
-  defp deps do
-    [
-      {:gen_stage, "~> 0.11"},
-    ]
-  end
+defp deps do
+  [
+    {:gen_stage, "~> 0.11"}
+  ]
+end
 ```
 
 Мы должны скачать зависимости и скомпилировать их прежде чем двигаться дальше:
@@ -92,8 +92,8 @@ defmodule GenstageExample.Producer do
   def init(counter), do: {:producer, counter}
 
   def handle_demand(demand, state) do
-    events = Enum.to_list(state..state + demand - 1)
-    {:noreply, events, (state + demand)}
+    events = Enum.to_list(state..(state + demand - 1))
+    {:noreply, events, state + demand}
   end
 end
 ```
@@ -113,7 +113,7 @@ $ touch lib/genstage_example/producer_consumer.ex
 Обновим наш файл:
 
 ```elixir
-defmodule GenstageExample.ProducerConsumer  do
+defmodule GenstageExample.ProducerConsumer do
   use GenStage
 
   require Integer
@@ -164,7 +164,7 @@ defmodule GenstageExample.Consumer do
 
   def handle_events(events, _from, state) do
     for event <- events do
-      IO.inspect {self(), event, state}
+      IO.inspect({self(), event, state})
     end
 
     # Так как мы потребители, мы не создаем события
@@ -188,7 +188,7 @@ def start(_type, _args) do
   children = [
     worker(GenstageExample.Producer, [0]),
     worker(GenstageExample.ProducerConsumer, []),
-    worker(GenstageExample.Consumer, []),
+    worker(GenstageExample.Consumer, [])
   ]
 
   opts = [strategy: :one_for_one, name: GenstageExample.Supervisor]
@@ -220,7 +220,7 @@ children = [
   worker(GenstageExample.Producer, [0]),
   worker(GenstageExample.ProducerConsumer, []),
   worker(GenstageExample.Consumer, [], id: 1),
-  worker(GenstageExample.Consumer, [], id: 2),
+  worker(GenstageExample.Consumer, [], id: 2)
 ]
 ```
 

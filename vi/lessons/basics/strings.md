@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Strings
 ---
 
@@ -120,9 +120,9 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```

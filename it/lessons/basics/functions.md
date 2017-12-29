@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Funzioni
 ---
 
@@ -198,6 +198,7 @@ Elixir non apprezza gli argomenti di default in funzioni che combaciano più vol
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

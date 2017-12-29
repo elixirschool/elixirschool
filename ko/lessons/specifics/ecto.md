@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.1
 title: Ecto
 ---
 
@@ -13,8 +13,7 @@ Ecto는 공식적인 Elixir 프로젝트로 데이터베이스를 감싸는 부�
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 2.1.4"},
-   {:postgrex, ">= 0.13.2"}]
+  [{:ecto, "~> 2.2"}, {:postgrex, ">= 0.0.0"}]
 end
 ```
 
@@ -32,8 +31,7 @@ end
 
 ```elixir
 defmodule ExampleApp.Repo do
-  use Ecto.Repo,
-    otp_app: :example_app
+  use Ecto.Repo, otp_app: :example_app
 end
 ```
 
@@ -100,15 +98,15 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 
   def change do
     create table(:users) do
-      add :username, :string, unique: true
-      add :encrypted_password, :string, null: false
-      add :email, :string
-      add :confirmed, :boolean, default: false
+      add(:username, :string, unique: true)
+      add(:encrypted_password, :string, null: false)
+      add(:email, :string)
+      add(:confirmed, :boolean, default: false)
 
       timestamps
     end
 
-    create unique_index(:users, [:username], name: :unique_usernames)
+    create(unique_index(:users, [:username], name: :unique_usernames))
   end
 end
 ```
@@ -121,11 +119,11 @@ end
 
 마이그레이션의 더 자세한 정보는 Ecto 문서의 [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content)을 참고해주세요.
 
-## 모델
+## 스키마
 
-마이그레이션이 생성되었으므로 이제 모델로 넘어갑시다. 모델은 스키마, 헬퍼 메소드, 그리고 changeset을 정의합니다. changeset에 대해서는 뒤에서 다룹니다.
+마이그레이션이 생성되었으므로 이제 스키마로 넘어갑시다. 스키마는 내부의 데이터베이스 테이블과 그 필드와의 매핑, 헬퍼 메소드, 그리고 changeset을 정의하는 모듈입니다. changeset에 대해서는 뒤에서 다룹니다.
 
-우선 마이그레이션을 위한 모델이 어떤 것인지 확인해보죠.
+우선 마이그레이션을 위한 스키마가 어떤 것인지 확인해보죠.
 
 ```elixir
 defmodule ExampleApp.User do
@@ -133,12 +131,12 @@ defmodule ExampleApp.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -154,7 +152,7 @@ defmodule ExampleApp.User do
 end
 ```
 
-모델 내에서 정의된 스키마는 마이그레이션에 기술했던 것과 밀접하게 표현됩니다. 여기에서는 데이터베이스의 필드 이외에도 2개의 가상 필드가 추가되어 있습니다. 가상 필드는 데이터베이스에는 저장되지 않습니다만, 검증과 같은 작업에서 도움이 됩니다. 가상 필드에 대해서는 [Changeset](#changeset)에서 살펴봅니다.
+정의된 스키마는 마이그레이션에 기술했던 것과 밀접하게 표현됩니다. 여기에서는 데이터베이스의 필드 이외에도 2개의 가상 필드가 추가되어 있습니다. 가상 필드는 데이터베이스에는 저장되지 않습니다만, 검증과 같은 작업에서 도움이 됩니다. 가상 필드에 대해서는 [Changeset](#changeset)에서 살펴봅니다.
 
 ## 질의
 
@@ -171,11 +169,14 @@ import Ecto.Query, only: [from: 2]
 Ecto은 멋진 질의 DSL을 제공하고 있으며, 질의를 이해하기 쉬운 형태로 표현할 수 있습니다. 모든 승인된 계정의 사용자 이름을 검색하는 경우, 다음과 같은 질의를 사용할 수 있을 겁니다.
 
 ```elixir
-alias ExampleApp.{Repo,User}
+alias ExampleApp.{Repo, User}
 
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: u.username
+  )
 
 Repo.all(query)
 ```
@@ -187,17 +188,23 @@ Repo.all(query)
 승인된 사용자의 숫자를 세고 싶은 경우에 `count/1`을 사용할 수 있습니다.
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id)
+  )
 ```
 
 주어진 엔트리에서 유일한 값만을 세는 `count/2` 함수도 있습니다.
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id, :distinct)
+  )
 ```
 
 ### Group By
@@ -205,9 +212,12 @@ query = from u in User,
 사용자들을 승인 상태별로 묶고 싶은 경우에는 `group_by` 옵션을 추가하세요.
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     group_by: u.confirmed,
     select: [u.confirmed, count(u.id)]
+  )
 
 Repo.all(query)
 ```
@@ -217,9 +227,12 @@ Repo.all(query)
 사용자를 작성일 순서로 정렬하려면 이렇게 하시면 됩니다.
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: u.inserted_at,
     select: [u.username, u.inserted_at]
+  )
 
 Repo.all(query)
 ```
@@ -227,9 +240,12 @@ Repo.all(query)
 `DESC`로 정렬하려면 이렇게 하세요.
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: [desc: u.inserted_at],
     select: [u.username, u.inserted_at]
+  )
 ```
 
 ### 조인
@@ -237,9 +253,12 @@ query = from u in User,
 사용자에 연관된 프로필이 있다고 가정하고, 모든 승인된 계정의 프로필을 검색해보죠.
 
 ```elixir
-query = from p in Profile,
+query =
+  from(
+    p in Profile,
     join: u in assoc(p, :user),
     where: u.confirmed == true
+  )
 ```
 
 ### Fragment
@@ -247,9 +266,12 @@ query = from p in Profile,
 때때로, 예를 들어 특정 데이터베이스에서만 사용 가능한 함수를 쓰고 싶은 경우 등, 질의 API로는 충분하지 않은 경우가 있습니다. `fragment/1` 함수는 이럴 때 사용할 수 있습니다.
 
 ```elixir
-query = from u in User,
-    where: fragment("downcase(?)", u.username) == ^username
+query =
+  from(
+    u in User,
+    where: fragment("downcase(?)", u.username) == ^username,
     select: u
+  )
 ```
 
 [phoenix-examples/ecto_query_library](https://github.com/phoenix-examples/ecto_query_library)에서 더 많은 질의 예제를 확인할 수 있습니다.
@@ -258,9 +280,9 @@ query = from u in User,
 
 앞에서는 데이터를 검색하는 방법에 대해서 배웠습니다. 그렇다면 추가나 변경을 해야 하는 경우에는 어떻게 하면 좋을까요? 이럴 때 Changeset이 필요합니다.
 
-Changeset은 모델을 변경할 때 필터나 검증, 제약 조건의 유지를 담당합니다.
+Changeset은 스키마를 변경할 때 필터나 검증, 제약 조건의 유지를 담당합니다.
 
-아래의 예시에서는 사용자 계정을 생성할 때의 Changeset을 살펴보겠습니다. 우선, 모델을 변경해야 합니다.
+아래의 예시에서는 사용자 계정을 생성할 때의 Changeset을 살펴보겠습니다. 우선, 스키마를 변경해야 합니다.
 
 ```elixir
 defmodule ExampleApp.User do
@@ -269,12 +291,12 @@ defmodule ExampleApp.User do
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -295,6 +317,7 @@ defmodule ExampleApp.User do
     case get_change(changeset, :password_confirmation) do
       nil ->
         password_incorrect_error(changeset)
+
       confirmation ->
         password = get_field(changeset, :password)
         if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
@@ -318,16 +341,20 @@ end
 `User.changeset/2`는 비교적 간단하게 사용할 수 있습니다.
 
 ```elixir
-alias ExampleApp.{User,Repo}
+alias ExampleApp.{User, Repo}
 
 pw = "passwords should be hard"
-changeset = User.changeset(%User{}, %{username: "doomspork",
-                    email: "sean@seancallan.com",
-                    password: pw,
-                    password_confirmation: pw})
+
+changeset =
+  User.changeset(%User{}, %{
+    username: "doomspork",
+    email: "sean@seancallan.com",
+    password: pw,
+    password_confirmation: pw
+  })
 
 case Repo.insert(changeset) do
-  {:ok, model}        -> # Inserted with success
+  {:ok, record}       -> # Inserted with success
   {:error, changeset} -> # Something went wrong
 end
 ```

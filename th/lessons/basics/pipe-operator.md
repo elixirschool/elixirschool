@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Pipe Operator
-redirect_from:
-  - /lessons/basics/pipe-operator/
 ---
 
 pipe operator `|>` นั้นใช้สำหรับส่งผลลัพธ์ของ expression ไปเป็น argument ตัวแรกของ expression ถัดไป
@@ -35,14 +33,14 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 - Tokenize String (อย่างง่าย)
 
 ```elixir
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - ทำให้เป็นอักษรใหญ่ทุกๆ token
 
 ```elixir
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

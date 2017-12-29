@@ -1,8 +1,6 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Plug
-redirect_from:
-  - /lessons/specifics/plug/
 ---
 
 Rubyをよくご存知なら、PlugはところどころSinatraの面影をもつRackだと考えることができます。
@@ -33,8 +31,7 @@ Plugをインストールするには`mix.exs`に2つの小さな変更を行う
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.1.2"},
-   {:plug, "~> 1.3.4"}]
+  [{:cowboy, "~> 1.1.2"}, {:plug, "~> 1.3.4"}]
 end
 ```
 
@@ -132,11 +129,11 @@ Hello World!
 defmodule Example.Plug.Router do
   use Plug.Router
 
-  plug :match
-  plug :dispatch
+  plug(:match)
+  plug(:dispatch)
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Oops!")
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -186,9 +183,11 @@ defmodule Example.Plug.VerifyRequest do
   end
 
   defp verify_request!(body_params, fields) do
-    verified = body_params
-               |> Map.keys
-               |> contains_fields?(fields)
+    verified =
+      body_params
+      |> Map.keys()
+      |> contains_fields?(fields)
+
     unless verified, do: IncompleteRequestError
   end
 
@@ -212,16 +211,20 @@ defmodule Example.Router do
 
   alias Example.Plug.VerifyRequest
 
-  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
-  plug VerifyRequest, fields: ["content", "mimetype"],
-                      paths:  ["/upload"]
+  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
 
-  plug :match
-  plug :dispatch
+  plug(
+    VerifyRequest,
+    fields: ["content", "mimetype"],
+    paths: ["/upload"]
+  )
 
-  get "/", do: send_resp(conn, 200, "Welcome\n")
-  post "/upload", do: send_resp(conn, 201, "Uploaded\n")
-  match _, do: send_resp(conn, 404, "Oops!\n")
+  plug(:match)
+  plug(:dispatch)
+
+  get("/", do: send_resp(conn, 200, "Welcome\n"))
+  post("/upload", do: send_resp(conn, 201, "Uploaded\n"))
+  match(_, do: send_resp(conn, 404, "Oops!\n"))
 end
 ```
 
@@ -297,25 +300,28 @@ defmodule RouterTest do
   @opts Router.init([])
 
   test "returns welcome" do
-    conn = conn(:get, "/", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 200
   end
 
   test "returns uploaded" do
-    conn = conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
-           |> put_req_header("content-type", "application/x-www-form-urlencoded")
-           |> Router.call(@opts)
+    conn =
+      conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
+      |> put_req_header("content-type", "application/x-www-form-urlencoded")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 201
   end
 
   test "returns 404" do
-    conn = conn(:get, "/missing", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/missing", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 404

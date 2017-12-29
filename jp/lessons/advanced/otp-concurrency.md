@@ -1,11 +1,11 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: OTPの並行性
 ---
 
 並行性(コンカレンシー)に関するElixirの抽象化を見てきましたが、さらなる制御が必要になることもあります。そうした時のために、Elixirに組み込まれているOTPの振る舞いに目を向けます。
 
-このレッスンではGenServerとGenEventという2つの重要な要素に焦点を当てます。
+このレッスンではGenServerという重要な要素に焦点を当てます。
 
 {% include toc.html %}
 
@@ -57,9 +57,10 @@ defmodule SimpleQueue do
   @doc """
   GenServer.handle_call/3 コールバック
   """
-  def handle_call(:dequeue, _from, [value|state]) do
+  def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
   end
+
   def handle_call(:dequeue, _from, []), do: {:reply, nil, []}
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
@@ -73,7 +74,6 @@ defmodule SimpleQueue do
   def queue, do: GenServer.call(__MODULE__, :queue)
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
 end
-
 ```
 
 SimpleQueueを開始し、新しいdequeue(キューから値を取り出す)機能をテストしましょう:
@@ -109,9 +109,10 @@ defmodule SimpleQueue do
   @doc """
   GenServer.handle_call/3 コールバック
   """
-  def handle_call(:dequeue, _from, [value|state]) do
+  def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
   end
+
   def handle_call(:dequeue, _from, []), do: {:reply, nil, []}
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
@@ -128,6 +129,7 @@ defmodule SimpleQueue do
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
+
   def queue, do: GenServer.call(__MODULE__, :queue)
   def enqueue(value), do: GenServer.cast(__MODULE__, {:enqueue, value})
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
@@ -148,78 +150,3 @@ iex> SimpleQueue.queue
 ```
 
 より詳しい情報については、公式の[GenServer](https://hexdocs.pm/elixir/GenServer.html#content)ドキュメントを調べてみてください。
-
-## GenEvent
-
-私たちは、GenServerが状態を維持し同期/非同期なリクエストを処理することのできるプロセスだと学びました。それではGenEventとは何でしょうか。GenEventは入ってくるイベントを受け取って購読している消費者(イベントを処理するプロセス)に通知を行う、ジェネリック(総称的)なイベントマネージャです。GenEventはイベントの流れに動的にハンドラを追加、削除する仕組みを提供します。
-
-### イベントの処理
-
-GenEventで最も重要なコールバックは、想像がつくように、`handle_event/2`になります。これはイベントとハンドラの現在の状態を受け取って、`{:ok, state}`のタプルを返すことを期待されています。
-
-GenEventの機能を実演するために、2つのハンドラを作ることから始めましょう。1つはメッセージログを預かり、もう片方はそれを(建前としては)永続化するためのものになります:
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts "Logging new message: #{msg}"
-    {:ok, [msg|messages]}
-  end
-end
-
-defmodule PersistenceHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, state) do
-    IO.puts "Persisting log message: #{msg}"
-
-    # メッセージの保存
-
-    {:ok, state}
-  end
-end
-```
-
-### ハンドラの呼び出し
-
-`handle_event/2`に加えて、GenEventは他のコールバックとの間での`handle_call/2`(ハンドラ呼び出し)にも対応しています。`handle_call/2`を用いると、ハンドラで特定の同期メッセージを処理することができます。
-
-`LoggerHandler`を更新して、現在のメッセージログを取り出すメソッドを加えましょう:
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts "Logging new message: #{msg}"
-    {:ok, [msg|messages]}
-  end
-
-  def handle_call(:messages, messages) do
-    {:ok, Enum.reverse(messages), messages}
-  end
-end
-```
-
-### GenEventの使用
-
-ハンドラの準備が整ったので、いくつかのGenEventの関数に詳しくなっておく必要があります。最も重要な3つの関数は`:add_handler/3`、`notify/2`、そして`call/4`です。これらの関数によってそれぞれ、ハンドラを追加し、新しいメッセージを配信し、特定のハンドラ関数を呼び出すことができます。
-
-全てを一緒に用いる場合、実際のハンドラは以下のようになります:
-
-```elixir
-iex> {:ok, pid} = GenEvent.start_link([])
-iex> GenEvent.add_handler(pid, LoggerHandler, [])
-iex> GenEvent.add_handler(pid, PersistenceHandler, [])
-
-iex> GenEvent.notify(pid, {:msg, "Hello World"})
-Logging new message: Hello World
-Persisting log message: Hello World
-
-iex> GenEvent.call(pid, LoggerHandler, :messages)
-["Hello World"]
-```
-
-コールバックとGenEvent機能の一覧については、公式の[GenEvent](https://hexdocs.pm/elixir/GenEvent.html#content)ドキュメントを参照してください。

@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Ecto
 ---
 
@@ -13,8 +13,7 @@ Ecto 是 Elixir 官方维护的一个项目，它提供了对数据库的封装�
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 2.1.4"},
-   {:postgrex, ">= 0.13.2"}]
+  [{:ecto, "~> 2.1.4"}, {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -32,8 +31,7 @@ end
 
 ```elixir
 defmodule ExampleApp.Repo do
-  use Ecto.Repo,
-    otp_app: :example_app
+  use Ecto.Repo, otp_app: :example_app
 end
 ```
 
@@ -100,15 +98,15 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 
   def change do
     create table(:users) do
-      add :username, :string, unique: true
-      add :encrypted_password, :string, null: false
-      add :email, :string
-      add :confirmed, :boolean, default: false
+      add(:username, :string, unique: true)
+      add(:encrypted_password, :string, null: false)
+      add(:email, :string)
+      add(:confirmed, :boolean, default: false)
 
       timestamps
     end
 
-    create unique_index(:users, [:username], name: :unique_usernames)
+    create(unique_index(:users, [:username], name: :unique_usernames))
   end
 end
 ```
@@ -133,12 +131,12 @@ defmodule ExampleApp.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -171,11 +169,14 @@ import Ecto.Query, only: [from: 2]
 Ecto 提供了一套功能强大同时语法清晰的查询用 DSL。比如要找到所有已经确认过的用户的用户名，我们可以这样写：
 
 ```elixir
-alias ExampleApp.{Repo,User}
+alias ExampleApp.{Repo, User}
 
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: u.username
+  )
 
 Repo.all(query)
 ```
@@ -187,17 +188,23 @@ Repo.all(query)
 如果我们要统计已经确认账户信息的用户个数，可以使用 `count/1`：
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id)
+  )
 ```
 
 `count/2` 函数可以统计不同元素的个数：
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id, :distinct)
+  )
 ```
 
 ### Group By
@@ -205,9 +212,12 @@ query = from u in User,
 要按照确认状态分组我们使用 `group_by`：
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     group_by: u.confirmed,
     select: [u.confirmed, count(u.id)]
+  )
 
 Repo.all(query)
 ```
@@ -217,9 +227,12 @@ Repo.all(query)
 根据创建时间排序也很直观：
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: u.inserted_at,
     select: [u.username, u.inserted_at]
+  )
 
 Repo.all(query)
 ```
@@ -227,9 +240,12 @@ Repo.all(query)
 降序排序：
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: [desc: u.inserted_at],
     select: [u.username, u.inserted_at]
+  )
 ```
 
 ### Joins
@@ -237,9 +253,12 @@ query = from u in User,
 假如我们的用户有关联的档案，我们可以这样来查询所有已确认的用户的档案：
 
 ```elixir
-query = from p in Profile,
+query =
+  from(
+    p in Profile,
     join: u in assoc(p, :user),
     where: u.confirmed == true
+  )
 ```
 
 ### 片段 (Fragments)
@@ -247,9 +266,12 @@ query = from p in Profile,
 有时候我们需要某个数据库的特殊函数，而 Query 又不提供这个函数时我们可以使用 `fragment/1`：
 
 ```elixir
-query = from u in User,
-    where: fragment("downcase(?)", u.username) == ^username
+query =
+  from(
+    u in User,
+    where: fragment("downcase(?)", u.username) == ^username,
     select: u
+  )
 ```
 
 在 [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html) 的模块文档中可以找到更多查询的例子。
@@ -269,12 +291,12 @@ defmodule ExampleApp.User do
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -295,6 +317,7 @@ defmodule ExampleApp.User do
     case get_change(changeset, :password_confirmation) do
       nil ->
         password_incorrect_error(changeset)
+
       confirmation ->
         password = get_field(changeset, :password)
         if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
@@ -318,13 +341,17 @@ end
 使用 `User.changeset/2` 还比较直观：
 
 ```elixir
-alias ExampleApp.{User,Repo}
+alias ExampleApp.{User, Repo}
 
 pw = "passwords should be hard"
-changeset = User.changeset(%User{}, %{username: "doomspork",
-                    email: "sean@seancallan.com",
-                    password: pw,
-                    password_confirmation: pw})
+
+changeset =
+  User.changeset(%User{}, %{
+    username: "doomspork",
+    email: "sean@seancallan.com",
+    password: pw,
+    password_confirmation: pw
+  })
 
 case Repo.insert(changeset) do
   {:ok, model}        -> # Inserted with success

@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Mix
-redirect_from:
-  - /lessons/basics/mix/
 ---
 
 ก่อนที่เราจะดำดิ่งลึกลงไปในโลกของ Elixir มากกว่านี้ เราต้องมารู้จักกับ Mix กันก่อน ถ้าคุณคุ้นเคยกับ Ruby ตัว Mix เองก็คือ Bundler, RubyGems และ Rake รวมกัน ซึ่ง Mix เองเป็นส่วนสำคัญของโปรเจค Elixir ทุกโปรเจค และในบทเรียนนี้เราจะได้พบกับบางฟีเจอร์เจ๋งๆของ Mix หากต้องการดูความสามารถของ Mix ทั้งหมดให้รันคำสั่ง `mix help`
@@ -41,12 +39,14 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.0.1",
+      elixir: "~> 1.0",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      deps: deps
+    ]
   end
 
   def application do
@@ -102,10 +102,12 @@ Generated example app
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 1.1 or ~> 1.2"},
-   {:phoenix_html, "~> 2.3"},
-   {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slime, "~> 0.14"}]
+  [
+    {:phoenix, "~> 1.1 or ~> 1.2"},
+    {:phoenix_html, "~> 2.3"},
+    {:cowboy, "~> 1.0", only: [:dev, :test]},
+    {:slime, "~> 0.14"}
+  ]
 end
 ```
 

@@ -1,5 +1,5 @@
-/--
-version: 1.0.0
+---
+version: 1.0.1
 title: পাইপ অপারেটর 
 ---
 
@@ -30,14 +30,14 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 - স্ট্রিং টোকেনাইজেশান- 
 
 ```elixir
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - সমস্ত টোকেনকে বড় হাতের (Upper Case) অক্ষরে পরিণত করা- 
 
 ```elixir
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 
