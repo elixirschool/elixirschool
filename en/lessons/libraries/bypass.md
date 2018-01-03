@@ -269,4 +269,4 @@ end
 
 There shouldn't be anything too surprisingly in the above test.  Instead of creating a single Bypass connection in `setup`, we're creating two within our test and specifying their ports as 1234 and 1337.  Next we see our `Bypass.expect/2` calls and finally the same code we have in `SchedulerTest` to start the scheduler and assert we log the appropriate messages.
 
-That's it!  We've built a utility to keep us informed if there's any issues without domains and we've learned how to employe Bypass to write better tests with external services.
+That's it!  We've built a utility to keep us informed if there's any domain without issues and we've learned how to employe Bypass to write better tests with external services.
