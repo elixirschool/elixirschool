@@ -6,7 +6,7 @@ redirect_from:
 ---
 
 Ao testar nossas aplicações, muitas vezes precisamos fazer chamadas a serviços externos.
-Podemos querer simular diferentes situações como erros inexperados do servidor.
+Podemos até mesmo querer simular diferentes situações como erros inesperados do servidor.
 Tratar issso de modo eficiente não é fácil no Elixir sem uma pequena ajuda.
 
 Nesta lição vamos explorar como [bypass](https://github.com/PSPDFKit-labs/bypass) pode nos ajudar rapidamente e tratar facilmente essas chamadas em nossos testes.
@@ -15,26 +15,26 @@ Nesta lição vamos explorar como [bypass](https://github.com/PSPDFKit-labs/bypa
 
 ## O que é Bypass?
 
-[Bypass](https://github.com/PSPDFKit-labs/bypass) é descrito como "uma forma rápida de criar um _plug_ customizado que pode substituir um servidor HTTP real para retornar respostas previamente definidas para chamadas de clientes.
+[Bypass](https://github.com/PSPDFKit-labs/bypass) é descrito como "uma forma rápida de criar um plugue customizado que pode substituir um servidor HTTP real para retornar respostas previamente definidas para requisições de clientes.
 
 O que isso significa?
-Internamente, Bypass é uma aplicação OTP que atua como um servidor externo escutando e respondendo a solicitações.
+Internamente, Bypass é uma aplicação OTP que atua como um servidor externo escutando e respondendo a requisições.
 Com respostas pré-definidas nós podemos testar qualquer número de possibilidades como interrupções inesperadas de serviço e erros, tudo sem fazer uma única chamada externa. 
 
 ## Usando Bypass
 
-Para melhor ilustrar as funcionalidades do Bypass vamos construir uma aplicação utilitária simples para pingar uma lista de domínios e garantir que eles estão online.
+Para melhor ilustrar as funcionalidades do Bypass vamos construir uma aplicação utilitária simples para testar (_ping_) uma lista de domínios e garantir que eles estão online.
 Para fazer isso vamos construir um novo projeto supervisor e um GenServer para verificar os domínios em um interválo configurável.
-Aproveitando ByPass em nossos testes poderemos verificar se nossa aplicação funcionará em muitos resultados diferentes. 
+Aproveitando ByPass em nossos testes poderemos verificar se nossa aplicação funcionará em muitos cenários diferentes. 
 
-_Nota_: Se você deseja avançar para o código final, dê uma olhada no repositório do Elixir School [Clinic](https://github.com/elixirschool/clinic).
+_Nota_: Se você deseja avançar para o código final, dê uma olhada no repositório [Clinic](https://github.com/elixirschool/clinic) do Elixir School.
 
 Neste ponto devemos estar confortáveis criando novos projetos Mix e adicionando nossas dependências, então focaremos nas partes do código que estamos testando.
-Se você precisa uma atualização rápida, consulte a seção [New Projects](https://elixirschool.com/en/lessons/basics/mix/#new-projects) de nossa [Mix](https://elixirschool.com/en/lessons/basics/mix) lição.
+Se você precisa de uma atualização rápida, consulte a seção [New Projects](https://elixirschool.com/en/lessons/basics/mix/#new-projects) de nossa lição [Mix](https://elixirschool.com/en/lessons/basics/mix).
 
 
-Vamos começar criando um novo módulo que tratará de fazer as consultas para nossos domínios.
-Com [HTTPoison](https://github.com/edgurgel/httpoison) vamos criar uma função, `ping/1`, que recebe uma URL e retorna `{:ok, body}` para um _request_ HTTP 200 e `{:error, reason}` para todos os outros:
+Vamos começar criando um novo módulo que tratará de fazer as requisições para nossos domínios.
+Com [HTTPoison](https://github.com/edgurgel/httpoison) vamos criar uma função, `ping/1`, que recebe uma URL e retorna `{:ok, body}` para uma requisição HTTP 200 e `{:error, reason}` para todos os outros:
 
 ```elixir
 defmodule Clinic.HealthCheck do
@@ -103,7 +103,7 @@ defmodule Clinic.HealthCheckTests do
 end
 ```
 
-Nosso teste é bastante simples e, se o executarmos, veremos se ele passa, mas vamos nos aprofundar e ver o que cada parte está fazendo. 
+Nosso teste é bastante simples e, se o executarmos, veremos que ele passa, mas vamos nos aprofundar e ver o que cada parte está fazendo. 
 A primeira coisa que vemos em nosso teste é a função `Bypass.expect/2`:
 
 ```elixir
@@ -112,7 +112,7 @@ Bypass.expect(bypass, fn conn ->
 end)
 ```
 
-`Bypass.expect/2` recebe nossa conexão Bypass e uma função de aridade simples que se espere que modifique a conexão e a retorne, isso também é uma oportunidade para fazer afirmações na chamada para verificar se ela está conforme esperado. Vamos atualizar a url do nosso teste para incluir `/ping` e afirmar o caminho da chamada e o método HTTP:
+`Bypass.expect/2` recebe nossa conexão Bypass e uma função de aridade simples que se espere que modifique a conexão e a retorne, isso também é uma oportunidade para fazer afirmações na chamada para verificar se ela está conforme esperado. Vamos atualizar a url do nosso teste para incluir `/ping` e afirmar (_assert_) o caminho da chamada e o método HTTP:
 
 ```elixir
 test "request with HTTP 200 response", %{bypass: bypass} do
@@ -127,9 +127,9 @@ end
 ```
 
 A última parte do nosso teste que usamos `HealthCheck.ping/1` e afirmamos a resposta está conforme esperado, mas do que se trata o `bypass.port`?
-Bypass está realmente escutando uma porta local e interceptando as chamadas, onde estamos usando `bypass.port` para retornar a porta padrão uma vez que não definimos uma no `Bypass.open/1`.
+Bypass está realmente escutando uma porta local e interceptando as requisições, onde estamos usando `bypass.port` para retornar a porta padrão uma vez que não definimos uma no `Bypass.open/1`.
 
-Em seguida é adicionar casos de teste para erros.
+Em seguida adicionamos casos de teste para erros.
 Podemos começar com um teste muito parecido com nosso primeiro, com algumas pequenas mudanças: retornando 500 como código de status e afirmando que a tupla `{:error, reason}` é retornada:
 
 ```elixir
@@ -158,7 +158,7 @@ Com nosso módulo `HealthCheck` testado, podemos seguir em frente e testá-lo ju
 
 ## Vários hosts externos
 
-Para nosso projeto manteremos as estruturas do _scheduler_ e usararemos `Process.send_after/3` para alimentar nossas verificações reincidentes, para saber mais sobre o módulo `Process` dê uma olhada na [documentação](https://hexdocs.pm/elixir/Process.html).
+Para nosso projeto manteremos as estruturas do _scheduler_ e usaremos `Process.send_after/3` para alimentar nossas verificações reincidentes, para saber mais sobre o módulo `Process` dê uma olhada na [documentação](https://hexdocs.pm/elixir/Process.html).
 Nosso _scheduler_ necessita de três opções: a coleção de _sites_, o intervalo de nossas verificações, e o módulo que implementa `ping/1`.
 Ao passar no nosso módulo, separamos nossa funcionalidade e o nosso GenServer, permitindo-nos testar cada um em isolamento:
 
@@ -176,7 +176,7 @@ end
 
 Agora precisamos definir a função `handle_info/2` para a mensagem `:check` enviada `send_after/2`.
 Para manter as coisas simples vamos passar nossos sites para a `HealthCheck.ping/1` e logar nossos resultados com `Logger.info` ou `Logger.error` no caso de erros.
-Vamos configurar nosso código de forma que nos habilite a melhorar as capacidades de relatórios mais tarde:
+Vamos configurar nosso código de forma que nos habilite a melhorar a capacidade de relatórios mais tarde:
 
 ```elixir
 def handle_info(:check, {health_check, sites}) do
@@ -229,7 +229,7 @@ end
 
 Confiamos em uma implementação de teste de nossos `health checks` com `TestCheck` juntamente com `CaptureLog.capture_log/1` para afirmar que as mensagens apropriadas são logadas.
 
-Agora estamos trabalhando nos módulos `Scheduler` e `HealthCheck`, vamos escrever um teste de integração para verificar tudo funcionando junto. Precisaremos o Bypass para este teste e teremos que tratar múltiplas chamadas Bypass por teste, veremos como fazer isso.
+Agora trabalhamos nos módulos `Scheduler` e `HealthCheck`, vamos escrever um teste de integração para verificar tudo funcionando junto. Precisaremos o Bypass para este teste e teremos que tratar múltiplas chamadas Bypass por teste, veremos como fazer isso.
 
 Lembra do `bypass.port` de mais cedo?  Quando precisamos simular múltiplos sites, a opção `:port` vem a calhar. Como você provavelmente adivinhou, podemos criar múltiplas conexões Bypass cada uma com uma porta diferente, estas que simularão sites independentes. Começaremos revisando nosso arquivo atualizado `test/clinic_test.exs`:
 
@@ -269,4 +269,4 @@ end
 
 Não deve haver nada de tão surpreendente no teste acima. Ao invés de criar uma simples conexão Bypass no `setup`, estamos criando duas no teste e especificando suas portas como 1234 e 1337. Em seguida, vemos nossas chamadas `Bypass.expect/2` e finalmente o mesmo código que temos no `SchedulerTest` para iniciar o _scheduler_ e afirmar que logamos as mensagens apropriadas.
 
-É isso aí! Construímos um utilitário para nos manter informados se houver algum domínio sem problemas e aprendemos como usar o Bypass para escrever melhores testes com serviços externos.
+É isso aí! Construímos um utilitário para nos manter informados se houver qualquer problema em nossos domínios e aprendemos como usar o Bypass para escrever melhores testes com serviços externos.
