@@ -6,7 +6,7 @@ title: Elixir School
 
 啟發自 Twitter [Scala School](http://twitter.github.io/scala_school/) 的 Elixir 程式語言課程
 
-Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][my], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], [ภาษาไทย][th], [中文][tw] and others.
+Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], [ภาษาไทย][th], [中文][tw] and others.
 
   [cn]: /cn/
   [es]: /es/
@@ -19,7 +19,7 @@ Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk]
   [sk]: /sk/
   [vi]: /vi/
   [id]: /id/
-  [my]: /my/
+  [ms]: /ms/
   [uk]: /uk/
   [de]: /de/
   [bn]: /bn/

@@ -11,7 +11,7 @@
 #  it: 
 #  jp: 
 #  ko: 
-#  my: 
+#  ms: 
 #  "no": 
 #  pl: 
 #  pt: 
@@ -37,7 +37,7 @@ en:
   it: Italian
   jp: Japanese
   ko: Korean
-  my: Malaysian
+  ms: Malaysian
   "no": Norwegian
   pl: Polish
   pt: Portuguese
@@ -62,7 +62,7 @@ es:
   it: Italiano
   jp: Japonés
   ko: Coreano
-  my: Malayo
+  ms: Malayo
   "no": Noruego
   pl: Polaco
   pt: Portugués
@@ -85,7 +85,7 @@ id:
  it: Bahasa Italia
  jp: Bahasa Jepang
  ko: Bahasa Korea
- my: Bahasa Malaysia
+ ms: Bahasa Malaysia
  "no": Bahasa Norwegia
  pl: Bahasa Poland
  pt: Bahasa Portugis
@@ -109,7 +109,7 @@ id:
   it: イタリア語
   jp: 日本語
   ko: 韓国語
-  my: マレーシア語
+  ms: マレーシア語
   "no": ノルウェー語
   pl: ポーランド語
   pt: ポルトガル語
@@ -134,7 +134,7 @@ th:
   it: ภาษาอิตาลี
   jp: ภาษาญี่ปุ่น
   ko: ภาษาเกาหลี
-  my: ภาษามาเลเซีย
+  ms: ภาษามาเลเซีย
   "no": ภาษานอร์เวย์
   pl: ภาษาโปแลนด์
   pt: ภาษาโปรตุเกส
