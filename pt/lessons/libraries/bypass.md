@@ -15,7 +15,7 @@ Nesta lição vamos explorar como [bypass](https://github.com/PSPDFKit-labs/bypa
 
 ## O que é Bypass?
 
-[Bypass](https://github.com/PSPDFKit-labs/bypass) é descrito como "uma forma rápida de criar um plugue customizado que pode substituir um servidor HTTP real para retornar respostas previamente definidas para requisições de clientes.
+[Bypass](https://github.com/PSPDFKit-labs/bypass) é descrito como "uma forma rápida de criar um _plug_ customizado que pode substituir um servidor HTTP real para retornar respostas previamente definidas para requisições de clientes.
 
 O que isso significa?
 Internamente, Bypass é uma aplicação OTP que atua como um servidor externo escutando e respondendo a requisições.
@@ -30,7 +30,7 @@ Aproveitando ByPass em nossos testes poderemos verificar se nossa aplicação fu
 _Nota_: Se você deseja avançar para o código final, dê uma olhada no repositório [Clinic](https://github.com/elixirschool/clinic) do Elixir School.
 
 Neste ponto devemos estar confortáveis criando novos projetos Mix e adicionando nossas dependências, então focaremos nas partes do código que estamos testando.
-Se você precisa de uma atualização rápida, consulte a seção [New Projects](https://elixirschool.com/en/lessons/basics/mix/#new-projects) de nossa lição [Mix](https://elixirschool.com/en/lessons/basics/mix).
+Se você precisar de uma atualização rápida, consulte a seção [New Projects](https://elixirschool.com/en/lessons/basics/mix/#new-projects) de nossa lição [Mix](https://elixirschool.com/en/lessons/basics/mix).
 
 
 Vamos começar criando um novo módulo que tratará de fazer as requisições para nossos domínios.
@@ -229,7 +229,7 @@ end
 
 Confiamos em uma implementação de teste de nossos `health checks` com `TestCheck` juntamente com `CaptureLog.capture_log/1` para afirmar que as mensagens apropriadas são logadas.
 
-Agora trabalhamos nos módulos `Scheduler` e `HealthCheck`, vamos escrever um teste de integração para verificar tudo funcionando junto. Precisaremos o Bypass para este teste e teremos que tratar múltiplas chamadas Bypass por teste, veremos como fazer isso.
+Agora trabalhamos nos módulos `Scheduler` e `HealthCheck`, vamos escrever um teste de integração para verificar tudo funcionando junto. Precisaremos do Bypass para este teste e teremos que tratar múltiplas chamadas com Bypass por teste, veremos como fazer isso.
 
 Lembra do `bypass.port` de mais cedo?  Quando precisamos simular múltiplos sites, a opção `:port` vem a calhar. Como você provavelmente adivinhou, podemos criar múltiplas conexões Bypass cada uma com uma porta diferente, estas que simularão sites independentes. Começaremos revisando nosso arquivo atualizado `test/clinic_test.exs`:
 
