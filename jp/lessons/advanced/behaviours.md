@@ -31,11 +31,11 @@ defmodule Example.Worker do
 end
 ```
 
-これで `init/1` は任意の値を受け取り、 `{:ok, state}` または `{:error, reason}` というタプルを返す関数として定義されました。これは至って標準的な初期化です。 `perform/2` 関数はワーカー用の引数と初期化時のステートを受け取り、GenServersと同じように `{:ok, result, state}` または `{:error, reason, state}` を返すことが期待されます。
+これで `init/1` は任意の値を受け取り、 `{:ok, state}` または `{:error, reason}` というタプルを返す関数として定義されました。これは至って標準的な初期化です。 `perform/2` 関数はワーカー用の引数と初期化時のステートを受け取り、GenServerと同じように `{:ok, result, state}` または `{:error, reason, state}` を返すことが期待されます。
 
 ## ビヘイビアを利用する
 
-我々の定義したビヘイビアを使って、さまざまなモジュールに同じ公開APIを共有させられます。ビヘイビアをモジュールに追加するのは簡単で、 `@behaviour` 属性を使います。
+我々の定義したビヘイビアを使って、さまざまなモジュールに同じ公開APIを共有できます。ビヘイビアをモジュールに追加するのは簡単で、 `@behaviour` 属性を使います。
 
 新しいビヘイビアを使って、リモートファイルをダウンロードしてローカルに保存するモジュールのタスクを作ってみましょう。
 
@@ -108,7 +108,7 @@ defmodule Example.Compressor do
 end
 ```
 
-コンパイルしてみると、次のような警告が表示されるはずです。
+コンパイルしてみると、次のような警告が表示されます。
 
 ```shell
 lib/example/compressor.ex:1: warning: undefined behaviour function init/1 (for behaviour Example.Worker)
