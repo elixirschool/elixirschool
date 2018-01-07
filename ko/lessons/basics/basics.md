@@ -15,7 +15,7 @@ elixir-lang.org 홈페이지의 [Installing Elixir](http://elixir-lang.org/insta
 
 Elixir를 설치하고 나서 어떤 버전이 설치되었는지 손쉽게 확인할 수 있습니다.
 
-    % elixir -v
+    $ elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}]  [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
@@ -66,7 +66,7 @@ iex> 0x1F
 
 ### 실수
 
-Elixir에서 실수는 소수점 앞뒤로 숫자가 한 개 이상 필요합니다. 실수는 배정밀도(64 bit double precision)로 부동 소수점 숫자를 처리하고, `e`를 사용하여 10의 지수를 표현할 수도 있습니다.
+Elixir에서 실수는 소수점 뒤로 숫자가 적어도 하나 필요합니다. 실수는 배정밀도(64 bit double precision)로 부동 소수점 숫자를 처리하고, `e`를 사용하여 10의 지수를 표현할 수도 있습니다.
 
 ```elixir
 iex> 3.14
@@ -165,7 +165,7 @@ iex> 10 / 5
 2.0
 ```
 
-정수로 된 몫이나 나머지를 구하고 싶을 때 Elixir에 내장된 함수 두 개를 유용하게 사용할 수 있습니다.
+정수로 된 몫이나 나머지 (예: 모듈로 연산)를 구하고 싶을 때 Elixir에 내장된 함수 두 개를 유용하게 사용할 수 있습니다.
 
 ```elixir
 iex> div(10, 5)
