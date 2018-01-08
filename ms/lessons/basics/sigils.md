@@ -1,6 +1,8 @@
 ---
 version: 0.9.0
 title: Sigil
+redirect_from:
+  - /my/lessons/basics/sigils/
 ---
 
 Membuat dan menggunakan sigil.

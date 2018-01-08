@@ -1,6 +1,8 @@
 ---
 version: 0.9.0
 title: Asas
+redirect_from:
+  - /my/lessons/basics/basics/
 ---
 
 Penyediaan, Jenis Data Asas dan Operasi.

@@ -1,6 +1,8 @@
 ---
 version: 0.9.1
-title: Operator Paip 
+title: Operator Paip
+redirect_from:
+  - /my/lessons/basics/pipe-operator/
 ---
 
 Operator Paip `|>` menghantar hasil dari satu ungkapan(expression) sebagai paramater pertama kepada satu ungkapan lain.
