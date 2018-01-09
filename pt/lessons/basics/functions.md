@@ -89,9 +89,9 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### Nomaear Funções e a Aridade
+### Nomear Funções e a Aridade
 
-Mencionamos anteriormente que as funções são nomeadas pela combinação do nome e aridade(quantidade dos argumentos) das funções. Isto significa que você pode fazer o siguiente.
+Mencionamos anteriormente que as funções são nomeadas pela combinação do nome e aridade(quantidade dos argumentos) das funções. Isto significa que você pode fazer o seguinte.
 
 ```elixir
 defmodule Greeter2 do
@@ -109,7 +109,7 @@ iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
 
-Nós temos listado os nomes das funções nos comentários acima. A causa que a primeira implementação não recebe argumentos, é conhecido como `hello/0`; a segunda função recebe um argumento, portanto será conhecido como `hello/1` e assim por diante. E ao contrário de sobrecargar funções como outros idiomas, estas são pensados como funções diferentes entre um ao outro. (Pattern matching, o a combinação de padrões, descrita só um momento atrás, aplica-se quando várias definiçoes são fornecidas com o mesmo quantidade de argumentos.)
+Nós temos listado os nomes das funções nos comentários acima. A causa que a primeira implementação não recebe argumentos, é conhecido como `hello/0`; a segunda função recebe um argumento, portanto será conhecido como `hello/1` e assim por diante. E ao contrário de sobrecargar funções como outros idiomas, estas são pensadas como funções diferentes entre um ao outro. (Pattern matching, o a combinação de padrões, descrita só um momento atrás, aplica-se quando várias definiçoes são fornecidas com a mesma quantidade de argumentos.)
 
 ### Funções privadas
 
@@ -165,7 +165,7 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("pt"), do: "Oí, "
+  defp phrase("pt"), do: "Oi, "
 end
 
 iex> Greeter.hello("Sean", "en")
@@ -175,7 +175,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 
 iex> Greeter.hello("Sean", "pt")
-"Oí, Sean"
+"Oi, Sean"
 ```
 
 Quando combinamos nosso exemplo de guard com argumento padrão, nos deparamos com um problema. Vamos ver o que pode parecer:
@@ -193,7 +193,7 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("pt"), do: "Oí, "
+  defp phrase("pt"), do: "Oi, "
 end
 
 ** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
@@ -228,12 +228,12 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("pt"), do: "Oí, "
+  defp phrase("pt"), do: "Oi, "
 end
 
 iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 
 iex> Greeter.hello ["Sean", "Steve"], "pt"
-"Oí, Sean, Steve"
+"Oi, Sean, Steve"
 ```

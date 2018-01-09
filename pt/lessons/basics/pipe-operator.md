@@ -50,7 +50,7 @@ true
 
 ## Boas Práticas
 
-Se a aridade de uma função é mais do que 1, certifique-se de usar parêntesis. Isso não importa muito para Elixir, porém é importante para outros programadores que podem interpretar mal o seu código. Mais ainda assim, o ordem é importante com o operador pipe. Se tomarmos o nosso terceiro exemplo, e retirar os parêntesis do `String.ends_with?/2`, nos encontramos com o seguinte aviso:
+Se a aridade de uma função é mais do que 1, certifique-se de usar parêntesis. Isso não importa muito para Elixir, porém é importante para outros programadores que podem interpretar mal o seu código. Mas ainda assim, a ordem é importante com o operador pipe. Se tomarmos o nosso terceiro exemplo, e retirar os parêntesis do `String.ends_with?/2`, nos encontramos com o seguinte aviso:
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"
