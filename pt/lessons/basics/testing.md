@@ -1,6 +1,8 @@
 ---
-version: 0.9.0
+version: 1.1.1
 title: Testando
+redirect_from:
+  - /pt/lessons/basics/testing/
 ---
 
 Testes são uma parte importante do desenvolvimento de software. Nesta lição nós veremos como testar nosso código Elixir com ExUnit e algumas das melhores práticas de como fazer isto.
@@ -27,8 +29,33 @@ end
 Podemos executar testes do nosso projeto com `mix test`. Se fizermos isso agora devemos ver uma saída semelhante a:
 
 ```shell
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 0 failures
+..
+
+Finished in 0.03 seconds
+2 tests, 0 failures
+```
+
+Porque há dois testes na saída? vamos dar uma olhada em `lib/example.ex`. Mix criou outro teste lá para nós, algum doctest.
+
+```elixir
+defmodule Example do
+  @moduledoc """
+  Documentation for Example.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Example.hello
+      :world
+
+  """
+  def hello do
+    :world
+  end
+end
 ```
 
 ### assert
@@ -75,6 +102,46 @@ ExUnit nos diz exatamente onde nossos asserts falharam, qual era o valor esperad
 ### assert_raise
 
 Às vezes pode ser necessário afirmar que um erro foi levantado, podemos fazer isso com `assert_raise`. Vamos ver um exemplo de `assert_raise` na próxima lição sobre Plug.
+
+### assert_receive
+
+Em Elixir, as aplicações consistem em atores/processos que enviam mensagens um para o outro, portanto muitas vezes você quer testar mensagens sendo enviada. Como o ExUnit executa seu próprio processo ele pode receber mensagem como qualquer outro processo e você pode  afirmar isso com a macro `assert_received`:
+
+```elixir
+defmodule SendingProcess do
+  def run(pid) do
+    send(pid, :ping)
+  end
+end
+
+defmodule TestReceive do
+  use ExUnit.Case
+
+  test "receives ping" do
+    SendingProcess.run(self())
+    assert_received :ping
+  end
+end
+```
+
+`assert_received` não espera mesangens com `assert_receive` você pode especificar um tempo limite.
+
+### capture_io and capture_log
+
+Capturar uma saída da aplicação é possível com `ExUnit.CaptureIO` sem mudar a aplicação original. Basta passar a função gerando a saída em:
+
+```elixir
+defmodule OutputTest do
+  use ExUnit.Case
+  import ExUnit.CaptureIO
+
+  test "outputs Hello World" do
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
+  end
+end
+```
+
+`ExUnit.CaptureLog` é o equivalent para capturar saída para `Logger`.
 
 ## Configuração de Teste
 
