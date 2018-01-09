@@ -1,13 +1,13 @@
 ---
 version: 1.2.0
-title: Composição
+title: Módulos
 ---
 
 Sabemos por experiência o quanto é incontrolável ter todas as nossas funções no mesmo arquivo e escopo. Nesta lição vamos cobrir como agrupar funções e definir um mapa especializado conhecido como struct, a fim de organizar o nosso código eficientemente.
 
 {% include toc.html %}
 
-## Modulos
+## Módulo
 
 Os módulos permitem a organização de funções em um namespace. Além de agrupar funções, eles permitem definir funções nomeadas e privadas que cobrimos na [lição sobre funções](../functions/).
 
@@ -24,7 +24,7 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
-É possível aninhar modulos em Elixir, permitindo-lhe promover um namespace para a sua funcionalidade:
+É possível aninhar módulos em Elixir, permitindo-lhe promover um namespace para a sua funcionalidade:
 
 ```elixir
 defmodule Example.Greetings do
@@ -184,7 +184,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-Além do par nome/aridade existem dois átomos especiais, `:functions` e `:macros`, que importam apenas funções e macros, espectivamente:
+Além do par nome/aridade existem dois átomos especiais, `:functions` e `:macros`, que importam apenas funções e macros, respectivamente:
 
 ```elixir
 import List, only: :functions
@@ -207,9 +207,9 @@ Se tentar chamar um macro que ainda não está carregado, Elixir vai gerar um er
 
 ### `use`
 
-Com a macro `use` podemos dar habilidade a outro module para modificar a sua definição atual.
-Quando invocamos `use` em nosso código estamos invocando o callback `__using__/1` definido pelo modulo declarado.
-O resultado da macro  `__using__/1`  passa a fazer parte da definição do modulo.
+Com a macro `use` podemos dar habilidade a outro módulo para modificar a sua definição atual.
+Quando invocamos `use` em nosso código estamos invocando o callback `__using__/1` definido pelo módulo declarado.
+O resultado da macro `__using__/1` passa a fazer parte da definição do módulo.
 Para melhor entendimento de como isso funciona vamos olhar um exmplo simples:
 
 ```elixir
@@ -222,8 +222,8 @@ defmodule Hello do
 end
 ```
 
-Aqui criamos um modulo `Hello` que define o callback `__using__/1`, o qual define a função `hello/1`.
-Vamos criar um novo modulo para tentar nosso novo código:
+Aqui criamos um módulo `Hello` que define o callback `__using__/1`, o qual define a função `hello/1`.
+Vamos criar um novo módulo para tentar nosso novo código:
 
 ```elixir
 defmodule Example do
@@ -231,16 +231,16 @@ defmodule Example do
 end
 ```
 
-Se executarmos nosso código no IEx veremos que `hello/1` está disponível no modulo `Example`.
+Se executarmos nosso código no IEx veremos que `hello/1` está disponível no módulo `Example`.
 
 ```elixir
 iex> Example.hello("Sean")
 "Hi, Sean"
 ```
 
-Aqui podemos ver que `use` invoca o callback `__using__/1` dentro do `Helo` o qual acaba adicionando o código dentro do nosso modulo.
-Agora que demonstramos o examplo básico vamos atualiuzar nosso código para olhar como `__using__/1` suporta opções.
-Vamos fazer issop adicionando a opção `greeting`:
+Aqui podemos ver que `use` invoca o callback `__using__/1` dentro do `Hello` o qual acaba adicionando o código dentro do nosso módulo.
+Agora que demonstramos o exemplo básico vamos atualizar nosso código para entender como `__using__/1` suporta opções.
+Vamos fazer isso adicionando a opção `greeting`:
 
 ```elixir
 defmodule Hello do
@@ -254,7 +254,7 @@ defmodule Hello do
 end
 ```
 
-Vamos atualizar nosso modulo `Example` para incluir a opção nova `greeting`:
+Vamos atualizar nosso módulo `Example` para incluir a opção nova `greeting`:
 
 ```elixir
 defmodule Example do
@@ -262,14 +262,14 @@ defmodule Example do
 end
 ```
 
-Se executamos isso dentro do IEx devemos ver que greeting foi alterado:
+Se executamos isso dentro do IEx devemos ver que a função greeting foi alterada:
 
 ```
 iex> Example.hello("Sean")
 "Hola, Sean"
 ```
 
-Esses exemplos simples demonstram como `use` funciona, mas essa é uma ferramenta poderosa na caixa de ferramenta do Elixir.
-A medida em que você passa a aprender mais sobre elixir, observe bem `use`, um exemplo você com certeza verá é `use ExUnit.Case, async: true`.
+Esses exemplos simples demonstram como `use` funciona, mas essa é uma ferramenta poderosa na caixa de ferramentas do Elixir.
+À medida que você passa a aprender mais sobre Elixir, observe bem como o use é utilizado. Um exemplo que você verá com certeza é use `ExUnit.Case, async: true`.
 
-**Nota**: `quote`, `alias`, `use`, `require`, são macros utilizadas quando trabamahos com [metaprogramação](../../advanced/metaprogramming).
+**Nota**: `quote`, `alias`, `use`, `require`, são macros utilizadas quando trabalhamos com [metaprogramação](../../advanced/metaprogramming).
