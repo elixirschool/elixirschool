@@ -69,8 +69,8 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "the truth" do
-    assert 1 + 1 == 3
+  test "greets the world" do
+    assert Example.hello() == :word
   end
 end
 ```
@@ -78,19 +78,19 @@ end
 Agora nós devemos ver uma saída bem diferente:
 
 ```shell
-  1) test the truth (ExampleTest)
+  1) test greets the world (ExampleTest)
      test/example_test.exs:5
      Assertion with == failed
-     code: 1 + 1 == 3
-     lhs:  2
-     rhs:  3
+     code:  assert Example.hello() == :word
+     left:  :world
+     right: :word
      stacktrace:
-       test/example_test.exs:6
+       test/example_test.exs:6 (test)
 
-......
+.
 
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 1 failures
+Finished in 0.03 seconds
+2 tests, 1 failures
 ```
 
 ExUnit nos diz exatamente onde nossos asserts falharam, qual era o valor esperado e qual o valor atual.
@@ -151,8 +151,8 @@ Por uma questão de exemplo, vamos mudar o nosso código para usar `setup_all`:
 
 ```elixir
 defmodule ExampleTest do
-  use ExUnit.Case
-  doctest Example
+  use ExUnit.Case 
+	doctest Example
 
   setup_all do
     {:ok, number: 2}
