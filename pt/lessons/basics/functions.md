@@ -33,7 +33,7 @@ Como você provavelmente já adivinhou, na versão abreviada nossos parâmetros 
 
 ## Pattern matching
 
-Pattern matching não é limitado a apenas variáveis em Elixir, isto pode ser aplicado a assinaturas de funções como veremos nesta seção.
+Pattern matching não é limitado a apenas variáveis em Elixir, isto pode ser aplicado a assinaturas de funções como vemos nesta seção.
 
 Elixir utiliza pattern matching para identificar o primeiro conjunto de parâmetros associados e invoca seu respectivo corpo.
 
@@ -89,9 +89,9 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### Nomaear Funçoes e a Aridade
+### Nomaear Funções e a Aridade
 
-Mencionamos anteriormente que as funçoes são nomeadas pela combinação da nome e aridade(quantidade dos argumentos) das funçoes. Isto significa que você pode fazer o siguiente.
+Mencionamos anteriormente que as funções são nomeadas pela combinação do nome e aridade(quantidade dos argumentos) das funções. Isto significa que você pode fazer o siguiente.
 
 ```elixir
 defmodule Greeter2 do
@@ -109,7 +109,7 @@ iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
 
-Nós temos listado os nomes das funçoes nos comentários acima. A causa que a primeira implementação não recebe argumentos, é conhecido como `hello/0`; a segunda função recebe um argumento, portanto será conhecido como `hello/1` e assim por diante. E ao contrário de sobrecargar funçoes como outros idiomas, estas são pensados como funçoes diferentes entre si. (Pattern matching, o a combinaçao de padrões, descrita só um momento atrás, aplica-se quando várias definiçoes são fornecidas com o mesmo quantidade de argumentos.)
+Nós temos listado os nomes das funções nos comentários acima. A causa que a primeira implementação não recebe argumentos, é conhecido como `hello/0`; a segunda função recebe um argumento, portanto será conhecido como `hello/1` e assim por diante. E ao contrário de sobrecargar funções como outros idiomas, estas são pensados como funções diferentes entre um ao outro. (Pattern matching, o a combinação de padrões, descrita só um momento atrás, aplica-se quando várias definiçoes são fornecidas com o mesmo quantidade de argumentos.)
 
 ### Funções privadas
 
