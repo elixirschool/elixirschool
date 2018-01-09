@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: Funções
 ---
 
@@ -33,7 +33,7 @@ Como você provavelmente já adivinhou, na versão abreviada nossos parâmetros 
 
 ## Pattern matching
 
-Pattern matching não é limitado a apenas variáveis em Elixir, isto pode ser aplicado a assinaturas como veremos nesta seção.
+Pattern matching não é limitado a apenas variáveis em Elixir, isto pode ser aplicado a assinaturas de funções como veremos nesta seção.
 
 Elixir utiliza pattern matching para identificar o primeiro conjunto de parâmetros associados e invoca seu respectivo corpo.
 
@@ -53,9 +53,9 @@ An error has occurred!
 
 ## Funções nomeadas
 
-Nós podemos definir funções com nomes para referir a elas no futuro, estas funções nomeadas são definidas com a palavra-chave `def` dentro de um modulo. Nós iremos aprender mais sobre Modulos nas próximas lições, por agora nós iremos focar apenas nas funções nomeadas.
+Nós podemos definir funções com nomes para referir a elas no futuro, estas funções nomeadas são definidas com a palavra-chave `def` dentro de um módulo. Nós iremos aprender mais sobre Módulos nas próximas lições, por agora nós iremos focar apenas nas funções nomeadas.
 
-Funções definidas dentro de um modulo são disponíveis para uso de outros modulos, isso é particularmente útil na construção de blocos em Elixir:
+Funções definidas dentro de um módulo são disponíveis para uso de outros módulos, isso é particularmente útil na construção de blocos em Elixir:
 
 ```elixir
 defmodule Greeter do
@@ -88,6 +88,28 @@ iex> Length.of []
 iex> Length.of [1, 2, 3]
 3
 ```
+
+### Nomear Funções e a Aridade
+
+Mencionamos anteriormente que as funções são nomeadas pela combinação do nome e aridade(quantidade dos argumentos) das funções. Isto significa que você pode fazer o seguinte.
+
+```elixir
+defmodule Greeter2 do
+  def hello(), do: "Hello, anonymous person!"   # hello/0
+  def hello(name), do: "Hello, " <> name        # hello/1
+  def hello(name1, name2), do: "Hello, #{name1} and #{name2}"
+                                                # hello/2
+end
+
+iex> Greeter2.hello()
+"Hello, anonymous person!"
+iex> Greeter2.hello("Fred")
+"Hello, Fred"
+iex> Greeter2.hello("Fred", "Jane")
+"Hello, Fred and Jane"
+```
+
+Nós temos listado os nomes das funções nos comentários acima. A causa que a primeira implementação não recebe argumentos, é conhecido como `hello/0`; a segunda função recebe um argumento, portanto será conhecido como `hello/1` e assim por diante. E ao contrário de sobrecargar funções como outros idiomas, estas são pensadas como funções diferentes entre um ao outro. (Pattern matching, o a combinação de padrões, descrita só um momento atrás, aplica-se quando várias definiçoes são fornecidas com a mesma quantidade de argumentos.)
 
 ### Funções privadas
 
@@ -143,7 +165,7 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
+  defp phrase("pt"), do: "Oi, "
 end
 
 iex> Greeter.hello("Sean", "en")
@@ -152,8 +174,8 @@ iex> Greeter.hello("Sean", "en")
 iex> Greeter.hello("Sean")
 "Hello, Sean"
 
-iex> Greeter.hello("Sean", "es")
-"Hola, Sean"
+iex> Greeter.hello("Sean", "pt")
+"Oi, Sean"
 ```
 
 Quando combinamos nosso exemplo de guard com argumento padrão, nos deparamos com um problema. Vamos ver o que pode parecer:
@@ -171,7 +193,7 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
+  defp phrase("pt"), do: "Oi, "
 end
 
 ** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
@@ -206,12 +228,12 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
+  defp phrase("pt"), do: "Oi, "
 end
 
 iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 
-iex> Greeter.hello ["Sean", "Steve"], "es"
-"Hola, Sean, Steve"
+iex> Greeter.hello ["Sean", "Steve"], "pt"
+"Oi, Sean, Steve"
 ```
