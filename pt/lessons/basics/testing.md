@@ -20,8 +20,8 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "greets the world" do
+    assert Example.hello() == :world
   end
 end
 ```
@@ -35,7 +35,7 @@ Finished in 0.03 seconds
 2 tests, 0 failures
 ```
 
-Porque há dois testes na saída? vamos dar uma olhada em `lib/example.ex`. Mix criou outro teste lá para nós, algum doctest.
+Porque há dois testes na saída? Vamos dar uma olhada em `lib/example.ex`. Mix criou outro teste lá para nós, algum doctest.
 
 ```elixir
 defmodule Example do
@@ -141,7 +141,7 @@ defmodule OutputTest do
 end
 ```
 
-`ExUnit.CaptureLog` é o equivalent para capturar saída para `Logger`.
+`ExUnit.CaptureLog` é o equivalente para capturar saída para `Logger`.
 
 ## Configuração de Teste
 
