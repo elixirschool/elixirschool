@@ -33,7 +33,7 @@ Como você provavelmente já adivinhou, na versão abreviada nossos parâmetros 
 
 ## Pattern matching
 
-Pattern matching não é limitado a apenas variáveis em Elixir, isto pode ser aplicado a assinaturas de funções como vermos nesta seção.
+Pattern matching não é limitado a apenas variáveis em Elixir, isto pode ser aplicado a assinaturas de funções como veremos nesta seção.
 
 Elixir utiliza pattern matching para identificar o primeiro conjunto de parâmetros associados e invoca seu respectivo corpo.
 
