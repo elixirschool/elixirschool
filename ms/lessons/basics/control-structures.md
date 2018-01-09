@@ -1,6 +1,8 @@
 ---
 version: 0.9.0
 title: Struktur Kawalan
+redirect_from:
+  - /my/lessons/basics/control-structures/
 ---
 
 Dalam pelajaran ini kita akan melihat struktur kawalan yang dibekalkan oleh ELixir.

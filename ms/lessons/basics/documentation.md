@@ -1,6 +1,8 @@
 ---
 version: 0.9.1
 title: Dokumentasi
+redirect_from:
+  - /my/lessons/basics/documentation/
 ---
 
 Mendokumentasi kod Elixir.

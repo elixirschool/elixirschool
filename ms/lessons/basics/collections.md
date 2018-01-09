@@ -1,6 +1,8 @@
 ---
 version: 0.9.0
 title: Collections
+redirect_from:
+  - /my/lessons/basics/collections/
 ---
 
 List, tuples, keywords, maps, dicts dan functional combinators.

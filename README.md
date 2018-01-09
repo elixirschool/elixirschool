@@ -77,7 +77,7 @@ In addition to the steps above there are a few addition steps required for trans
 1. Add it to list in `index.md`:
 
   ```markdown
-  Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl] [Português][pt], [Русском][ru] and [Bahasa Melayu][my] and other.
+  Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl] [Português][pt], [Русском][ru] and [Bahasa Melayu][ms] and other.
   ```
 
 #### Translated Lesson

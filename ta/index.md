@@ -6,7 +6,7 @@ title: எலிக்சர் பள்ளி
 
 எலிக்சர் எனும் நிரலாக்கமொழி பற்றிய பாடங்களின் தொகுப்பு. டுவிட்டரின் [ஸ்காலா பள்ளியின்](http://twitter.github.io/scala_school/) தாக்கத்தில் உருவானது.
 
-[English][en] [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][my], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe](tr), [ภาษาไทย][th] மற்றும் பலமொழிகளிலும் கற்கலாம்.
+[English][en] [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe](tr), [ภาษาไทย][th] மற்றும் பலமொழிகளிலும் கற்கலாம்.
 
   [cn]: /cn/
   [es]: /es/
@@ -19,7 +19,7 @@ title: எலிக்சர் பள்ளி
   [sk]: /sk/
   [vi]: /vi/
   [id]: /id/
-  [my]: /my/
+  [ms]: /ms/
   [uk]: /uk/
   [de]: /de/
   [bn]: /bn/

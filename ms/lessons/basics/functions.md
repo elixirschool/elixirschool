@@ -1,6 +1,8 @@
 ---
 version: 0.9.1
 title: Fungsi
+redirect_from:
+  - /my/lessons/basics/functions/
 ---
 
 Di dalam Elixir dan kebanyakan bahasa aturcara kefungsian, fungsi adalah rakyat kelas pertama.  Kita akan belajar mengenai jenis-jenis fungsi di dalam Elixir, apa yang menyebabkan mereka berbeza, dan bagaimana menggunakan mereka.
