@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: Mix
 ---
 
@@ -64,6 +64,16 @@ A primeira seção que iremos analisar é `project`. Aqui nós definimos o nome 
 
 A seção `application` é usada durante a geração do nosso arquivo de aplicação que iremos ver em breve.
 
+## Interativo
+
+Pode ser necessário a utilização do `iex` dentro do contexto da nossa aplicação. Felizmente para nós, mix torna isso fácil. Com a nossa aplicação compilada podemos começar uma nova seção `iex`:
+
+```bash
+$ iex -S mix
+```
+
+Iniciando `iex` desta forma , carrega sua aplicação e dependências no atual ambiente de execução.
+
 ## Compilação
 
 Mix é inteligente e irá compilar as alterações quando necessário, mas ainda pode ser necessário explicitamente compilar o seu projeto. Nesta seção, vamos cobrir a forma de compilar o nosso projeto e o que essa compilação faz.
@@ -81,16 +91,6 @@ Compiled lib/example.ex
 Generated example app
 ```
 Quando compilanos um projeto, mix cria um diretório `_build` para os nossos artefatos. Se olharmos dentro de `_build` veremos a aplicação compilada: `example.app`.
-
-## Interativo
-
-Pode ser necessário a utilização do `iex` dentro do contexto da nossa aplicação. Felizmente para nós, mix torna isso fácil. Com a nossa aplicação compilada podemos começar uma nova seção `iex`:
-
-```bash
-$ iex -S mix
-```
-
-Iniciando `iex` desta forma , carrega sua aplicação e dependências no atual ambiente de execução.
 
 ## Gestão de dependências
 
