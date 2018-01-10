@@ -141,7 +141,7 @@ defmodule OutputTest do
 end
 ```
 
-`ExUnit.CaptureLog` é o equivalente para capturar saída para `Logger`.
+`ExUnit.CaptureLog` é o equivalente para capturar a saída de `Logger`.
 
 ## Configuração de Teste
 
@@ -151,15 +151,15 @@ Por uma questão de exemplo, vamos mudar o nosso código para usar `setup_all`:
 
 ```elixir
 defmodule ExampleTest do
-  use ExUnit.Case 
-	doctest Example
+  use ExUnit.Case
+  doctest Example
 
   setup_all do
-    {:ok, number: 2}
+    {:ok, recipient: :world}
   end
 
-  test "the truth", state do
-    assert 1 + 1 == state[:number]
+  test "greets", state do
+    assert Example.hello() == state[:recipient]
   end
 end
 ```
