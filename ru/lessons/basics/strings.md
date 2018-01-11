@@ -143,7 +143,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Как вы могли заметить, последний вызов `anagrams?` завершился с FunctionClauseError. Эта ошибка говорит нам о том, что в нашем модуле нет функции, которая могла бы принимать два небинарных аргумента. И это именно то, что мы хотим &mdash; просто принимать две строки и ничего больше.

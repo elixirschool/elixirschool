@@ -167,7 +167,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 見ての通り、最後の `anagrams?` の呼び出しがFunctionClauseErrorを引き起こしています。このエラーは2つのバイナリでない引数を受け取る関数がモジュール内にないと教えてくれています。これは我々が意図したとおりで、2つの文字列だけを受け取りそれ以外は受け取らないようになっています。

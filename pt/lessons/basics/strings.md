@@ -142,7 +142,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Como você pode ver, a última chamada a `anagrams?` causou um FunctionClauseError. Esse erro nos diz que não há nenhuma função no nosso módulo de acordo com o padrão de receber dois argumentos não binários, e isso é exatamente o que nós queremos, receber apenas duas strings e nada mais.

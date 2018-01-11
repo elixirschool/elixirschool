@@ -142,7 +142,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Wie du sehen kannst resultiert der Aufruf von `anagrams?` in einem FunctionClauseError. Dieser Fehler sagt uns, dass es keine Funktion in unserem Modul gibt, welche auf das pattern zutrifft, zwei nicht-binäre Argumente zu erhalten. Das ist genau das, was wir wollen, um nur zwei Strings zu erhalten und nichts anderes.
