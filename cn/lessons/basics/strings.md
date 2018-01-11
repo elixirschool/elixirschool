@@ -141,7 +141,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 正如上面展示的，最后一次调用 `anagrams?` 返回了 `FunctionClauseError`，这个错误就是告诉我们模块中没有接受两个非字符串的函数。这正是我们期望的结果：只接受字符串作为参数，其他都不允许。

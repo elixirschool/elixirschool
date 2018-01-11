@@ -140,7 +140,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Ako môžeme vidieť, posledné volanie funkcie `anagrams?` vrátilo FunctionClauseError. Tento nám hovorí, že v našom module neexistuje funkcia, ktorá by príjmala dva ne-binárne (ne-reťazcové) argumenty. A to je správne, pretože sme chceli pracovať len s dvoma reťazcami, ničím iným.

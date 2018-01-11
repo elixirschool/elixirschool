@@ -142,7 +142,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Ostatnie wywołanie `anagrams?` spowodowało `FunctionClauseError`. Błąd ten mówi, że nie można znaleźć dopasowania funkcji, która mogłaby zostać wywołana z niebinarnymi argumentami. I oto nam chodzi, by naszą funkcję móc wywołać tylko z ciągami znaków. 
