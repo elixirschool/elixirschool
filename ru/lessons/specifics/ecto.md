@@ -27,7 +27,7 @@ end
 
 ### Репозиторий
 
-Создадим репозиторий для проекта - оболочку для базы данных. Для этого выполним команду `mix ecto.gen.repo`. Репозиторий находится в `lib/<project name>/repo.ex`.
+Создадим репозиторий для проекта - оболочку для базы данных. Для этого выполним команду `mix ecto.gen.repo -r ExampleApp.Repo`. Репозиторий находится в `lib/<project name>/repo.ex`.
 
 ```elixir
 defmodule ExampleApp.Repo do

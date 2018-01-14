@@ -29,7 +29,7 @@ end
 
 ### Repository
 
-Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo` task.  We'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
+Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo -r ExampleApp.Repo` task.  We'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
 
 ```elixir
 defmodule ExampleApp.Repo do

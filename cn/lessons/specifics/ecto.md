@@ -27,7 +27,7 @@ end
 
 ### Repository
 
-最后我们需要创建这个项目的 repository，或者说数据库封装。这可以通过 `mix ecto.gen.repo` 来完成。我们稍后会讨论 Ecto 的 mix 命令集。Repo 的代码常见于 `lib/<project name>/repo.ex`：
+最后我们需要创建这个项目的 repository，或者说数据库封装。这可以通过 `mix ecto.gen.repo -r ExampleApp.Repo` 来完成。我们稍后会讨论 Ecto 的 mix 命令集。Repo 的代码常见于 `lib/<project name>/repo.ex`：
 
 ```elixir
 defmodule ExampleApp.Repo do

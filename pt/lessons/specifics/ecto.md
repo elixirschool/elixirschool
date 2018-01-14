@@ -33,7 +33,7 @@ end
 ### Repositório
 
 Finalmente precisamos criar o repositório do nosso projeto, a camada de banco
-de dados. Isto pode ser feito rodando a tarefa `mix ecto.gen.repo`, falaremos sobre
+de dados. Isto pode ser feito rodando a tarefa `mix ecto.gen.repo -r ExampleApp.Repo`, falaremos sobre
 tarefas mix no Ecto mais para frente. O Repositório pode ser encontrado no arquivo
 `lib/<nome_do_projecto>/repo.ex`:
 

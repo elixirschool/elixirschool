@@ -27,7 +27,7 @@ end
 
 ### Repository
 
-Trước hết ta cần tạo repository (database wrapper) của dự án bằng cách dùng tác vụ `mix ecto.gen.repo`. Ta sẽ xem các tác vụ của Ecto sau. Repo của chúng ta có thể được tìm thấy ở `lib/<tên project>/repo.ex`
+Trước hết ta cần tạo repository (database wrapper) của dự án bằng cách dùng tác vụ `mix ecto.gen.repo -r ExampleApp.Repo`. Ta sẽ xem các tác vụ của Ecto sau. Repo của chúng ta có thể được tìm thấy ở `lib/<tên project>/repo.ex`
 
 ```elixir
 defmodule ExampleApp.Repo do
