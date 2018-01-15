@@ -27,7 +27,7 @@ end
 
 ### リポジトリ
 
-最後に、プロジェクトのリポジトリ、すなわちデータベースのラッパを作成する必要があります。これは`mix ecto.gen.repo`タスクで行うことができます。EctoのMixタスクについては次で扱います。作成されたリポジトリ(Repoモジュール)は`lib/<project name>/repo.ex`内に置かれます:
+最後に、プロジェクトのリポジトリ、すなわちデータベースのラッパを作成する必要があります。これは`mix ecto.gen.repo -r ExampleApp.Repo`タスクで行うことができます。EctoのMixタスクについては次で扱います。作成されたリポジトリ(Repoモジュール)は`lib/<project name>/repo.ex`内に置かれます:
 
 ```elixir
 defmodule ExampleApp.Repo do
