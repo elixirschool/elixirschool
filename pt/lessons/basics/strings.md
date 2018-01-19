@@ -41,7 +41,7 @@ iex(6)> "hełło" <> <<0>>
 
 Ao programar em Elixir, geralmente usamos strings ao invés de listas de caracteres. O suporte a listas de caracteres é incluso principalmente por ser obrigatório para alguns módulos Erlang.
 
-Para mais informação, veja o oficial [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+Para mais informação, veja o oficial [`Guia de Introdução`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
 
 ## Graphemes e Codepoints
 
