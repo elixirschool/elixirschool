@@ -1,6 +1,8 @@
 ---
-version: 0.9.1
+version: 1.0.2
 title: Elixir embutido (EEx)
+redirect_from:
+  - /pt/lessons/specifics/eex/
 ---
 
 Do mesmo jeito que Ruby possui ERB e Java JSPs, Elixir tem EEx ou *Embedded Elixir (Elixir embutido)*. Com EEx podemos embutir e avaliar código Elixir dentro das *strings*.
@@ -24,7 +26,7 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 
 A mais rápida e preferida forma de usar o EEx é embutir nosso template dentro de um módulo assim ele pode ser compilado. Para isso precisamos do nosso template no momento da compilação e dos macros `function_from_string/5` e `function_from_file/5`.
 
-Vamos nover nossa saudação para outro arquivo e gerar uma função para nosso template:
+Vamos mover nossa saudação para outro arquivo e gerar uma função para nosso template:
 
 ```elixir
 # greeting.eex
@@ -45,7 +47,7 @@ Por último, EEx fornece-nos uma forma para directamente gerar Elixir AST a part
 
 ## Etiquetas
 
-Por padrão, existem três etiquetas (tags) suportadas no EEx:
+Por padrão, existem quatro etiquetas (tags) suportadas no EEx:
 
 ```elixir
 <% expressão Elixir - alinhado com a saída %>
