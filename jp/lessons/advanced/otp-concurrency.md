@@ -22,7 +22,7 @@ defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  キューを開始し、リンクします。これはヘルパーメソッドです。
+  キューを開始し、リンクします。これはヘルパー関数です。
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -65,7 +65,7 @@ defmodule SimpleQueue do
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
 
-  ### クライアント側API / ヘルパーメソッド
+  ### クライアント側API / ヘルパー関数
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -124,7 +124,7 @@ defmodule SimpleQueue do
     {:noreply, state ++ [value]}
   end
 
-  ### クライアント側API / ヘルパーメソッド
+  ### クライアント側API / ヘルパー関数
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
