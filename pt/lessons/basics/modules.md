@@ -138,7 +138,7 @@ defmodule Example do
 end
 ```
 
-É possível criar pseudônimos para multiplos módulos de uma vez só:
+É possível criar pseudônimos para múltiplos módulos de uma só vez:
 
 ```elixir
 defmodule Example do
@@ -161,9 +161,9 @@ iex> last([1, 2, 3])
 
 #### Filtrando
 
-Por padrão todas as funções e macros são importadas, porém nós podemos filtrar-los usando as opções `:only` e `:except`.
+Por padrão todas as funções e macros são importadas, porém nós podemos filtrá-los usando as opções `:only` e `:except`.
 
-Para importar funções e macros específicos nós temos que fornecer os  pares de nome para `:only` e `:except`. Vamos começar por importar apenas a função `last/1`:
+Para importar funções e macros específicos nós temos que fornecer os pares de nome para `:only` e `:except`. Vamos começar por importar apenas a função `last/1`:
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -210,7 +210,7 @@ Se tentar chamar um macro que ainda não está carregado, Elixir vai gerar um er
 Com a macro `use` podemos dar habilidade a outro módulo para modificar a sua definição atual.
 Quando invocamos `use` em nosso código estamos invocando o callback `__using__/1` definido pelo módulo declarado.
 O resultado da macro `__using__/1` passa a fazer parte da definição do módulo.
-Para melhor entendimento de como isso funciona vamos olhar um exmplo simples:
+Para melhor entendimento de como isso funciona vamos olhar um exemplo simples:
 
 ```elixir
 defmodule Hello do
