@@ -39,7 +39,7 @@ iex(6)> "hełło" <> <<0>>
 
 Ao programar em Elixir, geralmente usamos strings ao invés de listas de caracteres. O suporte a listas de caracteres é incluso principalmente por ser obrigatório para alguns módulos Erlang.
 
-Para mais informação, veja o oficial [`Guia de Introdução`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+Para mais informação, veja o [`Guia de Introdução`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html) oficial.
 
 ## Graphemes e Codepoints
 
@@ -130,7 +130,7 @@ end
 
 Primeiro vamos olhar para `anagrams?/2`. Estamos verificando se os parâmetros que recebemos são binários ou não. Essa é a forma de verificar se uma parâmetro é uma String em Elixir.
 
-Depois disso, chamamos a função que ordena as strings em ordem alfabética, primeiro deixamos a string com letras minúsculas e então usamos `String.graphemes`, que retorna a lista com os graphemes da string. Por fim, utilizamos `Enum.sort/1` para ordenar a lista. Bastante simples, não acha?
+Depois disso, chamamos a função que ordena as strings em ordem alfabética, primeiro deixamos a string com letras minúsculas e então usamos `String.graphemes/1`, que retorna a lista com os graphemes da string. Por fim, utilizamos `Enum.sort/1` para ordenar a lista. Bastante simples, não acha?
 
 Vamos verificar a saída dessa função no iex:
 
