@@ -177,7 +177,7 @@ with {:ok, user} <- Repo.insert(changeset),
 ```
 
 
-Elixir 1.3からは、`with/1`が`else`をサポートします:
+Elixir 1.3からは`with/1`で`else`を使えます:
 
 ```elixir
 import Integer
