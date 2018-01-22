@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.1.1
 title: 制御構造
 ---
 
@@ -38,7 +38,7 @@ iex> unless is_integer("hello") do
 
 ## `case`
 
-複数のパターンに対してマッチする必要があるなら、`case`を使うことができます:
+複数のパターンに対してマッチする必要があるなら、`case/2`を使うことができます:
 
 ```elixir
 iex> case {:ok, "Hello World"} do
@@ -49,7 +49,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-`_`変数は`case`命令文の中に含まれる重要な要素です。これが無いと、マッチするものが見あたらない場合にエラーが発生します:
+`_`変数は`case/2`命令文の中に含まれる重要な要素です。これが無いと、マッチするものが見あたらない場合にエラーが発生します:
 
 ```elixir
 iex> case :even do
@@ -66,10 +66,10 @@ iex> case :even do
 
 `_`を"他の全て"にマッチする`else`と考えましょう。
 
-`case`はパターンマッチングに依存しているため、パターンマッチングと同じルールや制限が全て適用されます。既存の変数に対してマッチさせようという場合にはピン`^`演算子を使わなくてはいけません:
+`case/2`はパターンマッチングに依存しているため、パターンマッチングと同じルールや制限が全て適用されます。既存の変数に対してマッチさせようという場合にはピン`^`演算子を使わなくてはいけません:
 
 ```elixir
-iex> pie = 3.14 
+iex> pie = 3.14
 3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
@@ -78,9 +78,9 @@ iex> case "cherry pie" do
 "I bet cherry pie is tasty"
 ```
 
-`case`のもう1つの素晴らしい特徴として、ガード節に対応していることがあげられます:
+`case/2`のもう1つの素晴らしい特徴として、ガード節に対応していることがあげられます:
 
-_この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html)ガイドから直接持ってきています。_
+_この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)ガイドから直接持ってきています。_
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -96,9 +96,9 @@ iex> case {1, 2, 3} do
 
 ## `cond`
 
-値ではなく、条件をマッチさせる必要がある時には、`cond`を使うことができます。これは他の言語でいうところの`else if`や`elsif`のようなものです:
+値ではなく、条件をマッチさせる必要がある時には、`cond/1`を使うことができます。これは他の言語でいうところの`else if`や`elsif`のようなものです:
 
-_この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html)ガイドから直接持ってきています。_
+_この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)ガイドから直接持ってきています。_
 
 ```elixir
 iex> cond do
@@ -124,11 +124,11 @@ iex> cond do
 
 ## `with`
 
-特殊形式の`with`はネストされた`case`文を使うような時やきれいにパイプできない状況に便利です。`with`式はキーワード, ジェネレータ, そして式から成り立っています。
+特殊形式の`with/1`はネストされた`case/2`文を使うような時やきれいにパイプできない状況に便利です。`with/1`式はキーワード, ジェネレータ, そして式から成り立っています。
 
-ジェネレータについてはリスト内包表記のレッスンでより詳しく述べますが、今は`<-`の右側と左側を比べるのにパターンマッチングが使われることを知っておくだけでよいです。
+ジェネレータについては[リスト内包表記のレッスン](../comprehensions/)でより詳しく述べますが、今は`<-`の右側と左側を比べるのに[パターンマッチング](../pattern-matching/)が使われることを知っておくだけでよいです。
 
-`with`の簡単な例から始め、その後さらなる例を見てみましょう:
+`with/1`の簡単な例から始め、その後さらなる例を見てみましょう:
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
@@ -150,7 +150,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 :error
 ```
 
-それでは、`with`を使わない長めの例と、それをどのようにリファクタリングできるかを見てみましょう:
+それでは、`with/1`を使わない長めの例と、それをどのようにリファクタリングできるかを見てみましょう:
 
 ```elixir
 case Repo.insert(changeset) do
@@ -168,10 +168,36 @@ case Repo.insert(changeset) do
 end
 ```
 
-`with`を導入するとコードが短く、わかりやすくなります:
+`with/1`を導入するとコードが短く、わかりやすくなります:
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
      {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token, claims),
      do: important_stuff(jwt, full_claims)
 ```
+
+
+Elixir 1.3からは`with/1`で`else`を使えます:
+
+```elixir
+import Integer
+
+m = %{a: 1, c: 3}
+
+a =
+  with {:ok, number} <- Map.fetch(m, :a),
+    true <- is_even(number) do
+      IO.puts "#{number} divided by 2 is #{div(number, 2)}"
+      :even
+  else
+    :error ->
+      IO.puts("We don't have this item in map")
+      :error
+
+    _ ->
+      IO.puts("It is odd")
+      :odd
+  end
+```
+
+これは`case`のようなパターンマッチングを提供することで、エラーを扱いやすくします。渡されるのはマッチングに失敗した最初の表現式の値です。
