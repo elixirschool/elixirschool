@@ -1,27 +1,27 @@
 # LANGUAGE_CODE:
-#  bg: 
-#  bn: 
-#  cn: 
-#  de: 
-#  en: 
-#  es: 
-#  fr: 
-#  gr: 
-#  id: 
-#  it: 
-#  jp: 
-#  ko: 
-#  ms: 
-#  "no": 
-#  pl: 
-#  pt: 
-#  ru: 
-#  sk: 
-#  ta: 
-#  th: 
-#  tr: 
-#  uk: 
-#  vi: 
+#  bg:
+#  bn:
+#  cn:
+#  de:
+#  en:
+#  es:
+#  fr:
+#  gr:
+#  id:
+#  it:
+#  ja:
+#  ko:
+#  ms:
+#  "no":
+#  pl:
+#  pt:
+#  ru:
+#  sk:
+#  ta:
+#  th:
+#  tr:
+#  uk:
+#  vi:
 
 en:
   ar: Arabiс
@@ -35,7 +35,7 @@ en:
   gr: Greek
   id: Indonesian
   it: Italian
-  jp: Japanese
+  ja: Japanese
   ko: Korean
   ms: Malaysian
   "no": Norwegian
@@ -60,7 +60,7 @@ es:
   gr: Griego
   id: Indonesio
   it: Italiano
-  jp: Japonés
+  ja: Japonés
   ko: Coreano
   ms: Malayo
   "no": Noruego
@@ -83,7 +83,7 @@ id:
  gr: Bahasa Yunani
  id: Bahasa Indonesia
  it: Bahasa Italia
- jp: Bahasa Jepang
+ ja: Bahasa Jepang
  ko: Bahasa Korea
  ms: Bahasa Malaysia
  "no": Bahasa Norwegia
@@ -95,7 +95,7 @@ id:
  uk: Bahasa Ukraina
  vi: Bahasa Vietnam
 
- jp:
+ ja:
   ar: アラビア語
   bg: ブルガリア語
   bn: ベンガル語
@@ -107,7 +107,7 @@ id:
   gr: ギリシャ語
   id: インドネシア語
   it: イタリア語
-  jp: 日本語
+  ja: 日本語
   ko: 韓国語
   ms: マレーシア語
   "no": ノルウェー語
@@ -132,7 +132,7 @@ th:
   gr: ภาษากรีก
   id: ภาษาอินโดนิเซีย
   it: ภาษาอิตาลี
-  jp: ภาษาญี่ปุ่น
+  ja: ภาษาญี่ปุ่น
   ko: ภาษาเกาหลี
   ms: ภาษามาเลเซีย
   "no": ภาษานอร์เวย์

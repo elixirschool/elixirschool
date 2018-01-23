@@ -1,6 +1,8 @@
 ---
 version: 0.9.1
 title: Ecto
+redirect_from:
+  - /jp/lessons/specifics/ecto/
 ---
 
 Ectoは公式のElixirプロジェクトで、データベースのラッパと、総合的なクエリ言語を提供します。Ectoを用いることで、マイグレーションの作成やモデルの定義、レコードの挿入や更新、問合せが行えるようになります。

@@ -1,6 +1,8 @@
 ---
 version: 0.9.0
 title: Strings
+redirect_from:
+  - /jp/lessons/basics/strings/
 ---
 
 Elixirにおいて文字列とは何でしょうか。文字のリスト、書記素、コードポイントとは。

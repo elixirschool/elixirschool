@@ -1,6 +1,8 @@
 ---
 version: 0.9.1
 title: メタプログラミング
+redirect_from:
+  - /jp/lessons/advanced/metaprogramming/
 ---
 
 メタプログラミングとはコード自体にコードを記述させる機能です。

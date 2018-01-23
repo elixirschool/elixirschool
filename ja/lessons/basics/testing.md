@@ -1,6 +1,8 @@
 ---
 version: 0.9.0
 title: テスト
+redirect_from:
+  - /jp/lessons/basics/testing/
 ---
 
 テストはソフトウェア開発の重要な一部です。このレッスンではElixirコードをExUnitを用いてテストする方法と、そのためのベストプラクティスをいくつか見てきます。

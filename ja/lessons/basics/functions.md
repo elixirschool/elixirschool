@@ -1,6 +1,8 @@
 ---
 version: 0.9.1
 title: 関数
+redirect_from:
+  - /jp/lessons/basics/functions/
 ---
 
 Elixirや多くの関数型言語では、関数は第一級市民(≒ファーストクラスオブジェクト)です。Elixirにおける関数の種類について、それぞれどう異なっていて、どのように使うのかを学んでいきます。

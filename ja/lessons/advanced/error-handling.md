@@ -1,6 +1,8 @@
 ---
 version: 0.9.1
 title: エラーハンドリング
+redirect_from:
+  - /jp/lessons/advanced/error-handling/
 ---
 
 `{:error, reason}`のようなタプルを返すのが一般的とはいえ、Elixirは例外をサポートしており、このレッスンではエラーハンドリングの方法や利用可能な異なる仕組みについて見ていきます。

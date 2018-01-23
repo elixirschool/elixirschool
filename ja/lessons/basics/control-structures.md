@@ -1,6 +1,8 @@
 ---
 version: 1.1.1
 title: 制御構造
+redirect_from:
+  - /jp/lessons/basics/control-structures/
 ---
 
 このレッスンではElixirで利用できる制御構造を見ていきます。

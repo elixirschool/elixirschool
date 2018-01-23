@@ -1,6 +1,8 @@
 ---
 version: 0.9.1
 title: ドキュメント
+redirect_from:
+  - /jp/lessons/basics/documentation/
 ---
 
 Elixir コードのドキュメント。

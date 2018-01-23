@@ -39,33 +39,33 @@ In addition to the steps above there are a few addition steps required for trans
 
 #### New Language
 
-1. Create a folder using the 2 character code (e.g. jp, en, es, etc) with lesson subfolders:
+1. Create a folder using the 2 character code (e.g. ja, en, es, etc) with lesson subfolders:
 
   ```shell
   $ cd elixirschool
-  $ mkdir -p jp/lessons/{basics,advanced,specifics,libraries}
-  $ touch jp/lessons/{basics,advanced,specifics,libraries}/.gitignore
+  $ mkdir -p ja/lessons/{basics,advanced,specifics,libraries}
+  $ touch ja/lessons/{basics,advanced,specifics,libraries}/.gitignore
   ```
 
 1. Update `_config.yml` by including the 2 character code in `languages` and adding translations to `sections`, `description` and `toc`:
 
   ```yaml
-  languages: ['en', 'jp']
+  languages: ['en', 'ja']
   default_lang: en
   exclude_from_localization: []
   sections:
     - tag: basics
       label:
         en: Basics
-        jp: 基本
+        ja: 基本
 
   description:
     en: Lessons about the Elixir programming language
-    jp: プログラミング言語Elixirのレッスン
+    ja: プログラミング言語Elixirのレッスン
 
   toc:
     en: Table of Contents
-    jp: 目次
+    ja: 目次
   ```
 
 1. If the new language is RTL (right-to-left) it should also be added to the `rtl_languages` list:
@@ -77,7 +77,7 @@ In addition to the steps above there are a few addition steps required for trans
 1. Add it to list in `index.md`:
 
   ```markdown
-  Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl] [Português][pt], [Русском][ru] and [Bahasa Melayu][ms] and other.
+  Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl] [Português][pt], [Русском][ru] and [Bahasa Melayu][ms] and other.
   ```
 
 #### Translated Lesson
@@ -90,7 +90,7 @@ In addition to the steps above there are a few addition steps required for trans
      * else bump one of the version numbers depending on how important is your change.
    * `redirect_from` should be removed since it is used only for English lessons that earlier were hosted in a separate folder without a language prefix.
 
-   For example `/jp/lessons/basics/basics.md`:
+   For example `/ja/lessons/basics/basics.md`:
 
   ```yaml
   ---

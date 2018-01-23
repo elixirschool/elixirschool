@@ -1,6 +1,8 @@
 ---
 version: 0.9.0
 title: Sigils
+redirect_from:
+  - /jp/lessons/basics/sigils/
 ---
 
 シギル(sigil)を使う/作る

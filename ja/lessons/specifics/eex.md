@@ -1,6 +1,8 @@
 ---
 version: 0.9.1
 title: 埋め込みElixir (EEx)
+redirect_from:
+  - /jp/lessons/specifics/eex/
 ---
 
 RubyにERBが、そしてJavaにJSPがあるようにElixirにもEEx即ち埋め込みElixirがあります。EExを使って文字列の中にElixirを埋め込んで評価することができます。
@@ -48,8 +50,8 @@ iex> Example.greeting("Sean")
 デフォルトではEExは4種類のタグをサポートしています。
 
 ```elixir
-<% Elixir expression - inline with output (Elixirの式 - インラインに展開される) %> 
-<%= Elixir expression - replace with result (Elixirの式 - 式の評価結果に置き換える) %>  
+<% Elixir expression - inline with output (Elixirの式 - インラインに展開される) %>
+<%= Elixir expression - replace with result (Elixirの式 - 式の評価結果に置き換える) %>
 <%% EEx quotation - returns the contents inside (EExの引用 - 内側のコンテンツを返す) %>
 <%# Comments - they are discarded from source (コメント、ソースから落とされる)%>
 ```

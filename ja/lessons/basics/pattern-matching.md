@@ -1,6 +1,8 @@
 ---
 version: 1.0.1
 title: パターンマッチング
+redirect_from:
+  - /jp/lessons/basics/pattern-matching/
 ---
 
 パターンマッチングはElixirの強力な部品で、単純な値やデータ構造、果ては関数でさえもマッチすることができます。このレッスンではパターンマッチングの使い方から見ていきます。

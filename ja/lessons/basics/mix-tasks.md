@@ -1,6 +1,8 @@
 ---
 version: 0.9.1
 title: カスタムMixタスク
+redirect_from:
+  - /jp/lessons/basics/mix-tasks/
 ---
 
 あなたのElixirプロジェクトのためのカスタムのMixタスクの作成

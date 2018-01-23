@@ -1,6 +1,8 @@
 ---
 version: 0.9.1
 title: 実行ファイル
+redirect_from:
+  - /jp/lessons/advanced/escripts/
 ---
 
 Elixirで実行ファイルをビルドするにはescriptを利用します。escriptはErlangがインストールされているあらゆるシステム上で動作する実行ファイルを生み出します。
