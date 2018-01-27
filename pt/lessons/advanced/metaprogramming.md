@@ -130,7 +130,7 @@ end
 
 ### Macros Privados
 
-Embora não seja tão comum, Elixir suporta macros privadas. Um macro privado é definido com `defmacro` e só pode ser chamado a partir do módulo no qual ele foi definido. Macros privados devem ser definidas antes do código que as invoca.
+Embora não seja tão comum, Elixir suporta macros privadas. Um macro privado é definido com `defmacrop` e só pode ser chamado a partir do módulo no qual ele foi definido. Macros privados devem ser definidas antes do código que as invoca.
 
 ### Higienização de Macros
 
