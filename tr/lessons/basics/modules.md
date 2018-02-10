@@ -62,11 +62,11 @@ Elixir'de bazı niteliklerin özel olarak ayrıldığını belirmekte fayda var.
 + `doc` — Fonksiyon ve makrolar için dökümanlar
 + `behaviour` — OTP veya kullanıcı tanımlı davranış için kullanma.
 
-## Structlar
+## Yapılarlar (Structs)
 
-Structs are special maps with a defined set of keys and default values.  A struct must be defined within a module, which it takes its name from.  It is common for a struct to be the only thing defined within a module.
+Yapılar anahtar kelime ve varsayılan değerleriden oluşan özel haritalardır. Yapının adını alacağı bir modül içne tanımlanmalıdır.  Modül içinde yapı tek başına tanımlanması yagın bir kullanımdır.
 
-To define a struct we use `defstruct` along with a keyword list of fields and default values:
+Yapı tanımlamak için  `defstruct`  ile birlikte anahtar kelime listesi ve varsıyılan değerleri ile birlikte kullanırız :
 
 ```elixir
 defmodule Example.User do
@@ -74,7 +74,7 @@ defmodule Example.User do
 end
 ```
 
-Let's create some structs:
+Yapılar yaratalım:
 
 ```elixir
 iex> %Example.User{}
@@ -87,7 +87,7 @@ iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
 %Example.User{name: "Steve", roles: [:admin, :owner]}
 ```
 
-We can update our struct just like we would a map:
+Yapıyı tıpkı bir harita gibi güncelleyebiliriz:
 
 ```elixir
 iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
@@ -96,20 +96,20 @@ iex> sean = %{steve | name: "Sean"}
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-Most importantly, you can match structs against maps:
+En önemlisi haritalarla yapılara erişebilirsiniz:
 
 ```elixir
 iex> %{name: "Sean"} = sean
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-## Composition
+## Birleştirme (Composition)
 
-Now that we know how to create modules and structs let's learn how to add existing functionality to them via composition.  Elixir provides us with a variety of different ways to interact with other modules.
+Artık modülleri ve ve yapıları nasıl oluşturacağımız biliyoruz, Birleştirme yolu ile farklı fonksiyonellikleri nasıl ekleyeceğimizi öğrenelim.  Elixir diğer modüllerle etkileşime girmek için farklı yöntemler sunar.
 
 ### `alias`
 
-Allows us to alias module names; used quite frequently in Elixir code:
+Modülere takma adlar tanımlamamıza izin veriri ve bu Elixirde sıkça kullanılır:
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -122,14 +122,14 @@ defmodule Example do
   def greeting(name), do: Greetings.basic(name)
 end
 
-# Without alias
+# Takma ad olmadan
 
 defmodule Example do
   def greeting(name), do: Sayings.Greetings.basic(name)
 end
 ```
 
-If there's a conflict between two aliases or we just wish to alias to a different name entirely, we can use the `:as` option:
+Mükerer takma ad varsa veya tamamen farklı bir ad verilmek isteniyorsa `:as` seçeneği kullanılabilinir:
 
 ```elixir
 defmodule Example do
@@ -139,7 +139,7 @@ defmodule Example do
 end
 ```
 
-It's even possible to alias multiple modules at once:
+Aynı anda birden falza modüle takma ad vermekte de mümkündür:
 
 ```elixir
 defmodule Example do
@@ -150,7 +150,7 @@ end
 ### `import`
 
 If we want to import functions and macros rather than aliasing the module we can use `import/`:
-
+Eğer takma ad kullanmak yerine fonsiyon ve makroları eklmek isterseniz `import/` kullana biliriniz:
 ```elixir
 iex> last([1, 2, 3])
 ** (CompileError) iex:9: undefined function last/1
@@ -160,11 +160,11 @@ iex> last([1, 2, 3])
 3
 ```
 
-#### Filtering
+#### Filtreleme
 
-By default all functions and macros are imported but we can filter them using the `:only` and `:except` options.
+Varsayılana olarak tüm fonksiyon ve makrolar içeri aktarılır anacak  `:only` ve `:except` kullanarak filitreleye bilirsiniz.
 
-To import specific functions and macros, we must provide the name/arity pairs to `:only` and `:except`.  Let's start by importing only the `last/1` function:
+Belirli fonksiyonları ve makroları aktarmak için `:only` ve `:except` kullanırken name/arity (argüman sayısnı) kullanmamız gerekiyor.  Şimdi `last/1` fonksiyonunu içe aktararak başlayalım:
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -174,7 +174,7 @@ iex> last([1, 2, 3])
 3
 ```
 
-If we import everything except `last/1` and try the same functions as before:
+Eğer `last/1` dışında herşeyi eklemke istiyotrsak:
 
 ```elixir
 iex> import List, except: [last: 1]
@@ -185,7 +185,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arity pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
+Name/arity'e ek olarak sadece fonksiyon yada makroları çağırmka için 2 adet `:functions` ve `:macros` atomları bulunmantadır:
 
 ```elixir
 import List, only: :functions
@@ -194,7 +194,7 @@ import List, only: :macros
 
 ### `require`
 
-Although used less frequently `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
+`require/2` çok sık kullanılmasada önemlidir. Bir modül gerekirse onun derlenmesini ve yüklenmesini sağlar. Bir modülün makrolarına erişmeye çalışıtığımızda kolaylık sağlar:
 
 ```elixir
 defmodule Example do
@@ -204,14 +204,15 @@ defmodule Example do
 end
 ```
 
-If we attempt to call a macro that is not yet loaded Elixir will raise an error.
+Henüz yüklenmemiş bir makro çağırmaya kalkarsak, Elixir hata mesajı verir.
 
 ### `use`
 
-With the `use` macro we can enable another module to modify our current module's definition.
-When we call `use` in our code we're actually invoking the `__using__/1` callback defined by the provided module.
-The result of the `__using__/1` macro becomes part of our module's definition.
-To get a better understanding how this works let's look at a simple example:
+`use` makrosu ile başka bir modülün mevcut modül tanımımızı değiştirmesini sağlayabiliriz.
+Kodumuzdaki `use` fonksiyonunu çağırdığımızda, sağlanan bu modül tarafından tanımlanan  `__using__/1`  callback gerçekleştirilir.
+`__using__/1` makrosunun sonucu modülün tanımının bir parçası haline gelir.
+
+Bunun nasıl işlediğini daha iyi anlamak için örneğe göz atalım:
 
 ```elixir
 defmodule Hello do
@@ -223,8 +224,8 @@ defmodule Hello do
 end
 ```
 
-Here we've created a `Hello` module that defines the `__using__/1` callback inside of which we define a `hello/1` function.
-Let's create a new module so we can try out our new code:
+Burada bir `hello/1`  fonksiyonu tanımladığımızda `__using__/1` bize callback tanımlayan bir `Hello` modülü oluşturduk.
+Şimdi kodumuzu denemek için yeni bir kod oluşturalım:
 
 ```elixir
 defmodule Example do
@@ -232,16 +233,15 @@ defmodule Example do
 end
 ```
 
-If we try our code out in IEx we'll see that `hello/1` is available on the `Example` module:
+Kodumuzu IEx'de denersek, `hello/1` öğesinin `Example` modülünde mevcut olduğunu göreceğiz:
 
 ```elixir
 iex> Example.hello("Sean")
 "Hi, Sean"
 ```
-
-Here we can see that `use` invoked the `__using__/1` callback on `Hello` which in turn added the resulting code to our module.
-Now that we've demonstrated a basic example let's update our code to look at how `__using__/1` supports options.
-We'll do this by adding a `greeting` option:
+Burada ise, `Hello` modülü üzerinde  `__using__/1` callback yaptığını görebiliriz ve sonuçta oluşan kod modülize edilmiş olur.
+Basit bir örnek gösterdik, `__using __ / 1`’in seçenekleri nasıl desteklediğine bakmak için kodumuzu güncelleyelim.
+Bunu greeting seçeneği ekleyerek uygulayacağız:
 
 ```elixir
 defmodule Hello do
@@ -255,7 +255,7 @@ defmodule Hello do
 end
 ```
 
-Let's update our `Example` module to include the newly created `greeting` option:
+`Example` modülünü `greeting` seçeneğini içerecek şekilde güncelleyelim:
 
 
 ```elixir
@@ -264,14 +264,14 @@ defmodule Example do
 end
 ```
 
-If we give it a try in IEx we should see that the greeting has been changed:
+IEx komut satırın `greeting` kullanırsak komut aşağıdaki gibi değişiklik gösterir :
 
 ```
 iex> Example.hello("Sean")
 "Hola, Sean"
 ```
 
-These are simple examples to demonstrate how `use` works but it is an incredibly powerful tool in the Elixir toolbox.
-As you continue to learn about Elixir keep an eye out for `use`, one example you're sure to see is `use ExUnit.Case, async: true`.
+Bu gösterilenler, kullanımın nasıl çalıştığını gösteren en basit örneklerdir, ancak `use` Elixir araç kutusundaki en güçlü araçlardan biridir.
+Elixir'i öğrenmeye devam ederken `use` modülüne göz kulak olun, öğremeye devam ederken mutlaka göreceğiniz örneklerden biride `use ExUnit.Case, async: true`
 
-**Note**: `quote`, `alias`, `use`, `require` are a macro used when we work with [metaprogramming](../../advanced/metaprogramming).
+**Not**: [Meta programalmada](../../advanced/metaprogramming) kullanılan makrolar : `quote`, `alias`, `use`, `require` .
