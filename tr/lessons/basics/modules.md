@@ -10,7 +10,7 @@ Bu zaman kadar ki derslerimiz de fonksiyonları aynı dosya ve alanda tanımlad�
 
 ## Modüller
 
-Modüller, donksiyonları bir isim namespace da organize etmemizi sağlar. Nunlara ek olarak [fonksiyonlar dersinde](../functions/).  adlandırımış ve özel fonksiyonları tanımlamamıza izin verir.
+Modüller, fonksiyonları bir isim namespace da organize etmemizi sağlar. Bunlara ek olarak [fonksiyonlar dersinde](../functions/).  adlandırılmış ve özel fonksiyonları tanımlamamıza izin verir.
 
 Basit bir örneğe bakalım:
 
@@ -58,15 +58,15 @@ end
 
 Elixir'de bazı niteliklerin özel olarak ayrıldığını belirmekte fayda var.  En yaygın 3 tanesi:
 
-+ `moduledoc` — Geçerli modüle ait dökümanlar.
-+ `doc` — Fonksiyon ve makrolar için dökümanlar
++ `moduledoc` — Geçerli modüle ait dokümanlar.
++ `doc` — Fonksiyon ve makrolar için dokümanlar
 + `behaviour` — OTP veya kullanıcı tanımlı davranış için kullanma.
 
 ## Yapılarlar (Structs)
 
-Yapılar anahtar kelime ve varsayılan değerleriden oluşan özel haritalardır. Yapının adını alacağı bir modül içne tanımlanmalıdır.  Modül içinde yapı tek başına tanımlanması yagın bir kullanımdır.
+Yapılar anahtar kelime ve varsayılan değerlerinden oluşan özel haritalardır. Yapının adını alacağı bir modül içne tanımlanmalıdır.  Modül içinde yapı tek başına tanımlanması yaygın bir kullanımdır.
 
-Yapı tanımlamak için  `defstruct`  ile birlikte anahtar kelime listesi ve varsıyılan değerleri ile birlikte kullanırız :
+Yapı tanımlamak için  `defstruct`  ile birlikte anahtar kelime listesi ve varsayılan değerleri ile birlikte kullanırız :
 
 ```elixir
 defmodule Example.User do
@@ -109,7 +109,7 @@ Artık modülleri ve ve yapıları nasıl oluşturacağımız biliyoruz, Birleş
 
 ### `alias`
 
-Modülere takma adlar tanımlamamıza izin veriri ve bu Elixirde sıkça kullanılır:
+Modülere takma adlar tanımlamamıza izin veriri ve bu Elixir'de sıkça kullanılır:
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -129,7 +129,7 @@ defmodule Example do
 end
 ```
 
-Mükerer takma ad varsa veya tamamen farklı bir ad verilmek isteniyorsa `:as` seçeneği kullanılabilinir:
+Mükerrer takma ad varsa veya tamamen farklı bir ad verilmek isteniyorsa `:as` seçeneği kullanıla bilinir:
 
 ```elixir
 defmodule Example do
@@ -139,7 +139,7 @@ defmodule Example do
 end
 ```
 
-Aynı anda birden falza modüle takma ad vermekte de mümkündür:
+Aynı anda birden fazla modüle takma ad vermekte de mümkündür:
 
 ```elixir
 defmodule Example do
@@ -150,7 +150,7 @@ end
 ### `import`
 
 If we want to import functions and macros rather than aliasing the module we can use `import/`:
-Eğer takma ad kullanmak yerine fonsiyon ve makroları eklmek isterseniz `import/` kullana biliriniz:
+Eğer takma ad kullanmak yerine fonksiyon ve makroları eklemek isterseniz `import/` kullana biliriniz:
 ```elixir
 iex> last([1, 2, 3])
 ** (CompileError) iex:9: undefined function last/1
@@ -162,9 +162,9 @@ iex> last([1, 2, 3])
 
 #### Filtreleme
 
-Varsayılana olarak tüm fonksiyon ve makrolar içeri aktarılır anacak  `:only` ve `:except` kullanarak filitreleye bilirsiniz.
+Varsayılana olarak tüm fonksiyon ve makrolar içeri aktarılır anacak  `:only` ve `:except` kullanarak filtreleye bilirsiniz.
 
-Belirli fonksiyonları ve makroları aktarmak için `:only` ve `:except` kullanırken name/arity (argüman sayısnı) kullanmamız gerekiyor.  Şimdi `last/1` fonksiyonunu içe aktararak başlayalım:
+Belirli fonksiyonları ve makroları aktarmak için `:only` ve `:except` kullanırken name/arity (argüman sayısın) kullanmamız gerekiyor.  Şimdi `last/1` fonksiyonunu içe aktararak başlayalım:
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -174,7 +174,7 @@ iex> last([1, 2, 3])
 3
 ```
 
-Eğer `last/1` dışında herşeyi eklemke istiyotrsak:
+Eğer `last/1` dışında her şeyi eklemek istiyorsak:
 
 ```elixir
 iex> import List, except: [last: 1]
@@ -185,7 +185,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-Name/arity'e ek olarak sadece fonksiyon yada makroları çağırmka için 2 adet `:functions` ve `:macros` atomları bulunmantadır:
+Name/arity'e ek olarak sadece fonksiyon yada makroları çağırmak için 2 adet `:functions` ve `:macros` atomları bulunmaktadır:
 
 ```elixir
 import List, only: :functions
@@ -272,6 +272,6 @@ iex> Example.hello("Sean")
 ```
 
 Bu gösterilenler, kullanımın nasıl çalıştığını gösteren en basit örneklerdir, ancak `use` Elixir araç kutusundaki en güçlü araçlardan biridir.
-Elixir'i öğrenmeye devam ederken `use` modülüne göz kulak olun, öğremeye devam ederken mutlaka göreceğiniz örneklerden biride `use ExUnit.Case, async: true`
+Elixir'i öğrenmeye devam ederken `use` modülüne göz kulak olun, öğrenmeye devam ederken mutlaka göreceğiniz örneklerden biride `use ExUnit.Case, async: true`
 
 **Not**: [Meta programalmada](../../advanced/metaprogramming) kullanılan makrolar : `quote`, `alias`, `use`, `require` .

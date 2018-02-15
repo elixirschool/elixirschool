@@ -73,7 +73,7 @@ Görebildiğimiz gibi, helpers modüllerimizi çağırmak veya import etmek içi
 
 ### `h`
 
-`h`, Elixir kommut satırının bize verdiği en faydalı araçlardan biridir.
+`h`, Elixir komut satırının bize verdiği en faydalı araçlardan biridir.
 Dilin dokümantasyonu için muhteşem birinci sınıf desteği sayesinde, herhangi bir kodun dokümanlarına bu yardımcı araç kullanılarak ulaşılabilir.
 Nasıl çalıştığına bakalım:
 
@@ -196,7 +196,7 @@ Belli başlı konular şu şekildedir:
 - Nasıl erişilir?
 - Hangi diğer modülleri referans gösteriyor?
 
-Bu size çok çalışmanızı sağlasada kör olmaktan kurtarır.
+Bu size çok çalışmanızı sağlasa da kör olmaktan kurtarır.
 
 ### `r`
 

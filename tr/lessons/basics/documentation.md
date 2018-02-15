@@ -11,9 +11,9 @@ Elixir kodunun belgelendirilmesi.
 
 ## Bilgi Notu
 
-Nekadar yorum yapmamız ve belgeyi kaliteli yapan şeyler programlama dünyasının tartışmalı koularıdır. Bunula birlikte belgelendirme kendimiz ve kodlarımız ile çalışsanlar için önemli olduğunu kabul etmeliyiz.
+Nekadar yorum yapmamız ve belgeyi kaliteli yapan şeyler programlama dünyasının tartışmalı konularıdır. Bunula birlikte belgelendirme kendimiz ve kodlarımız ile çalışsanlar için önemli olduğunu kabul etmeliyiz.
 
-Elixir belgere *birinci sınıf vatandaş* olarak davaranıyor ve projeleriniz belgelendirmeniz ve belgelere ulaşmanız için çeşitli fonksiyonlar sunuyor. Şimdi bunun 3 yolunu inceleyelim:
+Elixir belgelere *birinci sınıf vatandaş* olarak davranıyor ve projeleriniz belgelendirmeniz ve belgelere ulaşmanız için çeşitli fonksiyonlar sunuyor. Şimdi bunun 3 yolunu inceleyelim:
 
 
   - `#` - Satır içi belgelendirme için.
@@ -31,7 +31,7 @@ Muhtemlen kodunuzu yorumlamanın en kolay yolu satır içi  yorumlamadır.  Elix
 IO.puts("Hello, " <> "chum.")
 ```
 
-Elixir bu betiği çalıştırıken `#` den başlayarak satır sonuna kadar olan herşeyi kod olarak kabul etmez. Yorumlarınız kodun çalışması sırasında bir performans sorunu yaratmaz anaca diğer programcılar için anlaşılır olacak şekilde yazılmalıdır.Tek satır yorumları kötüye kullanmamaya dikkat edin! Kodunuzdaki çöp yığını kabus haline gelebilir.Ölçülü kullanmaya dikkat edin.
+Elixir bu betiği çalıştırırken `#` den başlayarak satır sonuna kadar olan her şeyi kod olarak kabul etmez. Yorumlarınız kodun çalışması sırasında bir performans sorunu yaratmaz anaca diğer programcılar için anlaşılır olacak şekilde yazılmalıdır.Tek satır yorumları kötüye kullanmamaya dikkat edin! Kodunuzdaki çöp yığını kabus haline gelebilir.Ölçülü kullanmaya dikkat edin.
 
 ### Modülleri Belgelendirme
 
@@ -49,7 +49,7 @@ defmodule Greeter do
 end
 ```
 
-Biz veya diğer isnalar IEx içinde  `h` yardımcı fonksiyonu ile bu modül belgelerine erişe bilirler.
+Biz veya diğer insanlar IEx içinde  `h` yardımcı fonksiyonu ile bu modül belgelerine erişe bilirler.
 
 ```elixir
 iex> c("greeter.ex")
@@ -64,7 +64,7 @@ Provides a function hello/1 to greet a human
 
 ### Fonksiyon Belgelendirme
 
-BUarada modüllere benzer  bir belgelendirme yöntemi sözkonus . `@doc` fonksiyonlarda satır için belgelendirmeye izin verir. `@doc`dekoratörü açıklamanın hemen önünde bulunur.
+Bu arada modüllere benzer bir belgelendirme yöntemi söz konusu . `@doc` fonksiyonlarda satır için belgelendirmeye izin verir. `@doc`dekoratörü açıklamanın hemen önünde bulunur.
 
 ```elixir
 defmodule Greeter do
@@ -156,7 +156,7 @@ $ cd greet_everyone
 
 ```
 
-Şimdi önceki `@doc` dersindeki kodu  `lib/greeter.ex` adlı dosyaya kopyalayıp yapıştırın ve herşeyin halen çalışır durumda olduğunda emin olun . Artık bir Mix projesinden çalışıyoruz, IEx'i `iex -S mix` komutunu kullanarak biraz farklı bir şekilde başlatıyoruz:
+Şimdi önceki `@doc` dersindeki kodu  `lib/greeter.ex` adlı dosyaya kopyalayıp yapıştırın ve her şeyin halen çalışır durumda olduğunda emin olun . Artık bir Mix projesinden çalışıyoruz, IEx'i `iex -S mix` komutunu kullanarak biraz farklı bir şekilde başlatıyoruz:
 
 ```bash
 iex> h Greeter.hello
@@ -191,7 +191,7 @@ Herşey doğru ise yukardakine benzer bir çıktı alıyoruz, şimdi ExDoc kurma
 
 Bu bağımlılıkları üretim ortamında (production environment) kurmamak için  `only: :dev` anahtar/değer çiftini ekleyin. Peki neden Earmark? Earmark, ExDoc'un `@moduledoc` ve `@doc` içindeki belgelerimizi güzel görünümlü HTML'ye çevirmek için kullandığı Elixir programlama dili için bir Markdown ayrıştırıcısıdır (parser). 
 
-Bu noktada Earmark kullanmak zorunda olmadığımız belirtmekte fayda var. Pandoc, Hoedown, or Cmark gibi başklarıyla değiştire bilirsiniz; [Burada](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool) okuyacağınız birkaç küçük konfigrasyonu daha yapmanız gerekecek. Biz Earmark kullanmaya devam edeceğiz.
+Bu noktada Earmark kullanmak zorunda olmadığımız belirtmekte fayda var. Pandoc, Hoedown, or Cmark gibi başkalarıyla değiştire bilirsiniz; [Burada](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool) okuyacağınız birkaç küçük konfigrasyonu daha yapmanız gerekecek. Biz Earmark kullanmaya devam edeceğiz.
 
 ### Belgelerin Oluşturulması
 
@@ -205,7 +205,7 @@ Docs successfully generated.
 View them at "doc/index.html".
 ```
 
-eğer herşey planlandığı gibi olduysa, yukarıdaki gibi bir çıktı alacaksınız. Artık projemizde  **doc/** adında yeni bir dizin olduğunu görmeliyiz. Üretilen belgelerimiz buranın içindedir. Eğer dizine taracımız ile ziyaret edersek aşağıdakiler gibi bir sayfa karşılayacak bizi:
+eğer her şey planlandığı gibi olduysa, yukarıdaki gibi bir çıktı alacaksınız. Artık projemizde  **doc/** adında yeni bir dizin olduğunu görmeliyiz. Üretilen belgelerimiz buranın içindedir. Eğer dizine taracımız ile ziyaret edersek aşağıdakiler gibi bir sayfa karşılayacak bizi:
 
 ![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
@@ -217,9 +217,9 @@ Artık bunu GitHu'da, kendi sitemizde veya [HexDocs'da](https://hexdocs.pm/) yay
 
 ## En iyi Uygulama
 
-Belgelendirme dilin kurallarına göre yapılmalıdır. Elixir oldukça genç bir dil olduğundan, ekosistem büyüdükçe yeni standarlar keşfedilmeye devam edecektir. Bununla birlikte topluluk en iyi kullanım metodlarını belirlemeye çalıştı. TDaha fazla bilgi için [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide) gözatın.
+Belgelendirme dilin kurallarına göre yapılmalıdır. Elixir oldukça genç bir dil olduğundan, ekosistem büyüdükçe yeni standartlar keşfedilmeye devam edecektir. Bununla birlikte topluluk en iyi kullanım metodlarını belirlemeye çalıştı. TDaha fazla bilgi için [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide) göz atın.
 
-  - Her zaman modülleir belgelendirin.
+  - Her zaman modülleri belgelendirin.
 
 ```elixir
 defmodule Greeter do
@@ -239,7 +239,7 @@ defmodule Greeter do
 end
 ```
 
- - Modül belgerinde fonksiyonlara atıfta bulunmak isterseniz şu  şekilde ters tırnak kullanın:
+ - Modül belgelerinde fonksiyonlara atıfta bulunmak isterseniz şu  şekilde ters tırnak kullanın:
 
 ```elixir
 defmodule Greeter do
@@ -274,7 +274,7 @@ defmodule Greeter do
 end
 ```
 
- - Dökümanlarınızda Markdown kullanın. Bu IEx veya ExDoc aracılığı ile belgelerinizi okumanızı kolaylaştıracaktır.
+ - Dokümanlarınız da Markdown kullanın. Bu IEx veya ExDoc aracılığı ile belgelerinizi okumanızı kolaylaştıracaktır.
 
 ```elixir
 defmodule Greeter do
@@ -305,5 +305,5 @@ defmodule Greeter do
 end
 ```
 
- - Belgelerinize bazı kod örnekleri eklmeye çalışın. Bu da modüle, fonksiyona veya bir makroda bulunan kod örneklerinde [ExUnit.DocTest][] ile oromatik testler oluşturmamıza olanak sağlar. Bunu yapmak için, `doctest / 1` makrosunu çağırmanız ve örnekleriniz [ExUnit.DocTest] [resmi belgelerinde] ayrıntılı olarak belirtilen bazı yönergelere göre yazmanız gerekir.
+ - Belgelerinize bazı kod örnekleri eklemeye çalışın. Bu da modüle, fonksiyona veya bir makroda bulunan kod örneklerinde [ExUnit.DocTest][] ile otomatik testler oluşturmamıza olanak sağlar. Bunu yapmak için, `doctest / 1` makrosunu çağırmanız ve örnekleriniz [ExUnit.DocTest] [resmi belgelerinde] ayrıntılı olarak belirtilen bazı yönergelere göre yazmanız gerekir.
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html
