@@ -5,12 +5,12 @@ redirect_from:
   - /lessons/basics/functions/
 ---
 
-Elixir ve bir çok fonksiyonel dilde fonksiyonlar birinci sınıf üyedir.   Elixirde bulunan fonksiyon çeşitlerini, farklılıklarını ve nasıl kullanacaklarını öğreneceğiz.
+Elixir ve bir çok fonksiyonel dilde fonksiyonlar birinci sınıf üyedir.   Elixir'de bulunan fonksiyon çeşitlerini, farklılıklarını ve nasıl kullanacaklarını öğreneceğiz.
 {% include toc.html %}
 
 ## Anonim Fonksiyonlar
 
-Adından daanladığımız gibi bu fonksiyonlara bir ad tanımlanmaz. `Enum` dersinde de gördüğünüz gibi bu fonksiyonlar genellikle başka bir fonksiyone geçirilir. Elixir de anonim fonksiyon oluşturmak için `fn` ve `end` anhtar kelimlerine ihtiyacımız var. Bu anahtar kelimlerin içine `->` ile ayarlayarak herhangi bir sayıda parametre ve  fonksiyonun gövdesini tanımlaya biliriz.
+Adından da anladığımız gibi bu fonksiyonlara bir ad tanımlanmaz. `Enum` dersinde de gördüğünüz gibi bu fonksiyonlar genellikle başka bir fonksiyona geçirilir. Elixir de anonim fonksiyon oluşturmak için `fn` ve `end` anahtar kelimelerine ihtiyacımız var. Bu anahtar kelimelerin içine `->` ile ayarlayarak herhangi bir sayıda parametre ve  fonksiyonun gövdesini tanımlaya biliriz.
 
 Şimdi basit bir örneği inceleyelim:
 
@@ -30,13 +30,13 @@ iex> sum.(2, 3)
 5
 ```
 
-Sizinde tahmin ettiğiniz gibi yöntemdede arametreler `&1`, `&2`, `&3` şeklinde tanımlanır.
+Sizin de tahmin ettiğiniz gibi yöntemde de parametreler `&1`, `&2`, `&3` şeklinde tanımlanır.
 
 ##  Desen (Pattern) Eşleme
 
-Elixirde desen eşleme değişkenlerle sınırlı değildir, göreceğiniz gibi bir fonsiyonun adınada uygulana bilinir.
+Elixir'de desen eşleme değişkenlerle sınırlı değildir, göreceğiniz gibi bir fonksiyonun adına da uygulana bilinir.
 
-Elixir karşılık gelen gövdeyi ve parametreleri bulmka için desen eşlemesi kullanır:
+Elixir karşılık gelen gövdeyi ve parametreleri bulmak için desen eşlemesi kullanır:
 
 ```elixir
 iex> handle_result = fn
@@ -54,9 +54,9 @@ An error has occurred!
 
 ## Adlandırılmış Fonksiyonlar
 
-Bu fonksiyonlara isim tanımlaya bilir ve daha sonra gekli olduğunda kolayca çağıra bilirz.  Adlandırılmış bir fonksiyon tanımlamak için  `def` kullanılır . Şuan için adlandırılmış fonksiyonları ele alacağız, Modülleri bir sonraki ders inceleyeceğiz.
+Bu fonksiyonlara isim tanımlaya bilir ve daha sonra gerekli olduğunda kolayca çağıra biliriz.  Adlandırılmış bir fonksiyon tanımlamak için  `def` kullanılır . Şuan için adlandırılmış fonksiyonları ele alacağız, Modülleri bir sonraki ders inceleyeceğiz.
 
-Bir modülde tanımlanmış fonksiyonlar başka modüller tarafında da kulanılır. Bu Elixirin yararlı özelliklerinden birisidir:
+Bir modülde tanımlanmış fonksiyonlar başka modüller tarafında da kullanılır. Bu Elixir'in yararlı özelliklerinden birisidir:
 ```elixir
 defmodule Greeter do
   def hello(name) do
@@ -76,7 +76,7 @@ defmodule Greeter do
 end
 ```
 
-Desen Eşleme (Pattern Matching) bilgimizi ve adlandırımış fonksiyonları kullanrak özyinemeyi (recursion ) keşfedelim:
+Desen Eşleme (Pattern Matching) bilgimizi ve adlandırılmış fonksiyonları kullanarak özyinelemeyi (recursion) keşfedelim:
 
 ```elixir
 defmodule Length do
@@ -92,7 +92,7 @@ iex> Length.of [1, 2, 3]
 
 ### Fonksiyon isimlendirme ve Argüman Sayısı
 
-Daha öncede belirttiğimiz gibi fonksiyonlar adı ve argüman sayısı kombinasyonu ile isimlendirilirler. Buda size şunun gibi bişey yapma imkanı sunar:
+Daha öncede belirttiğimiz gibi fonksiyonlar adı ve argüman sayısı kombinasyonu ile isimlendirilirler. Buda size şunun gibi bir şey yapma imkanı sunar:
 
 ```elixir
 defmodule Greeter2 do
@@ -109,10 +109,10 @@ iex> Greeter2.hello("Fred")
 iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
-Fonksiyon isimleri yukarda sıralanmıştır.  İlk kullanımda herhangi bir arguman almadığından `hello/0` olarak bilinir. İkincisi ise bir argüman alır ve `hello/1` olarak bilir. İsimlendirme bu şekilde devam eder. Diğer dillerin aksine burada hepsi farklı fonksiyon olarak kabuledilir. (Pattern matching, described just a moment ago, applies only when multiple definitions are provided for function definitions with the _same_ number of arguments.)
+Fonksiyon isimleri yukarda sıralanmıştır.  İlk kullanımda herhangi bir argüman almadığından `hello/0` olarak bilinir. İkincisi ise bir argüman alır ve `hello/1` olarak bilir. İsimlendirme bu şekilde devam eder. Diğer dillerin aksine burada hepsi farklı fonksiyon olarak kabul edilir. (Pattern matching, described just a moment ago, applies only when multiple definitions are provided for function definitions with the _same_ number of arguments.)
 
 ### Özel Fonksiyonlar
-Belli bir fonksiyona diğer modüllertarafından erişmesini istemiyorsak `defp` ile özel fonksiyonlarımız tanımlaya biliriz. Özel fonksyonlar sadece kendi modülleri tarafında çağrılabilinir.
+Belli bir fonksiyona diğer modüller tarafından erişmesini istemiyorsak `defp` ile özel fonksiyonlarımız tanımlaya biliriz. Özel fonksiyonlar sadece kendi modülleri tarafında çağrıla bilinir.
 
 
 ```elixir
@@ -131,9 +131,9 @@ iex> Greeter.phrase
 
 ### Kontroller
 
-Kontrolleri [Kontrol Yapıları](../control-structures) dersinde kısacainceledik, şimdi adlandırılmış fonksiyonlarda nasıl kullanılacağını göreceğiz.   Elixir fonksiyonu bulduktan sonra kontroleri test edecek.
+Kontrolleri [Kontrol Yapıları](../control-structures) dersinde kısaca inceledik, şimdi adlandırılmış fonksiyonlarda nasıl kullanılacağını göreceğiz.   Elixir fonksiyonu bulduktan sonra kontrolleri test edecek.
 
-Aşağıdaki örnekte aynı ada ve arguman sayısna ait iki fonksiyona sahibiz, hangisinin kullanılacağını belirlemek için kontrolleri kullanıyoruz:
+Aşağıdaki örnekte aynı ada ve argüman sayısına ait iki fonksiyona sahibiz, hangisinin kullanılacağını belirlemek için kontrolleri kullanıyoruz:
 
 ```elixir
 defmodule Greeter do
@@ -154,7 +154,7 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### Varsayılan Argümalar Değeri
+### Varsayılan Argümanlar Değeri
 
 Eğer bir argüman için varsayılan değer tanımlanmak isteniyorsa  `argument \\ value` şeklinde tanımlanır:
 
@@ -211,7 +211,7 @@ def hello/2 has multiple clauses and defines defaults in one or more clauses
     iex:31: (module)
 ```
 
-Elixir  birden fazla aynı isimde fonsiyon varsa varsayılan değerlerden hoşlanmazve hataya sebep olabilir. Bunu kullana bilmek için varsayılan değer ile bir fonksiyon başlığı tanımlıyoruz:
+Elixir  birden fazla aynı isimde fonksiyon varsa varsayılan değerlerden hoşlanmaz ve hataya sebep olabilir. Bunu kullana bilmek için varsayılan değer ile bir fonksiyon başlığı tanımlıyoruz:
 
 ```elixir
 defmodule Greeter do

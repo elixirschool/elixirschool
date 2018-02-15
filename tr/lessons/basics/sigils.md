@@ -5,13 +5,13 @@ redirect_from:
   - /lessons/basics/sigils/
 ---
 
-İşaretlerele çalışme ve yeni işaretler oluşturma.
+İşaretlerle çalışma ve yeni işaretler oluşturma.
 
 {% include toc.html %}
 
 ## Genel Bilgi
 
-Elixir provides an alternative syntax for representing and working with literals. İşaretler tilda'yıy `~` takip eden bir karakterden oluşur. Elixir bize bazı işaretleri hazır olarak sunar, bu işaretleri geliştirebiliriz ve grektiğinde kendi dilimizi geliştirebiliriz.
+Elixir provides an alternative syntax for representing and working with literals. İşaretler tilda'yıy `~` takip eden bir karakterden oluşur. Elixir bize bazı işaretleri hazır olarak sunar, bu işaretleri geliştirebiliriz ve gerektiğinde kendi dilimizi geliştirebiliriz.
 
 Mevcut işaretlerin listesi:
 
@@ -48,11 +48,11 @@ iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = \#{2 + 7}'
 ```
 
-Küçük harfli işaret `~c` hesaplamayı yaparken, bukarşı büyük harfili `~C` işareti hesaplamıyor. Bu büyük / küçük dizisinin diğer işaretlerde yaygın olarak kullanıldığını göreceğiz.
+Küçük harfli işaret `~c` hesaplamayı yaparken, buna karşı büyük harfli `~C` işareti hesaplamıyor. Bu büyük / küçük dizisinin diğer işaretlerde yaygın olarak kullanıldığını göreceğiz.
 
 ### Düzenli İfadeler (Regular Expressions)
 
-Düzüenli ifadeler `~r` ve `~R` işaretleriyle ile ifade edilir. Düzenli ifade kullanım anında yada `Regex` fonksiyonu içinde kullanmak için oluşturulur. Örneğin:
+Düzenli ifadeler `~r` ve `~R` işaretleriyle ile ifade edilir. Düzenli ifade kullanım anında yada `Regex` fonksiyonu içinde kullanmak için oluşturulur. Örneğin:
 
 ```elixir
 iex> re = ~r/elixir/
@@ -78,7 +78,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Elixir ayrıca Erlang [Regex](https://hexdocs.pm/elixir/Regex.html) API'sinide sağlar. Şimdi `Regex.split / 2` fonkisyonuna regex işaretlerini uygulayalım:
+Elixir ayrıca Erlang [Regex](https://hexdocs.pm/elixir/Regex.html) API'sinide sağlar. Şimdi `Regex.split / 2` fonksiyonuna regex işaretlerini uygulayalım:
 ```elixir
 iex> string = "100_000_000"
 "100_000_000"
@@ -101,7 +101,7 @@ iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
 
-Arasındaki fark ne ? Aradaki fark, Daha önce inceleiğimiz Karakter Listesinin işaretine benzer. Cevap, enterpolasyon ve kaçış dizilerinin kullanılmasıdır. Eğer başka bir örneğe bakarsak:
+Arasındaki fark ne ? Aradaki fark, Daha önce incelediğimiz Karakter Listesinin işaretine benzer. Cevap, enterpolasyon ve kaçış dizilerinin kullanılmasıdır. Eğer başka bir örneğe bakarsak:
 
 ```elixir
 iex> ~s/welcome to elixir #{String.downcase "school"}/
@@ -113,7 +113,7 @@ iex> ~S/welcome to elixir #{String.downcase "school"}/
 
 ### Kelime Listeleri
 
-Kelime Listesi işareti zaman zaman kullanışlı olabilir. Hem zaman kazandırır,tuş vuruşlarını ve kod tabanındaki karmaşıklığı görecili olarak azalttır. Basit bir örneğe bakalım:
+Kelime Listesi işareti zaman zaman kullanışlı olabilir. Hem zaman kazandırır,tuş vuruşlarını ve kod tabanındaki karmaşıklığı göreceli olarak azalttır. Basit bir örneğe bakalım:
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -137,7 +137,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) saat dilimi olmadan hızlı bir şekilde `DateTime` öğesi oluşturmak için kullanılır.
 
-devemlı olarak doğrudan `NaiveDateTime` yapısı oluşturmaktan kaçınalıyız. Bununla birlikte desen eşleme için çok faydalıdır. For example:
+Devamlı olarak doğrudan `NaiveDateTime` yapısı oluşturmaktan kaçınmalıyız. Bununla birlikte desen eşleme için oldukça  faydalıdır. Örneğin:
 
 ```elixir
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
@@ -145,7 +145,7 @@ iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23
 
 ## İşaretleri Oluşturma
 
-Elixir hedeflerinden biride geliştirlebilir bir programlama dili olmasıdır. Kendinize özel işaretleri kolayca oluşturabileceğiniz süpriz olmamalı. Bu örnekte küçük harfleri büyük harflere çevirmek için bir işaret tanımlayacağız. Bunu Elixir çekirdeğinde var olan (`String.upcase/1`) fonksiyonunu kullanarak yapacağız.
+Elixir hedeflerinden biride geliştirilebilir bir programlama dili olmasıdır. Kendinize özel işaretleri kolayca oluşturabileceğiniz sürpriz olmamalı. Bu örnekte küçük harfleri büyük harflere çevirmek için bir işaret tanımlayacağız. Bunu Elixir çekirdeğinde var olan (`String.upcase/1`) fonksiyonunu kullanarak yapacağız.
 
 ```elixir
 
@@ -161,6 +161,6 @@ ELIXIR SCHOOL
 ```
 
 İlk olarak, `MySigils` adlı bir modül tanımladık ve bu modülde `sigil_u` adlı bir fonksiyon yarattık.
-Mevcut işaretler arasında `~u` işareti yeralmadığı için bunu kullanacağız.
+Mevcut işaretler arasında `~u` işareti yer almadığı için bunu kullanacağız.
 `_u`, tilda işaretinden sonra karakter olarak `u`nu kullanmak istediğimizi gösterir.
 Fonksiyon tanımı, bir girdi ve bir liste olmak üzere iki argüman almalıdır.
