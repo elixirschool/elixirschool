@@ -3,21 +3,21 @@ version: 1.1.1
 title: Poolboy
 ---
 
-もしあなたのプログラムを実行している process 数が生成できる最大限まで使っていない場合、より簡単にシステムリソースを使い切ることができます。[Poolboy](https://github.com/devinus/poolboy)はErlangで広く利用されている軽量で汎用的なpoolingライブラリです。
+もしあなたのプログラムを実行している process 数が生成できる最大限まで使っていない場合、より簡単にシステムリソースを使い切ることができます。 [Poolboy](https://github.com/devinus/poolboy) は Erlang で広く利用されている軽量で汎用的な pooling ライブラリです。
 
 {% include toc.html %}
 
-## なぜPoolboyを使うか
+## なぜ Poolboy を使うか
 
 次のような例を考えてみましょう。あなたはユーザーのプロフィールをデータベースに保存するタスクを作成しました。もしあなたがそれぞれの登録毎にプロセスを作成したとすると、データベースへのコネクションは無限に作られることになるでしょう。そしてある時点で、コネクション数がデータベースサーバーの容量を超えることがあります。最終的には、そのアプリケーションはタイムアウトなど様々な例外を返すようになります。
 
 この解決策はユーザー登録毎にプロセスを作成する代わりに一連のワーカー(プロセス)を使ってコネクション数に制限をつくることです。そうすると、簡単にシステムリソース不足を回避できます。
 
-そこでPoolboyを利用します。Poolboyは`Supervisor`によって管理しているワーカーのプールを簡単に設定できます。Poolboyはさまざまなライブラリで利用されています。例えば、`postgrex`のコネクションプール *(EctoでPostgreSQLを使うために活用されている)* や`redis_poolex` *(Redisのコネクションプール)* などの様々なよく利用されるライブラリがPoolboyを使っています。
+そこで Poolboy を利用します。 Poolboy は `Supervisor` によって管理しているワーカーのプールを簡単に設定できます。 Poolboy はさまざまなライブラリで利用されています。例えば、 `postgrex` のコネクションプール *( Ecto で PostgreSQL を使うために活用されている)* や `redis_poolex` *(Redis のコネクションプール)* などの様々なよく利用されるライブラリが Poolboy を使っています。
 
 ## インストール
 
-mixを使えばインストールは簡単です。Poolboyの依存関係を`mix.exs`に記述するだけです。
+mix を使えばインストールは簡単です。 Poolboy の依存関係を `mix.exs` に記述するだけです。
 
 まずは簡単なアプリケーションを作ってみましょう。
 
@@ -25,7 +25,7 @@ mixを使えばインストールは簡単です。Poolboyの依存関係を`mix
 $ mix new poolboy_app --sup
 ```
 
-Add Poolboy as a dependency to our `mix.exs`.
+`mix.exs` に Poolboy の依存関係を追加しましょう。
 
 ```elixir
 defp deps do
@@ -33,26 +33,26 @@ defp deps do
 end
 ```
 
-Then fetch dependencies, including Poolboy.
+そして、 Poolboy を含めた依存関係を持ってきましょう。
 ```shell
 $ mix deps.get
 ```
 
-## The configuration options
+## 設定可能なオプション
 
-We need to know a little bit about the various configuration options in order to start using Poolboy.
+Poolboy を使い始める前に、もう少し多様な設定オプションに対して知る必要があります。
 
-* `:name` - the pool name. Scope can be `:local`, `:global`, or `:via`.
-* `:worker_module` - the module that represents the worker.
-* `:size` - maximum pool size.
-* `:max_overflow` - maximum number of temporary workers created when the pool is empty. (optional)
-* `:strategy` - `:lifo` or `:fifo`, determines whether the workers that return to the pool should be placed first or last in the line of available workers. Default is `:lifo`. (optional)
+* `:name` - プールの名前。スコープは `:local`、 `:global` もしくは `:via` が使えます。
+* `:worker_module` - ワーカーを表現するモジュール。
+* `:size` - プールの最大サイズ。
+* `:max_overflow` - プールが空の時に作る一時的なワーカーの最大数(オプショナル)。
+* `:strategy` - `:lifo` もしくは `:fifo` が使えます。これはプールに戻されるワーカーが列の最初に戻されるか、最後に戻されるかを決めます。デフォルトは `lifo` です(オプショナル)。
 
-## Configuring Poolboy
+## Poolboy を設定する
 
-For this example, we'll create a pool of workers responsible for handling requests to calculate the square root of a number. We'll keep the example simple so that we can keep our focus on Poolboy.
+この例題では数の平方根を計算するリクエストを処理する責任をもつワーカーのプールを作ります。 Poolboy に集中するために例題を簡単なものにします。
 
-Let's define the Poolboy configuration options and add the Poolboy worker pool as a child worker of our application. Edit `lib/poolboy_app/application.ex`:
+Poolboy の設定オプションを定義し、 Poolboy ワーカープールをアプイケーションの子ワーカーとして追加しましょう。 `lib/poolboy_app/application.ex` を修正します。
 
 ```elixir
 defmodule PoolboyApp.Application do
@@ -80,12 +80,12 @@ defmodule PoolboyApp.Application do
 end
 ```
 
-The first thing we defined is the configuration options for the pool. We named our pool `:worker` and set the `:scope` to `:local`. Then we designated `PoolboyApp.Worker` module as the `:worker_module` that this pool should use. We also set the `:size` of the pool to have total of `5` workers. Also, in case all workers are under load, we tell it to create `2` more workers to help with the load using the `:max_overflow` option. *(`overflow` workers do go away once they complete their work.)*
+最初に定義しないといけないのはプールに関する設定です。プールに `:worker` という名をつけ、 `:scope` を `:local` に指定しました。そして `:worker_module` として `PoolboyApp.Worker` モジュールを使うようにします。プールの `:size` には`5`を設定し、総5つのワーカーを使うようにします。加えて全てのワーカーが負荷下にある場合、`2`つのワーカーを追加で生成するように `:max_overflow` オプションを使います。 *(`overflow` で作られたワーカーは作業が終われたなくなります)*
 
-Next, we added `:poolboy.child_spec/2` function to the array of children so that the pool of workers will be started when the application starts. It takes two arguments: name of the pool, and pool configuration.
+次に、プールに存在するワーカーがアプリケーションが実行される時に起動するように `:poolboy.child_spec/2` 関数を子のリストに追加します。これは二つの引数を取ります。一つはプールの名前で、もう一つはプールの設定です。
 
-## Creating Worker
-The worker module will be a simple `GenServer` that calculates the square root of a number, sleeps for one second, and prints out the pid of the worker. Create `lib/poolboy_app/worker.ex`:
+## ワーカー生成
+ワーカーモジュールは平方根を計算し、1秒間眠た後、ワーカーの pid を出力する簡単な `GenServer` です。 `lib/poolboy_app/worker.ex` を作りましょう。
 
 ```elixir
 defmodule PoolboyApp.Worker do
@@ -107,9 +107,9 @@ defmodule PoolboyApp.Worker do
 end
 ```
 
-## Using Poolboy
+## Poolboy を使う
 
-Now that we have our `PoolboyApp.Worker`, we can test Poolboy. Let's create a simple module that creates concurrent processes using Poolboy. `:poolboy.transaction/3` is the function that you can use to interface with the worker pool. Create `lib/poolboy_app/test.ex`:
+`PoolboyApp.Worker` を作ったので、 Poolboy をテストできます。 Poolboy を利用して平行プロセスを生成する簡単なモジュールを作りましょう。 `:poolboy.transaction/3` はワーカープールに対するインタフェースとして使用可能な関数です。 `lib/poolboy_app/test.ex` を作ります。
 
 ```elixir
 defmodule PoolboyApp.Test do
@@ -135,7 +135,7 @@ defmodule PoolboyApp.Test do
 end
 ```
 
-Run the test function to see the result.
+テスト関数を実行して結果を見ましょう。
 
 ```shell
 $ iex -S mix
@@ -153,6 +153,6 @@ process #PID<0.156.0> calculating square root of 3
 ...
 ```
 
-If no worker is available in the pool, Poolboy will timeout after the default timeout period (five seconds) and won't accept any new requests. In our example, we've increased the default timeout to one minute in order to demonstrate how we can change the default timeout value. In case of this app, you can observe the error if you change the value of `@timeout` to less than 1000.
+もしプールに利用可能なワーカーがないと Poolboy はデフォルトのタイムアウト期間(5秒)の後、タイムアウトして新しいリクエストを受け付けません。ここではどうやってデフォルトのタイムアウト設定を書き換えられるのかを説明するためにデフォルトのタイムアウトを1分まで増加させています。このアプリケーションの場合、 `@timeout` を1000以下に設定することでエラーを観測することができます。
 
-Even though we're attempting to create multiple processes *(total of twenty in the example above)* `:poolboy.transaction/3` function will limit the maximum number of created processes to five *(plus two overflow workers if needed)* as we have defined in our configuration. All requests will be handled using the pool of workers rather than creating a new process for each and every request.
+多数のプロセスを生成しようとしても *(上記の例題では全体で20個)* `:poolboy.transaction` 関数は設定に従い、生成するプロセスの最大数を5つに制限します(場合によっては2つに臨時のワーカーを追加)。全てのリクエストは毎回新しいプロセスを生成するのではなくワーカーのプールを利用して処理されます。
