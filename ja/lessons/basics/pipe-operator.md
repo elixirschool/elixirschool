@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: パイプライン演算子
 redirect_from:
   - /jp/lessons/basics/pipe-operator/
