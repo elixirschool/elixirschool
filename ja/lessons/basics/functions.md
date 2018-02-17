@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: 関数
 redirect_from:
   - /jp/lessons/basics/functions/
