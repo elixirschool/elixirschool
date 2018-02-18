@@ -137,7 +137,7 @@ iex> Macro.to_string(quote(do: foo.bar(1, 2, 3)))
 "foo.bar(1, 2, 3)"
 ```
 
-E quando você quiser ver o código gerado por macros você pode combinar eles com `Macro.expand/2` e `Macro.expand_once/2`, essa funções expandem os macros para seus códido *quoted*. O primeiro pode expandir ele várias vezes, enquanto o último - apenas uma vez. Por exemplo, vamos modificar o exemplo do `unless` da seção anterior:
+E quando você quiser ver o código gerado por macros você pode combinar eles com `Macro.expand/2` e `Macro.expand_once/2`, essas funções expandem os macros para seus códido *quoted*. O primeiro pode expandir ele várias vezes, enquanto o último - apenas uma vez. Por exemplo, vamos modificar o exemplo do `unless` da seção anterior:
 
 ```elixir
 defmodule OurMacro do
