@@ -1,13 +1,11 @@
 ---
 version: 1.0.0
 title: Bypass
-redirect_from:
-  - /lessons/libraries/bypass/
 ---
 
 Ao testar nossas aplicações, muitas vezes precisamos fazer chamadas a serviços externos.
 Podemos até mesmo querer simular diferentes situações como erros inesperados do servidor.
-Tratar issso de modo eficiente não é fácil no Elixir sem uma pequena ajuda.
+Tratar isso de modo eficiente não é fácil no Elixir sem uma pequena ajuda.
 
 Nesta lição vamos explorar como [bypass](https://github.com/PSPDFKit-labs/bypass) pode nos ajudar rapidamente e tratar facilmente essas chamadas em nossos testes.
 
@@ -19,13 +17,13 @@ Nesta lição vamos explorar como [bypass](https://github.com/PSPDFKit-labs/bypa
 
 O que isso significa?
 Internamente, Bypass é uma aplicação OTP que atua como um servidor externo escutando e respondendo a requisições.
-Com respostas pré-definidas nós podemos testar qualquer número de possibilidades como interrupções inesperadas de serviço e erros, tudo sem fazer uma única chamada externa. 
+Com respostas pré-definidas nós podemos testar qualquer número de possibilidades como interrupções inesperadas de serviço e erros, tudo sem fazer uma única chamada externa.
 
 ## Usando Bypass
 
 Para melhor ilustrar as funcionalidades do Bypass vamos construir uma aplicação utilitária simples para testar (_ping_) uma lista de domínios e garantir que eles estão online.
 Para fazer isso vamos construir um novo projeto supervisor e um GenServer para verificar os domínios em um interválo configurável.
-Aproveitando ByPass em nossos testes poderemos verificar se nossa aplicação funcionará em muitos cenários diferentes. 
+Aproveitando ByPass em nossos testes poderemos verificar se nossa aplicação funcionará em muitos cenários diferentes.
 
 _Nota_: Se você deseja avançar para o código final, dê uma olhada no repositório [Clinic](https://github.com/elixirschool/clinic) do Elixir School.
 
@@ -103,7 +101,7 @@ defmodule Clinic.HealthCheckTests do
 end
 ```
 
-Nosso teste é bastante simples e, se o executarmos, veremos que ele passa, mas vamos nos aprofundar e ver o que cada parte está fazendo. 
+Nosso teste é bastante simples e, se o executarmos, veremos que ele passa, mas vamos nos aprofundar e ver o que cada parte está fazendo.
 A primeira coisa que vemos em nosso teste é a função `Bypass.expect/2`:
 
 ```elixir
@@ -183,7 +181,7 @@ def handle_info(:check, {health_check, sites}) do
   sites
   |> health_check.ping()
   |> Enum.each(&report/1)
-  
+
   {:noreply, {health_check, sites}}
 end
 

@@ -6,12 +6,12 @@ title: Elixir School
 
 Навчальні матеріали про мову програмування Elixir, навіяні [Scala School](http://twitter.github.io/scala_school/) від Твіттера.
 
-Доступно також [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], [ภาษาไทย][th] та інших мовах.
+Доступно також [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], [ภาษาไทย][th] та інших мовах.
 
 [cn]: /cn/
 [es]: /es/
 [it]: /it/
-[jp]: /jp/
+[ja]: /ja/
 [ko]: /ko/
 [pl]: /pl/
 [pt]: /pt/

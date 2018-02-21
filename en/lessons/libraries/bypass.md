@@ -1,8 +1,6 @@
 ---
 version: 1.0.0
 title: Bypass
-redirect_from:
-  - /lessons/libraries/bypass/
 ---
 
 When testing our applications there are often times we need to make requests to external services.
@@ -183,7 +181,7 @@ def handle_info(:check, {health_check, sites}) do
   sites
   |> health_check.ping()
   |> Enum.each(&report/1)
-  
+
   {:noreply, {health_check, sites}}
 end
 
