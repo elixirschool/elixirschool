@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.1.0
 title: 内包表記
 redirect_from:
   - /jp/lessons/basics/comprehensions/

@@ -1,25 +1,25 @@
 ---
-version: 0.9.1
+version: 1.1.1
 title: Ecto
 redirect_from:
   - /jp/lessons/specifics/ecto/
 ---
 
-Ectoは公式のElixirプロジェクトで、データベースのラッパと、総合的なクエリ言語を提供します。Ectoを用いることで、マイグレーションの作成やモデルの定義、レコードの挿入や更新、問合せが行えるようになります。
+Ecto は公式の Elixir プロジェクトで、データベースのラッパと、総合的なクエリ言語を提供します。 Ecto を用いることで、マイグレーションの作成やモデルの定義、レコードの挿入や更新、問合せが行えるようになります。
 
 {% include toc.html %}
 
 ## セットアップ
 
-最初に、Ectoとデータベースのアダプタをプロジェクトの`mix.exs`に含める必要があります。対応しているデータベースアダプタの一覧はEctoのREADMEにある[Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage)の項で見つけることができます。今回の例ではPostgreSQLを使用します:
+最初に、 Ecto とデータベースのアダプタをプロジェクトの `mix.exs` に含める必要があります。対応しているデータベースアダプタの一覧は Ecto の README にある [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage)の項で見つけることができます。今回の例では PostgreSQL を使用します:
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 2.1.4"}, {:postgrex, ">= 0.13.4"}]
+  [{:ecto, "~> 2.2"}, {:postgrex, ">= 0.0.0"}]
 end
 ```
 
-これでEctoとアダプタをapplicationのリストに追加できます:
+これで Ecto とアダプタを application のリストに追加できます:
 
 ```elixir
 def application do
@@ -29,7 +29,7 @@ end
 
 ### リポジトリ
 
-最後に、プロジェクトのリポジトリ、すなわちデータベースのラッパを作成する必要があります。これは`mix ecto.gen.repo -r ExampleApp.Repo`タスクで行うことができます。EctoのMixタスクについては次で扱います。作成されたリポジトリ(Repoモジュール)は`lib/<project name>/repo.ex`内に置かれます:
+最後に、プロジェクトのリポジトリ、すなわちデータベースのラッパを作成する必要があります。これは `mix ecto.gen.repo -r ExampleApp.Repo` タスクで行うことができます。 Ecto の Mix タスクについては次で扱います。作成されたリポジトリ(Repo モジュール)は `lib/<project name>/repo.ex` 内に置かれます:
 
 ```elixir
 defmodule ExampleApp.Repo do
@@ -39,9 +39,9 @@ end
 
 ### スーパーバイザ
 
-Repoを作成したら、スーパーバイザツリーを設定する必要があります。これは通常`lib/<project name>.ex`内にあります。
+Repo を作成したら、スーパーバイザツリーを設定する必要があります。これは通常 `lib/<project name>.ex` 内にあります。
 
-重要なので注記しておきますと、Repoはスーパーバイザとして、`worker/3` _ではなく_ `supervisor/3`を用いて設定されます。アプリケーションの生成時に`--sup`フラグを付けていれば、この設定はほとんど済んでいます:
+重要なので注記しておきますと、 Repo はスーパーバイザとして、 `worker/3` _ではなく_ `supervisor/3` を用いて設定されます。アプリケーションの生成時に `--sup` フラグを付けていれば、この設定はほとんど済んでいます:
 
 ```elixir
 defmodule ExampleApp.App do
@@ -64,7 +64,7 @@ end
 
 ### 設定
 
-Ectoを設定するには、`config/config.exs`に項目を追加する必要があります。ここで、リポジトリやアダプタ、データベース、アカウント情報を記述します。
+Ecto を設定するには、 `config/config.exs` に項目を追加する必要があります。ここで、リポジトリやアダプタ、データベース、アカウント情報を記述します。
 
 ```elixir
 config :example_app, ExampleApp.Repo,
@@ -75,9 +75,9 @@ config :example_app, ExampleApp.Repo,
   hostname: "localhost"
 ```
 
-## Mixタスク
+## Mix タスク
 
-Ectoには、データベースと連携するための役に立つMixタスクがいくつかあります:
+Ecto には、データベースと連携するための役に立つ Mix タスクがいくつかあります:
 
 ```shell
 mix ecto.create         # リポジトリに記憶域を作成する
@@ -90,7 +90,7 @@ mix ecto.rollback       # リポジトリのマイグレーションを巻き戻
 
 ## マイグレーション
 
-マイグレーションを作成する最も良い方法は`mix ecto.gen.migration <name>`タスクです。ActiveRecordを使ったことがあれば、馴染みがあるでしょう。
+マイグレーションを作成する最も良い方法は `mix ecto.gen.migration <name>` タスクです。 ActiveRecord を使ったことがあれば、馴染みがあるでしょう。
 
 ユーザテーブルのマイグレーションを見ていくことから始めましょう:
 
@@ -113,13 +113,13 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 end
 ```
 
-初期状態ではEctoは自動でインクリメントする主キー`id`を作成します。この例では標準的な`change/0`コールバックを用いていますが、Ectoはより粒度の細かい制御が必要な場合のために、`up/0`と`down/0`にも対応しています。
+初期状態では Ecto は自動でインクリメントする主キー `id` を作成します。この例では標準的な `change/0` コールバックを用いていますが、Ectoはより粒度の細かい制御が必要な場合のために、 `up/0` と `down/0` にも対応しています。
 
-思った通りかもしれませんが、`timestamps`をマイグレーションに加えると、`inserted_at`と`updated_at`が作成、管理されます。
+思った通りかもしれませんが、 `timestamps` をマイグレーションに加えると、 `inserted_at` と `updated_at` が作成、管理されます。
 
-この新しいマイグレーションを適用するには`mix ecto.migrate`を実行してください。
+この新しいマイグレーションを適用するには `mix ecto.migrate` を実行してください。
 
-マイグレーションのさらなる情報はEctoドキュメントの[Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content)の項を参照してください。
+マイグレーションのさらなる情報は Ecto ドキュメントの [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) の項を参照してください。
 
 ## モデル
 
@@ -154,21 +154,21 @@ defmodule ExampleApp.User do
 end
 ```
 
-モデル内で定義するスキーマはマイグレーションで記述したものを厳密に表現します。ここではデータベースのフィールドの他に、2つの仮想的なフィールドも加えています。仮想フィールドはデータベースには保存されませんが、バリデーションのような仕組みに役立てることができます。実際の仮想フィールドは[Changeset](#section-8)の項で見ることにします。
+モデル内で定義するスキーマはマイグレーションで記述したものを厳密に表現します。ここではデータベースのフィールドの他に、2つの仮想的なフィールドも加えています。仮想フィールドはデータベースには保存されませんが、バリデーションのような仕組みに役立てることができます。実際の仮想フィールドは[チェンジセット](#チェンジセット)の項で見ることにします。
 
 ## クエリ
 
-リポジトリに問合せができるようになる前に、Query APIをインポートする必要がありますが、今のところは`from/2`をインポートするだけで良いです:
+リポジトリに問合せができるようになる前に、Query APIをインポートする必要がありますが、今のところは `from/2` をインポートするだけで良いです:
 
 ```elixir
 import Ecto.Query, only: [from: 2]
 ```
 
-Query APIの公式ドキュメントは[Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html)で見つけることができます。
+Query API の公式ドキュメントは [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html) で見つけることができます。
 
 ### 基本
 
-Ectoは素晴らしいQuery DSLを提供しており、問合せをわかりやすく表現することができます。全ての確認済みアカウントのユーザ名を探す場合では、このような感じのクエリを用いることができるでしょう:
+Ecto は素晴らしい Query DSL を提供しており、問合せをわかりやすく表現することができます。全ての確認済みアカウントのユーザ名を探す場合では、このような感じのクエリを用いることができるでしょう:
 
 ```elixir
 alias ExampleApp.{Repo, User}
@@ -183,7 +183,7 @@ query =
 Repo.all(query)
 ```
 
-`all/2`に加えて、Repoは`one/2`や`get/3`、`insert/2`、`delete/2`を含む多くのコールバックを提供しています。コールバックの全ての一覧は[Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks)で見つけることができます。
+`all/2` に加えて、Repoは `one/2` や `get/3`、`insert/2`、`delete/2` を含む多くのコールバックを提供しています。コールバックの全ての一覧は [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks) で見つけることができます。
 
 ### Count
 
@@ -209,11 +209,9 @@ query =
   )
 ```
 
-
-
 ### Group By
 
-ユーザを確認済みかどうかでグループ化するには`group_by`オプションを加えます:
+ユーザを確認済みかどうかでグループ化するには `group_by` オプションを加えます:
 
 ```elixir
 query =
@@ -241,7 +239,7 @@ query =
 Repo.all(query)
 ```
 
-`DESC`で順序付けするには:
+`DESC` で順序付けするには:
 
 ```elixir
 query =
@@ -267,7 +265,7 @@ query =
 
 ### Fragment
 
-特定のデータベースに用意されている関数を使う必要があるような場合など、Query APIでは事足りない場合もたまにあります。`fragment/1`関数はこうした目的のためにあります:
+特定のデータベースに用意されている関数を使う必要があるような場合など、Query APIでは事足りない場合もたまにあります。 `fragment/1` 関数はこうした目的のためにあります:
 
 ```elixir
 query =
@@ -278,13 +276,13 @@ query =
   )
 ```
 
-さらなるクエリ例については[phoenix-examples/ecto_query_library](https://github.com/phoenix-examples/ecto_query_library)で見つけることができます。
+さらなるクエリ例については [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html) で見つけることができます。
 
 ## チェンジセット
 
-前の項ではデータの検索方法を学習しましたが、挿入や更新についてはどうすれば良いでしょうか。このためには、Changesetが必要となります。
+前の項ではデータの検索方法を学習しましたが、挿入や更新についてはどうすれば良いでしょうか。このためには、チェンジセットが必要となります。
 
-Changesetはモデルが変更される際のフィルタやバリデーション、制約の維持を担います。
+チェンジセットはモデルが変更される際のフィルタやバリデーション、制約の維持を担います。
 
 以下の例では、ユーザアカウントを作成する際のチェンジセットに注目します。始めに、モデルを更新する必要があります:
 
@@ -338,27 +336,23 @@ defmodule ExampleApp.User do
 end
 ```
 
-`changeset/2`関数を改良し、`validate_password_confirmation/1`と `password_mismatch_error/1`と`password_incorrect_error/1`の3つのヘルパー関数を追加しました。
+`changeset/2` 関数を改良し、 `validate_password_confirmation/1` と `password_mismatch_error/1` と `password_incorrect_error/1` の3つのヘルパー関数を追加しました。
 
-`changeset/2`の名前から推測されるように、これは新しいチェンジセットを作成します。この中で、`cast/4`を用いて、一連の必要あるいはオプションのフィールドからパラメータをチェンジセットへと変換します。次に、チェンジセットのパスワードの長さと、独自実装した関数を用いてパスワード確認のマッチ、そしてユーザ名が一意であるかを検証します。最後に、実際のデータベースのパスワードフィールドを更新します。ここで、チェンジセットにある値を更新するために、`put_change/3`を使用しています。
+`changeset/2` の名前から推測されるように、これは新しいチェンジセットを作成します。この中で、 `cast/4` を用いて、一連の必要あるいはオプションのフィールドからパラメータをチェンジセットへと変換します。次に、チェンジセットのパスワードの長さと、独自実装した関数を用いてパスワード確認のマッチ、そしてユーザ名が一意であるかを検証します。最後に、実際のデータベースのパスワードフィールドを更新します。ここで、チェンジセットにある値を更新するために、 `put_change/3` を使用しています。
 
-`User.changeset/2`は比較的簡単に使用できます:
+`User.changeset/2` は比較的簡単に使用できます:
 
 ```elixir
-alias ExampleApp.{User, Repo}
+alias ExampleApp.{User,Repo}
 
 pw = "passwords should be hard"
-
-changeset =
-  User.changeset(%User{}, %{
-    username: "doomspork",
-    email: "sean@seancallan.com",
-    password: pw,
-    password_confirmation: pw
-  })
+changeset = User.changeset(%User{}, %{username: "doomspork",
+                    email: "sean@seancallan.com",
+                    password: pw,
+                    password_confirmation: pw})
 
 case Repo.insert(changeset) do
-  {:ok, model}        -> # Inserted with success
+  {:ok, record}       -> # Inserted with success
   {:error, changeset} -> # Something went wrong
 end
 ```
