@@ -83,7 +83,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-リンクしたプロセスに現在のプロセスを強制終了させたくない場合もあるでしょう。そのためには `Process.flag/2` 使用して終了を捕捉する必要があります。これは `trap_exit` フラグのために Erlang の [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) 関数を使います。終了を捕捉すると(`trap_exit` が `true` になっている)、 `{:EXIT, from_pid, reason}` というタプルのメッセージとして受け取ります。
+リンクしたプロセスに現在のプロセスを強制終了させたくない場合もあるでしょう。そのためには `Process.flag/2` 使用して終了を捕捉する必要があります。この関数は `trap_exit` フラグのために Erlang の [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) 関数を使います。終了を捕捉すると(`trap_exit` が `true` になっている)、 `{:EXIT, from_pid, reason}` というタプルのメッセージとして受け取ります。
 
 ```elixir
 defmodule Example do
