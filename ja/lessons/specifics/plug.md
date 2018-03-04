@@ -141,12 +141,12 @@ end
 
 これは必要最小限のルータですが、コード自身がうまく中身を説明してくれているはずです。`use Plug.Router`でマクロをいくつか読み込み、それから2つの組み込みのPlug、`:match`と`:dispatch`を配置します。2つのルータが定義され、1つはルート(`/`)へのGETリクエストを制御します。2つ目ではそれ以外の全てのリクエストにマッチして、404メッセージを返すことができます。
 
-`lib/example.ex`にもどり、`Example.Router`をWebサーバーの管理下に追加してください。そして、`Example.HelloWorldPlug`Plugを新しいルータに退避させてください
+`lib/example.ex`にもどり、`Example.Plug.Router`をWebサーバーの管理下に追加してください。そして、`Example.HelloWorldPlug`Plugを新しいルータに退避させてください
 
 ```elixir
 def start(_type, _args) do
   children = [
-    Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+    Plug.Adapters.Cowboy.child_spec(:http, Example.Plug.Router, [], port: 8080)
   ]
   Logger.info "Started application"
   Supervisor.start_link(children, strategy: :one_for_one)
