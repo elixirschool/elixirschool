@@ -143,7 +143,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ** [역주] (함수절에러) 어떤 함수의 절도 Anagram.anagrams?/2에서 매치되지 않습니다
 	iex:2: Anagram.anagrams?(3, 5)
 ```

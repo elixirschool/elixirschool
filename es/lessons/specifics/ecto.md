@@ -27,7 +27,7 @@ end
 
 ### Repositorio
 
-Finalmente necesitamos crear el repositorio de nuestro proyecto, el envoltorio a la base de datos. Esto puede realizarse al ejecutar la siguiente tarea Mix: `mix ecto.gen.repo`, describiremos las tareas Mix en subsiguientes secciones. El repositorio creado puede encontrarse en `lib/<nombre_proyecto>/repo.ex`
+Finalmente necesitamos crear el repositorio de nuestro proyecto, el envoltorio a la base de datos. Esto puede realizarse al ejecutar la siguiente tarea Mix: `mix ecto.gen.repo -r ExampleApp.Repo`, describiremos las tareas Mix en subsiguientes secciones. El repositorio creado puede encontrarse en `lib/<nombre_proyecto>/repo.ex`
 
 ```elixir
 defmodule ExampleApp.Repo do

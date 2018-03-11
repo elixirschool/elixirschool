@@ -27,7 +27,7 @@ end
 
 ### Repository
 
-Akhirnya kita perlu membuat repositori project kita, wrapper untuk databasenya.  Ini bisa dilakukan lewat task `mix ecto.gen.repo`.  Kita akan membahas task mix Ecto nanti.  Repo bisa ditemukan di `lib/<project name>/repo.ex`:
+Akhirnya kita perlu membuat repositori project kita, wrapper untuk databasenya.  Ini bisa dilakukan lewat task `mix ecto.gen.repo -r ExampleApp.Repo`.  Kita akan membahas task mix Ecto nanti.  Repo bisa ditemukan di `lib/<project name>/repo.ex`:
 
 ```elixir
 defmodule ExampleApp.Repo do

@@ -9,9 +9,9 @@
 #  gr: 
 #  id: 
 #  it: 
-#  jp: 
+#  ja: 
 #  ko: 
-#  my: 
+#  ms: 
 #  "no": 
 #  pl: 
 #  pt: 
@@ -35,9 +35,9 @@ en:
   gr: Greek
   id: Indonesian
   it: Italian
-  jp: Japanese
+  ja: Japanese
   ko: Korean
-  my: Malaysian
+  ms: Malaysian
   "no": Norwegian
   pl: Polish
   pt: Portuguese
@@ -60,9 +60,9 @@ es:
   gr: Griego
   id: Indonesio
   it: Italiano
-  jp: Japonés
+  ja: Japonés
   ko: Coreano
-  my: Malayo
+  ms: Malayo
   "no": Noruego
   pl: Polaco
   pt: Portugués
@@ -83,9 +83,9 @@ id:
  gr: Bahasa Yunani
  id: Bahasa Indonesia
  it: Bahasa Italia
- jp: Bahasa Jepang
+ ja: Bahasa Jepang
  ko: Bahasa Korea
- my: Bahasa Malaysia
+ ms: Bahasa Malaysia
  "no": Bahasa Norwegia
  pl: Bahasa Poland
  pt: Bahasa Portugis
@@ -95,7 +95,7 @@ id:
  uk: Bahasa Ukraina
  vi: Bahasa Vietnam
 
- jp:
+ ja:
   ar: アラビア語
   bg: ブルガリア語
   bn: ベンガル語
@@ -107,9 +107,9 @@ id:
   gr: ギリシャ語
   id: インドネシア語
   it: イタリア語
-  jp: 日本語
+  ja: 日本語
   ko: 韓国語
-  my: マレーシア語
+  ms: マレーシア語
   "no": ノルウェー語
   pl: ポーランド語
   pt: ポルトガル語
@@ -132,9 +132,9 @@ th:
   gr: ภาษากรีก
   id: ภาษาอินโดนิเซีย
   it: ภาษาอิตาลี
-  jp: ภาษาญี่ปุ่น
+  ja: ภาษาญี่ปุ่น
   ko: ภาษาเกาหลี
-  my: ภาษามาเลเซีย
+  ms: ภาษามาเลเซีย
   "no": ภาษานอร์เวย์
   pl: ภาษาโปแลนด์
   pt: ภาษาโปรตุเกส

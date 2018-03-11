@@ -27,7 +27,7 @@ end
 
 ### 저장소
 
-마지막으로 프로젝트의 저장소, 다시 말해 데이터베이스를 감싸는 부분을 생성해야 합니다. 이는 `mix ecto.gen.repo` 태스크로 생성할 수 있습니다. 다른 mix 태스크에 대해서는 나중에 알아보겠습니다. 생성된 저장소(Repo 모듈)는 `lib/<project name>/repo.ex`에 저장됩니다.
+마지막으로 프로젝트의 저장소, 다시 말해 데이터베이스를 감싸는 부분을 생성해야 합니다. 이는 `mix ecto.gen.repo -r ExampleApp.Repo` 태스크로 생성할 수 있습니다. 다른 mix 태스크에 대해서는 나중에 알아보겠습니다. 생성된 저장소(Repo 모듈)는 `lib/<project name>/repo.ex`에 저장됩니다.
 
 ```elixir
 defmodule ExampleApp.Repo do

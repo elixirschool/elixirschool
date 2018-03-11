@@ -1,15 +1,15 @@
 ---
-version: 0.9.0
-title: Composição
+version: 1.2.0
+title: Módulos
 ---
 
 Sabemos por experiência o quanto é incontrolável ter todas as nossas funções no mesmo arquivo e escopo. Nesta lição vamos cobrir como agrupar funções e definir um mapa especializado conhecido como struct, a fim de organizar o nosso código eficientemente.
 
 {% include toc.html %}
 
-## Modulos
+## Módulo
 
-Os módulos são a melhor maneira de organizar as funções em um namespace. Além de agrupar funções, eles permitem definir funções nomeadas e privadas que cobrimos nas lições passadas.
+Os módulos permitem a organização de funções em um namespace. Além de agrupar funções, eles permitem definir funções nomeadas e privadas que cobrimos na [lição sobre funções](../functions/).
 
 Vejamos um exemplo básico:
 
@@ -24,7 +24,7 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
-É possível aninhar modulos em Elixir, permitindo-lhe promover um namespace para a sua funcionalidade:
+É possível aninhar módulos em Elixir, permitindo-lhe promover um namespace para a sua funcionalidade:
 
 ```elixir
 defmodule Example.Greetings do
@@ -73,7 +73,7 @@ defmodule Example.User do
 end
 ```
 
-Vamos criar algumas estruturas:
+Vamos criar algumas structs:
 
 ```elixir
 iex> %Example.User{}
@@ -138,7 +138,7 @@ defmodule Example do
 end
 ```
 
-É possível criar pseudônimos para multiplos módulos de uma vez só:
+É possível criar pseudônimos para múltiplos módulos de uma só vez:
 
 ```elixir
 defmodule Example do
@@ -161,9 +161,9 @@ iex> last([1, 2, 3])
 
 #### Filtrando
 
-Por padrão todas as funções e macros são importadas, porém nós podemos filtrar-los usando as opções `:only` e `:except`.
+Por padrão todas as funções e macros são importadas, porém nós podemos filtrá-los usando as opções `:only` e `:except`.
 
-Para importar funções e macros específicos nós temos que fornecer os  pares de nome para `:only` e `:except`. Vamos começar por importar apenas a função `last/1`:
+Para importar funções e macros específicos nós temos que fornecer os pares de nome para `:only` e `:except`. Vamos começar por importar apenas a função `last/1`:
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -184,7 +184,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-Além do nome existem dois átomos especiais, `:functions` e `:macros`, que importam apenas funções e macros, espectivamente:
+Além do par nome/aridade existem dois átomos especiais, `:functions` e `:macros`, que importam apenas funções e macros, respectivamente:
 
 ```elixir
 import List, only: :functions
@@ -207,18 +207,69 @@ Se tentar chamar um macro que ainda não está carregado, Elixir vai gerar um er
 
 ### `use`
 
-Usa o módulo no contexto atual. Isto é particularmente útil quando um modulo que precisa executar alguma configuração. Ao chamar `use` nós invocamos o `__using__` dentro do modulo, proporcionando o módulo uma oportunidade para modificar nosso contexto existente:
+Com a macro `use` podemos dar habilidade a outro módulo para modificar a sua definição atual.
+Quando invocamos `use` em nosso código estamos invocando o callback `__using__/1` definido pelo módulo declarado.
+O resultado da macro `__using__/1` passa a fazer parte da definição do módulo.
+Para melhor entendimento de como isso funciona vamos olhar um exemplo simples:
 
 ```elixir
-defmodule MyModule do
-  defmacro __using__(opts) do
+defmodule Hello do
+  defmacro __using__(_opts) do
     quote do
-      import MyModule.Foo
-      import MyModule.Bar
-      import MyModule.Baz
-
-      alias MyModule.Repo
+      def hello(name), do: "Hi, #{name}"
     end
   end
 end
 ```
+
+Aqui criamos um módulo `Hello` que define o callback `__using__/1`, o qual define a função `hello/1`.
+Vamos criar um novo módulo para tentar nosso novo código:
+
+```elixir
+defmodule Example do
+  use Hello
+end
+```
+
+Se executarmos nosso código no IEx veremos que `hello/1` está disponível no módulo `Example`.
+
+```elixir
+iex> Example.hello("Sean")
+"Hi, Sean"
+```
+
+Aqui podemos ver que `use` invoca o callback `__using__/1` dentro do `Hello` o qual acaba adicionando o código dentro do nosso módulo.
+Agora que demonstramos o exemplo básico vamos atualizar nosso código para entender como `__using__/1` suporta opções.
+Vamos fazer isso adicionando a opção `greeting`:
+
+```elixir
+defmodule Hello do
+  defmacro __using__(opts) do
+    greeting = Keyword.get(opts, :greeting, "Hi")
+
+    quote do
+      def hello(name), do: unquote(greeting) <> ", " <> name
+    end
+  end
+end
+```
+
+Vamos atualizar nosso módulo `Example` para incluir a opção nova `greeting`:
+
+```elixir
+defmodule Example do
+  use Hello, greeting: "Hola"
+end
+```
+
+Se executamos isso dentro do IEx devemos ver que a função greeting foi alterada:
+
+```
+iex> Example.hello("Sean")
+"Hola, Sean"
+```
+
+Esses exemplos simples demonstram como `use` funciona, mas essa é uma ferramenta poderosa na caixa de ferramentas do Elixir.
+À medida que você passa a aprender mais sobre Elixir, observe bem como o use é utilizado. Um exemplo que você verá com certeza é use `ExUnit.Case, async: true`.
+
+**Nota**: `quote`, `alias`, `use`, `require`, são macros utilizadas quando trabalhamos com [metaprogramação](../../advanced/metaprogramming).

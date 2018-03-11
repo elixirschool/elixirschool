@@ -27,7 +27,7 @@ end
 
 ### Repozytorium
 
-W końcu musimy stworzyć repozytorium dla naszego projektu, które pełni rolę opakowania (ang. _wrapper_) bazy danych.  Możemy to zrobić wykorzystując polecenie `mix ecto.gen.repo`.  Zadania Ecto dla Mixa omówimy za chwilę. Moduł `Repo` znajdziemy w `lib/<projectname>/repo.ex`:
+W końcu musimy stworzyć repozytorium dla naszego projektu, które pełni rolę opakowania (ang. _wrapper_) bazy danych.  Możemy to zrobić wykorzystując polecenie `mix ecto.gen.repo -r ExampleApp.Repo`.  Zadania Ecto dla Mixa omówimy za chwilę. Moduł `Repo` znajdziemy w `lib/<projectname>/repo.ex`:
 
 ```elixir
 defmodule ExampleApp.Repo do
