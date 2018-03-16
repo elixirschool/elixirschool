@@ -143,6 +143,15 @@ Enum.max([], fn -> :bar end)
 :bar
 ```
 
+### filter
+
+`filter/2` returns collection's elements that match the condition from the given function.
+
+```elixir
+iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
+[2, 4]
+```
+
 ### reduce
 
 With `reduce/3` we can distill our collection down into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first element in the enumerable is used:
