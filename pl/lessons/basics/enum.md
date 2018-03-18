@@ -117,7 +117,6 @@ Funkcja `min/2` robi dokładnie to samo, ale jako drugi argument przyjmuje funkc
 ```elixir
 iex> Enum.min([], fn -> :foo end)
 :foo  
-
 ```
 
 ### max
@@ -134,9 +133,7 @@ Funkcja `max/2` działa na tej samej zasadzie co `min/2`, czyli jako drugi argum
 ```elixir
 iex> Enum.max([], fn -> :bar end)
 :bar  
-
 ```
-
 
 ### reduce
 
