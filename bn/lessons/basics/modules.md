@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: মডিউল 
-category: basics
-order: 8
-lang: bn
 ---
 
 অভিজ্ঞতা থেকে আমরা জানি যে এক ফাইল ও স্কোপে সমস্ত ফাংশন রাখা ঠিক না। এই অধ্যায়ে আমরা আলোচনা করব কিভাবে কিছু ফাংশনকে একত্রিত করা যায় এবং এরপর একটি বিশেষ ম্যাপ, স্ট্রাক্ট নিয়ে কথা বলব যা আমাদের কোড সংগঠনকে আরও সুগঠিত রাখতে সাহায্য করবে। 
@@ -202,7 +198,7 @@ import List, only: :macros
 defmodule Example do
   require SuperMacros
 
-  SuperMacros.do_stuff
+  SuperMacros.do_stuff()
 end
 ```
 
@@ -218,7 +214,7 @@ defmodule UseImportRequire.UseMe do
   defmacro __using__(_) do
     quote do
       def use_test do
-        IO.puts "use_test"
+        IO.puts("use_test")
       end
     end
   end
@@ -253,4 +249,6 @@ end
 
 আবারো বলা হচ্ছে- ইউজ ম্যাক্রো শুধুমাত্র ওই মডিউলের `__using__/1` কল করে। ভালভাবে বুঝতে হলে পড়ে নিন `__using__/1` এর ডকুমেন্টেশান। 
 
-**নোট**: `quote`, `alias`, `use`, `require` হল ম্যাক্রো যা [মেটাপ্রোগ্রামিংয়ের](../../advanced/metaprogramming) সময়ে ব্যবহৃত হয়।
+**নোট**: `quote`, `alias`, `use`, `require` হল ম্যাক্রো যা মেটাপ্রোগ্রামিংয়ের সময়ে ব্যবহৃত হয়।
+<!-- TODO: Add link we advanced/metaprogramming is translated
+[মেটাপ্রোগ্রামিংয়ের](../../advanced/metaprogramming) সময়ে ব্যবহৃত হয়। -->

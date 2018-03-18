@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Xử Lý Lỗi
-category: advanced
-order: 2
-lang: vi
 ---
 
 Mặc dù trong Elixir để trả về lỗi, chúng ta thường dùng `{:error, reason}`, nhưng Elixir cũng hỗ trợ các exceptions (tạm dịch ngoại lệ), trong bài học này chúng ta sẽ xem xét các cách để xử lý lỗi, và những cơ chế khác nhau để làm chuyện này.
@@ -49,10 +45,10 @@ Có thể kết hợp nhiều lỗi trong một giải pháp:
 try do
   opts
   |> Keyword.fetch!(:source_file)
-  |> File.read!
+  |> File.read!()
 rescue
-  e in KeyError -> IO.puts "missing :source_file option"
-  e in File.Error -> IO.puts "unable to read source file"
+  e in KeyError -> IO.puts("missing :source_file option")
+  e in File.Error -> IO.puts("unable to read source file")
 end
 ```
 
@@ -76,11 +72,12 @@ The end!
 Điều này thường được sử dụng nhiều với các tập tin (files) hoặc các kết nối cần phải được đóng:
 
 ```elixir
-{:ok, file} = File.open "example.json"
+{:ok, file} = File.open("example.json")
+
 try do
-   # Do hazardous work
+  # Do hazardous work
 after
-   File.close(file)
+  File.close(file)
 end
 ```
 
@@ -138,7 +135,7 @@ Cơ chế lỗi cuối cùng mà Elixir cung cấp cho chúng ta là `exit`. Exi
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 Trong khi có thể bắt một exit với try/catch, cách làm này là _cực kỳ_ hiếm. Trong hầu hết các trường hợp, sẽ tốt hơn nếu chúng ta để cho supervisor xử lý chuyện này.

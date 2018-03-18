@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Projects Ομπρέλας
-category: advanced
-order: 8
-lang: gr
 ---
 
 Μερικές φορές ένα project μπορεί να γίνει μεγάλο, ή και πολύ μεγάλο.  Το εργαλείο χτισίματος Mix μας επιτρέπει να χωρίσουμε τον κώδικά μας σε πολλαπλές εφαρμογές και να κάνουμε τα Elixir projects μας πιο διαχειρίσιμα καθώς μεγαλώνουν.
@@ -188,7 +184,7 @@ Consolidated Inspect
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "Γεια, είμαι το Dataset"
+    IO.puts("Γεια, είμαι το Dataset")
   end
 end
 ```

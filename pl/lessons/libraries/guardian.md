@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Guardian (Podstawy)
-category: libraries
-order: 1
-lang: pl
 ---
 
 [Guardian](https://github.com/ueberauth/guardian) jest szeroko używaną biblioteką do obsługi uwierzytelniania bazującą na [JWT](https://jwt.io/) (JSON Web Token).
@@ -85,9 +81,10 @@ end
 W pliku `config/config.ex`:
 
 ```elixir
+# Nadpisz tą wartość w plikach konfiguracyjnych dla poszczególnych środowisk
 config :guardian, Guardian,
   issuer: "MyAppId",
-  secret_key: Mix.env, # Nadpisz tą wartość w plikach konfiguracyjnych dla poszczególnych środowisk
+  secret_key: Mix.env(),
   serializer: MyApp.GuardianSerializer
 ```
 
@@ -102,11 +99,11 @@ defmodule MyApp.GuardianSerializer do
   alias MyApp.Repo
   alias MyApp.User
 
-  def for_token(user = %User{}), do: { :ok, "User:#{user.id}" }
-  def for_token(_), do: { :error, "Unknown resource type" }
+  def for_token(user = %User{}), do: {:ok, "User:#{user.id}"}
+  def for_token(_), do: {:error, "Unknown resource type"}
 
-  def from_token("User:" <> id), do: { :ok, Repo.get(User, id) }
-  def from_token(_), do: { :error, "Unknown resource type" }
+  def from_token("User:" <> id), do: {:ok, Repo.get(User, id)}
+  def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
 
@@ -120,7 +117,7 @@ Gdy mamy już naszą konfigurację na miejscu, musimy jakoś zintegrować Guardi
 
 ## Żądania HTTP
 
-Guardian udostępnia pewną ilość plugów, pozwalających na integrację z protokołem HTTP. O plugach możesz poczytać [w lekcji im poświęconej](../specifics/plug/). Guardian nie wymaga Phoenixa, ale użyjemy go tutaj by uprościć przykład.
+Guardian udostępnia pewną ilość plugów, pozwalających na integrację z protokołem HTTP. O plugach możesz poczytać [w lekcji im poświęconej](../../specifics/plug/). Guardian nie wymaga Phoenixa, ale użyjemy go tutaj by uprościć przykład.
 
 Najprostszą metodą integracji jest użycie routera, ale jako że sam proces integracji opiera się o mechanizm plugów, to można go użyć wszędzie tam, gdzie mają zastosowanie plugi.
 
@@ -136,13 +133,13 @@ Stwórzmy potok pracy.
 
 ```elixir
 pipeline :maybe_browser_auth do
-  plug Guardian.Plug.VerifySession
-  plug Guardian.Plug.VerifyHeader, realm: "Bearer"
-  plug Guardian.Plug.LoadResource
+  plug(Guardian.Plug.VerifySession)
+  plug(Guardian.Plug.VerifyHeader, realm: "Bearer")
+  plug(Guardian.Plug.LoadResource)
 end
 
 pipeline :ensure_authed_access do
-  plug Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler}
+  plug(Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler})
 end
 ```
 
@@ -154,17 +151,17 @@ By ich użyć, dodajmy je do naszej aplikacji:
 
 ```elixir
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth]
+  pipe_through([:browser, :maybe_browser_auth])
 
-  get "/login", LoginController, :new
-  post "/login", LoginController, :create
-  delete "/login", LoginController, :delete
+  get("/login", LoginController, :new)
+  post("/login", LoginController, :create)
+  delete("/login", LoginController, :delete)
 end
 
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth, :ensure_authed_access]
+  pipe_through([:browser, :maybe_browser_auth, :ensure_authed_access])
 
-  resource "/protected/things", ProtectedController
+  resource("/protected/things", ProtectedController)
 end
 ```
 
@@ -218,10 +215,13 @@ Zalogowanie i wylogowanie z wykorzystaniem sesji przeglądarki jest banalnie pro
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
+      # Use access tokens. Other tokens can be used, like :refresh etc
       conn
-      |> Guardian.Plug.sign_in(user, :access) # Use access tokens. Other tokens can be used, like :refresh etc
+      |> Guardian.Plug.sign_in(user, :access)
       |> respond_somehow()
+
     {:error, reason} ->
+      nil
       # handle not verifying the user's credentials
   end
 end
@@ -240,9 +240,12 @@ def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
       {:ok, jwt, _claims} = Guardian.encode_and_sign(user, :access)
+
       conn
-      |> respond_somehow({token: jwt})
+      |> respond_somehow(%{token: jwt})
+
     {:error, reason} ->
+      nil
       # handle not verifying the user's credentials
   end
 end

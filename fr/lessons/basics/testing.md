@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Tests
-category: basics
-order: 12
-lang: fr
 ---
 
 Faire des tests est une partie importante du développement informatique. Dans cette leçon, nous allons voir comment tester notre code Elixir avec ExUnit ainsi que les bonnes pratiques pour cela.

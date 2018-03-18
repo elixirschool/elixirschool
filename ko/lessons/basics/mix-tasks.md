@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: 커스텀 Mix 태스크
-category: basics
-order: 15
-lang: ko
 ---
 
 Elixir 프로젝트를 위한 커스텀 Mix 태스크 만들어 봅시다.
@@ -29,7 +25,7 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-위의 셸 명령에서 보다시피, Phoenix 프레임워크에는 새로운 프로젝트를 생성하는 커스텀 Mix 태스크가 있습니다. 만약 프로젝트에 비슷한 것을 추가하고 싶다면 어떻게 해야 할까요? 좋은 소식은 할 수 있고 Elixir가 하기 쉽게 만들어 준다는 것입니다.
+위의 셸 명령에서 보다시피, Phoenix 프레임워크에는 새로운 프로젝트를 생성하는 커스텀 Mix 태스크가 있습니다. 프로젝트에 비슷한 것을 추가하고 싶다면 어떻게 해야 할까요? 좋은 소식은 할 수 있고 Elixir가 하기 쉽게 만들어 준다는 것입니다.
 
 ## 준비하기
 
@@ -62,12 +58,11 @@ Run "mix help" for more commands.
 
 ```elixir
 defmodule Hello do
-
   @doc """
   Output's `Hello, World!` everytime.
   """
   def say do
-    IO.puts "Hello, World!"
+    IO.puts("Hello, World!")
   end
 end
 ```
@@ -82,7 +77,8 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Simply runs the Hello.say/0 command."
   def run(_) do
-    Hello.say # 앞서 만든 Hello.say() 함수 호출하기
+    # 앞서 만든 Hello.say() 함수 호출하기
+    Hello.say()
   end
 end
 ```

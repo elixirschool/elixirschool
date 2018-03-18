@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: OTP 슈퍼바이저
-category: advanced
-order: 5
-lang: ko
 ---
 
 슈퍼바이저(Supervisor)는 다른 프로세스의 감시라는 단 하나의 목적에 특화된 프로세스입니다. 자식 프로세스가 실패하면 자동으로 재시작해주는 것으로 장애에 대한 내성이 높은(Fault-tolerant) 애플리케이션을 만들 수 있게 해줍니다.
@@ -23,7 +19,7 @@ lang: ko
 import Supervisor.Spec
 
 children = [
-  worker(SimpleQueue, [], [name: SimpleQueue])
+  worker(SimpleQueue, [], name: SimpleQueue)
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -82,7 +78,7 @@ Task는 전용 슈퍼바이저인 `Task.Supervisor`를 가지고 있습니다. �
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)

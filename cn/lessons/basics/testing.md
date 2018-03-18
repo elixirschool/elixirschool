@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: 测试
-category: basics
-order: 12
-lang: cn
 ---
 
 测试是软件开发重要的一部分，这节课我们会讲一下如何使用 ExUnit 测试 Elixir 代码，以及测试中的最佳实践方法。
@@ -83,7 +79,7 @@ ExUnit 会告诉我们错误断言出现的行数，期望的值是什么，实�
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -99,7 +95,7 @@ end
 
 `assert_reveived` 并不会等待消息，如果需要，你可以使用 `assert_reveive` 并指定超时时间。
 
-## capture_io 和 capture_log
+### capture_io 和 capture_log
 
 使用 `ExUnit.CaptureIO` 可以在不改变原来应用的情况下，捕获应用的输出。只要把生成输出的函数作为参数传进去就行：
 
@@ -109,7 +105,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```

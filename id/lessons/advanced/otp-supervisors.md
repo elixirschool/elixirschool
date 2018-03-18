@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: OTP Supervisors
-category: advanced
-order: 6
-lang: id
 ---
 
 Supervisor adalah proses khusus yang memiliki satu peran: memonitor proses lain. Supervisor ini memungkinkan kita membuat aplikasi yang toleran-kegagalan (fault-tolerant) dengan secara otomatis menjalankan ulang proses anak (child process) jika proses anak itu fail (mengalami kegagalan).
@@ -23,7 +19,7 @@ Menggunakan SimpleQueue dari pelajaran [OTP Concurrency](../../advanced/otp-conc
 import Supervisor.Spec
 
 children = [
-  worker(SimpleQueue, [], [name: SimpleQueue])
+  worker(SimpleQueue, [], name: SimpleQueue)
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -70,7 +66,7 @@ Menggunakan `Task.Supervisor` tidak beda dengan supervisor lain:
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)

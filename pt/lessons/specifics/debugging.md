@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Debugging
-category: specifics
-order: 6
-lang: pt
 ---
 
 Às vezes, os bugs estão presentes em nosso projeto, é por isso que precisamos investigar o problema. Nesta sessão vamos aprender sobre como fazer debug no código Elixir, bem como ferramentas de análise de estática para ajudar a encontrar possíveis bugs.
@@ -70,10 +66,10 @@ Como `number` não é `integer`, obtemos um erro. Como podemos consertar isso? P
 ```elixir
 @spec sum_times(integer) :: integer
 def sum_times(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
-    |> round
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -96,7 +92,6 @@ Vejamos um módulo básico:
 
 ```elixir
 defmodule Example do
-
   def cpu_burns(a, b, c) do
     x = a * 2
     y = b * 3
@@ -104,7 +99,6 @@ defmodule Example do
 
     x + y + z
   end
-
 end
 ```
 
@@ -139,11 +133,11 @@ O modulo `:int` é um intérprete que nos dá a capacidade de criar pontos de in
 
 Quando você inicia o depurador, você verá uma nova janela como esta:
 
-![Debugger Screenshot 1]({{ site.url }}/assets/debugger_1.png)
+![Debugger Screenshot 1]({% asset_path "debugger_1.png" %})
 
 Depois de ter anexado o nosso módulo para o depurador estará disponível no menu à esquerda:
 
-![Debugger Screenshot 2]({{ site.url }}/assets/debugger_2.png)
+![Debugger Screenshot 2]({% asset_path "debugger_2.png" %})
 
 ## Criando breakpoints
 
@@ -167,11 +161,11 @@ iex > Example.cpu_burns(1, 1, 1)
 
 A execução será pausada no IEx e a janela do depurador deverá ter esta aparência:
 
-![Debugger Screenshot 3]({{ site.url }}/assets/debugger_3.png)
+![Debugger Screenshot 3]({% asset_path "debugger_3.png" %})
 
 Aparecerá uma janela adicional com o nosso código fonte:
 
-![Debugger Screenshot 4]({{ site.url }}/assets/debugger_4.png)
+![Debugger Screenshot 4]({% asset_path "debugger_4.png" %})
 
 Nesta janela, podemos procurar o valor das variáveis, avançar para a próxima linha ou avaliar expressões. `:int.disable_break/2` pode ser chamado para desabilitar um breakpoint:
 

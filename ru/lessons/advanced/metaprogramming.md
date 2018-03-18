@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Метапрограммирование
-category: advanced
-order: 7
-lang: ru
 ---
 
 Метапрограммирование - процесс написания кода с помощью другого кода. В Elixir это дает нам возможность расширять возможности языка для большего соответствия нуждам приложения. Мы начнем этот урок с рассмотрения внутреннего представления Elixir кода, а потом узнаем, как его модифицировать. И, в итоге, мы применим эти знания для создания собственных расширений языка.
@@ -199,8 +195,8 @@ iex> val
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts unquote(expr)
-      IO.puts unquote(expr)
+      IO.puts(unquote(expr))
+      IO.puts(unquote(expr))
     end
   end
 end
@@ -220,8 +216,8 @@ iex> Example.double_puts(:os.system_time)
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts expr
-      IO.puts expr
+      IO.puts(expr)
+      IO.puts(expr)
     end
   end
 end

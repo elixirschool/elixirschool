@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Bases
-category: basics
-order: 1
-lang: fr
 ---
 
 Installation, types de base et opérations.
@@ -15,7 +11,7 @@ Installation, types de base et opérations.
 
 ### Installer Elixir
 
-Les instructions d'installation pour chaque système d'exploitation peuvent être trouvées sur [elixir-lang.org](shttp://elixir-lang.org/install.html). 
+Les instructions d'installation pour chaque système d'exploitation peuvent être trouvées sur [elixir-lang.org](http://elixir-lang.org/install.html). 
 
 ### Mode Interactif
 
@@ -23,7 +19,7 @@ Elixir viens avec `iex`, un shell interactif qui nous permet d'évaluer des expr
 
 Pour commencer, lançons `iex`:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>

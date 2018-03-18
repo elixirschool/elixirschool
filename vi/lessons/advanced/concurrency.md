@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Xử lý đồng thời
-category: advanced
-order: 4
-lang: vi
 ---
 
 Một trong những điểm nổi bật của Elixir đó là việc hỗ trợ xử lý đồng thời. Nhờ có máy ảo Erlang (BEAM), việc xử lý đồng thời trong Elixir dễ hơn rất nhiều so với mong đợi. Mô hình xử lý đồng thời dựa và Actor, một process có thể tương tác với các process khác thông qua việc truyền thông điệp.
@@ -50,7 +46,7 @@ iex> spawn(Example, :add, [2, 3])
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
 
     listen
@@ -83,7 +79,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Đôi khi, chúng ta không muốn process được liên kết làm cho process hiện tại bị crash. Vì thế chúng ta cần đánh bẫy sự thoát ra của process kia. Khi đánh bẫy sự thoát ra, chúng ta sẽ nhận được một thông điệp dạng tuple như sau: `{:EXIT, from_pid, reason}`.
@@ -91,12 +87,13 @@ iex> spawn_link(Example, :explode, [])
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -115,11 +112,12 @@ Khi giám sát một process, nếu process đó bị crash, process hiện tạ
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end

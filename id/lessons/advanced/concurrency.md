@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Concurrency
-category: advanced
-order: 4
-lang: id
 ---
 
 Satu poin yang menjual dari Elixir adalah dukungannya terhadap konkurensi. Berkat Erlang VM (BEAM), konkurensi dalam Elixir sangat mudah.  Model konkurensinya berdasar pada Actor, sebuah proses terlindung (contained) yang berkomunikasi dengan proses lain lewat pengiriman pesan (message passing). 
@@ -49,7 +45,7 @@ Untuk berkomunikasi, proses-proses bergantung pada pengiriman pesan (message pas
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
   end
 end
@@ -78,7 +74,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Terkadang kita tidak ingin proses kita yang terkait untuk mengakibatkan proses yang sekarang ada ikut crash.  Untuk itu kita perlu menjebak (trap) exit.  Ketika menjebak exit proses akan menerima sebagai sebuah pesan tuple: `{:EXIT, from_pid, reason}`.
@@ -86,12 +82,13 @@ Terkadang kita tidak ingin proses kita yang terkait untuk mengakibatkan proses y
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -108,11 +105,12 @@ Bagaimana jika kita tidak ingin mengkaitkan dua proses tetapi tetap ingin meneri
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end

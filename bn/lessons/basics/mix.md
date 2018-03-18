@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: মিক্স
-category: basics
-order: 9
-lang: bn
 ---
 এলিক্সির নিয়ে আরও গভীরে যাওয়ার আগে আমাদের "মিক্স" সম্পর্কে জানা উচিত। যদি আপনি রুবীর সাথে পরিচিত হয়ে থাকেন তাহলে মিক্সকে ধরে নিতে পারেন বান্ডলার, রুবী-জেম ও রেইকের সমন্বয় হিসেবে। যে কোন এলিক্সির প্রজেক্টের জন্য এটি অত্যন্ত গুরুত্বপূর্ণ এবং এই অধ্যায়ে আমরা মিক্সের বিশাল ফাংশনালিটির মধ্যে কতিপয় কিছু নিয়ে আলোচনা করব। মিক্স সংক্রান্ত অন্যান্য বিষয় জানতে রান করুন  `mix help`। 
 
@@ -43,16 +39,19 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
@@ -102,10 +101,12 @@ Generated example app
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 1.1 or ~> 1.2"},
-   {:phoenix_html, "~> 2.3"},
-   {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slime, "~> 0.14"}]
+  [
+    {:phoenix, "~> 1.1 or ~> 1.2"},
+    {:phoenix_html, "~> 2.3"},
+    {:cowboy, "~> 1.0", only: [:dev, :test]},
+    {:slime, "~> 0.14"}
+  ]
 end
 ```
 

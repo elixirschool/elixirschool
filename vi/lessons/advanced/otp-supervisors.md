@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: OTP Supervisors
-category: advanced
-order: 6
-lang: vi
 ---
 
 Supervisor (tạm dịch là giám trình - tiến trình giám sát) là các tiến trình (process) đặc biệt với chỉ một mục đích: quản lý các tiến trình khác. Giám trình cho phép chúng ta tạo ra các ứng dụng chống chịu lỗi (fault-tolerent) bằng cách tự động khởi động lại các tiến trình con khi chúng bị hỏng.
@@ -23,7 +19,7 @@ Chúng ta sẽ bắt đầu với SimpleQueue trong bài [OTP Concurrency](../..
 import Supervisor.Spec
 
 children = [
-  worker(SimpleQueue, [], [name: SimpleQueue])
+  worker(SimpleQueue, [], name: SimpleQueue)
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -82,7 +78,7 @@ Việc thêm vào `Task.Supervisor` cũng giống với các loại giám trình
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Elixir Embebido (EEx)
-category: specifics
-order: 3
-lang: es
 ---
 
 Al igual que Ruby tiene ERB y Java JSP, Elixir tiene EEx o Elixir Embebido. Con EEx podemos integrar y evaluar Elixir dentro de las cadenas.
@@ -36,7 +32,7 @@ Hi, <%= name %>
 
 defmodule Example do
   require EEx
-  EEx.function_from_file :def, :greeting, "greeting.eex", [:name]
+  EEx.function_from_file(:def, :greeting, "greeting.eex", [:name])
 end
 
 iex> Example.greeting("Sean")
@@ -79,4 +75,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 Las asignaciones `EEx.SmartEngine` son útiles porque las asignaciones se pueden cambiar sin necesidad de compilación de plantilla:
 
-¿Interesado en escribir su propio motor? Echa un vistazo a el comportamiento de [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) para ver lo que se requiere.
+¿Interesado en escribir su propio motor? Echa un vistazo a el comportamiento de [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html) para ver lo que se requiere.

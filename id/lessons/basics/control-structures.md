@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.1.1
 title: Struktur Kendali
-category: basics
-order: 5
-lang: id
 ---
 
 Dalam pelajaran ini kita akan melihat struktur kendali yang tersedia untuk kita di Elixir.
@@ -13,7 +9,7 @@ Dalam pelajaran ini kita akan melihat struktur kendali yang tersedia untuk kita 
 
 ## `if` dan `unless`
 
-Besar kemungkinan anda sudah bertemu `if/2` sebelumnya, dan jika sudah terbiasa dengan Ruby anda juga sudah familiar dengan `unless/2`.  Dalam Elixir keduanya berfungsi cukup mirip tetapi keduanya didefinisikan sebagai macro, bukannya fasilitas bahasa; Anda dapat melihat implementasinya di [modul Kernel](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Besar kemungkinan anda sudah bertemu `if/2` sebelumnya, dan jika sudah terbiasa dengan Ruby anda juga sudah familiar dengan `unless/2`. Dalam Elixir keduanya berfungsi cukup mirip tetapi keduanya didefinisikan sebagai macro, bukannya fasilitas bahasa; Anda dapat melihat implementasinya di [modul Kernel](https://hexdocs.pm/elixir/Kernel.html).
 
 Harus dicatat bahwa di Elixir, nilai yang dianggap false (falsey value) hanyalah `nil` dan boolean `false`.
 
@@ -42,7 +38,7 @@ iex> unless is_integer("hello") do
 
 ## `case`
 
-Jika diperlukan untuk mencocokkan pada banyak pola kita dapat menggunakan `case`:
+Jika diperlukan untuk mencocokkan pada banyak pola kita dapat menggunakan `case/2`:
 
 ```elixir
 iex> case {:ok, "Hello World"} do
@@ -53,7 +49,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-Variabel `_` adalah bagian yang penting dalam pernyataan `case`. Tanpa itu kegagalan menemukan kecocokan akan menghasilkan error:
+Variabel `_` adalah bagian yang penting dalam pernyataan `case/2`. Tanpa itu kegagalan menemukan kecocokan akan menghasilkan error:
 
 ```elixir
 iex> case :even do
@@ -69,10 +65,10 @@ iex> case :even do
 ```
 
 Anggaplah `_` sebagai `else` yang akan cocok dengan "semua yang lain.
-Karena `case` bergantung pada pencocokan pola, semua aturan dan batasan yang sama berlaku.  Jika anda berniat untuk mencocokkan terhadap variabel yang sudah ada isinya anda harus menggunakan operator pin `^`:
+Karena `case/2` bergantung pada pencocokan pola, semua aturan dan batasan yang sama berlaku.  Jika anda berniat untuk mencocokkan terhadap variabel yang sudah ada isinya anda harus menggunakan operator pin `^/1`:
 
 ```elixir
-iex> pie = 3.14 
+iex> pie = 3.14
  3.14
 iex> case "cherry pie" do
 ...>   ^pie -> "Not so tasty"
@@ -81,9 +77,9 @@ iex> case "cherry pie" do
 "I bet cherry pie is tasty"
 ```
 
-Satu lagi fitur `case` yang menarik adalah dukungannya terhadap klausa penjaga (guard clause):
+Satu lagi fitur `case/2` yang menarik adalah dukungannya terhadap klausa penjaga (guard clause):
 
-_Contoh ini diambil langsung dari panduan resmi [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) Elixir._
+_Contoh ini diambil langsung dari panduan resmi [Awal Mulai](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) Elixir._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -95,13 +91,13 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Ceklah dokumentasi resmi untuk [Expression yang diijinkan dalam guard clause](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Ceklah dokumentasi resmi untuk [Expression yang diijinkan dalam klausa penjaga](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
 
 ## `cond`
 
 Ketika kita perlu mencocokkan kondisi, dan bukannya value, kita dapat menggunakan `cond`; ini seperti `else if` atau `elsif` di bahasa-bahasa lain:
 
-_Contoh ini diambil langsung dari panduan resmi [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) Elixir._
+_Contoh ini diambil langsung dari panduan resmi [Awal Mulai](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) Elixir._
 
 ```elixir
 iex> cond do
@@ -115,7 +111,7 @@ iex> cond do
 "But this will"
 ```
 
-Seperti `case`, `cond` akan menghasilkan error kalau tidak ada kecocokan.  Untuk menangani ini, kita dapat mendefinisikan sebuah kondisi untuk `true`:
+Seperti `case/2`, `cond/1` akan menghasilkan error kalau tidak ada kecocokan.  Untuk menangani ini, kita dapat mendefinisikan sebuah kondisi untuk `true`:
 
 ```elixir
 iex> cond do
@@ -127,14 +123,15 @@ iex> cond do
 
 ## `with`
 
-Bentuk spesial `with` berguna ketika anda ingin menggunakan sebuah pernyataan `case` bertingkat atau situasi yang tidak dapat di-pipe dengan mudah. Ekspresi `with` terdiri dari keyword, generator, dan akhirnya sebuah expression.
+Bentuk spesial `with/1` berguna ketika anda ingin menggunakan sebuah pernyataan `case/2` bertingkat atau situasi yang tidak dapat di-pipe dengan mudah. Ekspresi `with/1` terdiri dari keyword, generator, dan akhirnya sebuah expression.
 
-Kita akan diskusikan generator lebih jauh di pelajaran List Comprehension tapi sementara ini kita hanya perlu mengetahui bahwa mereka menggunakan pencocokan pola untuk membandingkant sisi kanan dari `<-` terhadap sisi kiri.
+Kita akan diskusikan generator lebih jauh di [Daftar Pelajaran Pemahaman](../comprehensions/), tapi sementara ini kita hanya perlu mengetahui bahwa mereka menggunakan [pencocokan pola](../pattern-matching/) untuk membandingkan sisi kanan dari `<-` terhadap sisi kiri.
 
-Kita akan mulai dengan contoh sederhana dari `with` dan kemudian melihat lebih jauh:
+Kita akan mulai dengan contoh sederhana dari `with/1` dan kemudian melihat lebih jauh:
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
+%{first: "Sean", last: "Callan"}
 iex> with {:ok, first} <- Map.fetch(user, :first),
 ...>      {:ok, last} <- Map.fetch(user, :last),
 ...>      do: last <> ", " <> first
@@ -152,24 +149,55 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 :error
 ```
 
-Sekarang mari lihat contoh yang lebih besar tanpa `with` dan kemudian melihat bagaimana kita bisa merefaktornya:
+Sekarang mari lihat contoh yang lebih besar tanpa `with/1` dan kemudian melihat bagaimana kita bisa merefaktornya:
 
 ```elixir
-case Repo.insert(changeset) do 
-  {:ok, user} -> 
-    case Guardian.encode_and_sign(resource, :token, claims) do
-      {:ok, jwt, full_claims} ->
-        important_stuff(jwt, full_claims)
-      error -> error
+case Repo.insert(changeset) do
+  {:ok, user} ->
+    case Guardian.encode_and_sign(user, :token, claims) do
+      {:ok, token, full_claims} ->
+        important_stuff(token, full_claims)
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
-Ketika kita menggunakan `with` kita dapati code yang mudah dipahami dan menggunakan jumlah line yang lebih sedikit:
+Ketika kita menggunakan `with/1` kita dapati code yang mudah dipahami dan menggunakan jumlah line yang lebih sedikit:
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
-     do: important_stuff(jwt, full_claims)
+     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token, claims) do
+  important_stuff(token, full_claims)
+end
 ```
+
+
+Seperti pada Elixir 1.3, `with/1` mendukung pernyataan `else`:
+
+```elixir
+import Integer
+
+m = %{a: 1, c: 3}
+
+a =
+  with {:ok, number} <- Map.fetch(m, :a),
+       true <- is_even(number) do
+    IO.puts("#{number} divided by 2 is #{div(number, 2)}")
+    :even
+  else
+    :error ->
+      IO.puts("We don't have this item in map")
+      :error
+
+    _ ->
+      IO.puts("It is odd")
+      :odd
+  end
+```
+
+Ini membantu menangani kesalahan dengan menyediakan pencocokan pola `case` seperti di dalamnya. Nilai yang dilewatkan adalah ekspresi non-matching pertama.

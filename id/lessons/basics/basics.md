@@ -1,13 +1,9 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.1.2
 title: Dasar
-category: basics
-order: 1
-lang: id
 ---
 
-Setup, tipe-tipe dan operasi-operasi dasar.
+Awal Mulai, data tipe-tipe dasar, dan operasi-operasi dasar.
 
 {% include toc.html %}
 
@@ -17,16 +13,36 @@ Setup, tipe-tipe dan operasi-operasi dasar.
 
 Instruksi instalasi untuk masing-masing OS dapat dilihat di Elixir-lang.org bagian panduan [Installing Elixir](http://elixir-lang.org/install.html).
 
+Setelah Elixir sudah di instal, anda dapat dengan mudah mengecek versi yang terinstal.
+
+    % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+    Elixir {{ site.elixir.version }}
+
 ### Moda Interaktif
 
-Elixir dilengkapi dengan `iex`, sebuah shell interaktif, yang memungkinkan kita mencoba perintah Elixir.
+Elixir dilengkapi dengan IEx, sebuah shell interaktif, yang memungkinkan kita mencoba perintah Elixir.
 
 Untuk memulai, kita jalankan `iex`:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
+	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
+
+Mari langsung saja kita coba dengan menulis beberapa sintaks sederhana:
+
+```elixir
+iex> 2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
+
+Jangan khawatir bila anda belum mengerti setiap sintaks ekspresi yang ada, tetapi kami berharap anda dapat ide-nya.
 
 ## Tipe dasar
 
@@ -105,7 +121,7 @@ true
 Atom juga digunakan untuk mereferensi modul dari librari erlang, termasuk apa yang sudah ada.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -129,6 +145,8 @@ iex> "foo
 iex> "foo\nbar"
 "foo\nbar"
 ```
+
+Elixir juga memasukkan banyak tipe-tipe data kompleks. Kita akan mempelajari lebih banyak lagi hal tersebut ketika kita belajar tentang [Koleksi](../collections/) dan [Fungsi](../functions/).
 
 ## Operasi Dasar
 

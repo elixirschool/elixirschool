@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.2.0
 title: 모듈
-category: basics
-order: 8
-lang: ko
 ---
 
 모든 함수가 같은 파일과 같은 표현 범위 안에 둔다면 함수 하나하나를 통제하기가 굉장히 힘들다는 것을 우리는 경험을 통해 알고 있습니다. 이번 수업에서는 함수를 묶고 구조체라는 특별한 맵을 통해 작성한 코드를 더욱 효율적으로 관리하는 법을 알아보도록 하겠습니다.
@@ -13,7 +9,7 @@ lang: ko
 
 ## 모듈
 
-모듈은 이름공간 안에 함수를 구성할 수 있는 가장 좋은 방법입니다. 함수를 묶을 수 있는 것에서 한 걸음 더 나아가, 이전 수업에서 다루었던 이름이 있는 함수와 private 함수를 정의할 수도 있게 됩니다.
+모듈은 이름공간 안에 함수를 구성할 수 있도록 해줍니다. 함수를 묶을 수 있는 것에서 한 걸음 더 나아가, [함수 수업](../functions/)에서 다루었던 이름이 있는 함수와 private 함수를 정의할 수도 있게 됩니다.
 
 기본적인 예제를 살펴보도록 하지요.
 
@@ -65,7 +61,7 @@ Elixir에서 여러가지 다른 용도로 사용하는 속성도 있다는 점�
 + `doc` — 함수와 매크로를 설명하는 문서입니다.
 + `behaviour` — OTP나 사용자가 따로 정의할 수 있는 비헤이비어에서 사용됩니다.
 
-## 구조체
+## 구조체 {#structs}
 
 구조체는 키와 기본값 쌍으로 이루어진 특별한 맵입니다. 구조체는 자신이 정의된 모듈의 이름을 가져오기 때문에, 정의할 때 반드시 모듈 안에서 정의해야 합니다. 모듈 안에다가 구조체 하나만 정의하는 일도 자주 있습니다.
 
@@ -211,47 +207,69 @@ end
 
 ### `use`
 
-use 매크로는 해당 모듈에서 `__using__/1`이란 이름을 가진 조금 특별한 매크로를 실행합니다. 예를 들어 보도록 하지요.
+`use` 매크로로 현재 모듈의 정의를 다른 모듈이 수정할 수 있게 합니다.
+코드에서 `use`를 호출하면 실제로 제공된 모듈에 의해 정의된 `__using__/1` 콜백을 호출합니다.
+`__using__/1` 매크로의 결과는 모듈 정의의 일부가 됩니다.
+이것이 어떻게 작동하는지 더 잘 이해하기 위해 간단한 예를 살펴 보겠습니다.
 
 ```elixir
-# lib/use_import_require/use_me.ex
-defmodule UseImportRequire.UseMe do
-  defmacro __using__(_) do
+defmodule Hello do
+  defmacro __using__(_opts) do
     quote do
-      def use_test do
-        IO.puts "use_test"
-      end
+      def hello(name), do: "Hi, #{name}"
     end
   end
 end
 ```
 
-그리고 UseImportRequire 모듈에 이 줄을 추가해봅시다.
+여기서 내부에서 `hello/1` 함수를 정의하는 `__using__/1` 콜백을 가진 `Hello` 모듈을 만들었습니다.
+이 새로운 코드를 시험해 볼 수 있도록 새 모듈을 만들어 보겠습니다.
 
 ```elixir
-use UseImportRequire.UseMe
+defmodule Example do
+  use Hello
+end
 ```
 
-UseImportRequire.UseMe를 use 매크로로 선언하면 `__using__/1` 매크로가 실행되어 `use_test/0` 함수를 정의합니다.
-
-use가 하는 일이라면 이게 전부입니다. 하지만 `__using__` 매크로에서 alias나 require, import를 실행하게 하는 일이 자주 있습니다. `__using__` 매크로가 사용(use)하는 모듈에 별칭을 만들거나 함수나 매크로를 불러오도록 하는 것이지요. 사용(use)되는 모듈은 이를 이용해 외부에서 모듈 안에 있는 함수와 매크로를 어떻게 참조할 지 방침을 정할 수 있습니다. 그렇기 때문에 `__using__/1`이 다른 모듈(특히 서브모듈)에 대한 참조를 상당히 유동적으로 만들어낼 수 있게 됩니다.
-
-Phoenix 프레임워크에서는 use와 `__using__/1`을 사용해서, 사용자가 정의하는 모듈에서 alias나 import를 반복적으로 사용하지 않도록 해 줍니다.
-
-Ecto.Migration 모듈에 use를 사용한 짤막하고 멋진 용례가 있습니다.
+우리가 IEx에서 코드를 시험해 보면 `hello/1`이 `Example` 모듈에서 사용 가능하다는 것을 알 수 있습니다.
 
 ```elixir
-defmacro __using__(_) do
-  quote location: :keep do
-    import Ecto.Migration
-    @disable_ddl_transaction false
-    @before_compile Ecto.Migration
+iex> Example.hello("Sean")
+"Hi, Sean"
+```
+
+여기서 `use`가 `Hello`에서 `__using__/1` 콜백을 호출하고 결과 코드를 모듈에 추가 한 것을 볼 수 있습니다.
+이제 기본 예제를 설명 했으므로 코드를 갱신하여 `__using__/1`이 옵션을 지원하는 방법을 살펴 보겠습니다.
+`greeting` 옵션을 추가해 보겠습니다.
+
+```elixir
+defmodule Hello do
+  defmacro __using__(opts) do
+    greeting = Keyword.get(opts, :greeting, "Hi")
+
+    quote do
+      def hello(name), do: unquote(greeting) <> ", " <> name
+    end
   end
 end
 ```
 
-Ecto.Migration를 어떤 모듈에서 사용할 것이라고 선언(use)하면 `Ecto.Migration.__using__/1` 매크로가 import를 실행시켜 사용(use)하는 모듈에 Ecto.Migration 모듈 안에 있는 함수와 매크로를 불러오도록(import) 합니다. Ecto가 어떻게 작동할 지 정할 수 있는 것처럼 보이는 모듈 속성을 정의하기도 합니다.
+새로 만든 `greeting` 옵션을 넣기 위해 `Example` 모듈을 갱신해 봅시다.
 
-다시 말하자면, use 매크로는 해당 모듈의 `__using__/1` 매크로를 실행하기만 합니다. `__using__/1` 매크로가 정확히 무엇을 하는지 이해하려면 해당하는 부분의 코드를 읽어야 합니다.
+```elixir
+defmodule Example do
+  use Hello, greeting: "Hola"
+end
+```
+
+IEx에서 확인해 보면, 인사말이 변경되었음을 확인하실 수 있습니다.
+
+```
+iex> Example.hello("Sean")
+"Hola, Sean"
+```
+
+이것들은 `use`가 어떻게 작동하는지 보여주는 간단한 예제이지만 Elixir 툴박스에서 매우 강력한 도구입니다.
+Elixir를 계속 공부하신다면 `use`를 여기저기서 보게 될 것 입니다. 한 가지 예를 들면 `use ExUnit.Case, async: true`입니다.
 
 **주의**: `quote`, `alias`, `use`, `require`는 [메타 프로그래밍](../../advanced/metaprogramming)에서 사용한 매크로입니다.

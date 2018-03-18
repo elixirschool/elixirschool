@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Документация
-category: basics
-order: 11
-lang: bg
 ---
 
 Документиране на Elixir код.
@@ -87,7 +83,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -123,7 +119,8 @@ iex>
 
 Забележете как може да използвате markup в нашата документация и терминала ще го покаже? Освен че е готино допълнение към екосистемата на Elixir, става много по-интересно, когато се обърнем към ExDoc, за генериране на HTML документация.
 
-**Бележка:** aнотацията със `@spec` се използва, за статично анализиране на кода. За да научите повече за нея, погледнете [Спесификации и типове](../../advanced/typespec).
+**Бележка:** aнотацията със `@spec` се използва, за статично анализиране на кода. <!-- TODO: Remove this as a comment, once advanced/typespec  is translated
+За да научите повече за нея, погледнете [Спесификации и типове](../../advanced/typespec). -->
 
 ## ExDoc
 
@@ -183,8 +180,7 @@ Examples
 
 ```elixir
   def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
+    [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
   end
 ```
 
@@ -206,11 +202,11 @@ View them at "doc/index.html".
 
 Ако всичко е минало по план, би трябвало да виждате подобно съобщение, като примера по-горе. Нека погледнем в нашия Mix проект и би трябвало да видим, че има друга директория **doc/**. Вътре е нашата генерирана документация. Ако отворим index страницата в нашия браузър, би трябвало да видим следното:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Можем да видим, че Earmark е конвертирал нашия Markdown и ExDoc го показва в полезен формат.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Сега можем да качим това в Github, нашият website, или [HexDocs](https://hexdocs.pm/).
 
@@ -249,7 +245,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -268,7 +264,7 @@ defmodule Greeter do
   # and so on...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -297,7 +293,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -306,4 +302,4 @@ end
 
  - Опитайте се да добавите примери във вашата документация. Това също ви позволява да генерирате автоматични тестове от примерите в модули, функции или макрота с [ExUnit.DocTest][ExUnit.DocTest]. За да се направи това, трябва да извикате макрото `doctest/1` от вашия тест и да напишете примерите следвайки описанията в [официалната документаци][ExUnit.DocTest].
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

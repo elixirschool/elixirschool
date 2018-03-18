@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Συγχρονισμός
-category: advanced
-order: 4
-lang: gr
 ---
 
 Ένα από τα σημαντικά σημεία της Elixir είναι η υποστήριξή της για συγχρονισμό. Χάρη στην Εικονική Μηχανή της Erlang (BEAM), ο συγχρονισμός στην Elixir είναι πιο εύκολος από το αναμενόμενο.  Το μοντέλο συγχρονισμού στηρίζεται στους Ηθοποιούς, μια περιορισμένη διεργασία που επικοινωνεί με άλλες διεργασίες μέσω αποστολής μηνυμάτων.
@@ -49,7 +45,7 @@ iex> spawn(Example, :add, [2, 3])
 defmodule Example do
   def listen do
     receive do
-      {:ok, "γεια"} -> IO.puts "Κόσμε"
+      {:ok, "γεια"} -> IO.puts("Κόσμε")
     end
   end
 end
@@ -78,7 +74,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Μερικές φορές δεν θέλουμε τις συνδεδεμένες διεργασίες μας να κρασάρουν την τρέχουσα.  Για αυτό πρέπει να παγιδεύσουμε τις εξόδους.  Όταν παγιδεύουμε τις εξόδους αυτές θα ληφθούν σαν ένα μήνυμα με μορφή τούπλας: `{:EXIT, from_pid, reason}`.
@@ -86,12 +82,13 @@ iex> spawn_link(Example, :explode, [])
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Λόγος εξόδου: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Λόγος εξόδου: #{reason}")
     end
   end
 end
@@ -108,11 +105,12 @@ iex> Example.run
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Λόγος Εξόδου: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Λόγος Εξόδου: #{reason}")
     end
   end
 end

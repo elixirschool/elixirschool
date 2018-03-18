@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Umbrella Projects
-category: advanced
-order: 8
-lang: id
 ---
 
 Terkadang sebuah project bisa menjadi sangat besar. Perangkat build Mix memungkinkan kita untuk memecah code kita jadi beberapa aplikasi dan membuat project Elixir kita lebih tertata dalam pengembangannya.
@@ -188,7 +184,7 @@ Anda mungkin berpikir bahwa berinteraksi dengan applikasi-aplikasinya akan jadi 
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "Hello, I'm the datasets"
+    IO.puts("Hello, I'm the datasets")
   end
 end
 ```
@@ -205,7 +201,7 @@ Consolidated String.Chars
 Consolidated Enumerable
 Consolidated IEx.Info
 Consolidated Inspect
-Interactive Elixir (1.2.1) - press Ctrl+C to exit (type h() ENTER for help)
+Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
 iex> Datasets.hello
 Hello, I'm the datasets

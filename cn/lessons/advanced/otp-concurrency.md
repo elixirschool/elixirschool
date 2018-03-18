@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: OTP 并发
-category: advanced
-order: 4
-lang: cn
 ---
 
 我们已经看过了 Elixir 层的并发抽象机制，但有时候我们需要更多的控制，那就要了解 Elixir 底层的东西：OTP 行为（behaviors）。
@@ -25,7 +21,7 @@ defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  Start our queue and link it.  This is a helper method
+  Start our queue and link it.  This is a helper function
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -41,7 +37,7 @@ end
 ## 同步函数
 有时候需要和 Genservers 进行同步的交互：调用一个函数，然后等待它的响应返回。要处理同步请求，我们需要实现 `Genserver.handle_call/3` 函数，接受的参数是：请求、调用者的 PID，初始的状态，期望的返回值是 `{:reply, response, state}` 三元组。
 
-使用模式匹配，我们可以为不同的请求和状态定义不同的 callbacks，能够接受的所有返回值列表可以前往 [`Genserver.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3) 文档处查看。
+使用模式匹配，我们可以为不同的请求和状态定义不同的 callbacks，能够接受的所有返回值列表可以前往 [`Genserver.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) 文档处查看。
 
 为了演示同步请求，我们添加这样的功能：返回现在队列的状态以及删除队列中的一个值：
 
@@ -59,14 +55,15 @@ defmodule SimpleQueue do
   @doc """
   GenServer.handle_call/3 callback
   """
-  def handle_call(:dequeue, _from, [value|state]) do
+  def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
   end
+
   def handle_call(:dequeue, _from, []), do: {:reply, nil, []}
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -109,9 +106,10 @@ defmodule SimpleQueue do
   @doc """
   GenServer.handle_call/3 callback
   """
-  def handle_call(:dequeue, _from, [value|state]) do
+  def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
   end
+
   def handle_call(:dequeue, _from, []), do: {:reply, nil, []}
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
@@ -123,11 +121,12 @@ defmodule SimpleQueue do
     {:noreply, state ++ [value]}
   end
 
-  ### Client API / Helper methods
+  ### Client API / Helper functions
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
+
   def queue, do: GenServer.call(__MODULE__, :queue)
   def enqueue(value), do: GenServer.cast(__MODULE__, {:enqueue, value})
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
@@ -147,7 +146,7 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-可以前往官方的 [`GenServer`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content) 文档了解更多的信息。
+可以前往官方的 [`GenServer`](https://hexdocs.pm/elixir/GenServer.html#content) 文档了解更多的信息。
 
 # GenEvent
 我们刚学习到：Genservers 是维护状态并能够同步和异步处理请求的进程，但什么是 GenEvent 呢？GenEvents 是事件管理器：接受进来的事件，并通知订阅事件的消费者。这种机制能让我们动态地添加和删除事件的处理函数。
@@ -162,8 +161,8 @@ defmodule LoggerHandler do
   use GenEvent
 
   def handle_event({:msg, msg}, messages) do
-    IO.puts "Logging new message: #{msg}"
-    {:ok, [msg|messages]}
+    IO.puts("Logging new message: #{msg}")
+    {:ok, [msg | messages]}
   end
 end
 
@@ -171,7 +170,7 @@ defmodule PersistenceHandler do
   use GenEvent
 
   def handle_event({:msg, msg}, state) do
-    IO.puts "Persisting log message: #{msg}"
+    IO.puts("Persisting log message: #{msg}")
 
     # Save message
 
@@ -190,8 +189,8 @@ defmodule LoggerHandler do
   use GenEvent
 
   def handle_event({:msg, msg}, messages) do
-    IO.puts "Logging new message: #{msg}"
-    {:ok, [msg|messages]}
+    IO.puts("Logging new message: #{msg}")
+    {:ok, [msg | messages]}
   end
 
   def handle_call(:messages, messages) do
@@ -218,4 +217,4 @@ iex> GenEvent.call(pid, LoggerHandler, :messages)
 ["Hello World"]
 ```
 
-阅读官方的 [GenEvent](http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content) 文档查看完整的回调函数列表以及 GenEvent 的所有功能。
+阅读官方的 [GenEvent](https://hexdocs.pm/elixir/GenEvent.html#content) 文档查看完整的回调函数列表以及 GenEvent 的所有功能。

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Поточен оператор
-category: basics
-order: 7
-lang: bg
 ---
 
 Поточният оператор `|>` предава резултата на израз като първи параметър към следващ израз.
@@ -19,7 +15,7 @@ lang: bg
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Тук подаваме стойността `other_function/1` към `new_function/1`, а `new_function/1` към `baz/1`, `baz/1` към `bar/1`, и накрая резултата от `bar/1` към `foo/1`. Elixir използва прагматичен подход към този синтактичен хаос като ни предоставя поточния оператор. Поточният оператор, който изглежда като `|>` *взема резултата от един израз и го предава нататък*. Нека разгледаме още веднъж горния фрагмент код, пренаписан с поточния оператор.
+Тук подаваме стойността `other_function/0` към `new_function/1`, а `new_function/1` към `baz/1`, `baz/1` към `bar/1`, и накрая резултата от `bar/1` към `foo/1`. Elixir използва прагматичен подход към този синтактичен хаос като ни предоставя поточния оператор. Поточният оператор, който изглежда като `|>` *взема резултата от един израз и го предава нататък*. Нека разгледаме още веднъж горния фрагмент код, пренаписан с поточния оператор.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
@@ -34,14 +30,14 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 - Разбиване на символи (неопределено)
 
 ```shell
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Изпиши всички символи с главни букви
 
 ```shell
-iex> "Elixir rocks" |> String.split |> Enum.map( &String.upcase/1 )
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

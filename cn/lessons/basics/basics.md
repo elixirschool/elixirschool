@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.1.1
 title: 基础
-category: basics
-order: 1
-lang: cn
 ---
 
 安装，基本类型和基本操作。
@@ -15,7 +11,13 @@ lang: cn
 
 ### 安装 Elixir
 
-各个 os 的安装说明可以在 Elixir-lang.org 网站上 [Installing Elixir](http://elixir-lang.org/install.html) 部分找到。
+每个操作系统的安装说明可以在 elixir-lang.org 网站上 [Installing Elixir](http://elixir-lang.org/install.html) 部分找到。
+
+安装后你可以很轻松地确认所安装的版本。
+
+    % elixir -v
+
+    Elixir {{ site.elixir.version }}
 
 ### 交互模式
 
@@ -23,10 +25,23 @@ Elixir 自带了 `iex` 这样一个交互 shell, 可以让我们随时计算 Eli
 
 运行 `iex` 命令，让我们开始教程：
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-	iex>
+
+    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+    iex>
+
+让我们继续输入几个简单的表达式试试：
+
+```elixir
+iex> 2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
+
+如果你现在还无法理解所有的表达式，请不要担心，不过我们希望你能有所体会。
 
 ## 基本类型
 
@@ -75,7 +90,7 @@ false
 
 ### 原子类型
 
-原子类型是名字和代表的值相同的常量，如果你熟悉 Ruby，它们和符号类型同义。
+原子类型是名字和代表的值相同的常量，如果你熟悉 Ruby，它们和Ruby中的符号是同义的。
 
 ```elixir
 iex> :foo
@@ -95,17 +110,24 @@ iex> :true === true
 true
 ```
 
-Elixir 模块的名字也是原子，即使实际上还不存在这个模块，`MyApp.MyModule` 是一个合法的原子名称。
+Elixir 模块的名字也是原子，即使实际上还不存在这个模块，`MyApp.MyModule` 也是一个合法的原子名称。
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
 true
 ```
 
+Elixir 以大写字母开始的别名也是原子。
+
+```elixir
+iex> is_atom(JustMyAliasTest)
+true
+```
+
 原子也可以用来直接引用 Erlang 标准库的模块，包括内置的模块。
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -129,6 +151,8 @@ iex> "foo
 iex> "foo\nbar"
 "foo\nbar"
 ```
+
+Elixir 还包含很多复杂的数据类型。当我们学到[集合](../collections/)和[函数](../functions/)的时候我们会学到更多关于这方面的知识。
 
 ## 基本操作
 
@@ -177,7 +201,7 @@ iex> !false
 true
 ```
 
-还有三个操作符（`and`、`or`、`not`），它们的第一个参数必须是布尔类型（`true` 和 `false`）:
+还有三个操作符（`and`、`or`、`not`），它们的第一个参数_必须_是布尔类型（`true` 和 `false`）:
 
 ```elixir
 iex> true and 42
@@ -193,6 +217,43 @@ iex> not 42
 ```
 
 ### 比较
+
+Elixir 有我们习惯的一切比较运算符 ：`==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` 和 `>`。
+
+```elixir
+iex> 1 > 2
+false
+iex> 1 != 2
+true
+iex> 2 == 2
+true
+iex> 2 <= 3
+true
+```
+
+对于整数和浮点数的严格比较，可以使用 `===` ：
+
+```elixir
+iex> 2 == 2.0
+true
+iex> 2 === 2.0
+false
+```
+
+Elixir 有一个很重要的特性，那就是任意两个类型之间都可以进行比较，这在排序的时候非常有用。我们没有必要去记住比较的优先级，但是知道了也没坏处 ：
+
+```elixir
+number < atom < reference < function < port < pid < tuple < map < list < bitstring
+```
+
+这个特性可以导致一些非常有趣但是完全合法，而且在其他语言中很难看到的比较 ：
+
+```elixir
+iex> :hello > 999
+true
+iex> {:hello, :world} > [1, 2, 3]
+false
+```
 
 ### 字符串插值
 

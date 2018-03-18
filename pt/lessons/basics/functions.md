@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: Funções
-category: basics
-order: 6
-lang: pt
 ---
 
 Em Elixir e em várias linguagens funcionais, funções são cidadãos de primeira classe. Nós iremos aprender sobre os tipos de funções em Elixir, qual a diferença, e como usar elas.
@@ -37,7 +33,7 @@ Como você provavelmente já adivinhou, na versão abreviada nossos parâmetros 
 
 ## Pattern matching
 
-Pattern matching não é limitado a apenas variáveis em Elixir, isto pode ser aplicado a assinaturas como veremos nesta seção.
+Pattern matching não é limitado a apenas variáveis em Elixir, isto pode ser aplicado a assinaturas de funções como veremos nesta seção.
 
 Elixir utiliza pattern matching para identificar o primeiro conjunto de parâmetros associados e invoca seu respectivo corpo.
 
@@ -57,9 +53,9 @@ An error has occurred!
 
 ## Funções nomeadas
 
-Nós podemos definir funções com nomes para referir a elas no futuro, estas funções nomeadas são definidas com a palavra-chave `def` dentro de um modulo. Nós iremos aprender mais sobre Modulos nas próximas lições, por agora nós iremos focar apenas nas funções nomeadas.
+Nós podemos definir funções com nomes para referir a elas no futuro, estas funções nomeadas são definidas com a palavra-chave `def` dentro de um módulo. Nós iremos aprender mais sobre Módulos nas próximas lições, por agora nós iremos focar apenas nas funções nomeadas.
 
-Funções definidas dentro de um modulo são disponíveis para uso de outros modulos, isso é particularmente útil na construção de blocos em Elixir:
+Funções definidas dentro de um módulo são disponíveis para uso de outros módulos, isso é particularmente útil na construção de blocos em Elixir:
 
 ```elixir
 defmodule Greeter do
@@ -84,7 +80,7 @@ Armado com nosso conhecimento sobre pattern matching, vamos explorar recursão u
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -92,6 +88,28 @@ iex> Length.of []
 iex> Length.of [1, 2, 3]
 3
 ```
+
+### Nomear Funções e a Aridade
+
+Mencionamos anteriormente que as funções são nomeadas pela combinação do nome e aridade(quantidade dos argumentos) das funções. Isto significa que você pode fazer o seguinte.
+
+```elixir
+defmodule Greeter2 do
+  def hello(), do: "Hello, anonymous person!"   # hello/0
+  def hello(name), do: "Hello, " <> name        # hello/1
+  def hello(name1, name2), do: "Hello, #{name1} and #{name2}"
+                                                # hello/2
+end
+
+iex> Greeter2.hello()
+"Hello, anonymous person!"
+iex> Greeter2.hello("Fred")
+"Hello, Fred"
+iex> Greeter2.hello("Fred", "Jane")
+"Hello, Fred and Jane"
+```
+
+Nós temos listado os nomes das funções nos comentários acima. A causa que a primeira implementação não recebe argumentos, é conhecido como `hello/0`; a segunda função recebe um argumento, portanto será conhecido como `hello/1` e assim por diante. E ao contrário de sobrecargar funções como outros idiomas, estas são pensadas como funções diferentes entre um ao outro. (Pattern matching, o a combinação de padrões, descrita só um momento atrás, aplica-se quando várias definiçoes são fornecidas com a mesma quantidade de argumentos.)
 
 ### Funções privadas
 
@@ -107,7 +125,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 
 iex> Greeter.phrase
-** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
     Greeter.phrase()
 ```
 
@@ -126,7 +144,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "
@@ -142,12 +160,12 @@ Se nós quisermos um valor padrão para um argumento, nós usamos a sintaxe `arg
 
 ```elixir
 defmodule Greeter do
-  def hello(name, country \\ "en") do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
+  defp phrase("pt"), do: "Oi, "
 end
 
 iex> Greeter.hello("Sean", "en")
@@ -156,53 +174,66 @@ iex> Greeter.hello("Sean", "en")
 iex> Greeter.hello("Sean")
 "Hello, Sean"
 
-iex> Greeter.hello("Sean", "es")
-"Hola, Sean"
+iex> Greeter.hello("Sean", "pt")
+"Oi, Sean"
 ```
 
 Quando combinamos nosso exemplo de guard com argumento padrão, nos deparamos com um problema. Vamos ver o que pode parecer:
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en") when is_list(names) do
+  def hello(names, language_code \\ "en") when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country \\ "en") when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
+  defp phrase("pt"), do: "Oi, "
 end
 
-** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+
+    def foo(:first_clause, b \\ :default) do ... end
+    def foo(:second_clause, b) do ... end
+
+one should write:
+
+    def foo(a, b \\ :default)
+    def foo(:first_clause, b) do ... end
+    def foo(:second_clause, b) do ... end
+
+def hello/2 has multiple clauses and defines defaults in one or more clauses
+    iex:31: (module)
 ```
 
 Elixir não gosta de argumentos padrões em multiplas funções, pode ser confuso. Para lidar com isto, adicionamos funções com nosso argumento padrão:
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en")
-  def hello(names, country) when is_list(names) do
+  def hello(names, language_code \\ "en")
+
+  def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country) when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code) when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
+  defp phrase("pt"), do: "Oi, "
 end
 
 iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 
-iex> Greeter.hello ["Sean", "Steve"], "es"
-"Hola, Sean, Steve"
+iex> Greeter.hello ["Sean", "Steve"], "pt"
+"Oi, Sean, Steve"
 ```

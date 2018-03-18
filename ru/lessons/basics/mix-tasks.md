@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Пользовательские Mix задачи
-category: basics
-order: 15
-lang: ru
 ---
 
 Создание пользовательских Mix задач для ваших Elixir проектов.
@@ -62,12 +58,11 @@ Run "mix help" for more commands.
 
 ```elixir
 defmodule Hello do
-
   @doc """
   Выводит на экран `Hello, World!`.
   """
   def say do
-    IO.puts "Hello, World!"
+    IO.puts("Hello, World!")
   end
 end
 ```
@@ -82,7 +77,8 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Просто выполняет команду Hello.say/0."
   def run(_) do
-    Hello.say # вызываем функцию Hello.say(), описанную ранее
+    # вызываем функцию Hello.say(), описанную ранее
+    Hello.say()
   end
 end
 ```

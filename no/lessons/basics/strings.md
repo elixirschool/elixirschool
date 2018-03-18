@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Strenger
-category: basics
-order: 14
-lang: no
 ---
 
 Strenger, Karakter lister, Grafemer og Kode punkter.
@@ -63,7 +59,7 @@ iex> String.graphemes string
 
 # Streng funksjoner
 
-La oss ta en titt på noen av de viktigste og mest brukbare funksjonene i String modulen. Vi vil kun gå gjennom et par av funksjonene tilgjengelig i String modulen. For å se alle tilgjengelige funksjoner kan du se på den offisielle [`String`](http://elixir-lang.org/docs/stable/elixir/String.html) dokumentasjonen.
+La oss ta en titt på noen av de viktigste og mest brukbare funksjonene i String modulen. Vi vil kun gå gjennom et par av funksjonene tilgjengelig i String modulen. For å se alle tilgjengelige funksjoner kan du se på den offisielle [`String`](https://hexdocs.pm/elixir/String.html) dokumentasjonen.
 
 ### `length/1`
 
@@ -124,9 +120,9 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```
@@ -146,7 +142,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Som du kan se, det siste kallet til `anagrams?` førte til at vi fikk en FunctionClauseError. Denne feilen forteller oss at det ikke finnes en funksjon i vår modul som tar to ikke-binaries som argument, og det er akkurat det vi ønsker, at vi kun skal motta to strenger, ikke noe annet.

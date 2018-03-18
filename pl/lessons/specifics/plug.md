@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Plug
-category: specifics
-order: 1
-lang: pl
 ---
 
 Jeżeli masz doświadczenie z Ruby to Plug może być czymś w rodzaju Racka z domieszką Sinatry. Definiuje on specyfikację dla aplikacji webowych oraz adapterów dla serwerów. Choć nie jest częścią biblioteki standardowej, to Plug jest oficjalnym projektem zespołu odpowiedzialnego za Elixira.   
@@ -17,8 +13,7 @@ Instalacja z użyciem mix jest bardzo prosta. By zainstalować Plug musimy zmody
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.0.0"},
-   {:plug, "~> 1.0"}]
+  [{:cowboy, "~> 1.1.2"}, {:plug, "~> 1.3.4"}]
 end
 ```
 
@@ -80,10 +75,12 @@ defmodule Example.Plug.VerifyRequest do
   end
 
   defp verify_request!(body_params, fields) do
-    verified = body_params
-               |> Map.keys
-               |> contains_fields?(fields)
-    unless verified, do: raise IncompleteRequestError
+    verified =
+      body_params
+      |> Map.keys()
+      |> contains_fields?(fields)
+
+    unless verified, do: raise(IncompleteRequestError)
   end
 
   defp contains_fields?(keys, fields), do: Enum.all?(fields, &(&1 in keys))
@@ -94,11 +91,11 @@ Na początku definiujemy nowy wyjątek `IncompleteRequestError` który ma opcję
 
 Drugim elementem naszego pluga jest metoda `call/2`. To w niej decydujemy czy wykonana zostanie weryfikacja czy też pominiemy tę logikę. Tylko w przypadku gdy ścieżka żądania znajduje się w opcji `:paths` wywołamy `verify_request!/2`.
 
-Ostatnim elementem jest prywatna funkcja `verify_request!/2`, która sprawdza czy żądanie zawiera wszystkie pola wymienione w `:fields`. Jeżeli jakieś pole nie istnieje wyrzuca wyjątek `IncompleteRequestError`. 
+Ostatnim elementem jest prywatna funkcja `verify_request!/2`, która sprawdza czy żądanie zawiera wszystkie pola wymienione w `:fields`. Jeżeli jakieś pole nie istnieje wyrzuca wyjątek `IncompleteRequestError`.
 
 ## Użycie Plug.Router
 
-Teraz gdy mamy nasz plug `VerifyRequest`, możemy przejść do routera. Jak zaraz zobaczymy nie potrzebujemy dodatkowego narzędzia jak Sinatra, ponieważ w Elixirze mamy dostępny Plug. 
+Teraz gdy mamy nasz plug `VerifyRequest`, możemy przejść do routera. Jak zaraz zobaczymy nie potrzebujemy dodatkowego narzędzia jak Sinatra, ponieważ w Elixirze mamy dostępny Plug.
 
 Na początku stwórzmy plik `lib/plug/router.ex` i skopiujmy do niego następujący kod:
 
@@ -106,15 +103,15 @@ Na początku stwórzmy plik `lib/plug/router.ex` i skopiujmy do niego następuj�
 defmodule Example.Plug.Router do
   use Plug.Router
 
-  plug :match
-  plug :dispatch
+  plug(:match)
+  plug(:dispatch)
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Oops!")
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
-Jest to minimalna konfiguracja lecz dzięki temu bardzo dobrze widać co się dzieje. Najpierw dołączyliśmy makro `use Plug.Router` i następnie dwa wbudowane plugi: `:match` i `:dispatch`. Obsługujemy dwie ścieżki. Pierwsza to żądanie GET do strony głównej, a druga to wszystkie inne żądania, które zwrócą kod HTTP 404 z odpowiednią wiadomością 
+Jest to minimalna konfiguracja lecz dzięki temu bardzo dobrze widać co się dzieje. Najpierw dołączyliśmy makro `use Plug.Router` i następnie dwa wbudowane plugi: `:match` i `:dispatch`. Obsługujemy dwie ścieżki. Pierwsza to żądanie GET do strony głównej, a druga to wszystkie inne żądania, które zwrócą kod HTTP 404 z odpowiednią wiadomością
 
 Dodajmy nasz plug do routera:
 
@@ -124,15 +121,20 @@ defmodule Example.Plug.Router do
 
   alias Example.Plug.VerifyRequest
 
-  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
-  plug VerifyRequest, fields: ["content", "mimetype"],
-                      paths:  ["/upload"]
-  plug :match
-  plug :dispatch
+  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  post "/upload", do: send_resp(conn, 201, "Uploaded")
-  match _, do: send_resp(conn, 404, "Oops!")
+  plug(
+    VerifyRequest,
+    fields: ["content", "mimetype"],
+    paths: ["/upload"]
+  )
+
+  plug(:match)
+  plug(:dispatch)
+
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  post("/upload", do: send_resp(conn, 201, "Uploaded"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -148,9 +150,7 @@ Rozpocznijmy od aktualizacji sekcji `application` w pliku `mix.exs` tak by wskaz
 
 ```elixir
 def application do
-  [applications: [:cowboy, :plug],
-   mod: {Example, []},
-   env: [cowboy_port: 8080]]
+  [applications: [:cowboy, :plug], mod: {Example, []}, env: [cowboy_port: 8080]]
 end
 ```
 
@@ -197,25 +197,28 @@ defmodule RouterTest do
   @opts Router.init([])
 
   test "returns welcome" do
-    conn = conn(:get, "/", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 200
   end
 
   test "returns uploaded" do
-    conn = conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
-           |> put_req_header("content-type", "application/x-www-form-urlencoded")
-           |> Router.call(@opts)
+    conn =
+      conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
+      |> put_req_header("content-type", "application/x-www-form-urlencoded")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 201
   end
 
   test "returns 404" do
-    conn = conn(:get, "/missing", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/missing", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 404

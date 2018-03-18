@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Penanganan Error 
-category: advanced
-order: 2
-lang: id 
 ---
 
 Walaupun lebih umum menggunakan pengembalian tuple `{:error, reason}`, Elixir mendukung exception dan dalam pelajaran ini kita akan melihat bagaimana menangani error dan berbagai mekanisme yang tersedia untuk kita.
@@ -49,10 +45,10 @@ Adalah mungkin mencocokkan banyak error dalam satu rescue tunggal:
 try do
   opts
   |> Keyword.fetch!(:source_file)
-  |> File.read!
+  |> File.read!()
 rescue
-  e in KeyError -> IO.puts "missing :source_file option"
-  e in File.Error -> IO.puts "unable to read source file"
+  e in KeyError -> IO.puts("missing :source_file option")
+  e in File.Error -> IO.puts("unable to read source file")
 end
 ```
 
@@ -138,7 +134,7 @@ Untuk keluar secara eksplisit kita bisa gunakan `exit/1`:
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 Walau adalah mungkin menangkap sebuah exit dengan `try/catch`, melakukannya adalah _sangat_ jarang.  Dalam hampir semua kasus lebih baik membiarkan supervisor menangani exit proses tersebut:

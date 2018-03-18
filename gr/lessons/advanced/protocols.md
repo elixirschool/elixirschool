@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: Πρωτόκολλα
-category: advanced
-order: 12
-lang: gr
 ---
 
 Σε αυτό το μάθημα θα δούμε τα Πρωτόκολλα, τί ακριβώς είναι, και πως τα χρησιμοποιούμε στην Elixir.
@@ -41,9 +37,9 @@ to_string({:foo})
 ```elixir
 defimpl String.Chars, for: Tuple do
   def to_string(tuple) do
-    interior = 
+    interior =
       tuple
-      |> Tuple.to_list
+      |> Tuple.to_list()
       |> Enum.map(&Kernel.to_string/1)
       |> Enum.join(", ")
 

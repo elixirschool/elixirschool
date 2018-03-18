@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: 실행 파일
-category: advanced
-order: 3
-lang: ko
 ---
 
 escript를 사용하여 Elixir로 짠 코드를 실행 파일로 빌드할 수 있습니다. 이렇게 빌드한 실행 파일은 Erlang이 설치된 모든 시스템에서 실행할 수 있게 됩니다.
@@ -13,7 +9,7 @@ escript를 사용하여 Elixir로 짠 코드를 실행 파일로 빌드할 수 �
 
 ## 시작하기
 
-escript로 실행 파일을 만들어내기 위해 해야 할 일은 얼마 없어요. 그냥 `main/1` 메서드를 구현하고 Mixfile을 수정해주기만 하면 됩니다.
+escript로 실행 파일을 만들어내기 위해 해야 할 일은 얼마 없어요. 그냥 `main/1` 함수를 구현하고 Mixfile을 수정해주기만 하면 됩니다.
 
 실행 파일에서 출발점 역할을 하는 모듈을 만드는 것부터 시작해봅시다. 바로 이 모듈에다가 `main/1`을 구현할 거예요.
 
@@ -30,12 +26,10 @@ end
 ```elixir
 defmodule ExampleApp.Mixfile do
   def project do
-    [app: :example_app,
-     version: "0.0.1",
-     escript: escript]
+    [app: :example_app, version: "0.0.1", escript: escript()]
   end
 
-  def escript do
+  defp escript do
     [main_module: ExampleApp.CLI]
   end
 end
@@ -51,7 +45,7 @@ defmodule ExampleApp.CLI do
     args
     |> parse_args
     |> response
-    |> IO.puts
+    |> IO.puts()
   end
 
   defp parse_args(args) do
@@ -63,6 +57,7 @@ defmodule ExampleApp.CLI do
   end
 
   defp response({opts, "Hello"}), do: response({opts, "World"})
+
   defp response({opts, word}) do
     if opts[:upcase], do: String.upcase(word), else: word
   end

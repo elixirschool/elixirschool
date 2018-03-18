@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Зонтичные проекты
-category: advanced
-order: 8
-lang: ru
 ---
 
 Со временем ваш проект может вырости до очень больших размеров. Для таких случаев инструмент `Mix` позволяет разделить код проекта на несколько приложений и сделать ваши проекты на `Elixir` более управляемыми по мере развития.
@@ -188,7 +184,7 @@ Consolidated Inspect
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "Hello, I'm the datasets"
+    IO.puts("Hello, I'm the datasets")
   end
 end
 ```

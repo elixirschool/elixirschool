@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Dokumentowanie kodu
-category: basics
-order: 11
-lang: pl
 ---
 
 Jak dokumentować kod Elixira.
@@ -29,7 +25,7 @@ Popatrzymy na ten skrypt (greeting.exs):
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum.")
 ```
 
 Gdy go uruchomimy, Elixir zignoruje wszystko od znaku `#` aż do końca linii, traktując jako nieistotny i nieinterpretowany element. Komentarz nie ma żadnej wartości ani nie wpływa na szybkość wykonania kodu. Jednakże pozwala innym zrozumieć nasz kod. Tego rodzaju komentarze powinny być używane z umiarem, ponieważ w dużej liczbie zaśmiecają kod i zamiast pomagać, mogą przeszkadzać. Niektórzy programiści w ogóle nie uważają tego rodzaju komentarzy za przydatne.
@@ -89,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -182,10 +178,9 @@ Examples
 Wnioskując z powyższego komunikatu jesteśmy już gotowi by skonfigurować ExDoc. W pliku `mix.exs` musimy dodać dwie zależności `:earmark` i `:ex_doc`.
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Podając opcję `only: :dev` mówimy mixowi, że nie chcemy pobierać i kompilować tych zależności na środowisku innym niż deweloperskie. Ale czym jest Earmark? Earmark jest to parser znaczników napisany dla Elixira, który służy ExDocowi  na zamianę dokumentacji z adnotacji `@moduledoc` i `@doc` na elegancki kod HTML.
@@ -206,11 +201,11 @@ View them at "doc/index.html".
 
 Jeżeli wszystko poszło zgodnie z planem powinieneś zobaczyć komunikat taki jak wyżej. Jeżeli zajrzymy teraz do naszego projektu to w katalogu **doc/** odnajdziemy wygenerowaną dokumentację. Jeżeli otworzysz plik `index.html` w przeglądarce powinieneś zobaczyć:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Jak widać Earmark stworzył z naszych znaczników dokumentację, a ExDoc wyświetla ją w czytelny sposób.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Możemy ją teraz umieścić na GitHubie, naszej stronie, albo w serwisie [HexDocs](https://hexdocs.pm/).
 
@@ -249,7 +244,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -268,7 +263,7 @@ defmodule Greeter do
   # and so on...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -297,7 +292,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -306,4 +301,4 @@ end
 
  - Podawaj przykłady w dokumentacji. Pozwoli to też na wygenerowanie testów automatycznych na ich podstawie z użyciem [ExUnit.DocTest][]. By to zrobić, należy wywołać makro `doctest/1`, lecz dokumentacja musi spełniać pewne warunki opisane w [oficjalniej dokumentacji][ExUnit.DocTest] narzędzia.
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

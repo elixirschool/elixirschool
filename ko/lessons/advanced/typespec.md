@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.2
 title: 스펙과 타입
-category: advanced
-order: 9
-lang: ko
 ---
 
 이번 수업에서 `@spec`과 `@type` 구문을 공부해보도록 하겠습니다. `@spec`이 문서화 도구가 코드를 분석해서 문서화에 힘을 실어주는 구문이라면, `@type`은 읽고 이해하기에 더 쉬운 코드를 쓸 수 있게 도와주는 구문입니다.
@@ -28,9 +24,9 @@ Java나 Ruby를 사용해보신 분들이라면 specification을 `interface`처�
 ```elixir
 @spec sum_product(integer) :: integer
 def sum_product(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
 end
 ```
 
@@ -40,7 +36,7 @@ end
 
 스펙을 작성하는 것도 좋지만, 때로는 우리들이 구현한 함수가 간단한 함수나 컬렉션보다 복잡한 자료 구조를 처리해야 할 수도 있습니다. 이런 함수를 `@spec`으로 정의한다면, 다른 개발자들이 이해하거나 수정하기가 힘들어질 수 있습니다. 종종 함수가 많은 파라메터를 필요로 하거나, 복잡한 데이터를 리턴해야 할 때가 있습니다. 하지만 파라메터 목록이 길어질수록 코드의 품질이 떨어질 가능성도 점점 커집니다. Ruby나 Java 같은 객체 지향 언어를 사용했더라면, 간편하게 클래스를 구현해서 문제를 해결할 수 있었을 것입니다. Elixir에서는 클래스가 없고, 대신에 타입을 정의해서 언어를 확장할 수 있습니다.
 
-막 설치를 끝내고 난 Elixir에는 `integer`나 `pid` 같은 기본적인 타입이 있는데요. [공식 문서(Types and Their Syntax)](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax)에서 사용할 수 있는 타입의 전체 목록을 찾아볼 수 있습니다.
+막 설치를 끝내고 난 Elixir에는 `integer`나 `pid` 같은 기본적인 타입이 있는데요. [공식 문서(Types and Their Syntax)](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax)에서 사용할 수 있는 타입의 전체 목록을 찾아볼 수 있습니다.
  
 ### 커스텀 타입 정의하기
 
@@ -49,16 +45,16 @@ end
 ```elixir
 @spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
-`Range` 모듈 안에 있는 구조체를 단순하게 만들어, `Examples` 모듈 안에 `first`와 `last` 필드를 가진 구조체를 도입하였습니다. 구조체는 [모듈](ko/lessons/basics/modules/#section-2)에서 한번 이야기해 본 적이 있었습니다. 그런데, 코드의 여러 부분에서 `Examples` 구조체에 대한 스펙을 정의해야 하는 상황을 상상해 봅시다. 길고 복잡한 스펙을 쓰자니 성가실 뿐더러, 이 부분에서 버그가 생겨날 가능성이 커질 수도 있습니다. 이 문제를 해결하기 위해서 `@type`을 사용할 수 있습니다.
+`Range` 모듈 안에 있는 구조체를 단순하게 만들어, `Examples` 모듈 안에 `first`와 `last` 필드를 가진 구조체를 도입하였습니다. 구조체는 [모듈](../../basics/modules/#structs)에서 한번 이야기해 본 적이 있었습니다. 그런데, 코드의 여러 부분에서 `Examples` 구조체에 대한 스펙을 정의해야 하는 상황을 상상해 봅시다. 길고 복잡한 스펙을 쓰자니 성가실 뿐더러, 이 부분에서 버그가 생겨날 가능성이 커질 수도 있습니다. 이 문제를 해결하기 위해서 `@type`을 사용할 수 있습니다.
 
 Elixir에서 타입을 지정하는 방법에는 세 가지가 있습니다.
 
@@ -70,13 +66,11 @@ Elixir에서 타입을 지정하는 방법에는 세 가지가 있습니다.
 
 ```elixir
 defmodule Examples do
+  defstruct first: nil, last: nil
 
-    defstruct first: nil, last: nil
+  @type t(first, last) :: %Examples{first: first, last: last}
 
-    @type t(first, last) :: %Examples{first: first, last: last}
-
-    @type t :: %Examples{first: integer, last: integer}
-
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 
@@ -85,14 +79,14 @@ end
 어떻게 다를까요? 첫번째는 아무 타입이나 가질 수 있는 두 키를 가진 `Example` 구조체입니다. 한편 두번째는 키가 정수(`integer`)인 구조체를 나타냅니다. 다시 말해 아래처럼 코드를 작성하면
   
 ```elixir
-@spec sum_times(integer, Examples.t) :: integer
+@spec sum_times(integer, Examples.t()) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -101,12 +95,12 @@ end
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -116,12 +110,10 @@ end
 
 ```elixir
 defmodule Examples do
-    
-    @typedoc """
-        integer인 :first와 integer인 :last를 갖고 있는 Examples 구조체를 대표하는 타입.
-    """
-    @type t :: %Examples{first: integer, last: integer}
-
+  @typedoc """
+      integer인 :first와 integer인 :last를 갖고 있는 Examples 구조체를 대표하는 타입.
+  """
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.0
 title: Mnesia
-category: specifics
-order: 5
-lang: ko
 ---
 
 Mnesia는 실시간 분산 데이터베이스 관리 시스템을 담당하고 있습니다.
@@ -17,7 +13,7 @@ Mnesia는 Elixir에서 이미 사용하고 있는 Erlang 런타임 시스템에�
 
 ## 언제 사용해야 하나요?
 
-어떤 기술을 사용해야 하는지 결정하는 것은 무척 혼란스러운 과정입니다. 만약 아래의 질문들에서 '네'라고 대답할 수 있다면, ETS나 DETS 대신에 Mnesia를 사용할 타이밍이라는 좋은 신호라고 할 수 있습니다.
+어떤 기술을 사용해야 하는지 결정하는 것은 무척 혼란스러운 과정입니다. 아래의 질문들에서 '네'라고 대답할 수 있다면, ETS나 DETS 대신에 Mnesia를 사용할 타이밍이라는 좋은 신호라고 할 수 있습니다.
 
   - 트랜잭션 롤백 기능이 필요한가요?
   - 데이터를 읽고 쓸 때, 더 나은 문법을 원하시나요?
@@ -84,7 +80,7 @@ iex(learner@elixirschool.com)> Node.self
 :"learner@elixirschool.com"
 ```
 
-여기에서 볼 수 있듯, 지금 실행 중인 노드의 이름은  `:"learner@elixirschool.com"`라는 애텀입니다. 만약 우리가 `Mnesia.create_schema([node()])`를 다시 실행한다면 이제 **Mnesia.learner@elixirschool.com**라는 이름의 다른 폴더를 생성하는 것을 확인할 수 있습니다. 왜 이렇게 하는지는 무척 간단한 이유가 있습니다. Erlang에서의 노드는 (분산된) 정보나 자원을 공유하기 위해서 다른 노드들을 연결하곤 합니다. 이는 같은 기기에서 동작할 필요가 없으며, LAN이나 인터넷 등을 통해서 연결될 수도 있습니다.
+여기에서 볼 수 있듯, 지금 실행 중인 노드의 이름은  `:"learner@elixirschool.com"`라는 애텀입니다. 우리가 `Mnesia.create_schema([node()])`를 다시 실행한다면 이제 **Mnesia.learner@elixirschool.com**라는 이름의 다른 폴더를 생성하는 것을 확인할 수 있습니다. 왜 이렇게 하는지는 무척 간단한 이유가 있습니다. Erlang에서의 노드는 (분산된) 정보나 자원을 공유하기 위해서 다른 노드들을 연결하곤 합니다. 이는 같은 기기에서 동작할 필요가 없으며, LAN이나 인터넷 등을 통해서 연결될 수도 있습니다.
 
 ## Mnesia 시작하기
 

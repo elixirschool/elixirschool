@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Uruchamianie programów
-category: advanced
-order: 3
-lang: pl
 ---
 
 Do stworzenia pliku wykonywalnego w Elixirze służy escript. Escript generuje plik wykonywalny, który może zostać uruchomiony na każdym komputerze, na którym zainstalowano Erlanga.
@@ -30,12 +26,10 @@ Następnie w pliku mixa dodajemy sekcję `:escript`, która zawiera opcję `:mai
 ```elixir
 defmodule ExampleApp.Mixfile do
   def project do
-    [app: :example_app,
-     version: "0.0.1",
-     escript: escript]
+    [app: :example_app, version: "0.0.1", escript: escript()]
   end
 
-  def escript do
+  defp escript do
     [main_module: ExampleApp.CLI]
   end
 end
@@ -51,7 +45,7 @@ defmodule ExampleApp.CLI do
     args
     |> parse_args
     |> response
-    |> IO.puts
+    |> IO.puts()
   end
 
   defp parse_args(args) do
@@ -63,6 +57,7 @@ defmodule ExampleApp.CLI do
   end
 
   defp response({opts, "Hello"}), do: response({opts, "World"})
+
   defp response({opts, word}) do
     if opts[:upcase], do: String.upcase(word), else: word
   end

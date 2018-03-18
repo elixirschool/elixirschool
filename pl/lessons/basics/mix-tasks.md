@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Własne funkcje Mix'a 
-category: basics
-order: 15
-lang: pl
 ---
 
 Tworzenie własnych funkcji Mix'a dla projektów w Elixirze.
@@ -62,12 +58,11 @@ A teraz, w pliku **lib/hello.ex**, który został dla nas wygenerowany, napiszmy
 
 ```elixir
 defmodule Hello do
-
   @doc """
   Output's `Hello, World!` everytime.
   """
   def say do
-    IO.puts "Hello, World!"
+    IO.puts("Hello, World!")
   end
 end
 ```
@@ -82,7 +77,8 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Simply runs the Hello.say/0 command."
   def run(_) do
-    Hello.say # calling our Hello.say() function from earlier
+    # calling our Hello.say() function from earlier
+    Hello.say()
   end
 end
 ```

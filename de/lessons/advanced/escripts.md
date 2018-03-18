@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Ausführbare Dateien
-category: advanced
-order: 3
-lang: de
 ---
 
 Um ausführbare Dateien in Elixir zu erstellen werden wir escript benutzen. Escript erzeugt eine ausführbare Datei, welche auf jedem System lauffähig ist, auf dem Erlang installiert ist.
@@ -30,12 +26,10 @@ Als nächstes müssen wir für unser Projekt in unserem Mixfile die `:escript` O
 ```elixir
 defmodule ExampleApp.Mixfile do
   def project do
-    [app: :example_app,
-     version: "0.0.1",
-     escript: escript]
+    [app: :example_app, version: "0.0.1", escript: escript()]
   end
 
-  def escript do
+  defp escript do
     [main_module: ExampleApp.CLI]
   end
 end
@@ -51,7 +45,7 @@ defmodule ExampleApp.CLI do
     args
     |> parse_args
     |> response
-    |> IO.puts
+    |> IO.puts()
   end
 
   defp parse_args(args) do

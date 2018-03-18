@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.2
 title: 문서화
-category: basics
-order: 11
-lang: ko
 ---
 
 Elixir 코드 문서화하기.
@@ -29,7 +25,7 @@ Elixir에서는 문서화를 *일급 시민*으로 취급하며 프로젝트에 
 
 ```elixir
 # 콘솔에 'Hello, chum.' 를 출력합니다.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum.")
 ```
 
 이 스크립트를 실행할 때, Elixir는 `#`로 시작하여 라인이 끝나는 부분을 무시하며 버리는 정보로 취급합니다. 이는 연산에 대해 어떤 값을 부여하지도 않고 스크립트의 성능에 어떠한 영향도 주지 않습니다. 그러나, 어떤 일이 일어날지 확신이 서지 않을 때, 프로그래머가 이 부분에 대해 주석을 읽으면서 알 수 있어야 합니다. 한 줄 주석을 남용하지 않도록 주의하세요! 한 줄 주석으로 코드 베이스를 채우는 것이 누군가에게는 불쾌한 악몽이 될 수도 있습니다. 적절히 사용하시는 것이 좋습니다.
@@ -89,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -184,10 +180,9 @@ Examples
 위의 출력을 제대로 확인했다면, ExDoc를 설정할 준비가 되었습니다. `mix.exs` 파일에 `:earmark`, `:ex_doc` 의존성을 추가하세요.
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 프로덕션 환경에서 이 의존성들이 다운로드 받아서 컴파일되는 것을 원하지 않기 때문에 `only: :dev` 키-값 쌍을 명시해 두었습니다. 왜 Earmark를 쓸까요? Earmark는 elixir 프로그래밍 언어를 위한 마크다운 파서 입니다. ExDoc를 이용하여 `@moduledoc`, `@doc` 내부의 문서를 HTML 문서로 아름답게 변환시켜 줍니다.
@@ -208,11 +203,11 @@ View them at "doc/index.html".
 
 모든 것이 예정대로 되었다면, 위의 예제 출력 메시지와 비슷한 메시지를 볼 수 있을 것입니다. Mix 프로젝트 내부에, **doc/**라는 디렉터리를 확인할 수 있고, 안에는 자동으로 생성된 문서가 있습니다. 웹 브라우저로 색인 페이지를 열어보면 다음과 같은 화면을 보게 될 것입니다.
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Earmark가 마크다운을 렌더링하고 ExDoc가 이를 쓸만한 포멧으로 표시하는 것을 볼 수 있습니다.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Github에 배포할 수도 있고, 홈페이지에도 배포할 수 있지만, 보통은 [HexDocs](https://hexdocs.pm/)에 배포 합니다.
 
@@ -251,7 +246,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -270,7 +265,7 @@ defmodule Greeter do
   # 기타 등등...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -299,7 +294,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -308,4 +303,4 @@ end
 
  - 여러분의 문서에 코드 예제를 첨삭하도록 해보세요. 모듈, 함수 혹은 [ExUnit.DocTest][] 매크로 내에서 코드 예제를 발견하여 자동화된 테스트를 생성할 수 있습니다. 매크로를 이용하고자 한다면, 테스트 케이스로부터  `doctest/1` 매크로를 불러온 후 [공식 문서][ExUnit.DocTest]에 명시된 가이드라인에 따라 예시 코드를 작성할 필요가 있습니다.
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Behaviours
-category: advanced
-order: 10
-lang: vi
 ---
 
 Chúng ta đã học về Typespecs trong bài học trước, trong bài này, chúng ta sẽ học về cách để yêu cầu một module cài đặt những tiêu chuẩn đó. Trong Elixir, tính năng này thường được gọi bằng Behaviours.
@@ -29,7 +25,9 @@ Elixir đã bao gồm một tập các behaviours ví dụ như GenServer, nhưn
 ```elixir
 defmodule Example.Worker do
   @callback init(state :: term) :: {:ok, new_state :: term} | {:error, reason :: term}
-  @callback perform(args :: term, state :: term) :: {:ok, result :: term, new_state :: term} | {:error, reason :: term, new_state :: term}
+  @callback perform(args :: term, state :: term) ::
+              {:ok, result :: term, new_state :: term}
+              | {:error, reason :: term, new_state :: term}
 end
 ```
 
@@ -49,16 +47,17 @@ defmodule Example.Downloader do
 
   def perform(url, opts) do
     url
-    |> HTTPoison.get!
+    |> HTTPoison.get!()
     |> Map.fetch(:body)
     |> write_file(opts[:path])
     |> respond(opts)
   end
 
   defp write_file(:error, _), do: {:error, :missing_body}
+
   defp write_file({:ok, contents}, path) do
     path
-    |> Path.expand
+    |> Path.expand()
     |> File.write(contents)
   end
 

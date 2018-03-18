@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="page">
-  {% if page.version_data == nil %}
+  {% if page.version_severity == nil or page.lang == site.default_lang or page.section == 'home' %}
     <h1 class="page-title">{{ page.title }}</h1>
   {% else %}
     {% include version.html %}
@@ -11,5 +11,9 @@ layout: default
 
   {{ content }}
 
+  {% include contributors.html %}
+
+  {% include pagination.html %}
+  
   {% include social.html %}
 </div>

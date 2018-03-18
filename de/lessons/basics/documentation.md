@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Dokumentation
-category: basics
-order: 11
-lang: de
 ---
 
 Wie dokumentiert man Elixir Code?
@@ -29,7 +25,7 @@ Nimm etwa dieses Elixirskript (greeting.exs):
 
 ```elixir
 # Gibt 'Hello, chum.' auf der Konsole aus.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum.")
 ```
 
 Wenn Elixir dieses Skript ausführt, wird jedes Zeichen hinterhalb von `#` bis zum Ende der Zeile ignorieren. Es ändert nichts an der Ausführung oder Performance des Skripts, falls jedoch nicht klar ist, was an dieser Stelle passiert, so kann ein anderer Programmierer durch Lesen des Kommentars den Code eher verstehen. Sei bedacht bei der Benutzung von einzeiligen Kommentaren! Das "Zumüllen" der Codebasis durch einzeilige Kommentare resultiert in einem Albtraum für Leute, die sich in die Codebasis einarbeiten müssen. Am besten werden sie spärlich eingesetzt.
@@ -89,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -184,10 +180,9 @@ Beispiele
 Davon ausgehend, dass soweit alles funktioniert und wir die Ausgabe wie oben sehen, können wir nun ExDoc aufsetzen. In der `mix.exs`-Datei füge zwei Abhängigkeiten hinzu, um zu starten: `:earmark` und `:ex_doc`.
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Wir spezifizieren das `only: :dev` key-value-Paar, da wir diese Abhängigkeiten nicht in einer Produktionsumgebung herunterladen und kompilieren wollen. Aber wieso Earmark? Earmark ist ein Markdown-Parser für Elixir, den ExDoc benutzt, um unsere Dokumentation innerhalb von `@moduledoc` und `@doc` in schönes HTML zu verwandeln.
@@ -208,11 +203,11 @@ View them at "doc/index.html".
 
 Falls alles nach Plan abläuft solltest du eine ähnliche Meldung wie in der Ausgabe aus obigem Beispiel lesen können. Lass uns nun in's Mix-Projekt schauen, und wir werden sehen, dass es dort einen neuen Ordner namens **doc/** gibt. Darin ist unsere generierte Dokumentation. Falls wir die Indexseite in unserem Browser aufrufen, sollten wir das folgende sehen:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Wir können sehen, dass Earmark unser Markdown gerendert hat und ExDoc es in einem sinnvollen Format anzeigt.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Jetzt können wir es auf GitHub, unserer eigenen Webseite oder auch wie üblich [HexDocs](https://hexdocs.pm/) hochladen.
 
@@ -250,7 +245,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -269,7 +264,7 @@ defmodule Greeter do
   # und so weiter...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -298,7 +293,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -307,4 +302,4 @@ end
 
  - Versuche ein paar Codebeispiele in deiner Dokumentation zu schreiben. Das erlaubt es dir zudem automatisch Tests aus Codebeispielen zu generieren. Das ist in Modulen, Funktionen oder Makros durch [ExUnit.DocTest][] möglich. Um das zu tun, musst du das `doctest/1`-Makro in deinem Testcode aufrufen und die Beispiele so schreiben, wie es die Richtlinien in der [offiziellen Dokumentation][ExUnit.DocTest] beschreiben.
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

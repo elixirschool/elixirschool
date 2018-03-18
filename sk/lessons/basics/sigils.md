@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: Sigily
-category: basics
-order: 10
-lang: sk
 ---
 
 Práca so sigilmi a ich vytváranie.
@@ -13,9 +9,9 @@ Práca so sigilmi a ich vytváranie.
 
 ## Čo sú sigily
 
-Sigily predstavujú alternatívnu syntax pre reprezentáciu a prácu s literálmi. Každý sigil začína znakom `~` (tilda) nasledovaným iným znakom, ktorý určuje druh sigilu. Jazyk Elixir má vstavaných niekoľko rôznych druhov sigilov, no ak potrebujeme, môžeme vytvoriť aj svoje vlastné druhy.
+Elixir poskytuje alternatívnu syntax na reprezentáciu a prácu s literálmi. Sigil začína znakom `~` (tilda) nasledovaným znakom. Jadro Elixiru má vstavaných niekoľko rôznych druhov sigilov, no ak potrebujeme, môžeme vytvoriť aj svoje vlastné druhy.
 
-Zoznam vstavaných sigilov:
+Zoznam dostupných sigilov obsahuje:
 
   - `~C` Vytvorí charlist (zoznam znakov) **bez** escapovania a interpolácie
   - `~c` Vytvorí charlist **s** escapovaním a interpoláciou
@@ -25,6 +21,7 @@ Zoznam vstavaných sigilov:
   - `~s` Vytvorí reťazec **s** escapovaním a interpoláciou
   - `~W` Vytvorí zoznam reťazcov  **bez** escapovania a interpolácie
   - `~w` Vytvorí zoznam reťazcov **s** escapovaním a interpoláciou
+  - `~N` Vytvorí `NaiveDateTime` struct
 
 Po tilde a znaku určujúcom druh sigilu nasleduje vstup sigilu ohraničený oddeľovačmi. Ako oddeľovače môžeme použiť tieto znaky:
 
@@ -33,11 +30,9 @@ Po tilde a znaku určujúcom druh sigilu nasleduje vstup sigilu ohraničený odd
   - `[...]` Pár hranatých zátvoriek
   - `(...)` Pár okrúhlych zátvoriek
   - `|...|` Pár pajp
-  - `/.../` Pár pár lomítok (nie spätných!)
+  - `/.../` Pár lomítok (nie spätných!)
   - `"..."` Pár dvojitých úvodzoviek
   - `'...'` Pár jednoduchých úvodzoviek
-
-Po uzatváracom oddeľovači môžy ešte nasledovať modifikátory (ak ich daný sigil podporuje).
 
 ### Zoznamy znakov
 
@@ -70,7 +65,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Prvý test vráti `false`, pretože testovaný reťazec má prvé písmeno veľké, no výraz hľadá slovo `elixir` s malým `e`. Keďže Elixir používa regulárne výrazy podľa štandardu PCRE (Perl Complatible Regular Expressions), môžeme na koniec sigilu pripojiť modifikátor `i`, ktorým vypneme citlivosť na malé/veľké písmená (case sensitivity):
+Prvý test vráti `false`, pretože testovaný reťazec má prvé písmeno veľké, no výraz hľadá slovo `elixir` s malým `e`. Keďže Elixir používa regulárne výrazy podľa štandardu PCRE (Perl Compatible Regular Expressions), môžeme na koniec sigilu pripojiť modifikátor `i`, ktorým vypneme citlivosť na malé/veľké písmená (case sensitivity):
 
 ```elixir
 iex> re = ~r/elixir/i
@@ -83,7 +78,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Okrem toho Elixir poskytuje [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) API postavené na Erlangovej knižnici na prácu s regulárnymi výrazmi. V nasledujúcom príklade použijeme z tohto API funkciu `Regex.split/2` (rozdelí reťazec podľa regulárneho výrazu), ktorej ako argumenty posunieme `~r` sigil a reťazec, ktorý chceme rozdeliť:
+Okrem toho Elixir poskytuje [Regex](https://hexdocs.pm/elixir/Regex.html) API postavené na Erlangovej knižnici na prácu s regulárnymi výrazmi. Poďme implementovať `Regex.split/2` spolu s regexovým sigilom:
 
 ```elixir
 iex> string = "100_000_000"
@@ -93,7 +88,7 @@ iex> Regex.split(~r/_/, string)
 ["100", "000", "000"]
 ```
 
-Ako vidíme, z reťazca `"100_000_000"` sme jeho rozdelením podľa `_` dostali zoznam podreťazcov.
+Ako vidíme, reťazec `"100_000_000"` sme rozdelili podľa podtržníka vďaka nášmu sigilu `~r/_/`. Funkcia `Regex.split` nám vráti zoznam reťazcov.
 
 ### Reťazce
 
@@ -107,12 +102,9 @@ iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
 
-Aký to má význam? Tento sigil nám napríklad umožňuje v prípade potreby použiť na ohraničenie reťazca iné oddeľovače, než štandardné `"`.
+V čom je rozdiel? Rozdiel je podobný ako pri sigile zoznamu znakov, ktorý sme si ukázali. Odpoveď je interpolácia a escapovanie reťazca. Ďalší príklad:
 
 ```elixir
-iex> ~s/Hello "world"/
-"Hello \"world\""
-
 iex> ~s/welcome to elixir #{String.downcase "school"}/
 "welcome to elixir school"
 
@@ -122,7 +114,7 @@ iex> ~S/welcome to elixir #{String.downcase "school"}/
 
 ### Zoznamy slov
 
-Občas sa nám môže hodiť jednoduché vytvorenie zoznamu jednoslovných reťazcov pomocou sigilu `~w`. Ušetríme čas, klávesnicu a kód bude o kúsok čitateľnejší:
+Sigil na zoznamy slov sa nám môže hodiť z času na čas. Ušetrí nám čas, klávesnicu a hlavne zjednoduší čitateľnosť a zložitosť nášho kódu. Tu máme príklad:
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -142,9 +134,19 @@ iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
 ```
 
-## Vlastné sigily
+### NaiveDateTime
 
-Jedeným z cieľov pri návrhu jazyka Elixir bola jeho jednoduchá rozšíriteľnosť. Nie je teda prekvapujúce, že nám umožňuje aj ľahko si vytvoriť vlastné druhy sigilov. V nasledujúcom príklade si vytvoríme špeciálny sigil na konverziu reťazcov na veľké písmená. V Elixire už na tento účel existuje funkcia `String.upcase/1`, takže ju v našom sigile použijeme:
+[NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) je užitočný na rýchle vytvorenie structu reprezentujúceho `DateTime` **bez** časového pásma.
+
+Poväčšine by sme sa mali vyhnúť vytváraniu structu `NaiveDateTime` priamo, ale je to veľmi užitočné pri pattern matchovaní. Napríklad:
+
+```elixir
+iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
+```
+
+## Vytváranie sigilov
+
+Jedným z cieľov jazyka Elixir bola jeho jednoduchá rozšíriteľnosť. Nie je teda prekvapením, že nám umožňuje aj ľahko si vytvoriť vlastné druhy sigilov. V nasledujúcom príklade si vytvoríme špeciálny sigil na konverziu reťazcov na veľké písmená. V Elixire už na tento účel existuje funkcia `String.upcase/1`, takže ju v našom sigile použijeme:
 
 ```elixir
 

@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Διαλειτουργικότητα με την Erlang
-category: advanced
-order: 1
-lang: gr
 ---
 
 Ένα από τα βασικά πλεονεκτήματα του να χτίζεις πάνω στην εικονική μηχανή της Erlang (BEAM)  είναι η πληθώρα των υπάρχουσων βιβλιοθηκών που μας είναι διαθέσιμες.  Η διαλειτουργικότητα μας επιτρέπει να αξιοποιούμε αυτές τις βιβλιοθήκες και την βασική βιβλιοθήκη της Erlang από τον κώδικά μας σε Elixir.  Σε αυτό το μάθημα θα δούμε πως να έχουμε πρόσβαση σε λειτουργίες της βασικής βιβλιοθήκης και σε πακέτα τρίτων της Erlang.
@@ -21,13 +17,13 @@ lang: gr
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Χρόνος: #{time}ms"
-    IO.puts "Αποτέλεσμα: #{result}"
+    IO.puts("Χρόνος: #{time} μs")
+    IO.puts("Αποτέλεσμα: #{result}")
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Χρόνος: 8ms
+Χρόνος: 8 μs
 Αποτέλεσμα: 1000000
 ```
 
@@ -46,10 +42,8 @@ end
 Τώρα μπορούμε να έχουμε πρόσβαση στην βιβλιοθήκη της Erlang:
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## Αξιοσημείωτες Διαφορές
@@ -107,9 +101,18 @@ true
 ```elixir
 iex> :string.words("Γειά σου Κόσμε")
 ** (FunctionClauseError) no function clause matching in :string.strip_left/2
-    (stdlib) string.erl:380: :string.strip_left("Γειά σου κόσμε", 32)
-    (stdlib) string.erl:378: :string.strip/3
-    (stdlib) string.erl:316: :string.words/2
+
+    The following arguments were given to :string.strip_left/2:
+
+        # 1
+        "Hello World"
+
+        # 2
+        32
+
+    (stdlib) string.erl:1661: :string.strip_left/2
+    (stdlib) string.erl:1659: :string.strip/3
+    (stdlib) string.erl:1597: :string.words/2
 
 iex> "Γειά σου Κόσμε" |> to_charlist |> :string.words
 3

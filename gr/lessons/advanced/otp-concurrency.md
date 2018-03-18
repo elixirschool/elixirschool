@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.2
 title: Συγχρονισμός OTP
-category: advanced
-order: 5
-lang: gr
 ---
 
 Είδαμε τις αφαιρέσεις της Elixir για το συγχρονισμό αλλά μερικές φορές χρειαζόμαστε μεγαλύτερο έλεγχο και για αυτό στρεφόμαστε στις συμπεριφορές OTP πάνω στις οποίες έχει χτιστεί η Elixir.
@@ -43,7 +39,7 @@ end
 
 Συχνά είναι απαραίτητο να αλληλεπιδράσουμε με τους GenServers με ένα σύγχρονο τρόπο, καλώντας μια συνάρτηση και περιμένοντας για την απάντησή της.  Για να χειριστούμε σύγχρονες αιτήσεις θα χρειαστεί να υλοποιήσουμε την επανάκληση `GenServer.handle_call/3` η οποία δέχεται: την αίτηση, το PID της διεργασίας που καλεί, και την υπάρχουσα κατάσταση.  Είναι αναμενόμενο να απαντήσει επιστρέφοντας μια τούπλα: `{:reply, response, state}`.  
 
-Με την αντιπαραβολή προτύπων μπορούμε να ορίσουμε επανακλήσεις για πολλές διαφορετικές αιτήσεις και καταστάσεις.  Μια πλήρης λίστα των αποδεκτών επιστρεφόμενων τιμών μπορεί να βρεθεί στα έγγραφα της [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3).
+Με την αντιπαραβολή προτύπων μπορούμε να ορίσουμε επανακλήσεις για πολλές διαφορετικές αιτήσεις και καταστάσεις.  Μια πλήρης λίστα των αποδεκτών επιστρεφόμενων τιμών μπορεί να βρεθεί στα έγγραφα της [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3).
 
 Για να επιδείξουμε τις σύγχρονες αιτήσεις, ας προσθέσουμε την ικανότητα να προβάλουμε την τρέχουσα ουρά και να αφαιρέσουμε μια τιμή:
 
@@ -61,9 +57,10 @@ defmodule SimpleQueue do
   @doc """
   GenServer.handle_call/3 επανάκληση
   """
-  def handle_call(:dequeue, _from, [value|state]) do
+  def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
   end
+
   def handle_call(:dequeue, _from, []), do: {:reply, nil, []}
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
@@ -77,7 +74,6 @@ defmodule SimpleQueue do
   def queue, do: GenServer.call(__MODULE__, :queue)
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
 end
-
 ```
 
 Ας ξεκινήσουμε την SimpleQueue μας και ας δοκιμάσουμε την νέα μας λειτουργικότητα dequeue:
@@ -113,9 +109,10 @@ defmodule SimpleQueue do
   @doc """
   GenServer.handle_call/3 επανάκληση
   """
-  def handle_call(:dequeue, _from, [value|state]) do
+  def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
   end
+
   def handle_call(:dequeue, _from, []), do: {:reply, nil, []}
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
@@ -132,6 +129,7 @@ defmodule SimpleQueue do
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
+
   def queue, do: GenServer.call(__MODULE__, :queue)
   def enqueue(value), do: GenServer.cast(__MODULE__, {:enqueue, value})
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
@@ -151,4 +149,4 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-Για περισσότερες πληροφορίες ελέγξτε την επίσημη τεκμηρίωση του [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content).
+Για περισσότερες πληροφορίες ελέγξτε την επίσημη τεκμηρίωση του [GenServer](https://hexdocs.pm/elixir/GenServer.html#content).

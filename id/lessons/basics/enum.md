@@ -1,26 +1,42 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.3.0
 title: Enum
-category: basics
-order: 3
-lang: id
 ---
 
-Sekumpulan algoritma untuk melakukan enumerasi atas collection.
+Sekumpulan algoritma untuk melakukan enumerasi atas enumerables.
 
 {% include toc.html %}
 
 ## Enum
 
-Modul `Enum` berisi lebih dari seratus fungsi untuk bekerja dengan koleksi yang sudah kita pelajari di pelajaran sebelumnya.
+Modul `Enum` mencakup lebih dari 70 fungsi untuk bekerja pada enumrables. Semua koleksi yang sudah kita pelajari dalam [pelajaran sebelumnya](../collections/), dengan pengecualian tuple, adalah enumerables.
 
-Pelajaran ini akan hanya mencakup sebagian dari fungsi yang ada, untuk melihat daftar fungsi yang lengkap kunjungi dokumentasi resmi [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html); untuk enumerasi yang lazy gunakan modul [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+Pelajaran ini akan hanya mencakup sebagian dari fungsi yang ada, akan tetapi kita sebenarnya dapat mencobanya.
+Mari kita lakukan sedikit eksperiment pada IEx.
+
+```elixir
+iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+...>   IO.puts "#{function}/#{arity}"
+...> end)
+all?/1
+all?/2
+any?/1
+any?/2
+at/2
+at/3
+...
+```
+
+Menggunakan ini, jelas bahwa kita memiliki sejumlah fungsionalias yang luas, dan itu adalah alasan yang jelas.
+Enumerasi adalah pada inti dari pemrograman fungsional dan hal itu sangatlah berguna.
+Dengan memamfaatkannya dikombinasikan dengan fasilitas lain Elixir, seperti dokumentasi yang menjadi warga kelas pertama (first class citizen) sebagaimana yang sudah kita lihat, hal itu dapat sangat memberdayakan kepada pengembang (developer) juga.
+
+Untuk daftar lengkap fungsi (functions) silahkan kunjungi dokumentasi resmi [`Enum`](https://hexdocs.pm/elixir/Enum.html); untuk enumerasi lazy gunakan modul [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 
 ### all?
 
-Ketika menggunakan `all?`, dan mayoritas dari `Enum`, kita memberikan sebuah fungsi untuk diterapkan ke isi dari collection kita. Dalam kasus `all?`, keseluruhan isi collection harus menghasilkan `true`, jika tidak maka hasilnya adalah `false`:
+Ketika menggunakan `all?/2`, dan banyak `Enum`, kita menyediakan sebuah fungsi untuk diterapkan ke item koleksi kita. Dalam kasus `all?/2`, keseluruhan koleksi harus mengevaluasi `true` jika tidak `false` akan dikembalikan:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -38,42 +54,55 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every
 
-Jika anda perlu memecah collection jadi kelompok-kelompok yang lebih kecil, `chunk` adalah fungsi yang dibutuhkan:
+Jika anda perlu memecah collection jadi kelompok-kelompok yang lebih kecil, `chunk_every/2` adalah fungsi yang dibutuhkan:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Ada beberapa opsi untuk `chunk` tapi kita tidak akan membahas lebih dalam, lihatlah [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) di dokumentasi resmi untuk belajar lebih jauh.
+Ada beberapa opsi untuk `chunk_every/4` tapi kita tidak akan membahas lebih dalam, lihat [`dokumentasi resmi dari fungsi ini`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) untuk belajar lebih jauh.
 
 ### chunk_by
 
-Jika kita butuh mengelompokkan collection kita berdasar selain ukuran, kita dapat gunakan fungsi `chunk_by/2`. `chunk_by/2` menerima sebuah enumerable dan sebuah fungsi, yang jika hasil pemanggilan fungsi tersebut berubah maka sebuah kelompok baru akan dibuat:
+Jika kita butuh mengelompokkan koleksi kita berdasar selain ukuran, kita dapat gunakan fungsi `chunk_by/2`. Itu mengambil yang diberikan enumerable dan sebuah fungsi, dan ketika hasil kembali fungsi berubah, sebuah kelompok baru dimulai dan memulai penciptaan selanjutnya: 
 
 ```elixir
+iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"]]
 iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
+### map_every
+
+Terkadang membingkah (chungking) keluar sebuah koleksi tidak cukup untuk apa yang kita butuhkan. Jika hal tersebut pada kasus ini, `map_every/3` dapat sangatlah berguna untuk mengenai setiap item `nth`, selalu mengenai yang pertama. 
+
+```elixir
+# Menerapkan fungsi setiap tiga item
+iex> Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
+[1001, 2, 3, 1004, 5, 6, 1007, 8]
+```
+
 ### each
 
-Jika kita perlu melakukan iterasi atas sebuah collection tanpa menghasilkan sebuah value baru, kita gunakan `each`:
+Jika kita perlu melakukan iterasi atas sebuah collection tanpa menghasilkan sebuah value baru, kita gunakan `each/2`:
 
 ```elixir
 iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
-__Catatan__: Fungsi `each` mengembalikan atom `:ok`.
+__Catatan__: Fungsi `each/2` mengembalikan atom `:ok`.
 
 ### map
 
-Untuk menerapkan fungsi kita terhadap setiap item dan menghasilkan sebuah collection baru, lihatlah fungsi `map`:
+Untuk menerapkan fungsi kita terhadap setiap item dan menghasilkan sebuah collection baru, lihatlah fungsi `map/2`:
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
@@ -82,38 +111,56 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-Menemukan nilai terkecil dalam collection kita:
+`min/1` menemukan nilai terkecil dalam koleksi:
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
+`min/2` juga melakukan hal yang sama, namun jika enumerable kosong, itu memperbolehkan kita menentukan fungsi untuk menghasilkan nilai terkecil.
+
+```elixir
+iex> Enum.min([], fn -> :foo end)
+:foo
+```
+
 ### max
 
-Menemukan nilai terbesar dalam collection kita:
+`max/1` mengembalikan nilai maksimal dalam koleksi:
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
+`max/2` adalah `max/1` apa `min/2` ke `min/1`:
+
+```elixir
+Enum.max([], fn -> :bar end)
+:bar
+```
+
 ### reduce
 
-Dengan `reduce` kita dapat memeras collection kita menjadi sebuah value tunggal. Untuk melakukan ini kita memasukkan sebuah akumulator yang opsional (`10` dalam contoh ini) untuk dimasukkan ke dalam fungsi kita; jika tidak ada akumulator diberikan maka value pertama yang digunakan:
+Dengan `reduce/3` kita dapat memeras collection kita menjadi sebuah nilai tunggal. Untuk melakukan ini kita memasukkan sebuah akumulator yang opsional (`10` dalam contoh ini) untuk dimasukkan ke dalam fungsi kita; jika tidak ada akumulator diberikan maka value pertama yang digunakan:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
+
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+
 iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 "cba1"
 ```
 
 ### sort
 
-Mengurutkan collection kita menjadi mudah dengan adanya tidak hanya satu, melainkan dua, fungsi `sort`. Yang pertama menggunakan pengurutan (ordering) dari Elixir untuk menentukan urutan:
+Mengurutkan collection kita menjadi mudah dengan adanya tidak hanya satu, melainkan dua, fungsi pengurutan.
+
+`sort/1` menggunakan istilah Erlang untuk menentukan urutan yang diurutkan:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -123,23 +170,23 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-Pilihan yang kedua mengijinkan kita memberikan fungsi untuk mengurutkan:
+Sedangkan `sort/2` mengijinkan kita untuk menyediakan sebuah fungsi pengurutan kita sendiri:
 
 ```elixir
-# with our function
+# dengan fungsi kita
 iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
 [%{val: 4}, %{val: 1}]
 
-# without
+# tanpa fungsi kita
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq
+### uniq_by
 
-Kita dapat menggunakan `uniq` untuk membuang duplikasi dari collection kita:
+Kita dapat menggunakan `uniq_by/2` untuk membuang duplikasi dari enumerables kita:
 
 ```elixir
-iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
-[1, 2, 3, 4]
+iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+[1, 2, 3]
 ```

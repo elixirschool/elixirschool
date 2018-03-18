@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Strings
-category: basics
-order: 14
-lang: id
 ---
 
 Tentang String di Elixir, Char list, Grapheme, dan Codepoint.
@@ -48,7 +44,7 @@ Ketika membuat program di Elixir, kita biasanya tidak memakai char list melainka
 
 Codepoint adalah karakter Unicode sederhana, yang bisa direpresentasikan dengan satu atau dua byte. Sebagai contoh, karakter dengan tilde atau aksen: `á, ñ, è`. Grapheme terdiri dari beberapa codepoint yang tampak sebagai satu karakter sederhana.
 
-Modul String sudah menyediakan dua method untuk menggunakannya, `graphemes/1` and `codepoints/1`. Mari kita lihat contohnya:
+Modul String sudah menyediakan dua fungsi untuk menggunakannya, `graphemes/1` and `codepoints/1`. Mari kita lihat contohnya:
 
 ```elixir
 iex> string = "\u0061\u0301"
@@ -120,14 +116,14 @@ Cara yang termudah adalah dengan mengurutkan kedua string secara alfabet dan men
 ```elixir
 defmodule Anagram do
   def anagrams?(a, b) when is_binary(a) and is_binary(b) do
-  	sort_string(a) == sort_string(b)
+    sort_string(a) == sort_string(b)
   end
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```
@@ -147,7 +143,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Sebagaimana bisa anda lihat, pemanggilan terakhir ke `anagrams?` mengakibatkan FunctionClauseError.  Error ini memberitahu kita bahwa tidak ada fungsi di modul kita yang cocok dengan pola menerima dua argumen non-biner, dan itu persis yang kita inginkan, menerima dua string dan tidak yang lain.

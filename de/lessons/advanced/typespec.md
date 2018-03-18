@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.2
 title: Spezifikationen und Typen
-category: advanced
-order: 9
-lang: de
 ---
 
 In dieser Lektion werden wir die `@spec`- und `@type`-Syntax kennen lernen. Die Erste ist eine Ergänzung um Dokumentation zu schreiben, die von Tools ausgewertet werden kann. Die Zweite hilft uns lesbareren und einfacheren Code zu schreiben.
@@ -28,9 +24,9 @@ Schau dir das folgende Beispiel an:
 ```elixir
 @spec sum_product(integer) :: integer
 def sum_product(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
 end
 ```
 
@@ -39,7 +35,7 @@ Das sieht auf den ersten Blick alles OK aus, jedoch gibt die Funktion `Enum.sum`
 ## Benutzerdefinierte Typen
 
 Spezifikationen schreiben ist ganz nett, aber manchmal arbeiten unsere Funktionen mit komplexeren Datenstrukturen als einfache Nummern oder collections. In diesem Fall wäre die Definition in `@spec` schwer für andere Entwickler zu verstehen oder zu ändern. Manchmal müssen Funktionen eine große Zahl Parameter entgegennehmen oder komplexe Daten zurückgeben. Eine lange Parameterliste ist eine der vielen Möglichkeiten für code smells im Code. In objektorientieren Sprachen wie Ruby oder Java könnten wir einfach Klassen definieren, die uns dabei helfen, dieses Problem zu lösen. Elixir kennt keine Klassen, ist aber einfach zu erweitern, so dass wir unsere Typen definieren können.
-Standardmäßig bietet Elixir einfache Typen wie `integer` oder `pid`. Du findest eine Liste aller Typen in der [Dokumentation](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Standardmäßig bietet Elixir einfache Typen wie `integer` oder `pid`. Du findest eine Liste aller Typen in der [Dokumentation](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax).
 
 ### Typen definieren
 
@@ -48,16 +44,16 @@ Lass uns unsere `sum_times`-Funktion verändern und ein paar extra Parameter ein
 ```elixir
 @spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
-Wir haben ein struct im `Examples`-Modul hinzugefügt, das die beiden Felder `first` und `last` beinhaltet. Das ist die einfachere Version des structs aus dem `Range`-Modul. Wir sprechen noch über `structs`, wenn wir [Module](lessons/basics/modules/#structs) besprechen. Lass uns davon ausgehen, dass wir das `Examples`-struct an vielen Stellen brauchen und es nervtötend ist lange, komplexe Spezifikationen zu schreiben, die Bugs herbeiführen könnten. Eine Lösung für dieses Problem ist `@type`.
+Wir haben ein struct im `Examples`-Modul hinzugefügt, das die beiden Felder `first` und `last` beinhaltet. Das ist die einfachere Version des structs aus dem `Range`-Modul. Wir sprechen noch über `structs`, wenn wir [Module](../../basics/modules/#structs) besprechen. Lass uns davon ausgehen, dass wir das `Examples`-struct an vielen Stellen brauchen und es nervtötend ist lange, komplexe Spezifikationen zu schreiben, die Bugs herbeiführen könnten. Eine Lösung für dieses Problem ist `@type`.
 
 Elixir hat drei Direktiven für Typen:
 
@@ -69,13 +65,11 @@ Lass uns unseren Typ definieren:
 
 ```elixir
 defmodule Examples do
+  defstruct first: nil, last: nil
 
-    defstruct first: nil, last: nil
+  @type t(first, last) :: %Examples{first: first, last: last}
 
-    @type t(first, last) :: %Examples{first: first, last: last}
-
-    @type t :: %Examples{first: integer, last: integer}
-
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 
@@ -84,14 +78,14 @@ Wir haben den Typ `t(first, last)` bereits definiert, welcher eine Repräsentati
 Wo ist der Unterschied? Der erste Fall repräsentiert das struct `Examples`, bei dem die zwei keys von jedem Typ sein könnten. Im zweiten Fall repräsentiert ein struct dessen keys `integer` sind. Das bedeutet Code wie:
 
 ```elixir
-@spec sum_times(integer, Examples.t) :: integer
+@spec sum_times(integer, Examples.t()) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -100,12 +94,12 @@ Ist gleichbedeutend zu:
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -115,12 +109,10 @@ Der letzte Punkt, über den wir reden sollten, ist wie man Typen dokumentiert. W
 
 ```elixir
 defmodule Examples do
-
-    @typedoc """
-        Type that represents Examples struct with :first as integer and :last as integer.
-    """
-    @type t :: %Examples{first: integer, last: integer}
-
+  @typedoc """
+      Type that represents Examples struct with :first as integer and :last as integer.
+  """
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: 元编程
-category: advanced
-order: 6
-lang: cn
 ---
 
 元编程是指用代码来写代码的过程。在 Elixir 中，这说明我们可以扩展该语言，动态地修改该语言。我们会先看看 Elixir 底层是怎么实现的，然后讲怎么修改它，最后会使用刚学过的只是来扩展它。
@@ -194,8 +190,8 @@ iex> val
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts unquote(expr)
-      IO.puts unquote(expr)
+      IO.puts(unquote(expr))
+      IO.puts(unquote(expr))
     end
   end
 end
@@ -215,8 +211,8 @@ iex> Example.double_puts(:os.system_time)
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts expr
-      IO.puts expr
+      IO.puts(expr)
+      IO.puts(expr)
     end
   end
 end

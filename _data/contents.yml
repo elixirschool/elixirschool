@@ -1,0 +1,44 @@
+home:
+  - home
+basics:
+  - basics
+  - collections
+  - enum
+  - pattern-matching
+  - control-structures
+  - functions
+  - pipe-operator
+  - modules
+  - mix
+  - sigils
+  - documentation
+  - testing
+  - comprehensions
+  - strings
+  - mix-tasks
+  - iex-helpers
+advanced:
+  - erlang
+  - error-handling
+  - escripts
+  - concurrency
+  - otp-concurrency
+  - otp-supervisors
+  - metaprogramming
+  - umbrella-projects
+  - typespec
+  - behaviours
+  - gen-stage
+  - protocols
+specifics:
+  - plug
+  - ecto
+  - eex
+  - ets
+  - mnesia
+  - debugging
+libraries:
+  - guardian
+  - poolboy
+  - benchee
+  - bypass

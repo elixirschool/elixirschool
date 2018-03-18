@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Erlang Interoperability
-category: advanced
-order: 1
-lang: vi
 ---
 
 Một trong những lợi ích của việc xây dựng dựa trên Erlang VM (BEAM) chính là việc có rất nhiều những thư viện mà chúng ta có thể sử dụng. Tính tương tác này giúp chúng ta có thể tận dụng những thư viện đó cũng như thư viện chuẩn của Erlang từ Elixir code. Trong bài này chúng ta sẽ xem làm thế nào để sử dụng được những tính năng bên trong thư viện chuẩn cũng như thư viện của bên thứ ba từ Erlang.
@@ -12,7 +8,7 @@ Một trong những lợi ích của việc xây dựng dựa trên Erlang VM (B
 {% include toc.html %}
 
 ## Thư viện chuẩn
-Chúng ta có thể sử dụng một cách rộng rãi các thư viện chuẩn của Erlang ở bên trong ứng dụng Elixir. Module Erlang được biểu diễn bằng các atom không viết hoa (lowercase) như là `:os` hay là `:timer`. 
+Chúng ta có thể sử dụng một cách rộng rãi các thư viện chuẩn của Erlang ở bên trong ứng dụng Elixir. Module Erlang được biểu diễn bằng các atom không viết hoa (lowercase) như là `:os` hay là `:timer`.
 
 Hãy thử sử dụng `:timer.tc` để đo thời gian chạy của một hàm:
 
@@ -20,13 +16,13 @@ Hãy thử sử dụng `:timer.tc` để đo thời gian chạy của một hàm
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time} μs")
+    IO.puts("Result: #{result}")
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Time: 8ms
+Time: 8 μs
 Result: 1000000
 ```
 
@@ -34,7 +30,7 @@ Result: 1000000
 
 ## Gói thư viện Erlang
 
-Ở bài trước chúng ta đã học về Mix và quản lý thư viện phụ thuộc. Thêm thư viện Erlang vào cũng tương tự như vậy. Trong trường hợp mà thư viện Erlang không nằm trên [Hex](https://hex.pm) bạn có thể tham khảo về cách sử dụng git repository như dưới đây: 
+Ở bài trước chúng ta đã học về Mix và quản lý thư viện phụ thuộc. Thêm thư viện Erlang vào cũng tương tự như vậy. Trong trường hợp mà thư viện Erlang không nằm trên [Hex](https://hex.pm) bạn có thể tham khảo về cách sử dụng git repository như dưới đây:
 
 ```elixir
 def deps do
@@ -45,10 +41,8 @@ end
 Sau đó chúng ta có thể truy cập vào thư viện Erlang:
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## Những khác biệt đáng chú ý
@@ -106,9 +100,18 @@ Nên chú ý rằng rất nhiều thư viện Erlang cũ không hỗ trợ chu�
 ```elixir
 iex> :string.words("Hello World")
 ** (FunctionClauseError) no function clause matching in :string.strip_left/2
-    (stdlib) string.erl:380: :string.strip_left("Hello World", 32)
-    (stdlib) string.erl:378: :string.strip/3
-    (stdlib) string.erl:316: :string.words/2
+
+    The following arguments were given to :string.strip_left/2:
+
+        # 1
+        "Hello World"
+
+        # 2
+        32
+
+    (stdlib) string.erl:1661: :string.strip_left/2
+    (stdlib) string.erl:1659: :string.strip/3
+    (stdlib) string.erl:1597: :string.words/2
 
 iex> "Hello World" |> to_charlist |> :string.words
 2

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.2
 title: Struktury sterujące
-category: basics
-order: 5
-lang: pl
 ---
 
 W tej lekcji przyjrzymy się strukturom sterującym dostępnym w Elixirze.
@@ -13,7 +9,7 @@ W tej lekcji przyjrzymy się strukturom sterującym dostępnym w Elixirze.
 
 ## `if` i `unless`
 
-Zapewne spotkałeś się już z `if/2` w innych językach, a jeżeli znasz Ruby to `unless/2` nie będzie ci obca.  W Elixirze działają w podobny sposób, ale nie są elementem języka, a makrami; Ich implementacje znajdziesz w dokumentacji [modułu jądra](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Zapewne spotkałeś się już z `if/2` w innych językach, a jeżeli znasz Ruby to `unless/2` nie będzie ci obca.  W Elixirze działają w podobny sposób, ale nie są elementem języka, a makrami; Ich implementacje znajdziesz w dokumentacji [modułu jądra](https://hexdocs.pm/elixir/Kernel.html).
 
 Przypomnijmy, że w Elixirze, jedynymi wartościami fałszywymi są `nil` i wartość logiczna `false`.
 
@@ -156,14 +152,18 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 Teraz przyjrzyjmy się większemu przykładowi bez `with`, a następnie zrefaktoryzujmy go:
 
 ```elixir
-case Repo.insert(changeset) do 
-  {:ok, user} -> 
-    case Guardian.encode_and_sign(resource, :token, claims) do
+case Repo.insert(changeset) do
+  {:ok, user} ->
+    case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -171,7 +171,7 @@ Dzięki wprowadzeniu `with` nasz końcowy kod jest krótszy i łatwiejszy do zro
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token, claims),
      do: important_stuff(jwt, full_claims)
 ```
 
@@ -182,13 +182,14 @@ import Integer
 
 m = %{a: 1, c: 3}
 
-a = with {:ok, res} <- Map.fetch(m, :a),
-  true <- Integer.is_even(res) do
-    IO.puts "Divided by 2 it is #{div(res, 2)}"
-else 
-  :error -> IO.puts "We don't have this item in map"
-  _ -> IO.puts "It's not odd"
-end
+a =
+  with {:ok, res} <- Map.fetch(m, :a),
+       true <- is_even(res) do
+    IO.puts("Divided by 2 it is #{div(res, 2)}")
+  else
+    :error -> IO.puts("We don't have this item in map")
+    _ -> IO.puts("It's not odd")
+  end
 ```
 
 Pozwala to na łatwiejszą obsługę błędów, która jest podobna do wyrażenia `case`. Przekazywana wartość to pierwsze niedopasowane wyrażenie.

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Erlang Term Storage (ETS)
-category: specifics
-order: 4
-lang: vi
 ---
 
 Erlang Term Storage, thường được biết như ETS, là hệ thống lưu trữ mạnh mẽ được xây dựng dựa trên OTP và sử dụng được trong Elixir. Trong bài này chúng ta sẽ tìm hiểu làm thế nào để kết nối tới ETS và sử dụng trong ứng dụng của bạn.
@@ -191,7 +187,9 @@ defmodule SimpleCache do
       nil ->
         ttl = Keyword.get(opts, :ttl, 3600)
         cache_apply(mod, fun, args, ttl)
-      result -> result
+
+      result ->
+        result
     end
   end
 
@@ -200,7 +198,7 @@ defmodule SimpleCache do
   """
   defp lookup(mod, fun, args) do
     case :ets.lookup(:simple_cache, [mod, fun, args]) do
-      [result|_] -> check_freshness(result)
+      [result | _] -> check_freshness(result)
       [] -> nil
     end
   end

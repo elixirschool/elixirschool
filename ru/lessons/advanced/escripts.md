@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Исполняемые файлы
-category: advanced
-order: 3
-lang: ru
 ---
 
 Для сборки исполняемых файлов в Elixir мы будем использовать escript. Escript создаёт исполняемый файл, который может быть запущен на любой системе с предустановленным Erlang.
@@ -30,12 +26,10 @@ end
 ```elixir
 defmodule ExampleApp.Mixfile do
   def project do
-    [app: :example_app,
-     version: "0.0.1",
-     escript: escript]
+    [app: :example_app, version: "0.0.1", escript: escript()]
   end
 
-  def escript do
+  defp escript do
     [main_module: ExampleApp.CLI]
   end
 end
@@ -51,7 +45,7 @@ defmodule ExampleApp.CLI do
     args
     |> parse_args
     |> response
-    |> IO.puts
+    |> IO.puts()
   end
 
   defp parse_args(args) do

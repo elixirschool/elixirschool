@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.2
 title: Specyfikacje i typy
-category: advanced
-order: 9
-lang: pl
 ---
 
 W tej lekcji przyjrzymy się składni `@spec` i `@type`. Pierwszy służy jako dodatek do składni, który pozwala na analizę kodu przez automatyczne narzędzia. Drugi pozwala na pisanie kodu, który jest bardziej czytelny i prostszy w zrozumieniu.
@@ -28,9 +24,9 @@ Przyjrzyjmy się temu na poniższym przykładzie:
 ```elixir
 @spec sum_product(integer) :: integer
 def sum_product(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
 end
 ```
 
@@ -40,7 +36,7 @@ Wszystko wygląda poprawnie i gdy wywołamy funkcję, to otrzymamy wynik, ale fu
 
 Tworzenie specyfikacji jest fajne, ale czasami nasze funkcje używają bardziej skomplikowanych struktur danych niż liczby czy kolekcje. W takich przypadkach informacje zdefiniowane w `@spec` będą trudne to zrozumienia i zmiany przez innych programistów. Czasami funkcja przyjmuje wiele parametrów albo zwraca złożoną strukturę. Długa lista parametrów jest też przykładem złego zapachu w kodzie. W językach obiektowych jak Ruby czy Java możemy z łatwością zdefiniować klasę, która opakuje nam dane i pomoże rozwiązać problem. W Elixirze nie ma klas, ale że jest on łatwy do rozszerzenia, to możemy zdefiniować własny typ.
   
-Elixir ma zdefiniowane pewne podstawowe typu jak `integer` czy `pid`. Ich pełna lista jest dostępna w [dokumentacji](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Elixir ma zdefiniowane pewne podstawowe typu jak `integer` czy `pid`. Ich pełna lista jest dostępna w [dokumentacji](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax).
  
 ### Definiowanie typu
   
@@ -49,16 +45,16 @@ Zmodyfikujmy naszą funkcję `sum_times` wprowadzając kilka dodatkowych paramet
 ```elixir
 @spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
-Użyliśmy tu struktury z modułu `Examples`, która zawiera dwa pola `first` i `last`. Jest to uproszczona wersja struktury z modułu `Range`. Będziemy jeszcze mówić o strukturach przy okazji lekcji o [modułach]((../../basics/modules/#structs)). Załóżmy, że potrzebujemy specyfikacji używającej `Examples` w wielu miejscach. Oznacza to dużo pisania, a w dodatku łatwo o błąd. Rozwiązaniem jest użycie `@type`. 
+Użyliśmy tu struktury z modułu `Examples`, która zawiera dwa pola `first` i `last`. Jest to uproszczona wersja struktury z modułu `Range`. Będziemy jeszcze mówić o strukturach przy okazji lekcji o [modułach](../../basics/modules/#structs). Załóżmy, że potrzebujemy specyfikacji używającej `Examples` w wielu miejscach. Oznacza to dużo pisania, a w dodatku łatwo o błąd. Rozwiązaniem jest użycie `@type`. 
  
 Elixir ma trzy dyrektywy opisujące typ:
 
@@ -70,13 +66,11 @@ Zdefiniujmy zatem nasz typ:
 
 ```elixir
 defmodule Examples do
+  defstruct first: nil, last: nil
 
-    defstruct first: nil, last: nil
+  @type t(first, last) :: %Examples{first: first, last: last}
 
-    @type t(first, last) :: %Examples{first: first, last: last}
-
-    @type t :: %Examples{first: integer, last: integer}
-
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 
@@ -85,14 +79,14 @@ Zdefiniowaliśmy typ `t(first, last)`, który reprezentuje strukturę `%Examples
 Na czym polega różnica? Pierwszy z nich opisuje strukturę `Examples`, w której klucze mogą być dowolnego typu. Drugi określa, że klucze mają typ `integers`. Co oznacza, że kod:
   
 ```elixir
-@spec sum_times(integer, Examples.t) :: integer
+@spec sum_times(integer, Examples.t()) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -101,12 +95,12 @@ Jest równoważny:
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -116,12 +110,10 @@ Ostatnią rzeczą, o którą należy omówić, jest sposób dokumentowania typó
 
 ```elixir
 defmodule Examples do
-    
-    @typedoc """
-        Type that represents Examples struct with :first as integer and :last as integer.
-    """
-    @type t :: %Examples{first: integer, last: integer}
-
+  @typedoc """
+      Type that represents Examples struct with :first as integer and :last as integer.
+  """
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Strings
-category: basics
-order: 14
-lang: de
 ---
 
 Strings, Characterlisten, Graphemes und Codepoints.
@@ -63,7 +59,7 @@ iex> String.graphemes string
 
 ## Stringfunktionen
 
-Lass uns nochmal ein paar der wichtisten und nützlichsten Funktionen des Stringmoduls anschauen. Diese Lektion wird nur einen Teil der verfügbaren Funktionen behandeln. Um eine komplette Liste an Funktionen zu sehen besuche die offizielle [`String`](http://elixir-lang.org/docs/stable/elixir/String.html)-Dokumentation.
+Lass uns nochmal ein paar der wichtisten und nützlichsten Funktionen des Stringmoduls anschauen. Diese Lektion wird nur einen Teil der verfügbaren Funktionen behandeln. Um eine komplette Liste an Funktionen zu sehen besuche die offizielle [`String`](https://hexdocs.pm/elixir/String.html)-Dokumentation.
 
 ### `length/1`
 
@@ -124,9 +120,9 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```
@@ -146,7 +142,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Wie du sehen kannst resultiert der Aufruf von `anagrams?` in einem FunctionClauseError. Dieser Fehler sagt uns, dass es keine Funktion in unserem Modul gibt, welche auf das pattern zutrifft, zwei nicht-binäre Argumente zu erhalten. Das ist genau das, was wir wollen, um nur zwei Strings zu erhalten und nichts anderes.

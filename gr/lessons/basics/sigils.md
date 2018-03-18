@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Σφραγίδες
-category: basics
-order: 10
-lang: gr
 ---
 
 Εργασία με τις σφραγίδες και δημιουργία τους.
@@ -80,7 +76,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Επιπρόσθετα, η Elixir παρέχει το API [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) το οποίο είναι φτιαγμένο πάνω από τη βιβλιοθήκη τυπικών εκφράσεων της Erlang.  Ας εφαρμόσουμε την `Regex.split/2` χρησιμοποιώντας μια σφραγίδα εκφράσεων:
+Επιπρόσθετα, η Elixir παρέχει το API [Regex](https://hexdocs.pm/elixir/Regex.html) το οποίο είναι φτιαγμένο πάνω από τη βιβλιοθήκη τυπικών εκφράσεων της Erlang.  Ας εφαρμόσουμε την `Regex.split/2` χρησιμοποιώντας μια σφραγίδα εκφράσεων:
 
 ```elixir
 iex> string = "100_000_000"
@@ -138,7 +134,7 @@ iex> ~W/αγαπάω το σχολείο της #{'e'}lixir/
 
 ### NaiveDateTime
 
-Η [NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) μπορεί να είναι χρήσιμη για τη γρήγορη δημιουργία μιας δομής που θα αναπαριστά μια `DateTime` **χωρίς** ζώνη ώρας.
+Η [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) μπορεί να είναι χρήσιμη για τη γρήγορη δημιουργία μιας δομής που θα αναπαριστά μια `DateTime` **χωρίς** ζώνη ώρας.
 
 Κατά κύριο λόγο, θα πρέπει να αποφεύγουμε τη δημιουργία μιας δομής `NaiveDateTime` απευθείας. Πάντως, είναι πολύ χρήσιμη για αντιπαραβολές προτύπων. Για παράδειγμα:
 

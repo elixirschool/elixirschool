@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Основи
-category: basics
-order: 1
-lang: bg
 ---
 
 Настройване, основни типове и операции.
@@ -20,7 +16,7 @@ lang: bg
 След като Elixir е записан, може лесно да се потвърди инсталираната версия:
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
@@ -30,7 +26,7 @@ Elixir инсталира и `iex`, интерактивен команден р
 
 За да започнем, нека изпълним `iex`:
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
@@ -126,7 +122,7 @@ true
 Атомите се използват също за рефериране към модули от Erlang библиотеки, включително вградените.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 ### Символни низове

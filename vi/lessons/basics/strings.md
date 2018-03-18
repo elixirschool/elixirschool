@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Strings
-category: basics
-order: 14
-lang: vi
 ---
 
 String, Chuỗi kí tự (Char List), Chữ cái (Graphemes) và Codepoints.
@@ -63,7 +59,7 @@ iex> String.graphemes string
 
 ## Các hàm của String
 
-Chúng ta hãy cùng xem qua một số hàm quan trọng và hữu ích nhất của String module. Bài này chỉ đề cập một số các hàm có sẵn. Các bạn có thể xem đầy đủ tại tài liệu chính thức [`String`](http://elixir-lang.org/docs/stable/elixir/String.html).
+Chúng ta hãy cùng xem qua một số hàm quan trọng và hữu ích nhất của String module. Bài này chỉ đề cập một số các hàm có sẵn. Các bạn có thể xem đầy đủ tại tài liệu chính thức [`String`](https://hexdocs.pm/elixir/String.html).
 
 ### `length/1`
 
@@ -124,9 +120,9 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```
@@ -146,7 +142,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Như bạn thấy, lần gọi cuối cùng của `anagrams?` văng lỗi FunctionClauseError. Lỗi này có nghĩa là không có hàm trong module của chúng ta thỏa điều kiện hai tham số không phải binary, đó chính là thứ mà ta cần: chỉ nhận hai string mà không phải thứ gì khác.

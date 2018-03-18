@@ -1,19 +1,15 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.2.1
 title: Coleções
-category: basics
-order: 2
-lang: pt
 ---
 
-Listas, tuplas, listas de palavras-chave, mapas, dicionários e combinadores funcionais.
+Listas, tuplas, listas de palavras-chave e mapas.
 
 {% include toc.html %}
 
 ## Listas
 
-As listas são simples coleções de valores, elas podem incluir múltiplos tipos; listas podem incluir valores não-exclusivos:
+As listas são simples coleções de valores que podem incluir múltiplos tipos; listas também podem incluir valores não-exclusivos:
 
 ```elixir
 iex> [3.14, :pie, "Apple"]
@@ -40,6 +36,8 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
+Uma pequena nota sobre o formato de nome (`++/2`) usado acima. Em Elixir (e Erlang, sobre o qual Elixir é construído), o nome de uma função ou operador tem dois componentes: o nome em si (neste caso `++`) e sua _aridade_. Aridade é uma parte central quando se fala sobre código Elixir (e Erlang). Indica o número de argumentos que uma dada função aceita (dois, nesse nosso exemplo). Aridade e o nome são combinados com uma barra. Iremos falar mais sobre isto mais tarde; este conhecimento irá ajudá-lo a entender a notação por enquanto.
+
 ### Subtração de listas
 
 O suporte para subtração é provido pelo operador `--/2`; é seguro subtrair um valor que não existe:
@@ -48,6 +46,15 @@ O suporte para subtração é provido pelo operador `--/2`; é seguro subtrair u
 iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
+
+Esteja atento para valores duplicados. Para cada elemento na direita, a primeira ocorrência deste é removida da esquerda:
+
+```elixir
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
+```
+
+**Nota:** subtração de listas usa [comparação estrita](../basics/#comparação) para match de valores.
 
 ### Topo / Cauda
 
@@ -63,24 +70,24 @@ iex> tl [3.14, :pie, "Apple"]
 Além das funções citadas, pode-se usar [pattern matching](../pattern-matching) e o operador cons `|` para dividir a lista em topo e cauda; veremos este padrão em futuras lições:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 
 ## Tuplas
 
-As tuplas são similares as listas porém são armazenadas de maneira contígua em memória. Isto permite acessar a sua profundidade de forma rápida porém sua modificação é custosa; a nova tupla deve ser armazenada inteira na memória. As tuplas são definidas com chaves.
+As tuplas são similares às listas porém são armazenadas de maneira contígua em memória. Isto permite acessar a sua profundidade de forma rápida porém sua modificação é custosa; a nova tupla deve ser armazenada inteira na memória. As tuplas são definidas com chaves.
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-É comum usar tuplas como um mecanismo que retorna informação adicional de funções; a utilidade disso ficará mais aparente quando vermos pattern matching:
+É comum usar tuplas como um mecanismo que retorna informação adicional de funções; a utilidade disso ficará mais aparente quando vermos [pattern matching](../pattern-matching/):
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -91,7 +98,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Listas de palavras-chave
 
-As listas de palavras-chave e os mapas são coleções associativas no Elixir; ambas implementam o módulo `Dict`. No Elixir, uma lista de palavras-chave é uma lista especial de tuplas cujo o primeiro elemento é um átomo; eles compartilham o desempenho das listas:
+As listas de palavras-chave e os mapas são coleções associativas no Elixir; ambas implementam o módulo `Dict`. No Elixir, uma lista de palavras-chave é uma lista especial de tuplas de dois elementos cujo o primeiro elemento é um átomo; eles compartilham o desempenho das listas:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -110,7 +117,7 @@ Por essas razões as listas de palavras-chave são frequentemente usadas para pa
 
 ## Mapas
 
-A diferença entre os mapas e as listas de palavras-chave está no fato de que os mapas permitem chaves de qualquer tipo e não segue uma ordem. Você pode definir um mapa com a sintaxe `%{}`:
+Em Elixir, mapas normalmente são a escolha para armazenamento chave-valor. A diferença entre os mapas e as listas de palavras-chave está no fato de que os mapas permitem chaves de qualquer tipo e não seguem uma ordem. Você pode definir um mapa com a sintaxe `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -121,7 +128,7 @@ iex> map["hello"]
 :world
 ```
 
-Em Elixir 1.2, variáveis são permitidas como chaves do mapa:
+A partir do Elixir 1.2, variáveis são permitidas como chaves do mapa:
 
 ```elixir
 iex> key = "hello"
@@ -137,14 +144,22 @@ iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-Como podemos ver na saída anterior, há uma sintaxe especial para os mapas que contem átomos como chaves:
+Como podemos ver na saída anterior, há uma sintaxe especial para os mapas que contém apenas átomos como chaves:
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
-
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
+```
+
+Além disso, existe uma sintaxe especial para acessar átomos como chaves:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> map.hello
+"world"
 ```
 
 Outra propriedade interessante de mapas é que eles têm sua própria sintaxe para atualizar e acessar átomos como chaves:
@@ -154,6 +169,4 @@ iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 iex> %{map | foo: "baz"}
 %{foo: "baz", hello: "world"}
-iex> map.hello
-"world"
 ```

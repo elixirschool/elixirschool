@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.2
 title: Προδιαγραφές και τύποι
-category: advanced
-order: 9
-lang: gr
 ---
 
 Σε αυτό το μάθημα θα μάθουμε για τα συντακτικά `@spec` και `@type`.  Το πρώτο είναι συμπληρωματικό συντακτικού για να γράφουμε τεκμηρίωση που μπορεί να αναλυθεί από εργαλεία.  Το δεύτερο μας βοηθάει να γράφουμε πιο ευανάγνωστο και εύκολο στην κατανόηση κώδικα.
@@ -28,9 +24,9 @@ lang: gr
 ```elixir
 @spec sum_product(integer) :: integer
 def sum_product(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
 end
 ```
 
@@ -40,7 +36,7 @@ end
 
 Η εγγραφή προδιαγραφών είναι ωραία, αλλά μερικές φορές η συνάρτησή μας δουλεύει με πιο περίπλοκες δομές δεδομένων αντί για απλούς αριθμούς ή συλλογές.  Σε αυτή την περίπτωση ορισμού του `@spec` θα ήταν πολύ δύσκολο να το καταλάβουμε και/ή να το αλλάξουμε για άλλους προγραμματιστές.  Μερικές φορές οι συναρτήσεις χρειάζονται να δέχονται ένα μεγάλο αριθμό παραμέτρων ή να επιστρέφουν περίπλοκα δεδομένα.  Μια μεγάλη λίστα πααραμέτρων είναι μια από τις πολλές ενδεχόμενες κακές οσμές στον κώδικα κάποιου.  Στις αντικειμενοστραφείς γλώσσες όπως ή Ruby ή η Java μπορούμε έυκολα να ορίσουμε κλάσεις που βοηθούν να λύσουμε αυτό το πρόβλημα. Η Elixir δεν έχει κλάσεις αλλά επειδή είναι εύκολο να την επεκτείνουμε θα μπορούσαμε να ορίσουμε τους δικούς μας τύπους.
 
-Προκαθορισμένα η Elixir περιέχει μερικούς βασικούς τύπους όπως ο `integer` και ο `pid`.  Μπορείτε να βρείτε μια πλήρη λίστα των διαθέσιμων τύπων στην [τεκμηρίωση](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Προκαθορισμένα η Elixir περιέχει μερικούς βασικούς τύπους όπως ο `integer` και ο `pid`.  Μπορείτε να βρείτε μια πλήρη λίστα των διαθέσιμων τύπων στην [τεκμηρίωση](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax).
 
 ### Ορισμός ειδικών τύπων
 
@@ -49,16 +45,16 @@ end
 ```elixir
 @spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
-Παρουσιάσαμε μια δομή στην ενότητα `Examples` που περιέχει δύο πεδία, τα `first` και `last`.  Αυτά είναι απλη έκδοση της δομής από την ενότητα `Range`.  Θα μιλήσουμε για τις `structs` όταν θα κουβεντιάζουμε για τις [ενότητες](lessons/basics/modules/#structs).  Ας φανταστούμε ότι πρέπει να γράψουμε προδιαγραφές για τη δομή της `Examples` σε πολλά μέρη.  Θα ήταν πολύ ενοχλητικό να γράφουμε μεγάλες, πολύπλοκες προδιαγραφές και θα μπορούσε να ήταν πηγή σφαλμάτων.  Μια λύση στο πρόβλημα θα ήταν η `@type`.
+Παρουσιάσαμε μια δομή στην ενότητα `Examples` που περιέχει δύο πεδία, τα `first` και `last`.  Αυτά είναι απλη έκδοση της δομής από την ενότητα `Range`.  Θα μιλήσουμε για τις `structs` όταν θα κουβεντιάζουμε για τις [ενότητες](../../basics/modules/#structs).  Ας φανταστούμε ότι πρέπει να γράψουμε προδιαγραφές για τη δομή της `Examples` σε πολλά μέρη.  Θα ήταν πολύ ενοχλητικό να γράφουμε μεγάλες, πολύπλοκες προδιαγραφές και θα μπορούσε να ήταν πηγή σφαλμάτων.  Μια λύση στο πρόβλημα θα ήταν η `@type`.
 
 Η Elixir έχει τρείς οδηγίες για τύπους:
 
@@ -70,13 +66,11 @@ end
 
 ```elixir
 defmodule Examples do
+  defstruct first: nil, last: nil
 
-    defstruct first: nil, last: nil
+  @type t(first, last) :: %Examples{first: first, last: last}
 
-    @type t(first, last) :: %Examples{first: first, last: last}
-
-    @type t :: %Examples{first: integer, last: integer}
-
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 
@@ -85,14 +79,14 @@ end
 Που είναι η διαφορά;  Η πρώτη αναπαριστά τη δομή `Examples` στην οποία τα δύο κλειδιά θα μπορούσαν να είναι οποιουδήποτε τύπου.  Η δεύτερη αναπαριστά δομή στην οποία τα κλειδιά είναι `integers`.  Αυτό σημαίνει ότι ο παρακάτω κώδικας:
 
 ```elixir
-@spec sum_times(integer, Examples.t) :: integer
+@spec sum_times(integer, Examples.t()) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -101,12 +95,12 @@ end
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -116,12 +110,10 @@ end
 
 ```elixir
 defmodule Examples do
-
-    @typedoc """
-        Τύπος που αναπαριστά τη δομή Examples με το :first σαν ακέραιο και το :last σαν ακέραιο.
-    """
-    @type t :: %Examples{first: integer, last: integer}
-
+  @typedoc """
+      Τύπος που αναπαριστά τη δομή Examples με το :first σαν ακέραιο και το :last σαν ακέραιο.
+  """
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 

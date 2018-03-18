@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.1.0
 title: Erlang Term Storage (ETS)
-category: specifics
-order: 4
-lang: ko
 ---
 
 Erlang Term Storage, 줄여서 ETS는 OTP 내부에 포함된 강력한 저장용 엔진으로, Elixir에서 이용할 수 있습니다. 이 강의에서는 ETS를 호출하는 방법과 애플리케이션에서 사용하는 방법에 관해서 설명합니다.
@@ -51,6 +47,12 @@ ETS에서의 접근 제어는 모듈 내부의 접근 제어와 닮았습니다.
 + `public` - 모든 프로세스에서 읽기/쓰기가 가능합니다.
 + `protected` - 모든 프로세스에서 읽기가 가능합니다. 소유하고 있는 프로세스에서만 쓰기가 가능합니다. 이것이 기본 옵션입니다.
 + `private` - 읽기/쓰기 모두 소유하고 있는 프로세스로 제한됩니다.
+
+## 경쟁 상태
+
+하나 이상의 프로세스가 `:public`을 통한 접근이나 테이블을 소유하고 있는 프로세스에 메시지를 보내는 방식을 통해, 테이블에 쓰기가 가능할 때 경쟁 상태가 발생할 수 있습니다. 예를 들면 두 프로세스가 동시에 카운터 값으로 `0`을 읽고, 증가시키고, `1`을 저장한다고 합시다. 그 결과, 한번의 증가분만 반영됩니다.
+
+카운터에 관해서는 명확하게, [:ets.update_counter/3](http://erlang.org/doc/man/ets.html#update_counter-3)이 원자성을 보장하는 변경/읽기를 제공합니다. 하지만 다른 경우에도 "리스트에 있는 `:results` 키의 값에 이 값을 더하라" 처럼, 소유 프로세스가 메세지에 대해 원자성을 보장하는 연산으로 만들 필요가 있을지도 모릅니다.
 
 ## 데이터 추가
 
@@ -189,7 +191,9 @@ defmodule SimpleCache do
       nil ->
         ttl = Keyword.get(opts, :ttl, 3600)
         cache_apply(mod, fun, args, ttl)
-      result -> result
+
+      result ->
+        result
     end
   end
 
@@ -198,7 +202,7 @@ defmodule SimpleCache do
   """
   defp lookup(mod, fun, args) do
     case :ets.lookup(:simple_cache, [mod, fun, args]) do
-      [result|_] -> check_freshness(result)
+      [result | _] -> check_freshness(result)
       [] -> nil
     end
   end

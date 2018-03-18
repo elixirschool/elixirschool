@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.2
 title: Embedded Elixir (EEx)
-category: specifics
-order: 3
-lang: ko
 ---
 
 Ruby가 ERB를 Java가 JSP를 가지고 있는 것처럼, Elixir도 EEx, 내장 Elixir를 가지고 있습니다. EEx를 통해서 문자열로 된 Elixir 코드를 심거나 평가할 수 있습니다.
@@ -36,7 +32,7 @@ Hi, <%= name %>
 
 defmodule Example do
   require EEx
-  EEx.function_from_file :def, :greeting, "greeting.eex", [:name]
+  EEx.function_from_file(:def, :greeting, "greeting.eex", [:name])
 end
 
 iex> Example.greeting("Sean")
@@ -79,4 +75,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 `EEx.SmartEngine` 할당은 템플릿 컴파일 없이 할당하는 값을 변경할 수 있으므로 유용합니다.
 
-자신만의 엔진을 만드는 것에 흥미가 있으신가요? 무엇이 필요한지 알아보기 위해, [`EEx.Engine`](http://elixir-lang.org/docs/v1.2/eex/EEx.Engine.html)가 어떻게 동작하는지 확인해보세요.
+자신만의 엔진을 만드는 것에 흥미가 있으신가요? 무엇이 필요한지 알아보기 위해, [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html)가 어떻게 동작하는지 확인해보세요.

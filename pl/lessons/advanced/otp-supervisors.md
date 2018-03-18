@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Nadzorcy OTP
-category: advanced
-order: 6
-lang: pl
 ---
 
 Nadzorcy to wyspecjalizowane procesy mające tylko jeden cel: monitorowanie innych procesów. Pozwalają oni na tworzenie aplikacji odpornych na błędy, które będą samodzielnie restartować procesy, które zawiodły. 
@@ -23,7 +19,7 @@ Zmodyfikujmy przykład `SimpleQueue` z lekcji [Współbieżność OTP](../../adv
 import Supervisor.Spec
 
 children = [
-  worker(SimpleQueue, [], [name: SimpleQueue])
+  worker(SimpleQueue, [], name: SimpleQueue)
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -77,7 +73,7 @@ Użycie `Task.Supervisor` nie różni się od użycia innych nadzorców:
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)

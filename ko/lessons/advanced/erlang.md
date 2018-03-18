@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: Erlang 상호 운용
-category: advanced
-order: 1
-lang: ko
 ---
 
 Erlang VM (BEAM) 위에서 작업하면서 추가된 이점 중 하나는 기존의 다양한 라이브러리를 사용할 수 있다는 점입니다. 상호 운용성은 우리의 Elixir 코드에서 이러한 라이브러리들과 Erlang 표준 라이브러리를 사용할 수 있도록 해줍니다. 이번 강의에서는 서드파티 Erlang 패키지와 더불어 표준 라이브러리의 기능에 접근하는 법을 알아봅니다.
@@ -21,13 +17,13 @@ Erlang의 방대한 표준 라이브러리는 애플리케이션의 어떤 Elixi
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time} μs")
+    IO.puts("Result: #{result}")
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Time: 8ms
+Time: 8 μs
 Result: 1000000
 ```
 
@@ -46,10 +42,8 @@ end
 이제 우리가 포함시킨 Erlang 라이브러리를 사용할 수 있습니다.
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette}),
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## 눈에 띄는 차이점
@@ -107,9 +101,18 @@ true
 ```elixir
 iex> :string.words("Hello World")
 ** (FunctionClauseError) no function clause matching in :string.strip_left/2
-    (stdlib) string.erl:380: :string.strip_left("Hello World", 32)
-    (stdlib) string.erl:378: :string.strip/3
-    (stdlib) string.erl:316: :string.words/2
+
+    The following arguments were given to :string.strip_left/2:
+
+        # 1
+        "Hello World"
+
+        # 2
+        32
+
+    (stdlib) string.erl:1661: :string.strip_left/2
+    (stdlib) string.erl:1659: :string.strip/3
+    (stdlib) string.erl:1597: :string.words/2
 
 iex> "Hello World" |> to_charlist |> :string.words
 2

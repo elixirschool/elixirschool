@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: GenStage
-category: advanced
-order: 11
-lang: pl
 ---
 
 W tej lekcji przyjrzymy się z bliska GenStage, jaką pełni funkcję i jak może mieć wpływ na nasze aplikacje. 
@@ -59,11 +55,11 @@ $ cd genstage_example
 Następnie zmieńmy `mix.exs` dodając zależność do `gen_stage`:
 
 ```elixir
-  defp deps do
-    [
-      {:gen_stage, "~> 0.11"},
-    ]
-  end
+defp deps do
+  [
+    {:gen_stage, "~> 0.11"}
+  ]
+end
 ```
 
 Zanim przejdziemy dalej musimy pobrać i skompilować zależności: 
@@ -96,8 +92,8 @@ defmodule GenstageExample.Producer do
   def init(counter), do: {:producer, counter}
 
   def handle_demand(demand, state) do
-    events = Enum.to_list(state..state + demand - 1)
-    {:noreply, events, (state + demand)}
+    events = Enum.to_list(state..(state + demand - 1))
+    {:noreply, events, state + demand}
   end
 end
 ```
@@ -117,7 +113,7 @@ $ touch lib/genstage_example/producer_consumer.ex
 Po utworzeniu pliku dodajmy kod:
 
 ```elixir
-defmodule GenstageExample.ProducerConsumer  do
+defmodule GenstageExample.ProducerConsumer do
   use GenStage
 
   require Integer
@@ -168,7 +164,7 @@ defmodule GenstageExample.Consumer do
 
   def handle_events(events, _from, state) do
     for event <- events do
-      IO.inspect {self(), event, state}
+      IO.inspect({self(), event, state})
     end
 
     # As a consumer we never emit events
@@ -183,7 +179,7 @@ Jak wspomniano w poprzednim punkcie, nasz konsument nie emituje zdarzeń, więc 
 
 Mamy już producenta, producenta-konsumenta i konsumenta, a zatem najwyższy czas, by zebrać wszystkie te elementy do kupy.
 
-Najpierw w `lib/genstage_example.ex` dodajmy nasz proces do drzewa nadzorców:
+Najpierw w `lib/genstage_example/application.ex` dodajmy nasz proces do drzewa nadzorców:
 
 ```elixir
 def start(_type, _args) do
@@ -192,7 +188,7 @@ def start(_type, _args) do
   children = [
     worker(GenstageExample.Producer, [0]),
     worker(GenstageExample.ProducerConsumer, []),
-    worker(GenstageExample.Consumer, []),
+    worker(GenstageExample.Consumer, [])
   ]
 
   opts = [strategy: :one_for_one, name: GenstageExample.Supervisor]
@@ -221,14 +217,14 @@ Mamy zatem działający  potok. Jest w nim producent emitujący liczby, producen
 
 Jak wspomnieliśmy na wstępie, możliwe jest stworzenie wielu producentów i konsumentów. Przyjrzyjmy się temu.
 
-Wykorzystując `IO.inspect/1` w naszym przykładzie możemy stwierdzić, że zdarzenia są obsługiwane przez jeden PID. Zmieńmy `lib/genstage_example.ex` tak, by utworzyć wiele procesów do obsługi:
+Wykorzystując `IO.inspect/1` w naszym przykładzie możemy stwierdzić, że zdarzenia są obsługiwane przez jeden PID. Zmieńmy `lib/genstage_example/application.ex` tak, by utworzyć wiele procesów do obsługi:
 
 ```elixir
 children = [
   worker(GenstageExample.Producer, [0]),
   worker(GenstageExample.ProducerConsumer, []),
   worker(GenstageExample.Consumer, [], id: 1),
-  worker(GenstageExample.Consumer, [], id: 2),
+  worker(GenstageExample.Consumer, [], id: 2)
 ]
 ```
 

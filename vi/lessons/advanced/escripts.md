@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: File thực thi
-category: advanced
-order: 3
-lang: vi
 ---
 
 Để tạo các file thực thi trong Elixir chúng ta sẽ sử dụng escript. Escript tạo một thực thi mà có thể chạy trên bất kỳ hệ thống nào với Erlang được cài đặt. 
@@ -30,12 +26,10 @@ Tiếp theo chúng ta cần cập nhật Mixfile để chèn vào tùy chọn `:
 ```elixir
 defmodule ExampleApp.Mixfile do
   def project do
-    [app: :example_app,
-     version: "0.0.1",
-     escript: escript]
+    [app: :example_app, version: "0.0.1", escript: escript()]
   end
 
-  def escript do
+  defp escript do
     [main_module: ExampleApp.CLI]
   end
 end
@@ -51,7 +45,7 @@ defmodule ExampleApp.CLI do
     args
     |> parse_args
     |> response
-    |> IO.puts
+    |> IO.puts()
   end
 
   defp parse_args(args) do

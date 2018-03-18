@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Pipe Operator
-category: basics
-order: 7
-lang: vi
 ---
 
 Toán tử pipe `|>` truyền kết quả của một biểu thức như là tham số đầu tiên của một biểu thức khác.
@@ -19,7 +15,7 @@ Việc lập trình có thể trở nên rối tung, rối đến nỗi mà vi�
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Ở đây, ta đang truyền giá trị của `other_function/1` vào `new_function/1`, của `new_function/1` và `baz/1`, của `baz/1` vào `bar/1` và cuối cùng là `bar/1` vào `foo/1`. Trong Elixir có cách giải quyết hay cho cách viết rối tung (mà thực tế) này bằng cách sử dụng toán từ pipe. Toán tử pipe (`|>`) *nhận kết quả của một biểu thức, và truyền nó đi*. Ta hãy xem đoạn code ở trên sau khi được viết lại bằng toán tử pipe.
+Ở đây, ta đang truyền giá trị của `other_function/0` vào `new_function/1`, của `new_function/1` và `baz/1`, của `baz/1` vào `bar/1` và cuối cùng là `bar/1` vào `foo/1`. Trong Elixir có cách giải quyết hay cho cách viết rối tung (mà thực tế) này bằng cách sử dụng toán từ pipe. Toán tử pipe (`|>`) *nhận kết quả của một biểu thức, và truyền nó đi*. Ta hãy xem đoạn code ở trên sau khi được viết lại bằng toán tử pipe.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
@@ -34,14 +30,14 @@ Với những ví dụ dưới đây ta sẽ dùng String module của Elixir.
 - Tách chuỗi
 
 ```elixir
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Viết hoa kết hợp tách chuỗi
 
 ```elixir
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

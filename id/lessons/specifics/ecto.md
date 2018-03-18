@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Ecto
-category: specifics
-order: 2
-lang: id
 ---
 
 Ecto adalah sebuah project resmi Elixir yang memberikan sebuah wrapper (pembungkus) terhadap database dan bahasa query yang terintegrasi.  Dengan Ecto kita bisa membuat migrasi, mendefinisikan model, melakukan insert dan update data, dan melakukan query.
@@ -17,8 +13,7 @@ Untuk mulai kita perlu menginclude Ecto dan sebuah adapter database dalam `mix.e
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 1.0"}, {:postgrex, ">= 0.0.0"}]
 end
 ```
 
@@ -32,12 +27,11 @@ end
 
 ### Repository
 
-Akhirnya kita perlu membuat repositori project kita, wrapper untuk databasenya.  Ini bisa dilakukan lewat task `mix ecto.gen.repo`.  Kita akan membahas task mix Ecto nanti.  Repo bisa ditemukan di `lib/<project name>/repo.ex`:
+Akhirnya kita perlu membuat repositori project kita, wrapper untuk databasenya.  Ini bisa dilakukan lewat task `mix ecto.gen.repo -r ExampleApp.Repo`.  Kita akan membahas task mix Ecto nanti.  Repo bisa ditemukan di `lib/<project name>/repo.ex`:
 
 ```elixir
 defmodule ExampleApp.Repo do
-  use Ecto.Repo,
-    otp_app: :example_app
+  use Ecto.Repo, otp_app: :example_app
 end
 ```
 
@@ -104,15 +98,15 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 
   def change do
     create table(:users) do
-      add :username, :string, unique: true
-      add :encrypted_password, :string, null: false
-      add :email, :string
-      add :confirmed, :boolean, default: false
+      add(:username, :string, unique: true)
+      add(:encrypted_password, :string, null: false)
+      add(:email, :string)
+      add(:confirmed, :boolean, default: false)
 
       timestamps
     end
 
-    create unique_index(:users, [:username], name: :unique_usernames)
+    create(unique_index(:users, [:username], name: :unique_usernames))
   end
 end
 ```
@@ -137,12 +131,12 @@ defmodule ExampleApp.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -175,11 +169,14 @@ Dokumentasi resmi bisa ditemukan di [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Que
 Ecto menyediakan DSL Query yang sangat bagus yang memungkinkan kita mengekspresikan query dengan jelas.  Untuk menemukan username dari semua akun yang sudah dikonfirmasikan kita dapat gunakan seperti ini:
 
 ```elixir
-alias ExampleApp.{Repo,User}
+alias ExampleApp.{Repo, User}
 
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: u.username
+  )
 
 Repo.all(query)
 ```
@@ -189,9 +186,12 @@ Selain `all/2`, Repo menyediakan sejumlah callback termasuk `one/2`, `get/3`, `i
 ### Count
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id)
+  )
 ```
 
 ### Group By
@@ -199,9 +199,12 @@ query = from u in User,
 Untuk mengelompokkan user berdasar status konfirmasinya kita bisa masukkan opsi `group_by`:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     group_by: u.confirmed,
     select: [u.confirmed, count(u.id)]
+  )
 
 Repo.all(query)
 ```
@@ -211,9 +214,12 @@ Repo.all(query)
 Mengurutkan user berdasarkan tanggal pembuatannya:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: u.inserted_at,
     select: [u.username, u.inserted_at]
+  )
 
 Repo.all(query)
 ```
@@ -221,9 +227,12 @@ Repo.all(query)
 Untuk mengurutkannya secara menurun (`DESC`):
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: [desc: u.inserted_at],
     select: [u.username, u.inserted_at]
+  )
 ```
 
 ### Join
@@ -231,9 +240,12 @@ query = from u in User,
 Dengan asumsi kita punya profil yang terkait dengan user kita, mari dapatkan semua profil akun yang sudah terkonfirmasi:
 
 ```elixir
-query = from p in Profile,
-    join: u in assoc(profile, :user),
+query =
+  from(
+    p in Profile,
+    join: u in assoc(p, :user),
     where: u.confirmed == true
+  )
 ```
 
 ### Fragment
@@ -241,9 +253,12 @@ query = from p in Profile,
 Terkadang, seperti saat kita butuh fungsi database yang khusus, API Query tidaklah cukup.  Fungsi `fragment/1` ada untuk tujuan ini:
 
 ```elixir
-query = from u in User,
-    where: fragment("downcase(?)", u.username) == ^username
+query =
+  from(
+    u in User,
+    where: fragment("downcase(?)", u.username) == ^username,
     select: u
+  )
 ```
 
 Contoh tambahan query dapat ditemukan di deskripsi modul [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html).
@@ -263,12 +278,12 @@ defmodule ExampleApp.User do
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -289,6 +304,7 @@ defmodule ExampleApp.User do
     case get_change(changeset, :password_confirmation) do
       nil ->
         password_incorrect_error(changeset)
+
       confirmation ->
         password = get_field(changeset, :password)
         if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
@@ -312,13 +328,17 @@ Sebagaimana diduga, `changeset/2` membuat sebuah changeset baru untuk kita.  Di 
 Menggunakan `User.changeset/2` adalah relatif sederhana:
 
 ```elixir
-alias ExampleApp.{User,Repo}
+alias ExampleApp.{User, Repo}
 
 pw = "passwords should be hard"
-changeset = User.changeset(%User{}, %{username: "doomspork",
-                    email: "sean@seancallan.com",
-                    password: pw,
-                    password_confirmation: pw})
+
+changeset =
+  User.changeset(%User{}, %{
+    username: "doomspork",
+    email: "sean@seancallan.com",
+    password: pw,
+    password_confirmation: pw
+  })
 
 case Repo.insert(changeset) do
   {:ok, model}        -> # Inserted with success

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: 字符串
-category: basics
-order: 14
-lang: cn
 ---
 
 字符串、字符列表、字素(Graphemes) 和字码点（Codepoints）。
@@ -63,14 +59,14 @@ iex> String.graphemes string
 
 ## 字符串函数
 
-这个部分我们看一下 `String` 模块最常用的一些函数。本课程只会介绍其中的一部分，如果要了解所有的函数，请参考[官方 `String` 文档](http://elixir-lang.org/docs/stable/elixir/String.html)。
+这个部分我们看一下 `String` 模块最常用的一些函数。本课程只会介绍其中的一部分，如果要了解所有的函数，请参考[官方 `String` 文档](https://hexdocs.pm/elixir/String.html)。
 
 ### `length/1`
 
 返回字符串中的字素的数量：
 
 ```elixir
-iex> String.length "Hello"
+iex> String.length("Hello")
 5
 ```
 
@@ -124,9 +120,9 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```
@@ -145,7 +141,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 正如上面展示的，最后一次调用 `anagrams?` 返回了 `FunctionClauseError`，这个错误就是告诉我们模块中没有接受两个非字符串的函数。这正是我们期望的结果：只接受字符串作为参数，其他都不允许。

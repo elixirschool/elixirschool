@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Plug
-category: specifics
-order: 1
-lang: id
 ---
 
 Kalau anda familiar dengan Ruby anda bisa menganggap Plug seperti Rack dengan sedikit Sinatra.  Plug memberi spesifikasi untuk komponen aplikasi web dan adapter untuk web server. Walau bukan bagian Elixir core, Plug adalah sebuah project resmi Elixir.
@@ -17,8 +13,7 @@ Instalasi menggunakan Mix sangat mudah.  Untuk menginstal Plug kita perlu membua
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.0.0"},
-   {:plug, "~> 1.0"}]
+  [{:cowboy, "~> 1.1.2"}, {:plug, "~> 1.3.4"}]
 end
 ```
 
@@ -80,10 +75,12 @@ defmodule Example.Plug.VerifyRequest do
   end
 
   defp verify_request!(body_params, fields) do
-    verified = body_params
-               |> Map.keys
-               |> contains_fields?(fields)
-    unless verified, do: raise IncompleteRequestError
+    verified =
+      body_params
+      |> Map.keys()
+      |> contains_fields?(fields)
+
+    unless verified, do: raise(IncompleteRequestError)
   end
 
   defp contains_fields?(keys, fields), do: Enum.all?(fields, &(&1 in keys))
@@ -92,7 +89,7 @@ end
 
 Hal pertama yang perlu dicatat adalah bahwa kita telah mendefinisikan sebuah exception baru `IncompleteRequestError` dan bahwa salah satu opsinya adalah `:plug_status`.  Jika tersedia opsi ini digunakan oleh Plug untuk menset kode status HTTP jika terjadi exception.
 
-Bagian kedua dari Plug kita adalah method `call/2`.  Di sinilah kita memutuskan apakah akan menerapkan logika verifikasi kita atau tidak.  Hanya jika path dari request tersebut ada dalam opsi `:paths` kita sajalah kita akan memanggil `verify_request!/2`.
+Bagian kedua dari Plug kita adalah fungsi `call/2`.  Di sinilah kita memutuskan apakah akan menerapkan logika verifikasi kita atau tidak.  Hanya jika path dari request tersebut ada dalam opsi `:paths` kita sajalah kita akan memanggil `verify_request!/2`.
 
 Bagian terakhir dari plug kita adalah fungsi privat `verify_request!/2` yang memverifikasi apakah `:fields` yang dibutuhkan semuanya ada.  Jika ada yang tidak ada, kita memunculkan exception `IncompleteRequestError`.
 
@@ -106,11 +103,11 @@ Untuk memulai mari buat sebuah file di `lib/plug/router.ex` dan salin code berik
 defmodule Example.Plug.Router do
   use Plug.Router
 
-  plug :match
-  plug :dispatch
+  plug(:match)
+  plug(:dispatch)
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Oops!")
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -124,15 +121,20 @@ defmodule Example.Plug.Router do
 
   alias Example.Plug.VerifyRequest
 
-  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
-  plug VerifyRequest, fields: ["content", "mimetype"],
-                      paths:  ["/upload"]
-  plug :match
-  plug :dispatch
+  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  post "/upload", do: send_resp(conn, 201, "Uploaded")
-  match _, do: send_resp(conn, 404, "Oops!")
+  plug(
+    VerifyRequest,
+    fields: ["content", "mimetype"],
+    paths: ["/upload"]
+  )
+
+  plug(:match)
+  plug(:dispatch)
+
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  post("/upload", do: send_resp(conn, 201, "Uploaded"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -148,9 +150,7 @@ Mari mulai dengan mengubah bagian `application` dari `mix.exs` kita untuk member
 
 ```elixir
 def application do
-  [applications: [:cowboy, :plug],
-   mod: {Example, []},
-   env: [cowboy_port: 8080]]
+  [applications: [:cowboy, :plug], mod: {Example, []}, env: [cowboy_port: 8080]]
 end
 ```
 
@@ -197,25 +197,28 @@ defmodule RouterTest do
   @opts Router.init([])
 
   test "returns welcome" do
-    conn = conn(:get, "/", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 200
   end
 
   test "returns uploaded" do
-    conn = conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
-           |> put_req_header("content-type", "application/x-www-form-urlencoded")
-           |> Router.call(@opts)
+    conn =
+      conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
+      |> put_req_header("content-type", "application/x-www-form-urlencoded")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 201
   end
 
   test "returns 404" do
-    conn = conn(:get, "/missing", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/missing", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 404

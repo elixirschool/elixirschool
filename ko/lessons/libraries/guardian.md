@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: Guardian (Basics)
-category: libraries
-order: 1
-lang: ko
 ---
 
 [Guardian](https://github.com/ueberauth/guardian)은 [JWT](https://jwt.io/) (JSON Web Tokens) 에 기반한 널리 사용되는 인증 라이브러리입니다.
@@ -85,9 +81,10 @@ end
 `config/config.ex`
 
 ```elixir
+# 공개하는 코드라면 각 환경 설정에서 덮어써야 합니다
 config :guardian, Guardian,
   issuer: "MyAppId",
-  secret_key: Mix.env, # 공개하는 코드라면 각 환경 설정에서 덮어써야 합니다
+  secret_key: Mix.env(),
   serializer: MyApp.GuardianSerializer
 ```
 
@@ -102,11 +99,11 @@ defmodule MyApp.GuardianSerializer do
   alias MyApp.Repo
   alias MyApp.User
 
-  def for_token(user = %User{}), do: { :ok, "User:#{user.id}" }
-  def for_token(_), do: { :error, "Unknown resource type" }
+  def for_token(user = %User{}), do: {:ok, "User:#{user.id}"}
+  def for_token(_), do: {:error, "Unknown resource type"}
 
-  def from_token("User:" <> id), do: { :ok, Repo.get(User, id) }
-  def from_token(_), do: { :error, "Unknown resource type" }
+  def from_token("User:" <> id), do: {:ok, Repo.get(User, id)}
+  def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
 serializer는 `sub`(subject) 필드에서 식별 된 자원을 찾는 역활을 합니다. 이것은 db, API, 심지어 간단한 문자열에서 조회될 수 있습니다.
@@ -120,7 +117,7 @@ serializer는 `sub`(subject) 필드에서 식별 된 자원을 찾는 역활을 
 
 ## HTTP 요청
 
-Guardian은 HTTP 요청에 쉽게 통합할 수 있도록 다양한 Plug를 제공합니다. [다른 강좌](../specifics/plug/)에서 Plug를 배울 수 있습니다. Guardian은 Phoenix를 요구하지 않지만, 다음 예제에서는 가장 쉽게 보여주기 위해 Phoenix를 사용하겠습니다.
+Guardian은 HTTP 요청에 쉽게 통합할 수 있도록 다양한 Plug를 제공합니다. [다른 강좌](../../specifics/plug/)에서 Plug를 배울 수 있습니다. Guardian은 Phoenix를 요구하지 않지만, 다음 예제에서는 가장 쉽게 보여주기 위해 Phoenix를 사용하겠습니다.
 
 HTTP에 통합하는 가장 쉬운 방법은 라우터를 사용하는 것입니다. Guardian의 HTTP 통합은 모두 Plug 기반이기 때문에 Plug를 사용할 수 있는 곳이라면 어디서나 사용할 수  있습니다.
 
@@ -136,13 +133,13 @@ Guardian은 애플리케이션 개발자의 요구를 모두 충족시키기 위
 
 ```elixir
 pipeline :maybe_browser_auth do
-  plug Guardian.Plug.VerifySession
-  plug Guardian.Plug.VerifyHeader, realm: "Bearer"
-  plug Guardian.Plug.LoadResource
+  plug(Guardian.Plug.VerifySession)
+  plug(Guardian.Plug.VerifyHeader, realm: "Bearer")
+  plug(Guardian.Plug.LoadResource)
 end
 
 pipeline :ensure_authed_access do
-  plug Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler}
+  plug(Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler})
 end
 ```
 
@@ -152,17 +149,17 @@ end
 
 ```elixir
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth]
+  pipe_through([:browser, :maybe_browser_auth])
 
-  get "/login", LoginController, :new
-  post "/login", LoginController, :create
-  delete "/login", LoginController, :delete
+  get("/login", LoginController, :new)
+  post("/login", LoginController, :create)
+  delete("/login", LoginController, :delete)
 end
 
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth, :ensure_authed_access]
+  pipe_through([:browser, :maybe_browser_auth, :ensure_authed_access])
 
-  resource "/protected/things", ProtectedController
+  resource("/protected/things", ProtectedController)
 end
 ```
 
@@ -191,9 +188,9 @@ defmodule MyApp.MyController do
 end
 ```
 
-`Guardian.Phoenix.Controller` 모듈을 사용하려면, 패턴매칭에 사용할 액션에 인자를 두개 추가할 필요가 있습니다. `EnsureAuthentication`을 사용하지 않으면 nil 유저나 클레임을 받을 수 있다는 걸 기억하세요.
+`Guardian.Phoenix.Controller` 모듈을 사용하려면, 패턴매칭에 사용할 액션에 인자를 두개 추가할 필요가 있습니다. `EnsureAuthenticated`을 사용하지 않으면 nil 유저나 클레임을 받을 수 있다는 걸 기억하세요.
 
-더 유연하고 장황한 다른 방법은 plug 핼퍼를 사용하는 것입니다.
+더 유연하고 장황한 다른 방법은 Plug 헬퍼를 사용하는 것입니다.
 
 ```elixir
 defmodule MyApp.MyController do
@@ -217,10 +214,13 @@ end
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
+      # Use access tokens. Other tokens can be used, like :refresh etc
       conn
-      |> Guardian.Plug.sign_in(user, :access) # Use access tokens. Other tokens can be used, like :refresh etc
+      |> Guardian.Plug.sign_in(user, :access)
       |> respond_somehow()
+
     {:error, reason} ->
+      nil
       # handle not verifying the user's credentials
   end
 end
@@ -240,9 +240,12 @@ def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
       {:ok, jwt, _claims} = Guardian.encode_and_sign(user, :access)
+
       conn
-      |> respond_somehow({token: jwt})
+      |> respond_somehow(%{token: jwt})
+
     {:error, reason} ->
+      nil
       # handle not verifying the user's credentials
   end
 end

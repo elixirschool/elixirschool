@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Testing
-category: basics
-order: 12
-lang: no
 ---
 
 Testing er en viktig del i det å utvikle programvare. I denne seksjonen så vil vi se på hvordan vi kan teste vår Elixir kode med ExUnit og best praksiser for hvordan det skal gjøres.
@@ -87,7 +83,7 @@ Elixir applikasjoner består av aktorer/prosesser som sender meldinger til hvera
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -103,7 +99,7 @@ end
 
 `assert_received` venter ikke på meldinger, men med `assert_receive` så kan du spesifisere en timeout.
 
-## capture_io og capture_log
+### capture_io og capture_log
 
 Det er mulig å få tak i en applikasjons output med `ExUnit.CaptureIO` uten å må endre på original applikasjonen. Du trenger bare å gi en funksjon med det du ønsker å skrive ut:
 
@@ -113,7 +109,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```

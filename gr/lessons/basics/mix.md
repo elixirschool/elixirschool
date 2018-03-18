@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Mix
-category: basics
-order: 9
-lang: gr
 ---
 
 Για να μπορέσουμε να μπούμε στα βαθιά νερά της Elixir πρέπει πρώτα να μάθουμε για το mix.  Αν είστε εξοικειωμένοι με την Ruby, το mix είναι σαν το Bundler, το RubyGems και το Rake συνδυασμένα.  Είναι ζωτικό μέρος κάθε Elixir project και σε αυτό το μάθημα θα εξερευνήσουμε μόλις λίγα από τα εξαιρετικά χαρακτηριστικά του.  Για να δείτε όλα όσα έχει να προσφέρει το mix τρέξτε την εντολή `mix help`.
@@ -43,16 +39,19 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
@@ -104,10 +103,12 @@ Generated example app
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 1.1 or ~> 1.2"},
-   {:phoenix_html, "~> 2.3"},
-   {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slime, "~> 0.14"}]
+  [
+    {:phoenix, "~> 1.1 or ~> 1.2"},
+    {:phoenix_html, "~> 2.3"},
+    {:cowboy, "~> 1.0", only: [:dev, :test]},
+    {:slime, "~> 0.14"}
+  ]
 end
 ```
 

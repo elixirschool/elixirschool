@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.2
 title: Параллелизм в OTP
-category: advanced
-order: 5
-lang: ru
 ---
 
 Мы уже рассматривали абстракции языка Elixir для параллельного выполнения, но иногда нужна более широкая функциональность, и тогда мы обращаемся к поведениям OTP.
@@ -43,7 +39,7 @@ end
 
 Часто необходимо взаимодействовать с GenServer в синхронном формате, вызывая функцию и ожидая ее ответа. Для обработки синхронных запросов важно имплементировать метод `GenServer.handle_call/3`, который передает запрос, PID вызывающего процесса и текущее состояние. Ожидается, что будет возвращен кортеж `{:reply, response, state}`.
 
-С помощью сопоставления с образцом можно определять функции обратного вызова для разных запросов и состояний. Полный список допустимых вариантов возврата есть в документации [`GenServer.handle_call/3`](http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3).
+С помощью сопоставления с образцом можно определять функции обратного вызова для разных запросов и состояний. Полный список допустимых вариантов возврата есть в документации [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3).
 
 Для демонстрации синхронных запросов давайте добавим возможность отображать текущее состояние очереди и удаление значений:
 
@@ -61,9 +57,10 @@ defmodule SimpleQueue do
   @doc """
   Функции обратного вызова для GenServer.handle_call/3
   """
-  def handle_call(:dequeue, _from, [value|state]) do
+  def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
   end
+
   def handle_call(:dequeue, _from, []), do: {:reply, nil, []}
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
@@ -77,7 +74,6 @@ defmodule SimpleQueue do
   def queue, do: GenServer.call(__MODULE__, :queue)
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
 end
-
 ```
 
 Давайте запустим наш SimpleQueue и проверим как работает новая функциональность:
@@ -113,9 +109,10 @@ defmodule SimpleQueue do
   @doc """
   Функции обратного вызова для GenServer.handle_call/3
   """
-  def handle_call(:dequeue, _from, [value|state]) do
+  def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
   end
+
   def handle_call(:dequeue, _from, []), do: {:reply, nil, []}
 
   def handle_call(:queue, _from, state), do: {:reply, state, state}
@@ -132,6 +129,7 @@ defmodule SimpleQueue do
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
+
   def queue, do: GenServer.call(__MODULE__, :queue)
   def enqueue(value), do: GenServer.cast(__MODULE__, {:enqueue, value})
   def dequeue, do: GenServer.call(__MODULE__, :dequeue)
@@ -151,4 +149,4 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-Для получения дополнительной информации можно обратиться к официальной документации [GenServer](http://elixir-lang.org/docs/stable/elixir/GenServer.html#content).
+Для получения дополнительной информации можно обратиться к официальной документации [GenServer](https://hexdocs.pm/elixir/GenServer.html#content).

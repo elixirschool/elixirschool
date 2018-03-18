@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: 和 Erlang 互操作
-category: advanced
-order: 1
-lang: cn
 ---
 
 在 Erlang VM (BEAM) 上构建 Elixir 的好处之一就是已经有大量的库可以供我们使用。互操作性允许我们在 Elixir 代码中直接使用 Erlang 的标准库和三方库。这节课，我们就讲讲如何来做。
@@ -20,13 +16,13 @@ lang: cn
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time} μs")
+    IO.puts("Result: #{result}")
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Time: 8ms
+Time: 8 μs
 Result: 1000000
 ```
 
@@ -44,10 +40,8 @@ end
 然后我们就可以用 Erlang 的库了：
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 # 区别
@@ -88,11 +82,20 @@ Erlang:
 ```elixir
 iex> :string.words("Hello World")
 ** (FunctionClauseError) no function clause matching in :string.strip_left/2
-    (stdlib) string.erl:380: :string.strip_left("Hello World", 32)
-    (stdlib) string.erl:378: :string.strip/3
-    (stdlib) string.erl:316: :string.words/2
 
-iex> "Hello World" |> to_charlist |> :string.words
+    The following arguments were given to :string.strip_left/2:
+
+        # 1
+        "Hello World"
+
+        # 2
+        32
+
+    (stdlib) string.erl:1661: :string.strip_left/2
+    (stdlib) string.erl:1659: :string.strip/3
+    (stdlib) string.erl:1597: :string.words/2
+
+iex> "Hello World" |> to_charlist() |> :string.words()
 2
 ```
 

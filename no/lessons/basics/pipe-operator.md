@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Pipeoperatoren
-category: basics
-order: 7
-lang: no
 ---
 
 Pipeoperatoren `|>` fører resultatet av et utrykk som første parameter til et nytt utrykk.
@@ -19,7 +15,7 @@ Programmering kan bli rotete. Funksjoner som kaller på andre funksjoner kan bli
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Her fører vi verdien `other_function/1` til `new_function/1`, og `new_function/1` til `baz/1`, og `baz/1` til `bar/1`, og til slutt resultatet av `bar/1` til `foo/1`. Elixir har en pragmatisk løsning på dette syntaktiske rotet - pipeoperatoren. Pipeoperatoren `|>` *tar resultatet av et utrykk og fører det videre*. La oss ta eksemplet over, og skrive det om ved hjelp av pipeoperatoren:
+Her fører vi verdien `other_function/0` til `new_function/1`, og `new_function/1` til `baz/1`, og `baz/1` til `bar/1`, og til slutt resultatet av `bar/1` til `foo/1`. Elixir har en pragmatisk løsning på dette syntaktiske rotet - pipeoperatoren. Pipeoperatoren `|>` *tar resultatet av et utrykk og fører det videre*. La oss ta eksemplet over, og skrive det om ved hjelp av pipeoperatoren:
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
@@ -34,14 +30,14 @@ Disse eksemplene benytter seg av Elixirs innebygde Strengemodul.
 - Tokenisering av streng (løs)
 
 ```shell
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Token i store bokstaver
 
 ```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: 并发
-category: advanced
-order: 3
-lang: cn
 ---
 
 Elixir 的一大卖点就是对并发的支持。得益于 Erlang VM (BEAM)，Elixir 的并发要比预期中简单得多。这个并发模型的基础是 Actors：通过消息传递来交互的进程（译者注：这个进程不是通常所说的操作系统级别的进程，可以理解为 Erlang VM (BEAM) 自己管理的轻量级进程）。
@@ -47,7 +43,7 @@ iex> spawn(Example, :add, [2, 3])
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
 
     listen
@@ -79,7 +75,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 有时候我们不希望链接的进程导致当前进程跟着崩溃，这时候就要捕捉进程的错误退出。当进程错误退出时，会向上层发送 `{:EXIT, from_pid, reason}` 三元组的消息。
@@ -87,12 +83,13 @@ iex> spawn_link(Example, :explode, [])
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -108,11 +105,12 @@ Exit reason: kaboom
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Poolboy
-category: libraries
-order: 2
-lang: vi
 ---
 
 Bạn có thể dễ dàng hao tổn hết tài nguyên của hệ thống nếu bạn cho phép các tiến trình đồng thời (concurrent process) chạy một cách tùy ý. Poolboy giúp chúng ta tránh việc hao tổn quá mức đó bằng cách tạo ra một tập worker (worker pool) để giới hạn các tiến trình đồng thời.
@@ -67,10 +63,7 @@ defmodule PoolboyApp do
   use Application
 
   defp poolboy_config do
-    [{:name, {:local, :worker}},
-      {:worker_module, Worker},
-      {:size, 5},
-      {:max_overflow, 2}]
+    [{:name, {:local, :worker}}, {:worker_module, Worker}, {:size, 5}, {:max_overflow, 2}]
   end
 
   def start(_type, _args) do
@@ -108,7 +101,7 @@ defmodule Worker do
   end
 
   def handle_call({:square_root, x}, _from, state) do
-    IO.puts "process #{inspect self} calculating square root of #{x}"
+    IO.puts("process #{inspect(self)} calculating square root of #{x}")
     :timer.sleep(1000)
     {:reply, :math.sqrt(x), state}
   end
@@ -124,12 +117,14 @@ defmodule Test do
   @timeout 60000
 
   def start do
-     tasks = Enum.map(1..20, fn(i) ->
-        Task.async(fn -> :poolboy.transaction(:worker,
-          &(GenServer.call(&1, {:square_root, i})), @timeout)
+    tasks =
+      Enum.map(1..20, fn i ->
+        Task.async(fn ->
+          :poolboy.transaction(:worker, &GenServer.call(&1, {:square_root, i}), @timeout)
         end)
-     end)
-     Enum.each(tasks, fn(task) -> IO.puts(Task.await(task, @timeout)) end)
+      end)
+
+    Enum.each(tasks, fn task -> IO.puts(Task.await(task, @timeout)) end)
   end
 end
 ```

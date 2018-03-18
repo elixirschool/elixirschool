@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Custom Mix Tasks
-category: basics
-order: 15
-lang: de
 ---
 
 Wie man custom Mix tasks für ein Elixir-Projekt erstellt.
@@ -62,12 +58,11 @@ In der Datei **lib/hello.ex**, die Mix für uns angelegt hat, lass uns eine einf
 
 ```elixir
 defmodule Hello do
-
   @doc """
   Gib jedes Mal `Hello, World!` aus.
   """
   def say do
-    IO.puts "Hello, World!"
+    IO.puts("Hello, World!")
   end
 end
 ```
@@ -82,7 +77,8 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Ruft einfach nur die Hello.say/0-Funktion auf."
   def run(_) do
-    Hello.say # Rufe unsere Hello.say()-Funktion von vorhin auf.
+    # Rufe unsere Hello.say()-Funktion von vorhin auf.
+    Hello.say()
   end
 end
 ```

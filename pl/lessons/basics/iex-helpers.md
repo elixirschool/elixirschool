@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Powłoka IEx 
-category: basics
-order: 16
-lang: pl
 ---
 
 {% include toc.html %}
@@ -31,8 +27,9 @@ keys/1               merge/2              merge/3
 new/0                new/1                new/2
 pop/2                pop/3                pop_lazy/3
 put/3                put_new/3            put_new_lazy/3
-split/2              take/2               to_list/1
-update!/3            update/4             values/1
+replace!/3           replace/3            split/2
+take/2               to_list/1            update!/3
+update/4             values/1
 ```
 
 I już wiemy jakie funkcje są dostępne wraz z ich arnością!

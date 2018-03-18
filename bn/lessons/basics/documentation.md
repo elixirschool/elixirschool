@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.2
 title: ডকুমেন্টেশান 
-category: basics
-order: 11
-lang: bn
 ---
 
 আপনার কোডকে ডকুমেন্ট করুন।
@@ -29,7 +25,7 @@ lang: bn
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum.")
 ```
 
 এলিক্সির কোড রান করার সময়ে স্ক্রিপ্টটি `#` পরবর্তী সমস্ত কথা বাদ দিয়ে দেয়। কিন্তু যদি আপনি ঠিকমত কমেন্ট করেন তাহলে আপনার কোডে কী হচ্ছে তা অন্যান্য প্রোগ্রামাররা বুঝতে পারবে। তবে, অযথা কমেন্ট না করাই ভাল কারণ তা পরবর্তীতে বিরক্তির কারণ হয়ে দাঁড়াবে। দরকার বুঝে সংক্ষিপ্ত ভাষায় ইনলাইন কমেন্ট করাই উত্তম। 
@@ -88,7 +84,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -124,7 +120,8 @@ iex>
 
 দেখুন কিভাবে আমরা মার্কআপ ব্যবহার করতে পারি ডকুমেন্টেশানিয় কমেন্টের ভেতর। আবার টার্মিনাল তা রেন্ডারও করে। শুধু তাই না, এক্সডকের (`ExDoc`) মাধ্যমে আমরা এহেন ডকুমেন্টেশানকে এইচটিএমএল পেইজে রেন্ডার করতে পারব যা আমাদের পরবর্তী আলোচনার বিষয়বস্তু। 
 
-**দ্রষ্টব্য:** `@spec` অ্যানোটেশান দিয়ে আমরা কোডের স্ট্যাটিক অ্যানালাইসিস করতে পারি। [স্পেসিফিকেইশান ও টাইপ-স্পেক](../../advanced/typespec) নামক অধ্যায়ে এই বিষয়ে আমরা আরও জানব। 
+**দ্রষ্টব্য:** `@spec` অ্যানোটেশান দিয়ে আমরা কোডের স্ট্যাটিক অ্যানালাইসিস করতে পারি। <!-- TODO: Remove this as a comment, once advanced/typespec  is translated:
+[স্পেসিফিকেইশান ও টাইপ-স্পেক](../../advanced/typespec) নামক অধ্যায়ে এই বিষয়ে আমরা আরও জানব। -->
 
 ## এক্সডক 
 
@@ -212,11 +209,11 @@ View them at "doc/index.html".
 
 If everything went to plan, you should see a similar message as to the output message in the above example. Let's now look inside our Mix project and we should see that there is another directory called **doc/**. Inside is our generated documentation. If we visit the index page in our browser we should see the following:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 We can see that Earmark has rendered our Markdown and ExDoc is now displaying it in a useful format.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 We can now deploy this to GitHub, our own website, or more commonly [HexDocs](https://hexdocs.pm/).
 
@@ -255,7 +252,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -274,7 +271,7 @@ defmodule Greeter do
   # and so on...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -303,11 +300,11 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
 end
 ```
 
- - চেষ্টা করুন ডকুমেন্টেশানে কিছু কোডের উদাহরণ দেওয়ার। এতে আপনার ডকুমেন্টেশানের পাঠক যে উপকৃত হবেন তাই শুধু না, বরং `ExUnit.DocTest` এর মাধ্যমে আপনি ওই কোডের টেস্টিংও করতে পারবেন যেখানে আপনার কমেন্টের দেওয়া কোড ও এর আউটপুট (যা `IEx` সেশানে প্রাপ্ত ইনপুট/আউটপুট ফরম্যাটিংয়ের মত) এর যথার্থতা যাচাই করবে। আরও জানুন অফিসিয়াল ডকুমেন্টেশান থেকে [ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+ - চেষ্টা করুন ডকুমেন্টেশানে কিছু কোডের উদাহরণ দেওয়ার। এতে আপনার ডকুমেন্টেশানের পাঠক যে উপকৃত হবেন তাই শুধু না, বরং `ExUnit.DocTest` এর মাধ্যমে আপনি ওই কোডের টেস্টিংও করতে পারবেন যেখানে আপনার কমেন্টের দেওয়া কোড ও এর আউটপুট (যা `IEx` সেশানে প্রাপ্ত ইনপুট/আউটপুট ফরম্যাটিংয়ের মত) এর যথার্থতা যাচাই করবে। আরও জানুন অফিসিয়াল ডকুমেন্টেশান থেকে [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

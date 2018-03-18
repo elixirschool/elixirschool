@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.2
 title: Đặc tả và kiểu
-category: advanced
-order: 9
-lang: vi
 ---
 
 Trong bài học này, chúng ta sẽ học về cú pháp `@spec` và `@type`. `@spec` giống như là một cú pháp hỗ trợ để viết tài liệu, và có thể được phân tích bởi các công cụ khác, `@type` giúp chúng ta viết các code dễ đọc và dễ hiểu hơn.
@@ -28,9 +24,9 @@ Hãy cùng xem ví dụ dưới đây:
 ```elixir
 @spec sum_product(integer) :: integer
 def sum_product(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
 end
 ```
 
@@ -40,7 +36,7 @@ Mọi thứ trông vẫn tốt, và khi chúng ta gọi hàm này, một giá tr
 
 Các đặc tả là rất tốt, tuy nhiên đôi khi các hàm của chúng ta làm việc với nhiều cấu trúc dữ liệu phức tạp hơn là các số hoặc là các tập hợp (collections). Trong trường hợp này, `@spec` có thể sẽ trở nên rất khó hiểu, hoặc khó thay đổi đối với các lập trình viên khác. Đôi khi các hàm cần nhận vào một lượng lớn các tham số, hoặc là trả về một dữ liệu phức tạp. Một danh sách dài các tham số có thể là một trong những chỗ "bốc mùi" (code smell) trong code. Trong các ngôn ngữ hướng đối tượng giống như Ruby và Java, chúng ta có thể dễ dàng định nghĩa các class để giải quyết vấn đề này. Elixir không có class những bởi vì nó rất dễ để mở rộng, chúng ta có thể định nghĩa kiểu của riêng chúng ta.
 
-Ngoài ra, Elixir chứa một vài kiểu cơ bản như `integer`, hoặc là `pid`. Bạn có thể tìm hiểu về danh sách các kiểu có sẵn của Elixir trong [tài liệu](http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax).
+Ngoài ra, Elixir chứa một vài kiểu cơ bản như `integer`, hoặc là `pid`. Bạn có thể tìm hiểu về danh sách các kiểu có sẵn của Elixir trong [tài liệu](https://hexdocs.pm/elixir/typespecs.html#types-and-their-syntax).
 
 ### Định nghĩa kiểu tuỳ biến
 
@@ -49,12 +45,12 @@ Hãy cùng thay đổi hàm `sum_times` và giới thiệu thêm một vài tham
 ```elixir
 @spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -70,13 +66,11 @@ Hãy cùng định nghĩa kiểu của chúng ta:
 
 ```elixir
 defmodule Examples do
+  defstruct first: nil, last: nil
 
-    defstruct first: nil, last: nil
+  @type t(first, last) :: %Examples{first: first, last: last}
 
-    @type t(first, last) :: %Examples{first: first, last: last}
-
-    @type t :: %Examples{first: integer, last: integer}
-
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 
@@ -85,14 +79,14 @@ Chúng ta định nghĩa kiểu `t(first, last)` để đại diện cho struct 
 Điểm khác nhau là gì? Cái đầu tiên đại diện cho `Examples` struct mà hai khoá có thể là bất cứ kiểu này. Cái thứ hai đại diện cho struct, trong đó các khoá là các `integer`. Điều này có nghĩa là đoạn code sau:
 
 ```elixir
-@spec sum_times(integer, Examples.t) :: integer
+@spec sum_times(integer, Examples.t()) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -101,12 +95,12 @@ Tương đương với:
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -117,12 +111,10 @@ Thành phần cuối cùng chúng ta muốn thảo luận là về các để vi
 
 ```elixir
 defmodule Examples do
-
-    @typedoc """
-        Type that represents Examples struct with :first as integer and :last as integer.
-    """
-    @type t :: %Examples{first: integer, last: integer}
-
+  @typedoc """
+      Type that represents Examples struct with :first as integer and :last as integer.
+  """
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 

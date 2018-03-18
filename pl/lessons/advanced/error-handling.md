@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Wyjątki i błędy
-category: advanced
-order: 2
-lang: pl
 ---
 
 Elixir wspiera obsługę wyjątków. Ta lekcja jest poświęcona mechanizmom do obsługi błędów, wśród których najpopularniejszym jest zwracanie krotki `{:error, reason}`. 
@@ -49,10 +45,10 @@ Możemy obsłużyć wiele wyjątków w pojedynczym bloku `rescue`:
 try do
   opts
   |> Keyword.fetch!(:source_file)
-  |> File.read!
+  |> File.read!()
 rescue
-  e in KeyError -> IO.puts "missing :source_file option"
-  e in File.Error -> IO.puts "unable to read source file"
+  e in KeyError -> IO.puts("missing :source_file option")
+  e in File.Error -> IO.puts("unable to read source file")
 end
 ```
 
@@ -76,11 +72,12 @@ The end!
 Najczęstszym przypadkiem użycia jest zamykanie połączeń i plików:
 
 ```elixir
-{:ok, file} = File.open "example.json"
+{:ok, file} = File.open("example.json")
+
 try do
-   # Do hazardous work
+  # Do hazardous work
 after
-   File.close(file)
+  File.close(file)
 end
 ```
 
@@ -138,7 +135,7 @@ Możemy też jawnie wywołać `exit/1`:
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 Możliwe jest użycie `try/catch` do obsłużenia sygnału `exit`, ale takie zachowanie jest _bardzo_ rzadkie. Zazwyczaj obsługą takiego zdarzenia powinien zająć się nadzorca procesów:

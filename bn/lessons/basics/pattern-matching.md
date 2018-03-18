@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: প্যাটার্ন ম্যাচিং 
-category: basics
-order: 4
-lang: bn
 ---
 এলিক্সিরের সবচেয়ে শক্তিশালী বৈশিষ্ট্যের মধ্যে একটি হল প্যাটার্ন ম্যাচিং। এর মাধ্যমে আমরা ভ্যালু, ডাটা স্ট্রাকচার, এমনকি ফাংশনকে ম্যাচ করতে পারি। এই অধ্যায়ে আমরা প্যাটার্ন ম্যাচিং শুরু করতে যাচ্ছি।
 
@@ -38,7 +34,7 @@ iex> [1, 2, 3] = list
 iex> [] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-iex> [1|tail] = list
+iex> [1 | tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]

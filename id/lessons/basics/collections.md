@@ -1,13 +1,9 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.2.1
 title: Koleksi
-category: basics
-order: 2
-lang: id
 ---
 
-List, tuple, kata kunci, map dan kombinator fungsional.
+List, tuple, keyword lists, dan map.
 
 {% include toc.html %}
 
@@ -41,6 +37,8 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
+Sebuah Catatan tentang format nama (`++ / 2`) yang digunakan di atas: Dalam Elixir (dan Erlang, di mana Elixir dibangun), sebuah nama fungsi atau operator memiliki dua komponen: nama yang Anda berikan (di sini `++`) dan _arity_ nya. Arity (jumlah parameter) adalah bagian inti (penting) dari yang kita bicarakan tentang kode Elixir (dan Erlang). Ini adalah jumlah argumen yang fungsi dapat berikan (dua, dalam kasus ini). Arity dan nama yang diberikan digabungkan dengan garis miring. Kita akan membicarakan hal ini nanti; Pengetahuan ini akan membantu Anda memahami notasi sekarang.
+
 ### Pengurangan List
 
 Dukungan terhadap pengurangan diberikan melalui operator `--/2`; pengurangan nilai yang tidak ada dalam list tidak menghasilkan error:
@@ -50,11 +48,18 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
+Perlu di perhatikan nilai duplikat. Untuk setiap elemen di sebelah kanan, kejadian pertama akan dihapus dari kiri:
+
+```elixir
+iex> [1,2,2,3,2,3] -- [1,2,3,2]
+[2, 3]
+```
+
 **Catatan:** List menggunakan [perbandingan ketat](../basics/#perbandingan) untuk mencocokkan nilai.
 
-### Head / Tail
+### Kepala / Ekor
 
-Ketika menggunakan list, kita sering menggunakan head dan tail dari list tersebut. Head adalah elemen pertama dari list dan tail adalah sisanya. Elixir memberikan dua fungsi, `hd` dan `tl`, untuk mengakses keduanya:
+Ketika menggunakan list, kita sering menggunakan kepala (head) dan ekor (tail) dari list tersebut. Kepala (Head) adalah elemen pertama dari list dan ekor (tail) adalah sisanya. Elixir memberikan dua fungsi, `hd` dan `tl`, untuk mengakses keduanya:
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -66,11 +71,11 @@ iex> tl [3.14, :pie, "Apple"]
 Di samping kedua fungsi tersebut, anda juga bisa menggunakan operator `|`; kita akan melihat pola ini di pelajaran-pelajaran selanjutnya:
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 
@@ -145,9 +150,17 @@ Sebagaimana bisa dilihat di tampilan output di atas, ada sintaks khusus untuk ma
 ```elixir
 iex> %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
-
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
+```
+
+Sebagai tambahan, ada sebuah sintaks spesial untuk mengakses kunci atom:
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> map.hello
+"world"
 ```
 
 Hal menarik lain mengenai map adalah map telah menyediakan sintaks untuk memperbaharui dan mengakses kunci atom:

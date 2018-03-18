@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Supervisores OTP
-category: advanced
-order: 6
-lang: pt
 ---
 
 Supervisores são processos especializados com um propósito: monitorar outros processos. Estes supervisores nos possibilitam a criação de aplicações tolerantes a falhas automaticamente reiniciando processos filhos quando eles falham.
@@ -23,7 +19,7 @@ Usando o SimpleQueue da lição [OTP Concurrency](../../advanced/otp-concurrency
 import Supervisor.Spec
 
 children = [
-  worker(SimpleQueue, [], [name: SimpleQueue])
+  worker(SimpleQueue, [], name: SimpleQueue)
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -70,7 +66,7 @@ Incluir o `Task.Supervisor` não é diferente de outros supervisores:
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)

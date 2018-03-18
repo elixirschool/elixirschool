@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.1.0
 title: 동시성
-category: advanced
-order: 4
-lang: ko
 ---
 
 Elixir의 매력적인 부분 중 하나는 동시성(Concurrency) 지원입니다. Erlang VM (BEAM) 덕분에, Elixir에서의 동시성은 여러분이 생각하는 것보다 간단합니다. 동시성 모델은 액터(Actor) 모델에 의존하고 있습니다. 액터는 메시지를 전달하여 다른 프로세스들과 통신하는 독립적인 프로세스입니다.
@@ -49,7 +45,7 @@ iex> spawn(Example, :add, [2, 3])
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
 
     listen
@@ -71,7 +67,7 @@ iex> send pid, :ok
 
 ### 프로세스 연결
 
-`spawn`을 다룰 때, 프로세스가 언제 충돌하는지도 생각해봐야 합니다. 이런 경우에는 `spawn_link`로 프로세스를 연결할 필요가 있습니다. 두 연결된 프로세스는 다른 프로세스로부터 종료 신호를 수신하게 될 것입니다.
+`spawn`을 다룰 때 유념할 점은 프로세스가 비정상적으로 종료(crash)되었는지 여부를 판단하는 것입니다. 이를 위해서는 `spawn_link`를 통해 프로세스를 서로 연결할 수 있습니다. 이렇게 연결된 두 프로세스는 상대방 프로세스로부터 종료 신호를 수신할 수 있게 됩니다.
 
 ```elixir
 defmodule Example do
@@ -82,21 +78,22 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-연결된 프로세스가 다른 프로세스와 충돌하지 않도록 하고 싶을 때도 있습니다. 이런 경우에는, 종료 신호를 trap 해야할 필요가 있습니다. 종료 신호를 trap할 때, 다음과 같은 튜플 메시지를 수신하게 될 것입니다. `{:EXIT, from_pid, reason}`
+가끔은 연결된 프로세스로 인해 현재의 프로세스가 함께 종료되는 것을 막아야할 때도 있습니다. 이를 위해서는 종료 신호를 인지하여 이를 적절하게 처리해 주어야 하는데 이 때 사용되는 것이 `Process.flag/2`입니다. 이 예시 모듈에서는 얼랭(erlang)의 [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) 함수를 이용해서 `trap_exit` 플래그를 처리합니다. 종료 신호를 trap할 때(`trap_exit`를 `true`로 설정했을 때), 다음과 같은 튜플 메시지를 수신하게 될 것입니다. `{:EXIT, from_pid, reason}`
 - [역주] trap 명령은 시스템에서 비동기적으로 발생하는 신호를 잡아서 필요한 작업을 수행하게 해주는 명령입니다.
 
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -113,11 +110,12 @@ Exit reason: kaboom
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end

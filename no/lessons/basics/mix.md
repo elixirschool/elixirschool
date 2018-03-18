@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Mix
-category: basics
-order: 9
-lang: no
 ---
 
 Før vi kan dykke dypere i Elixir, må vi første lære om Mix. Hvis du er kjent med Ruby, så er Mix ekvivalent med Bundler, RubyGems og Rake kombinert sammen. Mix er en kritisk del av hvilket som helst Elixir prosjekt, og i denne leksjonen vil vi gå igjennom et par av Mix sine fantastiske funksjonaliteter. For å se alt det mix har å tilby kjør `mix help`.
@@ -42,16 +38,19 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
@@ -100,10 +99,12 @@ I dette eksemplet skal vi se på et prosjekt med tilleggspakker - [phoenix_slim]
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 1.1 or ~> 1.2"},
-   {:phoenix_html, "~> 2.3"},
-   {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slime, "~> 0.14"}]
+  [
+    {:phoenix, "~> 1.1 or ~> 1.2"},
+    {:phoenix_html, "~> 2.3"},
+    {:cowboy, "~> 1.0", only: [:dev, :test]},
+    {:slime, "~> 0.14"}
+  ]
 end
 ```
 Som du sikkert ser fra listen av tilleggspakker ovenfor, er `cowboy` kun nødvendig under utvikling og testing. Når vi har definert våre tilleggspakker gjenstår det kun et siste steg - å hente dem. Om du er kjent med Ruby, er dette ekvivalent med `bundle install`:

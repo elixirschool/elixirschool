@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: ব্যাসিকস
-category: basics
-order: 1
-lang: bn
 ---
 
 ইন্সটলেশন, ইন্টারএ্যাক্টিভ প্রম্পট, ব্যাসিক ডাটা টাইপ ও ব্যাসিক অপারেশন
@@ -20,7 +16,7 @@ lang: bn
 এলিক্সির ইন্সটল করা হয়ে গেলে নিচের মত করে কমান্ড ব্যবহার করে আপনি এলিক্সির এর ভার্সন নাম্বার দেখতে পাবেন - 
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
@@ -30,7 +26,7 @@ lang: bn
 
 ইন্টারএ্যাক্টিভ শেল চালু করত টাইপ করুন - `iex`:
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
@@ -127,7 +123,7 @@ true
 আর্ল্যাং এর বিল্ট ইন বা থার্ড পার্টি লাইব্রেরী থেকে মডিউল রেফার করার জন্য আমরা সব সময়ই এ্যাটম ব্যবহার করি । 
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 

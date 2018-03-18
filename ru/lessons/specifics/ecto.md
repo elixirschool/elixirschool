@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Ecto
-category: specifics
-order: 2
-lang: ru
 ---
 
 Ecto - официальный проект от создателей Elixir. Это оболочка, которая предоставляет возможность коммуникации с базой данных. Ecto позволяет создавать миграции, объявлять модели, вносить и обновлять данные, а также посылать запросы к ним.
@@ -17,8 +13,7 @@ Ecto - официальный проект от создателей Elixir. Э�
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 1.0"},
-   {:postgrex, ">= 0.0.0"}]
+  [{:ecto, "~> 1.0"}, {:postgrex, ">= 0.0.0"}]
 end
 ```
 
@@ -32,12 +27,11 @@ end
 
 ### Репозиторий
 
-Создадим репозиторий для проекта - оболочку для базы данных. Для этого выполним команду `mix ecto.gen.repo`. Репозиторий находится в `lib/<project name>/repo.ex`.
+Создадим репозиторий для проекта - оболочку для базы данных. Для этого выполним команду `mix ecto.gen.repo -r ExampleApp.Repo`. Репозиторий находится в `lib/<project name>/repo.ex`.
 
 ```elixir
 defmodule ExampleApp.Repo do
-  use Ecto.Repo,
-    otp_app: :example_app
+  use Ecto.Repo, otp_app: :example_app
 end
 ```
 
@@ -103,15 +97,15 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 
   def change do
     create table(:users) do
-      add :username, :string, unique: true
-      add :encrypted_password, :string, null: false
-      add :email, :string
-      add :confirmed, :boolean, default: false
+      add(:username, :string, unique: true)
+      add(:encrypted_password, :string, null: false)
+      add(:email, :string)
+      add(:confirmed, :boolean, default: false)
 
       timestamps
     end
 
-    create unique_index(:users, [:username], name: :unique_usernames)
+    create(unique_index(:users, [:username], name: :unique_usernames))
   end
 end
 ```
@@ -136,12 +130,12 @@ defmodule ExampleApp.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -173,11 +167,14 @@ import Ecto.Query, only: [from: 2]
 Ecto предоставляет мощный язык запросов. Запрос для поиска всех пользователей, аккаунты которых приняты, будет выглядеть так:
 
 ```elixir
-alias ExampleApp.{Repo,User}
+alias ExampleApp.{Repo, User}
 
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: u.username
+  )
 
 Repo.all(query)
 ```
@@ -189,17 +186,23 @@ Repo.all(query)
 Если мы хотим посчитать количество пользователей, подтвердивших учётные записи, мы можем использовать `count/1`:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id)
+  )
 ```
 
 Также с помощью функции `count/2` можно считать уникальные значения:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id, :distinct)
+  )
 ```
 
 ### Группировка
@@ -207,9 +210,12 @@ query = from u in User,
 Для того, чтобы сгруппировать всех пользователей по статусу, можно добавить опцию `group_by`:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     group_by: u.confirmed,
     select: [u.confirmed, count(u.id)]
+  )
 
 Repo.all(query)
 ```
@@ -219,9 +225,12 @@ Repo.all(query)
 Сортировка пользователей по дате создания записи в базе данных:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: u.inserted_at,
     select: [u.username, u.inserted_at]
+  )
 
 Repo.all(query)
 ```
@@ -229,9 +238,12 @@ Repo.all(query)
 Сортировка по убыванию(`DESC`):
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: [desc: u.inserted_at],
     select: [u.username, u.inserted_at]
+  )
 ```
 
 ### Объединение
@@ -239,9 +251,12 @@ query = from u in User,
 Допустим, каждый пользователь имеет свой профайл. Давайте найдем все профайлы утвержденных пользователей:
 
 ```elixir
-query = from p in Profile,
-    join: u in assoc(profile, :user),
+query =
+  from(
+    p in Profile,
+    join: u in assoc(p, :user),
     where: u.confirmed == true
+  )
 ```
 
 ### Фрагменты
@@ -249,9 +264,12 @@ query = from p in Profile,
 Иногда, когда нам необходимы специфические функции базы данных, Query API недостаточно. В таких случаях следует использовать функцию `fragment/1`:
 
 ```elixir
-query = from u in User,
-    where: fragment("downcase(?)", u.username) == ^username
+query =
+  from(
+    u in User,
+    where: fragment("downcase(?)", u.username) == ^username,
     select: u
+  )
 ```
 
 Примеры построения различных запросов можно найти здесь [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html).
@@ -271,12 +289,12 @@ defmodule ExampleApp.User do
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -297,6 +315,7 @@ defmodule ExampleApp.User do
     case get_change(changeset, :password_confirmation) do
       nil ->
         password_incorrect_error(changeset)
+
       confirmation ->
         password = get_field(changeset, :password)
         if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
@@ -320,13 +339,17 @@ end
 Использование `User.changeset/2` довольно просто:
 
 ```elixir
-alias ExampleApp.{User,Repo}
+alias ExampleApp.{User, Repo}
 
 pw = "passwords should be hard"
-changeset = User.changeset(%User{}, %{username: "doomspork",
-                    email: "sean@seancallan.com",
-                    password: pw,
-                    password_confirmation: pw})
+
+changeset =
+  User.changeset(%User{}, %{
+    username: "doomspork",
+    email: "sean@seancallan.com",
+    password: pw,
+    password_confirmation: pw
+  })
 
 case Repo.insert(changeset) do
   {:ok, model}        -> # Inserted with success

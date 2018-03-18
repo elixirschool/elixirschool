@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: GenStage
-category: advanced
-order: 11
-lang: gr
 ---
 
 Σε αυτό το μάθημα θα δούμε πιο αναλυτικά το GenStage, τι ρόλο παίζει και πως θα το αξιοποιήσουμε στις εφαρμογές μας.
@@ -59,11 +55,11 @@ $ cd genstage_example
 Ας αναβαθμίσουμε τις εξαρτήσεις μας στο `mix.exs` για να συμπεριλάβουμε το `gen_stage`:
 
 ```elixir
-  defp deps do
-    [
-      {:gen_stage, "~> 0.11"},
-    ]
-  end
+defp deps do
+  [
+    {:gen_stage, "~> 0.11"}
+  ]
+end
 ```
 
 Θα πρέπει να κατεβάσουμε τις εξαρτήσεις μας και να τις συντάξουμε πριν προχωρήσουμε:
@@ -96,8 +92,8 @@ defmodule GenstageExample.Producer do
   def init(counter), do: {:producer, counter}
 
   def handle_demand(demand, state) do
-    events = Enum.to_list(state..state + demand - 1)
-    {:noreply, events, (state + demand)}
+    events = Enum.to_list(state..(state + demand - 1))
+    {:noreply, events, state + demand}
   end
 end
 ```
@@ -117,7 +113,7 @@ $ touch lib/genstage_example/producer_consumer.ex
 Ας αναβαθμίσουμε το αρχείο μας για να δείχνει όπως ο κώδικας στο παράδειγμα:
 
 ```elixir
-defmodule GenstageExample.ProducerConsumer  do
+defmodule GenstageExample.ProducerConsumer do
   use GenStage
 
   require Integer
@@ -168,7 +164,7 @@ defmodule GenstageExample.Consumer do
 
   def handle_events(events, _from, state) do
     for event <- events do
-      IO.inspect {self(), event, state}
+      IO.inspect({self(), event, state})
     end
 
     # As a consumer we never emit events
@@ -183,7 +179,7 @@ end
 
 Τώρα που έχουμε τον παραγωγό μας, τον παραγωγό-καταναλωτή και τον καταναλωτή έτοιμους είμαστε έτοιμοι να τους συνδέσουμε.
 
-Ας ξεκινήσουμε ανοίγοντας το `lib/genstage_example.ex` και προσθέτοντας τις διεργασίες μας στο δέντρο παρακολούθησης:
+Ας ξεκινήσουμε ανοίγοντας το `lib/genstage_example/application.ex` και προσθέτοντας τις διεργασίες μας στο δέντρο παρακολούθησης:
 
 ```elixir
 def start(_type, _args) do
@@ -192,7 +188,7 @@ def start(_type, _args) do
   children = [
     worker(GenstageExample.Producer, [0]),
     worker(GenstageExample.ProducerConsumer, []),
-    worker(GenstageExample.Consumer, []),
+    worker(GenstageExample.Consumer, [])
   ]
 
   opts = [strategy: :one_for_one, name: GenstageExample.Supervisor]
@@ -221,14 +217,14 @@ $ mix run --no-halt
 
 Αναφέραμε στην εισαγωγή ότι θα μπορούσαμε να έχουμε πάνω από ένα παραγωγούς ή καταναλωτές, οπότε ας ρίξουμε μια ματιά σε αυτά.
 
-Αν εξετάσουμε την έξοδο της `IO.inspect/1` από το παράδειγμά μας θα δούμε ότι κάθε συμβάν το χειρίζεται μια μοναδική PID.  Ας κάνουμε κάποιες αλλαγές για πολλαπλούς εργάτες αλλάζοντας το `lib/genstage_example.ex`:
+Αν εξετάσουμε την έξοδο της `IO.inspect/1` από το παράδειγμά μας θα δούμε ότι κάθε συμβάν το χειρίζεται μια μοναδική PID.  Ας κάνουμε κάποιες αλλαγές για πολλαπλούς εργάτες αλλάζοντας το `lib/genstage_example/application.ex`:
 
 ```elixir
 children = [
   worker(GenstageExample.Producer, [0]),
   worker(GenstageExample.ProducerConsumer, []),
   worker(GenstageExample.Consumer, [], id: 1),
-  worker(GenstageExample.Consumer, [], id: 2),
+  worker(GenstageExample.Consumer, [], id: 2)
 ]
 ```
 

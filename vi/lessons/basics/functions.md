@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Hàm
-category: basics
-order: 6
-lang: vi
 ---
 
 Trong Elixir và nhiều ngôn ngữ lập trình hàm, hàm là "first class citizen". Chúng ta sẽ học về các kiểu hàm trong Elixir, chúng khác nhau như thế nào, và dùng chúng ra sao.
@@ -85,7 +81,7 @@ Với những kiến thức về pattern matching đã biết, chúng ta hãy kh
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -130,7 +126,7 @@ iex> Greeter.hello("Minh")
 "Chào Minh"
 
 iex> Greeter.phrase
-** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
     Greeter.phrase()
 ```
 
@@ -149,7 +145,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Chào "
@@ -165,8 +161,8 @@ Nếu chúng ta muốn có một giá trị mặc định cho tham số ta dùng
 
 ```elixir
 defmodule Greeter do
-  def hello(name, country \\ "vn") do
-    phrase(country) <> name
+  def hello(name, language_code \\ "vn") do
+    phrase(language_code) <> name
   end
 
   defp phrase("vn"), do: "Chào, "
@@ -187,36 +183,49 @@ Khi chúng ta kết hợp ví dụ guard với tham số mặc định, ta sẽ 
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "vn") when is_list(names) do
+  def hello(names, language_code \\ "vn") when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country \\ "vn") when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code \\ "vn") when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("vn"), do: "Chào "
   defp phrase("en"), do: "Hello, "
 end
 
-** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+
+    def foo(:first_clause, b \\ :default) do ... end
+    def foo(:second_clause, b) do ... end
+
+one should write:
+
+    def foo(a, b \\ :default)
+    def foo(:first_clause, b) do ... end
+    def foo(:second_clause, b) do ... end
+
+def hello/2 has multiple clauses and defines defaults in one or more clauses
+    iex:31: (module)
 ```
 
 Elixir không xử lý được trong trường hợp có nhiều hàm trùng khớp với tham số mặc định. Để xử lý điều này ta thêm một hàm trước tham số mặc định:
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "vn")
-  def hello(names, country) when is_list(names) do
+  def hello(names, language_code \\ "vn")
+
+  def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country) when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code) when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("es"), do: "Chào "

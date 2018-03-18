@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Poolboy
-category: libraries
-order: 2
-lang: pt
 ---
 
 Você pode facilmente esgotar os recursos do seu sistema se você permitir que os processos concorrentes sejam executados arbitrariamente. Poolboy impede que aconteça uma sobrecarga, criando um pool de gerenciadores para limitar o número de processos simultâneos.
@@ -67,10 +63,7 @@ defmodule PoolboyApp do
   use Application
 
   defp poolboy_config do
-    [{:name, {:local, :worker}},
-      {:worker_module, Worker},
-      {:size, 5},
-      {:max_overflow, 2}]
+    [{:name, {:local, :worker}}, {:worker_module, Worker}, {:size, 5}, {:max_overflow, 2}]
   end
 
   def start(_type, _args) do
@@ -108,7 +101,7 @@ defmodule Worker do
   end
 
   def handle_call({:square_root, x}, _from, state) do
-    IO.puts "process #{inspect self} calculating square root of #{x}"
+    IO.puts("process #{inspect(self)} calculating square root of #{x}")
     :timer.sleep(1000)
     {:reply, :math.sqrt(x), state}
   end
@@ -124,15 +117,16 @@ defmodule Test do
   @timeout 60000
 
   def start do
-     tasks = Enum.map(1..20, fn(i) ->
-        Task.async(fn -> :poolboy.transaction(:worker,
-          &(GenServer.call(&1, {:square_root, i})), @timeout)
+    tasks =
+      Enum.map(1..20, fn i ->
+        Task.async(fn ->
+          :poolboy.transaction(:worker, &GenServer.call(&1, {:square_root, i}), @timeout)
         end)
-     end)
-     Enum.each(tasks, fn(task) -> IO.puts(Task.await(task, @timeout)) end)
+      end)
+
+    Enum.each(tasks, fn task -> IO.puts(Task.await(task, @timeout)) end)
   end
 end
-
 ```
 Se você não tiver gerenciadores de pool disponíveis, Poolboy chegará ao tempo limite após o período de tempo limite padrão (cinco segundos) e não aceitará nenhuma nova solicitação. Em nosso exemplo, aumentamos o tempo limite padrão para um minuto para demonstrar como podemos alterar o valor de tempo limite padrão.
 

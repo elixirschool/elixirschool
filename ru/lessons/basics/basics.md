@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.1.2
 title: Основы
-category: basics
-order: 1
-lang: ru
 ---
 
 Базовая настройка, типы и операторы.
@@ -19,19 +15,19 @@ lang: ru
 
 После того, как Elixir установлен, вы с лёгкостью можете проверить, какая именно версия была установлена.
 
-    % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    $ elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
 
 ### Интерактивный режим
 
-Вместе с языком в комплекте идет приложение интерактивной командной строки `iex`, которое позволяет выполнять выражения языка на лету.
+Вместе с языком в комплекте идет приложение интерактивной командной строки IEx, которое позволяет выполнять выражения языка на лету.
 
 Для того чтобы начать, запустите `iex`:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
@@ -128,7 +124,7 @@ true
 Также атомы используются в качестве ссылок на модули из библиотек Erlang, в том числе и встроенные.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -153,7 +149,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-В Elixir есть и более сложные типы данных. Мы узнаем о них больше, когда познакомимся с коллекциями и функциями.
+В Elixir есть и более сложные типы данных. Мы узнаем о них больше, когда познакомимся с [коллекциями](../collections/) и [функциями](../functions/).
 
 ## Базовые операторы
 

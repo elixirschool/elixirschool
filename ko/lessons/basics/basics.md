@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.1.2
 title: 기본
-category: basics
-order: 1
-lang: ko
 ---
 
 Elixir를 시작합시다. 기본적인 타입과 연산자를 배워봅시다.
@@ -19,18 +15,18 @@ elixir-lang.org 홈페이지의 [Installing Elixir](http://elixir-lang.org/insta
 
 Elixir를 설치하고 나서 어떤 버전이 설치되었는지 손쉽게 확인할 수 있습니다.
 
-    % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}  [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    $ elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}]  [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
 ### 대화형 모드 건드려보기
 
-Elixir를 설치하면 대화형 셸인 `iex`가 함께 설치됩니다. `iex`를 사용하여 Elixir 코드를 입력하면서 바로바로 실행할 수 있습니다.
+Elixir를 설치하면 대화형 셸인 `IEx`가 함께 설치됩니다. `IEx`를 사용하여 Elixir 코드를 입력하면서 바로바로 실행할 수 있습니다.
 
 `iex`를 실행하는 걸로 시작해보아요.
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
@@ -70,7 +66,7 @@ iex> 0x1F
 
 ### 실수
 
-Elixir에서 실수는 소수점 앞뒤로 숫자가 한 개 이상 필요합니다. 실수는 배정밀도(64 bit double precision)로 부동 소수점 숫자를 처리하고, `e`를 사용하여 10의 지수를 표현할 수도 있습니다.
+Elixir에서 실수는 소수점 뒤로 숫자가 적어도 하나 필요합니다. 실수는 배정밀도(64 bit double precision)로 부동 소수점 숫자를 처리하고, `e`를 사용하여 10의 지수를 표현할 수도 있습니다.
 
 ```elixir
 iex> 3.14
@@ -125,7 +121,7 @@ true
 애텀은 Erlang 라이브러리에서 모듈을 (내장된 것도 포함해서) 참조할 때에도 사용합니다.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -150,7 +146,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir에는 이보다 더 복잡한 데이터 타입도 있습니다. 이런 부분은 컬렉션이나 함수를 다룰 때 조금 더 알아보도록 하겠습니다.
+Elixir에는 이보다 더 복잡한 데이터 타입도 있습니다. 이런 부분은 [컬렉션](../collections/)이나 [함수](../functions/)를 다룰 때 조금 더 알아보도록 하겠습니다.
 
 ## 기본적인 연산
 
@@ -169,7 +165,7 @@ iex> 10 / 5
 2.0
 ```
 
-정수로 된 몫이나 나머지를 구하고 싶을 때 Elixir에 내장된 함수 두 개를 유용하게 사용할 수 있습니다.
+정수로 된 몫이나 나머지 (예: 모듈로 연산)를 구하고 싶을 때 Elixir에 내장된 함수 두 개를 유용하게 사용할 수 있습니다.
 
 ```elixir
 iex> div(10, 5)

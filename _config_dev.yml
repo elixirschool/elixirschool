@@ -1,0 +1,7 @@
+port: 4001
+url: http://localhost
+
+# assets:
+#   compress:
+#     css: false
+#     js:  false

@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.2
 title: স্ট্রিং 
-category: basics
-order: 14
-lang: bn
 ---
 
 স্ট্রিং, কার লিস্ট, গ্রাফীম ও কোড পয়েন্ট। 
@@ -61,7 +57,7 @@ iex> String.graphemes string
 
 ## স্ট্রিং ফাংশন 
 
-চলুন স্ট্রিং মডিউলের সবচেয়ে দরকারি কিছু ফাংশনের সাথে পরিচিত হই। অন্যান্য ফাংশন সম্পর্কে জানতে হলে দেখুন অফিসিয়াল ডকুমেন্টেশান  [`স্ট্রিংয়ের`](http://elixir-lang.org/docs/stable/elixir/String.html)
+চলুন স্ট্রিং মডিউলের সবচেয়ে দরকারি কিছু ফাংশনের সাথে পরিচিত হই। অন্যান্য ফাংশন সম্পর্কে জানতে হলে দেখুন অফিসিয়াল ডকুমেন্টেশান  [`স্ট্রিংয়ের`](https://hexdocs.pm/elixir/String.html)
 
 ### `length/1`
 
@@ -120,9 +116,9 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```
@@ -142,7 +138,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 `anagrams?` এর শেষ কলে  `FunctionClauseError` প্রদর্শীত হয়েছে কারণ ফাংশনের বর্ণনার সময়ে কোন প্যাটার্ন পাওয়া যায়নি যা কিনা বাইনারি ব্যতিরেকে কোন প্যারামিটার গ্রহণ করে। আমরা ঠিক তা-ই চেয়েছিলাম। 

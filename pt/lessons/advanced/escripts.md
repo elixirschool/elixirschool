@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: Executáveis
-category: advanced
-order: 3
-lang: pt
 ---
 
 Para criar executáveis em Elixir nós utilizaremos escript. Escript produz um executável que pode rodar em qualquer sistema que tenha Erlang instalado.
@@ -13,7 +9,7 @@ Para criar executáveis em Elixir nós utilizaremos escript. Escript produz um e
 
 ## Começando
 
-Para criar um executável com escript há poucas coisas que precisamos fazer: implementar um método `main/1` e atualizar nosso Mixfile.
+Para criar um executável com escript há poucas coisas que precisamos fazer: implementar uma função `main/1` e atualizar nosso Mixfile.
 
 Vamos começar criando um módulo que servirá como ponto de entrada para nosso executável, é aí que vamos implementar `main/1`:
 
@@ -30,12 +26,10 @@ A seguir nós precisamos atualizar nosso Mixfile incluindo a opção `:escript` 
 ```elixir
 defmodule ExampleApp.Mixfile do
   def project do
-    [app: :example_app,
-     version: "0.0.1",
-     escript: escript]
+    [app: :example_app, version: "0.0.1", escript: escript()]
   end
 
-  def escript do
+  defp escript do
     [main_module: ExampleApp.CLI]
   end
 end
@@ -43,7 +37,7 @@ end
 
 ## Fazendo Parsing dos Argumentos
 
-Com nossa aplicação configurada podemos começar a parsear os argumentos da linha de comando. Para fazer isso vamos utilizar o método `OptionParser.parse/2` do Elixir e a opção `:switches` para indicar que nossa flag é booleana.
+Com nossa aplicação configurada podemos começar a parsear os argumentos da linha de comando. Para fazer isso vamos utilizar a função `OptionParser.parse/2` do Elixir e a opção `:switches` para indicar que nossa flag é booleana.
 
 ```elixir
 defmodule ExampleApp.CLI do
@@ -51,7 +45,7 @@ defmodule ExampleApp.CLI do
     args
     |> parse_args
     |> response
-    |> IO.puts
+    |> IO.puts()
   end
 
   defp parse_args(args) do

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Testing
-category: basics
-order: 12
-lang: vi
 ---
 
 Testing là một phần quan trọng của phát triển phần mềm. Trong bài này, chúng ta sẽ học cách để test code Elixir với ExUnit và một vài best practice để làm chuyện này.
@@ -90,7 +86,7 @@ Trong ứng dụng Elixir chứa các actors/processes mà chúng gửi thông �
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -106,7 +102,7 @@ end
 
 `assert_received` không đợi các thông điệp, với `assert_receive` bạn có thể xác định một khoảng thời gian chờ.
 
-## capture_io and capture_log
+### capture_io and capture_log
 
 Có thể lấy ra output của một ứng dụng với `ExUnit.CaptureIO` mà không cần thay đổi ứng dụng. Đơn giản chỉ cần truyền hàm để sinh output vào:
 
@@ -116,7 +112,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```

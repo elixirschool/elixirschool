@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: 推导
-category: basics
-order: 13
-lang: cn
 ---
 
 在 Elixir 中，列表推导是循环遍历枚举值的语法糖。这节课，我们就来看看如何使用推导式进行遍历。

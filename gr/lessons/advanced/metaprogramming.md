@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Μεταπρογραμματισμός
-category: advanced
-order: 7
-lang: gr
 ---
 
 Ο Μεταπρογραμματισμός είναι η διαδικασία της χρήσης κώδικα που γράφει κώδικα.  Στην Elixir αυτό μας δίνει τη δυνατότητα να επεκτείνουμε τη γλώσσα ώστε να καλύπτει τις ανάγκες μας και να αλλάζει τον κώδικά μας δυναμικά.  Θα ξεκινήσουμε βλέποντας πως η Elixir παρουσιάζεται κάτω από το καπώ, πως να την αλλάξουμε, και τέλος πως να χρησιμοποιήσουμε αυτή τη γνώση για να την επεκτείνουμε.
@@ -152,9 +148,11 @@ defmodule OurMacro do
 end
 
 require OurMacro
-quoted = quote do
-  OurMacro.unless true, do: "Γειά"
-end
+
+quoted =
+  quote do
+    OurMacro.unless(true, do: "Γειά")
+  end
 ```
 
 ```elixir
@@ -246,8 +244,8 @@ iex> val
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts unquote(expr)
-      IO.puts unquote(expr)
+      IO.puts(unquote(expr))
+      IO.puts(unquote(expr))
     end
   end
 end
@@ -267,8 +265,8 @@ iex> Example.double_puts(:os.system_time)
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts expr
-      IO.puts expr
+      IO.puts(expr)
+      IO.puts(expr)
     end
   end
 end

@@ -1,20 +1,22 @@
 /*
  * Custom Theme Classes
  */
+$header-color: #F07E6B;
+$anchor-color: #4A365F;
 
 .theme-custom-purple .sidebar {
   background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAALUlEQVQYV2P0Mov/z0AEYKRY4f///58zMjJKwiyj3ER0Z9PIRHSHYwst6lsNAMs/GrcD9Fh5AAAAAElFTkSuQmCC) repeat;
 }
 .theme-custom-purple .content a,
 .theme-custom-purple .related-posts li a:hover {
-  color: #4A365F;
+  color: $anchor-color;
 }
 .theme-custom-purple .content a {
   text-decoration: underline;
 }
 
 h2 {
- color: #F07E6B;
+ color: $header-color;
 }
 
 .sidebar-lesson {
@@ -28,6 +30,7 @@ a.sidebar-lesson:focus {
 
 .sidebar-lesson.active {
   font-weight: bold;
+  color: #fff;
 }
 
 .page-title {
@@ -35,11 +38,32 @@ a.sidebar-lesson:focus {
   align-items: center;
 }
 
+i.back-to-top {
+  display: inline;
+  cursor: pointer;
+  padding-left: 1em;
+  color: $anchor-color;
+
+  &::after {
+    content: '\A';
+    white-space: pre;
+  }
+}
+
+.theme-custom-purple .content .clickable-header {
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 /*
  * Overrides theme's sidebar so content isn't cut off
  */
 .sidebar {
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -76,7 +100,7 @@ a.sidebar-lesson:focus {
     font-weight: bold;
     line-height: 1.25;
     font-size: 1.5rem;
-    color: #F07E6B;
+    color: $header-color;
   }
 
   i {
@@ -145,7 +169,8 @@ $version_color_map: (
   "major": "#f00",
   "minor": "#f60",
   "patch": "#fc3",
-  "none": "#9f0"
+  "none": "#9f0",
+  "error": "#f00",
 );
 
 @each $severity, $color in $version_color_map {

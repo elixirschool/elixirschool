@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Sigiler
-category: basics
-order: 10
-lang: no
 ---
 
 Bruke og lage sigiler.
@@ -80,7 +76,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Elixir har en innebygd Regex modul [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html) som bygger videre på Erlang sitt regulære uttrykk bibliotek. La oss implementere Regex.split/2 ved å bruke en regex sigil
+Elixir har en innebygd Regex modul [Regex](https://hexdocs.pm/elixir/Regex.html) som bygger videre på Erlang sitt regulære uttrykk bibliotek. La oss implementere Regex.split/2 ved å bruke en regex sigil
 
 ```elixir
 iex> string = "100_000_000"

@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Pipe Operator
-category: basics
-order: 7
-lang: de
 ---
 
 Der pipe-Operator `|>` gibt das Resultat des vorherigen Ausdrucks als ersten Parameter an den neuen Ausdrucks weiter.
@@ -19,7 +15,7 @@ Programmieren kann chaotisch sein. Tatsächlich so chaotisch, dass Funktionsaufr
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Hier übergeben wir den Wert `other_function/1` an `new_function/1` und `new_function/1` an `baz/1`, `baz/1` an `bar/1` und abschließend das Ergebnis von `bar/1` an `foo/1`. Elixir wählt einen pragmatischen Ansatz, um dieses syntaktische Chaos zu beseitigen, indem es uns den pipe-Operator an die Hand gibt. Der pipe-Operator, der `|>` aussieht *nimmt das Ergebnis eines Ausdrucks und gibt es weiter*. Lass uns nochmal einen Blick auf das Codebeispiel von oben werfen, diesmal jedoch mit dem pipe-Operator umgeschrieben.
+Hier übergeben wir den Wert `other_function/0` an `new_function/1` und `new_function/1` an `baz/1`, `baz/1` an `bar/1` und abschließend das Ergebnis von `bar/1` an `foo/1`. Elixir wählt einen pragmatischen Ansatz, um dieses syntaktische Chaos zu beseitigen, indem es uns den pipe-Operator an die Hand gibt. Der pipe-Operator, der `|>` aussieht *nimmt das Ergebnis eines Ausdrucks und gibt es weiter*. Lass uns nochmal einen Blick auf das Codebeispiel von oben werfen, diesmal jedoch mit dem pipe-Operator umgeschrieben.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
@@ -34,14 +30,14 @@ Für die folgenden Beispielen wählen wir Elixirs Stringmodul.
 - String trennen
 
 ```elixir
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Alle Zeichen in Großbuchstaben umwandeln
 
 ```elixir
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

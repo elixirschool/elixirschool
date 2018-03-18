@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Mix
-category: basics
-order: 9
-lang: vi
 ---
 
 Trước khi đi sâu vào Elixir thì chúng ta cần tìm hiều về mix đầu tiên. Nếu bạn đã quen thuộc với Ruby thì mix tương ứng với Bundler, Rubygems và Rake hợp lại. Mix là một phần quan trọng trong bất cứ dự án Elixir nào và trong bài này chúng ta sẽ đi vào một vài tính năng thú vị của nó. Để xem mix có tất cả những chức năng gì thì chúng ta chạy `mix help`.
@@ -38,17 +34,20 @@ Trong bài này chúng ta tập trung vào file `mix.exs`. Ở đây chúng ta c
 defmodule Example.Mixfile do
   use Mix.Project
 
-  def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+  def project do
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do

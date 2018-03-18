@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Sigile
-category: basics
-order: 10
-lang: pl
 ---
 
 Tworzenie i praca z sigilami.
@@ -80,7 +76,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Elixir posiada też moduł [Regex](http://elixir-lang.org/docs/stable/elixir/Regex.html), którego API jest oparte o 
+Elixir posiada też moduł [Regex](https://hexdocs.pm/elixir/Regex.html), którego API jest oparte o 
 bibliotekę do obsługi wyrażeń  regularnych z Erlanga. Zaimplementujmy funkcję `Regex.split/2` z użyciem sigila:  
 
 ```elixir
@@ -138,7 +134,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ### Struktura `NaiveDateTime`
 
-Struktura [NaiveDateTime](http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html) jest uproszczeniem `DateTime`, które nie posiada informacji o strefie czasowej.
+Struktura [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) jest uproszczeniem `DateTime`, które nie posiada informacji o strefie czasowej.
 
 W większości wypadków nie powinniśmy tworzyć tej struktury w bezpośredni sposób, ale wyjątek stanowi tu użycie jej w dopasowaniach wzorców:
 

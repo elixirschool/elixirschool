@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.2
 title: Metaprogramação
-category: advanced
-order: 7
-lang: pt
 ---
 
 Metaprogramação é o processo de utilização de código para escrever código. Em Elixir isso nos dá a capacidade de estender a linguagem para se adequar às nossas necessidades e dinamicamente alterar o código. Vamos começar observando como Elixir é representado por debaixo dos panos, em seguida como modificá-lo, e finalmente, como podemos usar esse conhecimento para estendê-la.
@@ -93,7 +89,7 @@ iex> OurMacro.unless false, do: "Hi"
 "Hi"
 ```
 
-Já que macros substituem o código em nossa aplicação, nós podemos controlar quando é compilado. Um exemplo disso pode ser encontrado no módulo `Logger`. Quando o log está desabilitado nenhum código é injetado e o aplicativo resultante não contém referências ou chamadas de função para registro. Isso é diferente de outras linguagens onde ainda existe a sobrecarga de uma chamada de função, mesmo quando a implementação é NOP.
+Já que macros substituem o código em nossa aplicação, nós podemos controlar quando e o que é compilado. Um exemplo disso pode ser encontrado no módulo `Logger`. Quando o log está desabilitado nenhum código é injetado e o aplicativo resultante não contém referências ou chamadas de função para registro. Isso é diferente de outras linguagens onde ainda existe a sobrecarga de uma chamada de função, mesmo quando a implementação é NOP.
 
 Para demonstrar isso, vamos fazer um *logger* simples que pode ser ativado ou desativado:
 
@@ -117,7 +113,7 @@ defmodule Example do
 end
 ```
 
-Com o registo ativado a nossa fuçao `test` resultaria em um código procurando algo parecido com isto:
+Com o log ativado a nossa função `test` resultaria em um código parecido com isto:
 
 ```elixir
 def test do
@@ -132,9 +128,58 @@ def test do
 end
 ```
 
+## Debugando
+
+Está bem, agora nós sabemos como usar `quote/2`, `unquote/1` e escrever macros. Mas e se você tiver uma grande quantidade de código *quoted* e você precisa entendê-lo? Nesse caso, você pode usar `Macro.to_string/2`. Veja este exemplo:
+
+```elixir
+iex> Macro.to_string(quote(do: foo.bar(1, 2, 3)))
+"foo.bar(1, 2, 3)"
+```
+
+E quando você quiser ver o código gerado por macros você pode combinar eles com `Macro.expand/2` e `Macro.expand_once/2`, essas funções expandem os macros para seus códigos *quoted*. O primeiro pode expandir ele várias vezes, enquanto o último - apenas uma vez. Por exemplo, vamos modificar o exemplo do `unless` da seção anterior:
+
+```elixir
+defmodule OurMacro do
+  defmacro unless(expr, do: block) do
+    quote do
+      if !unquote(expr), do: unquote(block)
+    end
+  end
+end
+
+require OurMacro
+
+quoted =
+  quote do
+    OurMacro.unless(true, do: "Hi")
+  end
+```
+
+```elixir
+iex> quoted |> Macro.expand_once(__ENV__) |> Macro.to_string |> IO.puts
+if(!true) do
+  "Hi"
+end
+```
+
+Se nós rodarmos o mesmo código com `Macro.expand/2`, é intrigante:
+
+```elixir
+iex> quoted |> Macro.expand(__ENV__) |> Macro.to_string |> IO.puts
+case(!true) do
+  x when x in [false, nil] ->
+    nil
+  _ ->
+    "Hi"
+end
+```
+
+Você deve lembrar que nós mencionamos que `if` é um macro em Elixir, aqui nós vemos expandido para sua declaração `case` subjacente.
+
 ### Macros Privados
 
-Embora não seja tão comum, Elixir suporta macros privadas. Um macro privado é definido com `defmacro` e só pode ser chamado a partir do módulo no qual ele foi definido. Macros privados devem ser definidas antes do código que as invoca.
+Embora não seja tão comum, Elixir suporta macros privadas. Um macro privado é definido com `defmacrop` e só pode ser chamado a partir do módulo no qual ele foi definido. Macros privados devem ser definidas antes do código que as invoca.
 
 ### Higienização de Macros
 
@@ -157,7 +202,7 @@ iex> val
 42
 ```
 
-Mas e se quisermos manipular o valor de `val` ? Para marcar uma variável como sendo anti-higiênica podemos usar `var!/2`. Vamos atualizar o nosso exemplo para incluir outro macro utilizando `var/2`!
+Mas e se quisermos manipular o valor de `val` ? Para marcar uma variável como sendo anti-higiênica podemos usar `var!/2`. Vamos atualizar o nosso exemplo para incluir outro macro utilizando `var!/2`!
 
 ```elixir
 defmodule Example do
@@ -200,8 +245,8 @@ Para ver o benefício de `bind_quote` e para demonstrar o problema de reavaliaç
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts unquote(expr)
-      IO.puts unquote(expr)
+      IO.puts(unquote(expr))
+      IO.puts(unquote(expr))
     end
   end
 end
@@ -221,8 +266,8 @@ Os tempos são diferentes! O que aconteceu? Usando `unquote/1` na mesma express�
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts expr
-      IO.puts expr
+      IO.puts(expr)
+      IO.puts(expr)
     end
   end
 end

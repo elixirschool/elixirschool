@@ -1,10 +1,6 @@
 ---
 version: 1.0.0
-layout: page
 title: কালেকশন 
-category: basics
-order: 2
-lang: bn
 ---
 
 লিস্ট, টাপ্ল, কীওয়ার্ড, ম্যাপ এবং ফাংশনাল কম্বিনেটর।
@@ -75,11 +71,11 @@ iex> tl [3.14, :pie, "Apple"]
 এছাড়াও আমরা [pattern matching](../pattern-matching/) এবং কন্স অপারেটর  `|` দিয়েও একটি লিস্টকে দুই ভাগে ভাগ করতে পারি যা সম্পর্কে পরে আলোচনা হবে। 
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 

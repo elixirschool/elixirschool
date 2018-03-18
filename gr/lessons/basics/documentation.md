@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.2
 title: Τεκμηρίωση
-category: basics
-order: 11
-lang: gr
 ---
 
 Τεκμηρίωση κώδικα Elixir.
@@ -90,7 +86,7 @@ defmodule Greeter do
       "Γειά σου, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Γειά σου, " <> name
   end
@@ -183,10 +179,9 @@ iex> h Greeter.hello
 Λαμβάνοντας υπόψιν μας ότι όλα είναι οκ, και ότι βλέπουμε την έξοδο από πάνω σημαίνει ότι είμαστε έτοιμοι να εγκαταστήσουμε το ExDoc.  Μέσα στο αρχείο `mix.exs` προσθέστε τις δύο απαιτόυμενες εξαρτήσεις για να ξεκινήσετε: `:earmark` και `:ex_doc`.
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Καθορίζουμε το ζευγάρι κλειδί-τιμή `only: :dev` καθώς δεν θέλουμε να κατεβάσουμε και να συντάξουμε τις εξαρτήσεις αυτές σε ένα περιβάλλον παραγωγής.  Αλλά γιατί το Earmark; Το Earmark είναι ένας αναλυτής Markdown για την Elixir ο οποίος χρησιμοποιεί το ExDoc για να μετατρέψει την τεκμηρίωσή μας μέσα στα `@moduledoc` και `@doc` για να έχουμε πανέμορφη στην εμφάνιση HTML.
@@ -207,11 +202,11 @@ View them at "doc/index.html".
 
 Λογικά, αν όλα πήγαν καλά, θα πρέπει να βλέπετε ένα παρόμοιο μήνυμα με το μήνυμα εξόδου στο από πάνω παράδειγμα.  Ας δούμε τώρα μεσα στο Mix project μας και θα πρέπει να δούμε ότι υπάρχει ένας ακόμα φάκελος που ονομάζεται **doc/**.  Μέσα του βρίσκεται η δημιουργημένη τεκμηρίωσή μας.  Αν επισκεφθούμε την σελίδα index στο browser μας θα πρέπει να δούμε τα παρακάτω:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 We can see that Earmark has rendered our markdown and ExDoc is now displaying it in a useful format.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Μπορούμε να το διαθέσουμε στο GitHub, στο website μας, πιο ειδικά στα [HexDocs](https://hexdocs.pm/).
 
@@ -250,7 +245,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Γειά σου, " <> name
+    IO.puts("Γειά σου, " <> name)
   end
 end
 ```
@@ -269,7 +264,7 @@ defmodule Greeter do
   # και ούτω καθεξής
 
   def hello(name) do
-    IO.puts "Γειά σου, " <> name
+    IO.puts("Γειά σου, " <> name)
   end
 end
 ```
@@ -298,7 +293,7 @@ defmodule Greeter do
       "Γειά σου, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Γειά σου, " <> name
   end
@@ -307,4 +302,4 @@ end
 
  - Προσπαθήστε να συμπεριλάβετε μερικά παραδείγματα στην τεκμηρίωσή σας, αυτό σας επιτρέπει να παράγετε αυτόματα τεστ από τα παραδείγματα κώδικα που βρίσκονται σε μία ενότητα, συνάρτηση, ή μακροεντολή με το [ExUnit.DocTest][].  Για να γίνει αυτό, πρέπει να καλέσετε την μακροεντολή `doctest/1` από την περίπτωση του τεστ και να γράψετε τα παραδείγματά σας με βάση κάποιες οδηγίες, οι οποίες αναλύονται στην [επίσημη τεκμηρίωση][ExUnit.DocTest]
 
-[ExUnit.DocTest]: http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html
+[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

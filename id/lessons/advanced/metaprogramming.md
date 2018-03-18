@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Metaprogramming
-category: advanced
-order: 7
-lang: id
 ---
 
 Metaprogramming adalah proses menggunakan code untuk menulis code.  Dalam Elixir hal ini memberi kita kemampuan mengembangkan bahasa ini agar sesuai dengan kebutuhan kita dan mengubah code secara dinamis.  Kita akan mulai dengan melihat bagaimana Elixir direpresentasikan di dalamnya, bagaimana mengubahnya, dan akhirnya kita bisa menggunakan pengetahuan itu untuk mengembangkannya.
@@ -199,8 +195,8 @@ Untuk melihat manfaat dari `bind_quote` dan untuk mendemonstrasikan masalah reev
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts unquote(expr)
-      IO.puts unquote(expr)
+      IO.puts(unquote(expr))
+      IO.puts(unquote(expr))
     end
   end
 end
@@ -220,8 +216,8 @@ Waktunya berbeda!  Ada apa?  Menggunakan `unquote/1` pada ekspresi yang sama beb
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts expr
-      IO.puts expr
+      IO.puts(expr)
+      IO.puts(expr)
     end
   end
 end

@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: GenStage
-category: advanced
-order: 11
-lang: ru
 ---
 
 В этом уроке мы поближе рассмотрим GenStage, узнаем, какую роль он выполняет, и как мы можем использовать его в наших приложениях.
@@ -59,11 +55,11 @@ $ cd genstage_example
 Давайте обновим наши зависимости в `mix.exs`, добавив `gen_stage`:
 
 ```elixir
-  defp deps do
-    [
-      {:gen_stage, "~> 0.11"},
-    ]
-  end
+defp deps do
+  [
+    {:gen_stage, "~> 0.11"}
+  ]
+end
 ```
 
 Мы должны скачать зависимости и скомпилировать их прежде чем двигаться дальше:
@@ -96,8 +92,8 @@ defmodule GenstageExample.Producer do
   def init(counter), do: {:producer, counter}
 
   def handle_demand(demand, state) do
-    events = Enum.to_list(state..state + demand - 1)
-    {:noreply, events, (state + demand)}
+    events = Enum.to_list(state..(state + demand - 1))
+    {:noreply, events, state + demand}
   end
 end
 ```
@@ -117,7 +113,7 @@ $ touch lib/genstage_example/producer_consumer.ex
 Обновим наш файл:
 
 ```elixir
-defmodule GenstageExample.ProducerConsumer  do
+defmodule GenstageExample.ProducerConsumer do
   use GenStage
 
   require Integer
@@ -168,7 +164,7 @@ defmodule GenstageExample.Consumer do
 
   def handle_events(events, _from, state) do
     for event <- events do
-      IO.inspect {self(), event, state}
+      IO.inspect({self(), event, state})
     end
 
     # Так как мы потребители, мы не создаем события
@@ -183,7 +179,7 @@ end
 
 Теперь, когда мы создали производителя, производитель-потребителя и потребителя, мы готовы соединить это все вместе.
 
-Давайте откроем файл `lib/genstage_example.ex` и добавим наши новые процессы в дерево надзора:
+Давайте откроем файл `lib/genstage_example/application.ex` и добавим наши новые процессы в дерево надзора:
 
 ```elixir
 def start(_type, _args) do
@@ -192,7 +188,7 @@ def start(_type, _args) do
   children = [
     worker(GenstageExample.Producer, [0]),
     worker(GenstageExample.ProducerConsumer, []),
-    worker(GenstageExample.Consumer, []),
+    worker(GenstageExample.Consumer, [])
   ]
 
   opts = [strategy: :one_for_one, name: GenstageExample.Supervisor]
@@ -217,14 +213,14 @@ $ mix run --no-halt
 
 На данный момент у нас есть рабочий конвейер. Производитель генерирует числа, производитель-потребитель отбрасывает нечетные числа и потребитель отображает все это и продолжает процесс. Мы уже упоминали во вступлении, что возможно реализовать более одного производителя или потребителя. Давайте взглянем на это.
 
-Если мы рассмотрим вывод `IO.inspect/1` из нашего приложения, мы увидим, что все события обрабатываются одним PID. Давайте внесем некоторые корректировки для нескольких работников путем изменения `lib/genstage_example.ex`:
+Если мы рассмотрим вывод `IO.inspect/1` из нашего приложения, мы увидим, что все события обрабатываются одним PID. Давайте внесем некоторые корректировки для нескольких работников путем изменения `lib/genstage_example/application.ex`:
 
 ```elixir
 children = [
   worker(GenstageExample.Producer, [0]),
   worker(GenstageExample.ProducerConsumer, []),
   worker(GenstageExample.Consumer, [], id: 1),
-  worker(GenstageExample.Consumer, [], id: 2),
+  worker(GenstageExample.Consumer, [], id: 2)
 ]
 ```
 

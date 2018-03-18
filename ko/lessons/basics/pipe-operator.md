@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: 파이프 연산자
-category: basics
-order: 7
-lang: ko
 ---
 
 파이프 연산자 `|>`는 수식의 결과를 다른 수식의 첫 번째 매개변수로 전달합니다.
@@ -19,7 +15,7 @@ lang: ko
 foo(bar(baz(new_function(other_function()))))
 ```
 
-여기서, `other_function/1`의 값은 `new_function/1`로 전달되고, `new_function/1`에서 `baz/1`로, `baz/1`에서 `bar/1`로, 그리고 마지막으로 `bar/1`의 결과가 `foo/1`로 전달됩니다. Elixir에서는 이런 문법적인 혼란을 해소하기 위한 유용한 수단으로서 파이프 연산자를 제공합니다. `|>` 처럼 생긴 파이프 연산자는 **수식으로부터 결과를 받아서 다음 수식으로 전달합니다**. 이번에는 위의 코드를 바탕으로 파이프 연산자를 이용하여 다시 작성한 코드를 봅시다.
+여기서, `other_function/0`의 값은 `new_function/1`로 전달되고, `new_function/1`에서 `baz/1`로, `baz/1`에서 `bar/1`로, 그리고 마지막으로 `bar/1`의 결과가 `foo/1`로 전달됩니다. Elixir에서는 이런 문법적인 혼란을 해소하기 위한 유용한 수단으로서 파이프 연산자를 제공합니다. `|>` 처럼 생긴 파이프 연산자는 **수식으로부터 결과를 받아서 다음 수식으로 전달합니다**. 이번에는 위의 코드를 바탕으로 파이프 연산자를 이용하여 다시 작성한 코드를 봅시다.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
@@ -34,14 +30,14 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 - 문자열 토큰화하기 (느슨하게)
 
 ```shell
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - 모든 토큰을 대문자로 만들기
 
 ```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 
@@ -54,7 +50,7 @@ true
 
 ## 좋은 습관
 
-함수의 인자 개수가 1 이상이면 반드시 괄호를 쓰세요. 이는 Elixir에게는 큰 문제가 되지 않지만 다른 프로그래머가 여러분의 코드를 잘못 이해할 수도 있기 때문입니다. 세 번째 예제에서 `String.ends_with?/2`의 괄호를 지우면 아래와 같은 경고를 보게 됩니다.
+함수의 인자 개수가 1 이상이면 반드시 괄호를 쓰세요. 이는 Elixir에게는 큰 문제가 되지 않지만 다른 프로그래머가 여러분의 코드를 잘못 이해할 수도 있기 때문입니다. 이는 파이프 연산자를 사용할 때에도 그렇습니다. 예를 들어, 세 번째 예제에서 `String.ends_with?/2`의 괄호를 지우면 아래와 같은 경고를 보게 됩니다.
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"

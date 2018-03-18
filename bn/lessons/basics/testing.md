@@ -1,10 +1,6 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.0.1
 title: Testing
-category: basics
-order: 12
-lang: bn
 ---
 
 সফটওয়ার ডেভেলপমেন্ট এ টেস্টিং একটি গুঁড়ত্তপূর্ণ ভূমিকা রাখে। এই অধ্যায়ে আমরা দেখব কিভাবে এলিক্সির ল্যাঙ্গুয়েজ এ এক্সইউনিট ব্যবহার করে টেস্ট করা যায় এবং এগুলো করবার কিছু বেস্ট প্র্যাকটিস।
@@ -85,7 +81,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -101,7 +97,7 @@ end
 
 `assert_received` মেসেজ এর জন্য অপেক্ষা করে না । তবে আমরা `assert_receive` দিয়ে টাইম আউট নির্ধারণ করে দিতে পারি।
 
-## capture_io and capture_log
+### capture_io and capture_log
 
 এপ্লিকেশন এর আউটপুট কয়াপচার করবার জন্য আমরা `ExUnit.CaptureIO` ব্যাবহার করতে পারি এপ্লিকেশন পরিবর্তন না করেই। আমরা শুধু ফাংশন টি দিলেই হবে।
 
@@ -111,7 +107,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```

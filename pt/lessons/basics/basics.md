@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.1.2
 title: Básico
-category: basics
-order: 1
-lang: pt
 ---
 
 Primeiros Passos, tipos básicos e operações básicas.
@@ -19,21 +15,21 @@ As instruções para instalação em cada sistema operacional podem ser encontra
 
 Após instalar o Elixir, você pode facilmente confirmar a versão instalada.
 
-		% elixir -v
-		Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-		Elixir {{ site.elixir.version }}
+    Elixir {{ site.elixir.version }}
 
 ### Modo Interativo
 
-Elixir vem com `iex`, um console interativo, que nos permite avaliar expressões em Elixir.
+Elixir vem com IEx, um console interativo, que nos permite avaliar expressões em Elixir.
 
 Para iniciar, executamos `iex`:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-	iex>
+    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+    iex>
 
 Vamos testar e digitar algumas expressões simples:
 
@@ -65,7 +61,7 @@ iex> 0b0110
 iex> 0o644
 420
 iex> 0x1F
-255
+31
 ```
 
 ### Pontos Flutuantes
@@ -95,7 +91,7 @@ false
 
 ### Átomos
 
-Um Átomo é uma constante cujo o nome é seu valor. Se está familiarizado com Ruby, estes são equivalentes aos Símbolos:
+Um átomo é uma constante cujo o nome é seu valor. Se está familiarizado com Ruby, estes são equivalentes aos símbolos:
 
 ```elixir
 iex> :foo
@@ -104,7 +100,7 @@ iex> :foo == :bar
 false
 ```
 
-Booleanos `true` e `false` também são átomos `:true` e `:false`, respectivamente.
+Booleanos `true` e `false` também são os átomos `:true` e `:false`, respectivamente.
 
 ```elixir
 iex> true |> is_atom
@@ -125,7 +121,7 @@ true
 Átomos também são usados para referenciar módulos de bibliotecas Erlang, incluindo as bibliotecas integradas.
 
 ```elixir
-iex> :crypto.rand_bytes 3
+iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
@@ -150,7 +146,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir também inclui tipos de dados mais complexos. Nós vamos aprender mais sobre estes quando aprendermos sobre Collections e Functions.
+Elixir também inclui tipos de dados mais complexos. Nós vamos aprender mais sobre estes quando aprendermos sobre [coleções](../collections/) e [funções](../functions/).
 
 ## Operações Básicas
 
@@ -180,7 +176,7 @@ iex> rem(10, 3)
 
 ### Booleanos
 
-Elixir provê os operadores booleanos: `||`, `&&`, e `!`, estes suportam qualquer tipo:
+Elixir provê os operadores booleanos `||`, `&&`, e `!`, os quais suportam qualquer tipo:
 
 ```elixir
 iex> -20 || true
@@ -238,7 +234,7 @@ iex> 2 === 2.0
 false
 ```
 
-Uma característica importante de Elixir é que quaisquer dois tipos podem ser comparados, isto é particularmente útil em ordenação. Não precisamos memorizar a ordem de classificação, mas é importante estar ciente de que:
+Uma característica importante de Elixir é que quaisquer dois tipos podem ser comparados; isto é particularmente útil em ordenação. Não precisamos memorizar a ordem de classificação, mas é importante estar ciente de que:
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring

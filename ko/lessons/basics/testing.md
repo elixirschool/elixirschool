@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.1.1
 title: 테스트
-category: basics
-order: 12
-lang: ko
 ---
 
 소프트웨어 개발에서 테스트는 아주 중요합니다. 이번 수업에서는 ExUnit을 사용해서 Elixir 코드를 테스트하는 방법과 테스트하는 데 있어서 가장 효율적인 절차를 함께 살펴보도록 하겠습니다.
@@ -22,8 +18,8 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "greets the world" do
+    assert Example.hello() == :world
   end
 end
 ```
@@ -31,13 +27,38 @@ end
 `mix test`를 입력하면 프로젝트에 있는 테스트를 실행할 수 있습니다. 지금 바로 테스트를 실행한다면 이런 결과를 볼 수 있겠네요.
 
 ```shell
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 0 failures
+..
+
+Finished in 0.03 seconds
+2 tests, 0 failures
+```
+
+어? 아웃풋이 두개네요? `lib/example.ex`를 확인해 봅시다. Mix가 여기에 다른 테스트를 만들어 놓았네요. doctest라 부릅니다.
+
+```elixir
+defmodule Example do
+  @moduledoc """
+  Documentation for Example.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Example.hello
+      :world
+
+  """
+  def hello do
+    :world
+  end
+end
 ```
 
 ### assert
 
-테스트 코드를 써 보신 적이 있다면 `assert`라는 단어에 익숙할 겁니다. 몇몇 프레임워크에서는 `assert` 대신 `should`나 `expect`를 사용하지만, 그래도 익숙하기는 마찬가지입니다.
+테스트 코드를 써 보신 적이 있다면 `assert`라는 단어에 익숙할 겁니다. 몇몇 프레임워크에서는 `assert` 대신 `should`나 `expect`가 그 자리를 차지합니다.
 
 해당 표현식이 참인지 테스트할 때 `assert` 매크로를 사용합니다. 참이 아니라면, 에러를 발생시키며 테스트가 실패합니다. 테스트가 실패하는 경우를 확인해보기 위해서 샘플 테스트 코드를 수정하고 `mix test`를 실행해봅시다.
 
@@ -46,8 +67,8 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "the truth" do
-    assert 1 + 1 == 3
+  test "greets the world" do
+    assert Example.hello() == :word
   end
 end
 ```
@@ -55,19 +76,19 @@ end
 이제 다른 출력을 확인할 수 있습니다.
 
 ```shell
-  1) test the truth (ExampleTest)
+  1) test greets the world (ExampleTest)
      test/example_test.exs:5
      Assertion with == failed
-     code: 1 + 1 == 3
-     lhs:  2
-     rhs:  3
+     code:  assert Example.hello() == :word
+     left:  :world
+     right: :word
      stacktrace:
-       test/example_test.exs:6
+       test/example_test.exs:6 (test)
 
-......
+.
 
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 1 failures
+Finished in 0.03 seconds
+2 tests, 1 failures
 ```
 
 테스트에 실패했을 때 ExUnit은 실패한 `assert`가 있던 정확한 위치와 예상했던 값, 실제 결과를 알려줄 것입니다.
@@ -87,7 +108,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -103,7 +124,7 @@ end
 
 `assert_received`는 메시지를 기다리지 않습니다. `assert_receive`는 타임아웃을 지정할 수 있습니다.
 
-## capture_io, capture_log
+### capture_io, capture_log
 
 애플리케이션 출력의 캡쳐는 원본 애플리케이션을 변경하지 않아도 `ExUnit.CaptureIO`로 할 수 있습니다. 출력을 만드는 함수를 넘겨보세요.
 
@@ -113,7 +134,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```
@@ -132,11 +153,11 @@ defmodule ExampleTest do
   doctest Example
 
   setup_all do
-    {:ok, number: 2}
+    {:ok, recipient: :world}
   end
 
-  test "the truth", state do
-    assert 1 + 1 == state[:number]
+  test "greets", state do
+    assert Example.hello() == state[:recipient]
   end
 end
 ```

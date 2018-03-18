@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Các dự án ô
-category: advanced
-order: 8
-lang: vi
 ---
 
 Đôi khi một dự án có thể trở nên rất lớn. Công cụ Mix cho phép chúng ta có thể chia nhỏ code thành nhiều ứng dụng, nó giúp cho các dự án Elixir của chúng ta có thể dễ dàng quản lý khi mà chúng phát triển.
@@ -189,7 +185,7 @@ Bạn có thể nghĩ rằng tương tác với các ứng dụng có thể hơi
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "Hello, I'm the datasets"
+    IO.puts("Hello, I'm the datasets")
   end
 end
 ```

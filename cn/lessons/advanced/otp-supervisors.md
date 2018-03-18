@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: OTP Supervisors
-category: advanced
-order: 5
-lang: cn
 ---
 
 supervisors 是一种特殊的进程：专门来监控其他的进程。supervisors 能够自动重启出错的子进程，从而编写容错性高的程序。
@@ -39,7 +35,7 @@ children = [
 - `:simple_one_for_one` - supervisor 只能包含一个子进程
 
 ### 嵌套
-除了 worker 进程，我们还可以监控 supervisors，从而生成 supervisor 树。和之前的唯一不同就是，用 `worker/3` 来替换 `supervisor/3`：
+除了 worker 进程，我们还可以监控 supervisors，从而生成 supervisor 树。和之前的唯一不同就是，用 `supervisor/3` 来替换 `worker/3` ：
 
 ```elixir
 import Supervisor.Spec
@@ -62,7 +58,7 @@ Tasks 有它们自己特殊的 Supervisor，叫做 `Task.Supervisor`。作为专
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)

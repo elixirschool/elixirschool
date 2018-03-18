@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Operatore Pipe
-category: basics
-order: 7
-lang: it
 ---
 
 L'operatore pipe `|>` inoltra il risultato di un'espressione come primo parametro di un'altra espressione.
@@ -20,7 +16,7 @@ Consideriamo le seguenti funzioni innestate:
 foo(bar(baz(new_function(other_function()))))
 ```
 
-In questo caso, stiamo passando il valore `other_function/1` a `new_function/1`, e `new_function/1` a `baz/1`, `baz/1` a `bar/1`, ed infine il risultato di `bar/1` a `foo/1`. Elixir adotta un approccio pragmatico a questo caos sintattico offrendo l'operatore pipe. L'operatore pipe, che viene rappresentato con `|>` *prende il risultato di un'espressione, e la inoltra*. Diamo un altro sguardo al pezzo di codice precedente riscritto con l'operatore pipe:
+In questo caso, stiamo passando il valore `other_function/0` a `new_function/1`, e `new_function/1` a `baz/1`, `baz/1` a `bar/1`, ed infine il risultato di `bar/1` a `foo/1`. Elixir adotta un approccio pragmatico a questo caos sintattico offrendo l'operatore pipe. L'operatore pipe, che viene rappresentato con `|>` *prende il risultato di un'espressione, e la inoltra*. Diamo un altro sguardo al pezzo di codice precedente riscritto con l'operatore pipe:
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
@@ -35,14 +31,14 @@ In questa serie di esempi, useremo il modulo String di Elixir.
 - Separare una stringa in singole parole (genericamente)
 
 ```shell
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Trasformare in maiuscolo ciascuna parola
 
 ```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

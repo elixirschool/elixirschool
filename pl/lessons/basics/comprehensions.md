@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Składanie kolekcji
-category: basics
-order: 13
-lang: pl
 ---
 
 Składanie list (ang. list comprehensions), to lukier składniowy pozwalający na wygodniejszą pracę z kolekcjami i danymi przeliczalnymi. W tej lekcji przyjrzymy się jak mechanizm ten, ułatwia przetwarzanie oraz tworzenie kolekcji na bazie już istniejących.

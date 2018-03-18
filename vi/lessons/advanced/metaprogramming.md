@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Metaprogramming
-category: advanced
-order: 7
-lang: vi
 ---
 
 Metaprogramming là quá trình sử dụng code để viết code. Trong Elixir, nó cung cấp cho chúng ta khả năng mở rộng ngôn ngữ để phù hợp với yêu cầu, và để thay đổi code một cách động. Chúng ta sẽ bắt đầu bằng việc xem cách mà Elixir được biểu diễn code, cũng như cách để thay đổi nó, và cuối cùng, chúng ta có thể sử dụng kiến thức này để mở rộng chính Elixir.
@@ -152,9 +148,11 @@ defmodule OurMacro do
 end
 
 require OurMacro
-quoted = quote do
-  OurMacro.unless true, do: "Hi"
-end
+
+quoted =
+  quote do
+    OurMacro.unless(true, do: "Hi")
+  end
 ```
 
 ```elixir
@@ -247,8 +245,8 @@ Với việc binding biến, chúng ta có thể thêm vào nhiều biến trong
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts unquote(expr)
-      IO.puts unquote(expr)
+      IO.puts(unquote(expr))
+      IO.puts(unquote(expr))
     end
   end
 end
@@ -268,8 +266,8 @@ Kết quả lại không như vậy! Chuyện gì đã xảy ra thế này. Sử
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts expr
-      IO.puts expr
+      IO.puts(expr)
+      IO.puts(expr)
     end
   end
 end

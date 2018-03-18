@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.2.1
 title: 集合
-category: basics
-order: 2
-lang: cn
 ---
 
 列表、元组、关键字列表（keywords）、图（maps）、字典和函数组合子（combinators）
@@ -41,7 +37,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-关于上面使用到的 `++/2` 格式的说明：在 Elixir 中（以及 Elixir 的基础语言 Erlang），函数和操作符的名字由两部分组成：名字和元数(arity)。元数是 Elixir 和 Erlang 代码非常核心的部分，它代表了给定函数接受的参数个数（比如这里的 2），元数和名字之间通过斜线分割。我们后面会讲到更多这方面的内容，知道这些已经能帮你理解它的含义了。
+关于上面使用到的 `++/2` 格式的说明：在 Elixir 中（以及 Elixir 的基础语言 Erlang），函数和操作符的名字由两部分组成：名字（比如这里的 `++`）和元数(arity)。元数是 Elixir 和 Erlang 代码非常核心的部分，它代表了给定函数接受的参数个数（比如这里的 2），元数和名字之间通过斜线分割。我们后面会讲到更多这方面的内容，知道这些已经能帮你理解它的含义了。
 
 ### 列表减法
 
@@ -52,12 +48,14 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-要注意重复值的处理：对于左边列表中的每个值，右边只有首次出现的这个值会被删除：
+要注意重复值的处理：对于左边列表中	的每个值，右边只有首次出现的这个值会被删除：
 
+```elixir
 iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
+```
 
-注意：这里的比较 是否相同使用的是[严格比较(strict comparison)](https://github.com/doomspork/elixir-school/blob/9321df59a92a765bf64363badab6fddfdb4fe11e/lessons/basics/#comparison)。
+**注意：**这里比较是否相同使用的是[严格比较(strict comparison)](../basics/#comparison)。
 
 
 ### 头/尾
@@ -72,14 +70,14 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-除了上面的提到的函数，你还可以使用 `|` 操作符，我们在后面的教程中还会看到这种用法。
+除了上面的提到的函数，你还可以使用[模式匹配(pattern matching)](../pattern-matching/) 和 `|` 操作符来把一个列表分成头尾两部分；我们在后面的教程中还会看到这种用法。
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 
@@ -103,7 +101,7 @@ iex> File.read("path/to/unknown/file")
 
 ## 关键字列表
 
-关键字列表（keywords）和图（maps）是 Elixir 中两个相关的集合：它们都实现了 `Dict` 模块。Elixir 的关键字列表是一种特殊的列表：列表里的内容是二元元组，并且二元组的第一个元素必须是原子。它和列表的行为完全一致。
+关键字列表（keywords）和图（maps）是 Elixir 中两个相关的集合。Elixir 的关键字列表是一种特殊的列表：列表里的内容是二元元组，并且二元组的第一个元素必须是原子。它和列表的行为完全一致。
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -135,10 +133,12 @@ iex> map["hello"]
 
 Elixir 1.2 版本中，也可以把变量作为图的键（key）：
 
+```elixir
 iex> key = "hello"
 "hello"
 iex> %{key => "world"}
 %{"hello" => "world"}
+```
 
 如果重复的键添加到图中，后面的值会覆盖之前的值：
 

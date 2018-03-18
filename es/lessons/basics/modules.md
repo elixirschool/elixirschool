@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Composición
-category: basics
-order: 8
-lang: es
 ---
 
 Sabemos por experiencia que es incontrolable tener todas nuestras funciones en el mismo archivo y alcance. En esta sección cubriremos cómo agrupar funciones y definir un mapa especializado conocido como estructura (struct), con el propósito de organizar nuestro código de manera eficiente.
@@ -206,7 +202,7 @@ Aunque `require/2` no es usado frecuentemente, es bastante importante. Haciendo 
 defmodule Example do
   require SuperMacros
 
-  SuperMacros.do_stuff
+  SuperMacros.do_stuff()
 end
 ```
 

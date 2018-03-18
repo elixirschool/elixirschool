@@ -1,0 +1,19 @@
+script_direction: ltr
+project:
+  title: Elixir School
+  description: プログラミング言語Elixirのレッスン
+table_of_contents: 目次
+share: このページをシェアする
+sections:
+  home: Home
+  basics: 基礎
+  advanced: 上級
+  specifics: 詳細
+  libraries: ライブラリー
+version_messages:
+  outdated: "和訳が古くなっている可能性があります。"
+  major: "いくつかの重要な変更が翻訳元の文書に適用されています。"
+  minor: "いくつかの変更が翻訳元の文書に適用されています。"
+  patch: "いくつかの軽微な変更が翻訳元の文書に適用されています。"
+  none: "この和訳は最新です。"
+  error: "この章のバージョン定義にエラーがあります。"

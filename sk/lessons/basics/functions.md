@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.0.1
 title: Funkcie
-category: basics
-order: 6
-lang: sk
 ---
 
 V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie ústredným konštruktom. Povieme si o rôznych typoch funkcií v Elixire, rozdieloch medzi nimi a ako ich používať.
@@ -13,7 +9,7 @@ V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie ústredným kon�
 
 ## Anonymné funkcie
 
-Ako ich naznačuje už ich názov, tieto funkcie nemajú priradené meno. V kapitole o `Enum` sme videli, že sa často odovzdávajú ako argumenty iným funkciám. Na definovanie anonymnej funkcie slúžia v Elixire kľúčové slová `fn` a `end`. Medzi nimi môžeme definovať ľubovoľné množstvo sád parametrov a tiel funkcií - oddelených operátorom `->`.
+Ako naznačuje už ich názov, tieto funkcie nemajú priradené meno. V kapitole o `Enum` sme videli, že sa často odovzdávajú ako argumenty iným funkciám. Na definovanie anonymnej funkcie slúžia v Elixire kľúčové slová `fn` a `end`. Medzi nimi môžeme definovať ľubovoľné množstvo sád parametrov a tiel funkcií - oddelených operátorom `->`.
 
 Pozrime sa na jednoduchý príklad:
 
@@ -27,7 +23,7 @@ Všimnite si, že anonymnú funkciu je nutné volať cez `.`.
 
 ### Skratka &
 
-Používanie anonymných funkcií je v Elexire natoľko bežné, že na ich definovanie existuje skrátený zápis pomocou `&`:
+Používanie anonymných funkcií je v Elixire natoľko bežné, že na ich definovanie existuje skrátený zápis pomocou `&`:
 
 ```elixir
 iex> sum = &(&1 + &2)
@@ -55,7 +51,7 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-V príklade sme si definovali funkciu s dvoma telami. Pri jej prvom volaní sa použilo prvé telo, keďže sme jej ako parameter poslali tuple v tvare `{:ok, result}`. Pri duhom volaní sa použilo druhé telo, keďže ako parameter od nás dostala tuple v tvare `{:error}`.
+V príklade sme si definovali funkciu s dvoma telami. Pri jej prvom volaní sa použilo prvé telo, keďže sme jej ako parameter poslali tuple v tvare `{:ok, result}`. Pri druhom volaní sa použilo druhé telo, keďže ako parameter od nás dostala tuple v tvare `{:error}`.
 
 ## Pomenované funkcie
 
@@ -87,7 +83,7 @@ Vyzbrojení pattern matchingom, vyskúšajme si rekurziu pomocou pomenovaných f
 ```elixir
 defmodule Length do
   def of([]), do: 0
-  def of([_|t]), do: 1 + of(t)
+  def of([_ | tail]), do: 1 + of(tail)
 end
 
 iex> Length.of []
@@ -95,6 +91,29 @@ iex> Length.of []
 iex> Length.of [1, 2, 3]
 3
 ```
+
+### Pomenovanie funkcií a počet parametrov
+
+Už sme si spomenuli skôr, že funkcie sú pomenované kombináciou ich mena a počtom parametrov (`arity`). To znamená, že môžeme spraviť aj niečo ako:
+
+```elixir
+defmodule Greeter2 do
+  def hello(), do: "Hello, anonymous person!"   # hello/0
+  def hello(name), do: "Hello, " <> name        # hello/1
+  def hello(name1, name2), do: "Hello, #{name1} and #{name2}"
+                                                # hello/2
+end
+
+iex> Greeter2.hello()
+"Hello, anonymous person!"
+iex> Greeter2.hello("Fred")
+"Hello, Fred"
+iex> Greeter2.hello("Fred", "Jane")
+"Hello, Fred and Jane"
+```
+
+V komentároch máme mená funkcii vyššie. Prvá implementácia nemá žiadne argumenty, tak je označená ako `hello/0`. Druhá funkcia má jeden argument, takže jej názov je `hello/1` atď.
+Narozdiel od iných jazykov, kde by takéto niečo bolo považované za preťaženie funkcie, no v Elixire sú považované za úplne od seba _rôzne_ funkcie. (Pattern matching, spomenutý vyššie je použitý iba vtedy, keď poskytneme viac definícií pre funkciu s _rovnakým_ počtom argumentov.)
 
 ### Privátne funkcie
 
@@ -110,17 +129,14 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 
 iex> Greeter.phrase
-** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
     Greeter.phrase()
 ```
-
-Volanie funkcie `Greeter.phrase` vyhodilo chybu, pretože bola definovaná ako privátna a my sme ju zavolali zvonka.
 
 ### Hraničné podmienky
 
 Hraničných podmienok (*guards*) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](../control-structures). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
-
-Hraničné podmienky sú vyhodnocované hneď po tom, čo Elixir pattern matchingom vyberie jedno z definovaných tiel funkcie.
+Keď Elixir vybral funkciu, akékoľvek existujúce hraničné podmienky budú otestované.
 
 V nasledujúcom príklade máme dve funkcie s tou istou hlavičkou, no rôznymi hraničnými podmienkami testujeme typ argumentu:
 
@@ -133,7 +149,7 @@ defmodule Greeter do
   end
 
   def hello(name) when is_binary(name) do
-    phrase <> name
+    phrase() <> name
   end
 
   defp phrase, do: "Hello, "
@@ -143,16 +159,14 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-Prvé telo sa použije, ak je argument typu zoznam, druhé ak je argumentom reťazec.
-
 ### Východiskové argumenty
 
 Ak chceme, aby mal niektorý z argumentov funkcie východiskovú hodnotu, použijeme syntax `argument \\ hodnota`:
 
 ```elixir
 defmodule Greeter do
-  def hello(name, country \\ "en") do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
@@ -173,36 +187,49 @@ Problém môže nastať, ak nevhodne skombinujeme hraničné podmienky s východ
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en") when is_list(names) do
+  def hello(names, language_code \\ "en") when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country \\ "en") when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code \\ "en") when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+
+    def foo(:first_clause, b \\ :default) do ... end
+    def foo(:second_clause, b) do ... end
+
+one should write:
+
+    def foo(a, b \\ :default)
+    def foo(:first_clause, b) do ... end
+    def foo(:second_clause, b) do ... end
+
+def hello/2 has multiple clauses and defines defaults in one or more clauses
+    iex:31: (module)
 ```
 
-Elixir nevídí rád východiskové argumenty vo viacerých zhodných hlavičkách funkcie, pretože to môže byť mätúce. Riešenie spočíva v pridaní hlavičky s východiskovými argumentami, pričom z pôvodných hlavičiek východiskové argumenty odstránime:
+Elixir nerád vidí východiskové argumenty vo viacerých zhodných hlavičkách funkcie, pretože to môže byť mätúce. Riešenie spočíva v pridaní hlavičky s východiskovými argumentami, pričom z pôvodných hlavičiek východiskové argumenty odstránime:
 
 ```elixir
 defmodule Greeter do
-  def hello(names, country \\ "en")
-  def hello(names, country) when is_list(names) do
+  def hello(names, language_code \\ "en")
+
+  def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")
-    |> hello(country)
+    |> hello(language_code)
   end
 
-  def hello(name, country) when is_binary(name) do
-    phrase(country) <> name
+  def hello(name, language_code) when is_binary(name) do
+    phrase(language_code) <> name
   end
 
   defp phrase("en"), do: "Hello, "

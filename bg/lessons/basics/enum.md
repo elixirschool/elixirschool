@@ -1,10 +1,6 @@
 ---
 version: 0.9.0
-layout: page
 title: Enum
-category: basics
-order: 3
-lang: bg
 ---
 
 Набор от алгоритми за изброяване върху колекции.
@@ -15,7 +11,7 @@ lang: bg
 
 `Enum` модулът съдържа над сто функции за работа с колекции, за които учихме предният урок.
 
-Този урок ще покрие само част от достъпните функции, за да видите пълния набор от функции, посетете официалните [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) документи; за lazy изброяване използвайте модула [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html).
+Този урок ще покрие само част от достъпните функции, за да видите пълния набор от функции, посетете официалните [`Enum`](https://hexdocs.pm/elixir/Enum.html) документи; за lazy изброяване използвайте модула [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 
 ### all?
@@ -38,16 +34,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every
 
-Ако се нуждаете да разбиете колекцията си на по-малки групи, то `chunk` е функцията, която най-вероятно търсите:
+Ако се нуждаете да разбиете колекцията си на по-малки групи, то `chunk_every/2` е функцията, която най-вероятно търсите:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-Съществуват няколко опции за `chunk`, но няма да навлизаме в тях, вижте [`chunk/2`](http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2) в официалните документи, за да научите повече.
+Съществуват няколко опции за `chunk_every/2`, но няма да навлизаме в тях, вижте [`chunk_every/4`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) в официалните документи, за да научите повече.
 
 ### chunk_by
 
@@ -69,6 +65,7 @@ iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
 one
 two
 three
+:ok
 ```
 
 __Забележка__: Методът `each` връща атома `:ok`.

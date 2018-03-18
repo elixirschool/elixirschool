@@ -1,10 +1,6 @@
 ---
-version: 0.9.0
-layout: page
+version: 0.9.1
 title: Embedded Elixir (EEx)
-category: specifics
-order: 3
-lang: de
 ---
 
 So wie Ruby ERB und Java JSPs hat, hat Elixir EEx. EEx steht für "Embedded Elixir". Mit EEx können wir Elixir-Ausdrücke innerhalb von Strings einbetten und auswerten.
@@ -36,7 +32,7 @@ Hi, <%= name %>
 
 defmodule Example do
   require EEx
-  EEx.function_from_file :def, :greeting, "greeting.eex", [:name]
+  EEx.function_from_file(:def, :greeting, "greeting.eex", [:name])
 end
 
 iex> Example.greeting("Sean")
@@ -79,4 +75,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 ```
 Die `EEx.SmartEngine`-Zuweisungen sind nützlich da sie geändert werden können ohne erneute Kompilierung des Templates zu erfordern.
 
-Willst du deine eigene Engine schreiben? Schau dir das Behaviour [`EEx.Engine`](http://elixir-lang.org/docs/stable/eex/EEx.Engine.html) an, um zu sehen was du dafür benötigst.
+Willst du deine eigene Engine schreiben? Schau dir das Behaviour [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html) an, um zu sehen was du dafür benötigst.

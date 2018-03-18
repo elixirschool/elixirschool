@@ -1,13 +1,9 @@
 ---
-version: 0.9.0
-layout: page
+version: 1.2.1
 title: 컬렉션
-category: basics
-order: 2
-lang: ko
 ---
 
-리스트, 튜플, 키워드, 맵 그리고 컴비네이터.
+리스트, 튜플, 키워드 리스트, 맵.
 
 {% include toc.html %}
 
@@ -20,7 +16,7 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir는 연결 리스트로 리스트를 구현합니다. 따라서 리스트의 길이를 구하는 것은 `O(n)` 연산이고, 이 때문에 리스트의 앞에 값을 추가하는 것이 뒤에 추가하는 것보다 보통 빠릅니다.
+Elixir는 연결 리스트로서 리스트 컬렉션을 구현합니다. 따라서 리스트의 길이를 구하는 것은 `O(n)` 연산이고, 이 때문에 리스트의 앞에 값을 추가하는 것이 뒤에 추가하는 것보다 보통 빠릅니다.
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
@@ -63,7 +59,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 
 ### Head / Tail
 
-리스트를 사용할 때 리스트의 머리와 꼬리를 가지고 작업을 하는 경우가 많습니다. 머리는 리스트의 맨 첫 번째 원소이고, 꼬리는 그 나머지 원소들입니다. Elixir에서는 이러한 작업을 위해 `hd`와 `tl` 이 두 개의 유용한 메서드를 제공합니다.
+리스트를 사용할 때 리스트의 머리와 꼬리를 가지고 작업을 하는 경우가 많습니다. 머리는 리스트의 맨 첫 번째 원소이고, 꼬리는 그 나머지 원소들입니다. Elixir에서는 이러한 작업을 위해 두 개의 유용한 함수 `hd`, `tl`을 제공합니다.
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -77,11 +73,11 @@ iex> tl [3.14, :pie, "Apple"]
 > [역주] : `cons`는 Lisp 계열 언어에서 애텀과 리스트를 연결할 때 쓰이는 연산입니다. 첫번째 매개변수로 주어지는 애텀을 두번째 매개변수로 주어지는 리스트의 head 부분에 삽입하게 됩니다. `(cons 1 (2 3)) == (cons 1 (cons 2 (cons 3 nil))))`
 
 ```elixir
-iex> [h|t] = [3.14, :pie, "Apple"]
+iex> [head | tail] = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> h
+iex> head
 3.14
-iex> t
+iex> tail
 [:pie, "Apple"]
 ```
 
@@ -94,7 +90,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-튜플은 함수가 추가 정보를 반환하는 수단으로 자주 사용됩니다. 이것의 유용함은 패턴 매칭(pattern matching)을 배울 때 더 명확해질 것입니다.
+튜플은 함수가 추가 정보를 반환하는 수단으로 자주 사용됩니다. 이것의 유용함은 [패턴 매칭(pattern matching)](../pattern-matching/)을 배울 때 더 명확해질 것입니다.
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -105,7 +101,7 @@ iex> File.read("path/to/unknown/file")
 
 ## 키워드 리스트
 
-키워드(keyword)와 맵(map)은 Elixir의 연관 컬렉션입니다. Elixir에서 키워드 리스트란 첫번째 원소가 atom인 특별한 튜플들의 리스트입니다. 따라서 키워드 리스트는 리스트와 성능이 비슷합니다.
+키워드 리스트(keyword list)와 맵(map)은 Elixir의 연관 컬렉션입니다. Elixir에서 키워드 리스트란 첫번째 원소가 애텀이고, 2개의 원소를 가지는 특별한 튜플들의 리스트입니다. 따라서 키워드 리스트는 리스트와 성능이 비슷합니다.
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -116,7 +112,7 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 
 키워드 리스트의 아래 세 가지 특징은 매우 중요합니다.
 
-+ 모든 키는 atom입니다.
++ 모든 키는 애텀입니다.
 + 키는 정렬되어 있습니다.
 + 키는 중복될 수 있습니다.
 
@@ -144,30 +140,36 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-만약 중복된 키가 맵에 추가되면 이전의 값을 새 값으로 교체합니다.
+중복된 키가 맵에 추가되면 이전의 값을 새 값으로 교체합니다.
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-위의 출력에서 볼 수 있듯이, 모든 키가 atom인 맵을 정의하기 위한 특별한 문법도 존재합니다.
+위의 출력에서 볼 수 있듯이, 모든 키가 애텀인 맵을 정의하기 위한 특별한 문법도 존재합니다.
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
-
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-맵에는 또다른 특별한 문법이 있는데, 이로써 애텀 키를 통해 맵 내부를 열람하거나 수정할 수 있습니다.
+그리고 애텀 키에 접근하기 위한 특별한 문법이 있습니다.
+
+```elixir
+iex> map = %{foo: "bar", hello: "world"}
+%{foo: "bar", hello: "world"}
+iex> map.hello
+"world"
+```
+
+맵의 또다른 흥미로운 부분은 갱신을 위한 자신만의 문법입니다.
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 iex> %{map | foo: "baz"}
 %{foo: "baz", hello: "world"}
-iex> map.hello
-"world"
 ```
