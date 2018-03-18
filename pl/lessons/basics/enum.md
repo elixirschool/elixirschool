@@ -114,7 +114,7 @@ iex> Enum.min([5, 3, 0, -1])
 
 Funkcja `min/2` robi dokładnie to samo, ale jako drugi argument przyjmuje funkcję anonimową zwracającą wartość domyślną dla `Enum`:
 
-```exliir
+```elixir
 iex> Enum.min([], fn -> :foo end)
 :foo  
 
@@ -131,7 +131,7 @@ iex> Enum.max([5, 3, 0, -1])
 
 Funkcja `max/2` działa na tej samej zasadzie co `min/2`, czyli jako drugi argument przyjmuje funkcję anonimową, która zwróci wartość domyślną:
 
-```exlir
+```elixir
 iex> Enum.max([], fn -> :bar end)
 :bar  
 
