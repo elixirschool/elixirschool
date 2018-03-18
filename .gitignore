@@ -85,3 +85,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# intelliJ idea And other editors
+.idea
+*.iml
