@@ -145,7 +145,7 @@ Enum.max([], fn -> :bar end)
 
 ### filter
 
-`filter/2` returns collection's elements that match the condition from the given function.
+The `filter/2` function enables us to filter the collection to include only those elements that evaluate to `true` using the provided function.
 
 ```elixir
 iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
