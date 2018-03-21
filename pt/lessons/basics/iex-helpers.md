@@ -206,23 +206,6 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `s`
-
-Com `s` podemos recuperar informação do tipo de especificação de um módulo ou função, podemos usá-lo para saber o que se espera.
-
-```elixir
-iex> s Map.merge/2
-@spec merge(map(), map()) :: map()
-
-# Também funciona nos módulos
-iex> s Map
-@spec get(map(), key(), value()) :: value()
-@spec put(map(), key(), value()) :: map()
-# ...
-@spec get(map(), key()) :: value()
-@spec get_and_update!(map(), key(), (value() -> {get, value()})) :: {get, map()} | no_return() when get: term()
-```
-
 ### `t`
 
 O `t` helper nos diz sobre Tipos disponíveis em um dado módulo:

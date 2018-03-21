@@ -208,23 +208,6 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `s`
-
-Με τον `s` μπορούμε να ανακτήσουμε τις πληροφορίες προδιαγραφής τύπων για μια ενότητα ή μια συνάρτηση, μπορούμε να τον χρησιμποιήσουμε για να ξέρουμε ότι αναμένει:
-
-```elixir
-iex> s Map.merge/2
-@spec merge(map(), map()) :: map()
-
-# it also works on entire modules
-iex> s Map
-@spec get(map(), key(), value()) :: value()
-@spec put(map(), key(), value()) :: map()
-# ...
-@spec get(map(), key()) :: value()
-@spec get_and_update!(map(), key(), (value() -> {get, value()})) :: {get, map()} | no_return() when get: term()
-```
-
 ### `t`
 
 Ο βοηθός `t` μας λέει για τους διαθέσιμους τύπους σε μια δοθείσα ενότητα.
