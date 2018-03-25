@@ -9,7 +9,7 @@ Algorytmy pomagające przetwarzać kolekcje.
 
 ## Enum
 
-Moduł `Enum` zawiera ponad siedzemdziesiąt funkcji wspomagających pracę z kolekcjami, które omawialiśmy w [poprzedniej lekcji](./collections/). W tej lekcji przyjrzymy się tylko niektórym z funkcji. Innym sposobem na zapoznanie się z dostępnymi funkcjami jest wykorzystanie `iex`:
+Moduł `Enum` zawiera ponad siedemdziesiąt funkcji wspomagających pracę z kolekcjami, które omawialiśmy w [poprzedniej lekcji](./collections/). W tej lekcji przyjrzymy się tylko niektórym z funkcji. Innym sposobem na zapoznanie się z dostępnymi funkcjami jest wykorzystanie `iex`:
 
 ```elixir
 iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
@@ -24,9 +24,9 @@ at/3
 ...
 ```
 
-Mamy do dyspozycji ogromną ilość funkcji. Nie bez powodu. Programowanie funkcyjne opiera się na przetwarzaniu różnego typu kolekcjami. W połączeniu z innymi funkcjonalnościami Elixira, jak wykonywalna dokumentacja, otrzymujemy jako programiści bardzo efektywne narzędzia.
+Mamy do dyspozycji ogromną ilość funkcji. Nie bez powodu. Programowanie funkcyjne opiera się na przetwarzaniu różnego typu kolekcji. W połączeniu z innymi funkcjonalnościami Elixira, jak wykonywalna dokumentacja, otrzymujemy jako programiści bardzo efektywne narzędzia.
 
-Pełna lista jest dostępna w dokumentacji modułu [`Enum`](https://hexdocs.pm/elixir/Enum.html). do leniwego przetwarzania kolekcji służy moduł [`Stream`](https://hexdocs.pm/elixir/Stream.html).
+Pełna lista jest dostępna w dokumentacji modułu [`Enum`](https://hexdocs.pm/elixir/Enum.html). Do leniwego przetwarzania kolekcji służy moduł [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 ### all?
 
