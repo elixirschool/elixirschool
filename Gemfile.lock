@@ -35,7 +35,7 @@ GEM
       liquid (~> 4.0)
       mercenary (~> 0.3.3)
       pathutil (~> 0.9)
-      rouge (>= 2, < 4)
+      rouge (>= 1.7, < 4)
       safe_yaml (~> 1.0)
     jekyll-assets (2.3.2)
       concurrent-ruby (~> 1.0)
