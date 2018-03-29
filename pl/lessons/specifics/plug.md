@@ -118,6 +118,7 @@ Dodajmy nasz plug do routera:
 ```elixir
 defmodule Example.Plug.Router do
   use Plug.Router
+  use Plug.ErrorHandler
 
   alias Example.Plug.VerifyRequest
 
