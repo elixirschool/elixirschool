@@ -90,7 +90,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-参考官方的文档来看[卫兵支持的表达式](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses)
+参考官方的文档来看[卫兵支持的表达式](https://hexdocs.pm/elixir/master/guards.html)
 
 ## `cond`
 当我们需要匹配条件而不是值的时候，可以使用 `cond`，这和其他语言的 `else if` 或者 `elsif` 相似：

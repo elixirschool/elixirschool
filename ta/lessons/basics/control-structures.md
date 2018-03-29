@@ -92,7 +92,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-[காப்புகளில் பயன்படுத்தக்கூடிய கோவைகள்](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses) குறித்து மேலும் அறிந்துகொள்ள அதன் அதிகாரபூர்வ ஆவணங்களைப்பார்க்கவும்.
+[காப்புகளில் பயன்படுத்தக்கூடிய கோவைகள்](https://hexdocs.pm/elixir/master/guards.html) குறித்து மேலும் அறிந்துகொள்ள அதன் அதிகாரபூர்வ ஆவணங்களைப்பார்க்கவும்.
 
 ## `cond`
 

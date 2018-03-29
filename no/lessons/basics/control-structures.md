@@ -93,7 +93,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Se den offisielle dokumentasjonen for [Tillatte uttrykk i beskyttelsesklausuler](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Se den offisielle dokumentasjonen for [Tillatte uttrykk i beskyttelsesklausuler](https://hexdocs.pm/elixir/master/guards.html).
 
 
 ## `cond`

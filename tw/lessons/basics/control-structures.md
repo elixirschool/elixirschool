@@ -93,7 +93,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-查看官方文件來獲得 [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses) 資訊。
+查看官方文件來獲得 [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/master/guards.html) 資訊。
 
 ## `cond`
 

@@ -94,7 +94,7 @@ iex> case {1, 2, 3} do
 "x sifirdan buyuk"
 ```
 
-Elixir resmi dokumanlarindan devamini inceleyebilirsiniz. [Kosullu karsilastimalar (guard clauses) hakkinda daha fazla](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Elixir resmi dokumanlarindan devamini inceleyebilirsiniz. [Kosullu karsilastimalar (guard clauses) hakkinda daha fazla](https://hexdocs.pm/elixir/master/guards.html).
 
 ## `cond`
 
