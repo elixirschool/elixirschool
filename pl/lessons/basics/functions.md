@@ -92,7 +92,7 @@ iex> Length.of [1, 2, 3]
 
 ### Nazywanie i arność funkcji
 
-Jak już wspominaliśmy wcześniej pełna nazwa funkcji jest kombinacją jej nazwy i arności (liczby argumentów). Można to rozumieć w nastepujacy sposób:
+Jak już wspominaliśmy wcześniej pełna nazwa funkcji jest kombinacją jej nazwy i arności (liczby argumentów). Można to rozumieć w następujacy sposób:
 
 ```elixir
 defmodule Greeter2 do
@@ -110,7 +110,7 @@ iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
 
-Wypisaliśmy pełne nazwy funkcji w komentarzach powyżej. Pierwsza z nie przyjmuje żadnego argumentu, zatem jest nazwana `hello/0`, druga przyjmuje jeden argument zatem nazwa to `hello/1` i tak dalej. Nie należy mylić tego z przeciążaniem funkcji w innych językach. Każda z tych funkcji jest _niezależna_ od innych. Dopasowanie wzorców, o którym przed chwilą mówiliśmy, zostanie zastosowane jedynie wtedy, gdy mamy wiele definicji funkcji o takich samych nazwach i liczbie argumentów.    
+Wypisaliśmy pełne nazwy funkcji w komentarzach powyżej. Pierwsza z nich przyjmuje żadnego argumentu, zatem jest nazwana `hello/0`, druga przyjmuje jeden argument zatem nazwa to `hello/1` i tak dalej. Nie należy mylić tego z przeciążaniem funkcji w innych językach. Każda z tych funkcji jest _niezależna_ od innych. Dopasowanie wzorców, o którym przed chwilą mówiliśmy, zostanie zastosowane jedynie wtedy, gdy mamy wiele definicji funkcji o takich samych nazwach i liczbie argumentów.    
 
 ### Funkcje prywatne
 
