@@ -91,7 +91,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Ceklah dokumentasi resmi untuk [Expression yang diijinkan dalam klausa penjaga](https://hexdocs.pm/elixir/master/guards.html).
+Ceklah dokumentasi resmi untuk [Expression yang diijinkan dalam klausa penjaga](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 ## `cond`
 

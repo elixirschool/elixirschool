@@ -92,7 +92,7 @@ iex> case {1, 2, 3} do
 "Θα ταιριάξει"
 ```
 
-Ελέγξτε τα επίσημα έγγραφα για τις [Εκφράσεις που επιτρέπονται στις ρήτρες προστασίας](https://hexdocs.pm/elixir/master/guards.html).
+Ελέγξτε τα επίσημα έγγραφα για τις [Εκφράσεις που επιτρέπονται στις ρήτρες προστασίας](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 ## `cond`
 

@@ -93,7 +93,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-আরও জানতে হলে অফিসিয়াল ডকুমেন্টেশানের [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/master/guards.html) চ্যাপ্টারটি দেখুন।
+আরও জানতে হলে অফিসিয়াল ডকুমেন্টেশানের [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions) চ্যাপ্টারটি দেখুন।
 
 ## `cond`
 

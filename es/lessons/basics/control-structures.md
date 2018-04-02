@@ -92,7 +92,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Revisa la documentación oficial para [Expresiones permitidas en cláusulas de guardia](https://hexdocs.pm/elixir/master/guards.html).
+Revisa la documentación oficial para [Expresiones permitidas en cláusulas de guardia](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 
 ## `cond`

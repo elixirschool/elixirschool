@@ -91,7 +91,7 @@ iex> case {1, 2, 3} do
 "Trùng"
 ```
 
-Xem tài liệu tại trang chủ về [Biểu thức hợp lệ trong mệnh đề guard](https://hexdocs.pm/elixir/master/guards.html).
+Xem tài liệu tại trang chủ về [Biểu thức hợp lệ trong mệnh đề guard](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 
 ## `cond`
