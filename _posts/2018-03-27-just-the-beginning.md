@@ -4,8 +4,9 @@ categories: announcement
 date:   2018-04-24
 layout: post
 title:  Just the beginning
-excerpt: "Announcing the official Elixir School blog: Appendix"
-preview: image.jpg
+excerpt: >
+  Announcing the official Elixir School blog: Appendix
+preview: default.jpg
 pinned: true
 ---
 
