@@ -9,7 +9,7 @@ disable_transform: true
     <article>
       <a href="{{ post.url }}" class="image">{% img "{{ post.preview }}" width=nil height=nil %}</a>
       <h3>{{ post.title }}</h3>
-      {{ post.excerpt }}
+      {{ post.excerpt | markdownify }}
       <ul class="actions">
         <li><a href="{{ post.url }}" class="button{% unless page.disable_transform %} up{%endunless%}">Read more</a></li>
       </ul>
