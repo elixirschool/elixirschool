@@ -19,11 +19,13 @@ feature-section:
       icon: signal
 ---
 
-[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Elixir School is the premier destination for people looking to learn and master the Elixir programming language.
 
-Lessons about the Elixir programming language, inspired by Twitter's [Scala School](http://twitter.github.io/scala_school/).
+Through our collection lessons and auxiliary resources you'll find everything you need whether this is your first time or you're a seasoned veteran.
 
-Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], [ภาษาไทย][th] and others.
+Elixir School has graciously been translated into multiple languages.  Some of the available translations include: [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], and [ภาษาไทย][th].
+
+We welcome and encourage you to join us in continuing to make Elixir School a top resource by getting in involved at [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool) today!
 
   [cn]: /cn/
   [es]: /es/
@@ -43,10 +45,4 @@ Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk]
   [tr]: /tr/
   [th]: /th/
 
-_Your feedback and participation is encouraged!_
 
-## About Elixir
-
-"Elixir is a dynamic, functional language designed for building scalable and maintainable applications." — [elixir-lang.org](http://elixir-lang.org/)
-
-Elixir leverages the battle tested Erlang VM (BEAM) to build distributed and fault-tolerant systems with low-latency out of the box.
