@@ -13,6 +13,17 @@ section .content {
 		padding: 0 0.75em 0.5em 0;
 	}
 }
+
+pre {     
+  white-space: pre-wrap;
+  word-wrap: break-word; 
+}
+
+.post-date {
+  margin: 0 0 .5em 0;
+  font-weight: 600;
+}
+
 #section-page{
 	/**
 	 * Right-to-left languages
@@ -21,6 +32,7 @@ section .content {
 			direction: rtl;
 			unicode-bidi: embed;
 	}
+
 	&.rtl ul > li {
     margin-right: 10px;
 	}
@@ -29,18 +41,16 @@ section .content {
 			direction: ltr;
 			text-align: left;
 	}
+
 	&.rtl .content {
 			margin-right: auto;
 	}
 
-
-
 	.clickable-header {
 	  display: inline-block;
 	  cursor: pointer;
-
-
 	}
+
 	.back-to-top {
 	  display: inline;
 	  cursor: pointer;
@@ -52,6 +62,7 @@ section .content {
 	    white-space: pre;
 	  }
 	}
+
 	img{
 		max-width: 100%;
 	}
