@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.4.0
 title: Enum
 redirect_from:
   - /jp/lessons/basics/enum/
@@ -141,6 +141,15 @@ iex> Enum.max([5, 3, 0, -1])
 ```elixir
 Enum.max([], fn -> :bar end)
 :bar
+```
+
+### filter
+
+`filter/2`を使用するとコレクションで与えられた関数で評価して `true` になる要素のみを返すことができます。
+
+```elixir
+iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
+[2, 4]
 ```
 
 ### reduce

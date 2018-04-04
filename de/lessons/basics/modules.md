@@ -3,13 +3,13 @@ version: 0.9.1
 title: Module
 ---
 
-Wir wir aus Erfahrung wissen ist es unschön alle unsere Funktionen in der gleichen Datei und im gleichen scope zu haben. In dieser Lektion werden wir uns ansehen, wie man Funktionen aufteilt und definieren eine spezielle map, genauer ein struct, um unseren Code effektiver zu strukturieren.
+Wie wir aus Erfahrung wissen ist es unschön alle unsere Funktionen in der gleichen Datei und im gleichen scope zu haben. In dieser Lektion werden wir uns ansehen, wie man Funktionen aufteilt und definieren eine spezielle map, genauer ein struct, um unseren Code effektiver zu strukturieren.
 
 {% include toc.html %}
 
 ## Module
 
-Module sind der beste Weg Funktionen in einem namespace zu gruppieren. Zusätzlich zum gruppieren von Funktionen erlauben sie uns benannte und private Funktionen zu definieren, welche wir im vorherigen Kapitel behandelt haben.
+Module sind der beste Weg Funktionen in einem namespace zu gruppieren. Zusätzlich zum Gruppieren von Funktionen erlauben sie uns benannte und private Funktionen zu definieren, welche wir im vorherigen Kapitel behandelt haben.
 Lass uns ein einfaches Beispiel ansehen:
 
 ``` elixir

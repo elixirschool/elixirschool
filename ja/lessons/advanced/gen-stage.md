@@ -1,11 +1,11 @@
 ---
-version: 1.0.0
+version: 1.0.2
 title: GenStage
 redirect_from:
   - /jp/lessons/advanced/gen-stage/
 ---
 
-このレッスンでは、GenStage をどのように扱うのか、アプリケーションでどのように活用できるのかを詳しく見ていきます。
+このレッスンでは、 GenStage をどのように扱うのか、アプリケーションでどのように活用できるのかを詳しく見ていきます。
 
 {% include toc.html %}
 

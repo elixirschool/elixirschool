@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.1.0
 title: Параллелизм
 ---
 
@@ -81,7 +81,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-Иногда мы не хотим, чтобы связанный процесс завершал текущий.  Для этого нужно перехватывать попытки завершения.  Перехваченные попытки будут получены в виде сообщения-кортежа: `{:EXIT, from_pid, reason}`.
+Иногда мы не хотим, чтобы связанный процесс завершал текущий. Для этого нужно перехватывать попытки завершения с помощью функции `Process.flag/2`. Она использует функцию [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) Erlang с флагом `trap_exit`. Если перехват включён (`trap_exit` равно `true`), перехваченные попытки будут получены в виде сообщения-кортежа: `{:EXIT, from_pid, reason}`.
 
 ```elixir
 defmodule Example do
