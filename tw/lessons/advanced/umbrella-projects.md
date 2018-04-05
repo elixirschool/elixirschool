@@ -38,13 +38,13 @@ for each application in the apps/ directory.
 
 正如你可以從 shell 指令中看到的，Mix 建立了一個帶有兩個目錄的小型框架專案：
 
-  - `apps/` - 子（child）專案駐在目錄
+  - `apps/` - 子 (child) 專案駐在目錄
   - `config/` - 保護傘專案的配置設定存放目錄
 
 
 ## 子專案
 
-現在到專案 `machine_learning_toolkit/apps` 目錄下並使用 Mix 建立3個一般的應用程式，如下所示：
+現在到專案 `machine_learning_toolkit/apps` 目錄下並使用 Mix 建立 3 個一般的應用程式，如下所示：
 
 ```shell
 $ mix new utilities
@@ -183,7 +183,7 @@ Consolidated Inspect
 
 你可能認為在保護傘專案中要與應用程式互動會有所不同。不過信不信由你，你可能猜錯了！
 如果將目錄切換到頂層目錄，並以 `iex -S mix` 啟動 IEx，我們能夠正常地與所有專案進行互動。
-可以藉由修改 `apps/datasets/lib/datasets.ex` 內容，來表示這個簡單範例
+可以藉由修改 `apps/datasets/lib/datasets.ex` 內容，來表示這個簡單範例：
 
 ```elixir
 defmodule Datasets do

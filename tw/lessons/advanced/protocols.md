@@ -3,13 +3,13 @@ version: 1.0.1
 title: 協定
 ---
 
-在本課程中，將研究協定 (Protocols)，它們是什麼，以及如何在 Elixir 中使用。
+在本課程中，將研究協定 (Protocols) 是什麼，以及如何在 Elixir 中使用。
 
 {% include toc.html %}
 
 ## 什麼是協定 (Protocols)
 
-那麼協定是什麼？協定是實現 Elixir 多型 (polymorphism) 的一種手段。Erlang 的一個惱人之處是為新定義型別擴展了現有 API。為了在 Elixir 中避免這件事，函數會根據值的型別動態調度 (dispatched dynamically)。
+那麼協定是什麼？協定是實現 Elixir 多型 (polymorphism) 的一種手段。Erlang 的一個惱人之處是會為新定義的型別擴展現有 API。為了在 Elixir 中避免這件事，函數會根據值的型別動態調度 (dispatched dynamically)。
 
 Elixir 帶有一些內建的協定，例如 `String.Chars` 協定負責之前看到並使用過的 `to_string/1` 函數。現在來看看 `to_string/1` 的一個簡短例子：
 
@@ -31,7 +31,7 @@ to_string({:foo})
     (elixir) lib/string/chars.ex:17: String.Chars.to_string/1
 ```
 
-正如你所看到的，我們得到一個協定錯誤 (protocol error)，因為沒有實現 tuple。在下一節中，將為元組實現 `String.Chars` 協定。
+正如你所看到的，我們會得到一個協定錯誤 (protocol error)，因為沒有實現 tuple。在下一節中，將為 tuple 實現 `String.Chars` 協定。
 
 ## 實現一個協定
 

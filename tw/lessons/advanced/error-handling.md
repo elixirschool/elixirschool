@@ -27,7 +27,7 @@ iex> raise ArgumentError, message: "the argument value is invalid"
 ** (ArgumentError) the argument value is invalid
 ```
 
-當知道錯誤可能發生時，可以使用 `try/rescue` 和模式配對來處理它：
+當知道錯誤可能發生時，可以使用 `try/rescue` 和模式比對來處理它：
 
 ```elixir
 iex> try do
@@ -104,7 +104,7 @@ iex> try do
 
 ## Throws
 
-在 Elixir 中處理錯誤的另一個機制是 `throw` 和 `catch`。在實踐中，這些錯誤在新的 Elixir 程式碼很少發生，但知道並理解它們仍膾是重要的。
+在 Elixir 中處理錯誤的另一個機制是 `throw` 和 `catch`。在實踐中，這些錯誤在新的 Elixir 程式碼很少發生，但知道並理解它們仍是重要的。
 
  `throw/1` 函數使我們能夠用一個能 `catch` 並使用的特定值來退出 (exit) 執行：
 
@@ -125,7 +125,7 @@ iex> try do
 "Caught: 5"
 ```
 
-如前所述， `throw/catch` 是非常不常見的，當函數庫無法提供足夠的 API 時，通常會以 stopgaps 的形式存在。
+如前所述， `throw/catch` 是非常不常見的，當函數庫無法提供足夠的 API 時，通常會以暫時的形式存在。
 
 ## Exiting
 

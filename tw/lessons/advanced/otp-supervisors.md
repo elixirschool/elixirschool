@@ -72,7 +72,7 @@ children = [
 Tasks 有自己專屬的 Supervisor，`Task.Supervisor`。
 被設計用於動態建立 tasks，這個 supervisor 在內部使用 `:simple_one_for_one` 。
 
-### 設定 (Setup)
+### 設定
 
 `Task.Supervisor` 設定上與其他 supervisors 沒有區別：
 
@@ -96,4 +96,4 @@ children = [
 {:ok, pid} = Task.Supervisor.start_child(ExampleApp.TaskSupervisor, fn -> background_work end)
 ```
 
-如果 task 過早崩潰，它將被重新啟動。在處理接踵而來的連接 (connections) 或執行背景工作時，將能特別有用。
+如果 task 過早崩潰，它將被重新啟動。在處理接踵而來的連接 (connections) 或執行背景工作時，將會特別有用。

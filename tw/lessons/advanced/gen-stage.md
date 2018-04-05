@@ -48,7 +48,7 @@ GenStage 的規範中承認三種角色：
 
 在應用程式中，將使用全部三個 GenStage 角色。生產者將負責計算和產出數字。生產者-消費者則過濾出偶數，而後對下游需求做出回應。最後建立消費者顯示剩餘數字。
 
-讓我們從生成一個有 supervision tree 的專案開始：
+讓我們從生成一個有 supervision 樹的專案開始：
 
 ```shell
 $ mix new genstage_example --sup
@@ -105,7 +105,7 @@ end
 `init/1` 函數的回傳值是 GenStage 對處理程序 (process) 進行分類的依據。
 
 `handle_demand/2` 函數是生產者被定義的主要部份。它必須由所有 GenStage 生產者實現。
-在這裡，我們回傳消費者所需的一組數字，並增加我們的計數 (counter)。來自消費者的的需求，也就是上面程式碼中的 `demand`，被表示為一個能夠處理事件量的相對應整數；預設為 1000。
+在這裡，我們回傳消費者所需的一組數字，並累加我們的計數器 (counter)。來自消費者的需求，也就是上面程式碼中的 `demand`，被表示為一個能夠處理事件量的相對應整數；預設為 1000。
 
 ## 生產者 消費者 (Producer Consumer)
 
@@ -145,7 +145,7 @@ end
 
 `handle_events/3` 函數是我們的主力，接收傳入事件、處理 (process) 它們並回傳轉換後的集合。
 而消費者的實現方式也大致相同，但重要的區別在於 `handle_events/3` 函數的回傳值以及如何被使用的。
-當將處理程序標記為 producer_consumer 時，在範例中是 tuple 的第二個引數 - `numbers` 是用於達到下游的消費者需求。但在消費者中，這個值會被丟棄。     
+當將處理程序標記為 producer_consumer 時，在範例中是 tuple 的第二個引數 - `numbers` 是用於達到下游的消費者需求；但在消費者中，這個值會被丟棄。     
 
 ## 消費者
 
@@ -180,13 +180,13 @@ defmodule GenstageExample.Consumer do
 end
 ```
 
-正如在前面節中所介紹的，消費者不會產出事件，所以 tuple 中的第二個值將被丟棄。
+正如在前面章節中所介紹的，消費者不會產出事件，所以 tuple 中的第二個值將被丟棄。
 
 ## 將所有角色組合在一起
 
 現在已經建立了生產者、生產者-消費者和消費者，我們已經準備好將所有東西串在一起了。
 
-首先打開 `lib/genstage_example/application.ex` 並將新處理程序加入到 supervisor tree：
+首先打開 `lib/genstage_example/application.ex` 並將新處理程序加入到 supervisor 樹：
 
 ```elixir
 def start(_type, _args) do
@@ -256,11 +256,11 @@ $ mix run --no-halt
 
 現在已經介紹了 GenStage 並建立了第一個範例應用程式，但 GenStage 有哪些 _真實_ 案例？
 
-+ Data Transformation Pipeline — 生產者不盡然只能是簡單的數字生成器。可以從資料庫或甚至像 Apache 的 Kafka 這樣的其他來源生成事件。通過結合生產者-消費者和消費者，可以對度量 (metrics) 進行處理、排序、編目(catalog)和儲存。
++ Data Transformation Pipeline — 生產者不盡然只能是簡單的數字生成器。可以從資料庫或甚至像 Apache 的 Kafka 這樣的其他來源生成事件。通過結合生產者-消費者和消費者，可以對度量 (metrics) 進行處理、排序、編目 (catalog) 和儲存。
 
 + Work Queue — 由於事件可以是任何東西，因此可以生產由一系列被消費者完成的工作單元。
 
 + Event Processing — 
-與資料管道類似 (data pipeline)，能夠接收、處理，排序並針對從來源即時發生的事件採取行動。
+與資料管線類似 (data pipeline)，能夠接收、處理，排序並針對從來源即時發生的事件採取行動。
 
 而這些還只是 GenStage 的 __一小部分__ 可能性。

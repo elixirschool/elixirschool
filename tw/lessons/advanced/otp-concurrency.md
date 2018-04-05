@@ -3,15 +3,15 @@ version: 1.0.2
 title: OTP 並行性
 ---
 
-我們已經看過 Elixir 抽象的並發性，但是有時候需要更好的控制，為此我們轉而了解構建 Elixir 的 OTP 行為 (behaviors)。
+我們已經看過 Elixir 抽象的並行性，但是有時候需要更好的控制，為此我們轉而了解構建 Elixir 的 OTP 行為 (behaviors)。
 
-在本課程中，焦點會放在最龐大的部份：GenServers。
+在本課程中，焦點會放在最龐大的部分：GenServers。
 
 {% include toc.html %}
 
 ## GenServer
 
-OTP 伺服器是具有實現一組回呼 GenServer 行為的模組。在最基本的級別上，GenServer 是一個迴圈，每次迭代都處理一個經由更新狀態來的請求。
+OTP 伺服器是具有實現一組回呼 GenServer 行為的模組。在最基本的級別上，GenServer 是一個迴圈，每次疊代都處理一個經由更新狀態來的請求。
 
 為了展示 GenServer API，我們將實現一個基本佇列 (queue) 來儲存與檢索值。
 
@@ -41,7 +41,7 @@ end
 通常需要以同步方式與 GenServers 互動，呼用一個函數並等待回應。
 為了處理同步請求，需要實現 `GenServer.handle_call/3` 回呼函數，該回呼函數採用：請求、呼用者的 PID 和現有狀態；它被預期通過回傳一個 tuple 來回覆：`{:reply, response, state}`。
 
-通過模式配對，可以為許多不同的請求和狀態定義回呼。可以在 [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) 文件中找到被接受回傳值的完整清單。
+通過模式比對，可以為許多不同的請求和狀態定義回呼。可以在 [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) 文件中找到被接受回傳值的完整清單。
 
 為了展示同步請求，現在加入顯示當前佇列和刪除值的功能：
 

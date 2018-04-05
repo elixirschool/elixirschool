@@ -32,7 +32,7 @@ Result: 1000000
 ## Erlang Packages
 
 在之前的課程中，介紹了 Mix 與管理耦合性。而使用 Erlang 函式庫的工作原理也是一樣的。
-如果事件所需的 Erlang 函式庫還沒有被推送到 [Hex](https://hex.pm)，你也可以參考 git 源碼庫來代替：
+如果事件所需的 Erlang 函式庫還沒有被推送到 [Hex](https://hex.pm)，你也可以參考 git 程式碼庫來代替：
 
 ```elixir
 def deps do

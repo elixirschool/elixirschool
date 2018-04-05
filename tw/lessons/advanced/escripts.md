@@ -64,7 +64,7 @@ end
 
 ## 建立
 
-一旦完成應用程式使用 escript 的環境設置，以 Mix 建立可執行檔案是不廢吹灰之力的：
+一旦完成應用程式使用 escript 的環境設置，以 Mix 建立可執行檔案是不費吹灰之力的：
 
 ```elixir
 $ mix escript.build

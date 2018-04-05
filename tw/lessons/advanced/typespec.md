@@ -56,7 +56,7 @@ end
 ```
 
 我們在 `Examples` 模組中引入了一個結構體，它包含兩個域 (fields) `first` 和 `last`。
-這是自 `Range` 模組來的較簡易結構體版本。當談論到 [modules](../../basics/modules/#structs) 時，同時將討論 `structs`。現在想像一下，我們需要在很多地方用 `Examples` 結構體來做規範。但寫出冗長而復雜的規範會很煩人，且可能成為 bug 的來源。一個解決這個問題的方法是 `@type`。
+這是自 `Range` 模組來的較簡易結構體版本。當談論到 [modules](../../basics/modules/#structs) 時，同時將討論 `structs`。現在想像一下，我們需要在很多地方用 `Examples` 結構體來做規範。但寫出冗長而複雜的規範會很煩人，且可能成為 bug 的來源。一個解決這個問題的方法是 `@type`。
 
 Elixir 對於型別有三種指令：
 
