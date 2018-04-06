@@ -127,7 +127,7 @@ O fluxo geral do plug do Guardian é:
 2. Opcionalmente carrega o recurso indentificado no token: `LoadResource` plug
 3. Garante que há um token válido para a requisição e recusa o acesso se não há. `EnsureAuthenticated` plug
 
-Para atender as necessidades de todos os desenvolvedores, o Guardian implementa essa fase separadamente. Para encontrar o token os plugs `Verify*`
+Para atender as necessidades de todos os desenvolvedores, o Guardian implementa essa fase separadamente. Para encontrar o token use os plugs `Verify*`
 
 Vamos criar alguns pipelines.
 
