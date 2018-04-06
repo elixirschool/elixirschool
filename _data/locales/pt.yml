@@ -11,7 +11,7 @@ sections:
   specifics: Específico
   libraries: Bibliotecas
 version_messages:
-  outdated: "Algum conteúdo desta tradução pode estar desatualizada."
+  outdated: "Algum conteúdo desta tradução pode estar desatualizado."
   major: "Várias mudanças importantes foram feitas à lição original desde a última atualização."
   minor: "Pequenas mudanças foram feitas à lição original desde a última atualização."
   patch: "Várias correções foram aplicadas à lição original desde a última atualização."
