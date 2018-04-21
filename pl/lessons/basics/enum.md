@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.3.0
 title: Enum
 ---
 
@@ -9,9 +9,24 @@ Algorytmy pomagające przetwarzać kolekcje.
 
 ## Enum
 
-Moduł `Enum` zawiera ponad sto funkcji wspomagających pracę z kolekcjami, które omawialiśmy w poprzedniej lekcji.
+Moduł `Enum` zawiera ponad siedemdziesiąt funkcji wspomagających pracę z kolekcjami, które omawialiśmy w [poprzedniej lekcji](./collections/). W tej lekcji przyjrzymy się tylko niektórym z funkcji. Innym sposobem na zapoznanie się z dostępnymi funkcjami jest wykorzystanie `iex`:
 
-W tej lekcji przyjrzymy się tylko niektórym z funkcji. Pełna lista jest dostępna w dokumentacji modułu [`Enum`](https://hexdocs.pm/elixir/Enum.html); do leniwego przetwarzania kolekcji służy moduł [`Stream`](https://hexdocs.pm/elixir/Stream.html).
+```elixir
+iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+...>   IO.puts "#{function}/#{arity}"
+...> end)
+all?/1
+all?/2
+any?/1
+any?/2
+at/2
+at/3
+...
+```
+
+Mamy do dyspozycji ogromną ilość funkcji. Nie bez powodu. Programowanie funkcyjne opiera się na przetwarzaniu różnego typu kolekcji. W połączeniu z innymi funkcjonalnościami Elixira, jak wykonywalna dokumentacja, otrzymujemy jako programiści bardzo efektywne narzędzia.
+
+Pełna lista jest dostępna w dokumentacji modułu [`Enum`](https://hexdocs.pm/elixir/Enum.html). Do leniwego przetwarzania kolekcji służy moduł [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 ### all?
 
@@ -49,6 +64,8 @@ Jest dostępne kilka wersji `chunk_every/2`, ale nie będziemy ich zgłębiać. 
 Jeżeli chcemy pogrupować elementy kolekcji inaczej niż po wielkości, możemy użyć funkcji `chunk_by`. Jako argumenty przyjmuje ona kolekcję oraz funkcję. Grupy tworzone są na podstawie wyniku działania funkcji. Jeżeli wynik zmienia się, to tworzona jest nowa grupa, nawet jeżeli wcześniej istniała grupa dla danego wyniku funkcji:
 
 ```elixir
+iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"]]
 iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
@@ -58,13 +75,14 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 Czasami grupowanie elementów kolekcji nie jest dokładnie tym, o co nam chodzi. W takim przypadku funkcja `map_every/3` pozwoli nam na pracę z konkretnymi elementami kolekcji. Jeżeli nasza kolekcja jest w jakiś sposób uporządkowana, to funkcja ta może być bardzo przydatna:
 
 ```elixir
-iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
-[2, 2, 6, 4]
+# Funkcja zostanie wywołana dla co trzeciego elementu
+iex> Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
+[1001, 2, 3, 1004, 5, 6, 1007, 8]
 ```  
 
 ### each
 
-Jeżeli chcemy przejść przez kolekcję bez zwracania nowej wartości, to używamy funkcji `each`:
+Jeżeli chcemy przejść przez kolekcję bez zwracania nowej wartości, to używamy funkcji `each/2`:
 
 ```elixir
 iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
@@ -74,11 +92,11 @@ three
 :ok
 ```
 
-__Uwaga__: Funkcja `each` zwraca atom `:ok`.
+__Uwaga__: Funkcja `each/2` zwraca atom `:ok`.
 
 ### map
 
-By wywołać naszą funkcję na każdym elemencie kolekcji i uzyskać nową kolekcję używamy funkcji `map`:
+By wywołać naszą funkcję na każdym elemencie kolekcji i uzyskać nową kolekcję używamy funkcji `map/2`:
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
@@ -96,10 +114,9 @@ iex> Enum.min([5, 3, 0, -1])
 
 Funkcja `min/2` robi dokładnie to samo, ale jako drugi argument przyjmuje funkcję anonimową zwracającą wartość domyślną dla `Enum`:
 
-```exliir
+```elixir
 iex> Enum.min([], fn -> :foo end)
 :foo  
-
 ```
 
 ### max
@@ -113,12 +130,10 @@ iex> Enum.max([5, 3, 0, -1])
 
 Funkcja `max/2` działa na tej samej zasadzie co `min/2`, czyli jako drugi argument przyjmuje funkcję anonimową, która zwróci wartość domyślną:
 
-```exliir
+```elixir
 iex> Enum.max([], fn -> :bar end)
 :bar  
-
 ```
-
 
 ### reduce
 
@@ -127,15 +142,17 @@ Funkcja `reduce` pozwala na zredukowanie kolekcji do pojedynczej wartości. By t
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
+
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+
 iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 "cba1"
 ```
 
 ### sort
 
-Sortowanie kolekcji jest bardzo proste dzięki nie jednej a dwóm funkcjom `sort`.  Pierwsza z nich porządkuje elementy zgodnie ze specyfikacją Elixira:
+Sortowanie kolekcji jest bardzo proste dzięki nie jednej a dwóm funkcjom `sort/1`.  Pierwsza z nich porządkuje elementy zgodnie ze specyfikacją Elixira:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -165,5 +182,3 @@ Jeżeli chcemy usunąć duplikaty z kolekcji możemy użyć funkcji `uniq_by/2`:
 iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
 [1, 2, 3]
 ```
-
-Funkcja `uniq/1`, która miała takie samo działanie, została oznaczona jako przestarzała w Elixirze 1.4, a jej użycie wygeneruje ostrzeżenie kompilatora.

@@ -108,7 +108,7 @@ Skoro już wiemy jak tworzyć moduły oraz struktury przyjrzyjmy się jak wykorz
 
 ### `alias`
 
-Pozwalana tworzenie aliasów nazw modułów, co jest bardzo często wykorzystywane w kodzie Elixira:
+Pozwala na tworzenie aliasów nazw modułów, co jest bardzo często wykorzystywane w kodzie Elixira:
 
 ```elixir
 defmodule Sayings.Greetings do

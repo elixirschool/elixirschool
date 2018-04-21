@@ -206,23 +206,6 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `s`
-
-使用 `s` 可以檢索模組或函數的型別規格資訊 (type spec information)。可以用它來了解模組或函數的可能功用：
-
-```elixir
-iex> s Map.merge/2
-@spec merge(map(), map()) :: map()
-
-# it also works on entire modules
-iex> s Map
-@spec get(map(), key(), value()) :: value()
-@spec put(map(), key(), value()) :: map()
-# ...
-@spec get(map(), key()) :: value()
-@spec get_and_update!(map(), key(), (value() -> {get, value()})) :: {get, map()} | no_return() when get: term()
-```
-
 ### `t`
 
  `t` helper 告訴我們關於所給定模組中的可用型別：

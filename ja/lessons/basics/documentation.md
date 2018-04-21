@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.2
 title: ドキュメント
 redirect_from:
   - /jp/lessons/basics/documentation/
@@ -182,9 +182,10 @@ Hello メッセージを表示します
 全てがうまくいき、上記のような出力が表示されていれば、ExDoc の構築準備ができていることを意味します。 `mix.exs` ファイルに、 `:earmark` と `:ex_doc` の2つの必要な依存関係を追加してください:
 
 ```elixir
-def deps do
-  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
-end
+  def deps do
+    [{:earmark, "~> 0.1", only: :dev},
+    {:ex_doc, "~> 0.11", only: :dev}]
+  end
 ```
 
 `only: :dev`というキーバリューのペアを指定することで、本番環境ではこれらの依存パッケージをダウンロードしたりコンパイルしたりしないようにします。それはそれとして、Earmark はなぜ必要なのでしょう。これは Elixir プログラミング言語向けの Markdown パーサで、ExDoc が `@moduledoc` や `@doc` 内のドキュメントを綺麗な見た目の HTML に変換するためのものです。
@@ -237,7 +238,7 @@ defmodule Greeter do
 end
 ```
 
-  - モジュールのドキュメントで関数に言及する場合は、以下のようにバッククォートを使用してください:
+ - モジュールのドキュメントで関数に言及する場合は、以下のようにバッククォートを使用してください:
 
 ```elixir
 defmodule Greeter do
@@ -253,7 +254,7 @@ defmodule Greeter do
 end
 ```
 
-  - 以下のように、`@moduledoc` 以下のコードは1行空けて区別してください:
+ - 以下のように、`@moduledoc` 以下のコードは1行空けて区別してください:
 
 ```elixir
 defmodule Greeter do
@@ -272,7 +273,7 @@ defmodule Greeter do
 end
 ```
 
-  - 関数内で markdown を使うと、 IEx や ExDoc で読みやすくなります。
+ - 関数内で markdown を使うと、 IEx や ExDoc で読みやすくなります。
 
 ```elixir
 defmodule Greeter do
@@ -303,6 +304,6 @@ defmodule Greeter do
 end
 ```
 
-  - ドキュメントにはいくつかコード例も含むように心がけてください。そうすることで、[ExUnit.DocTest][] を用いてモジュールや関数、マクロ内にあるコード例から自動テストを生成することもできるようになります。これには、テストケースから `doctest/1` マクロを呼び出し、ガイドラインに沿った例を書く必要があります。詳細は[公式ドキュメント][ExUnit.DocTest] にあります。
+ - ドキュメントにはいくつかコード例も含むように心がけてください。そうすることで、[ExUnit.DocTest][] を用いてモジュールや関数、マクロ内にあるコード例から自動テストを生成することもできるようになります。これには、テストケースから `doctest/1` マクロを呼び出し、ガイドラインに沿った例を書く必要があります。詳細は[公式ドキュメント][ExUnit.DocTest] にあります。
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

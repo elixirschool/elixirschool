@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.2.0
 title: モジュール
 redirect_from:
   - /jp/lessons/basics/modules/
@@ -11,7 +11,7 @@ redirect_from:
 
 ## モジュール
 
-モジュールは関数群を名前空間へと組織する最良の方法です。関数をまとめることに加えて、前回のレッスンで取り上げた名前付き関数やプライベート関数を定義することができます。
+モジュールは関数群を名前空間へと組織する最良の方法です。関数をまとめることに加えて、[関数](../functions/)のレッスンで取り上げた名前付き関数やプライベート関数を定義できます。
 
 基本的な例を見てみましょう:
 
@@ -57,17 +57,17 @@ defmodule Example do
 end
 ```
 
-重要なので言及しておきますと、Elixirには予約されている属性があります。もっとも一般的なのは以下の3つです:
+重要なので言及しておきますと、 Elixir には予約されている属性があります。もっとも一般的なのは以下の3つです:
 
 + `moduledoc` — 現在のモジュールにドキュメントを付けます。
 + `doc` — 関数やマクロについてのドキュメント管理。
-+ `behaviour` — OTPまたはユーザが定義した振る舞い(ビヘイビア)に用います。
++ `behaviour` — OTP またはユーザが定義した振る舞い(ビヘイビア)に用います。
 
 ## 構造体
 
 構造体は定義済みのキーの一群とデフォルト値を持つ特殊なマップです。モジュール内部で定義されなくてはならず、そのモジュールから名前をとります。構造体にとっては、モジュール内部で自身しか定義されていないというのもありふれたことです。
 
-構造体を定義するには`defstruct`を用い、フィールドとデフォルト値のキーワードリストを添えます:
+構造体を定義するには `defstruct` を用い、フィールドとデフォルト値のキーワードリストを添えます:
 
 ```elixir
 defmodule Example.User do
@@ -106,11 +106,11 @@ iex> %{name: "Sean"} = sean
 
 ## コンポジション(Composition)
 
-さて、モジュールと構造体の作り方がわかったので、コンポジションを用いてモジュールや構造体に既存の機能を追加する方法を学びましょう。Elixirは他のモジュールと連携する様々な方法を用意しています。
+さて、モジュールと構造体の作り方がわかったので、コンポジションを用いてモジュールや構造体に既存の機能を追加する方法を学びましょう。 Elixir は他のモジュールと連携する様々な方法を用意しています。
 
 ### `alias`
 
-モジュール名をエイリアスすることができます。Elixirのコードでは頻繁に使われます:
+モジュール名をエイリアスすることができます。 Elixir のコードでは頻繁に使われます:
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -130,7 +130,7 @@ defmodule Example do
 end
 ```
 
-2つのエイリアス間で衝突があったり、全体を別名でエイリアスしたい場合には、`:as` オプションを使います:
+2つのエイリアス間で衝突があったり、全体を別名でエイリアスしたい場合には、 `:as` オプションを使います:
 
 ```elixir
 defmodule Example do
@@ -150,7 +150,7 @@ end
 
 ### `import`
 
-モジュールをエイリアスするよりも、関数やマクロを取り込みたいという場合には、`import`を使います:
+モジュールをエイリアスするよりも、関数やマクロを取り込みたいという場合には、 `import` を使います:
 
 ```elixir
 iex> last([1, 2, 3])
@@ -163,9 +163,9 @@ iex> last([1, 2, 3])
 
 #### フィルタリング
 
-デフォルトでは全ての関数とマクロが取り込まれますが、`:only` や `:except` オプションを使うことでフィルタすることができます。
+デフォルトでは全ての関数とマクロが取り込まれますが、 `:only` や `:except` オプションを使うことでフィルタすることができます。
 
-特定の関数やマクロを取り込むには、名前/アリティのペアを `:only` や `:except`に渡す必要があります。`last/1`で最後の関数のみを取り込んでみましょう:
+特定の関数やマクロを取り込むには、名前/アリティのペアを `:only` や `:except` に渡す必要があります。 `last/1` で最後の関数のみを取り込んでみましょう:
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -175,7 +175,7 @@ iex> last([1, 2, 3])
 3
 ```
 
-`last/1`で指定された関数以外を全て取り込むには、同じ関数で試してみましょう:
+`last/1` で指定された関数以外を全て取り込むには、同じ関数で試してみましょう:
 
 ```elixir
 iex> import List, except: [last: 1]
@@ -186,7 +186,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-名前/アリティのペアに加えて、`:functions` と `:macros` という2つの特別なアトムもあります。これらはそれぞれ関数とマクロのみを取り込みます:
+名前/アリティのペアに加えて、 `:functions` と `:macros` という2つの特別なアトムもあります。これらはそれぞれ関数とマクロのみを取り込みます:
 
 ```elixir
 import List, only: :functions
@@ -195,7 +195,7 @@ import List, only: :macros
 
 ### `require`
 
-それほど頻繁に使われませんが、`require/2`も重要です。モジュールを require すると、コンパイルとロードが確実に行われます。モジュールのマクロを呼び出す必要がある場合には最も役に立ちます:
+それほど頻繁に使われませんが、 `require/2` も重要です。モジュールを require すると、コンパイルとロードが確実に行われます。モジュールのマクロを呼び出す必要がある場合には最も役に立ちます:
 
 ```elixir
 defmodule Example do
@@ -209,45 +209,69 @@ end
 
 ### `use`
 
-use マクロは特別なマクロ、`__using__/1` を特定のモジュールから呼び出します。例を見てください:
+`use` マクロを用いることで他のモジュールを利用して現在のモジュールの定義を変更することができます。
+コード上で `use` を呼び出すと、実際には提供されたモジュールに定義されている `__using__/1` コールバックを呼び出します。
+`__using__/1` マクロの結果はモジュールの定義の一部になります。
+この動作に対する理解を深めるために簡単な例を見ましょう:
 
 ```elixir
-# lib/use_import_require/use_me.ex
-defmodule UseImportRequire.UseMe do
-  defmacro __using__(_) do
+defmodule Hello do
+  defmacro __using__(_opts) do
     quote do
-      def use_test do
-        IO.puts("use_test")
-      end
+      def hello(name), do: "Hi, #{name}"
     end
   end
 end
 ```
 
-UseImportRequireに以下の行を追加します:
+ここでは `hello/1` 関数を定義する `__using__/1` コールバックを定義した `Hello` モジュールを作りました。
+この新しいコードを試すために新しいモジュールを作ります:
 
 ```elixir
-use UseImportRequire.UseMe
+defmodule Example do
+  use Hello
+end
 ```
 
-UseImportRequire.UseMe を use すると、`__using__/1` マクロ呼出しによって use_test/0 関数が定義されます。
-
-useが行うことはこれで全てですが、 `__using__` マクロは順々に alias、require、import を呼び出します。これにより、そのモジュール内でエイリアスが作られたり、インポートが行われます。この動作によって、モジュールを、関数やマクロがどう参照されるべきかというポリシーの定義に用いることが可能となります。`__using__/1` が他のモジュール、とりわけサブモジュールへの参照を組み立てられるので、こうした使い方をとても柔軟に行う事ができます。
-
-Phoenix フレームワークは use と `__using__/1` を活用して、ユーザが定義したモジュール内で繰り返し行われる alias や import 呼び出しの必要性を減らしています。
-
-Ecto.Migration モジュールから、素晴らしく、短い例をあげます:
+IExでこのコードを試して見ると `Example` モジュールで `hello/1` を使えるのがわかります。
 
 ```elixir
-defmacro __using__(_) do
-  quote location: :keep do
-    import Ecto.Migration
-    @disable_ddl_transaction false
-    @before_compile Ecto.Migration
+iex> Example.hello("Sean")
+"Hi, Sean"
+```
+
+ここで `use` が `Hello` の `__using__/1` コールバックを呼び出して、結果のコードをモジュールに追加します。
+基本的な例を見せたので、ここからはこのコードを変更して `__using__/1` にオプションをサポートするる方法を見て見ましょう。
+`greeting` オプションを追加します:
+
+```elixir
+defmodule Hello do
+  defmacro __using__(opts) do
+    greeting = Keyword.get(opts, :greeting, "Hi")
+
+    quote do
+      def hello(name), do: unquote(greeting) <> ", " <> name
+    end
   end
 end
 ```
 
-`Ecto.Migration.__using__/1` マクロは import 呼び出しを含んでいるため、`use Ecto.Migration` されると `import Ecto.Migration` も呼び出されます。また、Ecto のビヘイビアを制御するモジュールのプロパティも設定します。
+新しく作った `greeting` オプションを含むために `Example` モジュールを更新します:
 
-要約: use マクロは特定モジュールの `__using__/1` マクロを呼び出します。これが何をするのか本当に理解したければ、その `__using__/1` マクロを読む必要があるでしょう。
+```elixir
+defmodule Example do
+  use Hello, greeting: "Hola"
+end
+```
+
+IExで試して見ると挨拶が変わるのを確認できます。
+
+```
+iex> Example.hello("Sean")
+"Hola, Sean"
+```
+
+これらは `use` がどうやって動作するのかを説明する簡単な例でしたが、これは Elixir のツールボックスで信じられないほどに強力なツールです。
+Elixir を学び続けたら `use` をあっちこっちで見ることになるでしょう。かならず見ることになりそうな例をひとつあげれば、 `use ExUnit.Case, async: true` です。
+
+**注意**: `quote` 、 `alias` 、 `use` 、 `require` は[メタプログラミング](../../advanced/metaprogramming)で使用してたマクロです。

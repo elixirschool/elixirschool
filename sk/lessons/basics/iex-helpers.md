@@ -210,23 +210,6 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `s`
-
-Pomocou `s` môžeme získať informácie o špecifikácii modulu alebo funkcie. Môžeme to použiť ako vodítko, kde vieme čo od nás očakáva:
-
-```elixir
-iex> s Map.merge/2
-@spec merge(map(), map()) :: map()
-
-# it also works on entire modules
-iex> s Map
-@spec get(map(), key(), value()) :: value()
-@spec put(map(), key(), value()) :: map()
-# ...
-@spec get(map(), key()) :: value()
-@spec get_and_update!(map(), key(), (value() -> {get, value()})) :: {get, map()} | no_return() when get: term()
-```
-
 ### `t`
 
 Pomocná funkcia `t` nám povie aké typy sú dostupne v danom module:

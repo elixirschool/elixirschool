@@ -210,6 +210,7 @@ end
 ```elixir
 defmodule Example.Router do
   use Plug.Router
+  use Plug.ErrorHandler
 
   alias Example.Plug.VerifyRequest
 

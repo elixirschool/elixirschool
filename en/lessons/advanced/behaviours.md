@@ -13,16 +13,16 @@ We learned about Typespecs in the previous lesson, here we'll learn how to requi
 
 Sometimes you want modules to share a public API, the solution for this in Elixir is behaviours. Behaviours perform two primary roles:
 
-+ Defining a set of function that must be implemented
++ Defining a set of functions that must be implemented
 + Checking whether that set was actually implemented
 
-Elixir includes a number of behaviours such as GenServer, but in this lesson we'll focus on creating our own instead.
+Elixir includes a number of behaviours such as `GenServer`, but in this lesson we'll focus on creating our own instead.
 
 ## Defining a behaviour
 
 To better understand behaviours let's implement one for a worker module.  These workers will be expected to implement two functions: `init/1` and `perform/2`.
 
-In order to accomplish this, we'll use the `@callback` directive with syntax similar to `@spec`, this defines a __required__ function; for macros we can use `@macrocallback`.  Let's specify the `init/1` and `perform/2` functions for our workers:
+In order to accomplish this, we'll use the `@callback` directive with syntax similar to `@spec`. This defines a __required__ function; for macros we can use `@macrocallback`.  Let's specify the `init/1` and `perform/2` functions for our workers:
 
 ```elixir
 defmodule Example.Worker do
@@ -39,7 +39,7 @@ Here we've defined `init/1` as accepting any value and returning a tuple of eith
 
 Now that we've defined our behaviour we can use it to create a variety of modules that all share the same public API.  Adding a behaviour to our module is easy with the `@behaviour` attribute.
 
-Using our new behaviour let's create a module's task will be downloading a remote file and saving it locally:
+Using our new behaviour let's create a module whose task will be downloading a remote file and saving it locally:
 
 ```elixir
 defmodule Example.Downloader do

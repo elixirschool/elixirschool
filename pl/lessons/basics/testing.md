@@ -24,7 +24,7 @@ defmodule ExampleTest do
 end
 ```
 
-Możemy uruchomić nasze test za pomocą `mix test`.  Powinniśmy otrzymać komunikat podobny do poniższego:
+Możemy uruchomić nasz test za pomocą `mix test`.  Powinniśmy otrzymać komunikat podobny do poniższego:
 
 ```shell
 ..

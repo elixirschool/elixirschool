@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 title: Mnesia
 ---
 
@@ -13,7 +13,7 @@ Mnesia é um sistema de banco de dados (DBMS) que vem acompanhado da Runtime do 
 
 ## Quando Usar
 
-Quando usar uma determinada peça de tecnologia é muitas vezes um exercício confuso. Se você puder responder "sim" a qualquer uma das seguintes perguntas, então esta é uma boa indicação para usar Mnesia junto a ETS ou DETS.
+Quando usar uma determinada peça de tecnologia é muitas vezes um exercício confuso. Se você puder responder "sim" a qualquer uma das seguintes perguntas, então esta é uma boa indicação para usar Mnesia ao invés do ETS ou DETS.
 
   - Eu preciso reverter transações?
   - Preciso de uma sintaxe fácil de utilizar na leitura e escrita de dados?
