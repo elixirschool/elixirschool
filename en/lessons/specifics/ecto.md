@@ -11,6 +11,13 @@ Ecto is an official Elixir project providing a database wrapper and integrated q
 
 ## Setup
 
+Create a new app with a supervision tree:
+
+```shell
+$ mix new example_app --sup
+$ cd example_app
+```
+
 To get started we need to include Ecto and a database adapter in our project's `mix.exs`.  You can find a list of supported database adapters in the [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) section of the Ecto README.  For our example we'll use PostgreSQL:
 
 ```elixir
@@ -19,12 +26,10 @@ defp deps do
 end
 ```
 
-Now we can add Ecto and our adapter to the application list:
+Then we'll fetch our dependencies using
 
-```elixir
-def application do
-  [applications: [:ecto, :postgrex]]
-end
+```shell
+$ mix deps.get
 ```
 
 ### Repository
@@ -39,19 +44,15 @@ end
 
 ### Supervisor
 
-Once we've created our Repo we need to set up our supervisor tree, which is usually found in `lib/<project name>.ex`.
-
-It is important to note that we set up the Repo as a supervisor with `supervisor/3` and _not_ `worker/3`.  If you generated your app with the `--sup` flag much of this exists already:
+Once we've created our Repo we need to set up our supervisor tree, which is found in `lib/<project name>/application.ex`. Add the Repo to the `children` list:
 
 ```elixir
-defmodule ExampleApp.App do
+defmodule ExampleApp.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec
-
     children = [
-      supervisor(ExampleApp.Repo, [])
+      ExampleApp.Repo
     ]
 
     opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
