@@ -89,3 +89,4 @@ Temporary Items
 # intelliJ idea And other editors
 .idea
 *.iml
+.vscode/settings.json
