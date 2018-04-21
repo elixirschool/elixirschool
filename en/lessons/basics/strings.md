@@ -1,17 +1,17 @@
 ---
 version: 1.1.1
-title:  Stringler (Dizeler)
+title: Strings
 redirect_from:
   - /lessons/basics/strings/
 ---
 
-Stringler, Karakter Listeleri, Graphemes ve Codepoints.
+Strings, Char Lists, Graphemes and Codepoints.
 
 {% include toc.html %}
 
-## Strinler
+## Strings
 
-Elixir stringleri, bir dizi bayttan başka bir şey değil. Şimdi bir örneğe bakalım:
+Elixir strings are nothing but a sequence of bytes. Let's look at an example:
 
 ```elixir
 iex> string = <<104,101,108,108,111>>
@@ -20,16 +20,15 @@ iex> string <> <<0>>
 <<104, 101, 108, 108, 111, 0>>
 ```
 
-Stringimizi `0` baytı ile birleştirirsek , IEx artık geçersiz bir dizi olduğu için stringin içinde bulunan baytları bize gösteririr.
-Bu yol ile hergi bir stringin içindeki baytları göre biliriz.
+By concatenating the string with the byte `0`, IEx displays the string as a binary because it is not a valid string anymore. This trick can help us view the underlying bytes of any string.
 
->NOT: << >> söz dizimini kullanarak derleyiciye bu semboller içindeki elemanların bayt olduğunu belirtiyoruz.
+>NOTE: Using << >> syntax we are saying to the compiler that the elements inside those symbols are bytes.
 
-## Karakter Listeleri
+## Charlists
 
-Dahili olarak Elixir de stringler karakter dizisinden ziyade bayt dizi olarak temsil edilir. Elixir de ayrıca char list (karakter listesi) veri tipine sahiptir. Elixir stringleri çift tıranak kullanırken, karakter listeleri tek tırnak kullanır.
+Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters. Elixir also has a char list type (character list). Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
 
-Peki arasındaki fark nedir ? Karakter listelerinde her bir değer Unicode olarak kodlanırken, stringler UTF-8 kodlanır. Hadi inceleyelim:
+What's the difference? Each value in a charlist is the Unicode code point of a character whereas in a binary, the codepoints are encoded as UTF-8. Let's dig in:
 
 ```elixir
 iex(5)> 'hełło'
@@ -38,17 +37,17 @@ iex(6)> "hełło" <> <<0>>
 <<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
-ł için Unicode kod noktası `322` iken, UTF-8 için iki bayt `197`, `130` olarak kodlanmıştır.
+`322` is the Unicode codepoint for ł but it is encoded in UTF-8 as the two bytes `197`, `130`.
 
-Elixir de kod yazarken genellik stringleri kullanırız. Bazı erlang modülleri için gerekli olduğundan charlist destek verilmiştir.
+When programming in Elixir, we usually use strings, not charlists. The charlist support is mainly included because it is required for some Erlang modules.
 
-Daha fazla destek için resmi [`Başlangıç Kılavuzu'na`] bakınız.(http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+For further information, see the official [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
 
-## Graphemes ve Codepoints
+## Graphemes and Codepoints
 
-Codepoints, UTF-8 kodlamasına bağlı olarak bir veya daha fazla bayt tarafından temsil edilen basit Unicode karakterleridir. ABD ASCII karakter kümesinin dışındaki karakterler her zaman birden fazla bayt olarak kodlanır. Örneğin, tilde veya aksan (`á, ñ, è`) Latin karakterleri genellikle iki bayt olarak kodlanır.Asya dillerinden karakterler genellikle üç veya dört bayt olarak kodlanır. Graphemeler tek bir karakter olarak işlenen çoklu kod noktalarından oluşur.
+Codepoints are just simple Unicode characters which are represented by one or more bytes, depending on the UTF-8 encoding. Characters outside of the US ASCII character set will always encode as more than one byte. For example, Latin characters with a tilde or accents (`á, ñ, è`) are typically encoded as two bytes. Characters from Asian languages are often encoded as three or four bytes. Graphemes consist of multiple codepoints that are rendered as a single character.
 
-String modülü, bunları sağlamak için iki işlev daha sunmaktadır: "graphemes / 1" ve "codepoints / 1". Bir örneğe bakalım:
+The String module already provides two functions to obtain them, `graphemes/1` and `codepoints/1`. Let's look at an example:
 
 ```elixir
 iex> string = "\u0061\u0301"
@@ -61,13 +60,13 @@ iex> String.graphemes string
 ["á"]
 ```
 
-## String Fonksiyonları
+## String Functions
 
-String modülünün kullanışlı bazı fonksiyonlarını inceleyelim. Bu derste mevcut fonksiyonların bir kısmını kapsayacaktır. Fonksiyonların tam litesini görmek için resmi  [`String`](https://hexdocs.pm/elixir/String.html) gökümanlarına bakın.
+Let's review some of the most important and useful functions of the String module. This lesson will only cover a subset of the available functions. To see a complete set of functions visit the official [`String`](https://hexdocs.pm/elixir/String.html) docs.
 
 ### `length/1`
 
-String lerin içinde Graphemes sayını döner.
+Returns the number of Graphemes in the string.
 
 ```elixir
 iex> String.length "Hello"
@@ -76,7 +75,7 @@ iex> String.length "Hello"
 
 ### `replace/3`
 
-Belirtilen desenle eşleşenleri belirtilen string ile  değiştirip yeni bir dize döndürür.
+Returns a new string replacing a current pattern in the string with some new replacement string.
 
 ```elixir
 iex> String.replace("Hello", "e", "a")
@@ -85,7 +84,7 @@ iex> String.replace("Hello", "e", "a")
 
 ### `duplicate/2`
 
-N kere tekrarlanan yeni bir string döndürür.
+Returns a new string repeated n times.
 
 ```elixir
 iex> String.duplicate("Oh my ", 3)
@@ -94,27 +93,27 @@ iex> String.duplicate("Oh my ", 3)
 
 ### `split/2`
 
-Bir desene göre bölünmüş stringlerin bir listesini döndürür.
+Returns a list of strings split by a pattern.
 
 ```elixir
 iex> String.split("Hello World", " ")
 ["Hello", "World"]
 ```
 
-## Egzersiz
+## Exercises
 
-Strinleri anladığımızdan emin olmak için basit bir egzersiz yapalım.
+Let's walk through a simple exercises to demonstrate we are ready to go with Strings!
 
-### Anagramlar
+### Anagrams
 
-A ve B yi eşit hale getirmek için A veya B nin yeniden düzenlemnin bir yolu varsa bu anagram olarak kabul edilir. Örneğin:
+A and B are considered anagrams if there's a way to rearrange A or B making them equal. For example:
 
 + A = super
 + B = perus
 
-Eğer A stringini yeniden sıralarsak B  stringini elde ede biliriz yada tam tersi.
+If we re-arrange the characters on String A, we can get the string B, and vice versa.
 
-Peki, Elixir de iki stringin anagram oluşturup oluşrmayacağını nasıl öğrenebiliriz ?  En kolay yolu her iki stringdeki  graphemeleri alfabetik olarak sıralamak ve her iki stringin eşit olup olmadığını kontrol etmektir. Hadi deneyelim:
+So, how could we check if two strings are Anagrams in Elixir?  The easiest solution is to just sort the graphemes of each string alphabetically and then check if they both lists are equal. Let's try that:
 
 ```elixir
 defmodule Anagram do
@@ -131,11 +130,11 @@ defmodule Anagram do
 end
 ```
 
-Önce `anagrams?/2` izleyelim. Aldığımız parametrelerin binary olup olmadığını kontrol edelim. Elixirde para metrenin string olup olmadığı bu şekilde kontrol edilmektedir.
+Let's first give a watch to `anagrams?/2`. We are checking whether the parameters we are receiving are binaries or not. That's the way we check if a parameter is a String in Elixir.
 
-Daha sonra 2 stringi alfabetik olarak sıralayan bir fonksiyon çağırıyoruz. Bu fonksiyonda, önce strinleri küçük harfe çeveriyoruz ve ardından graphemeslerin bir listesini almak için `String.graphemes/1` kullanıyoruz. Son olarakta `Enum.sort/1` içine akatarıyoruz. oldukça basit, değil mi ? 
+After that, we are calling a function that orders the string alphabetically. It first converts the string to lowercase and then uses `String.graphemes/1` to get a list of the graphemes in the string. Finally, it pipes that list into `Enum.sort/1`. Pretty straight, right?
 
-iex üzerindeki çıktıyı kontrol edelim:
+Let's check the output on iex:
 
 ```elixir
 iex> Anagram.anagrams?("Hello", "ohell")
@@ -157,4 +156,5 @@ iex> Anagram.anagrams?(3, 5)
 
     iex:11: Anagram.anagrams?/2
 ```
-Gördüğünüz gibi, `anagrams?` a yapılan son çağrı bir FunctionClauseError'a neden oldu. Bu hata bize, modülümüzde ikili olmayan argümanı alma desenini karşılayan hiçbir fonksiyonun olmadığını anlatıyor. Sadece iki stringi alan fonksiyonun olduğunu  ve başka bir şey olmadığını söylüyor.
+
+As you can see, the last call to `anagrams?` caused a FunctionClauseError. This error is telling us that there is no function in our module that meets the pattern of receiving two non-binary arguments, and that's exactly what we want, to just receive two strings, and nothing more.
