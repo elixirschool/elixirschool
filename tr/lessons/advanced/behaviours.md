@@ -5,7 +5,11 @@ redirect_from:
   - /lessons/advanced/behaviours/
 ---
 
+<<<<<<< HEAD
 Önceki derste Typespec'leri öğrendik, burada bu özellikleri uygulamak için bir modülün nasıl gerekeceğini öğreneceğiz. Elixir'de, bu işlevsellik davranışlar olarak adlandırılır.
+=======
+Önceki derste Typespec'leri öğrendik, burada bu özellikleri uygulamak için bir modülün nasıl kullanılabileceğini göreceğiz. Elixir'de, bu durum davranışlar olarak adlandırılır.
+>>>>>>> 00705a98f0fbb79f20fe3042fd52395ba5cf71ad
 
 {% include toc.html %}
 
@@ -13,16 +17,26 @@ redirect_from:
 
 Bazen modüllerin ortak bir API'yi paylaşmasını istersiniz, bunun için Elixir'deki çözüm davranışlardır. Davranışlar iki ana rol oynar:
 
+<<<<<<< HEAD
 + Uygulanması gereken bir dizi işlevi tanımlamak
+=======
++ Uygulanması gereken bir dizi fonksiyonu tanımlamak
+>>>>>>> 00705a98f0fbb79f20fe3042fd52395ba5cf71ad
 + Bu setin gerçekten uygulanıp uygulanmadığını kontrol etmek
 
 Elixir, `GenServer` gibi birtakım davranışlar içerir, ancak bu derste bunu kullanmak yerine kendimiz bir adet yaratmaya odaklanacağız.
 
 ## Davranışı tanımlama
 
+<<<<<<< HEAD
 Davranışları daha iyi anlamak için bir işçi modülü için bir tane uygulayalım. Bu işçilerin iki işlevi yerine getirmeleri beklenir: `init/1` ve `perform/2`
 
 Bunu başarmak için, `@callback` direktifini, `@spec` ile benzer sözdizimiyle kullanacağız. Bu, __required__ işlevini tanımlar; `@macrocallback` kullanabiliriz. İşçilerimiz için `init/1` ve `perform/2` fonksiyonlarını belirleyelim:
+=======
+Davranışları daha iyi anlamak için bir işçi modülü için bir tane uygulayalım. Bu işçilerin iki fonksiyonu yerine getirmeleri beklenir: `init/1` ve `perform/2`
+
+Bunu başarmak için, `@callback` direktifini, `@spec` ile benzer sözdizimiyle kullanacağız. Bu, __required__ fonksiyonu tanımlar; `@macrocallback` kullanabiliriz. İşçilerimiz için `init/1` ve `perform/2` fonksiyonlarını belirleyelim:
+>>>>>>> 00705a98f0fbb79f20fe3042fd52395ba5cf71ad
 
 ```elixir
 defmodule Example.Worker do
@@ -33,7 +47,11 @@ defmodule Example.Worker do
 end
 ```
 
+<<<<<<< HEAD
 Burada `init/1` değerini herhangi bir değeri kabul etmek ve `{: ok, state}` veya `{: error, reason}` demetini döndürmek olarak tanımladık.  `Perform / 2` işlevimiz, başlattığımız durumla birlikte işçimiz için bazı argümanlar alacak, ve sonuçlandırmak için `{:ok, result, state}` veya `{:error, reason, state}` gibi durum demetlerini bekleyecek.
+=======
+Burada `init/1` değerini herhangi bir değeri kabul etmek ve `{: ok, state}` veya `{: error, reason}` demetini döndürmek olarak tanımladık.  `Perform / 2` fonksiyonumuz, başlattığımız durumla birlikte işçimiz için bazı argümanlar alacak, ve sonuçlandırmak için `{:ok, result, state}` veya `{:error, reason, state}` gibi durum demetlerini bekleyecek.
+>>>>>>> 00705a98f0fbb79f20fe3042fd52395ba5cf71ad
 
 ## Davranışları kullanma
 
