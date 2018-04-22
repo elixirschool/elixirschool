@@ -22,7 +22,7 @@ Elixir, `GenServer` gibi birtakım davranışlar içerir, ancak bu derste bunu k
 
 Davranışları daha iyi anlamak için bir işçi modülü için bir tane uygulayalım. Bu işçilerin iki fonksiyonu yerine getirmeleri beklenir: `init/1` ve `perform/2`
 
-Bunu başarmak için, `@callback` direktifini, `@spec` ile benzer sözdizimiyle kullanacağız. Bu, __required__ fonksiyonu tanımlar; `@macrocallback` kullanabiliriz. İşçilerimiz için `init/1` ve `perform/2` fonksiyonlarını belirleyelim:
+Bunu başarmak için, `@callback` direktifini, `@spec` ile benzer sözdizimiyle kullanacağız. Bu, __required__ fonksiyonunu tanımlar; `@macrocallback` kullanabiliriz. İşçilerimiz için `init/1` ve `perform/2` fonksiyonlarını belirleyelim:
 
 ```elixir
 defmodule Example.Worker do

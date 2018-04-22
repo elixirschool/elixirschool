@@ -1,6 +1,6 @@
 ---
 version: 1.1.2
-title: Basics
+title: Temeller
 redirect_from:
   - /lessons/basics/basics/
 ---
