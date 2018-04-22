@@ -57,7 +57,7 @@ mix test
 Run "mix help" for more commands.
 ```
 
-Şimdi, Bizim için Mix tarafından oluştturulan  **lib/hello.ex** dosyaya, basit "Hello, World!" çıktısı veren bir fonksiyon oluşturalım.
+Şimdi, Bizim için Mix tarafından oluşturulan  **lib/hello.ex** dosyaya, basit "Hello, World!" çıktısı veren bir fonksiyon oluşturalım.
 
 ```elixir
 defmodule Hello do
@@ -86,7 +86,7 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-Defmodule fonksiyonunu `Mix.Tasks` ve komut satırından çağırmak  istediğimiz isim ile başlattığımıza dikkat edin.İkinci satırda `Mix.Tasks` davranışını ad alanına getiren `use Mix.Task` işlevini tanımlıyoruz. Daha sonra, şu an için herhangi bir argüman alayan `run` fonksiyonunu oluşturuyoruz. Bu fonksiyonun içine de `Hello` modülünü ve `say` fonksiyonunu çağırıyoruz.
+Defmodule fonksiyonunu `Mix.Tasks` ve komut satırından çağırmak  istediğimiz isim ile başlattığımıza dikkat edin.İkinci satırda `Mix.Tasks` davranışını ad alanına getiren `use Mix.Task` işlevini tanımlıyoruz. Daha sonra, şu an için herhangi bir argüman almayan `run` fonksiyonunu oluşturuyoruz. Bu fonksiyonun içine de `Hello` modülünü ve `say` fonksiyonunu çağırıyoruz.
 
 
 ## Mix Görevlerini Çalıştırmak
@@ -98,14 +98,14 @@ $ mix hello
 Hello, World!
 ```
 
-Mix kullanımı olduça kolaydır. Herkes tarafından yazım hatası yapabildiği için (fuzzy) bulanık string eşleşme ile bize önerilerde bulunur :
+Mix kullanımı oldukça kolaydır. Herkes tarafından yazım hatası yapabildiği için (fuzzy) bulanık string eşleşme ile bize önerilerde bulunur :
 
 ```shell
 $ mix hell
 ** (Mix) The task "hell" could not be found. Did you mean "hello"?
 ```
 
-Yeni bir özellik kullandığımzı farkettiniz mi, `@shortdoc`? Bu uygulamamızı dağıtığımızda kullanıcılara kolaylık sağlar. Terminalde `mix help` komutunu çalıştırdığımızda komutlar hakkında kısa açıklamlar sunar.
+Yeni bir özellik kullandığımızı fark ettiniz mi, `@shortdoc`? Bu uygulamamızı dağıttığımızda kullanıcılara kolaylık sağlar. Terminalde `mix help` komutunu çalıştırdığımızda komutlar hakkında kısa açıklamalar sunar.
 
 ```shell
 $ mix help

@@ -20,14 +20,14 @@ iex> string <> <<0>>
 <<104, 101, 108, 108, 111, 0>>
 ```
 
-Stringimizi `0` baytı ile birleştirirsek , IEx artık geçersiz bir dizi olduğu için stringin içinde bulunan baytları bize gösteririr.
-Bu yol ile hergi bir stringin içindeki baytları göre biliriz.
+Stringimizi `0` baytı ile birleştirirsek , IEx artık geçersiz bir dizi olduğu için stringin içinde bulunan baytları bize gösterir.
+Bu yol ile herhangi bir stringin içindeki baytları göre biliriz.
 
 >NOT: << >> söz dizimini kullanarak derleyiciye bu semboller içindeki elemanların bayt olduğunu belirtiyoruz.
 
 ## Karakter Listeleri
 
-Dahili olarak Elixir de stringler karakter dizisinden ziyade bayt dizi olarak temsil edilir. Elixir de ayrıca char list (karakter listesi) veri tipine sahiptir. Elixir stringleri çift tıranak kullanırken, karakter listeleri tek tırnak kullanır.
+Dahili olarak Elixir de stringler karakter dizisinden ziyade bayt dizi olarak temsil edilir. Elixir de ayrıca char list (karakter listesi) veri tipine sahiptir. Elixir stringleri çift tırnak kullanırken, karakter listeleri tek tırnak kullanır.
 
 Peki arasındaki fark nedir ? Karakter listelerinde her bir değer Unicode olarak kodlanırken, stringler UTF-8 kodlanır. Hadi inceleyelim:
 
@@ -63,11 +63,11 @@ iex> String.graphemes string
 
 ## String Fonksiyonları
 
-String modülünün kullanışlı bazı fonksiyonlarını inceleyelim. Bu derste mevcut fonksiyonların bir kısmını kapsayacaktır. Fonksiyonların tam litesini görmek için resmi  [`String`](https://hexdocs.pm/elixir/String.html) gökümanlarına bakın.
+String modülünün kullanışlı bazı fonksiyonlarını inceleyelim. Bu derste mevcut fonksiyonların bir kısmını kapsayacaktır. Fonksiyonların tam listesini görmek için resmi  [`String`](https://hexdocs.pm/elixir/String.html) dokümanlarına bakın.
 
 ### `length/1`
 
-String lerin içinde Graphemes sayını döner.
+Stringlerin içinde Graphemes sayını döner.
 
 ```elixir
 iex> String.length "Hello"
@@ -107,14 +107,14 @@ Strinleri anladığımızdan emin olmak için basit bir egzersiz yapalım.
 
 ### Anagramlar
 
-A ve B yi eşit hale getirmek için A veya B nin yeniden düzenlemnin bir yolu varsa bu anagram olarak kabul edilir. Örneğin:
+A ve B yi eşit hale getirmek için A veya B nin yeniden düzenlemenin bir yolu varsa bu anagram olarak kabul edilir. Örneğin:
 
 + A = super
 + B = perus
 
 Eğer A stringini yeniden sıralarsak B  stringini elde ede biliriz yada tam tersi.
 
-Peki, Elixir de iki stringin anagram oluşturup oluşrmayacağını nasıl öğrenebiliriz ?  En kolay yolu her iki stringdeki  graphemeleri alfabetik olarak sıralamak ve her iki stringin eşit olup olmadığını kontrol etmektir. Hadi deneyelim:
+Peki, Elixir de iki stringin anagram oluşturup oluşturmayacağını nasıl öğrenebiliriz ?  En kolay yolu her iki stringdeki  graphemeleri alfabetik olarak sıralamak ve her iki stringin eşit olup olmadığını kontrol etmektir. Hadi deneyelim:
 
 ```elixir
 defmodule Anagram do
@@ -133,7 +133,7 @@ end
 
 Önce `anagrams?/2` izleyelim. Aldığımız parametrelerin binary olup olmadığını kontrol edelim. Elixirde para metrenin string olup olmadığı bu şekilde kontrol edilmektedir.
 
-Daha sonra 2 stringi alfabetik olarak sıralayan bir fonksiyon çağırıyoruz. Bu fonksiyonda, önce strinleri küçük harfe çeveriyoruz ve ardından graphemeslerin bir listesini almak için `String.graphemes/1` kullanıyoruz. Son olarakta `Enum.sort/1` içine akatarıyoruz. oldukça basit, değil mi ? 
+Daha sonra 2 stringi alfabetik olarak sıralayan bir fonksiyon çağırıyoruz. Bu fonksiyonda, önce strinleri küçük harfe çeviriyoruz ve ardından graphemeslerin bir listesini almak için `String.graphemes/1` kullanıyoruz. Son olarak da `Enum.sort/1` içine aktarıyoruz. oldukça basit, değil mi ? 
 
 iex üzerindeki çıktıyı kontrol edelim:
 
@@ -157,4 +157,4 @@ iex> Anagram.anagrams?(3, 5)
 
     iex:11: Anagram.anagrams?/2
 ```
-Gördüğünüz gibi, `anagrams?` a yapılan son çağrı bir FunctionClauseError'a neden oldu. Bu hata bize, modülümüzde ikili olmayan argümanı alma desenini karşılayan hiçbir fonksiyonun olmadığını anlatıyor. Sadece iki stringi alan fonksiyonun olduğunu  ve başka bir şey olmadığını söylüyor.
+Gördüğünüz gibi, `anagrams?` a yapılan son çağrı bir FunctionClauseError'a neden oldu. Bu hata bize, modülümüz de ikili olmayan argümanı alma desenini karşılayan hiçbir fonksiyonun olmadığını anlatıyor. Sadece iki stringi alan fonksiyonun olduğunu  ve başka bir şey olmadığını söylüyor.
