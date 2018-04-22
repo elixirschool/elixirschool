@@ -1,6 +1,8 @@
 ---
-version: 1.3.0
+version: 1.4.0
 title: Enum
+redirect_from:
+  - /lessons/basics/enum/
 ---
 
 Koleksiyonlarin numaralandirilmasi icin kullanilan sabit degerler algoritmalari.

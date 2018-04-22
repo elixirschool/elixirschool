@@ -1,6 +1,8 @@
 ---
-version: 0.9.0
-title: Temeller
+version: 1.1.2
+title: Basics
+redirect_from:
+  - /lessons/basics/basics/
 ---
 
 Temel veri tipleri ve temel operasyonlar ile başlayalım.
@@ -33,12 +35,14 @@ Elixir `iex` isimli, Elixir ifadelerini kolayca çalıştırmanız için etkile�
 
 Birkaç basit ifade yazmayı deneyelim:
 
-    iex> 2+3
-    5
-    iex> 2+3 == 5
-    true
-    iex> String.length("Pijamalı hasta yağız şoföre çabucak güvendi")
-    43
+```elixir
+iex> 2+3
+5
+iex> 2+3 == 5
+true
+iex> String.length("The quick brown fox jumps over the lazy dog")
+43
+```
 
 Henüz birşey anlamadıysanız endişe etmeyin, ama umarım bir fikir edinmişsinizdir.
 

@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Fonksiyonlar
 redirect_from:
   - /lessons/basics/functions/
@@ -57,6 +57,7 @@ An error has occurred!
 Bu fonksiyonlara isim tanımlaya bilir ve daha sonra gerekli olduğunda kolayca çağıra biliriz.  Adlandırılmış bir fonksiyon tanımlamak için  `def` kullanılır . Şuan için adlandırılmış fonksiyonları ele alacağız, Modülleri bir sonraki ders inceleyeceğiz.
 
 Bir modülde tanımlanmış fonksiyonlar başka modüller tarafında da kullanılır. Bu Elixir'in yararlı özelliklerinden birisidir:
+
 ```elixir
 defmodule Greeter do
   def hello(name) do
