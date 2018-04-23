@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Pattern Matching
 redirect_from:
   - /lessons/basics/pattern-matching/
