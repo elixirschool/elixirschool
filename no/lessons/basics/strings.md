@@ -142,7 +142,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Som du kan se, det siste kallet til `anagrams?` førte til at vi fikk en FunctionClauseError. Denne feilen forteller oss at det ikke finnes en funksjon i vår modul som tar to ikke-binaries som argument, og det er akkurat det vi ønsker, at vi kun skal motta to strenger, ikke noe annet.

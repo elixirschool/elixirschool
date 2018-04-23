@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.1.0
 title: Erlang Term Storage (ETS)
 redirect_from:
   - /lessons/specifics/ets/
@@ -49,6 +49,12 @@ Access control in ETS is similar to access control within modules:
 + `public` — Read/Write available to all processes.
 + `protected` — Read available to all processes.  Only writable by owner process.  This is the default.
 + `private` — Read/Write limited to owner process.
+
+## Race Conditions
+
+If more than one process can write to a table - whether via `:public` access or by messages to the owning process - race conditions are possible.  For example, two processes each read a counter value of `0`, increment it, and write `1`; the end result reflects only a single increment.
+
+For counters specifically, [:ets.update_counter/3](http://erlang.org/doc/man/ets.html#update_counter-3) provides for atomic update-and-read.  For other cases, it may be necessary for the owner process to perform custom atomic operations in response to messages, such as "add this value to the list at key `:results`".
 
 ## Inserting data
 

@@ -208,23 +208,6 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `s`
-
-`s`를 사용하여 모듈이나 함수의 명세를 확인하고, 이것들이 무엇을 기대하는지 확인할 수 있습니다.
-
-```elixir
-iex> s Map.merge/2
-@spec merge(map(), map()) :: map()
-
-# 이는 모듈에도 동작합니다.
-iex> s Map
-@spec get(map(), key(), value()) :: value()
-@spec put(map(), key(), value()) :: map()
-# ...
-@spec get(map(), key()) :: value()
-@spec get_and_update!(map(), key(), (value() -> {get, value()})) :: {get, map()} | no_return() when get: term()
-```
-
 ### `t`
 
 `t` 헬퍼는 주어진 모듈에서 사용 가능한 타입을 알려줍니다.

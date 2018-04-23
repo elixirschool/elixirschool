@@ -11,9 +11,9 @@ sections:
   specifics: Específico
   libraries: Bibliotecas
 version_messages:
-  outdated: "Some contents of this translation may be outdated."
-  major: "Several major changes were applied to the original lesson since the last update."
-  minor: "Several minor changes were applied to the original lesson since the last update."
-  patch: "Several patches were applied to the original lesson since the last update."
-  none: "This translation is up to date."
-  error: "There is an error in the version definition of this chapter."
+  outdated: "Algum conteúdo desta tradução pode estar desatualizado."
+  major: "Várias mudanças importantes foram feitas à lição original desde a última atualização."
+  minor: "Pequenas mudanças foram feitas à lição original desde a última atualização."
+  patch: "Várias correções foram aplicadas à lição original desde a última atualização."
+  none: "Esta tradução está atualizada."
+  error: "Existe um erro na definição da versão deste capítulo."

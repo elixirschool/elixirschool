@@ -5,19 +5,19 @@ title: Elixir School
 [![লাইসেন্স](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 এলিক্সির প্রোগ্রামিং ভাষা এর অধ্যায় সমুহ, Twitter এর [Scala School](http://twitter.github.io/scala_school/) দ্বারা অনুপ্রাণিত।
-আরও পাওয়া যাবে [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Melayu][my], [Українською][uk], [한국어][ko], [L'italiano][it], [Deutsch][de], [বাংলা](#) ভাষাতে।
+আরও পাওয়া যাবে [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [L'italiano][it], [Deutsch][de], [বাংলা](#) ভাষাতে।
 
   [cn]: /cn/
   [es]: /es/
   [it]: /it/
-  [jp]: /jp/
+  [ja]: /ja/
   [ko]: /ko/
   [pl]: /pl/
   [pt]: /pt/
   [ru]: /ru/
   [sk]: /sk/
   [vi]: /vi/
-  [my]: /my/
+  [ms]: /ms/
   [uk]: /uk/
   [de]: /de/
   

@@ -11,7 +11,7 @@ title: Elixir School
 [cn]: /cn/
 [es]: /es/
 [it]: /it/
-[jp]: /jp/
+[jp]: /ja/
 [ko]: /ko/
 [pl]: /pl/
 [pt]: /pt/

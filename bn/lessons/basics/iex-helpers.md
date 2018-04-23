@@ -199,23 +199,6 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `s`
-
-`s` দিয়ে আমরা কোন মডিউল অথবা ফাংশনের টাইপ স্পেক সংক্রান্ত তথ্য জানতে পারি। জানতে পারি তারা কি ধরণের ইনপুট আশা করে। 
-
-```elixir
-iex> s Map.merge/2
-@spec merge(map(), map()) :: map()
-
-# it also works on entire modules
-iex> s Map
-@spec get(map(), key(), value()) :: value()
-@spec put(map(), key(), value()) :: map()
-# ...
-@spec get(map(), key()) :: value()
-@spec get_and_update!(map(), key(), (value() -> {get, value()})) :: {get, map()} | no_return() when get: term()
-```
-
 ### `t`
 
 `t` হেল্পারের মাধ্যমে আমরা একটি মডিউলের টাইপ সম্পর্কে জানতে পারি। 

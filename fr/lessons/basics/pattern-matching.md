@@ -95,4 +95,8 @@ iex> greet.("Hello", "Sean")
 "Hi Sean"
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
+iex> greeting
+"Hello"
 ```
+
+Notez que dans l'exemple `"Mornin'"` la re-assignation de `greeting` à `"Mornin'"` arrive seulement à l'intérieur de la fonction. En dehors de la fonction `greeting` vaut toujours `"Hello"`.

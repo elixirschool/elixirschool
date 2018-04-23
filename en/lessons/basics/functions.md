@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Functions
 redirect_from:
   - /lessons/basics/functions/
@@ -120,7 +120,7 @@ When we don't want other modules accessing a specific function we can make the f
 
 ```elixir
 defmodule Greeter do
-  def hello(name), do: phrase <> name
+  def hello(name), do: phrase() <> name
   defp phrase, do: "Hello, "
 end
 

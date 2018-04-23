@@ -235,6 +235,7 @@ Edita `lib/example/router.ex` y realiza los siguientes cambios:
 ```elixir
 defmodule Example.Router do
   use Plug.Router
+  use Plug.ErrorHandler
 
   alias Example.Plug.VerifyRequest
 

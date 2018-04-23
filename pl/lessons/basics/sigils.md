@@ -63,7 +63,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Jak widzimy pierwszy test nie powiódł się. ponieważ `Elixir` nie pasuje do wyrażenia, gdyż to uwzględnia wielkość liter. Ponieważ Elixir wspiera wyrażenia regularne kompatybilne z Perlem (PCRE - Perl Compatible Regular Expressions), możemy dodać `i` na końcu sigila by dopasowanie nie brało pod uwagę wielkości liter. 
+Jak widzimy pierwszy test nie powiódł się, ponieważ `Elixir` nie pasuje do wyrażenia, gdyż to uwzględnia wielkość liter. Ponieważ Elixir wspiera wyrażenia regularne kompatybilne z Perlem (PCRE - Perl Compatible Regular Expressions), możemy dodać `i` na końcu sigila by dopasowanie nie brało pod uwagę wielkości liter. 
 
 ```elixir
 iex> re = ~r/elixir/i
