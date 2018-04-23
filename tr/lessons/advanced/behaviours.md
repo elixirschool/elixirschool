@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Davranışlar
-redirect_from:
-  - /lessons/advanced/behaviours/
 ---
 
 Önceki derste Typespec'leri öğrendik, burada bu özellikleri uygulamak için bir modülün nasıl kullanılabileceğini göreceğiz. Elixir'de, bu durum davranışlar olarak adlandırılır.

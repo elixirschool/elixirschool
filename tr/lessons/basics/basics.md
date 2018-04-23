@@ -1,8 +1,6 @@
 ---
 version: 1.1.2
 title: Temeller
-redirect_from:
-  - /lessons/basics/basics/
 ---
 
 Temel veri tipleri ve temel operasyonlar ile başlayalım.
