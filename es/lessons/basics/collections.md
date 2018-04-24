@@ -41,7 +41,7 @@ Una aclaración acerca de la notación utilizada arriba (`++/2`): en Elixir (y E
 
 ### Sustracción de listas
 
-La sustracción es se realiza a travéz del operador `--/2`. Es seguro sustraer un valor que no existe:
+La sustracción se realiza a travéz del operador `--/2`. Es seguro sustraer un valor que no exista:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
@@ -110,13 +110,13 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 [foo: "bar", hello: "world"]
 ```
 
-Las tres características de las listas de palabras clave resaltan su importancia:
+Las tres características de las listas de palabras clave que resaltan su importancia son:
 
 + Las claves son átomos.
 + Las claves están ordenadas.
 + Las claves pueden no ser únicas.
 
-Por dichas razones las listas de palabras clave son muy comúnmente usadas para pasar opciones a funciones.
+Es por esto que las listas de palabras clave son comúnmente usadas para pasar opciones a funciones.
 
 ## Mapas
 
