@@ -1,8 +1,6 @@
 ---
 version: 1.1.1
 title:  Stringler (Dizeler)
-redirect_from:
-  - /lessons/basics/strings/
 ---
 
 Stringler, Karakter Listeleri, Graphemes ve Codepoints.

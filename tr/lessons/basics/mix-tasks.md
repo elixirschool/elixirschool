@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Özel Mix Görevleri
-redirect_from:
-  - /lessons/basics/mix-tasks/
 ---
 
 Elixir projeleriniz için özel Mix görevleri oluşturma.

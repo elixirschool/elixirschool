@@ -1,11 +1,9 @@
 ---
 version: 1.0.1
 title: Davranışlar
-redirect_from:
-  - /lessons/advanced/behaviours/
 ---
 
-Önceki derste Typespec'leri öğrendik, burada bu özellikleri uygulamak için bir modülün nasıl gerekeceğini öğreneceğiz. Elixir'de, bu işlevsellik davranışlar olarak adlandırılır.
+Önceki derste Typespec'leri öğrendik, burada bu özellikleri uygulamak için bir modülün nasıl kullanılabileceğini göreceğiz. Elixir'de, bu durum davranışlar olarak adlandırılır.
 
 {% include toc.html %}
 
@@ -13,16 +11,16 @@ redirect_from:
 
 Bazen modüllerin ortak bir API'yi paylaşmasını istersiniz, bunun için Elixir'deki çözüm davranışlardır. Davranışlar iki ana rol oynar:
 
-+ Uygulanması gereken bir dizi işlevi tanımlamak
++ Uygulanması gereken bir dizi fonksiyonu tanımlamak
 + Bu setin gerçekten uygulanıp uygulanmadığını kontrol etmek
 
 Elixir, `GenServer` gibi birtakım davranışlar içerir, ancak bu derste bunu kullanmak yerine kendimiz bir adet yaratmaya odaklanacağız.
 
 ## Davranışı tanımlama
 
-Davranışları daha iyi anlamak için bir işçi modülü için bir tane uygulayalım. Bu işçilerin iki işlevi yerine getirmeleri beklenir: `init/1` ve `perform/2`
+Davranışları daha iyi anlamak için bir işçi modülü için bir tane uygulayalım. Bu işçilerin iki fonksiyonu yerine getirmeleri beklenir: `init/1` ve `perform/2`
 
-Bunu başarmak için, `@callback` direktifini, `@spec` ile benzer sözdizimiyle kullanacağız. Bu, __required__ işlevini tanımlar; `@macrocallback` kullanabiliriz. İşçilerimiz için `init/1` ve `perform/2` fonksiyonlarını belirleyelim:
+Bunu başarmak için, `@callback` direktifini, `@spec` ile benzer sözdizimiyle kullanacağız. Bu, __required__ fonksiyonunu tanımlar; `@macrocallback` kullanabiliriz. İşçilerimiz için `init/1` ve `perform/2` fonksiyonlarını belirleyelim:
 
 ```elixir
 defmodule Example.Worker do
@@ -33,7 +31,7 @@ defmodule Example.Worker do
 end
 ```
 
-Burada `init/1` değerini herhangi bir değeri kabul etmek ve `{: ok, state}` veya `{: error, reason}` demetini döndürmek olarak tanımladık.  `Perform / 2` işlevimiz, başlattığımız durumla birlikte işçimiz için bazı argümanlar alacak, ve sonuçlandırmak için `{:ok, result, state}` veya `{:error, reason, state}` gibi durum demetlerini bekleyecek.
+Burada `init/1` değerini herhangi bir değeri kabul etmek ve `{: ok, state}` veya `{: error, reason}` demetini döndürmek olarak tanımladık.  `Perform / 2` fonksiyonumuz, başlattığımız durumla birlikte işçimiz için bazı argümanlar alacak, ve sonuçlandırmak için `{:ok, result, state}` veya `{:error, reason, state}` gibi durum demetlerini bekleyecek.
 
 ## Davranışları kullanma
 
