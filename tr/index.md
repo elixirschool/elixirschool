@@ -1,22 +1,32 @@
 ---
-title: Elixir Okulu
+title: Elixir School
+layout: home
 ---
 
-[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Elixir School, Elixir programlama dilini öğrenmek ve ustalaşmak isteyenler için en önemli kaynaktır.
 
-Elixir programlama dili dersleri, Twitter'ın [Scala Okulu](http://twitter.github.io/scala_school/)'ndan esinlenmiştir.
+Yeni başlamış yada tecrübeli fark etmez. Derslerde ve yardımcı kaynaklarda ihtiyacınız olanı bulacaksınız.
 
-_Görüş ve katkılarınızı bekliyoruz!_
 
-## Elixir Hakkında
+Gönüllülerin sıkı çalışması sayesinde Elixir School birçok dile tercüme edildi. Bu çevirilerden bazıları şunlardır: [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], ve  [ภาษาไทย][th].
+ 
+Elixir School'u harika hale getirmemiz için yardımınıza ihtiyacımız var. Sizleri de aramızda görmekten mutluluk duyarız : [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
 
-"Elixir, ölçeklenebilir ve sürdürülebilir uygulamalar oluşturmak için tasarlanmış dinamik, fonksiyonel bir dildir." — [elixir-lang.org](http://elixir-lang.org/)
+  [cn]: /cn/
+  [es]: /es/
+  [it]: /it/
+  [ja]: /ja/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [id]: /id/
+  [ms]: /ms/
+  [uk]: /uk/
+  [de]: /de/
+  [bn]: /bn/
+  [tr]: /tr/
+  [th]: /th/
 
-Elixir düşük gecikme süresi ile dağıtık ve hataya dayanıklı sistemleri kurmak için ErlangVM kullanır.
-
-__Özellikler__:
-
-+ Ölçeklenebilir
-+ Hataya Dayanıklı
-+ Fonksiyonel Programlama
-+ Genişletilebilir

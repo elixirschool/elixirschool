@@ -1,6 +1,6 @@
 ---
 version: 1.0.1
-title: IEx Helpers
+title: IEx Yardımcıları
 ---
 
 {% include toc.html %}
