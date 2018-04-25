@@ -1,9 +1,10 @@
 # Setup
 baseurl: /
 url: https://elixirschool.com
-permalink: pretty
+permalink: /appendix/articles/:title/
 default_lang: en
 exclude_from_localization: []
+exclude_from_chapters: ['appendix.html']
 
 # Author
 author:
@@ -27,7 +28,7 @@ kramdown:
   syntax_highlighter: rouge
 
 # Assets
-exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'Procfile', 'Rakefile', 'vendor']
+exclude: ['config.ru', 'CONTRIBUTING.md', 'Gemfile', 'Gemfile.lock', 'GLOSSARY', 'Procfile', 'Rakefile', 'README.md', 'vendor', 'LICENSE']
 assets:
   compress:
     css: sass
@@ -37,7 +38,7 @@ assets:
     - _assets/images
     - _assets/javascripts
     - _assets/stylesheets
-    - _assets/fonts/icomoon
+    - _assets/fonts
 
 sitemap:
   file: '/sitemap.xml'

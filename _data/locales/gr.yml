@@ -1,4 +1,5 @@
 script_direction: ltr
+disable_transform: true
 project:
   title: Elixir School
   description: Μαθήματα προγραμματισμού της γλώσσας Elixir

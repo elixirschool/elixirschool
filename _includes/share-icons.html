@@ -1,0 +1,15 @@
+<ul class="icons">
+  {% if page.title == page.locale.project.title or page.title == "Elixir School" %}
+    {% assign title = page.locale.project.description %}
+  {% else %}
+    {% assign title = page.title %}
+  {% endif %}
+  <li><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ title }}&summary=description&source={{ site.url }}" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+  <li><a target="_blank" href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&via=elixirschool&text=ElixirSchool: {{ title }}&hashtags=learnelixir%2Celixirlang&" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+  <li><a target="_blank" href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+  <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+  <li><a target="_blank" href="https://www.pinterest.com/pin/create/link/?url={{ site.url }}{{ page.url }}&media={{ site.url }}{% asset_path 'og_image.jpg' %}&description=ElixirSchool: {{ title }}" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+  <li><a target="_blank" href="https://vk.com/share.php?url={{ site.url }}{{ page.url }}&title=ElixirSchool: {{ title }}&description=Check out '{{ title }}' on ElixirSchool" class="icon fa-vk"><span class="label">VK</span></a></li>
+  <li><a target="_blank" href="mailto:?to=&subject=ElixirSchool: {{ title }}&body=Check out '{{ title }}' on ElixirSchool%0D%0A%0D%0A{{ site.url }}{{ page.url }}" class="icon fa-envelope"><span class="label">Email</span></a></li>
+  <li><a href="javascript:window.print()" class="icon fa-print"><span class="label">Print</span></a></li>
+</ul>
