@@ -1,8 +1,6 @@
 ---
 version: 1.1.1
 title: Test Yapmak
-redirect_from:
-  - /lessons/basics/testing/
 ---
 
 Test, yazılım geliştirmenin önemli bir parçasıdır. Bu derste `ExUnit` ile Elixir kodumuzu nasıl test edeceğimize bakacağız ve bu konuda bazı ipuçları vereceğiz.
