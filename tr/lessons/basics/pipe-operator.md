@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Pipe Operatörü
-redirect_from:
-  - /lessons/basics/pipe-operator/
 ---
 
 Pipe operatörü `|>` bir fonksiyonun sonucunu diğer fonksiyona ilk değer olarak geçirir.

@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: İşaretler (Sigils)
-redirect_from:
-  - /lessons/basics/sigils/
 ---
 
 İşaretlerle çalışma ve yeni işaretler oluşturma.
