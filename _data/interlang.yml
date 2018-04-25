@@ -1,4 +1,5 @@
 # LANGUAGE_CODE:
+#  ar:
 #  bg: 
 #  bn: 
 #  cn: 
@@ -44,12 +45,13 @@ en:
   ru: Russian
   sk: Slovak
   ta: Tamil
+  th: Thai
   tr: Turkish
   uk: Ukranian
   vi: Vietnamese
-  th: Thai
 
 es:
+  ar: Árabe
   bg: Búlgaro
   bn: Bengalí
   cn: Chino
@@ -68,6 +70,8 @@ es:
   pt: Portugués
   ru: Ruso
   sk: Eslovaco
+  ta: Tamil
+  th: Tailandés
   tr: Turco
   uk: Ucraniano
   vi: Vietnamita
