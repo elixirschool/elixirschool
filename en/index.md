@@ -21,11 +21,11 @@ feature-section:
 
 Elixir School is the premier destination for people looking to learn and master the Elixir programming language.
 
-Through our collection lessons and auxiliary resources you'll find everything you need whether this is your first time or you're a seasoned veteran.
+Whether you're a seasoned veteran or this is your first time, you'll find what you need in lessons and auxiliary resources.
 
-Elixir School has graciously been translated into multiple languages.  Some of the available translations include: [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], and [ภาษาไทย][th].
+Through the hard work of volunteers Elixir School has been translated to many languages.  Some of these translations include: [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], and [ภาษาไทย][th].
 
-We welcome and encourage you to join us in continuing to make Elixir School a top resource by getting in involved at [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool) today!
+We welcome and encourage you to join us in continuing to make Elixir School great by getting in involved at [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
 
   [cn]: /cn/
   [es]: /es/
@@ -44,5 +44,4 @@ We welcome and encourage you to join us in continuing to make Elixir School a to
   [bn]: /bn/
   [tr]: /tr/
   [th]: /th/
-
 
