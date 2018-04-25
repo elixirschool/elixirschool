@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.2
 title: Collections
 redirect_from:
   - /lessons/basics/collections/
@@ -18,7 +18,7 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implements list collections as linked lists.  This means that accessing the list length is an `O(n)` operation.  For this reason, it is typically faster to prepend than append:
+Elixir implements list collections as linked lists.  This means that accessing the list length is an operation that will run in linear time (`O(n)`).  For this reason, it is typically faster to prepend than to append:
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
