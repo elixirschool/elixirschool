@@ -1,6 +1,6 @@
 # Setup
 baseurl: /
-url: https://elixir-school-pr-1392.herokuapp.com
+url: https://elixirschool.com
 permalink: /appendix/articles/:title/
 default_lang: en
 exclude_from_localization: []
