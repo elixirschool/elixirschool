@@ -2,21 +2,6 @@
 title: Elixir School
 redirect_from: /
 layout: home
-feature-section:
-  title: Why Elixir?
-  features:
-    - name: Scalable
-      description:
-      icon: diamond
-    - name: Fault-tolerant
-      description:
-      icon: paper-plane
-    - name: Functional programming
-      description:
-      icon: rocket
-    - name: Extensible
-      description:
-      icon: signal
 ---
 
 Elixir School is the premier destination for people looking to learn and master the Elixir programming language.
