@@ -1,8 +1,6 @@
 ---
 version: 1.1.0
 title: Comprehensions(Kavramlar)
-redirect_from:
-  - /lessons/basics/comprehensions/
 ---
 
 Liste anlama kavramları, Elixir'deki numaralandırılmış metinler aracılığıyla döngü yapmak için syntactic sugar(sözdizimsel guzellik) bulunmaktadır. Bu dersimizde, iteration ve generation için bazı kavramaları nasıl kullanabildiğimizi inceleyeceğiz.
