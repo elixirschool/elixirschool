@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Custom Mix Tasks
 redirect_from:
   - /lessons/basics/mix-tasks/
@@ -61,7 +61,7 @@ Now, in our **lib/hello.ex** file that Mix generated for us, let's create a simp
 ```elixir
 defmodule Hello do
   @doc """
-  Output's `Hello, World!` everytime.
+  Outputs `Hello, World!` every time.
   """
   def say do
     IO.puts("Hello, World!")
@@ -77,7 +77,7 @@ Let's create our custom Mix task. Create a new directory and file **hello/lib/mi
 defmodule Mix.Tasks.Hello do
   use Mix.Task
 
-  @shortdoc "Simply runs the Hello.say/0 command."
+  @shortdoc "Simply runs the Hello.say/0 function"
   def run(_) do
     # calling our Hello.say() function from earlier
     Hello.say()
