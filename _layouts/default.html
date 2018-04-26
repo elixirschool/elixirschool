@@ -4,7 +4,7 @@
   {% assign language = page.lang %}
 {% endif %}
 {% assign locale = site.data['locales'][language] %}
-<html lang="{{ page.lang }}{% if page.locale.lang_country %}-{{ page.locale.lang_country }}{% endif %}">
+<html lang="{{ language }}{% if locale.lang_country %}-{{ locale.lang_country }}{% endif %}">
 	{% include _head.html %}
 	<body>
 		<!-- Wrapper -->
