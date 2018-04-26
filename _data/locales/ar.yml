@@ -10,6 +10,8 @@ sections:
   advanced: الموضوعات المتقدّمة
   specifics: التفاصيل
   libraries: المكتبات
+  appendix: Appendix
+  contributors: Contributors
 version_messages:
   outdated: "قد تكون بعض محتويات هذه الترجمة قديمة."
   major: "تم تطبيق العديد من التغييرات الكبيرة على الدرس الأصلي منذ التحديث الأخير."

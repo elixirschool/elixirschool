@@ -10,6 +10,8 @@ sections:
   advanced: দক্ষ পর্যায়
   specifics: নিয়মাবলি
   libraries: লাইব্রেরিস
+  appendix: Appendix
+  contributors: Contributors
 version_messages:
   outdated: "Some contents of this translation may be outdated."
   major: "Several major changes were applied to the original lesson since the last update."

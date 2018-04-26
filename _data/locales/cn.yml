@@ -10,6 +10,8 @@ sections:
   advanced: 高级
   specifics: 专题
   libraries: 程序库
+  appendix: Appendix
+  contributors: Contributors
 version_messages:
   outdated: "Some contents of this translation may be outdated."
   major: "Several major changes were applied to the original lesson since the last update."

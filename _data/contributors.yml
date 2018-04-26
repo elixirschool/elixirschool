@@ -1,0 +1,110 @@
+authors:
+  - username: doomspork
+    lessons: Project creator
+  - username: ybur-yug
+    lessons: IEx Helpers, Protocols
+  - username: Koziolek
+    lessons: Debugging
+  - username: devonestes
+    lessons: Benchee
+  - username: hassox
+    lessons: Guardian
+
+developers:
+  - doomspork
+  - nscyclone
+  - Koziolek
+  - burden
+  - eksperimental
+
+translators:
+  - language: bg
+    users:
+      - merkata
+
+  - language: bn
+    users:
+      - masnun
+
+  - language: cn
+    users:
+      - cizixs
+
+  - language: tw
+    users:
+      - lithiumpie
+      - cizixs
+
+  - language: de
+    users:
+      - Lechindianer
+
+  - language: es
+    users:
+      - erickgnavar
+      - milmazz
+
+  - language: fr
+    users:
+      - julienXX
+
+  - language: gr
+    users:
+      - gemantzu
+
+  - language: id
+    users:
+      - rezaprima
+
+  - language: it
+    users:
+      - lucidstack
+
+  - language: ja
+    users:
+      - 3100
+      - marocchino
+      - riseshia
+
+  - language: ko
+    users:
+      - devleoper
+
+  - language: no
+    users:
+      - Devalo
+
+  - language: pl
+    users:
+      - Koziolek
+
+  - language: ru
+    users:
+      - brain-geek
+      - nscyclone
+
+  - language: sk
+    users:
+      - michalvalasek
+
+  - language: ta
+    users:
+      - kalarani
+
+  - language: th
+    users:
+      - iboss-ptk
+
+  - language: tr
+    users:
+      - ismailunal
+      - yasinyaman
+
+  - language: uk
+    users:
+      - brain-greek
+      - doroshenkoss
+
+  - language: vi
+    users:
+      - joneslee85

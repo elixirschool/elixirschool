@@ -10,6 +10,8 @@ sections:
   advanced: 進階
   specifics: 特色
   libraries: 函式庫
+  appendix: Appendix
+  contributors: Contributors
 version_messages:
   outdated: "翻譯內文可能已過時。"
   major: "自最近更新後，原始課程已進行重大變更。"

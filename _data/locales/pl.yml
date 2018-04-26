@@ -10,6 +10,8 @@ sections:
   advanced: Zaawansowane
   specifics: Specyficzne
   libraries: Biblioteki
+  appendix: Appendix
+  contributors: Contributors
 version_messages:
   outdated: "Od ostatniej aktualizacji wprowadzono wiele zmian i tłumaczenie może być nieaktualne."
   major: "Od ostatniej aktualizacji wprowadzono kilka dużych zmian."
