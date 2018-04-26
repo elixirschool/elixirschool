@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Pipe Operator
-redirect_from:
-  - /lessons/basics/pipe-operator/
 ---
 
 The pipe operator `|>` passes the result of an expression as the first parameter of another expression.

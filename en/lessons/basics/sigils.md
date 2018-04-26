@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Sigils
-redirect_from:
-  - /lessons/basics/sigils/
 ---
 
 Working with and creating sigils.

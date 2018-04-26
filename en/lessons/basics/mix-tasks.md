@@ -1,8 +1,6 @@
 ---
 version: 1.0.2
 title: Custom Mix Tasks
-redirect_from:
-  - /lessons/basics/mix-tasks/
 ---
 
 Creating custom Mix tasks for your Elixir projects.

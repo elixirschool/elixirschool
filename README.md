@@ -87,7 +87,10 @@ Check [here](https://www.loc.gov/standards/iso639-2/php/English_list.php) for th
 
 1. Translated lessons must include the page metadata.
    * `title` should be a translation of the original lesson's `title`.
-   * `version` should be set to the original English `version`
+   * `version` should consist of three digits: `major.minor.patch`, so:
+     * if this is a initial lesson translation, the version should be set to `1.0.0`;
+     * if you apply the original lesson updates to the translation, the version should be copied from the corresponding state of the original lesson;
+     * else bump one of the version numbers depending on how important is your change.
 
    For example `/ja/lessons/basics/basics.md`:
 

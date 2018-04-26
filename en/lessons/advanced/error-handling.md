@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Error Handling
-redirect_from:
-- /lessons/advanced/error-handling/
 ---
 
 Although more common to return the `{:error, reason}` tuple, Elixir supports exceptions and in this lesson we'll look at how to handle errors and the different mechanisms available to us.
