@@ -1,8 +1,6 @@
 ---
 version: 1.4.0
 title: Enum
-redirect_from:
-  - /lessons/basics/enum/
 ---
 
 A set of algorithms for enumerating over enumerables.

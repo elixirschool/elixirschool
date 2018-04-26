@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Debugging
-redirect_from:
-  - /lessons/specifics/debugging/
 ---
 
 Bugs are an inherent part of any project, that's why we need debugging. In this lesson we'll learn about debugging Elixir code as well as static analysis tools to help find potential bugs.

@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Behaviours
-redirect_from:
-  - /lessons/advanced/behaviours/
 ---
 
 We learned about Typespecs in the previous lesson, here we'll learn how to require a module to implement those specifications.  In Elixir, this functionality is referred to as behaviours.
