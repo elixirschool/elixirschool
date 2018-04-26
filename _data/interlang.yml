@@ -1,28 +1,28 @@
 # LANGUAGE_CODE:
 #  ar:
-#  bg: 
-#  bn: 
-#  cn: 
-#  de: 
-#  en: 
-#  es: 
-#  fr: 
-#  gr: 
-#  id: 
-#  it: 
-#  ja: 
-#  ko: 
-#  ms: 
-#  "no": 
-#  pl: 
-#  pt: 
-#  ru: 
-#  sk: 
-#  ta: 
-#  th: 
-#  tr: 
-#  uk: 
-#  vi: 
+#  bg:
+#  bn:
+#  cn:
+#  de:
+#  en:
+#  es:
+#  fr:
+#  gr:
+#  id:
+#  it:
+#  ja:
+#  ko:
+#  ms:
+#  "no":
+#  pl:
+#  pt:
+#  ru:
+#  sk:
+#  ta:
+#  th:
+#  tr:
+#  uk:
+#  vi:
 
 en:
   ar: Arabiс
@@ -47,6 +47,7 @@ en:
   ta: Tamil
   th: Thai
   tr: Turkish
+  tw: Traditional Chinese
   uk: Ukranian
   vi: Vietnamese
 

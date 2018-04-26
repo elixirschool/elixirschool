@@ -42,7 +42,10 @@
     {% endunless %}
   {% endfor %}
     <li>
-      <a href="/appendix/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "appendix" or page.layout == "post" %}active{% endif %}">{{ site.data['locales']['en']['sections']['appendix']}}</a>
+      <a href="/appendix/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "appendix" or page.layout == "post" %}active{% endif %}">{{ site.data['locales'][language]['sections']['appendix']}}</a>
+    </li>
+    <li>
+      <a href="/contributors/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.name == "contributors.html" %}active{% endif %}">{{ site.data['locales'][language]['sections']['contributors']}}</a>
     </li>
   </ul>
 </nav>

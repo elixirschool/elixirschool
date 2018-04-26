@@ -11,6 +11,7 @@ sections:
   specifics: Specifics
   libraries: Libraries
   appendix: Appendix
+  contributors: Contributors
 
 version_messages:
   outdated: "Some contents of this translation may be outdated."

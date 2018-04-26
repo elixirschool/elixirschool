@@ -10,6 +10,8 @@ sections:
   advanced: Продвинутый
   specifics: Специфика
   libraries: Библиотеки
+  appendix: Appendix
+  contributors: Contributors
 version_messages:
   outdated: "Некоторое содержимое этого урока может оказаться устаревшим."
   major: "С момента последнего обновления перевода в оригинальный урок были внесены серьёзные изменения."

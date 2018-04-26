@@ -10,6 +10,8 @@ sections:
   advanced: Avanzado
   specifics: Específico
   libraries: Librerías
+  appendix: Appendix
+  contributors: Contributors
 version_messages:
   outdated: "Algunos contenidos de esta tradución pueden estar desactualizados."
   major: "Varios cambios mayores fueron aplicados a la lección original desde la última actualización."

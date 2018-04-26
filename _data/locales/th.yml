@@ -10,6 +10,8 @@ sections:
   advanced: ขั้นสูง
   specifics: เฉพาะทาง
   libraries: Libraries
+  appendix: Appendix
+  contributors: Contributors
 version_messages:
   outdated: "เนื้อหาบางส่วนของบทแปลฉบับนี้อาจล้าสมัย"
   major: "ต้นฉบับมีการเปลี่ยนแปลงสำคัญเกิดขึ้นเป็นจำนวนมากนับตั้งแต่การปรับปรุงครั้งล่าสุด"

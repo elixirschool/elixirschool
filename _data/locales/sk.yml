@@ -10,6 +10,8 @@ sections:
   advanced: Pokročilé
   specifics: Špecifiká
   libraries: Knižnice
+  appendix: Appendix
+  contributors: Contributors
 version_messages:
   outdated: "Niektoré časti tohto prekladu môžu byť neaktuálne."
   major: "Viacero dôležitých zmien bolo pridaných do originálnej lekcie od poslednej aktualizácie."

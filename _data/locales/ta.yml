@@ -10,6 +10,8 @@ sections:
   advanced: மேம்பட்டவை
   specifics: ப்ரத்யேகமானவை
   libraries: திரட்டுகள்
+  appendix: Appendix
+  contributors: Contributors
 version_messages:
   outdated: "இம்மொழிபெயர்ப்பின் சில பகுதிகள் காலாவதியாகியிருக்கலாம்."
   major: "கடைசியாக இற்றைப்படுத்தப்பட்டதிலிருந்து முக்கியமான மாற்றங்கள் பல செய்யப்பட்டுள்ளன."

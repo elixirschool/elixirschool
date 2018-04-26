@@ -11,6 +11,8 @@ sections:
   advanced: Προχωρημένα
   specifics: Ιδιαιτερότητες
   libraries: Βιβλιοθήκες
+  appendix: Appendix
+  contributors: Contributors
 version_messages:
   outdated: "Ίσως υπάρχει περιεχόμενο σε αυτή τη μετάφραση που δεν είναι ενημερωμένο."
   major: "Υπάρχουν αρκετές μεγάλες αλλαγές στο αρχικό μάθημα μετά την τελευταία ενημέρωση."
