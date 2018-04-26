@@ -1,11 +1,11 @@
 ---
-version: 0.9.1
+version: 1.0.0
 title: OTP 并发
 ---
 
 我们已经看过了 Elixir 层的并发抽象机制，但有时候我们需要更多的控制，那就要了解 Elixir 底层的东西：OTP 行为（behaviors）。
 
-这节课，我们主要讲两个东西：Genservers 和 GenEvents。
+这节课，我们主要讲两个东西：Genservers。
 
 {% include toc.html %}
 
@@ -147,74 +147,3 @@ iex> SimpleQueue.queue
 ```
 
 可以前往官方的 [`GenServer`](https://hexdocs.pm/elixir/GenServer.html#content) 文档了解更多的信息。
-
-# GenEvent
-我们刚学习到：Genservers 是维护状态并能够同步和异步处理请求的进程，但什么是 GenEvent 呢？GenEvents 是事件管理器：接受进来的事件，并通知订阅事件的消费者。这种机制能让我们动态地添加和删除事件的处理函数。
-
-## 处理事件
-可以想象，GenEvents 最重要的 callbacks 就是 `handle_event/2`，它接受一个事件和处理器当前的状态，并返回元组`{:ok, state}`。
-
-为了演示 GenEvent 的功能，我们来创建两个处理函数：一个记录接收到的消息，另外一个把它持久化（逻辑上的）：
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts("Logging new message: #{msg}")
-    {:ok, [msg | messages]}
-  end
-end
-
-defmodule PersistenceHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, state) do
-    IO.puts("Persisting log message: #{msg}")
-
-    # Save message
-
-    {:ok, state}
-  end
-end
-```
-
-## 调用处理函数
-除了 `handle_event/2`，GenEvents 还支持 `handle_call/2` 和其他的回调函数。使用 `handle_call/2` 可以处理特定的不同消息。
-
-我们来更新 `LoggerHandler`，让它能够获取当前的消息日志：
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts("Logging new message: #{msg}")
-    {:ok, [msg | messages]}
-  end
-
-  def handle_call(:messages, messages) do
-    {:ok, Enum.reverse(messages), messages}
-  end
-end
-```
-
-## 使用 GenEvents
-处理函数都写好了，我们要熟悉一下 GenEvents 的函数。其中最重要的三个是：`add_handler/3`，`notify/2` 和 `call/4`，它们的功能分别是：添加处理函数，广播消息，和调用特定的处理函数。
-
-把所有这些放到一起的话，我们的处理函数是这样使用的：
-
-```elixir
-iex> {:ok, pid} = GenEvent.start_link([])
-iex> GenEvent.add_handler(pid, LoggerHandler, [])
-iex> GenEvent.add_handler(pid, PersistenceHandler, [])
-
-iex> GenEvent.notify(pid, {:msg, "Hello World"})
-Logging new message: Hello World
-Persisting log message: Hello World
-
-iex> GenEvent.call(pid, LoggerHandler, :messages)
-["Hello World"]
-```
-
-阅读官方的 [GenEvent](https://hexdocs.pm/elixir/GenEvent.html#content) 文档查看完整的回调函数列表以及 GenEvent 的所有功能。

@@ -1,11 +1,11 @@
 ---
-version: 0.9.1
+version: 1.0.0
 title: OTP Concurrency
 ---
 
 Kita sudah melihat abstraksi Elixir untuk konkurensi tapi terkadang kita butuh kendali lebih dan untuk itu kita beralih ke perilaku OTP yang mana Elixir dibangun di atasnya.
 
-Dalam pelajaran ini kita akan fokus pada dua bagian penting: Genserver dan GenEvent.
+Dalam pelajaran ini kita hanya akan fokus pada bagian yang paling penting yaitu Genserver.
 
 {% include toc.html %}
 
@@ -150,78 +150,3 @@ iex> SimpleQueue.queue
 ```
 
 Untuk informasi lebih lanjut kunjungi dokumentasi resmi [GenServer](https://hexdocs.pm/elixir/GenServer.html#content).
-
-## GenEvent
-
-Kita sudah belajar bahwa GenServer adalah proses yang dapat menyimpan state dan menangani request sinkron maupun taksinkron.  Lantas, apa itu GenEvent?  GenEvent adalah pengatur event yang generik yang menerima event yang datang dan memberitahu (notify) konsumer yang mendaftarkan diri untuk diinfokan (subscribed consumer).  GenEvent memberi mekanisme untuk menambah dan menghapus handler terhadap aliran event.
-
-### Menangani event
-
-Callback yang paling penting dalam GenEven yang bisa dibayangkan adalah `handle_event/2`.  Callback ini menerima event dan state saat ini dari handlernya, dan mengembalikan sebuah tuple: `{:ok, state}`.
-
-Untuk mendemonstrasikan fungsionalitas GenEvent mari mulai dengan membuat dua handler, satu untuk mencatat log dari pesan (message), dan yang satunya untuk menyimpan (persist) pesan tersebut (secara teoritis):
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts("Logging new message: #{msg}")
-    {:ok, [msg | messages]}
-  end
-end
-
-defmodule PersistenceHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, state) do
-    IO.puts("Persisting log message: #{msg}")
-
-    # Save message
-
-    {:ok, state}
-  end
-end
-```
-
-### Memanggil Handler
-
-Selain `handle_event/2` GenEvent juga mendukung, antara lain, callback `handle_call/2`. Dengan `handle_call/2` kita bisa menangani pesan sinkron yang spesifik dengan handler kita.
-
-Mari ubah `LoggerHandler` kita untuk melibatkan sebuah method untuk mengambil log pesan terbaru:
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts("Logging new message: #{msg}")
-    {:ok, [msg | messages]}
-  end
-
-  def handle_call(:messages, messages) do
-    {:ok, Enum.reverse(messages), messages}
-  end
-end
-```
-
-### Menggunakan GenEvent
-
-Dengan handler kita sudah siap kita perlu membiasakan diri dengan beberapa fungsi GenEvent.  Tiga fungsi yang paling penting adalah: `add_handler/3`, `notify/2`, dan `call/4`.  Ketiga fungsi ini masing-masing memungkinkan kita menambahkan handler, menginformasikan adanya pesan baru, dan memanggil fungsi handler yang spesifik.
-
-Jika kita masukkan semua, kita bisa melihat bagaimana handler kita bekerja:
-
-```elixir
-iex> {:ok, pid} = GenEvent.start_link([])
-iex> GenEvent.add_handler(pid, LoggerHandler, [])
-iex> GenEvent.add_handler(pid, PersistenceHandler, [])
-
-iex> GenEvent.notify(pid, {:msg, "Hello World"})
-Logging new message: Hello World
-Persisting log message: Hello World
-
-iex> GenEvent.call(pid, LoggerHandler, :messages)
-["Hello World"]
-```
-
-Lihat dokumentasi resmi [GenEvent](https://hexdocs.pm/elixir/GenEvent.html#content) untuk daftar lengkap callback dan fungsionalitas GenEvent.
