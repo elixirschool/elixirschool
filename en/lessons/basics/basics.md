@@ -1,8 +1,6 @@
 ---
 version: 1.1.2
 title: Basics
-redirect_from:
-  - /lessons/basics/basics/
 ---
 
 Getting started, basic data types, and basic operations.
