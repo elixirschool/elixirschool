@@ -2,7 +2,6 @@
 //= require skel.min.js
 //= require util.js
 //= require toc.js
-//= require contributors.js
 (function($) {
 
 	skel.breakpoints({
