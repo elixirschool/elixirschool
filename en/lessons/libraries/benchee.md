@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Benchee
-redirect_from:
-  - /lessons/libraries/benchee/
 ---
 
 We can't just guess about which functions are fast and which are slow - we need actual measurements when we're curious. That's where benchmarking comes in. In this lesson, we'll learn about how easy it is to measure the speed of our code.

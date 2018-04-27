@@ -88,7 +88,6 @@ In addition to the steps above there are a few addition steps required for trans
      * if this is a initial lesson translation, the version should be set to `1.0.0`;
      * if you apply the original lesson updates to the translation, the version should be copied from the corresponding state of the original lesson;
      * else bump one of the version numbers depending on how important is your change.
-   * `redirect_from` should be removed since it is used only for English lessons that earlier were hosted in a separate folder without a language prefix.
 
    For example `/ja/lessons/basics/basics.md`:
 
