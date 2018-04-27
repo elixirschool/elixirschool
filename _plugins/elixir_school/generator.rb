@@ -90,7 +90,7 @@ module ElixirSchool
 
       # last pass to define page.data['leaf']
       site.pages.each do |page|
-        next if site.config['exclude_from_chapters'].include? page.name
+        next if site.config['exclude_from_chapters'].include? page.name or page.data['redirect_to']
         lang = page.data['lang']
         section = page.data['section']
         chapter_name = page.data['chapter']
