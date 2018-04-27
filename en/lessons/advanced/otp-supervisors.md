@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: OTP Supervisors
 redirect_from:
   - /lessons/advanced/otp-supervisors/
@@ -29,7 +29,7 @@ defmodule SimpleQueue.Application do
     ]
 
     opts = [strategy: :one_for_one, name: SimpleQueue.Supervisor]
-    Supervisor.start_link(children, strategy: :one_for_one)
+    Supervisor.start_link(children, opts)
   end
 end
 ```
@@ -46,7 +46,7 @@ defmodule SimpleQueue.Application do
     ]
 
     opts = [strategy: :one_for_one, name: SimpleQueue.Supervisor]
-    Supervisor.start_link(children, strategy: :one_for_one)
+    Supervisor.start_link(children, opts)
   end
 end
 ```
