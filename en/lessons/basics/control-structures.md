@@ -1,8 +1,6 @@
 ---
 version: 1.1.1
 title: Control Structures
-redirect_from:
-  - /lessons/basics/control-structures/
 ---
 
 In this lesson we will look at the control structures available to us in Elixir.

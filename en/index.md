@@ -1,6 +1,5 @@
 ---
 title: Elixir School
-redirect_from: /
 layout: home
 ---
 

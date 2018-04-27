@@ -1,8 +1,6 @@
 ---
 version: 1.1.1
 title: Poolboy
-redirect_from:
-  - /lessons/libraries/poolboy/
 ---
 
 You can easily exhaust your system resources if you do not limit the maximum number of concurrent processes that your program can spawn. [Poolboy](https://github.com/devinus/poolboy) is a widely used lightweight, generic pooling library for Erlang that addresses this issue.
