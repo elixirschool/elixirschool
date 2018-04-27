@@ -16,9 +16,9 @@
 				color: inherit;
 				cursor: pointer;
 				display: block;
-				font-size: 1em;
+				font-size: 1.1em;
 				font-weight: 700;
-				padding: 0.625em 0;
+				padding: 0.25em 0;
 
 				&.up{
 					text-transform: uppercase;
@@ -37,6 +37,7 @@
 					@include icon;
 					-webkit-tap-highlight-color: rgba(255,255,255,0);
 					position: relative;
+          font-size: 1.2em;
 
 					&:before {
 						@include vendor('transition', (
@@ -81,7 +82,7 @@
 					padding-left: 1em;
 
 					a, span {
-						font-size: 1em;
+						font-size: 1.1em;
 						font-weight: 400;
 					}
 
