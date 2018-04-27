@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: OTP Supervisors
 redirect_from:
   - /lessons/advanced/otp-supervisors/
