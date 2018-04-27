@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: パイプライン演算子
-redirect_from:
-  - /jp/lessons/basics/pipe-operator/
 ---
 
 パイプライン演算子(`|>`)はある式の結果を別の式に1つ目の引数として渡します。

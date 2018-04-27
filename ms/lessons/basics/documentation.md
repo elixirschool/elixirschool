@@ -1,8 +1,6 @@
 ---
 version: 0.9.1
 title: Dokumentasi
-redirect_from:
-  - /my/lessons/basics/documentation/
 ---
 
 Mendokumentasi kod Elixir.
@@ -30,7 +28,7 @@ Lihat skrip Elixir ini (greeting.exs):
 IO.puts("Hello, " <> "chum.")
 ```
 
-Apabila menjalankan skrip ini, Elixir tidak akan mempedulikan semua dari `#` hingga ke pengakhir line tersebut, melayannya sebagai data pakai buang.  Ia mungkin tidak menambah nilai kepada operasi atau prestasi skrip tersebut, tetapi walaupun ianya tidak ketara apa yang sedang berlaku seorang pengaturcara sepatutnya tahu dari membaca komen anda.  Berhati-hati supaya tidak abuse komen satu baris tersebut!  Mencomotkan satu codebase mungkin tidak dialu-alukan oleh sesetengah pihak.  Sebaiknya gunakanlah dengan berimbang. 
+Apabila menjalankan skrip ini, Elixir tidak akan mempedulikan semua dari `#` hingga ke pengakhir line tersebut, melayannya sebagai data pakai buang.  Ia mungkin tidak menambah nilai kepada operasi atau prestasi skrip tersebut, tetapi walaupun ianya tidak ketara apa yang sedang berlaku seorang pengaturcara sepatutnya tahu dari membaca komen anda.  Berhati-hati supaya tidak abuse komen satu baris tersebut!  Mencomotkan satu codebase mungkin tidak dialu-alukan oleh sesetengah pihak.  Sebaiknya gunakanlah dengan berimbang.
 
 ### Menjana Dokumentasi Modul
 
@@ -187,7 +185,7 @@ end
 
 Kita menetapkan pasangan key-value `only: :dev` sebab kita tidak mahu untuk memuatturun dan mengkompil dependency tersebut di dalam persekitaran pengeluaran(production environment).
 
-Perlu diingatkan, anda tidak diwajibkan untuk menggunakan Earkmark,  Anda boeh menggunakan alat markup yang lain seperti Pandoc, Hoedown atau Cmark; tetapi anda akan diperlukan untuk membuat sedikit konfigurasi yang boleh anda baca [di sini](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool).  Untuk tutorial ini kita akan gunakan Earmark. 
+Perlu diingatkan, anda tidak diwajibkan untuk menggunakan Earkmark,  Anda boeh menggunakan alat markup yang lain seperti Pandoc, Hoedown atau Cmark; tetapi anda akan diperlukan untuk membuat sedikit konfigurasi yang boleh anda baca [di sini](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool).  Untuk tutorial ini kita akan gunakan Earmark.
 
 ### Menjana Dokumentasi
 
@@ -208,11 +206,11 @@ Kita dapat lihat bahawa Earmark telah memproses markdown kita dan ExDoc memapark
 
 ![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
-Sekarang kita boleh melakukan deploy ke Github, laman web kita sendiri, atau [HexDocs](https://hexdocs.pm/). 
+Sekarang kita boleh melakukan deploy ke Github, laman web kita sendiri, atau [HexDocs](https://hexdocs.pm/).
 
 ## Amalan Terbaik
 
-Amalan menambahkan dokumentasi sepatutnya dimasukkan sebagai salah satu panduan amalan terbaik bahasa ini.  Oleh sebab Eixir ialah bahasa yang agak baharu masih banyak standard untuk diterokai sepadan dengan pertumbuhan ekosistemnya.  Bagaimanapun, komuniti ini telah melakukan banyak usaha untuk memantapkan amalan-amalan terbaik.  Untuk membaca lebih lanjut berkenaan amalan-amalan terbaik, sila lihat [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide). 
+Amalan menambahkan dokumentasi sepatutnya dimasukkan sebagai salah satu panduan amalan terbaik bahasa ini.  Oleh sebab Eixir ialah bahasa yang agak baharu masih banyak standard untuk diterokai sepadan dengan pertumbuhan ekosistemnya.  Bagaimanapun, komuniti ini telah melakukan banyak usaha untuk memantapkan amalan-amalan terbaik.  Untuk membaca lebih lanjut berkenaan amalan-amalan terbaik, sila lihat [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
   - Selalu mendokumentasi sesatu modul.
 

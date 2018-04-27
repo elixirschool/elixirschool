@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: プロトコル
-redirect_from:
-  - /jp/lessons/advanced/protocols/
 ---
 
 このレッスンではプロトコルがどんなものなのか、そして Elixir でどのように使うのかを見ていきます。

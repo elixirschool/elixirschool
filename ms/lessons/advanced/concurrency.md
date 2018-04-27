@@ -1,8 +1,6 @@
 ---
 version: 0.9.1
 title: Keserempakan
-redirect_from:
-  - /my/lessons/advanced/concurrency/
 ---
 
 Salah satu faktor pelaris Elixir ialah sokongan kepada keserempakan(concurrency).  Terima kasih kepada Erlang VM (BEAM), keserempakan di dalam Elixir adalah lebih mudah dari yang dijangkakan.  Model keserempakan bergantung kepada Actor, satu proses yang berkomunikasi dengan proses-proses lain melalui pengagihan mesej.
@@ -137,7 +135,7 @@ iex> Agent.get(agent, &(&1))
 [1, 2, 3, 4, 5]
 ```
 
-Apabila kita menamakan satu Agent, ia boleh dirujuk sebagai Agent dan tidak melalui PID-nya. 
+Apabila kita menamakan satu Agent, ia boleh dirujuk sebagai Agent dan tidak melalui PID-nya.
 
 ```elixir
 iex> Agent.start_link(fn -> [1, 2, 3] end, name: Numbers)
@@ -149,7 +147,7 @@ iex> Agent.get(Numbers, &(&1))
 
 ## Task
 
-'Task' menyediakan satu cara untk menjalankan satu fungsi di 'background' dan menerima nilai yang dipulangkan kemudian.  Ianya amat berguna apabila menguruskan operasi-operasi yang berat tanpa merencatkan perjalanan aplikasi. 
+'Task' menyediakan satu cara untk menjalankan satu fungsi di 'background' dan menerima nilai yang dipulangkan kemudian.  Ianya amat berguna apabila menguruskan operasi-operasi yang berat tanpa merencatkan perjalanan aplikasi.
 
 ```elixir
 defmodule Example do

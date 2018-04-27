@@ -1,6 +1,5 @@
 ---
 title: Elixir School
-redirect_from: /my/
 layout: home
 version: 1.0.0
 ---

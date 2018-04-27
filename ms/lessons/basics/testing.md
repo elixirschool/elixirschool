@@ -1,8 +1,6 @@
 ---
 version: 0.9.0
 title: Pengujian
-redirect_from:
-  - /my/lessons/basics/testing/
 ---
 
 Pengujian adalah aspek penting di dalam pembangunan perisian.  Di dalam pelajaran ini kita akan melihat bagaimana untuk menguji kod Elixir kita menggunakan ExUnit dan juga beberapa amalan terbaik untuk melaksanakannya.
@@ -36,7 +34,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 ### assert
 
-Jika anda pernah menulis ujian-ujian sebelum ini anda akan mengenali `assert`; di dalam beberapa kerangka lain ia dikenali sebagai `should` atau `expect`. 
+Jika anda pernah menulis ujian-ujian sebelum ini anda akan mengenali `assert`; di dalam beberapa kerangka lain ia dikenali sebagai `should` atau `expect`.
 
 Kita gunakan makro `assert` untuk menguji jika ungkapan tersebut ialah benar.  Jika ungkapan itu tidak benar, satu ralat akan ditimbulkan dan ujian kita akan gagal.  Untuk menguji kegagalan kita akan ubahkan contoh kita dan kemudian jalankan `mix.test`:
 
@@ -81,7 +79,7 @@ Kadang-kadang ianya perlu untuk menerapkan bahawa satu ralat telah ditimbulkan, 
 
 ## Penyediaan Ujian
 
-Kadang-kala ada keperluan untuk melakukan penyediaan sebelum menjalankan ujian-ujian kita.  Untuk melaksanakannya kita boleh gunakan makro-makro `setup` dan `setup_all`.  `setup` akan dijalankan sebelum setiap ujian dan `setup_all` akan dijalankan sekali sahaja sebelum sekumpulan ujian.  Ia dijangkakan untuk memulangkan satu tuple `{:ok, state}`, di mana 'state' akan sedia untuk kegunaan ujian-ujian kita. 
+Kadang-kala ada keperluan untuk melakukan penyediaan sebelum menjalankan ujian-ujian kita.  Untuk melaksanakannya kita boleh gunakan makro-makro `setup` dan `setup_all`.  `setup` akan dijalankan sebelum setiap ujian dan `setup_all` akan dijalankan sekali sahaja sebelum sekumpulan ujian.  Ia dijangkakan untuk memulangkan satu tuple `{:ok, state}`, di mana 'state' akan sedia untuk kegunaan ujian-ujian kita.
 
 Sebagai contoh, kita akan tukarkan kod kita untuk gunakan `setup_all`:
 
@@ -103,4 +101,3 @@ end
 ## Mocking
 
 Jawapan mudah untuk kegunaan 'mocking' di dalam Elixir: jangan.  Anda mungkin sudah terbiasa untuk menggunakan 'mock' tetapi ianya amat tidak digalakkan oleh komuniti Elixir dan ada sebab-sebab baik untuknya.  Jika anda ikut prinsip amalan baik rekabentuk, kod yang dihasilkan akan lebih mudah untuk diuji sebagai komponen-komponen individu.
-

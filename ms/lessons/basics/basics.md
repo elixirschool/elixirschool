@@ -1,8 +1,6 @@
 ---
 version: 0.9.0
 title: Asas
-redirect_from:
-  - /my/lessons/basics/basics/
 ---
 
 Penyediaan, Jenis Data Asas dan Operasi.
@@ -206,7 +204,7 @@ Satu ciri penting Elixir ialah mana-mana dua bentuk jenis data boleh dibandingka
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
-Ini boleh membawa kepada beberapa perbandingan yang menarik, dan sah, yang anda mungkin tidak akan jumpai dalam bahasa aturcara lain: 
+Ini boleh membawa kepada beberapa perbandingan yang menarik, dan sah, yang anda mungkin tidak akan jumpai dalam bahasa aturcara lain:
 
 ```elixir
 iex> :hello > 999
