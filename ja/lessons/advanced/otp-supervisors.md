@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: OTP スーパーバイザ
-redirect_from:
-  - /jp/lessons/advanced/otp-supervisors/
 ---
 
 Supervisor(スーパーバイザ)は、他のプロセスを監視するという、1つの目的に特化したプロセスです。子プロセスが失敗した際に自動的に再起動させることによって、耐障害性の高い(フォールトトレラントな)アプリケーションを作ることを可能にします。

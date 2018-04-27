@@ -1,7 +1,5 @@
 ---
 title: Elixir School 日本語訳
-redirect_from:
-  - /jp/
 layout: home
 version: 1.0.0
 ---

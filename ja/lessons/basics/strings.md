@@ -1,8 +1,6 @@
 ---
 version: 1.1.1
 title: 文字列
-redirect_from:
-  - /jp/lessons/basics/strings/
 ---
 
 文字列、文字のリスト、書記素、コードポイントとは。

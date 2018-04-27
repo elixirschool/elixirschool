@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: ビヘイビア
-redirect_from:
-  - /jp/lessons/advanced/behaviours/
 ---
 
 前の章では仕様と型について学びました。この章では、その仕様を実装するようにモジュールに要求する方法を学びます。Elixirでは、この機能はビヘイビア(振る舞い)と呼ばれます。

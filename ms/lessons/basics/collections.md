@@ -1,8 +1,6 @@
 ---
 version: 0.9.0
 title: Collections
-redirect_from:
-  - /my/lessons/basics/collections/
 ---
 
 List, tuples, keywords, maps, dicts dan functional combinators.
@@ -129,7 +127,7 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-Sekiranya satu salinan baru ditambah kepada satu map, ia akan menukarkan nilai asal: 
+Sekiranya satu salinan baru ditambah kepada satu map, ia akan menukarkan nilai asal:
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}

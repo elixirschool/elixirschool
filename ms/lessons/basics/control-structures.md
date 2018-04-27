@@ -1,8 +1,6 @@
 ---
 version: 0.9.0
 title: Struktur Kawalan
-redirect_from:
-  - /my/lessons/basics/control-structures/
 ---
 
 Dalam pelajaran ini kita akan melihat struktur kawalan yang dibekalkan oleh ELixir.
@@ -51,7 +49,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-Pembolehubah `_` itu adalah penambahan penting di dalam kenyataan `case`.  Jika tidak digunakan, sebarang padanan yang gagal akan menimbulkan ralat: 
+Pembolehubah `_` itu adalah penambahan penting di dalam kenyataan `case`.  Jika tidak digunakan, sebarang padanan yang gagal akan menimbulkan ralat:
 
 ```elixir
 iex> case :even do

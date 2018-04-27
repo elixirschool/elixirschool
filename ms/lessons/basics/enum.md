@@ -1,8 +1,6 @@
 ---
 version: 0.9.0
 title: Enum
-redirect_from:
-  - /my/lessons/basics/enum/
 ---
 
 Satu kumpulan algorithm untuk memproses satu persatu(enumerate) isi kandungan 'collection'.

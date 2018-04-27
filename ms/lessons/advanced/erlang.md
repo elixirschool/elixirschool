@@ -1,8 +1,6 @@
 ---
 version: 0.9.1
 title: Kesalingbolehgunaan (Interoperability) Dengan Erlang
-redirect_from:
-  - /my/lessons/advanced/erlang/
 ---
 
 Salah satu faedah tambahan daripada membina di atas Erlang VM (BEAM) ialah lambakan pustaka sedia ada yang tersedia untuk kita.  Kesalingbolehgunaan(Interoperability) mengupayakan kita untuk menuilkan(leverage) pustaka-pustaka tersebut dan pustaka rasmi Erlang daripada kod Elixir kita.  Di dalam pelajaran ini kita akan melihat bagaimana untuk mencapai kefungsian di dalam pustaka rasmi dan juga pustaka-pustaka pihak ketiga Erlang.  
@@ -50,7 +48,7 @@ png =
 
 ## Perbezaan Nyata
 
-Oleh kerana sekarang kita telah tahu bagaimana untuk menggunakan pustaka Elixir kita patut melihat beberapa isu yang didatangkan oleh kesalingbolehgunaan dengan Erlang. 
+Oleh kerana sekarang kita telah tahu bagaimana untuk menggunakan pustaka Elixir kita patut melihat beberapa isu yang didatangkan oleh kesalingbolehgunaan dengan Erlang.
 
 ### Atom
 

@@ -1,8 +1,6 @@
 ---
 version: 1.1.2
 title: 基本
-redirect_from:
-  - /jp/lessons/basics/basics/
 ---
 
 入門、基本データ型、そして基本的な演算。

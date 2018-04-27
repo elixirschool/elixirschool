@@ -1,8 +1,6 @@
 ---
 version: 1.0.2
 title: OTPの並行性
-redirect_from:
-  - /jp/lessons/advanced/otp-concurrency/
 ---
 
 並行性(コンカレンシー)に関する Elixir の抽象化を見てきましたが、さらなる制御が必要になることもあります。そうした時のために、 Elixir に組み込まれている OTP の振る舞いに目を向けます。

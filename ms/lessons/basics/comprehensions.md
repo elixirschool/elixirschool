@@ -1,8 +1,6 @@
 ---
 version: 0.9.0
 title: Comprehension
-redirect_from:
-  - /my/lessons/basics/comprehensions/
 ---
 
 'List comprehension' ialah 'syntactic sugar'(sintaks untuk memudahkan pembacaan dan penjelasan sesuatu topik) untuk menggelung 'enumerable' di dalam Elixir.  Di dalam pelajaran ini kita akan melihat bagaimana kita boleh menggunakan 'comprehension' untuk lelaran(iteration) dan penjanaan.
@@ -74,7 +72,7 @@ List comprehensions adalah 'syntactic sugar' dan sepatutnya hanya digunakan apab
 
 ## Tapisan
 
-Anda boleh anggapkan tapisan(filter) sebagai sejenis klausa kawalan untuk 'comprehension'.  Apabila satu nilai yang telah ditapis memulangkan nilai `false` atau `nil` ianya diabaikan dari list muktamad.  Mari gelungkan satu julat dan hanya pedulikan tentang nombor genap: 
+Anda boleh anggapkan tapisan(filter) sebagai sejenis klausa kawalan untuk 'comprehension'.  Apabila satu nilai yang telah ditapis memulangkan nilai `false` atau `nil` ianya diabaikan dari list muktamad.  Mari gelungkan satu julat dan hanya pedulikan tentang nombor genap:
 
 ```elixir
 iex> for x <- 1..10, is_even(x), do: x
@@ -92,7 +90,7 @@ iex> for x <- 1..100,
 
 ## Menggunakan `:into`
 
-Bagaimana pula jika kita mahu menghasilkan sesuatu selain dari list?  Gunakan pilihan `:into` untuk lakukannya!  Sebagai satu peraturan am, `:into` menerima apa-apa struktur yang mengimplementasi protokol 'Collectable'. 
+Bagaimana pula jika kita mahu menghasilkan sesuatu selain dari list?  Gunakan pilihan `:into` untuk lakukannya!  Sebagai satu peraturan am, `:into` menerima apa-apa struktur yang mengimplementasi protokol 'Collectable'.
 
 Dengan menggunakan `:into`, mari buat satu map dari satu list katakunci:
 

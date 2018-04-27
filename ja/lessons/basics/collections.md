@@ -1,8 +1,6 @@
 ---
 version: 1.2.1
 title: コレクション
-redirect_from:
-  - /jp/lessons/basics/collections/
 ---
 
 リスト、タプル、キーワードリスト、マップ。

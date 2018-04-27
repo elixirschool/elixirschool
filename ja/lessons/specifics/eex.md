@@ -1,8 +1,6 @@
 ---
 version: 1.0.2
 title: 埋め込みElixir (EEx)
-redirect_from:
-  - /jp/lessons/specifics/eex/
 ---
 
 Ruby に ERB が、そして Java に JSP があるように Elixir にも EEx 即ち埋め込み Elixir があります。 EEx を使って文字列の中に Elixir を埋め込んで評価することができます。

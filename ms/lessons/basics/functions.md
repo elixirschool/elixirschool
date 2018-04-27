@@ -1,8 +1,6 @@
 ---
 version: 0.9.1
 title: Fungsi
-redirect_from:
-  - /my/lessons/basics/functions/
 ---
 
 Di dalam Elixir dan kebanyakan bahasa aturcara kefungsian, fungsi adalah rakyat kelas pertama.  Kita akan belajar mengenai jenis-jenis fungsi di dalam Elixir, apa yang menyebabkan mereka berbeza, dan bagaimana menggunakan mereka.
@@ -35,9 +33,9 @@ Sebagaimana tekaan anda, di dalam versi shorthand tersebut parameter kita disedi
 
 ## Pemadanan Corak
 
-Pemadanan corak(pattern matching) bukan hanya terhad kepada pembolehubah di dalam Elixir, ia juga boleh diaplikasikan kepada pengenalan fungsi(function signature) sebagaimana yang akan kita lihat di dalam bahagian ini. 
+Pemadanan corak(pattern matching) bukan hanya terhad kepada pembolehubah di dalam Elixir, ia juga boleh diaplikasikan kepada pengenalan fungsi(function signature) sebagaimana yang akan kita lihat di dalam bahagian ini.
 
-Elixir menggunakan pemadanan corak untuk memastikan mana satu kumpulan parameter yang padan dan memanggil badan fungsi yang berkaitan: 
+Elixir menggunakan pemadanan corak untuk memastikan mana satu kumpulan parameter yang padan dan memanggil badan fungsi yang berkaitan:
 
 ```elixir
 iex> handle_result = fn

@@ -1,8 +1,6 @@
 ---
 version: 1.1.2
 title: Plug
-redirect_from:
-  - /jp/lessons/specifics/plug/
 ---
 
 Rubyをよくご存知なら、PlugはところどころSinatraの面影をもつRackだと考えることができます。
