@@ -6,9 +6,10 @@ module ElixirSchool
       site.data['redirects'].each do |from, to|
         site.data['contents'].each do |category, pages|
           pages.each do |page|
-            if (page == 'home')
-              from_page = File.join(from, 'index')
-              to_page = File.join(to, 'index')
+            if (category == 'home')
+              page = page == 'home' ? '' : page
+              from_page = File.join(from, page)
+              to_page = File.join(to, page)
             else
               from_page = File.join(from, 'lessons', category, page)
               to_page = File.join(to, 'lessons', category, page)
