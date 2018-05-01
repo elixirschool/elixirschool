@@ -17,14 +17,14 @@
       </tr>
     </thead>
     <tbody>
-  {% for lesson in section[1].lessons %}
+  {% for lesson in section[1] %}
     <tr>
       <td>{{ lesson[1]['lesson'] }}</td>
       <td>{{ lesson[1]['translated_title'] }}</td>
       <td>{{ lesson[1]['original_version'] }}</td>
       <td>{{ lesson[1]['translated_version'] }}</td>
       <td>{{ lesson[1]['version_severity'] }}</td>
-      <td><span class="version-difference-indicator version-difference-{{ lesson[1]['version_severity'] }}">&nbsp;&nbsp;</span></td>
+      <td><span class="version-difference-indicator version-difference-{{ lesson[1]['version_severity'] }}">&nbsp;</span></td>
     </tr>
   {% endfor %}
     </tbody>

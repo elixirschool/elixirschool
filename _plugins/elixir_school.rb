@@ -29,9 +29,9 @@ module ElixirSchool
         build_translation_report_defaults(site, default_lang, lang)
         content.each do |section, section_content|
           section_content.each do |lesson, lesson_content|
-            site.config['translation_report'][lang][section]['lessons'][lesson]['translated_title'] = lesson_content['title']
-            site.config['translation_report'][lang][section]['lessons'][lesson]['translated_version'] = pretify_version(lesson_content['version'])
-            site.config['translation_report'][lang][section]['lessons'][lesson]['version_severity'] = lesson_content['version_severity']
+            site.config['translation_report'][lang][section][lesson]['translated_title'] = lesson_content['title']
+            site.config['translation_report'][lang][section][lesson]['translated_version'] = pretify_version(lesson_content['version'])
+            site.config['translation_report'][lang][section][lesson]['version_severity'] = lesson_content['version_severity']
           end
         end
       end
@@ -45,9 +45,9 @@ module ElixirSchool
     def build_translation_report_defaults(site, default_lang, lang)
       site.config['translation_report'][lang] = {}
       site.config['contents'][default_lang].each do |section, section_content|
-        site.config['translation_report'][lang][section] = {'lessons' => {}}
+        site.config['translation_report'][lang][section] = {}
         section_content.each do |lesson, lesson_content|
-          site.config['translation_report'][lang][section]['lessons'][lesson] = {
+          site.config['translation_report'][lang][section][lesson] = {
             'lesson' => lesson_content['title'],
             'translated_title' => '',
             'original_version' => pretify_version(lesson_content['version']),
