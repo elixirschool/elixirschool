@@ -20,3 +20,10 @@ version_messages:
   patch: "Several patches were applied to the original lesson since the last update."
   none: "This translation is up to date."
   error: "There is an error in the version definition of this chapter."
+translation_report:
+  heading: Translation Report
+  original_title: Original Title
+  translation_title: Translation Title
+  original_version: Original Version
+  translation_version: Translation Version
+  version_severity: Version Severity
