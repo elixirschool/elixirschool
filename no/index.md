@@ -23,3 +23,4 @@ __Funksjoner__:
 + Funksjonell Programmering
 + Utvidbar
 
+{% include report.html %}

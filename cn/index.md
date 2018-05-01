@@ -18,3 +18,5 @@ Elixir 语言是构建在久经检验的 Erlang VM (BEAM) 之上，可以方便�
 - 高容错性
 - 函数式编程
 - 可扩展
+
+{% include report.html %}

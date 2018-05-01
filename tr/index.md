@@ -30,3 +30,4 @@ Elixir School'u harika hale getirmemiz için yardımınıza ihtiyacımız var. S
   [tr]: /tr/
   [th]: /th/
 
+{% include report.html %}

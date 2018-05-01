@@ -41,3 +41,5 @@ __特色__:
 + 故障容錯 (Fault-tolerant)
 + 函數程式設計 (Functional Programming)
 + 可延伸 (Extensible)
+
+{% include report.html %}

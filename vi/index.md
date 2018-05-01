@@ -20,3 +20,5 @@ __Chức năng__:
 + Chịu lỗi
 + Lập trình hướng chức năng
 + Mở rộng
+
+{% include report.html %}

@@ -29,3 +29,5 @@ __Features__:
 + Fault-tolerant
 + Functional Programming
 + Extensible
+
+{% include report.html %}

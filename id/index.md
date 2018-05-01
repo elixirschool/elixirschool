@@ -20,3 +20,5 @@ __Fitur__:
 + Toleran terhadap kegagalan
 + Pemrograman Fungsional
 + Bisa dikembangkan (ekstensibel)
+
+{% include report.html %}

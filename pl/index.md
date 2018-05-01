@@ -20,3 +20,5 @@ __Cechy__:
 + Odporny na błędy
 + Funkcyjny
 + Rozszerzalny
+
+{% include report.html %}
