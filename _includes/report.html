@@ -1,0 +1,31 @@
+<h2>{{ page.locale.translation_report.heading }}</h2>
+{% for section in site.translation_report[page.lang] %}
+  {% assign title = section[0] %}
+  {% assign section_title = page.locale.sections[title] %}
+
+  <h4>{{ section_title }}</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>{{ page.locale.translation_report.original_title }}</th>
+        <th>{{ page.locale.translation_report.translation_title }}</th>
+        <th>{{ page.locale.translation_report.original_version }}</th>
+        <th>{{ page.locale.translation_report.translation_version }}</th>
+        <th>{{ page.locale.translation_report.version_severity }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for lesson in section[1].lessons %}
+    <tr>
+      <td>{{ lesson[1]['lesson'] }}</td>
+      <td>{{ lesson[1]['translated_title'] }}</td>
+      <td>{{ lesson[1]['original_version'] }}</td>
+      <td>{{ lesson[1]['translated_version'] }}</td>
+      <td>{{ lesson[1]['version_severity'] }}</td>
+      <td><span class="version-difference-indicator version-difference-{{ lesson[1]['version_severity'] }}">&nbsp;&nbsp;</span></td>
+    </tr>
+  {% endfor %}
+    </tbody>
+{% endfor %}
