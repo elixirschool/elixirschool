@@ -38,7 +38,7 @@ module ElixirSchool
     end
 
     private
-    def pretify_version(version)
+    def prettify_version(version)
       version.is_a?(Array) ? version.join('.') : ''
     end
 
