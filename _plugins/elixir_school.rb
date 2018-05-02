@@ -30,7 +30,7 @@ module ElixirSchool
         content.each do |section, section_content|
           section_content.each do |lesson, lesson_content|
             site.config['translation_report'][lang][section][lesson]['translated_title'] = lesson_content['title']
-            site.config['translation_report'][lang][section][lesson]['translated_version'] = pretify_version(lesson_content['version'])
+            site.config['translation_report'][lang][section][lesson]['translated_version'] = prettify_version(lesson_content['version'])
             site.config['translation_report'][lang][section][lesson]['version_severity'] = lesson_content['version_severity']
           end
         end
@@ -50,13 +50,12 @@ module ElixirSchool
           site.config['translation_report'][lang][section][lesson] = {
             'lesson' => lesson_content['title'],
             'translated_title' => '',
-            'original_version' => pretify_version(lesson_content['version']),
+            'original_version' => prettify_version(lesson_content['version']),
             'translated_version' => '',
             'version_severity' => 'error'
           }
         end
       end
-      p site.config['translation_report']
     end
 
     def build_tree(site)
