@@ -7,11 +7,11 @@
   <table>
     <thead>
       <tr>
-        <th>{{ page.locale.translation_report.original_title }}</th>
-        <th>{{ page.locale.translation_report.translation_title }}</th>
-        <th>{{ page.locale.translation_report.original_version }}</th>
-        <th>{{ page.locale.translation_report.translation_version }}</th>
-        <th>{{ page.locale.translation_report.version_severity }}</th>
+        <th>{{ page.locale.translation_report.original_title | default: site.default_locale.translation_report.original_title }}</th>
+        <th>{{ page.locale.translation_report.translation_title | default: site.default_locale.translation_report.translation_title }}</th>
+        <th>{{ page.locale.translation_report.original_version | default: site.default_locale.translation_report.original_version }}</th>
+        <th>{{ page.locale.translation_report.translation_version | default: site.default_locale.translation_report.translation_version }}</th>
+        <th>{{ page.locale.translation_report.version_severity | default: site.default_locale.translation_report.version_severity }}</th>
         <th></th>
       </tr>
     </thead>
