@@ -20,5 +20,3 @@ __Características__:
 + Tolerante a falhas
 + Programação funcional
 + Extensível
-
-{% include report.html %}

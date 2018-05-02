@@ -21,5 +21,3 @@ __Ciri-ciri__:
 + Berdaya-tahan(Fault-tolerant)
 + Aturcara Kefungsian(Functional Programming)
 + Boleh Dikembangkan(Extensible)
-
-{% include report.html %}

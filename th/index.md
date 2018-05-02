@@ -20,5 +20,3 @@ __คุณสมบัติ__
 + ทนต่อความผิดพลาด (fault-tolerant)
 + รองรับการเขียนโปรแกรมเชิงฟังก์ชัน (functional programming)
 + ต่อเติมได้ง่าย (extensible)
-
-{% include report.html %}

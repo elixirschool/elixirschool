@@ -1,4 +1,3 @@
-<h2>{{ page.locale.translation_report.heading }}</h2>
 {% for section in site.translation_report[page.lang] %}
   {% assign title = section[0] %}
   {% assign section_title = page.locale.sections[title] %}
@@ -28,4 +27,5 @@
     </tr>
   {% endfor %}
     </tbody>
+  </table>
 {% endfor %}

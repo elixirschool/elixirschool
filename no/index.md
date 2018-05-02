@@ -22,5 +22,3 @@ __Funksjoner__:
 + Feiltolerant
 + Funksjonell Programmering
 + Utvidbar
-
-{% include report.html %}

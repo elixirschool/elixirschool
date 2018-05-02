@@ -19,5 +19,3 @@ __Fonctionnalités__:
 + Tolérant aux pannes
 + Programmation Fonctionnelle
 + Extensible
-
-{% include report.html %}

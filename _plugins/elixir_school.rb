@@ -56,6 +56,7 @@ module ElixirSchool
           }
         end
       end
+      p site.config['translation_report']
     end
 
     def build_tree(site)
@@ -146,6 +147,8 @@ module ElixirSchool
 
       if url_split[2] == "lessons" and url_split[3] != nil
         url_split[3]
+      elsif url_split[2] == "report"
+        "home"
       elsif url_split.size == 2
         "home"
       else
@@ -158,6 +161,8 @@ module ElixirSchool
 
       if url_split[2] == "lessons" and url_split[4] != nil
         url_split[4]
+      elsif url_split[2] == "report"
+        "report"
       elsif url_split.size == 2
         "home"
       else

@@ -20,5 +20,3 @@ __Features__:
 + Tollerante ai guasti
 + Programmazione Funzionale
 + Estensibile
-
-{% include report.html %}

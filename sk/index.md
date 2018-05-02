@@ -20,5 +20,3 @@ __Vlastnosti__:
 + Odolnosť voči chybám (fault-tolerance)
 + Funkcionálne programovanie
 + Rozšíriteľnosť
-
-{% include report.html %}
