@@ -42,6 +42,9 @@
       {% endfor %}
     {% endunless %}
   {% endfor %}
+        <li>
+          <a href="/{{ page.lang }}/report/">{{ page.locale.translation_report.heading }}</a>
+        </li>
     <li>
       <a href="/appendix/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "appendix" or page.layout == "post" %}active{% endif %}">{{ site.data['locales'][language]['sections']['appendix']}}</a>
     </li>
