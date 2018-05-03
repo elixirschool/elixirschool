@@ -1,6 +1,6 @@
 ---
-title: Appendix
-layout: appendix
+title: Blog
+layout: blog
 disable_transform: true
 ---
 <section>
@@ -9,7 +9,7 @@ disable_transform: true
     <article>
       <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
         <p class="post-date">{{ post.date | date_to_string }}</p>
-        {{ post.excerpt | markdownify }} 
+        {{ post.excerpt | markdownify }}
       <ul class="actions">
         <li><a href="{{ post.url }}" class="button{% unless page.disable_transform %} up{%endunless%}">Read more</a></li>
       </ul>

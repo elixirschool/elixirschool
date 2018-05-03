@@ -1,10 +1,10 @@
 # Setup
 baseurl: /
 url: https://elixirschool.com
-permalink: /appendix/articles/:title/
+permalink: /blog/articles/:title/
 default_lang: en
 exclude_from_localization: []
-exclude_from_chapters: ['appendix.html', 'contributors.html']
+exclude_from_chapters: ['blog.html', 'contributors.html']
 
 # Author
 author:
