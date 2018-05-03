@@ -12,6 +12,8 @@ sections:
   libraries: Libraries
   appendix: Appendix
   contributors: Contributors
+  translation_report: Translation Report
+
 version_messages:
   outdated: "เนื้อหาบางส่วนของบทแปลฉบับนี้อาจล้าสมัย"
   major: "ต้นฉบับมีการเปลี่ยนแปลงสำคัญเกิดขึ้นเป็นจำนวนมากนับตั้งแต่การปรับปรุงครั้งล่าสุด"
@@ -19,3 +21,11 @@ version_messages:
   patch: "ต้นฉบับมีการแก้ไขเล็กน้อยเกิดขึ้นเป็นจำนวนมากนับตั้งแต่การปรับปรุงครั้งล่าสุด"
   none: "บทแปลฉบับนี้ทันสมัย"
   error: "เกิดข้อบกพร่องบางอย่างกับการประกาศเวอร์ชันของบทที่คุณกำลังอ่าน"
+
+translation_report:
+  section: Section
+  original_title: Original Title
+  translation_title: Translation Title
+  original_version: Original Version
+  translation_version: Translation Version
+  version_severity: Version Severity

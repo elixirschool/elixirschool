@@ -1,5 +1,6 @@
 module ElixirSchool
   class Generator < Jekyll::Generator
+    priority :high
 
     def generate(site)
       default_lang = site.config['default_lang']
@@ -19,43 +20,14 @@ module ElixirSchool
       site.config['interlang_names'] = {}
       languages.each do |lang|
         site.config['contents'][lang] = contents(site, lang)
-        site.config['interlang_names'][lang] = interlang_names(site, lang, " / ")
-      end
-
-      # Build Report for each translation
-
-      site.config['translation_report'] = {}
-      site.config['tree'].each do |lang, content|
-        build_translation_report_defaults(site, default_lang, lang)
-        content.each do |section, section_content|
-          section_content.each do |lesson, lesson_content|
-            site.config['translation_report'][lang][section][lesson]['translated_title'] = lesson_content['title']
-            site.config['translation_report'][lang][section][lesson]['translated_version'] = prettify_version(lesson_content['version'])
-            site.config['translation_report'][lang][section][lesson]['version_severity'] = lesson_content['version_severity']
-          end
-        end
+        site.config['interlang_names'][lang] = interlang_names(site, lang, ' / ')
       end
     end
 
     private
+
     def prettify_version(version)
       version.is_a?(Array) ? version.join('.') : ''
-    end
-
-    def build_translation_report_defaults(site, default_lang, lang)
-      site.config['translation_report'][lang] = {}
-      site.config['contents'][default_lang].each do |section, section_content|
-        site.config['translation_report'][lang][section] = {}
-        section_content.each do |lesson, lesson_content|
-          site.config['translation_report'][lang][section][lesson] = {
-            'lesson' => lesson_content['title'],
-            'translated_title' => '',
-            'original_version' => prettify_version(lesson_content['version']),
-            'translated_version' => '',
-            'version_severity' => 'error'
-          }
-        end
-      end
     end
 
     def build_tree(site)
@@ -83,7 +55,7 @@ module ElixirSchool
               'title'   => page['title'],
               'version' =>
                 if page['version']
-                  page['version'].split(".").map(&:to_i)
+                  page['version'].split('.').map(&:to_i)
                 else
                   nil
                 end,
@@ -106,7 +78,7 @@ module ElixirSchool
 
             # Version severity
             if default_lang == lang
-              version_severity = "none"
+              version_severity = 'none'
             else
               reference_version = site.config['tree'][default_lang][section][chapter_name]['version']
               version_severity = version_severity(reference_version, chapter['version'])
@@ -144,12 +116,10 @@ module ElixirSchool
     def get_section_from_url(site, url)
       url_split = url.split('/')
 
-      if url_split[2] == "lessons" and url_split[3] != nil
+      if url_split[2] == 'lessons' and url_split[3] != nil
         url_split[3]
-      elsif url_split[2] == "report"
-        "home"
       elsif url_split.size == 2
-        "home"
+        'home'
       else
         nil
       end
@@ -158,12 +128,10 @@ module ElixirSchool
     def get_chapter_from_url(site, url)
       url_split = url.split('/')
 
-      if url_split[2] == "lessons" and url_split[4] != nil
+      if url_split[2] == 'lessons' and url_split[4] != nil
         url_split[4]
-      elsif url_split[2] == "report"
-        "report"
       elsif url_split.size == 2
-        "home"
+        'home'
       else
         nil
       end
@@ -251,18 +219,18 @@ module ElixirSchool
     def version_severity(reference_version, version)
       if reference_version.is_a?(Array) and version.is_a?(Array)
         if reference_version[0] > version[0]
-          "major"
+          'major'
         elsif reference_version[1] > version[1]
-          "minor"
+          'minor'
         elsif reference_version[2] > version[2]
-          "patch"
+          'patch'
         elsif reference_version == version or reference_version[2] < version[2]
-          "none"
+          'none'
         else
-          "error"
+          'error'
         end
       else
-        "error"
+        'error'
       end
     end
   end

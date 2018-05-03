@@ -12,6 +12,8 @@ sections:
   libraries: Biblioteki
   appendix: Appendix
   contributors: Contributors
+  translation_report: Translation Report
+
 version_messages:
   outdated: "Od ostatniej aktualizacji wprowadzono wiele zmian i tłumaczenie może być nieaktualne."
   major: "Od ostatniej aktualizacji wprowadzono kilka dużych zmian."
@@ -19,3 +21,11 @@ version_messages:
   patch: "Od ostatniej aktualizacji wprowadzono kilka zmian."
   none: "To tłumaczenie jest aktualne."
   error: "There is an error in the version definition of this chapter."
+  
+translation_report:
+  section: Section
+  original_title: Original Title
+  translation_title: Translation Title
+  original_version: Original Version
+  translation_version: Translation Version
+  version_severity: Version Severity

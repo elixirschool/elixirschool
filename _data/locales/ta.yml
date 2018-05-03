@@ -12,6 +12,8 @@ sections:
   libraries: திரட்டுகள்
   appendix: Appendix
   contributors: Contributors
+  translation_report: Translation Report
+
 version_messages:
   outdated: "இம்மொழிபெயர்ப்பின் சில பகுதிகள் காலாவதியாகியிருக்கலாம்."
   major: "கடைசியாக இற்றைப்படுத்தப்பட்டதிலிருந்து முக்கியமான மாற்றங்கள் பல செய்யப்பட்டுள்ளன."
@@ -19,3 +21,11 @@ version_messages:
   patch: "கடைசியாக இற்றைப்படுத்தப்பட்டதிலிருந்து மீச்சிறு மாற்றங்கள் பல செய்யப்பட்டுள்ளன."
   none: "இம்மொழிபெயர்ப்பு இற்றைப்ப்டுத்தப்பட்டுள்ளது."
   error: "இப்பாடத்தின் பதிப்பு விவரங்களில் பிழையுள்ளது."
+
+translation_report:
+  section: Section
+  original_title: Original Title
+  translation_title: Translation Title
+  original_version: Original Version
+  translation_version: Translation Version
+  version_severity: Version Severity
