@@ -29,4 +29,3 @@ We welcome and encourage you to join us in continuing to make Elixir School grea
   [bn]: /bn/
   [tr]: /tr/
   [th]: /th/
-

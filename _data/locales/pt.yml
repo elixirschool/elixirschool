@@ -12,6 +12,8 @@ sections:
   libraries: Bibliotecas
   appendix: Appendix
   contributors: Contributors
+  translation_report: Translation Report
+
 version_messages:
   outdated: "Algum conteúdo desta tradução pode estar desatualizado."
   major: "Várias mudanças importantes foram feitas à lição original desde a última atualização."
@@ -19,3 +21,11 @@ version_messages:
   patch: "Várias correções foram aplicadas à lição original desde a última atualização."
   none: "Esta tradução está atualizada."
   error: "Existe um erro na definição da versão deste capítulo."
+
+translation_report:
+  section: Section
+  original_title: Original Title
+  translation_title: Translation Title
+  original_version: Original Version
+  translation_version: Translation Version
+  version_severity: Version Severity

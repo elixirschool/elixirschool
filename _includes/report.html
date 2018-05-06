@@ -1,0 +1,35 @@
+<section>
+  <header class="major">
+    <h2>{{ site.data['locales'][page['lang']]['sections']['translation_report'] }}</h2>
+  </header>
+  <div class="contributors">
+<table>
+  <thead>
+    <tr>
+      {% assign headers = page['translation_report']['headers'] %}
+      <th>{{ headers['section'] }}</th>
+      <th>{{ headers['original_title'] }}</th>
+      <th>{{ headers['translation_title'] }}</th>
+      <th>{{ headers['original_version'] }}</th>
+      <th>{{ headers['translation_version'] }}</th>
+      <th>{{ headers['version_severity'] }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for section in page['translation_report']['sections'] %}
+      {% assign title = section[0] %}
+      {% for lesson in section[1] %}
+      <tr>
+        <td>{{ site.data['locales'][page['lang']]['sections'][title] }}</td>
+        <td><a href ="/en/lessons/{{title}}/{{lesson[1]['lesson']}}">{{ lesson[1]['lesson'] }}</a></td>
+        <td>{{ lesson[1]['translated_title'] }}</td>
+        <td>{{ lesson[1]['original_version'] }}</td>
+        <td>{{ lesson[1]['translated_version'] }}</td>
+        <td>{{ lesson[1]['version_severity'] }}</td>
+        <td><span class="version-difference-indicator version-difference-{{ lesson[1]['version_severity'] }}">&nbsp;</span></td>
+      </tr>
+      {% endfor %}
+    {% endfor %}
+  </tbody>
+</table>

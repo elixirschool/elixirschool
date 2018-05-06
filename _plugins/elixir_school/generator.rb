@@ -1,5 +1,6 @@
 module ElixirSchool
   class Generator < Jekyll::Generator
+    priority :high
 
     def generate(site)
       default_lang = site.config['default_lang']
@@ -19,11 +20,16 @@ module ElixirSchool
       site.config['interlang_names'] = {}
       languages.each do |lang|
         site.config['contents'][lang] = contents(site, lang)
-        site.config['interlang_names'][lang] = interlang_names(site, lang, " / ")
+        site.config['interlang_names'][lang] = interlang_names(site, lang, ' / ')
       end
     end
 
     private
+
+    def prettify_version(version)
+      version.is_a?(Array) ? version.join('.') : ''
+    end
+
     def build_tree(site)
       site.config['tree'] = {}
       default_lang = site.config['default_lang']
@@ -49,7 +55,7 @@ module ElixirSchool
               'title'   => page['title'],
               'version' =>
                 if page['version']
-                  page['version'].split(".").map(&:to_i)
+                  page['version'].split('.').map(&:to_i)
                 else
                   nil
                 end,
@@ -72,7 +78,7 @@ module ElixirSchool
 
             # Version severity
             if default_lang == lang
-              version_severity = "none"
+              version_severity = 'none'
             else
               reference_version = site.config['tree'][default_lang][section][chapter_name]['version']
               version_severity = version_severity(reference_version, chapter['version'])
@@ -110,10 +116,10 @@ module ElixirSchool
     def get_section_from_url(site, url)
       url_split = url.split('/')
 
-      if url_split[2] == "lessons" and url_split[3] != nil
+      if url_split[2] == 'lessons' and url_split[3] != nil
         url_split[3]
       elsif url_split.size == 2
-        "home"
+        'home'
       else
         nil
       end
@@ -122,10 +128,10 @@ module ElixirSchool
     def get_chapter_from_url(site, url)
       url_split = url.split('/')
 
-      if url_split[2] == "lessons" and url_split[4] != nil
+      if url_split[2] == 'lessons' and url_split[4] != nil
         url_split[4]
       elsif url_split.size == 2
-        "home"
+        'home'
       else
         nil
       end
@@ -213,18 +219,18 @@ module ElixirSchool
     def version_severity(reference_version, version)
       if reference_version.is_a?(Array) and version.is_a?(Array)
         if reference_version[0] > version[0]
-          "major"
+          'major'
         elsif reference_version[1] > version[1]
-          "minor"
+          'minor'
         elsif reference_version[2] > version[2]
-          "patch"
+          'patch'
         elsif reference_version == version or reference_version[2] < version[2]
-          "none"
+          'none'
         else
-          "error"
+          'error'
         end
       else
-        "error"
+        'error'
       end
     end
   end

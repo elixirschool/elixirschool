@@ -12,6 +12,8 @@ sections:
   libraries: Библиотеки
   appendix: Appendix
   contributors: Contributors
+  translation_report: Translation Report
+
 version_messages:
   outdated: "Некоторое содержимое этого урока может оказаться устаревшим."
   major: "С момента последнего обновления перевода в оригинальный урок были внесены серьёзные изменения."
@@ -19,3 +21,11 @@ version_messages:
   patch: "С момента последнего обновления перевода в оригинальный урок были внесены небольшие правки."
   none: "Это перевод актуальной версии оригинального урока."
   error: "There is an error in the version definition of this chapter."
+
+translation_report:
+  section: Section
+  original_title: Original Title
+  translation_title: Translation Title
+  original_version: Original Version
+  translation_version: Translation Version
+  version_severity: Version Severity

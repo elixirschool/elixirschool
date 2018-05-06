@@ -12,6 +12,8 @@ sections:
   libraries: ライブラリー
   appendix: Appendix
   contributors: Contributors
+  translation_report: Translation Report
+
 version_messages:
   outdated: "和訳が古くなっている可能性があります。"
   major: "いくつかの重要な変更が翻訳元の文書に適用されています。"
@@ -19,3 +21,11 @@ version_messages:
   patch: "いくつかの軽微な変更が翻訳元の文書に適用されています。"
   none: "この和訳は最新です。"
   error: "この章のバージョン定義にエラーがあります。"
+
+  translation_report:
+    section: Section
+    original_title: Original Title
+    translation_title: Translation Title
+    original_version: Original Version
+    translation_version: Translation Version
+    version_severity: Version Severity

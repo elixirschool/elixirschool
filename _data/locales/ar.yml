@@ -12,6 +12,8 @@ sections:
   libraries: المكتبات
   appendix: Appendix
   contributors: Contributors
+  translation_report: Translation Report
+
 version_messages:
   outdated: "قد تكون بعض محتويات هذه الترجمة قديمة."
   major: "تم تطبيق العديد من التغييرات الكبيرة على الدرس الأصلي منذ التحديث الأخير."
@@ -19,3 +21,11 @@ version_messages:
   patch: "تم تطبيق عدة بقع على الدرس الأصلي منذ التحديث الأخير."
   none: "هذه الترجمة هي الأخيرة."
   error: "هناك خطأ في تعريف إصدار هذا الفصل."
+
+translation_report:
+  section: Section
+  original_title: Original Title
+  translation_title: Translation Title
+  original_version: Original Version
+  translation_version: Translation Version
+  version_severity: Version Severity

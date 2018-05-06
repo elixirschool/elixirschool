@@ -146,6 +146,7 @@ $version_color_map: (
 "patch": "#fc3",
 "none": "#9f0",
 "error": "#f00",
+"missing": "#f00",
 );
 
 @each $severity, $color in $version_color_map {

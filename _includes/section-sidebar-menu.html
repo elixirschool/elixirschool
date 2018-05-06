@@ -43,10 +43,15 @@
     {% endunless %}
   {% endfor %}
     <li>
-      <a href="/appendix/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "appendix" or page.layout == "post" %}active{% endif %}">{{ site.data['locales'][language]['sections']['appendix']}}</a>
+      <a href="/appendix/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "appendix" or page.layout == "post" %}active{% endif %}">{{ site.data['locales'][language]['sections']['appendix'] }}</a>
     </li>
+    {% unless language == 'en' %}
     <li>
-      <a href="/contributors/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.name == "contributors.html" %}active{% endif %}">{{ site.data['locales'][language]['sections']['contributors']}}</a>
+      <a href="/{{ page.lang }}/report/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.name == "report.md" %}active{% endif %}">{{ site.data['locales'][language]['sections']['translation_report'] }}</a>
+    </li>
+    {% endunless %}
+    <li>
+      <a href="/contributors/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.name == "contributors.html" %}active{% endif %}">{{ site.data['locales'][language]['sections']['contributors'] }}</a>
     </li>
   </ul>
 </nav>
