@@ -14,7 +14,7 @@
     {% if page.section %}
       {% assign visiting = page.section %}
     {% else %}
-      {% assign visiting = "appendix" %}
+      {% assign visiting = "blog" %}
     {% endif %}
     {% if visiting == section or (visiting == "home" and section == "basics") %}
       {% assign opened = true %}
@@ -43,7 +43,7 @@
     {% endunless %}
   {% endfor %}
     <li>
-      <a href="/appendix/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "appendix" or page.layout == "post" %}active{% endif %}">{{ site.data['locales'][language]['sections']['appendix'] }}</a>
+      <a href="/blog/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "blog" or page.layout == "post" %}active{% endif %}">{{ site.data['locales'][language]['sections']['blog']}}</a>
     </li>
     {% unless language == 'en' %}
     <li>
