@@ -1,6 +1,8 @@
 ---
 title: Elixir School
 redirect_from: /my/
+layout: home
+version: 1.0.0
 ---
 
 [![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)

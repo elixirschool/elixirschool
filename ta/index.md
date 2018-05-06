@@ -1,5 +1,7 @@
 ---
 title: எலிக்சர் பள்ளி
+layout: home
+version: 1.0.0
 ---
 
 [![காப்புரிமை](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
