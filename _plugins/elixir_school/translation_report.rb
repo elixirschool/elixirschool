@@ -93,8 +93,6 @@ module ElixirSchool
         0.7
       when 'major'
         0.5
-      when 'missing'
-        0
       else
         0
       end
