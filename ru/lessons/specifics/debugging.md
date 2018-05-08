@@ -9,7 +9,7 @@ title: Отладка
 
 # Dialyxir и Dialyzer
 
-[Dialyzer](http://erlang.org/doc/man/dialyzer.html) – **DI**screpancy **A**nal**YZ**er for **ER**lang programs – инструмент статического анализа кода. Его задача – _не выполняя_ сам программный код, проанализировать его на наличие ошибок, лишних выражений, недостижимых участков и т.д.
+[Dialyzer](http://erlang.org/doc/man/dialyzer.html) – **DI**screpancy **A**na**LYZ**er for **ER**lang programs – инструмент статического анализа кода. Его задача – _не выполняя_ сам программный код, проанализировать его на наличие ошибок, лишних выражений, недостижимых участков и т.д.
 
 [Dialyxir](https://github.com/jeremyjh/dialyxir) – это mix-команда, облегчающая использование `Dialyzer` в Elixir.
 

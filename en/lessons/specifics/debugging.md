@@ -11,7 +11,7 @@ Bugs are an inherent part of any project, that's why we need debugging. In this 
 
 # Dialyxir and Dialyzer
 
-The [Dialyzer](http://erlang.org/doc/man/dialyzer.html), a **DI**screpancy **A**nal**YZ**er for **ER**lang programs is a tool for static code analysis. In other words they _read_ but do not _run_ code and analyse it e.g. looking for some bugs, dead, unnecessary or unreachable code.
+The [Dialyzer](http://erlang.org/doc/man/dialyzer.html), a **DI**screpancy **A**na**LYZ**er for **ER**lang programs is a tool for static code analysis. In other words they _read_ but do not _run_ code and analyse it e.g. looking for some bugs, dead, unnecessary or unreachable code.
 
 The [Dialyxir](https://github.com/jeremyjh/dialyxir) is a mix task to simplify usage of Dialyzer in Elixir.
 
