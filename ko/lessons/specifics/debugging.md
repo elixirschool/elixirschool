@@ -9,7 +9,7 @@ title: 디버깅
 
 # Dialyxir와 Dialyzer
 
-[Dialyzer](http://erlang.org/doc/man/dialyzer.html), 얼랭 프로그램을 위한 모순 분석기(**DI**screpancy **A**nal**YZ**er for **ER**lang programs)는 정적 코드 분석을 위한 도구입니다. 말하자면 코드를 _읽지만_  코드를 _실행해서_ 분석하지는 않습니다. 버그나, 죽어있거나 사용하지 않거나, 도달할 수 없는 코드를 찾습니다.
+[Dialyzer](http://erlang.org/doc/man/dialyzer.html), 얼랭 프로그램을 위한 모순 분석기(**DI**screpancy **A**na**LYZ**er for **ER**lang programs)는 정적 코드 분석을 위한 도구입니다. 말하자면 코드를 _읽지만_  코드를 _실행해서_ 분석하지는 않습니다. 버그나, 죽어있거나 사용하지 않거나, 도달할 수 없는 코드를 찾습니다.
 
 [Dialyxir](https://github.com/jeremyjh/dialyxir)는 Elixir에서 Dialyzer를 간편히 사용하기 위한 mix 테스크입니다.
 
