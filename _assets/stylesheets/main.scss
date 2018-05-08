@@ -159,4 +159,16 @@ $version_color_map: (
     background-color: #{$color};
   }
 }
+
+.translation-report {
+
+  .version-difference-indicator {
+    width: 1em;
+    height: 1em;
+  }
+
+  .version-cell {
+    vertical-align: middle;
+  }
+}
 }
