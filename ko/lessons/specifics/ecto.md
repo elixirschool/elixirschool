@@ -44,7 +44,7 @@ end
 
 ### 슈퍼바이저
 
-Repo를 생성한 뒤에는 슈퍼바이저 트리를 설정해야 합니다. 이는 보통 `lib/<project name>.ex`에 있습니다. Repo를 `children` 리스트에 추가해 주세요:
+Repo를 생성한 뒤에는 슈퍼바이저 트리를 설정해야 합니다. 이는 보통 `lib/<project name>.ex`에 있습니다. Repo를 `children` 목록에 추가해 주세요:
 
 ```elixir
 defmodule ExampleApp.Application do
