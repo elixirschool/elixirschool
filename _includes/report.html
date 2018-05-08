@@ -21,7 +21,7 @@
         {% for lesson in section[1] %}
         <tr>
           <td>{{ site.data['locales'][page['lang']]['sections'][title] }}</td>
-          <td><a href ="/en/lessons/{{title}}/{{lesson[1]['lesson']}}">{{ lesson[1]['lesson'] }}</a></td>
+          <td><a href ="/en/lessons/{{title}}/{{lesson[1]['chapter']}}">{{ lesson[1]['lesson'] }}</a></td>
           <td>{{ lesson[1]['translated_title'] }}</td>
           <td>{{ lesson[1]['original_version'] }}</td>
           <td>{{ lesson[1]['translated_version'] }}</td>
