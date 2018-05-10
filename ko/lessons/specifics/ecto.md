@@ -1,6 +1,8 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Ecto
+
+
 ---
 
 Ecto는 공식적인 Elixir 프로젝트로 데이터베이스를 감싸는 부분과 종합적인 질의 언어를 제공합니다. Ecto를 사용하면 마이그레이션의 생성과 모델의 정의, 레코드의 추가와 삭제, 그리고 질의를 할 수 있게 됩니다.
@@ -8,6 +10,13 @@ Ecto는 공식적인 Elixir 프로젝트로 데이터베이스를 감싸는 부�
 {% include toc.html %}
 
 ## 설정하기
+
+슈퍼바이저 트리를 포함해서 새 애플리케이션을 생성합니다.
+
+```shell
+$ mix new example_app --sup
+$ cd example_app
+```
 
 우선 Ecto와 데이터베이스 어댑터를 프로젝트의 `mix.exs`에 추가해야 합니다. 지원하는 데이터베이스 어댑터의 목록은 Ecto의 README에 있는 [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage)에서 확인할 수 있습니다. 이 예제에서는 PostgreSQL을 사용합니다.
 
@@ -17,12 +26,10 @@ defp deps do
 end
 ```
 
-이제 Ecto와 어댑터를 application의 목록에 추가할 수 있습니다.
+아래 명령어를 통해 의존성 있는 라이브러리를 가져옵니다.
 
-```elixir
-def application do
-  [applications: [:ecto, :postgrex]]
-end
+```shell
+$ mix deps.get
 ```
 
 ### 저장소
@@ -37,19 +44,15 @@ end
 
 ### 슈퍼바이저
 
-Repo를 생성한 뒤에는 슈퍼바이저 트리를 설정해야 합니다. 이는 보통 `lib/<project name>.ex`에 있습니다.
-
-Repo의 슈퍼바이저로 `worker/3`가 _아닌_, `supervisor/3`로 설정한다는 점이 중요합니다. 애플리케이션을 생성할 때에 `--sup` 플래그가 포함되어 있다면 이 설정은 거의 끝난 상태일 것입니다.
+Repo를 생성한 뒤에는 슈퍼바이저 트리를 설정해야 합니다. 이는 보통 `lib/<project name>.ex`에 있습니다. Repo를 `children` 목록에 추가해 주세요:
 
 ```elixir
-defmodule ExampleApp.App do
+defmodule ExampleApp.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec
-
     children = [
-      supervisor(ExampleApp.Repo, [])
+      ExampleApp.Repo
     ]
 
     opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
@@ -341,22 +344,17 @@ end
 `User.changeset/2`는 비교적 간단하게 사용할 수 있습니다.
 
 ```elixir
-alias ExampleApp.{User, Repo}
+alias ExampleApp.{User,Repo}
 
 pw = "passwords should be hard"
-
-changeset =
-  User.changeset(%User{}, %{
-    username: "doomspork",
-    email: "sean@seancallan.com",
-    password: pw,
-    password_confirmation: pw
-  })
+changeset = User.changeset(%User{}, %{username: "doomspork",
+                    email: "sean@seancallan.com",
+                    password: pw,
+                    password_confirmation: pw})
 
 case Repo.insert(changeset) do
   {:ok, record}       -> # Inserted with success
   {:error, changeset} -> # Something went wrong
 end
 ```
-
 끝입니다! 이제 데이터를 저장할 수 있게 되었습니다.
