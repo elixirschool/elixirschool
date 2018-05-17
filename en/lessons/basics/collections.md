@@ -23,9 +23,9 @@ Elixir implements list collections as linked lists.  This means that accessing t
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> ["π"] ++ list
+iex> ["π"] ++ list  #fast
 ["π", 3.14, :pie, "Apple"]
-iex> list ++ ["Cherry"]
+iex> list ++ ["Cherry"]  #slow
 [3.14, :pie, "Apple", "Cherry"]
 ```
 
