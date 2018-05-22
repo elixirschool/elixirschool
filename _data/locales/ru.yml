@@ -10,9 +10,9 @@ sections:
   advanced: Продвинутый
   specifics: Специфика
   libraries: Библиотеки
-  blog: Blog
-  contributors: Contributors
-  translation_report: Translation Report
+  blog: Блог
+  contributors: Участники
+  translation_report: Состояние перевода
 
 version_messages:
   outdated: "Некоторое содержимое этого урока может оказаться устаревшим."
@@ -20,12 +20,12 @@ version_messages:
   minor: "С момента последнего обновления перевода в оригинальный урок были внесены небольшие изменения."
   patch: "С момента последнего обновления перевода в оригинальный урок были внесены небольшие правки."
   none: "Это перевод актуальной версии оригинального урока."
-  error: "There is an error in the version definition of this chapter."
+  error: "Обнаружена ошибка в объявлении этого урока."
 
 translation_report:
-  section: Section
-  original_title: Original Title
-  translation_title: Translation Title
-  original_version: Original Version
-  translation_version: Translation Version
-  version_severity: Version Severity
+  section: Раздел
+  original_title: Заголовок оригинала
+  translation_title: Заголовок перевода
+  original_version: Версия оригинала
+  translation_version: Версия перевода
+  version_severity: Разница в версиях
