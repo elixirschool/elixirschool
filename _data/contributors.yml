@@ -70,7 +70,7 @@ translators:
     users:
       - devleoper
 
-  - language: no
+  - language: "no"
     users:
       - Devalo
 
