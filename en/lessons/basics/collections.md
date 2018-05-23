@@ -26,7 +26,7 @@ iex> list = [3.14, :pie, "Apple"]
 # Prepending (fast)
 iex> ["π"] ++ list  
 ["π", 3.14, :pie, "Apple"]
-# Appending(slow)
+# Appending (slow)
 iex> list ++ ["Cherry"]  
 [3.14, :pie, "Apple", "Cherry"]
 ```
