@@ -19,11 +19,10 @@ A solução para esse problema é usar um conjunto de gerenciadores (processos) 
 
 A instalação é uma brisa com o mix. Tudo o que precisamos fazer é adicionar Poolboy como uma dependência no nosso `mix.exs`.
 
-Primeiro vamos criar um aplicativo:
+Primeiro vamos criar uma aplicação:
 
 ```bash
 $ mix new poolboy_app --sup
-$ mix deps.get
 ```
 
 Adicione o Poolboy como uma dependência do nosso `mix.exs`.
@@ -34,12 +33,9 @@ defp deps do
 end
 ```
 
-E adicione Poolboy na nossa aplicação OTP:
-
-```elixir
-def application do
-  [applications: [:logger, :poolboy]]
-end
+Então baixe as dependências, incluindo o Poolboy.
+```shell
+$ mix deps.get
 ```
 
 ## As opções de configuração
@@ -59,18 +55,23 @@ Para este exemplo, criaremos um pool de gerenciadores responsáveis pelo process
 Vamos definir as opções de configuração do Poolboy e adicioná-lo como um gerenciador filho como parte do nosso início do aplicativo.
 
 ```elixir
-defmodule PoolboyApp do
+defmodule PoolboyApp.Application do
+  @moduledoc false
+
   use Application
 
   defp poolboy_config do
-    [{:name, {:local, :worker}}, {:worker_module, Worker}, {:size, 5}, {:max_overflow, 2}]
+    [
+      {:name, {:local, :worker}},
+      {:worker_module, PoolboyApp.Worker},
+      {:size, 5},
+      {:max_overflow, 2}
+    ]
   end
 
   def start(_type, _args) do
-    import Supervisor.Spec, warn: false
-
     children = [
-      :poolboy.child_spec(:worker, poolboy_config, [])
+      :poolboy.child_spec(:worker, poolboy_config())
     ]
 
     opts = [strategy: :one_for_one, name: PoolboyApp.Supervisor]
@@ -79,17 +80,15 @@ defmodule PoolboyApp do
 end
 ```
 
-A primeira coisa que definimos são as opções de configuração para o pool. Atribuímos um pool único `:name`, definimos o `:scope` para local e o `:size` do pool para ter um total de cinco gerenciadores. Além disso, no caso de todos os gerenciadores estarem sob carga, solicitamos que crie mais dois gerenciadores para ajudar com a carga usando a opção `:max_overflow`. *(Os gerenciadores de `overflow` vão embora uma vez que terminam seu trabalho.)*
+A primeira coisa que definimos são as opções de configuração para o pool. Nós nomeamos nosso pool `:worker` e definimos o `:scope` para `:local`. Então nós designamos o módulo `PoolboyApp.Worker`  como o `:worker_module` que esse pool deve usar. Nós também definimos o `:size` do pool para um total de `5` gerenciadores. Também, caso todos os gerenciadores estejam sob carga, nós dizemos para ele criar mais `2` gerenciadores para ajudar na carga usando a opção `:max_overflow`. *(Os gerenciadores de `overflow` vão embora uma vez que terminam seu trabalho.)*
 
-Em seguida, adicionamos a função `poolboy.child_spec/3` à matriz de filhos para que o pool de gerenciadores seja iniciado quando o aplicativo for iniciado.
-
-A função `child_spec/3` leva três argumentos; Nome do pool, configuração do pool e o terceiro argumento que é passado para a função `worker.start_link`. No nosso caso, é apenas uma lista vazia.
+Em seguida, adicionamos a função `:poolboy.child_spec/2` à matriz de filhos para que o pool de gerenciadores seja iniciado quando a aplicação for iniciada. Ele recebe dois argumentos: o nome do pool e a configuração do pool
 
 ## Criando um Gerenciador
-O módulo de gerenciamento será um GenServer simples calculando a raiz quadrada de um número, dormindo por um segundo e imprimindo o pid do gerenciador:
+O módulo de gerenciamento será um `GenServer` simples calculando a raiz quadrada de um número, dormindo por um segundo e imprimindo o pid do gerenciador. Crie `lib/poolboy_app/worker.ex`:
 
 ```elixir
-defmodule Worker do
+defmodule PoolboyApp.Worker do
   use GenServer
 
   def start_link(_) do
@@ -101,7 +100,7 @@ defmodule Worker do
   end
 
   def handle_call({:square_root, x}, _from, state) do
-    IO.puts("process #{inspect(self)} calculating square root of #{x}")
+    IO.puts("process #{inspect(self())} calculating square root of #{x}")
     :timer.sleep(1000)
     {:reply, :math.sqrt(x), state}
   end
@@ -110,24 +109,50 @@ end
 
 ## Usando Poolboy
 
-Agora que temos o nosso `Worker`, podemos testar o Poolboy. Vamos criar um módulo simples que cria processos simultâneos usando a função `:poolboy.transaction`:
+Agora que temos o nosso `PoolboyApp.Worker`, podemos testar o Poolboy. Vamos criar um módulo simples que cria processos simultâneos usando o Poolboy. `:poolboy.transaction/3` é a função que usamos para interagir com o poll de gerenciadores. Crie `lib/poolboy_app/test.ex`:
 
 ```elixir
-defmodule Test do
+defmodule PoolboyApp.Test do
   @timeout 60000
 
   def start do
-    tasks =
-      Enum.map(1..20, fn i ->
-        Task.async(fn ->
-          :poolboy.transaction(:worker, &GenServer.call(&1, {:square_root, i}), @timeout)
-        end)
-      end)
-
-    Enum.each(tasks, fn task -> IO.puts(Task.await(task, @timeout)) end)
+    1..20
+    |> Enum.map(fn i -> async_call_square_root(i) end)
+    |> Enum.each(fn task -> await_and_inspect(task) end)
   end
+
+  defp async_call_square_root(i) do
+    Task.async(fn ->
+      :poolboy.transaction(
+        :worker,
+        fn pid -> GenServer.call(pid, {:square_root, i}) end,
+        @timeout
+      )
+    end)
+  end
+
+  defp await_and_inspect(task), do: task |> Task.await(@timeout) |> IO.inspect()
 end
 ```
-Se você não tiver gerenciadores de pool disponíveis, Poolboy chegará ao tempo limite após o período de tempo limite padrão (cinco segundos) e não aceitará nenhuma nova solicitação. Em nosso exemplo, aumentamos o tempo limite padrão para um minuto para demonstrar como podemos alterar o valor de tempo limite padrão.
 
-Mesmo que estamos tentando criar vários processos *(total de vinte no exemplo acima)* a função `:poolboy.transaction` limitará o total de processos criados a cinco *(mais dois gerenciadores de estouro, se necessário)* como definimos em nossa configuração. Todos os pedidos serão tratados pelo grupo de gerenciadores em vez de criar um novo processo para cada pedido.
+Execute a função de teste para ver o resultado.
+
+```shell
+$ iex -S mix
+```
+
+```elixir
+iex> PoolboyApp.Test.start()
+process #PID<0.182.0> calculating square root of 7
+process #PID<0.181.0> calculating square root of 6
+process #PID<0.157.0> calculating square root of 2
+process #PID<0.155.0> calculating square root of 4
+process #PID<0.154.0> calculating square root of 5
+process #PID<0.158.0> calculating square root of 1
+process #PID<0.156.0> calculating square root of 3
+...
+```
+
+Se você não tiver gerenciadores de pool disponíveis, Poolboy chegará ao tempo limite após o período de tempo limite padrão (cinco segundos) e não aceitará nenhuma nova solicitação. Em nosso exemplo, aumentamos o tempo limite padrão para um minuto para demonstrar como podemos alterar o valor de tempo limite padrão. No caso desse app, você pode abservar o error se você mudar o de `@timeout` para menos de 1000.
+
+Mesmo que estamos tentando criar vários processos *(total de vinte no exemplo acima)* a função `:poolboy.transaction/3` limitará o total de processos criados a cinco *(mais dois gerenciadores de estouro, se necessário)* como definimos em nossa configuração. Todos os pedidos serão tratados pelo grupo de gerenciadores em vez de criar um novo processo para cada pedido.
