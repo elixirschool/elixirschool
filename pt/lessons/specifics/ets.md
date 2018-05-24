@@ -1,9 +1,9 @@
 ---
-version: 0.9.1
+version: 1.1.0
 title: Erlang Term Storage (ETS)
 ---
 
-Erlang Term Storage, comumente referenciado como ETS, é um poderoso mecanismo de armazenamento, incorporado no OTP e disponível  para uso no Elixir. Nesta lição iremos ver como interagir com ETS e como podemos usá-lo nas nossas aplicações.
+Erlang Term Storage, comumente referenciado como ETS, é um poderoso mecanismo de armazenamento, incorporado no OTP e disponível para uso no Elixir. Nesta lição iremos ver como interagir com ETS e como podemos usá-lo nas nossas aplicações.
 
 {% include toc.html %}
 
@@ -15,16 +15,16 @@ Tabelas em ETS são criadas por processos individuais. Quando um processo propri
 
 ## Criando Tabelas
 
-Tabelas são criadas usando `new/2`, aceita como parametros o nome da tabela e uma série de opções, retorna um identificador de tabela que podemos usar nas operações subsequentes.
+Tabelas são criadas usando `new/2`, aceita como parametros o nome da tabela, uma série de opções, e retorna um identificador de tabela que podemos usar nas operações subsequentes.
 
-Para o nosso exemplo, iremos criar uma tabela para armazenar e buscar por utilizadores pelos seus apelidos:
+Para o nosso exemplo, iremos criar uma tabela para armazenar e buscar usuários pelos seus apelidos:
 
 ```elixir
 iex> table = :ets.new(:user_lookup, [:set, :protected])
 8212
 ```
 
-Tal como GenServers, existe um mecanismo para acessar tabelas ETS usando nome em vez de identificador. Para isso, precisamos incluir `:named_table` e assim podemos acessar nossa tabela directamente pelo nome:
+Tal como GenServers, existe um mecanismo para acessar tabelas ETS usando nome em vez de identificador. Para fazer isso, precisamos incluir `:named_table` e assim podemos acessar nossa tabela diretamente pelo nome:
 
 ```elixir
 iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
@@ -36,7 +36,7 @@ iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
 Existem quatro tipos de tabelas disponíveis no ETS:
 
 + `set` — Este é o tipo de tabela padrão. Um valor para cada chave. Chaves são únicas.
-+ `ordered_set` — Igual ao `set` mas ordenado por termo Erlang/Elixir. É importante notar que comparação de chave é diferente dentro do `ordered_set`. Chaves não devem coincidir desde que sejam iguais, tanto 1 como o 1.0 são considerados iguais.
++ `ordered_set` — Igual ao `set` mas ordenado por termo Erlang/Elixir. É importante notar que comparação de chave é diferente dentro do `ordered_set`. Chaves não devem coincidir desde que sejam iguais. 1 e 1.0 são considerados iguais.
 + `bag` — Muitos objetos por cada chave mas apenas uma instância de cada objeto por cada chave.
 + `duplicate_bag` — Muitos objetos por cada chave; chaves duplicadas são permitidas.
 
@@ -48,9 +48,15 @@ Controle de acesso no ETS é semelhante ao controle de acesso dentro de modulos:
 + `protected` - Leitura disponível para todos os processos. Escrita disponível apenas para o proprietário. É o padrão.
 + `private` - Leitura/Escrita limitado ao proprietário do processo.
 
+## Race Conditions
+
+Se mais de um processo pode escrever em uma table - através de acesso `:public` ou por mensagens para o processo dono - race conditions são possíveis. Por exemplo, dois processos leem um contador de valor `0`, incrementam ele, e escrevem `1`; o resultado final reflete apenas um único incremento.
+
+Para contadores especificamente, [:ets.update_counter/3](http://erlang.org/doc/man/ets.html#update_counter-3) fornecem leitura e escrita atômicas. Para outros casos, pode ser necessário que o dono do execute operações atômicas customizadas em resposta à mensagens recebidas, como "adicione esse valor à lista na chave `:results`".
+
 ## Inserindo dados
 
-ETS não possui esquema (`schema`), a única limitação é que dados devem ser armazenados como uma tupla onde o seu primeiro elemento é a chave. Para adicionar novos dados podemos usar `insert/2`:
+ETS não possui esquema (`schema`). A única limitação é que dados devem ser armazenados como uma tupla onde o seu primeiro elemento é a chave. Para adicionar novos dados podemos usar `insert/2`:
 
 ```elixir
 iex> :ets.insert(:user_lookup, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
@@ -68,10 +74,9 @@ true
 
 ## Recuperando Dados
 
-ETS eferece-nos algumas formas convenientes e flexivéis para recuperar nossos dados armazenados. Iremos ver como recuperar dados usando a chave através de diferentes formas de correspondência de padrão (*pattern matching*).
+ETS oferece-nos algumas formas convenientes e flexíveis para recuperar nossos dados armazenados. Iremos ver como recuperar dados usando a chave através de diferentes formas de correspondência de padrão (*pattern matching*).
 
 O mais eficiente, e ideal, método de recuperar dados é a busca por chave. Enquanto útil, *matching* percore a tabela e deve ser usado com moderação especialmente para grandes conjuntos de dados.
-
 
 ### Pesquisa de chave
 
