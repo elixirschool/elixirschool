@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.2.0
 title: Ecto
 ---
 
