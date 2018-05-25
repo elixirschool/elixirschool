@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.1.1
 title: Poolboy
 ---
 
