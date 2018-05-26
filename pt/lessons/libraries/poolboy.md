@@ -80,9 +80,9 @@ defmodule PoolboyApp.Application do
 end
 ```
 
-A primeira coisa que definimos são as opções de configuração para o pool. Nós nomeamos nosso pool `:worker` e definimos o `:scope` para `:local`. Então nós designamos o módulo `PoolboyApp.Worker`  como o `:worker_module` que esse pool deve usar. Nós também definimos o `:size` do pool para um total de `5` gerenciadores. Também, caso todos os gerenciadores estejam sob carga, nós dizemos para ele criar mais `2` gerenciadores para ajudar na carga usando a opção `:max_overflow`. *(Os gerenciadores de `overflow` vão embora uma vez que terminam seu trabalho.)*
+A primeira coisa que definimos são as opções de configuração para o pool. Nós nomeamos nosso pool `:worker` e definimos o `:scope` para `:local`. Então nós designamos o módulo `PoolboyApp.Worker` como o `:worker_module` que esse pool deve usar. Nós também definimos o `:size` do pool para um total de `5` gerenciadores. Também, caso todos os gerenciadores estejam sob carga, nós dizemos para ele criar mais `2` gerenciadores para ajudar na carga usando a opção `:max_overflow`. *(Os gerenciadores de `overflow` vão embora uma vez que terminam seu trabalho.)*
 
-Em seguida, adicionamos a função `:poolboy.child_spec/2` à matriz de filhos para que o pool de gerenciadores seja iniciado quando a aplicação for iniciada. Ele recebe dois argumentos: o nome do pool e a configuração do pool
+Em seguida, adicionamos a função `:poolboy.child_spec/2` à matriz de filhos para que o pool de gerenciadores seja iniciado quando a aplicação for iniciada. Ele recebe dois argumentos: o nome do pool e a configuração do pool.
 
 ## Criando um Gerenciador
 O módulo de gerenciamento será um `GenServer` simples calculando a raiz quadrada de um número, dormindo por um segundo e imprimindo o pid do gerenciador. Crie `lib/poolboy_app/worker.ex`:
@@ -153,6 +153,6 @@ process #PID<0.156.0> calculating square root of 3
 ...
 ```
 
-Se você não tiver gerenciadores de pool disponíveis, Poolboy chegará ao tempo limite após o período de tempo limite padrão (cinco segundos) e não aceitará nenhuma nova solicitação. Em nosso exemplo, aumentamos o tempo limite padrão para um minuto para demonstrar como podemos alterar o valor de tempo limite padrão. No caso desse app, você pode abservar o error se você mudar o de `@timeout` para menos de 1000.
+Se você não tiver gerenciadores de pool disponíveis, Poolboy chegará ao tempo limite após o período de tempo limite padrão (cinco segundos) e não aceitará nenhuma nova solicitação. Em nosso exemplo, aumentamos o tempo limite padrão para um minuto para demonstrar como podemos alterar o valor de tempo limite padrão. No caso desse app, você pode abservar o erro se você mudar o `@timeout` para menos de 1000.
 
 Mesmo que estamos tentando criar vários processos *(total de vinte no exemplo acima)* a função `:poolboy.transaction/3` limitará o total de processos criados a cinco *(mais dois gerenciadores de estouro, se necessário)* como definimos em nossa configuração. Todos os pedidos serão tratados pelo grupo de gerenciadores em vez de criar um novo processo para cada pedido.
