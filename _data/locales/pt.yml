@@ -23,9 +23,9 @@ version_messages:
   error: "Existe um erro na definição da versão deste capítulo."
 
 translation_report:
-  section: Section
-  original_title: Original Title
-  translation_title: Translation Title
-  original_version: Original Version
-  translation_version: Translation Version
-  version_severity: Version Severity
+  section: Seção
+  original_title: Título Original
+  translation_title: Título da Tradução
+  original_version: Versão Original
+  translation_version: Versão da Tradução
+  version_severity: Severidade da Versão
