@@ -3,7 +3,7 @@ module ElixirSchool
     priority :low
 
     def generate(site)
-      locales = site.data['locales'].keys.sort.delete_if { |lang| lang == 'en' }
+      locales = site.data['locales'].keys.sort.delete_if { |lang| lang == site.config['default_lang'] }
 
       locales.each do |lang|
         site.pages << build_report(site, lang, locales)
@@ -44,25 +44,27 @@ module ElixirSchool
       points = 0
       total_lessons = 0
 
-      site.config['tree']['en'].each do |section, section_content|
+      site.config['tree'][site.config['default_lang']].each do |section, section_content|
           section_content.each do |lesson, lesson_content|
             severity = translated_value(site, lang, section, lesson, 'version_severity')
+            translated_severity = site.data['locales'][lang]['version_messages'][severity] || site.data['locales'][site.config['default_lang']]['version_messages'][severity]
             points += translation_points(severity)
             total_lessons += 1
 
             report[section][lesson] = {
-              'lesson'             => lesson_content['title'],
-              'chapter'            => lesson_content['chapter'],
-              'original_version'   => prettify_version(lesson_content['version']),
-              'translated_title'   => translated_value(site, lang, section, lesson, 'title'),
-              'translated_version' => prettify_version(translated_value(site, lang, section, lesson, 'version')),
-              'version_severity'   => severity
+              'lesson'              => lesson_content['title'],
+              'chapter'             => lesson_content['chapter'],
+              'original_version'    => prettify_version(lesson_content['version']),
+              'translated_title'    => translated_value(site, lang, section, lesson, 'title'),
+              'translated_version'  => prettify_version(translated_value(site, lang, section, lesson, 'version')),
+              'version_severity'    => severity,
+              'translated_severity' => translated_severity
             }
         end
       end
 
       {
-        'headers'  => site.data['locales'][lang]['translation_report'] || site.data['locales']['en']['translation_report'],
+        'headers'  => site.data['locales'][lang]['translation_report'] || site.data['locales'][site.config['default_lang']]['translation_report'],
         'sections' => report,
         'percentage' => points_to_percentage(points, total_lessons)
       }
