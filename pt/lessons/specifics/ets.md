@@ -15,7 +15,7 @@ Tabelas em ETS são criadas por processos individuais. Quando um processo propri
 
 ## Criando Tabelas
 
-Tabelas são criadas usando `new/2`, aceita como parametros o nome da tabela, uma série de opções, e retorna um identificador de tabela que podemos usar nas operações subsequentes.
+Tabelas são criadas usando `new/2`, que aceita como parâmetros o nome da tabela, uma série de opções, e retorna um identificador de tabela que podemos usar nas operações subsequentes.
 
 Para o nosso exemplo, iremos criar uma tabela para armazenar e buscar usuários pelos seus apelidos:
 
@@ -50,9 +50,9 @@ Controle de acesso no ETS é semelhante ao controle de acesso dentro de modulos:
 
 ## Race Conditions
 
-Se mais de um processo pode escrever em uma table - através de acesso `:public` ou por mensagens para o processo dono - race conditions são possíveis. Por exemplo, dois processos leem um contador de valor `0`, incrementam ele, e escrevem `1`; o resultado final reflete apenas um único incremento.
+Se mais de um processo pode escrever em uma tabela - através de acesso `:public` ou por mensagens para o processo dono - race conditions são possíveis. Por exemplo, dois processos leem um contador de valor `0`, incrementam ele, e escrevem `1`; o resultado final reflete apenas um único incremento.
 
-Para contadores especificamente, [:ets.update_counter/3](http://erlang.org/doc/man/ets.html#update_counter-3) fornecem leitura e escrita atômicas. Para outros casos, pode ser necessário que o dono do execute operações atômicas customizadas em resposta à mensagens recebidas, como "adicione esse valor à lista na chave `:results`".
+Para contadores especificamente, [:ets.update_counter/3](http://erlang.org/doc/man/ets.html#update_counter-3) fornece leitura e escrita atômicas. Para outros casos, pode ser necessário que o processo dono do execute operações atômicas customizadas em resposta à mensagens recebidas, como "adicione esse valor à lista na chave `:results`".
 
 ## Inserindo dados
 
