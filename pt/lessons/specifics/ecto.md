@@ -112,7 +112,7 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 end
 ```
 
-Por padrão Ecto cria uma chave primária `id` auto incrementado. Aqui estamos a usar o callback padrão `change/0` mas Ecto também suporta `up/0` e `down/0` no caso de precisar um controle mais granular.
+Por padrão Ecto cria uma chave primária `id` auto incrementada. Aqui estamos usando o callback padrão `change/0` mas Ecto também suporta `up/0` e `down/0` no caso de precisar um controle mais granular.
 
 Como você deve ter adivinhado, adicionando `timestamps` na sua migration irá criar e gerir os campos `inserted_at` e `updated_at` por você.
 
@@ -122,7 +122,7 @@ Para mais informações dê uma olhada a seção [Ecto.Migration](http://hexdocs
 
 ## Schemas
 
-Agora que temos nossa migration podemos continuar para o schemas. Schema é um módulo, que define define mapeamentos para uma tabela do banco de dados e seus campos, funções auxiliares, e nossos *changesets*. Iremos falar mais sobre *changesets* nas próximas seções.
+Agora que temos nossa migration podemos continuar para o schema. Schema é um módulo, que define mapeamentos para uma tabela do banco de dados e seus campos, funções auxiliares, e nossos *changesets*. Iremos falar mais sobre *changesets* nas próximas seções.
 
 Por agora vamos dar uma olhada em como o schema para nossa migration se parece:
 
@@ -157,7 +157,7 @@ O esquema que definimos representa de perto o que especificamos na nossa *migrat
 
 ## Consultas
 
-Antes de poder consultar o nosso repositório, precisamos importar a *API Query*, por enquanto precisamos importar apenas `from/2`:
+Antes de poder consultar o nosso repositório, precisamos importar a *Query API*, mas por enquanto precisamos importar apenas `from/2`:
 
 ```elixir
 import Ecto.Query, only: [from: 2]
@@ -251,7 +251,7 @@ query =
 
 ### Joins
 
-Assumindo que temos um perfil associado ao nosso usuário, iremos encontramos todos os perfis de contas confirmadas:
+Assumindo que temos um perfil associado ao nosso usuário, vamos encontrar todos os perfis de contas confirmadas:
 
 ```elixir
 query =
@@ -264,7 +264,7 @@ query =
 
 ### Fragmentos
 
-Às vezes a API Query não é suficiente, por exemplo, quando precisamos de funções específicas para banco de dados. A função `fragment/1` existe para esta finalidade:
+Às vezes a Query API não é suficiente, por exemplo, quando precisamos de funções específicas para banco de dados. A função `fragment/1` existe para esta finalidade:
 
 ```elixir
 query =
@@ -337,7 +337,7 @@ end
 
 Melhoramos nossa função `changeset/2` e adicionamos três novas funções auxiliares: `validate_password_confirmation/1`, `password_mismatch_error/1` e `password_incorrect_error/1`.
 
-Como o próprio nome sugere, `changeset/2` cria para nós um novo *changeset*. Nele usamos `cast/4` para converter nossos parametros para um *changeset* a partir de um conjuto de campos obrigatórios e opcionais. A seguir validamos o tamanho da palavra-passe do *changeset*, correspondência da confirmação da senha usando a nossa propria função, e a unicidade do nome de usuário. Por último, atualizamos nosso campo `password` no banco de dados. Para tal usamos `put_change/3` para atualizar um valor no *changeset*.
+Como o próprio nome sugere, `changeset/2` cria para nós um novo *changeset*. Nele usamos `cast/4` para converter nossos parâmetros para um *changeset* a partir de um conjunto de campos obrigatórios e opcionais. A seguir validamos o tamanho da senha do *changeset*, a correspondência da confirmação da senha usando a nossa propria função, e a unicidade do nome de usuário. Por último, atualizamos nosso campo `password` no banco de dados. Para tal usamos `put_change/3` para atualizar um valor no *changeset*.
 
 Usar `User.changeset/2` é relativamente simples:
 
