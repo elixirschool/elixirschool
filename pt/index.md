@@ -8,9 +8,9 @@ Elixir School é o primeiro destino para pessoas procurando aprender e dominar a
 
 Se você é um veterano experiente ou esta é sua primeira vez, você encontrará o que precisa em lições e recursos auxiliares.
 
-Através do trabalho de voluntários o Elixir School foi traduzido para muitas línguas. Algumas das traduções incluem: [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], and [ภาษาไทย][th].
+Através do trabalho de voluntários o Elixir School foi traduzido para muitas línguas. Algumas das traduções incluem: [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], e [ภาษาไทย][th].
 
-Nós recebemos e encorajamos você a se juntar a nós em continuar a fazer o Elixir School ótimo por se envolver em [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
+Nós lhe damos as boas-vindas e encorajamos você a se juntar a nós para continuar a melhorar o Elixir School em [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
 
   [cn]: /cn/
   [es]: /es/
