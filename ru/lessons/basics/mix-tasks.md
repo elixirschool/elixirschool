@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Пользовательские Mix задачи
 ---
 
@@ -75,7 +75,7 @@ end
 defmodule Mix.Tasks.Hello do
   use Mix.Task
 
-  @shortdoc "Просто выполняет команду Hello.say/0."
+  @shortdoc "Просто вызывает функцию Hello.say/0."
   def run(_) do
     # вызываем функцию Hello.say(), описанную ранее
     Hello.say()
