@@ -12,7 +12,6 @@
         <th>{{ headers['original_version'] }}</th>
         <th>{{ headers['translation_version'] }}</th>
         <th>{{ headers['version_severity'] }}</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -21,12 +20,15 @@
         {% for lesson in section[1] %}
         <tr>
           <td>{{ site.data['locales'][page['lang']]['sections'][title] }}</td>
-          <td><a href ="/en/lessons/{{title}}/{{lesson[1]['chapter']}}">{{ lesson[1]['lesson'] }}</a></td>
-          <td>{{ lesson[1]['translated_title'] }}</td>
+          <td><a href="/{{ site.default_lang }}/lessons/{{title}}/{{lesson[1]['chapter']}}" title="{{ lesson[1]['lesson'] }}">{{ lesson[1]['lesson'] }}</a></td>
+          <td>
+              {% unless lesson[1]['translated_severity'] == 'missing' %}
+                <a href="{{ lesson[1]['translated_url'] }}" title="{{ lesson[1]['translated_title'] }}">{{ lesson[1]['translated_title'] }}</a>
+              {% endunless %}
+          </td>
           <td>{{ lesson[1]['original_version'] }}</td>
           <td>{{ lesson[1]['translated_version'] }}</td>
-          <td>{{ lesson[1]['translated_severity'] }}</td>
-          <td class="version-cell">
+          <td class="version-cell" title="{{ lesson[1]['translated_severity'] }}">
             <div class="version-difference-indicator version-difference-{{ lesson[1]['version_severity'] }}"></div>
           </td>
         </tr>
