@@ -165,10 +165,12 @@ $version_color_map: (
   .version-difference-indicator {
     width: 1em;
     height: 1em;
+    margin: auto;
   }
 
   .version-cell {
     vertical-align: middle;
+    cursor: help;
   }
 }
 }
