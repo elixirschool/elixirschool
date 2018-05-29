@@ -54,6 +54,7 @@ module ElixirSchool
             report[section][lesson] = {
               'lesson'              => lesson_content['title'],
               'chapter'             => lesson_content['chapter'],
+              'url'                 => lesson_content['url'],
               'original_version'    => prettify_version(lesson_content['version']),
               'translated_url'      => translated_value(site, lang, section, lesson, 'url'),
               'translated_title'    => translated_value(site, lang, section, lesson, 'title'),
