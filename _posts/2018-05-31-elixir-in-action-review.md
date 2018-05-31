@@ -1,0 +1,60 @@
+---
+author: George Mantzouranis
+author_link: https://github.com/gemantzu
+categories: review
+date:   2018-05-31
+layout: post
+title:  Elixir in Action Review
+excerpt: >
+ This is our first review of a book, and what a book it is!
+---
+
+## Intro
+
+Welcome to the first post in our new series reviewing various learning material available for Elixir.
+Of course you're probably thinking "Elixir School is the best!" and we agree, but as we explore other material to improve our own we want to share it with you along with our thoughts.
+To get us started we're going to kick off our series with a review of Saša Jurić's newest book _Elixir in Action, Second Edition._
+
+_Note 2018-18-05: The book is in beta (MEAP - Manning Early Access Program), very close to production according to the Manning website (June 2018).
+You can find more details about it [here](https://www.manning.com/books/elixir-in-action-second-edition)._
+
+## Author
+
+Saša Jurić is a software developer with over a decade of professional experience in programming.
+Over the years Saša has worked with languages such as Elixir, Erlang, Ruby, JavaScript, C# and C++ giving him a range of experiences.
+
+## Target
+
+What is the target audience of the book?  There is no better place to look than the book's introduction:
+
+> This is an intermediate level book that teaches about Elixir, Erlang, and how they assist
+the development of highly-available server side systems. To fully take advantage of the
+material, you should be an experienced software developer. It is not expected that you know
+anything about Elixir, Erlang, or functional programming, but you should be skillful in at
+least one programming language, such as Java, C#, Ruby, JavaScript.
+
+## Review
+
+Writing a book about a programming language is hard.
+It's even harder when that book needs to encompass not only the language but the platform on which it runs as well.
+As is often the case with technical books, authors usually choose one of two paths: "tutorial" authors who have readers follow along and build an application from start to finish and "documentation" authors who focus on theory, function definitions, and other technical tidbits.
+
+With this book Saša Jurić has taken another approach: there is a very small project, a to-do list, that exists solely to reinforce the readers understanding of each chapter's topics.
+He begins every section explaining the language feature, introducing how and why it is used in the sample project, and lastly finishing the section discussing his experiences and perspective with the particular topics. This is done in a quite natural way, each section is (almost) never broken, making your brain focus at one thing at any given time.
+This allows us, the readers, to experience the ups and downs and explore the content alongside Saša.
+
+## Chapter Analysis
+
+In total the book has 13 chapters.
+
+In Chapters 1 to 4, we are introduced to the platform, the language and the basics that we can use and find in almost any language (even more on functional ones). We can find details about variables, operators, control flow, data abstractions and protocols (elixir version of polymorphism).
+
+Chapters 5 to 11 are probably the most awesome part of the book (and what I believe made the first edition of it so popular amongst elixir developers), a very thorough explanation about OTP and its counterparts (GenServer, Supervision, ETS Tables, OTP Applications) and the toolkit (Observer, Mix, Phoenix).
+
+In the last two Chapters, we can see how to make our app to run on a cluster, release it using Distillery, and maintain it (Debug, Log etc).
+
+## Conclusion
+
+While this is not a good beginners book nor is it a simple read, it is an excellent resource for illustrating the real platform potential, and struggles, that come with Elixir and BEAM.
+
+I strongly suggest each elixir dev that is not a master in the language to buy a hard copy for their desk. If you are on the beginner level, we will explore the options on our following posts.
