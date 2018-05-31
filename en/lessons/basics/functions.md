@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.1.0
 title: Functions
 redirect_from:
   - /lessons/basics/functions/
@@ -37,11 +37,12 @@ As you probably already guessed, in the shorthand version our parameters are ava
 
 Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
 
-Elixir uses pattern matching to identify the first set of parameters which match and invokes the corresponding body:
+Elixir uses pattern matching to check through all possible match options and select the first matching option to run:
 
 ```elixir
 iex> handle_result = fn
 ...>   {:ok, result} -> IO.puts "Handling result..."
+...>   {:ok, _} -> IO.puts "This would be never run as previous will be matched beforehand."
 ...>   {:error} -> IO.puts "An error has occurred!"
 ...> end
 
