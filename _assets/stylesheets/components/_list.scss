@@ -13,10 +13,10 @@
 	ul {
 		list-style: disc;
 		margin: 0 0 _size(element-margin) 0;
-		padding-left: 1em;
+		padding-left: _size(element-margin);
 
-		li {
-			padding-left: 0.5em;
+		ul {
+			margin: 0;
 		}
 
 		&.alt {
