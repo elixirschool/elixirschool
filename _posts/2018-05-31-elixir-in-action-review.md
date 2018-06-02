@@ -39,17 +39,23 @@ Writing a book about a programming language is hard.
 It's even harder when that book needs to encompass not only the language but the platform on which it runs as well.
 As is often the case with technical books, authors usually choose one of two paths: "tutorial" authors who have readers follow along and build an application from start to finish and "documentation" authors who focus on theory, function definitions, and other technical tidbits.
 
-With this book Saša Jurić has taken another approach: there is a very small project, a to-do list, that exists solely to reinforce the readers understanding of each chapter's topics.
-He begins every section explaining the language feature, introducing how and why it is used in the sample project, and lastly finishing the section discussing his experiences and perspective with the particular topics. This is done in a quite natural way, each section is (almost) never broken, making your brain focus at one thing at any given time.
+With this book Saša Jurić has taken another approach: there is a very small project, a ToDoList application, that exists solely to reinforce the readers understanding of each chapter's topics.
+He begins every section explaining the language feature, introducing how and why it is used in the sample project, and lastly finishing the section discussing his experiences and perspective with the particular topics. This is done in a quite natural way, each section is (almost) never broken, making our brain focus at one thing at any given time.
 This allows us, the readers, to experience the ups and downs and explore the content alongside Saša.
 
 ## Chapter Analysis
 
 In total the book has 13 chapters.
 
-In Chapters 1 to 4, we are introduced to the platform, the language and the basics that we can use and find in almost any language (even more on functional ones). We can find details about variables, operators, control flow, data abstractions and protocols (Elixir version of polymorphism).
+In Chapters 1 to 4, we are introduced to the platform, the language and the basics that we can use and find in almost any language (even more on functional ones). We can find details about variables, operators, control flow, data abstractions and protocols (Elixir version of polymorphism). In this section, we begin working on our ToDoList application, and by the end of it, we have a module that contains the CRUD functionality of a ToDoList entity.
 
-Chapters 5 to 11 are probably the most awesome part of the book (and what I believe made the first edition of it so popular amongst Elixir developers), a very thorough explanation about OTP and its counterparts (GenServer, Supervision, ETS Tables, OTP Applications) and the toolkit (Observer, Mix, Phoenix).
+Chapters 5 to 11 are probably the most awesome part of the book (and what I believe made the first edition of it so popular amongst Elixir developers), a very thorough explanation about OTP and its counterparts (GenServer, Supervision, ETS Tables, OTP Applications) and the toolkit (Observer, Mix, Phoenix). In this section a lot of features are added to the ToDoList app: 
+* add a custom server process to maintain state
+* migrate state to a GenServer
+* add a cache so that we start supporting multiple to-do lists
+* add basic data persistence
+* add a supervision tree and introduce a basic pool of workers
+Additionally, we are introduced to ETS tables, OTP Applications and configuration, dependencies and Phoenix Framework. ** I will add more here **
 
 In the last two Chapters, we can see how to make our app to run on a cluster, release it using Distillery, and maintain it (Debug, Log etc).
 
@@ -57,4 +63,10 @@ In the last two Chapters, we can see how to make our app to run on a cluster, re
 
 While this is not a good beginners book nor is it a simple read, it is an excellent resource for illustrating the real platform potential, and struggles, that come with Elixir and BEAM.
 
-I strongly suggest each Elixir dev that is not a master in the language to buy a hard copy for their desk. If you are on the beginner level, we will explore the options on our following posts.
+I strongly suggest each Elixir dev that is not a master in the language to buy a hard copy for their desk. If 
+
+
+
+
+
+are on the beginner level, we will explore the options on our following posts.
