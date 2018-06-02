@@ -47,9 +47,9 @@ This allows us, the readers, to experience the ups and downs and explore the con
 
 In total the book has 13 chapters.
 
-In Chapters 1 to 4, we are introduced to the platform, the language and the basics that we can use and find in almost any language (even more on functional ones). We can find details about variables, operators, control flow, data abstractions and protocols (elixir version of polymorphism).
+In Chapters 1 to 4, we are introduced to the platform, the language and the basics that we can use and find in almost any language (even more on functional ones). We can find details about variables, operators, control flow, data abstractions and protocols (Elixir version of polymorphism).
 
-Chapters 5 to 11 are probably the most awesome part of the book (and what I believe made the first edition of it so popular amongst elixir developers), a very thorough explanation about OTP and its counterparts (GenServer, Supervision, ETS Tables, OTP Applications) and the toolkit (Observer, Mix, Phoenix).
+Chapters 5 to 11 are probably the most awesome part of the book (and what I believe made the first edition of it so popular amongst Elixir developers), a very thorough explanation about OTP and its counterparts (GenServer, Supervision, ETS Tables, OTP Applications) and the toolkit (Observer, Mix, Phoenix).
 
 In the last two Chapters, we can see how to make our app to run on a cluster, release it using Distillery, and maintain it (Debug, Log etc).
 
@@ -57,4 +57,4 @@ In the last two Chapters, we can see how to make our app to run on a cluster, re
 
 While this is not a good beginners book nor is it a simple read, it is an excellent resource for illustrating the real platform potential, and struggles, that come with Elixir and BEAM.
 
-I strongly suggest each elixir dev that is not a master in the language to buy a hard copy for their desk. If you are on the beginner level, we will explore the options on our following posts.
+I strongly suggest each Elixir dev that is not a master in the language to buy a hard copy for their desk. If you are on the beginner level, we will explore the options on our following posts.
