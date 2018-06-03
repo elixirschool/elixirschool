@@ -57,7 +57,7 @@ Chapters 5 to 11 are probably the most awesome part of the book (and what I beli
 * add a supervision tree and introduce a basic pool of workers
 Additionally, we are introduced to ETS tables, OTP Applications and configuration, dependencies and Phoenix Framework (as a simple frontend of the application, the author does not go in too much depth on the framework). In this section, I got the feeling that I am pair programming as a junior with the author, sitting beside him while he designs the application. When he finds a hole in his design, he questions himself "What part of the OTP can cover this hole, and how?", stopping each time to turn to me and give me a detailed explanation on what we are doing. He will go on and implement it, and then turn to me again and discuss on alternatives and ups and downs of the chosen path. I like this aproach, and I want to see it in more language learning books. 
 
-In the last two Chapters, we can see how to make our app run on a cluster, release it using Distillery, and maintain it (Debug, Log etc). The author follows the same approach here as well, albeit not in that much detail, as the topics discussed in this section are very broad (clustering, data replication, network partitions, releases) and would need way too much detail to cover in a language introduction book.
+In the last two chapters, we can see how to make our app run on a cluster, release it using Distillery, and maintain it (Debug, Log etc). The author follows the same approach here as well, albeit not in that much detail, as the topics discussed in this section are very broad (clustering, data replication, network partitions, releases) and would need way too much detail to cover in a language introduction book.
 
 ## Conclusion
 
