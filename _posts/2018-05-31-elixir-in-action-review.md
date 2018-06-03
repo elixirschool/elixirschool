@@ -13,7 +13,7 @@ excerpt: >
 
 Welcome to the first post in our new series reviewing various learning material available for Elixir.
 Of course you're probably thinking "Elixir School is the best!" and we agree, but as we explore other material to improve our own we want to share it with you along with our thoughts.
-To get us started we're going to kick off our series with a review of Saša Jurić's newest book _Elixir in Action, Second Edition._
+To get us started, we're going to kick off our series with a review of Saša Jurić's newest book _Elixir in Action, Second Edition._
 
 _Note 2018-18-05: The book is in beta (MEAP - Manning Early Access Program), very close to production according to the Manning website (June 2018).
 You can find more details about it [here](https://www.manning.com/books/elixir-in-action-second-edition)._
@@ -40,8 +40,8 @@ It's even harder when that book needs to encompass not only the language but the
 As is often the case with technical books, authors usually choose one of two paths: "tutorial" authors who have readers follow along and build an application from start to finish and "documentation" authors who focus on theory, function definitions, and other technical tidbits.
 
 With this book Saša Jurić has taken another approach: there is a very small project, a ToDoList application, that exists solely to reinforce the readers understanding of each chapter's topics.
-He begins every section explaining the language feature, introducing how and why it is used in the sample project, and lastly finishing the section discussing his experiences and perspective with the particular topics. This is done in a quite natural way, each section is (almost) never broken, making our brain focus at one thing at any given time.
-This allows us, the readers, to experience the ups and downs and explore the content alongside Saša.
+
+He begins every section explaining the language feature, introducing how and why it is used in the sample project, and lastly finishing the section discussing his experiences and perspective with the particular topics. This is done in a quite natural way, each section is (almost) never broken, making our brain focus at one thing at any given time. This allows us to experience the ups and downs and explore the content alongside Saša.
 
 ## Chapter Analysis
 
@@ -55,18 +55,12 @@ Chapters 5 to 11 are probably the most awesome part of the book (and what I beli
 * add a cache so that we start supporting multiple to-do lists
 * add basic data persistence
 * add a supervision tree and introduce a basic pool of workers
-Additionally, we are introduced to ETS tables, OTP Applications and configuration, dependencies and Phoenix Framework. ** I will add more here **
+Additionally, we are introduced to ETS tables, OTP Applications and configuration, dependencies and Phoenix Framework (as a simple frontend of the application, the author does not go in too much depth on the framework). In this section, I got the feeling that I am pair programming as a junior with the author, sitting beside him while he designs the application. When he finds a hole in his design, he questions himself "What part of the OTP can cover this hole, and how?", stopping each time to turn to me and give me a detailed explanation on what we are doing. He will go on and implement it, and then turn to me again and discuss on alternatives and ups and downs of the chosen path. I like this aproach, and I want to see it in more language learning books. 
 
-In the last two Chapters, we can see how to make our app to run on a cluster, release it using Distillery, and maintain it (Debug, Log etc).
+In the last two Chapters, we can see how to make our app run on a cluster, release it using Distillery, and maintain it (Debug, Log etc). The author follows the same approach here as well, albeit not in that much detail, as the topics discussed in this section are very broad (clustering, data replication, network partitions, releases) and would need way too much detail to cover in a language introduction book.
 
 ## Conclusion
 
 While this is not a good beginners book nor is it a simple read, it is an excellent resource for illustrating the real platform potential, and struggles, that come with Elixir and BEAM.
 
-I strongly suggest each Elixir dev that is not a master in the language to buy a hard copy for their desk. If 
-
-
-
-
-
-are on the beginner level, we will explore the options on our following posts.
+I strongly suggest each Elixir dev that is not a master in the language to buy a hard copy for their desk. If you are on the beginner level, we will explore the options on our following posts.
