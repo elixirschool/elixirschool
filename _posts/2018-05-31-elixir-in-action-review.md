@@ -61,6 +61,12 @@ In the last two chapters, we can see how to make our app run on a cluster, relea
 
 ## Conclusion
 
-While this is not a good beginners book nor is it a simple read, it is an excellent resource for illustrating the real platform potential, and struggles, that come with Elixir and BEAM.
+Lately, books are being pushed to the side regarding learning a language or a platform and not without a reason. Reading a book requires a big amount of time, and a great amount of dedication, both physical and psychological. Most developers these days do not have that kind of patience, and tend to official documentation or a few tutorials to jump start their knowing of a new toy.
 
-I strongly suggest each Elixir dev that is not a master in the language to buy a hard copy for their desk. If you are on the beginner level, we will explore the options on our following posts.
+Also, there is a trap lurking when an advanced developer is writing a book: you tend to forget to mention important steps of the process, so the reader has the after effect of "How the hell did we come up with this solution? What was the mindset that lead us to this point?". Fortunately, the author does not fall for this trap. He explains every step of the process, while also exploring new alternatives every time he thinks it is due.
+
+So what did I earn from spending the time to read this book? Why should you?
+
+While this is not a good beginners book nor is it a simple read, it is an excellent resource for illustrating the real platform potential, and struggles, that come with Elixir and BEAM. After finishing it, you will have a quite good understanding of the platform, and how to make best use of it all the way from early development stages to production. 
+
+On the other hand, if you are on the beginner level, this is not a suitable read for you. We will explore the available options on our following posts.
