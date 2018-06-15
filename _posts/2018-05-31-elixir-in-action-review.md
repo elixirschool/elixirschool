@@ -4,9 +4,9 @@ author_link: https://github.com/gemantzu
 categories: review
 date:   2018-05-31
 layout: post
-title:  Elixir in Action Review
+title:  Reviewing Elixir in Action, Second Edition
 excerpt: >
- This is our first review of a book, and what a book it is!
+ The first installment in our new series looking at, and reviewing, different learning materials available to the Elixir community.
 ---
 
 ## Intro
@@ -55,18 +55,27 @@ Chapters 5 to 11 are probably the most awesome part of the book (and what I beli
 * add a cache so that we start supporting multiple to-do lists
 * add basic data persistence
 * add a supervision tree and introduce a basic pool of workers
-Additionally, we are introduced to ETS tables, OTP Applications and configuration, dependencies and Phoenix Framework (as a simple frontend of the application, the author does not go in too much depth on the framework). In this section, I got the feeling that I am pair programming as a junior with the author, sitting beside him while he designs the application. When he finds a hole in his design, he questions himself "What part of the OTP can cover this hole, and how?", stopping each time to turn to me and give me a detailed explanation on what we are doing. He will go on and implement it, and then turn to me again and discuss on alternatives and ups and downs of the chosen path. I like this aproach, and I want to see it in more language learning books. 
+Additionally, we are introduced to ETS tables, OTP Applications and configuration, dependencies and Phoenix Framework (as a simple frontend of the application, the author does not go in too much details). In this section, I got the feeling that I am pair programming as a junior with the author, sitting beside him while he designs the application. When he finds a hole in his design, he questions himself "What part of the OTP can cover this hole, and how?". Then, he turns to me and gives me a detailed explanation on what we are doing, proceeds with the implementation on the todo-list app, and finally turns to me again and discusses on alternatives and ups and downs of the chosen path. I like this aproach, and I want to see it in more language learning books. 
 
 In the last two chapters, we can see how to make our app run on a cluster, release it using Distillery, and maintain it (Debug, Log etc). The author follows the same approach here as well, albeit not in that much detail, as the topics discussed in this section are very broad (clustering, data replication, network partitions, releases) and would need way too much detail to cover in a language introduction book.
 
 ## Conclusion
 
-Lately, books are being pushed to the side regarding learning a language or a platform and not without a reason. Reading a book requires a big amount of time, and a great amount of dedication, both physical and psychological. Most developers these days do not have that kind of patience, and tend to official documentation or a few tutorials to jump start their knowing of a new toy.
+Lately books are being pushed to the side when it comes to learning new technology and not without good reason, reading and understanding a book requires dedication and a lot of time.
+These days most people don't seem to have the time for books, so instead videos and brief tutorials are used to jump start learning.
 
-Also, there is a trap lurking when an advanced developer is writing a book: you tend to forget to mention important steps of the process, so the reader has the after effect of "How the hell did we come up with this solution? What was the mindset that lead us to this point?". Fortunately, the author does not fall for this trap. He explains every step of the process, while also exploring new alternatives every time he thinks it is due.
+Another factor working against books is that many authors omit important steps of their thinking process, which ultimately leaves us, the readers, unable to produce a similar solution ourselves.
+We're left to wonder: "How the heck did we come up with this solution?  What was the mindset that lead us to this point?".
+Fortunately, Saša is excellent at helping the reader understand his reasoning, he explains each step of the process while exploring alternatives when he thinks it's due.
 
-So what did I earn from spending the time to read this book? Why should you?
+So is Saša Jurić's newest book _Elixir in Action, Second Edition._ worth the investment of your time?
 
-While this is not a good beginners book nor is it a simple read, it is an excellent resource for illustrating the real platform potential, and struggles, that come with Elixir and BEAM. After finishing it, you will have a quite good understanding of the platform, and how to make best use of it all the way from early development stages to production. 
+If you're an experienced developer looking to advance your understanding of Elixir and the underlying BEAM: yes.
 
-On the other hand, if you are on the beginner level, this is not a suitable read for you. We will explore the available options on our following posts.
+This IS NOT a beginner's book.
+This IS NOT a simple book.
+This IS an excellent resource highlighting the potential and shortcomings of Elixir and the BEAM.
+
+If you give it your attention you'll finish the book with a solid understanding of the platform and how best to leverage it at all stages of the development lifecycle.
+
+Look for more reviews to come soon!
