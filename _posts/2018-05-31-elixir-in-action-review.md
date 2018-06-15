@@ -15,7 +15,7 @@ Welcome to the first post in our new series reviewing various learning material 
 Of course you're probably thinking "Elixir School is the best!" and we agree, but as we explore other material to improve our own we want to share it with you along with our thoughts.
 To get us started, we're going to kick off our series with a review of Saša Jurić's newest book _Elixir in Action, Second Edition._
 
-_Note 2018-18-05: The book is in beta (MEAP - Manning Early Access Program), very close to production according to the Manning website (June 2018).
+_Note 2018-18-05: The book is in beta (MEAP - Manning Early Access Program), very close to production according to the Manning website (September 2018).
 You can find more details about it [here](https://www.manning.com/books/elixir-in-action-second-edition)._
 
 ## Author
