@@ -49,7 +49,7 @@ In total the book has 13 chapters.
 
 In Chapters 1 to 4, we are introduced to the platform, the language and the basics that we can use and find in almost any language (even more on functional ones). We can find details about variables, operators, control flow, data abstractions and protocols (Elixir version of polymorphism). In this section, we begin working on our ToDoList application, and by the end of it, we have a module that contains the CRUD functionality of a ToDoList entity.
 
-Chapters 5 to 11 are probably the most awesome part of the book (and what I believe made the first edition of it so popular amongst Elixir developers), a very thorough explanation about OTP and its counterparts (GenServer, Supervision, ETS Tables, OTP Applications) and the toolkit (Observer, Mix, Phoenix). In this section a lot of features are added to the ToDoList app: 
+Chapters 5 to 11 are probably the most awesome part of the book (and what I believe made the first edition of it so popular amongst Elixir developers), a very thorough explanation about OTP and its counterparts (GenServer, Supervision, ETS Tables, OTP Applications) and the toolkit (Observer, Mix, Plug). In this section a lot of features are added to the ToDoList app: 
 * add a custom server process to maintain state
 * migrate state to a GenServer
 * add a cache so that we start supporting multiple to-do lists
