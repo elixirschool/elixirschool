@@ -79,3 +79,9 @@ This IS an excellent resource highlighting the potential and shortcomings of Eli
 If you give it your attention you'll finish the book with a solid understanding of the platform and how best to leverage it at all stages of the development lifecycle.
 
 Look for more reviews to come soon!
+
+To kick off our new review series we will be giving away free copies of _Elixir In Action, Second Edition_!
+
+Want to get your free copy?
+
+Follow us on [Twitter](https://twitter.com/elixirschool) and retweet our blog post announcement!
