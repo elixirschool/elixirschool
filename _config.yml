@@ -1,7 +1,7 @@
 # Setup
 baseurl: /
 url: https://elixirschool.com
-permalink: /blog/articles/:title/
+permalink: /blog/:title/
 default_lang: en
 exclude_from_localization: []
 exclude_from_chapters: ['blog.html', 'contributors.html']
