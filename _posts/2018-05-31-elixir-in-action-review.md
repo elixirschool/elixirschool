@@ -2,20 +2,18 @@
 author: George Mantzouranis
 author_link: https://github.com/gemantzu
 categories: review
-date:   2018-05-31
+date:   2018-06-18
 layout: post
 title:  Reviewing Elixir in Action, Second Edition
 excerpt: >
  The first installment in our new series looking at, and reviewing, different learning materials available to the Elixir community.
 ---
 
-## Intro
-
 Welcome to the first post in our new series reviewing various learning material available for Elixir.
 Of course you're probably thinking "Elixir School is the best!" and we agree, but as we explore other material to improve our own we want to share it with you along with our thoughts.
 To get us started, we're going to kick off our series with a review of Saša Jurić's newest book _Elixir in Action, Second Edition._
 
-_Note 2018-18-05: The book is in beta (MEAP - Manning Early Access Program), very close to production according to the Manning website (September 2018).
+_Note 2018-06-18: The book is in beta (MEAP - Manning Early Access Program), very close to production according to the Manning website (September 2018).
 You can find more details about it [here](https://www.manning.com/books/elixir-in-action-second-edition)._
 
 ## Author
@@ -80,8 +78,12 @@ If you give it your attention you'll finish the book with a solid understanding 
 
 Look for more reviews to come soon!
 
-To kick off our new review series we will be giving away free copies of _Elixir In Action, Second Edition_!
+## Giveaway
 
-Want to get your free copy?
+To kick off our new series we are giving away free copies of Saša Jurić's _Elixir in Action, Second Edition._!
 
-Follow us on [Twitter](https://twitter.com/elixirschool) and retweet our blog post announcement!
+Want your chance to win a free copy?
+Follow us on [Twitter](https://twitter.com/elixirschool) and retweet this blog post announcement!
+We'll be picking winners at the end of the month, don't miss your chance!
+
+Look for more reviews to come soon!
