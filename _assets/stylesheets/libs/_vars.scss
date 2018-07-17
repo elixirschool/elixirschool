@@ -33,9 +33,9 @@
 
 // Palette.
 	$palette: (
-		bg:					#ffffff,
+		bg:					  #ffffff,
 		bg-alt:				#f5f6f7,
-		fg:					#7f888f,
+		fg:					  darken(#7f888f, 15%),
 		fg-bold:			#3d4449,
 		fg-light:			#9fa3a6,
 		border:				rgba(210,215,217,0.75),
