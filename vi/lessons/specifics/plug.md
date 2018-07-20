@@ -53,7 +53,7 @@ Với ví dụ này ta sẽ viết một Plug để kiểm tra request có các 
 
 _Chú ý_: Plug được chạy cho tất cả request, đó là lý do vì sao ta phải lọc request và áp dụng logic vào phần đã được lọc. Để bỏ qua một request nào đó ta chỉ cần đơn giản trả về kết nối.
 
-Ta sẽ bắt đầu xem một Plug hoàn chỉnh và sau đó tìm hiểu cách nó hoạt động. Ta sẽ viết nó ở file `lib/plug/verify_request.ex`:
+Ta sẽ bắt đầu xem một Plug hoàn chỉnh và sau đó tìm hiểu cách nó hoạt động. Ta sẽ viết nó ở file `lib/example/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do

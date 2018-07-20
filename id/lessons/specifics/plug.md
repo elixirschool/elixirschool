@@ -53,7 +53,7 @@ Untuk contoh ini kita akan membuat sebuah Plug untuk memverifikasi apakan reques
 
 _Catatan_: Plug diterapkan pada semua request sehingga kita akan menerapkan logika kita hanya pada sebagian dari request tersebut.  Untuk mengabaikan sebuah request kita hanya akan meneruskannya.
 
-Kita akan mulai dengan melihat pada Plug kita yang sudah jadi dan kemudian mendiskusikan bagaimana ia bekerja.  Kita akan membuatnya di `lib/plug/verify_request.ex`:
+Kita akan mulai dengan melihat pada Plug kita yang sudah jadi dan kemudian mendiskusikan bagaimana ia bekerja.  Kita akan membuatnya di `lib/example/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do

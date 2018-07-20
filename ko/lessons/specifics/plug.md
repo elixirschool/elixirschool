@@ -186,7 +186,7 @@ _Note_ : Plug는 모든 요청에 적용되므로 요청을 필터링해 일부�
 요청을 무시하려면 그냥 연결을 넘겨주면 됩니다.
 
 완성 된 Plug를 보고 어떻게 작동하는지 설명합니다.
-`lib/plug/verify_request.ex`에 만들겠습니다.
+`lib/example/plug/verify_request.ex`에 만들겠습니다.
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do

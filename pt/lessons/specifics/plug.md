@@ -175,7 +175,7 @@ Vamos esperar que o nosso Plug seja inicializado com duas opções: `:paths` e `
 _Note_: Plugs são aplicados a todas as requisições, e é por isso que nós filtraremos as requisições e aplicararemos nossa lógica para apenas um subconjunto delas.
 Para ignorar uma requisição simplesmente passamos a conexão através do mesmo.
 
-Vamos começar analisando o Plug que acabamos de concluir, e em seguida, discutir como ele funciona, vamos criá-lo em `lib/plug/verify_request.ex`:
+Vamos começar analisando o Plug que acabamos de concluir, e em seguida, discutir como ele funciona, vamos criá-lo em `lib/example/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do

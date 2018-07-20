@@ -53,7 +53,7 @@ end
 
 _注意_：Plug 会应用到所有的请求上，所以我们需要对请求进行过滤，只在其中一部分上执行所需的逻辑。对无需处理的情况我们直接返回传入的连接结构即可。
 
-我们先看看完成后的 Plug，然后谈谈它是如何工作的。我们在 `lib/plug/verify_request.ex` 创建该 Plug：
+我们先看看完成后的 Plug，然后谈谈它是如何工作的。我们在 `lib/example/plug/verify_request.ex` 创建该 Plug：
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
