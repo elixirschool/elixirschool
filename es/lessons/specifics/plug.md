@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Plug
 ---
 
@@ -182,7 +182,7 @@ Esperamos que nuestro Plug sea inicializado con dos opciones: `:paths` y `:field
 _Nota_: Los Plugs son aplicados a todas las peticiones y por eso vamos a manejar solicitudes filtradas y aplicaremos nuestra lógica a sólo un subconjunto de ellas.
 Para ignorar una petición, simplemente la pasamos a través de la conexión.
 
-Vamos a empezar por mirar nuestro Plug terminado y entonces discutiremos cómo funciona, lo crearemos en `lib/plug/verify_request.ex`:
+Vamos a empezar por mirar nuestro Plug terminado y entonces discutiremos cómo funciona, lo crearemos en `lib/example/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
