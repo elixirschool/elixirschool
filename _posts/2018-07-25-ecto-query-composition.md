@@ -5,9 +5,7 @@ categories: post
 date:   2018-07-25
 layout: post
 title:  Ecto query composition
-excerpt: >
-	Follow along as we look at how to dynamically compose Ecto queries using pattern matching and reduction.
-	
+excerpt: Follow along as we look at how to dynamically compose Ecto queries using pattern matching and reduction.
 ---
 
 Ecto is fantastic tool that provides us with a great degree of flexibility.
@@ -36,7 +34,7 @@ defmodule Posts do
   defp base_query do
     (from p in Post)
   end
-end  
+end
 ```
 
 Simple enough.
@@ -51,7 +49,7 @@ There's a good chance the resulting query we want won't just be simple `==` comp
 Let's consider how we might look up a blog post by title.
 It's unlikely we'll want to search by exact title, so instead of `p.title == "Repo"` we want `p.title ILIKE "%Repo%"`.
 
-With that in mind it's easy to understand why the following is not only a bad idea, because it doesn't filter the criteria, but the resulting queries are basic `==` comparisons: 
+With that in mind it's easy to understand why the following is not only a bad idea, because it doesn't filter the criteria, but the resulting queries are basic `==` comparisons:
 
 ```elixir
 defp build_query(query, criteria) do
@@ -186,7 +184,7 @@ defmodule Web.PostController do
     render(conn, ErrorView, "error.json", reason: reason)
   end
 
-  defp render_result(posts, conn) when is_list(posts) do 
+  defp render_result(posts, conn) when is_list(posts) do
     render(conn, "index.json", posts: posts)
   end
 end
