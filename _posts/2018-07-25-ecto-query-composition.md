@@ -32,7 +32,7 @@ defmodule Posts do
   import Ecto.Query
 
   defp base_query do
-    (from p in Post)
+    from p in Post
   end
 end
 ```
@@ -75,19 +75,21 @@ defp build_query(query, criteria) do
   Enum.reduce(criteria, query, &compose_query/2)
 end
 
-defp compose_query(query, {"title", title}) do
-  where(query, [p], fragment("? ILIKE '%?%'", p.title, title))
+defp compose_query({"title", title}, query) do
+  where(query, [p], ilike(p.title, ^"%#{title}%"))
 end
 
-defp compose_query(query, {"tags", tags}) do
-  join(query, :left, [p], t in assoc(p, :tags), on: t.name in ^tags)
+defp compose_query({"tags", tags}, query) do
+  query
+  |> join(:left, [p], t in assoc(p, :tags))
+  |> where([_p, t], t.name in ^tags)
 end
 
-defp compose_query(query, {key, value}) when key in ~w(draft id) do
-  where(query, [p], {String.to_atom(key), value})
+defp compose_query({key, value}, query) when key in ~w(draft id) do
+  where(query, [p], ^{String.to_atom(key), value})
 end
 
-defp compose_query(query, _unsupported_param) do
+defp compose_query(_unsupported_param, query) do
   query
 end
 ```
@@ -128,26 +130,29 @@ defmodule Posts do
   end
 
   defp base_query do
-    (from p in Post)
+    from p in Post
   end
 
-  defp build_query(criteria) do
+  defp build_query(query, criteria) do
     Enum.reduce(criteria, query, &compose_query/2)
   end
 
-  defp compose_query(query, {"title", title}) do
-    where(query, [p], fragment("? LIKE '%?%'", p.title, title))
+  defp compose_query({"title", title}, query) do
+    where(query, [p], ilike(p.title, ^"%#{title}%"))
   end
 
-  defp compose_query(query, {"tags", tags}) do
-    join(query, :left, [p], t in assoc(p, :tags), on: t.name in ^tags)
+  defp compose_query({"tags", tags}, query) do
+    query
+    |> join(:left, [p], t in assoc(p, :tags))
+    |> where([_p, t], t.name in ^tags)
   end
 
-  defp compose_query(query, {key, value}) when key in ~w(draft id) do
-    where(query, [p], {String.to_atom(key), value})
+  defp compose_query({key, value}, query) when key in ~w(draft id) do
+    field = String.to_atom(key)
+    where(query, [p], ^{field, value})
   end
 
-  defp compose_query(query, _unsupported_param) do
+  defp compose_query(_unsupported_param, query) do
     query
   end
 
