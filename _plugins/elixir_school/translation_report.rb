@@ -60,7 +60,8 @@ module ElixirSchool
               'translated_title'    => translated_value(site, lang, section, lesson, 'title'),
               'translated_version'  => prettify_version(translated_value(site, lang, section, lesson, 'version')),
               'version_severity'    => severity,
-              'translated_severity' => translated_severity
+              'translated_severity' => translated_severity,
+              'last_commit' => severe?(severity) ? find_last_commit(severity, lesson_content) : ''
             }
         end
       end
@@ -70,6 +71,19 @@ module ElixirSchool
         'sections' => report,
         'percentage' => points_to_percentage(points, total_lessons)
       }
+    end
+
+    def find_last_commit(severity, lesson_content)
+      file = lesson_content["url"].gsub('"', '').gsub(/\/$/, '.md')
+      if file == '/en.md'
+        file = '/en/index.md'
+      end
+      git = `git blame -L 2,2 -- #{Dir.pwd}/#{file}`
+      "https://github.com/elixirschool/elixirschool/commit/#{git[0..7]}"
+    end
+
+    def severe?(severity)
+      severity != "none" && severity != "error"
     end
 
     def prettify_version(version)

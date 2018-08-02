@@ -12,6 +12,7 @@
         <th>{{ headers['original_version'] }}</th>
         <th>{{ headers['translation_version'] }}</th>
         <th>{{ headers['version_severity'] }}</th>
+        <th>{{ headers['last_commit'] }}</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +31,14 @@
           <td>{{ lesson[1]['translated_version'] }}</td>
           <td class="version-cell" title="{{ lesson[1]['translated_severity'] }}">
             <div class="version-difference-indicator version-difference-{{ lesson[1]['version_severity'] }}"></div>
+          </td>
+          <td>
+              {% if lesson[1]['last_commit'] == '' %}
+              {% else %}
+              <a class="icon fa-github-square" href="{{ lesson[1]['last_commit'] }}">
+                  <span class="label">{{ headers['last_commit'] }}</span>
+              </a>
+              {% endif %}
           </td>
         </tr>
         {% endfor %}
