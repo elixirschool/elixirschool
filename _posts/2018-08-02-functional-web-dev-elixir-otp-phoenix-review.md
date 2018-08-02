@@ -1,0 +1,105 @@
+---
+author: George Mantzouranis
+author_link: https://github.com/gemantzu
+categories: review
+date:   2018-08-02
+layout: post
+title:  Reviewing Functional Web Development with Elixir, OTP, and Phoenix 
+excerpt: >
+ Lance Halvorsen shows us how to build our own version of Battleship from the ground up using Elixir and OTP. In the end, he shows us how to build a fully working UI experience with Phoenix, Presence and Channels.
+---
+
+Our first review was quite popular and the feedback we received has been wonderful!
+We want to thank everyone for their support and take a moment to congratulate our [raffle winners](https://twitter.com/elixirschool/status/1013961507221073920).
+
+As part of our review series we hope to release at least one review per month.
+Along with these reviews, we're hoping to be able to offer additional discounts and giveaways.
+
+For the next part of this series, we are reviewing _Functional Web Development with Elixir, OTP, and Phoenix_ by Lance Halvorsen.
+
+
+## Author
+
+Lance has been developing software for the web professionally for two decades. He's worked with a number of languages, frameworks, and approaches during that time. All of those experiences feed into his current thoughts on web development, which are captured in this book.
+
+Lance is also the original author of the Phoenix Guides, and is a Phoenix core team alumnus.
+
+If you want to have an idea about the author and the content of the book, check out [this awesome video](https://www.youtube.com/watch?v=lDKCSheBc-8)
+
+## Target
+
+What is the target audience of the book? There is no better place to look than the book's introduction:
+
+> On a practical level, this book is for people who have some familiarity with Elixir and Phoenix, and who want to take that knowledge further. But there’s a wider list for whom the ideas in this book will resonate.
+>
+> For people who view OTP with a little trepidation, or for those who haven’t quite mastered OTP Behaviours, this book will give you the confidence to use OTP in any application.
+>
+> For people who have felt the sting of tight coupling between business logic and web frameworks, this book will show you a way out of that pain forever. For people who feel constrained by traditional web development, you will learn new techniques and new ways to structure apps that will spark your imagination.
+>
+> For people who are wondering what all the fuss is about with Elixir and Phoenix, you’ll get a great taste of what makes people so excited. You just might become a convert!
+
+This book is certainly not for beginners and Lance doesn't mix words when saying as much:
+
+> Readers looking for an introduction to Elixir or Phoenix would do well to begin with other resources.
+>
+> We won’t cover the basics of Elixir. I’ll assume you know them before you begin.
+>
+> If you need to get up to speed first, don’t worry—we’ll be here when you’re ready. In the meantime, Dave Thomas’s book, Programming Elixir 1.3 [Tho16], is a great place to start.
+>
+> The same is true for Phoenix. We will take a close look at channels and Presence, but you won’t learn the rest of Phoenix here. You should be able to follow along in this book without that information, but if you want to fill in the gaps, Programming Phoenix [TV16] by Chris McCord, Bruce Tate, and José Valim is the book to reach for.
+
+## Review
+
+This book is quite small at only 214 pages, a tutorial covering the development of a game from the beginning to the end, explaining step by step what we are doing and the technology included.
+
+The focus of the book on building a game had me quite interested so I purchased it while still in early beta. 
+This is a standard 2-player game of Battleship with a 10x10 board for each player. Based on the material provided, you could totally rework this as an exercise and build a handful of other board games.
+
+If took the time to watch the author's video above, you have an idea of what to expect in the book.
+Something that might surprise many readers: **Phoenix is not your application**, it's simply a presentation layer for our underlying logic.
+In this book Lance attempts to help readers understand how to properly develop an application from the ground up starting with our business logic and growing from there.
+Data persistance and UI are details that come later, as they become necessary to support features.
+
+The content is quite nicely paced which makes understanding the topics easy and enjoyable.
+
+## Chapter Analysis
+
+The book has 7 chapters divided into 3 main parts: our business logic, implementing OTP behaviours, and finally adding a UI.
+
+Chapter 1 is an introduction, a roadmap of the adventure that lies ahead of us.
+
+In Part 1 we focus on the business logic as a game engine.
+We begin designing the entities of our game in Chapter 2 and add a custom State Machine to handle our game rules in Chapter 3.
+
+It goes without saying that the first part is the most important one in the book.
+Lance seeks to force us to rethink how we start our apps, to rewire our brains on how to kick start an app. 
+This is the [red pill](https://en.wikipedia.org/wiki/Red_pill_and_blue_pill), our way out of the complacency that `mix phx.new` and other frameworks have lulled us into.
+
+In the second part of the book we add some important OTP behaviours in our system, a GenServer in Chapter 4 and a Supervision Tree in Chapter 5.
+
+In the final part we introduce our presentation layer: a web-based UI.
+Here we'll create a new Phoenix application and add our game engine as a dependency in Chapter 6.
+In Chapter 7 we explore Channels and Presence to finish implementing our working game.
+
+The structure of the book is based on _scalable knowledge_, you begin with nothing in your hands, just a miniature elixir app, and start designing around your needs, piece by piece. Not a single chapter feels forced, that it is there just to add some pages or just to introduce something the author wanted to say. 
+
+## Conclusion
+
+I thoroughly enjoyed the book and I might go so far as to say I learned _too much_ from it.
+That said there are two things that I think would have made it a grand slam: testing and the presentation implementation.
+
+The use of testing, would have been a welcomed addition. Relying on `iex` to execute and valuate the code felt time consuming and didn't drive home the best practices the book encourages elsewhere. While I understand the author's goal with using `iex` I am not entirely sold on this idea. I think an opportunity to demonstrate how to properly test our code was lost.
+
+The second improvement would be on how we implement our presentation layer for two reasons:
+
+Firstly, as with `iex` testing above I did not care for relying on the in-browser console to execute and test my JavaScript code.
+Through the course of the final section we write a significant amount of JavaScript.
+When we go to test our game in another browser, we have to code this JavaScript and run it again via our console.
+Correctly building and testing JavaScript applications isn't the focus on this book but I feel there could have been a better approach.
+
+Finally, it may be personal preference but I don't like copying large swaths of code from a repo into my project without covering what it's doing.
+We've spent over 180 pages understanding why we're doing what we are and it ends unceremoniously with us copying the majority of our front end code from elsewhere.
+I know that this book is about Elixir and OTP mostly but in my opinion the author could have written a final part that relied on writing down some code and explaining more along the way.
+It would have resulted an additional chapter or two but would have provided better closure to those who need it (like myself) while allowing others to skip it. Having said that, I feel I can justify the authors choice on this, as our community's attitude towards JS tends to be aggressive, but this is a theme for another post.
+
+## Giveaway
