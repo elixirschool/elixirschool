@@ -101,5 +101,3 @@ Finally, it may be personal preference but I don't like copying large swaths of 
 We've spent over 180 pages understanding why we're doing what we are and it ends unceremoniously with us copying the majority of our front end code from elsewhere.
 I know that this book is about Elixir and OTP mostly but in my opinion the author could have written a final part that relied on writing down some code and explaining more along the way.
 It would have resulted an additional chapter or two but would have provided better closure to those who need it (like myself) while allowing others to skip it. Having said that, I feel I can justify the authors choice on this, as our community's attitude towards JS tends to be aggressive, but this is a theme for another post.
-
-## Giveaway
