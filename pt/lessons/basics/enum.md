@@ -138,6 +138,15 @@ iex> Enum.max([], fn -> :bar end)
 :bar
 ```
 
+### filter
+
+A função `filter/2` nos permite filtrar uma coleção para incluir apenas os elementos que são avaliados como `true` usando uma função provida.
+
+```elixir
+iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
+[2, 4]
+```
+
 ### reduce
 
 Com `reduce/3` podemos transformar nossa coleção em um único valor, para fazer isto aplicamos um acumulador opcional (`10` neste exemplo) que será passado a nossa função; se não prover um acumulador, o primeiro valor será usado:
