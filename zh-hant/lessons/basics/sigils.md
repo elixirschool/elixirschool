@@ -28,7 +28,7 @@ Elixir 提供了用於表示和使用文字的替代語法。 一個符咒 (sigi
   - `<...>` 尖括號 (pointy brackets)
   - `{...}` 大括號 (curly brackets)
   - `[...]` 中括號 (square brackets)
-  - `(...)` 小括號 (parenthesis)
+  - `(...)` 小括號 (parentheses)
   - `|...|` 管線符號 (pipes)
   - `/.../` 斜線 (forward slashes)
   - `"..."` 雙引號 (double quotes)
