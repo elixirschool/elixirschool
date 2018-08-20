@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.4.0
 title: Enum 模块
 ---
 
@@ -9,9 +9,9 @@ title: Enum 模块
 
 ## Enum
 
-`Enum` 模块提供了超过一百个函数，和我们上节课提到的集合交互。
+`Enum` 模块提供了超过70个操作枚举类型的函数。我们在[上一节](../collections)学到的集合类型中除了元组（tuple）之外都是枚举类型。
 
-这节课程我们只会覆盖一部分函数，不过我们随时都可以自己去了解。
+这节课程我们只会覆盖 Enum 模块的一部分函数，不过我们随时都可以自己去了解。
 让我们在 IEx 里做个小试验。
 
 ```elixir
@@ -82,8 +82,9 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 有时候把集合分组并不能满足我们的需求。这时候 `map_every/3` 在修改集合中特定元素的时候会非常有用：
 
 ```elixir
-iex> Enum.map_every([1, 2, 3, 4], 2, fn x -> x * 2 end)
-[2, 2, 6, 4]
+# Apply function every three items
+iex> Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
+[1001, 2, 3, 1004, 5, 6, 1007, 8]
 ```
 
 ### each
@@ -102,7 +103,7 @@ __注意__：`each` 函数会返回原子 `:ok`
 
 ### map
 
-要把某个元素都执行某个函数，并且把结果作为新的集合返回，要使用 `map` 函数：
+如果需要把执行结果做为一个新集合返回的话，可以使用`map` 函数：
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
@@ -141,9 +142,18 @@ iex> Enum.max([], fn -> :bar end)
 :bar
 ```
 
+### filter
+
+`filter/2` 函数可以帮我们过滤集合，只留下能是我们提供的函数返回`true`的那些元素。
+
+```elixir
+iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
+[2, 4]
+```
+
 ### reduce
 
-使用 `reduce`，我们可以把集合不断计算，最终得到一个值。我们需要提供一个可选的累加值（在这个例子中是 `10`），如果没有累加值，集合中的第一个值会被使用。
+使用 `reduce/3`，我们可以把集合不断计算，最终得到一个值。我们需要提供一个可选的累加值（在这个例子中是 `10`），如果没有累加值，集合中的第一个值会被使用。
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
@@ -156,6 +166,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 ### sort
 
+
 对集合进行排序，Elixir 提供了两个 `sort` 函数来帮忙。第一个使用 Elixir 默认的排序规则进行排序：
 
 ```elixir
@@ -166,7 +177,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-另外 `sort` 允许我们自己提供排序函数：
+另外 `sort/2` 允许我们自己提供排序函数：
 
 ```elixir
 # with our function
@@ -186,5 +197,3 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
 [1, 2, 3]
 ```
-
-这跟我们以前都熟悉的 `uniq/1` 函数一样，但是这个函数在 Elixir 1.4 中被弃用，不过你还是可以使用它（会收到一个警告信息）。

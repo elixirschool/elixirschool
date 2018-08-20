@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: 基础
 ---
 
@@ -16,16 +16,17 @@ title: 基础
 安装后你可以很轻松地确认所安装的版本。
 
     % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
 ### 交互模式
 
-Elixir 自带了 `iex` 这样一个交互 shell, 可以让我们随时计算 Elixir 表达式的值。
+Elixir 自带了`iex`这样一个交互 shell，可以让我们随时计算 Elixir 表达式的值。
 
-运行 `iex` 命令，让我们开始教程：
+运行`iex`命令，让我们开始教程：
 
-
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
