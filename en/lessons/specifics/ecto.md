@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.3.0
 title: Ecto
 ---
 
@@ -147,7 +147,8 @@ defmodule ExampleApp.User do
 
   def changeset(user, params \\ :empty) do
     user
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> unique_constraint(:username)
   end
 end
@@ -307,7 +308,8 @@ defmodule ExampleApp.User do
 
   def changeset(user, params \\ :empty) do
     user
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> validate_length(:password, min: 8)
     |> validate_password_confirmation()
     |> unique_constraint(:username, name: :email)
@@ -337,7 +339,7 @@ end
 
 We've improved our `changeset/2` function and added three new helper functions: `validate_password_confirmation/1`, `password_mismatch_error/1`, and `password_incorrect_error/1`.
 
-As its name suggests, `changeset/2` creates a new changeset for us.  In it we use `cast/4` to convert our parameters to a changeset from a set of required and optional fields.  Next we validate the changeset's password length, we use our own function to validate the password confirmation matches, and we validate username uniqueness.  Finally we update our actual password database field.  For this we use `put_change/3` to update a value in the changeset.
+As its name suggests, `changeset/2` creates a new changeset for us.  In it we use `cast/3` to convert our parameters to a changeset from a set of required and optional fields.  Then we validate the presence of required fields. Next we validate the changeset's password length, we use our own function to validate the password confirmation matches, and we validate username uniqueness.  Finally we update our actual password database field.  For this we use `put_change/3` to update a value in the changeset.
 
 Using `User.changeset/2` is relatively straightforward:
 
