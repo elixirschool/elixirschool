@@ -181,8 +181,8 @@ Assuming all is well and we're seeing the output above, we are now ready to set 
 
 ```elixir
   def deps do
-    [{:earmark, "~> 1.2.5", only: :dev},
-    {:ex_doc, "~> 0.19.1", only: :dev}]
+    [{:earmark, "~> 1.2", only: :dev},
+    {:ex_doc, "~> 0.19", only: :dev}]
   end
 ```
 
