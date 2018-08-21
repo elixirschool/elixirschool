@@ -1,22 +1,33 @@
 ---
 title: Elixir School
 layout: home
-version: 1.0.0
+version: 2.0.0
 ---
 
-[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Elixir School 是希望掌握 Elixir 这门编程语言的人首选资料。
 
-Elixir 基础知识教程，受 Twitter 的 [Scala School](http://twitter.github.io/scala_school/) 启发编写。
+不管你是否有经验，你都一定可以从从这些课程中得到你想要的辅助资料。
 
-_欢迎你的反馈和参与_
+通过无数志愿者的努力，Elixir School 已经本翻译成了多种语言，包括: [Việt ngữ][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], and [ภาษาไทย][th].
 
-# 关于 Elixir
-"Elixir 是一种动态的函数编程语言，用来编写可扩展和易于维护的应用。" --[elixir-lang.org](http://elixir-lang.org/)
 
-Elixir 语言是构建在久经检验的 Erlang VM (BEAM) 之上，可以方便地编写分布式、低延迟和高容错性的系统。
+我们希望并且期待你加入我们一起完善 Elixir School。我们的项目地址是 [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)。
 
-## 特性
-- 高并发
-- 高容错性
-- 函数式编程
-- 可扩展
+  [es]: /es/
+  [it]: /it/
+  [ja]: /ja/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [id]: /id/
+  [ms]: /ms/
+  [uk]: /uk/
+  [de]: /de/
+  [bn]: /bn/
+  [tr]: /tr/
+  [th]: /th/
+  [zh-hans]: /zh-hans/
+  [zh-hant]: /zh-hant/
