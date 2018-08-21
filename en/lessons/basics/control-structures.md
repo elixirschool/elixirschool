@@ -80,7 +80,7 @@ iex> case "cherry pie" do
 
 Another neat feature of `case/2` is its support for guard clauses:
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) guide._
+_This example comes directly from the official Elixir [Getting Started](https://elixir-lang.org/getting-started/case-cond-and-if.html#case) guide._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -98,7 +98,7 @@ Check the official docs for [Expressions allowed in guard clauses](https://hexdo
 
 When we need to match conditions rather than values we can turn to `cond/1`; this is akin to `else if` or `elsif` from other languages:
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
+_This example comes directly from the official Elixir [Getting Started](https://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
 
 ```elixir
 iex> cond do
