@@ -4,7 +4,7 @@ author_link: https://github.com/gemantzu
 categories: review
 date:   2018-08-22
 layout: post
-title:  Reviewing Functional Web Development with Elixir, OTP, and Phoenix 
+title:  Reviewing Functional Web Development with Elixir, OTP, and Phoenix
 excerpt: >
  Lance Halvorsen shows us how to build our a guessing video game from the ground up using Elixir and OTP. In the end, he shows us how to build a fully working UI experience with Phoenix, Presence and Channels.
 ---
@@ -81,7 +81,7 @@ In the final part we introduce our presentation layer: a web-based UI.
 Here we'll create a new Phoenix application and add our game engine as a dependency in Chapter 6.
 In Chapter 7 we explore Channels and Presence to finish implementing our working game.
 
-The structure of the book is based on _scalable knowledge_, you begin with nothing in your hands, just a miniature elixir app, and start designing around your needs, piece by piece. Not a single chapter feels forced, that it is there just to add some pages or just to introduce something the author wanted to say. 
+The structure of the book is based on _scalable knowledge_, you begin with nothing in your hands, just a miniature elixir app, and start designing around your needs, piece by piece. Not a single chapter feels forced, that it is there just to add some pages or just to introduce something the author wanted to say.
 
 ## Conclusion
 
@@ -107,7 +107,7 @@ It would have resulted an additional chapter or two but would have provided bett
 
 We are giving away 3 free **physical** copies of Lance Halvorsen's _Functional Web Development with Elixir, OTP, and Phoenix_.
 Want your chance to win a free copy?
-Follow us on [Twitter](https://twitter.com/elixirschool) and retweet this blog post announcement!
+Follow us on [Twitter](https://twitter.com/elixirschool) and retweet [this blog post announcement](https://twitter.com/elixirschool/status/1032385564119523329)!
 We'll be picking winners on September 15th, don't miss your chance!
 
 Look for more reviews to come soon!
