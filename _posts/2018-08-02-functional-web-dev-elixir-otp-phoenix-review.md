@@ -105,9 +105,9 @@ It would have resulted an additional chapter or two but would have provided bett
 
 ## Giveaway
 
-We are giving away 3 free copies of Lance Halvorsen's _Functional Web Development with Elixir, OTP, and Phoenix_.
+We are giving away 3 free **physical** copies of Lance Halvorsen's _Functional Web Development with Elixir, OTP, and Phoenix_.
 Want your chance to win a free copy?
 Follow us on [Twitter](https://twitter.com/elixirschool) and retweet this blog post announcement!
-We'll be picking winners at the end of the month, don't miss your chance!
+We'll be picking winners on September 15th, don't miss your chance!
 
 Look for more reviews to come soon!
