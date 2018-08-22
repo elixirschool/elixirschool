@@ -102,3 +102,12 @@ Finally, the book ends when you are supposed to start building the UI, and provi
 We've spent over 180 pages understanding why we're doing what we are and it ends unceremoniously with us copying the majority of our front end code from elsewhere.
 I know that this book is about Elixir and OTP mostly but in my opinion the author could have written a final part that relied on writing down some code and explaining more along the way.
 It would have resulted an additional chapter or two but would have provided better closure to those who need it (like myself) while allowing others to skip it. Having said that, I feel I can justify the authors choice on this, as our community's attitude towards JS tends to be aggressive, but this is a theme for another post.
+
+## Giveaway
+
+We are giving away 3 free copies of Lance Halvorsen's _Functional Web Development with Elixir, OTP, and Phoenix_.
+Want your chance to win a free copy?
+Follow us on [Twitter](https://twitter.com/elixirschool) and retweet this blog post announcement!
+We'll be picking winners at the end of the month, don't miss your chance!
+
+Look for more reviews to come soon!
