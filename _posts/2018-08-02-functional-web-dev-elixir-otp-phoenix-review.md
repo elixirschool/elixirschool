@@ -2,11 +2,11 @@
 author: George Mantzouranis
 author_link: https://github.com/gemantzu
 categories: review
-date:   2018-08-02
+date:   2018-08-22
 layout: post
 title:  Reviewing Functional Web Development with Elixir, OTP, and Phoenix 
 excerpt: >
- Lance Halvorsen shows us how to build our own version of Battleship from the ground up using Elixir and OTP. In the end, he shows us how to build a fully working UI experience with Phoenix, Presence and Channels.
+ Lance Halvorsen shows us how to build our a guessing video game from the ground up using Elixir and OTP. In the end, he shows us how to build a fully working UI experience with Phoenix, Presence and Channels.
 ---
 
 Our first review was quite popular and the feedback we received has been wonderful!
@@ -38,7 +38,7 @@ What is the target audience of the book? There is no better place to look than t
 >
 > For people who are wondering what all the fuss is about with Elixir and Phoenix, you’ll get a great taste of what makes people so excited. You just might become a convert!
 
-This book is certainly not for beginners and Lance doesn't mix words when saying as much:
+This book is certainly not for beginners and Lance doesn't mince words when saying as much:
 
 > Readers looking for an introduction to Elixir or Phoenix would do well to begin with other resources.
 >
@@ -52,10 +52,10 @@ This book is certainly not for beginners and Lance doesn't mix words when saying
 
 This book is quite small at only 214 pages, a tutorial covering the development of a game from the beginning to the end, explaining step by step what we are doing and the technology included.
 
-The focus of the book on building a game had me quite interested so I purchased it while still in early beta. 
-This is a standard 2-player game of Battleship with a 10x10 board for each player. Based on the material provided, you could totally rework this as an exercise and build a handful of other board games.
+The focus of the book on building a game had me quite interested so I purchased it while still in early beta.
+This is a standard 2-player position guessing game called Islands (it looks like Battleship). Each player sets up a handful of islands on their boards, and then starts guessing on the opponent island coordinates. When all islands are found, the game ends.
 
-If took the time to watch the author's video above, you have an idea of what to expect in the book.
+If you took the time to watch the author's video above, you have an idea of what to expect in the book.
 Something that might surprise many readers: **Phoenix is not your application**, it's simply a presentation layer for our underlying logic.
 In this book Lance attempts to help readers understand how to properly develop an application from the ground up starting with our business logic and growing from there.
 Data persistance and UI are details that come later, as they become necessary to support features.
@@ -72,7 +72,7 @@ In Part 1 we focus on the business logic as a game engine.
 We begin designing the entities of our game in Chapter 2 and add a custom State Machine to handle our game rules in Chapter 3.
 
 It goes without saying that the first part is the most important one in the book.
-Lance seeks to force us to rethink how we start our apps, to rewire our brains on how to kick start an app. 
+Lance seeks to force us to rewire our brains on how to kick start an app, without the use of a framework or the database strangling us from the get-go.
 This is the [red pill](https://en.wikipedia.org/wiki/Red_pill_and_blue_pill), our way out of the complacency that `mix phx.new` and other frameworks have lulled us into.
 
 In the second part of the book we add some important OTP behaviours in our system, a GenServer in Chapter 4 and a Supervision Tree in Chapter 5.
@@ -85,10 +85,11 @@ The structure of the book is based on _scalable knowledge_, you begin with nothi
 
 ## Conclusion
 
-I thoroughly enjoyed the book and I might go so far as to say I learned _too much_ from it.
+I thoroughly enjoyed the book and my view of our craft in general changed a lot because of it. I started looking for ways to implement this way of programming in other languages / frameworks (mostly in vain, but what can you do?). The design technique described in this book can be applied to every app you can imagine, and it actually makes it easier to build it, because you stop thinking about your app in detail-land (UI, database). It also leads to more maintainable code, as your logic being outside the framework, helps you work on the core of your app and the interface independently, without changes on one having side effects on the other that easily.
+
 That said there are two things that I think would have made it a grand slam: testing and the presentation implementation.
 
-The use of testing, would have been a welcomed addition. Relying on `iex` to execute and valuate the code felt time consuming and didn't drive home the best practices the book encourages elsewhere. While I understand the author's goal with using `iex` I am not entirely sold on this idea. I think an opportunity to demonstrate how to properly test our code was lost.
+The use of testing, would have been a welcomed addition. Relying on `iex` to execute and valuate the code felt time consuming and didn't drive home the best practices the book encourages elsewhere. While I understand the author's goal with using `iex` I am not entirely sold on this idea. I think an opportunity to demonstrate how to properly test our code was lost. There was a talk with the author in the Pragmatic Bookshelf at the time of development of the book and when asked about this, he responded that he _did_ start working on the book using tests, but the tests started taking over the book.
 
 The second improvement would be on how we implement our presentation layer for two reasons:
 
@@ -97,7 +98,7 @@ Through the course of the final section we write a significant amount of JavaScr
 When we go to test our game in another browser, we have to code this JavaScript and run it again via our console.
 Correctly building and testing JavaScript applications isn't the focus on this book but I feel there could have been a better approach.
 
-Finally, it may be personal preference but I don't like copying large swaths of code from a repo into my project without covering what it's doing.
+Finally, the book ends when you are supposed to start building the UI, and provides us with some files to copy paste inside our existing codebase so we can see the final result.
 We've spent over 180 pages understanding why we're doing what we are and it ends unceremoniously with us copying the majority of our front end code from elsewhere.
 I know that this book is about Elixir and OTP mostly but in my opinion the author could have written a final part that relied on writing down some code and explaining more along the way.
 It would have resulted an additional chapter or two but would have provided better closure to those who need it (like myself) while allowing others to skip it. Having said that, I feel I can justify the authors choice on this, as our community's attitude towards JS tends to be aggressive, but this is a theme for another post.
