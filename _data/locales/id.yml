@@ -30,3 +30,26 @@ translation_report:
   translation_version: Translation Version
   version_severity: Version Severity
   last_commit: Last Commit
+
+interlang:
+ bg: Bahasa Bulgaria
+ bn: Bahasa Bengali
+ de: Bahasa Jerman
+ en: Bahasa Inggris
+ es: Bahasa Spanyol
+ fr: Bahasa Perancis
+ gr: Bahasa Yunani
+ id: Bahasa Indonesia
+ it: Bahasa Italia
+ ja: Bahasa Jepang
+ ko: Bahasa Korea
+ ms: Bahasa Malaysia
+ "no": Bahasa Norwegia
+ pl: Bahasa Poland
+ pt: Bahasa Portugis
+ ru: Bahasa Rusia
+ sk: Bahasa Slovakia
+ tr: Bahasa Turki
+ uk: Bahasa Ukraina
+ vi: Bahasa Vietnam
+ zh-hans: Bahasa China

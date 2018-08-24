@@ -30,3 +30,29 @@ translation_report:
   translation_version: Translation Version
   version_severity: Version Severity
   last_commit: Last Commit
+
+interlang:
+  ar: Árabe
+  bg: Búlgaro
+  bn: Bengalí
+  de: Alemán
+  en: Inglés
+  es: Español
+  fr: Francés
+  gr: Griego
+  id: Indonesio
+  it: Italiano
+  ja: Japonés
+  ko: Coreano
+  ms: Malayo
+  "no": Noruego
+  pl: Polaco
+  pt: Portugués
+  ru: Ruso
+  sk: Eslovaco
+  ta: Tamil
+  th: Tailandés
+  tr: Turco
+  uk: Ucraniano
+  vi: Vietnamita
+  zh-hans: Chino

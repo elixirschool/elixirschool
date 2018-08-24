@@ -26,11 +26,11 @@ translators:
     users:
       - masnun
 
-  - language: cn
+  - language: zh-hans
     users:
       - cizixs
 
-  - language: tw
+  - language: zh-hant
     users:
       - lithiumpie
       - cizixs
