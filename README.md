@@ -41,34 +41,11 @@ Check [here](https://www.loc.gov/standards/iso639-2/php/English_list.php) for th
   $ touch ja/lessons/{basics,advanced,specifics,libraries}/.gitkeep
   ```
 
-1. Add your language code to `_data/interlang.yml` and translate the language names:
+1. Add your language code to `interlang` in `_data/locales/en.yml`:
 
   ```yaml
-  ja:
-   ar: アラビア語
-   bg: ブルガリア語
-   bn: ベンガル語
-   cn: 中国語
-   de: ドイツ語
-   en: 英語
-   es: スペイン語
-   fr: フランス語
-   gr: ギリシャ語
-   id: インドネシア語
-   it: イタリア語
-   ja: 日本語
-   ko: 韓国語
-   ms: マレーシア語
-   "no": ノルウェー語
-   pl: ポーランド語
-   pt: ポルトガル語
-   ru: ロシア語
-   sk: スロバキア語
-   ta: ターミル語
-   tr: トルコ語
-   uk: ウクライナ語
-   vi: ベトナム語
-   th: タイ語
+  interlang:
+   ja: Japanese
   ```
 
 1. Create a locale file for your new language using `_data/locales/en.yml` as a guide:

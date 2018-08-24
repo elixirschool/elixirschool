@@ -193,8 +193,8 @@ module ElixirSchool
     def interlang_names(site, original_lang, separator)
       names = {}
       languages(site).each do |lang|
-        original_lang_name = site.data['interlang'].dig(original_lang, lang)
-        foreign_lang_name = site.data['interlang'].dig(lang, lang)
+        original_lang_name = site.data['locales'][original_lang].dig('interlang', lang)
+        foreign_lang_name = site.data['locales'][lang].dig('interlang', lang)
 
         if original_lang_name and foreign_lang_name and original_lang_name != foreign_lang_name
           combined_lang_name = "#{original_lang_name}#{separator}#{foreign_lang_name}"

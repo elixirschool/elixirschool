@@ -31,7 +31,7 @@ disable_transform: true
 
     <h4>Translators</h4>
     {% for translation in site.data.contributors['translators'] %}
-      <b>{{ site.data.interlang['en'][translation.language] }}</b>
+      <b>{{ site.data.locales['en'].interlang[translation.language] }}</b>
       <ul>
       {% for translator in translation.users %}
         <li><a href="https://github.com/{{translator}}">{{translator}}</a></li>

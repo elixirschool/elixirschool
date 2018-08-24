@@ -30,3 +30,29 @@ version_messages:
     translation_version: Translation Version
     version_severity: Version Severity
     last_commit: Last Commit
+
+interlang:
+  ar: アラビア語
+  bg: ブルガリア語
+  bn: ベンガル語
+  de: ドイツ語
+  en: 英語
+  es: スペイン語
+  fr: フランス語
+  gr: ギリシャ語
+  id: インドネシア語
+  it: イタリア語
+  ja: 日本語
+  ko: 韓国語
+  ms: マレーシア語
+  "no": ノルウェー語
+  pl: ポーランド語
+  pt: ポルトガル語
+  ru: ロシア語
+  sk: スロバキア語
+  ta: ターミル語
+  tr: トルコ語
+  uk: ウクライナ語
+  vi: ベトナム語
+  th: タイ語
+  zh-hans: 中国語

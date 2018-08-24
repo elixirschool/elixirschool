@@ -30,3 +30,27 @@ translation_report:
   translation_version: Translation Version
   version_severity: Version Severity
   last_commit: Last Commit
+
+interlang:
+  bg: ภาษาบัลแกเรีย
+  bn: ภาษาเบงกอล
+  de: ภาษาเยอรมัน
+  en: ภาษาอังกฤษ
+  es: ภาษาสเปน
+  fr: ภาษาฝรั่งเศส
+  gr: ภาษากรีก
+  id: ภาษาอินโดนิเซีย
+  it: ภาษาอิตาลี
+  ja: ภาษาญี่ปุ่น
+  ko: ภาษาเกาหลี
+  ms: ภาษามาเลเซีย
+  "no": ภาษานอร์เวย์
+  pl: ภาษาโปแลนด์
+  pt: ภาษาโปรตุเกส
+  ru: ภาษารัสเซีย
+  sk: ภาษาสโลวาเกีย
+  th: ภาษาไทย
+  tr: ภาษาตุรกี
+  uk: ภาษายูเครน
+  vi: ภาษาเวียดนาม
+  zh-hans: ภาษาจีน
