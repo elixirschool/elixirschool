@@ -213,7 +213,7 @@ def hello/2 has multiple clauses and defines defaults in one or more clauses
     iex:31: (module)
 ```
 
-Elixir doesn't like default arguments in multiple matching functions, it can be  confusing.  To handle this we add a function head with our default arguments:
+Elixir doesn't like default arguments in multiple matching functions, it can be confusing.  To handle this we add a function head with our default arguments:
 
 ```elixir
 defmodule Greeter do
