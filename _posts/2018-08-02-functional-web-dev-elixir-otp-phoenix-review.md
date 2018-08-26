@@ -15,7 +15,7 @@ We want to thank everyone for their support and take a moment to congratulate ou
 As part of our review series we hope to release at least one review per month.
 Along with these reviews, we're hoping to be able to offer additional discounts and giveaways.
 
-For the next part of this series, we are reviewing _Functional Web Development with Elixir, OTP, and Phoenix_ by Lance Halvorsen.
+For the next part of this series, we are reviewing [_Functional Web Development with Elixir, OTP, and Phoenix_](https://pragprog.com/book/lhelph/functional-web-development-with-elixir-otp-and-phoenix) by [Lance Halvorsen](https://twitter.com/lance_halvorsen).
 
 
 ## Author
