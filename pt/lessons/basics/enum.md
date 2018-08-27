@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.4.0
 title: Enum
 ---
 
@@ -35,7 +35,7 @@ Para obter uma lista completa de funções, visite a documentação oficial do [
 
 ### all?
 
-Quando usando `all?/2`, e muitas das funções de `Enum`, provemos uma função para aplicar nos elementos da nossa coleção. No caso do `all?/2`, a coleção inteira deve ser avaliada como `true`, em outros casos `false` será retornado:
+Ao usar `all?/2`, e muitas das funções de `Enum`, provemos uma função para aplicar nos elementos da nossa coleção. No caso do `all?/2`, a coleção inteira deve ser avaliada como `true`, caso contrário `false` será retornado:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -75,7 +75,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-Algumas vezes quebrar uma coleção não é o suficiente para fazer exatamente o que você precisa. Se este é o caso, `map_every/3` pode ser muito útil para tratar apenas itens específicos da sua coleção (`nth`), sempre atingindo o primeiro:
+Algumas vezes quebrar uma coleção em blocos não é o suficiente para fazer exatamente o que você precisa. Nesse caso, `map_every/3` pode ser muito útil para tratar apenas itens específicos da sua coleção (`nth`), sempre atingindo o primeiro:
 
 ```elixir
 # Apply function every three items
@@ -140,7 +140,7 @@ iex> Enum.max([], fn -> :bar end)
 
 ### filter
 
-A função `filter/2` nos permite filtrar uma coleção para incluir apenas os elementos que são avaliados como `true` usando uma função provida.
+A função `filter/2` nos permite filtrar uma coleção para incluir apenas os elementos que são avaliados como `true` provendo uma função como argumento.
 
 ```elixir
 iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
@@ -164,7 +164,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 ### sort
 
-Ordenar nossas coleções é fácil com uma das funções de ordenação.
+Ordenar nossas coleções é fácil não só com uma, mas com duas funções de ordenação.
 
 `sort/1` usa a funcionalidade de ordenação do Erlang para determinar a ordem:
 
