@@ -3,7 +3,7 @@ version: 1.1.0
 title: Functions
 ---
 
-In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
+In Elixir and many functional languages, functions are first class citizens. We will learn about the types of functions in Elixir, what makes them different, and how to use them.
 
 {% include toc.html %}
 
@@ -180,7 +180,7 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-When we combine our guard example with default arguments, we run into an issue.  Let's see what that might look like:
+When we combine our guard example with default arguments, we run into an issue. Let's see what that might look like:
 
 ```elixir
 defmodule Greeter do
