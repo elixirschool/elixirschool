@@ -84,7 +84,7 @@ As we can now see, the node we are running is an atom called `:"learner@elixirsc
 
 ## Starting Mnesia
 
-Now we have the background basics out of the way and set up the database, we are now in a position to start the Mnesia DBMS with the ```Mnesia.start/0``` command.
+Now we have the background basics out of the way and set up the database, we are now in a position to start the Mnesia DBMS with the `Mnesia.start/0` command.
 
 ```elixir
 iex> alias :mnesia, as: Mnesia
