@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.3
 title: OTP 并发
 ---
 
@@ -35,6 +35,7 @@ end
 ```
 
 ## 同步函数
+
 有时候需要和 Genservers 进行同步的交互：调用一个函数，然后等待它的响应返回。要处理同步请求，我们需要实现 `Genserver.handle_call/3` 函数，接受的参数是：请求、调用者的 PID，初始的状态，期望的返回值是 `{:reply, response, state}` 三元组。
 
 使用模式匹配，我们可以为不同的请求和状态定义不同的 callbacks，能够接受的所有返回值列表可以前往 [`Genserver.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) 文档处查看。
@@ -88,6 +89,7 @@ iex> SimpleQueue.queue
 ```
 
 ## 异步函数
+
 `handle_cast/2` 是处理异步函数的，  这个函数和 `handle_call/3` 的用法一样，除了它不接受调用者作为参数而且没有返回值。
 
 我们把 enqueue 功能设计成异步的：更新 queue 的内容，但并不阻塞当前程序的运行：
