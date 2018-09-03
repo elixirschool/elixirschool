@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: GenStage
 ---
 
@@ -55,11 +55,11 @@ $ cd genstage_example
 让我们在 `mix.exs` 文件的依赖列表中加入 `gen_stage`:
 
 ```elixir
-  defp deps do
-    [
-      {:gen_stage, "~> 0.11"},
-    ]
-  end
+defp deps do
+  [
+    {:gen_stage, "~> 0.11"},
+  ]
+end
 ```
 
 接着获取并编译依赖:
