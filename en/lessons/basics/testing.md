@@ -1,8 +1,6 @@
 ---
 version: 1.1.1
 title: Testing
-redirect_from:
-  - /lessons/basics/testing/
 ---
 
 Testing is an important part of developing software.  In this lesson we'll look at how to test our Elixir code with ExUnit and some best practices for doing so.

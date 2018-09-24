@@ -13,7 +13,7 @@
         list: '',
         item: ''
       },
-      backToTopClasses: 'icon-chevron-up2 back-to-top'
+      backToTopClasses: 'opener icon-chevron-up2 back-to-top'
     },
     settings = $.extend(defaults, options);
 
@@ -53,7 +53,7 @@
     };
 
     var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10); };
-    var return_to_top = '<i class="' + settings.backToTopClasses + '"> </i>';
+    var return_to_top = '<span class="' + settings.backToTopClasses + '"> </span>';
 
     var level = get_level(headers[0]),
       this_level,
@@ -96,4 +96,12 @@
 
     render[settings.showEffect]();
   };
+  $('#toc').toc({
+    listType: 'ul',
+    title: '',
+    headers: 'h1, h2, h3:not([id="social"]), h4, h5, h6',
+    noBackToTopLinks: false,
+    minimumHeaders: 0,
+    backToTopClasses: 'icon fa-chevron-up back-to-top'
+  });
 })(jQuery);

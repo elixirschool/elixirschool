@@ -1,8 +1,6 @@
 ---
-version: 1.2.0
+version: 1.3.0
 title: Modules
-redirect_from:
-  - /lessons/basics/modules/
 ---
 
 We know from experience it's unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
@@ -150,7 +148,7 @@ end
 
 ### `import`
 
-If we want to import functions and macros rather than aliasing the module we can use `import/`:
+If we want to import functions rather than aliasing the module we can use `import`:
 
 ```elixir
 iex> last([1, 2, 3])
@@ -195,7 +193,7 @@ import List, only: :macros
 
 ### `require`
 
-Although used less frequently `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
+We could use `require` to tell Elixir you're going to use macros from other module. The slight difference with `import` is that it allows using macros, but not functions from the specified module:
 
 ```elixir
 defmodule Example do

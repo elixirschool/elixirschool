@@ -1,8 +1,6 @@
 ---
 version: 1.1.0
 title: 内包表記
-redirect_from:
-  - /jp/lessons/basics/comprehensions/
 ---
 
 リスト内包表記は Elixir で列挙体 (enumerable) をループするための糖衣構文です。このレッスンでは反復や生成に内包表記を用いる方法を見ていきます。
@@ -96,7 +94,7 @@ iex> for x <- 1..100,
 
 リストではなく、他のものを生成したい場合はどうすれば良いでしょうか。 `:into` オプションを使えば可能です！ 一般的な目安として、 `:into` は `Collectable` プロトコルを実装している構造体を指定できます。
 
-`:into` を用いて、マップからキーワードリストを作成しましょう:
+`:into` を用いて、キーワードリストからマップを作成しましょう:
 
 ```elixir
 iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}

@@ -1,5 +1,7 @@
 ---
 title: Elixir School
+layout: home
+version: 1.0.0
 ---
 
 [![Lizenz](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)

@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Pattern Matching
 ---
 
@@ -39,7 +39,7 @@ iex> [1 | tail] = list
 [1, 2, 3]
 iex> tail
 [2, 3]
-iex> [2|_] = list
+iex> [2 | _] = list
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
 # Tuplas
@@ -94,4 +94,8 @@ iex> greet.("Hello", "Sean")
 "Hi Sean"
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
+iex> greeting
+"Hello"
 ```
+
+Note que no exemplo `"Mornin'"`, a reassociação de `greeting` para `"Mornin'"` só acontece dentro de uma função. Fora da função, `greeting` continua sendo `"Hello"`.

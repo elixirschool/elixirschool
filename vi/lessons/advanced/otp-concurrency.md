@@ -39,7 +39,7 @@ end
 
 Sẽ có những trường hợp cần thiết để tương tác với GenServers theo một cách tuần tự, gọi một hàm và đợi trả về của nó. Để xử lý yêu cầu một cách tuần tự, chúng ta cần thực thi `GenServer.handle_call/3` callback mà nhận vào: yêu cầu, PID của người gọi, và trạng thái hiện tại; một tuple sẽ được mong đợi để trả về: `{:reply, response, state}`.
 
-Với việc sử dụng so trùng mẫu (pattern matching), chúng ta có thể định nghĩa callbacks cho rất nhiều yêu cầu và trạng thái. Một chuỗi hoàn chỉnh của các giá trị được phép trả về có thể được tìm thấy trong tài liệu [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) 
+Với việc sử dụng so trùng mẫu (pattern matching), chúng ta có thể định nghĩa callbacks cho rất nhiều yêu cầu và trạng thái. Một chuỗi hoàn chỉnh của các giá trị được phép trả về có thể được tìm thấy trong tài liệu [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3)
 
 Để minh hoạ về yêu cầu tuần tự, hãy thêm vào tính năng để hiển thị trạng thái hiện tại của hàng đợi và xoá một giá trị:
 
@@ -157,7 +157,7 @@ Chúng ta đã học được rằng GenServers là các tiến trình mà cần
 
 Hàm callback quan trọng nhất trong GenEvents mà bạn có thể hình dung là `handle_event/2`. Hàm này nhận vào sự kiện cùng với trạng thái hiện tại của hàm xử lý, sau đó sẽ trả lại một tuple: `{:ok, state}`.
 
-Để minh hoạ tính năng của GenEvent, chúng ta hãy bắt đầu bằng việc tạo hai hàm xử lý (handlers), một hàm dành để giữ log của những thông tin đến, và một để lưu trữ chúng lại (trên lý thuyết): 
+Để minh hoạ tính năng của GenEvent, chúng ta hãy bắt đầu bằng việc tạo hai hàm xử lý (handlers), một hàm dành để giữ log của những thông tin đến, và một để lưu trữ chúng lại (trên lý thuyết):
 
 ```elixir
 defmodule LoggerHandler do
@@ -205,7 +205,7 @@ end
 
 ### Sử dụng GenEvents
 
-Với các hàm xử lý vừa làm, chúng ta cần làm quen thêm với một vài hàm mà GenEvent có sẵn. Ba hàm quan trọng nhất là: `add_handler/3`, `notify/2` và `call/4`. Những hàm đó cho phép chúng ta thêm vào các hàm xử lý, phát tán (broadcast) một thông điệp, và gọi một hàm xử lý nhất định nào đó. 
+Với các hàm xử lý vừa làm, chúng ta cần làm quen thêm với một vài hàm mà GenEvent có sẵn. Ba hàm quan trọng nhất là: `add_handler/3`, `notify/2` và `call/4`. Những hàm đó cho phép chúng ta thêm vào các hàm xử lý, phát tán (broadcast) một thông điệp, và gọi một hàm xử lý nhất định nào đó.
 
 Nếu chúng ta gộp tất cả lại thì sẽ nhìn thấy các hàm xử lý trên thực tế như dưới đây:
 

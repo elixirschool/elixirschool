@@ -1,8 +1,6 @@
 ---
 version: 1.4.0
 title: Enum
-redirect_from:
-  - /lessons/basics/enum/
 ---
 
 A set of algorithms for enumerating over enumerables.
@@ -154,7 +152,7 @@ iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
 
 ### reduce
 
-With `reduce/3` we can distill our collection down into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first element in the enumerable is used:
+With `reduce/3` we can distill our collection down into a single value. To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first element in the enumerable is used:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)

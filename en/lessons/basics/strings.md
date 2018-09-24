@@ -1,8 +1,6 @@
 ---
 version: 1.1.1
 title: Strings
-redirect_from:
-  - /lessons/basics/strings/
 ---
 
 Strings, Char Lists, Graphemes and Codepoints.

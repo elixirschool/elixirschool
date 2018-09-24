@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 0.10.0
 title: Plug
 ---
 
@@ -53,7 +53,7 @@ W tym przykładzie stworzymy plug, który będzie sprawdzał czy żądanie zawie
 
 _Uwaga_: Plugi są wykonywane dla wszystkich żądań dlatego też będziemy musieli samodzielnie obsłużyć filtrowanie i wywoływać naszą logikę tylko w niektórych przypadkach. By zignorować żądanie wystarczy zwrócić połączenie.
 
-Przyjrzyjmy się zatem naszemu gotowemu plugowi i zobaczmy jak on działa.  Stworzyliśmy go w pliku `lib/plug/verify_request.ex`:
+Przyjrzyjmy się zatem naszemu gotowemu plugowi i zobaczmy jak on działa.  Stworzyliśmy go w pliku `lib/example/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do

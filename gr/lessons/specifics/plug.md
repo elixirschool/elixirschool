@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.0
 title: Plug
 ---
 
@@ -185,7 +185,7 @@ _Σημείωση_: Τα Plugs εφαρμόζονται σε όλες τις α�
 Για να αγνοήσουμε μια αίτηση απλά θα μεταβιβάσουμε τη σύνδεση.
 
 Θα ξεκινήσουμε υλοποιώντας το Plug μας και μετά θα συζητήσουμε πως λειτουργεί.
-Θα το δημιουργήσουμε στο `lib/plug/verify_request.ex`:
+Θα το δημιουργήσουμε στο `lib/example/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do

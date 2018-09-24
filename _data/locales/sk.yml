@@ -10,6 +10,10 @@ sections:
   advanced: Pokročilé
   specifics: Špecifiká
   libraries: Knižnice
+  blog: Blog
+  contributors: Contributors
+  translation_report: Translation Report
+
 version_messages:
   outdated: "Niektoré časti tohto prekladu môžu byť neaktuálne."
   major: "Viacero dôležitých zmien bolo pridaných do originálnej lekcie od poslednej aktualizácie."
@@ -17,3 +21,12 @@ version_messages:
   patch: "Viacero patchov bolo pridaných do originálnej lekcie od poslednej aktualizácie."
   none: "Tento preklad je aktuálny."
   error: "V definícii verzie tejto kapitoly sa vyskytla chyba."
+
+translation_report:
+  section: Section
+  original_title: Original Title
+  translation_title: Translation Title
+  original_version: Original Version
+  translation_version: Translation Version
+  version_severity: Version Severity
+  last_commit: Last Commit

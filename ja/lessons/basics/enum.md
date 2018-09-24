@@ -1,8 +1,6 @@
 ---
 version: 1.4.0
 title: Enum
-redirect_from:
-  - /jp/lessons/basics/enum/
 ---
 
 コレクションを列挙していくために用いる一連のアルゴリズム。

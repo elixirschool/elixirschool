@@ -1,8 +1,6 @@
 ---
-version: 1.2.1
+version: 1.2.3
 title: Collections
-redirect_from:
-  - /lessons/basics/collections/
 ---
 
 Lists, tuples, keyword lists, and maps.
@@ -18,17 +16,18 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implements list collections as linked lists.  This means that accessing the list length is an `O(n)` operation.  For this reason, it is typically faster to prepend than append:
+Elixir implements list collections as linked lists.  This means that accessing the list length is an operation that will run in linear time (`O(n)`).  For this reason, it is typically faster to prepend than to append:
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
+# Prepending (fast)
 iex> ["π"] ++ list
 ["π", 3.14, :pie, "Apple"]
+# Appending (slow)
 iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
-
 
 ### List Concatenation
 
@@ -83,7 +82,7 @@ iex> tail
 
 ## Tuples
 
-Tuples are similar to lists, but are stored contiguously in memory.  This makes accessing their length fast but modification expensive; the new tuple must be copied entirely to memory.  Tuples are defined with curly braces:
+Tuples are similar to lists, but are stored contiguously in memory.  This makes accessing their length fast but modification expensive; the new tuple must be copied entirely to memory. Tuples are defined with curly braces:
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
@@ -120,7 +119,7 @@ For these reasons, keyword lists are most commonly used to pass options to funct
 
 ## Maps
 
-In Elixir, maps are the "go-to" key-value store. Unlike keyword lists, they allow keys of any type and are un-ordered.  You can define a map with the `%{}` syntax:
+In Elixir, maps are the "go-to" key-value store. Unlike keyword lists, they allow keys of any type and are un-ordered. You can define a map with the `%{}` syntax:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}

@@ -77,7 +77,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-Derterminados momentos não queremos que nosso processo vinculado falhe o atual. Para isso, precisamos interceptar as saídas. Quando saídas são interceptadas elas serão recebidas como uma mensagem de conjunto de variáveis: `{:EXIT, from_pid, reason}`. 
+Em determinados momentos não queremos que nosso processo vinculado falhe o atual. Para isso, precisamos interceptar as saídas. Quando saídas são interceptadas elas serão recebidas como uma mensagem de conjunto de variáveis: `{:EXIT, from_pid, reason}`. 
 
 ```elixir
 defmodule Example do
@@ -122,7 +122,7 @@ Exit reason: kaboom
 
 ## Agentes
 
-Agentes são uma abstração acerca de processos em segundo plano em estado de manutenção. Podemos acessa-los de outros processos dentro de nossa aplicação ou nó. O estado do nosso Agente é definido como valor de retorno de nossa função: 
+Agentes são uma abstração acerca de processos em segundo plano em estado de manutenção. Podemos acessá-los de outros processos dentro de nossa aplicação ou nó. O estado do nosso Agente é definido como valor de retorno de nossa função: 
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
@@ -147,7 +147,7 @@ iex> Agent.get(Numbers, &(&1))
 
 ## Tarefas
 
-Tarefas fornecem uma forma para executar uma função em segundo plano e posteriormente recuperar seu valor. Elas podem ser particularmente útil ao manusear operações dispendiosa, sem bloquear a execução do aplicativo.
+Tarefas fornecem uma forma para executar uma função em segundo plano e posteriormente recuperar seu valor. Elas podem ser particularmente úteis ao manusear operações custosas, sem bloquear a execução do aplicativo.
 
 ```elixir
 defmodule Example do

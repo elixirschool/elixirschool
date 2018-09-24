@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: カスタム Mix タスク
-redirect_from:
-  - /jp/lessons/basics/mix-tasks/
 ---
 
 Elixir プロジェクトのためのカスタム Mix タスクの作成

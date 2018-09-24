@@ -1,8 +1,6 @@
 ---
 version: 0.9.0
 title: Sigil
-redirect_from:
-  - /my/lessons/basics/sigils/
 ---
 
 Membuat dan menggunakan sigil.
@@ -37,7 +35,7 @@ Senarai kata-kata sempadan(delimiters) termasuk:
 
 ### List Aksara
 
-Sigil-sigil `~c` dan `~C` digunakan untuk menjana list aksara.  Sebagai contoh: 
+Sigil-sigil `~c` dan `~C` digunakan untuk menjana list aksara.  Sebagai contoh:
 
 ```elixir
 iex> ~c/2 + 7 = #{2 + 7}/
@@ -64,7 +62,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Kita dapat lihat di dalam ujian persamaan yang pertama, perkataan `Elixir` tidak sepadan dengan ungkapan nalar tersebut.  Ini kerana huruf pertamanya adalah huruf besar.  Oleh sebab Elixir menyokong format Perl Compatible Regular Expressions (PCRE), kita boleh menambah `i` pada penghujung sigil untuk menyingkirkan kesensitifan huruf. 
+Kita dapat lihat di dalam ujian persamaan yang pertama, perkataan `Elixir` tidak sepadan dengan ungkapan nalar tersebut.  Ini kerana huruf pertamanya adalah huruf besar.  Oleh sebab Elixir menyokong format Perl Compatible Regular Expressions (PCRE), kita boleh menambah `i` pada penghujung sigil untuk menyingkirkan kesensitifan huruf.
 
 ```elixir
 iex> re = ~r/elixir/i

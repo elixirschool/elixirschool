@@ -1,8 +1,6 @@
 ---
-version: 1.1.1
+version: 1.3.0
 title: Ecto
-redirect_from:
-  - /lessons/specifics/ecto/
 ---
 
 Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we're able to create migrations, define schemas, insert and update records, and query them.
@@ -10,6 +8,13 @@ Ecto is an official Elixir project providing a database wrapper and integrated q
 {% include toc.html %}
 
 ## Setup
+
+Create a new app with a supervision tree:
+
+```shell
+$ mix new example_app --sup
+$ cd example_app
+```
 
 To get started we need to include Ecto and a database adapter in our project's `mix.exs`.  You can find a list of supported database adapters in the [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) section of the Ecto README.  For our example we'll use PostgreSQL:
 
@@ -19,12 +24,10 @@ defp deps do
 end
 ```
 
-Now we can add Ecto and our adapter to the application list:
+Then we'll fetch our dependencies using
 
-```elixir
-def application do
-  [applications: [:ecto, :postgrex]]
-end
+```shell
+$ mix deps.get
 ```
 
 ### Repository
@@ -39,19 +42,15 @@ end
 
 ### Supervisor
 
-Once we've created our Repo we need to set up our supervisor tree, which is usually found in `lib/<project name>.ex`.
-
-It is important to note that we set up the Repo as a supervisor with `supervisor/3` and _not_ `worker/3`.  If you generated your app with the `--sup` flag much of this exists already:
+Once we've created our Repo we need to set up our supervisor tree, which is found in `lib/<project name>/application.ex`. Add the Repo to the `children` list:
 
 ```elixir
-defmodule ExampleApp.App do
+defmodule ExampleApp.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec
-
     children = [
-      supervisor(ExampleApp.Repo, [])
+      ExampleApp.Repo
     ]
 
     opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
@@ -148,7 +147,8 @@ defmodule ExampleApp.User do
 
   def changeset(user, params \\ :empty) do
     user
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> unique_constraint(:username)
   end
 end
@@ -308,7 +308,8 @@ defmodule ExampleApp.User do
 
   def changeset(user, params \\ :empty) do
     user
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> validate_length(:password, min: 8)
     |> validate_password_confirmation()
     |> unique_constraint(:username, name: :email)
@@ -338,7 +339,7 @@ end
 
 We've improved our `changeset/2` function and added three new helper functions: `validate_password_confirmation/1`, `password_mismatch_error/1`, and `password_incorrect_error/1`.
 
-As its name suggests, `changeset/2` creates a new changeset for us.  In it we use `cast/4` to convert our parameters to a changeset from a set of required and optional fields.  Next we validate the changeset's password length, we use our own function to validate the password confirmation matches, and we validate username uniqueness.  Finally we update our actual password database field.  For this we use `put_change/3` to update a value in the changeset.
+As its name suggests, `changeset/2` creates a new changeset for us.  In it we use `cast/3` to convert our parameters to a changeset from a set of required and optional fields.  Then we validate the presence of required fields. Next we validate the changeset's password length, we use our own function to validate the password confirmation matches, and we validate username uniqueness.  Finally we update our actual password database field.  For this we use `put_change/3` to update a value in the changeset.
 
 Using `User.changeset/2` is relatively straightforward:
 

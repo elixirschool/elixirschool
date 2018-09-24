@@ -1,8 +1,6 @@
 ---
 version: 1.0.2
 title: Metaprogramming
-redirect_from:
-  - /lessons/advanced/metaprogramming/
 ---
 
 Metaprogramming is the process of using code to write code.  In Elixir this gives us the ability to extend the language to fit our needs and dynamically change the code.  We'll start by looking at how Elixir is represented under the hood, then how to modify it, and finally we can use this knowledge to extend it.

@@ -54,13 +54,16 @@ Jika arity (jumlah parameter) dari sebuah fungsi adalah lebih dari 1, pastikan u
 
 ```shell
 iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
-iex: warning: you are piping into a function call without parentheses, which may be ambiguous. Please wrap the function you are piping into in parenthesis. For example:
+warning: parentheses are required when piping into a function call. For example:
 
-foo 1 |> bar 2 |> baz 3
+    foo 1 |> bar 2 |> baz 3
 
-Should be written as:
+is ambiguous and should be written as
 
-foo(1) |> bar(2) |> baz(3)
+    foo(1) |> bar(2) |> baz(3)
+
+Ambiguous pipe found at:
+  iex:1
 
 ["ELIXIR", "ROCKS"]
 ```

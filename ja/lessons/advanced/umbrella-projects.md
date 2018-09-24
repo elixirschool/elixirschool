@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: アンブレラプロジェクト
-redirect_from:
-  - /jp/lessons/advanced/umbrella-projects/
 ---
 
 プロジェクトが大きく、本当に大きくなることが時々あります。 Mix ビルドツールはプロジェクトの成長に合わせて、コードを複数のアプリケーションに分割して Elixir プロジェクトをより管理しやすくする方法を提供します。

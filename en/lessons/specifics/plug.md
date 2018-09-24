@@ -1,8 +1,6 @@
 ---
-version: 1.1.2
+version: 1.2.0
 title: Plug
-redirect_from:
-  - /lessons/specifics/plug/
 ---
 
 If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra.
@@ -187,7 +185,7 @@ _Note_: Plugs are applied to all requests which is why we will handle filtering 
 To ignore a request we simply pass the connection through.
 
 We'll start by looking at our finished Plug and then discuss how it works.
-We'll create it at `lib/plug/verify_request.ex`:
+We'll create it at `lib/example/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do

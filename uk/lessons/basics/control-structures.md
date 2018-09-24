@@ -91,7 +91,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Також рекомендуємо почитати офіційну документацію про [вирази, доступні в обмежувальних виразах](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Також рекомендуємо почитати офіційну документацію про [вирази, доступні в обмежувальних виразах](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 ## `cond`
 

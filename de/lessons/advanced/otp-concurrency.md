@@ -1,11 +1,11 @@
 ---
-version: 0.9.1
+version: 1.0.0
 title: OTP Nebenläufigkeit
 ---
 
 Wir haben uns die Elixir-Abstraktion für Nebenläufigkeit angesehen, aber manchmal hätten wir gern mehr Kontrolle und dafür sehen wir uns OTP behaviors an, auf denen Elixir gebaut wurde.
 
-In dieser Lektion werden wir uns hauptsächlich mit zwei wichtigen Teilen beschäftigen: GenServers und GenEvents.
+In dieser Lektion werden wir uns hauptsächlich mit zwei wichtigen Teilen beschäftigen: GenServers.
 
 {% include toc.html %}
 
@@ -150,78 +150,3 @@ iex> SimpleQueue.queue
 ```
 
 Für mehr Informationen sieh in die offizielle  [GenServer](https://hexdocs.pm/elixir/GenServer.html#content)-Dokumentation.
-
-## GenEvent
-
-Wir haben gelernt, dass GenServer Prozesse sind, die Stati pflegen und sowohl synchrone als auch asynchrone Requests verwalten. Also was ist ein GenEvent? GenEvents sind generische Eventmanager, die eingehende Ereignisse empfangen und abonnierente consumer informieren. Sie bieten einen Mechanismus, um dynamisch handler dem Ablauf von Ereignissen hinzuzufügen und zu entfernen.
-
-### Ereignisse abarbeiten
-
-Die wichtigste Callback für GenEvent ist wie du dir vorstellen kannst `handle_event/2`. Dieser bekommt das Ereignis und den aktuellen Status des handlers und es wird erwartet, dass er ein Tupel zurückgibt: `{:ok, state}`.
-
-Um die GenEvent-Funktionalität zu demonstrieren lass uns zwei handler starten, einen um ein Log an Nachrichten zu verwalten und den anderen, um diese theoretisch zu persistieren:
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts("Logging new message: #{msg}")
-    {:ok, [msg | messages]}
-  end
-end
-
-defmodule PersistenceHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, state) do
-    IO.puts("Persisting log message: #{msg}")
-
-    # Save message
-
-    {:ok, state}
-  end
-end
-```
-
-### Handler aufrufen
-
-Zusätzlich zu `handle_event/2` unterstützen GenEvents auch `handle_call/2` unter anderen Callbacks. Mit `handle_call/2` können wir spezifische synchrone Nachrichten mit unserem handler verwalten.
-
-Lass uns unseren `LoggerHandler` so aktualisieren, dass er eine Methode beinhaltet, die das aktuelle Nachrichtenlog zurückgibt:
-
-```elixir
-defmodule LoggerHandler do
-  use GenEvent
-
-  def handle_event({:msg, msg}, messages) do
-    IO.puts("Logging new message: #{msg}")
-    {:ok, [msg | messages]}
-  end
-
-  def handle_call(:messages, messages) do
-    {:ok, Enum.reverse(messages), messages}
-  end
-end
-```
-
-### Benutzen von GenEvent
-
-Da unsere handler jetzt bereit sind lass uns uns mit ein paar der GenServer-Funktionen vertraut machen. Die drei wichtigsten sind: `add_handler/3`, `notify/2` und `call/4`. Diese erlauben uns handler hinzuzufügen, Nachrichten zu broadcasten und spezifische handler-Funktionen aufzurufen.
-
-Falls wir alles zusammen setzen können wir unsere handler in Aktion sehen:
-
-```elixir
-iex> {:ok, pid} = GenEvent.start_link([])
-iex> GenEvent.add_handler(pid, LoggerHandler, [])
-iex> GenEvent.add_handler(pid, PersistenceHandler, [])
-
-iex> GenEvent.notify(pid, {:msg, "Hello World"})
-Logging new message: Hello World
-Persisting log message: Hello World
-
-iex> GenEvent.call(pid, LoggerHandler, :messages)
-["Hello World"]
-```
-
-Schau in die offizielle [GenEvent](https://hexdocs.pm/elixir/GenEvent.html#content)-Dokumentation für eine komplette Liste an Callbacks und GenEvent-Funktionalität.

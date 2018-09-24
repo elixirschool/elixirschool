@@ -9,7 +9,7 @@ title: Debugging
 
 # Dialyxir e Dialyzer
 
-O [Dialyzer](http://erlang.org/doc/man/dialyzer.html) (**DI**screpancy **A**nal**YZ**er for **ER**lang), é uma ferramenta para análise de
+O [Dialyzer](http://erlang.org/doc/man/dialyzer.html) (**DI**screpancy **A**na**LYZ**er for **ER**lang), é uma ferramenta para análise de
 código estático. Em outras palavras eles _leem_ e analisam mas não _rodam_ o código. Exemplo: procurando por alguns bugs, códigos mortos,
 desnecessários ou inacessíveis.
 

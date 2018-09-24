@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.3
 title: Coleções
 ---
 
@@ -16,13 +16,15 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implementa listas como listas encadeadas. Isso significa que acessar a profundidade da lista é uma operação `O(n)`. Por essa razão, é normalmente mais rápido inserir um elemento no início do que no final.
+Elixir implementa listas como listas encadeadas. Isso significa que acessar o tamanho da lista é uma operação que rodará em tempo linear (`O(n)`). Por essa razão, é normalmente mais rápido inserir um elemento no início (`prepending`) do que no final (`appending`):
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
+# Prepending (rápido)
 iex> ["π"] ++ list
 ["π", 3.14, :pie, "Apple"]
+# Appending (lento)
 iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
@@ -36,7 +38,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-Uma pequena nota sobre o formato de nome (`++/2`) usado acima. Em Elixir (e Erlang, sobre o qual Elixir é construído), o nome de uma função ou operador tem dois componentes: o nome em si (neste caso `++`) e sua _aridade_. Aridade é uma parte central quando se fala sobre código Elixir (e Erlang). Indica o número de argumentos que uma dada função aceita (dois, nesse nosso exemplo). Aridade e o nome são combinados com uma barra. Iremos falar mais sobre isto mais tarde; este conhecimento irá ajudá-lo a entender a notação por enquanto.
+Uma pequena nota sobre o formato de nome (`++/2`) usado acima. Em Elixir (e Erlang, sobre o qual Elixir é construído), o nome de uma função ou operador tem dois componentes: o nome em si (neste caso `++`) e sua _aridade_. Aridade é uma parte central quando se fala sobre código Elixir (e Erlang). Indica o número de argumentos que uma dada função aceita (dois, nesse nosso exemplo). Aridade e o nome são combinados com uma barra. Falaremos mais sobre isto mais tarde; este conhecimento irá ajudá-lo a entender a notação por enquanto.
 
 ### Subtração de listas
 
@@ -58,7 +60,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 
 ### Topo / Cauda
 
-Quando usamos listas é comum trabalhar com o topo e o fim da lista. O topo é o primeiro elemento da lista e a cauda são os elementos restantes. Elixir provê funções úteis, `hd` e `tl`, para trabalhar com essas partes:
+Quando usamos listas é comum trabalhar com o topo e o fim da lista. O topo é o primeiro elemento da lista e a cauda são os elementos restantes. Elixir provê duas funções bem úteis, `hd` e `tl`, para trabalhar com essas partes:
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -67,7 +69,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-Além das funções citadas, pode-se usar [pattern matching](../pattern-matching) e o operador cons `|` para dividir a lista em topo e cauda; veremos este padrão em futuras lições:
+Além das funções citadas, pode-se usar [pattern matching](../pattern-matching) e o operador cons (`|`) para dividir a lista em topo e cauda; veremos este padrão em futuras lições:
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -80,7 +82,7 @@ iex> tail
 
 ## Tuplas
 
-As tuplas são similares às listas porém são armazenadas de maneira contígua em memória. Isto permite acessar a sua profundidade de forma rápida porém sua modificação é custosa; a nova tupla deve ser armazenada inteira na memória. As tuplas são definidas com chaves.
+As tuplas são similares às listas porém são armazenadas de maneira contígua em memória. Isto permite acessar seu tamanho de forma rápida porém sua modificação é custosa; a nova tupla deve ser armazenada inteira na memória. As tuplas são definidas com chaves.
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
