@@ -7,14 +7,14 @@ Mnesia 是一個重型即時分佈式資料庫管理系統。
 
 {% include toc.html %}
 
-## Overview
+## 概要
 
 Mnesia 是一個資料庫管理系統 (DBMS)
-與 Erlang Runtime系統一起提供，因此能自然地與 Elixir 使用。Mnesia 的 *關聯和物件混合資料模式* 使其適用於開發任何規模的分佈式應用程式。
+與 Erlang Runtime 系統一起提供，因此能自然地與 Elixir 使用。Mnesia 的 *關聯和物件混合資料模式* 使其適用於開發任何規模的分佈式應用程式。
 
-## When to use
+## 何時該使用
 
-尋求何時該應用一項技術的特定部份往往是令人困惑的。如果對以下任何問題都回答'是'，那麼這是使用 Mnesia 而不是 ETS 或 DETS 的良好指示。
+尋求何時該應用一項技術的特定部份往往是令人困惑的。如果對以下任何問題都回答「是」，那麼這是使用 Mnesia 而不是 ETS 或 DETS 的良好指示。
 
   - 需要回復交易嗎 (roll back transactions)？
   - 是否需要易用的語法來讀取和寫入資料？
@@ -85,11 +85,10 @@ iex(learner@elixirschool.com)> Node.self
 
 現在可以看到，正在執行的節點是一個名為`:"learner@elixirschool.com"` 的 atom。如果再次執行 `Mnesia.create_schema([node()])`，將看到它建立了另一個名為 **Mnesia.learner@elixirschool.com** 的資料夾。它的目的很簡單。Erlang 中的節點用於連接到其他節點以共享(分送)資訊和資源。這不必局限於同一台機器，且可以通過區域網路、廣域網路等進行通訊。
 
-## Starting Mnesia
+## 啟動 Mnesia
 
-現在已經掌握了背景知識並設定了資料庫，現在我們可以使用 ```Mnesia.start/0``` 啟動 Mnesia DBMS。
+現在已經掌握了背景知識並設定了資料庫，我們已經就定位可以使用 ```Mnesia.start/0``` 指令啟動 Mnesia DBMS。
 
-Now we have the background basics out of the way and set up the database, we are now in a position to start the Mnesia DBMS with the ```Mnesia.start/0``` command.
 
 ```elixir
 iex> alias :mnesia, as: Mnesia
@@ -101,7 +100,7 @@ iex> Mnesia.start()
 
 在執行具有兩個或更多節點的分佈式系統時，請留心記得，必須在所有參與節點上執行函數 `Mnesia.start/1`。
 
-## Creating Tables
+## 建立 Tables
 
 函數 `Mnesia.create_table/2` 用於在資料庫中建立表格。下面建立一個名為 `Person`的表格，加上一個定義表格資料結構的關鍵字列表。
 
@@ -116,19 +115,16 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
  - `{:aborted, Reason}` 如果函數執行失敗
 
 特別的是，如果表格已經存在，格式將為 `{:already_exists, table}` ，所以如果第二次嘗試建立這個表格，將得到：
-In particular, if the table already exists, the reason will be of the form `{:already_exists, table}` so if we try to create this table a second time, we will get:
 
 ```elixir
 iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:aborted, {:already_exists, Person}}
 ```
 
-## The Dirty Way
+## Dirty 的方法
 
 首先，將看一下讀取和寫入 Mnesia 表格的骯髒方式。通常應該避免這種情況，因為無法保證成功，但它應該有助於學習並輕鬆地使用 Mnesia
 現在在 **Person** 表格中加入一些條目。
-
-First of all we will look at the dirty way of reading and writing to a Mnesia table. This should generally be avoided as success is not guaranteed, but it should help us learn and become comfortable working with Mnesia. Let's add some entries to our **Person** table.
 
 ```elixir
 iex> Mnesia.dirty_write({Person, 1, "Seymour Skinner", "Principal"})
@@ -159,11 +155,9 @@ iex> Mnesia.dirty_read({Person, 4})
 
 如果嘗試查詢不存在的記錄，Mnesia 將回應空列表。
 
-## Transactions
+## 交易 (Transactions)
 
-傳統上，使用 **transactions** 來封裝(encapsulate)對資料庫的讀寫操作。Transactions 是設計容錯、高度分佈式系統的重要部分。一個 Mnesia *transaction 是一種機制，通過該機制，一系列的資料庫操作可以作為一個函數區塊* 執行。首先，建立一個匿名函數，在本例中為 `data_to_write` ，然後將其傳進 `Mnesia.transaction`。
-
-Traditionally we use **transactions** to encapsulate our reads and writes to our database. Transactions are an important part of designing fault-tolerant, highly distributed systems. An Mnesia *transaction is a mechanism by which a series of database operations can be executed as one functional block*. First we create an anonymous function, in this case `data_to_write` and then pass it onto `Mnesia.transaction`.
+傳統上，使用 **transactions** 來封裝 (encapsulate) 對資料庫的讀寫操作。Transactions 是設計容錯、高度分佈式系統的重要部分。一個 Mnesia *transaction 是一種機制，通過該機制，一系列的資料庫操作可以作為一個函數區塊* 執行。首先，建立一個匿名函數，在本例中為 `data_to_write` ，然後將其傳進 `Mnesia.transaction`。
 
 ```elixir
 iex> data_to_write = fn ->
@@ -178,7 +172,7 @@ iex> Mnesia.transaction(data_to_write)
 {:atomic, :ok}
 ```
 
-基於此 transaction message，可以安心地假設已將資料寫入 `Person` 表格。現在使用 transaction 從資料庫中讀取來確定。
+基於此 transaction 訊息，可以安心地假設已將資料寫入 `Person` 表格。現在使用 transaction 從資料庫中讀取來確定。
 
 將使用 `Mnesia.read/1` 從資料庫中讀取，再次的，從匿名函數中讀取。
 
@@ -203,9 +197,9 @@ iex> Mnesia.transaction(
 ...> )
 ```
 
-## Using indices
+## 使用索引
 
-Mnesia 支援非鍵欄位(non-key columns)的索引建立，然後可以根據這些索引查詢資料。所以可以在 `Person` 表格的 `:job`欄位中加入一個索引：
+Mnesia 支援非鍵欄位 (non-key columns) 的索引建立，然後可以根據這些索引查詢資料。所以可以在 `Person` 表格的 `:job`欄位中加入一個索引：
 
 ```elixir
 iex> Mnesia.add_table_index(Person, :job)
@@ -224,7 +218,7 @@ iex> Mnesia.add_table_index(Person, :job)
 {:aborted, {:already_exists, Person, 4}}
 ```
 
-成功建立索引後，可以讀取它並檢索所有主體的列表：Once the index is successfully created, we can read against it and retrieve a list of all principals:
+成功建立索引後，可以讀取它並檢索所有主體的列表：
 
 ```elixir
 iex> Mnesia.transaction(
@@ -235,7 +229,7 @@ iex> Mnesia.transaction(
 {:atomic, [{Person, 1, "Seymour Skinner", "Principal"}]}
 ```
 
-## Match and select
+## Match 和 select
 
 Mnesia 支援複雜查詢，以配對和臨時 (ad-hoc) 的選擇函數形式從表格中檢索資料。
 
@@ -269,7 +263,7 @@ iex> Mnesia.transaction(
 
 - the `result` 列表是查詢後回傳的欄位列表。以特殊的 atom `:"$$"` 的位置參數的形式引用所有欄位，因此可以使用 `[:"$1", :"$2"]` 回傳前兩個欄位或用 `[:"$$"]` 回傳所有欄位。 
 
-有關更多詳細資訊，請參閱[select/2 的 Erlang Mnesia 文件](http://erlang.org/doc/man/mnesia.html#select-2)。
+有關更多詳細資訊，請參閱 [select/2 的 Erlang Mnesia 文件](http://erlang.org/doc/man/mnesia.html#select-2)。
 
 ## 資料初始化和遷移
 
