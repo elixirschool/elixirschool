@@ -141,7 +141,7 @@ defmodule Example.Router do
 end
 ```
 
-這是一個最低限度的陽春路由器，但程式碼應該己經不言而喻了。
+這是一個最基本的簡易路由器，程式碼應該己經不言而喻了。
 通過 `use Plug.Router` 涵蓋一些巨集，然後設定兩個內建的 Plugs： `:match` 和 `:dispatch`。有兩條定義的路由，一條用於處理對 root 的 GET 請求，另一條用於配對所有其他請求，因此可以回傳 404 訊息。
 
 回到 `lib/example.ex` 中，需要將 `Example.Router` 加到 Web 伺服器的 supervisor 樹中。用新路由器替換 `Example.HelloWorldPlug` Plug：

@@ -58,7 +58,7 @@ ETS 中的存取控制與模組內的存取控制類似：
 
 ## 插入資料
 
-ETS 沒有結構描述 (schema)。唯一的限制是，資料必須作為第一個元素是鍵的 tuple 儲存。 為了加入新的資料，可以使用 `insert/2`：
+ETS 沒有結構描述(schema)。唯一的限制是，資料必須以 tuple 儲存，tuple 的第一個元素為資料的鍵(key)。為了加入新的資料，可以使用 `insert/2`：
 
 ```elixir
 iex> :ets.insert(:user_lookup, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})

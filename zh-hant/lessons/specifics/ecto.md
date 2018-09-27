@@ -93,7 +93,7 @@ mix ecto.rollback       # Rollback migrations from a repo
 
 建立遷移的最佳方式是 `mix ecto.gen.migration <name>` 工作指令。如果你通曉 ActiveRecord，這些將看起來很熟悉。
 
-現在先看一下一個使用者表格 (users table) 的遷移：
+現在先看一下一個 users table 的遷移：
 
 ```elixir
 defmodule ExampleApp.Repo.Migrations.CreateUser do

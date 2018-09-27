@@ -71,7 +71,7 @@ Usage: iex [options] [.exs file] [data]
 ```
 
 當從命令列向 IEx 輸入 `--help` 選項，會看到所有可用選項。可以看到有一個 `--name` 和 `--sname` 選項用於為節點配上資訊。
-節點只是一個正在執行的 Erlang 虛擬機器，它處理自己的通訊、垃圾收集，排程處理程序，記憶體管理等等。預設情況下，該節點被命名為**nonode@nohost**。T
+節點只是一個正在執行的 Erlang 虛擬機器，它處理自己的通訊、垃圾收集，排程處理程序，記憶體管理等等。預設情況下，該節點被命名為**nonode@nohost**。
 
 ```shell
 $ iex --name learner@elixirschool.com
