@@ -1,11 +1,11 @@
 ---
-version: 0.9.0
+version: 1.0.1
 title: Mix
 ---
 
-Avant de plonger dans les profondeurs d'Elixir, nous devons d'abord apprendre mix. Si vous êtes familier avec Ruby, mix est l'équivalent de Bundler, Rubygems, et Rake combinés. C'est une part primordiale de tout projet Elixir et dans cette leçon nous allons explorer quelques une de ses fonctionnalités. Pour voir tout ce que mix permet de faire, lancez `mix help`.
+Avant de plonger dans les profondeurs d'Elixir, nous devons d'abord apprendre Mix. Si vous êtes familier avec Ruby, mix est l'équivalent de Bundler, Rubygems, et Rake combinés. C'est une part primordiale de tout projet Elixir et dans cette leçon nous allons explorer quelques une de ses fonctionnalités. Pour voir tout ce que Mix permet de faire, lancez `mix help`.
 
-Jusqu'ici nous avons travaillé exclusivement dans `iex`, ce qui a ses limitations. Dans le cas d'un projet réel nous avons besoin de séparer notre code dans différents fichiers, et mix est là pour nous aider à les gérer efficacement.
+Jusqu'ici nous avons travaillé exclusivement dans `iex`, ce qui a ses limitations. Dans le cas d'un projet réel nous avons besoin de séparer notre code dans différents fichiers, et Mix est là pour nous aider à les gérer efficacement.
 
 {% include toc.html %}
 
@@ -64,7 +64,7 @@ La première section qui nous intéresse est `project`. On y définit le nom de 
 
 La section `application` est utilisée pendant la génération de notre fichier d'application, que nous verrons par la suite.
 
-## <a name="interactif"></a>Intéractif
+## Intéractif
 
 Il peut être nécessaire d'utiliser `iex` dans le contexte de notre application. Heureusement, mix rend ça facile. On peut commencer une nouvelle session `iex`:
 
@@ -93,7 +93,7 @@ Generated example app
 
 Quand on compile un projet, mix crée un dossier `_build` pour nos artefacts. Si on regarde dans ce dossier `_build` on y trouve notre applicaton compilée `example.app`.
 
-## <a name="gestion-des-dependances"></a>Gestion des dépendances
+## Gestion des dépendances
 
 Notre projet n'a aucune dépendance mais en aura bientôt, donc allons-y et voyons comment définir des dépendances et les obtenir.
 
