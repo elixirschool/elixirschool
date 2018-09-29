@@ -18,7 +18,7 @@ Elixir 预定义了好一些行为，例如 `GenServer`，但是，本次课程�
 
 ## 定义一个行为
 
-为了更好的理解行为，让我们为 worker 模块来具体实现一个。这些 workers 都应该实现两个函数：`init/1` 和 `perform/2`。  
+为了更好的理解行为，让我们为 worker 模块来具体实现一组行为。这些 workers 都应该实现两个函数：`init/1` 和 `perform/2`。  
 
 实现的方式是，我们要使用和 `@spec` 语法类似的 `@callback` 注解。这个注解定义了 __required__ 函数；对于宏来说，我们可以使用 `@macrocallback`。让我们看看 `init/1` 和 `perform/2` 在 workers 里怎么定义：  
 
