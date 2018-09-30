@@ -1,16 +1,17 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: 和 Erlang 互操作
 ---
 
-在 Erlang VM (BEAM) 上构建 Elixir 的好处之一就是已经有大量的库可以供我们使用。互操作性允许我们在 Elixir 代码中直接使用 Erlang 的标准库和三方库。这节课，我们就讲讲如何来做。
+在 Erlang VM (BEAM) 上构建 Elixir 的好处之一就是已经有大量的库可以供我们使用。互操作性允许我们在 Elixir 代码中直接使用 Erlang 的标准库和三方库。这节课，我们就讲讲如何来做。  
 
 {% include toc.html %}
 
-# 标准库
-在任何 Elixir 代码中都能直接使用 Erlang 提供的标准库，Erlang 的模块用小写的原子变量表示，比如 `:os` 和 `:timer`。
+## 标准库
 
-我们可以用 `timer.tc` 计算某个函数执行的时间：
+在任何 Elixir 代码中都能直接使用 Erlang 提供的标准库，Erlang 的模块用小写的原子变量表示，比如 `:os` 和 `:timer`。  
+
+我们可以用 `timer.tc` 计算某个函数执行的时间：  
 
 ```elixir
 defmodule Example do
@@ -26,10 +27,11 @@ Time: 8 μs
 Result: 1000000
 ```
 
-要了解所有可用的模块，请看 [Erlang 参考手册](http://erlang.org/doc/apps/stdlib/)。
+要了解所有可用的模块，请看 [Erlang 参考手册](http://erlang.org/doc/apps/stdlib/)。  
 
-# Erlang 三方依赖
-在之前的课程中，我们讲过如何使用 Mix 和管理依赖，要引入 Erlang 的依赖，方法也是一样的。如果依赖的 Erlang 库不在 [hex](https://hex.pm)，你也可以直接使用 git 代码库的地址：
+## Erlang 第三方依赖
+
+在之前的课程中，我们讲过如何使用 Mix 和管理依赖。要引入 Erlang 的依赖，方法也是一样的。如果依赖的 Erlang 库不在 [hex](https://hex.pm)，你也可以直接使用 git 代码库的地址：  
 
 ```elixir
 def deps do
@@ -37,47 +39,64 @@ def deps do
 end
 ```
 
-然后我们就可以用 Erlang 的库了：
+然后我们就可以用 Erlang 的库了：  
 
 ```elixir
 png =
   :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
-# 区别
-知道怎么在 Elixir 中使用 Erlang ，我们还要讲讲操作 Erlang 语言会遇到的坑：
+## 区别
 
-## 原子
-Erlang 的原子和 Elixir 很相似，只是没有前面的冒号（`:`），Erlang 中的原子是小写字母和下划线的组合。
+知道了怎么在 Elixir 中使用 Erlang ，我们还要讲讲操作 Erlang 语言会遇到的坑：  
 
-Elixir:
+### 原子
+
+Erlang 的原子和 Elixir 很相似，只是没有前面的冒号（`:`），Erlang 中的原子是小写字母和下划线的组合。  
+
+Elixir:  
 
 ```elixir
 :example
 ```
 
-Erlang:
+Erlang:  
 
 ```erlang
 example.
 ```
 
-## 字符串
-Erlang 字符串用单引号（`''`）表示，很像 Elixir 的字符列表。除了代表 Erlang 的字符串之外，字符列表在和 Erlang 代码交互的时候经常会用到。
+### 字符串
 
-Elixir:
+在 Elixir 里面，字符串表达的是 UTF-8 编码的二进制数据。而在 Erlang，字符串还是使用双引号表示，但是却是字符列表。  
+
+Elixir:  
 
 ```elixir
-"Example String"
+iex> is_list('Example')
+true
+iex> is_list("Example")
+false
+iex> is_binary("Example")
+true
+iex> <<"Example">> === "Example"
+true
 ```
 
-Erlang:
+Erlang:  
 
 ```erlang
-'Example String'.
+1> is_list('Example').
+false
+2> is_list("Example").
+true
+3> is_binary("Example").
+false
+4> is_binary(<<"Example">>).
+true
 ```
 
-需要特别注意的是，有些 Erlang 的库不支持 binaries，我们要把 Elixir 字符串转换成字符列表，不过还好 `to_charlist/1` 函数可以帮我们完成这个转换。
+需要特别注意的是，有些 Erlang 的库不支持二进制数据，我们要把 Elixir 字符串转换成字符列表。还好，`to_charlist/1` 函数可以帮我们轻松完成这个转换。  
 
 ```elixir
 iex> :string.words("Hello World")
@@ -99,8 +118,9 @@ iex> "Hello World" |> to_charlist() |> :string.words()
 2
 ```
 
-## 变量
-Elixir:
+### 变量
+
+Elixir:  
 
 ```elixir
 iex> x = 10
@@ -110,7 +130,7 @@ iex> x1 = x + 10
 20
 ```
 
-Erlang:
+Erlang:  
 
 ```erlang
 1> X = 10.
@@ -120,4 +140,4 @@ Erlang:
 11
 ```
 
-就这么多！在 Elixir 应用中使用 Erlang 简单高效，把原来可用的库直接加倍啦！
+就这么多！在 Elixir 应用中使用 Erlang 简单高效，把原来可用的库直接加倍啦！  

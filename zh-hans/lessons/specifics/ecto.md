@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.3.0
 title: Ecto
 ---
 
@@ -9,7 +9,14 @@ Ecto 是 Elixir 官方维护的一个项目，它提供了对数据库的封装�
 
 ## 安装
 
-首先我们将 Ecto 和所需的数据库适配器加入 `mix.exs` 中。你可以在 Ecto 的 README 中找到其[支持的数据库适配器](https://github.com/elixir-lang/ecto/blob/master/README.md#usage)。在这个例子中我们使用 PostgreSQL：
+创建一个带 supervision 树的应用：  
+
+```shell
+$ mix new example_app --sup
+$ cd example_app
+```
+
+首先，我们将 Ecto 和所需的数据库适配器加入 `mix.exs` 中。你可以在 Ecto README 的用法章节找到其[支持的数据库适配器](https://github.com/elixir-lang/ecto/blob/master/README.md#usage)。在这个例子中我们使用 PostgreSQL：
 
 ```elixir
 defp deps do
@@ -17,17 +24,15 @@ defp deps do
 end
 ```
 
-然后将 Ecto 和适配器加入应用列表：
+然后我们使用如下命令获取依赖：  
 
-```elixir
-def application do
-  [applications: [:ecto, :postgrex]]
-end
+```shell
+$ mix deps.get
 ```
 
 ### Repository
 
-最后我们需要创建这个项目的 repository，或者说数据库封装。这可以通过 `mix ecto.gen.repo -r ExampleApp.Repo` 来完成。我们稍后会讨论 Ecto 的 mix 命令集。Repo 的代码常见于 `lib/<project name>/repo.ex`：
+最后，我们需要创建这个项目的 repository，也就是数据库封装。这可以通过 `mix ecto.gen.repo -r ExampleApp.Repo` 来完成。我们稍后会讨论 Ecto 的 mix 命令集。Repo 的代码常见于 `lib/<project name>/repo.ex`：
 
 ```elixir
 defmodule ExampleApp.Repo do
@@ -37,19 +42,15 @@ end
 
 ### Supervisor
 
-创建了 Repo 后我们需要设置 supervisor 树，通常位于 `lib/<project name>.ex`。
-
-值得注意的是我们通过 `supervisor/3` 将 Repo 配置为一个 supervisor 而不是 `worker/3`。如果附加 `--sup` 参数，那么生成应用时这部分代码基本都生成好了。
+创建了 Repo 后，我们需要设置 supervisor 树，它通常位于 `lib/<project name>.ex`。  
 
 ```elixir
-defmodule ExampleApp.App do
+defmodule ExampleApp.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec
-
     children = [
-      supervisor(ExampleApp.Repo, [])
+      ExampleApp.Repo
     ]
 
     opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
@@ -88,7 +89,7 @@ mix ecto.rollback       # Rollback migrations from a repo
 
 ## Migrations
 
-创建 migration 最好是使用 `mix ecto.gen.migration <name>` 任务。如果你熟悉 ActiveRecord 那么这些用起来都差不多。
+创建 migration 最好是使用 `mix ecto.gen.migration <name>` 任务。如果你熟悉 ActiveRecord，那么这些用起来都差不多。
 
 我们先来看看创建用户表时的 migration：
 
@@ -146,7 +147,8 @@ defmodule ExampleApp.User do
 
   def changeset(user, params \\ :empty) do
     user
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> unique_constraint(:username)
   end
 end
@@ -166,7 +168,7 @@ import Ecto.Query, only: [from: 2]
 
 ### 基础
 
-Ecto 提供了一套功能强大同时语法清晰的查询用 DSL。比如要找到所有已经确认过的用户的用户名，我们可以这样写：
+Ecto 提供了一套功能强大同时语法清晰的查询 DSL。比如要找到所有已经确认过的用户的用户名，我们可以这样写：
 
 ```elixir
 alias ExampleApp.{Repo, User}
@@ -306,7 +308,8 @@ defmodule ExampleApp.User do
 
   def changeset(user, params \\ :empty) do
     user
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> validate_length(:password, min: 8)
     |> validate_password_confirmation()
     |> unique_constraint(:username, name: :email)
@@ -336,25 +339,21 @@ end
 
 我们改善了 `changeset/2` 函数并添加了三个新的辅助函数：`validate_password_confirmation/1`、`password_mismatch_error/1` 和 `password_incorrect_error/1`。
 
-如同函数名，`changeset/2` 可以为我们创建一个新的变更集。首先我们用 `cast/4` 将参数转换成一个有若干必要字段和可选字段的变更集。接下来我们验证了密码的长度，并通过新编写的函数验证用户输入的(两个)密码是否吻合，我们还约束了用户名的唯一性。最后我们使用 `put_change/3` 更新了变更集中的一个值。
+正如函数名所示，`changeset/2` 可以为我们创建一个新的变更集。首先我们用 `cast/4` 将参数转换成一个有若干必要字段和可选字段的变更集。接下来我们验证了密码的长度，并通过新编写的函数验证用户输入的(两个)密码是否吻合，我们还约束了用户名的唯一性。最后我们使用 `put_change/3` 更新了变更集中的一个值。
 
 使用 `User.changeset/2` 还比较直观：
 
 ```elixir
-alias ExampleApp.{User, Repo}
+alias ExampleApp.{User,Repo}
 
 pw = "passwords should be hard"
-
-changeset =
-  User.changeset(%User{}, %{
-    username: "doomspork",
-    email: "sean@seancallan.com",
-    password: pw,
-    password_confirmation: pw
-  })
+changeset = User.changeset(%User{}, %{username: "doomspork",
+                    email: "sean@seancallan.com",
+                    password: pw,
+                    password_confirmation: pw})
 
 case Repo.insert(changeset) do
-  {:ok, model}        -> # Inserted with success
+  {:ok, record}       -> # Inserted with success
   {:error, changeset} -> # Something went wrong
 end
 ```
