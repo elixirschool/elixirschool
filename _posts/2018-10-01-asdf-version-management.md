@@ -9,8 +9,6 @@ excerpt: >
   Take a dive into flexible version management of Elixir, Erlang, and OTP with `asdf`!
 ---
 
-# Agnostic Version Management With asdf
-
 ## What is it?
 Oftentimes we need to use multiple versions of our tools.
 Many communities have their own things to do this.
