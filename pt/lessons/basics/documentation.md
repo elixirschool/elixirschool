@@ -121,7 +121,7 @@ iex>
 
 Observe como você pode usar marcação de dentro para fora da documentação e o terminal irá renderizar isto? Além de realmente ser uma ótima nova adição para o vasto ecossistema de Elixir, fica muito mais interessante quando olhamos para ExDoc para gerar documentação HTML continuamente.
 
-**Nota:** a anotação `@spec` é usada para analisar staticamente o código. Para aprender mais sobre isso, veja a lição [Especificações e tipos](../../advanced/typespec).
+**Nota:** a anotação `@spec` é usada para analisar estaticamente o código. Para aprender mais sobre isso, veja a lição [Especificações e tipos](../../advanced/typespec).
 
 ## ExDoc
 
