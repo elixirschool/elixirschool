@@ -22,6 +22,14 @@ Let's check it out!
 ## Setup
 Installing `asdf` is a breeze.
 
+First, clone it down:
+
+```shell
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.1
+```
+
+Now its time for setup.
+
 On macOS:
 
 ```shell
