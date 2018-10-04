@@ -17,7 +17,7 @@ O [Dialyxir](https://github.com/jeremyjh/dialyxir) é uma tarefa mix para simpli
 
 Ferramentas de especificação como o Dialyzer ajudam a enteder melhor o código. Este é um exemplo do que é legível e compreensível apenas para outros seres humanos (se apenas existe e é bem escrito), `@spec` usar sintaxe mais formal e que pode ser entendido pela máquina.
 
-Vamos adicionar Dialixyr ao nosso projeto. A maneira mais simples é adicionar dependência ao arquivo `mix.exs`:
+Vamos adicionar Dialyxir ao nosso projeto. A maneira mais simples é adicionar dependência ao arquivo `mix.exs`:
 
 ```elixir
 defp deps do
