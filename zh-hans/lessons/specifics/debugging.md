@@ -15,7 +15,7 @@ title: 调试
 
 Specification 可以帮助像 Dialyzer 这样的工具更好地理解代码。不像那些只能被人类阅读和理解的文档（假如存在或者写的足够好的话），`@spec` 使用了一些可以被机器理解的，更规范的语法。  
 
-让我们把 Dialixyr 加到我们的项目里头吧。最简单的方式就是添加依赖到 `mix.exs` 文件中：  
+让我们把 Dialyxir 加到我们的项目里头吧。最简单的方式就是添加依赖到 `mix.exs` 文件中：  
 
 ```elixir
 defp deps do
