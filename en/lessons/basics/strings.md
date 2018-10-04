@@ -37,6 +37,14 @@ iex(6)> "hełło" <> <<0>>
 
 `322` is the Unicode codepoint for ł but it is encoded in UTF-8 as the two bytes `197`, `130`.
 
+You can get a character’s code point by using ?
+
+```elixir
+iex(8)> ?Z  
+90
+```
+This allows you to use the compact notation ?A rather than "A".
+
 When programming in Elixir, we usually use strings, not charlists. The charlist support is mainly included because it is required for some Erlang modules.
 
 For further information, see the official [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
