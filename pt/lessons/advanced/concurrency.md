@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.1.0
 title: Concorrência
 ---
 
@@ -47,6 +47,8 @@ defmodule Example do
     receive do
       {:ok, "hello"} -> IO.puts("World")
     end
+
+    listen
   end
 end
 
@@ -60,6 +62,8 @@ World
 iex> send pid, :ok
 :ok
 ```
+
+Você pode notar que a função `listen/0` é recursiva, isso permite nosso processo receba múltiplas mensagens. Sem recursão nosso processo teria saído depois de receber a primeira mensagem.
 
 ### Vinculando Processos
 
@@ -77,7 +81,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-Em determinados momentos não queremos que nosso processo vinculado falhe o atual. Para isso, precisamos interceptar as saídas. Quando saídas são interceptadas elas serão recebidas como uma mensagem de conjunto de variáveis: `{:EXIT, from_pid, reason}`. 
+Em determinados momentos não queremos que nosso processo vinculado falhe o atual. Para isso nós precisamos interceptar as saídas usando `Process.flag/2`. É usado a função do erlang [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) para a `trap_exit` flag. Quando a interceptação sai (`trap_exit` é definida para `true`), sinais de saída são recebidas com uma tupla de mensagem: `{:EXIT, from_pid, reason}`.
 
 ```elixir
 defmodule Example do
