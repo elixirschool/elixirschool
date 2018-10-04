@@ -134,7 +134,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 ### NaiveDateTime
 
-Uma [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) pode ser bem útil para criar rapidamente uam struct que representa um `DateTime` **sem** um timezone.
+Uma [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) pode ser bem útil para criar rapidamente uma struct que representa um `DateTime` **sem** um timezone.
 
 Geralmente, nós devemos evitar criar uma `NaiveDateTime` struct diretamente. No entanto, é muito útil para pattern matching. Por exemplo:
 
