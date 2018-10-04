@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: কন্ট্রোল স্ট্রাকচার 
 ---
 
@@ -93,7 +93,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-আরও জানতে হলে অফিসিয়াল ডকুমেন্টেশানের [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses) চ্যাপ্টারটি দেখুন। 
+আরও জানতে হলে অফিসিয়াল ডকুমেন্টেশানের [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions) চ্যাপ্টারটি দেখুন।
 
 ## `cond`
 
@@ -127,7 +127,7 @@ iex> cond do
 
 কখনো কখনো  আমরা এমন পরিস্থিতিতে পরি যখন `case` স্টেটমেন্ট এর ক্লোজগুলি সুন্দর মত পাইপ করা যায় না এবং নেস্টেড হয়ে যায়। `with` এক্সপ্রেশানের আবির্ভাব হয়েছে এই ধরণের অবস্থা হ্যান্ডল করার জন্য। এটি হল `with` কী-ওয়ার্ড, সংশ্লিষ্ট জেনারেটরসমূহ এবং একটি এক্সপ্রেশানের সমন্বয়।  
 
-জেনারেটর নিয়ে আমরা লিস্ট কম্প্রিহেনশান অধ্যায়ে কথা বলব। আপাতত এতটুকু জেনে রাখি যে এরা প্যাটার্ন ম্যাচিং দিয়ে `<-` এর ডান হাতের এক্সপ্রেশানকে কম্পেয়ার করে বাম হাথের এক্সপ্রেশানের সাথে। 
+জেনারেটর নিয়ে আমরা লিস্ট কম্প্রিহেনশান অধ্যায়ে কথা বলব। আপাতত এতটুকু জেনে রাখি যে এরা প্যাটার্ন ম্যাচিং দিয়ে `<-` এর ডান হাতের এক্সপ্রেশানকে কম্পেয়ার করে বাম হাতের এক্সপ্রেশানের সাথে। 
 
 `with` এর একটি সহজ উদাহরণ দিয়ে শুরু করা যাক- 
 
@@ -154,14 +154,18 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 `with` ছাড়া ব্যবহৃত একটি উদাহরণ দিয়ে দেখা যাক কিভাবে `with` আমাদের উপকারে আসে- 
 
 ```elixir
-case Repo.insert(changeset) do 
-  {:ok, user} -> 
-    case Guardian.encode_and_sign(resource, :token, claims) do
+case Repo.insert(changeset) do
+  {:ok, user} ->
+    case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -169,7 +173,7 @@ end
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token, claims),
      do: important_stuff(jwt, full_claims)
 ```
 
@@ -182,13 +186,14 @@ import Integer
 
 m = %{a: 1, c: 3}
 
-a = with {:ok, res} <- Map.fetch(m, :a),
-  true <- Integer.is_even(res) do
-    IO.puts "Divided by 2 it is #{div(res, 2)}"
-else 
-  :error -> IO.puts "We don't have this item in map"
-  _ -> IO.puts "It's not odd"
-end
+a =
+  with {:ok, res} <- Map.fetch(m, :a),
+       true <- is_even(res) do
+    IO.puts("Divided by 2 it is #{div(res, 2)}")
+  else
+    :error -> IO.puts("We don't have this item in map")
+    _ -> IO.puts("It's not odd")
+  end
 ```
 
 এটি আমাদের `case` এর মত প্যাটার্ন ম্যাচিং কার্যপ্রণালী প্রদান করে যা গ্রহণ করে প্রথম সেই ভ্যালু যা ম্যাচড হয়নি।  

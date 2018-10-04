@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Ciągi znaków
 ---
 
@@ -42,9 +42,9 @@ Listy znaków istnieją w Elixirze, ponieważ są wymagane przez niektóre modu�
 
 ## Grafemy i kodowanie
 
-Znaki kodowe to zwyczajne znaki Unicode, które mogą być reprezentowane przez jeden albo więcej bajtów, w zależności od tego w której części tabeli UTF-8 się znajdują. Znaki spoza zakresu US ASCII zawsze są zapisywane na co najmniej dwóch bajty. Na przykład znaki z akcentem albo tyldą: `á, ñ, è` są zazwyczaj zapisywane na dwóch bajtach. Znaki z języków azjatyckich są najczęściej zapisywane na trzech albo czterech bajtach. Grafemy zwierają jeden lub wiele znaków kodowych, które będą reprezentować pojedynczy znak (literę).
+Znaki kodowe to zwyczajne znaki Unicode, które mogą być reprezentowane przez jeden albo więcej bajtów, w zależności od tego w której części tabeli UTF-8 się znajdują. Znaki spoza zakresu US ASCII zawsze są zapisywane na co najmniej dwóch bajtach. Na przykład znaki z akcentem albo tyldą: `á, ñ, è` są zazwyczaj zapisywane na dwóch bajtach. Znaki z języków azjatyckich są najczęściej zapisywane na trzech albo czterech bajtach. Grafemy zwierają jeden lub wiele znaków kodowych, które będą reprezentować pojedynczy znak (literę).
 
-Moduł `String` ma dwie metody do ich obsługi `graphemes/1` i `codepoints/1`. Przyjrzyjmy się na przykładzie:
+Moduł `String` ma dwie metody do ich obsługi, `graphemes/1` i `codepoints/1`. Przyjrzyjmy się na przykładzie:
 
 ```elixir
 iex> string = "\u0061\u0301"
@@ -115,14 +115,14 @@ Najprościej jest posortować litery alfabetycznie i sprawdzić czy takie listy 
 ```elixir
 defmodule Anagram do
   def anagrams?(a, b) when is_binary(a) and is_binary(b) do
-  	sort_string(a) == sort_string(b)
+    sort_string(a) == sort_string(b)
   end
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```
@@ -142,7 +142,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Ostatnie wywołanie `anagrams?` spowodowało `FunctionClauseError`. Błąd ten mówi, że nie można znaleźć dopasowania funkcji, która mogłaby zostać wywołana z niebinarnymi argumentami. I oto nam chodzi, by naszą funkcję móc wywołać tylko z ciągami znaków. 

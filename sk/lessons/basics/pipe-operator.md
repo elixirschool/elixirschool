@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: Operátor pipe
 ---
 
@@ -15,11 +15,13 @@ Vo funkcionálnom programovaní sa v praxi môžeme rýchlo zamotať do vnorený
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Návratovú hodnotu z `other_function` posielame do `new_function`, jej návratovú hodnotu zasa do `baz`, z nej do `bar` a nakoniec návratovú hodnotu z `bar` posielame do `foo`. Elixir má na tento chaos pragmatické riešenie v podobe operátora *pipe* - `|>`. Tento zoberie návratovú hodnotu z výrazu na svojej ľavej strane a pošle ju ako prvý argument do výrazu na pravej strane. Pozrime sa na rovnaký príklad prepísaný pomocou operátora pipe:
+Návratovú hodnotu z `other_function/0` posielame do `new_function/1`, jej návratovú hodnotu zasa do `baz/1`, z nej do `bar/1` a nakoniec návratovú hodnotu z `bar/1` posielame do `foo/1`. Elixir má na tento chaos pragmatické riešenie v podobe operátora *pipe* - `|>`. Tento *zoberie návratovú hodnotu z výrazu na svojej ľavej strane a pošle ju ako prvý argument do výrazu na pravej strane*. Pozrime sa na rovnaký príklad prepísaný pomocou operátora pipe.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
 ```
+
+Pipe zoberie výstup zľava a posunie ho na pravú stranu.
 
 ## Príklady
 
@@ -27,21 +29,21 @@ V nasledujúcich príkladoch budeme používať modul String v interaktívnom pr
 
 - Rozdelenie reťazca na slová
 
-```shell
-iex> "Elixir rocks" |> String.split
+```elixir
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Prevedenie slov na veľké písmená
 
-```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+```elixir
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 
 - Overovanie, či reťazec končí nejakým iným reťazcom
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```

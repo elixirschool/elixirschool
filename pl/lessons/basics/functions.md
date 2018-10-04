@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Funkcje
 ---
 
@@ -92,7 +92,7 @@ iex> Length.of [1, 2, 3]
 
 ### Nazywanie i arność funkcji
 
-Jak już wspominaliśmy wcześniej pełna nazwa funkcji jest kombinacją jej nazwy i arności (liczby argumentów). Można to rozumieć w nastepujacy sposób:
+Jak już wspominaliśmy wcześniej pełna nazwa funkcji jest kombinacją jej nazwy i arności (liczby argumentów). Można to rozumieć w następujacy sposób:
 
 ```elixir
 defmodule Greeter2 do
@@ -110,7 +110,7 @@ iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
 
-Wypisaliśmy pełne nazwy funkcji w komentarzach powyżej. Pierwsza z nie przyjmuje żadnego argumentu, zatem jest nazwana `hello/0`, druga przyjmuje jeden argument zatem nazwa to `hello/1` i tak dalej. Nie należy mylić tego z przeciążaniem funkcji w innych językach. Każda z tych funkcji jest _niezależna_ od innych. Dopasowanie wzorców, o którym przed chwilą mówiliśmy, zostanie zastosowane jedynie wtedy, gdy mamy wiele definicji funkcji o takich samych nazwach i liczbie argumentów.    
+Wypisaliśmy pełne nazwy funkcji w komentarzach powyżej. Pierwsza z nich przyjmuje żadnego argumentu, zatem jest nazwana `hello/0`, druga przyjmuje jeden argument zatem nazwa to `hello/1` i tak dalej. Nie należy mylić tego z przeciążaniem funkcji w innych językach. Każda z tych funkcji jest _niezależna_ od innych. Dopasowanie wzorców, o którym przed chwilą mówiliśmy, zostanie zastosowane jedynie wtedy, gdy mamy wiele definicji funkcji o takich samych nazwach i liczbie argumentów.    
 
 ### Funkcje prywatne
 
@@ -126,7 +126,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 
 iex> Greeter.phrase
-** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
     Greeter.phrase()
 ```
 
@@ -197,7 +197,19 @@ defmodule Greeter do
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+
+    def foo(:first_clause, b \\ :default) do ... end
+    def foo(:second_clause, b) do ... end
+
+one should write:
+
+    def foo(a, b \\ :default)
+    def foo(:first_clause, b) do ... end
+    def foo(:second_clause, b) do ... end
+
+def hello/2 has multiple clauses and defines defaults in one or more clauses
+    iex:31: (module)
 ```
 
 Domyślne argumenty nie są preferowane przez Elixira w mechanizmach dopasowania wzorców, ponieważ mogą być mylące. By temu zaradzić, możemy dodać dodatkową funkcję:
@@ -205,6 +217,7 @@ Domyślne argumenty nie są preferowane przez Elixira w mechanizmach dopasowania
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

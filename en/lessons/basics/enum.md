@@ -1,8 +1,6 @@
 ---
-version: 1.3.0
+version: 1.4.0
 title: Enum
-redirect_from:
-  - /lessons/basics/enum/
 ---
 
 A set of algorithms for enumerating over enumerables.
@@ -29,7 +27,7 @@ at/3
 ...
 ```
 
-Using this, its clear that we have a vast amount of functionality, and that is for a clear reason.
+Using this, it's clear that we have a vast amount of functionality, and that is for a clear reason.
 Enumeration is at the core of functional programming and is an incredibly useful thing.
 By leveraging it combined with other perks of Elixir, such as documentation being a first class citizen as we just saw, it can be incredibly empowering to the developer as well.
 
@@ -56,16 +54,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every
 
-If you need to break your collection up into smaller groups, `chunk/2` is the function you're probably looking for:
+If you need to break your collection up into smaller groups, `chunk_every/2` is the function you're probably looking for:
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-There are a few options for `chunk/2` but we won't go into them, check out [`the official documentation of this function`](https://hexdocs.pm/elixir/Enum.html#chunk/2) to learn more.
+There are a few options for `chunk_every/4` but we won't go into them, check out [`the official documentation of this function`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) to learn more.
 
 ### chunk_by
 
@@ -143,9 +141,18 @@ Enum.max([], fn -> :bar end)
 :bar
 ```
 
+### filter
+
+The `filter/2` function enables us to filter the collection to include only those elements that evaluate to `true` using the provided function.
+
+```elixir
+iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
+[2, 4]
+```
+
 ### reduce
 
-With `reduce/3` we can distill our collection down into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first element in the enumerable is used:
+With `reduce/3` we can distill our collection down into a single value. To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first element in the enumerable is used:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)

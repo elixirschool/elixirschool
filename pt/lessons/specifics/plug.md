@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Plug
 ---
 
@@ -16,8 +16,8 @@ Este tutorial assume que você já tenha Elixir 1.4 ou superior e o `mix` instal
 Se você não tem um projeto iniciado, crie um:
 
 ```shell
-mix new example
-cd example
+$ mix new example
+$ cd example
 ```
 
 ## Dependências
@@ -29,7 +29,7 @@ A primeira coisa a fazer é adicionar tanto Plug quanto um servidor web(vamos ut
 defp deps do
   [
     {:cowboy, "~> 1.1.2"},
-    {:plug, "~> 1.3.4"},
+    {:plug, "~> 1.3.4"}
   ]
 end
 ```
@@ -85,7 +85,7 @@ defmodule Example do
       Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
     ]
 
-    Logger.info "Started application"
+    Logger.info("Started application")
 
     Supervisor.start_link(children, strategy: :one_for_one)
   end
@@ -117,7 +117,7 @@ No terminal, execute:
 $ mix run --no-halt
 ```
 
-Quando a compilação estiver terminado, e aparecer `[info]  Started app`, abra o navegador em `localhost:8080`. Ele deve exibir:
+Quando a compilação estiver terminado, e aparecer `[info]  Started app`, abra o navegador em `127.0.0.1:8080`. Ele deve exibir:
 
 ```
 Hello World!
@@ -133,11 +133,11 @@ Para começar, vamos criar um arquivo `lib/example/router.ex` e colar o trecho a
 defmodule Example.Router do
   use Plug.Router
 
-  plug :match
-  plug :dispatch
+  plug(:match)
+  plug(:dispatch)
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Oops!")
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -153,16 +153,17 @@ def start(_type, _args) do
   children = [
     Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
   ]
-  Logger.info "Started application"
+
+  Logger.info("Started application")
   Supervisor.start_link(children, strategy: :one_for_one)
 end
 ```
 
 Reinicie o servidor, pare o anterior se ele estiver rodando (pressione duas vezes `Ctrl+C`).
 
-Agora no navegador, digite `localhost:8080`.
+Agora no navegador, digite `127.0.0.1:8080`.
 Você deve ver `Welcome`.
-Então, digite `localhost:8080/waldo`, ou qualquer outro path. Isto deve retornar `Oops!` com uma resposta 404.
+Então, digite `127.0.0.1:8080/waldo`, ou qualquer outro path. Isto deve retornar `Oops!` com uma resposta 404.
 
 ## Adicionando outro Plug
 
@@ -174,11 +175,10 @@ Vamos esperar que o nosso Plug seja inicializado com duas opções: `:paths` e `
 _Note_: Plugs são aplicados a todas as requisições, e é por isso que nós filtraremos as requisições e aplicararemos nossa lógica para apenas um subconjunto delas.
 Para ignorar uma requisição simplesmente passamos a conexão através do mesmo.
 
-Vamos começar analisando o Plug que acabamos de concluir, e em seguida, discutir como ele funciona, vamos criá-lo em `lib/plug/verify_request.ex`:
+Vamos começar analisando o Plug que acabamos de concluir, e em seguida, discutir como ele funciona, vamos criá-lo em `lib/example/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
-
   defmodule IncompleteRequestError do
     @moduledoc """
     Error raised when a required field is missing.
@@ -195,10 +195,12 @@ defmodule Example.Plug.VerifyRequest do
   end
 
   defp verify_request!(body_params, fields) do
-    verified = body_params
-               |> Map.keys
-               |> contains_fields?(fields)
-    unless verified, do: raise IncompleteRequestError
+    verified =
+      body_params
+      |> Map.keys()
+      |> contains_fields?(fields)
+
+    unless verified, do: raise(IncompleteRequestError)
   end
 
   defp contains_fields?(keys, fields), do: Enum.all?(fields, &(&1 in keys))
@@ -219,19 +221,24 @@ Edite o `lib/example/router.ex` e adicione as seguintes mudanças:
 ```elixir
 defmodule Example.Router do
   use Plug.Router
+  use Plug.ErrorHandler
 
   alias Example.Plug.VerifyRequest
 
-  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
-  plug VerifyRequest, fields: ["content", "mimetype"],
-                      paths:  ["/upload"]
+  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
 
-  plug :match
-  plug :dispatch
+  plug(
+    VerifyRequest,
+    fields: ["content", "mimetype"],
+    paths: ["/upload"]
+  )
 
-  get "/", do: send_resp(conn, 200, "Welcome\n")
-  post "/upload", do: send_resp(conn, 201, "Uploaded\n")
-  match _, do: send_resp(conn, 404, "Oops!\n")
+  plug(:match)
+  plug(:dispatch)
+
+  get("/", do: send_resp(conn, 200, "Welcome\n"))
+  post("/upload", do: send_resp(conn, 201, "Uploaded\n"))
+  match(_, do: send_resp(conn, 404, "Oops!\n"))
 end
 ```
 
@@ -309,25 +316,28 @@ defmodule Example.RouterTest do
   @opts Router.init([])
 
   test "returns welcome" do
-    conn = conn(:get, "/", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 200
   end
 
   test "returns uploaded" do
-    conn = conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
-           |> put_req_header("content-type", "application/x-www-form-urlencoded")
-           |> Router.call(@opts)
+    conn =
+      conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
+      |> put_req_header("content-type", "application/x-www-form-urlencoded")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 201
   end
 
   test "returns 404" do
-    conn = conn(:get, "/missing", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/missing", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 404
@@ -338,7 +348,7 @@ end
 Execute com o comando:
 
 ```shell
-mix test test/example/router_test.exs
+$ mix test test/example/router_test.exs
 ```
 
 ## Plugs disponíveis

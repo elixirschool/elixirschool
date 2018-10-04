@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 title: Plug
 ---
 
@@ -19,8 +19,8 @@ Este tutorial asume que ya tienes Elixir y `mix` instalado.
 Si no has iniciado un proyecto, crea uno de la siguiente manera:
 
 ```shell
-mix new example
-cd example
+$ mix new example
+$ cd example
 ```
 
 
@@ -32,8 +32,7 @@ Lo primero que se debe hacer es añadir Plug y un servidor web (usaremos Cowboy)
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.1.2"},
-   {:plug, "~> 1.3.4"}]
+  [{:cowboy, "~> 1.1.2"}, {:plug, "~> 1.3.4"}]
 end
 ```
 
@@ -87,7 +86,7 @@ defmodule Example do
       Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
     ]
 
-    Logger.info "Started application"
+    Logger.info("Started application")
 
     Supervisor.start_link(children, strategy: :one_for_one)
   end
@@ -121,7 +120,7 @@ En la línea de comando ejecuta:
 $ mix run --no-halt
 ```
 
-Cuando todo termine de compilar, y el mensaje `[info]  Started app` aparece, abre el explorador web en `localhost:8080`. Este debera de desplegar:
+Cuando todo termine de compilar, y el mensaje `[info]  Started app` aparece, abre el explorador web en `127.0.0.1:8080`. Este debera de desplegar:
 
 ```
 Hello World!
@@ -138,11 +137,11 @@ Para empezar vamos a crear un archivo en `lib/example/router.ex` y copia lo sigu
 defmodule Example.Router do
   use Plug.Router
 
-  plug :match
-  plug :dispatch
+  plug(:match)
+  plug(:dispatch)
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Oops!")
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -155,20 +154,21 @@ Cambia el plug `Example.HelloWorldPlug` al nuevo enrutador:
 
 ```elixir
 def start(_type, _args) do
-    children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
-    ]
-    Logger.info "Started application"
-    Supervisor.start_link(children, strategy: :one_for_one)
+  children = [
+    Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+  ]
+
+  Logger.info("Started application")
+  Supervisor.start_link(children, strategy: :one_for_one)
 end
 ```
 
 Inicia el servidor de nuevo, detén el anterior si aún sigue corriendo.(Presiona `Ctrl+C` dos veces).
 
 
-Ahora en un navegador web ve a `localhost:8080`.
+Ahora en un navegador web ve a `127.0.0.1:8080`.
 Deberá de mostrar `Welcome`.
-Ahora, ve a `localhost:8080/waldo`, o cualquier otra ruta.
+Ahora, ve a `127.0.0.1:8080/waldo`, o cualquier otra ruta.
 Esta deberá de mostrar `Oops!` con una repuesta 404.
 
 ## Agregando otro Plug
@@ -182,7 +182,7 @@ Esperamos que nuestro Plug sea inicializado con dos opciones: `:paths` y `:field
 _Nota_: Los Plugs son aplicados a todas las peticiones y por eso vamos a manejar solicitudes filtradas y aplicaremos nuestra lógica a sólo un subconjunto de ellas.
 Para ignorar una petición, simplemente la pasamos a través de la conexión.
 
-Vamos a empezar por mirar nuestro Plug terminado y entonces discutiremos cómo funciona, lo crearemos en `lib/plug/verify_request.ex`:
+Vamos a empezar por mirar nuestro Plug terminado y entonces discutiremos cómo funciona, lo crearemos en `lib/example/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
@@ -204,10 +204,12 @@ defmodule Example.Plug.VerifyRequest do
   end
 
   defp verify_request!(body_params, fields) do
-    verified = body_params
-               |> Map.keys
-               |> contains_fields?(fields)
-    unless verified, do: raise IncompleteRequestError
+    verified =
+      body_params
+      |> Map.keys()
+      |> contains_fields?(fields)
+
+    unless verified, do: raise(IncompleteRequestError)
   end
 
   defp contains_fields?(keys, fields), do: Enum.all?(fields, &(&1 in keys))
@@ -233,19 +235,24 @@ Edita `lib/example/router.ex` y realiza los siguientes cambios:
 ```elixir
 defmodule Example.Router do
   use Plug.Router
+  use Plug.ErrorHandler
 
   alias Example.Plug.VerifyRequest
 
-  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
-  plug VerifyRequest, fields: ["content", "mimetype"],
-                      paths:  ["/upload"]
+  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
 
-  plug :match
-  plug :dispatch
+  plug(
+    VerifyRequest,
+    fields: ["content", "mimetype"],
+    paths: ["/upload"]
+  )
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  post "/upload", do: send_resp(conn, 201, "Uploaded")
-  match _, do: send_resp(conn, 404, "Oops!")
+  plug(:match)
+  plug(:dispatch)
+
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  post("/upload", do: send_resp(conn, 201, "Uploaded"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -259,9 +266,7 @@ Con esos cambios listos nuestro código debe de verse similar a este:
 
 ```elixir
 def application do
-  [applications: [:cowboy, :logger, :plug],
-   mod: {Example, []},
-   env: [cowboy_port: 8080]]
+  [applications: [:cowboy, :logger, :plug], mod: {Example, []}, env: [cowboy_port: 8080]]
 end
 ```
 
@@ -321,25 +326,28 @@ defmodule Example.RouterTest do
   @opts Router.init([])
 
   test "returns welcome" do
-    conn = conn(:get, "/", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 200
   end
 
   test "returns uploaded" do
-    conn = conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
-           |> put_req_header("content-type", "application/x-www-form-urlencoded")
-           |> Router.call(@opts)
+    conn =
+      conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
+      |> put_req_header("content-type", "application/x-www-form-urlencoded")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 201
   end
 
   test "returns 404" do
-    conn = conn(:get, "/missing", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/missing", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 404

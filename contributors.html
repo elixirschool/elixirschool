@@ -1,0 +1,43 @@
+---
+title: Contributors
+layout: default
+disable_transform: true
+---
+<!--
+  If you are making changes to this file please keep in mind:
+
+  - contributors are ordered by date of first commit.
+-->
+
+<section>
+  <header class="major">
+    <h2>Contributors</h2>
+  </header>
+  <div class="contributors">
+    <h4>Lesson Authors</h4>
+    <ul>
+      {% for author in site.data.contributors['authors'] %}
+        <li><a href="https://github.com/{{author.username}}">{{author.username}}</a> ({{author.lessons}})</li>
+      {% endfor %}
+    </ul>
+
+    <h4>Developers</h4>
+    <ul>
+      {% for developer in site.data.contributors['developers'] %}
+        <li><a href="https://github.com/{{developer}}">{{developer}}</a></li>
+      {% endfor %}
+ 
+    </ul>
+
+    <h4>Translators</h4>
+    {% for translation in site.data.contributors['translators'] %}
+      <b>{{ site.data.locales['en'].interlang[translation.language] }}</b>
+      <ul>
+      {% for translator in translation.users %}
+        <li><a href="https://github.com/{{translator}}">{{translator}}</a></li>
+      {% endfor %}
+      </ul>
+    {% endfor %}
+
+  </div>
+</section>

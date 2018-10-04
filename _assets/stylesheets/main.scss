@@ -1,0 +1,176 @@
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/skel';
+@import 'libs/font-awesome/font-awesome';
+
+// Skel
+@include skel-breakpoints((
+  xlarge: '(max-width: 1680px)',
+  large: '(max-width: 1280px)',
+  medium: '(max-width: 980px)',
+  small: '(max-width: 736px)',
+  xsmall: '(max-width: 480px)',
+  xxsmall: '(max-width: 360px)',
+  xlarge-to-max: '(min-width: 1681px)',
+  small-to-xlarge: '(min-width: 481px) and (max-width: 1680px)'
+));
+
+@include skel-layout((
+  reset: 'full',
+  boxModel: 'border',
+  grid: ( gutters: 1.5em )
+));
+
+// Base.
+
+@import 'base/page';
+@import 'base/typography';
+@import 'base/syntax';
+
+// Component.
+@import 'components/section';
+@import 'components/form';
+@import 'components/box';
+@import 'components/icon';
+@import 'components/image';
+@import 'components/list';
+@import 'components/table';
+@import 'components/button';
+@import 'components/mini-posts';
+@import 'components/features';
+@import 'components/posts';
+
+// Layout.
+
+@import 'layout/wrapper';
+@import 'layout/main';
+@import 'layout/sidebar';
+@import 'layout/header';
+@import 'layout/banner';
+@import 'layout/footer';
+@import 'layout/menu';
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700');
+
+section .content {
+  h2{
+    border-bottom: solid 3px _purple(fg-hov);
+    display: inline-block;
+    margin: 0 0 _size(element-margin) 0;
+    padding: 0 0.75em 0.5em 0;
+  }
+}
+
+pre {     
+  white-space: pre-wrap;
+  word-wrap: break-word; 
+}
+
+.post-date {
+  margin: 0 0 .5em 0;
+  font-weight: 600;
+}
+
+#section-page{
+  /**
+   * Right-to-left languages
+   */
+&.rtl {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+&.rtl ul > li {
+  margin-right: 10px;
+}
+
+&.rtl pre {
+  direction: ltr;
+  text-align: left;
+}
+
+&.rtl .content {
+  margin-right: auto;
+}
+
+.clickable-header {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.back-to-top {
+  display: inline;
+  cursor: pointer;
+  padding: 0px 1em;
+  color: #ddd;
+
+  &::after {
+    content: '\A';
+    white-space: pre;
+  }
+}
+
+img{
+  max-width: 100%;
+}
+
+/**
+ * Versioning
+ */
+
+.page-title {
+  display: inline-flex;
+  align-items: center;
+}
+
+.version-difference-indicator {
+  width: 0.5em;
+  height: 0.5em;
+  margin: 0 0.25em;
+  border-radius: 50%;
+}
+
+.version-info {
+  width: 100%;
+  font-size: 0.75em;
+  margin-bottom: 0.75em;
+  padding: 0.5em;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+$version_color_map: (
+"major": "#f00",
+"minor": "#f60",
+"patch": "#fc3",
+"none": "#9f0",
+"error": "#f00",
+"missing": "#f00",
+);
+
+@each $severity, $color in $version_color_map {
+
+  .version-info-#{$severity} {
+    border-color: #{$color};
+  }
+
+  .version-difference-#{$severity} {
+    background-color: #{$color};
+  }
+}
+
+.translation-report {
+
+  .version-difference-indicator {
+    width: 1em;
+    height: 1em;
+    margin: auto;
+  }
+
+  .version-cell {
+    vertical-align: middle;
+    cursor: help;
+  }
+}
+}

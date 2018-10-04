@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Guardian (Basics)
-redirect_from:
-  - /lessons/libraries/guardian/
 ---
 
 [Guardian](https://github.com/ueberauth/guardian) is a widely used authentication library based on [JWT](https://jwt.io/) (JSON Web Tokens).
@@ -83,9 +81,10 @@ end
 `config/config.ex`
 
 ```elixir
+# in each environment config file you should overwrite this if it's external
 config :guardian, Guardian,
   issuer: "MyAppId",
-  secret_key: Mix.env, # in each environment config file you should overwrite this if it's external
+  secret_key: Mix.env(),
   serializer: MyApp.GuardianSerializer
 ```
 
@@ -100,11 +99,11 @@ defmodule MyApp.GuardianSerializer do
   alias MyApp.Repo
   alias MyApp.User
 
-  def for_token(user = %User{}), do: { :ok, "User:#{user.id}" }
-  def for_token(_), do: { :error, "Unknown resource type" }
+  def for_token(user = %User{}), do: {:ok, "User:#{user.id}"}
+  def for_token(_), do: {:error, "Unknown resource type"}
 
-  def from_token("User:" <> id), do: { :ok, Repo.get(User, id) }
-  def from_token(_), do: { :error, "Unknown resource type" }
+  def from_token("User:" <> id), do: {:ok, Repo.get(User, id)}
+  def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
 Your serializer is responsible for finding the resource identified in the `sub` (subject) field. This could be a lookup from a db, an API, or even a simple string.
@@ -134,13 +133,13 @@ Let's create some pipelines.
 
 ```elixir
 pipeline :maybe_browser_auth do
-  plug Guardian.Plug.VerifySession
-  plug Guardian.Plug.VerifyHeader, realm: "Bearer"
-  plug Guardian.Plug.LoadResource
+  plug(Guardian.Plug.VerifySession)
+  plug(Guardian.Plug.VerifyHeader, realm: "Bearer")
+  plug(Guardian.Plug.LoadResource)
 end
 
 pipeline :ensure_authed_access do
-  plug Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler}
+  plug(Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler})
 end
 ```
 
@@ -150,17 +149,17 @@ The second pipeline requires that there is a valid, verified token present and t
 
 ```elixir
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth]
+  pipe_through([:browser, :maybe_browser_auth])
 
-  get "/login", LoginController, :new
-  post "/login", LoginController, :create
-  delete "/login", LoginController, :delete
+  get("/login", LoginController, :new)
+  post("/login", LoginController, :create)
+  delete("/login", LoginController, :delete)
 end
 
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth, :ensure_authed_access]
+  pipe_through([:browser, :maybe_browser_auth, :ensure_authed_access])
 
-  resource "/protected/things", ProtectedController
+  resource("/protected/things", ProtectedController)
 end
 ```
 
@@ -215,10 +214,13 @@ Logging in and out of a browser session is very simple. In your login controller
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
+      # Use access tokens. Other tokens can be used, like :refresh etc
       conn
-      |> Guardian.Plug.sign_in(user, :access) # Use access tokens. Other tokens can be used, like :refresh etc
+      |> Guardian.Plug.sign_in(user, :access)
       |> respond_somehow()
+
     {:error, reason} ->
+      nil
       # handle not verifying the user's credentials
   end
 end
@@ -238,8 +240,8 @@ def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
       {:ok, jwt, _claims} = Guardian.encode_and_sign(user, :access)
-      conn
-      |> respond_somehow({token: jwt})
+      conn |> respond_somehow(%{token: jwt})
+
     {:error, reason} ->
       # handle not verifying the user's credentials
   end

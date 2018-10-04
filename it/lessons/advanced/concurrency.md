@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Concorrenza
 ---
 
@@ -45,7 +45,7 @@ I processi utilizzano lo scambio di messaggi come metodo di comunicazione, facen
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
   end
 end
@@ -74,7 +74,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Talvolta non vogliamo che un processo "collegato" termini il processo che l'ha creato. Per evitare questa situazione, dobbiamo controllare i messaggi di uscita nel processo padre. Quando controlliamo i messaggi di uscita, questi verranno ricevuti nella seguente forma: `{:EXIT, dal_pid, ragione}`.
@@ -82,12 +82,13 @@ Talvolta non vogliamo che un processo "collegato" termini il processo che l'ha c
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -104,11 +105,12 @@ Cosa possiamo fare quando non vogliamo che due processi siano collegati, ma allo
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end

@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.2
 title: Tarefas Mix Customizadas
 ---
 
@@ -25,7 +25,7 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-Como podemos ver no comando shell acima, o Framework Phoenix tem uma tarefa Mix customizada para criar um novo projeto. E se quiséssemos criar algo parecido para o nosso projeto? Bem, a boa notícia é que nós podemos, e o Elixir permite fazer isso de um modo fácil.
+Como podemos ver no comando shell acima, o Framework Phoenix tem uma tarefa Mix customizada para criar um novo projeto. E se quiséssemos criar algo parecido para o nosso projeto? Bem, a boa notícia é que nós podemos, e Elixir nos permite fazer isso de um modo fácil.
 
 ## Configurações
 
@@ -58,12 +58,11 @@ Agora, no arquivo **lib/hello.ex** que o Mix criou para nós, vamos criar uma fu
 
 ```elixir
 defmodule Hello do
-
   @doc """
-  Output's `Hello, World!` everytime.
+  Outputs `Hello, World!` every time.
   """
   def say do
-    IO.puts "Hello, World!"
+    IO.puts("Hello, World!")
   end
 end
 ```
@@ -76,9 +75,10 @@ Vamos criar nossa tarefa Mix customizada. Crie um novo diretório e um arquivo *
 defmodule Mix.Tasks.Hello do
   use Mix.Task
 
-  @shortdoc "Simply runs the Hello.say/0 command."
+  @shortdoc "Simply runs the Hello.say/0 function"
   def run(_) do
-    Hello.say # calling our Hello.say() function from earlier
+    # calling our Hello.say() function from earlier
+    Hello.say()
   end
 end
 ```

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: GenStage
 ---
 
@@ -55,11 +55,11 @@ $ cd genstage_example
 `mix.exs`의 의존성에 `gen_stage`을 넣어 갱신합니다.
 
 ```elixir
-  defp deps do
-    [
-      {:gen_stage, "~> 0.11"},
-    ]
-  end
+defp deps do
+  [
+    {:gen_stage, "~> 0.11"}
+  ]
+end
 ```
 
 더 진행하기 전에 의존성을 받아 컴파일을 해둡시다.
@@ -92,8 +92,8 @@ defmodule GenstageExample.Producer do
   def init(counter), do: {:producer, counter}
 
   def handle_demand(demand, state) do
-    events = Enum.to_list(state..state + demand - 1)
-    {:noreply, events, (state + demand)}
+    events = Enum.to_list(state..(state + demand - 1))
+    {:noreply, events, state + demand}
   end
 end
 ```
@@ -113,7 +113,7 @@ $ touch lib/genstage_example/producer_consumer.ex
 예제 코드를 참고해 파일을 갱신해 봅시다.
 
 ```elixir
-defmodule GenstageExample.ProducerConsumer  do
+defmodule GenstageExample.ProducerConsumer do
   use GenStage
 
   require Integer
@@ -164,7 +164,7 @@ defmodule GenstageExample.Consumer do
 
   def handle_events(events, _from, state) do
     for event <- events do
-      IO.inspect {self(), event, state}
+      IO.inspect({self(), event, state})
     end
 
     # As a consumer we never emit events
@@ -179,7 +179,7 @@ end
 
 이제 프로듀서, 프로듀서-컨슈머, 컨슈머를 만들었으니 전부 다 합쳐야 합니다.
 
-`lib/genstage_example.ex` 파일을 열어 슈퍼바이저 트리에 새 프로세스를 넣어봅시다.
+`lib/genstage_example/application.ex` 파일을 열어 슈퍼바이저 트리에 새 프로세스를 넣어봅시다.
 
 ```elixir
 def start(_type, _args) do
@@ -188,7 +188,7 @@ def start(_type, _args) do
   children = [
     worker(GenstageExample.Producer, [0]),
     worker(GenstageExample.ProducerConsumer, []),
-    worker(GenstageExample.Consumer, []),
+    worker(GenstageExample.Consumer, [])
   ]
 
   opts = [strategy: :one_for_one, name: GenstageExample.Supervisor]
@@ -215,14 +215,14 @@ $ mix run --no-halt
 
 ## 여러 프로듀서나 컨슈머
 
-예제의 `IO.inspect/1` 출력을 조사해 보면 모든 이벤트가 단일 PID로 처리되는 것을 알 수 있습니다. `lib/genstage_example.ex`를 조금 수정해 여러 워커를 사용하도록 바꿔봅시다.
+예제의 `IO.inspect/1` 출력을 조사해 보면 모든 이벤트가 단일 PID로 처리되는 것을 알 수 있습니다. `lib/genstage_example/application.ex`를 조금 수정해 여러 워커를 사용하도록 바꿔봅시다.
 
 ```elixir
 children = [
   worker(GenstageExample.Producer, [0]),
   worker(GenstageExample.ProducerConsumer, []),
   worker(GenstageExample.Consumer, [], id: 1),
-  worker(GenstageExample.Consumer, [], id: 2),
+  worker(GenstageExample.Consumer, [], id: 2)
 ]
 ```
 

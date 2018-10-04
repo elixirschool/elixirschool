@@ -5,15 +5,28 @@ project:
 table_of_contents: Зміст
 share: Поділитися
 sections:
-  home: Home
+  home: Додому
   basics: Основи
   advanced: Просунуті
   specifics: Конкретика
   libraries: Бібліотеки
+  blog: Блоґ
+  contributors: Автори
+  translation_report: Прогресс перекладу
+
 version_messages:
-  outdated: "Some contents of this translation may be outdated."
-  major: "Several major changes were applied to the original lesson since the last update."
-  minor: "Several minor changes were applied to the original lesson since the last update."
-  patch: "Several patches were applied to the original lesson since the last update."
-  none: "This translation is up to date."
-  error: "There is an error in the version definition of this chapter."
+  outdated: "Деякі частини цього перекладу можуть бути застарілими."
+  major: "Декілька великих змін було додано до оригіналу цього уроку з останнього оновлення."
+  minor: "Декілька невеликих змін було додано до оригіналу цього уроку з останнього оновлення."
+  patch: "Декілька косметичних змін було додано до оригіналу цього уроку з останнього оновлення."
+  none: "Переклад актуальний."
+  error: "Знайдено помилку у визначенні версії уроку."
+
+translation_report:
+  section: Розділ
+  original_title: Оригінальна назва
+  translation_title: Перекладена назва
+  original_version: Версія оригіналу
+  translation_version: Версія перекладу
+  version_severity: Ступінь застарілості
+  last_commit: Last Commit

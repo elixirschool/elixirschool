@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Cấu trúc điều khiển
 ---
 
@@ -49,7 +49,7 @@ iex> case {:ok, "Xin chào!"} do
 "Xin chào"
 ```
 
-Việc bao gồm biến `_` là một phần quan trong mệnh đề `case`. Không có nó Elixir sẽ văng lỗi nếu không tìm thấy mẫu trùng khớp:
+Việc bao gồm biến `_` là một phần quan trọng trong mệnh đề `case`. Không có nó Elixir sẽ văng lỗi nếu không tìm thấy mẫu trùng khớp:
 
 ```elixir
 iex> case :cam do
@@ -91,7 +91,7 @@ iex> case {1, 2, 3} do
 "Trùng"
 ```
 
-Xem tài liệu tại trang chủ về [Biểu thức hợp lệ trong mệnh đề guard](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Xem tài liệu tại trang chủ về [Biểu thức hợp lệ trong mệnh đề guard](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 
 ## `cond`
@@ -124,7 +124,7 @@ iex> cond do
 
 ## `with`
 
-`with` được dùng khi bạn muốn sử dụng một mệnh đề `case` lồng ghép hay những trường hợp không thể nó không thể kết nối lại một cách trơn tru được. Biểu thức `with` là sự kết hợp của từ khóa, generators và cuối cùng là một biểu thức.
+`with` được dùng khi bạn muốn sử dụng một mệnh đề `case` lồng ghép hay những trường hợp không thể kết nối lại một cách trơn tru được. Biểu thức `with` là sự kết hợp của từ khóa, generators và cuối cùng là một biểu thức.
 
 Chúng ta sẽ xem thêm về generators ở bài List Comprehensions nhưng bây giờ ta chỉ cần biết là chúng dùng pattern matching để so sánh biểu thức bên phải với biểu thức bên trái (cách nhau bởi dấu `<-`)
 
@@ -155,12 +155,16 @@ Chúng ta xem qua về một ví dụ không dùng `with` và sau đó là cách
 ```elixir
 case Repo.insert(changeset) do
   {:ok, user} ->
-    case Guardian.encode_and_sign(resource, :token, claims) do
+    case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -168,7 +172,7 @@ Khi chúng ta dùng `with`, code sẽ dễ đọc hơn và có ít dòng hơn:
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token, claims),
      do: important_stuff(jwt, full_claims)
 ```
 
@@ -179,13 +183,14 @@ import Integer
 
 m = %{a: 1, c: 3}
 
-a = with {:ok, res} <- Map.fetch(m, :a),
-  true <- Integer.is_even(res) do
-    IO.puts "Divided by 2 it is #{div(res, 2)}"
-else
-  :error -> IO.puts "We don't have this item in map"
-  _ -> IO.puts "It's not odd"
-end
+a =
+  with {:ok, res} <- Map.fetch(m, :a),
+       true <- is_even(res) do
+    IO.puts("Divided by 2 it is #{div(res, 2)}")
+  else
+    :error -> IO.puts("We don't have this item in map")
+    _ -> IO.puts("It's not odd")
+  end
 ```
 
 Nó giúp việc xử lý lỗi dễ hơn bằng cách dùng pattern matching kiểu `case`. Giá trị truyền vào sẽ là biểu thức không match đầu tiên.

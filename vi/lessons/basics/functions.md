@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Hàm
 ---
 
@@ -126,7 +126,7 @@ iex> Greeter.hello("Minh")
 "Chào Minh"
 
 iex> Greeter.phrase
-** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
     Greeter.phrase()
 ```
 
@@ -197,7 +197,19 @@ defmodule Greeter do
   defp phrase("en"), do: "Hello, "
 end
 
-** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+
+    def foo(:first_clause, b \\ :default) do ... end
+    def foo(:second_clause, b) do ... end
+
+one should write:
+
+    def foo(a, b \\ :default)
+    def foo(:first_clause, b) do ... end
+    def foo(:second_clause, b) do ... end
+
+def hello/2 has multiple clauses and defines defaults in one or more clauses
+    iex:31: (module)
 ```
 
 Elixir không xử lý được trong trường hợp có nhiều hàm trùng khớp với tham số mặc định. Để xử lý điều này ta thêm một hàm trước tham số mặc định:
@@ -205,6 +217,7 @@ Elixir không xử lý được trong trường hợp có nhiều hàm trùng kh
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "vn")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

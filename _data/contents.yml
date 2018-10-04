@@ -1,5 +1,6 @@
 home:
   - home
+  - report
 basics:
   - basics
   - collections
@@ -40,3 +41,5 @@ specifics:
 libraries:
   - guardian
   - poolboy
+  - benchee
+  - bypass

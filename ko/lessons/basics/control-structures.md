@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: 제어 구조
 ---
 
@@ -91,7 +91,7 @@ iex> case {1, 2, 3} do
 ...> end
 "Will match"
 ```
-[Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses) 공식 문서를 참고하십시오.
+[Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions) 공식 문서를 참고하십시오.
 
 ## `cond`
 
@@ -154,12 +154,16 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 ```elixir
 case Repo.insert(changeset) do
   {:ok, user} ->
-    case Guardian.encode_and_sign(resource, :token, claims) do
+    case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, token, full_claims} ->
         important_stuff(token, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -167,7 +171,7 @@ end
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token) do
+     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token, claims) do
   important_stuff(token, full_claims)
 end
 ```
@@ -182,15 +186,16 @@ m = %{a: 1, c: 3}
 
 a =
   with {:ok, res} <- Map.fetch(m, :a),
-    true <- Integer.is_even(res) do
-      IO.puts "Divided by 2 it is #{div(res, 2)}"
-      :even
+       true <- is_even(res) do
+    IO.puts("Divided by 2 it is #{div(res, 2)}")
+    :even
   else
     :error ->
-      IO.puts "We don't have this item in map"
+      IO.puts("We don't have this item in map")
       :error
+
     _ ->
-      IO.puts "It's not odd"
+      IO.puts("It's not odd")
       :odd
   end
 ```

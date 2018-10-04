@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Concorrência
 ---
 
@@ -45,7 +45,7 @@ Para comunicar-se, os processos dependem de passagem de mensagens. Há dois comp
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
   end
 end
@@ -74,20 +74,21 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-Derterminados momentos não queremos que nosso processo vinculado falhe o atual. Para isso, precisamos interceptar as saídas. Quando saídas são interceptadas elas serão recebidas como uma mensagem de conjunto de variáveis: `{:EXIT, from_pid, reason}`. 
+Em determinados momentos não queremos que nosso processo vinculado falhe o atual. Para isso, precisamos interceptar as saídas. Quando saídas são interceptadas elas serão recebidas como uma mensagem de conjunto de variáveis: `{:EXIT, from_pid, reason}`. 
 
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -104,11 +105,12 @@ E se não queremos vincular dois processos, mas continuar a ser informado? Para 
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -120,7 +122,7 @@ Exit reason: kaboom
 
 ## Agentes
 
-Agentes são uma abstração acerca de processos em segundo plano em estado de manutenção. Podemos acessa-los de outros processos dentro de nossa aplicação ou nó. O estado do nosso Agente é definido como valor de retorno de nossa função: 
+Agentes são uma abstração acerca de processos em segundo plano em estado de manutenção. Podemos acessá-los de outros processos dentro de nossa aplicação ou nó. O estado do nosso Agente é definido como valor de retorno de nossa função: 
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
@@ -145,7 +147,7 @@ iex> Agent.get(Numbers, &(&1))
 
 ## Tarefas
 
-Tarefas fornecem uma forma para executar uma função em segundo plano e posteriormente recuperar seu valor. Elas podem ser particularmente útil ao manusear operações dispendiosa, sem bloquear a execução do aplicativo.
+Tarefas fornecem uma forma para executar uma função em segundo plano e posteriormente recuperar seu valor. Elas podem ser particularmente úteis ao manusear operações custosas, sem bloquear a execução do aplicativo.
 
 ```elixir
 defmodule Example do

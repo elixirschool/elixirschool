@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Erlang-Interoperabilität
 ---
 
@@ -17,13 +17,13 @@ Lass uns `:timer.tc` benutzen, um die Ausführungszeit einer gegebenen Funktion 
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time} μs")
+    IO.puts("Result: #{result}")
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Time: 8ms
+Time: 8 μs
 Result: 1000000
 ```
 
@@ -42,10 +42,8 @@ end
 Jetzt können wir unsere Erlang-Bibliothek nutzen:
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## Auffallende Unterschiede
@@ -103,9 +101,18 @@ Es ist wichtig sich zu merken, dass viele ältere Erlang-Bibliotheken keine bina
 ```elixir
 iex> :string.words("Hello World")
 ** (FunctionClauseError) no function clause matching in :string.strip_left/2
-    (stdlib) string.erl:380: :string.strip_left("Hello World", 32)
-    (stdlib) string.erl:378: :string.strip/3
-    (stdlib) string.erl:316: :string.words/2
+
+    The following arguments were given to :string.strip_left/2:
+
+        # 1
+        "Hello World"
+
+        # 2
+        32
+
+    (stdlib) string.erl:1661: :string.strip_left/2
+    (stdlib) string.erl:1659: :string.strip/3
+    (stdlib) string.erl:1597: :string.words/2
 
 iex> "Hello World" |> to_charlist |> :string.words
 2

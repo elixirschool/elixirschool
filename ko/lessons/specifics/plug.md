@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 title: Plug
 ---
 
@@ -19,8 +19,8 @@ Plug는 Elixir 코어의 일부가 아닌, Elixir의 공식 프로젝트입니�
 새 프로젝트를 만든적이 없다면 다음과 같이 입력하세요.
 
 ```shell
-mix new example
-cd example
+$ mix new example
+$ cd example
 ```
 
 ## 의존성
@@ -89,7 +89,7 @@ defmodule Example do
       Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
     ]
 
-    Logger.info "Started application"
+    Logger.info("Started application")
 
     Supervisor.start_link(children, strategy: :one_for_one)
   end
@@ -123,7 +123,7 @@ $ mix run --no-halt
 ```
 
 일단 모든 것이 컴파일이 끝나고`[info] Started app`가 나타나면, 웹 브라우저에서
-`localhost:8080`을 여세요. 다음 내용이 보일 것입니다.
+`127.0.0.1:8080`을 여세요. 다음 내용이 보일 것입니다.
 
 ```
 Hello World!
@@ -140,11 +140,11 @@ Hello World!
 defmodule Example.Router do
   use Plug.Router
 
-  plug :match
-  plug :dispatch
+  plug(:match)
+  plug(:dispatch)
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Oops!")
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -157,19 +157,20 @@ end
 
 ```elixir
 def start(_type, _args) do
-    children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
-    ]
-    Logger.info "Started application"
-    Supervisor.start_link(children, strategy: :one_for_one)
+  children = [
+    Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+  ]
+
+  Logger.info("Started application")
+  Supervisor.start_link(children, strategy: :one_for_one)
 end
 ```
 
 서버를 재시작해 봅시다. 이전 서버가 실행중이라면 (`Ctrl + C`를 두 번 눌러) 중지하세요.
 
-이제 췝브라우저에서 `localhost:8080`로 이동하세요.
+이제 췝브라우저에서 `127.0.0.1:8080`로 이동하세요.
 `Welcome`이 출력될 것 입니다.
-그런 다음`localhost:8080/waldo` 또는 다른 경로로 이동하십시오.
+그런 다음`127.0.0.1:8080/waldo` 또는 다른 경로로 이동하십시오.
 404 응답으로`Oops!`를 출력될 것 입니다.
 
 ## 다른 Plug 추가하기
@@ -185,11 +186,10 @@ _Note_ : Plug는 모든 요청에 적용되므로 요청을 필터링해 일부�
 요청을 무시하려면 그냥 연결을 넘겨주면 됩니다.
 
 완성 된 Plug를 보고 어떻게 작동하는지 설명합니다.
-`lib/plug/verify_request.ex`에 만들겠습니다.
+`lib/example/plug/verify_request.ex`에 만들겠습니다.
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
-
   defmodule IncompleteRequestError do
     @moduledoc """
     필요한 필드가 발견되지 않은 경우에 발생시킬 에러.
@@ -206,10 +206,12 @@ defmodule Example.Plug.VerifyRequest do
   end
 
   defp verify_request!(body_params, fields) do
-    verified = body_params
-               |> Map.keys
-               |> contains_fields?(fields)
-    unless verified, do: raise IncompleteRequestError
+    verified =
+      body_params
+      |> Map.keys()
+      |> contains_fields?(fields)
+
+    unless verified, do: raise(IncompleteRequestError)
   end
 
   defp contains_fields?(keys, fields), do: Enum.all?(fields, &(&1 in keys))
@@ -235,19 +237,24 @@ end
 ```elixir
 defmodule Example.Router do
   use Plug.Router
+  use Plug.ErrorHandler
 
   alias Example.Plug.VerifyRequest
 
-  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
-  plug VerifyRequest, fields: ["content", "mimetype"],
-                      paths:  ["/upload"]
+  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
 
-  plug :match
-  plug :dispatch
+  plug(
+    VerifyRequest,
+    fields: ["content", "mimetype"],
+    paths: ["/upload"]
+  )
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  post "/upload", do: send_resp(conn, 201, "Uploaded")
-  match _, do: send_resp(conn, 404, "Oops!")
+  plug(:match)
+  plug(:dispatch)
+
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  post("/upload", do: send_resp(conn, 201, "Uploaded"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -261,9 +268,7 @@ end
 
 ```elixir
 def application do
-  [applications: [:cowboy, :logger, :plug],
-   mod: {Example, []},
-   env: [cowboy_port: 8080]]
+  [applications: [:cowboy, :logger, :plug], mod: {Example, []}, env: [cowboy_port: 8080]]
 end
 ```
 
@@ -324,25 +329,28 @@ defmodule Example.RouterTest do
   @opts Router.init([])
 
   test "returns welcome" do
-    conn = conn(:get, "/", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 200
   end
 
   test "returns uploaded" do
-    conn = conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
-           |> put_req_header("content-type", "application/x-www-form-urlencoded")
-           |> Router.call(@opts)
+    conn =
+      conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
+      |> put_req_header("content-type", "application/x-www-form-urlencoded")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 201
   end
 
   test "returns 404" do
-    conn = conn(:get, "/missing", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/missing", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 404

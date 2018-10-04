@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Зонтичные проекты
 ---
 
@@ -184,7 +184,7 @@ Consolidated Inspect
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "Hello, I'm the datasets"
+    IO.puts("Hello, I'm the datasets")
   end
 end
 ```

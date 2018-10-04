@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Δοκιμές
 ---
 
@@ -76,14 +76,14 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 Μερικές φορές μπορεί να είναι απαραίτητο να βεβαιωθούμε ότι σηκώθηκε κάποιο σφάλμα.  Μπορούμε να το κάνουμε αυτό με την `assert_raise`.  Θα δούμε ένα παράδειγμα της `assert_raise` στο επόμενο μάθημα για το Plug.
 
-## assert_received
+### assert_received
 
 Στις εφαρμογές Elixir αποτελούνται από ηθοποιούς/διεργασίες που στέλνουν μηνύματα η μία στην άλλη, έτσι θέλετε να δοκιμάζετε τα μηνύματα που στέλνονται. Από τη στιγμή που η ExUnit τρέχει στη δική της διεργασία, μπορεί να λάβει μηνύματα όπως κάθε άλλη συνάρτηση και μπορείτε να κάνετε εκτιμήσεις πάνω τους με την μακροεντολή `assert_received`:
 
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -99,7 +99,7 @@ end
 
 Η `assert_received` δεν περιμένει για μηνύματα, με την `assert_receive` μπορείτε να ορίσετε ένα όριο λήξης.
 
-## capture_io και capture_log
+### capture_io και capture_log
 
 Η σύλληψη της εξόδου μιας εφαρμογής είναι δυνατή με την `ExUnit.CaptureIO` χωρίς να αλλάξουμε την αρχική εφαρμογή. Απλά περάστε την συνάρτηση που παράγει την έξοδο σε αυτήν:
 
@@ -109,7 +109,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```

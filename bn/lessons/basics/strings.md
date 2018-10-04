@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: স্ট্রিং 
 ---
 
@@ -116,9 +116,9 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```
@@ -138,7 +138,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 `anagrams?` এর শেষ কলে  `FunctionClauseError` প্রদর্শীত হয়েছে কারণ ফাংশনের বর্ণনার সময়ে কোন প্যাটার্ন পাওয়া যায়নি যা কিনা বাইনারি ব্যতিরেকে কোন প্যারামিটার গ্রহণ করে। আমরা ঠিক তা-ই চেয়েছিলাম। 

@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Umbrella Projects
-redirect_from:
-  - /lessons/advanced/umbrella-projects/
 ---
 
 Sometimes a project can get big, really big in fact. The Mix build tool allows us to split our code into multiple apps and make our Elixir projects more manageable as they grow.
@@ -186,7 +184,7 @@ You may think that interacting with the apps would be a little different in an u
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "Hello, I'm the datasets"
+    IO.puts("Hello, I'm the datasets")
   end
 end
 ```

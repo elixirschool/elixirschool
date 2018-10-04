@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Δομές Ελέγχου
 ---
 
@@ -92,7 +92,7 @@ iex> case {1, 2, 3} do
 "Θα ταιριάξει"
 ```
 
-Ελέγξτε τα επίσημα έγγραφα για τις [Εκφράσεις που επιτρέπονται στις ρήτρες προστασίας](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Ελέγξτε τα επίσημα έγγραφα για τις [Εκφράσεις που επιτρέπονται στις ρήτρες προστασίας](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 ## `cond`
 
@@ -155,12 +155,16 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 ```elixir
 case Repo.insert(changeset) do
   {:ok, user} ->
-    case Guardian.encode_and_sign(resource, :token, claims) do
+    case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -168,7 +172,7 @@ end
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token) do
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token, claims) do
   important_stuff(jwt, full_claims)
 end
 ```
@@ -183,15 +187,16 @@ m = %{a: 1, c: 3}
 
 a =
   with {:ok, number} <- Map.fetch(m, :a),
-    true <- Integer.is_even(number) do
-      IO.puts "#{number} διαιρούμενο με το 2 ισούται με #{div(number, 2)}"
-      :even
+       true <- is_even(res) do
+    IO.puts("#{number} διαιρούμενο με το 2 ισούται με #{div(number, 2)}")
+    :even
   else
     :error ->
-      IO.puts "Δεν έχουμε αυτό το στοιχείο στο χάρτη"
+      IO.puts("Δεν έχουμε αυτό το στοιχείο στο χάρτη")
       :error
+
     _ ->
-      IO.puts "Είναι μονός"
+      IO.puts("Είναι μονός")
       :odd
   end
 ```

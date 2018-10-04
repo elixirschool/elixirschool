@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Kontrollstrukturer
 ---
 
@@ -93,7 +93,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Se den offisielle dokumentasjonen for [Tillatte uttrykk i beskyttelsesklausuler](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Se den offisielle dokumentasjonen for [Tillatte uttrykk i beskyttelsesklausuler](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 
 ## `cond`
@@ -158,12 +158,16 @@ La oss nå se på et større eksempel uten `with`, og deretter se hvordan vi kan
 ```elixir
 case Repo.insert(changeset) do
   {:ok, user} ->
-    case Guardian.encode_and_sign(resource, :token, claims) do
+    case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, jwt, full_claims} ->
         important_stuff(jwt, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -171,7 +175,7 @@ Når vi introduserer `with` til eksemplet, ender vi opp med kode som er enklere 
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token),
+     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token, claims),
      do: important_stuff(jwt, full_claims)
 ```
 

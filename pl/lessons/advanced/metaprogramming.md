@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Metaprogramowanie
 ---
 
@@ -195,8 +195,8 @@ By pokazać zalety `bind_quote` oraz problem zmiany wartości zmiennej posłużm
 defmodule Example do
   defmacro double_puts(expr) do
     quote do
-      IO.puts unquote(expr)
-      IO.puts unquote(expr)
+      IO.puts(unquote(expr))
+      IO.puts(unquote(expr))
     end
   end
 end
@@ -216,8 +216,8 @@ Wartości są różne! Co się stało?  Gdy użyliśmy `unquote/1` na tym samym 
 defmodule Example do
   defmacro double_puts(expr) do
     quote bind_quoted: [expr: expr] do
-      IO.puts expr
-      IO.puts expr
+      IO.puts(expr)
+      IO.puts(expr)
     end
   end
 end

@@ -1,10 +1,10 @@
 # Setup
 baseurl: /
 url: https://elixirschool.com
-og_image: https://elixirschool.com/assets/fb_share.jpg
-permalink: pretty
+permalink: /blog/:title/
 default_lang: en
 exclude_from_localization: []
+exclude_from_chapters: ['blog.html', 'contributors.html']
 
 # Author
 author:
@@ -19,6 +19,7 @@ plugins:
   - jekyll-redirect-from
   - jekyll-sitemap
   - kramdown
+  - uglifier
 
 # Markdown Config
 markdown: kramdown
@@ -27,11 +28,17 @@ kramdown:
   syntax_highlighter: rouge
 
 # Assets
-exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'Procfile', 'Rakefile', 'vendor']
+exclude: ['config.ru', 'CONTRIBUTING.md', 'Gemfile', 'Gemfile.lock', 'GLOSSARY', 'Procfile', 'Rakefile', 'README.md', 'vendor', 'LICENSE']
 assets:
   compress:
     css: sass
     js:  uglifier
+  digest: true
+  sources:
+    - _assets/images
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _assets/fonts
 
 sitemap:
   file: '/sitemap.xml'
@@ -41,11 +48,11 @@ sitemap:
   priority_name: 'priority'
 
 elixir:
-  version: 1.5.1
+  version: 1.5.2
 
 erlang:
   OTP: 20
-  erts: 9.0
+  erts: 9.1
 
 defaults:
   -

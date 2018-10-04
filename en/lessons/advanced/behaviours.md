@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Behaviours
-redirect_from:
-  - /lessons/advanced/behaviours/
 ---
 
 We learned about Typespecs in the previous lesson, here we'll learn how to require a module to implement those specifications.  In Elixir, this functionality is referred to as behaviours.
@@ -13,21 +11,23 @@ We learned about Typespecs in the previous lesson, here we'll learn how to requi
 
 Sometimes you want modules to share a public API, the solution for this in Elixir is behaviours. Behaviours perform two primary roles:
 
-+ Defining a set of function that must be implemented
++ Defining a set of functions that must be implemented
 + Checking whether that set was actually implemented
 
-Elixir includes a number of behaviours such as GenServer, but in this lesson we'll focus on creating our own instead.
+Elixir includes a number of behaviours such as `GenServer`, but in this lesson we'll focus on creating our own instead.
 
 ## Defining a behaviour
 
 To better understand behaviours let's implement one for a worker module.  These workers will be expected to implement two functions: `init/1` and `perform/2`.
 
-In order to accomplish this, we'll use the `@callback` directive with syntax similar to `@spec`, this defines a __required__ function; for macros we can use `@macrocallback`.  Let's specify the `init/1` and `perform/2` functions for our workers:
+In order to accomplish this, we'll use the `@callback` directive with syntax similar to `@spec`. This defines a __required__ function; for macros we can use `@macrocallback`.  Let's specify the `init/1` and `perform/2` functions for our workers:
 
 ```elixir
 defmodule Example.Worker do
   @callback init(state :: term) :: {:ok, new_state :: term} | {:error, reason :: term}
-  @callback perform(args :: term, state :: term) :: {:ok, result :: term, new_state :: term} | {:error, reason :: term, new_state :: term}
+  @callback perform(args :: term, state :: term) ::
+              {:ok, result :: term, new_state :: term}
+              | {:error, reason :: term, new_state :: term}
 end
 ```
 
@@ -37,7 +37,7 @@ Here we've defined `init/1` as accepting any value and returning a tuple of eith
 
 Now that we've defined our behaviour we can use it to create a variety of modules that all share the same public API.  Adding a behaviour to our module is easy with the `@behaviour` attribute.
 
-Using our new behaviour let's create a module's task will be downloading a remote file and saving it locally:
+Using our new behaviour let's create a module whose task will be downloading a remote file and saving it locally:
 
 ```elixir
 defmodule Example.Downloader do
@@ -47,16 +47,17 @@ defmodule Example.Downloader do
 
   def perform(url, opts) do
     url
-    |> HTTPoison.get!
+    |> HTTPoison.get!()
     |> Map.fetch(:body)
     |> write_file(opts[:path])
     |> respond(opts)
   end
 
   defp write_file(:error, _), do: {:error, :missing_body}
+
   defp write_file({:ok, contents}, path) do
     path
-    |> Path.expand
+    |> Path.expand()
     |> File.write(contents)
   end
 

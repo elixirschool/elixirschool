@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Επιτηρητές OTP
 ---
 
@@ -19,7 +19,7 @@ title: Επιτηρητές OTP
 import Supervisor.Spec
 
 children = [
-  worker(SimpleQueue, [], [name: SimpleQueue])
+  worker(SimpleQueue, [], name: SimpleQueue)
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -78,7 +78,7 @@ children = [
 import Supervisor.Spec
 
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]])
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)

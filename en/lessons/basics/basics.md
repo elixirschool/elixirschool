@@ -1,8 +1,6 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Basics
-redirect_from:
-  - /lessons/basics/basics/
 ---
 
 Getting started, basic data types, and basic operations.
@@ -18,7 +16,7 @@ Installation instructions for each OS can be found on elixir-lang.org in the [In
 After Elixir is installed, you can easily confirm the installed version.
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
@@ -28,7 +26,7 @@ Elixir comes with IEx, an interactive shell, which allows us to evaluate Elixir 
 
 To get started, let's run `iex`:
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>

@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.1.1
 title: Strings
 ---
 
@@ -14,7 +14,11 @@ Strings em Elixir são nada mais que uma sequência de bytes. Vamos ver um exemp
 ```elixir
 iex> string = <<104,101,108,108,111>>
 "hello"
+iex> string <> <<0>>
+<<104, 101, 108, 108, 111, 0>>
 ```
+
+Ao concatenar a string com o byte `0`, o IEx mostra a string como um binário já que este não é mais uma string válida. Este truque nos ajuda a identifcar a sequência de bytes que compõem qualquer string.
 
 >NOTA: Ao usar a sintaxe com << >> estamos dizendo ao compilador que os elementos dentro desses símbolos são bytes.
 
@@ -22,29 +26,26 @@ iex> string = <<104,101,108,108,111>>
 
 Internamente, as strings em Elixir são representadas como uma sequência de bytes ao invés de um array de caracteres. Elixir também tem um tipo char list (lista de caracteres). Strings em Elixir são delimitadas por aspas duplas, enquanto listas de caracteres são delimitadas por aspas simples.
 
-Qual a diferença? Cada valor de uma lista de caracteres é o valor ASCII do caractere. Vamos ver isso mais a fundo:
+Qual a diferença? Cada valor em uma lista de caracteres corresponde ao número Unicode do caracter, enquanto em um binário os valores são codificados em UTF-8. Vamos ver isso mais a fundo:
 
 ```elixir
-iex> char_list = 'hello'
-'hello'
-
-iex> [hd|tl] = char_list
-'hello'
-
-iex> {hd, tl}
-{104, 'ello'}
-
-iex> Enum.reduce(char_list, "", fn char, acc -> acc <> to_string(char) <> "," end)
-"104,101,108,108,111,"
+iex(5)> 'hełło'
+[104, 101, 322, 322, 111]
+iex(6)> "hełło" <> <<0>>
+<<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
-Ao programar em Elixir, geralmente usamos Strings ao invés de listas de caracteres. O suporte a listas de caracteres é incluso principalmente por ser obrigatório para alguns módulos Erlang.
+`322` é o número Unicode de ł, representado em UTF-8 pelos dois bytes `197`, `130`.
+
+Ao programar em Elixir, geralmente usamos strings ao invés de listas de caracteres. O suporte a listas de caracteres é incluso principalmente por ser obrigatório para alguns módulos Erlang.
+
+Para mais informação, veja o [`Guia de Introdução`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html) oficial.
 
 ## Graphemes e Codepoints
 
-Codepoints são apenas caracteres Unicode simples que são representados por um ou mais bytes. Por exemplo, caracteres com o til ou acentos: `á, ñ, è`. Graphemes consistem de múltiplos codepoints que são renderizados como um único caractere.
+Codepoints são apenas simples caracteres Unicode representados por um ou mais bytes, depedendo da codificação UTF-8. Caracteres diferentes do padrão US ASCII são sempre codificados por mais de um byte. Por exemplo, caracteres latinos com til ou acentos (`á, ñ, è`) geralmente são codificados com dois bytes. Já caracteres de línguas asiáticas são normalmente codificados com três ou quatro bytes. Graphemes consistem de múltiplos codepoints que são apresentados como um único caractere.
 
-O módulo String já fornece dois funções para obtê-los, `graphemes/1` e `codepoints/1`. Vamos ver um exemplo:
+O módulo String já fornece duas funções para gerá-los, `graphemes/1` e `codepoints/1`. Vamos ver um exemplo:
 
 ```elixir
 iex> string = "\u0061\u0301"
@@ -59,7 +60,7 @@ iex> String.graphemes string
 
 ## Funções de String
 
-Vamos rever duas das funções mais importantes e úteis do módulo String. Essa lição cobrirá apenas uma parte das funções disponíveis. Para ver a lista completa de funções visite a documentação oficial de [`String`](https://hexdocs.pm/elixir/String.html).
+Vamos rever algumas das funções mais importantes e úteis do módulo String. Essa lição cobrirá apenas uma parte das funções disponíveis. Para ver a lista completa de funções visite a documentação oficial de [`String`](https://hexdocs.pm/elixir/String.html).
 
 ### `length/1`
 
@@ -72,7 +73,7 @@ iex> String.length "Hello"
 
 ### `replace/3`
 
-Retorna uma nova string substituindo um padrão atual por uma nova string de substituição.
+Retorna uma nova string substituindo o atual padrão na string por uma nova string de substituição.
 
 ```elixir
 iex> String.replace("Hello", "e", "a")
@@ -120,16 +121,16 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```
 
 Primeiro vamos olhar para `anagrams?/2`. Estamos verificando se os parâmetros que recebemos são binários ou não. Essa é a forma de verificar se uma parâmetro é uma String em Elixir.
 
-Depois disso, estamos chamando a função que ordena as strings em ordem alfabética, primeiro deixando a string em letras minúsculas e então usando `String.graphemes`, que retorna a lista com os Graphemes da string. Bastante simples, não acha?
+Depois disso, chamamos a função que ordena as strings em ordem alfabética, primeiro deixamos a string com letras minúsculas e então usamos `String.graphemes/1`, que retorna a lista com os graphemes da string. Por fim, utilizamos `Enum.sort/1` para ordenar a lista. Bastante simples, não acha?
 
 Vamos verificar a saída dessa função no iex:
 
@@ -142,7 +143,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
-Como você pode ver, a última chamada a `anagrams?` causou um FunctionClauseError. Esse erro nos diz que não há nenhuma função no nosso módulo de acordo com o padrão de receber dois argumentos não binários, e isso é exatamente o que nós queremos, receber apenas duas strings e nada mais.
+Como você pode ver, a última chamada a `anagrams?` causou um FunctionClauseError. Esse erro nos diz que não há nenhuma função no nosso módulo que recebe dois argumentos não binários, e isso é exatamente o que nós queremos, receber apenas duas strings e nada mais.

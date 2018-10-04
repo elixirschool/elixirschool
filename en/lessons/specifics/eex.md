@@ -1,8 +1,6 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Embedded Elixir (EEx)
-redirect_from:
-  - /lessons/specifics/eex/
 ---
 
 Much like Ruby has ERB and Java has JSPs, Elixir has EEx, or Embedded Elixir.  With EEx we can embed and evaluate Elixir inside strings.
@@ -34,7 +32,7 @@ Hi, <%= name %>
 
 defmodule Example do
   require EEx
-  EEx.function_from_file :def, :greeting, "greeting.eex", [:name]
+  EEx.function_from_file(:def, :greeting, "greeting.eex", [:name])
 end
 
 iex> Example.greeting("Sean")

@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Αλφαριθμητικά
 ---
 
@@ -121,9 +121,9 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```
@@ -143,7 +143,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Όπως βλέπετε, η τελευταία κλήση στην `anagrams?` προξένησε ένα FunctionClauseError.  Αυτό το σφάλμα μας λέει ότι δεν υπάρχει συνάρτηση στην ενότητά μας με το πρότυπο δύο μη-δυαδικών παραμέτρων, και αυτό είναι ακριβώς που θέλουμε, να δεχτούμε δύο αλφαριθμητικά και τίποτα άλλο.

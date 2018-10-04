@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: 에러 처리
 ---
 
@@ -45,10 +45,10 @@ An error occurred: Oh no!
 try do
   opts
   |> Keyword.fetch!(:source_file)
-  |> File.read!
+  |> File.read!()
 rescue
-  e in KeyError -> IO.puts "missing :source_file option"
-  e in File.Error -> IO.puts "unable to read source file"
+  e in KeyError -> IO.puts("missing :source_file option")
+  e in File.Error -> IO.puts("unable to read source file")
 end
 ```
 
@@ -72,11 +72,12 @@ The end!
 파일을 닫거나, 접속을 종료해야 할 때 가장 많이 사용됩니다.
 
 ```elixir
-{:ok, file} = File.open "example.json"
+{:ok, file} = File.open("example.json")
+
 try do
-   # 위험이 큰 함수를 실행
+  # 위험이 큰 함수를 실행
 after
-   File.close(file)
+  File.close(file)
 end
 ```
 
@@ -134,7 +135,7 @@ iex> try do
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 `try/catch`를 이용하여 종료를 잡아내는 것이 가능하지만, 그런 경우는 _극히_ 드뭅니다. 대부분의 경우, 수퍼바이저가 프로세스 종료를 다루도록 하는 것이 유리합니다.

@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.1.0
 title: Concurrency
-redirect_from:
-  - /lessons/advanced/concurrency/
 ---
 
 One of the selling points of Elixir is its support for concurrency. Thanks to the Erlang VM (BEAM), concurrency in Elixir is easier than expected.  The concurrency model relies on Actors, a contained process that communicates with other processes through message passing.
@@ -47,7 +45,7 @@ To communicate, processes rely on message passing. There are two main components
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
 
     listen
@@ -80,20 +78,21 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-Sometimes we don't want our linked process to crash the current one.  For that we need to trap the exits.  When trapping exits they will be received as a tuple message: `{:EXIT, from_pid, reason}`.
+Sometimes we don't want our linked process to crash the current one. For that we need to trap the exits using `Process.flag/2`. It uses erlang's [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) function for the `trap_exit` flag. When trapping exits (`trap_exit` is set to `true`), exit signals will be received as a tuple message: `{:EXIT, from_pid, reason}`.
 
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -110,11 +109,12 @@ What if we don't want to link two processes but still be kept informed? For that
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end

@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.10.0
 title: Plug
 ---
 
@@ -13,8 +13,7 @@ Instalacja z użyciem mix jest bardzo prosta. By zainstalować Plug musimy zmody
 
 ```elixir
 defp deps do
-  [{:cowboy, "~> 1.1.2"},
-   {:plug, "~> 1.3.4"}]
+  [{:cowboy, "~> 1.1.2"}, {:plug, "~> 1.3.4"}]
 end
 ```
 
@@ -54,7 +53,7 @@ W tym przykładzie stworzymy plug, który będzie sprawdzał czy żądanie zawie
 
 _Uwaga_: Plugi są wykonywane dla wszystkich żądań dlatego też będziemy musieli samodzielnie obsłużyć filtrowanie i wywoływać naszą logikę tylko w niektórych przypadkach. By zignorować żądanie wystarczy zwrócić połączenie.
 
-Przyjrzyjmy się zatem naszemu gotowemu plugowi i zobaczmy jak on działa.  Stworzyliśmy go w pliku `lib/plug/verify_request.ex`:
+Przyjrzyjmy się zatem naszemu gotowemu plugowi i zobaczmy jak on działa.  Stworzyliśmy go w pliku `lib/example/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
@@ -76,10 +75,12 @@ defmodule Example.Plug.VerifyRequest do
   end
 
   defp verify_request!(body_params, fields) do
-    verified = body_params
-               |> Map.keys
-               |> contains_fields?(fields)
-    unless verified, do: raise IncompleteRequestError
+    verified =
+      body_params
+      |> Map.keys()
+      |> contains_fields?(fields)
+
+    unless verified, do: raise(IncompleteRequestError)
   end
 
   defp contains_fields?(keys, fields), do: Enum.all?(fields, &(&1 in keys))
@@ -102,11 +103,11 @@ Na początku stwórzmy plik `lib/plug/router.ex` i skopiujmy do niego następuj�
 defmodule Example.Plug.Router do
   use Plug.Router
 
-  plug :match
-  plug :dispatch
+  plug(:match)
+  plug(:dispatch)
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  match _, do: send_resp(conn, 404, "Oops!")
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -117,18 +118,24 @@ Dodajmy nasz plug do routera:
 ```elixir
 defmodule Example.Plug.Router do
   use Plug.Router
+  use Plug.ErrorHandler
 
   alias Example.Plug.VerifyRequest
 
-  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
-  plug VerifyRequest, fields: ["content", "mimetype"],
-                      paths:  ["/upload"]
-  plug :match
-  plug :dispatch
+  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
 
-  get "/", do: send_resp(conn, 200, "Welcome")
-  post "/upload", do: send_resp(conn, 201, "Uploaded")
-  match _, do: send_resp(conn, 404, "Oops!")
+  plug(
+    VerifyRequest,
+    fields: ["content", "mimetype"],
+    paths: ["/upload"]
+  )
+
+  plug(:match)
+  plug(:dispatch)
+
+  get("/", do: send_resp(conn, 200, "Welcome"))
+  post("/upload", do: send_resp(conn, 201, "Uploaded"))
+  match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
 
@@ -144,9 +151,7 @@ Rozpocznijmy od aktualizacji sekcji `application` w pliku `mix.exs` tak by wskaz
 
 ```elixir
 def application do
-  [applications: [:cowboy, :plug],
-   mod: {Example, []},
-   env: [cowboy_port: 8080]]
+  [applications: [:cowboy, :plug], mod: {Example, []}, env: [cowboy_port: 8080]]
 end
 ```
 
@@ -193,25 +198,28 @@ defmodule RouterTest do
   @opts Router.init([])
 
   test "returns welcome" do
-    conn = conn(:get, "/", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 200
   end
 
   test "returns uploaded" do
-    conn = conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
-           |> put_req_header("content-type", "application/x-www-form-urlencoded")
-           |> Router.call(@opts)
+    conn =
+      conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
+      |> put_req_header("content-type", "application/x-www-form-urlencoded")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 201
   end
 
   test "returns 404" do
-    conn = conn(:get, "/missing", "")
-           |> Router.call(@opts)
+    conn =
+      conn(:get, "/missing", "")
+      |> Router.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 404

@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Spezifikationen und Typen
 ---
 
@@ -24,9 +24,9 @@ Schau dir das folgende Beispiel an:
 ```elixir
 @spec sum_product(integer) :: integer
 def sum_product(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
 end
 ```
 
@@ -44,12 +44,12 @@ Lass uns unsere `sum_times`-Funktion verändern und ein paar extra Parameter ein
 ```elixir
 @spec sum_times(integer, %Examples{first: integer, last: integer}) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -65,13 +65,11 @@ Lass uns unseren Typ definieren:
 
 ```elixir
 defmodule Examples do
+  defstruct first: nil, last: nil
 
-    defstruct first: nil, last: nil
+  @type t(first, last) :: %Examples{first: first, last: last}
 
-    @type t(first, last) :: %Examples{first: first, last: last}
-
-    @type t :: %Examples{first: integer, last: integer}
-
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 
@@ -80,14 +78,14 @@ Wir haben den Typ `t(first, last)` bereits definiert, welcher eine Repräsentati
 Wo ist der Unterschied? Der erste Fall repräsentiert das struct `Examples`, bei dem die zwei keys von jedem Typ sein könnten. Im zweiten Fall repräsentiert ein struct dessen keys `integer` sind. Das bedeutet Code wie:
 
 ```elixir
-@spec sum_times(integer, Examples.t) :: integer
+@spec sum_times(integer, Examples.t()) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -96,12 +94,12 @@ Ist gleichbedeutend zu:
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer
 def sum_times(a, params) do
-    for i <- params.first..params.last do
-        i
-    end
-       |> Enum.map(fn el -> el * a end)
-       |> Enum.sum
-       |> round
+  for i <- params.first..params.last do
+    i
+  end
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -111,12 +109,10 @@ Der letzte Punkt, über den wir reden sollten, ist wie man Typen dokumentiert. W
 
 ```elixir
 defmodule Examples do
-
-    @typedoc """
-        Type that represents Examples struct with :first as integer and :last as integer.
-    """
-    @type t :: %Examples{first: integer, last: integer}
-
+  @typedoc """
+      Type that represents Examples struct with :first as integer and :last as integer.
+  """
+  @type t :: %Examples{first: integer, last: integer}
 end
 ```
 

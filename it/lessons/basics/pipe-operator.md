@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Operatore Pipe
 ---
 
@@ -31,14 +31,14 @@ In questa serie di esempi, useremo il modulo String di Elixir.
 - Separare una stringa in singole parole (genericamente)
 
 ```shell
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Trasformare in maiuscolo ciascuna parola
 
 ```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

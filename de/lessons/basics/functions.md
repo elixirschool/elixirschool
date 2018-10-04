@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Funktionen
 ---
 
@@ -64,7 +64,7 @@ defmodule Greeter do
   end
 end
 
-iex> Greeter.hello("Sean")
+iex > Greeter.hello("Sean")
 "Hello, Sean"
 ```
 
@@ -127,7 +127,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 
 iex> Greeter.phrase
-** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
     Greeter.phrase()
 ```
 
@@ -152,7 +152,7 @@ defmodule Greeter do
   defp phrase, do: "Hello, "
 end
 
-iex> Greeter.hello ["Sean", "Steve"]
+iex> Greeter.hello(["Sean", "Steve"])
 "Hello, Sean, Steve"
 ```
 
@@ -198,7 +198,19 @@ defmodule Greeter do
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+
+    def foo(:first_clause, b \\ :default) do ... end
+    def foo(:second_clause, b) do ... end
+
+one should write:
+
+    def foo(a, b \\ :default)
+    def foo(:first_clause, b) do ... end
+    def foo(:second_clause, b) do ... end
+
+def hello/2 has multiple clauses and defines defaults in one or more clauses
+    iex:31: (module)
 ```
 
 Elixir kann Defaultargumente in mehreren matchenden Funktionen nicht auseinander halten. Um dieses Problem zu lösen können wir einen Funktionskopf mit Defaultargumenten hinzufügen:
@@ -206,6 +218,7 @@ Elixir kann Defaultargumente in mehreren matchenden Funktionen nicht auseinander
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

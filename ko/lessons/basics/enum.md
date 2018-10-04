@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.3.0
 title: Enum
 ---
 
@@ -27,7 +27,7 @@ at/3
 ...
 ```
 
-이를 통해 아주 많은 기능이 있고 기능마다 분명한 이유가 있음이 자명해 졌습니다.
+이를 통해 확실히 아주 많은 기능이 있다는 것을 알 수 있습니다. 그리고 각 기능은 분명한 이유가 있습니다.
 열거형은 함수형 프로그래밍의 핵심이며, 놀랍도록 유용합니다.
 방금 본 문서화 같은 다른 Elixir의 자랑과 함께 열거형은 개발에 매우 도움이 됩니다.
 
@@ -54,16 +54,16 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk
+### chunk_every
 
-컬렉션을 작은 묶음으로 쪼개야 할 필요가 있다면, `chunk/2`가 찾고 있을 그 함수입니다.
+컬렉션을 작은 묶음으로 쪼개야 한다면, `chunk_every/2`가 찾고 있을 그 함수입니다.
 
 ```elixir
-iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
+iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-`chunk/2`에는 몇 가지 옵션이 있습니다만, 여기서는 이에 대해 다루지 않을 것입니다. 더 알아보고자 하신다면 [`chunk/2`](https://hexdocs.pm/elixir/Enum.html#chunk/2) 공식 문서를 참고해보세요.
+`chunk_every/4`에는 몇 가지 옵션이 있습니다만, 여기서는 이에 대해 다루지 않을 것입니다. 더 알아보고자 하신다면 [`chunk_every/4` 공식 문서](https://hexdocs.pm/elixir/Enum.html#chunk_every/4)를 참고해보세요.
 
 ### chunk_by
 
@@ -134,7 +134,7 @@ iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-`max/2`는 `max/1`에 대해서 `min/2`가 `min/1`의 관계처럼 동작합니다.
+`max/2`는 `max/1`에 대해서 `min/2`와 `min/1`의 관계처럼 동작합니다.
 
 ```elixir
 Enum.max([], fn -> :bar end)
@@ -148,17 +148,19 @@ Enum.max([], fn -> :bar end)
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 16
+
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
+
 iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 "cba1"
 ```
 
 ### sort
 
-두 가지 `sort` 함수들을 이용하면, 쉽게 컬렉션들을 정렬할 수 있습니다.
+두 정렬 함수를 이용하면, 쉽게 컬렉션들을 정렬할 수 있습니다.
 
-`sort/1`은 정렬 순서를 결정하기 위해서 Erlang의 텀(Term) 순서를 사용합니다.
+`sort/1`은 정렬 순서로 Erlang의 텀(Term) 순서를 사용합니다.
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -168,7 +170,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-반면 `sort/2`은 정렬 함수를 제공할 수 있게 합니다.
+한편 `sort/2`는 직접 정렬 함수를 만들 수 있습니다.
 
 ```elixir
 # 함수 사용
@@ -180,11 +182,11 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq
+### uniq_by
 
-`uniq/1`를 이용하여 열거 가능한 집합 내의 중복요소를 제거할 수 있습니다.
+`uniq_by/2`를 이용하여 열거 가능한 집합 내의 중복요소를 제거할 수 있습니다.
 
 ```elixir
-iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
+iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
 [1, 2, 3]
 ```

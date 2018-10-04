@@ -1,8 +1,6 @@
 ---
 version: 1.0.1
 title: Sigils
-redirect_from:
-  - /lessons/basics/sigils/
 ---
 
 Working with and creating sigils.
@@ -30,7 +28,7 @@ A list of delimiters include:
   - `<...>` A pair of pointy brackets
   - `{...}` A pair of curly brackets
   - `[...]` A pair of square brackets
-  - `(...)` A pair of parenthesis
+  - `(...)` A pair of parentheses
   - `|...|` A pair of pipes
   - `/.../` A pair of forward slashes
   - `"..."` A pair of double quotes

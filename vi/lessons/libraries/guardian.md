@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Guardian (Cơ bản)
 ---
 
@@ -98,11 +98,11 @@ defmodule MyApp.GuardianSerializer do
   alias MyApp.Repo
   alias MyApp.User
 
-  def for_token(user = %User{}), do: { :ok, "User:#{user.id}" }
-  def for_token(_), do: { :error, "Unknown resource type" }
+  def for_token(user = %User{}), do: {:ok, "User:#{user.id}"}
+  def for_token(_), do: {:error, "Unknown resource type"}
 
-  def from_token("User:" <> id), do: { :ok, Repo.get(User, id) }
-  def from_token(_), do: { :error, "Unknown resource type" }
+  def from_token("User:" <> id), do: {:ok, Repo.get(User, id)}
+  def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
 Serializer của bạn đảm nhiệm phần tìm kiếm tài nguyên ở trong trường `sub` (subject). Nó có thể tìm trong DB, một API hoặc thậm chí trong nội dung một chuỗi đơn giản.
@@ -132,13 +132,13 @@ Hãy cùng tạo một số pipelines.
 
 ```elixir
 pipeline :maybe_browser_auth do
-  plug Guardian.Plug.VerifySession
-  plug Guardian.Plug.VerifyHeader, realm: "Bearer"
-  plug Guardian.Plug.LoadResource
+  plug(Guardian.Plug.VerifySession)
+  plug(Guardian.Plug.VerifyHeader, realm: "Bearer")
+  plug(Guardian.Plug.LoadResource)
 end
 
 pipeline :ensure_authed_access do
-  plug Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler}
+  plug(Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler})
 end
 ```
 
@@ -148,17 +148,17 @@ Pipeline thứ 2 cần token hợp lệ, xác nhận hợp lệ token hiện t�
 
 ```elixir
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth]
+  pipe_through([:browser, :maybe_browser_auth])
 
-  get "/login", LoginController, :new
-  post "/login", LoginController, :create
-  delete "/login", LoginController, :delete
+  get("/login", LoginController, :new)
+  post("/login", LoginController, :create)
+  delete("/login", LoginController, :delete)
 end
 
 scope "/", MyApp do
-  pipe_through [:browser, :maybe_browser_auth, :ensure_authed_access]
+  pipe_through([:browser, :maybe_browser_auth, :ensure_authed_access])
 
-  resource "/protected/things", ProtectedController
+  resource("/protected/things", ProtectedController)
 end
 ```
 
@@ -213,10 +213,13 @@ end
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
+      # Ở đây ta dùng access. Các token khác có thể sử dụng, như :resfresh vân vân
       conn
-      |> Guardian.Plug.sign_in(user, :access) # Ở đây ta dùng access. Các token khác có thể sử dụng, như :resfresh vân vân
+      |> Guardian.Plug.sign_in(user, :access)
       |> respond_somehow()
+
     {:error, reason} ->
+      nil
       # xử lý xảy ra lỗi xác minh user
   end
 end
@@ -235,9 +238,12 @@ def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
       {:ok, jwt, _claims} = Guardian.encode_and_sign(user, :access)
+
       conn
-      |> respond_somehow({token: jwt})
+      |> respond_somehow(%{token: jwt})
+
     {:error, reason} ->
+      nil
       # xử lý xảy ra lỗi xác minh user
   end
 end

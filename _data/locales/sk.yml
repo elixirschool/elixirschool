@@ -9,11 +9,24 @@ sections:
   basics: Základy
   advanced: Pokročilé
   specifics: Špecifiká
-  libraries: Libraries
+  libraries: Knižnice
+  blog: Blog
+  contributors: Contributors
+  translation_report: Translation Report
+
 version_messages:
-  outdated: "Some contents of this translation may be outdated."
-  major: "Several major changes were applied to the original lesson since the last update."
-  minor: "Several minor changes were applied to the original lesson since the last update."
-  patch: "Several patches were applied to the original lesson since the last update."
-  none: "This translation is up to date."
-  error: "There is an error in the version definition of this chapter."
+  outdated: "Niektoré časti tohto prekladu môžu byť neaktuálne."
+  major: "Viacero dôležitých zmien bolo pridaných do originálnej lekcie od poslednej aktualizácie."
+  minor: "Viacero drobných zmien bolo pridaných do originálnej lekcie od poslednej aktualizácie."
+  patch: "Viacero patchov bolo pridaných do originálnej lekcie od poslednej aktualizácie."
+  none: "Tento preklad je aktuálny."
+  error: "V definícii verzie tejto kapitoly sa vyskytla chyba."
+
+translation_report:
+  section: Section
+  original_title: Original Title
+  translation_title: Translation Title
+  original_version: Original Version
+  translation_version: Translation Version
+  version_severity: Version Severity
+  last_commit: Last Commit

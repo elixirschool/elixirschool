@@ -1,18 +1,16 @@
 ---
-version: 0.9.0
+version: 1.1.0
 title: Fonctions
 ---
 
-En Elixir, comme dans tous les langages fonctionnels, les fonctions sont des citoyens de premier ordre. Nous verrons les différents types de fonctions en
-Elixir, ce qui les rend différentes et comment les utiliser.
+En Elixir, comme dans tous les langages fonctionnels, les fonctions sont des citoyens de premier ordre. Nous verrons les différents types de fonctions en Elixir, ce qui les rend différentes et comment les utiliser.
 
 {% include toc.html %}
 
 ## Fonctions anonymes
 
-Tout comme leur nom le sous-entend, les fonctions anonymes n'ont pas de nom. Tel que nous l'avons vu dans la leçon `Enum`, elles sont fréquemment passées à
-d'autres fonctions. Pour définir une fonction anonyme en Elixir, nous avons besoin des mot-clés `fn` et `end`, à l'intérieur desquels nous pouvons définir
-n'importe quel nombre de paramètres et de corps de fonction, séparés par `->`.
+Tout comme l'appellation le sous-entend, les fonctions anonymes n'ont pas de nom. Comme nous l'avons vu dans la leçon `Enum`, elles sont fréquemment passées à d'autres fonctions. Pour définir une fonction anonyme en Elixir, nous avons besoin des mot-clés `fn` et `end`, à l'intérieur desquels nous pouvons définir n'importe quel nombre de paramètres et de corps de fonction, séparés par `->`.
+
 Jetons un coup d'œil à cet exemple :
 
 ```elixir
@@ -31,7 +29,7 @@ iex> sum.(2, 3)
 5
 ```
 
-Comme vous avez peut-être déjà deviné, dans la version raccourcie nos paramètres sont disponibles en tant que `&1`, `&2`, `&3`, etc.
+Comme vous l'avez peut-être déjà deviné, dans la version raccourcie nos paramètres sont disponibles en tant que `&1`, `&2`, `&3`, etc.
 
 ## Pattern matching
 
@@ -56,8 +54,7 @@ An error has occurred!
 
 ## Fonctions nommées
 
-Nous pouvons définir des fonctions nommées que nous pouvons appeler plus tard. Ces fonctions sont définies avec le mot-clé `def` au sein d'un
-module. Nous en apprendrons plus au sujet des Modules dans les prochaines leçons. Pour l'instant, concentrons-nous seulement sur les fonctions nommées.
+Nous pouvons définir des fonctions nommées que nous pouvons appeler plus tard. Ces fonctions sont définies avec le mot-clé `def` au sein d'un module. Nous en apprendrons plus au sujet des Modules dans les prochaines leçons. Pour l'instant, concentrons-nous seulement sur les fonctions nommées.
 
 Les fonctions définies au sein d'un module sont utilisables par les autres modules, et c'est un élément de langage particulièrement utile en Elixir.
 
@@ -94,9 +91,30 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
+### Nommage de Fonctions et Arité
+
+Nous avons mentionné précédemment que les fonctions sont nommées par la combinaison de leur nom donné et de leur arité (nombre d'arguments). Ce qui signifie que l'on peut par exemple faire ceci:
+
+```elixir
+defmodule Greeter2 do
+  def hello(), do: "Hello, anonymous person!"   # hello/0
+  def hello(name), do: "Hello, " <> name        # hello/1
+  def hello(name1, name2), do: "Hello, #{name1} and #{name2}"
+                                                # hello/2
+end
+
+iex> Greeter2.hello()
+"Hello, anonymous person!"
+iex> Greeter2.hello("Fred")
+"Hello, Fred"
+iex> Greeter2.hello("Fred", "Jane")
+"Hello, Fred and Jane"
+```
+
+La première implémentation ne prend pas d'arguments, donc son nom sera `hello/0`; la seconde prend un argument et donc sera nommée `hello/1`, et ainsi de suite. Contrairement à la surcharge de fonctions dans d'autres langages, ces fonctions sont considérées _différentes_ les unes des autres. (Le pattern matching, que l'on vient de décrire, ne s'applique que quand de multiples définitions sont données pour le _même_ nombre d'arguments.)
+
 ### Fonctions privées
-Lorsque nous ne voulons pas que d'autres modules aient accès à nos fonctions, nous pouvons utiliser des fonctions privées, qui sont seulement disponibles
-au sein de leur propre module. Elles sont définies avec le mot-clé `defp` :
+Lorsque nous ne voulons pas que d'autres modules aient accès à nos fonctions, nous pouvons utiliser des fonctions privées, qui sont seulement disponibles au sein de leur propre module. Elles sont définies avec le mot-clé `defp` :
 
 ```elixir
 defmodule Greeter do
@@ -108,18 +126,16 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 
 iex> Greeter.phrase
-** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
     Greeter.phrase()
 ```
 
-### Guards
+### Guards (Gardes)
 
-Nous avons brièvement couvert les guards (prosaïquement traduit par « gardes » dans <u>Programmer en Erlang</u>, Pearson, 2010) dans la leçon sur les
-[Structures de contrôle](../control-structures).
-Nous allons à présent voir comment nous pouvons les appliquer aux fonctions.
+Nous avons brièvement couvert les guards (prosaïquement traduit par « gardes » dans <u>Programmer en Erlang</u>, Pearson, 2010) dans la leçon sur les [Structures de contrôle](../control-structures).
+Nous allons à présent voir comment nous pouvons les appliquer aux fonctions. Dès lors qu'Elixir a trouvé une correspondance sur un nom de fonction, toutes les guards seront testées.
 
-L'exemple ci-dessous contient deux fonctions avec la même signature. Nous allons nous servir des guards pour déterminer laquelle des deux utiliser, en
-nous basant sur le type des arguments :
+L'exemple ci-dessous contient deux fonctions avec la même signature. Nous allons nous servir des guards pour déterminer laquelle des deux utiliser, en nous basant sur le type des arguments :
 
 
 ```elixir
@@ -183,15 +199,27 @@ defmodule Greeter do
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+
+    def foo(:first_clause, b \\ :default) do ... end
+    def foo(:second_clause, b) do ... end
+
+one should write:
+
+    def foo(a, b \\ :default)
+    def foo(:first_clause, b) do ... end
+    def foo(:second_clause, b) do ... end
+
+def hello/2 has multiple clauses and defines defaults in one or more clauses
+    iex:31: (module)
 ```
 
-Elixir n'aime pas les arguments par défaut dans les fonctions avec plusieurs matchs, ça peut être déroutant. Pour gérer ceci, nous ajoutons une tête de fonction avec nos
-arguments par défaut :
+Elixir n'aime pas les arguments par défaut dans les fonctions avec plusieurs matchs, ça peut être déroutant. Pour gérer ceci, nous ajoutons une tête de fonction avec nos arguments par défaut :
 
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

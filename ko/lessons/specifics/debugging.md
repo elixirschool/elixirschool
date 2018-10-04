@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: 디버깅
 ---
 
@@ -9,7 +9,7 @@ title: 디버깅
 
 # Dialyxir와 Dialyzer
 
-[Dialyzer](http://erlang.org/doc/man/dialyzer.html), 얼랭 프로그램을 위한 모순 분석기(**DI**screpancy **A**nal**YZ**er for **ER**lang programs)는 정적 코드 분석을 위한 도구입니다. 말하자면 코드를 _읽지만_  코드를 _실행해서_ 분석하지는 않습니다. 버그나, 죽어있거나 사용하지 않거나, 도달할 수 없는 코드를 찾습니다.
+[Dialyzer](http://erlang.org/doc/man/dialyzer.html), 얼랭 프로그램을 위한 모순 분석기(**DI**screpancy **A**na**LYZ**er for **ER**lang programs)는 정적 코드 분석을 위한 도구입니다. 말하자면 코드를 _읽지만_  코드를 _실행해서_ 분석하지는 않습니다. 버그나, 죽어있거나 사용하지 않거나, 도달할 수 없는 코드를 찾습니다.
 
 [Dialyxir](https://github.com/jeremyjh/dialyxir)는 Elixir에서 Dialyzer를 간편히 사용하기 위한 mix 테스크입니다.
 
@@ -64,10 +64,10 @@ Dialyzer의 메세지는 명확합니다. `sum_times/1`함수의 반환값이 �
 ```elixir
 @spec sum_times(integer) :: integer
 def sum_times(a) do
-    [1, 2, 3]
-    |> Enum.map(fn el -> el * a end)
-    |> Enum.sum
-    |> round
+  [1, 2, 3]
+  |> Enum.map(fn el -> el * a end)
+  |> Enum.sum()
+  |> round
 end
 ```
 
@@ -90,7 +90,6 @@ done (passed successfully)
 
 ```elixir
 defmodule Example do
-
   def cpu_burns(a, b, c) do
     x = a * 2
     y = b * 3
@@ -98,7 +97,6 @@ defmodule Example do
 
     x + y + z
   end
-
 end
 ```
 
@@ -134,11 +132,11 @@ iex > :int.ni(Example)
 
 디버거를 시작하면 이런 창을 볼 수 있습니다.
 
-![Debugger Screenshot 1]({{ site.url }}/assets/debugger_1.png)
+![Debugger Screenshot 1]({% asset_path "debugger_1.png" %})
 
 모듈을 디버거에 붙인 다음 왼쪽에 있는 메뉴에서 사용 가능합니다.
 
-![Debugger Screenshot 2]({{ site.url }}/assets/debugger_2.png)
+![Debugger Screenshot 2]({% asset_path "debugger_2.png" %})
 
 ## 브레이크 포인트 만들기
 
@@ -162,11 +160,11 @@ iex > Example.cpu_burns(1, 1, 1)
 
 실행은 IEx에서 멈추고 이런 디버거 화면이 보일 것입니다.
 
-![Debugger Screenshot 3]({{ site.url }}/assets/debugger_3.png)
+![Debugger Screenshot 3]({% asset_path "debugger_3.png" %})
 
 그리고 창이 하나 더 열리고 소스 코드가 나타날 것입니다.
 
-![Debugger Screenshot 4]({{ site.url }}/assets/debugger_4.png)
+![Debugger Screenshot 4]({% asset_path "debugger_4.png" %})
 
 이 창에서는 변수의 값을 볼 수 있고, 다음 줄로 넘어가거나 식을 평가해볼 수 있습니다. `:int.disable_break/2`로 브레이크 포인트를 비활성화 할 수 있습니다.
 

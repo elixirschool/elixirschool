@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.1.1
 title: Supervisores OTP
 ---
 
@@ -11,25 +11,56 @@ Supervisores são processos especializados com um propósito: monitorar outros p
 
 A magia de Supervisores está na função `Supervisor.start_link/2`. Além de iniciar nosso supervisor e filhos, nos permite definir a estratégia que nosso supervisor irá usar para gerenciar os processos filhos.
 
-Filhos são definidos usando uma lista e a função `worker/3` que nós importamos de `Supervisor.Spec`. A função `worker/3` pega um módulo, argumentos e um conjunto de opções. Por baixo dos panos, `worker/3` chama `start_link/3` com nossos argumentos durante a inicialização.
-
 Usando o SimpleQueue da lição [OTP Concurrency](../../advanced/otp-concurrency) vamos começar:
 
+Crie um novo projeto usando `mix new simple_queue --sup` para criar uma nova árvore de supervisão. O código para o módulo `SimpleQueue` deve ir em `lib/simple_queue.ex` e o código do supervisor que nós vamos adicionar vai em `lib/simple_queue/application.ex`
+
+Filhos são definidos usando uma lista, pode ser uma lista com nome de módulos:
+
 ```elixir
-import Supervisor.Spec
+defmodule SimpleQueue.Application do
+  use Application
 
-children = [
-  worker(SimpleQueue, [], [name: SimpleQueue])
-]
+  def start(_type, _args) do
+    children = [
+      SimpleQueue
+    ]
 
-{:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
+    opts = [strategy: :one_for_one, name: SimpleQueue.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end
 ```
 
-Se o nosso processo fosse falhar ou ser encerrado, nosso Supervisor iria automaticamente reiniciar este processo como se nada tivesse acontecido.
+ou uma lista de tuplas se você deseja incluir opções de configuração:
+
+```elixir
+defmodule SimpleQueue.Application do
+  use Application
+
+  def start(_type, _args) do
+    children = [
+      {SimpleQueue, [1, 2, 3]}
+    ]
+
+    opts = [strategy: :one_for_one, name: SimpleQueue.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end
+```
+
+Se nós rodarmos `iex -S mix` nós vamos ver que nosso `SimpleQueue` é automaticamente iniciado:
+
+```elixir
+iex> SimpleQueue.queue
+[1, 2, 3]
+```
+
+Se o nosso `SimpleQueue` fosse falhar ou ser encerrado, nosso Supervisor iria automaticamente reiniciar este processo como se nada tivesse acontecido.
 
 ### Estratégias
 
-Atualmente, existem quatro estratégias diferentes de reinicialização disponíveis aos supervisores:
+Atualmente, existem três estratégias diferentes de reinicialização disponíveis aos supervisores:
 
 + `:one_for_one` - Apenas reinicia os processos filhos que falharem.
 
@@ -37,40 +68,82 @@ Atualmente, existem quatro estratégias diferentes de reinicialização disponí
 
 + `:rest_for_one` - Reinicia o processo que falhou e qualquer processo que começou depois deste.
 
-+ `:simple_one_for_one` - O melhor para processos filhos dinamicamente adicionados. É requerido que o Supervisor.Spec tenha apenas um filho, mas este filho pode ser gerado múltiplas vezes. Esta estratégia se destina a ser usada quando precisamos dinamicamente iniciar ou parar filhos supervisionados.
+## Especificação dos filhos
 
-### Nesting
-
-Além de processos de trabalho também podemos supervisionar surpevisores para criar uma árvore de supervisores. A única diferença para nós é trocar `supervisor/3` por `worker/3`.
+Depois que o supervisor iniciou, ele deve saber como iniciar/parar/reiniciar seus filhos. Cada módulo filho deve ter uma função `child_spec/2` para definir esses comportamentos. Os macros `use GenServer`, `use Supervisor` e `use Agent` automaticamente definem esse método para nós (`SimpleQueue` usa `use GenServer`, então nós não precisamos modificar o módulo), mas se você precisar definir você mesmo `child_spec/1` deve return um map de opções:
 
 ```elixir
-import Supervisor.Spec
+def child_spec(opts) do
+  %{
+    id: SimpleQueue,
+    start: {__MODULE__, :start_link, [opts]}
+    shutdown: 5_000
+    restart: :permanent
+    type: :worker
+  }
+end
+```
 
-children = [
-  supervisor(ExampleApp.ConnectionSupervisor, [[name: ExampleApp.ConnectionSupervisor]]),
-  worker(SimpleQueue, [[], [name: SimpleQueue]])
++ `id` - Chave obrigatória. Usada pelo supervisor para identificar a especificação do filho.
+
++ `start` - Chave obrigatória. O Módulo/Função/Argumentos para chamar quando iniciar o supervisor.
+
++ `shutdown` - Chave opcional. Define o comportamento di filho durante o desligamento. Opções são:
+
+  + `:brutal_kill` - O filho é parado imediatamente.
+
+  + qualquer inteiro positivo - tempo em milisegundos que o supervisor vai esperar antes de matar o processo filho. Se o processo é do tipo `:worker`, esse valor é por padrão 5000.
+
+  + `:infinity` - O Supervisor vai esperar indefinidamente antes de matar o processo filho. Padrão para processos do tipo `:supervisor`. Não recomendado para o tipo `:worker`.
+
++ `restart` - Chave opcional. Há várias abordagens para lidar com a quebra de processos filhos:
+
+  + `:permanent` - O processo filho é sempre reiniciado. Padrão para todos os processos
+
+  + `:temporary` - O processo filho nunca é reiniciado.
+
+  + `:transient` - O processo filho é reiniciado se ele termina de maneira anormal.
+
++ `type` - Chave opcional. Processos podem  ser `:worker` ou `:supervisor`. Por padrão é `:worker`.
+
+## DynamicSupervisor
+
+Supervisores normalmente começam com uma lista de filhos para iniciar quando a aplicação inicia. No entanto, às vezes os filhos supervisionados não vão ser conhecidos quando a aplicação inicia (por exemplo, nós podemos tem uma aplicação web que inicia um processo para lidar com a conexão de um usuário em nosso site). Para esses caso nós vamos querer um supervisor que os filhos podem ser iniciados sob demanda. O DynamicSupervisor é usado para lidar com esse caso.
+
+Já nós não vamos especificar os filhos, nós precisamos apenas definir as opções de tempo de execução do supervisor. O DynamicSupervisor suporta apenas a estratégia de supervisão `:one_for_one`:
+
+```elixir
+options = [
+  name: SimpleQueue.Supervisor,
+  strategy: :one_for_one
 ]
 
-{:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
+DynamicSupervisor.start_link(options)
+```
+
+Então, para iniciar um novo SimpleQueue dinamicamente nós vamos usar `start_child/2` que receve um supervisor e a especificação do filho (de novo, `SimpleQueue` usa `use GenServer` então a especificação do filho já é definida):
+
+```elixir
+{:ok, pid} = DynamicSupervisor.start_child(SimpleQueue.Supervisor, SimpleQueue)
 ```
 
 ## Supervisor de tarefas
 
-Tarefas têm o seu próprio Supervisor especializado, o `Task.Supervisor`. Projetado para tarefas criadas dinamicamente. O supervisor usa `:simple_one_for_one` por debaixo dos panos.
+Tarefas têm o seu próprio Supervisor especializado, o `Task.Supervisor`. Projetado para tarefas criadas dinamicamente, o supervisor usa `DynamicSupervisor` por debaixo dos panos.
 
 ### Instalação
 
 Incluir o `Task.Supervisor` não é diferente de outros supervisores:
 
 ```elixir
-import Supervisor.Spec
-
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]]),
+  {Task.Supervisor, name: ExampleApp.TaskSupervisor, restart: :transient}
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
+
+A maior diferença entre `Supervisor` e `Task.Supervisor` é que a estratégia de reinício padrão é `:temporary` (tarefas nunca irão ser reinicidas).
 
 ### Tarefas Supervisionadas
 

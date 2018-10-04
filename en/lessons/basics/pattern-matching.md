@@ -1,11 +1,9 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Pattern Matching
-redirect_from:
-  - /lessons/basics/pattern-matching/
 ---
 
-Pattern matching is a powerful part of Elixir.  It allows us to match simple values, data structures, and even functions.  In this lesson we will begin to see how pattern matching is used.
+Pattern matching is a powerful part of Elixir. It allows us to match simple values, data structures, and even functions.  In this lesson we will begin to see how pattern matching is used.
 
 {% include toc.html %}
 
@@ -97,4 +95,8 @@ iex> greet.("Hello", "Sean")
 "Hi Sean"
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
+iex> greeting
+"Hello"
 ```
+
+Note in the `"Mornin'"` example that the reassignment of `greeting` to `"Mornin'"` only happens inside the function. Outside of the function `greeting` is still `"Hello"`.

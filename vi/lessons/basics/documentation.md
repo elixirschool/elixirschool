@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Documentation
 ---
 
@@ -25,7 +25,7 @@ Ví dụ:
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum.")
 ```
 
 Elixir khi chạy đoạn script trên sẽ bỏ qua tất cả những đoạn code trong dòng bắt đầu từ `#`, coi chúng như là những dữ liệu được bỏ đi. Inline comment không thêm bất cứ giá trị nào vào hoạt động và tốc độ của đoạn script, tuy nhiên khi mà đoạn code bạn viết không thể hiện rõ những gì nó chạy, lập trình viên có thể biết thông qua việc đọc comment của bạn. Tuy nhiên, không nên lạm dụng inline comment. Comment bừa bãi có thể khiến codebase trở thành ác mộng. Nó nên được sử dụng tốt nhất trong chừng mực.
@@ -87,7 +87,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -180,10 +180,9 @@ Examples
 Giả sử rằng tất cả mọi việc đều tốt đẹp, chúng ta sẽ thấy output như trên thông báo rằng chúng ta đã sẵn sàng để cài đặt ExDoc. Trong file `mix.exs`, chúng ta thêm 2 phụ thuộc khác để bắt đầu: `:earmark` và `:ex_doc`.
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Chúng ta xác định `only: :dev` vì chúng ta không muốn phải tải và biên dịch những phụ thuộc này trên môi trường production. Nhưng Earmakr là cái gì? Earmark là một một bộ parser Markdown cho ngôn ngữ Elixir mà ExDoc sử dụng để biến tài liệu trong `@moduledoc` và `@doc` thành những HTML đẹp đẽ.
@@ -205,11 +204,11 @@ View them at "doc/index.html".
 
 Hy vọng rằng, mọi thứ vẫn như kế hoạch, bạn có thể thấy những nội dung tương tự như ví dụ ở trên. Hãy cùng xem xét ở bên trong dự án Mix của chúng ta, và chúng ta sẽ thấy một thư mục được tạo ở gọi là **doc/**. Trong thư mục này chính là các tài liệu được sinh ra. Nếu chúng ta mở trang index bằng trình duyệt, chúng ta có thể thấy:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Chúng ta thấy Earmark đã hiển thị markdown, và ExDoc dưới định khác tốt hơn.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Giờ đây chúng ta có thể triển khai dự án này lên Github, hoặc phổ biến hơn là [HexDocs](https://hexdocs.pm/).
 
@@ -248,7 +247,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -267,7 +266,7 @@ defmodule Greeter do
   # and so on...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -296,7 +295,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end

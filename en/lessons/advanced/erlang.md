@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Erlang Interoperability
-redirect_from:
-  - /lessons/advanced/erlang/
 ---
 
 One of the added benefits to building on top of the Erlang VM (BEAM) is the plethora of existing libraries available to us.  Interoperability allows us to leverage those libraries and the Erlang standard lib from our Elixir code.  In this lesson we'll look at how to access functionality in the standard lib along with third-party Erlang packages.
@@ -19,13 +17,13 @@ Let's use `:timer.tc` to time execution of a given function:
 defmodule Example do
   def timed(fun, args) do
     {time, result} = :timer.tc(fun, args)
-    IO.puts "Time: #{time}ms"
-    IO.puts "Result: #{result}"
+    IO.puts("Time: #{time} μs")
+    IO.puts("Result: #{result}")
   end
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Time: 8ms
+Time: 8 μs
 Result: 1000000
 ```
 
@@ -44,10 +42,8 @@ end
 Now we can access our Erlang library:
 
 ```elixir
-png = :png.create(%{:size => {30, 30},
-                    :mode => {:indexed, 8},
-                    :file => file,
-                    :palette => palette})
+png =
+  :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
 ## Notable Differences
@@ -105,9 +101,18 @@ It's important to note that many older Erlang libraries may not support binaries
 ```elixir
 iex> :string.words("Hello World")
 ** (FunctionClauseError) no function clause matching in :string.strip_left/2
-    (stdlib) string.erl:380: :string.strip_left("Hello World", 32)
-    (stdlib) string.erl:378: :string.strip/3
-    (stdlib) string.erl:316: :string.words/2
+
+    The following arguments were given to :string.strip_left/2:
+
+        # 1
+        "Hello World"
+
+        # 2
+        32
+
+    (stdlib) string.erl:1661: :string.strip_left/2
+    (stdlib) string.erl:1659: :string.strip/3
+    (stdlib) string.erl:1597: :string.words/2
 
 iex> "Hello World" |> to_charlist |> :string.words
 2

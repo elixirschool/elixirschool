@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Pipe Operator
-redirect_from:
-  - /lessons/basics/pipe-operator/
 ---
 
 The pipe operator `|>` passes the result of an expression as the first parameter of another expression.
@@ -32,14 +30,14 @@ For this set of examples, we will use Elixir's String module.
 - Tokenize String (loosely)
 
 ```elixir
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Uppercase all the tokens
 
 ```elixir
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 
@@ -52,7 +50,7 @@ true
 
 ## Best Practices
 
-If the arity of a function is more than 1, then make sure to use parentheses. This doesn't matter much to the Elixir, but it matters to other programmers who may misinterpret your code. It does matter with the pipe operator though. For example, if we take our third example, and remove the parentheses from `String.ends_with?/2`, we are met with the following warning.
+If the arity of a function is more than 1, then make sure to use parentheses. This doesn't matter much to Elixir, but it matters to other programmers who may misinterpret your code. It does matter with the pipe operator though. For example, if we take our third example, and remove the parentheses from `String.ends_with?/2`, we are met with the following warning.
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"

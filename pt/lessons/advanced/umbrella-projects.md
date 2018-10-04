@@ -1,9 +1,9 @@
 ---
-version: 0.9.0
+version: 1.0.1
 title: Projetos Guarda-chuva
 ---
 
-Determinados momentos um projeto pode ficar enorme, realmente enorme. A ferramenta de construção Mix nos permite dividir nosso código em vários aplicativos e fazer nossos projetos em Elixir mais manejáveis à medida que crescem.
+Em determinados momentos um projeto pode ficar enorme, realmente enorme. A ferramenta de construção Mix nos permite dividir nosso código em vários aplicativos e fazer nossos projetos em Elixir mais manejáveis à medida que crescem.
 
 {% include toc.html %}
 
@@ -37,11 +37,11 @@ for each application in the apps/ directory.
 
 Como você pode ver a partir do comando Mix no shell, foi criado um pequeno projeto de esqueleto para nós com dois diretórios:
 
-  - `apps/` - onde nossos sub-projetos (filho) ficará
+  - `apps/` - onde nossos sub-projetos (filhos) ficarão
   - `config/` - onde a nossa configuração dos  projetos guarda-chuva permanecerá
 
 
-## Projetos filho
+## Projetos filhos
 
 Vamos mudar para o diretório de projetos `machine_learning_toolkit/apps` e criar 3 aplicações normais usando Mix desta forma:
 
@@ -153,7 +153,7 @@ $ tree
 └── mix.exs
 ```
 
-Se voltarmos para raíz do projeto guarda-chuva, vemos que podemos chamar todos os comandos típicos, tais como o de compilação. Como os sub-projetos são apenas aplicações normais, você pode entrar nos diretórios e fazer todas as mesmas coisas usuais que o Mix permite fazer.
+Se voltarmos para raíz do projeto guarda-chuva, vemos que podemos chamar todos os comandos típicos, tais como o de compilação. Como os sub-projetos são apenas aplicações normais, você pode entrar nos diretórios e fazer todas as mesmas coisas que usualmente o Mix permite fazer.
 
 ```bash
 $ mix compile
@@ -185,7 +185,7 @@ Você pode pensar que a interação com os aplicativos poderia ser um pouco dife
 ```elixir
 defmodule Datasets do
   def hello do
-    IO.puts "Hello, I'm the datasets"
+    IO.puts("Hello, I'm the datasets")
   end
 end
 ```

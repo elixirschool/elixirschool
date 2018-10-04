@@ -1,8 +1,6 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Control Structures
-redirect_from:
-  - /lessons/basics/control-structures/
 ---
 
 In this lesson we will look at the control structures available to us in Elixir.
@@ -11,7 +9,7 @@ In this lesson we will look at the control structures available to us in Elixir.
 
 ## `if` and `unless`
 
-Chances are you've encountered `if/2` before, and if you've used Ruby you're familiar with `unless/2`.  In Elixir they work much the same way but they are defined as macros, not language constructs; You can find their implementation in the [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
+Chances are you've encountered `if/2` before, and if you've used Ruby you're familiar with `unless/2`.  In Elixir they work much the same way but they are defined as macros, not language constructs. You can find their implementation in the [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
 
 It should be noted that in Elixir, the only falsey values are `nil` and the boolean `false`.
 
@@ -82,7 +80,7 @@ iex> case "cherry pie" do
 
 Another neat feature of `case/2` is its support for guard clauses:
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) guide._
+_This example comes directly from the official Elixir [Getting Started](https://elixir-lang.org/getting-started/case-cond-and-if.html#case) guide._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -94,13 +92,13 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Check the official docs for [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Check the official docs for [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 ## `cond`
 
 When we need to match conditions rather than values we can turn to `cond/1`; this is akin to `else if` or `elsif` from other languages:
 
-_This example comes directly from the official Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
+_This example comes directly from the official Elixir [Getting Started](https://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
 
 ```elixir
 iex> cond do
@@ -157,12 +155,16 @@ Now let's look at a larger example without `with/1` and then see how we can refa
 ```elixir
 case Repo.insert(changeset) do
   {:ok, user} ->
-    case Guardian.encode_and_sign(resource, :token, claims) do
+    case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, token, full_claims} ->
         important_stuff(token, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -170,7 +172,7 @@ When we introduce `with/1` we end up with code that is easy to understand and ha
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token) do
+     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token, claims) do
   important_stuff(token, full_claims)
 end
 ```
@@ -185,15 +187,16 @@ m = %{a: 1, c: 3}
 
 a =
   with {:ok, number} <- Map.fetch(m, :a),
-    true <- Integer.is_even(number) do
+    true <- is_even(number) do
       IO.puts "#{number} divided by 2 is #{div(number, 2)}"
       :even
   else
     :error ->
-      IO.puts "We don't have this item in map"
+      IO.puts("We don't have this item in map")
       :error
+
     _ ->
-      IO.puts "It is odd"
+      IO.puts("It is odd")
       :odd
   end
 ```

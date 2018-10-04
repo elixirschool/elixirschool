@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Βασικά
 ---
 
@@ -16,7 +16,7 @@ title: Βασικά
 Αφού εγκαταστήσετε την Elixir, μπορείτε έυκολα να επιβεβαιώσετε την εγκαταστημένη έκδοση.
 
     % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
@@ -26,7 +26,7 @@ title: Βασικά
 
 Για να ξεκινήσουμε, ας γράψουμε `iex`:
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
@@ -34,8 +34,7 @@ title: Βασικά
 Ας προχωρήσουμε τις δοκιμές μας γράφοντας μερικές απλές εκφράσεις:
 
 ```elixir
-iex>
-2+3
+iex> 2+3
 5
 iex> 2+3 == 5
 true
@@ -196,7 +195,7 @@ iex> !false
 true
 ```
 
-Υπάρχουν τρεις πρόσθετοι τελεστές το πρώτο όρισμα των οποίων πρέπει να είναι δυαδικός (`true` και `false`):
+Υπάρχουν τρεις πρόσθετοι τελεστές το πρώτο όρισμα των οποίων _πρέπει_ να είναι δυαδικός (`true` και `false`):
 
 ```elixir
 iex> true and 42
@@ -238,7 +237,7 @@ false
 Ένα σημαντικό χαρακτηριστικό της Elixir είναι ότι οποιοιδήποτε δύο τύποι μπορούν να συγκριθούν, το οποίο είναι πολύ χρήσιμο στις ταξινομήσεις.  Δεν χρειάζεται να αποστηθίσουμε την σειρά ταξινόμησης, αλλά είναι σημαντικό να την γνωρίζουμε:
 
 ```elixir
-αριθμός < άτομο < αναφορά < θύρα < pid < tuple < χάρτης < λίστα < bitstring
+αριθμός < άτομο < αναφορά < συνάρτηση < θύρα < pid < tuple < χάρτης < λίστα < bitstring
 ```
 
 Αυτό μπορεί να οδηγήσει σε μερικές ενδιαφέρουσες, αλλά ισχύουσες, συγκρίσεις τις οποίες μπορεί να μην βρείτε σε άλλες γλώσσες:

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Обработка ошибок
 ---
 
@@ -45,10 +45,10 @@ An error occurred: Oh no!
 try do
   opts
   |> Keyword.fetch!(:source_file)
-  |> File.read!
+  |> File.read!()
 rescue
-  e in KeyError -> IO.puts "missing :source_file option"
-  e in File.Error -> IO.puts "unable to read source file"
+  e in KeyError -> IO.puts("missing :source_file option")
+  e in File.Error -> IO.puts("unable to read source file")
 end
 ```
 
@@ -72,11 +72,12 @@ The end!
 Обычно это используется с файлами или соединениями, которые должны быть закрыты:
 
 ```elixir
-{:ok, file} = File.open "example.json"
+{:ok, file} = File.open("example.json")
+
 try do
-   # Делаем что-нибудь опасное
+  # Делаем что-нибудь опасное
 after
-   File.close(file)
+  File.close(file)
 end
 ```
 
@@ -134,7 +135,7 @@ iex> try do
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 Несмотря на то, что можно отлавливать выход с помощью `try/catch`, так делают _очень_ редко.  Почти во всех случаях выгоднее оставить обработку выхода из процесса супервизору:

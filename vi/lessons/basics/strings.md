@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Strings
 ---
 
@@ -120,9 +120,9 @@ defmodule Anagram do
 
   def sort_string(string) do
     string
-    |> String.downcase
-    |> String.graphemes
-    |> Enum.sort
+    |> String.downcase()
+    |> String.graphemes()
+    |> Enum.sort()
   end
 end
 ```
@@ -142,7 +142,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 Như bạn thấy, lần gọi cuối cùng của `anagrams?` văng lỗi FunctionClauseError. Lỗi này có nghĩa là không có hàm trong module của chúng ta thỏa điều kiện hai tham số không phải binary, đó chính là thứ mà ta cần: chỉ nhận hai string mà không phải thứ gì khác.

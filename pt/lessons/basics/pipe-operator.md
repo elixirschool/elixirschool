@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.1
 title: Operador Pipe
 ---
 
@@ -30,14 +30,14 @@ Por este conjunto de exemplos, nós iremos usar o módulo String de Elixir.
 - Tokenize String (vagamente)
 
 ```shell
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Converte palavras para letras maiúsculas
 
 ```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 
@@ -50,7 +50,7 @@ true
 
 ## Boas Práticas
 
-Se a aridade de uma função é mais do que 1, certifique-se de usar parêntesis. Isso não importa muito para Elixir, porém é importante para outros programadores que podem interpretar mal o seu código. Se tomarmos o nosso terceiro exemplo, e retirar os suportes do `String.ends_with?/2`, nos encontramos com o seguinte aviso:
+Se a aridade de uma função é mais do que 1, certifique-se de usar parêntesis. Isso não importa muito para Elixir, porém é importante para outros programadores que podem interpretar mal o seu código. Mas ainda assim, a ordem é importante com o operador pipe. Se tomarmos o nosso terceiro exemplo, e retirar os parêntesis do `String.ends_with?/2`, nos encontramos com o seguinte aviso:
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"

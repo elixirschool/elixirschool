@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Współbieżność
 ---
 
@@ -45,8 +45,9 @@ Komunikacja pomiędzy procesami bazuje na wymianie komunikatów. Istnieją dwa g
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
+
     listen
   end
 end
@@ -77,7 +78,7 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
 Czasami nie chcemy by awaria jednego procesu, spowodowała zamknięcie połączonego z nim innego procesu. Dlatego też musimy przechwycić informacje o zamknięciu. Wynikiem tej operacji jest wiadomość w postaci krotki: `{:EXIT, from_pid, reason}`.
@@ -85,12 +86,13 @@ Czasami nie chcemy by awaria jednego procesu, spowodowała zamknięcie połączo
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -107,11 +109,12 @@ A co jeżeli nie chcemy łączyć procesów, ale chcemy nadal być informowani o
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end

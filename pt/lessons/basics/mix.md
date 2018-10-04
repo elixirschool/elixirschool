@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.1
 title: Mix
 ---
 
@@ -39,16 +39,19 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
@@ -60,6 +63,16 @@ end
 A primeira seção que iremos analisar é `project`. Aqui nós definimos o nome da nossa aplicação (`app`), especificamos nossa versão (`version`), versão do Elixir (`elixir`), e finalmente nossas dependências (`deps`).
 
 A seção `application` é usada durante a geração do nosso arquivo de aplicação que iremos ver em breve.
+
+## Interativo
+
+Pode ser necessário a utilização do `iex` dentro do contexto da nossa aplicação. Felizmente para nós, mix torna isso fácil. Com a nossa aplicação compilada podemos começar uma nova seção `iex`:
+
+```bash
+$ iex -S mix
+```
+
+Iniciando `iex` desta forma , carrega sua aplicação e dependências no atual ambiente de execução.
 
 ## Compilação
 
@@ -79,16 +92,6 @@ Generated example app
 ```
 Quando compilanos um projeto, mix cria um diretório `_build` para os nossos artefatos. Se olharmos dentro de `_build` veremos a aplicação compilada: `example.app`.
 
-## Interativo
-
-Pode ser necessário a utilização do `iex` dentro do contexto da nossa aplicação. Felizmente para nós, mix torna isso fácil. Com a nossa aplicação compilada podemos começar uma nova seção `iex`:
-
-```bash
-$ iex -S mix
-```
-
-Iniciando `iex` desta forma , carrega sua aplicação e dependências no atual ambiente de execução.
-
 ## Gestão de dependências
 
 Nosso projeto não tem nenhuma dependência, mas em breve irá ter, por isso iremos seguir em frente e cobrir a definição e busca de dependências.
@@ -99,10 +102,12 @@ Para este exemplo vamos ver um projeto com dependências, como  [phoenix_slim](h
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 1.1 or ~> 1.2"},
-   {:phoenix_html, "~> 2.3"},
-   {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slime, "~> 0.14"}]
+  [
+    {:phoenix, "~> 1.1 or ~> 1.2"},
+    {:phoenix_html, "~> 2.3"},
+    {:cowboy, "~> 1.0", only: [:dev, :test]},
+    {:slime, "~> 0.14"}
+  ]
 end
 ```
 

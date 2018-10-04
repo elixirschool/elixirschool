@@ -1,11 +1,9 @@
 ---
-version: 1.0.0
+version: 1.1.0
 title: Functions
-redirect_from:
-  - /lessons/basics/functions/
 ---
 
-In Elixir and many functional languages, functions are first class citizens.  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
+In Elixir and many functional languages, functions are first class citizens. We will learn about the types of functions in Elixir, what makes them different, and how to use them.
 
 {% include toc.html %}
 
@@ -37,11 +35,12 @@ As you probably already guessed, in the shorthand version our parameters are ava
 
 Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
 
-Elixir uses pattern matching to identify the first set of parameters which match and invokes the corresponding body:
+Elixir uses pattern matching to check through all possible match options and select the first matching option to run:
 
 ```elixir
 iex> handle_result = fn
 ...>   {:ok, result} -> IO.puts "Handling result..."
+...>   {:ok, _} -> IO.puts "This would be never run as previous will be matched beforehand."
 ...>   {:error} -> IO.puts "An error has occurred!"
 ...> end
 
@@ -120,7 +119,7 @@ When we don't want other modules accessing a specific function we can make the f
 
 ```elixir
 defmodule Greeter do
-  def hello(name), do: phrase <> name
+  def hello(name), do: phrase() <> name
   defp phrase, do: "Hello, "
 end
 
@@ -128,7 +127,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 
 iex> Greeter.phrase
-** (UndefinedFunctionError) undefined function: Greeter.phrase/0
+** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
     Greeter.phrase()
 ```
 
@@ -181,7 +180,7 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-When we combine our guard example with default arguments, we run into an issue.  Let's see what that might look like:
+When we combine our guard example with default arguments, we run into an issue. Let's see what that might look like:
 
 ```elixir
 defmodule Greeter do
@@ -199,14 +198,27 @@ defmodule Greeter do
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+
+    def foo(:first_clause, b \\ :default) do ... end
+    def foo(:second_clause, b) do ... end
+
+one should write:
+
+    def foo(a, b \\ :default)
+    def foo(:first_clause, b) do ... end
+    def foo(:second_clause, b) do ... end
+
+def hello/2 has multiple clauses and defines defaults in one or more clauses
+    iex:31: (module)
 ```
 
-Elixir doesn't like default arguments in multiple matching functions, it can be  confusing.  To handle this we add a function head with our default arguments:
+Elixir doesn't like default arguments in multiple matching functions, it can be confusing.  To handle this we add a function head with our default arguments:
 
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
+
   def hello(names, language_code) when is_list(names) do
     names
     |> Enum.join(", ")

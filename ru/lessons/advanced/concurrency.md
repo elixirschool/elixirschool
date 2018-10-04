@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 title: Параллелизм
 ---
 
@@ -45,7 +45,7 @@ iex> spawn(Example, :add, [2, 3])
 defmodule Example do
   def listen do
     receive do
-      {:ok, "hello"} -> IO.puts "World"
+      {:ok, "hello"} -> IO.puts("World")
     end
 
     listen
@@ -78,20 +78,21 @@ iex> spawn(Example, :explode, [])
 #PID<0.66.0>
 
 iex> spawn_link(Example, :explode, [])
-** (EXIT from #PID<0.57.0>) :kaboom
+** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-Иногда мы не хотим, чтобы связанный процесс завершал текущий.  Для этого нужно перехватывать попытки завершения.  Перехваченные попытки будут получены в виде сообщения-кортежа: `{:EXIT, from_pid, reason}`.
+Иногда мы не хотим, чтобы связанный процесс завершал текущий. Для этого нужно перехватывать попытки завершения с помощью функции `Process.flag/2`. Она использует функцию [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) Erlang с флагом `trap_exit`. Если перехват включён (`trap_exit` равно `true`), перехваченные попытки будут получены в виде сообщения-кортежа: `{:EXIT, from_pid, reason}`.
 
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     Process.flag(:trap_exit, true)
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -108,11 +109,12 @@ Exit reason: kaboom
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
+
   def run do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts "Exit reason: #{reason}"
+      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end

@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Ecto
 ---
 
@@ -13,8 +13,7 @@ Ecto là một dự án chính thức của Elixir cung cấp một database wra
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 2.1.4"},
-   {:postgrex, ">= 0.13.2"}]
+  [{:ecto, "~> 2.1.4"}, {:postgrex, ">= 0.13.2"}]
 end
 ```
 
@@ -28,12 +27,11 @@ end
 
 ### Repository
 
-Trước hết ta cần tạo repository (database wrapper) của dự án bằng cách dùng tác vụ `mix ecto.gen.repo`. Ta sẽ xem các tác vụ của Ecto sau. Repo của chúng ta có thể được tìm thấy ở `lib/<tên project>/repo.ex`
+Trước hết ta cần tạo repository (database wrapper) của dự án bằng cách dùng tác vụ `mix ecto.gen.repo -r ExampleApp.Repo`. Ta sẽ xem các tác vụ của Ecto sau. Repo của chúng ta có thể được tìm thấy ở `lib/<tên project>/repo.ex`
 
 ```elixir
 defmodule ExampleApp.Repo do
-  use Ecto.Repo,
-    otp_app: :example_app
+  use Ecto.Repo, otp_app: :example_app
 end
 ```
 
@@ -100,15 +98,15 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
 
   def change do
     create table(:users) do
-      add :username, :string, unique: true
-      add :encrypted_password, :string, null: false
-      add :email, :string
-      add :confirmed, :boolean, default: false
+      add(:username, :string, unique: true)
+      add(:encrypted_password, :string, null: false)
+      add(:email, :string)
+      add(:confirmed, :boolean, default: false)
 
       timestamps
     end
 
-    create unique_index(:users, [:username], name: :unique_usernames)
+    create(unique_index(:users, [:username], name: :unique_usernames))
   end
 end
 ```
@@ -133,12 +131,12 @@ defmodule ExampleApp.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -171,11 +169,14 @@ Tài liệu chính thức có thể xem tại [Ecto.Query](http://hexdocs.pm/ect
 Ecto cung cấp một DSL tuyệt vời để ta viết truy vấn một các rõ ràng. Để tìm username của tất cả các tài khoản đã xác nhận ta có thể viết như sau:
 
 ```elixir
-alias ExampleApp.{Repo,User}
+alias ExampleApp.{Repo, User}
 
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: u.username
+  )
 
 Repo.all(query)
 ```
@@ -187,17 +188,23 @@ Ngoài `all/2`. Repo còn cung cấp một số hàm callback như `one/2`, `get
 Nếu muốn đếm số người dùng đã xác nhận tài khoản ta có thể dùng `count/1`:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id)
+  )
 ```
 
 Hoặc hàm `count/2` nếu bạn muốn đếm các giá trị riêng biệt trong một tập xác định:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     where: u.confirmed == true,
     select: count(u.id, :distinct)
+  )
 ```
 
 ### Group By
@@ -205,9 +212,12 @@ query = from u in User,
 Để gom các người dùng theo trạng thái xác nhận của họ, ta có thể dùng tùy chọn `group_by`:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     group_by: u.confirmed,
     select: [u.confirmed, count(u.id)]
+  )
 
 Repo.all(query)
 ```
@@ -217,9 +227,12 @@ Repo.all(query)
 Sắp xếp người dùng theo ngày tạo tài khoản của họ:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: u.inserted_at,
     select: [u.username, u.inserted_at]
+  )
 
 Repo.all(query)
 ```
@@ -227,9 +240,12 @@ Repo.all(query)
 Để sắp theo thứ tự từ lớn đến bé:
 
 ```elixir
-query = from u in User,
+query =
+  from(
+    u in User,
     order_by: [desc: u.inserted_at],
     select: [u.username, u.inserted_at]
+  )
 ```
 
 ### Joins
@@ -237,9 +253,12 @@ query = from u in User,
 Ví dụ như ta có bảng Profile liên kết với User, ta hãy tìm tất cả thông tin tài khoản của các tài khoản đã xác nhận:
 
 ```elixir
-query = from p in Profile,
+query =
+  from(
+    p in Profile,
     join: u in assoc(p, :user),
     where: u.confirmed == true
+  )
 ```
 
 ### Fragments
@@ -247,9 +266,12 @@ query = from p in Profile,
 Đôi lúc nếu ta cần các hàm có sẵn trong cơ sở dữ liệu thì các hàm hỗ trợ Query sẽ là không đủ. Hàm `fragment/1` sẽ giúp ta làm điều đó:
 
 ```elixir
-query = from u in User,
-    where: fragment("downcase(?)", u.username) == ^username
+query =
+  from(
+    u in User,
+    where: fragment("downcase(?)", u.username) == ^username,
     select: u
+  )
 ```
 
 Các ví dụ truy vấn khác bạn có thể xem tại [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html).
@@ -269,12 +291,12 @@ defmodule ExampleApp.User do
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
   schema "users" do
-    field :username, :string
-    field :encrypted_password, :string
-    field :email, :string
-    field :confirmed, :boolean, default: false
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:encrypted_password, :string)
+    field(:email, :string)
+    field(:confirmed, :boolean, default: false)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps
   end
@@ -295,6 +317,7 @@ defmodule ExampleApp.User do
     case get_change(changeset, :password_confirmation) do
       nil ->
         password_incorrect_error(changeset)
+
       confirmation ->
         password = get_field(changeset, :password)
         if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
@@ -318,13 +341,17 @@ Ta đã nâng cấp hàm `changeset/2` và thêm vào ba hàm tiện ích: `vali
 Dùng `User.changeset/2` nhìn cũng khá đơn giản:
 
 ```elixir
-alias ExampleApp.{User,Repo}
+alias ExampleApp.{User, Repo}
 
 pw = "passwords should be hard"
-changeset = User.changeset(%User{}, %{username: "doomspork",
-                    email: "sean@seancallan.com",
-                    password: pw,
-                    password_confirmation: pw})
+
+changeset =
+  User.changeset(%User{}, %{
+    username: "doomspork",
+    email: "sean@seancallan.com",
+    password: pw,
+    password_confirmation: pw
+  })
 
 case Repo.insert(changeset) do
   {:ok, model}        -> # Inserted with success

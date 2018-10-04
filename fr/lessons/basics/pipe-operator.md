@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.1
 title: L'opérateur Pipe
 ---
 
@@ -21,7 +21,7 @@ Ici nous passons le résultat de `other_function/0` à `new_function/1`, puis de
 other_function() |> new_function() |> baz() |> bar() |> foo()
 ```
 
-Le pipe prends le résultat à sa gauche et le passe à sa droite.
+Le pipe prend le résultat à sa gauche et le passe à sa droite.
 
 ## Exemples
 
@@ -29,21 +29,21 @@ Nous allons utiliser le module String d'Elixir pour les exemples suivants.
 
 - Segmentation de String
 
-```shell
-iex> "Elixir rocks" |> String.split
+```elixir
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Transformation des tokens en majuscules
 
-```shell
-iex> "Elixir rocks" |> String.upcase |> String.split
+```elixir
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 
 - Vérification de la fin
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```

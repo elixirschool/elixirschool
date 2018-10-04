@@ -23,8 +23,9 @@ keys/1               merge/2              merge/3
 new/0                new/1                new/2
 pop/2                pop/3                pop_lazy/3
 put/3                put_new/3            put_new_lazy/3
-split/2              take/2               to_list/1
-update!/3            update/4             values/1
+replace!/3           replace/3            split/2
+take/2               to_list/1            update!/3
+update/4             values/1
 ```
 
 ### `.iex.exs`
@@ -196,23 +197,6 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
   lib/my_project.ex:1
 
 {:reloaded, MyProject, [MyProject]}
-```
-
-### `s`
-
-`s` দিয়ে আমরা কোন মডিউল অথবা ফাংশনের টাইপ স্পেক সংক্রান্ত তথ্য জানতে পারি। জানতে পারি তারা কি ধরণের ইনপুট আশা করে। 
-
-```elixir
-iex> s Map.merge/2
-@spec merge(map(), map()) :: map()
-
-# it also works on entire modules
-iex> s Map
-@spec get(map(), key(), value()) :: value()
-@spec put(map(), key(), value()) :: map()
-# ...
-@spec get(map(), key()) :: value()
-@spec get_and_update!(map(), key(), (value() -> {get, value()})) :: {get, map()} | no_return() when get: term()
 ```
 
 ### `t`

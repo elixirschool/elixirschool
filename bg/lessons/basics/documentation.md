@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Документация
 ---
 
@@ -83,7 +83,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -180,8 +180,7 @@ Examples
 
 ```elixir
   def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
+    [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
   end
 ```
 
@@ -203,11 +202,11 @@ View them at "doc/index.html".
 
 Ако всичко е минало по план, би трябвало да виждате подобно съобщение, като примера по-горе. Нека погледнем в нашия Mix проект и би трябвало да видим, че има друга директория **doc/**. Вътре е нашата генерирана документация. Ако отворим index страницата в нашия браузър, би трябвало да видим следното:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Можем да видим, че Earmark е конвертирал нашия Markdown и ExDoc го показва в полезен формат.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Сега можем да качим това в Github, нашият website, или [HexDocs](https://hexdocs.pm/).
 
@@ -246,7 +245,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -265,7 +264,7 @@ defmodule Greeter do
   # and so on...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -294,7 +293,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end

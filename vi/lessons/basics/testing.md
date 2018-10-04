@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Testing
 ---
 
@@ -86,7 +86,7 @@ Trong ứng dụng Elixir chứa các actors/processes mà chúng gửi thông �
 ```elixir
 defmodule SendingProcess do
   def run(pid) do
-    send pid, :ping
+    send(pid, :ping)
   end
 end
 
@@ -102,7 +102,7 @@ end
 
 `assert_received` không đợi các thông điệp, với `assert_receive` bạn có thể xác định một khoảng thời gian chờ.
 
-## capture_io and capture_log
+### capture_io and capture_log
 
 Có thể lấy ra output của một ứng dụng với `ExUnit.CaptureIO` mà không cần thay đổi ứng dụng. Đơn giản chỉ cần truyền hàm để sinh output vào:
 
@@ -112,7 +112,7 @@ defmodule OutputTest do
   import ExUnit.CaptureIO
 
   test "outputs Hello World" do
-    assert capture_io(fn -> IO.puts "Hello World" end) == "Hello World\n"
+    assert capture_io(fn -> IO.puts("Hello World") end) == "Hello World\n"
   end
 end
 ```

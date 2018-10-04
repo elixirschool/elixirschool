@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Documentation
 ---
 
@@ -85,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -178,10 +178,9 @@ Examples
 Mengasumsikan bahwa semuanya berjalan baik, dan kita melihat output di atas mengindikasikan bahwa kita siap mensetup ExDoc. Di dalam file `mix.exs` kita tambahkan kedua dependensi yang dibutuhkan untuk memulai; `:earmark` dan `:ex_doc`.
 
 ```elixir
-  def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
-  end
+def deps do
+  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+end
 ```
 
 Kita menspesifikasikan pasangan key-value `only: :dev` karena kita tidak ingin mengunduh dan mengkompilkasi dependensi ini di production. Tapi kenapa Earmark? Earmark adalah sebuah parser Markdown untuk Elixir yang digunakan ExDoc untuk mengubah dokumentasi kita di dalam `@moduledoc` dan `@doc` menjadi HTML yang cantik.
@@ -202,11 +201,11 @@ View them at "doc/index.html".
 
 Jika semuanya berjalan sesuai rencana, anda mestinya melihat pesan serupa dengan output contoh di atas. Mari sekarang lihat ke dalam project Mix kita dan kita mestinya melihat bahwa ada direktori lain bernama **doc/**. Di dalamnya adalah dokumentasi yang kita hasilkan. Jika kita mengunjungi halaman indox di browser kita kita harusnya melihat seperti berikut:
 
-![ExDoc Screenshot 1]({{ site.url }}/assets/documentation_1.png)
+![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
 
 Kita bisa melihat bahwa Earmark telah merender markdown kita dan ExDoc sekarang menampilkannya dalam format yang bagus.
 
-![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
+![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
 
 Kita sekarang bisa mendeploy ke GitHub, website kita sendiri, atau, lebih umum, [HexDocs](https://hexdocs.pm/).
 
@@ -245,7 +244,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -264,7 +263,7 @@ defmodule Greeter do
   # and so on...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -293,7 +292,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end

@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Executables
-redirect_from:
-  - /lessons/advanced/escripts/
 ---
 
 To build executables in Elixir we will be using escript. Escript produces an executable that can be run on any system with Erlang installed.
@@ -28,12 +26,10 @@ Next we need to update our Mixfile to include the `:escript` option for our proj
 ```elixir
 defmodule ExampleApp.Mixfile do
   def project do
-    [app: :example_app,
-     version: "0.0.1",
-     escript: escript]
+    [app: :example_app, version: "0.0.1", escript: escript()]
   end
 
-  def escript do
+  defp escript do
     [main_module: ExampleApp.CLI]
   end
 end
@@ -49,7 +45,7 @@ defmodule ExampleApp.CLI do
     args
     |> parse_args
     |> response
-    |> IO.puts
+    |> IO.puts()
   end
 
   defp parse_args(args) do

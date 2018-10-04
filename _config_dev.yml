@@ -1,6 +1,5 @@
 port: 4001
 url: http://localhost
-og_image: http://localhost:4001/assets/fb_share.jpg
 
 # assets:
 #   compress:

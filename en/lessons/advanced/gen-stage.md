@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.2
 title: GenStage
-redirect_from:
-  - /lessons/advanced/gen-stage/
 ---
 
 In this lesson we're going to take a closer look at the GenStage, what role it serves, and how we can leverage it in our applications.
@@ -57,11 +55,11 @@ $ cd genstage_example
 Let's update our dependencies in `mix.exs` to include `gen_stage`:
 
 ```elixir
-  defp deps do
-    [
-      {:gen_stage, "~> 0.11"},
-    ]
-  end
+defp deps do
+  [
+    {:gen_stage, "~> 0.11"},
+  ]
+end
 ```
 
 We should fetch our dependencies and compile before going much further:
@@ -94,15 +92,15 @@ defmodule GenstageExample.Producer do
   def init(counter), do: {:producer, counter}
 
   def handle_demand(demand, state) do
-    events = Enum.to_list(state..state + demand - 1)
-    {:noreply, events, (state + demand)}
+    events = Enum.to_list(state..(state + demand - 1))
+    {:noreply, events, state + demand}
   end
 end
 ```
 
 The two most important parts to take note of here are `init/1` and `handle_demand/2`.  In `init/1` we set the initial state as we've done in our GenServers, but more importantly we label ourselves as a producer.  The response from our `init/1` function is what GenStage relies upon to classify our process.
 
-The `handle_demand/2` function is where the majority of our producer and must be implemented by all GenStage producers.  Here we return the set of numbers demanded by our consumers and increment our counter.  The demand from consumers, `demand` in our code above, is represented as an integer corresponding to the number of events they can handle; it defaults to 1000.
+The `handle_demand/2` function is where the majority of our producer is defined. It must be implemented by all GenStage producers.  Here we return the set of numbers demanded by our consumers and increment our counter.  The demand from consumers, `demand` in our code above, is represented as an integer corresponding to the number of events they can handle; it defaults to 1000.
 
 ## Producer Consumer
 
@@ -115,7 +113,7 @@ $ touch lib/genstage_example/producer_consumer.ex
 Let's update our file to look like the example code:
 
 ```elixir
-defmodule GenstageExample.ProducerConsumer  do
+defmodule GenstageExample.ProducerConsumer do
   use GenStage
 
   require Integer
@@ -166,7 +164,7 @@ defmodule GenstageExample.Consumer do
 
   def handle_events(events, _from, state) do
     for event <- events do
-      IO.inspect {self(), event, state}
+      IO.inspect({self(), event, state})
     end
 
     # As a consumer we never emit events
@@ -181,7 +179,7 @@ As we covered in the previous section, our consumer does not emit events, so the
 
 Now that we have our producer, producer-consumer, and consumer built, we're ready to wire everything together.
 
-Let's start by opening `lib/genstage_example.ex` and adding our new processes to the supervisor tree:
+Let's start by opening `lib/genstage_example/application.ex` and adding our new processes to the supervisor tree:
 
 ```elixir
 def start(_type, _args) do
@@ -190,7 +188,7 @@ def start(_type, _args) do
   children = [
     worker(GenstageExample.Producer, [0]),
     worker(GenstageExample.ProducerConsumer, []),
-    worker(GenstageExample.Consumer, []),
+    worker(GenstageExample.Consumer, [])
   ]
 
   opts = [strategy: :one_for_one, name: GenstageExample.Supervisor]
@@ -219,14 +217,14 @@ At this point we have a working pipeline.  There is a producer emitting numbers,
 
 We mentioned in the introduction that it was possible to have more than one producer or consumer. Let's take a look at just that.
 
-If we examine the `IO.inspect/1` output from our example we see that every event is handled by a single PID. Let's make some adjustments for multiple workers by modifying `lib/genstage_example.ex`:
+If we examine the `IO.inspect/1` output from our example we see that every event is handled by a single PID. Let's make some adjustments for multiple workers by modifying `lib/genstage_example/application.ex`:
 
 ```elixir
 children = [
   worker(GenstageExample.Producer, [0]),
   worker(GenstageExample.ProducerConsumer, []),
   worker(GenstageExample.Consumer, [], id: 1),
-  worker(GenstageExample.Consumer, [], id: 2),
+  worker(GenstageExample.Consumer, [], id: 2)
 ]
 ```
 

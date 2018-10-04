@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '~> 2.3.7'
 
 gem 'autoprefixer-rails'
 gem 'jekyll'
@@ -11,3 +11,4 @@ gem 'puma'
 gem 'rack-jekyll'
 gem 'rake'
 gem 'sprockets-es6'
+gem 'uglifier'

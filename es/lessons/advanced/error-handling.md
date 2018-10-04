@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Manejo de errores
 ---
 
@@ -45,10 +45,10 @@ Es posible coincidir múltiples errores en un solo `rescue`:
 try do
   opts
   |> Keyword.fetch!(:source_file)
-  |> File.read!
+  |> File.read!()
 rescue
-  e in KeyError -> IO.puts "missing :source_file option"
-  e in File.Error -> IO.puts "unable to read source file"
+  e in KeyError -> IO.puts("missing :source_file option")
+  e in File.Error -> IO.puts("unable to read source file")
 end
 ```
 
@@ -72,11 +72,12 @@ The end!
 Esto es más comúnmente usado con archivos o conexiones que deberían ser cerradas:
 
 ```elixir
-{:ok, file} = File.open "example.json"
+{:ok, file} = File.open("example.json")
+
 try do
-   # Do hazardous work
+  # Do hazardous work
 after
-   File.close(file)
+  File.close(file)
 end
 ```
 
@@ -134,7 +135,7 @@ Para salir de manera explícita podemos usar `exit/1`:
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
-** (EXIT from #PID<0.101.0>) "oh no"
+** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
 Pese a que es posible manejar una salida con `try/catch`, hacerlo es _extremadamente_ raro. En casi todos los casos es ventajoso permitir al supervisor manejar la salida del proceso:

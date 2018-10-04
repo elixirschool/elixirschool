@@ -27,8 +27,9 @@ keys/1               merge/2              merge/3
 new/0                new/1                new/2
 pop/2                pop/3                pop_lazy/3
 put/3                put_new/3            put_new_lazy/3
-split/2              take/2               to_list/1
-update!/3            update/4             values/1
+replace!/3           replace/3            split/2
+take/2               to_list/1            update!/3
+update/4             values/1
 ```
 
 그러면 지금 사용 가능한 함수와 각각의 애리티를 확인할 수 있습니다.
@@ -205,23 +206,6 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
   lib/my_project.ex:1
 
 {:reloaded, MyProject, [MyProject]}
-```
-
-### `s`
-
-`s`를 사용하여 모듈이나 함수의 명세를 확인하고, 이것들이 무엇을 기대하는지 확인할 수 있습니다.
-
-```elixir
-iex> s Map.merge/2
-@spec merge(map(), map()) :: map()
-
-# 이는 모듈에도 동작합니다.
-iex> s Map
-@spec get(map(), key(), value()) :: value()
-@spec put(map(), key(), value()) :: map()
-# ...
-@spec get(map(), key()) :: value()
-@spec get_and_update!(map(), key(), (value() -> {get, value()})) :: {get, map()} | no_return() when get: term()
 ```
 
 ### `t`

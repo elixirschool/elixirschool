@@ -1,8 +1,6 @@
 ---
-version: 1.1.0
+version: 1.3.0
 title: Modules
-redirect_from:
-  - /lessons/basics/modules/
 ---
 
 We know from experience it's unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
@@ -150,7 +148,7 @@ end
 
 ### `import`
 
-If we want to import functions and macros rather than aliasing the module we can use `import/`:
+If we want to import functions rather than aliasing the module we can use `import`:
 
 ```elixir
 iex> last([1, 2, 3])
@@ -195,7 +193,7 @@ import List, only: :macros
 
 ### `require`
 
-Although used less frequently `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
+We could use `require` to tell Elixir you're going to use macros from other module. The slight difference with `import` is that it allows using macros, but not functions from the specified module:
 
 ```elixir
 defmodule Example do
@@ -209,47 +207,70 @@ If we attempt to call a macro that is not yet loaded Elixir will raise an error.
 
 ### `use`
 
-The use macro invokes a special macro, called `__using__/1`, from the specified module. Here’s an example:
+With the `use` macro we can enable another module to modify our current module's definition.
+When we call `use` in our code we're actually invoking the `__using__/1` callback defined by the provided module.
+The result of the `__using__/1` macro becomes part of our module's definition.
+To get a better understanding how this works let's look at a simple example:
 
 ```elixir
-# lib/use_import_require/use_me.ex
-defmodule UseImportRequire.UseMe do
-  defmacro __using__(_) do
+defmodule Hello do
+  defmacro __using__(_opts) do
     quote do
-      def use_test do
-        IO.puts "use_test"
-      end
+      def hello(name), do: "Hi, #{name}"
     end
   end
 end
 ```
 
-and we add this line to UseImportRequire:
+Here we've created a `Hello` module that defines the `__using__/1` callback inside of which we define a `hello/1` function.
+Let's create a new module so we can try out our new code:
 
 ```elixir
-use UseImportRequire.UseMe
+defmodule Example do
+  use Hello
+end
 ```
 
-Using UseImportRequire.UseMe defines a use_test/0 function through invocation of the `__using__/1` macro.
-
-This is all that use does. However, it is common for the `__using__` macro to in turn call alias, require, or import. This in turn will create aliases or imports in the using module. This allows the module being used to define a policy for how its functions and macros should be referenced. This can be quite flexible in that `__using__/1` may set up references to other modules, especially submodules.
-
-The Phoenix framework makes use of use and `__using__/1` to cut down on the need for repetitive alias and import calls in user defined modules.
-
-Here’s an nice and short example from the Ecto.Migration module:
+If we try our code out in IEx we'll see that `hello/1` is available on the `Example` module:
 
 ```elixir
-defmacro __using__(_) do
-  quote location: :keep do
-    import Ecto.Migration
-    @disable_ddl_transaction false
-    @before_compile Ecto.Migration
+iex> Example.hello("Sean")
+"Hi, Sean"
+```
+
+Here we can see that `use` invoked the `__using__/1` callback on `Hello` which in turn added the resulting code to our module.
+Now that we've demonstrated a basic example let's update our code to look at how `__using__/1` supports options.
+We'll do this by adding a `greeting` option:
+
+```elixir
+defmodule Hello do
+  defmacro __using__(opts) do
+    greeting = Keyword.get(opts, :greeting, "Hi")
+
+    quote do
+      def hello(name), do: unquote(greeting) <> ", " <> name
+    end
   end
 end
 ```
 
-The `Ecto.Migration.__using__/1` macro includes an import call so that when you `use Ecto.Migration` you also `import Ecto.Migration`. It also sets up a module property which we will assume controls Ecto’s behavior.
+Let's update our `Example` module to include the newly created `greeting` option:
 
-To recap: the use macro simply invokes the `__using__/1` macro of the specified module. To really understand what that does you need to read the `__using__/1` macro.
+
+```elixir
+defmodule Example do
+  use Hello, greeting: "Hola"
+end
+```
+
+If we give it a try in IEx we should see that the greeting has been changed:
+
+```
+iex> Example.hello("Sean")
+"Hola, Sean"
+```
+
+These are simple examples to demonstrate how `use` works but it is an incredibly powerful tool in the Elixir toolbox.
+As you continue to learn about Elixir keep an eye out for `use`, one example you're sure to see is `use ExUnit.Case, async: true`.
 
 **Note**: `quote`, `alias`, `use`, `require` are a macro used when we work with [metaprogramming](../../advanced/metaprogramming).

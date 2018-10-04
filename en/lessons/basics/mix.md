@@ -1,8 +1,6 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Mix
-redirect_from:
-  - /lessons/basics/mix/
 ---
 
 Before we can dive into the deeper waters of Elixir we first need to learn about Mix. If you're familiar with Ruby, Mix is Bundler, RubyGems, and Rake combined. It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of its great features. To see all that Mix has to offer run `mix help`.
@@ -41,16 +39,19 @@ defmodule Example.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :example,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :example,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
@@ -102,10 +103,12 @@ For this example let's look at a project with dependencies, like [phoenix_slim](
 
 ```elixir
 def deps do
-  [{:phoenix, "~> 1.1 or ~> 1.2"},
-   {:phoenix_html, "~> 2.3"},
-   {:cowboy, "~> 1.0", only: [:dev, :test]},
-   {:slime, "~> 0.14"}]
+  [
+    {:phoenix, "~> 1.1 or ~> 1.2"},
+    {:phoenix_html, "~> 2.3"},
+    {:cowboy, "~> 1.0", only: [:dev, :test]},
+    {:slime, "~> 0.14"}
+  ]
 end
 ```
 
