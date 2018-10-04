@@ -43,7 +43,7 @@ You can get a character’s code point by using ?
 iex(8)> ?Z  
 90
 ```
-This allows you to use the compact notation ?A rather than "A".
+This allows you to use the compact notation ?Z rather than "Z".
 
 When programming in Elixir, we usually use strings, not charlists. The charlist support is mainly included because it is required for some Erlang modules.
 
