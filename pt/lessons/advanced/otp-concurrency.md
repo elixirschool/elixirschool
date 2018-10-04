@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.3
 title: Concorrência OTP
 ---
 
@@ -11,7 +11,7 @@ Nessa lição vamos nos focar na peça mais importante: GenServers.
 
 ## GenServer
 
-Um servidor OTP é um módulo com o comportamento GenServer que implementa uma serie de *callbacks*. No nível mais básico, um GenServer é um loop que processa uma requisição por interação passando para frente um estado atualizado.
+Um servidor OTP é um módulo com o comportamento GenServer que implementa uma serie de *callbacks*. No nível mais básico, um GenServer é um único processo que roda um loop que processa uma mensagem por interação passando para frente um estado atualizado.
 
 Para demonstrar a API do GenServer nós vamos implementar uma fila básica para armazenar e retornar valores.
 
