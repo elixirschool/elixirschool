@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.3
 title: 群集
 ---
 
@@ -16,13 +16,15 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir 以串列實現群集列表。這意味著存取列表長度是一個 `O(n)` 運算。  因此，通常前置插入 (prepend) 比後綴置入 (append) 更快：
+Elixir 以串列實現群集列表。這意味著存取列表長度是一個線性時間 `O(n)` 的運算。因此，通常前置插入 (prepend) 比後綴置入 (append) 更快：
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
+# Prepending (fast)
 iex> ["π"] ++ list
 ["π", 3.14, :pie, "Apple"]
+# Appending (slow)
 iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
