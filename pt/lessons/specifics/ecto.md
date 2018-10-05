@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.3.0
 title: Ecto
 ---
 
@@ -147,7 +147,8 @@ defmodule ExampleApp.User do
 
   def changeset(user, params \\ :empty) do
     user
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> unique_constraint(:username)
   end
 end
@@ -337,7 +338,7 @@ end
 
 Melhoramos nossa função `changeset/2` e adicionamos três novas funções auxiliares: `validate_password_confirmation/1`, `password_mismatch_error/1` e `password_incorrect_error/1`.
 
-Como o próprio nome sugere, `changeset/2` cria para nós um novo *changeset*. Nele usamos `cast/4` para converter nossos parâmetros para um *changeset* a partir de um conjunto de campos obrigatórios e opcionais. A seguir validamos o tamanho da senha do *changeset*, a correspondência da confirmação da senha usando a nossa propria função, e a unicidade do nome de usuário. Por último, atualizamos nosso campo `password` no banco de dados. Para tal usamos `put_change/3` para atualizar um valor no *changeset*.
+Como o próprio nome sugere, `changeset/2` cria para nós um novo *changeset*. Nele usamos `cast/3` para converter nossos parâmetros para um *changeset* a partir de um conjunto de campos obrigatórios e opcionais. Então nós validamos a presença dos campos obrigatórios. A seguir validamos o tamanho da senha do *changeset*, a correspondência da confirmação da senha usando a nossa propria função, e a unicidade do nome de usuário. Por último, atualizamos nosso campo `password` no banco de dados. Para tal usamos `put_change/3` para atualizar um valor no *changeset*.
 
 Usar `User.changeset/2` é relativamente simples:
 
