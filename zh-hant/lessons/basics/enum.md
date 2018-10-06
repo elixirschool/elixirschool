@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.4.0
 title: 列舉 (Enum)
 ---
 
@@ -137,6 +137,16 @@ iex> Enum.max([5, 3, 0, -1])
 ```elixir
 Enum.max([], fn -> :bar end)
 :bar
+```
+
+### filter
+
+`filter/2` 函數使我們有能力篩選集合，留下只包含使用所提供函數且計算後為 `true` 的那些元素。
+
+
+```elixir
+iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
+[2, 4]
 ```
 
 ### reduce
