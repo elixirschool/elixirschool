@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.3.0
 title: 模組
 ---
 
@@ -151,7 +151,7 @@ end
 
 ### `導入 (import)`
 
-如果我們想導入函數和巨集 (macros) 而不是別名 (aliasing) 這個模組，我們可以使用 `import/`：
+如果想導入函數而不是別名 (aliasing) 模組，可以使用 `import`：
 
 ```elixir
 iex> last([1, 2, 3])
@@ -196,7 +196,7 @@ import List, only: :macros
 
 ### `請求 (require)`
 
-雖然不常使用，但 `require/2` 其實非常重要。請求 (Requiring) 一個模組來確保它被編譯和載入。當我們需要存取模組的巨集時，這是非常有用的語法：
+可以使用 `require` 來告訴 Elixir 將使用來自其他模組的巨集 (macros)。與 `import`的細微差異在於只允許呼用巨集，而非被指定模組的函數：
 
 ```elixir
 defmodule Example do
