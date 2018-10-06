@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.1
 title: Sigils
 ---
 
@@ -21,6 +21,7 @@ La liste des sigils disponibles inclut:
   - `~s` Génère une chaîne de caractères **avec** échappement et interpolation
   - `~W` Génère une liste de mots **sans** échappement ni interpolation
   - `~w` Génère une liste de mots **avec** échappement et interpolation
+  - `~N` Génère une struct `NaiveDateTime`
 
 La liste des délimiteurs inclut:
 
@@ -33,7 +34,7 @@ La liste des délimiteurs inclut:
   - `"..."` Une paire de guillemets doubles
   - `'...'` Une paire de guillemets simples
 
-### <a name="listes-de-caracteres"></a>Listes de caractères
+### Listes de caractères
 
 Les sigils `~c` and `~C` génèrent des listes de caractères. Par exemple:
 
@@ -47,7 +48,7 @@ iex> ~C/2 + 7 = #{2 + 7}/
 
 On peut voir que le `~c` en minuscule interpole le calcul, au contraire du `~C` majuscule. Nous verrons que ce comportement majuscule / minuscule est commun pour tous les sigils pré-définis.
 
-### <a name="expressions-regulieres"></a>Expressions régulières
+### Expressions régulières
 
 Les sigils `~r` et `~R` sont utilisés pour représenter des Expressions Régulières. On les crée soit à la volée, soit pour une utilisation avec les fonctions du module `Regex`. Par exemple:
 
@@ -87,7 +88,7 @@ iex> Regex.split(~r/_/, string)
 
 Comme on peut voir, la chaîne de caractères `"100_000_000"` est séparé à chaque tiret bas, grâce au sigil `~r/_/`. La fonction `Regex.split` retourne une liste.
 
-### <a name="chaines-de-caracteres"></a>Chaînes de caractères
+### Chaînes de caractères
 
 Les sigils `~s` et `~S` sont utilisés pour générer des chaînes de caractères. Par exemple:
 
@@ -103,10 +104,10 @@ Mais quelle est la différence ? La différence est similaire à celle du sigil 
 
 ```elixir
 iex> ~s/bienvenue à elixir #{String.downcase "school"}/
-"welcome to elixir school"
+"bienvenue à elixir school"
 
 iex> ~S/bienvenue à elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+"bienvenue à elixir \#{String.downcase \"school\"}"
 ```
 
 ### Listes de mots
@@ -131,7 +132,17 @@ iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
 ```
 
-## <a name="creation-de-sigils"></a>Création de sigils
+### NaiveDateTime
+
+Un [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) peut être utile pour créer rapidement une struct représentant un `DateTime` **sans** timezone.
+
+La plupart du temps, nous devrions éviter de créer une struct `NaiveDateTime` directement. C'est cependant utile pour le pattern matching. Par exemple:
+
+```elixir
+iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
+```
+
+## Création de sigils
 
 Un des objectifs d'Elixir est d'être un langage de programmation extensible. C'est donc sans surprise qu'il est possible de créer facilement nos propres sigils. Dans cet exemple, nous créerons un sigil pour passer une chaîne de caractères en majuscules. Comme il existe déjà une fonction pour cela dans la bibliothèque standard d'Elixir (`String.upcase/1`), nous allons créer notre sigil autour de cette fonction:
 

@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.2
 title: Documentação
 ---
 
@@ -28,7 +28,7 @@ Observe este script em Elixir (greeting.exs):
 IO.puts("Hello, " <> "chum.")
 ```
 
-Elixir, ao executar este script irá ignorar tudo, de '#' até o fim da linha, tratando-a como dados ocultos e sem lógica de execução. Pode adicionar nenhum valor para a operação ou o desempenho do script, no entanto, quando não é tão óbvio sobre o que está acontecendo, um programador deve saber ao ler o seu comentário. Esteja atento para não abusar do comentário de uma linha! Bagunçando uma base de código pode se tornar um pesadelo indesejável para alguns. É melhor usar com moderação.
+Elixir, ao executar este script irá ignorar tudo, de `#` até o fim da linha, tratando-a como dados ocultos e sem lógica de execução. Pode adicionar nenhum valor para a operação ou o desempenho do script, no entanto, quando não é tão óbvio sobre o que está acontecendo, um programador deve saber ao ler o seu comentário. Esteja atento para não abusar do comentário de uma linha! Bagunçando uma base de código pode se tornar um pesadelo indesejável para alguns. É melhor usar com moderação.
 
 ### Documentação de  Módulos
 
@@ -121,6 +121,8 @@ iex>
 
 Observe como você pode usar marcação de dentro para fora da documentação e o terminal irá renderizar isto? Além de realmente ser uma ótima nova adição para o vasto ecossistema de Elixir, fica muito mais interessante quando olhamos para ExDoc para gerar documentação HTML continuamente.
 
+**Nota:** a anotação `@spec` é usada para analisar estaticamente o código. Para aprender mais sobre isso, veja a lição [Especificações e tipos](../../advanced/typespec).
+
 ## ExDoc
 
 ExDoc é um projeto oficial do Elixir que **produz HTML (Hyper Text Markup Language) e documentação online para projetos Elixir** que pode ser encontrado no [Github](https://github.com/elixir-lang/ex_doc). Primeiro vamos criar um projeto Mix para a nossa aplicação:
@@ -179,7 +181,10 @@ Assumindo que tudo está bem, e estamos vendo a saída acima sugere que estamos 
 
 ```elixir
 def deps do
-  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+  [
+    {:earmark, "~> 1.2", only: :dev},
+    {:ex_doc, "~> 0.19", only: :dev}
+  ]
 end
 ```
 
@@ -223,6 +228,7 @@ defmodule Greeter do
 
 end
 ```
+
   - Em caso você não pretenda documentar um módulo, **não deixe** isto em branco. Considere anotar o módulo com `false` como a seguir:
 
 ```elixir
@@ -231,7 +237,8 @@ defmodule Greeter do
 
 end
 ```
- - Quando se refere a funções dentro da documentação de um módulo, use backticks desta forma:
+
+  - Quando se refere a funções dentro da documentação de um módulo, use backticks desta forma:
 
 ```elixir
 defmodule Greeter do
@@ -246,6 +253,7 @@ defmodule Greeter do
   end
 end
 ```
+
  - Separe todo e qualquer código de uma única linha abaixo de `@moduledoc` como a seguir:
 
 ```elixir

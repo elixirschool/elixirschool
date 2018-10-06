@@ -123,10 +123,10 @@ Hello World!
 
 多くのWebサイトやREST APIなどのアプリケーションのように、リクエストをパスやHTTP関数によって制御するルーターが欲しくなるでしょう。そのため`Plug`はルーターを備えています。ElixirにはPlugがあるので、Sinatraのようなフレームワークは必要ありません。
 
-手始めに、`lib/plug/router.ex`というファイルを作り、以下をコピーしましょう:
+手始めに、`lib/example/router.ex`というファイルを作り、以下をコピーしましょう:
 
 ```elixir
-defmodule Example.Plug.Router do
+defmodule Example.Router do
   use Plug.Router
 
   plug(:match)

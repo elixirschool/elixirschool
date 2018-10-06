@@ -15,7 +15,7 @@ The [Dialyxir](https://github.com/jeremyjh/dialyxir) is a mix task to simplify u
 
 Specification helps tools like Dialyzer to understand code better. Unlike documentation that is readable and understandable only for other humans (if only exists and is good written), `@spec` use more formal syntax and could be understand by machine.
 
-Let's add Dialixyr to our project. The simplest way is to add dependency to `mix.exs` file:
+Let's add Dialyxir to our project. The simplest way is to add dependency to `mix.exs` file:
 
 ```elixir
 defp deps do
