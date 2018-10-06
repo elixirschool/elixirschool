@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.3.0
 title: Ecto
 ---
 
@@ -9,6 +9,13 @@ Ecto 是一個官方 Elixir 專案，提供資料庫封裝 (wrapper) 和整合�
 {% include toc.html %}
 
 ## 安裝 (Setup)
+
+以 supervision tree 建立一個新的應用程式：
+
+```shell
+$ mix new example_app --sup
+$ cd example_app
+```
 
 開始時需要在專案的 `mix.exs` 中包含 Ecto 和資料庫轉接器 (adapter)。可以在 Ecto README 的 [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) 章節找到支援的資料庫轉接器清單。
 
@@ -20,12 +27,10 @@ defp deps do
 end
 ```
 
-現在可以將 Ecto 和轉接器加入到應用程式列表中：
+接著使用以下指令獲取相依關係 (dependencies)
 
-```elixir
-def application do
-  [applications: [:ecto, :postgrex]]
-end
+```shell
+$ mix deps.get
 ```
 
 ### 存放庫 (Repository)
@@ -40,19 +45,15 @@ end
 
 ### Supervisor
 
-一旦建立了 Repo 檔案，就需要設置 supervisor 樹，這通常會在 `lib/<project name>.ex` 中找到。
-
-值得注意的是，是以 `supervisor/3`  _不是_ `worker/3`  來設置 Repo 作為 supervisor。如果加上 `--sup`  旗標來生成應用程式，那麼這部份的程式碼基本已經建立好了：
+一旦建立了 Repo 檔案，就需要設置 supervisor tree，這通常會在 `lib/<project name>.ex` 中找到。將 Repo 加入到 `children` 列表中：
 
 ```elixir
-defmodule ExampleApp.App do
+defmodule ExampleApp.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec
-
     children = [
-      supervisor(ExampleApp.Repo, [])
+      ExampleApp.Repo
     ]
 
     opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
@@ -149,7 +150,8 @@ defmodule ExampleApp.User do
 
   def changeset(user, params \\ :empty) do
     user
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> unique_constraint(:username)
   end
 end
@@ -311,7 +313,8 @@ defmodule ExampleApp.User do
 
   def changeset(user, params \\ :empty) do
     user
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> validate_length(:password, min: 8)
     |> validate_password_confirmation()
     |> unique_constraint(:username, name: :email)
@@ -342,7 +345,8 @@ end
 我們改善了 `changeset/2` 函數並加入了三個新的輔助函數：`validate_password_confirmation/1`、`password_mismatch_error/1` 和 `password_incorrect_error/1`。
 
 顧名思義， `changeset/2` 建立了一個新的變更集。
-其中使用 `cast/4` 將參數從一組請求欄位和可選欄位轉換為變更集。接下來，將驗證變更集的密碼長度，使用我們自己的函數來驗證確認密碼吻合，並驗證使用者名稱的唯一性。最後更新實際密碼的資料庫欄位。為此使用 `put_change/3` 來更新變更集中的值。
+其中使用 `cast/3` 將參數從一組必要欄位和可選欄位轉換為變更集。
+接著驗證必要欄位的存在。下一步，將驗證變更集的密碼長度，使用我們自己的函數來驗證確認密碼吻合，並驗證使用者名稱的唯一性。最後更新實際密碼的資料庫欄位。為此使用 `put_change/3` 來更新變更集中的值。
 
 使用 `User.changeset/2` 則是相對直覺的：
 
