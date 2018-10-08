@@ -17,7 +17,7 @@ My first contact with Elixircards was from a demo deck they gave away at ElixirC
 
 I really liked the idea but the deck only had a handful of cards in it and the quality of them was not there.  Unfortunately, the demo wasn't a good enough sample to really motivate me to buy a set.
 
-For this review, Elixircards was kind enough to send us 6 decks to review and study.  I have to say that my impression from ElixirConf EU were off-base, I was wrong to not purchase the cards sooner.
+For this review, Elixircards was kind enough to send us 6 decks to review and study. I have to say that my impression from ElixirConf EU were off-base, I was wrong to not purchase the cards sooner.
 
 ## Author
 
@@ -25,7 +25,7 @@ Elixircards are produced by the team at CleverBunny, who are passionate programe
 
 ## Target
 
-Elixir cards are great whether you're a beginner just finding your feet, or a seasoned pro looking to sharpen your claws.
+Elixircards are great whether you're a beginner just finding your feet, or a seasoned pro looking to sharpen your claws.
 Flashcards are proven strategy for identifying and filling in gaps in your knowledge. Fundamentals 1 and 2 gives you a full taste of Elixir and covers the basics. Other packs, such as Enum range cover the Elixir API on module basis, which allows you to reinforce your knowledge and discover new functions. The best way to use flashcards is to play games with your peers, as they often spark interesting discussions.
 
 ## Review
@@ -41,11 +41,11 @@ The decks we received to review were the following:
 
 In addition to these there’s 5 more decks available for purchase:
 
-1. Fundamentals 2
-2. Kernel 2
-3. Kernel 3
-4. Enum 2
-5. Enum 3
+1. **Fundamentals 2**
+2. **Kernel 2**
+3. **Kernel 3**
+4. **Enum 2**
+5. **Enum 3**
 
 My experience with the 6 decks I received should be same for the others but each deck varies slightly.
 
@@ -55,13 +55,13 @@ My experience with the 6 decks I received should be same for the others but each
 
 The decks arrived in a very sturdy small box which also contained a small envelope with my name on it! Made for a nice personal touch and it contained a few stickers (YAAAAY!), a thank you card, some promo cards for their other projects and a small game idea pamphlet.
 
-The packaging was quite effective, the cards / packets were not damaged at all.
+The packaging was quite effective, the tuck boxes were not damaged at all.
 
-### Packets
+### Tuck Boxes
 
+![tuck_box_image](https://user-images.githubusercontent.com/4966172/46622435-4703c480-cb33-11e8-9324-781edeea47c5.jpg)
 
-
-The packets are standard card deck packets but are very nicely done with information written on all sides in a _Elixirish_ purple color. You need to be a bit careful taking the cards out, since the cards take 100% of the space of the packet, you’re getting your money’s worth. I have to say they make a very nice bookshelf decoration when not in use, so kudos!
+The tuck boxes are standard card deck tuck boxes but are very nicely done with information written on all sides in a _Elixirish_ purple color. You need to be a bit careful taking the cards out, since the cards take 100% of the space of the tuck box, you’re getting your money’s worth. I have to say they make a very nice bookshelf decoration when not in use, so kudos!
 
 ### Cards
 
@@ -107,14 +107,14 @@ I found this deck helpful and learned quite a bit but I’ll be honest, I’m no
 
 ## Conclusion
 
-ElixirCards is a great idea. If  “Learning 2.0” was a thing these flash card would find themselves there.
+Elixircards is a great idea. If  “Learning 2.0” was a thing these flashcard would find themselves there.
 
-I found most of the cards very helpful and really nicely priced for the knowledge / help they provide in practicing your Elixir knowledge on-the-go.  Given how creative the Elixir community is I’m sure we can come up with some cards using the ElixirCard decks.
+I found most of the cards very helpful and really nicely priced for the knowledge / help they provide in practicing your Elixir knowledge on-the-go.  Given how creative the Elixir community is, I’m sure we can come up with some great games using the elixircards.
 
-With a little work and some additions these cards would be in a class of their own.  For instance, I think `Enum` should be approached differently so as not to require the purchase of all decks at once to get the most use out of them.  Perhaps mixing the difficulty and functions across the three separate decks? 
+With a little work and some additions the elixircards would be in a class of their own.  For instance, I think `Enum` should be approached differently so as not to require the purchase of all decks at once to get the most use out of them.  Perhaps mixing the difficulty and functions across the three separate decks? 
 
 I would love to see the GenServer deck expanded like some of the others and focus on OTP in general, with OTP 1 being the basics and OTP 3 being the more advanced topics.  Adding content on Tasks and Supervision would be a welcomed addition as well.
 
-Last but not least, I would love to use this flash card style of learning to learn other aspects of Elixir such as Phoenix, Ecto, Nerves, and the newest addition Scenic.  Given how excellent these cards are I can only begin to imagine how useful and educational those decks would be.
+Last but not least, I would love to use this flashcard style of learning to learn other aspects of Elixir such as Phoenix, Ecto, Nerves, and the newest addition Scenic.  Given how excellent these cards are I can only begin to imagine how useful and educational those decks would be.
 
 ## Giveaway
