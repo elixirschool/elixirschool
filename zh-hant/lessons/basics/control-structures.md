@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: 控制語句
 ---
 
@@ -9,7 +9,7 @@ title: 控制語句
 
 ## `if` 和 `unless`
 
-可能你之前使用過 `if/2`，而如果你使用過 Ruby，那麼你應該很熟悉 `unless/2`。 在 Elixir 中，它們的工作方式大致相同，但它們被定義為巨集 (macros) 而不是語言結構；你可以在 [Kernel module](https://hexdocs.pm/elixir/Kernel.html) 中找到它們的實現 (implementation)。
+可能你之前使用過 `if/2`，而如果你使用過 Ruby，那麼你應該很熟悉 `unless/2`。 在 Elixir 中，它們的工作方式大致相同，但它們被定義為巨集 (macros) 而不是語言結構。你可以在 [Kernel module](https://hexdocs.pm/elixir/Kernel.html) 中找到它們的實現 (implementation)。
 
 應該小心的是，在 Elixir 中，唯一的 falsey 值是 `nil` 與布林的 `false`。
 
@@ -81,7 +81,7 @@ iex> case "cherry pie" do
 
 另一個 `case/2` 很酷的特點是它支援監視 (guard) 子句：
 
-_以下例子直接來自官方 Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) 指南。_
+_以下例子直接來自官方 Elixir [Getting Started](https://elixir-lang.org/getting-started/case-cond-and-if.html#case) 指南。_
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -99,7 +99,7 @@ iex> case {1, 2, 3} do
 
 當我們需要比對的是條件 (conditions) 而不是值 (values) 時，我們可以轉為用 `cond/1`；這與其他語言的 `else if` 或 `elsif` 類似：
 
-_以下例子直接來自官方 [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) 指南。_
+_以下例子直接來自官方 [Getting Started](https://elixir-lang.org/getting-started/case-cond-and-if.html#cond) 指南。_
 
 ```elixir
 iex> cond do
@@ -159,9 +159,13 @@ case Repo.insert(changeset) do
     case Guardian.encode_and_sign(user, :token, claims) do
       {:ok, token, full_claims} ->
         important_stuff(token, full_claims)
-      error -> error
+
+      error ->
+        error
     end
-  error -> error
+
+  error ->
+    error
 end
 ```
 
@@ -184,15 +188,16 @@ m = %{a: 1, c: 3}
 
 a =
   with {:ok, number} <- Map.fetch(m, :a),
-    true <- Integer.is_even(number) do
+    true <- is_even(number) do
       IO.puts "#{number} divided by 2 is #{div(number, 2)}"
       :even
   else
     :error ->
-      IO.puts "We don't have this item in map"
+      IO.puts("We don't have this item in map")
       :error
+
     _ ->
-      IO.puts "It is odd"
+      IO.puts("It is odd")
       :odd
   end
 ```

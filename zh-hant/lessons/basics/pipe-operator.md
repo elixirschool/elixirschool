@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: 管線運算子
 ---
 
@@ -30,14 +30,14 @@ other_function() |> new_function() |> baz() |> bar() |> foo()
 - Tokenize 字串 (loosely)
 
 ```elixir
-iex> "Elixir rocks" |> String.split
+iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - 大寫 (Uppercase) 所有的 tokens
 
 ```elixir
-iex> "Elixir rocks" |> String.upcase |> String.split
+iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 

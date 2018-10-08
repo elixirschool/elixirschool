@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 title: 函數
 ---
 
@@ -35,11 +35,12 @@ iex> sum.(2, 3)
 
 模式比對不僅限於 Elixir 中的變數，同時可以應用於函數簽章 (signatures)，我們將在本節中看到。
 
-Elixir 使用模式比對來識別相配的第一組參數，接著執行相對應的函數：
+Elixir 使用模式比對來檢查所有可能的比對選項，並選擇第一個吻合的選項來執行：
 
 ```elixir
 iex> handle_result = fn
 ...>   {:ok, result} -> IO.puts "Handling result..."
+...>   {:ok, _} -> IO.puts "This would be never run as previous will be matched beforehand."
 ...>   {:error} -> IO.puts "An error has occurred!"
 ...> end
 
@@ -118,7 +119,7 @@ iex> Greeter2.hello("Fred", "Jane")
 
 ```elixir
 defmodule Greeter do
-  def hello(name), do: phrase <> name
+  def hello(name), do: phrase() <> name
   defp phrase, do: "Hello, "
 end
 

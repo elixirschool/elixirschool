@@ -1,9 +1,10 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 模式比對
 ---
 
 模式比對是 Elixir 中一個強大的部分。它使我們能夠比對簡單的值、資料結構甚至函數。在本課中，我們將開始了解如何使用模式比對。
+
 {% include toc.html %}
 
 ## 比對 (Match) 運算子
@@ -94,4 +95,8 @@ iex> greet.("Hello", "Sean")
 "Hi Sean"
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
+iex> greeting
+"Hello"
 ```
+
+注意在 `"Mornin'"` 中的例子中，`greeting` 重新分配給 `"Mornin'"` 只發生在函數內部。函數 `greeting` 之外仍然是 `"Hello"`。

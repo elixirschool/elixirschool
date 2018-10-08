@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.0
 title: Plug
 ---
 
@@ -169,7 +169,7 @@ end
 
 _註_：Plug 適用於所有請求，這就是為什麼需要過濾請求並只將我們的邏輯應用於其中的一部分。
 
-要忽略請求，只需簡單通過連接即可。首先查看已完成的 Plug，然後討論它是怎麼運作的。在 `lib/plug/verify_request.ex` 中建立它：
+要忽略請求，只需簡單通過連接即可。首先查看已完成的 Plug，然後討論它是怎麼運作的。在 `lib/example/plug/verify_request.ex` 中建立它：
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do

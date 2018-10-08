@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: OTP 並行性
 ---
 
@@ -11,7 +11,7 @@ title: OTP 並行性
 
 ## GenServer
 
-OTP 伺服器是具有實現一組回呼 GenServer 行為的模組。在最基本的級別上，GenServer 是一個迴圈，每次疊代都處理一個經由更新狀態來的請求。
+OTP 伺服器是具有實現一組回呼 GenServer 行為的模組。在最基本的級別上，GenServer 是一個執行迴圈的單一處理程序，每次疊代都處理一個經由更新狀態來的請求。
 
 為了展示 GenServer API，我們將實現一個基本佇列 (queue) 來儲存與檢索值。
 
