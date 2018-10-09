@@ -3,9 +3,7 @@ version: 1.3.0
 title: Ecto
 ---
 
-Ecto allows you to query and store data into databases using its own query language.  It is typically used with relational databases such as PostgreSQL.
-
-If you've worked with an Object Relational Mapper (ORM) like ActiveRecord, Entity Framework, or Hibernate many of the concepts in Ecto will be similar.
+Ecto is an official Elixir project providing a database wrapper and integrated query language. With Ecto we're able to create migrations, define schemas, insert and update records, and query them.
 
 {% include toc.html %}
 
