@@ -14,7 +14,7 @@
 				<div class="inner">
 					<!-- Header -->
 					<header id="header">
-					  <a href="/" class="logo"><strong>Elixir School</strong>{% if page.layout == "blog" or page.layout == "post" %} {{ site.data['locales']['en']['sections']['blog']}}{% endif %}</a>
+					  <a href="/{% if page.lang %}{{ page.lang }}/{% endif %}" class="logo"><strong>Elixir School</strong>{% if page.layout == "blog" or page.layout == "post" %} {{ site.data['locales']['en']['sections']['blog']}}{% endif %}</a>
 					  {% include share-icons.html %}
 					</header>
 					{{ content }}
