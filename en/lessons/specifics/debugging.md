@@ -13,7 +13,7 @@ The [Dialyzer](http://erlang.org/doc/man/dialyzer.html), a **DI**screpancy **A**
 
 The [Dialyxir](https://github.com/jeremyjh/dialyxir) is a mix task to simplify usage of Dialyzer in Elixir.
 
-Specification helps tools like Dialyzer to understand code better. Unlike documentation that is readable and understandable only for other humans (if only exists and is good written), `@spec` use more formal syntax and could be understand by machine.
+Specifications help tools, like Dialyzer, better understand your code. Unlike documentation, which is human readable (if it exists and is well written), `@spec` uses a formal syntax better understood by tooling.
 
 Let's add Dialyxir to our project. The simplest way is to add dependency to `mix.exs` file:
 
