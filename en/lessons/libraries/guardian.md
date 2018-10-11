@@ -63,16 +63,9 @@ To get started there are a handful of things that you'll need.
 `mix.exs`
 
 ```elixir
-def application do
-  [
-    mod: {MyApp, []},
-    applications: [:guardian, ...]
-  ]
-end
-
 def deps do
   [
-    {guardian: "~> x.x"},
+    {:guardian, "~> 1.x"},
     ...
   ]
 end
@@ -82,10 +75,9 @@ end
 
 ```elixir
 # in each environment config file you should overwrite this if it's external
-config :guardian, Guardian,
-  issuer: "MyAppId",
-  secret_key: Mix.env(),
-  serializer: MyApp.GuardianSerializer
+config :my_app, MyApp.Guardian,
+  issuer: "my_app",
+  secret_key: "see notes below on secret keys"
 ```
 
 This is the minimum set of information you need to provide Guardian with to operate. You shouldn't encode your secret key directly into your top-level config. Instead, each environment should have its own key. It's common to use the Mix environment for secrets in dev and test. Staging and production, however, must use strong secrets. (e.g. generated with `mix phoenix.gen.secret`)
@@ -94,16 +86,21 @@ This is the minimum set of information you need to provide Guardian with to oper
 
 ```elixir
 defmodule MyApp.GuardianSerializer do
-  @behaviour Guardian.Serializer
+  use Guardian, otp_app: :my_app
 
   alias MyApp.Repo
   alias MyApp.User
 
-  def for_token(user = %User{}), do: {:ok, "User:#{user.id}"}
-  def for_token(_), do: {:error, "Unknown resource type"}
+  def subject_for_token(user = %User{}, _claims) do
+    {:ok, "User:#{user.id}"}
+  end
 
-  def from_token("User:" <> id), do: {:ok, Repo.get(User, id)}
-  def from_token(_), do: {:error, "Unknown resource type"}
+  def subject_for_token(_, _) do
+    {:error, "Unknown resource type"}
+  end
+
+  def resource_from_claims("User:" <> id), do: {:ok, Repo.get(User, id)}
+  def resource_from_claims(_claims), do: {:error, "Unknown resource type"}
 end
 ```
 Your serializer is responsible for finding the resource identified in the `sub` (subject) field. This could be a lookup from a db, an API, or even a simple string.
