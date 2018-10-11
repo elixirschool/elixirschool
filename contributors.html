@@ -8,36 +8,39 @@ disable_transform: true
 
   - contributors are ordered by date of first commit.
 -->
-
-<section>
-  <header class="major">
-    <h2>Contributors</h2>
+<section id="section-page">
+  <header class="main">
+    <h1>Contributors</h1>
   </header>
-  <div class="contributors">
-    <h4>Lesson Authors</h4>
-    <ul>
-      {% for author in site.data.contributors['authors'] %}
-        <li><a href="https://github.com/{{author.username}}">{{author.username}}</a> ({{author.lessons}})</li>
+  <p class="content"><span style="font-weight: 600">Calling all contributors:</span> if you've been missed, now's your chance to get the recognition you deserve. Add your Github profile to the <a href="https://github.com/elixirschool/elixirschool/edit/master/_data/contributors.yml" target="_blank">list of contributors</a>.</p>
+  {% for contributor in site.data.contributors %}
+    <div class="box">
+      {% include contributor-profile.html contributor=contributor %}
+      {% for contribution in contributor.contributions %}
+        {% unless contribution == "developer" %}
+          <div class="box contributor">
+            {% if contribution == "lesson" %}
+              <h4>Lessons</h4>
+              <ul>
+              {% for lesson in contributor.lessons %}<li>{{ lesson }}</li>{% endfor %}
+              </ul>
+            {% endif %}
+            {% if contribution == "blog" %}
+              <h4>Articles</h4>
+              <ul>
+                {% for article in contributor.articles %}<li>{% include function-getArticle.html article=article %}<a href="{{ post.url }}">{{ post.title }}</a></li>{% endfor %}
+              </ul>
+            {% endif %}
+            {% if contribution == "translator" %}
+              <h4>Translations</h4>
+              <ul>
+                {% for language in contributor.languages %}<li><a href="/{{language}}/lessons/basics/basics">{{ site.data.locales['en'].interlang[language] }}</a></li>{% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endunless %}
       {% endfor %}
-    </ul>
+    </div>
+  {% endfor %}
 
-    <h4>Developers</h4>
-    <ul>
-      {% for developer in site.data.contributors['developers'] %}
-        <li><a href="https://github.com/{{developer}}">{{developer}}</a></li>
-      {% endfor %}
- 
-    </ul>
-
-    <h4>Translators</h4>
-    {% for translation in site.data.contributors['translators'] %}
-      <b>{{ site.data.locales['en'].interlang[translation.language] }}</b>
-      <ul>
-      {% for translator in translation.users %}
-        <li><a href="https://github.com/{{translator}}">{{translator}}</a></li>
-      {% endfor %}
-      </ul>
-    {% endfor %}
-
-  </div>
 </section>
