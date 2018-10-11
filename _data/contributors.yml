@@ -1,110 +1,352 @@
-authors:
-  - username: doomspork
-    lessons: Project creator
-  - username: ybur-yug
-    lessons: IEx Helpers, Protocols
-  - username: Koziolek
-    lessons: Debugging
-  - username: devonestes
-    lessons: Benchee
-  - username: hassox
-    lessons: Guardian
+# INSTRUCTIONS
+# add your github profile, and contributions. See details below.
+#
+# github: (required), name:, twitter:, homepage:, intro:
+# contributions: lesson, blog, translation, developer (required)
+# lessons: list contributed lesson names (required if applicable)
+# articles: list of titles from contributed blog articles (required if applicable)
+# translations: list of locales translated (required if applicable)
 
-developers:
-  - doomspork
-  - nscyclone
-  - Koziolek
-  - burden
-  - eksperimental
+- github: doomspork
+  name: Sean Callan
+  intro:
+  twitter: doomspork
+  homepage: https://seancallan.com
+  contributions:
+    - lesson
+    - developer
+    - blog
+  lessons: ['Project creator']
+  articles:
+    - A look at Elixir 1.6
+    - Just the beginning
+    - Configuration Demystified
+    - Ecto query composition
 
-translators:
-  - language: bg
-    users:
-      - merkata
+- github: ybur-yug
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - lesson
+  lessons:
+    - IEx Helpers
+    - Protocols
 
-  - language: bn
-    users:
-      - masnun
+- github: Koziolek
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - lesson
+    - translator
+    - developer
+  languages:
+    - pl
+  lessons:
+    - Debugging
 
-  - language: zh-hans
-    users:
-      - cizixs
+- github: devonestes
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - lesson
+  lessons:
+    - Benchee
 
-  - language: zh-hant
-    users:
-      - lithiumpie
-      - cizixs
+- github: hassox
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - lesson
+  lessons:
+    - Guardian
 
-  - language: de
-    users:
-      - Lechindianer
+- github: nscyclone
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - developer
+    - translator
+  languages:
+    - ru
 
-  - language: es
-    users:
-      - erickgnavar
-      - milmazz
+- github: burden
+  name: burden
+  intro:
+  homepage: https://burden.cc
+  twitter: cheapexcitement
+  contributions:
+    - developer
 
-  - language: fr
-    users:
-      - julienXX
+- github: eksperimental
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - developer
 
-  - language: gr
-    users:
-      - gemantzu
+- github: masnun
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - bn
 
-  - language: id
-    users:
-      - rezaprima
+- github: merkata
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - bg
 
-  - language: it
-    users:
-      - lucidstack
+- github: cizixs
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - zh-hant
+    - zh-hans
 
-  - language: ja
-    users:
-      - 3100
-      - marocchino
-      - riseshia
+- github: julienXX
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - fr
 
-  - language: ko
-    users:
-      - devleoper
+- github: Lechindianer
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - de
 
-  - language: "no"
-    users:
-      - Devalo
+- github: gemantzu
+  name: George Mantzouranis
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+    - blog
+  languages:
+    - gr
+  articles:
+    - Reviewing Elixir in Action, Second Edition
+    - Reviewing Functional Web Development with Elixir, OTP, and Phoenix
 
-  - language: pl
-    users:
-      - Koziolek
+- github: rezaprima
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - id
 
-  - language: ru
-    users:
-      - brain-geek
-      - nscyclone
+- github: 3100
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - ja
 
-  - language: sk
-    users:
-      - michalvalasek
+- github: marocchino
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - ja
 
-  - language: ta
-    users:
-      - kalarani
+- github: riseshia
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - ja
 
-  - language: th
-    users:
-      - iboss-ptk
+- github: lucidstack
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - it
 
-  - language: tr
-    users:
-      - ismailunal
-      - yasinyaman
+- github: devleoper
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - ko
 
-  - language: uk
-    users:
-      - brain-geek
-      - doroshenkoss
+- github: Devalo
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - "no"
 
-  - language: vi
-    users:
-      - joneslee85
+- github: brain-geek
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - ru
+    - uk
+
+- github: michalvalasek
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - sk
+
+- github: erickgnavar
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - es
+
+- github: milmazz
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - es
+
+- github: kalarani
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - ta
+
+- github: iboss-ptk
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - th
+
+- github: lithiumpie
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - zh-hant
+
+- github: ismailunal
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - tr
+
+- github: yasinyaman
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - tr
+
+- github: doroshenkoss
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - uk
+
+- github: joneslee85
+  name:
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - vi
+
+- github: notactuallypagemcconnell
+  intro:
+  homepage:
+  twitter:
+  name: Bobby Grayson
+  contributions:
+    - blog
+  articles:
+    - Agnostic Version Management With asdf
