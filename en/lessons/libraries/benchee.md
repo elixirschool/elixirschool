@@ -9,7 +9,7 @@ We can't just guess about which functions are fast and which are slow - we need 
 
 # About Benchee 
 
-While there is a [function in Erlang](http://erlang.org/doc/man/timer.html#tc-1) that can be used for very basic measurement of a function's execution time, it's not as nice to use as some of the available tools and it doesn't give you multiple measurments to get good statistics from, so we're going to use [Benchee](https://github.com/PragTob/benchee). Benchee provides us with a range of statistics with easy comparisons between scenarios, a great feature that allows us to test different inputs to the functions we're benchmarking, and several different formatters that we can use to display our results, as well as the ability to write your own formatter if desired.
+While there is a [function in Erlang](http://erlang.org/doc/man/timer.html#tc-1) that can be used for very basic measurement of a function's execution time, it's not as nice to use as some of the available tools and it doesn't give you multiple measurements to get good statistics from, so we're going to use [Benchee](https://github.com/PragTob/benchee). Benchee provides us with a range of statistics with easy comparisons between scenarios, a great feature that allows us to test different inputs to the functions we're benchmarking, and several different formatters that we can use to display our results, as well as the ability to write your own formatter if desired.
 
 # Usage 
 
