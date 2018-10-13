@@ -36,6 +36,7 @@ advanced:
 ecto:
   - basics
   - changesets
+  - associations
 specifics:
   - plug
   - eex
