@@ -36,12 +36,6 @@ update/4             values/1
 
 ### `.iex.exs`
 
-Every time IEx starts it will look for a `.iex.exs` configuration file. If it's not present in the current directory, then the user's home directory (`~/.iex.exs`) will be used as the fallback.
-
-Configuration options and code defined within this file will be available to us when the IEx shell starts up. For instance if we want some helper functions available to us in IEx, we can open up `.iex.exs` and make some changes.
-
-Let's start by adding a module with a few helper functions:
-
 Cada vez que IEx se inicia buscará un archivo de configuración `.iex.exs`. Si no está presente en el directorio actual, entonces el directorio raíz del usuario (`~/.iex.exs`) será usado como respaldo.
 
 Las opciones de configuración y el código definido en este archivo estarán disponibles cuando se inicie el shell de IEx. Por ejemplo, si queremos algunas funciones de ayuda disponibles en IEx, podemos abrir `.iex.exs` y hacer algunos cambios.
