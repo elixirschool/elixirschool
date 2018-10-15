@@ -278,6 +278,24 @@
 
 				});
 
+		// Theme
+			var cookieName = 'elixirschooltheme';
+
+			function toggleTheme(event) {
+				event.preventDefault();
+				var currentTheme = $.getCookie(cookieName);
+				if ( $.getCookie(cookieName) == '' ) {
+					currentTheme = 'default';
+				}
+				if ( currentTheme == 'default' ) {
+					document.cookie = cookieName + '=dark';
+				} else {
+					document.cookie = cookieName + '=default';
+				}
+				location.reload();
+			}
+
+			$("#changeThemes").on('click', toggleTheme);
 	});
 
 })(jQuery);
