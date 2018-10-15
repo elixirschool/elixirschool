@@ -1,4 +1,5 @@
 //= require jquery.min.js
+// require js.cookie.js
 //= require skel.min.js
 //= require util.js
 //= require toc.js
@@ -18,14 +19,28 @@
 
 		var	$window = $(window),
 			$head = $('head'),
-			$body = $('body');
+			$body = $('body'),
+			$elToggleTheme = $('.toggle-theme');
+
+		var toggleThemeIcon = function(element) {
+			element.toggleClass('fa-circle-o');
+			element.toggleClass('fa-circle');
+		}
+
+		// note: $theme is defined from a cookie that is read after
+		// the <body> tag is added to the DOM.
+		// That means it will be `undefined` if cookie does not exist.
+		if (!$theme) $theme = 'light';
 
 		// Disable animations/transitions ...
 
 			// ... until the page has loaded.
 				$body.addClass('is-loading');
-
+				if ($theme === 'dark') {
+					toggleThemeIcon($elToggleTheme);
+				}
 				$window.on('load', function() {
+
 					setTimeout(function() {
 						$body.removeClass('is-loading');
 					}, 100);
@@ -144,7 +159,6 @@
 
 						// Redirect to href.
 							setTimeout(function() {
-
 								if (target == '_blank')
 									window.open(href);
 								else
@@ -276,6 +290,18 @@
 
 					});
 
+				});
+
+			// Theme
+				$elToggleTheme.on('click', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+
+					var isDark = $body.attr('class') === 'dark';
+					$theme = isDark ? 'light' : 'dark';
+					Cookies.set('theme', $theme);
+					$body.toggleClass('dark');
+					toggleThemeIcon($elToggleTheme);
 				});
 
 	});
