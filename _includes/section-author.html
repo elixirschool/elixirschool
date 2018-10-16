@@ -1,0 +1,6 @@
+{% include function-getContributor type="name" search=page.author %}
+{% if contributor %}
+<section class="blog-author">
+  {% include contributor-profile.html contributor=contributor %}
+</section>
+{% endif %}

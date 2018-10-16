@@ -108,6 +108,14 @@ pre {
   font-weight: 600;
 }
 
+.section-prevnext {
+  @include breakpoint(small) {
+    h4 {
+      font-size: 0.75em;
+    }
+  }
+}
+
 #section-page{
   /**
    * Right-to-left languages
