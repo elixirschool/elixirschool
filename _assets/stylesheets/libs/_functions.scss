@@ -29,6 +29,14 @@
 @function _purple($keys...) {
 	@return val($purple, $keys...);
 }
+
+/// Gets a dark palette value.
+/// @param {string} $keys Key(s).
+/// @return {string} Value.
+@function _dark($keys...) {
+	@return val($dark, $keys...);
+}
+
 /// Gets a size value.
 /// @param {string} $keys Key(s).
 /// @return {string} Value.
