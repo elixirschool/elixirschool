@@ -1,17 +1,17 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Benchee
 ---
 
-We can't just guess about which functions are fast and which are slow - we need actual measurements when we're curious. That's where benchmarking comes in. In this lesson, we'll learn about how easy it is to measure the speed of our code.
+We can't guess about which functions are fast and which are slow - we need actual measurements when we're curious. That's where benchmarking comes in. In this lesson, we'll learn about how easy it is to measure the speed of our code.
 
 {% include toc.html %}
 
-# About Benchee 
+# About Benchee
 
-While there is a [function in Erlang](http://erlang.org/doc/man/timer.html#tc-1) that can be used for very basic measurement of a function's execution time, it's not as nice to use as some of the available tools and it doesn't give you multiple measurements to get good statistics from, so we're going to use [Benchee](https://github.com/PragTob/benchee). Benchee provides us with a range of statistics with easy comparisons between scenarios, a great feature that allows us to test different inputs to the functions we're benchmarking, and several different formatters that we can use to display our results, as well as the ability to write your own formatter if desired.
+ While there is a [function in Erlang](http://erlang.org/doc/man/timer.html#tc-1) that can be used for basic measurements of a function's execution time, it's not as nice to use as some of the available tools and it doesn't give you multiple measurements to get useful statistics from, so we're going to use [Benchee](https://github.com/PragTob/benchee). Benchee provides us with a range of statistics with easy comparisons between scenarios, a great feature that allows us to test different inputs to the functions we're benchmarking, and several different formatters that we can use to display our results, as well as the ability to write your formatter if desired.
 
-# Usage 
+# Usage
 
 To add Benchee to your project, add it as a dependency to your `mix.exs` file:
 ```elixir
@@ -27,9 +27,9 @@ $ mix deps.get
 $ mix compile
 ```
 
-The first command will download and install Benchee. You may be asked to install Hex along with it. The second compiles the Benchee application. Now we're ready to write our first benchmark!
+The first command downloads and installs Benchee. You may be asked to install Hex along with it. The second compiles the Benchee application. Now we're ready to write our first benchmark.
 
-**An important note before we begin:** When benchmarking, it is very important to not use `iex` since that behaves differently and is often much slower than how your code is most likely being used in production. So, let's create a file that we're calling `benchmark.exs`, and in that file we'll add the following code:
+**An important note before we begin:** When benchmarking, it is important to not use `iex` since that behaves differently and is often much slower than how your code is most likely being used in production. So, let's create a file that we're calling `benchmark.exs`, and in that file we'll add the following code:
 
 ```elixir
 list = Enum.to_list(1..10_000)
@@ -49,7 +49,7 @@ $ mix run benchmark.exs
 
 And we should see something like the following output in your console:
 
-```shell 
+```shell
 Operating System: macOS
 CPU Information: Intel(R) Core(TM) i5-4260U CPU @ 1.40GHz
 Number of Available Cores: 4
@@ -76,14 +76,14 @@ flat_map           1.03 K
 map.flatten        0.56 K - 1.85x slower
 ```
 
-Of course your system information and results may be different depending on the specifications of the machine you are running your benchmarks on, but this general information should all be there.
+Of course, your system information and results may be different depending on the specifications of the machine you are running your benchmarks on, but this general information should all be there.
 
-At first glance, the `Comparison` section shows us that our `map.flatten` version is 1.85x slower than `flat_map` - very helpful to know! But let's look at the other statistics that we get:
+At first glance, the `Comparison` section shows us that our `map.flatten` version is 1.85x slower than `flat_map` - helpful to know! However, let's look at the other statistics that we get:
 
 * **ips** - this stands for "iterations per second," which tells us how often the given function can be executed in one second. For this metric, a higher number is better.
 * **average** - this is the average execution time of the given function. For this metric, a lower number is better.
 * **deviation** - this is the standard deviation, which tells us how much the results for each iteration varies in the results. Here it is given as a percentage of the average.
-* **median** - when all measured times are sorted, this is the middle value (or average of the two middle values when the number of samples is even). Because of environmental inconsistencies this will be more stable than the `average`, and somewhat more likely to reflect the normal performance of your code in production. For this metric, a lower number is better.
+* **median** - when all measured times are sorted, this is the middle value (or average of the two middle values when the number of samples is even). Because of environmental inconsistencies this is more stable than the `average`, and somewhat more likely to reflect the normal performance of your code in production. For this metric, a lower number is better.
 
 There are also other available statistics, but these four are frequently the most helpful and commonly used for benchmarking, which is why they are displayed in the default formatter. To learn more about the other available metrics, check out the documentation on [hexdocs](https://hexdocs.pm/benchee/Benchee.Statistics.html#statistics/1).
 
@@ -101,7 +101,7 @@ Benchee.run(%{"example function" => fn -> "hi!" end}, [
   inputs: nil,
   parallel: 1,
   formatters: [&Benchee.Formatters.Console.output/1],
-  print: [ 
+  print: [
     benchmarking: true,
     configuration: true,
     fast_warning: true
@@ -115,26 +115,26 @@ Benchee.run(%{"example function" => fn -> "hi!" end}, [
 
 The available options are the following (also documented in [hexdocs](https://hexdocs.pm/benchee/Benchee.Configuration.html#init/1)).
 
-* **warmup** - the time in seconds for which a benchmarking scenario should be run without measuring times before real measurements start. This simulates a "warm" running system. Defaults to 2.
-* **time** - the time in seconds for how long each individual benchmarking scenario should be run and measured. Defaults to 5.
+* **warmup** - the time in seconds for which a benchmarking scenario should be run without measuring times before real measurements start. This parameter simulates a "warm" running system. Defaults to 2.
+* **time** - the time in seconds for how long each benchmarking scenario should be run and measured. Defaults to 5.
 * **inputs** - a map with strings representing the input name as the keys and the actual input as the values. Defaults to `nil`. We'll cover this in detail in the next section.
-* **parallel** - the number of processes to use to benchmark your functions. So, if you set `parallel: 4`, then 4 processes will be spawned that all execute the same function for the given `time`. When these finish, then 4 new processes will be spawned for the next function. This gives you more data in the same time, but also puts a load on the system interfering with benchmark results. This can be useful to simulate a system under load which is sometimes helpful, but should be used with some caution as this can affect results in unpredictable ways. Defaults to 1 (which means no parallel execution). 
+* **parallel** - the number of processes to use to benchmark your functions. So, if you set `parallel: 4`, then 4 processes are spawned that all execute the same function for the given `time`. When these finish, then 4 new processes are spawned for the next function. This gives you more data in the same time, but also puts a load on the system interfering with benchmark results. This can be useful to simulate a system under load which is sometimes helpful, but should be used with some caution as this can affect results in unpredictable ways. Defaults to 1 (which means no parallel execution).
 * **formatters** - a list of formatter functions you'd like to run to output the benchmarking results of the suite when using `Benchee.run/2`. Functions need to accept one argument (which is the benchmarking suite with all data) and then use that to produce output. Defaults to the builtin console formatter calling `Benchee.Formatters.Console.output/1`. We'll cover this more in a later section.
-* **print** - a map or keyword list with the following options as atoms for the keys and values of either `true` or `false`. This lets us control if the output identified by the atom will be printed during the standard benchmarking process. All options are enabled by default (true). Options are:
+* **print** - a map or keyword list with the following options as atoms for the keys and values of either `true` or `false`. This lets us control if the output identified by the atom is printed during the standard benchmarking process. All options are enabled by default (true). Options are:
   * **benchmarking** - print when Benchee starts benchmarking a new job.
   * **configuration** - a summary of configured benchmarking options including estimated total run time is printed before benchmarking starts.
   * **fast_warning** - warnings are displayed if functions are executed too fast, potentially leading to inaccurate measures.
 * **console** - a map or keyword list with the following options as atoms for the keys and variable values. The available values are listed under each option:
   * **comparison** - if the comparison of the different benchmarking jobs (x times slower than) is shown. Defaults to `true`, but can also be set to `false`.
   * **unit_scaling** - the strategy for choosing a unit for durations and counts. When scaling a value, Benchee finds the "best fit" unit (the largest unit for which the result is at least 1). For example, `1_200_000` scales to 1.2 M, while `800_000` scales to 800 K. The unit scaling strategy determines how Benchee chooses the best fit unit for an entire list of values, when the individual values in the list may have different best fit units. There are four strategies, all given as atoms, defaulting to `:best`:
-    * **best** - the most frequent best fit unit will be used. A tie will result in the larger unit being selected.
-    * **largest** - the largest best fit unit will be used
-    * **smallest** - the smallest best fit unit will be used
-    * **none** - no unit scaling will occur. Durations will be displayed in microseconds, and ips counts will be displayed without units.
+    * **best** - the most frequent best fit unit is used. A tie results in the larger unit being selected.
+    * **largest** - the largest best fit unit is used
+    * **smallest** - the smallest best fit unit is used
+    * **none** - no unit scaling occurs. Durations is displayed in microseconds, and ips counts is displayed without units.
 
 ## Inputs
 
-It's very important to benchmark your functions with data that reflects what that function might actually operate on in the real world. Frequently a function can behave very differently on small sets of data versus large sets of data! This is where Benchee's `inputs` configuration option comes in. This allows you to test the same function but with as many different inputs as you like, and then you can see the results of the benchmark with each of those functions.
+It's important to benchmark your functions with data that reflects what that function might actually operate on in the real world. Frequently a function can behave differently on small sets of data versus large sets of data! This is where Benchee's `inputs` configuration option comes in. This allows you to test the same function but with as many different inputs as you like, and then you can see the results of the benchmark with each of those functions.
 
 So, let's look at our original example again:
 
@@ -244,7 +244,7 @@ map.flatten       86.39 K - 1.42x slower
 ```
 
 We can now see information for our benchmarks, grouped by input. This simple
-example doesn't provide any mind blowing insights, but you'd be very surprised
+example doesn't provide any mind blowing insights, but you'd be surprised
 how much performance varies based on input size!
 
 # Formatters
@@ -252,7 +252,7 @@ how much performance varies based on input size!
 The console output that we've seen is a helpful beginning for measuring the
 runtimes of your functions, but it's not your only option! In this section we'll
 look briefly at the three other available formatters, and also touch on what
-you'd need to do to write your own formatter if you like.
+you'd need to do to write your formatter if you like.
 
 ## Other formatters
 
@@ -275,13 +275,13 @@ defp deps do
 end
 ```
 
-While `benchee_json` and `benchee_csv` are very simple, `benchee_html` is actually _very_ full featured! It can help you produce nice graphs and charts from your results easily, and you can even export them as PNG images. All three formatters are well-documented on their respective GitHub pages, so we won't cover the details of them here.
+While `benchee_json` and `benchee_csv` are simple, `benchee_html` is actually _very_ full featured! It can help you produce nice graphs and charts from your results easily, and you can even export them as PNG images. All three formatters are well-documented on their respective GitHub pages, so we won't cover the details of them here.
 
 ## Custom formatters
 
-If the four offered formatters aren't enough for you, you can also write your own formatter. Writing a formatter is pretty easy. You need to write a function that accepts a `%Benchee.Suite{}` struct, and from that you can pull whatever information you like. Information about what exactly is in this struct can be found on [GitHub](https://github.com/PragTob/benchee/blob/master/lib/benchee/suite.ex) or [HexDocs](https://hexdocs.pm/benchee/Benchee.Suite.html). The codebase is very well-documented and easy to read if you'd like to see what sorts of information could be available for writing custom formatters.
+If the four offered formatters aren't enough for you, you can also write custom formatter. Writing a formatter is pretty easy. You need to write a function that accepts a `%Benchee.Suite{}` struct, and from that you can pull whatever information you like. Information about what exactly is in this struct can be found on [GitHub](https://github.com/PragTob/benchee/blob/master/lib/benchee/suite.ex) or [HexDocs](https://hexdocs.pm/benchee/Benchee.Suite.html). The codebase is well-documented and easy to read if you'd like to see what sorts of information could be available for writing custom formatters.
 
-For now, I'll show a quick example of what a custom formatter might look like below as an example of how easy it is. Let's say we just want an extremely minimal formatter that just prints the average run time for each scenario - this is what that might look like:
+For now, I'll show a quick example of what a custom formatter might look like below as an example of how easy it is. Let's say we just want an extremely minimal formatter that prints the average run time for each scenario - this is what that might look like:
 
 ```elixir
 defmodule Custom.Formatter do
