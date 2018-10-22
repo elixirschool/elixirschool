@@ -2,7 +2,7 @@
 author: Sean Callan
 author_link: https://github.com/doomspork
 categories: general
-date: 2018-10-23
+date: 2018-10-22
 ayout: post
 title: 'Umbrellas: only when it rains?'
 excerpt: >
