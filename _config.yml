@@ -1,5 +1,4 @@
 # Setup
-baseurl: /
 url: https://elixirschool.com
 permalink: /blog/:title/
 default_lang: en
