@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.1.1
 title: Testovanie
 ---
 
@@ -18,17 +18,42 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "greets the world" do
+    assert Example.hello() == :world
   end
 end
 ```
 
-Kompletnú sadu testov nášho projektu môžeme spustiť príkazom `mix test`. Keď to urobíme v našom vygenerovanom projekte, mali by sme dostať niečo takéto:
+Testy nášho projektu môžeme spustiť pomocou `mix test`. Potom, mali by sme dostať podobný výstup:
 
 ```shell
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 0 failures
+..
+
+Finished in 0.03 seconds
+2 tests, 0 failures
+```
+
+Prečo sú vo výstupe dva testy? Pozrime sa na `lib/example.ex`. Mix tam pre nás vytvoril ďalší test, a to doctest.
+
+```elixir
+defmodule Example do
+  @moduledoc """
+  Documentation for Example.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Example.hello
+      :world
+
+  """
+  def hello do
+    :world
+  end
+end
 ```
 
 ### assert
@@ -42,28 +67,28 @@ defmodule ExampleTest do
   use ExUnit.Case
   doctest Example
 
-  test "pravda" do
-    assert 1 + 1 == 3
+  test "greets the world" do
+    assert Example.hello() == :word
   end
 end
 ```
 
-Tentoraz by sme mali vidieť celkom odlišný výstup:
+Teraz by sme mali vidieť celkom iný výstup:
 
 ```shell
-  1) test pravda (ExampleTest)
+  1) test greets the world (ExampleTest)
      test/example_test.exs:5
      Assertion with == failed
-     code: 1 + 1 == 3
-     lhs:  2
-     rhs:  3
+     code:  assert Example.hello() == :word
+     left:  :world
+     right: :word
      stacktrace:
-       test/example_test.exs:6
+       test/example_test.exs:6 (test)
 
-......
+.
 
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 1 failures
+Finished in 0.03 seconds
+2 tests, 1 failures
 ```
 
 ExUnit nám povie úplne presne, kde (na ktorom asserte) testy zlyhali, aká bola očakávaná hodnota a aká bola skutočná hodnota.
@@ -118,7 +143,7 @@ end
 
 ## Test Setup
 
-Niekedy potrebujeme pred samotnými testami vykonať nejaké pomocné činnosti. S tým nám pomôžu makrá `setup` a `setup_all`. Blok kódu v makre `setup` sa vykoná pred každým jednotlivým testom, blok v makre `setup_all` sa vykoná len raz - na začiatku pred spustením celej sady testov. Oba bloky by mali vrátiť tuple v tvare `{:ok, stav}`, pričom stav bude dostupný v jednotlivých testoch.
+Niekedy potrebujeme pred samotnými testami vykonať pomocné činnosti. S tým nám pomôžu makrá `setup` a `setup_all`. Blok kódu v makre `setup` sa vykoná pred každým jednotlivým testom, blok v makre `setup_all` sa vykoná len raz - na začiatku pred spustením celej sady testov. Oba bloky by mali vrátiť tuple v tvare `{:ok, stav}`, pričom stav bude dostupný v jednotlivých testoch.
 
 Ako príklad si do nášho súboru s testami doplníme blok `setup_all`:
 
@@ -128,16 +153,16 @@ defmodule ExampleTest do
   doctest Example
 
   setup_all do
-    {:ok, number: 2}
+    {:ok, recipient: :world}
   end
 
-  test "pravda", state do
-    assert 1 + 1 == state[:number]
+  test "greets", state do
+    assert Example.hello() == state[:recipient]
   end
 end
 ```
 
-## Mockovanie
+## Mocking
 
 Jednoduchá odpoveď na mockovanie v Elixire je: nerobte to. Inštinktívne možno siahnete na mocky, ale v komunita Elixiru dôrazne neodporúča z dobrého dôvodu.
 
