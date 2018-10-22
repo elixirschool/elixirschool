@@ -1,15 +1,15 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Vlastné Mix Tasky
 ---
 
-Vytváranie vlastných Mix taskov pre vaše Elixir projekty
+Vytváranie vlastných Mix taskov pre vaše Elixir projekty.
 
 {% include toc.html %}
 
 ## Úvod
 
-Občas sa stáva, že do svojho projektu potrebujete pridať vlastné špeciálnu funkcionalitu pridaním Mix taskov. Predtým, než si ukážeme, ako takéto vlastné Mix tasky vytvárať, pozrime sa na tie, ktoré už existujú:
+Občas sa stane, že do svojho projektu potrebujete pridať špeciálnu funkcionalitu pridaním Mix taskov. Predtým, než si ukážeme, ako takéto vlastné Mix tasky vytvárať, pozrime sa na tie, ktoré už existujú:
 
 ```shell
 $ mix phoenix.new my_phoenix_app
@@ -75,7 +75,7 @@ Teraz si vytvorme vlastný Mix task. Vytvorme nový adresár a súbor **hello/li
 defmodule Mix.Tasks.Hello do
   use Mix.Task
 
-  @shortdoc "Spustí funkciu Hello.say/0."
+  @shortdoc "Simply runs the Hello.say/0 function"
   def run(_) do
     # calling our Hello.say() function from earlier
     Hello.say()
@@ -86,9 +86,9 @@ end
 Všimnite si, že názov modulu začína na `Mix.Task` a nasleduje meno, ktorým chceme náš task spúšťať z príkazového riadku (teda v tomto prípade `Hello`). Nasleduje uvedenie modulu `Mix.Task`, ktorým do nášho modulu vnesieme rovnomenný behaviour (niečo ako interface v objektových jazykoch). Ďalej implementujeme povinnú funkciu run, ktorá bude nateraz ignorovať svoje argumenty. V tejto funkcii už len zavoláme našu funkciu `say` z modulu `Hello`.
 
 
-## Mix Tasky v Akcii
+## Mix Tasky v akcii
 
-Nadišiel čas náš nový task vyskúšať. V príkazovom riadku zadajme `mix hello` a mali by sme vidieť nasledovné:
+Poďme si náš nový task vyskúšať. V príkazovom riadku zadajme `mix hello` a mali by sme vidieť nasledovné:
 
 ```shell
 $ mix hello
@@ -109,6 +109,6 @@ $ mix help
 
 mix app.start         # Starts all registered apps
 ...
-mix hello             # Spustí funkciu Hello.say/0.
+mix hello             # Simply calls the Hello.say/0 function.
 ...
 ```
