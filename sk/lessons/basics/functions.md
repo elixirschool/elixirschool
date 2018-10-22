@@ -1,15 +1,15 @@
 ---
-version: 1.0.1
+version: 1.1.0
 title: Funkcie
 ---
 
-V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie ústredným konštruktom. Povieme si o rôznych typoch funkcií v Elixire, rozdieloch medzi nimi a ako ich používať.
+V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie základným konceptom. Povieme si o rôznych typoch funkcií v Elixire, rozdiely medzi nimi a ako ich použiť.
 
 {% include toc.html %}
 
 ## Anonymné funkcie
 
-Ako naznačuje už ich názov, tieto funkcie nemajú priradené meno. V kapitole o `Enum` sme videli, že sa často odovzdávajú ako argumenty iným funkciám. Na definovanie anonymnej funkcie slúžia v Elixire kľúčové slová `fn` a `end`. Medzi nimi môžeme definovať ľubovoľné množstvo sád parametrov a tiel funkcií - oddelených operátorom `->`.
+Ako naznačuje už ich názov, tieto funkcie nemajú meno. V kapitole o `Enum` sme videli, že sa často odovzdávajú ako argumenty iným funkciám. Na definovanie anonymnej funkcie slúžia v Elixire kľúčové slová `fn` a `end`. Medzi nimi môžeme definovať ľubovoľné množstvo parametrov a volaní funkcií - oddelených operátorom `->`.
 
 Pozrime sa na jednoduchý príklad:
 
@@ -31,11 +31,13 @@ iex> sum.(2, 3)
 5
 ```
 
-Ako ste asi uhádli, v skrátenom zápise pristupujeme k parametrom cez `&1` (prvý odovzdaný parameter), `&2` (druhý odovzdaný parameter) atď.
+Ako ste asi uhádli, v skrátenom zápise máme k dodaným parametrom prístup cez `&1`, `&2`, `&3` atď.
 
 ## Pattern matching
 
-V Elixire nie je pattern matching obmedzený len na premenné - môže byť využitý aj v hlavičkách funkcií. Jeho aplikáciou na vstupné premenné sa určí, ktoré telo funkcie sa použije:
+V Elixire nie je pattern matching obmedzený len na premenné - môže byť využitý aj v hlavičkách funkcií ako si ukážeme v tejto sekcii.
+
+Elixir používa pattern matching na nájdenie zhodnej funkcie a zvolí prvú vyhovujúcu funkciu:
 
 ```elixir
 iex> handle_result = fn
@@ -51,13 +53,11 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-V príklade sme si definovali funkciu s dvoma telami. Pri jej prvom volaní sa použilo prvé telo, keďže sme jej ako parameter poslali tuple v tvare `{:ok, result}`. Pri druhom volaní sa použilo druhé telo, keďže ako parameter od nás dostala tuple v tvare `{:error}`.
-
 ## Pomenované funkcie
 
-Druhým spôsobom, ako definovať funkciu, je priradiť jej už pri definícii meno, ktorým na ňu neskôr budeme odkazovať. Pri tomto spôsobe použijeme kľúčové slovo `def` vo vnútri nejakého modulu (o moduloch si povieme viac v ďalšej lekcii).
+Funkcie môžeme definovať menom aby sme na ne mohli odkazovať neskôr. Pomenované funkcie sú definované v moduloch s použitím kľúčového slova `def`. O Moduloch si povieme viac v ďalšej lekcii, teraz sa budeme sústrediť iba na pomenované funkcie
 
-Funkcie definované v module sú k dispozícii pre použitie v iných moduloch. V Elixire sú moduly jedným z najdôležitejších stavebných blokov.
+Funkcie definované v module sú k dispozícii pre použitie v iných moduloch. Toto je veľmi užitočný stavebný blok v Elixire:
 
 ```elixir
 defmodule Greeter do
@@ -70,7 +70,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 ```
 
-Ak má telo funkcie len jediný riadok, môžme použiť kratší zápis definície pomocou `do:`:
+Ak má telo funkcie len jeden riadok, môžme ho skrátiť pomocou zápisu s `do:`:
 
 ```elixir
 defmodule Greeter do
@@ -78,7 +78,7 @@ defmodule Greeter do
 end
 ```
 
-Vyzbrojení pattern matchingom, vyskúšajme si rekurziu pomocou pomenovaných funkcií:
+Vyzbrojení našími znalosťami o pattern matchingu, si vyskúšajme rekurziu pomocou pomenovaných funkcií:
 
 ```elixir
 defmodule Length do
@@ -112,8 +112,7 @@ iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
 
-V komentároch máme mená funkcii vyššie. Prvá implementácia nemá žiadne argumenty, tak je označená ako `hello/0`. Druhá funkcia má jeden argument, takže jej názov je `hello/1` atď.
-Narozdiel od iných jazykov, kde by takéto niečo bolo považované za preťaženie funkcie, no v Elixire sú považované za úplne od seba _rôzne_ funkcie. (Pattern matching, spomenutý vyššie je použitý iba vtedy, keď poskytneme viac definícií pre funkciu s _rovnakým_ počtom argumentov.)
+V komentároch máme názvy funkcii vyššie. Prvá implementácia nemá žiadne argumenty, tak je označená ako `hello/0`. Druhá funkcia má jeden argument, takže jej názov je `hello/1` atď. Narozdiel od iných jazykov, kde by takéto niečo bolo považované za preťaženie funkcie, no v Elixire sú považované za úplne _rôzne_ funkcie. (Pattern matching, spomenutý vyššie je použitý iba vtedy, keď poskytneme viac definícií pre funkciu s _rovnakým_ počtom parametrov.)
 
 ### Privátne funkcie
 
@@ -138,7 +137,7 @@ iex> Greeter.phrase
 Hraničných podmienok (*guards*) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](../control-structures). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
 Keď Elixir vybral funkciu, akékoľvek existujúce hraničné podmienky budú otestované.
 
-V nasledujúcom príklade máme dve funkcie s tou istou hlavičkou, no rôznymi hraničnými podmienkami testujeme typ argumentu:
+V nasledujúcom príklade máme dve funkcie s tou istou hlavičkou, no rôznymi hraničnými podmienkami, kde testujeme typ parametra:
 
 ```elixir
 defmodule Greeter do
@@ -159,9 +158,9 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### Východiskové argumenty
+### Východiskové hodnoty
 
-Ak chceme, aby mal niektorý z argumentov funkcie východiskovú hodnotu, použijeme syntax `argument \\ hodnota`:
+Ak chceme, aby mal niektorý z parametrov funkcie východiskovú hodnotu, použijeme syntax `argument \\ hodnota`:
 
 ```elixir
 defmodule Greeter do
@@ -170,7 +169,7 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
+  defp phrase("sk"), do: "Ahoj, "
 end
 
 iex> Greeter.hello("Sean", "en")
@@ -179,11 +178,11 @@ iex> Greeter.hello("Sean", "en")
 iex> Greeter.hello("Sean")
 "Hello, Sean"
 
-iex> Greeter.hello("Sean", "es")
-"Hola, Sean"
+iex> Greeter.hello("Sean", "sk")
+"Ahoj, Sean"
 ```
 
-Problém môže nastať, ak nevhodne skombinujeme hraničné podmienky s východiskovými argumentami:
+Problém môže nastať, ak nevhodne skombinujeme hraničné podmienky s východiskovými parametrami:
 
 ```elixir
 defmodule Greeter do
