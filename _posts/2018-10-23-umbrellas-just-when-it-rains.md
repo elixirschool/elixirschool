@@ -4,7 +4,7 @@ author_link: https://github.com/doomspork
 categories: general
 date: 2018-10-23
 ayout: post
-title: Umbrellas: only when it rains?
+title: 'Umbrellas: only when it rains?'
 excerpt: >
   A look at umbrella applications and how they can help us write cleaner maintainable code.
 ---
