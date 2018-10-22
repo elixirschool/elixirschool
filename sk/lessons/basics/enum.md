@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.4.0
 title: Enum
 ---
 
@@ -30,7 +30,7 @@ at/3
 Teraz vidíme, že máme obrovské množstvo funkcionality vďaka veľmi dobrému dôvodu. Iterovanie nad kolekciami je jadrom funkcionálneho programovania a veľmi užitočná vec.
 Pri použití s ďalšími výhodami Elixiru, ako je napríklad dokumentácia, ktorá nie je občanom druhej triedy, ako sme mohli vidieť, to môže byť tiež neuveriteľným posilnením pre vývojára.
 
-Kompletný zoznam funkcií nájdete v oficiálnej dokumentácii modulu [`Enum`](https://hexdocs.pm/elixir/Enum.html). Na prácu s "lazy enumeration" použite funkcie z modulu [`Stream`](https://hexdocs.pm/elixir/Stream.html).
+Kompletný zoznam funkcií nájdete v oficiálnej dokumentácii modulu [`Enum`](https://hexdocs.pm/elixir/Enum.html). Na prácu s "lazy enumeration" môžeme použiť funkcie z modulu [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 ### all?
 
@@ -65,7 +65,7 @@ Táto funkcia má niekoľko možností použitia, ale tu ich nebudeme rozoberať
 
 ### chunk_by
 
-Ak potrebujete rozdeliť kolekciu do menších skupín na základe niečoho iného, než ich veľkosť, môžeme použiť funkciu `chunk_by/2`. Ako argumenty funkcia berie kolekciu a funkciu. Ak sa zmení vrátená hodnota funkcie, začne sa vytvárať ďalšia kolekcia:
+Ak potrebujete rozdeliť kolekciu do menších skupín na základe niečoho iného, než ich hodnota, môžeme použiť funkciu `chunk_by/2`. Ako argumenty funkcia berie kolekciu a funkciu. Ak sa zmení vrátená hodnota funkcie, začne sa vytvárať ďalšia kolekcia:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -137,6 +137,15 @@ iex> Enum.max([5, 3, 0, -1])
 ```elixir
 Enum.max([], fn -> :bar end)
 :bar
+```
+
+### filter
+
+Funkcia `filter/2` nám umožní filtrovať kolekciu aby sme dostali len tie prvky, pre ktoré sa daná funkcia vyhodnotí ako `true`.
+
+```elixir
+iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
+[2, 4]
 ```
 
 ### reduce
