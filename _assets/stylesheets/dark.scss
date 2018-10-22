@@ -174,7 +174,7 @@ body.dark {
     }
     > ul {
       > li {
-        border-top: 1px solid _dark(border);
+        border-color: _dark(border);
         > ul {
           color: _dark(fg);
           a, span {
