@@ -1,5 +1,5 @@
 ---
-version: 1.2.2
+version: 1.2.3
 title: Коллекции
 ---
 
@@ -20,8 +20,10 @@ iex> [3.14, :pie, "Apple"]
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
+# Добавление в начало списка (быстро)
 iex> ["π"] ++ list
 ["π", 3.14, :pie, "Apple"]
+# Добавление в конец списка (медленно)
 iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```

@@ -51,6 +51,9 @@
 @import 'layout/footer';
 @import 'layout/menu';
 
+// Theme.
+@import 'dark';
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700');
 
 .profile {
@@ -106,6 +109,14 @@ pre {
 .post-date {
   margin: 0 0 .5em 0;
   font-weight: 600;
+}
+
+.section-prevnext {
+  @include breakpoint(small) {
+    h4 {
+      font-size: 0.75em;
+    }
+  }
 }
 
 #section-page{

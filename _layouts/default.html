@@ -7,6 +7,10 @@
 <html lang="{{ language }}{% if locale.lang_country %}-{{ locale.lang_country }}{% endif %}">
 	{% include _head.html %}
 	<body>
+    <script type="text/javascript">
+    var $theme = Cookies.get('theme');
+    if ($theme === 'dark') document.body.classList.add("dark");
+    </script>
 		<!-- Wrapper -->
 		<div id="wrapper">
 			<!-- Main -->
