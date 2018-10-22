@@ -7,7 +7,9 @@
   </header>
   <span>Elixir {{site.elixir.version}} - Erlang/OTP {{site.erlang.OTP}} [erts-{{site.erlang.erts}}]</span>
   <ul>
-
+    <li>
+      <a href="/{% if page.lang %}{{ page.lang }}/{% endif %}" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "home" %}active{% endif %}">{{ site.data['locales'][language]['sections']['home'] }}</a>
+    </li>
   {% for sections in site.contents[language] %}
     {% assign section = sections[0] | strip %}
     {% assign chapters = sections[1] %}
