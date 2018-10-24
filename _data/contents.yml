@@ -16,6 +16,7 @@ basics:
   - testing
   - comprehensions
   - strings
+  - date-time
   - mix-tasks
   - iex-helpers
 advanced:
