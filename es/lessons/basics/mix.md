@@ -1,11 +1,11 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: Mix
 ---
 
 Antes de que podamos sumergirnos en las profundas aguas de Elixir primero necesitamos aprender acerca de mix. Si estás familiarizado con Ruby, mix es Bundler, RubyGems y Rake combinados. Es una parte crucial de cualquier proyecto Elixir y en esta lección vamos a explorar solo algunas de sus grandiosas características. Para ver todo lo que mix ofrece ejecutamos `mix help`.
 
-Hasta ahora hemos estado trabajando exclusivamente dentro de `iex` con sus limitaciones. Para construir algo sustancial necesitamos dividir nuestro código en varios archivos efectivamente y administrarlos, mix nos permite hacer eso con proyectos.
+Hasta ahora hemos estado trabajando exclusivamente dentro de `iex` con sus limitaciones. Para construir algo sustancial necesitamos dividir nuestro código en varios archivos para administrarlos efectivamente, mix nos permite hacer eso con nuestros proyectos.
 
 {% include toc.html %}
 
@@ -60,9 +60,20 @@ defmodule Example.Mixfile do
 end
 ```
 
-La primera sección que vamos a ver es `project`. Aquí vamos a definir el nombre de nuestra aplicación(`app`), especificar la versión(`version`), la versión de Elixir(`elixir`), y finalmente nuestras dependencias(`deps`).
+La primera sección que vamos a ver es `project`. Aquí vamos a definir el nombre de nuestra aplicación(`app`), especificar la versión del proyecto(`version`), la versión de Elixir(`elixir`), y finalmente nuestras dependencias(`deps`).
 
 La sección `application` es usada durante la generación de nuestro archivo de aplicación el cual cubriremos a continuación.
+
+## Interactivo
+
+Puede ser necesario usar `iex` dentro del contexto de nuestra aplicación. Por suerte para nosotros, mix hace esto fácil. Podemos empezar una nueva sesión `iex`:
+
+```bash
+$ iex -S mix
+```
+
+Al empezar `iex` de esta forma, mix cargará nuestra aplicación y dependencias en la ejecución actual.
+
 
 ## Compilación
 
@@ -83,21 +94,12 @@ Generated example app
 
 Cuando compilamos un proyecto mix crea un directorio `_build` para nuestros artefactos. Si miramos dentro de `_build` vamos a ver nuestra aplicación compilada `example.app`.
 
-## Interactivo
-
-Puede ser necesario usar `iex` dentro del contexto de nuestra aplicación. Por suerte para nosotros, mix hace esto fácil. Con nuestra aplicación compilada podemos empezar una nueva sesión `iex`:
-
-```bash
-$ iex -S mix
-```
-
-Empezando `iex` de esta forma mix cargará nuestra aplicación y dependencias en la actual ejecución.
 
 ## Administrar dependencias
 
 Nuestro proyecto no tiene ninguna dependencia pero lo hará en breve. Vamos a seguir adelante para definir las dependencias y obtenerlas.
 
-Para agregar una nueva dependencia primero necesitamos agregarla a nuestro archivo `mix.exs` en la sección `deps`. Nuestra lista de dependencias está compuesta de tuplas con dos valores requeridos y uno opcional: El nombre del paquete como un átomo, la versión como una cadena, y opciones (opcionales).
+Para añadir una nueva dependencia primero necesitamos agregarla a nuestro archivo `mix.exs` en la sección `deps`. Nuestra lista de dependencias está compuesta de tuplas con dos valores requeridos y uno opcional: El nombre del paquete como un átomo, la versión como una cadena, y opciones (opcionales).
 
 Para este ejemplo vamos a ver un proyecto con dependencias, como [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 
@@ -112,7 +114,7 @@ def deps do
 end
 ```
 
-Como probablemente has visto en las dependencias arriba, la dependencia `cowboy` es la única necesaria durante desarrollo y pruebas.
+Como probablemente has visto en las dependencias arriba, la dependencia `cowboy` es la única necesaria durante las fases de desarrollo y pruebas.
 
 Una vez que hemos definido nuestras dependencias hay un paso final: obtenerlas. Esto es análogo a `bundle install` (en Ruby):
 
