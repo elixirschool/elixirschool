@@ -8,14 +8,14 @@ title: Ayudantes de IEx
 ## Visión general
 
 Cuando empiezas a trabajar en Elixir, IEx es tu mejor amigo.
-Es un REPL, pero tiene muchas características avanzadas que pueden hacer la vida más fácil cuando se explora un nuevo código o se desarrolla un trabajo propio a medida que se avanza.
+Es un REPL (Read-Eval-Print-Loop), pero tiene muchas características avanzadas que pueden hacer la vida más fácil cuando se explora un nuevo código o se desarrolla un trabajo propio a medida que se avanza.
 Hay un montón de ayudantes incorporados que repasaremos en esta lección.
 
 ### Autocompletar
 
-Cuando trabaje en el shell, a menudo podría encontrarse usando un nuevo módulo con el que no está familiarizado.
+Cuando trabaje en el _shell_, a menudo podría encontrarse usando un nuevo módulo con el que no está familiarizado.
 Para entender algo de lo que está disponible para usted, la funcionalidad de autocompletar es maravillosa.
-Simplemente escriba el nombre del módulo seguido de ``.` y luego pulse `Tab`:
+Simplemente escriba el nombre del módulo seguido de **.** y luego pulse la tecla <kbd>Tab</kbd>:
 
 ```elixir
 iex> Map. # pulsa Tab
@@ -32,13 +32,14 @@ take/2               to_list/1            update!/3
 update/4             values/1
 ```
 
-¡Y ahora sabemos las funciones que tenemos y su aridez!
+¡Y ahora sabemos las funciones que tenemos y su número de argumentos que acepta una funcion en específico!
 
 ### `.iex.exs`
 
 Cada vez que IEx se inicia buscará un archivo de configuración `.iex.exs`. Si no está presente en el directorio actual, entonces el directorio raíz del usuario (`~/.iex.exs`) será usado como respaldo.
 
-Las opciones de configuración y el código definido en este archivo estarán disponibles cuando se inicie el shell de IEx. Por ejemplo, si queremos algunas funciones de ayuda disponibles en IEx, podemos abrir `.iex.exs` y hacer algunos cambios.
+Las opciones de configuración y el código definido en este archivo estarán disponibles cuando se inicie el 
+de IEx. Por ejemplo, si queremos algunas funciones de ayuda disponibles en IEx, podemos abrir `.iex.exs` y hacer algunos cambios.
 
 Empecemos por añadir un módulo con algunas funciones de ayuda:
 
@@ -72,7 +73,7 @@ Como podemos ver no necesitamos hacer nada especial para requerir o importar nue
 ### `h`
 
 El `h` es una de las herramientas más útiles que nos da nuestra cáscara de elixir.
-Gracias al fantástico soporte de documentación de primera clase del idioma, se puede acceder a los documentos de cualquier código mediante este asistente.
+Gracias al fantástico soporte de documentación de primera clase que ofrece Elixir, se puede acceder a los documentos de cualquier código mediante este asistente.
 Verlo en acción es simple:
 
 ```elixir
@@ -102,18 +103,18 @@ ya que pueden funcionar para siempre. Por ejemplo:
 ┃ Enum.each Stream.cycle([1, 2, 3]), &IO.puts(&1)
 ```
 
-Y ahora podemos incluso combinar esto con las características de autocompletar de nuestro shell.
+Y ahora podemos incluso combinar esto con las características de autocompletar de nuestro _shell_.
 Imagínate que estábamos explorando Map por primera vez:
 
 ```elixir
 iex> h Map
                                       Map
 
-Conjunto de funciones para trabajar con mapas.
+A set of functions for working with maps.
 
-Los mapas son almacenes de valor clave donde las claves pueden ser de cualquier valor y se comparan utilizando
-el operador del partido (====). Los mapas se pueden crear con el formulario especial %{} definido
-en el módulo Kernel.SpecialForms.
+Maps are key-value stores where keys can be any value and are compared using
+the match operator (===). Maps can be created with the %{} special form defined
+in the Kernel.SpecialForms module.
 
 iex> Map.
 delete/2             drop/2               equal?/2
@@ -130,13 +131,13 @@ update!/3            update/4             values/1
 iex> h Map.merge/2
                              def merge(map1, map2)
 
-Fusiona dos mapas en uno.
+Merges two maps into one.
 
-Todas las teclas del mapa2 se añadirán al mapa1, anulando cualquier tecla existente.
+All keys in map2 will be added to map1, overriding any existing one.
 
-Si tiene una estructura y desea fusionar un conjunto de claves en la estructura,
-no utilice esta función, ya que fusionaría todas las teclas del lado derecho con la tecla
-struct, incluso si la clave no forma parte de la struct. En su lugar, utilice
+If you have a struct and you would like to merge a set of keys into the struct,
+do not use this function, as it would merge all keys on the right side into the
+struct, even if the key is not part of the struct. Instead, use
 Kernel.struct/2.
 
 Ejemplos
@@ -145,7 +146,7 @@ Ejemplos
 ┃ %{a: 3, b: 2, d: 4}
 ```
 
-Como podemos ver, no sólo pudimos encontrar qué funciones estaban disponibles como parte del módulo, sino que también pudimos acceder a documentos de funciones individuales, muchos de los cuales incluyen ejemplos de uso.
+Como podemos ver, no sólo pudimos encontrar cuales funciones estaban disponibles como parte del módulo, sino que también pudimos acceder a documentos de funciones individuales, muchos de los cuales incluyen ejemplos de uso.
 
 ### `i`
 
