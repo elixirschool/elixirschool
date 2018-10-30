@@ -1,33 +1,32 @@
 ---
 title: Elixir School
 layout: home
-version: 1.0.0
+version: 2.0.0
 ---
 
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+مدرسة إليكسير تعد هي الوجة الاولى للذين يتطلعون لتعلم وإتقان لغة برمجة إليكسير.
 
-دروس حول لغة البرمجة Elixir ، مستوحاة من تويتر [Scala School](http://twitter.github.io/scala_school/).
+سواء كانت عندك الخبرة او هذه مرتك الاولى ستجد ما تسعى اليه بإذن الله في الدروس و المصادر الإضافية.
 
-Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [日本語][ja], [Português][pt] and [Bahasa Melayu][ms]
+من خلال العمل الشاق للمتطوعين تم ترجمة مدرسة إليكسير الى الكثير من اللغات منها التالي: [Việt ngữ][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], and [ภาษาไทย][th].
 
-[cn]: {{ site.url }}/cn/
-[es]: {{ site.url }}/es/
-[ja]: {{ site.url }}/ja/
-[pt]: {{ site.url }}/pt/
-[vi]: {{ site.url }}/vi/
-[ms]: {{ site.url }}/ms/
+نشكر كل المتطوعين وندعوك للعمل الخيري وبالتبرع ولو بالقليل من وقتك للمساعدة في تطوير مجتمع لغة برمجة إليكسير [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool).
 
-_يتم تشجيع ملاحظاتك والمشاركة!_
-
-## About Elixir
-
-"Elixir هي لغة ديناميكية وظيفية مصممة لبناء تطبيقات قابلة للتطوير وقابلة للصيانة." — [elixir-lang.org](http://elixir-lang.org/)
-
-تستفيد إكسير من المعركة التي تم اختبارها ErlangVM لبناء أنظمة موزعة ومقاومة للخطأ من دون تأخير.
-
-__المميزات__:
-
-+ قابلة للتحجيم
-+ المتسامحة
-+ برمجة وظيفية
-+ الموسعة
+  [es]: /es/
+  [it]: /it/
+  [ja]: /ja/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [id]: /id/
+  [ms]: /ms/
+  [uk]: /uk/
+  [de]: /de/
+  [bn]: /bn/
+  [tr]: /tr/
+  [th]: /th/
+  [zh-hans]: /zh-hans/
+  [zh-hant]: /zh-hant/

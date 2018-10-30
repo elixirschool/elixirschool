@@ -1,5 +1,4 @@
 # Setup
-baseurl: /
 url: https://elixirschool.com
 permalink: /blog/:title/
 default_lang: en
@@ -48,11 +47,11 @@ sitemap:
   priority_name: 'priority'
 
 elixir:
-  version: 1.5.2
+  version: 1.7.3
 
 erlang:
-  OTP: 20
-  erts: 9.1
+  OTP: 21.1
+  erts: 10.1
 
 defaults:
   -

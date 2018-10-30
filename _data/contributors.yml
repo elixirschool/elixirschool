@@ -10,6 +10,9 @@
 - github: doomspork
   name: Sean Callan
   intro:
+    Sean has been passionately involved with Elixir since the very beginning.
+    After experiencing the joys of working with Elixir he created Elixir School and has become a core contributor to numerous libraries.
+    During the day, Sean help companies transition teams and codebases to Elixir.
   twitter: doomspork
   homepage: https://seancallan.com
   contributions:
@@ -22,17 +25,35 @@
     - Just the beginning
     - Configuration Demystified
     - Ecto query composition
+    - 'Umbrellas: only when it rains?'
 
-- github: ybur-yug
-  name:
+- github: gemantzu
+  name: George Mantzouranis
   intro:
   homepage:
-  twitter:
+  twitter: gemantzu
+  contributions:
+    - translator
+    - blog
+  languages:
+    - gr
+  articles:
+    - Reviewing Elixir in Action, Second Edition
+    - Reviewing Functional Web Development with Elixir, OTP, and Phoenix
+
+- github: notactuallypagemcconnell
+  name: Bobby Grayson
+  intro:
+  homepage:
+  twitter: yburyug
   contributions:
     - lesson
+    - blog
   lessons:
     - IEx Helpers
     - Protocols
+  articles:
+    - Agnostic Version Management With asdf
 
 - github: Koziolek
   name:
@@ -145,20 +166,6 @@
     - translator
   languages:
     - de
-
-- github: gemantzu
-  name: George Mantzouranis
-  intro:
-  homepage:
-  twitter:
-  contributions:
-    - translator
-    - blog
-  languages:
-    - gr
-  articles:
-    - Reviewing Elixir in Action, Second Edition
-    - Reviewing Functional Web Development with Elixir, OTP, and Phoenix
 
 - github: rezaprima
   name:

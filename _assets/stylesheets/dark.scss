@@ -7,9 +7,8 @@ body.dark {
     color: _dark(fg);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6, th {
     color: _dark(fg-bold);
-
   }
 
   a {
@@ -86,7 +85,7 @@ body.dark {
       color: #800080;
     }
 
-    .na, .no, .nv, .vc, .vg, .vi,  {
+    .na, .no, .nv, .vc, .vg, .vi  {
       color: lighten(#008080, 20%);
     }
 
@@ -174,7 +173,7 @@ body.dark {
     }
     > ul {
       > li {
-        border-top: 1px solid _dark(border);
+        border-color: _dark(border);
         > ul {
           color: _dark(fg);
           a, span {
