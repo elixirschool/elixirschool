@@ -38,7 +38,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-Poznámka k menu funkcie (`++/2`) a jej formátu, ktorý bol použitý v príklade. V Elixire (a v Erlangu, na ktorom je Elixir postavený), funkcia alebo meno operátora má dve časti: pomenovanie, ktoré definujeme (tu napr. `++`) a početnosť parametrov (_arity_). `++` operátor vyžaduje aby sme mu dodali 2 parametre pri jeho volaní. Pri popise väčšiny funkcii je uvedené jej meno a počet parametrov, ktoré sú spojené lomítkom. O tomto si povieme detailnejšie neskôr, táto poznámka ti zatiaľ pomôže pochopiť túto notáciu.
+Poznámka k formátu zápisu funkcií a operátorov, ktorý je použitý v príkladoch: v Elixire má názov funkcie dve časti: meno funkcie (v tomto prípade `++`) a početnosť parametrov (_arity_ - v tomto prípade `2`). Operátor `++` teda vyžaduje, aby sme mu dodali 2 parametre pri jeho volaní. Pri popise väčšiny funkcii je uvedené jej meno a počet parametrov, ktoré sú spojené lomítkom. O tomto si povieme detailnejšie neskôr, táto poznámka ti zatiaľ pomôže pochopiť túto notáciu.
 
 ### Odčítavanie zoznamov
 
