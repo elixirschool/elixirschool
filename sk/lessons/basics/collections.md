@@ -7,31 +7,31 @@ Zoznamy, tuples, keyword listy a mapy.
 
 {% include toc.html %}
 
-## Zoznamy
+## Listy
 
-Zoznamy (lists) sú jednoduché kolekcie hodnôt, ktoré môžu obsahovať viacero dátových typov. Prvky sa v zozname môžu aj opakovať:
+Listy sú jednoduché kolekcie hodnôt, ktoré môžu obsahovať viacero dátových typov. Prvky sa v zozname môžu aj opakovať:
 
 ```elixir
 iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implementuje zoznamy ako lineárne zoznamy (*linked lists*). To znamená, že prístup k dĺžke zoznamu je operácia s lineárnou časovou zložitosťou (`O(n)`). Z tohto dôvodu je zvyčajne rýchlejšie nové prvky pridávať na začiatok zoznamu, než na jeho koniec:
+Elixir implementuje listy ako lineárne zoznamy (*linked lists*). To znamená, že prístup k dĺžke zoznamu je operácia s lineárnou časovou zložitosťou (`O(n)`). Z tohto dôvodu je zvyčajne rýchlejšie nové prvky pridávať na začiatok zoznamu, než na jeho koniec:
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-# Prepending (fast)
+# Pridávanie na začiatok (rýchle)
 iex> ["π"] ++ list
 ["π", 3.14, :pie, "Apple"]
-# Appending (slow)
+# Pridávanie na koniec (pomalé)
 iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
 
-### Spájanie zoznamov
+### Spájanie listov
 
-Spájanie zoznamov využíva operátor `++/2`:
+Spájanie listov využíva operátor `++/2`:
 
 ```elixir
 iex> [1, 2] ++ [3, 4, 1]
@@ -40,9 +40,9 @@ iex> [1, 2] ++ [3, 4, 1]
 
 Poznámka k formátu zápisu funkcií a operátorov, ktorý je použitý v príkladoch: v Elixire má názov funkcie dve časti: meno funkcie (v tomto prípade `++`) a početnosť parametrov (_arity_ - v tomto prípade `2`). Operátor `++` teda vyžaduje, aby sme mu dodali 2 parametre pri jeho volaní. Pri popise väčšiny funkcii je uvedené jej meno a počet parametrov, ktoré sú spojené lomítkom. O tomto si povieme detailnejšie neskôr, táto poznámka ti zatiaľ pomôže pochopiť túto notáciu.
 
-### Odčítavanie zoznamov
+### Odčítavanie listov
 
-Podporu odčítania zoznamov (list subtraction) poskytuje operátor `--/2`, kde je bezpečné odčítať aj chýbajúcu hodnotu:
+Podporu odčítania listov (_list subtraction_) poskytuje operátor `--/2`, pri ktorom je bezpečné odčítať aj chýbajúcu hodnotu:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
@@ -56,7 +56,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-*Pozn.:* Odčítanie zoznamov používa [striktné porovnanie](../basics/#comparison) na nájdenie zhodných hodnôt.
+*Pozn.:* Odčítanie listov používa [striktné porovnanie](../basics/#comparison) na nájdenie zhodných hodnôt.
 
 ### Head / Tail
 
@@ -98,9 +98,9 @@ iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
 
-## Zoznamy kľúčových slov
+## Keyword listy
 
-Zoznamy kľúčových slov (keyword lists) a mapy sú asociatívnymi kolekciami Elixiru. Zoznamy kľúčových slov sú zoznamy dvojprvkových tuplov, pričom prvým prvkom v každom tuple je vždy atóm. Výkonom sú na tom rovnako ako zoznamy:
+Keyword listy a mapy sú asociatívnymi kolekciami Elixiru. Keyword listy sú zoznamy dvojprvkových tuplov, pričom prvým prvkom v každom tuple je vždy atóm. Výkonom sú na tom rovnako ako listy:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
