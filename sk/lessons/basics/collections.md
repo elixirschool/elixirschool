@@ -3,7 +3,7 @@ version: 1.2.3
 title: Kolekcie
 ---
 
-Zoznamy, tuples, keyword listy a mapy.
+Listy, tuples, keyword listy a mapy.
 
 {% include toc.html %}
 
@@ -115,11 +115,11 @@ Pre keyword listy je charakteristické:
 + Kľúče sú zoradené.
 + Kľúče nemusia byť unikátne.
 
-Z týchto dôvodov sú zoznamy kľúčových slov najčastejšie využívané na odovzdanie možností (options) do funkcií.
+Z týchto dôvodov sú keyword listy najčastejšie využívané na odovzdanie doplnkových parametrov (_options_) do funkcií.
 
 ## Mapy
 
-Na uchovávanie informácií typu kľúč-hodnota (key-value store) slúžia v Elixire Mapy. Na rozdiel od zoznamov kľúčových slov umožňujú ako kľúč akýkoľvek dátový typ a nie sú zoradené. Mapu môžeme definovať syntaxou `%{}`:
+Na uchovávanie informácií typu kľúč-hodnota (key-value store) slúžia v Elixire Mapy. Na rozdiel od keyword listov umožňujú ako kľúč akýkoľvek dátový typ a nie sú zoradené. Mapu môžeme definovať syntaxou `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
