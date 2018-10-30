@@ -24,7 +24,7 @@ defmodule ExampleTest do
 end
 ```
 
-Testy nášho projektu môžeme spustiť pomocou `mix test`. Potom, mali by sme dostať podobný výstup:
+Kompletnú sadu testov nášho projektu môžeme spustiť pomocou príkazu `mix test`. Následne by sme mali dostať podobný výstup:
 
 ```shell
 ..
@@ -162,7 +162,7 @@ defmodule ExampleTest do
 end
 ```
 
-## Mocking
+## Mockovanie
 
 Jednoduchá odpoveď na mockovanie v Elixire je: nerobte to. Inštinktívne možno siahnete na mocky, ale v komunita Elixiru dôrazne neodporúča z dobrého dôvodu.
 

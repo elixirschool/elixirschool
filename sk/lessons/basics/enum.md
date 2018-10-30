@@ -65,7 +65,7 @@ Táto funkcia má niekoľko možností použitia, ale tu ich nebudeme rozoberať
 
 ### chunk_by
 
-Ak potrebujete rozdeliť kolekciu do menších skupín na základe niečoho iného, než ich hodnota, môžeme použiť funkciu `chunk_by/2`. Ako argumenty funkcia berie kolekciu a funkciu. Ak sa zmení vrátená hodnota funkcie, začne sa vytvárať ďalšia kolekcia:
+Ak potrebujete rozdeliť kolekciu do menších skupín na základe niečoho iného, než ich veľkosť, môžeme použiť funkciu `chunk_by/2`. Ako argumenty funkcia berie kolekciu a funkciu. Ak sa zmení vrátená hodnota funkcie, začne sa vytvárať ďalšia kolekcia:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)

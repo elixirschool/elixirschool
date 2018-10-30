@@ -42,7 +42,7 @@ Poznámka k formátu zápisu funkcií a operátorov, ktorý je použitý v prík
 
 ### Odčítavanie listov
 
-Podporu odčítania listov (_list subtraction_) poskytuje operátor `--/2`, pri ktorom je bezpečné odčítať aj chýbajúcu hodnotu:
+Odčítanie listov (_list subtraction_) zabezpečuje operátor `--/2`, pri ktorom je bezpečné odčítať aj chýbajúcu hodnotu:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]

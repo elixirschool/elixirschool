@@ -3,13 +3,13 @@ version: 1.3.0
 title: Moduly
 ---
 
-Zo skúsenosti vieme, že je dosť nepohodlné, mať všetky funkcie v jedinom súbore. V tejto lekcii sa naučíme, ako funkcie zoskupovať a definovať špeciálny typ mapy, zvaný *struct* aby sme mohli usporiadať náš kód efektívnejšie.
+Zo skúsenosti vieme, že je dosť nepohodlné, mať všetky funkcie v jedinom súbore. V tejto lekcii sa naučíme, ako funkcie zoskupovať a definovať špeciálny typ mapy, zvaný *struct*, aby sme mohli náš kód usporiadať efektívnejšie.
 
 {% include toc.html %}
 
 ## Moduly
 
-Moduly nám umožňujú organizovať funkcie do menných priestorov (*namespaces*). Navyše nám umožňujú definovať pomenované a privátne funkcie, o ktorých sme si povedali v [lekcii o funkciách](../functions/).
+Moduly nám umožňujú organizovať funkcie do menných priestorov (*namespaces*). Definujeme v nich pomenované a privátne funkcie, o ktorých sme si povedali v [lekcii o funkciách](../functions/).
 
 Pozrime sa na jednoduchý príklad:
 
@@ -24,7 +24,7 @@ iex> Example.pozdrav "Jano"
 "Ahoj Jano."
 ```
 
-V Elixire je možné definovať moduly vnorené v iných moduloch, čo nám dovoľuje ďalej rozdeľovať funkcionalitu do menných priestorov:
+V Elixire je možné definovať moduly vnorené v iných moduloch, čo nám dovoľuje ďalej rozdeľovať funkcionalitu do menších menných priestorov:
 
 ```elixir
 defmodule Example.Pozdravy do
@@ -43,7 +43,7 @@ iex> Example.Pozdravy.rano "Jano"
 
 ### Atribúty modulov
 
-Atribúty sa v Elixirových moduloch najčastejšie používajú ako konštanty. Pozrime sa na jednoduchý príklad:
+Atribúty sa v Elixirových moduloch najčastejšie používajú ako konštanty:
 
 ```elixir
 defmodule Example do
@@ -57,7 +57,7 @@ end
 
 Je dôležité zapamätať si, že v Elixire existujú vyhradené atribúty modulov. Najbežnejšie sú tieto tri:
 
-+ `moduledoc` — Dokumentácia modulu.
++ `moduledoc` — Slúži na dokumentáciu modulu.
 + `doc` — Dokumentácia funkcie alebo makra.
 + `behaviour` — Indikuje použitie OTP, alebo iného behaviour (chovania) definovaného užívateľom.
 
@@ -109,8 +109,6 @@ Teraz, keď už dokážeme vytvárať vlastné moduly a štruktúry, je načase 
 ### `alias`
 
 Dovoľuje nám dať externému modulu (kratší) alias, cez ktorý potom k nemu budeme pristupovať. V Elixirovom kóde je použitie aliasov veľmi bežné:
-
-Umožňuje nám alias mien modulov. Často sa v Elixire používa takto:
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -197,7 +195,7 @@ import List, only: :macros
 
 ### `require`
 
-Môžeme použiť `require` aby sme povedali Elixiru, že ideme použiť makrá daného modulu. Malý rozdiel oproti `import` je, že nám umožňuje používanie makrá, ale nie funkcie z špecifikovaného modulu:
+Keď chceme z iného modulu načítať len makrá, ale nie funkcie, použijeme `require`:
 
 ```elixir
 defmodule Example do
@@ -211,7 +209,7 @@ Ak sa pokúsime zavolať makro, ktoré nie je načítané, Elixir vyhodí chybu.
 
 ### `use`
 
-S makrom `use` umožníme inému modulu modifikovať definíciu nášho modulu.
+Makrom `use` umožníme cieľovému modulu modifikovať náš modul.
 Keď zavoláme `use` v našom kóde, tak vlastne vyvoláme `__using__/1` callback definovaný v dodanom module.
 Výsledok `__using__/1` makra sa stane časťou definície nášho modulu.
 Aby sme si ukázali ako funguje pozrime sa na tento jednoduchý príklad:
@@ -235,7 +233,6 @@ defmodule Example do
 end
 ```
 
-If we try our code out in IEx we'll see that `hello/1` is available on the `Example` module:
 Ak skúsime spustiť v IEx náš kód tak uvidíme, že funkcia `hello/1` je dostupná v module `Example`:
 
 ```elixir
@@ -244,7 +241,7 @@ iex> Example.hello("Sean")
 ```
 
 Tu môžeme vidieť, že `use` vyvolalo `__using__/1` callback na module `Hello`, čo pridalo výsledný kód do nášho modulu.
-Teraz, keď sme si ukázali jednoduchý príklad upravme náš kód aby sme sa pozreli ako `__using__/1` podporuje možnosti.
+Teraz, keď sme si ukázali jednoduchý príklad upravme náš kód aby sme sa pozreli ako `__using__/1` podporuje doplnkové parametre.
 Spravíme to tak, že pridáme `greeting` možnosť:
 
 ```elixir
@@ -275,6 +272,6 @@ iex> Example.hello("Sean")
 ```
 
 Toto sú jednoduché príklady ako funguje `use`, ale zároveň demonštruje aký silný nástroj to je v Elixire.
-Ako sa postupne učíme o Elixire, pozerajme sa po použití `use`, jeden príklad ktorý určite uvidíme je `use ExUnit.Case, async: true`.
+Ako sa postupne učíme o Elixire, pozerajme sa po použití `use`. Jeden príklad, ktorý určite uvidíme je `use ExUnit.Case, async: true`.
 
 **Poznámka**: `quote`, `alias`, `use` a `require` sú makrá použité keď pracujeme s metaprogramovaním.

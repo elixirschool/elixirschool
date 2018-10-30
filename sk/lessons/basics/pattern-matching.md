@@ -9,7 +9,7 @@ Pattern matching je dôležitou a užitočnou časťou Elixiru. Umožňuje nám 
 
 ## Match operator
 
-Pripravení na prekvapenie? V Elixire je operátor `=` v skutočnosti match operátorom, porovnateľný so znamienkom rovná sa v algebre. Jeho napísaním sa zmení celý výraz na rovnicu a donúti Elixir nachádzať a vyberať časti vľavo z hodnôt ktoré sú na pravej strane. Ak nastane zhoda a match je úspešný, vráti hodnotu výrazu. Inak vyhodí chybu. Pozrime sa na to:
+Pripravení na prekvapenie? V Elixire je operátor `=` v skutočnosti match operátorom, porovnateľný so znamienkom rovná sa v algebre. Jeho napísaním sa zmení celý výraz na rovnicu a donúti Elixir nachádzať a vyberať časti vľavo z hodnôt, ktoré sú na pravej strane. Ak nastane zhoda a match je úspešný, vráti hodnotu výrazu. Inak vyhodí chybu. Pozrime sa na to:
 
 ```elixir
 iex> x = 1
@@ -97,4 +97,4 @@ iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
 ```
 
-_Pozn._ v `"Mornin'"` príklade prepísanie premennej `greeting` na `"Mornin'"` sa udeje iba vo funkcii. Mimo funkcie má premenná `greeting` stále hodnotu `"Hello"`.
+Všimnite si v príklade s `"Mornin'"`, že premenná `greeting` dostane hodnotu `"Mornin'"` iba vo vnútri funkcie. Mimo funkcie má premenná `greeting` stále hodnotu `"Hello"`.
