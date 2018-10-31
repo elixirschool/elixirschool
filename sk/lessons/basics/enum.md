@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.4.0
 title: Enum
 ---
 
@@ -30,7 +30,7 @@ at/3
 Teraz vidíme, že máme obrovské množstvo funkcionality vďaka veľmi dobrému dôvodu. Iterovanie nad kolekciami je jadrom funkcionálneho programovania a veľmi užitočná vec.
 Pri použití s ďalšími výhodami Elixiru, ako je napríklad dokumentácia, ktorá nie je občanom druhej triedy, ako sme mohli vidieť, to môže byť tiež neuveriteľným posilnením pre vývojára.
 
-Kompletný zoznam funkcií nájdete v oficiálnej dokumentácii modulu [`Enum`](https://hexdocs.pm/elixir/Enum.html). Na prácu s "lazy enumeration" použite funkcie z modulu [`Stream`](https://hexdocs.pm/elixir/Stream.html).
+Kompletný zoznam funkcií nájdete v oficiálnej dokumentácii modulu [`Enum`](https://hexdocs.pm/elixir/Enum.html). Na prácu s "lazy enumeration" môžeme použiť funkcie z modulu [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 ### all?
 
@@ -137,6 +137,15 @@ iex> Enum.max([5, 3, 0, -1])
 ```elixir
 Enum.max([], fn -> :bar end)
 :bar
+```
+
+### filter
+
+Funkcia `filter/2` nám umožní filtrovať kolekciu aby sme dostali len tie prvky, pre ktoré sa daná funkcia vyhodnotí ako `true`.
+
+```elixir
+iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
+[2, 4]
 ```
 
 ### reduce

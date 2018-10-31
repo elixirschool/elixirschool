@@ -1,9 +1,9 @@
 ---
-version: 1.1.1
-title: Kompozícia
+version: 1.3.0
+title: Moduly
 ---
 
-Zo skúsenosti vieme, že je dosť nepohodlné, mať všetky funkcie v jedinom súbore. V tejto lekcii sa naučíme, ako funkcie zoskupovať a definovať špeciálny typ mapy, zvaný *struct* aby sme mohli usporiadať náš kód efektívne.
+Zo skúsenosti vieme, že je dosť nepohodlné, mať všetky funkcie v jedinom súbore. V tejto lekcii sa naučíme, ako funkcie zoskupovať a definovať špeciálny typ mapy, zvaný *struct*, aby sme mohli náš kód usporiadať efektívnejšie.
 
 {% include toc.html %}
 
@@ -24,7 +24,7 @@ iex> Example.pozdrav "Jano"
 "Ahoj Jano."
 ```
 
-V Elixire je možné definovať moduly vnorené v iných moduloch, čo nám dovoľuje jemnejšie rozdeľovať funkcionalitu do menných priestorov:
+V Elixire je možné definovať moduly vnorené v iných moduloch, čo nám dovoľuje ďalej rozdeľovať funkcionalitu do menších menných priestorov:
 
 ```elixir
 defmodule Example.Pozdravy do
@@ -55,7 +55,7 @@ defmodule Example do
 end
 ```
 
-Je dôležité zapamätať si, že v Elixire existujú vyhradené modulové atribúty. Najbežnejšie tri sú tieto:
+Je dôležité zapamätať si, že v Elixire existujú vyhradené atribúty modulov. Najbežnejšie sú tieto tri:
 
 + `moduledoc` — Slúži na dokumentáciu modulu.
 + `doc` — Dokumentácia funkcie alebo makra.
@@ -102,9 +102,9 @@ iex> %{name: "Sean"} = sean
 %Example.User{name: "Sean", roles: [:admin, :owner]}
 ```
 
-## Skladanie modulov
+## Kompozícia
 
-Teraz, keď už dokážeme vytvárať vlastné moduly, je načase naučiť sa, ako v nich používať funkcie definované v iných moduloch. Elixir nám na tento účel poskytuje niekoľko odlišných kompozičných mechanizmov:
+Teraz, keď už dokážeme vytvárať vlastné moduly a štruktúry, je načase naučiť sa, ako pridať funkcionalitu definovanú v iných moduloch. Elixir nám na tento účel poskytuje niekoľko spôsobov ako interagovať s inými modulmi.
 
 ### `alias`
 
@@ -140,7 +140,7 @@ defmodule Example do
 end
 ```
 
-Je možné aliasovať viacero modulov naraz:
+Je možné aliasovať aj viacero modulov naraz:
 
 ```elixir
 defmodule Example do
@@ -195,7 +195,7 @@ import List, only: :macros
 
 ### `require`
 
-Aj keď sa `require/2` používa zriedkavejšie, je rovnako dôležitou metódou kompozície. Pri jej použití máme istotu, že cieľový modul je skompilovaný a načítaný. To je užitočné najmä v prípade, že potrebujeme prístup k jeho makrám:
+Keď chceme z iného modulu načítať len makrá, ale nie funkcie, použijeme `require`:
 
 ```elixir
 defmodule Example do
@@ -205,52 +205,73 @@ defmodule Example do
 end
 ```
 
-Ak by sme sa totiž pokúsili zavolať makro, ktoré ešte nie je načítané, Elixir by vyhodil chybu.
+Ak sa pokúsime zavolať makro, ktoré nie je načítané, Elixir vyhodí chybu.
 
 ### `use`
 
-Macro use vyvolá špeciálne macro, nazvané `__using__/1`, z špecifikovaného modulu. Tu je príklad:
+Makrom `use` umožníme cieľovému modulu modifikovať náš modul.
+Keď zavoláme `use` v našom kóde, tak vlastne vyvoláme `__using__/1` callback definovaný v dodanom module.
+Výsledok `__using__/1` makra sa stane časťou definície nášho modulu.
+Aby sme si ukázali ako funguje pozrime sa na tento jednoduchý príklad:
 
 ```elixir
-# lib/use_import_require/use_me.ex
-defmodule UseImportRequire.UseMe do
-  defmacro __using__(_) do
+defmodule Hello do
+  defmacro __using__(_opts) do
     quote do
-      def use_test do
-        IO.puts("use_test")
-      end
+      def hello(name), do: "Hi, #{name}"
     end
   end
 end
 ```
 
-a pridáme tento riadok do UseImportRequire:
+Tu sme vytvorili modul `Hello`, ktorý definuje `__using__/1` callback vo vnútri ktorého definujeme funkciu `hello/1`.
+Poďme vytvoriť nový modul aby sme mohli vyskúšať náš kód:
 
 ```elixir
-use UseImportRequire.UseMe
+defmodule Example do
+  use Hello
+end
 ```
 
-Použitím UseImportRequire.UseMe definuje funkciu `use_test/0` tým že vyvolá macro `__using__/1`.
-
-To je všetko čo use spraví. Ale, je bežné pre macro `__using__` použiť ho na zavolanie alias, require alebo import. To vytvorí v module zadané aliasy alebo importy. Umožní nám modul použiť na definovanie politiky, ako máme odkazovať na funkcie a makrá.
-
-Phoenix framework využíva use a `__using__/1` na odstránenie opakovania sa pri aliasoch a importoch v moduloch definovaných používateľom.
-
-Tu je krátka ukážka z modulu Ecto.Migration:
+Ak skúsime spustiť v IEx náš kód tak uvidíme, že funkcia `hello/1` je dostupná v module `Example`:
 
 ```elixir
-defmacro __using__(_) do
-  quote location: :keep do
-    import Ecto.Migration
-    @disable_ddl_transaction false
-    @before_compile Ecto.Migration
+iex> Example.hello("Sean")
+"Hi, Sean"
+```
+
+Tu môžeme vidieť, že `use` vyvolalo `__using__/1` callback na module `Hello`, čo pridalo výsledný kód do nášho modulu.
+Teraz, keď sme si ukázali jednoduchý príklad upravme náš kód aby sme sa pozreli ako `__using__/1` podporuje doplnkové parametre.
+Spravíme to tak, že pridáme `greeting` možnosť:
+
+```elixir
+defmodule Hello do
+  defmacro __using__(opts) do
+    greeting = Keyword.get(opts, :greeting, "Hi")
+
+    quote do
+      def hello(name), do: unquote(greeting) <> ", " <> name
+    end
   end
 end
 ```
 
-Macro `Ecto.Migration.__using__/1` obsahuje volanie import a keď zavoláme `use Ecto.Migration` tiež zavoláme aj `import Ecto.Migration`. To pripraví aj atribúty modulu, ktorý ovláda správanie Ecta.
+Upravme náš modul `Example` aby mal novo vytvorenú `greeting` možnosť:
 
-Na zopakovanie: použitie macra jednoducho zavolá
-`__using__/1` špecifikovaného modulu. Aby sme ale naozaj vedeli čo vykoná musíme si prečítať macro `__using__/1`.
+```elixir
+defmodule Example do
+  use Hello, greeting: "Hola"
+end
+```
+
+Keď vyskúšame zavolať našu funkciu v IEx tak by sme mali vidieť, že pozdrav sa zmenil:
+
+```
+iex> Example.hello("Sean")
+"Hola, Sean"
+```
+
+Toto sú jednoduché príklady ako funguje `use`, ale zároveň demonštruje aký silný nástroj to je v Elixire.
+Ako sa postupne učíme o Elixire, pozerajme sa po použití `use`. Jeden príklad, ktorý určite uvidíme je `use ExUnit.Case, async: true`.
 
 **Poznámka**: `quote`, `alias`, `use` a `require` sú makrá použité keď pracujeme s metaprogramovaním.

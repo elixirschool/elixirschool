@@ -1,15 +1,15 @@
 ---
-version: 1.0.1
+version: 1.1.0
 title: Funkcie
 ---
 
-V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie ústredným konštruktom. Povieme si o rôznych typoch funkcií v Elixire, rozdieloch medzi nimi a ako ich používať.
+V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie základným konceptom. Povieme si o rôznych typoch funkcií v Elixire, rozdiely medzi nimi a ako ich použiť.
 
 {% include toc.html %}
 
 ## Anonymné funkcie
 
-Ako naznačuje už ich názov, tieto funkcie nemajú priradené meno. V kapitole o `Enum` sme videli, že sa často odovzdávajú ako argumenty iným funkciám. Na definovanie anonymnej funkcie slúžia v Elixire kľúčové slová `fn` a `end`. Medzi nimi môžeme definovať ľubovoľné množstvo sád parametrov a tiel funkcií - oddelených operátorom `->`.
+Ako naznačuje už ich názov, tieto funkcie nemajú meno. V kapitole o `Enum` sme videli, že sa často odovzdávajú ako argumenty iným funkciám. Na definovanie anonymnej funkcie slúžia v Elixire kľúčové slová `fn` a `end`. Medzi nimi môžeme definovať ľubovoľné množstvo kombinácii argumentov a tiel funkcií - oddelených operátorom `->`.
 
 Pozrime sa na jednoduchý príklad:
 
@@ -31,11 +31,13 @@ iex> sum.(2, 3)
 5
 ```
 
-Ako ste asi uhádli, v skrátenom zápise pristupujeme k parametrom cez `&1` (prvý odovzdaný parameter), `&2` (druhý odovzdaný parameter) atď.
+Ako ste asi uhádli, v skrátenom zápise máme k dodaným argumentom prístup cez `&1`, `&2`, `&3` atď.
 
 ## Pattern matching
 
-V Elixire nie je pattern matching obmedzený len na premenné - môže byť využitý aj v hlavičkách funkcií. Jeho aplikáciou na vstupné premenné sa určí, ktoré telo funkcie sa použije:
+V Elixire nie je pattern matching obmedzený len na premenné - môže byť využitý aj v hlavičkách funkcií. Jeho aplikáciou na vstupné argumenty sa určí, ktoré telo funkcie sa použije (to, ktoré prislúcha k prvej vyhovujúcej hlavičke).
+
+Elixir používa pattern matching na nájdenie zhodnej funkcie a zvolí prvú vyhovujúcu funkciu:
 
 ```elixir
 iex> handle_result = fn
@@ -51,7 +53,7 @@ iex> handle_result.({:error})
 An error has occurred!
 ```
 
-V príklade sme si definovali funkciu s dvoma telami. Pri jej prvom volaní sa použilo prvé telo, keďže sme jej ako parameter poslali tuple v tvare `{:ok, result}`. Pri druhom volaní sa použilo druhé telo, keďže ako parameter od nás dostala tuple v tvare `{:error}`.
+V príklade sme si definovali funkciu s dvoma telami. Pri jej prvom volaní sa použilo prvé telo, keďže sme jej ako argumenty poslali tuple v tvare `{:ok, result}`. Pri druhom volaní sa použilo druhé telo, keďže ako argument od nás dostala tuple v tvare `{:error}`.
 
 ## Pomenované funkcie
 
@@ -92,9 +94,9 @@ iex> Length.of [1, 2, 3]
 3
 ```
 
-### Pomenovanie funkcií a počet parametrov
+### Pomenovanie funkcií a počet argumentov
 
-Už sme si spomenuli skôr, že funkcie sú pomenované kombináciou ich mena a počtom parametrov (`arity`). To znamená, že môžeme spraviť aj niečo ako:
+Už sme si spomenuli skôr, že funkcie sú pomenované kombináciou ich mena a počtom argumentov (`arity`). To znamená, že môžeme spraviť aj niečo ako:
 
 ```elixir
 defmodule Greeter2 do
@@ -138,7 +140,7 @@ iex> Greeter.phrase
 Hraničných podmienok (*guards*) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](../control-structures). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
 Keď Elixir vybral funkciu, akékoľvek existujúce hraničné podmienky budú otestované.
 
-V nasledujúcom príklade máme dve funkcie s tou istou hlavičkou, no rôznymi hraničnými podmienkami testujeme typ argumentu:
+V nasledujúcom príklade máme dve funkcie s tou istou hlavičkou, no rôznymi hraničnými podmienkami. Testujeme typ parametra:
 
 ```elixir
 defmodule Greeter do
@@ -159,7 +161,7 @@ iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 ```
 
-### Východiskové argumenty
+### Východiskové hodnoty argumentov
 
 Ak chceme, aby mal niektorý z argumentov funkcie východiskovú hodnotu, použijeme syntax `argument \\ hodnota`:
 
@@ -170,7 +172,7 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
+  defp phrase("sk"), do: "Ahoj, "
 end
 
 iex> Greeter.hello("Sean", "en")
@@ -179,8 +181,8 @@ iex> Greeter.hello("Sean", "en")
 iex> Greeter.hello("Sean")
 "Hello, Sean"
 
-iex> Greeter.hello("Sean", "es")
-"Hola, Sean"
+iex> Greeter.hello("Sean", "sk")
+"Ahoj, Sean"
 ```
 
 Problém môže nastať, ak nevhodne skombinujeme hraničné podmienky s východiskovými argumentami:
