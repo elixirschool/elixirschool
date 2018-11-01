@@ -36,7 +36,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-Yukarıdaki (`++/2`) kullanımını açiklamak gerekirse; Elixir'de (ve Erlang'ta; çünkü Elixir, Erlang üzerinde geliştirilmiştir), bir fonksiyon veya operatörun iki bileşeni vardir. Birincisi verdiğiniz isim (burada operatör `++`), ve aldiğı parametrelerin sayisi (_arity_). İşlem için alınan parametreler bir sayıdır ve Elixir için ana özelliklerden birisidir. Verilen isim ve parametre sayilari bolme isareti (/) ile birlestirilir, `++/2` gibi. Bundan ileride bahsedecegiz; simdilik bu kadarini anlamaniz yeterlidir.
+Yukarıdaki (`++/2`) kullanımını açiklamak gerekirse; Elixir'de (ve Erlang'ta; çünkü Elixir, Erlang üzerinde geliştirilmiştir), bir fonksiyon veya operatörun iki bileşeni vardir. Birincisi verdiğiniz isim (burada operatör `++`), ve aldiğı parametrelerin sayisi (_arity_). İşlem için alınan parametreler bir sayıdır ve Elixir için ana özelliklerden birisidir. Verilen isim ve parametre sayilari bolme isareti (/) ile birleştirilir, `++/2` gibi. Bundan ileride bahsedecegiz; simdilik bu kadarini anlamaniz yeterlidir.
 
 
 ### Liste Ayrıştırma/Çıkarma
