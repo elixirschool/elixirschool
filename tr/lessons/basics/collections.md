@@ -48,7 +48,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-Birden fazla aynı değerin oldugu koşullara dikkat edilmesi gerekir. Çıkarma işleminin sağındaki her değer için, çıkarma işleminin solundaki listeden sadece ilk uyuşan deger çıkartılır.
+Birden fazla aynı değerin oldugu koşullara dikkat edilmesi gerekir. Çıkarma işleminin sağındaki her değer için, çıkarma işleminin solundaki listeden sadece ilk uyuşan değer çıkartılır.
 
 ```elixir
 iex> [1,2,2,3,2,3] -- [1,2,3,2]
