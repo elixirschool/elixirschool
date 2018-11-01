@@ -1,9 +1,9 @@
 ---
-version: 1.0.0
+version: 1.1.2
 title: Básico
 ---
 
-Preparar el entorno, tipos básicos y operaciones.
+Preparar el entorno, tipos y operaciones básicas.
 
 {% include toc.html %}
 
@@ -11,7 +11,7 @@ Preparar el entorno, tipos básicos y operaciones.
 
 ### Instalar Elixir
 
-Las instrucciones para cada sistema operativo pueden ser encontradas en [Elixir-lang.org](http://elixir-lang.org) en la guía [Instalando Elixir](http://elixir-lang.org/install.html).
+Las instrucciones de instalación para cada sistema operativo pueden ser encontradas en [Elixir-lang.org](http://elixir-lang.org) en la guía [Installing Elixir](http://elixir-lang.org/install.html)(en inglés).
 
 Después de que Elixir haya sido instalado, puedes confirmar la versión instalada fácilmente.
 
@@ -22,9 +22,9 @@ Después de que Elixir haya sido instalado, puedes confirmar la versión instala
 
 ### Probando el Modo Interactivo
 
-Elixir viene con `iex`, una consola interactiva, que nos permite evaluar expresiones Elixir mientras lo ejecutamos.
+Elixir viene con `iex`, una consola interactiva, que nos permite evaluar expresiones Elixir al vuelo.
 
-Para empezar, Ejecutamos `iex`:
+Para empezar, ejecutamos `iex`:
 
 	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
@@ -42,7 +42,7 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-No te preocupes si no entiendas cada expresión aún, pero esperamos que puedas captar la idea.
+No te preocupes si no entiendes cada expresión todavía, pero esperamos que puedas captar la idea.
 
 ## Tipos Básicos
 
@@ -69,14 +69,13 @@ iex> 0x1F
 En Elixir, los números con coma flotante requieren un decimal después de al menos un dígito; estos tienen una precisión de 64 bits y soportan `e` para números exponenciales.
 
 ```elixir
-iex> 3.14 
- 3.14
-iex> .14 
+iex> 3.14
+3.14
+iex> .14
 ** (SyntaxError) iex:2: syntax error before: '.'
 iex> 1.0e-10
 1.0e-10
 ```
-
 
 ### Booleanos
 
@@ -91,7 +90,7 @@ false
 
 ### Átomos
 
-Un Átomo es una constante cuyo nombre es su valor, si estás familiarizado con Ruby estos son equivalentes a los Símbolos:
+Un átomo es una constante cuyo nombre es su valor, si estás familiarizado con Ruby estos son equivalentes a los Símbolos:
 
 ```elixir
 iex> :foo
@@ -127,7 +126,7 @@ iex> :crypto.strong_rand_bytes 3
 
 ### Cadenas
 
-Las cadenas en Elixir están codificadas en utf-8 y están representadas con comillas dobles:
+Las cadenas en Elixir están codificadas en UTF-8 y están encerradas en comillas dobles:
 
 ```elixir
 iex> "Hello"
@@ -146,7 +145,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir también incluye tipos de datos más complejos.  Aprenderemos más sobre ellos cuando veamos [collecciones](../collections/) and [funciones](../functions/).
+Elixir también incluye tipos de datos más complejos.  Aprenderemos más sobre ellos cuando veamos [collecciones](../collections/) y [funciones](../functions/).
 
 ## Operaciones Básicas
 
@@ -165,7 +164,7 @@ iex> 10 / 5
 2.0
 ```
 
-Si tú necesitas una división entera o el resto de una división, Elixir viene con dos funciones útiles para para lograr esto:
+Si necesitas una división entera o el resto de una división, Elixir viene con dos funciones útiles para para lograr esto:
 
 ```elixir
 iex> div(10, 5)
@@ -176,7 +175,7 @@ iex> rem(10, 3)
 
 ### Booleanas
 
-Elixir provee los operadores booleanos: `||`, `&&`, y `!`, estos soportan cualquier tipo:
+Elixir provee los operadores booleanos: `||`, `&&`, y `!`, que soportan cualquier tipo de dato:
 
 ```elixir
 iex> -20 || true
@@ -234,7 +233,7 @@ iex> 2 === 2.0
 false
 ```
 
-Una característica importante de Elixir es que cualquier par de tipos se pueden comparar, esto es útil particularmente en ordenación. No necesitamos memorizar el orden pero es importante ser consciente de este:
+Una característica importante de Elixir es que cualquier par de tipos se pueden comparar, esto es útil particularmente en ordenados. No necesitamos memorizar el orden pero es importante ser consciente de este:
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
