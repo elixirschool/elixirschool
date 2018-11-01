@@ -1,6 +1,6 @@
 ---
 version: 1.2.1
-title: Kolleksiyonlar
+title: Koleksiyonlar
 ---
 
 Listeler (List), Demetler (Tuples), Anahtar Kelimeler (keywords), Haritalar (maps) ve işlevsel bağlaçlar.
