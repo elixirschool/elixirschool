@@ -3,21 +3,20 @@ version: 1.2.1
 title: Kolleksiyonlar
 ---
 
-Listeler (List), Demetler (Tuples), Anahtar Kelimeler (keywords), Haritalar (maps) ve islevsel baglaclar.
+Listeler (List), Demetler (Tuples), Anahtar Kelimeler (keywords), Haritalar (maps) ve işlevsel bağlaçlar.
 
 {% include toc.html %}
 
 ## Listeler (Lists)
 
-Listeler değerlerin tutulduğu basit koleksiyonlardir ve birden fazla tip içerebilirler; ve listeler tekil olmayan (non-unique) degerler icerebilirler:
+Listeler değerlerin tutulduğu basit koleksiyonlardir ve birden fazla tip içerebilirler; ve listeler tekil olmayan (non-unique) değerler içerebilirler:
 
 ```elixir
 iex> [3.14, :kek, "Elma"]
 [3.14, :kek, "Elma"]
 ```
 
-Elixir listeleri bağlantılı liste (linked list) olarak isler. Bu da demektir ki liste uzunluğuna ulasmak bir `O(n)` işlemidir. Bu nedenle tipik olarak yeni liste elemanini başa eklemek, sona eklemekten daha hizlidir.
-
+Elixir listeleri bağlantılı liste (linked list) olarak işler. Bu da demektir ki liste uzunluğuna ulaşmak bir `O(n)` işlemidir. Bu nedenle tipik olarak yeni liste elemanini başa eklemek, sona eklemekten daha hızlıdır.
 
 ```elixir
 iex> liste = [3.14, :kek, "Elma"]
@@ -27,7 +26,6 @@ iex> ["π"] ++ liste
 iex> liste ++ ["Kiraz"]
 [3.14, :kek, "Elma", "Kiraz"]
 ```
-
 
 ### Liste Birleştirme
 
@@ -50,7 +48,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-Birden fazla ayni değerin oldugu koşullara dikkat edilmesi gerekir. Çıkarma işleminin sağındaki her değer için, çıkarma işleminin solundaki listeden sadece ilk uyuşan deger çıkartılır.
+Birden fazla aynı değerin oldugu koşullara dikkat edilmesi gerekir. Çıkarma işleminin sağındaki her değer için, çıkarma işleminin solundaki listeden sadece ilk uyuşan deger çıkartılır.
 
 ```elixir
 iex> [1,2,2,3,2,3] -- [1,2,3,2]
@@ -68,8 +66,7 @@ iex> [2.0] -- [2.0]
 
 ### Baş / Kuyruk (Head / Tail)
 
-Listeleri kullanırken genelde listenin başıyla veya kuyruğuyla değişiklik yapılabilmektedir. Baş listenin ilk değeri iken, kuyruk kismı geriye kalan tüm kısımdır. Elixir bunlarla oynamak için iki yardımcı yöntem sunmaktadir, `hd` ve `tl`.
-
+Listeleri kullanırken genelde listenin başıyla veya kuyruğuyla değişiklik yapılabilmektedir. Baş, listenin ilk değeri iken, kuyruk kısmı geriye kalan tüm kısımdır. Elixir bunlarla oynamak için iki yardımcı yöntem sunmaktadir, `hd` ve `tl`:
 
 ```elixir
 iex> hd [3.14, :kek, "Elma"]
@@ -98,7 +95,7 @@ iex> {3.14, :kek, "Elma"}
 {3.14, :kek, "Elma"}
 ```
 
-Demetlerin fonksiyonlardan ek bilgi döndürme mekanizmasi olarak kullanılması yaygındır; bunun faydalarını [desen eşleştirmesi - Pattern Matching](../pattern-matching/) konusunda inceleyecegiz.
+Demetlerin fonksiyonlardan ek bilgi döndürme mekanizmasi olarak kullanılması yaygındır; bunun faydalarını [desen eşleştirmesi - Pattern Matching](../pattern-matching/) konusunda inceleyeceğiz.
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -109,7 +106,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Anahtar Kelime Listeleri (Keyword lists)
 
-Elixir'de anahtar kelimeler (keywords) ve listeler (lists) ilişkili koleksiyonlardır. Elixirde, bir anahtar kelime listesi özel bir 2 elemanlı demet ki onun ilk elemanı bir atom; onlar listelerle aynı performansı paylaşırlar:
+Elixir'de anahtar kelimeler (keywords) ve listeler (lists) ilişkili koleksiyonlardır. Elixirde, bir anahtar kelime listesi özel bir 2 elemanlı demet listesi ki onun ilk elemanı bir atom; onlar listelerle aynı performansı paylaşırlar:
 
 ```elixir
 iex> [foo: "bar", merhaba: "dunya"]
@@ -124,7 +121,7 @@ Anahtar listelerinin önemini belli eden 3 ana özelliği vardır:
 + Anahtarlar sıralıdır.
 + Anahtarlar tekil/eşsiz değildir.
 
-Bu nedenle anahtar listeleri genellikle fonksiyonlarin argümanları olarak verilmek için kullanilir.
+Bu nedenle anahtar listeleri genellikle fonksiyonların argümanları olarak verilmek için kullanilir.
 
 ## Haritalar (Maps)
 
