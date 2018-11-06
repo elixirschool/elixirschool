@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Strings
 ---
 
@@ -29,13 +29,21 @@ Internally, Elixir strings are represented with a sequence of bytes rather than 
 What's the difference? Each value in a charlist is the Unicode code point of a character whereas in a binary, the codepoints are encoded as UTF-8. Let's dig in:
 
 ```elixir
-iex(5)> 'hełło'
+iex> 'hełło'
 [104, 101, 322, 322, 111]
-iex(6)> "hełło" <> <<0>>
+iex> "hełło" <> <<0>>
 <<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
 `322` is the Unicode codepoint for ł but it is encoded in UTF-8 as the two bytes `197`, `130`.
+
+You can get a character’s code point by using `?`
+
+```elixir
+iex> ?Z  
+90
+```
+This allows you to use the notation `?Z` rather than 'Z' for a symbol. 
 
 When programming in Elixir, we usually use strings, not charlists. The charlist support is mainly included because it is required for some Erlang modules.
 
