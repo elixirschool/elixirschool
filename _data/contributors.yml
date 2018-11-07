@@ -348,12 +348,18 @@
   languages:
     - vi
 
-- github: notactuallypagemcconnell
+- github: svileng
+  name: Svilen Gospodinov
   intro:
-  homepage:
-  twitter:
-  name: Bobby Grayson
+    Svilen is co-founder & CTO at Heresy, where he uses Elixir, Phoenix and the OTP to build and scale the product and services.
+    Whenever he gets a chance, he tries to give back to the open source community by working on open source, giving talks, writing articles and helping beginners.
+  twitter: svileng
+  homepage: https://s2g.io
   contributions:
+    - translator
     - blog
+  languages:
+    - en
+    - bg
   articles:
-    - Agnostic Version Management With asdf
+    - A brief guide to Ecto.Multi
