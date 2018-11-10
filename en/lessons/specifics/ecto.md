@@ -142,8 +142,8 @@ defmodule ExampleApp.User do
     timestamps
   end
 
-  @required_fields ~w(username encrypted_password email)
-  @optional_fields ~w()
+  @required_fields ~w(username encrypted_password email)a
+  @optional_fields ~w()a
 
   def changeset(user, params \\ :empty) do
     user
