@@ -303,8 +303,8 @@ defmodule ExampleApp.User do
     timestamps
   end
 
-  @required_fields ~w(username email password password_confirmation)
-  @optional_fields ~w()
+  @required_fields [:username, :email, :password, :password_confirmation]
+  @optional_fields []
 
   def changeset(user, params \\ :empty) do
     user
