@@ -8,7 +8,7 @@ title:  A brief guide to Ecto.Multi
 excerpt: Learn how to compose and execute batches of queries using Ecto.Multi.
 ---
 
-Ecto.Multi is a set of utilities aimed at composing and executing atomic operations, usually (but not always, as you’ll see soon) performed against the database. Furthermore, it handles rollbacks, provides results on either success or error, flattens-out nested code and saves multiple round trips to the database.
+Ecto.Multi is a set of utilities aimed at composing and executing atomic operations, usually (but not always, as you’ll see soon) performed against the database. Furthermore, it handles rollbacks, provides results on either success or error, flattens-out nested code and saves multiple round trips to the database.
 
 If you find yourself running and managing many database queries (and other operations), then keep reading and you may find some useful tools to add your Elixir/Ecto toolbox.
 
