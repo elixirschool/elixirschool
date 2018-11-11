@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.1.3
 title: Basics
 ---
 
@@ -209,6 +209,8 @@ iex> 42 and true
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Note: The reason why first argument of `and`, `or` or `not` can not be any value except booleans is Erlang does not evaluates the first argument in `and`, `or` or `not` so it will want boolean, but second argument will be evaluated. (Elixir is built on Erlang VM (BEAM))
 
 ### Comparison
 
