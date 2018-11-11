@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 2.0.0
 title: Ecto
 ---
 
@@ -16,11 +16,16 @@ $ mix new example_app --sup
 $ cd example_app
 ```
 
-To get started we need to include Ecto and a database adapter in our project's `mix.exs`.  You can find a list of supported database adapters in the [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) section of the Ecto README.  For our example we'll use PostgreSQL:
+To get started we need to include Ecto and a database adapter in our project's `mix.exs`. Ecto has 2 hex packages, `ecto` and `ecto_sql`. `ecto` only focus on the building blocks of its features
+we'll talk about in this lesson, `ecto_sql` provides SQL adapters. So to use Ecto with a database, we need to include `ecto_sql`. You can find a list of supported database adapters in
+the [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) section of the Ecto README.  For our example we'll use PostgreSQL:
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 2.2"}, {:postgrex, ">= 0.0.0"}]
+  [
+    {:ecto_sql, "~> 3.0"},
+    {:postgrex, ">= 0.0.0"}
+  ]
 end
 ```
 
@@ -32,17 +37,19 @@ $ mix deps.get
 
 ### Repository
 
-Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo -r ExampleApp.Repo` task.  We'll cover Ecto mix tasks next.  The Repo can be found in `lib/<project name>/repo.ex`:
+Finally we need to create our project's repository, the database wrapper.  This can be done via the `mix ecto.gen.repo -r ExampleApp.Repo` task.  We'll cover Ecto mix tasks next.  The Repo can be found in `lib/example_app/repo.ex`:
 
 ```elixir
 defmodule ExampleApp.Repo do
-  use Ecto.Repo, otp_app: :example_app
+  use Ecto.Repo,
+    otp_app: :example_app,
+    adapter: Ecto.Adapters.Postgres
 end
 ```
 
 ### Supervisor
 
-Once we've created our Repo we need to set up our supervisor tree, which is found in `lib/<project name>/application.ex`. Add the Repo to the `children` list:
+Once we've created our Repo we need to set up our supervisor tree, which is found in `lib/example_app/application.ex`. Add the Repo to the `children` list:
 
 ```elixir
 defmodule ExampleApp.Application do
@@ -63,11 +70,12 @@ For more info on supervisors check out the [OTP Supervisors](../../advanced/otp-
 
 ### Configuration
 
-To configure Ecto we need to add a section to our `config/config.exs`.  Here we'll specify the repository, adapter, database, and account information:
+To configure Ecto we need to add a section to our `config/config.exs`.  Here we'll specify the repository, database, and account information:
 
 ```elixir
+config :example_app, :ecto_repos, [ExampleApp.Repo]
+
 config :example_app, ExampleApp.Repo,
-  adapter: Ecto.Adapters.Postgres,
   database: "example_app",
   username: "postgres",
   password: "postgres",
@@ -104,7 +112,7 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
       add(:email, :string)
       add(:confirmed, :boolean, default: false)
 
-      timestamps
+      timestamps()
     end
 
     create(unique_index(:users, [:username], name: :unique_usernames))
@@ -118,7 +126,7 @@ As you might have guessed, adding `timestamps` to your migration will create and
 
 To apply our new migration run `mix ecto.migrate`.
 
-For more on migrations take a look at the [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) section of the docs.
+For more on migrations take a look at the [Ecto.Migration](https://hexdocs.pm/ecto_sql/3.0.0/Ecto.Migration.html) section of the docs.
 
 ## Schemas
 
@@ -139,11 +147,11 @@ defmodule ExampleApp.User do
     field(:password, :string, virtual: true)
     field(:password_confirmation, :string, virtual: true)
 
-    timestamps
+    timestamps()
   end
 
-  @required_fields ~w(username encrypted_password email)a
-  @optional_fields ~w()a
+  @required_fields [:username, :encrypted_password, :email]
+  @optional_fields []
 
   def changeset(user, params \\ :empty) do
     user
@@ -164,7 +172,7 @@ Before we can query our repository we need to import the Query API.  For now we 
 import Ecto.Query, only: [from: 2]
 ```
 
-The official documentation can be found at [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html).
+The official documentation can be found at [Ecto.Query](https://hexdocs.pm/ecto/Ecto.Query.html).
 
 ### Basics
 
@@ -183,7 +191,7 @@ query =
 Repo.all(query)
 ```
 
-In addition to `all/2`, Repo provides a number of callbacks including `one/2`, `get/3`, `insert/2`, and `delete/2`.  A complete list of callbacks can be found at [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
+In addition to `all/2`, Repo provides a number of callbacks including `one/2`, `get/3`, `insert/2`, and `delete/2`.  A complete list of callbacks can be found at [Ecto.Repo#callbacks](https://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
 
 ### Count
 
@@ -276,7 +284,7 @@ query =
   )
 ```
 
-Additional query examples can be found in the [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html) module description.
+Additional query examples can be found in the [Ecto.Query.API](https://hexdocs.pm/ecto/Ecto.Query.API.html) module description.
 
 ## Changesets
 
@@ -300,7 +308,7 @@ defmodule ExampleApp.User do
     field(:password, :string, virtual: true)
     field(:password_confirmation, :string, virtual: true)
 
-    timestamps
+    timestamps()
   end
 
   @required_fields [:username, :email, :password, :password_confirmation]
