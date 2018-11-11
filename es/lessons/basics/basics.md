@@ -233,7 +233,7 @@ iex> 2 === 2.0
 false
 ```
 
-Una característica importante de Elixir es que cualquier par de tipos se pueden comparar, esto es útil particularmente en ordenados. No necesitamos memorizar el orden pero es importante ser consciente de este:
+Una característica importante de Elixir es que cualquier par de tipos se pueden comparar, esto es útil particularmente en ordenación. No necesitamos memorizar el orden pero es importante ser consciente de este:
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
