@@ -9,7 +9,7 @@ Ecto 是 Elixir 官方维护的一个项目，它提供了对数据库的封装�
 
 ## 安装
 
-创建一个带 supervision 树的应用：  
+创建一个带 supervision 树的应用：
 
 ```shell
 $ mix new example_app --sup
@@ -24,7 +24,7 @@ defp deps do
 end
 ```
 
-然后我们使用如下命令获取依赖：  
+然后我们使用如下命令获取依赖：
 
 ```shell
 $ mix deps.get
@@ -42,7 +42,7 @@ end
 
 ### Supervisor
 
-创建了 Repo 后，我们需要设置 supervisor 树，它通常位于 `lib/<project name>.ex`。  
+创建了 Repo 后，我们需要设置 supervisor 树，它通常位于 `lib/<project name>.ex`。
 
 ```elixir
 defmodule ExampleApp.Application do
@@ -142,8 +142,8 @@ defmodule ExampleApp.User do
     timestamps
   end
 
-  @required_fields ~w(username encrypted_password email)
-  @optional_fields ~w()
+  @required_fields [:username, :encrypted_password, :email]
+  @optional_fields []
 
   def changeset(user, params \\ :empty) do
     user
@@ -303,8 +303,8 @@ defmodule ExampleApp.User do
     timestamps
   end
 
-  @required_fields ~w(username email password password_confirmation)
-  @optional_fields ~w()
+  @required_fields [:username, :email, :password, :password_confirmation]
+  @optional_fields []
 
   def changeset(user, params \\ :empty) do
     user
