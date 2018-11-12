@@ -2,7 +2,7 @@
 author: George Mantzouranis
 author_link: https://github.com/gemantzu
 categories: review
-date:   2018-10-03
+date:   2018-11-14
 layout: post
 title:  Reviewing Elixircards
 excerpt: >
@@ -116,5 +116,3 @@ With a little work and some additions the elixircards would be in a class of the
 I would love to see the GenServer deck expanded like some of the others and focus on OTP in general, with OTP 1 being the basics and OTP 3 being the more advanced topics.  Adding content on Tasks and Supervision would be a welcomed addition as well.
 
 Last but not least, I would love to use this flashcard style of learning to learn other aspects of Elixir such as Phoenix, Ecto, Nerves, and the newest addition Scenic.  Given how excellent these cards are I can only begin to imagine how useful and educational those decks would be.
-
-## Giveaway
