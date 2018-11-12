@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.0
 title: Basics
 ---
 
@@ -209,6 +209,8 @@ iex> 42 and true
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Note: Elixir is based on Erlang VM (BEAM). If you're an Erlang developer, `and`, `or` is mapped to `andalso` and `orelse` which doesn't evaluates first argument and evaluates the second argument.
 
 ### Comparison
 
