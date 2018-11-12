@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 2.0.0
 title: Plug
 ---
 
@@ -7,33 +7,35 @@ If you're familiar with Ruby you can think of Plug as Rack with a splash of Sina
 It provides a specification for web application components and adapters for web servers.
 While not part of Elixir core, Plug is an official Elixir project.
 
-We'll start by creating a minimal Plug-based web application.
-After that, we'll learn about Plug's router and how to add a Plug to an existing web application.
+In this lesson we'll build a simple HTTP server from scratch using the `PlugCowboy` Elixir library. Cowboy is a simple HTTP server for Erlang and Plug will provide us with a connection adapter for that web server.
+
+After we set up our minimal web application, we'll learn about Plug's router and how to use multiple plugs in a single web app.
 
 {% include toc.html %}
 
 ## Prerequisites
 
-This tutorial assumes you have Elixir 1.4 or higher, and `mix` installed already.
+This tutorial assumes you have Elixir 1.5 or higher, and `mix` installed already.
 
-If you don't have a project started, create one like this:
+We'll start by creating a new OTP project, with a supervision tree.
 
 ```shell
-$ mix new example
+$ mix new example --sup
 $ cd example
 ```
 
+We need our Elixir app to include a supervision tree because we will use a Supervisor to start up and run our Cowboy2 server.
+
 ## Dependencies
 
-Adding dependencies is a breeze with mix.
-To install Plug we need to make two small changes to the `mix.exs` file.
-The first thing to do is add both Plug and a web server (we'll be using Cowboy) to our file as dependencies:
+Adding dependencies is a breeze with mix. To use Plug as an adapter interface for the Cowboy2 webserver, we need to install the `PlugCowboy` package:
+
+Add the following to your `mix.exs` file:
 
 ```elixir
-defp deps do
+def deps do
   [
-    {:cowboy, "~> 1.1.2"},
-    {:plug, "~> 1.3.4"}
+    {:plug_cowboy, "~> 2.0"},
   ]
 end
 ```
@@ -44,7 +46,7 @@ At the command line, run the following mix task to pull in these new dependencie
 $ mix deps.get
 ```
 
-## The Specification
+## The Plug Specification
 
 In order to begin creating Plugs, we need to know, and adhere to, the Plug spec.
 Thankfully for us, there are only two functions necessary: `init/1` and `call/2`.
@@ -76,40 +78,47 @@ It receives a `%Plug.Conn{}` connection struct as its first argument and is expe
 
 ## Configuring the Project's Application Module
 
-Since we're starting a Plug application from scratch, we need to define the application module.
-Update `lib/example.ex` to start and supervise Cowboy:
+We need to tell our application to start up and supervise the Cowboy web server when the app starts up.
+
+We'll do so with the [`Plug.Cowboy.child_spec/1`](https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html#child_spec/1) function.
+
+This function expects three options:
+
+* `:scheme` - HTTP or HTTPS as an atom (`:http`, `:https`)
+* `:plug` - The plug module to be used as the interface for the web server. You can specify a module name, like `MyPlug`, or a tuple of the module name and options `{MyPlug, plug_opts}`, where `plug_opts` gets passed to your plug modules `init/1` function.
+* `:options` - The server options. Should include the port number on which you want your server listening for requests.
+
+
+Our `lib/example/application.ex` file should implement the child spec in its `start/2` function:
 
 ```elixir
-defmodule Example do
+defmodule Example.Application do
   use Application
   require Logger
 
   def start(_type, _args) do
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
+      {Plug.Cowboy, scheme: :http, plug: Example.HelloWorldPlug, options: [port: 8080]}
     ]
+    opts = [strategy: :one_for_one, name: Example.Supervisor]
 
-    Logger.info("Started application")
+    Logger.info("Starting application...")
 
-    Supervisor.start_link(children, strategy: :one_for_one)
+    Supervisor.start_link(children, opts)
   end
 end
 ```
 
-This supervises Cowboy, and in turn, supervises our `HelloWorldPlug`.
+This starts up a Cowboy2 server under our app's supervision tree. It starts Cowboy running under the HTTP scheme (you can also specify HTTPS), on the given port, `8080`, specifying the plug, `Example.HelloWorldPlug`, as the interface for any incoming web requests.
 
-In the `Plug.Adapters.Cowboy.child_spec/4` call, the third argument will be passed to `Example.HelloWorldPlug.init/1`.
+Now we're ready to run our app and send it some web requests! Notice that, because we generated an OTP app with the `--sup` flag, our `Example` application will start up automatically thanks to the `application` function.
 
-We're not finished yet. Open `mix.exs` again, and find the `applications` function.
-We need to add configuration for our own application, which should also cause it to start up automatically.
-
-Let's update it to do that:
-
+In `mix.exs` you should see the following:
 ```elixir
 def application do
   [
     extra_applications: [:logger],
-    mod: {Example, []}
+    mod: {Example.Application, []}
   ]
 end
 ```
@@ -121,7 +130,7 @@ On the command line, run:
 $ mix run --no-halt
 ```
 
-Once everything is finished compiling, and `[info]  Started app` appears, open a web
+Once everything is finished compiling, and `[info]  Starting application...` appears, open a web
 browser to `127.0.0.1:8080`. It should display:
 
 ```
@@ -174,9 +183,9 @@ It should output `Oops!` with a 404 response.
 
 ## Adding Another Plug
 
-It is common to create Plugs to intercept all requests or a subset of requests, to handle common request handling logic.
+It is common to use more than one plug in a given web application, each of which is dedicated to its own responsibility. For example, we might have a plug that handles routing, a plug that validates incoming web requests, a plug that authenticates incoming requests, etc. In this section, we'll define a plug to verify incoming requests parameters and we'll teach our application to use _both_ of our plugs--the router and the validation plug.
 
-For this example we'll create a Plug to verify whether or not the request has some set of required parameters.
+We want to create a Plug that verifies whether or not the request has some set of required parameters.
 By implementing our validation in a Plug we can be assured that only valid requests will make it through to our application.
 We will expect our Plug to be initialized with two options: `:paths` and `:fields`.
 These will represent the paths we apply our logic to and which fields to require.
@@ -236,7 +245,6 @@ Edit `lib/example/router.ex` and make the following changes:
 ```elixir
 defmodule Example.Router do
   use Plug.Router
-  use Plug.ErrorHandler
 
   alias Example.Plug.VerifyRequest
 
@@ -257,38 +265,43 @@ defmodule Example.Router do
 end
 ```
 
+With this code, we are telling our application to send incoming requests through the `VerifyRequest` plug _before_ running through the code in the router. Via the function call:
+
+```elixir
+plug(
+  VerifyRequest,
+  fields: ["content", "mimetype"],
+  paths: ["/upload"]
+)
+```
+We automatically invoke `VerifyRequest.init(fields: ["content", "mimetype"],
+paths: ["/upload"])`. This in turn passes the given options to the `VerifyRequest.call(conn, opts)` function.
+
+
 ## Making The HTTP Port Configurable
 
 Back when we defined the `Example` module and application, the HTTP port was hard-coded in the module.
 It's considered good practice to make the port configurable by putting it in a configuration file.
 
-Let's start by updating the `application` portion of `mix.exs` to tell Elixir about our application and set an application env variable.
-With those changes in place our code should look something like this:
+We'll set an application environment variable in `config/config.exs`
 
 ```elixir
-def application do
-  [
-    extra_applications: [:logger],
-    mod: {Example, []},
-    env: [cowboy_port: 8080]
-  ]
-end
+use Mix.config
+
+config :example, cowboy_port: 8080
 ```
 
-Our application is configured with the `mod: {Example, []}` line.
-Notice that we're also starting up the `cowboy`, `logger` and `plug` applications.
-
-Next we need to update `lib/example.ex` read the port configuration value, and pass it to Cowboy:
+Next we need to update `lib/example.ex` read the port configuration value, and pass it to Cowboy. We'll define a private function to wrap up that responsibility
 
 ```elixir
 defmodule Example do
   use Application
+  defp cowboy_port, do: Application.get_env(:example, :cowboy_port, 8080)
 
   def start(_type, _args) do
-    port = Application.get_env(:example, :cowboy_port, 8080)
 
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: port)
+      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: cowboy_port())
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one)
@@ -297,14 +310,6 @@ end
 ```
 
 The third argument of `Application.get_env` is the default value, for when the configuration directive is undefined.
-
-> (Optional) add `:cowboy_port` in `config/config.exs`
-
-```elixir
-use Mix.Config
-
-config :example, cowboy_port: 8080
-```
 
 Now to run our application we can use:
 
