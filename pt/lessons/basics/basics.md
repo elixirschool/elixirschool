@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.0
 title: Básico
 ---
 
@@ -31,7 +31,7 @@ Para iniciar, executamos `iex`:
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
 
-Vamos testar e digitar algumas expressões simples:
+Podemos testar e digitar algumas expressões simples:
 
 ```elixir
 iex> 2+3
@@ -42,7 +42,7 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-Não se preocupe se não entender cada expressão, mas esperamos que você compreenda a ideia.
+Não se preocupe se não entender cada expressão ainda, mas esperamos que você compreenda a ideia.
 
 ## Tipos Básicos
 
@@ -165,7 +165,7 @@ iex> 10 / 5
 2.0
 ```
 
-Se você necessita de uma divisão inteira ou o resto da divisão, Elixir vem com duas funcionalidades úteis para isto:
+Se você necessita de uma divisão inteira ou o resto da divisão, Elixir vem com duas funções úteis para isto:
 
 ```elixir
 iex> div(10, 5)
@@ -209,6 +209,8 @@ iex> 42 and true
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Nota: Elixir é baseada na máquina virtual da linguagem Erlang(BEAM). Se você é um desenvolvedor Erlang, `and` e `or` são mapeados para `andalso` e `orelse`, os quais não avaliam o primeiro argumento e avaliam o segundo.
 
 ### Comparação
 
