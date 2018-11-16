@@ -210,7 +210,7 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-Nota: Elixir é baseada na máquina virtual da linguagem Erlang(BEAM). Se você é um desenvolvedor Erlang, `and` e `or` são mapeados para `andalso` e `orelse`, os quais não avaliam o primeiro argumento e avaliam o segundo.
+Nota: Elixir é baseado na máquina virtual da linguagem Erlang (BEAM). Se você é um desenvolvedor Erlang, `and` e `or` são mapeados para `andalso` e `orelse`, os quais não avaliam o primeiro argumento e avaliam o segundo.
 
 ### Comparação
 
