@@ -36,6 +36,7 @@ advanced:
 ecto:
   - basics
   - changesets
+  - querying
 specifics:
   - plug
   - eex
