@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 2.0.0
 title: Ecto
 ---
 
@@ -16,11 +16,14 @@ $ mix new example_app --sup
 $ cd example_app
 ```
 
-首先，我们将 Ecto 和所需的数据库适配器加入 `mix.exs` 中。你可以在 Ecto README 的用法章节找到其[支持的数据库适配器](https://github.com/elixir-lang/ecto/blob/master/README.md#usage)。在这个例子中我们使用 PostgreSQL：
+首先，我们将 Ecto 和所需的数据库适配器加入 `mix.exs` 中。Ecto 有两个 hex 包，`etco` 和 `ecto_sql`。`ecto` 包负责构建我们在本课程中介绍的核心功能，`ecto_sql` 提供了 SQL 适配器。所以，要使用 Ecto 来和数据库交互，我们需要引用 `ecto_sql`。你可以在 Ecto README 的用法章节找到其[支持的数据库适配器](https://github.com/elixir-lang/ecto/blob/master/README.md#usage)。在这个例子中我们使用 PostgreSQL：
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 2.1.4"}, {:postgrex, ">= 0.13.2"}]
+  [
+    {:ecto_sql, "~> 3.0"}, 
+    {:postgrex, ">= 0.13.2"}
+  ]
 end
 ```
 
@@ -32,17 +35,19 @@ $ mix deps.get
 
 ### Repository
 
-最后，我们需要创建这个项目的 repository，也就是数据库封装。这可以通过 `mix ecto.gen.repo -r ExampleApp.Repo` 来完成。我们稍后会讨论 Ecto 的 mix 命令集。Repo 的代码常见于 `lib/<project name>/repo.ex`：
+最后，我们需要创建这个项目的 repository，也就是数据库封装。这可以通过 `mix ecto.gen.repo -r ExampleApp.Repo` 来完成。我们稍后会讨论 Ecto 的 mix 命令集。Repo 的代码常见于 `lib/example_app/repo.ex`：
 
 ```elixir
 defmodule ExampleApp.Repo do
-  use Ecto.Repo, otp_app: :example_app
+  use Ecto.Repo,
+    otp_app: :example_app,
+    adapter: Ecto.Adapters.Postgres
 end
 ```
 
 ### Supervisor
 
-创建了 Repo 后，我们需要设置 supervisor 树，它通常位于 `lib/<project name>.ex`。
+创建了 Repo 后，我们需要设置 supervisor 树，它通常位于 `lib/example_app/application.ex`。把 Repo 加到 `children` 列表：
 
 ```elixir
 defmodule ExampleApp.Application do
@@ -63,11 +68,12 @@ end
 
 ### 配置
 
-Ecto 的配置需要写在 `config/config.exs` 中。需要指定使用了哪个 repository，哪个 adapter，哪个数据库以及用户信息等等：
+Ecto 的配置需要写在 `config/config.exs` 中。需要指定使用了哪个 repository，哪个数据库以及用户信息等等：
 
 ```elixir
+config :example_app, :ecto_repos, [ExampleApp.Repo]
+
 config :example_app, ExampleApp.Repo,
-  adapter: Ecto.Adapters.Postgres,
   database: "example_app",
   username: "postgres",
   password: "postgres",
@@ -104,7 +110,7 @@ defmodule ExampleApp.Repo.Migrations.CreateUser do
       add(:email, :string)
       add(:confirmed, :boolean, default: false)
 
-      timestamps
+      timestamps()
     end
 
     create(unique_index(:users, [:username], name: :unique_usernames))
@@ -118,7 +124,7 @@ Ecto 默认会创建一个自动增长的主键 `id`。这里我们使用了默�
 
 运行 `mix ecto.migrate` 来执行新的 migration。
 
-参阅 [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) 的文档来了解更多 migration 的细节。
+参阅 [Ecto.Migration](https://hexdocs.pm/ecto_sql/3.0.0/Ecto.Migration.html) 的文档来了解更多 migration 的细节。
 
 ## 模型
 
@@ -139,7 +145,7 @@ defmodule ExampleApp.User do
     field(:password, :string, virtual: true)
     field(:password_confirmation, :string, virtual: true)
 
-    timestamps
+    timestamps()
   end
 
   @required_fields [:username, :encrypted_password, :email]
@@ -164,7 +170,7 @@ end
 import Ecto.Query, only: [from: 2]
 ```
 
-官方的文档请查阅 [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html)。
+官方的文档请查阅 [Ecto.Query](https://hexdocs.pm/ecto/Ecto.Query.html)。
 
 ### 基础
 
@@ -183,7 +189,7 @@ query =
 Repo.all(query)
 ```
 
-除了 `all/2`，Repo 还提供了一系列回调函数，如 `one/2`、`get/3`、`insert/2` 和 `delete/2`。完整的列表见于 [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks)
+除了 `all/2`，Repo 还提供了一系列回调函数，如 `one/2`、`get/3`、`insert/2` 和 `delete/2`。完整的列表见于 [Ecto.Repo#callbacks](https://hexdocs.pm/ecto/Ecto.Repo.html#callbacks)
 
 ### Count
 
@@ -276,7 +282,7 @@ query =
   )
 ```
 
-在 [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html) 的模块文档中可以找到更多查询的例子。
+在 [Ecto.Query.API](https://hexdocs.pm/ecto/Ecto.Query.API.html) 的模块文档中可以找到更多查询的例子。
 
 ## 变更集 (Changeset)
 
@@ -300,7 +306,7 @@ defmodule ExampleApp.User do
     field(:password, :string, virtual: true)
     field(:password_confirmation, :string, virtual: true)
 
-    timestamps
+    timestamps()
   end
 
   @required_fields [:username, :email, :password, :password_confirmation]

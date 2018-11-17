@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.0
 title: 基础
 ---
 
@@ -216,6 +216,8 @@ iex> 42 and true
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+备注：Elixir 是基于 Erlang VM (BEAM) 上的语言。如果你是 Erlang 开发人员，其实 `and`，`or` 是相应的 `andalso` 和 `orelse` 操作符。所以它们不会计算第一个参数的值，而只会计算第二个参数。
 
 ### 比较
 
