@@ -80,7 +80,7 @@ It receives a `%Plug.Conn{}` connection struct as its first argument and is expe
 
 We need to tell our application to start up and supervise the Cowboy web server when the app starts up.
 
-We'll do so with the [`Plug.Cowboy.child_spec/1`](https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html#child_spec/1) function.
+We'll do so with the [`Plug.Adapters.Cowboy.child_spec/1`](https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html#child_spec/1) function.
 
 This function expects three options:
 
@@ -108,6 +108,8 @@ defmodule Example.Application do
   end
 end
 ```
+
+>Note: We do not have to call `child_spec` here, this function will be called by the supervisor starting this process. We simply pass a tuple with the module that we want the child spec built for and then the three options needed.
 
 This starts up a Cowboy2 server under our app's supervision tree. It starts Cowboy running under the HTTP scheme (you can also specify HTTPS), on the given port, `8080`, specifying the plug, `Example.HelloWorldPlug`, as the interface for any incoming web requests.
 
@@ -166,7 +168,7 @@ Swap out the `Example.HelloWorldPlug` plug with the new router:
 ```elixir
 def start(_type, _args) do
   children = [
-    Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+    {Plug.Cowboy, scheme: :http, plug: Example.Router, options: [port: 8080]}
   ]
 
   Logger.info("Started application")
@@ -301,7 +303,7 @@ defmodule Example do
   def start(_type, _args) do
 
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: cowboy_port())
+      {Plug.Cowboy, scheme: :http, plug: Example.Router, options: [port: cowboy_port()]}
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one)
