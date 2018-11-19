@@ -1,6 +1,6 @@
 ---
-version: 1.3.0
-title: Ecto
+version: 1.0.0
+title: Basics
 ---
 
 Ecto is an official Elixir project providing a database wrapper and integrated query language. With Ecto we're able to create migrations, define schemas, insert and update records, and query them.
@@ -28,7 +28,7 @@ We'll cover 3 parts of Ecto in this tutorial:
 * Schema
     * Maps information in database tables to structs
 
-To start, create an application with a supervision tree.  
+To start, create an application with a supervision tree.
 ```shell
 $ mix new friends --sup
 $ cd friends
@@ -109,7 +109,7 @@ We're all done configuring the repository!  We can now create the database insid
 $ mix ecto.create
 ```
 
-Ecto will use the information in the `config/config.exs` file to determine how to connect to postgres and what name to give the database.  
+Ecto will use the information in the `config/config.exs` file to determine how to connect to postgres and what name to give the database.
 
 If you receive any errors, make sure that the configuration information is correct and that your instance of postgres is running.
 
