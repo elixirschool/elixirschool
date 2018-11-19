@@ -1,34 +1,39 @@
 ---
-version: 1.2.0
+version: 2.0.0
 title: Plug
 ---
 
 如果你熟悉 Ruby，Plug 可以被想成 Rack，再加上一点 Sinatra。它提供了编写 Web 应用组件的一组规范，以及接入 Web 服务器所需的一些适配器。虽然 Plug 不属于 Elixir 的核心库，但它依然是一个 Elixir 官方维护的项目。
 
-我们先创建一个最简的 Plug web 应用。然后我们看看 Plug 的路由，以及如何把 Plug 添加到现有的 web 应用中。  
+通过本课程，我们会使用 `PlugCowboy` 来从零开始打造一个简单的 HTTP 服务器。Cowboy 是一个为 Erlang 打造的简单的 HTTP 服务器。而 Plug 则为我们提供了它的 connection 适配。
+
+当极简的 web 应用配置好后，我们将学习 Plug 的 router 以及如何在单个 web 应用内使用多个 plugs。
 
 {% include toc.html %}
 
 ## 环境准备
 
-本教程假设你已经安装了 1.4 版本以上的 Elixir，以及 `mix`。
+本教程假设你已经安装了 1.5 版本以上的 Elixir，以及 `mix`。
 
-如果你还没有创建一个初始项目，可以使用如下命令开始：  
+先从创建一个带 supervision tree 的 OTP 项目开始：
 
 ```shell
-$ mix new example
+$ mix new example --sup
 $ cd example
 ```
 
+我们的 Elixir 应用需要包含 supervision tree 是因为我们需要用到 Supervisor 来启动和运行我们的 Cowboy2 服务器。
+
 ## 依赖
 
-使用 mix 添加依赖简直易如反掌。要安装 Plug，我们只需要在 `mix.exs` 文件里面做两个小小的改动。第一个是把 Plug 和 web（我们在这里将使用 Cowboy）服务器添加到文件里面的依赖部分：  
+使用 mix 添加依赖简直易如反掌。要使用 Plug 作为 Cowboy2 服务器的接口适配器，我们需要安装 `PlugCowboy` 包：
+
+添加下面的内容到你的 `mix.exs` 文件里面的依赖部分：
 
 ```elixir
-defp deps do
+def deps do
   [
-    {:cowboy, "~> 1.1.2"},
-    {:plug, "~> 1.3.4"}
+    {:plug_cowboy, "~> 2.0"},
   ]
 end
 ```
@@ -69,38 +74,47 @@ end
 
 ## 配置项目的应用模块
 
-因为我们的 Plug 应用从从头开始创建的，所以，我们要定义这个应用模块。修改 `lib/example.ex`，让它懂得启动并监管 Cowboy：  
+我们需要在应用启动的时候，告知它启动并监控 Cowboy web 服务器。
+
+这是通过 [`Plug.Cowboy.child_spec/1`](https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html#child_spec/1) 函数来实现。
+
+这个函数期望接收三个配置选项：
+
+* `:scheme` - 原子类型的 HTTP or HTTPS 配置（`:http`, `:https`）
+* `:plug` - 在 web 服务器中用作为接口的 plug 模块。你可以指定模块的名字，比如 `MyPlug`，或者是模块名字和配置的元组 `{MyPlug, plug_opts}`，`plug_opts` 将会传入 plug 模块的 `init/1` 函数。
+* `:options` - 服务器配置。需要包含服务器监听和接收请求的端口号。
+
+`lib/example/application.ex` 文件需要在 `start/2` 函数内定义好子进程 Spec：
 
 ```elixir
-defmodule Example do
+defmodule Example.Application do
   use Application
   require Logger
 
   def start(_type, _args) do
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
+      {Plug.Cowboy, scheme: :http, plug: Example.HelloWorldPlug, options: [port: 8080]}
     ]
+    opts = [strategy: :one_for_one, name: Example.Supervisor]
 
-    Logger.info("Started application")
+    Logger.info("Starting application...")
 
-    Supervisor.start_link(children, strategy: :one_for_one)
+    Supervisor.start_link(children, opts)
   end
 end
 ```
 
-通过上面的配置，Cowboy 就在应用的监管下了，继而也监管着我们的 `HelloWorldPlug`。  
+这段代码将在我们应用的 supervision tree 下启动了 Cowboy2 服务器。它在 `8080` 端口下，以 HTTP 模式运行启动了 Cowboy 服务（当然你也可以指定为 HTTPS）。`Example.HelloWorldPlug` 被设定为处理收到的任何网络请求的接口。
 
-`Plug.Adapters.Cowboy.child_spec/4` 函数调用中的第三个参数，其实就是传到 `Example.HelloWorldPlug.init/1` 的配置。  
+现在我们可以启动我们的应用，并且发送一些网络请求给它处理了！要注意，因为我们通过 `--sup` 标签生成了 OTP 应用，`application` 函数使得我们的 `Example` 应用能自动启动。
 
-还差一点我们就配置完了。在打开文件 `mix.exs`，找到 `applications` 这个函数。我们需要配置我们的应用，让它能自动启动。  
-
-经过如下的修改就可以了：  
+在 `mix.exs` 文件内，代码如下：
 
 ```elixir
 def application do
   [
     extra_applications: [:logger],
-    mod: {Example, []}
+    mod: {Example.Application, []}
   ]
 end
 ```
@@ -111,7 +125,7 @@ end
 $ mix run --no-halt
 ```
 
-等编译完成，`[info]  Started app` 在命令行出现后，打开浏览器访问 `127.0.0.1:8080`。浏览器页面就会显示：  
+等编译完成，`[info]  Starting application...` 在命令行出现后，打开浏览器访问 `127.0.0.1:8080`。浏览器页面就会显示：  
 
 ```
 Hello World!
@@ -156,9 +170,9 @@ end
 
 ## 创建另一个 Plug
 
-通常，我们会创建 Plug 来拦截所有或者某一类的请求，因为需要应用一些共通的逻辑到这些请求上。  
+在一个 web 应用中使用多个 plug 是很常见的。因为每一个 plug 只专注于它自身提供的功能。比如，我们可能有一个 plug 处理路由，一个 plug 验证请求的正确性，一个 plug 负责权限认证等。本小节，我们会再定义一个用于检查请求参数的 plug，并配置我们的应用同时使用 router 和 validation 这两个 plug。
 
-这一次，我们要创建一个 Plug 来验证请求中是否包含了指定的参数。通过在一个 Plug 中实现验证功能，我们可以确保只有合法的请求才能进入我们的应用。我们要求这个 Plug 使用两个参数来初始化：`:paths` 和 `:fields`。这两个参数分别表示哪些路径需要被验证以及合法的请求需要包含哪些字段。
+我们要创建一个 Plug 来验证请求中是否包含了指定的参数。通过在一个 Plug 中实现验证功能，我们可以确保只有合法的请求才能进入我们的应用。我们要求这个 Plug 使用两个参数来初始化：`:paths` 和 `:fields`。这两个参数分别表示哪些路径需要被验证以及合法的请求需要包含哪些字段。
 
 _注意_：Plug 会应用到所有的请求上，所以我们需要对请求进行过滤，只在其中一部分上执行所需的逻辑。对无需处理的情况我们直接返回传入的连接结构即可。
 
@@ -207,7 +221,6 @@ end
 ```elixir
 defmodule Example.Router do
   use Plug.Router
-  use Plug.ErrorHandler
 
   alias Example.Plug.VerifyRequest
 
@@ -228,35 +241,41 @@ defmodule Example.Router do
 end
 ```
 
+通过这段代码，我们的应用在运行 router 的代码前，会把接收到的请求先通过 `VerifyRequest` plug。这是由以下函数调用实现的：
+
+ ```elixir
+plug(
+  VerifyRequest,
+  fields: ["content", "mimetype"],
+  paths: ["/upload"]
+)
+```
+
+这会去自动调用 `VerifyRequest.init(fields: ["content", "mimetype"],
+paths: ["/upload"])`。接着就会把参数传给 `VerifyRequest.call(conn, opts)` 函数调用。
+
 ## HTTP 端口的可配置化
 
 我们在前面定义 `Example` 模块和应用的时候，HTTP 端口是写死在模块代码里的。把 HTTP 端口放到配置文件，做成可配置化是比较好的做法。  
 
-我们可以修改 `mix.exs` 的 `application` 部分，并设置一个应用的环境变量。经过以上更改，我们的代码应该变成以下的样子：  
+我们把应用的环境变量设置到 `config/config.exs`  
 
 ```elixir
-def application do
-  [
-    extra_applications: [:logger],
-    mod: {Example, []},
-    env: [cowboy_port: 8080]
-  ]
-end
+use Mix.config
+
+config :example, cowboy_port: 8080
 ```
 
-我们的应用是通过 `mod: {Example, []}` 这一行来配置的。我们的应用在启动的同时，`cowboy`，`logger` 和 `plug` 这几个应用也被启动了。
-
-下一步，我们需要更新 `lib/example.ex` 来读取端口的配置，并传给 Cowboy：  
+下一步，我们需要更新 `lib/example.ex` 来读取端口的配置，并传给 Cowboy。我们定义一个私有的函数来专门负责这部分功能。  
 
 ```elixir
 defmodule Example do
   use Application
+  defp cowboy_port, do: Application.get_env(:example, :cowboy_port, 8080)
 
   def start(_type, _args) do
-    port = Application.get_env(:example, :cowboy_port, 8080)
-
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: port)
+      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: cowboy_port())
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one)
@@ -265,14 +284,6 @@ end
 ```
 
 `Application.get_env` 的第三个参数是默认值，当配置不存在的时候采用。  
-
->（可选）把 `:cowboy_port` 添加到 `config/config.exs` 里
-
-```elixir
-use Mix.Config
-
-config :example, cowboy_port: 8080
-```
 
 我们可以通过下面的命令来启动应用：  
 
