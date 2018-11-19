@@ -3,17 +3,17 @@ version: 1.0.0
 title: OTP Distribution
 ---
 ## Introduction to Distribution
-Elixir runs on the Erlang VM, which means it has access to to Erlang's powerful [distribution functionality.](http://erlang.org/doc/reference_manual/distributed.html)
-
-> A distributed Erlang system consists of a number of Erlang runtime systems communicating with each other. Each such runtime system is called a node.
-
 We can run our Elixir apps on a set of different nodes distributed across a single host or across multiple hosts. Elixir allows us to communicate across these nodes via a few different mechanisms which we will outline in this lesson.
 
 {% include toc.html %}
 
 ## Communication Between Nodes
 
-A node is any Erlang runtime system that has been given a name. We can start a node by opening up `iex` process and naming it:
+Elixir runs on the Erlang VM, which means it has access to to Erlang's powerful [distribution functionality.](http://erlang.org/doc/reference_manual/distributed.html)
+
+> A distributed Erlang system consists of a number of Erlang runtime systems communicating with each other. Each such runtime system is called a node.
+
+A node is any Erlang runtime system that has been given a name. We can start a node by opening up `iex` session and naming it:
 
 ```bash
 iex --sname alex@localhost
@@ -57,15 +57,15 @@ Hi, my name is Kate
 #PID<10507.132.0>
 ```
 
-#### A Note of I/O and Nodes
+#### A Note on I/O and Nodes
 
-Notice that, although `Kate.say_name` is getting executed on the remote node, it is the local, or calling, node that receives the `IO.puts` output. That is because the local node is the **group leader**. The Erlang VM manages I/O via processes. This allows us to send execute I/O tasks, like `IO.puts`, across distributed nodes. These distributed processes are managed by the I/O process group leader. The group leader is always the node that spawns the process. So, since our `alex` node is the one from which we called `spawn_link`, that node is the group leader and the output of `IO.puts` will be directed to the standard output stream of that node.
+Notice that, although `Kate.say_name` is getting executed on the remote node, it is the local, or calling, node that receives the `IO.puts` output. That is because the local node is the **group leader**. The Erlang VM manages I/O via processes. This allows us to execute I/O tasks, like `IO.puts`, across distributed nodes. These distributed processes are managed by the I/O process group leader. The group leader is always the node that spawns the process. So, since our `alex` node is the one from which we called `spawn_link`, that node is the group leader and the output of `IO.puts` will be directed to the standard output stream of that node.
 
 #### Responding to Messages
 
 What if we want the node that receives the message to send some *response* back to the sender? We can use a simple `receive` and [`send`](https://hexdocs.pm/elixir/Process.html#send/3) setup to accomplish exactly that.
 
-We'll have our `alex` node spawn a link to the `kate` node and give the `kate` node an anonymous function to execute. That anonymous function will listen fro the receipt of a particular tuple describing a message and the PID of the `alex` node. It will respond to that message by `send`-ing back a message to the PID of the `aliex` node:
+We'll have our `alex` node spawn a link to the `kate` node and give the `kate` node an anonymous function to execute. That anonymous function will listen for the receipt of a particular tuple describing a message and the PID of the `alex` node. It will respond to that message by `send`-ing back a message to the PID of the `alex` node:
 
 ```elixir
 iex(alex@localhost)2> pid = Node.spawn_link :kate@localhost, fn ->
@@ -103,17 +103,17 @@ While `Node.spawn_link` illustrates the relationships between nodes and the mann
 
 ## Distributed Tasks
 
-[Distributed tasks](https://hexdocs.pm/elixir/master/Task.html#module-distributed-tasks) allow us to spawn supervised tasks across nodes. We'll build a simple supervisor application that leverages distributed tasks to allow users to chat with one another via an `iex` console, across distributed nodes.
+[Distributed tasks](https://hexdocs.pm/elixir/master/Task.html#module-distributed-tasks) allow us to spawn supervised tasks across nodes. We'll build a simple supervisor application that leverages distributed tasks to allow users to chat with one another via an `iex` session, across distributed nodes.
 
 ### Defining the Supervisor Application
-Generate your chatting app:
+Generate your app:
 
 ```
 mix new chat --sup
 ```
 
 ### Adding the Task Supervisor to the Supervision Tree
-A Task Supervisor dynamically supervises tasks. It is started with no children, often _under_ a supervisor of its own, can can be used later on to supervise any number of tasks.
+A Task Supervisor dynamically supervises tasks. It is started with no children, often _under_ a supervisor of its own, and can can be used later on to supervise any number of tasks.
 
 We'll add a Task Supervisor to our app's supervision tree and name it `Chat.TaskSupervisor`
 
@@ -143,12 +143,12 @@ We'll start supervised tasks with the [`Task.Supervisor.async/4`](https://hexdoc
 
 This function takes in four arguments:
 
-* The supervisor we want to use to supervise the task. This can be passed in as a tuple of `{SupervisorName, remote_node_name}` in order to execute the task on the remote node.
+* The supervisor we want to use to supervise the task. This can be passed in as a tuple of `{SupervisorName, remote_node_name}` in order to supervise the task on the remote node.
 * The name of the module on which we want to execute a function
 * The name of the function we want to execute
 * Any arguments that need to be supplied to that function
 
-Out chatting application is pretty simple. It sends messages to remote nodes and remote nodes respond to those messages by `IO.put`-ing them out to the STDOUT of the remote node.
+Out Chat application is pretty simple. It sends messages to remote nodes and remote nodes respond to those messages by `IO.puts`-ing them out to the STDOUT of the remote node.
 
 First, let's define a function, `receive_message`, that we want our task to execute on a remote node.
 
@@ -169,7 +169,7 @@ defmodule Chat do
   ...
 
   def send_message(recipient, message) do
-    __MODULE__.spawn_task(__MODULE__, :receive_message, recipient, [message])
+    spawn_task(__MODULE__, :receive_message, recipient, [message])
   end
 
   def spawn_task(module, fun, recipient, args) do
@@ -287,7 +287,7 @@ chicken?
 :ok
 ```
 
-We can see that the `alex` node recieved the response, `"chicken?"`. If we open the `kate` node, we'll see that no message was received, since neither `alex` nor `moebi` send her one (sorry `kate`). And if we open the `moebi` node's terminal window, we'll see the message that the `alex` node sent:
+We can see that the `alex` node received the response, `"chicken?"`. If we open the `kate` node, we'll see that no message was received, since neither `alex` nor `moebi` send her one (sorry `kate`). And if we open the `moebi` node's terminal window, we'll see the message that the `alex` node sent:
 
 ```elixir
 iex(moebi@localhost)1> hi
@@ -309,7 +309,12 @@ defmodule ChatTest do
 end
 ```
 
-If we run our tests via `mix test`, we see:
+If we run our tests via `mix test`, we see it fail with the following error:
+
+```elixir
+** (exit) exited in: GenServer.call({Chat.TaskSupervisor, :moebi@localhost}, {:start_task, [#PID<0.158.0>, :monitor, {:sophie@localhost, #PID<0.158.0>}, {Chat, :receive_message_for_moebi, ["hi", :sophie@localhost]}], :temporary, nil}, :infinity)
+         ** (EXIT) no connection to moebi@localhost
+```
 
 
 This error makes perfect sense--we can't connect to a node named `moebi@localhost` because there is no such node running.
@@ -321,20 +326,17 @@ We can get this test passing by performing a few steps:
 
 This is a lot of work and definitely wouldn't be considered an automated testing process.
 
-There are a two different approaches we could take here. We can conditionally exclude tests that need distributed nodes, if the necessary node is not running.
+There are a two different approaches we could take here:
 
-Another option is to configure out application to avoid spawning tasks on remote nodes in the test environment.
+1. Conditionally exclude tests that need distributed nodes, if the necessary node is not running.
+
+2. Configure our application to avoid spawning tasks on remote nodes in the test environment.
 
 Let's take a look at the first approach.
 
 ### Conditionally Excluding Tests with Tags
 
 We'll add an `ExUnit` tag to this test:
-
-```elixir
-```
-
-And we'll add some conditional logic to our test helper to exclude tests with such tags if the tests are _not_ running on a named node.
 
 ```elixir
 #test/chat_test.ex
@@ -348,6 +350,8 @@ defmodule ChatTest do
   end
 end
 ```
+
+And we'll add some conditional logic to our test helper to exclude tests with such tags if the tests are _not_ running on a named node.
 
 ```elixir
 exclude =
@@ -370,9 +374,9 @@ Finished in 0.02 seconds
 
 And if we want to run our distributed tests, we simply need to go through the steps outlined in the previous section: run the `moebi@localhost` node _and_ run the tests in a named node via `iex`.
 
-Let's take a look at our other testing approach--building a mock.
+Let's take a look at our other testing approach--configuring the application to behave differently in different environments.
 
-### Mocking Task Spawning
+### Environment-Specific Applicaton Configuration
 
 The part of our code that tells `Task.Supervisor` to start a supervised task on a remote node is here:
 

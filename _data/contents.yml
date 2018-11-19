@@ -26,6 +26,7 @@ advanced:
   - concurrency
   - otp-concurrency
   - otp-supervisors
+  - otp-distribution
   - metaprogramming
   - umbrella-projects
   - typespec
