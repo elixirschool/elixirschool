@@ -15,26 +15,22 @@ Ecto supports different databases through the use of adapters.  A few examples o
 * MySQL
 * SQLite
 
-In this tutorial, we'll configure Ecto to use a PostgresQL adapter.
+For this lesson we'll configure Ecto to use the PostgresQL adapter.
 
-### Working with Ecto
+### Getting Started
 
-We'll cover 3 parts of Ecto in this tutorial:
+Through the course of this lesson we'll cover three parts to Ecto:
 
-* Repository
-    * Connects to the database
-* Migration
-    * Describes how to create or update tables in the database
-* Schema
-    * Maps information in database tables to structs
+* The Repository — provides the interface to our database, including the connection
+* Migrations — a mechanism to create, modify, and destroy database tables and indexes
+* Schemas — specialized structs that represent database table entries
 
-To start, create an application with a supervision tree.
+To start we'll create an application with a supervision tree.
+
 ```shell
 $ mix new friends --sup
 $ cd friends
 ```
-
-This creates an elixir application named `Friends`.
 
 Add the ecto and postgrex package dependencies to your `mix.exs` file.
 
@@ -55,14 +51,17 @@ $ mix deps.get
 
 #### Creating a Repository
 
-A repository in Ecto maps to a datastore such as our Postgres database.  All communication to the database will be done using this repository.
+A repository in Ecto maps to a datastore such as our Postgres database.
+All communication to the database will be done using this repository.
 
 Set up a repository by running:
+
 ```shell
 $ mix ecto.gen.repo -r Friends.Repo
 ```
 
-This will generate the configuration required in `config/config.exs` to connect to a database including the adapter to use.  This is the configuration file for our `Friends` application
+This will generate the configuration required in `config/config.exs` to connect to a database including the adapter to use.
+This is the configuration file for our `Friends` application
 
 ```elixir
 config :friends, Friends.Repo,
@@ -73,7 +72,8 @@ config :friends, Friends.Repo,
   hostname: "localhost"
 ```
 
-This configures how Ecto will connect to the database.  Note how we chose the `Ecto.Adapters.Postgres` adapter.
+This configures how Ecto will connect to the database.
+Note how we chose the `Ecto.Adapters.Postgres` adapter.
 
 It also creates a `Friends.Repo` module inside `lib/friends/repo.ex`
 
@@ -85,7 +85,8 @@ end
 
 We'll use the `Friends.Repo` module to query the database. We also tell this module to find its database configuration information in the `:friends` Elixir application.
 
-Next, we'll setup the `Friends.Repo` as a supervisor within our application's supervision tree in `lib/friends/application.ex`.  This will start the Ecto process when our application starts.
+Next, we'll setup the `Friends.Repo` as a supervisor within our application's supervision tree in `lib/friends/application.ex`.
+This will start the Ecto process when our application starts.
 
 ```elixir
   def start(_type, _args) do
@@ -98,33 +99,40 @@ Next, we'll setup the `Friends.Repo` as a supervisor within our application's su
 ```
 
 After that we'll need to add the following line to our `config/config.exs` file:
+
 ```elixir
 config :friends, ecto_repos: [Friends.Repo]
 ```
 
 This will allow our application to run ecto mix commands from the commandline.
 
-We're all done configuring the repository!  We can now create the database inside of postgres with this command:
+We're all done configuring the repository!
+We can now create the database inside of postgres with this command:
+
 ```shell
 $ mix ecto.create
 ```
 
-Ecto will use the information in the `config/config.exs` file to determine how to connect to postgres and what name to give the database.
+Ecto will use the information in the `config/config.exs` file to determine how to connect to Postgres and what name to give the database.
 
 If you receive any errors, make sure that the configuration information is correct and that your instance of postgres is running.
 
 ### Migrations
 
-To create and modify tables inside the postgres database, Ecto has *migrations*.  Each migration describes how the database tables should change.
+To create and modify tables inside the postgres database Ecto provides us with migrations.
+Each migration describes a set of actions to be performed on our database, like which tables to create or update.
 
-Our database doesn't have any tables yet.  To get started we'll create a migration that will create a *people* table.  Note that when naming a migration or table in ecto you should use the plural form of the word.
+Since our database doesn't have any tables yet, we'll need to create a migration to add some.
+The convention in Ecto is to pluralize our tables so for application we'll need a `peoples` table, so let's start there with our migrations.
 
-We can use the following command to create a migration
+The best way to create migrations is the mix `ecto.gen.migration <name> task`, so in our case let's use:
+
 ```shell
 $ mix ecto.gen.migration create_people
 ```
 
-This will generate a new file in the `priv/repo/migrations` folder with the following contents.
+This will generate a new file in the `priv/repo/migrations` folder containing timestamp in the filename.
+If we navigate to our directory and open the migration we should see something like this:
 
 ```elixir
 defmodule Friends.Repo.Migrations.CreatePeople do
@@ -136,7 +144,7 @@ defmodule Friends.Repo.Migrations.CreatePeople do
 end
 ```
 
-We can edit the change function to tell Ecto to create a table called *people* with a *name* column and *age* column.  You can also see that we define the data type of *name* to be a *string* and *age* to be an *int*.
+Let's start by modifying the `change/0` function to create a new table `people` with `name` and `age`:
 
 ```elixir
 defmodule Friends.Repo.Migrations.CreatePeople do
@@ -144,26 +152,30 @@ defmodule Friends.Repo.Migrations.CreatePeople do
 
   def change do
     create table(:people) do
-      add :name, :string
-      add :age, :integer
+      add :name, :string, null: false
+      add :age, :integer, default: 0
     end
   end
 end
 ```
 
-If we run this migration, then a *people* table will be created with a *name* and *age* column:
+You can see above we've also defined the column's data type.
+Additionally, we've included `null: false` and `default: 0` as options.
+
+Let's jump to the shell and run our migration:
 
 ```shell
-mix ecto.migrate
+$ mix ecto.migrate
 ```
 
 ### Schemas
 
-Schemas define how data from a database table or view maps to an elixir struct.  Tables are created using the plural form of the word but schemas should use the singular form.
+Now that we've created our initial table we need to tell Ecto more about it, part of how we do that is through schemas.
+A schema is a module that defines mappings to the underlying database table's fields.
 
-We'll create a *person* schema to match our people table.  This way, when we query our database, we can receive a collection of *person* elixir structs back.
+While Ecto favors pluralize database table names, the schema is typically singular, so we'll create a `Person` schema to accomplany our table.
 
-Let's create the schema at `lib/friends/person.ex`:
+Let's create our new schema at `lib/friends/person.ex`:
 
 ```elixir
 defmodule Friends.Person do
@@ -171,24 +183,49 @@ defmodule Friends.Person do
 
   schema "people" do
     field :name, :string
-    field :age, :integer
+    field :age, :integer, default: 0
   end
 end
 ```
 
-Here you can see that the `Friends.Person` schema maps to the `people` table and the *name* and *age* fields inside of it.
+Here we can see that the `Friends.Person` module tells Ecto that this schema relates to the `people` table and that we have two columns: `name` which is a string and `age`, an integer with a default of `0`.
 
-If we open the mix console we can take a look at our `Friends.Person` schema:
+Let's take a peek at our schema by opening `iex` and creating a new person:
+
 ```shell
-$ iex -S mix
+iex> %Friends.Person{}
+%Friends.Person{age: 0, name: nil}
 ```
 
-We can create an instance of our schema with the following:
-```elixir
-person = %Friends.Person{name: "Tom", age: 11}
+As expected we get a new `Person` with the default value applied to `age`.
+Now let's create a "real" person:
+
+```shell
+iex> person = %Friends.Person{name: "Tom", age: 11}
+%Friends.Person{age: 11, name: "Tom"}
 ```
 
-Then, we can retrieve the name from the schema like any other struct in Elixir:
+Since schemas are just structs, we can interact with our data like we're used to:
+
 ```elixir
-person.name
+iex> person.name
+"Tom"
+iex> Map.get(person, :name)
+"Tom"
+iex> %{name: name} = person
+%Friends.Person{age: 11, name: "Tom"}
+iex> name
+"Tom"
 ```
+
+Similarly, we can update our schemas just as we would any other map or struct in Elixir:
+
+```elixir
+iex> %{person | age: 18}
+%Friends.Person{age: 18, name: "Tom"}
+iex> Map.put(person, :name, "Jerry")
+%Friends.Person{age: 11, name: "Jerry"}
+```
+
+In our next lesson on Changesets, we'll look at how to validate our data changes and finally how to persist them to
+our database.

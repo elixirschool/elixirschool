@@ -3,11 +3,13 @@ version: 1.0.0
 title: Changesets
 ---
 
-In order to insert, update or delete data from the database, `Ecto.Repo.insert/2`, `update/2` and `delete/2` require a changeset as their first parameter. What are changesets?
+In order to insert, update or delete data from the database, `Ecto.Repo.insert/2`, `update/2` and `delete/2` require a changeset as their first parameter.
+But what exactly are changesets?
 
 A familiar task for almost every developer is checking input data for potential errors — we want to make sure that data is in the right state, before we attempt to use it for our purposes.
 
-Ecto provides a complete solution for working with data changes in the form of the `Changeset` module and data structure. In this lesson we're going to explore this functionality and learn how to verify data's integrity, before we persist it to the database.
+Ecto provides a complete solution for working with data changes in the form of the `Changeset` module and data structure.
+In this lesson we're going to explore this functionality and learn how to verify data's integrity, before we persist it to the database.
 
 {% include toc.html %}
 
@@ -22,27 +24,31 @@ iex> %Ecto.Changeset{}
 
 As you can see, it has some potentially useful fields, but they are all empty.
 
-For a changeset to be truly useful, when we create it, we need to provide a blueprint of what the data is like. `Ecto.Schema` is exactly that — a blueprint of all fields and their types. Let's look at a simple schema for a user:
+For a changeset to be truly useful, when we create it, we need to provide a blueprint of what the data is like.
+What better blueprint for our data than the schemas we've created the define our fields and types?
+
+To save us some time, let's re-use the schema we created in the previous lesson:
 
 ```elixir
-defmodule User do
+defmodule Friends.Person do
   use Ecto.Schema
 
-  schema "users" do
-    field(:name, :string)
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
   end
 end
 ```
 
-To create a changeset using the `User` schema, we are going to use `Ecto.Changeset.cast/4`:
+To create a changeset using the `Friends.Person` schema, we are going to use `Ecto.Changeset.cast/4`:
 
 ```elixir
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name])
+#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
  valid?: true>
  ```
 
- The first parameter is the original data — an empty `%User{}` struct in this case. Ecto is smart enough to find the schema based on the struct itself. Second in order are the changes we want to make — just an empty map. The third parameter is what makes `cast/4` special: it is a list of fields allowed to go through, which gives us the ability to control what fields can be changed and safe-guard the rest.
+The first parameter is the original data — an empty `%User{}` struct in this case. Ecto is smart enough to find the schema based on the struct itself. Second in order are the changes we want to make — just an empty map. The third parameter is what makes `cast/4` special: it is a list of fields allowed to go through, which gives us the ability to control what fields can be changed and safe-guard the rest.
 
  ```elixir
  iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
