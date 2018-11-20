@@ -24,7 +24,7 @@ iex> table = :ets.new(:user_lookup, [:set, :protected])
 8212
 ```
 
-Podobnie jak w GenServers, ETS umożliwia odwołanie się do tabeli po nazwie, a ne tylko identyfikatorze. By to zrobić, musimy dodać opcję `:named_table`. I teraz możemy odwołać się d naszej tabeli bezpośrednio po nazwie:
+Podobnie jak w GenServers, ETS umożliwia odwołanie się do tabeli po nazwie, a nie tylko po identyfikatorze. By to zrobić, musimy dodać opcję `:named_table`. I teraz możemy odwołać się d naszej tabeli bezpośrednio po nazwie:
 
 ```elixir
 iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
