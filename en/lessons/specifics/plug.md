@@ -377,6 +377,90 @@ Run it with this:
 $ mix test test/example/router_test.exs
 ```
 
+## Plug.Error.Handler
+
+We noticed earlier that when we go to `127.0.0.1:8080/upload` we don't even see an error page. Let's fix that now by adding in [`Plug.ErrorHandler`](https://hexdocs.pm/plug/Plug.ErrorHandler.html).
+
+First, open up `lib/example/router.ex` and then write the following to that file.
+
+```Elixir
+defmodule Example.Router do
+  use Plug.Router
+  use Plug.ErrorHandler
+
+  alias Example.Plug.VerifyRequest
+
+  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
+
+  plug(
+    VerifyRequest,
+    fields: ["content", "mimetype"],
+    paths: ["/upload"]
+  )
+
+  plug(:match)
+  plug(:dispatch)
+
+  get("/", do: send_resp(conn, 200, "Welcome\n"))
+  get("/upload", do: send_resp(conn, 201, "Uploaded\n"))
+  match(_, do: send_resp(conn, 404, "Oops!\n"))
+
+  def handle_errors(conn, %{kind: kind, reason: reason, stack: stack}) do
+    IO.puts "Kind:"
+    IO.inspect kind
+    IO.puts "Reason:"
+    IO.inspect reason
+    IO.puts "Stack"
+    IO.inspect stack
+    send_resp(conn, conn.status, "Something went wrong")
+  end
+end
+```
+
+You'll notice at the top we are now adding `use Plug.ErrorHandler`. This plug now catches any error and then looks for a function `handle_errors/2` to call. `handle_errors` just needs to accept the `conn` as the first argument and then a map with three items (`:kind`, `:reason`, and `:stack`) as the second.
+You can see we've defined a very some `handle_errors` to see what's going on. Let's stop and restart our app again to see how this works!
+
+Now, when you navigate to `127.0.0.1:8080/upload`, we see an error message 'Something went wrong'. If you look in your terminal, you'll see something like the following:
+
+```shell
+Kind:
+:error
+Reason:
+%Example.Plug.VerifyRequest.IncompleteRequestError{
+  message: "",
+  plug_status: 400
+}
+Stack
+[
+  {Example.Plug.VerifyRequest, :verify_request!, 2,
+   [file: 'lib/example/plug/verify_request.ex', line: 23]},
+  {Example.Plug.VerifyRequest, :call, 2,
+   [file: 'lib/example/plug/verify_request.ex', line: 13]},
+  {Example.Router, :plug_builder_call, 2,
+   [file: 'lib/example/router.ex', line: 1]},
+  {Example.Router, :call, 2, [file: 'lib/plug/error_handler.ex', line: 64]},
+  {Plug.Cowboy.Handler, :init, 2,
+   [file: 'lib/plug/cowboy/handler.ex', line: 12]},
+  {:cowboy_handler, :execute, 2,
+   [
+     file: '/path/to/project/example/deps/cowboy/src/cowboy_handler.erl',
+     line: 41
+   ]},
+  {:cowboy_stream_h, :execute, 3,
+   [
+     file: '/path/to/project/example/deps/cowboy/src/cowboy_stream_h.erl',
+     line: 293
+   ]},
+  {:cowboy_stream_h, :request_process, 3,
+   [
+     file: '/path/to/project/example/deps/cowboy/src/cowboy_stream_h.erl',
+     line: 271
+   ]}
+]
+```
+
+This plug makes it really easy to catch the useful information needed for developers to fix issues while being able to also give our end user a nice page so it doesn't look like our app totally blew up!
+
 ## Available Plugs
 
 There are a number of Plugs available out-of-the-box.
