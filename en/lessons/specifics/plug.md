@@ -211,13 +211,13 @@ defmodule Example.Plug.VerifyRequest do
   def init(options), do: options
 
   def call(%Plug.Conn{request_path: path} = conn, opts) do
-    if path in opts[:paths], do: verify_request!(conn.body_params, opts[:fields])
+    if path in opts[:paths], do: verify_request!(conn.params, opts[:fields])
     conn
   end
 
-  defp verify_request!(body_params, fields) do
+  defp verify_request!(params, fields) do
     verified =
-      body_params
+      params
       |> Map.keys()
       |> contains_fields?(fields)
 
@@ -262,7 +262,7 @@ defmodule Example.Router do
   plug(:dispatch)
 
   get("/", do: send_resp(conn, 200, "Welcome\n"))
-  post("/upload", do: send_resp(conn, 201, "Uploaded\n"))
+  get("/upload", do: send_resp(conn, 201, "Uploaded\n"))
   match(_, do: send_resp(conn, 404, "Oops!\n"))
 end
 ```
@@ -279,6 +279,9 @@ plug(
 We automatically invoke `VerifyRequest.init(fields: ["content", "mimetype"],
 paths: ["/upload"])`. This in turn passes the given options to the `VerifyRequest.call(conn, opts)` function.
 
+Let's take a look at this plug in action! Go ahead and crash your local server (rember, that's done by pressing `ctrl + c` twice). Then restart the server (`mix run --no-halt`).
+Now go to `127.0.0.1:8080/upload` in your browser and you'll see that the page simply isn't working. We're not even getting our 'Oops!' message. Now let's add our required params by going to `127.0.0.1:8080/upload?content=thing1&mimetype=thing2`. Now we should see our 'Uploaded' message.
+It's not great that when we throw an error we don't get _any_ page, but we'll deal with how to handle errors with plugs later.
 
 ## Making The HTTP Port Configurable
 
