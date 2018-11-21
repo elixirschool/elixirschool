@@ -293,10 +293,10 @@ use Mix.config
 config :example, cowboy_port: 8080
 ```
 
-Next we need to update `lib/example.ex` read the port configuration value, and pass it to Cowboy. We'll define a private function to wrap up that responsibility
+Next we need to update `lib/example/application.ex` read the port configuration value, and pass it to Cowboy. We'll define a private function to wrap up that responsibility
 
 ```elixir
-defmodule Example do
+defmodule Example.Application do
   use Application
   defp cowboy_port, do: Application.get_env(:example, :cowboy_port, 8080)
 
