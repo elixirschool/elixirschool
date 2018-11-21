@@ -109,7 +109,7 @@ defmodule Example.Application do
 end
 ```
 
->Note: We do not have to call `child_spec` here, this function will be called by the supervisor starting this process. We simply pass a tuple with the module that we want the child spec built for and then the three options needed.
+_Note_: We do not have to call `child_spec` here, this function will be called by the supervisor starting this process. We simply pass a tuple with the module that we want the child spec built for and then the three options needed.
 
 This starts up a Cowboy2 server under our app's supervision tree. It starts Cowboy running under the HTTP scheme (you can also specify HTTPS), on the given port, `8080`, specifying the plug, `Example.HelloWorldPlug`, as the interface for any incoming web requests.
 
