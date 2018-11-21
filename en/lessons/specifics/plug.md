@@ -80,7 +80,7 @@ It receives a `%Plug.Conn{}` connection struct as its first argument and is expe
 
 We need to tell our application to start up and supervise the Cowboy web server when the app starts up.
 
-We'll do so with the [`Plug.Adapters.Cowboy.child_spec/1`](https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html#child_spec/1) function.
+We'll do so with the [`Plug.Cowboy.child_spec/1`](https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html#child_spec/1) function.
 
 This function expects three options:
 
