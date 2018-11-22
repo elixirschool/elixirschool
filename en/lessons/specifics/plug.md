@@ -383,7 +383,7 @@ We noticed earlier that when we go to `127.0.0.1:8080/upload` we don't even see 
 
 First, open up `lib/example/router.ex` and then write the following to that file.
 
-```Elixir
+```elixir
 defmodule Example.Router do
   use Plug.Router
   use Plug.ErrorHandler
