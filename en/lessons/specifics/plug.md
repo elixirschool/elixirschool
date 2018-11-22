@@ -109,6 +109,8 @@ defmodule Example.Application do
 end
 ```
 
+_Note_: We do not have to call `child_spec` here, this function will be called by the supervisor starting this process. We simply pass a tuple with the module that we want the child spec built for and then the three options needed.
+
 This starts up a Cowboy2 server under our app's supervision tree. It starts Cowboy running under the HTTP scheme (you can also specify HTTPS), on the given port, `8080`, specifying the plug, `Example.HelloWorldPlug`, as the interface for any incoming web requests.
 
 Now we're ready to run our app and send it some web requests! Notice that, because we generated an OTP app with the `--sup` flag, our `Example` application will start up automatically thanks to the `application` function.
@@ -166,7 +168,7 @@ Swap out the `Example.HelloWorldPlug` plug with the new router:
 ```elixir
 def start(_type, _args) do
   children = [
-    Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+    {Plug.Cowboy, scheme: :http, plug: Example.Router, options: [port: 8080]}
   ]
 
   Logger.info("Started application")
@@ -209,13 +211,13 @@ defmodule Example.Plug.VerifyRequest do
   def init(options), do: options
 
   def call(%Plug.Conn{request_path: path} = conn, opts) do
-    if path in opts[:paths], do: verify_request!(conn.body_params, opts[:fields])
+    if path in opts[:paths], do: verify_request!(conn.params, opts[:fields])
     conn
   end
 
-  defp verify_request!(body_params, fields) do
+  defp verify_request!(params, fields) do
     verified =
-      body_params
+      params
       |> Map.keys()
       |> contains_fields?(fields)
 
@@ -260,7 +262,7 @@ defmodule Example.Router do
   plug(:dispatch)
 
   get("/", do: send_resp(conn, 200, "Welcome\n"))
-  post("/upload", do: send_resp(conn, 201, "Uploaded\n"))
+  get("/upload", do: send_resp(conn, 201, "Uploaded\n"))
   match(_, do: send_resp(conn, 404, "Oops!\n"))
 end
 ```
@@ -277,6 +279,9 @@ plug(
 We automatically invoke `VerifyRequest.init(fields: ["content", "mimetype"],
 paths: ["/upload"])`. This in turn passes the given options to the `VerifyRequest.call(conn, opts)` function.
 
+Let's take a look at this plug in action! Go ahead and crash your local server (rember, that's done by pressing `ctrl + c` twice). Then restart the server (`mix run --no-halt`).
+Now go to `127.0.0.1:8080/upload` in your browser and you'll see that the page simply isn't working. We're not even getting our 'Oops!' message. Now let's add our required params by going to `127.0.0.1:8080/upload?content=thing1&mimetype=thing2`. Now we should see our 'Uploaded' message.
+It's not great that when we throw an error we don't get _any_ page, but we'll deal with how to handle errors with plugs later.
 
 ## Making The HTTP Port Configurable
 
@@ -291,17 +296,17 @@ use Mix.config
 config :example, cowboy_port: 8080
 ```
 
-Next we need to update `lib/example.ex` read the port configuration value, and pass it to Cowboy. We'll define a private function to wrap up that responsibility
+Next we need to update `lib/example/application.ex` read the port configuration value, and pass it to Cowboy. We'll define a private function to wrap up that responsibility
 
 ```elixir
-defmodule Example do
+defmodule Example.Application do
   use Application
   defp cowboy_port, do: Application.get_env(:example, :cowboy_port, 8080)
 
   def start(_type, _args) do
 
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: cowboy_port())
+      {Plug.Cowboy, scheme: :http, plug: Example.Router, options: [port: cowboy_port()]}
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one)
@@ -371,6 +376,90 @@ Run it with this:
 ```shell
 $ mix test test/example/router_test.exs
 ```
+
+## Plug.Error.Handler
+
+We noticed earlier that when we go to `127.0.0.1:8080/upload` we don't even see an error page. Let's fix that now by adding in [`Plug.ErrorHandler`](https://hexdocs.pm/plug/Plug.ErrorHandler.html).
+
+First, open up `lib/example/router.ex` and then write the following to that file.
+
+```Elixir
+defmodule Example.Router do
+  use Plug.Router
+  use Plug.ErrorHandler
+
+  alias Example.Plug.VerifyRequest
+
+  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
+
+  plug(
+    VerifyRequest,
+    fields: ["content", "mimetype"],
+    paths: ["/upload"]
+  )
+
+  plug(:match)
+  plug(:dispatch)
+
+  get("/", do: send_resp(conn, 200, "Welcome\n"))
+  get("/upload", do: send_resp(conn, 201, "Uploaded\n"))
+  match(_, do: send_resp(conn, 404, "Oops!\n"))
+
+  def handle_errors(conn, %{kind: kind, reason: reason, stack: stack}) do
+    IO.puts "Kind:"
+    IO.inspect kind
+    IO.puts "Reason:"
+    IO.inspect reason
+    IO.puts "Stack"
+    IO.inspect stack
+    send_resp(conn, conn.status, "Something went wrong")
+  end
+end
+```
+
+You'll notice at the top we are now adding `use Plug.ErrorHandler`. This plug now catches any error and then looks for a function `handle_errors/2` to call. `handle_errors` just needs to accept the `conn` as the first argument and then a map with three items (`:kind`, `:reason`, and `:stack`) as the second.
+You can see we've defined a very some `handle_errors` to see what's going on. Let's stop and restart our app again to see how this works!
+
+Now, when you navigate to `127.0.0.1:8080/upload`, we see an error message 'Something went wrong'. If you look in your terminal, you'll see something like the following:
+
+```shell
+Kind:
+:error
+Reason:
+%Example.Plug.VerifyRequest.IncompleteRequestError{
+  message: "",
+  plug_status: 400
+}
+Stack
+[
+  {Example.Plug.VerifyRequest, :verify_request!, 2,
+   [file: 'lib/example/plug/verify_request.ex', line: 23]},
+  {Example.Plug.VerifyRequest, :call, 2,
+   [file: 'lib/example/plug/verify_request.ex', line: 13]},
+  {Example.Router, :plug_builder_call, 2,
+   [file: 'lib/example/router.ex', line: 1]},
+  {Example.Router, :call, 2, [file: 'lib/plug/error_handler.ex', line: 64]},
+  {Plug.Cowboy.Handler, :init, 2,
+   [file: 'lib/plug/cowboy/handler.ex', line: 12]},
+  {:cowboy_handler, :execute, 2,
+   [
+     file: '/path/to/project/example/deps/cowboy/src/cowboy_handler.erl',
+     line: 41
+   ]},
+  {:cowboy_stream_h, :execute, 3,
+   [
+     file: '/path/to/project/example/deps/cowboy/src/cowboy_stream_h.erl',
+     line: 293
+   ]},
+  {:cowboy_stream_h, :request_process, 3,
+   [
+     file: '/path/to/project/example/deps/cowboy/src/cowboy_stream_h.erl',
+     line: 271
+   ]}
+]
+```
+
+This plug makes it really easy to catch the useful information needed for developers to fix issues while being able to also give our end user a nice page so it doesn't look like our app totally blew up!
 
 ## Available Plugs
 
