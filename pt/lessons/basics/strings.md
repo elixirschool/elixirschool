@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Strings
 ---
 
@@ -29,13 +29,22 @@ Internamente, as strings em Elixir são representadas como uma sequência de byt
 Qual a diferença? Cada valor em uma lista de caracteres corresponde ao número Unicode do caracter, enquanto em um binário os valores são codificados em UTF-8. Vamos ver isso mais a fundo:
 
 ```elixir
-iex(5)> 'hełło'
+iex> 'hełło'
 [104, 101, 322, 322, 111]
-iex(6)> "hełło" <> <<0>>
+iex> "hełło" <> <<0>>
 <<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
 `322` é o número Unicode de ł, representado em UTF-8 pelos dois bytes `197`, `130`.
+
+Você pode obter o codepoint de um carácter usando `?`
+
+```elixir
+iex> ?Z  
+90
+```
+
+Isso permite usar a notação `?Z` em vez de 'Z' para um símbolo.
 
 Ao programar em Elixir, geralmente usamos strings ao invés de listas de caracteres. O suporte a listas de caracteres é incluso principalmente por ser obrigatório para alguns módulos Erlang.
 
