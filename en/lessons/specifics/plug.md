@@ -377,13 +377,13 @@ Run it with this:
 $ mix test test/example/router_test.exs
 ```
 
-## Plug.Error.Handler
+## Plug.ErrorHandler
 
 We noticed earlier that when we go to `127.0.0.1:8080/upload` we don't even see an error page. Let's fix that now by adding in [`Plug.ErrorHandler`](https://hexdocs.pm/plug/Plug.ErrorHandler.html).
 
 First, open up `lib/example/router.ex` and then write the following to that file.
 
-```Elixir
+```elixir
 defmodule Example.Router do
   use Plug.Router
   use Plug.ErrorHandler
