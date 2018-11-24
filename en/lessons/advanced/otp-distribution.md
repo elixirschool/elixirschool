@@ -181,7 +181,7 @@ defmodule Chat do
     recipient
     |> remote_supervisor()
     |> Task.Supervisor.async(module, fun, args)
-    |> Task.await
+    |> Task.await()
   end
 
   defp remote_supervisor(recipient) do
@@ -323,7 +323,6 @@ If we run our tests via `mix test`, we see it fail with the following error:
          ** (EXIT) no connection to moebi@localhost
 ```
 
-
 This error makes perfect sense--we can't connect to a node named `moebi@localhost` because there is no such node running.
 
 We can get this test passing by performing a few steps:
@@ -393,7 +392,7 @@ def spawn_task(module, fun, recipient, args) do
   recipient
   |> remote_supervisor()
   |> Task.Supervisor.async(module, fun, args)
-  |> Task.await
+  |> Task.await()
 end
 
 defp remote_supervisor(recipient) do
@@ -442,4 +441,4 @@ end
 
 Elixir's native distribution capabilities, which it has thanks to the power of the Erlang VM, is one of the features that make it such a powerful tool. We can imagine leveraging Elixir's ability to handle distributed computing to run concurrent background jobs, to support high-performance applications, to run expensive operations--you name it.
 
-This lesson gives us a basic introduction to the concept of distribution in Elixir and gives you the tools you need to start building distributed applications. By using supervised tasks, you can send messages across the various nodes of a distributed application. 
+This lesson gives us a basic introduction to the concept of distribution in Elixir and gives you the tools you need to start building distributed applications. By using supervised tasks, you can send messages across the various nodes of a distributed application.
