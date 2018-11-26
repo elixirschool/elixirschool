@@ -37,7 +37,7 @@ iex> "hełło" <> <<0>>
 
 `322` é o número Unicode de ł, representado em UTF-8 pelos dois bytes `197`, `130`.
 
-Você pode obter o codepoint de um carácter usando `?`
+Você pode obter o codepoint de um caracter usando `?`
 
 ```elixir
 iex> ?Z  
