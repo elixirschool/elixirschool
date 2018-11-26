@@ -25,6 +25,13 @@ Change the `version` attribute according to the following rules:
 * MINOR — Added or removed some content, few sentences, etc.
 * PATCH — Spelling, typos. Probably not translated stuff.
 
-Fun fact! The version changes are important because we use that to programmatically determine and inform translators of new content that requires translation. 
+Fun fact! The version changes are important because we use that to programmatically determine and inform translators of new content that requires translation.
+
+## Adding a New Lesson
+To add a new lesson, create the file under the appropriate directory in `en/lessons` (or `<language_code>/lessons`) if you are not writing your new lesson in English).
+
+Then, update `_data/content.yml` with the name of your new lesson under the appropriate section.
+
+If you've added a new section (i.e. a new directory under `/lessons`), add the section name under the `sections` key of `_data/locales/en.yml` or `_data/locales/<language_code>.yml` if the section + lesson you added are not in English.
 
 Thank you for your contributions!
