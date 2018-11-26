@@ -22,7 +22,7 @@ iex> %Ecto.Changeset{}
 
 正如你所看到的，它有一些可能有用的字段，但它们都是空的。
 
-为了使 `changeset` 真正有用，当我们创建它时，我们需要提供一个数据的大致结构。 `Ecto.Schema` 的目的就是提供一个数据结构的所有字段及其类型。 让我们看一个最简单常见的 `user` 的 `Schema`：
+为了使 changeset 真正有用，当我们创建它时，我们需要提供一个数据的大致结构。 `Ecto.Schema` 的目的就是提供一个数据结构的所有字段及其类型。 让我们看一个最简单常见的 user 的 Schema：
 
 ```elixir
 defmodule User do
@@ -34,7 +34,7 @@ defmodule User do
 end
 ```
 
-要使用 `User` 的 Schema 创建 `changeset` 的话，我们将使用 `Ecto.Changeset.cast/4`
+要使用 `User` 的 Schema 创建 changeset 的话，我们将使用 `Ecto.Changeset.cast/4`
 
 ```elixir
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
@@ -42,7 +42,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
  valid?: true>
  ```
 
-第一个参数是原始数据 - 在这个例子下是为空的 `％User{}` 结构。 `Ecto` 非常聪明，可以根据结构本身找到对应的 `Schema`。 其次是我们想要做出的更新 - 这里是一个空的 map 结构。 第三个参数是让 `cast/4` 变得特殊的原因: 它允许列表里的字段通过检查，这使我们能够控制哪些字段可以更改，并保护剩下的字段。
+第一个参数是原始数据 - 在这个例子下是为空的 `％User{}` 结构。 Ecto非常聪明，可以根据结构本身找到对应的 Schema。 其次是我们想要做出的更新 - 这里是一个空的 map 结构。 第三个参数是让 `cast/4` 变得特殊的原因: 它允许列表里的字段通过检查，这使我们能够控制哪些字段可以更改，并保护剩下的字段。
 
  ```elixir
  iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
@@ -59,11 +59,11 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
  valid?: true>
 ```
 
-您可以看到第二次忽略了新的 `name`，因为这里没有允许 `name` 字段。
+您可以看到第二次忽略了新的 name，因为这里没有允许 name 字段。
 
 一个 `cast/4` 函数的替代者是 `change/2` 函数，它不能过滤像 `cast/4` 这样的更改。 当您信任进行更改的源数据或手动处理数据时，它就会非常有用。
 
-现在我们可以创建 `changesets`，但由于我们没有校验，对 `name` 所做的任何更改都会被 `Ecto` 接受，因此我们最终会得到一个值为空的 `name`：
+现在我们可以创建 changesets，但由于我们没有校验，对 name 所做的任何更改都会被 Ecto 接受，因此我们最终会得到一个值为空的 name：
 
 ```elixir
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
@@ -76,11 +76,11 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
 >
 ```
 
-正如我们所预料的一样，`Ecto` 说这个 `changeset` 是合法的 （`valid?: true`)，但实际上，我们不希望用户名字为空。 下面我们来解决这个问题
+正如我们所预料的一样，Ecto 说这个 changeset 是合法的 （`valid?: true`)，但实际上，我们不希望用户名字为空。 下面我们来解决这个问题
 
 ## 校验
 
-`Ecto` 附带了许多内置的校验函数来帮助我们。
+Ecto 附带了许多内置的校验函数来帮助我们。
 
 接下来，我们会大量使用 `Ecto.Changeset` 提供的校验函数，所以让我们将 `Ecto.Changeset` 导入到我们的 `user.ex` 模块中：
 
@@ -97,7 +97,7 @@ end
 
 现在我们可以直接使用 `cast/4` 函数了
 
-通常情况下我们会为 `Schema` 创建一个或多个 `changeset`。 让我们创建一个接受结构，变更映射并返回 `changeset` 的变量：
+通常情况下我们会为 Schema 创建一个或多个 changeset。 让我们创建一个接受结构，变更映射并返回 changeset 的变量：
 
 ```elixir
 def changeset(struct, params) do
@@ -116,7 +116,7 @@ def changeset(struct, params) do
 end
 ```
 
-当我们调用 `User.changeset/2` 函数并传递一个值为空的 `name` 时，`changeset` 将不再有效，还会包含有用的错误消息。 注意：在 `iex` 中工作时不要忘记运行`recompile()`，否则它将无法获取您在代码中所做的更改。
+当我们调用 `User.changeset/2` 函数并传递一个值为空的 name 时，changeset 将不再有效，还会包含有用的错误消息。 注意：在 `iex` 中工作时不要忘记运行`recompile()`，否则它将无法获取您在代码中所做的更改。
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => ""})
@@ -142,7 +142,7 @@ def changeset(struct, params) do
 end
 ```
 
-您可以尝试猜一下如果我们传一个由单个字符组成的 `name`，结果会是什么！
+您可以尝试猜一下如果我们传一个由单个字符组成的 name，结果会是什么！
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => "A"})
@@ -160,7 +160,7 @@ iex> User.changeset(%User{}, %{"name" => "A"})
 
 您可能会惊讶于错误消息包含神秘的 `％{count}` - 这是为了帮助翻译成其他语言; 如果你想直接向用户显示错误，你可以使用 [`traverse_errors/2`] (https://hexdocs.pm/ecto/Ecto.Changeset.html#traverse_errors/2)使它们成为用户可读的信息 - 你可以查看文档中提供的示例。
 
-下面是 `Ecto.Changeset` 中的一些其他内置的 `validators`：
+下面是 `Ecto.Changeset` 中的一些其他内置的 validators：
 
 + validate_acceptance/3
 + validate_change/3 & /4
@@ -170,7 +170,7 @@ iex> User.changeset(%User{}, %{"name" => "A"})
 + validate_number/3
 + validate_subset/4
 
-完整的 `validators` 列表以及它们的详细用法您可以 [在这儿](https://hexdocs.pm/ecto/Ecto.Changeset.html#summary) 找到
+完整的 validators 列表以及它们的详细用法您可以 [在这儿](https://hexdocs.pm/ecto/Ecto.Changeset.html#summary) 找到
 
 ### 自定义校验
 
@@ -222,9 +222,9 @@ iex> User.changeset(%User{}, %{"name" => "Bob"})
 
 ## 以编程方式添加更改
 
-有时您希望手动对 `changeset` 引入更改。 `put_change/3` 的存在就是帮助你实现这个目的的。
+有时您希望手动对 changeset 引入更改。 `put_change/3` 的存在就是帮助你实现这个目的的。
 
-为了不让 `name` 字段成为必需，让我们允许用户在没有名字的情况下注册，并称之为 `匿名`。 我们需要的函数看起来很熟悉 - 它接受并返回一个 `changeset`，就像我们之前介绍的 `validate_fictional_name/1` 一样：
+为了不让 `name` 字段成为必需，让我们允许用户在没有名字的情况下注册，并称之为 "匿名"。 我们需要的函数看起来很熟悉 - 它接受并返回一个 changeset，就像我们之前介绍的 `validate_fictional_name/1` 一样：
 
 
 ```elixir
@@ -239,7 +239,7 @@ def set_name_if_anonymous(changeset) do
 end
 ```
 
-只有在我们的应用程序中注册时，我们才能将用户名设置为 `匿名` ; 要做到这一点，我们将创建一个新的 `changeset` 函数：
+只有在我们的应用程序中注册时，我们才能将用户名设置为 `匿名` ; 要做到这一点，我们将创建一个新的 changeset 函数：
 
 
 ```elixir
@@ -263,7 +263,7 @@ iex> User.registration_changeset(%User{}, %{})
 >
 ```
 
-具有特定职责的 `changeset` 创建函数（如 `registration_changeset/2` ）并不罕见 - 有时您需要灵活地仅执行某些校验或过滤特定参数。 上面的函数可以在其他地方，比如 `sign_up/1` 函数中使用：
+具有特定职责的 changeset 创建函数（如 `registration_changeset/2` ）并不罕见 - 有时您需要灵活地仅执行某些校验或过滤特定参数。 上面的函数可以在其他地方，比如 `sign_up/1` 函数中使用：
 
 ```elixir
 def sign_up(params) do
@@ -275,4 +275,4 @@ end
 
 ## 结语
 
-我们在本课中没有涉及很多用例和功能，例如您可以使用的 [schemaless changesets](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) 校验任何数据; 或单独处理changeset的副作用( [`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2) )，或使用关联和嵌入。 我们可能会在未来的高级课程中介绍这些内容，但与此同时 - 我们鼓励探索 [Ecto Changeset的文档](https://hexdocs.pm/ecto/Ecto.Changeset.html) 以获取更多信息。
+我们在本课中没有涉及很多用例和功能，例如您可以使用的 [schemaless changesets](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) 校验 _任何_ 数据; 或单独处理changeset的副作用( [`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2) )，或使用关联和嵌入。 我们可能会在未来的高级课程中介绍这些内容，但与此同时 - 我们鼓励探索 [Ecto Changeset的文档](https://hexdocs.pm/ecto/Ecto.Changeset.html) 以获取更多信息。
