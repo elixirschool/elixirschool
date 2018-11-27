@@ -207,11 +207,11 @@ View them at "doc/index.html".
 如果一切都按計劃進行，則應在上例中看到類似於輸出訊息的資訊。現在來看看我們的 Mix 專案，應該會看到一個名為 **doc/** 的目錄。裡面是那些被生成的文件。
 如果我們在瀏覽器中存取索引頁面 (index page)，應該會看到以下內容：
 
-![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
+![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
 
 可以看到，Earmark 已經完成渲染 Markdown 因而 ExDoc 現在顯示為一個可用易讀的格式。
 
-![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
+![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
 現在可以將其部署到 GitHub、我們自己的網站，或更常見的 [HexDocs](https://hexdocs.pm/)。
 

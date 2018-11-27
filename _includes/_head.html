@@ -11,14 +11,14 @@
   <meta property="og:site_name" content="ElixirSchool">
   <meta property="og:title" content="{{ page.locale.project.title }}">
   <meta property="og:description" content="{{ page.locale.project.description }}">
-  <meta property="og:image" content="{{ site.url }}{% asset_path 'og_image.jpg' %}">
+  <meta property="og:image" content="{{ site.url }}{% asset og_image.jpg @path %}">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ site.url }}{% asset_path 'favicons/apple-touch-icon.png' %}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}{% asset_path 'favicons/favicon-32x32.png' %}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ site.url }}{% asset_path 'favicons/favicon-16x16.png' %}">
-  <link rel="manifest" href="{{ site.url }}{% asset_path 'favicons/manifest.json' %}">
-  <link rel="shortcut icon" href="{{ site.url }}{% asset_path 'favicons/favicon.ico' %}">
-  <meta name="msapplication-config" content="{{ site.url }}{% asset_path 'favicons/browserconfig.xml' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ site.url }}{% asset favicons/apple-touch-icon.png @path %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}{% asset favicons/favicon-32x32.png @path %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ site.url }}{% asset favicons/favicon-16x16.png @path %}">
+  <link rel="manifest" href="{{ site.url }}{% asset favicons/manifest.json @path %}">
+  <link rel="shortcut icon" href="{{ site.url }}{% asset favicons/favicon.ico @path %}">
+  <meta name="msapplication-config" content="{{ site.url }}{% asset favicons/browserconfig.xml @path %}">
   <meta name="theme-color" content="#ffffff">
 
   {% assign title = locale.project.title %}
@@ -30,14 +30,15 @@
   <title>{{ title }}</title>
   <!-- CSS -->
   <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-  {% css main %}
-  <!--[if lte IE 9]>{% css ie9 %}<![endif]-->
-  <!--[if lte IE 8]>{% css ie8 %}<![endif]-->
+  {% asset main.css %}
+  <!--[if lte IE 9]>{% asset ie9.css %}<![endif]-->
+  <!--[if lte IE 8]>{% asset ie8.css %}<![endif]-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
   <script type="text/javascript">
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
   analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
   analytics.page()
   }}();
   </script>
-  {% js js.cookie.js %}
+  {% asset js.cookie.js %}
 </head>

@@ -27,7 +27,8 @@
 			{% include _sidebar.html %}
 		</div>
 		<!-- Scripts -->
-		{% js main %}
-		<!--[if lte IE 8]>{% js ie/respond.min.js %}<script src="assets/js/ie/respond.min.js"></script><![endif]-->
+
+    {% asset main.js %}
+		<!--[if lte IE 8]>{% asset ie/respond.min.js %}<script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	</body>
 </html>
