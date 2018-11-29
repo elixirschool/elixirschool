@@ -134,7 +134,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 "Callan, Sean"
 ```
 
-Quando uma expressão falha em achar um padrão, o valor que da expressão é avaliado será retornado:
+Quando uma expressão falha em achar um padrão, o valor da expressão que falhou será retornado:
 
 ```elixir
 iex> user = %{first: "doomspork"}
