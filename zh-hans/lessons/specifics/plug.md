@@ -275,7 +275,7 @@ defmodule Example do
 
   def start(_type, _args) do
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: cowboy_port())
+      {Plug.Cowboy, scheme: :http, plug: Example.Router, options: [port: cowboy_port()]}
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one)
