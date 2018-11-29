@@ -204,11 +204,11 @@ View them at "doc/index.html".
 
 Si tout s'est déroulé comme prévu, vous devriez voir un message similaire à celui de l'exemple ci-dessus. Regardons maintenant à l'intérieur de notre projet Mix et nous devrions voir qu'il y a un autre répertoire appelé **doc/**. À l'intérieur se trouve notre documentation générée. Si nous visitons la page d'index dans notre navigateur, nous devrions voir ce qui suit :
 
-![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
+![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
 
 Nous pouvons voir qu'Earmark à généré notre balisage Markdown et ExDoc l'affiche de manière lisible et navigable, dans un format très utile.
 
-![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
+![ExDoc Screenshot 2]{% asset documentation_2.png @path %})
 
 Nous pouvons maintenant le déployer sur notre propre site web ou plus communément sur [HexDocs](https://hexdocs.pm/).
 
