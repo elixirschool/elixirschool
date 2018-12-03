@@ -45,6 +45,9 @@ If you have a code snippet that includes the following syntax: `{%{message: "err
 ## Before You Push
 Check that Jekyll can build:
 
+*You need to have Ruby installed on your machine to do this*
+
 ```shell
+$ bundle install
 $ bundle exec jekyll s
 ```
