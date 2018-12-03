@@ -35,3 +35,9 @@ Then, update `_data/content.yml` with the name of your new lesson under the appr
 If you've added a new section (i.e. a new directory under `/lessons`), add the section name under the `sections` key of `_data/locales/en.yml` or `_data/locales/<language_code>.yml` if the section + lesson you added are not in English.
 
 Thank you for your contributions!
+
+## Gotcha
+
+Look out for Liquid templating weirdness!
+
+If you have a code snippet that includes the following syntax: `{%{message: "error message"}, :error}`, i.e. if you have a tuple where the first element is a map, WATCH OUT! That set of characters, `{%` is actually the start of a liquid tag! Instead, wrap your backticked code block in `{% raw % }` `{% endraw %}`
