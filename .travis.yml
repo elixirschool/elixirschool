@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+  - 2.5
+cache: bundler
+install:
+- bundle install
+before_script:
+ - chmod +x ./script/build.sh
+script:
+- "./build.sh"
