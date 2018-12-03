@@ -366,3 +366,16 @@
     - bg
   articles:
     - A brief guide to Ecto.Multi
+
+- github: SophieDeBenedetto
+  name: Sophie DeBenedetto
+  intro:
+    Sophie is an engineer and teacher at The Flatiron School. She loves teaching and learning and finding the Elixir School community felt like the perfect fit!
+  twitter: sm_debenedetto
+  homepage: https://thegreatcodeadventure.com
+  contributions:
+    - lesson
+    - blog
+  lessons: ['OTP Distribution', 'Plug']
+  articles:
+    - JWT Auth in Elixir with Joken
