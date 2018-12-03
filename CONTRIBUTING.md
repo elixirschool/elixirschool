@@ -41,13 +41,3 @@ Thank you for your contributions!
 Look out for Liquid templating weirdness!
 
 If you have a code snippet that includes the following syntax: `{%{message: "error message"}, :error}`, i.e. if you have a tuple where the first element is a map, WATCH OUT! That set of characters, `{%` is actually the start of a liquid tag! Instead, wrap your backticked code block in `{% raw % }` `{% endraw %}`
-
-## Before You Push
-Check that Jekyll can build:
-
-*You need to have Ruby installed on your machine to do this*
-
-```shell
-$ bundle install
-$ bundle exec jekyll s
-```
