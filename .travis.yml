@@ -7,4 +7,4 @@ install:
 before_script:
  - chmod +x ./script/build.sh
 script:
-- "./build.sh"
+- "./script/build.sh"
