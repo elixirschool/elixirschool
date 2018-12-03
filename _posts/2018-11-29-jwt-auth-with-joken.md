@@ -75,7 +75,7 @@ end
 This will return the `Joken.Token` struct in the following format:
 
 ```elixir
-%Joken.Token{                                                                                                            claims: %{},                                                                                                           claims_generation: %{},                                                               
+%Joken.Token{                                                                                                            claims: %{},                                                                                                           claims_generation: %{},
   error: nil,
   errors: [],
   header: %{},
@@ -122,8 +122,8 @@ If this function returns `true`, Joken will expose the decoded token's claims:
 
 ```elixir
 %Joken.Token{
-  claims: %{                                                                                                               
-    "aud" => ["user"],                                                                   
+  claims: %{
+    "aud" => ["user"],
     "email" => "guy@email.com.com",
     "exp" => 1540399830,
     "iat" => 1540392630,
@@ -190,6 +190,7 @@ end
 
 The first function call, `JOSE.JWK.from_pem` converts our public key PEM binary into a `JOSE.JWK`. The second function call, `JOSE.JWK.to_map` (you guessed it) converts that `JOSE.JWK` into a map. So, we end up with a tuple that looks like this:
 
+{% raw %}
 ```elixir
 {%{kty: :jose_jwk_kty_ec},
  %{
@@ -199,6 +200,7 @@ The first function call, `JOSE.JWK.from_pem` converts our public key PEM binary 
    "y" => "xxxx"
  }}
 ```
+{% endraw %}
 
 Where the second element of the tuple is the ECDSA public key map. Joken will use this map as a key when generating an ECDSA signer.
 
