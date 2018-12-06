@@ -45,3 +45,4 @@ libraries:
   - poolboy
   - benchee
   - bypass
+  - distillery
