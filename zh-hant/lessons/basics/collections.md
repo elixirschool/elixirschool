@@ -1,5 +1,5 @@
 ---
-version: 1.2.3
+version: 1.2.4
 title: 群集
 ---
 
@@ -57,7 +57,14 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**注意：** 列表減法使用 [strict comparison](../basics/#comparison) 來匹配它的值。
+**註：** 列表減法使用 [strict comparison](../basics/#comparison) 來配對它的值。
+
+```elixir
+iex> [2] -- [2.0]
+[2]
+iex> [2.0] -- [2.0]
+[]
+```
 
 ### 頭 / 尾 (Head / Tail)
 
