@@ -9,7 +9,7 @@ Trabajando con tiempos en Elixir.
 
 ## Hora(`Time`)
 
-Elixir tiene algunos módilos que trabajan con tiempo. Aunque es necesario nottar que esta funcionalidad está limitada a trabajar con la zona horaria UTC.
+Elixir tiene algunos módulos que trabajan con tiempo. Aunque es necesario notar que esta funcionalidad está limitada a trabajar con la zona horaria UTC.
 
 Empecemos obteniendo la hora actual:
 
@@ -19,14 +19,14 @@ iex> Time.utc_now
 ~T[19:39:31.056226]
 ```
 
-Observa que también tenemos un sigil que puede ser usado para crear un estructura `Time`:
+Observa que también tenemos un sigilo que puede ser usado para crear una estructura `Time`:
 
 ```elixir
 iex> ~T[19:39:31.056226]
 ~T[19:39:31.056226]
 ```
 
-Puedes aprender más acerca de los sigils en la [lección acerca de los sigils](../sisgils/). Es fácil acceder a partes de esta estructura:
+Puedes aprender más acerca de los sigilos en la [lección acerca de los sigilos](../sigils/). Es fácil acceder a partes de esta estructura:
 
 ```elixir
 iex> t = ~T[19:39:31.056226]
@@ -39,7 +39,7 @@ iex> t.day
 ** (KeyError) key :day not found in: ~T[19:39:31.056226]
 ```
 
-Pero hay problemita: como te habrás dado cuenta, esta estructura sólo contine la hora del día, no hay datos acerca del día, mes o año.
+Pero hay un problemita: como te habrás dado cuenta, esta estructura sólo contine la hora del día, no hay datos acerca del día, mes o año.
 
 ## Fecha(`Date`)
 
@@ -61,7 +61,7 @@ iex> Date.leap_year? date
 true
 ```
 
-`day_of_week/1` calcula que día de la semana cayó una fecha dada. En este caso es sábado. `leap_year?/1` verifica si es un año bisiesto. Otras funciones pueden ser encontradas en la [documentación](https://hexdocs.pm/elixir/Date.html).
+`day_of_week/1` calcula que día de la semana fue una fecha dada. En este caso es sábado. `leap_year?/1` verifica si es un año bisiesto. Otras funciones pueden ser encontradas en la [documentación](https://hexdocs.pm/elixir/Date.html).
 
 ## NaiveDateTime
 
@@ -82,8 +82,8 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 ## DateTime
 
-La segunda, coomo habrás adivinado por el título de la sección es `DateTime`.
-No tiene las limitaciones observadas previamente: tiene tanto la fecha como la hora y soporta zonas horarias. Pero veamos lo que dice la documentación oficial acerca de las zonas horarias:
+La segunda, como habrás adivinado por el título de la sección es `DateTime`.
+No tiene las limitaciones observadas previamente ya que tiene tanto la fecha como la hora y soporta zonas horarias. Pero veamos lo que dice la documentación oficial acerca de las zonas horarias:
 
 ```
 Te darás cuenta que este módulo sólo contiene funciones de conversión así como funciones que trabajan con UTC. Esto se debe a que una implementación correcta de Datetime requiere una base de datos de zonas horarias que no se provee como parte de Elixir.
