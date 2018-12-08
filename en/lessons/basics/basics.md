@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 title: Basics
 ---
 
@@ -77,7 +77,6 @@ iex> 1.0e-10
 1.0e-10
 ```
 
-
 ### Booleans
 
 Elixir supports `true` and `false` as booleans; everything is truthy except for `false` and `nil`:
@@ -146,13 +145,13 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir also includes more complex data types.  We'll learn more about these when we learn about [collections](../collections/) and [functions](../functions/).
+Elixir also includes more complex data types. We'll learn more about these when we learn about [collections](../collections/) and [functions](../functions/).
 
 ## Basic Operations
 
 ### Arithmetic
 
-Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.  It's important to remember that `/` will always return a float:
+Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect. It's important to remember that `/` will always return a float:
 
 ```elixir
 iex> 2 + 2
@@ -210,7 +209,7 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-Note: Elixir is based on Erlang VM (BEAM). If you're an Erlang developer, `and`, `or` is mapped to `andalso` and `orelse` which doesn't evaluates first argument and evaluates the second argument.
+Note: Elixir is based on Erlang VM (BEAM). If you're an Erlang developer, `and`, `or` is mapped to `andalso` and `orelse` which doesn't evaluate first argument and evaluates the second argument.
 
 ### Comparison
 
@@ -236,7 +235,7 @@ iex> 2 === 2.0
 false
 ```
 
-An important feature of Elixir is that any two types can be compared; this is particularly useful in sorting.  We don't need to memorize the sort order, but it is important to be aware of it:
+An important feature of Elixir is that any two types can be compared; this is particularly useful in sorting. We don't need to memorize the sort order, but it is important to be aware of it:
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
