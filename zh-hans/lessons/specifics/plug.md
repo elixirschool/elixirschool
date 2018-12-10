@@ -104,7 +104,7 @@ defmodule Example.Application do
 end
 ```
 
-**注意：**我们并不需要显式地调用 `child_spec` ，这个函数会在 Supervisor 启动进程时自动调用。所以，我们只需要提供一个包括需要启动的模块名，已经启动需要的配置选项。
+**注意：**我们并不需要显式地调用 `child_spec` ，这个函数会在 Supervisor 启动进程时自动调用。所以，我们只需要提供一个包括需要启动的模块名，以及启动需要的配置选项。
 
 这段代码将在我们应用的 supervision tree 下启动了 Cowboy2 服务器。它在 `8080` 端口下，以 HTTP 模式运行启动了 Cowboy 服务（当然你也可以指定为 HTTPS）。`Example.HelloWorldPlug` 被设定为处理收到的任何网络请求的接口。
 
@@ -258,7 +258,7 @@ plug(
 这会去自动调用 `VerifyRequest.init(fields: ["content", "mimetype"],
 paths: ["/upload"])`。接着就会把参数传给 `VerifyRequest.call(conn, opts)` 函数调用。
 
-让我们来实验以下这个 Plug！停掉正在允许的代码后（可按两次 `ctrl + c`）, 再重启服务（`mix run --no-halt`）。接下来，我们试着在浏览器中访问 <http://127.0.0.1:8080/upload> ，你会发现这个页面不能正常运作。我们连 “Oops!” 的错误消息都看不到。现在，我们试着访问带有必须的参数后的页面 <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>。我们加上必须的参数之后，我们应该就可以看到”Uploaded“的信息了。
+让我们来试验一下这个 Plug！停掉正在运行的代码后（可按两次 `ctrl + c`）, 再重启服务（`mix run --no-halt`）。接下来，我们试着在浏览器中访问 <http://127.0.0.1:8080/upload> ，你会发现这个页面不能正常运作。我们连 “Oops!” 的错误消息都看不到。现在，我们试着访问带有必须的参数后的页面 <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>。加上必须的参数之后，我们应该就可以看到”Uploaded“的信息了。
 
 但是，出错之后看不到任何页面显然并不是一个好的方式，我们稍后会讨论处理 Plug 错误的方法。
 
@@ -438,7 +438,7 @@ Stack
 ]
 ```
 
-这个 Plug 开发者非常容易地处理并查看有用的错误信息，帮助开发者修正问题或者提供拥有的信息给终端用户。
+这个 Plug 可以让开发者非常容易地查看有用的错误信息，从而解决问题。同时也给终端用户一个良好的页面体验，而不至于觉得整个网站垮掉！
 
 ## 可用的 Plug
 
