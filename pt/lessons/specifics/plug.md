@@ -1,5 +1,5 @@
 ---
-version: 2.0.0
+version: 2.1.1
 title: Plug
 ---
 
@@ -160,7 +160,7 @@ Este é um mini Router, mas o código deve ser bastante auto-explicativo.
 Nós incluímos alguns macros através de `use Plug.Router`, e em seguida, configuramos dois Plugs nativos: `:match` e `:dispatch`.
 Existem duas rotas definidas, uma para mapear requisições GET para a raiz e a segunda para mapear todos as outras requisições, e então possamos retornar uma mensagem 404.
 
-De volta ao `lib/example.ex`, precisamos adicionar o `Example.Router` na árvode de supervisores.
+De volta ao `lib/example/application.ex`, precisamos adicionar o `Example.Router` na árvode de supervisores.
 Troque o `Example.HelloWorldPlug` plug para o novo router:
 
 ```elixir
@@ -168,17 +168,19 @@ def start(_type, _args) do
   children = [
     {Plug.Cowboy, scheme: :http, plug: Example.Router, options: [port: 8080]}
   ]
+  opts = [strategy: :one_for_one, name: Example.Supervisor]
 
-  Logger.info("Started application")
-  Supervisor.start_link(children, strategy: :one_for_one)
+  Logger.info("Starting application...")
+
+  Supervisor.start_link(children, opts)
 end
 ```
 
 Reinicie o servidor, pare o anterior se ele estiver rodando (pressione duas vezes `Ctrl+C`).
 
-Agora no navegador, digite `127.0.0.1:8080`.
+Agora no navegador, digite <http://127.0.0.1:8080>.
 Você deve ver `Welcome`.
-Então, digite `127.0.0.1:8080/waldo`, ou qualquer outro path. Isto deve retornar `Oops!` com uma resposta 404.
+Então, digite <http://127.0.0.1:8080/waldo>, ou qualquer outro path. Isto deve retornar `Oops!` com uma resposta 404.
 
 ## Adicionando outro Plug
 
@@ -270,7 +272,7 @@ Nós automaticamente invocamos `VerifyRequest.init(fields: ["content", "mimetype
 paths: ["/upload"])`. Isso por sua vez passa as opções recebidas para a função `VerifyRequest.call(conn, opts)`.
 
 Let's take a look at this plug in action! Go ahead and crash your local server (rember, that's done by pressing `ctrl + c` twice). Then restart the server (`mix run --no-halt`).
-Now go to `127.0.0.1:8080/upload` in your browser and you'll see that the page simply isn't working. We're not even getting our 'Oops!' message. Now let's add our required params by going to `127.0.0.1:8080/upload?content=thing1&mimetype=thing2`. Now we should see our 'Uploaded' message.
+Now go to <http://127.0.0.1:8080/upload> in your browser and you'll see that the page simply isn't working. We're not even getting our 'Oops!' message. Now let's add our required params by going to <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>. Now we should see our 'Uploaded' message.
 It's not great that when we throw an error we don't get _any_ page, but we'll deal with how to handle errors with plugs later.
 
 ## Deixando a porta HTTP Configurável
@@ -291,16 +293,20 @@ Depois nós precisamos atualizar `lib/example/application.ex` para ler a porta a
 ```elixir
 defmodule Example.Application do
   use Application
-  defp cowboy_port, do: Application.get_env(:example, :cowboy_port, 8080)
+  require Logger
 
   def start(_type, _args) do
-
     children = [
       {Plug.Cowboy, scheme: :http, plug: Example.Router, options: [port: cowboy_port()]}
     ]
+    opts = [strategy: :one_for_one, name: Example.Supervisor]
 
-    Supervisor.start_link(children, strategy: :one_for_one)
+    Logger.info("Starting application...")
+
+    Supervisor.start_link(children, opts)
   end
+
+  defp cowboy_port, do: Application.get_env(:example, :cowboy_port, 8080)
 end
 ```
 
@@ -341,8 +347,7 @@ defmodule Example.RouterTest do
 
   test "returns uploaded" do
     conn =
-      conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
-      |> put_req_header("content-type", "application/x-www-form-urlencoded")
+      conn(:get, "/upload?content=#{@content}&mimetype=#{@mimetype}")
       |> Router.call(@opts)
 
     assert conn.state == :sent
@@ -368,7 +373,7 @@ $ mix test test/example/router_test.exs
 
 ## Plug.ErrorHandler
 
-Nós notamos antes que quando nós acessamos `127.0.0.1:8080/upload` nós nem recebemos uma página de erro. Vamos arrumar isso por adicionar [`Plug.ErrorHandler`](https://hexdocs.pm/plug/Plug.ErrorHandler.html).
+Nós notamos antes que quando nós acessamos <http://127.0.0.1:8080/upload> nós nem recebemos uma página de erro. Vamos arrumar isso por adicionar [`Plug.ErrorHandler`](https://hexdocs.pm/plug/Plug.ErrorHandler.html).
 
 Primeiro, nós abrimos `lib/example/router.ex` e então escrevemos o seguinte no arquivo.
 
@@ -409,7 +414,7 @@ end
 Nós vamos notar que no topo nós estamos adicionando `use Plug.ErrorHandler`. Esse plug agora captura qualquer error e então busca por uma função `handle_errors/2` para chamar. `handle_errors` apenas precisa aceitar uma `conn` como seu primeiro argumento e então um mapa com três itens (`:kind`, `:reason`, e `:stack`) como segundo argumento.
 Você pode ver que nós definimos um `handle_errors` bem simples para ver o que está acontecendo. Vamos parar e restartar a nossa aplicação de novo para ver como ele funciona!
 
-Agora, quando nós navegarmos para `127.0.0.1:8080/upload`, nós podemos ver um a mensagem de erro 'Something went wrong'. Se você olhar em seu terminal, vai ver mais ou menos o seguinte:
+Agora, quando nós navegarmos para <http://127.0.0.1:8080/upload>, nós podemos ver um a mensagem de erro 'Something went wrong'. Se você olhar em seu terminal, vai ver mais ou menos o seguinte:
 
 ```shell
 Kind:
