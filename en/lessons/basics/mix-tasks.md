@@ -9,7 +9,8 @@ Creating custom Mix tasks for your Elixir projects.
 
 ## Introduction
 
-It's not uncommon to want to extend your Elixir applications functionality by adding custom Mix tasks. Before we learn about how to create specific Mix tasks for our projects, let's look at one that already exists:
+It's not uncommon to want to extend your Elixir applications functionality by adding custom Mix tasks.
+Before we learn about how to create specific Mix tasks for our projects, let's look at one that already exists:
 
 ```shell
 $ mix phoenix.new my_phoenix_app
@@ -25,7 +26,8 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-As we can see from the shell command above, The Phoenix Framework has a custom Mix task to generate a new project. What if we could create something similar for our project? Well the great news is we can, and Elixir makes this easy for us to do.
+As we can see from the shell command above, The Phoenix Framework has a custom Mix task to generate a new project.
+What if we could create something similar for our project? Well the great news is we can, and Elixir makes this easy for us to do.
 
 ## Setup
 
@@ -69,7 +71,9 @@ end
 
 ## Custom Mix Task
 
-Let's create our custom Mix task. Create a new directory and file **hello/lib/mix/tasks/hello.ex**. Within this file, let's insert these 7 lines of Elixir.
+Let's create our custom Mix task.
+Create a new directory and file **hello/lib/mix/tasks/hello.ex**.
+Within this file, let's insert these 7 lines of Elixir.
 
 ```elixir
 defmodule Mix.Tasks.Hello do
@@ -83,18 +87,24 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-Notice how we start the defmodule statement with `Mix.Tasks` and the name we want to call from the command line. On the second line we introduce the `use Mix.Task` which brings the `Mix.Task` behaviour into the namespace. We then declare a run function which ignores any arguments for now. Within this function, we call our `Hello` module and the `say` function.
+Notice how we start the defmodule statement with `Mix.Tasks` and the name we want to call from the command line.
+On the second line we introduce the `use Mix.Task` which brings the `Mix.Task` behaviour into the namespace.
+We then declare a run function which ignores any arguments for now.
+Within this function, we call our `Hello` module and the `say` function.
 
 ## Mix Tasks in Action
 
-Let's checkout our mix task. As long as we are in the directory it should work. From the command line, run `mix hello`, and we should see the following:
+Let's checkout our mix task.
+As long as we are in the directory it should work.
+From the command line, run `mix hello`, and we should see the following:
 
 ```shell
 $ mix hello
 Hello, World!
 ```
 
-Mix is quite friendly by default. It knows that everyone can make a spelling error now and then, so it uses a technique called fuzzy string matching to make recommendations:
+Mix is quite friendly by default.
+It knows that everyone can make a spelling error now and then, so it uses a technique called fuzzy string matching to make recommendations:
 
 ```shell
 $ mix hell

@@ -110,7 +110,8 @@ Bypass.expect(bypass, fn conn ->
 end)
 ```
 
-`Bypass.expect/2` takes our Bypass connection and a single arity function which is expected to modify a connection and return it, this is also an opportunity to make assertions on the request to verify it's as we expect.  Let's update our test url to include `/ping` and assert both the request path and HTTP method:
+`Bypass.expect/2` takes our Bypass connection and a single arity function which is expected to modify a connection and return it, this is also an opportunity to make assertions on the request to verify it's as we expect.
+Let's update our test url to include `/ping` and assert both the request path and HTTP method:
 
 ```elixir
 test "request with HTTP 200 response", %{bypass: bypass} do
@@ -227,9 +228,12 @@ end
 
 We rely on a test implementation of our health checks with `TestCheck` alongside `CaptureLog.capture_log/1` to assert that the appropriate messages are logged.
 
-Now we have working `Scheduler` and `HealthCheck` modules, let's write an integration test to verify everything works together.  We'll need Bypass for this test and we'll have to handle multiple Bypass requests per test, let's see how we do that.
+Now we have working `Scheduler` and `HealthCheck` modules, let's write an integration test to verify everything works together.
+We'll need Bypass for this test and we'll have to handle multiple Bypass requests per test, let's see how we do that.
 
-Remember the `bypass.port` from earlier?  When we need to mimic multiple sites, the `:port` option comes in handy.  As you've probably guessed, we can create multiple Bypass connections each with a different port, these would simulate independent sites.  We'll start by reviewing our updated `test/clinic_test.exs` file:
+Remember the `bypass.port` from earlier?  When we need to mimic multiple sites, the `:port` option comes in handy.
+As you've probably guessed, we can create multiple Bypass connections each with a different port, these would simulate independent sites.
+We'll start by reviewing our updated `test/clinic_test.exs` file:
 
 ```elixir
 defmodule ClinicTest do
@@ -265,6 +269,8 @@ defmodule ClinicTest do
 end
 ```
 
-There shouldn't be anything too surprisingly in the above test.  Instead of creating a single Bypass connection in `setup`, we're creating two within our test and specifying their ports as 1234 and 1337.  Next we see our `Bypass.expect/2` calls and finally the same code we have in `SchedulerTest` to start the scheduler and assert we log the appropriate messages.
+There shouldn't be anything too surprisingly in the above test.
+Instead of creating a single Bypass connection in `setup`, we're creating two within our test and specifying their ports as 1234 and 1337.
+Next we see our `Bypass.expect/2` calls and finally the same code we have in `SchedulerTest` to start the scheduler and assert we log the appropriate messages.
 
 That's it!  We've built a utility to keep us informed if there's any issues with our domains and we've learned how to employe Bypass to write better tests with external services.
