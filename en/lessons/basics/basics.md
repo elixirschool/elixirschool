@@ -90,7 +90,8 @@ false
 
 ### Atoms
 
-An atom is a constant whose name is its value. If you're familiar with Ruby, these are synonymous with Symbols:
+An atom is a constant whose name is its value.
+If you're familiar with Ruby, these are synonymous with Symbols:
 
 ```elixir
 iex> :foo
@@ -145,13 +146,15 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir also includes more complex data types. We'll learn more about these when we learn about [collections](../collections/) and [functions](../functions/).
+Elixir also includes more complex data types.
+We'll learn more about these when we learn about [collections](../collections/) and [functions](../functions/).
 
 ## Basic Operations
 
 ### Arithmetic
 
-Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect. It's important to remember that `/` will always return a float:
+Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.
+It's important to remember that `/` will always return a float:
 
 ```elixir
 iex> 2 + 2
@@ -175,7 +178,8 @@ iex> rem(10, 3)
 
 ### Boolean
 
-Elixir provides the `||`, `&&`, and `!` boolean operators. These support any types:
+Elixir provides the `||`, `&&`, and `!` boolean operators.
+These support any types:
 
 ```elixir
 iex> -20 || true
@@ -209,7 +213,7 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-Note: Elixir is based on Erlang VM (BEAM). If you're an Erlang developer, `and`, `or` is mapped to `andalso` and `orelse` which doesn't evaluate first argument and evaluates the second argument.
+Note: Elixir's `and` and `or` actually map to `andalso` and `orelse` in Erlang.
 
 ### Comparison
 
