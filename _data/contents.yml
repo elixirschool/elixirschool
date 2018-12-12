@@ -33,15 +33,15 @@ advanced:
   - behaviours
   - gen-stage
   - protocols
+ecto:
+  - basics
+  - changesets
 specifics:
   - plug
   - eex
   - ets
   - mnesia
   - debugging
-ecto:
-  - basics
-  - changesets
 libraries:
   - guardian
   - poolboy
