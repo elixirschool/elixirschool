@@ -1,6 +1,6 @@
 ---
 version: 1.3.0
-title: Ecto
+title: Basics
 ---
 
 Ecto 是一個官方 Elixir 專案，提供資料庫封裝 (wrapper) 和整合查詢語言。
@@ -125,7 +125,7 @@ end
 
 ## 結構描述 (Schemas)
 
-現在有了遷移，可以繼續到結構描述 (Schema)。結構描述是一個模組，它定義了底層資料庫表格的映射 (mapping)、欄位 (fields)、輔助函數 (helper functions) 和變更集 (changesets)。下面的章節中將介紹變更集的更多部分。 
+現在有了遷移，可以繼續到結構描述 (Schema)。結構描述是一個模組，它定義了底層資料庫表格的映射 (mapping)、欄位 (fields)、輔助函數 (helper functions) 和變更集 (changesets)。下面的章節中將介紹變更集的更多部分。
 
 現在來看看我們遷移的結構描述大概長什麼樣：
 

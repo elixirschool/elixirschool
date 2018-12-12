@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 title: Changesets
 ---
 
@@ -30,7 +30,7 @@ What better blueprint for our data than the schemas we've created the define our
 To save us some time, let's re-use the schema we created in the previous lesson:
 
 ```elixir
-defmodule Friends.Person do
+defmodule Example.Person do
   use Ecto.Schema
 
   schema "people" do
@@ -40,11 +40,11 @@ defmodule Friends.Person do
 end
 ```
 
-To create a changeset using the `Friends.Person` schema, we are going to use `Ecto.Changeset.cast/4`:
+To create a changeset using the `Example.Person` schema, we are going to use `Ecto.Changeset.cast/4`:
 
 ```elixir
-iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+iex> Ecto.Changeset.cast(%Example.Person{name: "Bob"}, %{}, [:name])
+#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Person<>,
  valid?: true>
  ```
 

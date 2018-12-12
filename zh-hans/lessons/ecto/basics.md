@@ -1,6 +1,6 @@
 ---
 version: 2.0.0
-title: Ecto
+title: Basics
 ---
 
 Ecto 是 Elixir 官方维护的一个项目，它提供了对数据库的封装以及一个自带的查询语言。通过 Ecto 我们可以创建迁移，定义模型，添加／更新或查询记录。
@@ -21,7 +21,7 @@ $ cd example_app
 ```elixir
 defp deps do
   [
-    {:ecto_sql, "~> 3.0"}, 
+    {:ecto_sql, "~> 3.0"},
     {:postgrex, ">= 0.13.2"}
   ]
 end
