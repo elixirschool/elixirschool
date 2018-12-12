@@ -9,7 +9,7 @@ Mesmo não fazendo parte do núcleo de Elixir, Plug é um projeto oficial de Eli
 
 Nessa lição nós vamos construir um simples servidor HTTP do zero usando a biblioteca em Elixir `PlugCowboy`. Cowboy é um simples servidor HTTP para o Erlang e Plug vai nos disponibilizar um "connection adapter" para esse servidor web.
 
-Depos de montar nossa mini aplicação web, nós vamos apŕender as rotas do Plug e como usar vários plugs em uma única aplicação web.
+Depos de montar nossa mini aplicação web, nós vamos aprender as rotas do Plug e como usar vários plugs em uma única aplicação web.
 
 {% include toc.html %}
 
@@ -28,7 +28,7 @@ Nós precisamos que nossa aplicação Elixir inclua uma árvore de supervisão p
 
 ## Dependências
 
-Adicionar dependência é muito fácil com o mix. Para usar o Plug como uma "adapter interface" para o servidor web Cowbooy2, nós precisamos instalar o pacote `PlugCowboy`:
+Adicionar dependência é muito fácil com o mix. Para usar o Plug como uma "adapter interface" para o servidor web Cowboy2, nós precisamos instalar o pacote `PlugCowboy`:
 
 Adicione o seguinte ao seu arquivo `mix.exs`:
 
@@ -78,14 +78,14 @@ Ela recebe um `%Plug.Conn{}` struct como seu primeiro argumento, e é esperado q
 
 ## Configurando o módulo do projeto
 
-Nós precisamos dizer para a nossa aplicação iniciar e supervisionar o servidor web Cowboy when o app estiver de pé.
+Nós precisamos dizer para a nossa aplicação iniciar e supervisionar o servidor web Cowboy quando a aplicação estiver de pé.
 
 Nós vamos fazer isso com a função [`Plug.Cowboy.child_spec/1`](https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html#child_spec/1).
 
 Essa função espera três opções:
 
 * `:scheme` - HTTP ou HTTPS como um atom (`:http`, `:https`)
-* `:plug` - O módulo plug que deve ser usado como a interface para o servidor web. Você pode especificar o nome do módulo, como `MyPlug`, ou uma tupla com o nome do módulo e opções `{MyPlug, plug_opts}`, onde `plug_opts` é passada para a função `init/1` do seu módulos plug.
+* `:plug` - O módulo plug que deve ser usado como a interface para o servidor web. Você pode especificar o nome do módulo, como `MyPlug`, ou uma tupla com o nome do módulo e opções `{MyPlug, plug_opts}`, onde `plug_opts` é passada para a função `init/1` do seu módulo plug.
 * `:options` - As opções do servidor. Deve ser incluído o número da porta em que você deseja que servidor escute por requisições.
 
 Nosso arquivo `lib/example/application.ex` deve implementar a child spec em sua função `start/2`:
@@ -184,7 +184,7 @@ Então, digite <http://127.0.0.1:8080/waldo>, ou qualquer outro path. Isto deve 
 
 ## Adicionando outro Plug
 
-É comum usar mais de um plug em uma única aplicação web, cada uma tendo sua própria responsabilidade. Por exemplo, nós podemos ter um plig que lida com roteamento, um plug que valida as requisições recebidas, um plug que autentica as requisições, etc. Nessa seção, nós vamos definir um plug para verificar os parâmetros das requisições recebidas e nós vamos ensinar a nossa aplicação a usar _ambos_ os plugs - o router e o plug de validação.
+É comum usar mais de um plug em uma única aplicação web, cada uma tendo sua própria responsabilidade. Por exemplo, nós podemos ter um plug que lida com roteamento, um plug que valida as requisições recebidas, um plug que autentica as requisições, etc. Nessa seção, nós vamos definir um plug para verificar os parâmetros das requisições recebidas e nós vamos ensinar a nossa aplicação a usar _ambos_ os plugs - o router e o plug de validação.
 
 Nós queremos criar um Plug para verificar se a requisição tem um conjunto de parâmetros necessários. 
 Ao implementar a nossa validação em um Plug, podemos ter a certeza de que apenas as requisições válidas serão processadas pela nossa aplicação.
@@ -259,7 +259,7 @@ defmodule Example.Router do
 end
 ```
 
-Com esse código, nós estamos dizendo nossa aplicação para enviar as requisições recebidas através do plug `VerifyRequest` antes de passar pelo código no router. Através da chamada de função:
+Com esse código, nós estamos dizendo à nossa aplicação para enviar as requisições recebidas através do plug `VerifyRequest` antes de passar pelo código no router. Através da chamada de função:
 
 ```elixir
 plug(
@@ -271,9 +271,9 @@ plug(
 Nós automaticamente invocamos `VerifyRequest.init(fields: ["content", "mimetype"],
 paths: ["/upload"])`. Isso por sua vez passa as opções recebidas para a função `VerifyRequest.call(conn, opts)`.
 
-Let's take a look at this plug in action! Go ahead and crash your local server (rember, that's done by pressing `ctrl + c` twice). Then restart the server (`mix run --no-halt`).
-Now go to <http://127.0.0.1:8080/upload> in your browser and you'll see that the page simply isn't working. We're not even getting our 'Oops!' message. Now let's add our required params by going to <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>. Now we should see our 'Uploaded' message.
-It's not great that when we throw an error we don't get _any_ page, but we'll deal with how to handle errors with plugs later.
+Vamos ver como esse plug funciona em ação! Vá em frente e quebre seu servidor local (lembre-se, isso pode ser feito pressionando `ctrl + c` duas vezes). Então reinicie o servidor com (`mix run --no-halt`).
+Agora acesse <http://127.0.0.1:8080/upload> no seu navegador e você vai ver como a página simplesmente não está funcionando. Nós não estamos recebendo nossa mensagem 'Oops!'. Agora vamos adicionar os parâmetros obrigatórios por acessar <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>. Agora nós devemos ver nossa mensagem 'Uploaded'. 
+Não é legal não receber _nenhuma_ página caso um erro occura, mas nós vamos como lidar com erros em plugs depois.
 
 ## Deixando a porta HTTP Configurável
 
@@ -411,7 +411,7 @@ defmodule Example.Router do
 end
 ```
 
-Nós vamos notar que no topo nós estamos adicionando `use Plug.ErrorHandler`. Esse plug agora captura qualquer error e então busca por uma função `handle_errors/2` para chamar. `handle_errors` apenas precisa aceitar uma `conn` como seu primeiro argumento e então um mapa com três itens (`:kind`, `:reason`, e `:stack`) como segundo argumento.
+Nós vamos notar que no topo nós estamos adicionando `use Plug.ErrorHandler`. Esse plug agora captura qualquer erro e então busca por uma função `handle_errors/2` para chamar. `handle_errors` apenas precisa aceitar uma `conn` como seu primeiro argumento e então um mapa com três itens (`:kind`, `:reason`, e `:stack`) como segundo argumento.
 Você pode ver que nós definimos um `handle_errors` bem simples para ver o que está acontecendo. Vamos parar e restartar a nossa aplicação de novo para ver como ele funciona!
 
 Agora, quando nós navegarmos para <http://127.0.0.1:8080/upload>, nós podemos ver um a mensagem de erro 'Something went wrong'. Se você olhar em seu terminal, vai ver mais ou menos o seguinte:
