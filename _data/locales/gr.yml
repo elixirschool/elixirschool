@@ -10,11 +10,12 @@ sections:
   basics: Βασικά
   advanced: Προχωρημένα
   specifics: Ιδιαιτερότητες
+  ecto: Ecto
   libraries: Βιβλιοθήκες
   blog: Blog
   contributors: Contributors
   translation_report: Αναφορά Μετάφρασης
-  
+
 version_messages:
   outdated: "Ίσως υπάρχει περιεχόμενο σε αυτή τη μετάφραση που δεν είναι ενημερωμένο."
   major: "Υπάρχουν αρκετές μεγάλες αλλαγές στο αρχικό μάθημα μετά την τελευταία ενημέρωση."
