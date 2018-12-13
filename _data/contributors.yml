@@ -379,3 +379,15 @@
   lessons: ['OTP Distribution', 'Plug']
   articles:
     - JWT Auth in Elixir with Joken
+
+- github: alexgriff
+  name: Alex Griffith
+  intro:
+    Alex is an engineer and teacher at the Flatiron School.
+  twitter:
+  homepage:
+  contributions:
+    - blog
+  lessons: ['Testing']
+  articles:
+    - ExUnit's capture_log option
