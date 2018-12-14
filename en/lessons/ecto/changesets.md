@@ -25,7 +25,7 @@ iex> %Ecto.Changeset{}
 As you can see, it has some potentially useful fields, but they are all empty.
 
 For a changeset to be truly useful, when we create it, we need to provide a blueprint of what the data is like.
-What better blueprint for our data than the schemas we've created the define our fields and types?
+What better blueprint for our data than the schemas we've created that define our fields and types?
 
 To save us some time, let's re-use the schema we created in the previous lesson:
 
