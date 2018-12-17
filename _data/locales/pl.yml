@@ -9,6 +9,7 @@ sections:
   basics: Podstawy
   advanced: Zaawansowane
   specifics: Specyficzne
+  ecto: Ecto
   libraries: Biblioteki
   blog: Blog
   contributors: Contributors
@@ -21,7 +22,7 @@ version_messages:
   patch: "Od ostatniej aktualizacji wprowadzono kilka zmian."
   none: "To tłumaczenie jest aktualne."
   error: "There is an error in the version definition of this chapter."
-  
+
 translation_report:
   section: Section
   original_title: Original Title

@@ -9,6 +9,7 @@ sections:
   basics: Основы
   advanced: Продвинутый
   specifics: Специфика
+  ecto: Ecto
   libraries: Библиотеки
   blog: Блог
   contributors: Участники

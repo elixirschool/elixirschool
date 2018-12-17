@@ -33,9 +33,11 @@ advanced:
   - behaviours
   - gen-stage
   - protocols
+ecto:
+  - basics
+  - changesets
 specifics:
   - plug
-  - ecto
   - eex
   - ets
   - mnesia

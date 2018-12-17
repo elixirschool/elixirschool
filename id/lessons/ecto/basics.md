@@ -1,6 +1,6 @@
 ---
 version: 0.9.1
-title: Ecto
+title: Basics
 ---
 
 Ecto adalah sebuah project resmi Elixir yang memberikan sebuah wrapper (pembungkus) terhadap database dan bahasa query yang terintegrasi.  Dengan Ecto kita bisa membuat migrasi, mendefinisikan model, melakukan insert dan update data, dan melakukan query.

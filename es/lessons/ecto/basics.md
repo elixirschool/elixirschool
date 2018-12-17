@@ -1,6 +1,6 @@
 ---
 version: 0.9.1
-title: Ecto
+title: Basics
 ---
 
 Ecto es un proyecto oficial de Elixir, provee un envoltorio a la base de datos y un lenguaje de consultas integrado. Con Ecto podemos crear migraciones, definir modelos, insertar, actualizar y consultar registros de nuestra base de datos.

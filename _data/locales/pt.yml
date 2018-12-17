@@ -9,6 +9,7 @@ sections:
   basics: Básico
   advanced: Avançado
   specifics: Específico
+  ecto: Ecto
   libraries: Bibliotecas
   blog: Blog
   contributors: Contributors

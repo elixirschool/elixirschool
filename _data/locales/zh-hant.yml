@@ -9,6 +9,7 @@ sections:
   basics: 基礎
   advanced: 進階
   specifics: 特色
+  ecto: Ecto
   libraries: 函式庫
   blog: Blog
   contributors: Contributors
