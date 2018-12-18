@@ -273,7 +273,7 @@ paths: ["/upload"])`. Isso por sua vez passa as opções recebidas para a funç�
 
 Vamos ver como esse plug funciona em ação! Vá em frente e quebre seu servidor local (lembre-se, isso pode ser feito pressionando `ctrl + c` duas vezes). Então reinicie o servidor com (`mix run --no-halt`).
 Agora acesse <http://127.0.0.1:8080/upload> no seu navegador e você vai ver como a página simplesmente não está funcionando. Nós não estamos recebendo nossa mensagem 'Oops!'. Agora vamos adicionar os parâmetros obrigatórios por acessar <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>. Agora nós devemos ver nossa mensagem 'Uploaded'.
-Não é legal não receber _nenhuma_ página caso um erro ocurra, mas nós vamos lidar com como tratar erros com plug depois.
+Não é legal não receber _nenhuma_ página caso um erro ocorra, mas nós vamos lidar com como tratar erros com plug depois.
 
 ## Deixando a porta HTTP Configurável
 
