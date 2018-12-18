@@ -4,7 +4,7 @@ title: Plug
 ---
 
 Se você estiver familiarizado com Ruby, você pode pensar sobre Plug como o Rack com uma pitada de Sinatra.
-Ele fornece uma especificação para componentes de aplicação web e adaptadores para servidores web. 
+Ele fornece uma especificação para componentes de aplicação web e adaptadores para servidores web.
 Mesmo não fazendo parte do núcleo de Elixir, Plug é um projeto oficial de Elixir.
 
 Nessa lição nós vamos construir um simples servidor HTTP do zero usando a biblioteca em Elixir `PlugCowboy`. Cowboy é um simples servidor HTTP para o Erlang e Plug vai nos disponibilizar um "connection adapter" para esse servidor web.
@@ -186,7 +186,7 @@ Então, digite <http://127.0.0.1:8080/waldo>, ou qualquer outro path. Isto deve 
 
 É comum usar mais de um plug em uma única aplicação web, cada uma tendo sua própria responsabilidade. Por exemplo, nós podemos ter um plug que lida com roteamento, um plug que valida as requisições recebidas, um plug que autentica as requisições, etc. Nessa seção, nós vamos definir um plug para verificar os parâmetros das requisições recebidas e nós vamos ensinar a nossa aplicação a usar _ambos_ os plugs - o router e o plug de validação.
 
-Nós queremos criar um Plug para verificar se a requisição tem um conjunto de parâmetros necessários. 
+Nós queremos criar um Plug para verificar se a requisição tem um conjunto de parâmetros necessários.
 Ao implementar a nossa validação em um Plug, podemos ter a certeza de que apenas as requisições válidas serão processadas pela nossa aplicação.
 Vamos esperar que o nosso Plug seja inicializado com duas opções: `:paths` e `:fields`. Estes irão representar os caminhos que aplicamos nossa lógica, e onde os campos são exigidos.
 
@@ -272,8 +272,8 @@ Nós automaticamente invocamos `VerifyRequest.init(fields: ["content", "mimetype
 paths: ["/upload"])`. Isso por sua vez passa as opções recebidas para a função `VerifyRequest.call(conn, opts)`.
 
 Vamos ver como esse plug funciona em ação! Vá em frente e quebre seu servidor local (lembre-se, isso pode ser feito pressionando `ctrl + c` duas vezes). Então reinicie o servidor com (`mix run --no-halt`).
-Agora acesse <http://127.0.0.1:8080/upload> no seu navegador e você vai ver como a página simplesmente não está funcionando. Nós não estamos recebendo nossa mensagem 'Oops!'. Agora vamos adicionar os parâmetros obrigatórios por acessar <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>. Agora nós devemos ver nossa mensagem 'Uploaded'. 
-Não é legal não receber _nenhuma_ página caso um erro occura, mas nós vamos como lidar com erros em plugs depois.
+Agora acesse <http://127.0.0.1:8080/upload> no seu navegador e você vai ver como a página simplesmente não está funcionando. Nós não estamos recebendo nossa mensagem 'Oops!'. Agora vamos adicionar os parâmetros obrigatórios por acessar <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>. Agora nós devemos ver nossa mensagem 'Uploaded'.
+Não é legal não receber _nenhuma_ página caso um erro ocurra, mas nós vamos lidar com como tratar erros com plug depois.
 
 ## Deixando a porta HTTP Configurável
 
