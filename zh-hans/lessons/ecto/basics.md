@@ -1,367 +1,229 @@
 ---
-version: 2.0.0
+version: 2.1.0
 title: Basics
 ---
 
-Ecto 是 Elixir 官方维护的一个项目，它提供了对数据库的封装以及一个自带的查询语言。通过 Ecto 我们可以创建迁移，定义模型，添加／更新或查询记录。
+Ecto 是 Elixir 官方提供的数据库包装和集成查询语言的项目。 使用Ecto，我们可以创建 migrations，定义 schema，插入和更新记录，以及查询数据。
 
 {% include toc.html %}
 
-## 安装
+### 适配器
 
-创建一个带 supervision 树的应用：
+Ecto通过使用适配器可以支持不同的数据库。 一些常见的适配器的比如说：
+
+* PostgreSQL
+* MySQL
+* SQLite
+
+在本课中，我们将使用 PostgreSQL 适配器来配置 Ecto。
+
+### 开始
+
+在本课程中，我们将介绍有关 Ecto 的以下三部分：
+* Repository - 提供数据库的接口，包括连接
+* Migrations - 一种创建，修改和删除数据库表和索引的机制
+* Schemas - 表示数据库表实例的特殊结构
+
+首先，让我们创建一个带有 supervision 树应用程序
 
 ```shell
-$ mix new example_app --sup
-$ cd example_app
+$ mix new friends --sup
+$ cd friends
 ```
 
-首先，我们将 Ecto 和所需的数据库适配器加入 `mix.exs` 中。Ecto 有两个 hex 包，`etco` 和 `ecto_sql`。`ecto` 包负责构建我们在本课程中介绍的核心功能，`ecto_sql` 提供了 SQL 适配器。所以，要使用 Ecto 来和数据库交互，我们需要引用 `ecto_sql`。你可以在 Ecto README 的用法章节找到其[支持的数据库适配器](https://github.com/elixir-lang/ecto/blob/master/README.md#usage)。在这个例子中我们使用 PostgreSQL：
+将 ecto 和 postgrex 包依赖项添加到 `mix.exs` 文件中
 
 ```elixir
-defp deps do
-  [
-    {:ecto_sql, "~> 3.0"},
-    {:postgrex, ">= 0.13.2"}
-  ]
-end
+  defp deps do
+    [
+      {:ecto, "~> 2.0"},
+      {:postgrex, "~> 0.11"}
+    ]
+  end
 ```
 
-然后我们使用如下命令获取依赖：
+使用如下命令安装依赖项
 
 ```shell
 $ mix deps.get
 ```
 
-### Repository
+#### 创建一个 Repository
 
-最后，我们需要创建这个项目的 repository，也就是数据库封装。这可以通过 `mix ecto.gen.repo -r ExampleApp.Repo` 来完成。我们稍后会讨论 Ecto 的 mix 命令集。Repo 的代码常见于 `lib/example_app/repo.ex`：
 
-```elixir
-defmodule ExampleApp.Repo do
-  use Ecto.Repo,
-    otp_app: :example_app,
-    adapter: Ecto.Adapters.Postgres
-end
+在 Ecto 中，一个 repository 是映射到数据存储区的，例如 Postgres 数据库。所有与数据库的通信都将使用该 repository 完成。
+
+通过运行以下命令创建一个Repository:
+
+```shell
+$ mix ecto.gen.repo -r Example.Repo
 ```
 
-### Supervisor
-
-创建了 Repo 后，我们需要设置 supervisor 树，它通常位于 `lib/example_app/application.ex`。把 Repo 加到 `children` 列表：
-
-```elixir
-defmodule ExampleApp.Application do
-  use Application
-
-  def start(_type, _args) do
-    children = [
-      ExampleApp.Repo
-    ]
-
-    opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
-    Supervisor.start_link(children, opts)
-  end
-end
-```
-
-关于 Supervisor 可以参阅 [OTP Supervisors](../../advanced/otp-supervisors) 的课程。
-
-### 配置
-
-Ecto 的配置需要写在 `config/config.exs` 中。需要指定使用了哪个 repository，哪个数据库以及用户信息等等：
+上述命令会在 `config/config.exs` 文件中生成所需的配置，用来连接到我们要使用的数据库。
+这是我们 `Example` 应用程序的配置文件
 
 ```elixir
-config :example_app, :ecto_repos, [ExampleApp.Repo]
-
-config :example_app, ExampleApp.Repo,
-  database: "example_app",
+config :friends, Example.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "friends_repo",
   username: "postgres",
-  password: "postgres",
+  password: "",
   hostname: "localhost"
 ```
 
-## Mix 任务
+这个配置决定 Ecto 如何连接到数据库。这里要注意我们是选择 `Ecto.Adapters.Postgres` 适配器。
 
-Ecto 包含了一些便于管理数据库的 mix 任务：
-
-```shell
-mix ecto.create         # Create the storage for the repo
-mix ecto.drop           # Drop the storage for the repo
-mix ecto.gen.migration  # Generate a new migration for the repo
-mix ecto.gen.repo       # Generate a new repository
-mix ecto.migrate        # Run migrations up on a repo
-mix ecto.rollback       # Rollback migrations from a repo
-```
-
-## Migrations
-
-创建 migration 最好是使用 `mix ecto.gen.migration <name>` 任务。如果你熟悉 ActiveRecord，那么这些用起来都差不多。
-
-我们先来看看创建用户表时的 migration：
+同时它还在 `lib/friends/repo.ex` 文件中创建了一个 `Example.Repo` 模块
 
 ```elixir
-defmodule ExampleApp.Repo.Migrations.CreateUser do
+defmodule Example.Repo do
+  use Ecto.Repo, otp_app: :friends
+end
+```
+
+我们将使用 `Example.Repo` 模块来查询数据库。 我们还告诉该模块在 `:friends` 应用程序中查找其对应的数据库配置信息。
+
+接下来，我们将在 `lib/friends/application.ex` 文件中的应用程序的 supervision 树中设置`Example.Repo`作为 supervisor。
+这将在我们的应用程序启动时启动Ecto进程。
+
+```elixir
+  def start(_type, _args) do
+    # List all child processes to be supervised
+    children = [
+      Example.Repo,
+    ]
+
+  ...
+```
+
+之后我们需要在 `config/config.exs` 文件中添加以下代码：
+
+```elixir
+config :friends, ecto_repos: [Example.Repo]
+```
+
+这将允许您的应用程序在命令行中运行 ecto mix 命令。
+
+至此，我们就完成了 repository 配置！
+
+我们现在可以使用以下命令在 postgres 中创建数据库：
+
+```shell
+$ mix ecto.create
+```
+
+Ecto 将使用 `config/config.exs` 文件中的配置信息来确定如何连接到 Postgres 中对应的数据库。
+
+如果收到任何错误，请确保配置信息正确并且您的 postgres 实例正在运行。
+
+### Migrations
+
+要在 postgres 数据库中创建和修改表，Ecto 为我们提供了 migrations。
+每个 migration 都描述了我们要对数据库执行的一组操作，比如要创建或更新的表。
+
+由于目前我们的数据库还没有任何表，所以我们需要创建一个 migration 来添加一些表。
+Ecto 中的约定是将表格复数化，因此对于应用程序，我们需要一个 `people` 表，所以让我们从 migrations 开始。
+
+创建 migrations 的最佳方法是执行 `mix ecto.gen.migration <name>` 任务，所以在我们的例子中使用如下命令：
+
+```shell
+$ mix ecto.gen.migration create_people
+```
+
+这将在 `priv/repo/migrations` 文件夹中生成一个文件名中包含一个时间戳的新文件。
+如果我们打开该文件，我们可以看到如下内容：
+
+```elixir
+defmodule Example.Repo.Migrations.CreatePeople do
   use Ecto.Migration
 
   def change do
-    create table(:users) do
-      add(:username, :string, unique: true)
-      add(:encrypted_password, :string, null: false)
-      add(:email, :string)
-      add(:confirmed, :boolean, default: false)
 
-      timestamps()
-    end
-
-    create(unique_index(:users, [:username], name: :unique_usernames))
   end
 end
 ```
 
-Ecto 默认会创建一个自动增长的主键 `id`。这里我们使用了默认的 `change/0` 回调函数，同时 Ecto 也支持通过 `up/0` 和 `down/0` 更好地控制粒度。
-
-你可能已经猜到了，调用 `timestamps` 会自动创建和管理 `inserted_at` 以及 `updated_at`。
-
-运行 `mix ecto.migrate` 来执行新的 migration。
-
-参阅 [Ecto.Migration](https://hexdocs.pm/ecto_sql/3.0.0/Ecto.Migration.html) 的文档来了解更多 migration 的细节。
-
-## 模型
-
-有了 migration 之后我们继续来看模型 (model)。模型里可以定义我们的 schema，辅助函数以及变更集 (changeset)。我们将在下一章节更详细地讲解变更集的内容。
-
-现在先看看刚刚的 migration 对应的模型是怎样的：
+让我们首先修改 `change/0` 函数来创建一个带有 `name` 和 `age` 字段的新的 `people` 表：
 
 ```elixir
-defmodule ExampleApp.User do
-  use Ecto.Schema
-  import Ecto.Changeset
+defmodule Example.Repo.Migrations.CreatePeople do
+  use Ecto.Migration
 
-  schema "users" do
-    field(:username, :string)
-    field(:encrypted_password, :string)
-    field(:email, :string)
-    field(:confirmed, :boolean, default: false)
-    field(:password, :string, virtual: true)
-    field(:password_confirmation, :string, virtual: true)
-
-    timestamps()
-  end
-
-  @required_fields [:username, :encrypted_password, :email]
-  @optional_fields []
-
-  def changeset(user, params \\ :empty) do
-    user
-    |> cast(params, @required_fields ++ @optional_fields)
-    |> validate_required(@required_fields)
-    |> unique_constraint(:username)
-  end
-end
-```
-
-我们在模型中定义的 schema 和 migration 中声明的很相似。除了数据库中的字段我们还附加了两个虚拟字段。虚拟字段 (virtual field) 不会写入数据库但可以帮助验证等等。在下面关于变更集的章节中我们会看到虚拟字段的应用。
-
-## 查询
-
-首先我们需要引入 Query API。目前只要引入 `from/2` 就可以了：
-
-```elixir
-import Ecto.Query, only: [from: 2]
-```
-
-官方的文档请查阅 [Ecto.Query](https://hexdocs.pm/ecto/Ecto.Query.html)。
-
-### 基础
-
-Ecto 提供了一套功能强大同时语法清晰的查询 DSL。比如要找到所有已经确认过的用户的用户名，我们可以这样写：
-
-```elixir
-alias ExampleApp.{Repo, User}
-
-query =
-  from(
-    u in User,
-    where: u.confirmed == true,
-    select: u.username
-  )
-
-Repo.all(query)
-```
-
-除了 `all/2`，Repo 还提供了一系列回调函数，如 `one/2`、`get/3`、`insert/2` 和 `delete/2`。完整的列表见于 [Ecto.Repo#callbacks](https://hexdocs.pm/ecto/Ecto.Repo.html#callbacks)
-
-### Count
-
-如果我们要统计已经确认账户信息的用户个数，可以使用 `count/1`：
-
-```elixir
-query =
-  from(
-    u in User,
-    where: u.confirmed == true,
-    select: count(u.id)
-  )
-```
-
-`count/2` 函数可以统计不同元素的个数：
-
-```elixir
-query =
-  from(
-    u in User,
-    where: u.confirmed == true,
-    select: count(u.id, :distinct)
-  )
-```
-
-### Group By
-
-要按照确认状态分组我们使用 `group_by`：
-
-```elixir
-query =
-  from(
-    u in User,
-    group_by: u.confirmed,
-    select: [u.confirmed, count(u.id)]
-  )
-
-Repo.all(query)
-```
-
-### Order By
-
-根据创建时间排序也很直观：
-
-```elixir
-query =
-  from(
-    u in User,
-    order_by: u.inserted_at,
-    select: [u.username, u.inserted_at]
-  )
-
-Repo.all(query)
-```
-
-降序排序：
-
-```elixir
-query =
-  from(
-    u in User,
-    order_by: [desc: u.inserted_at],
-    select: [u.username, u.inserted_at]
-  )
-```
-
-### Joins
-
-假如我们的用户有关联的档案，我们可以这样来查询所有已确认的用户的档案：
-
-```elixir
-query =
-  from(
-    p in Profile,
-    join: u in assoc(p, :user),
-    where: u.confirmed == true
-  )
-```
-
-### 片段 (Fragments)
-
-有时候我们需要某个数据库的特殊函数，而 Query 又不提供这个函数时我们可以使用 `fragment/1`：
-
-```elixir
-query =
-  from(
-    u in User,
-    where: fragment("downcase(?)", u.username) == ^username,
-    select: u
-  )
-```
-
-在 [Ecto.Query.API](https://hexdocs.pm/ecto/Ecto.Query.API.html) 的模块文档中可以找到更多查询的例子。
-
-## 变更集 (Changeset)
-
-上一章节我们学习了如何获取数据，那么如何插入和更新数据呢？这就要用到变更集 (changeset) 了。
-
-变更集可以帮助我们进行数据的过滤，模型的验证以及约束的维护。
-
-这个例子里我们看看如何为账户创建实现一个变更集。首先我们更新模型：
-
-```elixir
-defmodule ExampleApp.User do
-  use Ecto.Schema
-  import Ecto.Changeset
-  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
-
-  schema "users" do
-    field(:username, :string)
-    field(:encrypted_password, :string)
-    field(:email, :string)
-    field(:confirmed, :boolean, default: false)
-    field(:password, :string, virtual: true)
-    field(:password_confirmation, :string, virtual: true)
-
-    timestamps()
-  end
-
-  @required_fields [:username, :email, :password, :password_confirmation]
-  @optional_fields []
-
-  def changeset(user, params \\ :empty) do
-    user
-    |> cast(params, @required_fields ++ @optional_fields)
-    |> validate_required(@required_fields)
-    |> validate_length(:password, min: 8)
-    |> validate_password_confirmation()
-    |> unique_constraint(:username, name: :email)
-    |> put_change(:encrypted_password, hashpwsalt(params[:password]))
-  end
-
-  defp validate_password_confirmation(changeset) do
-    case get_change(changeset, :password_confirmation) do
-      nil ->
-        password_incorrect_error(changeset)
-
-      confirmation ->
-        password = get_field(changeset, :password)
-        if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
+  def change do
+    create table(:people) do
+      add :name, :string, null: false
+      add :age, :integer, default: 0
     end
   end
-
-  defp password_mismatch_error(changeset) do
-    add_error(changeset, :password_confirmation, "Passwords does not match")
-  end
-
-  defp password_incorrect_error(changeset) do
-    add_error(changeset, :password, "is not valid")
-  end
 end
 ```
 
-我们改善了 `changeset/2` 函数并添加了三个新的辅助函数：`validate_password_confirmation/1`、`password_mismatch_error/1` 和 `password_incorrect_error/1`。
+您可以在上面看到我们定义了列的数据类型。另外，还包括 `null:false` 和 `default：0` 作为另外配置选项。
 
-正如函数名所示，`changeset/2` 可以为我们创建一个新的变更集。首先我们用 `cast/4` 将参数转换成一个有若干必要字段和可选字段的变更集。接下来我们验证了密码的长度，并通过新编写的函数验证用户输入的(两个)密码是否吻合，我们还约束了用户名的唯一性。最后我们使用 `put_change/3` 更新了变更集中的一个值。
+让我们跳转到 shell 并运行我们的 migration：
 
-使用 `User.changeset/2` 还比较直观：
+```shell
+$ mix ecto.migrate
+```
+
+### Schemas
+
+现在我们已经创建了初始化的表，接下来需要告诉 Ecto 更多关于它的部分内容，我们如何通过 schema 进行操作。
+那么什么是 schema 呢？schema 是定义底层数据库表的字段的映射的模块。
+
+虽然 Ecto 支持复数的数据库表名，但 schema 通常是单数的，因此我们将创建一个包含 `Person` 的 schema 来包含我们的表。
+
+让我们在 `lib/friends/person.ex` 文件中创建新的 schema:
 
 ```elixir
-alias ExampleApp.{User,Repo}
+defmodule Example.Person do
+  use Ecto.Schema
 
-pw = "passwords should be hard"
-changeset = User.changeset(%User{}, %{username: "doomspork",
-                    email: "sean@seancallan.com",
-                    password: pw,
-                    password_confirmation: pw})
-
-case Repo.insert(changeset) do
-  {:ok, record}       -> # Inserted with success
-  {:error, changeset} -> # Something went wrong
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
+  end
 end
 ```
 
-现在你应该已经准备好和数据（库）打交道了！
+在这里我们可以看到 `Example.Person` 模块告诉 Ecto 这个 schema 与 `people` 表有关，我们有两个字段：一个字符串类型的 `name` 字段和一个`age` 字段，并指定 `age` 的默认值为 `0`。
+
+
+让我们通过 `iex` 并创建一个新 person 来看看我们的 schema 是啥样的：
+
+```shell
+iex> %Example.Person{}
+%Example.Person{age: 0, name: nil}
+```
+
+正如预期的那样，我们得到一个新的`age` 为 0 的 `Person` 结构，
+现在让我们创建一个 “真正“ 的 person：
+
+```shell
+iex> person = %Example.Person{name: "Tom", age: 11}
+%Example.Person{age: 11, name: "Tom"}
+```
+
+由于 schemas 只是结构，我们可以像以前一样和我们的数据进行交互：
+
+```elixir
+iex> person.name
+"Tom"
+iex> Map.get(person, :name)
+"Tom"
+iex> %{name: name} = person
+%Example.Person{age: 11, name: "Tom"}
+iex> name
+"Tom"
+```
+
+同样，我们可以像在 Elixir 中其他的 map 或 struct 一样去更新我们的 schemas：
+
+```elixir
+iex> %{person | age: 18}
+%Example.Person{age: 18, name: "Tom"}
+iex> Map.put(person, :name, "Jerry")
+%Example.Person{age: 11, name: "Jerry"}
+```
+
+在我们关于 Changesets 的下一课中，我们将学习如何验证我们的数据更改以及最终如何将其保存到数据库中。
