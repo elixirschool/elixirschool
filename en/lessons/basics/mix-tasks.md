@@ -111,3 +111,5 @@ mix app.start         # Starts all registered apps
 mix hello             # Simply calls the Hello.say/0 function.
 ...
 ```
+
+Note that your project code must be compiled in before our task will appear in the `mix help` output. You can force this to happen with `mix compile`. When we ran the task itself with `mix hello`, compilation is triggered automatically, which is why our task appears in the `mix help` output
