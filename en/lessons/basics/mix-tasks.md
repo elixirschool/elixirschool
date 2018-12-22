@@ -112,4 +112,6 @@ mix hello             # Simply calls the Hello.say/0 function.
 ...
 ```
 
-Note that your project code must be compiled in before our task will appear in the `mix help` output. You can force this to happen with `mix compile`. When we ran the task itself with `mix hello`, compilation is triggered automatically, which is why our task appears in the `mix help` output
+
+Note: Our code must be compiled before new tasks will appear in the `mix help` output.
+We can do this either by running `mix compile` directly or by running our task like we did with `mix hello`, which will trigger the compilation for us.
