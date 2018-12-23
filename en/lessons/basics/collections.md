@@ -16,7 +16,9 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implements list collections as linked lists.  This means that accessing the list length is an operation that will run in linear time (`O(n)`).  For this reason, it is typically faster to prepend than to append:
+Elixir implements list collections as linked lists.
+This means that accessing the list length is an operation that will run in linear time (`O(n)`).
+For this reason, it is typically faster to prepend than to append:
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
@@ -66,7 +68,9 @@ iex> [2.0] -- [2.0]
 
 ### Head / Tail
 
-When using lists, it is common to work with a list's head and tail.  The head is the list's first element, while the tail is a list containing the remaining elements.  Elixir provides two helpful functions, `hd` and `tl`, for working with these parts:
+When using lists, it is common to work with a list's head and tail.
+The head is the list's first element, while the tail is a list containing the remaining elements.
+Elixir provides two helpful functions, `hd` and `tl`, for working with these parts:
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -88,7 +92,8 @@ iex> tail
 
 ## Tuples
 
-Tuples are similar to lists, but are stored contiguously in memory.  This makes accessing their length fast but modification expensive; the new tuple must be copied entirely to memory. Tuples are defined with curly braces:
+Tuples are similar to lists, but are stored contiguously in memory.
+This makes accessing their length fast but modification expensive; the new tuple must be copied entirely to memory. Tuples are defined with curly braces:
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
@@ -106,7 +111,8 @@ iex> File.read("path/to/unknown/file")
 
 ## Keyword lists
 
-Keyword lists and maps are the associative collections of Elixir.  In Elixir, a keyword list is a special list of two-element tuples whose first element is an atom; they share performance with lists:
+Keyword lists and maps are the associative collections of Elixir.
+In Elixir, a keyword list is a special list of two-element tuples whose first element is an atom; they share performance with lists:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -125,7 +131,8 @@ For these reasons, keyword lists are most commonly used to pass options to funct
 
 ## Maps
 
-In Elixir, maps are the "go-to" key-value store. Unlike keyword lists, they allow keys of any type and are un-ordered. You can define a map with the `%{}` syntax:
+In Elixir, maps are the "go-to" key-value store.
+Unlike keyword lists, they allow keys of any type and are un-ordered. You can define a map with the `%{}` syntax:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}

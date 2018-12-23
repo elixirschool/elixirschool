@@ -9,7 +9,8 @@ Working with time in Elixir.
 
 ## Time
 
-Elixir has some modules which work with time. Though it needs to be noted that this functionality is limited to working with UTC timezone.
+Elixir has some modules which work with time.
+Though it needs to be noted that this functionality is limited to working with UTC timezone.
 
 Let's start with getting the current time:
 
@@ -25,7 +26,8 @@ iex> ~T[19:39:31.056226]
 ~T[19:39:31.056226]
 ```
 
-You can learn more about sigils in the [lesson about sigils](../sigils). It is easy to access parts of this struct:
+You can learn more about sigils in the [lesson about sigils](../sigils).
+It is easy to access parts of this struct:
 
 ```elixir
 iex> t = ~T[19:39:31.056226]
@@ -60,12 +62,16 @@ iex> Date.leap_year? date
 true
 ```
 
-`day_of_week/1` calculates which day of week would be the given date. In this case it's saturday. `leap_year?/1` checks whether this is a leap year. Other functions can be found in [doc](https://hexdocs.pm/elixir/Date.html).
+`day_of_week/1` calculates which day of week would be the given date.
+In this case it's saturday.
+`leap_year?/1` checks whether this is a leap year.
+Other functions can be found in [doc](https://hexdocs.pm/elixir/Date.html).
 
 ## NaiveDateTime
 
 There are two kinds of structs which contain both date and time at once in Elixir.
-First of two is `NaiveDateTime`. Its disadvantage is lack of timezone support:
+First of two is `NaiveDateTime`.
+Its disadvantage is lack of timezone support:
 
 ```elixir
 iex(15)> NaiveDateTime.utc_now
@@ -82,10 +88,12 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 ## DateTime
 
 The second one, as you may have guessed from title of this section, is `DateTime`.
-It does not have the limitations noted previously: it has both time and date, and supports timezones. But note about timezones from the official doc:
+It does not have the limitations noted previously: it has both time and date, and supports timezones.
+But note about timezones from the official doc:
 
 ```
-You will notice this module only contains conversion functions as well as functions that work on UTC. This is because a proper DateTime implementation requires a time zone database which currently is not provided as part of Elixir.
+You will notice this module only contains conversion functions as well as functions that work on UTC.
+This is because a proper DateTime implementation requires a time zone database which currently is not provided as part of Elixir.
 ```
 
 Also, note that you can create a DateTime instance from the NaiveDateTime, just by providing the timezone:
@@ -95,4 +103,5 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
 
-This is it! If you want to work with other advanced functions you may want to consider looking futher into docs for [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html). You should also consider [Timex](https://github.com/bitwalker/timex) and [Calendar](https://github.com/lau/calendar) which are powerful libraries to work with time in Elixir.
+This is it! If you want to work with other advanced functions you may want to consider looking futher into docs for [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html).
+You should also consider [Timex](https://github.com/bitwalker/timex) and [Calendar](https://github.com/lau/calendar) which are powerful libraries to work with time in Elixir.

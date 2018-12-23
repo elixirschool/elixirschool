@@ -3,17 +3,20 @@ version: 1.1.1
 title: OTP Supervisors
 ---
 
-Supervisors are specialized processes with one purpose: monitoring other processes. These supervisors enable us to create fault-tolerant applications by automatically restarting child processes when they fail.
+Supervisors are specialized processes with one purpose: monitoring other processes.
+These supervisors enable us to create fault-tolerant applications by automatically restarting child processes when they fail.
 
 {% include toc.html %}
 
 ## Configuration
 
-The magic of Supervisors is in the `Supervisor.start_link/2` function.  In addition to starting our supervisor and children, it allows us to define the strategy our supervisor uses for managing child processes.
+The magic of Supervisors is in the `Supervisor.start_link/2` function.
+In addition to starting our supervisor and children, it allows us to define the strategy our supervisor uses for managing child processes.
 
 Using the `SimpleQueue` from the [OTP Concurrency](../../advanced/otp-concurrency) lesson, let's get started:
 
-Create a new project using `mix new simple_queue --sup` to create a new project with a supervisor tree.  The code for the `SimpleQueue` module should go in `lib/simple_queue.ex` and the supervisor code we'll be adding will go in `lib/simple_queue/application.ex`
+Create a new project using `mix new simple_queue --sup` to create a new project with a supervisor tree.
+The code for the `SimpleQueue` module should go in `lib/simple_queue.ex` and the supervisor code we'll be adding will go in `lib/simple_queue/application.ex`
 
 Children are defined using a list, either a list module names:
 
@@ -70,7 +73,9 @@ There are currently three different supervision strategies available to supervis
 
 ## Child Specification
 
-After the supervisor has started it must know how to start/stop/restart its children.  Each child module should have a `child_spec/1` function to define these behaviors.  The `use GenServer`, `use Supervisor`, and `use Agent` macros automatically define this method for us (`SimpleQueue` has `use Genserver`, so we do not need to modify the module), but if you need to define it yourself `child_spec/1` should return a map of options:
+After the supervisor has started it must know how to start/stop/restart its children.
+Each child module should have a `child_spec/1` function to define these behaviors.
+The `use GenServer`, `use Supervisor`, and `use Agent` macros automatically define this method for us (`SimpleQueue` has `use Genserver`, so we do not need to modify the module), but if you need to define it yourself `child_spec/1` should return a map of options:
 
 ```elixir
 def child_spec(opts) do
@@ -84,33 +89,48 @@ def child_spec(opts) do
 end
 ```
 
-+ `id` - Required key.  Used by the supervisor to identify the child specification.
++ `id` - Required key.
+Used by the supervisor to identify the child specification.
 
-+ `start` - Required key.  The Module/Function/Arguments to call when started by the supervisor
++ `start` - Required key.
+The Module/Function/Arguments to call when started by the supervisor
 
-+ `shutdown` - Optional key.  Defines child's behavior during shutdown.  Options are:
++ `shutdown` - Optional key.
+Defines child's behavior during shutdown.
+Options are:
 
   + `:brutal_kill` - Child is stopped immediately
 
-  + any positive integer - time in milliseconds supervisor will wait before killing child process.  If the process is a `:worker` type, this defaults to 5000.
+  + any positive integer - time in milliseconds supervisor will wait before killing child process.
+If the process is a `:worker` type, this defaults to 5000.
 
-  + `:infinity` - Supervisor will wait indefinitely before killing child process.  Default for `:supervisor` process type.  Not recommended for `:worker` type.
+  + `:infinity` - Supervisor will wait indefinitely before killing child process.
+Default for `:supervisor` process type.
+Not recommended for `:worker` type.
 
-+ `restart` - Optional key.  There are several approaches for handling child process crashes:
++ `restart` - Optional key.
+There are several approaches for handling child process crashes:
 
-  + `:permanent` - Child is always restarted. Default for all processes
+  + `:permanent` - Child is always restarted.
+Default for all processes
 
   + `:temporary` - Child process is never restarted.
 
   + `:transient` - Child process is restarted only if it terminates abnormally.
 
-+ `type` - Optional key. Processes can be either `:worker` or `:supervisor`. Defaults to `:worker`.
++ `type` - Optional key.
+Processes can be either `:worker` or `:supervisor`.
+Defaults to `:worker`.
 
 ## DynamicSupervisor
 
-Supervisors normally start with a list of children to start when the app starts.  However, sometimes the supervised children will not be known when our app starts up (for example, we may have a web app that starts a new process to handle a user connecting to our site). For these cases we will want a supervisor where the children can be started on demand.  The DynamicSupervisor is used to handle this case.
+Supervisors normally start with a list of children to start when the app starts.
+However, sometimes the supervised children will not be known when our app starts up (for example, we may have a web app that starts a new process to handle a user connecting to our site).
+For these cases we will want a supervisor where the children can be started on demand.
+The DynamicSupervisor is used to handle this case.
 
-Since we will not specify children, we only need to define the runtime options for the supervisor.  The DynamicSupervisor only supports the `:one_for_one` supervision strategy:
+Since we will not specify children, we only need to define the runtime options for the supervisor.
+The DynamicSupervisor only supports the `:one_for_one` supervision strategy:
 
 ```elixir
 options = [
@@ -129,7 +149,8 @@ Then, to start a new SimpleQueue dynamically we'll use `start_child/2` which tak
 
 ## Task Supervisor
 
-Tasks have their own specialized Supervisor, the `Task.Supervisor`.  Designed for dynamically created tasks, the supervisor uses `DynamicSupervisor` under the hood.
+Tasks have their own specialized Supervisor, the `Task.Supervisor`.
+Designed for dynamically created tasks, the supervisor uses `DynamicSupervisor` under the hood.
 
 ### Setup
 
@@ -153,4 +174,5 @@ With the supervisor started we can use the `start_child/2` function to create a 
 {:ok, pid} = Task.Supervisor.start_child(ExampleApp.TaskSupervisor, fn -> background_work end)
 ```
 
-If our task crashes prematurely it will be re-started for us.  This can be particularly useful when working with incoming connections or processing background work.
+If our task crashes prematurely it will be re-started for us.
+This can be particularly useful when working with incoming connections or processing background work.

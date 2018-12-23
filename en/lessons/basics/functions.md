@@ -3,13 +3,17 @@ version: 1.2.0
 title: Functions
 ---
 
-In Elixir and many functional languages, functions are first class citizens. We will learn about the types of functions in Elixir, what makes them different, and how to use them.
+In Elixir and many functional languages, functions are first class citizens.
+We will learn about the types of functions in Elixir, what makes them different, and how to use them.
 
 {% include toc.html %}
 
 ## Anonymous Functions
 
-Just as the name implies, an anonymous function has no name.  As we saw in the `Enum` lesson, these are frequently passed to other functions.  To define an anonymous function in Elixir we need the `fn` and `end` keywords.  Within these we can define any number of parameters and function bodies separated by `->`.
+Just as the name implies, an anonymous function has no name.
+As we saw in the `Enum` lesson, these are frequently passed to other functions.
+To define an anonymous function in Elixir we need the `fn` and `end` keywords.
+Within these we can define any number of parameters and function bodies separated by `->`.
 
 Let's look at a basic example:
 
@@ -54,9 +58,12 @@ An error has occurred!
 
 ## Named Functions
 
-We can define functions with names so we can easily refer to them later.  Named functions are defined within a module using the `def` keyword .  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
+We can define functions with names so we can easily refer to them later.
+Named functions are defined within a module using the `def` keyword .
+We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
 
-Functions defined within a module are available to other modules for use.  This is a particularly useful building block in Elixir:
+Functions defined within a module are available to other modules for use.
+This is a particularly useful building block in Elixir:
 
 ```elixir
 defmodule Greeter do
@@ -93,7 +100,8 @@ iex> Length.of [1, 2, 3]
 
 ### Function Naming and Arity
 
-We mentioned earlier that functions are named by the combination of given name and arity (number of arguments). This means you can do things like this:
+We mentioned earlier that functions are named by the combination of given name and arity (number of arguments).
+This means you can do things like this:
 
 ```elixir
 defmodule Greeter2 do
@@ -111,13 +119,17 @@ iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
 
-We've listed the function names in comments above. The first implementation takes no arguments, so it is known as `hello/0`; the second takes one argument so it is known as `hello/1`, and so on. Unlike function overloads in some other languages, these are thought of as _different_ functions from each other. (Pattern matching, described just a moment ago, applies only when multiple definitions are provided for function definitions with the _same_ number of arguments.)
+We've listed the function names in comments above.
+The first implementation takes no arguments, so it is known as `hello/0`; the second takes one argument so it is known as `hello/1`, and so on.
+Unlike function overloads in some other languages, these are thought of as _different_ functions from each other.
+(Pattern matching, described just a moment ago, applies only when multiple definitions are provided for function definitions with the _same_ number of arguments.)
 
 ### Functions and Pattern Matching
 
 Behind the scenes, functions are pattern-matching the arguments that they're called with.
 
-Say we needed a function to accept a map but we're only interested in using a particular key. We can pattern-match the argument on the presence of that key like this:
+Say we needed a function to accept a map but we're only interested in using a particular key.
+We can pattern-match the argument on the presence of that key like this:
 
 ```elixir
 defmodule Greeter1 do
@@ -132,7 +144,7 @@ Now let's say we have a map describing a person named Fred:
 iex> fred = %{
 ...> name: "Fred",
 ...> age: "95",
-...> favorite_color: "Taupe"  
+...> favorite_color: "Taupe"
 ...> }
 ```
 
@@ -149,7 +161,7 @@ What happens when we call the function with a map that _doesn't_ contain the `:n
 ```elixir
 # call without the key we need returns an error
 ...> Greeter1.hello(%{age: "95", favorite_color: "Taupe"})
-** (FunctionClauseError) no function clause matching in Greeter3.hello/1    
+** (FunctionClauseError) no function clause matching in Greeter3.hello/1
 
     The following arguments were given to Greeter3.hello/1:
 
@@ -169,7 +181,7 @@ Let's think about how the data looks when it arrives to `Greeter1.hello/1`:
 iex> fred = %{
 ...> name: "Fred",
 ...> age: "95",
-...> favorite_color: "Taupe"  
+...> favorite_color: "Taupe"
 ...> }
 ```
 `Greeter1.hello/1` expects an argument like this:
@@ -182,9 +194,12 @@ In `Greeter1.hello/1`, the map we pass (`fred`) is evaluated against our argumen
 %{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
-It finds that there is a key that corresponds to `name` in the incoming map. We have a match! And as a result of this successful match, the value of the `:name` key in the map on the right (i.e. the `fred` map) is bound to the variable on the left (`person_name`).
+It finds that there is a key that corresponds to `name` in the incoming map.
+We have a match! And as a result of this successful match, the value of the `:name` key in the map on the right (i.e.
+the `fred` map) is bound to the variable on the left (`person_name`).
 
-Now, what if we still wanted to assign Fred's name to `person_name` but we ALSO want to retain awareness of the entire person map? Let's say we want to `IO.inspect(fred)` after we greet him. At this point, because we only pattern-matched the `:name` key of our map, thus only binding the value of that key to a variable, the function doesn't have knowledge of the rest of Fred.
+Now, what if we still wanted to assign Fred's name to `person_name` but we ALSO want to retain awareness of the entire person map? Let's say we want to `IO.inspect(fred)` after we greet him.
+At this point, because we only pattern-matched the `:name` key of our map, thus only binding the value of that key to a variable, the function doesn't have knowledge of the rest of Fred.
 
 In order to retain it, we need to assign that entire map to its own variable for us to be able to use it.
 
@@ -198,18 +213,22 @@ defmodule Greeter2 do
 end
 ```
 
-Remember that Elixir will pattern match the argument as it comes in. Therefore in this case, each side will pattern match against the incoming argument and bind to whatever it matches with. Let's take the right side first:
+Remember that Elixir will pattern match the argument as it comes in.
+Therefore in this case, each side will pattern match against the incoming argument and bind to whatever it matches with.
+Let's take the right side first:
 
 ```elixir
 person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
-Now, `person` has been evaluated and bound to the entire fred-map. We move on to the next pattern-match:
+Now, `person` has been evaluated and bound to the entire fred-map.
+We move on to the next pattern-match:
 ```elixir
 %{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
-Now this is the same as our original `Greeter1` function where we pattern matched the map and only retained Fred's name. What we've achieved is two variables we can use instead of one:
+Now this is the same as our original `Greeter1` function where we pattern matched the map and only retained Fred's name.
+What we've achieved is two variables we can use instead of one:
 1. `person`, referring to `%{name: "Fred", age: "95", favorite_color: "Taupe"}`
 2. `person_name`, referring to `"Fred"`
 
@@ -225,7 +244,7 @@ So now when we call `Greeter2.hello/1`, we can use all of Fred's information:
 %{name: "Fred"}
 # call without the name key
 ...> Greeter4.hello(%{age: "95", favorite_color: "Taupe"})
-** (FunctionClauseError) no function clause matching in Greeter2.hello/1    
+** (FunctionClauseError) no function clause matching in Greeter2.hello/1
 
     The following arguments were given to Greeter2.hello/1:
 
@@ -259,11 +278,14 @@ And call it with the same data we used in `Greeter2.hello/1`:
 
 Remember that even though it looks like `%{name: person_name} = person}` is pattern-matching the `%{name: person_name}` against the `person` variable, they're actually _each_ pattern-matching to the passed-in argument.
 
-**Summary:** Functions pattern-match the data passed in to each of its arguments independently. We can use this to bind values to separate variables within the function.
+**Summary:** Functions pattern-match the data passed in to each of its arguments independently.
+We can use this to bind values to separate variables within the function.
 
 ### Private Functions
 
-When we don't want other modules accessing a specific function we can make the function private.  Private functions can only be called from within their own Module.  We define them in Elixir with `defp`:
+When we don't want other modules accessing a specific function we can make the function private.
+Private functions can only be called from within their own Module.
+We define them in Elixir with `defp`:
 
 ```elixir
 defmodule Greeter do
@@ -281,7 +303,8 @@ iex> Greeter.phrase
 
 ### Guards
 
-We briefly covered guards in the [Control Structures](../control-structures) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
+We briefly covered guards in the [Control Structures](../control-structures) lesson, now we'll see how we can apply them to named functions.
+Once Elixir has matched a function any existing guards will be tested.
 
 In the following example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
 
@@ -328,7 +351,8 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-When we combine our guard example with default arguments, we run into an issue. Let's see what that might look like:
+When we combine our guard example with default arguments, we run into an issue.
+Let's see what that might look like:
 
 ```elixir
 defmodule Greeter do
@@ -346,7 +370,8 @@ defmodule Greeter do
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+** (CompileError) iex:31: definitions with multiple clauses and default values require a header.
+Instead of:
 
     def foo(:first_clause, b \\ :default) do ... end
     def foo(:second_clause, b) do ... end
@@ -361,7 +386,8 @@ def hello/2 has multiple clauses and defines defaults in one or more clauses
     iex:31: (module)
 ```
 
-Elixir doesn't like default arguments in multiple matching functions, it can be confusing.  To handle this we add a function head with our default arguments:
+Elixir doesn't like default arguments in multiple matching functions, it can be confusing.
+To handle this we add a function head with our default arguments:
 
 ```elixir
 defmodule Greeter do

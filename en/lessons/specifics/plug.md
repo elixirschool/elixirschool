@@ -7,7 +7,8 @@ If you're familiar with Ruby you can think of Plug as Rack with a splash of Sina
 It provides a specification for web application components and adapters for web servers.
 While not part of Elixir core, Plug is an official Elixir project.
 
-In this lesson we'll build a simple HTTP server from scratch using the `PlugCowboy` Elixir library. Cowboy is a simple HTTP server for Erlang and Plug will provide us with a connection adapter for that web server.
+In this lesson we'll build a simple HTTP server from scratch using the `PlugCowboy` Elixir library.
+Cowboy is a simple HTTP server for Erlang and Plug will provide us with a connection adapter for that web server.
 
 After we set up our minimal web application, we'll learn about Plug's router and how to use multiple plugs in a single web app.
 
@@ -28,7 +29,8 @@ We need our Elixir app to include a supervision tree because we will use a Super
 
 ## Dependencies
 
-Adding dependencies is a breeze with mix. To use Plug as an adapter interface for the Cowboy2 webserver, we need to install the `PlugCowboy` package:
+Adding dependencies is a breeze with mix.
+To use Plug as an adapter interface for the Cowboy2 webserver, we need to install the `PlugCowboy` package:
 
 Add the following to your `mix.exs` file:
 
@@ -69,7 +71,9 @@ end
 
 Save the file to `lib/example/hello_world_plug.ex`.
 
-The `init/1` function is used to initialize our Plug's options. It is called by a supervision tree, which is explained in the next section. For now, it'll be an empty List that is ignored.
+The `init/1` function is used to initialize our Plug's options.
+It is called by a supervision tree, which is explained in the next section.
+For now, it'll be an empty List that is ignored.
 
 The value returned from `init/1` will eventually be passed to `call/2` as its second argument.
 
@@ -85,8 +89,10 @@ We'll do so with the [`Plug.Cowboy.child_spec/1`](https://hexdocs.pm/plug_cowboy
 This function expects three options:
 
 * `:scheme` - HTTP or HTTPS as an atom (`:http`, `:https`)
-* `:plug` - The plug module to be used as the interface for the web server. You can specify a module name, like `MyPlug`, or a tuple of the module name and options `{MyPlug, plug_opts}`, where `plug_opts` gets passed to your plug modules `init/1` function.
-* `:options` - The server options. Should include the port number on which you want your server listening for requests.
+* `:plug` - The plug module to be used as the interface for the web server.
+You can specify a module name, like `MyPlug`, or a tuple of the module name and options `{MyPlug, plug_opts}`, where `plug_opts` gets passed to your plug modules `init/1` function.
+* `:options` - The server options.
+Should include the port number on which you want your server listening for requests.
 
 
 Our `lib/example/application.ex` file should implement the child spec in its `start/2` function:
@@ -109,9 +115,11 @@ defmodule Example.Application do
 end
 ```
 
-_Note_: We do not have to call `child_spec` here, this function will be called by the supervisor starting this process. We simply pass a tuple with the module that we want the child spec built for and then the three options needed.
+_Note_: We do not have to call `child_spec` here, this function will be called by the supervisor starting this process.
+We simply pass a tuple with the module that we want the child spec built for and then the three options needed.
 
-This starts up a Cowboy2 server under our app's supervision tree. It starts Cowboy running under the HTTP scheme (you can also specify HTTPS), on the given port, `8080`, specifying the plug, `Example.HelloWorldPlug`, as the interface for any incoming web requests.
+This starts up a Cowboy2 server under our app's supervision tree.
+It starts Cowboy running under the HTTP scheme (you can also specify HTTPS), on the given port, `8080`, specifying the plug, `Example.HelloWorldPlug`, as the interface for any incoming web requests.
 
 Now we're ready to run our app and send it some web requests! Notice that, because we generated an OTP app with the `--sup` flag, our `Example` application will start up automatically thanks to the `application` function.
 
@@ -133,7 +141,8 @@ $ mix run --no-halt
 ```
 
 Once everything is finished compiling, and `[info]  Starting application...` appears, open a web
-browser to <http://127.0.0.1:8080>. It should display:
+browser to <http://127.0.0.1:8080>.
+It should display:
 
 ```
 Hello World!
@@ -142,7 +151,8 @@ Hello World!
 ## Plug.Router
 
 For most applications, like a web site or REST API, you'll want a router to route request for different paths and HTTP verbs to different handlers.
-`Plug` provides a router to do that. As we are about to see, we don't need a framework like Sinatra in Elixir since we get that for free with Plug.
+`Plug` provides a router to do that.
+As we are about to see, we don't need a framework like Sinatra in Elixir since we get that for free with Plug.
 
 To start let's create a file at `lib/example/router.ex` and copy the following into it:
 
@@ -187,7 +197,9 @@ It should output `Oops!` with a 404 response.
 
 ## Adding Another Plug
 
-It is common to use more than one plug in a given web application, each of which is dedicated to its own responsibility. For example, we might have a plug that handles routing, a plug that validates incoming web requests, a plug that authenticates incoming requests, etc. In this section, we'll define a plug to verify incoming requests parameters and we'll teach our application to use _both_ of our plugs--the router and the validation plug.
+It is common to use more than one plug in a given web application, each of which is dedicated to its own responsibility.
+For example, we might have a plug that handles routing, a plug that validates incoming web requests, a plug that authenticates incoming requests, etc.
+In this section, we'll define a plug to verify incoming requests parameters and we'll teach our application to use _both_ of our plugs--the router and the validation plug.
 
 We want to create a Plug that verifies whether or not the request has some set of required parameters.
 By implementing our validation in a Plug we can be assured that only valid requests will make it through to our application.
@@ -269,7 +281,8 @@ defmodule Example.Router do
 end
 ```
 
-With this code, we are telling our application to send incoming requests through the `VerifyRequest` plug _before_ running through the code in the router. Via the function call:
+With this code, we are telling our application to send incoming requests through the `VerifyRequest` plug _before_ running through the code in the router.
+Via the function call:
 
 ```elixir
 plug(
@@ -279,10 +292,15 @@ plug(
 )
 ```
 We automatically invoke `VerifyRequest.init(fields: ["content", "mimetype"],
-paths: ["/upload"])`. This in turn passes the given options to the `VerifyRequest.call(conn, opts)` function.
+paths: ["/upload"])`.
+This in turn passes the given options to the `VerifyRequest.call(conn, opts)` function.
 
-Let's take a look at this plug in action! Go ahead and crash your local server (rember, that's done by pressing `ctrl + c` twice). Then restart the server (`mix run --no-halt`).
-Now go to <http://127.0.0.1:8080/upload> in your browser and you'll see that the page simply isn't working. We're not even getting our 'Oops!' message. Now let's add our required params by going to <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>. Now we should see our 'Uploaded' message.
+Let's take a look at this plug in action! Go ahead and crash your local server (rember, that's done by pressing `ctrl + c` twice).
+Then restart the server (`mix run --no-halt`).
+Now go to <http://127.0.0.1:8080/upload> in your browser and you'll see that the page simply isn't working.
+We're not even getting our 'Oops!' message.
+Now let's add our required params by going to <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>.
+Now we should see our 'Uploaded' message.
 It's not great that when we throw an error we don't get _any_ page, but we'll deal with how to handle errors with plugs later.
 
 ## Making The HTTP Port Configurable
@@ -298,7 +316,8 @@ use Mix.config
 config :example, cowboy_port: 8080
 ```
 
-Next we need to update `lib/example/application.ex` read the port configuration value, and pass it to Cowboy. We'll define a private function to wrap up that responsibility
+Next we need to update `lib/example/application.ex` read the port configuration value, and pass it to Cowboy.
+We'll define a private function to wrap up that responsibility
 
 ```elixir
 defmodule Example.Application do
@@ -384,7 +403,8 @@ $ mix test test/example/router_test.exs
 
 ## Plug.ErrorHandler
 
-We noticed earlier that when we go to <http://127.0.0.1:8080/upload> we don't even see an error page. Let's fix that now by adding in [`Plug.ErrorHandler`](https://hexdocs.pm/plug/Plug.ErrorHandler.html).
+We noticed earlier that when we go to <http://127.0.0.1:8080/upload> we don't even see an error page.
+Let's fix that now by adding in [`Plug.ErrorHandler`](https://hexdocs.pm/plug/Plug.ErrorHandler.html).
 
 First, open up `lib/example/router.ex` and then write the following to that file.
 
@@ -422,10 +442,14 @@ defmodule Example.Router do
 end
 ```
 
-You'll notice at the top we are now adding `use Plug.ErrorHandler`. This plug now catches any error and then looks for a function `handle_errors/2` to call. `handle_errors` just needs to accept the `conn` as the first argument and then a map with three items (`:kind`, `:reason`, and `:stack`) as the second.
-You can see we've defined a very some `handle_errors` to see what's going on. Let's stop and restart our app again to see how this works!
+You'll notice at the top we are now adding `use Plug.ErrorHandler`.
+This plug now catches any error and then looks for a function `handle_errors/2` to call.
+`handle_errors` just needs to accept the `conn` as the first argument and then a map with three items (`:kind`, `:reason`, and `:stack`) as the second.
+You can see we've defined a very some `handle_errors` to see what's going on.
+Let's stop and restart our app again to see how this works!
 
-Now, when you navigate to <http://127.0.0.1:8080/upload>, we see an error message 'Something went wrong'. If you look in your terminal, you'll see something like the following:
+Now, when you navigate to <http://127.0.0.1:8080/upload>, we see an error message 'Something went wrong'.
+If you look in your terminal, you'll see something like the following:
 
 ```shell
 Kind:

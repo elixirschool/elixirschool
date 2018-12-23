@@ -4,7 +4,8 @@ title: OTP Distribution
 ---
 
 ## Introduction to Distribution
-We can run our Elixir apps on a set of different nodes distributed across a single host or across multiple hosts. Elixir allows us to communicate across these nodes via a few different mechanisms which we will outline in this lesson.
+We can run our Elixir apps on a set of different nodes distributed across a single host or across multiple hosts.
+Elixir allows us to communicate across these nodes via a few different mechanisms which we will outline in this lesson.
 
 {% include toc.html %}
 
@@ -12,9 +13,11 @@ We can run our Elixir apps on a set of different nodes distributed across a sing
 
 Elixir runs on the Erlang VM, which means it has access to to Erlang's powerful [distribution functionality.](http://erlang.org/doc/reference_manual/distributed.html)
 
-> A distributed Erlang system consists of a number of Erlang runtime systems communicating with each other. Each such runtime system is called a node.
+> A distributed Erlang system consists of a number of Erlang runtime systems communicating with each other.
+Each such runtime system is called a node.
 
-A node is any Erlang runtime system that has been given a name. We can start a node by opening up `iex` session and naming it:
+A node is any Erlang runtime system that has been given a name.
+We can start a node by opening up `iex` session and naming it:
 
 ```bash
 iex --sname alex@localhost
@@ -60,13 +63,21 @@ Hi, my name is Kate
 
 #### A Note on I/O and Nodes
 
-Notice that, although `Kate.say_name/0` is getting executed on the remote node, it is the local, or calling, node that receives the `IO.puts` output. That is because the local node is the **group leader**. The Erlang VM manages I/O via processes. This allows us to execute I/O tasks, like `IO.puts`, across distributed nodes. These distributed processes are managed by the I/O process group leader. The group leader is always the node that spawns the process. So, since our `alex` node is the one from which we called `spawn_link/2`, that node is the group leader and the output of `IO.puts` will be directed to the standard output stream of that node.
+Notice that, although `Kate.say_name/0` is getting executed on the remote node, it is the local, or calling, node that receives the `IO.puts` output.
+That is because the local node is the **group leader**.
+The Erlang VM manages I/O via processes.
+This allows us to execute I/O tasks, like `IO.puts`, across distributed nodes.
+These distributed processes are managed by the I/O process group leader.
+The group leader is always the node that spawns the process.
+So, since our `alex` node is the one from which we called `spawn_link/2`, that node is the group leader and the output of `IO.puts` will be directed to the standard output stream of that node.
 
 #### Responding to Messages
 
 What if we want the node that receives the message to send some *response* back to the sender? We can use a simple `receive/1` and [`send/2`](https://hexdocs.pm/elixir/Process.html#send/3) setup to accomplish exactly that.
 
-We'll have our `alex` node spawn a link to the `kate` node and give the `kate` node an anonymous function to execute. That anonymous function will listen for the receipt of a particular tuple describing a message and the PID of the `alex` node. It will respond to that message by `send`-ing back a message to the PID of the `alex` node:
+We'll have our `alex` node spawn a link to the `kate` node and give the `kate` node an anonymous function to execute.
+That anonymous function will listen for the receipt of a particular tuple describing a message and the PID of the `alex` node.
+It will respond to that message by `send`-ing back a message to the PID of the `alex` node:
 
 ```elixir
 iex(alex@localhost)> pid = Node.spawn_link :kate@localhost, fn ->
@@ -100,11 +111,15 @@ Only nodes started with the same `cookie` will be able to successfully connect t
 
 #### `Node.spawn_link/2` Limitations
 
-While `Node.spawn_link/2` illustrates the relationships between nodes and the manner in which we can send messages between them, its _not_ really the right choice for an application that will run across distributed nodes. `Node.spawn_link/2` spawns processes in isolation, i.e. processes that are not supervised. If only there was a way to spawn supervised, asynchronous processes _across nodes_...
+While `Node.spawn_link/2` illustrates the relationships between nodes and the manner in which we can send messages between them, its _not_ really the right choice for an application that will run across distributed nodes.
+`Node.spawn_link/2` spawns processes in isolation, i.e.
+processes that are not supervised.
+If only there was a way to spawn supervised, asynchronous processes _across nodes_...
 
 ## Distributed Tasks
 
-[Distributed tasks](https://hexdocs.pm/elixir/master/Task.html#module-distributed-tasks) allow us to spawn supervised tasks across nodes. We'll build a simple supervisor application that leverages distributed tasks to allow users to chat with one another via an `iex` session, across distributed nodes.
+[Distributed tasks](https://hexdocs.pm/elixir/master/Task.html#module-distributed-tasks) allow us to spawn supervised tasks across nodes.
+We'll build a simple supervisor application that leverages distributed tasks to allow users to chat with one another via an `iex` session, across distributed nodes.
 
 ### Defining the Supervisor Application
 
@@ -116,7 +131,8 @@ mix new chat --sup
 
 ### Adding the Task Supervisor to the Supervision Tree
 
-A Task Supervisor dynamically supervises tasks. It is started with no children, often _under_ a supervisor of its own, and can can be used later on to supervise any number of tasks.
+A Task Supervisor dynamically supervises tasks.
+It is started with no children, often _under_ a supervisor of its own, and can can be used later on to supervise any number of tasks.
 
 We'll add a Task Supervisor to our app's supervision tree and name it `Chat.TaskSupervisor`
 
@@ -146,14 +162,17 @@ We'll start supervised tasks with the [`Task.Supervisor.async/5`](https://hexdoc
 
 This function must take in four arguments:
 
-* The supervisor we want to use to supervise the task. This can be passed in as a tuple of `{SupervisorName, remote_node_name}` in order to supervise the task on the remote node.
+* The supervisor we want to use to supervise the task.
+This can be passed in as a tuple of `{SupervisorName, remote_node_name}` in order to supervise the task on the remote node.
 * The name of the module on which we want to execute a function
 * The name of the function we want to execute
 * Any arguments that need to be supplied to that function
 
-You can pass in a fifth, optional argument describing shutdown options. We won't worry about that here.
+You can pass in a fifth, optional argument describing shutdown options.
+We won't worry about that here.
 
-Out Chat application is pretty simple. It sends messages to remote nodes and remote nodes respond to those messages by `IO.puts`-ing them out to the STDOUT of the remote node.
+Out Chat application is pretty simple.
+It sends messages to remote nodes and remote nodes respond to those messages by `IO.puts`-ing them out to the STDOUT of the remote node.
 
 First, let's define a function, `Chat.receive_message/1`, that we want our task to execute on a remote node.
 
@@ -166,7 +185,8 @@ defmodule Chat do
 end
 ```
 
-Next up, let's teach the `Chat` module how to send the message to a remote node using a supervised task. We'll define a method `Chat.send_message/2` that will enact this process:
+Next up, let's teach the `Chat` module how to send the message to a remote node using a supervised task.
+We'll define a method `Chat.send_message/2` that will enact this process:
 
 ```elixir
 # lib/chat.ex
@@ -236,20 +256,29 @@ Let's revisit our code and break down what's happening here.
 
 We have a function `Chat.send_message/2` that takes in the name of the remote node on which we want to run our supervised tasks and the message we want to send that node.
 
-That function calls our `spawn_task/4` function which starts an async task running on the remote node with the given name, supervised by the `Chat.TaskSupervisor` on that remote node. We know that the Task Supervisor with the name `Chat.TaskSupervisor` is running on that node because that node is _also_ running an instance of our Chat application and the `Chat.TaskSupervisor` is started up as part of the Chat app's supervision tree.
+That function calls our `spawn_task/4` function which starts an async task running on the remote node with the given name, supervised by the `Chat.TaskSupervisor` on that remote node.
+We know that the Task Supervisor with the name `Chat.TaskSupervisor` is running on that node because that node is _also_ running an instance of our Chat application and the `Chat.TaskSupervisor` is started up as part of the Chat app's supervision tree.
 
 We are telling the `Chat.TaskSupervisor` to supervise a task that executes the `Chat.receive_message` function with an argument of whatever message was passed down to `spawn_task/4` from `send_message/2`.
 
-So, `Chat.receive_message("hi")` is called on the remote, `kate`, node, causing the message `"hi"`, to be put out to that node's STDOUT stream. In this case, since the task is being supervised on the remote node, that node is the group manager for this I/O process.
+So, `Chat.receive_message("hi")` is called on the remote, `kate`, node, causing the message `"hi"`, to be put out to that node's STDOUT stream.
+In this case, since the task is being supervised on the remote node, that node is the group manager for this I/O process.
 
 ### Responding to Messages from Remote Nodes
 
-Let's make our Chat app a little smarter. So far, any number of users can run the application in a named `iex` session and start chatting. But let's say there is a medium-sized white dog named Moebi who doesn't want to be left out. Moebi wants to be included in the Chat app but sadly he does not know how to type, because he is a dog. So, we'll teach our `Chat` module to respond to any messages sent to a node named `moebi@localhost` on Moebi's behalf. No matter what you say to Moebi, he will respond with `"chicken?"`, because his one true desire is to eat chicken.
+Let's make our Chat app a little smarter.
+So far, any number of users can run the application in a named `iex` session and start chatting.
+But let's say there is a medium-sized white dog named Moebi who doesn't want to be left out.
+Moebi wants to be included in the Chat app but sadly he does not know how to type, because he is a dog.
+So, we'll teach our `Chat` module to respond to any messages sent to a node named `moebi@localhost` on Moebi's behalf.
+No matter what you say to Moebi, he will respond with `"chicken?"`, because his one true desire is to eat chicken.
 
-We'll define another version of our `send_message/2` function that pattern matches on the `recipient` argument. If the recipient is `:moebi@locahost`, we will
+We'll define another version of our `send_message/2` function that pattern matches on the `recipient` argument.
+If the recipient is `:moebi@locahost`, we will
 
 * Grab the name of the current node using `Node.self()`
-* Give the name of the current node, i.e. the sender, to a new function `receive_message_for_moebi/2`, so that we can send a message _back_ to that node.
+* Give the name of the current node, i.e.
+the sender, to a new function `receive_message_for_moebi/2`, so that we can send a message _back_ to that node.
 
 ```elixir
 # lib/chat.ex
@@ -272,7 +301,8 @@ end
 
 By calling `send_message/2` with the name of the node that sent the original message (the "sender node") we are telling the _remote_ node to spawn an supervised task back on that sender node.
 
-Let's see it in action. In three different terminal windows, open three different named nodes:
+Let's see it in action.
+In three different terminal windows, open three different named nodes:
 
 ```bash
 iex --sname alex@localhost -S mix
@@ -294,7 +324,9 @@ chicken?
 :ok
 ```
 
-We can see that the `alex` node received the response, `"chicken?"`. If we open the `kate` node, we'll see that no message was received, since neither `alex` nor `moebi` send her one (sorry `kate`). And if we open the `moebi` node's terminal window, we'll see the message that the `alex` node sent:
+We can see that the `alex` node received the response, `"chicken?"`.
+If we open the `kate` node, we'll see that no message was received, since neither `alex` nor `moebi` send her one (sorry `kate`).
+And if we open the `moebi` node's terminal window, we'll see the message that the `alex` node sent:
 
 ```elixir
 iex(moebi@localhost)> hi
@@ -334,9 +366,11 @@ This is a lot of work and definitely wouldn't be considered an automated testing
 
 There are a two different approaches we could take here:
 
-1. Conditionally exclude tests that need distributed nodes, if the necessary node is not running.
+1.
+Conditionally exclude tests that need distributed nodes, if the necessary node is not running.
 
-2. Configure our application to avoid spawning tasks on remote nodes in the test environment.
+2.
+Configure our application to avoid spawning tasks on remote nodes in the test environment.
 
 Let's take a look at the first approach.
 
@@ -366,7 +400,10 @@ exclude =
 ExUnit.start(exclude: exclude)
 ```
 
-We check to see if the node is alive, i.e. if the node is part of a distributed system with [`Node.alive?`](https://hexdocs.pm/elixir/Node.html#alive?/0). If not, we can tell `ExUnit` to skip any tests with the `distributed: true` tag. Otherwise, we will tell it not to exclude any tests.
+We check to see if the node is alive, i.e.
+if the node is part of a distributed system with [`Node.alive?`](https://hexdocs.pm/elixir/Node.html#alive?/0).
+If not, we can tell `ExUnit` to skip any tests with the `distributed: true` tag.
+Otherwise, we will tell it not to exclude any tests.
 
 Now, if we run plain old `mix test`, we'll see:
 
@@ -400,9 +437,12 @@ defp remote_supervisor(recipient) do
 end
 ```
 
-`Task.Supervisor.async/5` takes in a first argument of the supervisor we want to use. If we pass in a tuple of `{SupervisorName, location}`, it will start up the given supervisor on the given remote node. However, if we pass `Task.Supervisor` a first argument of a supervisor name along, it will use that supervisor to supervise the task locally.
+`Task.Supervisor.async/5` takes in a first argument of the supervisor we want to use.
+If we pass in a tuple of `{SupervisorName, location}`, it will start up the given supervisor on the given remote node.
+However, if we pass `Task.Supervisor` a first argument of a supervisor name along, it will use that supervisor to supervise the task locally.
 
-Let's make the `remote_supervisor/1` function configurable based on environment. In the development environment, it will return `{Chat.TaskSupervisor, recipient}` and in the test environment it will return `Chat.TaskSupervisor`.
+Let's make the `remote_supervisor/1` function configurable based on environment.
+In the development environment, it will return `{Chat.TaskSupervisor, recipient}` and in the test environment it will return `Chat.TaskSupervisor`.
 
 We'll do this via application variables.
 
@@ -439,6 +479,8 @@ end
 
 ## Conclusion
 
-Elixir's native distribution capabilities, which it has thanks to the power of the Erlang VM, is one of the features that make it such a powerful tool. We can imagine leveraging Elixir's ability to handle distributed computing to run concurrent background jobs, to support high-performance applications, to run expensive operations--you name it.
+Elixir's native distribution capabilities, which it has thanks to the power of the Erlang VM, is one of the features that make it such a powerful tool.
+We can imagine leveraging Elixir's ability to handle distributed computing to run concurrent background jobs, to support high-performance applications, to run expensive operations--you name it.
 
-This lesson gives us a basic introduction to the concept of distribution in Elixir and gives you the tools you need to start building distributed applications. By using supervised tasks, you can send messages across the various nodes of a distributed application.
+This lesson gives us a basic introduction to the concept of distribution in Elixir and gives you the tools you need to start building distributed applications.
+By using supervised tasks, you can send messages across the various nodes of a distributed application.
