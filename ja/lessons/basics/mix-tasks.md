@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: カスタム Mix タスク
 ---
 
@@ -9,7 +9,8 @@ Elixir プロジェクトのためのカスタム Mix タスクの作成
 
 ## 導入
 
-カスタムの Mix タスクを追加して Elixir アプリケーションの機能を拡張したいと思うのは珍しいことではありません。私たちのプロジェクト特有の Mix タスクを作成する方法を学ぶ前に、既存のタスクを見てみましょう:
+カスタムの Mix タスクを追加して Elixir アプリケーションの機能を拡張したいと思うのは珍しいことではありません。
+私たちのプロジェクト特有の Mix タスクを作成する方法を学ぶ前に、既存のタスクを見てみましょう:
 
 ```shell
 $ mix phoenix.new my_phoenix_app
@@ -25,7 +26,8 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-上のシェルコマンドから分かる通り、 Phoenix Framework は新しいプロジェクトを作成するカスタムの Mix タスクを持っています。私たちのプロジェクトのために、同様のものを作るにはどうすればいいでしょうか？幸いなことに、カスタム Mix タスクの作成が可能であるだけでなく、 Elixir はそれをとても簡単にしてくれます。
+上のシェルコマンドから分かる通り、 Phoenix Framework は新しいプロジェクトを作成するカスタムの Mix タスクを持っています。
+私たちのプロジェクトのために、同様のものを作るにはどうすればいいでしょうか？幸いなことに、カスタム Mix タスクの作成が可能であるだけでなく、 Elixir はそれをとても簡単にしてくれます。
 
 ## セットアップ
 
@@ -69,13 +71,15 @@ end
 
 ## カスタム Mix タスク
 
-カスタムの Mix タスクを作成しましょう。新しいディレクトリとファイル、 **hello/lib/mix/tasks/hello.ex** を作成してください。このファイルに以下の7行の Elixir コードを追加しましょう。
+カスタムの Mix タスクを作成しましょう。
+新しいディレクトリとファイル、 **hello/lib/mix/tasks/hello.ex** を作成してください。
+このファイルに以下の7行の Elixir コードを追加しましょう。
 
 ```elixir
 defmodule Mix.Tasks.Hello do
   use Mix.Task
 
-  @shortdoc "Simply runs the Hello.say/0 command."
+  @shortdoc "Simply runs the Hello.say/0 function"
   def run(_) do
     # calling our Hello.say() function from earlier
     Hello.say()
@@ -83,18 +87,24 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-defmodule 文が `Mix.Tasks` と、そしてコマンドラインから呼び出したい名前から始まっているのに気付いてください。二行目では名前空間に `Mix.Task` ビヘイビアをもたらす `use Mix.Task` を実行しています。それから、今のところ全ての引数を無視するrun関数を宣言します。この関数の中では、 `Hello` モジュールの `say` 関数を呼び出しています。
+defmodule 文が `Mix.Tasks` と、そしてコマンドラインから呼び出したい名前から始まっているのに気付いてください。
+二行目では名前空間に `Mix.Task` ビヘイビアをもたらす `use Mix.Task` を実行しています。
+それから、今のところ全ての引数を無視するrun関数を宣言します。
+この関数の中では、 `Hello` モジュールの `say` 関数を呼び出しています。
 
 ## Mix タスクの実行
 
-私たちのMixタスクを確かめてみましょう。アプリケーションのディレクトリにいる限り、これは上手くいきます。コマンドラインから `mix hello` を実行すると以下のようになるはずです:
+私たちのMixタスクを確かめてみましょう。
+アプリケーションのディレクトリにいる限り、これは上手くいきます。
+コマンドラインから `mix hello` を実行すると以下のようになるはずです:
 
 ```shell
 $ mix hello
 Hello, World!
 ```
 
-Mix はデフォルトでかなり親切です。誰もが時々スペルミスをするのを知っているので、ファジーマッチングと呼ばれる技術を用いて候補を提案します:
+Mix はデフォルトでかなり親切です。
+誰もが時々スペルミスをするのを知っているので、ファジーマッチングと呼ばれる技術を用いて候補を提案します:
 
 ```shell
 $ mix hell
@@ -111,3 +121,6 @@ mix app.start         # Starts all registered apps
 mix hello             # Simply calls the Hello.say/0 function.
 ...
 ```
+
+注: 新しいタスクが `mix help` の出力に表示されるには、私たちのコードが事前にコンパイルされてなければいけません。
+私たちは `mix compile` を直接実行するか、先ほどと同じように `mix hello` を実行してコンパイルのトリガーを作り出すことでコンパイルすることができます。
