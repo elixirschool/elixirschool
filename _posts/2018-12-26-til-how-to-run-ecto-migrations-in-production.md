@@ -4,7 +4,7 @@ author_link: https://github.com/ktravers
 categories: til
 date: 2018-12-16
 layout: post
-title: How to Run Ecto Migrations on Production
+title: TIL How to Run Ecto Migrations on Production
 excerpt: >
   What to do when you can't use `mix ecto.migrate`
 ---
