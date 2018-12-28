@@ -391,3 +391,12 @@
   lessons: ['Testing']
   articles:
     - ExUnit's capture_log option
+
+- github: ktravers
+  name: Kate Travers
+  intro:
+    Kate is an engineer at the Flatiron School.
+  twitter: kttravers
+  homepage: https://kate-travers.com/
+  contributions:
+    - blog
