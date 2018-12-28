@@ -118,7 +118,7 @@ iex> Greeter2.hello("Fred", "Jane")
 
 ```elixir
 defmodule Greeter do
-  def hello(name), do: phrase <> name
+  def hello(name), do: phrase() <> name
   defp phrase, do: "Hello, "
 end
 
