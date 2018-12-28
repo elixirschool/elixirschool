@@ -35,11 +35,12 @@ iex> sum.(2, 3)
 
 Elixirではパターンマッチングは変数だけに限定されているわけではなく、次の項にあるように、関数へと適用することができます。
 
-Elixirはパターンマッチングを用いて最初の引数がマッチするものを特定し、その関数を実行することができます:
+Elixirはパターンマッチングを用いてマッチする可能性のある全てのオプションをチェックし、最初にマッチするオプションを選択して実行します:
 
 ```elixir
 iex> handle_result = fn
 ...>   {:ok, result} -> IO.puts "Handling result..."
+...>   {:ok, _} -> IO.puts "This would be never run as previous will be matched beforehand."
 ...>   {:error} -> IO.puts "An error has occurred!"
 ...> end
 
