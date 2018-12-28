@@ -61,7 +61,7 @@ Run "mix help" for more commands.
 ```elixir
 defmodule Hello do
   @doc """
-  Output's `Hello, World!` everytime.
+  Outputs `Hello, World!` every time.
   """
   def say do
     IO.puts("Hello, World!")
