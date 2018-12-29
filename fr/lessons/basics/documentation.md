@@ -177,7 +177,7 @@ Examples
 
 ### Installation
 
-En supposant que tout va bien et que nous voyons le résultat ci-dessus, nous sommes maintenant prêts à mettre en place ExDoc. Dans le fichier `mix.exs', ajoutez les deux dépendances requises pour commencer : `:earmark` et `:ex_doc`.
+En supposant que tout va bien et que nous voyons le résultat ci-dessus, nous sommes maintenant prêts à mettre en place ExDoc. Dans le fichier `mix.exs`, ajoutez les deux dépendances requises pour commencer : `:earmark` et `:ex_doc`.
 
 ```elixir
   def deps do
@@ -186,9 +186,9 @@ En supposant que tout va bien et que nous voyons le résultat ci-dessus, nous so
   end
 ```
 
-Nous spécifions la paire de valeurs-clés `only: : :dev` car nous ne voulons pas télécharger et compiler ces dépendances dans un environnement de production. Mais pourquoi Earmark ? Earmark est un analyseur Markdown pour le langage de programmation Elixir qu'ExDoc utilise pour transformer notre documentation dans `@moduledoc` et `@doc` en HTML formaté.
+Nous spécifions la paire de valeurs-clés `only: :dev` car nous ne voulons pas télécharger et compiler ces dépendances dans un environnement de production. Mais pourquoi Earmark ? Earmark est un analyseur Markdown pour le langage de programmation Elixir qu'ExDoc utilise pour transformer notre documentation dans `@moduledoc` et `@doc` en HTML formaté.
 
-Il est important de noter à ce stade que vous n'êtes pas obligé d'utiliser Earmark. Vous pouvez changer l'outil de balisage pour d'autres tels que Pandoc, Hoedown, ou Cmark ; cependant vous devrez faire un peu plus de configuration que vous pouvez lire sur[ici] (https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Pour ce tutoriel, nous nous en tiendrons à Earmark.
+Il est important de noter à ce stade que vous n'êtes pas obligé d'utiliser Earmark. Vous pouvez changer l'outil de balisage pour d'autres tels que Pandoc, Hoedown, ou Cmark ; cependant vous devrez faire un peu plus de configuration que vous pouvez lire sur [ici](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Pour ce tutoriel, nous nous en tiendrons à Earmark.
 
 ### Génération de la documentation
 
