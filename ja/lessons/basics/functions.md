@@ -113,6 +113,154 @@ iex> Greeter2.hello("Fred", "Jane")
 
 関数名の一覧を上記のコメントに載せました。例えば、1つめの実装は引数を取らないので`hello/0`、2つ目は1つの引数を取るので`hello/1`となります。他の言語におけるオーバーロードとは違い、これらは互いに _異なる_ 関数として扱われます。(さっき扱ったパターンマッチングは _同じ_ 数の引数を取る関数定義が複数ある場合のみ適用されます)
 
+### 関数とパターンマッチング
+
+内部では、関数は実行された時の引数をパターンマッチングしています。
+
+マップを受け取るが、特定のキーにだけ関心がある関数が必要であるとしましょう。私たちは次のようにキーの有無に基づいて引数をパターンマッチすることができます:
+
+```elixir
+defmodule Greeter1 do
+  def hello(%{name: person_name}) do
+    IO.puts "Hello, " <> person_name
+  end
+end
+```
+
+今度はFredという名前の人物を表すマップを持っているとしましょう。
+```elixir
+iex> fred = %{
+...> name: "Fred",
+...> age: "95",
+...> favorite_color: "Taupe"  
+...> }
+```
+
+`Greeter1.hello/1  `を`fred`のマップで実行するとこのような結果となります:
+
+```elixir
+# call with entire map
+...> Greeter1.hello(fred)
+"Hello, Fred"
+```
+
+`:name`キーを含まないマップで関数を実行するとどうなるでしょうか？
+
+```elixir
+# call without the key we need returns an error
+...> Greeter1.hello(%{age: "95", favorite_color: "Taupe"})
+** (FunctionClauseError) no function clause matching in Greeter3.hello/1    
+
+    The following arguments were given to Greeter3.hello/1:
+
+        # 1
+        %{age: "95"}
+
+    iex:12: Greeter3.hello/1
+
+```
+
+このような挙動となる理由は、Elixirは関数が実行された際の引数を関数で定義されたアリティに対してパターンマッチさせているためです。
+
+`Greeter1.hello/1`にデータが届いた際どのように見えるか考えてみましょう:
+
+```Elixir
+# incoming map
+iex> fred = %{
+...> name: "Fred",
+...> age: "95",
+...> favorite_color: "Taupe"  
+...> }
+```
+`Greeter1.hello/1`は次のような引数を期待します:
+```elixir
+%{name: person_name}
+```
+`Greeter1.hello/1`では、私たちが渡したマップ(`fred`)は引数(`%{name: person_name}`)に対して評価されます:
+
+```elixir
+%{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
+```
+
+これは渡されたマップの中に`name`に対応するキーを見つけます。マッチがありました！このマッチの成功によって、右辺のマップ(つまり`fred`マップ)の中にある`:name`キーの値は左辺の変数(`person_name`)に格納されます。 
+
+さて、Fredの名前を`person_name`にアサインしたいが、全体の人物マップの値も保持したいという場合はどうするのでしょう？彼に挨拶した後`IO.inspect(fred)`を使いたいとしましょう。この時点では、マップの`:name`キーだけをパターンマッチしているので、そのキーの値だけが変数に格納され、関数はFredの残りの値に関する知識を持っていません。
+
+これを保持するためには、マップ全体を変数にアサインして使用できるようにする必要があります。
+
+新しい関数を作ってみましょう:
+```elixir
+defmodule Greeter2 do
+  def hello(%{name: person_name} = person) do
+    IO.puts "Hello, " <> person_name
+    IO.inspect person
+  end
+end
+```
+
+Elixirは引数を渡されたままパターンマッチするということを覚えておいてください。そのためこのケースでは、それぞれが渡された引数に対してパターンマッチして、マッチした全てのものを変数に格納します。まずは右辺を見てみましょう:
+
+```elixir
+person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
+```
+
+ここでは、`person`が評価され、fredマップ全体が格納されました。次のパターンマッチに進みます:
+```elixir
+%{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
+```
+
+これは、マップをパターンマッチしてFredの名前だけを保持したオリジナルの`Greeter1`関数と同じです。これによって1つではなく2つの変数を使用することができます:
+1. `person`は`%{name: "Fred", age: "95", favorite_color: "Taupe"}`を参照します
+2. `person_name`は`"Fred"`を参照します
+
+これで`Greeter2.hello/1`を実行したとき、Fredの全ての情報を使用することができます:
+```elixir
+# call with entire person
+...> Greeter2.hello(fred)
+"Hello, Fred"
+%{age: "95", favorite_color: "Taupe", name: "Fred"}
+# call with only the name key
+...> Greeter4.hello(%{name: "Fred"})
+"Hello, Fred"
+%{name: "Fred"}
+# call without the name key
+...> Greeter4.hello(%{age: "95", favorite_color: "Taupe"})
+** (FunctionClauseError) no function clause matching in Greeter2.hello/1    
+
+    The following arguments were given to Greeter2.hello/1:
+
+        # 1
+        %{age: "95", favorite_color: "Taupe"}
+
+    iex:15: Greeter2.hello/1
+```
+
+入ってきたデータに対して独立してパターンマッチして、関数の中でそれらを使用できるようにしたことで、Elixirは複数の奥行きでパターンマッチするという点を確認しました。
+
+リストの中で`%{name: person_name}`と`person`の順序を入れ替えたとしても、それぞれがfredとマッチングするので同じ結果となります。
+
+変数とマップを入れ替えてみましょう:
+```elixir
+defmodule Greeter3 do
+  def hello(person = %{name: person_name}) do
+    IO.puts "Hello, " <> person_name
+    IO.inspect person
+  end
+end
+```
+
+`Greeter2.hello/1`で使用した同じデータで実行してみます:
+```elixir
+# call with same old Fred
+...> Greeter3.hello(fred)
+"Hello, Fred"
+%{age: "95", favorite_color: "Taupe", name: "Fred"}
+```
+
+`%{name: person_name} = person}`は`%{name: person_name}`が`person`に対してパターンマッチしているように見えたとしても、実際には _それぞれが_ 渡された引数をパターンマッチしているということを覚えておいてください。
+
+**まとめ:** 関数は渡されたデータをそれぞれの引数で独立してパターンマッチします。関数の中で別々の変数に格納するためにこれを利用できます。
+
 ### プライベート関数
 
 他のモジュールから特定の関数へアクセスさせたくない時には関数をプライベートにすることができます。プライベート関数はそのモジュール自身の内部からのみ呼び出すことが出来ます。Elixirでは`defp`を用いて定義することができます:
