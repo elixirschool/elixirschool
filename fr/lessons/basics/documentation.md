@@ -177,7 +177,7 @@ Examples
 
 ### Installation
 
-En supposant que tout va bien et que nous voyons le résultat ci-dessus, nous sommes maintenant prêts à mettre en place ExDoc. Dans le fichier `mix.exs', ajoutez les deux dépendances requises pour commencer : `:earmark` et `:ex_doc`.
+En supposant que tout va bien et que nous voyons le résultat ci-dessus, nous sommes maintenant prêts à mettre en place ExDoc. Dans le fichier `mix.exs`, ajoutez les deux dépendances requises pour commencer : `:earmark` et `:ex_doc`.
 
 ```elixir
   def deps do
@@ -186,9 +186,9 @@ En supposant que tout va bien et que nous voyons le résultat ci-dessus, nous so
   end
 ```
 
-Nous spécifions la paire de valeurs-clés `only: : :dev` car nous ne voulons pas télécharger et compiler ces dépendances dans un environnement de production. Mais pourquoi Earmark ? Earmark est un analyseur Markdown pour le langage de programmation Elixir qu'ExDoc utilise pour transformer notre documentation dans `@moduledoc` et `@doc` en HTML formaté.
+Nous spécifions la paire de valeurs-clés `only: :dev` car nous ne voulons pas télécharger et compiler ces dépendances dans un environnement de production. Mais pourquoi Earmark ? Earmark est un analyseur Markdown pour le langage de programmation Elixir qu'ExDoc utilise pour transformer notre documentation dans `@moduledoc` et `@doc` en HTML formaté.
 
-Il est important de noter à ce stade que vous n'êtes pas obligé d'utiliser Earmark. Vous pouvez changer l'outil de balisage pour d'autres tels que Pandoc, Hoedown, ou Cmark ; cependant vous devrez faire un peu plus de configuration que vous pouvez lire sur[ici] (https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Pour ce tutoriel, nous nous en tiendrons à Earmark.
+Il est important de noter à ce stade que vous n'êtes pas obligé d'utiliser Earmark. Vous pouvez changer l'outil de balisage pour d'autres tels que Pandoc, Hoedown, ou Cmark ; cependant vous devrez faire un peu plus de configuration que vous pouvez lire sur [ici](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Pour ce tutoriel, nous nous en tiendrons à Earmark.
 
 ### Génération de la documentation
 
@@ -208,7 +208,7 @@ Si tout s'est déroulé comme prévu, vous devriez voir un message similaire à 
 
 Nous pouvons voir qu'Earmark à généré notre balisage Markdown et ExDoc l'affiche de manière lisible et navigable, dans un format très utile.
 
-![ExDoc Screenshot 2]{% asset documentation_2.png @path %})
+![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
 Nous pouvons maintenant le déployer sur notre propre site web ou plus communément sur [HexDocs](https://hexdocs.pm/).
 
@@ -302,6 +302,6 @@ defmodule Greeter do
 end
 ```
 
-Essayez d'inclure quelques exemples de code dans votre documentation. Cela vous permet également de générer des tests automatiques à partir des exemples de code trouvés dans un module, une fonction ou une macro avec [ExUnit.DocTest][]. Pour ce faire, vous devez invoquer la macro `doctest/1' de votre scénario de test et écrire vos exemples selon les directives détaillées dans la [documentation officielle][ExUnit.DocTest].
+Essayez d'inclure quelques exemples de code dans votre documentation. Cela vous permet également de générer des tests automatiques à partir des exemples de code trouvés dans un module, une fonction ou une macro avec [ExUnit.DocTest][]. Pour ce faire, vous devez invoquer la macro `doctest/1` de votre scénario de test et écrire vos exemples selon les directives détaillées dans la [documentation officielle][ExUnit.DocTest].
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html
