@@ -156,19 +156,19 @@ iex> fred = %{
 "Hello, Fred"
 ```
 
-`:name`キーを含まないマップで関数を実行するとどうなるでしょうか？
+`:name`キーを _含まない_ マップで関数を実行するとどうなるでしょうか？
 
 ```elixir
 # call without the key we need returns an error
 ...> Greeter1.hello(%{age: "95", favorite_color: "Taupe"})
-** (FunctionClauseError) no function clause matching in Greeter3.hello/1
+** (FunctionClauseError) no function clause matching in Greeter1.hello/1
 
-    The following arguments were given to Greeter3.hello/1:
+    The following arguments were given to Greeter1.hello/1:
 
         # 1
         %{age: "95"}
 
-    iex:12: Greeter3.hello/1
+    iex:12: Greeter1.hello/1
 
 ```
 
@@ -198,7 +198,7 @@ iex> fred = %{
 マッチがありました！このマッチの成功によって、右辺のマップ(つまり
 `fred`マップ)の中にある`:name`キーの値は左辺の変数(`person_name`)に格納されます。 
 
-さて、Fredの名前を`person_name`にアサインしたいが、全体の人物マップの値も保持したいという場合はどうするのでしょう？彼に挨拶した後`IO.inspect(fred)`を使いたいとしましょう。
+さて、Fredの名前を`person_name`にアサインしたいが、人物マップ全体の値も保持したいという場合はどうするのでしょう？挨拶を出力した後`IO.inspect(fred)`を使いたいとしましょう。
 この時点では、マップの`:name`キーだけをパターンマッチしているので、そのキーの値だけが変数に格納され、関数はFredの残りの値に関する知識を持っていません。
 
 これを保持するためには、マップ全体を変数にアサインして使用できるようにする必要があります。
