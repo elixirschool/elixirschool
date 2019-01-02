@@ -37,6 +37,7 @@ ecto:
   - basics
   - changesets
   - associations
+  - querying
 specifics:
   - plug
   - eex
