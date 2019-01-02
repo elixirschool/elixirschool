@@ -161,14 +161,14 @@ What happens when we call the function with a map that _doesn't_ contain the `:n
 ```elixir
 # call without the key we need returns an error
 ...> Greeter1.hello(%{age: "95", favorite_color: "Taupe"})
-** (FunctionClauseError) no function clause matching in Greeter3.hello/1
+** (FunctionClauseError) no function clause matching in Greeter1.hello/1
 
-    The following arguments were given to Greeter3.hello/1:
+    The following arguments were given to Greeter1.hello/1:
 
         # 1
         %{age: "95"}
 
-    iex:12: Greeter3.hello/1
+    iex:12: Greeter1.hello/1
 
 ```
 
