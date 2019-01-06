@@ -14,7 +14,7 @@ In this lesson we're going to explore this functionality and learn how to verify
 {% include toc.html %}
 
 ## Creating your first changeset
-
+ 
 Let's look at an empty `%Changeset{}` struct:
 
 ```elixir
@@ -27,24 +27,23 @@ As you can see, it has some potentially useful fields, but they are all empty.
 For a changeset to be truly useful, when we create it, we need to provide a blueprint of what the data is like.
 What better blueprint for our data than the schemas we've created that define our fields and types?
 
-To save us some time, let's re-use the schema we created in the previous lesson:
+Let's see a common `User` schema:  
 
 ```elixir
-defmodule Example.Person do
+defmodule User do
   use Ecto.Schema
 
-  schema "people" do
-    field :name, :string
-    field :age, :integer, default: 0
+  schema "users" do
+    field(:name, :string)
   end
 end
 ```
 
-To create a changeset using the `Example.Person` schema, we are going to use `Ecto.Changeset.cast/4`:
+To create a changeset using the `User` schema, we are going to use `Ecto.Changeset.cast/4`:
 
 ```elixir
-iex> Ecto.Changeset.cast(%Example.Person{name: "Bob"}, %{}, [:name])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Person<>,
+iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
+#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
  valid?: true>
  ```
 
@@ -68,7 +67,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
  valid?: true>
 ```
 
-You can see how the new email was ignored the second time, where it was not explicitly allowed.
+You can see how the new name was ignored the second time, where it was not explicitly allowed.
 
 An alternative to `cast/4` is the `change/2` function, which doesn't have the ability to filter changes like `cast/4`.
 It is useful when you trust the source making the changes or when you work with data manually.
@@ -135,7 +134,7 @@ iex> User.changeset(%User{}, %{"name" => ""})
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: false
 >
 ```
@@ -165,7 +164,7 @@ iex> User.changeset(%User{}, %{"name" => "A"})
     name: {"should be at least %{count} character(s)",
      [count: 2, validation: :length, min: 2]}
   ],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: false
 >
 ```
@@ -225,7 +224,7 @@ iex> User.changeset(%User{}, %{"name" => "Bob"})
   action: nil,
   changes: %{first_name: "Bob"},
   errors: [name: {"is not a superhero", []}],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: false
 >
 ```
@@ -269,7 +268,7 @@ iex> User.registration_changeset(%User{}, %{})
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: true
 >
 ```

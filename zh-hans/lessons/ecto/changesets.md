@@ -22,7 +22,9 @@ iex> %Ecto.Changeset{}
 
 正如你所看到的，它有一些可能有用的字段，但它们都是空的。
 
-为了使 changeset 真正有用，当我们创建它时，我们需要提供一个数据的大致结构。 `Ecto.Schema` 的目的就是提供一个数据结构的所有字段及其类型。 让我们看一个最简单常见的 user 的 Schema：
+为了使 changeset 真正有用，当我们创建它时，我们需要提供一个数据的大致结构。有什么比我们创建的 schema 更准确地描述需要使用的字段及其类型的数据结构呢？
+
+让我们看一个最简单常见的 User 的 Schema：
 
 ```elixir
 defmodule User do
@@ -34,7 +36,7 @@ defmodule User do
 end
 ```
 
-要使用 `User` 的 Schema 创建 changeset 的话，我们将使用 `Ecto.Changeset.cast/4`
+要利用 `User` 的 Schema 创建 changeset 的话，我们需要使用 `Ecto.Changeset.cast/4`
 
 ```elixir
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
@@ -42,7 +44,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
  valid?: true>
  ```
 
-第一个参数是原始数据 - 在这个例子下是为空的 `％User{}` 结构。 Ecto非常聪明，可以根据结构本身找到对应的 Schema。 其次是我们想要做出的更新 - 这里是一个空的 map 结构。 第三个参数是让 `cast/4` 变得特殊的原因: 它允许列表里的字段通过检查，这使我们能够控制哪些字段可以更改，并保护剩下的字段。
+第一个参数是原始数据 - 在这个例子下是为空的 `％User{}` 结构。 Ecto 非常聪明，可以根据结构本身找到对应的 Schema。 第二个参数是我们想要做出的更新 - 这里是一个空的 map 结构。 第三个参数是 `cast/4` 特别的原因: 它包含了允许通过的字段列表，这使我们能够控制哪些字段可以更改，并保护剩下的字段。
 
  ```elixir
  iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
@@ -59,11 +61,11 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
  valid?: true>
 ```
 
-您可以看到第二次忽略了新的 name，因为这里没有允许 name 字段。
+您可以看到第二次的更新忽略了新的 name 值，因为这里没有允许 name 字段。
 
-一个 `cast/4` 函数的替代者是 `change/2` 函数，它不能过滤像 `cast/4` 这样的更改。 当您信任进行更改的源数据或手动处理数据时，它就会非常有用。
+`cast/4` 函数的一个替代方案是 `change/2` 函数，但它不能像 `cast/4` 那样过滤一些更改。 当您信任进行更改的源数据或手动处理数据时，就可以使用这个函数。
 
-现在我们可以创建 changesets，但由于我们没有校验，对 name 所做的任何更改都会被 Ecto 接受，因此我们最终会得到一个值为空的 name：
+现在我们可以创建 changesets，但由于我们没有校验，对 name 所做的任何更改都会被 Ecto 接受，所以我们最终可能会得到一个值为空的 name：
 
 ```elixir
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
@@ -76,13 +78,13 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
 >
 ```
 
-正如我们所预料的一样，Ecto 说这个 changeset 是合法的 （`valid?: true`)，但实际上，我们不希望用户名字为空。 下面我们来解决这个问题
+Ecto 认为这个 changeset 是合法的 （`valid?: true`)，但实际上，我们不希望用户名字为空。 下面我们来解决这个问题。
 
 ## 校验
 
 Ecto 附带了许多内置的校验函数来帮助我们。
 
-接下来，我们会大量使用 `Ecto.Changeset` 提供的校验函数，所以让我们将 `Ecto.Changeset` 导入到我们的 `user.ex` 模块中：
+接下来，我们会大量使用 `Ecto.Changeset` 提供的校验函数，所以让我们将 `Ecto.Changeset` 导入到包含了 schema 的 `user.ex` 模块中：
 
 ```elixir
 defmodule User do
@@ -95,9 +97,9 @@ defmodule User do
 end
 ```
 
-现在我们可以直接使用 `cast/4` 函数了
+现在我们可以直接使用 `cast/4` 函数了。
 
-通常情况下我们会为 Schema 创建一个或多个 changeset。 让我们创建一个接受结构，变更映射并返回 changeset 的变量：
+通常情况下我们会为 Schema 创建一个或多个 changeset 构造函数。 让我们创建一个接受结构，变更映射并返回 changeset 的函数：
 
 ```elixir
 def changeset(struct, params) do
@@ -116,7 +118,7 @@ def changeset(struct, params) do
 end
 ```
 
-当我们调用 `User.changeset/2` 函数并传递一个值为空的 name 时，changeset 将不再有效，还会包含有用的错误消息。 注意：在 `iex` 中工作时不要忘记运行`recompile()`，否则它将无法获取您在代码中所做的更改。
+当我们调用 `User.changeset/2` 函数并传递一个值为空的 name 时，changeset 将不再有效，还会包含有用的错误消息。 注意：在 `iex` 中调用时不要忘记运行 `recompile()` 命令，否则它将无法获取您在代码中所做的更改。
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => ""})
@@ -124,14 +126,14 @@ iex> User.changeset(%User{}, %{"name" => ""})
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: false
 >
 ```
 
 如果您尝试使用上面的changeset执行 `Repo.insert(changeset)`，您将收到 `{:error，changeset}` 返回相同的错误，因此您不必每次都自己检查 `changeset.valid?`。这让尝试执行插入，更新或删除，以及处理错误的操作变得容易，假如有错误的话。
 
-除了 `validate_required/2` 之外，还有 `validate_length/3` ，它需要一些额外的选项：
+除了 `validate_required/2` 之外，还有一个需要额外参数的 `validate_length/3` 函数：
 
 ```elixir
 def changeset(struct, params) do
@@ -142,7 +144,7 @@ def changeset(struct, params) do
 end
 ```
 
-您可以尝试猜一下如果我们传一个由单个字符组成的 name，结果会是什么！
+您可以猜一下如果我们传单个字符的 name，结果会是什么！
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => "A"})
@@ -153,12 +155,12 @@ iex> User.changeset(%User{}, %{"name" => "A"})
     name: {"should be at least %{count} character(s)",
      [count: 2, validation: :length, min: 2]}
   ],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: false
 >
 ```
 
-您可能会惊讶于错误消息包含神秘的 `％{count}` - 这是为了帮助翻译成其他语言; 如果你想直接向用户显示错误，你可以使用 [`traverse_errors/2`] (https://hexdocs.pm/ecto/Ecto.Changeset.html#traverse_errors/2)使它们成为用户可读的信息 - 你可以查看文档中提供的示例。
+您可能会奇怪为什么错误消息包含了神秘的 `％{count}` 符号 - 这是为了辅助翻译成其他语言; 如果你想直接向用户显示错误，你可以使用 [`traverse_errors/2`] (https://hexdocs.pm/ecto/Ecto.Changeset.html#traverse_errors/2)使它们成为用户可读的信息 - 你可以查看文档中提供的示例。
 
 下面是 `Ecto.Changeset` 中的一些其他内置的 validators：
 
@@ -174,7 +176,7 @@ iex> User.changeset(%User{}, %{"name" => "A"})
 
 ### 自定义校验
 
-尽管内置校验函数涵盖了广泛的用例，但您可能仍然需要不同的东西。
+尽管内置校验函数涵盖了广泛的场景，但您可能仍然需要不同的校验。
 
 到目前为止我们使用的每个 `validate_` 函数都接收并返回一个 `％Ecto.Changeset{}` ，因此我们可以轻松地插入自己的函数。
 
@@ -213,12 +215,12 @@ iex> User.changeset(%User{}, %{"name" => "Bob"})
   action: nil,
   changes: %{first_name: "Bob"},
   errors: [name: {"is not a superhero", []}],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: false
 >
 ```
 
-非常棒！ 但是，实际上我们没有必要自己实现这个功能 - 可以使用 `validate_inclusion/4` 函数代替; 您可以看到如何添加一些有用的自定义错误。
+非常棒！ 但是，实际上我们没有必要自己实现这个功能 - `validate_inclusion/4` 函数完全可以代替它; 您可以看到如何添加一些有用的自定义错误。
 
 ## 以编程方式添加更改
 
@@ -258,7 +260,7 @@ iex> User.registration_changeset(%User{}, %{})
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: true
 >
 ```
@@ -275,4 +277,4 @@ end
 
 ## 结语
 
-我们在本课中没有涉及很多用例和功能，例如您可以使用的 [schemaless changesets](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) 校验 _任何_ 数据; 或单独处理changeset的副作用( [`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2) )，或使用关联和嵌入。 我们可能会在未来的高级课程中介绍这些内容，但与此同时 - 我们鼓励探索 [Ecto Changeset的文档](https://hexdocs.pm/ecto/Ecto.Changeset.html) 以获取更多信息。
+我们在本课中没有涉及很多用例和功能，例如您可以使用的 [schemaless changesets](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) 校验 _任何_ 数据; 或单独处理 changeset 的副作用( [`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2) )，或使用关联和嵌入。 我们可能会在未来的高级课程中介绍这些内容，但与此同时 - 我们鼓励探索 [Ecto Changeset的文档](https://hexdocs.pm/ecto/Ecto.Changeset.html) 以获取更多信息。
