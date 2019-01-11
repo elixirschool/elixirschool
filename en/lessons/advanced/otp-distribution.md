@@ -132,7 +132,7 @@ mix new chat --sup
 ### Adding the Task Supervisor to the Supervision Tree
 
 A Task Supervisor dynamically supervises tasks.
-It is started with no children, often _under_ a supervisor of its own, and can can be used later on to supervise any number of tasks.
+It is started with no children, often _under_ a supervisor of its own, and can be used later on to supervise any number of tasks.
 
 We'll add a Task Supervisor to our app's supervision tree and name it `Chat.TaskSupervisor`
 
