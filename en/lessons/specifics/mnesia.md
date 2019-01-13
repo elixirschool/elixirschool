@@ -106,6 +106,7 @@ iex> Mnesia.create_schema([node()])
 iex> Mnesia.start()
 :ok
 ```
+The function `Mnesia.start/0` is asynchronous. It starts the initialization of the existing tables and returns the `:ok` atom. In case we need to perform some actions on an existing table right after starting Mnesia, we need to call the `Mnesia.wait_for_tables/2` function. It will suspend the caller until the tables are initialized. See the example in the section [Data initialization and migration](#data-initialization-and-migration). 
 
 It is worth keeping in mind when running a distributed system with two or more participating nodes, the function `Mnesia.start/1` must be executed on all participating nodes.
 
@@ -300,28 +301,31 @@ The code below does this by implementing the following logic:
         * if it's the v2 list, do nothing, we're good
         * if it's something else, bail out
 
+If we are performing any actions on the existing tables right after starting Mnesia with `Mnesia.start/0`, those tables may not be initialized and accessible. In that case, we should use the [`Mnesia.wait_for_tables/2`](http://erlang.org/doc/man/mnesia.html#wait_for_tables-2) function. It will suspend the current process until the tables are initialized or until the timeout is reached.
+
 The `Mnesia.transform_table/3` function takes as attributes the name of the table, a function that transforms a record from the old to the new format and the list of new attributes.
 
 ```elixir
-iex> case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
-...>   {:atomic, :ok} ->
-...>     Mnesia.add_table_index(Person, :job)
-...>     Mnesia.add_table_index(Person, :age)
-...>   {:aborted, {:already_exists, Person}} ->
-...>     case Mnesia.table_info(Person, :attributes) do
-...>       [:id, :name, :job] ->
-...>         Mnesia.transform_table(
-...>           Person,
-...>           fn ({Person, id, name, job}) ->
-...>             {Person, id, name, job, 21}
-...>           end,
-...>           [:id, :name, :job, :age]
-...>           )
-...>         Mnesia.add_table_index(Person, :age)
-...>       [:id, :name, :job, :age] ->
-...>         :ok
-...>       other ->
-...>         {:error, other}
-...>     end
-...> end
+case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]])
+  {:atomic, :ok} ->
+    Mnesia.add_table_index(Person, :job)
+    Mnesia.add_table_index(Person, :age)
+  {:aborted, {:already_exists, Person}} ->
+    case Mnesia.table_info(Person, :attributes) do
+      [:id, :name, :job] ->
+        Mnesia.wait_for_tables([Person], 5000)
+        Mnesia.transform_table(
+          Person,
+          fn ({Person, id, name, job}) ->
+            {Person, id, name, job, 21}
+          end,
+          [:id, :name, :job, :age]
+          )
+        Mnesia.add_table_index(Person, :age)
+      [:id, :name, :job, :age] ->
+        :ok
+      other ->
+        {:error, other}
+    end
+end
 ```
