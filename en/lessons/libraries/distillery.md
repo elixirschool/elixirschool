@@ -5,7 +5,7 @@ title: Distillery (Basics)
 
 Distillery
 
-Distillery is a release manager written in pure Elixir. It allows you to generate releases that can be deployed elsewhere with little to no configuration. 
+Distillery is a release manager written in pure Elixir. It allows you to generate releases that can be deployed elsewhere with little to no configuration.
 
 ## What is a release?
 
@@ -209,7 +209,7 @@ When working with a release, you may not have access to `mix` commands as `mix` 
 
 Commands are similar to release tasks in that they are both method functions but are different from them in that they are executed through the terminal as opposed to being run by the release script.
 
-Now that we can run our migrations, we may want to be able to seed our database with information through running a command. First, add a new method to our release tasks.
+Now that we can run our migrations, we may want to be able to seed our database with information through running a command. First, add a new method to our release tasks. In `BookAppWeb.ReleaseTasks`, add the following:
 
 ```
 def seed do
