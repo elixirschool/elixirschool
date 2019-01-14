@@ -5,6 +5,8 @@ title: Distillery (Basics)
 
 Distillery
 
+Distillery is a release manager written in pure Elixir. It allows you to generate releases that can be deployed elsewhere with little to no configuration. 
+
 ## What is a release?
 
 A release is a package containing your compiled Erlang/Elixir code (i.e [BEAM](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) [bytecode](https://en.wikipedia.org/wiki/Bytecode)). It also provides any scripts necessary for launching your application.
@@ -26,7 +28,7 @@ A release will contain the folowing:
 
 ### Getting started/installation
 
-To add Distillery to your project, add it as a depdency to your `mix.exs` file. *Note* - if you are working on an umbrella app this should be in the mix.exs in the root of your project
+To add Distillery to your project, add it as a dependency to your `mix.exs` file. *Note* - if you are working on an umbrella app this should be in the mix.exs in the root of your project
 
 ```
 defp deps do
@@ -53,7 +55,7 @@ In your terminal, run
 mix release.init
 ```
 
-This command generates a rel directory with some configuration files in it.
+This command generates a `rel` directory with some configuration files in it.
 
 To generate a release in your terminal run `mix release`
 
@@ -88,11 +90,8 @@ For a complete listing of commands and their use:
     > _build/dev/rel/book_app/bin/book_app help
 ```
 
-
-
-
 To run your application type the following in your terminal ` _build/dev/rel/MYAPP/bin/MYAPP foreground`
-In your case replace MYAPP with your project name.
+In your case replace MYAPP with your project name. Now we're running the release build of our application!
 
 
 ## Using distillery with Phoenix
@@ -121,28 +120,22 @@ config :book_app, BookApp.Endpoint,
   version: Application.spec(:book_app, :vsn)
 ```
 
-Note
+We've done a few things here:
+- `server` - boots up the Cowboy application http endpoint on application start
+- `root` - sets up the application root which is where static files are served
+- `version` - busts the application cache when the application version is hot upgraded.
+- `port` - changing the port to be set by an ENV variable allows us to pass in the port number when starting up the application. When we start up the app, we can supply the port by running `PORT=4001 _build/prod/rel/book_app/bin/book_app foreground`
 
-We specified that the port will be passed in via an ENV variable. When we run our our application as we did above we will need to pass in the PORT
-
-`PORT=4001 _build/prod/rel/book_app/bin/book_app foreground`
-
-If you executed the following command you might have noticed that your application crashed because it is unable to connect to the databse. This is pretty straightforward to do with postgres. In your terminal, type the following:
-
-```
-sudo psql
-postgres=# CREATE DATABASE book_app_production;
+If you executed the above command, you might have noticed that your application crashed because it is unable to connect to the database since no database currently exists. This can be rectified by running an Ecto `mix` command. In your terminal, type the following:
 
 ```
+MIX_ENV=prod mix ecto.create
+```
 
-Try re-running the application and it should start up successfully. However, you will notice that your migrations to your database have not run. Usually in development we run those migrations manually by calling `mix.ecto migrate`. For the release, we will have to configure it so that it can run the migrations on its own.
+This command will create your database for you. Try re-running the application and it should start up successfully. However, you will notice that your migrations to your database have not run. Usually in development we run those migrations manually by calling `mix.ecto migrate`. For the release, we will have to configure it so that it can run the migrations on its own.
 
 
-## Configuring your release
-
-If you need to add further functionality to your release, you can do so by making edits to the `rel/config.exs` file
-
-Often when creating releases, you will find the need to customize your release. This can be done by making edits to the `rel/config.exs` file.
+## Running Migrations in Production
 
 Distillery provides us with the ability to execute code at different points in a release's lifecycle. These points are known as [boot-hooks](https://hexdocs.pm/distillery/1.5.2/boot-hooks.html). The hooks provided by Distillery include
 
@@ -153,7 +146,7 @@ Distillery provides us with the ability to execute code at different points in a
 * pre/post_upgrade
 
 
-For our purposes, we're going to be using the `post_start` hook to run our apps migrations in production. Let's first go and create a new release tasks called `migrate`
+For our purposes, we're going to be using the `post_start` hook to run our apps migrations in production. Let's first go and create a new release task called `migrate`. A release task is a module function that we can call on from the terminal that contains code that is separate from the inner workings of our application. It is useful for tasks that the application itself will typically not need to run.
 
 ```
 defmodule BookAppWeb.ReleaseTasks do
@@ -167,7 +160,7 @@ defmodule BookAppWeb.ReleaseTasks do
 end
 ```
 
-*Note* It is good practice to ensure that your applications have all started up properly before running these migrations.
+*Note* It is good practice to ensure that your applications have all started up properly before running these migrations. The [Ecto.Migrator](https://hexdocs.pm/ecto/2.2.8/Ecto.Migrator.html) allows us to run our migrations with the connected database.
 
 Next, create a new file - `rel/hooks/post_start/migrate.sh` and add the following code:
 
@@ -178,6 +171,8 @@ echo "Running migrations"
 bin/book_app rpc "Elixir.BookApp.ReleaseTasks.migrate"
 
 ```
+
+In order for this code to run properly, we are using Erlang's `rpc` module which allows us Remote Produce Call service. Basically, this allows us to call a function on a remote node and get the answer. When running in production it is likely that our application will be running in several different nodes
 
 Finally, in our rel/config.exs file we're going to add the hook to our prod configuration.
 
@@ -206,10 +201,15 @@ end
 
 *Note* - This hook only exists in the production release of this application. If we used the default development release it would not run.
 
-In order for this code to run properly, we are using Erlang's `rpc` module which allows us Remote Produce Call service. Basically, this allows us to call a function on a remote node and get the answer. When running in production it is likely that our application will be running in several different nodes
+## Custom Commands
 
+When working with a release, you may not have access to `mix` commands as `mix` may not be installed to the machine the release is deployed to. We can solve this by creating custom commands.
 
-Let's take this a step further by adding a new release command. Now that we can run our migrations, we may want to be able to seed our database with information through running a command. First, add a new method to our release tasks.
+> Custom commands are extensions to the boot script, and are used in the same way you use foreground or remote_console, in other words, they have the appearance of being part of the boot script. Like hooks, they have access to the boot scripts helper functions and environment - [Distillery Docs](https://hexdocs.pm/distillery/1.5.2/custom-commands.html)
+
+Commands are similar to release tasks in that they are both method functions but are different from them in that they are executed through the terminal as opposed to being run by the release script.
+
+Now that we can run our migrations, we may want to be able to seed our database with information through running a command. First, add a new method to our release tasks.
 
 ```
 def seed do
