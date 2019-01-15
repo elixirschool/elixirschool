@@ -17,13 +17,13 @@ A release is a package containing your compiled Erlang/Elixir code (i.e [BEAM](h
 
 A release will contain the folowing:
 * a /bin folder
-  * This contains a script that is the starting point to running your entire application
+  * This contains a script that is the starting point to running your entire application.
 * a /lib folder
   * This contains the compiled bytecode of the application along with any dependencies.
-* a /relealses folder
-  * This contains metadata about the release as well as hooks and custom commands
+* a /releases folder
+  * This contains metadata about the release as well as hooks and custom commands.
 * a /erts-VERSION
-  * This contains the Erlang runtime which will allow a machine to run your application without having Erland or Elixir installed
+  * This contains the Erlang runtime which will allow a machine to run your application without having Erlang or Elixir installed.
 
 
 ### Getting started/installation
