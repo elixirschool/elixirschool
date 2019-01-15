@@ -23,15 +23,15 @@ Nós estamos adicionando algumas novas entidades ao modelo de domínio da aplica
 nossos filmes favoritos. Vamos iniciar com dois esquemas: `Movie` e `Character`. Vamos implementar uma relação "has many/belongs to"
 entre os dois: Um filme tem vários (has many) personagens e um personagem personagem pertence a (belongs to) um filme.
 
-#### The Has Many Migration
+#### A Migração Has Many
 
-Let's generate a migration for `Movie`:
+Vamos gerar uma migração para `Movie`:
 
 ```console
 mix ecto.gen.migration create_movies
 ```
 
-Open up the newly generated migration file and define your `change` function to create the `movies` table with a few attributes:
+Abra o arquivo da migração recém gerada e defina a sua função `change`, com o intuito de criar a tabela `movies`:
 
 ```elixir
 # priv/repo/migrations/*_create_movies.exs
@@ -47,9 +47,10 @@ defmodule Example.Repo.Migrations.CreateMovies do
 end
 ```
 
-#### The Has Many Schema
+#### O Schema Has Many
 
-We'll add a schema that specifies the "has many" relationship between a movies and its characters.
+Nós vamos adicionar um esquema que especifica a relação "has many" entre um filme e os seus
+personagens.
 
 ```elixir
 # lib/example/movie.ex
@@ -64,7 +65,8 @@ defmodule Example.Movie do
 end
 ```
 
-The `has_many/3` macro doesn't add anything to the database itself. What it does is use the foreign key on the associated schema, `characters`, to make a movie's associated characters available. This is what will allow us to call `movie.characters`.
+A macro `has_many/3` não adiciona dados ao banco de dados por sí só. O que ela faz é utilizar uma chave estrangeira no esquema associado (`characters`)
+para tornar as associações de personagens de um filme disponíveis. Isso é o que nos permite realizar chamadas como `movie.characters`.
 
 #### The Belongs To Migration
 
