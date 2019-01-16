@@ -9,8 +9,6 @@ excerpt: >
   A codealong to help connect Kafka to your Elixir project with the wrapper Kaffe.
 ---
 
-# Connecting Elixir to Kafka with Kaffe: a codealong
-
 If we want to use the popular messaging system Kafka with our Elixir projects, we have a few wrappers we can choose from. This blogpost covers integrating one of them, [Kaffe](https://github.com/spreedly/kaffe), which doesn't have a lot of resources and therefore can be tricky to troubleshoot.
 
 In this codealong we'll build a simple Elixir application and use Kaffe to connect it to a locally running Kafka server. Later we'll cover a couple of variations to connect a dockerized Kafka server or an umbrella Elixir app.
