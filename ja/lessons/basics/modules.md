@@ -202,7 +202,7 @@ import List, only: :macros
 ### `require`
 
 他のモジュールのマクロを使用することをElixirに伝えるために `require` を使うことができます。
-`import` とのわずかな違いは、関数ではなくマクロを使用可能とすることです
+`import` とのわずかな違いは、関数ではなくマクロを使用可能とすることです。
 
 ```elixir
 defmodule Example do
