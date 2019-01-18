@@ -276,7 +276,7 @@ And call it with the same data we used in `Greeter2.hello/1`:
 %{age: "95", favorite_color: "Taupe", name: "Fred"}
 ```
 
-Remember that even though it looks like `%{name: person_name} = person}` is pattern-matching the `%{name: person_name}` against the `person` variable, they're actually _each_ pattern-matching to the passed-in argument.
+Remember that even though it looks like `%{name: person_name} = person` is pattern-matching the `%{name: person_name}` against the `person` variable, they're actually _each_ pattern-matching to the passed-in argument.
 
 **Summary:** Functions pattern-match the data passed in to each of its arguments independently.
 We can use this to bind values to separate variables within the function.
