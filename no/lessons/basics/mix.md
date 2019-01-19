@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 0.9.2
 title: Mix
 ---
 
@@ -21,6 +21,7 @@ Om vi tar en titt i konsollen vår, kan vi se at mix opprettet de nødvendige fi
 ```bash
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
 * creating config
 * creating config/config.exs
