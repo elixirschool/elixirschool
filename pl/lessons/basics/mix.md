@@ -1,11 +1,11 @@
 ---
-version: 0.9.1
+version: 0.9.2
 title: Mix
 ---
 
 Zanim zajmiemy się bardziej zaawansowanymi aspektami Elixira musimy poznać mix. Jeżeli znasz Ruby to mix jest odpowiednikiem Bundlera, RubyGems i Rake. Jest to kluczowy element każdego projektu tworzonego w Elixirze i w tej lekcji przyjrzymy się najważniejszym jego funkcjom. By uzyskać pełną listę oferowanych funkcji, wpisz `mix help`.
 
-Dotychczas pracowaliśmy z interpreterem `iex`, który ma dość ograniczone możliwości. Chcąc napisać coś bardziej rozbudowanego, musimy nasz projekt podzielić na wiele plików, by móc zarządzać kodem. Mix pozwala nam na efektywne zarządzanie projektem.   
+Dotychczas pracowaliśmy z interpreterem `iex`, który ma dość ograniczone możliwości. Chcąc napisać coś bardziej rozbudowanego, musimy nasz projekt podzielić na wiele plików, by móc zarządzać kodem. Mix pozwala nam na efektywne zarządzanie projektem.
 
 {% include toc.html %}
 
@@ -22,6 +22,7 @@ W konsoli pojawi się informacja, że mix stworzył niezbędne pliki oraz katalo
 ```bash
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
 * creating config
 * creating config/config.exs
