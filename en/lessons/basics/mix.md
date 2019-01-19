@@ -27,6 +27,7 @@ From the output we can see that Mix has created our directory and a number of bo
 
 ```bash
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
 * creating config
