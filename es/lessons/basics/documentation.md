@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Documentación
 ---
 
@@ -46,7 +46,7 @@ defmodule Greeter do
 end
 ```
 
-Nosotros (u otros) podemos acceder a esta documentación usando la función de ayuda `h` dentro de IEx. 
+Nosotros (u otros) podemos acceder a esta documentación usando la función de ayuda `h` dentro de IEx.
 
 ```elixir
 iex> c("greeter.ex")
@@ -132,6 +132,7 @@ $ mix new greet_everyone
 
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
 * creating config
 * creating config/config.exs
