@@ -109,15 +109,16 @@ iex> %{name: "Sean"} = sean
 ```
 
 As of Elixir 1.8 structs include custom introspection.
-To understand what this means and how it's used let us inspect our `sean` capture:
+To understand what this means and how we are to use it let us inspect our `sean` capture:
 
 ```elixir
 iex> inspect(sean)
 "#Example.User<name: \"Sean\", roles: [...], ...>"
 ```
 
-All of our fields are present which for this example is okay but what if we had a protected field we didn't want to include?
-The new `@derive` feature let's us accomplish this so let's update our example so `roles` are no longer included in our output:
+All of our fields are present which is okay for this example but what if we had a protected field we didn't want to include?
+The new `@derive` feature let's us accomplish just this!
+Let's update our example so `roles` are no longer included in our output:
 
 ```elixir
 defmodule Example.User do
