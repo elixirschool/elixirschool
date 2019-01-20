@@ -1,5 +1,5 @@
 ---
-version: 1.2.4
+version: 1.2.5
 title: Collections
 ---
 
@@ -125,7 +125,7 @@ The three characteristics of keyword lists highlight their importance:
 
 + Keys are atoms.
 + Keys are ordered.
-+ Keys may not be unique.
++ Keys do not have to be unique.
 
 For these reasons, keyword lists are most commonly used to pass options to functions.
 
