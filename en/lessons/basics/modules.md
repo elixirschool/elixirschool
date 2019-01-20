@@ -88,14 +88,14 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> #Example.User<name: "Steve", roles: [...], ...>
 #Example.User<name: "Steve", roles: [...], ...>
 ```
 
 We can update our struct just like we would a map:
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = #Example.User<name: "Steve", roles: [...], ...>
 #Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 #Example.User<name: "Sean", roles: [...], ...>
@@ -131,7 +131,7 @@ _Note_: we could also use `@derive {Inspect, except: [:roles]}`, they are equiva
 With our updated module in place let's take a look at what happens in `iex`:
 
 ```elixir
-iex> sean = %Example.User{name: "Sean", roles: [:admin, :owner]}
+iex> sean = #Example.User<name: "Sean", roles: [...], ...>
 #Example.User<name: "Sean", ...>
 iex> inspect(sean)
 "#Example.User<name: \"Sean\", ...>"
