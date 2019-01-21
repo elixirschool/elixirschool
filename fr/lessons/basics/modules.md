@@ -77,29 +77,29 @@ Créons maintenant quelques struct:
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+#Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+#Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> #Example.User<name: "Steve", roles: [...], ...>
+#Example.User<name: "Steve", roles: [...], ...>
 ```
 
 Nous pouvons mettre à jour notre struct exactement comme une map:
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+#Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Plus important encore, on peut pattern matcher struct et map:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 ## Composition

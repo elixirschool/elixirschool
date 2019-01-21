@@ -77,29 +77,29 @@ end
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+#Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+#Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> #Example.User<name: "Steve", roles: [...], ...>
+#Example.User<name: "Steve", roles: [...], ...>
 ```
 
 Обновление структуры работает так же, как и обновление ассоциативного массива:
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+#Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Что еще более важно, структуры можно сопоставлять с ассоциативными массивами:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 ## Композиция

@@ -77,20 +77,20 @@ Mari kita bina beberapa struct:
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+#Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+#Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> #Example.User<name: "Steve", roles: [...], ...>
+#Example.User<name: "Steve", roles: [...], ...>
 ```
 
 Kita boleh mengemaskini struct sebagaimana kita mengemaskini map:
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+#Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 %Example.User{name: "Sean", password: nil, roles: [:admin, :owner]}
 ```
@@ -99,7 +99,7 @@ Paling penting, anda boleh membuat padanan antara struct dan map:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 ## Komposisi

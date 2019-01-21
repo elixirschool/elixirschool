@@ -77,29 +77,29 @@ Stwórzmy zatem kilka struktur:
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+#Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+#Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> #Example.User<name: "Steve", roles: [...], ...>
+#Example.User<name: "Steve", roles: [...], ...>
 ```
 
 Struktury można aktualizować tak jak zwykłe mapy:
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+#Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 I najważniejsze. Struktury można dopasowywać tak jak zwykłe mapy:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 ## Komponenty

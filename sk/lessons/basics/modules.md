@@ -77,29 +77,29 @@ Teraz si vytvorme niekoľko príkladov tohto structu:
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+#Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+#Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> #Example.User<name: "Steve", roles: [...], ...>
+#Example.User<name: "Steve", roles: [...], ...>
 ```
 
 Struct môžeme meniť rovnako, ako mapu:
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+#Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Veľmi dôležitou vlastnosťou structov je, že ich môžeme pattern matchovať s mapami:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 ## Kompozícia
