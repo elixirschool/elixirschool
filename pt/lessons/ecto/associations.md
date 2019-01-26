@@ -68,22 +68,23 @@ end
 A macro `has_many/3` não adiciona dados ao banco de dados por sí só. O que ela faz é utilizar uma chave estrangeira no esquema associado (`characters`)
 para tornar as associações de personagens de um filme disponíveis. Isso é o que nos permite realizar chamadas como `movie.characters`.
 
-#### The Belongs To Migration
+#### A migração Belongs
 
-Now we're ready to build our `Character` migration and schema. A character belongs to a movie, so we'll define a migration and schema that specifies this relationship.
+Agora nós estamos prontos para construir nossa migração e `schema` para `Character`. Um personagem pertence(`belongs to`) a um filme, então vamos definir uma migração que especifique o relacionamento.
 
-First, generate the migration:
+Primeiro, precisamos gerar a migração:
 
 ```console
 mix ecto.gen.migration create_characters
 ```
 
-To declare that a character belongs to a movie, we need the `characters` table to have a `movie_id` column. We want this column to function as a foreign key. We can accomplish this with the following line in our `create_table/1` function:
+Para declarar que um personagem pertence a um filme, precisamos da tabela `characters` e que ela possua uma coluna `movie_id`. Nós queremos que essa coluna funcione como uma chave estrangeira. Podemos alcançar isso com a seguinte linha, na chamada para `create_table/1`:
 
 ```elixir
 add :movie_id, references(:movies)
 ```
-So our migration should look like this:
+
+Assim, nossa migração deve ser algo como:
 
 ```elixir
 # priv/migrations/*_create_characters.exs
@@ -99,9 +100,9 @@ defmodule Example.Repo.Migrations.CreateCharacters do
 end
 ```
 
-#### The Belongs To Schema
+#### O Schema Belongs To
 
-Our schema likewise needs to define the "belongs to" relationship between a character and its movie.
+Nosso esquema precisa definir a relação `belongs to` entre um personagem e seu filme,
 
 ```elixir
 # lib/example/character.ex
@@ -116,9 +117,9 @@ defmodule Example.Character do
 end
 ```
 
-Let's take a closer look at what the `belongs_to/3` macro does for us. Unlike adding the `movie_id` column to our `characters` table, this macro _doesn't_ add anything to the database. It _does_ give us the ability to access our associated `movies` schema _through_ `characters`. It uses the the foreign key of `movie_id` on the `characters` table to make a character's associated movie available when we query for characters. This is what will allow us to call `character.movie`.
+Vamos dar uma olhada mais a fundo na macro `belongs_to/3`. Ao invés de adicionar a coluna `movie_id` na tabela `characters`, essa macro _não_ adiciona nada ao banco de dados. Ela nos _permite_ acessar os esquemas de `movies` associados através de `characters`. Ela utiliza a chave estrangeira `movie_id` para tornar os `characters` associados com um dado filme quando executamos a consulta sobre os personagens. Isso nos permite chamar `character.movie`.
 
-Now we're ready to run our migrations:
+Agora nós estamos prontos para executar as migrações:
 
 ```console
 mix ecto.migrate
