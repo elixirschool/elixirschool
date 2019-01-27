@@ -56,16 +56,20 @@ We can refactor this code with the help of [guard clauses](https://elixirschool.
 
 ```elixir
 defmodule RecursionPractice do
-
+  def hello_world(count \\ 0)
   def hello_world(count) when count >= 10, do: nil
 
-  def hello_world(count \\ 0) do
+  def hello_world(count) do
     IO.puts("Hello, World!")
     new_count = count + 1
     hello_world(new_count)
   end
 end
 ```
+
+*Note that we've moved the default argument definition into a function head. If you're defining a function with multiple clauses and a default value, the default value definition belongs in a function head. Learn more about default arguments, function heads and function clauses in [this Elixir School lesson.](https://elixirschool.com/en/lessons/basics/functions/#default-arguments)*
+
+
 
 ## Why is it Useful?
 
@@ -303,6 +307,16 @@ defmodule MyList do
   end  
 end
 ```
+
+We can even take this one step further and replace our guard clause with Elixir's ability to pattern match function arity. Instead of using the guard clause to run a certain version of our function when `head === el`, we can write the function like this:
+
+```elixir
+def delete_all([el | tail], el, new_list) do
+  delete_all(tail, el, new_list)
+end
+```
+
+Now we should be able to call our function:
 
 ```elixir
 iex> MyList.delete_all(["Apple", "Pear", "Grapefruit", "Pear"], "Pear")
