@@ -153,7 +153,7 @@ def changeset(struct, params) do
 end
 ```
 
-nameに対して1つの文字を渡した場合、どのような結果になるかを試して推測することができます！
+nameに対して1つの文字を渡した場合、どのような結果になるかを試してみましょう！
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => "A"})
