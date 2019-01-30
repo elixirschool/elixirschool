@@ -173,13 +173,13 @@ iex> User.changeset(%User{}, %{"name" => "A"})
 
 `Ecto.Changeset` にある他のビルトインのバリデーションは、以下のものがあります:
 
-- validate_acceptance/3
-- validate_change/3 & /4
-- validate_confirmation/3
-- validate_exclusion/4 & validate_inclusion/4
-- validate_format/4
-- validate_number/3
-- validate_subset/4
++ validate_acceptance/3
++ validate_change/3 & /4
++ validate_confirmation/3
++ validate_exclusion/4 & validate_inclusion/4
++ validate_format/4
++ validate_number/3
++ validate_subset/4
 
 これらの使用方法の詳細と完全なリストは [ここ](https://hexdocs.pm/ecto/Ecto.Changeset.html#summary) で確認できます。
 
