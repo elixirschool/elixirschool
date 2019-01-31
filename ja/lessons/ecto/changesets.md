@@ -286,5 +286,5 @@ end
 
 ## まとめ
 
-_あらゆる_ データのバリデーションに使える [schemaless changesets](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) や、チェンジセット ([`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2)) に伴う副作用の処理、関連や埋め込みなど、このレッスンではカバーできなかった多くのユースケースや機能があります。
+_あらゆる_ データのバリデーションに使える [schemaless changesets](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) や、チェンジセット ([`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2)) に伴う副作用の処理、アソシエーションや埋め込みなど、このレッスンではカバーできなかった多くのユースケースや機能があります。
 将来的に、上級レッスンとしてこれらをカバーするかもしれませんが、それまでは [Ecto Changeset](https://hexdocs.pm/ecto/Ecto.Changeset.html) の公式ドキュメントで詳細を見ることをお勧めします。
