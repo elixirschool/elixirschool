@@ -430,7 +430,7 @@ defmodule Example.Router do
   get("/upload", do: send_resp(conn, 201, "Uploaded\n"))
   match(_, do: send_resp(conn, 404, "Oops!\n"))
 
-  def handle_errors(conn, %{kind: kind, reason: reason, stack: stack}) do
+  defp handle_errors(conn, %{kind: kind, reason: reason, stack: stack}) do
     IO.puts "Kind:"
     IO.inspect kind
     IO.puts "Reason:"
