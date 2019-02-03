@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 1.0.0
 title: Pattern Matching
 ---
 
@@ -9,7 +9,7 @@ _Pattern matching_ è un aspetto fondamentale di Elixir, permette di abbinare se
 
 ## Operatore match
 
-Se pronto ad essere spiazzato? In Elixir, l'operatore `=` è in realtà un operatore match. Tramite l'operatore match possiamo assegnare ed abbinare valori, diamo uno sguardo:
+Se pronto ad essere spiazzato? In Elixir, l'operatore `=` è in realtà un operatore match. Tramite l'operatore match possiamo assegnare ed abbinare valori, simile al segno uguale in algebra. Scrivendolo, transforma l'intera espressione in un'equazione ed Elixir deve abbinare i valori sulla sinistra a quelli della destra. Se l'operazione ha successo, Elixir ritonerà di valori dell'equazione, altrimenti, genera un errore. Diamo uno sguardo:
 
 ```elixir
 iex> x = 1
@@ -96,3 +96,5 @@ iex> greet.("Hello", "Sean")
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
 ```
+
+Da notare il fatto la riassegnazione di `greeting` nell'esempio `"Mornin'"`, la riassegnazione succede solo dentro la funzione. Fuori dalla funzione `greeting` contiente ancora il valore di `"Hello"`.
