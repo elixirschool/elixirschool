@@ -1,24 +1,32 @@
 ---
 title: Elixir School
 layout: home
-version: 1.0.0
+version: 2.0.0
 ---
 
-[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Elixir School è la destinazione pricipale per chiunque abbia la necessità di imparare e padroneggiare il linguaggio di programmazione Elixir.
 
-Lezioni sul linguaggio di programmazione Elixir, ispirato a [Scala School](http://twitter.github.io/scala_school/) di Twitter.
+Che tu sia un esperto o un programmatore alle prime armi, in queste lezioni e nelle risorse ausiliari troverai tutto ciò di qui hai bisogno.
 
-_Sei incoraggiato a commentare o partecipare!_
+Grazie al duro di volontari, Elixir School è stato tradotto in molte lingue. Alcune di queste lingue includono: [Việt ngữ][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], e [ภาษาไทย][th].
 
-## About Elixir
+Vi invitiamo e incoraggiamo di unirci nel continuare a rendere Elixir School un fantastico prodottto andando a [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
 
-"Elixir è un linguaggio dinamico e funzionale, progettato per costruire applicazioni scalabili e manutenibili." — [elixir-lang.org](http://elixir-lang.org/)
-
-Elixir adotta la robusta Erlang VM (BEAM) per costruire sistemi distribuiti, tolleranti ai guasti e con bassa latenza.
-
-__Features__:
-
-+ Scalabile
-+ Tollerante ai guasti
-+ Programmazione Funzionale
-+ Estensibile
+  [es]: /es/
+  [it]: /it/
+  [ja]: /ja/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [id]: /id/
+  [ms]: /ms/
+  [uk]: /uk/
+  [de]: /de/
+  [bn]: /bn/
+  [tr]: /tr/
+  [th]: /th/
+  [zh-hans]: /zh-hans/
+  [zh-hant]: /zh-hant/
