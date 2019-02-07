@@ -174,7 +174,7 @@ bin/book_app rpc "Elixir.BookApp.ReleaseTasks.migrate"
 
 In order for this code to run properly, we are using Erlang's `rpc` module which allows us Remote Produce Call service. Basically, this allows us to call a function on a remote node and get the answer. When running in production it is likely that our application will be running in several different nodes
 
-Finally, in our rel/config.exs file we're going to add the hook to our prod configuration.
+Finally, in our `rel/config.exs` file we're going to add the hook to our prod configuration.
 
 Let's replace
 
@@ -227,9 +227,9 @@ release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
 ```
 
 
-*Note* - `release_ctl()` is a shell script provided by distillery that allows us to execute commands locally or in a clean node. If you need to run this against a running note you can run `release_remote_ctl()`
+*Note* - `release_ctl()` is a shell script provided by Distillery that allows us to execute commands locally or in a clean node. If you need to run this against a running node you can run `release_remote_ctl()`
 
-See more about shell_scripts from distillery [here](https://hexdocs.pm/distillery/extensibility/shell_scripts.html)
+See more about shell_scripts from Distillery [here](https://hexdocs.pm/distillery/extensibility/shell_scripts.html)
 
 Finally, in your `rel/config.exs` file, add the following to your `rel/config.exs` file
 ```
