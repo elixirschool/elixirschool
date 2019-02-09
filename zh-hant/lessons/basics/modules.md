@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.4.0
 title: 模組
 ---
 
@@ -10,7 +10,8 @@ title: 模組
 
 ## 模組
 
-模組允許我們將函數整合到一個名稱空間 (namespace) 中。除了對函數進行分組之外，它同時允許我們定義在 [functions lesson](../functions/) 中介紹的命名函數和私有函數。
+模組允許我們將函數整合到一個命名空間 (namespace) 中。
+除了對函數進行分組之外，它同時允許我們定義在 [函數](../functions/) 中介紹的命名函數和私有函數。
 
 現在來看看一個基本的例子：
 
@@ -44,7 +45,8 @@ iex> Example.Greetings.morning "Sean"
 
 ### 模組屬性 (Module Attributes)
 
-模組屬性在 Elixir 中最常用作常數。現在來看一個簡單的例子：
+模組屬性在 Elixir 中最常以常數做為使用。
+現在來看一個簡單的例子：
 
 ```elixir
 defmodule Example do
@@ -56,7 +58,8 @@ defmodule Example do
 end
 ```
 
-注意 Elixir 有保留某些屬性 (reserved attributes)。最常見的三個是：
+注意 Elixir 有些保留屬性 (reserved attributes)。
+最常見的三個是：
 
 + `moduledoc` — 當前模組的文件 (Documents)。
 + `doc` — 函數和巨集 (macros) 的文件 (Documentation)。
@@ -65,7 +68,8 @@ end
 ## 結構體 (Structs)
 
 結構體是具有一組被定義的鍵 (keys) 和預設值的特殊映射。
-結構體必須定義在一個模組中，因此必須通過模組來存取。在模組中，單只定義結構體是常見用法。
+結構體必須定義在一個模組中，因此必須通過模組來存取。
+在模組中，單只定義結構體是常見用法。
 
 為了定義一個結構體，我們使用 `defstruct` 和關鍵字列表以及預設值：
 
@@ -103,6 +107,39 @@ iex> sean = %{steve | name: "Sean"}
 iex> %{name: "Sean"} = sean
 #Example.User<name: "Sean", roles: [...], ...>
 ```
+
+自 Elixir 1.8 開始，結構體加入自定自我訓練(introspection)。
+要了解這代表著什麼以及如何使用它，現在來檢查(inspect) `sean` 擷取：
+
+```elixir
+iex> inspect(sean)
+"#Example.User<name: \"Sean\", roles: [...], ...>"
+```
+
+將所有欄位都呈現，以這個例子是可以的，但是如果我們有一個不希望被包括的受保護欄位呢？
+新增的 `@derive` 功能讓我們能夠實現這件事！
+現在將範例更新， `roles` 將不再包括在輸出中：
+
+```elixir
+defmodule Example.User do
+  @derive {Inspect, only: [:name]}
+  defstruct name: nil, roles: []
+end
+```
+
+_註_：也可以使用 `@derive {Inspect, except: [:roles]}`，它們是同樣的。
+
+隨著更新後的模組就位，現在來看看 `iex` 中會發生什麼：
+
+```elixir
+iex> sean = #Example.User<name: "Sean", roles: [...], ...>
+#Example.User<name: "Sean", ...>
+iex> inspect(sean)
+"#Example.User<name: \"Sean\", ...>"
+```
+
+`roles` 已被排除在輸出中！
+
 
 ## 合成 (Composition)
 
@@ -166,7 +203,8 @@ iex> last([1, 2, 3])
 
 預設情況下，所有的函數和巨集都會被導入，但是我們可以使用 `:only` 和 `:except` 選項進行篩選。
 
-要導入特定的函數和巨集，我們必須提供一對 (pairs) 名稱/引數數目給 `:only` 和 `:except`。讓我們從只導入 `last/1` 函數開始:
+要導入特定的函數和巨集，我們必須提供一對 (pairs) 名稱/引數數目給 `:only` 和 `:except`。
+讓我們從只導入 `last/1` 函數開始:
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -196,7 +234,8 @@ import List, only: :macros
 
 ### `請求 (require)`
 
-可以使用 `require` 來告訴 Elixir 將使用來自其他模組的巨集 (macros)。與 `import`的細微差異在於只允許呼用巨集，而非被指定模組的函數：
+可以使用 `require` 來告訴 Elixir 將使用來自其他模組的巨集 (macros)。
+與 `import` 的細微差異在於只允許呼用巨集，而非被指定模組的函數：
 
 ```elixir
 defmodule Example do
@@ -258,6 +297,7 @@ end
 ```
 
 現在更新我們的 `Example` 模組以包含新創設的選項 `greeting` ：
+
 
 ```elixir
 defmodule Example do
