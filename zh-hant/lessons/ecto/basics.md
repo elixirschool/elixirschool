@@ -1,368 +1,230 @@
 ---
-version: 1.3.0
-title: Basics
+version: 2.1.0
+title: 基礎
 ---
 
-Ecto 是一個官方 Elixir 專案，提供資料庫封裝 (wrapper) 和整合查詢語言。
-通過 Ecto，能夠建立遷移 (migration)、定義結構描述 (schema)、插入 (insert) 和更新 (update) 記錄並查詢 (query)。
+Ecto 是一個官方 Elixir 專案，提供資料庫封裝 (wrapper) 和整合查詢語言。通過 Ecto，能夠建立遷移 (migration)、定義結構描述 (schema)、插入 (insert) 和更新記錄 (update) 並查詢 (query)。
 
 {% include toc.html %}
 
-## 安裝 (Setup)
+### 轉接器
 
-以 supervision tree 建立一個新的應用程式：
+Ecto 經由使用轉接器支援不同的資料庫。幾個轉接器的範例如下：
+
+* PostgreSQL
+* MySQL
+* SQLite
+
+在本課程中，將會設定 Ecto 來使用 PostgreSQL 轉接器。
+
+### 入門
+
+在本課程中，將涵蓋 Ecto 的三個部分：
+
+* 存放庫 — 提供資料庫的界面，包括連線部分 (connection)
+* 遷移 — 一種建立、修改和刪除資料庫表格和索引的機制
+* 結構描述 — 表示資料庫表格項目的專用結構
+
+首先，將使用 supervision 樹建立一個應用程式。
 
 ```shell
-$ mix new example_app --sup
-$ cd example_app
+$ mix new friends --sup
+$ cd friends
 ```
 
-開始時需要在專案的 `mix.exs` 中包含 Ecto 和資料庫轉接器 (adapter)。可以在 Ecto README 的 [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) 章節找到支援的資料庫轉接器清單。
-
-關於範例，將使用 PostgreSQL：
+將 ecto 和 postgrex 套件相依關係添加到 `mix.exs` 檔案中。
 
 ```elixir
-defp deps do
-  [{:ecto, "~> 2.2"}, {:postgrex, ">= 0.0.0"}]
-end
+  defp deps do
+    [
+      {:ecto, "~> 2.0"},
+      {:postgrex, "~> 0.11"}
+    ]
+  end
 ```
 
-接著使用以下指令獲取相依關係 (dependencies)
+使用以下指令擷取相依關係
 
 ```shell
 $ mix deps.get
 ```
 
-### 存放庫 (Repository)
+#### 建立存放庫 (Repository)
 
-最後需要建立專案的存放庫也就是資料庫封裝。可以通過 `mix ecto.gen.repo -r ExampleApp.Repo` 工作來完成。接下來的章節將會介紹 Ecto mix 工作指令。Repo 檔案可以在 `lib/<project name>/repo.ex` 中找到：
+Ecto 中的存放庫映射到資料儲存，例如 Postgres 資料庫。
+所有與資料庫的交流都將使用此存放庫完成。
 
-```elixir
-defmodule ExampleApp.Repo do
-  use Ecto.Repo, otp_app: :example_app
-end
+通過執行以下指令設置存放庫：
+
+```shell
+$ mix ecto.gen.repo -r Example.Repo
 ```
 
-### Supervisor
-
-一旦建立了 Repo 檔案，就需要設置 supervisor tree，這通常會在 `lib/<project name>.ex` 中找到。將 Repo 加入到 `children` 列表中：
-
-```elixir
-defmodule ExampleApp.Application do
-  use Application
-
-  def start(_type, _args) do
-    children = [
-      ExampleApp.Repo
-    ]
-
-    opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
-    Supervisor.start_link(children, opts)
-  end
-end
-```
-
-有關 supervisor 的更多資訊，請查閱 [OTP Supervisors](../../advanced/otp-supervisors) 課程。
-
-### 設定
-
-要設定 Ecto，需要在 `config/config.exs` 中加入一段程式碼。在這裡，將指定存放庫、轉接器、資料庫和帳號資訊：
+這會在 `config/config.exs` 中建立連接到包含要使用轉接器的資料庫的所需配置。
+這是 `Example` 應用程式的配置檔案
 
 ```elixir
-config :example_app, ExampleApp.Repo,
+config :friends, Example.Repo,
   adapter: Ecto.Adapters.Postgres,
-  database: "example_app",
+  database: "friends_repo",
   username: "postgres",
-  password: "postgres",
+  password: "",
   hostname: "localhost"
 ```
 
-## Mix 工作指令
+這將配置 Ecto 如何連接到資料庫。
+注意到是如何選擇 `Ecto.Adapters.Postgres` 轉接器。
 
-Ecto 包含許多用於處理資料庫的有用 mix 工作指令：
-
-```shell
-mix ecto.create         # Create the storage for the repo
-mix ecto.drop           # Drop the storage for the repo
-mix ecto.gen.migration  # Generate a new migration for the repo
-mix ecto.gen.repo       # Generate a new repository
-mix ecto.migrate        # Run migrations up on a repo
-mix ecto.rollback       # Rollback migrations from a repo
-```
-
-## 遷移 (Migrations)
-
-建立遷移的最佳方式是 `mix ecto.gen.migration <name>` 工作指令。如果你通曉 ActiveRecord，這些將看起來很熟悉。
-
-現在先看一下一個 users table 的遷移：
+同時它還在 `lib/friends/repo.ex` 中建立了一個 `Example.Repo` 模組。
 
 ```elixir
-defmodule ExampleApp.Repo.Migrations.CreateUser do
+defmodule Example.Repo do
+  use Ecto.Repo, otp_app: :friends
+end
+```
+
+我們將使用 `Example.Repo` 模組來查詢資料庫。同時也告訴模組在 `:friends` 應用程式中尋找其資料庫配置資訊。
+
+接下來，將在 `lib/friends/application.ex` 中的應用程式 supervision 樹中將 `Example.Repo` 設定為 supervisor。
+這將在應用程式啟動時啟動 Ecto 處理程序。
+
+```elixir
+  def start(_type, _args) do
+    # List all child processes to be supervised
+    children = [
+      Example.Repo,
+    ]
+
+  ...
+```
+
+之後還需要在 `config/config.exs` 檔案中加入下面這一行：
+
+```elixir
+config :friends, ecto_repos: [Example.Repo]
+```
+
+這將允許應用程式從命令列執行 ecto mix 指令。
+
+現在儲存庫已經配置完成！
+可以使用以下指令在 postgres 中建立資料庫：
+
+```shell
+$ mix ecto.create
+```
+
+Ecto 將使用 `config/config.exs` 檔案中的資訊來確定如何連接到 Postgres 以及如何命名資料庫。
+
+如果收到任何錯誤訊息，請確保配置的資料正確並且 postgres 實例有在運行。
+
+### 遷移 (Migrations)
+
+為了在 postgres 資料庫中建立和修改表格，Ecto 為此提供了遷移。
+每個遷移都描述了要對資料庫執行的一組操作，比如要建立或更新的表格。
+
+由於資料庫還未有任何表格，將需要建立一個遷移來加入這些表格。
+在 Ecto 中約定 (convention) 是命名表格為複數，因此對於應用程式，需要一個 `people` 表格，將從那裡開始使用遷移。
+
+建立遷移的最佳方法是執行 mix `ecto.gen.migration <name>`，所以在範例中將使用：
+
+```shell
+$ mix ecto.gen.migration create_people
+```
+
+這會在 `priv/repo/migrations` 資料夾內生成一個檔案名中含有時間戳記的新檔案。
+如果導引到該目錄並開啟遷移，應該會看到如下內容：
+
+```elixir
+defmodule Example.Repo.Migrations.CreatePeople do
   use Ecto.Migration
 
   def change do
-    create table(:users) do
-      add(:username, :string, unique: true)
-      add(:encrypted_password, :string, null: false)
-      add(:email, :string)
-      add(:confirmed, :boolean, default: false)
 
-      timestamps
-    end
-
-    create(unique_index(:users, [:username], name: :unique_usernames))
   end
 end
 ```
 
-預設情況下，Ecto 會建立一個名為 `id` 的自動遞增主鍵 (primary key)。這裡正在使用預設的 `change/0`  回呼函數，但是如果需要更精細的控制，Ecto 也支援 `up/0` 和 `down/0`。
-
-正如已經猜到的那樣，為遷移加入 `timestamps` 將能建立和管理 `inserted_at` 和 `updated_at` 。
-
-要應用新遷移請執行 `mix ecto.migrate`。
-
-有關遷移的更多資訊，請參閱 [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) 章節。
-
-## 結構描述 (Schemas)
-
-現在有了遷移，可以繼續到結構描述 (Schema)。結構描述是一個模組，它定義了底層資料庫表格的映射 (mapping)、欄位 (fields)、輔助函數 (helper functions) 和變更集 (changesets)。下面的章節中將介紹變更集的更多部分。
-
-現在來看看我們遷移的結構描述大概長什麼樣：
+從修改 `change/0` 函數著手以建立一個帶有 `name` 和 `age` 的新 `people` 表格：
 
 ```elixir
-defmodule ExampleApp.User do
-  use Ecto.Schema
-  import Ecto.Changeset
+defmodule Example.Repo.Migrations.CreatePeople do
+  use Ecto.Migration
 
-  schema "users" do
-    field(:username, :string)
-    field(:encrypted_password, :string)
-    field(:email, :string)
-    field(:confirmed, :boolean, default: false)
-    field(:password, :string, virtual: true)
-    field(:password_confirmation, :string, virtual: true)
-
-    timestamps
-  end
-
-  @required_fields ~w(username encrypted_password email)
-  @optional_fields ~w()
-
-  def changeset(user, params \\ :empty) do
-    user
-    |> cast(params, @required_fields ++ @optional_fields)
-    |> validate_required(@required_fields)
-    |> unique_constraint(:username)
-  end
-end
-```
-
-我們定義的結構描述幾乎是代表在遷移中指定的內容。除了資料庫欄位，還包括兩個虛擬欄位。虛擬欄位不會儲存到資料庫，但對驗證 (validation) 等事情可能很有用。將在 [Changesets](#changesets) 章節看到虛擬欄位的實際應用。
-
-## 查詢 (Querying)
-
-在要可以查詢存放庫之前，需要匯入 Query API。目前只需要匯入 `from/2`：
-
-```elixir
-import Ecto.Query, only: [from: 2]
-```
-
-官方文件可以在 [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html) 這裡找到。
-
-### 基礎
-
-Ecto 提供了一個優秀的查詢用 DSL，能夠使我們清楚地表達查詢語法。要找到所有已認證帳號的使用者名稱，可以使用如下所示的內容：
-
-```elixir
-alias ExampleApp.{Repo, User}
-
-query =
-  from(
-    u in User,
-    where: u.confirmed == true,
-    select: u.username
-  )
-
-Repo.all(query)
-```
-
-除了 `all/2`，Repo 還提供了一些回呼，包括 `one/2`、 `get/3`、 `insert/2` 和 `delete/2`。
-
-完整的回呼清單可以在 [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks) 中找到。
-
-### Count
-
-如果要計算已認證帳號的使用者數量，可以使用 `count/1`：
-
-```elixir
-query =
-  from(
-    u in User,
-    where: u.confirmed == true,
-    select: count(u.id)
-  )
-```
-
-有 `count/2` 函數計算給定條目中的不同值：
-
-```elixir
-query =
-  from(
-    u in User,
-    where: u.confirmed == true,
-    select: count(u.id, :distinct)
-  )
-```
-
-### Group By
-
-要按照認證狀態對使用者進行分組，可以加上 `group_by` 選項：
-
-```elixir
-query =
-  from(
-    u in User,
-    group_by: u.confirmed,
-    select: [u.confirmed, count(u.id)]
-  )
-
-Repo.all(query)
-```
-
-### Order By
-
-依照使用者的建立日期排序：
-
-```elixir
-query =
-  from(
-    u in User,
-    order_by: u.inserted_at,
-    select: [u.username, u.inserted_at]
-  )
-
-Repo.all(query)
-```
-
-依照 `DESC` 排序：
-
-```elixir
-query =
-  from(
-    u in User,
-    order_by: [desc: u.inserted_at],
-    select: [u.username, u.inserted_at]
-  )
-```
-
-### Joins
-
-假設存在一個與使用者相關的設定檔，現在來搜尋所有已認證帳號的設定檔：
-
-```elixir
-query =
-  from(
-    p in Profile,
-    join: u in assoc(p, :user),
-    where: u.confirmed == true
-  )
-```
-
-### Fragments
-
-有時，像是需要特定的資料庫函數時，僅 Query API 是不夠的。為此目的存在 `fragment/1` 函數：
-
-```elixir
-query =
-  from(
-    u in User,
-    where: fragment("downcase(?)", u.username) == ^username,
-    select: u
-  )
-```
-
-其他查詢範例可以在 [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html)模組描述中找到。
-
-## 變更集 (Changesets)
-
-在前一節中，學習了如何檢索資料，但是如何插入和更新資料？為此，需要變更集 (Changesets)。
-
-當更改結構描述時，變更集負責篩選 (filtering)、驗證 (validating) 和維護約束 (constraints)。
-
-在這個範例中，重點將放在建立使用者帳戶的變更集上。開始時，需要更新結構描述：
-
-```elixir
-defmodule ExampleApp.User do
-  use Ecto.Schema
-  import Ecto.Changeset
-  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
-
-  schema "users" do
-    field(:username, :string)
-    field(:encrypted_password, :string)
-    field(:email, :string)
-    field(:confirmed, :boolean, default: false)
-    field(:password, :string, virtual: true)
-    field(:password_confirmation, :string, virtual: true)
-
-    timestamps
-  end
-
-  @required_fields ~w(username email password password_confirmation)
-  @optional_fields ~w()
-
-  def changeset(user, params \\ :empty) do
-    user
-    |> cast(params, @required_fields ++ @optional_fields)
-    |> validate_required(@required_fields)
-    |> validate_length(:password, min: 8)
-    |> validate_password_confirmation()
-    |> unique_constraint(:username, name: :email)
-    |> put_change(:encrypted_password, hashpwsalt(params[:password]))
-  end
-
-  defp validate_password_confirmation(changeset) do
-    case get_change(changeset, :password_confirmation) do
-      nil ->
-        password_incorrect_error(changeset)
-
-      confirmation ->
-        password = get_field(changeset, :password)
-        if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
+  def change do
+    create table(:people) do
+      add :name, :string, null: false
+      add :age, :integer, default: 0
     end
   end
-
-  defp password_mismatch_error(changeset) do
-    add_error(changeset, :password_confirmation, "Passwords does not match")
-  end
-
-  defp password_incorrect_error(changeset) do
-    add_error(changeset, :password, "is not valid")
-  end
 end
 ```
 
-我們改善了 `changeset/2` 函數並加入了三個新的輔助函數：`validate_password_confirmation/1`、`password_mismatch_error/1` 和 `password_incorrect_error/1`。
+可以看到在上面同時還定義了欄 (column) 的資料型別。
+此外，還包括 `null: false` 和 `default: 0` 作為選項。
 
-顧名思義， `changeset/2` 建立了一個新的變更集。
-其中使用 `cast/3` 將參數從一組必要欄位和可選欄位轉換為變更集。
-接著驗證必要欄位的存在。下一步，將驗證變更集的密碼長度，使用我們自己的函數來驗證確認密碼吻合，並驗證使用者名稱的唯一性。最後更新實際密碼的資料庫欄位。為此使用 `put_change/3` 來更新變更集中的值。
+現在跳到 shell 並執行遷移：
 
-使用 `User.changeset/2` 則是相對直覺的：
+```shell
+$ mix ecto.migrate
+```
+
+### 結構描述 (Schemas)
+
+目前已經建立了初始表格，現在需要告訴 Ecto 更多關於如何通過結構描述進行操作的部分。
+結構描述是定義映射到底層資料庫表格欄位的模組。
+
+雖然 Ecto 偏愛命名資料格表格為複數，不過結構描述通常是單數的，因此將與表格一起建立一個 `Person` 結構描述。
+
+現在於 `lib/friends/person.ex` 中建立所要的新結構描述：
 
 ```elixir
-alias ExampleApp.{User,Repo}
+defmodule Example.Person do
+  use Ecto.Schema
 
-pw = "passwords should be hard"
-changeset = User.changeset(%User{}, %{username: "doomspork",
-                    email: "sean@seancallan.com",
-                    password: pw,
-                    password_confirmation: pw})
-
-case Repo.insert(changeset) do
-  {:ok, record}       -> # Inserted with success
-  {:error, changeset} -> # Something went wrong
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
+  end
 end
 ```
 
-就這樣！現在已經準備好來儲存一些資料了。
+在這裡可以看到 `Example.Person` 模組告訴 Ecto 這個結構描述與 `people` 表格有關，我們有兩欄 (column)： `name` 是一字串，而 `age`，一個預設為 `0` 的整數。
+
+現在通過開啟 `iex` 並建立一個新 person 來瞧瞧結構描述：
+
+```shell
+iex> %Example.Person{}
+%Example.Person{age: 0, name: nil}
+```
+
+正如預期的那樣，得到一個新的 `Person` 並使用了 `age` 的預設值。
+現在來建立一個 "真正的" person：
+
+```shell
+iex> person = %Example.Person{name: "Tom", age: 11}
+%Example.Person{age: 11, name: "Tom"}
+```
+
+由於結構描述只是結構體(structs)，所以能夠像以前習慣那樣與資料進行互動：
+
+```elixir
+iex> person.name
+"Tom"
+iex> Map.get(person, :name)
+"Tom"
+iex> %{name: name} = person
+%Example.Person{age: 11, name: "Tom"}
+iex> name
+"Tom"
+```
+
+同樣地，可以更新結構描述就像在 Elixir 的任何其他映射或結構體上做的一樣：
+
+```elixir
+iex> %{person | age: 18}
+%Example.Person{age: 18, name: "Tom"}
+iex> Map.put(person, :name, "Jerry")
+%Example.Person{age: 11, name: "Jerry"}
+```
+
+在關於變更集的下一課程中，將了解如何驗證資料變更以及如何將它們保存到資料庫中。
