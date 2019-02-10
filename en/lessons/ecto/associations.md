@@ -427,7 +427,7 @@ iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actor
 >
 ```
 
-This gives us a _new_ changeset that represents the following change: add the actors in this list of actors to the give movie record.
+This gives us a _new_ changeset that represents the following change: add the actors in this list of actors to the given movie record.
 
 Lastly, we'll update the given movie and actor records using our latest changeset:
 
