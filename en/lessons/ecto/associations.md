@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Associations
 ---
 
@@ -9,7 +9,7 @@ In this section we'll learn how to use Ecto to define and work with associations
 
 ## Set Up
 
-We'll be building off of the app, `Example`, from the previous lessons. You can refer to the setup [here](./basics.md) for a quick refresher.
+We'll be building off of the app, `Example`, from the previous lessons. You can refer to the setup [here](../basics) for a quick refresher.
 
 ## Types of Associations
 
