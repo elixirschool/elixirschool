@@ -111,7 +111,7 @@ iex> :true === true
 true
 ```
 
-I Nomi dei moduli in Elixir sono achessi atomi. `MyApp.MyModule` è un atom valido, anche se nessun modulo con questo nome è stato dichiarato.
+I Nomi dei moduli in Elixir sono anch'essi atomi. `MyApp.MyModule` è un atom valido, anche se nessun modulo con questo nome è stato dichiarato.
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
@@ -147,7 +147,7 @@ iex> "foo\nbar"
 ```
 
 Oltre a questi tipi di base, Elixir supporta tipi di dati piú compliessi.
-Impareremo di piú su questi durante le lezioni sulle [collezioni](../collections/) and [funzioni](../functions/).
+Impareremo di piú su questi durante le lezioni sulle [collezioni](../collections/) e [funzioni](../functions/).
 
 ## Operazioni di Base
 
@@ -211,7 +211,7 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-Nota: Le operaioni booleane `and` e `or` in Elixir vengono mappate a `andalso` e `orelse` in Erlang.
+Nota: Le operazioni booleane `and` e `or` in Elixir derivano a `andalso` e `orelse` in Erlang.
 
 ### Confronto
 

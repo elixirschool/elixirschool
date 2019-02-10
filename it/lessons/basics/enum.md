@@ -10,7 +10,7 @@ Un insieme di algoritmi per enumerare le collezioni.
 ## Enum
 
 Il modulo `Enum` contiene oltre un 70 funzioni per lavorare con le collezioni di cui abbiamo parlato nella scorsa lezione.
-Tuttle le collezione di cui abbiamo imparato nella lezione precendente, eccetto le tuple. sono enumerazioni.
+Tutte le collezioni di cui abbiamo imparato nella lezione precendente, eccetto le tuple, sono enumerazioni.
 
 Questa lezione tratterà solo una parte delle funzioni disponibili, ma possiamo esaminarle da soli
 Facciamo un piccolo esperimento in IEx.
@@ -28,7 +28,7 @@ at/3
 ...
 ```
 
-Usando questo, è especialmente chiaro che abbiamo una grande quantità di funzionalità e questo è per una specifica ragione.
+Usando questo, è particolarmente chiaro che abbiamo una grande quantità di funzionalità e questo è per una specifica ragione.
 Le Enumerazioni sono al centro della programmazione funzionale e sono una cosa estremamente utile.
 Sfruttando le enumerazioni combinate con altri vantaggi di Elixir, come la documentazione (che viene trattata come funzione di prima classe, come visto in precendenza), Elixir può essere incredibilmente efficace anche per lo sviluppatore.
 
@@ -122,7 +122,7 @@ iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` fornische le stesse funzionalità di `min/1`, ma in caso di enumerazione vuota, permette di specificare una funzione per produrre il valore minimo 
+`min/2` fornisce le stesse funzionalità di `min/1`, ma in caso di enumerazione vuota, permette di specificare una funzione per produrre il valore minimo 
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
@@ -147,7 +147,7 @@ Enum.max([], fn -> :bar end)
 
 ### filter
 
-La funzione `filter/2` ci permetter di filtrare una collezione per includere solo gli elementi che rispettano la funzione fornita.
+La funzione `filter/2` ci permette di filtrare una collezione per includere solo gli elementi che rispettano la funzione fornita.
 
 ```elixir
 iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)

@@ -51,7 +51,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-Fate attenzione a valori duplucati. Per ogni elemento nella lista di destra, solo la prima occorrenza nella lista di sinistra viene rimossa.
+Fate attenzione a valori duplicati. Per ogni elemento nella lista di destra, solo la prima occorrenza nella lista di sinistra viene rimossa.
 
 ```elixir
 iex> [1,2,2,3,2,3] -- [1,2,3,2]
