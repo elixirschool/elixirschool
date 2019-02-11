@@ -3,8 +3,6 @@ version: 2.0.0
 title: Distillery (基础)
 ---
 
-Distillery
-
 Distillery 是纯 Elixir 编写的发布管理工具。它可以让你在极少，甚至不需要配置的情况下生成发布包，并部署到其它环境。
 
 ## 什么是发布包？
@@ -28,7 +26,7 @@ Distillery 是纯 Elixir 编写的发布管理工具。它可以让你在极少�
 
 ### 入门及安装
 
-把 Distillery 当作依赖，添加到你项目里 的 `mix.exs` 文件里头。*注意* —— 如果你的是 unbrella 应用，请把它添加到项目根目录的 mix.exs 文件里。
+把 Distillery 当作依赖，添加到你项目里 的 `mix.exs` 文件里头。*注意* —— 如果你的是 umbrella 应用，请把它添加到项目根目录的 mix.exs 文件里。
 
 ```
 defp deps do
@@ -92,9 +90,9 @@ For a complete listing of commands and their use:
 
 在命令行输入命令 ` _build/dev/rel/MYAPP/bin/MYAPP foreground` 就可以启动你的应用。当然，你需要把 MYAPP 替换为你的项目名称。这样我们就已经通过发布包来运行我们的应用了！
 
-## 结合 Phoenix 来使用 distillery
+## 在 Phoenix 项目中使用 Distillery
 
-如果你需要结合 Phoenix 来使用 distillery，有一些额外的步骤需要执行。
+如果你需要结合 Phoenix 来使用 Distillery，有一些额外的步骤需要执行。
 
 首先，编辑 `config/prod.exs` 文件。把以下内容：
 

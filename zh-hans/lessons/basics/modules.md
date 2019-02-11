@@ -103,7 +103,7 @@ iex> %{name: "Sean"} = sean
 #Example.User<name: "Sean", roles: [...], ...>
 ```
 
-到了 Elixir 1.8，结构体允许包含自定义的审视方式。以下通过查看 `sean` 结构来理解这是如何实现的：
+到了 Elixir 1.8，结构体允许包含自定义的检查方式。以下通过查看 `sean` 结构来理解这是如何实现的：
 
 ```elixir
 iex> inspect(sean)

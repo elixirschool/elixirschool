@@ -3,8 +3,6 @@ version: 2.0.0
 title: Distillery (Basics)
 ---
 
-Distillery
-
 Distillery is a release manager written in pure Elixir. It allows you to generate releases that can be deployed elsewhere with little to no configuration.
 
 ## What is a release?
@@ -94,7 +92,7 @@ To run your application type the following in your terminal ` _build/dev/rel/MYA
 In your case replace MYAPP with your project name. Now we're running the release build of our application!
 
 
-## Using distillery with Phoenix
+## Using Distillery with Phoenix
 
 If you are using distillery with Phoenix there are a few extra steps you need to follow before this will work.
 
