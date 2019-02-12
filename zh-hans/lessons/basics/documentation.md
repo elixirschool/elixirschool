@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: 文档模块
 ---
 
@@ -131,6 +131,7 @@ ExDoc是Elixir的官方项目，你可以在 [GitHub](https://github.com/elixir-
 $ mix new greet_everyone
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
 * creating config
