@@ -15,11 +15,11 @@ title: アソシエーション
 
 スキーマ間で定義することができるアソシーションは3つあります。それらがどういうものか、そして各種類の関係をどのように実装するのかを見ていきます。
 
-### Belongs To/Has Many
+### 従属/1対多
 
-私たちのお気に入りの映画をカタログを作れるように、デモアプリのドメインモデルにいくつかの新しいエンティティを追加します。まずは `Movie` と `Character` という2つのスキーマから始めます。これらのスキーマの間に "has many/belongs to" の関係を実装して、movieは複数のcharacterを持ち、characterはmovieに所属するようにします。
+私たちのお気に入りの映画をカタログを作れるように、デモアプリのドメインモデルにいくつかの新しいエンティティを追加します。まずは `Movie` と `Character` という2つのスキーマから始めます。これらのスキーマの間に "1対多/従属" の関係を実装して、movieは複数のcharacterを持ち、characterはmovieに所属するようにします。
 
-#### Has Many マイグレーション
+#### 1対多マイグレーション
 
 `Movie` のマイグレーションを作ってみましょう:
 
@@ -43,9 +43,9 @@ defmodule Example.Repo.Migrations.CreateMovies do
 end
 ```
 
-#### Has Many スキーマ
+#### 1対多スキーマ
 
-movieとcharacterのと間に"has many"の関係を指定するスキーマを追加します。
+movieとcharacterのと間に"1対多"の関係を指定するスキーマを追加します。
 
 ```elixir
 # lib/example/movie.ex
@@ -62,7 +62,7 @@ end
 
 `has_many/3` マクロはデータベースそのものには何も追加しません。これは関連付けられたスキーマである `characters` の外部キーを使用し、movieに関連するcharacterを利用可能にします。これによって `movie.characters` が使用可能となります。
 
-#### Belongs To マイグレーション
+#### 従属マイグレーション
 
 これで `Character` マイグレーションとスキーマを構築する準備ができました。characterはmovieに所属するので、この関係を示すマイグレーションとスキーマを定義します。
 
@@ -93,9 +93,9 @@ defmodule Example.Repo.Migrations.CreateCharacters do
 end
 ```
 
-#### Belongs To スキーマ
+#### 従属 スキーマ
 
-スキーマもまたcharacterとmovieの間に"belongs to"の関係を定義する必要があります。
+スキーマもまたcharacterとmovieの間に"従属"の関係を定義する必要があります。
 
 ```elixir
 # lib/example/character.ex
@@ -118,11 +118,11 @@ end
 mix ecto.migrate
 ```
 
-### Belongs To/Has One
+### 従属/1対1
 
 movieは1つのdistributorを持っているとしましょう。例えばNetflixは彼らのオリジナル映画 "Bright" のdistributorです。
 
-"belongs to"の関係を使って `Distributor` のマイグレーションとスキーマを定義します。まずは、マイグレーションを生成しましょう:
+"従属"の関係を使って `Distributor` のマイグレーションとスキーマを定義します。まずは、マイグレーションを生成しましょう:
 
 ```console
 mix ecto.gen.migration create_distributors
@@ -160,7 +160,7 @@ defmodule Example.Distributor do
 end
 ```
 
-次に、"has one"の関係を `Movie` スキーマに追加します:
+次に、"1対1"の関係を `Movie` スキーマに追加します:
 
 ```elixir
 # lib/example/movie.ex
@@ -185,7 +185,7 @@ end
 mix ecto.migrate
 ```
 
-### Many To Many
+### 多対多
 
 movieは多くのactorを持っていて、actorは1つ以上のmovieに所属することができるとしましょう。この関係を実装するために、movie _と_ actor の _両方_ を参照する中間テーブルを構築します。
 
@@ -279,13 +279,13 @@ mix ecto.migrate
 
 ## 関連データの保存
 
-レコードを関連するデータと一緒に保存する方法は、レコード間の関係性によって異なります。"Belongs to/has many"という関係から始めましょう。
+レコードを関連するデータと一緒に保存する方法は、レコード間の関係性によって異なります。"従属/1対多"という関係から始めましょう。
 
-### Belongs To
+### 従属
 
 #### `Ecto.build_assoc/3` による保存
 
-"belongs to"の関係では、 `build_assoc/3` 関数を利用できます。
+"従属"の関係では、 `build_assoc/3` 関数を利用できます。
 
 [`build_assoc/3`](https://hexdocs.pm/ecto/Ecto.html#build_assoc/3) は3つの引数をとります:
 
@@ -358,11 +358,11 @@ iex> Repo.insert!(distributor)
 }
 ```
 
-### Many to Many
+### 多対多
 
 #### `Ecto.Changeset.put_assoc/4` による保存
 
-`build_assoc/3` のアプローチはmany-to-manyの関係では使えません。movieテーブルもactorテーブルも外部キーを持たないためです。代わりに、Ectoのチェンジセットと `put_assoc/4` 関数を利用する必要があります。
+`build_assoc/3` のアプローチは多対多の関係では使えません。movieテーブルもactorテーブルも外部キーを持たないためです。代わりに、Ectoのチェンジセットと `put_assoc/4` 関数を利用する必要があります。
 
 上で作ったmovieのレコードを既に持っているとして、actorレコードを作ってみましょう:
 
