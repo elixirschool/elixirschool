@@ -3,7 +3,7 @@ version: 1.0.1
 title: アソシエーション
 ---
 
-このセクションでは、スキーマ間のアソシエーションを定義して扱うためにEctoを使用する方法について学びます。
+このセクションでは、スキーマ間のアソシエーションを定義し、扱うためにEctoを使用する方法について学びます。
 
 {% include toc.html %}
 
@@ -60,7 +60,7 @@ defmodule Example.Movie do
 end
 ```
 
-`has_many/3` マクロはデータベースそのものには何も追加しません。これは関連したスキーマである `characters` の外部キーを使用し、movieに関連するcharacterを利用可能にします。これによって `movie.characters` が使用可能となります。
+`has_many/3` マクロはデータベースそのものには何も追加しません。これは関連付けられたスキーマである `characters` の外部キーを使用し、movieに関連するcharacterを利用可能にします。これによって `movie.characters` が使用可能となります。
 
 #### Belongs To マイグレーション
 
@@ -110,7 +110,7 @@ defmodule Example.Character do
 end
 ```
 
-`belongs_to/3` マクロが何をするのか詳しく見てみましょう。 `characters` への `movie_id` カラムの追加とは違って、このマクロはデータベースに何も追加 _しません_。これは `characters` を通して関連した `movies` スキーマにアクセスする機能を提供 _します_。これは　`characters` テーブルにある `movie_id` の外部キーを使用して、characterのクエリを実行する際にcharacterに関連したmovieを利用できるようにします。これによって `character.movie` を使えるようになります。
+`belongs_to/3` マクロが何をするのか詳しく見てみましょう。 `characters` への `movie_id` カラムの追加とは違って、このマクロはデータベースに何も追加 _しません_。これは `characters` を通して関連した `movies` スキーマにアクセスする機能を _提供します_ 。これは　`characters` テーブルにある `movie_id` の外部キーを使用して、characterのクエリを実行する際にcharacterに関連したmovieを利用できるようにします。これによって `character.movie` を使えるようになります。
 
 これでマイグレーションを実行する準備ができました:
 
@@ -177,7 +177,7 @@ defmodule Example.Movie do
 end
 ```
 
-`has_one/3` マクロは `has_many/3` マクロのように機能します。これはデータベースに何も追加しませんが、movieのdistributorを探してアクセスできるようにするために関連したスキーマの外部キーを使用 _します_ 。これによって `movie.distributor` が使えるようになります。
+`has_one/3` マクロは `has_many/3` マクロのように機能します。これはデータベースに何も追加しませんが、movieのdistributorを探してアクセスできるようにするために関連したスキーマの外部キーを _使用します_ 。これによって `movie.distributor` が使えるようになります。
 
 マイグレーション実行の準備ができました:
 
@@ -189,7 +189,7 @@ mix ecto.migrate
 
 movieは多くのactorを持っていて、actorは1つ以上のmovieに所属することができるとしましょう。この関係を実装するために、movie _と_ actor の _両方_ を参照する中間テーブルを構築します。
 
-はじめに、 `Actions` マイグレーションを生成しましょう:
+はじめに、 `Actors` マイグレーションを生成しましょう:
 
 マイグレーションを作ります:
 
@@ -279,7 +279,7 @@ mix ecto.migrate
 
 ## 関連データの保存
 
-レコードを関連するデータと一緒に保存する方法は、レコード間の関係性によって異なります。"belongs to/has many"という関係から始めましょう。
+レコードを関連するデータと一緒に保存する方法は、レコード間の関係性によって異なります。"Belongs to/has many"という関係から始めましょう。
 
 ### Belongs To
 
