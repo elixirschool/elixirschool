@@ -400,3 +400,23 @@
   homepage: https://kate-travers.com/
   contributions:
     - blog
+
+- github: zillou
+  name: Derrick Zhang
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - zh-hans
+
+- github: kenspirit
+  name: Ken Chen
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - zh-hans
