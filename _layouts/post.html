@@ -1,10 +1,17 @@
 ---
 layout: default
 ---
+
+{% include function-getContributor type="name" search=page.author %}
+
 <section id="section-page">
   <header class="main">
     <h1 class="post-title">{{ page.title }}</h1>
-    <p>{{ page.date | date_to_string }} · by <a href="{{page.author_link}}">{{page.author}}</a></p>
+    {% if contributor.homepage %}
+      <p>{{ page.date | date_to_string }} · by <a href="{{ contributor.homepage }}">{{page.author}}</a></p>
+    {% else %}
+      <p>{{ page.date | date_to_string }} · by <a href="https://github.com/{{ contributor.github }}">{{page.author}}</a></p>
+    {% endif %}
   </header>
   <div class="content">
     {{ content }}
