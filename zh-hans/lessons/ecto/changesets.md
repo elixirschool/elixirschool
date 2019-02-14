@@ -213,7 +213,7 @@ end
 iex> User.changeset(%User{}, %{"name" => "Bob"})
 #Ecto.Changeset<
   action: nil,
-  changes: %{first_name: "Bob"},
+  changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
   data: #User<>,
   valid?: false
