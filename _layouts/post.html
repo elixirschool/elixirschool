@@ -7,11 +7,7 @@ layout: default
 <section id="section-page">
   <header class="main">
     <h1 class="post-title">{{ page.title }}</h1>
-    {% if contributor.homepage %}
-      <p>{{ page.date | date_to_string }} · by <a href="{{ contributor.homepage }}">{{page.author}}</a></p>
-    {% else %}
-      <p>{{ page.date | date_to_string }} · by <a href="https://github.com/{{ contributor.github }}">{{page.author}}</a></p>
-    {% endif %}
+    <p>{% assign author_url = contributor.homepage | default: 'https://github.com/' | append: contributor.github %} {{ page.date | date_to_string }} · by <a href="{{ author_url }}">{{page.author}}</a></p>
   </header>
   <div class="content">
     {{ content }}
