@@ -2,7 +2,7 @@
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
 categories: til
-date: 2019-02-08
+date: 2019-02-15
 layout: post
 title:  TIL GenServer's `handle_continue/2`
 excerpt: >
