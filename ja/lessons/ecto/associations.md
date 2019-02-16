@@ -17,7 +17,7 @@ title: アソシエーション
 
 ### 従属/1対多
 
-私たちのお気に入りの映画をカタログを作れるように、デモアプリのドメインモデルにいくつかの新しいエンティティを追加します。まずは `Movie` と `Character` という2つのスキーマから始めます。これらのスキーマの間に "1対多/従属" の関係を実装して、映画は複数のキャラクターを持ち、キャラクターは映画に従属するようにします。
+私たちのお気に入りの映画をカタログを作れるように、デモアプリのドメインモデルにいくつかの新しいエンティティを追加します。まずは `Movie` と `Character` という2つのスキーマから始めます。これらのスキーマの間に "1対多/従属" の関係を実装して、映画(movie)は複数のキャラクター(character)を持ち、キャラクターは映画に従属するようにします。
 
 #### 1対多マイグレーション
 
@@ -45,7 +45,7 @@ end
 
 #### 1対多スキーマ
 
-movieとcharacterのと間に"1対多"の関係を指定するスキーマを追加します。
+映画とキャラクターとの間に"1対多"の関係を指定するスキーマを追加します。
 
 ```elixir
 # lib/example/movie.ex
@@ -60,11 +60,11 @@ defmodule Example.Movie do
 end
 ```
 
-`has_many/3` マクロはデータベースそのものには何も追加しません。これは関連付けられたスキーマである `characters` の外部キーを使用し、movieに関連するcharacterを利用可能にします。これによって `movie.characters` が使用可能となります。
+`has_many/3` マクロはデータベースそのものには何も追加しません。これは関連付けられたスキーマである `characters` の外部キーを使用し、映画に関連するキャラクターを利用可能にします。これによって `movie.characters` が使用可能となります。
 
 #### 従属マイグレーション
 
-これで `Character` マイグレーションとスキーマを構築する準備ができました。characterはmovieに従属するので、この関係を示すマイグレーションとスキーマを定義します。
+これで `Character` マイグレーションとスキーマを構築する準備ができました。キャラクターは映画に従属するので、この関係を示すマイグレーションとスキーマを定義します。
 
 まずは、マイグレーションを生成します:
 
@@ -72,7 +72,7 @@ end
 mix ecto.gen.migration create_characters
 ```
 
-movieに従属するcharacterを定義するためには、 `movie_id` を持つ `characters` テーブルが必要です。このカラムは外部キーとして機能させたいです。これは、 `create_table/1` 関数に次の行を追加することで実現できます:
+映画に従属するキャラクターを定義するためには、 `movie_id` を持つ `characters` テーブルが必要です。このカラムは外部キーとして機能させたいです。これは、 `create_table/1` 関数に次の行を追加することで実現できます:
 
 ```elixir
 add :movie_id, references(:movies)
@@ -95,7 +95,7 @@ end
 
 #### 従属 スキーマ
 
-スキーマもまたcharacterとmovieの間に"従属"の関係を定義する必要があります。
+スキーマもまたキャラクターと映画の間に"従属"の関係を定義する必要があります。
 
 ```elixir
 # lib/example/character.ex
@@ -110,7 +110,7 @@ defmodule Example.Character do
 end
 ```
 
-`belongs_to/3` マクロが何をするのか詳しく見てみましょう。 `characters` への `movie_id` カラムの追加とは違って、このマクロはデータベースに何も追加 _しません_。これは `characters` を通して関連した `movies` スキーマにアクセスする機能を _提供します_ 。これは　`characters` テーブルにある `movie_id` の外部キーを使用して、characterのクエリを実行する際にcharacterに関連したmovieを利用できるようにします。これによって `character.movie` を使えるようになります。
+`belongs_to/3` マクロが何をするのか詳しく見てみましょう。 `characters` への `movie_id` カラムの追加とは違って、このマクロはデータベースに何も追加 _しません_。これは `characters` を通して関連した `movies` スキーマにアクセスする機能を _提供します_ 。これは　`characters` テーブルにある `movie_id` の外部キーを使用して、キャラクターのクエリを実行する際にキャラクターに関連した映画を利用できるようにします。これによって `character.movie` を使えるようになります。
 
 これでマイグレーションを実行する準備ができました:
 
@@ -118,9 +118,9 @@ end
 mix ecto.migrate
 ```
 
-### 従属/1対1
+### 従属/1 対 1
 
-movieは1つのdistributorを持っているとしましょう。例えばNetflixは彼らのオリジナル映画 "Bright" のdistributorです。
+映画は1つの配信者(distributor)を持っているとしましょう。例えば Netflix は彼らのオリジナル映画 "Bright" の配信者です。
 
 "従属"の関係を使って `Distributor` のマイグレーションとスキーマを定義します。まずは、マイグレーションを生成しましょう:
 
@@ -145,7 +145,7 @@ defmodule Example.Repo.Migrations.CreateDistributors do
 end
 ```
 
-そして `Distributor` スキーマは `belongs_to/3` マクロを使うことで、 `distributor.movie` を使用可能にし、また外部キーによってdistributorに関連したmovieを見つけられるようにします。
+そして `Distributor` スキーマは `belongs_to/3` マクロを使うことで、 `distributor.movie` を使用可能にし、また外部キーによって配信者に関連した映画を見つけられるようにします。
 
 ```elixir
 # lib/example/distributor.ex
@@ -177,7 +177,7 @@ defmodule Example.Movie do
 end
 ```
 
-`has_one/3` マクロは `has_many/3` マクロのように機能します。これはデータベースに何も追加しませんが、movieのdistributorを探してアクセスできるようにするために関連したスキーマの外部キーを _使用します_ 。これによって `movie.distributor` が使えるようになります。
+`has_one/3` マクロは `has_many/3` マクロのように機能します。これはデータベースに何も追加しませんが、映画の配信者を探してアクセスできるようにするために関連したスキーマの外部キーを _使用します_ 。これによって `movie.distributor` が使えるようになります。
 
 マイグレーション実行の準備ができました:
 
@@ -187,7 +187,7 @@ mix ecto.migrate
 
 ### 多対多
 
-movieは多くのactorを持っていて、actorは1つ以上のmovieに従属することができるとしましょう。この関係を実装するために、movie _と_ actor の _両方_ を参照する中間テーブルを構築します。
+映画は多くの俳優(actor)を持っていて、俳優は1つ以上の映画に従属することができるとしましょう。この関係を実装するために、映画 _と_ 俳優 の _両方_ を参照する中間テーブルを構築します。
 
 はじめに、 `Actors` マイグレーションを生成しましょう:
 
@@ -219,7 +219,7 @@ end
 mix ecto.gen.migration create_movies_actors
 ```
 
-2つの外部キーを持つテーブルをマイグレーションで定義します。また、actorとmovieの組み合わせが一意となるようにユニークインデックスを追加します:
+2つの外部キーを持つテーブルをマイグレーションで定義します。また、俳優と映画の組み合わせが一意となるようにユニークインデックスを追加します:
 
 ```elixir
 # priv/migrations/*_create_movies_actors.ex
@@ -293,9 +293,9 @@ mix ecto.migrate
 * アソシエーションの名前
 * 保存する関連レコードにアサインしたい属性
 
-movieと関連するcharacterを保存してみましょう:
+映画と関連するキャラクターを保存してみましょう:
 
-はじめに、movieのレコードを作ります:
+はじめに、映画のレコードを作ります:
 
 ```elixir
 iex> alias Example.{Movie, Character, Repo}
@@ -314,7 +314,7 @@ iex> movie = %Movie{title: "Ready Player One", tagline: "Something about video g
 iex> movie = Repo.insert!(movie)
 ```
 
-次に、関連するcharacterを作ってデータベースに挿入します:
+次に、関連するキャラクターを作ってデータベースに挿入します:
 
 ```elixir
 character = Ecto.build_assoc(movie, :characters, %{name: "Wade Watts"})
@@ -335,12 +335,12 @@ Repo.insert!(character)
 }
 ```
 
-`Movie` スキーマの `has_many/3` マクロは movieが複数の `:characters` を持つことを示すので、 `build_assoc/3` の2つ目の引数として渡したアソシエーションの名前は `:characters` そのものだと気がつくでしょう。私たちが作ったcharacterは、関連するmovieのIDが正しくセットされた `movie_id` を持っていることがわかります。
+`Movie` スキーマの `has_many/3` マクロは 映画が複数の `:characters` を持つことを示すので、 `build_assoc/3` の2つ目の引数として渡したアソシエーションの名前は `:characters` そのものだと気がつくでしょう。私たちが作ったキャラクターは、関連する映画のIDが正しくセットされた `movie_id` を持っていることがわかります。
 
-`build_assoc/3` を使ってmovieの関連したdistributorを保存するために、 `build_assoc/3` の2つ目の引数としてmovieに関連するdistributorの _name_ を渡すという同様のアプローチを取ります。
+`build_assoc/3` を使って映画の関連した配信者を保存するために、 `build_assoc/3` の2つ目の引数として映画に関連する配信者の _name_ を渡すという同様のアプローチを取ります。
 
 ```elixir
-iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})       
+iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})
 %Example.Distributor{
   __meta__: #Ecto.Schema.Metadata<:built, "distributors">,
   id: nil,
@@ -362,9 +362,9 @@ iex> Repo.insert!(distributor)
 
 #### `Ecto.Changeset.put_assoc/4` による保存
 
-`build_assoc/3` のアプローチは多対多の関係では使えません。movieテーブルもactorテーブルも外部キーを持たないためです。代わりに、Ectoのチェンジセットと `put_assoc/4` 関数を利用する必要があります。
+`build_assoc/3` のアプローチは多対多の関係では使えません。映画テーブルも俳優テーブルも外部キーを持たないためです。代わりに、Ectoのチェンジセットと `put_assoc/4` 関数を利用する必要があります。
 
-上で作ったmovieのレコードを既に持っているとして、actorレコードを作ってみましょう:
+上で作った映画のレコードを既に持っているとして、俳優レコードを作ってみましょう:
 
 ```elixir
 iex> alias Example.Actor
@@ -384,7 +384,7 @@ iex> actor = Repo.insert!(actor)
 }
 ```
 
-これで中間テーブルを通してmovieとactorを関連付ける準備ができました。
+これで中間テーブルを通して映画と俳優を関連付ける準備ができました。
 
 まず、チェンジセットを扱うためには、 `movie` レコードに関連するスキーマを確実に事前ロードしている必要があります。データの事前ロードについてはの後に話します。今のところは、次のようにアソシエーションを事前ロードできるということだけ理解していれば十分です:
 
@@ -401,10 +401,10 @@ iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
 }
 ```
 
-次に、movieレコードのためにチェンジセットを作ります:
+次に、映画レコードのためにチェンジセットを作ります:
 
 ```elixir
-iex> movie_changeset = Ecto.Changeset.change(movie)                                                    
+iex> movie_changeset = Ecto.Changeset.change(movie)
 #Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Movie<>,
  valid?: true>
 ```
@@ -427,9 +427,9 @@ iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actor
 >
 ```
 
-これにより、次の変更を表す _新しい_ チェンジセットが作られます: actorsリストのactorをmovieレコードに追加する。
+これにより、次の変更を表す _新しい_ チェンジセットが作られます: 俳優リストの俳優を映画レコードに追加する。
 
-最後に、最新のチェンジセットを使用してmovieとactorのレコードを更新します:
+最後に、最新のチェンジセットを使用して映画と俳優のレコードを更新します:
 
 ```elixir
 iex> Repo.update!(movie_actors_changeset)
@@ -451,12 +451,12 @@ iex> Repo.update!(movie_actors_changeset)
 }
 ```
 
-これによってmovieレコードがactorと適切に関連付けられて、 `movie.actors` に事前ロードされていることがわかります。
+これによって映画レコードが俳優と適切に関連付けられて、 `movie.actors` に事前ロードされていることがわかります。
 
-同じアプローチを使って、movieに関連する新しいactorを追加できます。 _保存された_ actorの構造体を `put_assoc/4` に渡す代わりに、単純に作成したいactorを表す構造体を渡します:
+同じアプローチを使って、映画に関連する新しい俳優を追加できます。 _保存された_ 俳優の構造体を `put_assoc/4` に渡す代わりに、単純に作成したい俳優を表す構造体を渡します:
 
 ```elixir
-iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])                      
+iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])
 #Ecto.Changeset<
   action: nil,
   changes: %{
@@ -493,6 +493,6 @@ iex>  Repo.update!(changeset)
 }
 ```
 
-"2"というIDと割り当てた値を持ったactorが作られたことを確認できました。
+"2"というIDと割り当てた値を持った俳優が作られたことを確認できました。
 
 次のセクションでは、関連付けたレコードにクエリを実行する方法を学びます。
