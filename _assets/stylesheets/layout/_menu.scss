@@ -100,4 +100,13 @@
 				}
 			}
 		}
+
+		.stack-info {
+			display: flex;
+			margin-bottom: $sidebar-pad;
+			
+			@include breakpoint(xlarge) {
+				margin-bottom: $xlarge-sidebar-pad;
+			}
+		}
 	}

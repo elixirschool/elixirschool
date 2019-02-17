@@ -31,8 +31,6 @@
 	}
 
 	#sidebar {
-		$pad: 2em / 0.9;
-
 		@include vendor('flex-grow', '0');
 		@include vendor('flex-shrink', '0');
 		@include vendor('transition', (
@@ -49,7 +47,7 @@
 		}
 
 		> .inner {
-			@include padding($pad, $pad, (0, 0, $pad, 0));
+			@include padding($sidebar-pad, $sidebar-pad, (0, 0, $sidebar-pad, 0));
 			position: relative;
 			width: _size(sidebar-width);
 
@@ -71,9 +69,16 @@
 			> .alt {
 				background-color: darken(_palette(bg-alt), 2);
 				border-bottom: 0;
-				margin: ($pad * -1) 0 ($pad * 2) ($pad * -1);
-				padding: $pad;
-				width: calc(100% + #{$pad * 2});
+				margin: ($sidebar-pad * -1) 0 ($sidebar-pad) ($sidebar-pad * -1);
+				padding: $sidebar-pad;
+				width: calc(100% + #{$sidebar-pad * 2});
+			}
+
+			.major {
+				margin-bottom: $sidebar-pad;
+				> :last-child {
+					margin: 0 0 0 0;
+				}
 			}
 		}
 
@@ -113,18 +118,16 @@
 		}
 
 		@include breakpoint(xlarge) {
-			$pad: 1.5em / 0.9;
-
 			width: _size(sidebar-width-alt);
 
 			> .inner {
-				@include padding($pad, $pad, (0, 0, $pad, 0));
+				@include padding($xlarge-sidebar-pad, $xlarge-sidebar-pad, (0, 0, $xlarge-sidebar-pad, 0));
 				width: _size(sidebar-width-alt);
 
 				> .alt {
-					margin: ($pad * -1) 0 ($pad * 2) ($pad * -1);
-					padding: $pad;
-					width: calc(100% + #{$pad * 2});
+					margin: ($xlarge-sidebar-pad * -1) 0 ($xlarge-sidebar-pad) ($xlarge-sidebar-pad * -1);
+					padding: $xlarge-sidebar-pad;
+					width: calc(100% + #{$xlarge-sidebar-pad * 2});
 				}
 			}
 
