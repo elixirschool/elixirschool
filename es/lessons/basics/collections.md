@@ -1,5 +1,5 @@
 ---
-version: 1.2.2
+version: 1.2.5
 title: Colecciones
 ---
 
@@ -16,7 +16,9 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implementa las colecciones como listas enlazadas. Esto significa que acceder al largo de la lista es una operación que se ejecturá en tiempo lineal (`O(n)`). Por esta razón, normalmente es más rápido agregar un elemento al inicio que al final:
+Elixir implementa las colecciones como listas enlazadas.
+Esto significa que acceder al largo de la lista es una operación que se ejecturá en tiempo lineal (`O(n)`).
+Por esta razón, normalmente es más rápido agregar un elemento al inicio que al final:
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
@@ -37,7 +39,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-Una aclaración acerca de la notación utilizada arriba (`++/2`): en Elixir (y Erlang, sobre el cual Elixir está construido), el nombre de una función u operador tiene dos componentes: el nombre en sí (en este caso `++`) y su _aridad_. La aridad es un concepto fundacional al hablar de código en Elixir y Erlang; es el número de argumentos que una función recibe (dos, en este caso). El nombre y la aridad estan unidos por una barra (`/`). Hablaremos más acerca de esta más adelante. Conocer esto te ayudará a entender la notación por el momento.
+Una aclaración acerca de la notación utilizada arriba (`++/2`): en Elixir (y Erlang, sobre el cual Elixir está construido), el nombre de una función u operador tiene dos componentes: el nombre en sí (en este caso `++`) y su _aridad_. La aridad es un concepto fundamental al hablar de código en Elixir y Erlang; es el número de argumentos que una función recibe (dos, en este caso). El nombre y la aridad estan unidos por una barra (`/`). Hablaremos más acerca de esta más adelante; conocer esto te ayudará a entender la notación por el momento.
 
 ### Sustracción de listas
 
@@ -55,12 +57,19 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Nota:** La substracción de listas utiliza [comparación estricta](../basics/#comparación) para coincidir los valores.
-
+**Nota:** La substracción de listas utiliza [comparación estricta](../basics/#comparación) para coincidir los valores. Por Ejemplo:
+```elixir
+iex> [2] -- [2.0]
+[2]
+iex> [2.0] -- [2.0]
+[]
+```
 
 ### Cabeza / Cola
 
-Cuando usamos listas es común trabajar con la cabeza y la cola de las mismas. La cabeza es el primer elemento de la lista, mientras que la cola son los elementos restantes. Elixir ofrece dos funciones útiles, `hd` y `tl`, para trabajar con estas partes. `hd` es la abreviatura de "head" [cabeza en inglés], y `tl` es la abreviatura de "tail" [cola]:
+Cuando usamos listas es común trabajar con la cabeza y la cola.
+La cabeza es el primer elemento de la lista, mientras que la cola son los elementos restantes.
+Elixir ofrece dos funciones útiles, `hd` y `tl`, para trabajar con estas partes. `hd` es la abreviatura de "head" [cabeza en inglés], y `tl` es la abreviatura de "tail" [cola]:
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -82,7 +91,8 @@ iex> tail
 
 ## Tuplas
 
-Las tuplas son similares a las listas pero son almacenadas de manera contigua en la memoria. Esto permite acceder a su longitud de forma rápida, pero hace su modificación costosa, haciendo que la nueva tupla deba ser copiada de nuevo en la memoria. Las tuplas son definidas mediante el uso de llaves.
+Las tuplas son similares a las listas pero son almacenadas de manera contigua en la memoria.
+Esto permite acceder a su longitud de forma rápida, pero hace su modificación costosa, haciendo que la nueva tupla deba ser copiada de nuevo en la memoria. Las tuplas son definidas mediante el uso de llaves.
 
 
 ```elixir
@@ -101,7 +111,8 @@ iex> File.read("path/to/unknown/file")
 
 ## Listas de palabras clave
 
-Las listas de palabras clave y los mapas son las colecciones asociativas de Elixir. En Elixir, una lista de palabras clave es una lista especial de tuplas de dos elementos, cuyos primeros elemento son átomos; éstas tienen el mismo rendimiento que las listas:
+Las listas de palabras clave y los mapas son las colecciones asociativas de Elixir.
+En Elixir, una lista de palabras clave es una lista especial de tuplas de dos elementos, cuyos primeros elemento son átomos; éstas tienen el mismo rendimiento que las listas:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -167,6 +178,7 @@ iex> map.hello
 ```
 
 Otra característica interesante de los mapas es que poseen su propia sintaxis para realizar operaciones de actualización:
+
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
