@@ -31,6 +31,9 @@
 	}
 
 	#sidebar {
+		$sidebar-pad: 1.5em / 0.9;
+		$xlarge-sidebar-pad: 1em / 0.9;
+
 		@include vendor('flex-grow', '0');
 		@include vendor('flex-shrink', '0');
 		@include vendor('transition', (
@@ -52,8 +55,8 @@
 			width: _size(sidebar-width);
 
 			> * {
-				margin: 0 0 (_size(element-margin)) 0;
-				padding: 0 0 (_size(element-margin)) 0;
+				margin: 0 0 (_size(element-margin)/2) 0;
+				padding: 0 0 (_size(element-margin)/2) 0;
 
 				> :last-child {
 					margin-bottom: 0;
@@ -78,6 +81,21 @@
 				margin-bottom: $sidebar-pad;
 				> :last-child {
 					margin: 0 0 0 0;
+				}
+			}
+
+			.stack-info {
+				display: flex;
+				margin-bottom: $sidebar-pad;
+
+				&.otp-version {
+					font-size: 12px;
+					font-family: _font(family-fixed);
+					font-weight: bold;
+				}
+
+				@include breakpoint(xlarge) {
+					margin-bottom: $xlarge-sidebar-pad;
 				}
 			}
 		}
