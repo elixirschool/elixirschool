@@ -135,6 +135,22 @@
 			margin-left: (_size(sidebar-width) * -1);
 		}
 
+		.toggle-theme-wrapper {
+			position: absolute;
+			top: 6em;
+			left: _size(sidebar-width);
+			.icon {
+				display: block;
+				width: 6em;
+				text-align: center;
+				&:before {
+					display: block;
+					width: 100%;
+					font-size: 2rem;
+				}
+			}
+		}
+
 		@include breakpoint(xlarge) {
 			width: _size(sidebar-width-alt);
 
@@ -158,6 +174,17 @@
 
 				&:before {
 					font-size: 1.5rem;
+				}
+			}
+
+			.toggle-theme-wrapper {
+				top: 6em;
+				left: _size(sidebar-width-alt);
+				.icon {
+					width: 5em;
+					&:before {
+						font-size: 1.5rem;
+					}
 				}
 			}
 
@@ -204,6 +231,16 @@
 					margin-left: (-0.875em / 2);
 				}
 			}
+			
+			.toggle-theme-wrapper {
+				.icon {
+					width: 6em;
+					&:before {
+						font-size: 1.5rem;
+						margin-left: (-0.875em / 2);
+					}
+				}
+			}
 
 			body.is-loading & {
 				display: none;
@@ -232,6 +269,19 @@
 					position: absolute;
 					top: 1em;
 					width: 5em;
+				}
+			}
+
+			.toggle-theme-wrapper {
+				width: 4.25em;
+				top: 1.3em;
+				left: _size(sidebar-width) + 3em;
+				.icon {
+					width: 6em;
+					&:before {
+						font-size: 1.5rem;
+						margin-left: (-0.875em / 2);
+					}
 				}
 			}
 		}
