@@ -9,35 +9,53 @@ An example-based unit testing library like [ExUnit](https://hexdocs.pm/ex_unit/E
 * You can write these tests without thinking through your requirements thoroughly.
 * These tests can be very verbose when you use several examples for one function.
 
-In this lesson we're going to explore how [StreamData](https://github.com/whatyouhide/stream_data) can help overcome some of these drawbacks.
-
+In this lesson we're going to explore how [StreamData](https://github.com/whatyouhide/stream_data) can help us overcome some of these drawbacks.
 
 {% include toc.html %}
 
-
 ## What is StreamData?
 
-[StreamData](https://github.com/whatyouhide/stream_data) is library that performs stateless property-based testing.
+[StreamData](https://github.com/whatyouhide/stream_data) is a library that performs stateless property-based testing.
 
-The StreamData library will run each test 100 times with random data. When a test fails, StreamData will try to shrink the input to the smallest value that causes the test failure. This can be helpful when you have to debug your code! If a 50-element list causes your function to break, and only one of the list elements is problematic, StreamData can help you identify the offending element.
+The StreamData library will run each test [100 times by default](https://hexdocs.pm/stream_data/ExUnitProperties.html#check/1-options), using random data each time. When a test fails, StreamData will try to [shrink](https://hexdocs.pm/stream_data/StreamData.html#module-shrinking) the input to the smallest value that causes the test failure. This can be helpful when you have to debug your code! If a 50-element list causes your function to break, and only one of the list elements is problematic, StreamData can help you identify the offending element.
 
 This testing library has two main modules. [`StreamData`](https://hexdocs.pm/stream_data/StreamData.html) generates streams of random data. [`ExUnitProperties`](https://hexdocs.pm/stream_data/ExUnitProperties.htm) lets you run tests against your functions, using the generated data as your input.
 
 You might be asking how you can say anything meaningful about a function if you don't know what your exact inputs are. Read on!
 
+## Installing StreamData
+
+First, create a new Mix project. Refer to [New Projects](https://elixirschool.com/en/lessons/basics/mix/#new-projects) if you need some help.
+
+Second, add StreamData as a dependency to your `mix.exs` file:
+
+```elixir
+defp deps do
+  [{:stream_data, "~> x.y", only: :test}]
+end
+```
+
+Just replace `x` and `y` with the version of StreamData shown in the library's [installation instructions](https://github.com/whatyouhide/stream_data#installation).
+
+Third, run this from the command line of your terminal:
+
+```
+mix deps.get
+```
 
 ## Using StreamData
 
 To illustrate the features of StreamData, we'll write a few simple utility functions that repeat values. Let's say we want a function like [`String.duplicate/2`](https://hexdocs.pm/elixir/String.html#duplicate/2), but one that will duplicate strings, lists, or tuples.
 
-
 ### Strings
 
-Let's duplicate strings first. What are some requirements for our function?
+First, let's write a function that duplicates strings. What are some requirements for our function?
 
 1. The first argument should be a string. This is the string that we'll duplicate.
-1. The second argument should be a non-negative integer. It shows how many times we'll duplicate the first argument.
-1. The function should return a string. This string zero or more of the is the first string, repeated over and over.
+2. The second argument should be a non-negative integer. It shows how many times we'll duplicate the first argument.
+3. The function should return a string. This new string is just the original string, repeated zero or more times.
+4. If the original string is empty, the returned string should also be empty.
+5. If the second argument is `0`, the returned string should be empty.
 
 When we run our function, we want it to look like this:
 
@@ -58,7 +76,6 @@ end
 
 The happy path should be easy to test with [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html).
 
-
 ```elixir
 defmodule RepeaterTest do
   use ExUnit.Case
@@ -73,8 +90,7 @@ end
 
 That's hardly a comprehensive test, though. What should happen when the second argument is `0`? What should the output be when the first argument is an empty string? What does it even mean to repeat an empty string? How should the function work with UTF-8 characters? Will the function still work with large input strings?
 
-You might say that my criticisms are unfair. After all, who would write just one example to cover this function? I'll grant your point. We could write more examples to test edge cases and large strings. However, let's see if we can use StreamData to test this function more rigorously without much more code.
-
+We could write more examples to test edge cases and large strings. However, let's see if we can use StreamData to test this function more rigorously without much more code.
 
 ```elixir
 defmodule RepeaterTest do
@@ -96,7 +112,7 @@ end
 
 What does that do?
 
-* We replaced `describe` with [`property`](https://github.com/whatyouhide/stream_data/blob/v0.4.2/lib/ex_unit_properties.ex#L109). This lets us document the property we're testing.
+* We replaced `test` with [`property`](https://github.com/whatyouhide/stream_data/blob/v0.4.2/lib/ex_unit_properties.ex#L109). This lets us document the property we're testing.
 * [`check/1`](https://hexdocs.pm/stream_data/ExUnitProperties.html#check/1) is a macro that allows us to set up the data we'll use in the test.
 * [`StreamData.string/2`](https://hexdocs.pm/stream_data/StreamData.html#string/2) generates random strings. We can omit the module name when calling `string/2` because `use ExUnitProperties` [imports StreamData functions](https://github.com/whatyouhide/stream_data/blob/v0.4.2/lib/ex_unit_properties.ex#L109).
 * `StreamData.integer/0` generates random integers.
@@ -125,7 +141,7 @@ That's better than nothing, but it's not ideal. This test would still pass if ou
 We really want to verify two things:
 
 1. Our function generates a string of the right length.
-1. The contents of the final string are the original string repeated over and over again.
+2. The contents of the final string are the original string repeated over and over again.
 
 This is just another way of [rephrasing the property](https://www.propertesting.com/book_what_is_a_property.html#_alternate_wording_of_properties). We already have some code to verify #1. To verify #2, let's split the final string by the original string, and verify that we are left with a list of zero or more empty strings.
 
@@ -190,10 +206,9 @@ end
 
 ...the StreamData version is actually shorter. StreamData also covers edge cases a developer might forget to test.
 
-
 ### Lists
 
-Now, let's write a function that repeats lists. I want the function to work like this:
+Now, let's write a function that repeats lists. We want the function to work like this:
 
 ```elixir
 Repeater.duplicate([1, 2, 3], 3)
@@ -213,7 +228,6 @@ defmodule Repeater do
   end
 end
 ```
-
 
 A StreamData test might look like this:
 
@@ -245,12 +259,11 @@ We used `StreamData.list_of/1` and `StreamData.term/0` to create lists of random
 Like the property-based test for repeating strings, we compare the length of the new list with the product of the source list and `times`. The second assertion takes some explaining:
 
 1. We break the new list apart into several lists, each of which has the same number of elements as `list`.
-1. We then verify that each chunked list is equal to `list`.
+2. We then verify that each chunked list is equal to `list`.
 
 To put it differently, we make sure that our original list appears in the final list the right number of times, and that no _other_ elements show up in our final list.
 
-Why did we use the conditional? The first assertion and the conditional combine to tell us that the original list and the final list are both empty, so there is no need to do any more list comparison. Moreover, `Enum.chunk_every/2` requires the second argument to be positive
-
+Why did we use the conditional? The first assertion and the conditional combine to tell us that the original list and the final list are both empty, so there is no need to do any more list comparison. Moreover, `Enum.chunk_every/2` requires the second argument to be positive.
 
 ### Tuples
 
@@ -279,7 +292,7 @@ How might we test this? Let's approach it a bit differently than we've done so f
 Consider two sequences of operations you could perform on a tuple:
 
 1. Call `Repeater.duplicate/2` on the tuple, and convert the result to a list
-1. Convert the tuple to a list, and then pass the list to `Repeater.duplicate/2`
+2. Convert the tuple to a list, and then pass the list to `Repeater.duplicate/2`
 
 This is an application of a pattern that Scott Wlaschin calls ["Different Paths, Same Destination"](https://fsharpforfunandprofit.com/posts/property-based-testing-2/#different-paths-same-destination). I would expect both of these sequences of operations to yield the same result. Let's use that approach in our test.
 
@@ -309,7 +322,6 @@ defmodule RepeaterTest do
   end
 end
 ```
-
 
 ## Summary
 
@@ -394,4 +406,12 @@ defmodule RepeaterTest do
 end
 ```
 
-Property-based testing is a nice complement to example-based unit testing. It allows us to write succinct tests that cover a wide variety of inputs. If you don't need to maintain state between test runs, StreamData offers a nice syntax to write property-based tests.
+You can run your tests by entering this on your terminal's command line:
+
+```
+mix test
+```
+
+Remember that each StreamData test you write will run 100 times by default. Additionally, some of StreamData's random data takes longer to generate than others. The cumulative effect is that these types of tests will run more slowly than example-based unit tests.
+
+Even so, property-based testing is a nice complement to example-based unit testing. It allows us to write succinct tests that cover a wide variety of inputs. If you don't need to maintain state between test runs, StreamData offers a nice syntax to write property-based tests.
