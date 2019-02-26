@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.1
 title: Básico
 ---
 
@@ -90,7 +90,8 @@ false
 
 ### Átomos
 
-Un átomo es una constante cuyo nombre es su valor, si estás familiarizado con Ruby estos son equivalentes a los Símbolos:
+Un átomo es una constante cuyo nombre es su valor.
+Si estás familiarizado con Ruby estos son equivalentes a los Símbolos:
 
 ```elixir
 iex> :foo
@@ -145,13 +146,15 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir también incluye tipos de datos más complejos.  Aprenderemos más sobre ellos cuando veamos [collecciones](../collections/) y [funciones](../functions/).
+Elixir también incluye tipos de datos más complejos.
+Aprenderemos más sobre ellos cuando veamos [collecciones](../collections/) y [funciones](../functions/).
 
 ## Operaciones Básicas
 
 ### Aritmética
 
-Elixir soporta los operadores básicos `+`, `-`, `*`, y `/` como era de esperarse. Es importante resaltar que `/` siempre retornará un número con coma flotante:
+Elixir soporta los operadores básicos `+`, `-`, `*`, y `/` como era de esperarse.
+Es importante resaltar que `/` siempre retornará un número con coma flotante:
 
 ```elixir
 iex> 2 + 2
@@ -208,6 +211,8 @@ iex> 42 and true
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Nota: Los operadores de Elixir `and` y `or` en realidad mapean a `andalso` y `orelse` de Erlang.
 
 ### Comparación
 
