@@ -9,19 +9,15 @@ Nessa seção vamos aprender a utilizar o Ecto para definir e trabalhar com asso
 
 ## Configuração
 
-Nós vamos construir a aplicação `Example`, das ultimas lições. Você pode referir-se a configuração [aqui](./basics.md) para
-uma breve recapitulação.
+Nós vamos construir a aplicação `Example`, das ultimas lições. Você pode referir-se a configuração [aqui](./basics.md) para uma breve recapitulação.
 
 ## Tipos de Associações
 
-Existem três tipos de associações que podem ser definidas entre nossos esquemas. Vamos dar atenção ao que elas são e como
-impementar cada um dos tipos.
+Existem três tipos de associações que podem ser definidas entre nossos esquemas. Vamos dar atenção ao que elas são e como implementar cada um dos tipos.
 
 ### Belongs To/Has Many
 
-Nós estamos adicionando algumas novas entidades ao modelo de domínio da aplicação de exemplo para que seja possível categorizar
-nossos filmes favoritos. Vamos iniciar com dois esquemas: `Movie` e `Character`. Vamos implementar uma relação "has many/belongs to"
-entre os dois: Um filme tem vários (has many) personagens e um personagem personagem pertence a (belongs to) um filme.
+Nós estamos adicionando algumas novas entidades ao modelo de domínio da aplicação de exemplo para que seja possível categorizar nossos filmes favoritos. Vamos iniciar com dois esquemas: `Movie` e `Character`. Vamos implementar uma relação "has many/belongs to" entre os dois: Um filme tem vários (has many) personagens e um personagem personagem pertence a (belongs to) um filme.
 
 #### A Migração Has Many
 
@@ -49,8 +45,7 @@ end
 
 #### O Schema Has Many
 
-Nós vamos adicionar um esquema que especifica a relação "has many" entre um filme e os seus
-personagens.
+Nós vamos adicionar um esquema que especifica a relação "has many" entre um filme e os seus personagens.
 
 ```elixir
 # lib/example/movie.ex
@@ -65,8 +60,7 @@ defmodule Example.Movie do
 end
 ```
 
-A macro `has_many/3` não adiciona dados ao banco de dados por sí só. O que ela faz é utilizar uma chave estrangeira no esquema associado (`characters`)
-para tornar as associações de personagens de um filme disponíveis. Isso é o que nos permite realizar chamadas como `movie.characters`.
+A macro `has_many/3` não adiciona dados ao banco de dados por sí só. O que ela faz é utilizar uma chave estrangeira no esquema associado (`characters`) para tornar as associações de personagens de um filme disponíveis. Isso é o que nos permite realizar chamadas como `movie.characters`.
 
 #### A migração Belongs
 
@@ -102,7 +96,7 @@ end
 
 #### O Schema Belongs To
 
-Nosso esquema precisa definir a relação `belongs to` entre um personagem e seu filme,
+Nosso esquema precisa definir a relação `belongs to` entre um personagem e seu filme.
 
 ```elixir
 # lib/example/character.ex
@@ -117,7 +111,7 @@ defmodule Example.Character do
 end
 ```
 
-Vamos dar uma olhada mais a fundo na macro `belongs_to/3`. Ao invés de adicionar a coluna `movie_id` na tabela `characters`, essa macro _não_ adiciona nada ao banco de dados. Ela nos _permite_ acessar os esquemas de `movies` associados através de `characters`. Ela utiliza a chave estrangeira `movie_id` para tornar os `characters` associados com um dado filme quando executamos a consulta sobre os personagens. Isso nos permite chamar `character.movie`.
+Vamos dar uma olhada mais a fundo no que a macro `belongs_to/3` faz por nós. Ao invés de adicionar a coluna `movie_id` na tabela `characters`, essa macro _não_ adiciona nada ao banco de dados. Ela nos _permite_ acessar os esquemas de `movies` associados através de `characters`. Ela utiliza a chave estrangeira `movie_id` para tornar os `characters` associados com um dado filme quando executamos a consulta sobre os personagens. Isso nos permite chamar `character.movie`.
 
 Agora nós estamos prontos para executar as migrações:
 
@@ -129,7 +123,7 @@ mix ecto.migrate
 
 Digamos que um filme tenha um distribuidor. Por exemplo, o Netflix é o distribuidor do filme original "Bright".
 
-Vamos definir a migração e o esquema `Distributor` com o relacionamento " belongs to ". Primeiro, é preciso gerar a migração:
+Vamos definir a migração e o esquema `Distributor` com o relacionamento "belongs to". Primeiro, é preciso gerar a migração:
 
 ```console
 mix ecto.gen.migration create_distributors
@@ -152,7 +146,7 @@ defmodule Example.Repo.Migrations.CreateDistributors do
 end
 ```
 
-E o esquema `Distributor` deve usar a macro` belongs_to/3` para nos permitir chamar `distributor.movie` e procurar o filme associado de um distribuidor usando esta chave estrangeira.
+E o esquema `Distributor` deve usar a macro `belongs_to/3` para nos permitir chamar `distributor.movie` e procurar o filme associado a um distribuidor usando esta chave estrangeira.
 
 ```elixir
 # lib/example/distributor.ex
@@ -261,7 +255,7 @@ defmodule Example.Movie do
 end
 ```
 
-Finalmente, definiremos nosso esquema `Ator` com a mesma macro `many_to_many`.
+Finalmente, definiremos nosso esquema `Actor` com a mesma macro `many_to_many`.
 
 ```elixir
 # lib/example/actor.ex
@@ -292,7 +286,7 @@ A maneira como salvamos registros junto dos dados associados depende da natureza
 
 Com um relacionamento "belongs to", podemos alavancar a função `build_assoc/3` do Ecto.
 
-[`build_assoc/3`] (https://hexdocs.pm/ecto/Ecto.html#build_assoc/3) aceita três argumentos:
+[`build_assoc/3`](https://hexdocs.pm/ecto/Ecto.html#build_assoc/3) aceita três argumentos:
 
 * A estrutura do registro que queremos salvar.
 * O nome da associação.
@@ -314,7 +308,6 @@ iex> movie = %Movie{title: "Ready Player One", tagline: "Something about video g
   id: nil,
   tagline: "Something about video games",
   title: "Ready Player One"
-
 }
 
 iex> movie = Repo.insert!(movie)
@@ -404,7 +397,6 @@ iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
   id: 1,
   tagline: "Something about video games",
   title: "Ready Player One"
-
   }
 ```
 
@@ -416,7 +408,7 @@ iex> movie_changeset = Ecto.Changeset.change(movie)
  valid?: true>
 ```
 
-Agora vamos passar nosso changeset como o primeiro argumento para [`Ecto.Changeset.put_assoc/4`] (https://hexdocs.pm/ecto/Ecto.Changeset.html#put_assoc/4):
+Agora vamos passar nosso changeset como o primeiro argumento para [`Ecto.Changeset.put_assoc/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#put_assoc/4):
 
 ```elixir
 iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [actor])
@@ -434,7 +426,7 @@ iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actor
 >
 ```
 
-Isso nos dá um _novo_ changeset, representando a seguinte mudança: adicione os atores nesta lista de atores ao registro de filme de dar.
+Isso nos dá um _novo_ changeset, representando a seguinte mudança: adicione os atores nesta lista de atores ao registro de filme dado.
 
 Por fim, atualizaremos os registros de filme e ator fornecidos usando nosso changeset mais recente:
 
@@ -460,7 +452,7 @@ iex> Repo.update!(movie_actors_changeset)
 
 Podemos ver que isso nos dá um registro de filme com o novo ator apropriadamente associado e já pré-carregado para nós em `movie.actors`.
 
-Podemos usar essa mesma abordagem para criar um novo ator associado ao filme em questão. Em vez de passar uma estrutura de ator _salva_ para `put_assoc/4`, simplesmente passamos em um struct de ator descrevendo um novo ator que queremos criar:
+Podemos usar essa mesma abordagem para criar um novo ator associado ao filme em questão. Em vez de passar uma estrutura de ator _salva_ para `put_assoc/4`, simplesmente passamos uma struct de ator, descrevendo um novo ator que queremos criar:
 
 ```elixir
 iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])                      
