@@ -1,15 +1,16 @@
 ---
-version: 0.9.0
+version: 1.0.2
 title: Coincidencia de Patrones
 ---
 
-La coincidencia de patrones es una parte poderosa de Elixir, nos permite coincidir valores simples, estructuras de datos, e incluso funciones. En esta lección vamos a comenzar a ver cómo es usada la coincidencia de patrones.
+La coincidencia de patrones es una parte poderosa de Elixir. Esta nos permite coincidir valores simples, estructuras de datos, e incluso funciones.
+En esta lección vamos a comenzar a ver cómo es usada la coincidencia de patrones.
 
 {% include toc.html %}
 
 ## Operador de coincidencia
 
-¿Estás listo para algo un poco sorprendente? En Elixir, el operador `=` es en realidad un operador de coincidencia. A través del operador de coincidencia podemos asignar y luego coincidir valores, echemos un vistazo:
+¿Estás listo para algo un poco sorprendente? En Elixir, el operador `=` es en realidad un operador de coincidencia, comparable al signo igual en el álgebra. Escribirlo transforma la expresión en una igualdad y hace que Elixir haga coincidencia de los valores del lado izquierdo con los del derecho. Si la coincidencia es exitosa, esta retorna el valor de la ecuación. De lo contrario, esta lanzará un error. Echemos un vistazo:
 
 ```elixir
 iex> x = 1
@@ -53,9 +54,12 @@ iex> {:ok, value} = {:error}
 
 ## Operador Pin
 
-Como hemos aprendido, el operador de coincidencia realiza una asignación cuando el lado izquierdo de la coincidencia incluye una variable. En algunos casos reenlazar la variable no es el comportamiento deseado. Para esas situaciones, tenemos el operador `^` (pin).
+El operador de coincidencia realiza una asignación cuando el lado izquierdo de la coincidencia incluye una variable.
+En algunos casos reenlazar la variable no es el comportamiento deseado.
+Para esas situaciones, tenemos el operador `^` (pin).
 
-Cuando usamos el operador pin con una variable, hacemos una coincidencia sobre el valor existente en lugar de enlazarlo a uno nuevo. Vamos a ver cómo funciona esto:
+Cuando usamos el operador pin con una variable, hacemos una coincidencia sobre el valor existente en lugar de enlazarlo a uno nuevo.
+Vamos a ver cómo funciona esto:
 
 ```elixir
 iex> x = 1
@@ -96,3 +100,5 @@ iex> greet.("Hello", "Sean")
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
 ```
+
+Nota que en el ejemplo `"Mornin"` que la reasignación de `greeting` a `"Mornin"` solo ocurre dentro de la función. Afuera de la función `greeting` aún es `"Hello"`.
