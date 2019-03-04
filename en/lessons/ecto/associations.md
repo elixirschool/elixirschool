@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.1.0
 title: Associations
 ---
 
@@ -9,7 +9,7 @@ In this section we'll learn how to use Ecto to define and work with associations
 
 ## Set Up
 
-We'll be building off of the app, `Example`, from the previous lessons. You can refer to the setup [here](../basics) for a quick refresher.
+We'll start off with the `Example` app from the previous lesson. You can refer to the setup [here](../basics) for a quick refresher.
 
 ## Types of Associations
 
@@ -110,7 +110,7 @@ defmodule Example.Character do
 end
 ```
 
-Let's take a closer look at what the `belongs_to/3` macro does for us. Unlike adding the `movie_id` column to our `characters` table, this macro _doesn't_ add anything to the database. It _does_ give us the ability to access our associated `movies` schema _through_ `characters`. It uses the the foreign key of `movie_id` on the `characters` table to make a character's associated movie available when we query for characters. This is what will allow us to call `character.movie`.
+Let's take a closer look at what the `belongs_to/3` macro does for us. In addition to adding the foreign key `movie_id` to our schema, it also gives us the ability to access associated `movies` schema _through_ `characters`. It uses the foreign key to make a character's associated movie available when we query for them. This is what will allow us to call `character.movie`.
 
 Now we're ready to run our migrations:
 
@@ -128,7 +128,7 @@ We'll define the `Distributor` migration and schema with the "belongs to" relati
 mix ecto.gen.migration create_distributors
 ```
 
-Our migration should add a foreign key of `movie_id` to the `distributors` table:
+We should add a foreign key of `movie_id` to the `distributors` table migration we just generated:
 
 ```elixir
 # priv/repo/migrations/*_create_distributors.exs
@@ -177,7 +177,7 @@ defmodule Example.Movie do
 end
 ```
 
-The `has_one/3` macro functions just like the `has_many/3` macro. It doesn't add anything to the database but it _does_ use the associated schema's foreign key to look up and expose the movie's distributor. This will allow us to call `movie.distributor`.
+The `has_one/3` macro functions just like the `has_many/3` macro. It uses the associated schema's foreign key to look up and expose the movie's distributor. This will allow us to call `movie.distributor`.
 
 We're ready to run our migrations:
 
@@ -190,8 +190,6 @@ mix ecto.migrate
 Let's say that a movie has many actors and that an actor can belong to more than one movie. We'll build a join table that references _both_ movies _and_ actors to implement this relationship.
 
 First, let's generate the `Actors` migration:
-
-Generate the migration:
 
 ```console
 mix ecto.gen.migration create_actors
@@ -293,9 +291,7 @@ With a "belongs to" relationship, we can leverage Ecto's `build_assoc/3` functio
 * The name of the association.
 * Any attributes we want to assign to the associated record we are saving.
 
-Let's save a movie and and associated character:
-
-First, we'll create a movie record:
+Let's save a movie and and associated character. First, we'll create a movie record:
 
 ```elixir
 iex> alias Example.{Movie, Character, Repo}
@@ -340,7 +336,7 @@ Notice that since the `Movie` schema's `has_many/3` macro specifies that a movie
 In order to use `build_assoc/3` to save a movie's associated distributor, we take the same approach of passing the _name_ of the movie's relationship to distributor as the second argument to `build_assoc/3`:
 
 ```elixir
-iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})       
+iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})
 %Example.Distributor{
   __meta__: #Ecto.Schema.Metadata<:built, "distributors">,
   id: nil,
@@ -386,7 +382,7 @@ iex> actor = Repo.insert!(actor)
 
 Now we're ready to associate our movie to our actor via the join table.
 
-First, note that in order to work with Changesets, we need to make sure that our `movie` record has preloaded its associated schemas. We'll talk more about preloading data in a bit. For now, its enough to understand that we can preload our associations like this:
+First, note that in order to work with changesets, we need to make sure that our `movie` structure has preloaded associated data. We'll talk more about preloading data in a bit. For now, its enough to understand that we can preload our associations like this:
 
 ```elixir
 iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
@@ -404,7 +400,7 @@ iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
 Next up, we'll create a changeset for our movie record:
 
 ```elixir
-iex> movie_changeset = Ecto.Changeset.change(movie)                                                    
+iex> movie_changeset = Ecto.Changeset.change(movie)
 #Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Movie<>,
  valid?: true>
 ```
@@ -451,12 +447,12 @@ iex> Repo.update!(movie_actors_changeset)
 }
 ```
 
-We can see that this gives us a movie record with the new actor properly associated and already preloaded for us under `movie.actors`
+We can see that this gives us a movie record with the new actor properly associated and already preloaded for us under `movie.actors`.
 
 We can use this same approach to create a brand new actor that is associated with the given movie. Instead of passing a _saved_ actor struct into `put_assoc/4`, we simply pass in an actor struct describing a new actor that we want to create:
 
 ```elixir
-iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])                      
+iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])
 #Ecto.Changeset<
   action: nil,
   changes: %{
