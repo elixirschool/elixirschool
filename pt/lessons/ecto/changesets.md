@@ -284,3 +284,7 @@ def sign_up(params) do
 end
 ```
 
+## Conclusão
+
+Há muitos casos de uso e funcionalidades que não abordamos nesta lição, tal como [changesets sem schema](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) que você pode usar para validar _qualquer_ dado, ou lidar com efeitos colaterais ao lado do changeset ([`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2)) ou trabalhar com associações e incorporações.
+Podemos abordar isso no futuro, lições avançadas, mas enquanto isso, nós encorajamos a explorar a [Documentação do Ecto Changeset](https://hexdocs.pm/ecto/Ecto.Changeset.html) para mais informações.
