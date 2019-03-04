@@ -230,3 +230,57 @@ iex> User.changeset(%User{}, %{"name" => "Bob"})
 ```
 
 Ótimo, funciona! No entanto, realmente não havia necessidade de implementar essa função — a função `validate_inclusion/4` poderia ter sido usada; ainda, você pode ver como adicionar seus próprios erros, e isso pode ser útil.
+
+## Adicionando alterações programaticamente
+
+Às vezes você quer introduzir mudanças em um changeset manualmente. O `put_change/3` existe para este propósito. 
+
+Em vez de tornar obrigatório o campo `name`, vamos permitir usuários assinarem sem um nome, e os chamaremos de "Anonymous".
+A função que precisamos parecerá familiar — aceita e retorna um changeset, assim como o `validate_fictional_name/1` que introduzimos anteriormente: 
+
+```elixir
+def set_name_if_anonymous(changeset) do
+  name = get_field(changeset, :name)
+
+  if is_nil(name) do
+    put_change(changeset, :name, "Anonymous")
+  else
+    changeset
+  end
+end
+```
+
+Nós podemos definir o nome do usuário como "Anonymous", apenas quando se registrar na aplicação; para fazer isso, vamos criar uma nova função de changeset:
+
+```elixir
+def registration_changeset(struct, params) do
+  struct
+  |> cast(params, [:name])
+  |> set_name_if_anonymous()
+end
+```
+
+Agora nós não temos que passar um `name`, e `Anonymous` sera definido automaticamente, como esperado: 
+
+```elixir
+iex> User.registration_changeset(%User{}, %{})
+#Ecto.Changeset<
+  action: nil,
+  changes: %{name: "Anonymous"},
+  errors: [],
+  data: #User<>,
+  valid?: true
+>
+```
+
+Tendo uma função changeset que tem uma responsabilidade específica (como `registration_changeset/2`) não é incomum — às vezes, você precisa da flexibilidade para executar apenas algumas validações ou filtrar parâmetros específicos.
+A função acima poderia ser usada em um `sign_up/1` dedicado em outro lugar:
+
+```elixir
+def sign_up(params) do
+  %User{}
+  |> User.registration_changeset(params)
+  |> Repo.insert()
+end
+```
+
