@@ -38,6 +38,7 @@ defmodule User do
   end
 end
 ```
+
 Para criar um changeset usando o schema `User`, vamos usar `Ecto.Changetset.cast/4`:
 
 ```elixir
@@ -49,8 +50,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
 O primeiro parâmetro é o dado original - uma stuct `%User{}` vazia neste caso. 
 Ecto é inteligente o suficiente para encontrar o schema baseado na própria estrutura.
 O segundo parâmetro são as alterações que queremos fazer - apenas uma map vazio.
-O terceiro parâmetro é o que faz o `cast / 4` especial: é uma lista de campos permitidos, 
-The third parameter is what makes `cast/4` special: it is a list of fields allowed to go through, o que nos dá a capacidade de controlar quais campos podem ser alterados e proteger o resto.
+O terceiro parâmetro é o que faz o `cast/4` especial: é uma lista de campos permitidos, o que nos dá a capacidade de controlar quais campos podem ser alterados e proteger o resto.
 
  ```elixir
  iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
@@ -69,7 +69,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
 
 Você pode ver como o novo nome foi ignorado na segunda vez, onde não foi explicitamente permitido.
 
-Uma alternativa para o `cast/4` é o `change/2`, que não tem a capacidade de filtrar alterações como `cast / 4`.
+Uma alternativa para o `cast/4` é o `change/2`, que não tem a capacidade de filtrar alterações como `cast/4`.
 É útil quando você confia na origem que fez as alterações ou quando trabalha com dados manualmente.
 
 Agora podemos criar changesets, mas como não temos validação, quaisquer alterações ao nome do usuário serão aceitas, para que possamos terminar com um nome vazio:
@@ -87,7 +87,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
 
 Ecto diz que o conjunto de alterações é válido, mas, na verdade, não queremos permitir nomes vazios. Vamos consertar isso!
 
-## Validations
+## Validações
 
 O Ecto vem com várias funções de validação integradas para nos ajudar.
 
@@ -125,7 +125,7 @@ def changeset(struct, params) do
 end
 ```
 
-Quando chamamos a função `User.changeset / 2` e passamos um nome vazio, o changeset não será mais válido, e irá conter uma mensagem de erro.
+Quando chamamos a função `User.changeset/2` e passamos um nome vazio, o changeset não será mais válido, e irá conter uma mensagem de erro.
 Nota: não esqueça de executar `recompile()` quando estiver trabalhando no `iex`, caso contrário, não surtirá efeito as alterações feitas no código.
 
 ```elixir
@@ -182,3 +182,51 @@ Alguns dos outros validadores integrados no `Ecto.Changeset` são:
 + validate_subset/4
 
 Você pode encontrar a lista completa com os detalhes de como usa-los [aqui](https://hexdocs.pm/ecto/Ecto.Changeset.html#summary).
+
+### Validações Customizadas
+
+Embora os validadores internos cubram uma ampla gama de casos de uso, você ainda pode precisar de algo diferente.
+
+Toda função `validate_` que usamos até agora aceita e retorna um `%Ecto.Changeset{}`, para que possamos facilmente ligar o nosso. 
+
+Por exemplo, podemos ter certeza de que somente nomes de personagens fictícios são permitidos:
+
+```elixir
+@fictional_names ["Black Panther", "Wonder Woman", "Spiderman"]
+def validate_fictional_name(changeset) do
+  name = get_field(changeset, :name)
+
+  if name in @fictional_names do
+    changeset
+  else
+    add_error(changeset, :name, "is not a superhero")
+  end
+end
+```
+
+Acima nós introduzimos duas novas funções auxiliares: [`get_field/3`](https://hexdocs.pm/ecto/Ecto.Changeset.html#get_field/3) e [`add_error/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#add_error/4). O que elas fazem é quase auto-explicativo, mas eu aconselho você a verificar os links da documentação.
+
+É uma boa pratica retornar sempre um `%Ecto.Changeset{}`, então você pode usar o perador `|>` e facilitar a adição de mais validações posteriormente:
+
+```elixir
+def changeset(struct, params) do
+  struct
+  |> cast(params, [:name])
+  |> validate_required([:name])
+  |> validate_length(:name, min: 2)
+  |> validate_fictional_name()
+end
+```
+
+```elixir
+iex> User.changeset(%User{}, %{"name" => "Bob"})
+#Ecto.Changeset<
+  action: nil,
+  changes: %{name: "Bob"},
+  errors: [name: {"is not a superhero", []}],
+  data: #User<>,
+  valid?: false
+>
+```
+
+Ótimo, funciona! No entanto, realmente não havia necessidade de implementar essa função — a função `validate_inclusion/4` poderia ter sido usada; ainda, você pode ver como adicionar seus próprios erros, e isso pode ser útil.
