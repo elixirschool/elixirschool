@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Custom Mix Tasks
 ---
 
@@ -31,7 +31,7 @@ What if we could create something similar for our project? Well the great news i
 
 ## Setup
 
-Let's set up a very basic Mix application.
+Let's set up a basic Mix application.
 
 ```shell
 $ mix new hello

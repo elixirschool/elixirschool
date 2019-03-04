@@ -1,10 +1,9 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Changesets
 ---
 
-In order to insert, update or delete data from the database, `Ecto.Repo.insert/2`, `update/2` and `delete/2` require a changeset as their first parameter.
-But what exactly are changesets?
+In order to insert, update or delete data from the database, `Ecto.Repo.insert/2`, `update/2` and `delete/2` require a changeset as their first parameter. But what are changesets?
 
 A familiar task for almost every developer is checking input data for potential errors — we want to make sure that data is in the right state, before we attempt to use it for our purposes.
 
@@ -14,7 +13,7 @@ In this lesson we're going to explore this functionality and learn how to verify
 {% include toc.html %}
 
 ## Creating your first changeset
- 
+
 Let's look at an empty `%Changeset{}` struct:
 
 ```elixir
@@ -27,7 +26,7 @@ As you can see, it has some potentially useful fields, but they are all empty.
 For a changeset to be truly useful, when we create it, we need to provide a blueprint of what the data is like.
 What better blueprint for our data than the schemas we've created that define our fields and types?
 
-Let's see a common `User` schema:  
+Let's see a common `User` schema:
 
 ```elixir
 defmodule User do
