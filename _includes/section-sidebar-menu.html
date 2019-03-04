@@ -1,11 +1,11 @@
 
 <!-- Menu -->
 <nav id="menu">
+  <span class="stack-info otp-version">Elixir {{site.elixir.version}} - Erlang/OTP {{site.erlang.OTP}} [erts-{{site.erlang.erts}}]</span>
   <header class="major">
     <h2>Menu</h2>
     <p>{{ locale.project.description }}</p>
   </header>
-  <span>Elixir {{site.elixir.version}} - Erlang/OTP {{site.erlang.OTP}} [erts-{{site.erlang.erts}}]</span>
   <ul>
     <li>
       <a href="/{% if page.lang %}{{ page.lang }}/{% endif %}" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "home" %}active{% endif %}">{{ site.data['locales'][language]['sections']['home'] }}</a>
