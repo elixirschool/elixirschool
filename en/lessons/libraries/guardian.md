@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Guardian (Basics)
 ---
 
@@ -64,8 +64,7 @@ We'll cover that later.
 
 ## Setup
 
-There are many options for setting up Guardian.
-We'll cover them at some point but let's start with a very simple setup.
+There are many options for setting up Guardian. We'll cover them at some point but let's start with a simple setup.
 
 ### Minimal Setup
 

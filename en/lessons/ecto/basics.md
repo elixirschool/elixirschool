@@ -1,5 +1,5 @@
 ---
-version: 2.1.0
+version: 2.1.1
 title: Basics
 ---
 
@@ -9,7 +9,7 @@ Ecto is an official Elixir project providing a database wrapper and integrated q
 
 ### Adapters
 
-Ecto supports different databases through the use of adapters.  A few examples of adapters are:
+Ecto supports different databases through the use of adapters. A few examples of adapters are:
 
 * PostgreSQL
 * MySQL

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Querying
 ---
 
@@ -129,7 +129,7 @@ You can use query expressions when you _don't_ need an `in` statement (`m in Mov
 We use the `Ecto.Query.select/3` function to specify the select statement portion of our query. If we want to select only certain fields, we can specify those fields as a list of atoms or by referencing the struct's keys. Let's take a look at the first approach:
 
 ```elixir
-iex> query = from(Movie, select: [:title])                                            
+iex> query = from(Movie, select: [:title])
 #Ecto.Query<from m in Example.Movie, select: [:title]>
 iex> Repo.all(query)
 
@@ -154,9 +154,9 @@ This approach returns a struct with only the specified field, `title`, populated
 The second approach behaves a little differently. This time, we *do* need to use an `in` expression. This is because we need to create a reference to our data structure in order to specify the `title` key of the movie struct:
 
 ```elixir
-iex(15)> query = from(m in Movie, select: m.title)   
+iex(15)> query = from(m in Movie, select: m.title)
 #Ecto.Query<from m in Example.Movie, select: m.title>
-iex(16)> Repo.all(query)                             
+iex(16)> Repo.all(query)
 
 15:06:12.752 [debug] QUERY OK source="movies" db=4.5ms queue=0.1ms
 ["Ready Player One"]
@@ -169,7 +169,7 @@ Notice that this approach to using `select` returns a list containing the select
 We can use `where` expressions to include "where" clauses in our queries. Multiple `where` expressions are combined into `WHERE AND` SQL statements.
 
 ```elixir
-iex> query = from(m in Movie, where: m.title == "Ready Player One")                   
+iex> query = from(m in Movie, where: m.title == "Ready Player One")
 #Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
 iex> Repo.all(query)
 
@@ -205,7 +205,7 @@ In order to use interpolated values or Elixir expressions in our where clauses, 
 ```elixir
 iex> title = "Ready Player One"
 "Ready Player One"
-iex> query = from(m in Movie, where: m.title == ^title, select: m.tagline)            
+iex> query = from(m in Movie, where: m.title == ^title, select: m.tagline)
 #Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
  select: m.tagline>
 iex> Repo.all(query)
@@ -306,7 +306,7 @@ We can cut down on our database queries with the following:
 
 ```elixir
 iex> query = from(m in Movie, join: a in assoc(m, :actors), preload: [actors: a])
-iex> Repo.all(query)  
+iex> Repo.all(query)
 [
   %Example.Movie{
     __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
@@ -440,4 +440,4 @@ from c in Character,
   select: {m.title, c.name}
 ```
 
-The Ecto Query DSL is a powerful tool that provides us with everything we need to make even complex database queries. With this introduction provides you with the basic building blocks to start querying.   
+The Ecto Query DSL is a powerful tool that provides us with everything we need to make even complex database queries. With this introduction provides you with the basic building blocks to start querying.

@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Poolboy
 ---
 
@@ -184,4 +184,4 @@ In our example, we've increased the default timeout to one minute in order to de
 In case of this app, you can observe the error if you change the value of `@timeout` to less than 1000.
 
 Even though we're attempting to create multiple processes *(total of twenty in the example above)* `:poolboy.transaction/3` function will limit the maximum number of created processes to five *(plus two overflow workers if needed)* as we have defined in our configuration.
-All requests will be handled using the pool of workers rather than creating a new process for each and every request.
+All requests will be handled using the pool of workers rather than creating a new process for every request.
