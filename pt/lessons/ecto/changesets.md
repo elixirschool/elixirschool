@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.0.0
 title: Changesets
 ---
 
@@ -260,7 +260,7 @@ def registration_changeset(struct, params) do
 end
 ```
 
-Agora nós não temos que passar um `name`, e `Anonymous` sera definido automaticamente, como esperado: 
+Agora nós não temos que passar um `name`, e `Anonymous` será definido automaticamente, como esperado: 
 
 ```elixir
 iex> User.registration_changeset(%User{}, %{})
