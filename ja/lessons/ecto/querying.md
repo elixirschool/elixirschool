@@ -5,7 +5,7 @@ title: クエリ
 
 {% include toc.html %}
 
-このレッスンでは、 `Example` アプリと [前のレッスン](./associations) で設定した映画カタログドメインを作成します。
+このレッスンでは、 `Example` アプリと [前のレッスン](./associations) で設定した映画ドメインを作成します。
 
 ## `Ecto.Repo` によるレコードのフェッチ
 
