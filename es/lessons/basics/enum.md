@@ -82,7 +82,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-Algunas veces hacer chunk a una collección no es suficiente para lograr lo que necesitas.
+Algunas veces hacer chunk a una colección no es suficiente para lograr lo que necesitas.
 Si este es el caso, `map_every/3` puede ser muy  útil para ejecutarse cada `n` elementos, siempre se ejecuta en el primero.
 
 ```elixir
