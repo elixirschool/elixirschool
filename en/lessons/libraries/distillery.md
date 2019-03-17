@@ -98,7 +98,7 @@ If you are using distillery with Phoenix there are a few extra steps you need to
 
 First, we need to edit our `config/prod.exs` file.
 
-Change the following line form this:
+Change the following line from this:
 
 ```
 config :book_app, BookAppWeb.Endpoint,
