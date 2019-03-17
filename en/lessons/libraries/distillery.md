@@ -1,5 +1,5 @@
 ---
-version: 2.0.0
+version: 2.0.1
 title: Distillery (Basics)
 ---
 
@@ -229,7 +229,7 @@ release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
 
 See more about shell_scripts from Distillery [here](https://hexdocs.pm/distillery/extensibility/shell_scripts.html)
 
-Finally, in your `rel/config.exs` file, add the following to your `rel/config.exs` file
+Finally, add the following to your `rel/config.exs` file
 ```
 release :book_app do
   ...
