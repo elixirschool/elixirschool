@@ -201,6 +201,11 @@ iex(4)> user |> User.changeset(attrs) |> Repo.insert()
 Now we got an application that makes sure that no two users can share the same email!
 Constraints are important to ensure that at a database level the data still has integrity.
 
+One caveat to talk about is that where validations can be checked simultaneously, constraints
+fail one-by-one. If your table has several constraints and each gets violated, your database
+will only give you an error to the first one it notices. It would be best to catch as much
+as you can in validations first before applying the constraints.
+
 ### Validation, Constraint, or Both?
 Validations and constraints have the same goal of making sure that your data has
 integrity. Two good questions we should ask ourselves when considering each:
