@@ -4,7 +4,7 @@ date: 2019-03-19
 layout: post
 categories: til
 author_link: https://github.com/maxcell
-title:  TIL Constraints and Validations
+title:  TIL Ecto Constraints and Validations
 excerpt: >
   Let's take a look at how Ecto handles these two ways
   of ensuring data integrity
@@ -13,13 +13,13 @@ excerpt: >
 Developers want to create the best applications they can for their users.
 In the process, they want to make sure to give good feedback to their users
 when data doesn't get saved into the database. In Elixir, there is a great tool
-on top of the database that helps, Ecto! It can put validations and
+on top of the database that helps -- Ecto! It can put validations and
 constraints onto specific fields to ensure data integrity.
 
 However, did you know they are differences between validations and constraints?
 I didn't. In the process of building a side project, I ran into the problem a few
-times! Let's talk about the goal of them and see the differences. We'll dive into
-**why we need both each** towards the end.
+times! Let's discuss the purpose of each approach and see the differences between them.
+We'll dive into **why we need each** towards the end.
 
 ## Data Integrity is Rule #1
 > Data Integrity is the maintenance of, and the assurance of the accuracy and
@@ -45,7 +45,8 @@ defmodule MyCoolWebApp.Accounts.User do
 end
 ```
 
-And inside of it, we'd want to describe the `changeset`:
+Inside of our schema, we'd want to describe the `changeset`. Ecto.Changesets allow us to filter, cast, validate, and constrain the structs created by our schema that represents the database records.
+Let's take a look at a changeset that _only_ casts:
 ```elixir
 def changeset(user, attrs) do
   user
@@ -53,7 +54,7 @@ def changeset(user, attrs) do
 end
 ```
 
-If we only had this, we might have a few headaches come our way. It is very easy to
+If this was all we had, we might have a few headaches come our way. It is very easy to
 prematurely submit a form without filling all the fields out. Potentially, now the
 user's profile has a lovely email or password of `nil`, or worse `""`, in the
 database. This would suck, for the user(s) and the developer(s).
@@ -76,7 +77,7 @@ def changeset(user, attrs) do
 end
 ```
 
-And for free, we get a set of errors coming out if a user were to make a mistake:
+And for free, Ecto adds descriptive errors to our changeset:
 ```elixir
 iex(1)> %User{} |> User.changeset(%{})
 #Ecto.Changeset<
@@ -93,25 +94,23 @@ iex(1)> %User{} |> User.changeset(%{})
 ```
 
 There are a ton of validations out there that can enhance your app! Take a
-look at the documentation for the [Ecto.Changeset](https://hexdocs.pm/ecto/Ecto.Changeset.html#summary). Now the next
-phase will be looking at when we need to apply some constraints.
+look at the documentation for [Ecto.Changeset](https://hexdocs.pm/ecto/Ecto.Changeset.html#summary). In the next
+section, we'll look at why we need to apply constraints and how to use them.
 
 ### Constraints
-You might have gotten to this point and thought, why are there differences?
+If we use validations, why would we also need constraints?
 Let's think about many apps that we use. When we sign up for an application, are
 we allowed to signup with the same email as another user? (Hint: the answer should
-always be no.) The reason is because developers want to be able to distinguish users
-between one another and ensure that they can send the right person the right information.
+always be no.)
 
-So why couldn't we just have a validation for uniqueness? Well remember the definition
-we learned about validations, we perform the validation prior to checking the database.
+So why couldn't we just have a validation for uniqueness? Remember that, by definition validation are executed _prior to checking the database_.
 If we were to have a validation for uniqueness, that would mean everything is
 unique even if you're adding duplicates since it doesn't look at the database.
 
-A constraint is a rule that is enforced **by the database**. When an application,
-is finished checking through its validations, it then wants to ensure that it can be
-saved into the database just fine and isn't breaking any of the constraints.
-Let's add our first constraint, uniqueness!
+A constraint is a rule that is enforced **by the database**. Your application will run through Ecto.Changeset's validations first without interacting with the database. Then it will execute
+any constraints by checking the database.
+
+Let's add our first constraint to enforce a user's unique email!
 ```elixir
 user
 |> cast(attrs, [:display_name, :email, :password])
@@ -156,9 +155,11 @@ iex(4)> user |> User.changeset(attrs) |> Repo.insert()
 ```
 
 That's weird. It didn't show us an error? That's because Ecto doesn't know it is
-supposed to show an error. If you add a constraint to your `changeset/3`, you **must**
-put it into the migrations, the database level. Ecto only checks constraints if they are enforced
-by the database, even though you wrote it in the `changset/3`.
+supposed to show an error. If you add a constraint to your `changeset/3`, you
+**must** enforce the constraint at a database level. So for our `unique_constraint`,
+we need to make sure to create a `unique_index` for the email field. Even though you
+wrote `unique_constraint` in the `changeset/3`, it doesn't check for that
+constraint unless there is a `unique_index` applied to the database.
 
 So we need a new migration and then perform the migration:
 ```elixir
@@ -166,7 +167,7 @@ defmodule MyCoolWebApp.Repo.Migrations.UpdateUniqueEmailsToUsers do
   use Ecto.Migration
 
   def change do
-    create index(:users, [:email])
+    create unique_index(:users, [:email])
   end
 end
 ```
@@ -198,7 +199,7 @@ iex(4)> user |> User.changeset(attrs) |> Repo.insert()
  >}
 ```
 
-Now we got an application that makes sure that no two users can share the same email!
+Now we have an application that makes sure that no two users can share the same email!
 Constraints are important to ensure that at a database level the data still has integrity.
 
 One caveat to talk about is that where validations can be checked simultaneously, constraints
@@ -224,6 +225,5 @@ we have a validation.
 
 ### Conclusion
 Ecto is a powerful tool for developers to make it easier to interface with the database.
-However, it is so important for us to understand what it is doing for us and making
-sure that we use it properly. As you're thinking of your database design, make sure
+However, it is so important for us to understand what it is doing for us so that we use it properly. As you're thinking of your database design, make sure
 to start off and think about the validations and constraints you need to enforce!
