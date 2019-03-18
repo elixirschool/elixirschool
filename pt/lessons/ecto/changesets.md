@@ -1,12 +1,12 @@
 ---
-version: 1.0.0
+version: 1.1.1
 title: Changesets
 ---
 
-Para inserir, atualizar ou excluir as informações de um banco de dados, `Ecto.Repo.insert/2`, `update/2` e `delete/2` é necessário um changeset como primeiro parâmetro.
+Para inserir, atualizar ou excluir as informações de um banco de dados, `Ecto.Repo.insert/2`, `update/2` e `delete/2` requerem um changeset como primeiro parâmetro.
 Mas o que são exatamente changesets?
 
-Uma tarefa comum para quase todos os desenvolvedores é verificar os dados de entrada para possíveis erros — Queremos ter certeza de que os dados estão no estado correto antes de tentarmos usá-los para nossos propósitos.
+Uma tarefa comum para quase todos os desenvolvedores é verificar os dados de entrada por possíveis erros — queremos ter certeza de que os dados estão no estado correto antes de tentarmos usá-los para nossos propósitos.
 
 O Ecto fornece uma solução completa para trabalhar com alteração de dados na forma do módulo `Changeset` e de estruturas de dados. 
 Nesta lição, vamos explorar essa funcionalidade e aprender a verificar a integridade dos dados antes de persisti-los no banco de dados.
@@ -39,7 +39,7 @@ defmodule User do
 end
 ```
 
-Para criar um changeset usando o schema `User`, vamos usar `Ecto.Changetset.cast/4`:
+Para criar um changeset usando o schema `User`, vamos usar `Ecto.Changeset.cast/4`:
 
 ```elixir
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
@@ -49,7 +49,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
 
 O primeiro parâmetro é o dado original - uma stuct `%User{}` vazia neste caso. 
 Ecto é inteligente o suficiente para encontrar o schema baseado na própria estrutura.
-O segundo parâmetro são as alterações que queremos fazer - apenas uma map vazio.
+O segundo parâmetro são as alterações que queremos fazer - apenas um map vazio.
 O terceiro parâmetro é o que faz o `cast/4` especial: é uma lista de campos permitidos, o que nos dá a capacidade de controlar quais campos podem ser alterados e proteger o resto.
 
  ```elixir
@@ -140,7 +140,7 @@ iex> User.changeset(%User{}, %{"name" => ""})
 ```
 
 Caso você tente usar `Repo.insert(changeset)` com o changeset descrito acima, irá receber um `{:error, changeset}` de volta com o mesmo erro, então você não precisa checar `changeset.valid?` você mesmo toda vez.
-É mais facil tentar executar o insert, update ou delete, então processar os erros depois, caso existam.
+É mais fácil tentar executar o insert, update ou delete, e então processar os erros depois, caso existam.
 
 Além de `validate_required/2`, existe também `validate_length/3`, que possui algumas opções extras: 
 
@@ -169,7 +169,7 @@ iex> User.changeset(%User{}, %{"name" => "A"})
 >
 ```
 
-Você pode se surpreender já que a mensagem de erro contém o `%{count}` enigmático - isto é para ajudar a tradução para outras línguas; se você quiser exibir os erros diretamente para o usuário, você pode torná-los legíveis usando [`traverse_errors/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#traverse_errors/2) - Dê uma olhada no exemplo fornecido na documentação.
+Você pode se surpreender já que a mensagem de erro contém o `%{count}` enigmático - isto é para ajudar a tradução para outras línguas; se você quiser exibir os erros diretamente para o usuário, você pode torná-los legíveis usando [`traverse_errors/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#traverse_errors/2) - dê uma olhada no exemplo fornecido na documentação.
 
 Alguns dos outros validadores integrados no `Ecto.Changeset` são:
 
@@ -206,7 +206,7 @@ end
 
 Acima nós introduzimos duas novas funções auxiliares: [`get_field/3`](https://hexdocs.pm/ecto/Ecto.Changeset.html#get_field/3) e [`add_error/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#add_error/4). O que elas fazem é quase auto-explicativo, mas eu aconselho você a verificar os links da documentação.
 
-É uma boa pratica retornar sempre um `%Ecto.Changeset{}`, então você pode usar o perador `|>` e facilitar a adição de mais validações posteriormente:
+É uma boa pratica retornar sempre um `%Ecto.Changeset{}`, então você pode usar o operador `|>` e facilitar a adição de mais validações posteriormente:
 
 ```elixir
 def changeset(struct, params) do
