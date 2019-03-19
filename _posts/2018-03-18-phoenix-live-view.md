@@ -4,15 +4,15 @@ author_link: https://github.com/sophiedebenedetto
 categories: til
 date: 2019-03-19
 layout: post
-title:  Walk-Through of Phoenix Live View
+title:  Walk-Through of Phoenix LiveView
 excerpt: >
-  Learn how to use Phoenix Live View for real-time features without complicated JS frameworks.
+  Learn how to use Phoenix LiveView for real-time features without complicated JS frameworks.
 ---
-It's here! Phoenix Live View leverages server-rendered HTML and Phoenix's native WebSocket tooling so you can build fancy real-time features without all that complicated JavaScript. If you're sick to death of writing JS (I had a bad day with Redux, don't ask), then this is the library for you!
+It's here! Phoenix LiveView leverages server-rendered HTML and Phoenix's native WebSocket tooling so you can build fancy real-time features without all that complicated JavaScript. If you're sick to death of writing JS (I had a bad day with Redux, don't ask), then this is the library for you!
 
-Phoenix Live View is brand brand new so I thought I'd provide a short write-up of a super simple demo I built for anyone looking to get up and running. Keep in mind that the library is still a release candidate and as such, is subject to change.
+Phoenix LiveView is brand brand new so I thought I'd provide a short write-up of a super simple demo I built for anyone looking to get up and running. Keep in mind that the library is still a release candidate and as such, is subject to change.
 
-## What is Live View?
+## What is LiveView?
 
 Chris McCord said it best in his [announcement](https://dockyard.com/blog/2018/12/12/phoenix-liveview-interactive-real-time-apps-no-need-to-write-javascript) back in December:
 
@@ -22,9 +22,9 @@ Chris McCord said it best in his [announcement](https://dockyard.com/blog/2018/1
 
 If you've waded through an overly complex SPA that Reduxes all the things (for example), you've felt the maintenance and iteration costs that often accompany all that fancy JavaScript.
 
-Phoenix Live View feels like a perfect fit for the 90% of the time that you do want some live updates but don't actually need the wrecking ball of many modern JS frameworks.
+Phoenix LiveView feels like a perfect fit for the 90% of the time that you do want some live updates but don't actually need the wrecking ball of many modern JS frameworks.
 
-Let's get Live View up and running to support a feature that pushes out live updates as our server enacts a step-by-step process of creating a GitHub repo.
+Let's get LiveView up and running to support a feature that pushes out live updates as our server enacts a step-by-step process of creating a GitHub repo.
 
 Here's the functionality we're building:
 
@@ -32,7 +32,7 @@ Here's the functionality we're building:
 
 ## Getting Started
 
-The following steps are detailed in Phoenix Live View [Readme](https://github.com/phoenixframework/phoenix_live_view).
+The following steps are detailed in Phoenix LiveView [Readme](https://github.com/phoenixframework/phoenix_live_view).
 
 1. Install the dependency in your `mix.exs` file:
 
@@ -56,7 +56,7 @@ config :my_app, MyApp.Endpoint,
 ```
 *Note: You can generate a secret by running `mix phx.secret` from the command line.*
 
-3. Update your configuration to enable writing Live View templates with the  `.leex` extension.
+3. Update your configuration to enable writing LiveView templates with the  `.leex` extension.
 
 ```elixir
 config :phoenix,
@@ -91,7 +91,7 @@ def router do
 end
 ```
 
-6. Expose a socket for Live View to use in your endpoint module:
+6. Expose a socket for LiveView to use in your endpoint module:
 
 ```elixir
 
@@ -104,7 +104,7 @@ defmodule MyAppWeb.Endpoint do
 end
 ```
 
-7. Add Live View to your NPM dependencies:
+7. Add LiveView to your NPM dependencies:
 
 ```elixir
 # assets/package.json
@@ -116,7 +116,7 @@ end
 }
 ```
 
-8. Use the Live View JavaScript library to connect to the Live View socket in `app.js`
+8. Use the LiveView JavaScript library to connect to the LiveView socket in `app.js`
 
 ```javascript
 import LiveSocket from "phoenix_live_view"
@@ -213,11 +213,11 @@ liveSocket.connect()
 
 This initiates a stateful connection that will cause the view to be re-rendered anytime the socket updates. Since the page first renders as static HTML, we can rest assured that our page will always render for our user, even if JavaScript is disabled in the browser.
 
-Now that we understand how the Live View is first rendered and how the live view socket connection is established, let's render some live updates.
+Now that we understand how the live view is first rendered and how the live view socket connection is established, let's render some live updates.
 
 ### Rendering Live Updates
 
-Live View is listening to updates to our socket and will re-render _only the portions of the page that need updating_. Taking a closer look at our `render/1` function, we see that it renders the values of the keys assigned to our socket.
+LiveView is listening to updates to our socket and will re-render _only the portions of the page that need updating_. Taking a closer look at our `render/1` function, we see that it renders the values of the keys assigned to our socket.
 
 Where `mount/2` assigned the values `:deploy_step`, our `render/1` function renders them like this:
 
@@ -233,11 +233,11 @@ def render(assigns) do
 end
 ```
 
-*Note: The [`~L`](https://github.com/phoenixframework/phoenix_live_view/blob/master/lib/phoenix_live_view.ex#L159) sigil represents Live EEx. This is the built-in Live View template. Unlike `.eex` templates, LEEx templates are capable of tracking and rendering only necessary changes. So, if the value of `@deploy_step` changes, our template will re-render only that portion of the page.*
+*Note: The [`~L`](https://github.com/phoenixframework/phoenix_live_view/blob/master/lib/phoenix_live_view.ex#L159) sigil represents Live EEx. This is the built-in LiveView template. Unlike `.eex` templates, LEEx templates are capable of tracking and rendering only necessary changes. So, if the value of `@deploy_step` changes, our template will re-render only that portion of the page.*
 
 Let's give our user a way to kick off the "deploy to GitHub" process and see the page update as each deploy step is enacted.
 
-Live View supports DOM element bindings to give us the ability to respond to client-side events. We'll create a "deploy to GitHub" button and we'll listen for the click of that button with the phx-click event binding.
+LiveView supports DOM element bindings to give us the ability to respond to client-side events. We'll create a "deploy to GitHub" button and we'll listen for the click of that button with the phx-click event binding.
 
 ```elixir
 def render(assigns) do
@@ -340,4 +340,4 @@ Now our code is a bit more organized.
 
 ## Conclusion
 
-From even this limited example, we can see what a powerful offering this is. We were able to implement this real-time feature with only server-side code, and not that many lines of server-side code at that! I really enjoyed playing around this Phoenix Live View and I'm excited to see what other devs build with it. Happy coding!
+From even this limited example, we can see what a powerful offering this is. We were able to implement this real-time feature with only server-side code, and not that many lines of server-side code at that! I really enjoyed playing around with Phoenix LiveView and I'm excited to see what other devs build with it. Happy coding!
