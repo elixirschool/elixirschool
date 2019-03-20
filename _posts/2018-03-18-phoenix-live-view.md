@@ -132,7 +132,7 @@ config :demo, MyApp.Endpoint,
   live_reload: [
     patterns: [
       ...,
-      ~r{lib/my_app/live/.*(ex)$}
+      ~r{lib/my_app_web/live/.*(ex)$}
     ]
   ]
 ```
