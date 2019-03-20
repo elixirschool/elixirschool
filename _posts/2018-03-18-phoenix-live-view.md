@@ -149,7 +149,7 @@ defmodule MyApp.PageController do
   alias Phoenix.LiveView
 
   def index(conn, _) do
-    LiveView.Controller.live_render(conn, MyApp.GithubDeployView, session: %{})
+    LiveView.Controller.live_render(conn, MyAppWeb.GithubDeployView, session: %{})
   end
 end
 ```
