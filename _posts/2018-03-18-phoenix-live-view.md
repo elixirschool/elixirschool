@@ -197,7 +197,10 @@ When our app receives an HTTP request for the index route, it will respond by re
 The rendered HTML will include the signed session info. The session is signed using the signing salt we provided to our live view configuration in `config.exs`. That signed session will be sent back to the server when the client opens the live view socket connection. If you inspect the page rendering your live view in the browser, you'll see that signed session:
 
 ```html
-<div id="phx-20gvOvqvFMA=" data-phx-view="MyApp.GithubDeployView" data-phx-session="SFMyNTY.g3QAAAACZAAEZGF0YW0AAACQZzNRQUFBQUVaQUFDYVdSdEFBQUFFSEJvZUMweU1HZDJUM1p4ZGtaTlFUMWtBQXB3WVhKbGJuUmZjR2xrWkFBRGJtbHNaQUFIYzJWemMybHZiblFBQUFBQVpBQUVkbWxsZDJRQUgwVnNhWGhwY2k1UVlXbHlWMlZpTGtkcGRHaDFZa1JsY0d4dmVWWnBaWGM9ZAAGc2lnbmVkbgYAA8WtjGkB.KbHb9OiJ6zpRxO6uaQmx3BHURegvI40UjGC8t1iBNHs" class="phx-disconnected phx-error"><div class="">
+<div
+  id="phx-20gvOvqvFMA="
+  data-phx-view="MyApp.GithubDeployView"
+  data-phx-session="SFMyNTY.g3QAAAACZAAEZGF0YW0AAACQZzNRQUFBQUVaQUFDYVdS">
   ...
 </div>
 ```
