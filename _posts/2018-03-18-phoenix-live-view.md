@@ -28,7 +28,7 @@ Let's get LiveView up and running to support a feature that pushes out live upda
 
 Here's the functionality we're building:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8M-Hjj7IBu8" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8M-Hjj7IBu8" frameborder="0" allowfullscreen></iframe><br />
 
 ## Getting Started
 
