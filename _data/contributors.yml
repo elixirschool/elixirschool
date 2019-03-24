@@ -402,7 +402,7 @@
   contributions:
     - blog
   articles:
-    - TIL Constraints and Validations
+    - TIL Ecto Constraints and Validations
 
 - github: ktravers
   name: Kate Travers
