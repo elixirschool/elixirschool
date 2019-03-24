@@ -54,7 +54,7 @@ config :my_app, MyApp.Endpoint,
     signing_salt: "YOUR_SECRET"
   ]
 ```
-*Note: You can generate a secret by running `mix phx.secret` from the command line.*
+*Note: You can generate a secret by running `mix phx.gen.secret` from the command line.*
 
 3. Update your configuration to enable writing LiveView templates with the  `.leex` extension.
 
