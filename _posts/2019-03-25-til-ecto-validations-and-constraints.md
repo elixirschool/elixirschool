@@ -67,7 +67,7 @@ end
 And for free, Ecto adds descriptive errors to our changeset:
 
 ```elixir
-iex(1)> %User{} |> User.changeset(%{})
+iex> %User{} |> User.changeset(%{})
 #Ecto.Changeset<
   action: nil,
   changes: %{},
@@ -103,9 +103,9 @@ user
 If we try to add the user to our database, all looks good the first time:
 
 ```elixir
-iex(2)> user = %User{}
-iex(3)> attrs = %{display_name: "prince", email: "prince@test.com", password: "super_secret"}
-iex(4)> user |> User.changeset(attrs) |> Repo.insert()
+iex> user = %User{}
+iex> attrs = %{display_name: "prince", email: "prince@test.com", password: "super_secret"}
+iex> user |> User.changeset(attrs) |> Repo.insert()
 {:ok,
  %MyCoolWebApp.Accounts.User{
    __meta__: #Ecto.Schema.Metadata<:loaded, "users">,
@@ -122,9 +122,9 @@ iex(4)> user |> User.changeset(attrs) |> Repo.insert()
 We want to make sure no duplicates get saved, so let's try sending the same thing again:
 
 ```elixir
-iex(2)> user = %User{}
-iex(3)> attrs = %{display_name: "prince", email: "prince@test.com", password: "super_secret"}
-iex(4)> user |> User.changeset(attrs) |> Repo.insert()
+iex> user = %User{}
+iex> attrs = %{display_name: "prince", email: "prince@test.com", password: "super_secret"}
+iex> user |> User.changeset(attrs) |> Repo.insert()
 {:ok,
  %MyCoolWebApp.Accounts.User{
    __meta__: #Ecto.Schema.Metadata<:loaded, "users">,
@@ -160,9 +160,9 @@ $ mix ecto.migrate
 Now if we try again we'll see that our record did not get saved:
 
 ```elixir
-iex(2)> user = %User{}
-iex(3)> attrs = %{display_name: "prince", email: "prince@test.com", password: "super_secret"}
-iex(4)> user |> User.changeset(attrs) |> Repo.insert()
+iex> user = %User{}
+iex> attrs = %{display_name: "prince", email: "prince@test.com", password: "super_secret"}
+iex> user |> User.changeset(attrs) |> Repo.insert()
 {:error,
  #Ecto.Changeset<
    action: :insert,
