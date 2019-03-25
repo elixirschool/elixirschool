@@ -117,6 +117,8 @@ end
     "phoenix_live_view": "file:../deps/phoenix_live_view"
   }
 }
+
+You'll need to run `npm install` after this step.
 ```
 
 8. Use the LiveView JavaScript library to connect to the LiveView socket in `app.js`
