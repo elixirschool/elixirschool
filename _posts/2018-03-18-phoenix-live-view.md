@@ -117,6 +117,8 @@ end
     "phoenix_live_view": "file:../deps/phoenix_live_view"
   }
 }
+
+You'll need to run `npm install` after this step.
 ```
 
 8. Use the LiveView JavaScript library to connect to the LiveView socket in `app.js`
@@ -287,23 +289,23 @@ end
 def handle_info(:create_org, socket) do
   {:ok, org} = MyApp.create_org()
   send(self(), {:create_repo, org})
-  {:noreply, assign(socket, deploy_step: "Creating GitHub org..."}
+  {:noreply, assign(socket, deploy_step: "Creating GitHub org...")}
 end
 
 def handle_info({:create_repo, org}, socket) do
   {:ok, repo} = MyApp.create_repo(org)
   send(self(), {:push_contents, repo})
-  {:noreply, assign(socket, deploy_step: "Creating GitHub repo..."}
+  {:noreply, assign(socket, deploy_step: "Creating GitHub repo...")}
 end
 
-def handle_info(:push_contents, repo, socket) do
+def handle_info({:push_contents, repo}, socket) do
   :ok = MyApp.push_contents(org)
   send(self(), :done)
-  {:noreply, assign(socket, deploy_step: "Pushing to repo..."}
+  {:noreply, assign(socket, deploy_step: "Pushing to repo...")}
 end
 
 def handle_info(:done, socket) do
-  {:noreply, assign(socket, deploy_step: "Done!"}
+  {:noreply, assign(socket, deploy_step: "Done!")}
 end
 ```
 
