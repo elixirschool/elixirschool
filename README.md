@@ -17,18 +17,19 @@ To run locally, you need both Ruby and Bundler installed.
   $ bundle install
   ```
 
-1. Run Jekyll:
+2. Run Jekyll:
 
   ```shell
   $ bundle exec jekyll s
   ```
 
-1. Access it at [http://localhost:4000](http://localhost:4000)
+3. Access it at [http://localhost:4000](http://localhost:4000)
 
 ### Translating a Lesson
 
 1. Each of the languages has a folder in root this repo. To start translating you need to copy a file from the English language to the corresponding folder in your language and start translating.
-1. Translated lessons must include page metadata.
+
+2. Translated lessons must include page metadata.
    * `title` should be a translation of the original lesson's `title`.
    * `version` should be set to the original English `version`.
 
@@ -40,6 +41,7 @@ To run locally, you need both Ruby and Bundler installed.
   version: 1.0.0
   ---
   ```
-1. Send a PR with the new translated lesson and join [https://elixirschool.com/contributors/](contributors).
+  
+3. Send a PR with the new translated lesson and join [https://elixirschool.com/contributors/](contributors).
 
 
