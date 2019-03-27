@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: Operador Pipe
 ---
 
@@ -30,21 +30,21 @@ Para este grupo de ejemplos, usaremos el módulo String de elixir.
 
 - Separar Cadenas (Tokenize String)
 
-```shell
+```elixir
 iex> "Elixir language" |> String.split()
 ["Elixir", "language"]
 ```
 
 - Mayúsculas a todos los caracteres (Uppercase all the tokens)
 
-```shell
+```elixir
 iex> "Elixir language" |> String.upcase() |> String.split()
 ["ELIXIR", "LANGUAGE"]
 ```
 
 - Comparar terminación de una cadena (Check ending)
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
