@@ -105,7 +105,7 @@ iex> %{name: "Sean"} = sean
 #Example.User<name: "Sean", roles: [...], ...>
 ```
 A partir de las estructuras de Elixir 1.8 se incluye la inspección personalizada.
-Para entender que significa esto y como debemos usarlo, debemos inspeccionar el mapa `sean`:
+Para entender que significa esto y cómo debemos usarlo, debemos inspeccionar el mapa `sean`:
 
 ```elixir
 iex> inspect(sean)
@@ -138,7 +138,7 @@ Los `roles` son excluidos de la salida.
 
 ## Composición
 
-Ahora que sabemos como crear módulos y estructuras, aprendamos a agregarle funciones existentes a través de la composición.
+Ahora que sabemos cómo crear módulos y estructuras, aprendamos a agregarle funciones existentes a través de la composición.
 Elixir nos proporciona una variedad de formas diferentes de interactuar con otros módulos.
 
 ### `alias`
@@ -244,7 +244,7 @@ Si intentamos hacer un llamado a una macro que no está cargada aún, Elixir lan
 Con el macro `use` podemos habilitar otro modulo para modificar la definición de nuestro modulo actual.
 Cuando llamamos `use` en nuestro código, en realidad estamos invocando el callback `__using__/1` definido por el modulo utilizado.
 El resultado de `__using__/1` se convierte en parte de la definición de nuestro modulo.
-Para comprender mejor como funciona esto, veamos un ejemplo simple:
+Para comprender mejor cómo funciona esto, veamos un ejemplo simple:
 
 ```elixir
 defmodule Hello do
@@ -273,7 +273,7 @@ iex> Example.hello("Sean")
 ```
 
 Aquí podemos ver que `use` invoco el callback `__using__/1` del modulo `Hello` que a su ves agrego el código resultante a nuestro modulo.
-Ahora que hemos demostrado un ejemplo básico, actualicemos nuestro código para ver como `__using__/1` admite opciones.
+Ahora que hemos demostrado un ejemplo básico, actualicemos nuestro código para ver cómo `__using__/1` admite opciones.
 Haremos esto agregando la opción `greeting`:
 
 ```elixir
