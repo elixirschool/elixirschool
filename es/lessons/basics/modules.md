@@ -104,7 +104,7 @@ Algo muy importante es que podemos hacer coincidencia entre estructuras y mapas:
 iex> %{name: "Sean"} = sean
 #Example.User<name: "Sean", roles: [...], ...>
 ```
-A partir de las estructuras de Elixir 1.8 se incluye la inspección personalizada.
+A partir de Elixir 1.8 las estructuras incluyen la inspección personalizada.
 Para entender que significa esto y cómo debemos usarlo, debemos inspeccionar el mapa `sean`:
 
 ```elixir
@@ -125,7 +125,7 @@ end
 
 Nota: también podríamos usar `@derive {Inspect, except: [:roles]}`, son equivalentes.
 
-Con nuestro modulo actualizado, echemos un vistazo a lo que sucede en `iex`:
+Con nuestro módulo actualizado, echemos un vistazo a lo que sucede en `iex`:
 
 ```elixir
 iex> sean = #Example.User<name: "Sean", roles: [...], ...>
@@ -241,9 +241,9 @@ Si intentamos hacer un llamado a una macro que no está cargada aún, Elixir lan
 
 ### `use`
 
-Con el macro `use` podemos habilitar otro modulo para modificar la definición de nuestro modulo actual.
-Cuando llamamos `use` en nuestro código, en realidad estamos invocando el callback `__using__/1` definido por el modulo utilizado.
-El resultado de `__using__/1` se convierte en parte de la definición de nuestro modulo.
+Con el macro `use` podemos habilitar otro módulo para modificar la definición de nuestro módulo actual.
+Cuando llamamos `use` en nuestro código, en realidad estamos invocando el callback `__using__/1` definido por el módulo utilizado.
+El resultado de `__using__/1` se convierte en parte de la definición de nuestro módulo.
 Para comprender mejor cómo funciona esto, veamos un ejemplo simple:
 
 ```elixir
@@ -256,8 +256,8 @@ defmodule Hello do
 end
 ```
 
-Aquí hemos creado un modulo `Hello` que define el callback `__using__/1` dentro del cual definimos una función `hello/1`.
-Vamos a crear un nuevo modulo para que podamos probar nuestro nuevo código:
+Aquí hemos creado un módulo `Hello` que define el callback `__using__/1` dentro del cual definimos una función `hello/1`.
+Vamos a crear un nuevo módulo para que podamos probar nuestro nuevo código:
 
 ```elixir
 defmodule Example do
@@ -265,14 +265,14 @@ defmodule Example do
 end
 ```
 
-Si probamos nuestro código en `IEx`, veremos que `hello/1` esta disponible en el modulo `Example`:
+Si probamos nuestro código en `IEx`, veremos que `hello/1` esta disponible en el módulo `Example`:
 
 ```elixir
 iex> Example.hello("Sean")
 "Hi, Sean"
 ```
 
-Aquí podemos ver que `use` invoco el callback `__using__/1` del modulo `Hello` que a su ves agrego el código resultante a nuestro modulo.
+Aquí podemos ver que `use` invocó el callback `__using__/1` del módulo `Hello` que a su ves agrego el código resultante a nuestro módulo.
 Ahora que hemos demostrado un ejemplo básico, actualicemos nuestro código para ver cómo `__using__/1` admite opciones.
 Haremos esto agregando la opción `greeting`:
 
@@ -288,7 +288,7 @@ defmodule Hello do
 end
 ```
 
-Actualicemos nuestro modulo `Example` para incluir la opción `greeting` recién creada:
+Actualicemos nuestro módulo `Example` para incluir la opción `greeting` recién creada:
 
 ```elixir
 defmodule Example do
