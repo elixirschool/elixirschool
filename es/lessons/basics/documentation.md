@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Documentación
 ---
 
@@ -85,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -182,8 +182,8 @@ Asumiendo que todo esta bien vamos a ver la salida siguiente, ahora estamos list
 
 ```elixir
   def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
+    [{:earmark, "~> 1.2", only: :dev},
+    {:ex_doc, "~> 0.19", only: :dev}]
   end
 ```
 
@@ -211,7 +211,7 @@ Podemos ver que Earmark ha renderizado nuestro Markdown y ExDoc y ahora lo muest
 
 ![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
-Ahora podemos desplegar esto a GitHub, a nuestro propio sitio web, o mas comunmente a [HexDocs](https://hexdocs.pm/).
+Ahora podemos publicar esto en GitHub, a nuestro propio sitio web, o mas comunmente a [HexDocs](https://hexdocs.pm/).
 
 ## Mejores Prácticas
 
@@ -248,7 +248,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -267,7 +267,7 @@ defmodule Greeter do
   # and so on...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -296,7 +296,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
