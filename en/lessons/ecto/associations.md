@@ -72,7 +72,7 @@ First, generate the migration:
 mix ecto.gen.migration create_characters
 ```
 
-To declare that a character belongs to a movie, we need the `characters` table to have a `movie_id` column. We want this column to function as a foreign key. We can accomplish this with the following line in our `create_table/1` function:
+To declare that a character belongs to a movie, we need the `characters` table to have a `movie_id` column. We want this column to function as a foreign key. We can accomplish this with the following line in our `create table/1` function:
 
 ```elixir
 add :movie_id, references(:movies)
@@ -85,7 +85,7 @@ defmodule Example.Repo.Migrations.CreateCharacters do
   use Ecto.Migration
 
   def change do
-    create_table(:characters) do
+    create table(:characters) do
       add :name, :string
       add :movie_id, references(:movies)
     end
