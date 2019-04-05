@@ -37,7 +37,7 @@ Here's the functionality we're building:
 
 The following steps are detailed in Phoenix LiveView [Readme](https://github.com/phoenixframework/phoenix_live_view).
 
-1. Install the dependency in your `mix.exs` file:
+* Install the dependency in your `mix.exs` file:
 
 ```elixir
 def deps do
@@ -47,7 +47,7 @@ def deps do
 end
 ```
 
-2. Update your app's endpoint configuration with a signing salt for your live view connection to use:
+* Update your app's endpoint configuration with a signing salt for your live view connection to use:
 
 ```elixir
 # Configures the endpoint
@@ -59,14 +59,14 @@ config :my_app, MyApp.Endpoint,
 ```
 *Note: You can generate a secret by running `mix phx.gen.secret` from the command line.*
 
-3. Update your configuration to enable writing LiveView templates with the  `.leex` extension.
+* Update your configuration to enable writing LiveView templates with the  `.leex` extension.
 
 ```elixir
 config :phoenix,
   template_engines: [leex: Phoenix.LiveView.Engine]
 ```
 
-4. Add the live view flash plug to your browser pipeline, after `:fetch_flash`
+* Add the live view flash plug to your browser pipeline, after `:fetch_flash`
 
 ```elixir
 pipeline :browser do
@@ -76,7 +76,7 @@ pipeline :browser do
 end
 ```
 
-5. Import the following in your `lib/app_web.ex` file:
+* Import the following in your `lib/app_web.ex` file:
 
 ```elixir
 def view do
@@ -94,7 +94,7 @@ def router do
 end
 ```
 
-6. Expose a socket for LiveView to use in your endpoint module:
+* Expose a socket for LiveView to use in your endpoint module:
 
 ```elixir
 
@@ -107,7 +107,7 @@ defmodule MyAppWeb.Endpoint do
 end
 ```
 
-7. Add LiveView to your NPM dependencies:
+* Add LiveView to your NPM dependencies:
 
 ```elixir
 # assets/package.json
@@ -117,11 +117,10 @@ end
     "phoenix_live_view": "file:../deps/phoenix_live_view"
   }
 }
-
-You'll need to run `npm install` after this step.
 ```
+You'll need to run `npm install` after this step.
 
-8. Use the LiveView JavaScript library to connect to the LiveView socket in `app.js`
+* Use the LiveView JavaScript library to connect to the LiveView socket in `app.js`
 
 ```javascript
 import LiveSocket from "phoenix_live_view"
@@ -130,7 +129,7 @@ let liveSocket = new LiveSocket("/live")
 liveSocket.connect()
 ```
 
-9. Your live views should be saved in the `lib/my_app_web/live/` directory. For live page reload support, add the following pattern to your `config/dev.exs`:
+* Your live views should be saved in the `lib/my_app_web/live/` directory. For live page reload support, add the following pattern to your `config/dev.exs`:
 
 ```elixir
 config :demo, MyApp.Endpoint,
@@ -299,7 +298,7 @@ def handle_info({:create_repo, org}, socket) do
 end
 
 def handle_info({:push_contents, repo}, socket) do
-  :ok = MyApp.push_contents(org)
+  :ok = MyApp.push_contents(repo)
   send(self(), :done)
   {:noreply, assign(socket, deploy_step: "Pushing to repo...")}
 end
@@ -317,7 +316,7 @@ Now that we have our live updates working, let's refactor the HTML code out of o
 
 ### Rendering a Template File
 
-We'll define our template in `lib/my_app_web/templates/page/index.html.leex`:
+We'll define our template in `lib/my_app_web/templates/page/github_deploy.html.leex`:
 
 ```html
 <div>
@@ -338,7 +337,7 @@ defmodule MyApp.GithubDeployView do
   use Phoenix.LiveView
 
   def render(assigns) do
-    MyApp.PageView.render("index.html", assigns)
+    MyApp.PageView.render("github_deploy.html", assigns)
   end
   ...
 end
