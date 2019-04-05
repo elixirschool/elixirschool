@@ -190,7 +190,7 @@ end
 
 Here we can see that the `Example.Person` module tells Ecto that this schema relates to the `people` table and that we have two columns: `name` which is a string and `age`, an integer with a default of `0`.
 
-Let's take a peek at our schema by opening `iex` and creating a new person:
+Let's take a peek at our schema by opening `iex -S mix` and creating a new person:
 
 ```shell
 iex> %Example.Person{}
