@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Date and Time
 ---
 
@@ -63,7 +63,7 @@ true
 ```
 
 `day_of_week/1` calculates which day of week would be the given date.
-In this case it's saturday.
+In this case it's Saturday.
 `leap_year?/1` checks whether this is a leap year.
 Other functions can be found in [doc](https://hexdocs.pm/elixir/Date.html).
 

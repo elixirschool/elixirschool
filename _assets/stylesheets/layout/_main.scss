@@ -3,7 +3,7 @@
 	#main {
 		@include vendor('flex-grow', '1');
 		@include vendor('flex-shrink', '1');
-		width: 100%;
+		width: calc(100vw - #{_size(sidebar-width)});
 
 		> .inner {
 			@include padding(0, 6em);
@@ -21,6 +21,8 @@
 		}
 
 		@include breakpoint(xlarge) {
+			width: calc(100vw - #{_size(sidebar-width-alt)});
+
 			> .inner {
 				@include padding(0, 5em);
 

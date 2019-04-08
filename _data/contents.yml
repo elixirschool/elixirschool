@@ -50,3 +50,4 @@ libraries:
   - benchee
   - bypass
   - distillery
+  - stream-data

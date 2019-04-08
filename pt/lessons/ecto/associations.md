@@ -72,7 +72,7 @@ Primeiro, precisamos gerar a migração:
 mix ecto.gen.migration create_characters
 ```
 
-Para declarar que um personagem pertence a um filme, precisamos da tabela `characters` e que ela possua uma coluna `movie_id`. Nós queremos que essa coluna funcione como uma chave estrangeira. Podemos alcançar isso com a seguinte linha, na chamada para `create_table/1`:
+Para declarar que um personagem pertence a um filme, precisamos da tabela `characters` e que ela possua uma coluna `movie_id`. Nós queremos que essa coluna funcione como uma chave estrangeira. Podemos alcançar isso com a seguinte linha, na chamada para `create table/1`:
 
 ```elixir
 add :movie_id, references(:movies)
@@ -86,7 +86,7 @@ defmodule Example.Repo.Migrations.CreateCharacters do
   use Ecto.Migration
 
   def change do
-    create_table(:characters) do
+    create table(:characters) do
       add :name, :string
       add :movie_id, references(:movies)
     end
@@ -339,7 +339,7 @@ Observe que, como a macro `has_many/3` do esquema `Movie` especifica que um film
 Para usar `build_assoc/3` com o intuito de salvar o distribuidor associado a um filme, adotamos a mesma abordagem de passar o _nome_ do relacionamento do filme com o distribuidor como o segundo argumento para`build_assoc/3`:
 
 ```elixir
-iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})       
+iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})
 %Example.Distributor{
   __meta__: #Ecto.Schema.Metadata<:built, "distributors">,
   id: nil,
@@ -403,7 +403,7 @@ iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
 Em seguida, criaremos um conjunto de alterações para nosso registro de filme:
 
 ```elixir
-iex> movie_changeset = Ecto.Changeset.change(movie)                                                    
+iex> movie_changeset = Ecto.Changeset.change(movie)
 #Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Movie<>,
  valid?: true>
 ```
@@ -455,7 +455,7 @@ Podemos ver que isso nos dá um registro de filme com o novo ator apropriadament
 Podemos usar essa mesma abordagem para criar um novo ator associado ao filme em questão. Em vez de passar uma estrutura de ator _salva_ para `put_assoc/4`, simplesmente passamos uma struct de ator, descrevendo um novo ator que queremos criar:
 
 ```elixir
-iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])                      
+iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])
 #Ecto.Changeset<
   action: nil,
   changes: %{

@@ -31,7 +31,8 @@
 	}
 
 	#sidebar {
-		$pad: 2em / 0.9;
+		$sidebar-pad: 1.5em / 0.9;
+		$xlarge-sidebar-pad: 1em / 0.9;
 
 		@include vendor('flex-grow', '0');
 		@include vendor('flex-shrink', '0');
@@ -49,13 +50,13 @@
 		}
 
 		> .inner {
-			@include padding($pad, $pad, (0, 0, $pad, 0));
+			@include padding($sidebar-pad, $sidebar-pad, (0, 0, $sidebar-pad, 0));
 			position: relative;
 			width: _size(sidebar-width);
 
 			> * {
-				margin: 0 0 (_size(element-margin)) 0;
-				padding: 0 0 (_size(element-margin)) 0;
+				margin: 0 0 (_size(element-margin)/2) 0;
+				padding: 0 0 (_size(element-margin)/2) 0;
 
 				> :last-child {
 					margin-bottom: 0;
@@ -71,9 +72,31 @@
 			> .alt {
 				background-color: darken(_palette(bg-alt), 2);
 				border-bottom: 0;
-				margin: ($pad * -1) 0 ($pad * 2) ($pad * -1);
-				padding: $pad;
-				width: calc(100% + #{$pad * 2});
+				margin: ($sidebar-pad * -1) 0 ($sidebar-pad) ($sidebar-pad * -1);
+				padding: $sidebar-pad;
+				width: calc(100% + #{$sidebar-pad * 2});
+			}
+
+			.major {
+				margin-bottom: $sidebar-pad;
+				> :last-child {
+					margin: 0 0 0 0;
+				}
+			}
+
+			.stack-info {
+				display: flex;
+				margin-bottom: $sidebar-pad;
+
+				&.otp-version {
+					font-size: 12px;
+					font-family: _font(family-fixed);
+					font-weight: bold;
+				}
+
+				@include breakpoint(xlarge) {
+					margin-bottom: $xlarge-sidebar-pad;
+				}
 			}
 		}
 
@@ -112,19 +135,33 @@
 			margin-left: (_size(sidebar-width) * -1);
 		}
 
-		@include breakpoint(xlarge) {
-			$pad: 1.5em / 0.9;
+		.toggle-theme-wrapper {
+			position: absolute;
+			top: 6em;
+			left: _size(sidebar-width);
+			.icon {
+				display: block;
+				width: 6em;
+				text-align: center;
+				&:before {
+					display: block;
+					width: 100%;
+					font-size: 2rem;
+				}
+			}
+		}
 
+		@include breakpoint(xlarge) {
 			width: _size(sidebar-width-alt);
 
 			> .inner {
-				@include padding($pad, $pad, (0, 0, $pad, 0));
+				@include padding($xlarge-sidebar-pad, $xlarge-sidebar-pad, (0, 0, $xlarge-sidebar-pad, 0));
 				width: _size(sidebar-width-alt);
 
 				> .alt {
-					margin: ($pad * -1) 0 ($pad * 2) ($pad * -1);
-					padding: $pad;
-					width: calc(100% + #{$pad * 2});
+					margin: ($xlarge-sidebar-pad * -1) 0 ($xlarge-sidebar-pad) ($xlarge-sidebar-pad * -1);
+					padding: $xlarge-sidebar-pad;
+					width: calc(100% + #{$xlarge-sidebar-pad * 2});
 				}
 			}
 
@@ -137,6 +174,17 @@
 
 				&:before {
 					font-size: 1.5rem;
+				}
+			}
+
+			.toggle-theme-wrapper {
+				top: 6em;
+				left: _size(sidebar-width-alt);
+				.icon {
+					width: 5em;
+					&:before {
+						font-size: 1.5rem;
+					}
 				}
 			}
 
@@ -183,6 +231,16 @@
 					margin-left: (-0.875em / 2);
 				}
 			}
+			
+			.toggle-theme-wrapper {
+				.icon {
+					width: 6em;
+					&:before {
+						font-size: 1.5rem;
+						margin-left: (-0.875em / 2);
+					}
+				}
+			}
 
 			body.is-loading & {
 				display: none;
@@ -211,6 +269,19 @@
 					position: absolute;
 					top: 1em;
 					width: 5em;
+				}
+			}
+
+			.toggle-theme-wrapper {
+				width: 4.25em;
+				top: 1.3em;
+				left: _size(sidebar-width) + 3em;
+				.icon {
+					width: 6em;
+					&:before {
+						font-size: 1.5rem;
+						margin-left: (-0.875em / 2);
+					}
 				}
 			}
 		}

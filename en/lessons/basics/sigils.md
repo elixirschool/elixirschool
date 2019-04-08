@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Sigils
 ---
 
@@ -155,7 +155,7 @@ iex> ~W/i love #{'e'}lixir school/
 A [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) can be useful for quickly creating a struct to represent a `DateTime` **without** a timezone.
 
 For the most part, we should avoid creating a `NaiveDateTime` struct directly.
-However, it is very useful for pattern matching.
+However, it is useful for pattern matching.
 For example:
 
 ```elixir

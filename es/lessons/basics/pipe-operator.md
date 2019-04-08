@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: Operador Pipe
 ---
 
@@ -9,14 +9,19 @@ El operador pipe `|>` pasa el resultado de una expresión como el primer paráme
 
 ## Introducción
 
-La programación puede ser desordenada. De hecho, las llamadas de función que están contenidas dentro de otra función se vuelven muy difíciles de seguir. Por ejemplo, tome las siguientes funciones anidadas en consideración:
+La programación puede ser desordenada.
+De hecho tan desordenada que las llamadas de función pueden estar tan contenidas que sean difícil de entender.
 
+Por ejemplo, toma en consideración las siguientes funciones anidadas:
 
 ```elixir
 foo(bar(baz(nueva_function(otra_function()))))
 ```
 
-Aquí, pasamos el valor de `otra_function/1` a `nueva_function/1`, y de `nueva_function/1` a `baz/1`, `baz/1` a `bar/1`, y finalmente el resultado de `bar/1` a `foo/1`. Elixir adopta un enfoque pragmático a este caos sintáctico al darnos el operador pipe. El operador pipe que luce así `|>` *toma el resultado de una expresión, y se lo pasa a la siguiente*. Vamos a echar otro vistazo al código anterior reescrito con el operador pipe.
+Aquí, pasamos el valor de `otra_function/1` a `nueva_function/1`, y de `nueva_function/1` a `baz/1`, `baz/1` a `bar/1`, y finalmente el resultado de `bar/1` a `foo/1`.
+Elixir adopta un enfoque pragmático a este caos sintáctico al darnos el operador pipe.
+El operador pipe que luce así `|>` *toma el resultado de una expresión, y se lo pasa a la siguiente*.
+Vamos a echar otro vistazo al código anterior reescrito con el operador pipe.
 
 ```elixir
 otra_function() |> nueva_function() |> baz() |> bar() |> foo()
@@ -30,30 +35,33 @@ Para este grupo de ejemplos, usaremos el módulo String de elixir.
 
 - Separar Cadenas (Tokenize String)
 
-```shell
+```elixir
 iex> "Elixir language" |> String.split()
 ["Elixir", "language"]
 ```
 
 - Mayúsculas a todos los caracteres (Uppercase all the tokens)
 
-```shell
+```elixir
 iex> "Elixir language" |> String.upcase() |> String.split()
 ["ELIXIR", "LANGUAGE"]
 ```
 
 - Comparar terminación de una cadena (Check ending)
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
 
 ## Buenas Prácticas
 
-Si la función recibe más de 1 parámetro, asegúrese de usar paréntesis. Honestamente no importa mucho en elixir, pero es importante para otros programadores que pueden malinterpretar nuestro código. Si en el tercer ejemplo eliminamos los paréntesis de `String.ends_with?`, tendríamos la siguiente advertencia.
+Si la aridad de una función es mayor a 1, asegurate de usar paréntesis.
+Esto no importa mucho en Elixir, pero es importante para otros programadores que pueden malinterpretar tu código.
+Sin embargo, este si importa para el operador pipe.
+Por ejemplo, si en el tercer ejemplo eliminamos los paréntesis de `String.ends_with?`, tendríamos la siguiente advertencia.
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with? "ixir"
 warning: parentheses are required when piping into a function call. For example:
 
