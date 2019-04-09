@@ -1,6 +1,7 @@
 //= require jquery.min.js
 // require js.cookie.js
 //= require skel.min.js
+//= require stickyfill.min.js
 //= require util.js
 //= require toc.js
 (function($) {
@@ -228,6 +229,9 @@
 					$body.toggleClass('dark');
 					toggleThemeIcon($elToggleTheme);
 				});
+				
+			// Polyfill for sidebar
+				Stickyfill.add($('#sidebar > .inner'));
 
 	});
 
