@@ -53,6 +53,17 @@
 			@include padding($sidebar-pad, $sidebar-pad, (0, 0, $sidebar-pad, 0));
 			position: relative;
 			width: _size(sidebar-width);
+			position: sticky !important;
+			top: -1px !important;
+			overflow: scroll;
+			max-height: 100vh;
+			
+			// To hide scrollbar in Firefox
+			scrollbar-width: none;
+			// To hide scrollbar in Chrome
+			&::-webkit-scrollbar {
+				width: 0 !important;
+			}
 
 			> * {
 				margin: 0 0 (_size(element-margin)/2) 0;
