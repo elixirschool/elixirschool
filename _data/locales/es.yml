@@ -1,4 +1,5 @@
 script_direction: ltr
+menu: Menu
 project:
   title: Elixir School
   description: Lecciones acerca del lenguaje de programación Elixir

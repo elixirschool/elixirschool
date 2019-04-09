@@ -1,4 +1,5 @@
 script_direction: rtl
+menu: Menu
 project:
   title: Elixir School
   description: دروس عن لغة برمجة إليكسير
