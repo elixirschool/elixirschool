@@ -241,31 +241,31 @@ These logs are truncated to just the interesting parts.
 Counter.One: "working and my state is 4"
 Counter.Two: "working and my state is 4"
 Counter.Three: "working and my state is 4"
+Counter.One: "working and my state is 5"
 Counter.Two: "working and my state is 5"
-Counter.Three: "working and my state is 5"
-Counter.One: "starting"
-Counter.One: "working and my state is 0"
-Counter.One: "started"
+Counter.Three: "starting"
+Counter.Three: "working and my state is 0"
+Counter.Three: "started"
 
 18:11:37.495 [error] GenServer #PID<0.130.0> terminating
-** (RuntimeError) I'm Counter.One and I'm gonna error now
-    (counter) lib/counter/one.ex:33: Counter.One.work/1
-    (counter) lib/counter/one.ex:21: Counter.One.handle_info/2
+** (RuntimeError) I'm Counter.Three and I'm gonna error now
+    (counter) lib/counter/three.ex:33: Counter.Three.work/1
+    (counter) lib/counter/three.ex:21: Counter.Three.handle_info/2
     (stdlib) gen_server.erl:616: :gen_server.try_dispatch/4
     (stdlib) gen_server.erl:686: :gen_server.handle_msg/6
     (stdlib) proc_lib.erl:247: :proc_lib.init_p_do_apply/3
 Last message: :work
 State: 5
-Counter.Three: "working and my state is 6"
+Counter.One: "working and my state is 6"
 Counter.Two: "working and my state is 6"
-Counter.One: "working and my state is 0"
-Counter.Three: "working and my state is 7"
+Counter.Three: "working and my state is 0"
+Counter.One: "working and my state is 7"
 Counter.Two: "working and my state is 7"
-Counter.One: "working and my state is 1"
+Counter.Three: "working and my state is 1"
 ```
 
 So, we can see our first crash.
-The process for `Counter.One` failed with our raised error, and was restarted.
+The process for `Counter.Three` failed with our raised error, and was restarted.
 Because our default strategy in Elixir is `one_for_one`, this is expected.
 In the default configuration, we dont want one child processes failure to effect any others.
 
@@ -273,7 +273,7 @@ If we let it continue to 22 with `Counter.One`, we would see the same behaviour 
 
 ## Rest For One
 Now let's try it with `rest_for_one`.
-Rest for one as a strategy starts the children in sequence, and if a later child fails the ones before it do too.
+Rest for one as a strategy starts the children in sequence, and if an earlier child fails the ones after it do too.
 We want to change our line assigning `opts` in `lib/counter/application.ex` to state that.
 
 ```elixir
@@ -322,7 +322,7 @@ Counter.Two: "working and my state is 7"
 ```
 
 The key takeaway here is _order matters_.
-Because `Counter.Three` doesn't fail until `22` is its state, and `Counter.One` fails with a state of `5`, `Counter.Three` will force a restart of all 3 children since its last, but `Counter.One`'s failures have no effect on its siblings.
+Because `Counter.One` doesn't fail until `22` is its state, and `Counter.Three` fails with a state of `5`, `Counter.One` will force a restart of all 3 children since its first, but `Counter.Three`'s failures have no effect on its siblings.
 
 ## One For All
 Now let's enable it with `one_for_all`.

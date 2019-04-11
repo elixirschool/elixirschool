@@ -1,4 +1,5 @@
 script_direction: ltr
+menu: Menu
 project:
   title: எலிக்சர் பள்ளி
   description: எலிக்சர் நிரலாக்கமொழி பற்றிய பாடங்கள்

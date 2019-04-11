@@ -1,4 +1,5 @@
 script_direction: ltr
+menu: Menu
 project:
   title: Elixir School
   description: La première destination pour apprendre et maîtriser Elixir.
