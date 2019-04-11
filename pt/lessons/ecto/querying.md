@@ -5,18 +5,18 @@ title: Querying
 
 {% include toc.html %}
 
-Nesta lição, estaremos construindo o aplicativo `Example` e o catálogo de filmes que configuramos na [lição anterior](./associations)
+Nesta lição, estaremos construindo a aplicação `Example` e o catálogo de filmes que configuramos na [lição anterior](./associations).
 
 ## Buscando Registros com `Ecto.Repo`
 
 Lembre-se de que um repositório no Ecto é mapeado para um armazenamento de dados, como nosso banco de dados Postgres.
 Toda a comunicação com o banco de dados será feita usando este repositório.
 
-Podemos realizar simples consultas diretamente em nosso `Example.Repo` com a ajuda de uma porção de funções.
+Podemos realizar simples consultas diretamente em nosso `Example.Repo` com a ajuda de algumas funções.
 
 ### Buscando Registros por ID
 
-Nós podemos usar a função `Repo.get/3` para carregar um registro vindo do banco de dados pelo seu ID. Essa função requer dois argumentos: uma estrutura "queryable" e o ID do registro para recuperar do banco de dados. Ela retorna uma estrutura descrevendo o registro encontrado, caso exista. Retorna `nil` se nenhum registro for encontrado.
+Nós podemos usar a função `Repo.get/3` para carregar um registro vindo do banco de dados pelo seu ID. Essa função requer dois argumentos: uma estrutura "queryable" e o ID do registro para recuperar do banco de dados. Ela retorna uma struct descrevendo o registro encontrado, caso exista. Retorna `nil` se nenhum registro for encontrado.
 
 Vamos dar uma olhada em um exemplo. Abaixo, vamos pegar o filme com o ID 1:
 
