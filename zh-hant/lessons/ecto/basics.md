@@ -1,5 +1,5 @@
 ---
-version: 2.1.0
+version: 2.1.1
 title: 基礎
 ---
 
@@ -9,7 +9,7 @@ Ecto 是一個官方 Elixir 專案，提供資料庫封裝 (wrapper) 和整合�
 
 ### 轉接器
 
-Ecto 經由使用轉接器支援不同的資料庫。幾個轉接器的範例如下：
+Ecto 經由使用轉接器支援不同的資料庫，幾個轉接器的範例如下：
 
 * PostgreSQL
 * MySQL
