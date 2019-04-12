@@ -100,6 +100,22 @@ section .content {
     margin: 0 0 _size(element-margin) 0;
     padding: 0 0.75em 0.5em 0;
   }
+  
+  .edit-lesson {
+    margin: 4em 0 0 0;
+    
+    @include breakpoint(xlarge) {
+      margin: 3em 0 0 0;
+		}
+    
+    @include breakpoint(large) {
+      margin: 2em 0 0 0;
+		}
+    
+    @include breakpoint(small) {
+      margin: 1em 0 0 0;
+		}
+  }
 }
 
 pre {
