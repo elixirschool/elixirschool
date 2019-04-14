@@ -77,7 +77,6 @@ end
 
 Hãy cùng tạo một vài structs:
 
-
 ```elixir
 iex> %Example.User{}
 #Example.User<name: "Sean", roles: [], ...>
@@ -85,14 +84,14 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> #Example.User<name: "Steve", roles: [...], ...>
-#Example.User<name: "Steve", roles: [...], ...>
+iex> %Example.User{name: "Steve", roles: [:mananger]}
+#Example.User<name: "Steve", roles: [:mananger]>
 ```
 
 Chúng ta cũng có thể cập nhật struct giống như chúng ta làm với một map:
 
 ```elixir
-iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+iex> steve = %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 #Example.User<name: "Sean", roles: [...], ...>

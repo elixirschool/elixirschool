@@ -82,13 +82,14 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> #Example.User<name: "Steve", roles: [...], ...>
-#Example.User<name: "Steve", roles: [...], ...>
+iex> %Example.User{name: "Steve", roles: [:mananger]}
+#Example.User<name: "Steve", roles: [:mananger]>
 ```
+
 স্ট্রাক্টকে আমরা ঠিক ম্যাপের মতই আপডেট করতে পারি-
 
 ```elixir
-iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+iex> steve = %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 #Example.User<name: "Sean", roles: [...], ...>
@@ -137,7 +138,7 @@ defmodule Example do
 end
 ```
 
-একাধিক মডিউলকে একসাথে অ্যালিয়াস করা যায় যেমন-  
+একাধিক মডিউলকে একসাথে অ্যালিয়াস করা যায় যেমন-
 
 ```elixir
 defmodule Example do

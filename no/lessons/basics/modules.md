@@ -82,14 +82,14 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> #Example.User<name: "Steve", roles: [...], ...>
-#Example.User<name: "Steve", roles: [...], ...>
+iex> %Example.User{name: "Steve", roles: [:mananger]}
+#Example.User<name: "Steve", roles: [:mananger]>
 ```
 
 Vi kan oppdatere vår struct akkurat som med en map:
 
 ```elixir
-iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+iex> steve = %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 #Example.User<name: "Sean", roles: [...], ...>

@@ -88,14 +88,14 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> #Example.User<name: "Steve", roles: [...], ...>
-#Example.User<name: "Steve", roles: [...], ...>
+iex> %Example.User{name: "Steve", roles: [:mananger]}
+#Example.User<name: "Steve", roles: [:mananger]>
 ```
 
 構造体はあたかもマップのように更新することができます:
 
 ```elixir
-iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+iex> steve = %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 #Example.User<name: "Sean", roles: [...], ...>
@@ -110,7 +110,7 @@ iex> %{name: "Sean"} = sean
 
 ## コンポジション(Composition)
 
-さて、モジュールと構造体の作り方がわかったので、コンポジションを用いてモジュールや構造体に既存の機能を追加する方法を学びましょう。 
+さて、モジュールと構造体の作り方がわかったので、コンポジションを用いてモジュールや構造体に既存の機能を追加する方法を学びましょう。
 Elixir は他のモジュールと連携する様々な方法を用意しています。
 
 ### `alias`
