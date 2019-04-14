@@ -21,6 +21,8 @@
     {% if _lang == "en" %}
       <link rel="alternate" hreflang="en" href="{{ _url }}" />
       <link rel="alternate" hreflang="x-default" href="{{ _url }}" />
+    {% elsif _lang == "gr" %}
+      <link rel="alternate" hreflang="el" href="{{ _url }}" />
     {% else %}
       <link rel="alternate" hreflang="{{ _lang }}" href="{{ _url }}" />
     {% endif %}
