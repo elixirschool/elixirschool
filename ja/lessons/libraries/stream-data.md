@@ -17,7 +17,7 @@ title: StreamData
 
 [StreamData](https://github.com/whatyouhide/stream_data) はステートレスなプロパティベースのテストを実行するライブラリです。
 
-StreamDataライブラリは、ランダムな値を使用して各テストを [デフォルトで100回](https://hexdocs.pm/stream_data/ExUnitProperties.html#check/1-options) 実行します。テストが失敗すると、StreamDataはテストの失敗を引き起こす最小値へと入力値へと [縮小しようとします](https://hexdocs.pm/stream_data/StreamData.html#module-shrinking) 。これはコードのデバッグ時に役立ちます！もし50個のリストによって関数が壊れ、リスト要素の1つのみに問題がある場合、StreamDataを使用することで問題のある要素を特定することができます。
+StreamDataライブラリは、ランダムな値を使用して各テストを [デフォルトで100回](https://hexdocs.pm/stream_data/ExUnitProperties.html#check/1-options) 実行します。テストが失敗すると、StreamDataはテストの失敗を引き起こす最小値へと入力値を [縮小しようとします](https://hexdocs.pm/stream_data/StreamData.html#module-shrinking) 。これはコードのデバッグ時に役立ちます！もし50個のリストによって関数が壊れ、リスト要素の1つのみに問題がある場合、StreamDataを使用することで問題のある要素を特定することができます。
 
 このテストライブラリは2つのメインモジュールを持っています。 [`StreamData`](https://hexdocs.pm/stream_data/StreamData.html) はランダムデータのストリームを生成します。 [`ExUnitProperties`](https://hexdocs.pm/stream_data/ExUnitProperties.htm) は、生成されたデータを用いた関数のテスト実行を可能にします。
 
