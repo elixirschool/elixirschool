@@ -25,7 +25,7 @@ StreamDataライブラリは、ランダムな値を使用して各テストを 
 
 ## StreamDataのインストール
 
-まずは、新しいMixプロジェクトを作成します。必要に応じて [New Projects](https://elixirschool.com/ja/lessons/basics/mix/#new-projects) を参考にしてください。
+まずは、新しいMixプロジェクトを作成します。必要に応じて [新しいプロジェクト](https://elixirschool.com/ja/lessons/basics/mix/#%E6%96%B0%E3%81%97%E3%81%84%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88) を参考にしてください。
 
 続いて、 `mix.exs` にStreamDataを依存として追加します:
 
