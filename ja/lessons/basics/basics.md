@@ -211,6 +211,8 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
+参考: Elixirの`and`と`or`はErlangの`andalso`と`orelse`に実際に対応しています。
+
 ### 比較
 
 Elixirには私たちが慣れている全ての比較演算子が備わっています: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` そして `>` です。
