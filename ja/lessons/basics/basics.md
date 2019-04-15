@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.1
 title: 基本
 ---
 
