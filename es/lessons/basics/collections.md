@@ -43,7 +43,7 @@ Una aclaración acerca de la notación utilizada arriba (`++/2`): en Elixir (y E
 
 ### Sustracción de listas
 
-La sustracción se realiza a travéz del operador `--/2`. Es seguro sustraer un valor que no exista:
+La sustracción se realiza a través del operador `--/2`. Es seguro sustraer un valor que no exista:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
