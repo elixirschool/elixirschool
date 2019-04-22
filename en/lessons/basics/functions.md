@@ -140,6 +140,7 @@ end
 ```
 
 Now let's say we have a map describing a person named Fred:
+
 ```elixir
 iex> fred = %{
 ...> name: "Fred",
@@ -148,7 +149,7 @@ iex> fred = %{
 ...> }
 ```
 
-These are the results we'll get when we call `Greeter1.hello/1  ` with the `fred` map:
+These are the results we'll get when we call `Greeter1.hello/1` with the `fred` map:
 
 ```elixir
 # call with entire map
@@ -184,10 +185,13 @@ iex> fred = %{
 ...> favorite_color: "Taupe"
 ...> }
 ```
+
 `Greeter1.hello/1` expects an argument like this:
+
 ```elixir
 %{name: person_name}
 ```
+
 In `Greeter1.hello/1`, the map we pass (`fred`) is evaluated against our argument (`%{name: person_name}`):
 
 ```elixir
@@ -204,6 +208,7 @@ At this point, because we only pattern-matched the `:name` key of our map, thus 
 In order to retain it, we need to assign that entire map to its own variable for us to be able to use it.
 
 Let's start a new function:
+
 ```elixir
 defmodule Greeter2 do
   def hello(%{name: person_name} = person) do
@@ -223,16 +228,19 @@ person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 
 Now, `person` has been evaluated and bound to the entire fred-map.
 We move on to the next pattern-match:
+
 ```elixir
 %{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
 Now this is the same as our original `Greeter1` function where we pattern matched the map and only retained Fred's name.
 What we've achieved is two variables we can use instead of one:
+
 1. `person`, referring to `%{name: "Fred", age: "95", favorite_color: "Taupe"}`
 2. `person_name`, referring to `"Fred"`
 
 So now when we call `Greeter2.hello/1`, we can use all of Fred's information:
+
 ```elixir
 # call with entire person
 ...> Greeter2.hello(fred)
@@ -259,6 +267,7 @@ So we've seen that Elixir pattern-matches at multiple depths because each argume
 If we switch the order of `%{name: person_name}` and `person` in the list, we will get the same result because each are matching to fred on their own.
 
 We swap the variable and the map:
+
 ```elixir
 defmodule Greeter3 do
   def hello(person = %{name: person_name}) do
@@ -269,6 +278,7 @@ end
 ```
 
 And call it with the same data we used in `Greeter2.hello/1`:
+
 ```elixir
 # call with same old Fred
 ...> Greeter3.hello(fred)
