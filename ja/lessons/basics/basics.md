@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.1
 title: 基本
 ---
 
@@ -210,6 +210,8 @@ iex> 42 and true
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+参考: Elixirの`and`と`or`はErlangの`andalso`と`orelse`に実際に対応しています。
 
 ### 比較
 
