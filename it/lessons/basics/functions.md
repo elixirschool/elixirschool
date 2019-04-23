@@ -119,7 +119,7 @@ A differenza del _function overloading_ in altri linguaggi di programmazione, in
 
 ### Funzioni e Pattern Matching
 
-Dietro le quinte, le funzioni eseguiscono automaticatemente il _pattern-matching_ sui parametri con cui vengono chiamate.
+Dietro le quinte, le funzioni eseguono automaticatemente il _pattern-matching_ sui parametri con cui vengono chiamate.
 
 Per esempio, abbiamo bisogno di una funzione che accetti una _map_ ma siamo interessati solo in una chiave in particolare; possiamo applicare il _patter-match_ sul parametro così:
 
@@ -165,7 +165,7 @@ Cosa succede quando chiamiamo la funzione con una mappa che _non_ contiente la c
 
 ```
 
-La ragione di questo comportamento è che Elixir eseguise il _patter-matching_ dei parametri con cui la funzione è stata chiamata contro la funzione della stessa _arity_.
+La ragione di questo comportamento è che Elixir esegue il _patter-matching_ dei parametri con cui la funzione è stata chiamata contro la funzione della stessa _arity_.
 
 Pensiamo a come i dati appaiono quando arrivano a `Greeter1.hello/1`:
 
@@ -209,7 +209,7 @@ end
 ```
 
 Ricorda che Elixir farà il _pattern match_ subito all'inizio.
-In questo case quindi, ogni lato dovrà "combaciare" contro il parametro in entrata e associarlo a qualsiasi dato che corrispondi.
+In questo caso quindi, ogni lato dovrà "combaciare" contro il parametro in entrata e associarlo a qualsiasi dato che corrispondi.
 Diamo un'occhiata al lato destro prima:
 
 ```elixir
@@ -275,9 +275,9 @@ Ed invochiamo la funzione con lo stesso argomento usato in `Greeter2.hello/1`:
 %{age: "95", favorite_color: "Taupe", name: "Fred"}
 ```
 
-Ricorda che anche se sembra che `%{name: person_name} = person` stia eseguendo il _patter match_ tra `%{name: person_name}` e `person`, questo non è giusto! Tutt'e due i lati vengono usati per eseguire il pattern match contro il parametro in entrata.
+Ricorda che anche se sembra che `%{name: person_name} = person` stia eseguendo il _pattern match_ tra `%{name: person_name}` e `person`, questo non è giusto! Tutt'e due i lati vengono usati per eseguire il pattern match contro il parametro in entrata.
 
-**Riepilogo** Le funzioni eseguiscono il pattern match dei parametri in entrata contro ogni argomento independentemente.
+**Riepilogo** Le funzioni eseguono il pattern match dei parametri in entrata contro ogni argomento indipendentemente.
 Questo può essere usato per assegnare valori a diverse variabili all'interno della funzione.
 
 ### Funzioni private
