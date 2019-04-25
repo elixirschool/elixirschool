@@ -159,7 +159,7 @@ Cosa succede quando chiamiamo la funzione con una mappa che _non_ contiente la c
     The following arguments were given to Greeter1.hello/1:
 
         # 1
-        %{age: "95"}
+        %{age: "95", favorite_color: "Taupe"}
 
     iex:12: Greeter1.hello/1
 

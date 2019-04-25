@@ -166,7 +166,7 @@ iex> fred = %{
     The following arguments were given to Greeter3.hello/1:
 
         # 1
-        %{age: "95"}
+        %{age: "95", favorite_color: "Taupe"}
 
     iex:12: Greeter3.hello/1
 
