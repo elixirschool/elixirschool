@@ -154,7 +154,7 @@ We'll cover this more in a later section.
 * **measure_function_call_overhead** - Measure how long an empty function call takes and deduct this from each measured run time. Helps with the accuracy of very fast benchmarks. Defaults to true.
 * **pre_check** - whether or not to run each job with each input - including all given before or after scenario or each hooks - before the benchmarks are measured to ensure that your code executes without error. This can save time while developing your suites. Defaults to `false`.
 * **save** - specify a `path` where to store the results of the current benchmarking suite, tagged with the specified `tag`. See [Saving & Loading in the Benchee docs](//github.com/bencheeorg/benchee#saving-loading-and-comparing-previous-runs).
-* **load** - load a saved suit or suits to compare your current benchmarks against. Can be a string or a list of strings or patterns. See [Saving & Loading in the Benchee docs](//github.com/bencheeorg/benchee#saving-loading-and-comparing-previous-runs).
+* **load** - load a saved suite or suites to compare your current benchmarks against. Can be a string or a list of strings or patterns. See [Saving & Loading in the Benchee docs](//github.com/bencheeorg/benchee#saving-loading-and-comparing-previous-runs).
 * **print** - a map or keyword list with the following options as atoms for the keys and values of either `true` or `false`.
 This lets us control if the output identified by the atom is printed during the standard benchmarking process.
 All options are enabled by default (true).
