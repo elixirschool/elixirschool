@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Guardian（基础）
 ---
 
@@ -212,7 +212,8 @@ end
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
-      # Use access tokens. Other tokens can be used, like :refresh etc
+      # Use access tokens.
+      # Other tokens can be used, like :refresh etc
       conn
       |> Guardian.Plug.sign_in(user, :access)
       |> respond_somehow()
