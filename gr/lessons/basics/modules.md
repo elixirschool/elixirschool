@@ -82,8 +82,8 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:mananger]}
-#Example.User<name: "Steve", roles: [:mananger]>
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Μπορούμε να αναβαθμίσουμε μια δομή όπως θα το κάναμε σε ένα χάρτη:

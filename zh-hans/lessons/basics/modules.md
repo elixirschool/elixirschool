@@ -83,8 +83,8 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:mananger]}
-#Example.User<name: "Steve", roles: [:mananger]>
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 我们也可以像更新映射（map）那样更新结构体：
