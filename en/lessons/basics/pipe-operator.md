@@ -19,7 +19,7 @@ foo(bar(baz(new_function(other_function()))))
 
 Here, we are passing the value `other_function/0` to `new_function/1`, and `new_function/1` to `baz/1`, `baz/1` to `bar/1`, and finally the result of `bar/1` to `foo/1`.
 Elixir takes a pragmatic approach to this syntactical chaos by giving us the pipe operator.
-The pipe operator which looks like `|>` *takes the result of one expression, and passes it on*.
+The pipe operator which looks like `|>` _takes the result of one expression, and passes it on_.
 Let's take another look at the code snippet above rewritten using the pipe operator.
 
 ```elixir
@@ -60,7 +60,7 @@ This doesn't matter much to Elixir, but it matters to other programmers who may 
 It does matter with the pipe operator though.
 For example, if we take our third example, and remove the parentheses from `String.ends_with?/2`, we are met with the following warning.
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with? "ixir"
 warning: parentheses are required when piping into a function call.
 For example:

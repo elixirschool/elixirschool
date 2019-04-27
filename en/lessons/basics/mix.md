@@ -136,7 +136,7 @@ This is analogous to `bundle install`:
 $ mix deps.get
 ```
 
-That's it!  We've defined and fetched our project dependencies.
+That's it! We've defined and fetched our project dependencies.
 Now we're prepared to add dependencies when the time comes.
 
 ## Environments
@@ -144,9 +144,9 @@ Now we're prepared to add dependencies when the time comes.
 Mix, much like Bundler, supports differing environments.
 Out of the box mix works with three environments:
 
-+ `:dev` — The default environment.
-+ `:test` — Used by `mix test`.  Covered further in our next lesson.
-+ `:prod` — Used when we ship our application to production.
+- `:dev` — The default environment.
+- `:test` — Used by `mix test`. Covered further in our next lesson.
+- `:prod` — Used when we ship our application to production.
 
 The current environment can be accessed using `Mix.env`.
 As expected, the environment can be changed via the `MIX_ENV` environment variable:
