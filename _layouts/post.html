@@ -1,21 +1,40 @@
 ---
 layout: default
 ---
-
-{% include function-getContributor type="name" search=page.author %}
+{%- if page.authors -%}
+  {%- capture links -%}
+    {%- for author in page.authors -%}
+      {% include function-getContributor type="name" search=author %}
+      {% include function-displayAuthor contributor=contributor %}\
+    {%- endfor -%}
+  {%- endcapture -%}
+  {% assign authors = links | split: "\" | array_to_sentence_string %}
+{%- else -%}
+  {%- capture authors -%}
+    {% include function-getContributor type="name" search=page.author %}
+    {% include function-displayAuthor contributor=contributor %}
+  {%- endcapture -%}
+{%- endif -%}
 
 <section id="section-page">
   <header class="main">
     <h1 class="post-title">{{ page.title }}</h1>
-    {% if contributor.homepage %}
-      <p>{{ page.date | date_to_string }} · by <a href="{{ contributor.homepage }}">{{page.author}}</a></p>
-    {% else %}
-      <p>{{ page.date | date_to_string }} · by <a href="https://github.com/{{ contributor.github }}">{{page.author}}</a></p>
-    {% endif %}
+    <p>{{ page.date | date_to_string }} · by {{ authors }}</p>
   </header>
   <div class="content">
     {{ content }}
   </div>
 </section>
 {% include section-prevnext.html %}
-{% include section-author.html %}
+<section> 
+  {%- if page.authors -%}
+    {%- for author in page.authors -%}
+      {% include function-getContributor type="name" search=author %}
+      {% include section-author.html %}
+      <hr>
+    {%- endfor -%}  
+  {%- else -%}
+    {% include function-getContributor type="name" search=page.author %}
+    {% include section-author.html %}
+  {%- endif -%}  
+</section>
