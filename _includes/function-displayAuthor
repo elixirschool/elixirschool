@@ -1,0 +1,7 @@
+{%- if include.contributor -%}
+  {%- if include.contributor.homepage -%}
+    <a href="{{ include.contributor.homepage }}">{{include.contributor.name}}</a>
+  {%- else -%}
+    <a href="https://github.com/{{ include.contributor.github }}">{{include.contributor.name}}</a>
+  {%- endif -%}
+{%- endif -%}
