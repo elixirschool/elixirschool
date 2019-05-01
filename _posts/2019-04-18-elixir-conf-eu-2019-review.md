@@ -75,6 +75,12 @@ Ok, I admit it, I am an old geezer, a true fanatic of the first GameBoy and that
 
 Going in this talk, I knew it would be out of my league. I have never tinkered with Erlang booting process, but I wanted to check a talk from another Elixir Core Team member. I was rewarded with a great talk, and even though I had _very_ little to zero knowledge about, Michał managed to keep my interests up all the time. He talked about the boot process itself and the quirks and weird stuff someone is going to discover going in if they want to contribute to the VM. As the Erlang Ecosystem Foundation grows and more and more developers join in, it would probably be a good opportunity for more advanced developers to touch on the subjects that Michał mentioned in his talk.
 
+[![From nothing to a running app Elixir Conf EU 2019](https://img.youtube.com/vi/_AgmxltiV9I/0.jpg](https://www.youtube.com/watch?v=_AqmxltiV9I)
+
+### Designing with Elixir by Ley Missailidis
+
+[![Designing with elixir Elixir Conf EU 2019](https://img.youtube.com/vi/wPsX-0xJW1c/0.jpg)](https://www.youtube.com/watch?v=wPsX-0xJW1c)
+
 ### Functional Concepts in Elixir by Wolfgang Loder
 
 Wolfgang is an experienced developer who has remained a developer through his whole career, while having worked on various technologies and projects. He has also written two books. His talk is covering some functional concepts and the way they can be used in Elixir, like Pattern Matching, Higher Order Functions, Recursion, Continuation Passing and Referential Integrity. He has a really nice way to describe things, and he used some real life examples from his work to explain them better.
