@@ -124,7 +124,7 @@ _备注_：我们也可以使用 `@derive {Inspect, except: [:roles]}`，效果�
 让我们看看更新后的模块在 `iex` 中的表现：
 
 ```elixir
-iex> sean = #Example.User<name: "Sean", roles: [...], ...>
+iex> sean = %Example.User{name: "Sean"}
 #Example.User<name: "Sean", ...>
 iex> inspect(sean)
 "#Example.User<name: \"Sean\", ...>"
