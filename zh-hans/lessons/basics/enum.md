@@ -68,7 +68,7 @@ iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 
 ### chunk_by
 
-如果不按照数量分组（每组的元素数量相同），我们可以使用 `chunk_by` 方法。它接受一个枚举值和一个函数作为参数，如果函数的返回值变了，就是从新从后开始分组：
+如果不按照数量分组（每组的元素数量相同），我们可以使用 `chunk_by` 方法。它接受一个枚举值和一个函数作为参数，如果函数的返回值变了，新的分组就从这里开始创建：
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
