@@ -3,7 +3,6 @@ url: https://elixirschool.com
 permalink: /blog/:title/
 default_lang: en
 exclude_from_localization: []
-exclude_from_chapters: ['blog.html', 'contributors.html']
 
 # Author
 author:
@@ -19,7 +18,8 @@ plugins:
   - jekyll-sitemap
   - kramdown
   - uglifier
-
+  - jekyll-archives
+  
 # Markdown Config
 markdown: kramdown
 kramdown:
@@ -53,6 +53,14 @@ erlang:
   OTP: 21.1
   erts: 10.1
 
+jekyll-archives:
+  enabled: ['categories', 'tags', 'year']
+  layout: archive
+  permalinks: 
+    year: '/blog/years/:year/'
+    category: '/blog/categories/:name/'
+    tag: '/blog/tags/:name/'
+    
 defaults:
   -
     scope:

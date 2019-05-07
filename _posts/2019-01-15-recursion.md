@@ -1,7 +1,7 @@
 ---
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
-categories: recursion
+categories: general
 date: 2019-01-19
 layout: post
 title: Understanding Recursion with Elixir

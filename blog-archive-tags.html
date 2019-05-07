@@ -1,0 +1,40 @@
+---
+title: Tags
+layout: blog
+disable_transform: true
+exclude_from_chapters: true
+permalink: /blog/tags/
+---
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li class="is-active">Tags</li>
+  </ul>
+</nav>
+
+<div class="main">
+  <h1>Tags</h1>
+  <ul>
+    {% for topic in site.tags %}
+      <li><a href="#{{ topic[0] | downcase | url_escape | strip | replace: ' ', '-' }}">{{ topic[0] }} ({{ topic[1].size }})</a></li>
+    {% endfor %}
+  </ul>
+  <hr>
+  {%- for topic in site.tags -%}
+    {% assign tag_name = topic[0] %}
+    {% include function-getTagMeta name=tag_name %}
+    <h2 id="{{ topics[0] | downcase | url_escape | strip | replace: ' ', '-' }}">{{ topic[0] }}</h2>
+    {{ tag-meta.description | markdownify }}
+    <ul class="showcase">
+      {% assign pages_list = topic[1] %}
+      {% for post in pages_list %}
+        {% if post.title != null %}
+          <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a> <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></li>
+        {% endif %}
+      {% endfor %}      
+    </ul>
+    {% assign pages_list = nil %}
+    {% assign tag_name = nil %}
+  {%- endfor -%}  
+</div>
