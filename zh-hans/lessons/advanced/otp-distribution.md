@@ -246,7 +246,7 @@ iex(alex@localhost)> how are you?
 
 我们让 `Chat.TaskSupervisor` 监管的任务是负责执行 `Chat.receive_message` 函数。其中的参数是 `send_message/2` 接收的任何消息，再经 `spawn_task/4` 传递过来。
 
-所以，`Chat.receive_message("hi")` 是在远程节点 `kate` 调用的。那么，消息 `"hi"` 也就显示在那个节点的标注输出上。在这个例子，因为任务是被远程节点监管，所以那个节点也就成为这次 IO 进程的群组领导节点。
+所以，`Chat.receive_message("hi")` 是在远程节点 `kate` 调用的。那么，消息 `"hi"` 也就显示在那个节点的标准输出上。在这个例子，因为任务是被远程节点监管，所以那个节点也就成为这次 IO 进程的群组领导节点。
 
 
 ### 回应远程节点发送过来的消息
