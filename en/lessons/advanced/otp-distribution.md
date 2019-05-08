@@ -11,7 +11,7 @@ Elixir allows us to communicate across these nodes via a few different mechanism
 
 ## Communication Between Nodes
 
-Elixir runs on the Erlang VM, which means it has access to to Erlang's powerful [distribution functionality.](http://erlang.org/doc/reference_manual/distributed.html)
+Elixir runs on the Erlang VM, which means it has access to Erlang's powerful [distribution functionality.](http://erlang.org/doc/reference_manual/distributed.html)
 
 > A distributed Erlang system consists of a number of Erlang runtime systems communicating with each other.
 Each such runtime system is called a node.
