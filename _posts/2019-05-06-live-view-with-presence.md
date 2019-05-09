@@ -521,7 +521,7 @@ The last thing we need to do is update our template to append `"..."` to name of
 <h3>Members</h3>
 <%= for user <- @users do %>
   <p>
-    <%= user.first_name %><%= if user.typing do "..." end%>
+    <%= user.first_name %><%= if user.typing, do: "..." end%>
   </p>
 <% end %>
 ```
