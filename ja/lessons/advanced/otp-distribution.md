@@ -41,7 +41,7 @@ iex(kate@localhost)>
 
 これはリモートノードとの間で通信を確立して、ノード上で与えられた関数を実行し、リンクされたプロセスのPIDを返します。
 
-`Kate` というモジュールを、その紹介方法を知っている `kate` ノードの中に定義しましょう:
+Kateさんを紹介する `Kate` というモジュールを、 `kate` ノードの中に定義しましょう:
 
 ```elixir
 iex(kate@localhost)> defmodule Kate do
