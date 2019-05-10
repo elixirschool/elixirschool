@@ -45,7 +45,7 @@
     {% endunless %}
   {% endfor %}
     <li>
-      <a href="/blog/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "blog" or page.layout == "post" %}active{% endif %}">{{ site.data['locales'][language]['sections']['blog']}}</a>
+      <a href="/blog/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "blog" or page.layout == "post" or page.layout == "archive" %}active{% endif %}">{{ site.data['locales'][language]['sections']['blog']}}</a>
     </li>
     {% unless language == 'en' %}
     <li>

@@ -3,6 +3,7 @@ author: Prince Wilson
 date: 2019-03-25
 layout: post
 categories: til
+tags: ['ecto']
 author_link: https://github.com/maxcell
 title:  TIL Ecto Constraints and Validations
 excerpt: >

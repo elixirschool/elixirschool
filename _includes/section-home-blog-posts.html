@@ -5,14 +5,7 @@
   </header>
   <div class="posts">
     {% for post in site.posts limit:6 %}
-    <article>
-      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-      <p class="post-date">{{ post.date | date_to_string }}</p>
-      {{ post.excerpt | markdownify }}
-      <ul class="actions">
-        <li><a href="{{ post.url }}" class="button{% unless page.disable_transform %} up{%endunless%}">Read more</a></li>
-      </ul>
-    </article>
+      {% include article-preview.html article=post %}
     {% endfor %}
   </div>
 </section>

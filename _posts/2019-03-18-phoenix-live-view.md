@@ -2,6 +2,7 @@
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
 categories: til
+tags: ['phoenix']
 date: 2019-03-19
 layout: post
 title:  Walk-Through of Phoenix LiveView
