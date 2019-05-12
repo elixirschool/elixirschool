@@ -13,7 +13,11 @@ After playing with LiveView and leveraging Phoenix PubSub to broadcast messages 
 
 ## The App
 
-The chat app app is fairly straightforward, and we won't get into the details of setting up LiveView in our Phoenix app here. You can check out the [source code](https://github.com/SophieDeBenedetto/phat) along with this [earlier post](https://elixirschool.com/blog/phoenix-live-view/) on getting LiveView up and running for more info.
+The chat app is fairly straightforward, and we won't get into the details of setting up LiveView in our Phoenix app here. You can check out the [source code](https://github.com/SophieDeBenedetto/phat/tree/tutorial) along with this [earlier post](https://elixirschool.com/blog/phoenix-live-view/) on getting LiveView up and running for more info.
+
+### Following Along
+
+If you'd like to follow along with this tutorial, clone down the repo [here](https://github.com/SophieDeBenedetto/phat/tree/tutorial) and follow the README instructions to get up and running. The starting state of the tutorial branch includes the chat domain model, routes, controller and the initial state of the LiveView, described below. You can also check out the completed code [here](https://github.com/SophieDeBenedetto/phat).
 
 ### `ChatLiveView's` Initial State
 
@@ -117,7 +121,7 @@ defmodule PhatWeb.ChatLiveView do
 end
 ```
 
-The live view responds to the `"message"` event by creating a new message and updating the socket's with the updated chat and a new empty message changeset for our form.
+The live view responds to the `"message"` event by creating a new message and updating the socket's with the updated chat and a new empty message changeset for our form. *Note that although we specify the value of the `phx_submit` as an atom, `:message`, our live view process receives the message as a string, `"message".*`
 
 The live view then re-renders the relevant portions of our page, in this case the chat and messages display and the form for a new message.
 
@@ -177,7 +181,7 @@ Now that our live view is smart enough to broadcast messages to all of the users
 
 ![]({% asset live-view-presence-1.png @path %})
 
-We could create our own data structure for tracking user presence in a live view, store it in the live view's socket, and hand-roll our own functions to update that data structure when a user joins, leaves or otherwise change's their state. However, the [Phoenix Presence behaviour](https://hexdocs.pm/phoenix/Phoenix.Presence.html) abstracts this work away from us. It provides presence tracking for processes and channels, leveraging Phoenix PubSub behind the scenes to broadcast updates. It also uses a CRDT (Conflict-free Replicated Data Type) model, which means it works on distributed applications.
+We could create our own data structure for tracking user presence in a live view, store it in the live view's socket, and hand-roll our own functions to update that data structure when a user joins, leaves or otherwise changes their state. However, the [Phoenix Presence behaviour](https://hexdocs.pm/phoenix/Phoenix.Presence.html) abstracts this work away from us. It provides presence tracking for processes and channels, leveraging Phoenix PubSub behind the scenes to broadcast updates. It also uses a CRDT (Conflict-free Replicated Data Type) model, which means it works on distributed applications.
 
 Now that we understand a bit about what Presence is and why we want to use it, let's get it set up in our application.
 
@@ -231,7 +235,7 @@ def mount(%{chat: chat, current_user: current_user}, socket) do
 end
 ```
 
-Here, we use the [`Presence.track/4`](https://hexdocs.pm/phoenix/Phoenix.Presence.html#c:track/4) function to track an our live view process as a presence. We add the PID of the LiveView process to Presence's data store, and we add a payload describing the new user under a topic of `"chat:#{chat.id}"` and a key of the user's ID.
+Here, we use the [`Presence.track/4`](https://hexdocs.pm/phoenix/Phoenix.Presence.html#c:track/4) function to track our live view process as a presence. We add the PID of the LiveView process to Presence's data store, along with a payload describing the new user under a topic of `"chat:#{chat.id}"` and a key of the user's ID.
 
 The Presence process's state for the given topic will look something like this:
 
@@ -276,7 +280,7 @@ Recall that our live view clients are subscribing to this PubSub server via the 
 }
 ```
 
-The event's payload will describe the users that are joining the channel when `Presence.track/4` is called. Although we will respond to the `"presence_diff"` event, we won't do anything with the event's payload for now. However, you could imagine using it to create custom user experiences such as welcoming the newly joined user or alerting existing user's that a certain new member has joined the chat room.
+The event's payload will describe the users that are joining the channel when `Presence.track/4` is called. Although we will respond to the `"presence_diff"` event, we won't do anything with the event's payload for now. However, you could imagine using it to create custom user experiences such as welcoming the newly joined user or alerting existing users that a certain new member has joined the chat room.
 
 In order to respond to the event we'll define a `handle_info/2` function in our live view that will match the `"presence_diff"` event:
 
@@ -577,5 +581,7 @@ Let's take a step back and recap what we've built:
 * With "plain" LiveView, we gave our chat the ability to push real-time updates to the user who initiated the change. In other words, users who submit new messages via the chat form see those new messages appear in the chat log on the page.
 * With the addition of PubSub, we were able to broadcast these new chat messages to *all* of the LiveView clients subscribed to a chat room topic, i.e. all of the members of a given chat room.
 * By leveraging Presence, we were able to track and display the list of users "present" in a given chat room, along with the state of a given user (i.e. whether or not they are currently typing).
+
+You can see the final (slightly refactored!) code [here](https://github.com/SophieDeBenedetto/phat).
 
 The flexibility of Phoenix PubSub made it easy to subscribe all of our running LiveView processes to the same topic on the pub sub server. In addition, the Presence module's ability to share a pub sub server with the rest of our application allowed each Presence process to broadcast presence events to LiveView processes. Overall, LiveView, PubSub and Presence played together really nicely, and enabled us to build a robust set of features with very little hand-rolled code.
