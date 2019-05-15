@@ -1,7 +1,7 @@
 ---
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
-categories: til
+categories: post
 date: 2019-05-06
 layout: post
 title:  Tracking Users in a Chat App with LiveView, PubSub Presence
@@ -13,11 +13,11 @@ After playing with LiveView and leveraging Phoenix PubSub to broadcast messages 
 
 ## The App
 
-The chat app is fairly straightforward, and we won't get into the details of setting up LiveView in our Phoenix app here. You can check out the [source code](https://github.com/SophieDeBenedetto/phat/tree/tutorial) along with this [earlier post](https://elixirschool.com/blog/phoenix-live-view/) on getting LiveView up and running for more info.
+The chat app is fairly straightforward, and we won't get into the details of setting up LiveView in our Phoenix app here. You can check out the [source code](https://github.com/elixirschool/live-view-chat/tree/tutorial) along with this [earlier post](https://elixirschool.com/blog/phoenix-live-view/) on getting LiveView up and running for more info.
 
 ### Following Along
 
-If you'd like to follow along with this tutorial, clone down the repo [here](https://github.com/SophieDeBenedetto/phat/tree/tutorial) and follow the README instructions to get up and running. The starting state of the tutorial branch includes the chat domain model, routes, controller and the initial state of the LiveView, described below. You can also check out the completed code [here](https://github.com/SophieDeBenedetto/phat).
+If you'd like to follow along with this tutorial, clone down the repo [here](https://github.com/elixirschool/live-view-chat/tree/tutorial) and follow the README instructions to get up and running. The starting state of the tutorial branch includes the chat domain model, routes, controller and the initial state of the LiveView, described below. You can also check out the completed code [here](https://github.com/elixirschool/live-view-chat).
 
 ### `ChatLiveView's` Initial State
 
@@ -568,7 +568,7 @@ def handle_event(
 end
 ```
 
-*Note: Here we can see some obvious repetition of code we wrote to handle the `"typing"` event. This code has been refactored to move Presence interactions into our `PhatWeb.Presence` module which you can check out [here](https://github.com/SophieDeBenedetto/phat/blob/master/lib/phat_web/presence.ex) and [here](https://github.com/SophieDeBenedetto/phat/blob/master/lib/phat_web/live/chat_live_view.ex). For the purposes of easy reading in this post, I let this code remain explicit.*
+*Note: Here we can see some obvious repetition of code we wrote to handle the `"typing"` event. This code has been refactored to move Presence interactions into our `PhatWeb.Presence` module which you can check out [here](https://github.com/elixirschool/live-view-chat/blob/master/lib/phat_web/presence.ex) and [here](https://github.com/elixirschool/live-view-chat/blob/master/lib/phat_web/live/chat_live_view.ex). For the purposes of easy reading in this post, I let this code remain explicit.*
 
 Here, we update the message changeset to reflect the content the user typed into the form field. Then, we fetch the user's metadata from Presence and update it to set `typing: false`. Lastly, we update the live view's socket to reflect the content the user typed into the message form field. This is a necessary step so that the template will display this content when it re-renders as a consequence of the `"presence_diff"` event.
 
@@ -582,6 +582,6 @@ Let's take a step back and recap what we've built:
 * With the addition of PubSub, we were able to broadcast these new chat messages to *all* of the LiveView clients subscribed to a chat room topic, i.e. all of the members of a given chat room.
 * By leveraging Presence, we were able to track and display the list of users "present" in a given chat room, along with the state of a given user (i.e. whether or not they are currently typing).
 
-You can see the final (slightly refactored!) code [here](https://github.com/SophieDeBenedetto/phat).
+You can see the final (slightly refactored!) code [here](https://github.com/elixirschool/live-view-chat).
 
 The flexibility of Phoenix PubSub made it easy to subscribe all of our running LiveView processes to the same topic on the pub sub server. In addition, the Presence module's ability to share a pub sub server with the rest of our application allowed each Presence process to broadcast presence events to LiveView processes. Overall, LiveView, PubSub and Presence played together really nicely, and enabled us to build a robust set of features with very little hand-rolled code.
