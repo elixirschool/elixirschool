@@ -2,7 +2,7 @@
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
 categories: post
-date: 2019-05-06
+d©ate: 2019-05-06
 layout: post
 title:  Tracking Users in a Chat App with LiveView, PubSub Presence
 excerpt: >
@@ -192,7 +192,7 @@ In order to leverage Presence in our Phoenix app, we need to define our very our
 ```elixir
 # lib/phat_web/presence.ex
 
-efmodule PhatWeb.Presence do
+defmodule PhatWeb.Presence do
   use Phoenix.Presence,
     otp_app: :phat,
     pubsub_server: Phat.PubSub
@@ -217,9 +217,7 @@ We'll hook into our `mount/2` function to add the new user to Presence's list of
 
 ```elixir
 # lib/phat_web/live/chat_live_view.ex
-
-defp topic(chat_id), do: "chat:#{chat_id}"
-
+©
 def mount(%{chat: chat, current_user: current_user}, socket) do
   Presence.track(
     self(),
@@ -306,10 +304,7 @@ def handle_info(%{event: "presence_diff", payload: _payload}, socket = %{assigns
       |> List.first()
     end)
 
-  {:noreply,
-   assign(socket,
-     users: users
-   )}
+  {:noreply, assign(socket, users: users)}
 end
 ```
 
