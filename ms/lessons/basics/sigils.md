@@ -101,11 +101,11 @@ iex> ~S/the cat in the hat on the mat/
 Tetapi apakah perbezaannya?  Perbezaannya adalah sama dengan sigil List Aksara yang telah kita lihat.  Jawapannya adalah 'interpolation' dan 'escape sequence'.  Jika kita lihat satu lagi contoh:
 
 ```elixir
-iex> ~s/welcome to elixir #{String.downcase "school"}/
+iex> ~s/welcome to elixir #{String.downcase "SCHOOL"}/
 "welcome to elixir school"
 
-iex> ~S/welcome to elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
+"welcome to elixir \#{String.downcase \"SCHOOL\"}"
 ```
 
 ### List Perkataan
