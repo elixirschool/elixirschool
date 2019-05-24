@@ -125,7 +125,7 @@ iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
 
 ### Word List
 
-The word list sigil can come in handy time to time.
+The word list sigil can come in handy from time to time.
 It can save both time, keystrokes and arguably reduce the complexity within the codebase.
 Take this simple example:
 
