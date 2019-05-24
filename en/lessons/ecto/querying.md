@@ -18,7 +18,7 @@ We can perform simple queries directly against our `Example.Repo` with the help 
 
 We can use the `Repo.get/3` function to fetch a record from the database given its ID. This function requires two arguments: a "queryable" data structure and the ID of a record to retrieve from the database. It returns a struct describing the record found, if any. It returns `nil` if no such record is found.
 
-Let's take a look at an example. Below, we'll get the movie with and ID of 1:
+Let's take a look at an example. Below, we'll get the movie with an ID of 1:
 
 ```elixir
 iex> alias Example.{Repo, Movie}
