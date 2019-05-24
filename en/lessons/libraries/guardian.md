@@ -164,7 +164,7 @@ pipeline :maybe_browser_auth do
 end
 
 pipeline :ensure_authed_access do
-  plug(Guardian.Plug.EnsureAuthenticated, %{"typ" => "access", handler: MyApp.HttpErrorHandler})
+  plug(Guardian.Plug.EnsureAuthenticated, %{"type" => "access", handler: MyApp.HttpErrorHandler})
 end
 ```
 
