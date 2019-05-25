@@ -15,7 +15,7 @@ In addition to grouping functions, they allow us to define named and private fun
 
 Let's look at a basic example:
 
-``` elixir
+```elixir
 defmodule Example do
   def greeting(name) do
     "Hello #{name}."
@@ -61,9 +61,9 @@ end
 It is important to note there are reserved attributes in Elixir.
 The three most common are:
 
-+ `moduledoc` — Documents the current module.
-+ `doc` — Documentation for functions and macros.
-+ `behaviour` — Use an OTP or user-defined behaviour.
+- `moduledoc` — Documents the current module.
+- `doc` — Documentation for functions and macros.
+- `behaviour` — Use an OTP or user-defined behaviour.
 
 ## Structs
 
@@ -139,7 +139,6 @@ iex> inspect(sean)
 ```
 
 The `roles` are excluded from output!
-
 
 ## Composition
 
@@ -298,7 +297,6 @@ end
 
 Let's update our `Example` module to include the newly created `greeting` option:
 
-
 ```elixir
 defmodule Example do
   use Hello, greeting: "Hola"
@@ -307,7 +305,7 @@ end
 
 If we give it a try in IEx we should see that the greeting has been changed:
 
-```
+```elixir
 iex> Example.hello("Sean")
 "Hola, Sean"
 ```
