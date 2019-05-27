@@ -64,12 +64,20 @@ Later...
 
 There is a lot of code to get through, so we've organized our approach into the following parts:
 
-I. Establishing the Socket and Channel  
-II. Handling Events in the LiveView
-III. Communicating from the LiveView to the Channel
-IV. Sending Messages From the Channel to the Front-End
+I. [Establishing the Socket and Channel](#-establishing-the-socket-and-channel)  
 
-## Establishing the Socket and Channel
+II. [Handling Events in the LiveView](#handling-events-in-the-liveview)
+
+III. [Communicating from the LiveView to the Channel](#communicationg-from-the-liveview-to-the-channel)
+
+IV. [Sending Messages From the Channel to the Front-End](#sending-messages-from-the-channel-to-the-front-end)
+
+## Getting Started
+
+If you'd like to follow along with this tutorial, we recommend reading and completing the tutorial in our previous post [here](https://elixirschool.com/blog/live-view-with-presence/). This will get your code into the correct starting state. You can also clone down the repo [here](https://github.com/elixirschool/live-view-chat) to get the starting code. Otherwise, you can checkout the completed code [here](https://github.com/elixirschool/live-view-chat/tree/live-view-channel-registry).
+
+
+## Part I: Establishing the Socket and Channel
 
 In order to guarantee that the live view process process can send a message to the right channel at the right time, we need to have the live view share a socket with the channel. Let's start by focusing on this portion of the code flow:
 
@@ -166,7 +174,7 @@ end
 With our socket and our channel defined, we can tell the front-end client to join the channel after connecting to the LiveView socket:
 
 ```javascript
-// app.js
+// assets/js/app.js
 import LiveSocket from "phoenix_live_view"
 
 let chatId = window.location.pathname.split("/")[2] // just a hack to get the chatId from the route
@@ -193,7 +201,7 @@ channel.on("new_message", (msg) => {
 
 So, how can we get our channel to send the `"new_message"` event to the front-end? Let's find out!
 
-## Handling Events in the LiveView
+## Part II: Handling Events in the LiveView
 
 In this section, we'll dive into the following portion of the process:
 
@@ -264,7 +272,7 @@ end
 
 Now we've captured the moment in time at which to send a message from the LiveView process to the Channel process. But wait! How can we send a message to a process whose PID we don't know? The LiveView process, in its current form, doesn't know about the channel process with which it shares a socket. In order to fix this, we'll need to leverage a Registry.
 
-## Communicating from the LiveView to the Channel
+## Part III: Communicating from the LiveView to the Channel
 
 In this section, we'll register our channel process so that the live view can look up and send a message to the appropriate channel PID. Then, we'll teach the live view how to perform this lookup and send a message to the right channel PID.
 
@@ -367,7 +375,7 @@ We need to give the channel awareness of the session UUID. So, we'll include the
 We'll include the token in our socket connection request on the front-end:
 
 ```javascript
-// app.js
+// assets/js/app.js
 const channelToken = document.getElementsByTagName('meta')[3].content
 const liveSocket = new LiveSocket("/live", {params: {channel_token: channelToken}})
 liveSocket.connect()
@@ -443,7 +451,7 @@ Each live view process shares a session UUID with the channel that was joined on
 
 Next up, we need to teach our channel to respond to this message.
 
-## Sending Messages from the Channel to the Front-End
+## Part IV: Sending Messages from the Channel to the Front End
 
 In this section, we'll focus on the following portion of our process:
 
@@ -472,7 +480,7 @@ end
 On the front-end, our channel JS is ready and waiting to fire:
 
 ```javascript
-// app.js
+// assets/js/app.js
 
 channel.on("new_message", function() {
   const targetNode = document.getElementsByClassName("messages")[0]
