@@ -21,7 +21,7 @@ iex> [3.41, :pie, "Apple"]
 ```elixir
 iex> list = [3.41, :pie, "Apple"]
 [3.41, :pie, "Apple"]
-iex> ["π"] ++ list
+iex> ["π" | list]
 ["π", 3.41, :pie, "Apple"]
 iex> list ++ ["Cherry"]
 [3.41, :pie, "Apple", "Cherry"]

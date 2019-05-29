@@ -15,7 +15,7 @@ In addition to grouping functions, they allow us to define named and private fun
 
 Let's look at a basic example:
 
-``` elixir
+```elixir
 defmodule Example do
   def greeting(name) do
     "Hello #{name}."
@@ -61,9 +61,9 @@ end
 It is important to note there are reserved attributes in Elixir.
 The three most common are:
 
-+ `moduledoc` — Documents the current module.
-+ `doc` — Documentation for functions and macros.
-+ `behaviour` — Use an OTP or user-defined behaviour.
+- `moduledoc` — Documents the current module.
+- `doc` — Documentation for functions and macros.
+- `behaviour` — Use an OTP or user-defined behaviour.
 
 ## Structs
 
@@ -88,14 +88,14 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> #Example.User<name: "Steve", roles: [...], ...>
-#Example.User<name: "Steve", roles: [...], ...>
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 We can update our struct just like we would a map:
 
 ```elixir
-iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+iex> steve = %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 #Example.User<name: "Sean", roles: [...], ...>
@@ -132,14 +132,13 @@ _Note_: we could also use `@derive {Inspect, except: [:roles]}`, they are equiva
 With our updated module in place let's take a look at what happens in `iex`:
 
 ```elixir
-iex> sean = #Example.User<name: "Sean", roles: [...], ...>
+iex> sean = %Example.User{name: "Sean"}
 #Example.User<name: "Sean", ...>
 iex> inspect(sean)
 "#Example.User<name: \"Sean\", ...>"
 ```
 
 The `roles` are excluded from output!
-
 
 ## Composition
 
@@ -298,7 +297,6 @@ end
 
 Let's update our `Example` module to include the newly created `greeting` option:
 
-
 ```elixir
 defmodule Example do
   use Hello, greeting: "Hola"
@@ -307,7 +305,7 @@ end
 
 If we give it a try in IEx we should see that the greeting has been changed:
 
-```
+```elixir
 iex> Example.hello("Sean")
 "Hola, Sean"
 ```

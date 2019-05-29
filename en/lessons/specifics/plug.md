@@ -160,11 +160,16 @@ To start let's create a file at `lib/example/router.ex` and copy the following i
 defmodule Example.Router do
   use Plug.Router
 
-  plug(:match)
-  plug(:dispatch)
+  plug :match
+  plug :dispatch
 
-  get("/", do: send_resp(conn, 200, "Welcome"))
-  match(_, do: send_resp(conn, 404, "Oops!"))
+  get "/" do
+    send_resp(conn, 200, "Welcome")
+  end
+
+  match _ do
+    send_resp(conn, 404, "Oops!")
+  end
 end
 ```
 
@@ -263,20 +268,22 @@ defmodule Example.Router do
 
   alias Example.Plug.VerifyRequest
 
-  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
+  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
+  plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
+  plug :match
+  plug :dispatch
 
-  plug(
-    VerifyRequest,
-    fields: ["content", "mimetype"],
-    paths: ["/upload"]
-  )
+  get "/" do
+    send_resp(conn, 200, "Welcome")
+  end
 
-  plug(:match)
-  plug(:dispatch)
+  get "/upload" do
+    send_resp(conn, 201, "Uploaded")
+  end
 
-  get("/", do: send_resp(conn, 200, "Welcome\n"))
-  get("/upload", do: send_resp(conn, 201, "Uploaded\n"))
-  match(_, do: send_resp(conn, 404, "Oops!\n"))
+  match _ do
+    send_resp(conn, 404, "Oops!")
+  end
 end
 ```
 
@@ -284,14 +291,9 @@ With this code, we are telling our application to send incoming requests through
 Via the function call:
 
 ```elixir
-plug(
-  VerifyRequest,
-  fields: ["content", "mimetype"],
-  paths: ["/upload"]
-)
+plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
 ```
-We automatically invoke `VerifyRequest.init(fields: ["content", "mimetype"],
-paths: ["/upload"])`.
+We automatically invoke `VerifyRequest.init(fields: ["content", "mimetype"], paths: ["/upload"])`.
 This in turn passes the given options to the `VerifyRequest.call(conn, opts)` function.
 
 Let's take a look at this plug in action! Go ahead and crash your local server (rember, that's done by pressing `ctrl + c` twice).
@@ -367,7 +369,8 @@ defmodule Example.RouterTest do
 
   test "returns welcome" do
     conn =
-      conn(:get, "/", "")
+      :get
+      |> conn("/", "")
       |> Router.call(@opts)
 
     assert conn.state == :sent
@@ -376,7 +379,8 @@ defmodule Example.RouterTest do
 
   test "returns uploaded" do
     conn =
-      conn(:get, "/upload?content=#{@content}&mimetype=#{@mimetype}")
+      :get
+      |> conn("/upload?content=#{@content}&mimetype=#{@mimetype}")
       |> Router.call(@opts)
 
     assert conn.state == :sent
@@ -385,7 +389,8 @@ defmodule Example.RouterTest do
 
   test "returns 404" do
     conn =
-      conn(:get, "/missing", "")
+      :get
+      |> conn("/missing", "")
       |> Router.call(@opts)
 
     assert conn.state == :sent
@@ -415,28 +420,27 @@ defmodule Example.Router do
 
   alias Example.Plug.VerifyRequest
 
-  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
+  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
+  plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
+  plug :match
+  plug :dispatch
 
-  plug(
-    VerifyRequest,
-    fields: ["content", "mimetype"],
-    paths: ["/upload"]
-  )
+  get "/" do
+    send_resp(conn, 200, "Welcome")
+  end
 
-  plug(:match)
-  plug(:dispatch)
+  get "/upload" do
+    send_resp(conn, 201, "Uploaded")
+  end
 
-  get("/", do: send_resp(conn, 200, "Welcome\n"))
-  get("/upload", do: send_resp(conn, 201, "Uploaded\n"))
-  match(_, do: send_resp(conn, 404, "Oops!\n"))
+  match _ do
+    send_resp(conn, 404, "Oops!")
+  end
 
   defp handle_errors(conn, %{kind: kind, reason: reason, stack: stack}) do
-    IO.puts "Kind:"
-    IO.inspect kind
-    IO.puts "Reason:"
-    IO.inspect reason
-    IO.puts "Stack"
-    IO.inspect stack
+    IO.inspect(kind, label: :kind)
+    IO.inspect(reason, label: :reason)
+    IO.inspect(stack, label: :stack)
     send_resp(conn, conn.status, "Something went wrong")
   end
 end
@@ -455,12 +459,9 @@ Now, when you navigate to <http://127.0.0.1:8080/upload>, you'll see a friendly 
 If you look in your terminal, you'll see something like the following:
 
 ```shell
-Kind:
-:error
-Reason:
-%Example.Plug.VerifyRequest.IncompleteRequestError{message: ""}
-Stack
-[
+kind: :error
+reason: %Example.Plug.VerifyRequest.IncompleteRequestError{message: ""}
+stack: [
   {Example.Plug.VerifyRequest, :verify_request!, 2,
    [file: 'lib/example/plug/verify_request.ex', line: 23]},
   {Example.Plug.VerifyRequest, :call, 2,

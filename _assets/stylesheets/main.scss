@@ -57,6 +57,80 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700');
 
+.breadcrumb {
+  ul {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style: none;
+    padding-left: 0;
+    margin-top: -4em;
+    margin-bottom: 3em;
+    
+    li {
+      align-items: center;
+      margin-right: .75em;
+      
+      &:before {
+        content: "\0002f"; // /
+        padding-right: .75em;
+      }
+      
+      &:first-child {
+          &:before {
+            content: "" !important;
+            padding: 0 !important;
+          }
+      }
+      
+      &.is-active { 
+        &:before {
+          color: _purple(fg-alt);
+        }  
+      }
+      
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.tags {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  .title {
+    margin: 0 1em 0 0;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: _size(border-radius);
+    background-color: _palette(border);
+    color: #000;
+    line-height: 1.5;
+    font-size: .75rem;
+    height: 2em;
+    padding: 0 .75em;
+    white-space: nowrap;
+    margin-right: .75em;
+    &:last-child {
+      margin-right: 0px;
+    }
+    a {
+      border: 0;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline
+      }      
+    }
+  }
+}
+
 .profile {
   h2 {
     margin: 0 0 .5em 0;
@@ -100,6 +174,22 @@ section .content {
     margin: 0 0 _size(element-margin) 0;
     padding: 0 0.75em 0.5em 0;
   }
+  
+  .edit-lesson {
+    margin: 4em 0 0 0;
+    
+    @include breakpoint(xlarge) {
+      margin: 3em 0 0 0;
+		}
+    
+    @include breakpoint(large) {
+      margin: 2em 0 0 0;
+		}
+    
+    @include breakpoint(small) {
+      margin: 1em 0 0 0;
+		}
+  }
 }
 
 pre {
@@ -107,9 +197,10 @@ pre {
   word-wrap: break-word;
 }
 
-.post-date {
-  margin: 0 0 .5em 0;
-  font-weight: 600;
+.post-info {
+  margin: -0.5em 0 1em 0;
+  font-size: 0.8rem;
+  .bold {font-weight: 600;}
 }
 
 .section-prevnext {

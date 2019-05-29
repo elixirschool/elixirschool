@@ -102,11 +102,11 @@ iex> ~S/the cat in the hat on the mat/
 Но в чём разница? Отличие такое же, как в строковых метках списка символов, которые мы уже рассмотрели ранее &mdash; интерполяция и экранирование. Посмотрим на ещё один пример:
 
 ```elixir
-iex> ~s/welcome to elixir #{String.downcase "school"}/
+iex> ~s/welcome to elixir #{String.downcase "SCHOOL"}/
 "welcome to elixir school"
 
-iex> ~S/welcome to elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
+"welcome to elixir \#{String.downcase \"SCHOOL\"}"
 ```
 
 ### Список слов

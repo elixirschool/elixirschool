@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: OTP 分布式
 ---
 
@@ -29,9 +29,9 @@ iex --sname kate@localhost
 iex(kate@localhost)>
 ```
 
-这两个节点可以通过 `Node.spawn_link/1` 来相互发送消息。
+这两个节点可以通过 `Node.spawn_link/2` 来相互发送消息。
 
-### 通过 `Node.spawn_link/1` 来通信
+### 通过 `Node.spawn_link/2` 来通信
 
 这个函数需要接收两个参数：
 
@@ -70,7 +70,7 @@ Hi, my name is Kate
 
 #### 回应消息
 
-如果我们希望接收到消息的节点发送某些 **回应** 到发送方？我们可以简单的使用 `receive/1` 和 [`send/2`](https://hexdocs.pm/elixir/Process.html#send/3) 来实现这一点。
+如果我们希望接收到消息的节点发送某些 **回应** 到发送方？我们可以简单的使用 `receive/1` 和 [`send/3`](https://hexdocs.pm/elixir/Process.html#send/3) 来实现这一点。
 
 我们可以让 `alex` 节点建立一个通道到 `kate` 节点，并指定 `kate` 节点运行某个匿名函数。这个匿名函数会监听是否收到某个描述了特定消息和 `alex` 节点 PID 的元组。如果收到了这个元组消息，它就会通过相应的 PID 回应一条消息到 `alex` 节点上：
 
@@ -246,7 +246,7 @@ iex(alex@localhost)> how are you?
 
 我们让 `Chat.TaskSupervisor` 监管的任务是负责执行 `Chat.receive_message` 函数。其中的参数是 `send_message/2` 接收的任何消息，再经 `spawn_task/4` 传递过来。
 
-所以，`Chat.receive_message("hi")` 是在远程节点 `kate` 调用的。那么，消息 `"hi"` 也就显示在那个节点的标注输出上。在这个例子，因为任务是被远程节点监管，所以那个节点也就成为这次 IO 进程的群组领导节点。
+所以，`Chat.receive_message("hi")` 是在远程节点 `kate` 调用的。那么，消息 `"hi"` 也就显示在那个节点的标准输出上。在这个例子，因为任务是被远程节点监管，所以那个节点也就成为这次 IO 进程的群组领导节点。
 
 
 ### 回应远程节点发送过来的消息

@@ -10,9 +10,25 @@
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:site_name" content="ElixirSchool">
   <meta property="og:title" content="{{ page.locale.project.title }}">
+  <meta property="og:locale" content="{{ page.lang }}">
   <meta property="og:description" content="{{ page.locale.project.description }}">
   <meta property="og:image" content="{{ site.url }}{% asset og_image.jpg @path %}">
+  
+  {% for _interlang_chapter in site.tree[page.lang][page.section][page.chapter]['interlang'] %}
+    {% assign _lang = _interlang_chapter[0] %}
+    {% assign _url = _interlang_chapter[1]['url'] %}
+    
+    {% if _lang == "en" %}
+      <link rel="alternate" hreflang="en" href="{{ _url }}" />
+      <link rel="alternate" hreflang="x-default" href="{{ _url }}" />
+    {% elsif _lang == "gr" %}
+      <link rel="alternate" hreflang="el" href="{{ _url }}" />
+    {% else %}
+      <link rel="alternate" hreflang="{{ _lang }}" href="{{ _url }}" />
+    {% endif %}
+  {% endfor %}
 
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.url }}{% asset favicons/apple-touch-icon.png @path %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}{% asset favicons/favicon-32x32.png @path %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{ site.url }}{% asset favicons/favicon-16x16.png @path %}">

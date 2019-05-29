@@ -210,6 +210,16 @@
   languages:
     - ja
 
+- github: starfish719
+  name:
+  intro:
+  homepage: https://starfish719.netlify.com/
+  twitter: starfish0206
+  contributions:
+    - translator
+  languages:
+    - ja
+
 - github: lucidstack
   name:
   intro:

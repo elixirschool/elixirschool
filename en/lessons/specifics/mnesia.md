@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 title: Mnesia
 ---
 
@@ -121,6 +121,9 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 ```
 
 We define the columns using the atoms `:id`, `:name`, and `:job`.
+The first atom (in this case `:id`) is the primary key.
+At least one additional attribute is required.
+
 When we execute `Mnesia.create_table/2`, it will return either one of the following responses:
 
  - `{:atomic, :ok}` if the function executes successfully

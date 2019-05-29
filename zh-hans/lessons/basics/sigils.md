@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 魔符(Sigil)
 ---
 
@@ -104,11 +104,11 @@ iex> ~S/the cat in the hat on the mat/
 这两个魔符创建的字符串有不同吗? 它们的不同和前面提到的创建字符列表的两个魔符的不同很像。 答案就是是否处理插值和转义字符。 举个更明显的例子:
 
 ```elixir
-iex> ~s/welcome to elixir #{String.downcase "school"}/
+iex> ~s/welcome to elixir #{String.downcase "SCHOOL"}/
 "welcome to elixir school"
 
-iex> ~S/welcome to elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
+"welcome to elixir \#{String.downcase \"SCHOOL\"}"
 ```
 ### 单词列表
 

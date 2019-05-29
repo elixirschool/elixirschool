@@ -103,11 +103,11 @@ iex> ~S/Katten i hatten på matta/
 Forskjellen er likt med karakter liste sigilet som vi så på tidligere. Det som er forskjellig er bruken av avsnitt og slike sekvenser. For eksempel:
 
 ```elixir
-iex> ~s/Velkommen til elixir #{String.downcase "skolen"}/
+iex> ~s/Velkommen til elixir #{String.downcase "SKOLEN"}/
 "velkommen til elixir skolen"
 
-iex> ~S/velkommen til elixir #{String.downcase "skolen"}/
-"velkommen til elixir \#{String.downcase \"skolen\"}"
+iex> ~S/velkommen til elixir #{String.downcase "SKOLEN"}/
+"velkommen til elixir \#{String.downcase \"SKOLEN\"}"
 ```
 
 ### Ordlister

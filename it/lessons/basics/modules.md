@@ -1,6 +1,6 @@
 ---
-version: 0.9.0
-title: Composizione
+version: 1.4.0
+title: Moduli
 ---
 
 Per esperienza sappiamo che è disordinato avere tutte le nostre funzioni nello stesso file o ambito. In questa lezione affronteremo come raggruppare le funzioni e definire una mappa specializzata conosciuta come struttura (_struct_) per organizzare il nostro codice in modo più efficiente.
@@ -9,11 +9,11 @@ Per esperienza sappiamo che è disordinato avere tutte le nostre funzioni nello 
 
 ## Moduli
 
-I moduli sono il modo migliore per organizzare le funzioni all'interno di un namespace. Oltre a raggruppare le funzioni, i moduli permettono di definire funzioni con nomi e funzioni private, affrontate nella lezione precedente.
+I moduli sono il modo migliore per organizzare le funzioni all'interno di un namespace. Oltre a raggruppare le funzioni, i moduli permettono di definire funzioni con nomi e funzioni private, affrontate nella [lezione sulle funzioni](../functions).
 
 Diamo uno sguardo ad un semplice esempio:
 
-``` elixir
+```elixir
 defmodule Example do
   def greeting(name) do
     "Hello #{name}."
@@ -57,9 +57,9 @@ end
 
 È importante notare che esistono attributi riservati in Elixir. I tre più comuni sono:
 
-+ `moduledoc` — Documenta il modulo corrente.
-+ `doc` — Documentazione per le funzioni e le macro.
-+ `behaviour` — Usa un OTP o un comportamento definito dall'utente.
+- `moduledoc` — Documenta il modulo corrente.
+- `doc` — Documentazione per le funzioni e le macro.
+- `behaviour` — Usa un OTP o un comportamento definito dall'utente.
 
 ## Strutture
 
@@ -82,14 +82,14 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> #Example.User<name: "Steve", roles: [...], ...>
-#Example.User<name: "Steve", roles: [...], ...>
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Possiamo aggiornare la nostra struttura come faremmo con una mappa:
 
 ```elixir
-iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+iex> steve = %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 #Example.User<name: "Sean", roles: [...], ...>
@@ -102,9 +102,42 @@ iex> %{name: "Sean"} = sean
 #Example.User<name: "Sean", roles: [...], ...>
 ```
 
+A partire da Elixir 1.8, le strutture includono una nuova funzionalità di introspezione personalizzata.
+Per capire meglio cosa significhi e come usarlo, ispezioniamo il risultato di `sean`:
+
+```elixir
+iex> inspect(sean)
+"#Example.User<name: \"Sean\", roles: [...], ...>"
+```
+
+Tutti i parametri della struttura sono presenti che in questo caso va bene, ma se volessimo un parametro protetto che non dovrebbe essere incluso?
+La nuova funzionalità `@derive` ci consente di realizzare proprio questo!
+Aggiorniamo la definizione della struttura `Example.User` in modo che `roles` non venga più incluso nell'output:
+
+```elixir
+defmodule Example.User do
+  @derive {Inspect, only: [:name]}
+  defstruct name: nil, roles: []
+end
+```
+
+_Nota_: potremo pure usare `@derive {Inspect, except: [:roles]}`, sono equivalenti.
+
+Con il modulo aggiornato, ora vediamo cosa succede in `iex`:
+
+```elixir
+iex> sean = #Example.User<name: "Sean", roles: [...], ...>
+#Example.User<name: "Sean", ...>
+iex> inspect(sean)
+"#Example.User<name: \"Sean\", ...>"
+```
+
+Il parametri `roles` è escluso dall'output!
+
 ## Composizione
 
-Ora che sappiamo come creare i moduli e le strutture, vediao come includere funzionalità esistenti al loro interno tramite la composizione. Elixir fornisce una varietà di modi differenti per interagire con altri moduli. Vediamo cosa abbiamo a disposizione.
+Ora che sappiamo come creare i moduli e le strutture, vediao come includere funzionalità esistenti al loro interno tramite la composizione.
+Elixir fornisce una varietà di modi differenti per interagire con altri moduli.
 
 ### `alias`
 
@@ -193,7 +226,8 @@ import List, only: :macros
 
 ### `require`
 
-Nonostante sia usato meno frequentemente, `require/2` è comunque importante. Richiedere un modulo garantisce che venga compilato e caricato. Questo è particolarmente utile quando dobbiamo accedere alle macro di un modulo:
+Possiamo usare `require` per comunicare ad Elixir che useremo macro da moduli esterni.
+`require` differisce leggermente da `import` perchè permette l'uso di macro, ma non di funzioni dal modulo specificato:
 
 ```elixir
 defmodule Example do
@@ -207,18 +241,66 @@ Se proviamo a chiamare una macro che non è stata ancora caricata, Elixir sollev
 
 ### `use`
 
-Usa il modulo nel contesto corrente. Questo è particolarmente utile quando un modulo ha bisogno di eseguire qualche configurazione. Chiamando `use` invochiamo la funzione (_hook_) `__using__` all'interno del modulo, fornendo al modulo la possibilità di modificare il contesto esistente:
+La macro `use` permette ad un altro modulo di modificare la definizione del modulo corrente.
+Quando `use` viene chiamato, viene invocata la callback `__using__/1`, definita nel module precedente.
+Per capire meglio come questo funzioni, diamo un'occhiata ad un semplice esempio:
 
 ```elixir
-defmodule MyModule do
-  defmacro __using__(opts) do
+defmodule Hello do
+  defmacro __using__(_opts) do
     quote do
-      import MyModule.Foo
-      import MyModule.Bar
-      import MyModule.Baz
-
-      alias MyModule.Repo
+      def hello(name), do: "Hi, #{name}"
     end
   end
 end
 ```
+
+Abbiamo creato un modulo `Hello` che definisce il callback `__using__/1` nel quale la funzione `hello/1` viene definita.
+Ora creiamo un nuovo modulo per provare il nostro codice:
+
+```elixir
+defmodule Example do
+  use Hello
+end
+```
+
+Se proviamo il nostro codice in IEx, vedremo che la funzione `hello/1` è disponibile nel module `Example`:
+
+```elixir
+iex> Example.hello("Sean")
+"Hi, Sean"
+```
+
+Possiamo vedere che `use` ha invocato il callbackk `__using__/1` in `Hello` che a sua volta ha aggiunto il codice risultante nel nostro modulo.
+Ora che abbiamo dimostrato un esempio basilare, aggiorniamo il nostro codice e vediamo le opzioni che `__using__/1` supporta.
+
+```elixir
+defmodule Hello do
+  defmacro __using__(opts) do
+    greeting = Keyword.get(opts, :greeting, "Hi")
+
+    quote do
+      def hello(name), do: unquote(greeting) <> ", " <> name
+    end
+  end
+end
+```
+
+Ora aggiorniamo il module `Example` per includere l'opzione `greeting`:
+
+```elixir
+defmodule Example do
+  use Hello, greeting: "Hola"
+end
+```
+
+Se proviamo il codice in IEx vediamo che il saluto è cambiato:
+
+```elixir
+iex> Example.hello("Sean")
+"Hola, Sean"
+```
+
+Questi sono semplici esempi che dimostrano l'uso di `use` ma è uno strumento incredibilmente potente in Elixir. Mentre continui ad imparare Elixir, tienilo d'occhio, un esempio che sei sicuro di vedere è `use ExUnit.Case, async: true`.
+
+**Nota**: `quote`, `alias`, `use`, `require` sono macro usate in [metaprogrammazione](../../advanced/metaprogramming).

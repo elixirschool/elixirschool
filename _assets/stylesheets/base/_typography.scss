@@ -184,3 +184,9 @@
 	.align-right {
 		text-align: right;
 	}
+	
+	.highlighter-rouge {
+		&:last-of-type .highlight {
+			margin: 0;
+		}
+  }

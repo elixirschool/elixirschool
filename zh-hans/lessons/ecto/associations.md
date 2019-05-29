@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.1.0
 title: 关联关系
 ---
 
@@ -72,7 +72,7 @@ end
 mix ecto.gen.migration create_characters
 ```
 
-为了指明一个角色属于一部电影，我们需要 `characters` 表有一个 `movie_id` 字段。我们希望这个字段作为外键来使用。我们可以通过添加下面一行代码到 `create_table/1` 函数来实现：
+为了指明一个角色属于一部电影，我们需要 `characters` 表有一个 `movie_id` 字段。我们希望这个字段作为外键来使用。我们可以通过添加下面一行代码到 `create table/1` 函数来实现：
 
 ```elixir
 add :movie_id, references(:movies)
@@ -86,7 +86,7 @@ defmodule Example.Repo.Migrations.CreateCharacters do
   use Ecto.Migration
 
   def change do
-    create_table(:characters) do
+    create table(:characters) do
       add :name, :string
       add :movie_id, references(:movies)
     end

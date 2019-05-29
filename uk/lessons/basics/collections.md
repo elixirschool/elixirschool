@@ -21,7 +21,7 @@ iex> [3.14, :pie, "Apple"]
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 # Додавати в початок (швидко)
-iex> ["π"] ++ list
+iex> ["π" | list]
 ["π", 3.14, :pie, "Apple"]
 # Додавати в кінець (довго)
 iex> list ++ ["Cherry"]

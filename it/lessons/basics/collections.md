@@ -24,7 +24,7 @@ Per questa ragione, è solitamente più veloce inserire rispetto ad appendere un
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 # Veloce
-iex> ["π"] ++ list
+iex> ["π" | list]
 ["π", 3.14, :pie, "Apple"]
 # Lento
 iex> list ++ ["Cherry"]

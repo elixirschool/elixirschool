@@ -1,12 +1,12 @@
 ---
-version: 1.0.2
+version: 1.1.0
 title: Mix
 ---
 
 Before we can dive into the deeper waters of Elixir we first need to learn about Mix.
 If you're familiar with Ruby, Mix is Bundler, RubyGems, and Rake combined.
 It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of its great features.
-To see all that Mix has to offer run `mix help`.
+To see all that Mix has to offer in the current environment run `mix help`.
 
 Until now we've been working exclusively within `iex` which has limitations.
 In order to build something substantial we need to divide our code up into many files to effectively manage it; Mix lets us do that with projects.
@@ -92,6 +92,7 @@ Mix is smart and will compile your changes when necessary, but it may still be n
 In this section we'll cover how to compile our project and what compilation does.
 
 To compile a Mix project we only need to run `mix compile` in our base directory:
+**Note: Mix tasks for a project are available only from the project root directory, only global Mix tasks are available otherwise.**
 
 ```bash
 $ mix compile
@@ -136,17 +137,17 @@ This is analogous to `bundle install`:
 $ mix deps.get
 ```
 
-That's it!  We've defined and fetched our project dependencies.
+That's it! We've defined and fetched our project dependencies.
 Now we're prepared to add dependencies when the time comes.
 
 ## Environments
 
 Mix, much like Bundler, supports differing environments.
-Out of the box mix works with three environments:
+Out of the box mix is configured to have three environments:
 
-+ `:dev` — The default environment.
-+ `:test` — Used by `mix test`.  Covered further in our next lesson.
-+ `:prod` — Used when we ship our application to production.
+- `:dev` — The default environment.
+- `:test` — Used by `mix test`. Covered further in our next lesson.
+- `:prod` — Used when we ship our application to production.
 
 The current environment can be accessed using `Mix.env`.
 As expected, the environment can be changed via the `MIX_ENV` environment variable:

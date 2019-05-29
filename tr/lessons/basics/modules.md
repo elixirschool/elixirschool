@@ -24,7 +24,7 @@ iex> Example.greeting "Sean"
 ```
 
 Elixir'de kodunuzu modüllerin içine eklemeniz namespacesinizi daha efektif kullanmanızı sağlar.
-Elixir 
+Elixir
 ```elixir
 defmodule Example.Greetings do
   def morning(name) do
@@ -40,7 +40,7 @@ iex> Example.Greetings.morning "Sean"
 "Good morning Sean."
 ```
 
-### Modül Nitelikleri (Attributes) 
+### Modül Nitelikleri (Attributes)
 
 Elixir'de nitelikleri sıklıkla kullanılır. Basit bir örneğe bakalım:
 
@@ -81,14 +81,14 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> #Example.User<name: "Steve", roles: [...], ...>
-#Example.User<name: "Steve", roles: [...], ...>
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Yapıyı tıpkı bir harita gibi güncelleyebiliriz:
 
 ```elixir
-iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+iex> steve = %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 #Example.User<name: "Sean", roles: [...], ...>

@@ -80,14 +80,14 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> #Example.User<name: "Steve", roles: [...], ...>
-#Example.User<name: "Steve", roles: [...], ...>
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Wir können ein struct genauso wie eine map aktualisieren:
 
 ```elixir
-iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+iex> steve = %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 #Example.User<name: "Sean", roles: [...], ...>
@@ -248,4 +248,4 @@ Das `Ecto.Migration.__using__/1`-Makro inkludiert einen import-Aufruf, so dass w
 
 Nochmal zur Wiederholung: Das use-Makro ruft einfach nur das `__using__/1`-Makro auf dem angegebenen Modul auf. Um wirklich zu verstehen, was es tut, musst du das `__using__/1`-Makro lesen.
 
-**Notiz**: `quote`, `require`, `use` und `alias` sind Makros, die wir bei der [Metaprogrammierung](../../advanced/metaprogramming) brauchen. 
+**Notiz**: `quote`, `require`, `use` und `alias` sind Makros, die wir bei der [Metaprogrammierung](../../advanced/metaprogramming) brauchen.

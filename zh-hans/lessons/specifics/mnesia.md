@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 title: Mnesia 数据库
 ---
 
@@ -22,7 +22,7 @@ Mnesia 是 Erlang 运行时中自带的一个数据库管理系统（DBMS），�
 
 ## Schema
 
-因为 Mnesia 是 Erlang 的内容，还没有被包含到 Elixir，我们要用 `:mnesia` 这种方式去引用 Mnesia （参考[和 Erlang 互操作](../../advanced/erlang/)）。
+因为 Mnesia 属于 Erlang 核心的一部分，但是 Elixir 还没有包含它 ，所以我们要用 `:mnesia` 这种方式去引用 Mnesia （参考[和 Erlang 互操作](../../advanced/erlang/)）。
 
 ```elixir
 
@@ -38,7 +38,7 @@ iex> Mnesia.create_schema([node()])
 
 ## 节点（Node）
 
-一旦我们在 IEx 中执行了 `Mnesia.create_schema([node()])` 命令后，我们就可以在当前目录下看到一个叫 **Mnesia.nonode@nohost** 或者类似名字的文件夹。你也许会好奇到底 **nonode@nohost** 代表着什么，因为我们还没有在之前的课程中见过它。我们接下来就来看看：
+一旦我们在 IEx 中执行了 `Mnesia.create_schema([node()])` 命令后，我们就可以在当前目录下看到一个叫 **Mnesia.nonode@nohost** 或者类似名字的文件夹。你也许会好奇到底 **nonode@nohost** 代表着什么，因为在之前的课程中它没有出现过。所以我们接下来就来一探究竟：
 
 ```shell
 $ iex --help
@@ -69,7 +69,7 @@ Usage: iex [options] [.exs file] [data]
 ```
 
 当你给 IEx 传递 `--help` 选项的时候，IEx 会列出所有可用的选项。我们可以看到有 `--name` 和 `--sname` 两个选项可以给节点起名。
-一个节点（Node）就是一个运行中的 Erlang 虚拟机，它独自管理着自己的通讯，垃圾回收，进程调度以及内存等等。如果你没有给节点起名，那么这个节点的名字就叫 **nonode@nohost** 。
+一个节点（Node）就是一个运行中的 Erlang 虚拟机，它独自管理着自己的通信，垃圾回收，进程调度以及内存等等。这个节点默认情况下被简单的称为 **nonode@nohost** 。
 
 ```shell
 $ iex --name learner@elixirschool.com
@@ -81,7 +81,7 @@ iex(learner@elixirschool.com)> Node.self
 :"learner@elixirschool.com"
 ```
 
-我们可以看到，当我给节点起名后，我们当前的节点名字已经叫做 `:"learner@elixirschool.com"`。如果我们再运行 `Mnesia.create_schema([node()])` 的话，我们会看到另外一个叫做 **Mnesia.learner@elixirschool.com** 的文件夹。这样设计的目的很简单。Erlang 中的节点只是用来连接其他节点用以分享（分发）信息和资源，它们并不一定要在同一台机器上，也可以通过局域网或者互联网等方式通讯。
+我们可以看到，当我给节点起名后，我们当前的节点名字已经叫做 `:"learner@elixirschool.com"`。如果我们再运行 `Mnesia.create_schema([node()])` 的话，我们会看到另外一个叫做 **Mnesia.learner@elixirschool.com** 的文件夹。这样设计的目的很简单。Erlang 中的节点只是用来连接其他节点用以分享（分发）信息和资源，它们并不一定要在同一台机器上，也可以通过局域网或者互联网等方式通信。
 
 ## 启动 Mnesia
 
@@ -95,6 +95,8 @@ iex> Mnesia.start()
 :ok
 ```
 
+函数 `Mnesia.start/0` 是异步的。 它会初始化现有的表并返回原子 `:ok` 如果我们需要在启动 Mnesia 之后立即对现有表执行某些操作，我们需要调用`Mnesia.wait_for_tables/2` 函数。 它会挂起调用者，直到表被初始化。 具体请参阅[数据初始化和迁移一节中的示例](#数据初始化和迁移)
+
 需要注意的是，如果是在一个有多个节点的分布式系统中运行 Mnesia，必须要在每一个参与的节点上面运行 `Mnesia.start/1`。
 
 ## 创建表
@@ -106,7 +108,8 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:atomic, :ok}
 ```
 
-我们同过原子 `:id`, `:name` 和 `:job` 定义了表的字段。`Mnesia.create_table/2` 可能返回下面两种结果：
+我们使用原子 `:id`, `:name` 和 `:job` 定义了表的字段。第一个原子作为主键(也就是 `:id`)，并且至少需要一个附加属性。
+当我们执行 `Mnesia.create_table/2` 可能返回下面两种结果中的任意一种：
 
  - `{:atomic, :ok}` 代表执行成功
  - `{:aborted, Reason}` 代表执行失败
@@ -120,7 +123,7 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 
 ## 脏操作
 
-首先我们来学习对 Mnesia 表的脏炒作方式。一般情况下，我们都不会使用脏操作，因为脏操作并不一定保证成功，但是它可以帮助我们学习和适应 Mnesia 的使用方式。下面让我们往 **Person** 表中添加一些记录。
+首先我们来学习对 Mnesia 表读写的脏操作方式。一般情况下，我们都不会使用脏操作，因为脏操作并不一定保证成功，但是它可以帮助我们学习和适应 Mnesia 的使用方式。下面让我们往 **Person** 表中添加一些记录。
 
 ```elixir
 iex> Mnesia.dirty_write({Person, 1, "Seymour Skinner", "Principal"})
@@ -168,7 +171,7 @@ iex> Mnesia.transaction(data_to_write)
 {:atomic, :ok}
 ```
 
-从 IEx 中打印的消息看来，我们可以安全地假设数据已经被成功地写进了 `Person` 表。我们来验证一下使用事务从数据库里面读出刚刚写入的数据。我们可以用 `Mnesia.read/1` 来从数据库里面读取数据，同样的，我们也需要使用一个匿名函数。
+从 IEx 中打印的消息来看，我们可以安全地假设数据已经被成功地写进了 `Person` 表。我们来验证一下使用事务从数据库里面读出刚刚写入的数据。我们可以用 `Mnesia.read/1` 来从数据库里面读取数据，同样的，我们也需要使用一个匿名函数。
 
 ```elixir
 iex> data_to_read = fn ->
@@ -212,7 +215,7 @@ iex> Mnesia.add_table_index(Person, :job)
 {:aborted, {:already_exists, Person, 4}}
 ```
 
-创建索引后，我们可以通过索引来获取数据。下面的例子中使用 `Mnesia.index_read/2` 来获取工作是 `Principal` 的记录：
+创建索引成功后，我们可以通过索引来获取数据。下面的例子中使用 `Mnesia.index_read/2` 来获取工作是 `Principal` 的记录：
 
 ```elixir
 iex> Mnesia.transaction(
@@ -225,8 +228,7 @@ iex> Mnesia.transaction(
 
 ## 匹配和选择
 
-Mnesia 可以通过匹配的方式支持复杂的查询，也支持使用函数的方式来查询数据。
-Mnesia supports complex queries to retrieve data from a table in the form of matching and ad-hoc select functions.
+Mnesia支持复杂查询，以匹配和临时选择函数的形式从表中检索数据。
 
 `Mnesia.match_object/1` 函数可以通过模式匹配取回所有匹配的记录。如果有为任何一个字段添加索引的话，查询的效率会更高。不想某个字段参与匹配的话，可以用一个特殊的原子 `:_` 来替代。
 
@@ -260,7 +262,7 @@ iex> Mnesia.transaction(
 
 ## 数据初始化和迁移
 
-不管是什么软件解决方案，都会碰到需要更新你的系统并且迁移你数据库里的数据的时候。比方说，你在你的系统的第二版中需要往 `Person` 表中添加一个 `:age` 字段。我们不能在重新创建一个 `Person` 表了，但是我们可以改造这张表，我们还需要知道什么时候需要更改表。要实现这个，我们可以用 `Mnesia.table_info/2` 函数还获取现在的表结构，以及通过 `Mnesia.transform_table/3` 函数来改变表结构。
+不管是什么软件解决方案，都会碰到需要更新你的系统并且迁移你数据库里的数据的时候。比方说，你在你的系统的第二版中需要往 `Person` 表中添加一个 `:age` 字段。我们不能再重新创建一个 `Person` 表了，但是我们可以改造这张表，我们还需要知道什么时候需要更改表。要实现这个，我们可以用 `Mnesia.table_info/2` 函数获取现在的表结构，以及通过 `Mnesia.transform_table/3` 函数来改变表结构。
 
 在下面的代码中，我们要实现这些逻辑：
 

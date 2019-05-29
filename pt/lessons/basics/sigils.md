@@ -103,11 +103,11 @@ iex> ~S/the cat in the hat on the mat/
 Mas qual é a diferença? A diferença é semelhante ao sigil da lista de palavras em que estamos procurando. A resposta é interpolação e o uso de sequências de escape. Se pegarmos outro exemplo:
 
 ```elixir
-iex> ~s/welcome to elixir #{String.downcase "school"}/
+iex> ~s/welcome to elixir #{String.downcase "SCHOOL"}/
 "welcome to elixir school"
 
-iex> ~S/welcome to elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
+"welcome to elixir \#{String.downcase \"SCHOOL\"}"
 ```
 
 ### Lista de Palavras

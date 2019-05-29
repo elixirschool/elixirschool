@@ -21,7 +21,7 @@ Elixir는 연결 리스트로서 리스트 컬렉션을 구현합니다. 따라�
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> ["π"] ++ list
+iex> ["π" | list]
 ["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]

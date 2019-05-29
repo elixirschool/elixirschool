@@ -83,14 +83,14 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> #Example.User<name: "Steve", roles: [...], ...>
-#Example.User<name: "Steve", roles: [...], ...>
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 我们也可以像更新映射（map）那样更新结构体：
 
 ```elixir
-iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+iex> steve = %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 #Example.User<name: "Sean", roles: [...], ...>
@@ -124,7 +124,7 @@ _备注_：我们也可以使用 `@derive {Inspect, except: [:roles]}`，效果�
 让我们看看更新后的模块在 `iex` 中的表现：
 
 ```elixir
-iex> sean = #Example.User<name: "Sean", roles: [...], ...>
+iex> sean = %Example.User{name: "Sean"}
 #Example.User<name: "Sean", ...>
 iex> inspect(sean)
 "#Example.User<name: \"Sean\", ...>"

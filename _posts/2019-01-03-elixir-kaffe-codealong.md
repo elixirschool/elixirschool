@@ -1,7 +1,7 @@
 ---
 author: Meryl Dakin
 author_link: https://github.com/meryldakin
-categories: libraries
+categories: general
 date: 2019-01-15
 layout: post
 title:  Connecting Elixir to Kafka with Kaffe

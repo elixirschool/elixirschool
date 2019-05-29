@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.4.0
 title: モジュール
 ---
 
@@ -88,14 +88,14 @@ iex> %Example.User{}
 iex> %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [], ...>
 
-iex> #Example.User<name: "Steve", roles: [...], ...>
-#Example.User<name: "Steve", roles: [...], ...>
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 構造体はあたかもマップのように更新することができます:
 
 ```elixir
-iex> steve = #Example.User<name: "Steve", roles: [...], ...>
+iex> steve = %Example.User{name: "Steve"}
 #Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
 #Example.User<name: "Sean", roles: [...], ...>
@@ -108,9 +108,43 @@ iex> %{name: "Sean"} = sean
 #Example.User<name: "Sean", roles: [...], ...>
 ```
 
+Elixir 1.8以降、構造体にカスタムイントロスペクション機能が追加されました。
+
+カスタムイントロスペクションがどのように使われるのかを理解するため、 `sean` の中身を見てみましょう。
+
+```elixir
+iex> inspect(sean)
+"#Example.User<name: \"Sean\", roles: [...], ...>"
+```
+
+この例では全てのフィールドが出力対象になっていますが、出力したくない項目がある場合、どのようにしたら良いでしょうか？
+この場合、 `@derive` を利用することで実現することができます！
+`roles` を出力から除外したい場合、以下のように記述します。
+
+```elixir
+defmodule Example.User do
+  @derive {Inspect, only: [:name]}
+  defstruct name: nil, roles: []
+end
+```
+
+__注記__： `@derive {Inspect, except: [:roles]}` でも実現することができます。
+
+モジュールを更新したら、 `iex` で確認してみましょう。
+
+```elixir
+iex> sean = %Example.User{name: "Sean"}
+#Example.User<name: "Sean", ...>
+iex> inspect(sean)
+"#Example.User<name: \"Sean\", ...>"
+```
+
+`roles` が出力から除外されました!
+
+
 ## コンポジション(Composition)
 
-さて、モジュールと構造体の作り方がわかったので、コンポジションを用いてモジュールや構造体に既存の機能を追加する方法を学びましょう。 
+さて、モジュールと構造体の作り方がわかったので、コンポジションを用いてモジュールや構造体に既存の機能を追加する方法を学びましょう。
 Elixir は他のモジュールと連携する様々な方法を用意しています。
 
 ### `alias`
