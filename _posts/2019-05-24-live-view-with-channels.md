@@ -9,15 +9,17 @@ excerpt: >
   By pairing a custom Phoenix Channel with our LiveView, with the help of a Registry, we can respond to LiveView events with custom JavaScript on the client-side to provide better UX.
 ---
 
-LiveView has given us the ability to implement flexible and responsive UX almost entirely with server-side code. But what happens when our need for a responsive UI surpasses what LiveView seemingly offers? When we the demands of a particular feature have us reaching for JavaScript? It is possible to incorporate custom JS in the LiveView life cycle with the help of a custom LiveView channel and a Registry. Keep reading to see how we did it!
+LiveView has given us the ability to implement flexible and responsive UX almost entirely with server-side code. But what happens when our need for a responsive UI surpasses what LiveView seemingly offers? When the demands of a particular feature have us reaching for JavaScript? It is possible to incorporate custom JS into the LiveView life cycle with the help of a custom LiveView channel and a Registry. Keep reading to see how we did it!
 
 ## The Problem
 
-In a recent post, we built a straightforward chatting application backed by LiveView, PubSub and Presence. We implemented nearly all of the necessary features (live updates as users type in new messages, a list that keeps track of users in the chat room and who is typing!) with only 90 lines of LiveView code.
+In a [recent post](https://elixirschool.com/blog/live-view-with-presence/), we built a straightforward chatting application backed by LiveView, PubSub and Presence. We implemented nearly all of the necessary features (live updates as users type in new messages, a list that keeps track of users in the chat room and who is typing!) with only 90 lines of LiveView code.
 
 But then we ran into a blocker.
 
 When new chat messages were appended to the chat window, they appeared *just* out of frame. The chat window needed to scroll down to accommodate and display the new message. This is easy enough to do with just one or two lines of JavaScript: grab the height of the chat window, and set the `scrollTop` accordingly.
+
+[GIF WILL GO HERE]
 
 If you're familiar with Phoenix Channels, you might reach for something like this:
 
@@ -30,16 +32,16 @@ channel.on("new_message", (msg) => {
 
 But wait! The LiveView client-side library only responds to _one_ event from the LiveView process running on the server––the diff event. This event isn't granular enough to tell us _what_ changed on the page. It merely forces the appropriate portions of the page to re-render.
 
-So, how can we get our LiveView to emit an event that our front-end _can_ respond to in order to fire our scroll-top-adjusting JS?
+So, how can we get our LiveView to emit an event that our front-end _can_ respond to in order to fire our `scrollTop`-adjusting JS?
 
 ## The Solution
 
-We need a few things in order to get this working:
+We need to do a few things in order to get this working:
 
 * Extend the LiveView socket with a custom channel
-* Teach our LiveView processes to send messages to the channel, so that the channel can push them to the client.
+* Teach our LiveView processes to send messages to that channel, so that the channel can push them to the client.
 
-Its worth noting here that the responsibility of a custom LiveView channel should be narrowly scoped. LiveView can and should handle almost all of the updates to the LiveView template. That's the beauty of LiveView! We don't need to write a set of custom client-side functions for updating the page based on specific events like we've become used to doing when working with Phoenix Channels. However, when we need to trigger a client-side interaction, like our `scrollHeight` adjustment, that the LiveView client isn't capable of handling, we can reach for our custom channel.
+It's worth noting here that the responsibility of a custom LiveView channel should be narrowly scoped. LiveView can and should handle almost all of the updates to the LiveView template. That's the beauty of LiveView! We don't need to write a set of custom client-side functions for updating the page based on specific events like we've become used to doing when working with Phoenix Channels. However, when we need to trigger a client-side interaction, like our `scrollTop` adjustment, that the LiveView client isn't capable of handling, we can reach for a custom channel.
 
 Now that we have a basic understanding of the problem we're trying to solve, and the tools we'll use to solve it, let's get started!
 
@@ -49,7 +51,7 @@ Before we start writing code, let's walk through the desired code flow of this f
 
 1. User visits `/chats/:id`
 2. Controller mounts the live view and renders the static template
-3. Client connects to the Live View socket and joins the channel on this same socket
+3. Client connects to the Live View socket and joins a custom channel on this same socket
 
 Later...
 
@@ -58,9 +60,7 @@ Later...
 6. The other live views receive the broadcast, update their own state and re-render the template
 7. The live views send the message to their "associated" channel (i.e. the channel joined on the live view's socket)
 8. The channel receives the message and pushes it out to the front-end
-9. Front-end receives the message and responds by triggering our scrollTop adjustment JavaScript
-
-[DIAGRAM]
+9. Front-end receives the message and responds by triggering our `scrollTop` adjustment JavaScript
 
 There is a lot of code to get through, so we've organized our approach into the following parts:
 
@@ -74,12 +74,12 @@ IV. [Sending Messages From the Channel to the Front-End](#sending-messages-from-
 
 ## Getting Started
 
-If you'd like to follow along with this tutorial, we recommend reading and completing the tutorial in our previous post [here](https://elixirschool.com/blog/live-view-with-presence/). This will get your code into the correct starting state. You can also clone down the repo [here](https://github.com/elixirschool/live-view-chat) to get the starting code. Otherwise, you can checkout the completed code [here](https://github.com/elixirschool/live-view-chat/tree/live-view-channel-registry).
+If you'd like to follow along with this tutorial, we recommend reading and completing the tutorial in our previous post [here](https://elixirschool.com/blog/live-view-with-presence/) first. This will get your code into the correct starting state. You can also clone down the repo [here](https://github.com/elixirschool/live-view-chat) to get the starting code. Otherwise, you can checkout the completed code [here](https://github.com/elixirschool/live-view-chat/tree/live-view-channel-registry).
 
 
 ## Part I: Establishing the Socket and Channel
 
-In order to guarantee that the live view process process can send a message to the right channel at the right time, we need to have the live view share a socket with the channel. Let's start by focusing on this portion of the code flow:
+In order to guarantee that the live view process can send a message to the right channel at the right time, we need to have the live view share a socket with that channel. Let's start by focusing on this portion of the code flow:
 
 1. User visits `/chats/:id`
 2. Controller mounts the live view and renders the static template
@@ -177,7 +177,7 @@ With our socket and our channel defined, we can tell the front-end client to joi
 // assets/js/app.js
 import LiveSocket from "phoenix_live_view"
 
-let chatId = window.location.pathname.split("/")[2] // just a hack to get the chatId from the route
+let chatId = window.location.pathname.split("/")[2] // just a hack to get the chatId from the route, there are definitely better ways to do this!
 
 const liveSocket = new LiveSocket("/live")
 liveSocket.connect()
@@ -205,9 +205,9 @@ So, how can we get our channel to send the `"new_message"` event to the front-en
 
 In this section, we'll dive into the following portion of the process:
 
-1. User submits new chat message, sending an event to the live view; The live view updates its state and re-renders the template
+1. User submits a new chat message, sending an event to the live view; The live view updates its state and re-renders the template
 2. The live view broadcasts the event to the other live view processes subscribing to that chat room topic which then update their own state and re-render their templates
-3. The live views send a message *to themselves*, instructing them to send a message to to their "associated" channel (i.e. the channel joined on the live view's socket). This ensures that the live view will finish re-rendering *before* telling the channel to push a message to the front-end.
+3. The live views send a message *to themselves*, instructing them to in turn send a message to their "associated" channel (i.e. the channel joined on the live view's socket). This ensures that the live view will finish re-rendering *before* telling the channel to push a message to the front-end.
 
 Here's a closer look at this flow:
 
@@ -224,7 +224,7 @@ When a user submits a new message via the chat form, it will send the `"new_mess
 * Updating its own state and re-rendering the template to display the new message.
 * Broadcasting the message to the other running live view processes subscribed to the same topic so that everyone gets the new message and subsequent re-render.
 
-To get a refresher on how this works, check out our earlier post here. In this post, we'll just take a brief look at that code:
+To get a refresher on how this works, check out our earlier post [here](https://elixirschool.com/blog/live-view-with-presence/). In this post, we'll just take a brief look at that code:
 
 ```elixir
 # lib/phat_web/live/chat_live_view.ex
@@ -246,9 +246,9 @@ Its important to note that the live view is broadcasting the message to *all* of
 
 ### Sending Messages from the LiveView to the Channel
 
-We need to ensure that the page has a chance to re-render before we have the channel send the message to the front-end. Otherwise the JavaScript function to adjust `scrollHeight` might run before the new message is present on the page, thereby failing to actually make an adjustment.
+We need to ensure that the page has a chance to re-render before we have the channel send the message to the front-end. Otherwise the JavaScript function to adjust `scrollTop` might run before the new message is present on the page, thereby failing to actually make an adjustment to the chat window.
 
-*After* this `handle_info/2` function returns is the point at which we can be sure all LiveView templates are re-rendering:
+*After* this `handle_info/2` function returns is the point at which we can be sure all LiveView templates are re-rendered:
 
 ```elixir
 def handle_info(%{event: "new_message", payload: state}, socket) do
@@ -256,7 +256,7 @@ def handle_info(%{event: "new_message", payload: state}, socket) do
 end
 ```
 
-So, how can we make sure each LiveView process handling this message will only send a message to the channel _after_ this function finishes working? We can use `send/2` to have the live view send a message to itself! Since a process can only do one thing at a time, the live view process will finish the the current work in the `handle_info/2`  processing the `"new_message"` event before acting on the message it receives from itself.
+So, how can we make sure each LiveView process handling this message will only send a message to the channel _after_ this function finishes working? We can use `send/2` to have the live view send a message to itself! Since a process can only do one thing at a time, the live view process will finish the the current work in the `handle_info/2`  processing the `"new_message"` event *before* acting on the message it receives from itself.
 
 ```elixir
 def handle_info(%{event: "new_message", payload: state}, socket) do
@@ -291,13 +291,13 @@ Here's the code flow we're aiming for:
 Later...
 
 4. When the user submits a new chat message, the LiveView processes that received the message broadcast will look up the channel PID under the session UUID in the registry
-5. The live view will then send the message to that PID
+5. Each live view will then send the message to the PID they looked up
 
 ![]({% asset live-view-lookup-send-to-channel.png @path %})
 
 ### Defining the Channel Registry
 
-We'll use a process registry, implemented with Elixir's native Registry module, to keep track of the channel PID so that the LiveView can look up its associated channel in order to send it a message.
+We'll use a process registry, implemented with Elixir's native [Registry](https://hexdocs.pm/elixir/Registry.html) module, to keep track of the channel PID so that the LiveView can look up its associated channel in order to send it a message.
 
 *Its important to note that Elixir's Registry module isn't distribution friendly––if you look up a given PID created on one server on a totally different server, there's no guarantee that it will refer to the same process. But! Since our channel shares a socket with the LiveView process, it is guaranteed that the live view and the channel are running on the same server.*
 
@@ -323,7 +323,7 @@ We want to register our channel PID when the channel is joined. But we need to s
 
 ### Sharing the Session UUID
 
-When the LiveView fist mounts via the controller, we'll create a unique identifier, a session UUID, to store in the live view's state:
+When the LiveView first mounts via the controller, we'll create a unique identifier––a session UUID––to store in the live view's state:
 
 ```elixir
 # lib/phat_web/controllers/chat_controller.ex
@@ -424,7 +424,7 @@ We're ready to have the live view send a message to its channel!
 Let's recap the "new chat message" process so far:
 
 * A user submits the "new message" form and sends a `"new_message"` event to the live view
-* The live view responds to this event by updating its own socket's state, re-rendering _and_ broadcasting the `"new_message"` event to the other live view processes subscribing to the topic for this chat room, i.e. the processes that represent the other users in the chat room.
+* The live view responds to this event by updating its own socket's state, re-rendering _and_ broadcasting the `"new_message"` event to all the live view processes subscribing to the topic for this chat room, i.e. the processes that represent the other users in the chat room.
 * The live view processes receive this message broadcast and respond to it by updating their own state and re-rendering. They also `send` a message to themselves that they will process once they finish re-rendering.
 * The live view processes responds to the message they sent themselves, telling themselves to send a message to the channel with which they share a socket.
 
@@ -465,7 +465,7 @@ Here's a closer look:
 
 ### Receiving Messages in the Channel
 
-We need to define a `handle_info/` in the `Chat.Channel` that knows now to respond to `"new_message"` messages by pushing them down the socket to the front-end.
+We need to define a `handle_info/` in the `ChatChannel` that knows how to respond to `"new_message"` messages by pushing them down the socket to the front-end.
 
 ```elixir
 # channel
@@ -491,4 +491,7 @@ channel.on("new_message", function() {
 Now, right after the page re-renders, the channel will receive the `"new_message"` message and push it to the client which is listening for just this event. The client reacts by firing our `scrollTop` adjustment JS and the user experiences a responsive UI––a chat window that automatically and seamlessly scrolls down to accommodate new messages in real-time.
 
 ## Conclusion
-- Is this right? What do we want to see LV as a library become capable of?
+
+We've seen that a seeming "limit" of LiveView can be surpassed by incorporating available Phoenix real-time tools––in this case Phoenix Channels. The work in this post raises the question: "What _should_ LiveView be capable of?" Is the extension of LiveView with a custom Phoenix Channel a violation of the "purpose" of LiveView? Does such a use-case mean we should eschew LiveView in favor of Channels?
+
+I think there are still distinctive advantages to using LiveView to back a feature like our chat app. Almost all of the chat functionality is handled in less than 100 lines of LiveView code. This is as opposed to all of the Channel back and front-end code that you would otherwise write. So, I would like to see LiveView become _more_ extensible and configurable, making it easier to incorporate custom channels out-of-the-box. 
