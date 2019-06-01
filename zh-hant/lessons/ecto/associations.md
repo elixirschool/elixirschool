@@ -291,7 +291,7 @@ mix ecto.migrate
 * 關聯關係的名稱。
 * 指定給要儲存關聯記錄的任何屬性。
 
-現在來儲存一部電影和相關角色。首先，建立一個電影記錄：
+現在來儲存一部電影和一個相關角色。首先，建立一個電影記錄：
 
 ```elixir
 iex> alias Example.{Movie, Character, Repo}
