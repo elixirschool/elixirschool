@@ -1,24 +1,32 @@
 ---
 title: Elixir School 日本語訳
 layout: home
-version: 1.0.0
+version: 2.0.0
 ---
 
-[![ライセンス](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Elixir Schoolは、Elixirというプログラミング言語を学習し、使いこなそうとしている人々にとって最高の場所です。
 
-この、Elixir基礎レッスンは、Twitterの [Scala School](http://twitter.github.io/scala_school/)にインスパイアされたものです。
+あなたが経験豊富なベテランだろうが、初心者だろうが、レッスンと補助リソースであなたが必要とする情報を見つけるでしょう。
 
-_あなたのご意見、ご参加をぜひお待ちしています!_
+ボランティアの方々の努力によって、Elixir Schoolは多くの言語に翻訳されました。翻訳された言語は以下の通りです: [Việt ngữ][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], and [ภาษาไทย][th].
 
-## Elixirについて
+Elixir Schoolを素晴らしいものにし続けるために、あなたの参加を歓迎します。 [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
 
-"Elixirは動的かつ関数的な言語で、スケールしやすく保守しやすいアプリケーションを作るためにデザインされています。" — [elixir-lang.org](http://elixir-lang.org/)
-
-Elixirは実環境で鍛えられたErlang VM (BEAM)を活用して、低レイテンシでありながら、分散化し、耐障害性の高い(フォールトトレラントな)システムを構築できます。
-
-__特徴__:
-
-+ スケールしやすい
-+ 耐障害性が高い(フォールトトレラント)
-+ 関数型プログラミング
-+ 拡張しやすい
+  [es]: /es/
+  [it]: /it/
+  [ja]: /ja/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [id]: /id/
+  [ms]: /ms/
+  [uk]: /uk/
+  [de]: /de/
+  [bn]: /bn/
+  [tr]: /tr/
+  [th]: /th/
+  [zh-hans]: /zh-hans/
+  [zh-hant]: /zh-hant/
