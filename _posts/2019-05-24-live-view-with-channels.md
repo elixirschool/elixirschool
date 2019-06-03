@@ -17,9 +17,11 @@ In a [recent post](https://elixirschool.com/blog/live-view-with-presence/), we b
 
 But then we ran into a blocker.
 
-When new chat messages were appended to the chat window, they appeared *just* out of frame. The chat window needed to scroll down to accommodate and display the new message. This is easy enough to do with just one or two lines of JavaScript: grab the height of the chat window, and set the `scrollTop` accordingly.
+When new chat messages were appended to the chat window, they appeared *just* out of frame.
 
-[GIF WILL GO HERE]
+![chat message not visible]({% asset chat-message-not-visible.png @path %})
+
+The chat window needed to scroll down to accommodate and display the new message. This is easy enough to do with just one or two lines of JavaScript: grab the height of the chat window, and set the `scrollTop` accordingly.
 
 If you're familiar with Phoenix Channels, you might reach for something like this:
 
@@ -87,11 +89,11 @@ In order to guarantee that the live view process can send a message to the right
 
 Here's a closer look at how this procedure works:
 
-![]({% asset live-view-mount-render.png @path %})
+![live view mounts and renders]({% asset live-view-mount-render.png @path %})
 
-![]({% asset live-view-socket-connect.png @path %})
+![live view socket connects]({% asset live-view-socket-connect.png @path %})
 
-![]({% asset live-view-channel-join.png @path %})
+![live view channel joins]({% asset live-view-channel-join.png @path %})
 
 Let's dive in and write some code!
 
@@ -211,11 +213,11 @@ In this section, we'll dive into the following portion of the process:
 
 Here's a closer look at this flow:
 
-![]({% asset live-view-handle-event.png @path %})
+![live view handles event]({% asset live-view-handle-event.png @path %})
 
-![]({% asset live-view-broadcasts-event.png @path %})
+![live view broadcasts event]({% asset live-view-broadcasts-event.png @path %})
 
-![]({% asset live-view-send-self.png @path %})
+![live view sends message to self]({% asset live-view-send-self.png @path %})
 
 ### Receiving Events in the LiveView
 
@@ -282,18 +284,18 @@ Here's the code flow we're aiming for:
 2. The channel's socket is connected with this token; the socket stores it in state.
 3. The channel is joined; it takes the session UUID from its socket's state and registers its PID under a key of that UUID.
 
-![]({% asset live-view-mount-session-uuid.png @path %})
+![live view mounts with session uuid]({% asset live-view-mount-session-uuid.png @path %})
 
-![]({% asset live-view-connect-channel.png @path %})
+![live view channel connects]({% asset live-view-connect-channel.png @path %})
 
-![]({% asset live-view-channel-register.png @path %})
+![live view channel register]({% asset live-view-channel-register.png @path %})
 
 Later...
 
 4. When the user submits a new chat message, the LiveView processes that received the message broadcast will look up the channel PID under the session UUID in the registry
 5. Each live view will then send the message to the PID they looked up
 
-![]({% asset live-view-lookup-send-to-channel.png @path %})
+![live view looks up channel]({% asset live-view-lookup-send-to-channel.png @path %})
 
 ### Defining the Channel Registry
 
@@ -460,8 +462,8 @@ In this section, we'll focus on the following portion of our process:
 
 Here's a closer look:
 
-![]({% asset live-view-channel-push.png @path %})
-![]({% asset live-view-front-end-update.png @path %})
+![live view channel push]({% asset live-view-channel-push.png @path %})
+![live view front end update]({% asset live-view-front-end-update.png @path %})
 
 ### Receiving Messages in the Channel
 
@@ -494,4 +496,4 @@ Now, right after the page re-renders, the channel will receive the `"new_message
 
 We've seen that a seeming "limit" of LiveView can be surpassed by incorporating available Phoenix real-time tools––in this case Phoenix Channels. The work in this post raises the question: "What _should_ LiveView be capable of?" Is the extension of LiveView with a custom Phoenix Channel a violation of the "purpose" of LiveView? Does such a use-case mean we should eschew LiveView in favor of Channels?
 
-I think there are still distinctive advantages to using LiveView to back a feature like our chat app. Almost all of the chat functionality is handled in less than 100 lines of LiveView code. This is as opposed to all of the Channel back and front-end code that you would otherwise write. So, I would like to see LiveView become _more_ extensible and configurable, making it easier to incorporate custom channels out-of-the-box. 
+I think there are still distinctive advantages to using LiveView to back a feature like our chat app. Almost all of the chat functionality is handled in less than 100 lines of LiveView code. This is as opposed to all of the Channel back and front-end code that you would otherwise write. So, I would like to see LiveView become _more_ extensible and configurable, making it easier to incorporate custom channels out-of-the-box.
