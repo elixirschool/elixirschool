@@ -21,6 +21,8 @@ When new chat messages were appended to the chat window, they appeared *just* ou
 
 ![chat message not visible]({% asset chat-message-not-visible.png @path %})
 
+---
+
 The chat window needed to scroll down to accommodate and display the new message. This is easy enough to do with just one or two lines of JavaScript: grab the height of the chat window, and set the `scrollTop` accordingly.
 
 If you're familiar with Phoenix Channels, you might reach for something like this:
@@ -91,9 +93,15 @@ Here's a closer look at how this procedure works:
 
 ![live view mounts and renders]({% asset live-view-mount-render.png @path %})
 
+---
+
 ![live view socket connects]({% asset live-view-socket-connect.png @path %})
 
+---
+
 ![live view channel joins]({% asset live-view-channel-join.png @path %})
+
+---
 
 Let's dive in and write some code!
 
@@ -215,9 +223,15 @@ Here's a closer look at this flow:
 
 ![live view handles event]({% asset live-view-handle-event.png @path %})
 
+---
+
 ![live view broadcasts event]({% asset live-view-broadcasts-event.png @path %})
 
+---
+
 ![live view sends message to self]({% asset live-view-send-self.png @path %})
+
+---
 
 ### Receiving Events in the LiveView
 
@@ -286,9 +300,15 @@ Here's the code flow we're aiming for:
 
 ![live view mounts with session uuid]({% asset live-view-mount-session-uuid.png @path %})
 
+---
+
 ![live view channel connects]({% asset live-view-connect-channel.png @path %})
 
+---
+
 ![live view channel register]({% asset live-view-channel-register.png @path %})
+
+---
 
 Later...
 
@@ -296,6 +316,8 @@ Later...
 5. Each live view will then send the message to the PID they looked up
 
 ![live view looks up channel]({% asset live-view-lookup-send-to-channel.png @path %})
+
+---
 
 ### Defining the Channel Registry
 
@@ -463,7 +485,11 @@ In this section, we'll focus on the following portion of our process:
 Here's a closer look:
 
 ![live view channel push]({% asset live-view-channel-push.png @path %})
+
+---
 ![live view front end update]({% asset live-view-front-end-update.png @path %})
+
+---
 
 ### Receiving Messages in the Channel
 
