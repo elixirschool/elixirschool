@@ -196,7 +196,7 @@ end
 * `unauthenticated/2`
 * `unauthorized/2`
 
-これらの関数は両方ともPlug.Connの構造体とparams Mapを受け取り、それぞれのエラーを処理します。
+これらの関数は両方ともPlug.Connの構造体と、Mapのparamsを受け取り、それぞれのエラーを処理します。
 
 これであなたもPhoenix controllerを利用することができます！
 
