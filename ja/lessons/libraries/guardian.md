@@ -119,7 +119,7 @@ defmodule MyApp.GuardianSerializer do
   def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
-あなたのSerializerは `sub`（件名）フィールドで識別されるリソースを見つける必要があります。
+あなたのSerializerは `sub`（件名）フィールドで識別されるリソースを見つける責務があります。
 これはデータベース、API、あるいは単純な文字列からの検索です。
 それはまたリソースを `sub`フィールドにシリアライズする役割も果たします。
 
