@@ -198,7 +198,7 @@ end
 
 これらの関数は両方ともPlug.Connの構造体と、Mapのparamsを受け取り、それぞれのエラーを処理します。
 
-これであなたもPhoenix controllerを利用することができます！
+Phoenix controllerを使うこともできます！
 
 #### Controller
 コントローラの内部には、現在ログインしているユーザ情報にアクセスする方法について、いくつかの選択肢があります。
