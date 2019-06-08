@@ -136,7 +136,7 @@ Plugについては [別レッスン](../../specifics/plug/) で学ぶことが�
 
 GuardianはPhoenixを必要としませんが、以下の例でPhoenixを使用するのが、最も簡単に試すことができます。
 
-HTTPに接続する最も簡単な方法はrouter経由です。
+HTTPと連携する最も簡単な方法はrouter経由です。
 GuardianのHTTPとの連携は全てPlugに基づいているため、Plugを使用できるところならどこでもこれらを使用できます。
 
 Guardian Plugの一般的な流れは次のとおりです。
