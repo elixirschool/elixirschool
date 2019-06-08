@@ -141,7 +141,7 @@ GuardianのHTTP接続はすべてPlugに基づいているため、Plugを使用
 
 Guardian Plugの一般的な流れは次のとおりです。
 
-1. リクエストのどこかにあるトークンを見つけてそれを検証します： `Verify *` Plug
+1. リクエストのどこかにあるトークンを見つけてそれを検証します： `Verify*` Plug
 2. オプションで、トークンで識別されたリソースをロードします： `LoadResource` Plug
 3. リクエストのための有効なトークンがあることを確認し、そうでない場合はアクセスを拒否します： `EnsureAuthenticated` Plug
 
