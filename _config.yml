@@ -47,11 +47,11 @@ sitemap:
   priority_name: 'priority'
 
 elixir:
-  version: 1.8
+  version: 1.8.2
 
 erlang:
-  OTP: 21.1
-  erts: 10.1
+  OTP: 22.0
+  erts: 10.4.1
 
 jekyll-archives:
   enabled: ['categories', 'tags', 'year']
