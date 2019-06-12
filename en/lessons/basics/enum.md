@@ -141,7 +141,7 @@ iex> Enum.max([5, 3, 0, -1])
 `max/2` is to `max/1` what `min/2` is to `min/1`:
 
 ```elixir
-Enum.max([], fn -> :bar end)
+iex> Enum.max([], fn -> :bar end)
 :bar
 ```
 
