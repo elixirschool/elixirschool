@@ -97,7 +97,7 @@ Isto não tem que estar limitado a mesma máquina e pode comunicar através de L
 
 ## Iniciando Mnesia
 
-Agora que temos o conhecimento básico e criação do banco de dados, estamos agora em posição de iniciar o Mnesia DBMS com o comando ```Mnesia.start/0```.
+Agora que temos o conhecimento básico e criação do banco de dados, estamos agora em posição de iniciar o Mnesia DBMS com o comando `Mnesia.start/0`.
 
 ```elixir
 iex> alias :mnesia, as: Mnesia
