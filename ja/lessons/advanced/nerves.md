@@ -15,7 +15,7 @@ Nervesを使ってコードを書くためには、ネットワークによっ�
 
 Nervesプロジェクト自体は優れた [Getting started guide](https://hexdocs.pm/nerves/getting-started.html) を持っていますが、一部のユーザーにとっては情報量が圧倒的なものかもしれません。代わりに、このチュートリアルでは「言葉を減らし、コードを増やす」ことを試みます。
 
-まず、環境設定が必要になります。このガイドは、Nerves wikiの [Installation](https://hexdocs.pm/nerves/installation.html) にあります。ガイドに記載されているOTPとElixirの両方のバージョンが同じであることを確認してください。正しいバージョンを使用しないと、進行中に問題が発生する可能性があります。これを書いている時点では、どのElixir（Erlang / OTP 21でコンパイルされたもの）でも動作するはずです。
+まず、環境設定が必要になります。このガイドは、Nerves wikiの [Installation](https://hexdocs.pm/nerves/installation.html) にあります。ガイドに記載されているOTPとElixirの両方のバージョンが同じであることを確認してください。正しいバージョンを使用しないと、進行中に問題が発生する可能性があります。これを書いている時点では、どのElixir（Erlang/OTP 21でコンパイルされたもの）でも動作するはずです。
 
 セットアップが完了したら、最初のNervesプロジェクトを構築する準備が整いました!
 
