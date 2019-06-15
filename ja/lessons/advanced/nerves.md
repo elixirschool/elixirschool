@@ -213,9 +213,9 @@ end
 
 ```
 
-これを有効にするには、それを `lib/network_led/application.ex` の監視ツリーに追加する必要があります。`def children(_target) do` グループの下に `{NetworkLed.Blinker, name: NetworkLed.Blinker}` を追加してください。
+これを有効にするには、それを `lib/network_led/application.ex` のスーパーバイザーツリーに追加する必要があります。`def children(_target) do` グループの下に `{NetworkLed.Blinker, name: NetworkLed.Blinker}` を追加してください。
 
-Nervesのアプリケーションには2つの異なる監視ツリーがあります。1つはホストマシン用、もう1つは実際のデバイス用です。
+Nervesのアプリケーションには2つの異なるスーパーバイザーツリーがあります。1つはホストマシン用、もう1つは実際のデバイス用です。
 
 この後、実際にファームウェアをアップロードし、ターゲットデバイス上でsshを使ってIExを実行することで `NetworkLed.Blinker.disable()` がLEDを消すこと（コードではデフォルトで有効になっています）、そして `NetworkLed.Blinker.enable()` がLEDを点けることを確認できます。
 
@@ -255,7 +255,7 @@ defmodule NetworkLed.Http do
 end
 ```
 
-そして最後のステップ - アプリケーション監視ツリーに `{Plug.Cowboy, scheme: :http, plug: NetworkLed.Http, options: [port: 80]}` を追加します。
+そして最後のステップ - アプリケーションのスーパーバイザーツリーに `{Plug.Cowboy, scheme: :http, plug: NetworkLed.Http, options: [port: 80]}` を追加します。
 
 ファームウェアのアップデート後に試すことができます。 `http://192.168.88.2/` はプレーンテキストの応答を返しており、 `http://192.168.88.2/disable` と一緒に `http://192.168.88.2/enable` はそのLEDを無効にして有効にします！
 
