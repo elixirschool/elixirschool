@@ -163,7 +163,7 @@ LEDとやり取りするには、[nerves_leds](https://github.com/nerves-project
 
 依存関係を設定したら、特定のデバイスのLEDリストを設定する必要があります。例えば、すべてのRaspberry Piモデルのために、ただ一つのLEDである `led0` が搭載されています。 `config/config.exs` に `config :nerves_leds, names: [green: "led0"]` を追加して使用しましょう。
 
-他のデバイスについては、[corresponding part of the nerves_examples project](https://github.com/nerves-project/nerves_examples/tree/master/hello_leds/config) を参照してください。
+他のデバイスについては、[nerves_examples プロジェクトで対応する部分](https://github.com/nerves-project/nerves_examples/tree/master/hello_leds/config) を参照してください。
 
 LED自体を設定したら、どうにかしてそれを制御する必要があります。そのために、以下の内容を含む `lib/network_led/blinker.ex` にGenServerを追加します（[OTP Concurrency](../../advanced/otp-concurrency) レッスンのGenServerについての詳細を参照）。
 
