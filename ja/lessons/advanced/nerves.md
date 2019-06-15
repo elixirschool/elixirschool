@@ -110,9 +110,9 @@ Elapsed time: 8.022 s
 
 次のステップはネットワークを設定することです。Nervesのエコシステムはさまざまなパッケージを提供しています。[nerves_network](https://github.com/nerves-project/nerves_network) は、有線イーサネットポートを介してデバイスをネットワークに接続するために必要なものです。
 
-あなたのプロジェクトにはすでに `nerves_init_gadget` が依存関係として存在しています。しかし、デフォルトではDHCPを使います（ `config：nerves_init_gadget`を実行した後は` config / config.exs`の中の設定を見てください）。静的IPアドレスを持つ方が簡単です。
+あなたのプロジェクトにはすでに `nerves_init_gadget` が依存関係として存在しています。しかし、デフォルトではDHCPを使います（`config/config.exs` の中の `config :nerves_init_gadget` の後の実行内容を確認してください）。静的IPアドレスを持つ方が簡単です。
 
-静的ネットワークを設定するには、 `config / config.exs` に以下の行を追加する必要があります:
+静的ネットワークを設定するには、 `config/config.exs` に以下の行を追加する必要があります:
 
 ```
 # Statically assign an address
