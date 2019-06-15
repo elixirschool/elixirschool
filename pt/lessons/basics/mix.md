@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Mix
 ---
 
@@ -22,6 +22,7 @@ A partir do resultado, podemos ver que o mix criou nosso diretório e uma quanti
 ```bash
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
 * creating config
 * creating config/config.exs

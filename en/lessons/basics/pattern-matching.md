@@ -3,7 +3,8 @@ version: 1.0.2
 title: Pattern Matching
 ---
 
-Pattern matching is a powerful part of Elixir. It allows us to match simple values, data structures, and even functions.  In this lesson we will begin to see how pattern matching is used.
+Pattern matching is a powerful part of Elixir. It allows us to match simple values, data structures, and even functions.
+In this lesson we will begin to see how pattern matching is used.
 
 {% include toc.html %}
 
@@ -53,9 +54,12 @@ iex> {:ok, value} = {:error}
 
 ## Pin Operator
 
-The match operator performs assignment when the left side of the match includes a variable.  In some cases this variable rebinding behavior is undesirable.  For these situations we have the pin operator: `^`.
+The match operator performs assignment when the left side of the match includes a variable.
+In some cases this variable rebinding behavior is undesirable.
+For these situations we have the pin operator: `^`.
 
-When we pin a variable we match on the existing value rather than rebinding to a new one.  Let's take a look at how this works:
+When we pin a variable we match on the existing value rather than rebinding to a new one.
+Let's take a look at how this works:
 
 ```elixir
 iex> x = 1

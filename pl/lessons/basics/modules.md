@@ -77,29 +77,29 @@ Stwórzmy zatem kilka struktur:
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+#Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+#Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Struktury można aktualizować tak jak zwykłe mapy:
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = %Example.User{name: "Steve"}
+#Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 I najważniejsze. Struktury można dopasowywać tak jak zwykłe mapy:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 ## Komponenty
@@ -164,7 +164,7 @@ iex> last([1, 2, 3])
 Domyślnie importowane są wszystkie funkcje i makra, ale możemy odfiltrować tylko część z nich za pomocą opcji `:only` i
 `:except`.
 
-By zaimportować wskazane funkcje i makra, musimy podać nazwę/ilość argumentów jako parametry `:only` i `:except`.  
+By zaimportować wskazane funkcje i makra, musimy podać nazwę/ilość argumentów jako parametry `:only` i `:except`.
 Zaimportujmy tylko funkcję `last/1`:
 
 ```elixir

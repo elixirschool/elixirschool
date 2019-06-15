@@ -1,6 +1,7 @@
 //= require jquery.min.js
 // require js.cookie.js
 //= require skel.min.js
+//= require stickyfill.min.js
 //= require util.js
 //= require toc.js
 (function($) {
@@ -192,81 +193,6 @@
 
 					});
 
-			// Scroll lock.
-			// Note: If you do anything to change the height of the sidebar's content, be sure to
-			// trigger 'resize.sidebar-lock' on $window so stuff doesn't get out of sync.
-
-				$window.on('load.sidebar-lock', function() {
-
-					var sh, wh, st;
-
-					// Reset scroll position to 0 if it's 1.
-						if ($window.scrollTop() == 1)
-							$window.scrollTop(0);
-
-					$window
-						.on('scroll.sidebar-lock', function() {
-
-							var x, y;
-
-							// IE<10? Bail.
-								if (skel.vars.IEVersion < 10)
-									return;
-
-							// <=large? Bail.
-								if (skel.breakpoint('large').active) {
-
-									$sidebar_inner
-										.data('locked', 0)
-										.css('position', '')
-										.css('top', '');
-
-									return;
-
-								}
-
-							// Calculate positions.
-								x = Math.max(sh - wh, 0);
-								y = Math.max(0, $window.scrollTop() - x);
-
-							// Lock/unlock.
-								if ($sidebar_inner.data('locked') == 1) {
-
-									if (y <= 0)
-										$sidebar_inner
-											.data('locked', 0)
-											.css('position', '')
-											.css('top', '');
-									else
-										$sidebar_inner
-											.css('top', -1 * x);
-
-								}
-								else {
-
-									if (y > 0)
-										$sidebar_inner
-											.data('locked', 1)
-											.css('position', 'fixed')
-											.css('top', -1 * x);
-
-								}
-
-						})
-						.on('resize.sidebar-lock', function() {
-
-							// Calculate heights.
-								wh = $window.height();
-								sh = $sidebar_inner.outerHeight() + 30;
-
-							// Trigger scroll.
-								$window.trigger('scroll.sidebar-lock');
-
-						})
-						.trigger('resize.sidebar-lock');
-
-					});
-
 		// Menu.
 			var $menu = $('#menu'),
 				$menu_openers = $menu.children('ul').find('.opener');
@@ -303,6 +229,9 @@
 					$body.toggleClass('dark');
 					toggleThemeIcon($elToggleTheme);
 				});
+				
+			// Polyfill for sidebar
+				Stickyfill.add($('#sidebar > .inner'));
 
 	});
 

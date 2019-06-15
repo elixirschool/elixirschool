@@ -3,13 +3,16 @@ version: 1.0.1
 title: Erlang Interoperability
 ---
 
-One of the added benefits to building on top of the Erlang VM (BEAM) is the plethora of existing libraries available to us.  Interoperability allows us to leverage those libraries and the Erlang standard lib from our Elixir code.  In this lesson we'll look at how to access functionality in the standard lib along with third-party Erlang packages.
+One of the added benefits to building on top of the Erlang VM (BEAM) is the plethora of existing libraries available to us.
+Interoperability allows us to leverage those libraries and the Erlang standard lib from our Elixir code.
+In this lesson we'll look at how to access functionality in the standard lib along with third-party Erlang packages.
 
 {% include toc.html %}
 
 ## Standard Library
 
-Erlang's extensive standard library can be accessed from any Elixir code in our application.  Erlang modules are represented by lowercase atoms such as `:os` and `:timer`.
+Erlang's extensive standard library can be accessed from any Elixir code in our application.
+Erlang modules are represented by lowercase atoms such as `:os` and `:timer`.
 
 Let's use `:timer.tc` to time execution of a given function:
 
@@ -31,7 +34,9 @@ For a complete list of the modules available, see the [Erlang Reference Manual](
 
 ## Erlang Packages
 
-In a prior lesson we covered Mix and managing our dependencies.  Including Erlang libraries works the same way.  In the event the Erlang library has not been pushed to [Hex](https://hex.pm) you can refer to the git repository instead:
+In a prior lesson we covered Mix and managing our dependencies.
+Including Erlang libraries works the same way.
+In the event the Erlang library has not been pushed to [Hex](https://hex.pm) you can refer to the git repository instead:
 
 ```elixir
 def deps do
@@ -52,7 +57,8 @@ Now that we know how to use Erlang we should cover some of the gotchas that come
 
 ### Atoms
 
-Erlang atoms look much like their Elixir counterparts without the colon (`:`).  They are represented by lowercase strings and underscores:
+Erlang atoms look much like their Elixir counterparts without the colon (`:`).
+They are represented by lowercase strings and underscores:
 
 Elixir:
 
@@ -68,7 +74,8 @@ example.
 
 ### Strings
 
-In Elixir when we talk about strings we mean UTF-8 encoded binaries.  In Erlang, strings still use double quotes but refer to char lists:
+In Elixir when we talk about strings we mean UTF-8 encoded binaries.
+In Erlang, strings still use double quotes but refer to char lists:
 
 Elixir:
 
@@ -96,7 +103,8 @@ false
 true
 ```
 
-It's important to note that many older Erlang libraries may not support binaries so we need to convert Elixir strings to char lists.  Thankfully this is easy to accomplish with the `to_charlist/1` function:
+It's important to note that many older Erlang libraries may not support binaries so we need to convert Elixir strings to char lists.
+Thankfully this is easy to accomplish with the `to_charlist/1` function:
 
 ```elixir
 iex> :string.words("Hello World")

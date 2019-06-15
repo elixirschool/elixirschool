@@ -36,6 +36,8 @@ advanced:
 ecto:
   - basics
   - changesets
+  - associations
+  - querying
 specifics:
   - plug
   - eex
@@ -47,3 +49,5 @@ libraries:
   - poolboy
   - benchee
   - bypass
+  - distillery
+  - stream-data

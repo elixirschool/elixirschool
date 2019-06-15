@@ -77,29 +77,29 @@ Mari kita bina beberapa struct:
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+#Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+#Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Kita boleh mengemaskini struct sebagaimana kita mengemaskini map:
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = %Example.User{name: "Steve"}
+#Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", password: nil, roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
-Paling penting, anda boleh membuat padanan antara struct dan map:  
+Paling penting, anda boleh membuat padanan antara struct dan map:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 ## Komposisi
@@ -208,7 +208,7 @@ Jika kita cuba memanggil satu makro yang masih belum dipasang Elixir akan menimb
 
 ### `use`
 
-Menggunakan modul dalam konteks semasa.  Ianya amat berguna apabila satu modul perlu melakukan beberapa tetapan.  Dengan memanggil `use`, kita juga secara spontan memanggil 'hook'`__using__` di dalam modul tersebut, memberikan peluang kepada modul tersebut untuk membuat perubahan kepada konteks semasa:  
+Menggunakan modul dalam konteks semasa.  Ianya amat berguna apabila satu modul perlu melakukan beberapa tetapan.  Dengan memanggil `use`, kita juga secara spontan memanggil 'hook'`__using__` di dalam modul tersebut, memberikan peluang kepada modul tersebut untuk membuat perubahan kepada konteks semasa:
 
 ```elixir
 defmodule MyModule do

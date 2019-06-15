@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 0.9.2
 title: Mix
 ---
 
@@ -8,7 +8,7 @@ Trước khi đi sâu vào Elixir thì chúng ta cần tìm hiều về mix đ�
 Tính cho đến thời điểm hiện tại thì chúng ta làm việc hoàn toàn bên trong `iex`, tuy nhiên việc đó có rất nhiều hạn chế. Để tạo được một dự án có ý nghĩa hơn thì chúng ta cần chia code ra thành nhiều file cho dễ quản lý, và mix giúp chúng ta làm việc đó với chức năng projects.
 {% include toc.html %}
 
-## Tạo Projects 
+## Tạo Projects
 Khi chúng ta tạo một dự án Elixir mới, mix khiến việc đó trở nên vô cùng dễ dàng với câu lệnh `mix new`. Câu lệnh đó sẽ tạo ra cấu trúc thư mục project và những gì cần thiết ban đầu. Việc này khá dễ hiểu, vậy hãy bắt đầu thôi:
 
 ```bash
@@ -19,6 +19,7 @@ Từ output chúng ta có thể thấy mix đã tạo ra thư mục mới và r�
 ```bash
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
 * creating config
 * creating config/config.exs
@@ -60,7 +61,7 @@ end
 
 Phần `application` được sử dụng xuyên suốt các phần tiếp theo mà chúng ta sẽ sinh ra các file cho dự án.
 
-## Biên dịch 
+## Biên dịch
 Mix rất thông minh và sẽ biên dịch phần thay đổi của dự án khi cần thiết, tuy nhiên đôi khi chúng ta cũng cần chỉ định biên dịch một cách rõ ràng (explicitly). Ở phần này chúng ta sẽ đi vào việc biên dịch dự án của bạn và những gì được thực hiện trong quá trình biên dịch đó.
 
 Để biên dịch một dự án mix, chúng ta sẽ cần chạy `mix compile` tại thư mục gốc:
@@ -76,7 +77,7 @@ Generated example app
 ```
 Khi chúng ta biên dịch, mix sẽ tạo một thư mục `_build` cho thành quả biên dịch. Nếu nhìn vào bên trong `_build` chúng ta sẽ thấy application của chúng ta đã được biện dịch dưới dạng `example.app`.
 
-## Tương tác 
+## Tương tác
 Sử dụng `iex` bên trong ngữ cảnh của chương trình của chúng ta có thể sẽ cần thiết. Rất may mắn là mix đã làm cho việc này trở nên vô cùng dễ dàng. Sau khi application đã được biên dịch, chúng ta có thể tạo một `iex` session mới:
 
 ```bash
@@ -108,7 +109,7 @@ $ mix deps.get
 ```
 Vậy đó! Chúng ta đã định nghĩa và tải về phụ thuộc của dự án. Như vậy từ nay về sau chúng ta có thể thêm các phụ thuộc vào bất kì khi nào cần thiết.
 
-## Môi trường 
+## Môi trường
 Mix, cũng như bundler hỗ trợ nhiều môi trường khác nhau. Ở trạng thái ban đầu thì mix hỗ trợ ba loại môi trường:
 
 + `:dev` — Môi trường phát triển mặc định

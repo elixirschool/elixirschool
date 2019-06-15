@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.1.0
 title: Mnesia 数据库
 ---
 
@@ -272,28 +272,31 @@ iex> Mnesia.transaction(
         * 如果已经是我们想要的 v2 的字段列表，则无需做任何处理
         * 如果是其他情况，则返回错误
 
+如果我们在用 `Mnesia.start/0` 启动 Mnesia 后马上对现有的表进行任何操作的话，那些表可能还没有初始化，并且无法访问。在这样的情况下，我们应该使用 [`Mnesia.wait_for_tables/2`](http://erlang.org/doc/man/mnesia.html#wait_for_tables-2) 函数。它会挂起当前的进程，直到数据库表初始化完毕，或者超时。
+
 `Mnesia.transform_table/3` 函数接受的参数列表为，表名和一个把旧的数据格式转换为新的数据格式的函数。
 
 ```elixir
-iex> case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
-...>   {:atomic, :ok} ->
-...>     Mnesia.add_table_index(Person, :job)
-...>     Mnesia.add_table_index(Person, :age)
-...>   {:aborted, {:already_exists, Person}} ->
-...>     case Mnesia.table_info(Person, :attributes) do
-...>       [:id, :name, :job] ->
-...>         Mnesia.transform_table(
-...>           Person,
-...>           fn ({Person, id, name, job}) ->
-...>             {Person, id, name, job, 21}
-...>           end,
-...>           [:id, :name, :job, :age]
-...>           )
-...>         Mnesia.add_table_index(Person, :age)
-...>       [:id, :name, :job, :age] ->
-...>         :ok
-...>       other ->
-...>         {:error, other}
-...>     end
-...> end
+case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]])
+  {:atomic, :ok} ->
+    Mnesia.add_table_index(Person, :job)
+    Mnesia.add_table_index(Person, :age)
+  {:aborted, {:already_exists, Person}} ->
+    case Mnesia.table_info(Person, :attributes) do
+      [:id, :name, :job] ->
+        Mnesia.wait_for_tables([Person], 5000)
+        Mnesia.transform_table(
+          Person,
+          fn ({Person, id, name, job}) ->
+            {Person, id, name, job, 21}
+          end,
+          [:id, :name, :job, :age]
+          )
+        Mnesia.add_table_index(Person, :age)
+      [:id, :name, :job, :age] ->
+        :ok
+      other ->
+        {:error, other}
+    end
+end
 ```

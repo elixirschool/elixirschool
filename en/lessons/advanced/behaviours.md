@@ -3,13 +3,15 @@ version: 1.0.1
 title: Behaviours
 ---
 
-We learned about Typespecs in the previous lesson, here we'll learn how to require a module to implement those specifications.  In Elixir, this functionality is referred to as behaviours.
+We learned about Typespecs in the previous lesson, here we'll learn how to require a module to implement those specifications.
+In Elixir, this functionality is referred to as behaviours.
 
 {% include toc.html %}
 
 ## Uses
 
-Sometimes you want modules to share a public API, the solution for this in Elixir is behaviours. Behaviours perform two primary roles:
+Sometimes you want modules to share a public API, the solution for this in Elixir is behaviours.
+Behaviours perform two primary roles:
 
 + Defining a set of functions that must be implemented
 + Checking whether that set was actually implemented
@@ -18,9 +20,12 @@ Elixir includes a number of behaviours such as `GenServer`, but in this lesson w
 
 ## Defining a behaviour
 
-To better understand behaviours let's implement one for a worker module.  These workers will be expected to implement two functions: `init/1` and `perform/2`.
+To better understand behaviours let's implement one for a worker module.
+These workers will be expected to implement two functions: `init/1` and `perform/2`.
 
-In order to accomplish this, we'll use the `@callback` directive with syntax similar to `@spec`. This defines a __required__ function; for macros we can use `@macrocallback`.  Let's specify the `init/1` and `perform/2` functions for our workers:
+In order to accomplish this, we'll use the `@callback` directive with syntax similar to `@spec`.
+This defines a __required__ function; for macros we can use `@macrocallback`.
+Let's specify the `init/1` and `perform/2` functions for our workers:
 
 ```elixir
 defmodule Example.Worker do
@@ -31,11 +36,13 @@ defmodule Example.Worker do
 end
 ```
 
-Here we've defined `init/1` as accepting any value and returning a tuple of either `{:ok, state}` or `{:error, reason}`, this is a pretty standard initialization.  Our `perform/2` function will receive some arguments for the worker along with the state we initialized, we'll expect `perform/2` to return `{:ok, result, state}` or `{:error, reason, state}` much like GenServers.
+Here we've defined `init/1` as accepting any value and returning a tuple of either `{:ok, state}` or `{:error, reason}`, this is a pretty standard initialization.
+Our `perform/2` function will receive some arguments for the worker along with the state we initialized, we'll expect `perform/2` to return `{:ok, result, state}` or `{:error, reason, state}` much like GenServers.
 
 ## Using behaviours
 
-Now that we've defined our behaviour we can use it to create a variety of modules that all share the same public API.  Adding a behaviour to our module is easy with the `@behaviour` attribute.
+Now that we've defined our behaviour we can use it to create a variety of modules that all share the same public API.
+Adding a behaviour to our module is easy with the `@behaviour` attribute.
 
 Using our new behaviour let's create a module whose task will be downloading a remote file and saving it locally:
 
@@ -87,9 +94,11 @@ defmodule Example.Compressor do
 end
 ```
 
-While the work performed is different, the public facing API isn't, and any code leveraging these modules can interact with them knowing they'll respond as expected.  This gives us the ability to create any number of workers, all performing different tasks, but conforming to the same public API.
+While the work performed is different, the public facing API isn't, and any code leveraging these modules can interact with them knowing they'll respond as expected.
+This gives us the ability to create any number of workers, all performing different tasks, but conforming to the same public API.
 
-If we happen to add a behaviour but fail to implement all of the required functions, a compile time warning will be raised.  To see this in action let's modify our `Example.Compressor` code by removing the `init/1` function:
+If we happen to add a behaviour but fail to implement all of the required functions, a compile time warning will be raised.
+To see this in action let's modify our `Example.Compressor` code by removing the `init/1` function:
 
 ```elixir
 defmodule Example.Compressor do

@@ -9,7 +9,8 @@ In this lesson we will look at the control structures available to us in Elixir.
 
 ## `if` and `unless`
 
-Chances are you've encountered `if/2` before, and if you've used Ruby you're familiar with `unless/2`.  In Elixir they work much the same way but they are defined as macros, not language constructs. You can find their implementation in the [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
+Chances are you've encountered `if/2` before, and if you've used Ruby you're familiar with `unless/2`.
+In Elixir they work much the same way but they are defined as macros, not language constructs. You can find their implementation in the [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
 
 It should be noted that in Elixir, the only falsey values are `nil` and the boolean `false`.
 
@@ -66,7 +67,8 @@ iex> case :even do
 
 Consider `_` as the `else` that will match "everything else".
 
-Since `case/2` relies on pattern matching, all of the same rules and restrictions apply.  If you intend to match against existing variables you must use the pin `^/1` operator:
+Since `case/2` relies on pattern matching, all of the same rules and restrictions apply.
+If you intend to match against existing variables you must use the pin `^/1` operator:
 
 ```elixir
 iex> pie = 3.14
@@ -112,7 +114,8 @@ iex> cond do
 "But this will"
 ```
 
-Like `case/2`, `cond/1` will raise an error if there is no match.  To handle this, we can define a condition set to `true`:
+Like `case/2`, `cond/1` will raise an error if there is no match.
+To handle this, we can define a condition set to `true`:
 
 ```elixir
 iex> cond do

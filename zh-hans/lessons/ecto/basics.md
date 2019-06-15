@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 version: 2.1.0
+=======
+version: 2.1.1
+>>>>>>> 60d6a9ab7c34f18bca38f67b808d951bef6767a0
 title: Basics
 ---
 
@@ -168,12 +172,20 @@ $ mix ecto.migrate
 
 ### Schemas
 
+<<<<<<< HEAD
 现在我们已经创建了初始化的表，接下来需要告诉 Ecto 更多关于它的部分内容，我们如何通过 schema 进行操作。
+=======
+现在我们已经创建了初始化的表，接下来需要告诉 Ecto 更多关于它的部分内容，我们如何通过 schema 进行操作。
+>>>>>>> 60d6a9ab7c34f18bca38f67b808d951bef6767a0
 那么什么是 schema 呢？schema 是定义底层数据库表的字段的映射的模块。
 
 虽然 Ecto 支持复数的数据库表名，但 schema 通常是单数的，因此我们将创建一个包含 `Person` 的 schema 来包含我们的表。
 
+<<<<<<< HEAD
 让我们在 `lib/friends/person.ex` 文件中创建新的 schema:
+=======
+让我们在 `lib/friends/person.ex` 文件中创建新的 schema:
+>>>>>>> 60d6a9ab7c34f18bca38f67b808d951bef6767a0
 
 ```elixir
 defmodule Example.Person do
@@ -189,7 +201,11 @@ end
 在这里我们可以看到 `Example.Person` 模块告诉 Ecto 这个 schema 与 `people` 表有关，我们有两个字段：一个字符串类型的 `name` 字段和一个`age` 字段，并指定 `age` 的默认值为 `0`。
 
 
+<<<<<<< HEAD
 让我们通过 `iex` 并创建一个新 person 来看看我们的 schema 是啥样的：
+=======
+让我们通过 `iex -S mix` 并创建一个新 person 来看看我们的 schema 是啥样的：
+>>>>>>> 60d6a9ab7c34f18bca38f67b808d951bef6767a0
 
 ```shell
 iex> %Example.Person{}

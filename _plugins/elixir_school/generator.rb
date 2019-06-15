@@ -36,7 +36,7 @@ module ElixirSchool
 
       site.pages.each do |page|
         next if site.config['exclude_from_chapters'].include? page.name
-        lang    = get_lang_from_url(site, page.url)
+        lang = page.data['lang'] || get_lang_from_url(site, page.url)
         section = get_section_from_url(site, page.url)
         chapter_name = get_chapter_from_url(site, page.url)
 

@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.1
 title: 基礎
 ---
 
@@ -15,6 +15,9 @@ title: 基礎
 
 在安裝 Elixir 後，您可以簡便確認安裝的版本。
 
+    % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
     Elixir {{ site.elixir.version }}
 
 ### 試用互動模式
@@ -22,6 +25,8 @@ title: 基礎
 Elixir 自帶 IEx，一個互動模式 shell，可以讓我們隨時計算 Elixir 表達式。
 
 輸入 `iex` 開始使用：
+
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
@@ -37,8 +42,7 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-如果你不了解每一個式子，不用擔心，但我們希望你有些概念了
-。
+如果你不了解每一個式子，不用擔心，但希望你有些概念了。
 
 ## 基本資料型別
 
@@ -73,7 +77,6 @@ iex> 1.0e-10
 1.0e-10
 ```
 
-
 ### 布林
 
 Elixir 支援 `true` 和 `false` 做為布林的值；除了 `false` 和 `nil`，一切為真。
@@ -87,7 +90,8 @@ false
 
 ### Atoms
 
-Atom 是一個常數，其名稱是它的值。如果你熟悉 Ruby，這與 Ruby 的符號 (Symbols) 是同義詞：
+Atom 是一個常數，其名稱是它的值。
+如果你熟悉 Ruby，這與 Ruby 的符號 (Symbols) 是同義詞：
 
 ```elixir
 iex> :foo
@@ -142,13 +146,15 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir 還包括更複雜的資料型別。當我們學習 [collections](../collections/) 和 [functions](../functions/) 時我們將進一步了解這些。
+Elixir 還包括更複雜的資料型別。
+當學習 [群集](../collections/) 和 [函數](../functions/) 時將進一步了解這些。
 
 ## 基本運算
 
 ### 算術運算 (Arithmetic)
 
-Elixir 如你所料支援基本運算子 `+` 、 `-` 、 `*` 和 `/`。  重要的是記住 `/` 將永遠回傳一個浮點數：
+Elixir 如你所料支援基本運算子 `+` 、 `-` 、 `*` 和 `/`。
+重要的是記住 `/` 將永遠回傳一個浮點數：
 
 ```elixir
 iex> 2 + 2
@@ -172,7 +178,8 @@ iex> rem(10, 3)
 
 ### 布林運算 (Boolean)
 
-Elixir 提供 `||` 、 `&&` 和 `!` 布林運算子。 這些支援任何型別：
+Elixir 提供 `||` 、 `&&` 和 `!` 布林運算子。
+這些支援任何型別：
 
 ```elixir
 iex> -20 || true
@@ -205,6 +212,8 @@ iex> 42 and true
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+註：Elixir 的 `and` 和 `or` 實際上映射到 Erlang 中的 `andalso` 和 `orelse`。
 
 ### 比較運算 (Comparison)
 

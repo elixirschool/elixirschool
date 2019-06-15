@@ -1,4 +1,5 @@
 script_direction: ltr
+menu: Menu
 disable_transform: true
 project:
   title: Elixir School

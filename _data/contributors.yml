@@ -391,3 +391,44 @@
   lessons: ['Testing']
   articles:
     - ExUnit's capture_log option
+
+- github: maxcell
+  name: Prince Wilson
+  intro:
+    Prince is an teacher over at the Flatiron School. He enjoys sharing knowledge with people as he learns new things!
+    Finding ways to create accessible, impactful content to developers out there is his jam.
+  twitter: maxcell
+  homepage: https://maxcell.me/
+  contributions:
+    - blog
+  articles:
+    - TIL Ecto Constraints and Validations
+
+- github: ktravers
+  name: Kate Travers
+  intro:
+    Kate is an engineer at the Flatiron School.
+  twitter: kttravers
+  homepage: https://kate-travers.com/
+  contributions:
+    - blog
+
+- github: zillou
+  name: Derrick Zhang
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - zh-hans
+
+- github: kenspirit
+  name: Ken Chen
+  intro:
+  homepage: http://thinkingincrowd.me
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - zh-hans

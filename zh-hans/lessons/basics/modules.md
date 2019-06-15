@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.4.0
 title: 模块（Module）
 ---
 
@@ -78,30 +78,59 @@ end
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+#Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+#Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 我们也可以像更新映射（map）那样更新结构体：
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = %Example.User{name: "Steve"}
+#Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 更重要的是：结构体可以匹配映射（maps）：
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
+
+到了 Elixir 1.8，结构体允许包含自定义的检查方式。以下通过查看 `sean` 结构来理解这是如何实现的：
+
+```elixir
+iex> inspect(sean)
+"#Example.User<name: \"Sean\", roles: [...], ...>"
+```
+
+在这里例子，结构体里面所有的字段都展示出来并没有问题。但是，如果我们想排除一些保护字段呢？新的 `@derive` 功能就能实现这点了。如下修改一下样例中的 `roles` 字段，它就不会包含在输出里面了：
+
+```elixir
+defmodule Example.User do
+  @derive {Inspect, only: [:name]}
+  defstruct name: nil, roles: []
+end
+```
+
+_备注_：我们也可以使用 `@derive {Inspect, except: [:roles]}`，效果是一样的。
+
+让我们看看更新后的模块在 `iex` 中的表现：
+
+```elixir
+iex> sean = %Example.User{name: "Sean"}
+#Example.User<name: "Sean", ...>
+iex> inspect(sean)
+"#Example.User<name: \"Sean\", ...>"
+```
+
+`roles` 字段排除在外了！
 
 ## 组合（Composition）
 

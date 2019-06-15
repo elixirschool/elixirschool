@@ -75,29 +75,29 @@ Lass uns ein paar structs erstellen:
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+#Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+#Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> %Example.User{name: "Steve", roles: [:manager]}
+#Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Wir können ein struct genauso wie eine map aktualisieren:
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = %Example.User{name: "Steve"}
+#Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Und das Wichtigste: Man kann sie gegen maps matchen:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+#Example.User<name: "Sean", roles: [...], ...>
 ```
 
 ## Komposition
@@ -248,4 +248,4 @@ Das `Ecto.Migration.__using__/1`-Makro inkludiert einen import-Aufruf, so dass w
 
 Nochmal zur Wiederholung: Das use-Makro ruft einfach nur das `__using__/1`-Makro auf dem angegebenen Modul auf. Um wirklich zu verstehen, was es tut, musst du das `__using__/1`-Makro lesen.
 
-**Notiz**: `quote`, `require`, `use` und `alias` sind Makros, die wir bei der [Metaprogrammierung](../../advanced/metaprogramming) brauchen. 
+**Notiz**: `quote`, `require`, `use` und `alias` sind Makros, die wir bei der [Metaprogrammierung](../../advanced/metaprogramming) brauchen.

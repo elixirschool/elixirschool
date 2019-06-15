@@ -36,9 +36,11 @@ And now we know the functions we have and their arity!
 
 ### `.iex.exs`
 
-Every time IEx starts it will look for a `.iex.exs` configuration file. If it's not present in the current directory, then the user's home directory (`~/.iex.exs`) will be used as the fallback.
+Every time IEx starts it will look for a `.iex.exs` configuration file.
+If it's not present in the current directory, then the user's home directory (`~/.iex.exs`) will be used as the fallback.
 
-Configuration options and code defined within this file will be available to us when the IEx shell starts up. For instance if we want some helper functions available to us in IEx, we can open up `.iex.exs` and make some changes.
+Configuration options and code defined within this file will be available to us when the IEx shell starts up.
+For instance if we want some helper functions available to us in IEx, we can open up `.iex.exs` and make some changes.
 
 Let's start by adding a module with a few helper functions:
 
@@ -52,7 +54,8 @@ defmodule IExHelpers do
 end
 ```
 
-Now when we run IEx we'll have the IExHelpers module available to us from the start. Open up IEx and let's try out our new helpers:
+Now when we run IEx we'll have the IExHelpers module available to us from the start.
+Open up IEx and let's try out our new helpers:
 
 ```elixir
 $ iex
@@ -85,20 +88,22 @@ Enumerable protocol.
 ┃ iex> Enum.map([1, 2, 3], fn(x) -> x * 2 end)
 ┃ [2, 4, 6]
 
-Some particular types, like maps, yield a specific format on enumeration. For
-example, the argument is always a {key, value} tuple for maps:
+Some particular types, like maps, yield a specific format on enumeration.
+For example, the argument is always a {key, value} tuple for maps:
 
 ┃ iex> map = %{a: 1, b: 2}
 ┃ iex> Enum.map(map, fn {k, v} -> {k, v * 2} end)
 ┃ [a: 2, b: 4]
 
 Note that the functions in the Enum module are eager: they always start the
-enumeration of the given enumerable. The Stream module allows lazy enumeration
+enumeration of the given enumerable.
+The Stream module allows lazy enumeration
 of enumerables and provides infinite streams.
 
 Since the majority of the functions in Enum enumerate the whole enumerable and
 return a list as result, infinite streams need to be carefully used with such
-functions, as they can potentially run forever. For example:
+functions, as they can potentially run forever.
+For example:
 
 ┃ Enum.each Stream.cycle([1, 2, 3]), &IO.puts(&1)
 ```
@@ -113,7 +118,8 @@ iex> h Map
 A set of functions for working with maps.
 
 Maps are key-value stores where keys can be any value and are compared using
-the match operator (===). Maps can be created with the %{} special form defined
+the match operator (===).
+Maps can be created with the %{} special form defined
 in the Kernel.SpecialForms module.
 
 iex> Map.
@@ -137,7 +143,8 @@ All keys in map2 will be added to map1, overriding any existing one.
 
 If you have a struct and you would like to merge a set of keys into the struct,
 do not use this function, as it would merge all keys on the right side into the
-struct, even if the key is not part of the struct. Instead, use
+struct, even if the key is not part of the struct.
+Instead, use
 Kernel.struct/2.
 
 Examples
@@ -183,7 +190,8 @@ Reference modules
   Module, Atom
 ```
 
-Now we have a bunch of information about `Map` including where its source is stored and the modules it references. This is quite useful when exploring custom, foreign data types, and new functions.
+Now we have a bunch of information about `Map` including where its source is stored and the modules it references.
+This is quite useful when exploring custom, foreign data types, and new functions.
 
 The individual headings can be dense, but at a high level we can gather some relevant information:
 
@@ -198,7 +206,9 @@ This gives us a lot to work with and is better than going in blind.
 
 ### `r`
 
-If we want to recompile a particular module we can use the `r` helper. Let's say we've changed some code and want to run a new function we've added. To do that we need to save our changes and recompile with r:
+If we want to recompile a particular module we can use the `r` helper.
+Let's say we've changed some code and want to run a new function we've added.
+To do that we need to save our changes and recompile with r:
 
 ```elixir
 iex> r MyProject
@@ -231,4 +241,6 @@ defmodule Map do
 
 This is a simple example, stating that keys and values per the implementation can be any type, but it is useful to know.
 
-By leveraging all these built-in niceties we can easily explore the code and learn more about how things work. IEx is a very powerful and robust tool that empowers developers. With these tools in our toolbox, exploring, and building can be even more fun!
+By leveraging all these built-in niceties we can easily explore the code and learn more about how things work.
+IEx is a very powerful and robust tool that empowers developers.
+With these tools in our toolbox, exploring, and building can be even more fun!

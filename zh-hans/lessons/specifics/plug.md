@@ -1,5 +1,5 @@
 ---
-version: 2.1.1
+version: 2.2.0
 title: Plug
 ---
 
@@ -143,11 +143,16 @@ Hello World!
 defmodule Example.Router do
   use Plug.Router
 
-  plug(:match)
-  plug(:dispatch)
+  plug :match
+  plug :dispatch
 
-  get("/", do: send_resp(conn, 200, "Welcome"))
-  match(_, do: send_resp(conn, 404, "Oops!"))
+  get "/" do
+    send_resp(conn, 200, "Welcome")
+  end
+
+  match _ do
+    send_resp(conn, 404, "Oops!")
+  end
 end
 ```
 
@@ -189,7 +194,7 @@ defmodule Example.Plug.VerifyRequest do
     Error raised when a required field is missing.
     """
 
-    defexception message: "", plug_status: 400
+    defexception message: ""
   end
 
   def init(options), do: options
@@ -212,7 +217,7 @@ defmodule Example.Plug.VerifyRequest do
 end
 ```
 
-首先，注意到我们定义了一个新的异常 `IncompleteRequestError` 并且设置了 `:plug_status`。这样 Plug 会在触发该异常时使用该参数的值作为 HTTP 状态码。
+首先，注意到我们定义了一个新的异常 `IncompleteRequestError`。这样 Plug 会在触发该异常时使用该参数的值作为 HTTP 状态码。
 
 我们所写的 Plug 第二部分就是 `call/2` 函数。我们在这里决定是否执行验证逻辑。即只有当该请求的路径包含在我们指定的 `:paths` 选项中时才会执行 `verify_request!/2`。
 
@@ -228,20 +233,22 @@ defmodule Example.Router do
 
   alias Example.Plug.VerifyRequest
 
-  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
+  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
+  plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
+  plug :match
+  plug :dispatch
 
-  plug(
-    VerifyRequest,
-    fields: ["content", "mimetype"],
-    paths: ["/upload"]
-  )
+  get "/" do
+    send_resp(conn, 200, "Welcome")
+  end
 
-  plug(:match)
-  plug(:dispatch)
+  get "/upload" do
+    send_resp(conn, 201, "Uploaded")
+  end
 
-  get("/", do: send_resp(conn, 200, "Welcome\n"))
-  get("/upload", do: send_resp(conn, 201, "Uploaded\n"))
-  match(_, do: send_resp(conn, 404, "Oops!\n"))
+  match _ do
+    send_resp(conn, 404, "Oops!")
+  end
 end
 ```
 
@@ -258,7 +265,7 @@ plug(
 这会去自动调用 `VerifyRequest.init(fields: ["content", "mimetype"],
 paths: ["/upload"])`。接着就会把参数传给 `VerifyRequest.call(conn, opts)` 函数调用。
 
-让我们来试验一下这个 Plug！停掉正在运行的代码后（可按两次 `ctrl + c`）, 再重启服务（`mix run --no-halt`）。接下来，我们试着在浏览器中访问 <http://127.0.0.1:8080/upload> ，你会发现这个页面不能正常运作。我们连 “Oops!” 的错误消息都看不到。现在，我们试着访问带有必须的参数后的页面 <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>。加上必须的参数之后，我们应该就可以看到”Uploaded“的信息了。
+让我们来试验一下这个 Plug！停掉正在运行的代码后（可按两次 `ctrl + c`）, 再重启服务（`mix run --no-halt`）。接下来，我们试着在浏览器中访问 <http://127.0.0.1:8080/upload> ，你会发现这个页面不能正常运作。只有浏览器提供的默认错误页面。现在，我们试着在路径后添加必须的参数 <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>。加上必须的参数之后，我们应该就可以看到”Uploaded“的信息了。
 
 但是，出错之后看不到任何页面显然并不是一个好的方式，我们稍后会讨论处理 Plug 错误的方法。
 
@@ -324,7 +331,8 @@ defmodule Example.RouterTest do
 
   test "returns welcome" do
     conn =
-      conn(:get, "/", "")
+      :get
+      |> conn("/", "")
       |> Router.call(@opts)
 
     assert conn.state == :sent
@@ -333,7 +341,8 @@ defmodule Example.RouterTest do
 
   test "returns uploaded" do
     conn =
-      conn(:get, "/upload?content=#{@content}&mimetype=#{@mimetype}")
+      :get
+      |> conn("/upload?content=#{@content}&mimetype=#{@mimetype}")
       |> Router.call(@opts)
 
     assert conn.state == :sent
@@ -342,7 +351,8 @@ defmodule Example.RouterTest do
 
   test "returns 404" do
     conn =
-      conn(:get, "/missing", "")
+      :get
+      |> conn("/missing", "")
       |> Router.call(@opts)
 
     assert conn.state == :sent
@@ -359,7 +369,7 @@ $ mix test test/example/router_test.exs
 
 ## Plug.ErrorHandler
 
-我们之前访问 <http://127.0.0.1:8080/upload> 时，无法看到错误信息。我们可以借助 [`Plug.ErrorHandler`](https://hexdocs.pm/plug/Plug.ErrorHandler.html) 来解决这个问题。
+我们之前不带参数访问 <http://127.0.0.1:8080/upload> 时，无法看到友好错误页面或有效的 HTTP 状态 —— 只有浏览器的 `500 Internal Server Error` 默认错误页面。我们可以借助 [`Plug.ErrorHandler`](https://hexdocs.pm/plug/Plug.ErrorHandler.html) 来解决这个问题。
 首先，打开 `lib/example/router.ex` ，修改代码如下。
 
 ```elixir
@@ -369,28 +379,27 @@ defmodule Example.Router do
 
   alias Example.Plug.VerifyRequest
 
-  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
+  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
+  plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
+  plug :match
+  plug :dispatch
 
-  plug(
-    VerifyRequest,
-    fields: ["content", "mimetype"],
-    paths: ["/upload"]
-  )
+  get "/" do
+    send_resp(conn, 200, "Welcome")
+  end
 
-  plug(:match)
-  plug(:dispatch)
+  get "/upload" do
+    send_resp(conn, 201, "Uploaded")
+  end
 
-  get("/", do: send_resp(conn, 200, "Welcome\n"))
-  get("/upload", do: send_resp(conn, 201, "Uploaded\n"))
-  match(_, do: send_resp(conn, 404, "Oops!\n"))
+  match _ do
+    send_resp(conn, 404, "Oops!")
+  end
 
-  def handle_errors(conn, %{kind: kind, reason: reason, stack: stack}) do
-    IO.puts "Kind:"
-    IO.inspect kind
-    IO.puts "Reason:"
-    IO.inspect reason
-    IO.puts "Stack"
-    IO.inspect stack
+  defp handle_errors(conn, %{kind: kind, reason: reason, stack: stack}) do
+    IO.inspect(kind, label: :kind)
+    IO.inspect(reason, label: :reason)
+    IO.inspect(stack, label: :stack)
     send_resp(conn, conn.status, "Something went wrong")
   end
 end
@@ -402,15 +411,9 @@ end
 现在，你再访问 <http://127.0.0.1:8080/upload>，我们会看到“Something went wrong”的错误信息。回到代码终端，你会看到如下的信息：
 
 ```shell
-Kind:
-:error
-Reason:
-%Example.Plug.VerifyRequest.IncompleteRequestError{
-  message: "",
-  plug_status: 400
-}
-Stack
-[
+kind: :error
+reason: %Example.Plug.VerifyRequest.IncompleteRequestError{message: ""}
+stack: [
   {Example.Plug.VerifyRequest, :verify_request!, 2,
    [file: 'lib/example/plug/verify_request.ex', line: 23]},
   {Example.Plug.VerifyRequest, :call, 2,
@@ -437,6 +440,16 @@ Stack
    ]}
 ]
 ```
+
+现在，我们还是回送了 `500 Internal Server Error` 这样的信息。通过添加 `:plug_status` 字段到我们的异常，我们就可以定制状态码。打开 `lib/example/plug/verify_request.ex`，更改如下：
+
+```elixir
+defmodule IncompleteRequestError do
+  defexception message: "", plug_status: 400
+end
+```
+
+重启服务器，刷新页面，就会出现 `400 Bad Request` 这样的消息了。
 
 这个 Plug 可以让开发者非常容易地查看有用的错误信息，从而解决问题。同时也给终端用户一个良好的页面体验，而不至于觉得整个网站垮掉！
 

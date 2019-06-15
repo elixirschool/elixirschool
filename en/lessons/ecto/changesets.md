@@ -1,10 +1,9 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Changesets
 ---
 
-In order to insert, update or delete data from the database, `Ecto.Repo.insert/2`, `update/2` and `delete/2` require a changeset as their first parameter.
-But what exactly are changesets?
+In order to insert, update or delete data from the database, `Ecto.Repo.insert/2`, `update/2` and `delete/2` require a changeset as their first parameter. But what are changesets?
 
 A familiar task for almost every developer is checking input data for potential errors — we want to make sure that data is in the right state, before we attempt to use it for our purposes.
 
@@ -27,28 +26,30 @@ As you can see, it has some potentially useful fields, but they are all empty.
 For a changeset to be truly useful, when we create it, we need to provide a blueprint of what the data is like.
 What better blueprint for our data than the schemas we've created that define our fields and types?
 
-To save us some time, let's re-use the schema we created in the previous lesson:
+Let's see a common `User` schema:
 
 ```elixir
-defmodule Example.Person do
+defmodule User do
   use Ecto.Schema
 
-  schema "people" do
-    field :name, :string
-    field :age, :integer, default: 0
+  schema "users" do
+    field(:name, :string)
   end
 end
 ```
 
-To create a changeset using the `Example.Person` schema, we are going to use `Ecto.Changeset.cast/4`:
+To create a changeset using the `User` schema, we are going to use `Ecto.Changeset.cast/4`:
 
 ```elixir
-iex> Ecto.Changeset.cast(%Example.Person{name: "Bob"}, %{}, [:name])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Person<>,
+iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
+#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
  valid?: true>
  ```
 
-The first parameter is the original data — an empty `%User{}` struct in this case. Ecto is smart enough to find the schema based on the struct itself. Second in order are the changes we want to make — just an empty map. The third parameter is what makes `cast/4` special: it is a list of fields allowed to go through, which gives us the ability to control what fields can be changed and safe-guard the rest.
+The first parameter is the original data — an empty `%User{}` struct in this case.
+Ecto is smart enough to find the schema based on the struct itself.
+Second in order are the changes we want to make — just an empty map.
+The third parameter is what makes `cast/4` special: it is a list of fields allowed to go through, which gives us the ability to control what fields can be changed and safe-guard the rest.
 
  ```elixir
  iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
@@ -65,9 +66,10 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
  valid?: true>
 ```
 
-You can see how the new email was ignored the second time, where it was not explicitly allowed.
+You can see how the new name was ignored the second time, where it was not explicitly allowed.
 
-An alternative to `cast/4` is the `change/2` function, which doesn't have the ability to filter changes like `cast/4`. It is useful when you trust the source making the changes or when you work with data manually.
+An alternative to `cast/4` is the `change/2` function, which doesn't have the ability to filter changes like `cast/4`.
+It is useful when you trust the source making the changes or when you work with data manually.
 
 Now we can create changesets, but since we do not have validation, any changes to user's name will be accepted, so we can end up with an empty name:
 
@@ -122,7 +124,8 @@ def changeset(struct, params) do
 end
 ```
 
-When we call the `User.changeset/2` function and pass an empty name, the changeset will be no longer valid, and will even contain a helpful error message. Note: do not forget to run `recompile()` when working in `iex`, otherwise it won't pick up the changes you make in code.
+When we call the `User.changeset/2` function and pass an empty name, the changeset will be no longer valid, and will even contain a helpful error message.
+Note: do not forget to run `recompile()` when working in `iex`, otherwise it won't pick up the changes you make in code.
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => ""})
@@ -130,12 +133,13 @@ iex> User.changeset(%User{}, %{"name" => ""})
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: false
 >
 ```
 
-If you attempt to do `Repo.insert(changeset)` with the changeset above, you will receive `{:error, changeset}` back with the same error, so you do not have to check `changeset.valid?` yourself every time. It is easier to attempt performing insert, update or delete, and process the error afterwards if there is one.
+If you attempt to do `Repo.insert(changeset)` with the changeset above, you will receive `{:error, changeset}` back with the same error, so you do not have to check `changeset.valid?` yourself every time.
+It is easier to attempt performing insert, update or delete, and process the error afterwards if there is one.
 
 Apart from `validate_required/2`, there is also `validate_length/3`, that takes some extra options:
 
@@ -159,7 +163,7 @@ iex> User.changeset(%User{}, %{"name" => "A"})
     name: {"should be at least %{count} character(s)",
      [count: 2, validation: :length, min: 2]}
   ],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: false
 >
 ```
@@ -217,9 +221,9 @@ end
 iex> User.changeset(%User{}, %{"name" => "Bob"})
 #Ecto.Changeset<
   action: nil,
-  changes: %{first_name: "Bob"},
+  changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: false
 >
 ```
@@ -230,7 +234,8 @@ Great, it works! However, there was really no need to implement this function ou
 
 Sometimes you want to introduce changes to a changeset manually. The `put_change/3` helper exists for this purpose.
 
-Rather than making the `name` field required, let's allow users to sign up without a name, and call them "Anonymous". The function we need will look familiar — it accepts and returns a changeset, just like the `validate_fictional_name/1`  we introduced earlier:
+Rather than making the `name` field required, let's allow users to sign up without a name, and call them "Anonymous".
+The function we need will look familiar — it accepts and returns a changeset, just like the `validate_fictional_name/1`  we introduced earlier:
 
 ```elixir
 def set_name_if_anonymous(changeset) do
@@ -245,7 +250,6 @@ end
 ```
 
 We can set user's name as "Anonymous" only when they register in our application; to do this, we are going to create a new changeset creator function:
-
 
 ```elixir
 def registration_changeset(struct, params) do
@@ -263,12 +267,13 @@ iex> User.registration_changeset(%User{}, %{})
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
-  data: #GalileoWeb.User<>,
+  data: #User<>,
   valid?: true
 >
 ```
 
-Having changeset creator functions that have a specific responsibility (like `registration_changeset/2`) is not uncommon — sometimes you need the flexibility to perform only certain validations or filter specific parameters. The function above could be then used in a dedicated `sign_up/1` helper elsewhere:
+Having changeset creator functions that have a specific responsibility (like `registration_changeset/2`) is not uncommon — sometimes you need the flexibility to perform only certain validations or filter specific parameters.
+The function above could be then used in a dedicated `sign_up/1` helper elsewhere:
 
 ```elixir
 def sign_up(params) do
@@ -280,4 +285,5 @@ end
 
 ## Conclusion
 
-There a lot of use cases and functionality that we did not cover in this lesson, such as [schemaless changesets](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) that you can use to validate _any_ data; or dealing with side-effects alongside the changeset ([`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2)) or working with associations and embeds. We may cover these in a future, advanced lesson, but in the meantime — we encourage to explore [Ecto Changeset's documentation](https://hexdocs.pm/ecto/Ecto.Changeset.html) for more information.
+There a lot of use cases and functionality that we did not cover in this lesson, such as [schemaless changesets](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) that you can use to validate _any_ data; or dealing with side-effects alongside the changeset ([`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2)) or working with associations and embeds.
+We may cover these in a future, advanced lesson, but in the meantime — we encourage to explore [Ecto Changeset's documentation](https://hexdocs.pm/ecto/Ecto.Changeset.html) for more information.
