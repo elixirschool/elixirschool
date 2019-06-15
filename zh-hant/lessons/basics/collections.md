@@ -24,7 +24,7 @@ Elixir 以串列實現群集列表。
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 # Prepending (fast)
-iex> ["π"] ++ list
+iex> ["π" | list]
 ["π", 3.14, :pie, "Apple"]
 # Appending (slow)
 iex> list ++ ["Cherry"]

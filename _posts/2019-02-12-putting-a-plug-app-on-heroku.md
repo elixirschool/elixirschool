@@ -1,6 +1,7 @@
 ---
 author: Bobby Grayson
 categories: general
+tags: ['plug']
 date: 2019-02-12
 layout: post
 title: Deploying our `Plug.Router` application to Heroku

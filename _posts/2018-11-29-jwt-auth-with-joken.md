@@ -1,7 +1,8 @@
 ---
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
-categories: post
+categories: general
+tags: ['plug']
 date:   2018-11-29
 layout: post
 title:  JWT Auth in Elixir with Joken

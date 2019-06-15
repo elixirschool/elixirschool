@@ -1,6 +1,6 @@
 ---
 authors: ['Sean Callan', 'Sophie DeBenedetto']
-categories: post
+categories: announcement
 date: 2019-05-01
 layout: post
 title: ElixirConf 2019 Announcement

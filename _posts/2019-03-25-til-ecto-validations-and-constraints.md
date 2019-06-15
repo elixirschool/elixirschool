@@ -3,6 +3,7 @@ author: Prince Wilson
 date: 2019-03-25
 layout: post
 categories: til
+tags: ['ecto']
 author_link: https://github.com/maxcell
 title:  TIL Ecto Constraints and Validations
 excerpt: >
@@ -54,7 +55,7 @@ So in order to fix, we'd use a validation!
 
 Many of the validations we have in Ecto will be executed without needing to interact with the database. That means the validation will be executed prior to the attempt of inserting or updating something in the database. If we wanted to insert a new user into our database, we'd first want to make sure there is data inside of the changeset.
 
-Let's add the [`validate_require/3`](https://hexdocs.pm/ecto/Ecto.Changeset.html#validate_required/3) into our `changeset`:
+Let's add the [`validate_required/3`](https://hexdocs.pm/ecto/Ecto.Changeset.html#validate_required/3) into our `changeset`:
 
 ```elixir
 def changeset(user, attrs) do

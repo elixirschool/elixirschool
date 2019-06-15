@@ -22,7 +22,7 @@ Elixir implementuje listy ako lineárne zoznamy (*linked lists*). To znamená, �
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 # Pridávanie na začiatok (rýchle)
-iex> ["π"] ++ list
+iex> ["π" | list]
 ["π", 3.14, :pie, "Apple"]
 # Pridávanie na koniec (pomalé)
 iex> list ++ ["Cherry"]

@@ -291,7 +291,7 @@ With a "belongs to" relationship, we can leverage Ecto's `build_assoc/3` functio
 * The name of the association.
 * Any attributes we want to assign to the associated record we are saving.
 
-Let's save a movie and and associated character. First, we'll create a movie record:
+Let's save a movie and an associated character. First, we'll create a movie record:
 
 ```elixir
 iex> alias Example.{Movie, Character, Repo}

@@ -2,6 +2,7 @@
 author: Kate Travers
 author_link: https://github.com/ktravers
 categories: til
+tags: ['ecto']
 date: 2018-12-16
 layout: post
 title: TIL How to Run Ecto Migrations on Production

@@ -2,18 +2,14 @@
 title: Blog
 layout: blog
 disable_transform: true
+exclude_from_chapters: true
+redirect_from:
+  - /blog/sort/
+  - /blog/sort/date/
+  - /blog/sort/date/newest/
 ---
-<section>
-  <div class="posts">
-    {% for post in site.posts %}
-    <article>
-      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-        <p class="post-date">{{ post.date | date_to_string }}</p>
-        {{ post.excerpt | markdownify }}
-      <ul class="actions">
-        <li><a href="{{ post.url }}" class="button{% unless page.disable_transform %} up{%endunless%}">Read more</a></li>
-      </ul>
-    </article>
-    {% endfor %}
-  </div>
-</section>
+<div class="posts">
+  {% for post in site.posts %}
+    {% include article-preview.html article=post %}
+  {% endfor %}
+</div>

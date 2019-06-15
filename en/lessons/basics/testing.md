@@ -98,7 +98,7 @@ Finished in 0.03 seconds
 2 tests, 1 failures
 ```
 
-ExUnit will tells us exactly where our failed assertions are, what the expected value was, and what the actual value was.
+ExUnit will tell us exactly where our failed assertions are, what the expected value was, and what the actual value was.
 
 ### refute
 

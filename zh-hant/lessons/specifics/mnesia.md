@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 title: Mnesia
 ---
 
@@ -121,12 +121,15 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 ```
 
 使用 atoms `:id`、`:name` 和 `:job` 定義行 (column)。
-當執行  `Mnesia.create_table/2` 時，它將回傳以下任一結果：
+第一個 atom（在本例中為 `:id` ）是主鍵。
+且至少需要一個額外屬性。
+
+當執行 `Mnesia.create_table/2` 時，它將回傳以下任一結果：
 
  - `{:atomic, :ok}` 如果函數執行成功
  - `{:aborted, Reason}` 如果函數執行失敗
 
-特別的是，如果表格已經存在，格式將為 `{:already_exists, table}` ，所以如果第二次嘗試建立這個表格，將得到：
+特別的是，如果表格已經存在，格式將為 `{:already_exists, table}`，所以如果第二次嘗試建立這個表格，將得到：
 
 ```elixir
 iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
@@ -150,7 +153,7 @@ iex> Mnesia.dirty_write({Person, 3, "Moe Szyslak", "Bartender"})
 :ok
 ```
 
-...檢索條目可以使用  `Mnesia.dirty_read/1`：
+...檢索條目可以使用 `Mnesia.dirty_read/1`：
 
 ```elixir
 iex> Mnesia.dirty_read({Person, 1})

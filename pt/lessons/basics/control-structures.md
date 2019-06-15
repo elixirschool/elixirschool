@@ -1,5 +1,5 @@
 ---
-version: 1.1.1 
+version: 1.1.2
 title: Estruturas de Controle
 ---
 
@@ -119,7 +119,7 @@ iex> cond do
 
 ## `with`
 
-A forma especial `with/1` é util quando tentamos usar `case/2` de maneira aninhada ou em situações que não é possível encadiar funções. A expressão `with/1` é composta de palavras-chaves, generators e finalmente uma expressão.
+A forma especial `with/1` é util quando tentamos usar `case/2` de maneira aninhada ou em situações que não é possível encadear funções. A expressão `with/1` é composta de palavras-chaves, generators e finalmente uma expressão.
 
 Iremos discutir generators na [lição sobre list comprehensions](../comprehensions) para comparar o lado direito do operador `<-` com o lado esquerdo.
 

@@ -35,7 +35,7 @@ module ElixirSchool
       default_lang = site.config['default_lang']
 
       site.pages.each do |page|
-        next if site.config['exclude_from_chapters'].include? page.name
+        next if page.data['exclude_from_chapters']
         lang = page.data['lang'] || get_lang_from_url(site, page.url)
         section = get_section_from_url(site, page.url)
         chapter_name = get_chapter_from_url(site, page.url)
@@ -90,7 +90,7 @@ module ElixirSchool
 
       # last pass to define page.data['leaf']
       site.pages.each do |page|
-        next if site.config['exclude_from_chapters'].include?(page.name) or page.data['layout']['redirect']
+        next if page.data['layout']['redirect'] or page.data['exclude_from_chapters']
         lang = page.data['lang']
         section = page.data['section']
         chapter_name = page.data['chapter']

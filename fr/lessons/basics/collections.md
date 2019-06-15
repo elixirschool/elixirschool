@@ -22,7 +22,7 @@ Elixir implémente les listes sous forme de liste chainée. Par conséquent, cal
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 # Ajout en début de liste (rapide)
-iex> ["π"] ++ list
+iex> ["π" | list]
 ["π", 3.14, :pie, "Apple"]
 # Ajout en fin de liste (lent)
 iex> list ++ ["Cherry"]

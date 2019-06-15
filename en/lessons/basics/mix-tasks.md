@@ -79,7 +79,7 @@ Within this file, let's insert these 7 lines of Elixir.
 defmodule Mix.Tasks.Hello do
   use Mix.Task
 
-  @shortdoc "Simply runs the Hello.say/0 function"
+  @shortdoc "Simply calls the Hello.say/0 function."
   def run(_) do
     # calling our Hello.say() function from earlier
     Hello.say()

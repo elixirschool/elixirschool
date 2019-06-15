@@ -33,6 +33,7 @@ advanced:
   - behaviours
   - gen-stage
   - protocols
+  - nerves
 ecto:
   - basics
   - changesets

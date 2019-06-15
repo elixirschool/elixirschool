@@ -104,9 +104,11 @@
 				skel
 					.on('+large', function() {
 						$sidebar.addClass('inactive');
+						$sidebar.css('visibility', 'visible');
 					})
 					.on('-large !large', function() {
 						$sidebar.removeClass('inactive');
+						$sidebar.css('visibility', 'visible');
 					});
 
 			// Hack: Workaround for Chrome/Android scrollbar position bug.

@@ -41,6 +41,8 @@
 			'box-shadow 0.5s ease'
 		));
 		background-color: _palette(bg-alt);
+		// Hide until skel detects screen size
+		visibility: hidden;
 		font-size: 1em;
 		position: relative;
 		width: _size(sidebar-width);

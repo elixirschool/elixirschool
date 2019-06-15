@@ -128,7 +128,7 @@ DynamicSupervisor.start_link(options)
 
 ## Task Supervisor
 
-Tasks 有它们自己特殊的 Supervisor，叫做 `Task.Supervisor`。它是专门为动态创建的任务而设计的 supervisor，内部使用的是 `:simple_one_for_one` 策略。  
+Tasks 有它们自己特殊的 Supervisor，叫做 `Task.Supervisor`。它是专门为动态创建的任务而设计的 supervisor，内部实际使用的是 `DynamicSupervisor`。  
 
 ### Setup
 
@@ -141,6 +141,8 @@ children = [
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
+
+`Supervisor` 和 `Task.Supervisor` 主要的不同是 `Task.Supervisor` 的默认重启策略是 `:temporary`（绝不重启子任务）。
 
 ### 受监管的 Tasks
 

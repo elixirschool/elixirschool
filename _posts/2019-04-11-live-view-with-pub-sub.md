@@ -1,7 +1,8 @@
 ---
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
-categories: post
+categories: general
+tags: ['phoenix']
 date: 2019-04-11
 layout: post
 title:  Building Real-Time Features with Phoenix Live View and PubSub

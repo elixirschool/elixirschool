@@ -1,7 +1,8 @@
 ---
 author: Svilen Gospodinov
 author_link: https://github.com/svileng
-categories: post
+categories: general
+tags: ['ecto']
 date:   2018-11-07
 layout: post
 title:  A brief guide to Ecto.Multi

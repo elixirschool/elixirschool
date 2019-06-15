@@ -1,7 +1,7 @@
 ---
 author: Sean Callan
 author_link: https://github.com/doomspork
-categories: post
+categories: general
 date:   2018-07-25
 layout: post
 title:  Ecto query composition

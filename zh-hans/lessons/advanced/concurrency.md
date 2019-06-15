@@ -81,7 +81,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-有时候我们不希望链接的进程导致当前进程跟着崩溃，这时候就要通过 `Process.flag/2` 函数捕捉进程的错误退出。这个函数用 Erlang 的 [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) 的 `trap_exit` 信号。当我们捕获进程的错误退出是。 (`trap_exit` 设为 `true`), 当进程错误退出时，就会向上层发送 `{:EXIT, from_pid, reason}` 三元组的消息。
+有时候我们不希望链接的进程导致当前进程跟着崩溃，这时候就要通过 `Process.flag/2` 函数捕捉进程的错误退出。这个函数用 Erlang 的 [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) 的 `trap_exit` 信号。当捕获到被链接的进程发生错误退出时（`trap_exit` 设为 `true`）, 就会收到像 `{:EXIT, from_pid, reason}` 这样的三元组形式的退出信号。
 
 ```elixir
 defmodule Example do

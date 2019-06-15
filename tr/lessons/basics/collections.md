@@ -21,7 +21,7 @@ Elixir listeleri bağlantılı liste (linked list) olarak işler. Bu da demektir
 ```elixir
 iex> liste = [3.14, :kek, "Elma"]
 [3.14, :kek, "Elma"]
-iex> ["π"] ++ liste
+iex> ["π" | liste]
 ["π", 3.14, :kek, "Elma"]
 iex> liste ++ ["Kiraz"]
 [3.14, :kek, "Elma", "Kiraz"]

@@ -105,11 +105,11 @@ iex> ~S/the cat in the hat on the mat/
 V čom je rozdiel? Rozdiel je podobný ako pri sigile zoznamu znakov, ktorý sme si ukázali. Odpoveď je interpolácia a escapovanie reťazca. Ďalší príklad:
 
 ```elixir
-iex> ~s/welcome to elixir #{String.downcase "school"}/
+iex> ~s/welcome to elixir #{String.downcase "SCHOOL"}/
 "welcome to elixir school"
 
-iex> ~S/welcome to elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
+"welcome to elixir \#{String.downcase \"SCHOOL\"}"
 ```
 
 ### Zoznamy slov

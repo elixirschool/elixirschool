@@ -22,7 +22,7 @@ Elixir implementa listas como listas encadeadas. Isso significa que acessar o ta
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 # Prepending (rápido)
-iex> ["π"] ++ list
+iex> ["π" | list]
 ["π", 3.14, :pie, "Apple"]
 # Appending (lento)
 iex> list ++ ["Cherry"]
