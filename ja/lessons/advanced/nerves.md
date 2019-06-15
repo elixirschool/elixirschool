@@ -57,7 +57,7 @@ above for more information and other targets.
 
 プロジェクトは生成され、テスト装置を点滅させる準備ができています！早速試してみましょう!
 
-Raspberry Pi 3の場合、 `MIX_TARGET = rpi3` を設定しますが、ハードウェアに応じて、これをあなたが持っているハードウェアに合うように変更することができます。([Nerves documentation](https://hexdocs.pm/nerves/targets.html#content) を参照)
+Raspberry Pi 3の場合、 `MIX_TARGET=rpi3` を設定しますが、ハードウェアに応じて、これをあなたが持っているハードウェアに合うように変更することができます。([Nerves documentation](https://hexdocs.pm/nerves/targets.html#content) を参照)
 
 まず依存関係を設定しましょう:
 
