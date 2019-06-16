@@ -33,7 +33,7 @@ South hall on the other hand, was a step down. It was much smaller, with three m
 
 From the beginning of the conference, I got to see some familiar faces from last year, which made me much more comfortable. I think the conference was more crowded this year, but we have to check with the organizers to have official stats on the attendees.
 
-I got to talk with all of the sponsors that had a booth in the venue, which was really fun. Check out Cultivate, solarisBank, coders51, bitcrowd, ScoutAPM, Erlang Solutions and Toyota Connected, they are doing some great stuff with Elixir and some of them are hiring as well. They were kind enough to provide us with some swag, including some very nice t-shirts and a ton of stickers! Check it out:
+I got to talk with all of the sponsors that had a booth in the venue, which was really fun. Cultivate, solarisBank, coders51, bitcrowd, ScoutAPM, Erlang Solutions and Toyota Connected, they are doing some great stuff with Elixir and some of them are hiring as well. They were kind enough to provide us with some swag, including some very nice t-shirts and a ton of stickers! Check it out:
 
 ![IMG_20190421_155525](https://user-images.githubusercontent.com/4966172/58432840-1752fe00-80bd-11e9-83ec-e1626c35bf5a.jpg)
 
@@ -80,7 +80,7 @@ We also learned that the library is not going to affect SEO, as the initial load
 
 ### Live coding an Escher painting using Scenic by Ju Liu
 
-Ju Liu gave a very good talk about how to draw a simplified version of Escher's fish painting using vectors, a fish image and scenic. The talk  had not much to do with Scenic––it was more about Vector theory and how to use small graphic assets to compose more complex structures.
+Ju Liu gave a very good talk about how to draw a simplified version of Escher's fish painting using vectors, a fish image and scenic. The talk had not much to do with Scenic––it was more about Vector theory and how to use small graphic assets to compose more complex structures.
 
 He started showing how to bring a simple screen up with Scenic, then he discussed the basics of Vectorial Algebra and how to draw simple vectors on screen and scale them, moving on to describe how the Box Model works with vectors.
 
@@ -94,7 +94,7 @@ Renan Ranelli gave us some very insightful information on how to rewrite critica
 
 He began giving us some small insight on how IP telephony works, and the functionality of their Dialplan service that was up for a rewrite. That service is almost stateless, super latency sensitive and had relatively low throughput for each server. The service produced an xml file, with all the information the switch needs to to operate on a call. 
 
-The first step in the case study was geting buy-in from stakeholders by convincing them that the company needs to slow down feature development to pay technical debt, which they accomplished phrasing all the benefits in business terms. The next step was to commit resources, which is very critical as a rewrite is a huge amount of work when you are chasing a moving target. Another step is to write and deploy continuously.
+The first step in the case study was getting buy-in from stakeholders by convincing them that the company needs to slow down feature development to pay technical debt, which they accomplished phrasing all the benefits in business terms. The next step was to commit resources, which is very critical as a rewrite is a huge amount of work when you are chasing a moving target. Another step is to write and deploy continuously.
 
 What Telnyx did was run the new service along the old one, put a proxy in front of them that directed the traffic to both of them and logged the request, and both of their responses to a database. That way, Telnyx was able to make the final step––verifying feature parity–– finding disparities in the responses, fixing them, writing a regression test for that disparity to guard against it in the future, and iterating on those fixes with the help of TDD and rewrite / clean code, in a “TDD-ish” cycle of them that looks really close to the regular TDD one. 
 
@@ -160,8 +160,7 @@ The 3 lessons they have learned, are the following:
 
 In Lesson 1, we learn about GenStage / Flow and how their amazing features can help with a big long running system like that. Parallelism is made easy, and by using Flow, you are protected from DDoSing yourself, because instead of pushing from one system to another via stream, now you pull as many messages as you can get.
 
-In Lesson 2, John talked about how one should know their system pretty well, so that they can provide the correct configuration to it. For example, by using SQS, you are limited to receiving batches of 10 messages each time, so you have to build around that, unless you want to wait for say 500 messages to arrive at your system, 10 at a time. Another useful tip is to use a token, meaning a struct that gets pushed down through the whole system, changed at each step, which makes processing and pattern matching on messages really easy (it’s the same thing that Plug uses with it’s Conn struct). Errors are supposed to be passed through the whole flow, and left out of acknowledgement, so SQS will resend them, and you can process them again.
-
+In Lesson 2, John talked about how one should know their system pretty well, so that they can provide the correct configuration to it. For example, by using SQS, you are limited to receiving batches of 10 messages each time, so you have to build around that. Another useful tip is to use a token, meaning a struct that gets pushed down through the whole system, changed at each step, which makes processing and pattern matching on messages really easy (it’s the same thing that Plug uses with it’s Conn struct). Errors are supposed to be passed through the whole flow, and left out of acknowledgement, so SQS will resend them, and you can process them again.
 
 In Lesson 3, he spoke about how every system is different and there is no magic solution to fine tuning your app, how under the hood Flow breaks a flow into 3 sections of GenStages, producers, producers_consumers and consumers  and how one can toy with :max_demand argument in all these different sections to get a better result.
 
@@ -175,7 +174,7 @@ Arkadiusz Gil's talk was about Telemetry, a dynamic dispatching library used for
 
 He started by talking about monitoring, and how crucial it is to improving performance. The goal is to use monitoring early on in the lifecycle of our project (as we have done already with testing and deployment), so we can use it as another form of verification. Next, he showed us how we can do metrics today, using custom functions (like the number of requests, the number of successful responses, how big a load we are pushing to external systems like the the database, how to track memory or cpu usage from the vm etc). 
 
-But as we add more and more, this custom set up becomes repetitive. Telemetry uses emitted events from various parts of our systems, and then attaches to those events by using handlers, which are in turn pushed to a reporter system like statsd. 
+But as we add more and more, this custom set up becomes repetitive. Telemetry uses events emitted from various parts of our systems, and then attaches to those events by using handlers, which are in turn pushed to a reporter system like statsd. 
 
 A Telemetry event consists for three parts, the event name, the measurements (measurable properties like payload) and some metadata. Various libraries are beginning to add support for Telemetry emitting events in them, like Ecto from v3.1, Phoenix from v1.5 and Plug from 1.8. Arkadiusz also showed us `Telemetry.Poller` which every couple of seconds picks some metrics from the BEAM and emits them as Telemetry events and `Telemetry.Metrics` which allows us to specify how telemetry events are aggregated over time. Some examples of metrics is `last_value`, `sum`, `counter` and `distribution` which gives us some insight into statistics. 
 
