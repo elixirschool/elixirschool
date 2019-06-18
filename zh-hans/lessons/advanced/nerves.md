@@ -3,9 +3,9 @@ version: 1.0.0
 title: Nerves
 ---
 
-## 前情提要
+## Nerves 简介
 
-我们将在本课中介绍 Nerves， Nerves 项目是在嵌入式软件开发中使用 Elixir 的框架。 正如 Nerves 官网所说，它允许您“在 Elixir 中制作和部署防弹嵌入式软件”。 本课将与其他 Elixir School课程略有不同。 Nerves 学习起来有点困难，因为它需要一些先进的系统设置和额外的硬件，因此可能不适合初学者。
+我们将在本课中介绍 Nerves， Nerves 项目是在嵌入式软件开发中使用 Elixir 的框架。 正如 Nerves 官网所说，它允许您“使用 Elixir 制作和部署防弹嵌入式软件”。 本课将与其他 Elixir School课程略有不同。 Nerves 学习起来有点困难，因为它需要一些先进的系统设置和额外的硬件，因此可能不适合初学者。
 
 要使用 Nerves 编写嵌入式代码，您需要一个[目标设备](https://hexdocs.pm/nerves/targets.html)，一个带有您所选硬件支持的存储卡的读卡器，以及可以通过网络访问此设备。
 
@@ -84,7 +84,7 @@ Resolving Nerves artifacts...
 
 注意：确保在运行 `mix deps.get` 之前设置了指定目标设备的环境变量，因为它将为指定设备下载相应的系统镜像和工具链。
 
-## 固件刻录
+## 烧录固件
 
 现在我们可以使用闪存驱动器了。 将卡放入读卡器，如果您在前面的步骤中正确设置了所有内容，在运行 `mix firmware.burn` 并确认要使用的设备之后，您应该得到以下提示：
 
@@ -93,7 +93,7 @@ Building ......../network_led/_build/rpi_dev/nerves/images/network_led.fw...
 Use 7.42 GiB memory card found at /dev/rdisk2? [Yn]
 ```
 
-如果你确定这是你想要刻录的卡 - 选择 `Y`, 一段时间后存储卡就烧好了：
+如果你确定这是你想要烧录的卡 - 选择 `Y`, 一段时间后存储卡就烧好了：
 
 ```
 Use 7.42 GiB memory card found at /dev/rdisk2? [Yn]
@@ -106,11 +106,11 @@ Elapsed time: 8.022 s
 
 如果您连接了一个屏幕 - 在插入此存储卡的设备启动后，您应该看到一个 Linux 启动序列。
 
-## 连接网络
+## 网络设置
 
 下一步是连接网络。 Nerves 生态系统提供各种软件包，[nerves_network](https://github.com/nerves-project/nerves_network) 是我们通过有线以太网端口将设备连接到网络所需的。
 
-其实它已作为 `nerves_init_gadget` 的依赖项存在于您的项目中。 但是，默认情况下，它使用 DHCP（在运行 `config：nerves_init_gadget` 之后，请参阅 `config/config.exs` 中的配置）。 拥有静态 IP 地址更容易。
+其实它已作为 `nerves_init_gadget` 的依赖项存在于您的项目中。 但是，默认情况下，它使用 DHCP（在运行 `config: nerves_init_gadget` 之后，请参阅 `config/config.exs` 中的配置）。 拥有静态 IP 地址更容易。
 
 要设置静态网络，您需要在 `config/config.exs` 文件中添加以下行:
 
@@ -125,13 +125,13 @@ config :nerves_network, :default,
   ]
  ```
 
-请注意，此配置适用于有线连接。 如果要使用无线连接 - 请查看[Nerves network documentation](https://github.com/nerves-project/nerves_network#wifi-networking).
+请注意，此配置适只适用于有线连接。 如果要使用无线连接——请查看[Nerves network documentation](https://github.com/nerves-project/nerves_network#wifi-networking).
 
-请注意，您需要在此处使用本地网络参数 - 在我的网络中有一个未分配的IP `192.168.88.2`，我将使用它。 但是，在您的机器上下，它可能会有所不同。
+请注意，您需要根据所在的局域网的具体情况设置这里的参数，在我的网络中有一个未分配的 IP `192.168.88.2`，所以使用了这个 IP。 但是在您的网络环境中，这些参数可能会有所不同。
 
-更改后，我们需要运行 `mix firmware.burn` 重新刻录固件的更改版本，然后使用新卡启动设备。
+更改后，我们需要运行 `mix firmware.burn` 重新烧录固件的更改版本，然后使用新卡启动设备。
 
-当您打开设备电源时，可以使用 `ping` 命令查看它是否在线。
+当您打开设备电源后，可以使用 `ping` 命令查看它是否在线。
 
 ```
 Request timeout for icmp_seq 206
@@ -140,11 +140,11 @@ Request timeout for icmp_seq 207
 64 bytes from 192.168.88.2: icmp_seq=209 ttl=64 time=2.658 ms
 ```
 
-此输出表示现在通过从网络访问设备。
+此输出表示设备已经连上网，并且可以被访问到了
 
-## 网络固件刻录
+## 远程更新
 
-到目前为止，我们一直在刻录 SD 卡并将它们通过物理方式加载到我们的硬件中。 虽然这很好，但通过网络推送我们的更新更为直接。 `nerves_firmware_ssh` 包正是做这个事的。 默认情况下，它已存在于您的项目中，并配置为自动检测并在目录中查找 SSH 密钥。
+到目前为止，我们一直在烧录 SD 卡并将它们通过物理方式加载到我们的硬件中。 虽然这很好，但通过网络推送我们的更新更为直接。 `nerves_firmware_ssh` 包正是做这个事的。 默认情况下，它已存在于您的项目中，并配置为自动检测并在目录中查找 SSH 密钥。
 
 要使用网络固件更新功能，您需要通过 `mix firmware.gen.script` 生成上传脚本。 该命令将生成一个新的 `upload.sh` 脚本，我们可以运行该脚本来更新固件。
 
@@ -154,13 +154,13 @@ Request timeout for icmp_seq 207
 
 _提示：`ssh 192.168.88.2` 在应用程序的上下文中为您提供设备上的 IEx shell。_
 
-_故障排除：如果您的主文件夹中没有现有的 ssh 密钥，则会出现错误 `No SSH public keys found in ~/.ssh.` 在这种情况下，您需要运行 `ssh-keygen` 并重新刻录固件以使用网络更新功能._
+_故障排除：如果您的主文件夹中没有现有的 ssh 密钥，则会出现错误 `No SSH public keys found in ~/.ssh.` 在这种情况下，您需要运行 `ssh-keygen` 并重新烧录固件以使用网络更新功能._
 
-## 设置 LED 控制
+## 控制 LED
 
-要与 LED 交互，需要安装 [nerves_leds](https://github.com/nerves-project/nerves_leds) 软件包，这需要添加 `{：nerves_leds，“〜> 0.8”，目标：@all_targets}，` 到 `mix.exs` 文件。
+要与 LED 交互，需要安装 [nerves_leds](https://github.com/nerves-project/nerves_leds) 软件包，这需要添加 `{:nerves_leds，"〜> 0.8", targets: @all_targets},` 到 `mix.exs` 文件。
 
-设置依赖关系后，需要为设备配置 LED 列表。 例如，对于所有 Raspberry Pi 型号，板载只有一个 LED：`led0`。 让我们通过在 `config/config.exs` 中添加一行 `config：nerves_leds，names：[green：“led0”]` 来使用它。
+设置依赖关系后，需要为设备配置 LED 列表。 例如，对于所有 Raspberry Pi 型号，板载只有一个 LED：`led0`。 让我们通过在 `config/config.exs` 中添加一行 `config: nerves_leds, names:[green: "led0"]` 来使用它。
 
 
 对于其他设备，您可以查看[nerves_examples 项目的相应部分](https://github.com/nerves-project/nerves_examples/tree/master/hello_leds/config).
@@ -213,11 +213,11 @@ end
 
 ```
 
-要启用此功能，还需要将其添加到 `lib/network_led/application.ex` 中的监督树中：在 `def children（_target）do` 组下添加 `{NetworkLed.Blinker，name：NetworkLed.Blinker}`。
+要启用此功能，还需要将其添加到 `lib/network_led/application.ex` 中的监督树中：在 `def children（_target）do` 组下添加 `{NetworkLed.Blinker, name: NetworkLed.Blinker}`。
 
 请注意，Nerves 在应用程序中有两个不同的监督树 - 一个用于主机，一个用于实际设备。
 
-在此之后 - 就是这样！ 您实际上可以上传固件并通过目标设备上的 ssh 运行 IEx 检查`NetworkLed.Blinker.disable()` 关闭 LED（默认情况下在代码中启用），以及`NetworkLed.Blinker.enable()` 打开它。
+在此之后 - 就是这样！ 您实际上可以上传固件并通过目标设备上的 ssh 运行 IEx 检查 `NetworkLed.Blinker.disable()` 关闭 LED（默认情况下在代码中启用），以及 `NetworkLed.Blinker.enable()` 打开它。
 
 我们可以从命令提示符控制 LED 了！
 
@@ -225,9 +225,9 @@ end
 
 ## 添加 Web 服务器
 
-在这一步中，我们将使用`Plug.Router`。 如果您需要提醒 - 请随意浏览[插件](../../../lessons/specifics/plug/) 课程.
+在这一步中，我们将使用 `Plug.Router`。 如果您需要提醒 - 请随意浏览[插件](../../../lessons/specifics/plug/) 课程.
 
-首先，我们将 `{plug_cowboy，'〜> 2.0“}，` 添加到 `mix.exs` 并安装依赖项。
+首先，我们将 `{plug_cowboy, '〜> 2.0“}，` 添加到 `mix.exs` 并安装依赖项。
 
 然后，在 `lib/network_led/http.ex` 中添加实际进程来处理这些请求：
 
