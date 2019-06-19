@@ -139,7 +139,7 @@ Elixir 提供了好几种让我们可以在模块中访问到其他模块的方�
 
 ### `alias`
 
-在 Elixir 中不过非常常见，可以让我们通过别名去访问模块：
+在 Elixir 中非常常见，可以让我们通过别名去访问模块：
 
 ```elixir
 defmodule Sayings.Greetings do
