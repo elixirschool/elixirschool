@@ -338,7 +338,7 @@ This allows us to execute just one database call. It also has the added benefit 
 ```elixir
 Repo.all from m in Movie,
   join: a in assoc(m, :actors),
-  where: a.name == "John Wayne"
+  where: a.name == "John Wayne",
   preload: [actors: a]
 ```
 
