@@ -181,9 +181,10 @@ Examples
 假设一切都正常工作，那么你将看到和上面一样的输出，现在我们将配置ExDoc。在文件`mix.exs`中，添加两个依赖`:earmark` 和 `:ex_doc`。
 
 ```elixir
-def deps do
-  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
-end
+  def deps do
+    [{:earmark, "~> 1.2", only: :dev},
+    {:ex_doc, "~> 0.19", only: :dev}]
+  end
 ```
 
 使用`only: :dev`是因为我们不想在生产环境下下载和编译这些依赖。为什么需要Earmark呢？Earmark是一个使用Elixir编写的markdown分析器，ExDoc使用它来将带有`@moduledoc` 和 `@doc`的注释转换成漂亮的HTML页面。
