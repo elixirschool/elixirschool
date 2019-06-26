@@ -70,6 +70,7 @@ Die Sektion `application` wird während der Erstellung unserer Anwendungsdatei w
 Es könnte vonnöten sein `iex` im Kontext unserer Anwendung zu starten. Glücklicherweise macht mix das einfach. Wir können so eine neue `iex`-Sitzung starten:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 

@@ -68,6 +68,7 @@ I første seksjon ser vi `project`. Her gir vi navn til applikasjonen vår (`app
 Det kan være nødvendig å kjøre applikasjonen vår i `iex`. Heldigvis gjør Mix dette veldig enkelt for oss:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 

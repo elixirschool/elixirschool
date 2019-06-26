@@ -70,6 +70,7 @@ Sekcia `application` slúži na špecifikovanie aplikácii (menších častí pr
 Možno budeme musieť použiť `iex` v kontexte našej aplikácie. Našťastie pre nás, Mix nám to uľahčí. Môžeme spustiť novú inštanciu `iex` spolu s Mix takto:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 

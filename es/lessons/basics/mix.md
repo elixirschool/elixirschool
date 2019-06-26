@@ -70,6 +70,7 @@ La sección `application` es usada durante la generación de nuestro archivo de 
 Puede ser necesario usar `iex` dentro del contexto de nuestra aplicación. Por suerte para nosotros, mix hace esto fácil. Podemos empezar una nueva sesión `iex`:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 

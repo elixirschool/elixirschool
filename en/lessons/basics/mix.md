@@ -81,6 +81,7 @@ Thankfully for us, Mix makes this easy.
 We can start a new `iex` session:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 

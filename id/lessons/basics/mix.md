@@ -70,6 +70,7 @@ Bagian `application` digunakan dalam proses pembuatan file aplikasi kita yang ak
 Mungkin kita perlu menggunakan `iex` dalam konteks aplikasi kita.  Untungnya, mix mempermudah hal ini.  Kita bisa memulasi sebuah sesi `iex` baru:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 
