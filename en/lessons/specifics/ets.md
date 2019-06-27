@@ -15,7 +15,8 @@ ETS is capable of storing large amounts of data and offers constant time data ac
 
 Tables in ETS are created and owned by individual processes.
 When an owner process terminates, its tables are destroyed.
-By default ETS is limited to 1400 tables per node.
+You can have as many ETS table as you want, the only limit is the server memory. A limit can be specified using the `ERL_MAX_ETS_TABLES` environment variable.
+
 
 ## Creating Tables
 
