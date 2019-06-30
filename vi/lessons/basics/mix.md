@@ -81,6 +81,7 @@ Khi chúng ta biên dịch, mix sẽ tạo một thư mục `_build` cho thành 
 Sử dụng `iex` bên trong ngữ cảnh của chương trình của chúng ta có thể sẽ cần thiết. Rất may mắn là mix đã làm cho việc này trở nên vô cùng dễ dàng. Sau khi application đã được biên dịch, chúng ta có thể tạo một `iex` session mới:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 Khởi tạo `iex` theo cách này sẽ tải chương trình và toàn bộ phụ thuộc vào runtime hiện tại.

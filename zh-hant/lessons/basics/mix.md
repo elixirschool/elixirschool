@@ -81,6 +81,7 @@ end
 可以用以下的方式開始一個新的 `iex` 對話：
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 
