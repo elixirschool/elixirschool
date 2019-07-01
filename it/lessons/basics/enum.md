@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.4.1
 title: Enumerazioni
 ---
 
@@ -28,9 +28,8 @@ at/3
 ...
 ```
 
-Usando questo, è particolarmente chiaro che abbiamo una grande quantità di funzionalità e questo è per una specifica ragione.
-Le Enumerazioni sono al centro della programmazione funzionale e sono una cosa estremamente utile.
-Sfruttando le enumerazioni combinate con altri vantaggi di Elixir, come la documentazione (che viene trattata come funzione di prima classe, come visto in precendenza), Elixir può essere incredibilmente efficace anche per lo sviluppatore.
+Elixir possiede una moltitudine di funzionalità che riguardano enumerazioni. Questo è dovuto al fatto che le Enumerazioni sono al centro della programmazione funzionale e tornano estremamente utili.
+Sfruttando le enumerazioni combinate con altri vantaggi di Elixir, come la documentazione, Elixir è incredibilmente efficace per sviluppare software.
 
 Per conoscere tutte le funzioni visita la documentazione ufficiale del modulo [`Enum`](https://hexdocs.pm/elixir/Enum.html); per enumerare gli elementi a richiesta (_lazy enumeration_) puoi usare il modulo [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
