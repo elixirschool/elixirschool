@@ -96,7 +96,7 @@ end
 * `:options` - サーバーオプション。
 サーバーが要求するポート番号を含める必要があります。
 
-私たちの `lib/example/application.ex` ファイルは、その `start/2` 関数でchild specを実装するべきです:
+`lib/example/application.ex` ファイルは、その `start/2` 関数でchild specを実装するべきです:
 
 ```elixir
 defmodule Example.Application do
