@@ -171,7 +171,7 @@ This can be passed in as a tuple of `{SupervisorName, remote_node_name}` in orde
 You can pass in a fifth, optional argument describing shutdown options.
 We won't worry about that here.
 
-Out Chat application is pretty simple.
+Our Chat application is pretty simple.
 It sends messages to remote nodes and remote nodes respond to those messages by `IO.puts`-ing them out to the STDOUT of the remote node.
 
 First, let's define a function, `Chat.receive_message/1`, that we want our task to execute on a remote node.
