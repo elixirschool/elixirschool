@@ -75,7 +75,7 @@ config :friends, Example.Repo,
 This configures how Ecto will connect to the database.
 Note how we chose the `Ecto.Adapters.Postgres` adapter.
 
-It also creates a `Example.Repo` module inside `lib/friends/repo.ex`
+It also creates a `Example.Repo` module inside `lib/example/repo.ex`
 
 ```elixir
 defmodule Example.Repo do
