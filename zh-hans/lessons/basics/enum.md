@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.4.1
 title: Enum 模块
 ---
 
@@ -29,8 +29,7 @@ at/3
 ```
 
 通过上面的命令，很明显能看到我们有很多函数，而且这些函数都是师出有名。
-集合在函数式编程中处于核心地位，同时也是非常有用的部分。
-通过利用它与Elixir的其他优势相结合，比如我们刚看到的，文档是一等公民，可以赋予开发人员非常强大的能力。
+集合在函数式编程占有核心地位，结合 Elixir 的其他特性，它可以可以赋予开发人员非常强大的能力。
 
 要想了解全部的函数，请访问官方的 [`Enum`](https://hexdocs.pm/elixir/Enum.html) 文档。而要想了解惰性枚举（lazy enumeration），访问 [`Stream`](https://hexdocs.pm/elixir/Stream.html) 模块。
 
