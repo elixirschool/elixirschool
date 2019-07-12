@@ -68,7 +68,7 @@ config :friends, Friends.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "friends_repo",
   username: "postgres",
-  password: "postgres",
+  password: "",
   hostname: "localhost"
 ```
 
