@@ -139,7 +139,7 @@ Benchee.run(%{"example function" => fn -> "hi!" end},
     * **best** - 使用最常用的最佳单位。打平时会选择大的单位。
     * **largest** - 使用最大的最佳单位。
     * **smallest** - 使用最小的最佳单位。
-    * **none** - 不适用任何的伸缩调节。时间按照毫微秒来显示，ips 数量则不显示单位。
+    * **none** - 不适用任何的伸缩调节。时间按照纳秒来显示，ips 数量则不显示单位。
 * `:before_scenario`/`after_scenario`/`before_each`/`after_each` - 我们不会深入讲解这几个设置。如果你希望在基准测量函数运行前后做写额外的事情，但又不把这部分的时间计算在内，请参看 [Benchee 文档的 hooks 章节](//github.com/bencheeorg/benchee#hooks-setup-teardown-etc)
 
 ### 输入
