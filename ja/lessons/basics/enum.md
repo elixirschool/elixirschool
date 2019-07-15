@@ -1,5 +1,5 @@
 ---
-version: 1.4.1
+version: 1.4.2
 title: Enum
 ---
 
@@ -168,7 +168,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 コレクションのソートに、関数を1つだけでなく2つ使うと容易になります。
 
-`sort/1`はソートの順序を決める為にErlangの `Term 優先順位` を使います:
+`sort/1`はソートの順序を決める為にErlangの [term 優先順位](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) を使います:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
