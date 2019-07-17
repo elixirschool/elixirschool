@@ -18,7 +18,7 @@ Using the `SimpleQueue` from the [OTP Concurrency](../../advanced/otp-concurrenc
 Create a new project using `mix new simple_queue --sup` to create a new project with a supervisor tree.
 The code for the `SimpleQueue` module should go in `lib/simple_queue.ex` and the supervisor code we'll be adding will go in `lib/simple_queue/application.ex`
 
-Children are defined using a list, either a list module names:
+Children are defined using a list, either a list of module names:
 
 ```elixir
 defmodule SimpleQueue.Application do
