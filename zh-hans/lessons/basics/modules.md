@@ -64,7 +64,7 @@ end
 ## 结构体
 
 结构体是字典的特殊形式，它们的键是预定义的，一般都有默认值。结构体必须定义在某个模块内部，因此也必须通过模块的命名空间来访问。
-在一个模块里只定义一个结构体是一种常用的手法。
+经常一个模块就为了定义一个结构体，其他什么也没有。
 
 要定义一个结构体，我们使用 `defstruct` 关键字，后面跟着关键字列表和默认值：
 
@@ -159,7 +159,7 @@ defmodule Example do
 end
 ```
 
-如果别名有冲突是，或者我们想要给那个模块名一个不同的名字时，我们可以用 `:as` 参数：
+如果别名有冲突，或者我们想要给那个模块命一个不同的名字时，我们可以用 `:as` 参数：
 
 ```elixir
 defmodule Example do
@@ -215,7 +215,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-除了指定函数名之外，Elixir 还提供了两个特殊的原子，`functions` 和 `:macros`，来让我们只导入函数或宏：
+除了指定函数名之外，Elixir 还提供了两个特殊的原子，`:functions` 和 `:macros`，来让我们只导入函数或宏：
 
 ```elixir
 import List, only: :functions
