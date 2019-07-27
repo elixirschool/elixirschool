@@ -1,5 +1,5 @@
 ---
-version: 2.1.0
+version: 2.2.0
 title: 基本
 ---
 
@@ -57,14 +57,14 @@ EctoのレポジトリはPostgresデータベースのようなデータスト�
 次のコマンドを実行してレポジトリをセットアップしましょう:
 
 ```shell
-$ mix ecto.gen.repo -r Example.Repo
+$ mix ecto.gen.repo -r Friends.Repo
 ```
 
 これは、使用するアダプタを含むデータベースとの接続にの中に必要な設定を `config/config.exs` の中に生成します。
 これが `Example` アプリケーションのための設定ファイルとなります。
 
 ```elixir
-config :friends, Example.Repo,
+config :friends, Friends.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "friends_repo",
   username: "postgres",
@@ -78,14 +78,14 @@ config :friends, Example.Repo,
 またこれは `lib/friends/repo.ex` の中に `Example.Repo` を作ります。
 
 ```elixir
-defmodule Example.Repo do
+defmodule Friends.Repo do
   use Ecto.Repo, otp_app: :friends
 end
 ```
 
-データベースに対してクエリを実行するためには `Example.Repo` を使います。また、このモジュールに対して `:friends` Elixirアプリケーションの中でデータベースの接続情報を見つけるよう教えます。
+データベースに対してクエリを実行するためには `Friends.Repo` を使います。また、このモジュールに対して `:friends` Elixirアプリケーションの中でデータベースの接続情報を見つけるよう教えます。
 
-次に、 `lib/friends/application.ex` の中で `Example.Repo` をアプリケーションのスーパーバイザーツリーにおけるスーパーバイザーとして設定します。  
+次に、 `lib/friends/application.ex` の中で `Friends.Repo` をアプリケーションのスーパーバイザーツリーにおけるスーパーバイザーとして設定します。  
 これによって、アプリケーション開始時にEctoプロセスを開始します。
 
 ```elixir
@@ -135,7 +135,7 @@ $ mix ecto.gen.migration create_people
 ディレクトリに移動してマイグレーションを開くと、次のようなものが確認できるはずです:
 
 ```elixir
-defmodule Example.Repo.Migrations.CreatePeople do
+defmodule Friends.Repo.Migrations.CreatePeople do
   use Ecto.Migration
 
   def change do
@@ -147,7 +147,7 @@ end
 `name` と `age` を持った `people` テーブルを新たに作るために、 `change/0` 関数を修正することから始めましょう:
 
 ```elixir
-defmodule Example.Repo.Migrations.CreatePeople do
+defmodule Friends.Repo.Migrations.CreatePeople do
   use Ecto.Migration
 
   def change do
@@ -178,7 +178,7 @@ Ectoはデータベーステーブルの名前を複数形とするのに対し�
 それでは新しいスキーマを `lib/friends/person.ex` に作ってみましょう。
 
 ```elixir
-defmodule Example.Person do
+defmodule Friends.Person do
   use Ecto.Schema
 
   schema "people" do
@@ -190,10 +190,10 @@ end
 
 この `Example.Person` は、それが `people` テーブルと関連するものであることをEctoに伝え、stringの `name` とintegerでデフォルトが0の `age` という2つのカラムを持っていることがわかります。
 
-`iex` を開いて新しい人を作ることで、このスキーマを覗いてみましょう:
+`iex -S mix` を開いて新しい人を作ることで、このスキーマを覗いてみましょう:
 
 ```shell
-iex> %Example.Person{}
+iex> %Friends.Person{}
 %Example.Person{age: 0, name: nil}
 ```
 
@@ -201,7 +201,7 @@ iex> %Example.Person{}
 それでは"本当の"人を作ってみましょう:
 
 ```shell
-iex> person = %Example.Person{name: "Tom", age: 11}
+iex> person = %Friends.Person{name: "Tom", age: 11}
 %Example.Person{age: 11, name: "Tom"}
 ```
 
@@ -213,7 +213,7 @@ iex> person.name
 iex> Map.get(person, :name)
 "Tom"
 iex> %{name: name} = person
-%Example.Person{age: 11, name: "Tom"}
+%Friends.Person{age: 11, name: "Tom"}
 iex> name
 "Tom"
 ```
@@ -222,9 +222,9 @@ iex> name
 
 ```elixir
 iex> %{person | age: 18}
-%Example.Person{age: 18, name: "Tom"}
+%Friends.Person{age: 18, name: "Tom"}
 iex> Map.put(person, :name, "Jerry")
-%Example.Person{age: 11, name: "Jerry"}
+%Friends.Person{age: 11, name: "Jerry"}
 ```
 
 次のチェンジセットのレッスンでは、データの変更をバリデーションする方法と、最終的にそれらをデータベースに永続化する方法について見ていきます。
