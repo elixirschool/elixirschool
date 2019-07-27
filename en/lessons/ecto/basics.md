@@ -1,5 +1,5 @@
 ---
-version: 2.2.0
+version: 2.2.1
 title: Basics
 ---
 
@@ -61,7 +61,7 @@ $ mix ecto.gen.repo -r Friends.Repo
 ```
 
 This will generate the configuration required in `config/config.exs` to connect to a database including the adapter to use.
-This is the configuration file for our `Example` application
+This is the configuration file for our `Friends` application
 
 ```elixir
 config :friends, Friends.Repo,
@@ -75,7 +75,7 @@ config :friends, Friends.Repo,
 This configures how Ecto will connect to the database.
 Note how we chose the `Ecto.Adapters.Postgres` adapter.
 
-It also creates a `Example.Repo` module inside `lib/friends/repo.ex`
+It also creates a `Friends.Repo` module inside `lib/friends/repo.ex`
 
 ```elixir
 defmodule Friends.Repo do
@@ -92,7 +92,7 @@ This will start the Ecto process when our application starts.
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      Example.Repo,
+      Friends.Repo,
     ]
 
   ...
@@ -101,7 +101,7 @@ This will start the Ecto process when our application starts.
 After that we'll need to add the following line to our `config/config.exs` file:
 
 ```elixir
-config :friends, ecto_repos: [Example.Repo]
+config :friends, ecto_repos: [Friends.Repo]
 ```
 
 This will allow our application to run ecto mix commands from the commandline.
@@ -188,13 +188,13 @@ defmodule Friends.Person do
 end
 ```
 
-Here we can see that the `Example.Person` module tells Ecto that this schema relates to the `people` table and that we have two columns: `name` which is a string and `age`, an integer with a default of `0`.
+Here we can see that the `Friends.Person` module tells Ecto that this schema relates to the `people` table and that we have two columns: `name` which is a string and `age`, an integer with a default of `0`.
 
 Let's take a peek at our schema by opening `iex -S mix` and creating a new person:
 
 ```shell
 iex> %Friends.Person{}
-%Example.Person{age: 0, name: nil}
+%Friends.Person{age: 0, name: nil}
 ```
 
 As expected we get a new `Person` with the default value applied to `age`.
@@ -202,7 +202,7 @@ Now let's create a "real" person:
 
 ```shell
 iex> person = %Friends.Person{name: "Tom", age: 11}
-%Example.Person{age: 11, name: "Tom"}
+%Friends.Person{age: 11, name: "Tom"}
 ```
 
 Since schemas are just structs, we can interact with our data like we're used to:
