@@ -316,7 +316,7 @@ plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
 アプリケーションの環境変数を `config/config.exs` に設定します。
 
 ```elixir
-use Mix.config
+use Mix.Config
 
 config :example, cowboy_port: 8080
 ```

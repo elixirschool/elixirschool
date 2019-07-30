@@ -276,7 +276,7 @@ paths: ["/upload"])`。接着就会把参数传给 `VerifyRequest.call(conn, opt
 我们把应用的环境变量设置到 `config/config.exs`
 
 ```elixir
-use Mix.config
+use Mix.Config
 
 config :example, cowboy_port: 8080
 ```

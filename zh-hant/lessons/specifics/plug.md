@@ -317,7 +317,7 @@ paths: ["/upload"])`。
 將設置一個應用程式使用的環境變數在 `config/config.exs` 內。
 
 ```elixir
-use Mix.config
+use Mix.Config
 
 config :example, cowboy_port: 8080
 ```

@@ -312,7 +312,7 @@ Quando definimos a aplicação e o módulo `Example`, a porta HTTP foi definida 
 Nós vamos adicionar uma variável no ambiente da aplicação em `config/config.exs`
 
 ```elixir
-use Mix.config
+use Mix.Config
 
 config :example, cowboy_port: 8080
 ```
