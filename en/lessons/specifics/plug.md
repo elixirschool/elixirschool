@@ -312,7 +312,7 @@ It's considered good practice to make the port configurable by putting it in a c
 We'll set an application environment variable in `config/config.exs`
 
 ```elixir
-use Mix.config
+use Mix.Config
 
 config :example, cowboy_port: 8080
 ```
