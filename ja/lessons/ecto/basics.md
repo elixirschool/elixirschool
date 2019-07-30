@@ -1,5 +1,5 @@
 ---
-version: 2.2.0
+version: 2.3.0
 title: 基本
 ---
 
@@ -61,7 +61,7 @@ $ mix ecto.gen.repo -r Friends.Repo
 ```
 
 これは、使用するアダプタを含むデータベースとの接続にの中に必要な設定を `config/config.exs` の中に生成します。
-これが `Example` アプリケーションのための設定ファイルとなります。
+これが `Friends` アプリケーションのための設定ファイルとなります。
 
 ```elixir
 config :friends, Friends.Repo,
@@ -75,7 +75,7 @@ config :friends, Friends.Repo,
 これはEctoがどのようにデータベースと接続するかを構成します。
 `Ecto.Adapters.Postgres` アダプタをどのように選択したかを覚えておいてください。
 
-またこれは `lib/friends/repo.ex` の中に `Example.Repo` を作ります。
+またこれは `lib/friends/repo.ex` の中に `Friends.Repo` を作ります。
 
 ```elixir
 defmodule Friends.Repo do
@@ -92,7 +92,7 @@ end
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      Example.Repo,
+      Friends.Repo,
     ]
 
   ...
@@ -101,7 +101,7 @@ end
 その後、 `config/config.exs` ファイルに次の行を追加する必要があります:
 
 ```elixir
-config :friends, ecto_repos: [Example.Repo]
+config :friends, ecto_repos: [Friends.Repo]
 ```
 
 これにより、アプリケーションがコマンドラインからEctoのmixコマンドを実行できるようになります。
@@ -188,13 +188,13 @@ defmodule Friends.Person do
 end
 ```
 
-この `Example.Person` は、それが `people` テーブルと関連するものであることをEctoに伝え、stringの `name` とintegerでデフォルトが0の `age` という2つのカラムを持っていることがわかります。
+この `Friends.Person` は、それが `people` テーブルと関連するものであることをEctoに伝え、stringの `name` とintegerでデフォルトが0の `age` という2つのカラムを持っていることがわかります。
 
 `iex -S mix` を開いて新しい人を作ることで、このスキーマを覗いてみましょう:
 
 ```shell
 iex> %Friends.Person{}
-%Example.Person{age: 0, name: nil}
+%Friends.Person{age: 0, name: nil}
 ```
 
 期待通りデフォルト値が適用された `age` を持つ `Person` ができました。
@@ -202,7 +202,7 @@ iex> %Friends.Person{}
 
 ```shell
 iex> person = %Friends.Person{name: "Tom", age: 11}
-%Example.Person{age: 11, name: "Tom"}
+%Friends.Person{age: 11, name: "Tom"}
 ```
 
 スキーマはただの構造体なので、これまでのようにデータを扱うことができます:
