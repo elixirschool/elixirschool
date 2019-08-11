@@ -60,12 +60,12 @@ iex> Date.leap_year? date
 true
 ```
 
-`day_of_week/1` calcula em que dia da semana será a data provida. Nesse caso é um sábado. `leap_year?/1` verifica se é um ano ano bissexto. Outras funções podem ser encontradas na [documentação](https://hexdocs.pm/elixir/Date.html).
+`day_of_week/1` calcula em que dia da semana será a data provida. Nesse caso é um sábado. `leap_year?/1` verifica se é um ano bissexto. Outras funções podem ser encontradas na [documentação](https://hexdocs.pm/elixir/Date.html).
 
 ## NaiveDateTime
 
-Há dois tipos de structs que contém tanto a data e o tempo em apenas um lugar no Elixir
-O primeiro dos dois é o `NaiveDateTime`. A desvatagem é a falta de suporte para fuso horário:
+Há dois tipos de structs que contém tanto a data e o tempo em apenas um lugar no Elixir.
+O primeiro dos dois é o `NaiveDateTime`. A desvantagem é a falta de suporte para fuso horário:
 
 ```elixir
 iex(15)> NaiveDateTime.utc_now
@@ -95,4 +95,4 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
 
-É isso! Se você quer trabalhar com outras funções avançadas você pode querer considerar olhar mais sobre isso na documentação de [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html). Você pode considerar o [Timex](https://github.com/bitwalker/timex) e [Calendar](https://github.com/lau/calendar) que são bibliotecas poderosas para trabalhar com tempo no Elixir.
+É isso! Se você quer trabalhar com outras funções avançadas, verifique nossa documentação de [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html) e [DateTime](https://hexdocs.pm/elixir/DateTime.html). Você pode considerar o [Timex](https://github.com/bitwalker/timex) e [Calendar](https://github.com/lau/calendar) que são bibliotecas poderosas para trabalhar com tempo no Elixir.
