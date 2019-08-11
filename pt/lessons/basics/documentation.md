@@ -28,7 +28,7 @@ Observe este script em Elixir (greeting.exs):
 IO.puts("Hello, " <> "chum.")
 ```
 
-Elixir, ao executar este script irá ignorar tudo, de `#` até o fim da linha, tratando-a como dados ocultos e sem lógica de execução. Pode adicionar nenhum valor para a operação ou o desempenho do script, no entanto, quando não é tão óbvio sobre o que está acontecendo, um programador deve saber ao ler o seu comentário. Esteja atento para não abusar do comentário de uma linha! Bagunçando uma base de código pode se tornar um pesadelo indesejável para alguns. É melhor usar com moderação.
+Elixir, ao executar este script irá ignorar tudo, de `#` até o fim da linha, tratando-a como dados ocultos e sem lógica de execução. Pode adicionar nenhum valor para a operação ou o desempenho do script, no entanto, quando não é tão óbvio sobre o que está acontecendo, um programador deve saber ao ler o seu comentário. Esteja atento para não abusar do comentário de uma linha! Bagunçar uma base de código pode se tornar um pesadelo indesejável para alguns. É melhor usar com moderação.
 
 ### Documentação de  Módulos
 
@@ -212,11 +212,11 @@ Podemos ver que Earmark converteu nosso markdown e ExDoc agora é exibido em um 
 
 ![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
-Agora nós podemos implantar isso para GitHub, o nosso próprio site, mais comumente no [HexDocs][HexDocs](https://hexdocs.pm/).
+Agora nós podemos implantar isso para GitHub, o nosso próprio site, mais comumente no [HexDocs](https://hexdocs.pm/).
 
 ## Boas Práticas
 
-Adicionar documentação deve ser seguido com as boas práticas orientadas pela linguagem. Desde que Elixir é uma linguagem bastante jovem, muitas normas ainda estão a ser descobertas ao longo do crescimento do ecossistema. A comunidade, entretanto, tem feito esforços para estabelecer as melhores práticas. Para ler mais sobre as melhores práticas veja [O Guia de Estilo Elixir] (https://github.com/niftyn8/elixir_style_guide).
+Adicionar documentação deve ser seguido com as boas práticas orientadas pela linguagem. Desde que Elixir é uma linguagem bastante jovem, muitas normas ainda estão a ser descobertas ao longo do crescimento do ecossistema. A comunidade, entretanto, tem feito esforços para estabelecer as melhores práticas. Para ler mais sobre as melhores práticas veja [O Guia de Estilo Elixir](https://github.com/niftyn8/elixir_style_guide).
 
   - Sempre documente um módulo.
 
@@ -229,7 +229,7 @@ defmodule Greeter do
 end
 ```
 
-  - Em caso você não pretenda documentar um módulo, **não deixe** isto em branco. Considere anotar o módulo com `false` como a seguir:
+  - Em caso você não pretenda documentar um módulo, **não deixe-o** em branco. Considere anotar o módulo com `false` como a seguir:
 
 ```elixir
 defmodule Greeter do
@@ -304,6 +304,6 @@ defmodule Greeter do
 end
 ```
 
- - Tente incluir alguns exemplos de código em sua documentação, isto também permite gerar testes automáticos a partir dos exemplos de código encontrados em um módulo, função ou macro com [Exunit.DocTest] []. A fim de fazer isso, é preciso invocar o macro `doctest/1` de seu caso de teste e escrever os seus exemplos de acordo com algumas orientações, que são detalhados na [documentação oficial][ExUnit.DocTest] .
+ - Tente incluir alguns exemplos de código em sua documentação, isto também permite gerar testes automáticos a partir dos exemplos de código encontrados em um módulo, função ou macro com [Exunit.DocTest] []. A fim de fazer isso, é preciso invocar o macro `doctest/1` de seu caso de teste e escrever os seus exemplos de acordo com algumas orientações, que são detalhados na [documentação oficial][ExUnit.DocTest].
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html
