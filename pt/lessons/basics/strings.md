@@ -137,7 +137,7 @@ defmodule Anagram do
 end
 ```
 
-Primeiro vamos olhar para `anagrams?/2`. Estamos verificando se os parâmetros que recebemos são binários ou não. Essa é a forma de verificar se uma parâmetro é uma String em Elixir.
+Primeiro vamos olhar para `anagrams?/2`. Estamos verificando se os parâmetros que recebemos são binários ou não. Essa é a forma de verificar se um parâmetro é uma String em Elixir.
 
 Depois disso, chamamos a função que ordena as strings em ordem alfabética, primeiro deixamos a string com letras minúsculas e então usamos `String.graphemes/1`, que retorna a lista com os graphemes da string. Por fim, utilizamos `Enum.sort/1` para ordenar a lista. Bastante simples, não acha?
 
@@ -164,4 +164,4 @@ iex> Anagram.anagrams?(3, 5)
     iex:11: Anagram.anagrams?/2
 ```
 
-Como você pode ver, a última chamada a `anagrams?` causou um FunctionClauseError. Esse erro nos diz que não há nenhuma função no nosso módulo que recebe dois argumentos não binários, e isso é exatamente o que nós queremos, receber apenas duas strings e nada mais.
+Como você pode ver, a última chamada a `anagrams?` causou um `FunctionClauseError`. Esse erro nos diz que não há nenhuma função no nosso módulo que recebe dois argumentos não binários, e isso é exatamente o que nós queremos, receber apenas duas strings e nada mais.
