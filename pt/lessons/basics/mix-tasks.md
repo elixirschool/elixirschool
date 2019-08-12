@@ -83,7 +83,7 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-Note que agora nós começamos o código do defmodule com `Mix.Tasks` e o nome que queremos usar para o nosso comando. Na segunda linha, colocamos `use Mix.Task`, que traz o comportamento `Mix.Task` no namespace. Então, declaramos uma função run que ignora quaisquer argumentos e, dentro dessa função, chamamos nosso módulo `Hello` e a função `say`.
+Note que agora nós começamos o código do `defmodule` com `Mix.Tasks` e o nome que queremos usar para o nosso comando. Na segunda linha, colocamos `use Mix.Task`, que traz o comportamento `Mix.Task` no namespace. Então, declaramos uma função `run` que ignora quaisquer argumentos e, dentro dessa função, chamamos nosso módulo `Hello` e a função `say`.
 
 ## Tarefas Mix em Ação
 
