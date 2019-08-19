@@ -442,3 +442,13 @@
     - translator
   languages:
     - zh-hans
+
+- github: vbrazo
+  name: Vitor Oliveira
+  intro:
+  homepage: http://github.com/vbrazo
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - pt
