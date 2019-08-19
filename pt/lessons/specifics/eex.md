@@ -9,7 +9,7 @@ Do mesmo jeito que Ruby possui ERB e Java JSPs, Elixir tem EEx ou *Embedded Elix
 
 ## API
 
-A API EEX suporta trabalhar com cadeias de caracteres e arquivos directamente. A API está dividida em três componentes principais: avaliação simples, definicações de funções, e complilação para AST.
+A API EEX suporta trabalhar com cadeias de caracteres e arquivos diretamente. A API está dividida em três componentes principais: avaliação simples, definições de funções, e compilação para AST.
 
 ### Avaliação
 
@@ -54,7 +54,7 @@ Por padrão, existem quatro etiquetas (tags) suportadas no EEx:
 <%# Comentários - são ignorados no código fonte %>
 ```
 
-Todas expressões que desejamos imprimir __devem__ usar o sinal de igualidade (`=`). É importante notar que enquanto outras linguagens de templates tratam cláusulas tipo `if` de forma especial, EEx não faz isso. Sem `=` nada será impresso:
+Todas expressões que desejamos imprimir __devem__ usar o sinal de igualdade (`=`). É importante notar que enquanto outras linguagens de templates tratam cláusulas tipo `if` de forma especial, EEx não faz isso. Sem `=` nada será impresso:
 
 ```elixir
 <%= if true do %>
