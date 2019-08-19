@@ -9,7 +9,7 @@ Nessa seção vamos aprender a utilizar o Ecto para definir e trabalhar com asso
 
 ## Configuração
 
-Nós vamos construir a aplicação `Example`, das ultimas lições. Você pode referir-se a configuração [aqui](./basics.md) para uma breve recapitulação.
+Nós vamos construir a aplicação `Example`, das últimas lições. Você pode referir-se a configuração [aqui](./basics.md) para uma breve recapitulação.
 
 ## Tipos de Associações
 
@@ -60,7 +60,7 @@ defmodule Example.Movie do
 end
 ```
 
-A macro `has_many/3` não adiciona dados ao banco de dados por sí só. O que ela faz é utilizar uma chave estrangeira no esquema associado (`characters`) para tornar as associações de personagens de um filme disponíveis. Isso é o que nos permite realizar chamadas como `movie.characters`.
+A macro `has_many/3` não adiciona dados ao banco de dados por si só. O que ela faz é utilizar uma chave estrangeira no esquema associado (`characters`) para tornar as associações de personagens de um filme disponíveis. Isso é o que nos permite realizar chamadas como `movie.characters`.
 
 #### A migração Belongs
 
