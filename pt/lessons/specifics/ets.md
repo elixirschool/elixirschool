@@ -42,7 +42,7 @@ Existem quatro tipos de tabelas disponíveis no ETS:
 
 ### Controle de Acesso
 
-Controle de acesso no ETS é semelhante ao controle de acesso dentro de modulos:
+Controle de acesso no ETS é semelhante ao controle de acesso dentro de módulos:
 
 + `public` - Leitura/Escrita disponíveis para todos os processos.
 + `protected` - Leitura disponível para todos os processos. Escrita disponível apenas para o proprietário. É o padrão.
