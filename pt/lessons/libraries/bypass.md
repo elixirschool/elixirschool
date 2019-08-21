@@ -22,7 +22,7 @@ Com respostas pré-definidas nós podemos testar qualquer número de possibilida
 ## Usando Bypass
 
 Para melhor ilustrar as funcionalidades do Bypass vamos construir uma aplicação utilitária simples para testar (_ping_) uma lista de domínios e garantir que eles estão online.
-Para fazer isso vamos construir um novo projeto supervisor e um GenServer para verificar os domínios em um interválo configurável.
+Para fazer isso vamos construir um novo projeto supervisor e um GenServer para verificar os domínios em um intervalo configurável.
 Aproveitando ByPass em nossos testes poderemos verificar se nossa aplicação funcionará em muitos cenários diferentes.
 
 _Nota_: Se você deseja avançar para o código final, dê uma olhada no repositório [Clinic](https://github.com/elixirschool/clinic) do Elixir School.
