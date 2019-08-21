@@ -17,7 +17,7 @@ Existem três tipos de associações que podem ser definidas entre nossos esquem
 
 ### Belongs To/Has Many
 
-Nós estamos adicionando algumas novas entidades ao modelo de domínio da aplicação de exemplo para que seja possível categorizar nossos filmes favoritos. Vamos iniciar com dois esquemas: `Movie` e `Character`. Vamos implementar uma relação "has many/belongs to" entre os dois: Um filme tem vários (has many) personagens e um personagem personagem pertence a (belongs to) um filme.
+Nós estamos adicionando algumas novas entidades ao modelo de domínio da aplicação de exemplo para que seja possível categorizar nossos filmes favoritos. Vamos iniciar com dois esquemas: `Movie` e `Character`. Vamos implementar uma relação "has many/belongs to" entre os dois: Um filme tem vários (has many) personagens e um personagem pertence a (belongs to) um filme.
 
 #### A Migração Has Many
 
