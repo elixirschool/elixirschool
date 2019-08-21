@@ -212,7 +212,7 @@ Agora, `person` foi avaliado e atribuído ao fred-map. Vamos ao próximo pattern
 %{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
-Esse é o mesmo que nossa função original `Greeter1` onde fizemos o pattrn match e retemos apenas o nome de Fred. O que conseguimos foi que agora podemos usar duas variáveis em vez de uma:
+Esse é o mesmo que nossa função original `Greeter1` onde fizemos o pattern match e retemos apenas o nome de Fred. O que conseguimos foi que agora podemos usar duas variáveis em vez de uma:
 
 1. `person`, se referindo a `%{name: "Fred", age: "95", favorite_color: "Taupe"}`
 2. `person_name`, se referindo a `"Fred"`
@@ -266,7 +266,7 @@ E chamamos com os mesmos dados que em `Greeter2.hello/1`:
 
 Lembre-se que, embora pareça que `%{name: person_name} = person` está fazendo pattern match entre `%{name: person_name}` e `person`, na verdade eles estão ambos fazendo pattern match com o argumento de entrada.
 
-**Resumo**: Funções fazem pattern match com os dados de entrada a seus argumentos de maneira independente. Podemos usar isso para atibuir valores a variáveis separadas dentro da função.
+**Resumo**: Funções fazem pattern match com os dados de entrada a seus argumentos de maneira independente. Podemos usar isso para atribuir valores a variáveis separadas dentro da função.
 
 ### Funções privadas
 
