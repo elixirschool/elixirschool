@@ -8,13 +8,13 @@ Mas o que são exatamente changesets?
 
 Uma tarefa comum para quase todos os desenvolvedores é verificar os dados de entrada por possíveis erros — queremos ter certeza de que os dados estão no estado correto antes de tentarmos usá-los para nossos propósitos.
 
-O Ecto fornece uma solução completa para trabalhar com alteração de dados na forma do módulo `Changeset` e de estruturas de dados. 
+O Ecto fornece uma solução completa para trabalhar com alteração de dados na forma do módulo `Changeset` e de estruturas de dados.
 Nesta lição, vamos explorar essa funcionalidade e aprender a verificar a integridade dos dados antes de persisti-los no banco de dados.
 
 {% include toc.html %}
 
 ## Criando seu primeiro changeset
- 
+
 Vamos ver uma estrutura `%Changeset{}` vazia:
 
 ```elixir
@@ -24,7 +24,7 @@ iex> %Ecto.Changeset{}
 
 Como você pode ver, tem alguns campos potencialmente úteis, mas estão todos vazios.
 
-Para um changeset ser verdadeiramente útil, quando o criamos, precisamos fornecer um diagrama de como são os dados. 
+Para um changeset ser verdadeiramente útil, quando o criamos, precisamos fornecer um diagrama de como são os dados.
 Qual o melhor diagrama para nossos dados senão os schemas que criamos que definem nossos campos e tipos?
 
 Vamos ver um schema comum de `User`:
@@ -47,7 +47,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
  valid?: true>
  ```
 
-O primeiro parâmetro é o dado original - uma stuct `%User{}` vazia neste caso. 
+O primeiro parâmetro é o dado original - uma struct `%User{}` vazia neste caso.
 Ecto é inteligente o suficiente para encontrar o schema baseado na própria estrutura.
 O segundo parâmetro são as alterações que queremos fazer - apenas um map vazio.
 O terceiro parâmetro é o que faz o `cast/4` especial: é uma lista de campos permitidos, o que nos dá a capacidade de controlar quais campos podem ser alterados e proteger o resto.
@@ -142,7 +142,7 @@ iex> User.changeset(%User{}, %{"name" => ""})
 Caso você tente usar `Repo.insert(changeset)` com o changeset descrito acima, irá receber um `{:error, changeset}` de volta com o mesmo erro, então você não precisa checar `changeset.valid?` você mesmo toda vez.
 É mais fácil tentar executar o insert, update ou delete, e então processar os erros depois, caso existam.
 
-Além de `validate_required/2`, existe também `validate_length/3`, que possui algumas opções extras: 
+Além de `validate_required/2`, existe também `validate_length/3`, que possui algumas opções extras:
 
 ```elixir
 def changeset(struct, params) do
@@ -187,7 +187,7 @@ Você pode encontrar a lista completa com os detalhes de como usa-los [aqui](htt
 
 Embora os validadores internos cubram uma ampla gama de casos de uso, você ainda pode precisar de algo diferente.
 
-Toda função `validate_` que usamos até agora aceita e retorna um `%Ecto.Changeset{}`, para que possamos facilmente ligar o nosso. 
+Toda função `validate_` que usamos até agora aceita e retorna um `%Ecto.Changeset{}`, para que possamos facilmente ligar o nosso.
 
 Por exemplo, podemos ter certeza de que somente nomes de personagens fictícios são permitidos:
 
@@ -206,7 +206,7 @@ end
 
 Acima nós introduzimos duas novas funções auxiliares: [`get_field/3`](https://hexdocs.pm/ecto/Ecto.Changeset.html#get_field/3) e [`add_error/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#add_error/4). O que elas fazem é quase auto-explicativo, mas eu aconselho você a verificar os links da documentação.
 
-É uma boa pratica retornar sempre um `%Ecto.Changeset{}`, então você pode usar o operador `|>` e facilitar a adição de mais validações posteriormente:
+É uma boa prática retornar sempre um `%Ecto.Changeset{}`, então você pode usar o operador `|>` e facilitar a adição de mais validações posteriormente:
 
 ```elixir
 def changeset(struct, params) do
@@ -233,10 +233,10 @@ iex> User.changeset(%User{}, %{"name" => "Bob"})
 
 ## Adicionando alterações programaticamente
 
-Às vezes você quer introduzir mudanças em um changeset manualmente. O `put_change/3` existe para este propósito. 
+Às vezes você quer introduzir mudanças em um changeset manualmente. O `put_change/3` existe para este propósito.
 
 Em vez de tornar obrigatório o campo `name`, vamos permitir usuários assinarem sem um nome, e os chamaremos de "Anonymous".
-A função que precisamos parecerá familiar — aceita e retorna um changeset, assim como o `validate_fictional_name/1` que introduzimos anteriormente: 
+A função que precisamos parecerá familiar — aceita e retorna um changeset, assim como o `validate_fictional_name/1` que introduzimos anteriormente:
 
 ```elixir
 def set_name_if_anonymous(changeset) do
@@ -260,7 +260,7 @@ def registration_changeset(struct, params) do
 end
 ```
 
-Agora nós não temos que passar um `name`, e `Anonymous` será definido automaticamente, como esperado: 
+Agora nós não temos que passar um `name`, e `Anonymous` será definido automaticamente, como esperado:
 
 ```elixir
 iex> User.registration_changeset(%User{}, %{})
