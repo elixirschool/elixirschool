@@ -23,7 +23,7 @@ Neste exemplo temos três etapas: `A` um produtor, `B` um produtor-consumidor, e
 
 Enquanto nosso exemplo é 1-para-1, produtor-para-consumidor, é possível que ambos tenham múltiplos produtores e múltiplos consumidores em qualquer etapa.
 
-Para ilustrar melhor esses conceitos, vamos construtir um pipeline com GenStage, mas antes vamos explorar os papéis que o GenStage depende um pouco mais.
+Para ilustrar melhor esses conceitos, vamos construir um pipeline com GenStage, mas antes vamos explorar os papéis que o GenStage depende um pouco mais.
 
 ## Consumidores e Produtores
 
@@ -217,7 +217,7 @@ Neste ponto temos um pipeline funcionando. Existe um produtor emitindo números,
 
 Mencionamos na introdução que era possível ter mais que um produtor ou consumidor. Vamos dar uma olhada nisso.
 
-Se examinarmos a saída do `IO.inspect/1` do nosso exemplo, vemos que todo evento é tratatdo por um único PID. Vamos fazer alguns ajustes para múltiplos _workers_ modificando o `lib/genstage_example/application.ex`:
+Se examinarmos a saída do `IO.inspect/1` do nosso exemplo, vemos que todo evento é tratado por um único PID. Vamos fazer alguns ajustes para múltiplos _workers_ modificando o `lib/genstage_example/application.ex`:
 
 ```elixir
 children = [
