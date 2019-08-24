@@ -18,7 +18,7 @@ iex> string <> <<0>>
 <<104, 101, 108, 108, 111, 0>>
 ```
 
-Ao concatenar a string com o byte `0`, o IEx mostra a string como um binário já que este não é mais uma string válida. Este truque nos ajuda a identifcar a sequência de bytes que compõem qualquer string.
+Ao concatenar a string com o byte `0`, o IEx mostra a string como um binário já que este não é mais uma string válida. Este truque nos ajuda a identificar a sequência de bytes que compõem qualquer string.
 
 >NOTA: Ao usar a sintaxe com << >> estamos dizendo ao compilador que os elementos dentro desses símbolos são bytes.
 
@@ -52,7 +52,7 @@ Para mais informação, veja o [`Guia de Introdução`](http://elixir-lang.org/g
 
 ## Graphemes e Codepoints
 
-Codepoints são apenas simples caracteres Unicode representados por um ou mais bytes, depedendo da codificação UTF-8. Caracteres diferentes do padrão US ASCII são sempre codificados por mais de um byte. Por exemplo, caracteres latinos com til ou acentos (`á, ñ, è`) geralmente são codificados com dois bytes. Já caracteres de línguas asiáticas são normalmente codificados com três ou quatro bytes. Graphemes consistem de múltiplos codepoints que são apresentados como um único caractere.
+Codepoints são apenas simples caracteres Unicode representados por um ou mais bytes, dependendo da codificação UTF-8. Caracteres diferentes do padrão US ASCII são sempre codificados por mais de um byte. Por exemplo, caracteres latinos com til ou acentos (`á, ñ, è`) geralmente são codificados com dois bytes. Já caracteres de línguas asiáticas são normalmente codificados com três ou quatro bytes. Graphemes consistem de múltiplos codepoints que são apresentados como um único caractere.
 
 O módulo String já fornece duas funções para gerá-los, `graphemes/1` e `codepoints/1`. Vamos ver um exemplo:
 
