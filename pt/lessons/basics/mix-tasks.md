@@ -9,7 +9,7 @@ Criando tarefas Mix customizadas para seus projetos Elixir.
 
 ## Introdução
 
-É comum querer extender as funcionalidades da sua aplicação Elixir adicionando tarefas Mix customizadas. Antes de aprendermos como criar tarefas Mix específicas para nossos projetos, vamos dar uma olhada em uma já existente:
+É comum querer estender as funcionalidades da sua aplicação Elixir adicionando tarefas Mix customizadas. Antes de aprendermos como criar tarefas Mix específicas para nossos projetos, vamos dar uma olhada em uma já existente:
 
 ```shell
 $ mix phoenix.new my_phoenix_app
