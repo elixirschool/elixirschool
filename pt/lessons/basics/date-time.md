@@ -25,7 +25,7 @@ iex> ~T[19:39:31.056226]
 ~T[19:39:31.056226]
 ```
 
-Você pode aprender mais sobre sigil na [lição sobre sigils](../sigils). É fácil acessar partes dessa struct:
+Você pode aprender mais sobre sigil na [lição sobre sigils](../sigils). É fácil acessar partes desta struct:
 
 ```elixir
 iex> t = ~T[19:39:31.056226]
@@ -65,7 +65,7 @@ true
 ## NaiveDateTime
 
 Há dois tipos de structs que contém tanto a data e o tempo em apenas um lugar no Elixir
-O primeiro dos dois é o `NaiveDateTime`. A desvatagem é a falta de suporte para fuso horário:
+O primeiro dos dois é o `NaiveDateTime`. A desvantagem é a falta de suporte para fuso horário:
 
 ```elixir
 iex(15)> NaiveDateTime.utc_now
