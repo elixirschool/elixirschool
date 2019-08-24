@@ -80,7 +80,7 @@ iex> 1.0e-10
 
 ### Booleanos
 
-Elixir suporta `true` e `false` como booleanos; todo valor é verdadeiro com excessão de `false` e `nil`:
+Elixir suporta `true` e `false` como booleanos; todo valor é verdadeiro com exceção de `false` e `nil`:
 
 ```elixir
 iex> true
