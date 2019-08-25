@@ -34,7 +34,7 @@ defmodule Registrar.Tracking.AdmissionEvent do
   schema "admission_events" do
     field(:action, :string)
     field(:admission_id, :integer)
-    field(:admitter_uuid, :uuid)
+    field(:admitter_uuid, Ecto.UUID)
     field(:occurred_at, :naive_datetime)
   end
 end
@@ -47,7 +47,7 @@ defmodule Registrar.User do
   use Ecto.Schema
 
   schema "users" do
-    field(:uuid, :uuid)
+    field(:uuid, Ecto.UUID)
     field(:full_name, :string)
   end
 end
@@ -64,7 +64,7 @@ defmodule Registrar.Tracking.AdmissionEvent do
   schema "admission_events" do
     field(:action, :string)
     field(:admission_id, :integer)
-    field(:admitter_uuid, :uuid)
+    field(:admitter_uuid, Ecto.UUID)
     field(:occurred_at, :naive_datetime)
   end
 
@@ -110,7 +110,7 @@ defmodule Registrar.Tracking.AdmissionEvent do
   schema "admission_events" do
     field(:action, :string)
     field(:admission_id, :integer)
-    field(:admitter_uuid, :uuid)
+    field(:admitter_uuid, Ecto.UUID)
     field(:occurred_at, :naive_datetime)
 
     # New association
@@ -123,7 +123,7 @@ defmodule Registrar.User do
   alias Registrar.Tracking.AdmissionEvent
 
   schema "users" do
-    field(:uuid, :uuid)
+    field(:uuid, Ecto.UUID)
     field(:full_name, :string)
 
     # New association
@@ -174,7 +174,7 @@ defmodule Registrar.Tracking.AdmissionEvent do
   schema "admission_events" do
     field(:action, :string)
     field(:admission_id, :integer)
-    field(:admitter_uuid, :uuid)
+    field(:admitter_uuid, Ecto.UUID)
     field(:occurred_at, :naive_datetime)
 
     ###### STEP ONE #######
@@ -192,7 +192,7 @@ defmodule Registrar.Tracking.AdmissionEvent do
       #  Join on User  #
       ##################
       join: u in User,
-      on: r.admitter_uuid == u.uuid,
+      on: ae.admitter_uuid == u.uuid,
 
       ############ STEP THREE #############
       #  Select Merge into Virtual Field  #
