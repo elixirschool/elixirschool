@@ -187,7 +187,7 @@ Além do `all/2`, Repo fornece uma série de callbacks incluindo `one/2`, `get/3
 
 ### Count
 
-Se nós queremos contar o números de usuários que tem uma conta confirmada, podemos usar `count/1`:
+Se nós queremos contar o número de usuários que tem uma conta confirmada, podemos usar `count/1`:
 
 ```elixir
 query =

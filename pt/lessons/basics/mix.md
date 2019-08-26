@@ -92,7 +92,7 @@ Não há muito dentro do nosso projeto, então a saída não será muito emocion
 Compiled lib/example.ex
 Generated example app
 ```
-Quando compilanos um projeto, mix cria um diretório `_build` para os nossos artefatos. Se olharmos dentro de `_build` veremos a aplicação compilada: `example.app`.
+Quando compilamos um projeto, mix cria um diretório `_build` para os nossos artefatos. Se olharmos dentro de `_build` veremos a aplicação compilada: `example.app`.
 
 ## Gestão de dependências
 

@@ -11,7 +11,7 @@ Nessa lição vamos nos focar na peça mais importante: GenServers.
 
 ## GenServer
 
-Um servidor OTP é um módulo com o comportamento GenServer que implementa uma serie de *callbacks*. No nível mais básico, um GenServer é um único processo que roda um loop que processa uma mensagem por interação passando para frente um estado atualizado.
+Um servidor OTP é um módulo com o comportamento GenServer que implementa uma série de *callbacks*. No nível mais básico, um GenServer é um único processo que roda um loop que processa uma mensagem por interação passando para frente um estado atualizado.
 
 Para demonstrar a API do GenServer nós vamos implementar uma fila básica para armazenar e retornar valores.
 
@@ -76,7 +76,7 @@ defmodule SimpleQueue do
 end
 ```
 
-Vamos iniciar nossa SimpleQueue e testar nossa funcionalidade de desenfilerar:
+Vamos iniciar nossa SimpleQueue e testar nossa funcionalidade de desenfileirar:
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])
@@ -93,7 +93,7 @@ iex> SimpleQueue.queue
 
 Requisições assíncronas são processadas pelo *callback* `handle_cast/2`. Funciona de forma parecida com `handle_call/3` mas não recebe o PID do processo que chama e não é esperada resposta.
 
-Nós iremos implementar nossa funcionalidade de enfilerar assíncronamente, atualizando a fila mas não bloqueando nossa execução atual:
+Nós iremos implementar nossa funcionalidade de enfileirar assíncronamente, atualizando a fila mas não bloqueando nossa execução atual:
 
 ```elixir
 defmodule SimpleQueue do
