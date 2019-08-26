@@ -153,6 +153,6 @@ process #PID<0.156.0> calculating square root of 3
 ...
 ```
 
-Se você não tiver gerenciadores de pool disponíveis, Poolboy chegará ao tempo limite após o período de tempo limite padrão (cinco segundos) e não aceitará nenhuma nova solicitação. Em nosso exemplo, aumentamos o tempo limite padrão para um minuto para demonstrar como podemos alterar o valor de tempo limite padrão. No caso desse app, você pode abservar o erro se você mudar o `@timeout` para menos de 1000.
+Se você não tiver gerenciadores de pool disponíveis, Poolboy chegará ao tempo limite após o período de tempo limite padrão (cinco segundos) e não aceitará nenhuma nova solicitação. Em nosso exemplo, aumentamos o tempo limite padrão para um minuto para demonstrar como podemos alterar o valor de tempo limite padrão. No caso desse app, você pode observar o erro se você mudar o `@timeout` para menos de 1000.
 
 Mesmo que estamos tentando criar vários processos *(total de vinte no exemplo acima)* a função `:poolboy.transaction/3` limitará o total de processos criados a cinco *(mais dois gerenciadores de estouro, se necessário)* como definimos em nossa configuração. Todos os pedidos serão tratados pelo grupo de gerenciadores em vez de criar um novo processo para cada pedido.

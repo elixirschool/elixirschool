@@ -63,7 +63,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Podemos ver que no primeiro teste de igualdade, `Elixir` não coincide com a expressão regular. Isso acontece porque ele está utilizando letra maiúscula. Pelo fato de Elixir suportar expresões regulares compatíveis com Perl (PCRE), podemos acrescentar `i` ao final do nosso sigil para ligar maiúsculas e minúsculas.
+Podemos ver que no primeiro teste de igualdade, `Elixir` não coincide com a expressão regular. Isso acontece porque ele está utilizando letra maiúscula. Pelo fato de Elixir suportar expressões regulares compatíveis com Perl (PCRE), podemos acrescentar `i` ao final do nosso sigil para ligar maiúsculas e minúsculas.
 
 ```elixir
 iex> re = ~r/elixir/i
@@ -144,7 +144,7 @@ iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23
 
 ## Criando Sigils
 
-Um dos objetivos do Elixir é ser uma linguagem de programação extensível. Não é surpresa então que você possa facilmene criar o seu próprio sigil customizado. Neste exemplo, vamos criar um sigil para converter uma cadeia para letras maiúsculas. Como já existe uma função para isso no núcleo do Elixir (`String.upcase/1`), vamos embrulhar o nosso sigil em torno desta função.
+Um dos objetivos do Elixir é ser uma linguagem de programação extensível. Não é surpresa então que você possa facilmente criar o seu próprio sigil customizado. Neste exemplo, vamos criar um sigil para converter uma cadeia para letras maiúsculas. Como já existe uma função para isso no núcleo do Elixir (`String.upcase/1`), vamos embrulhar o nosso sigil em torno desta função.
 
 ```elixir
 

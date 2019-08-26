@@ -9,7 +9,7 @@ Nessa seção vamos aprender a utilizar o Ecto para definir e trabalhar com asso
 
 ## Configuração
 
-Nós vamos construir a aplicação `Example`, das ultimas lições. Você pode referir-se a configuração [aqui](./basics.md) para uma breve recapitulação.
+Nós vamos construir a aplicação `Example`, das últimas lições. Você pode referir-se a configuração [aqui](./basics.md) para uma breve recapitulação.
 
 ## Tipos de Associações
 
@@ -17,7 +17,7 @@ Existem três tipos de associações que podem ser definidas entre nossos esquem
 
 ### Belongs To/Has Many
 
-Nós estamos adicionando algumas novas entidades ao modelo de domínio da aplicação de exemplo para que seja possível categorizar nossos filmes favoritos. Vamos iniciar com dois esquemas: `Movie` e `Character`. Vamos implementar uma relação "has many/belongs to" entre os dois: Um filme tem vários (has many) personagens e um personagem personagem pertence a (belongs to) um filme.
+Nós estamos adicionando algumas novas entidades ao modelo de domínio da aplicação de exemplo para que seja possível categorizar nossos filmes favoritos. Vamos iniciar com dois esquemas: `Movie` e `Character`. Vamos implementar uma relação "has many/belongs to" entre os dois: Um filme tem vários (has many) personagens e um personagem pertence a (belongs to) um filme.
 
 #### A Migração Has Many
 
@@ -60,7 +60,7 @@ defmodule Example.Movie do
 end
 ```
 
-A macro `has_many/3` não adiciona dados ao banco de dados por sí só. O que ela faz é utilizar uma chave estrangeira no esquema associado (`characters`) para tornar as associações de personagens de um filme disponíveis. Isso é o que nos permite realizar chamadas como `movie.characters`.
+A macro `has_many/3` não adiciona dados ao banco de dados por si só. O que ela faz é utilizar uma chave estrangeira no esquema associado (`characters`) para tornar as associações de personagens de um filme disponíveis. Isso é o que nos permite realizar chamadas como `movie.characters`.
 
 #### A migração Belongs
 

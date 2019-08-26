@@ -9,7 +9,7 @@ Criando tarefas Mix customizadas para seus projetos Elixir.
 
 ## Introdução
 
-É comum querer extender as funcionalidades da sua aplicação Elixir adicionando tarefas Mix customizadas. Antes de aprendermos como criar tarefas Mix específicas para nossos projetos, vamos dar uma olhada em uma já existente:
+É comum querer estender as funcionalidades da sua aplicação Elixir adicionando tarefas Mix customizadas. Antes de aprendermos como criar tarefas Mix específicas para nossos projetos, vamos dar uma olhada em uma já existente:
 
 ```shell
 $ mix phoenix.new my_phoenix_app
@@ -83,7 +83,7 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-Note que agora nós começamos o código do defmodule com `Mix.Tasks` e o nome que queremos usar para o nosso comando. Na segunda linha, colocamos `use Mix.Task`, que traz o comportamento `Mix.Task` no namespace. Então, declaramos uma função run que ignora quaisquer argumentos e, dentro dessa função, chamamos nosso módulo `Hello` e a função `say`.
+Note que agora nós começamos o código do `defmodule` com `Mix.Tasks` e o nome que queremos usar para o nosso comando. Na segunda linha, colocamos `use Mix.Task`, que traz o comportamento `Mix.Task` no namespace. Então, declaramos uma função `run` que ignora quaisquer argumentos e, dentro dessa função, chamamos nosso módulo `Hello` e a função `say`.
 
 ## Tarefas Mix em Ação
 
