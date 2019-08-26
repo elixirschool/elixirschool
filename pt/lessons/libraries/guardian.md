@@ -9,7 +9,7 @@ title: Guardian (Basics)
 
 ## JWTs
 
-Um JWT pode fornecer um token rico para autenticação. Onde muitos sistemas de autenticação fornecem acesso à apenas o indentificador do sujeito para o recurso, JWTs fornecem isto junto com outras informações como:
+Um JWT pode fornecer um token rico para autenticação. Onde muitos sistemas de autenticação fornecem acesso à apenas o identificador do sujeito para o recurso, JWTs fornecem isto junto com outras informações como:
 
 * Quem emitiu o token
 * Para quem é o token
@@ -170,7 +170,7 @@ Nós estamos esquecendo de algo até agora. O manipulador de erro adicionado no 
 * `unauthenticated/2`
 * `unauthorized/2`
 
-As duas funções recebem uma struct Plug.Conn e um map com paramêtros e deve lidar com os seus respectivos erros. Você pode até usar um controller do Phoenix!
+As duas funções recebem uma struct Plug.Conn e um map com parâmetros e deve lidar com os seus respectivos erros. Você pode até usar um controller do Phoenix!
 
 #### No controller
 
@@ -207,7 +207,7 @@ end
 
 #### Login/Logout
 
-Fazer o login e logout de uma sessão do browser é muito simpels. No controller de login:
+Fazer o login e logout de uma sessão do browser é muito simples. No controller de login:
 
 ```elixir
 def create(conn, params) do

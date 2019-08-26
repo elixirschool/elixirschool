@@ -103,7 +103,7 @@ ExUnit nos diz exatamente onde nossos asserts falharam, qual era o valor esperad
 
 ### assert_receive
 
-Em Elixir, as aplicações consistem em atores/processos que enviam mensagens um para o outro, portanto muitas vezes você quer testar mensagens sendo enviada. Como o ExUnit executa seu próprio processo ele pode receber mensagem como qualquer outro processo e você pode  afirmar isso com a macro `assert_received`:
+Em Elixir, as aplicações consistem em atores/processos que enviam mensagens um para o outro, portanto muitas vezes você quer testar mensagens sendo enviadas. Como o ExUnit executa seu próprio processo ele pode receber mensagem como qualquer outro processo e você pode  afirmar isso com a macro `assert_received`:
 
 ```elixir
 defmodule SendingProcess do
@@ -143,7 +143,7 @@ end
 
 ## Configuração de Teste
 
-Em alguns casos, pode ser necessária a realização de configuração antes de nossos testes. Para fazer isso acontecer, nós podemos usar as macros `setup` e `setup_all`. `setup` irá ser executado antes de cada teste, e `setup_all` uma vez antes da suite de testes. Espera-se que eles vão retornar uma tupla de `{:ok, state}`, o estado estará disponível para os nossos testes.
+Em alguns casos, pode ser necessária a realização de configuração antes de nossos testes. Para fazer isso acontecer, nós podemos usar as macros `setup` e `setup_all`. `setup` irá ser executado antes de cada teste, e `setup_all` uma vez antes da suíte de testes. Espera-se que eles vão retornar uma tupla de `{:ok, state}`, o estado estará disponível para os nossos testes.
 
 Por uma questão de exemplo, vamos mudar o nosso código para usar `setup_all`:
 

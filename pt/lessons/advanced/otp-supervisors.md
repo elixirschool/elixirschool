@@ -143,7 +143,7 @@ children = [
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
 
-A maior diferença entre `Supervisor` e `Task.Supervisor` é que a estratégia de reinício padrão é `:temporary` (tarefas nunca irão ser reinicidas).
+A maior diferença entre `Supervisor` e `Task.Supervisor` é que a estratégia de reinício padrão é `:temporary` (tarefas nunca irão ser reiniciadas).
 
 ### Tarefas Supervisionadas
 
