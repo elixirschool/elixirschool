@@ -53,12 +53,27 @@ defmodule Registrar.User do
 end
 ```
 
+...and just for the sake of completeness, a super simple Admission schema:
+
+```elixir
+defmodule Registrar.Admission do
+  use Ecto.Schema
+
+  schema "admission" do
+    field(:admittee_uuid, Ecto.UUID)
+    field(:admitter_uuid, Ecto.UUID)
+    field(:admitted_at, :naive_datetime)
+  end
+end
+```
+
 The problem here is the admitter's full name lives on `User`, which isn't currently associated with `AdmissionEvent`. So if we did a straight-forward select query, we'd end up with the admission events we need to populate the table, but not the admitters' full names.
 
 ```elixir
 defmodule Registrar.Tracking.AdmissionEvent do
   use Ecto.Schema
   import Ecto.Query, only: [from: 2]
+  alias Registrar.Admission
   alias Registrar.Tracking.AdmissionEvent
 
   schema "admission_events" do
@@ -68,7 +83,7 @@ defmodule Registrar.Tracking.AdmissionEvent do
     field(:occurred_at, :naive_datetime)
   end
 
-  def for_admission(query \\ AdmissionEvent, admission) do
+  def for_admission(query \\ AdmissionEvent, %Admission{} = admission) do
     from(ae in query,
       where: ae.admission_id == ^admission.id,
       order_by: [desc: ae.occurred_at]
@@ -168,6 +183,7 @@ This approach gets the job done, but it's a little heavy. We only need the admit
 defmodule Registrar.Tracking.AdmissionEvent do
   use Ecto.Schema
   import Ecto.Query, only: [from: 2]
+  alias Registrar.Admission
   alias Registrar.User
   alias Registrar.Tracking.AdmissionEvent
 
@@ -183,7 +199,7 @@ defmodule Registrar.Tracking.AdmissionEvent do
     field(:admitter_name, :string, virtual: true)
   end
 
-  def for_admission(query \\ AdmissionEvent, admission) do
+  def for_admission(query \\ AdmissionEvent, %Admission{} = admission) do
     from(ae in query,
       where: ae.admission_id == ^admission.id,
       order_by: [desc: ae.occurred_at],
@@ -203,7 +219,7 @@ defmodule Registrar.Tracking.AdmissionEvent do
 end
 ```
 
-```
+```elixir
 # Trying out select merge...
 
 iex> admission = Repo.get(Admission, 1)
