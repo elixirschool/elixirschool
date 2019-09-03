@@ -203,3 +203,12 @@ We can use `uniq/1` to remove duplicates from our enumerables:
 iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
 ```
+
+### uniq_by
+
+`uniq_by/2` also removes duplicates from enumerables, but it allows us to provide a function to do the uniqueness comparison.
+
+```elixir
+iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
+[%{x: 1, y: 1}, %{x: 3, y: 3}]
+```
