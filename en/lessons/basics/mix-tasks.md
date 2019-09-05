@@ -13,7 +13,7 @@ It's not uncommon to want to extend your Elixir applications functionality by ad
 Before we learn about how to create specific Mix tasks for our projects, let's look at one that already exists:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
