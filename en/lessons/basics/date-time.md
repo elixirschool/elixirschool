@@ -62,7 +62,7 @@ iex> Date.leap_year? date
 true
 ```
 
-`day_of_week/1` calculates which day of week a given date is on.
+`day_of_week/1` calculates which day of the week a given date is on.
 In this case it's Saturday.
 `leap_year?/1` checks whether this is a leap year.
 Other functions can be found in [doc](https://hexdocs.pm/elixir/Date.html).
