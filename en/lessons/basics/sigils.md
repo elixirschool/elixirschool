@@ -85,7 +85,7 @@ true
 ```
 
 Further, Elixir provides the [Regex](https://hexdocs.pm/elixir/Regex.html) API which is built on top of Erlang's regular expression library.
-Let's implement `Regex.split/2` using a regex sigil:
+Let's use `Regex.split/2` with a regex sigil:
 
 ```elixir
 iex> string = "100_000_000"
