@@ -38,7 +38,7 @@ Finished in 0.03 seconds
 ```
 
 Why there are two tests in output? Let's look at `lib/example.ex`.
-Mix created there another test for us, some doctest.
+Mix has automatically created a doctest.
 
 ```elixir
 defmodule Example do
