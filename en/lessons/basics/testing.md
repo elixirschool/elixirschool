@@ -113,7 +113,7 @@ We'll see an example of `assert_raise` in the next lesson on Plug.
 
 ### assert_receive
 
-In Elixir, applications consist of actors/processes that send messages to each other, thus often you want to test the messages being sent.
+In Elixir, applications consist of actors/processes that send messages to each other, therefore you will want to test the messages being sent.
 Since ExUnit runs in its own process it can receive messages just like any other process and you can assert on it with the `assert_received` macro:
 
 ```elixir
