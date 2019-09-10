@@ -11,9 +11,9 @@ title: 基礎
 
 ### 安裝 Elixir
 
-有關每個作業系統的安裝說明，請參見 elixir-lang.org 網站中的 [Installing Elixir](http://elixir-lang.org/install.html) 指南。
+各個作業系統的安裝說明，請參見 elixir-lang.org 網站中的 [Installing Elixir](http://elixir-lang.org/install.html) 指南。
 
-在安裝 Elixir 後，您可以簡便確認安裝的版本。
+在安裝 Elixir 後，您可以確認安裝的版本。
 
     % elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
@@ -22,7 +22,7 @@ title: 基礎
 
 ### 試用互動模式
 
-Elixir 自帶 IEx，一個互動模式 shell，可以讓我們隨時計算 Elixir 表達式。
+Elixir 自帶 IEx，是一個互動模式 shell，可以隨時計算 Elixir 程式。
 
 輸入 `iex` 開始使用：
 
@@ -31,7 +31,7 @@ Elixir 自帶 IEx，一個互動模式 shell，可以讓我們隨時計算 Elixi
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
 
-讓我們繼續嘗試，現在輸入幾個簡單的表達式：
+現在輸入幾個簡單的程式：
 
 ```elixir
 iex> 2+3
@@ -42,9 +42,9 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-如果你不了解每一個式子，不用擔心，但希望你有些概念了。
+希望你現在有些概念了。
 
-## 基本資料型別
+## 基本型別
 
 ### 整數
 
@@ -53,7 +53,7 @@ iex> 255
 255
 ```
 
-內建支援二進位、八進位和十六進位：
+支援二進位、八進位和十六進位：
 
 ```elixir
 iex> 0b0110
@@ -66,7 +66,7 @@ iex> 0x1F
 
 ### 浮點數
 
-Elixir 中，浮點數的小數點前至少需要一位數字；浮點數具有64位元雙精度，並支援以科學記號 `e` 表示指數值：
+Elixir 中，浮點數的小數點前至少需要一位數字；它具有64位元雙精度，並支援以科學記號 `e` 表示指數值：
 
 ```elixir
 iex> 3.14
@@ -256,7 +256,7 @@ false
 
 ### 字串插值 (String Interpolation)
 
-如果您使用 Ruby，Elixir 中的字串插值方法將會很熟悉：
+如果您使用 Ruby，將會很熟悉 Elixir的字串插值方法：
 
 ```elixir
 iex> name = "Sean"
