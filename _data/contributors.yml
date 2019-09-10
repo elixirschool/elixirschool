@@ -452,3 +452,14 @@
     - translator
   languages:
     - pt
+
+
+- github: peterhychan
+  name: Ho Yeung (Peter) Chan
+  intro:
+  homepage: https://peterhychan.github.io/
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - zh-hant
