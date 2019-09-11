@@ -1,5 +1,5 @@
 ---
-version: 1.4.1
+version: 1.5.0
 title: Enum 模块
 ---
 
@@ -168,6 +168,8 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 对集合进行排序，Elixir 提供了两个 `sort` 函数来帮忙。第一个使用 Elixir 默认的排序规则进行排序：
 
+`sort/1` 使用了 Erlang 的 [数据比较规则](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) 来决定排序的顺序：
+
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
 [-1, 1, 3, 4, 5, 6]
@@ -188,11 +190,20 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-我们可以使用 `uniq_by/2` 删除集合中的重复元素：
+我们可以使用 `uniq/1` 来删除集合中的重复元素：
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
+```
+
+### uniq_by
+
+`uniq_by/2` 也可以用来删除集合中的重复元素，只是它允许我们提供自定义的函数来作唯一性比较。
+
+```elixir
+iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
+[%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```
