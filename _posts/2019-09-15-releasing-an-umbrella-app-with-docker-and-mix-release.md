@@ -179,7 +179,7 @@ end
 
 While developers often use user-defined module attributes as constants, its important to remember that _the value is read at compilation time and not at runtime._ Since the value of `Application.get_env(:registrar, :stripe_api_base_url)` (which comes from a system environment variable) is only present at _runtime_, using a module attribute here won't work!
 
-Instead, we'll use a function to dyanmically look up the value at runtime:
+Instead, we'll use a function to dynamically look up the value at runtime:
 
 ```elixir
 # registrar_umbrella/apps/registrar/lib/stripe_api_client.ex
