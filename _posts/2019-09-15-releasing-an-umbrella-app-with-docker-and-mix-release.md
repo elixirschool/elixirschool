@@ -215,8 +215,6 @@ COPY mix.* /app/
 
 COPY apps/registrar/mix.exs /app/apps/registrar/
 COPY apps/registrar_web/mix.exs /app/apps/registrar_web/
-COPY apps/registrar_ipc/mix.exs /app/apps/registrar_ipc/
-COPY apps/registrar_workers/mix.exs /app/apps/registrar_workers/
 
 ENV MIX_ENV=prod
 RUN mix do deps.get --only $MIX_ENV, deps.compile
