@@ -43,7 +43,7 @@ The following steps are detailed in Phoenix LiveView [Readme](https://github.com
 ```elixir
 def deps do
   [
-    {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"}
+    {:phoenix_live_view, "~> 0.2.0"}
   ]
 end
 ```
