@@ -372,12 +372,4 @@ And that's it!
 
 ## Conclusion
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 With Elixir 1.9, we can build a release without the addition of any external dependencies––Elixir now natively provides us everything we need. We can configure multiple releases for our umbrella app, defining which child apps to start for a given release. We can configure runtime vs. build time environment variables _and_ we can even define customized start up scripts to do things like run our migrations. All in all, `mix release` provides us with a comprehensive and powerful set of tools.
-=======
-With Elixir 1.9, we can build a release without the addition of any external dependencies––Elixir now natively provides us everything we need. We can configure multiple releases for our umbrella app, definining which child apps to start for a given release. We can configure runtime vs. build time environment variables _and_ we can even define customized start up scripts to do things like run our migrations. All in all, `mix release` provides us with a comprehensive and powerful set of tools. 
->>>>>>> da90f8ad... conclusion
-=======
-With Elixir 1.9, we can build a release without the addition of any external dependencies––Elixir now natively provides us everything we need. We can configure multiple releases for our umbrella app, defining which child apps to start for a given release. We can configure runtime vs. build time environment variables _and_ we can even define customized start up scripts to do things like run our migrations. All in all, `mix release` provides us with a comprehensive and powerful set of tools. 
->>>>>>> 9bca4e33... fix typo
