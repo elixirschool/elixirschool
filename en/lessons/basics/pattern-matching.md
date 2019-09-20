@@ -84,6 +84,7 @@ iex> value
 iex> %{^key => value} = %{:hello => "world"}
 ** (MatchError) no match of right hand side value: %{hello: "world"}
 ```
+In the example above, the MatchError is between the key values: "hello" and :hello.
 
 An example of pinning in a function clause:
 
