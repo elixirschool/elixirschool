@@ -3,7 +3,7 @@ author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
 categories: post
 tags: ['docker', 'mix release', 'config', 'umbrella apps']
-date: 2019-08-23
+date: 2019-09-20
 layout: post
 title: Releasing an Umbrella App with Docker, Mix Release and Config
 excerpt: >
@@ -372,4 +372,4 @@ And that's it!
 
 ## Conclusion
 
-With Elixir 1.9, we can build a release without the addition of any external dependencies––Elixir now natively provides us everything we need. We can configure multiple releases for our umbrella app, defining which child apps to start for a given release. We can configure runtime vs. build time environment variables _and_ we can even define customized start up scripts to do things like run our migrations. All in all, `mix release` provides us with a comprehensive and powerful set of tools. 
+With Elixir 1.9, we can build a release without the addition of any external dependencies––Elixir now natively provides us everything we need. We can configure multiple releases for our umbrella app, defining which child apps to start for a given release. We can configure runtime vs. build time environment variables _and_ we can even define customized start up scripts to do things like run our migrations. All in all, `mix release` provides us with a comprehensive and powerful set of tools.
