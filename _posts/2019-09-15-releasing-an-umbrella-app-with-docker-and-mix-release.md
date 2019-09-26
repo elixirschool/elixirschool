@@ -188,7 +188,7 @@ defmodule Registrar.StripeApiClient do
   defp stripe_api_base_url, do: Application.get_env(:registrar, :stripe_api_base_url)
 
   def get(url) do
-    HTTPoison.get(stripe_api_base_url)() <> url)
+    HTTPoison.get(stripe_api_base_url() <> url)
   end
 end
 ```
