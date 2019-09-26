@@ -165,7 +165,7 @@ iex> map.hello
 "world"
 ```
 
-Une autre propriété intéréssante des maps est qu'elles fournissent leur propre syntaxe de mise à jour:
+Une autre propriété intéréssante des maps est qu'elles fournissent leur propre syntaxe de mise à jour (note: ceci crée une nouvelle map):
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
