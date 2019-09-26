@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Testing
 ---
 
@@ -37,8 +37,7 @@ Finished in 0.03 seconds
 2 tests, 0 failures
 ```
 
-Why there are two tests in output? Let's look at `lib/example.ex`.
-Mix created there another test for us, some doctest.
+Why are there two dots in the test output? Besides the test in `test/example_test.exs`, Mix also generated a doctest in `lib/example.ex`.
 
 ```elixir
 defmodule Example do
