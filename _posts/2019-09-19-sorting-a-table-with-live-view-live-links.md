@@ -7,7 +7,7 @@ date: 2019-09-08
 layout: post
 title: Building a Table Sort UI with Live View's `live_link`
 excerpt: >
-  We'll use LiveView's `live_link/3` together with the `handle_params/3` callback to allow users to sort a table in real-time.
+  We'll use LiveView's `live_link/2` together with the `handle_params/3` callback to allow users to sort a table in real-time.
 ---
 
 LiveView makes is easy to solve for some of the most common UI challenges with little to no front-end code. It allows us to save JavaScript for the hard stuff––for complex and sophisticated UI changes. In building out a recent admin-facing view that included a table of student cohorts at the Flatiron School, I found myself reaching for LiveView. In just a few lines of backend code, my sortable table was up and running. Keep reading to see how you can leverage LiveView's `live_link/2` and `handle_params/3` to build out such a feature.
@@ -24,11 +24,11 @@ Here's a look at the behavior we're going for. Note how the URL changes when we 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-4VRaX1uEhk" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Using `live_link/3`
+## Using `live_link/2`
 
 LiveView's [`live_link/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#module-live-navigation) function allows page navigation using the browser's [pushState API](https://developer.mozilla.org/en-US/docs/Web/API/History_API). This will ensure that that URL will change to include whatever parameters we include in a given `live_link/2` call.
 
-One important thing to note before we proceed, however. In order to use LiveView's live navigation features, our LiveView needs to be mounted directly in the router, _not_ live rendered from a controller action.
+One important thing to note before we proceed, however. In order to use the live navigation features, our live view needs to be mounted directly in the router, _not_ rendered from a controller action.
 
 Our router mounts the live view like this:
 
@@ -119,7 +119,7 @@ def sort_cohorts(cohort, "name") do
 end
 ```
 
-Note that we've included a "catch-all" version of the `handle_params/3` function that will be invoked if someone navigates to `/cohorts` and includes query params that do not match the `"sort_by"` param that we care about. If our live view recieves such a request, it will not update state.
+Note that we've included a "catch-all" version of the `handle_params/3` function that will be invoked if someone navigates to `/cohorts` and includes query params that do not match the `"sort_by"` param that we care about. If our live view receives such a request, it will not update state.
 
 Now, when a user clicks the `"Name"` live link, two things will happen:
 
@@ -163,12 +163,12 @@ end
 Here, we've added a check to see if the `sort_by` attribute is included in our list of sortable attributes.
 
 ```elixir
-when sort_by in ~w(name campus start_date status)
+when sort_by in ~w(~w(name course_offering campus start_date end_date lms_cohort_status))
 ```
 
 If so, we will proceed to sort cohorts. If not, i.e. if a user pointed their browser to `/cohorts?sort_by=not_a_thing_we_support`, then we will ignore the `sort_by` value and refrain from updating socket state.
 
-Next up, we'll add the necessary version fo the `sort_cohorts/2` function that will pattern match against our new "sort by" options:
+Next up, we'll add the necessary version for the `sort_cohorts/2` function that will pattern match against our new "sort by" options:
 
 ```elixir
 def sort_cohorts(cohorts, "campus") do
