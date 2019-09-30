@@ -289,28 +289,22 @@ map.flatten      178.18 K - 1.50x slower +1.86 μs
 ```
 
 We can now see information for our benchmarks, grouped by input.
-This simple
-example doesn't provide any mind blowing insights, but you'd be surprised
-how much performance varies based on input size!
+This simple example doesn't provide any mind blowing insights, but you'd be surprised how much performance varies based on input size!
 
 # Formatters
 
-The console output that we've seen is a helpful beginning for measuring the
-runtimes of your functions, but it's not your only option! In this section we'll
-look briefly at the three other available formatters, and also touch on what
-you'd need to do to write your formatter if you like.
+The console output that we've seen is a helpful beginning for measuring the runtimes of your functions, but it's not your only option!
+In this section we'll look briefly at the three other available formatters, and also touch on what you'd need to do to write your formatter if you like.
 
 ## Other formatters
 
-Benchee has a console formatter built in, which is what we've seen already, but
-there are three other officially supported formatters - [`benchee_csv`](https://github.com/bencheeorg/benchee_csv),
-[`benchee_json`](https://github.com/bencheeorg/benchee_json) and [`benchee_html`](https://github.com/bencheeorg/benchee_html).
-Each of them does exactly what you would
-expect, which is writing the results to the named file formats so you can work
-with your results further in whichever format you like.
+Benchee has a console formatter built in, which is what we've seen already, but there are three other officially supported formatters -
+[`benchee_csv`](https://github.com/bencheeorg/benchee_csv),
+[`benchee_json`](https://github.com/bencheeorg/benchee_json) and
+[`benchee_html`](https://github.com/bencheeorg/benchee_html).
+Each of them does exactly what you would expect, which is writing the results to the named file formats so you can work with your results further in whichever format you like.
 
-Each of these formatters is a separate package, so to use them you need to add
-them as dependencies to your `mix.exs` file like so:
+Each of these formatters is a separate package, so to use them you need to add them as dependencies to your `mix.exs` file like so:
 
 ```elixir
 defp deps do
@@ -322,10 +316,11 @@ defp deps do
 end
 ```
 
-While `benchee_json` and `benchee_csv` are simple, `benchee_html` is actually _very_ full featured! It can help you produce nice graphs and charts from your results easily, and you can even export them as PNG images. You check out [an example html report](http://www.pragtob.info/benchee/README/results.html) if you're interested, it includes graphs like this one:
+While `benchee_json` and `benchee_csv` are simple, `benchee_html` is actually _very_ full featured!
+It can help you produce nice graphs and charts from your results easily, and you can even export them as PNG images.
+You check out [an example html report](http://www.pragtob.info/benchee/README/results.html) if you're interested, it includes graphs like this one:
 
 ![benchee_html graph export sample]({% asset benchee_html_graph_sample.png @path %})
-
 
 All three formatters are well-documented on their respective GitHub pages, so we won't cover the details of them here.
 
