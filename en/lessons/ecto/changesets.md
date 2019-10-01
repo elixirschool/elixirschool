@@ -26,43 +26,44 @@ As you can see, it has some potentially useful fields, but they are all empty.
 For a changeset to be truly useful, when we create it, we need to provide a blueprint of what the data is like.
 What better blueprint for our data than the schemas we've created that define our fields and types?
 
-Let's see a common `User` schema:
+Let's use our `Friends.Person` schema from the previous lesson:
 
 ```elixir
-defmodule User do
+defmodule Friends.Person do
   use Ecto.Schema
 
-  schema "users" do
-    field(:name, :string)
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
   end
 end
 ```
 
-To create a changeset using the `User` schema, we are going to use `Ecto.Changeset.cast/4`:
+To create a changeset using the `Person` schema, we are going to use `Ecto.Changeset.cast/4`:
 
 ```elixir
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
+#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
  valid?: true>
- ```
+```
 
-The first parameter is the original data — an empty `%User{}` struct in this case.
+The first parameter is the original data — an initial `%Friends.Person{}` struct in this case.
 Ecto is smart enough to find the schema based on the struct itself.
 Second in order are the changes we want to make — just an empty map.
 The third parameter is what makes `cast/4` special: it is a list of fields allowed to go through, which gives us the ability to control what fields can be changed and safe-guard the rest.
 
- ```elixir
- iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
- #Ecto.Changeset<
+```elixir
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
+#Ecto.Changeset<
   action: nil,
   changes: %{name: "Jack"},
   errors: [],
-  data: #User<>,
+  data: #Friends.Person<>,
   valid?: true
 >
 
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
+#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
  valid?: true>
 ```
 
@@ -71,16 +72,16 @@ You can see how the new name was ignored the second time, where it was not expli
 An alternative to `cast/4` is the `change/2` function, which doesn't have the ability to filter changes like `cast/4`.
 It is useful when you trust the source making the changes or when you work with data manually.
 
-Now we can create changesets, but since we do not have validation, any changes to user's name will be accepted, so we can end up with an empty name:
+Now we can create changesets, but since we do not have validation, any changes to person's name will be accepted, so we can end up with an empty name:
 
 ```elixir
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => ""}, [:name, :age])
 #Ecto.Changeset<
- action: nil,
- changes: %{name: ""},
- errors: [],
- data: #User<>,
- valid?: true
+  action: nil,
+  changes: %{name: nil},
+  errors: [],
+  data: #Friends.Person<>,
+  valid?: true
 >
 ```
 
@@ -90,15 +91,16 @@ Ecto says the changeset is valid, but actually, we do not want to allow empty na
 
 Ecto comes with a number of built-in validation functions to help us.
 
-We're going to use `Ecto.Changeset` a lot, so let's import `Ecto.Changeset` into our `user.ex` module, which also contains our schema:
+We're going to use `Ecto.Changeset` a lot, so let's import `Ecto.Changeset` into our `person.ex` module, which also contains our schema:
 
 ```elixir
-defmodule User do
+defmodule Friends.Person do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "users" do
-    field(:name, :string)
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
   end
 end
 ```
@@ -110,7 +112,7 @@ It is common to have one or more changeset creator functions for a schema. Let's
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
 end
 ```
 
@@ -124,16 +126,16 @@ def changeset(struct, params) do
 end
 ```
 
-When we call the `User.changeset/2` function and pass an empty name, the changeset will be no longer valid, and will even contain a helpful error message.
+When we call the `Friends.Person.changeset/2` function and pass an empty name, the changeset will be no longer valid, and will even contain a helpful error message.
 Note: do not forget to run `recompile()` when working in `iex`, otherwise it won't pick up the changes you make in code.
 
 ```elixir
-iex> User.changeset(%User{}, %{"name" => ""})
+iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
 #Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
-  data: #User<>,
+  data: #Friends.Person<>,
   valid?: false
 >
 ```
@@ -146,7 +148,7 @@ Apart from `validate_required/2`, there is also `validate_length/3`, that takes 
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> validate_required([:name])
   |> validate_length(:name, min: 2)
 end
@@ -155,15 +157,15 @@ end
 You can try and guess what the result would be if we pass a name that consists of a single character!
 
 ```elixir
-iex> User.changeset(%User{}, %{"name" => "A"})
+iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
 #Ecto.Changeset<
   action: nil,
   changes: %{name: "A"},
   errors: [
     name: {"should be at least %{count} character(s)",
-     [count: 2, validation: :length, min: 2]}
+     [count: 2, validation: :length, kind: :min, type: :string]}
   ],
-  data: #User<>,
+  data: #Friends.Person<>,
   valid?: false
 >
 ```
@@ -210,7 +212,7 @@ It is a good practice to always return an `%Ecto.Changeset{}`, so you can use th
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> validate_required([:name])
   |> validate_length(:name, min: 2)
   |> validate_fictional_name()
@@ -218,12 +220,12 @@ end
 ```
 
 ```elixir
-iex> User.changeset(%User{}, %{"name" => "Bob"})
+iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
 #Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
-  data: #User<>,
+  data: #Friends.Person<>,
   valid?: false
 >
 ```
@@ -254,7 +256,7 @@ We can set user's name as "Anonymous" only when they register in our application
 ```elixir
 def registration_changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> set_name_if_anonymous()
 end
 ```
@@ -262,12 +264,12 @@ end
 Now we don't have to pass a `name` and `Anonymous` would be automatically set, as expected:
 
 ```elixir
-iex> User.registration_changeset(%User{}, %{})
+iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
 #Ecto.Changeset<
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
-  data: #User<>,
+  data: #Friends.Person<>,
   valid?: true
 >
 ```
@@ -277,8 +279,8 @@ The function above could be then used in a dedicated `sign_up/1` helper elsewher
 
 ```elixir
 def sign_up(params) do
-  %User{}
-  |> User.registration_changeset(params)
+  %Friends.Person{}
+  |> Friends.Person.registration_changeset(params)
   |> Repo.insert()
 end
 ```
