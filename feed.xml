@@ -2,11 +2,12 @@
 layout: none
 ---
 <?xml version="1.0" encoding="UTF-8"?>
+{% assign project = site.data['locales'][site.default_lang]['project'] %}
 <rss version="2.0" 
     xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Elixir School</title>
-        <description>The premier destination for learning and mastering Elixir</description>
+        <title>{{ project.title }}</title>
+        <description>{{ project.description }}</description>
         <link>{{ site.url }}</link>
         <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
     {% for post in site.posts %}
