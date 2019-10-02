@@ -12,7 +12,7 @@ Creando tareas de Mix personalizadas para tus proyectos Elixir.
 Es común querer extender la funcionalidad de tus aplicaciones Elixir agregando tareas Mix personalizadas. Antes de aprender acerca de como crear tareas Mix específicas para nuestros proyectos vamos a ver una que ya existe.
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs

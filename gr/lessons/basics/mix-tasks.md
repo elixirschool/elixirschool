@@ -12,7 +12,7 @@ title: Ειδικές Εργασίες Mix
 Είναι συνηθισμένο να θέλετε να επεκτείνετε τη λειτουργικότητα των εφαρμογών σας στην Elixir προσθέτοντας ειδικές εργασίες Mix.  Πριν μάθουμε πως να το κάνουμε αυτό, ας δούμε ένα που υπάρχει ήδη:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
