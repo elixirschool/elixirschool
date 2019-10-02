@@ -13,7 +13,7 @@ Elixir プロジェクトのためのカスタム Mix タスクの作成
 私たちのプロジェクト特有の Mix タスクを作成する方法を学ぶ前に、既存のタスクを見てみましょう:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs

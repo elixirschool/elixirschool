@@ -12,7 +12,7 @@ title: Пользовательские Mix задачи
 Обычной практикой считается расширение возможностей приложений Elixir при помощи пользовательских Mix задач. Прежде, чем мы научимся создавать Mix задачи специально для наших проектов, давайте взглянем на одну уже существующую:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
