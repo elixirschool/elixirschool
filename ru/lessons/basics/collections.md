@@ -1,5 +1,5 @@
 ---
-version: 1.2.5
+version: 1.3.0
 title: Коллекции
 ---
 
@@ -185,5 +185,21 @@ iex> map.hello
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+```
+
+**Примечание**: такой синтаксис работает только для обновления существующих ключей в ассоциативных массивах! Если указанного ключа нет, возникнет исключение `KeyError`.
+
+Для создания нового ключа используйте [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3)
+
+```elixir
+iex> map = %{hello: "world"}
+%{hello: "world"}
+iex> %{map | foo: "baz"}
+** (KeyError) key :foo not found in: %{hello: "world"}
+    (stdlib) :maps.update(:foo, "baz", %{hello: "world"})
+    (stdlib) erl_eval.erl:259: anonymous fn/2 in :erl_eval.expr/5
+    (stdlib) lists.erl:1263: :lists.foldl/3
+iex> Map.put(map, :foo, "baz")
 %{foo: "baz", hello: "world"}
 ```
