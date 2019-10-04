@@ -25,7 +25,7 @@ V priebehu tejto lekcie pokryjeme tri hlavné časti Ecta:
 * Migrácie — mechanizmus na vytváranie, modifikovanie, mazanie tabuliek a indexov v databáze
 * Schémy — špeciálne štruktúry, ktoré reprezentujú záznamy v tabuľke
 
-Na začiatok si vytvoríme aplikáciu so supervision stromom.
+Na začiatok si vytvoríme aplikáciu so supervision stromom supervízorov (_supervision tree_).
 
 ```shell
 $ mix new friends --sup
