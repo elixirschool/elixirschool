@@ -15,7 +15,7 @@ Ecto podporuje rôzne databázy použitím adaptérov. Pár príkladov adaptéro
 * MySQL
 * SQLite
 
-Pre túto lekciu nakonfigurujeme Ecto, aby používal PostgreSQL adaptér.
+Pre túto lekciu nakonfigurujeme Ecto, aby používal adaptér PostgreSQL.
 
 ### Začíname
 
