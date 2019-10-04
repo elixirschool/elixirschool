@@ -32,7 +32,7 @@ $ mix new friends --sup
 $ cd friends
 ```
 
-Pridáme ecto a postgrex balíčky ako závislosti do `mix.exs` súboru.
+Do súboru `mix.exs` pridáme ako závislosti balíčky `ecto` a `postgrex`.
 
 ```elixir
   defp deps do
