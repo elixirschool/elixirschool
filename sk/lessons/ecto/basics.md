@@ -43,7 +43,7 @@ Do súboru `mix.exs` pridáme ako závislosti balíčky `ecto` a `postgrex`.
   end
 ```
 
-Stiahneme závislosti použitím
+Stiahneme závislosti použitím príkazu
 
 ```shell
 $ mix deps.get
