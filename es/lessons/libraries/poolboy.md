@@ -8,7 +8,7 @@ Puedes acabarte los recursos de tu sistema si no limitas el número de procesos 
 
 {% include toc.html %}
 
-## ¿Porqué utilizar Poolboy?
+## ¿Por qué utilizar Poolboy?
 
 Pensemos por un momento en un ejemplo específico.
 Tienes la tarea de construir una aplicación que guarde la información del perfil de un usuario en una base de datos.
@@ -17,7 +17,7 @@ En algún momento el número de conexiones podría llegar a sobrepasar la capaci
 Eventualmente tu aplicación puede generar timeouts y varias excepciones.
 
 La solución es utilizar un conjunto de workers (procesos) para limitar el número de conexiones en lugar de crear un proceso por cada registro de usuario.
-Con eso fácilmente puedes evitar el acabarte los recursos de tu sistema.
+Con eso fácilmente puedes evitar acabarte los recursos de tu sistema.
 
 Ahí es donde Poolboy es útil.
 Te permite crear un pool de workers gestionados por un `Supervisor` sin mucho esfuerzo.
@@ -36,7 +36,6 @@ $ mix new poolboy_app --sup
 ```
 
 Agregamos Poolboy como dependencia en nuestro archivo `mix.exs`.
-Add Poolboy as a dependency to our `mix.exs`.
 
 ```elixir
 defp deps do
