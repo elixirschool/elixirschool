@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Документирование
 ---
 
@@ -129,6 +129,7 @@ ExDoc - это официальный проект Elixir, который нах
 $ mix new greet_everyone
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
 * creating config
