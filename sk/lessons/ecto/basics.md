@@ -9,7 +9,6 @@ Ecto je oficiálny Elixir projekt, ktorý poskytuje zaobalenie databázy a integ
 
 ### Adaptéry
 
-Ecto supports different databases through the use of adapters. A few examples of adapters are:
 Ecto podporuje rôzne databázy použitím adaptérov. Pár príkladov adaptérov sú:
 
 * PostgreSQL
@@ -84,7 +83,7 @@ defmodule Friends.Repo do
 end
 ```
 
-Použijeme modul `Friends.Repo` na vytvorenie dotazu na databázu. Tiež povieme makru kľúč OTP aplikácie (`:friends`), kde nájde informácie o konfigurácii.
+Modul `Friends.Repo` budeme používať na vytvorenie dotazov na databázu. Tiež dodáme makru kľúč OTP aplikácie (`:friends`), podľa ktorého nájde informácie o konfigurácii.
 
 Ďalej nastavíme `Friends.Repo` ako supervízora v supervision strome našej aplikácie v `lib/friends/application.ex`.
 To nám zabezpečí, spustenie procesu Ecta, keď sa spustí naša aplikácia.
