@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Documentação
 ---
 
@@ -131,6 +131,7 @@ ExDoc é um projeto oficial do Elixir que **produz HTML (Hyper Text Markup Langu
 $ mix new greet_everyone
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
 * creating config

@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Belgelendirme
 ---
 
@@ -132,6 +132,7 @@ ExDoc projesi [GitHub'da](https://github.com/elixir-lang/ex_doc) bulunan resmi b
 $ mix new greet_everyone
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
 * creating config
