@@ -98,7 +98,6 @@ To nám zabezpečí, spustenie procesu Ecta, keď sa spustí naša aplikácia.
   ...
 ```
 
-After that we'll need to add the following line to our `config/config.exs` file:
 Potom budeme musieť pridať nasledujúci riadok do nášho `config/config.exs` súboru:
 
 ```elixir
