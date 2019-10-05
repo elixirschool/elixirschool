@@ -13,7 +13,7 @@ layout: none
     {% for post in site.posts %}
         <item>
             <title>{{ post.title | xml_escape }}</title>
-            <description>{{ post.content | strip_html | truncatewords:75 }}</description>
+            <description>{{ post.content | strip_html | xml_escape | truncatewords:75 }}</description>
             <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
             <link>{{ site.url }}/{{ post.url }}</link>
             <guid isPermaLink="true">{{ site.url }}/{{ post.url }}</guid>
