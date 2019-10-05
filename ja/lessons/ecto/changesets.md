@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 title: チェンジセット
 ---
 
@@ -27,44 +27,45 @@ iex> %Ecto.Changeset{}
 チェンジセットを本当に役立つものにするためには、作成時に、どのようなデータになるかという設計図を提供する必要があります。
 フィールドと型の定義を持つ私たちが作ったスキーマよりも、データのためのより良い設計図とはなんでしょうか？
 
-一般的な `User` スキーマをみてみましょう:
+前のレッスンの `Friends.Person` スキーマを使いましょう:
 
 ```elixir
-defmodule User do
+defmodule Friends.Person do
   use Ecto.Schema
 
-  schema "users" do
-    field(:name, :string)
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
   end
 end
 ```
 
-`User` スキーマを使うチェンジセットを作るためには、 `Ecto.Changeset.cast/4` を使います:
+`Person` スキーマを使うチェンジセットを作るためには、 `Ecto.Changeset.cast/4` を使います:
 
 ```elixir
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
+#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
  valid?: true>
 ```
 
-最初のパラメータは元のデータで、この場合は空の `%User{}` 構造体です。
+最初のパラメータは元のデータで、この場合は初期化された `%Friends.Person{}` 構造体です。
 Ectoは構造体そのものに基づいてスキーマを見つけることができます。
 2番目は私たちが行いたい変更であり、ただの空のマップです。
 3番目のパラメータが `cast/4` を特別なものにします。これは通過させることを許可するフィールドのリストであり、これによってどのフィールドが変更可能なのかを制御可能とし、残りを安全に保護します。
 
 ```elixir
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
 #Ecto.Changeset<
- action: nil,
- changes: %{name: "Jack"},
- errors: [],
- data: #User<>,
- valid?: true
+  action: nil,
+  changes: %{name: "Jack"},
+  errors: [],
+  data: #Friends.Person<>,
+  valid?: true
 >
 
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
-valid?: true>
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
+#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+ valid?: true>
 ```
 
 2回目では新しいnameが明示的に許可されていないため、無視されていることがわかるでしょう。
@@ -72,16 +73,16 @@ valid?: true>
 `cast/4` の代わりとして `change/2` もあり、これは `cast/4` のように変更をフィルタリングする機能を持ちません。
 これは変更を加えるソースが信頼できるとき、あるいは手動でデータを扱う時に便利です。
 
-ここではチェンジセットを作りましたが、バリデーションを持っていないので、ユーザーのあらゆる名前の変更が受け付けられてしまい、その結果空の名前を持つ可能性もあります。
+ここではチェンジセットを作りましたが、バリデーションを持っていないので、人のあらゆる名前の変更が受け付けられてしまい、その結果空の名前を持つ可能性もあります。
 
 ```elixir
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => ""}, [:name, :age])
 #Ecto.Changeset<
- action: nil,
- changes: %{name: ""},
- errors: [],
- data: #User<>,
- valid?: true
+  action: nil,
+  changes: %{name: nil},
+  errors: [],
+  data: #Friends.Person<>,
+  valid?: true
 >
 ```
 
@@ -91,15 +92,16 @@ Ectoはチェンジセットが正常であると言っていますが、実際�
 
 Ectoは私たちを手助けするために、いくつものビルトインのバリデーション機能を持っています。
 
-これから `Ecto.Changeset` を何度も使うので、以下のスキーマを持つ `user.ex` に `Ecto.Changeset` インポートしましょう:
+これから `Ecto.Changeset` を何度も使うので、以下のスキーマを持つ `person.ex` に `Ecto.Changeset` インポートしましょう:
 
 ```elixir
-defmodule User do
+defmodule Friends.Person do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "users" do
-    field(:name, :string)
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
   end
 end
 ```
@@ -111,7 +113,7 @@ end
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
 end
 ```
 
@@ -125,16 +127,16 @@ def changeset(struct, params) do
 end
 ```
 
-`User.changeset/2` 関数に空のnameを渡して呼び出すと、チェンジセットは無効になり、役に立つエラーメッセージまで含まれます。
+`Friends.Person.changeset/2` 関数に空のnameを渡して呼び出すと、チェンジセットは無効になり、役に立つエラーメッセージまで含まれます。
 注: `iex` を使っている場合は `recompile()` の実行を忘れないでください。そうしなければ、コードの変更が反映されません。
 
 ```elixir
-iex> User.changeset(%User{}, %{"name" => ""})
+iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
 #Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
-  data: #User<>,
+  data: #Friends.Person<>,
   valid?: false
 >
 ```
@@ -211,7 +213,7 @@ end
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> validate_required([:name])
   |> validate_length(:name, min: 2)
   |> validate_fictional_name()
@@ -219,12 +221,12 @@ end
 ```
 
 ```elixir
-iex> User.changeset(%User{}, %{"name" => "Bob"})
+iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
 #Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
-  data: #User<>,
+  data: #Friends.Person<>,
   valid?: false
 >
 ```
@@ -255,7 +257,7 @@ end
 ```elixir
 def registration_changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> set_name_if_anonymous()
 end
 ```
@@ -263,12 +265,12 @@ end
 これで `name` を渡す必要はなくなり、 `Anonymous` は自動的に設定されます:
 
 ```elixir
-iex> User.registration_changeset(%User{}, %{})
+iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
 #Ecto.Changeset<
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
-  data: #User<>,
+  data: #Friends.Person<>,
   valid?: true
 >
 ```
@@ -278,8 +280,8 @@ iex> User.registration_changeset(%User{}, %{})
 
 ```elixir
 def sign_up(params) do
-  %User{}
-  |> User.registration_changeset(params)
+  %Friends.Person{}
+  |> Friends.Person.registration_changeset(params)
   |> Repo.insert()
 end
 ```
