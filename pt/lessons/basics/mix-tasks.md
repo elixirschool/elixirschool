@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Tarefas Mix Customizadas
 ---
 
@@ -9,7 +9,8 @@ Criando tarefas Mix customizadas para seus projetos Elixir.
 
 ## Introdução
 
-É comum querer estender as funcionalidades da sua aplicação Elixir adicionando tarefas Mix customizadas. Antes de aprendermos como criar tarefas Mix específicas para nossos projetos, vamos dar uma olhada em uma já existente:
+É comum querer estender as funcionalidades da sua aplicação Elixir adicionando tarefas Mix customizadas.
+Antes de aprendermos como criar tarefas Mix específicas para nossos projetos, vamos dar uma olhada em uma já existente:
 
 ```shell
 $ mix phx.new my_phoenix_app
@@ -25,7 +26,8 @@ $ mix phx.new my_phoenix_app
 ...
 ```
 
-Como podemos ver no comando shell acima, o Framework Phoenix tem uma tarefa Mix customizada para criar um novo projeto. E se quiséssemos criar algo parecido para o nosso projeto? Bem, a boa notícia é que nós podemos, e Elixir nos permite fazer isso de um modo fácil.
+Como podemos ver no comando shell acima, o Framework Phoenix tem uma tarefa Mix customizada para criar um novo projeto.
+E se quiséssemos criar algo parecido para o nosso projeto? Bem, a boa notícia é que nós podemos, e Elixir nos permite fazer isso de um modo fácil.
 
 ## Configurações
 
@@ -69,7 +71,9 @@ end
 
 ## Tarefa Mix Customizada
 
-Vamos criar nossa tarefa Mix customizada. Crie um novo diretório e um arquivo **hello/lib/mix/tasks/hello.ex**. Neste arquivo, vamos inserir estas 7 linhas de Elixir.
+Vamos criar nossa tarefa Mix customizada.
+Crie um novo diretório e um arquivo **hello/lib/mix/tasks/hello.ex**.
+Neste arquivo, vamos inserir estas 7 linhas de Elixir.
 
 ```elixir
 defmodule Mix.Tasks.Hello do
@@ -83,26 +87,31 @@ defmodule Mix.Tasks.Hello do
 end
 ```
 
-Note que agora nós começamos o código do `defmodule` com `Mix.Tasks` e o nome que queremos usar para o nosso comando. Na segunda linha, colocamos `use Mix.Task`, que traz o comportamento `Mix.Task` no namespace. Então, declaramos uma função `run` que ignora quaisquer argumentos e, dentro dessa função, chamamos nosso módulo `Hello` e a função `say`.
+Note que agora nós começamos o código do defmodule com `Mix.Tasks` e o nome que queremos usar para o nosso comando.
+Na segunda linha, colocamos `use Mix.Task`, que traz o comportamento `Mix.Task` no namespace.
+Então, declaramos uma função `run` que ignora quaisquer argumentos por agora.
+Dentro dessa função, chamamos nosso módulo `Hello` e a função `say`.
 
 ## Tarefas Mix em Ação
 
-Vamos verificar nossa tarefa Mix. Enquanto estivermos no diretório, ela deve funcionar. Na linha de comando, digite `mix hello` e então, devemos ver o seguinte:
+Vamos verificar nossa tarefa Mix.
+Enquanto estivermos no diretório, ela deve funcionar.
+Na linha de comando, digite `mix hello` e então, devemos ver o seguinte:
 
 ```shell
 $ mix hello
 Hello, World!
 ```
 
-O Mix é bastante amigável por padrão. Ele sabe que todos podem cometer um erro de ortografia, então ele usa uma técnica chamada "fuzzy string matching" para fazer recomendações:
+O Mix é bastante amigável por padrão.
+Ele sabe que todos podem cometer um erro de ortografia, então ele usa uma técnica chamada "fuzzy string matching" para fazer recomendações:
 
 ```shell
 $ mix hell
 ** (Mix) The task "hell" could not be found. Did you mean "hello"?
 ```
 
-Você notou que nós introduzimos um novo atributo, `@shortdoc`, no módulo?
-Isto facilita quando a aplicação está pronta. Por exemplo, quando um usuário executa o comando `mix help` no terminal.
+Você notou que nós introduzimos um novo atributo, `@shortdoc`, no módulo? Isto facilita quando a aplicação está pronta, como quando um usuário executa o comando `mix help` no terminal.
 
 ```shell
 $ mix help
@@ -112,3 +121,6 @@ mix app.start         # Starts all registered apps
 mix hello             # Simply calls the Hello.say/0 function.
 ...
 ```
+
+Nota: Nosso código deve ser compilado antes que novas tarefas apareçam na saída do `mix help`.
+Podemos fazer isso executando o `mix compile` diretamente ou executando a nossa tarefa como fizemos com o` mix hello`, o que acionará a compilação para nós.
