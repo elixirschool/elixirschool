@@ -33,7 +33,6 @@ Enumeration is at the core of functional programming, and combined with other pe
 
 For a full list of functions visit the official [`Enum`](https://hexdocs.pm/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](https://hexdocs.pm/elixir/Stream.html) module.
 
-
 ### all?
 
 When using `all?/2`, and much of `Enum`, we supply a function to apply to our collection's items.
