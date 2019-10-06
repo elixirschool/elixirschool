@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Date and Time
 ---
 
@@ -88,7 +88,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 ## DateTime
 
 The second, as you may have guessed from title of this section, is `DateTime`.
-It does not have the limitations noted previously: it has both time and date, and supports timezones.
+It does not have the limitations noted in `NaiveDateTime`: it has both time and date, and supports timezones.
 But be aware about timezones. The official docs state:
 
 ```
@@ -103,5 +103,5 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
 
-This is it! If you want to work with other advanced functions you may want to consider looking futher into docs for [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html).
+This is it! If you want to work with other advanced functions you may want to consider looking futher into docs for [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html) and [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html)
 You should also consider [Timex](https://github.com/bitwalker/timex) and [Calendar](https://github.com/lau/calendar) which are powerful libraries to work with time in Elixir.
