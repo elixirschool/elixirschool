@@ -88,7 +88,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 ## DateTime
 
 O segundo, como você pode ter adivinhado a partir do título dessa seção, é `DateTime`.
-Ele não tem as limitações citadas anteriormente: ele tem tanto o tempo e data, e suporta fuso horários.
+Ele não tem as limitações vistas em `NaiveDateTime`: ele tem tanto o tempo e data, e suporta fuso horários.
 Mas note o comentário da documentação oficial sobre fuso horário:
 
 ```
