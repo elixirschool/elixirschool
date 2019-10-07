@@ -123,4 +123,4 @@ mix hello             # Simply calls the Hello.say/0 function.
 ```
 
 Nota: Nosso código deve ser compilado antes que novas tarefas apareçam na saída do `mix help`.
-Podemos fazer isso executando o `mix compile` diretamente ou executando a nossa tarefa como fizemos com o` mix hello`, o que acionará a compilação para nós.
+Podemos fazer isso executando o `mix compile` diretamente ou executando a nossa tarefa como fizemos com o `mix hello`, o que acionará a compilação para nós.
