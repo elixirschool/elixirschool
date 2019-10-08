@@ -153,7 +153,7 @@ Nós vamos aprender mais sobre estes quando aprendermos sobre [coleções](../co
 
 ### Aritmética
 
-Elixir suporta os operadores básicos `+`, `-`, `*`, e `/` como era de esperar.
+Elixir suporta os operadores básicos `+`, `-`, `*`, e `/` como era de se esperar.
 É importante ressaltar que `/` sempre retornará um número ponto flutuante:
 
 ```elixir
