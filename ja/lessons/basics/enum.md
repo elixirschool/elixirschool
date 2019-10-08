@@ -1,5 +1,5 @@
 ---
-version: 1.4.2
+version: 1.5.0
 title: Enum
 ---
 
@@ -190,11 +190,20 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-`uniq_by/2`を使ってコレクションから重複した要素を取り除くことができます:
+`uniq/1` を使ってコレクションから重複した要素を取り除くことができます:
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
+```
+
+### uniq_by
+
+`uniq_by/2` もコレクションから重複した要素を削除しますが、ユニークかどうか比較を行う関数を渡せます。
+
+```elixir
+iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
+[%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```
