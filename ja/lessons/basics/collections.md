@@ -1,5 +1,5 @@
 ---
-version: 1.2.4
+version: 1.3.0
 title: コレクション
 ---
 
@@ -172,11 +172,27 @@ iex> map.hello
 "world"
 ```
 
-マップのもう一つの興味深い特性は、マップの更新のための固有の構文があることです:
+マップのもう一つの興味深い特性は、マップの更新のための固有の構文があることです(注: 更新と言っていますが、新しいmapが作成されます):
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+```
+
+**注意**: この構文は、マップに既に存在するキーを更新する場合にのみ機能します！キーが存在しない場合、`KeyError` が発生します。
+
+新しいキーを作成するには、代わりに [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3) を使用します。
+
+```elixir
+iex> map = %{hello: "world"}
+%{hello: "world"}
+iex> %{map | foo: "baz"}
+** (KeyError) key :foo not found in: %{hello: "world"}
+    (stdlib) :maps.update(:foo, "baz", %{hello: "world"})
+    (stdlib) erl_eval.erl:259: anonymous fn/2 in :erl_eval.expr/5
+    (stdlib) lists.erl:1263: :lists.foldl/3
+iex> Map.put(map, :foo, "baz")
 %{foo: "baz", hello: "world"}
 ```
