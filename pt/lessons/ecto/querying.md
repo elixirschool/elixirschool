@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Querying
 ---
 
@@ -9,7 +9,7 @@ Nesta lição, estaremos construindo a aplicação `Example` e o catálogo de fi
 
 ## Buscando Registros com `Ecto.Repo`
 
-Lembre-se de que um repositório no Ecto é mapeado para um armazenamento de dados, como nosso banco de dados Postgres.
+Lembre-se de que um "repositório" no Ecto é mapeado para um armazenamento de dados, como nosso banco de dados Postgres.
 Toda a comunicação com o banco de dados será feita usando este repositório.
 
 Podemos realizar simples consultas diretamente em nosso `Example.Repo` com a ajuda de algumas funções.
@@ -342,7 +342,7 @@ Repo.all from m in Movie,
   preload: [actors: a]
 ```
 
-Um pouco mais de instruções `join`.
+Mais sobre a instrução join daqui a pouco.
 
 #### Pré-carregamento de Registros já Buscados
 
