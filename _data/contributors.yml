@@ -291,6 +291,16 @@
   languages:
     - es
 
+- github: j-burgos
+  name: Jorge Burgos
+  intro: Elixir enthusiast from El Salvador
+  homepage:
+  twitter: jburgosk8
+  contributions:
+    - translator
+  languages:
+    - es
+
 - github: kalarani
   name:
   intro:
