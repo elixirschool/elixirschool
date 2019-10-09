@@ -3,7 +3,7 @@ version: 2.0.1
 title: Distillery (Basics)
 ---
 
-Distillery es un manejador de releases escrito en Elixir. Permite generar releases que pueden ser desplegadas en cualquier lugar con poca o nula configuración.
+Distillery es un manejador de releases escrito en Elixir. Permite generar releases que pueden ser desplegados en cualquier lugar con poca o nula configuración.
 
 ## ¿Qué es un release?
 
@@ -11,7 +11,7 @@ Un release es un paquete que contiene tu código de Erlang/Elixir ya compilado (
 
 > Cuando has escrito una o varias aplicaciones, es posible que quieras crear un sistema completo con esas aplicaciones y con un sub-conjunto de las aplicaciones de Erlang/OTP. A eso se le llama un release. - [Erlang documentation](http://erlang.org/doc/design_principles/release_structure.html)
 
-> Los releases permiten un despliegue simplificado: son auto-contenidos y proveen todo lo necesario para iniciar el release. Son fácilmente administrables mediante los scripts que provee que pueden abrir una consola remota, inician/detienen/reinician el release, inician en background, envían comandos remotamente y mucho más. Además son artefactos archivables, lo que significa que puedes restaurar un release anterior desde un tarball en cualquier momento en el futuro (a menos que existan incompatibilidades con el sistema operativo o librerías del sistema). Utilizar releases es también un prerrequisito para poder realizar actualizaciones en caliente, una de las caracteristicas más poderosas de la VM de Erlang. - [Distillery Documentation](https://hexdocs.pm/distillery/introduction/understanding_releases.html)
+> Los releases permiten un despliegue simplificado: son auto-contenidos y proveen todo lo necesario para iniciar el release. Son fácilmente administrables mediante los scripts que provee que pueden abrir una consola remota, iniciar/detener/reiniciar el release, iniciar en background, envíar comandos remotamente y mucho más. Además son artefactos archivables, lo que significa que puedes restaurar un release anterior desde un tarball en cualquier momento en el futuro (a menos que existan incompatibilidades con el sistema operativo o librerías del sistema). Utilizar releases es también un prerrequisito para poder realizar actualizaciones en caliente, una de las caracteristicas más poderosas de la VM de Erlang. - [Distillery Documentation](https://hexdocs.pm/distillery/introduction/understanding_releases.html)
 
 Un release contiene lo siguiente:
 * Una carpeta /bin
@@ -26,7 +26,7 @@ Un release contiene lo siguiente:
 
 ### Comenzando/Instalación
 
-Para agregar Distillery a tu proyecto, agrégalo como dependencia en tu archivo `mix.exs`. *Nota* - si estás trabajando en un umbrella app debes agregarlo en el archivo mix.exs en la carpeta raíz de tu proyecto
+Para agregar Distillery a tu proyecto, agrégalo como dependencia en tu archivo `mix.exs`. *Nota* - si estás trabajando en un proyecto umbrella debes agregarlo en el archivo mix.exs en la carpeta raíz de tu proyecto
 
 ```
 defp deps do
@@ -55,7 +55,7 @@ mix release.init
 
 Este comando genera una carpeta `rel` que contiene algunos archivos de configuración.
 
-Para generar un release ejecuta en la terminal `mix release`
+Para generar un release ejecuta en la terminal `mix distillery.release`
 
 Cuando se haya construido el release debes ver algunas instrucciones en la terminal
 
@@ -130,7 +130,7 @@ Si ejecutaste el comando anterior, pudiste haber notado que tu aplicación fall�
 MIX_ENV=prod mix ecto.create
 ```
 
-Este comendo creará la base de datos por ti. Intenta volver a ejecutar tu aplicación y debería iniciar de manera correcta. Sin embargo, puedes notar que las migraciones de la base de datos no se han ejecutado. Por lo general en modo de desarrollo ejecutamos esas migraciones manualmente usando `mix.ecto migrate`. Para el release, tendremos que configurar para que las migraciones se ejecuten automáticamente.
+Este comando creará la base de datos por ti. Intenta volver a ejecutar tu aplicación y debería iniciar de manera correcta. Sin embargo, puedes notar que las migraciones de la base de datos no se han ejecutado. Por lo general en modo de desarrollo ejecutamos esas migraciones manualmente usando `mix.ecto migrate`. Para el release, tendremos que configurar para que las migraciones se ejecuten automáticamente.
 
 ## Ejecutando migraciones en Producción
 
@@ -169,7 +169,7 @@ bin/book_app rpc "Elixir.BookApp.ReleaseTasks.migrate"
 
 ```
 
-Para que ese código se ejecute de manera correcta, utilizaremos el módulo `rpc` de Erlan que nos permite hacer llamadas a procedimientos remotamente. Básicamente, podemos llamar a una función en un nodo remotamente y obtener su respuesta. Cuando estamos en producción es muy probable que nuestra aplicación esté en varios nodos.
+Para que ese código se ejecute de manera correcta, utilizaremos el módulo `rpc` de Erlang que nos permite hacer llamadas a procedimientos remotamente. Básicamente, podemos llamar a una función en un nodo remotamente y obtener su respuesta. Cuando estamos en producción es muy probable que nuestra aplicación esté en varios nodos.
 
 Finalmente, en nuestro archivo `rel/config.exs` agregaremos el hook a nuestra configuración para producción.
 
