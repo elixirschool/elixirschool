@@ -144,7 +144,7 @@ Distillery nos permite ejecutar código en diferentes puntos del ciclo de vida d
 
 
 Para nuestros propósitos utilizaremos el hook `post_start` para ejecutar nuestras migraciones en producción.
-Primero creemos una nueva tarea de release llamada `migrate`. Una tarea es una función en un módulo que podemos llamar desde la terminal que contiene código que esta separado de la funcionalidad interna de nuestra aplicación. Es útil para las tareas que la aplicación misma típicamente no debería ejecutarse.
+Primero creemos una nueva tarea de release llamada `migrate`. Una tarea es una función en un módulo que podemos llamar desde la terminal que contiene código que esta separado de la funcionalidad interna de nuestra aplicación. Es útil para las tareas que la aplicación misma típicamente no se ejecute.
 
 ```
 defmodule BookAppWeb.ReleaseTasks do
@@ -158,10 +158,9 @@ defmodule BookAppWeb.ReleaseTasks do
 end
 ```
 
-*Note* It is good practice to ensure that your applications have all started up properly before running these migrations. The [Ecto.Migrator](https://hexdocs.pm/ecto/2.2.8/Ecto.Migrator.html) allows us to run our migrations with the connected database.
+*Nota* Es buena práctica asegurarse que todas las aplicaciones hayan iniciado correctamente antes de ejecutar las migraciones. [Ecto.Migrator](https://hexdocs.pm/ecto/2.2.8/Ecto.Migrator.html) permite ejecutar nuestras migraciones con la conexión a la base de datos.
 
-Next, create a new file - `rel/hooks/post_start/migrate.sh` and add the following code:
-
+Luego, crea un nuevo archivo - `rel/hooks/post_start/migrate.sh` y agrega el siguiente código:
 
 ```
 echo "Running migrations"
@@ -170,11 +169,11 @@ bin/book_app rpc "Elixir.BookApp.ReleaseTasks.migrate"
 
 ```
 
-In order for this code to run properly, we are using Erlang's `rpc` module which allows us Remote Produce Call service. Basically, this allows us to call a function on a remote node and get the answer. When running in production it is likely that our application will be running in several different nodes
+Para que ese código se ejecute de manera correcta, utilizaremos el módulo `rpc` de Erlan que nos permite hacer llamadas a procedimientos remotamente. Básicamente, podemos llamar a una función en un nodo remotamente y obtener su respuesta. Cuando estamos en producción es muy probable que nuestra aplicación esté en varios nodos.
 
-Finally, in our `rel/config.exs` file we're going to add the hook to our prod configuration.
+Finalmente, en nuestro archivo `rel/config.exs` agregaremos el hook a nuestra configuración para producción.
 
-Let's replace
+Cambiemos esto
 
 ```
 environment :prod do
@@ -185,7 +184,7 @@ environment :prod do
 end
 ```
 
-with
+con esto
 
 ```
 environment :prod do
@@ -197,17 +196,17 @@ environment :prod do
 end
 ```
 
-*Note* - This hook only exists in the production release of this application. If we used the default development release it would not run.
+*Nota* - Este hook solamente existe en el release de producción de esta aplicación. Si utilizamos el release de desarrollo que es el por defecto, el hook no se ejecutará.
 
-## Custom Commands
+## Comandos personalizados
 
-When working with a release, you may not have access to `mix` commands as `mix` may not be installed to the machine the release is deployed to. We can solve this by creating custom commands.
+Cuando trabajamos con un release, puede ser que no tengas acceso a comandos de `mix` ya que `mix` talvez no este instalado en la máquina donde esta desplegado el release. Podemos resolver este problema creando comandos personalizados.
 
-> Custom commands are extensions to the boot script, and are used in the same way you use foreground or remote_console, in other words, they have the appearance of being part of the boot script. Like hooks, they have access to the boot scripts helper functions and environment - [Distillery Docs](https://hexdocs.pm/distillery/1.5.2/custom-commands.html)
+> Los comandos personalizados son extensiones al script de inicio y son usados de la misma manera que utilizamos foreground o remote_console, en otras palabras, tienen la apariencia de ser parte del script de inicio. Así como los hooks, estos comandos tienen acceso a las funcionex auxiliares y al ambiente - [Distillery Docs](https://hexdocs.pm/distillery/1.5.2/custom-commands.html)
 
-Commands are similar to release tasks in that they are both method functions but are different from them in that they are executed through the terminal as opposed to being run by the release script.
+Estos comandos son similares a las tareas de release en cuanto a que ambas son funciones pero son diferentes de ellas porque son ejecutados usando la terminal en lugar del release script.
 
-Now that we can run our migrations, we may want to be able to seed our database with information through running a command. First, add a new method to our release tasks. In `BookAppWeb.ReleaseTasks`, add the following:
+Ahora que podemos ejecutar nuestras migraciones, podríamos necesitar llenar nuestra base de datos con información inicial a través de un comando. Primero, agrega un nuevo método a nuestra tarea de release. En `BookAppWeb.ReleaseTasks`, agrega lo siguiente:
 
 ```
 def seed do
@@ -216,7 +215,7 @@ def seed do
 end
 ```
 
-Next, create a new file `rel/commands/seed.sh` and add the following code:
+Luego, crea un nuevo archivo `rel/commands/seed.sh` y agrega el siguiente código:
 
 ```
 #!/bin/sh
@@ -224,12 +223,11 @@ Next, create a new file `rel/commands/seed.sh` and add the following code:
 release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
 ```
 
+*Nota* - `release_ctl()` es un script de terminal que Distillery provee que nos permite ejecutar comandos localmente o en un nodo limpio. Si necesitas ejecutar esto en un nodo corriendo puedes correr `release_remote_ctl()`
 
-*Note* - `release_ctl()` is a shell script provided by Distillery that allows us to execute commands locally or in a clean node. If you need to run this against a running node you can run `release_remote_ctl()`
+Puedes ver más sobre los shell_scripts de Distillery [aquí](https://hexdocs.pm/distillery/extensibility/shell_scripts.html)
 
-See more about shell_scripts from Distillery [here](https://hexdocs.pm/distillery/extensibility/shell_scripts.html)
-
-Finally, add the following to your `rel/config.exs` file
+Finalmente, agrega lo siguiente a tu archivo `rel/config.exs`
 ```
 release :book_app do
   ...
@@ -240,4 +238,4 @@ end
 
 ```
 
-Be sure, to recreate the release by running `MIX_ENV=prod mix release`. Once this is complete, you can now run in your terminal `PORT=4001 _build/prod/rel/book_app/bin/book_app seed`.
+Asegurate de recrear el release ejecutando `MIX_ENV=prod mix release`. Cuando termine, puede ejecutar en tu terminal `PORT=4001 _build/prod/rel/book_app/bin/book_app seed`.
