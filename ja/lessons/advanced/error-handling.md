@@ -54,7 +54,7 @@ end
 
 ## After
 
-時にはエラーの有無にかかわらず `try/rescue` の後に何らかの処理を必要とする場面があるかもしれません。このような場合のために `try/after` が存在します。これはRubyの `begin/rescue/ensure` やJavaの `try/catch/finally` に似ています:
+時にはエラーの有無にかかわらず `try/rescue` の後に何らかの処理を必要とする場面があるかもしれません。このような場合のために `try/after` が存在します。これは Ruby の `begin/rescue/ensure` や Java の `try/catch/finally` に似ています:
 
 ```elixir
 iex> try do

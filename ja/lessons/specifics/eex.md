@@ -13,7 +13,7 @@ EEx の API は直接、文字列またはファイルに対して動作しま�
 
 ### 評価
 
-`eval_string/3` と `eval_file/2` を使って文字列またはファイルの内容に対して単純な評価を行えます。これは一番簡単なAPIですがコードが評価されるだけでコンパイルされないため最も遅いです。
+`eval_string/3` と `eval_file/2` を使って文字列またはファイルの内容に対して単純な評価を行えます。これは一番簡単な API ですがコードが評価されるだけでコンパイルされないため最も遅いです。
 
 ```elixir
 iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
@@ -45,7 +45,7 @@ iex> Example.greeting("Sean")
 
 ## タグ
 
-デフォルトでは EEx は4種類のタグをサポートしています。
+デフォルトでは EEx は 4 種類のタグをサポートしています。
 
 ```elixir
 <% Elixir expression - inline with output (Elixir の式 - インラインに展開される) %>
@@ -54,7 +54,7 @@ iex> Example.greeting("Sean")
 <%# Comments - they are discarded from source (コメント、ソースから落とされる)%>
 ```
 
-出力させたい式には __必ず__ 等号(`=`)を使ってください。重要な明記すべきこととして他のテンプレート言語は `if` などの節を特別に扱うのに対しEExはそうではない、ということがあります。 `=` なしでは何も表示されません:
+出力させたい式には **必ず** 等号(`=`)を使ってください。重要な明記すべきこととして他のテンプレート言語は `if` などの節を特別に扱うのに対し EEx はそうではない、ということがあります。 `=` なしでは何も表示されません:
 
 ```elixir
 <%= if true do %>
@@ -63,9 +63,10 @@ iex> Example.greeting("Sean")
   A false statement
 <% end %>
 ```
+
 ## エンジン
 
-デフォルトではElixirは(`@name` などの)代入に対応した `EEx.SmartEngine` を使います:
+デフォルトでは Elixir は(`@name` などの)代入に対応した `EEx.SmartEngine` を使います:
 
 ```elixir
 iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
