@@ -42,7 +42,7 @@ iex> String.length("Franz jagt im komplett verwahrlosten Taxi quer durch Bayern"
 59
 ```
 
-Falls du momentan noch nicht jeden Ausdruck versteht, mach dir darüber keine Gedanken. Wir denken du wirst bald ein Bild davon bekommen.
+Falls du momentan noch nicht jeden Ausdruck versteht, mach dir darüber keine Gedanken. Wir denken du wirst dir bald ein Bild davon machen können.
 
 ## Einfache Datentypen
 
@@ -91,7 +91,7 @@ false
 
 ### Atoms
 
-Ein Atom ist eine Kontante, bei der der Name auch den Wert darstellt. Falls du mit Ruby vertraut vertraut bist kennst du Atoms als Symbole:
+Ein Atom ist eine Konstante, bei der der Name auch den Wert darstellt. Falls du mit Ruby vertraut bist kennst du Atoms als Symbole:
 
 ```elixir
 iex> :foo
@@ -176,7 +176,7 @@ iex> rem(10, 3)
 
 ### Boolean
 
-Elixir bringt `||`, `&&` und `!` an Booleschen Operatoren. Diese unterstützen jeden Typ:
+Elixir bringt `||`, `&&` und `!` an Booleschen Operatoren mit. Diese unterstützen jeden Typ:
 
 ```elixir
 iex> -20 || true
