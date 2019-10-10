@@ -128,7 +128,7 @@ We'll define the `Distributor` migration and schema with the "belongs to" relati
 mix ecto.gen.migration create_distributors
 ```
 
-We should add a foreign key of `movie_id` to the `distributors` table migration we just generated:
+We should add a foreign key of `movie_id` to the `distributors` table migration we just generated as well as a unique index to enforce that a movie has only one distributor:
 
 ```elixir
 # priv/repo/migrations/*_create_distributors.exs
@@ -141,6 +141,8 @@ defmodule Example.Repo.Migrations.CreateDistributors do
       add :name, :string
       add :movie_id, references(:movies)
     end
+    
+    create unique_index(:distributors, [:movie_id])
   end
 end
 ```
