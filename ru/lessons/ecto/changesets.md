@@ -260,7 +260,7 @@ def registration_changeset(struct, params) do
 end
 ```
 
-Теперь можно не передавать имя, и оно автоматически получит значение `Аноним`:
+Теперь можно не передавать имя (`name`), и оно автоматически получит значение `Аноним`:
 
 ```elixir
 iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
