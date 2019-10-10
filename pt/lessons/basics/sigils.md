@@ -95,7 +95,7 @@ iex> Regex.split(~r/_/, string)
 ["100", "000", "000"]
 ```
 
-Como podemos ver, a string `"100_000_000"`  é dividida nas barras sublinhadas graças ao nosso `~r/_/` sigil.
+Como podemos ver, a string `"100_000_000"` é dividida nas barras sublinhadas graças ao nosso `~r/_/` sigil.
 A função `Regex.split` retorna uma lista.
 
 ### String
