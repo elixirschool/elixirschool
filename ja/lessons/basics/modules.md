@@ -3,7 +3,7 @@ version: 1.4.0
 title: モジュール
 ---
 
-私たちは経験的に、全ての関数を1つの同じファイルとスコープに持つと手に負えないことを知っています。
+私たちは経験的に、全ての関数を 1 つの同じファイルとスコープに持つと手に負えないことを知っています。
 このレッスンでは関数をまとめ、構造体として知られる特別なマップを定義することで、コードをより効率のよい形に組織化する方法を取り上げます。
 
 {% include toc.html %}
@@ -15,7 +15,7 @@ title: モジュール
 
 基本的な例を見てみましょう:
 
-``` elixir
+```elixir
 defmodule Example do
   def greeting(name) do
     "Hello #{name}."
@@ -26,7 +26,7 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
-Elixirではモジュールをネストすることが可能で、機能ごとにさらなる名前空間をつけることができます:
+Elixir ではモジュールをネストすることが可能で、機能ごとにさらなる名前空間をつけることができます:
 
 ```elixir
 defmodule Example.Greetings do
@@ -45,7 +45,7 @@ iex> Example.Greetings.morning "Sean"
 
 ### モジュールの属性
 
-モジュール属性はElixirでは一般に定数として用いられることがほとんどです。
+モジュール属性は Elixir では一般に定数として用いられることがほとんどです。
 単純な例を見てみましょう:
 
 ```elixir
@@ -59,11 +59,11 @@ end
 ```
 
 重要なので言及しておきますと、 Elixir には予約されている属性があります。
-もっとも一般的なのは以下の3つです:
+もっとも一般的なのは以下の 3 つです:
 
-+ `moduledoc` — 現在のモジュールにドキュメントを付けます。
-+ `doc` — 関数やマクロについてのドキュメント管理。
-+ `behaviour` — OTP またはユーザが定義した振る舞い(ビヘイビア)に用います。
+- `moduledoc` — 現在のモジュールにドキュメントを付けます。
+- `doc` — 関数やマクロについてのドキュメント管理。
+- `behaviour` — OTP またはユーザが定義した振る舞い(ビヘイビア)に用います。
 
 ## 構造体
 
@@ -108,7 +108,7 @@ iex> %{name: "Sean"} = sean
 #Example.User<name: "Sean", roles: [...], ...>
 ```
 
-Elixir 1.8以降、構造体にカスタムイントロスペクション機能が追加されました。
+Elixir 1.8 以降、構造体にカスタムイントロスペクション機能が追加されました。
 
 カスタムイントロスペクションがどのように使われるのかを理解するため、 `sean` の中身を見てみましょう。
 
@@ -128,7 +128,7 @@ defmodule Example.User do
 end
 ```
 
-__注記__： `@derive {Inspect, except: [:roles]}` でも実現することができます。
+**注記**： `@derive {Inspect, except: [:roles]}` でも実現することができます。
 
 モジュールを更新したら、 `iex` で確認してみましょう。
 
@@ -140,7 +140,6 @@ iex> inspect(sean)
 ```
 
 `roles` が出力から除外されました!
-
 
 ## コンポジション(Composition)
 
@@ -169,7 +168,7 @@ defmodule Example do
 end
 ```
 
-2つのエイリアス間で衝突があったり、全体を別名でエイリアスしたい場合には、 `:as` オプションを使います:
+2 つのエイリアス間で衝突があったり、全体を別名でエイリアスしたい場合には、 `:as` オプションを使います:
 
 ```elixir
 defmodule Example do
@@ -226,7 +225,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-名前/アリティのペアに加えて、 `:functions` と `:macros` という2つの特別なアトムもあります。これらはそれぞれ関数とマクロのみを取り込みます:
+名前/アリティのペアに加えて、 `:functions` と `:macros` という 2 つの特別なアトムもあります。これらはそれぞれ関数とマクロのみを取り込みます:
 
 ```elixir
 import List, only: :functions
@@ -235,7 +234,7 @@ import List, only: :macros
 
 ### `require`
 
-他のモジュールのマクロを使用することをElixirに伝えるために `require` を使うことができます。
+他のモジュールのマクロを使用することを Elixir に伝えるために `require` を使うことができます。
 `import` とのわずかな違いは、関数ではなくマクロを使用可能とすることです。
 
 ```elixir
@@ -274,7 +273,7 @@ defmodule Example do
 end
 ```
 
-IExでこのコードを試して見ると `Example` モジュールで `hello/1` を使えるのがわかります。
+IEx でこのコードを試して見ると `Example` モジュールで `hello/1` を使えるのがわかります。
 
 ```elixir
 iex> Example.hello("Sean")
@@ -305,7 +304,7 @@ defmodule Example do
 end
 ```
 
-IExで試して見ると挨拶が変わるのを確認できます。
+IEx で試して見ると挨拶が変わるのを確認できます。
 
 ```
 iex> Example.hello("Sean")

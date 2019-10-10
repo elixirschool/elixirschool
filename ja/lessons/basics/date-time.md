@@ -3,14 +3,14 @@ version: 1.0.2
 title: 日付と時間
 ---
 
-Elixirで時間を扱ってみましょう。
+Elixir で時間を扱ってみましょう。
 
 {% include toc.html %}
 
 ## Time
 
-Elixirは時間を扱うためのいくつかのモジュールを持っています。
-ただし、この機能はUTCタイムゾーンとの連携に限定されている点に気をつける必要があります。
+Elixir は時間を扱うためのいくつかのモジュールを持っています。
+ただし、この機能は UTC タイムゾーンとの連携に限定されている点に気をつける必要があります。
 
 現在時刻の取得から始めてみましょう:
 
@@ -19,7 +19,7 @@ iex> Time.utc_now
 ~T[19:39:31.056226]
 ```
 
-`Time`構造体を作るためにシギルも使えます:
+`Time` 構造体を作るためにシギルも使えます:
 
 ```elixir
 iex> ~T[19:39:31.056226]
@@ -40,11 +40,11 @@ iex> t.day
 ** (KeyError) key :day not found in: ~T[19:39:31.056226]
 ```
 
-しかし、ここには落とし穴があります。気が付いたかもしれませんが、この構造体は1日の時間のみを含んでいて、日/月/年のデータはありません。
+しかし、ここには落とし穴があります。気が付いたかもしれませんが、この構造体は 1 日の時間のみを含んでいて、日/月/年のデータはありません。
 
 ## Date
 
-`Time`に対して、`Date`構造体は現在の日付に関する情報を持ち、現在の時間に関する情報は含みません。
+`Time` に対して、 `Date` 構造体は現在の日付に関する情報を持ち、現在の時間に関する情報は含みません。
 
 ```elixir
 iex> Date.utc_today
@@ -62,15 +62,15 @@ iex> Date.leap_year? date
 true
 ```
 
-`day_of_week/1`は与えられた日付がどの曜日にあたるのかを計算します。
+`day_of_week/1` は与えられた日付がどの曜日にあたるのかを計算します。
 この場合は土曜日です。
-`leap_year?/1`は閏年かどうかをチェックします。
+`leap_year?/1` は閏年かどうかをチェックします。
 その他の関数は [doc](https://hexdocs.pm/elixir/Date.html) で探すことができます。
 
 ## NaiveDateTime
 
-Elixirには日付と時間を同時に含む構造体が2種類あります。
-最初に紹介するのは`NaiveDateTime`です。
+Elixir には日付と時間を同時に含む構造体が 2 種類あります。
+最初に紹介するのは `NaiveDateTime` です。
 この構造体のデメリットはタイムゾーンのサポートが無いという点です:
 
 ```elixir
@@ -87,7 +87,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 ## DateTime
 
-2つ目は、このセクションのタイトルから想像がつくように、`DateTime`です。
+2 つ目は、このセクションのタイトルから想像がつくように、 `DateTime` です。
 `NaiveDateTime` で記載したような制限はありません。そのため、これは時間と日付を両方持ち、タイムゾーンもサポートしています。
 しかしタイムゾーンについては注意してください。公式ドキュメントではこのように記載されています:
 
@@ -96,7 +96,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 これは、適切なDateTimeの実装には、現時点でElixirの機能として提供されていないタイムゾーンデータベースを必要とするためです。
 ```
 
-また、タイムゾーンを提供するだけで、NaiveDateTimeからDateTimeのインスタンスを作ることができます:
+また、タイムゾーンを提供するだけで、NaiveDateTime から DateTime のインスタンスを作ることができます:
 
 ```
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
@@ -104,4 +104,4 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 ```
 
 これがそうです！さらに高度な他の機能を使いたい場合は、 [Time](https://hexdocs.pm/elixir/Time.html) 、 [Date](https://hexdocs.pm/elixir/Date.html) 、 [DateTime](https://hexdocs.pm/elixir/DateTime.html)、 [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) のドキュメントをさらに確認することを考慮するといいでしょう。
-Elixirで時間を扱うパワフルなライブラリである [Timex](https://github.com/bitwalker/timex) と [Calendar](https://github.com/lau/calendar) についても考慮するべきです。
+Elixir で時間を扱うパワフルなライブラリである [Timex](https://github.com/bitwalker/timex) と [Calendar](https://github.com/lau/calendar) についても考慮するべきです。
