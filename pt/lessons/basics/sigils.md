@@ -49,7 +49,7 @@ iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = \#{2 + 7}'
 ```
 
-Podemos ver em letra minúscula `~c` interpolando o cálculo, enquanto um sigil de letra maiúscula `~C`  não.
+Podemos ver em letra minúscula `~c` interpolando o cálculo, enquanto um sigil de letra maiúscula `~C` não.
 Veremos que esta sequência maiúscula / minúscula é um tema comum em toda a construção de sigils.
 
 ### Expressões Regulares
