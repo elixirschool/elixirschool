@@ -23,7 +23,7 @@ defmodule Example do
 end
 
 iex> Example.timed(fn (n) -> (n * n) * n end, [100])
-Time: 8μs
+Time: 8 μs
 Result: 1000000
 ```
 

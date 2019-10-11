@@ -84,14 +84,14 @@ iex> h Enum
 Provides a set of algorithms that enumerate over enumerables according to the
 Enumerable protocol.
 
-┃iex> Enum.map([1, 2, 3], fn(x) -> x * 2 end)
+┃ iex> Enum.map([1, 2, 3], fn(x) -> x * 2 end)
 ┃ [2, 4, 6]
 
 Some particular types, like maps, yield a specific format on enumeration. For
 example, the argument is always a {key, value} tuple for maps:
 
-┃iex> map = %{a: 1, b: 2}
-┃iex> Enum.map(map, fn {k, v} -> {k, v * 2} end)
+┃ iex> map = %{a: 1, b: 2}
+┃ iex> Enum.map(map, fn {k, v} -> {k, v * 2} end)
 ┃ [a: 2, b: 4]
 
 Note that the functions in the Enum module are eager: they always start the
@@ -102,7 +102,7 @@ Since the majority of the functions in Enum enumerate the whole enumerable and
 return a list as result, infinite streams need to be carefully used with such
 functions, as they can potentially run forever. For example:
 
-┃Enum.each Stream.cycle([1, 2, 3]), &IO.puts(&1)
+┃ Enum.each Stream.cycle([1, 2, 3]), &IO.puts(&1)
 ```
 
 さらに、オートコンプリート機能と組み合わせて利用することもできます。
@@ -144,7 +144,7 @@ Kernel.struct/2.
 
 Examples
 
-┃iex> Map.merge(%{a: 1, b: 2}, %{a: 3, d: 4})
+┃ iex> Map.merge(%{a: 1, b: 2}, %{a: 3, d: 4})
 ┃ %{a: 3, b: 2, d: 4}
 ```
 
