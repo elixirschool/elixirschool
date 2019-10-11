@@ -11,7 +11,7 @@ title: デバッグ
 # DialyxirとDialyzer
 
 [Dialyzer](http://erlang.org/doc/man/dialyzer.html) 、 **DI**screpancy **A**na**LYZ**er for **ER**lang programsは、静的コード解析のためのツールです。
-言い換えると、これはコードを_読む_だけで_実行_はせず、その内容を解析し、
+言い換えると、これはコードを _読む_ だけで _実行_ はせず、その内容を解析し、
 例えばバグやデッドコード、不要なコード、あるいは到達不能コードを検出します。
 
 [Dialyxir](https://github.com/jeremyjh/dialyxir) は、ElixirにおけるDialyzerの使用を簡易化するmixタスクです。
