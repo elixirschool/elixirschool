@@ -7,10 +7,10 @@ title: IEx Helpers
 
 ## 概要
 
-Elixir を始めるとき、IEx はあなたの開発の強力な手助けになるでしょう。
-IEx は REPL でありながら、コードの探索やあなたのコードの開発をよりかんたんにするための多くの機能を備えています。
+Elixirを始めるとき、IExはあなたの開発の強力な手助けになるでしょう。
+IExはREPLでありながら、コードの探索やあなたのコードの開発をよりかんたんにするための多くの機能を備えています。
 
-IEx にはたくさんの内蔵のヘルパーがあります。このレッスンでそれぞれ説明していきます。
+IExにはたくさんの内蔵のヘルパーがあります。このレッスンでそれぞれ説明していきます。
 
 ### オートコンプリート
 
@@ -37,9 +37,9 @@ update/4             values/1
 
 ### `.iex.exs`
 
-IEx を起動するとき、毎回 `.iex.exs` という設定ファイルを参照しています。もしそのファイルがカレントディレクトリに存在しない場合はユーザーのホームディレクトリの(`~/.iex.exs`)がフォールバック先として参照されます。
+IExを起動するとき、毎回 `.iex.exs` という設定ファイルを参照しています。もしそのファイルがカレントディレクトリに存在しない場合はユーザーのホームディレクトリの(`~/.iex.exs`)がフォールバック先として参照されます。
 
-オプションやコードをこのファイルに設定すると IEx 上で利用可能になります。たとえば、新しく IEx 上で利用したいヘルパー関数がある場合は `.iex.exs` を変更します。
+オプションやコードをこのファイルに設定するとIEx上で利用可能になります。たとえば、新しくIEx上で利用したいヘルパー関数がある場合は `.iex.exs` を変更します。
 
 幾つかヘルパー関数を用意してみましょう
 
@@ -53,7 +53,7 @@ defmodule IExHelpers do
 end
 ```
 
-IEx を起動すると、 `IExHelpers` モジュールが利用可能になっています。実際に試してみましょう。
+IExを起動すると、 `IExHelpers` モジュールが利用可能になっています。実際に試してみましょう。
 
 ```elixir
 $ iex
@@ -84,14 +84,14 @@ iex> h Enum
 Provides a set of algorithms that enumerate over enumerables according to the
 Enumerable protocol.
 
-┃ iex> Enum.map([1, 2, 3], fn(x) -> x * 2 end)
+┃iex> Enum.map([1, 2, 3], fn(x) -> x * 2 end)
 ┃ [2, 4, 6]
 
 Some particular types, like maps, yield a specific format on enumeration. For
 example, the argument is always a {key, value} tuple for maps:
 
-┃ iex> map = %{a: 1, b: 2}
-┃ iex> Enum.map(map, fn {k, v} -> {k, v * 2} end)
+┃iex> map = %{a: 1, b: 2}
+┃iex> Enum.map(map, fn {k, v} -> {k, v * 2} end)
 ┃ [a: 2, b: 4]
 
 Note that the functions in the Enum module are eager: they always start the
@@ -102,11 +102,11 @@ Since the majority of the functions in Enum enumerate the whole enumerable and
 return a list as result, infinite streams need to be carefully used with such
 functions, as they can potentially run forever. For example:
 
-┃ Enum.each Stream.cycle([1, 2, 3]), &IO.puts(&1)
+┃Enum.each Stream.cycle([1, 2, 3]), &IO.puts(&1)
 ```
 
 さらに、オートコンプリート機能と組み合わせて利用することもできます。
-最初に Map を探索してみます。
+最初にMapを探索してみます。
 
 ```elixir
 iex> h Map
@@ -144,7 +144,7 @@ Kernel.struct/2.
 
 Examples
 
-┃ iex> Map.merge(%{a: 1, b: 2}, %{a: 3, d: 4})
+┃iex> Map.merge(%{a: 1, b: 2}, %{a: 3, d: 4})
 ┃ %{a: 3, b: 2, d: 4}
 ```
 
@@ -189,11 +189,11 @@ Reference modules
 
 それぞれの見出しは密である可能性がありますが、高い水準で関連する情報を集めています。
 
-- Map は Atom 型である
+- MapはAtom型である
 - ソースコードがどこにあるか
 - そのバージョンとコンパイルオプション
 - 一般的な説明分
-- Map にアクセスする方法
+- Mapにアクセスする方法
 - 他にどのモジュールを参照しているか
 
 この機能は私たちにより多く働きかけ、有意義にできます。
@@ -220,7 +220,7 @@ iex> t Map
 @type value() :: any()
 ```
 
-このように `Map` モジュールが key と value に定義している型が分かります。
+このように `Map` モジュールがkeyとvalueに定義している型が分かります。
 `Map` のソースを読んで確認してみます。
 
 ```elixir
@@ -231,6 +231,6 @@ defmodule Map do
 # ...
 ```
 
-これは簡単な例であり、key や value の値はどのような型でも構いませんが知っておくと便利です。
+これは簡単な例であり、keyやvalueの値はどのような型でも構いませんが知っておくと便利です。
 
-これらすべての内蔵機能を活用することで、簡単にコードを探索したりどのように実行されるか学ぶことができます。IEx は開発者にとって協力なツールです。このようなツール郡を使いこなすことでより開発を楽しめるようになるでしょう！
+これらすべての内蔵機能を活用することで、簡単にコードを探索したりどのように実行されるか学ぶことができます。IExは開発者にとって協力なツールです。このようなツール郡を使いこなすことでより開発を楽しめるようになるでしょう！

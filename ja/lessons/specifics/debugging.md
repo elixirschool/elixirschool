@@ -4,22 +4,22 @@ title: デバッグ
 ---
 
 バグはあらゆるプロジェクトにおいて存在するものであり、それゆえに私たちはデバッグを必要とします。
-このレッスンでは、潜在的なバグを見つけ出すための静的解析ツールとともに Elixir のコードのデバッグについて学びます。
+このレッスンでは、潜在的なバグを見つけ出すための静的解析ツールとともにElixirのコードのデバッグについて学びます。
 
 {% include toc.html %}
 
-# Dialyxir と Dialyzer
+# DialyxirとDialyzer
 
-[Dialyzer](http://erlang.org/doc/man/dialyzer.html) 、 **DI**screpancy **A**na**LYZ**er for **ER**lang programs は、静的コード解析のためのツールです。
-言い換えると、これはコードを _読む_ だけで _実行_ はせず、その内容を解析し、
+[Dialyzer](http://erlang.org/doc/man/dialyzer.html) 、 **DI**screpancy **A**na**LYZ**er for **ER**lang programsは、静的コード解析のためのツールです。
+言い換えると、これはコードを_読む_だけで_実行_はせず、その内容を解析し、
 例えばバグやデッドコード、不要なコード、あるいは到達不能コードを検出します。
 
-[Dialyxir](https://github.com/jeremyjh/dialyxir) は、Elixir における Dialyzer の使用を簡易化する mix タスクです。
+[Dialyxir](https://github.com/jeremyjh/dialyxir) は、ElixirにおけるDialyzerの使用を簡易化するmixタスクです。
 
-Dialyzer のような仕様ヘルプツールは、あなたのコードをよりよく理解します。
+Dialyzerのような仕様ヘルプツールは、あなたのコードをよりよく理解します。
 人が読むことができるドキュメント(それが存在し、良く書かれていれば)とは違い、 `@spec` はツールが理解しやすい形式的な文法を使います。
 
-Dialyxir をプロジェクトに追加してみましょう。
+Dialyxirをプロジェクトに追加してみましょう。
 最もシンプルな方法は `mix.exs` ファイルに依存を追加することです。
 
 ```elixir
@@ -36,14 +36,14 @@ $ mix deps.get
 $ mix deps.compile
 ```
 
-最初のコマンドは Dialyxir をダウンロードしてインストールします。
-Hex を一緒にインストールするかどうか確認されるかもしれません。
-2 つ目は Dialyxir アプリケーションをコンパイルします。
-Dialyxir をグローバルにインストールしたい場合は、 [documentation](https://github.com/jeremyjh/dialyxir#installation) を読んでください。
+最初のコマンドはDialyxirをダウンロードしてインストールします。
+Hexを一緒にインストールするかどうか確認されるかもしれません。
+2つ目はDialyxirアプリケーションをコンパイルします。
+Dialyxirをグローバルにインストールしたい場合は、 [documentation](https://github.com/jeremyjh/dialyxir#installation) を読んでください。
 
-最後のステップは PLT(Persistent Lookup Table)をリビルドするために Dialyzer を実行することです。
-新しいバージョンの Erlang や Elixir をインストールした際は毎回この作業を行う必要があります。
-幸いにも、Dialyzer はあなたが使おうとしている標準ライブラリを毎回解析しません。
+最後のステップはPLT(Persistent Lookup Table)をリビルドするためにDialyzerを実行することです。
+新しいバージョンのErlangやElixirをインストールした際は毎回この作業を行う必要があります。
+幸いにも、Dialyzerはあなたが使おうとしている標準ライブラリを毎回解析しません。
 ダウンロードが完了するまでには数分かかります。
 
 ```shell
@@ -59,7 +59,7 @@ done (warnings were emitted)
 
 ## コードの静的解析
 
-これで Dialyxir を使う準備が整いました:
+これでDialyxirを使う準備が整いました:
 
 ```shell
 $ mix dialyzer
@@ -69,7 +69,7 @@ The success typing is (_) -> number()
 ...
 ```
 
-この Dialyzer のメッセージの内容は明らかです。 `sum_times/1` 関数の戻り値の型が定義されたものと異なります。
+このDialyzerのメッセージの内容は明らかです。 `sum_times/1` 関数の戻り値の型が定義されたものと異なります。
 これは `Enum.sum/1` が `integer` ではなく `number` を返すためですが、 `sum_times/1` の戻り値の型は `integer` となっています。
 
 `number` は `integer` ではないため、このようなエラーとなります。
@@ -102,7 +102,7 @@ done (passed successfully)
 時には静的解析だけでは不十分なことがあります。
 バグを見つけるために実行フローを理解する必要があるかもしれません。
 最も簡単な方法は、値とコードフローを追跡するために `IO.puts/2` のような出力ステートメントをコードの中に設置することですが、このテクニックは原始的であり限界があります。
-ありがたいことに、Elixir のコードをデバッグするために Erlang デバッガを使用することができます。
+ありがたいことに、ElixirのコードをデバッグするためにErlangデバッガを使用することができます。
 
 基本的なモジュールを見てみましょう:
 
@@ -131,7 +131,7 @@ iex > :debugger.start()
 {:ok, #PID<0.307.0>}
 ```
 
-Erlang の `:debugger` モジュールはデバッガへのアクセスを提供します。
+Erlangの `:debugger` モジュールはデバッガへのアクセスを提供します。
 設定をするためには `start/1` を使います:
 
 - ファイルパスを渡すことで外部の設定ファイルを使うことができます。
@@ -158,26 +158,26 @@ iex > :int.ni(Example)
 ## ブレークポイントの作成
 
 ブレークポイントは、実行が中断されるコード内のポイントです。
-ブレークポイントを作成する方法は 2 通りあります:
+ブレークポイントを作成する方法は2通りあります:
 
 - コードに `:int.break/2` を設置する
-- デバッガの UI を使う
+- デバッガのUIを使う
 
-IEx でブレークポイントの作成を試してみましょう:
+IExでブレークポイントの作成を試してみましょう:
 
 ```elixir
 iex > :int.break(Example, 8)
 :ok
 ```
 
-これは `Example` モジュールの 8 行目にブレークポイントを設置します。
+これは `Example` モジュールの8行目にブレークポイントを設置します。
 これで関数を実行すると:
 
 ```elixir
 iex > Example.cpu_burns(1, 1, 1)
 ```
 
-IEx でのコードの実行は中断され、デバッガウィンドウは次のように表示されます:
+IExでのコードの実行は中断され、デバッガウィンドウは次のように表示されます:
 
 ![Debugger Screenshot 3]({% asset debugger_3.png @path %})
 
@@ -203,7 +203,7 @@ iex > :int.delete_break(Example, 8)
 デバッガウィンドウでも同様の操作が可能です。
 トップメニューの **Break** で **Line Break** を選択してブレークポイントを設定できます。
 コードを含まない行を選択した場合はブレークポイントは無視されますが、デバッガウィンドウには表示されます。
-ブレークポイントには次の 3 種類があります:
+ブレークポイントには次の3種類があります:
 
 - 行ブレークポイント - 行に到達した際にデバッガは実行を停止します。 `:int.break/2` で設定します
 - 条件ブレークポイント - 行ブレークポイントと似ていますが、設定された条件を満たした時のみデバッガが停止します。これらは `:int.get_binding/2` で設定します
