@@ -9,10 +9,10 @@ title: Enum
 
 ## Enum
 
-`Enum` モジュールはおよそ 70 個以上の関数を含んでいます。[前回のレッスン](../collections/)で学習した、タプルを除く全てのコレクションを列挙できます。
+`Enum` モジュールはおよそ70個以上の関数を含んでいます。[前回のレッスン](../collections/)で学習した、タプルを除く全てのコレクションを列挙できます。
 
 このレッスンは利用可能な関数のうち一部分しか取り上げませんが、実は全ての関数を自分自身で調べることができます。
-IEx でちょっとした実験をしてみましょう。
+IExでちょっとした実験をしてみましょう。
 
 ```elixir
 iex
@@ -29,7 +29,7 @@ at/3
 ```
 
 このように、 `Enum` モジュールが非常に多くの機能を持っていることは一目瞭然ですが、これには明確な理由があります。
-列挙は関数型プログラミングの中核であり、Elixir が開発者にもたらす驚くべきその他の恩恵と基部で統合的に用意されているおかげです。
+列挙は関数型プログラミングの中核であり、Elixirが開発者にもたらす驚くべきその他の恩恵と基部で統合的に用意されているおかげです。
 
 全ての関数を知りたい場合は公式ドキュメントの[`Enum`](https://hexdocs.pm/elixir/Enum.html)を参照してください。尚、列挙の遅延処理では[`Stream`](https://hexdocs.pm/elixir/Stream.html)モジュールを利用してください。
 
@@ -46,7 +46,7 @@ true
 
 ### any?
 
-上記と違って、 `any?` は少なくとも 1 つの要素が `true` と評価された場合に `true` を返します:
+上記と違って、 `any?` は少なくとも1つの要素が `true` と評価された場合に `true` を返します:
 
 ```elixir
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
@@ -166,9 +166,9 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 ### sort
 
-コレクションのソートに、関数を 1 つだけでなく 2 つ使うと容易になります。
+コレクションのソートに、関数を1つだけでなく2つ使うと容易になります。
 
-`sort/1` はソートの順序を決める為に Erlang の [Term 優先順位](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) を使います:
+`sort/1` はソートの順序を決める為にErlangの [Term優先順位](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) を使います:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])

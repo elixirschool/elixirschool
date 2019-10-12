@@ -3,7 +3,7 @@ version: 1.4.0
 title: モジュール
 ---
 
-私たちは経験的に、全ての関数を 1 つの同じファイルとスコープに持つと手に負えないことを知っています。
+私たちは経験的に、全ての関数を1つの同じファイルとスコープに持つと手に負えないことを知っています。
 このレッスンでは関数をまとめ、構造体として知られる特別なマップを定義することで、コードをより効率のよい形に組織化する方法を取り上げます。
 
 {% include toc.html %}
@@ -26,7 +26,7 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
-Elixir ではモジュールをネストすることが可能で、機能ごとにさらなる名前空間をつけることができます:
+Elixirではモジュールをネストすることが可能で、機能ごとにさらなる名前空間をつけることができます:
 
 ```elixir
 defmodule Example.Greetings do
@@ -45,7 +45,7 @@ iex> Example.Greetings.morning "Sean"
 
 ### モジュールの属性
 
-モジュール属性は Elixir では一般に定数として用いられることがほとんどです。
+モジュール属性はElixirでは一般に定数として用いられることがほとんどです。
 単純な例を見てみましょう:
 
 ```elixir
@@ -58,12 +58,12 @@ defmodule Example do
 end
 ```
 
-重要なので言及しておきますと、 Elixir には予約されている属性があります。
-もっとも一般的なのは以下の 3 つです:
+重要なので言及しておきますと、Elixirには予約されている属性があります。
+もっとも一般的なのは以下の3つです:
 
 - `moduledoc` — 現在のモジュールにドキュメントを付けます。
 - `doc` — 関数やマクロについてのドキュメント管理。
-- `behaviour` — OTP またはユーザが定義した振る舞い(ビヘイビア)に用います。
+- `behaviour` — OTPまたはユーザが定義した振る舞い(ビヘイビア)に用います。
 
 ## 構造体
 
@@ -108,7 +108,7 @@ iex> %{name: "Sean"} = sean
 #Example.User<name: "Sean", roles: [...], ...>
 ```
 
-Elixir 1.8 以降、構造体にカスタムイントロスペクション機能が追加されました。
+Elixir 1.8以降、構造体にカスタムイントロスペクション機能が追加されました。
 
 カスタムイントロスペクションがどのように使われるのかを理解するため、 `sean` の中身を見てみましょう。
 
@@ -144,11 +144,11 @@ iex> inspect(sean)
 ## コンポジション(Composition)
 
 さて、モジュールと構造体の作り方がわかったので、コンポジションを用いてモジュールや構造体に既存の機能を追加する方法を学びましょう。
-Elixir は他のモジュールと連携する様々な方法を用意しています。
+Elixirは他のモジュールと連携する様々な方法を用意しています。
 
 ### `alias`
 
-モジュール名をエイリアスすることができます。 Elixir のコードでは頻繁に使われます:
+モジュール名をエイリアスすることができます。Elixirのコードでは頻繁に使われます:
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -161,14 +161,14 @@ defmodule Example do
   def greeting(name), do: Greetings.basic(name)
 end
 
-# alias を使わない場合
+# aliasを使わない場合
 
 defmodule Example do
   def greeting(name), do: Sayings.Greetings.basic(name)
 end
 ```
 
-2 つのエイリアス間で衝突があったり、全体を別名でエイリアスしたい場合には、 `:as` オプションを使います:
+2つのエイリアス間で衝突があったり、全体を別名でエイリアスしたい場合には、 `:as` オプションを使います:
 
 ```elixir
 defmodule Example do
@@ -225,7 +225,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-名前/アリティのペアに加えて、 `:functions` と `:macros` という 2 つの特別なアトムもあります。これらはそれぞれ関数とマクロのみを取り込みます:
+名前/アリティのペアに加えて、 `:functions` と `:macros` という2つの特別なアトムもあります。これらはそれぞれ関数とマクロのみを取り込みます:
 
 ```elixir
 import List, only: :functions
@@ -234,7 +234,7 @@ import List, only: :macros
 
 ### `require`
 
-他のモジュールのマクロを使用することを Elixir に伝えるために `require` を使うことができます。
+他のモジュールのマクロを使用することをElixirに伝えるために `require` を使うことができます。
 `import` とのわずかな違いは、関数ではなくマクロを使用可能とすることです。
 
 ```elixir
@@ -245,7 +245,7 @@ defmodule Example do
 end
 ```
 
-まだロードされていないマクロを呼びだそうとすると、Elixir はエラーを発生させます。
+まだロードされていないマクロを呼びだそうとすると、Elixirはエラーを発生させます。
 
 ### `use`
 
@@ -273,7 +273,7 @@ defmodule Example do
 end
 ```
 
-IEx でこのコードを試して見ると `Example` モジュールで `hello/1` を使えるのがわかります。
+IExでこのコードを試して見ると `Example` モジュールで `hello/1` を使えるのがわかります。
 
 ```elixir
 iex> Example.hello("Sean")
@@ -304,14 +304,14 @@ defmodule Example do
 end
 ```
 
-IEx で試して見ると挨拶が変わるのを確認できます。
+IExで試して見ると挨拶が変わるのを確認できます。
 
 ```
 iex> Example.hello("Sean")
 "Hola, Sean"
 ```
 
-これらは `use` がどうやって動作するのかを説明する簡単な例でしたが、これは Elixir のツールボックスで信じられないほどに強力なツールです。
-Elixir を学び続けたら `use` をあっちこっちで見ることになるでしょう。かならず見ることになりそうな例をひとつあげれば、 `use ExUnit.Case, async: true` です。
+これらは `use` がどうやって動作するのかを説明する簡単な例でしたが、これはElixirのツールボックスで信じられないほどに強力なツールです。
+Elixirを学び続けたら `use` をあっちこっちで見ることになるでしょう。かならず見ることになりそうな例をひとつあげれば、 `use ExUnit.Case, async: true` です。
 
 **注意**: `quote` 、 `alias` 、 `use` 、 `require` は[メタプログラミング](../../advanced/metaprogramming)で使用してたマクロです。
