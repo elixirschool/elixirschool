@@ -102,7 +102,8 @@ iex> %{name: "Sean"} = sean
 #Example.User<name: "Sean", roles: [...], ...>
 ```
 
-A partir do Elixir 1.8, structs incluem introspecção customizáveis. Para entender o que isso significa e como devemos usar, vamos inspecionar nossa captura `sean`:
+A partir do Elixir 1.8, structs incluem introspecção customizáveis.
+Para entender o que isso significa e como devemos usar, vamos inspecionar nossa captura `sean`:
 
  ```elixir
  iex> inspect(sean)
