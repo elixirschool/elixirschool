@@ -109,7 +109,7 @@ A partir do Elixir 1.8, structs incluem introspecção customizáveis. Para ente
 "#Example.User<name: \"Sean\", roles: [...], ...>"
 ```
 
-Todos os campos estão presentes, o que esta correto para esse exemplo, mas o que acontece se tivéssemos um campo protegido que não gostaríamos de incluir? A nova funcionalidade `@derive` faz com que possamos alcançar isso! Vamos atualizar nosso exemplo para que `roles` não seja mais incluído na nossa saída:
+Todos os campos estão presentes, o que está correto para esse exemplo, mas o que acontece se tivéssemos um campo protegido que não gostaríamos de incluir? A nova funcionalidade `@derive` faz com que possamos alcançar isso! Vamos atualizar nosso exemplo para que `roles` não seja mais incluído na nossa saída:
 
 ```elixir
 defmodule Example.User do
@@ -120,7 +120,7 @@ end
 
 *Nota:* podemos também usar `@derive {Inspect, except: [:roles]}`, que é equivalente.
 
-Com o nosso modulo já atualizado, vamos ver o que acontece no `iex`:
+Com o nosso módulo já atualizado, vamos ver o que acontece no `iex`:
 
 ```elixir
 iex> sean = %Example.User{name: "Sean"}
