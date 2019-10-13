@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.4.0
 title: Módulos
 ---
 
@@ -101,6 +101,35 @@ Mais importante, você pode associar estruturas contra mapas:
 iex> %{name: "Sean"} = sean
 #Example.User<name: "Sean", roles: [...], ...>
 ```
+
+A partir do Elixir 1.8, structs incluem introspecção customizáveis. Para entender o que isso significa e como devemos usar, vamos inspecionar nossa captura `sean`:
+
+ ```elixir
+ iex> inspect(sean)
+"#Example.User<name: \"Sean\", roles: [...], ...>"
+```
+
+Todos os campos estão presentes, o que esta correto para esse exemplo, mas o que acontece se tivéssemos um campo protegido que não gostaríamos de incluir? A nova funcionalidade `@derive` faz com que possamos alcançar isso! Vamos atualizar nosso exemplo para que `roles` não seja mais incluído na nossa saída:
+
+```elixir
+defmodule Example.User do
+  @derive {Inspect, only: [:name]}
+  defstruct name: nil, roles: []
+end
+```
+
+*Nota:* podemos também usar `@derive {Inspect, except: [:roles]}`, que é equivalente.
+
+Com o nosso modulo já atualizado, vamos ver o que acontece no `iex`:
+
+```elixir
+iex> sean = %Example.User{name: "Sean"}
+#Example.User<name: "Sean", ...>
+iex> inspect(sean)
+"#Example.User<name: \"Sean\", ...>"
+```
+
+Os `roles` não são mais exibidos na saída!
 
 ## Composição
 
