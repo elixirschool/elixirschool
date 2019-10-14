@@ -3,7 +3,7 @@ version: 2.0.1
 title: Distillery (Básico)
 ---
 
-Distillery é um gerenciador de releases escrito em Elixir puro. Ele permite que você produza releases que podem ser rodadas em outros lugares com pouca ou nenhuma configuração.
+Distillery é um gerenciador de releases escrito em Elixir puro. Ele permite que você produza releases que podem ser deployed em outros lugares com pouca ou nenhuma configuração.
 
 ## O que é uma release?
 
@@ -201,7 +201,7 @@ end
 
 ## Comandos Customizados
 
-Quando estiver trabalhando com uma release, você talvez não tenha acesso aos comandos `mix` pois o `mix` talvez não esteja instalado onde a release foi instalada. Nós podemos resolver isso criando comandos customizados.
+Quando estiver trabalhando com uma release, você talvez não tenha acesso aos comandos `mix` pois o `mix` talvez não esteja instalado onde a release foi deployed. Nós podemos resolver isso criando comandos customizados.
 
 > Comandos customizados são estensões do script de inicialização, e são utilizados da mesma maneira que você utiliza foreground ou remote_console, em outras palavras, eles aparentam ser parte do script de inicialização. Assim como hooks, eles tem acesso as helper functions e o ambiente dos scripts de inicialização - [Documentação do Distillery](https://hexdocs.pm/distillery/1.5.2/custom-commands.html)
 
