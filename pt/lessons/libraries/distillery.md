@@ -1,9 +1,9 @@
 ---
-version: 2.0.1
+version: 3.0.1
 title: Distillery (Básico)
 ---
 
-Distillery é um gerenciador de releases escrito em Elixir puro. Ele permite que você produza releases que podem ser instaladas em outros lugares com pouca ou nenhuma configuração.
+Distillery é um gerenciador de releases escrito em Elixir puro. Ele permite que você produza releases que podem ser rodadas em outros lugares com pouca ou nenhuma configuração.
 
 ## O que é uma release?
 
@@ -15,19 +15,18 @@ Uma release é um pacote contendo o seu código Erlang/Elixir compilado (ex [BEA
 
 Uma release irá conter o seguinte:
 * uma pasta /bin
-  * Isto contém um script que é o ponto de início para rodar a sua aplicação inteira.
+  * Esta contém um script que é o ponto de início para rodar a sua aplicação inteira.
 * uma pasta /lib
-  * Isto contém o bytecode compilado da aplicação junto com quaisquer dependências.
+  * Esta contém o bytecode compilado da aplicação junto com quaisquer dependências.
 * uma pasta /releases
-  * Isto contém metadados sobre a release assim como também hooks e comandos customizados.
+  * Esta contém metadados sobre a release assim como também hooks e comandos customizados.
 * Um /erts-VERSION
-  * Isto contém o runtime do Erlang que irá permitir que uma máquina execute a sua aplicação sem necessitar ter o Erlang ou Elixir instalados.
+  * Este contém o runtime do Erlang que irá permitir que uma máquina execute a sua aplicação sem necessitar ter o Erlang ou Elixir instalados.
 
 
 ### Iniciando/instalação
 
 Para adicionar o Distillery no seu projeto, adicione-o como uma dependência no seu arquivo `mix.exs`. *Nota* - se você estiver trabalhando numa aplicação umbrella isto deve estar no mix.exs na raiz do seu projeto
-
 
 ```
 defp deps do
@@ -100,6 +99,7 @@ Se você estiver usando o Distillery com o Phoenix há alguns passos extras que 
 Primeiro, precisamos editar o nosso arquivo `config/prod.exs`.
 
 Altere a seguinte linha disto:
+
 ```
 config :book_app, BookAppWeb.Endpoint,
   load_from_system_env: true,
@@ -126,13 +126,11 @@ Nós fizemos algumas coisas aqui:
 
 Se você executou o comando acima, você talvez tenha notado que a sua aplicação crashou porquê é incapaz de conectar ao banco de dados já que nenhum banco de dados atualmente existe. Isto pode ser retificado executando um comando `mix` do Ecto. No seu terminal, digite o seguinte:
 
-
 ```
 MIX_ENV=prod mix ecto.create
 ```
 
-Este comando irá criar o seu banco de dados para você. Tente executar novamente a aplicação e ela deve iniciar com sucesso. Entretanto, você irá notar que a suas migrations para o seu banco de dados não foram executadas.
-Normalmente em desenvolvimento executamos essas migrations manualmente chamando `mix.ecto migrate`. Para a release, nós teremos que configurar isto para que ela possa rodar as migrations por si própria.
+Este comando irá criar o seu banco de dados para você. Tente executar novamente a aplicação e ela deve iniciar com sucesso. Entretanto, você irá notar que a suas migrations para o seu banco de dados não foram executadas. Normalmente em desenvolvimento executamos essas migrations manualmente chamando `mix.ecto migrate`. Para a release, nós teremos que configurar isto para que ela possa rodar as migrations por si própria.
 
 
 ## Executando Migrations em Produção
@@ -147,7 +145,6 @@ O Distillery nos provê a habilidade de executar código em diferentes pontos do
 
 
 Para o nosso propósito, iremos estar utilizando o hook `post_start` para executar as migrações da nossa aplicação em produção. Primeiro vamos criar uma nova tarefa da release chamada `migrate`. Uma tarefa de release é um módulo que podemos chamar pelo terminal e que contém código que é separado do funcionamento interno da nossa aplicação. Isto é útil para tarefas que a aplicação em si não precisa tipicamente executar.
-
 
 ```
 defmodule BookAppWeb.ReleaseTasks do
@@ -227,6 +224,7 @@ Depois, crie um novo arquivo `rel/commands/seed.sh` e adicione o seguinte códig
 release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
 ```
 
+
 *Nota* - `release_ctl()` é um shell script fornecido pelo Distillery que nos permite executar comandos localmente ou em um nó limpo. Se você precisa rodar isto em um nó já em execução você pode executar `release_remote_ctl()`
 
 Veja mais sobre shell_scripts do Distillery [aqui](https://hexdocs.pm/distillery/extensibility/shell_scripts.html)
@@ -243,4 +241,3 @@ end
 ```
 
 Certifique-se de recriar a release executando `MIX_ENV=prod mix release`. Uma vez que este processo for concluído, você agora pode executar no seu terminal `PORT=4001 _build/prod/rel/book_app/bin/book_app seed`.
-
