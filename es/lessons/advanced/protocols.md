@@ -24,7 +24,7 @@ iex> to_string("foo")
 "foo"
 ```
 
-Como puedes ver hemos llamada a la función con múltiples tipos y hemos demostrado que funciona con todos.
+Como puedes ver hemos llamado a la función con múltiples tipos y hemos demostrado que funciona con todos.
 ¿Qué pasaria si llamamos a `to_string/1` en tuplas (o en cualquier tipo que no haya implementado `String.Chars`)?
 Veamos:
 
@@ -40,7 +40,7 @@ En la siguiente sección implementaremos el protocolo `String.Chars` para tuplas
 
 ## Implementando un protocolo
 
-Vimos que `to_string/1` aún no ha sido implementado para tuplas, así que agreguemoslo.
+Vimos que `to_string/1` aún no ha sido implementado para tuplas, así que agreguémoslo.
 Para crear la implementación utilizaremos `defimpl` con nuestro protocolo y agregaremos la opción `:for` con nuestro tipo.
 Veamos como se podría ver:
 
@@ -110,4 +110,4 @@ iex> to_atom(%{foo: "bar"})
 Es importante notar que aunque por debajo los structs son Maps, no comparten las implementaciones de protocolos que los Maps.
 Los structs no son enumerables, no pueden ser accedidos.
 
-Como podemos ver, los protocolos un una forma poderosa de lograr polimorfismo.
+Como podemos ver, los protocolos son una forma poderosa de lograr polimorfismo.
