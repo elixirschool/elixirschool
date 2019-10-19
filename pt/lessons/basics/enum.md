@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.5.0
 title: Enum
 ---
 
@@ -69,6 +69,8 @@ Há algumas opções para `chunk_every/4` porém não vamos entrar nelas, revise
 Se necessita agrupar uma coleção baseado em algo diferente do tamanho, podemos usar a função `chunk_by/2`. Ela recebe um enumerável e uma função, e quando o retorno desta função muda, um novo grupo é iniciado e começa a criação do próximo:
 
 ```elixir
+iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
+[["one", "two"], ["three"], ["four", "five"]]
 iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> String.length(x) end)
 [["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
@@ -166,7 +168,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 Ordenar nossas coleções é fácil não só com uma, mas com duas funções de ordenação.
 
-`sort/1` usa a funcionalidade de ordenação do Erlang para determinar a ordem:
+`sort/1` usa a funcionalidade de [ordenação do Erlang](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) para determinar a ordem:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -188,11 +190,20 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-Podemos usar `uniq_by/2` para eliminar itens duplicados em nossas coleções:
+Podemos usar `uniq/1` para eliminar itens duplicados em nossas coleções:
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
+```
+
+### uniq_by
+
+`uniq_by/2` também pode ser utilizado para eliminar itens duplicados em nossas coleções, mas nos permite fornecer uma função para fazer a comparação de exclusividade.
+
+```elixir
+iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
+[%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```
