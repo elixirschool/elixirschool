@@ -201,7 +201,7 @@ iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 
 ### uniq_by
 
-`uniq_by/2` também pode ser utilizado para eliminar itens duplicados em nossa coleções, mas nos permite fornecer uma função para fazer a comparação de exclusividade.
+`uniq_by/2` também pode ser utilizado para eliminar itens duplicados em nossas coleções, mas nos permite fornecer uma função para fazer a comparação de exclusividade.
 
 ```elixir
 iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
