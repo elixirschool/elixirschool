@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Querying
 ---
 
@@ -129,7 +129,7 @@ You can use query expressions when you _don't_ need an `in` statement (`m in Mov
 We use the `Ecto.Query.select/3` function to specify the select statement portion of our query. If we want to select only certain fields, we can specify those fields as a list of atoms or by referencing the struct's keys. Let's take a look at the first approach:
 
 ```elixir
-iex> query = from(Movie, select: [:title])
+iex> query = select(Movie, [:title])
 #Ecto.Query<from m in Example.Movie, select: [:title]>
 iex> Repo.all(query)
 
@@ -269,9 +269,10 @@ We _can't_ access those associated characters unless we preload them. There are 
 The following query will preload associated records in a _separate_ query.
 
 ```elixir
-iex> import Ecto.Query
-Ecto.Query
 iex> Repo.all(from m in Movie, preload: [:actors])
+
+13:17:28.354 [debug] QUERY OK source="movies" db=2.3ms queue=0.1ms
+13:17:28.357 [debug] QUERY OK source="actors" db=2.4ms
 [
   %Example.Movie{
     __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
@@ -307,6 +308,8 @@ We can cut down on our database queries with the following:
 ```elixir
 iex> query = from(m in Movie, join: a in assoc(m, :actors), preload: [actors: a])
 iex> Repo.all(query)
+
+13:18:52.053 [debug] QUERY OK source="movies" db=3.7ms
 [
   %Example.Movie{
     __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
