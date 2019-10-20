@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 查詢
 ---
 
@@ -24,7 +24,7 @@ title: 查詢
 iex> alias Example.{Repo, Movie}
 iex> Repo.get(Movie, 1)
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
   characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
   distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
@@ -45,7 +45,7 @@ iex> alias Example.Repo
 iex> alias Example.Movie
 iex> Repo.get_by(Movie, title: "Ready Player One")
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
   characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
   distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
@@ -79,7 +79,7 @@ iex> Repo.all(query)
 14:58:03.187 [debug] QUERY OK source="movies" db=1.7ms decode=4.2ms
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
     characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
     distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
@@ -111,7 +111,7 @@ iex> Repo.all(query)
 06:16:20.854 [debug] QUERY OK source="movies" db=0.9ms
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
     characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
     distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
@@ -136,7 +136,7 @@ iex> Repo.all(query)
 15:15:25.842 [debug] QUERY OK source="movies" db=1.3ms
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
     characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
     distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
@@ -176,7 +176,7 @@ iex> Repo.all(query)
 15:18:35.355 [debug] QUERY OK source="movies" db=4.1ms queue=0.1ms
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
     characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
     distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
@@ -232,7 +232,7 @@ iex> Movie |> first() |> Repo.one()
 
 06:36:14.234 [debug] QUERY OK source="movies" db=3.7ms
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
   characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
   distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
@@ -274,16 +274,16 @@ Ecto.Query
 iex> Repo.all(from m in Movie, preload: [:actors])
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: [
       %Example.Actor{
-        __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+        __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
         movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
         name: "Bob"
       },
       %Example.Actor{
-        __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+        __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 2,
         movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
         name: "Gary"
@@ -309,16 +309,16 @@ iex> query = from(m in Movie, join: a in assoc(m, :actors), preload: [actors: a]
 iex> Repo.all(query)
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: [
       %Example.Actor{
-        __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+        __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
         movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
         name: "Bob"
       },
       %Example.Actor{
-        __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+        __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 2,
         movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
         name: "Gary"
@@ -351,7 +351,7 @@ Repo.all from m in Movie,
 ```elixir
 iex> movie = Repo.get(Movie, 1)
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: #Ecto.Association.NotLoaded<association :actors is not loaded>, # actors are NOT LOADED!!
   characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
   distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
@@ -361,16 +361,16 @@ iex> movie = Repo.get(Movie, 1)
 }
 iex> movie = Repo.preload(movie, :actors)
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: [
     %Example.Actor{
-      __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+      __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 1,
       movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
       name: "Bob"
     },
     %Example.Actor{
-      __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+      __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 2,
       movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
       name: "Gary"
@@ -390,13 +390,13 @@ iex> movie = Repo.preload(movie, :actors)
 iex> movie.actors
 [
   %Example.Actor{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
     id: 1,
     movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
     name: "Bob"
   },
   %Example.Actor{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
     id: 2,
     movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
     name: "Gary"
