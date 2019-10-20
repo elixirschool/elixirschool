@@ -19,7 +19,7 @@ Vamos ver uma estrutura `%Changeset{}` vazia:
 
 ```elixir
 iex> %Ecto.Changeset{}
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
 ```
 
 Como você pode ver, tem alguns campos potencialmente úteis, mas estão todos vazios.

@@ -19,7 +19,7 @@ Everything starts with a `%Multi{}` struct. You can create a new Multi calling t
 
 ```elixir
 iex> Ecto.Multi.new()
-%Ecto.Multi{names: #MapSet<[]>, operations: []}
+%Ecto.Multi{names: %MapSet<[]>, operations: []}
 ```
 
 ## Executing Multi operations

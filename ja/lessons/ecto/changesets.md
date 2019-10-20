@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 title: チェンジセット
 ---
 
@@ -19,7 +19,7 @@ Ectoは `Changeset` モジュールとデータ構造体という形で、デー
 
 ```elixir
 iex> %Ecto.Changeset{}
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
 ```
 
 見ての通り、便利そうなフィールドがいくつかありますが、全て空になっています。
@@ -44,7 +44,7 @@ end
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
 ```
 
@@ -55,16 +55,16 @@ Ectoは構造体そのものに基づいてスキーマを見つけることが�
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Jack"},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
 ```
 
@@ -77,11 +77,11 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => ""}, [:name, :age])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: nil},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 ```
@@ -132,11 +132,11 @@ end
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -159,7 +159,7 @@ nameに対して1つの文字を渡した場合、どのような結果になる
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => "A"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "A"},
   errors: [
@@ -222,11 +222,11 @@ end
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -266,11 +266,11 @@ end
 
 ```elixir
 iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 ```

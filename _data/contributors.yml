@@ -472,3 +472,13 @@
     - translator
   languages:
     - ru
+
+- github: herminiotorres
+  name: Herminio Torres
+  intro:
+  homepage: http://github.com/herminiotorres
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - pt
