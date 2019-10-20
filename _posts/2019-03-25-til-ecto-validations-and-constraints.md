@@ -77,7 +77,7 @@ iex> %User{} |> User.changeset(%{})
     email: {"can't be blank", [validation: :required]},
     password: {"can't be blank", [validation: :required]}
   ],
-  data: #MyCoolWebApp.Accounts.User<>,
+  data: %MyCoolWebApp.Accounts.User<>,
   valid?: false
 >
 ```
@@ -177,7 +177,7 @@ iex> user |> User.changeset(attrs) |> Repo.insert()
      email: {"has already been taken",
       [constraint: :unique, constraint_name: "users_email_index"]}
    ],
-   data: #MyCoolWebApp.Accounts.User<>,
+   data: %MyCoolWebApp.Accounts.User<>,
    valid?: false
  >}
 ```
