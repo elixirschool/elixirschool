@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: 문서화
 ---
 
@@ -131,6 +131,7 @@ ExDoc는 **HTML(HyperText Markup Language) 문서를 생성하여 Elixir 프로�
 $ mix new greet_everyone
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
 * creating config

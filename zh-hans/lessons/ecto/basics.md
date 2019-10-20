@@ -1,5 +1,5 @@
 ---
-version: 2.1.1
+version: 2.3.0
 title: Basics
 ---
 
@@ -56,14 +56,14 @@ $ mix deps.get
 通过运行以下命令创建一个Repository:
 
 ```shell
-$ mix ecto.gen.repo -r Example.Repo
+$ mix ecto.gen.repo -r Friends.Repo
 ```
 
 上述命令会在 `config/config.exs` 文件中生成所需的配置，用来连接到我们要使用的数据库。
-这是我们 `Example` 应用程序的配置文件
+这是我们 `Friends` 应用程序的配置文件
 
 ```elixir
-config :friends, Example.Repo,
+config :friends, Friends.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "friends_repo",
   username: "postgres",
@@ -73,24 +73,24 @@ config :friends, Example.Repo,
 
 这个配置决定 Ecto 如何连接到数据库。这里要注意我们是选择 `Ecto.Adapters.Postgres` 适配器。
 
-同时它还在 `lib/friends/repo.ex` 文件中创建了一个 `Example.Repo` 模块
+同时它还在 `lib/friends/repo.ex` 文件中创建了一个 `Friends.Repo` 模块
 
 ```elixir
-defmodule Example.Repo do
+defmodule Friends.Repo do
   use Ecto.Repo, otp_app: :friends
 end
 ```
 
-我们将使用 `Example.Repo` 模块来查询数据库。 我们还告诉该模块在 `:friends` 应用程序中查找其对应的数据库配置信息。
+我们将使用 `Friends.Repo` 模块来查询数据库。 我们还告诉该模块在 `:friends` 应用程序中查找其对应的数据库配置信息。
 
-接下来，我们将在 `lib/friends/application.ex` 文件中的应用程序的 supervision 树中设置`Example.Repo`作为 supervisor。
+接下来，我们将在 `lib/friends/application.ex` 文件中的应用程序的 supervision 树中设置`Friends.Repo`作为 supervisor。
 这将在我们的应用程序启动时启动Ecto进程。
 
 ```elixir
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      Example.Repo,
+      Friends.Repo,
     ]
 
   ...
@@ -99,7 +99,7 @@ end
 之后我们需要在 `config/config.exs` 文件中添加以下代码：
 
 ```elixir
-config :friends, ecto_repos: [Example.Repo]
+config :friends, ecto_repos: [Friends.Repo]
 ```
 
 这将允许您的应用程序在命令行中运行 ecto mix 命令。
@@ -134,7 +134,7 @@ $ mix ecto.gen.migration create_people
 如果我们打开该文件，我们可以看到如下内容：
 
 ```elixir
-defmodule Example.Repo.Migrations.CreatePeople do
+defmodule Friends.Repo.Migrations.CreatePeople do
   use Ecto.Migration
 
   def change do
@@ -146,7 +146,7 @@ end
 让我们首先修改 `change/0` 函数来创建一个带有 `name` 和 `age` 字段的新的 `people` 表：
 
 ```elixir
-defmodule Example.Repo.Migrations.CreatePeople do
+defmodule Friends.Repo.Migrations.CreatePeople do
   use Ecto.Migration
 
   def change do
@@ -176,7 +176,7 @@ $ mix ecto.migrate
 让我们在 `lib/friends/person.ex` 文件中创建新的 schema:
 
 ```elixir
-defmodule Example.Person do
+defmodule Friends.Person do
   use Ecto.Schema
 
   schema "people" do
@@ -186,22 +186,22 @@ defmodule Example.Person do
 end
 ```
 
-在这里我们可以看到 `Example.Person` 模块告诉 Ecto 这个 schema 与 `people` 表有关，我们有两个字段：一个字符串类型的 `name` 字段和一个`age` 字段，并指定 `age` 的默认值为 `0`。
+在这里我们可以看到 `Friends.Person` 模块告诉 Ecto 这个 schema 与 `people` 表有关，我们有两个字段：一个字符串类型的 `name` 字段和一个`age` 字段，并指定 `age` 的默认值为 `0`。
 
 
 让我们通过 `iex -S mix` 并创建一个新 person 来看看我们的 schema 是啥样的：
 
 ```shell
-iex> %Example.Person{}
-%Example.Person{age: 0, name: nil}
+iex> %Friends.Person{}
+%Friends.Person{age: 0, name: nil}
 ```
 
 正如预期的那样，我们得到一个新的`age` 为 0 的 `Person` 结构，
 现在让我们创建一个 “真正“ 的 person：
 
 ```shell
-iex> person = %Example.Person{name: "Tom", age: 11}
-%Example.Person{age: 11, name: "Tom"}
+iex> person = %Friends.Person{name: "Tom", age: 11}
+%Friends.Person{age: 11, name: "Tom"}
 ```
 
 由于 schemas 只是结构，我们可以像以前一样和我们的数据进行交互：
@@ -212,7 +212,7 @@ iex> person.name
 iex> Map.get(person, :name)
 "Tom"
 iex> %{name: name} = person
-%Example.Person{age: 11, name: "Tom"}
+%Friends.Person{age: 11, name: "Tom"}
 iex> name
 "Tom"
 ```
@@ -221,9 +221,9 @@ iex> name
 
 ```elixir
 iex> %{person | age: 18}
-%Example.Person{age: 18, name: "Tom"}
+%Friends.Person{age: 18, name: "Tom"}
 iex> Map.put(person, :name, "Jerry")
-%Example.Person{age: 11, name: "Jerry"}
+%Friends.Person{age: 11, name: "Jerry"}
 ```
 
 在我们关于 Changesets 的下一课中，我们将学习如何验证我们的数据更改以及最终如何将其保存到数据库中。

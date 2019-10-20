@@ -12,7 +12,7 @@ title: মিক্স টাস্ক
 প্রচলিত কিছু মিক্স টাস্কের উদাহরণ দেখা যাক- 
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs

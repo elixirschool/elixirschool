@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Changesets
 ---
 
@@ -17,7 +17,7 @@ Ecto 提供了一个有关数据更改的完整解决方案，Ecto 将相关的�
 
 ```elixir
 iex> %Ecto.Changeset{}
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
 ```
 
 正如你所看到的，它有一些可能有用的字段，但它们都是空的。
@@ -40,7 +40,7 @@ end
 
 ```elixir
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
  valid?: true>
  ```
 
@@ -48,7 +48,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
 
  ```elixir
  iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
- #Ecto.Changeset<
+ %Ecto.Changeset<
   action: nil,
   changes: %{name: "Jack"},
   errors: [],
@@ -57,7 +57,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
 >
 
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
  valid?: true>
 ```
 
@@ -69,7 +69,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
 
 ```elixir
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
-#Ecto.Changeset<
+%Ecto.Changeset<
  action: nil,
  changes: %{name: ""},
  errors: [],
@@ -122,7 +122,7 @@ end
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => ""})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
@@ -148,7 +148,7 @@ end
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => "A"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "A"},
   errors: [
@@ -211,7 +211,7 @@ end
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => "Bob"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
@@ -256,7 +256,7 @@ end
 
 ```elixir
 iex> User.registration_changeset(%User{}, %{})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],

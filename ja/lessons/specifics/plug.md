@@ -54,7 +54,7 @@ $ mix deps.get
 
 Plugを作り始めるためには、Plugの仕様を知り、それを正しく守る必要があります。
 
-ありがたいことに、必要なのは2つの関数、`init/1`と`call/2`だけです。
+ありがたいことに、必要なのは2つの関数、 `init/1` と `call/2` だけです。
 
 以下は、"Hello World!"を返す単純なPlugです:
 
@@ -74,13 +74,13 @@ end
 
 `lib/example/hello_world_plug.ex` という名前で保存しましょう。
 
-`init/1`関数はPlugのオプションを初期化するのに用いられます。
+`init/1` 関数はPlugのオプションを初期化するのに用いられます。
 そのオプションは次のセクションでご紹介するスーパーバイザーツリーから呼び出されます。
 ここでは、空のリストを渡します。
 
-`init/1`関数の戻り値は最終的に`call/2`関数の2つ目の引数として渡されます。
+`init/1` 関数の戻り値は最終的に `call/2` 関数の2つ目の引数として渡されます。
 
-`call/2`関数はリクエストのたびにCowboyから呼び出されます。`call/2`関数は`%Plug.Conn{}`構造体を第一引数として受け取り、`%Plug.Conn{}`構造体を返します。
+`call/2` 関数はリクエストのたびにCowboyから呼び出されます。 `call/2` 関数は `%Plug.Conn{}` 構造体を第一引数として受け取り、 `%Plug.Conn{}` 構造体を返します。
 
 ## プロジェクトのアプリケーションモジュールの設定
 
@@ -90,11 +90,11 @@ end
 
 この関数には3つのオプションがあります。
 
-* `:scheme` - HTTP、またはHTTPS のアトム (`:http`, `:https`)
-* `:plug` - Webサーバーのインターフェースとして使用されるPlugモジュール。
-`MyPlug`のようなモジュール名、またはモジュール名とオプション`{MyPlug, plug_opts}`のタプルを指定することができます。ここで`plug_opts`はPlugモジュールの `init/1` 関数に渡されます。
-* `:options` - サーバーオプション。
-サーバーが要求するポート番号を含める必要があります。
+- `:scheme` - HTTP、またはHTTPSのアトム (`:http`, `:https`)
+- `:plug` - Webサーバーのインターフェースとして使用されるPlugモジュール。
+  `MyPlug` のようなモジュール名、またはモジュール名とオプション `{MyPlug, plug_opts}` のタプルを指定することができます。ここで `plug_opts` はPlugモジュールの `init/1` 関数に渡されます。
+- `:options` - サーバーオプション。
+  サーバーが要求するポート番号を含める必要があります。
 
 `lib/example/application.ex` ファイルは、その `start/2` 関数でchild specを実装するべきです:
 
@@ -116,16 +116,16 @@ defmodule Example.Application do
 end
 ```
 
-_注記_: ここで `child_spec`を呼び出す必要はありません。この関数は、このプロセスを開始するスーパーバイザーによって呼び出されます。
+_注記_: ここで `child_spec` を呼び出す必要はありません。この関数は、このプロセスを開始するスーパーバイザーによって呼び出されます。
 child specを構築したいモジュールと、それから必要な3つのオプションを使ってタプルを渡すだけです。
 
 これで我々のアプリのスーパーバイザーツリーの下にCowboy2サーバーが起動します。
 
-与えられたポート `8080` 上でHTTPスキーマ（HTTPSを指定することもできます）でCowboyを起動します。`Example.HelloWorldPlug`をあらゆるウェブリクエストのインターフェースとして指定します。
+与えられたポート `8080` 上でHTTPスキーマ（HTTPSを指定することもできます）でCowboyを起動します。 `Example.HelloWorldPlug` をあらゆるウェブリクエストのインターフェースとして指定します。
 
-これで、アプリを実行してWebリクエストを送信する準備が整いました。 `--sup`フラグを使ってOTPアプリを生成したので、`application` 関数のおかげで `Example`アプリケーションが自動的に起動することに注意してください。
+これで、アプリを実行してWebリクエストを送信する準備が整いました。 `--sup` フラグを使ってOTPアプリを生成したので、 `application` 関数のおかげで `Example` アプリケーションが自動的に起動することに注意してください。
 
-次に、`mix.exs`を再度開き`applications`関数に、アプリケーションを自動起動するための設定を追加します。
+次に、 `mix.exs` を再度開き `applications` 関数に、アプリケーションを自動起動するための設定を追加します。
 
 `mix.exs` では、以下のようになるはずです:
 
@@ -145,7 +145,7 @@ end
 $ mix run --no-halt
 ```
 
-1度コンパイルが終了すると、`[info]  Starting application...`が表示され`http://127.0.0.1:8080`をブラウザで開くと次のように表示されます
+1度コンパイルが終了すると、 `[info] Starting application...` が表示され `http://127.0.0.1:8080` をブラウザで開くと次のように表示されます
 
 ```
 Hello World!
@@ -153,9 +153,9 @@ Hello World!
 
 ## Plug.Routerの使用
 
-多くのWebサイトやREST APIなどのアプリケーションのように、リクエストをパスやHTTP関数によって制御するルーターが欲しくなるでしょう。そのため`Plug`はルーターを備えています。ElixirにはPlugがあるので、Sinatraのようなフレームワークは必要ありません。
+多くのWebサイトやREST APIなどのアプリケーションのように、リクエストをパスやHTTP関数によって制御するルーターが欲しくなるでしょう。そのため `Plug` はルーターを備えています。ElixirにはPlugがあるので、Sinatraのようなフレームワークは必要ありません。
 
-手始めに、`lib/example/router.ex`というファイルを作り、以下をコピーしましょう:
+手始めに、 `lib/example/router.ex` というファイルを作り、以下をコピーしましょう:
 
 ```elixir
 defmodule Example.Router do
@@ -174,10 +174,10 @@ defmodule Example.Router do
 end
 ```
 
-これは必要最小限のルータですが、コード自身がうまく中身を説明してくれているはずです。`use Plug.Router`でマクロをいくつか読み込み、それから2つの組み込みのPlug、`:match`と`:dispatch`を配置します。
+これは必要最小限のルータですが、コード自身がうまく中身を説明してくれているはずです。`use Plug.Router`でマクロをいくつか読み込み、それから2つの組み込みのPlug、 `:match` と `:dispatch` を配置します。
 2つのルータが定義され、1つはルート(`/`)へのGETリクエストを制御します。2つ目ではそれ以外の全てのリクエストにマッチして、404メッセージを返すことができます。
 
-`lib/example/application.ex` にもどり、`Example.Router`をWebサーバーの管理下に追加してください。そして、`Example.HelloWorldPlug`Plugを新しいルータに退避させてください。
+`lib/example/application.ex` にもどり、 `Example.Router` をWebサーバーの管理下に追加してください。そして、 `Example.HelloWorldPlug` Plugを新しいルータに退避させてください。
 
 ```elixir
 def start(_type, _args) do
@@ -194,7 +194,7 @@ end
 
 サーバーが起動している場合は一度終了して(`Ctrl+C` を二回押してください)サーバーを再度起動してください。
 
-そしてもう一度ブラウザで`127.0.0.1:8080`を開くと`Welcome`と表示されます。そして、`127.0.0.1:8080/waldo`など、適当なパスを開くと`Oops!`と404ステータスのレスポンスが表示されます。
+そしてもう一度ブラウザで `127.0.0.1:8080` を開くと `Welcome` と表示されます。そして、 `127.0.0.1:8080/waldo` など、適当なパスを開くと `Oops!` と404ステータスのレスポンスが表示されます。
 
 ## Plugの追加
 
@@ -208,7 +208,7 @@ Webアプリケーションでは複数のPlugを使用するのが一般的で�
 
 プラグインで検証を実装することで、有効なリクエストだけがアプリケーションに渡ることを保証できます。
 
-このPlugの初期化には、`:paths` と `:fields` の2つのオプションを期待します。
+このPlugの初期化には、 `:paths` と `:fields` の2つのオプションを期待します。
 
 これらは、どのパスに、どのフィールドが必須かを表します。
 
@@ -248,20 +248,20 @@ defmodule Example.Plug.VerifyRequest do
 end
 ```
 
-最初に注意することは、無効なリクエストの場合に発生する新しい例外 `IncompleteRequestError`を定義したことです。
+最初に注意することは、無効なリクエストの場合に発生する新しい例外 `IncompleteRequestError` を定義したことです。
 
-次にPlugの`call/2`を見ていきます。
+次にPlugの `call/2` を見ていきます。
 ここでリクエストの検証処理を実行するかどうかを決めています。
-リクエストのパスが`:paths`オプションに含まれている場合のみ`verify_request!/2`関数を実行します。
+リクエストのパスが `:paths` オプションに含まれている場合のみ `verify_request!/2` 関数を実行します。
 
-最後に、Plugは`verify_request!/2`関数で`:fields`オプションに含まれるキーの全てがリクエストパラメータに存在するか検証します。
-見つからないキーがあった場合は`IncompleteRequestError`を投げます。
+最後に、Plugは `verify_request!/2` 関数で `:fields` オプションに含まれるキーの全てがリクエストパラメータに存在するか検証します。
+見つからないキーがあった場合は `IncompleteRequestError` を投げます。
 
-私達のPlugでは`/upload`パスへの全てのリクエストに`"content"`と`"mimetype"`のパラメータが含まれていることを検証するようにします。
+私達のPlugでは `/upload` パスへの全てのリクエストに `"content"` と `"mimetype"` のパラメータが含まれていることを検証するようにします。
 含まれているときのみルーティングを実行します。
 
 次に、ルーターに先程作ったPlugを追加していきます。
-`lib/example/router.ex`を編集し、以下のように変更します。
+`lib/example/router.ex` を編集し、以下のように変更します。
 
 ```elixir
 defmodule Example.Router do
@@ -310,7 +310,7 @@ plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
 
 ## HTTPポート番号を設定可能にする
 
-`Example`モジュールとアプリケーションの定義に戻ります。HTTPポート番号はモジュールに直接書き込まれていました。
+`Example` モジュールとアプリケーションの定義に戻ります。HTTPポート番号はモジュールに直接書き込まれていました。
 それは設定ファイルにポート番号を設定するのがおすすめです。
 
 アプリケーションの環境変数を `config/config.exs` に設定します。
@@ -345,7 +345,7 @@ defmodule Example.Application do
 end
 ```
 
-`Application.get_env`関数の第三引数には設定値がない場合のためのデフォルト値を渡します。
+`Application.get_env` 関数の第三引数には設定値がない場合のためのデフォルト値を渡します。
 
 そして次のコマンドでアプリケーションを実行できます。
 
@@ -355,10 +355,10 @@ $ mix run --no-halt
 
 ## Plugのテスト
 
-Plugのテストは`Plug.Test`のおかげでとても容易です。
+Plugのテストは `Plug.Test` のおかげでとても容易です。
 テストを簡単にするための便利な関数が多く含まれています。
 
-次のテストを`test/example/router_test.exs`に記述してください
+次のテストを `test/example/router_test.exs` に記述してください
 
 ```elixir
 defmodule Example.RouterTest do
@@ -411,6 +411,7 @@ $ mix test test/example/router_test.exs
 ```
 
 ## Plug.ErrorHandler
+
 予期したパラメータを指定せずに<http://127.0.0.1:8080/upload>にアクセスしたときに、わかりやすいエラーページや適切なHTTPステータスが表示されず、ブラウザのデフォルトのエラーページに `500 Internal Server Error` が表示されています。
 
 [`Plug.ErrorHandler`](https://hexdocs.pm/plug/Plug.ErrorHandler.html) を追加して、それを修正しましょう。
@@ -454,7 +455,7 @@ end
 
 このPlugはエラーを検出し、それを処理するために呼び出す関数 `handle_errors/2` を探します。
 
-`handle_errors/2` は最初の引数として `conn` を受け入れ、2番目の引数として3つのアイテム（ `:kind`、`:reason`、そして `:stack`）を持つマップを受け取るだけです。
+`handle_errors/2` は最初の引数として `conn` を受け入れ、2番目の引数として3つのアイテム（ `:kind` 、 `:reason` 、そして `:stack` ）を持つマップを受け取るだけです。
 
 何が起こっているのかを見るために、非常に単純な `handle_errors/2` 関数を定義しました。これがどのように機能するかを確認するために、もう一度アプリを停止して再起動しましょう。
 
@@ -493,7 +494,7 @@ stack: [
 ]
 ```
 
-現時点では、まだ `500 Internal Server Error` が返されています。例外に `:plug_status` フィールドを追加することでステータスコードをカスタマイズできます。 `lib/example/plug/verify_request.ex`を開いて以下を追加してください:
+現時点では、まだ `500 Internal Server Error` が返されています。例外に `:plug_status` フィールドを追加することでステータスコードをカスタマイズできます。 `lib/example/plug/verify_request.ex` を開いて以下を追加してください:
 
 ```elixir
 defmodule IncompleteRequestError do

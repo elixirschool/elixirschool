@@ -1,5 +1,5 @@
 ---
-version: 1.4.2
+version: 1.5.0
 title: Enum
 ---
 
@@ -32,7 +32,6 @@ Using this, it's clear that we have a vast amount of functionality, and that is 
 Enumeration is at the core of functional programming, and combined with other perks of Elixir it can be incredibly empowering for developers.
 
 For a full list of functions visit the official [`Enum`](https://hexdocs.pm/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](https://hexdocs.pm/elixir/Stream.html) module.
-
 
 ### all?
 
@@ -195,11 +194,20 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-We can use `uniq_by/2` to remove duplicates from our enumerables:
+We can use `uniq/1` to remove duplicates from our enumerables:
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
+```
+
+### uniq_by
+
+`uniq_by/2` also removes duplicates from enumerables, but it allows us to provide a function to do the uniqueness comparison.
+
+```elixir
+iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
+[%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```

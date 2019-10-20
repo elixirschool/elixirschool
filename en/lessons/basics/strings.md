@@ -48,8 +48,8 @@ You can get a character’s code point by using `?`
 iex> ?Z
 90
 ```
-This allows you to use the notation `?Z` rather than 'Z' for a symbol.
 
+This allows you to use the notation `?Z` rather than 'Z' for a symbol.
 
 When programming in Elixir, we usually use strings, not charlists.
 The charlist support is mainly included because it is required for some Erlang modules.
@@ -120,9 +120,9 @@ iex> String.split("Hello World", " ")
 ["Hello", "World"]
 ```
 
-## Exercises
+## Exercise
 
-Let's walk through a simple exercises to demonstrate we are ready to go with Strings!
+Let's walk through a simple exercise to demonstrate we are ready to go with Strings!
 
 ### Anagrams
 
@@ -152,7 +152,7 @@ defmodule Anagram do
 end
 ```
 
-Let's first give a watch to `anagrams?/2`.
+Let's first look at `anagrams?/2`.
 We are checking whether the parameters we are receiving are binaries or not.
 That's the way we check if a parameter is a String in Elixir.
 

@@ -1,5 +1,5 @@
 ---
-version: 1.2.5
+version: 1.3.0
 title: Collections
 ---
 
@@ -59,6 +59,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 ```
 
 **Note:** List subtraction uses [strict comparison](../basics/#comparison) to match the values. For example:
+
 ```elixir
 iex> [2] -- [2.0]
 [2]
@@ -183,5 +184,21 @@ Another interesting property of maps is that they provide their own syntax for u
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+```
+
+**Note**: this syntax only works for updating a key that already exists in the map! If the key does not exist, a `KeyError` will be raised.
+
+To create a new key, instead use [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3)
+
+```elixir
+iex> map = %{hello: "world"}
+%{hello: "world"}
+iex> %{map | foo: "baz"}
+** (KeyError) key :foo not found in: %{hello: "world"}
+    (stdlib) :maps.update(:foo, "baz", %{hello: "world"})
+    (stdlib) erl_eval.erl:259: anonymous fn/2 in :erl_eval.expr/5
+    (stdlib) lists.erl:1263: :lists.foldl/3
+iex> Map.put(map, :foo, "baz")
 %{foo: "baz", hello: "world"}
 ```

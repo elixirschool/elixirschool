@@ -42,7 +42,7 @@ Existem quatro tipos de tabelas disponíveis no ETS:
 
 ### Controle de Acesso
 
-Controle de acesso no ETS é semelhante ao controle de acesso dentro de modulos:
+Controle de acesso no ETS é semelhante ao controle de acesso dentro de módulos:
 
 + `public` - Leitura/Escrita disponíveis para todos os processos.
 + `protected` - Leitura disponível para todos os processos. Escrita disponível apenas para o proprietário. É o padrão.
@@ -76,7 +76,7 @@ true
 
 ETS oferece-nos algumas formas convenientes e flexíveis para recuperar nossos dados armazenados. Iremos ver como recuperar dados usando a chave através de diferentes formas de correspondência de padrão (*pattern matching*).
 
-O mais eficiente, e ideal, método de recuperar dados é a busca por chave. Enquanto útil, *matching* percore a tabela e deve ser usado com moderação especialmente para grandes conjuntos de dados.
+O mais eficiente, e ideal, método de recuperar dados é a busca por chave. Enquanto útil, *matching* percorre a tabela e deve ser usado com moderação especialmente para grandes conjuntos de dados.
 
 ### Pesquisa de chave
 
@@ -91,9 +91,9 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 
 ETS foi construído para o Erlang, logo, tenha em atenção que correspondência de variáveis pode parecer um _pouco_ desajeitado.
 
-Para especificar uma variáveil no nosso *match*, usamos os *atoms* `:"$1"`, `:"$2"`, `:"$3"`, e assim por diante; o número da variável reflete a posição do resultado e não a posição do *match*. Para valores que não nos interessam usamos a variável `:"_"`.
+Para especificar uma variável no nosso *match*, usamos os *atoms* `:"$1"`, `:"$2"`, `:"$3"`, e assim por diante; o número da variável reflete a posição do resultado e não a posição do *match*. Para valores que não nos interessam usamos a variável `:"_"`.
 
-Valores podem ser usados na correspondênca, mas apenas variáveis farão parte do nosso resultado. Vamos juntar tudo isso e ver como funciona:
+Valores podem ser usados na correspondência, mas apenas variáveis farão parte do nosso resultado. Vamos juntar tudo isso e ver como funciona:
 
 
 ```elixir
@@ -122,9 +122,9 @@ iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
 
 ### Pesquisa Avançada
 
-Aprendemos sobre casos simples de fazer *match*, mas o que se quisermos algo mais parecido a uma consulta SQL? Felizmente existe uma sintaxe mais robusta disponível para nós. Para pesquisar nossos dados com `select/2` precisamos contruir uma lista de tuplas com três aridades. Estas tuplas representam o nosso padrão, zero ou mais guardas, e um formato de valor de retorno.
+Aprendemos sobre casos simples de fazer *match*, mas o que se quisermos algo mais parecido a uma consulta SQL? Felizmente existe uma sintaxe mais robusta disponível para nós. Para pesquisar nossos dados com `select/2` precisamos construir uma lista de tuplas com três aridades. Estas tuplas representam o nosso padrão, zero ou mais guardas, e um formato de valor de retorno.
 
-Nossas variavéis de correspondência e mais duas novas variáveis, `:"$$"` e `:"$_"` podem ser usadas para construir o valor de retorno. Estas novas variáveis são atalhos para o formato do resultado; `:"$$"` recebe resultados como listas e `:"$_"` o objeto do dado original.
+Nossas variáveis de correspondência e mais duas novas variáveis, `:"$$"` e `:"$_"` podem ser usadas para construir o valor de retorno. Estas novas variáveis são atalhos para o formato do resultado; `:"$$"` recebe resultados como listas e `:"$_"` o objeto do dado original.
 
 Vamos pegar um dos nossos exemplos `match/2` anterior e transforma-lo num `select/2`:
 
@@ -138,7 +138,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
  {"spork", 30, ["ruby", "elixir"]}]
 ```
 
-Apesar do `select/2` um controle mais fino sobre o que e como recuperamos registros, a sinaxe é um bastante hostil e tende a ser pior. Para lidar com isso, o módulo ETS inclui `fun2ms/1`, para transformar as funções em *match_specs*. Com `fun2ms/1` podemos criar consultas usando uma sintaxe de função mais familiar.
+Apesar do `select/2` um controle mais fino sobre o que e como recuperamos registros, a sintaxe é um bastante hostil e tende a ser pior. Para lidar com isso, o módulo ETS inclui `fun2ms/1`, para transformar as funções em *match_specs*. Com `fun2ms/1` podemos criar consultas usando uma sintaxe de função mais familiar.
 
 Vamos usar `fun2ms/1` e `select/2` para encontrar todos os usuários com 2 ou mais línguas:
 
@@ -231,7 +231,7 @@ defmodule SimpleCache do
 end
 ```
 
-Para demostrar o uso do cache, iremos usar a função que retorna a hora do sistema e um TTL de 10 segundos. Tal como verás no exemplo abaixo, obtemos o resultado em cache até que o valor expire:
+Para demonstrar o uso do cache, iremos usar a função que retorna a hora do sistema e um TTL de 10 segundos. Tal como veremos no exemplo abaixo, obtemos o resultado em cache até que o valor expire:
 
 ```elixir
 defmodule ExampleApp do

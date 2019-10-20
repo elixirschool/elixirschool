@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.5.0
 title: Enum 模块
 ---
 
@@ -29,8 +29,7 @@ at/3
 ```
 
 通过上面的命令，很明显能看到我们有很多函数，而且这些函数都是师出有名。
-集合在函数式编程中处于核心地位，同时也是非常有用的部分。
-通过利用它与Elixir的其他优势相结合，比如我们刚看到的，文档是一等公民，可以赋予开发人员非常强大的能力。
+集合在函数式编程占有核心地位，结合 Elixir 的其他特性，它可以赋予开发人员非常强大的能力。
 
 要想了解全部的函数，请访问官方的 [`Enum`](https://hexdocs.pm/elixir/Enum.html) 文档。而要想了解惰性枚举（lazy enumeration），访问 [`Stream`](https://hexdocs.pm/elixir/Stream.html) 模块。
 
@@ -169,6 +168,8 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 对集合进行排序，Elixir 提供了两个 `sort` 函数来帮忙。第一个使用 Elixir 默认的排序规则进行排序：
 
+`sort/1` 使用了 Erlang 的 [数据比较规则](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) 来决定排序的顺序：
+
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
 [-1, 1, 3, 4, 5, 6]
@@ -189,11 +190,20 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-我们可以使用 `uniq_by/2` 删除集合中的重复元素：
+我们可以使用 `uniq/1` 来删除集合中的重复元素：
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
+```
+
+### uniq_by
+
+`uniq_by/2` 也可以用来删除集合中的重复元素，只是它允许我们提供自定义的函数来作唯一性比较。
+
+```elixir
+iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
+[%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```

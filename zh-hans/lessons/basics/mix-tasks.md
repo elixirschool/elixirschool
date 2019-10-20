@@ -12,7 +12,7 @@ title: 自定义 Mix 任务
 通过增加自定义 Mix 任务来扩展你的 Elixir 项目是很常见的需求。在我们学习如何给我们的项目创建特定 Mix 任务之前，让我们来看一个已经存在的任务：
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs

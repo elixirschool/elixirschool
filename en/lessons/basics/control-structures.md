@@ -50,7 +50,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-The `_` variable is an important inclusion in `case/2` statements. Without it failure to find a match will raise an error:
+The `_` variable is an important inclusion in `case/2` statements. Without it, failure to find a match will raise an error:
 
 ```elixir
 iex> case :even do

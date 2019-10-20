@@ -12,7 +12,7 @@ In this lesson we'll focus on the biggest piece: GenServers.
 ## GenServer
 
 An OTP server is a module with the GenServer behavior that implements a set of callbacks.
-At its most basic level a GenServer is a single process which runs loop that handles one message per iteration passing along an updated state.
+At its most basic level a GenServer is a single process which runs a loop that handles one message per iteration passing along an updated state.
 
 To demonstrate the GenServer API we'll implement a basic queue to store and retrieve values.
 

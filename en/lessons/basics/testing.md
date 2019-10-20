@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Testing
 ---
 
@@ -37,8 +37,7 @@ Finished in 0.03 seconds
 2 tests, 0 failures
 ```
 
-Why there are two tests in output? Let's look at `lib/example.ex`.
-Mix created there another test for us, some doctest.
+Why are there two dots in the test output? Besides the test in `test/example_test.exs`, Mix also generated a doctest in `lib/example.ex`.
 
 ```elixir
 defmodule Example do
@@ -113,7 +112,7 @@ We'll see an example of `assert_raise` in the next lesson on Plug.
 
 ### assert_receive
 
-In Elixir, applications consist of actors/processes that send messages to each other, thus often you want to test the messages being sent.
+In Elixir, applications consist of actors/processes that send messages to each other, therefore you will want to test the messages being sent.
 Since ExUnit runs in its own process it can receive messages just like any other process and you can assert on it with the `assert_received` macro:
 
 ```elixir

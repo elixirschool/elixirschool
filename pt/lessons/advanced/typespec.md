@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Especificações e tipos
 ---
 
@@ -15,7 +15,7 @@ Em alguns casos, a especificação é grande e complicada. Se você quiser reduz
 
 ## Especificação
 
-Se você tem experiência com Java ou Ruby, você poderá pensar em especificação como uma `interface`. A especificação define quais os tipos de parâmetros da função e o valor de retorno.
+Se você tem experiência com Java, você poderá pensar em especificação como uma `interface`. A especificação define quais os tipos de parâmetros da função e o valor de retorno.
 
 Para definir tipos de entrada e saída, usamos a diretiva `@spec` localizada antes da definição da função e tomando como um `params` nome da função, lista de tipos de parâmetros, e depois `::` tipo de valor de retorno.
 
@@ -54,7 +54,7 @@ def sum_times(a, params) do
 end
 ```
 
-Inserimos uma estrutura no módulo `Examples` que contém dois campos, `first` e `last`. Essa é uma versão simples de estrutura do módulo `Range`. Falaremos sobre `structs` quando iniciarmos as discusões [modules](../../basics/modules/#structs). Vamos imaginar que precisamos especificar a estrutura `Examples` em vários lugares. Seria chato escrever especificações longas, complexas e isso seria uma fonte de bugs. Uma solução para esse problema é `@type`.
+Inserimos uma estrutura no módulo `Examples` que contém dois campos, `first` e `last`. Essa é uma versão simples de estrutura do módulo `Range`. Falaremos sobre `structs` quando iniciarmos as discussões [modules](../../basics/modules/#structs). Vamos imaginar que precisamos especificar a estrutura `Examples` em vários lugares. Seria chato escrever especificações longas, complexas e isso seria uma fonte de bugs. Uma solução para esse problema é `@type`.
 
 Elixir tem três diretivas para tipos:
 
@@ -76,7 +76,7 @@ end
 
 Já definimos o tipo `t(first, last)`, que é uma representação da estrutura `%Examples{first: first, last: last}`. Nesse ponto, vemos tipos que podem receber parâmetros, mas definimos o tipo `t` e nesse momento, ele é uma representação da estrutura `%Examples{first: integer, last: integer}`.   
 
-Qual a diferrença ? A primeira representa a estrutura `Examples` e as duas chaves poderiam receber qualquer tipo. A segunda representa a estrutura que as chaves são `integers`. Que significa um código como este:
+Qual a diferença? A primeira representa a estrutura `Examples` e as duas chaves poderiam receber qualquer tipo. A segunda representa a estrutura que as chaves são `integers`. Que significa um código como este:
 
 ```elixir
 @spec sum_times(integer, Examples.t()) :: integer

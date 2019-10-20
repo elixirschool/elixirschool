@@ -12,7 +12,7 @@ Vytváranie vlastných Mix taskov pre vaše Elixir projekty.
 Občas sa stane, že do svojho projektu potrebujete pridať špeciálnu funkcionalitu pridaním Mix taskov. Predtým, než si ukážeme, ako takéto vlastné Mix tasky vytvárať, pozrime sa na tie, ktoré už existujú:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs

@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.4.1
 title: 模組
 ---
 
@@ -83,29 +83,29 @@ end
 
 ```elixir
 iex> %Example.User{}
-#Example.User<name: "Sean", roles: [], ...>
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [], ...>
+%Example.User<name: "Steve", roles: [], ...>
 
 iex> %Example.User{name: "Steve", roles: [:manager]}
-#Example.User<name: "Steve", roles: [:manager]>
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 我們可以像更新映射一樣更新結構體：
 
 ```elixir
 iex> steve = %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [...], ...>
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 最重要的是，你可以將結構體與映射配對：
 
 ```elixir
 iex> %{name: "Sean"} = sean
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 自 Elixir 1.8 開始，結構體加入自定自我訓練(introspection)。
@@ -113,7 +113,7 @@ iex> %{name: "Sean"} = sean
 
 ```elixir
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", roles: [...], ...>"
+"%Example.User<name: \"Sean\", roles: [...], ...>"
 ```
 
 將所有欄位都呈現，以這個例子是可以的，但是如果我們有一個不希望被包括的受保護欄位呢？
@@ -132,10 +132,10 @@ _註_：也可以使用 `@derive {Inspect, except: [:roles]}`，它們是同樣�
 隨著更新後的模組就位，現在來看看 `iex` 中會發生什麼：
 
 ```elixir
-iex> sean = #Example.User<name: "Sean", roles: [...], ...>
-#Example.User<name: "Sean", ...>
+iex> sean = %Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", ...>
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", ...>"
+"%Example.User<name: \"Sean\", ...>"
 ```
 
 `roles` 已被排除在輸出中！

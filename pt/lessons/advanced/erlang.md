@@ -9,7 +9,7 @@ Um dos benefícios adicionais em se construir em cima da Erlang VM (BEAM) é a a
 
 ## Biblioteca padrão
 
-A extensiva biblioteca padrão Erlang pode ser acessada de qualquer código Elixir em nossa aplicação. Módulos Erlang são representados por *átomos* em caixa baixa como `:os` e `:timer`.
+A extensa biblioteca padrão Erlang pode ser acessada de qualquer código Elixir em nossa aplicação. Módulos Erlang são representados por *átomos* em caixa baixa como `:os` e `:timer`.
 
 Vamos usar `:timer.tc` para medir o tempo de execução de uma determinada função:
 

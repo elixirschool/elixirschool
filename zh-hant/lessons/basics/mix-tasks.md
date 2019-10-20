@@ -13,7 +13,7 @@ title: 自訂 Mix 工作
 在了解如何為專案建立特定的 Mix 工作之前，先來看看已經存在的一個：
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
