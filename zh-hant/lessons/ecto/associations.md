@@ -299,9 +299,9 @@ iex> movie = %Movie{title: "Ready Player One", tagline: "Something about video g
 
 %Example.Movie{
   __meta__: %Ecto.Schema.Metadata<:built, "movies">,
-  actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
-  characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-  distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+  actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
+  characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+  distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
   id: nil,
   tagline: "Something about video games",
   title: "Ready Player One"
@@ -317,7 +317,7 @@ character = Ecto.build_assoc(movie, :characters, %{name: "Wade Watts"})
 %Example.Character{
   __meta__: %Ecto.Schema.Metadata<:built, "characters">,
   id: nil,
-  movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
   movie_id: 1,
   name: "Wade Watts"
 }
@@ -325,7 +325,7 @@ Repo.insert!(character)
 %Example.Character{
   __meta__: %Ecto.Schema.Metadata<:loaded, "characters">,
   id: 1,
-  movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
   movie_id: 1,
   name: "Wade Watts"
 }
@@ -340,7 +340,7 @@ iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})
 %Example.Distributor{
   __meta__: %Ecto.Schema.Metadata<:built, "distributors">,
   id: nil,
-  movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
   movie_id: 1,
   name: "Netflix"
 }
@@ -348,7 +348,7 @@ iex> Repo.insert!(distributor)
 %Example.Distributor{
   __meta__: %Ecto.Schema.Metadata<:loaded, "distributors">,
   id: 1,
-  movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
   movie_id: 1,
   name: "Netflix"
 }
@@ -368,14 +368,14 @@ iex> actor = %Actor{name: "Tyler Sheridan"}
 %Example.Actor{
   __meta__: %Ecto.Schema.Metadata<:built, "actors">,
   id: nil,
-  movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+  movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
   name: "Tyler Sheridan"
 }
 iex> actor = Repo.insert!(actor)
 %Example.Actor{
   __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
   id: 1,
-  movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+  movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
   name: "Tyler Sheridan"
 }
 ```
@@ -435,7 +435,7 @@ iex> Repo.update!(movie_actors_changeset)
     %Example.Actor{
       __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 1,
-      movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+      movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
       name: "Bob"
     }
   ],
@@ -477,7 +477,7 @@ iex>  Repo.update!(changeset)
     %Example.Actor{
       __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 2,
-      movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+      movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
       name: "Gary"
     }
   ],
