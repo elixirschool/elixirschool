@@ -1,360 +1,242 @@
 ---
-version: 1.3.0
-title: Basics
+version: 2.4.0
+title: Básico
 ---
 
-Ecto é um projeto oficial do Elixir que fornece uma camada de banco de dados e linguagem integrada para consultas. Com Ecto podemos criar *migrations*, definir schemas, inserir e atualizar registos, e fazer consultas.
+Ecto é um projeto oficial do Elixir que fornece uma camada de banco de dados e linguagem integrada para consultas. Com Ecto podemos criar migrações, definir esquemas, inserir e atualizar registos, e fazer consultas.
 
 {% include toc.html %}
 
-## Instalação
+### Adaptadores
+O Ecto suporta difentes banco de dados através do uso de adaptadores. Alguns
+exemplos de adaptadores são:
 
-Crie um novo app com uma supervision tree:
++ PostgreSQL
++ MySQL
++ SQLite
+
+Nessa lição configuraremos o Ecto para usar o adaptador do PostgreSQL.
+
+### Começando
+Nesta lição, cobriremos três partes do Ecto:
+
++ O repositório: provê a interface com nosso banco de dados, incluindo a conexão.
++ Migrações: um mecanismo para criar, modificar e destruir tabelas e índices no
+  banco de dados.
++ Esquemas: estruturas especiais para representar linhas em tabelas no banco de
+  dados
+
+Para iniciar criaremos uma aplicação com uma árvore de supervisão:
 
 ```shell
-$ mix new example_app --sup
-$ cd example_app
+$ mix new friends --sup
+$ cd friends
 ```
 
-Para começar precisamos incluir Ecto e um adaptador de banco de dados no `mix.exs` do nosso projeto. Você pode encontrar uma lista de adaptadores de banco de dados suportados na seção [*Usage*](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) do README do Ecto. Para o nosso exemplo iremos usar o PostgreSQL:
+Adicione o ecto e o postgrex como dependências no seu `mix.exs`:
 
 ```elixir
 defp deps do
-  [{:ecto, "~> 2.2"}, {:postgrex, ">= 0.0.0"}]
+  [
+    {:ecto_sql, "~> 3.2"},
+    {:postgrex, "~> 0.15"}
+  ]
 end
 ```
 
-Então nós vamos baixar nossas dependências usando
+#### Criando um repositório
+Um repositório no Ecto mapeia a um banco de dados, como o nosso banco no
+Postgres. Toda a comunicação ao banco de dados será feita através desse
+repositório.
+
+Crie um repositório rodando:
 
 ```shell
-$ mix deps.get
+$ mix ecto.gen.repo -r Friends.Repo
 ```
 
-### Repositório
-
-Finalmente precisamos criar o repositório do nosso projeto, a camada de banco de dados. Isto pode ser feito rodando a tarefa `mix ecto.gen.repo -r ExampleApp.Repo`, falaremos sobre tarefas mix no Ecto mais para frente. O Repositório pode ser encontrado no arquivo `lib/<nome_do_projecto>/repo.ex`:
+Essa tarefa irá gerar toda a configuração requirida para conectar a um banco de dados em `config/config.exs`, incluindo a configuração do adaptador. Esse é o arquivode configuração para nosso banco de dados `Friends`:
 
 ```elixir
-defmodule ExampleApp.Repo do
-  use Ecto.Repo, otp_app: :example_app
-end
-```
-
-### Supervisor
-
-Uma vez criado o nosso Repositório, precisamos configurar nossa árvore de supervisor, que normalmente é encontrada em `lib/<nome_do_projecto>.ex`. Adicione o Repo à lista `children`:
-
-```elixir
-defmodule ExampleApp.Application do
-  use Application
-
-  def start(_type, _args) do
-    children = [
-      ExampleApp.Repo
-    ]
-
-    opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
-    Supervisor.start_link(children, opts)
-  end
-end
-```
-
-Para mais informações sobre supervisores, consulte a lição [Supervisores OTP](../../advanced/otp-supervisors).
-
-### Configuração
-
-Para configurar o Ecto precisamos adicionar uma seção no nosso `config/config.exs`. Aqui iremos especificar o repositório, o adaptador, o banco de dados e as informações de acesso ao banco de dados:
-
-```elixir
-config :example_app, ExampleApp.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  database: "example_app",
+config :friends, Friends.Repo,
+  database: "friends_repo",
   username: "postgres",
-  password: "postgres",
-  hostname: "localhost"
+  password: "",
+  hostname: "localhost",
 ```
 
-## Tarefas Mix
-
-Ecto inclui uma série de tarefas mix úteis para trabalhar com o nosso banco de dados:
-
-```shell
-mix ecto.create         # Cria um banco de dados para o repositório
-mix ecto.drop           # Elimina o banco de dados do repositório
-mix ecto.gen.migration  # Gera uma nova *migration* para o repositório
-mix ecto.gen.repo       # Gera um novo repositório
-mix ecto.migrate        # Roda as migrations em cima do repositório
-mix ecto.rollback       # Reverte migrations a partir de um repositório
-```
-
-## Migrations
-
-A melhor forma de criar migrations é usando a tarefa `mix ecto.gen.migration <nome_da_migration>`. Se você está familiarizado com ActiveRecord, isto irá parecer familiar.
-
-Vamos começar dando uma olhada numa migration para uma tabela *users*:
+Ela também gera um módulo chamado `Friends.Repo` em `lib/friends/repo.ex`
 
 ```elixir
-defmodule ExampleApp.Repo.Migrations.CreateUser do
+defmodule Friends.Repo do
+  use Ecto.Repo,
+    otp_app: :friends,
+    adapter: Ecto.Adapters.Postgres
+end
+```
+
+Nós iremos utilizar o módulo `Friends.Repo` para consultar o banco de dados.
+Nós também dizemos a esse módulo para encontrar suas configurações na aplicação
+:friends e selecionamos o adapter `Ecto.Adapters.Postgres`.
+
+A seguir, iremos configurar o `Friends.Repo` como supervisor de nossa árvore de
+supervisão em `lib/friends/application.ex`. Isso irá iniciar o processo do Ecto
+assim que nossa aplicação iniciar.
+
+```elixir
+def start(_type, _args) do
+  # List all child processes to be supervised
+  children = [
+    Friends.Repo,
+  ]
+
+...
+``` 
+
+Depois disso, precisamos adicionar a seguinte linha no nosso
+`config/config.exs`: 
+
+```elixir
+config :friends, ecto_repos: [Friends.Repo]
+```
+
+Isso irá permitir à nossa aplicação rodar tarefas mix do Ecto a partir da linha
+de comando.
+
+Já concluímos a configuraçãodo repositório! Agora podemos criar o banco de
+dados no PostgreSQL com o seguinte comando:
+
+```shell
+$ mix ecto.create
+```
+
+Ecto vai utilizar a informação no arquivo `config/config.exs` para determinar
+como se conectar ao Postgres e como nomear o banco de dados.
+
+Se você receber algum erro, certifique-se de que os dados de configuraçãoestão
+corretos e de que sua instância do postgres está rodando.
+
+### Migrações
+
+Para criar e modificar tabelas no banco de dados, utilizamos as migrações do
+Ecto. Cada migração descreve uma série de ações para serem realizadas no nosso
+banco, como quais tabelas criar ou atualizar.
+
+Como nosso banco de dados ainda não tem nenhuma tabela, precisaremos criar uma
+migração para adicionar alguma. A convenção no Ecto é pluralizar o nome das
+tabelas, portanto, para essa aplicação precisaremos de uma tabela `people`,
+então vamos começar nossas migrações assim.
+
+A melhor maneira de criar migrações é a tarefa `ecto.gen.migration <nome>`,
+então em nosso caso vamos usar:
+
+```shell
+$ mix ecto.gen.migration create_people
+``` 
+Isso irá gerar um novo arquivo na pasta `priv/repo/migrations` contendo uma
+timestamp no nome. Se navegarmos para esse diretório e abrirmos a migração,
+veremos algo assim:
+
+```elixir
+defmodule Friends.Repo.Migrations.CreatePeople do
   use Ecto.Migration
 
   def change do
-    create table(:users) do
-      add(:username, :string, unique: true)
-      add(:encrypted_password, :string, null: false)
-      add(:email, :string)
-      add(:confirmed, :boolean, default: false)
 
-      timestamps
-    end
-
-    create(unique_index(:users, [:username], name: :unique_usernames))
   end
 end
 ```
 
-Por padrão Ecto cria uma chave primária `id` auto incrementada. Aqui estamos usando o callback padrão `change/0` mas Ecto também suporta `up/0` e `down/0` no caso de precisar um controle mais granular.
-
-Como você deve ter adivinhado, adicionando `timestamps` na sua migration irá criar e gerir os campos `inserted_at` e `updated_at` por você.
-
-Para aplicar as alterações definidas na nossa migration, rode `mix ecto.migrate`.
-
-Para mais informações dê uma olhada a seção [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) da documentação.
-
-## Schemas
-
-Agora que temos nossa migration podemos continuar para o schema. Schema é um módulo, que define mapeamentos para uma tabela do banco de dados e seus campos, funções auxiliares, e nossos *changesets*. Iremos falar mais sobre *changesets* nas próximas seções.
-
-Por agora vamos dar uma olhada em como o schema para nossa migration se parece:
+Vamos começar modificando a função `change/0` para criar uma nova tabela
+`people` com os campos `name` (nome) e `age` (idade):
 
 ```elixir
-defmodule ExampleApp.User do
-  use Ecto.Schema
-  import Ecto.Changeset
+defmodule Friends.Repo.Migrations.CreatePeople do
+  use Ecto.Migration
 
-  schema "users" do
-    field(:username, :string)
-    field(:encrypted_password, :string)
-    field(:email, :string)
-    field(:confirmed, :boolean, default: false)
-    field(:password, :string, virtual: true)
-    field(:password_confirmation, :string, virtual: true)
-
-    timestamps
-  end
-
-  @required_fields ~w(username encrypted_password email)
-  @optional_fields ~w()
-
-  def changeset(user, params \\ :empty) do
-    user
-    |> cast(params, @required_fields ++ @optional_fields)
-    |> validate_required(@required_fields)
-    |> unique_constraint(:username)
-  end
-end
-```
-
-O esquema que definimos representa de perto o que especificamos na nossa *migration*. Além dos campos para o nosso banco de dados, estamos também incluindo dois campos virtuais. Campos virtuais não são armazenados no banco de dados mas podem ser úteis em casos de validação. Veremos os campos virtuais em ação na seção [Changesets](#changesets).
-
-## Consultas
-
-Antes de poder consultar o nosso repositório, precisamos importar a *Query API*, mas por enquanto precisamos importar apenas `from/2`:
-
-```elixir
-import Ecto.Query, only: [from: 2]
-```
-
-A documentação oficial pode ser encontrada em [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html).
-
-### O Básico
-
-Ecto fornece uma excelente DSL<sup>(domain-specific language)</sup> de consulta que nos permite expressar consultas de forma muito clara. Para encontrar os usernames de todas as contas confirmadas poderíamos usar algo como este:
-
-```elixir
-alias ExampleApp.{Repo, User}
-
-query =
-  from(
-    u in User,
-    where: u.confirmed == true,
-    select: u.username
-  )
-
-Repo.all(query)
-```
-
-Além do `all/2`, Repo fornece uma série de callbacks incluindo `one/2`, `get/3`, `insert/2`, e `delete/2`. Uma lista completa de callbacks pode ser encontrada em [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
-
-### Count
-
-Se nós queremos contar o número de usuários que tem uma conta confirmada, podemos usar `count/1`:
-
-```elixir
-query =
-  from(
-    u in User,
-    where: u.confirmed == true,
-    select: count(u.id)
-  )
-```
-
-A função `count/2` também existe para contar os valores distintos de um dado entrada:
-
-```elixir
-query =
-  from(
-    u in User,
-    where: u.confirmed == true,
-    select: count(u.id, :distinct)
-  )
-```
-
-### Group By
-
-Para agrupar usernames por estado de confirmação podemos incluir a opção `group_by`:
-
-```elixir
-query =
-  from(
-    u in User,
-    group_by: u.confirmed,
-    select: [u.confirmed, count(u.id)]
-  )
-
-Repo.all(query)
-```
-
-### Order By
-
-Ordenar usuários pela data de criação:
-
-```elixir
-query =
-  from(
-    u in User,
-    order_by: u.inserted_at,
-    select: [u.username, u.inserted_at]
-  )
-
-Repo.all(query)
-```
-
-Para ordenar por `DESC`:
-
-```elixir
-query =
-  from(
-    u in User,
-    order_by: [desc: u.inserted_at],
-    select: [u.username, u.inserted_at]
-  )
-```
-
-### Joins
-
-Assumindo que temos um perfil associado ao nosso usuário, vamos encontrar todos os perfis de contas confirmadas:
-
-```elixir
-query =
-  from(
-    p in Profile,
-    join: u in assoc(p, :user),
-    where: u.confirmed == true
-  )
-```
-
-### Fragmentos
-
-Às vezes a Query API não é suficiente, por exemplo, quando precisamos de funções específicas para banco de dados. A função `fragment/1` existe para esta finalidade:
-
-```elixir
-query =
-  from(
-    u in User,
-    where: fragment("downcase(?)", u.username) == ^username,
-    select: u
-  )
-```
-
-Outros exemplos de consultas podem ser encontradas na descrição do módulo [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html).
-
-## Changesets
-
-Na seção anterior aprendemos como recuperar dados. Mas então como inserir e atualizá-los? Para isso precisamos de *Changesets*.
-
-Changesets cuidam da filtragem, validação, manutenção das *constraints* quando alteramos um schema.
-
-Para este exemplo iremos nos focar no *changeset* para criação de conta de usuário. Para começar precisamos atualizar o nosso schema:
-
-```elixir
-defmodule ExampleApp.User do
-  use Ecto.Schema
-  import Ecto.Changeset
-  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
-
-  schema "users" do
-    field(:username, :string)
-    field(:encrypted_password, :string)
-    field(:email, :string)
-    field(:confirmed, :boolean, default: false)
-    field(:password, :string, virtual: true)
-    field(:password_confirmation, :string, virtual: true)
-
-    timestamps
-  end
-
-  @required_fields ~w(username email password password_confirmation)
-  @optional_fields ~w()
-
-  def changeset(user, params \\ :empty) do
-    user
-    |> cast(params, @required_fields, @optional_fields)
-    |> validate_length(:password, min: 8)
-    |> validate_password_confirmation()
-    |> unique_constraint(:username, name: :email)
-    |> put_change(:encrypted_password, hashpwsalt(params[:password]))
-  end
-
-  defp validate_password_confirmation(changeset) do
-    case get_change(changeset, :password_confirmation) do
-      nil ->
-        password_incorrect_error(changeset)
-
-      confirmation ->
-        password = get_field(changeset, :password)
-        if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
+  def change do
+    create table(:people) do
+      add :name, :string, null :false
+      add :age, :integer, default: 0
     end
   end
-
-  defp password_mismatch_error(changeset) do
-    add_error(changeset, :password_confirmation, "Passwords does not match")
-  end
-
-  defp password_incorrect_error(changeset) do
-    add_error(changeset, :password, "is not valid")
-  end
 end
 ```
 
-Melhoramos nossa função `changeset/2` e adicionamos três novas funções auxiliares: `validate_password_confirmation/1`, `password_mismatch_error/1` e `password_incorrect_error/1`.
+Você pode ver acima também definimos o tipode dados das colunas.
+Adicionalmente, nós incluímos `null:false` e `default: 0` como opções.
 
-Como o próprio nome sugere, `changeset/2` cria para nós um novo *changeset*. Nele usamos `cast/3` para converter nossos parâmetros para um *changeset* a partir de um conjunto de campos obrigatórios e opcionais. Então nós validamos a presença dos campos obrigatórios. A seguir validamos o tamanho da senha do *changeset*, a correspondência da confirmação da senha usando a nossa propria função, e a unicidade do nome de usuário. Por último, atualizamos nosso campo `password` no banco de dados. Para tal usamos `put_change/3` para atualizar um valor no *changeset*.
+Agora vamos rodar nossa migração:
 
-Usar `User.changeset/2` é relativamente simples:
+```shell
+$ mix ecto.migrate
+```
+
+### Esquemas
+Agora que criamos nossa tabela inicial, precisamos dizer mais sobre ela ao
+Ecto, e parte de como fazemos isso é através de esquemas. Um esquema é um
+módulo que define um mapeando dos campos de uma tabela.
+
+Enquanto nas tabelas utilizamos o plural, no esquema tipicamente se utiliza
+o singular. Então criamos um esquema `Person` para nossa tabela.
+
+Criamos ele em `lib/friends/person.ex`
 
 ```elixir
-alias ExampleApp.{User,Repo}
+defmodule Friends.Person do
+  use Ecto.Schema
 
-pw = "passwords should be hard"
-changeset = User.changeset(%User{}, %{username: "doomspork",
-                    email: "sean@seancallan.com",
-                    password: pw,
-                    password_confirmation: pw})
-
-case Repo.insert(changeset) do
-  {:ok, record}       -> # Inserted with success
-  {:error, changeset} -> # Something went wrong
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
+  end
 end
 ```
 
-É isso aí! Agora você está pronto para guardar alguns dados.
+Aqui você pode ver que o módulo `Friends.Person` diz ao Ecto que esse esquema
+se refere à tabela `people` e que temos duas colunas: `name` que é uma string
+e `age`, que é um inteiro de padrão `0`.
+
+Vamos dar uma olhada em nosso esquema abrindo `iex -S mix` e criando uma nova
+pessoa:
+
+```elixir
+iex> %Friends.Person{}
+%Friends.Person{age: 0, name: nil}
+```
+
+Como esperado, recebemos uma nova `Person` com o valor padrão aplicado a `age`.
+Agora, vamos criar uma pessoa "real":
+
+```elixir
+iex> %Friends.Person{name: "Tom", age: 11}
+%Friends.Person{age: 11, name: "Tom"}
+```
+
+Como esquemas são apenas structs, podemos interagir com eles da maneira que
+estamos habituados:
+
+```elixir
+iex> person.name
+"Tom"
+iex> Map.get(person, :name)
+"Tom"
+iex> %{name: name} = person
+%Friends.Person{age: 11, name: "Tom"}
+iex> name
+"Tom"
+```
+
+De maneira similar, podemos atualizar nossos esquemas como poderíamos fazer com
+qualquer outro map ou struct em Elixir:
+
+```elixir
+iex> %{person | age: 18}
+%Friends.Person{age: 18, name: "Tom"}
+iex> Map.put(person, :name, "Jerry"}
+%Friends.Person{age: 11, name: "Jerry"}
+```
+
+
+
+
