@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: মডিউল
 ---
 
@@ -77,29 +77,29 @@ end
 
 ```elixir
 iex> %Example.User{}
-#Example.User<name: "Sean", roles: [], ...>
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [], ...>
+%Example.User<name: "Steve", roles: [], ...>
 
 iex> %Example.User{name: "Steve", roles: [:manager]}
-#Example.User<name: "Steve", roles: [:manager]>
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 স্ট্রাক্টকে আমরা ঠিক ম্যাপের মতই আপডেট করতে পারি-
 
 ```elixir
 iex> steve = %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [...], ...>
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 স্ট্রাক্টকে আপনি ম্যাপের সাথে ম্যাচ করাতে পারেন-
 
 ```elixir
 iex> %{name: "Sean"} = sean
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 ## কম্পোজিশান

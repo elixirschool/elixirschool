@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.4.1
 title: Módulos
 ---
 
@@ -77,29 +77,29 @@ Vamos criar algumas structs:
 
 ```elixir
 iex> %Example.User{}
-#Example.User<name: "Sean", roles: [], ...>
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [], ...>
+%Example.User<name: "Steve", roles: [], ...>
 
 iex> %Example.User{name: "Steve", roles: [:manager]}
-#Example.User<name: "Steve", roles: [:manager]>
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Podemos atualizar nosso struct apenas como se fosse um mapa:
 
 ```elixir
 iex> steve = %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [...], ...>
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Mais importante, você pode associar estruturas contra mapas:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 A partir do Elixir 1.8, structs incluem introspecção customizáveis.
@@ -107,7 +107,7 @@ Para entender o que isso significa e como devemos usar, vamos inspecionar nossa 
 
  ```elixir
  iex> inspect(sean)
-"#Example.User<name: \"Sean\", roles: [...], ...>"
+"%Example.User<name: \"Sean\", roles: [...], ...>"
 ```
 
 Todos os campos estão presentes, o que está correto para esse exemplo, mas o que acontece se tivéssemos um campo protegido que não gostaríamos de incluir? A nova funcionalidade `@derive` faz com que possamos alcançar isso! Vamos atualizar nosso exemplo para que `roles` não seja mais incluído na nossa saída:
@@ -125,9 +125,9 @@ Com o nosso módulo já atualizado, vamos ver o que acontece no `iex`:
 
 ```elixir
 iex> sean = %Example.User{name: "Sean"}
-#Example.User<name: "Sean", ...>
+%Example.User<name: "Sean", ...>
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", ...>"
+"%Example.User<name: \"Sean\", ...>"
 ```
 
 Os `roles` não são mais exibidos na saída!

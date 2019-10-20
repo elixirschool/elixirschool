@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: 變更集 (Changesets)
 ---
 
@@ -18,7 +18,7 @@ Ecto 提供一個完整的解決方案，以 `Changeset` 模組的形式處理�
 
 ```elixir
 iex> %Ecto.Changeset{}
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
 ```
 
 如你所見，它有一些可能有用的欄位，但它們目前都是空的。
@@ -42,7 +42,7 @@ end
 
 ```elixir
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
  valid?: true>
  ```
 
@@ -53,7 +53,7 @@ Ecto 足夠聰明，可以根據結構體本身找到結構描述。
 
 ```elixir
  iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
- #Ecto.Changeset<
+ %Ecto.Changeset<
   action: nil,
   changes: %{name: "Jack"},
   errors: [],
@@ -62,7 +62,7 @@ Ecto 足夠聰明，可以根據結構體本身找到結構描述。
 >
 
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
  valid?: true>
 ```
 
@@ -75,7 +75,7 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
 
 ```elixir
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
-#Ecto.Changeset<
+%Ecto.Changeset<
  action: nil,
  changes: %{name: ""},
  errors: [],
@@ -129,7 +129,7 @@ end
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => ""})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
@@ -156,7 +156,7 @@ end
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => "A"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "A"},
   errors: [
@@ -219,7 +219,7 @@ end
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => "Bob"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
@@ -263,7 +263,7 @@ end
 
 ```elixir
 iex> User.registration_changeset(%User{}, %{})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],

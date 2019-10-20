@@ -69,7 +69,7 @@ And for free, Ecto adds descriptive errors to our changeset:
 
 ```elixir
 iex> %User{} |> User.changeset(%{})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [
@@ -77,7 +77,7 @@ iex> %User{} |> User.changeset(%{})
     email: {"can't be blank", [validation: :required]},
     password: {"can't be blank", [validation: :required]}
   ],
-  data: #MyCoolWebApp.Accounts.User<>,
+  data: %MyCoolWebApp.Accounts.User<>,
   valid?: false
 >
 ```
@@ -109,7 +109,7 @@ iex> attrs = %{display_name: "prince", email: "prince@test.com", password: "supe
 iex> user |> User.changeset(attrs) |> Repo.insert()
 {:ok,
  %MyCoolWebApp.Accounts.User{
-   __meta__: #Ecto.Schema.Metadata<:loaded, "users">,
+   __meta__: %Ecto.Schema.Metadata<:loaded, "users">,
    display_name: "prince",
    email: "prince@test.com",
    id: 1,
@@ -128,7 +128,7 @@ iex> attrs = %{display_name: "prince", email: "prince@test.com", password: "supe
 iex> user |> User.changeset(attrs) |> Repo.insert()
 {:ok,
  %MyCoolWebApp.Accounts.User{
-   __meta__: #Ecto.Schema.Metadata<:loaded, "users">,
+   __meta__: %Ecto.Schema.Metadata<:loaded, "users">,
    display_name: "prince",
    email: "prince@test.com",
    id: 2,
@@ -165,7 +165,7 @@ iex> user = %User{}
 iex> attrs = %{display_name: "prince", email: "prince@test.com", password: "super_secret"}
 iex> user |> User.changeset(attrs) |> Repo.insert()
 {:error,
- #Ecto.Changeset<
+ %Ecto.Changeset<
    action: :insert,
    changes: %{
      display_name: "prince",
@@ -177,7 +177,7 @@ iex> user |> User.changeset(attrs) |> Repo.insert()
      email: {"has already been taken",
       [constraint: :unique, constraint_name: "users_email_index"]}
    ],
-   data: #MyCoolWebApp.Accounts.User<>,
+   data: %MyCoolWebApp.Accounts.User<>,
    valid?: false
  >}
 ```

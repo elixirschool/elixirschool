@@ -1,5 +1,5 @@
 ---
-version: 0.9.0
+version: 0.9.1
 title: Komposisi
 ---
 
@@ -77,29 +77,29 @@ Mari kita bina beberapa struct:
 
 ```elixir
 iex> %Example.User{}
-#Example.User<name: "Sean", roles: [], ...>
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [], ...>
+%Example.User<name: "Steve", roles: [], ...>
 
 iex> %Example.User{name: "Steve", roles: [:manager]}
-#Example.User<name: "Steve", roles: [:manager]>
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Kita boleh mengemaskini struct sebagaimana kita mengemaskini map:
 
 ```elixir
 iex> steve = %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [...], ...>
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Paling penting, anda boleh membuat padanan antara struct dan map:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 ## Komposisi

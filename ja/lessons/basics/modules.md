@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.4.1
 title: モジュール
 ---
 
@@ -83,29 +83,29 @@ end
 
 ```elixir
 iex> %Example.User{}
-#Example.User<name: "Sean", roles: [], ...>
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [], ...>
+%Example.User<name: "Steve", roles: [], ...>
 
 iex> %Example.User{name: "Steve", roles: [:manager]}
-#Example.User<name: "Steve", roles: [:manager]>
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 構造体はあたかもマップのように更新することができます:
 
 ```elixir
 iex> steve = %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [...], ...>
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 最も重要なことですが、構造体はマップに対してマッチすることができます:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Elixir 1.8以降、構造体にカスタムイントロスペクション機能が追加されました。
@@ -114,7 +114,7 @@ Elixir 1.8以降、構造体にカスタムイントロスペクション機能�
 
 ```elixir
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", roles: [...], ...>"
+"%Example.User<name: \"Sean\", roles: [...], ...>"
 ```
 
 この例では全てのフィールドが出力対象になっていますが、出力したくない項目がある場合、どのようにしたら良いでしょうか？
@@ -134,9 +134,9 @@ end
 
 ```elixir
 iex> sean = %Example.User{name: "Sean"}
-#Example.User<name: "Sean", ...>
+%Example.User<name: "Sean", ...>
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", ...>"
+"%Example.User<name: \"Sean\", ...>"
 ```
 
 `roles` が出力から除外されました!
