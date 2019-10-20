@@ -105,7 +105,7 @@ iex> Repo.all(query)
 
 ```elixir
 iex> query = select(Movie, [m], m)
-#Ecto.Query<from m in Example.Movie, select: m>
+%Ecto.Query<from m in Example.Movie, select: m>
 iex> Repo.all(query)
 
 06:16:20.854 [debug] QUERY OK source="movies" db=0.9ms
@@ -130,7 +130,7 @@ iex> Repo.all(query)
 
 ```elixir
 iex> query = from(Movie, select: [:title])
-#Ecto.Query<from m in Example.Movie, select: [:title]>
+%Ecto.Query<from m in Example.Movie, select: [:title]>
 iex> Repo.all(query)
 
 15:15:25.842 [debug] QUERY OK source="movies" db=1.3ms
@@ -155,7 +155,7 @@ iex> Repo.all(query)
 
 ```elixir
 iex(15)> query = from(m in Movie, select: m.title)
-#Ecto.Query<from m in Example.Movie, select: m.title>
+%Ecto.Query<from m in Example.Movie, select: m.title>
 iex(16)> Repo.all(query)
 
 15:06:12.752 [debug] QUERY OK source="movies" db=4.5ms queue=0.1ms
@@ -170,7 +170,7 @@ iex(16)> Repo.all(query)
 
 ```elixir
 iex> query = from(m in Movie, where: m.title == "Ready Player One")
-#Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
 iex> Repo.all(query)
 
 15:18:35.355 [debug] QUERY OK source="movies" db=4.1ms queue=0.1ms
@@ -191,7 +191,7 @@ iex> Repo.all(query)
 
 ```elixir
 iex> query = from(m in Movie, where: m.title == "Ready Player One", select: m.tagline)
-#Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One", select: m.tagline>
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One", select: m.tagline>
 iex> Repo.all(query)
 
 15:19:11.904 [debug] QUERY OK source="movies" db=4.1ms
@@ -206,7 +206,7 @@ iex> Repo.all(query)
 iex> title = "Ready Player One"
 "Ready Player One"
 iex> query = from(m in Movie, where: m.title == ^title, select: m.tagline)
-#Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
+%Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
  select: m.tagline>
 iex> Repo.all(query)
 
@@ -222,7 +222,7 @@ iex> Repo.all(query)
 
 ```elixir
 iex> first(Movie)
-#Ecto.Query<from m in Example.Movie, order_by: [desc: m.id], limit: 1>
+%Ecto.Query<from m in Example.Movie, order_by: [desc: m.id], limit: 1>
 ```
 
 然後將查詢傳遞給 `Repo.one/2` 函數以獲得結果：

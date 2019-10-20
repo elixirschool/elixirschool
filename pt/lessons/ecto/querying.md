@@ -105,7 +105,7 @@ Ao usar `from` com uma expressão de consulta, o primeiro argumento deve ser um 
 
 ```elixir
 iex> query = select(Movie, [m], m)
-#Ecto.Query<from m in Example.Movie, select: m>
+%Ecto.Query<from m in Example.Movie, select: m>
 iex> Repo.all(query)
 
 06:16:20.854 [debug] QUERY OK source="movies" db=0.9ms
@@ -130,7 +130,7 @@ Usamos a função `Ecto.Query.select/3` para especificar a parte da instrução 
 
 ```elixir
 iex> query = from(Movie, select: [:title])                                            
-#Ecto.Query<from m in Example.Movie, select: [:title]>
+%Ecto.Query<from m in Example.Movie, select: [:title]>
 iex> Repo.all(query)
 
 15:15:25.842 [debug] QUERY OK source="movies" db=1.3ms
@@ -155,7 +155,7 @@ A segunda abordagem se comporta de maneira um pouco diferente. Desta vez, nós *
 
 ```elixir
 iex(15)> query = from(m in Movie, select: m.title)   
-#Ecto.Query<from m in Example.Movie, select: m.title>
+%Ecto.Query<from m in Example.Movie, select: m.title>
 iex(16)> Repo.all(query)                             
 
 15:06:12.752 [debug] QUERY OK source="movies" db=4.5ms queue=0.1ms
@@ -170,7 +170,7 @@ Podemos usar expressões `where` para incluir cláusulas `where` em nossas consu
 
 ```elixir
 iex> query = from(m in Movie, where: m.title == "Ready Player One")                   
-#Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
 iex> Repo.all(query)
 
 15:18:35.355 [debug] QUERY OK source="movies" db=4.1ms queue=0.1ms
@@ -191,7 +191,7 @@ Podemos usar expressões `where` junto com `select`:
 
 ```elixir
 iex> query = from(m in Movie, where: m.title == "Ready Player One", select: m.tagline)
-#Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One", select: m.tagline>
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One", select: m.tagline>
 iex> Repo.all(query)
 
 15:19:11.904 [debug] QUERY OK source="movies" db=4.1ms
@@ -206,7 +206,7 @@ Para usar valores interpolados ou expressões Elixir em nossas cláusulas where,
 iex> title = "Ready Player One"
 "Ready Player One"
 iex> query = from(m in Movie, where: m.title == ^title, select: m.tagline)            
-#Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
+%Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
  select: m.tagline>
 iex> Repo.all(query)
 
@@ -222,7 +222,7 @@ Primeiro, vamos escrever uma expressão de consulta usando a função `first/2`:
 
 ```elixir
 iex> first(Movie)
-#Ecto.Query<from m in Example.Movie, order_by: [desc: m.id], limit: 1>
+%Ecto.Query<from m in Example.Movie, order_by: [desc: m.id], limit: 1>
 ```
 
 Então passamos nossa consulta para a função `Repo.one/2` para obter nosso resultado:

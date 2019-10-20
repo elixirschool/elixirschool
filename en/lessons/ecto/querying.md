@@ -105,7 +105,7 @@ When using `from` with a query expression, the first argument must be a value th
 
 ```elixir
 iex> query = select(Movie, [m], m)
-#Ecto.Query<from m in Example.Movie, select: m>
+%Ecto.Query<from m in Example.Movie, select: m>
 iex> Repo.all(query)
 
 06:16:20.854 [debug] QUERY OK source="movies" db=0.9ms
@@ -130,7 +130,7 @@ We use the `Ecto.Query.select/3` function to specify the select statement portio
 
 ```elixir
 iex> query = select(Movie, [:title])
-#Ecto.Query<from m in Example.Movie, select: [:title]>
+%Ecto.Query<from m in Example.Movie, select: [:title]>
 iex> Repo.all(query)
 
 15:15:25.842 [debug] QUERY OK source="movies" db=1.3ms
@@ -155,7 +155,7 @@ The second approach behaves a little differently. This time, we *do* need to use
 
 ```elixir
 iex(15)> query = from(m in Movie, select: m.title)
-#Ecto.Query<from m in Example.Movie, select: m.title>
+%Ecto.Query<from m in Example.Movie, select: m.title>
 iex(16)> Repo.all(query)
 
 15:06:12.752 [debug] QUERY OK source="movies" db=4.5ms queue=0.1ms
@@ -170,7 +170,7 @@ We can use `where` expressions to include "where" clauses in our queries. Multip
 
 ```elixir
 iex> query = from(m in Movie, where: m.title == "Ready Player One")
-#Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
 iex> Repo.all(query)
 
 15:18:35.355 [debug] QUERY OK source="movies" db=4.1ms queue=0.1ms
@@ -191,7 +191,7 @@ We can use `where` expressions together with `select`:
 
 ```elixir
 iex> query = from(m in Movie, where: m.title == "Ready Player One", select: m.tagline)
-#Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One", select: m.tagline>
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One", select: m.tagline>
 iex> Repo.all(query)
 
 15:19:11.904 [debug] QUERY OK source="movies" db=4.1ms
@@ -206,7 +206,7 @@ In order to use interpolated values or Elixir expressions in our where clauses, 
 iex> title = "Ready Player One"
 "Ready Player One"
 iex> query = from(m in Movie, where: m.title == ^title, select: m.tagline)
-#Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
+%Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
  select: m.tagline>
 iex> Repo.all(query)
 
@@ -222,7 +222,7 @@ First, we'll write a query expression using the `first/2` function:
 
 ```elixir
 iex> first(Movie)
-#Ecto.Query<from m in Example.Movie, order_by: [desc: m.id], limit: 1>
+%Ecto.Query<from m in Example.Movie, order_by: [desc: m.id], limit: 1>
 ```
 
 Then we pass our query to the `Repo.one/2` function to get our result:
