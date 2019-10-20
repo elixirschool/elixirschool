@@ -6,9 +6,9 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
-    autoprefixer-rails (9.5.1)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
+    autoprefixer-rails (9.6.5)
       execjs
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -23,13 +23,13 @@ GEM
     execjs (2.7.0)
     extras (0.3.0)
       forwardable-extended (~> 2.5)
-    fastimage (2.1.5)
-    ffi (1.10.0)
+    fastimage (2.1.7)
+    ffi (1.11.1)
     forwardable-extended (2.6.0)
     http_parser.rb (0.6.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
-    jekyll (3.8.5)
+    jekyll (3.8.6)
       addressable (~> 2.4)
       colorator (~> 1.0)
       em-websocket (~> 0.5)
@@ -70,30 +70,30 @@ GEM
     liquid-tag-parser (1.9.0)
       extras (~> 0.3)
       liquid (>= 3.0, < 5.0)
-    listen (3.1.5)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-      ruby_dep (~> 1.2)
+    listen (3.2.0)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.3.6)
     mini_portile2 (2.4.0)
-    minitest (5.11.3)
-    nokogiri (1.10.3)
+    minitest (5.12.2)
+    nio4r (2.5.2)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
-    public_suffix (3.0.3)
-    puma (3.12.1)
+    public_suffix (4.0.1)
+    puma (4.2.1)
+      nio4r (~> 2.0)
     rack (1.6.11)
     rack-jekyll (0.5.0)
       jekyll (>= 1.3)
       listen (>= 1.3)
       rack (~> 1.5)
-    rake (12.3.2)
+    rake (13.0.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    rouge (3.3.0)
-    ruby_dep (1.5.0)
+    rouge (3.12.0)
     safe_yaml (1.0.5)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -110,7 +110,7 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.20)
+    uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
 
 PLATFORMS
@@ -127,11 +127,12 @@ DEPENDENCIES
   puma
   rack-jekyll
   rake
+  sprockets (~> 3.7)
   sprockets-es6
   uglifier
 
 RUBY VERSION
-   ruby 2.5.1p57
+   ruby 2.6.4p104
 
 BUNDLED WITH
-   1.17.3
+   2.0.2
