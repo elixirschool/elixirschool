@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.4.1
 title: Ενότητες
 ---
 
@@ -83,29 +83,29 @@ end
 
 ```elixir
 iex> %Example.User{}
-#Example.User<name: "Sean", roles: [], ...>
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [], ...>
+%Example.User<name: "Steve", roles: [], ...>
 
 iex> %Example.User{name: "Steve", roles: [:manager]}
-#Example.User<name: "Steve", roles: [:manager]>
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Μπορούμε να αναβαθμίσουμε μια δομή όπως θα το κάναμε σε ένα χάρτη:
 
 ```elixir
 iex> steve = %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [...], ...>
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Σημαντικότερα, μπορούμε να αντιπαραβάλουμε δομές με χάρτες:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Από την Elixir 1.8 οι δομές περιλαμβάνουν προσαρμοσμένη προεπισκόπηση.
@@ -113,7 +113,7 @@ iex> %{name: "Sean"} = sean
 
 ```elixir
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", roles: [...], ...>"
+"%Example.User<name: \"Sean\", roles: [...], ...>"
 ```
 
 Όλα τα πεδία μας είναι παρόντα, το οποίο αρκεί για αυτό το παράδειγμα, αλλά τι θα συνέβαινε αν είχαμε ένα προστατευόμενο πεδίο που δεν θέλαμε να συμπεριλάβουμε;
@@ -133,9 +133,9 @@ _Σημείωση_: θα μπορούσαμε επίσης να χρησιμοπ
 
 ```elixir
 iex> sean = %Example.User{name: "Sean"}
-#Example.User<name: "Sean", ...>
+%Example.User<name: "Sean", ...>
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", ...>"
+"%Example.User<name: \"Sean\", ...>"
 ```
 
 Οι ρόλοι δεν συμπεριλαμβάνονται πλέον στην έξοδο!
