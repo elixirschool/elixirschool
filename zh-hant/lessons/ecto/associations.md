@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: 關聯關係
 ---
 
@@ -401,7 +401,7 @@ iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
 
 ```elixir
 iex> movie_changeset = Ecto.Changeset.change(movie)
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Movie<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Movie<>,
  valid?: true>
 ```
 
@@ -409,11 +409,11 @@ iex> movie_changeset = Ecto.Changeset.change(movie)
 
 ```elixir
 iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [actor])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{
     actors: [
-      #Ecto.Changeset<action: :update, changes: %{}, errors: [],
+      %Ecto.Changeset<action: :update, changes: %{}, errors: [],
        data: #Example.Actor<>, valid?: true>
     ]
   },
@@ -453,11 +453,11 @@ iex> Repo.update!(movie_actors_changeset)
 
 ```elixir
 iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{
     actors: [
-      #Ecto.Changeset<
+      %Ecto.Changeset<
         action: :insert,
         changes: %{name: "Gary"},
         errors: [],

@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 title: Наборы изменений
 ---
 
@@ -18,7 +18,7 @@ Ecto полностью покрывает эту потребность при 
 
 ```elixir
 iex> %Ecto.Changeset{}
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
 ```
 
 Как можно заметить, здесь присутствуют некоторые потенциально полезные поля, но все они пусты.
@@ -43,7 +43,7 @@ end
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
  valid?: true>
 ```
 
@@ -54,7 +54,7 @@ Ecto самостоятельно найдёт схему, соответств�
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Jack"},
   errors: [],
@@ -63,7 +63,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:na
 >
 
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
  valid?: true>
 ```
 
@@ -76,7 +76,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => ""}, [:name, :age])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: nil},
   errors: [],
@@ -131,7 +131,7 @@ end
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
@@ -158,7 +158,7 @@ end
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "A"},
   errors: [
@@ -220,7 +220,7 @@ end
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
@@ -264,7 +264,7 @@ end
 
 ```elixir
 iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Аноним"},
   errors: [],

@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 title: Associations
 ---
 
@@ -403,7 +403,7 @@ Next up, we'll create a changeset for our movie record:
 
 ```elixir
 iex> movie_changeset = Ecto.Changeset.change(movie)
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Movie<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Movie<>,
  valid?: true>
 ```
 
@@ -411,11 +411,11 @@ Now we'll pass our changeset as the first argument to [`Ecto.Changeset.put_assoc
 
 ```elixir
 iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [actor])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{
     actors: [
-      #Ecto.Changeset<action: :update, changes: %{}, errors: [],
+      %Ecto.Changeset<action: :update, changes: %{}, errors: [],
        data: #Example.Actor<>, valid?: true>
     ]
   },
@@ -455,11 +455,11 @@ We can use this same approach to create a brand new actor that is associated wit
 
 ```elixir
 iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{
     actors: [
-      #Ecto.Changeset<
+      %Ecto.Changeset<
         action: :insert,
         changes: %{name: "Gary"},
         errors: [],

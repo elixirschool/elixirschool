@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Changesets
 ---
 
@@ -19,7 +19,7 @@ Vamos ver uma estrutura `%Changeset{}` vazia:
 
 ```elixir
 iex> %Ecto.Changeset{}
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
 ```
 
 Como você pode ver, tem alguns campos potencialmente úteis, mas estão todos vazios.
@@ -43,7 +43,7 @@ Para criar um changeset usando o schema `User`, vamos usar `Ecto.Changeset.cast/
 
 ```elixir
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
  valid?: true>
  ```
 
@@ -54,7 +54,7 @@ O terceiro parâmetro é o que faz o `cast/4` especial: é uma lista de campos p
 
  ```elixir
  iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
- #Ecto.Changeset<
+ %Ecto.Changeset<
   action: nil,
   changes: %{name: "Jack"},
   errors: [],
@@ -63,7 +63,7 @@ O terceiro parâmetro é o que faz o `cast/4` especial: é uma lista de campos p
 >
 
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
  valid?: true>
 ```
 
@@ -76,7 +76,7 @@ Agora podemos criar changesets, mas como não temos validação, quaisquer alter
 
 ```elixir
 iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
-#Ecto.Changeset<
+%Ecto.Changeset<
  action: nil,
  changes: %{name: ""},
  errors: [],
@@ -130,7 +130,7 @@ Nota: não esqueça de executar `recompile()` quando estiver trabalhando no `iex
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => ""})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
@@ -157,7 +157,7 @@ Você pode tentar adivinhar qual seria o resultado se passássemos um nome que c
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => "A"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "A"},
   errors: [
@@ -220,7 +220,7 @@ end
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => "Bob"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
@@ -264,7 +264,7 @@ Agora nós não temos que passar um `name`, e `Anonymous` será definido automat
 
 ```elixir
 iex> User.registration_changeset(%User{}, %{})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
