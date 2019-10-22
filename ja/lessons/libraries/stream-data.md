@@ -118,7 +118,7 @@ end
 * `StreamData.integer/0` はランダムな整数を生成します。
 * `times >= 0` はガード句のようなもので、テストで生成するランダムな整数が0以上となることを保証します。 [`SreamData.positive_integer/0`](https://hexdocs.pm/stream_data/StreamData.html#positive_integer/0) もあるのですが、 `0` も関数で受け入れ可能としているので、私たちが欲しいものとは少し違います。
 
-`???` は単なる擬似コードです。何をアサート(assert)するべきでしょうか？ここでは次にように _書くこともできます_  :
+`???` は単なる擬似コードです。何をアサート(assert)するべきでしょうか？ここでは次にように _書くこともできます_:
 
 ```elixir
 assert String.duplicate(str, times) == Repeater.duplicate(str, times)

@@ -1,5 +1,5 @@
 ---
-version: 1.2.3
+version: 1.3.0
 title: Coleções
 ---
 
@@ -16,7 +16,9 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implementa listas como listas encadeadas. Isso significa que acessar o tamanho da lista é uma operação que rodará em tempo linear (`O(n)`). Por essa razão, é normalmente mais rápido inserir um elemento no início (`prepending`) do que no final (`appending`):
+Elixir implementa listas como listas encadeadas.
+Isso significa que acessar o tamanho da lista é uma operação que rodará em tempo linear (`O(n)`). 
+Por essa razão, é normalmente mais rápido inserir um elemento no início (`prepending`) do que no final (`appending`):
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
@@ -56,11 +58,20 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Nota:** subtração de listas usa [comparação estrita](../basics/#comparação) para match de valores.
+**Nota:** subtração de listas usa [comparação estrita](../basics/#comparação) para match de valores. Por exemplo:
+
+```elixir
+iex> [2] -- [2.0]
+[2]
+iex> [2.0] -- [2.0]
+[]
+```
 
 ### Topo / Cauda
 
-Quando usamos listas é comum trabalhar com o topo e o fim da lista. O topo é o primeiro elemento da lista e a cauda são os elementos restantes. Elixir provê duas funções bem úteis, `hd` e `tl`, para trabalhar com essas partes:
+Quando usamos listas é comum trabalhar com o topo e o fim da lista. 
+O topo é o primeiro elemento da lista e a cauda são os elementos restantes.
+Elixir provê duas funções bem úteis, `hd` e `tl`, para trabalhar com essas partes:
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -82,7 +93,8 @@ iex> tail
 
 ## Tuplas
 
-As tuplas são similares às listas porém são armazenadas de maneira contígua em memória. Isto permite acessar seu tamanho de forma rápida porém sua modificação é custosa; a nova tupla deve ser armazenada inteira na memória. As tuplas são definidas com chaves.
+As tuplas são similares às listas porém são armazenadas de maneira contígua em memória.
+Isto permite acessar seu tamanho de forma rápida porém sua modificação é custosa; a nova tupla deve ser armazenada inteira na memória. As tuplas são definidas com chaves.
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
@@ -100,7 +112,8 @@ iex> File.read("path/to/unknown/file")
 
 ## Listas de palavras-chave
 
-As listas de palavras-chave e os mapas são coleções associativas no Elixir; ambas implementam o módulo `Dict`. No Elixir, uma lista de palavras-chave é uma lista especial de tuplas de dois elementos cujo o primeiro elemento é um átomo; eles compartilham o desempenho das listas:
+As listas de palavras-chave e os mapas são coleções associativas no Elixir.
+No Elixir, uma lista de palavras-chave é uma lista especial de tuplas de dois elementos cujo o primeiro elemento é um átomo; eles compartilham o desempenho das listas:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -119,7 +132,8 @@ Por essas razões as listas de palavras-chave são frequentemente usadas para pa
 
 ## Mapas
 
-Em Elixir, mapas normalmente são a escolha para armazenamento chave-valor. A diferença entre os mapas e as listas de palavras-chave está no fato de que os mapas permitem chaves de qualquer tipo e não seguem uma ordem. Você pode definir um mapa com a sintaxe `%{}`:
+Em Elixir, mapas normalmente são a escolha para armazenamento chave-valor.
+A diferença entre os mapas e as listas de palavras-chave está no fato de que os mapas permitem chaves de qualquer tipo e não seguem uma ordem. Você pode definir um mapa com a sintaxe `%{}`:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -170,5 +184,21 @@ Outra propriedade interessante de mapas é que eles têm sua própria sintaxe pa
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+```
+
+**Nota**: esta sintaxe funciona apenas para atualizar uma chave que já existe no mapa! Se a chave não existir, um `KeyError` será gerado.
+
+Para criar uma nova chave, use [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3)
+
+```elixir
+iex> map = %{hello: "world"}
+%{hello: "world"}
+iex> %{map | foo: "baz"}
+** (KeyError) key :foo not found in: %{hello: "world"}
+    (stdlib) :maps.update(:foo, "baz", %{hello: "world"})
+    (stdlib) erl_eval.erl:259: anonymous fn/2 in :erl_eval.expr/5
+    (stdlib) lists.erl:1263: :lists.foldl/3
+iex> Map.put(map, :foo, "baz")
 %{foo: "baz", hello: "world"}
 ```

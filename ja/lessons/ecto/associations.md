@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: アソシエーション
 ---
 
@@ -77,6 +77,7 @@ mix ecto.gen.migration create_characters
 ```elixir
 add :movie_id, references(:movies)
 ```
+
 つまりマイグレーションファイルはこのようになります:
 
 ```elixir
@@ -118,9 +119,9 @@ end
 mix ecto.migrate
 ```
 
-### 従属/1 対 1
+### 従属/1対1
 
-映画は1つの配信者(distributor)を持っているとしましょう。例えば Netflix は彼らのオリジナル映画 "Bright" の配信者です。
+映画は1つの配信者(distributor)を持っているとしましょう。例えばNetflixは彼らのオリジナル映画 "Bright" の配信者です。
 
 "従属"の関係を使って `Distributor` のマイグレーションとスキーマを定義します。まずは、マイグレーションを生成しましょう:
 
@@ -287,9 +288,9 @@ mix ecto.migrate
 
 [`build_assoc/3`](https://hexdocs.pm/ecto/Ecto.html#build_assoc/3) は3つの引数をとります:
 
-* 保存したいレコードの構造体
-* アソシエーションの名前
-* 保存する関連レコードにアサインしたい属性
+- 保存したいレコードの構造体
+- アソシエーションの名前
+- 保存する関連レコードにアサインしたい属性
 
 映画と関連するキャラクターを保存してみましょう。はじめに、映画のレコードを作ります:
 
@@ -298,10 +299,10 @@ iex> alias Example.{Movie, Character, Repo}
 iex> movie = %Movie{title: "Ready Player One", tagline: "Something about video games"}
 
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:built, "movies">,
-  actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
-  characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-  distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+  __meta__: %Ecto.Schema.Metadata<:built, "movies">,
+  actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
+  characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+  distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
   id: nil,
   tagline: "Something about video games",
   title: "Ready Player One"
@@ -315,17 +316,17 @@ iex> movie = Repo.insert!(movie)
 ```elixir
 character = Ecto.build_assoc(movie, :characters, %{name: "Wade Watts"})
 %Example.Character{
-  __meta__: #Ecto.Schema.Metadata<:built, "characters">,
+  __meta__: %Ecto.Schema.Metadata<:built, "characters">,
   id: nil,
-  movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
   movie_id: 1,
   name: "Wade Watts"
 }
 Repo.insert!(character)
 %Example.Character{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "characters">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "characters">,
   id: 1,
-  movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
   movie_id: 1,
   name: "Wade Watts"
 }
@@ -333,22 +334,22 @@ Repo.insert!(character)
 
 `Movie` スキーマの `has_many/3` マクロは 映画が複数の `:characters` を持つことを示すので、 `build_assoc/3` の2つ目の引数として渡したアソシエーションの名前は `:characters` そのものだと気がつくでしょう。私たちが作ったキャラクターは、関連する映画のIDが正しくセットされた `movie_id` を持っていることがわかります。
 
-`build_assoc/3` を使って映画の関連した配信者を保存するために、 `build_assoc/3` の2つ目の引数として映画に関連する配信者の _name_ を渡すという同様のアプローチを取ります。
+`build_assoc/3` を使って映画の関連した配信者を保存するために、 `build_assoc/3` の2つ目の引数として映画に関連する配信者の_name_を渡すという同様のアプローチを取ります。
 
 ```elixir
 iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})
 %Example.Distributor{
-  __meta__: #Ecto.Schema.Metadata<:built, "distributors">,
+  __meta__: %Ecto.Schema.Metadata<:built, "distributors">,
   id: nil,
-  movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
   movie_id: 1,
   name: "Netflix"
 }
 iex> Repo.insert!(distributor)
 %Example.Distributor{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "distributors">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "distributors">,
   id: 1,
-  movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
   movie_id: 1,
   name: "Netflix"
 }
@@ -366,16 +367,16 @@ iex> Repo.insert!(distributor)
 iex> alias Example.Actor
 iex> actor = %Actor{name: "Tyler Sheridan"}
 %Example.Actor{
-  __meta__: #Ecto.Schema.Metadata<:built, "actors">,
+  __meta__: %Ecto.Schema.Metadata<:built, "actors">,
   id: nil,
-  movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+  movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
   name: "Tyler Sheridan"
 }
 iex> actor = Repo.insert!(actor)
 %Example.Actor{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
   id: 1,
-  movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+  movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
   name: "Tyler Sheridan"
 }
 ```
@@ -387,7 +388,7 @@ iex> actor = Repo.insert!(actor)
 ```elixir
 iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: [],
   characters: [],
   distributor: nil,
@@ -401,7 +402,7 @@ iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
 
 ```elixir
 iex> movie_changeset = Ecto.Changeset.change(movie)
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Movie<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Movie<>,
  valid?: true>
 ```
 
@@ -409,11 +410,11 @@ iex> movie_changeset = Ecto.Changeset.change(movie)
 
 ```elixir
 iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [actor])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{
     actors: [
-      #Ecto.Changeset<action: :update, changes: %{}, errors: [],
+      %Ecto.Changeset<action: :update, changes: %{}, errors: [],
        data: #Example.Actor<>, valid?: true>
     ]
   },
@@ -430,12 +431,12 @@ iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actor
 ```elixir
 iex> Repo.update!(movie_actors_changeset)
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: [
     %Example.Actor{
-      __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+      __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 1,
-      movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+      movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
       name: "Bob"
     }
   ],
@@ -453,11 +454,11 @@ iex> Repo.update!(movie_actors_changeset)
 
 ```elixir
 iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{
     actors: [
-      #Ecto.Changeset<
+      %Ecto.Changeset<
         action: :insert,
         changes: %{name: "Gary"},
         errors: [],
@@ -472,12 +473,12 @@ iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "
 >
 iex>  Repo.update!(changeset)
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: [
     %Example.Actor{
-      __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+      __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 2,
-      movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+      movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
       name: "Gary"
     }
   ],

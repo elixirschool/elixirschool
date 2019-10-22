@@ -1,5 +1,5 @@
 ---
-version: 2.3.0
+version: 2.4.0
 title: Basics
 ---
 
@@ -37,8 +37,8 @@ Add the ecto and postgrex package dependencies to your `mix.exs` file.
 ```elixir
   defp deps do
     [
-      {:ecto, "~> 2.0"},
-      {:postgrex, "~> 0.11"}
+      {:ecto_sql, "~> 3.2"},
+      {:postgrex, "~> 0.15"}
     ]
   end
 ```
@@ -65,7 +65,6 @@ This is the configuration file for our `Friends` application
 
 ```elixir
 config :friends, Friends.Repo,
-  adapter: Ecto.Adapters.Postgres,
   database: "friends_repo",
   username: "postgres",
   password: "",
@@ -73,17 +72,18 @@ config :friends, Friends.Repo,
 ```
 
 This configures how Ecto will connect to the database.
-Note how we chose the `Ecto.Adapters.Postgres` adapter.
 
 It also creates a `Friends.Repo` module inside `lib/friends/repo.ex`
 
 ```elixir
 defmodule Friends.Repo do
-  use Ecto.Repo, otp_app: :friends
+  use Ecto.Repo, 
+    otp_app: :friends,
+    adapter: Ecto.Adapters.Postgres
 end
 ```
 
-We'll use the `Friends.Repo` module to query the database. We also tell this module to find its database configuration information in the `:friends` Elixir application.
+We'll use the `Friends.Repo` module to query the database. We also tell this module to find its database configuration information in the `:friends` Elixir application and we chose the `Ecto.Adapters.Postgres` adapter.
 
 Next, we'll setup the `Friends.Repo` as a supervisor within our application's supervision tree in `lib/friends/application.ex`.
 This will start the Ecto process when our application starts.

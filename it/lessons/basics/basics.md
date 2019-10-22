@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 title: Base
 ---
 
@@ -228,7 +228,7 @@ iex> 2 <= 3
 true
 ```
 
-Per una comparazione rigorosa (_strict_) tra interi e numeri in virogla mobile, usa `===`:
+Per una comparazione rigorosa (_strict_) tra interi e numeri in virgola mobile, usa `===`:
 
 ```elixir
 iex> 2 == 2.0
