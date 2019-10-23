@@ -1,7 +1,7 @@
 ---
 author: Sean Callan
 categories: general
-tags: ['plug']
+tags: ['plug', 'software design']
 date: 2019-01-25
 layout: post
 title: Building web apps with Plug.Router

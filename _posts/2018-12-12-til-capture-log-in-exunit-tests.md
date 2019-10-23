@@ -4,6 +4,7 @@ author_link: https://github.com/alexgriff
 categories: til
 date: 2018-12-12
 layout: post
+tags: ['testing', 'logging']
 title:  TIL about ExUnit's capture_log option
 excerpt: >
   Capture the output from Logger to clean up your test runs
