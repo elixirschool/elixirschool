@@ -210,6 +210,5 @@ Consolidated Inspect
 Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
 iex> Datasets.hello
-Hello, I'm the datasets
-:ok
+:world
 ```
