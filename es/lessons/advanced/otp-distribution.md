@@ -480,7 +480,7 @@ end
 ## Conclusión
 
 Las capacidades distribuidas de Elixir, las cuales son gracias al poder de la máquina virtual de Erlang, es una de las características que lo hacen una herramienta poderosa.
-Podemos imaginar aprovechar la habilidad de Elixir para manejar computo distribuido para correr trabajos en segundo plano concurrentes, para soportar aplicaciones de gran rendimiento, para ejecutar operaciones costosas, o lo que se te pueda ocurrir.
+Podemos imaginar aprovechar la habilidad de Elixir para manejar cómputo distribuido para correr trabajos en segundo plano concurrentes, para soportar aplicaciones de gran rendimiento, para ejecutar operaciones costosas, o lo que se te pueda ocurrir.
 
 Esta lección nos da una introducción básica del concepto de distribución en Elixir y te da las herramientas que necesitas para empezar a construir aplicaciones distribuidas.
 Usando tareas supervisadas puedes enviar mensajes a través de varios nodos de una aplicación distribuida.
