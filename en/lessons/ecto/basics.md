@@ -173,7 +173,7 @@ $ mix ecto.migrate
 Now that we've created our initial table we need to tell Ecto more about it, part of how we do that is through schemas.
 A schema is a module that defines mappings to the underlying database table's fields.
 
-While Ecto favors pluralize database table names, the schema is typically singular, so we'll create a `Person` schema to accomplany our table.
+While Ecto favors pluralize database table names, the schema is typically singular, so we'll create a `Person` schema to accompany our table.
 
 Let's create our new schema at `lib/friends/person.ex`:
 
