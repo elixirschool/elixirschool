@@ -101,6 +101,7 @@ false
 ```
 
 The booleans `true` and `false` are also the atoms `:true` and `:false`, respectively.
+*The pipe operator |> passes the result of an expression as the first parameter of another expression. We will explore this more in-depth in chapter 7: "Pipe Operator"*
 
 ```elixir
 iex> true |> is_atom
