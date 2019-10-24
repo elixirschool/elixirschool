@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.1.1
 title: OTP Supervisors
 ---
 
@@ -68,17 +68,15 @@ children = [
 
 ## Task Supervisor
 
-Tasks haben ihren eigenen spezialisierten supervisor, `Task.Supervisor`. Entworfen für dynamisch erstellte Tasks benutzt der supervisor `:simple_one_for_one` unter der Haube.
+Tasks haben ihren eigenen spezialisierten Supervisor, `Task.Supervisor`. Dieser Supervisor wurde für dynamisch erstellte Tasks entworfen und benutzt `DynamicSupervisor` unter der Haube.
 
 ### Setup
 
-`Task.Supervisor` zu benutzen ist nicht anders wie andere supervisors:
+`Task.Supervisor` zu benutzen ist nicht anders wie andere Supervisors:
 
 ```elixir
-import Supervisor.Spec
-
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor, restart: :transient]])
+  {Task.Supervisor, name: ExampleApp.TaskSupervisor, restart: :transient}
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -88,10 +86,10 @@ Der Hauptunterschied zwischen `Supervisor` und `Task.Supervisor` ist, dass die s
 
 ### Supervised Tasks
 
-Wenn der supervisor gestartet ist, können wir die Funktion `start_child/2` benutzen, um einen supervised Task zu erstellen:
+Wenn der Supervisor gestartet ist, können wir die Funktion `start_child/2` benutzen, um einen supervised Task zu erstellen:
 
 ```elixir
 {:ok, pid} = Task.Supervisor.start_child(ExampleApp.TaskSupervisor, fn -> background_work end)
 ```
 
-Falls unser Task vorzeitig abstürzt wird er für uns neu gestartet. Das kann besonders sinnvoll sein, wenn wir mit eingehenden Verbindungen arbeiten oder Hintergrundarbeit verrichten.
+Falls unser Task vorzeitig abstürzt, wird er für uns neu gestartet. Das kann besonders sinnvoll sein, wenn wir mit eingehenden Verbindungen arbeiten oder Hintergrundarbeit verrichten.
