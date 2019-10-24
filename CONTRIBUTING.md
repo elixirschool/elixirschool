@@ -39,7 +39,7 @@ Thank you for your contributions!
 
 ## Adding a new Language
 
-1. Create a folder using the ISO language code (e.g. ja, zh-hans, es, et al) with lesson subfolders.
+1. Create a folder using the ISO language code (e.g. JA, Zh-Hans, es, et al) with lesson subfolders.
 Not sure which language code to use?
 Check [here](https://www.loc.gov/standards/iso639-2/php/English_list.php) for the official list.
 
@@ -56,7 +56,7 @@ Check [here](https://www.loc.gov/standards/iso639-2/php/English_list.php) for th
    ja: Japanese
   ```
 
-1. Create a locale file for your new language using `_data/locales/en.yml` as a guide:
+1. Create a local file for your new language using `_data/locales/en.yml` as a guide:
 
   ```shell
   $ touch _data/locales/ja.yml
@@ -64,7 +64,7 @@ Check [here](https://www.loc.gov/standards/iso639-2/php/English_list.php) for th
 
 1. If the new language is RTL (right-to-left) it should be added to the `rtl_languages` list in `config.yml`:
 
-  ```yaml
+  YAML
   script_direction: rtl
   ```
 
@@ -72,4 +72,4 @@ Check [here](https://www.loc.gov/standards/iso639-2/php/English_list.php) for th
 
 Look out for Liquid templating weirdness!
 
-If you have a code snippet that includes the following syntax: `{%{message: "error message"}, :error}`, i.e. if you have a tuple where the first element is a map, WATCH OUT! That set of characters, `{%` is the start of a liquid tag! Instead, wrap your backticked code block in `{% raw % }` `{% endraw %}`
+If you have a code snippet that includes the following syntax: `{%{message: "error message"},: error}`, i.e. if you have a tuple where the first element is a map, WATCH OUT! That set of characters, `{%` is the start of a liquid tag! Instead, wrap your backticks code block in `{% raw % }` `{% Andrew %}`
