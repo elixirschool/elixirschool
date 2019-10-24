@@ -49,7 +49,7 @@ Los tokens JWT pueden ser usados en cualquier parte de su aplicación donde nece
 
 No necesita rastrear JWT a través de una base de datos.
 Simplemente puede confiar en las marcas de tiempo emitidas y de vencimiento para controlar el acceso.
-A menudo terminara usando una base de datos para buscar su recurso de usuario pero el JWT en si no lo requiere.
+A menudo terminará usando una base de datos para buscar su recurso de usuario pero el JWT en si no lo requiere.
 
 Por ejemplo, si fuera a usar JWT para autenticar la comunicación en un socket UDP, probablemente no usaría una base de datos.
 Codifique toda la información que necesite directamente en el token cuando lo emita.
@@ -65,7 +65,7 @@ Lo cubriremos más tarde.
 
 ## Instalación
 
-Hay varias opciones para configurar Guardia. Las cubriremos en algún momento pero comencemos con una configuración simple.
+Hay varias opciones para configurar Guardian. Las cubriremos en algún momento pero comencemos con una configuración simple.
 
 ### Configuración mínima
 
@@ -335,9 +335,7 @@ end
 
 Cuando se utiliza el inicio de sesión de API, es ligeramente diferente porque no hay sesión y debe devolver el token sin procesar al cliente.
 Para iniciar sesión en la API, es probable que use el encabezado `Authorization` para proporcionar el token a su aplicación.
-For API login you'll likely use the `Authorization` header to provide the token to your application.
 Este método es útil cuando no tiene intención de usar una sesión.
-This method is useful when you do not intend on using a session.
 
 ```elixir
 def create(conn, params) do
@@ -352,10 +350,9 @@ end
 
 def delete(conn, params) do
   jwt = MyApp.Guardian.Plug.current_token(conn)
- MyApp.Guardian.revoke(jwt)
+  MyApp.Guardian.revoke(jwt)
   respond_somehow(conn)
 end
 ```
 
 El inicio de sesión de la sesión del navegador llama a `encode_and_sign` debajo del capó para que pueda usarlos de la misma manera.
-The browser session login calls `encode_and_sign` under the hood so you can use them the same way.
