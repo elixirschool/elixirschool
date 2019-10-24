@@ -4,7 +4,6 @@ title: Guardian (Básico)
 ---
 
 [Guardian](https://github.com/ueberauth/guardian) es una librería de autenticación ampliamente utilizada, basada en [JWT](https://jwt.io/) (JSON Web Tokens).
-[Guardian](https://github.com/ueberauth/guardian) is a widely used authentication library based on [JWT](https://jwt.io/) (JSON Web Tokens).
 
 {% include toc.html %}
 
