@@ -55,7 +55,7 @@ Crie um repositório rodando:
 $ mix ecto.gen.repo -r Friends.Repo
 ```
 
-Essa tarefa irá gerar toda a configuração requirida para conectar a um banco de dados em `config/config.exs`, incluindo a configuração do adaptador. Esse é o arquivode configuração para nosso banco de dados `Friends`:
+Essa tarefa irá gerar toda a configuração requirida para conectar a um banco de dados em `config/config.exs`, incluindo a configuração do adaptador. Esse é o arquivo de configuração para nosso banco de dados `Friends`:
 
 ```elixir
 config :friends, Friends.Repo,
