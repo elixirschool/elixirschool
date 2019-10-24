@@ -1,7 +1,7 @@
 ---
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
-categories: post
+categories: general
 date: 2019-06-04
 layout: post
 title:  Using Channels with LiveView for Better UX

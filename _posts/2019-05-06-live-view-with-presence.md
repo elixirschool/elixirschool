@@ -1,7 +1,7 @@
 ---
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
-categories: post
+categories: general
 date: 2019-05-21
 layout: post
 title:  Tracking Users in a Chat App with LiveView, PubSub Presence
