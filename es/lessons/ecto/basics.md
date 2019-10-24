@@ -28,8 +28,8 @@ A través de esta lección cubriremos tres partes de Ecto:
 Para empezar crearemos una aplicación con su árbol de supervisión.
 
 ```shell
-$ mix new amigos --sup
-$ cd amigos
+$ mix new friends --sup
+$ cd friends
 ```
 
 Agrega los paquetes de ecto y postgrex a tu archivo `mix.exs`
@@ -57,42 +57,42 @@ Toda comunicación con la base de datos se hará usando este repositorio.
 Configura un repositorio ejecutando:
 
 ```shell
-$ mix ecto.gen.repo -r Amigos.Repo
+$ mix ecto.gen.repo -r Friends.Repo
 ```
 
 Esto generará la configuración requerida en `config/config.exs` para conectarse a la base de datos, incluyendo el adaptador que usará.
-Este es el archivo de configuración de nuestra aplicación `Amigos`
+Este es el archivo de configuración de nuestra aplicación `Friends`
 
 ```elixir
-config :amigos, Amigos.Repo,
-  database: "amigos_repo",
-  usernombre: "postgres",
+config :friends, Friends.Repo,
+  database: "friends_repo",
+  username: "postgres",
   password: "",
-  hostnombre: "localhost"
+  hostname: "localhost"
 ```
 
 Esto configura como Ecto se conectará a la base de datos.
 
-También crea un módulo `Amigos.Repo` en `lib/amigos/repo.ex`
+También crea un módulo `Friends.Repo` en `lib/friends/repo.ex`
 
 ```elixir
-defmodule Amigos.Repo do
+defmodule Friends.Repo do
   use Ecto.Repo, 
-    otp_app: :amigos,
+    otp_app: :friends,
     adapter: Ecto.Adapters.Postgres
 end
 ```
 
-Usaremos el módulo `Amigos.Repo` para consultar la base de datos. También le decimos a este módulo que encuentre la configuración de su base de datos en la aplicación de Elixir `:amigos` y que elegimos el adaptador `Ecto.Adapters.Postgres`.
+Usaremos el módulo `Friends.Repo` para consultar la base de datos. También le decimos a este módulo que encuentre la configuración de su base de datos en la aplicación de Elixir `:friends` y que elegimos el adaptador `Ecto.Adapters.Postgres`.
 
-Después, configuraremos el módulo `Amigos.Repo` como supervisor dentro del árbol de supervisor de nuestra aplicación en `lib/amigos/application.ex`.
+Después, configuraremos el módulo `Friends.Repo` como supervisor dentro del árbol de supervisor de nuestra aplicación en `lib/friends/application.ex`.
 Esto iniciará el proceso de Ecto cuando nuestra aplicación inicie.
 
 ```elixir
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      Amigos.Repo,
+      Friends.Repo,
     ]
 
   ...
@@ -101,7 +101,7 @@ Esto iniciará el proceso de Ecto cuando nuestra aplicación inicie.
 Después de eso tendremos que agregar la siguiente línea a `config/config.exs`:
 
 ```elixir
-config :amigos, ecto_repos: [Amigos.Repo]
+config :friends, ecto_repos: [Friends.Repo]
 ```
 
 Esto permitirá que nuestra aplicación pueda ejecutar comandos mix de ecto desde la terminal
@@ -123,19 +123,19 @@ Para crear y modificar tablas dentro de una base de datos postgres, Ecto nos pro
 Cada migración describe un grupo de acciones a ejecutar en nuestra base de datos, como que tablas crear o actualizar.
 
 Como nuestra base de datos no contiene aún ninguna tabla tendremos que crear una migración que agregue algunas.
-La convención en Ecto es pluralizar las tablas, así que para nuestra aplicación necesitaremos una tabla `personas`, así que empezemos por ahí.
+La convención en Ecto es pluralizar las tablas, así que para nuestra aplicación necesitaremos una tabla `people`, así que empezemos por ahí.
 
-La mejor forma de crear migraciones es con el comando mix `ecto.gen.migration <nombre>`, así que para nuestro caso ejecutaremos:
+La mejor forma de crear migraciones es con el comando mix `ecto.gen.migration <name>`, así que para nuestro caso ejecutaremos:
 
 ```shell
-$ mix ecto.gen.migration create_personas
+$ mix ecto.gen.migration create_people
 ```
 
 Esto generará un nuevo archivo en el directorio `priv/repo/migrations` que contendrá un timestamp en su nombre.
 Si navegamos a nuestro directorio y abrimos la migración veremos algo como esto:
 
 ```elixir
-defmodule Amigos.Repo.Migrations.CreatePeople do
+defmodule Friends.Repo.Migrations.CreatePeople do
   use Ecto.Migration
 
   def change do
@@ -144,16 +144,16 @@ defmodule Amigos.Repo.Migrations.CreatePeople do
 end
 ```
 
-Empezemos modificando la función `change/0` para crear una nueva tabla `personas` con `nombre` y `edad`:
+Empezemos modificando la función `change/0` para crear una nueva tabla `people` con `name` y `age`:
 
 ```elixir
-defmodule Amigos.Repo.Migrations.CreatePeople do
+defmodule Friends.Repo.Migrations.CreatePeople do
   use Ecto.Migration
 
   def change do
-    create table(:personas) do
+    create table(:people) do
       add :nombre, :string, null: false
-      add :edad, :integer, default: 0
+      add :age, :integer, default: 0
     end
   end
 end
@@ -173,58 +173,58 @@ $ mix ecto.migrate
 Ahora que creamos nuestra tabla inicial, tenemos que decirle a Ecto más sobre ella y parte de esto lo hacemos a través de esquemas.
 Un esquema es un módulo que define la relación con los campos de la base de datos.
 
-Mientras Ecto favorece pluralizar los nombres de las tablas de la base de datos, el esquema es usualmente singular, así que crearemos un esquema `Persona` para acompañar nuestra tabla.
+Mientras Ecto favorece pluralizar los nombres de las tablas de la base de datos, el esquema es usualmente singular, así que crearemos un esquema `Person` para acompañar nuestra tabla.
 
-Creemos nuestro nuevo esquema en `lib/amigos/person.ex`:
+Creemos nuestro nuevo esquema en `lib/friends/person.ex`:
 
 ```elixir
-defmodule Amigos.Persona do
+defmodule Friends.Person do
   use Ecto.Schema
 
-  schema "personas" do
-    field :nombre, :string
-    field :edad, :integer, default: 0
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
   end
 end
 ```
 
-Aquí podemos ver que el módulo `Amigos.Persona` le dice a Ecto que el esquema se relaciona con la tabla `personas` y que tenemos dos columnas: `nombre` que es una cadena de texto y `edad`, que es un entero con un valor por default de `0`.
+Aquí podemos ver que el módulo `Friends.Person` le dice a Ecto que el esquema se relaciona con la tabla `people` y que tenemos dos columnas: `name` que es una cadena de texto y `age`, que es un entero con un valor por default de `0`.
 
 Echemos un vistazo a nuestro esquema abriendo `iex -S mix` y creando una nueva persona:
 
 ```shell
-iex> %Amigos.Persona{}
-%Amigos.Persona{edad: 0, nombre: nil}
+iex> %Friends.Person{}
+%Friends.Person{age: 0, name: nil}
 ```
 
-Como lo esperabamos, obtuvimos un nuevo `Persona` con el valor por defecto aplicado a `edad`.
+Como lo esperabamos, obtuvimos un nuevo `Person` con el valor por defecto aplicado a `age`.
 Ahora crearemos una persona "real":
 
 ```shell
-iex> person = %Amigos.Persona{nombre: "Tomás", edad: 11}
-%Amigos.Persona{edad: 11, nombre: "Tomás"}
+iex> person = %Friends.Person{name: "Tom", age: 11}
+%Friends.Person{age: 11, name: "Tom"}
 ```
 
 Como los esquemas son estructuras, podemos interactuar con nuestra data como estamos acostumbrados:
 
 ```elixir
-iex> person.nombre
-"Tomás"
-iex> Map.get(person, :nombre)
-"Tomás"
-iex> %{nombre: nombre} = person
-%Amigos.Persona{edad: 11, nombre: "Tomás"}
-iex> nombre
-"Tomás"
+iex> person.name
+"Tom"
+iex> Map.get(person, :name)
+"Tom"
+iex> %{name: name} = person
+%Friends.Person{age: 11, name: "Tom"}
+iex> name
+"Tom"
 ```
 
 Igualmente podemos actualizar nuestros esquemas justo como lo haríamos con cualquier otro mapa o estructura en Elixir:
 
 ```elixir
-iex> %{person | edad: 18}
-%Amigos.Persona{edad: 18, nombre: "Tomás"}
-iex> Map.put(person, :nombre, "Juan")
-%Amigos.Persona{edad: 11, nombre: "Juan"}
+iex> %{person | age: 18}
+%Friends.Person{age: 18, name: "Tom"}
+iex> Map.put(person, :name, "Jerry")
+%Friends.Person{age: 11, name: "Jerry"}
 ```
 
 En nuestra siguiente lección sobre Changesets, veremos como validar los cambios en nuestra data y finalmente como persistir estos en nuestra base de datos.
