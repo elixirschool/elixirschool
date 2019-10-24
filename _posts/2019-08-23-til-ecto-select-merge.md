@@ -1,7 +1,7 @@
 ---
 author: Kate Travers
 author_link: https://github.com/ktravers
-categories: post
+categories: til
 tags: ['ecto']
 date: 2019-08-23
 layout: post

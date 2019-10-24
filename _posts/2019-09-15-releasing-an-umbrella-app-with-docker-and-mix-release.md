@@ -1,7 +1,7 @@
 ---
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
-categories: post
+categories: general
 tags: ['docker', 'mix release', 'config', 'umbrella apps']
 date: 2019-09-20
 layout: post

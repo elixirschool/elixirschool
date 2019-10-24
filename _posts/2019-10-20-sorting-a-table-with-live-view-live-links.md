@@ -1,7 +1,7 @@
 ---
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
-categories: post
+categories: general
 tags: ['live view']
 date: 2019-10-20
 layout: post

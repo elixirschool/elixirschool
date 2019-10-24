@@ -1,7 +1,7 @@
 ---
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
-categories: post
+categories: general
 tags: ['conferences']
 date: 2019-09-08
 layout: post
