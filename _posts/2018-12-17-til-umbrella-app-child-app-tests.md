@@ -4,6 +4,7 @@ author_link: https://github.com/sophiedebenedetto
 categories: til
 date: 2018-12-17
 layout: post
+tags: ['umbrella applications', 'testing']
 title:  TIL How to Run Tests for One Child App in an Umbrella
 excerpt: >
   Run all of the tests, or just a specific tests, for a given child app in an umbrella application with this handy command.
