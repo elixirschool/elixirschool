@@ -9,7 +9,7 @@ Supervisors sind besondere Prozesse mit einem Zweck: andere Prozesse zu überwac
 
 ## Konfiguration
 
-Die Magie von Supervisors liegt in der `Supervisor.start_link/2`-Funktion. Zusätzlich zum Starten unseres Supervisor und Kinder erlaubt sie uns die Strategie zu bestimmen, mit der unser Supervisor Kindprozesse verwaltet.
+Die Magie von Supervisors liegt in der `Supervisor.start_link/2`-Funktion. Zusätzlich zum Starten unserer Supervisors und Kinder erlaubt sie uns die Strategie zu bestimmen, mit der unser Supervisor Kindprozesse verwaltet.
 
 Wir benutzen SimpleQueue aus der Lektion [OTP Concurrency](../../advanced/otp-concurrency) und legen los:
 
