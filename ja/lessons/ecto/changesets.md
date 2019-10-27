@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 title: チェンジセット
 ---
 
@@ -8,18 +8,18 @@ title: チェンジセット
 
 ほぼ全ての開発者にとって馴染みのあるタスクは、潜在的なエラーのために入力データをチェックすることです。目的に沿ってデータを使用する前に、そのデータが正常な状態であることを確認したいのです。
 
-Ecto は `Changeset` モジュールとデータ構造体という形で、データの変更を扱うための完全なソリューションを提供します。
+Ectoは `Changeset` モジュールとデータ構造体という形で、データの変更を扱うための完全なソリューションを提供します。
 このレッスンではそれらの機能を調べ、データベースへ永続化する前にデータの整合性を検証する方法を学びます。
 
 {% include toc.html %}
 
-## 最初の Changeset を作る
+## 最初のChangesetを作る
 
 空の `%Changeset{}` 構造体を見てみましょう:
 
 ```elixir
 iex> %Ecto.Changeset{}
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
 ```
 
 見ての通り、便利そうなフィールドがいくつかありますが、全て空になっています。
@@ -44,53 +44,53 @@ end
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
 ```
 
 最初のパラメータは元のデータで、この場合は初期化された `%Friends.Person{}` 構造体です。
-Ecto は構造体そのものに基づいてスキーマを見つけることができます。
-2 番目は私たちが行いたい変更であり、ただの空のマップです。
-3 番目のパラメータが `cast/4` を特別なものにします。これは通過させることを許可するフィールドのリストであり、これによってどのフィールドが変更可能なのかを制御可能とし、残りを安全に保護します。
+Ectoは構造体そのものに基づいてスキーマを見つけることができます。
+2番目は私たちが行いたい変更であり、ただの空のマップです。
+3番目のパラメータが `cast/4` を特別なものにします。これは通過させることを許可するフィールドのリストであり、これによってどのフィールドが変更可能なのかを制御可能とし、残りを安全に保護します。
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Jack"},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
 ```
 
-2 回目では新しい name が明示的に許可されていないため、無視されていることがわかるでしょう。
+2回目では新しいnameが明示的に許可されていないため、無視されていることがわかるでしょう。
 
 `cast/4` の代わりとして `change/2` もあり、これは `cast/4` のように変更をフィルタリングする機能を持ちません。
 これは変更を加えるソースが信頼できるとき、あるいは手動でデータを扱う時に便利です。
 
-ここではチェンジセットを作りましたが、バリデーションを持っていないので、person の name にあらゆる変更が受け付けられてしまい、その結果、空の名前になる可能性もあります。
+ここではチェンジセットを作りましたが、バリデーションを持っていないので、personのnameにあらゆる変更が受け付けられてしまい、その結果、空の名前になる可能性もあります。
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => ""}, [:name, :age])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: nil},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 ```
 
-Ecto はチェンジセットが正常であると言っていますが、実際には空の名前を許可したくありません。これを修正しましょう！
+Ectoはチェンジセットが正常であると言っていますが、実際には空の名前を許可したくありません。これを修正しましょう！
 
 ## バリデーション
 
-Ecto は私たちを手助けするために、いくつものビルトインのバリデーション機能を持っています。
+Ectoは私たちを手助けするために、いくつものビルトインのバリデーション機能を持っています。
 
 これから `Ecto.Changeset` を何度も使うので、以下のスキーマを持つ `person.ex` に `Ecto.Changeset` インポートしましょう:
 
@@ -108,7 +108,7 @@ end
 
 これで `cast/4` 関数を直接使うことができます。
 
-1 つのスキーマに複数のチェンジセット作成関数を持つことはよくあります。まずは、構造体、変更のマップを受け取って、チェンジセットを返すものを作りましょう:
+1つのスキーマに複数のチェンジセット作成関数を持つことはよくあります。まずは、構造体、変更のマップを受け取って、チェンジセットを返すものを作りましょう:
 
 ```elixir
 def changeset(struct, params) do
@@ -127,16 +127,16 @@ def changeset(struct, params) do
 end
 ```
 
-`Friends.Person.changeset/2` 関数に空の name を渡して呼び出すと、チェンジセットは無効になり、役に立つエラーメッセージまで含まれます。
+`Friends.Person.changeset/2` 関数に空のnameを渡して呼び出すと、チェンジセットは無効になり、役に立つエラーメッセージまで含まれます。
 注: `iex` を使っている場合は `recompile()` の実行を忘れないでください。そうしなければ、コードの変更が反映されません。
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -155,11 +155,11 @@ def changeset(struct, params) do
 end
 ```
 
-name に対して 1 つの文字を渡した場合、どのような結果になるかを試してみましょう！
+nameに対して1つの文字を渡した場合、どのような結果になるかを試してみましょう！
 
 ```elixir
 iex> User.changeset(%User{}, %{"name" => "A"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "A"},
   errors: [
@@ -206,7 +206,7 @@ def validate_fictional_name(changeset) do
 end
 ```
 
-上のコードでは 2 つの新しいヘルパー関数である [`get_field/3`](https://hexdocs.pm/ecto/Ecto.Changeset.html#get_field/3) と [`add_error/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#add_error/4) を導入しました。これらの動作はほとんど名前が表す通りですが、ドキュメントのリンクを確認することをお勧めします。
+上のコードでは2つの新しいヘルパー関数である [`get_field/3`](https://hexdocs.pm/ecto/Ecto.Changeset.html#get_field/3) と [`add_error/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#add_error/4) を導入しました。これらの動作はほとんど名前が表す通りですが、ドキュメントのリンクを確認することをお勧めします。
 
 `|>` オペレータを使って他のバリデーションを追加しやすいようにするため、 `%Ecto.Changeset{}` 常に返すことがグッドプラクティスです。
 
@@ -222,11 +222,11 @@ end
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -266,11 +266,11 @@ end
 
 ```elixir
 iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 ```

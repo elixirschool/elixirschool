@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.4.1
 title: Moduli
 ---
 
@@ -77,29 +77,29 @@ Creaiamo qualche struttura:
 
 ```elixir
 iex> %Example.User{}
-#Example.User<name: "Sean", roles: [], ...>
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [], ...>
+%Example.User<name: "Steve", roles: [], ...>
 
 iex> %Example.User{name: "Steve", roles: [:manager]}
-#Example.User<name: "Steve", roles: [:manager]>
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Possiamo aggiornare la nostra struttura come faremmo con una mappa:
 
 ```elixir
 iex> steve = %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [...], ...>
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Soprattutto, possiamo combinare le strutture con le mappe:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 A partire da Elixir 1.8, le strutture includono una nuova funzionalità di introspezione personalizzata.
@@ -107,7 +107,7 @@ Per capire meglio cosa significhi e come usarlo, ispezioniamo il risultato di `s
 
 ```elixir
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", roles: [...], ...>"
+"%Example.User<name: \"Sean\", roles: [...], ...>"
 ```
 
 Tutti i parametri della struttura sono presenti che in questo caso va bene, ma se volessimo un parametro protetto che non dovrebbe essere incluso?
@@ -126,10 +126,10 @@ _Nota_: potremo pure usare `@derive {Inspect, except: [:roles]}`, sono equivalen
 Con il modulo aggiornato, ora vediamo cosa succede in `iex`:
 
 ```elixir
-iex> sean = #Example.User<name: "Sean", roles: [...], ...>
-#Example.User<name: "Sean", ...>
+iex> sean = %Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", ...>
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", ...>"
+"%Example.User<name: \"Sean\", ...>"
 ```
 
 Il parametri `roles` è escluso dall'output!

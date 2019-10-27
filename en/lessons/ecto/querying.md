@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.3
 title: Querying
 ---
 
@@ -24,10 +24,10 @@ Let's take a look at an example. Below, we'll get the movie with an ID of 1:
 iex> alias Example.{Repo, Movie}
 iex> Repo.get(Movie, 1)
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
-  actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
-  characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-  distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+  actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
+  characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+  distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
   id: 1,
   tagline: "Something about video games",
   title: "Ready Player One"
@@ -45,10 +45,10 @@ iex> alias Example.Repo
 iex> alias Example.Movie
 iex> Repo.get_by(Movie, title: "Ready Player One")
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
-  actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
-  characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-  distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+  actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
+  characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+  distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
   id: 1,
   tagline: "Something about video games",
   title: "Ready Player One"
@@ -79,10 +79,10 @@ iex> Repo.all(query)
 14:58:03.187 [debug] QUERY OK source="movies" db=1.7ms decode=4.2ms
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
+    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
     id: 1,
     tagline: "Something about video games",
     title: "Ready Player One"
@@ -105,16 +105,16 @@ When using `from` with a query expression, the first argument must be a value th
 
 ```elixir
 iex> query = select(Movie, [m], m)
-#Ecto.Query<from m in Example.Movie, select: m>
+%Ecto.Query<from m in Example.Movie, select: m>
 iex> Repo.all(query)
 
 06:16:20.854 [debug] QUERY OK source="movies" db=0.9ms
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
+    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
     id: 1,
     tagline: "Something about video games",
     title: "Ready Player One"
@@ -129,17 +129,17 @@ You can use query expressions when you _don't_ need an `in` statement (`m in Mov
 We use the `Ecto.Query.select/3` function to specify the select statement portion of our query. If we want to select only certain fields, we can specify those fields as a list of atoms or by referencing the struct's keys. Let's take a look at the first approach:
 
 ```elixir
-iex> query = from(Movie, select: [:title])
-#Ecto.Query<from m in Example.Movie, select: [:title]>
+iex> query = select(Movie, [:title])
+%Ecto.Query<from m in Example.Movie, select: [:title]>
 iex> Repo.all(query)
 
 15:15:25.842 [debug] QUERY OK source="movies" db=1.3ms
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
+    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
     id: nil,
     tagline: nil,
     title: "Ready Player One"
@@ -155,7 +155,7 @@ The second approach behaves a little differently. This time, we *do* need to use
 
 ```elixir
 iex(15)> query = from(m in Movie, select: m.title)
-#Ecto.Query<from m in Example.Movie, select: m.title>
+%Ecto.Query<from m in Example.Movie, select: m.title>
 iex(16)> Repo.all(query)
 
 15:06:12.752 [debug] QUERY OK source="movies" db=4.5ms queue=0.1ms
@@ -170,16 +170,16 @@ We can use `where` expressions to include "where" clauses in our queries. Multip
 
 ```elixir
 iex> query = from(m in Movie, where: m.title == "Ready Player One")
-#Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
 iex> Repo.all(query)
 
 15:18:35.355 [debug] QUERY OK source="movies" db=4.1ms queue=0.1ms
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
+    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
     id: 1,
     tagline: "Something about video games",
     title: "Ready Player One"
@@ -191,7 +191,7 @@ We can use `where` expressions together with `select`:
 
 ```elixir
 iex> query = from(m in Movie, where: m.title == "Ready Player One", select: m.tagline)
-#Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One", select: m.tagline>
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One", select: m.tagline>
 iex> Repo.all(query)
 
 15:19:11.904 [debug] QUERY OK source="movies" db=4.1ms
@@ -206,7 +206,7 @@ In order to use interpolated values or Elixir expressions in our where clauses, 
 iex> title = "Ready Player One"
 "Ready Player One"
 iex> query = from(m in Movie, where: m.title == ^title, select: m.tagline)
-#Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
+%Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
  select: m.tagline>
 iex> Repo.all(query)
 
@@ -222,7 +222,7 @@ First, we'll write a query expression using the `first/2` function:
 
 ```elixir
 iex> first(Movie)
-#Ecto.Query<from m in Example.Movie, order_by: [desc: m.id], limit: 1>
+%Ecto.Query<from m in Example.Movie, order_by: [desc: m.id], limit: 1>
 ```
 
 Then we pass our query to the `Repo.one/2` function to get our result:
@@ -232,10 +232,10 @@ iex> Movie |> first() |> Repo.one()
 
 06:36:14.234 [debug] QUERY OK source="movies" db=3.7ms
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
-  actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
-  characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-  distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+  actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
+  characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+  distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
   id: 1,
   tagline: "Something about video games",
   title: "Ready Player One"
@@ -259,7 +259,7 @@ Let's take a look to see what happens when we try to ask a movie for its associa
 ```elixir
 iex> movie = Repo.get(Movie, 1)
 iex> movie.actors
-#Ecto.Association.NotLoaded<association :actors is not loaded>
+%Ecto.Association.NotLoaded<association :actors is not loaded>
 ```
 
 We _can't_ access those associated characters unless we preload them. There are a few different way to preload records with Ecto.
@@ -269,28 +269,29 @@ We _can't_ access those associated characters unless we preload them. There are 
 The following query will preload associated records in a _separate_ query.
 
 ```elixir
-iex> import Ecto.Query
-Ecto.Query
 iex> Repo.all(from m in Movie, preload: [:actors])
+
+13:17:28.354 [debug] QUERY OK source="movies" db=2.3ms queue=0.1ms
+13:17:28.357 [debug] QUERY OK source="actors" db=2.4ms
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: [
       %Example.Actor{
-        __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+        __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
-        movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+        movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
         name: "Bob"
       },
       %Example.Actor{
-        __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+        __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 2,
-        movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+        movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
         name: "Gary"
       }
     ],
-    characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
     id: 1,
     tagline: "Something about video games",
     title: "Ready Player One"
@@ -307,25 +308,27 @@ We can cut down on our database queries with the following:
 ```elixir
 iex> query = from(m in Movie, join: a in assoc(m, :actors), preload: [actors: a])
 iex> Repo.all(query)
+
+13:18:52.053 [debug] QUERY OK source="movies" db=3.7ms
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: [
       %Example.Actor{
-        __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+        __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
-        movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+        movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
         name: "Bob"
       },
       %Example.Actor{
-        __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+        __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 2,
-        movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+        movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
         name: "Gary"
       }
     ],
-    characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
     id: 1,
     tagline: "Something about video games",
     title: "Ready Player One"
@@ -351,33 +354,33 @@ We can also preload the associated schemas of records that have already been que
 ```elixir
 iex> movie = Repo.get(Movie, 1)
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
-  actors: #Ecto.Association.NotLoaded<association :actors is not loaded>, # actors are NOT LOADED!!
-  characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
-  distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+  actors: %Ecto.Association.NotLoaded<association :actors is not loaded>, # actors are NOT LOADED!!
+  characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+  distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
   id: 1,
   tagline: "Something about video games",
   title: "Ready Player One"
 }
 iex> movie = Repo.preload(movie, :actors)
 %Example.Movie{
-  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: [
     %Example.Actor{
-      __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+      __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 1,
-      movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+      movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
       name: "Bob"
     },
     %Example.Actor{
-      __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+      __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 2,
-      movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+      movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
       name: "Gary"
     }
   ], # actors are LOADED!!
   characters: [],
-  distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
+  distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
   id: 1,
   tagline: "Something about video games",
   title: "Ready Player One"
@@ -390,15 +393,15 @@ Now we can ask a movie for its actors:
 iex> movie.actors
 [
   %Example.Actor{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
     id: 1,
-    movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+    movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
     name: "Bob"
   },
   %Example.Actor{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
     id: 2,
-    movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+    movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
     name: "Gary"
   }
 ]

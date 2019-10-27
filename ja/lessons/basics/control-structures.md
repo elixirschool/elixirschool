@@ -3,15 +3,15 @@ version: 1.1.1
 title: 制御構造
 ---
 
-このレッスンでは Elixir で利用できる制御構造を見ていきます。
+このレッスンではElixirで利用できる制御構造を見ていきます。
 
 {% include toc.html %}
 
 ## `if` と `unless`
 
-ひょっとすると以前に `if/2` と出くわしているかもしれませんし、Ruby を使っていれば `unless/2` をご存知でしょう。Elixir ではこの 2 つはほとんど同じように作用しますが、言語の構成要素としてではなく、マクロとして定義されています。この実装は[Kernel module](https://hexdocs.pm/elixir/Kernel.html)で知ることができます。
+ひょっとすると以前に `if/2` と出くわしているかもしれませんし、Rubyを使っていれば `unless/2` をご存知でしょう。Elixirではこの2つはほとんど同じように作用しますが、言語の構成要素としてではなく、マクロとして定義されています。この実装は[Kernel module](https://hexdocs.pm/elixir/Kernel.html)で知ることができます。
 
-Elixir では偽とみなされる値は `nil` と真理値の `false` だけだということに、留意すべきです。
+Elixirでは偽とみなされる値は `nil` と真理値の `false` だけだということに、留意すべきです。
 
 ```elixir
 iex> if String.valid?("Hello") do
@@ -78,9 +78,9 @@ iex> case "cherry pie" do
 "I bet cherry pie is tasty"
 ```
 
-`case/2` のもう 1 つの素晴らしい特徴として、ガード節に対応していることがあげられます:
+`case/2` のもう1つの素晴らしい特徴として、ガード節に対応していることがあげられます:
 
-_この例は公式の Elixir の[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)ガイドから直接持ってきています。_
+_この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)ガイドから直接持ってきています。_
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -98,7 +98,7 @@ iex> case {1, 2, 3} do
 
 値ではなく、条件をマッチさせる必要がある時には、 `cond/1` を使うことができます。これは他の言語でいうところの `else if` や `elsif` のようなものです:
 
-_この例は公式の Elixir の[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)ガイドから直接持ってきています。_
+_この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)ガイドから直接持ってきています。_
 
 ```elixir
 iex> cond do
@@ -176,7 +176,7 @@ with {:ok, user} <- Repo.insert(changeset),
      do: important_stuff(jwt, full_claims)
 ```
 
-Elixir 1.3 からは `with/1` で `else` を使えます:
+Elixir 1.3からは `with/1` で `else` を使えます:
 
 ```elixir
 import Integer

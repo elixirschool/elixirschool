@@ -3,14 +3,14 @@ version: 1.0.2
 title: 日付と時間
 ---
 
-Elixir で時間を扱ってみましょう。
+Elixirで時間を扱ってみましょう。
 
 {% include toc.html %}
 
 ## Time
 
-Elixir は時間を扱うためのいくつかのモジュールを持っています。
-ただし、この機能は UTC タイムゾーンとの連携に限定されている点に気をつける必要があります。
+Elixirは時間を扱うためのいくつかのモジュールを持っています。
+ただし、この機能はUTCタイムゾーンとの連携に限定されている点に気をつける必要があります。
 
 現在時刻の取得から始めてみましょう:
 
@@ -40,7 +40,7 @@ iex> t.day
 ** (KeyError) key :day not found in: ~T[19:39:31.056226]
 ```
 
-しかし、ここには落とし穴があります。気が付いたかもしれませんが、この構造体は 1 日の時間のみを含んでいて、日/月/年のデータはありません。
+しかし、ここには落とし穴があります。気が付いたかもしれませんが、この構造体は1日の時間のみを含んでいて、日/月/年のデータはありません。
 
 ## Date
 
@@ -69,7 +69,7 @@ true
 
 ## NaiveDateTime
 
-Elixir には日付と時間を同時に含む構造体が 2 種類あります。
+Elixirには日付と時間を同時に含む構造体が2種類あります。
 最初に紹介するのは `NaiveDateTime` です。
 この構造体のデメリットはタイムゾーンのサポートが無いという点です:
 
@@ -87,7 +87,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 ## DateTime
 
-2 つ目は、このセクションのタイトルから想像がつくように、 `DateTime` です。
+2つ目は、このセクションのタイトルから想像がつくように、 `DateTime` です。
 `NaiveDateTime` で記載したような制限はありません。そのため、これは時間と日付を両方持ち、タイムゾーンもサポートしています。
 しかしタイムゾーンについては注意してください。公式ドキュメントではこのように記載されています:
 
@@ -96,7 +96,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 これは、適切なDateTimeの実装には、現時点でElixirの機能として提供されていないタイムゾーンデータベースを必要とするためです。
 ```
 
-また、タイムゾーンを提供するだけで、NaiveDateTime から DateTime のインスタンスを作ることができます:
+また、タイムゾーンを提供するだけで、NaiveDateTimeからDateTimeのインスタンスを作ることができます:
 
 ```
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
@@ -104,4 +104,4 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 ```
 
 これがそうです！さらに高度な他の機能を使いたい場合は、 [Time](https://hexdocs.pm/elixir/Time.html) 、 [Date](https://hexdocs.pm/elixir/Date.html) 、 [DateTime](https://hexdocs.pm/elixir/DateTime.html)、 [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) のドキュメントをさらに確認することを考慮するといいでしょう。
-Elixir で時間を扱うパワフルなライブラリである [Timex](https://github.com/bitwalker/timex) と [Calendar](https://github.com/lau/calendar) についても考慮するべきです。
+Elixirで時間を扱うパワフルなライブラリである [Timex](https://github.com/bitwalker/timex) と [Calendar](https://github.com/lau/calendar) についても考慮するべきです。

@@ -3,9 +3,9 @@ version: 0.9.0
 title: Fehlerbehandlung
 ---
 
-Obwohl es üblich ist das `{:error, reason}`-Tupel zurückzugeben unterstützt Elixir Exceptions und in dieser Lektion werden wir lernen, wie man Fehler behandelt und welche verschiedenen Möglichkeiten wir haben.
+Obwohl es üblich ist das `{:error, reason}`-Tupel zurückzugeben, unterstützt Elixir Exceptions und in dieser Lektion werden wir lernen, wie man Fehler behandelt und welche verschiedenen Möglichkeiten wir haben.
 
-Üblicherweise ist die Konvention in Elixir eine Funktion (`example/1`) zu schreiben, welche `{:ok, result}` oder `{:error, reason}` zurück gibt und eine seperate Funktion (`example!/1`), die das "rohe" `result` zurückgibt oder einen Fehler wirft.
+Üblicherweise ist die Konvention in Elixir eine Funktion (`example/1`) zu schreiben, welche `{:ok, result}` oder `{:error, reason}` zurückgibt und eine separate Funktion (`example!/1`), die das "rohe" `result` zurückgibt oder einen Fehler wirft.
 
 Diese Lektion wird sich auf den zweiten Fall konzentrieren.
 
@@ -20,14 +20,14 @@ iex> raise "Oh no!"
 ** (RuntimeError) Oh no!
 ```
 
-Falls wir einen Typ und eine Nachricht angeben wollen, müssen wir `raise/2` benutzen:
+Falls wir den Typ und eine Nachricht angeben wollen, müssen wir `raise/2` benutzen:
 
 ```elixir
 iex> raise ArgumentError, message: "the argument value is invalid"
 ** (ArgumentError) the argument value is invalid
 ```
 
-Wenn wir wissen, dass ein Fehler auftreten kann, können wir diesen mit `try/rescue` und pattern matching verwenden:
+Wenn wir wissen, dass ein Fehler auftreten kann, können wir diesen mit `try/rescue` und pattern matching behandeln:
 
 ```elixir
 iex> try do
@@ -54,7 +54,7 @@ end
 
 ## After
 
-Manchmal kann es notwendig sein eine bestimmte Aktion nach unserem `try/rescue` auszuführen, unabhängig vom Fehler. Dafür haben wir `try/after`.  Falls du mit Ruby vertraut bist, ist dir das als `begin/rescue/ensure` bekannt oder aus Javas `try/catch/finally`:
+Manchmal kann es notwendig sein, eine bestimmte Aktion nach unserem `try/rescue` auszuführen, unabhängig vom Fehler. Dafür haben wir `try/after`.  Falls du mit Ruby vertraut bist, ist dir das als `begin/rescue/ensure` bekannt oder aus Javas `try/catch/finally`:
 
 ```elixir
 iex> try do
@@ -74,7 +74,7 @@ Das wird meistens mit Dateien oder Verbindungen eingesetzt, welche geschlossen w
 ```elixir
 {:ok, file} = File.open "example.json"
 try do
-   # Tue irgendwas
+   # Tue etwas gefährliches
 after
    File.close(file)
 end
@@ -103,7 +103,7 @@ iex> try do
 
 ## Throws
 
-Ein weiterer Mechanismus, um mit Fehlern in Elixir zu arbeiten ist `throw` und `catch`. In der Praxis treten diese selten in neuerem Elixir Code auf, aber es ist dennoch wichtig sie zu kennen und zu verstehen.
+Ein weiterer Mechanismus, um mit Fehlern in Elixir zu arbeiten, ist `throw` und `catch`. In der Praxis treten diese selten in neuerem Elixir Code auf, aber es ist dennoch wichtig sie zu kennen und zu verstehen.
 
 Die `throw/1`-Funktion erlaubt uns die Ausführung mit einem bestimmten Wert zu verlassen, den wir mit `catch` auffangen und weiter benutzen können:
 
@@ -130,7 +130,7 @@ Wie bereits erwähnt wurde, ist `throw/catch` ziemlich selten und existiert als 
 
 Der letzte Fehler-Mechanismus in Elixir ist `exit`. Exit-Signale treten in Elixir auf, wenn ein Prozess stirbt und ist ein wichtiger Teil der Fehlertoleranz in Elixir.
 
-Um explizit auszusteigen können wir `exit/1` benutzen:
+Um explizit auszusteigen, können wir `exit/1` benutzen:
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end

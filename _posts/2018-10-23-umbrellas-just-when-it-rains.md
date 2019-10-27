@@ -3,7 +3,8 @@ author: Sean Callan
 author_link: https://github.com/doomspork
 categories: general
 date: 2018-10-22
-ayout: post
+tags: ['umbrella applications', 'software design']
+layout: post
 title: 'Umbrellas: only when it rains?'
 excerpt: >
   A look at umbrella applications and how they can help us write cleaner maintainable code.

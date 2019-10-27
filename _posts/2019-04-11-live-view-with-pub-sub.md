@@ -41,7 +41,7 @@ First, we'll subscribe our LiveView processes to a shared topic. Then we'll use 
 We'll configure our app's endpoint with the `Phoenix.PubSub.PG2` adapter. This way, we'll be able to subscribe clients across distributed nodes of our application, should we deploy it that way. The following configuration in our `config/config.exs` will ensure that the pubsub backend starts up and and exposes its functions via the endpoint module.
 
 ```elixir
-config :pair, MyAppWeb.Endpoint,
+config :my_app, MyAppWeb.Endpoint,
   pubsub: [name: MyApp.PubSub, adapter: Phoenix.PubSub.PG2]
   ...
 ```
@@ -238,7 +238,7 @@ And we can see via our `puts` statements that, only one of our two clients is re
 
 ```bash
 [info] GET /
-[debug] Processing with PairWeb.PageController.index/2
+[debug] Processing with MyAppWeb.PageController.index/2
   Parameters: %{}
   Pipelines: [:browser]
 [info] Sent 200 in 33ms
