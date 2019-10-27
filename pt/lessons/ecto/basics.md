@@ -8,7 +8,7 @@ Ecto é um projeto oficial do Elixir que fornece uma camada de banco de dados e 
 {% include toc.html %}
 
 ### Adaptadores
-O Ecto suporta difentes banco de dados através do uso de adaptadores. Alguns
+O Ecto suporta diferentes banco de dados através do uso de adaptadores. Alguns
 exemplos de adaptadores são:
 
 + PostgreSQL
