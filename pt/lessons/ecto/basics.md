@@ -113,7 +113,7 @@ $ mix ecto.create
 Ecto vai utilizar a informação no arquivo `config/config.exs` para determinar
 como se conectar ao Postgres e como nomear o banco de dados.
 
-Se você receber algum erro, certifique-se de que os dados de configuraçãoestão
+Se você receber algum erro, certifique-se de que os dados de configuração estão
 corretos e de que sua instância do postgres está rodando.
 
 ### Migrações
