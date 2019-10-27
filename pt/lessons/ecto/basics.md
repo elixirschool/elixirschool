@@ -77,7 +77,7 @@ end
 
 Nós iremos utilizar o módulo `Friends.Repo` para consultar o banco de dados.
 Nós também dizemos a esse módulo para encontrar suas configurações na aplicação
-:friends e selecionamos o adapter `Ecto.Adapters.Postgres`.
+:friends e selecionamos o adaptador `Ecto.Adapters.Postgres`.
 
 A seguir, iremos configurar o `Friends.Repo` como supervisor de nossa árvore de
 supervisão em `lib/friends/application.ex`. Isso irá iniciar o processo do Ecto
