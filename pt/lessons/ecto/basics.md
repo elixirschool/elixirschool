@@ -24,7 +24,7 @@ Nesta lição, cobriremos três partes do Ecto:
 + Migrações: um mecanismo para criar, modificar e destruir tabelas e índices no
   banco de dados.
 + Esquemas: estruturas especiais para representar linhas em tabelas no banco de
-  dados
+  dados.
 
 Para iniciar criaremos uma aplicação com uma árvore de supervisão:
 
