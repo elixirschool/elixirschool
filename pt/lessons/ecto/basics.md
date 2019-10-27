@@ -156,7 +156,7 @@ defmodule Friends.Repo.Migrations.CreatePeople do
 
   def change do
     create table(:people) do
-      add :name, :string, null :false
+      add :name, :string, null: false
       add :age, :integer, default: 0
     end
   end
