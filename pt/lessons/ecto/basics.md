@@ -164,7 +164,7 @@ end
 ```
 
 Você também pode ver acima que definimos o tipo de dados das colunas.
-Adicionalmente, nós incluímos `null:false` e `default: 0` como opções.
+Adicionalmente, nós incluímos `null: false` e `default: 0` como opções.
 
 Agora vamos rodar nossa migração:
 
