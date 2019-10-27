@@ -103,7 +103,7 @@ config :friends, ecto_repos: [Friends.Repo]
 Isso irá permitir à nossa aplicação rodar tarefas mix do Ecto a partir da linha
 de comando.
 
-Já concluímos a configuraçãodo repositório! Agora podemos criar o banco de
+Já concluímos a configuração do repositório! Agora podemos criar o banco de
 dados no PostgreSQL com o seguinte comando:
 
 ```shell
