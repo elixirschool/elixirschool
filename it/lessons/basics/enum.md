@@ -1,5 +1,5 @@
 ---
-version: 1.4.1
+version: 1.5.0
 title: Enumerazioni
 ---
 
@@ -9,10 +9,10 @@ Un insieme di algoritmi per enumerare le collezioni.
 
 ## Enum
 
-Il modulo `Enum` contiene oltre un 70 funzioni per lavorare con le collezioni di cui abbiamo parlato nella scorsa lezione.
+Il modulo `Enum` contiene oltre 70 funzioni per lavorare con le collezioni.
 Tutte le collezioni di cui abbiamo imparato nella lezione precendente, eccetto le tuple, sono enumerazioni.
 
-Questa lezione tratterà solo una parte delle funzioni disponibili, ma possiamo esaminarle da soli
+Questa lezione tratterà solo una parte delle funzioni disponibili, le rimanenti possono essere oggetto di studio personale.
 Facciamo un piccolo esperimento in IEx.
 
 ```elixir
@@ -29,15 +29,14 @@ at/3
 ```
 
 Elixir possiede una moltitudine di funzionalità che riguardano enumerazioni. Questo è dovuto al fatto che le Enumerazioni sono al centro della programmazione funzionale e tornano estremamente utili.
-Sfruttando le enumerazioni combinate con altri vantaggi di Elixir, come la documentazione, Elixir è incredibilmente efficace per sviluppare software.
 
 Per conoscere tutte le funzioni visita la documentazione ufficiale del modulo [`Enum`](https://hexdocs.pm/elixir/Enum.html); per enumerare gli elementi a richiesta (_lazy enumeration_) puoi usare il modulo [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 
 ### all?
 
-Quando si usa `all?`, come nella maggior parte delle funzioni di `Enum`, forniamo una funzione che verrà applicata su ciascun elemento della collezione.
-Nel caso di `all?`, la funzione che sarà chiamata sugli elmenti dell'intera collezione deve restituire `true`, altrimenti restituirà `false`:
+Quando si usa `all?/2`, come nella maggior parte delle funzioni di `Enum`, forniamo una funzione che verrà applicata su ciascun elemento della collezione.
+Nel caso di `all?/2`, l'intera collezione deve essere valutata come `true`, altrimenti restituirà `false`:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -48,7 +47,7 @@ true
 
 ### any?
 
-Diversamente da quanto visto nelle funzione `all`, `any?` restituirà `true` se almeno un elemento sul quale viene chiamata la funzione restituisce `true`:
+Diversamente da quanto visto nelle funzione `all/2`, `any?/2` restituirà `true` se almeno un elemento sul quale viene chiamata la funzione restituisce `true`:
 
 ```elixir
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
@@ -57,7 +56,7 @@ true
 
 ### chunk_every
 
-Se hai bisogno di dividere la tua collezione in gruppi più piccoli, `chunk_every/2` è la funzione di cui hai bisogno:
+Se hai bisogno di dividere la tua collezione in gruppi più piccoli, `chunk_every/2` è probabilmente la funzione di cui hai bisogno:
 
 ```elixir
 iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
@@ -80,8 +79,8 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-A volte raggruppare una collezione non è abbastanza per i nostri bisogni.
-Se questo è il caso, `map_every/3` può essere utile per raggiugnere n-esimo elemento, iniziando sempre dal primo.
+A volte raggruppare una collezione non è esattamente quello di cui abbiamo bisogno.
+Se questo è il caso, `map_every/3` può essere utile per applicare la funzione fornita ogni n elementi, iniziando sempre dal primo.
 
 ```elixir
 # Applica la funzione ogni terzo elemento
@@ -105,7 +104,7 @@ __Nota__: La funzione `each` non restituisce l'atom `:ok`.
 
 ### map
 
-Per applicare una funzione a ciascun elemento e produrre una nuova collezione, c'è la funzione `map/2`:
+Per applicare una funzione a ciascun elemento e produrre una nuova collezione, puoi utilizzare la funzione `map/2`:
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
@@ -114,7 +113,7 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-Trova il valore minore (`min`) in una collezione:
+`min/1` trova il valore minore in una collezione:
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
@@ -130,7 +129,7 @@ iex> Enum.min([], fn -> :foo end)
 
 ### max
 
-Restituisce il valore maggiore (`max`) in una collezione:
+`max/1` restituisce il valore maggiore in una collezione:
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
@@ -170,7 +169,8 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 ### sort
 
-Ordinare gli elementi di una collezione è reso semplice non da una, bensì due, funzioni `sort`. La prima opzione disponibile usa l'ordinamento dei termini di Erlang per determinare la posizione di ordinamento:
+Ordinare gli elementi di una collezione è reso semplice non da una, bensì due, funzioni.
+`sort/1` utilizza [l'ordinamento dei termini di Erlang](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) per determinare l'ordinamento:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -180,7 +180,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-La seconda opzione permette di fornire una funzione di ordinamento:
+Mentre `sort/2` permette di fornire una determinata funzione di ordinamento:
 
 ```elixir
 # con la funzione
@@ -194,9 +194,18 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 
 ### uniq
 
-È possibile usare `uniq_by/2` per rimuovere elementi duplicati in una collezione:
+È possibile usare `uniq/1` per rimuovere elementi duplicati in una collezione:
 
 ```elixir
 iex> Enum.uniq([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
 [1, 2, 3, 4]
+```
+
+### uniq_by
+
+Anche `uniq_by/2` rimuove duplicati da una collezione, ma consente di specificare una funzione per determinare l'univocità degli elementi.
+
+```elixir
+iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
+[%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```
