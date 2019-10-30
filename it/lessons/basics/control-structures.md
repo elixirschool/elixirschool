@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Strutture di Controllo
 ---
 
@@ -50,7 +50,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-La variabile `_` è un elemento importante nel costrutto `case/2`. Se non viene usato, in caso non ci siano match, verrà sollevato un errore:
+La variabile `_` è un elemento importante nel costrutto `case/2`. Se non viene usato, verrà sollevato un errore nel caso non ci siano match:
 
 ```elixir
 iex> case :even do
@@ -66,6 +66,7 @@ iex> case :even do
 ```
 
 Considera `_` come un `else` che verificherà "qualsiasi altra" condizione.
+
 Dal momento che `case` sfrutta il pattern matching, valgono le sue stesse regole e restrizioni. Se hai intenzione di verificare il valore di una variabile esistente, devi usare l'operatore pin `^`:
 
 ```elixir
@@ -97,7 +98,7 @@ Leggi la documentazione ufficiale per [Expressions allowed in guard clauses](htt
 
 ## `cond`
 
-Quando abbiamo bisogno di verificare condizioni, a non valori, possiamo usare `cond`; è simile a `else if` o `elsif` in altri linguaggi:
+Quando abbiamo bisogno di verificare condizioni, non valori, possiamo usare `cond`; è simile a `else if` o `elsif` in altri linguaggi:
 
 _Questo esempio è tratto direttamente dalla guida ufficiale di Elxir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
 
@@ -123,11 +124,11 @@ iex> cond do
 "Catch all"
 ```
 
-
 ## `with`
-`with/1` è un'espressione speciale utile quando abbiamo dei `case/2` nidificati o situazioni in cui non puoi elegantemente usare l'operatore _pipe_ (`|>`). L'espressione `with/1` è composto da keywords, generators e una espressione.
 
-Parleremo dei generator nella lezione sulle [Comprensione delle liste](../comprehensions/), ma per ora dobbiamo solo sapere utilizzare il [pattern matching](../pattern-matching/) per paragornare il valore sulla destra di `<-` a quello sulla sinistra.
+`with/1` è un'espressione speciale utile quando abbiamo dei `case/2` nidificati o situazioni in cui non puoi elegantemente usare l'operatore _pipe_ (`|>`). L'espressione `with/1` è composta da keywords, generators e una espressione.
+
+Parleremo dei generators nella lezione sulle [Comprensione delle liste](../comprehensions/), ma per ora dobbiamo solo sapere utilizzare il [pattern matching](../pattern-matching/) per paragornare il valore sulla destra di `<-` a quello sulla sinistra.
 
 Iniziamo con una semplice espressione `with/1` ed in seguito vedremo qualcosa di più complesso.
 
