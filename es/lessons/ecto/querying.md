@@ -5,7 +5,7 @@ title: Querying
 
 {% include toc.html %}
 
-En esta lección contruiremos una la aplicación `Example` y el catálogo de películas que configuramos en nuestra [lección anterior](./associations)
+En esta lección construiremos una la aplicación `Example` y el catálogo de películas que configuramos en nuestra [lección anterior](./associations)
 
 ## Obteniendo registros con `Ecto.Rrepo`
 
