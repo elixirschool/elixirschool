@@ -7,7 +7,7 @@ title: Querying
 
 En esta lección construiremos una la aplicación `Example` y el catálogo de películas que configuramos en nuestra [lección anterior](./associations)
 
-## Obteniendo registros con `Ecto.Rrepo`
+## Obteniendo registros con `Ecto.Repo`
 
 Recuerda que un "repositorio" en Ecto se relaciona a un set de datos como nuestra base de datos Postgres.
 Toda comunicación con la base se hará utilizando este repositorio.
@@ -34,7 +34,7 @@ iex> Repo.get(Movie, 1)
 }
 ```
 
-Como podrás observar, el primer agumento que le damos a `Repo.get/3` es nuestro módulo `Movie`. `Movie` es "queryable" porque usa el módulo `Ecto.Schema` para definir un esquema para su estructura de datos. Esto permite que `Movie` acceda a el protocolo `Ecto.Queryable`. El protocolo convierte la estructura de datos en un `Ecto.Query`. Las consultas de Ecto se usan para obtener información de un repositorio. Hablaremos más sobre consultas luego.
+ Como podrás observar, el primer argumento que le damos a `Repo.get/3` es nuestro módulo `Movie`. `Movie` es "queryable" porque usa el módulo `Ecto.Schema` para definir un esquema para su estructura de datos. Esto permite que `Movie` acceda al protocolo `Ecto.Queryable`. El protocolo convierte la estructura de datos en un `Ecto.Query`. Las consultas de Ecto se usan para obtener información de un repositorio. Hablaremos más sobre consultas luego.
 
 ### Obteniendo registros por atributo
 
@@ -92,7 +92,7 @@ iex> Repo.all(query)
 
 #### Usando `from` en Keyword Queries
 
-El ejemplo anterior le da a `from/2` un arguemnto de un "keyword query". Cuando usamos `from` con un keyword query, el primer argumento puede ser una de dos cosas:
+El ejemplo anterior le da a `from/2` un argumento de un "keyword query". Cuando usamos `from` con un keyword query, el primer argumento puede ser una de dos cosas:
 
 * Una expresión `in` (ex. `m in Movie`)
 * Un módulo que implementa el protocolo `Ecto.Queryable` (ex: `Movie`)
@@ -151,7 +151,7 @@ Démonos cuenta que _no_ usamos la expresión `in` en el primer argumento que le
 
 Este enfoque regresa una estructura sólo con el campo `title` lleno.
 
-El segundo enfoque se comporta un poco diferente. Ahora, *necesitamos* usar una expresión `in`. Esso es porque necesitamos crear una referencia a la estructura de datos en orden para poder especificar la llave `title` de nuestra estructura de película.
+El segundo enfoque se comporta un poco diferente. Ahora, *necesitamos* usar una expresión `in`. Eso es porque necesitamos crear una referencia a la estructura de datos en orden para poder especificar la llave `title` de nuestra estructura de película.
 
 ```elixir
 iex(15)> query = from(m in Movie, select: m.title)
@@ -336,7 +336,7 @@ iex> Repo.all(query)
 ]
 ```
 
-Esto nos permite ejecutarr sólo una llamada a la base de datos. También tiene el beneficio de permitirnos seleccionar y filtrar tanto películas como actores en una misma consulta. Por ejemplo, este enfoque nos permite consultar todas las películas cuyos actores asociados cumplan con ciertas condiciones, usando la sentencia `join`. Algo como:
+Esto nos permite ejecutar sólo una llamada a la base de datos. También tiene el beneficio de permitirnos seleccionar y filtrar tanto películas como actores en una misma consulta. Por ejemplo, este enfoque nos permite consultar todas las películas cuyos actores asociados cumplan con ciertas condiciones, usando la sentencia `join`. Algo como:
 
 ```elixir
 Repo.all from m in Movie,
@@ -409,7 +409,7 @@ iex> movie.actors
 
 ### Usando sentencias Join
 
-Podemos ejecutar consultas que includen sentencias join con ayuda de la función `Ecto.Query.join/5`.
+Podemos ejecutar consultas que incluyen sentencias join con ayuda de la función `Ecto.Query.join/5`.
 
 ```elixir
 iex> query = from m in Movie,
