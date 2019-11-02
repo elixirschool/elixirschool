@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.1
 title: 變更集 (Changesets)
 ---
 
@@ -26,61 +26,62 @@ iex> %Ecto.Changeset{}
 為了使變更集真正有用，當建立它時，需要提供資料的藍圖。
 什麼樣的資料藍圖是比用於建立定義欄位和類型的結構描述(schema)更好？
 
-現在來看一個常見的 `User` 結構描述：
+現在來使用上一課中的 `Friends.Person` 結構描述：
 
 ```elixir
-defmodule User do
+defmodule Friends.Person do
   use Ecto.Schema
 
-  schema "users" do
-    field(:name, :string)
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
   end
 end
 ```
 
-要使用 `User` 結構描述建立變更集，將使用 `Ecto.Changeset.cast/4`：
+要使用 `Person` 結構描述建立變更集，將使用 `Ecto.Changeset.cast/4`：
 
 ```elixir
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
-%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
- ```
+```
 
-第一個參數是原始資料 — 在這個範例中為空的 `%User{}` 結構體。
+第一個參數是原始資料 - 在這個範例中為一個初始的 `%Friends.Person{}` 結構體。
 Ecto 足夠聰明，可以根據結構體本身找到結構描述。
 第二個參數是想要做出的改變 - 只是一張空映射。
 第三個參數是使 `cast/4` 特殊的原因：它是允許通過的欄位列表，這使我們能夠控制哪些欄位可以更改並保護其餘欄位。
 
 ```elixir
- iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
- %Ecto.Changeset<
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Jack"},
   errors: [],
-  data: #User<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
-%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
 ```
 
-可以在第二次更改時看到如何忽略新名稱，因新名稱未被明確允許。
+可以在第二次更改時看到如何忽略新 name，因新 name 未被明確允許。
 
 一個 `cast/4` 的替代是 `change/2` 函數，它不能像 `cast/4` 這樣篩選更改。
 不過當進行更改來源是可信任或手動處理資料時，它非常有用。
 
-現在可以建立變更集，但由於沒有驗證，因此將接受對使用者名稱的任何更改，最終會得到一個空名稱：
+現在可以建立變更集，但由於沒有驗證，因此將接受對 Person 中 name 的任何更改，最終會得到一個空的 name：
 
 ```elixir
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{"name" => ""})
 %Ecto.Changeset<
- action: nil,
- changes: %{name: ""},
- errors: [],
- data: #User<>,
- valid?: true
+  action: nil,
+  changes: %{name: nil},
+  errors: [],
+  data: %Friends.Person<>,
+  valid?: true
 >
 ```
 
@@ -90,15 +91,16 @@ Ecto 說變更集是有效的，但實際上，我們不想允許空名稱。現
 
 Ecto 附帶了許多內建的驗證函數來幫助我們。
 
-我們將經常使用 `Ecto.Changeset`，所以現在將 `Ecto.Changeset` 匯入 `user.ex` 模組，該模組也包含結構描述：
+我們將經常使用 `Ecto.Changeset`，所以現在將 `Ecto.Changeset` 匯入 `person.ex` 模組，該模組也包含結構描述：
 
 ```elixir
-defmodule User do
+defmodule Friends.Person do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "users" do
-    field(:name, :string)
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
   end
 end
 ```
@@ -110,7 +112,7 @@ end
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
 end
 ```
 
@@ -124,16 +126,16 @@ def changeset(struct, params) do
 end
 ```
 
-當呼用 `User.changeset/2` 函數並傳遞一個空名稱時，變更集將不再有效，甚至會包含有用的錯誤消息。
+當呼用 `Friends.Person.changeset/2` 函數並傳遞一個空的 name 時，變更集將不再有效，甚至會包含有用的錯誤消息。
 註：在 `iex` 中工作時不要忘記執行 `recompile()` ，否則它將無法獲取你在程式碼中所做的更改。
 
 ```elixir
-iex> User.changeset(%User{}, %{"name" => ""})
+iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
 %Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
-  data: #User<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -146,7 +148,7 @@ iex> User.changeset(%User{}, %{"name" => ""})
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> validate_required([:name])
   |> validate_length(:name, min: 2)
 end
@@ -155,15 +157,15 @@ end
 如果傳遞一個由單個字元組成的名稱，可以嘗試猜測結果是什麼！
 
 ```elixir
-iex> User.changeset(%User{}, %{"name" => "A"})
+iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
 %Ecto.Changeset<
   action: nil,
   changes: %{name: "A"},
   errors: [
     name: {"should be at least %{count} character(s)",
-     [count: 2, validation: :length, min: 2]}
+     [count: 2, validation: :length, kind: :min, type: :string]}
   ],
-  data: #User<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -210,7 +212,7 @@ end
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> validate_required([:name])
   |> validate_length(:name, min: 2)
   |> validate_fictional_name()
@@ -218,12 +220,12 @@ end
 ```
 
 ```elixir
-iex> User.changeset(%User{}, %{"name" => "Bob"})
+iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
 %Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
-  data: #User<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -254,7 +256,7 @@ end
 ```elixir
 def registration_changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> set_name_if_anonymous()
 end
 ```
@@ -262,12 +264,12 @@ end
 現在不必傳遞 `name` 且 `Anonymous` 會自動設定，就如預期的那樣：
 
 ```elixir
-iex> User.registration_changeset(%User{}, %{})
+iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
 %Ecto.Changeset<
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
-  data: #User<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 ```
@@ -277,8 +279,8 @@ iex> User.registration_changeset(%User{}, %{})
 
 ```elixir
 def sign_up(params) do
-  %User{}
-  |> User.registration_changeset(params)
+  %Friends.Person{}
+  |> Friends.Person.registration_changeset(params)
   |> Repo.insert()
 end
 ```
