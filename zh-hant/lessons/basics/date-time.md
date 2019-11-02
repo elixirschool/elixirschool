@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 日期與時間
 ---
 
@@ -88,7 +88,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 ## DateTime
 
 第二種，正如你可能從本節的標題中猜到的那樣，是 `DateTime`。
-它沒有前述提到的限制：它既有時間又有日期，並支援時區。
+它沒有像 `NaiveDateTime` 提到的限制：它既有時間又有日期，並支援時區。
 但請注意官方文件中的時區說明：
 
 ```
@@ -99,9 +99,9 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 另請注意，可以通過提供時區從 NaiveDateTime 建立 DateTime 實例：
 
 ```
-iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
+iex> DateTime.
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
 
-就是這個！如果您使用其他進階函數，可能需要考慮進一步查看[Time](https://hexdocs.pm/elixir/Time.html)、 [Date](https://hexdocs.pm/elixir/Date.html)與 [DateTime](https://hexdocs.pm/elixir/DateTime.html) 的文件。
+就是這個！如果使用其他進階函數，可能需要考慮進一步查看 [Time](https://hexdocs.pm/elixir/Time.html)、[Date](https://hexdocs.pm/elixir/Date.html)、[DateTime](https://hexdocs.pm/elixir/DateTime.html) 與 [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) 的文件。
 同時還應該考慮 [Timex](https://github.com/bitwalker/timex) 和 [Calendar](https://github.com/lau/calendar) 這些強大並可以在 Elixir 中處理時間的函式庫。
