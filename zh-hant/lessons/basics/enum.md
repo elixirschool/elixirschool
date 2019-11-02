@@ -1,5 +1,5 @@
 ---
-version: 1.4.2
+version: 1.5.0
 title: 列舉 (Enum)
 ---
 
@@ -32,7 +32,6 @@ at/3
 列舉法 (Enumeration) 是函數式程式設計的核心，將其與 Elixir 的其他特性結合起來，能夠賦與開發者不可思議的強大能力。
 
 有關函數的完整列表，請參考官方 [`Enum`](https://hexdocs.pm/elixir/Enum.html) 文件；惰性列舉 (lazy enumeration) 請使用 [`Stream`](https://hexdocs.pm/elixir/Stream.html) 模組。
-
 
 ### all?
 
@@ -195,11 +194,20 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-我們可以使用 `uniq_by/2` 從列舉中刪除重複項：
+可以使用 `uniq/1` 刪除列舉中的重複項目：
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
+```
+
+### uniq_by
+
+`uniq_by/2` 也從列舉中刪除重複項目，但是它允許提供一個函數來進行唯一性比較。
+
+```elixir
+iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
+[%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```
