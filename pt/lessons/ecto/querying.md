@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Querying
 ---
 
@@ -55,11 +55,11 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 }
 ```
 
-Se quisermos escrever consultas mais complexas, ou se quisermos retornar _todos_ registros que atendam a uma determinada condição, precisamos usar o módulo `Ecto.Query`.
+Se quisermos escrever consultas mais complexas, ou se quisermos retornar _todos_ os registros que atendam a uma determinada condição, precisamos usar o módulo `Ecto.Query`.
 
 ## Escrevendo Consultar com `Ecto.Query`
 
-O módulo `Ecto.Query` nos fornece a DSL de consulta que podemos usar para gravar consultas para recuperar dados do repositório da aplicação.
+O módulo `Ecto.Query` nos fornece a DSL de consulta que podemos usar para criar consultas para recuperar dados do repositório da aplicação.
 
 ### Criando Consultas com `Ecto.Query.from/2`
 
@@ -68,7 +68,7 @@ Podemos criar uma consulta com a função `Ecto.Query.from/2`. Esta função rec
 ```elixir
 import Ecto.Query
 query = from(m in Movie, select: m)
-#Ecto.Query<from m in Example.Movie, select: m>
+%Ecto.Query<from m in Example.Movie, select: m>
 ```
 
 Para executar nossa consulta, usamos a função `Repo.all/2`. Essa função aceita um argumento obrigatório de uma consulta Ecto e retorna todos os registros que atendem às condições da consulta.
@@ -262,16 +262,17 @@ iex> movie.actors
 %Ecto.Association.NotLoaded<association :actors is not loaded>
 ```
 
-_Não podemos_ acessar esses atores associados, a menos que os pré-carregemos. Existem algumas maneiras diferentes de pré-carregar registros com o Ecto.
+_Não podemos_ acessar esses atores associados, a menos que os pré-carreguemos. Existem algumas maneiras diferentes de pré-carregar registros com o Ecto.
 
 #### Pré-carregamento Com Duas Consultas
 
 A consulta a seguir pré-carregará os registros associados em uma consulta _separada_.
 
 ```elixir
-iex> import Ecto.Query
-Ecto.Query
 iex> Repo.all(from m in Movie, preload: [:actors])
+
+13:17:28.354 [debug] QUERY OK source="movies" db=2.3ms queue=0.1ms
+13:17:28.357 [debug] QUERY OK source="actors" db=2.4ms
 [
   %Example.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
@@ -298,7 +299,7 @@ iex> Repo.all(from m in Movie, preload: [:actors])
 ]
 ```
 
-Podemos ver que a linha de código acima executou duas consultas ao banco de dados. Um para todos os filmes e outro para todos os atores com os IDs de filme fornecidos.
+Podemos ver que a linha de código acima executou duas consultas no banco de dados. Um para todos os filmes e outro para todos os atores com os IDs de filme fornecidos.
 
 
 #### Pré-carregamento Com Uma Consulta
@@ -306,7 +307,9 @@ Podemos reduzir nossas consultas ao banco de dados com o seguinte:
 
 ```elixir
 iex> query = from(m in Movie, join: a in assoc(m, :actors), preload: [actors: a])
-iex> Repo.all(query)  
+iex> Repo.all(query)
+
+13:18:52.053 [debug] QUERY OK source="movies" db=3.7ms
 [
   %Example.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
@@ -429,7 +432,7 @@ from m in Movie,
   select: {m.title, c.name}
 ```
 
-No exemplo acima, estamos nos unindo em um esquema Ecto, `m in Movie`. Também podemos fazer junção de uma Ecto query. Digamos que nossa tabela de filmes tenha uma coluna `stars`, onde armazenamos a "classificação por estrelas" do filme, um número de 1 a 5.
+No exemplo acima, estamos fazendo junção em um esquema Ecto, `m in Movie`. Também podemos fazer junção de uma Ecto query. Digamos que nossa tabela de filmes tenha uma coluna `stars`, onde armazenamos a "classificação por estrelas" do filme, um número de 1 a 5.
 
 ```elixir
 movies = from m in Movie, where: [stars: 5]
