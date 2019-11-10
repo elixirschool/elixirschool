@@ -404,7 +404,7 @@ iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
 
 ```elixir
 iex> movie_changeset = Ecto.Changeset.change(movie)
-%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Movie<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Example.Movie<>,
  valid?: true>
 ```
 
@@ -417,11 +417,11 @@ iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actor
   changes: %{
     actors: [
       %Ecto.Changeset<action: :update, changes: %{}, errors: [],
-       data: #Example.Actor<>, valid?: true>
+       data: %Example.Actor<>, valid?: true>
     ]
   },
   errors: [],
-  data: #Example.Movie<>,
+  data: %Example.Movie<>,
   valid?: true
 >
 ```
@@ -464,13 +464,13 @@ iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "
         action: :insert,
         changes: %{name: "Gary"},
         errors: [],
-        data: #Example.Actor<>,
+        data: %Example.Actor<>,
         valid?: true
       >
     ]
   },
   errors: [],
-  data: #Example.Movie<>,
+  data: %Example.Movie<>,
   valid?: true
 >
 iex>  Repo.update!(changeset)
