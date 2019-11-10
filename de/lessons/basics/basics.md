@@ -103,9 +103,9 @@ false
 Booleans `true` und `false` sind gleichwertig zu den Atoms `:true` und `:false`.
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true

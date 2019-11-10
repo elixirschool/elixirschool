@@ -103,9 +103,9 @@ false
 真理値の `true` と `false` はそれぞれ、アトムの `:true` と `:false` でもあります。
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true

@@ -104,9 +104,9 @@ false
 Логічні значення `true` та `false` також є відповідними атомами:
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true
