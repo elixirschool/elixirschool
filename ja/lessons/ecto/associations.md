@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.1
 title: アソシエーション
 ---
 
@@ -129,7 +129,7 @@ mix ecto.migrate
 mix ecto.gen.migration create_distributors
 ```
 
-生成した `distributors` テーブルのマイグレーションに、外部キーの `movie_id` を追加する必要があります。
+生成した `distributors` テーブルのマイグレーションに、外部キーの `movie_id` と、映画の配信者が1人であることを示すユニークインデックスを追加する必要があります。
 
 ```elixir
 # priv/repo/migrations/*_create_distributors.exs
@@ -143,6 +143,8 @@ defmodule Example.Repo.Migrations.CreateDistributors do
       add :movie_id, references(:movies)
     end
   end
+
+  create unique_index(:distributors, [:movie_id])
 end
 ```
 
