@@ -473,6 +473,16 @@
   languages:
     - ru
 
+- github: gavlak
+  name: Adam Gavlák
+  intro:
+  homepage: https://www.gavlak.sk/en
+  twitter: adamgavlak
+  contributions:
+    - translator
+  languages:
+    - sk
+
 - github: herminiotorres
   name: Herminio Torres
   intro:
