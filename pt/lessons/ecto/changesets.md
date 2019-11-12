@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 title: Changesets
 ---
 
@@ -27,7 +27,7 @@ Como você pode ver, tem alguns campos potencialmente úteis, mas estão todos v
 Para um changeset ser verdadeiramente útil, quando o criamos, precisamos fornecer um diagrama de como são os dados.
 Qual o melhor diagrama para nossos dados senão os schemas que criamos que definem nossos campos e tipos?
 
-Vamos utilizar o `Friends.Person` schema da lição anterior:
+Vamos utilizar o schema `Friends.Person` da lição anterior:
 
 ```elixir
 defmodule Friends.Person do
@@ -44,7 +44,7 @@ Para criar um changeset usando o schema `Person`, vamos usar `Ecto.Changeset.cas
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
  ```
 
@@ -55,16 +55,16 @@ O terceiro parâmetro é o que faz o `cast/4` especial: é uma lista de campos p
 
  ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Jack"},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
 ```
 
@@ -73,15 +73,15 @@ Você pode ver como o novo nome foi ignorado na segunda vez, onde não foi expli
 Uma alternativa para o `cast/4` é o `change/2`, que não tem a capacidade de filtrar alterações como `cast/4`.
 É útil quando você confia na origem que fez as alterações ou quando trabalha com dados manualmente.
 
-Agora podemos criar changesets, mas como não temos validação, quaisquer alterações ao nome do usuário serão aceitas, para que possamos terminar com um nome vazio:
+Agora podemos criar changesets, mas como não temos validação, quaisquer alterações ao nome do usuário serão aceitas, então podemos acabar com um nome vazio:
 
 ```elixir
 iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{"name" => ""})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: nil},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 ```
@@ -108,7 +108,7 @@ end
 
 Agora nós podemos usar a função `cast/4` diretamente.
 
-É comum ter uma ou mais funções de construção de changeset para um esquema. Vamos fazer uma que aceite uma struct, um map de alterações e retorne um changeset:
+É comum ter uma ou mais funções de construção de changeset para um schema. Vamos fazer uma que aceite uma struct, um map de alterações e retorne um changeset:
 
 ```elixir
 def changeset(struct, params) do
@@ -117,7 +117,7 @@ def changeset(struct, params) do
 end
 ```
 
-Agora vamos garantir que o `name` está sempre presente:
+Agora podemos garantir que o `name` está sempre presente:
 
 ```elixir
 def changeset(struct, params) do
@@ -128,15 +128,15 @@ end
 ```
 
 Quando chamamos a função `Friends.Person.changeset/2` e passamos um nome vazio, o changeset não será mais válido, e irá conter uma mensagem de erro.
-Nota: não esqueça de executar `recompile()` quando estiver trabalhando no `iex`, caso contrário, não surtirá efeito as alterações feitas no código.
+Nota: não esqueça de executar `recompile()` quando estiver trabalhando no `iex`, caso contrário, as alterações feitas no código não terão efeito.
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -159,14 +159,14 @@ Você pode tentar adivinhar qual seria o resultado se passássemos um nome que c
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "A"},
   errors: [
     name: {"should be at least %{count} character(s)",
      [count: 2, validation: :length, kind: :min, type: :string]}
   ],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -183,11 +183,11 @@ Alguns dos outros validadores integrados no `Ecto.Changeset` são:
 + validate_number/3
 + validate_subset/4
 
-Você pode encontrar a lista completa com os detalhes de como usa-los [aqui](https://hexdocs.pm/ecto/Ecto.Changeset.html#summary).
+Você pode encontrar a lista completa com os detalhes de como usá-los [aqui](https://hexdocs.pm/ecto/Ecto.Changeset.html#summary).
 
 ### Validações Customizadas
 
-Embora os validadores internos cubram uma ampla gama de casos de uso, você ainda pode precisar de algo diferente.
+Embora os validadores integrados cubram uma ampla gama de casos de uso, você ainda pode precisar de algo diferente.
 
 Toda função `validate_` que usamos até agora aceita e retorna um `%Ecto.Changeset{}`, para que possamos facilmente ligar o nosso.
 
@@ -222,11 +222,11 @@ end
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -237,7 +237,7 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
 
 Às vezes você quer introduzir mudanças em um changeset manualmente. O `put_change/3` existe para este propósito.
 
-Em vez de tornar obrigatório o campo `name`, vamos permitir usuários assinarem sem um nome, e os chamaremos de "Anonymous".
+Em vez de tornar obrigatório o campo `name`, vamos permitir usuários se inscrevam sem um nome, e os chamaremos de "Anonymous".
 A função que precisamos parecerá familiar — aceita e retorna um changeset, assim como o `validate_fictional_name/1` que introduzimos anteriormente:
 
 ```elixir
@@ -266,11 +266,11 @@ Agora nós não temos que passar um `name`, e `Anonymous` será definido automat
 
 ```elixir
 iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 ```
