@@ -198,8 +198,8 @@ In the `mix.exs` file, add the two required dependencies to get started: `:earma
 
 ```elixir
   def deps do
-    [{:earmark, "~> 1.2", only: :dev},
-    {:ex_doc, "~> 0.19", only: :dev}]
+    {:earmark, "~> 1.2", [only: :dev]},
+    {:ex_doc, "~> 0.19", [only: :dev]}
   end
 ```
 
