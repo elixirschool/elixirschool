@@ -66,7 +66,7 @@ iex> 0x1F
 
 ### Coma flotante
 
-En Elixir, los números con coma flotante requieren un decimal después de al menos un dígito; estos tienen una precisión de 64 bits y soportan `e` para números exponenciales.
+En Elixir, los números con coma flotante requieren un decimal antes de al menos un dígito; estos tienen una precisión de 64 bits y soportan `e` para números exponenciales.
 
 ```elixir
 iex> 3.14
@@ -147,7 +147,7 @@ iex> "foo\nbar"
 ```
 
 Elixir también incluye tipos de datos más complejos.
-Aprenderemos más sobre ellos cuando veamos [collecciones](../collections/) y [funciones](../functions/).
+Aprenderemos más sobre ellos cuando veamos [colecciones](../collections/) y [funciones](../functions/).
 
 ## Operaciones Básicas
 
