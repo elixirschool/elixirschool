@@ -21,7 +21,7 @@ title: Связи
 
 #### Миграция Has Many
 
-Сгенерируем миграцию для схемамы `Movie`:
+Сгенерируем миграцию для схемы `Movie`:
 
 ```console
 mix ecto.gen.migration create_movies
