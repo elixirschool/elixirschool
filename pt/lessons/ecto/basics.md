@@ -243,7 +243,7 @@ iex> Map.put(person, :name, "Jerry"}
 %Friends.Person{age: 11, name: "Jerry"}
 ```
 
-Em nossa próxima lição, sobre *changesets*, iremos dar uma olhada em como
+Em nossa próxima lição, sobre changesets, iremos dar uma olhada em como
 validar as nossas mudanças e, finalmente, em como fazer elas persistir no banco
 de dados.
 
