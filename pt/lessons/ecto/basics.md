@@ -44,6 +44,12 @@ defp deps do
 end
 ```
 
+Depois, busque as dependências usando:
+
+```shell
+$ mix deps.get
+```
+
 #### Criando um repositório
 Um repositório no Ecto mapeia a um banco de dados, como o nosso banco no
 Postgres. Toda a comunicação ao banco de dados será feita através desse
