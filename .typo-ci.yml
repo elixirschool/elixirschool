@@ -9,33 +9,33 @@ dictionaries:
   - it
 
 excluded_files:
-  - *.yml
-  - .github/**/*
-  - _assets/**/*
-  - _includes/**/*
-  - _layouts/**/*
-  - _plugins/**/*
-  - script/**/*
-  - ar/**/*
-  - bg/**/*
-  - bn/**/*
-  - gr/**/*
-  - id/**/*
-  - ja/**/*
-  - ko/**/*
-  - ms/**/*
-  - no/**/*
-  - pl/**/*
-  - pt/**/*
-  - ru/**/*
-  - sk/**/*
-  - ta/**/*
-  - th/**/*
-  - tr/**/*
-  - uk/**/*
-  - vi/**/*
-  - zh-hans/**/*
-  - zh-hant/**/*
+  - "*.yml"
+  - ".github/**/*"
+  - "_assets/**/*"
+  - "_includes/**/*"
+  - "_layouts/**/*"
+  - "_plugins/**/*"
+  - "script/**/*"
+  - "ar/**/*"
+  - "bg/**/*"
+  - "bn/**/*"
+  - "gr/**/*"
+  - "id/**/*"
+  - "ja/**/*"
+  - "ko/**/*"
+  - "ms/**/*"
+  - "no/**/*"
+  - "pl/**/*"
+  - "pt/**/*"
+  - "ru/**/*"
+  - "sk/**/*"
+  - "ta/**/*"
+  - "th/**/*"
+  - "tr/**/*"
+  - "uk/**/*"
+  - "vi/**/*"
+  - "zh-hans/**/*"
+  - "zh-hant/**/*"
 
 excluded_words:
   - defp
