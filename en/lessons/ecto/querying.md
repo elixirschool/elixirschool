@@ -1,5 +1,5 @@
 ---
-version: 1.0.4
+version: 1.1.0
 title: Querying
 ---
 
@@ -164,9 +164,7 @@ SELECT m0."title" FROM "movies" AS m0 []
 The good thing about macros is that they work very well with pipes:
 
 ```elixir
-query = Movie
-|> where([m], m.id < 2)
-|> select([m], {m.title})
+iex> query = Movie |> where([m], m.id < 2) |> select([m], {m.title})
 
 iex> Repo.all(query)
 [{"Ready Player One"}]
