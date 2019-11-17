@@ -122,7 +122,7 @@ Queries like this are called *bindingless*, because they are simple enough to no
 So far we used a module that implements the `Ecto.Queryable` protocol (ex: `Movie`) as the first argument for `from` macro. However, we can also use `in` expression, like this:
 
 ```elixir
-query = from(m in Movie)                                                           
+iex> query = from(m in Movie)                                                           
 %Ecto.Query<from m in Example.Movie>
 ```
 
