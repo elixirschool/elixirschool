@@ -1,0 +1,44 @@
+---
+dictionaries:
+  - de
+  - en
+  - en_GB
+  - en_CA
+  - es
+  - fr
+  - it
+
+excluded_files:
+  - "*.yml"
+  - ".github/**/*"
+  - "_assets/**/*"
+  - "_includes/**/*"
+  - "_layouts/**/*"
+  - "_plugins/**/*"
+  - "script/**/*"
+  - "ar/**/*"
+  - "bg/**/*"
+  - "bn/**/*"
+  - "gr/**/*"
+  - "id/**/*"
+  - "ja/**/*"
+  - "ko/**/*"
+  - "ms/**/*"
+  - "no/**/*"
+  - "pl/**/*"
+  - "pt/**/*"
+  - "ru/**/*"
+  - "sk/**/*"
+  - "ta/**/*"
+  - "th/**/*"
+  - "tr/**/*"
+  - "uk/**/*"
+  - "vi/**/*"
+  - "zh-hans/**/*"
+  - "zh-hant/**/*"
+
+excluded_words:
+  - defp
+  - ecto
+  - iex
+  - poolboy

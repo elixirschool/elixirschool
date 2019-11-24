@@ -266,7 +266,7 @@ The `phx-click` binding will send our click event to the server to be handled by
 
 There are a [number of ways to populate the `value` argument](https://github.com/phoenixframework/phoenix_live_view/blob/master/lib/phoenix_live_view.ex#L228), but we won't use that data point in this example.
 
-Let's built out our `handle_event/3` function for the `"github_deploy"` event:
+Let's build out our `handle_event/3` function for the `"github_deploy"` event:
 
 ```elixir
 def handle_event("github_deploy", _value, socket) do

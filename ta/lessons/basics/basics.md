@@ -103,9 +103,9 @@ false
 உண்மை, பொய்மை என்ற பூலியன்களும், முறையே `:true`, `:false` என்ற மதிப்புகளைக்கொண்ட அணுக்களாகும்:
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true

@@ -1,9 +1,9 @@
 ---
-version: 1.2.0
+version: 1.3.0
 title: Collezioni
 ---
 
-Liste, tuple, liste di keywords, mappe, dizionari e combinatori funzionali.
+Liste, tuple, liste di keywords e mappe.
 
 {% include toc.html %}
 
@@ -18,7 +18,7 @@ iex> [3.14, :pie, "Apple"]
 
 Elixir implementa le liste come liste linkate (_linked lists_).
 Questo significa che l'accesso ad un elemento di una lista è un'operazione eseguita in tempo lineare (`O(n)`).
-Per questa ragione, è solitamente più veloce inserire rispetto ad appendere un nuovo elemento:
+Per questa ragione, è solitamente più veloce inserire un elemento in testa alla lista rispetto ad appenderlo in coda:
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
@@ -58,7 +58,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Nota:** La sottrazione usa la [strict comparison](../basics#confronto) per controllare i valori.
+**Nota:** La sottrazione usa la [strict comparison](../basics#confronto) per controllare i valori. Per esempio:
 ```elixir
 iex> [2] -- [2.0]
 [2]
@@ -108,7 +108,7 @@ iex> File.read("path/to/unknown/file")
 
 ## Liste di Keywords
 
-Le liste di keyword e le mappe sono collezioni associative di Elixir; entrambe implementano il modulo `Dict`.
+Le liste di keyword e le mappe sono collezioni associative di Elixir.
 In Elixir, una lista di keywords è una speciale lista di tuple che hanno un atom come primo elemento; condividono le performance con le liste:
 
 ```elixir
@@ -149,7 +149,7 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-Se una chiave duplicata è aggiunta ad una mappa, sostituirà il valore precedente:
+Se una chiave duplicata è aggiunta ad una mappa, il suo valore precedente verrà sostituito:
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
@@ -161,7 +161,6 @@ Come possiamo notare dal risultato ottenuto sopra, c'è una sintassi speciale pe
 ```elixir
 iex> %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
-
 iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
@@ -175,11 +174,27 @@ iex> map.hello
 "world"
 ```
 
-Un'altra proprietà interessante delle mappe è il fatto che le _mappe_ forniscono la propria sintassi per gli aggiornamenti:
+Un'altra proprietà interessante delle mappe è il fatto che le _mappe_ forniscono la propria sintassi per eseguire aggiornamenti (nota: questa sintassi crea una nuova mappa):
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+```
+
+**Nota**: questa sintassi funziona esclusivamente per aggiornare una chiave che esiste già nella mappa! Nel caso in cui una chiave non esista, un errore di tipo `KeyError` verrà sollevato.
+
+Per creare una nuova chiave, utilizza invece [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3)
+
+```elixir
+iex> map = %{hello: "world"}
+%{hello: "world"}
+iex> %{map | foo: "baz"}
+** (KeyError) key :foo not found in: %{hello: "world"}
+    (stdlib) :maps.update(:foo, "baz", %{hello: "world"})
+    (stdlib) erl_eval.erl:259: anonymous fn/2 in :erl_eval.expr/5
+    (stdlib) lists.erl:1263: :lists.foldl/3
+iex> Map.put(map, :foo, "baz")
 %{foo: "baz", hello: "world"}
 ```

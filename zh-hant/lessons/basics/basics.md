@@ -103,9 +103,9 @@ false
 布林的 `true` 和 `false`  在 atoms 中也分別是 `:true` 和 `:false`。
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true

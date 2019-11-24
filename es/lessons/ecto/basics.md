@@ -77,7 +77,7 @@ También crea un módulo `Friends.Repo` en `lib/friends/repo.ex`
 
 ```elixir
 defmodule Friends.Repo do
-  use Ecto.Repo, 
+  use Ecto.Repo,
     otp_app: :friends,
     adapter: Ecto.Adapters.Postgres
 end
@@ -117,7 +117,7 @@ Ecto usará la información en `config/config.exs` para determinar como conectar
 
 Si recibes algún error verifica que la configuración es la correcta y que tu instancia de postgres está corriendo.
 
-## Migraciones
+### Migraciones
 
 Para crear y modificar tablas dentro de una base de datos postgres, Ecto nos proveé con migraciones.
 Cada migración describe un grupo de acciones a ejecutar en nuestra base de datos, como que tablas crear o actualizar.
@@ -168,7 +168,7 @@ Movámonos a la terminal y ejecutemos nuestra migración:
 $ mix ecto.migrate
 ```
 
-## Esquemas
+### Esquemas
 
 Ahora que creamos nuestra tabla inicial, tenemos que decirle a Ecto más sobre ella y parte de esto lo hacemos a través de esquemas.
 Un esquema es un módulo que define la relación con los campos de la base de datos.

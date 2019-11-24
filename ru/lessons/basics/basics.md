@@ -106,9 +106,9 @@ false
 
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true
@@ -156,7 +156,7 @@ iex> "foo\nbar"
 
 ### Арифметика
 
-В Elixir, ожидаемо, есть базовые операторы `+`, `-`, `*`, `/`. 
+В Elixir, ожидаемо, есть базовые операторы `+`, `-`, `*`, `/`.
 Стоит отметить что результатом вызова `/` всегда будет число с плавающей запятой:
 
 

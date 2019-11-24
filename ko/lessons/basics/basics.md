@@ -103,9 +103,9 @@ false
 부울 값 `true`와 `false`도 애텀입니다. 각각 `:true`와 `:false`로도 표현할 수 있습니다.
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true
