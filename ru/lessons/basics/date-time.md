@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Дата и время
 ---
 
@@ -93,7 +93,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 ## DateTime
 
 Вторая, как вы уже могли догадаться из названия раздела, называется `DateTime`.
-У неё нет ограничений, упомянутых выше: она хранит как время, так и дату, а также поддерживает
+У неё нет ограничений, упомянутых в `NaiveDateTime`: она хранит как время, так и дату, а также поддерживает
 временные зоны. Но будьте осторожны с временными зонами. Как сказано в
 официальной документации:
 
@@ -110,11 +110,12 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
 
-Вот и всё! Если вы хотите попробовать другие дополнительные функции, 
+Вот и всё! Если вы хотите попробовать другие дополнительные функции,
 загляните в документацию:
 - [Time](https://hexdocs.pm/elixir/Time.html)
 - [Date](https://hexdocs.pm/elixir/Date.html)
 - [DateTime](https://hexdocs.pm/elixir/DateTime.html)
+- [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html)
 
 Также рекомендуем изучить [Timex](https://github.com/bitwalker/timex) и
 [Calendar](https://github.com/lau/calendar) - мощные библиотеки для работы с
