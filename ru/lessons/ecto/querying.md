@@ -1,5 +1,5 @@
 ---
-version: 1.0.3
+version: 1.1.0
 title: Язык запросов
 ---
 
@@ -34,7 +34,7 @@ iex> Repo.get(Movie, 1)
 }
 ```
 
-Обратите внимание, что первый аргумент, передаваемый в `Repo.get/3`, – это наш модуль `Movie`. Мы называем `Movie` "пригодным для запросов", потому что он определяет схему данных при помощи `Ecto.Schema`. За счёт этого `Movie` получает доступ к протоколу `Ecto.Queryable`. Этот протокол позволяет преобразовывать структуры данных в запросы `Ecto.Query`, которые затем используются для получения данных через репозиторий. Дальше мы подробнее остановимся на запросах.
+Обратите внимание, что первый аргумент, передаваемый в `Repo.get/3`, – это наш модуль `Movie`. Мы называем `Movie` "пригодным для запросов", потому что он определяет схему данных при помощи `Ecto.Schema`. За счёт этого `Movie` реализует протокол `Ecto.Queryable`. Этот протокол позволяет преобразовывать структуры данных в запросы `Ecto.Query`, которые затем используются для получения данных из репозитория. Дальше мы подробнее остановимся на запросах.
 
 ### Получение записей по атрибуту
 
@@ -59,23 +59,21 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 
 ## Написание запросов с `Ecto.Query`
 
-Модуль `Ecto.Query` предоставляет собственный язык написания запросов для репозиториев.
+Модуль `Ecto.Query` предоставляет собственный язык написания запросов для доступа к данным репозиториев.
 
 ### Создание запросов при помощи `Ecto.Query.from/2`
 
-Запрос можно создавать при помощи функции `Ecto.Query.from/2`. Она принимает два аргумента: выражение и ключевой список. Создадим запрос для получения всех фильмов из нашего репозитория:
+Запрос можно создавать при помощи макроса `Ecto.Query.from/2`. Эта функция принимает два аргумента: выражение и необязательный ключевой список. Попробуем создать максимально простой запрос для получения всех фильмов из нашего репозитория:
 
 ```elixir
 import Ecto.Query
-query = from(m in Movie, select: m)
-#Ecto.Query<from m in Example.Movie, select: m>
+query = from(Movie)                
+%Ecto.Query<from m in Example.Movie>
 ```
 
-Чтобы выполнить запрос, воспользуемся функцией `Repo.all/2`. Она принимает Ecto-запрос в качестве обязательного аргумента и возвращает все записи, удовлетворяющие условиям.
+Чтобы выполнить запрос, воспользуемся функцией `Repo.all/2`. Она принимает структуру запроса Ecto в качестве обязательного аргумента и возвращает все записи, удовлетворяющие условиям.
 
-```elixir
-iex> Repo.all(query)
-
+```
 14:58:03.187 [debug] QUERY OK source="movies" db=1.7ms decode=4.2ms
 [
   %Example.Movie{
@@ -90,113 +88,85 @@ iex> Repo.all(query)
 ]
 ```
 
-#### Конструирование FROM с ключевым запросом
+#### Запросы без привязок
 
-В примере выше мы передаём в макрос `from/2` в качестве аргумента *ключевой запрос* `select: m`. Он *ключевой* в том смысле, что составлен при помощи ключевого списка. При использовании `from` с таким запросом первый аргумент может быть двух типов:
-
-* Выражение с `in` (например: `m in Movie`)
-* Модуль, поддерживающий протокол `Ecto.Queryable` (например: `Movie`)
-
-Вторым аргументом будет наш `select` в виде ключевого списка.
-
-#### Конструирование FROM при помощи выражения
-
-FROM-запрос можно также сконструировать при помощи выражения с использованием функции `select/3`. Первый аргумент обязательно должен быть модулем, реализующим протокол `Ecto.Queryable` (всё тот же `Movie`). Второй – список "псевдонимов" для модуля, и, наконец, третий – в каком виде мы хотим получить результат:
+Пример выше не включает в себя самую мякотку языка SQL. Очень часто мы хотим получить из базы только определённые поля или отфильтровать записи по какому-то критерию. Давайте получим только значения полей `title` и `tagline` всех фильмов с названием `"Ready Player One"`:
 
 ```elixir
-iex> query = select(Movie, [m], m)
-%Ecto.Query<from m in Example.Movie, select: m>
-iex> Repo.all(query)
+iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One",
+ select: [:title, :tagline]>
 
-06:16:20.854 [debug] QUERY OK source="movies" db=0.9ms
+iex> Repo.all(query)                                                                    
+SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready Player One') []
 [
   %Example.Movie{
-    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
-    id: 1,
+    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+    actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
+    characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
+    id: nil,
     tagline: "Something about video games",
     title: "Ready Player One"
   }
 ]
 ```
 
-Имеет смысл использование выражение в случае, когда нам _не нужно_ обращаться к переданной структуре в другой части запроса, например, условия. В примере выше всё именно так – мы _не_ пытаемся получить только фильмы, удовлетворяющие какому-то условию. Таким образом, нет никакой необходимости использовать `in` и, соответственно, ключевой запрос.
+Обратите внимание, что в результирующих структурах заполнены только поля `tagline` и `title` – это прямое следствие использования блока `select:`.
 
-### Использование `select`
+Запросы вроде этого называют *запросами без привязки* (bindingless), потому что они достаточно просты и не нуждаются привязках.
 
-Функция `Ecto.Query.select/3` используется для составления SELECT-части запроса. Если мы хотим получить только определенные поля, можно перечислить их в виде списка атомов или указания на ключи структуры. Вот пример первого подхода:
+#### Привязки в запросах
+
+До этого момента в качестве первого аргумента макроса `from` мы использовали исключительно модуль, реализующий протокол `Ecto.Queryable` (т.е. `Movie`). Но помимо него, мы могли бы использовать особое выражение с `in`:
 
 ```elixir
-iex> query = select(Movie, [:title])
-%Ecto.Query<from m in Example.Movie, select: [:title]>
-iex> Repo.all(query)
-
-15:15:25.842 [debug] QUERY OK source="movies" db=1.3ms
-[
-  %Example.Movie{
-    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
-    id: nil,
-    tagline: nil,
-    title: "Ready Player One"
-  }
-]
+iex> query = from(m in Movie)                                                           
+%Ecto.Query<from m in Example.Movie>
 ```
 
-Обратите внимание, что мы _не_ использовали `in` в первом аргументе в функции `from`. Это потому, что нам не пришлось обращаться к полям структуры — мы просто передали список атомов в `select`.
-
-Такой подход вернёт структуру, в которой будет заполнено только указанное поле — `title`.
-
-Второй подход работает немного иначе. В этот раз нам _придётся_ использовать `in` для того, чтобы сослаться на структуру и указать поле `title`:
+В этом случае мы называем `m` *привязкой*. Привязки нам очень пригодятся, т.к. с их помощью можно ссылаться на структуру в других частях запроса. Например, мы можем достать из базы названия всех фильмов с `id` меньше `2`:
 
 ```elixir
-iex(15)> query = from(m in Movie, select: m.title)
-%Ecto.Query<from m in Example.Movie, select: m.title>
-iex(16)> Repo.all(query)
+iex> query = from(m in Movie, where: m.id < 2, select: m.title)
+#Ecto.Query<from m in Example.Movie, where: m.id < 2, select: m.title>
 
-15:06:12.752 [debug] QUERY OK source="movies" db=4.5ms queue=0.1ms
+iex> Repo.all(query)                                           
+SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-Обратите внимание, что теперь в качестве результата мы получили список значений.
-
-### Использование `where`
-
-Выражение `where` используется для составления WHERE-части запроса. В случае нескольких выражений они будут объединены при помощи `WHERE AND` в языке SQL.
+Очень важный момент здесь это как изменился результат выполнения запроса. Использование *выражения* с привязкой в `select:` части запроса позволяет нам явным образом указать, в каком виде мы хотим получить данные. С таким же успехом мы можем попросить функцию вернуть нам кортеж:
 
 ```elixir
-iex> query = from(m in Movie, where: m.title == "Ready Player One")
-%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
-iex> Repo.all(query)
+iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
 
-15:18:35.355 [debug] QUERY OK source="movies" db=4.1ms queue=0.1ms
-[
-  %Example.Movie{
-    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
-    id: 1,
-    tagline: "Something about video games",
-    title: "Ready Player One"
-  }
-]
+iex> Repo.all(query)                                                          
+[{"Ready Player One"}]
 ```
 
-Можно комбинировать `where` и `select`:
+В целом хорошей идеей будет всегда начинать с простого запроса и добавлять привязки только когда появляется необходимость сослаться на структуру. Больше про привязки в запросах можно прочитать в [документации](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions)
+
+### Запросы на основе макросов
+
+В предыдущих примерах, чтобы сконструировать запрос, мы использовали ключи `select:` и `where:` в параметрах макроса `from`. Про такой способ говорят, что он *основан на ключах* (keyword-based). Но существует также ещё один способ конструировать запросы – основанный на макросах. Ecto предоставляет макросы для каждого ключевого слова, например `select/3` или `where/3`. Каждый макрос принимает сущность, пригодную для запросов, *явный список привязок* и точно такое же выражение, какое мы использовали бы в предыдущем подходе:
 
 ```elixir
-iex> query = from(m in Movie, where: m.title == "Ready Player One", select: m.tagline)
-%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One", select: m.tagline>
-iex> Repo.all(query)
-
-15:19:11.904 [debug] QUERY OK source="movies" db=4.1ms
-["Something about video games"]
+iex> query = select(Movie, [m], m.title)                           
+%Ecto.Query<from m in Example.Movie, select: m.title>
+iex> Repo.all(query)                    
+SELECT m0."title" FROM "movies" AS m0 []
+["Ready Player One"]
 ```
+
+Что хорошо в макросах, так это то, что они отлично объединяются в конвейер:
+
+```elixir
+iex> query = Movie |> where([m], m.id < 2) |> select([m], {m.title})
+
+iex> Repo.all(query)
+[{"Ready Player One"}]
+```
+
 
 ### Интерполяция в `where`
 
@@ -409,7 +379,7 @@ iex> movie.actors
 
 ### Использование операции соединения
 
-Функция `Ecto.Query.join/5` позволяет создавать запросы с операциями соединения.
+Функция `Ecto.Query.join/5` позволяет создавать запросы с использованием SQL-оператора `JOIN`.
 
 ```elixir
 iex> query = from m in Movie,
