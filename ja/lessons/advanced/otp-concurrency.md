@@ -3,22 +3,22 @@ version: 1.0.3
 title: OTPの並行性
 ---
 
-並行性(コンカレンシー)に関する Elixir の抽象化を見てきましたが、さらなる制御が必要になることもあります。そうした時のために、 Elixir に組み込まれている OTP の振る舞いに目を向けます。
+並行性(コンカレンシー)に関するElixirの抽象化を見てきましたが、さらなる制御が必要になることもあります。そうした時のために、Elixirに組み込まれているOTPの振る舞いに目を向けます。
 
-このレッスンでは GenServer という重要な要素に焦点を当てます。
+このレッスンではGenServerという重要な要素に焦点を当てます。
 
 {% include toc.html %}
 
 ## GenServer
 
-OTP サーバーは一連のコールバックを実装する GenServer の振る舞いをもったモジュールです。
-最も基本的なレベルでは、 GenServer は単一プロセスであり、更新された状態を伝える反復処理のたびにに1つのメッセージを処理するループを実行します。
+OTPサーバーは一連のコールバックを実装するGenServerの振る舞いをもったモジュールです。
+最も基本的なレベルでは、GenServerは単一プロセスであり、更新された状態を伝える反復処理のたびにに1つのメッセージを処理するループを実行します。
 
-GenServer の API を実演するために、値を格納し読みだす基本的なキューを実装します。
+GenServerのAPIを実演するために、値を格納し読みだす基本的なキューを実装します。
 
-GenServer を始めるには、起動し、初期化処理を行う必要があります。
+GenServerを始めるには、起動し、初期化処理を行う必要があります。
 ほとんどの場合、プロセスをリンクしたいので `GenServer.start_link/3` を用います。
-開始したGenServerモジュールに、初期化用の引数と一連の GenServer オプションを渡します。
+開始したGenServerモジュールに、初期化用の引数と一連のGenServerオプションを渡します。
 これらの引数は `GenServer.init/1` に渡され、その戻り値を通して、初期状態が設定されます。
 私たちの例では、引数が初期状態になります:
 
@@ -35,7 +35,7 @@ defmodule SimpleQueue do
   end
 
   @doc """
-  GenServer.init/1 コールバック
+  GenServer.init/1コールバック
   """
   def init(state), do: {:ok, state}
 end
@@ -43,8 +43,8 @@ end
 
 ### 同期関数
 
-GenServer と同期的な方法、つまり関数を呼びその返答を待つという方法でやりとりをする必要がよくあります。
-同期リクエストを処理するには、 `GenServer.handle_call/3` コールバックを実装する必要があります。これはリクエスト、呼び出し側の PID と、既存の状態を受け取ります。そして返答は `{:reply, response, state}` のタプルを返すことが期待されます。
+GenServerと同期的な方法、つまり関数を呼びその返答を待つという方法でやりとりをする必要がよくあります。
+同期リクエストを処理するには、 `GenServer.handle_call/3` コールバックを実装する必要があります。これはリクエスト、呼び出し側のPIDと、既存の状態を受け取ります。そして返答は `{:reply, response, state}` のタプルを返すことが期待されます。
 
 パターンマッチングを用いて、多くの異なるリクエストや状態へのコールバックを定義することができます。
 認められている戻り値の一覧は [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) のドキュメントで見つけることができます。
@@ -58,12 +58,12 @@ defmodule SimpleQueue do
   ### GenServer API
 
   @doc """
-  GenServer.init/1 コールバック
+  GenServer.init/1コールバック
   """
   def init(state), do: {:ok, state}
 
   @doc """
-  GenServer.handle_call/3 コールバック
+  GenServer.handle_call/3コールバック
   """
   def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
@@ -84,7 +84,7 @@ defmodule SimpleQueue do
 end
 ```
 
-SimpleQueue を開始し、新しい dequeue (キューから値を取り出す)機能をテストしましょう:
+SimpleQueueを開始し、新しいdequeue (キューから値を取り出す)機能をテストしましょう:
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])
@@ -100,7 +100,7 @@ iex> SimpleQueue.queue
 ### 非同期関数
 
 非同期リクエストは `handle_cast/2` コールバックを用いて処理されます。
-これは `handle_call/3` によく似た働きをしますが、呼び出し側 PID を受け取らず、返答することも期待されていません。
+これは `handle_call/3` によく似た働きをしますが、呼び出し側PIDを受け取らず、返答することも期待されていません。
 
 enqueue(キューに値を入れる)機能を非同期、つまりキューを更新するけれども現在実行中の処理を遮らないように実装します:
 
@@ -111,12 +111,12 @@ defmodule SimpleQueue do
   ### GenServer API
 
   @doc """
-  GenServer.init/1 コールバック
+  GenServer.init/1コールバック
   """
   def init(state), do: {:ok, state}
 
   @doc """
-  GenServer.handle_call/3 コールバック
+  GenServer.handle_call/3コールバック
   """
   def handle_call(:dequeue, _from, [value | state]) do
     {:reply, value, state}
@@ -127,7 +127,7 @@ defmodule SimpleQueue do
   def handle_call(:queue, _from, state), do: {:reply, state, state}
 
   @doc """
-  GenServer.handle_cast/2 コールバック
+  GenServer.handle_cast/2コールバック
   """
   def handle_cast({:enqueue, value}, state) do
     {:noreply, state ++ [value]}

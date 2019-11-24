@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Testando
 ---
 
@@ -33,7 +33,7 @@ Finished in 0.03 seconds
 2 tests, 0 failures
 ```
 
-Porque há dois testes na saída? Vamos dar uma olhada em `lib/example.ex`. Mix criou outro teste lá para nós, algum doctest.
+Porque há dois testes na saída? Além do teste em `test/example_test.exs`, Mix criou um doctest em `lib/example.ex`.
 
 ```elixir
 defmodule Example do

@@ -10,6 +10,7 @@ sections:
   basics: Základy
   advanced: Pokročilé
   specifics: Špecifiká
+  ecto: Ecto
   libraries: Knižnice
   blog: Blog
   contributors: Contributors

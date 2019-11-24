@@ -1,5 +1,5 @@
 ---
-title: Elixir School 日本語訳
+title: Elixir School日本語訳
 layout: home
 version: 2.0.0
 ---
@@ -12,21 +12,21 @@ Elixir Schoolは、Elixirというプログラミング言語を学習し、使�
 
 Elixir Schoolを素晴らしいものにし続けるために、あなたの参加を歓迎します。 [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
 
-  [es]: /es/
-  [it]: /it/
-  [ja]: /ja/
-  [ko]: /ko/
-  [pl]: /pl/
-  [pt]: /pt/
-  [ru]: /ru/
-  [sk]: /sk/
-  [vi]: /vi/
-  [id]: /id/
-  [ms]: /ms/
-  [uk]: /uk/
-  [de]: /de/
-  [bn]: /bn/
-  [tr]: /tr/
-  [th]: /th/
-  [zh-hans]: /zh-hans/
-  [zh-hant]: /zh-hant/
+[es]: /es/
+[it]: /it/
+[ja]: /ja/
+[ko]: /ko/
+[pl]: /pl/
+[pt]: /pt/
+[ru]: /ru/
+[sk]: /sk/
+[vi]: /vi/
+[id]: /id/
+[ms]: /ms/
+[uk]: /uk/
+[de]: /de/
+[bn]: /bn/
+[tr]: /tr/
+[th]: /th/
+[zh-hans]: /zh-hans/
+[zh-hant]: /zh-hant/

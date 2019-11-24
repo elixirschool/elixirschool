@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 title: Changesets
 ---
 
@@ -18,7 +18,7 @@ Let's look at an empty `%Changeset{}` struct:
 
 ```elixir
 iex> %Ecto.Changeset{}
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
 ```
 
 As you can see, it has some potentially useful fields, but they are all empty.
@@ -43,7 +43,7 @@ To create a changeset using the `Person` schema, we are going to use `Ecto.Chang
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
 ```
 
@@ -54,16 +54,16 @@ The third parameter is what makes `cast/4` special: it is a list of fields allow
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Jack"},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
-#Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Person<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
 ```
 
@@ -75,12 +75,12 @@ It is useful when you trust the source making the changes or when you work with 
 Now we can create changesets, but since we do not have validation, any changes to person's name will be accepted, so we can end up with an empty name:
 
 ```elixir
-iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => ""}, [:name, :age])
-#Ecto.Changeset<
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{"name" => ""})
+%Ecto.Changeset<
   action: nil,
   changes: %{name: nil},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 ```
@@ -131,11 +131,11 @@ Note: do not forget to run `recompile()` when working in `iex`, otherwise it won
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -158,14 +158,14 @@ You can try and guess what the result would be if we pass a name that consists o
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "A"},
   errors: [
     name: {"should be at least %{count} character(s)",
      [count: 2, validation: :length, kind: :min, type: :string]}
   ],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -221,11 +221,11 @@ end
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -265,11 +265,11 @@ Now we don't have to pass a `name` and `Anonymous` would be automatically set, a
 
 ```elixir
 iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
-#Ecto.Changeset<
+%Ecto.Changeset<
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
-  data: #Friends.Person<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 ```

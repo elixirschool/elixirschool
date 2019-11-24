@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.4.1
 title: Composición
 ---
 
@@ -80,36 +80,36 @@ Ahora, creemos estructuras:
 
 ```elixir
 iex> %Example.User{}
-#Example.User<name: "Sean", roles: [], ...>
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [], ...>
+%Example.User<name: "Steve", roles: [], ...>
 
 iex> %Example.User{name: "Steve", roles: [:manager]}
-#Example.User<name: "Steve", roles: [:manager]>
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Podemos actualizar una estructura justo como lo hacemos con un mapa:
 
 ```elixir
 iex> steve = %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [...], ...>
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Algo muy importante es que podemos hacer coincidencia entre estructuras y mapas:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 A partir de Elixir 1.8 las estructuras incluyen la inspección personalizada.
 Para entender que significa esto y cómo debemos usarlo, debemos inspeccionar el mapa `sean`:
 
 ```elixir
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", roles: [...], ...>"
+"%Example.User<name: \"Sean\", roles: [...], ...>"
 ```
 
 Todos nuestros campos están presentes, lo que esta bien para este ejemplo, pero ¿qué pasaría si tuviéramos un campo protegido que no quisiéramos incluir?
@@ -128,10 +128,10 @@ Nota: también podríamos usar `@derive {Inspect, except: [:roles]}`, son equiva
 Con nuestro módulo actualizado, echemos un vistazo a lo que sucede en `iex`:
 
 ```elixir
-iex> sean = #Example.User<name: "Sean", roles: [...], ...>
-#Example.User<name: "Sean", ...>
+iex> sean = %Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", ...>
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", ...>"
+"%Example.User<name: \"Sean\", ...>"
 ```
 
 Los `roles` son excluidos de la salida.

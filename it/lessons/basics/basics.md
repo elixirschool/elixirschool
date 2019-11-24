@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1
 title: Base
 ---
 
@@ -103,9 +103,9 @@ false
 NOTA: I booleani `true` e `false` sono, rispettivamente, anche `:true` e `:false`.
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true
@@ -228,7 +228,7 @@ iex> 2 <= 3
 true
 ```
 
-Per una comparazione rigorosa (_strict_) tra interi e numeri in virogla mobile, usa `===`:
+Per una comparazione rigorosa (_strict_) tra interi e numeri in virgola mobile, usa `===`:
 
 ```elixir
 iex> 2 == 2.0

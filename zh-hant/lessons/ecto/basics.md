@@ -1,5 +1,5 @@
 ---
-version: 2.3.0
+version: 2.4.0
 title: 基礎
 ---
 
@@ -37,8 +37,8 @@ $ cd friends
 ```elixir
   defp deps do
     [
-      {:ecto, "~> 2.0"},
-      {:postgrex, "~> 0.11"}
+      {:ecto_sql, "~> 3.2"},
+      {:postgrex, "~> 0.15"}
     ]
   end
 ```
@@ -65,7 +65,6 @@ $ mix ecto.gen.repo -r Friends.Repo
 
 ```elixir
 config :friends, Friends.Repo,
-  adapter: Ecto.Adapters.Postgres,
   database: "friends_repo",
   username: "postgres",
   password: "",
@@ -73,17 +72,18 @@ config :friends, Friends.Repo,
 ```
 
 這將配置 Ecto 如何連接到資料庫。
-注意到是如何選擇 `Ecto.Adapters.Postgres` 轉接器。
 
 同時它還在 `lib/friends/repo.ex` 中建立了一個 `Friends.Repo` 模組。
 
 ```elixir
 defmodule Friends.Repo do
-  use Ecto.Repo, otp_app: :friends
+  use Ecto.Repo, 
+    otp_app: :friends,
+    adapter: Ecto.Adapters.Postgres
 end
 ```
 
-我們將使用 `Friends.Repo` 模組來查詢資料庫。同時也告訴模組在 `:friends` 應用程式中尋找其資料庫配置資訊。
+我們將使用 `Friends.Repo` 模組來查詢資料庫。同時也告訴模組在 `:friends` 應用程式中尋找其資料庫配置資訊。並且選擇了 `Ecto.Adapters.Postgres` 轉接器。
 
 接下來，將在 `lib/friends/application.ex` 中的應用程式 supervision 樹中將 `Friends.Repo` 設定為 supervisor。
 這將在應用程式啟動時啟動 Ecto 處理程序。

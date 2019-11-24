@@ -291,6 +291,16 @@
   languages:
     - es
 
+- github: j-burgos
+  name: Jorge Burgos
+  intro: Elixir enthusiast from El Salvador
+  homepage:
+  twitter: jburgosk8
+  contributions:
+    - translator
+  languages:
+    - es
+
 - github: kalarani
   name:
   intro:
@@ -462,3 +472,23 @@
     - translator
   languages:
     - ru
+
+- github: gavlak
+  name: Adam Gavlák
+  intro:
+  homepage: https://www.gavlak.sk/en
+  twitter: adamgavlak
+  contributions:
+    - translator
+  languages:
+    - sk
+
+- github: herminiotorres
+  name: Herminio Torres
+  intro:
+  homepage: http://github.com/herminiotorres
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - pt

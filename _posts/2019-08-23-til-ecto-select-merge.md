@@ -1,7 +1,7 @@
 ---
 author: Kate Travers
 author_link: https://github.com/ktravers
-categories: post
+categories: til
 tags: ['ecto']
 date: 2019-08-23
 layout: post
@@ -99,7 +99,7 @@ iex> admission = Repo.get(Admission, 1)
 iex> AdmissionEvent.for_admission(admission) |> Repo.all()
 [
   %Registrar.Tracking.AdmissionEvent{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "admission_events">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "admission_events">,
     action: "Student Admitted",
     admission_id: 3,
     admitter_uuid: "7edd4d7f-a790-41f9-b4ef-16f1dc3b33ea",
@@ -154,11 +154,11 @@ iex> admission = Repo.get(Admission, 1)
 iex> events = AdmissionEvent.for_admission(admission) |> Repo.all() |> Repo.preload(:admitter)
 [
   %Registrar.Tracking.AdmissionEvent{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "admission_events">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "admission_events">,
     action: "Student Admitted",
     admission_id: 3,
     admitter: %Registrar.User{
-      __meta__: #Ecto.Schema.Metadata<:loaded, "users">,
+      __meta__: %Ecto.Schema.Metadata<:loaded, "users">,
       id: 1,
       name: "Albus Dumbledore",
       uuid: "7edd4d7f-a790-41f9-b4ef-16f1dc3b33ea"
@@ -226,7 +226,7 @@ iex> admission = Repo.get(Admission, 1)
 iex> AdmissionEvent.for_admission(admission) |> Repo.all()
 [
   %Registrar.Tracking.AdmissionEvent{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "admission_events">,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "admission_events">,
     action: "Student Admitted",
     admission_id: 3,
     admitter_name: "Albus Dumbledore",

@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.2
 title: 日付と時間
 ---
 
@@ -19,7 +19,7 @@ iex> Time.utc_now
 ~T[19:39:31.056226]
 ```
 
-`Time`構造体を作るためにシギルも使えます:
+`Time` 構造体を作るためにシギルも使えます:
 
 ```elixir
 iex> ~T[19:39:31.056226]
@@ -44,14 +44,14 @@ iex> t.day
 
 ## Date
 
-`Time`に対して、`Date`構造体は現在の日付に関する情報を持ち、現在の時間に関する情報は含みません。
+`Time` に対して、 `Date` 構造体は現在の日付に関する情報を持ち、現在の時間に関する情報は含みません。
 
 ```elixir
 iex> Date.utc_today
 ~D[2028-10-21]
 ```
 
-しかし、これは日にちと連携する便利な関数をいくつか持っています:
+それから、これは日にちと連携する便利な関数をいくつか持っています:
 
 ```elixir
 iex> {:ok, date} = Date.new(2020, 12,12)
@@ -62,15 +62,15 @@ iex> Date.leap_year? date
 true
 ```
 
-`day_of_week/1`は与えられた日付がどの曜日にあたるのかを計算します。
+`day_of_week/1` は与えられた日付がどの曜日にあたるのかを計算します。
 この場合は土曜日です。
-`leap_year?/1`は閏年かどうかをチェックします。
+`leap_year?/1` は閏年かどうかをチェックします。
 その他の関数は [doc](https://hexdocs.pm/elixir/Date.html) で探すことができます。
 
 ## NaiveDateTime
 
 Elixirには日付と時間を同時に含む構造体が2種類あります。
-そのうち1つは`NaiveDateTime`です。
+最初に紹介するのは `NaiveDateTime` です。
 この構造体のデメリットはタイムゾーンのサポートが無いという点です:
 
 ```elixir
@@ -87,9 +87,9 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 ## DateTime
 
-2つ目は、このセクションのタイトルから想像がつくように、`DateTime`です。
-この構造体には前述したような制限はありません。そのため、これは時間と日付を両方持ち、タイムゾーンもサポートしています。
-しかし公式ドキュメントにあるように、タイムゾーンについては注意してください:
+2つ目は、このセクションのタイトルから想像がつくように、 `DateTime` です。
+`NaiveDateTime` で記載したような制限はありません。そのため、これは時間と日付を両方持ち、タイムゾーンもサポートしています。
+しかしタイムゾーンについては注意してください。公式ドキュメントではこのように記載されています:
 
 ```
 このモジュールには変換関数とUTCで動作する関数だけが含まれていることに気付くでしょう。
@@ -103,5 +103,5 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
 
-これがそうです！さらに高度な他の機能を使いたい場合は、 [Time](https://hexdocs.pm/elixir/Time.html) 、 [Date](https://hexdocs.pm/elixir/Date.html) 、 [DateTime](https://hexdocs.pm/elixir/DateTime.html) のドキュメントをさらに確認することを考慮するといいでしょう。
+これがそうです！さらに高度な他の機能を使いたい場合は、 [Time](https://hexdocs.pm/elixir/Time.html) 、 [Date](https://hexdocs.pm/elixir/Date.html) 、 [DateTime](https://hexdocs.pm/elixir/DateTime.html)、 [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) のドキュメントをさらに確認することを考慮するといいでしょう。
 Elixirで時間を扱うパワフルなライブラリである [Timex](https://github.com/bitwalker/timex) と [Calendar](https://github.com/lau/calendar) についても考慮するべきです。

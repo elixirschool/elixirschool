@@ -11,7 +11,7 @@ title: 基本
 
 ### Elixirのインストール
 
-各OS向けのインストール方法は Elixir-lang.org 上の[Installing Elixir](http://elixir-lang.org/install.html) で探すことができます。
+各OS向けのインストール方法はElixir-lang.org上の[Installing Elixir](http://elixir-lang.org/install.html) で探すことができます。
 
 Elixirがインストールされたら簡単にバージョンを確認できます。
 
@@ -24,7 +24,7 @@ Elixirがインストールされたら簡単にバージョンを確認でき�
 
 ElixirにはIExという対話シェルが付属しており、入力したそばからElixirの式を評価することができるようになっています。
 
-対話モードを開始するには、`iex`を起動しましょう:
+対話モードを開始するには、 `iex` を起動しましょう:
 
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
@@ -67,7 +67,7 @@ iex> 0x1F
 
 ### 浮動小数
 
-Elixirでは、浮動小数点数は少なくとも1桁の数字とその後に続く小数を必要とし、 64ビットの倍精度で、指数`e`に対応しています:
+Elixirでは、浮動小数点数は少なくとも1桁の数字とその後に続く小数を必要とし、64ビットの倍精度で、指数 `e` に対応しています:
 
 ```elixir
 iex> 3.14
@@ -78,10 +78,9 @@ iex> 1.0e-10
 1.0e-10
 ```
 
-
 ### 真理値
 
-Elixirは真理値として`true`と`false`を提供しています。また、`false`と`nil`以外は真とみなされます:
+Elixirは真理値として `true` と `false` を提供しています。また、 `false` と `nil` 以外は真とみなされます:
 
 ```elixir
 iex> true
@@ -101,18 +100,18 @@ iex> :foo == :bar
 false
 ```
 
-真理値の`true`と`false`はそれぞれ、アトムの`:true`と`:false`でもあります。
+真理値の `true` と `false` はそれぞれ、アトムの `:true` と `:false` でもあります。
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true
 ```
 
-Elixirのモジュールの名前もまたアトムです。`MyApp.MyModule`は、そのようなモジュールが宣言されていなくても有効なアトムです。
+Elixirのモジュールの名前もまたアトムです。 `MyApp.MyModule` は、そのようなモジュールが宣言されていなくても有効なアトムです。
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
@@ -153,7 +152,7 @@ iex> "foo\nbar"
 
 ### 算術
 
-予想されている通りかもしれませんが、Elixirは基本的な演算子である`+`, `-`, `*`, `/`を提供しています。重要なので言及しておきますと、`/`は常に浮動小数を返します:
+予想されている通りかもしれませんが、Elixirは基本的な演算子である `+`, `-`, `*`, `/` を提供しています。重要なので言及しておきますと、 `/` は常に浮動小数を返します:
 
 ```elixir
 iex> 2 + 2
@@ -177,7 +176,7 @@ iex> rem(10, 3)
 
 ### 論理
 
-Elixirは`||`と`&&`、`!`という論理演算子を用意しており、これらはどんな型にも対応しています:
+Elixirは `||` と `&&` 、 `!` という論理演算子を用意しており、これらはどんな型にも対応しています:
 
 ```elixir
 iex> -20 || true
@@ -196,7 +195,7 @@ iex> !false
 true
 ```
 
-さらに、最初の引数が真理値(`true`と`false`)で _なければならない_ 3つの演算子があります:
+さらに、最初の引数が真理値(`true` と `false`)で _なければならない_ 3つの演算子があります:
 
 ```elixir
 iex> true and 42
@@ -211,7 +210,7 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-参考: Elixirの`and`と`or`はErlangの`andalso`と`orelse`に実際に対応しています。
+参考: Elixirの `and` と `or` はErlangの `andalso` と `orelse` に実際に対応しています。
 
 ### 比較
 
@@ -264,7 +263,7 @@ iex> "Hello #{name}"
 
 ### 文字列の連結
 
-文字列連結は`<>`演算子を利用します:
+文字列連結は `<>` 演算子を利用します:
 
 ```elixir
 iex> name = "Sean"

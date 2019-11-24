@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.4.1
 title: Modules
 ---
 
@@ -83,29 +83,29 @@ Let's create some structs:
 
 ```elixir
 iex> %Example.User{}
-#Example.User<name: "Sean", roles: [], ...>
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [], ...>
+%Example.User<name: "Steve", roles: [], ...>
 
 iex> %Example.User{name: "Steve", roles: [:manager]}
-#Example.User<name: "Steve", roles: [:manager]>
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 We can update our struct just like we would a map:
 
 ```elixir
 iex> steve = %Example.User{name: "Steve"}
-#Example.User<name: "Steve", roles: [...], ...>
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Most importantly, you can match structs against maps:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-#Example.User<name: "Sean", roles: [...], ...>
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 As of Elixir 1.8 structs include custom introspection.
@@ -113,7 +113,7 @@ To understand what this means and how we are to use it let us inspect our `sean`
 
 ```elixir
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", roles: [...], ...>"
+"%Example.User<name: \"Sean\", roles: [...], ...>"
 ```
 
 All of our fields are present which is okay for this example but what if we had a protected field we didn't want to include?
@@ -133,9 +133,9 @@ With our updated module in place let's take a look at what happens in `iex`:
 
 ```elixir
 iex> sean = %Example.User{name: "Sean"}
-#Example.User<name: "Sean", ...>
+%Example.User<name: "Sean", ...>
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", ...>"
+"%Example.User<name: \"Sean\", ...>"
 ```
 
 The `roles` are excluded from output!
