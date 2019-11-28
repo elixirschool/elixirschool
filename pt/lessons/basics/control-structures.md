@@ -26,7 +26,7 @@ iex> if "a string value" do
 ...> end
 "Truthy"
 ```
-Usar `unless/2` é bem parecido o uso do `if/2` porém trabalhando de forma negativa:
+Usar `unless/2` é bem parecido com o uso do `if/2` porém trabalhando de forma negativa:
 ```elixir
 iex> unless is_integer("hello") do
 ...>   "Not an Int"
