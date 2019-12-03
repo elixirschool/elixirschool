@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.1
 title: 关联关系
 ---
 
@@ -129,7 +129,7 @@ mix ecto.migrate
 mix ecto.gen.migration create_distributors
 ```
 
-这个 migration 需要添加一个外键 `movie_id` 到 `distributors` 表里面：
+这个 migration 需要添加一个外键 `movie_id` 到 `distributors` 表里面。同时，再添加一个唯一索引来确保一部电影只有一个发行商。
 
 ```elixir
 # priv/repo/migrations/*_create_distributors.exs
@@ -142,6 +142,8 @@ defmodule Example.Repo.Migrations.CreateDistributors do
       add :name, :string
       add :movie_id, references(:movies)
     end
+
+    create unique_index(:distributors, [:movie_id])
   end
 end
 ```
@@ -404,7 +406,7 @@ iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
 
 ```elixir
 iex> movie_changeset = Ecto.Changeset.change(movie)                                                    
-%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Example.Movie<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Example.Movie<>,
  valid?: true>
 ```
 
@@ -417,11 +419,11 @@ iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actor
   changes: %{
     actors: [
       %Ecto.Changeset<action: :update, changes: %{}, errors: [],
-       data: #Example.Actor<>, valid?: true>
+       data: %Example.Actor<>, valid?: true>
     ]
   },
   errors: [],
-  data: #Example.Movie<>,
+  data: %Example.Movie<>,
   valid?: true
 >
 ```
@@ -464,13 +466,13 @@ iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "
         action: :insert,
         changes: %{name: "Gary"},
         errors: [],
-        data: #Example.Actor<>,
+        data: %Example.Actor<>,
         valid?: true
       >
     ]
   },
   errors: [],
-  data: #Example.Movie<>,
+  data: %Example.Movie<>,
   valid?: true
 >
 iex>  Repo.update!(changeset)
