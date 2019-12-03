@@ -1,5 +1,5 @@
 ---
-version: 2.3.0
+version: 2.4.0
 title: Basics
 ---
 
@@ -36,8 +36,8 @@ $ cd friends
 ```elixir
   defp deps do
     [
-      {:ecto, "~> 2.0"},
-      {:postgrex, "~> 0.11"}
+      {:ecto, "~> 3.2"},
+      {:postgrex, "~> 0.15"}
     ]
   end
 ```
@@ -64,24 +64,25 @@ $ mix ecto.gen.repo -r Friends.Repo
 
 ```elixir
 config :friends, Friends.Repo,
-  adapter: Ecto.Adapters.Postgres,
   database: "friends_repo",
   username: "postgres",
   password: "",
   hostname: "localhost"
 ```
 
-这个配置决定 Ecto 如何连接到数据库。这里要注意我们是选择 `Ecto.Adapters.Postgres` 适配器。
+这个配置决定 Ecto 如何连接到数据库。
 
 同时它还在 `lib/friends/repo.ex` 文件中创建了一个 `Friends.Repo` 模块
 
 ```elixir
 defmodule Friends.Repo do
-  use Ecto.Repo, otp_app: :friends
+  use Ecto.Repo,
+    otp_app: :friends,
+    adapter: Ecto.Adapters.Postgres
 end
 ```
 
-我们将使用 `Friends.Repo` 模块来查询数据库。 我们还告诉该模块在 `:friends` 应用程序中查找其对应的数据库配置信息。
+我们将使用 `Friends.Repo` 模块来查询数据库。我们还告诉该模块如何在 `:friends` 应用程序中查找其对应的数据库配置信息，并且指定 `Ecto.Adapters.Postgres` 作为数据库适配器。
 
 接下来，我们将在 `lib/friends/application.ex` 文件中的应用程序的 supervision 树中设置`Friends.Repo`作为 supervisor。
 这将在我们的应用程序启动时启动Ecto进程。
