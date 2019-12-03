@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.1
 title: Changesets
 ---
 
@@ -24,40 +24,41 @@ iex> %Ecto.Changeset{}
 
 为了使 changeset 真正有用，当我们创建它时，我们需要提供一个数据的大致结构。有什么比我们创建的 schema 更准确地描述需要使用的字段及其类型的数据结构呢？
 
-让我们看一个最简单常见的 User 的 Schema：
+让我们使用前面课程的 `Friends.Person` Schema：
 
 ```elixir
-defmodule User do
+defmodule Friends.Person do
   use Ecto.Schema
 
-  schema "users" do
-    field(:name, :string)
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
   end
 end
 ```
 
-要利用 `User` 的 Schema 创建 changeset 的话，我们需要使用 `Ecto.Changeset.cast/4`
+要利用 `Person` 的 Schema 创建 changeset 的话，我们需要使用 `Ecto.Changeset.cast/4`
 
 ```elixir
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{}, [:name])
-%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
  ```
 
-第一个参数是原始数据 - 在这个例子下是为空的 `％User{}` 结构。 Ecto 非常聪明，可以根据结构本身找到对应的 Schema。 第二个参数是我们想要做出的更新 - 这里是一个空的 map 结构。 第三个参数是 `cast/4` 特别的原因: 它包含了允许通过的字段列表，这使我们能够控制哪些字段可以更改，并保护剩下的字段。
+第一个参数是原始数据 - 在这个例子下是为空的 `％Friends.Person{}` 结构。 Ecto 非常聪明，可以根据结构本身找到对应的 Schema。 第二个参数是我们想要做出的更新 - 这里是一个空的 map 结构。 第三个参数是 `cast/4` 特别的原因: 它包含了允许通过的字段列表，这使我们能够控制哪些字段可以更改，并保护剩下的字段。
 
  ```elixir
- iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [:name])
+ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
  %Ecto.Changeset<
   action: nil,
   changes: %{name: "Jack"},
   errors: [],
-  data: #User<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
-%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #User<>,
+iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Person<>,
  valid?: true>
 ```
 
@@ -68,12 +69,12 @@ iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => "Jack"}, [])
 现在我们可以创建 changesets，但由于我们没有校验，对 name 所做的任何更改都会被 Ecto 接受，所以我们最终可能会得到一个值为空的 name：
 
 ```elixir
-iex> Ecto.Changeset.cast(%User{name: "Bob"}, %{"name" => ""}, [:name])
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{"name" => ""})
 %Ecto.Changeset<
  action: nil,
- changes: %{name: ""},
+ changes: %{name: nil},
  errors: [],
- data: #User<>,
+ data: %Friends.Person<>,
  valid?: true
 >
 ```
@@ -84,15 +85,16 @@ Ecto 认为这个 changeset 是合法的 （`valid?: true`)，但实际上，我
 
 Ecto 附带了许多内置的校验函数来帮助我们。
 
-接下来，我们会大量使用 `Ecto.Changeset` 提供的校验函数，所以让我们将 `Ecto.Changeset` 导入到包含了 schema 的 `user.ex` 模块中：
+接下来，我们会大量使用 `Ecto.Changeset` 提供的校验函数，所以让我们将 `Ecto.Changeset` 导入到包含了 schema 的 `person.ex` 模块中：
 
 ```elixir
-defmodule User do
+defmodule Friends.Person do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "users" do
-    field(:name, :string)
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
   end
 end
 ```
@@ -104,7 +106,7 @@ end
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
 end
 ```
 
@@ -118,15 +120,15 @@ def changeset(struct, params) do
 end
 ```
 
-当我们调用 `User.changeset/2` 函数并传递一个值为空的 name 时，changeset 将不再有效，还会包含有用的错误消息。 注意：在 `iex` 中调用时不要忘记运行 `recompile()` 命令，否则它将无法获取您在代码中所做的更改。
+当我们调用 `Friends.Person.changeset/2` 函数并传递一个值为空的 name 时，changeset 将不再有效，还会包含有用的错误消息。 注意：在 `iex` 中调用时不要忘记运行 `recompile()` 命令，否则它将无法获取您在代码中所做的更改。
 
 ```elixir
-iex> User.changeset(%User{}, %{"name" => ""})
+iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
 %Ecto.Changeset<
   action: nil,
   changes: %{},
   errors: [name: {"can't be blank", [validation: :required]}],
-  data: #User<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -138,7 +140,7 @@ iex> User.changeset(%User{}, %{"name" => ""})
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> validate_required([:name])
   |> validate_length(:name, min: 2)
 end
@@ -147,15 +149,15 @@ end
 您可以猜一下如果我们传单个字符的 name，结果会是什么！
 
 ```elixir
-iex> User.changeset(%User{}, %{"name" => "A"})
+iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
 %Ecto.Changeset<
   action: nil,
   changes: %{name: "A"},
   errors: [
     name: {"should be at least %{count} character(s)",
-     [count: 2, validation: :length, min: 2]}
+     [count: 2, validation: :length, kind: :min, type: :string]}
   ],
-  data: #User<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -202,7 +204,7 @@ end
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> validate_required([:name])
   |> validate_length(:name, min: 2)
   |> validate_fictional_name()
@@ -210,12 +212,12 @@ end
 ```
 
 ```elixir
-iex> User.changeset(%User{}, %{"name" => "Bob"})
+iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
 %Ecto.Changeset<
   action: nil,
   changes: %{name: "Bob"},
   errors: [name: {"is not a superhero", []}],
-  data: #User<>,
+  data: %Friends.Person<>,
   valid?: false
 >
 ```
@@ -247,7 +249,7 @@ end
 ```elixir
 def registration_changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> set_name_if_anonymous()
 end
 ```
@@ -255,12 +257,12 @@ end
 现在我们不必传递 `name`，`Anonymous` 将按预期自动设置：
 
 ```elixir
-iex> User.registration_changeset(%User{}, %{})
+iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
 %Ecto.Changeset<
   action: nil,
   changes: %{name: "Anonymous"},
   errors: [],
-  data: #User<>,
+  data: %Friends.Person<>,
   valid?: true
 >
 ```
@@ -269,8 +271,8 @@ iex> User.registration_changeset(%User{}, %{})
 
 ```elixir
 def sign_up(params) do
-  %User{}
-  |> User.registration_changeset(params)
+  %Friends.Person{}
+  |> Friends.Person.registration_changeset(params)
   |> Repo.insert()
 end
 ```

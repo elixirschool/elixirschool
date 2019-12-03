@@ -1,5 +1,5 @@
 ---
-version: 1.2.5
+version: 1.3.0
 title: 集合
 ---
 
@@ -172,4 +172,20 @@ iex> %{map | foo: "baz"}
 %{foo: "baz", hello: "world"}
 iex> map.hello
 "world"
+```
+
+**注意**: 这种语法只在更新一个已经存在于映射的键才有效！如果键不存在，则会抛出 `KeyError` 错误。
+
+要创建一个新的键值对，则应当使用 [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3)
+
+```elixir
+iex> map = %{hello: "world"}
+%{hello: "world"}
+iex> %{map | foo: "baz"}
+** (KeyError) key :foo not found in: %{hello: "world"}
+    (stdlib) :maps.update(:foo, "baz", %{hello: "world"})
+    (stdlib) erl_eval.erl:259: anonymous fn/2 in :erl_eval.expr/5
+    (stdlib) lists.erl:1263: :lists.foldl/3
+iex> Map.put(map, :foo, "baz")
+%{foo: "baz", hello: "world"}
 ```

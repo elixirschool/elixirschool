@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: 测试
 ---
 
@@ -32,6 +32,8 @@ end
 Finished in 0.03 seconds
 2 tests, 0 failures
 ```
+
+为什么在最后的测试输出里会有两个点？除了在 `test/example_test.exs` 的测试外，Mix 还在 `lib/example.ex` 里生成了一个文档测试。
 
 ### 断言（assert）
 
