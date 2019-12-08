@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.1.0
 title: 查询
 ---
 
@@ -60,14 +60,14 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 
 `Ecto.Query` 模块提供了查询 DSL。我们可以使用它来从应用的 repository 查询和获取数据。
 
-### 通过 `Ecto.Query.from/2` 创建查询语句
+### 通过 `Ecto.Query.from/2` 创建基于关键字的查询语句
 
-我们可以使用 `Ecto.Query.from/2` 函数来创建查询。这个函数接收两个参数：一个是表达式，和一个关键字列表。让我们创建一个从 repository 获取所有的电影的查询语句：
+我们可以使用 `Ecto.Query.from/2` 宏来创建查询。这个函数接收两个参数：一个是表达式，和可选的一个关键字列表。让我们创建一个最简单的从 repository 获取所有的电影的查询语句：
 
 ```elixir
 import Ecto.Query
-query = from(m in Movie, select: m)
-#Ecto.Query<from m in Example.Movie, select: m>
+query = from(Movie)
+%Ecto.Query<from m in Example.Movie>
 ```
 
 我们可以使用 `Repo.all/2` 函数来执行这个查询语句。这个函数必须接收一个 Ecto 查询语句参数，兵解返回满足查询条件的所有记录。
@@ -89,79 +89,86 @@ iex> Repo.all(query)
 ]
 ```
 
-#### 使用 `from` 构建关键字查询语句
+#### 使用 `from` 的简单无绑定查询
 
-上面的例子给 `from/2` 传入一个 *关键字查询* 参数来构造查询语句。当使用 `from` 来构造关键字查询语句是，第一个参数可以是以下两种情况的任一种：
-
-* 一个 `in` 表达式（比如：`m in Movie`）  
-* 一个实现了 `Ecto.Queryable` 协议的模块（比如：`Movie`）  
-
-第二个参数则是我们的 `select` 关键字查询语句。
-
-#### 使用 `from` 构建查询表达式
-
-当把 `from` 使用于查询表达式的时候，第一个参数必须是实现了 `Ecto.Queryable` 协议的模块（比如：`Movie`）。第二个参数则是一个表达式。让我们来看一个例子：
+上面的样例丧失了 SQL 语句最有趣的部分。我们通常纸箱查询某几个特定的字段，或者根据一些条件来过滤数据。当我们希望只获取标题为 `"Ready Player One"` 的所有电影的 `title` 和 `tagline` 字段时：
 
 ```elixir
-iex> query = select(Movie, [m], m)
-%Ecto.Query<from m in Example.Movie, select: m>
-iex> Repo.all(query)
+iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One",
+ select: [:title, :tagline]>
 
-06:16:20.854 [debug] QUERY OK source="movies" db=0.9ms
+iex> Repo.all(query)                                                                    
+SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready Player One') []
 [
   %Example.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
     characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
-    id: 1,
+    id: nil,
     tagline: "Something about video games",
     title: "Ready Player One"
   }
 ]
 ```
 
-我们可以在 _不需要_ 一个 `in` 语句（`m in Movie`）的时候使用查询表达式。当我们不需要使用某个数据结构的引用时，我们可以不使用这个 `in` 语句。我们的查询语句，因为不需要说根据某种特定的条件来选择电影，所以不需要提供一个数据结构的引用。那么，我们就不需要使用 `in` 表达式和关键字查询语句。
+请注意到返回的结构体只包含 `tagline` 和 `title` - 这是通过 `select:` 部分设置的结果。
 
-### 使用 `select` 表达式
+以上那些查询被称为 *无绑定（bindingless）*，它们足够简单。
 
-我们使用 `Ecto.Query.select/3` 函数来指定查询语句中的 select 部分。如果我们只想获取其中某些字段，我们可以使用一个原子列表来指定那些字段，或者是引用结构体中的某些键。我们来看看第一种方式：
+#### 查询的绑定
+
+目前为止，我们通过使用一个实现了 `Ecto.Queryable` 协议（比如：`Movie`）的模块来作为 `from` 宏的第一个参数。但是，我们也可以使用 `in` 表达式：
 
 ```elixir
-iex> query = from(Movie, select: [:title])                                            
-%Ecto.Query<from m in Example.Movie, select: [:title]>
-iex> Repo.all(query)
-
-15:15:25.842 [debug] QUERY OK source="movies" db=1.3ms
-[
-  %Example.Movie{
-    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
-    id: nil,
-    tagline: nil,
-    title: "Ready Player One"
-  }
-]
+iex> query = from(m in Movie)                                                           
+%Ecto.Query<from m in Example.Movie>
 ```
 
-请留意，我们并 _没有_ 使用一个 `in` 表达式作为第一个参数传入 `from` 函数。那时因为我们没有在 `select` 中使用关键字列表，所以并不需要为数据结构创建一个引用。
-
-这种方式返回的结构体，只包含了 `title` 键值。
-
-第二种方式的表现行为则有点不同。这次，我们 *确实* 需要使用一个 `in` 表达式。这是因为我们使用了数据结构的引用，来指明电影结构体中的 `title` 键：
+这样的情况，我们把 `m` 称为一个 *绑定（binding）*。绑定非常有用，因为它们允许我们在查询的其它部分中引用这些模块。当我们想找出所有 `id` 小于 `2` 的电影的标题时：
 
 ```elixir
-iex(15)> query = from(m in Movie, select: m.title)   
-%Ecto.Query<from m in Example.Movie, select: m.title>
-iex(16)> Repo.all(query)                             
+iex> query = from(m in Movie, where: m.id < 2, select: m.title)
+%Ecto.Query<from m in Example.Movie, where: m.id < 2, select: m.title>
 
-15:06:12.752 [debug] QUERY OK source="movies" db=4.5ms queue=0.1ms
+iex> Repo.all(query)                                           
+SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-不同的是，这种使用 `select` 的方式，返回的是包含了指定值的列表。
+在这里，最重要的一点就是，查询语句的输出是如何改变的。通过在 `select:` 部分使用绑定和*表达式*，我们可以精确指定要返回字段的结构。比如说，我们想返回一个元组：
+
+```elixir
+iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
+
+iex> Repo.all(query)                                                          
+[{"Ready Player One"}]
+```
+
+比较好的做法是，通过简单的无绑定查询开始，等需要引用你的数据结构时，再引入绑定的用法。对于查询中的绑定使用方法，可参见 [Ecto 文档](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions)
+
+
+### 基于宏的查询
+
+上面的例子里，我们使用的是在 `from` 宏里面添加 `select:` 和 `where:` 关键字来打造查询语句 - 这些也被称为*基于关键字的查询语句*。但是，还有另一种组装查询语句的方式 - 基于宏的查询语句。Ecto 为每一个关键字都提供了宏，比如 `select/3` 或者 `where/3`。每一个宏都接收一个 *queryable* 值，一个*显式声明的绑定列表*，和提供给关键字查询语句类似的表达式：
+
+```elixir
+iex> query = select(Movie, [m], m.title)                           
+%Ecto.Query<from m in Example.Movie, select: m.title>
+iex> Repo.all(query)                    
+SELECT m0."title" FROM "movies" AS m0 []
+["Ready Player One"]
+```
+
+使用宏的一个好处就是可以很好的结合管道来使用：
+
+```elixir
+iex> query = Movie |> where([m], m.id < 2) |> select([m], {m.title})
+
+iex> Repo.all(query)
+[{"Ready Player One"}]
+```
+
 
 ### 使用 `where` 表达式
 
