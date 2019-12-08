@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Đặc tả và kiểu
 ---
 
@@ -15,7 +15,7 @@ Tuy nhiên, trong một số trường hợp, các đặc tả sẽ trở nên k
 
 ## Đặc tả
 
-Nếu đã có kinh nghiệm với Java và Ruby, bạn có thể coi đặc tả như là một `interface`. Đặc tả định nghĩa kiểu của các tham số của hàm, cũng như kiểu của giá trị trả về.
+Nếu đã có kinh nghiệm với Java, bạn có thể coi đặc tả như là một `interface`. Đặc tả định nghĩa kiểu của các tham số của hàm, cũng như kiểu của giá trị trả về.
 
 Để định nghĩa kiểu đầu vào và đầu ra, chúng ta sử dụng `@spec` ngay trước định nghĩa hàm, các tham số cho `@spec` sẽ là tên của hàm, danh sách kiểu của các tham số cho hàm đó, tiếp theo là `::`, cuối cùng là kiểu của giá trị trả về
 
