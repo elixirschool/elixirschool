@@ -251,12 +251,15 @@
     - "no"
 
 - github: brain-geek
-  name:
+  name: Alex Rozumii
   intro:
   homepage:
   twitter:
   contributions:
+    - lesson
     - translator
+  lessons:
+    - Nerves
   languages:
     - ru
     - uk
