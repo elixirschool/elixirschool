@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.4.1
 title: Модулі
 ---
 
@@ -113,7 +113,7 @@ iex> %{name: "Sean"} = sean
 
 ```elixir
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", roles: [...], ...>"
+"%Example.User<name: \"Sean\", roles: [...], ...>"
 ```
 
 Усі наші друзі присутні, і це добре для цього прикладу, але що, якщо ми мали б захищене поле, яке не хотіли б включати?
@@ -133,9 +133,9 @@ _Зауваження_: ми могли б також використати `@d
 
 ```elixir
 iex> sean = %Example.User{name: "Sean"}
-#Example.User<name: "Sean", ...>
+%Example.User<name: "Sean", ...>
 iex> inspect(sean)
-"#Example.User<name: \"Sean\", ...>"
+"%Example.User<name: \"Sean\", ...>"
 ```
 
 The `roles` are excluded from output!
