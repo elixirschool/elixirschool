@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.1
 title: Связи
 ---
 
@@ -129,7 +129,7 @@ mix ecto.migrate
 mix ecto.gen.migration create_distributors
 ```
 
-Добавим создание поля `movie_id` в таблице `distributors`:
+Добавим создание поля `movie_id` в таблице `distributors` вместе с уникальным индексом, который позволит фильму иметь только одного дистрибьютора:
 
 ```elixir
 # priv/repo/migrations/*_create_distributors.exs
@@ -142,6 +142,8 @@ defmodule Example.Repo.Migrations.CreateDistributors do
       add :name, :string
       add :movie_id, references(:movies)
     end
+
+    create unique_index(:distributors, [:movie_id])
   end
 end
 ```
