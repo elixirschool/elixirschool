@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.2
 title: Changesets
 ---
 
@@ -39,7 +39,7 @@ defmodule Friends.Person do
 end
 ```
 
-Para crear un *changeset* usando el esquema `Person` vamos a usar `Ecto.Changeset.cast/4`:
+Para crear un *changeset* usando el esquema `Person` vamos a usar `Ecto.Changeset.cast/3`:
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
@@ -50,7 +50,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
 El primer parámetro es la data original, una estructura inicial de `%Friends.Person{}` en este caso.
 Ecto es lo suficientemente inteligente para encontrar el esquema basándose en la estructura misma.
 El segundo parámetro son los cambios que queremos hacer, solo un mapa vació.
-El tercer parámetro es lo que hace a `cast/4` especial: es una lista de los campos permitidos a usar los cuales nos dan la habilidad para controlar que campos pueden ser cambiados y mantener seguros al resto.
+El tercer parámetro es lo que hace a `cast/3` especial: es una lista de los campos permitidos a usar los cuales nos dan la habilidad para controlar que campos pueden ser cambiados y mantener seguros al resto.
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
@@ -69,7 +69,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 
 Puedes ver como el nuevo nombre fue ignorado en la segunda linea, donde este no fue explícitamente permitido.
 
-Una alternativa a `cast/4`es la función `change/2` la cual no tiene la habilidad de filtrar cambios como `cast/4`.
+Una alternativa a `cast/3`es la función `change/2` la cual no tiene la habilidad de filtrar cambios como `cast/3`.
 Es útil cuando confías en la fuente que está haciendo los cambios o cuando trabajas con data manualmente.
 
 Ahora podemos crear *changesets* pero dado que no tenemos validaciones cualquier cambio al nombre de la persona será aceptado, por lo que podríamos terminar con un nombre vació:
@@ -105,7 +105,7 @@ defmodule Friends.Person do
 end
 ```
 
-Ahora podemos usar la función `cast/4` directamente.
+Ahora podemos usar la función `cast/3` directamente.
 
 Es común tener uno o mas funciones que creen *changesets* para un esquema. Vamos a hacer uno que acepte una estructura, un mapa de cambios y retorne un *changeset*:
 

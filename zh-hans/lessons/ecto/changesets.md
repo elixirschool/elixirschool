@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.2
 title: Changesets
 ---
 
@@ -37,7 +37,7 @@ defmodule Friends.Person do
 end
 ```
 
-要利用 `Person` 的 Schema 创建 changeset 的话，我们需要使用 `Ecto.Changeset.cast/4`
+要利用 `Person` 的 Schema 创建 changeset 的话，我们需要使用 `Ecto.Changeset.cast/3`
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
@@ -45,7 +45,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
  valid?: true>
  ```
 
-第一个参数是原始数据 - 在这个例子下是为空的 `％Friends.Person{}` 结构。 Ecto 非常聪明，可以根据结构本身找到对应的 Schema。 第二个参数是我们想要做出的更新 - 这里是一个空的 map 结构。 第三个参数是 `cast/4` 特别的原因: 它包含了允许通过的字段列表，这使我们能够控制哪些字段可以更改，并保护剩下的字段。
+第一个参数是原始数据 - 在这个例子下是为空的 `％Friends.Person{}` 结构。 Ecto 非常聪明，可以根据结构本身找到对应的 Schema。 第二个参数是我们想要做出的更新 - 这里是一个空的 map 结构。 第三个参数是 `cast/3` 特别的原因: 它包含了允许通过的字段列表，这使我们能够控制哪些字段可以更改，并保护剩下的字段。
 
  ```elixir
  iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
@@ -64,7 +64,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 
 您可以看到第二次的更新忽略了新的 name 值，因为这里没有允许 name 字段。
 
-`cast/4` 函数的一个替代方案是 `change/2` 函数，但它不能像 `cast/4` 那样过滤一些更改。 当您信任进行更改的源数据或手动处理数据时，就可以使用这个函数。
+`cast/3` 函数的一个替代方案是 `change/2` 函数，但它不能像 `cast/3` 那样过滤一些更改。 当您信任进行更改的源数据或手动处理数据时，就可以使用这个函数。
 
 现在我们可以创建 changesets，但由于我们没有校验，对 name 所做的任何更改都会被 Ecto 接受，所以我们最终可能会得到一个值为空的 name：
 
@@ -99,7 +99,7 @@ defmodule Friends.Person do
 end
 ```
 
-现在我们可以直接使用 `cast/4` 函数了。
+现在我们可以直接使用 `cast/3` 函数了。
 
 通常情况下我们会为 Schema 创建一个或多个 changeset 构造函数。 让我们创建一个接受结构，变更映射并返回 changeset 的函数：
 
