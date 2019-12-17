@@ -12,9 +12,9 @@ excerpt: >
 
 ## LiveView Can Get Messy  
 
-As LiveView becomes a more established technology, we naturally find ourselves leveraging to back more and more complex features. If we're not careful, this can lead to "fat controller syndrome"––live views that are jam packed with complex business logic and disparate responsibilities, just like the classic "fat Rails controller".
+As LiveView becomes a more established technology, we naturally find ourselves using it to back more and more complex features. If we're not careful, this can lead to "fat controller syndrome"––live views that are jam packed with complex business logic and disparate responsibilities, just like the classic "fat Rails controller".
 
-How can we write live views that are easy to reason about and maintain and adhere to common design principles like SRP?
+How can we write live views that are easy to reason about and maintain while adhering to common design principles like SRP?
 
 One way to achieve this goal is to leverage the `Phoenix.LiveComponent` behaviour.
 
@@ -22,7 +22,7 @@ One way to achieve this goal is to leverage the `Phoenix.LiveComponent` behaviou
 
 Components are modules that use the `Phoenix.LiveComponent` behaviour. This behaviour provides
 
-> ...a mechanism to compartmentalize state, markup, and events in LiveView. [*](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveComponent.html)
+> ...a mechanism to compartmentalize state, markup, and events in LiveView. ––[docs](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveComponent.html)
 
 Components are run inside a parent live view process via a call to `Phoenix.LiveView.live_component/3`. Since they share a process with their parent live view, communication between the two is simple (more on that later).
 
@@ -303,7 +303,7 @@ end
 These callbacks ensure two things for us:
 
 * The correct radio button is marked as "selected" when a user chooses a new search query type option.
-* The search form input's `placeholder` attribute is correctly updated to reflected the selected query type:
+* The search form input's `placeholder` attribute is correctly updated to reflect the selected query type:
 
 ```html
 <input name="search[value]" value="<%= @search.value %>" type="text" placeholder="<%= "search by #{@search.query}"  %>">
@@ -317,7 +317,7 @@ The feature we're designing requires us to populate the URI's query params in th
 
 In order to achieve this, we can reach for the `live_redirect/2` function. This will take advantage of the browser's `pushState` API to change the page navigation without actually sending a web request. Instead, our live view's `handle_params/3` callback function will invoked, allowing us to respond by searching for the appropriate messages and updating the live view socket's state with those messages.
 
-But wait! The `live_redirect/2` function is sadly not available from within component since the `Phoenix.LiveComponent` behaivour does not implement a `handle_params/3` function. Luckily for us, however, the parent live view and the component share a process. That means that calling `self()` from within the component returns a PID that *is the same PID as that parent live view process*. So, from within our component we can `send` a message to `self()` and handle that message in the parent live view.
+But wait! The `live_redirect/2` function is sadly not available from within component since the `Phoenix.LiveComponent` behaviour does not implement a `handle_params/3` function. Luckily for us, however, the parent live view and the component share a process. That means that calling `self()` from within the component returns a PID that *is the same PID as that parent live view process*. So, from within our component we can `send` a message to `self()` and handle that message in the parent live view.
 
 We'll take advantage of this functionality to have our component handle search from submission events by sending a message to the parent live view instructing that live view to enact a live redirect.
 
