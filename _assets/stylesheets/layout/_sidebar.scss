@@ -59,7 +59,7 @@
 			top: -1px !important;
 			overflow: scroll;
 			max-height: 100vh;
-			
+
 			// To hide scrollbar in Firefox
 			scrollbar-width: none;
 			// To hide scrollbar in Chrome
@@ -126,7 +126,7 @@
 			overflow: hidden;
 			position: absolute;
 			text-align: center;
-			text-indent: 7.5em;
+			text-indent: -200%;
 			top: 0;
 			width: 6em;
 			z-index: _misc(z-index-base);
@@ -182,7 +182,6 @@
 				height: 6.25em;
 				left: _size(sidebar-width-alt);
 				line-height: 6.25em;
-				text-indent: 5em;
 				width: 5em;
 
 				&:before {
@@ -236,7 +235,6 @@
 			}
 
 			.toggle {
-				text-indent: 6em;
 				width: 6em;
 
 				&:before {
@@ -244,7 +242,7 @@
 					margin-left: (-0.875em / 2);
 				}
 			}
-			
+
 			.toggle-theme-wrapper {
 				.icon {
 					width: 6em;
@@ -262,7 +260,6 @@
 
 		@include breakpoint(small) {
 			.toggle {
-				text-indent: 7.25em;
 				width: 7.25em;
 
 				&:before {
