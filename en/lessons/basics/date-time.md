@@ -108,7 +108,7 @@ After installing it, you should globally configure Elixir to use Tzdata as timez
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 ```
 
-Let's now try creating time in London timezone and convert it to New York time:
+Let's now try creating time in Paris timezone and convert it to New York time:
 
 ```
 iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
