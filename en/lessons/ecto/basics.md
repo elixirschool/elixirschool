@@ -224,7 +224,7 @@ Similarly, we can update our schemas just as we would any other map or struct in
 iex> %{person | age: 18}
 %Friends.Person{age: 18, name: "Tom"}
 iex> Map.put(person, :name, "Jerry")
-%Friends.Person{age: 11, name: "Jerry"}
+%Friends.Person{age: 18, name: "Jerry"}
 ```
 
 In our next lesson on Changesets, we'll look at how to validate our data changes and finally how to persist them to
