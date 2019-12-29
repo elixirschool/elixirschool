@@ -3,7 +3,7 @@ author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
 categories: general
 tags: ['live view']
-date: 2019-12-26
+date: 2019-12-29
 layout: post
 title: LiveView Design Patterns: LiveComponent and the Single Responsibility Principle
 excerpt: >
