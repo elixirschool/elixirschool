@@ -5,12 +5,12 @@ categories: general
 tags: ['live view']
 date: 2019-12-29
 layout: post
-title: LiveView Design Patterns: LiveComponent and the Single Responsibility Principle
+title: LiveView Design Patterns - LiveComponent and the Single Responsibility Principle
 excerpt: >
   It's easy to end up with an overly complex LiveView that houses lots of business rules and responsibilities. We can use `Phoenix.LiveComponent` to build a LiveView feature that is clean, maintainable and adherent to the Single Responsibility Principle.
 ---
 
-## LiveView Can Get Messy  
+## LiveView Can Get Messy
 
 As LiveView becomes a more established technology, we naturally find ourselves using it to back more and more complex features. If we're not careful, this can lead to "fat controller syndrome"––live views that are jam packed with complex business logic and disparate responsibilities, just like the classic "fat Rails controller".
 
@@ -173,7 +173,7 @@ defmodule RailwayUiWeb.MessageLive.SearchComponent do
     Phoenix.View.render(RailwayUiWeb.MessageView, "search_component.html", assigns)
   end
 end
-```  
+```
 
 At this point, our component is simple. It uses the `Phoenix.LiveComponent` behaviour and implements a `render/1` function. This function renders our `search_component.html.leex` template (which we'll take a look at in a moment), passing through the `assigns` established when the parent live view calls `live_component/3`.
 
@@ -215,7 +215,7 @@ end
 
 3. The `MessageLive.Index` live view's template renders with the `@search` assignment
 4. The `MessageLive.Index`'s template calls `live_component/3`, passing through the `@search` assignment
-5. The `MessageLive.SearchComponent`'s template renders with the  `@search` assignment, correctly rendering the search form to reflect any selected search query type and input.  
+5. The `MessageLive.SearchComponent`'s template renders with the  `@search` assignment, correctly rendering the search form to reflect any selected search query type and input.
 
 Let's take a look at the component's template now in order to understand how it uses the information in the search form's state to render appropriately.
 
@@ -327,7 +327,7 @@ We'll start by adding a `phx-submit` event binding to our search form in the com
 <form phx-submit="search" phx-change="search_form_change">
   ...
 </form>
-```  
+```
 
 Then we'll implement a `handle_event/3` function for this `"search"` event in the component:
 
