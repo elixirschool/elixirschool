@@ -150,7 +150,7 @@ iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
 
 ### reduce
 
-Avec `reduce/3` nous pouvons réduire nos collections à une unique valeur. Pour cela nous passons un accumulateur optionnel (`10` dans cet exemple) à notre fonction; s'il n'y a pas d'accumulateur, la première valeur est utilisée:
+Avec `reduce/3` nous pouvons réduire nos collections à une unique valeur. Pour cela nous passons un accumulateur optionnel (`10` dans cet exemple) à notre fonction; s'il n'y a pas d'accumulateur, ce dernier est initialisé à zéro :
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
