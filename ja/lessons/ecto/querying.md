@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: クエリ
 ---
 
@@ -68,7 +68,7 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 ```elixir
 import Ecto.Query
 query = from(m in Movie, select: m)
-#Ecto.Query<from m in Example.Movie, select: m>
+%Ecto.Query<from m in Example.Movie, select: m>
 ```
 
 クエリを実行するためには、 `Repo.all/2` 関数を使用します。この関数はEctoクエリの必須の引数を取り、クエリの条件を満たす全てのレコードを返します。
