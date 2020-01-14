@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Querying
 ---
 
@@ -103,9 +103,9 @@ iex> Repo.all(query)
 SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready Player One') []
 [
   %Example.Movie{
-    __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
+    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
+    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
     id: nil,
     tagline: "Something about video games",
     title: "Ready Player One"
@@ -130,7 +130,7 @@ In such case, we call `m` a *binding*. Bindings are extremely useful, because th
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
-#Ecto.Query<from m in Example.Movie, where: m.id < 2, select: m.title>
+%Ecto.Query<from m in Example.Movie, where: m.id < 2, select: m.title>
 
 iex> Repo.all(query)                                           
 SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
