@@ -68,7 +68,7 @@ We can create a query with the `Ecto.Query.from/2` macro. This function takes in
 ```elixir
 import Ecto.Query
 query = from(Movie)                
-#Ecto.Query<from m in Example.Movie>
+%Ecto.Query<from m in Example.Movie>
 ```
 
 In order to execute our query, we use the `Repo.all/2` function. This function takes in a required argument of an Ecto query and returns all of the records that meet the conditions of the query.
@@ -96,7 +96,7 @@ The example above lacks the most fun parts of SQL statements. We often want to o
 
 ```elixir
 iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
-#Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One",
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One",
  select: [:title, :tagline]>
 
 iex> Repo.all(query)                                                                    
@@ -123,14 +123,14 @@ So far we used a module that implements the `Ecto.Queryable` protocol (ex: `Movi
 
 ```elixir
 iex> query = from(m in Movie)                                                           
-#Ecto.Query<from m in Example.Movie>
+%Ecto.Query<from m in Example.Movie>
 ```
 
 In such case, we call `m` a *binding*. Bindings are extremely useful, because they allow us to reference modules in other parts of the query. Let's select titles of all movies that have `id` less than `2`:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
-#Ecto.Query<from m in Example.Movie, where: m.id < 2, select: m.title>
+%Ecto.Query<from m in Example.Movie, where: m.id < 2, select: m.title>
 
 iex> Repo.all(query)                                           
 SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
@@ -155,7 +155,7 @@ In the examples above we used keywords `select:` and `where:` inside of `from` m
 
 ```elixir
 iex> query = select(Movie, [m], m.title)                           
-#Ecto.Query<from m in Example.Movie, select: m.title>
+%Ecto.Query<from m in Example.Movie, select: m.title>
 iex> Repo.all(query)                    
 SELECT m0."title" FROM "movies" AS m0 []
 ["Ready Player One"]
@@ -179,7 +179,7 @@ In order to use interpolated values or Elixir expressions in our where clauses, 
 iex> title = "Ready Player One"
 "Ready Player One"
 iex> query = from(m in Movie, where: m.title == ^title, select: m.tagline)
-#Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
+%Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
  select: m.tagline>
 iex> Repo.all(query)
 
@@ -195,7 +195,7 @@ First, we'll write a query expression using the `first/2` function:
 
 ```elixir
 iex> first(Movie)
-#Ecto.Query<from m in Example.Movie, order_by: [desc: m.id], limit: 1>
+%Ecto.Query<from m in Example.Movie, order_by: [desc: m.id], limit: 1>
 ```
 
 Then we pass our query to the `Repo.one/2` function to get our result:
