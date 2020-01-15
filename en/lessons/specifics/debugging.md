@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.1.0
 title: Debugging
 ---
 
@@ -7,6 +7,115 @@ Bugs are an inherent part of any project, that's why we need debugging.
 In this lesson we'll learn about debugging Elixir code as well as static analysis tools to help find potential bugs.
 
 {% include toc.html %}
+
+# IEx
+
+The most straightforward tool we have for debugging Elixir code is IEx. But don't be fooled by its simplicity - you can solve most of the issues with your application by it.
+
+IEx means `Elixir's interactive shell`.  You could have already seen IEx in one of the previous lessons like [Basics](../../basics/basics) where we ran Elixir code interactively in the shell.
+
+The idea here is simple. You get the interactive shell in the context of the place you want to debug.
+
+Let's try it. To do that, create a file named `test.exs` and put this into the file:
+
+```
+defmodule TestMod do
+  def sum([a, b]) do
+    b = 0
+
+    a + b
+  end
+end
+
+IO.puts(TestMod.sum([34, 65]))
+```
+
+And if you run it - you'll get an apparent output of `34`:
+
+```
+$ elixir test.exs
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+34
+```
+
+But now let's get to the exciting part - the debugging. Put `require IEx; IEx.pry` in the line after `b = 0` and let's try running it once again. You'll get something like this:
+
+```
+$ elixir test.exs
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+Cannot pry #PID<0.92.0> at TestMod.sum/1 (test.exs:5). Is an IEx shell running?
+34
+```
+
+You should note that vital message. When running an application, as usual, IEx outputs this message instead of blocking execution of the program. To run it properly you need to prepend your command with `iex -S`. What this does is it runs `mix` inside the `iex` command it runs application in special mode in which call to `IEx.pry` stops the application execution.
+
+For example, `iex -S mix phx.server` to debug your Phoenix application. In our case, it's going to be `iex -S test.exs` to require the file:
+
+```
+$ iex -r test.exs
+Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
+
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+Request to pry #PID<0.107.0> at TestMod.sum/1 (test.exs:5)
+
+    3:     b = 0
+    4:
+    5:     require IEx; IEx.pry
+    6:
+    7:     a + b
+
+Allow? [Yn]
+```
+
+After responding to the prompt via `y` or pressing Enter, you've entered the interactive mode.
+
+```
+ $ iex -r test.exs
+Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
+
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+Request to pry #PID<0.107.0> at TestMod.sum/1 (test.exs:5)
+
+    3:     b = 0
+    4:
+    5:     require IEx; IEx.pry
+    6:
+    7:     a + b
+
+Allow? [Yn] y
+Interactive Elixir (1.8.1) - press Ctrl+C to exit (type h() ENTER for help)
+pry(1)> a
+34
+pry(2)> b
+0
+pry(3)> a + b
+34
+pry(4)> continue
+34
+
+Interactive Elixir (1.8.1) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)>
+BREAK: (a)bort (c)ontinue (p)roc info (i)nfo (l)oaded
+       (v)ersion (k)ill (D)b-tables (d)istribution
+```
+
+To quit IEx, you can either hit `Ctrl+C` two times to exit the app, or type `continue` to go to the next breakpoint.
+
+As you can see, you can run any Elixir code. However, the limitation is that you can't modify variables of existing code, due to language immutability. However, you can get values of all the variables and run any computations. In this case, the bug would be in `b` reassigned to 0, and `sum` function being buggy as a result. Sure, language has already caught this bug even on the first run, but that's an example!
+
+### IEx helpers
+
+One of the more annoying parts of working with IEx is it has no history of commands you used in previous runs. For solving that problem, there is a separate subsection on [IEx documentation](https://hexdocs.pm/iex/IEx.html#module-shell-history), where you can find the solution for your platform of choice.
+
+You can also look through the list of other available helpers in [IEx.Helpers documentation](https://hexdocs.pm/iex/IEx.Helpers.html).
 
 # Dialyxir and Dialyzer
 
