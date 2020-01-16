@@ -113,13 +113,13 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 ]
 ```
 
-返ってくる構造体には `tagline` と `title` フィールドのみが設定されていることに注意してください - これは `select：` の部分の結果です。
+返ってくる構造体には `tagline` と `title` フィールドのみが設定されていることに注意してください - これは `select:` の部分の結果です。
 
-このようなクエリは、バインディングを必要としないほど単純であるため、 *bindingless* と呼ばれます。
+このようなクエリは、bindingを必要としないほど単純であるため、 *bindingless* と呼ばれます。
 
 #### クエリ式による `from` の使用
 
-これまで、 `from` マクロの最初の引数として `Ecto.Queryable` プロトコル（例： `Movie`）を実装するモジュールを使用しました。しかしながら、 このような `in` 式も利用することができます。
+これまで、 `from` マクロの最初の引数として `Ecto.Queryable` プロトコル（例： `Movie`）を実装するモジュールを使用しました。しかしながら、このような `in` 式も利用することができます。
 
 ```elixir
 iex> query = from(m in Movie)                                                           
@@ -137,7 +137,7 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-ここで非常に重要なことは、クエリの出力がどのように変化したかです。`select:` 部分のバインディングで *expression* を使用すると、選択したフィールドが返される方法を正確に指定できます。例えば、タプルを依頼できます。
+ここで非常に重要なことは、クエリの出力がどのように変化したかです。`select:` 部分のbindingで *expression* を使用すると、選択したフィールドが返される方法を正確に指定できます。例えば、タプルを指定できます。
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
@@ -146,10 +146,10 @@ iex> Repo.all(query)
 [{"Ready Player One"}]
 ```
 
-データ構造を参照する必要がある場合は、常に単純なbindinglessクエリから始めて、bindingを導入することをお勧めします。クエリのバインディングの詳細については、[Ecto documentation](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions) を参照してください。
+データ構造を参照する必要がある場合は、常に単純なbindinglessクエリから始めて、bindingを導入することをお勧めします。クエリのbindingの詳細については、[Ecto documentation](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions) を参照してください。
 
 ### マクロクエリ
-上記の例では、 `from` マクロ内でキーワード `select:` と `where:` を使用してクエリを作成しました - これらは、*keyword-basedのクエリ* と呼ばれます。ただし、クエリを作成する別の方法があります。 - マクロベースのクエリです。Ectoは、`select/3` や `where/3` などのようなすべてのキーワードにマクロを提供します。各マクロは、*queryable* 値、*明示的なバインディングのリスト*、およびアナログなキーワードに提供するのと同じ式を受け入れます
+上記の例では、 `from` マクロ内でキーワード `select:` と `where:` を使用してクエリを作成しました。これらは、*keyword-basedのクエリ* と呼ばれます。ただし、クエリを作成する別の方法があります。マクロベースのクエリです。Ectoは、`select/3` や `where/3` などにマクロを提供します。各マクロは、*queryable* な値、*明示的なbindingのリスト*、およびアナログなキーワードに提供するのと同じ式を受け入れます:
 
 ```elixir
 iex> query = select(Movie, [m], m.title)                           
