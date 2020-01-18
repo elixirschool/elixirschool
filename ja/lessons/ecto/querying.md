@@ -149,7 +149,7 @@ iex> Repo.all(query)
 データ構造を参照する必要がある場合は、常に単純なbindinglessクエリから始めて、bindingを導入することをお勧めします。クエリのbindingの詳細については、[Ecto documentation](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions) を参照してください。
 
 ### マクロクエリ
-上記の例では、 `from` マクロ内でキーワード `select:` と `where:` を使用してクエリを作成しました。これらは、*keyword-basedのクエリ* と呼ばれます。ただし、クエリを作成する別の方法があります。マクロベースのクエリです。Ectoは、`select/3` や `where/3` などにマクロを提供します。各マクロは、*queryable* な値、*明示的なbindingのリスト*、およびアナログなキーワードに提供するのと同じ式を受け入れます:
+上記の例では、 `from` マクロ内でキーワード `select:` と `where:` を使用してクエリを作成しました。これらは、*keyword-basedのクエリ* と呼ばれます。ただし、クエリを作成する別の方法もあります。マクロベースのクエリです。Ectoは、`select/3` や `where/3` などにマクロを提供します。各マクロは、*queryable* な値、*明示的なbindingのリスト*、およびアナログなキーワードに提供するのと同じ式を受け入れます:
 
 ```elixir
 iex> query = select(Movie, [m], m.title)                           
