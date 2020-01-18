@@ -113,7 +113,7 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 ]
 ```
 
-返ってくる構造体には `tagline` と `title` フィールドのみが設定されていることに注意してください - これは `select:` の部分の結果です。
+返ってくる構造体には `tagline` と `title` フィールドのみが設定されていることに注意してください - これは `select:` の結果です。
 
 このようなクエリは、bindingを必要としないほど単純であるため、 *bindingless* と呼ばれます。
 
