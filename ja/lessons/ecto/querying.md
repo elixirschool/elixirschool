@@ -126,7 +126,7 @@ iex> query = from(m in Movie)
 %Ecto.Query<from m in Example.Movie>
 ```
 
-このような場合には、 `m` を *binding* と呼びます。クエリの他の部分のモジュールを参照できるため、Bindingは非常に便利です。 `id` が `2` より小さい全ての映画のタイトルを選択してみましょう:
+このような場合には、 `m` を *binding* と呼びます。クエリの他の部分からモジュールが参照できるため、Bindingは非常に便利です。 `id` が `2` より小さい全ての映画のタイトルを選択してみましょう:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
