@@ -137,7 +137,7 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-ここで非常に重要なことは、クエリの出力がどのように変化したかです。`select:` 部分のbindingで *expression* を使用すると、選択したフィールドが返される方法を正確に指定できます。例えば、タプルを指定できます。
+ここで非常に重要なことは、クエリの出力がどのように変化したかです。`select:` 部分のbindingで *式* を使用すると、選択したフィールドが返される方法を正確に指定できます。例えば、タプルを指定できます。
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
