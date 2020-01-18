@@ -117,7 +117,7 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 
 このようなクエリは、bindingを必要としないほど単純であるため、 *bindingless* と呼ばれます。
 
-#### クエリ式による `from` の使用
+#### クエリでのBinding
 
 これまで、 `from` マクロの最初の引数として `Ecto.Queryable` プロトコル（例： `Movie`）を実装するモジュールを使用しました。しかしながら、このような `in` 式も利用することができます。
 
