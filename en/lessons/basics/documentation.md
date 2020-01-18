@@ -1,5 +1,5 @@
 ---
-version: 1.0.3
+version: 1.1.0
 title: Documentation
 ---
 
@@ -56,6 +56,7 @@ end
 ```
 
 We (or others) can access this module documentation using the `h` helper function within IEx.
+We can see this for ourselves if we put our `Greeter` module into a new file, `greeter.ex` and compile it:
 
 ```elixir
 iex> c("greeter.ex")
@@ -67,6 +68,8 @@ iex> h Greeter
 
 Provides a function hello/1 to greet a human
 ```
+
+_Note_: we don't need to manually compile our files as we did above if we're working within the context of a mix project. You can use `iex -S mix` to load the IEx console for the current project if you're working in a mix project.
 
 ### Documenting Functions
 
