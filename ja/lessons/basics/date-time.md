@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.1.0
 title: 日付と時間
 ---
 
@@ -10,8 +10,6 @@ Elixirで時間を扱ってみましょう。
 ## Time
 
 Elixirは時間を扱うためのいくつかのモジュールを持っています。
-ただし、この機能はUTCタイムゾーンとの連携に限定されている点に気をつける必要があります。
-
 現在時刻の取得から始めてみましょう:
 
 ```elixir
@@ -91,10 +89,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 `NaiveDateTime` で記載したような制限はありません。そのため、これは時間と日付を両方持ち、タイムゾーンもサポートしています。
 しかしタイムゾーンについては注意してください。公式ドキュメントではこのように記載されています:
 
-```
-このモジュールには変換関数とUTCで動作する関数だけが含まれていることに気付くでしょう。
-これは、適切なDateTimeの実装には、現時点でElixirの機能として提供されていないタイムゾーンデータベースを必要とするためです。
-```
+> このモジュールの多くの機能には、タイムゾーンデータベースが必要です。デフォルトでは `Calendar.get_time_zone_database/0` によって返されるデフォルトのタイムゾーンデータベースを使います。デフォルトでは `Calendar.UTCOnlyTimeZoneDatabase` で、 "Etc/UTC"のみを処理し、他のタイムゾーンでは `{:error, :utc_only_time_zone_database}` を返します。
 
 また、タイムゾーンを提供するだけで、NaiveDateTimeからDateTimeのインスタンスを作ることができます:
 
@@ -102,6 +97,28 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
+
+## タイムゾーンの利用
+前の章で述べたように、デフォルトではElixirにはタイムゾーンデータがありません。
+この問題を解決するには、[tzdata](https://github.com/lau/tzdata) パッケージをインストールして設定する必要があります。
+それをインストールした後、Tzdataをタイムゾーンデータベースとして使用するように、Elixirにグローバル設定をする必要があります。
+
+```
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+```
+
+パリのタイムゾーンで時間を作成して、それをニューヨーク時間に変換してみましょう。
+
+```
+iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
+#DateTime<2019-01-01 12:00:00+01:00 CET Europe/Paris>
+iex> {:ok, ny_datetime} = DateTime.shift_zone(paris_datetime, "America/New_York")
+{:ok, #DateTime<2019-01-01 06:00:00-05:00 EST America/New_York>}
+iex> ny_datetime
+#DateTime<2019-01-01 06:00:00-05:00 EST America/New_York>
+```
+
+ご覧のとおり、時刻はパリの12:00から6:00に変更されました。これは正しいです。2つの都市の時差は6時間です。
 
 これがそうです！さらに高度な他の機能を使いたい場合は、 [Time](https://hexdocs.pm/elixir/Time.html) 、 [Date](https://hexdocs.pm/elixir/Date.html) 、 [DateTime](https://hexdocs.pm/elixir/DateTime.html)、 [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) のドキュメントをさらに確認することを考慮するといいでしょう。
 Elixirで時間を扱うパワフルなライブラリである [Timex](https://github.com/bitwalker/timex) と [Calendar](https://github.com/lau/calendar) についても考慮するべきです。
