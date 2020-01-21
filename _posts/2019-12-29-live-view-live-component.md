@@ -288,7 +288,7 @@ defmodule RailwayUiWeb.MessageLive.SearchComponent do
     ) do
     {:noreply, assign(socket, :search, %Search{query: search.query, value: value})}
   end
-
+invoke
   # update search state when user selects a query type radio button
   def handle_event(
         "search_form_change",
@@ -315,7 +315,7 @@ Now that our form component's state properly updates in response to the user's i
 
 The feature we're designing requires us to populate the URI's query params in the browser's URL bar when the user submits the search form. This allows users to share a link with the results of a particular search.
 
-In order to achieve this, we can reach for the `live_redirect/2` function. This will take advantage of the browser's `pushState` API to change the page navigation without actually sending a web request. Instead, our live view's `handle_params/3` callback function will invoked, allowing us to respond by searching for the appropriate messages and updating the live view socket's state with those messages.
+In order to achieve this, we can reach for the `live_redirect/2` function. This will take advantage of the browser's `pushState` API to change the page navigation without actually sending a web request. Instead, our live view's `handle_params/3` callback function will be invoked, allowing us to respond by searching for the appropriate messages and updating the live view socket's state with those messages.
 
 But wait! The `live_redirect/2` function is sadly not available from within component since the `Phoenix.LiveComponent` behaviour does not implement a `handle_params/3` function. Luckily for us, however, the parent live view and the component share a process. That means that calling `self()` from within the component returns a PID that *is the same PID as that parent live view process*. So, from within our component we can `send` a message to `self()` and handle that message in the parent live view.
 
