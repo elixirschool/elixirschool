@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Sigils
 ---
 
@@ -76,7 +76,8 @@ iex> "elixir" =~ re
 true
 ```
 
-さらに、ElixirはErlangの正規表現ライブラリを元に作られた [Regex](https://hexdocs.pm/elixir/Regex.html) APIを提供しています。正規表現シギルを使って `Regex.split/2` を実装してみましょう。
+さらに、ElixirはErlangの正規表現ライブラリを元に作られた [Regex](https://hexdocs.pm/elixir/Regex.html) APIを提供しています。
+`Regex.split/2` で正規表現シギルを使ってみましょう。
 
 ```elixir
 iex> string = "100_000_000"
@@ -103,16 +104,16 @@ iex> ~S/the cat in the hat on the mat/
 ところで違いは何でしょうか。それは文字リストのシギルで既に見たのと同じです。つまり埋め込みとエスケープシーケンスを使うか使わないか、ということです。他の例を見てみましょう:
 
 ```elixir
-iex> ~s/welcome to elixir #{String.downcase "school"}/
+iex> ~s/welcome to elixir #{String.downcase "SCHOOL"}/
 "welcome to elixir school"
 
-iex> ~S/welcome to elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
+"welcome to elixir \#{String.downcase \"SCHOOL\"}"
 ```
 
 ### 単語のリスト
 
-単語のリストのシギルは時にはものすごく役立ちます。費やす時間、キーを打つ回数、それと間違いなくコードベースの複雑さを減らすことができます。以下に簡単な例を挙げます：
+単語のリストのシギルは時々役立ちます。費やす時間、キーを打つ回数、それと間違いなくコードベースの複雑さを減らすことができます。以下に簡単な例を挙げます：
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -136,7 +137,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) は **タイムゾーンがない** `DateTime` を表現する構造体を手早く作るときに有用です。
 
-ほとんどの場合、 `NaiveDateTime` 構造体を直接作ることは避けるべきです。ですが、パターンマッチングにはとても有用です。例をあげます:
+ほとんどの場合、 `NaiveDateTime` 構造体を直接作ることは避けるべきです。ですが、パターンマッチングには有用です。例をあげます:
 
 ```elixir
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
