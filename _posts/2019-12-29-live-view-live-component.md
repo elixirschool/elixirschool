@@ -288,7 +288,7 @@ defmodule RailwayUiWeb.MessageLive.SearchComponent do
     ) do
     {:noreply, assign(socket, :search, %Search{query: search.query, value: value})}
   end
-  
+
   # update search state when user selects a query type radio button
   def handle_event(
         "search_form_change",
