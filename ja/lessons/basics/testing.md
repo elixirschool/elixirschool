@@ -33,7 +33,7 @@ Finished in 0.03 seconds
 2 tests, 0 failures
 ```
 
-テスト出力に2つのドットがあるのはなぜでしょうか？ `test/example_test.exs` でのテストに加えて、Mixは `lib/example.ex` でdoctestも生成しました。
+テスト出力に2つのドットがあるのはなぜでしょうか？ `test/example_test.exs` でのテストに加えて、Mixは `lib/example.ex` でdoctestも生成したからです。
 
 ```elixir
 defmodule Example do
