@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: テスト
 ---
 
@@ -33,7 +33,7 @@ Finished in 0.03 seconds
 2 tests, 0 failures
 ```
 
-どうして２つのテストが出力されたのでしょうか？ `lib/example.ex` を見てみましょう。Mixがそこに別のテストを作っておきました。これはdoctestと呼びます。
+テスト出力に2つのドットがあるのはなぜでしょうか？ `test/example_test.exs` でのテストに加えて、Mixは `lib/example.ex` でdoctestも生成しました。
 
 ```elixir
 defmodule Example do
