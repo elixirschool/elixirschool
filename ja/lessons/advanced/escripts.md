@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 実行ファイル
 ---
 
@@ -66,13 +66,13 @@ end
 
 escriptを用いるようにアプリケーションを設定し終えたら、実行ファイルのビルドはMixのおかげで楽勝です:
 
-```elixir
+```bash
 $ mix escript.build
 ```
 
 試しに実行してみましょう:
 
-```elixir
+```bash
 $ ./example_app --upcase Hello
 HELLO
 
