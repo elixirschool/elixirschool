@@ -316,7 +316,7 @@ It will suspend the current process until the tables are initialized or until th
 The `Mnesia.transform_table/3` function takes as attributes the name of the table, a function that transforms a record from the old to the new format and the list of new attributes.
 
 ```elixir
-case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]])
+case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
   {:atomic, :ok} ->
     Mnesia.add_table_index(Person, :job)
     Mnesia.add_table_index(Person, :age)
