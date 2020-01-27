@@ -150,7 +150,7 @@ Hello World!
 
 ## Plug.Router
 
-For most applications, like a web site or REST API, you'll want a router to route request for different paths and HTTP verbs to different handlers.
+For most applications, like a web site or REST API, you'll want a router to route requests for different paths and HTTP verbs to different handlers.
 `Plug` provides a router to do that.
 As we are about to see, we don't need a framework like Sinatra in Elixir since we get that for free with Plug.
 
@@ -296,7 +296,7 @@ plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
 We automatically invoke `VerifyRequest.init(fields: ["content", "mimetype"], paths: ["/upload"])`.
 This in turn passes the given options to the `VerifyRequest.call(conn, opts)` function.
 
-Let's take a look at this plug in action! Go ahead and crash your local server (rember, that's done by pressing `ctrl + c` twice).
+Let's take a look at this plug in action! Go ahead and crash your local server (remember, that's done by pressing `ctrl + c` twice).
 Then restart the server (`mix run --no-halt`).
 Now go to <http://127.0.0.1:8080/upload> in your browser and you'll see that the page simply isn't working. You'll just see a default error page provided by your browser.
 
