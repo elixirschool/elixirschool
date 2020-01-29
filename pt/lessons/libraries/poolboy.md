@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.0
 title: Poolboy
 ---
 
@@ -11,7 +11,7 @@ Você pode esgotar facilmente os recursos do sistema se não limitar o número m
 ## Por quê usar Poolboy?
 
 Vamos pensar em um exemplo específico por um momento.
-Você tem a tarefa de criar um aplicativo para salvar informações de perfil de usuário no banco de dados. 
+Você tem a tarefa de criar um aplicativo para salvar informações de perfil de usuário no banco de dados.
 Se você criou um processo para cada registro de usuário, você criaria um número ilimitado de conexões.
 Em algum momento, essas conexões começam a competir pelos recursos limitados disponíveis em seu servidor de banco de dados.
 Eventualmente seu aplicativo obtém tempos limite e várias exceções devido à sobrecarga dessa contenção.
@@ -19,9 +19,9 @@ Eventualmente seu aplicativo obtém tempos limite e várias exceções devido à
 A solução para esse problema é usar um conjunto de gerenciadores (processos) para limitar o número de conexões em vez de criar um processo para cada registro de usuário.
 Então você pode facilmente evitar ficar sem seus recursos do sistema.
 
-É aí que entra Poolboy. 
+É aí que entra Poolboy.
 Ele cria um pool de serviços gerenciados por um `Supervisor` sem nenhum esforço de sua parte para fazê-lo manualmente.
-Há muitas bibliotecas que usam Poolboy por baixo dos panos. 
+Há muitas bibliotecas que usam Poolboy por baixo dos panos.
 Por exemplo, o pool de conexões do `postgrex` *(que é alavancado pelo Ecto ao usar o PostgreSQL)* e o `redis_poolex` *(Redis connection pool)* são algumas bibliotecas populares que usam o Poolboy.
 
 ## Instalação
@@ -52,14 +52,14 @@ $ mix deps.get
 
 Precisamos saber um pouco sobre as várias opções de configuração para começar a usar o Poolboy.
 
-* `:name` - o nome do pool. 
+* `:name` - o nome do pool.
 O escopo pode ser `:local`, `:global`, ou `:via`.
 * `:worker_module` - o módulo que representa o gerenciador.
 * `:size` - tamanho máximo de pool.
 * `:max_overflow` - número máximo de gerenciadores criados se o pool estiver vazio.
 (opcional)
-* `:strategy` - `:lifo` ou `:fifo`, determina se os gerenciadores registados devem ser colocados primeiro ou último na linha dos gerenciadores disponíveis. 
-O padrão é `:lifo`. 
+* `:strategy` - `:lifo` ou `:fifo`, determina se os gerenciadores registados devem ser colocados primeiro ou último na linha dos gerenciadores disponíveis.
+O padrão é `:lifo`.
 (opcional)
 
 ## Configurando o Poolboy
@@ -78,10 +78,10 @@ defmodule PoolboyApp.Application do
 
   defp poolboy_config do
     [
-      {:name, {:local, :worker}},
-      {:worker_module, PoolboyApp.Worker},
-      {:size, 5},
-      {:max_overflow, 2}
+      name: {:local, :worker},
+      worker_module: PoolboyApp.Worker,
+      size: 5,
+      max_overflow: 2
     ]
   end
 
@@ -97,17 +97,17 @@ end
 ```
 
 A primeira coisa que definimos são as opções de configuração para o pool.
-Nós nomeamos nosso pool `:worker` e definimos o `:scope` para `:local`. 
-Então nós designamos o módulo `PoolboyApp.Worker` como o `:worker_module` que esse pool deve usar. 
-Nós também definimos o `:size` do pool para um total de `5` gerenciadores. 
-Também, caso todos os gerenciadores estejam sob carga, nós dizemos para ele criar mais `2` gerenciadores para ajudar na carga usando a opção `:max_overflow`. 
+Nós nomeamos nosso pool `:worker` e definimos o `:scope` para `:local`.
+Então nós designamos o módulo `PoolboyApp.Worker` como o `:worker_module` que esse pool deve usar.
+Nós também definimos o `:size` do pool para um total de `5` gerenciadores.
+Também, caso todos os gerenciadores estejam sob carga, nós dizemos para ele criar mais `2` gerenciadores para ajudar na carga usando a opção `:max_overflow`.
 *(Os gerenciadores de `overflow` vão embora uma vez que terminam seu trabalho.)*
 
 Em seguida, adicionamos a função `:poolboy.child_spec/2` à matriz de filhos para que o pool de gerenciadores seja iniciado quando a aplicação for iniciada.
 Ele recebe dois argumentos: o nome do pool e a configuração do pool.
 
 ## Criando um Gerenciador
-O módulo de gerenciamento será um `GenServer` simples calculando a raiz quadrada de um número, dormindo por um segundo e imprimindo o pid do gerenciador. 
+O módulo de gerenciamento será um `GenServer` simples calculando a raiz quadrada de um número, dormindo por um segundo e imprimindo o pid do gerenciador.
 Crie `lib/poolboy_app/worker.ex`:
 
 ```elixir
@@ -115,7 +115,7 @@ defmodule PoolboyApp.Worker do
   use GenServer
 
   def start_link(_) do
-    GenServer.start_link(__MODULE__, nil, [])
+    GenServer.start_link(__MODULE__, nil)
   end
 
   def init(_) do
@@ -124,7 +124,7 @@ defmodule PoolboyApp.Worker do
 
   def handle_call({:square_root, x}, _from, state) do
     IO.puts("process #{inspect(self())} calculating square root of #{x}")
-    :timer.sleep(1000)
+    Process.sleep(1000)
     {:reply, :math.sqrt(x), state}
   end
 end
