@@ -279,7 +279,7 @@ Now that we've covered GenStage and built our first example application, what ar
 We could produce events from a database or even another source like Apache's Kafka.
 With a combination of producer-consumers and consumers, we could process, sort, catalog, and store metrics as they become available.
 
-+ Work Queue — Since events can be anything, we could produce works of unit to be completed by a series of consumers.
++ Work Queue — Since events can be anything, we could produce units of work to be completed by a series of consumers.
 
 + Event Processing — Similar to a data pipeline, we could receive, process, sort, and take action on events emitted in real time from our sources.
 
