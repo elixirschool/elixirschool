@@ -24,6 +24,7 @@ A list of available sigils include:
   - `~W` Generates a word list **with no** escaping or interpolation
   - `~w` Generates a word list **with** escaping and interpolation
   - `~N` Generates a `NaiveDateTime` struct
+  - `~U` Generates a `DateTime` struct (since Elixir 1.9.0)
 
 A list of delimiters include:
 
@@ -162,6 +163,20 @@ For example:
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
 ```
 
+### DateTime
+
+A [DateTime](https://hexdocs.pm/elixir/DateTime.html) can be useful for quickly creating 
+a struct to represent a `DateTime` **with** a UTC timezone. Since it's in the UTC timezone 
+and your string might represent a different timezone, a 3rd item is returned that represents 
+the offset in seconds.
+
+For example:
+
+```elixir
+iex> DateTime.from_iso8601("2015-01-23 23:50:07Z") == {:ok, ~U[2015-01-23 23:50:07Z], 0}
+iex> DateTime.from_iso8601("2015-01-23 23:50:07-0600") == {:ok, ~U[2015-01-24 05:50:07Z], -21600}
+```
+
 ## Creating Sigils
 
 One of the goals of Elixir is to be an extendable programming language.
@@ -172,17 +187,17 @@ As there is already a function for this in the Elixir Core (`String.upcase/1`), 
 ```elixir
 
 iex> defmodule MySigils do
-...>   def sigil_u(string, []), do: String.upcase(string)
+...>   def sigil_p(string, []), do: String.upcase(string)
 ...> end
 
 iex> import MySigils
 nil
 
-iex> ~u/elixir school/
+iex> ~p/elixir school/
 ELIXIR SCHOOL
 ```
 
-First we define a module called `MySigils` and within that module, we created a function called `sigil_u`.
-As there is no existing `~u` sigil in the existing sigil space, we will use it.
-The `_u` indicates that we wish to use `u` as the character after the tilde.
+First we define a module called `MySigils` and within that module, we created a function called `sigil_p`.
+As there is no existing `~p` sigil in the existing sigil space, we will use it.
+The `_p` indicates that we wish to use `p` as the character after the tilde.
 The function definition must take two arguments, an input and a list.
