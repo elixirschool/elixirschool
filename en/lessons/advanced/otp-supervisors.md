@@ -81,9 +81,9 @@ The `use GenServer`, `use Supervisor`, and `use Agent` macros automatically defi
 def child_spec(opts) do
   %{
     id: SimpleQueue,
-    start: {__MODULE__, :start_link, [opts]}
-    shutdown: 5_000
-    restart: :permanent
+    start: {__MODULE__, :start_link, [opts]},
+    shutdown: 5_000,
+    restart: :permanent,
     type: :worker
   }
 end
