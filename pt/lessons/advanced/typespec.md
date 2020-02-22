@@ -54,7 +54,7 @@ def sum_times(a, params) do
 end
 ```
 
-Inserimos uma estrutura no módulo `Examples` que contém dois campos, `first` e `last`. Essa é uma versão simples de estrutura do módulo `Range`. Falaremos sobre `structs` quando iniciarmos as discusões sobre [módulos](../../basics/modules/#structs). Vamos imaginar que precisamos especificar a estrutura `Examples` em vários lugares. Seria chato escrever especificações longas, complexas e isso seria uma fonte de bugs. Uma solução para esse problema é `@type`.
+Inserimos uma estrutura no módulo `Examples` que contém dois campos, `first` e `last`. Essa é uma versão simples de estrutura do módulo `Range`. Falaremos sobre `structs` quando iniciarmos as discussões sobre [módulos](../../basics/modules/#structs). Vamos imaginar que precisamos especificar a estrutura `Examples` em vários lugares. Seria chato escrever especificações longas, complexas e isso seria uma fonte de bugs. Uma solução para esse problema é `@type`.
 
 Elixir tem três diretivas para tipos:
 
@@ -76,7 +76,7 @@ end
 
 Já definimos o tipo `t(first, last)`, que é uma representação da estrutura `%Examples{first: first, last: last}`. Nesse ponto, vemos tipos que podem receber parâmetros, mas definimos o tipo `t` e nesse momento, ele é uma representação da estrutura `%Examples{first: integer, last: integer}`.
 
-Qual a diferrença ? A primeira representa a estrutura `Examples` e as duas chaves poderiam receber qualquer tipo. A segunda representa a estrutura que as chaves recebem são do tipo `integers`. Que significa um código como este:
+Qual a diferença ? A primeira representa a estrutura `Examples` e as duas chaves poderiam receber qualquer tipo. A segunda representa a estrutura que as chaves recebem são do tipo `integers`. Que significa um código como este:
 
 ```elixir
 @spec sum_times(integer, Examples.t()) :: integer
