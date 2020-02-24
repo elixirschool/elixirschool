@@ -76,7 +76,7 @@ end
 
 Já definimos o tipo `t(first, last)`, que é uma representação da estrutura `%Examples{first: first, last: last}`. Nesse ponto, vemos tipos que podem receber parâmetros, mas definimos o tipo `t` e nesse momento, ele é uma representação da estrutura `%Examples{first: integer, last: integer}`.
 
-Qual a diferença ? A primeira representa a estrutura `Examples` e as duas chaves poderiam receber qualquer tipo. A segunda representa a estrutura que as chaves recebem são do tipo `integers`. Que significa um código como este:
+Qual a diferença? A primeira representa a estrutura `Examples` e as duas chaves poderiam receber qualquer tipo. A segunda representa a estrutura que as chaves recebem são do tipo `integers`. Que significa um código como este:
 
 ```elixir
 @spec sum_times(integer, Examples.t()) :: integer
