@@ -142,9 +142,9 @@ defmodule Example.Repo.Migrations.CreateDistributors do
       add :name, :string
       add :movie_id, references(:movies)
     end
+    
+    create unique_index(:distributors, [:movie_id])
   end
-
-  create unique_index(:distributors, [:movie_id])
 end
 ```
 
