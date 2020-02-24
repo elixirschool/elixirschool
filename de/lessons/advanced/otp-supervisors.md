@@ -71,9 +71,9 @@ Die Macros `use GenServer`, `use Supervisor`, und `use Agent` definieren diese M
 def child_spec(opts) do
   %{
     id: SimpleQueue,
-    start: {__MODULE__, :start_link, [opts]}
-    shutdown: 5_000
-    restart: :permanent
+    start: {__MODULE__, :start_link, [opts]},
+    shutdown: 5_000,
+    restart: :permanent,
     type: :worker
   }
 end
@@ -91,7 +91,7 @@ Die Optionen sind:
 
   + `:brutal_kill` - Kind wird sofort gestoppt
 
-  + ein positiver Integer - Zeit in Millisekunden, die der Supervisor warten wird, bevor er den Kind-Prozess killt. 
+  + ein positiver Integer - Zeit in Millisekunden, die der Supervisor warten wird, bevor er den Kind-Prozess killt.
   Wenn der Prozess vom Typ `:worker` ist, ist dieser Wert standardmäßig 5000.
 
   + `:infinity` - Der Supervisor wird unednlich lange warten, bevor er den Prozess killt.
