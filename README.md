@@ -29,7 +29,9 @@ To run locally, you need both Ruby and Bundler installed.
 
 1. Each of the languages has a folder in root of this repo. To start translating you need to copy a file from the English language to the corresponding folder in your language and start translating.
 
-2. Translated lessons must include page metadata.
+2. Check the [translation report](https://elixirschool.com/pt/report/) for pages that haven't been translated yet, or for pages which need to have their translations updated in the corresponding language you want to work with.
+
+3. Translated lessons must include page metadata.
    * `title` should be a translation of the original lesson's `title`.
    * `version` should be set to the original English `version`.
 
@@ -41,7 +43,5 @@ To run locally, you need both Ruby and Bundler installed.
   version: 1.0.0
   ---
   ```
-  
-3. Send a PR with the new translated lesson and join [https://elixirschool.com/contributors/](_data/contributors.yml).
 
-
+4. Send a PR with the new translated lesson and join [https://elixirschool.com/contributors/](_data/contributors.yml).
