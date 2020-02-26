@@ -9,7 +9,7 @@ Documentando código em Elixir.
 
 ## Anotações
 
-Quanto nós comentamos e o que faz uma documentação de qualidade continua a ser uma questão controversa dentro do mundo da programação. No entanto, nós podemos concordar que documentação é importante para nós e para aqueles que trabalham com a nossa base de código.
+Quanto mais comentamos e mantemos uma documentação de qualidade continuamente, torna-se uma controversa dentro do mundo da programação. No entanto, nós podemos concordar que documentação é importante para nós e para aqueles que trabalham com a nossa base de código.
 
 Elixir trata de documentação como uma *cidadã de primeira classe*, oferecendo várias funções de acesso e geração de documentação para seus projetos. O núcleo do Elixir nos fornece muitos atributos diferentes para anotar uma base de código. Vejamos 3 maneiras:
 
@@ -28,7 +28,7 @@ Observe este script em Elixir (greeting.exs):
 IO.puts("Hello, " <> "chum.")
 ```
 
-Elixir, ao executar este script irá ignorar tudo, de `#` até o fim da linha, tratando-a como dados ocultos e sem lógica de execução. Pode adicionar nenhum valor para a operação ou o desempenho do script, no entanto, quando não é tão óbvio sobre o que está acontecendo, um programador deve saber ao ler o seu comentário. Esteja atento para não abusar do comentário de uma linha! Bagunçar uma base de código pode se tornar um pesadelo indesejável para alguns. É melhor usar com moderação.
+Elixir, ao executar este script irá ignorar tudo, de `#` até o fim da linha, tratando-a como dados ocultos e sem lógica de execução. Pode adicionar nenhum valor para a operação ou o desempenho do script, no entanto, quando não é tão óbvio sobre o que está acontecendo, um programador deve saber ler o comentário. Esteja atento para não abusar do comentário de uma linha! Bagunçar uma base de código pode se tornar um pesadelo indesejável para alguns. É melhor usar com moderação.
 
 ### Documentação de  Módulos
 
@@ -119,7 +119,7 @@ Examples
 iex>
 ```
 
-Observe como você pode usar marcação de dentro para fora da documentação e o terminal irá renderizar isto? Além de realmente ser uma ótima nova adição para o vasto ecossistema de Elixir, fica muito mais interessante quando olhamos para ExDoc para gerar documentação HTML continuamente.
+Observe como você pode usar marcação de dentro para fora da documentação e o terminal irá renderizar isto? Além de realmente ser uma ótima nova adição para o vasto ecossistema de Elixir, fica muito mais interessante quando olhamos o ExDoc para gerar documentação HTML em tempo real.
 
 **Nota:** a anotação `@spec` é usada para analisar estaticamente o código. Para aprender mais sobre isso, veja a lição [Especificações e tipos](../../advanced/typespec).
 
@@ -154,7 +154,7 @@ $ cd greet_everyone
 
 ```
 
-Agora, copie e cole o código a partir da lição de anotação `@doc` dentro do arquivo chamado `lib/greeter.ex` e garanta que tudo ainda está funcionando na linha de comando. Agora que estamos trabalhando dentro do projeto Mix nós temos que começar o IEx um pouco diferente usando o comando `iex -S mix`:
+Agora, copie e cole o código a partir da lição de anotação `@doc` dentro do arquivo chamado `lib/greeter.ex` e garanta que tudo ainda está funcionando na linha de comando. Agora que estamos trabalhando dentro do projeto Mix nós temos que iniciar o IEx um pouco diferente usando o comando `iex -S mix`:
 
 ```bash
 iex> h Greeter.hello
@@ -178,7 +178,7 @@ Examples
 
 ### Instalando
 
-Assumindo que tudo está bem, e estamos vendo a saída acima sugere que estamos prontos para configurar ExDoc. Dentro do nosso arquivo `mix.exs` adicione as duas dependências necessárias para começar; `:earmark` e `:ex_doc`.
+Assumindo que tudo está bem, e a saída acima sugere que estamos prontos para configurar ExDoc. Dentro do nosso arquivo `mix.exs` adicione as duas dependências necessárias para começar; `:earmark` e `:ex_doc`.
 
 ```elixir
 def deps do
@@ -213,11 +213,11 @@ Podemos ver que Earmark converteu nosso markdown e ExDoc agora é exibido em um 
 
 ![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
-Agora nós podemos implantar isso para GitHub, o nosso próprio site, mais comumente no [HexDocs](https://hexdocs.pm/).
+Agora nós podemos implantar isso para GitHub, o nosso próprio site, ou mais comumente no [HexDocs](https://hexdocs.pm/).
 
 ## Boas Práticas
 
-Adicionar documentação deve ser seguido com as boas práticas orientadas pela linguagem. Desde que Elixir é uma linguagem bastante jovem, muitas normas ainda estão a ser descobertas ao longo do crescimento do ecossistema. A comunidade, entretanto, tem feito esforços para estabelecer as melhores práticas. Para ler mais sobre as melhores práticas veja [O Guia de Estilo Elixir](https://github.com/niftyn8/elixir_style_guide).
+Ao adicionar documentação deve ser seguido as boas práticas orientadas pela linguagem. Desde que Elixir é uma linguagem bastante jovem, muitas normas ainda estão a ser descobertas ao longo do crescimento do ecossistema. A comunidade, entretanto, tem feito esforços para estabelecer as melhores práticas. Para ler mais sobre as melhores práticas veja [O Guia de Estilo Elixir](https://github.com/niftyn8/elixir_style_guide).
 
   - Sempre documente um módulo.
 
