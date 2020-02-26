@@ -3,7 +3,7 @@ version: 1.3.1
 title: Collections
 ---
 
-Les listes, tuples, listes à mot clé, et tableaux assosiatifs.
+Les listes, tuples, listes à mots clé, et tableaux assosiatifs.
 
 {% include toc.html %}
 
@@ -98,9 +98,9 @@ iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
 
-## Listes à mot clé (Keyword lists)
+## Listes à mots clé (Keyword lists)
 
-Les listes à mot clé et les tableaux associatifs sont les collections associatives d'Elixir. En Elixir, une liste à mot clé est un type de liste spécial contenant uniquement des tuples dont le premier élément est atome (Keyword). Elles sont aussi performantes que les listes classiques :
+Les listes à mots clé et les tableaux associatifs sont les collections associatives d'Elixir. En Elixir, une liste à mots clé est un type de liste spécial contenant uniquement des tuples dont le premier élément est atome (Keyword). Elles sont aussi performantes que les listes classiques :
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -109,7 +109,7 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 [foo: "bar", hello: "world"]
 ```
 
-Les trois caractéristiques des listes à mot clé :
+Les trois caractéristiques des listes à mots clé :
 
 - Les clés sont des atomes.
 - Les clés sont ordonnées.
@@ -119,7 +119,7 @@ Pour ces raisons, les listes à mots clé sont la structure de données habituel
 
 ## Tableaux assiciatifs
 
-En Elixir les tableaux associatifs sont la structure privilégiée pour les données de type clé-valeur. Contrairement aux listes à mot clé, elles permettent d'avoir des clés de n'importe quel type et ne sont pas ordonnées. On définit un tableau associatif avec la syntaxe `%{}` :
+En Elixir les tableaux associatifs sont la structure privilégiée pour les données de type clé-valeur. Contrairement aux listes à mots clé, elles permettent d'avoir des clés de n'importe quel type et ne sont pas ordonnées. On définit un tableau associatif avec la syntaxe `%{}` :
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -165,7 +165,7 @@ iex> map.hello
 "world"
 ```
 
-Une autre propriété intéréssante des maps est qu'elles fournissent leur propre syntaxe de mise à jour (note: ceci crée un nouveau tableau associatif):
+Une autre propriété intéréssante des tableaux associatifs est qu'ils fournissent leur propre syntaxe de mise à jour (note: ceci crée un nouveau tableau associatif):
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
