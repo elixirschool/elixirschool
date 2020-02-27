@@ -3,7 +3,7 @@ version: 1.3.1
 title: Collections
 ---
 
-Les listes, tuples, listes à mots clé, et tableaux assosiatifs.
+Les listes, tuples, listes à mots clé, et tableaux associatifs.
 
 {% include toc.html %}
 
@@ -117,7 +117,7 @@ Les trois caractéristiques des listes à mots clé :
 
 Pour ces raisons, les listes à mots clé sont la structure de données habituelle pour passer des options aux fonctions.
 
-## Tableaux assiciatifs
+## Tableaux associatifs
 
 En Elixir les tableaux associatifs sont la structure privilégiée pour les données de type clé-valeur. Contrairement aux listes à mots clé, elles permettent d'avoir des clés de n'importe quel type et ne sont pas ordonnées. On définit un tableau associatif avec la syntaxe `%{}` :
 
