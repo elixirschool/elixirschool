@@ -79,7 +79,7 @@ iex> 1.0e-10
 
 ### Booléens (Booleans)
 
-Elixir supporte `true` et `false` comme valeures booléennes; tout est considéré comme vrai (truthy) à part `false` et `nil` :
+Elixir supporte `true` et `false` comme valeurs booléennes; tout est considéré comme vrai (truthy) à part `false` et `nil` :
 
 ```elixir
 iex> true
@@ -209,7 +209,7 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-Note: Les operateurs `and` et `or` d'Elixir mappent en fait à `andalso` et `orelse` en Erlang.
+Note: Les opérateurs `and` et `or` d'Elixir mappent en fait à `andalso` et `orelse` en Erlang.
 
 ### Comparaison
 
@@ -241,7 +241,7 @@ Une fonctionnalité importante d'Elixir est que deux types différents peuvent �
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
-Cela permet de réaliser des comparaisons interéssantes, que vous ne trouveriez pas dans d'autres langages :
+Cela permet de réaliser des comparaisons intéressantes, que vous ne trouveriez pas dans d'autres langages :
 
 ```elixir
 iex> :hello > 999
