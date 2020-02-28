@@ -130,7 +130,7 @@ iex> map["hello"]
 :world
 ```
 
-Depuis Elixir 1.2, les variables sont autorisées comme clés d'un tableau assiciatif :
+Depuis Elixir 1.2, les variables sont autorisées comme clés d'un tableau associatif :
 
 ```elixir
 iex> key = "hello"
