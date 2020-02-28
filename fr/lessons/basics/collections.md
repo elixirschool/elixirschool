@@ -31,7 +31,7 @@ iex> list ++ ["Cherry"]
 
 ### Concaténation de listes
 
-La concaténation de listes s'effectue grace à l'opérateur `++/2` :
+La concaténation de listes s'effectue grâce à l'opérateur `++/2` :
 
 ```elixir
 iex> [1, 2] ++ [3, 4, 1]
@@ -49,7 +49,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-Attention aux valeurs dupliquées. Pour chaque élément à droite, sa première occurence est retirée à gauche :
+Attention aux valeurs dupliquées. Pour chaque élément à droite, sa première occurrence est retirée à gauche :
 
 ```elixir
 iex> [1,2,2,3,2,3] -- [1,2,3,2]
@@ -156,7 +156,7 @@ iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-De plus, il existe aussi une syntaxe spéciale pour acceder aux clés de type atome:
+De plus, il existe aussi une syntaxe spéciale pour accéder aux clés de type atome:
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
@@ -165,7 +165,7 @@ iex> map.hello
 "world"
 ```
 
-Une autre propriété intéréssante des tableaux associatifs est qu'ils fournissent leur propre syntaxe de mise à jour (note: ceci crée un nouveau tableau associatif):
+Une autre propriété intéressante des tableaux associatifs est qu'ils fournissent leur propre syntaxe de mise à jour (note: ceci crée un nouveau tableau associatif):
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
