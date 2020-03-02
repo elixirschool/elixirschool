@@ -89,7 +89,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 O segundo, como você pode ter adivinhado a partir do título dessa seção, é `DateTime`.
 Não possui as limitações mencionadas no `NaiveDateTime`: possui data e hora e suporta fusos horários.
-Mas esteja ciente dos fusos horários. Mas note o comentário da documentação oficial sobre fuso horário:
+Mas esteja ciente dos fusos horários. A documentação oficial fala:
 
 > Muitas funções neste módulo requer um fuso horário do banco de dados. Por padrão, é utilizado o fuso horário do banco de dados que é retornado pela função `Calendar.get_time_zone_database/0`, cujo padrão é `Calendar.UTCOnlyTimeZoneDatabase`, que lida apenas com as datas "Etc/UTC" e retorna `{:error, :utc_only_time_zone_database}` para qualquer outro fuso horário.
 
