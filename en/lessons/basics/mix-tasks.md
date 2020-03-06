@@ -27,7 +27,7 @@ $ mix phx.new my_phoenix_app
 ```
 
 As we can see from the shell command above, The Phoenix Framework has a custom Mix task to generate a new project.
-What if we could create something similar for our project? Well the great news is we can, and Elixir makes this easy for us to do.
+What if we could create something similar for our project? Well, the great news is we can, and Elixir makes this easy for us to do.
 
 ## Setup
 
@@ -37,10 +37,9 @@ Let's set up a basic Mix application.
 $ mix new hello
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/hello.ex
 * creating test
@@ -88,7 +87,7 @@ end
 ```
 
 Notice how we start the defmodule statement with `Mix.Tasks` and the name we want to call from the command line.
-On the second line we introduce the `use Mix.Task` which brings the `Mix.Task` behaviour into the namespace.
+On the second line, we introduce the `use Mix.Task` which brings the `Mix.Task` behaviour into the namespace.
 We then declare a run function which ignores any arguments for now.
 Within this function, we call our `Hello` module and the `say` function.
 
@@ -111,7 +110,7 @@ $ mix hell
 ** (Mix) The task "hell" could not be found. Did you mean "hello"?
 ```
 
-Did you also notice that we introduced an new module attribute, `@shortdoc`? This comes in handy when shipping our application, such as when a user runs the `mix help` command from the terminal.
+Did you also notice that we introduced a new module attribute, `@shortdoc`? This comes in handy when shipping our application, such as when a user runs the `mix help` command from the terminal.
 
 ```shell
 $ mix help
@@ -123,4 +122,4 @@ mix hello             # Simply calls the Hello.say/0 function.
 ```
 
 Note: Our code must be compiled before new tasks will appear in the `mix help` output.
-We can do this either by running `mix compile` directly or by running our task like we did with `mix hello`, which will trigger the compilation for us.
+We can do this either by running `mix compile` directly or by running our task as we did with `mix hello`, which will trigger the compilation for us.
