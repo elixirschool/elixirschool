@@ -266,7 +266,7 @@ We need to update the component's `socket.assigns` to reflect changes to search 
 * The user selects a given search query ("message UUID", "correlation ID", "message type")
 * The user types a value into the search form input field
 
-We'll add a `phx-change` event to our form to capture these interations and define the corresponding `handle_event/3` callbacks in our component.
+We'll add a `phx-change` event to our form to capture these interactions and define the corresponding `handle_event/3` callbacks in our component.
 
 ```html
 <form phx-change="search_form_change">
