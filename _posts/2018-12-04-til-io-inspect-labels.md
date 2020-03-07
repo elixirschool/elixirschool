@@ -39,7 +39,7 @@ Looking at the code and output side-by-side, we can pretty easily follow along b
 Can you imagine situations where there's __a lot__ more output on the screen and the code isn't as simple?
 
 Allow me to introduce you to our new friend the `:label` option!
-Let's revisit our previous code, intruduce the ever helpful `:label` option, and jump straight into the `IEx` output:
+Let's revisit our previous code, introduce the ever helpful `:label` option, and jump straight into the `IEx` output:
 
 ```elixir
 defmodule Example do
