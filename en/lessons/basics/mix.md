@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Mix
 ---
 
@@ -30,8 +30,6 @@ From the output we can see that Mix has created our directory and a number of bo
 * creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
