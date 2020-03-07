@@ -110,7 +110,7 @@ end
 
 The result is public function, our module's API, that is concise and to a degree self documenting: "Get the base query, build the query with the criteria, and get all records".
 
-When we bring it all together and begin to leverage the flexiblity we've provided, we begin to see the true power provided to us through Ecto:
+When we bring it all together and begin to leverage the flexibility we've provided, we begin to see the true power provided to us through Ecto:
 
 ```elixir
 defmodule Posts do
