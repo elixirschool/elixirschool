@@ -4,13 +4,13 @@ title: Comprehensions
 ---
 
 List comprehensions are syntactic sugar for looping through enumerables in Elixir.
-In this lesson we'll look at how we can use comprehensions for iteration and generation.
+In this lesson, we'll look at how we can use comprehensions for iteration and generation.
 
 {% include toc.html %}
 
 ## Basics
 
-Often times comprehensions can be used to produce more concise statements for `Enum` and `Stream` iteration.
+Comprehensions can often be used to produce more concise statements for `Enum` and `Stream` iteration.
 Let's start by looking at a simple comprehension and then break it down:
 
 ```elixir
@@ -121,4 +121,4 @@ iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 ```
 
 That's it!
-List comprehensions are an easy way to iterate through collections in a concise manner.
+List comprehensions are an easy way to iterate through collections concisely.

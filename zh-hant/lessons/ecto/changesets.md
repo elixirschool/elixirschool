@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.2
 title: 變更集 (Changesets)
 ---
 
@@ -39,7 +39,7 @@ defmodule Friends.Person do
 end
 ```
 
-要使用 `Person` 結構描述建立變更集，將使用 `Ecto.Changeset.cast/4`：
+要使用 `Person` 結構描述建立變更集，將使用 `Ecto.Changeset.cast/3`：
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
@@ -50,7 +50,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
 第一個參數是原始資料 - 在這個範例中為一個初始的 `%Friends.Person{}` 結構體。
 Ecto 足夠聰明，可以根據結構體本身找到結構描述。
 第二個參數是想要做出的改變 - 只是一張空映射。
-第三個參數是使 `cast/4` 特殊的原因：它是允許通過的欄位列表，這使我們能夠控制哪些欄位可以更改並保護其餘欄位。
+第三個參數是使 `cast/3` 特殊的原因：它是允許通過的欄位列表，這使我們能夠控制哪些欄位可以更改並保護其餘欄位。
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
@@ -69,7 +69,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 
 可以在第二次更改時看到如何忽略新 name，因新 name 未被明確允許。
 
-一個 `cast/4` 的替代是 `change/2` 函數，它不能像 `cast/4` 這樣篩選更改。
+一個 `cast/3` 的替代是 `change/2` 函數，它不能像 `cast/3` 這樣篩選更改。
 不過當進行更改來源是可信任或手動處理資料時，它非常有用。
 
 現在可以建立變更集，但由於沒有驗證，因此將接受對 Person 中 name 的任何更改，最終會得到一個空的 name：
@@ -105,7 +105,7 @@ defmodule Friends.Person do
 end
 ```
 
-現在可以直接使用 `cast/4` 函數。
+現在可以直接使用 `cast/3` 函數。
 
 為結構描述提供一個或多個變更集建立函數是很平常的。現在建立一個接受結構體、更改的映射並回傳變更集的函數：
 

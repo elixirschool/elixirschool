@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.2
 title: Changesets
 ---
 
@@ -40,7 +40,7 @@ defmodule Friends.Person do
 end
 ```
 
-Para criar um changeset usando o schema `Person`, vamos usar `Ecto.Changeset.cast/4`:
+Para criar um changeset usando o schema `Person`, vamos usar `Ecto.Changeset.cast/3`:
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
@@ -51,7 +51,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
 O primeiro parâmetro é o dado original - uma struct `%Friends.Person{}` vazia neste caso.
 Ecto é inteligente o suficiente para encontrar o schema baseado na própria estrutura.
 O segundo parâmetro são as alterações que queremos fazer - apenas um map vazio.
-O terceiro parâmetro é o que faz o `cast/4` especial: é uma lista de campos permitidos, o que nos dá a capacidade de controlar quais campos podem ser alterados e proteger o resto.
+O terceiro parâmetro é o que faz o `cast/3` especial: é uma lista de campos permitidos, o que nos dá a capacidade de controlar quais campos podem ser alterados e proteger o resto.
 
  ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
@@ -70,7 +70,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 
 Você pode ver como o novo nome foi ignorado na segunda vez, onde não foi explicitamente permitido.
 
-Uma alternativa para o `cast/4` é o `change/2`, que não tem a capacidade de filtrar alterações como `cast/4`.
+Uma alternativa para o `cast/3` é o `change/2`, que não tem a capacidade de filtrar alterações como `cast/3`.
 É útil quando você confia na origem que fez as alterações ou quando trabalha com dados manualmente.
 
 Agora podemos criar changesets, mas como não temos validação, quaisquer alterações ao nome do usuário serão aceitas, então podemos acabar com um nome vazio:
@@ -106,7 +106,7 @@ defmodule Friends.Person do
 end
 ```
 
-Agora nós podemos usar a função `cast/4` diretamente.
+Agora nós podemos usar a função `cast/3` diretamente.
 
 É comum ter uma ou mais funções de construção de changeset para um schema. Vamos fazer uma que aceite uma struct, um map de alterações e retorne um changeset:
 

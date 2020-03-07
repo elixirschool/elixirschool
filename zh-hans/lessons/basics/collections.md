@@ -1,5 +1,5 @@
 ---
-version: 1.2.5
+version: 1.3.1
 title: 集合
 ---
 
@@ -37,7 +37,10 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-关于上面使用到的 `++/2` 格式的说明：在 Elixir 中（以及 Elixir 的基础语言 Erlang），函数和操作符的名字由两部分组成：名字（比如这里的 `++`）和元数(arity)。元数是 Elixir 和 Erlang 代码非常核心的部分，它代表了给定函数接受的参数个数（比如这里的 2），元数和名字之间通过斜线分割。我们后面会讲到更多这方面的内容，知道这些已经能帮你理解它的含义了。
+关于上面使用到的 `++/2` 格式的说明：
+在 Elixir 中（以及 Elixir 的基础语言 Erlang），函数和操作符的名字由两部分组成：名字（比如这里的 `++`）和元数(arity)。
+元数是 Elixir 和 Erlang 代码非常核心的部分，它代表了给定函数接受的参数个数（比如这里的 2），元数和名字之间通过斜线分割。
+我们后面会讲到更多这方面的内容，知道这些已经能帮你理解它的含义了。
 
 ### 列表减法
 
@@ -88,7 +91,8 @@ iex> tail
 
 ## 元组（Tuple）
 
-元组和列表很像，但是元组在内存中是连续存放的。这样的话，获取元组的长度很快，但是修改元组的操作很昂贵：新的元组必须重新在内存中拷贝一份。
+元组和列表很像，但是元组在内存中是连续存放的。
+这样的话，获取元组的长度很快，但是修改元组的操作很昂贵：新的元组必须重新在内存中拷贝一份。
 定义元组要用花括号：
 
 ```elixir
@@ -126,7 +130,8 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 
 ## 映射（Map）
 
-Elixir 的映射（maps）是键值对结构的第一选择，和关键字列表（keywords）不同，映射允许任意类型的数据作为键，而且数据并不严格排序。你可以使用 `%{}` 来定义映射：
+Elixir 的映射（maps）是键值对结构的第一选择，和关键字列表（keywords）不同，映射允许任意类型的数据作为键，而且数据并不严格排序。
+你可以使用 `%{}` 来定义映射：
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -172,4 +177,20 @@ iex> %{map | foo: "baz"}
 %{foo: "baz", hello: "world"}
 iex> map.hello
 "world"
+```
+
+**注意**: 这种语法只在更新一个已经存在于映射的键才有效！如果键不存在，则会抛出 `KeyError` 错误。
+
+要创建一个新的键值对，则应当使用 [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3)
+
+```elixir
+iex> map = %{hello: "world"}
+%{hello: "world"}
+iex> %{map | foo: "baz"}
+** (KeyError) key :foo not found in: %{hello: "world"}
+    (stdlib) :maps.update(:foo, "baz", %{hello: "world"})
+    (stdlib) erl_eval.erl:259: anonymous fn/2 in :erl_eval.expr/5
+    (stdlib) lists.erl:1263: :lists.foldl/3
+iex> Map.put(map, :foo, "baz")
+%{foo: "baz", hello: "world"}
 ```

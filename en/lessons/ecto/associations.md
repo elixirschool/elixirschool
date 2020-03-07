@@ -384,7 +384,7 @@ iex> actor = Repo.insert!(actor)
 
 Now we're ready to associate our movie to our actor via the join table.
 
-First, note that in order to work with changesets, we need to make sure that our `movie` structure has preloaded associated data. We'll talk more about preloading data in a bit. For now, its enough to understand that we can preload our associations like this:
+First, note that in order to work with changesets, we need to make sure that our `movie` structure has preloaded associated data. We'll talk more about preloading data in a bit. For now, it's enough to understand that we can preload our associations like this:
 
 ```elixir
 iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])

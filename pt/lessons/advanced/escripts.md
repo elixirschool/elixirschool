@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Executáveis
 ---
 
@@ -66,13 +66,13 @@ end
 
 Quando terminamos de configurar nossa aplicação para usar escript, criar o executável é muito simples usando Mix:
 
-```elixir
+```bash
 $ mix escript.build
 ```
 
 Vamos testar:
 
-```elixir
+```bash
 $ ./example_app --upcase Hello
 HELLO
 

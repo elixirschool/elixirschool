@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.0
 title: Poolboy
 ---
 
@@ -13,7 +13,7 @@ title: Poolboy
 
 Η λύση σε αυτό το πρόβλημα είναι η χρήση ενός σετ εργατών (διεργασίες) για να περιορίσουμε τον αριθμό συνδέσεων αντί να δημιουργούμε μια διεργασία για κάθε εγγραφή χρήστη. Τότε μπορείτε εύκολα να αποτρέψετε την εξάντληση των πόρων του συστήματος σας.
 
-Εδώ έρχεται το Poolboy.  Σας επιτρέπει να δημιουργήσετε εύκολα μια λίστα εργατών που διαχειρίζονται από έναν `Supervisor` χωρίς μεγάλη προσπάθεια από μέρους σας. Υπάρχουν πολλές βιβλιοθήκες που χρησιμοποιούν το Poolboy στο εσωτερικό τους. Για παράδειγμα: η λίστα συνδέσεων της `postgrex` *(η οποία με τη σειρά της αξιοποιείται από την Ecto όταν χρησιμοποιούμε την PostgreSQL)* και η `redis_poolex` *(Λίστα συνδέσεων Redis)* είναι μερικές από τις πιο δημοφιλείς βιβλιοθήκες που χρησιμοποιούν το Poolboy. 
+Εδώ έρχεται το Poolboy.  Σας επιτρέπει να δημιουργήσετε εύκολα μια λίστα εργατών που διαχειρίζονται από έναν `Supervisor` χωρίς μεγάλη προσπάθεια από μέρους σας. Υπάρχουν πολλές βιβλιοθήκες που χρησιμοποιούν το Poolboy στο εσωτερικό τους. Για παράδειγμα: η λίστα συνδέσεων της `postgrex` *(η οποία με τη σειρά της αξιοποιείται από την Ecto όταν χρησιμοποιούμε την PostgreSQL)* και η `redis_poolex` *(Λίστα συνδέσεων Redis)* είναι μερικές από τις πιο δημοφιλείς βιβλιοθήκες που χρησιμοποιούν το Poolboy.
 
 ## Εγκατάσταση
 
@@ -63,10 +63,10 @@ defmodule PoolboyApp.Application do
 
   defp poolboy_config do
     [
-      {:name, {:local, :worker}},
-      {:worker_module, PoolboyApp.Worker},
-      {:size, 5},
-      {:max_overflow, 2}
+      name: {:local, :worker},
+      worker_module: PoolboyApp.Worker,
+      size: 5,
+      max_overflow: 2
     ]
   end
 
@@ -94,7 +94,7 @@ defmodule PoolboyApp.Worker do
   use GenServer
 
   def start_link(_) do
-    GenServer.start_link(__MODULE__, nil, [])
+    GenServer.start_link(__MODULE__, nil)
   end
 
   def init(_) do
@@ -103,7 +103,7 @@ defmodule PoolboyApp.Worker do
 
   def handle_call({:square_root, x}, _from, state) do
     IO.puts("process #{inspect(self())} calculating square root of #{x}")
-    :timer.sleep(1000)
+    Process.sleep(1000)
     {:reply, :math.sqrt(x), state}
   end
 end

@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.1.0
 title: 日期和时间
 ---
 
@@ -9,9 +9,7 @@ Elixir 中有关时间和日期的处理
 
 ## Time
 
-Elixir 内置了几个处理时间的模块。不过需要注意的是，这些模块只能处理 UTC 时间。
-
-首先，我们可以获取当前的 UTC 时间：
+Elixir 内置了几个处理时间的模块。 首先，我们可以获取当前的 UTC 时间：
 
 ```elixir
 iex> Time.utc_now
@@ -82,17 +80,13 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 ## DateTime
 
-你可能已经猜到了，Elixir 内置的第二个既有时间，又有日期的模块是 `DateTime`，而且它还有时区的信息。需要注意的是，有关时区，官方文档做的特别的说明：
+你可能已经猜到了，Elixir 内置的第二个既有时间，又有日期的模块是 `DateTime`，而且它还有时区的信息。它没有 `NaiveDateTime` 的那些限制。需要注意的是，有关时区，官方文档做的特别的说明：
 
 ```
 本模块只包括了一些转换函数和处理 UTC 的函数。这是因为要完整实现 DateTime 需要一个时区数据库，但是目前 Elixir 还未提供此数据库。
 ```
 
-原文是：
-
-```
-You will notice this module only contains conversion functions as well as functions that work on UTC. This is because a proper DateTime implementation requires a time zone database which currently is not provided as part of Elixir.
-```
+> Many functions in this module require a time zone database. By default, it uses the default time zone database returned by `Calendar.get_time_zone_database/0`, which defaults to `Calendar.UTCOnlyTimeZoneDatabase` which only handles "Etc/UTC" datetimes and returns `{:error, :utc_only_time_zone_database}` for any other time zone.
 
 另外，你也可以通过一个 `NaiveDateTime` 的值来创建一个 `DateTime`，只需要通过 `from_naive/2` 加上时区信息即可：
 
@@ -100,5 +94,28 @@ You will notice this module only contains conversion functions as well as functi
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
+
+## 处理时区
+
+上文提到 Elixir 默认并不包括任何时区数据。我们可以通过安装 [tzdata](https://github.com/lau/tzdata) 来解决这个问题。
+
+安装好 tzdata 之后，你需要一个全局配置让 Elixir 去使用 Tzdata 作为时区数据库：
+
+```
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+```
+
+下面我们试着创建一个巴黎时间，并把它专为北京时间：
+
+```
+iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
+#DateTime<2019-01-01 12:00:00+01:00 CET Europe/Paris>
+iex> {:ok, china_datetime} = DateTime.shift_zone(paris_datetime, "Asia/Shanghai")
+{:ok, #DateTime<2019-01-01 19:00:00+08:00 CST Asia/Shanghai>}
+iex> china_datetime
+#DateTime<2019-01-01 19:00:00+08:00 CST Asia/Shanghai>
+```
+
+这样，我们就把巴黎时间的 12:00 转成了北京时间的 19:00。
 
 如果你想了解更多有关时间，日期的更高级的用法，请参考这些文档： [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html)。你也可以考虑 [Timex](https://github.com/bitwalker/timex) 和 [Calendar](https://github.com/lau/calendar) 。它们都是很强大的处理时间的库。

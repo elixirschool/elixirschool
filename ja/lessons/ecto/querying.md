@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.1.1
 title: クエリ
 ---
 
@@ -61,14 +61,14 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 
 `Ecto.Query` モジュールはクエリDSLを提供しており、これによってアプリケーションのレポジトリからデータを取り出すクエリを書くことができます。
 
-### `Ecto.Query.from/2` によるクエリの作成
+### `Ecto.Query.from/2` を使用したKeyword-basedクエリの作成
 
-`Ecto.Query.from/2` 関数を使用してクエリを作ることができます。この関数は2つの引数を取ります。式とキーワードリストです。レポジトリから全ての映画を選択するクエリを作ってみましょう。
+`Ecto.Query.from/2` マクロを使用してクエリを作ることができます。この関数は2つの引数を取ります。式と任意のキーワードリストです。レポジトリから全ての映画を選択する最も簡単なクエリを作ってみましょう。
 
 ```elixir
 import Ecto.Query
-query = from(m in Movie, select: m)
-#Ecto.Query<from m in Example.Movie, select: m>
+query = from(Movie)                
+%Ecto.Query<from m in Example.Movie>
 ```
 
 クエリを実行するためには、 `Repo.all/2` 関数を使用します。この関数はEctoクエリの必須の引数を取り、クエリの条件を満たす全てのレコードを返します。
@@ -90,112 +90,83 @@ iex> Repo.all(query)
 ]
 ```
 
-#### キーワードクエリによる `from` の使用
+#### `from` によるBindinglessなクエリの作成
 
-上の例では `from/2` に _キーワードクエリ_ の引数を与えています。 `from` をキーワードクエリとともに使う場合、第１引数は次の2つのうちいずれかになります:
-
-- `in` 式 (例: `m in Movie`)
-- `Ecto.Queryable` プロトコルを実装したモジュール (例: `Movie`)
-
-第２引数は `select` キーワードクエリになります。
-
-#### クエリ式による `from` の使用
-
-クエリ式とともに `from` を使う場合、第１引数は `Ecto.Queryable` プロトコルを実装した値でなければいけません (例: `Movie`)。第２引数は式となります。例を見てみましょう:
+上の例では、SQLステートメントの最も楽しい部分がありません。特定のフィールドのみを参照したり、何らかの条件でレコードをフィルタリングしたりすることがよくあります。タイトルが `"Ready Player One"` である全ての映画の `title` と `tagline` を取得してみましょう。
 
 ```elixir
-iex> query = select(Movie, [m], m)
-%Ecto.Query<from m in Example.Movie, select: m>
-iex> Repo.all(query)
+iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
+%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One",
+ select: [:title, :tagline]>
 
-06:16:20.854 [debug] QUERY OK source="movies" db=0.9ms
+iex> Repo.all(query)                                                                    
+SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready Player One') []
 [
   %Example.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
     characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
-    id: 1,
+    id: nil,
     tagline: "Something about video games",
     title: "Ready Player One"
   }
 ]
 ```
 
-`in` ステートメント (`m in Movie`) が _必要ない_ 場合にはクエリ式を使うことができます。データ構造への参照を必要としない場合には `in` ステートメントは必要ありません。上のクエリはデータ構造の参照を必要とません。例えば、特定の条件を満たす映画を選択することはない場合がそれにあたります。そのため `in` 式とキーワードクエリを使う必要はありません。
+返ってくる構造体には `tagline` と `title` フィールドのみが設定されていることに注意してください - これは `select:` の結果です。
 
-### `select` 式の使用
+このようなクエリは、bindingを必要としないほど単純であるため、 *bindingless* と呼ばれます。
 
-クエリのselectステートメントの部分を指定するために `Ecto.Query.select/3` 関数を使います。特定のフィールドだけ選択したい場合は、アトムのリスト、もしくは構造体のキーの参照でそれを指定することができます。1つ目のアプローチを見てみましょう:
+#### クエリでのBinding
+
+これまで、 `from` マクロの最初の引数として `Ecto.Queryable` プロトコル（例： `Movie`）を実装するモジュールを使用しました。しかしながら、このような `in` 式も利用することができます。
 
 ```elixir
-iex> query = from(Movie, select: [:title])
-%Ecto.Query<from m in Example.Movie, select: [:title]>
-iex> Repo.all(query)
-
-15:15:25.842 [debug] QUERY OK source="movies" db=1.3ms
-[
-  %Example.Movie{
-    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
-    id: nil,
-    tagline: nil,
-    title: "Ready Player One"
-  }
-]
+iex> query = from(m in Movie)                                                           
+%Ecto.Query<from m in Example.Movie>
 ```
 
-`from` 関数に渡された第１引数では `in` 式を _使わなかった_ ことがわかります。これは、 `select` とともにキーワードリストを使うためにデータ構造への参照を作る必要が無かったためです。
-
-このアプローチでは、指定されたフィールドである `title` の値のみが格納された構造体が返されます。
-
-2つ目のアプローチでは動きが少しが異なります。この場合は `in` 式を _使う必要があります_ 。これは、映画構造体の `title` キーを指定するためにデータ構造体への参照を作る必要があるためです:
+このような場合には、 `m` を *binding* と呼びます。クエリの他の部分からモジュールが参照できるため、Bindingは非常に便利です。 `id` が `2` より小さい全ての映画のタイトルを選択してみましょう:
 
 ```elixir
-iex(15)> query = from(m in Movie, select: m.title)
-%Ecto.Query<from m in Example.Movie, select: m.title>
-iex(16)> Repo.all(query)
+iex> query = from(m in Movie, where: m.id < 2, select: m.title)
+%Ecto.Query<from m in Example.Movie, where: m.id < 2, select: m.title>
 
-15:06:12.752 [debug] QUERY OK source="movies" db=4.5ms queue=0.1ms
+iex> Repo.all(query)                                           
+SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-`select` を使うこのアプローチでは、選択した値を含むリストが返されることがわかります。
-
-### `where` 式の使用
-
-"where" 句をクエリに含めるために `where` 式を使うことができます。複数の `where` 式は `WHERE AND` のSQLステートメントへとまとめられます。
+ここで非常に重要なことは、クエリの出力がどのように変化したかです。`select:` 部分のbindingで *式* を使用すると、選択したフィールドが返される方法を正確に指定できます。例えば、タプルを指定できます。
 
 ```elixir
-iex> query = from(m in Movie, where: m.title == "Ready Player One")
-%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
-iex> Repo.all(query)
+iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
 
-15:18:35.355 [debug] QUERY OK source="movies" db=4.1ms queue=0.1ms
-[
-  %Example.Movie{
-    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
-    id: 1,
-    tagline: "Something about video games",
-    title: "Ready Player One"
-  }
-]
+iex> Repo.all(query)                                                          
+[{"Ready Player One"}]
 ```
 
-`where` 式は `select` とともに使うことができます。
+データ構造を参照する必要がある場合は、常に単純なbindinglessクエリから始めて、bindingを導入することをお勧めします。クエリのbindingの詳細については、[Ecto documentation](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions) を参照してください。
+
+### マクロクエリ
+
+上記の例では、 `from` マクロ内でキーワード `select:` と `where:` を使用してクエリを作成しました。これらは、*keyword-basedのクエリ* と呼ばれます。ただし、クエリを作成する別の方法もあります。マクロベースのクエリです。Ectoは、`select/3` や `where/3` のような全てのキーワードに対してマクロを提供します。各マクロは、*queryable* な値、*明示的なbindingのリスト*、およびアナログなキーワードに提供するのと同じ式を受け入れます:
 
 ```elixir
-iex> query = from(m in Movie, where: m.title == "Ready Player One", select: m.tagline)
-%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One", select: m.tagline>
-iex> Repo.all(query)
+iex> query = select(Movie, [m], m.title)                           
+%Ecto.Query<from m in Example.Movie, select: m.title>
+iex> Repo.all(query)                    
+SELECT m0."title" FROM "movies" AS m0 []
+["Ready Player One"]
+```
 
-15:19:11.904 [debug] QUERY OK source="movies" db=4.1ms
-["Something about video games"]
+マクロの良いところは、パイプで非常にうまく機能することです。
+
+```elixir
+iex> query = Movie |> where([m], m.id < 2) |> select([m], {m.title})
+
+iex> Repo.all(query)
+[{"Ready Player One"}]
 ```
 
 ### 埋め込み値による `where` の使用

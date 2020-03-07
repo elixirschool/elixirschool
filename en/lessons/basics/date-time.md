@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.1.0
 title: Date and Time
 ---
 
@@ -10,8 +10,6 @@ Working with time in Elixir.
 ## Time
 
 Elixir has some modules which work with time.
-Though it needs to be noted that this functionality is limited to working with UTC timezone.
-
 Let's start with getting the current time:
 
 ```elixir
@@ -91,10 +89,7 @@ The second, as you may have guessed from title of this section, is `DateTime`.
 It does not have the limitations noted in `NaiveDateTime`: it has both time and date, and supports timezones.
 But be aware about timezones. The official docs state:
 
-```
-You will notice this module only contains conversion functions as well as functions that work on UTC.
-This is because a proper DateTime implementation requires a time zone database which currently is not provided as part of Elixir.
-```
+> Many functions in this module require a time zone database. By default, it uses the default time zone database returned by `Calendar.get_time_zone_database/0`, which defaults to `Calendar.UTCOnlyTimeZoneDatabase` which only handles "Etc/UTC" datetimes and returns `{:error, :utc_only_time_zone_database}` for any other time zone.
 
 Also, note that you can create a DateTime instance from the NaiveDateTime, just by providing the timezone:
 
@@ -102,6 +97,29 @@ Also, note that you can create a DateTime instance from the NaiveDateTime, just 
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
+
+## Working with timezones
+
+As we have noted in the previous chapter, by default Elixir does not have any timezone data.
+To solve this issue, we need to install and set up the [tzdata](https://github.com/lau/tzdata) package.
+After installing it, you should globally configure Elixir to use Tzdata as timezone database:
+
+```
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+```
+
+Let's now try creating time in Paris timezone and convert it to New York time:
+
+```
+iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
+#DateTime<2019-01-01 12:00:00+01:00 CET Europe/Paris>
+iex> {:ok, ny_datetime} = DateTime.shift_zone(paris_datetime, "America/New_York")
+{:ok, #DateTime<2019-01-01 06:00:00-05:00 EST America/New_York>}
+iex> ny_datetime
+#DateTime<2019-01-01 06:00:00-05:00 EST America/New_York>
+```
+
+As you can see, time changed from 12:00 Paris time to 6:00, which is correct - time difference between two cities is 6 hours.
 
 This is it! If you want to work with other advanced functions you may want to consider looking futher into docs for [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html) and [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html)
 You should also consider [Timex](https://github.com/bitwalker/timex) and [Calendar](https://github.com/lau/calendar) which are powerful libraries to work with time in Elixir.

@@ -49,7 +49,7 @@ defmodule SimpleQueue.Application do
 end
 ```
 
-如果執行 `iex -S mix` 將會看到 `SimpleQueue` 被自動地啟動。 
+如果執行 `iex -S mix` 將會看到 `SimpleQueue` 被自動地啟動。
 
 ```elixir
 iex> SimpleQueue.queue
@@ -76,9 +76,9 @@ Supervisors 目前有三種不同的重新啟動策略：
 def child_spec(opts) do
   %{
     id: SimpleQueue,
-    start: {__MODULE__, :start_link, [opts]}
-    shutdown: 5_000
-    restart: :permanent
+    start: {__MODULE__, :start_link, [opts]},
+    shutdown: 5_000,
+    restart: :permanent,
     type: :worker
   }
 end
