@@ -6,10 +6,10 @@ date: 2019-02-07
 layout: post
 title:  TIL about `Process.send_after/4`
 excerpt: >
-  Want to schedule something to run later? Need a reocurring task? Today we learn how!
+  Want to schedule something to run later? Need a reoccurring task? Today we learn how!
 ---
 
-Executing code later or creating reocurring tasks can be tricky but did you know we can accomplish this in Elixir with just a process?
+Executing code later or creating reoccurring tasks can be tricky but did you know we can accomplish this in Elixir with just a process?
 With a GenServer, `Process.send_after/4`, and the `handle_info/2` callback we have everything we need.
 
 Let's look at `Process.send_after/4` and the expected arguments:
@@ -31,8 +31,8 @@ Just like `handle_cast/2`, `handle_info/2` takes two parmeters: the first will b
 
 That's enough to get us going but if you're interested to learn more about `Process.send_after/4` be sure to check out the [official documentation](https://hexdocs.pm/elixir/Process.html#send_after/4).
 
-For the sake of demonstrating how to use our aforementioned tools to perform reocurring work let's build a simple module to output the current time every 10 seconds.
-Since we'll be working with a GenServer, we can rely on `init/1` as a good place to kick off our the reocurring work using `Process.send_after/4` and a message of `:tick`:
+For the sake of demonstrating how to use our aforementioned tools to perform reoccurring work let's build a simple module to output the current time every 10 seconds.
+Since we'll be working with a GenServer, we can rely on `init/1` as a good place to kick off our the reoccurring work using `Process.send_after/4` and a message of `:tick`:
 
 ```elixir
 @ten_seconds 10000

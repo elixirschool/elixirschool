@@ -185,7 +185,7 @@ Next we'll create two templates `index.html.eex` and `contact.html.eex`.
 
 You can find the code for `index.html.eex` [here](https://raw.githubusercontent.com/elixirschool/router_example/master/lib/router_example/templates/index.html.eex) and `contact.html.eex` [here](https://raw.githubusercontent.com/elixirschool/router_example/master/lib/router_example/templates/contact.html.eex), we won't focus on HTML or CSS today.
 
-### Sending and recieving JSON
+### Sending and receiving JSON
 
 Building JSON endpoints in Plug.Router is much less work than the template rendering we just covered.
 
