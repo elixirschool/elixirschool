@@ -212,7 +212,7 @@ defmodule Clinic.SchedulerTest do
   end
 
   test "health checks are run and results logged" do
-    opts = [health_checks: TestCheck, interval: 1, sites: ["http://example.com", "http://example.org"]]
+    opts = [health_check: TestCheck, interval: 1, sites: ["http://example.com", "http://example.org"]]
 
     output =
       capture_log(fn ->
