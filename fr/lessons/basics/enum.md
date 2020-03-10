@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.5.0
 title: Enum
 ---
 
@@ -26,11 +26,10 @@ at/3
 ...
 ```
 
-En utilisant ceci, il devient clair que nous avons accès à un grand nombre de fonctionalités, et ceci pour une très bonne raison.
-L'énumeration est au coeur de la programmation fonctionelle et est incroyablement utile.
-En l'utilisant en combinaison avec d'autres avantages Elixir, comme par exemple la documentation traitée en tant que citoyen de première classe, comme nous venons de le voir, cela peut être une grande source de puissance pour le dévelopeur.
+En utilisant ceci, il devient clair que nous avons accès à un grand nombre de fonctionnalités, et ceci pour une très bonne raison.
+L'énumération est au coeur de la programmation fonctionnelle et en l'utilisant en combinaison avec d'autres avantages d'Elixir, cela peut être une grande source de puissance pour le développeur.
 
-Pour la liste complète des fonctions voir la documentation officielle du module [`Enum`](https://hexdocs.pm/elixir/Enum.html); pour l'énumération paresseuse utilisez le module [`Stream`](https://hexdocs.pm/elixir/Stream.html).
+Pour la liste complète des fonctions, consultez la documentation officielle du module [`Enum`](https://hexdocs.pm/elixir/Enum.html); pour l'énumération paresseuse utilisez le module [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
 ### all?
 
@@ -76,7 +75,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-Parfois, diviser une collection en petits groupes n'est pas exactement ce dont on a besoin. Si c'est le cas, `map_every/3` peut être très utile pour agir sur chaque `nième` élément, en commencant toujours par le premier:
+Parfois, diviser une collection en petits groupes n'est pas exactement ce dont on a besoin. Si c'est le cas, `map_every/3` peut être très utile pour agir sur chaque `nième` élément, en commençant toujours par le premier:
 
 ```elixir
 # Apply function every three items
@@ -96,7 +95,7 @@ three
 :ok
 ```
 
-__Note__: La fonction `each/2` retourne l'atom `:ok`.
+__Note__: La fonction `each/2` retourne l'atome `:ok`.
 
 ### map
 
@@ -116,7 +115,7 @@ iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` fait la même chose, mais si l'énumérable est vide, nous permet de spécifier une fonction pour produire la valeur minimum.
+`min/2` fait la même chose, mais si l'énumérable est vide, on nous permet de spécifier une fonction pour produire la valeur minimum.
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
@@ -165,7 +164,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 Le tri de collections est facilité avec non pas une, mais deux fonctions de tri.
 
-`sort/1` utilise le tri de termes d'Erlang pour déterminer l'ordre:
+`sort/1` utilise le [tri de termes](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) d'Erlang pour déterminer l'ordre:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -187,11 +186,20 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-`uniq_by/2` va supprimer les doublons de nos collections:
+Nous pouvons utiliser `uniq/1` pour supprimer les doublons de nos collections.
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
+```
+
+### uniq_by
+
+`uniq_by/2` va aussi supprimer les doublons de nos collections, mais nous pouvons fournir une fonction pour faire la comparaison de singularité.
+
+```elixir
+iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
+[%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```
