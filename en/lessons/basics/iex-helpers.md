@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: IEx Helpers
 ---
 
@@ -8,8 +8,8 @@ title: IEx Helpers
 ## Overview
 
 As you begin to work in Elixir, IEx is your best friend.
-It is a REPL, but it has many advanced features that can make life easier when exploring new code or developing your own work as you go.
-There are a slew of built-in helpers that we will go over in this lesson.
+It is a REPL, but it has many advanced features that can make life easier when exploring new code or developing your work as you go.
+There is a slew of built-in helpers that we will go over in this lesson.
 
 ### Autocomplete
 
@@ -40,7 +40,7 @@ Every time IEx starts it will look for a `.iex.exs` configuration file.
 If it's not present in the current directory, then the user's home directory (`~/.iex.exs`) will be used as the fallback.
 
 Configuration options and code defined within this file will be available to us when the IEx shell starts up.
-For instance if we want some helper functions available to us in IEx, we can open up `.iex.exs` and make some changes.
+For instance, if we want some helper functions available to us in IEx, we can open up `.iex.exs` and make some changes.
 
 Let's start by adding a module with a few helper functions:
 
@@ -75,7 +75,7 @@ As we can see we don't need to do anything special to require or import our help
 ### `h`
 
 `h` is one of the most useful tools our Elixir shell gives us.
-Due to the language's fantastic first class support for documentation, the docs for any code can be reached using this helper.
+Due to the language's fantastic first-class support for documentation, the docs for any code can be reached using this helper.
 To see it in action is simple:
 
 ```elixir
@@ -101,7 +101,7 @@ The Stream module allows lazy enumeration
 of enumerables and provides infinite streams.
 
 Since the majority of the functions in Enum enumerate the whole enumerable and
-return a list as result, infinite streams need to be carefully used with such
+return a list as a result, infinite streams need to be carefully used with such
 functions, as they can potentially run forever.
 For example:
 
@@ -157,7 +157,7 @@ As we can see we were not only able to find what functions were available as par
 
 ### `i`
 
-Let's put some of our new found knowledge to use by employing `h` to learn a bit more about the `i` helper:
+Let's put some of our new-found knowledge to use by employing `h` to learn a bit more about the `i` helper:
 
 ```elixir
 iex> h i
