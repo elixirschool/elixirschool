@@ -23,8 +23,6 @@ Om vi tar en titt i konsollen vår, kan vi se at mix opprettet de nødvendige fi
 * creating .gitignore
 * creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test

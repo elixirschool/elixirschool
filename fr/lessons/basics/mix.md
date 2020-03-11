@@ -24,8 +24,6 @@ On peut lire dans les messages de sortie que mix a créé notre dossier et un ce
 * creating .gitignore
 * creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test

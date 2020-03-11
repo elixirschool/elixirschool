@@ -24,8 +24,6 @@ Z výstupu príkazu vidíme, že boli vytvorené všetky štandardné adresáre 
 * creating .gitignore
 * creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
