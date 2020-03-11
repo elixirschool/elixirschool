@@ -24,8 +24,6 @@ W konsoli pojawi się informacja, że mix stworzył niezbędne pliki oraz katalo
 * creating .gitignore
 * creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test

@@ -38,8 +38,6 @@ $ mix new router_example --sup
 * creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/router_example.ex
 * creating lib/router_example/application.ex

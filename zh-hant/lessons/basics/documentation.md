@@ -148,8 +148,6 @@ $ mix new greet_everyone
 * creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/greet_everyone.ex
 * creating test

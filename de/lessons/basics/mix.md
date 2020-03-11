@@ -24,8 +24,6 @@ An der Ausgabe können wir sehen, dass mix unser Verzeichnis und eine Sammlung a
 * creating .gitignore
 * creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test

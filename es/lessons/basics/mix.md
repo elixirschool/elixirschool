@@ -24,8 +24,6 @@ De la salida podemos ver que mix ha creado nuestro directorio y un número de ar
 * creating .gitignore
 * creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test

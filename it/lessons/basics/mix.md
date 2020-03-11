@@ -30,8 +30,6 @@ Dall'output possiamo vedere che Mix ha creato la nostra directory assieme ad un 
 * creating .gitignore
 * creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
