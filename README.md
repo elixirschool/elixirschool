@@ -45,3 +45,26 @@ To run locally, you need both Ruby and Bundler installed.
   ```
 
 4. Send a PR with the new translated lesson and join [https://elixirschool.com/contributors/](_data/contributors.yml).
+
+### Posting an article
+
+1. Create your article file in the `_posts/` directory, in the form of `YYYY-MM-DD-name-seperated-with-hiphens.md`.
+
+2. Write your article headings like so on the file you just created:
+```
+---
+author: Author Name
+author_link: https://github.com/author_github_account (or website)
+categories: article_category (find them or add a new one in _data/blog_meta.yml)
+tags: ['phoenix'] (find them or create a new one in _data/blog_meta.yml)
+date: YYYY-MM-DD for the post date
+layout: post
+title: Full Article Title
+excerpt: >
+ Article short preview text
+---
+```
+
+Then continue with your article body
+
+3. Add your details in the `_data/contributors.yml` file if they are not already there.
