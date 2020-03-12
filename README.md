@@ -45,3 +45,27 @@ To run locally, you need both Ruby and Bundler installed.
   ```
 
 4. Send a PR with the new translated lesson and join [https://elixirschool.com/contributors/](_data/contributors.yml).
+
+### Posting an article
+
+In it's current iteration Elixir School is powered by Jekyll, a powerful static blog generator. If you're familiar with Jekyll then you're ready to go, if you aren't don't fret we're here to help!
+
+1. We need to create the file for our article. Blog posts live in the `_posts/` directory. Our filename will need to confirm to the `YYYY-MM-DD-name-seperated-with-hiphens.md` pattern.
+
+2. After opening the new file in our favorite editor we need to add some meta data to the top:
+
+```markdown
+---
+author: Author Name
+author_link: https://github.com/author_github_account (or website)
+categories: article_category (find them or add a new one in _data/blog_meta.yml)
+tags: ['phoenix'] (find them or create a new one in _data/blog_meta.yml)
+date: YYYY-MM-DD for the post date
+layout: post
+title: Full Article Title
+excerpt: >
+ Article short preview text
+---
+```
+
+3. Once we're done writing our post we should add/update `_data/contributors.yml` with our details.
