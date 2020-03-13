@@ -48,7 +48,7 @@ end
 We'll add a schema that specifies the "has many" relationship between a movies and its characters.
 
 ```elixir
-# lib/example/movie.ex
+# lib/friends/movie.ex
 defmodule Example.Movie do
   use Ecto.Schema
 
