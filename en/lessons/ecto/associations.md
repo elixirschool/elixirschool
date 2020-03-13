@@ -9,7 +9,7 @@ In this section we'll learn how to use Ecto to define and work with associations
 
 ## Set Up
 
-We'll start off with the `Example` app from the previous lesson. You can refer to the setup [here](../basics) for a quick refresher.
+We'll start off with the example `Friends` app from the previous lesson. You can refer to the setup [here](../basics) for a quick refresher.
 
 ## Types of Associations
 
