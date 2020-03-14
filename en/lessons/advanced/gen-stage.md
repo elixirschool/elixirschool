@@ -210,8 +210,8 @@ def start(_type, _args) do
 
   children = [
     {GenstageExample.Producer, 0},
-    GenstageExample.ProducerConsumer,
-    GenstageExample.Consumer
+    {GenstageExample.ProducerConsumer, []},
+    {GenstageExample.Consumer, []}
   ]
 
   opts = [strategy: :one_for_one, name: GenstageExample.Supervisor]
@@ -247,10 +247,16 @@ Let's make some adjustments for multiple workers by modifying `lib/genstage_exam
 
 ```elixir
 children = [
-  worker(GenstageExample.Producer, [0]),
-  worker(GenstageExample.ProducerConsumer, []),
-  worker(GenstageExample.Consumer, [], id: 1),
-  worker(GenstageExample.Consumer, [], id: 2)
+  {GenstageExample.Producer, 0},
+  {GenstageExample.ProducerConsumer, []},
+  %{
+    id: 1,
+    start: {GenstageExample.Consumer, :start_link, [[]]}
+  },
+  %{
+    id: 2,
+    start: {GenstageExample.Consumer, :start_link, [[]]}
+  },
 ]
 ```
 
