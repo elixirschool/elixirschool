@@ -27,10 +27,10 @@ end
 
 ### Repository
 
-Trước hết ta cần tạo repository (database wrapper) của dự án bằng cách dùng tác vụ `mix ecto.gen.repo -r ExampleApp.Repo`. Ta sẽ xem các tác vụ của Ecto sau. Repo của chúng ta có thể được tìm thấy ở `lib/<tên project>/repo.ex`
+Trước hết ta cần tạo repository (database wrapper) của dự án bằng cách dùng tác vụ `mix ecto.gen.repo -r FriendsApp.Repo`. Ta sẽ xem các tác vụ của Ecto sau. Repo của chúng ta có thể được tìm thấy ở `lib/<tên project>/repo.ex`
 
 ```elixir
-defmodule ExampleApp.Repo do
+defmodule FriendsApp.Repo do
   use Ecto.Repo, otp_app: :example_app
 end
 ```
@@ -42,17 +42,17 @@ Khi đã tạo xong Repo ta cần cài đặt cây giám sát, thường nằm t
 Một điều quan trọng là ta phải cài đặt Repo là một supervisor với `supervisor/3` mà không phải `worker/3`. Thông thường nếu bạn sinh ứng dụng với tùy chọn `--sup` thì nó đã có sẵn:
 
 ```elixir
-defmodule ExampleApp.App do
+defmodule FriendsApp.App do
   use Application
 
   def start(_type, _args) do
     import Supervisor.Spec
 
     children = [
-      supervisor(ExampleApp.Repo, [])
+      supervisor(FriendsApp.Repo, [])
     ]
 
-    opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
+    opts = [strategy: :one_for_one, name: FriendsApp.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
@@ -65,7 +65,7 @@ end
 Để cấu hình Ecto ta cần thêm một chút vào file `config/config.exs`. Ở đây ta sẽ cung cấp các thông tin về repository, adapter, database và thông tin truy cập:
 
 ```elixir
-config :example_app, ExampleApp.Repo,
+config :example_app, FriendsApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "example_app",
   username: "postgres",
@@ -93,7 +93,7 @@ Cách tốt nhất để tạo migration là dùng tác vụ `mix ecto.gen.migra
 Ta hãy bắt đầu với một migration cho bảng user:
 
 ```elixir
-defmodule ExampleApp.Repo.Migrations.CreateUser do
+defmodule FriendsApp.Repo.Migrations.CreateUser do
   use Ecto.Migration
 
   def change do
@@ -126,7 +126,7 @@ Sau khi có migration ta có thể chuyển qua phần model. Model định ngh�
 Giờ ta sẽ xem model cho migration của chúng ta trông thế nào:
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -169,7 +169,7 @@ Tài liệu chính thức có thể xem tại [Ecto.Query](http://hexdocs.pm/ect
 Ecto cung cấp một DSL tuyệt vời để ta viết truy vấn một các rõ ràng. Để tìm username của tất cả các tài khoản đã xác nhận ta có thể viết như sau:
 
 ```elixir
-alias ExampleApp.{Repo, User}
+alias FriendsApp.{Repo, User}
 
 query =
   from(
@@ -285,7 +285,7 @@ Changeset đóng vai trò lọc, kiểm tra, và giữ các ràng buộc khi tha
 Với ví dụ này ta sẽ tập trung vào changeset cho việc tạo tài khoản người dùng. Ta sẽ sửa model của chúng ta một chút:
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
@@ -341,7 +341,7 @@ Ta đã nâng cấp hàm `changeset/2` và thêm vào ba hàm tiện ích: `vali
 Dùng `User.changeset/2` nhìn cũng khá đơn giản:
 
 ```elixir
-alias ExampleApp.{User, Repo}
+alias FriendsApp.{User, Repo}
 
 pw = "passwords should be hard"
 

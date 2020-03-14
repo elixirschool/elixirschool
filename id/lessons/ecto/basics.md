@@ -27,10 +27,10 @@ end
 
 ### Repository
 
-Akhirnya kita perlu membuat repositori project kita, wrapper untuk databasenya.  Ini bisa dilakukan lewat task `mix ecto.gen.repo -r ExampleApp.Repo`.  Kita akan membahas task mix Ecto nanti.  Repo bisa ditemukan di `lib/<project name>/repo.ex`:
+Akhirnya kita perlu membuat repositori project kita, wrapper untuk databasenya.  Ini bisa dilakukan lewat task `mix ecto.gen.repo -r FriendsApp.Repo`.  Kita akan membahas task mix Ecto nanti.  Repo bisa ditemukan di `lib/<project name>/repo.ex`:
 
 ```elixir
-defmodule ExampleApp.Repo do
+defmodule FriendsApp.Repo do
   use Ecto.Repo, otp_app: :example_app
 end
 ```
@@ -42,17 +42,17 @@ Setelah kita membuat Repo, kita perlu mensetup pohon supervisor (supervisor tree
 Penting dicatat bahwa kita mensetup Repo sebagai sebuah supervisor dengan `supervisor/3` dan _bukan_ `worker/3`.  Jika anda membuat app dengan flag `--sup` sebagian besarnya sudah dibuat:
 
 ```elixir
-defmodule ExampleApp.App do
+defmodule FriendsApp.App do
   use Application
 
   def start(_type, _args) do
     import Supervisor.Spec
 
     children = [
-      supervisor(ExampleApp.Repo, [])
+      supervisor(FriendsApp.Repo, [])
     ]
 
-    opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
+    opts = [strategy: :one_for_one, name: FriendsApp.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
@@ -65,7 +65,7 @@ Untuk info lebih lanjut tentang supervisor lihatlah pelajaran [OTP Supervisors](
 Untuk mengkonfigurasi Ecto kita perlu menambahkan sebuah bagian ke `config/config.exs` kita.  Di sini kita akan menspesifikasikan repositori, adapter, database, dan informasi terkait account:
 
 ```elixir
-config :example_app, ExampleApp.Repo,
+config :example_app, FriendsApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "example_app",
   username: "postgres",
@@ -93,7 +93,7 @@ Cara terbaik membuat migrasi adalah dengan task `mix ecto.gen.migration <name>`.
 Mari mulai dengan melihat sebuah migrasi untuk tabel users:
 
 ```elixir
-defmodule ExampleApp.Repo.Migrations.CreateUser do
+defmodule FriendsApp.Repo.Migrations.CreateUser do
   use Ecto.Migration
 
   def change do
@@ -126,7 +126,7 @@ Sekarang setelah kita membuat migrasi kita dapat melanjutkan ke model.  Model me
 Untuk sementara ini mari lihat seperti apa model dari migrasi kita:
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -169,7 +169,7 @@ Dokumentasi resmi bisa ditemukan di [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Que
 Ecto menyediakan DSL Query yang sangat bagus yang memungkinkan kita mengekspresikan query dengan jelas.  Untuk menemukan username dari semua akun yang sudah dikonfirmasikan kita dapat gunakan seperti ini:
 
 ```elixir
-alias ExampleApp.{Repo, User}
+alias FriendsApp.{Repo, User}
 
 query =
   from(
@@ -272,7 +272,7 @@ Changeset mengurus pemfilteran, validasi, dan menangani batasan ketika mengubah 
 Untuk contoh ini kita akan fokus pada changeset untuk membuat user.  Untuk memulai kita perlu mengubah model kita:
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
@@ -328,7 +328,7 @@ Sebagaimana diduga, `changeset/2` membuat sebuah changeset baru untuk kita.  Di 
 Menggunakan `User.changeset/2` adalah relatif sederhana:
 
 ```elixir
-alias ExampleApp.{User, Repo}
+alias FriendsApp.{User, Repo}
 
 pw = "passwords should be hard"
 

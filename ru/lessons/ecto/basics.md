@@ -27,10 +27,10 @@ end
 
 ### Репозиторий
 
-Создадим репозиторий для проекта - оболочку для базы данных. Для этого выполним команду `mix ecto.gen.repo -r ExampleApp.Repo`. Репозиторий находится в `lib/<project name>/repo.ex`.
+Создадим репозиторий для проекта - оболочку для базы данных. Для этого выполним команду `mix ecto.gen.repo -r FriendsApp.Repo`. Репозиторий находится в `lib/<project name>/repo.ex`.
 
 ```elixir
-defmodule ExampleApp.Repo do
+defmodule FriendsApp.Repo do
   use Ecto.Repo, otp_app: :example_app
 end
 ```
@@ -42,17 +42,17 @@ end
 Важно, чтобы мы настроили репозиторий, как супервизор с помощью `supervisor/3` метода, а не `worker/3`. Если создать приложение с флагом `--sup`, большинство нужного кода для нас уже будет сгенерировано.
 
 ```elixir
-defmodule ExampleApp.App do
+defmodule FriendsApp.App do
   use Application
 
   def start(_type, _args) do
     import Supervisor.Spec
 
     children = [
-      supervisor(ExampleApp.Repo, [])
+      supervisor(FriendsApp.Repo, [])
     ]
 
-    opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
+    opts = [strategy: :one_for_one, name: FriendsApp.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
@@ -64,7 +64,7 @@ end
 Чтобы настроить Ecto, необходимо добавить конфигурацию в файл `config/config.exs`. В конфигурации необходимо указать репозиторий, адаптер, базу данных и информацию об аккаунте.
 
 ```elixir
-config :example_app, ExampleApp.Repo,
+config :example_app, FriendsApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "example_app",
   username: "postgres",
@@ -92,7 +92,7 @@ mix ecto.rollback       # Откатить миграции из репозит�
 Давайте рассмотрим, как выглядит миграция для таблицы `users`:
 
 ```elixir
-defmodule ExampleApp.Repo.Migrations.CreateUser do
+defmodule FriendsApp.Repo.Migrations.CreateUser do
   use Ecto.Migration
 
   def change do
@@ -125,7 +125,7 @@ Ecto по умолчанию создает первичный автоинкр�
 Рассмотрим как выглядит модель для нашей миграции:
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -167,7 +167,7 @@ import Ecto.Query, only: [from: 2]
 Ecto предоставляет мощный язык запросов. Запрос для поиска всех пользователей, аккаунты которых приняты, будет выглядеть так:
 
 ```elixir
-alias ExampleApp.{Repo, User}
+alias FriendsApp.{Repo, User}
 
 query =
   from(
@@ -283,7 +283,7 @@ query =
 Давайте используем пример набора изменений для создания аккаунта для пользователя. Для начала необходимо обновить модель:
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
@@ -339,7 +339,7 @@ end
 Использование `User.changeset/2` довольно просто:
 
 ```elixir
-alias ExampleApp.{User, Repo}
+alias FriendsApp.{User, Repo}
 
 pw = "passwords should be hard"
 

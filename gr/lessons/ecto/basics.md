@@ -27,10 +27,10 @@ end
 
 ### Αποθετήριο
 
-Τέλος χρειάζεται να δημιουργήσουμε το αποθετήριο του project μας, το κάλυμμα της βάσης δεδομένων.  Αυτό μπορεί να γίνει μέσω της εργασίς `mix ecto.gen.repo -r ExampleApp.Repo`.  Θα καλύψουμε τις εργασίες mix του Ecto στη συνέχεια.  Το αποθετήριο μπορεί να βρεθεί στο `lib/<όνομα του project>/repo.ex`:
+Τέλος χρειάζεται να δημιουργήσουμε το αποθετήριο του project μας, το κάλυμμα της βάσης δεδομένων.  Αυτό μπορεί να γίνει μέσω της εργασίς `mix ecto.gen.repo -r FriendsApp.Repo`.  Θα καλύψουμε τις εργασίες mix του Ecto στη συνέχεια.  Το αποθετήριο μπορεί να βρεθεί στο `lib/<όνομα του project>/repo.ex`:
 
 ```elixir
-defmodule ExampleApp.Repo do
+defmodule FriendsApp.Repo do
   use Ecto.Repo, otp_app: :example_app
 end
 ```
@@ -42,17 +42,17 @@ end
 Είναι σημαντικό να σημειώσουμε ότι ορίζουμε το αποθετήριο σαν επιτηρητή με την `supervisor/3` και _όχι_ με την `worker/3`.  Αν δημιουργήσετε την εφαρμογή σας με την σημαία `--sup`, αρκετά από αυτά υπάρχουν ήδη:
 
 ```elixir
-defmodule ExampleApp.App do
+defmodule FriendsApp.App do
   use Application
 
   def start(_type, _args) do
     import Supervisor.Spec
 
     children = [
-      supervisor(ExampleApp.Repo, [])
+      supervisor(FriendsApp.Repo, [])
     ]
 
-    opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
+    opts = [strategy: :one_for_one, name: FriendsApp.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
@@ -65,7 +65,7 @@ end
 Για να ρυθμίσουμε το Ecto χρειάζεται να προσθέσουμε ένα τομέα στο `config/config.exs` μας.  Εδώ θα ορίσουμε το αποθετήριο, τον αντάπτορα, τη βάση δεδομένων και τις πληροφορίες λόγαριασμού:
 
 ```elixir
-config :example_app, ExampleApp.Repo,
+config :example_app, FriendsApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "example_app",
   username: "postgres",
@@ -93,7 +93,7 @@ mix ecto.rollback       # Επαναφέρετε τις μετατροπές α�
 Ας ξεκινήσουμε ρίχνοντας μια ματιά σε μια μετατροπή για ένα πίνακα χρηστών:
 
 ```elixir
-defmodule ExampleApp.Repo.Migrations.CreateUser do
+defmodule FriendsApp.Repo.Migrations.CreateUser do
   use Ecto.Migration
 
   def change do
@@ -126,7 +126,7 @@ end
 Για τώρα ας δούμε πως φαίνεται το μοντέλο για τη μετατροπή μας:
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -169,7 +169,7 @@ import Ecto.Query, only: [from: 2]
 Το Ecto παρέχει μία εξαιρετική DSL Ερωτημάτων που μας επιτρέπει να εκφράζουμε ξεκάθαρα τα ερωτήματα.  Για να βρούμε τα ονόματα χρήστη από όλους τους επιβεβαιωμένους λογαριασμούς θα μπορούσαμε να χρησιμοποιήσουμα κάτι σαν αυτό:
 
 ```elixir
-alias ExampleApp.{Repo, User}
+alias FriendsApp.{Repo, User}
 
 query =
   from(
@@ -287,7 +287,7 @@ query =
 Για αυτό το παράδειγμα θα εστιάσουμε στο σετ αλλαγών για τη δημιουργία ενός λογαριασμού χρήστη.  Για να ξεκινήσουμε πρέπει να αλλάξουμε το μοντέλο μας:
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
@@ -343,7 +343,7 @@ end
 Η χρήση της `User.changeset/2` είναι αρκετά απλή:
 
 ```elixir
-alias ExampleApp.{User, Repo}
+alias FriendsApp.{User, Repo}
 
 pw = "οι κωδικοί πρέπει να είναι δύσκολοι"
 

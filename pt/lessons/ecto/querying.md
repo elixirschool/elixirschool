@@ -5,14 +5,14 @@ title: Querying
 
 {% include toc.html %}
 
-Nesta lição, estaremos construindo a aplicação `Example` e o catálogo de filmes que configuramos na [lição anterior](./associations).
+Nesta lição, estaremos construindo a aplicação `Friends` e o catálogo de filmes que configuramos na [lição anterior](./associations).
 
 ## Buscando Registros com `Ecto.Repo`
 
 Lembre-se de que um "repositório" no Ecto é mapeado para um armazenamento de dados, como nosso banco de dados Postgres.
 Toda a comunicação com o banco de dados será feita usando este repositório.
 
-Podemos realizar simples consultas diretamente em nosso `Example.Repo` com a ajuda de algumas funções.
+Podemos realizar simples consultas diretamente em nosso `Friends.Repo` com a ajuda de algumas funções.
 
 ### Buscando Registros por ID
 
@@ -21,9 +21,9 @@ Nós podemos usar a função `Repo.get/3` para carregar um registro vindo do ban
 Vamos dar uma olhada em um exemplo. Abaixo, vamos pegar o filme com o ID 1:
 
 ```elixir
-iex> alias Example.{Repo, Movie}
+iex> alias Friends.{Repo, Movie}
 iex> Repo.get(Movie, 1)
-%Example.Movie{
+%Friends.Movie{
   __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
   characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
@@ -41,10 +41,10 @@ Note que o primeiro argumento que fornecemos a `Repo.get/3` foi nosso módulo `M
 Também podemos buscar registros que atendam a um determinado critério com a função `Repo.get_by/3`. Essa função requer dois argumentos: a estrutura de dados "queryable" e a cláusula com a qual queremos consultar. `Repo.get_by/3` retorna um único resultado do repositório. Vamos ver um exemplo: 
 
 ```elixir
-iex> alias Example.Repo
-iex> alias Example.Movie
+iex> alias Friends.Repo
+iex> alias Friends.Movie
 iex> Repo.get_by(Movie, title: "Ready Player One")
-%Example.Movie{
+%Friends.Movie{
   __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
   characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
@@ -68,7 +68,7 @@ Podemos criar uma consulta com a função `Ecto.Query.from/2`. Esta função rec
 ```elixir
 import Ecto.Query
 query = from(m in Movie, select: m)
-%Ecto.Query<from m in Example.Movie, select: m>
+%Ecto.Query<from m in Friends.Movie, select: m>
 ```
 
 Para executar nossa consulta, usamos a função `Repo.all/2`. Essa função aceita um argumento obrigatório de uma consulta Ecto e retorna todos os registros que atendem às condições da consulta.
@@ -78,7 +78,7 @@ iex> Repo.all(query)
 
 14:58:03.187 [debug] QUERY OK source="movies" db=1.7ms decode=4.2ms
 [
-  %Example.Movie{
+  %Friends.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
     characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
@@ -105,12 +105,12 @@ Ao usar `from` com uma expressão de consulta, o primeiro argumento deve ser um 
 
 ```elixir
 iex> query = select(Movie, [m], m)
-%Ecto.Query<from m in Example.Movie, select: m>
+%Ecto.Query<from m in Friends.Movie, select: m>
 iex> Repo.all(query)
 
 06:16:20.854 [debug] QUERY OK source="movies" db=0.9ms
 [
-  %Example.Movie{
+  %Friends.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
     characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
@@ -130,12 +130,12 @@ Usamos a função `Ecto.Query.select/3` para especificar a parte da instrução 
 
 ```elixir
 iex> query = from(Movie, select: [:title])                                            
-%Ecto.Query<from m in Example.Movie, select: [:title]>
+%Ecto.Query<from m in Friends.Movie, select: [:title]>
 iex> Repo.all(query)
 
 15:15:25.842 [debug] QUERY OK source="movies" db=1.3ms
 [
-  %Example.Movie{
+  %Friends.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
     characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
@@ -155,7 +155,7 @@ A segunda abordagem se comporta de maneira um pouco diferente. Desta vez, nós *
 
 ```elixir
 iex(15)> query = from(m in Movie, select: m.title)   
-%Ecto.Query<from m in Example.Movie, select: m.title>
+%Ecto.Query<from m in Friends.Movie, select: m.title>
 iex(16)> Repo.all(query)                             
 
 15:06:12.752 [debug] QUERY OK source="movies" db=4.5ms queue=0.1ms
@@ -170,12 +170,12 @@ Podemos usar expressões `where` para incluir cláusulas `where` em nossas consu
 
 ```elixir
 iex> query = from(m in Movie, where: m.title == "Ready Player One")                   
-%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One">
+%Ecto.Query<from m in Friends.Movie, where: m.title == "Ready Player One">
 iex> Repo.all(query)
 
 15:18:35.355 [debug] QUERY OK source="movies" db=4.1ms queue=0.1ms
 [
-  %Example.Movie{
+  %Friends.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
     characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
@@ -191,7 +191,7 @@ Podemos usar expressões `where` junto com `select`:
 
 ```elixir
 iex> query = from(m in Movie, where: m.title == "Ready Player One", select: m.tagline)
-%Ecto.Query<from m in Example.Movie, where: m.title == "Ready Player One", select: m.tagline>
+%Ecto.Query<from m in Friends.Movie, where: m.title == "Ready Player One", select: m.tagline>
 iex> Repo.all(query)
 
 15:19:11.904 [debug] QUERY OK source="movies" db=4.1ms
@@ -206,7 +206,7 @@ Para usar valores interpolados ou expressões Elixir em nossas cláusulas where,
 iex> title = "Ready Player One"
 "Ready Player One"
 iex> query = from(m in Movie, where: m.title == ^title, select: m.tagline)            
-%Ecto.Query<from m in Example.Movie, where: m.title == ^"Ready Player One",
+%Ecto.Query<from m in Friends.Movie, where: m.title == ^"Ready Player One",
  select: m.tagline>
 iex> Repo.all(query)
 
@@ -222,7 +222,7 @@ Primeiro, vamos escrever uma expressão de consulta usando a função `first/2`:
 
 ```elixir
 iex> first(Movie)
-%Ecto.Query<from m in Example.Movie, order_by: [desc: m.id], limit: 1>
+%Ecto.Query<from m in Friends.Movie, order_by: [desc: m.id], limit: 1>
 ```
 
 Então passamos nossa consulta para a função `Repo.one/2` para obter nosso resultado:
@@ -231,7 +231,7 @@ Então passamos nossa consulta para a função `Repo.one/2` para obter nosso res
 iex> Movie |> first() |> Repo.one()
 
 06:36:14.234 [debug] QUERY OK source="movies" db=3.7ms
-%Example.Movie{
+%Friends.Movie{
   __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
   characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
@@ -274,16 +274,16 @@ iex> Repo.all(from m in Movie, preload: [:actors])
 13:17:28.354 [debug] QUERY OK source="movies" db=2.3ms queue=0.1ms
 13:17:28.357 [debug] QUERY OK source="actors" db=2.4ms
 [
-  %Example.Movie{
+  %Friends.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: [
-      %Example.Actor{
+      %Friends.Actor{
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
         movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
         name: "Bob"
       },
-      %Example.Actor{
+      %Friends.Actor{
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 2,
         movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
@@ -311,16 +311,16 @@ iex> Repo.all(query)
 
 13:18:52.053 [debug] QUERY OK source="movies" db=3.7ms
 [
-  %Example.Movie{
+  %Friends.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: [
-      %Example.Actor{
+      %Friends.Actor{
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
         movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
         name: "Bob"
       },
-      %Example.Actor{
+      %Friends.Actor{
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 2,
         movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
@@ -353,7 +353,7 @@ Também podemos pré-carregar os esquemas associados de registros que já foram 
 
 ```elixir
 iex> movie = Repo.get(Movie, 1)
-%Example.Movie{
+%Friends.Movie{
   __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: %Ecto.Association.NotLoaded<association :actors is not loaded>, # actors are NOT LOADED!!
   characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
@@ -363,16 +363,16 @@ iex> movie = Repo.get(Movie, 1)
   title: "Ready Player One"
 }
 iex> movie = Repo.preload(movie, :actors)
-%Example.Movie{
+%Friends.Movie{
   __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
   actors: [
-    %Example.Actor{
+    %Friends.Actor{
       __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 1,
       movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
       name: "Bob"
     },
-    %Example.Actor{
+    %Friends.Actor{
       __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 2,
       movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
@@ -392,13 +392,13 @@ Agora podemos pedir um filme para seus atores:
 ```elixir
 iex> movie.actors
 [
-  %Example.Actor{
+  %Friends.Actor{
     __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
     id: 1,
     movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
     name: "Bob"
   },
-  %Example.Actor{
+  %Friends.Actor{
     __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
     id: 2,
     movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,

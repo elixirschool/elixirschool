@@ -27,10 +27,10 @@ end
 
 ### Repozytorium
 
-W końcu musimy stworzyć repozytorium dla naszego projektu, które pełni rolę opakowania (ang. _wrapper_) bazy danych.  Możemy to zrobić wykorzystując polecenie `mix ecto.gen.repo -r ExampleApp.Repo`.  Zadania Ecto dla Mixa omówimy za chwilę. Moduł `Repo` znajdziemy w `lib/<projectname>/repo.ex`:
+W końcu musimy stworzyć repozytorium dla naszego projektu, które pełni rolę opakowania (ang. _wrapper_) bazy danych.  Możemy to zrobić wykorzystując polecenie `mix ecto.gen.repo -r FriendsApp.Repo`.  Zadania Ecto dla Mixa omówimy za chwilę. Moduł `Repo` znajdziemy w `lib/<projectname>/repo.ex`:
 
 ```elixir
-defmodule ExampleApp.Repo do
+defmodule FriendsApp.Repo do
   use Ecto.Repo, otp_app: :example_app
 end
 ```
@@ -42,17 +42,17 @@ Po stworzeniu repozytorium musimy jeszcze skonfigurować drzewo nadzorców, któ
 Kluczowe jest wykorzystanie do tego funkcji `supervisor/3`, a _nie_ `worker/3`.  Jeżeli wygenerujemy aplikację z flagą `--sup`, to większość konfiguracji będzie już gotowa:
 
 ```elixir
-defmodule ExampleApp.App do
+defmodule FriendsApp.App do
   use Application
 
   def start(_type, _args) do
     import Supervisor.Spec
 
     children = [
-      supervisor(ExampleApp.Repo, [])
+      supervisor(FriendsApp.Repo, [])
     ]
 
-    opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
+    opts = [strategy: :one_for_one, name: FriendsApp.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
@@ -65,7 +65,7 @@ Więcej o nadzorcach znajdziesz w lekcji [Nadzorcy OTP](../../advanced/otp-super
 By skonfigurować Ecto musimy dodać odpowiednią sekcję w pliku `config/config.exs`. Zawiera ona informacje o repozytorium, adapterze, bazie danych oraz dane użytkownika:
 
 ```elixir
-config :example_app, ExampleApp.Repo,
+config :example_app, FriendsApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "example_app",
   username: "postgres",
@@ -93,7 +93,7 @@ Najlepszą metodą do pracy z migracjami jest zadanie `mix ecto.gen.migration <n
 Na początek przyjrzyjmy się migracji tabeli `users`:
 
 ```elixir
-defmodule ExampleApp.Repo.Migrations.CreateUser do
+defmodule FriendsApp.Repo.Migrations.CreateUser do
   use Ecto.Migration
 
   def change do
@@ -126,7 +126,7 @@ Mają gotową migrację możemy przejść do modelu. Modele opisują nasze dane,
 Załóżmy, że model dla naszej migracji wygląda następująco:
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -169,7 +169,7 @@ Oficjalną dokumentację, w języku angielskim, znajdziesz na stronie [Ecto.Quer
 Ecto ma wspaniały DSL (ang. _Domain specific language_ – język domeny) do definiowania zapytań. Przykładowo by pobrać wszystkie pola `username` dla użytkowników, którzy mają zatwierdzone konto, napiszemy:
 
 ```elixir
-alias ExampleApp.{Repo, User}
+alias FriendsApp.{Repo, User}
 
 query =
   from(
@@ -286,7 +286,7 @@ Zestawy zmian dbają o zachowanie ograniczeń, filtrowanie oraz walidację w mom
 W tym zestawie skupimy się na zestawie zmian potrzebnym do utworzenia konta. Zacznijmy od aktualizacji naszego modelu:
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
@@ -342,7 +342,7 @@ Jak sama nazwa sugeruje, `changeset/2` tworzy nowy zestaw zmian.  W ramach niego
 Samo użycie `User.changeset/2` jest stosunkowo proste:
 
 ```elixir
-alias ExampleApp.{User, Repo}
+alias FriendsApp.{User, Repo}
 
 pw = "passwords should be hard"
 

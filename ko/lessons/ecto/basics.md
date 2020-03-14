@@ -32,10 +32,10 @@ $ mix deps.get
 
 ### 저장소
 
-마지막으로 프로젝트의 저장소, 다시 말해 데이터베이스를 감싸는 부분을 생성해야 합니다. 이는 `mix ecto.gen.repo -r ExampleApp.Repo` 태스크로 생성할 수 있습니다. 다른 mix 태스크에 대해서는 나중에 알아보겠습니다. 생성된 저장소(Repo 모듈)는 `lib/<project name>/repo.ex`에 저장됩니다.
+마지막으로 프로젝트의 저장소, 다시 말해 데이터베이스를 감싸는 부분을 생성해야 합니다. 이는 `mix ecto.gen.repo -r FriendsApp.Repo` 태스크로 생성할 수 있습니다. 다른 mix 태스크에 대해서는 나중에 알아보겠습니다. 생성된 저장소(Repo 모듈)는 `lib/<project name>/repo.ex`에 저장됩니다.
 
 ```elixir
-defmodule ExampleApp.Repo do
+defmodule FriendsApp.Repo do
   use Ecto.Repo, otp_app: :example_app
 end
 ```
@@ -45,15 +45,15 @@ end
 Repo를 생성한 뒤에는 슈퍼바이저 트리를 설정해야 합니다. 이는 보통 `lib/<project name>.ex`에 있습니다. Repo를 `children` 목록에 추가해 주세요:
 
 ```elixir
-defmodule ExampleApp.Application do
+defmodule FriendsApp.Application do
   use Application
 
   def start(_type, _args) do
     children = [
-      ExampleApp.Repo
+      FriendsApp.Repo
     ]
 
-    opts = [strategy: :one_for_one, name: ExampleApp.Supervisor]
+    opts = [strategy: :one_for_one, name: FriendsApp.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
@@ -66,7 +66,7 @@ end
 Ecto를 설정하려면 `config/config.exs`에 정보를 추가해야 합니다. 여기에서는 저장소나 어댑터, 데이터베이스, 계정 정보를 저장합니다.
 
 ```elixir
-config :example_app, ExampleApp.Repo,
+config :example_app, FriendsApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "example_app",
   username: "postgres",
@@ -94,7 +94,7 @@ mix ecto.rollback       # 저장소의 마이그레이션을 롤백합니다
 사용자 테이블의 마이그레이션을 확인해봅시다.
 
 ```elixir
-defmodule ExampleApp.Repo.Migrations.CreateUser do
+defmodule FriendsApp.Repo.Migrations.CreateUser do
   use Ecto.Migration
 
   def change do
@@ -127,7 +127,7 @@ end
 우선 마이그레이션을 위한 스키마가 어떤 것인지 확인해보죠.
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -170,7 +170,7 @@ import Ecto.Query, only: [from: 2]
 Ecto은 멋진 질의 DSL을 제공하고 있으며, 질의를 이해하기 쉬운 형태로 표현할 수 있습니다. 모든 승인된 계정의 사용자 이름을 검색하는 경우, 다음과 같은 질의를 사용할 수 있을 겁니다.
 
 ```elixir
-alias ExampleApp.{Repo, User}
+alias FriendsApp.{Repo, User}
 
 query =
   from(
@@ -286,7 +286,7 @@ Changeset은 스키마를 변경할 때 필터나 검증, 제약 조건의 유�
 아래의 예시에서는 사용자 계정을 생성할 때의 Changeset을 살펴보겠습니다. 우선, 스키마를 변경해야 합니다.
 
 ```elixir
-defmodule ExampleApp.User do
+defmodule FriendsApp.User do
   use Ecto.Schema
   import Ecto.Changeset
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
@@ -342,7 +342,7 @@ end
 `User.changeset/2`는 비교적 간단하게 사용할 수 있습니다.
 
 ```elixir
-alias ExampleApp.{User,Repo}
+alias FriendsApp.{User,Repo}
 
 pw = "passwords should be hard"
 changeset = User.changeset(%User{}, %{username: "doomspork",
