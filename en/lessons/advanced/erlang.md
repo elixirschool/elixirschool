@@ -1,11 +1,11 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Erlang Interoperability
 ---
 
 One of the added benefits to building on top of the Erlang VM (BEAM) is the plethora of existing libraries available to us.
 Interoperability allows us to leverage those libraries and the Erlang standard lib from our Elixir code.
-In this lesson we'll look at how to access functionality in the standard lib along with third-party Erlang packages.
+In this lesson, we'll look at how to access functionality in the standard lib along with third-party Erlang packages.
 
 {% include toc.html %}
 
@@ -34,8 +34,8 @@ For a complete list of the modules available, see the [Erlang Reference Manual](
 
 ## Erlang Packages
 
-In a prior lesson we covered Mix and managing our dependencies.
-Including Erlang libraries works the same way.
+In a prior lesson, we covered Mix and managing our dependencies.
+Including Erlang, libraries work the same way.
 In the event the Erlang library has not been pushed to [Hex](https://hex.pm) you can refer to the git repository instead:
 
 ```elixir
