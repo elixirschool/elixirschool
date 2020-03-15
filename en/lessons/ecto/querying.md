@@ -66,8 +66,8 @@ The `Ecto.Query` module provides us with the Query DSL which we can use to write
 We can create a query with the `Ecto.Query.from/2` macro. This function takes in two arguments: an expression and an optional keyword list. Let's create the most simple query to select all of the movies from our repository:
 
 ```elixir
-import Ecto.Query
-query = from(Movie)                
+iex> import Ecto.Query
+iex> query = from(Movie)                
 %Ecto.Query<from m in Example.Movie>
 ```
 
