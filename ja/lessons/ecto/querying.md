@@ -383,11 +383,11 @@ iex> movie.actors
 iex> query = from m in Movie,
               join: c in Character,
               on: m.id == c.movie_id,
-              where: c.name == "Video Game Guy",
+              where: c.name == "Wade Watts",
               select: {m.title, c.name}
 iex> Repo.all(query)
 15:28:23.756 [debug] QUERY OK source="movies" db=5.5ms
-[{"Ready Player One", "Video Game Guy"}]
+[{"Ready Player One", "Wade Watts"}]
 ```
 
 `on` 式にはキーワードリストを使うこともできます:
@@ -396,7 +396,7 @@ iex> Repo.all(query)
 from m in Movie,
   join: c in Character,
   on: [id: c.movie_id], # keyword list
-  where: c.name == "Video Game Guy",
+  where: c.name == "Wade Watts",
   select: {m.title, c.name}
 ```
 
@@ -407,7 +407,7 @@ movies = from m in Movie, where: [stars: 5]
 from c in Character,
   join: ^movies,
   on: [id: c.movie_id], # keyword list
-  where: c.name == "Video Game Guy",
+  where: c.name == "Wade Watts",
   select: {m.title, c.name}
 ```
 
