@@ -495,3 +495,13 @@
     - translator
   languages:
     - pt
+
+- github: progsmile
+  name: Denis Klimenko
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - ru
