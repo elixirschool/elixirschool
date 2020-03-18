@@ -114,7 +114,7 @@ end
 
 Como você provavelmente percebeu nas dependências acima, a dependência`cowboy` é apenas necessária durante o desenvolvimento e teste.
 
-Uma vez que tenhamos definido nossa dependências, existe um passo final, buscar estas dependências. Isso é análogo ao `bundle install`:
+Uma vez que tenhamos definido nossas dependências, existe um passo final, buscar estas dependências. Isso é análogo ao `bundle install`:
 
 ```bash
 $ mix deps.get
