@@ -11,7 +11,7 @@ Até agora trabalhamos exclusivamente dentro do `iex` que tem limitações. A fi
 
 ## Novos Projetos
 
-Quando estamos prontos para criar um novo projeto em Elixir, mix faz com isso seja fácil utilizando o comando `mix new`. Este comando irá gerar a estrutura de pastas do nosso projeto e a base de arquivos necessária. Este é bastante simples, então vamos começar:
+Quando estamos prontos para criar um novo projeto em Elixir, mix faz com que isso seja fácil utilizando o comando `mix new`. Este comando irá gerar a estrutura de pastas do nosso projeto e a base de arquivos necessária. Este é bastante simples, então vamos começar:
 
 ```bash
 $ mix new example
