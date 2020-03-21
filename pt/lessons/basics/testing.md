@@ -122,7 +122,7 @@ defmodule TestReceive do
 end
 ```
 
-`assert_received` não espera mesangens com `assert_receive` você pode especificar um tempo limite.
+`assert_received` não espera mensagens com `assert_receive` você pode especificar um tempo limite.
 
 ### capture_io and capture_log
 
