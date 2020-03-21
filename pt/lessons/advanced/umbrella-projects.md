@@ -200,4 +200,5 @@ Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() 
 
 iex> Datasets.hello
 Hello, I'm the datasets
+:ok
 ```
