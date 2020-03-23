@@ -122,7 +122,7 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:1659: :string.strip/3
     (stdlib) string.erl:1597: :string.words/2
 
-iex> "Hello World" |> to_charlist |> :string.words
+iex> "Hello World" |> to_charlist() |> :string.words
 2
 ```
 
