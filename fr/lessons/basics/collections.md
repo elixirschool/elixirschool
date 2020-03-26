@@ -9,7 +9,7 @@ Les listes, tuples, listes à mots clé, et tableaux associatifs.
 
 ## Listes
 
-Les listes sont collections simples de valeurs qui peuvent comprendre des types divers. Les listes peuvent aussi comporter la même valeur plusieurs fois.
+Les listes sont de simples collections de valeurs pouvant comprendre des types divers. Les listes peuvent aussi comporter plusieurs fois la même valeur.
 
 ```elixir
 iex> [3.14, :pie, "Apple"]
