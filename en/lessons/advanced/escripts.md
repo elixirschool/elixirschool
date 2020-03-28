@@ -46,8 +46,8 @@ To do this we'll use Elixir's `OptionParser.parse/2` with the `:switches` option
 defmodule ExampleApp.CLI do
   def main(args \\ []) do
     args
-    |> parse_args
-    |> response
+    |> parse_args()
+    |> response()
     |> IO.puts()
   end
 
