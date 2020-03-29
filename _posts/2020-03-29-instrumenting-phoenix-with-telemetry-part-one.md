@@ -200,6 +200,8 @@ Next up, we'll take a look under the hood of the Telemetry library to understand
 
 How does Telemetry invoke our handler callback function when an event is emitted? It leverages ETS! Telemetry stores our event and associated handler in an ETS table when we call `:telemetry.attach/4`. When we call `:telemetry.execute/3`, Telemetry looks up the handler function for the given event in the ETS table and executes it.
 
+In the next sections, we'll walk through some Telemetry source code so get a better understanding of how this process works. If you're new to Erlang (like me!), no problem. Just do your best to read through the code for a high-level understanding.
+
 ### Attaching Handlers to Events
 
 The `:telemetry.attach/4` function stores the handler and its associated events in an ETS table, under the unique handler ID we provide.
