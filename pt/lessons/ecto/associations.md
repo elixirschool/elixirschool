@@ -9,7 +9,7 @@ Nessa seção vamos aprender a utilizar o Ecto para definir e trabalhar com asso
 
 ## Configuração
 
-Nós vamos construir a aplicação `Friends`, das últimas lições. Você pode referir-se a configuração [aqui](./basics.md) para uma breve recapitulação.
+Nós vamos construir a aplicação `Friends`, das últimas lições. Você pode referir-se a configuração [aqui](https://elixirschool.com/pt/lessons/ecto/basics) para uma breve recapitulação.
 
 ## Tipos de Associações
 
