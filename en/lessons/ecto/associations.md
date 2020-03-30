@@ -389,12 +389,26 @@ First, note that in order to work with changesets, we need to make sure that our
 ```elixir
 iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
 %Friends.Movie{
-  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+ __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
   actors: [],
-  characters: [],
-  distributor: nil,
+  characters: [
+    %Friends.Character{
+      __meta__: #Ecto.Schema.Metadata<:loaded, "characters">,
+      id: 1,
+      movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+      movie_id: 1,
+      name: "Wade Watts"
+    }
+  ],
+  distributor: %Friends.Distributor{
+    __meta__: #Ecto.Schema.Metadata<:loaded, "distributors">,
+    id: 1,
+    movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+    movie_id: 1,
+    name: "Netflix"
+  },
   id: 1,
-  tagline: "Something about video games",
+  tagline: "Something about video game",
   title: "Ready Player One"
 }
 ```
@@ -432,19 +446,33 @@ Lastly, we'll update the given movie and actor records using our latest changese
 ```elixir
 iex> Repo.update!(movie_actors_changeset)
 %Friends.Movie{
-  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
   actors: [
     %Friends.Actor{
-      __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
+      __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
       id: 1,
-      movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-      name: "Bob"
+      movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+      name: "Tyler Sheridan"
     }
   ],
-  characters: [],
-  distributor: nil,
+  characters: [
+    %Friends.Character{
+      __meta__: #Ecto.Schema.Metadata<:loaded, "characters">,
+      id: 1,
+      movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+      movie_id: 1,
+      name: "Wade Watts"
+    }
+  ],
+  distributor: %Friends.Distributor{
+    __meta__: #Ecto.Schema.Metadata<:loaded, "distributors">,
+    id: 1,
+    movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+    movie_id: 1,
+    name: "Netflix"
+  },
   id: 1,
-  tagline: "Something about video games",
+  tagline: "Something about video game",
   title: "Ready Player One"
 }
 ```
