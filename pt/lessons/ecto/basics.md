@@ -215,7 +215,7 @@ Como esperado, recebemos uma nova `Person` com o valor padrão aplicado a `age`.
 Agora, vamos criar uma pessoa "real":
 
 ```elixir
-iex> %Friends.Person{name: "Tom", age: 11}
+iex>  person = %Friends.Person{name: "Tom", age: 11}
 %Friends.Person{age: 11, name: "Tom"}
 ```
 
