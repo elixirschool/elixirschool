@@ -389,15 +389,29 @@ Primeiro, note que para trabalhar com Changesets, precisamos ter certeza de que 
 
 ```elixir
 iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
-  %Friends.Movie{
-  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+ %Friends.Movie{
+  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
   actors: [],
-  characters: [],
-  distributor: nil,
+  characters: [
+    %Friends.Character{
+      __meta__: #Ecto.Schema.Metadata<:loaded, "characters">,
+      id: 1,
+      movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+      movie_id: 1,
+      name: "Wade Watts"
+    }
+  ],
+  distributor: %Friends.Distributor{
+    __meta__: #Ecto.Schema.Metadata<:loaded, "distributors">,
+    id: 1,
+    movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+    movie_id: 1,
+    name: "Netflix"
+  },
   id: 1,
-  tagline: "Something about video games",
+  tagline: "Something about video game",
   title: "Ready Player One"
-  }
+}
 ```
 
 Em seguida, criaremos um conjunto de alterações para nosso registro de filme:
@@ -433,19 +447,33 @@ Por fim, atualizaremos os registros de filme e ator fornecidos usando nosso chan
 ```elixir
 iex> Repo.update!(movie_actors_changeset)
 %Friends.Movie{
-  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
   actors: [
     %Friends.Actor{
-      __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
+      __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
       id: 1,
-      movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-      name: "Bob"
+      movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+      name: "Tyler Sheridan"
     }
   ],
-  characters: [],
-  distributor: nil,
+  characters: [
+    %Friends.Character{
+      __meta__: #Ecto.Schema.Metadata<:loaded, "characters">,
+      id: 1,
+      movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+      movie_id: 1,
+      name: "Wade Watts"
+    }
+  ],
+  distributor: %Friends.Distributor{
+    __meta__: #Ecto.Schema.Metadata<:loaded, "distributors">,
+    id: 1,
+    movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+    movie_id: 1,
+    name: "Netflix"
+  },
   id: 1,
-  tagline: "Something about video games",
+  tagline: "Something about video game",
   title: "Ready Player One"
 }
 ```
