@@ -51,7 +51,7 @@ Cannot pry #PID<0.92.0> at TestMod.sum/1 (test.exs:5). Is an IEx shell running?
 34
 ```
 
-You should note that vital message. When running an application, as usual, IEx outputs this message instead of blocking execution of the program. To run it properly you need to prepend your command with `iex -S`. What this does is it runs `mix` inside the `iex` command it runs application in special mode in which call to `IEx.pry` stops the application execution.
+You should note that vital message. When running an application, as usual, IEx outputs this message instead of blocking execution of the program. To run it properly you need to prepend your command with `iex -S`. What this does is it runs `mix` inside the `iex` command so that it runs the application in a special mode, such that calls to `IEx.pry` stop the application execution.
 
 For example, `iex -S mix phx.server` to debug your Phoenix application. In our case, it's going to be `iex -S test.exs` to require the file:
 
