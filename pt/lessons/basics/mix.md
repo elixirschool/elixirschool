@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Mix
 ---
 
@@ -24,8 +24,6 @@ A partir do resultado, podemos ver que o mix criou nosso diretório e uma quanti
 * creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
