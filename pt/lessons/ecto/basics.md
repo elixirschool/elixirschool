@@ -208,15 +208,26 @@ pessoa:
 
 ```elixir
 iex> %Friends.Person{}
-%Friends.Person{age: 0, name: nil}
+%Friends.Person{
+  __meta__: #Ecto.Schema.Metadata<:built, "people">,
+  age: 11,
+  id: nil,
+  name: nil
+}
 ```
 
 Como esperado, recebemos uma nova `Person` com o valor padrão aplicado a `age`.
 Agora, vamos criar uma pessoa "real":
 
 ```elixir
-iex>  person = %Friends.Person{name: "Tom", age: 11}
-%Friends.Person{age: 11, name: "Tom"}
+iex> person = %Friends.Person{name: "Tom", age: 11}
+person = %Friends.Person{name: "Tom", age: 11}
+%Friends.Person{
+  __meta__: #Ecto.Schema.Metadata<:built, "people">,
+  age: 11,
+  id: nil,
+  name: "Tom"
+}
 ```
 
 Como esquemas são apenas structs, podemos interagir com eles da maneira que
@@ -228,7 +239,12 @@ iex> person.name
 iex> Map.get(person, :name)
 "Tom"
 iex> %{name: name} = person
-%Friends.Person{age: 11, name: "Tom"}
+%Friends.Person{
+  __meta__: #Ecto.Schema.Metadata<:built, "people">,
+  age: 11,
+  id: nil,
+  name: "Tom"
+}
 iex> name
 "Tom"
 ```
@@ -238,9 +254,19 @@ qualquer outro map ou struct em Elixir:
 
 ```elixir
 iex> %{person | age: 18}
-%Friends.Person{age: 18, name: "Tom"}
+%Friends.Person{
+  __meta__: #Ecto.Schema.Metadata<:built, "people">,
+  age: 18,
+  id: nil,
+  name: "Tom"
+}
 iex> Map.put(person, :name, "Jerry"}
-%Friends.Person{age: 11, name: "Jerry"}
+%Friends.Person{
+  __meta__: #Ecto.Schema.Metadata<:built, "people">,
+  age: 11,
+  id: nil,
+  name: "Jerry"
+}
 ```
 
 Em nossa próxima lição, sobre changesets, iremos dar uma olhada em como
