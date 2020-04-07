@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.3
 title: Projetos Guarda-chuva
 ---
 
@@ -114,8 +114,6 @@ $ tree
 ├── apps
 │   ├── datasets
 │   │   ├── README.md
-│   │   ├── config
-│   │   │   └── config.exs
 │   │   ├── lib
 │   │   │   └── datasets.ex
 │   │   ├── mix.exs
@@ -124,8 +122,6 @@ $ tree
 │   │       └── test_helper.exs
 │   ├── svm
 │   │   ├── README.md
-│   │   ├── config
-│   │   │   └── config.exs
 │   │   ├── lib
 │   │   │   └── svm.ex
 │   │   ├── mix.exs
@@ -134,8 +130,6 @@ $ tree
 │   │       └── test_helper.exs
 │   └── utilities
 │       ├── README.md
-│       ├── config
-│       │   └── config.exs
 │       ├── lib
 │       │   └── utilities.ex
 │       ├── mix.exs
