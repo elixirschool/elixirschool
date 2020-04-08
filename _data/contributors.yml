@@ -488,9 +488,9 @@
 
 - github: herminiotorres
   name: Herminio Torres
-  intro:
-  homepage: http://github.com/herminiotorres
-  twitter:
+  intro: I'm a developer at the Fundação Estudar NGO and Elixir enthusiast and living in Brazil.
+  homepage: https://herminiotorres.github.io
+  twitter: herminiotorres
   contributions:
     - translator
   languages:
