@@ -123,7 +123,7 @@ iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` realiza lo mismo, pero en caso que el enumerable sea vacío, este permite que se que se especifique una función que produzca el valor del mínimo.
+`min/2` realiza lo mismo, pero en caso que el enumerable sea vacío, este permite que se especifique una función que produzca el valor del mínimo.
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)
