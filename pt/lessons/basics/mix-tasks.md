@@ -1,5 +1,5 @@
 ---
-version: 1.0.3
+version: 1.1.0
 title: Tarefas Mix Customizadas
 ---
 
@@ -37,6 +37,7 @@ Vamos configurar uma aplicação Mix básica.
 $ mix new hello
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
 * creating lib
