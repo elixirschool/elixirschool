@@ -198,7 +198,7 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 
 ### uniq_by
 
-Podemos usar `uniq_by/2` para eliminar duplicados de nuestras colecciones:
+Podemos usar `uniq_by/2` para eliminar duplicados de nuestras colecciones. Adicionalmente Enum ordenará los elementos si es que estos fuesen datos primitivos de tipo Integer:
 
 ```elixir
 iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
