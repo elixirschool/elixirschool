@@ -54,7 +54,7 @@ true
 
 関数のアリティが1より多いなら括弧を使うようにしてください。括弧の有無はElixirにおいてはたいした問題ではありませんが、あなたのコードを誤解するかもしれない他のプログラマにとっては問題です。もし3つ目の例で `String.ends_with?/2` から括弧を削除すると, 以下のように警告されます。
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with? "ixir"
 warning: parentheses are required when piping into a function call. For example:
 
