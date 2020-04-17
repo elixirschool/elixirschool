@@ -192,7 +192,7 @@ Here we can see that the `Friends.Person` module tells Ecto that this schema rel
 
 Let's take a peek at our schema by opening `iex -S mix` and creating a new person:
 
-```shell
+```elixir
 iex> %Friends.Person{}
 %Friends.Person{age: 0, name: nil}
 ```
@@ -200,7 +200,7 @@ iex> %Friends.Person{}
 As expected we get a new `Person` with the default value applied to `age`.
 Now let's create a "real" person:
 
-```shell
+```elixir
 iex> person = %Friends.Person{name: "Tom", age: 11}
 %Friends.Person{age: 11, name: "Tom"}
 ```
