@@ -154,7 +154,7 @@ $ cd greet_everyone
 
 次に `@doc` アノテータのレッスンからコードをコピー & ペーストして、 `lib/greeter.ex` ファイルに保存し、コマンドラインから全てがまだ動くことを確認します。Mixプロジェクト内で作業をするのでIExを先ほどとは若干異なり、 `iex -S mix` コマンドで起動する必要があります:
 
-```bash
+```elixir
 iex> h Greeter.hello
 
                 def hello(name)
