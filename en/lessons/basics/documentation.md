@@ -172,7 +172,7 @@ $ cd greet_everyone
 Now copy and paste the code from the `@doc` annotator lesson into a file called `lib/greeter.ex` and make sure everything is still working from the command line.
 Now that we are working within a Mix project we need to start IEx a little differently using the `iex -S mix` command sequence:
 
-```bash
+```elixir
 iex> h Greeter.hello
 
                 def hello(name)
