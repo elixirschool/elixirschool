@@ -279,7 +279,7 @@ iex> Mnesia.transaction(
 `Mnesia.transform_table/3` 函数接受的参数列表为，表名和一个把旧的数据格式转换为新的数据格式的函数。
 
 ```elixir
-case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]])
+case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
   {:atomic, :ok} ->
     Mnesia.add_table_index(Person, :job)
     Mnesia.add_table_index(Person, :age)
