@@ -192,7 +192,7 @@ end
 
 `iex -S mix` を開いて新しい人を作ることで、このスキーマを覗いてみましょう:
 
-```shell
+```elixir
 iex> %Friends.Person{}
 %Friends.Person{age: 0, name: nil}
 ```
@@ -200,7 +200,7 @@ iex> %Friends.Person{}
 期待通りデフォルト値が適用された `age` を持つ `Person` ができました。
 それでは"本当の"人を作ってみましょう:
 
-```shell
+```elixir
 iex> person = %Friends.Person{name: "Tom", age: 11}
 %Friends.Person{age: 11, name: "Tom"}
 ```
