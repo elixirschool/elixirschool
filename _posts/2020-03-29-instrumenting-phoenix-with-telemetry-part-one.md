@@ -26,17 +26,17 @@ In this post we'll discuss why observability matters and how Telemetry helps us 
 
 ## Observability Matters
 
-In the immortal words of [Charity Majors](https://charity.wtf/), observability means asking ourselves:
+In the immortal words of [Charity Majors](https://charity.wtf/2020/03/03/observability-is-a-many-splendored-thing/), observability means asking ourselves:
 
 > can you understand what is happening inside the system — can you understand ANY internal state the system may get itself into, simply by asking questions from the outside?
 
-Anyone who has spent hours (days?) debugging a production issue that they can't replicate locally, relying mostly on guesswork and institutional knowledge knows what it costs to lack this ability. The hours we spend each week debugging, hampered by poor visibility into the state of complex production systems, are hours we're _not_ spending adding value to our business, shipping shiny new code that solves interesting problems for our users, or playing with our adorable dogs (okay that last one might be just me).
+Anyone who has spent hours (days?) debugging a production issue that they can't replicate locally, relying mostly on guesswork and institutional knowledge knows what it costs to lack this ability.
 
 Many of us have come to treat this situation as perfectly natural--we've come to accept this frustration as part of the job of being a software engineer. We treat observability like something that is out of our hands, or an afterthought--a "nice to have" after the main target of building that new feature or shipping the MVP are hit.
 
-The traditional split between "web developers" and "dev-ops engineers" has lulled us into believing that observability is not the responsibility of the web dev. In the past, it may have been the case that ensuring system observability required a specialized set of skills.
+The traditional split between "web developers" and "dev-ops engineers" has lulled us into believing that observability is not the responsibility of the web dev. In the past, it may have been the case that ensuring system observability required a specialized set of skills, but this is increasingly not true of the world we live in.
 
-This is increasingly not true of the world we live in. With third-party tools like Datadog, Splunk and Honeycomb, and libraries like Telemetry, web developers are empowered to treat observability like the first class citizen it is. To paraphrase Charity Majors (again), in today's world we can instrument our code, watch it deploy, and answer the question: "is it doing what I expect?". In this way, we can build systems that are "both understandable and well understood".
+With third-party tools like Datadog, Splunk and Honeycomb, and libraries like Telemetry, web developers are empowered to treat observability like the first class citizen it is. To paraphrase Charity Majors (again), in today's world we can instrument our code, watch it deploy, and answer the question: "is it doing what I expect?". In this way, we can build systems that are "both understandable and well understood".
 
 ## Telemetry Gives Us Visibility
 
@@ -57,7 +57,7 @@ First, we'll take a look at how to set up a simple reporting pipeline for custom
 ### Getting Started
 
 You can follow along with this tutorial by cloning down the repo [here](https://github.com/SophieDeBenedetto/quantum/tree/part-1-start).
-* Checkig out the starting state of our code on the branch [part-1-start](https://github.com/SophieDeBenedetto/quantum/tree/part-1-start)
+* Checking out the starting state of our code on the branch [part-1-start](https://github.com/SophieDeBenedetto/quantum/tree/part-1-start)
 * Find the solution code on the branch [part-1-solution](https://github.com/SophieDeBenedetto/quantum/tree/part-1-solution)
 
 Our Phoenix app, Quantum (get it?), is pretty simple--users can sign up, log in and click some buttons. Awesome, right? Really this dummy app just exists to be instrumented so it doesn't do much, sorry.
