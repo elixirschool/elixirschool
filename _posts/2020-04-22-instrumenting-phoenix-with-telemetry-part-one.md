@@ -2,7 +2,7 @@
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
 categories: general
-date: 2020-03-29
+date: 2020-04-22
 layout: post
 title: "Instrumenting Phoenix with Telemetry Part I: Telemetry Under The Hood"
 excerpt: >
