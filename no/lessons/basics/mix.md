@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 0.9.2
 title: Mix
 ---
 
@@ -21,9 +21,8 @@ Om vi tar en titt i konsollen vår, kan vi se at mix opprettet de nødvendige fi
 ```bash
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
@@ -67,6 +66,7 @@ I første seksjon ser vi `project`. Her gir vi navn til applikasjonen vår (`app
 Det kan være nødvendig å kjøre applikasjonen vår i `iex`. Heldigvis gjør Mix dette veldig enkelt for oss:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 

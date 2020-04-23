@@ -103,11 +103,11 @@ iex> ~S/the cat in the hat on the mat/
 차이는 무엇일까요? 차이는 앞에서 보았던 문자 리스트 시길과 비슷합니다. 정답은 식 전개와 이스케이프 시퀀스의 사용입니다. 다른 예를 한 번 들어보겠습니다.
 
 ```elixir
-iex> ~s/welcome to elixir #{String.downcase "school"}/
+iex> ~s/welcome to elixir #{String.downcase "SCHOOL"}/
 "welcome to elixir school"
 
-iex> ~S/welcome to elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
+"welcome to elixir \#{String.downcase \"SCHOOL\"}"
 ```
 
 ### 단어 리스트

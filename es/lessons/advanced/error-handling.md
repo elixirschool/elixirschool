@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: Manejo de errores
 ---
 
@@ -7,7 +7,7 @@ Aunque es más común devolver una tupla `{:error, reason}`, Elixir soporta exce
 
 En general la convención en Elixir es crear una función (`example/1`) que devuelve `{:ok, result}` y `{:error, reason}` y una función distinta (`example!/1`) que devuelve el resultado `result` sin envolver o levanta un error.
 
-Esta lección se enfocará en interactuar con la segunda forma.
+Esta lección se enfocará en interactuar con la última forma.
 
 {% include toc.html %}
 
@@ -83,7 +83,8 @@ end
 
 ## Nuevos errores
 
-Pese a que elixir incluye un número de errores predefinidos como `RuntimeError`, mantenemos la habilidad de crear los nuestros si necesitamos algo específico. Crear un nuevo error es fácil con la macro `defexception/1`, que convenientemente acepta la opción `:message` para definir un mensaje de error por defecto:
+Pese a que elixir incluye un número de errores predefinidos como `RuntimeError`, mantenemos la habilidad de crear los nuestros si necesitamos algo específico.
+Crear un nuevo error es fácil con la macro `defexception/1`, que convenientemente acepta la opción `:message` para definir un mensaje de error por defecto:
 
 ```elixir
 defmodule ExampleError do
@@ -104,7 +105,8 @@ iex> try do
 
 ## Throws
 
-Otro mecanismo para trabajar con errores en Elixir es `throw` y `catch`. En la práctica, estos ocurren muy inusualmente en código de Elixir más nuevo, pero es importante conocerlos y entenderlos.
+Otro mecanismo para trabajar con errores en Elixir es `throw` y `catch`.
+En la práctica, estos ocurren muy inusualmente en código de Elixir más nuevo, pero es importante conocerlos y entenderlos.
 
 La función `throw/1` nos da la habilidad de salir de la ejecución con un valor específico que podemos capturar con `catch` y luego utilizar:
 
@@ -129,7 +131,8 @@ Como se mencionó, `throw/catch` son muy poco comunes y típicamente existen com
 
 ## Salir
 
-El último mecanismo de error que Elixir nos provee es `exit`. Las señales de salida ocurren cuando un proceso muere y son una parte importante de la tolerancia a fallos en Elixir.
+El último mecanismo de error que Elixir nos provee es `exit`.
+Las señales de salida ocurren cuando un proceso muere y son una parte importante de la tolerancia a fallos en Elixir.
 
 Para salir de manera explícita podemos usar `exit/1`:
 

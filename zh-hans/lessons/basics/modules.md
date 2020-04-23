@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.4.1
 title: 模块（Module）
 ---
 
@@ -64,7 +64,7 @@ end
 ## 结构体
 
 结构体是字典的特殊形式，它们的键是预定义的，一般都有默认值。结构体必须定义在某个模块内部，因此也必须通过模块的命名空间来访问。
-在一个模块里只定义一个结构体是一种常用的手法。
+经常一个模块就为了定义一个结构体，其他什么也没有。
 
 要定义一个结构体，我们使用 `defstruct` 关键字，后面跟着关键字列表和默认值：
 
@@ -78,30 +78,59 @@ end
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+%Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> %Example.User{name: "Steve", roles: [:manager]}
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 我们也可以像更新映射（map）那样更新结构体：
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = %Example.User{name: "Steve"}
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 更重要的是：结构体可以匹配映射（maps）：
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+%Example.User<name: "Sean", roles: [...], ...>
 ```
+
+到了 Elixir 1.8，结构体允许包含自定义的检查方式。以下通过查看 `sean` 结构来理解这是如何实现的：
+
+```elixir
+iex> inspect(sean)
+"%Example.User<name: \"Sean\", roles: [...], ...>"
+```
+
+在这里例子，结构体里面所有的字段都展示出来并没有问题。但是，如果我们想排除一些保护字段呢？新的 `@derive` 功能就能实现这点了。如下修改一下样例中的 `roles` 字段，它就不会包含在输出里面了：
+
+```elixir
+defmodule Example.User do
+  @derive {Inspect, only: [:name]}
+  defstruct name: nil, roles: []
+end
+```
+
+_备注_：我们也可以使用 `@derive {Inspect, except: [:roles]}`，效果是一样的。
+
+让我们看看更新后的模块在 `iex` 中的表现：
+
+```elixir
+iex> sean = %Example.User{name: "Sean"}
+%Example.User<name: "Sean", ...>
+iex> inspect(sean)
+"%Example.User<name: \"Sean\", ...>"
+```
+
+`roles` 字段排除在外了！
 
 ## 组合（Composition）
 
@@ -110,7 +139,7 @@ Elixir 提供了好几种让我们可以在模块中访问到其他模块的方�
 
 ### `alias`
 
-在 Elixir 中不过非常常见，可以让我们通过别名去访问模块：
+在 Elixir 中非常常见，可以让我们通过别名去访问模块：
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -130,7 +159,7 @@ defmodule Example do
 end
 ```
 
-如果别名有冲突是，或者我们想要给那个模块名一个不同的名字时，我们可以用 `:as` 参数：
+如果别名有冲突，或者我们想要给那个模块命一个不同的名字时，我们可以用 `:as` 参数：
 
 ```elixir
 defmodule Example do
@@ -186,7 +215,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-除了指定函数名之外，Elixir 还提供了两个特殊的原子，`functions` 和 `:macros`，来让我们只导入函数或宏：
+除了指定函数名之外，Elixir 还提供了两个特殊的原子，`:functions` 和 `:macros`，来让我们只导入函数或宏：
 
 ```elixir
 import List, only: :functions

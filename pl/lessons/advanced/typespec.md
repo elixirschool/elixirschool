@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Specyfikacje i typy
 ---
 
@@ -15,7 +15,7 @@ Jednakże w niektórych przypadkach specyfikacje mogą być dość złożone. Je
 
 ## Specyfikacje
 
-Jeżeli masz doświadczenie w innych językach, jak Java bądź Ruby, to możesz rozumieć specyfikacje jak interfejsy. Specyfikacja określa, jaki jest typ parametrów i wartości zwracanej. 
+Jeżeli masz doświadczenie w innych językach, jak Java, to możesz rozumieć specyfikacje jak interfejsy. Specyfikacja określa, jaki jest typ parametrów i wartości zwracanej. 
 
 By zdefiniować typy wejściowe i wyjściowe, musimy umieścić dyrektywę `@spec` tuż przed definicją funkcji. Jako parametry przyjmuje ona nazwę funkcji, listę typów parametrów i po `::` typ wartości zwracanej. 
 

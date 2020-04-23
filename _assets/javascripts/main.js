@@ -1,5 +1,7 @@
 //= require jquery.min.js
+// require js.cookie.js
 //= require skel.min.js
+//= require stickyfill.min.js
 //= require util.js
 //= require toc.js
 (function($) {
@@ -18,14 +20,28 @@
 
 		var	$window = $(window),
 			$head = $('head'),
-			$body = $('body');
+			$body = $('body'),
+			$elToggleTheme = $('.toggle-theme');
+
+		var toggleThemeIcon = function(element) {
+			element.toggleClass('fa-circle-o');
+			element.toggleClass('fa-circle');
+		}
+
+		// note: $theme is defined from a cookie that is read after
+		// the <body> tag is added to the DOM.
+		// That means it will be `undefined` if cookie does not exist.
+		if (!$theme) $theme = 'light';
 
 		// Disable animations/transitions ...
 
 			// ... until the page has loaded.
 				$body.addClass('is-loading');
-
+				if ($theme === 'dark') {
+					toggleThemeIcon($elToggleTheme);
+				}
 				$window.on('load', function() {
+
 					setTimeout(function() {
 						$body.removeClass('is-loading');
 					}, 100);
@@ -88,9 +104,11 @@
 				skel
 					.on('+large', function() {
 						$sidebar.addClass('inactive');
+						$sidebar.css('visibility', 'visible');
 					})
 					.on('-large !large', function() {
 						$sidebar.removeClass('inactive');
+						$sidebar.css('visibility', 'visible');
 					});
 
 			// Hack: Workaround for Chrome/Android scrollbar position bug.
@@ -144,7 +162,6 @@
 
 						// Redirect to href.
 							setTimeout(function() {
-
 								if (target == '_blank')
 									window.open(href);
 								else
@@ -178,81 +195,6 @@
 
 					});
 
-			// Scroll lock.
-			// Note: If you do anything to change the height of the sidebar's content, be sure to
-			// trigger 'resize.sidebar-lock' on $window so stuff doesn't get out of sync.
-
-				$window.on('load.sidebar-lock', function() {
-
-					var sh, wh, st;
-
-					// Reset scroll position to 0 if it's 1.
-						if ($window.scrollTop() == 1)
-							$window.scrollTop(0);
-
-					$window
-						.on('scroll.sidebar-lock', function() {
-
-							var x, y;
-
-							// IE<10? Bail.
-								if (skel.vars.IEVersion < 10)
-									return;
-
-							// <=large? Bail.
-								if (skel.breakpoint('large').active) {
-
-									$sidebar_inner
-										.data('locked', 0)
-										.css('position', '')
-										.css('top', '');
-
-									return;
-
-								}
-
-							// Calculate positions.
-								x = Math.max(sh - wh, 0);
-								y = Math.max(0, $window.scrollTop() - x);
-
-							// Lock/unlock.
-								if ($sidebar_inner.data('locked') == 1) {
-
-									if (y <= 0)
-										$sidebar_inner
-											.data('locked', 0)
-											.css('position', '')
-											.css('top', '');
-									else
-										$sidebar_inner
-											.css('top', -1 * x);
-
-								}
-								else {
-
-									if (y > 0)
-										$sidebar_inner
-											.data('locked', 1)
-											.css('position', 'fixed')
-											.css('top', -1 * x);
-
-								}
-
-						})
-						.on('resize.sidebar-lock', function() {
-
-							// Calculate heights.
-								wh = $window.height();
-								sh = $sidebar_inner.outerHeight() + 30;
-
-							// Trigger scroll.
-								$window.trigger('scroll.sidebar-lock');
-
-						})
-						.trigger('resize.sidebar-lock');
-
-					});
-
 		// Menu.
 			var $menu = $('#menu'),
 				$menu_openers = $menu.children('ul').find('.opener');
@@ -277,6 +219,21 @@
 					});
 
 				});
+
+			// Theme
+				$elToggleTheme.on('click', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+
+					var isDark = $body.attr('class') === 'dark';
+					$theme = isDark ? 'light' : 'dark';
+					Cookies.set('theme', $theme);
+					$body.toggleClass('dark');
+					toggleThemeIcon($elToggleTheme);
+				});
+				
+			// Polyfill for sidebar
+				Stickyfill.add($('#sidebar > .inner'));
 
 	});
 

@@ -43,7 +43,7 @@ build/
 _site/
 .sass-cache/
 .jekyll-metadata
-
+.jekyll-cache/
 
 ### Sass ###
 .sass-cache/

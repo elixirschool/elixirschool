@@ -10,6 +10,9 @@
 - github: doomspork
   name: Sean Callan
   intro:
+    Sean has been passionately involved with Elixir since the very beginning.
+    After experiencing the joys of working with Elixir he created Elixir School and has become a core contributor to numerous libraries.
+    During the day, Sean helps companies transition teams and codebases to Elixir.
   twitter: doomspork
   homepage: https://seancallan.com
   contributions:
@@ -22,17 +25,38 @@
     - Just the beginning
     - Configuration Demystified
     - Ecto query composition
+    - 'Umbrellas: only when it rains?'
 
-- github: ybur-yug
-  name:
+- github: gemantzu
+  name: George Mantzouranis
+  intro:
+    George is a software engineer based in Greece who's initial foray into Elixir brought him to Elixir School where he led the translation to Greek.
+    Since joining the team he developed a number of the translation focused features to include the translation report.
+    Being on the learning path, he also decided to contribute back to the community by reviewing the material he uses each time.
+  homepage:
+  twitter: gemantzu
+  contributions:
+    - translator
+    - blog
+  languages:
+    - gr
+  articles:
+    - Reviewing Elixir in Action, Second Edition
+    - Reviewing Functional Web Development with Elixir, OTP, and Phoenix
+
+- github: notactuallypagemcconnell
+  name: Bobby Grayson
   intro:
   homepage:
-  twitter:
+  twitter: yburyug
   contributions:
     - lesson
+    - blog
   lessons:
     - IEx Helpers
     - Protocols
+  articles:
+    - Agnostic Version Management With asdf
 
 - github: Koziolek
   name:
@@ -146,20 +170,6 @@
   languages:
     - de
 
-- github: gemantzu
-  name: George Mantzouranis
-  intro:
-  homepage:
-  twitter:
-  contributions:
-    - translator
-    - blog
-  languages:
-    - gr
-  articles:
-    - Reviewing Elixir in Action, Second Edition
-    - Reviewing Functional Web Development with Elixir, OTP, and Phoenix
-
 - github: rezaprima
   name:
   intro:
@@ -200,6 +210,16 @@
   languages:
     - ja
 
+- github: starfish719
+  name:
+  intro:
+  homepage: https://starfish719.netlify.com/
+  twitter: starfish0206
+  contributions:
+    - translator
+  languages:
+    - ja
+
 - github: lucidstack
   name:
   intro:
@@ -231,12 +251,15 @@
     - "no"
 
 - github: brain-geek
-  name:
+  name: Alex Rozumii
   intro:
   homepage:
   twitter:
   contributions:
+    - lesson
     - translator
+  lessons:
+    - Nerves
   languages:
     - ru
     - uk
@@ -266,6 +289,16 @@
   intro:
   homepage:
   twitter:
+  contributions:
+    - translator
+  languages:
+    - es
+
+- github: j-burgos
+  name: Jorge Burgos
+  intro: Elixir enthusiast from El Salvador
+  homepage:
+  twitter: jburgosk8
   contributions:
     - translator
   languages:
@@ -341,12 +374,134 @@
   languages:
     - vi
 
-- github: notactuallypagemcconnell
+- github: svileng
+  name: Svilen Gospodinov
   intro:
-  homepage:
+    Svilen is co-founder & CTO at Heresy, where he uses Elixir, Phoenix and the OTP to build and scale the product and services.
+    Whenever he gets a chance, he tries to give back to the open source community by working on open source, giving talks, writing articles and helping beginners.
+  twitter: svileng
+  homepage: https://s2g.io
+  contributions:
+    - translator
+    - blog
+  languages:
+    - en
+    - bg
+  articles:
+    - A brief guide to Ecto.Multi
+
+- github: SophieDeBenedetto
+  name: Sophie DeBenedetto
+  intro:
+    Sophie is an engineer and teacher at The Flatiron School. She loves teaching and learning and finding the Elixir School community felt like the perfect fit!
+  twitter: sm_debenedetto
+  homepage: https://thegreatcodeadventure.com
+  contributions:
+    - lesson
+    - blog
+  lessons: ['OTP Distribution', 'Plug']
+  articles:
+    - JWT Auth in Elixir with Joken
+
+- github: alexgriff
+  name: Alex Griffith
+  intro:
+    Alex is an engineer and teacher at the Flatiron School.
   twitter:
-  name: Bobby Grayson
+  homepage:
+  contributions:
+    - blog
+  lessons: ['Testing']
+  articles:
+    - ExUnit's capture_log option
+
+- github: maxcell
+  name: Prince Wilson
+  intro:
+    Prince is a teacher at the Flatiron School. He enjoys sharing knowledge with people as he learns new things!
+    Finding ways to create accessible, impactful content to developers out there is his jam.
+  twitter: maxcell
+  homepage: https://maxcell.me/
   contributions:
     - blog
   articles:
-    - Agnostic Version Management With asdf
+    - TIL Ecto Constraints and Validations
+
+- github: ktravers
+  name: Kate Travers
+  intro:
+    Kate is an engineer at the Flatiron School.
+  twitter: kttravers
+  homepage: https://kate-travers.com/
+  contributions:
+    - blog
+
+- github: zillou
+  name: Derrick Zhang
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - zh-hans
+
+- github: kenspirit
+  name: Ken Chen
+  intro:
+  homepage: http://thinkingincrowd.me
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - zh-hans
+
+- github: vbrazo
+  name: Vitor Oliveira
+  intro:
+  homepage: http://github.com/vbrazo
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - pt
+
+- github: filalex77
+  name: Oleksii Filonenko
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - ru
+
+- github: gavlak
+  name: Adam Gavlák
+  intro:
+  homepage: https://www.gavlak.sk/en
+  twitter: adamgavlak
+  contributions:
+    - translator
+  languages:
+    - sk
+
+- github: herminiotorres
+  name: Herminio Torres
+  intro: I'm a developer at the Fundação Estudar NGO and Elixir enthusiast and living in Brazil.
+  homepage: https://herminiotorres.github.io
+  twitter: herminiotorres
+  contributions:
+    - translator
+  languages:
+    - pt
+
+- github: progsmile
+  name: Denis Klimenko
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - ru

@@ -1,43 +1,32 @@
 ---
 title: Elixir School
 layout: home
-version: 1.0.0
+version: 2.0.0
 ---
 
-[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Elixir School - це головний пункт призначення для людей, що мають бажання вивчити та опанувати мову програмування Elixir.
 
-Навчальні матеріали про мову програмування Elixir, навіяні [Scala School](http://twitter.github.io/scala_school/) від Твіттера.
+Незалежно від того, чи ти бувалий ветеран, чи ти вперше в цій справі - ти знайдеш все, що потрібно, в уроках та допоміжних ресурсах.
 
-Доступно також [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][jp], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][my], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], [ภาษาไทย][th] та інших мовах.
+Завдяки важкій роботі волонтерів Elixir School перекладено на багато мов.  Деякі з цих перекладів включають: [Việt ngữ][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русский][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], і [ภาษาไทย][th].
 
-[cn]: /cn/
-[es]: /es/
-[it]: /it/
-[jp]: /ja/
-[ko]: /ko/
-[pl]: /pl/
-[pt]: /pt/
-[ru]: /ru/
-[sk]: /sk/
-[vi]: /vi/
-[id]: /id/
-[my]: /my/
-[uk]: /uk/
-[de]: /de/
-[bn]: /bn/
-[tr]: /tr/
-[th]: /th/
-_Зворотній зв'язок та допомога завжди потрібні!_
+Ми запрошуємо і заохочуємо вас приєднуватися та продовжувати покращувати Elixir School доєднавшись до [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
 
-## Про Elixir
-
-"Elixir - це динамічна, функціональна мова програмування для розробки масштабованих та легко підтримуваних додатків." — [elixir-lang.org](http://elixir-lang.org/)
-
-Elixir використовує випробовану в бою Erlang VM (BEAM) для розробки розподілених та відмовостійких систем з малим часом відповіді прямо зі старту розробки додатку.
-
-__Особливості__:
-
-+ Масштабована
-+ Відмовостійка
-+ Функціональна
-+ Розширювана
+  [es]: /es/
+  [it]: /it/
+  [ja]: /ja/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [id]: /id/
+  [ms]: /ms/
+  [uk]: /uk/
+  [de]: /de/
+  [bn]: /bn/
+  [tr]: /tr/
+  [th]: /th/
+  [zh-hans]: /zh-hans/
+  [zh-hant]: /zh-hant/

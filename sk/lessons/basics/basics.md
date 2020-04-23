@@ -90,9 +90,9 @@ false
 Boolean hodnoty `true` a `false` sú zároveň atómami `:true` a `:false`.
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true

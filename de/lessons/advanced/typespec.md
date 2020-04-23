@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Spezifikationen und Typen
 ---
 
@@ -15,7 +15,7 @@ Jedoch sind Spezifikationen in manchen Fällen ziemlich groß und umständlich. 
 
 ## Spezifikationen
 
-Falls du bereits Erfahrung mit Java oder Ruby hast, sind dir Spezifikationen als `interface` vertraut. Spezifikationen definieren welche Typen Funktionsparameter und Rückgabewerte haben.
+Falls du bereits Erfahrung mit Java hast, sind dir Spezifikationen als `interface` vertraut. Spezifikationen definieren welche Typen Funktionsparameter und Rückgabewerte haben.
 
 Um Eingabe- und Ausgabewerte zu definieren benutzen wir die `@spec`-Direktive direkt vor der Funktionsdefinition und nehmen den Funktionsnamen, die Liste der Parametertypen, sowie nach `::` die Typen der Rückgabewerte.
 

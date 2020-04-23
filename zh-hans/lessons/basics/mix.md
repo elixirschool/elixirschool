@@ -1,9 +1,9 @@
 ---
-version: 1.0.1
+version: 1.1.0
 title: Mix
 ---
 
-在更深入了解 Elixir 之前，我们必须先学习 mix。如果你熟悉 Ruby 的话，mix 就是 Bundler，RubyGems 和 Rake 的结合。mix 对于开发 Elixir 至关重要，我们在这篇课程只会介绍它的部分特性。要了解 mix 的所有功能，可以执行 `mix help` 查看。
+在更深入了解 Elixir 之前，我们必须先学习 mix。如果你熟悉 Ruby 的话，mix 就是 Bundler，RubyGems 和 Rake 的结合。mix 对于开发 Elixir 至关重要，我们在这篇课程只会介绍它的部分特性。要查看 Mix 在当前环境中提供的所有内容，请运行 `mix help`。
 
 直到现在，我们还一直用 `iex` 和 Elixir 打交道，这种方法明显是有局限的。在编写大型项目的时候，为了方便管理，我们会把代码分成不同的文件，mix 就是为了管理项目而生的。
 
@@ -22,9 +22,8 @@ $ mix new example
 ```bash
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
@@ -69,6 +68,7 @@ end
 有时候需要用 `iex` 和我们的项目交互，幸运的是，mix 支持这个功能。编译了项目之后，我们用下面的命令打开一个新的 `iex` 会话：
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 
@@ -78,7 +78,8 @@ $ iex -S mix
 
 Mix 很智能，能够在需要的时候自动编译你的改动，不过有时候还是要手动编译项目。这个部分，我们就讲讲如何编译项目，以及编译的时候都做了什么。
 
-只要在项目的根目录运行 `mix compile` 命令，就能编译我们的项目：
+只要在项目的根目录运行 `mix compile` 命令，就能编译我们的项目：  
+**注意：项目的混合任务只能从项目根目录中获得，否则只有全局的 Mix 任务可用**
 
 ```bash
 $ mix compile
@@ -124,11 +125,11 @@ $ mix deps.get
 
 ## 环境管理
 
-和 Bundler 很相似，mix 也支持不同的环境。默认情况下，mix 支持三种环境：
+和 Bundler 很相似，mix 也支持不同的环境。默认情况下，开箱即用的 mix 有三种配置环境：
 
 + `:dev` — 默认的环境
-+ `:test` — `mix test` 使用的环境，后面会讲到
-+ `:prod` — 把应用上线会用到的环境
++ `:test` — 测试环境，使用 `mix test` 后面会讲到
++ `:prod` — 生产环境，把应用上线到生产环境下的配置项
 
 可以从 `Mix.env` 变量中获取当前的环境，而且环境也可以通过 `MIX_ENV` 环境变量来配置：
 

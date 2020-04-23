@@ -15,9 +15,9 @@ title: パイプライン演算子
 foo(bar(baz(new_function(other_function()))))
 ```
 
-ここでは、`other_function/0`の値を`new_function/1`に、`new_function/1`の値を`baz/1`に、`baz/1`の値を`bar/1`に、そして最後に`bar/1`の結果を`foo/1`に渡しています。
+ここでは、 `other_function/0` の値を `new_function/1` に、 `new_function/1` の値を `baz/1` に、 `baz/1` の値を `bar/1` に、そして最後に `bar/1` の結果を `foo/1` に渡しています。
 Elixirではパイプライン演算子を使うことによって構文的な混沌に対し現実的にアプローチします。
-パイプライン演算子(`|>`)は *一つの式の結果を取り、それを渡します*。先ほどのコードスニペットをパイプライン演算子で書き直すとどうなるか、見てみましょう。
+パイプライン演算子(`|>`)は _一つの式の結果を取り、それを渡します_ 。先ほどのコードスニペットをパイプライン演算子で書き直すとどうなるか、見てみましょう。
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
@@ -52,9 +52,9 @@ true
 
 ## ベストプラクティス
 
-関数のアリティが1より多いなら括弧を使うようにしてください。括弧の有無はElixirにおいてはたいした問題ではありませんが、あなたのコードを誤解するかもしれない他のプログラマにとっては問題です。もし3つ目の例で`String.ends_with?/2`から括弧を削除すると, 以下のように警告されます。
+関数のアリティが1より多いなら括弧を使うようにしてください。括弧の有無はElixirにおいてはたいした問題ではありませんが、あなたのコードを誤解するかもしれない他のプログラマにとっては問題です。もし3つ目の例で `String.ends_with?/2` から括弧を削除すると, 以下のように警告されます。
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with? "ixir"
 warning: parentheses are required when piping into a function call. For example:
 

@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: 自定义 Mix 任务
 ---
 
@@ -12,7 +12,7 @@ title: 自定义 Mix 任务
 通过增加自定义 Mix 任务来扩展你的 Elixir 项目是很常见的需求。在我们学习如何给我们的项目创建特定 Mix 任务之前，让我们来看一个已经存在的任务：
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
@@ -25,7 +25,7 @@ $ mix phoenix.new my_phoenix_app
 ...
 ```
 
-正如上面我们看到的 sell 命令，Phoenix 有一个自定义的 Mix 任务去生成一个新项目。要是我们也能给自己的项目创建类似的东西该多好啊，不是吗?　不卖关子啦，好消息是我们不仅可以这样做，而且用 Elixir做会非常容易。
+正如上面我们看到的 shell 命令，Phoenix 有一个自定义的 Mix 任务去生成一个新项目。要是我们也能给自己的项目创建类似的东西该多好啊，不是吗?　不卖关子啦，好消息是我们不仅可以这样做，而且用 Elixir做会非常容易。
 
 ## 起步
 
@@ -37,8 +37,6 @@ $ mix new hello
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/hello.ex
 * creating test

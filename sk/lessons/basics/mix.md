@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Mix
 ---
 
@@ -22,9 +22,8 @@ Z výstupu príkazu vidíme, že boli vytvorené všetky štandardné adresáre 
 ```bash
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
@@ -69,6 +68,7 @@ Sekcia `application` slúži na špecifikovanie aplikácii (menších častí pr
 Možno budeme musieť použiť `iex` v kontexte našej aplikácie. Našťastie pre nás, Mix nám to uľahčí. Môžeme spustiť novú inštanciu `iex` spolu s Mix takto:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 

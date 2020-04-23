@@ -3,13 +3,13 @@ version: 1.0.2
 title: 埋め込みElixir (EEx)
 ---
 
-Ruby に ERB が、そして Java に JSP があるように Elixir にも EEx 即ち埋め込み Elixir があります。 EEx を使って文字列の中に Elixir を埋め込んで評価することができます。
+RubyにERBが、そしてJavaにJSPがあるようにElixirにもEEx即ち埋め込みElixirがあります。EExを使って文字列の中にElixirを埋め込んで評価することができます。
 
 {% include toc.html %}
 
 ## API
 
-EEx の API は直接、文字列またはファイルに対して動作します。 API は主な３つのコンポーネントに分けられます。単純な評価、関数定義、及び AST(抽象構文木)へのコンパイルです。
+EExのAPIは直接、文字列またはファイルに対して動作します。APIは主な３つのコンポーネントに分けられます。単純な評価、関数定義、及びAST(抽象構文木)へのコンパイルです。
 
 ### 評価
 
@@ -22,7 +22,7 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 
 ### 定義
 
-最も高速で、よく使われる EEx の使われ方はテンプレートをモジュールの中に埋め込むやり方でこの場合それらはコンパイルされます。それにはコンパイル時にマクロ `function_from_string/5` 及び `function_from_file/5` と共にテンプレートが必要です。
+最も高速で、よく使われるEExの使われ方はテンプレートをモジュールの中に埋め込むやり方でこの場合それらはコンパイルされます。それにはコンパイル時にマクロ `function_from_string/5` 及び `function_from_file/5` と共にテンプレートが必要です。
 
 では上記の挨拶の例を他のファイルに移動しテンプレートから関数を生成してみましょう。
 
@@ -41,20 +41,20 @@ iex> Example.greeting("Sean")
 
 ### コンパイル
 
-最後に、 EEx は `compile_string/2` または `compile_file/2` により文字列またはファイルから直接 Elixir の AST を生成する手段を提供します。この API は本来、前述の API から利用されるものなのですが、我々独自の埋め込み Elixir の処理を実装したい場合にも使えます。
+最後に、EExは `compile_string/2` または `compile_file/2` により文字列またはファイルから直接ElixirのASTを生成する手段を提供します。このAPIは本来、前述のAPIから利用されるものなのですが、我々独自の埋め込みElixirの処理を実装したい場合にも使えます。
 
 ## タグ
 
-デフォルトでは EEx は4種類のタグをサポートしています。
+デフォルトではEExは4種類のタグをサポートしています。
 
 ```elixir
-<% Elixir expression - inline with output (Elixir の式 - インラインに展開される) %>
-<%= Elixir expression - replace with result (Elixir の式 - 式の評価結果に置き換える) %>
-<%% EEx quotation - returns the contents inside (EEx の引用 - 内側のコンテンツを返す) %>
+<% Elixir expression - inline with output (Elixirの式 - インラインに展開される) %>
+<%= Elixir expression - replace with result (Elixirの式 - 式の評価結果に置き換える) %>
+<%% EEx quotation - returns the contents inside (EExの引用 - 内側のコンテンツを返す) %>
 <%# Comments - they are discarded from source (コメント、ソースから落とされる)%>
 ```
 
-出力させたい式には __必ず__ 等号(`=`)を使ってください。重要な明記すべきこととして他のテンプレート言語は `if` などの節を特別に扱うのに対しEExはそうではない、ということがあります。 `=` なしでは何も表示されません:
+出力させたい式には **必ず** 等号(`=`)を使ってください。重要な明記すべきこととして他のテンプレート言語は `if` などの節を特別に扱うのに対しEExはそうではない、ということがあります。 `=` なしでは何も表示されません:
 
 ```elixir
 <%= if true do %>
@@ -63,6 +63,7 @@ iex> Example.greeting("Sean")
   A false statement
 <% end %>
 ```
+
 ## エンジン
 
 デフォルトではElixirは(`@name` などの)代入に対応した `EEx.SmartEngine` を使います:

@@ -7,6 +7,10 @@
 <html lang="{{ language }}{% if locale.lang_country %}-{{ locale.lang_country }}{% endif %}">
 	{% include _head.html %}
 	<body>
+    <script type="text/javascript">
+    var $theme = Cookies.get('theme');
+    if ($theme === 'dark') document.body.classList.add("dark");
+    </script>
 		<!-- Wrapper -->
 		<div id="wrapper">
 			<!-- Main -->
@@ -14,7 +18,7 @@
 				<div class="inner">
 					<!-- Header -->
 					<header id="header">
-					  <a href="/" class="logo"><strong>Elixir School</strong>{% if page.layout == "blog" or page.layout == "post" %} {{ site.data['locales']['en']['sections']['blog']}}{% endif %}</a>
+					  <a href="/{% if page.lang %}{{ page.lang }}/{% endif %}" class="logo"><strong>Elixir School</strong>{% if page.layout == "blog" or page.layout == "post" or page.layout == "archive" %} {{ site.data['locales']['en']['sections']['blog']}}{% endif %}</a>
 					  {% include share-icons.html %}
 					</header>
 					{{ content }}
@@ -23,7 +27,8 @@
 			{% include _sidebar.html %}
 		</div>
 		<!-- Scripts -->
-		{% js main %}
-		<!--[if lte IE 8]>{% js ie/respond.min.js %}<script src="assets/js/ie/respond.min.js"></script><![endif]-->
+
+    {% asset main.js %}
+		<!--[if lte IE 8]>{% asset ie/respond.min.js %}<script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	</body>
 </html>

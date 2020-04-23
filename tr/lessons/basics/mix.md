@@ -1,11 +1,11 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Mix
 ---
 
 Elixirin derinliklerine girmeden önce Mix öğrenelim. Eğer daha önceden Ruby biliyorsanız Mix'i Bundeller, RubyGems ve Rake ile eşleştirin. Mix, Elixirin önemli bir parçası ve bu dersimizde sadece birkaç özelliğini öğreneceğiz. Mix'in sunduğu tüm özelliklerini görmek için `mix help` komutun çalıştırın.
 
-Şimdiye kadar sınırlamalar içeren  `iex` ile çalıştık. Daha önemli şeyler İnşaat etmek için ve kodunuz etkili bir şekilde yönetmek için kodumuzu faklı dosyalar bölmemiz gerekir; İşte Mix bunu projelere yapmamıza izin verir. 
+Şimdiye kadar sınırlamalar içeren  `iex` ile çalıştık. Daha önemli şeyler İnşaat etmek için ve kodunuz etkili bir şekilde yönetmek için kodumuzu faklı dosyalar bölmemiz gerekir; İşte Mix bunu projelere yapmamıza izin verir.
 
 {% include toc.html %}
 
@@ -22,9 +22,8 @@ $ mix new example
 ```bash
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
@@ -70,6 +69,7 @@ Bakacağımız ilk bölüm `project`. Burada uygulamamızın adını (`app`), s�
 Uygulamamızı bazen `iex`'de kullanmamız gerekebilir.  Neyse ki Mix bunu kolaylaştırıyor.  Yeni bir  `iex` oturumu başlatabiliriz:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 

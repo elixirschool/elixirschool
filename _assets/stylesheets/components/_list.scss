@@ -18,7 +18,19 @@
 		ul {
 			margin: 0;
 		}
+		
+		&.showcase {
+			list-style: none;
+			padding-left: 0;
+			li {
+				padding: .5em 0;
 
+				&:first-child {
+					padding-top: 0;
+				}
+			}
+		}
+		
 		&.alt {
 			list-style: none;
 			padding-left: 0;

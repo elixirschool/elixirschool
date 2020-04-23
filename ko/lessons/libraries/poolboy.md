@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Poolboy
 ---
 
@@ -62,10 +62,10 @@ defmodule PoolboyApp.Application do
 
   defp poolboy_config do
     [
-      {:name, {:local, :worker}},
-      {:worker_module, PoolboyApp.Worker},
-      {:size, 5},
-      {:max_overflow, 2}
+      name: {:local, :worker},
+      worker_module: PoolboyApp.Worker,
+      size: 5,
+      max_overflow: 2
     ]
   end
 
@@ -92,7 +92,7 @@ defmodule Worker do
   use GenServer
 
   def start_link(_) do
-    GenServer.start_link(__MODULE__, nil, [])
+    GenServer.start_link(__MODULE__, nil)
   end
 
   def init(_) do
@@ -101,7 +101,7 @@ defmodule Worker do
 
   def handle_call({:square_root, x}, _from, state) do
     IO.puts("process #{inspect(self)} calculating square root of #{x}")
-    :timer.sleep(1000)
+    Process.sleep(1000)
     {:reply, :math.sqrt(x), state}
   end
 end

@@ -1,0 +1,5 @@
+{% for check in site.data.blog-meta.categories %}
+  {%- if include.name == check.name -%}
+    {%- assign category-meta = check -%}
+  {%- endif -%}
+{% endfor %}

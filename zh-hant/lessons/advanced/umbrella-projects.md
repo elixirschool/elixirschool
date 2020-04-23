@@ -52,8 +52,6 @@ $ mix new utilities
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/utilities.ex
 * creating test
@@ -74,8 +72,6 @@ $ mix new datasets
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/datasets.ex
 * creating test
@@ -95,8 +91,6 @@ $ mix new svm
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/svm.ex
 * creating test
@@ -208,6 +202,5 @@ Consolidated Inspect
 Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
 iex> Datasets.hello
-Hello, I'm the datasets
-:ok
+:world
 ```

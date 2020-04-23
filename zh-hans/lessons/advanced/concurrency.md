@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: 并发
 ---
 
@@ -48,7 +48,7 @@ defmodule Example do
       {:ok, "hello"} -> IO.puts("World")
     end
 
-    listen
+    listen()
   end
 end
 
@@ -81,7 +81,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-有时候我们不希望链接的进程导致当前进程跟着崩溃，这时候就要通过 `Process.flag/2` 函数捕捉进程的错误退出。这个函数用 Erlang 的 [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) 的 `trap_exit` 信号。当我们捕获进程的错误退出是。 (`trap_exit` 设为 `true`), 当进程错误退出时，就会向上层发送 `{:EXIT, from_pid, reason}` 三元组的消息。
+有时候我们不希望链接的进程导致当前进程跟着崩溃，这时候就要通过 `Process.flag/2` 函数捕捉进程的错误退出。这个函数用 Erlang 的 [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) 的 `trap_exit` 信号。当捕获到被链接的进程发生错误退出时（`trap_exit` 设为 `true`）, 就会收到像 `{:EXIT, from_pid, reason}` 这样的三元组形式的退出信号。
 
 ```elixir
 defmodule Example do
@@ -92,7 +92,7 @@ defmodule Example do
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
+      {:EXIT, _from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -111,10 +111,10 @@ defmodule Example do
   def explode, do: exit(:kaboom)
 
   def run do
-    {pid, ref} = spawn_monitor(Example, :explode, [])
+    spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
+      {:DOWN, _ref, :process, _from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -162,7 +162,11 @@ defmodule Example do
 end
 
 iex> task = Task.async(Example, :double, [2000])
-%Task{pid: #PID<0.111.0>, ref: #Reference<0.0.8.200>}
+%Task{
+  owner: #PID<0.105.0>,
+  pid: #PID<0.114.0>,
+  ref: #Reference<0.2418076177.4129030147.64217>
+}
 
 # Do some work
 
