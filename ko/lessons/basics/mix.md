@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Mix
 ---
 
@@ -22,9 +22,8 @@ $ mix new example
 ```bash
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
@@ -69,6 +68,7 @@ end
 응용 프로그램을 사용하고 설정할 수 있는 환경에서 `iex`을 사용하면 편할 때가 올 수도 있습니다. 다행스럽게도 mix를 사용해서 간단하게 사용할 수 있습니다. `iex` 세션을 이렇게 실행하실 수 있습니다.
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 

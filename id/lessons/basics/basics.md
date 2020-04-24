@@ -103,9 +103,9 @@ false
 Nilai boolean `true` dan `false` masing-masing adalah juga atom `:true` dan `:false`.
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true

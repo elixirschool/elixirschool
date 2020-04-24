@@ -12,7 +12,7 @@ Créer des tâches Mix personnalisées pour votre projet Elixir.
 Il n'est pas rare de vouloir étendre les fonctionnalités des applications Elixir en y ajoutant des tâches Mix personnalisées. Avant d'apprendre à en créer pour votre projet, jettons un coup d'oeil à une qui existe déjà:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
@@ -37,8 +37,6 @@ $ mix new hello
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/hello.ex
 * creating test

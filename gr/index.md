@@ -1,24 +1,32 @@
 ---
 title: Elixir School
 layout: home
-version: 1.0.0
+version: 2.0.0
 ---
 
-[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Το ElixirSchool είναι ο πρώτος προορισμός για ανθρώπους που προσπαθούν να μάθουν και να γίνουν αυθεντίες στην γλώσσα προγραμματισμού Elixir.
 
-Μαθήματα της γλώσσας προγραμματισμού Elixir, εμπνευσμένα από το [Scala School](http://twitter.github.io/scala_school/) του Twitter.
+Είτε είστε βετεράνος της γλώσσας, ή αύτη είναι η πρώτη σας επαφή μαζί της, θα βρείτε ότι χρειάζεστε στα μαθήματα και στις συμπληρωματικές πηγές.
 
-_Τα σχόλια σας είναι ευπρόσδεκτα!_
+Μέσα από τη σκληρή δουλειά των εθελοντών του, το Elixir School έχει μεταφραστεί σε πολλές γλώσσες. Μερικές από τις μεταφράσεις περιλαμβάνουν: [Việt ngữ][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], και [ภาษาไทย][th]
 
-## Για την Elixir
+Σας καλοσορίζουμε και σας προτρέπουμε να ενωθείτε μαζί μας στην προσπάθεια να κάνουμε το Elixir School τέλειο με τη συμμετοχή σας στο [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)
 
-"Η Elixir είναι μια δυναμική γλώσσα συναρτησιακού προγραμματισμού σχεδιασμένη για τη δημιουργία επεκτάσιμων και εύκολων στη συντήρηση εφαρμογών." — [elixir-lang.org](http://elixir-lang.org/)
-
-Η Elixir αξιοποιεί τη 'μάχιμα δοκιμασμένη' Erlang VM (BEAM) για τη δημιουργία διανεμομένων και ανεκτικών σε σφάλματα συστημάτων, με χαμηλή λανθάνουσα κατάσταση από το κουτί.
-
-__Χαρακτηριστικά__:
-
-+ Κλιμακούμενη
-+ Ανεκτική σε σφάλματα
-+ Συναρτησιακού Προγραμματισμού
-+ Επεκτάσιμη
+  [es]: /es/
+  [it]: /it/
+  [ja]: /ja/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [id]: /id/
+  [ms]: /ms/
+  [uk]: /uk/
+  [de]: /de/
+  [bn]: /bn/
+  [tr]: /tr/
+  [th]: /th/
+  [zh-hans]: /zh-hans/
+  [zh-hant]: /zh-hant/

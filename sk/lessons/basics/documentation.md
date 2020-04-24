@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Dokumentácia
 ---
 
@@ -132,10 +132,9 @@ Vyskúšajme si ExDoc. Potrebujeme Elixir projekt, takže si vytvorme nový pomo
 $ mix new greet_everyone
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/greet_everyone.ex
 * creating test
@@ -204,11 +203,11 @@ View them at "doc/index.html".
 
 Ak všetko prebehlo podľa plánu, mali by sme vidieť podobnú správu ako výstup v príklade vyššie. Teraz sa môžeme pozrieť na náš Mix projekt a mali by sme vidieť nový adresár s menom **doc/**. V ňom je naša vygenerovaná dokumentácia. Ak si otvoríme index stránku v prehliadači mali by sme vidieť niečo takéto:
 
-![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
+![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
 
 Vidíme, že text je vďaka Earmarku pekne naformátovaný.
 
-![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
+![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
 Teraz môžeme dokumentáciu nasadiť na GitHub, náš vlastný web, alebo na [HexDocs](https://hexdocs.pm/) (ak sme vytvorili verejný balíček).
 

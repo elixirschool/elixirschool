@@ -12,7 +12,7 @@ Tworzenie własnych funkcji Mix'a dla projektów w Elixirze.
 Nie jest niczym niezwykłym chęć rozszerzenia funkcjonalności aplikacji napisanych w Elixirze. Można to osiągnąć dodając własne funkcje do Mix'a. Zanim zobaczymy jak to zrobić, przyjrzyjmy się jednej z już istniejących:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
@@ -37,8 +37,6 @@ $ mix new hello
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/hello.ex
 * creating test

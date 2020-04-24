@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 2.2.0
 title: Plug
 ---
 
@@ -7,33 +7,37 @@ If you're familiar with Ruby you can think of Plug as Rack with a splash of Sina
 It provides a specification for web application components and adapters for web servers.
 While not part of Elixir core, Plug is an official Elixir project.
 
-We'll start by creating a minimal Plug-based web application.
-After that, we'll learn about Plug's router and how to add a Plug to an existing web application.
+In this lesson we'll build a simple HTTP server from scratch using the `PlugCowboy` Elixir library.
+Cowboy is a simple HTTP server for Erlang and Plug will provide us with a connection adapter for that web server.
+
+After we set up our minimal web application, we'll learn about Plug's router and how to use multiple plugs in a single web app.
 
 {% include toc.html %}
 
 ## Prerequisites
 
-This tutorial assumes you have Elixir 1.4 or higher, and `mix` installed already.
+This tutorial assumes you have Elixir 1.5 or higher, and `mix` installed already.
 
-If you don't have a project started, create one like this:
+We'll start by creating a new OTP project, with a supervision tree.
 
 ```shell
-$ mix new example
+$ mix new example --sup
 $ cd example
 ```
+
+We need our Elixir app to include a supervision tree because we will use a Supervisor to start up and run our Cowboy2 server.
 
 ## Dependencies
 
 Adding dependencies is a breeze with mix.
-To install Plug we need to make two small changes to the `mix.exs` file.
-The first thing to do is add both Plug and a web server (we'll be using Cowboy) to our file as dependencies:
+To use Plug as an adapter interface for the Cowboy2 webserver, we need to install the `PlugCowboy` package:
+
+Add the following to your `mix.exs` file:
 
 ```elixir
-defp deps do
+def deps do
   [
-    {:cowboy, "~> 1.1.2"},
-    {:plug, "~> 1.3.4"}
+    {:plug_cowboy, "~> 2.0"},
   ]
 end
 ```
@@ -44,7 +48,7 @@ At the command line, run the following mix task to pull in these new dependencie
 $ mix deps.get
 ```
 
-## The Specification
+## The Plug Specification
 
 In order to begin creating Plugs, we need to know, and adhere to, the Plug spec.
 Thankfully for us, there are only two functions necessary: `init/1` and `call/2`.
@@ -67,7 +71,9 @@ end
 
 Save the file to `lib/example/hello_world_plug.ex`.
 
-The `init/1` function is used to initialize our Plug's options. It is called by a supervision tree, which is explained in the next section. For now, it'll be an empty List that is ignored.
+The `init/1` function is used to initialize our Plug's options.
+It is called by a supervision tree, which is explained in the next section.
+For now, it'll be an empty List that is ignored.
 
 The value returned from `init/1` will eventually be passed to `call/2` as its second argument.
 
@@ -76,40 +82,53 @@ It receives a `%Plug.Conn{}` connection struct as its first argument and is expe
 
 ## Configuring the Project's Application Module
 
-Since we're starting a Plug application from scratch, we need to define the application module.
-Update `lib/example.ex` to start and supervise Cowboy:
+We need to tell our application to start up and supervise the Cowboy web server when the app starts up.
+
+We'll do so with the [`Plug.Cowboy.child_spec/1`](https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html#child_spec/1) function.
+
+This function expects three options:
+
+* `:scheme` - HTTP or HTTPS as an atom (`:http`, `:https`)
+* `:plug` - The plug module to be used as the interface for the web server.
+You can specify a module name, like `MyPlug`, or a tuple of the module name and options `{MyPlug, plug_opts}`, where `plug_opts` gets passed to your plug modules `init/1` function.
+* `:options` - The server options.
+Should include the port number on which you want your server listening for requests.
+
+
+Our `lib/example/application.ex` file should implement the child spec in its `start/2` function:
 
 ```elixir
-defmodule Example do
+defmodule Example.Application do
   use Application
   require Logger
 
   def start(_type, _args) do
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.HelloWorldPlug, [], port: 8080)
+      {Plug.Cowboy, scheme: :http, plug: Example.HelloWorldPlug, options: [port: 8080]}
     ]
+    opts = [strategy: :one_for_one, name: Example.Supervisor]
 
-    Logger.info("Started application")
+    Logger.info("Starting application...")
 
-    Supervisor.start_link(children, strategy: :one_for_one)
+    Supervisor.start_link(children, opts)
   end
 end
 ```
 
-This supervises Cowboy, and in turn, supervises our `HelloWorldPlug`.
+_Note_: We do not have to call `child_spec` here, this function will be called by the supervisor starting this process.
+We simply pass a tuple with the module that we want the child spec built for and then the three options needed.
 
-In the `Plug.Adapters.Cowboy.child_spec/4` call, the third argument will be passed to `Example.HelloWorldPlug.init/1`.
+This starts up a Cowboy2 server under our app's supervision tree.
+It starts Cowboy running under the HTTP scheme (you can also specify HTTPS), on the given port, `8080`, specifying the plug, `Example.HelloWorldPlug`, as the interface for any incoming web requests.
 
-We're not finished yet. Open `mix.exs` again, and find the `applications` function.
-We need to add configuration for our own application, which should also cause it to start up automatically.
+Now we're ready to run our app and send it some web requests! Notice that, because we generated an OTP app with the `--sup` flag, our `Example` application will start up automatically thanks to the `application` function.
 
-Let's update it to do that:
-
+In `mix.exs` you should see the following:
 ```elixir
 def application do
   [
     extra_applications: [:logger],
-    mod: {Example, []}
+    mod: {Example.Application, []}
   ]
 end
 ```
@@ -121,8 +140,9 @@ On the command line, run:
 $ mix run --no-halt
 ```
 
-Once everything is finished compiling, and `[info]  Started app` appears, open a web
-browser to `127.0.0.1:8080`. It should display:
+Once everything is finished compiling, and `[info]  Starting application...` appears, open a web
+browser to <http://127.0.0.1:8080>.
+It should display:
 
 ```
 Hello World!
@@ -130,8 +150,9 @@ Hello World!
 
 ## Plug.Router
 
-For most applications, like a web site or REST API, you'll want a router to route request for different paths and HTTP verbs to different handlers.
-`Plug` provides a router to do that. As we are about to see, we don't need a framework like Sinatra in Elixir since we get that for free with Plug.
+For most applications, like a web site or REST API, you'll want a router to route requests for different paths and HTTP verbs to different handlers.
+`Plug` provides a router to do that.
+As we are about to see, we don't need a framework like Sinatra in Elixir since we get that for free with Plug.
 
 To start let's create a file at `lib/example/router.ex` and copy the following into it:
 
@@ -139,11 +160,16 @@ To start let's create a file at `lib/example/router.ex` and copy the following i
 defmodule Example.Router do
   use Plug.Router
 
-  plug(:match)
-  plug(:dispatch)
+  plug :match
+  plug :dispatch
 
-  get("/", do: send_resp(conn, 200, "Welcome"))
-  match(_, do: send_resp(conn, 404, "Oops!"))
+  get "/" do
+    send_resp(conn, 200, "Welcome")
+  end
+
+  match _ do
+    send_resp(conn, 404, "Oops!")
+  end
 end
 ```
 
@@ -151,32 +177,36 @@ This is a bare minimum Router but the code should be pretty self-explanatory.
 We've included some macros through `use Plug.Router` and then set up two of the built-in Plugs: `:match` and `:dispatch`.
 There are two defined routes, one for handling GET requests to the root and the second for matching all other requests so we can return a 404 message.
 
-Back in `lib/example.ex`, we need to add `Example.Router` into the web server supervisor tree.
+Back in `lib/example/application.ex`, we need to add `Example.Router` into the web server supervisor tree.
 Swap out the `Example.HelloWorldPlug` plug with the new router:
 
 ```elixir
 def start(_type, _args) do
   children = [
-    Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+    {Plug.Cowboy, scheme: :http, plug: Example.Router, options: [port: 8080]}
   ]
+  opts = [strategy: :one_for_one, name: Example.Supervisor]
 
-  Logger.info("Started application")
-  Supervisor.start_link(children, strategy: :one_for_one)
+  Logger.info("Starting application...")
+
+  Supervisor.start_link(children, opts)
 end
 ```
 
 Start the server again, stopping the previous one if it's running (press `Ctrl+C` twice).
 
-Now in a web browser, go to `127.0.0.1:8080`.
+Now in a web browser, go to <http://127.0.0.1:8080>.
 It should output `Welcome`.
-Then, go to `127.0.0.1:8080/waldo`, or any other path.
+Then, go to <http://127.0.0.1:8080/waldo>, or any other path.
 It should output `Oops!` with a 404 response.
 
 ## Adding Another Plug
 
-It is common to create Plugs to intercept all requests or a subset of requests, to handle common request handling logic.
+It is common to use more than one plug in a given web application, each of which is dedicated to its own responsibility.
+For example, we might have a plug that handles routing, a plug that validates incoming web requests, a plug that authenticates incoming requests, etc.
+In this section, we'll define a plug to verify incoming requests parameters and we'll teach our application to use _both_ of our plugs--the router and the validation plug.
 
-For this example we'll create a Plug to verify whether or not the request has some set of required parameters.
+We want to create a Plug that verifies whether or not the request has some set of required parameters.
 By implementing our validation in a Plug we can be assured that only valid requests will make it through to our application.
 We will expect our Plug to be initialized with two options: `:paths` and `:fields`.
 These will represent the paths we apply our logic to and which fields to require.
@@ -194,19 +224,19 @@ defmodule Example.Plug.VerifyRequest do
     Error raised when a required field is missing.
     """
 
-    defexception message: "", plug_status: 400
+    defexception message: ""
   end
 
   def init(options), do: options
 
   def call(%Plug.Conn{request_path: path} = conn, opts) do
-    if path in opts[:paths], do: verify_request!(conn.body_params, opts[:fields])
+    if path in opts[:paths], do: verify_request!(conn.params, opts[:fields])
     conn
   end
 
-  defp verify_request!(body_params, fields) do
+  defp verify_request!(params, fields) do
     verified =
-      body_params
+      params
       |> Map.keys()
       |> contains_fields?(fields)
 
@@ -217,8 +247,7 @@ defmodule Example.Plug.VerifyRequest do
 end
 ```
 
-The first thing to note is we have defined a new exception `IncompleteRequestError` and that one of its options is `:plug_status`.
-When available this option is used by Plug to set the HTTP status code in the event of an exception.
+The first thing to note is we have defined a new exception `IncompleteRequestError` which we'll raise in the event of an invalid request.
 
 The second portion of our Plug is the `call/2` function.
 This is where we decide whether or not to apply our verification logic.
@@ -236,75 +265,82 @@ Edit `lib/example/router.ex` and make the following changes:
 ```elixir
 defmodule Example.Router do
   use Plug.Router
-  use Plug.ErrorHandler
 
   alias Example.Plug.VerifyRequest
 
-  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
+  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
+  plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
+  plug :match
+  plug :dispatch
 
-  plug(
-    VerifyRequest,
-    fields: ["content", "mimetype"],
-    paths: ["/upload"]
-  )
+  get "/" do
+    send_resp(conn, 200, "Welcome")
+  end
 
-  plug(:match)
-  plug(:dispatch)
+  get "/upload" do
+    send_resp(conn, 201, "Uploaded")
+  end
 
-  get("/", do: send_resp(conn, 200, "Welcome\n"))
-  post("/upload", do: send_resp(conn, 201, "Uploaded\n"))
-  match(_, do: send_resp(conn, 404, "Oops!\n"))
+  match _ do
+    send_resp(conn, 404, "Oops!")
+  end
 end
 ```
+
+With this code, we are telling our application to send incoming requests through the `VerifyRequest` plug _before_ running through the code in the router.
+Via the function call:
+
+```elixir
+plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
+```
+We automatically invoke `VerifyRequest.init(fields: ["content", "mimetype"], paths: ["/upload"])`.
+This in turn passes the given options to the `VerifyRequest.call(conn, opts)` function.
+
+Let's take a look at this plug in action! Go ahead and crash your local server (remember, that's done by pressing `ctrl + c` twice).
+Then restart the server (`mix run --no-halt`).
+Now go to <http://127.0.0.1:8080/upload> in your browser and you'll see that the page simply isn't working. You'll just see a default error page provided by your browser.
+
+Now let's add our required params by going to <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>. Now we should see our 'Uploaded' message.
+
+It's not great that when we raise an error, we don't get _any_ page. We'll look at how to handle errors with plugs later.
 
 ## Making The HTTP Port Configurable
 
 Back when we defined the `Example` module and application, the HTTP port was hard-coded in the module.
 It's considered good practice to make the port configurable by putting it in a configuration file.
 
-Let's start by updating the `application` portion of `mix.exs` to tell Elixir about our application and set an application env variable.
-With those changes in place our code should look something like this:
-
-```elixir
-def application do
-  [
-    extra_applications: [:logger],
-    mod: {Example, []},
-    env: [cowboy_port: 8080]
-  ]
-end
-```
-
-Our application is configured with the `mod: {Example, []}` line.
-Notice that we're also starting up the `cowboy`, `logger` and `plug` applications.
-
-Next we need to update `lib/example.ex` read the port configuration value, and pass it to Cowboy:
-
-```elixir
-defmodule Example do
-  use Application
-
-  def start(_type, _args) do
-    port = Application.get_env(:example, :cowboy_port, 8080)
-
-    children = [
-      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: port)
-    ]
-
-    Supervisor.start_link(children, strategy: :one_for_one)
-  end
-end
-```
-
-The third argument of `Application.get_env` is the default value, for when the configuration directive is undefined.
-
-> (Optional) add `:cowboy_port` in `config/config.exs`
+We'll set an application environment variable in `config/config.exs`
 
 ```elixir
 use Mix.Config
 
 config :example, cowboy_port: 8080
 ```
+
+Next we need to update `lib/example/application.ex` read the port configuration value, and pass it to Cowboy.
+We'll define a private function to wrap up that responsibility
+
+```elixir
+defmodule Example.Application do
+  use Application
+  require Logger
+
+  def start(_type, _args) do
+    children = [
+      {Plug.Cowboy, scheme: :http, plug: Example.Router, options: [port: cowboy_port()]}
+    ]
+    opts = [strategy: :one_for_one, name: Example.Supervisor]
+
+    Logger.info("Starting application...")
+
+    Supervisor.start_link(children, opts)
+  end
+
+  defp cowboy_port, do: Application.get_env(:example, :cowboy_port, 8080)
+end
+```
+
+The third argument of `Application.get_env` is the default value, for when the configuration directive is undefined.
 
 Now to run our application we can use:
 
@@ -333,7 +369,8 @@ defmodule Example.RouterTest do
 
   test "returns welcome" do
     conn =
-      conn(:get, "/", "")
+      :get
+      |> conn("/", "")
       |> Router.call(@opts)
 
     assert conn.state == :sent
@@ -342,8 +379,8 @@ defmodule Example.RouterTest do
 
   test "returns uploaded" do
     conn =
-      conn(:post, "/upload", "content=#{@content}&mimetype=#{@mimetype}")
-      |> put_req_header("content-type", "application/x-www-form-urlencoded")
+      :get
+      |> conn("/upload?content=#{@content}&mimetype=#{@mimetype}")
       |> Router.call(@opts)
 
     assert conn.state == :sent
@@ -352,7 +389,8 @@ defmodule Example.RouterTest do
 
   test "returns 404" do
     conn =
-      conn(:get, "/missing", "")
+      :get
+      |> conn("/missing", "")
       |> Router.call(@opts)
 
     assert conn.state == :sent
@@ -366,6 +404,102 @@ Run it with this:
 ```shell
 $ mix test test/example/router_test.exs
 ```
+
+## Plug.ErrorHandler
+
+We noticed earlier that when we went to <http://127.0.0.1:8080/upload> without the expected parameters, we didn't get a friendly error page or a sensible HTTP status - just our browser's default error page with a `500 Internal Server Error`.
+
+Let's fix that now by adding in [`Plug.ErrorHandler`](https://hexdocs.pm/plug/Plug.ErrorHandler.html).
+
+First, open up `lib/example/router.ex` and then write the following to that file.
+
+```elixir
+defmodule Example.Router do
+  use Plug.Router
+  use Plug.ErrorHandler
+
+  alias Example.Plug.VerifyRequest
+
+  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
+  plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
+  plug :match
+  plug :dispatch
+
+  get "/" do
+    send_resp(conn, 200, "Welcome")
+  end
+
+  get "/upload" do
+    send_resp(conn, 201, "Uploaded")
+  end
+
+  match _ do
+    send_resp(conn, 404, "Oops!")
+  end
+
+  defp handle_errors(conn, %{kind: kind, reason: reason, stack: stack}) do
+    IO.inspect(kind, label: :kind)
+    IO.inspect(reason, label: :reason)
+    IO.inspect(stack, label: :stack)
+    send_resp(conn, conn.status, "Something went wrong")
+  end
+end
+```
+
+You'll notice that at the top, we are now adding `use Plug.ErrorHandler`.
+
+This plug catches any error, and then looks for a function `handle_errors/2` to call in order to handle it.
+
+`handle_errors/2` just needs to accept the `conn` as the first argument and then a map with three items (`:kind`, `:reason`, and `:stack`) as the second.
+
+You can see we've defined a very simple `handle_errors/2` function to see what's going on. Let's stop and restart our app again to see how this works!
+
+Now, when you navigate to <http://127.0.0.1:8080/upload>, you'll see a friendly error message.
+
+If you look in your terminal, you'll see something like the following:
+
+```shell
+kind: :error
+reason: %Example.Plug.VerifyRequest.IncompleteRequestError{message: ""}
+stack: [
+  {Example.Plug.VerifyRequest, :verify_request!, 2,
+   [file: 'lib/example/plug/verify_request.ex', line: 23]},
+  {Example.Plug.VerifyRequest, :call, 2,
+   [file: 'lib/example/plug/verify_request.ex', line: 13]},
+  {Example.Router, :plug_builder_call, 2,
+   [file: 'lib/example/router.ex', line: 1]},
+  {Example.Router, :call, 2, [file: 'lib/plug/error_handler.ex', line: 64]},
+  {Plug.Cowboy.Handler, :init, 2,
+   [file: 'lib/plug/cowboy/handler.ex', line: 12]},
+  {:cowboy_handler, :execute, 2,
+   [
+     file: '/path/to/project/example/deps/cowboy/src/cowboy_handler.erl',
+     line: 41
+   ]},
+  {:cowboy_stream_h, :execute, 3,
+   [
+     file: '/path/to/project/example/deps/cowboy/src/cowboy_stream_h.erl',
+     line: 293
+   ]},
+  {:cowboy_stream_h, :request_process, 3,
+   [
+     file: '/path/to/project/example/deps/cowboy/src/cowboy_stream_h.erl',
+     line: 271
+   ]}
+]
+```
+
+At the moment, we're still sending a `500 Internal Server Error` back. We can customise the status code by adding a `:plug_status` field to our exception. Open up `lib/example/plug/verify_request.ex` and add the following:
+
+```elixir
+defmodule IncompleteRequestError do
+  defexception message: "", plug_status: 400
+end
+```
+
+Restart your server and refresh, and now you'll get back a `400 Bad Request`.
+
+This plug makes it really easy to catch the useful information needed for developers to fix issues, while being able to also give our end user a nice page so it doesn't look like our app totally blew up!
 
 ## Available Plugs
 

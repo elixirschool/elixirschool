@@ -76,9 +76,9 @@ Depois que o supervisor iniciou, ele deve saber como iniciar/parar/reiniciar seu
 def child_spec(opts) do
   %{
     id: SimpleQueue,
-    start: {__MODULE__, :start_link, [opts]}
-    shutdown: 5_000
-    restart: :permanent
+    start: {__MODULE__, :start_link, [opts]},
+    shutdown: 5_000,
+    restart: :permanent,
     type: :worker
   }
 end
@@ -143,7 +143,7 @@ children = [
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
 
-A maior diferença entre `Supervisor` e `Task.Supervisor` é que a estratégia de reinício padrão é `:temporary` (tarefas nunca irão ser reinicidas).
+A maior diferença entre `Supervisor` e `Task.Supervisor` é que a estratégia de reinício padrão é `:temporary` (tarefas nunca irão ser reiniciadas).
 
 ### Tarefas Supervisionadas
 

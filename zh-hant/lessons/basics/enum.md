@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.5.0
 title: 列舉 (Enum)
 ---
 
@@ -9,7 +9,8 @@ title: 列舉 (Enum)
 
 ## 列舉 (Enum)
 
-`Enum` 模組包含超過 70 個可列舉 (enumerables) 的工作函數。我們在 [previous lesson](../collections/)，中了解到的所有群集，除了元組之外，都為可列舉。
+`Enum` 模組包含超過 70 個可列舉 (enumerables) 的工作函數。
+我們在 [previous lesson](../collections/)，中了解到的所有群集，除了元組之外，都為可列舉。
 
 這個課程只涵蓋可用函數中的一個子集，但我們其實可以自己去測試它們。
 讓我們在 IEx 中做一個小實驗。
@@ -27,14 +28,15 @@ at/3
 ...
 ```
 
-經由上述指令，很明顯的我們有很多函數，而且它們都有明確的存在原因。列舉法 (Enumeration) 是函數式程式設計的核心，而且不可思議的有用。通過將其與 Elixir 的其他特性結合起來，如同我們剛才看到的文檔是一等公民，這也賦與開發者強大的能力。
+經由上述指令，很明顯的我們有很多函數，而且它們都有明確的存在原因。
+列舉法 (Enumeration) 是函數式程式設計的核心，將其與 Elixir 的其他特性結合起來，能夠賦與開發者不可思議的強大能力。
 
 有關函數的完整列表，請參考官方 [`Enum`](https://hexdocs.pm/elixir/Enum.html) 文件；惰性列舉 (lazy enumeration) 請使用 [`Stream`](https://hexdocs.pm/elixir/Stream.html) 模組。
 
-
 ### all?
 
-當使用 `all?/2`， 和眾多 `Enum` 時，我們提供一個適用於我們群集項目的函數。在 `all?/2` 這個例子中，全部的群集必須回傳 `true` 否則只有 `false` 將被回傳：
+當使用 `all?/2`，和眾多 `Enum` 時，我們提供一個適用於我們群集項目的函數。
+在 `all?/2` 這個例子中，全部的群集必須回傳 `true` 否則只有 `false` 將被回傳：
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -65,7 +67,8 @@ iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 
 ### chunk_by
 
-如果我們需要根據大小以外的東西對我們的群集進行分組，我們可以使用 `chunk_by/2` 函數。 它需要一個給定的列舉和一個函數，而當該函數回傳值改變時，一個新群組將被觸發並開始創建下一個：
+如果我們需要根據大小以外的東西對我們的群集進行分組，我們可以使用 `chunk_by/2` 函數。
+它需要一個給定的列舉和一個函數，而當該函數回傳值改變時，一個新群組將被觸發並開始創建下一個：
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -76,7 +79,8 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-有時候，分類群集仍無法滿足我們的需求。在這個例子中 `map_every/3` ，能夠非常有效的對中 (hit) 每一個 `nth` 項目，且總是準確對中第一個需要被改變的值：
+有時候，分類群集仍無法滿足我們的需求。
+在這個例子中 `map_every/3`，能夠非常有效的對中 (hit) 每一個 `nth` 項目，且總是準確對中第一個需要被改變的值：
 
 ```elixir
 # Apply function every three items
@@ -135,7 +139,7 @@ iex> Enum.max([5, 3, 0, -1])
 `max/2` 相對 `max/1` 就如同 `min/2` 相對 `min/1` 一樣：
 
 ```elixir
-Enum.max([], fn -> :bar end)
+iex> Enum.max([], fn -> :bar end)
 :bar
 ```
 
@@ -168,7 +172,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 排序群集時有二個排序函數會較為簡易。
 
-`sort/1` 使用 Erlang 術語來排序確定的序列：
+`sort/1` 使用 Erlang [Term 排序規則](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) 來確定排序順序：
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -190,11 +194,20 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-我們可以使用 `uniq_by/2` 從列舉中刪除重複項：
+可以使用 `uniq/1` 刪除列舉中的重複項目：
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
+```
+
+### uniq_by
+
+`uniq_by/2` 也從列舉中刪除重複項目，但是它允許提供一個函數來進行唯一性比較。
+
+```elixir
+iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
+[%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```

@@ -15,7 +15,7 @@ Maszyna wirtualna Erlanga używa procesów lekkich, które mogą działać na ws
 
 Najprostszą metodą na utworzenie nowego procesu jest wywołanie `spawn`, która jako argument przyjmuje funkcję, nazwaną lub anonimową. Kiedy utworzy nowy proces zwróci _Identyfikator procesu_, czyli PID, który w sposób unikalny identyfikuje proces w naszej aplikacji.
 
-Zacznijmy od stworzenia nowego moduły i zdefiniowania w nim funkcji, którą będziemy uruchamiać:
+Zacznijmy od stworzenia nowego modułu i zdefiniowania w nim funkcji, którą będziemy uruchamiać:
 
 ```elixir
 defmodule Example do

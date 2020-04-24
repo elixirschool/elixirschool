@@ -1,4 +1,5 @@
 script_direction: ltr
+menu: Menu
 project:
   title: Elixir School
   description: La première destination pour apprendre et maîtriser Elixir.
@@ -9,6 +10,7 @@ sections:
   basics: Bases
   advanced: Avancé
   specifics: Spécificités
+  ecto: Ecto
   libraries: Bibliothèques
   blog: Blog
   contributors: Contributeurs

@@ -12,7 +12,7 @@ Elixir 프로젝트를 위한 커스텀 Mix 태스크 만들어 봅시다.
 애플리케이션에 커스텀 Mix 태스크를 추가하여 기능을 확장하고자 하는 것은 흔한 일입니다. 프로젝트에 어떻게 Mix 태스크를 추가하는지 배우기 전에, 기존의 태스크를 한 번 확인해 봅시다.
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
@@ -37,8 +37,6 @@ $ mix new hello
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/hello.ex
 * creating test

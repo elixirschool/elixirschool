@@ -99,6 +99,6 @@ end
 
 ## Mocking
 
-L'utilisation des mocks avec Elixir est fortement déconseillée.  Vous pourriez vouloir les utiliser par instict mais cela est fortement découragé par la communauté Elixir et pour de bonnes raisons.  Si vous suivez les principes d'une bonne architecture, le code résultant sera facile à tester en tant que composant individuel.
+L'utilisation des mocks avec Elixir est fortement déconseillée.  Vous pourriez vouloir les utiliser par instinct mais cela est fortement découragé par la communauté Elixir et pour de bonnes raisons.  Si vous suivez les principes d'une bonne architecture, le code résultant sera facile à tester en tant que composant individuel.
 
 Résistez donc à l'envie.

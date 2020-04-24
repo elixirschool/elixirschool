@@ -1,0 +1,42 @@
+---
+title: Categories
+layout: blog
+disable_transform: true
+exclude_from_chapters: true
+permalink: /blog/categories/
+---
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li class="is-active">Categories</li>
+  </ul>
+</nav>
+
+<div class="main">
+  <h1>Categories</h1>
+  <ul>
+    {% for topic in site.categories %}
+      {% assign category_name=topic[0] %}
+      {% include function-getCategoryMeta name=category_name %}
+      <li><a href="#{{ topic[0] | downcase | url_escape | strip | replace: ' ', '-' }}">{{ category-meta.caption }} ({{ topic[1].size }})</a></li>
+    {% endfor %}
+  </ul>
+  <hr>
+  {% for topic in site.categories %}
+    {% assign category_name=topic[0] %}
+    {% include function-getCategoryMeta name=category_name %}
+    <h2 id="{{ topic[0] | downcase | url_escape | strip | replace: ' ', '-' }}">{{ category-meta.caption }}</h2>
+    {{ category-meta.description | markdownify }}
+    <ul class="showcase">
+      {% assign pages_list = topic[1] %}
+      {% for post in pages_list %}
+        {% if post.title != null %}
+          <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a> <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></li>
+        {% endif %}
+      {% endfor %}
+      {% assign pages_list = nil %}
+      {% assign category_name=nil %}
+    </ul>
+  {% endfor %}  
+</div>

@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 0.9.2
 title: Mix
 ---
 
@@ -22,9 +22,8 @@ An der Ausgabe können wir sehen, dass mix unser Verzeichnis und eine Sammlung a
 ```bash
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
@@ -69,6 +68,7 @@ Die Sektion `application` wird während der Erstellung unserer Anwendungsdatei w
 Es könnte vonnöten sein `iex` im Kontext unserer Anwendung zu starten. Glücklicherweise macht mix das einfach. Wir können so eine neue `iex`-Sitzung starten:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 

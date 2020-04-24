@@ -1,4 +1,5 @@
 script_direction: ltr
+menu: Menu
 project:
   title: Elixir School
   description: Lecciones acerca del lenguaje de programación Elixir
@@ -9,6 +10,7 @@ sections:
   basics: Básico
   advanced: Avanzado
   specifics: Específico
+  ecto: Ecto
   libraries: Librerías
   blog: Blog
   contributors: Contributors
@@ -21,7 +23,7 @@ version_messages:
   patch: "Varios parches fueron aplicados a la lección original desde la última actualización."
   none: "Esta traducción está actualizada."
   error: "There is an error in the version definition of this chapter."
-  
+
 translation_report:
   section: Section
   original_title: Original Title

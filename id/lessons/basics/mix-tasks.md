@@ -12,7 +12,7 @@ Membuat task Mix custom untuk project Elixir anda.
 Tidak jarang kita ingin mengembangkan (extend) fungsionalitas aplikasi Elixir kita dengan menambahkan task Mix sendiri. Sebelum kita belajar tentang cara membuat task Mix spesifik untuk project kita, mari lihat salah satu yang sudah ada:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
@@ -37,8 +37,6 @@ $ mix new hello
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/hello.ex
 * creating test

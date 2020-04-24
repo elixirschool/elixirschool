@@ -1,0 +1,39 @@
+# Order alphabetically.
+# Order is important. The last matching pattern takes the most precedence.
+
+# Default owners for everything in the repo.
+*        @elixirschool/developers
+
+en/      @elixirschool/english
+
+es/      @elixirschool/spanish
+
+fr/      @elixirschool/french
+
+gr/      @elixirschool/greek
+
+id/      @elixirschool/indonesian
+
+it/      @elixirschool/italian
+
+ja/      @elixirschool/japanese
+
+ko/      @elixirschool/korean
+
+pl/      @elixirschool/polish
+
+pt/      @elixirschool/portuguese
+
+ru/      @elixirschool/russian
+
+sk/      @elixirschool/slovak
+
+th/      @elixirschool/thai
+
+uk/      @elixirschool/ukrainian
+
+vi/      @elixirschool/vietnamese
+
+zh-hans/ @elixirschool/chinese
+
+zh-hant/ @elixirschool/traditional-chinese

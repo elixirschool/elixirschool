@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 魔符(Sigil)
 ---
 
@@ -22,6 +22,7 @@ Elixir提供了一种叫做魔符(Sigil)的语法糖来表示和处理字面量�
   - `~W` 创建一个**不处理**插值和转义字符的单词列表
   - `~w` 创建一个**处理**插值和转义字符的单词列表
   - `~N` 创建一个 `NaiveDateTime` 格式的数据结构
+  - `~U` 创建一个 `DateTime` 格式的数据结构 (Elixir 1.9.0 开始支持)
 
 可用的分隔符如下:
 
@@ -104,11 +105,11 @@ iex> ~S/the cat in the hat on the mat/
 这两个魔符创建的字符串有不同吗? 它们的不同和前面提到的创建字符列表的两个魔符的不同很像。 答案就是是否处理插值和转义字符。 举个更明显的例子:
 
 ```elixir
-iex> ~s/welcome to elixir #{String.downcase "school"}/
+iex> ~s/welcome to elixir #{String.downcase "SCHOOL"}/
 "welcome to elixir school"
 
-iex> ~S/welcome to elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
+"welcome to elixir \#{String.downcase \"SCHOOL\"}"
 ```
 ### 单词列表
 
@@ -134,12 +135,23 @@ iex> ~W/i love #{'e'}lixir school/
 
 ### 真·时间日期
 
-当需要创建**不带**时区的时间格式的数据结构时，魔符 [真·时间日期](https://hexdocs.pm/elixir/NaiveDateTime.html) 将很有用。 
+当需要创建**不带**时区的时间格式的数据结构时，魔符 [真·时间日期](https://hexdocs.pm/elixir/NaiveDateTime.html) 将很有用。
 
 在大部分情况下，应该避免直接使用这个魔符创建时间格式的数据。但是，这个魔符在模式匹配的时候很有用。 举个例子:
 
 ```elixir
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
+```
+
+### DateTime
+
+[DateTime](https://hexdocs.pm/elixir/DateTime.html) 对于快速创建一个表示带有 UTC 时区的 "DateTime" 的结构很有用。 由于它带有 UTC 时区所以您的字符串可能表示不同的时区，所以返回的第三个值表示偏移量(以秒为单位)
+
+例如:
+
+```elixir
+iex> DateTime.from_iso8601("2015-01-23 23:50:07Z") == {:ok, ~U[2015-01-23 23:50:07Z], 0}
+iex> DateTime.from_iso8601("2015-01-23 23:50:07-0600") == {:ok, ~U[2015-01-24 05:50:07Z], -21600}
 ```
 
 ## 定义你自己的魔符
@@ -149,14 +161,14 @@ Elixir这门语言有一个目的就是让Elixir成为一门可扩展的语言�
 ```elixir
 
 iex> defmodule MySigils do
-...>   def sigil_u(string, []), do: String.upcase(string)
+...>   def sigil_p(string, []), do: String.upcase(string)
 ...> end
 
 iex> import MySigils
 nil
 
-iex> ~u/elixir school/
+iex> ~p/elixir school/
 ELIXIR SCHOOL
 ```
 
-首先我们创建了一个模块 `MySigils` ，然后定义了一个函数 `sigil_u`。因为没有一个已经存在的魔符是`~u`这个格式的，所以这个魔符的形式就是它。函数名后面的`_u`表示我们想要用`u`作为这个魔符的标识。这个函数接受两个参数，一个输出和一个列表。
+首先我们创建了一个模块 `MySigils` ，然后定义了一个函数 `sigil_p`。因为没有一个已经存在的魔符是 `~p` 这个格式的，所以这个魔符的形式就是它。函数名后面的 `_p` 表示我们想要用 `p` 作为这个魔符的标识。这个函数接受两个参数，一个输入和一个列表。

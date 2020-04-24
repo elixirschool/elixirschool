@@ -11,7 +11,14 @@ layout: default
     {% endif %}
   </header>
   <div class="content">
-  {{ content }}
+    {{ content }}
+    
+    <blockquote class="edit-lesson">    
+      Caught a mistake or want to contribute to the lesson?
+      <a href="https://github.com/elixirschool/elixirschool/edit/master/{{ page.path }}" target="_blank">
+        Edit this page on GitHub!
+      </a>
+    </blockquote>
   </div>
 </section>
 

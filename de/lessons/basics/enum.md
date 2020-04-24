@@ -27,8 +27,8 @@ at/3
 ...
 ```
 
-Hieran sieht man, dass wir viel Funktionalität haben, und das aus gutem Grund. Enumeration ist die Basis funktionaler Programmierung und ein unglaublich nützliches Ding.
-Durch Ausnutzen davon zusammen mit anderen Vorteilen Elixirs, wie dass Dokumentation als `Bürger erster Klasse` behandelt wird, kann es auch den Entwickler enorm unterstützen.
+Hieran sieht man, dass wir viel Funktionalität haben und das aus gutem Grund. Enumeration ist die Basis funktionaler Programmierung und ein unglaublich nützliches Ding.
+Durch Ausnutzen davon, zusammen mit anderen Vorteilen Elixirs, wie die Dokumentation als `Bürger erster Klasse` behandelt wird, kann es auch den Entwickler enorm unterstützen.
 
 Um eine komplette Liste der Funktionen zu sehen besuche die offizielle [`Enum`](https://hexdocs.pm/elixir/Enum.html)-Dokumentation; für lazy enumeration nimm das [`Stream`](https://hexdocs.pm/elixir/Stream.html)-Modul.
 

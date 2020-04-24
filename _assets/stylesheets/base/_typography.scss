@@ -141,6 +141,12 @@
 		font-size: 1.15em;
 		margin: 0 0.25em;
 		padding: 0.25em 0.65em;
+
+    &.highlighter-rouge {
+      padding: 0.2em 0.4em;
+      margin: 0;
+      font-size: 80%;
+    }
 	}
 
 	pre {
@@ -178,3 +184,9 @@
 	.align-right {
 		text-align: right;
 	}
+	
+	.highlighter-rouge {
+		&:last-of-type .highlight {
+			margin: 0;
+		}
+  }

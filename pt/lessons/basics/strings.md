@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Strings
 ---
 
@@ -18,7 +18,7 @@ iex> string <> <<0>>
 <<104, 101, 108, 108, 111, 0>>
 ```
 
-Ao concatenar a string com o byte `0`, o IEx mostra a string como um binário já que este não é mais uma string válida. Este truque nos ajuda a identifcar a sequência de bytes que compõem qualquer string.
+Ao concatenar a string com o byte `0`, o IEx mostra a string como um binário já que este não é mais uma string válida. Este truque nos ajuda a identificar a sequência de bytes que compõem qualquer string.
 
 >NOTA: Ao usar a sintaxe com << >> estamos dizendo ao compilador que os elementos dentro desses símbolos são bytes.
 
@@ -29,13 +29,22 @@ Internamente, as strings em Elixir são representadas como uma sequência de byt
 Qual a diferença? Cada valor em uma lista de caracteres corresponde ao número Unicode do caracter, enquanto em um binário os valores são codificados em UTF-8. Vamos ver isso mais a fundo:
 
 ```elixir
-iex(5)> 'hełło'
+iex> 'hełło'
 [104, 101, 322, 322, 111]
-iex(6)> "hełło" <> <<0>>
+iex> "hełło" <> <<0>>
 <<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
 `322` é o número Unicode de ł, representado em UTF-8 pelos dois bytes `197`, `130`.
+
+Você pode obter o codepoint de um caractere usando `?`
+
+```elixir
+iex> ?Z  
+90
+```
+
+Isso permite usar a notação `?Z` em vez de 'Z' para um símbolo.
 
 Ao programar em Elixir, geralmente usamos strings ao invés de listas de caracteres. O suporte a listas de caracteres é incluso principalmente por ser obrigatório para alguns módulos Erlang.
 
@@ -43,7 +52,7 @@ Para mais informação, veja o [`Guia de Introdução`](http://elixir-lang.org/g
 
 ## Graphemes e Codepoints
 
-Codepoints são apenas simples caracteres Unicode representados por um ou mais bytes, depedendo da codificação UTF-8. Caracteres diferentes do padrão US ASCII são sempre codificados por mais de um byte. Por exemplo, caracteres latinos com til ou acentos (`á, ñ, è`) geralmente são codificados com dois bytes. Já caracteres de línguas asiáticas são normalmente codificados com três ou quatro bytes. Graphemes consistem de múltiplos codepoints que são apresentados como um único caractere.
+Codepoints são apenas simples caracteres Unicode representados por um ou mais bytes, dependendo da codificação UTF-8. Caracteres diferentes do padrão US ASCII são sempre codificados por mais de um byte. Por exemplo, caracteres latinos com til ou acentos (`á, ñ, è`) geralmente são codificados com dois bytes. Já caracteres de línguas asiáticas são normalmente codificados com três ou quatro bytes. Graphemes consistem de múltiplos codepoints que são apresentados como um único caractere.
 
 O módulo String já fornece duas funções para gerá-los, `graphemes/1` e `codepoints/1`. Vamos ver um exemplo:
 
@@ -128,7 +137,7 @@ defmodule Anagram do
 end
 ```
 
-Primeiro vamos olhar para `anagrams?/2`. Estamos verificando se os parâmetros que recebemos são binários ou não. Essa é a forma de verificar se uma parâmetro é uma String em Elixir.
+Primeiro vamos olhar para `anagrams?/2`. Estamos verificando se os parâmetros que recebemos são binários ou não. Essa é a forma de verificar se um parâmetro é uma String em Elixir.
 
 Depois disso, chamamos a função que ordena as strings em ordem alfabética, primeiro deixamos a string com letras minúsculas e então usamos `String.graphemes/1`, que retorna a lista com os graphemes da string. Por fim, utilizamos `Enum.sort/1` para ordenar a lista. Bastante simples, não acha?
 
@@ -155,4 +164,4 @@ iex> Anagram.anagrams?(3, 5)
     iex:11: Anagram.anagrams?/2
 ```
 
-Como você pode ver, a última chamada a `anagrams?` causou um FunctionClauseError. Esse erro nos diz que não há nenhuma função no nosso módulo que recebe dois argumentos não binários, e isso é exatamente o que nós queremos, receber apenas duas strings e nada mais.
+Como você pode ver, a última chamada a `anagrams?` causou um `FunctionClauseError`. Esse erro nos diz que não há nenhuma função no nosso módulo que recebe dois argumentos não binários, e isso é exatamente o que nós queremos, receber apenas duas strings e nada mais.

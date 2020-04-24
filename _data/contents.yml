@@ -16,6 +16,7 @@ basics:
   - testing
   - comprehensions
   - strings
+  - date-time
   - mix-tasks
   - iex-helpers
 advanced:
@@ -25,15 +26,21 @@ advanced:
   - concurrency
   - otp-concurrency
   - otp-supervisors
+  - otp-distribution
   - metaprogramming
   - umbrella-projects
   - typespec
   - behaviours
   - gen-stage
   - protocols
+  - nerves
+ecto:
+  - basics
+  - changesets
+  - associations
+  - querying
 specifics:
   - plug
-  - ecto
   - eex
   - ets
   - mnesia
@@ -43,3 +50,5 @@ libraries:
   - poolboy
   - benchee
   - bypass
+  - distillery
+  - stream-data

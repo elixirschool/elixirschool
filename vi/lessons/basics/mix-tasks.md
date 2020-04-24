@@ -12,7 +12,7 @@ Tạo ra một tác vụ tùy biến cho dự án Elixir của bạn.
 Sẽ không có gì là lạ nếu bạn muốn mở rộng ứng dụng Elixir bằng cách thêm một số tác vụ Mix. Trước khi học cách tạo ra một tác vụ Mix cụ thể, ta hãy xem qua những tác vụ có sẵn:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
@@ -37,8 +37,6 @@ $ mix new hello
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/hello.ex
 * creating test

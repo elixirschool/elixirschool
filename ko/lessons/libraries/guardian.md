@@ -106,7 +106,7 @@ defmodule MyApp.GuardianSerializer do
   def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
-serializer는 `sub`(subject) 필드에서 식별 된 자원을 찾는 역활을 합니다. 이것은 db, API, 심지어 간단한 문자열에서 조회될 수 있습니다.
+serializer는 `sub`(subject) 필드에서 식별 된 자원을 찾는 역할을 합니다. 이것은 db, API, 심지어 간단한 문자열에서 조회될 수 있습니다.
 또한 자원을 `sub` 필드에 직렬화하는 역할을 합니다.
 
 최소한의 구성은 이걸로 끝입니다. 필요하다면 할 수 있는 일은 더 많습니다만 시작은 이걸로 충분합니다.

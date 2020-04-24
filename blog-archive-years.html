@@ -1,0 +1,39 @@
+---
+title: Yearly Round up
+layout: blog
+disable_transform: true
+exclude_from_chapters: true
+permalink: /blog/years/
+---
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li class="is-active">Years</li>
+  </ul>
+</nav>
+
+<div class="main">
+  <h1>Yearly Round-up</h1>
+  {% for post in site.posts %}
+    {% assign post_dates = post.date | date: "%Y" | prepend: post_dates | append: "," %}
+  {% endfor %}
+  {% assign years = post_dates | split: "," | uniq %}
+  <ul>
+    {% for year in years %}
+    <li><a href="#year-{{ year }}">{{ year }}</a></li>
+    {% endfor %}
+  </ul>
+  <hr>
+  {% for year in years %}
+  <h2 id="year-{{ year }}">{{ year }}</h2>
+    <ul class="showcase">
+    {% for post in site.posts %}
+      {% assign post_year = post.date | date: "%Y" %}
+      {% if year == post_year %}
+        <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a> <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  {% endfor %}
+</div>

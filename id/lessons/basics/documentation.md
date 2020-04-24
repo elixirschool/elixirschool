@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 0.9.2
 title: Documentation
 ---
 
@@ -130,9 +130,8 @@ $ mix new greet_everyone
 
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/greet_everyone.ex
 * creating test
@@ -201,11 +200,11 @@ View them at "doc/index.html".
 
 Jika semuanya berjalan sesuai rencana, anda mestinya melihat pesan serupa dengan output contoh di atas. Mari sekarang lihat ke dalam project Mix kita dan kita mestinya melihat bahwa ada direktori lain bernama **doc/**. Di dalamnya adalah dokumentasi yang kita hasilkan. Jika kita mengunjungi halaman indox di browser kita kita harusnya melihat seperti berikut:
 
-![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
+![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
 
 Kita bisa melihat bahwa Earmark telah merender markdown kita dan ExDoc sekarang menampilkannya dalam format yang bagus.
 
-![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
+![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
 Kita sekarang bisa mendeploy ke GitHub, website kita sendiri, atau, lebih umum, [HexDocs](https://hexdocs.pm/).
 

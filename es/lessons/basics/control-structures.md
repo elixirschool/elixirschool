@@ -1,15 +1,15 @@
 ---
-version: 0.9.0
+version: 1.1.1
 title: Estructuras de control
 ---
 
-En esta lección veremos las estructuras de control disponibles en Elixir
+En esta lección veremos las estructuras de control disponibles en Elixir.
 
 {% include toc.html %}
 
 ## `if` y `unless`
 
-Es probable que hayas visto `if/2` antes, y si has utilizado Ruby, estás familiarizado con `unless/2`. En Elixir ambos funcionan de la misma forma pero están definidos como macros, no son construcciones propias del lenguaje; puedes encontrar su implementación en el [módulo Kernel](https://hexdocs.pm/elixir/Kernel.html).
+Es probable que hayas visto `if/2` antes, y si has utilizado Ruby estás familiarizado con `unless/2`. En Elixir ambos funcionan de la misma forma pero están definidos como macros, no son construcciones propias del lenguaje; puedes encontrar su implementación en el [módulo Kernel](https://hexdocs.pm/elixir/Kernel.html).
 
 
 Debería tenerse en cuenta que en Elixir, los únicos valores falsos son `nil` y el booleano `false`.
@@ -78,7 +78,7 @@ iex> case "cherry pie" do
 "I bet cherry pie is tasty"
 ```
 
-Otra característica interesante de `case` es que este soporta cláusulas de guardia:
+Otra característica interesante de `case` es que soporta cláusulas de guardia:
 
 _Este ejemplo proviene directamente de la guía oficial de Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
 
@@ -113,7 +113,7 @@ iex> cond do
 "But this will"
 ```
 
-Como `case`, `cond` lanzará un error si no hay una coincidencia, para manejar esto, podemos definir una condición cuyo valor es `true`:
+Como `case`, `cond` lanzará un error si no hay una coincidencia. Para manejar esto, podemos definir una condición cuyo valor es `true`:
 
 ```elixir
 iex> cond do
@@ -122,3 +122,82 @@ iex> cond do
 ...> end
 "Catch all"
 ```
+
+## `with`
+
+La forma especial `with/1` es útil cuando se pueda usar un `case/2` anidado o en situaciones que no puedan ser encadenadas limpiamente. La expresión `with/1` está compuesta de palabras clave, generadores y, finalmente una expresión.
+
+Hablaremos más de los generadores en la [lección de completado de listas](../comprehensions/), pero por ahora lo que necesitamos saber es que usan [coincidencia de patrones](../pattern-matching/) para comparar el lado derecho del `<-` con el izquierdo.
+
+Empezaremos con un ejemplo simple de `with/1` y después veremos algo más:
+
+```elixir
+iex> user = %{first: "Sean", last: "Callan"}
+%{first: "Sean", last: "Callan"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+"Callan, Sean"
+```
+
+En caso de que una expresión falle en coincidir, el valor que no coincida será devuelto:
+
+```elixir
+iex> user = %{first: "doomspork"}
+%{first: "doomspork"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+:error
+```
+
+Ahora veamos un ejemplo más grande sin `with/1` y después veamos como lo podemos refactorizar:
+
+```elixir
+case Repo.insert(changeset) do
+  {:ok, user} ->
+    case Guardian.encode_and_sign(user, :token, claims) do
+      {:ok, token, full_claims} ->
+        important_stuff(token, full_claims)
+
+      error ->
+        error
+    end
+
+  error ->
+    error
+end
+```
+
+Cuando introducimos `with/1` terminamos con código que es más fácil de entender y es más corto:
+
+```elixir
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token, claims) do
+  important_stuff(token, full_claims)
+end
+```
+
+A partir Elixir 1.3 las sentencias `with/1` soportan else:
+
+```elixir
+import Integer
+
+m = %{a: 1, c: 3}
+
+a =
+  with {:ok, number} <- Map.fetch(m, :a),
+    true <- is_even(number) do
+      IO.puts "#{number} divided by 2 is #{div(number, 2)}"
+      :even
+  else
+    :error ->
+      IO.puts("We don't have this item in map")
+      :error
+
+    _ ->
+      IO.puts("It is odd")
+      :odd
+  end
+```
+Esto ayuda a manejar errores dándonos coincidencia de patrones parecida a la del `case`. El valor pasado es el de la primera expresión que no coincidió con el valor esperado.

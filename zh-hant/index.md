@@ -1,16 +1,17 @@
 ---
 title: Elixir School
 layout: home
-version: 1.0.0
+version: 2.0.0
 ---
 
-[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Elixir School 是冀望學習和掌握 Elixir 程式語言人們的首選之地。
 
-啟發自 Twitter [Scala School](http://twitter.github.io/scala_school/) 的 Elixir 程式語言課程
+無論您是經驗豐富的老將，還是初來乍到的新人，都可以在課程和輔助資源中找到所需要的東西。
 
-Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], [ภาษาไทย][th], [中文][tw] and others.
+通過自願譯者們的辛勤工作 Elixir School 已被翻譯成多種語言。其中一些譯文包括： [Việt ngữ][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], and [ภาษาไทย][th].
 
-  [cn]: /cn/
+我們歡迎並鼓勵您加入我們，並期望因您加入 [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool) 而繼續讓 Elixir School 變得更好！
+
   [es]: /es/
   [it]: /it/
   [ja]: /ja/
@@ -27,19 +28,5 @@ Available in [Việt ngữ][vi], [汉语][cn], [Español][es], [Slovenčina][sk]
   [bn]: /bn/
   [tr]: /tr/
   [th]: /th/
-  [tw]: /tw/
-
-_歡迎您的回饋和參與!_
-
-## 關於 Elixir
-
-"Elixir 是一個動態的函數式程式語言，設計來建造可擴充和易維護的應用程式。" — [elixir-lang.org](http://elixir-lang.org/)
-
-Elixir 利用 Erlang VM (BEAM) 的實戰經驗來構建分散式且啟動時即低延遲的容錯系統。
-
-__特色__:
-
-+ 可擴充 (Scalable)
-+ 故障容錯 (Fault-tolerant)
-+ 函數程式設計 (Functional Programming)
-+ 可延伸 (Extensible)
+  [zh-hans]: /zh-hans/
+  [zh-hant]: /zh-hant/

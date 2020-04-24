@@ -103,11 +103,11 @@ iex> ~S/the cat in the hat on the mat/
 Jaka jest między nimi różnica? Taka sama jak w przypadku list znaków, które już omawialiśmy. Sigil pisany wielką literą wykona się na ciągu już zinterpretowanym, w którym wykonano też sekwencje ucieczki. Przyjrzyjmy się temu na kolejnym przykładzie:
 
 ```elixir
-iex> ~s/welcome to elixir #{String.downcase "school"}/
+iex> ~s/welcome to elixir #{String.downcase "SCHOOL"}/
 "welcome to elixir school"
 
-iex> ~S/welcome to elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
+"welcome to elixir \#{String.downcase \"SCHOOL\"}"
 ```
 
 ### Listy słów

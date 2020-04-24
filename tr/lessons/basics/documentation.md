@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Belgelendirme
 ---
 
@@ -132,10 +132,9 @@ ExDoc projesi [GitHub'da](https://github.com/elixir-lang/ex_doc) bulunan resmi b
 $ mix new greet_everyone
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/greet_everyone.ex
 * creating test
@@ -205,11 +204,11 @@ View them at "doc/index.html".
 
 eğer her şey planlandığı gibi olduysa, yukarıdaki gibi bir çıktı alacaksınız. Artık projemizde  **doc/** adında yeni bir dizin olduğunu görmeliyiz. Üretilen belgelerimiz buranın içindedir. Eğer dizine taracımız ile ziyaret edersek aşağıdakiler gibi bir sayfa karşılayacak bizi:
 
-![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
+![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
 
 Earmark'ın belgelerimizden Markdown oluşturduğunu ve ExDoc'un bunu daha okunabilir olarak olarak gösterdiğini görüyoruz.
 
-![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
+![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
 Artık bunu GitHu'da, kendi sitemizde veya [HexDocs'da](https://hexdocs.pm/) yayınlaya biliriz.
 

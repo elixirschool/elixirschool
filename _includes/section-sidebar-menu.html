@@ -1,13 +1,15 @@
 
 <!-- Menu -->
 <nav id="menu">
+  <span class="stack-info otp-version">Elixir {{site.elixir.version}} - Erlang/OTP {{site.erlang.OTP}} [erts-{{site.erlang.erts}}]</span>
   <header class="major">
-    <h2>Menu</h2>
+    <h2>{{ page.locale.menu }}</h2>
     <p>{{ locale.project.description }}</p>
   </header>
-  <span>Elixir {{site.elixir.version}} - Erlang/OTP {{site.erlang.OTP}} [erts-{{site.erlang.erts}}]</span>
   <ul>
-
+    <li>
+      <a href="/{% if page.lang %}{{ page.lang }}/{% endif %}" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "home" %}active{% endif %}">{{ site.data['locales'][language]['sections']['home'] }}</a>
+    </li>
   {% for sections in site.contents[language] %}
     {% assign section = sections[0] | strip %}
     {% assign chapters = sections[1] %}
@@ -43,7 +45,7 @@
     {% endunless %}
   {% endfor %}
     <li>
-      <a href="/blog/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "blog" or page.layout == "post" %}active{% endif %}">{{ site.data['locales'][language]['sections']['blog']}}</a>
+      <a href="/blog/" class="{% unless locale.disable_transform %} up {%endunless%}{% if page.layout == "blog" or page.layout == "post" or page.layout == "archive" %}active{% endif %}">{{ site.data['locales'][language]['sections']['blog']}}</a>
     </li>
     {% unless language == 'en' %}
     <li>

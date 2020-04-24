@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Документирование
 ---
 
@@ -129,10 +129,9 @@ ExDoc - это официальный проект Elixir, который нах
 $ mix new greet_everyone
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/greet_everyone.ex
 * creating test
@@ -202,11 +201,11 @@ View them at "doc/index.html".
 
 Если все прошло хорошо - то вы должны увидеть сообщение, похожее на вывод команды выше. Давайте теперь заглянем в Mix проект. Там должна появиться новая папка с названием  **doc**. Внутри нее находится сгенерированная документация. Если открыть ее начальную страницу ( **doc/index.html** ) в веб-обозревателе, то можно увидеть такое:
 
-![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
+![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
 
 Можно увидеть что Earmark прекратил нашу разметку, и теперь она отображается в отформатированном виде.
 
-![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
+![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
 Эту документацию теперь можно разместить на GitHub, своем сайте, либо (наиболее обычный вариант) [HexDocs](https://hexdocs.pm/).
 

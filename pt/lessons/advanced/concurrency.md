@@ -1,9 +1,9 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Concorrência
 ---
 
-Um dos pontos ofertados pelo Elixir é o suporte a concorrência. Graças à Erlang VM (BEAM), concorrência no Elixir é mais fácil do que esperamos. O modelo de concorrência replica sobre Atores, um processo constante que se comunica com outros processos através de passagem de mensagem. 
+Um dos pontos ofertados pelo Elixir é o suporte a concorrência. Graças à Erlang VM (BEAM), concorrência no Elixir é mais fácil do que esperamos. O modelo de concorrência replica sobre Atores, um processo constante que se comunica com outros processos através de passagem de mensagem.
 
 Nesta aula nós veremos os módulos de concorrência que vêm com Elixir. No próximo capítulo nós cobriremos os comportamentos OTP que os implementam.
 
@@ -15,7 +15,7 @@ Processos no Erlang VM são leves e executam em todas as CPUs. Enquanto eles pod
 
 A forma mais fácil para criar um novo processo é o `spawn` na qual tem tanto uma função nomeada ou anônima. Quando criamos um novo processo ele retorna um _Process Identifier_ ou PID, para exclusivamente identificá-lo dentro de nossa aplicação.
 
-Para iniciar criaremos um módulo e definiremos uma função que gostariamos de executar:
+Para iniciar criaremos um módulo e definiremos uma função que gostaríamos de executar:
 
 ```elixir
 defmodule Example do
@@ -48,7 +48,7 @@ defmodule Example do
       {:ok, "hello"} -> IO.puts("World")
     end
 
-    listen
+    listen()
   end
 end
 
@@ -92,7 +92,7 @@ defmodule Example do
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
+      {:EXIT, _from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -114,7 +114,7 @@ defmodule Example do
     {pid, ref} = spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
+      {:DOWN, _ref, :process, _from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -126,7 +126,7 @@ Exit reason: kaboom
 
 ## Agentes
 
-Agentes são uma abstração acerca de processos em segundo plano em estado de manutenção. Podemos acessá-los de outros processos dentro de nossa aplicação ou nó. O estado do nosso Agente é definido como valor de retorno de nossa função: 
+Agentes são uma abstração acerca de processos em segundo plano em estado de manutenção. Podemos acessá-los de outros processos dentro de nossa aplicação ou nó. O estado do nosso Agente é definido como valor de retorno de nossa função:
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
@@ -162,7 +162,11 @@ defmodule Example do
 end
 
 iex> task = Task.async(Example, :double, [2000])
-%Task{pid: #PID<0.111.0>, ref: #Reference<0.0.8.200>}
+%Task{
+  owner: #PID<0.105.0>,
+  pid: #PID<0.114.0>,
+  ref: #Reference<0.2418076177.4129030147.64217>
+}
 
 # Realizar algum trabalho
 

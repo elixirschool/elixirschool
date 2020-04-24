@@ -1,4 +1,5 @@
 script_direction: ltr
+menu: Menu
 project:
   title: Elixir School
   description: Lições sobre a linguagem de programação Elixir
@@ -9,6 +10,7 @@ sections:
   basics: Básico
   advanced: Avançado
   specifics: Específico
+  ecto: Ecto
   libraries: Bibliotecas
   blog: Blog
   contributors: Contributors

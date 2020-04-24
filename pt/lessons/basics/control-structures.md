@@ -1,5 +1,5 @@
 ---
-version: 1.1.1 
+version: 1.1.2
 title: Estruturas de Controle
 ---
 
@@ -26,7 +26,7 @@ iex> if "a string value" do
 ...> end
 "Truthy"
 ```
-Usar `unless/2` é bem parecido o uso do `if/2` porém trabalhando de forma negativa:
+Usar `unless/2` é bem parecido com o uso do `if/2` porém trabalhando de forma negativa:
 ```elixir
 iex> unless is_integer("hello") do
 ...>   "Not an Int"
@@ -36,7 +36,7 @@ iex> unless is_integer("hello") do
 
 ## `case`
 
-Caso seja necessário combinar multiplos padrões nós poderemos utilizar `case/2`:
+Caso seja necessário combinar múltiplos padrões nós poderemos utilizar `case/2`:
 
 ```elixir
 iex> case {:ok, "Hello World"} do
@@ -62,7 +62,7 @@ iex> case :even do
 ```
 
 Considere `_` como o `else` que irá igualar com "todo o resto".
-Já que `case/2` depende de combinação de padrões, todas as mesmas regras e retrições são aplicadas. Se você pretende procurar padrões em variáveis que já existem, você irá precisar utilizar o operador pin `^/1`:
+Já que `case/2` depende de combinação de padrões, todas as mesmas regras e restrições são aplicadas. Se você pretende procurar padrões em variáveis que já existem, você irá precisar utilizar o operador pin `^/1`:
 
 ```elixir
 iex> pie = 3.14
@@ -75,7 +75,7 @@ iex> case "cherry pie" do
 ```
 Outra característica interessante do `case/2` é o seu suporte para cláusulas de guarda:
 
-_Este exemplo vem diretamente do [Guia Introdutório](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) oficical do Elixir._
+_Este exemplo vem diretamente do [Guia Introdutório](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) oficial do Elixir._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -86,7 +86,7 @@ iex> case {1, 2, 3} do
 ...> end
 "Will match"
 ```
-Verifique a documentação oficial sobre [Expressões permitidas em clausulas guard](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
+Verifique a documentação oficial sobre [Expressões permitidas em cláusulas guard](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 
 ## `cond`
@@ -119,7 +119,7 @@ iex> cond do
 
 ## `with`
 
-A forma especial `with/1` é util quando tentamos usar `case/2` de maneira aninhada ou em situações que não é possível encadiar funções. A expressão `with/1` é composta de palavras-chaves, generators e finalmente uma expressão.
+A forma especial `with/1` é útil quando tentamos usar `case/2` de maneira aninhada ou em situações que não é possível encadear funções. A expressão `with/1` é composta de palavras-chaves, generators e finalmente uma expressão.
 
 Iremos discutir generators na [lição sobre list comprehensions](../comprehensions) para comparar o lado direito do operador `<-` com o lado esquerdo.
 
@@ -134,7 +134,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 "Callan, Sean"
 ```
 
-Quando uma expressão falha em achar um padrão, o valor que da expressão é avaliado será retornado:
+Quando uma expressão falha em achar um padrão, o valor da expressão que falhou será retornado:
 
 ```elixir
 iex> user = %{first: "doomspork"}
@@ -163,7 +163,7 @@ case Repo.insert(changeset) do
 end
 ```
 
-Quando introduzinos `with/1` acabamos com um código que é facilmente entendido e possui menos linhas:
+Quando utilizamos `with/1` acabamos com um código que é facilmente entendido e possui menos linhas:
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),

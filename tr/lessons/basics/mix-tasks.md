@@ -13,7 +13,7 @@ Elixir projeleriniz için özel Mix görevleri oluşturma.
 Projelerimiz için özel Mix görevlerinin nasıl oluşturulacağını öğrenmeden önce hali hazırda var olan bir projeye bakalım:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
@@ -38,8 +38,6 @@ $ mix new hello
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/hello.ex
 * creating test

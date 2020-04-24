@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Mix
 ---
 
@@ -22,9 +22,8 @@ On peut lire dans les messages de sortie que mix a créé notre dossier et un ce
 ```bash
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
@@ -69,6 +68,7 @@ La section `application` est utilisée pendant la génération de notre fichier 
 Il peut être nécessaire d'utiliser `iex` dans le contexte de notre application. Heureusement, mix rend ça facile. On peut commencer une nouvelle session `iex`:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 
