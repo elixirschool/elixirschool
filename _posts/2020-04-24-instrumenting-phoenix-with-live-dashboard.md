@@ -11,10 +11,9 @@ excerpt: >
 
 The recent release of the [LiveDashboard](https://github.com/phoenixframework/phoenix_live_dashboard) library allows us to visualize our application metrics, performance and behavior in real-time. In this post, we'll add LiveDashboard to our Phoenix app, examine the out-of-the-box features and take a look under the hood to understand how LiveDashboard hooks into Telemetry events in order to visualize them.
 
-
 ## The App
 
-We'll be working with the Phoenix app we set up for our Telemetry series of blog posts, [Quantum](https://github.com/elixirschool/telemetry-code-along/tree/live-dashboard). The Quantum app doesn't do much--it really just exists to be measured. In this post, we'll set up a Telemetry supervisor that implements a set of metrics definitions for Telemetry events. The metrics we'll define match up to some out-of-the-box Telemetry events emitted by Phoenix and Ecto.. For a deeper dive on Telemetry events, check out our series of posts on [Instrumenting Phoenix with Telemetry](https://elixirschool.com/blog/instrumenting-phoenix-with-telemetry-part-one/). Upcoming posts in this series take a closer look at the out-of-the-box Telemetry events offered by Phoenix and Ecto, walkthrough how to add our own Telemetry events and more.
+We'll be working with the Phoenix app we set up for our Telemetry series of blog posts, [Quantum](https://github.com/elixirschool/telemetry-code-along/tree/live-dashboard). The Quantum app doesn't do much--it really just exists to be measured. In this post, we'll set up a Telemetry supervisor that implements a set of metrics definitions for Telemetry events. The metrics we'll define match up to some out-of-the-box Telemetry events emitted by Phoenix and Ecto. For a deeper dive on Telemetry events, check out our series of posts on [Instrumenting Phoenix with Telemetry](https://elixirschool.com/blog/instrumenting-phoenix-with-telemetry-part-one/). Upcoming posts in this series take a closer look at the out-of-the-box Telemetry events offered by Phoenix and Ecto, walkthrough how to add our own Telemetry events and more.
 
 ### The Code
 
@@ -39,7 +38,6 @@ Next up, we'll ensure LiveView is configured:
 # config/config.exs
 config :quantum, QuantumWeb.Endpoint,
   live_view: [signing_salt: "SECRET_SALT"]
-
 ```
 
 Then, we'll ensure the LiveView socket is declared in our app's `Endpoint`:
