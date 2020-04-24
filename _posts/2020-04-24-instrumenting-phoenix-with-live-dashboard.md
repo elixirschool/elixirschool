@@ -2,7 +2,7 @@
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
 categories: general
-date: 2020-04-22
+date: 2020-04-24
 layout: post
 title: "Instrumenting Phoenix with Telemetry and LiveDashboard"
 excerpt: >
@@ -403,4 +403,4 @@ And that's it!
 
 LiveDashboard adds a powerful tool to the Phoenix developer's toolkit. Now we can easily visualize the instrumentation of our application and monitor its performance and behavior in real-time as we develop. LiveDashboard represents one more entry into the growing pantheon of "developer happiness" tools that is increasingly making Phoenix, and Elixir, such a compelling option for web development.
 
-I hope this feature tour got you excited about LiveDashboard, while our peek under the hood illustrates once again how Elixir language features like ETS and message-passing make it possible to build powerful systems that are still simple and elegant. 
+I hope this feature tour got you excited about LiveDashboard, while our peek under the hood illustrates once again how Elixir language features like ETS and message-passing make it possible to build powerful systems that are still simple and elegant.
