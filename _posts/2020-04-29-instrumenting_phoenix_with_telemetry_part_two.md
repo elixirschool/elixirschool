@@ -2,7 +2,7 @@
 author: Sophie DeBenedetto
 author_link: https://github.com/sophiedebenedetto
 categories: general
-date: 2020-03-29
+date: 2020-04-29
 layout: post
 title: "Instrumenting Phoenix with Telemetry Part II: Telemetry Metrics + Reporters"
 excerpt: >
@@ -20,7 +20,7 @@ In this series, we're instrumenting a Phoenix app and sending metrics to StatsD 
 
 ## Intro
 
-In [Part I]() of this series, we learned why observability is important and introduced Erlang's Telemetry library. We used it to hand-roll some instrumentation for our Phoenix app, but it left us with some additional problems to solve. In this post, we'll use Elixir's `Telemetry.Metrics` and `TelemetryMetricsStatsd` libraries to define and send metrics to StatsD for a given Telemetry event.
+In [Part I](https://elixirschool.com/blog/instrumenting-phoenix-with-telemetry-part-one/) of this series, we learned why observability is important and introduced Erlang's Telemetry library. We used it to hand-roll some instrumentation for our Phoenix app, but it left us with some additional problems to solve. In this post, we'll use Elixir's `Telemetry.Metrics` and `TelemetryMetricsStatsd` libraries to define and send metrics to StatsD for a given Telemetry event.
 
 ## Recap
 
@@ -95,9 +95,9 @@ Most of this happens under the hood. We are only on the hook for defining a `Tel
 
 ## Getting Started
 
-You can follow along with this tutorial by cloning down the repo [here](https://github.com/SophieDeBenedetto/quantum/tree/part-2-start).
-* Checkig out the starting state of our code on the branch [part-2-start](https://github.com/SophieDeBenedetto/quantum/tree/part-2-start)
-* Find the solution code on the branch [part-2-solution](https://github.com/SophieDeBenedetto/quantum/tree/part-2-solution)
+You can follow along with this tutorial by cloning down the repo [here](https://github.com/elixirschool/telemetry-code-along/tree/part-2-start).
+* Checkig out the starting state of our code on the branch [part-2-start](https://github.com/elixirschool/telemetry-code-along/tree/part-2-start)
+* Find the solution code on the branch [part-2-solution](https://github.com/elixirschool/telemetry-code-along/tree/part-2-solution)
 
 ## Overview
 
@@ -447,4 +447,4 @@ In order to really be able to observe the state of our production Phoenix app, w
 
 Instrumenting all of that by hand, by executing custom Telemetry events wherever we need, them will be tedious and time-consuming. On top of that, it will be a challenge to standardize event naming conventions, measurements and metadata across the app.
 
-In the [next post](TBD), we'll examine Phoenix and Ecto's out-of-the-box Telemetry events and use `Telemetry.Metrics` to observe a wide-range of such events, thus eliminating the need for us to execute our own custom events for most of our observability use-cases.
+In next week's post, we'll examine Phoenix and Ecto's out-of-the-box Telemetry events and use `Telemetry.Metrics` to observe a wide-range of such events, thus eliminating the need for us to execute our own custom events for most of our observability use-cases.
