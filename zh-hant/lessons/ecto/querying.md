@@ -1,5 +1,5 @@
 ---
-version: 1.0.3
+version: 1.1.1
 title: 查詢
 ---
 
@@ -61,14 +61,14 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 
 `Ecto.Query` 模組提供了查詢 DSL，可以用它編寫查詢來從應用程式的存放庫中檢索資料。
 
-### 使用 `Ecto.Query.from/2` 建立查詢
+### 使用 `Ecto.Query.from/2` 進行基於關鍵字查詢
 
-可以使用 `Ecto.Query.from/2` 函數建立一個查詢。此函數包含兩個參數：表達式和關鍵字列表。現在建立一個查詢來從存放庫中選取所有電影：
+可以使用 `Ecto.Query.from/2` 巨集建立一個查詢。此函數包含兩個參數：表達式和一個可選的關鍵字列表。現在建立一個最簡易的查詢來從存放庫中選取所有電影：
 
 ```elixir
-import Ecto.Query
-query = from(m in Movie, select: m)
-#Ecto.Query<from m in Friends.Movie, select: m>
+iex> import Ecto.Query
+iex> query = from(Movie)                
+%Ecto.Query<from m in Friends.Movie>
 ```
 
 使用 `Repo.all/2` 函數執行查詢。此函數接收 Ecto 查詢的必需參數，並回傳滿足查詢條件的所有記錄。
@@ -90,113 +90,86 @@ iex> Repo.all(query)
 ]
 ```
 
-#### 使用 `from` 建立關鍵字查詢
+#### 使用 `from` 的無綁定查詢
 
-上面的範例給了 `from/2` *關鍵字查詢* 一個參數。當使用 `from` 編寫關鍵字查詢時，第一個參數可以是以下兩種情況之一：
-
-* 一個 `in` 表達式 (例如：`m in Movie`)
-* 一個實現 `Ecto.Queryable` 協定的模組 (例如：`Movie`)
-
-第二個參數是 `select` 查詢關鍵字。
-
-#### 使用 `from` 建立查詢表達式
-
-當在查詢表達式使用 `from` 時，第一個參數必須是實現 `Ecto.Queryable` 協定的值 (例如：`Movie`)。第二個參數則是表達式。現在來看一個例子：
+上面的範例缺少 SQL 語句中最有趣的部分。我們通常只想查詢特定欄位或按照某種條件來過濾記錄。現在來擷取所有具有 `"Ready Player One"` 標題電影的 `title` 和 `tagline`：
 
 ```elixir
-iex> query = select(Movie, [m], m)
-%Ecto.Query<from m in Friends.Movie, select: m>
-iex> Repo.all(query)
+iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
+%Ecto.Query<from m in Friends.Movie, where: m.title == "Ready Player One",
+ select: [:title, :tagline]>
 
-06:16:20.854 [debug] QUERY OK source="movies" db=0.9ms
+iex> Repo.all(query)                                                                    
+SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready Player One') []
 [
   %Friends.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
     actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
     characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
-    id: 1,
+    id: nil,
     tagline: "Something about video games",
     title: "Ready Player One"
   }
 ]
 ```
 
-當 _不_ 需要 `in` 陳述式 (`m in Movie`) 時，可以使用查詢表達式。而當不需要資料結構的參考時，則不需要 `in` 陳述式。上面的查詢不需要參考資料結構 - 此例來說，因為不選擇滿足給定條件的電影，所以不需要使用 `in` 表達式和關鍵字查詢。
+請注意，回傳的結構體僅有 `tagline` 和 `title` 欄位 — 這是 `select:` 部​​分的結果。
 
-### 使用 `select` 表達式
+這樣的查詢稱為 *無綁定（bindingless）*，因為它們非常簡單，不需要綁定。
 
-使用 `Ecto.Query.select/3` 函數來指定查詢的 select 陳述式部分。如果只想選擇某些欄位，可以將這些欄位指定為 atom 列表或參考結構體的鍵。現在來看看第一種方法：
+#### 查詢中的綁定
+
+到目前為止，使用了一個模組，該模組實現了 `Ecto.Queryable` 協定（例如： `Movie`）作為 `from` 巨集的第一個參數。但是，也可以使用 `in` 表達式，如下所示：
 
 ```elixir
-iex> query = select(Movie, [:title])
-%Ecto.Query<from m in Friends.Movie, select: [:title]>
-iex> Repo.all(query)
-
-15:15:25.842 [debug] QUERY OK source="movies" db=1.3ms
-[
-  %Friends.Movie{
-    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
-    id: nil,
-    tagline: nil,
-    title: "Ready Player One"
-  }
-]
+iex> query = from(m in Movie)                                                           
+%Ecto.Query<from m in Friends.Movie>
 ```
 
-注意到，我們 _沒有_ 使用 `in` 表達式來為 `from` 函數提供第一個參數。這是因為使用 `select` 關鍵字列表不需要建立資料結構的參考。
-
-這種方法回傳的結構體，只有被指定的欄位 `title`。
-
-第二種方法略有不同。這一次，*需要* 使用 `in` 表達式。這是因為需要建立一個資料結構的參考，以指定 movie 結構體的 `title` 鍵：
+在這種情況下，稱 `m` 為一個 *綁定*。綁定非常有用，因為它能夠在查詢的其他部分參照模組。現在選擇所有 `id` 小於 `2` 電影的標題：
 
 ```elixir
-iex(15)> query = from(m in Movie, select: m.title)
-%Ecto.Query<from m in Friends.Movie, select: m.title>
-iex(16)> Repo.all(query)
+iex> query = from(m in Movie, where: m.id < 2, select: m.title)
+%Ecto.Query<from m in Friends.Movie, where: m.id < 2, select: m.title>
 
-15:06:12.752 [debug] QUERY OK source="movies" db=4.5ms queue=0.1ms
+iex> Repo.all(query)                                           
+SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-請注意，這種使用 `select` 的方法會回傳包含所選值的列表。
-
-### 使用 `where` 表達式
-
-可以使用 `where` 表達式在查詢中包含 "where" 子句。多個 `where` 表達式則組合成 `WHERE AND` SQL 陳述式。
+這裡非常重要的是如何改變查詢的輸出。通過在 `select:` 中使用帶有綁定的 *表達式* ，可以明確指定回傳選定欄位的方式。例如，可以要求一個元組：
 
 ```elixir
-iex> query = from(m in Movie, where: m.title == "Ready Player One")
-%Ecto.Query<from m in Friends.Movie, where: m.title == "Ready Player One">
-iex> Repo.all(query)
+iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
 
-15:18:35.355 [debug] QUERY OK source="movies" db=4.1ms queue=0.1ms
-[
-  %Friends.Movie{
-    __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
-    actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
-    characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-    distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
-    id: 1,
-    tagline: "Something about video games",
-    title: "Ready Player One"
-  }
-]
+iex> Repo.all(query)                                                          
+[{"Ready Player One"}]
 ```
 
-可以將 `where` 表達式與 `select` 一起使用：
+始終從簡單的無綁定查詢出發，並在需要參照資料結構時導入綁定是一個好主意。有關查詢中使用綁定的更多資訊，請參考 [Ecto 文件](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions)
+
+
+### 基於巨集的查詢
+
+上面的範例，在 `from` 巨集中使用了關鍵字 `select:` 和 `where:` 來建立查詢 — 這就是所謂 *基於關鍵字的查詢*。但是，還有另一種組合查詢的方式 — 基於巨集的查詢。Ecto 為每個關鍵字提供巨集，例如 `select/3` 或 `where/3`。每個巨集都接受一個 *可查詢（queryable）* 的值，一個顯式的綁定串列以及需提供相同類似關鍵字的表達式：
 
 ```elixir
-iex> query = from(m in Movie, where: m.title == "Ready Player One", select: m.tagline)
-%Ecto.Query<from m in Friends.Movie, where: m.title == "Ready Player One", select: m.tagline>
-iex> Repo.all(query)
-
-15:19:11.904 [debug] QUERY OK source="movies" db=4.1ms
-["Something about video games"]
+iex> query = select(Movie, [m], m.title)                           
+%Ecto.Query<from m in Friends.Movie, select: m.title>
+iex> Repo.all(query)                    
+SELECT m0."title" FROM "movies" AS m0 []
+["Ready Player One"]
 ```
+
+巨集的好處是可以與管線很好地配合使用：
+
+```elixir
+iex> query = Movie |> where([m], m.id < 2) |> select([m], {m.title})
+
+iex> Repo.all(query)
+[{"Ready Player One"}]
+```
+
 
 ### 在 `where` 中使用插值
 
@@ -336,7 +309,7 @@ iex> Repo.all(query)
 ]
 ```
 
-這允許只執行一次資料庫呼用。它還具有允許在同一查詢中同時選定與過濾電影和其相關演員的額外好處。例如，這種方法允許使用 `join` 陳述式查詢相關演員滿足特定條件的所有電影。就像是：
+這允許只執行一次資料庫呼用。它還具有允許在同一查詢中同時選定與過濾電影和其相關演員的額外好處。例如，這種方法允許使用 `join` 表達式查詢相關演員滿足特定條件的所有電影。就像是：
 
 ```elixir
 Repo.all from m in Movie,
@@ -345,7 +318,7 @@ Repo.all from m in Movie,
   preload: [actors: a]
 ```
 
-之後將會有 join 陳述式的更多資訊。
+之後將會有 join 表達式的更多資訊。
 
 #### 預載提取過的記錄
 
@@ -407,9 +380,9 @@ iex> movie.actors
 ]
 ```
 
-### 使用 Join 陳述式
+### 使用 Join 表達式
 
-可以在 `Ecto.Query.join/5` 函數幫助下執行包含 join 陳述式的查詢。
+可以在 `Ecto.Query.join/5` 函數幫助下執行包含 join 表達式的查詢。
 
 ```elixir
 iex> query = from m in Movie,
