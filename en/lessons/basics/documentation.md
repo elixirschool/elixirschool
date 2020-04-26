@@ -195,20 +195,21 @@ Examples
 ### Installing
 
 Assuming all is well and we're seeing the output above, we are now ready to set up ExDoc.
-In the `mix.exs` file, add the two required dependencies to get started: `:earmark` and `:ex_doc`.
+In the `mix.exs` file, add the `:ex_doc` dependency to get started.
 
 ```elixir
   def deps do
-    [{:earmark, "~> 1.2", only: :dev},
-    {:ex_doc, "~> 0.19", only: :dev}]
+    [{:ex_doc, "~> 0.21", only: :dev, runtime: false}]
   end
 ```
 
-We specify the `only: :dev` key-value pair as we don't want to download and compile these dependencies in a production environment.
-But why Earmark? Earmark is a Markdown parser for the Elixir programming language that ExDoc utilizes to turn our documentation within `@moduledoc` and `@doc` to beautiful looking HTML.
+We specify the `only: :dev` key-value pair as we don't want to download and compile the `ex_doc` dependency in a production environment.
 
-It is worth noting at this point that you are not forced to use Earmark.
-You can change the markup tool to others such as Pandoc, Hoedown, or Cmark; however you will need to do a little more configuration which you can read about [here](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool).
+`ex_doc` will also add another library for us, Earmark.
+
+Earmark is a Markdown parser for the Elixir programming language that ExDoc utilizes to turn our documentation within `@moduledoc` and `@doc` to beautiful looking HTML.
+
+It is worth noting at this point that you change the markup tool to Cmark if you wish, but you will need to do a little more configuration which you can read about [here](https://hexdocs.pm/ex_doc/ExDoc.Markdown.html#module-using-cmark).
 For this tutorial, we'll just stick with Earmark.
 
 ### Generating Documentation
