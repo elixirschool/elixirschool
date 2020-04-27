@@ -24,7 +24,7 @@ In [Part I](https://elixirschool.com/blog/instrumenting-phoenix-with-telemetry-p
 
 ## Recap
 
-In our previous post, we added some Telemetry instrumentation to our Phoenix app, Quantum. To recap, we established a Telemetry event, `[:phoenix, :request]`, that we attached to a handler module, `Quantum.Telemetry.Metrics`. We executed this event from just one controller action--the `new` action of the `UserController`.
+In [our previous post](https://elixirschool.com/blog/instrumenting-phoenix-with-telemetry-part-one/), we added some Telemetry instrumentation to our Phoenix app, [Quantum](https://github.com/elixirschool/telemetry-code-along/tree/part-1-solution). You can review the final code from our previous article [here](https://github.com/elixirschool/telemetry-code-along/tree/part-1-solution). To recap, we established a Telemetry event, `[:phoenix, :request]`, that we attached to a handler module, `Quantum.Telemetry.Metrics`. We executed this event from just one controller action--the `new` action of the `UserController`.
 
 From that controller action, we execute the Telemetry event with a measurement map that includes the duration of the web request along with the request `conn`:
 
