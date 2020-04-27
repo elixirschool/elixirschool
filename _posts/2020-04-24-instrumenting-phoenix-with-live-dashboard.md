@@ -106,7 +106,7 @@ The last out-of-the-box page that the LiveDashboard offers us is the `ETS` page.
 ## LiveDashboard Metrics
 ### Establishing Metrics
 
-There are two LiveDashboard features that we have to do a little bit of work to enable. We'll start with [LiveDashboard Metrics]https://hexdocs.pm/phoenix_live_dashboard/metrics.html#content), which leverages the `telemetry_metrics` library.
+There are two LiveDashboard features that we have to do a little bit of work to enable. We'll start with [LiveDashboard Metrics](https://hexdocs.pm/phoenix_live_dashboard/metrics.html#content), which leverages the `telemetry_metrics` library.
 
 First, we'll add `telemetry_metrics` to our application's dependencies:
 
