@@ -331,7 +331,7 @@ Let's take a closer look at how it all works.
 2. When the supervisor starts, it starts the `TelemetryMetricsStatsd` GenServer and gives it this list
 3. When the `TelemetryMetricsStatsd` GenServer starts, it calls `:telemetry.attach/4` for each listed event, storing it in an ETS table along with the handler callback and a config map that includes the metrics definitions. The handler callback it gives to `:telemetry.attach/4` is its own `TelemetryMetricsStatsd.EventHandler.handle_event/4` function.
 4. Later, when a Telemetry event is executed via a call to `:telemetry.execute/3`, Telemetry looks up the handler callback and config (including metrics definitions) for the given event in ETS
-5. The `:telemetry.execute/3` function then calls this handler callback, `TelemetryMetricsStatsd.EventHandler.handle_event/4`, with the event name, event measurement map, event metadata and metrics config.
+5. The `:telemetry.execute/3` function then calls this handler callback, `TelemetryMetricsStatsd.EventHandler.handle_event/4`, with the event name, event measurement map, event metadata and metrics config
 6. The `TelemetryMetricsStatsd.EventHandler.handle_event/4` function formats the appropriate metric using all of this information and sends it to StatsD over UDP
 
 Phew!
