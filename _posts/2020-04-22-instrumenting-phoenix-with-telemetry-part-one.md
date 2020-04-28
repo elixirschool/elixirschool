@@ -22,7 +22,7 @@ In Part I we'll start out by setting up a basic, DIY Telemetry pipeline and exam
 
 ## Introduction
 
-In this post we'll discuss why observability matters and how Telemetry helps us treat observability like a first class citizen in Elixir projects. Then, we'll hand-roll our own instrumentation pipeline using Telemetry and StatsD. We'll wrap up with a look under the hood of the Telemetry library and set ourselves for Part II of this series, in which we leverage the `Telemetry.Metrics` library for even easier instrumentation and reporting.
+In this post we'll discuss why observability matters and how Telemetry helps us treat observability like a first class citizen in Elixir projects. Then, we'll hand-roll our own instrumentation pipeline using Telemetry and StatsD. We'll wrap up with a look under the hood of the Telemetry library and set ourselves up for Part II of this series, in which we leverage the `Telemetry.Metrics` library for even easier instrumentation and reporting.
 
 ## Observability Matters
 
@@ -358,6 +358,24 @@ Next up, we define a module that uses `Statix`:
 # lib/quantum/telemetry/statsd_reporter.ex
 defmodule Quantum.Telemetry.StatsdReporter do
   use Statix
+end
+```
+
+We need to start the `StatsdReporter` in our application's `start/2` function:
+
+```elixir
+# lib/quantum/application.ex
+
+def start(_, _) do
+  :ok = Quantum.Telemetry.StatsdReporter.connect()
+  :ok = :telemetry.attach(
+    # unique handler id
+    "quantum-telemetry-metrics",
+    [:phoenix, :request],
+    &Quantum.Telemetry.Metrics.handle_event/4,
+    nil
+  )
+  ...
 end
 ```
 
