@@ -361,6 +361,24 @@ defmodule Quantum.Telemetry.StatsdReporter do
 end
 ```
 
+We need to start the `StatsdReporter` in our application's `start/2` function:
+
+```elixir
+# lib/quantum/application.ex
+
+def start(_, _) do
+  :ok = Quantum.Telemetry.StatsdReporter.connect()
+  :ok = :telemetry.attach(
+    # unique handler id
+    "quantum-telemetry-metrics",
+    [:phoenix, :request],
+    &Quantum.Telemetry.Metrics.handle_event/4,
+    nil
+  )
+  ...
+end
+```
+
 Now we can call on our `Quantum.Telemetry.StatsdReporter` in our event handler to emit metrics to StatsD:
 
 ```elixir
