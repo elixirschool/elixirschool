@@ -290,7 +290,6 @@ end
 
 The `TelemetryMetricsStatsD` will format a counter and summary metric tagged with the value of the `:request_path` key found in the `conn`.
 
-
 So, if we run our app and send some web requests, we'll see the following metrics reported to StatsD:
 
 ```
