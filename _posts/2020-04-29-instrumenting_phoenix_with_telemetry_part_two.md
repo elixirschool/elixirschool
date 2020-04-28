@@ -272,7 +272,7 @@ end
 
 This kicks off the following process:
 
-* When the `TelemetryMetricsStatsd` starts, it stores events in ETS along with their handler _and_ a config map including this list of metric structs.
+* When the `TelemetryMetricsStatsd` starts, it stores events in ETS along with their handler _and_ a config map including this list of metric structs
 * Later, when `TelemetryMetricsStatsd` is responding to executed events, it looks up the event in ETS and uses the metrics structs stored in that config map to format the appropriate metrics for sending to StatsD
 
 ### Seeing It In Action
