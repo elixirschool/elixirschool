@@ -22,7 +22,7 @@ In Part I we'll start out by setting up a basic, DIY Telemetry pipeline and exam
 
 ## Introduction
 
-In this post we'll discuss why observability matters and how Telemetry helps us treat observability like a first class citizen in Elixir projects. Then, we'll hand-roll our own instrumentation pipeline using Telemetry and StatsD. We'll wrap up with a look under the hood of the Telemetry library and set ourselves for Part II of this series, in which we leverage the `Telemetry.Metrics` library for even easier instrumentation and reporting.
+In this post we'll discuss why observability matters and how Telemetry helps us treat observability like a first class citizen in Elixir projects. Then, we'll hand-roll our own instrumentation pipeline using Telemetry and StatsD. We'll wrap up with a look under the hood of the Telemetry library and set ourselves up for Part II of this series, in which we leverage the `Telemetry.Metrics` library for even easier instrumentation and reporting.
 
 ## Observability Matters
 
