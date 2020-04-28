@@ -59,7 +59,7 @@ Telemetry made it easy for us to emit an event and operate on it, but our curren
 
 One drawback of our current approach is that it leaves us on the hook for Telemetry event handling and metrics reporting. We had to define our own custom event handling module, manually attach that module to the given Telemetry event and define the handler's callback function.
 
-In order for that callback function report metrics to StatsD for a given event, we had to create our own custom module that uses the `Statix` library _and_ write code that formats the metric to send to StatsD for a given Telemetry event. The mental overhead of translating Telemetry event data into the appropriate StatsD metric is costly, and that effort will have to be undertaken for every new Telemetry event we execute and handle.
+In order for that callback function to report metrics to StatsD for a given event, we had to create our own custom module that uses the `Statix` library _and_ write code that formats the metric to send to StatsD for a given Telemetry event. The mental overhead of translating Telemetry event data into the appropriate StatsD metric is costly, and that effort will have to be undertaken for every new Telemetry event we execute and handle.
 
 ## We Need Help
 
