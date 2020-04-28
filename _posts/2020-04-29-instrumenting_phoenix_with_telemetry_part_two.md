@@ -327,7 +327,7 @@ The `Quantum.Telemetry` module is, believe it or not, the _only_ code we have to
 
 Let's take a closer look at how it all works.
 
-1. The `Telemetry.Metrics` supervisor that we defined in `Quantum.Telemetry` defines a list of metrics that we want to emit to StatsD for a given Telemetry event.
+1. The `Telemetry.Metrics` supervisor that we defined in `Quantum.Telemetry` defines a list of metrics that we want to emit to StatsD for a given Telemetry event
 2. When the supervisor starts, it starts the `TelemetryMetricsStatsd` GenServer and gives it this list
 3. When the `TelemetryMetricsStatsd` GenServer starts, it calls `:telemetry.attach/4` for each listed event, storing it in an ETS table along with the handler callback and a config map that includes the metrics definitions. The handler callback it gives to `:telemetry.attach/4` is its own `TelemetryMetricsStatsd.EventHandler.handle_event/4` function.
 4. Later, when a Telemetry event is executed via a call to `:telemetry.execute/3`, Telemetry looks up the handler callback and config (including metrics definitions) for the given event in ETS.
