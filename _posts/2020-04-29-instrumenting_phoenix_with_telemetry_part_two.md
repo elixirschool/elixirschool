@@ -96,7 +96,7 @@ Most of this happens under the hood. We are only on the hook for defining a `Tel
 ## Getting Started
 
 You can follow along with this tutorial by cloning down the repo [here](https://github.com/elixirschool/telemetry-code-along/tree/part-2-start).
-* Checkig out the starting state of our code on the branch [part-2-start](https://github.com/elixirschool/telemetry-code-along/tree/part-2-start)
+* Checking out the starting state of our code on the branch [part-2-start](https://github.com/elixirschool/telemetry-code-along/tree/part-2-start)
 * Find the solution code on the branch [part-2-solution](https://github.com/elixirschool/telemetry-code-along/tree/part-2-solution)
 
 ## Overview
