@@ -12,7 +12,7 @@ You can easily exhaust your system resources if you do not limit the maximum num
 
 Let's think of a specific example for a moment.
 You are tasked to build an application for saving user profile information to the database.
-If you've created a process for every user registration, you would create unbounded number of connections.
+If you've created a process for every user registration, you would create an unbounded number of connections.
 At some point the number of those connections can exceed the capacity of your database server.
 Eventually your application can get timeouts and various exceptions.
 
