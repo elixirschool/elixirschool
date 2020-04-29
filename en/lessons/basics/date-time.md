@@ -42,7 +42,7 @@ But there is a catch: as you may have noticed, this struct only contains the tim
 
 ## Date
 
-Contary to `Time`, a `Date` struct has info about the current date, without any info about current time.
+Contrary to `Time`, a `Date` struct has info about the current date, without any info about current time.
 
 ```elixir
 iex> Date.utc_today
