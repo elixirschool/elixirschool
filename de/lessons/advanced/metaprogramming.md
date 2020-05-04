@@ -3,10 +3,10 @@ version: 0.9.1
 title: Metaprogrammierung
 ---
 
-Metaprogrammierung ist der Vorhang Code zu benutzen, um Code zu schreiben. In Elixir gibt uns das die Möglichkeit die Sprache zu erweitern, so dass sie unseren Anforderungen eher entspricht und dynamisch den Code zu verändern. Wir starten mit einem Blick darauf, wie Elixir unter der Haube repräsentiert wird; dann wie man es verändert und schlussendlich können wir dieses Wissen dazu nutzen, um es zu erweitern.
+Metaprogrammierung ist die Vorgehensweise Code zu benutzen, um Code zu schreiben. In Elixir gibt uns das die Möglichkeit die Sprache zu erweitern, so dass sie unseren Anforderungen eher entspricht und dynamisch den Code zu verändern. Wir starten mit einem Blick darauf, wie Elixir unter der Haube repräsentiert wird; dann wie man es verändert und schlussendlich können wir dieses Wissen dazu nutzen, um es zu erweitern.
 
 
-Um eine Warnung auszusprechen: Metaprogrammierung ist kniffelig und sollte nur falls wirklich notwendig eingesetzt werden. Zuviel benutzt wird sie unweigerlich zu komplexem Code führen, der schwierig zu verstehen und debuggen ist.
+Vorsicht: Metaprogrammierung ist kniffelig und sollte nur falls wirklich notwendig eingesetzt werden. Zuviel benutzt wird sie unweigerlich zu komplexem Code führen, der schwierig zu verstehen und debuggen ist.
 
 {% include toc.html %}
 
@@ -30,7 +30,7 @@ iex> quote do: if value, do: "True", else: "False"
  [{:value, [], Elixir}, [do: "True", else: "False"]]}
 ```
 
-Ist dir aufgefallen, dass die ersten drei Aufrufe keine Tupel zurück gegeben haben? Es gibt 5 Literale, die sich selbst zurück geben, falls sie gequoted werden:
+Ist dir aufgefallen, dass die ersten drei Aufrufe keine Tupel zurück gegeben haben? Es gibt fünf Literale, die sich selbst zurück geben, falls sie gequoted werden:
 
 ```elixir
 iex> :atom
@@ -175,11 +175,11 @@ case(!true) do
 end
 ```
 
-Du kannst dich vielleicht daran erinnern, dass wir erwähnt hatten, wie `if` ein Makro in Elixir ist. Hier sieht du es ausgedehnt, in die darunter liegende `case`-Aussage.
+Du kannst dich vielleicht daran erinnern, dass wir erwähnt hatten, dass `if` ein Makro in Elixir ist. Hier sieht du es ausgedehnt, in die darunter liegende `case`-Aussage.
 
 ### Private Makros
 
-Obwohl sie nicht so häufig sind, unterstützt Elixir private Makros. Ein privates Makro wird mit `defmacrop` definiert und kann nur innerhalb des Moduls aufgerufen werden, in dem es definiert wurde. Private Makros müssen definiert werden, bevor Code sie aufrufen kann.
+Obwohl sie nicht so häufig sind, unterstützt Elixir private Makros. Ein privates Makro wird mit `defmacrop` definiert und kann nur innerhalb des Moduls aufgerufen werden, in dem es definiert wurde. Ein Privates Makro muss vor dem Code definiert werden, der es aufruft.
 
 ### Makrohygiene
 

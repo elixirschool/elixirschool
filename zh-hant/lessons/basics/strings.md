@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: 字串
 ---
 
@@ -31,13 +31,21 @@ iex> string <> <<0>>
 現在來深入了解一下：
 
 ```elixir
-iex(5)> 'hełło'
+iex> 'hełło'
 [104, 101, 322, 322, 111]
-iex(6)> "hełło" <> <<0>>
+iex> "hełło" <> <<0>>
 <<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
 `322` 是  ł 的 Unicode 碼位，但以 UTF-8 格式分別編碼為 `197` 和 `130` 兩個位元組。
+
+藉由使用 `?` 可以得到字元的碼位。
+
+```elixir
+iex> ?Z  
+90
+```
+這允許你使用 `?Z` 而不是 'Z' 作為表示符號。
 
 在 Elixir 中撰寫程式時，通常使用字串 (strings)，而不是字元列表 (charlists)。不過 Elixir 也包括對字元列表的支援，因為一些 Erlang 模組需要它。
 
@@ -146,7 +154,16 @@ true
 
 iex> Anagram.anagrams?(3, 5)
 ** (FunctionClauseError) no function clause matching in Anagram.anagrams?/2
-    iex:2: Anagram.anagrams?(3, 5)
+
+    The following arguments were given to Anagram.anagrams?/2:
+
+        # 1
+        3
+
+        # 2
+        5
+
+    iex:11: Anagram.anagrams?/2
 ```
 
 正如所看到的，最後一次呼用 `anagrams?` 時觸發了一個 FunctionClauseError。這個錯誤訊息告訴我們，在目前模組中沒有函數符合所接收的兩個非二進制參數 (non-binary arguments) 的 pattern。但對這兩個所接收的字串，這正是我們不偏不倚想要的結果。

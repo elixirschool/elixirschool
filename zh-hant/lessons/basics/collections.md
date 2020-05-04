@@ -1,67 +1,77 @@
 ---
-version: 1.2.3
-title: 群集
+version: 1.3.1
+title: 集合
 ---
 
-列表、元組、關鍵字列表和映射。
+串列、元組、關鍵字串列和映射。
 
 {% include toc.html %}
 
-## 列表 (Lists)
+## 串列 (Lists)
 
-列表是可以包含多種型別的簡單值群集​​；列表還可能包含相同的值：
+串列是可以包含多種型別的簡單集合；串列裡可以包含相同的值：
 
 ```elixir
 iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir 以串列實現群集列表。這意味著存取列表長度是一個線性時間 `O(n)` 的運算。因此，通常前置插入 (prepend) 比後綴置入 (append) 更快：
+Elixir 的串列是用單向連結串列實作的。
+這意味著取得串列長度會是一個線性時間 `O(n)` 的運算。
+由於同樣的原因，通常把新元素插入串列的頭部 (prepend) 會比插入串列的尾部 (append) 更快：
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 # Prepending (fast)
-iex> ["π"] ++ list
+iex> ["π" | list]
 ["π", 3.14, :pie, "Apple"]
 # Appending (slow)
 iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
 
+### 串列結合 (List Concatenation)
 
-### 列表串接 (List Concatenation)
-
-列表串接使用 `++/2` 運算子：
+串列結合是用 `++/2` 運算子：
 
 ```elixir
 iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-關於上述使用 (`++/2`) 格式的註釋： 在 Elixir (同時 Erlang，Elixir 是構建在這上面)， 一個函數或運算子名稱有兩個元件：你給它的名字 (這裡是 `++`) 和它的 _arity_。 Arity 是在說明 Elixir (和 Erlang) 程式碼的核心部份。它指所給定函數的引數數量 (2，在這個例子中)。Arity 和所給定的名稱以斜線合併。我們之後會再多談論；上述知識將幫助您了解目前的符號。
+關於上述 (`++/2`) 這個表示法的說明：在 Elixir (以及 Erlang 這個語言，Elixir 是用它打造的。) 裡，每個函式或是運算子的全名可分為兩個部份，你取的名稱 (這裡是 `++`) 以及它的參數個數 (arity)。當我們在討論 Elixir (以及 Erlang ) 時，參數個數是很重要的部份。而它就只是當你要呼叫某個函式時，需要傳入參數的數量 (在這個例子裡就是 2 )。函式的全名則是用正斜線來組合名稱及參數個數。我們之後會針對這個主題有更多的說明，而目前只要看得懂這個表示法就夠了。
 
-### 列表減法 (List Subtraction)
+### 串列減法 (List Subtraction)
 
-通過提供 `--/2` 運算子支援減法；即使減去不存在的值也是安全的：
+兩個串列可以用 `--/2` 來相減取得它們的差集；就算減去不存在的值也是安全的：
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
 ["foo", :bar]
 ```
 
-注意重複的值。對於右邊的每個元素，左邊中第一個出現的將被移除：
+要注意串列裡重複的值。對於右邊集合中的每個元素，會移除掉左邊集合中第一個相同的元素：
 
 ```elixir
 iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**注意：** 列表減法使用 [strict comparison](../basics/#comparison) 來匹配它的值。
+**註：** 串列減法使用 [嚴格比較 (strict comparison)](../basics/#comparison) 來比對值。例如：
+
+```elixir
+iex> [2] -- [2.0]
+[2]
+iex> [2.0] -- [2.0]
+[]
+```
 
 ### 頭 / 尾 (Head / Tail)
 
-使用列表時，常常操作列表的頭和尾。頭是列表的第一個元素，而尾是包含剩餘元素的列表。在這個部份的操作中 Elixir 提供了兩個有用的函式 `hd` 和 `tl` ：
+使用串列時，常常會需要用到串列的頭和尾。
+頭是串列的第一個元素，而尾是剩餘元素的串列。
+Elixir 提供了兩個有用的函式 `hd` 和 `tl` 來操作串列：
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -70,8 +80,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-除了上述函式外，您還可以使用 [pattern matching](../pattern-matching/) 和建構運算子 (con operator) `|` 
-來將列表分成頭和尾。我們將在之後的課程中學習更多這種用法：
+除了上面兩個函式外，您還可以使用 [模式比對 (pattern matching)](../pattern-matching/) 和 cons 運算子 `|` 來將串列分成頭和尾。這些在之後的課程會有更多的說明：
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -84,14 +93,14 @@ iex> tail
 
 ## 元組 (Tuples)
 
-元組與列表相似，但以連續的方式儲存在內部記憶體中。這能快速存取它的長度 (length)，但當需要修改時則付出昂貴代價；新的元組必須完整複製到內部記體中。元組使用大括號定義：
+元組跟串列很類似，但它們會連續的存放記憶體中。這讓我們能很快的取得它的長度，但也意味著修改它們是很昂貴的；新的元組得要完整的複製一份到記憶體的其它位置。我們用大括號來定義元組：
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-元組常見於作為從函數返回額外信息的機制；當我們使用 [pattern matching](../pattern-matching/) 時這個用處會更加明顯：
+元組常用作為讓函式回傳附加訊息的手法；這在當我們學到 [pattern matching](../pattern-matching/) 後會更能理解它的好用之處：
 
 ```elixir
 iex> File.read("path/to/existing/file")
@@ -100,9 +109,10 @@ iex> File.read("path/to/unknown/file")
 {:error, :enoent}
 ```
 
-## 關鍵字列表 (Keyword lists)
+## 關鍵字串列 (Keyword lists)
 
-關鍵字列表和映射是 Elixir 的關聯群集。在 Elixir 中，關鍵字列表是一個特殊的2元素元組列表，列表中第一個元素是一個 atom；它們與列表共享效能：
+關鍵字串列和映射是 Elixir 的關聯類集合。
+在 Elixir 中，關鍵字串列是一個特殊的二元組 (兩個元素的元組) 串列，每個元組中的第一個元素是一個 atom；關鍵字串列的效能特性跟一般的串列是相同的：
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -111,17 +121,18 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 [foo: "bar", hello: "world"]
 ```
 
-關鍵字列表的三個特點彰顯了它們的重要性：
+關鍵字串列有以下三個重要的特徵：
 
 + 鍵 (Keys) 為 atoms。
 + 鍵 (Keys) 為有序。
-+ 鍵 (Keys) 可不是唯一。
++ 鍵 (Keys) 不必為唯一。
 
-由於這些原因，關鍵字列表最常用於將選項傳遞給函數。
+由於這些特徵，關鍵字串列最常作用於將不固定長度的選項傳遞給函數時。
 
 ## 映射 (Maps)
 
-Elixir 中，映射是使用鍵值的方便選擇 ("go-to" key-value store)。與關鍵字列表不同，它允許任何資料型別做為鍵並且不需排序。你可以用 `%{}` 語法，來定義一個映射：
+在 Elixir 中，映射是需要鍵值對時最常用的選擇。
+與關鍵字串列不同，它允許任何資料型別做為鍵，而且它是無序的。你可以用 `%{}` 語法來定義一個映射：
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
@@ -132,7 +143,7 @@ iex> map["hello"]
 :world
 ```
 
-從 Elixir 1.2 開始，變數被允許作為映射鍵值：
+從 Elixir 1.2 版開始，你也可以用變數來當做映射的鍵：
 
 ```elixir
 iex> key = "hello"
@@ -141,14 +152,14 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-如果將一個重複的鍵值加入到映射中，它將替換以前的值：
+如果有重複的鍵出現或加入時，新成員的值將會替換掉原有的值：
 
 ```elixir
 iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-從上面的輸出中可以看到，對於只包含一個 atom 鍵值的映射，有一個特殊的語法：
+對於所有的鍵都是 atom 的映射，有一個特別的簡寫語法。這個在上一段的輸入就能觀察到。
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
@@ -157,7 +168,7 @@ iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-另外，還有一個存取 atom 鍵的特殊語法：
+除此之外，還有一個取得 atom 鍵所對應的值的特殊語法：
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
@@ -166,11 +177,27 @@ iex> map.hello
 "world"
 ```
 
-映射的另一個有趣的特性是它提供了自身的更新語法：
+映射還有一個有趣的特性在於它本身附帶一個更新成員用的特殊語法 (註：這會創造一個全新的映射)：
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
 iex> %{map | foo: "baz"}
+%{foo: "baz", hello: "world"}
+```
+
+**註**：此語法僅能更新映射中已存在的鍵！如果鍵不存在，將會拋出一個 `KeyError` 錯誤。
+
+要加入新的鍵，你要用 [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3)
+
+```elixir
+iex> map = %{hello: "world"}
+%{hello: "world"}
+iex> %{map | foo: "baz"}
+** (KeyError) key :foo not found in: %{hello: "world"}
+    (stdlib) :maps.update(:foo, "baz", %{hello: "world"})
+    (stdlib) erl_eval.erl:259: anonymous fn/2 in :erl_eval.expr/5
+    (stdlib) lists.erl:1263: :lists.foldl/3
+iex> Map.put(map, :foo, "baz")
 %{foo: "baz", hello: "world"}
 ```

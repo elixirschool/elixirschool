@@ -175,3 +175,28 @@ with {:ok, user} <- Repo.insert(changeset),
      {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token, claims),
      do: important_stuff(jwt, full_claims)
 ```
+
+Ab Elixir 1.3 unterstützt `with/1` `else` Anweisungen:
+
+```
+import Integer
+
+m = %{a: 1, c: 3}
+
+a =
+  with {:ok, number} <- Map.fetch(m, :a),
+    true <- is_even(number) do
+      IO.puts "#{number} divided by 2 is #{div(number, 2)}"
+      :even
+  else
+    :error ->
+      IO.puts("We don't have this item in map")
+      :error
+
+    _ ->
+      IO.puts("It is odd")
+      :odd
+  end
+  ```
+Es hilft bei der Fehlerbehandlung, indem es pattern matching in ihm ermöglicht. Der übergebene Wert ist der erste nicht übereinstimmende Ausdruck.
+

@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Τεκμηρίωση
 ---
 
@@ -131,9 +131,8 @@ $ mix new greet_everyone
 
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/greet_everyone.ex
 * creating test
@@ -202,11 +201,11 @@ View them at "doc/index.html".
 
 Λογικά, αν όλα πήγαν καλά, θα πρέπει να βλέπετε ένα παρόμοιο μήνυμα με το μήνυμα εξόδου στο από πάνω παράδειγμα.  Ας δούμε τώρα μεσα στο Mix project μας και θα πρέπει να δούμε ότι υπάρχει ένας ακόμα φάκελος που ονομάζεται **doc/**.  Μέσα του βρίσκεται η δημιουργημένη τεκμηρίωσή μας.  Αν επισκεφθούμε την σελίδα index στο browser μας θα πρέπει να δούμε τα παρακάτω:
 
-![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
+![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
 
 We can see that Earmark has rendered our markdown and ExDoc is now displaying it in a useful format.
 
-![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
+![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
 Μπορούμε να το διαθέσουμε στο GitHub, στο website μας, πιο ειδικά στα [HexDocs](https://hexdocs.pm/).
 

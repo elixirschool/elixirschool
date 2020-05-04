@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.2.1
 title: Básico
 ---
 
@@ -31,7 +31,7 @@ Para iniciar, executamos `iex`:
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
 
-Vamos testar e digitar algumas expressões simples:
+Podemos testar e digitar algumas expressões simples:
 
 ```elixir
 iex> 2+3
@@ -42,7 +42,7 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-Não se preocupe se não entender cada expressão, mas esperamos que você compreenda a ideia.
+Não se preocupe se não entender cada expressão ainda, mas esperamos que você compreenda a ideia.
 
 ## Tipos Básicos
 
@@ -77,10 +77,9 @@ iex> 1.0e-10
 1.0e-10
 ```
 
-
 ### Booleanos
 
-Elixir suporta `true` e `false` como booleanos; todo valor é verdadeiro com excessão de `false` e `nil`:
+Elixir suporta `true` e `false` como booleanos; todo valor é verdadeiro com exceção de `false` e `nil`:
 
 ```elixir
 iex> true
@@ -91,7 +90,8 @@ false
 
 ### Átomos
 
-Um átomo é uma constante cujo o nome é seu valor. Se está familiarizado com Ruby, estes são equivalentes aos símbolos:
+Um átomo é uma constante cujo o nome é seu valor.
+Se está familiarizado com Ruby, estes são equivalentes aos símbolos:
 
 ```elixir
 iex> :foo
@@ -103,9 +103,9 @@ false
 Booleanos `true` e `false` também são os átomos `:true` e `:false`, respectivamente.
 
 ```elixir
-iex> true |> is_atom
+iex> is_atom(true)
 true
-iex> :true |> is_boolean
+iex> is_boolean(:true)
 true
 iex> :true === true
 true
@@ -146,13 +146,15 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir também inclui tipos de dados mais complexos. Nós vamos aprender mais sobre estes quando aprendermos sobre [coleções](../collections/) e [funções](../functions/).
+Elixir também inclui tipos de dados mais complexos.
+Nós vamos aprender mais sobre estes quando aprendermos sobre [coleções](../collections/) e [funções](../functions/).
 
 ## Operações Básicas
 
 ### Aritmética
 
-Elixir suporta os operadores básicos `+`, `-`, `*`, e `/` como era de esperar. É importante ressaltar que `/` sempre retornará um número ponto flutuante:
+Elixir suporta os operadores básicos `+`, `-`, `*`, e `/` como era de se esperar.
+É importante ressaltar que `/` sempre retornará um número ponto flutuante:
 
 ```elixir
 iex> 2 + 2
@@ -165,7 +167,7 @@ iex> 10 / 5
 2.0
 ```
 
-Se você necessita de uma divisão inteira ou o resto da divisão, Elixir vem com duas funcionalidades úteis para isto:
+Se você necessita de uma divisão inteira ou o resto da divisão, Elixir vem com duas funções úteis para isto:
 
 ```elixir
 iex> div(10, 5)
@@ -176,7 +178,8 @@ iex> rem(10, 3)
 
 ### Booleanos
 
-Elixir provê os operadores booleanos `||`, `&&`, e `!`, os quais suportam qualquer tipo:
+Elixir provê os operadores booleanos `||`, `&&`, e `!`. 
+Estes suportam qualquer tipo:
 
 ```elixir
 iex> -20 || true
@@ -209,6 +212,8 @@ iex> 42 and true
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Nota: O `and` e `or` do Elixir são mapeados para `andalso` e `orelse` do Erlang.
 
 ### Comparação
 

@@ -105,11 +105,11 @@ iex> ~S/the cat in the hat on the mat/
 পার্থক্য হল এস্কেপ সিকুয়েন্সে। নীচের দুটি উদাহরণ দেখা যাক- 
 
 ```elixir
-iex> ~s/welcome to elixir #{String.downcase "school"}/
+iex> ~s/welcome to elixir #{String.downcase "SCHOOL"}/
 "welcome to elixir school"
 
-iex> ~S/welcome to elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
+"welcome to elixir \#{String.downcase \"SCHOOL\"}"
 ```
 
 ### ওয়ার্ড লিস্ট 

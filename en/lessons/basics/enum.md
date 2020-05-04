@@ -1,5 +1,5 @@
 ---
-version: 1.4.0
+version: 1.5.0
 title: Enum
 ---
 
@@ -9,7 +9,8 @@ A set of algorithms for enumerating over enumerables.
 
 ## Enum
 
-The `Enum` module includes over 70 functions for working with enumerables.  All the collections that we learned about in the [previous lesson](../collections/), with the exception of tuples, are enumerables.
+The `Enum` module includes over 70 functions for working with enumerables.
+All the collections that we learned about in the [previous lesson](../collections/), with the exception of tuples, are enumerables.
 
 This lesson will only cover a subset of the available functions, however we can actually examine them ourselves.
 Let's do a little experiment in IEx.
@@ -28,15 +29,14 @@ at/3
 ```
 
 Using this, it's clear that we have a vast amount of functionality, and that is for a clear reason.
-Enumeration is at the core of functional programming and is an incredibly useful thing.
-By leveraging it combined with other perks of Elixir, such as documentation being a first class citizen as we just saw, it can be incredibly empowering to the developer as well.
+Enumeration is at the core of functional programming, and combined with other perks of Elixir it can be incredibly empowering for developers.
 
 For a full list of functions visit the official [`Enum`](https://hexdocs.pm/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](https://hexdocs.pm/elixir/Stream.html) module.
 
-
 ### all?
 
-When using `all?/2`, and much of `Enum`, we supply a function to apply to our collection's items.  In the case of `all?/2`, the entire collection must evaluate to `true` otherwise `false` will be returned:
+When using `all?/2`, and much of `Enum`, we supply a function to apply to our collection's items.
+In the case of `all?/2`, the entire collection must evaluate to `true` otherwise `false` will be returned:
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -67,7 +67,8 @@ There are a few options for `chunk_every/4` but we won't go into them, check out
 
 ### chunk_by
 
-If we need to group our collection based on something other than size, we can use the `chunk_by/2` function. It takes a given enumerable and a function, and when the return on that function changes a new group is started and begins the creation of the next:
+If we need to group our collection based on something other than size, we can use the `chunk_by/2` function.
+It takes a given enumerable and a function, and when the return on that function changes a new group is started and begins the creation of the next:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -78,7 +79,8 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-Sometimes chunking out a collection isn't enough for exactly what we may need. If this is the case, `map_every/3` can be very useful to hit every `nth` items, always hitting the first one:
+Sometimes chunking out a collection isn't enough for exactly what we may need.
+If this is the case, `map_every/3` can be very useful to hit every `nth` items, always hitting the first one:
 
 ```elixir
 # Apply function every three items
@@ -137,7 +139,7 @@ iex> Enum.max([5, 3, 0, -1])
 `max/2` is to `max/1` what `min/2` is to `min/1`:
 
 ```elixir
-Enum.max([], fn -> :bar end)
+iex> Enum.max([], fn -> :bar end)
 :bar
 ```
 
@@ -152,7 +154,8 @@ iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
 
 ### reduce
 
-With `reduce/3` we can distill our collection down into a single value. To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first element in the enumerable is used:
+With `reduce/3` we can distill our collection down into a single value.
+To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first element in the enumerable is used:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
@@ -169,7 +172,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 Sorting our collections is made easy with not one, but two, sorting functions.
 
-`sort/1` uses Erlang's term ordering to determine the sorted order:
+`sort/1` uses Erlang's [term ordering](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) to determine the sorted order:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -191,11 +194,20 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-### uniq_by
+### uniq
 
-We can use `uniq_by/2` to remove duplicates from our enumerables:
+We can use `uniq/1` to remove duplicates from our enumerables:
 
 ```elixir
-iex> Enum.uniq_by([1, 2, 3, 2, 1, 1, 1, 1, 1], fn x -> x end)
+iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
+```
+
+### uniq_by
+
+`uniq_by/2` also removes duplicates from enumerables, but it allows us to provide a function to do the uniqueness comparison.
+
+```elixir
+iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
+[%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```

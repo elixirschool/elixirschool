@@ -1,5 +1,5 @@
 ---
-version: 1.3.0
+version: 1.4.1
 title: Módulos
 ---
 
@@ -77,30 +77,60 @@ Vamos criar algumas structs:
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+%Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> %Example.User{name: "Steve", roles: [:manager]}
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 Podemos atualizar nosso struct apenas como se fosse um mapa:
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = %Example.User{name: "Steve"}
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 Mais importante, você pode associar estruturas contra mapas:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+%Example.User<name: "Sean", roles: [...], ...>
 ```
+
+A partir do Elixir 1.8, structs incluem introspecção customizáveis.
+Para entender o que isso significa e como devemos usar, vamos inspecionar nossa captura `sean`:
+
+ ```elixir
+ iex> inspect(sean)
+"%Example.User<name: \"Sean\", roles: [...], ...>"
+```
+
+Todos os campos estão presentes, o que está correto para esse exemplo, mas o que acontece se tivéssemos um campo protegido que não gostaríamos de incluir? A nova funcionalidade `@derive` faz com que possamos alcançar isso! Vamos atualizar nosso exemplo para que `roles` não seja mais incluído na nossa saída:
+
+```elixir
+defmodule Example.User do
+  @derive {Inspect, only: [:name]}
+  defstruct name: nil, roles: []
+end
+```
+
+*Nota:* podemos também usar `@derive {Inspect, except: [:roles]}`, que é equivalente.
+
+Com o nosso módulo já atualizado, vamos ver o que acontece no `iex`:
+
+```elixir
+iex> sean = %Example.User{name: "Sean"}
+%Example.User<name: "Sean", ...>
+iex> inspect(sean)
+"%Example.User<name: \"Sean\", ...>"
+```
+
+Os `roles` não são mais exibidos na saída!
 
 ## Composição
 
@@ -270,6 +300,6 @@ iex> Example.hello("Sean")
 ```
 
 Esses exemplos simples demonstram como `use` funciona, mas essa é uma ferramenta poderosa na caixa de ferramentas do Elixir.
-À medida que você passa a aprender mais sobre Elixir, observe bem como o use é utilizado. Um exemplo que você verá com certeza é use `ExUnit.Case, async: true`.
+À medida que você passa a aprender mais sobre Elixir, você observa bem como o `use` é utilizado. Um exemplo que você verá com certeza é `use ExUnit.Case, async: true`.
 
 **Nota**: `quote`, `alias`, `use`, `require`, são macros utilizadas quando trabalhamos com [metaprogramação](../../advanced/metaprogramming).

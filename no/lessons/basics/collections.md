@@ -22,7 +22,7 @@ På grunn av dette er det ofte raskere å foranstille enn å tilføye til listen
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
-iex> ["π"] ++ list
+iex> ["π" | list]
 ["π", 3.14, :pie, "Apple"]
 iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]

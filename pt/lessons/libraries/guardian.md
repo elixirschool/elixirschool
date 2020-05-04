@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.3
 title: Guardian (Basics)
 ---
 
@@ -9,7 +9,8 @@ title: Guardian (Basics)
 
 ## JWTs
 
-Um JWT pode fornecer um token rico para autenticação. Onde muitos sistemas de autenticação fornecem acesso à apenas o indentificador do sujeito para o recurso, JWTs fornecem isto junto com outras informações como:
+Um JWT pode fornecer um token rico para autenticação.
+Onde muitos sistemas de autenticação fornecem acesso à apenas o identificador do sujeito para o recurso, JWTs fornecem isto junto com outras informações como:
 
 * Quem emitiu o token
 * Para quem é o token
@@ -22,7 +23,9 @@ Além desses campos o Guardian fornece outros campos para facilitar funcionalida
 * Qual é o tipo do token
 * Que permissões o portador tem
 
-Esses são apenas alguns campos básico em um JWT. Você é livre para acrescentar qualquer informação adicional que a sua aplicação necessite. Apenas lembre de mantê-lo pequeno, porque o JWT tem que caber em um header HTTP.
+Esses são apenas alguns campos básico em um JWT. 
+Você é livre para acrescentar qualquer informação adicional que a sua aplicação necessite. 
+Apenas lembre de mantê-lo pequeno, porque o JWT tem que caber em um header HTTP.
 
 Essa riqueza significa que você pode passar JWTs pelo seu sistema como uma unidade totalmente contida de credenciais.
 
@@ -44,11 +47,20 @@ JWT tokens podem ser usados em todos os lugares da sua aplicação onde você pr
 
 ### Eu preciso usar um banco de dados?
 
-Você não precisa rastrear um JWT através de um banco de dados. Você pode simplesmente contar com os timestamps de emissão e expiração para controlar o acesso. Frequentemente você acabará usando um banco de dados para procurar por seu registro de usuário mas o JWT em si não necessita disso.
+Você não precisa rastrear um JWT através de um banco de dados. 
+Você pode simplesmente contar com os timestamps de emissão e expiração para controlar o acesso.
+Frequentemente você acabará usando um banco de dados para procurar por seu registro de usuário mas o JWT em si não necessita disso.
 
-Por exemplo, se você fosse usar JWT para autenticar comunicação em um socket UDP você provavelmente não iria usar um banco de dados. Codifique toda a informação que você precisa diretamente no token quando você emiti-lo. Uma vez que você verificá-lo (verificar se ele está assinado corretamente), você está pronto para continuar.
+Por exemplo, se você fosse usar JWT para autenticar comunicação em um socket UDP você provavelmente não iria usar um banco de dados. 
+Codifique toda a informação que você precisa diretamente no token quando você emiti-lo. 
+Uma vez que você verificá-lo (verificar se ele está assinado corretamente), você está pronto para continuar.
 
-Você _pode_ no entanto usar um banco de dados para salvar um JWT. Se você fizer isso, você ganha a habilidade de verificar se o token ainda é válido - isto é - se ele não foi revogado. Ou você pode usar os registros do banco para forçar um logout do usuário. Isso é bem simples de fazer no Guardian por usar o [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb usa 'Hooks' do Guardian para realizar verificações, salvar e deletar do banco. Nós vamos abordar isso depois.
+Você _pode_ no entanto usar um banco de dados para salvar um JWT. 
+Se você fizer isso, você ganha a habilidade de verificar se o token ainda é válido - isto é - se ele não foi revogado. 
+Ou você pode usar os registros do banco para forçar um logout do usuário.
+Isso é bem simples de fazer no Guardian por usar o [GuardianDb](https://github.com/hassox/guardian_db). 
+GuardianDb usa 'Hooks' do Guardian para realizar verificações, salvar e deletar do banco. 
+Nós vamos abordar isso depois.
 
 ## Instalação
 
@@ -88,7 +100,13 @@ config :guardian, Guardian,
   serializer: MyApp.GuardianSerializer
 ```
 
-Esse é o conjunto mínimo de informações que você precisa fornecer ao Guardian para ele operar. Você não deve codificar a sua chave privada diretamente em sua configuração geral. Em vez disso, cada ambiente deve ter sua própria chave privada. É comum usar o ambiente do Mix para chaves em desenvolvimento e teste. Mas em staging e produção, você deve usar chaves fortes. (e.g. gerados com `mix phoenix.gen.secret`)
+Esse é o conjunto mínimo de informações que você precisa fornecer ao Guardian para ele operar. 
+Você não deve codificar a sua chave privada diretamente em sua configuração geral.
+Em vez disso, cada ambiente deve ter sua própria chave privada.
+É comum usar o ambiente do Mix para chaves em desenvolvimento e teste.
+Mas em staging e produção, você deve usar chaves fortes. 
+(e.g.
+gerados com `mix phoenix.gen.secret`)
 
 `lib/my_app/guardian_serializer.ex`
 
@@ -106,20 +124,26 @@ defmodule MyApp.GuardianSerializer do
   def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
-O seu serializer é responsável por encontrar o recurso no campo `sub` (sujeito). Isso pode ser uma busca em banco de dados, em uma API, ou até uma simples string.
+O seu serializer é responsável por encontrar o recurso no campo `sub` (sujeito). 
+Isso pode ser uma busca em banco de dados, em uma API, ou até uma simples string.
 Ele ainda é responsável por serializar o recurso em um campo `sub`.
 
-Isso é para a configuração inicial. Há ainda muito mais que você pode fazer se você precisar mas para iniciar é o suficiente.
+Isso é para a configuração inicial.
+Há ainda muito mais que você pode fazer se você precisar mas para iniciar é o suficiente.
 
 #### Uso na Aplicação
 
-Agora que nós temos uma configuração feita para usar o Guardian, nós precisamos integrá-lo na aplicação. Visto que essa é uma configuração mínima, vamos primeiro considerar requisições HTTP.
+Agora que nós temos uma configuração feita para usar o Guardian, nós precisamos integrá-lo na aplicação. 
+Visto que essa é uma configuração mínima, vamos primeiro considerar requisições HTTP.
 
 ## HTTP requests
 
-O Guardian fornece vários Plugs para facilitar a integração em requisições HTTP. Você pode aprender sobre o Plug em uma [outra lição](../../specifics/plug/). O Guardian não precisa do Phoenix, mas usar o Phoenix nos exemplos a seguir será mais fácil para demonstrar o uso.
+O Guardian fornece vários Plugs para facilitar a integração em requisições HTTP. 
+Você pode aprender sobre o Plug em uma [outra lição](../../specifics/plug/). 
+O Guardian não precisa do Phoenix, mas usar o Phoenix nos exemplos a seguir será mais fácil para demonstrar o uso.
 
-A maneira mais fácil de integrar com o HTTP é através de um router. Já que as integrações do Guardian com o HTTP são todas baseadas em plugs, você pode usá-las em qualquer lugar que um plug pode ser usado.
+A maneira mais fácil de integrar com o HTTP é através de um router. 
+Já que as integrações do Guardian com o HTTP são todas baseadas em plugs, você pode usá-las em qualquer lugar que um plug pode ser usado.
 
 O fluxo geral do plug do Guardian é:
 
@@ -127,7 +151,8 @@ O fluxo geral do plug do Guardian é:
 2. Opcionalmente carrega o recurso indentificado no token: `LoadResource` plug
 3. Garante que há um token válido para a requisição e recusa o acesso se não há. `EnsureAuthenticated` plug
 
-Para atender as necessidades de todos os desenvolvedores, o Guardian implementa essa fase separadamente. Para encontrar o token use os plugs `Verify*`
+Para atender as necessidades de todos os desenvolvedores, o Guardian implementa essa fase separadamente. 
+Para encontrar o token use os plugs `Verify*`
 
 Vamos criar alguns pipelines.
 
@@ -143,9 +168,12 @@ pipeline :ensure_authed_access do
 end
 ```
 
-Esses pipelines podem ser usados para compor diferentes requisitos de autenticação. O primeiro pipeline tenta encontrar um token primeiro na sessão e então tenta em um header. Se um é encontrado, ele vai carregar o recurso para você.
+Esses pipelines podem ser usados para compor diferentes requisitos de autenticação. 
+O primeiro pipeline tenta encontrar um token primeiro na sessão e então tenta em um header.
+Se um é encontrado, ele vai carregar o recurso para você.
 
-O segundo pipeline exige que um token válido e verificado esteja presente e que seja do tipo "access". Para usar esses pipelines, adicione eles ao seu scope.
+O segundo pipeline exige que um token válido e verificado esteja presente e que seja do tipo "access". 
+Para usar esses pipelines, adicione eles ao seu scope.
 
 ```elixir
 scope "/", MyApp do
@@ -163,18 +191,24 @@ scope "/", MyApp do
 end
 ```
 
-As rotas de login acima vão ter o usuário autenticado se existir um. O segundo scope acima garante que um token válido é passado para todas as ações. Você não _precisa_ colocar eles em pipelines, você poderia colocá-los em seus controllers para uma customização super flexível mas nós estamos fazendo uma configuração mínima.
+As rotas de login acima vão ter o usuário autenticado se existir um. 
+O segundo scope acima garante que um token válido é passado para todas as ações. 
+Você não _precisa_ colocar eles em pipelines, você poderia colocá-los em seus controllers para uma customização super flexível mas nós estamos fazendo uma configuração mínima.
 
-Nós estamos esquecendo de algo até agora. O manipulador de erro adicionado no plug `EnsureAuthenticated`. Esse é um módulo muito simples que responde a
+Nós estamos esquecendo de algo até agora. 
+O manipulador de erro adicionado no plug `EnsureAuthenticated`.
+Esse é um módulo muito simples que responde a
 
 * `unauthenticated/2`
 * `unauthorized/2`
 
-As duas funções recebem uma struct Plug.Conn e um map com paramêtros e deve lidar com os seus respectivos erros. Você pode até usar um controller do Phoenix!
+As duas funções recebem uma struct Plug.Conn e um map com parâmetros e deve lidar com os seus respectivos erros. 
+Você pode até usar um controller do Phoenix!
 
 #### No controller
 
-Dentro do controller, há algumas opções de como acessar o usuário atualmente logado. Vamos começar com o mais simples.
+Dentro do controller, há algumas opções de como acessar o usuário atualmente logado. 
+Vamos começar com o mais simples.
 
 ```elixir
 defmodule MyApp.MyController do
@@ -187,7 +221,8 @@ defmodule MyApp.MyController do
 end
 ```
 
-Ao usar o módulo `Guardian.Phoenix.Controller`, as suas ações vão receber dois argumentos adicionais que você pode usar pattern matching. Lembre, se você não usar `EnsureAuthenticated` você pode ter user e claims nulos.
+Ao usar o módulo `Guardian.Phoenix.Controller`, as suas ações vão receber dois argumentos adicionais que você pode usar pattern matching.
+Lembre, se você não usar `EnsureAuthenticated` você pode ter user e claims nulos.
 
 A outra versão - a mais flexível/verbosa - é usar plug helpers.
 
@@ -207,13 +242,15 @@ end
 
 #### Login/Logout
 
-Fazer o login e logout de uma sessão do browser é muito simpels. No controller de login:
+Fazer o login e logout de uma sessão do browser é muito simples. 
+No controller de login:
 
 ```elixir
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
-      # Use access tokens. Other tokens can be used, like :refresh etc
+      # Use access tokens. 
+      # Other tokens can be used, like :refresh etc
       conn
       |> Guardian.Plug.sign_in(user, :access)
       |> respond_somehow()
@@ -232,7 +269,8 @@ end
 ```
 
 Quando usado para fazer o login de uma API, é levemente diferente porque não há sessão e você precisa fornecer o token puro de volta para o cliente.
-Para login de uma API você provavelmente usará o header `Authorization` para fornecer o token para a sua aplicação. Esse método é útil quando você não pretende usar uma sessão.
+Para login de uma API você provavelmente usará o header `Authorization` para fornecer o token para a sua aplicação. 
+Esse método é útil quando você não pretende usar uma sessão.
 
 ```elixir
 def create(conn, params) do

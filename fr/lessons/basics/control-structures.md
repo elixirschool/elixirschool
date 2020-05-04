@@ -125,7 +125,7 @@ iex> cond do
 
 ## `with`
 
-La forme spécifique `with/1` dans les cas ou on pourait avoir besoin d'un `case/2` imbriqué ou dans des situation qu'on ne peut pas enchainer de manière propre. L'expression `with/1` est composée de mots clés, de générateurs, et finalement d'une expression.
+La forme spécifique `with/1` s'utilise dans les cas où l'on pourrait avoir besoin d'un `case/2` imbriqué ou dans des situations qu'on ne peut pas enchainer de manière propre. L'expression `with/1` est composée de mots clés, de générateurs, et finalement d'une expression.
 
 On discutera plus en profondeur des générateurs dans la [leçon sur les compréhensions de listes](../comprehensions/), mais pour le moment nous avons juste besoin de savoir qu'ils utilisent le [pattern matching](../pattern-matching/) pour comparer le coté droit du `<-` au coté gauche.
 
@@ -151,7 +151,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 :error
 ```
 
-Regardon maintenant un exemple plus important sans `with/1` et voyons comment nous pouvons le refactorer:
+Regardons maintenant un exemple plus important sans `with/1` et voyons comment nous pouvons l'améliorer:
 
 ```elixir
 case Repo.insert(changeset) do

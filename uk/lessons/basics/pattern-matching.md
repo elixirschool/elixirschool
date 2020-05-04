@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Зіставлення зі зразком
 ---
 
@@ -96,4 +96,8 @@ iex> greet.("Hello", "Sean")
 "Hi Sean"
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
+iex> greeting
+"Hello"
 ```
+
+Варто зазначити, що в прикладі з `"Mornin'"` переназначення `greeting` в `"Mornin'"` відбувається тільки в рамках виконання функції. Поза функцією `greeting` все ще означає `"Hello"`.

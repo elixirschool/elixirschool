@@ -42,6 +42,19 @@
 		border-bg:		transparentize(#e6ebed, 0.75),
 		accent:				#f56a6a
 	);
+
+// Dark Palette.
+	$dark: (
+		bg:					#3d4449,
+		bg-alt:			darken(#3d4449, 5%),
+		fg:					#f5f6f7,
+		fg-bold:		#ffffff,
+		fg-light:		lighten(#f5f6f7, 5%),
+		border:			rgba(210,215,217,0.25),
+		border-bg:	transparentize(#e6ebed, 0.75),
+		accent:			#f56a6a
+	);
+
 // Elixir School
 	$purple: (
 		bg: 				lighten(#4A365F, 45%),

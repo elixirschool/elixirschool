@@ -1,4 +1,5 @@
 script_direction: ltr
+menu: Menu
 project:
   title: Elixir School
   description: プログラミング言語Elixirのレッスン
@@ -9,6 +10,7 @@ sections:
   basics: 基礎
   advanced: 上級
   specifics: 詳細
+  ecto: Ecto
   libraries: ライブラリー
   blog: Blog
   contributors: Contributors

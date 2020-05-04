@@ -1,19 +1,21 @@
 ---
-version: 1.2.0
+version: 1.4.1
 title: モジュール
 ---
 
-私たちは経験的に、全ての関数を1つの同じファイルとスコープに持つと手に負えないことを知っています。このレッスンでは関数をまとめ、構造体として知られる特別なマップを定義することで、コードをより効率のよい形に組織化する方法を取り上げます。
+私たちは経験的に、全ての関数を1つの同じファイルとスコープに持つと手に負えないことを知っています。
+このレッスンでは関数をまとめ、構造体として知られる特別なマップを定義することで、コードをより効率のよい形に組織化する方法を取り上げます。
 
 {% include toc.html %}
 
 ## モジュール
 
-モジュールは関数群を名前空間へと組織する最良の方法です。関数をまとめることに加えて、[関数](../functions/)のレッスンで取り上げた名前付き関数やプライベート関数を定義できます。
+モジュールは関数群を名前空間へと組織する最良の方法です。
+関数をまとめることに加えて、[関数](../functions/)のレッスンで取り上げた名前付き関数やプライベート関数を定義できます。
 
 基本的な例を見てみましょう:
 
-``` elixir
+```elixir
 defmodule Example do
   def greeting(name) do
     "Hello #{name}."
@@ -43,7 +45,8 @@ iex> Example.Greetings.morning "Sean"
 
 ### モジュールの属性
 
-モジュール属性はElixirでは一般に定数として用いられることがほとんどです。単純な例を見てみましょう:
+モジュール属性はElixirでは一般に定数として用いられることがほとんどです。
+単純な例を見てみましょう:
 
 ```elixir
 defmodule Example do
@@ -55,15 +58,18 @@ defmodule Example do
 end
 ```
 
-重要なので言及しておきますと、 Elixir には予約されている属性があります。もっとも一般的なのは以下の3つです:
+重要なので言及しておきますと、Elixirには予約されている属性があります。
+もっとも一般的なのは以下の3つです:
 
-+ `moduledoc` — 現在のモジュールにドキュメントを付けます。
-+ `doc` — 関数やマクロについてのドキュメント管理。
-+ `behaviour` — OTP またはユーザが定義した振る舞い(ビヘイビア)に用います。
+- `moduledoc` — 現在のモジュールにドキュメントを付けます。
+- `doc` — 関数やマクロについてのドキュメント管理。
+- `behaviour` — OTPまたはユーザが定義した振る舞い(ビヘイビア)に用います。
 
 ## 構造体
 
-構造体は定義済みのキーの一群とデフォルト値を持つ特殊なマップです。モジュール内部で定義されなくてはならず、そのモジュールから名前をとります。構造体にとっては、モジュール内部で自身しか定義されていないというのもありふれたことです。
+構造体は定義済みのキーの一群とデフォルト値を持つ特殊なマップです。
+モジュール内部で定義されなくてはならず、そのモジュールから名前をとります。
+構造体にとっては、モジュール内部で自身しか定義されていないというのもありふれたことです。
 
 構造体を定義するには `defstruct` を用い、フィールドとデフォルト値のキーワードリストを添えます:
 
@@ -77,38 +83,72 @@ end
 
 ```elixir
 iex> %Example.User{}
-%Example.User{name: "Sean", roles: []}
+%Example.User<name: "Sean", roles: [], ...>
 
 iex> %Example.User{name: "Steve"}
-%Example.User{name: "Steve", roles: []}
+%Example.User<name: "Steve", roles: [], ...>
 
-iex> %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> %Example.User{name: "Steve", roles: [:manager]}
+%Example.User<name: "Steve", roles: [:manager]>
 ```
 
 構造体はあたかもマップのように更新することができます:
 
 ```elixir
-iex> steve = %Example.User{name: "Steve", roles: [:admin, :owner]}
-%Example.User{name: "Steve", roles: [:admin, :owner]}
+iex> steve = %Example.User{name: "Steve"}
+%Example.User<name: "Steve", roles: [...], ...>
 iex> sean = %{steve | name: "Sean"}
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+%Example.User<name: "Sean", roles: [...], ...>
 ```
 
 最も重要なことですが、構造体はマップに対してマッチすることができます:
 
 ```elixir
 iex> %{name: "Sean"} = sean
-%Example.User{name: "Sean", roles: [:admin, :owner]}
+%Example.User<name: "Sean", roles: [...], ...>
 ```
+
+Elixir 1.8以降、構造体にカスタムイントロスペクション機能が追加されました。
+
+カスタムイントロスペクションがどのように使われるのかを理解するため、 `sean` の中身を見てみましょう。
+
+```elixir
+iex> inspect(sean)
+"%Example.User<name: \"Sean\", roles: [...], ...>"
+```
+
+この例では全てのフィールドが出力対象になっていますが、出力したくない項目がある場合、どのようにしたら良いでしょうか？
+この場合、 `@derive` を利用することで実現することができます！
+`roles` を出力から除外したい場合、以下のように記述します。
+
+```elixir
+defmodule Example.User do
+  @derive {Inspect, only: [:name]}
+  defstruct name: nil, roles: []
+end
+```
+
+**注記**： `@derive {Inspect, except: [:roles]}` でも実現することができます。
+
+モジュールを更新したら、 `iex` で確認してみましょう。
+
+```elixir
+iex> sean = %Example.User{name: "Sean"}
+%Example.User<name: "Sean", ...>
+iex> inspect(sean)
+"%Example.User<name: \"Sean\", ...>"
+```
+
+`roles` が出力から除外されました!
 
 ## コンポジション(Composition)
 
-さて、モジュールと構造体の作り方がわかったので、コンポジションを用いてモジュールや構造体に既存の機能を追加する方法を学びましょう。 Elixir は他のモジュールと連携する様々な方法を用意しています。
+さて、モジュールと構造体の作り方がわかったので、コンポジションを用いてモジュールや構造体に既存の機能を追加する方法を学びましょう。
+Elixirは他のモジュールと連携する様々な方法を用意しています。
 
 ### `alias`
 
-モジュール名をエイリアスすることができます。 Elixir のコードでは頻繁に使われます:
+モジュール名をエイリアスすることができます。Elixirのコードでは頻繁に使われます:
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -121,7 +161,7 @@ defmodule Example do
   def greeting(name), do: Greetings.basic(name)
 end
 
-# alias を使わない場合
+# aliasを使わない場合
 
 defmodule Example do
   def greeting(name), do: Sayings.Greetings.basic(name)
@@ -148,7 +188,7 @@ end
 
 ### `import`
 
-モジュールをエイリアスするよりも、関数やマクロを取り込みたいという場合には、 `import` を使います:
+モジュールをエイリアスするよりも、関数を取り込みたいという場合には、 `import` を使います:
 
 ```elixir
 iex> last([1, 2, 3])
@@ -163,7 +203,8 @@ iex> last([1, 2, 3])
 
 デフォルトでは全ての関数とマクロが取り込まれますが、 `:only` や `:except` オプションを使うことでフィルタすることができます。
 
-特定の関数やマクロを取り込むには、名前/アリティのペアを `:only` や `:except` に渡す必要があります。 `last/1` で最後の関数のみを取り込んでみましょう:
+特定の関数やマクロを取り込むには、名前/アリティのペアを `:only` や `:except` に渡す必要があります。
+`last/1` で最後の関数のみを取り込んでみましょう:
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -193,7 +234,8 @@ import List, only: :macros
 
 ### `require`
 
-それほど頻繁に使われませんが、 `require/2` も重要です。モジュールを require すると、コンパイルとロードが確実に行われます。モジュールのマクロを呼び出す必要がある場合には最も役に立ちます:
+他のモジュールのマクロを使用することをElixirに伝えるために `require` を使うことができます。
+`import` とのわずかな違いは、関数ではなくマクロを使用可能とすることです。
 
 ```elixir
 defmodule Example do
@@ -203,7 +245,7 @@ defmodule Example do
 end
 ```
 
-まだロードされていないマクロを呼びだそうとすると、Elixir はエラーを発生させます。
+まだロードされていないマクロを呼びだそうとすると、Elixirはエラーを発生させます。
 
 ### `use`
 
@@ -269,7 +311,7 @@ iex> Example.hello("Sean")
 "Hola, Sean"
 ```
 
-これらは `use` がどうやって動作するのかを説明する簡単な例でしたが、これは Elixir のツールボックスで信じられないほどに強力なツールです。
-Elixir を学び続けたら `use` をあっちこっちで見ることになるでしょう。かならず見ることになりそうな例をひとつあげれば、 `use ExUnit.Case, async: true` です。
+これらは `use` がどうやって動作するのかを説明する簡単な例でしたが、これはElixirのツールボックスで信じられないほどに強力なツールです。
+Elixirを学び続けたら `use` をあっちこっちで見ることになるでしょう。かならず見ることになりそうな例をひとつあげれば、 `use ExUnit.Case, async: true` です。
 
 **注意**: `quote` 、 `alias` 、 `use` 、 `require` は[メタプログラミング](../../advanced/metaprogramming)で使用してたマクロです。

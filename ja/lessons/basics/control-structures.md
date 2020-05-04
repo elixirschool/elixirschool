@@ -7,11 +7,11 @@ title: 制御構造
 
 {% include toc.html %}
 
-## `if`と`unless`
+## `if` と `unless`
 
-ひょっとすると以前に`if/2`と出くわしているかもしれませんし、Rubyを使っていれば`unless/2`をご存知でしょう。Elixirではこの2つはほとんど同じように作用しますが、言語の構成要素としてではなく、マクロとして定義されています。この実装は[Kernel module](https://hexdocs.pm/elixir/Kernel.html)で知ることができます。
+ひょっとすると以前に `if/2` と出くわしているかもしれませんし、Rubyを使っていれば `unless/2` をご存知でしょう。Elixirではこの2つはほとんど同じように作用しますが、言語の構成要素としてではなく、マクロとして定義されています。この実装は[Kernel module](https://hexdocs.pm/elixir/Kernel.html)で知ることができます。
 
-Elixirでは偽とみなされる値は`nil`と真理値の`false`だけだということに、留意すべきです。
+Elixirでは偽とみなされる値は `nil` と真理値の `false` だけだということに、留意すべきです。
 
 ```elixir
 iex> if String.valid?("Hello") do
@@ -27,7 +27,7 @@ iex> if "a string value" do
 "Truthy"
 ```
 
-`unless/2`は`if/2`のように使いますが、条件が否定される時だけ作用します:
+`unless/2` は `if/2` のように使いますが、条件が否定される時だけ作用します:
 
 ```elixir
 iex> unless is_integer("hello") do
@@ -38,7 +38,7 @@ iex> unless is_integer("hello") do
 
 ## `case`
 
-複数のパターンに対してマッチする必要があるなら、`case/2`を使うことができます:
+複数のパターンに対してマッチする必要があるなら、 `case/2` を使うことができます:
 
 ```elixir
 iex> case {:ok, "Hello World"} do
@@ -49,7 +49,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-`_`変数は`case/2`命令文の中に含まれる重要な要素です。これが無いと、マッチするものが見あたらない場合にエラーが発生します:
+`_` 変数は `case/2` 命令文の中に含まれる重要な要素です。これが無いと、マッチするものが見あたらない場合にエラーが発生します:
 
 ```elixir
 iex> case :even do
@@ -64,9 +64,9 @@ iex> case :even do
 "Not Odd"
 ```
 
-`_`を"他の全て"にマッチする`else`と考えましょう。
+`_` を"他の全て"にマッチする `else` と考えましょう。
 
-`case/2`はパターンマッチングに依存しているため、パターンマッチングと同じルールや制限が全て適用されます。既存の変数に対してマッチさせようという場合にはピン`^`演算子を使わなくてはいけません:
+`case/2` はパターンマッチングに依存しているため、パターンマッチングと同じルールや制限が全て適用されます。既存の変数に対してマッチさせようという場合にはピン `^` 演算子を使わなくてはいけません:
 
 ```elixir
 iex> pie = 3.14
@@ -78,7 +78,7 @@ iex> case "cherry pie" do
 "I bet cherry pie is tasty"
 ```
 
-`case/2`のもう1つの素晴らしい特徴として、ガード節に対応していることがあげられます:
+`case/2` のもう1つの素晴らしい特徴として、ガード節に対応していることがあげられます:
 
 _この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)ガイドから直接持ってきています。_
 
@@ -96,7 +96,7 @@ iex> case {1, 2, 3} do
 
 ## `cond`
 
-値ではなく、条件をマッチさせる必要がある時には、`cond/1`を使うことができます。これは他の言語でいうところの`else if`や`elsif`のようなものです:
+値ではなく、条件をマッチさせる必要がある時には、 `cond/1` を使うことができます。これは他の言語でいうところの `else if` や `elsif` のようなものです:
 
 _この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)ガイドから直接持ってきています。_
 
@@ -112,7 +112,7 @@ iex> cond do
 "But this will"
 ```
 
-`case`のように、`cond`はマッチしない場合にエラーを発生させます。これに対処するには、`true`になる条件を定義すればよいです:
+`case` のように、 `cond` はマッチしない場合にエラーを発生させます。これに対処するには、 `true` になる条件を定義すればよいです:
 
 ```elixir
 iex> cond do
@@ -124,11 +124,11 @@ iex> cond do
 
 ## `with`
 
-特殊形式の`with/1`はネストされた`case/2`文を使うような時やきれいにパイプできない状況に便利です。`with/1`式はキーワード, ジェネレータ, そして式から成り立っています。
+特殊形式の `with/1` はネストされた `case/2` 文を使うような時やきれいにパイプできない状況に便利です。 `with/1` 式はキーワード, ジェネレータ, そして式から成り立っています。
 
-ジェネレータについては[リスト内包表記のレッスン](../comprehensions/)でより詳しく述べますが、今は`<-`の右側と左側を比べるのに[パターンマッチング](../pattern-matching/)が使われることを知っておくだけでよいです。
+ジェネレータについては[リスト内包表記のレッスン](../comprehensions/)でより詳しく述べますが、今は `<-` の右側と左側を比べるのに[パターンマッチング](../pattern-matching/)が使われることを知っておくだけでよいです。
 
-`with/1`の簡単な例から始め、その後さらなる例を見てみましょう:
+`with/1` の簡単な例から始め、その後さらなる例を見てみましょう:
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
@@ -150,7 +150,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 :error
 ```
 
-それでは、`with/1`を使わない長めの例と、それをどのようにリファクタリングできるかを見てみましょう:
+それでは、 `with/1` を使わない長めの例と、それをどのようにリファクタリングできるかを見てみましょう:
 
 ```elixir
 case Repo.insert(changeset) do
@@ -168,7 +168,7 @@ case Repo.insert(changeset) do
 end
 ```
 
-`with/1`を導入するとコードが短く、わかりやすくなります:
+`with/1` を導入するとコードが短く、わかりやすくなります:
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
@@ -176,8 +176,7 @@ with {:ok, user} <- Repo.insert(changeset),
      do: important_stuff(jwt, full_claims)
 ```
 
-
-Elixir 1.3からは`with/1`で`else`を使えます:
+Elixir 1.3からは `with/1` で `else` を使えます:
 
 ```elixir
 import Integer
@@ -200,4 +199,4 @@ a =
   end
 ```
 
-これは`case`のようなパターンマッチングを提供することで、エラーを扱いやすくします。渡されるのはマッチングに失敗した最初の表現式の値です。
+これは `case` のようなパターンマッチングを提供することで、エラーを扱いやすくします。渡されるのはマッチングに失敗した最初の表現式の値です。

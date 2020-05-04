@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.3
 title: Documentación
 ---
 
@@ -46,7 +46,7 @@ defmodule Greeter do
 end
 ```
 
-Nosotros (u otros) podemos acceder a esta documentación usando la función de ayuda `h` dentro de IEx. 
+Nosotros (u otros) podemos acceder a esta documentación usando la función de ayuda `h` dentro de IEx.
 
 ```elixir
 iex> c("greeter.ex")
@@ -85,7 +85,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end
@@ -132,9 +132,8 @@ $ mix new greet_everyone
 
 * creating README.md
 * creating .gitignore
+* creating .formatter.exs
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/greet_everyone.ex
 * creating test
@@ -181,8 +180,8 @@ Asumiendo que todo esta bien vamos a ver la salida siguiente, ahora estamos list
 
 ```elixir
   def deps do
-    [{:earmark, "~> 0.1", only: :dev},
-    {:ex_doc, "~> 0.11", only: :dev}]
+    [{:earmark, "~> 1.2", only: :dev},
+    {:ex_doc, "~> 0.19", only: :dev}]
   end
 ```
 
@@ -204,13 +203,13 @@ View them at "doc/index.html".
 
 Si todo fue de acuerdo al plan, deberías ver un mensaje similar al mensaje de salida del anterior ejemplo. Ahora vamos a ver dentro de nuestro proyecto Mix y deberíamos ver que hay otro directorio llamado **docs/**. Dentro está nuestra documentación generada. Si visitamos la página indice(index.html) en nuestro navegador deberíamos ver los siguiente:
 
-![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
+![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
 
 Podemos ver que Earmark ha renderizado nuestro Markdown y ExDoc y ahora lo muestra en un formato útil.
 
-![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
+![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
-Ahora podemos desplegar esto a GitHub, a nuestro propio sitio web, o mas comunmente a [HexDocs](https://hexdocs.pm/).
+Ahora podemos publicar esto en GitHub, a nuestro propio sitio web, o mas comunmente a [HexDocs](https://hexdocs.pm/).
 
 ## Mejores Prácticas
 
@@ -247,7 +246,7 @@ defmodule Greeter do
   """
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -266,7 +265,7 @@ defmodule Greeter do
   # and so on...
 
   def hello(name) do
-    IO.puts "Hello, " <> name
+    IO.puts("Hello, " <> name)
   end
 end
 ```
@@ -295,7 +294,7 @@ defmodule Greeter do
       "Hello, pete"
 
   """
-  @spec hello(String.t) :: String.t
+  @spec hello(String.t()) :: String.t()
   def hello(name) do
     "Hello, " <> name
   end

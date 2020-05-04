@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: Specifications and types
 ---
 
@@ -15,7 +15,7 @@ title: Specifications and types
 
 ## Specification
 
-如果你有 Java 或 Ruby 的经验, 可能会认将 specification 理解为一个`接口(interface)`. Specification 定义了函数的参数和返回值应该是什么类型的.
+如果你有 Java 的经验, 可能会认将 specification 理解为一个`接口(interface)`. Specification 定义了函数的参数和返回值应该是什么类型的.
 
 为了定义输入和输出的类型, 在函数定义的前面我们使用 `@spec` 指令, 作为 `参数` 的有函数的名称, 函数参数类型的列表, `::` 后是返回值的类型.
 
@@ -60,7 +60,7 @@ Elixir 有3种关于类型的指令：
 
   - `@type` – 简单，公开的类型。类型内部的结构是公开的。
   - `@typep` – 类型是私有的并且只能在模块定义的地方使用。
-  - `@opaque` – 类型是公开的，但内部结构时私有的。
+  - `@opaque` – 类型是公开的，但内部结构是私有的。
 
 来定义一下我们的类型：
 

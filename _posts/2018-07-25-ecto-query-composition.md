@@ -1,9 +1,10 @@
 ---
 author: Sean Callan
 author_link: https://github.com/doomspork
-categories: post
+categories: general
 date:   2018-07-25
 layout: post
+tags: ['ecto', 'software design']
 title:  Ecto query composition
 excerpt: Follow along as we look at how to dynamically compose Ecto queries using pattern matching and reduction.
 ---
@@ -109,7 +110,7 @@ end
 
 The result is public function, our module's API, that is concise and to a degree self documenting: "Get the base query, build the query with the criteria, and get all records".
 
-When we bring it all together and begin to leverage the flexiblity we've provided, we begin to see the true power provided to us through Ecto:
+When we bring it all together and begin to leverage the flexibility we've provided, we begin to see the true power provided to us through Ecto:
 
 ```elixir
 defmodule Posts do

@@ -1,13 +1,13 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: IEx Helpers
 ---
 
 {% include toc.html %}
 
-## Overview
+## Visão Geral
 
-Assim que você começar a trabalhar com Elixir, IEx será o seu melhor amigo. Ele é um REPL, mas possui muitas funcionalidades avançadas que podem tornar a vida mais fácil, quando explorando um novo código ou desenvolvendo seu próprio trabalho a medida que avança. Há uma enorme quantidade de helpers embutidos que nós iremos detalhar nesta lição.
+Assim que você começar a trabalhar com Elixir, IEx será o seu melhor amigo. Ele é um REPL, mas possui muitas funcionalidades avançadas que podem tornar a vida mais fácil, seja explorando um novo código ou desenvolvendo seu próprio trabalho a medida que avança. Há uma enorme quantidade de helpers embutidos que nós iremos detalhar nesta lição.
 
 ### Autocompletar
 

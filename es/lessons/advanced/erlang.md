@@ -1,15 +1,18 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: Interoperabilidad Erlang
 ---
 
-Uno de los beneficios añadidos de Elixir al estar construido sobre Erlang VM (BEAM) es la gran cantidad de bibliotecas existentes que están disponibles para nosotros. La interoperabilidad nos permite aprovechar esas bibliotecas y la librería estándar de Erlang desde nuestro código Elixir. En esta lección vamos a ver como acceder a la funcionalidad en la librería estándar junto con los paquetes de Erlang de terceros.
+Uno de los beneficios añadidos de Elixir al estar construido sobre Erlang VM (BEAM) es la gran cantidad de bibliotecas existentes que están disponibles para nosotros.
+La interoperabilidad nos permite aprovechar esas bibliotecas y la librería estándar de Erlang desde nuestro código Elixir.
+En esta lección vamos a ver como acceder a la funcionalidad en la librería estándar junto con los paquetes de Erlang de terceros.
 
 {% include toc.html %}
 
 ## Librería Estándar
 
-A la extensa biblioteca estándar de Erlang se puede acceder desde cualquier código de Elixir en nuestra aplicación. Los módulos Erlang están representados por átomos en minúsculas como `:os` y `:timer`.
+La extensa biblioteca estándar de Erlang se puede acceder desde cualquier código de Elixir en nuestra aplicación.
+Los módulos Erlang están representados por átomos en minúsculas como `:os` y `:timer`.
 
 Vamos a usar `:timer.tc` para medir el tiempo de ejecución de una función dada:
 
@@ -31,7 +34,9 @@ Para una lista completa de los módulos disponibles, visite el [Manual de Refere
 
 ## Paquetes Erlang
 
-En una lección anterior hemos cubierto Mix y la administración de nuestras dependencias, incluir las bibliotecas de Erlang funciona de la misma manera. En caso de que la biblioteca Erlang no haya sido agregada en [Hex] (https://hex.pm) puedes hacer referencia al repositorio git en su lugar:
+En una lección anterior hemos cubierto Mix y la administración de nuestras dependencias.
+Incluyendo las bibliotecas de Erlang funciona de la misma manera.
+En caso de que la biblioteca Erlang no haya sido agregada en [Hex] (https://hex.pm) puedes hacer referencia al repositorio git en su lugar:
 
 ```elixir
 def deps do

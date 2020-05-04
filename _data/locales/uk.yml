@@ -1,4 +1,5 @@
 script_direction: ltr
+menu: Меню
 project:
   title: Elixir School
   description: Навчальні матеріали про мову програмування Elixir

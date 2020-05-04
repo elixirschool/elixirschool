@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.1.1
 title: Mix
 ---
 
@@ -11,7 +11,7 @@ Até agora trabalhamos exclusivamente dentro do `iex` que tem limitações. A fi
 
 ## Novos Projetos
 
-Quando estamos prontos para criar um novo projeto em Elixir, mix faz com isso seja fácil utilizando o comando `mix new`. Este comando irá gerar a estrutura de pastas do nosso projeto e a base de arquivos necessária. Este é bastante simples, então vamos começar:
+Quando estamos prontos para criar um novo projeto em Elixir, mix faz com que isso seja fácil utilizando o comando `mix new`. Este comando irá gerar a estrutura de pastas do nosso projeto e a base de arquivos necessária. Este é bastante simples, então vamos começar:
 
 ```bash
 $ mix new example
@@ -21,10 +21,9 @@ A partir do resultado, podemos ver que o mix criou nosso diretório e uma quanti
 
 ```bash
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
@@ -69,6 +68,7 @@ A seção `application` é usada durante a geração do nosso arquivo de aplica�
 Pode ser necessário a utilização do `iex` dentro do contexto da nossa aplicação. Felizmente para nós, mix torna isso fácil. Com a nossa aplicação compilada podemos começar uma nova seção `iex`:
 
 ```bash
+$ cd example
 $ iex -S mix
 ```
 
@@ -79,6 +79,7 @@ Iniciando `iex` desta forma , carrega sua aplicação e dependências no atual a
 Mix é inteligente e irá compilar as alterações quando necessário, mas ainda pode ser necessário explicitamente compilar o seu projeto. Nesta seção, vamos cobrir a forma de compilar o nosso projeto e o que essa compilação faz.
 
 Para compilar um projeto mix nós apenas temos que executar `mix compile` em nossa base do diretório:
+**Nota: As tarefas do mix de um projeto estão disponíveis apenas no diretório raiz do projeto, apenas as tarefas globais do mix estão disponíveis em todos os projetos.**
 
 ```bash
 $ mix compile
@@ -90,7 +91,7 @@ Não há muito dentro do nosso projeto, então a saída não será muito emocion
 Compiled lib/example.ex
 Generated example app
 ```
-Quando compilanos um projeto, mix cria um diretório `_build` para os nossos artefatos. Se olharmos dentro de `_build` veremos a aplicação compilada: `example.app`.
+Quando compilamos um projeto, mix cria um diretório `_build` para os nossos artefatos. Se olharmos dentro de `_build` veremos a aplicação compilada: `example.app`.
 
 ## Gestão de dependências
 
@@ -113,7 +114,7 @@ end
 
 Como você provavelmente percebeu nas dependências acima, a dependência`cowboy` é apenas necessária durante o desenvolvimento e teste.
 
-Uma vez que tenhamos definido nossa dependências, existe um passo final, buscar estas dependências. Isso é análogo ao `bundle install`:
+Uma vez que tenhamos definido nossas dependências, existe um passo final, buscar estas dependências. Isso é análogo ao `bundle install`:
 
 ```bash
 $ mix deps.get

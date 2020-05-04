@@ -1,15 +1,15 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 実行ファイル
 ---
 
-Elixir で実行ファイルをビルドするには escript を利用します。 escript は Erlang がインストールされているあらゆるシステム上で動作する実行ファイルを生み出します。
+Elixirで実行ファイルをビルドするにはescriptを利用します。escriptはErlangがインストールされているあらゆるシステム上で動作する実行ファイルを生み出します。
 
 {% include toc.html %}
 
 ## 始めに
 
-escript で実行ファイルを作るために、必要な事はほんの少ししかありません。 `main/1` 関数を実装し、 Mixfile を更新するというものです。
+escriptで実行ファイルを作るために、必要な事はほんの少ししかありません。 `main/1` 関数を実装し、Mixfileを更新するというものです。
 
 実行ファイルのエントリポイント(最初に実行する位置)として扱うモジュールを作成することから始めましょう。ここが `main/1` を実装するところになります:
 
@@ -21,7 +21,7 @@ defmodule ExampleApp.CLI do
 end
 ```
 
-次に Mixfile を更新して、 `:main_module` を一緒に指定した `:escript` オプションをプロジェクトに組み込みます:
+次にMixfileを更新して、 `:main_module` を一緒に指定した `:escript` オプションをプロジェクトに組み込みます:
 
 ```elixir
 defmodule ExampleApp.Mixfile do
@@ -37,7 +37,7 @@ end
 
 ## 引数の解析
 
-アプリケーションのセットアップが済んだら、コマンドライン引数の解析へと移ります。 Elixir の `OptionParser.parse/2` と `:switches` オプションを用いて、私たちのフラグが真理値であることを示します:
+アプリケーションのセットアップが済んだら、コマンドライン引数の解析へと移ります。Elixirの `OptionParser.parse/2` と `:switches` オプションを用いて、私たちのフラグが真理値であることを示します:
 
 ```elixir
 defmodule ExampleApp.CLI do
@@ -64,15 +64,15 @@ end
 
 ## ビルド
 
-escript を用いるようにアプリケーションを設定し終えたら、実行ファイルのビルドは Mix のおかげで楽勝です:
+escriptを用いるようにアプリケーションを設定し終えたら、実行ファイルのビルドはMixのおかげで楽勝です:
 
-```elixir
+```bash
 $ mix escript.build
 ```
 
 試しに実行してみましょう:
 
-```elixir
+```bash
 $ ./example_app --upcase Hello
 HELLO
 
@@ -80,4 +80,4 @@ $ ./example_app Hi
 Hi
 ```
 
-おしまいです。 escript を使って Elixir の最初の実行ファイルをビルドできました。
+おしまいです。escriptを使ってElixirの最初の実行ファイルをビルドできました。

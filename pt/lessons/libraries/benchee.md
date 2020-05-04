@@ -11,7 +11,7 @@ Não podemos simplesmente adivinhar quais funções são rápidas e quais são l
 
 Enquanto existe uma [função no Erlang](http://erlang.org/doc/man/timer.html#tc-1) que pode ser usada para medição muito básica do tempo de execução de uma função, ela não é tão boa de usar como algumas das ferramentas disponíveis e não lhe dá várias medidas para obter boas estatísticas, então vamos usar [Benchee](https://github.com/PragTob/benchee). Benchee nos fornece uma série de estatísticas com comparações fáceis entre cenários, uma ótima característica que nos permite testar diferentes entradas para as funções que estamos avaliando, e vários formatadores diferentes que podemos usar para mostrar nossos resultados, assim como a capacidade de escrever seu próprio formatador se desejado.
 
-# Uso 
+# Uso
 
 Para adicionar Benchee ao seu projeto, adicione-o como uma dependência ao seu arquivo `mix.exs`:
 ```elixir
@@ -49,7 +49,7 @@ $ mix run benchmark.exs
 
 E devemos ver algo com a seguinte saída no seu console:
 
-```shell 
+```shell
 Operating System: macOS
 CPU Information: Intel(R) Core(TM) i5-4260U CPU @ 1.40GHz
 Number of Available Cores: 4
@@ -102,7 +102,7 @@ Benchee.run(%{"example function" => fn -> "hi!" end}, [
   inputs: nil,
   parallel: 1,
   formatters: [&Benchee.Formatters.Console.output/1],
-  print: [ 
+  print: [
     benchmarking: true,
     configuration: true,
     fast_warning: true
@@ -119,15 +119,15 @@ As opções disponíveis são as seguintes (também documentadas em [hexdocs](ht
 * **warmup** - o tempo em segundos para o qual um cenário de _benchmarking_ deve ser executado sem tempos de medição antes do início das medidas reais. Isso simula um sistema de funcionamento "quente". Padrão é 2.
 * **time** - o tempo em segundos por quanto tempo cada cenário de _benchmarking_ individual deve ser executado e medido. Padrão é 5.
 * **inputs** - um mapa com _strings_ que representam o nome de entrada como as chaves e a entrada real como valores. Padrão é `nil`. Vamos abordá-lo em detalhes na próxima seção.
-* **parallel** - o número de processos para usar no _benchmark_ de suas funções. Então, se você definir `parallel: 4`, serão gerados 4 processos que executam a mesma função para determinado `time`. Quando estes terminam, então 4 novos processos serão gerados para a próxima função. Isso lhe dá mais dados no mesmo tempo, mas também adiciona mais carga ao sistema interferindo nos resultados do _benchmark_. Isso pode ser útil para simular um sistema sobrecarregado, o que algumas vezes é útil, mas deve ser usado com algum cuidado pois isso pode afetar os resultados de maneiras imprevisíveis. Padrão é 1 (o que significa nenhuma execução em paralelo). 
-* **formatters** - a list of formatter functions you'd like to run to output the benchmarking results of the suite when using `Benchee.run/2`. Funções precisam aceitar um argumento (que é a suite de _benchmarking_ para todos dados) e então usá-la para produzir a saída. Padrão é o formatador de console embutido chamando `Benchee.Formatters.Console.output/1`. Vamos abordar mais sobre isso em uma seção posterior.
+* **parallel** - o número de processos para usar no _benchmark_ de suas funções. Então, se você definir `parallel: 4`, serão gerados 4 processos que executam a mesma função para determinado `time`. Quando estes terminam, então 4 novos processos serão gerados para a próxima função. Isso lhe dá mais dados no mesmo tempo, mas também adiciona mais carga ao sistema interferindo nos resultados do _benchmark_. Isso pode ser útil para simular um sistema sobrecarregado, o que algumas vezes é útil, mas deve ser usado com algum cuidado pois isso pode afetar os resultados de maneiras imprevisíveis. Padrão é 1 (o que significa nenhuma execução em paralelo).
+* **formatters** - uma lista de funções do formatador que você deseja executar para gerar os resultados de benchmarking do conjunto ao usar `Benchee.run/2`. Funções precisam aceitar um argumento (que é a suite de _benchmarking_ para todos dados) e então usá-la para produzir a saída. Padrão é o formatador de console embutido chamando `Benchee.Formatters.Console.output/1`. Vamos abordar mais sobre isso em uma seção posterior.
 * **print** - um _map_ ou _keyword list_ com as seguintes opções como átomos para as chaves e valores de `true` ou `false`. Isso nos permite controlar se a saída identificada pelo átomo será impressa durante o processo padrão de _benchmarking_. Todas as opções são habilitadas por padrão (true). Opções são:
-  * **benchmarking** - imprime quando Benchee inicia o _bencharking_ de um novo _job_.
+  * **benchmarking** - imprime quando Benchee inicia o _benchmarking_ de um novo _job_.
   * **configuration** - um resumo de opções de _benchmarking_ configuradas, incluindo o tempo total de execução estimado. Isso é impresso antes do _benchmarking_ iniciar.
   * **fast_warning** - avisos são mostrados se funções são executadas muito rapidamente, potencialmente levando a medidas imprecisas.
 * **console** - um _map_ ou _keyword list_ com as seguintes opções como átomos para as chaves e valores variáveis. Os valores de variáveis são listados para cada opção:
   * **comparison** - se a comparação dos diferentes _jobs_ de _benchmarking_ (x vezes mais lento do que) é mostrado. Padrão é `true`, mas também pode ser definido como `false`.
-  * **unit_scaling** - a estratégia para escolher uma unidade para durações e contagens. Ao dimensionar um valor, Benchee encontra a unidade de "best fit" (a maior unidade para qual o resultado é ao menos 1). Por exemplo, `1_200_000` escala até 1.2 M, enquanto `800_000` escala até 800 K. A estratégia de escala da unidade determina como Benchee escolhe a unidade de "best fit" para uma lista inteira de valores, quando os valores individualemnte na lista podem ter diferentes unidades de "best fit". Existem quatro estratégias, todas dadas como átomos, padronizadas como `:best`:
+  * **unit_scaling** - a estratégia para escolher uma unidade para durações e contagens. Ao dimensionar um valor, Benchee encontra a unidade de "best fit" (a maior unidade para qual o resultado é ao menos 1). Por exemplo, `1_200_000` escala até 1.2 M, enquanto `800_000` escala até 800 K. A estratégia de escala da unidade determina como Benchee escolhe a unidade de "best fit" para uma lista inteira de valores, quando os valores individualmente na lista podem ter diferentes unidades de "best fit". Existem quatro estratégias, todas dadas como átomos, padronizadas como `:best`:
     * **best** - a mais frequente unidade de _best fit_ será usada. Um empate resultará na maior unidade sendo selecionada.
     * **largest** - a maior unidade de _best fit_ será usada
     * **smallest** - a menor unidade de _best fit_ será usada

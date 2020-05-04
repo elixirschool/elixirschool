@@ -1,15 +1,18 @@
 ---
-version: 1.0.1
+version: 1.0.3
 title: Umbrella Projects
 ---
 
-Sometimes a project can get big, really big in fact. The Mix build tool allows us to split our code into multiple apps and make our Elixir projects more manageable as they grow.
+Sometimes a project can get big, really big in fact.
+The Mix build tool allows us to split our code into multiple apps and make our Elixir projects more manageable as they grow.
 
 {% include toc.html %}
 
 ## Introduction
 
-To create an umbrella project we start a project as if we were going to start a normal Mix project but pass in the `--umbrella` flag. For this example, we are going to make *the shell* of a machine learning toolkit. Why a machine learning toolkit? Why not? It is made up of various learning algorithms and utility functions.
+To create an umbrella project we start a project as if we were going to start a normal Mix project but pass in the `--umbrella` flag.
+For this example, we are going to make *the shell* of a machine learning toolkit.
+Why a machine learning toolkit? Why not? It is made up of various learning algorithms and utility functions.
 
 ```shell
 $ mix new machine_learning_toolkit --umbrella
@@ -50,8 +53,6 @@ $ mix new utilities
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/utilities.ex
 * creating test
@@ -72,8 +73,6 @@ $ mix new datasets
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/datasets.ex
 * creating test
@@ -93,8 +92,6 @@ $ mix new svm
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/svm.ex
 * creating test
@@ -119,8 +116,6 @@ $ tree
 ├── apps
 │   ├── datasets
 │   │   ├── README.md
-│   │   ├── config
-│   │   │   └── config.exs
 │   │   ├── lib
 │   │   │   └── datasets.ex
 │   │   ├── mix.exs
@@ -129,8 +124,6 @@ $ tree
 │   │       └── test_helper.exs
 │   ├── svm
 │   │   ├── README.md
-│   │   ├── config
-│   │   │   └── config.exs
 │   │   ├── lib
 │   │   │   └── svm.ex
 │   │   ├── mix.exs
@@ -139,8 +132,6 @@ $ tree
 │   │       └── test_helper.exs
 │   └── utilities
 │       ├── README.md
-│       ├── config
-│       │   └── config.exs
 │       ├── lib
 │       │   └── utilities.ex
 │       ├── mix.exs
@@ -152,7 +143,8 @@ $ tree
 └── mix.exs
 ```
 
-If we change back to the umbrella projects root, we can see that we can call all the typical commands such as compile. As the sub projects are just normal applications, you can change into their directories and do all the same stuff as usual that Mix enables you to do.
+If we change back to the umbrella projects root, we can see that we can call all the typical commands such as compile.
+As the sub projects are just normal applications, you can change into their directories and do all the same stuff as usual that Mix enables you to do.
 
 ```bash
 $ mix compile
@@ -179,7 +171,9 @@ Consolidated Inspect
 
 ## IEx
 
-You may think that interacting with the apps would be a little different in an umbrella project. Well believe it or not, you would be wrong! If we change directory into the top level directory, and start IEx with the `iex -S mix` we can interact with all the projects normally. Let's alter the contents of `apps/datasets/lib/datasets.ex` for this simple example.
+You may think that interacting with the apps would be a little different in an umbrella project.
+Well believe it or not, you would be wrong! If we change directory into the top level directory, and start IEx with the `iex -S mix` we can interact with all the projects normally.
+Let's alter the contents of `apps/datasets/lib/datasets.ex` for this simple example.
 
 ```elixir
 defmodule Datasets do

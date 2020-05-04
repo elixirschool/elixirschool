@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.0.3
 title: 文档模块
 ---
 
@@ -131,10 +131,9 @@ ExDoc是Elixir的官方项目，你可以在 [GitHub](https://github.com/elixir-
 $ mix new greet_everyone
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/greet_everyone.ex
 * creating test
@@ -180,9 +179,10 @@ Examples
 假设一切都正常工作，那么你将看到和上面一样的输出，现在我们将配置ExDoc。在文件`mix.exs`中，添加两个依赖`:earmark` 和 `:ex_doc`。
 
 ```elixir
-def deps do
-  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
-end
+  def deps do
+    [{:earmark, "~> 1.2", only: :dev},
+    {:ex_doc, "~> 0.19", only: :dev}]
+  end
 ```
 
 使用`only: :dev`是因为我们不想在生产环境下下载和编译这些依赖。为什么需要Earmark呢？Earmark是一个使用Elixir编写的markdown分析器，ExDoc使用它来将带有`@moduledoc` 和 `@doc`的注释转换成漂亮的HTML页面。
@@ -203,11 +203,11 @@ View them at "doc/index.html".
 
 如果一切顺利的话，你将会看到熟悉的成功提示消息。让我们看一下项目里面的**doc/**文件夹。里面有我们生成的文档。如果你使用浏览器打开它的话你将看到如下画面：
 
-![ExDoc Screenshot 1]({% asset_path "documentation_1.png" %})
+![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
 
 我们可以看到Earmark已经渲染了我们的Markdown注释文档并且ExDoc现在有漂亮的显示格式。
 
-![ExDoc Screenshot 2]({% asset_path "documentation_2.png" %})
+![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
 我们可以将这个文档部署到github，也可以部署到Elixir的官方镜像 [HexDocs](https://hexdocs.pm/)。
 

@@ -101,11 +101,11 @@ iex> ~S/the cat in the hat on the mat/
 Vậy hai biểu diễn khác gì nhau? Điểm khác nhau tương tự như sigil cho chuỗi các kí tự mà chúng ta đã xem ở trên. Câu trả lời nằm ở việc nội suy và sử dụng chuỗi escape. Hãy xem một ví dụ khác:
 
 ```elixir
-iex> ~s/welcome to elixir #{String.downcase "school"}/
+iex> ~s/welcome to elixir #{String.downcase "SCHOOL"}/
 "welcome to elixir school"
 
-iex> ~S/welcome to elixir #{String.downcase "school"}/
-"welcome to elixir \#{String.downcase \"school\"}"
+iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
+"welcome to elixir \#{String.downcase \"SCHOOL\"}"
 ```
 
 ### Chuỗi các từ

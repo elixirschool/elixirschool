@@ -12,7 +12,7 @@ title: Egnedefinerte Mix Tasks
 Det er ikke uvanlig at du har lyst til å utvide Elixir applikasjonene dine med funksjonalitet, dette kan du gjøre ved å lage egne Mix tasks for ditt prosjekt, la oss ta en titt på en Mix task som allerede eksisterer:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
@@ -38,8 +38,6 @@ $ mix new hello
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/hello.ex
 * creating test

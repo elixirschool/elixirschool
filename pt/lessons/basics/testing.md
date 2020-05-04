@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Testando
 ---
 
@@ -33,7 +33,7 @@ Finished in 0.03 seconds
 2 tests, 0 failures
 ```
 
-Porque há dois testes na saída? Vamos dar uma olhada em `lib/example.ex`. Mix criou outro teste lá para nós, algum doctest.
+Porque há dois testes na saída? Além do teste em `test/example_test.exs`, Mix criou um doctest em `lib/example.ex`.
 
 ```elixir
 defmodule Example do
@@ -103,7 +103,7 @@ ExUnit nos diz exatamente onde nossos asserts falharam, qual era o valor esperad
 
 ### assert_receive
 
-Em Elixir, as aplicações consistem em atores/processos que enviam mensagens um para o outro, portanto muitas vezes você quer testar mensagens sendo enviada. Como o ExUnit executa seu próprio processo ele pode receber mensagem como qualquer outro processo e você pode  afirmar isso com a macro `assert_received`:
+Em Elixir, as aplicações consistem em atores/processos que enviam mensagens um para o outro, portanto muitas vezes você quer testar mensagens sendo enviadas. Como o ExUnit executa seu próprio processo ele pode receber mensagem como qualquer outro processo e você pode  afirmar isso com a macro `assert_received`:
 
 ```elixir
 defmodule SendingProcess do
@@ -122,7 +122,7 @@ defmodule TestReceive do
 end
 ```
 
-`assert_received` não espera mesangens com `assert_receive` você pode especificar um tempo limite.
+`assert_received` não espera mensagens com `assert_receive` você pode especificar um tempo limite.
 
 ### capture_io and capture_log
 
@@ -143,7 +143,7 @@ end
 
 ## Configuração de Teste
 
-Em alguns casos, pode ser necessária a realização de configuração antes de nossos testes. Para fazer isso acontecer, nós podemos usar as macros `setup` e `setup_all`. `setup` irá ser executado antes de cada teste, e `setup_all` uma vez antes da suite de testes. Espera-se que eles vão retornar uma tupla de `{:ok, state}`, o estado estará disponível para os nossos testes.
+Em alguns casos, pode ser necessária a realização de configuração antes de nossos testes. Para fazer isso acontecer, nós podemos usar as macros `setup` e `setup_all`. `setup` irá ser executado antes de cada teste, e `setup_all` uma vez antes da suíte de testes. Espera-se que eles vão retornar uma tupla de `{:ok, state}`, o estado estará disponível para os nossos testes.
 
 Por uma questão de exemplo, vamos mudar o nosso código para usar `setup_all`:
 

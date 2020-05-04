@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 title: Funções
 ---
 
@@ -111,6 +111,162 @@ iex> Greeter2.hello("Fred", "Jane")
 ```
 
 Nós listamos os nomes das funções nos comentários acima. A primeira implementação não recebe argumentos, é conhecida como `hello/0`; a segunda função recebe um argumento, portanto será conhecido como `hello/1` e assim por diante. E, ao contrário de sobrecargar funções como em outras linguagens de programação, estas são pensadas como funções _diferentes_ entre uma e outra. (Pattern matching, ou combinação de padrões, descrita agora há pouco, apenas se aplica quando várias definições são fornecidas com a _mesma_ quantidade de argumentos.)
+
+### Funções e pattern matching
+Nos bastidores, as funções fazem pattern match nos argumentos com as quais são chamadas. 
+
+Se precisássemos de uma função que aceitasse um mapa, mas estivéssemos interessados em utilizar apenas uma chave, poderíamos fazer o pattern match da presença da chave assim:
+
+```elixir
+defmodule Greeter1 do
+  def hello(%{name: person_name}) do
+    IO.puts "Hello, " <> person_name
+  end
+end
+```
+
+Agora digamos que temos um mapa descrevendo uma pessoa chamada Fred:
+
+```elixir
+iex> fred = %{
+...> name: "Fred",
+...> age: "95",
+...> favorite_color: "Taupe"
+...> }
+```
+
+Estes são os resultados que teremos quando chamarmos `Greeter1.hello/1` com o mapa `fred`:
+
+```elixir
+# call with entire map
+...> Greeter1.hello(fred)
+"Hello, Fred"
+```
+
+E o que acontece se chamarmos a função com um mapa que não contenha a chave `:name`?
+
+```elixir
+# call without the key we need returns an error
+...> Greeter1.hello(%{age: "95", favorite_color: "Taupe"})
+** (FunctionClauseError) no function clause matching in Greeter1.hello/1
+
+    The following arguments were given to Greeter1.hello/1:
+
+        # 1
+        %{age: "95", favorite_color: "Taupe"}
+
+    iex:12: Greeter1.hello/1
+```
+
+A razão para este comportamento é que o Elixir faz o pattern match entre os argumentos da chamada e a aridade da definição da função.
+
+Vamos pensar sobre como estão os dados quando eles chegam a `Greeter1.hello/1`:
+
+```elixir
+# incoming map
+iex> fred = %{
+...> name: "Fred",
+...> age: "95",
+...> favorite_color: "Taupe"
+...> }
+```
+
+`Greeter1.hello/1` espera como argumento:
+
+```elixir
+%{name: person_name}
+```
+
+Em `Greeter1.hello/1`, o mapa que passamos (`fred`) é comparado com nosso argumento (`%{name: person_name}`):
+
+```elixir
+%{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
+```
+
+Ele encontra a chave que corresponde a `name` no mapa de entrada. Temos um match! E como resultado desse match, o valor da chave `:name` do mapa da direita (`fred`) é atribuído à variável à esquerda (`person_name`).
+
+Agora, e se quiséssemos atribuir o nome de Fred a `person_name`, mas TAMBÉM quiséssemos salvar todo o mapa? Digamos que queremos `IO.inspect(fred)` após cumprimentá-lo. Como, até agora, fizemos pattern match apenas a chave `:name` de nosso mapa, a função não tem conhecimento do resto de Fred.
+
+De maneira a mantê-lo, precisamos atribuir o mapa inteiro a sua própria variável para que consigamos utilizá-lo.
+
+Vamos criar uma nova função:
+
+```elixir
+defmodule Greeter2 do
+  def hello(%{name: person_name} = person) do
+    IO.puts "Hello, " <> person_name
+    IO.inspect person
+  end
+end
+```
+
+Lembre-se que Elixir vai fazer o pattern match no argumento da maneira que ele vir. Então, nesse caso, cada lado vai fazer pattern match com o argumento e atribuir a qualquer coisa que dê match. Vamos ver o lado direito primeiro:
+
+```elixir
+person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
+```
+
+Agora, `person` foi avaliado e atribuído ao fred-map. Vamos ao próximo pattern match:
+
+```elixir
+%{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
+```
+
+Esse é o mesmo que nossa função original `Greeter1` onde fizemos o pattern match e retemos apenas o nome de Fred. O que conseguimos foi que agora podemos usar duas variáveis em vez de uma:
+
+1. `person`, se referindo a `%{name: "Fred", age: "95", favorite_color: "Taupe"}`
+2. `person_name`, se referindo a `"Fred"`
+
+Agora, quando chamarmos `Greeter2.hello/1`, podemos utilizar toda a informação de Fred:
+
+```elixir
+# call with entire person
+...> Greeter2.hello(fred)
+"Hello, Fred"
+%{age: "95", favorite_color: "Taupe", name: "Fred"}
+# call with only the name key
+...> Greeter2.hello(%{name: "Fred"})
+"Hello, Fred"
+%{name: "Fred"}
+# call without the name key
+...> Greeter2.hello(%{age: "95", favorite_color: "Taupe"})
+** (FunctionClauseError) no function clause matching in Greeter2.hello/1
+
+    The following arguments were given to Greeter2.hello/1:
+
+        # 1
+        %{age: "95", favorite_color: "Taupe"}
+
+    iex:15: Greeter2.hello/1
+```
+
+Vimos, então, que o Elixir faz um pattern match de múltipla profundidade, pois cada argumento faz match com a entrada de maneira independente. 
+
+Se alterarmos a ordem de `%{name: person_name}` e `person` na lista, teremos os mesmos resultados, pois cada um faz o pattern match com `fred` de maneira separada.
+
+Trocamos a variável e o mapa:
+
+```elixir
+defmodule Greeter3 do
+  def hello(person = %{name: person_name}) do
+    IO.puts "Hello, " <> person_name
+    IO.inspect person
+  end
+end
+```
+
+E chamamos com os mesmos dados que em `Greeter2.hello/1`:
+
+```elixir
+# call with same old Fred
+...> Greeter3.hello(fred)
+"Hello, Fred"
+%{age: "95", favorite_color: "Taupe", name: "Fred"}
+```
+
+Lembre-se que, embora pareça que `%{name: person_name} = person` está fazendo pattern match entre `%{name: person_name}` e `person`, na verdade eles estão ambos fazendo pattern match com o argumento de entrada.
+
+**Resumo**: Funções fazem pattern match com os dados de entrada a seus argumentos de maneira independente. Podemos usar isso para atribuir valores a variáveis separadas dentro da função.
 
 ### Funções privadas
 

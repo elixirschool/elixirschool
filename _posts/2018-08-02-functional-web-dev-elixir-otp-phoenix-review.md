@@ -2,6 +2,7 @@
 author: George Mantzouranis
 author_link: https://github.com/gemantzu
 categories: review
+tags: ['phoenix']
 date:   2018-08-22
 layout: post
 title:  Reviewing Functional Web Development with Elixir, OTP, and Phoenix

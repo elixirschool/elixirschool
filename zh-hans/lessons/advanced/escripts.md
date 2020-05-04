@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 可执行文件
 ---
 
@@ -66,13 +66,13 @@ end
 
 一旦我们在应用中配置好了 escript，使用 Mix 构建可执行文件就易如反掌了：  
 
-```elixir
+```bash
 $ mix escript.build
 ```
 
 来看一下最后的运行情况：  
 
-```elixir
+```bash
 $ ./example_app --upcase Hello
 HELLO
 

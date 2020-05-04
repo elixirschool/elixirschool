@@ -3,7 +3,7 @@ version: 1.1.0
 title: Comprehensions
 ---
 
-Comprehensions são um 'syntactic sugar' (uma forma mais simples de escrever) para realizar loops em Enumerables em Elixir. Nessa lição veremos como podemos fazer iterações e gerar os resultados utilizando comprehensions.
+Comprehensions são um 'syntactic sugar' (uma forma mais simples de escrever) para realizar loops em Enumerables em Elixir. Nesta lição veremos como podemos fazer iterações e gerar os resultados utilizando comprehensions.
 
 {% include toc.html %}
 
@@ -72,7 +72,7 @@ Comprehensions são _syntactic sugar_ e devem ser utilizadas apenas quando for a
 
 ## Filtros
 
-Você pode pensar em filtros como um tipo de _guard_ para comprehensions. Quando um valor filtrado retorna `false` ou `nil` ele é excluido da lista final. Vamos iterar por um intervalo e olhar apenas os números pares. Nós vamos usar a função `is_even/1` do módulo Integer para checar se um valor é par ou não.
+Você pode pensar em filtros como um tipo de _guard_ para comprehensions. Quando um valor filtrado retorna `false` ou `nil` ele é excluído da lista final. Vamos iterar por um intervalo e olhar apenas os números pares. Nós vamos usar a função `is_even/1` do módulo Integer para checar se um valor é par ou não.
 
 ```elixir
 import Integer
@@ -80,7 +80,7 @@ iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
-Assim como os generators, nós podemos usar múltiplos filtros. Vamos expandir nosso intervalo e então filtrar apenas para valores ques sejam pares e também divisíveis por 3.
+Assim como os generators, nós podemos usar múltiplos filtros. Vamos expandir nosso intervalo e então filtrar apenas para valores que sejam pares e também divisíveis por 3.
 
 ```elixir
 import Integer

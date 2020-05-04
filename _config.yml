@@ -1,10 +1,8 @@
 # Setup
-baseurl: /
 url: https://elixirschool.com
 permalink: /blog/:title/
 default_lang: en
 exclude_from_localization: []
-exclude_from_chapters: ['blog.html', 'contributors.html']
 
 # Author
 author:
@@ -20,6 +18,7 @@ plugins:
   - jekyll-sitemap
   - kramdown
   - uglifier
+  - jekyll-archives
 
 # Markdown Config
 markdown: kramdown
@@ -48,11 +47,19 @@ sitemap:
   priority_name: 'priority'
 
 elixir:
-  version: 1.5.2
+  version: 1.10.1
 
 erlang:
-  OTP: 20
-  erts: 9.1
+  OTP: 22.0
+  erts: 10.5.3
+
+jekyll-archives:
+  enabled: ['categories', 'tags', 'year']
+  layout: archive
+  permalinks:
+    year: '/blog/years/:year/'
+    category: '/blog/categories/:name/'
+    tag: '/blog/tags/:name/'
 
 defaults:
   -

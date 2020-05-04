@@ -12,7 +12,7 @@ title: Mix Tasks
 Не е необичайно да искате да добавите функционалност към вашата Elixir апликация, чрез Mix tasks. Преди да се научим, как да създаваме Mix tasks за нашите проекти, нека да погледнем съществуващите:
 
 ```shell
-$ mix phoenix.new my_phoenix_app
+$ mix phx.new my_phoenix_app
 
 * creating my_phoenix_app/config/config.exs
 * creating my_phoenix_app/config/dev.exs
@@ -37,8 +37,6 @@ $ mix new hello
 * creating README.md
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/hello.ex
 * creating test

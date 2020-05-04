@@ -1,24 +1,32 @@
 ---
 title: Elixir School 한국어판
 layout: home
-version: 1.0.0
+version: 2.0.0
 ---
 
-[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Elixir School의 목표는 Elixir 프로그래밍 언어를 배우려는 사람들에게 최고의 선택지가 되는 것입니다.
 
-프로그래밍 언어 Elixir 강의, Twitter의 [Scala School](http://twitter.github.io/scala_school/)에서 아이디어를 받아 만들었습니다.
+노련한 숙련자던 초심자던 관계없이 레슨과 보조 자료에서 필요한 것을 찾을 수 있습니다.
 
-_의견을 주시거나 참여해주시길 부탁드립니다!_
+자원봉사자들의 노력으로 Elixir School은 [Việt ngữ][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], [ภาษาไทย][th] 등 많은 언어로 번역되어 있습니다.
 
-## Elixir 소개
+[elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)에 참여하여 Elixir School을 더욱 멋지게 만드실 수 있습니다!
 
-"Elixir는 규모를 바꿀 수 있고 계속해서 유지보수할 수 있는 애플리케이션을 만들 수 있도록 설계된 동적 함수형 언어입니다." — [elixir-lang.org](http://elixir-lang.org/)
-
-Elixir는 실무 환경에서 다져진 Erlang VM (BEAM)을 활용함으로써, 지연이 적으면서 장애 복원력이 높은 분산 시스템을 구현할 수 있습니다.
-
-__특징__:
-
-+ 규모 가변적
-+ 높은 장애 복원력
-+ 함수형 프로그래밍
-+ 확장할 수 있는 언어
+  [es]: /es/
+  [it]: /it/
+  [ja]: /ja/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [id]: /id/
+  [ms]: /ms/
+  [uk]: /uk/
+  [de]: /de/
+  [bn]: /bn/
+  [tr]: /tr/
+  [th]: /th/
+  [zh-hans]: /zh-hans/
+  [zh-hant]: /zh-hant/
