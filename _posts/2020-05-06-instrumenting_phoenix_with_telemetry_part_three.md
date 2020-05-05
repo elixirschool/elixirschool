@@ -380,7 +380,7 @@ Now that we've taken a brief tour of Phoenix Telemetry events, let's hook up som
 
 Ecto provides some out-of-the-box instrumentation for queries. Let's take a look at and define metrics for some of these Telemetry events now.
 
-Ecto will execute a Telemetry event, [`[:my_app, :repo, :query]`](https://github.com/elixir-ecto/ecto/blob/2aca7b28eef486188be66592055c7336a80befe9/lib/ecto/repo.ex#L117) for every query sent to the Ecto adapter. It will emit this event with a measurement map and a metadata map.
+Ecto will execute a Telemetry event, [`[:my_app, :repo, :query]`](https://github.com/elixir-ecto/ecto/blob/2aca7b28eef486188be66592055c7336a80befe9/lib/ecto/repo.ex#L120) for every query sent to the Ecto adapter. It will emit this event with a measurement map and a metadata map.
 
 The measurement map will include:
 
