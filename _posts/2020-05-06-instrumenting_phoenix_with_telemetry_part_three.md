@@ -100,7 +100,7 @@ end
 
 You can follow along with this tutorial by cloning down the repo [here]
 (https://github.com/elixirschool/telemetry-code-along/tree/part-3-start).
-* Checkig out the starting state of our code on the branch [part-3-start](https://github.com/SophieDeBenedetto/quantum/tree/part-3-start)
+* Checking out the starting state of our code on the branch [part-3-start](https://github.com/elixirschool/telemetry-code-along/tree/part-3-start)
 * Find the solution code on the branch [part-3-solution](https://github.com/SophieDeBenedetto/quantum/tree/part-3-solution)
 
 
