@@ -14,8 +14,8 @@ excerpt: >
 In this series, we're instrumenting a Phoenix app and sending metrics to StatsD with the help of Elixir and Erlang's Telemetry offerings. A brief overview of what we'll cover:
 
 * Part I: Telemetry Under The Hood
-* Part II: Handling Telemetry Events with `TelemetryMetrics` + `TelemetryMetricsStatsd`
-* Part III: Observing Phoenix + Ecto Telemetry Events
+* [Part II: Handling Telemetry Events with `TelemetryMetrics` + `TelemetryMetricsStatsd`](https://elixirschool.com/blog/instrumenting_phoenix_with_telemetry_part_two/)
+* [Part III: Observing Phoenix + Ecto Telemetry Events](https://elixirschool.com/blog/instrumenting_phoenix_with_telemetry_part_three/)
 * Part IV: Erlang VM Measurements with `telemetry_poller`, `TelemetryMetrics` + `TelemetryMetricsStatsd`
 
 In Part I we'll start out by setting up a basic, DIY Telemetry pipeline and examining how Erlang's Telemetry library works under the hood. Then, in Part II we'll take advantage of the `TelemetryMetrics` and `TelemetryMetricsStatsd` libraries to respond to Telemetry events by formatting them as metrics and reporting those metrics to StatsD. In Part III, we'll look at the powerful instrumentation that Phoenix and Ecto offer out-of-the-box via Telemetry events executed in source code. Lastly, in Part IV, we'll leverage the `telemetry_poller` Erlang library to take Erlang VM measurements and emit them as Telemetry events, which our Telemetry pipeline can then observe and report on.
@@ -365,7 +365,6 @@ We need to start the `StatsdReporter` in our application's `start/2` function:
 
 ```elixir
 # lib/quantum/application.ex
-
 def start(_, _) do
   :ok = Quantum.Telemetry.StatsdReporter.connect()
   :ok = :telemetry.attach(
@@ -483,6 +482,6 @@ Surprise! Phoenix and Ecto are *already* emitting common events from source code
 
 Further, Telemetry provides a number of reporting clients, including a StatsD reporter, that we can plug into our `Telemetry.Metrics` module for free metrics reporting to StatsD _or_ DogStatsD, allowing us to take advantage of event metadata with tagging.
 
-In the next post, we'll leverage `Telemetry.Metrics` and the `TelemetryStatsdReporter` to observe, format and report the Telemetry event we established here. In doing so, we'll abstract away the need for our custom handler _and_ our custom StatsD reporter.
+In the [next post](https://elixirschool.com/blog/instrumenting_phoenix_with_telemetry_part_two/), we'll leverage `Telemetry.Metrics` and the `TelemetryStatsdReporter` to observe, format and report the Telemetry event we established here. In doing so, we'll abstract away the need for our custom handler _and_ our custom StatsD reporter.
 
 See you soon!
