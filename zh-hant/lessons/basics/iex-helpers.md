@@ -68,7 +68,7 @@ iex> IExHelpers.whats_this?(:test)
 
 ### `h`
 
-`h` 是 Elixir shell 付與我們最有用的工具之一。由於 Elixir 語言對文件 (documentation) 的一流支援，任何程式碼的文件都可以使用這個 helper 來實現。
+`h` 是 Elixir shell 賦予我們最有用的工具之一。由於 Elixir 語言對文件 (documentation) 的一流支援，任何程式碼的文件都可以使用這個 helper 來實現。
 
 要看它是如何被使用是很簡單的：
 
