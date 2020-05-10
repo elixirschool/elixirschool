@@ -1,5 +1,5 @@
 ---
-version: 1.0.3
+version: 1.1.0
 title: Documentação
 ---
 
@@ -46,7 +46,7 @@ defmodule Greeter do
 end
 ```
 
-Nós (ou outros) podemos acessar esta documentação de módulo usando a função `h` helper dentro de IEx.
+Nós (ou outros) podemos acessar esta documentação de módulo usando a função `h` helper dentro de IEx. Nós podemos ver por nós mesmos se colocarmos nosso módulo `Greeter` em um novo arquivo chamado `greeter.ex` e compilarmos:
 
 ```elixir
 iex> c("greeter.ex")
@@ -58,6 +58,8 @@ iex> h Greeter
 
 Provides a function hello/1 to greet a human
 ```
+
+_Nota_: não precisamos compilar manualmente nossos arquivos como fizemos acima se estamos trabalhando dentro do contexto de um projeto mix. Você pode usar o `iex -S mix` para carregar o IEx console de um projeto atual se você estiver trabalhando em um projeto mix.
 
 ### Documentação de Funções
 
