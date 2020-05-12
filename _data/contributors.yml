@@ -455,6 +455,16 @@
     - translator
   languages:
     - zh-hans
+    
+- github: caicaishmily
+  name: Chai
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - zh-hans
 
 - github: vbrazo
   name: Vitor Oliveira
