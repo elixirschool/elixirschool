@@ -13,9 +13,9 @@ excerpt: >
 
 In this series, we're instrumenting a Phoenix app and sending metrics to StatsD with the help of Elixir and Erlang's Telemetry offerings.
 
-* Part I: Telemetry Under The Hood
+* [Part I: Telemetry Under The Hood](https://elixirschool.com/blog/instrumenting-phoenix-with-telemetry-part-one/)
 * Part II: Handling Telemetry Events with `TelemetryMetrics` + `TelemetryMetricsStatsd`
-* Part III: Observing Phoenix + Ecto Telemetry Events
+* [Part III: Observing Phoenix + Ecto Telemetry Events](https://elixirschool.com/blog/instrumenting_phoenix_with_telemetry_part_three/)
 * Part IV: Erlang VM Measurements with `telemetry_poller`, `TelemetryMetrics` + `TelemetryMetricsStatsd`
 
 ## Intro
@@ -438,7 +438,7 @@ That's it! The `TelemetryMetricsStatsd` library will take care of calling `:tele
 
 ## Next Up
 
-In this post, we saw how the `Telemetry.Metrics` and `TelemetryMetricsStatsd` abstracted away the need to define custom handlers and callback functions, attach those handlers to events and implement our own metric reporting logic. But our Telemetry pipeline still needs a little work.
+In this post, we saw how `Telemetry.Metrics` and `TelemetryMetricsStatsd` abstracted away the need to define custom handlers and callback functions, attach those handlers to events and implement our own metric reporting logic. But our Telemetry pipeline still needs a little work.
 
 We're still on the hook for emitting _all_ of our own Telemetry events.
 
@@ -446,4 +446,4 @@ In order to really be able to observe the state of our production Phoenix app, w
 
 Instrumenting all of that by hand, by executing custom Telemetry events wherever we need, them will be tedious and time-consuming. On top of that, it will be a challenge to standardize event naming conventions, measurements and metadata across the app.
 
-In next week's post, we'll examine Phoenix and Ecto's out-of-the-box Telemetry events and use `Telemetry.Metrics` to observe a wide-range of such events, thus eliminating the need for us to execute our own custom events for most of our observability use-cases.
+In [next week's post](https://elixirschool.com/blog/instrumenting_phoenix_with_telemetry_part_three/), we'll examine Phoenix and Ecto's out-of-the-box Telemetry events and use `Telemetry.Metrics` to observe a wide-range of such events, thus eliminating the need for us to execute our own custom events for most of our observability use-cases.
