@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.1.0
 title: Tratamento de Erros
 ---
 
@@ -10,6 +10,18 @@ Em geral, a convenção em Elixir é criar uma função (`example/1`) que retorn
 Esta lição irá focar na interação com o último.
 
 {% include toc.html %}
+
+## Convenções Gerais
+
+No momento, a comunidade Elixir chegou a algumas convenções sobre o retorno de erros:
+
+* Para erros que fazem parte da operação regular de uma função (ex: um usuário digitou um tipo errado de data), uma função retornaria `{:ok, result}` e `{:error, reason}` adequadamente.
+
+* Para erros que não fazem parte das operações normais (ex: não é possível analisar os dados de configuração), você lançaria uma exceção.
+
+Geralmente lidamos com fluxo de erros padrão com [Pattern Matching](../basics/pattern-matching/), mas nesta lição, estamos focando no segundo caso - nas exceções.
+
+Muitas vezes, em APIs públicas, você também pode encontrar uma segunda versão da função com um ! (exemplo!/1) que retorna o resultado desempacotado(ex: retorna o resultado no lugar de retornar uma tupla) ou levanta um erro.
 
 ## Tratamento de Erros
 
