@@ -22,7 +22,7 @@ In Part I we'll start out by setting up a basic, DIY Telemetry pipeline and exam
 
 ## Introduction
 
-In this post we'll discuss why observability matters and how Telemetry helps us treat observability like a first class citizen in Elixir projects. Then, we'll hand-roll our own instrumentation pipeline using Telemetry and StatsD. We'll wrap up with a look under the hood of the Telemetry library and set ourselves for Part II of this series, in which we leverage the `Telemetry.Metrics` library for even easier instrumentation and reporting.
+In this post we'll discuss why observability matters and how Telemetry helps us treat observability like a first class citizen in Elixir projects. Then, we'll hand-roll our own instrumentation pipeline using Telemetry and StatsD. We'll wrap up with a look under the hood of the Telemetry library and set ourselves up for Part II of this series, in which we leverage the `Telemetry.Metrics` library for even easier instrumentation and reporting.
 
 ## Observability Matters
 
@@ -56,9 +56,9 @@ First, we'll take a look at how to set up a simple reporting pipeline for custom
 
 ### Getting Started
 
-You can follow along with this tutorial by cloning down the repo [here](https://github.com/SophieDeBenedetto/quantum/tree/part-1-start).
-* Checking out the starting state of our code on the branch [part-1-start](https://github.com/SophieDeBenedetto/quantum/tree/part-1-start)
-* Find the solution code on the branch [part-1-solution](https://github.com/SophieDeBenedetto/quantum/tree/part-1-solution)
+You can follow along with this tutorial by cloning down the repo [here](https://github.com/elixirschool/telemetry-code-along/tree/part-1-start).
+* Checking out the starting state of our code on the branch [part-1-start](https://github.com/elixirschool/telemetry-code-along/tree/part-1-start)
+* Find the solution code on the branch [part-1-solution](https://github.com/elixirschool/telemetry-code-along/tree/part-1-solution)
 
 Our Phoenix app, Quantum (get it?), is pretty simple--users can sign up, log in and click some buttons. Awesome, right? Really this dummy app just exists to be instrumented so it doesn't do much, sorry.
 
@@ -358,6 +358,23 @@ Next up, we define a module that uses `Statix`:
 # lib/quantum/telemetry/statsd_reporter.ex
 defmodule Quantum.Telemetry.StatsdReporter do
   use Statix
+end
+```
+
+We need to start the `StatsdReporter` in our application's `start/2` function:
+
+```elixir
+# lib/quantum/application.ex
+def start(_, _) do
+  :ok = Quantum.Telemetry.StatsdReporter.connect()
+  :ok = :telemetry.attach(
+    # unique handler id
+    "quantum-telemetry-metrics",
+    [:phoenix, :request],
+    &Quantum.Telemetry.Metrics.handle_event/4,
+    nil
+  )
+  ...
 end
 ```
 
