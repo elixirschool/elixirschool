@@ -1,11 +1,118 @@
 ---
-version: 1.0.1
+version: 1.1.0
 title: 调试
 ---
 
-臭虫（Bugs）可谓是任何项目都无法避免的存在，所以调试也不可或缺。本课程我们将学习如何调试 Elixir 代码，并使用静态分析工具来帮助寻找可能存在的 bugs。  
+臭虫（Bugs）可谓是任何项目都无法避免的存在，所以调试也不可或缺。本课程我们将学习如何调试 Elixir 代码，并使用静态分析工具来帮助寻找可能存在的 bugs。 
 
 {% include toc.html %}
+
+## Iex
+我们最直接的调试 Elixir 代码的工具是IEx。但不要被它的简单性所迷惑--你可以通过它解决你的应用程序中的大部分问题。
+
+IEx指的是 `Elixir 的交互式 shell`。你可能已经在之前的课程中看到过 IEx 了，比如 [基础](../../basics/basics) 部分，我们在 Shell 中交互式地运行Elixir 代码。
+
+这里的想法很简单。你在你想调试的地方获取交互式 shell 的上下文。
+
+让我们尝试一下。要做到这一点，创建一个名为 `test.exe` 的文件，然后下面的内容写入文件：
+
+```elixir
+defmodule TestMod do
+  def sum([a, b]) do
+    b = 0
+
+    a + b
+  end
+end
+
+IO.puts(TestMod.sum([34, 65]))
+```
+
+如果你运行它 - 你会得到一个明显的输出 `34`:
+
+```shell
+$ elixir test.exs
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+34
+```
+
+但是现在让我们进入激动人心的部分 -- 调试。将 `require IEx; IEx.pry` 放在 `b = 0` 之后的行中，让我们再试着运行一次。你会得到这样的结果。
+
+```shell
+$ elixir test.exs
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+Cannot pry #PID<0.92.0> at TestMod.sum/1 (test.exs:5). Is an IEx shell running?
+34
+```
+
+你应该注意到这个重要的消息。当运行一个应用程序时，像往常一样，IEx 会输出这个消息，而不是阻止程序的执行。为了正常运行，你需要在命令前加上 `iex -S`。它的作用是在 `iex` 命令中运行 `mix`，这样它就会在一个特殊模式下运行程序，例如，调用 `IEx.pry` 就会停止程序的执行。
+
+例如，`iex -S mix phx.server` 来调试 Phoenix 应用程序。在我们的例子中，要用 `iex -S test.exs` 来要求文件。
+
+```shell
+$ iex -r test.exs
+Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
+
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+Request to pry #PID<0.107.0> at TestMod.sum/1 (test.exs:5)
+
+    3:     b = 0
+    4:
+    5:     require IEx; IEx.pry
+    6:
+    7:     a + b
+
+Allow? [Yn]
+```
+
+通过 `y` 或按回车键回复提示后，您就进入了交互模式。
+
+```shell
+$ iex -r test.exs
+Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
+
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+Request to pry #PID<0.107.0> at TestMod.sum/1 (test.exs:5)
+
+    3:     b = 0
+    4:
+    5:     require IEx; IEx.pry
+    6:
+    7:     a + b
+
+Allow? [Yn] y
+Interactive Elixir (1.8.1) - press Ctrl+C to exit (type h() ENTER for help)
+pry(1)> a
+34
+pry(2)> b
+0
+pry(3)> a + b
+34
+pry(4)> continue
+34
+
+Interactive Elixir (1.8.1) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)>
+BREAK: (a)bort (c)ontinue (p)roc info (i)nfo (l)oaded
+       (v)ersion (k)ill (D)b-tables (d)istribution
+```
+
+要退出IEx，你可以按两次 `Ctrl+C` 键退出应用，或者键入 `continue` 转到下一个断点。
+
+如你所见，你可以运行任何 Elixir 代码。但是，由于语言的不可更改性，你不能修改现有代码中的变量。但是，你可以得到所有变量的值，并运行任何计算。在这种情况下，`b` 被重新赋值为 0，结果是 `sum` 函数出现了错误。当然，即使是在第一次运行时，语言已经发现了这个 bug，但这只是个例子!
+
+### Iex helpers
+在使用 IEx 工作时，有一个比较烦人的地方，就是它没有你以前运行时使用的命令历史记录。为了解决这个问题，在 [IEx 文档](https://hexdocs.pm/iex/IEx.html#module-shell-history) 中有一个单独的小节，你可以在其中找到适合你所选择的平台的解决方案。
+
+你也可以在 [IEx.Helpers 文档](https://hexdocs.pm/iex/IEx.Helpers.html) 中查看其他可用的帮助列表。
 
 ## Dialyxir 和 Dialyzer
 
