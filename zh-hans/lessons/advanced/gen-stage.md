@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.1.0
 title: GenStage
 ---
 
@@ -57,7 +57,7 @@ $ cd genstage_example
 ```elixir
 defp deps do
   [
-    {:gen_stage, "~> 0.11"},
+    {:gen_stage, "~> 1.0.0"},
   ]
 end
 ```
@@ -118,7 +118,7 @@ defmodule GenstageExample.ProducerConsumer do
 
   require Integer
 
-  def start_link do
+  def start_link(_initial) do
     GenStage.start_link(__MODULE__, :state_doesnt_matter, name: __MODULE__)
   end
 
@@ -154,7 +154,7 @@ $ touch lib/genstage_example/consumer.ex
 defmodule GenstageExample.Consumer do
   use GenStage
 
-  def start_link do
+  def start_link(_initial) do
     GenStage.start_link(__MODULE__, :state_doesnt_matter)
   end
 
@@ -186,9 +186,9 @@ def start(_type, _args) do
   import Supervisor.Spec, warn: false
 
   children = [
-    worker(GenstageExample.Producer, [0]),
-    worker(GenstageExample.ProducerConsumer, []),
-    worker(GenstageExample.Consumer, [])
+    {GenstageExample.Producer, 0},
+    {GenstageExample.ProducerConsumer, []},
+    {GenstageExample.Consumer, []}
   ]
 
   opts = [strategy: :one_for_one, name: GenstageExample.Supervisor]
@@ -221,10 +221,16 @@ $ mix run --no-halt
 
 ```elixir
 children = [
-  worker(GenstageExample.Producer, [0]),
-  worker(GenstageExample.ProducerConsumer, []),
-  worker(GenstageExample.Consumer, [], id: 1),
-  worker(GenstageExample.Consumer, [], id: 2)
+  {GenstageExample.Producer, 0},
+  {GenstageExample.ProducerConsumer, []},
+  %{
+    id: 1,
+    start: {GenstageExample.Consumer, :start_link, [[]]}
+  },
+  %{
+    id: 2,
+    start: {GenstageExample.Consumer, :start_link, [[]]}
+  }
 ]
 ```
 

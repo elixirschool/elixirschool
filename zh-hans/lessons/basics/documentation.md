@@ -1,5 +1,5 @@
 ---
-version: 1.0.3
+version: 1.1.0
 title: 文档模块
 ---
 
@@ -48,6 +48,8 @@ end
 
 用户可以在IEx里面通过`h`这个辅助函数看到我们在这个模块里定义的文档。
 
+我们可以通过把 `Greeter` 模块移到一个新文件 `greeter.ex` 并编译来亲自试验一下。
+
 ```elixir
 iex> c("greeter.ex")
 [Greeter]
@@ -58,6 +60,8 @@ iex> h Greeter
 
 Provides a function hello/1 to greet a human
 ```
+
+_注意_: 如果代码是在一个 mix 项目底下，我们并不需要像上面那样手动编译文件。只需要通过执行 `iex -S mix` 命令，IEx 控制台就可以加载当前项目。
 
 ### 函数注释
 
