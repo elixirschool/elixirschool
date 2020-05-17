@@ -107,8 +107,6 @@ defmodule Mix.Tasks.Hello do
     Hello.say()
   end
 end
-    
-
 ```
 
 ## Mix Tasks in Action
