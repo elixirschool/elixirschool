@@ -91,6 +91,26 @@ On the second line, we introduce the `use Mix.Task` which brings the `Mix.Task` 
 We then declare a run function which ignores any arguments for now.
 Within this function, we call our `Hello` module and the `say` function.
 
+## Loading your application
+
+If you want to load your application before executing the script, you can do so with:
+
+```elixir
+defmodule Mix.Tasks.Hello do
+  use Mix.Task
+
+  @shortdoc "Simply calls the Hello.say/0 function."
+  def run(_) do
+    # This will start our application 
+    Mix.Task.run("app.start")
+    
+    Hello.say()
+  end
+end
+    
+
+```
+
 ## Mix Tasks in Action
 
 Let's checkout our mix task.
