@@ -40,12 +40,9 @@
 				if ($theme === 'dark') {
 					toggleThemeIcon($elToggleTheme);
 				}
-				$window.on('load', function() {
-
-					setTimeout(function() {
-						$body.removeClass('is-loading');
-					}, 100);
-				});
+				setTimeout(function() {
+					$body.removeClass('is-loading');
+				}, 100);
 
 			// ... when resizing.
 				var resizeTimeout;
@@ -231,7 +228,7 @@
 					$body.toggleClass('dark');
 					toggleThemeIcon($elToggleTheme);
 				});
-				
+
 			// Polyfill for sidebar
 				Stickyfill.add($('#sidebar > .inner'));
 
