@@ -228,7 +228,7 @@ defmodule Greeter do
     phrase(language_code) <> name
   end
 
-  defp phrase("es"), do: "Chào "
+  defp phrase("vn"), do: "Chào "
   defp phrase("en"), do: "Hello, "
 end
 
