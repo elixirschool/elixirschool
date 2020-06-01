@@ -16,6 +16,12 @@
 		'small-to-xlarge': '(min-width: 481px) and (max-width: 1680px)'
 	});
 
+	$(window).on('load', function() {
+		setTimeout(function() {
+			$('body').removeClass('is-loading');
+		}, 100);
+	});
+
 	$(function() {
 
 		var	$window = $(window),
@@ -33,16 +39,11 @@
 		// That means it will be `undefined` if cookie does not exist.
 		if (!$theme) $theme = 'light';
 
-		// Disable animations/transitions ...
+		if ($theme === 'dark') {
+			toggleThemeIcon($elToggleTheme);
+		}
 
-			// ... until the page has loaded.
-				$body.addClass('is-loading');
-				if ($theme === 'dark') {
-					toggleThemeIcon($elToggleTheme);
-				}
-				setTimeout(function() {
-					$body.removeClass('is-loading');
-				}, 100);
+		// Disable animations/transitions ...
 
 			// ... when resizing.
 				var resizeTimeout;
