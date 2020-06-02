@@ -50,7 +50,7 @@ To run it locally, you need both Ruby and Bundler installed.
 
 In its current iteration Elixir School is powered by Jekyll, a powerful static blog generator. If you're familiar with Jekyll then you're ready to go, if you aren't don't fret we're here to help!
 
-1. We need to create the file for our article. Blog posts live in the `_posts/` directory. Our filename will need to confirm to the `YYYY-MM-DD-name-seperated-with-hyphens.md` pattern.
+1. We need to create the file for our article. Blog posts live in the `_posts/` directory. Our filename will need to confirm to the `YYYY-MM-DD-name-separated-with-hyphens.md` pattern.
 
 2. After opening the new file in our favorite editor we need to add some metadata to the top of it:
 
