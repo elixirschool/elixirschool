@@ -1,11 +1,11 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Concorrência
 ---
 
-Um dos pontos ofertados pelo Elixir é o suporte a concorrência. Graças à Erlang VM (BEAM), concorrência no Elixir é mais fácil do que esperamos. O modelo de concorrência replica sobre Atores, um processo constante que se comunica com outros processos através de passagem de mensagem.
+Um dos pontos ofertados pelo Elixir é o suporte a concorrência. Graças à Erlang VM (BEAM), concorrência no Elixir é mais fácil do que esperamos. O modelo de concorrência depende de Atores, um processo contido (isolado) que se comunica com outros processos por meio de passagem de mensagem.
 
-Nesta aula nós veremos os módulos de concorrência que vêm com Elixir. No próximo capítulo nós cobriremos os comportamentos OTP que os implementam.
+Nesta aula nós veremos os módulos de concorrência que vêm com Elixir. No próximo capítulo, cobriremos os comportamentos OTP que os implementam.
 
 {% include toc.html %}
 
@@ -13,7 +13,7 @@ Nesta aula nós veremos os módulos de concorrência que vêm com Elixir. No pr�
 
 Processos no Erlang VM são leves e executam em todas as CPUs. Enquanto eles podem parecer como threads nativas, eles são bastantes simples e não é incomum ter milhares de processos concorrentes em uma aplicação Elixir.
 
-A forma mais fácil para criar um novo processo é o `spawn` na qual tem tanto uma função nomeada ou anônima. Quando criamos um novo processo ele retorna um _Process Identifier_ ou PID, para exclusivamente identificá-lo dentro de nossa aplicação.
+A forma mais fácil para criar um novo processo é o `spawn`, que pode receber tanto uma função nomeada quanto anônima. Quando criamos um novo processo ele retorna um _Process Identifier_ ou PID, para exclusivamente identificá-lo dentro de nossa aplicação.
 
 Para iniciar criaremos um módulo e definiremos uma função que gostaríamos de executar:
 
@@ -29,7 +29,7 @@ iex> Example.add(2, 3)
 :ok
 ```
 
-Para avaliar a função de forma assíncrona usamos `spawn/3`:
+Para executar a função de forma assíncrona usamos `spawn/3`:
 
 ```elixir
 iex> spawn(Example, :add, [2, 3])
@@ -39,7 +39,7 @@ iex> spawn(Example, :add, [2, 3])
 
 ### Passagem de mensagem
 
-Para comunicar-se, os processos dependem de passagem de mensagens. Há dois componentes principais para isso: `send/2` e` receive`. A função `send/2` nos permite enviar mensagens para PIDs. Para ouvir usamos `receive` para combinar as mensagens, se nenhuma correspondência for encontrada a execução continua ininterrupta.
+Para comunicar-se, os processos dependem de passagem de mensagens. Há dois componentes principais para isso: `send/2` e `receive`. A função `send/2` nos permite enviar mensagens para PIDs. Para recebê-las, usamos a função `receive` com pattern matching para selecionar as mensagens. Se nenhum padrão coincidir com a mensagem recebida, a execução continua ininterrupta.
 
 ```elixir
 defmodule Example do
@@ -81,7 +81,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-Em determinados momentos não queremos que nosso processo vinculado falhe o atual. Para isso nós precisamos interceptar as saídas usando `Process.flag/2`. Ela usa a função do erlang [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) para a flag `trap_exit`. Quando a interceptação sai (`trap_exit` é definida para `true`), sinais de saída são recebidas como uma tupla de mensagem: `{:EXIT, from_pid, reason}`.
+Em determinados momentos não queremos que nosso processo vinculado falhe o atual. Para isso nós precisamos interceptar as saídas usando `Process.flag/2`. Ela usa a função do erlang [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) para a flag `trap_exit`. Quando interceptando saídas (`trap_exit` é definida como `true`), sinais de saída são recebidos como uma tupla de mensagem: `{:EXIT, from_pid, reason}`.
 
 ```elixir
 defmodule Example do
@@ -104,7 +104,7 @@ Exit reason: kaboom
 
 ### Monitorando processos
 
-E se não queremos vincular dois processos, mas continuar a ser informado? Para isso, podemos usar o monitoramento de processos com `spawn_monitor`. Quando monitoramos um processo, pegamos a mensagem, se o processo falha não afetando nosso processo atual ou não necessitando explicitamente interceptar a saída.
+E se não queremos vincular dois processos, mas continuar a sermos informados? Para isso, podemos usar o monitoramento de processos com `spawn_monitor`. Quando monitoramos um processo, nós recebemos uma mensagem informando se o processo falhou, sem afetar nosso processo atual nem necessitar explicitamente interceptar a saída.
 
 ```elixir
 defmodule Example do
@@ -126,7 +126,7 @@ Exit reason: kaboom
 
 ## Agentes
 
-Agentes são uma abstração acerca de processos em segundo plano em estado de manutenção. Podemos acessá-los de outros processos dentro de nossa aplicação ou nó. O estado do nosso Agente é definido como valor de retorno de nossa função:
+Agentes são uma abstração acerca de processos em segundo plano que mantêm estado. Podemos acessá-los de outros processos dentro de nossa aplicação ou nó. O estado do nosso Agente é definido como valor de retorno de nossa função:
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
@@ -139,7 +139,7 @@ iex> Agent.get(agent, &(&1))
 [1, 2, 3, 4, 5]
 ```
 
-Quando nomeamos um Agente podemos referi-lo ao invés de seu PID:
+Quando nomeamos um Agente podemos referenciar seu nome ao invés de seu PID:
 
 ```elixir
 iex> Agent.start_link(fn -> [1, 2, 3] end, name: Numbers)
