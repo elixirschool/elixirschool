@@ -51,7 +51,7 @@ For example, if we specify the following counter metric:
 
 ```elixir
 counter(
-  "phoenix.request"
+  "phoenix.request",
   tags: [:request_path]
 )
 ```
@@ -273,39 +273,38 @@ The `Phoenix.Socket` module executes a Telemetry event whenever the socket is co
 ```elixir
 # phoenix/lib/phoenix/socket.ex
 def __connect__(user_socket, map, socket_options) do
-    %{
-      endpoint: endpoint,
-      options: options,
-      transport: transport,
-      params: params,
-      connect_info: connect_info
-    } = map
+  %{
+    endpoint: endpoint,
+    options: options,
+    transport: transport,
+    params: params,
+    connect_info: connect_info
+  } = map
 
-    start = System.monotonic_time()
+  start = System.monotonic_time()
 
-    case negotiate_serializer(Keyword.fetch!(options, :serializer), vsn) do
-      {:ok, serializer} ->
-        result = user_connect(user_socket, endpoint, transport, serializer, params, connect_info)
+  case negotiate_serializer(Keyword.fetch!(options, :serializer), vsn) do
+    {:ok, serializer} ->
+      result = user_connect(user_socket, endpoint, transport, serializer, params, connect_info)
 
-        metadata = %{
-          endpoint: endpoint,
-          transport: transport,
-          params: params,
-          connect_info: connect_info,
-          vsn: vsn,
-          user_socket: user_socket,
-          log: Keyword.get(options, :log, :info),
-          result: result(result),
-          serializer: serializer
-        }
+      metadata = %{
+        endpoint: endpoint,
+        transport: transport,
+        params: params,
+        connect_info: connect_info,
+        vsn: vsn,
+        user_socket: user_socket,
+        log: Keyword.get(options, :log, :info),
+        result: result(result),
+        serializer: serializer
+      }
 
-        duration = System.monotonic_time() - start
-        :telemetry.execute([:phoenix, :socket_connected], %{duration: duration}, metadata)
-        result
+      duration = System.monotonic_time() - start
+      :telemetry.execute([:phoenix, :socket_connected], %{duration: duration}, metadata)
+      result
 
-      :error ->
-        :error
-    end
+    :error ->
+      :error
   end
 end
 ```

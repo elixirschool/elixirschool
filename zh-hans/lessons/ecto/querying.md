@@ -344,7 +344,7 @@ iex> Repo.all(query)
 ```elixir
 Repo.all from m in Movie,
   join: a in assoc(m, :actors),
-  where: a.name == "John Wayne"
+  where: a.name == "John Wayne",
   preload: [actors: a]
 ```
 

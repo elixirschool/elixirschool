@@ -309,7 +309,7 @@ iex> Mnesia.transaction(
 `Mnesia.transform_table/3` 函數將表格的名稱作為屬性，該函數將記錄從舊格式轉換為新格式和新屬性列表。
 
 ```elixir
-case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]])
+case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
   {:atomic, :ok} ->
     Mnesia.add_table_index(Person, :job)
     Mnesia.add_table_index(Person, :age)

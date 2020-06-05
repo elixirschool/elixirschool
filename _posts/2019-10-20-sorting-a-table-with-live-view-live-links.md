@@ -163,7 +163,7 @@ end
 Here, we've added a check to see if the `sort_by` attribute is included in our list of sortable attributes.
 
 ```elixir
-when sort_by in ~w(~w(name course_offering campus start_date end_date lms_cohort_status))
+when sort_by in ~w(name course_offering campus start_date end_date lms_cohort_status)
 ```
 
 If so, we will proceed to sort cohorts. If not, i.e. if a user pointed their browser to `/cohorts?sort_by=not_a_thing_we_support`, then we will ignore the `sort_by` value and refrain from updating socket state.

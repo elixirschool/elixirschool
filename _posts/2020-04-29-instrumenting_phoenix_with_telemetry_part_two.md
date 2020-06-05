@@ -283,7 +283,7 @@ So, when we execute our Telemetry with the `conn` passed in as the metadata argu
 
 ```elixir
 # lib/quantum_web/controllers/user_controller.ex
-def new(conn, _params)
+def new(conn, _params) do 
   :telemetry.execute([:phoenix, :request], %{duration: System.monotonic_time() - start}, conn)
 end
 ```
@@ -373,7 +373,7 @@ Later, the `[:phoenix, :request]` event is executed in our `UserController`:
 
 ```elixir
 # lib/quantum_web/controllers/user_controller.ex
-def new(conn, _params)
+def new(conn, _params) do
   :telemetry.execute([:phoenix, :request], %{duration: System.monotonic_time() - start}, conn)
 end
 ```

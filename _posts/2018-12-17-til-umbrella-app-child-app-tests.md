@@ -77,7 +77,7 @@ def project do
       aliases: aliases(),
       ...
     ]
-  end
+end
 
 def aliases do
   [
