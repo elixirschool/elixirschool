@@ -28,23 +28,30 @@ layout: default
     <div class="tags">
       <h4 class="title">Article tags</h4>
       {% for tag in page.tags %}
-        <span class="tag"><a href="{{ site.jekyll-archives.permalinks.tag | replace: ":name", tag }}">{{ tag }}</a></span>      
-      {% endfor %}      
+        <span class="tag"><a href="{{ site.jekyll-archives.permalinks.tag | replace: ":name", tag }}">{{ tag }}</a></span>
+      {% endfor %}
       </div>
     </p>
     {% endif %}
+
+    <blockquote class="edit-lesson">
+      Caught a mistake or want to contribute to the article?
+      <a href="https://github.com/elixirschool/elixirschool/edit/master/{{ page.path }}" target="_blank">
+        Edit this page on GitHub!
+      </a>
+    </blockquote>
   </div>
 </section>
 {% include section-prevnext.html %}
-<section> 
+<section>
   {%- if page.authors -%}
     {%- for author in page.authors -%}
       {% include function-getContributor type="name" search=author %}
       {% include section-author.html %}
       <hr>
-    {%- endfor -%}  
+    {%- endfor -%}
   {%- else -%}
     {% include function-getContributor type="name" search=page.author %}
     {% include section-author.html %}
-  {%- endif -%}  
+  {%- endif -%}
 </section>

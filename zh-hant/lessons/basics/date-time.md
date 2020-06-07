@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.1.0
 title: 日期與時間
 ---
 
@@ -10,8 +10,6 @@ title: 日期與時間
 ## Time
 
 Elixir 有一些處理時間變化的模組。
-需要特別注意的是，此功能僅限於使用在 UTC 時區。
-
 現在從獲取目前時間開始：
 
 ```elixir
@@ -91,10 +89,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 它沒有像 `NaiveDateTime` 提到的限制：它既有時間又有日期，並支援時區。
 但請注意官方文件中的時區說明：
 
-```
-您會注意到此模組僅包含適用於 UTC 函數的轉換函數。
-這是因為正確的 DateTime 實現需要時區資料庫，而該資料庫目前未作為 Elixir 的一部分來提供。
-```
+> 在本模組中的許多函數都需要一個時區資料庫。預設情況下，它使用 `Calendar.get_time_zone_database/0` 回傳的預設時區資料庫，資料庫預設為 `Calendar.UTCOnlyTimeZoneDatabase`，且只處理 Etc / UTC 日期時間，對其他時區則回傳 `{:error, :utc_only_time_zone_database}`。
 
 另請注意，可以通過提供時區從 NaiveDateTime 建立 DateTime 實例：
 
@@ -102,6 +97,29 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 iex> DateTime.
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
+
+## 處理時區
+
+如上一章所說，預設情況下，Elixir 無任何時區資料。
+要解決此問題，需要安裝並設定 [tzdata](https://github.com/lau/tzdata) 套件。
+安裝之後，要在全域配置 Elixir 以便將 Tzdata 用作時區資料庫：
+
+```
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+```
+
+現在，試著在巴黎時區建立時間並將其轉換為紐約當地時間：
+
+```
+iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
+#DateTime<2019-01-01 12:00:00+01:00 CET Europe/Paris>
+iex> {:ok, ny_datetime} = DateTime.shift_zone(paris_datetime, "America/New_York")
+{:ok, #DateTime<2019-01-01 06:00:00-05:00 EST America/New_York>}
+iex> ny_datetime
+#DateTime<2019-01-01 06:00:00-05:00 EST America/New_York>
+```
+
+如你所見，時間從巴黎當地時間 12:00 改為 6:00，這是正確的 - 兩個城市之間的時差為 6 小時。
 
 就是這個！如果使用其他進階函數，可能需要考慮進一步查看 [Time](https://hexdocs.pm/elixir/Time.html)、[Date](https://hexdocs.pm/elixir/Date.html)、[DateTime](https://hexdocs.pm/elixir/DateTime.html) 與 [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) 的文件。
 同時還應該考慮 [Timex](https://github.com/bitwalker/timex) 和 [Calendar](https://github.com/lau/calendar) 這些強大並可以在 Elixir 中處理時間的函式庫。

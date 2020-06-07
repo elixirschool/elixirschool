@@ -1,22 +1,31 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Debugging
 ---
 
 Bugs are an inherent part of any project, that's why we need debugging.
+
 In this lesson we'll learn about debugging Elixir code as well as static analysis tools to help find potential bugs.
 
 {% include toc.html %}
 
-# IEx
+## IEx
 
-The most straightforward tool we have for debugging Elixir code is IEx. But don't be fooled by its simplicity - you can solve most of the issues with your application by it.
+The most straightforward tool we have for debugging Elixir code is IEx.
 
-IEx means `Elixir's interactive shell`.  You could have already seen IEx in one of the previous lessons like [Basics](../../basics/basics) where we ran Elixir code interactively in the shell.
+But don't be fooled by its simplicity - you can solve most of the issues with your application by it.
 
-The idea here is simple. You get the interactive shell in the context of the place you want to debug.
+IEx means `Elixir's interactive shell`.
 
-Let's try it. To do that, create a file named `test.exs` and put this into the file:
+You could have already seen IEx in one of the previous lessons like [Basics](../../basics/basics) where we ran Elixir code interactively in the shell.
+
+The idea here is simple.
+
+You get the interactive shell in the context of the place you want to debug.
+
+Let's try it.
+
+To do that, create a file named `test.exs` and put this into the file:
 
 ```
 defmodule TestMod do
@@ -40,7 +49,11 @@ warning: variable "b" is unused (if the variable is not meant to be used, prefix
 34
 ```
 
-But now let's get to the exciting part - the debugging. Put `require IEx; IEx.pry` in the line after `b = 0` and let's try running it once again. You'll get something like this:
+But now let's get to the exciting part - the debugging.
+
+Put `require IEx; IEx.pry` in the line after `b = 0` and let's try running it once again.
+
+You'll get something like this:
 
 ```
 $ elixir test.exs
@@ -51,7 +64,13 @@ Cannot pry #PID<0.92.0> at TestMod.sum/1 (test.exs:5). Is an IEx shell running?
 34
 ```
 
-You should note that vital message. When running an application, as usual, IEx outputs this message instead of blocking execution of the program. To run it properly you need to prepend your command with `iex -S`. What this does is it runs `mix` inside the `iex` command so that it runs the application in a special mode, such that calls to `IEx.pry` stop the application execution.
+You should note that vital message.
+
+When running an application, as usual, IEx outputs this message instead of blocking execution of the program.
+
+To run it properly you need to prepend your command with `iex -S`.
+
+What this does is it runs `mix` inside the `iex` command so that it runs the application in a special mode, such that calls to `IEx.pry` stop the application execution.
 
 For example, `iex -S mix phx.server` to debug your Phoenix application. In our case, it's going to be `iex -S test.exs` to require the file:
 
@@ -109,15 +128,25 @@ BREAK: (a)bort (c)ontinue (p)roc info (i)nfo (l)oaded
 
 To quit IEx, you can either hit `Ctrl+C` two times to exit the app, or type `continue` to go to the next breakpoint.
 
-As you can see, you can run any Elixir code. However, the limitation is that you can't modify variables of existing code, due to language immutability. However, you can get values of all the variables and run any computations. In this case, the bug would be in `b` reassigned to 0, and `sum` function being buggy as a result. Sure, language has already caught this bug even on the first run, but that's an example!
+As you can see, you can run any Elixir code.
 
-### IEx helpers
+However, the limitation is that you can't modify variables of existing code, due to language immutability.
 
-One of the more annoying parts of working with IEx is it has no history of commands you used in previous runs. For solving that problem, there is a separate subsection on [IEx documentation](https://hexdocs.pm/iex/IEx.html#module-shell-history), where you can find the solution for your platform of choice.
+However, you can get values of all the variables and run any computations.
+
+In this case, the bug would be in `b` reassigned to 0, and `sum` function being buggy as a result.
+
+Sure, language has already caught this bug even on the first run, but that's an example!
+
+### IEx.Helpers
+
+One of the more annoying parts of working with IEx is it has no history of commands you used in previous runs.
+
+For solving that problem, there is a separate subsection on [IEx documentation](https://hexdocs.pm/iex/IEx.html#module-shell-history), where you can find the solution for your platform of choice.
 
 You can also look through the list of other available helpers in [IEx.Helpers documentation](https://hexdocs.pm/iex/IEx.Helpers.html).
 
-# Dialyxir and Dialyzer
+## Dialyxir and Dialyzer
 
 The [Dialyzer](http://erlang.org/doc/man/dialyzer.html), a **DI**screpancy **A**na**LYZ**er for **ER**lang programs is a tool for static code analysis.
 In other words they _read_ but do not _run_ code and analyse it e.g.
@@ -166,7 +195,7 @@ dialyzer --build_plt --output_plt /.dialyxir_core_18_1.3.2.plt --apps erts kerne
 done (warnings were emitted)
 ```
 
-## Static analysis of code
+### Static analysis of code
 
 Now we're ready to use Dialyxir:
 
@@ -206,7 +235,7 @@ done (passed successfully)
 
 Using specifications with tools to perform static code analysis helps us make code that is self-tested and contains less bugs.
 
-# Debugging
+## Debugging
 
 Sometimes static analysis of code is not enough.
 It may be necessary to understand the execution flow in order to find bugs.
@@ -266,7 +295,7 @@ After we've attached our module to the debugger it will be available in the menu
 
 ![Debugger Screenshot 2]({% asset debugger_2.png @path %})
 
-## Creating breakpoints
+### Creating breakpoints
 
 A breakpoint is a point in the code where execution will be halted.
 We have two ways of creating breakpoints:
