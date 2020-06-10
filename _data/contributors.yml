@@ -515,3 +515,13 @@
     - translator
   languages:
     - ru
+
+- github: artkay
+  name: Artem Kay
+  intro:
+  homepage: https://zelda.dog
+  twitter: artk4y
+  contributions:
+    - translator
+  languages:
+    - ru
