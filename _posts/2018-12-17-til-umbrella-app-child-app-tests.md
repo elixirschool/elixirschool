@@ -99,3 +99,4 @@ mix child_app_name_test test/child_app_name_test.exs
 ```
 
 And that's it! A nice, easy-to-use command for running a child app's specs. You could define one such alias for each child app in your umbrella and run those tests with ease.
+
