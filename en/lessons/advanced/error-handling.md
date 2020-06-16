@@ -18,7 +18,7 @@ At the moment, the Elixir community has come to some conventions regarding retur
 * For errors that are part of the regular operation of a function (e.g. a user entered a wrong type of date), a function returns `{:ok, result}` and `{:error, reason}` accordingly.
 * For errors that are not part of normal operations (e.g. being unable to parse configuration data) you throw an exception.
 
-We generally handle standard flow errors by [Pattern Matching](../basics/pattern-matching/), but in this lesson, we are focusing on the second case - on the exceptions.
+We generally handle standard flow errors by [Pattern Matching](../../basics/pattern-matching/), but in this lesson, we are focusing on the second case - on the exceptions.
 
 Often, in public APIs, you can also find a second version of the function with a ! (example!/1) that returns the unwrapped result or raises an error.
 
