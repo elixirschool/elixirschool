@@ -37,11 +37,11 @@ body.dark {
     background: _dark(bg-alt);
     border: solid 1px _dark(border);
   }
-  
+
   .tag {
     background-color: _dark(border);
   }
-  
+
   .highlight {
     background: _dark(bg);
 
@@ -181,8 +181,10 @@ body.dark {
         > ul {
           color: _dark(fg);
           a, span {
-            // delete?
             color: _dark(fg-light);
+            &.active {
+              color: _purple(bg);
+            }
           }
         }
       }
