@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: GenStage
 ---
 
@@ -87,7 +87,6 @@ As we discussed before, we want to create a producer that emits a constant strea
 Let's create our producer file:
 
 ```shell
-$ mkdir lib/genstage_example
 $ touch lib/genstage_example/producer.ex
 ```
 
@@ -223,6 +222,7 @@ If things are all correct, we can run our project and we should see everything w
 
 ```shell
 $ mix run --no-halt
+{#PID<0.109.0>, 0, :state_doesnt_matter}
 {#PID<0.109.0>, 2, :state_doesnt_matter}
 {#PID<0.109.0>, 4, :state_doesnt_matter}
 {#PID<0.109.0>, 6, :state_doesnt_matter}
@@ -264,10 +264,10 @@ Now that we've configured two consumers, let's see what we get if we run our app
 
 ```shell
 $ mix run --no-halt
+{#PID<0.120.0>, 0, :state_doesnt_matter}
 {#PID<0.120.0>, 2, :state_doesnt_matter}
-{#PID<0.121.0>, 4, :state_doesnt_matter}
+{#PID<0.120.0>, 4, :state_doesnt_matter}
 {#PID<0.120.0>, 6, :state_doesnt_matter}
-{#PID<0.120.0>, 8, :state_doesnt_matter}
 ...
 {#PID<0.120.0>, 86478, :state_doesnt_matter}
 {#PID<0.121.0>, 87338, :state_doesnt_matter}
