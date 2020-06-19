@@ -128,7 +128,7 @@ iex> "Hello World" |> to_charlist() |> :string.words
 
 ### Variables
 
-In Erlang variables starts from uppercase and re-binding is not allowed.
+In Erlang, variables begin with an uppercase letter and re-binding is not allowed.
 
 Elixir:
 
