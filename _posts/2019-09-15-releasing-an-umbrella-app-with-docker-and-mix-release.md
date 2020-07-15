@@ -50,13 +50,13 @@ config :registrar,
   stripe_api_base_url: System.get_env("STRIPE_BASE_URL"),
   stripe_api_key: System.get_env("STRIPE_SECRET_KEY"),
   accounts: Registrar.Accounts,
-  billing: Registrar.Billing,
+  billing: Registrar.Billing
 
 config :registrar_web,
   learn_base_url: System.get_env("LEARN_OAUTH_BASE_URL"),
   learn_client_id: System.get_env("LEARN_OAUTH_CLIENT_ID"),
   learn_client_secret: System.get_env("LEARN_OAUTH_CLIENT_SECRET"),
-  learn_client: RegistrarWeb.OAuth.LearnClient,
+  learn_client: RegistrarWeb.OAuth.LearnClient
 
 # Configures the endpoint
 config :registrar_web, RegistrarWeb.Endpoint,
@@ -134,16 +134,16 @@ import Config
 
 config :registrar,
   stripe_api_base_url: System.fetch_env!("STRIPE_BASE_URL"),
-  stripe_api_key: System.fetch_env!("STRIPE_SECRET_KEY"),
+  stripe_api_key: System.fetch_env!("STRIPE_SECRET_KEY")
 
 config :registrar_web,
   learn_base_url: System.fetch_env!("LEARN_OAUTH_BASE_URL"),
   learn_client_id: System.fetch_env!("LEARN_OAUTH_CLIENT_ID"),
-  learn_client_secret: System.fetch_env!("LEARN_OAUTH_CLIENT_SECRET"),
+  learn_client_secret: System.fetch_env!("LEARN_OAUTH_CLIENT_SECRET")
 
 # Configures the endpoint
 config :registrar_web, RegistrarWeb.Endpoint,
-  secret_key_base: System.fetch_env!("SECRET_KEY_BASE"),
+  secret_key_base: System.fetch_env!("SECRET_KEY_BASE")
 ```
 
 Here we're configuring all of our runtime application environment variables with the help of `System.fetch_env!/1`. This function will raise an error if the given environment variable is not present in the system at runtime. We want this kind of validation in place so that our app fails to start up if its missing necessary environment variables--no silent failures downstream.

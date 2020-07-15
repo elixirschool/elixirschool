@@ -1,7 +1,9 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Nerves
 ---
+
+{% include toc.html %}
 
 ## Introduction and requirements
 
@@ -152,7 +154,7 @@ If the network is functional after the previous step, you are good to go.
 
 To update your setup, the simplest way is to use `mix firmware && ./upload.sh 192.168.88.2`: the first comand creates the updated firmware, and the second one pushes it over the network and reboots the device. You can finally stop having to swap SD cards in and out of the device!
 
-_Hint: `ssh 192.168.88.2` gives you an IEx shell on the device in the context of the app. _
+_Hint: `ssh 192.168.88.2` gives you an IEx shell on the device in the context of the app._
 
 _Troubleshooting: If you don't have an existing ssh key in your home folder, you will have an error `No SSH public keys found in ~/.ssh.`. In this case, you will need to run `ssh-keygen` and re-burn the firmware to use the network update feature._
 

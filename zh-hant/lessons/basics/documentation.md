@@ -1,5 +1,5 @@
 ---
-version: 1.0.3
+version: 1.1.0
 title: 文件
 ---
 
@@ -56,6 +56,7 @@ end
 ```
 
 我們（或其他人）可以在 IEx 中 使用 `h` 輔助函數來存取這個模組內文件。
+如果將 `Greeter` 模組放進一個新檔案 `greeter.ex` 內並進行編譯，我們自己就會看到：
 
 ```elixir
 iex> c("greeter.ex")
@@ -67,6 +68,8 @@ iex> h Greeter
 
 Provides a function hello/1 to greet a human
 ```
+
+_註_：在 mix 專案內，是不需要像上面那樣手動編譯檔案。如果是正在 mix 專案中工作，則使用 `iex -S mix` 就可以為當前專案載入 IEx 控制台。
 
 ### 函數內註解 (Documenting Functions)
 
@@ -169,7 +172,7 @@ $ cd greet_everyone
 現在將 `@doc` 註解器 (annotator) 課程中的程式碼複製並貼上到一個名為 `lib/greeter.ex` 的檔案中，並由命令列中確認所有功能仍能執行。
 我們正在 Mix 專案中工作，現在需要使用稍微不同的 `iex -S mix` 命令序列來啟動 IEx：
 
-```bash
+```elixir
 iex> h Greeter.hello
 
                 def hello(name)

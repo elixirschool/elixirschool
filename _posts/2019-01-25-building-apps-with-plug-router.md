@@ -72,14 +72,13 @@ The `plug_cowboy` package makes this step easy with the included `Plug.Cowboy.ch
 Let's update our application's `start/2` function:
 
 ```elixir
-  def start(_type, _args) do
-    children = [
-      Plug.Cowboy.child_spec(scheme: :http, plug: RouterExample.Router, options: [port: 4001])
-    ]
+def start(_type, _args) do
+  children = [
+    Plug.Cowboy.child_spec(scheme: :http, plug: RouterExample.Router, options: [port: 4001])
+  ]
 
-    opts = [strategy: :one_for_one, name: RouterExample.Supervisor]
-    Supervisor.start_link(children, opts)
-  end
+  opts = [strategy: :one_for_one, name: RouterExample.Supervisor]
+  Supervisor.start_link(children, opts)
 end
 ```
 

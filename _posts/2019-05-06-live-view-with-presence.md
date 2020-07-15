@@ -62,7 +62,7 @@ defmodule PhatWeb.ChatLiveView do
      assign(socket,
        chat: chat,
        message: Chats.change_message(),
-       current_user: current_user,
+       current_user: current_user
      )}
   end
 end
@@ -145,7 +145,7 @@ def mount(%{chat: chat, current_user: current_user}, socket) do
    assign(socket,
      chat: chat,
      message: Chats.change_message(),
-     current_user: current_user,
+     current_user: current_user
    )}
 end
 ```

@@ -16,6 +16,12 @@
 		'small-to-xlarge': '(min-width: 481px) and (max-width: 1680px)'
 	});
 
+	$(window).on('load', function() {
+		setTimeout(function() {
+			$('body').removeClass('is-loading');
+		}, 100);
+	});
+
 	$(function() {
 
 		var	$window = $(window),
@@ -33,19 +39,11 @@
 		// That means it will be `undefined` if cookie does not exist.
 		if (!$theme) $theme = 'light';
 
+		if ($theme === 'dark') {
+			toggleThemeIcon($elToggleTheme);
+		}
+
 		// Disable animations/transitions ...
-
-			// ... until the page has loaded.
-				$body.addClass('is-loading');
-				if ($theme === 'dark') {
-					toggleThemeIcon($elToggleTheme);
-				}
-				$window.on('load', function() {
-
-					setTimeout(function() {
-						$body.removeClass('is-loading');
-					}, 100);
-				});
 
 			// ... when resizing.
 				var resizeTimeout;
@@ -231,7 +229,7 @@
 					$body.toggleClass('dark');
 					toggleThemeIcon($elToggleTheme);
 				});
-				
+
 			// Polyfill for sidebar
 				Stickyfill.add($('#sidebar > .inner'));
 

@@ -316,7 +316,7 @@ iex> Mnesia.transaction(
 Η συνάρτηση `Mnesia.transform_table/3` δέχεται σαν ορίσματα το όνομα του πίνακα, μια συνάρτηση που μετατρέπει μια εγγραφή από την παλιά στη νέα μορφή και μια λίστα των ορισμάτων.
 
 ```elixir
-case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]])
+case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
   {:atomic, :ok} ->
     Mnesia.add_table_index(Person, :job)
     Mnesia.add_table_index(Person, :age)

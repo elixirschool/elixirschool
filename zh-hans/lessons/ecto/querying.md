@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: 查询
 ---
 
@@ -65,8 +65,8 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 我们可以使用 `Ecto.Query.from/2` 宏来创建查询。这个函数接收两个参数：一个是表达式，和可选的一个关键字列表。让我们创建一个最简单的从 repository 获取所有的电影的查询语句：
 
 ```elixir
-import Ecto.Query
-query = from(Movie)
+iex> import Ecto.Query
+iex> query = from(Movie)
 %Ecto.Query<from m in Friends.Movie>
 ```
 
@@ -344,7 +344,7 @@ iex> Repo.all(query)
 ```elixir
 Repo.all from m in Movie,
   join: a in assoc(m, :actors),
-  where: a.name == "John Wayne"
+  where: a.name == "John Wayne",
   preload: [actors: a]
 ```
 

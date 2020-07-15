@@ -26,7 +26,7 @@ defmodule ShoppingListFulfillment do
 
   def init(shopping_list) do
     state = %{
-      shopping_list: shopping_list
+      shopping_list: shopping_list,
       inventory: get_inventory_for(shopping_list)
     }
     {:ok, state}
@@ -58,7 +58,7 @@ defmodule ShoppingListFulfillment do
 
   def init(shopping_list) do
     state = %{
-      shopping_list: shopping_list
+      shopping_list: shopping_list,
       inventory: []
     }
     send(self, :get_inventory)
@@ -110,7 +110,7 @@ defmodule ShoppingListFulfillment do
 
   def init(shopping_list) do
     state = %{
-      shopping_list: shopping_list
+      shopping_list: shopping_list,
       inventory: []
     }
     {:ok, state, {:continue, :get_inventory}}

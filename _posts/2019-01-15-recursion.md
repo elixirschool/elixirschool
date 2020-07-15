@@ -282,7 +282,6 @@ We can fix this by using `Enum.reverse` on the `new_list` once we've reached our
 ```elixir
 def delete_all([], el, new_list) do
   Enum.reverse(new_list)
-  |> Enum.reverse
 end  
 ```
 

@@ -420,7 +420,7 @@ defmodule Example.Router do
 
   alias Example.Plug.VerifyRequest
 
-  plug Plug.Parsers, parsers: [:urlencoded, :multipart])
+  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
   plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
   plug :match
   plug :dispatch

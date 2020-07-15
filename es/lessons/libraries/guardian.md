@@ -194,7 +194,7 @@ De forma predeterminada, el plug `LoadResource` devolverá un error si no se pue
 Ahora implementamos el `pipeline` que creamos:
 
 ```elixir
-pipeline : maybe_browser_auth do
+pipeline :maybe_browser_auth do
   plug MyApp.AuthAccessPipeline
 end
 ```
@@ -276,7 +276,7 @@ Comencemos con lo más simple.
 {:ok, _old_stuff, {new_token, new_claims}} = MyApp.Guardian.exchange(token, "refresh", "access")
 
 # Buscar un recurso directamente desde un token
-{:ok, resource, claims} = MyApp.Guardian.resource_from_token(token
+{:ok, resource, claims} = MyApp.Guardian.resource_from_token(token)
 ```
 
 Con plug
@@ -300,7 +300,7 @@ conn = MyApp.Guardian.Plug.remember_me(conn, resource)
 # Obtener la información de la conexión actual
 token = MyApp.Guardian.Plug.current_token(conn)
 claims = MyApp.Guardian.Plug.current_claims(conn)
-resource = MyApp.Guardian.Plug.current_resource(conn)end
+resource = MyApp.Guardian.Plug.current_resource(conn)
 ```
 
 #### Login/Logout

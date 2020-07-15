@@ -309,7 +309,7 @@ Si estamos realizando alguna acción en las tablas existentes justo luego de ini
 La función `Mnesia.transform_table/3` toma como atributos el nombre de la tabla, una función que transforma un registro del viejo al nuevo formato y la lista de nuevos atributos.
 
 ```elixir
-case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]])
+case Mnesia.create_table(Person, [attributes: [:id, :name, :job, :age]]) do
   {:atomic, :ok} ->
     Mnesia.add_table_index(Person, :job)
     Mnesia.add_table_index(Person, :age)
