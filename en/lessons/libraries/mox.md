@@ -175,8 +175,7 @@ defmodule MyAppTest do
   setup :verify_on_exit!
 
   test ":ok on 200" do
-    HTTPoison.BaseMock
-    |> expect(:get, fn _ -> {:ok, "What a guy!"} end)
+    expect(HTTPoison.BaseMock, :get, fn _ -> {:ok, "What a guy!"} end)
 
     assert {:ok, _} = MyModule.get_username("twinkie")
   end
