@@ -182,8 +182,7 @@ defmodule MyAppTest do
   end
 
   test ":error on 404" do
-    HTTPoison.BaseMock
-    |> expect(:get, fn _ -> {:error, "Sorry!"} end)
+    expect(HTTPoison.BaseMock, :get, fn _ -> {:error, "Sorry!"} end)
     assert {:error, _} = MyModule.get_username("does-not-exist")
   end
 end
