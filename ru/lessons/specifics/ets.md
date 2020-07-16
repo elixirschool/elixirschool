@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Erlang Term Storage (ETS)
 ---
 
@@ -161,7 +161,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 {% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :"_", :"$3"}, [], [:"$_"]}]){% endraw %}
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
- {"spork", 30, ["ruby", "elixir"]}]
+ {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 ```
 
 Несмотря на то, что `select/2` позволяет лучше управлять получением записей, синтаксис неудобен.
