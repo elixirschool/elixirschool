@@ -1,5 +1,5 @@
 ---
-version: 1.0.3
+version: 1.1.0
 title: Пользовательские Mix-задачи
 ---
 
@@ -37,6 +37,7 @@ $ mix phx.new my_phoenix_app
 $ mix new hello
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
 * creating lib
