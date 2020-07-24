@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.1.0
 title: カスタムMixタスク
 ---
 
@@ -37,6 +37,7 @@ $ mix phx.new my_phoenix_app
 $ mix new hello
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
 * creating lib
@@ -77,7 +78,7 @@ end
 defmodule Mix.Tasks.Hello do
   use Mix.Task
 
-  @shortdoc "Simply runs the Hello.say/0 function"
+  @shortdoc "Simply calls the Hello.say/0 function."
   def run(_) do
     # calling our Hello.say() function from earlier
     Hello.say()
@@ -86,7 +87,7 @@ end
 ```
 
 defmodule文が `Mix.Tasks` と、そしてコマンドラインから呼び出したい名前から始まっているのに気付いてください。
-二行目では名前空間に `Mix.Task` ビヘイビアをもたらす `use Mix.Task` を実行しています。
+二行目では、名前空間に `Mix.Task` ビヘイビアをもたらす `use Mix.Task` を実行しています。
 それから、今のところ全ての引数を無視するrun関数を宣言します。
 この関数の中では、 `Hello` モジュールの `say` 関数を呼び出しています。
 
