@@ -465,6 +465,7 @@ config :chat, remote_supervisor: fn(_recipient) -> Chat.TaskSupervisor end
 Remember to uncomment this line in `config/config.exs`:
 
 ```elixir
+use Mix.Config
 import_config "#{Mix.env()}.exs"
 ```
 
