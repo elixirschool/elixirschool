@@ -209,7 +209,7 @@ We specify the `only: :dev` key-value pair as we don't want to download and comp
 
 Earmark is a Markdown parser for the Elixir programming language that ExDoc utilizes to turn our documentation within `@moduledoc` and `@doc` to beautiful looking HTML.
 
-It is worth noting at this point that you change the markup tool to Cmark if you wish, but you will need to do a little more configuration which you can read about [here](https://hexdocs.pm/ex_doc/ExDoc.Markdown.html#module-using-cmark).
+It is worth nothing at this point that you change the markup tool to Cmark if you wish, but you will need to do a little more configuration which you can read about [here](https://hexdocs.pm/ex_doc/ExDoc.Markdown.html#module-using-cmark).
 For this tutorial, we'll just stick with Earmark.
 
 ### Generating Documentation
@@ -239,7 +239,7 @@ We can now deploy this to GitHub, our own website, or more commonly [HexDocs](ht
 
 ## Best Practice
 
-Adding documentation should be added within the Best practices guidelines of the language.
+Documentation should be added within the Best Practices Guidelines of the language.
 Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows.
 The community, however, tried to establish best practices.
 To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
