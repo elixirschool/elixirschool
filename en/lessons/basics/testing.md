@@ -192,4 +192,4 @@ To leverage this "mocks-as-a-noun" pattern you can:
 * Define the mock module
 * Configure your application code to use the mock in the given test or test environment, for example by passing the mock module into a function call as an argument or by configuring your application to use the mock module in the test environment.
 
-For a deeper dive into test mocks in Elixir, and a look at the Mox library that allows you to define concurrent mock, check out our lesson on Mox [here](../libraries/mox)
+For a deeper dive into test mocks in Elixir, and a look at the Mox library that allows you to define concurrent mock, check out our lesson on Mox [here](../../libraries/mox)
