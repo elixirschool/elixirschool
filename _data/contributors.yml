@@ -525,3 +525,13 @@
     - translator
   languages:
     - ru
+
+- github: TGITS
+  name: Christophe Vaudry
+  intro: 
+  homepage: https://tgits.github.io/
+  twitter: _TGITS
+  contributions:
+    - translator
+  languages:
+    - fr
