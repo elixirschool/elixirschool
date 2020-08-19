@@ -3,20 +3,20 @@ version: 1.1.1
 title: Mix
 ---
 
-Avant de plonger dans les profondeurs d'Elixir, nous devons d'abord apprendre Mix. 
-Si vous êtes familier avec Ruby, Mix est l'équivalent de Bundler, Rubygems, et Rake combinés. 
+Avant de plonger dans les profondeurs d'Elixir, nous devons d'abord apprendre Mix.
+Si vous êtes familier avec Ruby, Mix est l'équivalent de Bundler, Rubygems, et Rake combinés.
 C'est une part primordiale de tout projet Elixir et dans cette leçon nous allons explorer quelques une de ses fonctionnalités importantes.
 Pour voir tout ce que Mix permet de faire dans l'environnement courant, lancez `mix help`.
 
-Jusqu'ici nous avons travaillé exclusivement dans `iex`, ce qui a ses limitations. 
+Jusqu'ici nous avons travaillé exclusivement dans `iex`, ce qui a ses limitations.
 Dans le cas d'un projet réel nous avons besoin de séparer notre code dans différents fichiers, et Mix est là pour nous aider à les gérer efficacement.
 
 {% include toc.html %}
 
 ## Nouveau projet
 
-Mix rend facile la création d'un nouveau projet avec la commande `mix new`. 
-Cela génère la structure de dossiers de notre projet et crée les fichiers de base. 
+Mix rend facile la création d'un nouveau projet avec la commande `mix new`.
+Cela génère la structure de dossiers de notre projet et crée les fichiers de base.
 C'est plutôt simple et direct, alors allons-y :
 
 ```bash
@@ -91,7 +91,7 @@ Mix est malin et ne compile que ce qui est nécessaire, mais il faut tout de mê
 Dans cette section nous verrons comment compiler notre projet et ce que fait la compilation.
 
 Pour compiler un projet Mix nous avons simplement besoin de lancer `mix compile` dans notre répertoire de base :
-**Note: Les tâches Mix relatives à un projet ne sont disponibles que depuis le répertoire racine de ce projet, seules les tâches globales sont disponibles sinon**
+**Note: Les tâches Mix relatives à un projet ne sont disponibles que depuis le répertoire racine de ce projet, seules les tâches globales sont disponibles autrement**
 
 ```bash
 $ mix compile
