@@ -33,7 +33,6 @@ advanced:
   - behaviours
   - gen-stage
   - protocols
-  - nerves
 ecto:
   - basics
   - changesets
@@ -45,6 +44,7 @@ specifics:
   - ets
   - mnesia
   - debugging
+  - nerves
 libraries:
   - guardian
   - poolboy
