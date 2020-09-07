@@ -72,7 +72,7 @@ config :friends, Friends.Repo,
 ```
 
 This configures how Ecto will connect to the database. Either edit the username to match one of your existing database roles, or create a new one in your `psql` shell as follows: 
-`CREATE ROLE postgres  WITH SUPERUSER CREATEDB LOGIN PASSWORD 'pass';`
+`CREATE ROLE user WITH SUPERUSER CREATEDB LOGIN PASSWORD 'pass';`
 
 It also creates a `Friends.Repo` module inside `lib/friends/repo.ex`
 
