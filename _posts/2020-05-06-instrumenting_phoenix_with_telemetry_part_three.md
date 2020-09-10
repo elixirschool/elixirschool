@@ -466,4 +466,4 @@ We simply defined our `Telemetry.Metrics` module, configured it to start up the 
 
 ## Next Up
 
-There's one more flavor of out-of-the-box metrics reporting we'll explore in this series. In our [next post]([Part IV: Erlang VM Measurements with `telemetry_poller`, `TelemetryMetrics` + `TelemetryMetricsStatsd`](https://elixirschool.com/blog/instrumenting-phoenix-with-telemetry-part-four/)), we'll use the `telemetry_poller` Erlang library to emit Erlang VM measurements as Telemetry events and we'll use `Telemetry.Metrics` and `TelemetryMetricsStatsd` to observe and report those events as metrics.
+There's one more flavor of out-of-the-box metrics reporting we'll explore in this series. In our [next post](https://elixirschool.com/blog/instrumenting-phoenix-with-telemetry-part-four/), we'll use the `telemetry_poller` Erlang library to emit Erlang VM measurements as Telemetry events and we'll use `Telemetry.Metrics` and `TelemetryMetricsStatsd` to observe and report those events as metrics.
