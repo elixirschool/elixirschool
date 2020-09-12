@@ -130,5 +130,5 @@ mix hello             # Simply calls the Hello.say/0 function.
 ...
 ```
 
-注意：我们的代码必须先编译后，新任务才会出现在 `mix help` 输出中。
+注意：在新任务出现在 `mix help` 输出中之前，我们的代码必须先编译。
 我们可以直接运行 `mix compile` 或者像运行 `mix hello` 那样运行我们的任务，这样就会触发编译。
