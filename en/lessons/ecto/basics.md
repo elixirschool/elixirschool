@@ -71,8 +71,7 @@ config :friends, Friends.Repo,
   hostname: "localhost"
 ```
 
-This configures how Ecto will connect to the database. Either edit the username to match one of your existing database roles, or create a new one in your `psql` shell as follows: 
-`CREATE ROLE user WITH SUPERUSER CREATEDB LOGIN PASSWORD 'pass';`
+This configures how Ecto will connect to the database. You may need to configure your database to have a matching credentials.
 
 It also creates a `Friends.Repo` module inside `lib/friends/repo.ex`
 
