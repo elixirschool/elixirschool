@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: 和 Erlang 互操作
 ---
 
@@ -120,14 +120,19 @@ iex> "Hello World" |> to_charlist() |> :string.words()
 
 ### 变量
 
+在 Erlang 中，变量是以大写的字符开头，并且不允许重新绑定
+
 Elixir:  
 
 ```elixir
 iex> x = 10
 10
 
-iex> x1 = x + 10
+iex> x = 20
 20
+
+iex> x1 = x + 10
+30
 ```
 
 Erlang:  
@@ -136,8 +141,11 @@ Erlang:
 1> X = 10.
 10
 
-2> X1 = X + 1.
-11
+2> X = 20.
+** exception error: no match of right hand side value 20
+
+3> X1 = X + 10
+20
 ```
 
 就这么多！在 Elixir 应用中使用 Erlang 简单高效，把原来可用的库直接加倍啦！  
