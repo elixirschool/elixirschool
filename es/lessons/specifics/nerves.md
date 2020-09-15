@@ -1,6 +1,8 @@
 ---
 version: 1.0.0
 title: Nerves
+redirect_from:
+  - /es/lessons/advanced/nerves
 ---
 
 ## Introducción y requerimientos

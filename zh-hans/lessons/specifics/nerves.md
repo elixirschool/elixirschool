@@ -1,6 +1,8 @@
 ---
 version: 1.0.0
 title: Nerves
+redirect_from:
+  - /zh-hans/lessons/advanced/nerves
 ---
 
 ## Nerves 简介
