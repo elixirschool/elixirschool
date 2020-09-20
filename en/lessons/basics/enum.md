@@ -236,7 +236,7 @@ iex> Enum.map([1,2,3], &(&1 + 3))
 [4, 5, 6]
 ```
 
-This can be further refactored to assign the prior annonymous function featuring the Capture operator to a variable and called from the `Enum.map/2` function.
+This can be further refactored to assign the prior anonymous function featuring the Capture operator to a variable and called from the `Enum.map/2` function.
 
 ```elixir
 iex> plus_three = &(&1 + 3)
@@ -269,5 +269,4 @@ For the most succinct syntax, we can directly call the named function without ex
 iex> Enum.map([1,2,3], &Adding.plus_three/1) 
 [4, 5, 6]
 ```
-
 
