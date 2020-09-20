@@ -213,7 +213,7 @@ iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coo
 ```
 
 ### Enum using the Capture operator (&)
-Many functions within the Enum module in Elixir take anonymous functions as an argument to work with iterables of the enumerable that is passed.
+Many functions within the Enum module in Elixir take anonymous functions as an argument to work with each iterable of the enumerable that is passed.
 
 These anonymous functions are often written shorthand using the Capture operator (&).
 
@@ -269,4 +269,3 @@ For the most succinct syntax, we can directly call the named function without ex
 iex> Enum.map([1,2,3], &Adding.plus_three/1) 
 [4, 5, 6]
 ```
-
