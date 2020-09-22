@@ -190,7 +190,7 @@ iex> Repo.all(query)
 
 ### Getting the First and Last Records
 
-We can fetch the first or last records from a repository using the `Ecto.Query.first/1` and `Ecto.Query.last/1` functions.
+We can fetch the first or last records from a repository using the `Ecto.Query.first/2` and `Ecto.Query.last/2` functions.
 
 First, we'll write a query expression using the `first/1` function:
 
