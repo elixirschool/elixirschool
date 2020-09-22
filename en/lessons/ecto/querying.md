@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Querying
 ---
 
@@ -65,7 +65,7 @@ We can create a query with the `Ecto.Query.from/2` macro. This function takes in
 
 ```elixir
 iex> import Ecto.Query
-iex> query = from(Movie)                
+iex> query = from(Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
@@ -97,7 +97,7 @@ iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :t
 #Ecto.Query<from m0 in Friends.Movie, where: m0.title == "Ready Player One",
  select: [:title, :tagline]>
 
-iex> Repo.all(query)                                                                    
+iex> Repo.all(query)
 SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready Player One') []
 [
   %Friends.Movie{
@@ -130,7 +130,7 @@ In such case, we call `m` a *binding*. Bindings are extremely useful, because th
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
 #Ecto.Query<from m0 in Friends.Movie, where: m0.id < 2, select: m0.title>
 
-iex> Repo.all(query)                                           
+iex> Repo.all(query)
 SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
@@ -138,9 +138,9 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 The very important thing here is how output of the query changed. Using an *expression* with a binding in `select:` part allows you to specify exactly the way selected fields will be returned. We can ask for a tuple, for example:
 
 ```elixir
-iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
+iex> query = from(m in Movie, where: m.id < 2, select: {m.title})
 
-iex> Repo.all(query)                                                          
+iex> Repo.all(query)
 [{"Ready Player One"}]
 ```
 
@@ -152,10 +152,10 @@ It is a good idea to always start with a simple bindingless query and introduce 
 In the examples above we used keywords `select:` and `where:` inside of `from` macro to build a query – these are so called *keyword-based queries*. There is, however, another way to compose queries – macro-based queries. Ecto provides macros for every keyword, like `select/3` or `where/3`. Each macro accepts a *queryable* value, *an explicit list of bindings* and the same expression you'd provide to its keyword analogue:
 
 ```elixir
-iex> query = select(Movie, [m], m.title)                           
+iex> query = select(Movie, [m], m.title)
 #Ecto.Query<from m0 in Friends.Movie, select: m0.title>
 
-iex> Repo.all(query)                    
+iex> Repo.all(query)
 SELECT m0."title" FROM "movies" AS m0 []
 ["Ready Player One"]
 ```
@@ -163,7 +163,7 @@ SELECT m0."title" FROM "movies" AS m0 []
 The good thing about macros is that they work very well with pipes:
 
 ```elixir
-iex> Movie \ 
+iex> Movie \
 ...>  |> where([m], m.id < 2) \
 ...>  |> select([m], {m.title}) \
 ...>  |> Repo.all
