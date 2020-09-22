@@ -16,7 +16,7 @@ We can perform simple queries directly against our `Friends.Repo` with the help 
 
 ### Fetching Records by ID
 
-We can use the `Repo.get/2` function to fetch a record from the database given its ID. This function requires two arguments: a "queryable" data structure and the ID of a record to retrieve from the database. It returns a struct describing the record found, if any. It returns `nil` if no such record is found.
+We can use the `Repo.get/3` function to fetch a record from the database given its ID. This function requires two arguments: a "queryable" data structure and the ID of a record to retrieve from the database. It returns a struct describing the record found, if any. It returns `nil` if no such record is found.
 
 Let's take a look at an example. Below, we'll get the movie with an ID of 1:
 
@@ -34,11 +34,11 @@ iex> Repo.get(Movie, 1)
 }
 ```
 
-Notice that the first argument we give to `Repo.get/2` is our `Movie` module. `Movie` is "queryable" because the module uses the `Ecto.Schema` module and defines a schema for its data structure. This gives `Movie` access to the `Ecto.Queryable` protocol. This protocol converts a data structure into an `Ecto.Query`. Ecto queries are used to retrieve data from a repository. More on queries later.
+Notice that the first argument we give to `Repo.get/3` is our `Movie` module. `Movie` is "queryable" because the module uses the `Ecto.Schema` module and defines a schema for its data structure. This gives `Movie` access to the `Ecto.Queryable` protocol. This protocol converts a data structure into an `Ecto.Query`. Ecto queries are used to retrieve data from a repository. More on queries later.
 
 ### Fetching Records by Attribute
 
-We can also fetch records that meet a given criteria with the `Repo.get_by/2` function. This function requires two arguments: the "queryable" data structure and the clause with which we want to query. `Repo.get_by/2` returns a single result from the repository. Let's look at an example:
+We can also fetch records that meet a given criteria with the `Repo.get_by/3` function. This function requires two arguments: the "queryable" data structure and the clause with which we want to query. `Repo.get_by/3` returns a single result from the repository. Let's look at an example:
 
 ```elixir
 iex> Repo.get_by(Movie, title: "Ready Player One")
@@ -163,7 +163,7 @@ SELECT m0."title" FROM "movies" AS m0 []
 The good thing about macros is that they work very well with pipes:
 
 ```elixir
-iex> > Movie \ 
+iex> Movie \ 
 ...>  |> where([m], m.id < 2) \
 ...>  |> select([m], {m.title}) \
 ...>  |> Repo.all
@@ -192,14 +192,14 @@ iex> Repo.all(query)
 
 We can fetch the first or last records from a repository using the `Ecto.Query.first/2` and `Ecto.Query.last/2` functions.
 
-First, we'll write a query expression using the `first/1` function:
+First, we'll write a query expression using the `first/2` function:
 
 ```elixir
 iex> first(Movie)
 #Ecto.Query<from m0 in Friends.Movie, order_by: [asc: m0.id], limit: 1>
 ```
 
-However, we will use the pipe with the function `Repo.one / 1` to obtain our result:
+However, we will use the pipe with the function `Repo.one/2` to obtain our result:
 
 ```elixir
 iex> Movie \
@@ -218,7 +218,7 @@ SELECT m0."id", m0."title", m0."tagline" FROM "movies" AS m0 ORDER BY m0."id" LI
 }
 ```
 
-The `Ecto.Query.last/1` function is used in the same way:
+The `Ecto.Query.last/2` function is used in the same way:
 
 ```elixir
 iex> Movie |> last() |> Repo.one()
