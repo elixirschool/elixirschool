@@ -213,7 +213,7 @@ SELECT m0."id", m0."title", m0."tagline" FROM "movies" AS m0 ORDER BY m0."id" LI
   characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
   distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
   id: 1,
-  tagline: "Something about video game",
+  tagline: "Something about video games",
   title: "Ready Player One"
 }
 ```
