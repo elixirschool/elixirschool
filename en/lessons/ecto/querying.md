@@ -199,7 +199,7 @@ iex> first(Movie)
 #Ecto.Query<from m0 in Friends.Movie, order_by: [asc: m0.id], limit: 1>
 ```
 
-However, we will use the pipe with the function `Repo.one/2` to obtain our result:
+Then we pass our query to the `Repo.one/2` function to get our result:
 
 ```elixir
 iex> Movie |> first() |> Repo.one()
