@@ -1,5 +1,5 @@
 ---
-version: 1.5.0
+version: 1.6.0
 title: Enum
 ---
 
@@ -210,4 +210,62 @@ iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 ```elixir
 iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
 [%{x: 1, y: 1}, %{x: 3, y: 3}]
+```
+
+### Enum using the Capture operator (&)
+Many functions within the Enum module in Elixir take anonymous functions as an argument to work with each iterable of the enumerable that is passed.
+
+These anonymous functions are often written shorthand using the Capture operator (&).
+
+Here are some examples that show how the capture operator can be implemented with the Enum module. 
+Each version is functionally equivalent.
+
+#### Using the capture operator with ananonymous function 
+
+Below is a typical example of the standard syntax when passing an anonymous function to `Enum.map/2`.
+
+```elixir
+iex> Enum.map([1,2,3], fn number -> number + 3 end)
+[4, 5, 6]
+```
+
+Now we implement the capture operator (&); capturing each iterable of the list of numbers ([1,2,3]) and assign each iterable to the variable &1 as it is passed through the mapping function.
+
+```elixir
+iex> Enum.map([1,2,3], &(&1 + 3))
+[4, 5, 6]
+```
+
+This can be further refactored to assign the prior anonymous function featuring the Capture operator to a variable and called from the `Enum.map/2` function.
+
+```elixir
+iex> plus_three = &(&1 + 3)
+iex> Enum.map([1,2,3], plus_three)
+[4, 5, 6]
+```
+
+#### Using the capture operator with a named function 
+First we create a named function and call it within the anonymous function defined in `Enum.map/2`.
+
+```elixir
+defmodule Adding do
+  def plus_three(number), do: number + 3
+end
+
+iex>  Enum.map([1,2,3], fn number -> Adding.plus_three(number) end)
+[4, 5, 6]
+```
+
+Next we can refactor to use the Capture operator.
+
+```elixir
+iex> Enum.map([1,2,3], &Adding.plus_three(&1)) 
+[4, 5, 6]
+```
+
+For the most succinct syntax, we can directly call the named function without explicitly capturing the variable.
+
+```elixir
+iex> Enum.map([1,2,3], &Adding.plus_three/1) 
+[4, 5, 6]
 ```
