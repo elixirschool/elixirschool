@@ -202,7 +202,7 @@ iex> first(Movie)
 However, we will use the pipe with the function `Repo.one/2` to obtain our result:
 
 ```elixir
-iex> Movie \
+iex> Movie |> first() |> Repo.one()
 
 SELECT m0."id", m0."title", m0."tagline" FROM "movies" AS m0 ORDER BY m0."id" LIMIT 1 []
 %Friends.Movie{
