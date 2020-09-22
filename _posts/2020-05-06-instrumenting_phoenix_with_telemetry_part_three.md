@@ -437,13 +437,13 @@ def metrics do
     summary(
       "quantum.repo.query.total_time",
       unit: {:native, :millisecond},
-      tag_values: &__MODULE__.query_metatdata/1,
+      tag_values: &__MODULE__.query_metadata/1,
       tags: [:source, :command]
     )
   ]
 end
 
-def query_metatdata(%{source: source, result: {_, %{command: command}}}) do
+def query_metadata(%{source: source, result: {_, %{command: command}}}) do
   %{source: source, command: command}
 end
 ```
