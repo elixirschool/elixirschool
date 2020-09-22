@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 title: Tarefas Mix Customizadas
 ---
 
@@ -78,7 +78,7 @@ Neste arquivo, vamos inserir estas 7 linhas de Elixir.
 defmodule Mix.Tasks.Hello do
   use Mix.Task
 
-  @shortdoc "Simply runs the Hello.say/0 function"
+  @shortdoc "Simply calls the Hello.say/0 function."
   def run(_) do
     # calling our Hello.say() function from earlier
     Hello.say()
@@ -87,9 +87,34 @@ end
 ```
 
 Note que agora nós começamos o código do defmodule com `Mix.Tasks` e o nome que queremos usar para o nosso comando.
-Na segunda linha, colocamos `use Mix.Task`, que traz o comportamento `Mix.Task` no namespace.
+Na segunda linha, colocamos `use Mix.Task`, que traz o comportamento `Mix.Task` para o namespace.
 Então, declaramos uma função `run` que ignora quaisquer argumentos por agora.
 Dentro dessa função, chamamos nosso módulo `Hello` e a função `say`.
+
+## Inicializando sua aplicação
+
+O Mix não inicializa automaticamente nossa aplicação ou qualquer uma de suas dependências.
+Não há problema nisto para muitos dos casos de uso de tarefas Mix. Mas e se precisássemos criar uma tarefa que
+usa o Ecto e interage com o banco de dados?
+
+Neste caso, precisaríamos ter certeza de que a aplicação por trás do Ecto.Repo foi inicializada.
+Existem 2 maneiras de lidar com isso: explicitamente inicializando uma determinada aplicação ou inicializando toda nossa aplicação, que por sua vez inicializará as outras de sua árvore de dependências.
+
+Vamos ver como fazer a nossa tarefa Mix inicializar nossa aplicação e suas dependências:
+
+```elixir
+defmodule Mix.Tasks.Hello do
+  use Mix.Task
+
+  @shortdoc "Simply calls the Hello.say/0 function."
+  def run(_) do
+    # This will start our application
+    Mix.Task.run("app.start")
+
+    Hello.say()
+  end
+end
+```
 
 ## Tarefas Mix em Ação
 
