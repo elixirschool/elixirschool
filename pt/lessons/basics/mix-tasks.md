@@ -80,7 +80,7 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Simply calls the Hello.say/0 function."
   def run(_) do
-    # calling our Hello.say() function from earlier
+    # Chamando a função Hello.say() definida anteriormente
     Hello.say()
   end
 end
@@ -108,7 +108,7 @@ defmodule Mix.Tasks.Hello do
 
   @shortdoc "Simply calls the Hello.say/0 function."
   def run(_) do
-    # This will start our application
+    # Isso inicializará nossa aplicação
     Mix.Task.run("app.start")
 
     Hello.say()
