@@ -1,5 +1,5 @@
 ---
-version: 1.6.0
+version: 1.6.1
 title: Enum
 ---
 
@@ -220,7 +220,7 @@ These anonymous functions are often written shorthand using the Capture operator
 Here are some examples that show how the capture operator can be implemented with the Enum module. 
 Each version is functionally equivalent.
 
-#### Using the capture operator with ananonymous function 
+#### Using the capture operator with an anonymous function 
 
 Below is a typical example of the standard syntax when passing an anonymous function to `Enum.map/2`.
 
