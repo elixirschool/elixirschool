@@ -12,7 +12,9 @@ Erlang 项式存储 (Erlang Term Storage，通常简称 ETS) 是 OTP 中内置�
 
 ETS 是一个针对 Elixir 和 Erlang 对象的健壮的内存 (in-memory) 存储，并且内置于 OTP 中。ETS 可以存储大量的数据，同时维持常数时间的数据访问。
 
-ETS 中的「表」 (table) 是由单独的进程创建并拥有的。当这个进程退出时，这张表也就销毁了。默认情况下 ETS 限制每个节点最多有 1400 张表。
+ETS 中的「表」 (table) 是由单独的进程创建并拥有的。当这个进程退出时，这张表也就销毁了。
+
+您可以创建任意数量的 ETS 表。唯一的限制是服务器内存。可以使用环境变量 `ERL_MAX_ETS_TABLES` 来指定限制。
 
 ## 建表
 
@@ -135,7 +137,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 {% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :"_", :"$3"}, [], [:"$_"]}]){% endraw %}
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
- {"spork", 30, ["ruby", "elixir"]}]
+{"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 ```
 
 虽然 `select/2` 可以让我们更细微地控制如何匹配，以及返回的格式，但是这个语法实在是很不友好，而且表达能力也有限。其实 ETS 还为我们提供了 `fun2ms/1`，可以直接将一个函数转换成查询时需要用的｢匹配规范｣ (`match_spec`)。`fun2ms/1` 让我们可以用更熟悉的函数写法来构建具体的查询逻辑。
