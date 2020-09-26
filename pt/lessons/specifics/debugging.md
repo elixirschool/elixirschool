@@ -1,11 +1,22 @@
 ---
-version: 1.0.1
+version: 1.1.2
 title: Debugging
 ---
 
-Às vezes, os bugs estão presentes em nosso projeto, é por isso que precisamos investigar o problema. Nesta sessão vamos aprender sobre como fazer debug no código Elixir, bem como ferramentas de análise de estática para ajudar a encontrar possíveis bugs.
+Bugs são problemas comuns em qualquer projeto, é por isso que precisamos da depuração.
+
+Nesta sessão vamos aprender sobre como fazer depuração no código Elixir, bem como ferramentas de análises estáticas para ajudar a encontrar possíveis bugs.
 
 {% include toc.html %}
+##IEx
+
+A ferramenta mais direta que nós temos para depurar código Elixir é o IEx
+
+Mas não se deixa enganar por sua simplicidade - você pode resolver a maioria dos problemas da sua aplicação com ele.
+
+IEx significa `Elixir's Interactive Shell`.
+
+Você pode já ter visto oIEx em uma das lições anteriores como [Básicos](../../basisc/basics) onde nós executamos código interativo no shell.
 
 # Dialyxir e Dialyzer
 
