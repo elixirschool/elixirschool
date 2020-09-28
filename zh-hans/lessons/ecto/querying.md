@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: 查询
 ---
 
@@ -40,8 +40,6 @@ iex> Repo.get(Movie, 1)
 我们也可以使用 `Repo.get_by/3` 函数来获取满足一定条件的数据。这个函数需要两个参数：一个“可查询”的数据结构，和我们查询的条件。`Repo.get_by/3` 返回的是单条记录。请看以下例子：
 
 ```elixir
-iex> alias Friends.Repo
-iex> alias Friends.Movie
 iex> Repo.get_by(Movie, title: "Ready Player One")
 %Friends.Movie{
   __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
@@ -67,7 +65,7 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 ```elixir
 iex> import Ecto.Query
 iex> query = from(Movie)
-%Ecto.Query<from m in Friends.Movie>
+#Ecto.Query<from m0 in Friends.Movie>
 ```
 
 我们可以使用 `Repo.all/2` 函数来执行这个查询语句。这个函数必须接收一个 Ecto 查询语句参数，兵解返回满足查询条件的所有记录。
@@ -95,7 +93,7 @@ iex> Repo.all(query)
 
 ```elixir
 iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
-%Ecto.Query<from m in Friends.Movie, where: m.title == "Ready Player One",
+#Ecto.Query<from m0 in Friends.Movie, where: m0.title == "Ready Player One",
  select: [:title, :tagline]>
 
 iex> Repo.all(query)                                                                    
@@ -122,14 +120,14 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 
 ```elixir
 iex> query = from(m in Movie)                                                           
-%Ecto.Query<from m in Friends.Movie>
+#Ecto.Query<from m0 in Friends.Movie>
 ```
 
 这样的情况，我们把 `m` 称为一个 *绑定（binding）*。绑定非常有用，因为它们允许我们在查询的其它部分中引用这些模块。当我们想找出所有 `id` 小于 `2` 的电影的标题时：
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
-%Ecto.Query<from m in Friends.Movie, where: m.id < 2, select: m.title>
+#Ecto.Query<from m0 in Friends.Movie, where: m0.id < 2, select: m0.title>
 
 iex> Repo.all(query)                                           
 SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
@@ -154,7 +152,8 @@ iex> Repo.all(query)
 
 ```elixir
 iex> query = select(Movie, [m], m.title)                           
-%Ecto.Query<from m in Friends.Movie, select: m.title>
+#Ecto.Query<from m0 in Friends.Movie, select: m0.title>
+
 iex> Repo.all(query)                    
 SELECT m0."title" FROM "movies" AS m0 []
 ["Ready Player One"]
@@ -163,12 +162,15 @@ SELECT m0."title" FROM "movies" AS m0 []
 使用宏的一个好处就是可以很好的结合管道来使用：
 
 ```elixir
-iex> query = Movie |> where([m], m.id < 2) |> select([m], {m.title})
+iex> Movie
+     |> where([m], m.id < 2)
+     |> select([m], {m.title})
+     |> Repo.all
 
-iex> Repo.all(query)
 [{"Ready Player One"}]
 ```
 
+注意，如果要在换行符之后继续输入，请使用 `\`
 
 ### 使用 `where` 表达式
 
@@ -228,7 +230,7 @@ iex> Repo.all(query)
 
 ```elixir
 iex> first(Movie)
-%Ecto.Query<from m in Friends.Movie, order_by: [desc: m.id], limit: 1>
+#Ecto.Query<from m0 in Friends.Movie, order_by: [asc: m0.id], limit: 1>
 ```
 
 然后我们把这个查询语句传给 `Repo.one/2` 函数来获取结果：
@@ -236,12 +238,12 @@ iex> first(Movie)
 ```elixir
 iex> Movie |> first() |> Repo.one()
 
-06:36:14.234 [debug] QUERY OK source="movies" db=3.7ms
+SELECT m0."id", m0."title", m0."tagline" FROM "movies" AS m0 ORDER BY m0."id" LIMIT 1 []
 %Friends.Movie{
-  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
-  actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
-  characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-  distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
+  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
+  characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
+  distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
   id: 1,
   tagline: "Something about video games",
   title: "Ready Player One"
@@ -286,7 +288,7 @@ iex> Repo.all(from m in Movie, preload: [:actors])
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
         movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-        name: "Bob"
+        name: "Tyler Sheridan"
       },
       %Friends.Actor{
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -321,7 +323,7 @@ iex> Repo.all(query)
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
         movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-        name: "Bob"
+        name: "Tyler Sheridan"
       },
       %Friends.Actor{
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -373,7 +375,7 @@ iex> movie = Repo.preload(movie, :actors)
       __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 1,
       movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-      name: "Bob"
+      name: "Tyler Sheridan"
     },
     %Friends.Actor{
       __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -399,7 +401,7 @@ iex> movie.actors
     __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
     id: 1,
     movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-    name: "Bob"
+    name: "Tyler Sheridan"
   },
   %Friends.Actor{
     __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -415,6 +417,7 @@ iex> movie.actors
 我们可以通过 `Ecto.Query.join/5` 函数的帮助来执行包含 join 语句的查询。
 
 ```elixir
+iex> alias Friends.Character
 iex> query = from m in Movie,
               join: c in Character,
               on: m.id == c.movie_id,
