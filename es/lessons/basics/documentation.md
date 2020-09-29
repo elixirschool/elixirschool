@@ -165,7 +165,7 @@ $ cd greet_everyone
 
 ```
 
-Ahora copia y pega el código de la lección del anotador `@doc` en un archivo llamado `lib/greeter.ex` y asegurate de que todo aun esta funcionando desde la linea de comandos.
+Ahora copia y pega el código de la lección del anotador `@doc` en un archivo llamado `lib/greeter.ex` y asegúrate de que todo aun está funcionando desde la línea de comandos.
 Ahora que estamos trabajando dentro de un proyecto Mix necesitamos empezar IEx de una forma un poco diferente usando el comando `iex -S mix`:
 
 ```bash
