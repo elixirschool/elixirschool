@@ -10,7 +10,7 @@ Documentando código Elixir.
 ## Anotación
 
 Cuánto documentamos y qué hace que la documentación de calidad siga siendo un tema polémico dentro del mundo de la programación.
-Sin embargo, todos podemos estar deacuerdo que la documentación es importante para nosotros y para aquellos que trabajan con nuestro código.
+Sin embargo, todos podemos estar de acuerdo que la documentación es importante para nosotros y para aquellos que trabajan con nuestro código.
 
 Elixir trata la documentación como *ciudadanos de primera clase*, ofreciendo varias funciones para acceder y generar documentación para tus proyectos.
 El núcleo de Elixir nos provee con diferentes atributos para documentar el código. Vamos a ver 3 formas:
