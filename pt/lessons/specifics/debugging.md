@@ -134,7 +134,7 @@ Nesse caso, o bug seria em `b` sendo reatribuído para 0, e a função `sum` sen
 
 Claro, a linguagem já captorou esse bug até mesmo na primeira execução, mas isso é um exemplo!
 
-### IEx. Utilitários
+### IEx.Helpers
 
 Uma das partes mais chatas de trabalhar com o IEx é que ele não tem nenhum histórico de comandos que você em execuções anteriores.
 
