@@ -9,7 +9,7 @@ Nesta sessão vamos aprender sobre como fazer depuração no código Elixir, bem
 
 {% include toc.html %}
 
-### IEx
+## IEx
 
 A ferramenta mais direta que nós temos para depurar código Elixir é o IEx
 
@@ -142,7 +142,7 @@ Para resolver esse problema, existe uma subseção na [Documentação do IEx](ht
 
 Você também pode checar a lista com o resto dos utilitários disponíveis na [Documentação de Helpers do IEx](https://hexdocs.pm/iex/IEx.Helpers.html).
 
-# Dialyxir e Dialyzer
+## Dialyxir e Dialyzer
 
 O [Dialyzer](http://erlang.org/doc/man/dialyzer.html) (**DI**screpancy **A**na**LYZ**er for **ER**lang), é uma ferramenta para análise de
 código estático. 
@@ -230,7 +230,7 @@ done (passed successfully)
 
 O uso de especificações com ferramentas para realizar a análise de código estático nos ajuda a fazer com que o código seja auto-testado e contenha menos bugs.
 
-# Depuração
+## Depuração
 
 Às vezes, a análise estática de código não é suficiente.
 Pode ser necessário entender o fluxo de execução para encontrar bugs.
@@ -290,7 +290,7 @@ Depois de ter anexado o nosso módulo para o depurador estará disponível no me
 
 ![Debugger Screenshot 2]({% asset debugger_2.png @path %})
 
-## Criando breakpoints
+### Criando breakpoints
 
 Um breakpoint é um ponto no código onde a execução será interrompida.
 Temos duas maneiras de criar breakpoint:
