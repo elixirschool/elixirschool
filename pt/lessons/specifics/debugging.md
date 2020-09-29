@@ -61,7 +61,7 @@ Cannot pry #PID<0.92.0> at TestMod.sum/1 (test.exs:5). Is an IEx shell running?
 34
 ```
 
-Você dever perceber aquela mensagem crucial.
+Você deve perceber aquela mensagem crucial.
 
 Quando estiver executando uma aplicação, como sempre, o IEx gera essa mensagem em vez de bloquear a execução do programa.
 
@@ -89,7 +89,7 @@ Request to pry #PID<0.107.0> at TestMod.sum/1 (test.exs:5)
 Allow? [Yn]
 ```
 
-Depois de responser a confirmação com `y` ou pressionar Enter, você entrou no modo interativo.
+Depois de responder a confirmação com `y` ou pressionar Enter, você vai entrar no modo interativo.
 
 ```shell
  $ iex -r test.exs
