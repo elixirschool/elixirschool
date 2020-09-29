@@ -295,7 +295,7 @@ end
 ```
 
  - Usa Markdown dentro de la documentación.
- Esto hará facil la lectura ya sea desde IEX o ExDoc.
+ Esto hará facil la lectura ya sea desde IEx o ExDoc.
 
 ```elixir
 defmodule Greeter do
