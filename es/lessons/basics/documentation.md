@@ -327,7 +327,7 @@ end
 ```
 
  - Prueba incluir algunos ejemplos en tu documentación.
- Esto te permitirá agregar pruebas automaticas desde los ejemplos encontrados en un módulo, función, o macro con [ExUnit.DocTest][].
+ Esto te permitirá agregar pruebas automáticas desde los ejemplos encontrados en un módulo, función, o macro con [ExUnit.DocTest][].
  Para hacer eso, necesitas invocar al macro `doctest/1` desde tu caso de prueba y escribir tus ejemplos conforme a algunas directrices, las cuales estan detalladas en la [documentación oficial][ExUnit.DocTest].
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html
