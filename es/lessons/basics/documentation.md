@@ -234,7 +234,7 @@ Ahora podemos desplegar esto a GitHub, a nuestro propio sitio web, o mas comunme
 
 ## Mejores Prácticas
 
-La documentación agregada deberia ser agregada dentro de las directrices de mejores prácticas del lenguaje.
+La documentación agregada debería ser agregada dentro de las directrices de mejores prácticas del lenguaje.
 Ya que Elixir es un lenguaje bastante joven muchos estándares aun esta siendo descubiertos conforme el ecosistema crece.
 La comunidad, sin embargo, intentó establecer las mejores prácticas.
 Para leer acerca de estas mejores prácticas puedes revisar [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
