@@ -31,7 +31,7 @@ IO.puts "Hello, " <> "chum."
 ```
 
 Elixir, cuando ejecuta este script ignorará todo desde `#` hasta el final de la linea, tratándolo como datos sin uso.
-Esto puede no agregar valor a la operación o rendimiento del script, sin embargo cuando no es obvio que esta pasando, un programador debería saberlo leyendo tu comentario.
+Esto puede no agregar valor a la operación o rendimiento del _script_, sin embargo cuando no es obvio que está pasando, un programador debería saberlo leyendo tu comentario.
 ¡Se consciente de no abusar del comentario en línea! Ensuciar un código puede volverse una pesadilla para algunos.
 Es mejor usarlo con moderación.
 
