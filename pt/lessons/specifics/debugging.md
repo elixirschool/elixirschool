@@ -130,8 +130,7 @@ Entretato, a limitação é que você não pode modificar nenhuma variável do c
 
 Apesar disso, você pode obter todos os valores das variáveis e executar qualquer computação.
 
-Nesse caso, o bug seria em `b` sendo reatribuído para
-0, e a função `sum` sendo afetada como resultado.
+Nesse caso, o bug seria em `b` sendo reatribuído para 0, e a função `sum` sendo afetada como resultado.
 
 Claro, a linguagem já captorou esse bug até mesmo na primeira execução, mas isso é um exemplo!
 
