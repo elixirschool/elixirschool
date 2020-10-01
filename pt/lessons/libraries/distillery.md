@@ -1,9 +1,11 @@
 ---
-version: 2.0.1
+version: 2.0.2
 title: Distillery (Básico)
 ---
 
 Distillery é um gerenciador de releases escrito em Elixir puro. Ele permite que você produza releases que podem ser deployed em outros lugares com pouca ou nenhuma configuração.
+
+{% include toc.html %}
 
 ## O que é uma release?
 
@@ -109,7 +111,7 @@ config :book_app, BookAppWeb.Endpoint,
 para isto:
 
 ```
-config :book_app, BookApp.Endpoint,
+config :book_app, BookAppWeb.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "localhost", port: {:system, "PORT"}],
   cache_static_manifest: "priv/static/cache_manifest.json",
@@ -130,7 +132,7 @@ Se você executou o comando acima, você talvez tenha notado que a sua aplicaç�
 MIX_ENV=prod mix ecto.create
 ```
 
-Este comando irá criar o seu banco de dados para você. Tente executar novamente a aplicação e ela deve iniciar com sucesso. Entretanto, você irá notar que a suas migrations para o seu banco de dados não foram executadas. Normalmente em desenvolvimento executamos essas migrations manualmente chamando `mix.ecto migrate`. Para a release, nós teremos que configurar isto para que ela possa rodar as migrations por si própria.
+Este comando irá criar o seu banco de dados para você. Tente executar novamente a aplicação e ela deve iniciar com sucesso. Entretanto, você irá notar que a suas migrations para o seu banco de dados não foram executadas. Normalmente em desenvolvimento executamos essas migrations manualmente chamando `mix.ecto.migrate`. Para a release, nós teremos que configurar isto para que ela possa rodar as migrations por si própria.
 
 
 ## Executando Migrations em Produção
