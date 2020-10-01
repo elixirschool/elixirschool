@@ -31,6 +31,7 @@ defmodule TestMod do
     b = 0
 
     a + b
+  end
 end
 
 IO.puts(TestMod.sum([34, 65]))
