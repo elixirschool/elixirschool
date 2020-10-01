@@ -378,6 +378,3 @@ map.flatten       781.25 KB - 1.25x memory usage +156.28 KB
 ```
 
 Como você pode ver, Benchee não se importa em exibir todas as estatísticas com todas as amostras, elas foram as mesmas. Isso é muito comum se suas funções não incluem uma quantidade de aleatoriedade. E de que serviriam todas as estatísticas se te exibissem sempre o mesmos valores?
-
-
-
