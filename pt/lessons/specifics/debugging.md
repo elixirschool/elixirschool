@@ -72,7 +72,7 @@ O que isso faz é executar `mix` dentro do comando `iex`, fazendo com que a apli
 
 Por exemplo, use `iex -S mix phx.server` para depurar sua aplicação Phoenix. No nosso caso será `iex -r test.exs` para requerir o arquivo:
 
-```shell
+```
 $ iex -r test.exs
 Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
 
@@ -92,7 +92,7 @@ Allow? [Yn]
 
 Depois de responder a confirmação com `y` ou pressionar Enter, você vai entrar no modo interativo.
 
-```shell
+```
  $ iex -r test.exs
 Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
 
