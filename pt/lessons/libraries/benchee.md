@@ -349,7 +349,7 @@ O consumo de memória inclui toda a memória que seu cenário de benchmarking us
 
 Como você pode usá-lo? Bem, você acabou de usar a opção `:memory_time`!
 
-```
+```shell
 Operating System: Linux
 CPU Information: Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz
 Number of Available Cores: 8
