@@ -90,7 +90,7 @@ iex> Repo.all(query)
 
 #### Consultas bindingless com `from`
 
-O exemplo acima não tem a parte mais divertida das declarações (statements) SQL. Nós frequentemente queremos não apenas buscar campos específicos or filtrar registros por alguma condição. Vamos carregar `title` e `tagline` de todos os filmes que tenham o título `"Ready Player One"`:
+O exemplo acima não tem a parte mais divertida das declarações (statements) SQL. Nós frequentemente queremos não apenas buscar campos específicos ou filtrar registros por alguma condição. Vamos carregar `title` e `tagline` de todos os filmes que tenham o título `"Ready Player One"`:
 
 ```elixir
 iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
