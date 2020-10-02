@@ -38,8 +38,8 @@ Es mejor usarlo con moderación.
 ### Documentando Módulos
 
 El anotador `@moduledoc` permite agregar documentación al nivel de módulo.
-Esto tipicamente se situa bajo la declaración `defmodule` al inicio del archivo.
-El ejemplo a continuación muestra un comentario de una linea dentro del decorador `@moduledoc`.
+Esto típicamente se sitúa bajo la declaración `defmodule` al inicio del archivo.
+El ejemplo a continuación muestra un comentario de una línea dentro del decorador `@moduledoc`.
 
 ```elixir
 defmodule Greeter do
@@ -70,7 +70,7 @@ Provides a function hello/1 to greet a human
 
 Al igual que Elixir nos da la habilidad para documentar a nivel de módulo, también habilita similares anotaciones para documentar funciones.
 El anotador `@doc` permite agregar documentación a nivel de función.
-El anotador `@doc` se situa justo sobre la función que esta comentando.
+El anotador `@doc` se sitúa justo sobre la función que está comentando.
 
 ```elixir
 defmodule Greeter do
@@ -135,7 +135,7 @@ iex>
 ## ExDoc
 
 ExDoc es un proyecto oficial de Elixir que puede ser encontrado en [GitHub](https://github.com/elixir-lang/ex_doc).
-Produce **HTML (HyperText Markup Language) y documentación en linea** para proyectos Elixir.
+Produce **HTML (HyperText Markup Language) y documentación en línea** para proyectos Elixir.
 Primero vamos a crear un proyecto Mix para nuestra aplicación:
 
 ```bash
