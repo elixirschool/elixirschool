@@ -111,7 +111,7 @@ Only nodes started with the same `cookie` will be able to successfully connect t
 
 #### `Node.spawn_link/2` Limitations
 
-While `Node.spawn_link/2` illustrates the relationships between nodes and the manner in which we can send messages between them, its _not_ really the right choice for an application that will run across distributed nodes.
+While `Node.spawn_link/2` illustrates the relationships between nodes and the manner in which we can send messages between them, it is _not_ really the right choice for an application that will run across distributed nodes.
 `Node.spawn_link/2` spawns processes in isolation, i.e.
 processes that are not supervised.
 If only there was a way to spawn supervised, asynchronous processes _across nodes_...
