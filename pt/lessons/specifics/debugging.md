@@ -49,7 +49,7 @@ warning: variable "b" is unused (if the variable is not meant to be used, prefix
 
 Mas agora vamos para a parte empolgante - a depuração.
 
-Insira `require IEx: Iex.pry` depois da linha com `b = 0` e vamos tentar executar o código novamente.
+Insira `require IEx; IEx.pry` depois da linha com `b = 0` e vamos tentar executar o código novamente.
 
 Você vai receber algo assim:
 
@@ -70,7 +70,7 @@ Para executar ela apropriadamente você precisa prefixar seu comando com `iex -S
 
 O que isso faz é executar `mix` dentro do comando `iex`, fazendo com que a aplicação seja executada em um modo especial, de tal jeito que chame `IEx.pry` para parar a execução da aplicação.
 
-Por exemplo, use `iex -S mix phx.serve` para depurar sua aplicação Phoenix. No nosso caso será `iex -r test.exs` para requerir o arquivo:
+Por exemplo, use `iex -S mix phx.server` para depurar sua aplicação Phoenix. No nosso caso será `iex -r test.exs` para requerir o arquivo:
 
 ```shell
 $ iex -r test.exs
@@ -133,11 +133,11 @@ Apesar disso, você pode obter todos os valores das variáveis e executar qualqu
 
 Nesse caso, o bug seria em `b` sendo reatribuído para 0, e a função `sum` sendo afetada como resultado.
 
-Claro, a linguagem já captorou esse bug até mesmo na primeira execução, mas isso é um exemplo!
+Claro, a linguagem já capturou esse bug até mesmo na primeira execução, mas isso é um exemplo!
 
 ### IEx.Helpers
 
-Uma das partes mais chatas de trabalhar com o IEx é que ele não tem nenhum histórico de comandos que você em execuções anteriores.
+Uma das partes mais chatas de trabalhar com o IEx é que ele não tem nenhum histórico de comandos que você usou em execuções anteriores.
 
 Para resolver esse problema, existe uma subseção na [Documentação do IEx](https://hexdocs.pm/iex/IEx.html#module-shell-history), onde você pode achar a solução de acordo com sua plataforma.
 
@@ -152,7 +152,7 @@ procurando por alguns bugs, códigos mortos, desnecessários ou inacessíveis.
 
 O [Dialyxir](https://github.com/jeremyjh/dialyxir) é uma tarefa mix para simplificar o uso do Dialyzer em Elixir.
 
-Ferramentas de especificação como o Dialyzer ajudam a enteder melhor o código.
+Ferramentas de especificação como o Dialyzer ajudam a entender melhor o código.
 Ao contrário da documentação, que é legível por humanos (se apenas existe e é bem escrito), `@spec` usa uma sintaxe mais formal e que pode ser entendida pela máquina.
 
 Vamos adicionar Dialyxir ao nosso projeto.
