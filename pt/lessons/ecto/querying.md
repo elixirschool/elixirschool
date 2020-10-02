@@ -150,7 +150,7 @@ iex> Repo.all(query)
 
 Nos exemplos acima nós usamos as palavras-chave `select:` e `where:` dentro da macro `from` para construir uma consulta (query) - essas são chamadas de *consultas baseadas em palavras-chave*. Há, no entanto, outra forma de compor consultas - baseadas em macros. Ecto fornece macros para cada palavra-chave, como `select/3` or `where/3`.
 
-Cada macro aceita um valor *queryable* (buscável), *uma lista explícita de bindings* e a mesma expressnao que você forneceu para sua consulta de palavras-chave análoga:
+Cada macro aceita um valor *queryable* (buscável), *uma lista explícita de bindings* e a mesma expressão que você forneceu para sua consulta de palavras-chave análoga:
 
 ```elixir
 iex> query = select(Movie, [m], m.title)
