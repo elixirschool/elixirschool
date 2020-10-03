@@ -1,9 +1,11 @@
 ---
-version: 2.0.1
+version: 2.0.2
 title: Distillery (Básico)
 ---
 
 Distillery é um gerenciador de releases escrito em Elixir puro. Ele permite que você produza releases que podem ser deployed em outros lugares com pouca ou nenhuma configuração.
+
+{% include toc.html %}
 
 ## O que é uma release?
 
@@ -28,7 +30,7 @@ Uma release irá conter o seguinte:
 
 Para adicionar o Distillery no seu projeto, adicione-o como uma dependência no seu arquivo `mix.exs`. *Nota* - se você estiver trabalhando numa aplicação umbrella isto deve estar no mix.exs na raiz do seu projeto
 
-```
+```elixir
 defp deps do
   [{:distillery, "~> 2.0"}]
 end
@@ -36,11 +38,11 @@ end
 
 Então no seu terminal execute:
 
-```
+```shell
 mix deps.get
 ```
 
-```
+```shell
 mix compile
 ```
 
@@ -49,7 +51,7 @@ mix compile
 
 No seu terminal, execute
 
-```
+```shell
 mix release.init
 ```
 
@@ -59,7 +61,7 @@ Para gerar uma release no terminal execute `mix release`
 
 Quando a release for produzida, você deve ver algumas instruções no seu terminal
 
-```
+```shell
 ==> Assembling release..
 ==> Building release book_app:0.1.0 using environment dev
 ==> You have set dev_mode to true, skipping archival phase
@@ -100,7 +102,7 @@ Primeiro, precisamos editar o nosso arquivo `config/prod.exs`.
 
 Altere a seguinte linha disto:
 
-```
+```elixir
 config :book_app, BookAppWeb.Endpoint,
   load_from_system_env: true,
   url: [host: "example.com", port: 80],
@@ -108,8 +110,8 @@ config :book_app, BookAppWeb.Endpoint,
 ```
 para isto:
 
-```
-config :book_app, BookApp.Endpoint,
+```elixir
+config :book_app, BookAppWeb.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "localhost", port: {:system, "PORT"}],
   cache_static_manifest: "priv/static/cache_manifest.json",
@@ -126,11 +128,11 @@ Nós fizemos algumas coisas aqui:
 
 Se você executou o comando acima, você talvez tenha notado que a sua aplicação crashou porquê é incapaz de conectar ao banco de dados já que nenhum banco de dados atualmente existe. Isto pode ser retificado executando um comando `mix` do Ecto. No seu terminal, digite o seguinte:
 
-```
+```shell
 MIX_ENV=prod mix ecto.create
 ```
 
-Este comando irá criar o seu banco de dados para você. Tente executar novamente a aplicação e ela deve iniciar com sucesso. Entretanto, você irá notar que a suas migrations para o seu banco de dados não foram executadas. Normalmente em desenvolvimento executamos essas migrations manualmente chamando `mix.ecto migrate`. Para a release, nós teremos que configurar isto para que ela possa rodar as migrations por si própria.
+Este comando irá criar o seu banco de dados para você. Tente executar novamente a aplicação e ela deve iniciar com sucesso. Entretanto, você irá notar que a suas migrations para o seu banco de dados não foram executadas. Normalmente em desenvolvimento executamos essas migrations manualmente chamando `mix.ecto.migrate`. Para a release, nós teremos que configurar isto para que ela possa rodar as migrations por si própria.
 
 
 ## Executando Migrations em Produção
@@ -146,7 +148,7 @@ O Distillery nos provê a habilidade de executar código em diferentes pontos do
 
 Para o nosso propósito, iremos estar utilizando o hook `post_start` para executar as migrações da nossa aplicação em produção. Primeiro vamos criar uma nova tarefa da release chamada `migrate`. Uma tarefa de release é um módulo que podemos chamar pelo terminal e que contém código que é separado do funcionamento interno da nossa aplicação. Isto é útil para tarefas que a aplicação em si não precisa tipicamente executar.
 
-```
+```elixir
 defmodule BookAppWeb.ReleaseTasks do
   def migrate do
     {:ok, _} = Application.ensure_all_started(:book_app)
@@ -163,7 +165,7 @@ end
 Depois, crie um novo arquivo - `rel/hooks/post_start/migrate.sh` e adicione o seguinte código:
 
 
-```
+```shell
 echo "Running migrations"
 
 bin/book_app rpc "Elixir.BookApp.ReleaseTasks.migrate"
@@ -176,7 +178,7 @@ Por último, em nosso arquivo `rel/config.exs` iremos adicionar o hook para a no
 
 Vamos substituir
 
-```
+```elixir
 environment :prod do
   set include_erts: true
   set include_src: false
@@ -187,7 +189,7 @@ end
 
 por
 
-```
+```elixir
 environment :prod do
   set include_erts: true
   set include_src: false
@@ -209,7 +211,7 @@ Comandos são similares a tarefas de release no sentido de que são ambos funç�
 
 Agora que podemos executar nossas migrations, nós talvez queiramos sermos capazes de popular nosso banco de dados com informação através de um comando. Primeiro, adicione um novo método as nossas tarefas da release. Em `BookAppWeb.ReleaseTasks`, adicione o seguinte:
 
-```
+```elixir
 def seed do
   seed_path = Application.app_dir(:book_app_web, "priv/repo/seeds.exs")
   Code.eval_file(seed_path)
@@ -218,7 +220,7 @@ end
 
 Depois, crie um novo arquivo `rel/commands/seed.sh` e adicione o seguinte código:
 
-```
+```shell
 #!/bin/sh
 
 release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
@@ -230,7 +232,7 @@ release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
 Veja mais sobre shell_scripts do Distillery [aqui](https://hexdocs.pm/distillery/extensibility/shell_scripts.html)
 
 Por último, adicione o seguinte ao seu arquivo `rel/config.exs`
-```
+```elixir
 release :book_app do
   ...
   set commands: [
