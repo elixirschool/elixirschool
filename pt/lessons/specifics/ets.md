@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Erlang Term Storage (ETS)
 ---
 
@@ -135,7 +135,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 {% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :"_", :"$3"}, [], [:"$_"]}]){% endraw %}
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
- {"spork", 30, ["ruby", "elixir"]}]
+ {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 ```
 
 Apesar do `select/2` um controle mais fino sobre o que e como recuperamos registros, a sintaxe é um bastante hostil e tende a ser pior. Para lidar com isso, o módulo ETS inclui `fun2ms/1`, para transformar as funções em *match_specs*. Com `fun2ms/1` podemos criar consultas usando uma sintaxe de função mais familiar.
