@@ -97,7 +97,7 @@ defmodule GenstageExample.Producer do
 end
 ```
 
-As duas partes mais importantes para tomar nota aqui são `init/1` e `handle_demand/2`. No `init/1` definimos o estado inicial como fizemos em nossos GenServers, mas mais importante, nos rotulamos como produtores. A resposta da nossa função `init/1` é o que o GenStage confia para classificar nossos processo.
+As duas partes mais importantes para tomar nota aqui são `init/1` e `handle_demand/2`. No `init/1` definimos o estado inicial como fizemos em nossos GenServers, mais importante, nos rotulamos como produtores. A resposta da nossa função `init/1` é o que o GenStage confia para classificar nossos processo.
 
 A função `handle_demand/2` é onde a maioria de nosso produtor está definida. Ela precisa ser implementada por todos os produtores GenStage. Aqui retornamos o conjunto de números demandados pelos nossos consumidores e incrementamos nosso contador. A demanda dos consumidores, `demand` no nosso código acima, é representada como um inteiro correspondendo ao número de eventos que eles podem tratar; seu padrão é 1000.
 
@@ -136,7 +136,7 @@ end
 ```
 
 Você deve ter notado com nosso produtor-consumidor que introduzimos uma nova opção no `init/1` e uma nova função: `handle_events/3`. Com a opção `subscribe_to`, instruímos o GenStage a nos colocar em comunicação com um produtor específico.
-
+as
 A função `handle_events/3` é nosso cavalo de batalha, onde recebemos nossos eventos de entrada, os processamos, e retornamos nosso conjunto modificado. Como veremos, consumidores são implementados de maneira muito semelhante, mas a diferença importante é que nossa função `handle_events/3` retorna e como ela é usada. Quando rotulamos nosso processo um produtor_consumidor, o segundo argumento da nossa tupla — `numbers` no nosso caso — é usado para conhecer a demanda de consumidores. Em consumidores esse valor é descartado.
 
 ## Consumidor
