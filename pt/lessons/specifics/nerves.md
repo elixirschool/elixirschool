@@ -18,7 +18,7 @@ However, we would suggest using a Raspberry Pi, due to it having controllable LE
 
 ## Configuração
 
-O projeto Nerves tem um excelente [Guia de introdução](https://hexdocs.pm/nerves/getting-started.html), mas a quantidade de detalhes lá pode ser assustadora para alguns usuários. Em vez disso, esse tudorial vai tentar apresentar "menos palavras, mais código".
+O projeto Nerves tem um excelente [Guia de introdução](https://hexdocs.pm/nerves/getting-started.html), mas a quantidade de detalhes lá pode ser assustadora para alguns usuários. Em vez disso, esse tutorial vai tentar apresentar "menos palavras, mais código".
 
 Primeiramente, você vai precisar de um ambiente configurado. Você pode encontrar o guia na parte de [Instalação](https://hexdocs.pm/nerves/installation.html) da wiki do Nerves. Por favor, tenha certeza de que você tem a mesma versão tanto do OTP quanto do Elixir mencionadas no guia. Não utilizar a versão correta pode causar problemas conforme você progride. No momento em que esse guia foi escrito, qualquer versão de Elixir (compilada com Erlang/OTP 21) deve funcionar.
 
@@ -112,7 +112,7 @@ Se você tiver uma tela conectada - você deve ver uma sequência de boot Linux 
 
 A próxima etapa é configurar a rede. O ecossistema Nerves provê uma variedade de pacotes, e [nerves_network](https://github.com/nerves-project/nerves_network) é o que precisaremos para conectar o dispositivo à rede através da porta cabeada Ethernet.
 
-Esse pacote já está presente em seu projeto como uma dependência de `nerves_init_gadget`. No entando, por padrão, ele usa DHCP (veja a configuração para ele em `config/config.exs` depois de rodar `config :nerves_init_gadget`). É mais fácil ter um endereço IP estático.
+Esse pacote já está presente em seu projeto como uma dependência de `nerves_init_gadget`. No entanto, por padrão, ele usa DHCP (veja a configuração para ele em `config/config.exs` depois de rodar `config :nerves_init_gadget`). É mais fácil ter um endereço IP estático.
 
 Para configurar uma rede estática, você deve adicionar as seguintes linhas ao `config/config.exs`:
 
@@ -259,4 +259,4 @@ E, a etapa final - adicione `{Plug.Cowboy, scheme: :http, plug: NetworkLed.Http,
 
 Depois da atualização do firmware, você pode testá-lo! `http://192.168.88.2/` está retornando uma resposta em texto puro, e `http://192.168.88.2/enable` junto a `http://192.168.88.2/disable` ativam e desativam, respectivamente, o LED!
 
-Você pode até mesmo empacotar interfaces de usuário feitas com Phoenix na sua aplicação Nerves, no entando, isso vai [precisar de algumas alterações](https://github.com/nerves-project/nerves/blob/master/docs/User%20Interfaces.md#phoenix-web-interfaces).
+Você pode até mesmo empacotar interfaces de usuário feitas com Phoenix na sua aplicação Nerves, no entanto, isso vai [precisar de algumas alterações](https://github.com/nerves-project/nerves/blob/master/docs/User%20Interfaces.md#phoenix-web-interfaces).
