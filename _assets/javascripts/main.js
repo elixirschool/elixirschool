@@ -1,5 +1,4 @@
 //= require jquery.min.js
-// require js.cookie.js
 //= require skel.min.js
 //= require stickyfill.min.js
 //= require util.js
@@ -228,7 +227,7 @@
 
 			var isDark = $body.attr('class') === 'dark';
 			$theme = isDark ? 'light' : 'dark';
-			Cookies.set('theme', $theme);
+			localStorage.setItem('theme', $theme);
 			$body.toggleClass('dark');
 			toggleThemeIcon($elToggleTheme);
 		});
