@@ -91,13 +91,13 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 
 ETS foi construído para o Erlang, logo, tenha em atenção que correspondência de variáveis pode parecer um _pouco_ desajeitado.
 
-Para especificar uma variável no nosso *match*, usamos os *atoms* `:"$1"`, `:"$2"`, `:"$3"`, e assim por diante; o número da variável reflete a posição do resultado e não a posição do *match*. Para valores que não nos interessam usamos a variável `:"_"`.
+Para especificar uma variável no nosso *match*, usamos os *atoms* `:"$1"`, `:"$2"`, `:"$3"`, e assim por diante; o número da variável reflete a posição do resultado e não a posição do *match*. Para valores que não nos interessam usamos a variável `:_`.
 
 Valores podem ser usados na correspondência, mas apenas variáveis farão parte do nosso resultado. Vamos juntar tudo isso e ver como funciona:
 
 
 ```elixir
-iex> :ets.match(:user_lookup, {:"$1", "Sean", :"_"})
+iex> :ets.match(:user_lookup, {:"$1", "Sean", :_})
 [["doomspork"]]
 ```
 
@@ -112,11 +112,11 @@ iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
 O que se queremos nosso objeto original e não uma lista? Podemos usar `match_object/2`, que independentemente das variáveis retorna nosso objeto inteiro:
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
+iex> :ets.match_object(:user_lookup, {:_, "Sean", :_})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
@@ -129,11 +129,11 @@ Nossas variáveis de correspondência e mais duas novas variáveis, `:"$$"` e `:
 Vamos pegar um dos nossos exemplos `match/2` anterior e transforma-lo num `select/2`:
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :"_", :"$3"}, [], [:"$_"]}]){% endraw %}
+{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :_, :"$3"}, [], [:"$_"]}]){% endraw %}
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 ```
@@ -144,7 +144,7 @@ Vamos usar `fun2ms/1` e `select/2` para encontrar todos os usuários com 2 ou ma
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
-{% raw %}[{{:"$1", :"_", :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
+{% raw %}[{{:"$1", :_, :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
 
 iex> :ets.select(:user_lookup, fun)
 ["doomspork", "3100"]

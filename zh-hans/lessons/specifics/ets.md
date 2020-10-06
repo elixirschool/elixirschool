@@ -94,12 +94,12 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 
 ETS 是为 Erlang 打造的，所以匹配的语法可能有"一点点"笨重.
 
-我们使用原子 `:"$1"`、`:"$2"`、`:"$3"` 等等来表示匹配中所使用的变量。其中的数字只用来表示其在返回值中的位置，而非匹配时的位置。不想要的部分我们可以用 `:"_"` 来忽略掉。
+我们使用原子 `:"$1"`、`:"$2"`、`:"$3"` 等等来表示匹配中所使用的变量。其中的数字只用来表示其在返回值中的位置，而非匹配时的位置。不想要的部分我们可以用 `:_` 来忽略掉。
 
 匹配表达式里也可以直接写书面值，但只有变量表示的部分会作为结果返回。说起来太抽象了不如实际试试看：
 
 ```elixir
-iex> :ets.match(:user_lookup, {:"$1", "Sean", :"_"})
+iex> :ets.match(:user_lookup, {:"$1", "Sean", :_})
 [["doomspork"]]
 ```
 
@@ -114,11 +114,11 @@ iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
 假如我们想要获取的是本来的对象，而不是列表呢？那可以用 `match_object/2`，这个函数忽略那些变量而直接返回整个对象：
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
+iex> :ets.match_object(:user_lookup, {:_, "Sean", :_})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
@@ -131,11 +131,11 @@ iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
 我们把前面用 `match/2` 的例子换成 `select/2` 看看：
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :"_", :"$3"}, [], [:"$_"]}]){% endraw %}
+{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :_, :"$3"}, [], [:"$_"]}]){% endraw %}
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
 {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 ```
@@ -146,7 +146,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
-{% raw %}[{{:"$1", :"_", :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
+{% raw %}[{{:"$1", :_, :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
 
 iex> :ets.select(:user_lookup, fun)
 ["doomspork", "3100"]
