@@ -85,12 +85,12 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 
 ETS dibuat untuk Erlang, sehingga perhatikan bahwa variabel pencocokan bisa terasa _sedikit_ aneh.
 
-Untuk menspesifikasikan sebuah variabel di pencocokan kita, kita gunakan atom `:"$1"`, `:"$2"`, `:"$3"`, dan seterusnya.  Nomor variabel merefleksikan posisi result dan bukan posisi match.  Untuk value yang kita tidak perhatikan, kita gunakan variabel `:"_"`.
+Untuk menspesifikasikan sebuah variabel di pencocokan kita, kita gunakan atom `:"$1"`, `:"$2"`, `:"$3"`, dan seterusnya.  Nomor variabel merefleksikan posisi result dan bukan posisi match.  Untuk value yang kita tidak perhatikan, kita gunakan variabel `:_`.
 
 Value juga bisa digunakan dalam pencocokan, tetapi hanya variable yang akan dikembalikan sebagai bagian dari result kita.  Mari kita coba melihat bagaimana kerjanya:
 
 ```elixir
-iex> :ets.match(:user_lookup, {:"$1", "Sean", :"_"})
+iex> :ets.match(:user_lookup, {:"$1", "Sean", :_})
 [["doomspork"]]
 ```
 
@@ -105,11 +105,11 @@ iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
 Bagaimana kalau kita inginkan object aslinya, bukan sebuah list?  Kita bisa gunakan `match_object/2`, yang apapun variabelnya mengembalikan object kita secara keseluruhan:
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
+iex> :ets.match_object(:user_lookup, {:_, "Sean", :_})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
@@ -122,11 +122,11 @@ Variabel pencocokan kita dan dua variabel baru, `:"$$"` dan `:"$_"`, bisa diguna
 Mari kita ambil salah satu contoh `match/2` kita sebelumnya dan mengubahnya menjadi `select/2`:
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :"_", :"$3"}, [], [:"$_"]}]){% endraw %}
+{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :_, :"$3"}, [], [:"$_"]}]){% endraw %}
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"spork", 30, ["ruby", "elixir"]}]
 ```
@@ -137,7 +137,7 @@ Mari kita gunakan `fun2ms/1` dan `select/2` untuk menemukan semua username denga
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
-{% raw %}[{{:"$1", :"_", :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
+{% raw %}[{{:"$1", :_, :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
 
 iex> :ets.select(:user_lookup, fun)
 ["doomspork", "3100"]

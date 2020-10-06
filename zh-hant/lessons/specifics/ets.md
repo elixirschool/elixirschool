@@ -94,12 +94,12 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 
 ETS 是為 Erlang 構建的，所以要注意的是比對變數可能會讓人覺得 _有一點_ 笨重。
 
-要在比對中指定一個變數，使用 atoms `:"$1"`、`:"$2"` 和 `:"$3"` 等等。變數數字反映結果位置而不是比對位置。對於不感興趣的值，使用 `:"_"` 變數。
+要在比對中指定一個變數，使用 atoms `:"$1"`、`:"$2"` 和 `:"$3"` 等等。變數數字反映結果位置而不是比對位置。對於不感興趣的值，使用 `:_` 變數。
 
 值也可用於比對，但只有變數將作為結果的一部分回傳。現在全部都放在一起，看看它是如何運作的：
 
 ```elixir
-iex> :ets.match(:user_lookup, {:"$1", "Sean", :"_"})
+iex> :ets.match(:user_lookup, {:"$1", "Sean", :_})
 [["doomspork"]]
 ```
 
@@ -114,11 +114,11 @@ iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
 如果想要原始物件，而不是列表呢？可以使用 `match_object/2` ，它不管變數而是回傳整個物件：
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
+iex> :ets.match_object(:user_lookup, {:_, "Sean", :_})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
@@ -134,11 +134,11 @@ iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
 現在來看一個以前的 `match/2` 範例，並將它變成一個 `select/2`：
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :"_", :"$3"}, [], [:"$_"]}]){% endraw %}
+{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :_, :"$3"}, [], [:"$_"]}]){% endraw %}
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"spork", 30, ["ruby", "elixir"]}]
 ```
@@ -150,7 +150,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
-{% raw %}[{{:"$1", :"_", :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
+{% raw %}[{{:"$1", :_, :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
 
 iex> :ets.select(:user_lookup, fun)
 ["doomspork", "3100"]
