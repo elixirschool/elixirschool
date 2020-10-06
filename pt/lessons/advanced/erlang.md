@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Interoperabilidade com Erlang
 ---
 
@@ -120,14 +120,19 @@ iex> "Hello World" |> to_charlist |> :string.words
 
 ### Variáveis
 
+Em Erlang, variáveis começam com caixa alta e a reassociação de variáveis não é permitida.
+
 Elixir:
 
 ```elixir
 iex> x = 10
 10
 
-iex> x1 = x + 10
+iex> x = 20
 20
+
+iex> x1 = x + 10
+30
 ```
 
 Erlang:
@@ -136,8 +141,11 @@ Erlang:
 1> X = 10.
 10
 
-2> X1 = X + 1.
-11
+2> X = 20.
+** exception error: no match of right hand side value 20
+
+2> X1 = X + 10.
+20
 ```
 
 É isso! Utilizar Erlang a partir da nossa aplicação Elixir é fácil e efetivamente dobra o número de bibliotecas disponíveis para nós.

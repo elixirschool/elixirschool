@@ -1,6 +1,8 @@
 ---
 version: 1.0.0
 title: Nerves
+redirect_from:
+  - /ja/lessons/advanced/nerves
 ---
 
 ## はじめに

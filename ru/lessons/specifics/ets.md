@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Erlang Term Storage (ETS)
 ---
 
@@ -114,13 +114,13 @@ ETS изначально создавался для Erlang, потому син
 
 Для указания переменной в нашем сопоставлении мы должны использовать атомы `:"$1"`, `:"$2"`, `:"$3"` и так далее.
 Номер переменной отображает порядок в результате.
-Для переменных, которые нам не интересны, можно использовать `:"_"`.
+Для переменных, которые нам не интересны, можно использовать `:_`.
 
 Значения также могут быть использованы для поиска, но только переменные будут возвращены как результат.
 Давайте попробуем воспользоваться этими знаниями:
 
 ```elixir
-iex> :ets.match(:user_lookup, {:"$1", "Sean", :"_"})
+iex> :ets.match(:user_lookup, {:"$1", "Sean", :_})
 [["doomspork"]]
 ```
 
@@ -135,11 +135,11 @@ iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
 А что, если мы хотим получить не список, а оригинальный объект целиком? Можно вызвать `match_object/2`, который вне зависимости от переменных вернет объект целиком:
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
+iex> :ets.match_object(:user_lookup, {:_, "Sean", :_})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
@@ -155,13 +155,13 @@ iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
 Давайте возьмем один из предыдущих примеров с `match/2` и превратим его в `select/2`:
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :"_", :"$3"}, [], [:"$_"]}]){% endraw %}
+{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :_, :"$3"}, [], [:"$_"]}]){% endraw %}
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
- {"spork", 30, ["ruby", "elixir"]}]
+ {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 ```
 
 Несмотря на то, что `select/2` позволяет лучше управлять получением записей, синтаксис неудобен.
@@ -172,7 +172,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
-{% raw %}[{{:"$1", :"_", :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
+{% raw %}[{{:"$1", :_, :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
 
 iex> :ets.select(:user_lookup, fun)
 ["doomspork", "3100"]

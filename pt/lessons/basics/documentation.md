@@ -217,7 +217,7 @@ Agora nós podemos implantar isso para GitHub, o nosso próprio site, ou mais co
 
 ## Boas Práticas
 
-Ao adicionar documentação deve ser seguido as boas práticas orientadas pela linguagem. Desde que Elixir é uma linguagem bastante jovem, muitas normas ainda estão a ser descobertas ao longo do crescimento do ecossistema. A comunidade, entretanto, tem feito esforços para estabelecer as melhores práticas. Para ler mais sobre as melhores práticas veja [O Guia de Estilo Elixir](https://github.com/niftyn8/elixir_style_guide).
+Ao adicionar documentação deve ser seguido as boas práticas orientadas pela linguagem. Considerando que Elixir é uma linguagem bastante jovem, muitas normas ainda serão descobertas ao longo do crescimento do ecossistema. A comunidade, entretanto, tem feito esforços para estabelecer as melhores práticas. Para ler mais sobre, veja [O Guia de Estilo Elixir](https://github.com/niftyn8/elixir_style_guide).
 
   - Sempre documente um módulo.
 
@@ -230,7 +230,7 @@ defmodule Greeter do
 end
 ```
 
-  - Em caso você não pretenda documentar um módulo, **não deixe-o** em branco. Considere anotar o módulo com `false` como a seguir:
+  - Caso você não pretenda documentar um módulo, **não deixe-o** em branco. Considere anotar o módulo com `false` como a seguir:
 
 ```elixir
 defmodule Greeter do

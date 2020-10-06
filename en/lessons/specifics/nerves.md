@@ -1,6 +1,8 @@
 ---
 version: 1.0.1
 title: Nerves
+redirect_from:
+  - /en/lessons/advanced/nerves
 ---
 
 {% include toc.html %}

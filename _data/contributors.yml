@@ -525,3 +525,22 @@
     - translator
   languages:
     - ru
+
+- github: TGITS
+  name: Christophe Vaudry
+  intro: 
+  homepage: https://tgits.github.io/
+  twitter: _TGITS
+  contributions:
+    - translator
+  languages:
+    - fr
+    
+- github: jersearls
+  name: Jeremy Searls
+  intro: I'm an elixir developer at Cars.com living in Kalamazoo, MI
+  twitter: jersearls
+  contributions:
+    - lesson
+  lessons:
+    - Capture operator

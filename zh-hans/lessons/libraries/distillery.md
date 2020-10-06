@@ -1,9 +1,11 @@
 ---
-version: 2.0.1
+version: 2.0.2
 title: Distillery (基础)
 ---
 
 Distillery 是纯 Elixir 编写的发布管理工具。它可以让你在极少，甚至不需要配置的情况下生成发布包，并部署到其它环境。
+
+{% include toc.html %}
 
 ## 什么是发布包？
 
@@ -28,7 +30,7 @@ Distillery 是纯 Elixir 编写的发布管理工具。它可以让你在极少�
 
 把 Distillery 当作依赖，添加到你项目里 的 `mix.exs` 文件里头。*注意* —— 如果你的是 umbrella 应用，请把它添加到项目根目录的 mix.exs 文件里。
 
-```
+```elixir
 defp deps do
   [{:distillery, "~> 2.0"}]
 end
@@ -36,11 +38,11 @@ end
 
 然后在命令行输入：
 
-```
+```shell
 mix deps.get
 ```
 
-```
+```shell
 mix compile
 ```
 
@@ -49,7 +51,7 @@ mix compile
 
 在命令行，运行
 
-```
+```shell
 mix release.init
 ```
 
@@ -59,7 +61,7 @@ mix release.init
 
 发布包一生成，命令行应该会出现以下指引。
 
-```
+```shell
 ==> Assembling release..
 ==> Building release book_app:0.1.0 using environment dev
 ==> You have set dev_mode to true, skipping archival phase
@@ -96,7 +98,7 @@ For a complete listing of commands and their use:
 
 首先，编辑 `config/prod.exs` 文件。把以下内容：
 
-```
+```elixir
 config :book_app, BookAppWeb.Endpoint,
   load_from_system_env: true,
   url: [host: "example.com", port: 80],
@@ -105,8 +107,8 @@ config :book_app, BookAppWeb.Endpoint,
 
 更改为：
 
-```
-config :book_app, BookApp.Endpoint,
+```elixir
+config :book_app, BookAppWeb.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "localhost", port: {:system, "PORT"}],
   cache_static_manifest: "priv/static/cache_manifest.json",
@@ -123,11 +125,11 @@ config :book_app, BookApp.Endpoint,
 
 如果执行上述命令的时候，系统由于找不到数据库而崩溃了。我们可以通过 Ecto `mix` 命令来修复这个错误。在命令行，输入：
 
-```
+```shell
 MIX_ENV=prod mix ecto.create
 ```
 
-这个命令可以帮你创建数据库。尝试重新启动系统，这时候应该正常了。但是，你会发现数据库的升级脚本还没有运行。通常，在开发阶段，这些升级脚本都是手动调用 `mix.ecto migrate` 来运行的。到了发布阶段，我们希望它能自动按照配置运行。
+这个命令可以帮你创建数据库。尝试重新启动系统，这时候应该正常了。但是，你会发现数据库的升级脚本还没有运行。通常，在开发阶段，这些升级脚本都是手动调用 `mix ecto.migrate` 来运行的。到了发布阶段，我们希望它能自动按照配置运行。
 
 ## 在生产环境运行数据库升级脚本
 
@@ -141,7 +143,7 @@ Distillery 可以让我们在发布生命周期的不同时刻执行代码。这
 
 根据我们的需要，`post_start` 是在生产环境运行数据库升级脚本的点。我们先创建一个叫 `migrate` 的发布任务。这个任务是一个可以在命令行调用的模块函数入口，它包含了和系统应用去分开的代码。通常我们会把那些系统本身不需要运行的任务都放在这里。
 
-```
+```elixir
 defmodule BookAppWeb.ReleaseTasks do
   def migrate do
     {:ok, _} = Application.ensure_all_started(:book_app)
@@ -157,7 +159,7 @@ end
 
 接着，创建新的文件 —— `rel/hooks/post_start/migrate.sh` 并加入如下代码：
 
-```
+```shell
 echo "Running migrations"
 
 bin/book_app rpc "Elixir.BookApp.ReleaseTasks.migrate"
@@ -169,7 +171,7 @@ bin/book_app rpc "Elixir.BookApp.ReleaseTasks.migrate"
 
 把一下配置：
 
-```
+```elixir
 environment :prod do
   set include_erts: true
   set include_src: false
@@ -180,7 +182,7 @@ end
 
 替换为：
 
-```
+```elixir
 environment :prod do
   set include_erts: true
   set include_src: false
@@ -202,7 +204,7 @@ end
 
 既然我们能运行升级脚本了，我们或许还需要通过命令来为数据库提供基础数据。首先，在我们的发布任务模块添加一个新的函数。在 `BookAppWeb.ReleaseTasks`，加入以下代码：
 
-```
+```elixir
 def seed do
   seed_path = Application.app_dir(:book_app_web, "priv/repo/seeds.exs")
   Code.eval_file(seed_path)
@@ -211,7 +213,7 @@ end
 
 接着，创建文件 `rel/commands/seed.sh` 并加入代码：
 
-```
+```shell
 #!/bin/sh
 
 release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
@@ -224,7 +226,7 @@ release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
 
 最后，在 `rel/config.exs` 文件里，加入：
 
-```
+```elixir
 release :book_app do
   ...
   set commands: [

@@ -5,7 +5,6 @@ Please ensure your pull request adheres to the following guidelines:
 
 * New lessons or improvements to existing lessons are welcome.
 * Please check your spelling and grammar.
-* Open an issue to handle translations if adding a new lesson or modifying an existing one. You can find an example [here](https://github.com/elixirschool/elixirschool/issues/529)
 * Please adhere to our [style guide](https://github.com/elixirschool/elixirschool/wiki/Lesson-Styleguide)
 
 ## A Note on Lesson Versions
@@ -26,6 +25,8 @@ Change the `version` attribute according to the following rules:
 * PATCH — Spelling, typos. Probably not translated stuff.
 
 Fun fact! The version changes are necessary because we use that to programmatically determine and inform translators of new content that requires translation.
+
+Each language has a generated [Translation Report](https://elixirschool.com/es/report/)
 
 ## Adding a New Lesson
 To add a new lesson, create the file under the appropriate directory in `en/lessons` (or `<language_code>/lessons`) if you are not writing your new lesson in English).

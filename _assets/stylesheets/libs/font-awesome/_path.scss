@@ -11,4 +11,5 @@
     url(asset_path('fontawesome-webfont.svg?v=#{$fa-version}#fontawesomeregular')) format('svg');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }

@@ -91,12 +91,12 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 
 ETS는 Erlang에서 만들어졌으므로 매치 변수가 _약간_ 구식으로 보일 수 있다는 점을 경고하며 시작하겠습니다.
 
-매치 내에서 변수를 사용할 경우에는 `:"$1"`、`:"$2"`、`:"$3"` 등의 애텀을 사용합니다. 변수의 숫자는 결과의 위치를 가리키며, 매치의 위치가 아닙니다. 흥미가 없는 값에 대해서는 `:"_"` 변수를 사용합니다.
+매치 내에서 변수를 사용할 경우에는 `:"$1"`、`:"$2"`、`:"$3"` 등의 애텀을 사용합니다. 변수의 숫자는 결과의 위치를 가리키며, 매치의 위치가 아닙니다. 흥미가 없는 값에 대해서는 `:_` 변수를 사용합니다.
 
 값으로 매칭을 하는 것도 가능합니다만, 변수만이 결과로 돌아옵니다. 값과 변수를 함께 사용하면 어떻게 되는지 확인해 보죠.
 
 ```elixir
-iex> :ets.match(:user_lookup, {:"$1", "Sean", :"_"})
+iex> :ets.match(:user_lookup, {:"$1", "Sean", :_})
 [["doomspork"]]
 ```
 
@@ -111,11 +111,11 @@ iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
 리스트가 아닌 본래의 객체를 원하는 경우에는 어떻게 하면 좋을까요? `match_object/2`를 사용하면 어떤 변수를 사용했는지에 관계없이, 객체 전체를 반환해줍니다.
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
+iex> :ets.match_object(:user_lookup, {:_, "Sean", :_})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
@@ -128,11 +128,11 @@ iex> :ets.match_object(:user_lookup, {:"_", "Sean", :"_"})
 아까의 `match/2`의 예제를 `select/2`를 사용하도록 바꿔봅시다.
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
+iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :"_", :"$3"}, [], [:"$_"]}]){% endraw %}
+{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :_, :"$3"}, [], [:"$_"]}]){% endraw %}
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"spork", 30, ["ruby", "elixir"]}]
 ```
@@ -143,7 +143,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :"_", :"$3"})
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
-{% raw %}[{{:"$1", :"_", :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
+{% raw %}[{{:"$1", :_, :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
 
 iex> :ets.select(:user_lookup, fun)
 ["doomspork", "3100"]

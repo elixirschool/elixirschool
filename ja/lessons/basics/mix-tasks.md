@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.2.0
 title: カスタムMixタスク
 ---
 
@@ -37,6 +37,7 @@ $ mix phx.new my_phoenix_app
 $ mix new hello
 
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
 * creating lib
@@ -77,7 +78,7 @@ end
 defmodule Mix.Tasks.Hello do
   use Mix.Task
 
-  @shortdoc "Simply runs the Hello.say/0 function"
+  @shortdoc "Simply calls the Hello.say/0 function."
   def run(_) do
     # calling our Hello.say() function from earlier
     Hello.say()
@@ -86,9 +87,29 @@ end
 ```
 
 defmodule文が `Mix.Tasks` と、そしてコマンドラインから呼び出したい名前から始まっているのに気付いてください。
-二行目では名前空間に `Mix.Task` ビヘイビアをもたらす `use Mix.Task` を実行しています。
+二行目では、名前空間に `Mix.Task` ビヘイビアをもたらす `use Mix.Task` を実行しています。
 それから、今のところ全ての引数を無視するrun関数を宣言します。
 この関数の中では、 `Hello` モジュールの `say` 関数を呼び出しています。
+
+## アプリケーションの読み込み
+
+多くのMixタスクのユースケースでは問題ありませんが、Mixはアプリケーションやその依存関係を自動的に起動しません。しかしEctoを使用してデータベースとやり取りする必要がある場合はどうでしょうか？その場合、Ecto.Repoの起動を確認する必要があります。これを処理する方法は2つあります。明示的にアプリを起動する方法と、アプリケーションを起動して他のアプリ達も起動する方法です。
+
+Mixタスクを更新してアプリケーションと依存関係を開始する方法を見てみましょう。
+
+```elixir
+defmodule Mix.Tasks.Hello do
+  use Mix.Task
+
+  @shortdoc "Simply calls the Hello.say/0 function."
+  def run(_) do
+    # This will start our application
+    Mix.Task.run("app.start")
+
+    Hello.say()
+  end
+end
+```
 
 ## Mixタスクの実行
 

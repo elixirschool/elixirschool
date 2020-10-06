@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.2
 title: 调试
 ---
 
@@ -70,7 +70,7 @@ Cannot pry #PID<0.92.0> at TestMod.sum/1 (test.exs:5). Is an IEx shell running?
 
 比如说，`iex -S mix phx.server` 这么就可以调试你的 Phoenix 应用。
 
-对我们上面的例子来说，则是通过 `iex -S test.exs` 来执行文件：
+对我们上面的例子来说，则是通过 `iex -r test.exs` 来执行文件：
 
 ```
 $ iex -r test.exs

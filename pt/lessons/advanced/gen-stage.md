@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: GenStage
 ---
 
@@ -9,7 +9,7 @@ Nesta lição vamos examinar de perto o GenStage, para que serve e como podemos 
 
 ## Introdução
 
-Então, o que é GenStage? De acordo com a documentação oficial, ele é uma "especificação e um fluxo computacional para o Elixir", mas o que isso significa pra nós?
+Então, o que é GenStage? De acordo com a documentação oficial, é uma "especificação e um fluxo computacional para o Elixir", mas o que isso significa pra nós?
 
 Significa que o GenStage nos fornece uma forma de definir um pipeline de trabalho a ser realizado por passos independentes (ou etapas) em processos separados; se você já trabalhou com pipelines anteriormente, então alguns desses conceitos devem ser familiares.
 
@@ -75,7 +75,6 @@ Agora estamos prontos para construir nosso produtor!
 O primeiro passo da nossa aplicação GenStage é criar nosso produtor. Conforme falamos antes, queremos criar um produtor que emite um fluxo constante de números. Vamos criar o arquivo do nosso produtor:
 
 ```shell
-$ mkdir lib/genstage_example
 $ touch lib/genstage_example/producer.ex
 ```
 
@@ -238,10 +237,10 @@ Agora que configuramos dois consumidores, vamos ver o que obtemos se rodarmos no
 
 ```shell
 $ mix run --no-halt
+{#PID<0.120.0>, 0, :state_doesnt_matter}
 {#PID<0.120.0>, 2, :state_doesnt_matter}
-{#PID<0.121.0>, 4, :state_doesnt_matter}
+{#PID<0.120.0>, 4, :state_doesnt_matter}
 {#PID<0.120.0>, 6, :state_doesnt_matter}
-{#PID<0.120.0>, 8, :state_doesnt_matter}
 ...
 {#PID<0.120.0>, 86478, :state_doesnt_matter}
 {#PID<0.121.0>, 87338, :state_doesnt_matter}

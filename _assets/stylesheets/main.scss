@@ -5,22 +5,19 @@
 
 
 // Skel
-@include skel-breakpoints((
-  xlarge: '(max-width: 1680px)',
-  large: '(max-width: 1280px)',
-  medium: '(max-width: 980px)',
-  small: '(max-width: 736px)',
-  xsmall: '(max-width: 480px)',
-  xxsmall: '(max-width: 360px)',
-  xlarge-to-max: '(min-width: 1681px)',
-  small-to-xlarge: '(min-width: 481px) and (max-width: 1680px)'
-));
+@include skel-breakpoints((xlarge: '(max-width: 1680px)',
+    large: '(max-width: 1280px)',
+    medium: '(max-width: 980px)',
+    small: '(max-width: 736px)',
+    xsmall: '(max-width: 480px)',
+    xxsmall: '(max-width: 360px)',
+    xlarge-to-max: '(min-width: 1681px)',
+    small-to-xlarge: '(min-width: 481px) and (max-width: 1680px)'
+  ));
 
-@include skel-layout((
-  reset: 'full',
-  boxModel: 'border',
-  grid: ( gutters: 1.5em )
-));
+@include skel-layout((reset: 'full',
+    boxModel: 'border',
+    grid: (gutters: 1.5em)));
 
 // Base.
 
@@ -67,29 +64,29 @@
     padding-left: 0;
     margin-top: -4em;
     margin-bottom: 3em;
-    
+
     li {
       align-items: center;
       margin-right: .75em;
-      
+
       &:before {
         content: "\0002f"; // /
         padding-right: .75em;
       }
-      
+
       &:first-child {
-          &:before {
-            content: "" !important;
-            padding: 0 !important;
-          }
+        &:before {
+          content: "" !important;
+          padding: 0 !important;
+        }
       }
-      
-      &.is-active { 
+
+      &.is-active {
         &:before {
           color: _purple(fg-alt);
-        }  
+        }
       }
-      
+
       &:last-child {
         margin: 0;
       }
@@ -102,9 +99,11 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: flex-start;
+
   .title {
     margin: 0 1em 0 0;
   }
+
   .tag {
     display: inline-flex;
     align-items: center;
@@ -118,15 +117,18 @@
     padding: 0 .75em;
     white-space: nowrap;
     margin-right: .75em;
+
     &:last-child {
       margin-right: 0px;
     }
+
     a {
       border: 0;
       text-decoration: none;
+
       &:hover {
         text-decoration: underline
-      }      
+      }
     }
   }
 }
@@ -160,35 +162,35 @@
     }
 
     img {
-	    display: block;
-	    margin-left: auto;
-	    margin-right: auto;
-	  }
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 
 section .content {
-  h2{
+  h2 {
     border-bottom: solid 3px _purple(fg-hov);
     display: inline-block;
     margin: 0 0 _size(element-margin) 0;
     padding: 0 0.75em 0.5em 0;
   }
-  
+
   .edit-lesson {
     margin: 4em 0 0 0;
-    
+
     @include breakpoint(xlarge) {
       margin: 3em 0 0 0;
-		}
-    
+    }
+
     @include breakpoint(large) {
       margin: 2em 0 0 0;
-		}
-    
+    }
+
     @include breakpoint(small) {
       margin: 1em 0 0 0;
-		}
+    }
   }
 }
 
@@ -200,7 +202,10 @@ pre {
 .post-info {
   margin: -0.5em 0 1em 0;
   font-size: 0.8rem;
-  .bold {font-weight: 600;}
+
+  .bold {
+    font-weight: 600;
+  }
 }
 
 .section-prevnext {
@@ -211,7 +216,8 @@ pre {
   }
 }
 
-#section-page{
+#section-page {
+
   /**
    * Right-to-left languages
    */
@@ -220,7 +226,7 @@ pre {
     unicode-bidi: embed;
   }
 
-  &.rtl ul > li {
+  &.rtl ul>li {
     margin-right: 10px;
   }
 
@@ -250,7 +256,7 @@ pre {
     }
   }
 
-  img{
+  img {
     max-width: 100%;
   }
 
@@ -280,16 +286,16 @@ pre {
     cursor: pointer;
   }
 
-  $version_color_map: (
-  "major": "#f00",
-  "minor": "#f60",
-  "patch": "#fc3",
-  "none": "#9f0",
-  "error": "#f00",
-  "missing": "#f00",
+  $version_color_map: ("major": "#f00",
+    "minor": "#f60",
+    "patch": "#fc3",
+    "none": "#9f0",
+    "error": "#f00",
+    "missing": "#f00",
   );
 
-  @each $severity, $color in $version_color_map {
+  @each $severity,
+  $color in $version_color_map {
 
     .version-info-#{$severity} {
       border-color: #{$color};
@@ -329,3 +335,22 @@ pre {
     border: 0;
   }
 }
+
+/* modification for button copy */
+.highlight>pre>div {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.btn-copy {
+  border: 0;
+  cursor: pointer;
+  position: absolute;
+  margin-right: 0.5em;
+}
+
+.btn-copy:hover {
+  background-color: _purple(fg-hov);
+}
+
+/* modification for button copy */

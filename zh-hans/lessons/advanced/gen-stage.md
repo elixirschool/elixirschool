@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: GenStage
 ---
 
@@ -75,7 +75,6 @@ $ mix do deps.get, compile
 GenStage 应用的第一步是创建我们的生产者.  正如我们之前讨论过的, 我们想要创建一个发出恒定数字流的生产者.  让我们来创建生产者的文件:
 
 ```shell
-$ mkdir lib/genstage_example
 $ touch lib/genstage_example/producer.ex
 ```
 
@@ -200,6 +199,7 @@ end
 
 ```shell
 $ mix run --no-halt
+{#PID<0.109.0>, 0, :state_doesnt_matter}
 {#PID<0.109.0>, 2, :state_doesnt_matter}
 {#PID<0.109.0>, 4, :state_doesnt_matter}
 {#PID<0.109.0>, 6, :state_doesnt_matter}
@@ -238,10 +238,10 @@ children = [
 
 ```shell
 $ mix run --no-halt
+{#PID<0.120.0>, 0, :state_doesnt_matter}
 {#PID<0.120.0>, 2, :state_doesnt_matter}
-{#PID<0.121.0>, 4, :state_doesnt_matter}
+{#PID<0.120.0>, 4, :state_doesnt_matter}
 {#PID<0.120.0>, 6, :state_doesnt_matter}
-{#PID<0.120.0>, 8, :state_doesnt_matter}
 ...
 {#PID<0.120.0>, 86478, :state_doesnt_matter}
 {#PID<0.121.0>, 87338, :state_doesnt_matter}

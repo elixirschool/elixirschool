@@ -176,14 +176,20 @@ defmodule ExampleTest do
 end
 ```
 
-## Mocking
+## Test Mocks
 
-The simple answer to mocking in Elixir is: don't.
-You may instinctively reach for mocks but they are highly discouraged in the Elixir community and for good reason.
+We want to be careful of how we think about “mocking”. When we mock certain interactions by creating unique function stubs in a given test example, we establish a dangerous pattern. We couple the run of our tests to the behavior of a particular dependency, like an API client. We avoid defining shared behavior among our stubbed functions. We make it harder to iterate on our tests.
 
-For a longer discussion there is this [excellent article](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/).
-The gist is, that instead of mocking away dependencies for testing (mock as a *verb*), it has many advantages to explicitly define interfaces (behaviors) for code outside your application and using Mock (as a *noun*) implementations in your client code for testing.
+Instead, the Elixir community encourages us to change the way we think about test mocks; that we think about a mock as a noun, instead of a verb.
 
-To switch the implementations in your application code, the preferred way is to pass the module as arguments and use a default value.
-If that does not work, use the built-in configuration mechanism.
-For creating these mock implementations, you don't need a special mocking library, only behaviours and callbacks.
+For a longer discussion on this topic, see this [excellent article](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/).
+
+The gist is, that instead of mocking away dependencies for testing (mock as a *verb*), it has many advantages to explicitly define interfaces (behaviors) for code outside your application and use mock (as a *noun*) implementations in your code for testing.
+
+To leverage this "mocks-as-a-noun" pattern you can:
+
+* Define a behaviour that is implemented both by the entity for which you'd like to define a mock _and_ the module that will act as the mock.
+* Define the mock module
+* Configure your application code to use the mock in the given test or test environment, for example by passing the mock module into a function call as an argument or by configuring your application to use the mock module in the test environment.
+
+For a deeper dive into test mocks in Elixir, and a look at the Mox library that allows you to define concurrent mock, check out our lesson on Mox [here](../../libraries/mox)

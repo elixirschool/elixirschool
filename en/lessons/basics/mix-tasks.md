@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.2.0
 title: Custom Mix Tasks
 ---
 
@@ -90,6 +90,26 @@ Notice how we start the defmodule statement with `Mix.Tasks` and the name we wan
 On the second line, we introduce the `use Mix.Task` which brings the `Mix.Task` behaviour into the namespace.
 We then declare a run function which ignores any arguments for now.
 Within this function, we call our `Hello` module and the `say` function.
+
+## Loading your application
+
+Mix does not automatically start our application or any of its dependencies which is fine for many Mix task use-cases but what if we need to use Ecto and interact with a database? In that case we need to make sure the app behind Ecto.Repo has started. There are 2 ways for us to handle this: explicitly starting an app or we can start our application which in turn will start the others.
+
+Let's look at how we can update our Mix task to start our application and dependencies:
+
+```elixir
+defmodule Mix.Tasks.Hello do
+  use Mix.Task
+
+  @shortdoc "Simply calls the Hello.say/0 function."
+  def run(_) do
+    # This will start our application
+    Mix.Task.run("app.start")
+
+    Hello.say()
+  end
+end
+```
 
 ## Mix Tasks in Action
 
