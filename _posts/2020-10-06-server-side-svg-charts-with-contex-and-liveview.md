@@ -8,9 +8,9 @@ title: "Real-Time SVG Charts with Context and LiveView"
 excerpt: >
   Learn how to use the Contex package to render server-side SVG charts that you can update in real-time with LiveView.
 ---
+This post is inspired by some of my work, together with [Bruce Tate](https://twitter.com/redrapids), on Pragmatic Bookshelf's upcoming book on LiveView. Elixir School is happy to be able to offer a give-away of a small number e-books once they are published, so stay tuned for updates!
 
-## Intro
-As LiveView matures it is becoming clear that it much more than just a tool for building real-time features in your web app. LiveView is a state management system for your single page app. Developers are increasingly reaching for LiveView to build and manage the complexities of a full-featured SPA. This is why, in the upcoming LiveView book that I'm collaborating on with Bruce Tate for Pragmatic Bookshelf, we're aiming to build out a diverse and robust set of features using LiveView.
+As LiveView matures it is becoming clear that it much more than just a tool for building real-time features in your web app. LiveView is a state management system for your single page app. Developers are increasingly reaching for LiveView to build and manage the complexities of a full-featured SPA. This is why, in our upcoming LiveView book, we're aiming to build out a diverse and robust set of features using LiveView.
 
 Once such common feature is that of a real-time admin-facing dashboard. Such dashboards often require data visualization and LiveView means we can offer data viz in real-time. In this post, we'll look at how to leverage the [Contex](https://github.com/mindok/contex) library for server-side SVG chart rendering. We'll render a Context chart in a LiveView and update our chart in real-time. Along the way, I hope you'll get excited about what you can do with LiveView, and what you can learn if you dive into our upcoming book.
 
@@ -585,7 +585,7 @@ Now, if we point our browser at `/admin-dashboard` and click a given bar chart c
 ## Conclusion
 We can see that Contex is a powerful and flexible tool for server-side SVG charting in Elixir. On top of that, it seamlessly integrates into our LiveView, accommodating real-time updates and even allowing us to attach `phx-click` events to chart elements. I hope to see the Contex library grow even further and encourage anyone reading to try it our and consider contributing.
 
-Beyond our look at Contex, we touched on a lot of LiveView concepts here. We took a look at how core/boundary application design comes into play in our LiveView features, we leveraged stateful components and saw how parent LiveViews can communicate to their child components and we wrote some nice, organized LiveView code that leveraged reducers to establish socket state. For a deeper dive into these concepts and more, don't forget to check out Pragmatic Bookshelf's upcoming LiveView book!
+Beyond our look at Contex, we touched on a lot of LiveView concepts here. We took a look at how core/boundary application design comes into play in our LiveView features, we leveraged stateful components and saw how parent LiveViews can communicate to their child components and we wrote some nice, organized LiveView code that leveraged reducers to establish socket state. For a deeper dive into these concepts and more, don't forget to check out Pragmatic Bookshelf's upcoming LiveView book, and keep an eye out for Elixir School's LiveView book give-away!
 
 ## Resources
 For a closer look at Contex:
