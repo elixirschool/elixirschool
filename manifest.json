@@ -11,6 +11,11 @@ layout: none
             "sizes": "144x144",
             "type": "image/png",
             "purpose": "any maskable"
+        },
+        {
+            "src": "{% asset favicons/splash-512x512.png @path %}",
+            "sizes": "512x512",
+            "type": "image/png"
         }
     ],
     "theme_color": "#967ab4",
