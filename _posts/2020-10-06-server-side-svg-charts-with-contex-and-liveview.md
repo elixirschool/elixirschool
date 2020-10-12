@@ -21,7 +21,11 @@ While there quite a few JavaScript charting libraries to choose from, we're afte
 While there aren't many server-rendered chart libraries in Elixir, luckily for us, there is Contex!
 
 ## Introducing Contex
-[Contex](https://github.com/mindok/contex) is a server-side charting library written in Elixir that allows us to build and render SVG charts on the server. We can then use LiveView to render these charts in a template and enable them to be updated in real-time. Contex currently supports bar charts, point plots, gantt charts and sparkline charts. In this post, we'll focus on using Contex to build a bar chart.
+[Contex](https://github.com/mindok/contex) is a server-side charting library written in Elixir that allows us to build and render SVG charts on the server. We can then use LiveView to render these charts in a template and enable them to be updated in real-time. Contex currently supports bar charts, point plots, gantt charts and sparkline charts.
+
+It's worth mentioning that there are a few other server-side charting libraries in Elixir. The [`ggity`](https://github.com/srowley/ggity) is designed to "bring interface of R's `ggplot2` library to the task of drawing SVG plots with Elixir" and supports a number of different chart types. The [`plotex`](https://github.com/elcritch/plotex) library builds and renders time plot series SVG charts on the server. The `ggity` library, while likely a good choice for exploratory data analysis, is not optimized for use with LiveView nor is it currently intended for production use and the `plotex` library is aimed at rendering time plot series charts only. So, `contex`, while still a new library with some [in-progress TODOs](https://github.com/mindok/contex#warning), is most closely aligned with our need to performantly render data in LiveView, in real-time, in a variety of formats.
+
+In this post, we'll focus on using Contex to build a bar chart.
 
 ## What We'll Build
 Drawing from an example that you'll see in greater depth in our upcoming LiveView book, we'll add a chart to our Admin Dashboard LiveView. The Admin Dashboard is part of an online gaming app in which users can play online versions of games like ping-pong and tic-tac-toe. We ask users to fill our a survey that rates games on a scale of 1 to 5 stars. Our Admin Dashboard should include a chart of products and their average star ratings. Something like this:
@@ -507,7 +511,7 @@ GameStoreWeb.AdminDashboardLive.handle_event("chart-bar-clicked", %{"category" =
 
 Oh no! Our parent LiveView crashed because we haven't yet implemented the `handle_event/3` function for our `"chart-bar-clicked"` event. You'll notice that the event was sent to the parent LiveView, `GameStoreWeb.AdminDashboardLive`, and _not_ our `GameRatingsLive` component. This is because, in order to send an event to a component, rather than it's parent, it is necessary to add the `phx-target=<%= @myself %>` attribute to the element that contains the `phx-click` event (or other DOM element binding). The `@myself` assignment refers to the unique identifier for the current component.
 
-However, the Contex package doesn't (yet) allow us to specify the event target via the call to `BarChart.event_handler/2`. This might make an good [contribution to the library](https://github.com/mindok/contex/issues/new) for any willing readers out there...
+However, the Contex package doesn't (yet) allow us to specify the event target via the call to `BarChart.event_handler/2`. There is an [open issue](https://github.com/mindok/contex/issues/29) for just this work if there are any readers out there interesetd in contributing!
 
 So, we'll need to:
 
@@ -533,9 +537,9 @@ defmodule GameStoreWeb.AdminDashboardLive do
   end
 end
 ```
-`send_update/2` is called with the name of the component that we want to update and a keyword list of the component assigns. The keyword list _must_ include the ID that we are targeting for an update. Here, we're pulling the component's ID out of socket assigns where we stored it in the first part of this blog post.
+`send_update/2` is called with the name of the component that we want to update and a keyword list that will get passed to the updating component as the new assigns. The keyword list _must_ include the ID that we are targeting for an update. Here, we're pulling the component's ID out of socket assigns where we stored it in the first part of this blog post.
 
-With this call to `send_update/2`, we will cause the `GameRatingsLive` component to re-render and re-invoke the `update/2` callback, this time with an `assigns` that includes our `:selected_category` key pointing to the click event payload.
+With this call to `send_update/2`, we will cause the `GameRatingsLive` component to re-render and re-invoke the `update/2` callback, this time with an `assigns` that includes our `:selected_category` key pointing to the click event payload. We'll cover the `send_update/2` function, and more options for communicating between child components and parent LiveViews, in the LiveView book. For now, its enough to understand that `send_update/2` can be invoked from a parent LiveView to tell a component that is running in the LiveView to update.
 
 Now we're ready to teach the `GameRatingsLive` component how to render a Context `BarChart` with a selected category. We can do this with the help of the [`BarChart.select_item/2`](https://hexdocs.pm/contex/Contex.BarChart.html#select_item/2). This function takes in two arguments, the current `BarChart` struct and a map that looks like this:
 
