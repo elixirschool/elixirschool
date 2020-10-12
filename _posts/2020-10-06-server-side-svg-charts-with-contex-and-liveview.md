@@ -166,7 +166,21 @@ Note that we're piping our socket through a set of reducers, each of which furth
 
 First, we'll apply whatever assigns have come in from the parent LiveView, then we'll add a key of `:games_with_average_ratings` to assigns, pointing to a value of our query results.
 
-Now that we have our query results available in state, let's add another reducer that will operate on these query results by rendering them into the chart.
+Now that we have our query results available in state, we're ready to use them to build our chart.
+
+### Building The Bar Chart
+There are three stages to building a Contex chart:
+
+* Initializing the dataset
+* Initializing the chart
+* Rendering the chart to SVG
+
+We'll add a reducer to our `update/2` pipeline that updates socket state for each step in this process.
+
+#### Initializing the `DataSet`
+The first step of building a Contex chart is to initialize the data set with the `Contex.DataSet` module. [The `DataSet` module](https://hexdocs.pm/contex/Contex.Dataset.html) wraps your dataset for plotting charts. It provides a set of convenience functions that subsequent chart plotting modules will leverage to operate on and chart your data. `Dataset` handles several different data structures by marshalling them into a consistent form for consumption by the chart plotting functions. The data structures it can handle are: a list of maps, list of lists or a list of tuples. Recall that we ensured that our query for games with average ratings returns a list of tuples.
+
+We'll begin by implementing a new reducer function, `assign_dataset/1`. This reducer will initialize a new `DataSet` with the query results, our list of game and average rating tuples, from socket assigns. Then, it will add the dataset to socket state:
 
 ```elixir
 # lib/game_store_web/live/game_ratings_live.ex
@@ -179,40 +193,15 @@ defmodule GameStoreWeb.GameRatingsLive do
      socket
      |> assign(assigns)
      |> assign_games_with_average_ratings()
-     |> assign_chart()}
+     |> assign_dataset()}
   end
 
   # ...
 
-  defp assign_chart(socket) do
+  defp assign_dataset(%{assigns: %{games_with_average_ratings: games_with_average_ratings}}) do
     socket
-    |> assign(:chart, make_chart(socket))
+    |> assign(:dataset, Contex.Dataset.new())
   end
-
-  defp make_chart(socket) do
-    # coming soon!
-  end
-end
-```
-
-Next up, we'll implement our `make_chart/1` function. This function will use Contex to build and render an SVG chart. Then, we'll render this SVG markup in the component's template.
-
-Let's build our chart!
-
-### Building The Bar Chart
-
-#### Initializing the `DataSet`
-The first step of building a Contex chart is to initialize the data set with the `Contex.DataSet` module. [The `DataSet` module](https://hexdocs.pm/contex/Contex.Dataset.html) wraps your dataset for plotting charts. It provides a set of convenience functions that subsequent chart plotting modules will leverage to operate on and chart your data. `Dataset` handles several different data structures by marshalling them into a consistent form for consumption by the chart plotting functions. The data structures it can handle are: a list of maps, list of lists or a list of tuples. Recall that we ensured that our query for games with average ratings returns a list of tuples.
-
-We'll begin by initializing a new `DataSet` with the query results, our list of game and average rating tuples, from socket assigns:
-
-```elixir
-# lib/game_store_web/live/game_ratings_live.ex
-defp make_chart(socket) do
-  chart =
-    socket.assigns.games_with_average_ratings
-    |> Contex.Dataset.new()
-
 end
 ```
 
@@ -233,15 +222,27 @@ If we take a look at the output of our call to `Contex.DataSet.new/1`, we'll see
 The `DataSet` considers the first element of a given tuple in the list to be the "category column" and the second element to be the "value column". The category column is used to label the bar chart category (in our case the game name), and the value column is used to populate the value of that category.
 
 #### Initializing the `BarChart`
-Now that we have our dataset, we can use it to initialize our `BarChart`:
+Now that we have our dataset, we can use it to initialize our `BarChart`. We'll do this in a subsequent reducer that we'll add to the `update/2` pipeline, `assign_chart/1`.
 
 ```elixir
 # lib/game_store_web/live/game_ratings_live.ex
-defp make_chart(socket) do
-  chart =
-    socket.assigns.games_with_average_ratings
-    |> Contex.Dataset.new()
-    |> Contex.BarChart.new()
+defmodule GameStoreWeb.GameRatingsLive do
+  use GameStoreWeb, :live_component
+  alias GameStore.Catalogue
+
+  def update(assigns, socket) do
+    {:ok,
+     socket
+     |> assign(assigns)
+     |> assign_games_with_average_ratings()
+     |> assign_dataset()
+     |> assign_chart()}
+  end
+
+  defp assign_chart(%{assigns: %{dataset: dataset}} = socket) do
+    socket
+    |> assign(:chart, Contex.BarChart.new(dataset))
+  end
 end
 ```
 
@@ -321,12 +322,13 @@ We can leverage the exposed configuration functions to update these defaults. Le
 
 ```elixir
 # lib/game_store_web/live/game_ratings_live.ex
-defp make_chart(socket) do
-  chart =
-    socket.assigns.games_with_average_ratings
-    |> Contex.Dataset.new()
+defp assign_chart(%{assigns: %{dataset: dataset}} = socket) do
+  socket
+  |> assign(
+    :chart,
+    dataset
     |> Contex.BarChart.new()
-    |> Contex.BarChart.colours(:warm)
+    |> Contex.BarChart.colours(:warm))
 end
 ```
 
@@ -340,32 +342,37 @@ column_map: %{category_col: 0, value_cols: [1]}
 
 The values of `0` and `[1]` refer to the indices of elements in the tuples in our `DataSet`. The element at the `0` index will be considered the "category" and the element and the `1` index will be considered the "value". Our tuples have the game name at the zero index and the average rating at the `1` index, so our game names will be treated at the category and their average ratings the value.
 
-#### Initializing the Plot
-We'll take our `BarChart` struct and use it to initialize the `Contex.Plot`. The `Plot` module manages the layout of the chart plot--the chart title, axis labels, legend, etc. We initialize our `Plot` with the plot width and height, and the chart struct:
+#### Render the Chart SVG
+THe `Contex.Plot` module will plot our data and render it to SVG markup. We'll add another reducer to our pipeline, `assign_chart_svg`. This reducer will initialize and configure the `Contex.Plot` and render it to SVG. Then, it will assign this SVG to the `:chart_svg` key in socket assigns.
+
+The `Plot` module manages the layout of the chart plot--the chart title, axis labels, legend, etc. We initialize our `Plot` with the plot width and height, and the chart struct:
 
 ```elixir
 # lib/game_store_web/live/game_ratings_live.ex
- defp make_chart(socket) do
-  chart =
-    socket.assigns.games_with_average_ratings
-    |> Contex.Dataset.new()
-    |> Contex.BarChart.new()
-    |> Contex.BarChart.colours(:warm)
+defmodule GameStoreWeb.GameRatingsLive do
+  use GameStoreWeb, :live_component
+  alias GameStore.Catalogue
 
-  Plot.new(500, 400, chart)
+  def update(assigns, socket) do
+    {:ok,
+     socket
+     |> assign(assigns)
+     |> assign_games_with_average_ratings()
+     |> assign_dataset()
+     |> assign_chart()
+     |> assign_chart_svg()}
+  end
+
+  defp assign_chart_svg(%{assigns: %{chart: chart}} = socket) do
+    Plot.new(500, 400, chart)
+  end
 end
 ```
 
 We'll customize our plot with a chart table and some labels for the x- and y-axis:
 
 ```elixir
- defp make_chart(socket) do
-  chart =
-    socket.assigns.games_with_average_ratings
-    |> Contex.Dataset.new()
-    |> Contex.BarChart.new()
-    |> Contex.BarChart.colours(:warm)
-
+defp assign_chart_svg(%{assigns: %{chart: chart}} = socket) do
   Plot.new(500, 400, chart)
   |> Plot.titles("Game Ratings", "average stars per game")
   |> Plot.axis_labels("games", "stars")
@@ -374,38 +381,33 @@ end
 
 This will (you guessed it), apply the title, subtitles and axis labels to our chart.
 
-#### Transforming the Plot to SVG
-Now we're ready to transform our plot into an SVG with the help of the `Plot` module's `to_svg/1` function:
+Now we're ready to transform our plot into an SVG with the help of the `Plot` module's `to_svg/1` function. We'll also be sure to add the generated SVG to socket assigns:
 
 ```elixir
-# lib/game_store_web/live/game_ratings_live.ex
- defp make_chart(socket) do
-  chart =
-    socket.assigns.games_with_average_ratings
-    |> Contex.Dataset.new()
-    |> Contex.BarChart.new()
-    |> Contex.BarChart.colours(:warm)
-
-  Plot.new(500, 400, chart)
-  |> Plot.titles("Game Ratings", "average stars per game")
-  |> Plot.axis_labels("games", "stars")
-  |> Plot.to_svg()
+defp assign_chart_svg(%{assigns: %{chart: chart}} = socket) do
+  socket
+  |> assign(
+    :chart_svg,
+    Plot.new(500, 400, chart)
+    |> Plot.titles("Game Ratings", "average stars per game")
+    |> Plot.axis_labels("games", "stars")
+    |> Plot.to_svg())
 end
 ```
 
-This will return the actual SVG markup for us to render into the template. Let's take a look at our template now.
+Now we're ready to render this SVG markup in our template.
 
 #### Rendering the Chart in the Template
-Our `GameRatingsLive` template is pretty simple, it renders the SVG stored in the `@chart` assignment:
+Our `GameRatingsLive` template is pretty simple, it renders the SVG stored in the `@chart_svg` assignment:
 
 ```html
 <!-- lib/game_store_web/live/game_ratings_live.html.leex -->
 <div>
-  <%= @chart %>
+  <%= @chart_svg %>
 </div>
 ```
 
-Now, we should see the following chart rendered when we navigate to `/admin-dashbaord`:
+Now, we should see the following chart rendered when we navigate to `/admin-dashboard`:
 
 ![game ratings chart]({% asset game-ratings-chart.png @path %})
 
@@ -472,7 +474,7 @@ Aside from the free live updates our chart will benefit from, just by virtue of 
 We'll use this function to implement the following functionality:
 
 > When a user clicks a given bar in our chart,
-> Then that bar is highlighed
+> Then that bar is highlighted
 
 Something like this:
 
@@ -482,18 +484,14 @@ We'll being by using the `BarChart.event_handler/2` function to add a `phx-click
 
 ```elixir
 # lib/game_store_web/live/game_ratings_live.ex
- defp make_chart(socket) do
-  chart =
-    socket.assigns.games_with_average_ratings
-    |> Contex.Dataset.new()
+defp assign_chart(%{assigns: %{dataset: dataset}} = socket) do
+  socket
+  |> assign(
+    :chart,
+    dataset
     |> Contex.BarChart.new()
-    |> Contex.BarChart.colours(:warm)
+    |> Contex.BarChart.colours(:warm))
     |> Contex.BarChart.event_handler("chart-bar-clicked")
-
-  Plot.new(500, 400, chart)
-  |> Plot.titles("Game Ratings", "average stars per game")
-  |> Plot.axis_labels("games", "stars")
-  |> Plot.to_svg()
 end
 ```
 
@@ -545,25 +543,20 @@ Now we're ready to teach the `GameRatingsLive` component how to render a Context
 
 Luckily, this is just the data that was sent through in our click event payload and that is now available in assigns under the `:selected_category` key!
 
-Let's update our component's `make_chart/1` function to use the `:selected_category` info from assigns, if it is present, and apply it to the bar chart:
+Let's update our component's `assign_chart/1` function to use the `:selected_category` info from assigns, if it is present, and apply it to the bar chart:
 
 ```elixir
 # lib/game_store_web/live/game_ratings_live.ex
-defp make_chart(socket) do
-  chart =
-    socket.assigns.games_with_average_ratings
-    |> Contex.Dataset.new()
+defp assign_chart(%{assigns: %{dataset: dataset}} = socket) do
+  socket
+  |> assign(
+    :chart,
+    dataset
     |> Contex.BarChart.new()
-    |> Contex.BarChart.colours(:warm)
+    |> Contex.BarChart.colours(:warm))
     |> Contex.BarChart.event_handler("chart-bar-clicked")
-    |> maybe_select_category(socket)
-
-  Plot.new(500, 400, chart)
-  |> Plot.titles("Game Ratings", "average stars per game")
-  |> Plot.axis_labels("games", "stars")
-  |> Plot.to_svg()
+    |> maybe_select_category()
 end
-
 
 defp maybe_select_category(
       chart,
