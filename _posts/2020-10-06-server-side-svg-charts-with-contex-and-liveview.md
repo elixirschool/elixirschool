@@ -137,10 +137,12 @@ Note that we've chosen for our query to select and return a collection of result
 Let's turn our attention to building out that chart with this data now.
 
 ## Defining Your Chart in LiveView
+Before we build out or component in earnest, it's worth mentioning the pattern that we will be applying to manage state in that component. We'll rely on reducers to successively update socket state to initialize the starting state of our component and handle updates. Reducers are functions that take a thing and return an updated thing of the same type. They allow us to compose neat, clean pipelines that make it easy to build and manage LiveView state and respond to events by updating that state. This is a pattern that we'll go into greater depth on in our LiveView book.
+
 ### Storing Chart Data in State
 First off, we'll teach our `GameRatingsLive` component to query for these games with average ratings and keep them in the socket assigns.
 
-Recall that earlier we said that we're rendering the `GameRatingsLive` component as a stateful component in the `AdminDashboardLive` LiveView. We'll leverage the stateful component's `update/2` lifecycle method to fetch our game and ratings data and store it in socket assigns:
+Recall that earlier we said that we're rendering the `GameRatingsLive` component as a stateful component in the `AdminDashboardLive` LiveView. We'll leverage the stateful component's `update/2` lifecycle method to fetch our game and ratings data and store it in socket assigns.
 
 ```elixir
 # lib/game_store_web/live/game_ratings_live.ex
