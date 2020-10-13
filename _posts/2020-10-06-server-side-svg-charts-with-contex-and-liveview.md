@@ -4,7 +4,7 @@ author_link: https://github.com/sophiedebenedetto
 categories: general
 date: 2020-10-06
 layout: post
-title: "Real-Time SVG Charts with Context and LiveView"
+title: "Real-Time SVG Charts with Contex and LiveView"
 excerpt: >
   Learn how to use the Contex package to render server-side SVG charts that you can update in real-time with LiveView.
 ---
@@ -12,7 +12,7 @@ This post is inspired by some of my work, together with [Bruce Tate](https://twi
 
 As LiveView matures it is becoming clear that it much more than just a tool for building real-time features in your web app. LiveView is a state management system for your single page app. Developers are increasingly reaching for LiveView to build and manage the complexities of a full-featured SPA. This is why, in our upcoming LiveView book, we're aiming to build out a diverse and robust set of features using LiveView.
 
-Once such common feature is that of a real-time admin-facing dashboard. Such dashboards often require data visualization and LiveView means we can offer data viz in real-time. In this post, we'll look at how to leverage the [Contex](https://github.com/mindok/contex) library for server-side SVG chart rendering. We'll render a Context chart in a LiveView and update our chart in real-time. Along the way, I hope you'll get excited about what you can do with LiveView, and what you can learn if you dive into our upcoming book.
+Once such common feature is that of a real-time admin-facing dashboard. Such dashboards often require data visualization and LiveView means we can offer data viz in real-time. In this post, we'll look at how to leverage the [Contex](https://github.com/mindok/contex) library for server-side SVG chart rendering. We'll render a Contex chart in a LiveView and update our chart in real-time. Along the way, I hope you'll get excited about what you can do with LiveView, and what you can learn if you dive into our upcoming book.
 
 ## The Problem
 
@@ -541,7 +541,7 @@ end
 
 With this call to `send_update/2`, we will cause the `GameRatingsLive` component to re-render and re-invoke the `update/2` callback, this time with an `assigns` that includes our `:selected_category` key pointing to the click event payload. We'll cover the `send_update/2` function, and more options for communicating between child components and parent LiveViews, in the LiveView book. For now, its enough to understand that `send_update/2` can be invoked from a parent LiveView to tell a component that is running in the LiveView to update.
 
-Now we're ready to teach the `GameRatingsLive` component how to render a Context `BarChart` with a selected category. We can do this with the help of the [`BarChart.select_item/2`](https://hexdocs.pm/contex/Contex.BarChart.html#select_item/2). This function takes in two arguments, the current `BarChart` struct and a map that looks like this:
+Now we're ready to teach the `GameRatingsLive` component how to render a Contex `BarChart` with a selected category. We can do this with the help of the [`BarChart.select_item/2`](https://hexdocs.pm/contex/Contex.BarChart.html#select_item/2). This function takes in two arguments, the current `BarChart` struct and a map that looks like this:
 
 ```elixir
 %{category: category, series: series}
@@ -589,5 +589,5 @@ Beyond our look at Contex, we touched on a lot of LiveView concepts here. We too
 ## Resources
 For a closer look at Contex:
 
-* [Context official site](https://contex-charts.org/)
-* [Context sample app](https://github.com/mindok/contex-samples)
+* [Contex official site](https://contex-charts.org/)
+* [Contex sample app](https://github.com/mindok/contex-samples)
