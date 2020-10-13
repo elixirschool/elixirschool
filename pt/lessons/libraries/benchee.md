@@ -254,7 +254,7 @@ A saída do console que vimos é um começo útil para medir o tempo de execuç�
 
 ## Outros formatadores
 
-Benchee tem um formatador embutido no console, que é o que já vimos, mas há outros três formatadores oficialmente suportados - [`benchee_csv`](https://github.com/bencheeorg/benchee_csv), [`benchee_json`](https://github.com/bencheeorg/benchee_json) e [`benchee_html`](https://github.com/bencheeorg/benchee_html). Cada um deles faz exatamente o que você esperaria, que é escrever os resultados no formato dos arquivos nomeados de forma que você possa trabalhar os resultados futuramente no formato que quiser.
+Benchee tem um formatador embutido para o console, que é o que já vimos, mas há outros três formatadores oficialmente suportados - [`benchee_csv`](https://github.com/bencheeorg/benchee_csv), [`benchee_json`](https://github.com/bencheeorg/benchee_json) e [`benchee_html`](https://github.com/bencheeorg/benchee_html). Cada um deles faz exatamente o que você esperaria, que é escrever os resultados no formato dos arquivos nomeados de forma que você possa trabalhar os resultados futuramente no formato que quiser.
 
 Cada um desses formatadores é um pacote separado, então para usá-los você precisa adicioná-los como dependências no seu arquivo `mix.exs` como:
 
