@@ -14,7 +14,6 @@ Nós falaremos sobre Nerves nessa lição. O projeto Nerves é um framework para
 Para escrever código embarcado usando Nerves, você vai precisar de um dos [dispositivos suportados](https://hexdocs.pm/nerves/targets.html), um leitor de cartão com um cartão de memória suportado pelo hardware de sua escolha, e uma conexão a rede cabeada para acessar esse dispositivo pela rede.
 
 De qualquer forma, nós sugerimos usar um Raspberry Pi, já que ele tem um LED controlável onboard. Também é recomendável ter uma tela conectada ao seu dispositivo alvo já que isso vai simplificar o debug usando IEx.
-However, we would suggest using a Raspberry Pi, due to it having controllable LED onboard. It is also advisable to have a screen connected to your target device as this will simplify debugging using IEx.
 
 ## Configuração
 
@@ -28,7 +27,7 @@ Nosso objetivo será chegar ao "Hello world" do desenvolvimento embarcado: um LE
 
 ## Criando um projeto
 
-Para gerar um novo projeto, rode `mix nerves.new network_led` e responda `Y` à pergunta sobre obter e instalar as dependências.
+Para gerar um novo projeto, execute `mix nerves.new network_led` e responda `Y` à pergunta sobre obter e instalar as dependências.
 
 Você deve ver a seguinte saída:
 
@@ -116,7 +115,7 @@ Esse pacote já está presente em seu projeto como uma dependência de `nerves_i
 
 Para configurar uma rede estática, você deve adicionar as seguintes linhas ao `config/config.exs`:
 
-```
+```elixir
 # Statically assign an address
 config :nerves_network, :default,
   eth0: [
@@ -160,7 +159,7 @@ _Solução de Problemas: Se você não tiver uma chave ssh existente em sua past
 
 ## Configurando o controle do LED
 
-Para interagir com LEDs, você vai precisar do pacote [nerves_leds](https://github.com/nerves-project/nerves_leds) instalado, o que é feio adicionando `{:nerves_leds, "~> 0.8", targets: @all_targets},` no arquivo `mix.exs`.
+Para interagir com LEDs, você vai precisar do pacote [nerves_leds](https://github.com/nerves-project/nerves_leds) instalado, o que é feito adicionando `{:nerves_leds, "~> 0.8", targets: @all_targets},` no arquivo `mix.exs`.
 
 Depois de instalar a dependência, você precisa configurar a lista de LED para o dispositivo. Por exemplo, para todos modelos de Raspberry Pi, existe apenas um LED onboard: `led0`. Vamos usá-lo adicionando uma linha `config :nerves_leds, names: [green: "led0"]` ao arquivo `config/config.exs`.
 
@@ -218,7 +217,7 @@ Para habilitar isso, você também precisa adicioná-lo à árvore de supervisã
 
 Note que o Nerves tem duas diferentes árvores de supervisão na aplicação - uma para a máquina hospedeira e uma para os dispositivos de fato.
 
-Depois disso - é isso! Você pode fazer upload do firmware e, ao rodar o IEx através de ssh no dispositivo alvo, checar que `NetworkLed.Blinker.disable()` desliga o LED (que é habilitado por padrão no código), e `NetworkLed.Blinker.enable()` liga.
+Depois disso, é só fazer upload do firmware e, ao rodar o IEx através de ssh no dispositivo alvo, checar que `NetworkLed.Blinker.disable()` desliga o LED (que é habilitado por padrão no código), e `NetworkLed.Blinker.enable()` liga.
 
 Nós temos controle do LED através do prompt de comando!
 
