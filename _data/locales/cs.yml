@@ -2,36 +2,36 @@ script_direction: ltr
 menu: Menu
 project:
   title: Elixir School
-  description: The premier destination for learning and mastering Elixir
-table_of_contents: Table of Contents
-share: Share This Page
+  description: Lekce o programování v jazyce Elixír
+table_of_contents: Obsah
+share: Sdílet tuhle stránku
 sections:
-  home: Home
-  basics: Basics
-  advanced: Advanced
-  specifics: Specifics
+  home: Domů
+  basics: Základy
+  advanced: Pokročilé
+  specifics: Specifické
   ecto: Ecto
-  libraries: Libraries
+  libraries: Knihovny
   blog: Blog
-  contributors: Contributors
-  translation_report: Translation Report
+  contributors: Přispěvatelé
+  translation_report: Report překladu
 
 version_messages:
-  outdated: "Some contents of this translation may be outdated."
+  outdated: "Některý obsah tohohle překladu může být zastaralý." 
   major: "Several major changes were applied to the original lesson since the last update."
   minor: "Several minor changes were applied to the original lesson since the last update."
   patch: "Several patches were applied to the original lesson since the last update."
-  none: "This translation is up to date."
+  none: "Tenhle překlad je aktuální."
   error: "There is an error in the version definition of this chapter."
 
 translation_report:
   section: Section
-  original_title: Original Title
-  translation_title: Translation Title
-  original_version: Original Version
-  translation_version: Translation Version
+  original_title: Originální titulek
+  translation_title: Přeložený titulek
+  original_version: Originální verze
+  translation_version: Přeložená verze
   version_severity: Version Severity
-  last_commit: Last Commit
+  last_commit: Poslední commit
 
 interlang:
   ar: Arabiс
