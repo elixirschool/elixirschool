@@ -10,9 +10,9 @@ Un conjunto de algoritmos para hacer enumeración sobre colecciones.
 ## Enum
 
 El módulo `Enum` incluye más de 70 funciones para trabajar con colecciones.
-Todas las colecciones que aprendiste en la [lección anterior](../collections/), a exepción de las tuplas, son enumberables.
+Todas las colecciones que aprendiste en la [lección anterior](../collections/), a excepción de las tuplas, son enumerables.
 
-Este sección solamente incluirá un subconjunto de las funciones disponibles, sin embargo puedes examinarlas tu mismo.
+Esta sección solamente incluirá un subconjunto de las funciones disponibles, sin embargo, puedes examinarlas tu mismo.
 Hagamos un pequeño experimento en IEx.
 
 ```elixir
@@ -30,8 +30,8 @@ at/3
 ```
 
 Viendo esto queda claro que existe una gran cantidad de funcionalidad para `Enum` y esto es debido a una razón clara.
-La enumeración está en el corazón de la programación funcional y es un recurso increiblemente útil.
-Al aprovecharlo y combinarlo con otras ventajas de Elixir, como que la documentación es un ciudadano de primera clase así como se acaba de demostrar, es increiblemente empoderador para el programador.
+La enumeración está en el corazón de la programación funcional y es un recurso increíblemente útil.
+Al aprovecharlo y combinarlo con otras ventajas de Elixir, como que la documentación es un ciudadano de primera clase así como se acaba de demostrar, es increíblemente empoderador para el programador.
 
 Para ver la lista completa de funciones visita la documentación oficial [`Enum`](https://hexdocs.pm/elixir/Enum.html); para enumeración diferida usa el módulo [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
@@ -83,7 +83,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 ### map_every
 
 Algunas veces hacer chunk a una colección no es suficiente para lograr lo que necesitas.
-Si este es el caso, `map_every/3` puede ser muy  útil para ejecutarse cada `n` elementos, siempre se ejecuta en el primero.
+Si este es el caso, `map_every/3` puede ser muy útil para ejecutarse cada `n` elementos, siempre se ejecuta en el primero.
 
 ```elixir
 # Apply function every three items
@@ -148,7 +148,7 @@ Enum.max([], fn -> :bar end)
 
 ### filter
 
-La función `filter/2` nos permite filtrar una colección que incluya solamente aquellos elementos que evaluan a `true` utilizando la función provista.
+La función `filter/2` nos permite filtrar una colección que incluya solamente aquellos elementos que evalúan a `true` utilizando la función provista.
 
 ```elixir
 iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
