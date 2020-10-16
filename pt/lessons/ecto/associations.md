@@ -129,7 +129,7 @@ Vamos definir a migração e o esquema `Distributor` com o relacionamento "belon
 mix ecto.gen.migration create_distributors
 ```
 
-Nós devemos adicionar uma chave estrangeira de `movie_id` à migração da tabela `distributors` que acabamos de gerar, bem como um índice único _(unique)_ para garantir que um filme tem apenas um distribuidor:
+Nós devemos adicionar uma chave estrangeira de `movie_id` à migração da tabela `distributors` que acabamos de gerar, bem como um índice único _(unique)_ para garantir que um filme tenha apenas um distribuidor:
 
 ```elixir
 # priv/repo/migrations/*_create_distributors.exs
