@@ -131,7 +131,7 @@ $ tree
 │   │       ├── svm_test.exs
 │   │       └── test_helper.exs
 │   └── utilities
-│       ├── README.m
+│       ├── README.md
 │       ├── lib
 │       │   └── utilities.ex
 │       ├── mix.exs
