@@ -104,7 +104,7 @@ Compiled lib/example.ex
 Generated example app
 ```
 
-When we compile a project Mix creates a `_build` directory for our artifacts.
+When we compile a project, Mix creates a `_build` directory for our artifacts.
 If we look inside `_build` we will see our compiled application: `example.app`.
 
 ## Managing Dependencies
