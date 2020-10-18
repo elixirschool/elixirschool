@@ -8,7 +8,7 @@
   <meta name="author" content="Sean Callan">
 
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:site_name" content="{{ site.name }}">
   <meta property="og:title" content="{{ page.locale.project.title }}">
   <meta property="og:locale" content="{{ page.lang }}">
   <meta property="og:description" content="{{ page.locale.project.description }}">
@@ -32,7 +32,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.url }}{% asset favicons/apple-touch-icon.png @path %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}{% asset favicons/favicon-32x32.png @path %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{ site.url }}{% asset favicons/favicon-16x16.png @path %}">
-  <link rel="manifest" href="{{ site.url }}{% asset favicons/manifest.json @path %}">
+  <link rel="manifest" href="{{ site.url }}/manifest.json">
   <link rel="shortcut icon" href="{{ site.url }}{% asset favicons/favicon.ico @path %}">
   <link rel="alternate" type="application/rss+xml" title="Elixir School" href="https://elixirschool.com/feed.xml" />
   <meta name="msapplication-config" content="{{ site.url }}{% asset favicons/browserconfig.xml @path %}">
@@ -57,5 +57,15 @@
   analytics.page()
   }}();
   </script>
-  {% asset js.cookie.js %}
+  <script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      if (!navigator.serviceWorker.controller) {
+        navigator.serviceWorker.register("{{ site.url }}/serviceworker.js", {
+          scope: "{{ site.url }}"
+        })
+        .then(reg => console.log("Service worker has been registered for scope: ", reg.scope))
+        .catch(error => console.log("Service worker registration has failed: ", error));
+      }
+    }  
+  </script>
 </head>

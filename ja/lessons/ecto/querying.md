@@ -1,11 +1,11 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: クエリ
 ---
 
 {% include toc.html %}
 
-このレッスンでは、 `Friends` アプリと [前のレッスン](./associations) で設定した映画ドメインを作成します。
+このレッスンでは、 `Friends` アプリと [前のレッスン](./associations) で設定した映画ドメインを引き続き作成します。
 
 ## `Ecto.Repo` によるレコードのフェッチ
 
@@ -41,8 +41,6 @@ iex> Repo.get(Movie, 1)
 `Repo.get_by/3` 関数で与えられた条件を満たすレコードをフェッチすることもできます。この関数は2つの引数を必要とします。 "クエリ可能な" データ構造体とクエリをしたい条件です。 `Repo.get_by/3` はレポジトリから1つの結果を返します。例を見てみましょう:
 
 ```elixir
-iex> alias Friends.Repo
-iex> alias Friends.Movie
 iex> Repo.get_by(Movie, title: "Ready Player One")
 %Friends.Movie{
   __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
@@ -66,9 +64,9 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 `Ecto.Query.from/2` マクロを使用してクエリを作ることができます。この関数は2つの引数を取ります。式と任意のキーワードリストです。レポジトリから全ての映画を選択する最も簡単なクエリを作ってみましょう。
 
 ```elixir
-import Ecto.Query
-query = from(Movie)                
-%Ecto.Query<from m in Friends.Movie>
+iex> import Ecto.Query
+iex> query = from(Movie)
+#Ecto.Query<from m0 in Friends.Movie>
 ```
 
 クエリを実行するためには、 `Repo.all/2` 関数を使用します。この関数はEctoクエリの必須の引数を取り、クエリの条件を満たす全てのレコードを返します。
@@ -96,10 +94,10 @@ iex> Repo.all(query)
 
 ```elixir
 iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
-%Ecto.Query<from m in Friends.Movie, where: m.title == "Ready Player One",
+#Ecto.Query<from m0 in Friends.Movie, where: m0.title == "Ready Player One",
  select: [:title, :tagline]>
 
-iex> Repo.all(query)                                                                    
+iex> Repo.all(query)
 SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready Player One') []
 [
   %Friends.Movie{
@@ -122,17 +120,17 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 これまで、 `from` マクロの最初の引数として `Ecto.Queryable` プロトコル（例： `Movie`）を実装するモジュールを使用しました。しかしながら、このような `in` 式も利用することができます。
 
 ```elixir
-iex> query = from(m in Movie)                                                           
-%Ecto.Query<from m in Friends.Movie>
+iex> query = from(m in Movie)           
+#Ecto.Query<from m0 in Friends.Movie>
 ```
 
 このような場合には、 `m` を *binding* と呼びます。クエリの他の部分からモジュールが参照できるため、Bindingは非常に便利です。 `id` が `2` より小さい全ての映画のタイトルを選択してみましょう:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
-%Ecto.Query<from m in Friends.Movie, where: m.id < 2, select: m.title>
+#Ecto.Query<from m0 in Friends.Movie, where: m0.id < 2, select: m0.title>
 
-iex> Repo.all(query)                                           
+iex> Repo.all(query)
 SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
@@ -140,9 +138,9 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ここで非常に重要なことは、クエリの出力がどのように変化したかです。`select:` 部分のbindingで *式* を使用すると、選択したフィールドが返される方法を正確に指定できます。例えば、タプルを指定できます。
 
 ```elixir
-iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
+iex> query = from(m in Movie, where: m.id < 2, select: {m.title})
 
-iex> Repo.all(query)                                                          
+iex> Repo.all(query)
 [{"Ready Player One"}]
 ```
 
@@ -153,9 +151,10 @@ iex> Repo.all(query)
 上記の例では、 `from` マクロ内でキーワード `select:` と `where:` を使用してクエリを作成しました。これらは、*keyword-basedのクエリ* と呼ばれます。ただし、クエリを作成する別の方法もあります。マクロベースのクエリです。Ectoは、`select/3` や `where/3` のような全てのキーワードに対してマクロを提供します。各マクロは、*queryable* な値、*明示的なbindingのリスト*、およびアナログなキーワードに提供するのと同じ式を受け入れます:
 
 ```elixir
-iex> query = select(Movie, [m], m.title)                           
-%Ecto.Query<from m in Friends.Movie, select: m.title>
-iex> Repo.all(query)                    
+iex> query = select(Movie, [m], m.title)
+#Ecto.Query<from m0 in Friends.Movie, select: m0.title>
+
+iex> Repo.all(query)
 SELECT m0."title" FROM "movies" AS m0 []
 ["Ready Player One"]
 ```
@@ -163,11 +162,14 @@ SELECT m0."title" FROM "movies" AS m0 []
 マクロの良いところは、パイプで非常にうまく機能することです。
 
 ```elixir
-iex> query = Movie |> where([m], m.id < 2) |> select([m], {m.title})
-
-iex> Repo.all(query)
+iex> Movie \
+...>  |> where([m], m.id < 2) \
+...>  |> select([m], {m.title}) \
+...>  |> Repo.all
 [{"Ready Player One"}]
 ```
+
+改行後も書き込みを続けるには、 `\` を使用することに注意してください。
 
 ### 埋め込み値による `where` の使用
 
@@ -193,7 +195,7 @@ iex> Repo.all(query)
 
 ```elixir
 iex> first(Movie)
-%Ecto.Query<from m in Friends.Movie, order_by: [desc: m.id], limit: 1>
+#Ecto.Query<from m0 in Friends.Movie, order_by: [asc: m0.id], limit: 1>
 ```
 
 次に、そのクエリを `Repo.one/2` 関数に渡して結果を取得します:
@@ -201,12 +203,12 @@ iex> first(Movie)
 ```elixir
 iex> Movie |> first() |> Repo.one()
 
-06:36:14.234 [debug] QUERY OK source="movies" db=3.7ms
+SELECT m0."id", m0."title", m0."tagline" FROM "movies" AS m0 ORDER BY m0."id" LIMIT 1 []
 %Friends.Movie{
-  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
-  actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
-  characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-  distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
+  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
+  characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
+  distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
   id: 1,
   tagline: "Something about video games",
   title: "Ready Player One"
@@ -251,7 +253,7 @@ iex> Repo.all(from m in Movie, preload: [:actors])
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
         movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-        name: "Bob"
+        name: "Tyler Sheridan"
       },
       %Friends.Actor{
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -286,7 +288,7 @@ iex> Repo.all(query)
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
         movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-        name: "Bob"
+        name: "Tyler Sheridan"
       },
       %Friends.Actor{
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -338,7 +340,7 @@ iex> movie = Repo.preload(movie, :actors)
       __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 1,
       movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-      name: "Bob"
+      name: "Tyler Sheridan"
     },
     %Friends.Actor{
       __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -364,7 +366,7 @@ iex> movie.actors
     __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
     id: 1,
     movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-    name: "Bob"
+    name: "Tyler Sheridan"
   },
   %Friends.Actor{
     __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -380,6 +382,7 @@ iex> movie.actors
 `Ecto.Query.join/5` 関数によってjoinステートメントを含むクエリを実行することができます。
 
 ```elixir
+iex> alias Friends.Character
 iex> query = from m in Movie,
               join: c in Character,
               on: m.id == c.movie_id,

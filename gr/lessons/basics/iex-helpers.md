@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Βοηθοί IEx
 ---
 
@@ -38,7 +38,8 @@ update/4             values/1
 
 Κάθε φορά που ξεκινάει το IEx θα ψάξει για ένα αρχείο ρυθμίσεων `.iex.exs`. Αν δεν είναι παρών στον τρέχοντα κατάλογο, τότε θα χρησιμοποιηθεί ο γονικός κατάλογος του χρήστη (`~/.iex.exs`) σαν εφεδρικός.
 
-Οι επιλογές ρυθμίσεων και ο κώδικας που ορίζονται σε αυτό το αρχείο θα μας είναι διαθέσιμα όταν το κέλυφος του IEx ξεκινάει. Για παράδειγμα αν θέλουμε να μας είναι διαθέσιμες μερικές βοηθητικές συναρτήσεις στο IEx, μπορούμε να ανοίξουμε το `.iex.exs` και να κάνουμε μερικές αλλαγές.
+Οι επιλογές ρυθμίσεων και ο κώδικας που ορίζονται σε αυτό το αρχείο θα μας είναι διαθέσιμα όταν το κέλυφος του IEx ξεκινάει. 
+Για παράδειγμα, αν θέλουμε να μας είναι διαθέσιμες μερικές βοηθητικές συναρτήσεις στο IEx, μπορούμε να ανοίξουμε το `.iex.exs` και να κάνουμε μερικές αλλαγές.
 
 Ας ξεκινήσουμε προσθέτοντας μια ενότητα με μερικές βοηθητικές συναρτήσεις:
 
@@ -90,14 +91,14 @@ example, the argument is always a {key, value} tuple for maps:
 
 ┃ iex> map = %{a: 1, b: 2}
 ┃ iex> Enum.map(map, fn {k, v} -> {k, v * 2} end)
-┃ [a: 2, b: 4]
+┃ [a: 2, b: 4] 
 
 Note that the functions in the Enum module are eager: they always start the
 enumeration of the given enumerable. The Stream module allows lazy enumeration
 of enumerables and provides infinite streams.
 
 Since the majority of the functions in Enum enumerate the whole enumerable and
-return a list as result, infinite streams need to be carefully used with such
+return a list as a result, infinite streams need to be carefully used with such
 functions, as they can potentially run forever. For example:
 
 ┃ Enum.each Stream.cycle([1, 2, 3]), &IO.puts(&1)

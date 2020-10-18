@@ -17,7 +17,7 @@ iex> [3.14, :pie, "Apple"]
 ```
 
 Elixir implementa las colecciones como listas enlazadas.
-Esto significa que acceder al largo de la lista es una operación que se ejecturá en tiempo lineal (`O(n)`).
+Esto significa que acceder al largo de la lista es una operación que se ejecutará en tiempo lineal (`O(n)`).
 Por esta razón, normalmente es más rápido agregar un elemento al inicio que al final:
 
 ```elixir
@@ -45,7 +45,7 @@ Una aclaración acerca de la notación utilizada arriba (`++/2`):
 En Elixir (y Erlang, sobre el cual Elixir está construido), el nombre de una función u operador tiene dos componentes: el nombre en sí (en este caso `++`) y su _aridad_.
 La aridad es un concepto fundamental al hablar de código en Elixir y Erlang.
 Es el número de argumentos que una función recibe (dos, en este caso).
-El nombre y la aridad estan unidos por una barra (`/`). Hablaremos más acerca de esta más adelante; conocer esto te ayudará a entender la notación por el momento.
+El nombre y la aridad están unidos por una barra (`/`). Hablaremos más acerca de esta más adelante; conocer esto te ayudará a entender la notación por el momento.
 
 ### Sustracción de listas
 
@@ -119,7 +119,7 @@ iex> File.read("path/to/unknown/file")
 ## Listas de palabras clave
 
 Las listas de palabras clave y los mapas son las colecciones asociativas de Elixir.
-En Elixir, una lista de palabras clave es una lista especial de tuplas de dos elementos, cuyos primeros elemento son átomos; éstas tienen el mismo rendimiento que las listas:
+En Elixir, una lista de palabras clave es una lista especial de tuplas de dos elementos, cuyos primeros elementos son átomos; éstas tienen el mismo rendimiento que las listas:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
