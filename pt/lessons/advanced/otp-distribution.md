@@ -285,7 +285,7 @@ def send_message(:moebi@localhost, message) do
 end
 ```
 
-A seguir, vamos definir uma função `receive_message_for_moebi/2` que exibe a mensagem recebida no fluxo de STDOUT (saída) do nó `moebi` via `IO.puts` _e_ envia uma mensagem de volta para o rementente:
+A seguir, vamos definir uma função `receive_message_for_moebi/2` que exibe a mensagem recebida no fluxo de STDOUT (saída) do nó `moebi` via `IO.puts` _e_ envia uma mensagem de volta para o remetente:
 
 ```elixir
 # lib/chat.ex
