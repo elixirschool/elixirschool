@@ -72,7 +72,7 @@ Então, como nosso nó `alex` é o nó do qual chamamos `spawn_link/2`, esse nó
 
 #### Respondendo a Mensagens
 
-E se quisermos que o nó que recebe a mensagem envie alguma *resposta* de volta ao rementente? Nós podemos usar uma configuração simples de `receive/1` e [`send/3`](https://hexdocs.pm/elixir/Process.html#send/3) para fazer exatamente isso.
+E se quisermos que o nó que recebe a mensagem envie alguma *resposta* de volta ao remetente? Nós podemos usar uma configuração simples de `receive/1` e [`send/3`](https://hexdocs.pm/elixir/Process.html#send/3) para fazer exatamente isso.
 
 Nós temos nosso nó `alex` gerando um link para o nó `kate` e enviando ao nó `kate` uma função anônima para executar.
 Essa função anônima estará esperando receber uma tupla em particular, que descreve uma mensagem e o PID do nó `alex`.
