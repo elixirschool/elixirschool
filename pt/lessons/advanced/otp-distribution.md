@@ -275,7 +275,7 @@ Nós vamos definir outra versão da nossa função `send_message/2` cujo padrão
 Se o destinatário é `:moebi@locahost`, nós vamos
 
 * Pegar o nome do nó atual usando `Node.self()`
-* Passe o nome do nó atual, por exemplo, o rementente, para a nova função `receive_message_for_moebi/2`, para que possamos enviar uma mensagem _de volta_ para esse nó.
+* Passe o nome do nó atual, por exemplo, o remetente, para a nova função `receive_message_for_moebi/2`, para que possamos enviar uma mensagem _de volta_ para esse nó.
 
 ```elixir
 # lib/chat.ex
