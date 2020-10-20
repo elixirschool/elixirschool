@@ -3,31 +3,25 @@ version: 1.1.0
 title: StreamData
 ---
 
-An example-based unit testing library like [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) is a wonderful tool to help you verify that your code works the way you think it does.
-However, example-based unit tests have some drawbacks:
+Uma biblioteca  de testes unitários baseada em exemplos como  [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) é uma excelente ferramente para te ajudar a verifica se seu código funciona da forma como você imagina que ele funciona. Contudo, testes unitários baseados em exemplos têm algumas desvantagens:
 
-* It can be easy to miss edge cases, since you're only testing a few inputs.
-* You can write these tests without thinking through your requirements thoroughly.
-* These tests can be very verbose when you use several examples for one function.
+- Pode ser fácil esquecer alguns casos extremos, uma vez que você só está testando alguns inputs.
+- Você pode escreve testes sem pensar nos requerimentos de forma completa.
+- Estes testes podem ser verbosos quando você utiliza vários exemplos para uma função.
 
-In this lesson we're going to explore how [StreamData](https://github.com/whatyouhide/stream_data) can help us overcome some of these drawbacks.
+Nesta aula iremos apreder como [StreamData](https://github.com/whatyouhide/stream_data) can pode nos ajudar a superar esses pontos negativos.
 
 {% include toc.html %}
 
-## What is StreamData?
+## O que é StreamData?
 
-[StreamData](https://github.com/whatyouhide/stream_data) is a library that performs stateless property-based testing.
+[StreamData](https://github.com/whatyouhide/stream_data) é uma biblioteca que executa testes sem estado baseados em propriedade .
 
-The StreamData library will run each test [100 times by default](https://hexdocs.pm/stream_data/ExUnitProperties.html#check/1-options), using random data each time.
-When a test fails, StreamData will try to [shrink](https://hexdocs.pm/stream_data/StreamData.html#module-shrinking) the input to the smallest value that causes the test failure.
-This can be helpful when you have to debug your code!
-If a 50-element list causes your function to break, and only one of the list elements is problematic, StreamData can help you identify the offending element.
+A bilbioteca StreamData irá executar cada teste [100 vezes por padrão](https://hexdocs.pm/stream_data/ExUnitProperties.html#check/1-options), usando dados aleatórias a cada vez. Quando um teste falhar, StreamData irá tentar [encolher](https://hexdocs.pm/stream_data/StreamData.html#module-shrinking) a entrada para o menor valor capaz de fazer com que o teste falhe. Isso pose ser útil quando você tem que debugar seu código! Se uma lista de 50 elementos faz com que sua função falhe, e somente um dos elementos da lista é problemático, StreamData pode te ajudar a identificar o elemento detrator.
 
-This testing library has two main modules.
-[`StreamData`](https://hexdocs.pm/stream_data/StreamData.html) generates streams of random data. 
-[`ExUnitProperties`](https://hexdocs.pm/stream_data/ExUnitProperties.html) lets you run tests against your functions, using the generated data as your input.
+Esta biblioteca de testes tem dois módulos principais. `[StreamData](https://hexdocs.pm/stream_data/StreamData.html)` gera fluxos de dados aleatórios. `[ExUnitProperties](https://hexdocs.pm/stream_data/ExUnitProperties.html)` permite executar testes contra suas funções, usando os dados gerados como entrada.
 
-You might be asking how you can say anything meaningful about a function if you don't know what your exact inputs are. Read on!
+Você pode estar se perguntando como dizer algo significativo sobre uma função se você não sabe exatamente quais são suas entradas. Continue lendo!
 
 ## Installing StreamData
 
