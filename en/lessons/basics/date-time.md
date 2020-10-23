@@ -85,7 +85,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 ## DateTime
 
-The second, as you may have guessed from title of this section, is `DateTime`.
+The second, as you may have guessed from the title of this section, is `DateTime`.
 It does not have the limitations noted in `NaiveDateTime`: it has both time and date, and supports timezones.
 But be aware about timezones. The official docs state:
 
@@ -119,7 +119,7 @@ iex> ny_datetime
 #DateTime<2019-01-01 06:00:00-05:00 EST America/New_York>
 ```
 
-As you can see, time changed from 12:00 Paris time to 6:00, which is correct - time difference between two cities is 6 hours.
+As you can see, time changed from 12:00 Paris time to 6:00, which is correct - time difference between the two cities is 6 hours.
 
 This is it! If you want to work with other advanced functions you may want to consider looking futher into docs for [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html) and [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html)
 You should also consider [Timex](https://github.com/bitwalker/timex) and [Calendar](https://github.com/lau/calendar) which are powerful libraries to work with time in Elixir.
