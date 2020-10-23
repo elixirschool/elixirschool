@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Εκτελέσιμα
 ---
 
@@ -43,8 +43,8 @@ end
 defmodule ExampleApp.CLI do
   def main(args \\ []) do
     args
-    |> parse_args
-    |> response
+    |> parse_args()
+    |> response()
     |> IO.puts()
   end
 
@@ -66,13 +66,13 @@ end
 
 Όταν τελειώσουμε με την ρύθμιση της εφαρμογής μας για τη χρήση της escript, το χτίσιμο του εκτελέσιμού μας είναι πανεύκολο με το Mix:
 
-```elixir
+```bash
 $ mix escript.build
 ```
 
 Για να το δοκιμάσουμε:
 
-```elixir
+```bash
 $ ./example_app --upcase Γεια
 ΓΕΙΑ
 
