@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.2.0
 title: Συναρτήσεις
 ---
 
@@ -43,17 +43,17 @@ iex> sum.(2, 3)
 
 ```elixir
 iex> handle_result = fn
-...>   {:ok, result} -> IO.puts "Διαχείριση αποτελέσματος..."
-...>   {:ok, _} -> IO.puts "Αυτό δεν θα τρέξει ποτέ καθώς το προηγούμενο θα ταιριάξει πρώτα."
-...>   {:error} -> IO.puts "Προέκυψε ένα σφάλμα!"
+...>   {:ok, result} -> IO.puts "Handling result..."
+...>   {:ok, _} -> IO.puts "This would be never run as previous will be matched beforehand."
+...>   {:error} -> IO.puts "An error has occurred!"
 ...> end
 
 iex> some_result = 1
 iex> handle_result.({:ok, some_result})
-Διαχείριση αποτελέσματος...
+Handling result...
 
 iex> handle_result.({:error})
-Προέκυψε ένα σφάλμα!
+An error has occurred!
 ```
 
 ## Ονομασμένες Συναρτήσεις
@@ -68,19 +68,19 @@ iex> handle_result.({:error})
 ```elixir
 defmodule Greeter do
   def hello(name) do
-    "Γειά σου, " <> name
+    "Hello, " <> name
   end
 end
 
 iex> Greeter.hello("Sean")
-"Γειά σου, Sean"
+"Hello, Sean"
 ```
 
 Αν το σώμα της συνάρτησης αποτελείται από μόνο μία γραμμή, μπορούμε να το συντομεύσουμε περαιτέρω με την `do:`:
 
 ```elixir
 defmodule Greeter do
-  def hello(name), do: "Γειά σου, " <> name
+  def hello(name), do: "Hello, " <> name
 end
 ```
 
@@ -299,11 +299,11 @@ end
 ```elixir
 defmodule Greeter do
   def hello(name), do: phrase <> name
-  defp phrase, do: "Γειά σου, "
+  defp phrase, do: "Hello, "
 end
 
 iex> Greeter.hello("Sean")
-"Γειά σου, Sean"
+"Hello, Sean"
 
 iex> Greeter.phrase
 ** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
@@ -329,11 +329,11 @@ defmodule Greeter do
     phrase() <> name
   end
 
-  defp phrase, do: "Γειά, "
+  defp phrase, do: "Hello, "
 end
 
 iex> Greeter.hello ["Sean", "Steve"]
-"Γειά, Sean, Steve"
+"Hello, Sean, Steve"
 ```
 
 ### Προκαθορισμένες Παράμετροι
