@@ -347,7 +347,7 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
+  defp phrase("gr"), do: "Γειά σου, "
 end
 
 iex> Greeter.hello("Sean", "en")
@@ -376,7 +376,7 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Hola, "
+  defp phrase("gr"), do: "Γειά σου, "
 end
 
 ** (CompileError) iex:31: definitions with multiple clauses and default values require a header.
