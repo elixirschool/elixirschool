@@ -45,9 +45,12 @@ iex> Repo.get(Movie, 1)
 Τα ερωτήματα Ecto χρησιμοποιούνται στη λήψη δεδομένων από ένα αποθετήριο.
 Περισσότερα στα ερωτήματα μετά.
 
-### Fetching Records by Attribute
+### Λήψη εγγραφών βάσει χαρακτηριστικών
 
-We can also fetch records that meet a given criteria with the `Repo.get_by/3` function. This function requires two arguments: the "queryable" data structure and the clause with which we want to query. `Repo.get_by/3` returns a single result from the repository. Let's look at an example:
+Μπορούμε επίσης να λάβουμε εγγραφές που ταιριάζουν σε κάποια κριτήρια με τη συνάρτηση `Repo.get_by/3`.
+Αυτή η συνάρτηση απαιτεί δύο ορίσματα: την "ερωτηθείσα" δομή δεδομένων και τους όρους με τους οποίους θέλουμε να δημιουργήσουμε ερώτημα.
+Η `Repo.get_by/3` επιστρέφει ένα μοναδικό αποτέλεσμα από το αποθετήριο.
+Ας δούμε ένα παράδειγμα:
 
 ```elixir
 iex> Repo.get_by(Movie, title: "Ready Player One")
@@ -62,15 +65,17 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 }
 ```
 
-If we want to write more complex queries, or if we want to return _all_ records that meet a certain condition, we need to use the `Ecto.Query` module.
+Αν θέλουμε να γράψουμε πιο περίπλοκα ερωτήματα, η αν θέλουμε να επιστρέψουμε _όλες_ τις εγγραφές που ικανοποιούν μια ορισμένη συνθήκη, πρέπει να χρησιμοποιήσουμε την ενότητα `Ecto.Query`.
 
-## Writing Queries with `Ecto.Query`
+## Γράφοντας ερωτήματα με την `Ecto.Query`
 
-The `Ecto.Query` module provides us with the Query DSL which we can use to write queries to retrieve data from the application's repository.
+Η ενότητα `Ecto.Query` μας παρέχει μία DSL ερωτημάτων (γλώσσα ειδική σε τομέα) την οποία μπορούμε να χρησιμοποιήσουμε για να λάβουμε δεδομένα από το αποθετήριο της εφαρμογής.
 
-### Keyword-based queries with `Ecto.Query.from/2`
+### Ερωτήματα βασισμένα σε λέξεις κλειδιά με την `Ecto.Query.from/2`
 
-We can create a query with the `Ecto.Query.from/2` macro. This function takes in two arguments: an expression and an optional keyword list. Let's create the most simple query to select all of the movies from our repository:
+Μπορούμε να δημιουργήσουμε ένα ερώτημα με τη μακροεντολή `Ecto.Query.from/2`.
+Αυτή η συνάρτηση δέχεται δύο ορίσματα: μια έκφραση και μια προαιρετική λίστα λέξεων κλειδιά.
+Ας δημιουργήσουμε το πιο απλό ερώτημα για να επιλέξουμε όλες τις ταινίες από το αποθετήριό μας:
 
 ```elixir
 iex> import Ecto.Query
@@ -78,7 +83,8 @@ iex> query = from(Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
-In order to execute our query, we use the `Repo.all/2` function. This function takes in a required argument of an Ecto query and returns all of the records that meet the conditions of the query.
+Για να εκτελέσουμε το ερώτημά μας, θα χρησιμοποιήσουμε τη συνάρτηση `Repo.all/2`.
+Αυτή η συνάρτηση δέχεται ένα απαραίτητο όρισμα, ένα ερώτημα Ecto και επιστρέφει όλες τις εγγραφές που ισχύουν για τις προυποθέσεις του ερωτήματος.
 
 ```elixir
 iex> Repo.all(query)
@@ -97,9 +103,11 @@ iex> Repo.all(query)
 ]
 ```
 
-#### Bindingless queries with `from`
+#### Μη δεσμευτικά ερωτήματα με τη `from`
 
-The example above lacks the most fun parts of SQL statements. We often want to only query for specific fields or filter records by some condition. Let's fetch `title` and `tagline` of all movies that have `"Ready Player One"` title:
+Από το παραπάνω παράδειγμα λείπουν τα πιο διασκεδασικά μέρη των ερωτημάτων SQL.
+Συχνά θέλουμε να δημιουργούμε ερωτήματα μόνο για συγκεκριμένα πεδία ή να φιλτράρουμε εγγραφές με κάποια συνθήκη.
+Ας πάρουμε τα πεδία `title` και `tagline` όλων των ταινιών που έχουν σαν τίτλο το "Ready Player One":
 
 ```elixir
 iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
@@ -120,8 +128,9 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 ]
 ```
 
-Please note that the returned struct only has `tagline` and `title` fields set – this is the result of our `select:` part.
+Σημειώστε ότι η επιστρεφόμενη δομή έχει μόνο ορισμένα τα πεδία `tagline` και `title` - αυτό είναι το αποτέλεσμα του μέρους της `select` μας.
 
+Ερωτήματα σαν και αυτό ονομάζονται *μη δεσμευτικά* επειδή είναι αρκετά απλά ώστε να μην απαιτούν δεσμεύσεις.
 Queries like this are called *bindingless*, because they are simple enough to not require bindings.
 
 #### Bindings in queries
