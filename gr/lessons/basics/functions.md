@@ -298,7 +298,7 @@ end
 
 ```elixir
 defmodule Greeter do
-  def hello(name), do: phrase <> name
+  def hello(name), do: phrase() <> name
   defp phrase, do: "Hello, "
 end
 
@@ -347,7 +347,7 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("gr"), do: "Γειά σου, "
+  defp phrase("es"), do: "Hola, "
 end
 
 iex> Greeter.hello("Sean", "en")
@@ -376,7 +376,7 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("gr"), do: "Γειά σου, "
+  defp phrase("es"), do: "Hola, "
 end
 
 ** (CompileError) iex:31: definitions with multiple clauses and default values require a header.
