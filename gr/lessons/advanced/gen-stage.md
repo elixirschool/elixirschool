@@ -101,7 +101,7 @@ defmodule GenstageExample.Producer do
   end
   
   def init(counter), do: {:producer, counter}
-  
+
   def handle_demand(demand, state) do
     events = Enum.to_list(state..(state + demand - 1))
     {:noreply, events, state + demand}
@@ -134,20 +134,20 @@ defmodule GenstageExample.ProducerConsumer do
   use GenStage
 
   require Integer
-  
+
   def start_link(_initial) do
     GenStage.start_link(__MODULE__, :state_doesnt_matter, name: __MODULE__)
   end
-  
+
   def init(state) do
     {:producer_consumer, state, subscribe_to: [GenstageExample.Producer]}
   end
-  
+
   def handle_events(events, _from, state) do
     numbers =
       events
       |> Enum.filter(&Integer.is_even/1)
-    
+
     {:noreply, numbers, state}
   end
 end
@@ -175,20 +175,20 @@ $ touch lib/genstage_example/consumer.ex
 ```elixir
 defmodule GenstageExample.Consumer do
   use GenStage
-  
+
   def start_link(_initial) do
     GenStage.start_link(__MODULE__, :state_doesnt_matter)
   end
-  
+
   def init(state) do
     {:consumer, state, subscribe_to: [GenstageExample.ProducerConsumer]}
   end
-  
+
   def handle_events(events, _from, state) do
     for event <- events do
       IO.inspect({self(), event, state})
     end
-  
+
     # As a consumer we never emit events
     {:noreply, [], state}
   end
@@ -206,13 +206,13 @@ end
 ```elixir
 def start(_type, _args) do
   import Supervisor.Spec, warn: false
-  
+
   children = [
     {GenstageExample.Producer, 0},
     {GenstageExample.ProducerConsumer, []},
     {GenstageExample.Consumer, []}
   ]
-  
+
   opts = [strategy: :one_for_one, name: GenstageExample.Supervisor]
   Supervisor.start_link(children, opts)
 end
