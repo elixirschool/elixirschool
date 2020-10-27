@@ -95,7 +95,7 @@ $ touch lib/genstage_example/producer.ex
 ```elixir
 defmodule GenstageExample.Producer do
   use GenStage
-  
+
   def start_link(initial \\ 0) do
     GenStage.start_link(__MODULE__, initial, name: __MODULE__)
   end
@@ -132,7 +132,7 @@ $ touch lib/genstage_example/producer_consumer.ex
 ```elixir
 defmodule GenstageExample.ProducerConsumer do
   use GenStage
-  
+
   require Integer
   
   def start_link(_initial) do
