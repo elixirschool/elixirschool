@@ -6,11 +6,11 @@ version: 2.0.0
 
 Elixir School è la destinazione pricipale per chiunque abbia la necessità di imparare e padroneggiare il linguaggio di programmazione Elixir.
 
-Che tu sia un esperto o un programmatore alle prime armi, in queste lezioni e nelle risorse ausiliarie troverai tutto ciò di qui hai bisogno.
+Che tu sia un esperto o un programmatore alle prime armi, in queste lezioni e nelle risorse ausiliarie troverai tutto ciò di cui hai bisogno.
 
-Grazie al duro di volontari, Elixir School è stato tradotto in molte lingue. Alcune di queste lingue includono: [Việt ngữ][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], e [ภาษาไทย][th].
+Grazie al duro lavoro dei volontari, Elixir School è stato tradotto in molte lingue. Alcune di queste lingue includono: [Việt ngữ][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русском][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], e [ภาษาไทย][th].
 
-Vi invitiamo e incoraggiamo di unirci nel continuare a rendere Elixir School un fantastico prodottto andando a [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
+Vi invitiamo e incoraggiamo ad unirvi nel continuare a rendere Elixir School un fantastico prodotto andando su [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
 
   [es]: /es/
   [it]: /it/
