@@ -1,6 +1,6 @@
 ---
 version: 1.2.0
-title: Δημιουργόντας Ερωτήματα
+title: Δημιουργώντας Ερωτήματα
 ---
 
 {% include toc.html %}
@@ -103,9 +103,9 @@ iex> Repo.all(query)
 ]
 ```
 
-#### Μη δεσμευτικά ερωτήματα με τη `from`
+#### Λυμένα ερωτήματα με τη `from`
 
-Από το παραπάνω παράδειγμα λείπουν τα πιο διασκεδασικά μέρη των ερωτημάτων SQL.
+Από το παραπάνω παράδειγμα λείπουν τα πιο διασκεδαστικά μέρη των ερωτημάτων SQL.
 Συχνά θέλουμε να δημιουργούμε ερωτήματα μόνο για συγκεκριμένα πεδία ή να φιλτράρουμε εγγραφές με κάποια συνθήκη.
 Ας πάρουμε τα πεδία `title` και `tagline` όλων των ταινιών που έχουν σαν τίτλο το "Ready Player One":
 
@@ -130,19 +130,21 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 
 Σημειώστε ότι η επιστρεφόμενη δομή έχει μόνο ορισμένα τα πεδία `tagline` και `title` - αυτό είναι το αποτέλεσμα του μέρους της `select` μας.
 
-Ερωτήματα σαν και αυτό ονομάζονται *μη δεσμευτικά* επειδή είναι αρκετά απλά ώστε να μην απαιτούν δεσμεύσεις.
-Queries like this are called *bindingless*, because they are simple enough to not require bindings.
+Ερωτήματα σαν και αυτό ονομάζονται *λυμένα* επειδή είναι αρκετά απλά ώστε να μην απαιτούν δεσίματα.
 
-#### Bindings in queries
+#### Δεσίματα στα ερωτήματα
 
-So far we used a module that implements the `Ecto.Queryable` protocol (ex: `Movie`) as the first argument for `from` macro. However, we can also use `in` expression, like this:
+Ως τώρα χρησιμοποιούσαμε μια ενότητα που υλοποιεί το πρωτόκολλο `Ecto.Queryable` (πχ: `Movie`) σαν το πρώτο όρισμα για τη μακροεντολή `from`.
+Ωστόσο, μπορούμε να χρησιμοποιήσουμε τις εκφράσεις `in` ως εξής:
 
 ```elixir
 iex> query = from(m in Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
-In such case, we call `m` a *binding*. Bindings are extremely useful, because they allow us to reference modules in other parts of the query. Let's select titles of all movies that have `id` less than `2`:
+Σε τέτοιες περιπτώσεις, καλούμε τη μεταβλητή `m` *δέσιμο*.
+Τα δεσίματα είναι εξαιρετικά χρήσιμα, επειδή μας επιτρέπουν να αναφερόμαστε στις ενότητες σε άλλα μέρη του ερωτήματος.
+Ας επιλέξουμε τους τίτλους από όλες τις ταινίες που έχουν `id` μικρότερο του `2`:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
@@ -153,7 +155,9 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-The very important thing here is how output of the query changed. Using an *expression* with a binding in `select:` part allows you to specify exactly the way selected fields will be returned. We can ask for a tuple, for example:
+Το πιο σημαντικό πράγμα εδώ είναι πως η έξοδος από το ερώτημα άλλαξε.
+Χρησιμοποιώντας μια *έκφραση* με ένα δέσιμο στο μέρος της `select:` μας επιτρέπει να ορίζουμε ακριβώς τον τρόπο που επιστρέφονται τα επιλεγμένα πεδία.
+Μπορούμε να ορίσουμε μια τούπλα για παράδειγμα:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: {m.title})
@@ -162,12 +166,16 @@ iex> Repo.all(query)
 [{"Ready Player One"}]
 ```
 
-It is a good idea to always start with a simple bindingless query and introduce a binding whenever you need to reference your data structure. More on bindings in queries can be found in [Ecto documentation](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions)
+Είναι καλή ιδέα να να ξεκινάμε πάντα με ένα απλό ερώτημα χωρίς δεσίματα και να βάλουμε ένα δέσιμο όταν χρειαστεί να αναφερθούμε στη δομή δεδομένων μας.
+Περισσότερα για τα δεσίματα στα ερωτήματα μπορείτε να δείτε στην [Τεκμηρίωση του Ecto](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions)
 
 
-### Macro-based queries
+### Ερωτήματα βασισμένα σε μακροεντολές
 
-In the examples above we used keywords `select:` and `where:` inside of `from` macro to build a query – these are so called *keyword-based queries*. There is, however, another way to compose queries – macro-based queries. Ecto provides macros for every keyword, like `select/3` or `where/3`. Each macro accepts a *queryable* value, *an explicit list of bindings* and the same expression you'd provide to its keyword analogue:
+Στα παραδείγματα πιο πάνω χρησιμοποιήσαμε λέξεις κλειδί όπως οι `select:` και `where:` μέσα στη μακροεντολή `from` για να χτίσουμε ένα ερώτημα - αυτά ονομάζονται *ερωτήματα βασισμένα σε λέξεις κλειδιά*.
+Υπάρχει πάντως και ένας άλλος τρόπος να χτίσουμε ερωτήματα - τα ερωτήματα βασισμένα σε μακροεντολές.
+Το Ecto παρέχει μακροεντολές για κάθε λέξη κλειδί, όπως η `select/3` ή η `where/3`.
+Κάθε μακροεντολή δέχεται μια *ερωτήσιμη* τιμή, *μια σαφή λίστα δεσιμάτων* και την ίδια έκφραση που θα παρείχατε στην αντίστοιχη λέξη κλειδί:
 
 ```elixir
 iex> query = select(Movie, [m], m.title)
@@ -178,7 +186,7 @@ SELECT m0."title" FROM "movies" AS m0 []
 ["Ready Player One"]
 ```
 
-The good thing about macros is that they work very well with pipes:
+Το καλό με τις μακροεντολές έιναι ότι δουλεύουν πολύ καλά με τους σωλήνες:
 
 ```elixir
 iex> Movie \
@@ -188,11 +196,12 @@ iex> Movie \
 [{"Ready Player One"}]
 ```
 
-Note that to continue writing after the line break, use the character `\`.
+Σημειώστε ότι για να συνεχίσουμε να γράφουμε μετά τη νέα γραμμή στο τερματικό, θα πρέπει να χρησιμοποιήσουμε το χαρακτήρα `\`.
 
-### Using `where` with Interpolated Values
+### Χρήση της `where` με Παρεμβαλόμενες Tιμές
 
-In order to use interpolated values or Elixir expressions in our where clauses, we need to use the `^`, or pin, operator. This allows us to _pin_ a value to a variable and refer to that pinned value, instead of re-binding that variable.
+Για να μπορέσουμε να χρησιμοποιήσουμε παρεμβαλόμενες τιμές ή εκφράσεις Elixir στα στις προτάσεις where, πρέπει να χρησιμοποιήσουμε τον τελεστή πινέζας `^`.
+Αυτό μας επιτρέπει να κρατήσουμε μια τιμή σε μια μεταβλητή και να αναφερόμαστε σε αυτή την καρφιτσωμένη τιμή, αντί να βάλουμε νέα τιμή σε αυτή τη μεταβλητή.
 
 ```elixir
 iex> title = "Ready Player One"
@@ -206,18 +215,18 @@ iex> Repo.all(query)
 ["Something about video games"]
 ```
 
-### Getting the First and Last Records
+### Λήψη της Πρώτης και Τελευταίας Εγγραφής
 
-We can fetch the first or last records from a repository using the `Ecto.Query.first/2` and `Ecto.Query.last/2` functions.
+Μπορούμε να πάρουμε την πρώτη και τελευταία εγγραφή από ένα αποθετήριο χρησιμοποιώντας τις συναρτήσεις `Ecto.Query.first/2` και `Ecto.Query.last/2`.
 
-First, we'll write a query expression using the `first/2` function:
+Αρχικά, θα γράψουμε μία έκφραση ερωτήματος χρησιμοποιώντας τη συνάρτηση `first/2`:
 
 ```elixir
 iex> first(Movie)
 #Ecto.Query<from m0 in Friends.Movie, order_by: [asc: m0.id], limit: 1>
 ```
 
-Then we pass our query to the `Repo.one/2` function to get our result:
+Τότε θα περάσουμε το ερώτημά μας στη συνάρτηση `Repo.one/2` για να πάρουμε το αποτέλεσμα:
 
 ```elixir
 iex> Movie |> first() |> Repo.one()
@@ -234,19 +243,19 @@ SELECT m0."id", m0."title", m0."tagline" FROM "movies" AS m0 ORDER BY m0."id" LI
 }
 ```
 
-The `Ecto.Query.last/2` function is used in the same way:
+Η συνάρτηση `Ecto.Query.last/2` χρησιμοποιείται με τον ίδιο τρόπο:
 
 ```elixir
 iex> Movie |> last() |> Repo.one()
 ```
 
-## Querying For Associated data
+## Ζητώντας Συσχετισμένα δεδομένα
 
-### Preloading
+### Προφόρτωση
 
-In order to be able to access the associated records that the `belongs_to`, `has_many` and `has_one` macros expose to us, we need to _preload_ the associated schemas.
+Για να μπορέσουμε να έχουμε πρόσβαση σε συσχετιζόμενες εγγραφές στις οποίες μας δίνουν πρόσβαση οι μακροεντολές `belongs_to`, `has_many`, και `has_one`, πρέπει να _προφορτώσουμε_ τα συσχετιζόμενα σχήματα.
 
-Let's take a look to see what happens when we try to ask a movie for its associated actors:
+Ας ρίξουμε μια ματιά στο τι συμβαίνει όταν προσπαθήσουμε να ρωτήσουμε μια ταινία για τους συσχετιζόμενους ηθοποιούς της:
 
 ```elixir
 iex> movie = Repo.get(Movie, 1)
@@ -254,11 +263,12 @@ iex> movie.actors
 %Ecto.Association.NotLoaded<association :actors is not loaded>
 ```
 
-We _can't_ access those associated characters unless we preload them. There are a few different way to preload records with Ecto.
+_Δεν_ μπορούμε να έχουμε πρόσβαση στους συσχετιζόμενους χαρακτήρες αν δεν τους προφορτώσουμε.
+Υπάρχουν μερικοί διαφορετικοί τρόποι να προφορτώσουμε εγγραφές με το Ecto.
 
-#### Preloading With Two Queries
+#### Προφόρτωση με Δύο Ερωτήματα
 
-The following query will preload associated records in a _separate_ query.
+Το παρακάτω ερώτημα θα προφορτώσει τις συσχετιζόμενες εγγραφές σε ένα _ξεχωριστό_ ερώτημα.
 
 ```elixir
 iex> Repo.all(from m in Movie, preload: [:actors])
@@ -291,11 +301,12 @@ iex> Repo.all(from m in Movie, preload: [:actors])
 ]
 ```
 
-We can see that the above line of code ran _two_ database queries. One for all of the movies, and another for all of the actors with the given movie IDs.
+Μπορούμε να δούμε ότι η παραπάνω γραμμή κώδικα έτρεξε _δύο_ ερωτήματα στη βάση δεδομένων.
+Ένα για όλες τις ταινίες, και ένα ακόμα για όλους τους ηθοποιούς με τα σχετικά IDs ταινιών.
 
+#### Προφόρτωση με Ένα Ερώτημα
 
-#### Preloading With One Query
-We can cut down on our database queries with the following:
+Μπορούμε να μειώσουμε τα ερωτήματα στη βάση δεδομένων μας με το παρακάτω:
 
 ```elixir
 iex> query = from(m in Movie, join: a in assoc(m, :actors), preload: [actors: a])
@@ -328,7 +339,10 @@ iex> Repo.all(query)
 ]
 ```
 
-This allows us to execute just one database call. It also has the added benefit of allowing us to select and filter both movies and associated actors in the same query. For example, this approach allows us to query for all movies where the associated actors meet certain conditions using a `join` statement. Something like:
+Αυτό μας επιτρέπει να εκτελέσουμε μόνο μια κλήση στη βάση δεδομένων.
+Επίσης έχει το πλεονέκτημα ότι μας επιτρέπει να επιλέξουμε και να φιλτράρουμε τις ταινίες και τους συσχετιζόμενους ηθοποιούς στο ίδιο ερώτημα.
+Για παράδειγμα, αυτή η προσέγγιση μας επιτρέπει να δημιουργήσουμε ένα ερώτημα για όλες τις ταινίες όπου οι συσχετιζόμενοι ηθοποιοί πληρούν κάποιες προυποθέσεις με τη χρήση δηλώσεων `join`.
+Κάτι σαν αυτό:
 
 ```elixir
 Repo.all from m in Movie,
@@ -337,11 +351,11 @@ Repo.all from m in Movie,
   preload: [actors: a]
 ```
 
-More on join statements in a bit.
+Περισσότερα στις δηλώσεις join σε λίγο.
 
-#### Preloading Fetched Records
+#### Προφόρτωση Ληφθέντων Εγγραφών
 
-We can also preload the associated schemas of records that have already been queried from the database.
+Μπορούμε επίσης να προφορτώσουμε τα συσχετιζόμενα σχήματα εγγραφών που έχουν ήδη ερωτηθεί από τη βάση δεδομένων.
 
 ```elixir
 iex> movie = Repo.get(Movie, 1)
@@ -379,7 +393,7 @@ iex> movie = Repo.preload(movie, :actors)
 }
 ```
 
-Now we can ask a movie for its actors:
+Τώρα μπορούμε να ρωτήσουμε μια ταινία για τους ηθοποιούς της:
 
 ```elixir
 iex> movie.actors
@@ -399,9 +413,9 @@ iex> movie.actors
 ]
 ```
 
-### Using Join Statements
+### Χρησιμοποιώντας Δηλώσεις Join
 
-We can execute queries that include join statements with the help of the `Ecto.Query.join/5` function.
+Μπορούμε να εκτελέσουμε ερωτήματα που περιλαμβάνουν δηλώσεις join με τη βοήθεια της συνάρτησης `Ecto.Query.join/5`.
 
 ```elixir
 iex> alias Friends.Character
@@ -415,7 +429,7 @@ iex> Repo.all(query)
 [{"Ready Player One", "Wade Watts"}]
 ```
 
-The `on` expression can also use a keyword list:
+Η έκφραση `on` μπορεί επίσης να χρησιμοποιήσει μια λίστα λέξεων κλειδιά:
 
 ```elixir
 from m in Movie,
@@ -425,7 +439,9 @@ from m in Movie,
   select: {m.title, c.name}
 ```
 
-In the example above, we are joining on an Ecto schema, `m in Movie`. We can also join on an Ecto query. Let's say our movies table has a column `stars`, where we store the "star rating" of the film, a number 1-5.
+Στο παραπάνω παράδειγμα, συνδεόμαστε σε ένα σχήμα Ecto, `m in Movie`.
+Μπορούμε επίσης να συνδεθούμε σε ένα ερώτημα Ecto.
+Ας πούμε ότι ο πίνακας ταινιών μας έχει μια στήλη `stars`, όπου αποθηκεύουμε τη βαθμολογία σε αστέρια της ταινίας, ένας αριθμός από το 1 έως το 5.
 
 ```elixir
 movies = from m in Movie, where: [stars: 5]
@@ -436,4 +452,5 @@ from c in Character,
   select: {m.title, c.name}
 ```
 
-The Ecto Query DSL is a powerful tool that provides us with everything we need to make even complex database queries. With this introduction provides you with the basic building blocks to start querying.
+Η DSL ερωτημάτων του Ecto είναι ένα πολύ ισχυρό εργαλείο που μας παρέχει ότι χρειαζόμαστε για να χτίσουμε ακόμα περισσότερο περίπλοκα ερωτήματα στη βάση δεδομένων.
+Με αυτή την εισαγωγή σας παρέχουμε τα βασικά δομικά στοιχεία για να ξεκινήσετε τα ερωτήματά σας.
