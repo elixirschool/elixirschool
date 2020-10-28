@@ -84,10 +84,10 @@ defmodule Friends.Repo do
 end
 ```
 
-We'll use the `Friends.Repo` module to query the database. We also tell this module to find its database configuration information in the `:friends` Elixir application and we chose the `Ecto.Adapters.Postgres` adapter.
+Wir sagen dem Modul auch, dass es die Konfiguration in der `:friends` Elixir Applikation findet und welchen Adapter wir verwenden: `Ecto.Adapters.Postgres`.
 
-Next, we'll setup the `Friends.Repo` as a supervisor within our application's supervision tree in `lib/friends/application.ex`.
-This will start the Ecto process when our application starts.
+Als Nächstes konfigurieren wir das `Friends.Repo` als einen Supervisor innerhalb unseres Supervisor-Baums in `lib/friends/application.ex`.
+Das wird den Ecto Prozess automatisch beim Applikationsstart starten.
 
 ```elixir
   def start(_type, _args) do
@@ -99,34 +99,34 @@ This will start the Ecto process when our application starts.
   ...
 ```
 
-After that we'll need to add the following line to our `config/config.exs` file:
+Danach müssen wir das Repo noch in unserer `config/config.exs` Datei definieren.
 
 ```elixir
 config :friends, ecto_repos: [Friends.Repo]
 ```
+Somit erlauben wir unserer Applikation, Ecto mix Kommandos von der Kommandozeile auszuführen.
 
-This will allow our application to run ecto mix commands from the commandline.
+Nun ist das Repository vollständig konfiguriert.
 
-We're all done configuring the repository!
-We can now create the database inside of postgres with this command:
+Jetzt können wir eine Datenbank mit folgendem Kommando erstellen:
 
 ```shell
 $ mix ecto.create
 ```
 
-Ecto will use the information in the `config/config.exs` file to determine how to connect to Postgres and what name to give the database.
+Alle notwendigen Informationen inklusive des Datenbanknamens nimmt Ecto aus der `config/config.exs` Datei.
 
-If you receive any errors, make sure that the configuration information is correct and that your instance of postgres is running.
+Wenn Fehler auftreten musst du sicherstellen, dass die Konfiguration korrekt ist und dass deine Postgres-Instanz läuft.
 
 ### Migrations
 
-To create and modify tables inside the postgres database Ecto provides us with migrations.
-Each migration describes a set of actions to be performed on our database, like which tables to create or update.
+Um Tabellen innerhalb der Postgres-Datenbank zu erstellen und zu modifizieren, stellt uns Ecto Migrationen zur Verfügung.
+Jede Migration beschreibt eine Reihe von Aktionen, die mit unserer Datenbank durchgeführt werden müssen, z.B. welche Tabellen erstellt oder aktualisiert werden sollen.
 
-Since our database doesn't have any tables yet, we'll need to create a migration to add some.
-The convention in Ecto is to pluralize our tables so for application we'll need a `people` table, so let's start there with our migrations.
+Da unsere Datenbank noch keine Tabellen hat, müssen wir zuerst eine Migration erstellen.
+Die Konvention in Ecto ist es, unsere Tabellen zu pluralisieren. Für unsere Anwendung beginnen wir mit der Migration für eine `people`-Tabelle.
 
-The best way to create migrations is the mix `ecto.gen.migration <name>` task, so in our case let's use:
+Der beste Weg eine Migrationen zu erstellen, ist das Kommando `ecto.gen.migration <name>`:
 
 ```shell
 $ mix ecto.gen.migration create_people
