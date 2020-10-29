@@ -10,23 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: "2.6"
-    - uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
-    - run: gem install bundler
-    - run: bundle config path vendor/bundle
-    - run: bundle install --jobs 4 --retry 3
-    - run: mkdir public
-    - run: bundle exec jekyll build --destination ./public
-    - uses: akhileshns/heroku-deploy@v3.6.8 # This is the action
-      with:
-        heroku_api_key: ${{secrets.HEROKU_API_TOKEN}}
-        heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
-        heroku_email: "flamefist@gmail.com"
+      - uses: actions/checkout@v2
+      - uses: helaili/jekyll-action@2.0.1
+        env:
+          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
