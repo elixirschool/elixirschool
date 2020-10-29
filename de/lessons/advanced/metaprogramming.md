@@ -64,7 +64,7 @@ Im ersten Beispiel wird unsere Variable `denominator` gequoted, so dass der resu
 
 Wenn wir erst mal `quote/2` und `unquote/1` verstanden haben, sind wir bereit dazu in Makros abzutauchen. Es ist wichtig sich zu merken, dass Makros wie jede Metaprogrammierung nur spärlich eingesetzt werden sollte.
 
-In ihrer einfachsten Form sind Makros nur besondere Funktionen, die entworfen wurden, um einen gequoteten Ausdruck in unseren Anwendungscode zu injecten. Stell dir vor, dass das Makro mit dem gequoteten Ausdruck ersetzt wird, anstatt wie eine Funktion aufgerufen zu werden. Mit Makros haben wir alles an der Hand, um Elixir zu erweitern und unserer Anwendung dynamisch Code hinzuzufügen.
+In ihrer einfachsten Form sind Makros nur besondere Funktionen, die entworfen wurden, um einen gequoteten Ausdruck in unseren Anwendungscode zu injizieren. Stell dir vor, dass das Makro mit dem gequoteten Ausdruck ersetzt wird, anstatt wie eine Funktion aufgerufen zu werden. Mit Makros haben wir alles an der Hand, um Elixir zu erweitern und unserer Anwendung dynamisch Code hinzuzufügen.
 
 Wir beginnen mit `defmacro/2` ein Makro zu definieren, welches, wie vieles in Elixir, selbst ein Makro ist (lass das erst mal ins Bewusstein dringen). Als Beispiel werden wir `unless` als Makro implementieren. Erinner dich daran, dass ein Makro einen gequoteten Ausdruck zurückgeben muss:
 
