@@ -132,8 +132,8 @@ Der beste Weg eine Migrationen zu erstellen, ist das Kommando `ecto.gen.migratio
 $ mix ecto.gen.migration create_people
 ```
 
-This will generate a new file in the `priv/repo/migrations` folder containing timestamp in the filename.
-If we navigate to our directory and open the migration we should see something like this:
+Dadurch wird eine neue Datei im Ordner `priv/repo/migrations` erzeugt, die einen Zeitstempel im Dateinamen enthält.
+Wenn wir zu unserem Verzeichnis navigieren und die Migration öffnen, sollten wir so etwas wie folgendes sehen:
 
 ```elixir
 defmodule Friends.Repo.Migrations.CreatePeople do
@@ -145,7 +145,7 @@ defmodule Friends.Repo.Migrations.CreatePeople do
 end
 ```
 
-Let's start by modifying the `change/0` function to create a new table `people` with `name` and `age`:
+Lasst uns nun die `change/0` Funktion anpassen um eine neue Tabelle `people` mit einer Spalte `name` und `age` zu erstellen:
 
 ```elixir
 defmodule Friends.Repo.Migrations.CreatePeople do
@@ -160,10 +160,9 @@ defmodule Friends.Repo.Migrations.CreatePeople do
 end
 ```
 
-You can see above we've also defined the column's data type.
-Additionally, we've included `null: false` and `default: 0` as options.
+Nebst dem Datentyp der Spalten haben wir auch `null: false` und `default: 0` als Optionen hinzugefügt.
 
-Let's jump to the shell and run our migration:
+Lasst uns nun die Migration in der Kommandozeile ausführen:
 
 ```shell
 $ mix ecto.migrate
@@ -171,12 +170,11 @@ $ mix ecto.migrate
 
 ### Schemas
 
-Now that we've created our initial table we need to tell Ecto more about it, part of how we do that is through schemas.
-A schema is a module that defines mappings to the underlying database table's fields.
+Nun müssen wir ein Ecto-Schema erstellen. Ein Schema ist ein Modul, das Zuordnungen zu den Feldern der zugrunde liegenden Datenbanktabelle definiert.
 
-While Ecto favors pluralize database table names, the schema is typically singular, so we'll create a `Person` schema to accompany our table.
+Während Ecto die Pluralisierung von Datenbanktabellennamen bevorzugt, ist das Schema typischerweise singulär. Für unser Beispiel erstellen wir ein `Person`-Schema das unsere Tabelle abbildet.
 
-Let's create our new schema at `lib/friends/person.ex`:
+Lass uns unser neues Schema unter `lib/friends/person.ex` erstellen:
 
 ```elixir
 defmodule Friends.Person do
@@ -189,24 +187,25 @@ defmodule Friends.Person do
 end
 ```
 
-Here we can see that the `Friends.Person` module tells Ecto that this schema relates to the `people` table and that we have two columns: `name` which is a string and `age`, an integer with a default of `0`.
+Hier kann man sehen, dass das Schema unseres `Friends.Person` Modul zur Tabelle `people` gehört welche aus 2 Spalten besteht: `name` welche ein String ist und `age`, als Integer mit einem Standardwert von `0`.
 
-Let's take a peek at our schema by opening `iex -S mix` and creating a new person:
+Werfen wir einen Blick auf unser Schema, indem wir `iex -S mix` ausführen und eine neue Person erstellen:
 
 ```elixir
 iex> %Friends.Person{}
 %Friends.Person{age: 0, name: nil}
 ```
 
-As expected we get a new `Person` with the default value applied to `age`.
-Now let's create a "real" person:
+Wie erwartet erhalten wir eine neue `Person` mit dem Standardwert `age`.
+
+Jetzt lass uns eine "echte" Person erstellen:
 
 ```elixir
 iex> person = %Friends.Person{name: "Tom", age: 11}
 %Friends.Person{age: 11, name: "Tom"}
 ```
 
-Since schemas are just structs, we can interact with our data like we're used to:
+Da Schemas nur Strukturen sind, können wir mit unseren Daten so interagieren, wie wir es gewohnt sind:
 
 ```elixir
 iex> person.name
@@ -219,7 +218,7 @@ iex> name
 "Tom"
 ```
 
-Similarly, we can update our schemas just as we would any other map or struct in Elixir:
+In ähnlicher Weise können wir unsere Schemas aktualisieren, wie wir es mit jeder anderen Map oder Struct in Elixir tun würden:
 
 ```elixir
 iex> %{person | age: 18}
@@ -228,5 +227,4 @@ iex> Map.put(person, :name, "Jerry")
 %Friends.Person{age: 18, name: "Jerry"}
 ```
 
-In our next lesson on Changesets, we'll look at how to validate our data changes and finally how to persist them to
-our database.
+In unserer nächsten Lektion über Changesets werden wir uns ansehen, wie wir unsere Datenänderungen validieren und wie wir sie schließlich in der Datenbank speichern.
