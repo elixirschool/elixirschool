@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.2.0
 title: Συναρτήσεις
 ---
 
@@ -12,7 +12,7 @@ title: Συναρτήσεις
 
 Όπως εννοεί το όνομα, μια ανώνυμη συνάρτηση δεν έχει όνομα.
 Όπως είδαμε στο μάθημα `Enum`, αυτές συνήθως στέλνονται σε άλλες συναρτήσεις.
-Για να ορίσουμε μια ανώνυμη συνάρτηση στην Elixir χρειαζόμαστε τις λέξεις κλειδί `fn` και `end`.
+Για να ορίσουμε μια ανώνυμη συνάρτηση στην Elixir χρειαζόμαστε τις λέξεις κλειδιά `fn` και `end`.
 Μέσα σε αυτές μπορούμε να ορίσουμε οποιοδήποτε αριθμό παραμέτρων και σωμάτων συναρτήσεων χωρισμένα με το `->`.
 
 Ας δούμε ένα βασικό παράδειγμα:
@@ -39,21 +39,21 @@ iex> sum.(2, 3)
 
 Η αντιπαραβολή προτύπων δεν περιορίζεται μόνο στις μεταβλητές στην Elixir, μπορεί να εφαρμοστεί στις υπογραφές συναρτήσεων όπως θα δούμε σε αυτή την ενότητα.
 
-Η Elixir χρησιμοποιεί αντιπαραβολή προτύπων για να αναγνωρίσει το πρώτο σετ παραμέτων που ταιριάζουν και καλεί το αντίστοιχο σώμα:
+Η Elixir χρησιμοποιεί αντιπαραβολή προτύπων για να αναγνωρίσει το πρώτο σετ παραμέτρων που ταιριάζουν και καλεί το αντίστοιχο σώμα:
 
 ```elixir
 iex> handle_result = fn
-...>   {:ok, result} -> IO.puts "Διαχείριση αποτελέσματος..."
-...>   {:ok, _} -> IO.puts "Αυτό δεν θα τρέξει ποτέ καθώς το προηγούμενο θα ταιριάξει πρώτα."
-...>   {:error} -> IO.puts "Προέκυψε ένα σφάλμα!"
+...>   {:ok, result} -> IO.puts "Handling result..."
+...>   {:ok, _} -> IO.puts "This would be never run as previous will be matched beforehand."
+...>   {:error} -> IO.puts "An error has occurred!"
 ...> end
 
 iex> some_result = 1
 iex> handle_result.({:ok, some_result})
-Διαχείριση αποτελέσματος...
+Handling result...
 
 iex> handle_result.({:error})
-Προέκυψε ένα σφάλμα!
+An error has occurred!
 ```
 
 ## Ονομασμένες Συναρτήσεις
@@ -68,19 +68,19 @@ iex> handle_result.({:error})
 ```elixir
 defmodule Greeter do
   def hello(name) do
-    "Γειά σου, " <> name
+    "Hello, " <> name
   end
 end
 
 iex> Greeter.hello("Sean")
-"Γειά σου, Sean"
+"Hello, Sean"
 ```
 
 Αν το σώμα της συνάρτησης αποτελείται από μόνο μία γραμμή, μπορούμε να το συντομεύσουμε περαιτέρω με την `do:`:
 
 ```elixir
 defmodule Greeter do
-  def hello(name), do: "Γειά σου, " <> name
+  def hello(name), do: "Hello, " <> name
 end
 ```
 
@@ -149,7 +149,7 @@ iex> fred = %{
 ...> }
 ```
 
-Αυτά είναι τα αποτελέσματα που θα πάρουμε αν καλέσουμε την `Greeter1.hello/1` με τον χάρτη `fred`¨
+Αυτά είναι τα αποτελέσματα που θα πάρουμε αν καλέσουμε την `Greeter1.hello/1` με τον χάρτη `fred`:
 
 ```elixir
 # call with entire map
@@ -285,7 +285,7 @@ end
 %{age: "95", favorite_color: "Taupe", name: "Fred"}
 ```
 
-Θυμηθείτε ότι παρόλο που το `%{name: person_name} = person` δείχνει σαν να γίνεται αντιπαραβολή του `%{name: persona_name}` με την μεταβλητή `person`, στην πραγματικότητα κάθε μια από αυτές αντιπαραβάλονται στo εισερχόμενo όρισμα.
+Θυμηθείτε ότι παρόλο που το `%{name: person_name} = person` δείχνει σαν να γίνεται αντιπαραβολή του `%{name: person_name}` με την μεταβλητή `person`, στην πραγματικότητα _κάθε_ μια από αυτές αντιπαραβάλονται στo εισερχόμενo όρισμα.
 
 **Σύνοψη:** Οι συναρτήσεις αντιπαραβάλουν τα εισερχόμενα δεδομένα σε κάθε ένα από τα ορίσματα ανεξάρτητα.
 Μπορούμε να το χρησιμοποιήσουμε αυτό για να ορίζουμε τιμές σε ξεχωριστές μεταβλητές μέσα στη συνάρτηση.
@@ -298,12 +298,12 @@ end
 
 ```elixir
 defmodule Greeter do
-  def hello(name), do: phrase <> name
-  defp phrase, do: "Γειά σου, "
+  def hello(name), do: phrase() <> name
+  defp phrase, do: "Hello, "
 end
 
 iex> Greeter.hello("Sean")
-"Γειά σου, Sean"
+"Hello, Sean"
 
 iex> Greeter.phrase
 ** (UndefinedFunctionError) function Greeter.phrase/0 is undefined or private
@@ -329,11 +329,11 @@ defmodule Greeter do
     phrase() <> name
   end
 
-  defp phrase, do: "Γειά, "
+  defp phrase, do: "Hello, "
 end
 
 iex> Greeter.hello ["Sean", "Steve"]
-"Γειά, Sean, Steve"
+"Hello, Sean, Steve"
 ```
 
 ### Προκαθορισμένες Παράμετροι

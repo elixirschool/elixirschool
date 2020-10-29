@@ -72,7 +72,8 @@ To run it properly you need to prepend your command with `iex -S`.
 
 What this does is it runs `mix` inside the `iex` command so that it runs the application in a special mode, such that calls to `IEx.pry` stop the application execution.
 
-For example, `iex -S mix phx.server` to debug your Phoenix application. In our case, it's going to be `iex -r test.exs` to require the file:
+For example, `iex -S mix phx.server` to debug your Phoenix application.
+In our case, it's going to be `iex -r test.exs` to require the file:
 
 ```
 $ iex -r test.exs
@@ -149,8 +150,7 @@ You can also look through the list of other available helpers in [IEx.Helpers do
 ## Dialyxir and Dialyzer
 
 The [Dialyzer](http://erlang.org/doc/man/dialyzer.html), a **DI**screpancy **A**na**LYZ**er for **ER**lang programs is a tool for static code analysis.
-In other words they _read_ but do not _run_ code and analyse it e.g.
-looking for some bugs, dead, unnecessary or unreachable code.
+In other words they _read_ but do not _run_ code and analyse it e.g. looking for some bugs, dead, unnecessary or unreachable code.
 
 The [Dialyxir](https://github.com/jeremyjh/dialyxir) is a mix task to simplify usage of Dialyzer in Elixir.
 

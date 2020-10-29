@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.3
 title: OTP Nebenläufigkeit
 ---
 
@@ -11,11 +11,15 @@ In dieser Lektion werden wir uns hauptsächlich mit zwei wichtigen Teilen besch�
 
 ## GenServer
 
-Ein OTP-Server ist ein Modul mit dem GenServer behavior, welches ein Set an Callbacks implementiert. Auf dem untersten Level ist ein GenServer eine Schleife, welche einen Request pro Iteration handhabt, indem sie einen aktualisierten Status herum reicht.
+Ein OTP-Server ist ein Modul mit dem GenServer "behavior", welches eine Reihe von Callbacks implementiert. Auf seiner grundlegendsten Ebene ist ein GenServer ein einzelner Prozess, der eine Schleife ausführt, die eine Nachricht pro Iteration verarbeitet, die einen aktualisierten Status durchläuft.
 
 Um die GenServer-API zu demonstrieren, werden wir eine einfache Queue implementieren, die Werte speichert und entgegen nimmt.
 
-Um unseren GenServer anzufangen, müssen wir ihn starten und die Initialisierung regeln. In den meisten Fällen wollen wir Prozesse miteinander verbinden, so dass wir `GenServer.start_link/3` benutzen. Wir übergeben das GenServer-Modul, das wir starten, initiale Argumente und ein Set an GenServer-Optionen. Die Argumente werden an `GenServer.init/1` übergeben, was wiederum den initialen Status durch den Rückgabewert setzt. In unserem Beispiel sind die Argumente der initiale Status:
+Unseren GenServer müssen wir zuerst starten und die Initialisierung durchführen.
+In den meisten Fällen werden wir Prozesse verknüpfen wollen, also benutzen wir `GenServer.start_link/3`.
+Wir übergeben das zu startende GenServer-Modul, die Anfangsargumente und eine Reihe von GenServer-Optionen.
+Die Argumente werden an `GenServer.init/1` übergeben, das den Anfangszustand durch seinen Rückgabewert setzt.
+In unserem Beispiel werden die Argumente unser Ausgangszustand sein:
 
 ```elixir
 defmodule SimpleQueue do
@@ -37,7 +41,8 @@ end
 
 ### Synchrone Funktionen
 
-Oft ist es notwendig mit unserem GenServer in einer synchronen Art und Weise zu interagieren, etwa eine Funktion aufrufen und auf das Ergebnis warten. Um synchrone Requests zu verwalten müssen wir den `GenServer.handle_call/3`-Callback benutzen, welcher benötigt: Den Request, den PID des Aufrufers und den vorhandenen Status; es wird davon ausgegangen, dass er ein Tupel zurückgibt: `{:reply, response, state}`.
+Oft ist es notwendig mit unserem GenServer in einer synchronen Art und Weise zu interagieren, etwa eine Funktion aufrufen und auf das Ergebnis warten. 
+Um synchrone Requests zu verwalten müssen wir den `GenServer.handle_call/3`-Callback benutzen, welcher benötigt: Den Request, den PID des Aufrufers und den vorhandenen Status; es wird davon ausgegangen, dass er ein Tupel zurückgibt: `{:reply, response, state}`.
 
 Mit pattern matching können wir Callbacks für viele verschiedene Requests und Stati definieren. Eine komplette Liste akzeptierter Rückgabewerte findet sich in der [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3)-Dokumentation.
 
