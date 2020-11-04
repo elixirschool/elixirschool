@@ -351,3 +351,7 @@ defmodule NimbleSchool.Faqs do
   def all_faqs, do: @faqs
 end
 ```
+
+## Source code for example blog
+
+You can find the code for this example in [https://github.com/jaimeiniesta/nimble_school](https://github.com/jaimeiniesta/nimble_school)
