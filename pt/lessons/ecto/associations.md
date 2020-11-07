@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.2.1
 title: Associações
 ---
 
@@ -9,7 +9,7 @@ Nessa seção vamos aprender a utilizar o Ecto para definir e trabalhar com asso
 
 ## Configuração
 
-Nós vamos construir a aplicação `Friends`, das últimas lições. Você pode referir-se a configuração [aqui](https://elixirschool.com/pt/lessons/ecto/basics) para uma breve recapitulação.
+Nós vamos utilizar a mesma aplicação `Friends`, das últimas lições. Você pode referir-se a configuração [aqui](https://elixirschool.com/pt/lessons/ecto/basics) para uma breve recapitulação.
 
 ## Tipos de Associações
 
@@ -17,7 +17,7 @@ Existem três tipos de associações que podem ser definidas entre nossos esquem
 
 ### Belongs To/Has Many
 
-Nós estamos adicionando algumas novas entidades ao modelo de domínio da aplicação de exemplo para que seja possível categorizar nossos filmes favoritos. Vamos iniciar com dois esquemas: `Movie` e `Character`. Vamos implementar uma relação "has many/belongs to" entre os dois: Um filme tem vários (has many) personagens e um personagem pertence a (belongs to) um filme.
+Nós estamos adicionando algumas novas entidades ao modelo de domínio da nossa aplicação Friends para que seja possível categorizar nossos filmes favoritos. Vamos iniciar com dois esquemas: `Movie` e `Character`. Vamos implementar uma relação "has many/belongs to" entre os dois: Um filme tem vários (has many) personagens e um personagem pertence a (belongs to) um filme.
 
 #### A Migração Has Many
 
@@ -48,7 +48,7 @@ end
 Nós vamos adicionar um esquema que especifica a relação "has many" entre um filme e os seus personagens.
 
 ```elixir
-# lib/example/movie.ex
+# lib/friends/movie.ex
 defmodule Friends.Movie do
   use Ecto.Schema
 
@@ -99,7 +99,7 @@ end
 Nosso esquema precisa definir a relação `belongs to` entre um personagem e seu filme.
 
 ```elixir
-# lib/example/character.ex
+# lib/friends/character.ex
 
 defmodule Friends.Character do
   use Ecto.Schema
@@ -111,7 +111,7 @@ defmodule Friends.Character do
 end
 ```
 
-Vamos dar uma olhada mais a fundo no que a macro `belongs_to/3` faz por nós. Ao invés de adicionar a coluna `movie_id` na tabela `characters`, essa macro _não_ adiciona nada ao banco de dados. Ela nos _permite_ acessar os esquemas de `movies` associados através de `characters`. Ela utiliza a chave estrangeira `movie_id` para tornar os `characters` associados com um dado filme quando executamos a consulta sobre os personagens. Isso nos permite chamar `character.movie`.
+Vamos dar uma olhada mais a fundo no que a macro `belongs_to/3` faz por nós. Além de adicionar a coluna `movie_id` ao nosso esquema, ela também nos permite acessar os esquemas de `movies` associados _através_ de `characters`. Ela utiliza a chave estrangeira para tornar o filme associado a um personagem disponível quando executamos a consulta sobre os personagens. Isso nos permite chamar `character.movie`.
 
 Agora nós estamos prontos para executar as migrações:
 
@@ -129,7 +129,7 @@ Vamos definir a migração e o esquema `Distributor` com o relacionamento "belon
 mix ecto.gen.migration create_distributors
 ```
 
-Nossa migração deve adicionar uma chave estrangeira de `movie_id` à tabela` distributors`:
+Nós devemos adicionar uma chave estrangeira de `movie_id` à migração da tabela `distributors` que acabamos de gerar, bem como um índice único _(unique)_ para garantir que um filme tenha apenas um distribuidor:
 
 ```elixir
 # priv/repo/migrations/*_create_distributors.exs
@@ -142,6 +142,8 @@ defmodule Friends.Repo.Migrations.CreateDistributors do
       add :name, :string
       add :movie_id, references(:movies)
     end
+
+    create unique_index(:distributors, [:movie_id])
   end
 end
 ```
@@ -149,7 +151,7 @@ end
 E o esquema `Distributor` deve usar a macro `belongs_to/3` para nos permitir chamar `distributor.movie` e procurar o filme associado a um distribuidor usando esta chave estrangeira.
 
 ```elixir
-# lib/example/distributor.ex
+# lib/friends/distributor.ex
 
 defmodule Friends.Distributor do
   use Ecto.Schema
@@ -164,7 +166,7 @@ end
 Em seguida, adicionaremos o relacionamento "has one" ao esquema `Movie`:
 
 ```elixir
-# lib/example/movie.ex
+# lib/friends/movie.ex
 
 defmodule Friends.Movie do
   use Ecto.Schema
@@ -173,12 +175,12 @@ defmodule Friends.Movie do
     field :title, :string
     field :tagline, :string
     has_many :characters, Friends.Character
-    has_one :distributor, Friends.Distributor # I'm new!
+    has_one :distributor, Friends.Distributor # Eu sou novo!
   end
 end
 ```
 
-A macro `has_one/3` funciona como a macro `has_many/3`. Ela não adiciona nada no banco de dados, mas usa a chave estrangeira do esquema para procurar e expor o distribuidor do filme. Isso nos permitirá chamar, por exemplo, `movie.distributor`.
+A macro `has_one/3` funciona como a macro `has_many/3`. Ela usa a chave estrangeira do esquema para procurar e expor o distribuidor do filme. Isso nos permitirá chamar, por exemplo, `movie.distributor`.
 
 Agora podemos executar nossas migrações:
 
@@ -240,7 +242,7 @@ end
 Em seguida, vamos adicionar a macro `many_to_many` ao nosso esquema `Movie`:
 
 ```elixir
-# lib/example/movie.ex
+# lib/friends/movie.ex
 
 defmodule Friends.Movie do
   use Ecto.Schema
@@ -250,7 +252,7 @@ defmodule Friends.Movie do
     field :tagline, :string
     has_many :characters, Friends.Character
     has_one :distributor, Friends.Distributor
-    many_to_many :actors, Friends.Actor, join_through: "movies_actors" # I'm new!
+    many_to_many :actors, Friends.Actor, join_through: "movies_actors" # Eu sou novo!
   end
 end
 ```
@@ -258,7 +260,7 @@ end
 Finalmente, definiremos nosso esquema `Actor` com a mesma macro `many_to_many`.
 
 ```elixir
-# lib/example/actor.ex
+# lib/friends/actor.ex
 
 defmodule Friends.Actor do
   use Ecto.Schema
@@ -292,9 +294,7 @@ Com um relacionamento "belongs to", podemos alavancar a função `build_assoc/3`
 * O nome da associação.
 * Quaisquer atributos que queremos atribuir ao registro associado que estamos salvando.
 
-Vamos salvar um filme e um caractere associado:
-
-Primeiro, vamos criar um registro de filme:
+Vamos salvar um filme e um personagem associado. Primeiro, vamos criar um registro de filme:
 
 ```elixir
 iex> alias Friends.{Movie, Character, Repo}
@@ -385,7 +385,7 @@ iex> actor = Repo.insert!(actor)
 
 Agora estamos prontos para associar nosso filme ao nosso ator por meio da tabela de relacionamento.
 
-Primeiro, note que para trabalhar com Changesets, precisamos ter certeza de que nosso registro `movie` pré-carregou seus esquemas associados. Falaremos mais sobre pré-carregar dados a frente. Por enquanto, é suficiente entender que podemos pré-carregar nossas associações assim:
+Primeiro, note que para trabalhar com Changesets, precisamos ter certeza de que nossa estrutura `movie` pré-carregou seus esquemas associados. Falaremos mais sobre pré-carregar dados a frente. Por enquanto, é suficiente entender que podemos pré-carregar nossas associações assim:
 
 ```elixir
 iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
@@ -418,7 +418,7 @@ Em seguida, criaremos um conjunto de alterações para nosso registro de filme:
 
 ```elixir
 iex> movie_changeset = Ecto.Changeset.change(movie)
-%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: #Friends.Movie<>,
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Movie<>,
  valid?: true>
 ```
 
@@ -431,11 +431,11 @@ iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actor
   changes: %{
     actors: [
        %Ecto.Changeset<action: :update, changes: %{}, errors: [],
-       data: #Friends.Actor<>, valid?: true>
+       data: %Friends.Actor<>, valid?: true>
     ]
   },
   errors: [],
-  data: #Friends.Movie<>,
+  data: %Friends.Movie<>,
   valid?: true
 >
 ```
@@ -492,13 +492,13 @@ iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "
         action: :insert,
         changes: %{name: "Gary"},
         errors: [],
-        data: #Friends.Actor<>,
+        data: %Friends.Actor<>,
         valid?: true
       >
     ]
   },
   errors: [],
-  data: #Friends.Movie<>,
+  data: %Friends.Movie<>,
   valid?: true
 >
 iex>  Repo.update!(changeset)

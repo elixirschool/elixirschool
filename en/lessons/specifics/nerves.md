@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.1.1
 title: Nerves
 redirect_from:
   - /en/lessons/advanced/nerves
@@ -77,12 +77,12 @@ Nerves environment
   MIX_ENV:      dev
 Resolving Nerves artifacts...
   Resolving nerves_system_rpi3
-  => Trying https://github.com/nerves-project/nerves_system_rpi3/releases/download/v1.7.0/nerves_system_rpi3-portable-1.7.0-17EA89A.tar.gz
-|==================================================| 100% (133 / 133) MB
+  => Trying https://github.com/nerves-project/nerves_system_rpi3/releases/download/v1.12.2/nerves_system_rpi3-portable-1.12.2-E904717.tar.gz
+|==================================================| 100% (142 / 142) MB
   => Success
   Resolving nerves_toolchain_arm_unknown_linux_gnueabihf
-  => Trying https://github.com/nerves-project/toolchains/releases/download/v1.1.0/nerves_toolchain_arm_unknown_linux_gnueabihf-darwin_x86_64-1.1.0-2305AD8.tar.xz
-|==================================================| 100% (50 / 50) MB
+  => Trying https://github.com/nerves-project/toolchains/releases/download/v1.3.2/nerves_toolchain_arm_unknown_linux_gnueabihf-darwin_x86_64-1.3.2-E31F29C.tar.xz
+|==================================================| 100% (55 / 55) MB
   => Success
 ```
 
@@ -112,24 +112,34 @@ If you have a screen connected - you should see a Linux boot sequence on it afte
 
 ## Setting up networking
 
-The next step is to set up the network. The Nerves ecosystem provides a variety of packages, and [nerves_network](https://github.com/nerves-project/nerves_network) is what we will need to connect the device to the network over the wired Ethernet port.
+The next step is to set up the network. The Nerves ecosystem provides a variety of packages, and [vintage_net](https://github.com/nerves-networking/vintage_net) is what we will need to connect the device to the network over the wired Ethernet port.
 
-It is already present in your project as a dependency of `nerves_init_gadget`. However, by default, it uses DHCP (see the configuration for it in `config/config.exs` after running `config :nerves_init_gadget`). It is easier to have a static IP address.
+It is already present in your project as a dependency of [`nerves_pack`](https://github.com/nerves-project/nerves_pack). However, by default, it uses DHCP (see the configuration for it in `config/target.exs` after `config :vintage_net`). It is easier to have a static IP address.
 
-To set up static networking, you need to add the following lines to `config/config.exs`:
+To set up static networking on the wired Ethernet port, you need to update the `:vintage_net` configuration in `config/target.exs` as follows:
 
-```
+```elixir
 # Statically assign an address
-config :nerves_network, :default,
-  eth0: [
-    ipv4_address_method: :static,
-    ipv4_address: "192.168.88.2",
-    ipv4_subnet_mask: "255.255.255.0",
-    nameservers: ["8.8.8.8", "8.8.4.4"]
+config :vintage_net,
+  regulatory_domain: "US",
+  config: [
+    {"usb0", %{type: VintageNetDirect}},
+    {"eth0",
+     %{
+       type: VintageNetEthernet,
+       ipv4: %{
+         method: :static,
+         address: "192.168.88.2",
+         prefix_length: 24,
+         gateway: "192.168.88.1",
+         name_servers: ["8.8.8.8", "8.8.4.4"]
+       }
+     }},
+    {"wlan0", %{type: VintageNetWiFi}}
   ]
- ```
+```
 
-Please note that this configuration is for a wired connection. If you want to use wireless connection - take a look at the [Nerves network documentation](https://github.com/nerves-project/nerves_network#wifi-networking).
+Please note that this configuration only updates the wired Ethernet port. If you want to use the wireless connection - take a look at the [VintageNet Cookbook](https://hexdocs.pm/vintage_net/cookbook.html#wifi).
 
 Note that you need to use your local network parameters here - in my network there is an unallocated IP `192.168.88.2`, which I am going to use. However, in your case, it may differ.
 
@@ -148,13 +158,13 @@ This output means that the device now is reachable from the network.
 
 ## Network firmware burning
 
-So far, we have been burning SD cards and physically load them into our hardware. While this is fine to start with, it is more straightforward to push our updates over the network. The `nerves_firmware_ssh` package does just that. It is already present in your project by default and is configured to auto-detect and find SSH keys in your directory.
+So far, we have been burning SD cards and physically load them into our hardware. While this is fine to start with, it is more straightforward to push our updates over the network. The [`ssh_subsystem_fwup`](https://github.com/nerves-project/ssh_subsystem_fwup) package does just that. It is already present in your project by default and is configured to auto-detect and find SSH keys in your `~/.ssh` directory.
 
 To use the network firmware update functionality, you will need to generate an upload script via  `mix firmware.gen.script`. This command will generate a new `upload.sh` script which we can run to update the firmware.
 
 If the network is functional after the previous step, you are good to go.
 
-To update your setup, the simplest way is to use `mix firmware && ./upload.sh 192.168.88.2`: the first comand creates the updated firmware, and the second one pushes it over the network and reboots the device. You can finally stop having to swap SD cards in and out of the device!
+To update your setup, the simplest way is to use `mix firmware && ./upload.sh 192.168.88.2`: the first command creates the updated firmware, and the second one pushes it over the network and reboots the device. You can finally stop having to swap SD cards in and out of the device!
 
 _Hint: `ssh 192.168.88.2` gives you an IEx shell on the device in the context of the app._
 
@@ -166,7 +176,7 @@ To interact with LEDs, you need [nerves_leds](https://github.com/nerves-project/
 
 After setting up the dependency, you need to configure the LED list for the given device. For example, for all Raspberry Pi models, there is only one LED onboard: `led0`. Let's use it by adding a `config :nerves_leds, names: [green: "led0"]` line to the `config/config.exs`.
 
-For other devices, you can take a look at the [corresponding part of the nerves_examples project](https://github.com/nerves-project/nerves_examples/tree/master/hello_leds/config).
+For other devices, you can take a look at the [corresponding part of the nerves_examples project](https://github.com/nerves-project/nerves_examples/tree/main/hello_leds/config).
 
 After configuring the LED itself, we surely need to control it somehow. To do that, we will add a GenServer (see details about GenServers in [OTP Concurrency](../../advanced/otp-concurrency) lesson) in `lib/network_led/blinker.ex` with these contents:
 
