@@ -23,16 +23,16 @@ A través de esta lección cubriremos tres partes de Ecto:
 
 * Repositorio - proveé la interfaz hacía nuestra base de datos, incluyendo la conexión
 * Migraciones - un mecanismo para crear, modificar y eliminar tablas e índices
-* Esquemas - estructuras especialidas que representan entradas en la base de datos
+* Esquemas - estructuras especializadas que representan entradas en la base de datos
 
-Para empezar crearemos una aplicación con su árbol de supervisión.
+Para empezar, crearemos una aplicación con su árbol de supervisión.
 
 ```shell
 $ mix new friends --sup
 $ cd friends
 ```
 
-Agrega los paquetes de ecto y postgrex a tu archivo `mix.exs`
+Agrega los paquetes de Ecto y Postgrex a tu archivo `mix.exs`
 
 ```elixir
   defp deps do
@@ -104,10 +104,10 @@ Después de eso tendremos que agregar la siguiente línea a `config/config.exs`:
 config :friends, ecto_repos: [Friends.Repo]
 ```
 
-Esto permitirá que nuestra aplicación pueda ejecutar comandos mix de ecto desde la terminal
+Esto permitirá que nuestra aplicación pueda ejecutar comandos mix de Ecto desde la terminal
 
-Hemos terminado con la configuración de nuestro repositorio!
-Ahora podemos crear la base de datos dentro de postgres con este comando:
+¡Hemos terminado con la configuración de nuestro repositorio!
+Ahora podemos crear la base de datos dentro de Postgres con este comando:
 
 ```shell
 $ mix ecto.create
@@ -115,15 +115,15 @@ $ mix ecto.create
 
 Ecto usará la información en `config/config.exs` para determinar como conectarse con Postgres y que nombre darle a la base de datos.
 
-Si recibes algún error verifica que la configuración es la correcta y que tu instancia de postgres está corriendo.
+Si recibes algún error verifica que la configuración es la correcta y que tu instancia de Postgres está corriendo.
 
 ### Migraciones
 
-Para crear y modificar tablas dentro de una base de datos postgres, Ecto nos proveé con migraciones.
+Para crear y modificar tablas dentro de una base de datos Postgres, Ecto nos proveé con migraciones.
 Cada migración describe un grupo de acciones a ejecutar en nuestra base de datos, como que tablas crear o actualizar.
 
 Como nuestra base de datos no contiene aún ninguna tabla tendremos que crear una migración que agregue algunas.
-La convención en Ecto es pluralizar las tablas, así que para nuestra aplicación necesitaremos una tabla `people`, así que empezemos por ahí.
+La convención en Ecto es pluralizar las tablas, así que para nuestra aplicación necesitaremos una tabla `people`, así que empecemos por ahí.
 
 La mejor forma de crear migraciones es con el comando mix `ecto.gen.migration <name>`, así que para nuestro caso ejecutaremos:
 
@@ -144,7 +144,7 @@ defmodule Friends.Repo.Migrations.CreatePeople do
 end
 ```
 
-Empezemos modificando la función `change/0` para crear una nueva tabla `people` con `name` y `age`:
+Empecemos modificando la función `change/0` para crear una nueva tabla `people` con `name` y `age`:
 
 ```elixir
 defmodule Friends.Repo.Migrations.CreatePeople do
@@ -197,7 +197,7 @@ iex> %Friends.Person{}
 %Friends.Person{age: 0, name: nil}
 ```
 
-Como lo esperabamos, obtuvimos un nuevo `Person` con el valor por defecto aplicado a `age`.
+Como lo esperábamos, obtuvimos un nuevo `Person` con el valor por defecto aplicado a `age`.
 Ahora crearemos una persona "real":
 
 ```shell
