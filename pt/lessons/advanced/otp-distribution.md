@@ -478,7 +478,7 @@ end
 ## Conclusão
 
 A capacidade de distribuição nativa de Elixir, que a possui graças ao poder da VM Erlang, é um dos recursos que torna a linguagem uma ferramenta tão poderosa.
-Nós podemos imaginar o uso dessa abilidade do Elixir para lidar com computação distribuída, para executar background jobs concorrentes, para oferecer suporte a aplicações de alto desempenho, para executar operações onerosas -- você escolhe.
+Nós podemos imaginar o uso dessa habilidade do Elixir para lidar com computação distribuída, para executar background jobs concorrentes, para oferecer suporte a aplicações de alto desempenho, para executar operações onerosas -- você escolhe.
 
 Essa lição nos dá uma introdução básica ao conceito de distribuição em Elixir e fornece as ferramentas que você precisa para começar a construir aplicações distribuídas.
 Por meio de tarefas supervisionadas, você pode enviar mensagens entre vários nós de uma aplicação distribuída.
