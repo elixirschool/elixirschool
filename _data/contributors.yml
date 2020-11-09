@@ -555,3 +555,13 @@
     - NimblePublisher
   languages:
     - es 
+
+- github: RTSolo
+  name: Konstantinos Maglaras
+  intro:
+  homepage:
+  twitter: DinosMag
+  contributions:
+    - translator
+  languages:
+    - gr
