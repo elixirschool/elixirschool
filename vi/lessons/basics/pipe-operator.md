@@ -1,21 +1,21 @@
 ---
-version: 0.9.1
+version: 1.0.1
 title: Pipe Operator
 ---
 
-Toán tử pipe `|>` truyền kết quả của một biểu thức như là tham số đầu tiên của một biểu thức khác.
+Pipe `|>` lấy kết quả của một biểu thức làm tham số đầu tiên cho một biểu thức khác.
 
 {% include toc.html %}
 
 ## Giới thiệu
 
-Việc lập trình có thể trở nên rối tung, rối đến nỗi mà việc gọi hàm trở nên lồng ghép và khó đọc hiểu. Ta hãy xem qua cách lồng ghép hàm dưới đây:
+Việc lập trình có thể trở nên rối tung, rối đến nỗi mà việc gọi function trở nên lồng ghép và khó đọc hiểu. Ta hãy xem qua ví dụ gọi nhiều function dưới đây:
 
 ```elixir
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Ở đây, ta đang truyền giá trị của `other_function/0` vào `new_function/1`, của `new_function/1` và `baz/1`, của `baz/1` vào `bar/1` và cuối cùng là `bar/1` vào `foo/1`. Trong Elixir có cách giải quyết hay cho cách viết rối tung (mà thực tế) này bằng cách sử dụng toán từ pipe. Toán tử pipe (`|>`) *nhận kết quả của một biểu thức, và truyền nó đi*. Ta hãy xem đoạn code ở trên sau khi được viết lại bằng toán tử pipe.
+Ở đây, ta đang truyền kết quả của `other_function/0` vào `new_function/1`, rồi lấy kết quả của `new_function/1` cho vào `baz/1`, `baz/1` vào `bar/1` và cuối cùng là `bar/1` vào `foo/1`. Trong Elixir có cách giải quyết sự rắc rối này bằng cách sử dụng pipe. Pipe (`|>`) *nhận kết quả của một biểu thức, và truyền nó đi*. Hãy xem đoạn code ở trên sau khi được viết lại bằng pipe.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
@@ -48,9 +48,12 @@ iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
 
-## Cách dùng thực tiễn
+## Best Practices
 
-Nếu arity của một hàm lớn hơn 1 thì hãy ta nên dùng dấu ngoặc. Điều này không ảnh hướng đến Elixir, nhưng nó ảnh hưởng đến các lập trình viên khác và có thể khiến họ hiểu nhầm code của bạn. Nếu chúng ta xem ví dụ số 3, mà bỏ đi dấu ngoặc của `String.ends_with?/2`, chúng ta sẽ gặp phải câu cảnh báo sau.
+Khi function nhận hơn 1 đầu vào, hãy dùng cú pháp gọi function với
+dấu đóng mở ngoặc `()`. Việc này giúp các lập trình viên khác
+không hiểu nhầm code của bạn.  Xem ví dụ thứ 3, nếu bỏ đi dấu
+ngoặc của `String.ends_with?/2`, sẽ thấy cảnh báo sau.
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"
