@@ -1,24 +1,39 @@
 ---
-title: Elixir School (Việt ngữ)
+title: Elixir School (Tiếng Việt)
 layout: home
-version: 1.0.0
+version: 2.0.0
 ---
 
-[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Elixir School là điểm đến hàng đầu cho những ai muốn học và làm
+chủ ngôn ngữ lập trình Elixir.
 
-Các bài học về ngôn ngữ lập trình Elixir, lấy cảm hứng từ [Scala School](http://twitter.github.io/scala_school/) của Twitter.
+Dù bạn là một lão tướng lành nghề hay đây là lần đầu tiên lập trình,
+bạn sẽ tìm thấy những gì mình cần trong các bài học và tài liệu
+ở đây.
 
-_Mọi tham gia đóng góp đều được trân trọng!_
+Nhờ đóng góp của cộng đồng, Elixir School đã được dịch sang nhiều
+thứ tiếng. Có thể kể tới:
+[Tiếng Việt][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русский][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], [ภาษาไทย][th], and [Ελληνικά][gr].
 
-## Giới thiệu Elixir
 
-"Elixir là một ngôn ngữ lập trình hướng chức năng động thiết kế cho xây dựng ứng dụng với khả năng mở rộng và dễ bảo trì." — [elixir-lang.org](http://elixir-lang.org/)
+Mọi đóng góp đều được trân trọng! Hãy tham gia với chúng tôi tại [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
 
-Elixir dựa trên nền tảng Erlang VM (BEAM) ổn định để xây dựng các hệ thống phân tán có khả năng chịu lỗi với độ trễ thấp.
-
-__Chức năng__:
-
-+ Khả năng mở rộng theo nhu cầu
-+ Chịu lỗi
-+ Lập trình hướng chức năng
-+ Mở rộng
+  [es]: /es/
+  [it]: /it/
+  [ja]: /ja/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [id]: /id/
+  [ms]: /ms/
+  [uk]: /uk/
+  [de]: /de/
+  [bn]: /bn/
+  [tr]: /tr/
+  [th]: /th/
+  [zh-hans]: /zh-hans/
+  [zh-hant]: /zh-hant/
+  [gr]: /gr/
