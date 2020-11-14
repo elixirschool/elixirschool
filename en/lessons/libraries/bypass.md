@@ -142,7 +142,7 @@ end
 ```
 
 There's nothing special to this test case so let's move on to the next: unexpected server outages.
-Τhese are the request we're most concerned with.
+Τhese are the requests we're most concerned with.
 To accomplish this we won't be using `Bypass.expect/2`, instead we're going to rely on `Bypass.down/1` to shut down the connection:
 
 ```elixir
