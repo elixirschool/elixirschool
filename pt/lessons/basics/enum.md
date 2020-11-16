@@ -216,7 +216,7 @@ Essas funções anônimas são frequentemente escritas de forma abreviada usando
 
 Aqui estão alguns exemplos que mostram como o operador capture pode ser implementado com o módulo Enum. Cada versão é funcionalmente equivalente.
 
-### Usando o operador capture com uma função anônima
+#### Usando o operador capture com uma função anônima
 
 Abaixo está um exemplo típico da sintaxe padrão ao passar uma função anônima para `Enum.map/2`.
 
@@ -240,7 +240,7 @@ iex> Enum.map([1,2,3], plus_three)
 [4, 5, 6]
 ```
 
-### Usando o operador capture com uma função nomeada
+#### Usando o operador capture com uma função nomeada
 
 Primeiro, criamos uma função nomeada e a chamamos dentro da função anônima definida em `Enum.map/2`.
 
@@ -256,13 +256,13 @@ iex>  Enum.map([1,2,3], fn number -> Adding.plus_three(number) end)
 Em seguida, podemos refatorar para usar o operador Capture.
 
 ```elixir
-iex> Enum.map([1,2,3], &Adding.plus_three(&1)) 
+iex> Enum.map([1,2,3], &Adding.plus_three(&1))
 [4, 5, 6]
 ```
 
 Para obter a sintaxe mais sucinta, podemos chamar diretamente a função nomeada sem capturar explicitamente a variável.
 
 ```elixir
-iex> Enum.map([1,2,3], &Adding.plus_three/1) 
+iex> Enum.map([1,2,3], &Adding.plus_three/1)
 [4, 5, 6]
 ```
