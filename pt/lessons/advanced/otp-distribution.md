@@ -439,7 +439,7 @@ end
 Se passarmos uma tupla `{SupervisorName, location}`, isso iniciará o supervisor recebido no nó de processamento remoto fornecido.
 No entanto, se passarmos a `Task.Supervisor` como primeiro argumento o nome do supervisor, esse supervisor será usado para supervisionar a tarefa localmente.
 
-Vamos criar uma função `remote_supervisor/1`, configurável com base no ambiente
+Vamos tornar a função `remote_supervisor/1` configurável com base no ambiente.
 Se for um ambiente de desenvolvimento, ela retornará `{Chat.TaskSupervisor, recipient}` e no ambiente de teste, retornará `Chat.TaskSupervisor`.
 
 Vamos fazer isso por meio de variáveis de ambiente.
