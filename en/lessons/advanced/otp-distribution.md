@@ -4,6 +4,7 @@ title: OTP Distribution
 ---
 
 ## Introduction to Distribution
+
 We can run our Elixir apps on a set of different nodes distributed across a single host or across multiple hosts.
 Elixir allows us to communicate across these nodes via a few different mechanisms which we will outline in this lesson.
 
@@ -112,8 +113,7 @@ Only nodes started with the same `cookie` will be able to successfully connect t
 #### `Node.spawn_link/2` Limitations
 
 While `Node.spawn_link/2` illustrates the relationships between nodes and the manner in which we can send messages between them, it is _not_ really the right choice for an application that will run across distributed nodes.
-`Node.spawn_link/2` spawns processes in isolation, i.e.
-processes that are not supervised.
+`Node.spawn_link/2` spawns processes in isolation, i.e. processes that are not supervised.
 If only there was a way to spawn supervised, asynchronous processes _across nodes_...
 
 ## Distributed Tasks
@@ -277,8 +277,7 @@ We'll define another version of our `send_message/2` function that pattern match
 If the recipient is `:moebi@locahost`, we will
 
 * Grab the name of the current node using `Node.self()`
-* Give the name of the current node, i.e.
-the sender, to a new function `receive_message_for_moebi/2`, so that we can send a message _back_ to that node.
+* Give the name of the current node, i.e. the sender, to a new function `receive_message_for_moebi/2`, so that we can send a message _back_ to that node.
 
 ```elixir
 # lib/chat.ex
@@ -366,11 +365,8 @@ This is a lot of work and definitely wouldn't be considered an automated testing
 
 There are a two different approaches we could take here:
 
-1.
-Conditionally exclude tests that need distributed nodes, if the necessary node is not running.
-
-2.
-Configure our application to avoid spawning tasks on remote nodes in the test environment.
+1. Conditionally exclude tests that need distributed nodes, if the necessary node is not running.
+2. Configure our application to avoid spawning tasks on remote nodes in the test environment.
 
 Let's take a look at the first approach.
 
