@@ -53,3 +53,4 @@ libraries:
   - distillery
   - stream-data
   - nimble-publisher
+  - mox
