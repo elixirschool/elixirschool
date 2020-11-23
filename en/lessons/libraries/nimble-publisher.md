@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: NimblePublisher
 ---
 
@@ -17,7 +17,7 @@ This library encapsulates most of the code that Dashbit uses for their own blog,
 
 Let's build our own blog. In our example, we're using a Phoenix application but Phoenix is not a requirement. As NimblePublisher only takes care of parsing the local files, you can use it in any Elixir application.
 
-First, let's create a new Phoenix application for our examble. We'll call it NimbleSchool, and we'll create it like this because we don't need Ecto where we're going:
+First, let's create a new Phoenix application for our example. We'll call it NimbleSchool, and we'll create it like this because we don't need Ecto where we're going:
 
 ```
 mix phx.new nimble_school --no-ecto
@@ -51,7 +51,7 @@ Yes, this is **the post** you've been waiting for.
 
 I'll let you be creative writing your own posts. Just ensure you follow the above format for the metadata and content. 
 
-With these posts in place, let's install NimblePublisher so we can parse the content and build up our Blog context.
+With these posts in place, let's install NimblePublisher so we can parse the content and build up our `Blog` context.
 
 ## Installing NimblePublisher
 
@@ -92,7 +92,7 @@ end
 
 The `Post` module defines the struct for the metadata and content, and also defines a `build/3` function with the logic needed to parse a file with the post contents.
 
-With this `Post` struct in place, we can define our `Blog` context that will use `NimblePublisher` to parse the local files into posts. Create `lib/nimble_school/blog/blog.ex` with this content:
+With this `Post` struct in place, we can define our `Blog` context that will use NimblePublisher to parse the local files into posts. Create `lib/nimble_school/blog/blog.ex` with this content:
 
 ```elixir
 defmodule NimbleSchool.Blog do
@@ -307,18 +307,18 @@ And place the generated CSS classes in your stylesheets.
 
 ## Serving other content
 
-NimblePublisher could also be used to build up other publishing contexts with a different structure. 
+NimblePublisher can also be used to build up other publishing contexts with a different structure. 
 
-For example, we could manage a collection of Frequently Asked Questions (FAQs), in this case we probably don't need dates, and authors, and a simpler structure with `:id`, `:question` and `:answer` would be just great.
+For example, we could manage a collection of Frequently Asked Questions (FAQs), in this case we probably don't need dates, or authors, and a simpler structure with `:id`, `:question` and `:answer` would be just great.
 
 We could place our content files on a different directory structure, for example:
 
 ```
 /priv/faqs/is-there-a-free-trial.md
-/pric/faqs/when-did-it-start.md
+/priv/faqs/when-did-it-start.md
 ```
 
-And define our `Faq` structure and build function in `lib/nimble_school/faqs/faq.ex` like this:
+And we could define our `Faq` struct and build function in `lib/nimble_school/faqs/faq.ex` like this:
 
 ```elixir
 defmodule NimbleSchool.Faqs.Faq do
