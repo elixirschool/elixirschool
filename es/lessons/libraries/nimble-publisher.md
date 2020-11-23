@@ -316,7 +316,7 @@ Podríamos colocar nuestros ficheros de contenidos en una estructura de director
 
 ```
 /priv/faqs/is-there-a-free-trial.md
-/pric/faqs/when-did-it-start.md
+/priv/faqs/when-did-it-start.md
 ```
 
 Y podríamos definir nuestra struct `Faq` y la función para construirla en `lib/nimble_school/faqs/faq.ex` de esta manera: 
