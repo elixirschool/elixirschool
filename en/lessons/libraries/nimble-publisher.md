@@ -315,7 +315,7 @@ We could place our content files on a different directory structure, for example
 
 ```
 /priv/faqs/is-there-a-free-trial.md
-/pric/faqs/when-did-it-start.md
+/priv/faqs/when-did-it-start.md
 ```
 
 And we could define our `Faq` struct and build function in `lib/nimble_school/faqs/faq.ex` like this:
