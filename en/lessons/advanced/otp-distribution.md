@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: OTP Distribution
 ---
 
@@ -125,7 +125,7 @@ We'll build a simple supervisor application that leverages distributed tasks to 
 
 Generate your app:
 
-```
+```shell
 mix new chat --sup
 ```
 

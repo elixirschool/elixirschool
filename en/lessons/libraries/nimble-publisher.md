@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: NimblePublisher
 ---
 
@@ -19,7 +19,7 @@ Let's build our own blog. In our example, we're using a Phoenix application but 
 
 First, let's create a new Phoenix application for our example. We'll call it NimbleSchool, and we'll create it like this because we don't need Ecto where we're going:
 
-```
+```shell
 mix phx.new nimble_school --no-ecto
 ```
 
