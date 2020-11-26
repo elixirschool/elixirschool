@@ -1,5 +1,5 @@
 ---
-version: 2.0.3
+version: 2.0.4
 title: Distillery (Basics)
 ---
 
@@ -41,11 +41,8 @@ end
 
 Then in your terminal call:
 
-```
+```shell
 mix deps.get
-```
-
-```
 mix compile
 ```
 
@@ -54,7 +51,7 @@ mix compile
 
 In your terminal, run
 
-```
+```shell
 mix release.init
 ```
 
@@ -135,7 +132,7 @@ If you executed the above command, you might have noticed that your application 
 This can be rectified by running an Ecto `mix` command.
 In your terminal, type the following:
 
-```
+```shell
 MIX_ENV=prod mix ecto.create
 ```
 
@@ -182,7 +179,7 @@ The [Ecto.Migrator](https://hexdocs.pm/ecto/2.2.8/Ecto.Migrator.html) allows us 
 Next, create a new file - `rel/hooks/post_start/migrate.sh` and add the following code:
 
 
-```
+```bash
 echo "Running migrations"
 
 bin/book_app rpc "Elixir.BookApp.ReleaseTasks.migrate"
@@ -243,7 +240,7 @@ end
 
 Next, create a new file `rel/commands/seed.sh` and add the following code:
 
-```
+```bash
 #!/bin/sh
 
 release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"

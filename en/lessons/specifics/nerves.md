@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Nerves
 redirect_from:
   - /en/lessons/advanced/nerves
@@ -76,7 +76,7 @@ In the case of a Raspberry Pi 3, you set `MIX_TARGET=rpi3`, but you can change t
 
 Let's set up our dependencies first:
 
-```
+```shell
 $ export MIX_TARGET=rpi3
 $ cd network_led
 $ mix deps.get

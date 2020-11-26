@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Date and Time
 ---
 
@@ -93,7 +93,7 @@ But be aware about timezones. The official docs state:
 
 Also, note that you can create a DateTime instance from the NaiveDateTime, just by providing the timezone:
 
-```
+```elixir
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
@@ -104,13 +104,13 @@ As we have noted in the previous chapter, by default Elixir does not have any ti
 To solve this issue, we need to install and set up the [tzdata](https://github.com/lau/tzdata) package.
 After installing it, you should globally configure Elixir to use Tzdata as timezone database:
 
-```
+```elixir
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 ```
 
 Let's now try creating time in Paris timezone and convert it to New York time:
 
-```
+```elixir
 iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
 #DateTime<2019-01-01 12:00:00+01:00 CET Europe/Paris>
 iex> {:ok, ny_datetime} = DateTime.shift_zone(paris_datetime, "America/New_York")
