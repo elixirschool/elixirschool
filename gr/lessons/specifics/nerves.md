@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Nerves
 ---
 
@@ -74,7 +74,7 @@ above for more information and other targets.
 
 Αρχικά ας ορίσουμε τις εξαρτήσεις μας:
 
-```
+```shell
 $ export MIX_TARGET=rpi3
 $ cd network_led
 $ mix deps.get

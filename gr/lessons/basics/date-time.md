@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Ημερομηνία και Ώρα
 ---
 
@@ -93,7 +93,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 Σημειώστε επίσης ότι μπορείτε να δημιουργήσετε μια δομή DateTime από μια NaiveDateTime, προσθέτοντας την ζώνη ώρας:
 
-```
+```elixir
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
@@ -104,13 +104,13 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 Για να λύσουμε αυτό το πρόβλημα, χρειάζεται να εγκαταστήσουμε το πακέτο [tzdata](https://github.com/lau/tzdata).
 Μετά την εγκατάσταση θα πρέπει να ρυθμίσετε την Elixir καθολικά να χρησιμοποιήσει τη Tzdata σαν βάση δεδομένων ζωνών ώρας:
 
-```
+```elixir
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 ```
 
 Ας προσπαθήσουμε τώρα να δημιουργήσουμε μια ώρα στη ζώνη ώρας του Παρισίου και να το μετατρέψουμε σε ώρα Νέας Υόρκης:
 
-```
+```elixir
 iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
 #DateTime<2019-01-01 12:00:00+01:00 CET Europe/Paris>
 iex> {:ok, ny_datetime} = DateTime.shift_zone(paris_datetime, "America/New_York")

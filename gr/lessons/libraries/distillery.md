@@ -1,5 +1,5 @@
 ---
-version: 2.0.3
+version: 2.0.4
 title: Distillery (Βασικά)
 ---
 
@@ -41,11 +41,8 @@ end
 
 Τότε στο τερματικό σας τρέξτε:
 
-```
+```shell
 mix deps.get
-```
-
-```
 mix compile
 ```
 
@@ -54,7 +51,7 @@ mix compile
 
 Στο τερματικό σας, τρέξτε:
 
-```
+```shell
 mix release.init
 ```
 
@@ -140,7 +137,7 @@ config :book_app, BookAppWeb.Endpoint,
 Αυτό μπορεί να λυθεί τρέχοντας μια εντολή `mix` του Ecto.
 Στο τερματικό σας γράψτε τα παρακάτω:
 
-```
+```shell
 MIX_ENV=prod mix ecto.create
 ```
 
@@ -184,7 +181,7 @@ end
 
 Στη συνέχεια, δημιουργήστε ένα νέο αρχείο - `rel/hooks/post_start/migrate.sh` και προσθέστε τον παρακάτω κώδικα:
 
-```
+```bash
 echo "Running migrations"
 
 bin/book_app rpc "Elixir.BookApp.ReleaseTasks.migrate"
@@ -245,7 +242,7 @@ end
 
 Στη συνέχεια, δημιουργήστε ένα νέο αρχείο `rel/commands/seed.sh` και προσθέστε τον παρακάτω κώδικα:
 
-```
+```bash
 #!/bin/sh
 
 release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"

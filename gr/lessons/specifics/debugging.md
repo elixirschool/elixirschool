@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.1.3
 title: Debugging
 ---
 
@@ -27,7 +27,7 @@ IEx σημαίνει `Elixir's interactive shell`.
 
 Για να το κάνετε αυτό, δημιουργήστε ένα αρχείο με όνομα `test.exs` και μέσα σε αυτό γράψτε τα ακόλουθα:
 
-```
+```elixir
 defmodule TestMod do
   def sum([a, b]) do
     b = 0
@@ -41,7 +41,7 @@ IO.puts(TestMod.sum([34, 65]))
 
 Και αν το τρέξετε - θα έχετε το προφανές αποτέλεσμα `34`:
 
-```
+```shell
 $ elixir test.exs
 warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
   test.exs:2
@@ -55,7 +55,7 @@ warning: variable "b" is unused (if the variable is not meant to be used, prefix
 
 Το αποτέλεσμα θα είναι κάπως έτσι:
 
-```
+```elixir
 $ elixir test.exs
 warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
   test.exs:2
@@ -75,7 +75,7 @@ Cannot pry #PID<0.92.0> at TestMod.sum/1 (test.exs:5). Is an IEx shell running?
 Για παράδειγμα, `iex -S mix phx.server` για να κάνετε αποσφαλμάτωση στην Phoenix εφαρμογή σας.
 Στην περίπτωσή μας, η `iex -r test.exs` θα απαιτεί να έχει αυτό το αρχείο:
 
-```
+```elixir
 $ iex -r test.exs
 Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
 
@@ -95,8 +95,8 @@ Allow? [Yn]
 
 Αφού δώσουμε την απάντηση `y` στην ερώτηση (Allow? [Yn]) ή πατώντας Enter, μπαίνουμε στην διαδραστική μορφή.
 
-```
- $ iex -r test.exs
+```elixir
+$ iex -r test.exs
 Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
 
 warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
