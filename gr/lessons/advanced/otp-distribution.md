@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Η Κατανομή στο OTP
 ---
 
@@ -125,7 +125,7 @@ iex --sname kate@localhost --cookie secret_token
 
 Δημιουργήστε την εφαρμογή σας:
 
-```
+```shell
 mix new chat --sup
 ```
 
