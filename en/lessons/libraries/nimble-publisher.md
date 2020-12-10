@@ -29,14 +29,20 @@ Now, let's add some posts. We need to start creating a directory that will conta
 /priv/posts/YEAR/MONTH-DAY-ID.md
 ```
 
+So create these folders:
+
+```shell
+mkdir -p priv/posts/2020
+```
+
 For example, we start with these two posts:
 
-```
-/priv/posts/2020/10-28-hello-world.md
-/priv/posts/2020/11-04-exciting-news.md
+```shell
+touch /priv/posts/2020/10-28-hello-world.md
+touch /priv/posts/2020/11-04-exciting-news.md
 ```
 
-A typical blog post will be written in Markdown syntax, with a metadata section on top, and the content below separated by `---`, like this:
+A typical blog post will be written in Markdown syntax, with a metadata section on top, and the content below separated by `---`, like the `/priv/posts/2020/10-28-hello-world.md` file:
 
 ```
 %{
@@ -47,6 +53,20 @@ A typical blog post will be written in Markdown syntax, with a metadata section 
 }
 ---
 Yes, this is **the post** you've been waiting for.
+```
+
+and add these content for the `/priv/posts/2020/11-04-exciting-news.md` file:
+
+```
+%{
+  title: "Exciting News!",
+  author: "Jaime Iniesta",
+  tags: ~w(exciting news),
+  description: "Second blog post"
+}
+---
+Awesome, this is our second post in our great blog.
+---
 ```
 
 I'll let you be creative writing your own posts. Just ensure you follow the above format for the metadata and content. 
