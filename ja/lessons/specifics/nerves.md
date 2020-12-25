@@ -1,15 +1,17 @@
 ---
-version: 1.0.0
+version: 1.1.2
 title: Nerves
 redirect_from:
   - /ja/lessons/advanced/nerves
 ---
 
+{% include toc.html %}
+
 ## はじめに
 
-このレッスンではNervesについて話します。Nervesプロジェクトは組込みソフトウェア開発にElixirを使用するためのフレームワークです。Nervesのウェブサイトにあるように、それはあなたが「Elixirで、安全な組み込みソフトウェアを作り、そして展開する」ことを可能にします。このレッスンは他のElixir Schoolのレッスンとは少し異なります。上級者向けのシステム設定と追加のハードウェアの両方が必要なため、Nervesを習得するのは少し困難です。したがって、初心者にはオススメしません。
+このレッスンではNervesについて話します。Nervesプロジェクトは組込みソフトウェア開発にElixirを使用するためのフレームワークです。Nervesのウェブサイトにあるように、それはあなたが「Elixirで、安全な組み込みソフトウェアを作り、そして展開する」ことを可能にします。このレッスンは他のElixir Schoolのレッスンとは少し異なります。上級者向けのシステム設定と追加のハードウェアの両方が必要なため、Nervesを習得するのは少し困難です。したがって、初心者には難しいかもしません。
 
-Nervesを使ってコードを書くためには、ネットワークによってこのデバイスにアクセスするための有線ネットワーク接続として、 [サポート対象のハードウェア](https://hexdocs.pm/nerves/targets.html) のいずれか、お好みのハードウェアでサポートされているメモリカードを持ったカードリーダーが必要です。
+Nervesを使ってコードを書くためには、 [サポート対象のハードウェア](https://hexdocs.pm/nerves/targets.html) のいずれかと、お好みのハードウェアでサポートされているメモリのメモリカードリーダーと、同様にネットワーク越しにデバイスにアクセスするための有線ネットワーク接続が必要です。
 
 ただし、Raspberry Piには制御可能なLEDが搭載されているため、Raspberry Piを使用することをお勧めします。IExを使用したデバッグが簡単になるため、画面をターゲットデバイスに接続することをお勧めします。
 
@@ -63,7 +65,7 @@ Raspberry Pi 3の場合、 `MIX_TARGET=rpi3` を設定しますが、ハード�
 
 まず依存関係を設定しましょう:
 
-```
+```shell
 $ export MIX_TARGET=rpi3
 $ cd network_led
 $ mix deps.get
@@ -75,12 +77,12 @@ Nerves environment
   MIX_ENV:      dev
 Resolving Nerves artifacts...
   Resolving nerves_system_rpi3
-  => Trying https://github.com/nerves-project/nerves_system_rpi3/releases/download/v1.7.0/nerves_system_rpi3-portable-1.7.0-17EA89A.tar.gz
-|==================================================| 100% (133 / 133) MB
+  => Trying https://github.com/nerves-project/nerves_system_rpi3/releases/download/v1.12.2/nerves_system_rpi3-portable-1.12.2-E904717.tar.gz
+|==================================================| 100% (142 / 142) MB
   => Success
   Resolving nerves_toolchain_arm_unknown_linux_gnueabihf
-  => Trying https://github.com/nerves-project/toolchains/releases/download/v1.1.0/nerves_toolchain_arm_unknown_linux_gnueabihf-darwin_x86_64-1.1.0-2305AD8.tar.xz
-|==================================================| 100% (50 / 50) MB
+  => Trying https://github.com/nerves-project/toolchains/releases/download/v1.3.2/nerves_toolchain_arm_unknown_linux_gnueabihf-darwin_x86_64-1.3.2-E31F29C.tar.xz
+|==================================================| 100% (55 / 55) MB
   => Success
 ```
 
@@ -88,7 +90,7 @@ Resolving Nerves artifacts...
 
 ## ファームウェアの書き込み
 
-これでファームウェアを書き込むことができます。カードをリーダーに入れて、前の手順ですべてを正しく設定した場合は、 `mix firmware.burn` を実行してデバイスの使用を確認した後に、次のプロンプトが表示されるはずです:
+これでファームウェアを書き込むことができます。カードをリーダーに入れて、前の手順ですべてを正しく設定した場合は、 `mix firmware.burn` を実行すると、書き込むカードを確認するために、次のプロンプトが表示されるはずです:
 
 ```
 Building ......../network_led/_build/rpi_dev/nerves/images/network_led.fw...
@@ -110,24 +112,34 @@ Elapsed time: 8.022 s
 
 ## ネットワークの設定
 
-次のステップはネットワークを設定することです。Nervesのエコシステムはさまざまなパッケージを提供しています。[nerves_network](https://github.com/nerves-project/nerves_network) は、有線イーサネットポートを介してデバイスをネットワークに接続するために必要なものです。
+次のステップはネットワークを設定することです。Nervesのエコシステムはさまざまなパッケージを提供しています。[vintage_net](https://github.com/nerves-networking/vintage_net) は、有線イーサネットポートを介してデバイスをネットワークに接続するために必要なものです。
 
-あなたのプロジェクトにはすでに `nerves_init_gadget` が依存関係として存在しています。しかし、デフォルトではDHCPを使います（ `config/config.exs` の中の `config :nerves_init_gadget` の後の実行内容を確認してください）。静的IPアドレスを持つ方が簡単です。
+あなたのプロジェクトにはすでに [`nerves_pack`](https://github.com/nerves-project/nerves_pack) が依存関係として存在しています。しかし、デフォルトではDHCPを使います（ config/target.exs の中の config :vintage_net の後の設定内容を確認してください）。静的IPアドレスを持つ方が簡単です。
 
-静的ネットワークを設定するには、 `config/config.exs` に以下の行を追加する必要があります:
+静的ネットワークを設定するには、 `config/target.exs` 内の `:vintage_net` 設定を更新する必要があります:
 
-```
+```elixir
 # Statically assign an address
-config :nerves_network, :default,
-  eth0: [
-    ipv4_address_method: :static,
-    ipv4_address: "192.168.88.2",
-    ipv4_subnet_mask: "255.255.255.0",
-    nameservers: ["8.8.8.8", "8.8.4.4"]
+config :vintage_net,
+  regulatory_domain: "US",
+  config: [
+    {"usb0", %{type: VintageNetDirect}},
+    {"eth0",
+     %{
+       type: VintageNetEthernet,
+       ipv4: %{
+         method: :static,
+         address: "192.168.88.2",
+         prefix_length: 24,
+         gateway: "192.168.88.1",
+         name_servers: ["8.8.8.8", "8.8.4.4"]
+       }
+     }},
+    {"wlan0", %{type: VintageNetWiFi}}
   ]
 ```
 
-この設定は有線接続用です。無線接続を使用したい場合は、[Nerves network documentation](https://github.com/nerves-project/nerves_network#wifi-networking) を参照してください。
+この設定は有線接続用です。Wi-Fiを使用したい場合は、 [VintageNet Cookbook](https://hexdocs.pm/vintage_net/cookbook.html#wifi) を参照してください。
 
 ここであなたのローカルネットワークパラメータを使う必要があることに注意してください。私のネットワークでは割り当てられていないIP `192.168.88.2` があるので、これを使用します。しかし、あなたの場合、IPアドレスは違うかもしれません。
 
@@ -144,15 +156,15 @@ Request timeout for icmp_seq 207
 
 この出力は、デバイスがネットワークから到達可能になったことを意味します。
 
-## ネットワークファームウェアの書き込み
+## ネットワーク経由のファームウェアの書き込み
 
-これまでのところ、私達はSDカードに書き込んで、物理的にそれらを私達のハードウェアにロードしてきました。これは最初は問題ありませんが、ネットワーク経由で更新する方が簡単です。 `nerves_firmware_ssh` パッケージはまさにそれをしてくれます。デフォルトでは、すでにプロジェクトに存在し、ディレクトリ内のSSHキーを自動検出して見つけるように設定されています。
+これまでのところ、私達はSDカードに書き込んで、物理的にそれらを私達のハードウェアにロードしてきました。これは最初は問題ありませんが、ネットワーク経由で更新する方が簡単です。 [`ssh_subsystem_fwup`](https://github.com/nerves-project/ssh_subsystem_fwup) パッケージはまさにそれをしてくれます。デフォルトでは、すでにプロジェクトに存在し、 `~/.ssh` ディレクトリ内のSSHキーを自動検出して見つけるように設定されています。
 
-ネットワークファームウェアアップデート機能を使うためには、 `mix firmware.gen.script` を通してアップロードスクリプトを生成する必要があります。このコマンドはファームウェアを更新するために実行できる新しい `upload.sh` スクリプトを生成します。
+ネットワーク経由のファームウェアアップデート機能を使うためには、 `mix firmware.gen.script` を通してアップロードスクリプトを生成する必要があります。このコマンドはファームウェアを更新するために実行できる新しい `upload.sh` スクリプトを生成します。
 
 前の手順を実行してネットワークが機能している場合は、問題ないので次に進みます。
 
-設定を更新するための最も簡単な方法は `mix firmware && ./upload.sh 192.168.88.2` を使うことです。最初のコマンドは更新されたファームウェアを作成し、二番目のコマンドはそれをネットワーク経由でプッシュしてデバイスを再起動します。SDカードをデバイスに出し入れする必要がなくなります。
+設定を更新するための最も簡単な方法は `mix firmware && ./upload.sh 192.168.88.2` を使うことです。最初のコマンドは更新されたファームウェアを作成し、二番目のコマンドはそれをネットワーク経由でプッシュしてデバイスを再起動します。SDカードをデバイスに出し入れする必要がなくなります!
 
 _ヒント： `ssh 192.168.88.2` はアプリのコンテキストでデバイスにIExシェルを提供します。_
 
@@ -164,7 +176,7 @@ LEDとやり取りするには、[nerves_leds](https://github.com/nerves-project
 
 依存関係を設定したら、特定のデバイスのLEDリストを設定する必要があります。例えば、すべてのRaspberry Piモデルのために、ただ一つのLEDである `led0` が搭載されています。 `config/config.exs` に `config :nerves_leds, names: [green: "led0"]` を追加して使用しましょう。
 
-他のデバイスについては、[nerves_examplesプロジェクトで対応する部分](https://github.com/nerves-project/nerves_examples/tree/master/hello_leds/config) を参照してください。
+他のデバイスについては、[nerves_examplesプロジェクトで対応する部分](https://github.com/nerves-project/nerves_examples/tree/main/hello_leds/config) を参照してください。
 
 LED自体を設定したら、どうにかしてそれを制御する必要があります。そのために、以下の内容を含む `lib/network_led/blinker.ex` にGenServerを追加します（[OTP Concurrency](../../advanced/otp-concurrency) レッスンのGenServerについての詳細を参照）。
 
@@ -257,6 +269,6 @@ end
 
 そして最後のステップ - アプリケーションのスーパーバイザーツリーに `{Plug.Cowboy, scheme: :http, plug: NetworkLed.Http, options: [port: 80]}` を追加します。
 
-ファームウェアのアップデート後に試すことができます。 `http://192.168.88.2/` はプレーンテキストの応答を返しており、 `http://192.168.88.2/disable` と一緒に `http://192.168.88.2/enable` はそのLEDを無効にして有効にします！
+ファームウェアのアップデート後に試すことができます。 `http://192.168.88.2/` はプレーンテキストの応答を返しており、 `http://192.168.88.2/disable` でLEDが消え、 `http://192.168.88.2/enable` でLEDが点きます！
 
 Phoenixを使ったユーザーインターフェースをNervesアプリに導入することもできますが、それには[いくつかの調整が必要になります](https://github.com/nerves-project/nerves/blob/master/docs/User%20Interfaces.md#phoenix-web-interfaces)。
