@@ -9,11 +9,11 @@ redirect_from:
 
 ## はじめに
 
-このレッスンではNervesについて話します。Nervesプロジェクトは組込みソフトウェア開発にElixirを使用するためのフレームワークです。Nervesのウェブサイトにあるように、それはあなたが「Elixirで、安全な組み込みソフトウェアを作り、そして展開する」ことを可能にします。このレッスンは他のElixir Schoolのレッスンとは少し異なります。上級者向けのシステム設定と追加のハードウェアの両方が必要なため、Nervesを習得するのは少し困難です。したがって、初心者には難しいかもしません。
+このレッスンではNervesについて話します。Nervesプロジェクトは組込みソフトウェア開発にElixirを使用するためのフレームワークです。Nervesのウェブサイトにあるように、それはあなたが「Elixirで、安全な組み込みソフトウェアを作り、そして展開する」ことを可能にします。このレッスンは他のElixir Schoolのレッスンとは少し異なります。上級者向けのシステム設定と追加のハードウェアの両方が必要になるため、Nervesを習得するのは初心者には難しいかもしません。
 
-Nervesを使ってコードを書くためには、 [サポート対象のハードウェア](https://hexdocs.pm/nerves/targets.html) のいずれかと、お好みのハードウェアでサポートされているメモリのメモリカードリーダーと、同様にネットワーク越しにデバイスにアクセスするための有線ネットワーク接続が必要です。
+Nervesを使って組み込み向けのコードを書くためには、 [サポート対象のハードウェア](https://hexdocs.pm/nerves/targets.html) のいずれかと、お好みのハードウェアでサポートされているメモリカードのカードリーダーと、ネットワーク越しにデバイスにアクセスするための有線ネットワーク接続が必要です。
 
-ただし、Raspberry Piには制御可能なLEDが搭載されているため、Raspberry Piを使用することをお勧めします。IExを使用したデバッグが簡単になるため、画面をターゲットデバイスに接続することをお勧めします。
+ただし、Raspberry Piには制御可能なLEDが搭載されているため、Raspberry Piを使用することをお勧めします。IExを使用したデバッグが簡単になるため、モニタをターゲットデバイスに接続することをお勧めします。
 
 ## セットアップ
 
@@ -114,7 +114,7 @@ Elapsed time: 8.022 s
 
 次のステップはネットワークを設定することです。Nervesのエコシステムはさまざまなパッケージを提供しています。[vintage_net](https://github.com/nerves-networking/vintage_net) は、有線イーサネットポートを介してデバイスをネットワークに接続するために必要なものです。
 
-あなたのプロジェクトにはすでに [`nerves_pack`](https://github.com/nerves-project/nerves_pack) が依存関係として存在しています。しかし、デフォルトではDHCPを使います（ config/target.exs の中の config :vintage_net の後の設定内容を確認してください）。静的IPアドレスを持つ方が簡単です。
+あなたのプロジェクトにはすでに [`nerves_pack`](https://github.com/nerves-project/nerves_pack) が依存関係として存在しています。しかし、デフォルトではDHCPを使います（ `config/target.exs` の中の `config :vintage_net` の後の設定内容を確認してください）。静的IPアドレスを持つ方が簡単です。
 
 静的ネットワークを設定するには、 `config/target.exs` 内の `:vintage_net` 設定を更新する必要があります:
 
@@ -139,7 +139,7 @@ config :vintage_net,
   ]
 ```
 
-この設定は有線接続用です。Wi-Fiを使用したい場合は、 [VintageNet Cookbook](https://hexdocs.pm/vintage_net/cookbook.html#wifi) を参照してください。
+この設定は有線接続の設定のみを更新します。WiFiを使用したい場合は、 [VintageNet Cookbook](https://hexdocs.pm/vintage_net/cookbook.html#wifi) を参照してください。
 
 ここであなたのローカルネットワークパラメータを使う必要があることに注意してください。私のネットワークでは割り当てられていないIP `192.168.88.2` があるので、これを使用します。しかし、あなたの場合、IPアドレスは違うかもしれません。
 
@@ -158,7 +158,7 @@ Request timeout for icmp_seq 207
 
 ## ネットワーク経由のファームウェアの書き込み
 
-これまでのところ、私達はSDカードに書き込んで、物理的にそれらを私達のハードウェアにロードしてきました。これは最初は問題ありませんが、ネットワーク経由で更新する方が簡単です。 [`ssh_subsystem_fwup`](https://github.com/nerves-project/ssh_subsystem_fwup) パッケージはまさにそれをしてくれます。デフォルトでは、すでにプロジェクトに存在し、 `~/.ssh` ディレクトリ内のSSHキーを自動検出して見つけるように設定されています。
+これまでのところ、私達はSDカードに書き込んで、物理的にそれらを私達のハードウェアにロードしてきました。これは最初は問題ありませんが、ネットワーク経由で更新する方が簡単です。 [`ssh_subsystem_fwup`](https://github.com/nerves-project/ssh_subsystem_fwup) パッケージはまさにそれをしてくれます。プロジェクトにはデフォルトですでに設定されていて、 `~/.ssh` ディレクトリ内のSSHキーを自動検出して見つけるように構成されています。
 
 ネットワーク経由のファームウェアアップデート機能を使うためには、 `mix firmware.gen.script` を通してアップロードスクリプトを生成する必要があります。このコマンドはファームウェアを更新するために実行できる新しい `upload.sh` スクリプトを生成します。
 
@@ -269,6 +269,6 @@ end
 
 そして最後のステップ - アプリケーションのスーパーバイザーツリーに `{Plug.Cowboy, scheme: :http, plug: NetworkLed.Http, options: [port: 80]}` を追加します。
 
-ファームウェアのアップデート後に試すことができます。 `http://192.168.88.2/` はプレーンテキストの応答を返しており、 `http://192.168.88.2/disable` でLEDが消え、 `http://192.168.88.2/enable` でLEDが点きます！
+ファームウェアのアップデート後に試すことができます！ `http://192.168.88.2/` はプレーンテキストの応答を返しており、 `http://192.168.88.2/disable` でLEDが消灯し、 `http://192.168.88.2/enable` でLEDが点灯します！
 
 Phoenixを使ったユーザーインターフェースをNervesアプリに導入することもできますが、それには[いくつかの調整が必要になります](https://github.com/nerves-project/nerves/blob/master/docs/User%20Interfaces.md#phoenix-web-interfaces)。
