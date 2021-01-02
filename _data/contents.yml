@@ -52,3 +52,5 @@ libraries:
   - bypass
   - distillery
   - stream-data
+  - nimble-publisher
+  - mox

@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: StreamData
 ---
 
@@ -46,7 +46,7 @@ Just replace `x` and `y` with the version of StreamData shown in the library's [
 
 Third, run this from the command line of your terminal:
 
-```
+```shell
 mix deps.get
 ```
 
@@ -450,7 +450,7 @@ end
 
 You can run your tests by entering this on your terminal's command line:
 
-```
+```shell
 mix test
 ```
 

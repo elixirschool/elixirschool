@@ -1,5 +1,5 @@
 ---
-version: 1.5.0
+version: 1.6.0
 title: Enum 模块
 ---
 
@@ -206,4 +206,66 @@ iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 ```elixir
 iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
 [%{x: 1, y: 1}, %{x: 3, y: 3}]
+```
+
+
+
+
+### 使用 & 操作符
+Enum 模块中的很多函数接收一个 匿名函数 作为参数。
+
+这些匿名函数往往可以使用 & 操作符来简写。
+
+下面是一些例子，展现了如何在 Enum 模块中使用 & 操作符。 
+每个例子在功能上都是等价的。
+
+#### 用 & 操作符取代一个匿名函数
+
+下面是一个经典的关于 `Enum.map/2` 的例子。使用了标准的匿名函数语法。
+
+```elixir
+iex> Enum.map([1,2,3], fn number -> number + 3 end)
+[4, 5, 6]
+```
+
+现在我们用 & 操作符重写; 语法显而易见，我们用 `&(函数体)` 申明了一个匿名函数， 用`&1` 取代了第一个参数（在这里也是唯一一个参数）。
+
+```elixir
+iex> Enum.map([1,2,3], &(&1 + 3))
+[4, 5, 6]
+```
+
+我们也可以进一步重写这个例子，将这个匿名函数分配给一个变量，然后再去调用 `Enum.map2`。
+
+```elixir
+iex> plus_three = &(&1 + 3)
+iex> Enum.map([1,2,3], plus_three)
+[4, 5, 6]
+```
+
+#### 在具名函数上使用 & 操作符
+
+首先我们创建一个具名函数，然后通过一个在 `Enum.map/2` 中定义的匿名函数调用它。
+
+```elixir
+defmodule Adding do
+  def plus_three(number), do: number + 3
+end
+
+iex>  Enum.map([1,2,3], fn number -> Adding.plus_three(number) end)
+[4, 5, 6]
+```
+
+然后我们可以通过 & 操作符重写它
+
+```elixir
+iex> Enum.map([1,2,3], &Adding.plus_three(&1)) 
+[4, 5, 6]
+```
+
+更简单的语法是，直接使用函数名，而不显示捕获变量
+> 去掉`/1`会被认为是调用 `Adding.plus_three/0`
+```elixir
+iex> Enum.map([1,2,3], &Adding.plus_three/1) 
+[4, 5, 6]
 ```

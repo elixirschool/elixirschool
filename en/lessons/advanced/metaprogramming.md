@@ -267,7 +267,7 @@ We already covered the usefulness of `unquote/1`, but there's another way to inj
 With variable binding we are able to include multiple variables in our macro and ensure they're only unquoted once, avoiding accidental revaluations.
 To use bound variables we need to pass a keyword list to the `bind_quoted` option in `quote/2`.
 
-To see the benefit of `bind_quote` and to demonstrate the revaluation issue let's use an example.
+To see the benefit of `bind_quoted` and to demonstrate the revaluation issue let's use an example.
 We can start by creating a macro that simply outputs the expression twice:
 
 ```elixir

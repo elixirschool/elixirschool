@@ -544,3 +544,25 @@
     - lesson
   lessons:
     - Capture operator
+
+- github: jaimeiniesta
+  twitter: JaimeIniestaDev
+  name: Jaime Iniesta
+  intro: Jaime is an Elixir developer based in Spain that works as a remote freelancer for startups, and maintains his own products like the accessibility scraper Rocket Validator. He tries to keep a balance between client work, study and open source, and tries to play guitar as most as possible.
+  contributions:
+    - lesson
+    - translator
+  lessons:
+    - NimblePublisher
+  languages:
+    - es 
+
+- github: RTSolo
+  name: Konstantinos Maglaras
+  intro:
+  homepage:
+  twitter: DinosMag
+  contributions:
+    - translator
+  languages:
+    - gr

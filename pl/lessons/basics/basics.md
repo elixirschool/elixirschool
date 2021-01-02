@@ -1,10 +1,9 @@
 ---
-version: 1.0.0
-layout: page
+version: 1.2.1
 title: Podstawy
 ---
 
-Przygotowanie środowiska, podstawowe typy danych i operacje
+Przygotowanie środowiska, podstawowe typy danych i operacje.
 
 {% include toc.html %}
 
@@ -15,10 +14,10 @@ Przygotowanie środowiska, podstawowe typy danych i operacje
 Proces instalacji środowiska dla poszczególnych systemów operacyjnych jest opisany, w języku angielskim, na stronie Elixir-lang.org w sekcji [Installing Elixir](http://elixir-lang.org/install.html).
 
 Po zakończeniu procesu instalacji możemy w łatwy sposób sprawdzić, którą wersję zainstalowaliśmy:
- 
+
      % elixir -v
      Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
-      
+
      Elixir {{ site.elixir.version }}
 
 ### Tryb interaktywny
@@ -31,9 +30,9 @@ By ją uruchomić wpisz w wierszu poleceń `iex`:
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
-	
+
 Spróbujmy wykonać kilka prostych operacji:
-	
+
 ```elixir
 iex> 2+3
 5
@@ -42,6 +41,8 @@ true
 iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
+
+Nie martw się, jeśli nie rozumiesz jeszcze wszystkich wyrażeń. Mamy nadzieję, że zrozumiesz ideę.
 
 ## Podstawowe typy danych
 
@@ -112,7 +113,7 @@ iex> :true === true
 true
 ```
 
-Nazwy modułów w Elixirze są atomami. Na przykład `MyApp.MyModule` jest poprawnym atomem nawet wtedy, gdy moduł o takiej nazwie nie istnieje.
+Nazwy modułów w Elixirze są atomami. Dla przykładu `MyApp.MyModule` jest poprawnym atomem nawet wtedy, gdy moduł o takiej nazwie nie istnieje.
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
@@ -120,11 +121,11 @@ true
 ```
 
 Atomy służą też jako odwołania do bibliotek Erlanga, również tych wbudowanych.
- 
+
 ```elixir
 iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
-``` 
+```
 
 ### Ciągi znaków
 
@@ -137,7 +138,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-W ciągu znaków można używać zarówno znaków ucieczki jak i tworzyć ciągi w wielu liniach: 
+W ciągu znaków można używać zarówno znaków ucieczki jak i tworzyć ciągi w wielu liniach:
 
 ```elixir
 iex> "foo
@@ -146,6 +147,9 @@ iex> "foo
 iex> "foo\nbar"
 "foo\nbar"
 ```
+
+Elixir zawiera również bardziej złożone typy danych.
+Więcej na ten temat dowiemy się, kiedy poznamy [kolekcje](../collections/) i [funkcje](../functions/).
 
 ## Podstawowe operacje
 
@@ -194,7 +198,7 @@ iex> !false
 true
 ```
 
-Istnieją też trzy operatory, których pierwszym argumentem _musi_ być wartość logiczna (`true` i `false`):
+Istnieją też trzy operatory, których pierwszym argumentem _musi_ być wartość logiczna (`true` lub `false`):
 
 ```elixir
 iex> true and 42
@@ -208,6 +212,8 @@ iex> 42 and true
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Uwaga: Operatory `and` oraz `or` w języku Elixir są odwzorowywane na `andalso` i `orelse` w Erlangu.
 
 ### Porównania
 

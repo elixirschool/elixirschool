@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.1.1
 title: Ημερομηνία και Ώρα
 ---
 
@@ -10,8 +10,6 @@ title: Ημερομηνία και Ώρα
 ## Time
 
 Η Elixir έχει μερικές ενότητες για την εργασία με την ώρα.
-Πρέπει να σημειωθεί όμως ότι αυτή η λειτουργικότητα είναι περιορισμένη όταν δουλεύουμε με τη ζώνη ώρας UTC. 
-
 Ας ξεκινήσουμε λαμβάνοντας την τρέχουσα ώρα:
 
 ```elixir
@@ -62,7 +60,7 @@ iex> Date.leap_year? date
 true
 ```
 
-Η `day_of_week/1` υπολογίζει ποιά μέρα της εβδομάδας είναι μια συγκεκριμμένη ημέρα.
+Η `day_of_week/1` υπολογίζει ποιά μέρα της εβδομάδας είναι μια συγκεκριμένη ημέρα.
 Σε αυτή την περίπτωση είναι Σάββατο.
 Η `leap_year?/1` ελέγχει αν αυτό το έτος είναι δίσεκτο.
 Άλλες συναρτήσεις μπορείτε να βρείτε στην [τεκμηρίωση](https://hexdocs.pm/elixir/Date.html).
@@ -89,20 +87,39 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 Η δεύτερη, όπως μπορείτε να μαντέψετε από τον τίτλο αυτής της ενότητας, είναι η `DateTime`.
 Δεν έχει τα μειονεκτήματα που έχει η `NaiveDateTime`: έχει ταυτόχρονα ημερομηνία και ώρα και υποστηρίζει ζώνες ώρας.
-But be aware about timezones. The official docs state:
 Αλλά προσέξτε τις ζώνες ώρας. Η επίσημη τεκμηρίωση γράφει:
 
-```
-You will notice this module only contains conversion functions as well as functions that work on UTC.
-This is because a proper DateTime implementation requires a time zone database which currently is not provided as part of Elixir.
-```
+> Many functions in this module require a time zone database. By default, it uses the default time zone database returned by `Calendar.get_time_zone_database/0`, which defaults to `Calendar.UTCOnlyTimeZoneDatabase` which only handles "Etc/UTC" datetimes and returns `{:error, :utc_only_time_zone_database}` for any other time zone.
 
 Σημειώστε επίσης ότι μπορείτε να δημιουργήσετε μια δομή DateTime από μια NaiveDateTime, προσθέτοντας την ζώνη ώρας:
 
-```
+```elixir
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
 
+## Δουλεύοντας με ζώνες ώρας
+
+Οπως έχουμε σημειώσει στο προηγούμενο κεφάλαιο, η Elixir δεν έχει προκαθορισμένα δεδομένα ζώνης ώρας.
+Για να λύσουμε αυτό το πρόβλημα, χρειάζεται να εγκαταστήσουμε το πακέτο [tzdata](https://github.com/lau/tzdata).
+Μετά την εγκατάσταση θα πρέπει να ρυθμίσετε την Elixir καθολικά να χρησιμοποιήσει τη Tzdata σαν βάση δεδομένων ζωνών ώρας:
+
+```elixir
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+```
+
+Ας προσπαθήσουμε τώρα να δημιουργήσουμε μια ώρα στη ζώνη ώρας του Παρισίου και να το μετατρέψουμε σε ώρα Νέας Υόρκης:
+
+```elixir
+iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
+#DateTime<2019-01-01 12:00:00+01:00 CET Europe/Paris>
+iex> {:ok, ny_datetime} = DateTime.shift_zone(paris_datetime, "America/New_York")
+{:ok, #DateTime<2019-01-01 06:00:00-05:00 EST America/New_York>}
+iex> ny_datetime
+#DateTime<2019-01-01 06:00:00-05:00 EST America/New_York>
+```
+
+Οπως μπορείτε να δείτε, η ώρα άλλαξε από 12:00 ώρα Παρισίου, σε 6:00, το οποίο είναι σωστό - η διαφορά μεταξύ των δύο πόλεων είναι 6 ώρες.
+
 Αυτό ήταν! Αν θέλετε να δουλέψετε με άλλες πιο προχωρημένες συναρτήσεις, θα πρέπει να κοιτάξετε στην επίσημη τεκμηρίωση για τις ενότητες [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html) και [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html).
-Θα πρέπει επίσης να λάβετε υπόψιν σας τις [Timex]() και [Calendar]() οι οποίες είναι πολύ δυνατές βιβλιοθήκες της Elixir σχετικά με το χρόνο.
+Θα πρέπει επίσης να λάβετε υπόψιν σας τις [Timex](https://github.com/bitwalker/timex) και [Calendar](https://github.com/lau/calendar) οι οποίες είναι πολύ δυνατές βιβλιοθήκες της Elixir σχετικά με το χρόνο.

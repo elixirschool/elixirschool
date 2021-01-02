@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.1.3
 title: Debugging
 ---
 
@@ -27,7 +27,7 @@ Let's try it.
 
 To do that, create a file named `test.exs` and put this into the file:
 
-```
+```elixir
 defmodule TestMod do
   def sum([a, b]) do
     b = 0
@@ -41,7 +41,7 @@ IO.puts(TestMod.sum([34, 65]))
 
 And if you run it - you'll get an apparent output of `34`:
 
-```
+```shell
 $ elixir test.exs
 warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
   test.exs:2
@@ -55,7 +55,7 @@ Put `require IEx; IEx.pry` in the line after `b = 0` and let's try running it on
 
 You'll get something like this:
 
-```
+```elixir
 $ elixir test.exs
 warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
   test.exs:2
@@ -72,9 +72,10 @@ To run it properly you need to prepend your command with `iex -S`.
 
 What this does is it runs `mix` inside the `iex` command so that it runs the application in a special mode, such that calls to `IEx.pry` stop the application execution.
 
-For example, `iex -S mix phx.server` to debug your Phoenix application. In our case, it's going to be `iex -r test.exs` to require the file:
+For example, `iex -S mix phx.server` to debug your Phoenix application.
+In our case, it's going to be `iex -r test.exs` to require the file:
 
-```
+```elixir
 $ iex -r test.exs
 Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
 
@@ -94,8 +95,8 @@ Allow? [Yn]
 
 After responding to the prompt via `y` or pressing Enter, you've entered the interactive mode.
 
-```
- $ iex -r test.exs
+```elixir
+$ iex -r test.exs
 Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
 
 warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
@@ -149,8 +150,7 @@ You can also look through the list of other available helpers in [IEx.Helpers do
 ## Dialyxir and Dialyzer
 
 The [Dialyzer](http://erlang.org/doc/man/dialyzer.html), a **DI**screpancy **A**na**LYZ**er for **ER**lang programs is a tool for static code analysis.
-In other words they _read_ but do not _run_ code and analyse it e.g.
-looking for some bugs, dead, unnecessary or unreachable code.
+In other words they _read_ but do not _run_ code and analyse it e.g. looking for some bugs, dead, unnecessary or unreachable code.
 
 The [Dialyxir](https://github.com/jeremyjh/dialyxir) is a mix task to simplify usage of Dialyzer in Elixir.
 

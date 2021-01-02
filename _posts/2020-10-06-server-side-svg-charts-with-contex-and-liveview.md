@@ -204,9 +204,9 @@ defmodule GameStoreWeb.GameRatingsLive do
 
   # ...
 
-  defp assign_dataset(%{assigns: %{games_with_average_ratings: games_with_average_ratings}}) do
+  defp assign_dataset(%{assigns: %{games_with_average_ratings: games_with_average_ratings}} = socket) do
     socket
-    |> assign(:dataset, Contex.Dataset.new())
+    |> assign(:dataset, Contex.Dataset.new(games_with_average_ratings))
   end
 end
 ```
