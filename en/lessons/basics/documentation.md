@@ -59,7 +59,7 @@ We (or others) can access this module documentation using the `h` helper functio
 We can see this for ourselves if we put our `Greeter` module into a new file, `greeter.ex` and compile it:
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter
