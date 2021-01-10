@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.2.0
 title: Язык запросов
 ---
 
@@ -9,7 +9,7 @@ title: Язык запросов
 
 ## Получение записей из `Ecto.Repo`
 
-Напомним, что репозиторием в Ecto называется хранилище данных, такое как наша база данных Postgres.
+Напомним, что "репозиторием" в Ecto называется хранилище данных, такое как наша база данных Postgres.
 Всё взаимодействие с базой будет происходить посредством этого репозитория.
 
 Для начала мы можем выполнять простые запросы напрямую через `Friends.Repo` с помощью пары полезных функций.
@@ -41,8 +41,6 @@ iex> Repo.get(Movie, 1)
 Мы также можем получать данные по заданным критериям при помощи функции `Repo.get_by/3`. Она принимает два значения: подходящую структуру и условие для запроса. `Repo.get_by/3` в качестве результата возвращает одну запись из репозитория. Вот пример:
 
 ```elixir
-iex> alias Friends.Repo
-iex> alias Friends.Movie
 iex> Repo.get_by(Movie, title: "Ready Player One")
 %Friends.Movie{
   __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
@@ -66,9 +64,9 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 Запрос можно создавать при помощи макроса `Ecto.Query.from/2`. Эта функция принимает два аргумента: выражение и необязательный ключевой список. Попробуем создать максимально простой запрос для получения всех фильмов из нашего репозитория:
 
 ```elixir
-import Ecto.Query
-query = from(Movie)                
-%Ecto.Query<from m in Friends.Movie>
+iex> import Ecto.Query
+iex> query = from(Movie)
+#Ecto.Query<from m0 in Friends.Movie>
 ```
 
 Чтобы выполнить запрос, воспользуемся функцией `Repo.all/2`. Она принимает структуру запроса Ecto в качестве обязательного аргумента и возвращает все записи, удовлетворяющие условиям.
@@ -96,10 +94,10 @@ iex> Repo.all(query)
 
 ```elixir
 iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
-%Ecto.Query<from m in Friends.Movie, where: m.title == "Ready Player One",
+#Ecto.Query<from m0 in Friends.Movie, where: m0.title == "Ready Player One",
  select: [:title, :tagline]>
 
-iex> Repo.all(query)                                                                    
+iex> Repo.all(query)
 SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready Player One') []
 [
   %Friends.Movie{
@@ -115,24 +113,24 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 
 Обратите внимание, что в результирующих структурах заполнены только поля `tagline` и `title` – это прямое следствие использования блока `select:`.
 
-Запросы вроде этого называют *запросами без привязки* (bindingless), потому что они достаточно просты и не нуждаются привязках.
+Запросы вроде этого называют *запросами без привязки* (bindingless), потому что они достаточно просты и не нуждаются в привязках.
 
 #### Привязки в запросах
 
 До этого момента в качестве первого аргумента макроса `from` мы использовали исключительно модуль, реализующий протокол `Ecto.Queryable` (т.е. `Movie`). Но помимо него, мы могли бы использовать особое выражение с `in`:
 
 ```elixir
-iex> query = from(m in Movie)                                                           
-%Ecto.Query<from m in Friends.Movie>
+iex> query = from(m in Movie)
+#Ecto.Query<from m0 in Friends.Movie>
 ```
 
 В этом случае мы называем `m` *привязкой*. Привязки нам очень пригодятся, т.к. с их помощью можно ссылаться на структуру в других частях запроса. Например, мы можем достать из базы названия всех фильмов с `id` меньше `2`:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
-%Ecto.Query<from m in Friends.Movie, where: m.id < 2, select: m.title>
+#Ecto.Query<from m0 in Friends.Movie, where: m0.id < 2, select: m0.title>
 
-iex> Repo.all(query)                                           
+iex> Repo.all(query)
 SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
@@ -140,22 +138,24 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 Очень важный момент здесь это как изменился результат выполнения запроса. Использование *выражения* с привязкой в `select:` части запроса позволяет нам явным образом указать, в каком виде мы хотим получить данные. С таким же успехом мы можем попросить функцию вернуть нам кортеж:
 
 ```elixir
-iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
+iex> query = from(m in Movie, where: m.id < 2, select: {m.title})
 
-iex> Repo.all(query)                                                          
+iex> Repo.all(query)
 [{"Ready Player One"}]
 ```
 
 В целом хорошей идеей будет всегда начинать с простого запроса и добавлять привязки только когда появляется необходимость сослаться на структуру. Больше про привязки в запросах можно прочитать в [документации](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions)
+
 
 ### Запросы на основе макросов
 
 В предыдущих примерах, чтобы сконструировать запрос, мы использовали ключи `select:` и `where:` в параметрах макроса `from`. Про такой способ говорят, что он *основан на ключах* (keyword-based). Но существует также ещё один способ конструировать запросы – основанный на макросах. Ecto предоставляет макросы для каждого ключевого слова, например `select/3` или `where/3`. Каждый макрос принимает сущность, пригодную для запросов, *явный список привязок* и точно такое же выражение, какое мы использовали бы в предыдущем подходе:
 
 ```elixir
-iex> query = select(Movie, [m], m.title)                           
-%Ecto.Query<from m in Friends.Movie, select: m.title>
-iex> Repo.all(query)                    
+iex> query = select(Movie, [m], m.title)
+#Ecto.Query<from m0 in Friends.Movie, select: m0.title>
+
+iex> Repo.all(query)
 SELECT m0."title" FROM "movies" AS m0 []
 ["Ready Player One"]
 ```
@@ -163,12 +163,14 @@ SELECT m0."title" FROM "movies" AS m0 []
 Что хорошо в макросах, так это то, что они отлично объединяются в конвейер:
 
 ```elixir
-iex> query = Movie |> where([m], m.id < 2) |> select([m], {m.title})
-
-iex> Repo.all(query)
+iex> Movie \
+...>  |> where([m], m.id < 2) \
+...>  |> select([m], {m.title}) \
+...>  |> Repo.all
 [{"Ready Player One"}]
 ```
 
+Обратите внимание, чтобы продолжить запись после разрыва строки, используйте символ `\`.
 
 ### Интерполяция в `where`
 
@@ -194,7 +196,7 @@ iex> Repo.all(query)
 
 ```elixir
 iex> first(Movie)
-%Ecto.Query<from m in Friends.Movie, order_by: [desc: m.id], limit: 1>
+#Ecto.Query<from m0 in Friends.Movie, order_by: [asc: m0.id], limit: 1>
 ```
 
 Потом передадим его в `Repo.one/2`, чтобы получить результат:
@@ -202,12 +204,12 @@ iex> first(Movie)
 ```elixir
 iex> Movie |> first() |> Repo.one()
 
-06:36:14.234 [debug] QUERY OK source="movies" db=3.7ms
+SELECT m0."id", m0."title", m0."tagline" FROM "movies" AS m0 ORDER BY m0."id" LIMIT 1 []
 %Friends.Movie{
-  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
-  actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
-  characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
-  distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
+  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  actors: #Ecto.Association.NotLoaded<association :actors is not loaded>,
+  characters: #Ecto.Association.NotLoaded<association :characters is not loaded>,
+  distributor: #Ecto.Association.NotLoaded<association :distributor is not loaded>,
   id: 1,
   tagline: "Something about video games",
   title: "Ready Player One"
@@ -253,7 +255,7 @@ iex> Repo.all(from m in Movie, preload: [:actors])
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
         movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-        name: "Bob"
+        name: "Tyler Sheridan"
       },
       %Friends.Actor{
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -271,7 +273,7 @@ iex> Repo.all(from m in Movie, preload: [:actors])
 ]
 ```
 
-Видно, что код выше сделал _два_ запроса к базе данных. Один для всех фильмов, и ещё один для актёров, связанных с фильмами с определёнными ID.
+Видно, что код выше сделал _два_ запроса к базе данных. Один для всех фильмов, и ещё один для актёров, связанных с фильмами, с определёнными ID.
 
 
 #### Предзагрузка одним запросом
@@ -290,7 +292,7 @@ iex> Repo.all(query)
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
         id: 1,
         movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-        name: "Bob"
+        name: "Tyler Sheridan"
       },
       %Friends.Actor{
         __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -342,7 +344,7 @@ iex> movie = Repo.preload(movie, :actors)
       __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
       id: 1,
       movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-      name: "Bob"
+      name: "Tyler Sheridan"
     },
     %Friends.Actor{
       __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -368,7 +370,7 @@ iex> movie.actors
     __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
     id: 1,
     movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
-    name: "Bob"
+    name: "Tyler Sheridan"
   },
   %Friends.Actor{
     __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
@@ -384,6 +386,7 @@ iex> movie.actors
 Функция `Ecto.Query.join/5` позволяет создавать запросы с использованием SQL-оператора `JOIN`.
 
 ```elixir
+iex> alias Friends.Character
 iex> query = from m in Movie,
               join: c in Character,
               on: m.id == c.movie_id,
