@@ -27,9 +27,7 @@ at/3
 ...
 ```
 
-Menggunakan ini, jelas bahwa kita memiliki sejumlah fungsionalias yang luas, dan itu adalah alasan yang jelas.
-Enumerasi adalah pada inti dari pemrograman fungsional dan hal itu sangatlah berguna.
-Dengan memamfaatkannya dikombinasikan dengan fasilitas lain Elixir, seperti dokumentasi yang menjadi warga kelas pertama (first class citizen) sebagaimana yang sudah kita lihat, hal itu dapat sangat memberdayakan kepada pengembang (developer) juga.
+Menggunakan ini, jelas bahwa kita memiliki sejumlah fungsionalias yang luas, dan itu adalah alasan yang jelas. Enumerasi adalah inti dari pemrograman fungsional dan hal itu sangatlah berguna. Dengan memamfaatkannya dikombinasikan dengan fasilitas lain Elixir, seperti dokumentasi yang menjadi konsep kelas pertama (first class citizen) sebagaimana yang sudah kita lihat, hal itu dapat sangat membantu para pengembang (developer).
 
 Untuk daftar lengkap fungsi (functions) silahkan kunjungi dokumentasi resmi [`Enum`](https://hexdocs.pm/elixir/Enum.html); untuk enumerasi lazy gunakan modul [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
