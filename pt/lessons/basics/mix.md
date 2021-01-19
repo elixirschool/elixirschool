@@ -34,7 +34,7 @@ A partir do resultado, podemos ver que o mix criou nosso diretório e uma quanti
 Nesta lição nós iremos focar nossa atenção no `mix.exs`. Aqui nós configuramos nossa aplicação, dependências, ambiente e versão. Abra o arquivo no seu editor favorito, você deve ver algo como isto (comentários removidos por questões de consumo de espaço):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

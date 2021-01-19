@@ -42,7 +42,7 @@ $ mix new example
 Открыв файл, можно увидеть что-то подобное (комментарии убраны для упрощения):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

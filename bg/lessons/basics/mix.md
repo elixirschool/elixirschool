@@ -34,7 +34,7 @@ $ mix new example
 В този урок, ще се фокусираме върху `mix.exs`.  Там конфигурираме нашата апликация, dependencies, среди и версия. Отворе файла във вашия любим текстов редактор и би трябвало да видите нещо такова(коментарите са премахнати за да е по-кратко):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

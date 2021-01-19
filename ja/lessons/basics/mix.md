@@ -34,7 +34,7 @@ $ mix new example
 このレッスンでは `mix.exs` に焦点を合わせていきます。アプリケーションや依存関係、環境、そしてバージョンについて設定を行うところです。このファイルをお好きなエディタで開いてください。このような感じに見えるはずです(コメントは簡潔さのために除いています):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

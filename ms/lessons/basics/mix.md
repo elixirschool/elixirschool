@@ -34,7 +34,7 @@ Daripada paparan output kita boleh melihat yang mix telah membuat direktori kita
 Di dalam pelajaran ini kita akan memberi fokus kepada `mix.exs`.  Di sini kita membuat tetapan aplikasi kita, komponen sokongan, persekitaran, dan versi.  Buka fail tersebut di dalam perisian suntingan teks kegemaran anda, anda sepatutnya dapat melihat sesuatu seperti ini(komen-komen dibuang untuk memudahkan pembacaan):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

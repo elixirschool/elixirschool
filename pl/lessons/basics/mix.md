@@ -34,7 +34,7 @@ W konsoli pojawi się informacja, że mix stworzył niezbędne pliki oraz katalo
 W tej lekcji skupimy się na pliku `mix.exs`. Skonfigurujemy naszą aplikację, zależności, środowisko oraz wersję. Otwórz plik w swoim ulubionym edytorze. Powinieneś zobaczyć coś w rodzaju (komentarze usunięte dla zwięzłości):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

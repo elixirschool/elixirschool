@@ -34,7 +34,7 @@ Z výstupu príkazu vidíme, že boli vytvorené všetky štandardné adresáre 
 V tejto lekcii sa zameriame hlavne na súbor `mix.exs`. V ňom sa nachádza konfigurácia nášho projektu, jeho závislostí, verzií a prostredí pre beh. Po otvorení súboru v editore uvidíme niečo takéto (komentáre v kóde vynechávame v záujme stručnosti):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do
