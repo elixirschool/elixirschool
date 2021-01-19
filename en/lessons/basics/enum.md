@@ -194,6 +194,13 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
+For convenience, `sort/2` allows us to pass `:asc` or `:desc` as the sorting function:
+
+```elixir
+Enum.sort([2, 3, 1], :desc)
+[3, 2, 1]
+```
+
 ### uniq
 
 We can use `uniq/1` to remove duplicates from our enumerables:
