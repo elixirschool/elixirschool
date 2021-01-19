@@ -42,7 +42,7 @@ Here we configure our application, dependencies, environment, and version.
 Open the file in your favorite editor, you should see something like this (comments removed for brevity):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.MixProject do
   use Mix.Project
 
   def project do
