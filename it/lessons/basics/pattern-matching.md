@@ -30,6 +30,7 @@ Ora proviamo con una delle collezioni che conosciamo:
 ```elixir
 # Liste
 iex> list = [1, 2, 3]
+[1, 2, 3]
 iex> [1, 2, 3] = list
 [1, 2, 3]
 iex> [] = list
