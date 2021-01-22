@@ -16,7 +16,7 @@ A metodologia exata pode ser um pouco diferente da que você está familiarizado
 Antes de vermos casos de uso mais complexos, vamos falar de algumas técnicas que podem nos ajudar a tornar o nosso código mais testável.
 Uma tática simples é passar um módulo para uma funções em vez de fazer hard-code do módulo dentro da função.
 
-Por exemplo, se fizessemos hard-code de um cliente HTTP dentro de uma função:
+Por exemplo, se escrevermos um cliente HTTP diretamente dentro de uma função:
 
 ```elixir
 def get_username(username) do
