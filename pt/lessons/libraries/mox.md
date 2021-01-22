@@ -1,0 +1,222 @@
+---
+version: 1.0.0
+title: Mox
+---
+
+Mox é uma biblioteca feita para projectar mocks simultâneos em Elixir.
+
+{% include toc.html %}
+
+## Escrever Código Testável
+
+Os testes e os mocks que os facilitam não são, normalmente, o destaque de qualquer língua, e, por isso, não é surpreendente que exista menos literatura sobre eles.
+No entanto, pode-se _absolutamente_ usar mocks em Elixir!
+A metodologia exacta pode ser um pouco diferente da que está familiarizado noutras linguas, mas o objetivo final é o mesmo: os mocks podem simular o output de funções internas e, então, permitem-lhe assumir todas as possíveis execuções do seu código.
+
+Antes de mostrarmos use cases complexos, vamos falar de algumas técnicas que lhe poderão ajudar a tornar o seu código mais testável.
+Uma tática simples é passar um módulo para uma funções em vez de fazer hard-code do módulo dentro da função.
+
+Por exemplo, se fizessemos hard-code de um cliente HTTP dentro de uma função:
+
+```elixir
+def get_username(username) do
+  HTTPoison.get("https://elixirschool.com/users/#{username}")
+end
+```
+
+Poderíamos, em vez disso, passar o módulo do cliente HTTP como argumento assim:
+
+```elixir
+def get_username(username, http_client) do
+  http_client.get("https://elixirschool.com/users/#{username}")
+end
+```
+
+Ou poderíamos usar a função [apply/3](https://hexdocs.pm/elixir/Kernel.html#apply/3) que realiza o mesmo:
+
+```elixir
+def get_username(username, http_client) do
+  apply(http_client, :get, ["https://elixirschool.com/users/#{username}"])
+end
+```
+
+Passar o módulo como argumento ajuda a separar as eventuais preocupações que tenhamos e, se não nos assustarmos demasiado com a verborragia de programação orientada a objetos na definição, poderemos reconhecer esta inversão de controlo como uma espécie de [Injeção de Dependência](https://en.wikipedia.org/wiki/Dependency_injection).
+Para testar o método `get_username/2`, você só necessitaria de passar um módulo custa função `get` retorne o valor necessário para as suas asserções.
+
+Esta lógica é muito simples, e, por isso, é apenas útil quando a função é facilmente acessível (e não, por exemplo, quando está subterrada algures dentro de uma função privada).
+
+Uma tática mais flexível apoia-se na configuração da aplicação.
+Talvez não se tenha ainda apercebido, mas uma aplicação Elixir mantém o estado na sua configuração.
+Em vez de fazer hard-code de um módulo ou passá-lo como um argumento, pode ler o mesmo a partir da configuração da aplicação.
+Perhaps you didn't even realize it, but an Elixir application maintains state in its configuration.
+
+```elixir
+def get_username(username) do
+  http_client().get("https://elixirschool.com/users/#{username}")
+end
+
+defp http_client do
+  Application.get_env(:my_app, :http_client)
+end
+```
+
+Então, no seu ficheiro config:
+
+```elixir
+config :my_app, :http_client, HTTPoison
+```
+
+Esta lógica e a sua dependência no config da aplicação forma a base de tudo que se segue.
+
+Se você é propenso a pensar em demasia, sim, poderia omitir a função `http_client/0` e chamar diretamente `Application.get_env/2`, e, sim, poderia também fornecer um terceiro argumento padrão a `Application.get_env/3` e obter o mesmo resultado.
+
+Aproveitando-nos do config da aplicação, é-nos permitido ter implementações específicas do módulo para cada ambiente; você poderia fazer referência a um módulo sandbox para o ambiente `dev` enquanto que o ambiente `test` poderia usar um módulo da memória.
+
+No entanto, ter um único módulo fico por ambiente pode não ser flexível o suficiente: dependendo de com a sua função é usada, você poderá necessitar de devolver diferentes respostas para conseguir testar todos os caminhos de execução possíveis.
+O que a maior parte das pessoas não sabe é que você pode _mudar_ a configuração da aplicação em templo de execução!
+Vamos dar uma olhada ao [Application.put_env/4](https://hexdocs.pm/elixir/Application.html#put_env/4).
+
+Imagine que a sua aplicação necessita de agir de forma diferente dependendo de se o pedido HTTP foi, ou não, feito com sucesso.
+Poderíamos criar múltiplos módulos, cada um com uma função `get/1`.
+Um módulo poderia devolver um tuple `:ok`, e outro poderia devolver um tuple `:error`.
+Então, depois poderíamos usar o `Application.put_env/4` para definir a configuração antes de chamar a nossa função `get_username/1`.
+O nosso módulo de teste teria mais ou menos este aspecto:
+
+```elixir
+# Don't do this!
+defmodule MyAppTest do
+  use ExUnit.Case
+
+  setup do
+    http_client = Application.get_env(:my_app, :http_client)
+    on_exit(
+      fn ->
+        Application.put_env(:my_app, :http_client, http_client)
+      end
+    )
+  end
+
+  test ":ok on 200" do
+    Application.put_env(:my_app, :http_client, HTTP200Mock)
+    assert {:ok, _} = MyModule.get_username("twinkie")
+  end
+
+  test ":error on 404" do
+    Application.put_env(:my_app, :http_client, HTTP404Mock)
+    assert {:error, _} = MyModule.get_username("does-not-exist")
+  end
+end
+```
+
+É assumido que você tenha criado os módulos necessários algures (`HTTP200Mock` e `HTTP404Mock`).
+Nós adicionamos um callback [`on_exit`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#on_exit/2) ao [`setup`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#setup/1) para assegurar que o `:http_client` é devolvido ao seu estado anterior depois de cada teste.
+
+No entanto, um padrão como o descrito acima normalmente _NÃO_ é algo que você deva seguir ou fazer!
+As razãos para isto poderão não ser imediatamente óbvias.
+
+Primeiramente, não há nada que garante que os módulos que definimos no nosso `:http_client` podem fazer o que necessitam de fazer: não há aqui a imposição de um contrato que requer que os módulos tenham uma função `get/1`.
+
+Em segundo lugar, testes como o descrito acima não podem ser corridos com segurança de forma assíncrona.
+Devido ao estado da aplicação ser partilhado por _toda_ a aplicação, é completamente possível que quando você dá override do `:http_client` num teste, que um outro teste (a correr em simultâneo) espere um resultado diferente.
+Você pode ter encontrado problemas como este quando o teste é executado _usualmente_ passa, mas às vezes falha inexplicavelmente. Cuidado!
+
+Em terceiro lugar, esta abordagem pode ficar confusa porque você acaba com um conjunto de módulos mock algures no meio da sua aplicação. Que nojo.
+
+Fizemos uma demonstração da estrutura acima porque descreve a abordagem de uma forma bastante direta que nos ajuda a compreender um pouco melhor sobre como a solução _real_ funciona.
+
+## Mox : A Solução para todos os Problemas
+
+A package ideal para trabalhar com mocks em Elixir é a [Mox](https://hexdocs.pm/mox/Mox.html), da autoria do prório José Valim, e resolve todos os problemas delineados acima.
+
+Lembre-se: como requisito, o seu código deve olhar para o config da sua aplicação para obter o seu módulo configurado:
+
+```elixir
+def get_username(username) do
+  http_client().get("https://elixirschool.com/users/#{username}")
+end
+
+defp http_client do
+  Application.get_env(:my_app, :http_client)
+end
+```
+
+Depois poderá incluir `mox` nas suas dependências:
+
+```elixir
+# mix.exs
+defp deps do
+  [
+    # ...
+    {:mox, "~> 0.5.2", only: [:test], runtime: false}
+  ]
+end
+```
+
+Instale o mesmo com `mix deps.get`.
+
+Depois, modifique o seu `test_helper.exs` para que este faça 3 coisas:
+
+1. deve começar a app Mox
+2. deve definir um ou mais mocks
+3. deve definir a configuração do aplicativo com o mock
+
+```elixir
+# test_helper.exs
+ExUnit.start(exclude: [:skip])
+
+# 1. Começar a app Mox
+Mox.Server.start_link([])
+
+# 2. definir mocks dinâmicos
+Mox.defmock(HTTPoison.BaseMock, for: HTTPoison.Base)
+# ... etc...
+
+# 3. Dar override das configurações do config (similar a adicionar os mesmos a `config/test.exs`)
+Application.put_env(:my_app, :http_client, HTTPoison.BaseMock)
+# ... etc...
+```
+
+Algumas coisas importantes a fazerem-se notar sobre `Mox.defmock`: o nome do lado esquerdo é arbitrário.
+Os nomes dos módulos em Elixir são apenas atoms -- você não precisa de criar o módulo em lado algum, tudo que precisa de fazer é "reservar" o nome para um módulo mock.
+Nos bastidores, o Mox irá criar o módulo com esse nome em tempo real dentro do BEAM.
+
+A segunda coisa complicada é que o módulo referido por `for:` _deve_ ser um comportamento: _deve_ definir callbacks.
+Mox usa introspecção neste módulo e você poderá apenas definir funções mock quando uma `@callback` tiver sido definida.
+É assim que o Mox aplica o contrato.
+Às vezes é pode ser difícil encontrar o módulo de comportamento: `HTTPoison`, por exemplo, depende do `HTTPoison.Base`, mas você não tem forma de saber isso a não ser que olhe para o source code.
+Se estiver a tentar criar um mock para uma 3rd-party package, poderá já ter descoberto que esse comportamento não existe!
+Nesses casos você poderá ter de definir o seu próprio comportamento e callbacks para satisfazer a necessidade de um contrato.
+
+Esta situação traz consigo um ponto importante: você poderá querer usar uma camada de abstração (ou seja, [indirection](https://en.wikipedia.org/wiki/Indirection)) para que a sua aplicação não dependa de um pacto de third-party _diretamente_, mas, em vez disso, você usaria o seu próprio módulo que, por usa vez, usaria essa package.
+É importante, numa aplicação bem desenhada e concebida, definir os 'limites' adequados, mas a mecânica dos mocks não se altera, por isso, não deixe que isso o atrapalhe.
+
+Finally, in your test modules, you can put your mocks to use by importing `Mox` and calling its `:verify_on_exit!` function.
+Then you are free to define return values on your mock modules using one or more calls to the `expect` function:
+
+```elixir
+defmodule MyAppTest do
+  use ExUnit.Case
+  # 1. Importar Mox
+  import Mox
+  # 2. setup da configuração
+  setup :verify_on_exit!
+
+  test ":ok on 200" do
+    expect(HTTPoison.BaseMock, :get, fn _ -> {:ok, "What a guy!"} end)
+
+    assert {:ok, _} = MyModule.get_username("twinkie")
+  end
+
+  test ":error on 404" do
+    expect(HTTPoison.BaseMock, :get, fn _ -> {:error, "Sorry!"} end)
+    assert {:error, _} = MyModule.get_username("does-not-exist")
+  end
+end
+```
+
+Para cada teste, nós fazemos referência ao _mesmo_ módulo mock (`HTTPoison.BaseMock` neste exemplo), e usamos a função `expect` para definir o valor que é retornado para cada função chamada.
+
+Usar o `Mox` é perfeitamente seguro para uma execução assíncrona, e requer que cada mock siga um contrato.
+Atendendo que estes mocks são "virtuais", não há necessidade de definir módulos reais que poderia atrapalhar a nossa aplicação.
+
+Bem vindo aos mocks em Elixir!
