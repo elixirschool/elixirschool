@@ -11,7 +11,7 @@ Mox é uma biblioteca feita para projetar mocks simultâneos em Elixir.
 
 Os testes e os mocks que os facilitam não são, normalmente, o destaque de qualquer língua, e, por isso, não é surpreendente que exista menos literatura sobre eles.
 No entanto, pode-se _absolutamente_ usar mocks em Elixir!
-A metodologia exacta pode ser um pouco diferente da que está familiarizado noutras linguas, mas o objetivo final é o mesmo: os mocks podem simular o output de funções internas e, então, permitem-lhe assumir todas as possíveis execuções do seu código.
+A metodologia exacta pode ser um pouco diferente da que está familiarizado noutras línguas, mas o objetivo final é o mesmo: os mocks podem simular o output de funções internas e, então, permitem-lhe assumir todas as possíveis execuções do seu código.
 
 Antes de mostrarmos use cases complexos, vamos falar de algumas técnicas que lhe poderão ajudar a tornar o seu código mais testável.
 Uma tática simples é passar um módulo para uma funções em vez de fazer hard-code do módulo dentro da função.
