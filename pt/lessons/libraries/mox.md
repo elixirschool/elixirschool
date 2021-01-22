@@ -217,6 +217,6 @@ end
 Para cada teste, nós fazemos referência ao _mesmo_ módulo mock (`HTTPoison.BaseMock` neste exemplo), e usamos a função `expect` para definir o valor que é retornado para cada função chamada.
 
 Usar o `Mox` é perfeitamente seguro para uma execução assíncrona, e requer que cada mock siga um contrato.
-Atendendo que estes mocks são "virtuais", não há necessidade de definir módulos reais que poderia atrapalhar a nossa aplicação.
+Atendendo que estes mocks são "virtuais", não há necessidade de definir módulos reais que poderiam atrapalhar a nossa aplicação.
 
 Bem vindo aos mocks em Elixir!
