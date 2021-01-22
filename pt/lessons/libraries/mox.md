@@ -3,7 +3,7 @@ version: 1.0.0
 title: Mox
 ---
 
-Mox é uma biblioteca feita para projectar mocks simultâneos em Elixir.
+Mox é uma biblioteca feita para projetar mocks simultâneos em Elixir.
 
 {% include toc.html %}
 
