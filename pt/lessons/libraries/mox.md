@@ -190,8 +190,8 @@ Nesses casos você poderá ter de definir o seu próprio comportamento e callbac
 Esta situação traz consigo um ponto importante: você poderá querer usar uma camada de abstração (ou seja, [indirection](https://en.wikipedia.org/wiki/Indirection)) para que a sua aplicação não dependa de um pacto de third-party _diretamente_, mas, em vez disso, você usaria o seu próprio módulo que, por usa vez, usaria essa package.
 É importante, numa aplicação bem desenhada e concebida, definir os 'limites' adequados, mas a mecânica dos mocks não se altera, por isso, não deixe que isso o atrapalhe.
 
-Finally, in your test modules, you can put your mocks to use by importing `Mox` and calling its `:verify_on_exit!` function.
-Then you are free to define return values on your mock modules using one or more calls to the `expect` function:
+Finalmente, nos nossos módulos de teste, você pode colocar os seus mocks em uso ao importar `Mox` e chamando a sua função `:verify_on_exit!`.
+Depois você estará livre de definir os valores de retorno dos seus módulos mock usando uma ou mais chamadas para a função `expect`:
 
 ```elixir
 defmodule MyAppTest do
