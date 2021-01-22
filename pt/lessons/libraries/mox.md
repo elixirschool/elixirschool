@@ -183,7 +183,7 @@ Nos bastidores, o Mox irá criar o módulo com esse nome em tempo real dentro do
 A segunda coisa complicada é que o módulo referido por `for:` _deve_ ser um comportamento: _deve_ definir callbacks.
 Mox usa introspecção neste módulo e você poderá apenas definir funções mock quando uma `@callback` tiver sido definida.
 É assim que o Mox aplica o contrato.
-Às vezes é pode ser difícil encontrar o módulo de comportamento: `HTTPoison`, por exemplo, depende do `HTTPoison.Base`, mas você não tem forma de saber isso a não ser que olhe para o source code.
+Às vezes pode ser difícil encontrar o módulo de comportamento: `HTTPoison`, por exemplo, depende do `HTTPoison.Base`, mas você não tem forma de saber isso a não ser que olhe para o source code.
 Se estiver a tentar criar um mock para uma 3rd-party package, poderá já ter descoberto que esse comportamento não existe!
 Nesses casos você poderá ter de definir o seu próprio comportamento e callbacks para satisfazer a necessidade de um contrato.
 
