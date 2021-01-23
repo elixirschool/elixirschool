@@ -146,7 +146,7 @@ Then you may include `mox` in your dependencies:
 defp deps do
   [
     # ...
-    {:mox, "~> 0.5.2", only: [:test], runtime: false}
+    {:mox, "~> 0.5.2", only: :test}
   ]
 end
 ```
@@ -155,22 +155,18 @@ Install it with `mix deps.get`.
 
 Next, modify your `test_helper.exs` so it does 3 things:
 
-1. it must start the Mox app
-2. it must define one or more mocks
-3. it must set the application config with the mock
+1. it must define one or more mocks
+2. it must set the application config with the mock
 
 ```elixir
 # test_helper.exs
-ExUnit.start(exclude: [:skip])
+ExUnit.start()
 
-# 1. Start the mox app
-Mox.Server.start_link([])
-
-# 2. define dynamic mocks
+# 1. define dynamic mocks
 Mox.defmock(HTTPoison.BaseMock, for: HTTPoison.Base)
 # ... etc...
 
-# 3. Override the config settings (similar to adding these to `config/test.exs`)
+# 2. Override the config settings (similar to adding these to `config/test.exs`)
 Application.put_env(:my_app, :http_client, HTTPoison.BaseMock)
 # ... etc...
 ```
@@ -194,7 +190,7 @@ Then you are free to define return values on your mock modules using one or more
 
 ```elixir
 defmodule MyAppTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   # 1. Import Mox
   import Mox
   # 2. setup fixtures
