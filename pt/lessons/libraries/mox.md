@@ -68,7 +68,7 @@ config :my_app, :http_client, HTTPoison
 
 Esta lógica e a sua dependência na configuração da aplicação forma a base de tudo que se segue.
 
-Se você é propenso a pensar em demasia, sim, poderia omitir a função `http_client/0` e chamar diretamente `Application.get_env/2`, e, sim, poderia também fornecer um terceiro argumento padrão a `Application.get_env/3` e obter o mesmo resultado.
+Se você é propenso a pensar demais, sim, poderia omitir a função `http_client/0` e chamar diretamente `Application.get_env/2`, e, sim, poderia também fornecer um terceiro argumento padrão a `Application.get_env/3` e obter o mesmo resultado.
 
 Aproveitando-nos do config da aplicação, é-nos permitido ter implementações específicas do módulo para cada ambiente; você poderia fazer referência a um módulo sandbox para o ambiente `dev` enquanto que o ambiente `test` poderia usar um módulo da memória.
 
