@@ -128,7 +128,7 @@ Fizemos uma demonstração da estrutura acima porque descreve a abordagem de uma
 
 A bibiloteca ideal para trabalhar com mocks em Elixir é a [Mox](https://hexdocs.pm/mox/Mox.html), de autoria do próprio José Valim, e resolve todos os problemas delineados acima.
 
-Lembre-se: como requisito, o seu código deve olhar para o config da sua aplicação para obter o seu módulo configurado:
+Lembre-se: como requisito, o seu código deve olhar para a configuração da sua aplicação para obter o seu módulo configurado:
 
 ```elixir
 def get_username(username) do
