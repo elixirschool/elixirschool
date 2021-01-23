@@ -176,7 +176,7 @@ Application.put_env(:my_app, :http_client, HTTPoison.BaseMock)
 # ... etc...
 ```
 
-Algumas coisas importantes a fazerem-se notar sobre `Mox.defmock`: o nome do lado esquerdo é arbitrário.
+Algumas coisas importantes a se notar sobre o `Mox.defmock`: o nome do lado esquerdo é arbitrário.
 Os nomes dos módulos em Elixir são apenas atoms -- você não precisa criar o módulo em nenhum, tudo que você está fazendo é "reservando" um nome para o módulo mock.
 Nos bastidores, o Mox irá criar o módulo com esse nome em tempo real dentro do BEAM.
 
