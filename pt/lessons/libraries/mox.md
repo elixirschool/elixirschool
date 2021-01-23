@@ -184,7 +184,7 @@ A segunda coisa complicada é que o módulo referido por `for:` _deve_ ser um co
 Mox usa introspecção neste módulo e você poderá apenas definir funções mock quando uma `@callback` tiver sido definida.
 É assim que o Mox aplica o contrato.
 Às vezes pode ser difícil encontrar o módulo de comportamento: `HTTPoison`, por exemplo, depende do `HTTPoison.Base`, mas você não tem forma de saber isso a não ser que olhe para o código fonte.
-Se estiver a tentar criar um mock para uma 3rd-party package, poderá já ter descoberto que esse comportamento não existe!
+Se estiver a tentar criar um mock para uma biblioteca de terceiro, poderá já ter descoberto que esse comportamento não existe!
 Nesses casos você poderá ter de definir o seu próprio comportamento e callbacks para satisfazer a necessidade de um contrato.
 
 Esta situação traz consigo um ponto importante: você poderá querer usar uma camada de abstração (ou seja, [indirection](https://en.wikipedia.org/wiki/Indirection)) para que a sua aplicação não dependa de um pacto de third-party _diretamente_, mas, em vez disso, você usaria o seu próprio módulo que, por usa vez, usaria essa package.
