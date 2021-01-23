@@ -126,7 +126,7 @@ Fizemos uma demonstração da estrutura acima porque descreve a abordagem de uma
 
 ## Mox : A Solução para todos os Problemas
 
-A package ideal para trabalhar com mocks em Elixir é a [Mox](https://hexdocs.pm/mox/Mox.html), da autoria do prório José Valim, e resolve todos os problemas delineados acima.
+A bibiloteca ideal para trabalhar com mocks em Elixir é a [Mox](https://hexdocs.pm/mox/Mox.html), de autoria do próprio José Valim, e resolve todos os problemas delineados acima.
 
 Lembre-se: como requisito, o seu código deve olhar para o config da sua aplicação para obter o seu módulo configurado:
 
