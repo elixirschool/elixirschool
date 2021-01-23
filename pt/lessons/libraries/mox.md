@@ -60,7 +60,7 @@ defp http_client do
 end
 ```
 
-Então, no seu ficheiro config:
+Então, no seu arquivo de configuração:
 
 ```elixir
 config :my_app, :http_client, HTTPoison
