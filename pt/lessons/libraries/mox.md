@@ -78,7 +78,7 @@ Vamos dar uma olhada ao [Application.put_env/4](https://hexdocs.pm/elixir/Applic
 
 Imagine que a sua aplicação precisa agir de forma diferente dependendo de se a requisição HTTP foi, ou não, feita com sucesso.
 Poderíamos criar múltiplos módulos, cada um com uma função `get/1`.
-Um módulo poderia devolver um tuple `:ok`, e outro poderia devolver um tuple `:error`.
+Um módulo poderia devolver uma tupla `:ok`, e outro poderia devolver uma tupla `:error`.
 Então, depois poderíamos usar o `Application.put_env/4` para definir a configuração antes de chamar a nossa função `get_username/1`.
 O nosso módulo de teste teria mais ou menos este aspecto:
 
