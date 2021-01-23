@@ -40,7 +40,7 @@ def get_username(username, http_client) do
 end
 ```
 
-Passar o módulo como argumento ajuda a separar as eventuais preocupações que tenhamos e, se não nos assustarmos demasiado com a verborragia de programação orientada a objetos na definição, poderemos reconhecer esta inversão de controlo como uma espécie de [Injeção de Dependência](https://en.wikipedia.org/wiki/Dependency_injection).
+Passar o módulo como argumento ajuda a separar as responsabilidades e, se não nos assustarmos demais com a verbosidade de programação orientada a objetos na definição, poderemos reconhecer esta inversão de controle como uma espécie de [Injeção de Dependência](https://en.wikipedia.org/wiki/Dependency_injection).
 Para testar o método `get_username/2`, você só necessitaria de passar um módulo custa função `get` retorne o valor necessário para as suas asserções.
 
 Esta lógica é muito simples, e, por isso, é apenas útil quando a função é facilmente acessível (e não, por exemplo, quando está subterrada algures dentro de uma função privada).
