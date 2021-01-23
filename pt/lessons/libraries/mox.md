@@ -76,7 +76,7 @@ Contudo, ter um único módulo fixo por ambiente pode não ser flexível o sufic
 O que a maior parte das pessoas não sabe é que você pode _mudar_ a configuração da aplicação em templo de execução!
 Vamos dar uma olhada ao [Application.put_env/4](https://hexdocs.pm/elixir/Application.html#put_env/4).
 
-Imagine que a sua aplicação necessita de agir de forma diferente dependendo de se o pedido HTTP foi, ou não, feito com sucesso.
+Imagine que a sua aplicação precisa agir de forma diferente dependendo de se a requisição HTTP foi, ou não, feita com sucesso.
 Poderíamos criar múltiplos módulos, cada um com uma função `get/1`.
 Um módulo poderia devolver um tuple `:ok`, e outro poderia devolver um tuple `:error`.
 Então, depois poderíamos usar o `Application.put_env/4` para definir a configuração antes de chamar a nossa função `get_username/1`.
