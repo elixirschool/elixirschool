@@ -120,7 +120,7 @@ Em segundo lugar, testes como o descrito acima não podem rodar com segurança d
 Devido ao estado da aplicação ser partilhado por _toda_ a aplicação, é completamente possível que quando você dá override do `:http_client` num teste, que um outro teste (rodando simultaneamente) espere um resultado diferente.
 Você pode ter encontrado problemas como este quando o teste é executado _usualmente_ passa, mas às vezes falha inexplicavelmente. Cuidado!
 
-Em terceiro lugar, esta abordagem pode ficar confusa porque você acaba com um conjunto de módulos mock algures no meio da sua aplicação. Que nojo.
+Em terceiro lugar, esta abordagem pode ficar confusa porque você acaba com um conjunto de módulos mock em algum lugar no meio da sua aplicação. Que nojo.
 
 Fizemos uma demonstração da estrutura acima porque descreve a abordagem de uma forma bastante direta que nos ajuda a compreender um pouco melhor sobre como a solução _real_ funciona.
 
