@@ -72,7 +72,7 @@ Se você é propenso a pensar demais, sim, poderia omitir a função `http_clien
 
 Nos aproveitar do configuração da aplicação nos permite ter implementações específicas do módulo para cada ambiente; você poderia fazer referência a um módulo sandbox para o ambiente `dev` enquanto que o ambiente `test` poderia usar um módulo da memória.
 
-No entanto, ter um único módulo fico por ambiente pode não ser flexível o suficiente: dependendo de com a sua função é usada, você poderá necessitar de devolver diferentes respostas para conseguir testar todos os caminhos de execução possíveis.
+Contudo, ter um único módulo fixo por ambiente pode não ser flexível o suficiente: dependendo de como a sua função é usada, você pode precisar devolver diferentes respostas para conseguir testar todos os caminhos de execução possíveis.
 O que a maior parte das pessoas não sabe é que você pode _mudar_ a configuração da aplicação em templo de execução!
 Vamos dar uma olhada ao [Application.put_env/4](https://hexdocs.pm/elixir/Application.html#put_env/4).
 
