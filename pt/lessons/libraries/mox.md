@@ -158,7 +158,7 @@ Depois, modifique o seu `test_helper.exs` para que este faça 3 coisas:
 
 1. deve começar a app Mox
 2. deve definir um ou mais mocks
-3. deve definir a configuração do aplicativo com o mock
+3. deve definir a configuração da aplicação com o mock
 
 ```elixir
 # test_helper.exs
