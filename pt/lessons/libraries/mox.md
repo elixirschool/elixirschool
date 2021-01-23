@@ -70,7 +70,7 @@ Esta lógica e a sua dependência na configuração da aplicação forma a base 
 
 Se você é propenso a pensar demais, sim, poderia omitir a função `http_client/0` e chamar diretamente `Application.get_env/2`, e, sim, poderia também fornecer um terceiro argumento padrão a `Application.get_env/3` e obter o mesmo resultado.
 
-Aproveitando-nos do config da aplicação, é-nos permitido ter implementações específicas do módulo para cada ambiente; você poderia fazer referência a um módulo sandbox para o ambiente `dev` enquanto que o ambiente `test` poderia usar um módulo da memória.
+Nos aproveitar do configuração da aplicação nos permite ter implementações específicas do módulo para cada ambiente; você poderia fazer referência a um módulo sandbox para o ambiente `dev` enquanto que o ambiente `test` poderia usar um módulo da memória.
 
 No entanto, ter um único módulo fico por ambiente pode não ser flexível o suficiente: dependendo de com a sua função é usada, você poderá necessitar de devolver diferentes respostas para conseguir testar todos os caminhos de execução possíveis.
 O que a maior parte das pessoas não sabe é que você pode _mudar_ a configuração da aplicação em templo de execução!
