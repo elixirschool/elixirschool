@@ -41,7 +41,7 @@ end
 ```
 
 Passar o módulo como argumento ajuda a separar as responsabilidades e, se não nos assustarmos demais com a verbosidade de programação orientada a objetos na definição, poderemos reconhecer esta inversão de controle como uma espécie de [Injeção de Dependência](https://en.wikipedia.org/wiki/Dependency_injection).
-Para testar o método `get_username/2`, você só necessitaria de passar um módulo custa função `get` retorne o valor necessário para as suas asserções.
+Para testar o método `get_username/2`, você só precisaria passar um módulo com uma função `get` que retorne o valor necessário para as suas verificações.
 
 Esta lógica é muito simples, e, por isso, é apenas útil quando a função é facilmente acessível (e não, por exemplo, quando está subterrada algures dentro de uma função privada).
 
