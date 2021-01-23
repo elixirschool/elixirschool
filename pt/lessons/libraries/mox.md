@@ -117,7 +117,7 @@ As razãos para isto poderão não ser imediatamente óbvias.
 Primeiramente, não há nada que garante que os módulos que definimos no nosso `:http_client` podem fazer o que necessitam de fazer: não há aqui a imposição de um contrato que requer que os módulos tenham uma função `get/1`.
 
 Em segundo lugar, testes como o descrito acima não podem rodar com segurança de forma assíncrona.
-Devido ao estado da aplicação ser partilhado por _toda_ a aplicação, é completamente possível que quando você dá override do `:http_client` num teste, que um outro teste (a correr em simultâneo) espere um resultado diferente.
+Devido ao estado da aplicação ser partilhado por _toda_ a aplicação, é completamente possível que quando você dá override do `:http_client` num teste, que um outro teste (rodando simultaneamente) espere um resultado diferente.
 Você pode ter encontrado problemas como este quando o teste é executado _usualmente_ passa, mas às vezes falha inexplicavelmente. Cuidado!
 
 Em terceiro lugar, esta abordagem pode ficar confusa porque você acaba com um conjunto de módulos mock algures no meio da sua aplicação. Que nojo.
