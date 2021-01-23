@@ -45,7 +45,7 @@ Para testar o método `get_username/2`, você só precisaria passar um módulo c
 
 Esta lógica é muito simples, e, por isso, é apenas útil quando a função é facilmente acessível (e não, por exemplo, quando está subterrada algures dentro de uma função privada).
 
-Uma tática mais flexível apoia-se na configuração da aplicação.
+Uma tática mais flexível depende de configuração da aplicação.
 Talvez não se tenha ainda apercebido, mas uma aplicação Elixir mantém o estado na sua configuração.
 Em vez de fazer hard-code de um módulo ou passá-lo como um argumento, pode ler o mesmo a partir da configuração da aplicação.
 Perhaps you didn't even realize it, but an Elixir application maintains state in its configuration.
