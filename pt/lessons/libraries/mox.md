@@ -66,7 +66,7 @@ Então, no seu arquivo de configuração:
 config :my_app, :http_client, HTTPoison
 ```
 
-Esta lógica e a sua dependência no config da aplicação forma a base de tudo que se segue.
+Esta lógica e a sua dependência na configuração da aplicação forma a base de tudo que se segue.
 
 Se você é propenso a pensar em demasia, sim, poderia omitir a função `http_client/0` e chamar diretamente `Application.get_env/2`, e, sim, poderia também fornecer um terceiro argumento padrão a `Application.get_env/3` e obter o mesmo resultado.
 
