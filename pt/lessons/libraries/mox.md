@@ -48,7 +48,6 @@ Esta lógica é muito simples, e, por isso, é apenas útil quando a função é
 Uma tática mais flexível depende de configuração da aplicação.
 Talvez não se tenha ainda apercebido, mas uma aplicação Elixir mantém o estado na sua configuração.
 Em vez de fazer hard-code de um módulo ou passá-lo como um argumento, pode ler o mesmo a partir da configuração da aplicação.
-Perhaps you didn't even realize it, but an Elixir application maintains state in its configuration.
 
 ```elixir
 def get_username(username) do
@@ -187,7 +186,7 @@ Mox usa introspecção neste módulo e você poderá apenas definir funções mo
 Se estiver a tentar criar um mock para uma biblioteca de terceiro, poderá já ter descoberto que esse comportamento não existe!
 Nesses casos você poderá ter de definir o seu próprio comportamento e callbacks para satisfazer a necessidade de um contrato.
 
-Esta situação traz consigo um ponto importante: você poderá querer usar uma camada de abstração (ou seja, [indirection](https://en.wikipedia.org/wiki/Indirection)) para que a sua aplicação não dependa de uma biblioteca de terceiro _diretamente_, mas, em vez disso, você usaria o seu próprio módulo que, por usa vez, usaria essa bibloiteca.
+Esta situação traz consigo um ponto importante: você poderá querer usar uma camada de abstração (ou seja, [indirection](https://en.wikipedia.org/wiki/Indirection)) para que a sua aplicação não dependa de uma biblioteca de terceiro _diretamente_, mas, em vez disso, você usaria o seu próprio módulo que, por usa vez, usaria essa biblioteca.
 É importante, numa aplicação bem desenhada e concebida, definir os "limites" adequados, mas a mecânica dos mocks não se altera, por isso, não deixe que isso o atrapalhe.
 
 Finalmente, nos nossos módulos de teste, você pode colocar os seus mocks em uso ao importar `Mox` e chamando a sua função `:verify_on_exit!`.
