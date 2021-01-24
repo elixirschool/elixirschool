@@ -25,7 +25,7 @@ Uma lista de sigils disponíveis incluem:
   - `~w` Gera uma lista **com** escape e interpolação
   - `~N` Gera uma `NaiveDateTime` struct
 
-Uma lista de delimitadores inclue:
+Uma lista de delimitadores inclui:
 
   - `<...>` Um par de brackets
   - `{...}` Um par de chaves
