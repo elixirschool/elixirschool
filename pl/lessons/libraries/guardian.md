@@ -1,5 +1,5 @@
 ---
-version: 0.9.1
+version: 1.0.4
 title: Guardian (Podstawy)
 ---
 
@@ -9,20 +9,23 @@ title: Guardian (Podstawy)
 
 ## JWT
 
-JWT umożliwia użycie rozbudowanego tokenu uwierzytelniania. W przeciwieństwie do innych systemów uwierzytelniania, które udostępniają jedynie informacje o identyfikatorze podmiotu i zasobu, JWT udostępnia dodatkowo:
+JWT umożliwia użycie rozbudowanego tokenu uwierzytelniania.
+W przeciwieństwie do innych systemów uwierzytelniania, które udostępniają jedynie dane o identyfikatorze podmiotu i zasobu, JWT udostępnia dodatkowo nastepujące informacje:
 
-* Kto wystąpił o token,
-* Dla kogo przeznaczony jest token,
-* Który system będzie używał token,
-* Kiedy zostało wysłane żądanie,
-* Kiedy token wygasa.
+* kto wystąpił o token,
+* dla kogo przeznaczony jest token,
+* który system będzie używał token,
+* kiedy zostało wysłane żądanie,
+* kiedy token wygasa.
 
-Dodatkowo Guardian wprowadza pola, pozwalające na zdefiniowanie:
+Dodatkowo Guardian udostępnia kilka innych pól, pozwalających na zdefiniowanie:
 
-* Jaki jest typ tokenu,
-* Jakie uprawnienia ma posiadacz.
+* jaki jest typ tokenu,
+* jakie uprawnienia ma posiadacz.
 
-To tylko podstawowe pola JWT. Jeżeli twoja aplikacja wymaga dodatkowych informacji możne je dodać. Jedynym ograniczeniem jest maksymalna długość nagłówka HTTP.
+To tylko podstawowe pola JWT.
+Jeżeli twoja aplikacja wymaga dodatkowych informacji, można je dodać.
+Pamiętaj jedynie, aby JWT był możliwie krótki, gdyż musi się on zmieścić w nagłówku HTTP.
 
 Tak rozbudowana funkcjonalność pozwala na przekazywanie tokenów JWT w ramach całego systemu jako w pełni funkcjonalnych kontenerów na informacje o uwierzytelnieniu.
 
@@ -32,7 +35,7 @@ JWT token może być użyty do uwierzytelniania w dowolnym miejscu systemu i w d
 
 * Aplikacje SPA
 * Kontrolery (poprzez sesję przeglądarki)
-* Kontrolery (poprzez nagłówki uwierzytelniające)
+* Kontrolery (poprzez nagłówki uwierzytelniające – API)
 * Kanały frameworku Phoenix
 * Żądania pomiędzy serwisami
 * Procesy wewnętrzne aplikacji
@@ -44,15 +47,23 @@ Tokeny JWT mogą zatem zostać użyte wszędzie tam, gdzie potrzebujemy weryfika
 
 ### Czy potrzebuję bazy danych?
 
-Nie ma potrzeby przechowywania JWT w bazie danych. Na podstawie danych z tokena takich jak, żądający i data wygaśnięcia, można kontrolować udostępniane zasoby. Zazwyczaj korzystamy z bazy danych, bo tam składowane są zasoby, ale samo JWT tego nie wymaga.
+Nie ma potrzeby przechowywania JWT w bazie danych.
+Na podstawie danych z tokena takich jak, żądający i data wygaśnięcia, można kontrolować udostępniane zasoby.
+Zazwyczaj korzystamy z bazy danych, bo tam składowane są zasoby, ale samo JWT tego nie wymaga.
 
-Na przykład, jeżeli chcemy użyć JWT do uwierzytelniania komunikacji po UDP, to nie będziemy używać bazy danych. W zamian zapiszemy wszystkie informacje bezpośrednio w tokenie. Po weryfikacji, zakładając, że jest on poprawnie podpisany, możemy już udostępnić zasoby.
+Na przykład, jeżeli chcemy użyć JWT do uwierzytelniania komunikacji po UDP, to nie będziemy używać bazy danych.
+W zamian zapiszemy wszystkie informacje bezpośrednio w tokenie.
+Po weryfikacji, zakładając, że jest on poprawnie podpisany, możemy już udostępnić zasoby.
 
-Jeżeli jednak zdecydujesz się na użycie bazy danych do przechowywania JWT, to otrzymasz możliwość weryfikacji czy token jest nadal prawidłowy, inaczej czy nie został on unieważniony. Można też wykorzystać bazę danych, by przykładowo unieważnić wszystkie tokeny danego użytkownika. W tym celu Guardian wykorzystuje [GuardianDB](https://github.com/hassox/guardian_db). Samo GuardianDb używa 'zaczepów' Guardian, by przeprowadzić walidację i zapisać lub usunąć dane z bazy. Będziemy jeszcze o tym mówić.  
+Jeżeli jednak zdecydujesz się na użycie bazy danych do przechowywania JWT, to otrzymasz możliwość weryfikacji czy token jest nadal prawidłowy, a więc czy nie został on unieważniony.
+Możesz też wykorzystać bazę danych, by przykładowo unieważnić wszystkie tokeny danego użytkownika.
+W tym celu Guardian wykorzystuje [GuardianDB](https://github.com/hassox/guardian_db). Samo GuardianDb używa 'zaczepów' Guardian, by przeprowadzić walidację i zapisać lub usunąć dane z bazy.
+Będziemy jeszcze o tym później mówić.
 
 ## Konfiguracja
 
-Konfiguracja Guardiana jest rozbudowana i ma wiele opcji. Zajmiemy się nimi za chwilę, ale najpierw przygotujmy coś prostego.
+Konfiguracja Guardiana jest rozbudowana i ma wiele opcji.
+Zajmiemy się nimi za chwilę, ale najpierw przygotujmy coś prostego.
 
 ### Minimalna konfiguracja
 
@@ -72,7 +83,7 @@ end
 
 def deps do
   [
-    {guardian: "~> x.x"},
+    {:guardian, "~> x.x"},
     ...
   ]
 end
@@ -81,16 +92,18 @@ end
 W pliku `config/config.ex`:
 
 ```elixir
-# Nadpisz tą wartość w plikach konfiguracyjnych dla poszczególnych środowisk
+# Nadpisz tę wartość w plikach konfiguracyjnych dla poszczególnych środowisk
 config :guardian, Guardian,
   issuer: "MyAppId",
   secret_key: Mix.env(),
   serializer: MyApp.GuardianSerializer
 ```
 
-Oto minimalna ilość informacji potrzebnych Guardianowi do działania. Oczywiście nie powinniśmy podawać sekretnego klucza w głównym pliku konfiguracyjnym. Każde środowisko powinno mieć własny klucz. O ile typowym jest używanie tego samego klucza w środowisku dev i test, to już środowisko produkcyjne powinno mieć własny, silny klucz wygenerowany na przykład za pomocą polecenia `mix phoenix.gen.secret`.
+Oto minimalna ilość informacji potrzebnych Guardianowi do działania.
+Oczywiście nie powinniśmy podawać sekretnego klucza w głównym pliku konfiguracyjnym. Każde środowisko powinno mieć własny klucz.
+O ile typowym jest używanie tego samego klucza w środowisku dev i test, to już środowisko produkcyjne powinno mieć własny, silny klucz (na przykład wygenerowany za pomocą polecenia `mix phoenix.gen.secret`).
 
-Stwórzmy teraz serializer `lib/my_app/guardian_serializer.ex`:
+`lib/my_app/guardian_serializer.ex`
 
 ```elixir
 defmodule MyApp.GuardianSerializer do
@@ -107,29 +120,36 @@ defmodule MyApp.GuardianSerializer do
 end
 ```
 
-Jest on odpowiedzialny za odnalezienie zasobu, którego identyfikator znajduje się w polu `sub` (od _subject_). Może on wykorzystać w tym celu bazę danych, zewnętrzne API, albo nawet ciąg znaków. Jest on też odpowiedzialny za zapis identyfikatora do pola `sub`.
+Twój serializer jest odpowiedzialny za odnalezienie zasobu, którego identyfikator znajduje się w polu `sub` (od _subject_).
+Może on wykorzystać w tym celu bazę danych, zewnętrzne API, albo nawet ciąg znaków.
+Jest on też odpowiedzialny za zapis identyfikatora do pola `sub`.
 
-Tak wygląda minimalna konfiguracja. Oczywiście można tu zrobić znacznie więcej, ale na start wystarczy.
+Tak wygląda minimalna konfiguracja.
+Oczywiście można tu zrobić znacznie więcej, ale na początek wystarczy.
 
 #### Użycie w aplikacji
 
-Gdy mamy już naszą konfigurację na miejscu, musimy jakoś zintegrować Guardiana z aplikacją. Jako że wykorzystujemy minimalną konfigurację, to zajmijmy się najpierw żądaniami HTTP.
+Gdy mamy już naszą konfigurację na miejscu, musimy jakoś zintegrować Guardiana z aplikacją.
+Jako że wykorzystujemy minimalną konfigurację, to zajmijmy się najpierw żądaniami HTTP.
 
 ## Żądania HTTP
 
-Guardian udostępnia pewną ilość plugów, pozwalających na integrację z protokołem HTTP. O plugach możesz poczytać [w lekcji im poświęconej](../../specifics/plug/). Guardian nie wymaga Phoenixa, ale użyjemy go tutaj by uprościć przykład.
+Guardian udostępnia pewną ilość plugów, pozwalających na integrację z protokołem HTTP.
+O plugach możesz poczytać [w lekcji im poświęconej](../../specifics/plug/).
+Guardian nie wymaga Phoenixa, ale użyjemy go tutaj, gdyż dzięki temu przykłady będą łatwiejsze do pokazania.
 
-Najprostszą metodą integracji jest użycie routera, ale jako że sam proces integracji opiera się o mechanizm plugów, to można go użyć wszędzie tam, gdzie mają zastosowanie plugi.
+Najprostszą metodą integracji jest użycie routera, ale ponieważ sam proces integracji opiera się o mechanizm plugów, można go użyć wszędzie tam, gdzie mają zastosowanie plugi.
 
 Zasadniczo zasada działania plugu Guardiana jest następująca:
 
-1. Znajdź token gdzieś w żądaniu: plugi `Verify*`
-2. Opcjonalnie załaduj identyfikator zasobu: plug `LoadResource`
-3. Sprawdź, czy token z żądania jest poprawny i jeżeli nie jest, zablokuj dostęp. Plug `EnsureAuthenticated`.
+1. Znajdź token gdzieś w żądaniu: plugi `Verify*`.
+2. Opcjonalnie załaduj identyfikator zasobu: plug `LoadResource`.
+3. Sprawdź, czy token z żądania jest poprawny i jeżeli nie jest, zablokuj dostęp: plug `EnsureAuthenticated`.
 
-By zaspokoić wszystkie wymagania programistów, Guardian implementuje powyższe fazy w oddzielnych plugach. By znaleźć token używamy plugów `Verify*`.
+By spełnić wszystkie wymagania programistów, Guardian implementuje powyższe fazy w oddzielnych plugach.
+By znaleźć token używamy plugów `Verify*`.
 
-Stwórzmy potok pracy.
+Stwórzmy kilka potoków.
 
 ```elixir
 pipeline :maybe_browser_auth do
@@ -143,11 +163,11 @@ pipeline :ensure_authed_access do
 end
 ```
 
-Potoki te pozwalają na zaspokojenie różnych potrzeb związanych z uwierzytelnianiem. Pierwszy próbuje odnaleźć token w sesji, kolejny w nagłówku, a gdy token zostanie odnaleziony, to ładowane są odpowiednie zasoby.
+Potoki te pozwalają na spełnienie różnych wymagań związanych z uwierzytelnianiem.
+Pierwszy próbuje odnaleźć token w sesji, kolejny w nagłówku, a gdy token zostanie odnaleziony, to ładowane są odpowiednie zasoby.
 
-Drugi z potoków spełnia wymagania co do weryfikacji poprawności tokenu, sprawdzając, czy jego typ, pole `typ` ma wartość `access`.
-
-By ich użyć, dodajmy je do naszej aplikacji:
+Drugi z potoków wymaga obecności poprawnego, zweryfikowanego tokenu typu `access`.
+By ich użyć, dodajmy je do naszej aplikacji.
 
 ```elixir
 scope "/", MyApp do
@@ -165,18 +185,23 @@ scope "/", MyApp do
 end
 ```
 
-Powyższa konfiguracja dla procesu logowania pozwala na uwierzytelnienie użytkownika, jeżeli tylko istnieje. Druga z konfiguracji sprawdza, czy przesłano poprawny token. Oczywiście nie musimy używać potoków i zamiast nich dodać odpowiednie elementy bezpośrednio do kontrolerów, by uzyskać bardzo elastyczne do konfiguracji rozwiązanie, ale tu wybraliśmy najprostsze rozwiązanie.
+Powyższa konfiguracja dla procesu logowania pozwala na uwierzytelnienie użytkownika, jeżeli tylko taki istnieje.
+Druga z konfiguracji sprawdza, czy przesłano poprawny token.
+Oczywiście nie _musimy_ używać potoków i zamiast nich dodać odpowiednie elementy bezpośrednio do kontrolerów, by uzyskać bardzo elastyczne do konfiguracji rozwiązanie, ale tu wybraliśmy najprostsze rozwiązanie.
 
-Jak na razie kompletnie pominęliśmy jedną rzecz. Obsługę błędów dodaną w plugu `EnsureAuthenticated`. Jest to bardzo prosty moduł zawierający dwie funkcje:
+Jak na razie kompletnie pominęliśmy jedną rzecz – obsługę błędów dodaną w plugu `EnsureAuthenticated`.
+Jest to bardzo prosty moduł zawierający dwie funkcje:
 
 * `unauthenticated/2`
 * `unauthorized/2`
 
-Obie te funkcje jako parametry otrzymują strukturę Plug.Conn oraz mapę parametrów żądania. Powinny obsłużyć odpowiedni rodzaj błędów. Innym rozwiązaniem jest użycie kontrolera z Phoenixa.  
+Obie te funkcje jako parametry otrzymują strukturę Plug.Conn i mapę parametrów żądania oraz powinny obsłużyć odpowiedni rodzaj błędów.
+Innym rozwiązaniem jest użycie kontrolera z Phoenixa!
 
 #### W kontrolerze
 
-W kontrolerze mamy kilka różnych sposobów, by otrzymać informacje o aktualnie zalogowanym użytkowniku. Zacznijmy od najprostszego.  
+W kontrolerze mamy kilka różnych sposobów, by otrzymać informacje o aktualnie zalogowanym użytkowniku.
+Zacznijmy od najprostszego.
 
 ```elixir
 defmodule MyApp.MyController do
@@ -184,12 +209,13 @@ defmodule MyApp.MyController do
   use Guardian.Phoenix.Controller
 
   def some_action(conn, params, user, claims) do
-    # do stuff
+    # Działanie funkcji
   end
 end
 ```
 
-Używając modułu `Guardian.Phoenix.Controller`, możemy otrzymać dwa dodatkowe argumenty i wykorzystać dopasowanie wzorców. Należy jednak pamiętać, że jeżeli nie używamy `EnsureAuthenticated`, to możemy otrzymać `nil` jako użytkownika.
+Używając modułu `Guardian.Phoenix.Controller`, możemy otrzymać dwa dodatkowe argumenty i wykorzystać dopasowanie wzorców.
+Należy jednak pamiętać, że jeżeli nie używamy `EnsureAuthenticated`, to możemy otrzymać `nil` jako użytkownika.
 
 Inną, bardziej elastyczną i bogatszą w informacje, metodą jest użycie kodu pomocniczego dla plugów.
 
@@ -201,28 +227,30 @@ defmodule MyApp.MyController do
     if Guardian.Plug.authenticated?(conn) do
       user = Guardian.Plug.current_resource(conn)
     else
-      # No user
+      # Brak użytkownika
     end
   end
 end
 ```
 
-#### Logowanie i wylogowanie
+#### Logowanie i wylogowywanie
 
-Zalogowanie i wylogowanie z wykorzystaniem sesji przeglądarki jest banalnie proste. Kod kontrolera służącego do zalogowania:
+Zalogowanie i wylogowanie z wykorzystaniem sesji przeglądarki jest banalnie proste.
+Kod kontrolera służącego do zalogowania:
 
 ```elixir
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
-      # Use access tokens. Other tokens can be used, like :refresh etc
+      # Użyj tokenów 'access'.
+      # Również inne tokeny mogą zostać użyte, takie jak :refresh itd.
       conn
       |> Guardian.Plug.sign_in(user, :access)
       |> respond_somehow()
 
     {:error, reason} ->
       nil
-      # handle not verifying the user's credentials
+      # Obsłuż niepowodzenie weryfikacji danych użytkownika.
   end
 end
 
@@ -233,20 +261,20 @@ def delete(conn, params) do
 end
 ```
 
-Użycie login API jest trochę inne, ponieważ nie ma tam sesji i musimy samodzielnie odesłać token do użytkownika. W tym celu login API używa nagłówka `Authorization`. Metoda ta jest przydatna, gdy nie chcemy lub nie możemy wykorzystać mechanizmu sesji.
+Użycie login API jest trochę inne, ponieważ nie ma tam sesji i musimy samodzielnie odesłać token do użytkownika.
+W tym celu login API używa nagłówka `Authorization`.
+Metoda ta jest przydatna, gdy nie chcemy lub nie możemy wykorzystać mechanizmu sesji.
 
 ```elixir
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
       {:ok, jwt, _claims} = Guardian.encode_and_sign(user, :access)
-
-      conn
-      |> respond_somehow(%{token: jwt})
+      conn |> respond_somehow(%{token: jwt})
 
     {:error, reason} ->
       nil
-      # handle not verifying the user's credentials
+      # Obsłuż niepowodzenie weryfikacji danych użytkownika.
   end
 end
 

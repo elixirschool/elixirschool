@@ -566,3 +566,12 @@
     - translator
   languages:
     - gr
+
+- github: jangromko
+  name: Jan Gromko
+  intro: I'm Elixir developer at AmberBit and I live in Poland (Białystok/Kraków).
+  twitter: JanGromko
+  contributions:
+    - translator
+  languages:
+    - pl
