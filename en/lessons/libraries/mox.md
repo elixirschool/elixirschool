@@ -153,7 +153,7 @@ end
 
 Install it with `mix deps.get`.
 
-Next, modify your `test_helper.exs` so it does 3 things:
+Next, modify your `test_helper.exs` so it does 2 things:
 
 1. it must define one or more mocks
 2. it must set the application config with the mock
