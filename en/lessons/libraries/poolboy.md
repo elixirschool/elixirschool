@@ -151,7 +151,14 @@ defmodule PoolboyApp.Test do
     Task.async(fn ->
       :poolboy.transaction(
         :worker,
-        fn pid -> GenServer.call(pid, {:square_root, i}) end,
+        fn pid -> 
+          try do
+            GenServer.call(pid, {:square_root, i}) end
+          catch
+            e, r -> IO.inspect("poolboy transaction caught error: #{inspect(e)}, #{inspect(r)}")
+            :ok
+          end
+        end,
         @timeout
       )
     end)
