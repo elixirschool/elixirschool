@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.0.1
 title: Mox
 ---
 
@@ -47,7 +47,7 @@ Esta lógica é muito simples, e, por isso, é apenas útil quando a função é
 
 Uma tática mais flexível depende de configuração da aplicação.
 Talvez não se tenha ainda apercebido, mas uma aplicação Elixir mantém o estado na sua configuração.
-Em vez de fazer hard-code de um módulo ou passá-lo como um argumento, pode ler o mesmo a partir da configuração da aplicação.
+Em vez de chamar um módulo diretamente ou passá-lo como um argumento, pode ler o mesmo a partir da configuração da aplicação.
 
 ```elixir
 def get_username(username) do
@@ -146,31 +146,27 @@ Depois poderá incluir `mox` nas suas dependências:
 defp deps do
   [
     # ...
-    {:mox, "~> 0.5.2", only: [:test], runtime: false}
+    {:mox, "~> 0.5.2", only: :test}
   ]
 end
 ```
 
 Instale o mesmo com `mix deps.get`.
 
-Depois, modifique o seu `test_helper.exs` para que este faça 3 coisas:
+Depois, modifique o seu `test_helper.exs` para que este faça 2 coisas:
 
-1. deve começar a app Mox
-2. deve definir um ou mais mocks
-3. deve definir a configuração da aplicação com o mock
+1. deve definir um ou mais mocks
+2. deve definir a configuração da aplicação com o mock
 
 ```elixir
 # test_helper.exs
-ExUnit.start(exclude: [:skip])
+ExUnit.start()
 
-# 1. Começar a app Mox
-Mox.Server.start_link([])
-
-# 2. definir mocks dinâmicos
+# 1. definir mocks dinâmicos
 Mox.defmock(HTTPoison.BaseMock, for: HTTPoison.Base)
 # ... etc...
 
-# 3. Dar override das configurações do config (similar a adicionar os mesmos a `config/test.exs`)
+# 2. Dar override das configurações do config (similar a adicionar os mesmos a `config/test.exs`)
 Application.put_env(:my_app, :http_client, HTTPoison.BaseMock)
 # ... etc...
 ```
@@ -194,7 +190,7 @@ Depois você estará livre de definir os valores de retorno dos seus módulos mo
 
 ```elixir
 defmodule MyAppTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   # 1. Importar Mox
   import Mox
   # 2. setup da configuração
