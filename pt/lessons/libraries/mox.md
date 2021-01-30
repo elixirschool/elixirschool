@@ -43,7 +43,7 @@ end
 Passar o módulo como argumento ajuda a separar as responsabilidades e, se não nos assustarmos demais com a verbosidade de programação orientada a objetos na definição, poderemos reconhecer esta inversão de controle como uma espécie de [Injeção de Dependência](https://en.wikipedia.org/wiki/Dependency_injection).
 Para testar o método `get_username/2`, você só precisaria passar um módulo com uma função `get` que retorne o valor necessário para as suas verificações.
 
-Esta lógica é muito simples, e, por isso, é apenas útil quando a função é facilmente acessível (e não, por exemplo, quando está subterrada algures dentro de uma função privada).
+Esta lógica é muito simples, e, por isso, é apenas útil quando a função é facilmente acessível (e não, por exemplo, quando está enterrada em algum lugar bem fundo no uma função privada).
 
 Uma tática mais flexível depende de configuração da aplicação.
 Talvez não se tenha ainda apercebido, mas uma aplicação Elixir mantém o estado na sua configuração.
@@ -73,7 +73,7 @@ Nos aproveitar do configuração da aplicação nos permite ter implementações
 
 Contudo, ter um único módulo fixo por ambiente pode não ser flexível o suficiente: dependendo de como a sua função é usada, você pode precisar devolver diferentes respostas para conseguir testar todos os caminhos de execução possíveis.
 O que a maior parte das pessoas não sabe é que você pode _mudar_ a configuração da aplicação em templo de execução!
-Vamos dar uma olhada ao [Application.put_env/4](https://hexdocs.pm/elixir/Application.html#put_env/4).
+Vamos dar uma olhada em [Application.put_env/4](https://hexdocs.pm/elixir/Application.html#put_env/4).
 
 Imagine que a sua aplicação precisa agir de forma diferente dependendo de se a requisição HTTP foi, ou não, feita com sucesso.
 Poderíamos criar múltiplos módulos, cada um com uma função `get/1`.
@@ -107,7 +107,7 @@ defmodule MyAppTest do
 end
 ```
 
-É assumido que você tenha criado os módulos necessários algures (`HTTP200Mock` e `HTTP404Mock`).
+É assumido que você tenha criado os módulos necessários em algum lugar (`HTTP200Mock` e `HTTP404Mock`).
 Nós adicionamos um callback [`on_exit`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#on_exit/2) ao [`setup`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#setup/1) para assegurar que o `:http_client` é devolvido ao seu estado anterior depois de cada teste.
 
 No entanto, um padrão como o descrito acima normalmente _NÃO_ é algo que você deva seguir ou fazer!
