@@ -43,7 +43,7 @@ end
 Passar o módulo como argumento ajuda a separar as responsabilidades e, se não nos assustarmos demais com a verbosidade de programação orientada a objetos na definição, poderemos reconhecer esta inversão de controle como uma espécie de [Injeção de Dependência](https://en.wikipedia.org/wiki/Dependency_injection).
 Para testar o método `get_username/2`, você só precisaria passar um módulo com uma função `get` que retorne o valor necessário para as suas verificações.
 
-Esta lógica é muito simples, e, por isso, é apenas útil quando a função é facilmente acessível (e não, por exemplo, quando está enterrada em algum lugar bem fundo no uma função privada).
+Esta lógica é muito simples, e, por isso, é apenas útil quando a função é facilmente acessível (e não, por exemplo, quando está enterrada em algum lugar bem fundo de uma função privada).
 
 Uma tática mais flexível depende de configuração da aplicação.
 Talvez não se tenha ainda apercebido, mas uma aplicação Elixir mantém o estado na sua configuração.
