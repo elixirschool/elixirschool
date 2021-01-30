@@ -1,15 +1,17 @@
 ---
-version: 2.0.2
+version: 2.0.4
 title: Distillery (Básico)
 ---
 
-Distillery é um gerenciador de releases escrito em Elixir puro. Ele permite que você produza releases que podem ser deployed em outros lugares com pouca ou nenhuma configuração.
+Distillery é um gerenciador de releases escrito em Elixir puro.
+Ele permite que você produza releases que podem ser deployed em outros lugares com pouca ou nenhuma configuração.
 
 {% include toc.html %}
 
 ## O que é uma release?
 
-Uma release é um pacote contendo o seu código Erlang/Elixir compilado (ex [BEAM](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) [bytecode](https://en.wikipedia.org/wiki/Bytecode)). Ela também provẽ quaisquer scripts necessários para rodar a sua aplicação.
+Uma release é um pacote contendo o seu código Erlang/Elixir compilado (ex [BEAM](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) [bytecode](https://en.wikipedia.org/wiki/Bytecode)).
+Ela também provê quaisquer scripts necessários para rodar a sua aplicação.
 
 > Quando você escrever uma ou mais aplicações, você talvez queira criar um sistema completo com estas aplicações e um subconjunto das aplicações Erlang/OTP. Isto é chamado de release. - [Documentação do Erlang](http://erlang.org/doc/design_principles/release_structure.html)
 
@@ -28,7 +30,8 @@ Uma release irá conter o seguinte:
 
 ### Iniciando/instalação
 
-Para adicionar o Distillery no seu projeto, adicione-o como uma dependência no seu arquivo `mix.exs`. *Nota* - se você estiver trabalhando numa aplicação umbrella isto deve estar no mix.exs na raiz do seu projeto
+Para adicionar o Distillery no seu projeto, adicione-o como uma dependência no seu arquivo `mix.exs`.
+*Nota* - se você estiver trabalhando numa aplicação umbrella isto deve estar no mix.exs na raiz do seu projeto
 
 ```elixir
 defp deps do
@@ -91,7 +94,8 @@ For a complete listing of commands and their use:
 ```
 
 Para executar sua aplicação, digite o seguinte no seu terminal ` _build/dev/rel/MYAPP/bin/MYAPP foreground`
-No seu caso substitua MYAPP com o nome do seu projeto. Agora nós estamos rodando o build da release da nossa aplicação!
+No seu caso substitua MYAPP com o nome do seu projeto.
+Agora nós estamos rodando o build da release da nossa aplicação!
 
 
 ## Utilizando Distillery com o Phoenix
@@ -124,15 +128,22 @@ Nós fizemos algumas coisas aqui:
 - `server` - inicia o endpoint HTTP da aplicação Cowboy no início do aplicação
 - `root` - define a raiz da aplicação que é onde os arquivos estáticos são servidos
 - `version` - quebra o cache da aplicação quando a versão da mesma sofre um hot upgrade
-- `port` - alterar a porta para ser setada por uma variável de ambiente permite que passamos o número da porta quando estivermos iniciando a aplicação. Quando iniciamos a aplicação, podemos suprir a porta executando `PORT=4001 _build/prod/rel/book_app/bin/book_app foreground`
+- `port` - alterar a porta para ser setada por uma variável de ambiente permite que passamos o número da porta quando estivermos iniciando a aplicação.
+Quando iniciamos a aplicação, podemos suprir a porta executando `PORT=4001 _build/prod/rel/book_app/bin/book_app foreground`
 
-Se você executou o comando acima, você talvez tenha notado que a sua aplicação crashou porquê é incapaz de conectar ao banco de dados já que nenhum banco de dados atualmente existe. Isto pode ser retificado executando um comando `mix` do Ecto. No seu terminal, digite o seguinte:
+Se você executou o comando acima, você talvez tenha notado que a sua aplicação crashou porquê é incapaz de conectar ao banco de dados já que nenhum banco de dados atualmente existe.
+Isto pode ser retificado executando um comando `mix` do Ecto.
+No seu terminal, digite o seguinte:
 
 ```shell
 MIX_ENV=prod mix ecto.create
 ```
 
-Este comando irá criar o seu banco de dados para você. Tente executar novamente a aplicação e ela deve iniciar com sucesso. Entretanto, você irá notar que a suas migrations para o seu banco de dados não foram executadas. Normalmente em desenvolvimento executamos essas migrations manualmente chamando `mix.ecto.migrate`. Para a release, nós teremos que configurar isto para que ela possa rodar as migrations por si própria.
+Este comando irá criar o seu banco de dados para você.
+Tente executar novamente a aplicação e ela deve iniciar com sucesso.
+Entretanto, você irá notar que a suas migrations para o seu banco de dados não foram executadas.
+Normalmente em desenvolvimento executamos essas migrations manualmente chamando `mix.ecto.migrate`.
+Para a release, nós teremos que configurar isto para que ela possa rodar as migrations por si própria.
 
 
 ## Executando Migrations em Produção
@@ -146,7 +157,10 @@ O Distillery nos provê a habilidade de executar código em diferentes pontos do
 * pre/post_upgrade
 
 
-Para o nosso propósito, iremos estar utilizando o hook `post_start` para executar as migrações da nossa aplicação em produção. Primeiro vamos criar uma nova tarefa da release chamada `migrate`. Uma tarefa de release é um módulo que podemos chamar pelo terminal e que contém código que é separado do funcionamento interno da nossa aplicação. Isto é útil para tarefas que a aplicação em si não precisa tipicamente executar.
+Para o nosso propósito, iremos estar utilizando o hook `post_start` para executar as migrações da nossa aplicação em produção.
+Primeiro vamos criar uma nova tarefa da release chamada `migrate`.
+Uma tarefa de release é um módulo que podemos chamar pelo terminal e que contém código que é separado do funcionamento interno da nossa aplicação.
+Isto é útil para tarefas que a aplicação em si não precisa tipicamente executar.
 
 ```elixir
 defmodule BookAppWeb.ReleaseTasks do
@@ -160,7 +174,8 @@ defmodule BookAppWeb.ReleaseTasks do
 end
 ```
 
-*Nota* É uma boa prática garantir que a sua aplicação iniciou devidamente antes de rodar estas migrations. O [Ecto.Migrator](https://hexdocs.pm/ecto/2.2.8/Ecto.Migrator.html) nos permite executar nossas migrations com o banco de dados conectado.
+*Nota* É uma boa prática garantir que a sua aplicação iniciou devidamente antes de rodar estas migrations.
+O [Ecto.Migrator](https://hexdocs.pm/ecto/2.2.8/Ecto.Migrator.html) nos permite executar nossas migrations com o banco de dados conectado.
 
 Depois, crie um novo arquivo - `rel/hooks/post_start/migrate.sh` e adicione o seguinte código:
 
@@ -172,7 +187,9 @@ bin/book_app rpc "Elixir.BookApp.ReleaseTasks.migrate"
 
 ```
 
-Para que este código execute devidamente, estamos usando o módulo `rpc` do Erlang que fornece o serviço de Produzir Chamada Remota (Remote Produce Call). Basicamente, isto nos permite chamar uma função em um nó remoto e obter a resposta. Quando estiver rodando em produção é provável que a nossa aplicação estará rodando em vários nós diferentes.
+Para que este código execute devidamente, estamos usando o módulo `rpc` do Erlang que fornece o serviço de Produzir Chamada Remota (Remote Produce Call).
+Basicamente, isto nos permite chamar uma função em um nó remoto e obter a resposta.
+Quando estiver rodando em produção é provável que a nossa aplicação estará rodando em vários nós diferentes.
 
 Por último, em nosso arquivo `rel/config.exs` iremos adicionar o hook para a nossa configuração de prod.
 
@@ -199,17 +216,20 @@ environment :prod do
 end
 ```
 
-*Nota* - Este hook apenas existe na release de produção desta aplicação. Se usarmos a release padrão de desenvolvimento ele não irá executar.
+*Nota* - Este hook apenas existe na release de produção desta aplicação.
+Se usarmos a release padrão de desenvolvimento ele não irá executar.
 
 ## Comandos Customizados
 
-Quando estiver trabalhando com uma release, você talvez não tenha acesso aos comandos `mix` pois o `mix` talvez não esteja instalado onde a release foi deployed. Nós podemos resolver isso criando comandos customizados.
+Quando estiver trabalhando com uma release, você talvez não tenha acesso aos comandos `mix` pois o `mix` talvez não esteja instalado onde a release foi deployed.
+Nós podemos resolver isso criando comandos customizados.
 
 > Comandos customizados são estensões do script de inicialização, e são utilizados da mesma maneira que você utiliza foreground ou remote_console, em outras palavras, eles aparentam ser parte do script de inicialização. Assim como hooks, eles tem acesso as helper functions e o ambiente dos scripts de inicialização - [Documentação do Distillery](https://hexdocs.pm/distillery/1.5.2/custom-commands.html)
 
 Comandos são similares a tarefas de release no sentido de que são ambos funções de método mas são diferentes deles no sentido de que eles são executados através do terminal no lugar de serem executados pelo script da release.
 
-Agora que podemos executar nossas migrations, nós talvez queiramos sermos capazes de popular nosso banco de dados com informação através de um comando. Primeiro, adicione um novo método as nossas tarefas da release. Em `BookAppWeb.ReleaseTasks`, adicione o seguinte:
+Agora que podemos executar nossas migrations, nós talvez queiramos sermos capazes de popular nosso banco de dados com informação através de um comando.
+Primeiro, adicione um novo método as nossas tarefas da release. Em `BookAppWeb.ReleaseTasks`, adicione o seguinte:
 
 ```elixir
 def seed do
@@ -220,14 +240,15 @@ end
 
 Depois, crie um novo arquivo `rel/commands/seed.sh` e adicione o seguinte código:
 
-```shell
+```bash
 #!/bin/sh
 
 release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
 ```
 
 
-*Nota* - `release_ctl()` é um shell script fornecido pelo Distillery que nos permite executar comandos localmente ou em um nó limpo. Se você precisa rodar isto em um nó já em execução você pode executar `release_remote_ctl()`
+*Nota* - `release_ctl()` é um shell script fornecido pelo Distillery que nos permite executar comandos localmente ou em um nó limpo.
+Se você precisa rodar isto em um nó já em execução você pode executar `release_remote_ctl()`
 
 Veja mais sobre shell_scripts do Distillery [aqui](https://hexdocs.pm/distillery/extensibility/shell_scripts.html)
 
@@ -242,4 +263,5 @@ end
 
 ```
 
-Certifique-se de recriar a release executando `MIX_ENV=prod mix release`. Uma vez que este processo for concluído, você agora pode executar no seu terminal `PORT=4001 _build/prod/rel/book_app/bin/book_app seed`.
+Certifique-se de recriar a release executando `MIX_ENV=prod mix release`.
+Uma vez que este processo for concluído, você agora pode executar no seu terminal `PORT=4001 _build/prod/rel/book_app/bin/book_app seed`.
