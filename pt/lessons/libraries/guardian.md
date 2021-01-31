@@ -84,7 +84,7 @@ end
 
 def deps do
   [
-    {:guardian: "~> x.x"},
+    {:guardian, "~> x.x"},
     ...
   ]
 end
