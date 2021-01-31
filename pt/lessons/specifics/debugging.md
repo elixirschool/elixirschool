@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.1.3
 title: Depuração
 ---
 
@@ -72,7 +72,7 @@ O que isso faz é executar `mix` dentro do comando `iex`, fazendo com que a apli
 
 Por exemplo, use `iex -S mix phx.server` para depurar sua aplicação Phoenix. No nosso caso será `iex -r test.exs` para requerir o arquivo:
 
-```
+```elixir
 $ iex -r test.exs
 Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
 
@@ -92,8 +92,8 @@ Allow? [Yn]
 
 Depois de responder a confirmação com `y` ou pressionar Enter, você vai entrar no modo interativo.
 
-```
- $ iex -r test.exs
+```elixir
+$ iex -r test.exs
 Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
 
 warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
@@ -146,8 +146,8 @@ Você também pode checar a lista com o resto dos utilitários disponíveis na [
 ## Dialyxir e Dialyzer
 
 O [Dialyzer](http://erlang.org/doc/man/dialyzer.html) (**DI**screpancy **A**na**LYZ**er for **ER**lang), é uma ferramenta para análise de
-código estático. 
-Em outras palavras eles _leem_ e analisam mas não _rodam_ o código. Exemplo: 
+código estático.
+Em outras palavras eles _leem_ e analisam mas não _rodam_ o código. Exemplo:
 procurando por alguns bugs, códigos mortos, desnecessários ou inacessíveis.
 
 O [Dialyxir](https://github.com/jeremyjh/dialyxir) é uma tarefa mix para simplificar o uso do Dialyzer em Elixir.
@@ -173,7 +173,7 @@ $ mix deps.compile
 ```
 
 O primeiro comando vai fazer o download e instalar o Dialyxir.
-Você pode ser solicitado a instalar o Hex juntamente com ele. 
+Você pode ser solicitado a instalar o Hex juntamente com ele.
 O segundo vai compilar a aplicação Dialyxir. Se você deseja instalar o Dialyxir globalmente, por favor leia esta [documentação](https://github.com/jeremyjh/dialyxir#installation).
 
 O último passo é rodar o Dialyzer para reconstruir o PLT (Persistent Lookup Table).
@@ -198,7 +198,7 @@ Agora nós vamos usar o Dialyxir:
 ```shell
 $ mix dialyzer
 ...
-examples.ex:3: Invalid type specification for function 'Elixir.Examples':sum_times/1. 
+examples.ex:3: Invalid type specification for function 'Elixir.Examples':sum_times/1.
 The success typing is (_) -> number()
 ...
 ```
