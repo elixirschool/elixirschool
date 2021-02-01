@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Tarefas Mix Customizadas
+%{
+  version: "1.2.0",
+  title: "Tarefas Mix Customizadas"
+}
 ---
 
 Criando tarefas Mix customizadas para seus projetos Elixir.

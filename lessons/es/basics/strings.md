@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Cadenas
+%{
+  version: "1.1.1",
+  title: "Cadenas"
+}
 ---
 
 Cadenas, listas de caracteres, Grafemas y puntos de código.

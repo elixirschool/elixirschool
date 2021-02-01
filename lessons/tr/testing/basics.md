@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Test Yapmak
+%{
+  version: "1.1.1",
+  title: "Test Yapmak"
+}
 ---
 
 Test, yazılım geliştirmenin önemli bir parçasıdır. Bu derste `ExUnit` ile Elixir kodumuzu nasıl test edeceğimize bakacağız ve bu konuda bazı ipuçları vereceğiz.

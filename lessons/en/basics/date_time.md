@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Date and Time
+%{
+  version: "1.1.1",
+  title: "Date and Time"
+}
 ---
 
 Working with time in Elixir.

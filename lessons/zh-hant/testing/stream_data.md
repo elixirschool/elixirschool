@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: StreamData
+%{
+  version: "1.1.0",
+  title: "StreamData"
+}
 ---
 
 基於案例（example-based）的單元測試函式庫，例如 [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html)，是個極佳的工具來協助驗證程式碼是否以如你預期的方式工作。

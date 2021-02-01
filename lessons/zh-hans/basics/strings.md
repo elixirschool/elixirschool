@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: 字符串
+%{
+  version: "1.2.0",
+  title: "字符串"
+}
 ---
 
 字符串、字符列表、字素(Graphemes) 和字码点（Codepoints）。

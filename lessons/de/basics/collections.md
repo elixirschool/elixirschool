@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Collections
+%{
+  version: "0.9.0",
+  title: "Collections"
+}
 ---
 
 Listen, Tupel, Keywords, Maps und funktionale Kombinatoren.

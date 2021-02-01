@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: GenStage
+%{
+  version: "1.1.1",
+  title: "GenStage"
+}
 ---
 
 Nesta lição vamos examinar de perto o GenStage, para que serve e como podemos usá-lo em nossas aplicações.

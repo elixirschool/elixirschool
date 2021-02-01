@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Pattern Matching
+%{
+  version: "1.0.2",
+  title: "Pattern Matching"
+}
 ---
 
 Pattern matching is a powerful part of Elixir. It allows us to match simple values, data structures, and even functions.

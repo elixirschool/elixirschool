@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Zachowania
+%{
+  version: "1.0.1",
+  title: "Zachowania"
+}
 ---
 
 W poprzedniej lekcji poznaliśmy specyfikacje i typy. W tej dowiemy się jak wymusić na module ich implementację. W Elixirze funkcjonalność ta nosi nazwę zachowań.

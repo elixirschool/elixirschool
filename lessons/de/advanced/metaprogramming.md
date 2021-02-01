@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Metaprogrammierung
+%{
+  version: "1.0.2",
+  title: "Metaprogrammierung"
+}
 ---
 
 Metaprogrammierung ist die Vorgehensweise Code zu benutzen, um Code zu schreiben. In Elixir gibt uns das die Möglichkeit die Sprache zu erweitern, so dass sie unseren Anforderungen eher entspricht und dynamisch den Code zu verändern. Wir starten mit einem Blick darauf, wie Elixir unter der Haube repräsentiert wird; dann wie man es verändert und schlussendlich können wir dieses Wissen dazu nutzen, um es zu erweitern.

@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title:  Stringler (Dizeler)
+%{
+  version: "1.1.1",
+  title: " Stringler (Dizeler)"
+}
 ---
 
 Stringler, Karakter Listeleri, Graphemes ve Codepoints.

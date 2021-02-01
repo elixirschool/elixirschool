@@ -1,6 +1,7 @@
----
-version: 1.2.2
-title: Associations
+%{
+  version: "1.2.2",
+  title: "Associations"
+}
 ---
 
 In this section we'll learn how to use Ecto to define and work with associations between our schemas.
@@ -141,7 +142,7 @@ defmodule Friends.Repo.Migrations.CreateDistributors do
       add :name, :string
       add :movie_id, references(:movies)
     end
-    
+
     create unique_index(:distributors, [:movie_id])
   end
 end

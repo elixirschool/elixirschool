@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Pipe Operator
+%{
+  version: "1.0.1",
+  title: "Pipe Operator"
+}
 ---
 
 Pipe `|>` lấy kết quả của một biểu thức làm tham số đầu tiên cho một biểu thức khác.

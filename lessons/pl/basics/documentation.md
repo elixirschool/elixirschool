@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Dokumentowanie kodu
+%{
+  version: "0.9.1",
+  title: "Dokumentowanie kodu"
+}
 ---
 
 Jak dokumentować kod Elixira.

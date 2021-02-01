@@ -1,6 +1,7 @@
----
-version: 2.0.0
-title: Benchee
+%{
+  version: "2.0.0",
+  title: "Benchee"
+}
 ---
 
 We can't guess about which functions are fast and which are slow - we need actual measurements when we're curious.

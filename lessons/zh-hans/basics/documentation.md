@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: 文档模块
+%{
+  version: "1.1.0",
+  title: "文档模块"
+}
 ---
 
 Documenting Elixir code.

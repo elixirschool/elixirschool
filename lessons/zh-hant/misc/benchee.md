@@ -1,6 +1,7 @@
----
-version: 2.0.0
-title: Benchee
+%{
+  version: "2.0.0",
+  title: "Benchee"
+}
 ---
 
 我們無法靠猜測來得知哪些函數快而哪些慢 - 當想知道時需要實際量測。

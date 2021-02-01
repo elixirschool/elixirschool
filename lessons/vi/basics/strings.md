@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Strings
+%{
+  version: "0.9.1",
+  title: "Strings"
+}
 ---
 
 String, Chuỗi kí tự (Char List), Chữ cái (Graphemes) và Codepoints.

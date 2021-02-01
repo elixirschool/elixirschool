@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: カスタムMixタスク
+%{
+  version: "1.2.0",
+  title: "カスタムMixタスク"
+}
 ---
 
 ElixirプロジェクトのためのカスタムMixタスクの作成

@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Behaviours
+%{
+  version: "1.0.1",
+  title: "Behaviours"
+}
 ---
 
 We learned about Typespecs in the previous lesson, here we'll learn how to require a module to implement those specifications.

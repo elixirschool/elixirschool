@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Cấu trúc điều khiển
+%{
+  version: "0.9.1",
+  title: "Cấu trúc điều khiển"
+}
 ---
 
 Trong bài này ta sẽ xem qua các loại cấu trúc điều khiểu có sẵn trong Elixir.

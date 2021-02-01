@@ -1,6 +1,7 @@
----
-version: 1.2.2
-title: Changesets
+%{
+  version: "1.2.2",
+  title: "Changesets"
+}
 ---
 
 为了往数据库中插入，更新或是删除数据，`Ecto.Repo.insert/2`, `update/2` 和 `delete/2` 都需要一个 changeset 作为它的第一个参数，那么什么是 changesets 呢?

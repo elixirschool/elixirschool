@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Mix
+%{
+  version: "1.0.2",
+  title: "Mix"
+}
 ---
 
 Antes de que podamos sumergirnos en las profundas aguas de Elixir primero necesitamos aprender acerca de mix. Si estás familiarizado con Ruby, mix es Bundler, RubyGems y Rake combinados. Es una parte crucial de cualquier proyecto Elixir y en esta lección vamos a explorar solo algunas de sus grandiosas características. Para ver todo lo que mix ofrece ejecutamos `mix help`.

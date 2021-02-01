@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Asas
+%{
+  version: "0.9.0",
+  title: "Asas"
+}
 ---
 
 Penyediaan, Jenis Data Asas dan Operasi.

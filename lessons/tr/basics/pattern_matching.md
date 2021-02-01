@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Ornegini Bulma
+%{
+  version: "1.0.1",
+  title: "Ornegini Bulma"
+}
 ---
 
 Ornegini Bulma (Pattern matching) Elixir'in guclu yanlarindan birisidir. Basit degerleri, veri yapilarini (data structures) ve hatta fonksiyonlari (functions) eslestirmeye yarar. Simdi ornegini bulma (pattern matching) nasil kullanilir onu ogrenecegiz.

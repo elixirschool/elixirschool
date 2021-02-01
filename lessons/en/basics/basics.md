@@ -1,6 +1,7 @@
----
-version: 1.2.1
-title: Basics
+%{
+  version: "1.2.1",
+  title: "Basics"
+}
 ---
 
 Getting started, basic data types, and basic operations.

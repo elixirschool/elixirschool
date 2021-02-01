@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: Guardian (Basics)
+%{
+  version: "1.0.3",
+  title: "Guardian (Basics)"
+}
 ---
 
 [Guardian](https://github.com/ueberauth/guardian)は、[JWT](https://jwt.io/)（JSON Web Tokens）に基づく、広く使用されている認証ライブラリです。

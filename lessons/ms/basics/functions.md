@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Fungsi
+%{
+  version: "0.9.1",
+  title: "Fungsi"
+}
 ---
 
 Di dalam Elixir dan kebanyakan bahasa aturcara kefungsian, fungsi adalah rakyat kelas pertama.  Kita akan belajar mengenai jenis-jenis fungsi di dalam Elixir, apa yang menyebabkan mereka berbeza, dan bagaimana menggunakan mereka.

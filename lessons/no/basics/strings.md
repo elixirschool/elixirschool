@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Strenger
+%{
+  version: "0.9.1",
+  title: "Strenger"
+}
 ---
 
 Strenger, Karakter lister, Grafemer og Kode punkter.

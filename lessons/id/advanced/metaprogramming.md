@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Metaprogramming
+%{
+  version: "0.9.1",
+  title: "Metaprogramming"
+}
 ---
 
 Metaprogramming adalah proses menggunakan code untuk menulis code.  Dalam Elixir hal ini memberi kita kemampuan mengembangkan bahasa ini agar sesuai dengan kebutuhan kita dan mengubah code secara dinamis.  Kita akan mulai dengan melihat bagaimana Elixir direpresentasikan di dalamnya, bagaimana mengubahnya, dan akhirnya kita bisa menggunakan pengetahuan itu untuk mengembangkannya.

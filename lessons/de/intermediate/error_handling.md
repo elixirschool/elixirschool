@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Fehlerbehandlung
+%{
+  version: "0.9.0",
+  title: "Fehlerbehandlung"
+}
 ---
 
 Obwohl es üblich ist das `{:error, reason}`-Tupel zurückzugeben, unterstützt Elixir Exceptions und in dieser Lektion werden wir lernen, wie man Fehler behandelt und welche verschiedenen Möglichkeiten wir haben.

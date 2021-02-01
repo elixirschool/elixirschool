@@ -1,6 +1,7 @@
----
-version: 1.0.4
-title: Guardian (Basics)
+%{
+  version: "1.0.3",
+  title: "Guardian (Basics)"
+}
 ---
 
 [Guardian](https://github.com/ueberauth/guardian) is a widely used authentication library based on [JWT](https://jwt.io/) (JSON Web Tokens).

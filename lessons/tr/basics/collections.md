@@ -1,6 +1,7 @@
----
-version: 1.2.4
-title: Koleksiyonlar
+%{
+  version: "1.2.4",
+  title: "Koleksiyonlar"
+}
 ---
 
 Listeler (List), Demetler (Tuples), Anahtar Kelimeler (keywords), Haritalar (maps) ve işlevsel bağlaçlar.

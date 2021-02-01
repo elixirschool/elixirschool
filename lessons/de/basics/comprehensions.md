@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Comprehensions
+%{
+  version: "0.9.0",
+  title: "Comprehensions"
+}
 ---
 
 List comprehensions sind syntaktischer Zucker, um durch Enums zu iterieren in Elixir. In dieser Lektion werden wir einen Blick darauf werfen, wie wir comprehensions zur Iteration und Erzeugung nutzen können.

@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Consultas
+%{
+  version: "1.2.0",
+  title: "Consultas"
+}
 ---
 
 {% include toc.html %}

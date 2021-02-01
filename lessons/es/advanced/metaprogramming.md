@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Metaprogramación
+%{
+  version: "1.0.2",
+  title: "Metaprogramación"
+}
 ---
 
 La Metaprogramación es el proceso de usar código para escribir código.

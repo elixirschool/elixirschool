@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Executables
+%{
+  version: "0.9.1",
+  title: "Executables"
+}
 ---
 
 Untuk membuat eksekutabel di Elixir kita akan menggunakan escript.  Escript menghasilkan sebuah eksekutabel yang bisa dijalankan pada sistem apapun yang sudah diinstali Erlang.

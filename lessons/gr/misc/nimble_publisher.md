@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: NimblePublisher
+%{
+  version: "1.0.2",
+  title: "NimblePublisher"
+}
 ---
 
 Η [NimblePublisher](https://github.com/dashbitco/nimble_publisher) είναι μια μινιμαλιστική μηχανή δημοσιεύσεων βασισμένη σε αρχεία με υποστήριξη για κώδικα Markdown και επισήμανση κώδικα.

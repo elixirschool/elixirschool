@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: IEx Hjelpere
+%{
+  version: "1.0.1",
+  title: "IEx Hjelpere"
+}
 ---
 
 {% include toc.html %}

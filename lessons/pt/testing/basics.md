@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Testando
+%{
+  version: "1.2.0",
+  title: "Testando"
+}
 ---
 
 Testes são uma parte importante do desenvolvimento de software. Nesta lição nós veremos como testar nosso código Elixir com ExUnit e algumas das melhores práticas de como fazer isto.

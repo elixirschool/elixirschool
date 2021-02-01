@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: Concurrencia en OTP
+%{
+  version: "1.0.3",
+  title: "Concurrencia en OTP"
+}
 ---
 
 Hemos visto las abstracciones de Elixir para manejar concurrencia pero a veces necesitamos mayor control, para eso podemos usar los comportamientos OTP sobre los que está construido Elixir.

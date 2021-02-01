@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Struktur Kawalan
+%{
+  version: "0.9.0",
+  title: "Struktur Kawalan"
+}
 ---
 
 Dalam pelajaran ini kita akan melihat struktur kawalan yang dibekalkan oleh ELixir.

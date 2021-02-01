@@ -1,6 +1,7 @@
----
-version: 1.3.1
-title: Kolekcje
+%{
+  version: "1.3.1",
+  title: "Kolekcje"
+}
 ---
 
 Listy, krotki, listy asocjacyjne i mapy.

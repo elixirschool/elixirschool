@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Supervisores OTP
+%{
+  version: "1.1.1",
+  title: "Supervisores OTP"
+}
 ---
 
 Supervisores são processos especializados com um propósito: monitorar outros processos. Estes supervisores nos possibilitam a criação de aplicações tolerantes a falhas automaticamente reiniciando processos filhos quando eles falham.

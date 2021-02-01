@@ -1,6 +1,7 @@
----
-version: 1.1.2
-title: พื้นฐาน
+%{
+  version: "1.1.2",
+  title: "พื้นฐาน"
+}
 ---
 
 เริ่มต้น, data type และ operation พื้นฐาน

@@ -1,6 +1,7 @@
----
-version: 1.2.3
-title: Kolekcie
+%{
+  version: "1.2.3",
+  title: "Kolekcie"
+}
 ---
 
 Listy, tuples, keyword listy a mapy.

@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Enum
+%{
+  version: "0.9.0",
+  title: "Enum"
+}
 ---
 
 Các thuật toán thao tác với các collection (tập dữ liệu)

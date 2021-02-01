@@ -1,6 +1,7 @@
----
-version: 1.2.1
-title: Básico
+%{
+  version: "1.2.1",
+  title: "Básico"
+}
 ---
 
 Preparar el entorno, tipos y operaciones básicas.

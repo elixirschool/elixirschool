@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: Specifications and types
+%{
+  version: "1.0.3",
+  title: "Specifications and types"
+}
 ---
 
 In this lesson we will learn about `@spec` and `@type` syntax.

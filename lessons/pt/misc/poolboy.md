@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Poolboy
+%{
+  version: "1.2.0",
+  title: "Poolboy"
+}
 ---
 
 Você pode esgotar facilmente os recursos do sistema se não limitar o número máximo de processos simultâneos que seu programa pode gerar.

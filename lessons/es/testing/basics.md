@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Pruebas
+%{
+  version: "1.1.1",
+  title: "Pruebas"
+}
 ---
 
 Las pruebas son una parte importante en el desarrollo de software.

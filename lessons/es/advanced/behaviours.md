@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Comportamientos
+%{
+  version: "1.0.1",
+  title: "Comportamientos"
+}
 ---
 
 Aprendimos acerca de Typespecs en la lección anterior, ahora vamos a aprender como requerir que un módulo implemente esas especificaciones.

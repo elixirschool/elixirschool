@@ -1,6 +1,7 @@
----
-version: 1.4.0
-title: Enum
+%{
+  version: "1.4.0",
+  title: "Enum"
+}
 ---
 
 Koleksiyonlarin numaralandirilmasi icin kullanilan sabit degerler algoritmalari.

@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Embedded Elixir (EEx)
+%{
+  version: "1.0.2",
+  title: "Embedded Elixir (EEx)"
+}
 ---
 
 Ruby가 ERB를 Java가 JSP를 가지고 있는 것처럼, Elixir도 EEx, 내장 Elixir를 가지고 있습니다. EEx를 통해서 문자열로 된 Elixir 코드를 심거나 평가할 수 있습니다.

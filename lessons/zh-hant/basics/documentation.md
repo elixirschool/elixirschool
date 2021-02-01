@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: 文件
+%{
+  version: "1.1.0",
+  title: "文件"
+}
 ---
 
 註解 (Documenting) Elixir 程式碼。

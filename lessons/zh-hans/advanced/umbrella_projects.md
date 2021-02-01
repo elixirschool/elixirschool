@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: Umbrella Projects
+%{
+  version: "1.0.3",
+  title: "Umbrella Projects"
+}
 ---
 
 实际上有时工程项目会变得很大. Mix 构建工具可以让我们将代码划分成多个程序, 使得项目变大的时候更易于管理.

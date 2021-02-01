@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Operator potoku
+%{
+  version: "0.9.1",
+  title: "Operator Potoku"
+}
 ---
 
 Operator potoku `|>` przekazuje wynik jednego wyrażenia jako pierwszy parametr następnego wyrażenia.
@@ -53,7 +54,7 @@ iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
 
-## Najlepsze praktyki 
+## Najlepsze praktyki
 
 Jeśli liczba argumentów funkcji jest większa niż 1, pamiętaj o korzystaniu z nawiasów.
 Nawiasy w Elixirze nie są obowiązkowe, ale ich stosowanie poprawia czytelność kodu, co docenić mogą inni programiści.

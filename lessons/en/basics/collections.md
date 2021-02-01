@@ -1,6 +1,7 @@
----
-version: 1.3.1
-title: Collections
+%{
+  version: "1.3.1",
+  title: "Collections"
+}
 ---
 
 Lists, tuples, keyword lists, and maps.

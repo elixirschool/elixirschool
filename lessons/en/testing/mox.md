@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Mox
+%{
+  version: "1.0.0",
+  title: "Mox"
+}
 ---
 
 Mox is a library for designing concurrent mocks in Elixir.

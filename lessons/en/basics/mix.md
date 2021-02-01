@@ -1,6 +1,7 @@
----
-version: 1.1.2
-title: Mix
+%{
+  version: "1.1.2",
+  title: "Mix"
+}
 ---
 
 Before we can dive into the deeper waters of Elixir we first need to learn about Mix.

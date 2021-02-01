@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Sigils
+%{
+  version: "0.9.0",
+  title: "Sigils"
+}
 ---
 
 Arbeiten mit sigils und erstellen dieser.

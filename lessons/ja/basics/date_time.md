@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 ---
 version: 1.1.1
 title: 日付と時間
+=======
+%{
+  version: "1.1.0",
+  title: "日付と時間"
+}
+>>>>>>> 6a6011a9... Convert to NimblePublisher expected format
 ---
 
 Elixirで時間を扱ってみましょう。

@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Strings
+%{
+  version: "0.9.1",
+  title: "Strings"
+}
 ---
 
 Tentang String di Elixir, Char list, Grapheme, dan Codepoint.

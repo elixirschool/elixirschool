@@ -1,6 +1,7 @@
----
-version: 2.0.1
-title: Distillery（基礎）
+%{
+  version: "2.0.1",
+  title: "Distillery（基礎）"
+}
 ---
 
 Distillery 是純粹使用 Elixir 編寫的發布版本管理工具。它可以生成幾乎不需要配置就可以部署到其他地方的發布版本。

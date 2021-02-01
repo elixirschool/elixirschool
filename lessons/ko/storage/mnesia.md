@@ -1,6 +1,7 @@
----
-version: 1.0.0
-title: Mnesia
+%{
+  version: "1.0.0",
+  title: "Mnesia"
+}
 ---
 
 Mnesia는 실시간 분산 데이터베이스 관리 시스템을 담당하고 있습니다.

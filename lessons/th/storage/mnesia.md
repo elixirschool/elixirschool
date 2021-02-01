@@ -1,6 +1,7 @@
----
-version: 1.0.0
-title: Mnesia
+%{
+  version: "1.0.0",
+  title: "Mnesia"
+}
 ---
 
 Mnesia เป็นระบบจัดการ distributed database ที่ทำงานแบบ real-time

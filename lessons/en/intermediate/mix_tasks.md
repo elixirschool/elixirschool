@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Custom Mix Tasks
+%{
+  version: "1.2.0",
+  title: "Custom Mix Tasks"
+}
 ---
 
 Creating custom Mix tasks for your Elixir projects.

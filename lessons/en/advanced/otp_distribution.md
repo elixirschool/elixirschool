@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: OTP Distribution
+%{
+  version: "1.0.2",
+  title: "OTP Distribution"
+}
 ---
 
 ## Introduction to Distribution

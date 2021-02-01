@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Erlang Interoperability
+%{
+  version: "1.0.2",
+  title: "Erlang Interoperability"
+}
 ---
 
 One of the added benefits to building on top of the Erlang VM (BEAM) is the plethora of existing libraries available to us.

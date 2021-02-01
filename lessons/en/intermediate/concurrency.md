@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Concurrency
+%{
+  version: "1.1.1",
+  title: "Concurrency"
+}
 ---
 
 One of the selling points of Elixir is its support for concurrency.

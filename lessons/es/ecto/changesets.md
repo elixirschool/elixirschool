@@ -1,6 +1,7 @@
----
-version: 1.2.2
-title: Changesets
+%{
+  version: "1.2.2",
+  title: "Changesets"
+}
 ---
 
 Con el objetivo de insertar, actualizar o borrar datos de la base de datos, `Ecto.Repo.insert/2`, `update/2` y `delete/2` requieren un *changeset* como primer parámetro. Pero ¿Qué son los *changesets*?

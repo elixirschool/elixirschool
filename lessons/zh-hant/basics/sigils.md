@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: 符咒 (Sigils)
+%{
+  version: "1.0.2",
+  title: "符咒 (Sigils)"
+}
 ---
 
 使用和創設符咒 (sigils)。

@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: 魔符(Sigil)
+%{
+  version: "1.0.2",
+  title: "魔符(Sigil)"
+}
 ---
 
 使用和定义魔符。

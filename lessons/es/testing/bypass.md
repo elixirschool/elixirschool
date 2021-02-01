@@ -1,6 +1,7 @@
----
-version: 1.0.0
-title: Bypass
+%{
+  version: "1.0.0",
+  title: "Bypass"
+}
 ---
 
 Cuando estamos probando nuestras aplicaciones, muchas veces necesitamos hacer requests a servicios externos. Incluso igual y queremos simular distintas situaciones como errores no esperados del servidor. Manejar estos casos de manera eficiente no es fácil en Elixir sin un poco de ayuda.

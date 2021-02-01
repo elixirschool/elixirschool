@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Functions
+%{
+  version: "1.2.0",
+  title: "Functions"
+}
 ---
 
 In Elixir and many functional languages, functions are first class citizens.

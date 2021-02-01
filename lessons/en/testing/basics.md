@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Testing
+%{
+  version: "1.2.0",
+  title: "Testing"
+}
 ---
 
 Testing is an important part of developing software.

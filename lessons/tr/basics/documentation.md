@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: Belgelendirme
+%{
+  version: "1.0.3",
+  title: "Belgelendirme"
+}
 ---
 
 Elixir kodunun belgelendirilmesi.

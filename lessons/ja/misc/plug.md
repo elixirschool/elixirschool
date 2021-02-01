@@ -1,6 +1,7 @@
----
-version: 2.2.0
-title: Plug
+%{
+  version: "2.2.0",
+  title: "Plug"
+}
 ---
 
 Rubyをよくご存知なら、PlugはところどころSinatraの面影をもつRackだと考えることができます。

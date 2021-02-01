@@ -1,6 +1,7 @@
----
-version: 1.2.2
-title: 變更集 (Changesets)
+%{
+  version: "1.2.2",
+  title: "變更集 (Changesets)"
+}
 ---
 
 為了插入、更新或刪除資料庫中的資料，`Ecto.Repo.insert/2`、`update/2` 和 `delete/2` 需要一個變更集作為它們的第一個參數。但什麼是變更集？

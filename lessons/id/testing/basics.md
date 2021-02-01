@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Testing
+%{
+  version: "0.9.0",
+  title: "Testing"
+}
 ---
 
 Testing adalah bagian yang penting dalam mebuat software.  Di dalam pelajaran ini kita akan melihat cara melakukan tes pada code Elixir kita menggunakan ExUnit dan beberapa best practice untuk mengerjakannya.

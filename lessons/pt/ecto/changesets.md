@@ -1,6 +1,7 @@
----
-version: 1.2.2
-title: Changesets
+%{
+  version: "1.2.2",
+  title: "Changesets"
+}
 ---
 
 Para inserir, atualizar ou excluir as informações de um banco de dados, `Ecto.Repo.insert/2`, `update/2` e `delete/2` requerem um changeset como primeiro parâmetro.

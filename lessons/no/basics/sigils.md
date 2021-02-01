@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Sigiler
+%{
+  version: "0.9.0",
+  title: "Sigiler"
+}
 ---
 
 Bruke og lage sigiler.

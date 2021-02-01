@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Operátor pipe
+%{
+  version: "1.0.1",
+  title: "Operátor pipe"
+}
 ---
 
 Operátor `|>` posiela výstup výrazu ako prvý parameter do iného výrazu.

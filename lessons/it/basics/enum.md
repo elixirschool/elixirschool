@@ -1,6 +1,7 @@
----
-version: 1.5.0
-title: Enumerazioni
+%{
+  version: "1.5.0",
+  title: "Enumerazioni"
+}
 ---
 
 Un insieme di algoritmi per enumerare le collezioni.

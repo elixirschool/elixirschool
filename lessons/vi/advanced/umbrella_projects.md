@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Các dự án ô
+%{
+  version: "0.9.1",
+  title: "Các dự án ô"
+}
 ---
 
 Đôi khi một dự án có thể trở nên rất lớn. Công cụ Mix cho phép chúng ta có thể chia nhỏ code thành nhiều ứng dụng, nó giúp cho các dự án Elixir của chúng ta có thể dễ dàng quản lý khi mà chúng phát triển.

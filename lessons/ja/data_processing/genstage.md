@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: GenStage
+%{
+  version: "1.1.1",
+  title: "GenStage"
+}
 ---
 
 このレッスンでは、GenStageをどのように扱うのか、アプリケーションでどのように活用できるのかを詳しく見ていきます。

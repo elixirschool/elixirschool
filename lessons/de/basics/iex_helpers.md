@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: IEx Hilfsfunktionen
+%{
+  version: "1.0.1",
+  title: "IEx Hilfsfunktionen"
+}
 ---
 
 {% include toc.html %}

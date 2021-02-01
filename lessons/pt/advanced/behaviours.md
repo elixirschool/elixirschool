@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Comportamentos
+%{
+  version: "1.0.1",
+  title: "Comportamentos"
+}
 ---
 
 Aprendemos sobre _Typespecs_ na lição anterior, aqui vamos aprender como exigir que um módulo implemente essas especificações. No Elixir, essa funcionalidade é referenciada como comportamentos.

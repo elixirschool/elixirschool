@@ -1,6 +1,7 @@
----
-version: 1.3.1
-title: Colecciones
+%{
+  version: "1.3.1",
+  title: "Colecciones"
+}
 ---
 
 Listas, tuplas, listas de palabras clave y mapas.

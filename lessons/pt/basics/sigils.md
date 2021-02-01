@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Sigils
+%{
+  version: "1.0.2",
+  title: "Sigils"
+}
 ---
 
 Trabalhando e criando sigils.

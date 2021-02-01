@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Kolleksjoner
+%{
+  version: "0.9.0",
+  title: "Kolleksjoner"
+}
 ---
 
 Lister, tupler, nøkkelord, kart og funksjonell kombinasjon.

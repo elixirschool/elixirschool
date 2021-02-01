@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: 可执行文件
+%{
+  version: "1.0.2",
+  title: "可执行文件"
+}
 ---
 
 要想在 Elixir 中生成可执行文件，我们要用 `escript`。`escript` 会生成的可执行文件，可以运行在任何安装了 Erlang 的平台。

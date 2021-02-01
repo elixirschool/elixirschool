@@ -1,6 +1,7 @@
----
-version: 1.4.1
-title: Módulos
+%{
+  version: "1.4.1",
+  title: "Módulos"
+}
 ---
 
 Sabemos por experiência o quanto é incontrolável ter todas as nossas funções no mesmo arquivo e escopo. Nesta lição vamos cobrir como agrupar funções e definir um mapa especializado conhecido como struct, a fim de organizar o nosso código eficientemente.

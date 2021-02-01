@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: Dokumentácia
+%{
+  version: "1.0.3",
+  title: "Dokumentácia"
+}
 ---
 
 Dokumentovanie kódu v Elixire.

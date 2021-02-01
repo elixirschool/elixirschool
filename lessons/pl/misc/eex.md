@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Embedded Elixir (EEx)
+%{
+  version: "0.9.1",
+  title: "Embedded Elixir (EEx)"
+}
 ---
 
 Tak jak w Ruby mamy ERB, a w Javie istnieje JSP, tak i Elixir ma EEx - Embedded Elixir. Dzięki EEx możemy osadzać kod Elixira w ciągach znaków.  

@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: クエリ
+%{
+  version: "1.2.0",
+  title: "クエリ"
+}
 ---
 
 {% include toc.html %}

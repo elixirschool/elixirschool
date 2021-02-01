@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Estructuras de control
+%{
+  version: "1.1.1",
+  title: "Estructuras de control"
+}
 ---
 
 En esta lección veremos las estructuras de control disponibles en Elixir.

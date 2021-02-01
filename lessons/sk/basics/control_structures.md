@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Riadiace štruktúry
+%{
+  version: "1.1.1",
+  title: "Riadiace štruktúry"
+}
 ---
 
 V tejto lekcii sa pozrieme na riadiace štruktúry, ktoré máme k dispozícii v Elixire.

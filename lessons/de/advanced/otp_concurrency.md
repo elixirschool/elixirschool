@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: OTP Nebenläufigkeit
+%{
+  version: "1.0.3",
+  title: "OTP Nebenläufigkeit"
+}
 ---
 
 Wir haben uns die Elixir-Abstraktion für Nebenläufigkeit angesehen, aber manchmal hätten wir gern mehr Kontrolle und dafür sehen wir uns OTP behaviors an, auf denen Elixir gebaut wurde.

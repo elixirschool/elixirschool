@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Poolboy
+%{
+  version: "1.2.0",
+  title: "Poolboy"
+}
 ---
 
 Puedes acabarte los recursos de tu sistema si no limitas el número de procesos concurrentes que tu programa puede crear.

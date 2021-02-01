@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Mix
+%{
+  version: "1.0.2",
+  title: "Mix"
+}
 ---
 
 Než sa ponoríme do Elixiru hlbšie, musíme sa naučiť pracovať s nástrojom Mix. Ak poznáte Ruby, Mix vám bude pripomínať kombináciu nástrojov Bundler, RubyGems a Rake. Je kľúčovou súčasťou každého elixirového projektu a v tejto lekcii si ukážeme len niekoľko z jeho skvelých funkcií. Zoznam všetkého, čo vie Mix ponúknuť zobrazíme príkazom `mix help`.

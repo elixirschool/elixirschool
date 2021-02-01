@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: StreamData
+%{
+  version: "1.1.0",
+  title: "StreamData"
+}
 ---
 
 基于用例的单元测试工具库，如 [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) 是帮助你验证代码是否与预期运行逻辑相符的好工具。

@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Mix
+%{
+  version: "1.1.1",
+  title: "Mix"
+}
 ---
 
 Avant de plonger dans les profondeurs d'Elixir, nous devons d'abord apprendre Mix.

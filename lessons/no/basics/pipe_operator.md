@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Pipeoperatoren
+%{
+  version: "0.9.1",
+  title: "Pipeoperatoren"
+}
 ---
 
 Pipeoperatoren `|>` fører resultatet av et utrykk som første parameter til et nytt utrykk.

@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: Querying
+%{
+  version: "1.0.3",
+  title: "Querying"
+}
 ---
 
 {% include toc.html %}

@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: 查詢
+%{
+  version: "1.1.1",
+  title: "查詢"
+}
 ---
 
 {% include toc.html %}

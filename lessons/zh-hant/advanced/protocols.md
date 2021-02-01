@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: 協定
+%{
+  version: "1.0.1",
+  title: "協定"
+}
 ---
 
 在本課程中，將研究協定 (Protocols) 是什麼，以及如何在 Elixir 中使用。

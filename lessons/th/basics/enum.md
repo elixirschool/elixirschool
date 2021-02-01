@@ -1,6 +1,7 @@
----
-version: 1.3.0
-title: Enum
+%{
+  version: "1.3.0",
+  title: "Enum"
+}
 ---
 
 ชุดของ algorithm สำหรับใช้งานกับ `Enum`

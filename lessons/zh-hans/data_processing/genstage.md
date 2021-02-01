@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: GenStage
+%{
+  version: "1.1.1",
+  title: "GenStage"
+}
 ---
 
 本课, 我们将学习 GenStage, 它的作用, 以及如何在我们的应用中使用它.

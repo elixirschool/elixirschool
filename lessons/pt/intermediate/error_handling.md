@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: Tratamento de Erros
+%{
+  version: "1.1.0",
+  title: "Tratamento de Erros"
+}
 ---
 
 Embora seja mais comum o retorno da tupla `{:error, reason}`, o Elixir suporta exceções e nesta lição veremos como lidar com erros e os diferentes mecanismos disponíveis para nós.

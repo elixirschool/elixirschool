@@ -1,6 +1,7 @@
----
-version: 1.0.0
-title: Pattern Matching
+%{
+  version: "1.0.0",
+  title: "Pattern Matching"
+}
 ---
 
 _Pattern matching_ è un aspetto fondamentale di Elixir, permette di abbinare semplici valori, strutture dati e funzioni. In questa lezione inizieremo a vedere come viene usato il pattern matching.

@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Enum
+%{
+  version: "0.9.0",
+  title: "Enum"
+}
 ---
 
 Et sett med algoritmer for å iterere over kolleksjoner.

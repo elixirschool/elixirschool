@@ -1,6 +1,7 @@
----
-version: 1.0.0
-title: OTP Concurrency
+%{
+  version: "1.0.0",
+  title: "OTP Concurrency"
+}
 ---
 
 Kita sudah melihat abstraksi Elixir untuk konkurensi tapi terkadang kita butuh kendali lebih dan untuk itu kita beralih ke perilaku OTP yang mana Elixir dibangun di atasnya.

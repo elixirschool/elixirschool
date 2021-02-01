@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Strings
+%{
+  version: "1.2.0",
+  title: "Strings"
+}
 ---
 
 Strings, Char Lists, Graphemes and Codepoints.
