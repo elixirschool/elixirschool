@@ -1,6 +1,7 @@
----
-version: 2.0.4
-title: Distillery (Basics)
+%{
+  version: "2.0.4",
+  title: "Distillery (Basics)"
+}
 ---
 
 Distillery is a release manager written in pure Elixir.

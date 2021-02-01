@@ -1,6 +1,7 @@
----
-version: 1.3.0
-title: Enum
+%{
+  version: "1.3.0",
+  title: "Enum"
+}
 ---
 
 열거 가능한 것들을 열거하기 위한 일련의 알고리즘.

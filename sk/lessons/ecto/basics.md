@@ -1,6 +1,7 @@
----
-version: 2.3.0
-title: Základy
+%{
+  version: "2.3.0",
+  title: "Základy"
+}
 ---
 
 Ecto je oficiálny Elixir projekt, ktorý poskytuje zaobalenie databázy a integrovaný jazyk na vytváranie dotazov. S Ectom sme schopní vytvárať migrácie, definovať schémy, vkladať/upravovať záznamy a dotazovať ich.

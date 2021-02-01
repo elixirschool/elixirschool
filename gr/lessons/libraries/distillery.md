@@ -1,6 +1,7 @@
----
-version: 2.0.4
-title: Distillery (Βασικά)
+%{
+  version: "2.0.4",
+  title: "Distillery (Βασικά)"
+}
 ---
 
 Η Distillery είναι ένας διαχειριστής εκδόσεων γραμμένος σε καθαρή Elixir.

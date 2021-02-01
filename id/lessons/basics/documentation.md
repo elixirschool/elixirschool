@@ -1,6 +1,7 @@
----
-version: 0.9.2
-title: Documentation
+%{
+  version: "0.9.2",
+  title: "Documentation"
+}
 ---
 
 Mendokumentasikan Elixir code.

@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Concurrency
+%{
+  version: "0.9.1",
+  title: "Concurrency"
+}
 ---
 
 Satu poin yang menjual dari Elixir adalah dukungannya terhadap konkurensi. Berkat Erlang VM (BEAM), konkurensi dalam Elixir sangat mudah.  Model konkurensinya berdasar pada Actor, sebuah proses terlindung (contained) yang berkomunikasi dengan proses lain lewat pengiriman pesan (message passing). 

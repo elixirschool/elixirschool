@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: 日期和时间
+%{
+  version: "1.1.0",
+  title: "日期和时间"
+}
 ---
 
 Elixir 中有关时间和日期的处理

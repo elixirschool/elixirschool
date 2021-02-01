@@ -1,6 +1,7 @@
----
-version: 1.7.0
-title: Enum
+%{
+  version: "1.7.0",
+  title: "Enum"
+}
 ---
 
 A set of algorithms for enumerating over enumerables.

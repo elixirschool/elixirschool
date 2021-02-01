@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Sigil
+%{
+  version: "0.9.0",
+  title: "Sigil"
+}
 ---
 
 Membuat dan menggunakan sigil.

@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Mnesia
+%{
+  version: "1.2.0",
+  title: "Mnesia"
+}
 ---
 
 Mnesia is a heavy duty real-time distributed database management system.

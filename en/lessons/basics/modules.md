@@ -1,6 +1,7 @@
----
-version: 1.4.1
-title: Modules
+%{
+  version: "1.4.1",
+  title: "Modules"
+}
 ---
 
 We know from experience it's unruly to have all of our functions in the same file and scope.

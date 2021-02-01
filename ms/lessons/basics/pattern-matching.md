@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Pemadanan Corak
+%{
+  version: "0.9.0",
+  title: "Pemadanan Corak"
+}
 ---
 
 Pemadanan corak ialah satu komponen Elixir yang amat berkuasa, ia mengupayakan kita untuk membuat pemadanan nilai-nilai mudah, struktur data, dan juga fungsi-fungsi.

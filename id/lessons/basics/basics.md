@@ -1,6 +1,7 @@
----
-version: 1.1.2
-title: Dasar
+%{
+  version: "1.1.2",
+  title: "Dasar"
+}
 ---
 
 Awal Mulai, data tipe-tipe dasar, dan operasi-operasi dasar.

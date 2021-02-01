@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Spracovanie Chýb
+%{
+  version: "1.0.1",
+  title: "Spracovanie Chýb"
+}
 ---
 
 Bežne môžeme vidieť pri funkciách návratovú hodnotu tuple `{:error, reason}`, ale Elixir podporuje aj výnimky a v tejto lekcii si ukážeme ako spracovávať chyby a rôzne mechanizmy ktoré máme k dispozícii.

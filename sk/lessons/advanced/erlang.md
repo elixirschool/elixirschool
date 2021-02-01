@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Interoperabilita s Erlangom
+%{
+  version: "1.0.1",
+  title: "Interoperabilita s Erlangom"
+}
 ---
 
 Jednou z výhod toho, že Elixir je postavený na základoch z Erlang VM (BEAM) je množstvo existujúcich knižníc, ktoré máme k dispozícii. Interoperabilita nám umožňuje používať tieto knižnice a štandardnú knižnicu Erlangu v našom Elixir kóde. V tejto lekcii sa pozrieme na to ako pristupovať k funkcionalite štandardnej knižnice a zároveň aj ku knižniciam tretích strán z Erlangu.

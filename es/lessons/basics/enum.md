@@ -1,6 +1,7 @@
----
-version: 1.4.0
-title: Enum
+%{
+  version: "1.4.0",
+  title: "Enum"
+}
 ---
 
 Un conjunto de algoritmos para hacer enumeración sobre colecciones.

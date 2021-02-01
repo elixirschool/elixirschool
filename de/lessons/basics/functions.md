@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Funktionen
+%{
+  version: "0.9.1",
+  title: "Funktionen"
+}
 ---
 
 In Elixir und vielen anderen funktionalen Sprachen sind Funktionen "Bürger erster Klasse". Wir werden mehr über die Typen von Funktionen in Elixir lernen, was sie unterscheidet und wie man sie benutzt.

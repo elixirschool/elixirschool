@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: StreamData
+%{
+  version: "1.1.0",
+  title: "StreamData"
+}
 ---
 
 [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) のような例ベース(example-base)のユニットテストライブラリは、考えている通りにコードが動くことを保証できる素晴らしいツールです。

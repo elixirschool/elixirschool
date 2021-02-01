@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Struktur Kendali
+%{
+  version: "1.1.1",
+  title: "Struktur Kendali"
+}
 ---
 
 Dalam pelajaran ini kita akan melihat struktur kendali yang tersedia untuk kita di Elixir.

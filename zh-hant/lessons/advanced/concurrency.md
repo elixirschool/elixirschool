@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: 並行性
+%{
+  version: "1.1.0",
+  title: "並行性"
+}
 ---
 
 Elixir 的賣點之一是支援並行性 (concurrency)。感謝 Erlang VM (BEAM)，Elixir 的並行性比預期的要容易。並行性模組依賴於 Actors，一個包含通過信文傳遞 (message passing) 而與其它處理程序 (processes) 對話的行程。

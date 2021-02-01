@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Operador Pipe
+%{
+  version: "1.0.1",
+  title: "Operador Pipe"
+}
 ---
 
 El operador pipe `|>` pasa el resultado de una expresión como el primer parámetro de otra expresión.

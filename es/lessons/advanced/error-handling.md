@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Manejo de errores
+%{
+  version: "1.0.1",
+  title: "Manejo de errores"
+}
 ---
 
 Aunque es más común devolver una tupla `{:error, reason}`, Elixir soporta excepciones, y en esta lección revisaremos como manejar errores y los diferentes mecanismos a nuestra disposición.

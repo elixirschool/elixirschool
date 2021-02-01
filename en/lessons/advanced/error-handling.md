@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: Error Handling
+%{
+  version: "1.1.0",
+  title: "Error Handling"
+}
 ---
 
 Although more common to return the `{:error, reason}` tuple, Elixir supports exceptions and in this lesson we'll look at how to handle errors and the different mechanisms available to us.

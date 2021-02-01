@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Ένθετη Elixir (EEx)
+%{
+  version: "1.0.2",
+  title: "Ένθετη Elixir (EEx)"
+}
 ---
 
 Όπως η Ruby έχει το ERB και η Java τα JSP, η Elixir έχει τα EEx, ή Ένθετη Elixir.  Με την EEx μπορούμε να ενσωματώσουμε και τρέξουμε κώδικα Elixir μέσα σε αλφαριθμητικά.

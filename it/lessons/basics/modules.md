@@ -1,6 +1,7 @@
----
-version: 1.4.1
-title: Moduli
+%{
+  version: "1.4.1",
+  title: "Moduli"
+}
 ---
 
 Per esperienza sappiamo che è disordinato avere tutte le nostre funzioni nello stesso file o ambito. In questa lezione affronteremo come raggruppare le funzioni e definire una mappa specializzata conosciuta come struttura (_struct_) per organizzare il nostro codice in modo più efficiente.

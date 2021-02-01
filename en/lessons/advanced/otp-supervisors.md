@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: OTP Supervisors
+%{
+  version: "1.1.1",
+  title: "OTP Supervisors"
+}
 ---
 
 Supervisors are specialized processes with one purpose: monitoring other processes.

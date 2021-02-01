@@ -1,6 +1,7 @@
----
-version: 2.2.0
-title: Plug
+%{
+  version: "2.2.0",
+  title: "Plug"
+}
 ---
 
 如果熟悉 Ruby，可以將 Plug 視為 Rack 再加上一點 Sinatra。

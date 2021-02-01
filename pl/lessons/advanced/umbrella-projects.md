@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Projekty zbiorcze
+%{
+  version: "0.9.1",
+  title: "Projekty zbiorcze"
+}
 ---
 
 Z czasem projekt może stać się duży, naprawdę duży. Mix pozwala nam na podzielenie naszego projektu na mniejsze, łatwiejsze w utrzymaniu i zarządzaniu. Projekty, które składają się z wielu mniejszych pod projektów, nazywamy projektami zbiorczymi albo po angielsku _umbrella project_.

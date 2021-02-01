@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: OTP Concurrency
+%{
+  version: "0.9.1",
+  title: "OTP Concurrency"
+}
 ---
 
 Chúng ta đã xem về các trừu tượng hoá của Elixir cho xử lý đồng thời (concurrency), nhưng đôi khi chúng ta cần quyền điều khiển lớn hơn, bởi thế chúng ta sẽ đi sâu vào tìm hiểu hành vi của OTP mà đã có sẵn ở trong Elixir.

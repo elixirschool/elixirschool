@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Fonctions
+%{
+  version: "1.2.0",
+  title: "Fonctions"
+}
 ---
 
 En Elixir, comme dans tous les langages fonctionnels, les fonctions sont des citoyens de premier ordre.

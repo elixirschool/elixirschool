@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Protocols
+%{
+  version: "1.0.1",
+  title: "Protocols"
+}
 ---
 
 Nesta lição nós iremos aprender um pouco sobre Protocols, o que eles são e como usamos ele em Elixir.

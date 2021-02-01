@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Interoperabilidad Erlang
+%{
+  version: "1.0.1",
+  title: "Interoperabilidad Erlang"
+}
 ---
 
 Uno de los beneficios añadidos de Elixir al estar construido sobre Erlang VM (BEAM) es la gran cantidad de bibliotecas existentes que están disponibles para nosotros.

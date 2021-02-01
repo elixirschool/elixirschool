@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Tác vụ Mix tùy biến
+%{
+  version: "0.9.1",
+  title: "Tác vụ Mix tùy biến"
+}
 ---
 
 Tạo ra một tác vụ tùy biến cho dự án Elixir của bạn.

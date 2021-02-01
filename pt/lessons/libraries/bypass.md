@@ -1,6 +1,7 @@
----
-version: 1.0.0
-title: Bypass
+%{
+  version: "1.0.0",
+  title: "Bypass"
+}
 ---
 
 Ao testar nossas aplicações, muitas vezes precisamos fazer chamadas a serviços externos.

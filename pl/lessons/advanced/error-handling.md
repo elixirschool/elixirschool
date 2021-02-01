@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Wyjątki i błędy
+%{
+  version: "0.9.1",
+  title: "Wyjątki i błędy"
+}
 ---
 
 Elixir wspiera obsługę wyjątków. Ta lekcja jest poświęcona mechanizmom do obsługi błędów, wśród których najpopularniejszym jest zwracanie krotki `{:error, reason}`. 

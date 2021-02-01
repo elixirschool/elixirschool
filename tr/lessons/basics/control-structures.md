@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Kontrol Yapilari
+%{
+  version: "1.1.1",
+  title: "Kontrol Yapilari"
+}
 ---
 
 Burada Elixir'in bize sundugu kontrol yapilarini inceleyecegiz.

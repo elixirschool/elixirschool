@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Vlastné Mix Tasky
+%{
+  version: "1.0.2",
+  title: "Vlastné Mix Tasky"
+}
 ---
 
 Vytváranie vlastných Mix taskov pre vaše Elixir projekty.

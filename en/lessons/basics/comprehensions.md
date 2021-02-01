@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: Comprehensions
+%{
+  version: "1.1.0",
+  title: "Comprehensions"
+}
 ---
 
 List comprehensions are syntactic sugar for looping through enumerables in Elixir.

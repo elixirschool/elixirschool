@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Struktury sterujące
+%{
+  version: "1.0.2",
+  title: "Struktury sterujące"
+}
 ---
 
 W tej lekcji przyjrzymy się strukturom sterującym dostępnym w Elixirze.

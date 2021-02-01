@@ -1,6 +1,7 @@
----
-version: 1.2.1
-title: Podstawy
+%{
+  version: "1.2.1",
+  title: "Podstawy"
+}
 ---
 
 Przygotowanie środowiska, podstawowe typy danych i operacje.

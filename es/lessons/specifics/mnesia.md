@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Mnesia
+%{
+  version: "1.2.0",
+  title: "Mnesia"
+}
 ---
 
 Mnesia es un sistema distribuido de base de datos en tiempo real.

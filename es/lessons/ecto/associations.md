@@ -1,6 +1,7 @@
----
-version: 1.2.1
-title: Asociaciones
+%{
+  version: "1.2.1",
+  title: "Asociaciones"
+}
 ---
 
 En esta sección vamos a aprender como usar Ecto para definir y trabajar con asociaciones entre nuestros esquemas.

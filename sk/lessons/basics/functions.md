@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: Funkcie
+%{
+  version: "1.1.0",
+  title: "Funkcie"
+}
 ---
 
 V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie základným konceptom. Povieme si o rôznych typoch funkcií v Elixire, rozdiely medzi nimi a ako ich použiť.

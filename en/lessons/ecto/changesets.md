@@ -1,6 +1,7 @@
----
-version: 1.2.2
-title: Changesets
+%{
+  version: "1.2.2",
+  title: "Changesets"
+}
 ---
 
 In order to insert, update or delete data from the database, `Ecto.Repo.insert/2`, `update/2` and `delete/2` require a changeset as their first parameter. But what are changesets?

@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: Comprensiones
+%{
+  version: "1.1.0",
+  title: "Comprensiones"
+}
 ---
 
 La comprensión de listas es azúcar sintáctica para iterar a través de enumerables en Elixir. En esta lección veremos como podemos usar comprensiones para iteración y generación.

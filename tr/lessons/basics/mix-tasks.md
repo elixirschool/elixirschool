@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Özel Mix Görevleri
+%{
+  version: "1.0.1",
+  title: "Özel Mix Görevleri"
+}
 ---
 
 Elixir projeleriniz için özel Mix görevleri oluşturma.

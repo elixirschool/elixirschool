@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Composition
+%{
+  version: "0.9.1",
+  title: "Composition"
+}
 ---
 
 Kita tahu dari pengalaman bahwa adalah menyusahkan jika kita mengumpulkan semua fungsi yang kita buat dalam file dan scope (cakupan) yang sama.  Dalam pelajaran ini kita akan mengulas bahgaimana mengelompokkan fungsi dan mendefinisikan suatu map khusus yang dikenal sebagai sebuah struct untuk mengorganisasikan code kita secara lebih efisien.

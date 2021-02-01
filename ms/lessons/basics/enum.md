@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Enum
+%{
+  version: "0.9.0",
+  title: "Enum"
+}
 ---
 
 Satu kumpulan algorithm untuk memproses satu persatu(enumerate) isi kandungan 'collection'.

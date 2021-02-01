@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Βοηθοί IEx
+%{
+  version: "1.0.2",
+  title: "Βοηθοί IEx"
+}
 ---
 
 {% include toc.html %}

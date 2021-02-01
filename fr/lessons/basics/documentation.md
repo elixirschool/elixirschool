@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: Documentation
+%{
+  version: "1.1.0",
+  title: "Documentation"
+}
 ---
 
 Documentation du code Elixir.

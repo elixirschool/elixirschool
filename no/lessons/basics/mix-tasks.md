@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Egnedefinerte Mix Tasks
+%{
+  version: "1.0.1",
+  title: "Egnedefinerte Mix Tasks"
+}
 ---
 
 Å lage egendefinerte Mix tasks for dine Elixir prosjekter.

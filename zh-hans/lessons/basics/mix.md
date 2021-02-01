@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Mix
+%{
+  version: "1.1.1",
+  title: "Mix"
+}
 ---
 
 在更深入了解 Elixir 之前，我们必须先学习 mix。如果你熟悉 Ruby 的话，mix 就是 Bundler，RubyGems 和 Rake 的结合。mix 对于开发 Elixir 至关重要，我们在这篇课程只会介绍它的部分特性。要查看 Mix 在当前环境中提供的所有内容，请运行 `mix help`。

@@ -1,6 +1,7 @@
----
-version: 1.5.0
-title: Enum
+%{
+  version: "1.5.0",
+  title: "Enum"
+}
 ---
 
 Un ensemble d'algorithmes pour énumérer sur les collections.

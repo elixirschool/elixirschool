@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Sigily
+%{
+  version: "1.0.1",
+  title: "Sigily"
+}
 ---
 
 Práca so sigilmi a ich vytváranie.

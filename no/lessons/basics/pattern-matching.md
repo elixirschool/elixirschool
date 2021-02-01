@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Mønstersammenligning
+%{
+  version: "0.9.0",
+  title: "Mønstersammenligning"
+}
 ---
 
 Mønstersammenligning (pattern matching) er en viktig del av Elixir, og lar oss matche enkle verdier, datastrukturer og funksjoner. Vi skal nå se nærmere på hva mønstersammenligning innebærer.

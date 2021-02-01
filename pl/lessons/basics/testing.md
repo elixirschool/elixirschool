@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Testowanie kodu
+%{
+  version: "1.1.1",
+  title: "Testowanie kodu"
+}
 ---
 
 Testowanie kodu jest bardzo ważną częścią procesu produkcji oprogramowania. W tej lekcji przyjrzymy się zagadnieniu testowania kodu w Elixirze z wykorzystaniem ExUnit. Poznamy też kilka dobrych praktyk z tym związanych.  

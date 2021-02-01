@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: 錯誤處理
+%{
+  version: "1.1.0",
+  title: "錯誤處理"
+}
 ---
 
 儘管常見到回傳 `{:error, reason}` tuple，但 Elixir 也支援異常 (exceptions)，在本課程中，將看看如何處理錯誤和我們可用的不同機制。

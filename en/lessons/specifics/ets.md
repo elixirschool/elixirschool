@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Erlang Term Storage (ETS)
+%{
+  version: "1.1.1",
+  title: "Erlang Term Storage (ETS)"
+}
 ---
 
 Erlang Term Storage, commonly referred to as ETS, is a powerful storage engine built into OTP and available to use in Elixir.

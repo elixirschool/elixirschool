@@ -1,6 +1,7 @@
----
-version: 1.2.1
-title: Koleksi
+%{
+  version: "1.2.1",
+  title: "Koleksi"
+}
 ---
 
 List, tuple, keyword lists, dan map.

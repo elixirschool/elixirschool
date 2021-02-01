@@ -1,6 +1,7 @@
----
-version: 1.0.0
-title: Bypass
+%{
+  version: "1.0.0",
+  title: "Bypass"
+}
 ---
 
 在測試應用程式時，通常需要向外部服務發出請求。

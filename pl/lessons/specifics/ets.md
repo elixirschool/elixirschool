@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Erlang Term Storage (ETS)
+%{
+  version: "0.9.1",
+  title: "Erlang Term Storage (ETS)"
+}
 ---
 
 Erlang Term Storage, zwany ETS, jest potężnym mechanizmem składowania danych zbudowanym z użyciem OTP i gotowym do użycia w Elixirze. W tej lekcji przyjrzymy się jak możemy użyć ETS w naszej aplikacji.  

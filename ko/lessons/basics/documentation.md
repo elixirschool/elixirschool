@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: 문서화
+%{
+  version: "1.0.3",
+  title: "문서화"
+}
 ---
 
 Elixir 코드 문서화하기.

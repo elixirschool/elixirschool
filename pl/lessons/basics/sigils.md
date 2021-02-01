@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Sigile
+%{
+  version: "0.9.0",
+  title: "Sigile"
+}
 ---
 
 Tworzenie i praca z sigilami.

@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Dokumentasi
+%{
+  version: "0.9.1",
+  title: "Dokumentasi"
+}
 ---
 
 Mendokumentasi kod Elixir.

@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Własne funkcje Mix'a 
+%{
+  version: "0.9.1",
+  title: "Własne funkcje Mix'a "
+}
 ---
 
 Tworzenie własnych funkcji Mix'a dla projektów w Elixirze.

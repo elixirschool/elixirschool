@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Grundlagen
+%{
+  version: "0.9.0",
+  title: "Grundlagen"
+}
 ---
 
 Zum Anfang: Grundlegende Datentypen und Operationen.

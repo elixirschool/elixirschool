@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: StreamData
+%{
+  version: "1.1.1",
+  title: "StreamData"
+}
 ---
 
 An example-based unit testing library like [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) is a wonderful tool to help you verify that your code works the way you think it does.

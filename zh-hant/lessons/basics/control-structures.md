@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: 控制語句
+%{
+  version: "1.1.1",
+  title: "控制語句"
+}
 ---
 
 在本課中，我們將專注在 Elixir 中可用的控制語句 (Control Structures)。

@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: 自定义 Mix 任务
+%{
+  version: "1.2.0",
+  title: "自定义 Mix 任务"
+}
 ---
 
 为你的 Elixir 项目创建 Mix 自定义任务。

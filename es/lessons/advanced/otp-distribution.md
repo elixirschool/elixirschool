@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Distribución en OTP
+%{
+  version: "1.0.1",
+  title: "Distribución en OTP"
+}
 ---
 
 ## Introducción a la distribución

@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Ayudantes de IEx
+%{
+  version: "1.0.1",
+  title: "Ayudantes de IEx"
+}
 ---
 
 {% include toc.html %}

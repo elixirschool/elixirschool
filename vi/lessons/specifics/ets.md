@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Erlang Term Storage (ETS)
+%{
+  version: "0.9.1",
+  title: "Erlang Term Storage (ETS)"
+}
 ---
 
 Erlang Term Storage, thường được biết như ETS, là hệ thống lưu trữ mạnh mẽ được xây dựng dựa trên OTP và sử dụng được trong Elixir. Trong bài này chúng ta sẽ tìm hiểu làm thế nào để kết nối tới ETS và sử dụng trong ứng dụng của bạn.

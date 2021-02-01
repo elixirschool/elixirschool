@@ -1,6 +1,7 @@
----
-version: 1.1.3
-title: Debugging
+%{
+  version: "1.1.3",
+  title: "Debugging"
+}
 ---
 
 Bugs are an inherent part of any project, that's why we need debugging.

@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Poolboy
+%{
+  version: "1.2.0",
+  title: "Poolboy"
+}
 ---
 
 You can easily exhaust your system resources if you do not limit the maximum number of concurrent processes that your program can spawn.

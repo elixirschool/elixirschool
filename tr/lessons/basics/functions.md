@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Fonksiyonlar
+%{
+  version: "1.0.2",
+  title: "Fonksiyonlar"
+}
 ---
 
 Elixir ve bir çok fonksiyonel dilde fonksiyonlar birinci sınıf üyedir.   Elixir'de bulunan fonksiyon çeşitlerini, farklılıklarını ve nasıl kullanacaklarını öğreneceğiz.

@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: 字串
+%{
+  version: "1.2.0",
+  title: "字串"
+}
 ---
 
 字串 (Strings)、字元列表 (Char Lists)、字位 (Graphemes) 和碼位 (Codepoints)。

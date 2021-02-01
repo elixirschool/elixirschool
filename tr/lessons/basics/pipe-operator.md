@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Pipe Operatörü
+%{
+  version: "1.0.1",
+  title: "Pipe Operatörü"
+}
 ---
 
 Pipe operatörü `|>` bir fonksiyonun sonucunu diğer fonksiyona ilk değer olarak geçirir.

@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Mix Tasks
+%{
+  version: "0.9.1",
+  title: "Mix Tasks"
+}
 ---
 
 Създаване на Mix tasks за вашите Elixir проекти.

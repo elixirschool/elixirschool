@@ -1,6 +1,7 @@
----
-version: 1.2.1
-title: Base
+%{
+  version: "1.2.1",
+  title: "Base"
+}
 ---
 
 Configurazione, tipi di base ed operazioni di base.

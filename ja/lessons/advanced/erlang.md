@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 ---
 version: 1.0.2
 title: Erlangとの相互運用
+=======
+%{
+  version: "1.0.1",
+  title: "Erlangとの相互運用"
+}
+>>>>>>> 6a6011a9... Convert to NimblePublisher expected format
 ---
 
 Erlang VM (BEAM)の上で開発することによって得られる利点の1つに、既にある大量のライブラリが利用できるという事があげられます。相互運用できることで、そうしたライブラリやErlangの標準ライブラリをElixirコードから活用することができます。このレッスンではサードパーティのErlangパッケージも併せ、標準ライブラリの関数へアクセスする方法を見ていきます。

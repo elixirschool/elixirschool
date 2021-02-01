@@ -1,6 +1,7 @@
----
-version: 0.9.2
-title: Mix
+%{
+  version: "0.9.2",
+  title: "Mix"
+}
 ---
 
 Trước khi đi sâu vào Elixir thì chúng ta cần tìm hiều về mix đầu tiên. Nếu bạn đã quen thuộc với Ruby thì mix tương ứng với Bundler, Rubygems và Rake hợp lại. Mix là một phần quan trọng trong bất cứ dự án Elixir nào và trong bài này chúng ta sẽ đi vào một vài tính năng thú vị của nó. Để xem mix có tất cả những chức năng gì thì chúng ta chạy `mix help`.

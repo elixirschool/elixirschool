@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Pattern Matching
+%{
+  version: "1.0.2",
+  title: "Pattern Matching"
+}
 ---
 
 Pattern matching je dôležitou a užitočnou časťou Elixiru. Umožňuje nám hľadať a vyberať jednoduché hodnoty, dátové štruktúry a dokonca aj funkcie. V tejto lekcii si ukážeme, ako ho používať.

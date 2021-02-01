@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Ausführbare Dateien
+%{
+  version: "0.9.1",
+  title: "Ausführbare Dateien"
+}
 ---
 
 Um ausführbare Dateien in Elixir zu erstellen werden wir escript benutzen. Escript erzeugt eine ausführbare Datei, welche auf jedem System lauffähig ist, auf dem Erlang installiert ist.

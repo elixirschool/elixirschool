@@ -1,6 +1,7 @@
----
-version: 1.2.1
-title: Bases
+%{
+  version: "1.2.1",
+  title: "Bases"
+}
 ---
 
 Installation, types de base et opérations.

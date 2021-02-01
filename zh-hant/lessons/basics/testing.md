@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: 測試
+%{
+  version: "1.2.0",
+  title: "測試"
+}
 ---
 
 測試 (Testing) 是開發軟體的一個重要部分。

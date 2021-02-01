@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: Concurrency
+%{
+  version: "1.1.0",
+  title: "Concurrency"
+}
 ---
 
 Elixir'in önemli noktalarından biri de eşzamanlılık desteğidir. Erlang VM (BEAM) sayesinde, Elixir'deki eşzamanlılık beklenenden daha kolaydır. Eşzamanlılık modeli, mesaj geçişi yoluyla diğer süreçlerle iletişim kuran aktörlere dayanır.

@@ -1,6 +1,7 @@
----
-version: 2.0.1
-title: Distillery (基本)
+%{
+  version: "2.0.1",
+  title: "Distillery (基本)"
+}
 ---
 
 DistilleryはElixirのみで作られたリリースマネージャーです。これによってほとんど、あるいは全く設定をすることなく、どこにでもデプロイ可能なリリースを作成することができます。

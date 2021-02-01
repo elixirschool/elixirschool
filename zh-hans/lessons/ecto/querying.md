@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: 查询
+%{
+  version: "1.2.0",
+  title: "查询"
+}
 ---
 
 {% include toc.html %}

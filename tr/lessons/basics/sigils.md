@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: İşaretler (Sigils)
+%{
+  version: "1.0.1",
+  title: "İşaretler (Sigils)"
+}
 ---
 
 İşaretlerle çalışma ve yeni işaretler oluşturma.

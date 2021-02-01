@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: Especificações e tipos
+%{
+  version: "1.0.3",
+  title: "Especificações e tipos"
+}
 ---
 
 Nessa lição vamos aprender sobre a sintaxe de `@spec` e `@type`. O primeiro é mais uma sintaxe complementar para escrever documentação que pode ser analisada por ferramentas. A segunda nos ajuda a escrever código de fácil leitura e entendimento.

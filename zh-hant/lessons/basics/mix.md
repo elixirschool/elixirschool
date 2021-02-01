@@ -1,6 +1,7 @@
----
-version: 1.1.0
-title: Mix
+%{
+  version: "1.1.0",
+  title: "Mix"
+}
 ---
 
 在能夠潛入 Elixir 的深處之前，首先需要了解 Mix。

@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: OTP 分散式
+%{
+  version: "1.0.1",
+  title: "OTP 分散式"
+}
 ---
 
 ## 分散式簡介

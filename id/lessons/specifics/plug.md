@@ -1,6 +1,7 @@
----
-version: 0.10.0
-title: Plug
+%{
+  version: "0.10.0",
+  title: "Plug"
+}
 ---
 
 Kalau anda familiar dengan Ruby anda bisa menganggap Plug seperti Rack dengan sedikit Sinatra.  Plug memberi spesifikasi untuk komponen aplikasi web dan adapter untuk web server. Walau bukan bagian Elixir core, Plug adalah sebuah project resmi Elixir.

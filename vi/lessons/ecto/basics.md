@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Basics
+%{
+  version: "0.9.1",
+  title: "Basics"
+}
 ---
 
 Ecto là một dự án chính thức của Elixir cung cấp một database wrapper (tạm dịch: lớp bọc cho cơ sở dữ liệu) và ngôn ngữ truy vấn tích hợp. Với Ecto ta có thể tạo các migration, định nghĩa model, ghi và cập nhật các bản ghi, và truy vấn chúng.

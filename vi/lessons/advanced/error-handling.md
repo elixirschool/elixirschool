@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Xử Lý Lỗi
+%{
+  version: "0.9.1",
+  title: "Xử Lý Lỗi"
+}
 ---
 
 Mặc dù trong Elixir để trả về lỗi, chúng ta thường dùng `{:error, reason}`, nhưng Elixir cũng hỗ trợ các exceptions (tạm dịch ngoại lệ), trong bài học này chúng ta sẽ xem xét các cách để xử lý lỗi, và những cơ chế khác nhau để làm chuyện này.

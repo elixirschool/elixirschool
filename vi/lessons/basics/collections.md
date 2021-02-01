@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Các tập dữ liệu
+%{
+  version: "0.9.0",
+  title: "Các tập dữ liệu"
+}
 ---
 
 List (Danh sách), tuple, keyword (danh sách từ khoá), map, dict (từ điển) và functional combinators (toán tử kết hợp hướng chức năng)

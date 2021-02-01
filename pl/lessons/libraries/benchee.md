@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Benchee
+%{
+  version: "1.0.1",
+  title: "Benchee"
+}
 ---
 
 Nie możemy po prostu przypuszczać, które funkcje są szybkie a które są powolne - aby to ustalić potrzebujemy rzeczywistych pomiarów. Tu z pomocą przychodzi analiza porównacza. W tej lekcji nauczymy się jak łatwo jest zmierzyć szybkość naszego kodu.

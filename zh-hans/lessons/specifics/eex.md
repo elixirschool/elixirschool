@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: 嵌入的 Elixir (EEx)
+%{
+  version: "1.0.2",
+  title: "嵌入的 Elixir (EEx)"
+}
 ---
 
 正如 Ruby 有 ERB，Java 有 JSPs, Elixir 也有 EEx, 或者 嵌入的 Elixir。通过 EEx，我们可以在字符串里面嵌入 Elixir 表达式并求值。

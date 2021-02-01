@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Konkurentnosť
+%{
+  version: "1.0.1",
+  title: "Konkurentnosť"
+}
 ---
 
 Jednou z výhod Elixiru je jeho podpora konkurentnosti. Vďaka Erlang VM (BEAM), konkurentnosť v Elixire je jednodušia než by človek čakal. Model konkurentnosti sa spolieha na Actorov, ktorí predstavujú uzavretý proces, ktorý komunikuje s ostatnými procesmi pomocou odosielania správ.

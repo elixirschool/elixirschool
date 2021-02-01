@@ -1,6 +1,7 @@
----
-version: 1.1.2
-title: Nerves
+%{
+  version: "1.1.2",
+  title: "Nerves"
+}
 ---
 
 {% include toc.html %}

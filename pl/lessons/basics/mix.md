@@ -1,6 +1,7 @@
----
-version: 1.1.2
-title: Mix
+%{
+  version: "1.1.2",
+  title: "Mix"
+}
 ---
 
 Zanim zajmiemy się bardziej zaawansowanymi aspektami Elixira musimy poznać Mix.

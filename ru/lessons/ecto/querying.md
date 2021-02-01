@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Язык запросов
+%{
+  version: "1.2.0",
+  title: "Язык запросов"
+}
 ---
 
 {% include toc.html %}

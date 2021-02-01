@@ -1,6 +1,7 @@
----
-version: 1.1.2
-title: Základy
+%{
+  version: "1.1.2",
+  title: "Základy"
+}
 ---
 
 Inštalácia, základné dátové typy a operácie.

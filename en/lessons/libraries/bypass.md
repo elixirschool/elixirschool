@@ -1,6 +1,7 @@
----
-version: 1.0.0
-title: Bypass
+%{
+  version: "1.0.0",
+  title: "Bypass"
+}
 ---
 
 When testing our applications there are often times we need to make requests to external services.

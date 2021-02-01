@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Executables
+%{
+  version: "1.0.2",
+  title: "Executables"
+}
 ---
 
 To build executables in Elixir we will be using escript.

@@ -1,6 +1,7 @@
----
-version: 0.9.2
-title: Dokumentation
+%{
+  version: "0.9.2",
+  title: "Dokumentation"
+}
 ---
 
 Wie dokumentiert man Elixir Code?

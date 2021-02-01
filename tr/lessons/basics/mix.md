@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Mix
+%{
+  version: "1.0.2",
+  title: "Mix"
+}
 ---
 
 Elixirin derinliklerine girmeden önce Mix öğrenelim. Eğer daha önceden Ruby biliyorsanız Mix'i Bundeller, RubyGems ve Rake ile eşleştirin. Mix, Elixirin önemli bir parçası ve bu dersimizde sadece birkaç özelliğini öğreneceğiz. Mix'in sunduğu tüm özelliklerini görmek için `mix help` komutun çalıştırın.

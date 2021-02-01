@@ -1,6 +1,7 @@
----
-version: 1.1.3
-title: Depuração
+%{
+  version: "1.1.2",
+  title: "Depuração"
+}
 ---
 
 Bugs são problemas comuns em qualquer projeto, é por isso que precisamos da depuração.

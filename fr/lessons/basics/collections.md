@@ -1,6 +1,7 @@
----
-version: 1.3.1
-title: Collections
+%{
+  version: "1.3.1",
+  title: "Collections"
+}
 ---
 
 Les listes, tuples, listes à mots clé, et tableaux associatifs.

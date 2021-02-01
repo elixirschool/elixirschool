@@ -1,6 +1,7 @@
----
-version: 0.9.1
-title: Kontrollstrukturen
+%{
+  version: "0.9.1",
+  title: "Kontrollstrukturen"
+}
 ---
 
 In dieser Lektion werden wir schauen welche Kontrollstrukturen in Elixir vorhanden sind.

@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Interoperabilidade com Erlang
+%{
+  version: "1.0.2",
+  title: "Interoperabilidade com Erlang"
+}
 ---
 
 Um dos benefícios adicionais em se construir em cima da Erlang VM (BEAM) é a abundância de bibliotecas existentes disponíveis para nós. A interoperabilidade nos permite usar essas bibliotecas e a biblioteca padrão Erlang a partir do nosso código Elixir. Nesta lição veremos como acessar funcionalidades da biblioteca padrão juntamente com pacotes Erlang de terceiros.

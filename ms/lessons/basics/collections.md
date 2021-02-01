@@ -1,6 +1,7 @@
----
-version: 0.9.0
-title: Collections
+%{
+  version: "0.9.0",
+  title: "Collections"
+}
 ---
 
 List, tuples, keywords, maps, dicts dan functional combinators.

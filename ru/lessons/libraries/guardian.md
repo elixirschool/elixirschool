@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: Guardian (Основы)
+%{
+  version: "1.0.3",
+  title: "Guardian (Основы)"
+}
 ---
 
 [Guardian](https://github.com/ueberauth/guardian) &mdash; часто используемая библиотека, основанная на [JWT](https://jwt.io/) (JSON Web Token).

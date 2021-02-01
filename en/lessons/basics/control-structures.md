@@ -1,6 +1,7 @@
----
-version: 1.1.1
-title: Control Structures
+%{
+  version: "1.1.1",
+  title: "Control Structures"
+}
 ---
 
 In this lesson we will look at the control structures available to us in Elixir.

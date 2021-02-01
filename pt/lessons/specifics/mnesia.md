@@ -1,6 +1,7 @@
----
-version: 1.2.0
-title: Mnesia
+%{
+  version: "1.2.0",
+  title: "Mnesia"
+}
 ---
 
 Mnesia é um sistema de gestão de banco de dados em tempo real de alto tráfego.

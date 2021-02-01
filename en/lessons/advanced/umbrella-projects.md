@@ -1,6 +1,7 @@
----
-version: 1.0.3
-title: Umbrella Projects
+%{
+  version: "1.0.3",
+  title: "Umbrella Projects"
+}
 ---
 
 Sometimes a project can get big, really big in fact.

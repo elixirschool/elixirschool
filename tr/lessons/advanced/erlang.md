@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Erlang'ın Çalışabilirliği
+%{
+  version: "1.0.1",
+  title: "Erlang'ın Çalışabilirliği"
+}
 ---
 
 Erlang VM'nin (BEAM) üstüne inşa edilmenin getirdiği ek avantajlardan biriside, mevcut kütüphanelerinin bolluk içerisinde oluşudur. Çalışıla bilirlik, bu kütüphaneleri ve Erlang standart kütüphanelerini Elixir kodumuzda kullanmamızı sağlar. 

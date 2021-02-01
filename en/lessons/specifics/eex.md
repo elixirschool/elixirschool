@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: Embedded Elixir (EEx)
+%{
+  version: "1.0.2",
+  title: "Embedded Elixir (EEx)"
+}
 ---
 
 Much like Ruby has ERB and Java has JSPs, Elixir has EEx, or Embedded Elixir.

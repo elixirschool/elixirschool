@@ -1,6 +1,7 @@
----
-version: 1.0.1
-title: Hata işleme
+%{
+  version: "1.0.1",
+  title: "Hata işleme"
+}
 ---
 
 `{:error, reason}` demet'inin kullanımı daha yaygın olmasına rağmen, Elixir bir takım istisnaları'da desteklemektedir. Bu derste bahsettiğimiz istisnaların neler olduğuna  göz atacağız.
