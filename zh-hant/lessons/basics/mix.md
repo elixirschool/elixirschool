@@ -42,7 +42,7 @@ $ mix new example
 在你最喜歡的文字編輯器中打開這個檔案，你將會看到類似這樣的內容 (簡潔起見刪除註解)：
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

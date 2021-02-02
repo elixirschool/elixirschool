@@ -1,5 +1,5 @@
 ---
-version: 1.0.3
+version: 1.0.4
 title: Guardian (Basics)
 ---
 
@@ -84,7 +84,7 @@ end
 
 def deps do
   [
-    {guardian: "~> x.x"},
+    {:guardian, "~> x.x"},
     ...
   ]
 end

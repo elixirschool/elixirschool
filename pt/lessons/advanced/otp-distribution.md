@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Distribuição OTP
 ---
 
@@ -124,7 +124,7 @@ Vamos construir uma aplicação de supervisão simples que utiliza tarefas distr
 
 Crie sua aplicação:
 
-```
+```shell
 mix new chat --sup
 ```
 

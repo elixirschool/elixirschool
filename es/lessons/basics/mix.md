@@ -34,7 +34,7 @@ De la salida podemos ver que mix ha creado nuestro directorio y un número de ar
 En esta sección vamos a enfocar nuestra atención en `mix.exs`. Aquí configuramos nuestra aplicación, dependencias, entornos, y versión. Abre el archivo en tu editor favorito, deberías ver algo como esto (comentarios eliminados por brevedad):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

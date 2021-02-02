@@ -1,5 +1,5 @@
 ---
-version: 1.6.1
+version: 1.7.0
 title: Enum
 ---
 
@@ -194,6 +194,13 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
+For convenience, `sort/2` allows us to pass `:asc` or `:desc` as the sorting function:
+
+```elixir
+Enum.sort([2, 3, 1], :desc)
+[3, 2, 1]
+```
+
 ### uniq
 
 We can use `uniq/1` to remove duplicates from our enumerables:
@@ -217,10 +224,10 @@ Many functions within the Enum module in Elixir take anonymous functions as an a
 
 These anonymous functions are often written shorthand using the Capture operator (&).
 
-Here are some examples that show how the capture operator can be implemented with the Enum module. 
+Here are some examples that show how the capture operator can be implemented with the Enum module.
 Each version is functionally equivalent.
 
-#### Using the capture operator with an anonymous function 
+#### Using the capture operator with an anonymous function
 
 Below is a typical example of the standard syntax when passing an anonymous function to `Enum.map/2`.
 
@@ -244,7 +251,7 @@ iex> Enum.map([1,2,3], plus_three)
 [4, 5, 6]
 ```
 
-#### Using the capture operator with a named function 
+#### Using the capture operator with a named function
 First we create a named function and call it within the anonymous function defined in `Enum.map/2`.
 
 ```elixir
@@ -259,13 +266,13 @@ iex>  Enum.map([1,2,3], fn number -> Adding.plus_three(number) end)
 Next we can refactor to use the Capture operator.
 
 ```elixir
-iex> Enum.map([1,2,3], &Adding.plus_three(&1)) 
+iex> Enum.map([1,2,3], &Adding.plus_three(&1))
 [4, 5, 6]
 ```
 
 For the most succinct syntax, we can directly call the named function without explicitly capturing the variable.
 
 ```elixir
-iex> Enum.map([1,2,3], &Adding.plus_three/1) 
+iex> Enum.map([1,2,3], &Adding.plus_three/1)
 [4, 5, 6]
 ```

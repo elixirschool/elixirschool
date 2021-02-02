@@ -327,7 +327,7 @@ First, we use the `Presence.list/1` function to get the collection of present us
         email: "beini@email.com",
         first_name: "Beini",
         phx_ref: "ZZ30QuoI/8s="
-        user_id: 1
+        user_id: 2
       }
   }
   ...
@@ -346,14 +346,12 @@ Once we fetch this list, we iterate over it to collect a list of the individual 
     phx_ref: "TNV4PzRfyhw="
     user_id: 1
   },
-  "2" => %{
-    metas: [
-      %{
-        email: "beini@email.com",
-        first_name: "Beini",
-        phx_ref: "ZZ30QuoI/8s="
-        user_id: 1
-      }
+  %{
+    email: "beini@email.com",
+    first_name: "Beini",
+    phx_ref: "ZZ30QuoI/8s="
+    user_id: 2
+   }
   }
 ]
 ```

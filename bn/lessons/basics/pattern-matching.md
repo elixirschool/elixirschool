@@ -29,6 +29,7 @@ iex> 2 = x
 ```elixir
 # Lists
 iex> list = [1, 2, 3]
+[1, 2, 3]
 iex> [1, 2, 3] = list
 [1, 2, 3]
 iex> [] = list

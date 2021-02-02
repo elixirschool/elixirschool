@@ -42,7 +42,7 @@ $ mix new example
 Ανοίξτε το αρχείο στον αγαπημένο σας επεξεργαστή κειμένου, θα πρέπει να βλέπετε κάτι σαν και αυτό (τα σχόλια έχουν αφαιρεθεί για συντομία):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

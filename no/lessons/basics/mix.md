@@ -33,7 +33,7 @@ Om vi tar en titt i konsollen vår, kan vi se at mix opprettet de nødvendige fi
 I denne leksjonen vil vi rette fokuset mot `mix.exs`. I denne filen konfigurerer vi applikasjonen vår, tilleggspakker, omgivelser og prosjektets versjon. Åpne filen i din foretrukne teksteditor (kommentarene er fjernet for enkelhetens skyld):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

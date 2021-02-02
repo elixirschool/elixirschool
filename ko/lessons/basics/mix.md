@@ -34,7 +34,7 @@ $ mix new example
 이번 수업에서는 `mix.exs` 파일에만 관심을 두고 살펴보도록 하겠습니다. 이 파일에서 우리가 방금 시작한 프로젝트와 프로젝트가 필요로 하는 의존성과 환경, 버전을 이해할 수 있습니다. 가장 좋아하는 에디터로 이 파일을 열었다면 이렇게 보일 것입니다. 주석은 생략하겠습니다.
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

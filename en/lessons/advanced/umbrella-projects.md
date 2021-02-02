@@ -40,7 +40,7 @@ for each application in the apps/ directory.
 As you can see from the shell command, Mix created a small skeleton project for us with two directories:
 
   - `apps/` - where our sub (child) projects will reside
-  - `config/` - where our umbrella projects configuration will live
+  - `config/` - where our umbrella project's configuration will live
 
 
 ## Child projects
@@ -143,7 +143,7 @@ $ tree
 └── mix.exs
 ```
 
-If we change back to the umbrella projects root, we can see that we can call all the typical commands such as compile.
+If we change back to the umbrella project's root, we can see that we can call all the typical commands such as compile.
 As the sub projects are just normal applications, you can change into their directories and do all the same stuff as usual that Mix enables you to do.
 
 ```bash
