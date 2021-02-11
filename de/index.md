@@ -4,7 +4,7 @@ layout: home
 version: 2.0.0
 ---
 
-Elixir-School is die erste Adresse für alle, welche die Programmiersprache Elixir erlernen und beherrschen möchten.
+Elixir-School ist die erste Adresse für alle, welche die Programmiersprache Elixir erlernen und beherrschen möchten.
 
 Einsteiger aber auch Elixir-Veteranen finden in den Lektionen die Hilfsmittel, die sie brauchen.
 
