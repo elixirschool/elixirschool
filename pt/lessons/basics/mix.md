@@ -130,8 +130,20 @@ Mix, bem como Bundler, suporta ambientes diferentes. Naturalmente mix trabalha c
 + `:test` — Usado por `mix test`. Coberto futuramente na nossa próxima lição.
 + `:prod` — Usado quando nós enviamos a nossa aplicação para produção.
 
-O ambiente atual pode ser acessado usando `Mix.env`. Como esperado, o ambiente pode ser alterado através da variável de ambiente `MIX_ENV`:
+Como esperado, o ambiente pode ser alterado através da variável de ambiente `MIX_ENV`:
 
 ```bash
-$ MIX_ENV=prod mix compile
+$ MIX_ENV=prod ies -S mix
+```
+
+Para garantir que o ambiente foi alterado você pode usar a função `Mix.env`:
+
+```elixir
+Mix.env
+```
+
+A saída será algo semelhante a isso:
+
+```bash
+:prod
 ```
