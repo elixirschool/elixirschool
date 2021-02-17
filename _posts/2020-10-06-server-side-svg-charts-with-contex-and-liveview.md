@@ -349,7 +349,7 @@ column_map: %{category_col: 0, value_cols: [1]}
 The values of `0` and `[1]` refer to the indices of elements in the tuples in our `DataSet`. The element at the `0` index will be considered the "category" and the element and the `1` index will be considered the "value". Our tuples have the game name at the zero index and the average rating at the `1` index, so our game names will be treated at the category and their average ratings the value.
 
 #### Render the Chart SVG
-THe `Contex.Plot` module will plot our data and render it to SVG markup. We'll add another reducer to our pipeline, `assign_chart_svg`. This reducer will initialize and configure the `Contex.Plot` and render it to SVG. Then, it will assign this SVG to the `:chart_svg` key in socket assigns.
+The `Contex.Plot` module will plot our data and render it to SVG markup. We'll add another reducer to our pipeline, `assign_chart_svg`. This reducer will initialize and configure the `Contex.Plot` and render it to SVG. Then, it will assign this SVG to the `:chart_svg` key in socket assigns.
 
 The `Plot` module manages the layout of the chart plot--the chart title, axis labels, legend, etc. We initialize our `Plot` with the plot width and height, and the chart struct:
 
