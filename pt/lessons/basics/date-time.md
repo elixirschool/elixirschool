@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Data e Tempo
 ---
 
@@ -9,7 +9,7 @@ Trabalhando com tempo em Elixir.
 
 ## Time
 
-O Elixir tem alguns módulos que trabalham com tempo. 
+O Elixir tem alguns módulos que trabalham com tempo.
 Ainda que precise ser notado que essa funcionalidade é limitada para trabalhar com fuso horário UTC.
 
 Vamos começar pegando o tempo atual:
@@ -26,7 +26,7 @@ iex> ~T[19:39:31.056226]
 ~T[19:39:31.056226]
 ```
 
-Você pode aprender mais sobre sigil na [lição sobre sigils](../sigils). 
+Você pode aprender mais sobre sigil na [lição sobre sigils](../sigils).
 É fácil acessar partes desta struct:
 
 ```elixir
@@ -62,7 +62,7 @@ iex> Date.leap_year? date
 true
 ```
 
-`day_of_week/1` calcula em que dia da semana será a data provida. 
+`day_of_week/1` calcula em que dia da semana será a data provida.
 Nesse caso é um sábado.
 `leap_year?/1` verifica se é um ano bissexto.
 Outras funções podem ser encontradas na [documentação](https://hexdocs.pm/elixir/Date.html).
@@ -96,7 +96,7 @@ Mas esteja ciente dos fusos horários. A documentação oficial fala:
 
 Também, note que você pode criar um instância de DateTime a partir de um NaiveDateTime, apenas fornecendo o fuso horário:
 
-``` 
+``` elixir
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
@@ -107,13 +107,13 @@ Como observamos no capítulo anterior, por padrão, o Elixir não possui dados d
 Para resolver esse problema, precisamos instalar e configurar o pacote [tzdata](https://github.com/lau/tzdata).
 Após a instalação, você deve configurar globalmente o Elixir para usar o Tzdata com o fuso horário do banco de dados:
 
-```
+```elixir
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 ```
 
 Agora, vamos tentar criar um horário no fuso horário de Paris e convertê-lo para o horário de Nova York:
 
-```
+```elixir
 iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
 #DateTime<2019-01-01 12:00:00+01:00 CET Europe/Paris>
 iex> {:ok, ny_datetime} = DateTime.shift_zone(paris_datetime, "America/New_York")

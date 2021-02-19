@@ -1,5 +1,5 @@
 ---
-version: 1.6.1
+version: 1.7.0
 title: Enum
 ---
 
@@ -188,6 +188,13 @@ iex> Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
 # without
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
+```
+
+Por conveniência, `sort/2` permite passar `:asc` ou `:desc` como função de ordenação:
+
+```elixir
+Enum.sort([2, 3, 1], :desc)
+[3, 2, 1]
 ```
 
 ### uniq
