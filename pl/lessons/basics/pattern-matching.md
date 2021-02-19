@@ -1,15 +1,16 @@
 ---
-version: 1.0.1
+version: 1.0.2
 title: Dopasowanie wzorców
 ---
 
-Dopasowanie wzorców, to jeden z najmocniejszych elementów Elixira, który pozwala dopasować wartości, struktury danych, a nawet funkcje. Tę lekcję rozpoczniemy od przyjrzenia się jak używać tego mechanizmu.
+Dopasowanie wzorców, to jeden z najmocniejszych elementów Elixira, który pozwala dopasować wartości, struktury danych, a nawet funkcje.
+Tę lekcję rozpoczniemy od przyjrzenia się jak używać tego mechanizmu.
 
 {% include toc.html %}
 
 ## Operator dopasowania
 
-Gotowi na niespodziankę?  W Elixirze operator `=` to w rzeczywistości operator dopasowania, który można porównać do znaku równości w algebrze. Wykorzystanie go w zapisie powoduje, że wyrażenie zostanie potraktowane jak równanie. Elixir przypisze wartości po lewej stronie wartość po prawej. Jeżeli przypisanie się powiedzie, to zostanie zwrócony jego wynik. W przeciwnym przypadku zostanie zwrócony błąd:
+Gotowi na niespodziankę? W Elixirze operator `=` to w rzeczywistości operator dopasowania, który można porównać do znaku równości w algebrze. Wykorzystanie go w zapisie powoduje, że wyrażenie zostanie potraktowane jak równanie. Elixir przypisze wartości po lewej stronie wartość po prawej. Jeżeli przypisanie się powiedzie, to zostanie zwrócony jego wynik. W przeciwnym przypadku zostanie zwrócony błąd. Spójrzmy:
 
 ```elixir
 iex> x = 1
@@ -25,7 +26,7 @@ iex> 2 = x
 ** (MatchError) no match of right hand side value: 1
 ```
 
-A teraz spróbujmy tego samego z kolekcjami:
+A teraz spróbujmy tego samego ze znanymi nam już kolekcjami:
 
 ```elixir
 # Listy
@@ -54,9 +55,12 @@ iex> {:ok, value} = {:error}
 
 ## Operator przypięcia
 
-Jak już wiemy, operator dopasowania pozwala na przypisanie, jeżeli lewa strona wyrażenia zawiera zmienną.  W niektórych przypadkach takie zachowanie jest niepożądane.  Do ich obsługi wykorzystujemy operator przypięcia: `^`.
+Jak już wiemy, operator dopasowania pozwala na przypisanie, jeżeli lewa strona wyrażenia zawiera zmienną.
+W niektórych przypadkach takie zachowanie jest niepożądane.
+Do ich obsługi wykorzystujemy operator przypięcia: `^`.
 
-Kiedy przypinamy zmienną, to dopasowujemy ją do istniejącej wartości, a nie tworzymy nową.  Zobaczmy, jak to działa:
+Kiedy przypinamy zmienną, to dopasowujemy ją do istniejącej wartości, a nie tworzymy nową.
+Zobaczmy, jak to działa:
 
 ```elixir
 iex> x = 1
@@ -96,4 +100,8 @@ iex> greet.("Hello", "Sean")
 "Hi Sean"
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
+iex> greeting
+"Hello"
 ```
+
+W przykładzie z `"Mornin'"` zauważ, że zmiana przypisania `greeting` na `"Mornin'"` następuje jedynie wewnątrz funkcji. Poza nią `greeting` nadal ma wartość `"Hello"`.
