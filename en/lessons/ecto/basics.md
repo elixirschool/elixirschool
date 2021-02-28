@@ -181,7 +181,7 @@ Let's create our new schema at `lib/friends/person.ex`:
 defmodule Friends.Person do
   use Ecto.Schema
 
-  schema "people" do
+  schema "person" do
     field :name, :string
     field :age, :integer, default: 0
   end
