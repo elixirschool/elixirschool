@@ -9,13 +9,13 @@ title: NimblePublisher
 
 ## Por que usar a NimblePublisher?
 
-NimblePublisher é uma biblioteca simples projetada para a publicação de conteúdo parseado de arquivos locais utilizando a sintaxe Markdown. Um caso de uso típico seria construindo um blog.
+A NimblePublisher é uma biblioteca simples projetada para a publicação de conteúdo parseado de arquivos locais utilizando a sintaxe Markdown. Um caso de uso típico seria construindo um blog.
 
 Essa biblioteca encapsula a maior parte do código que a Dashbit usa para seu próprio blog, como apresentado em sua postagem [Boas vindas ao nosso blog: como ele foi feito!](https://dashbit.co/blog/welcome-to-our-blog-how-it-was-made) - e onde explicam por que escolheram parsear o conteúdo de arquivos locais ao invés de utilizar um banco de dados ou um CMS mais complexo.
 
 ## Criando seu conteúdo
 
-Vamos construir nosso próprio blog. Em nosso exemplo, estamos utilizando uma aplicação Phoenix mas o Phoenix não é um requisito obrigatório. Como a NimblePublisher se encarrega apenas de parsear os arquivos locais, você pode utilizá-lo em qualquer aplicação Elixir.
+Vamos construir nosso próprio blog. Em nosso exemplo, estamos utilizando uma aplicação Phoenix mas o Phoenix não é um requisito obrigatório. Como a NimblePublisher se encarrega apenas de parsear os arquivos locais, você pode utilizá-la em qualquer aplicação Elixir.
 
 Primeiro, vamos criar uma nova aplicação Phoenix para nosso exemplo. Vamos chamá-la de NimbleSchool, e vamos a criar desta forma pois não iremos precisar do Ecto em nosso caso:
 
@@ -119,7 +119,7 @@ end
 
 Como você pode perceber, o contexto `Blog` utiliza a NimblePublisher para construir a coleção de `Post` a partir do diretório local indicado, utilizando o realce de sintaxe que desejamos usar.
 
-NimblePublisher irá criar a variável `@posts`, que mais tarde processamos para ordenar as postagens em ordem decrescente por `:date` como normalmente queremos em um blog.
+A NimblePublisher irá criar a variável `@posts`, que mais tarde processamos para ordenar as postagens em ordem decrescente por `:date` como normalmente queremos em um blog.
 
 Também definimos `@tags` a partir dos `@posts`.
 
@@ -184,7 +184,7 @@ end
 
 ## Disponibilizando seu conteúdo
 
-Agora que já temos uma maneira de obter todas as nossas postagens e tags, os disponibilizar significa apenas conectar as rotas, controllers, views e templates da forma usual. Para esse exemplo iremos manter a simplicidade e apenas listar todas as postagens e obter uma postagem por seu id. É deixado a você como um exercício listar postagens por tags e estender o layout com as postagens recentes.
+Agora que já temos uma maneira de obter todas as nossas postagens e tags, as disponibilizar significa apenas conectar as rotas, controllers, views e templates da forma usual. Para esse exemplo iremos manter a simplicidade e apenas listar todas as postagens e obter uma postagem por seu id. É deixado a você como um exercício listar postagens por tags e estender o layout com as postagens recentes.
 
 ### Rotas
 
@@ -271,7 +271,7 @@ Abra o servidor web com `iex -S mix phx.server` e visite [http://localhost:4000/
 
 ## Extendendo metadados
 
-NimblePublisher é muito flexível quando se trata de definir nossa estrutura de postagens e metadados. Por exemplo, digamos que queremos adicionar uma chave `:published` para sinalizar as postagens e mostrar apenas aquelas onde isso é verdade, ou `true`.
+A NimblePublisher é muito flexível quando se trata de definir nossa estrutura de postagens e metadados. Por exemplo, digamos que queremos adicionar uma chave `:published` para sinalizar as postagens e mostrar apenas aquelas onde isso é verdade, ou `true`.
 
 Precisamos apenas adicionar a chave `:published` à estrutura do `Post`, e também aos metadados das postagens. No módulo `Blog` podemos definir:
 
@@ -297,7 +297,7 @@ E coloque as classes CSS geradas em sua folha de estilo.
 
 ## Disponibilizando outros conteúdos
 
-NimblePublisher também pode ser usado para construir outros contextos de publicação com uma estrutura diferente.
+A NimblePublisher também pode ser usada para construir outros contextos de publicação com uma estrutura diferente.
 
 Por exemplo, poderíamos gerenciar uma coleção de Perguntas Frequentes (FAQs), neste caso nós provavelmente não precisamos de datas, ou atores, e uma estrutura mais simples com `:id`, `:question` e `:answer` seria ótimo.
 
