@@ -3,13 +3,13 @@ version: 1.0.2
 title: NimblePublisher
 ---
 
-[NimblePublisher](https://github.com/dashbitco/nimble_publisher) é um mecanismo de publicação mínimo baseado em um sistema de arquivos com suporte a Markdown e realce de código.
+[NimblePublisher](https://github.com/dashbitco/nimble_publisher) é um mecanismo de publicação simples baseado em um sistema de arquivos com suporte a Markdown e realce de código.
 
 {% include toc.html %}
 
-## Por que usar a NimblePublisher?
+## Por que usar NimblePublisher?
 
-A NimblePublisher é uma biblioteca simples projetada para a publicação de conteúdo parseado de arquivos locais utilizando a sintaxe Markdown. Um caso de uso típico seria construindo um blog.
+NimblePublisher é uma biblioteca simples projetada para a publicação de conteúdo parseado de arquivos locais utilizando a sintaxe Markdown. Um caso de uso típico seria a construção de um blog.
 
 Essa biblioteca encapsula a maior parte do código que a Dashbit usa para seu próprio blog, como apresentado em sua postagem [Boas vindas ao nosso blog: como ele foi feito!](https://dashbit.co/blog/welcome-to-our-blog-how-it-was-made) - e onde explicam por que escolheram parsear o conteúdo de arquivos locais ao invés de utilizar um banco de dados ou um CMS mais complexo.
 
@@ -111,7 +111,7 @@ defmodule NimbleSchool.Blog do
   # Vamos também recuperar todas as tags.
   @tags @posts |> Enum.flat_map(& &1.tags) |> Enum.uniq() |> Enum.sort()
 
-  # E finalmente as exportar.
+  # E finalmente exportá-las.
   def all_posts, do: @posts
   def all_tags, do: @tags
 end
@@ -154,7 +154,7 @@ iex(2)> NimbleSchool.Blog.all_tags()
 ["exciting", "hello", "news"]
 ```
 
-Não é ótimo? Já temos todas as nossas postagens parseadas, com interpretação de Markdown e estamos prontas para ir. Com as tags também!
+Não é ótimo? Já temos todas as nossas postagens parseadas, com interpretação de Markdown e estamos prontas para seguir. Com as tags também!
 
 Agora, é importante perceber que a NimblePublisher está cuidando de parsear os arquivos e construir a variável `@posts` com todos eles, e você parte daí para definir as funções de que precisa. Por exemplo, se precisarmos de uma função para obter as postagens recentes, podemos definir desta forma:
 
@@ -184,7 +184,7 @@ end
 
 ## Disponibilizando seu conteúdo
 
-Agora que já temos uma maneira de obter todas as nossas postagens e tags, as disponibilizar significa apenas conectar as rotas, controllers, views e templates da forma usual. Para esse exemplo iremos manter a simplicidade e apenas listar todas as postagens e obter uma postagem por seu id. É deixado a você como um exercício listar postagens por tags e estender o layout com as postagens recentes.
+Agora que já temos uma maneira de obter todas as nossas postagens e tags, disponibilizar significa apenas conectar as rotas, controllers, views e templates da forma usual. Para esse exemplo iremos manter a simplicidade e apenas listar todas as postagens e obter uma postagem por seu id. É deixado a você como um exercício listar postagens por tags e estender o layout com as postagens recentes.
 
 ### Rotas
 
@@ -201,7 +201,7 @@ end
 
 ### Controller
 
-Defina um controller para expor as postagens em `lib/nimble_school_web/controllers/blog_controller.ex`:
+Defina um controller para servir as postagens em `lib/nimble_school_web/controllers/blog_controller.ex`:
 
 ```elixir
 defmodule NimbleSchoolWeb.BlogController do
@@ -265,7 +265,7 @@ E crie `lib/nimble_school_web/templates/blog/show.html.eex` para renderizar uma 
 
 ### Navegue por suas postagens!
 
-Tudo pronto para ir!
+Tudo pronto para seguir!
 
 Abra o servidor web com `iex -S mix phx.server` e visite [http://localhost:4000/blog](http://localhost:4000/blog) para conferir seu novo blog em ação!
 
@@ -299,7 +299,7 @@ E coloque as classes CSS geradas em sua folha de estilo.
 
 A NimblePublisher também pode ser usada para construir outros contextos de publicação com uma estrutura diferente.
 
-Por exemplo, poderíamos gerenciar uma coleção de Perguntas Frequentes (FAQs), neste caso nós provavelmente não precisamos de datas, ou atores, e uma estrutura mais simples com `:id`, `:question` e `:answer` seria ótimo.
+Por exemplo, poderíamos gerenciar uma coleção de Perguntas Frequentes (FAQs), neste caso nós provavelmente não precisamos de datas, ou autores, e uma estrutura mais simples com `:id`, `:question` e `:answer` seria ótimo.
 
 Poderíamos colocar nossos arquivos de conteúdo em uma estrutura de diretório diferente, por exemplo:
 
