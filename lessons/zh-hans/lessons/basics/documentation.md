@@ -207,11 +207,11 @@ View them at "doc/index.html".
 
 如果一切顺利的话，你将会看到熟悉的成功提示消息。让我们看一下项目里面的**doc/**文件夹。里面有我们生成的文档。如果你使用浏览器打开它的话你将看到如下画面：
 
-![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
+![ExDoc Screenshot 1](/images/documentation_1.png)
 
 我们可以看到Earmark已经渲染了我们的Markdown注释文档并且ExDoc现在有漂亮的显示格式。
 
-![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
+![ExDoc Screenshot 2](/images/documentation_2.png)
 
 我们可以将这个文档部署到github，也可以部署到Elixir的官方镜像 [HexDocs](https://hexdocs.pm/)。
 

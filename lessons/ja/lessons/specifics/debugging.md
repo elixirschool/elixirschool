@@ -149,11 +149,11 @@ iex > :int.ni(Example)
 
 デバッガを開始すると、次のような新しいウィンドウが表示されます:
 
-![Debugger Screenshot 1]({% asset debugger_1.png @path %})
+![Debugger Screenshot 1](/images/debugger_1.png)
 
 モジュールをデバッガにアタッチした後、左にあるメニューが利用可能になります:
 
-![Debugger Screenshot 2]({% asset debugger_2.png @path %})
+![Debugger Screenshot 2](/images/debugger_2.png)
 
 ## ブレークポイントの作成
 
@@ -179,11 +179,11 @@ iex > Example.cpu_burns(1, 1, 1)
 
 IExでのコードの実行は中断され、デバッガウィンドウは次のように表示されます:
 
-![Debugger Screenshot 3]({% asset debugger_3.png @path %})
+![Debugger Screenshot 3](/images/debugger_3.png)
 
 ソースコードを含む追加のウィンドウも表示されます:
 
-![Debugger Screenshot 4]({% asset debugger_4.png @path %})
+![Debugger Screenshot 4](/images/debugger_4.png)
 
 このウィンドウでは変数の値を確認したり、次の行に進んだり、式の評価を行ったりすることができます
 ブレークポイントを無効化するには `:int.disable_break/2` を使うことができます:

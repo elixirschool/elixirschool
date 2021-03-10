@@ -270,7 +270,7 @@ end
 
 Enquanto `benchee_json` e `benchee_csv` são muito simples, `benchee_html` é na verdade muito completo! Ele pode ajudá-lo a produzir belos diagramas e gráficos de seus resultados facilmente, e você pode até mesmo exportá-los como imagens PNG. Você pode verificar [um exemplo de relatório html](http://www.pragtob.info/benchee/README/results.html) se estiver interessado, ele inclui gráficos como este:
 
-![benchee_html graph export sample]({% asset benchee_html_graph_sample.png @path %})
+![benchee_html graph export sample](/images/benchee_html_graph_sample.png)
 
 Todos os três formatadores são bem documentados nas suas respectivas páginas no GitHub, então não vamos cobrir todos os detalhes deles aqui.
 

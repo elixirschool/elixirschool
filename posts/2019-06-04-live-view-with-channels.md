@@ -18,7 +18,7 @@ But then we ran into a blocker.
 
 When new chat messages were appended to the chat window, they appeared *just* out of frame.
 
-![chat message not visible]({% asset chat-message-not-visible.png @path %})
+![chat message not visible](/images/chat-message-not-visible.png)
 
 ---
 
@@ -90,15 +90,15 @@ In order to guarantee that the live view process can send a message to the right
 
 Here's a closer look at how this procedure works:
 
-![live view mounts and renders]({% asset live-view-mount-render.png @path %})
+![live view mounts and renders](/images/live-view-mount-render.png)
 
 ---
 
-![live view socket connects]({% asset live-view-socket-connect.png @path %})
+![live view socket connects](/images/live-view-socket-connect.png)
 
 ---
 
-![live view channel joins]({% asset live-view-channel-join.png @path %})
+![live view channel joins](/images/live-view-channel-join.png)
 
 ---
 
@@ -220,15 +220,15 @@ In this section, we'll dive into the following portion of the process:
 
 Here's a closer look at this flow:
 
-![live view handles event]({% asset live-view-handle-event.png @path %})
+![live view handles event](/images/live-view-handle-event.png)
 
 ---
 
-![live view broadcasts event]({% asset live-view-broadcasts-event.png @path %})
+![live view broadcasts event](/images/live-view-broadcasts-event.png)
 
 ---
 
-![live view sends message to self]({% asset live-view-send-self.png @path %})
+![live view sends message to self](/images/live-view-send-self.png)
 
 ---
 
@@ -297,15 +297,15 @@ Here's the code flow we're aiming for:
 2. The channel's socket is connected with this token; the socket stores it in state.
 3. The channel is joined; it takes the session UUID from its socket's state and registers its PID under a key of that UUID.
 
-![live view mounts with session uuid]({% asset live-view-mount-session-uuid.png @path %})
+![live view mounts with session uuid](/images/live-view-mount-session-uuid.png)
 
 ---
 
-![live view channel connects]({% asset live-view-connect-channel.png @path %})
+![live view channel connects](/images/live-view-connect-channel.png)
 
 ---
 
-![live view channel register]({% asset live-view-channel-register.png @path %})
+![live view channel register](/images/live-view-channel-register.png)
 
 ---
 
@@ -314,7 +314,7 @@ Later...
 4. When the user submits a new chat message, the LiveView processes that received the message broadcast will look up the channel PID under the session UUID in the registry
 5. Each live view will then send the message to the PID they looked up
 
-![live view looks up channel]({% asset live-view-lookup-send-to-channel.png @path %})
+![live view looks up channel](/images/live-view-lookup-send-to-channel.png)
 
 ---
 
@@ -483,10 +483,10 @@ In this section, we'll focus on the following portion of our process:
 
 Here's a closer look:
 
-![live view channel push]({% asset live-view-channel-push.png @path %})
+![live view channel push](/images/live-view-channel-push.png)
 
 ---
-![live view front end update]({% asset live-view-front-end-update.png @path %})
+![live view front end update](/images/live-view-front-end-update.png)
 
 ---
 

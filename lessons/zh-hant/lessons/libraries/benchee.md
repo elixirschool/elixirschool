@@ -320,7 +320,7 @@ end
 它可以幫助你輕鬆地從結果中生成精美的圖形和圖表，甚至可以將它們導出為 PNG 圖像。
 如果對它有興趣，請查看此 [html 報告範例](http://www.pragtob.info/benchee/README/results.html)，其中包括類似以下的圖形：
 
-![benchee_html graph export sample]({% asset benchee_html_graph_sample.png @path %})
+![benchee_html graph export sample](/images/benchee_html_graph_sample.png)
 
 所有這三種格式器都在各自的 GitHub 上有詳細的文件說明，因此在這裡不介紹它們的細節。
 

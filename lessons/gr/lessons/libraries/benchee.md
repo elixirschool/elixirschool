@@ -334,7 +334,7 @@ end
 Μπορεί να σας βοηθήσει να δημιουργήσετε όμορφα γραφήματα και διαγράμματα από τα αποτελέματά σας πολύ εύκολα και ακόμα και να τα εξάγετε σαν εικόνες PNG.
 Μπορείτε να δείτε το [ένα παράδειγμα html αναφοράς](http://www.pragtob.info/benchee/README/results.html) αν σας ενδιαφέρει, περιέχει γραφήματα σαν αυτό:
 
-![benchee_html graph export sample]({% asset benchee_html_graph_sample.png @path %})
+![benchee_html graph export sample](/images/benchee_html_graph_sample.png)
 
 Όλοι οι τρεις μορφοποιητές είναι πολύ καλά τεκμηριωμένοι στις αντίστοιχες σελίδες τους στο GitHub, έτσι δεν θα καλύψουμε τις λεπτομέρειες τους εδώ.
 

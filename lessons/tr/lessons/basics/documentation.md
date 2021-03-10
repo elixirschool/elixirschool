@@ -204,11 +204,11 @@ View them at "doc/index.html".
 
 eğer her şey planlandığı gibi olduysa, yukarıdaki gibi bir çıktı alacaksınız. Artık projemizde  **doc/** adında yeni bir dizin olduğunu görmeliyiz. Üretilen belgelerimiz buranın içindedir. Eğer dizine taracımız ile ziyaret edersek aşağıdakiler gibi bir sayfa karşılayacak bizi:
 
-![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
+![ExDoc Screenshot 1](/images/documentation_1.png)
 
 Earmark'ın belgelerimizden Markdown oluşturduğunu ve ExDoc'un bunu daha okunabilir olarak olarak gösterdiğini görüyoruz.
 
-![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
+![ExDoc Screenshot 2](/images/documentation_2.png)
 
 Artık bunu GitHu'da, kendi sitemizde veya [HexDocs'da](https://hexdocs.pm/) yayınlaya biliriz.
 

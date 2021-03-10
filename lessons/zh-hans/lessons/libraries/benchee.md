@@ -276,7 +276,7 @@ end
 
 `benchee_json` 和 `benchee_csv` 非常简单，而 `benchee_html` 则实际上_相当_功能丰富！它很容易就能让你生成漂亮的图表。你还能导出为 PNG 图片。如果感兴趣，你可以查看这个[html 报告样例](http://www.pragtob.info/benchee/README/results.html)，它包含了类似下面的图表：
 
-![benchee_html graph export sample]({% asset benchee_html_graph_sample.png @path %})
+![benchee_html graph export sample](/images/benchee_html_graph_sample.png)
 
 这三个格式化工具的文档都详细记录在它们各自的 Github 主页上，所以我们就不详细说明了。
 

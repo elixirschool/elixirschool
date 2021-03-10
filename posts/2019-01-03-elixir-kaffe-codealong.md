@@ -26,7 +26,7 @@ Say we want to keep an activity log for users. Every time a user triggers an eve
 
 Here's a basic idea of how this might look:
 
-![Kafka Flow Example]({% asset kafka-flow-example.png @path %})
+![Kafka Flow Example](/images/kafka-flow-example.png)
 
 The three services reading from Kafka would only take the pieces of data that they require. For example, the first service would only read from the `banner_click` topic while the last only from `search_term`. The second service that cares about active users might read from both topics to capture all site activity.
 
