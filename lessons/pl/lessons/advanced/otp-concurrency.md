@@ -4,7 +4,7 @@
   excerpt: """
   Poznaliśmy już abstrakcję do obsługi współbieżności, jaką oferuje Elixir. Czasami potrzebujemy większej kontroli nad tym, co się dzieje. Dlatego też Elixir ma obsługę zachowań OTP.  
 
-W tej lekcji skupimy się na istotniejszym elemencie: GenServer.
+  W tej lekcji skupimy się na istotniejszym elemencie: GenServer.
   """
 }
 ---

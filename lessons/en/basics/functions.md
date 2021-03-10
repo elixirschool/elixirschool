@@ -3,7 +3,7 @@
   title: "Functions",
   excerpt: """
   In Elixir and many functional languages, functions are first class citizens.
-We will learn about the types of functions in Elixir, what makes them different, and how to use them.
+  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
   """
 }
 ---

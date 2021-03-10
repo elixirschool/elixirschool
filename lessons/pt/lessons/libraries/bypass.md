@@ -3,10 +3,10 @@
   title: "Bypass",
   excerpt: """
   Ao testar nossas aplicações, muitas vezes precisamos fazer chamadas a serviços externos.
-Podemos até mesmo querer simular diferentes situações como erros inesperados do servidor.
-Tratar isso de modo eficiente não é fácil no Elixir sem uma pequena ajuda.
+  Podemos até mesmo querer simular diferentes situações como erros inesperados do servidor.
+  Tratar isso de modo eficiente não é fácil no Elixir sem uma pequena ajuda.
 
-Nesta lição vamos explorar como [bypass](https://github.com/PSPDFKit-labs/bypass) pode nos ajudar rapidamente e tratar facilmente essas chamadas em nossos testes.
+  Nesta lição vamos explorar como [bypass](https://github.com/PSPDFKit-labs/bypass) pode nos ajudar rapidamente e tratar facilmente essas chamadas em nossos testes.
   """
 }
 ---

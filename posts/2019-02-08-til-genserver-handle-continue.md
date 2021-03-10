@@ -1,5 +1,5 @@
 %{
-  author: "Sophie DeBenedetto"
+  author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   tags: ["til"],
   date: ~D[2019-02-15],
@@ -40,13 +40,7 @@ end
 ```
 Here, we're calling our "get inventory for shopping list items" code in the `init/1` callback that gets triggered when `start_link/1` is called.
 
-<<<<<<< HEAD
 The problem with this approach is that `start_link/1` will block until `init/1` returns `{:ok, state}`. We won't return from `init/1` until _after_ the inventory-fetching code runs. That _could_ be time consuming. We don't want our GenServer blocked by this.
-=======
-This problem with this approach is that `start_link/1` will block until `init/1` returns `{:ok, state}`. We won't return from `init/1` until _after_ the inventory-fetching code runs. That _could_ be time consuming. We don't want our GenServer blocked by this.
->>>>>>> 0e4d884b... Continue work
-
-Let's explore an asynchronous approach.
 
 ## Asynchronous Callbacks and Race Conditions
 We can use `Kernel.send/2` in our `init` callback to kick off some asynchronous work without blocking `GenServer.start_link/1`. When we use `send/2` and give it a first argument of `self`, i.e. the PID of our GenServer, our GenServer will handle that message with a `handle_info/2` function that matches the message we sent.

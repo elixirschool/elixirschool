@@ -5,7 +5,7 @@
   date:  ~D[2020-04-24],
   title: "Instrumenting Phoenix with Telemetry and LiveDashboard",
   excerpt: """
-  The recent release of the [LiveDashboard](https://github.com/phoenixframework/phoenix_live_dashboard) library allows us to visualize our application metrics, performance and behavior in real-time. In this post, we'll add LiveDashboard to our Phoenix app, examine the out-of-the-box features and take a look under the hood to understand how LiveDashboard hooks into Telemetry events in order to visualize them.
+  The recent release of the LiveDashboard library allows us to visualize our application metrics, performance and behavior in real-time. In this post, we'll add LiveDashboard to our Phoenix app, examine the out-of-the-box features and take a look under the hood to understand how LiveDashboard hooks into Telemetry events in order to visualize them.
   """
 }
 ---

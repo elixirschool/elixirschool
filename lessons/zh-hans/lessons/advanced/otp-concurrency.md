@@ -4,7 +4,7 @@
   excerpt: """
   我们已经看过了 Elixir 层的并发抽象机制，但有时候我们需要更多的控制，那就要了解 Elixir 底层的东西：OTP 行为（behaviors）。
 
-这节课，我们主要讲两个东西：Genservers。
+  这节课，我们主要讲两个东西：Genservers。
   """
 }
 ---

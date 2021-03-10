@@ -5,7 +5,7 @@
   date:  ~D[2020-05-13],
   title: "Instrumenting Phoenix with Telemetry Part IV: Erlang VM Measurements with `telemetry_poller`",
   excerpt: """
-  In this series, we're instrumenting a Phoenix app and sending metrics to StatsD with the help of Elixir and Erlang's Telemetry offerings. In Part III we'll incorporate Erlang's [`telemetry_poller` library](https://github.com/beam-telemetry/telemetry_poller) into our Phoenix app so that we can observe and report on Erlang VM Telemetry events.
+  In this series, we're instrumenting a Phoenix app and sending metrics to StatsD with the help of Elixir and Erlang's Telemetry offerings. In Part III we'll incorporate Erlang's `telemetry_poller` library into our Phoenix app so that we can observe and report on Erlang VM Telemetry events.
   """
 }
 ---

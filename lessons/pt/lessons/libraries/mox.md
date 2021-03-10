@@ -1,6 +1,10 @@
----
-version: 1.0.1
-title: Mox
+%{
+  version: "1.0.1",
+  title: "Mox",
+  excerpt: """
+  Mox é uma biblioteca feita para criar mocks concorrentes em Elixir.
+  """
+}
 ---
 
 Mox é uma biblioteca feita para criar mocks concorrentes em Elixir.

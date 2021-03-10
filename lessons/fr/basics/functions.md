@@ -3,7 +3,7 @@
   title: "Fonctions",
   excerpt: """
   En Elixir, comme dans tous les langages fonctionnels, les fonctions sont des citoyens de premier ordre.
-Nous verrons les différents types de fonctions en Elixir, ce qui les rend différentes et comment les utiliser.
+  Nous verrons les différents types de fonctions en Elixir, ce qui les rend différentes et comment les utiliser.
   """
 }
 ---

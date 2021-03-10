@@ -3,7 +3,7 @@
   title: "Distillery (Basics)",
   excerpt: """
   Distillery is a release manager written in pure Elixir.
-It allows you to generate releases that can be deployed elsewhere with little to no configuration.
+  It allows you to generate releases that can be deployed elsewhere with little to no configuration.
   """
 }
 ---

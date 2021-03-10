@@ -3,7 +3,7 @@
   title: "Umbrella Projects",
   excerpt: """
   Sometimes a project can get big, really big in fact.
-The Mix build tool allows us to split our code into multiple apps and make our Elixir projects more manageable as they grow.
+  The Mix build tool allows us to split our code into multiple apps and make our Elixir projects more manageable as they grow.
   """
 }
 ---

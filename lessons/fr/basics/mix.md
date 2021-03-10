@@ -3,12 +3,12 @@
   title: "Mix",
   excerpt: """
   Avant de plonger dans les profondeurs d'Elixir, nous devons d'abord apprendre Mix.
-Si vous êtes familier avec Ruby, Mix est l'équivalent de Bundler, Rubygems, et Rake combinés.
-C'est une part primordiale de tout projet Elixir et dans cette leçon nous allons explorer quelques une de ses fonctionnalités importantes.
-Pour voir tout ce que Mix permet de faire dans l'environnement courant, lancez `mix help`.
+  Si vous êtes familier avec Ruby, Mix est l'équivalent de Bundler, Rubygems, et Rake combinés.
+  C'est une part primordiale de tout projet Elixir et dans cette leçon nous allons explorer quelques une de ses fonctionnalités importantes.
+  Pour voir tout ce que Mix permet de faire dans l'environnement courant, lancez `mix help`.
 
-Jusqu'ici nous avons travaillé exclusivement dans `iex`, ce qui a ses limitations.
-Dans le cas d'un projet réel nous avons besoin de séparer notre code dans différents fichiers, et Mix est là pour nous aider à les gérer efficacement.
+  Jusqu'ici nous avons travaillé exclusivement dans `iex`, ce qui a ses limitations.
+  Dans le cas d'un projet réel nous avons besoin de séparer notre code dans différents fichiers, et Mix est là pour nous aider à les gérer efficacement.
   """
 }
 ---

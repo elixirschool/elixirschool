@@ -4,7 +4,7 @@
   excerpt: """
   Bugs são problemas comuns em qualquer projeto, é por isso que precisamos da depuração.
 
-Nesta sessão vamos aprender sobre como fazer depuração no código Elixir, bem como ferramentas de análises estáticas para ajudar a encontrar possíveis bugs.
+  Nesta sessão vamos aprender sobre como fazer depuração no código Elixir, bem como ferramentas de análises estáticas para ajudar a encontrar possíveis bugs.
   """
 }
 ---
