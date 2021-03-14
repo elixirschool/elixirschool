@@ -190,7 +190,7 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
-便宜上, `sort/2` を使用すると、 `:asc` または `:desc` を渡すことができます。:
+便宜上, `sort/2` に `:asc` または `:desc` をソート関数として渡すことができます：
 
 ```elixir
 Enum.sort([2, 3, 1], :desc)
