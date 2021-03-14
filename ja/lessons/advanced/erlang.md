@@ -120,6 +120,8 @@ iex> "Hello World" |> to_charlist |> :string.words
 
 ### 変数
 
+Erlangでは、変数は大文字で始まりバインドし直すことが出来ません。
+
 Elixir:
 
 ```elixir
