@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Mix
 ---
 
@@ -142,7 +142,7 @@ Now we're prepared to add dependencies when the time comes.
 ## Environments
 
 Mix, much like Bundler, supports differing environments.
-Out of the box mix is configured to have three environments:
+Out of the box Mix is configured to have three environments:
 
 - `:dev` — The default environment.
 - `:test` — Used by `mix test`. Covered further in our next lesson.
