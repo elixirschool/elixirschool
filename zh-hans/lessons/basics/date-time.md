@@ -105,7 +105,7 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 ```
 
-下面我们试着创建一个巴黎时间，并把它专为北京时间：
+下面我们试着创建一个巴黎时间，并把它转为北京时间：
 
 ```
 iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
