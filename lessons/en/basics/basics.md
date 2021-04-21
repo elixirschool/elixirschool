@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.3.0",
   title: "Basics",
   excerpt: """
   Getting started, basic data types, and basic operations.
@@ -7,9 +7,7 @@
 }
 ---
 
-## Getting Started
-
-### Installing Elixir
+## Installing Elixir
 
 Installation instructions for each OS can be found on elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
 
@@ -45,6 +43,9 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 Don't worry if you don't understand every expression yet, but we hope you get the idea.
 
 ## Basic Data Types
+
+Let's our exploration of Elixir by starting with the basic data types that
+ are available to us.
 
 ### Integers
 
@@ -150,6 +151,8 @@ Elixir also includes more complex data types.
 We'll learn more about these when we learn about [collections](../collections/) and [functions](../functions/).
 
 ## Basic Operations
+
+With our understanding of how data is structured in Elixir, let's take a look at how we can work with that data.
 
 ### Arithmetic
 
