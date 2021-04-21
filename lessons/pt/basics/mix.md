@@ -1,6 +1,6 @@
 %{
   version: "1.1.2",
-  title: "Mix"
+  title: "Mix",
   excerpt: """
   Antes de podermos mergulhar nas águas mais profundas de Elixir primeiro precisamos aprender a utilizar o  mix.
   Se você estiver familiarizado com Ruby, mix é o Bundler, RubyGems e o Rake juntos.

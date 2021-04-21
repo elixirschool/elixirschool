@@ -7,7 +7,7 @@
 }
 ---
 
-## `if` 和 `unless`
+## if 和 unless
 
 可能你之前使用過 `if/2`，而如果你使用過 Ruby，那麼你應該很熟悉 `unless/2`。 在 Elixir 中，它們的工作方式大致相同，但它們被定義為巨集 (macros) 而不是語言結構。你可以在 [Kernel module](https://hexdocs.pm/elixir/Kernel.html) 中找到它們的實現 (implementation)。
 
@@ -36,7 +36,7 @@ iex> unless is_integer("hello") do
 "Not an Int"
 ```
 
-## `case`
+## case
 
 如果有必要比對多種樣式，我們可以使用 `case/2`：
 
@@ -95,7 +95,7 @@ iex> case {1, 2, 3} do
 
 查看官方文件來獲得 [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions) 資訊。
 
-## `cond`
+## cond
 
 當我們需要比對的是條件 (conditions) 而不是值 (values) 時，我們可以轉為用 `cond/1`；這與其他語言的 `else if` 或 `elsif` 類似：
 
@@ -123,7 +123,7 @@ iex> cond do
 "Catch all"
 ```
 
-## `with`
+## with
 
 當你可能使用一個巢狀但無法清楚互相傳遞 (piped) 的 `case/2` 陳述語句或情況時，特殊形式的 `with/1` 是非常有用的。`with/1` 表達式由關鍵字、生成器 (generators) 以及表達式構成。
 

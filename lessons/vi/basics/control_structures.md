@@ -7,7 +7,7 @@
 }
 ---
 
-## `if` và `unless`
+## if và unless
 
 Hẳn là bạn đã từng biết đến `if/2` trước đây, và nếu bạn từng sử dụng Ruby hẳn bạn cũng chẳng lạ gì `unless/2`. Trong Elixir chúng vẫn được xử lý như thế nhưng khác ở chỗ chúng được định nghĩa như là marco, không phải cấu trúc ngôn ngữ. Bạn có thể xem cách cài đặt chúng tại [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
 
@@ -36,7 +36,7 @@ iex> unless is_integer("xin chào") do
 "Không phải Int"
 ```
 
-## `case`
+## case
 
 Nếu cần thiết phải so trùng (match) nhiều mẫu (pattern) ta có thể dùng case:
 
@@ -94,7 +94,7 @@ iex> case {1, 2, 3} do
 Xem tài liệu tại trang chủ về [Biểu thức hợp lệ trong mệnh đề guard](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 
-## `cond`
+## cond
 
 Khi chúng ta cần so trùng điều kiện mà không phải giá trị, chúng ta chuyển sang dùng `cond`. Nó giống với `else if` hay `elsif` của các ngôn ngữ khác:
 
@@ -122,7 +122,7 @@ iex> cond do
 "Luôn đúng"
 ```
 
-## `with`
+## with
 
 `with` được dùng khi bạn muốn sử dụng một mệnh đề `case` lồng ghép hay những trường hợp không thể kết nối lại một cách trơn tru được. Biểu thức `with` là sự kết hợp của từ khóa, generators và cuối cùng là một biểu thức.
 

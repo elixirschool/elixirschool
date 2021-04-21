@@ -1,6 +1,7 @@
----
-version: 1.0.2
-title: NimblePublisher
+%{
+  version: "1.0.2",
+  title: "Nimble Publisher"
+}
 ---
 
 [NimblePublisher](https://github.com/dashbitco/nimble_publisher) é um mecanismo de publicação simples baseado em um sistema de arquivos com suporte a Markdown e realce de código.
