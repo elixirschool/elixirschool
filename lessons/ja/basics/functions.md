@@ -1,13 +1,12 @@
 %{
   version: "1.2.0",
-  title: "関数"
+  title: "関数",
+  excerpt: """
+  Elixirや多くの関数型言語では、関数は第一級市民(≒ ファーストクラスオブジェクト)です。
+  Elixirにおける関数の種類について、それぞれどう異なっていて、どのように使うのかを学んでいきます。
+  """
 }
 ---
-
-Elixirや多くの関数型言語では、関数は第一級市民(≒ ファーストクラスオブジェクト)です。
-Elixirにおける関数の種類について、それぞれどう異なっていて、どのように使うのかを学んでいきます。
-
-{% include toc.html %}
 
 ## 匿名関数
 
@@ -50,10 +49,9 @@ iex> handle_result = fn
 ...> end
 
 iex> some_result = 1
-1
 iex> handle_result.({:ok, some_result})
 Handling result...
-:ok
+
 iex> handle_result.({:error})
 An error has occurred!
 ```

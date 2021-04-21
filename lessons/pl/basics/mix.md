@@ -1,30 +1,23 @@
 %{
-  version: "1.1.2",
-  title: "Mix"
+  version: "0.9.2",
+  title: "Mix",
+  excerpt: """
+  Zanim zajmiemy się bardziej zaawansowanymi aspektami Elixira musimy poznać mix. Jeżeli znasz Ruby to mix jest odpowiednikiem Bundlera, RubyGems i Rake. Jest to kluczowy element każdego projektu tworzonego w Elixirze i w tej lekcji przyjrzymy się najważniejszym jego funkcjom. By uzyskać pełną listę oferowanych funkcji, wpisz `mix help`.
+
+  Dotychczas pracowaliśmy z interpreterem `iex`, który ma dość ograniczone możliwości. Chcąc napisać coś bardziej rozbudowanego, musimy nasz projekt podzielić na wiele plików, by móc zarządzać kodem. Mix pozwala nam na efektywne zarządzanie projektem.
+  """
 }
 ---
 
-Zanim zajmiemy się bardziej zaawansowanymi aspektami Elixira musimy poznać Mix.
-Jeżeli znasz język Ruby, to można powiedzieć, że Mix stanowi połączenie Bundlera, RubyGems i Rake.
-Jest to kluczowy element każdego projektu tworzonego w Elixirze i w tej lekcji przyjrzymy się najważniejszym jego funkcjom.
-By uzyskać pełną listę oferowanych funkcji, wpisz `mix help`.
-
-Dotychczas pracowaliśmy z interpreterem `iex`, który ma dość ograniczone możliwości.
-Chcąc napisać coś bardziej rozbudowanego, musimy nasz kod podzielić na wiele plików, by móc nim efektywnie zarządzać; Mix pozwala nam to robić z projektami.
-
-{% include toc.html %}
-
 ## Nowy projekt
 
-Kiedy jesteśmy gotowi, by stworzyć nasz pierwszy projekt w Elixirze, możemy to zrobić za pomocą polecenia `mix new`.
-Generator stworzy strukturę katalogów oraz niezbędne pliki projektu.
-Jest to bardzo proste – zatem zaczynajmy:
+Kiedy będziesz gotowy, by stworzyć swój pierwszy projekt w Elixirze zrób to poleceniem `mix new`. Generator stworzy strukturę katalogów oraz niezbędne pliki projektu. Jest to bardzo proste, a zatem zaczynajmy:
 
 ```bash
 $ mix new example
 ```
 
-W konsoli pojawi się informacja, że Mix stworzył niezbędne pliki oraz katalogi:
+W konsoli pojawi się informacja, że mix stworzył niezbędne pliki oraz katalogi:
 
 ```bash
 * creating README.md
@@ -38,9 +31,7 @@ W konsoli pojawi się informacja, że Mix stworzył niezbędne pliki oraz katalo
 * creating test/example_test.exs
 ```
 
-W tej lekcji skupimy się na pliku `mix.exs`.
-Skonfigurujemy naszą aplikację, zależności, środowisko oraz wersję.
-Otwórz plik w swoim ulubionym edytorze – powinieneś zobaczyć coś takiego (komentarze usunęliśmy dla zwięzłości):
+W tej lekcji skupimy się na pliku `mix.exs`. Skonfigurujemy naszą aplikację, zależności, środowisko oraz wersję. Otwórz plik w swoim ulubionym edytorze. Powinieneś zobaczyć coś w rodzaju (komentarze usunięte dla zwięzłości):
 
 ```elixir
 defmodule Example.Mix do
@@ -68,16 +59,13 @@ defmodule Example.Mix do
 end
 ```
 
-Pierwsza sekcja, której się przyjrzymy, to `project`.
-W niej definiujemy nazwę naszej aplikacji (`app`), określamy jej wersję (`version`), wersję Elixira (`elixir`) oraz listę zależności (`deps`).
+Pierwsza sekcja, której się przyjrzymy to `project`.  W niej definiujemy nazwę naszej aplikacji (`app`), określamy jej wersję (`version`), wersję Elixira (`elixir`) oraz listę zależności (`deps`).
 
-Sekcja `application` jest używana w czasie tworzenia pliku aplikacji, który omówimy dalej.
+Sekcja `application` jest używana w czasie tworzenia pliku aplikacji. Przyjrzymy się jej w następnej kolejności.
 
 ## Tryb interaktywny
 
-Może zajść potrzeba użycia `iex` w kontekście naszej aplikacji.
-Dzięki Mixowi jest to na szczęście proste.
-Wystarczy uruchomić nową sesję `iex` z parametrami:
+Może zajść potrzeba użycia `iex` w kontekście naszej aplikacji.  Na całe szczęście z mixem jest to proste. Wystarczy uruchomić nową sesję `iex` z parametrami:
 
 ```bash
 $ cd example
@@ -88,34 +76,30 @@ Tak uruchomiony `iex` załaduje na starcie aplikację wraz z zależnościami.
 
 ## Kompilacja
 
-Mix jest cwany i będzie kompilował tylko zmieniony kod, ale czasami zachodzi potrzeba skompilowania całego projektu.
-W tej części przyjrzymy się jak kompilować projekt i co robi kompilator.
+Mix jest cwany i będzie kompilował tylko zmieniony kod, ale czasami zachodzi potrzeba skompilowania całego projektu. W tej części przyjrzymy się jak kompilować projekt i co robi kompilator.
 
 Do skompilowania projektu wystarczy polecenie `mix compile` wywołane w katalogu głównym projektu:
-**Uwaga: polecenia Mixa specyficzne dla projektu są dostępne jedynie w głównym katalogu tego projektu – w innych lokalizacjach można użyć jedynie poleceń globalnych.**
 
 ```bash
 $ mix compile
 ```
 
-Nasz projekt nie zawiera zbyt wielu elementów, a zatem komunikat nie jest zbyt ekscytujący, ale kompilacja powinna zakończyć się powodzeniem:
+Nasz projekt nie zawiera zbyt wielu elementów, a zatem komunikat nie będzie zbyt ekscytujący, ale jednak liczymy na sukces:
 
 ```bash
 Compiled lib/example.ex
 Generated example app
 ```
 
-W trakcie kompilacji Mix tworzy katalog `_build`, w którym umieści wyniki.
-Jeśli zajrzymy do katalogu `_build`, zobaczymy naszą skompilowaną aplikację: `example.app`.
+W trakcie kompilacji mix tworzy katalog `_build`, w którym umieści wyniki. Jak zajrzymy do katalogu `_build`, zobaczymy naszą skompilowaną aplikację: `example.app`.
 
 ## Zarządzanie zależnościami
 
-Jak na razie nasz projekt nie ma żadnych zależności, ale nic nie stoi na przeszkodzie, by je dodać.
+Jak na razie nasz projekt nie ma żadnych zależności, ale nic nie stoi nam na przeszkodzie, by je dodać.
 
-Aby dodać nową zależność, powinniśmy ją najpierw umieścić w sekcji `deps` pliku `mix.exs`.
-Lista zależności zawiera krotki o dwóch obowiązkowych elementach i jednym opcjonalnym: atomie reprezentującym nazwę pakietu, ciągu znaków określającym wersję oraz opcjonalnych przełącznikach.
+Dodanie nowej zależności odbywa się w sekcji `deps` w pliku `mix.exs`. Lista zależności zawiera krotki o dwóch obowiązkowych elementach i jednym opcjonalnym: atomie reprezentującym nazwę pakietu, ciągu znaków określającym wersję oraz opcjonalnych przełącznikach.
 
-Spójrzmy dla przykładu na projekt [phoenix_slim](https://github.com/doomspork/phoenix_slim):
+Rzućmy okiem na przykład na projekt [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 
 ```elixir
 def deps do
@@ -128,29 +112,25 @@ def deps do
 end
 ```
 
-Jak zapewne się domyślasz, zależność `cowboy` jest potrzebna tylko przy implementowaniu i testowaniu aplikacji.
+Jak zapewne się domyślasz zależność `cowboy` jest potrzebna tylko w fazie rozwoju i testów aplikacji.
 
-Kiedy nasze zależności są już skonfigurowane, pozostaje nam jeszcze jeden krok: pobranie ich.
-Jest to zachowanie analogiczne do `bundle install`:
+Jak już skonfigurujemy nasze zależności, trzeba je jeszcze pobrać. Jest to zachowanie analogiczne do `bundle install`:
 
 ```bash
 $ mix deps.get
 ```
 
-I to wszystko! Zdefiniowaliśmy i pobraliśmy nasze zależności.
-Teraz możemy ich użyć jak zajdzie potrzeba.
+I to wszystko! Zdefiniowaliśmy i pobraliśmy nasze zależności. Teraz możemy ich użyć jak zajdzie potrzeba.
 
 ## Środowiska
 
-Mix, tak jak Bundler, wspiera rozróżnianie środowisk.
-Domyślnie mamy zdefiniowane trzy z nich:
+Mix, tak jak Bundler, wspiera rozróżnianie środowisk. Domyślnie mamy zdefiniowane trzy z nich:
 
-+ `:dev` — środowisko domyślne.
-+ `:test` — używane przez `mix test`; omówimy je w kolejnych lekcjach.
-+ `:prod` — używane, gdy uruchamiamy aplikację na produkcji.
++ `:dev` — Środowisko domyślne.
++ `:test` — Używane przez `mix test`. Omówimy je w kolejnych lekcjach.
++ `:prod` — Używane, gdy uruchamiamy aplikację na produkcji.
 
-Aktualne środowisko dostępne jest w `Mix.env`.
-Jak można się spodziewać, istnieje możliwość skonfigurowania go za pomocą zmiennej środowiskowej `MIX_ENV`:
+Aktualne środowisko dostępne jest w `Mix.env`.  I jak można się spodziewać, istnieje możliwość skonfigurowania go za pomocą zmiennej systemowej `MIX_ENV`:
 
 ```bash
 $ MIX_ENV=prod mix compile

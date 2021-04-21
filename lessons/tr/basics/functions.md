@@ -5,8 +5,6 @@
 ---
 
 Elixir ve bir çok fonksiyonel dilde fonksiyonlar birinci sınıf üyedir.   Elixir'de bulunan fonksiyon çeşitlerini, farklılıklarını ve nasıl kullanacaklarını öğreneceğiz.
-{% include toc.html %}
-
 ## Anonim Fonksiyonlar
 
 Adından da anladığımız gibi bu fonksiyonlara bir ad tanımlanmaz. `Enum` dersinde de gördüğünüz gibi bu fonksiyonlar genellikle başka bir fonksiyona geçirilir. Elixir de anonim fonksiyon oluşturmak için `fn` ve `end` anahtar kelimelerine ihtiyacımız var. Bu anahtar kelimelerin içine `->` ile ayarlayarak herhangi bir sayıda parametre ve  fonksiyonun gövdesini tanımlaya biliriz.
@@ -44,10 +42,9 @@ iex> handle_result = fn
 ...> end
 
 iex> some_result = 1
-1
 iex> handle_result.({:ok, some_result})
 Handling result...
-:ok
+
 iex> handle_result.({:error})
 An error has occurred!
 ```

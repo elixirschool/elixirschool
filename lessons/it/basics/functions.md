@@ -1,12 +1,11 @@
 %{
   version: "1.2.0",
-  title: "Funzioni"
+  title: "Funzioni",
+  excerpt: """
+  In Elixir, ed in altri linguaggi funzionali, le funzioni sono oggetti di prima classe. Impareremo i vari tipi di funzioni in Elixir, cosa le rende differenti, e come possiamo usarle.
+  """
 }
 ---
-
-In Elixir, ed in altri linguaggi funzionali, le funzioni sono oggetti di prima classe. Impareremo i vari tipi di funzioni in Elixir, cosa le rende differenti, e come possiamo usarle.
-
-{% include toc.html %}
 
 ## Funzioni anonime
 
@@ -46,10 +45,9 @@ iex> handle_result = fn
 ...> end
 
 iex> some_result = 1
-1
 iex> handle_result.({:ok, some_result})
 Handling result...
-:ok
+
 iex> handle_result.({:error})
 An error has occurred!
 ```

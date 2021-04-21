@@ -1,12 +1,11 @@
 %{
   version: "1.0.1",
-  title: "함수"
+  title: "함수",
+  excerpt: """
+  Elixir를 포함한 많은 함수형 언어에서, 함수들은 일급 시민입니다. 우리는 Elixir를 특별하게 해주는 함수의 유형에 대해 배우고, 그것을 어떻게 이용하는지 배울 것입니다.
+  """
 }
 ---
-
-Elixir를 포함한 많은 함수형 언어에서, 함수들은 일급 시민입니다. 우리는 Elixir를 특별하게 해주는 함수의 유형에 대해 배우고, 그것을 어떻게 이용하는지 배울 것입니다.
-
-{% include toc.html %}
 
 ## 익명 함수
 
@@ -45,10 +44,9 @@ iex> handle_result = fn
 ...> end
 
 iex> some_result = 1
-1
 iex> handle_result.({:ok, some_result})
 Handling result...
-:ok
+
 iex> handle_result.({:error})
 An error has occurred!
 ```

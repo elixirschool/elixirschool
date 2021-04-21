@@ -1,19 +1,18 @@
 %{
   version: "2.2.0",
-  title: "Plug"
+  title: "Plug",
+  excerpt: """
+  如果熟悉 Ruby，可以將 Plug 視為 Rack 再加上一點 Sinatra。
+  它為 Web 應用程式元件提供了一套規範與 Web 伺服器一組轉接器 (adapters)。
+  雖然不是 Elixir 核心的一部分，但 Plug 仍是 Elixir 的正式項目。
+
+  首先將建立一個最小的基於 Plug 的 Web 應用程式。
+  而之後，將學習 Plug 的路由器以及如何將 Plug 加入到現有的 Web 應用程式。
+
+  在設定了最小的 Web 應用程式之後，將了解 Plug 的路由器以及如何在單個 Web 應用程式中使用多個 plug。
+  """
 }
 ---
-
-如果熟悉 Ruby，可以將 Plug 視為 Rack 再加上一點 Sinatra。
-它為 Web 應用程式元件提供了一套規範與 Web 伺服器一組轉接器 (adapters)。
-雖然不是 Elixir 核心的一部分，但 Plug 仍是 Elixir 的正式項目。
-
-首先將建立一個最小的基於 Plug 的 Web 應用程式。
-而之後，將學習 Plug 的路由器以及如何將 Plug 加入到現有的 Web 應用程式。
-
-在設定了最小的 Web 應用程式之後，將了解 Plug 的路由器以及如何在單個 Web 應用程式中使用多個 plug。
-
-{% include toc.html %}
 
 ## 前置作業
 
@@ -99,7 +98,7 @@ end
 我們的 `lib/example/application.ex` 檔案應該在 `start/2`函數中實現子規範：
 
 ```elixir
-defmodule Example.Application do
+efmodule Example.Application do
   use Application
   require Logger
 

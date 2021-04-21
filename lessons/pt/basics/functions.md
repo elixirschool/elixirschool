@@ -1,12 +1,11 @@
 %{
   version: "1.2.0",
-  title: "Funções"
+  title: "Funções",
+  excerpt: """
+  Em Elixir e em várias linguagens funcionais, funções são cidadãos de primeira classe. Nós aprenderemos sobre os tipos de funções em Elixir, qual a diferença, e como utilizá-las.
+  """
 }
 ---
-
-Em Elixir e em várias linguagens funcionais, funções são cidadãos de primeira classe. Nós aprenderemos sobre os tipos de funções em Elixir, qual a diferença, e como utilizá-las.
-
-{% include toc.html %}
 
 ## Funções anônimas
 
@@ -46,10 +45,9 @@ iex> handle_result = fn
 ...> end
 
 iex> some_result = 1
-1
 iex> handle_result.({:ok, some_result})
 Handling result...
-:ok
+
 iex> handle_result.({:error})
 An error has occurred!
 ```

@@ -1,18 +1,11 @@
-<<<<<<< HEAD
----
-version: 1.0.2
-title: Erlangとの相互運用
-=======
 %{
   version: "1.0.1",
-  title: "Erlangとの相互運用"
+  title: "Erlangとの相互運用",
+  excerpt: """
+  Erlang VM (BEAM)の上で開発することによって得られる利点の1つに、既にある大量のライブラリが利用できるという事があげられます。相互運用できることで、そうしたライブラリやErlangの標準ライブラリをElixirコードから活用することができます。このレッスンではサードパーティのErlangパッケージも併せ、標準ライブラリの関数へアクセスする方法を見ていきます。
+  """
 }
->>>>>>> 6a6011a9... Convert to NimblePublisher expected format
 ---
-
-Erlang VM (BEAM)の上で開発することによって得られる利点の1つに、既にある大量のライブラリが利用できるという事があげられます。相互運用できることで、そうしたライブラリやErlangの標準ライブラリをElixirコードから活用することができます。このレッスンではサードパーティのErlangパッケージも併せ、標準ライブラリの関数へアクセスする方法を見ていきます。
-
-{% include toc.html %}
 
 ## 標準ライブラリ
 
@@ -127,19 +120,14 @@ iex> "Hello World" |> to_charlist |> :string.words
 
 ### 変数
 
-Erlangでは、変数は大文字で始まりバインドし直すことが出来ません。
-
 Elixir:
 
 ```elixir
 iex> x = 10
 10
 
-iex> x = 20
-20
-
 iex> x1 = x + 10
-30
+20
 ```
 
 Erlang:
@@ -148,11 +136,8 @@ Erlang:
 1> X = 10.
 10
 
-2> X = 20.
-** exception error: no match of right hand side value 20
-
-3> X1 = X + 10.
-20
+2> X1 = X + 1.
+11
 ```
 
 おしまいです！ErlangをElixirアプリケーション内部から活用するのは簡単ですし、利用可能なライブラリの数が事実上倍になります。

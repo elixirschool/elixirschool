@@ -1,13 +1,11 @@
 %{
   version: "1.0.0",
-  title: "ฟังก์ชัน(Functions)"
+  title: "ฟังก์ชัน(Functions)",
+  excerpt: """
+  ใน Elixir และ functional language ตัวอื่นๆ ฟังก์ชันมีความสำคัญอันดับแรกๆ ในบทเรียนนี้จะเรียนรู้เกี่ยวกับประเภทของฟังก์ชั่นใน Elixir ว่าแตกต่างกันอย่างไร?และวิธีการใช้
+  """
 }
 ---
-
-ใน Elixir และ functional language ตัวอื่นๆ ฟังก์ชันมีความสำคัญอันดับแรกๆ ในบทเรียนนี้จะเรียนรู้เกี่ยวกับประเภทของฟังก์ชั่นใน Elixir ว่าแตกต่างกันอย่างไร?และวิธีการใช้
-
-
-{% include toc.html %}
 
 ## ฟังก์ชันไม่ระบุตัวตน (Anonymous Function)
 
@@ -46,10 +44,9 @@ iex> handle_result = fn
 ...> end
 
 iex> some_result = 1
-1
 iex> handle_result.({:ok, some_result})
 Handling result...
-:ok
+
 iex> handle_result.({:error})
 An error has occurred!
 ```

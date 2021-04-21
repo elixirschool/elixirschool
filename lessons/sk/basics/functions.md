@@ -1,12 +1,11 @@
 %{
   version: "1.1.0",
-  title: "Funkcie"
+  title: "Funkcie",
+  excerpt: """
+  V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie základným konceptom. Povieme si o rôznych typoch funkcií v Elixire, rozdiely medzi nimi a ako ich použiť.
+  """
 }
 ---
-
-V Elixire, tak ako iných funkcionálnych jazykoch, sú funkcie základným konceptom. Povieme si o rôznych typoch funkcií v Elixire, rozdiely medzi nimi a ako ich použiť.
-
-{% include toc.html %}
 
 ## Anonymné funkcie
 
@@ -47,10 +46,9 @@ iex> handle_result = fn
 ...> end
 
 iex> some_result = 1
-1
 iex> handle_result.({:ok, some_result})
 Handling result...
-:ok
+
 iex> handle_result.({:error})
 An error has occurred!
 ```

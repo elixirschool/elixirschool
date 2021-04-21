@@ -1,12 +1,11 @@
 %{
   version: "0.9.1",
-  title: "Funkcje"
+  title: "Funkcje",
+  excerpt: """
+  W Elixirze, tak jak w wielu innych językach funkcyjnych, funkcje należą do bytów podstawowych (ang. _first class citizen_). W tej lekcji poznamy rodzaje funkcji, różnice pomiędzy nimi oraz zastosowania.
+  """
 }
 ---
-
-W Elixirze, tak jak w wielu innych językach funkcyjnych, funkcje należą do bytów podstawowych (ang. _first class citizen_). W tej lekcji poznamy rodzaje funkcji, różnice pomiędzy nimi oraz zastosowania.
-
-{% include toc.html %}
 
 ## Funkcje anonimowe
 
@@ -45,10 +44,9 @@ iex> handle_result = fn
 ...> end
 
 iex> some_result = 1
-1
 iex> handle_result.({:ok, some_result})
 Handling result...
-:ok
+
 iex> handle_result.({:error})
 An error has occurred!
 ```

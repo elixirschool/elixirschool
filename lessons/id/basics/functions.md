@@ -1,12 +1,11 @@
 %{
   version: "0.9.1",
-  title: "Fungsi"
+  title: "Fungsi",
+  excerpt: """
+  Di Elixir dan banyak bahasa fungsional lainnya, fungsi adalah first class citizen. Kita akan pelajari tentang tipe-tipe fungsi di Elixir, apa yang membuatnya berbeda, dan bagaimana menggunakannya.
+  """
 }
 ---
-
-Di Elixir dan banyak bahasa fungsional lainnya, fungsi adalah first class citizen. Kita akan pelajari tentang tipe-tipe fungsi di Elixir, apa yang membuatnya berbeda, dan bagaimana menggunakannya.
-
-{% include toc.html %}
 
 ## Anonymous function
 
@@ -45,10 +44,9 @@ iex> handle_result = fn
 ...> end
 
 iex> some_result = 1
-1
 iex> handle_result.({:ok, some_result})
 Handling result...
-:ok
+
 iex> handle_result.({:error})
 An error has occurred!
 ```
