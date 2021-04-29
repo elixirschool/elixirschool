@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.2.0",
   title: "Erlang Term Storage (ETS)",
   excerpt: """
   Erlang Term Storage, commonly referred to as ETS, is a powerful storage engine built into OTP and available to use in Elixir.
@@ -181,6 +181,9 @@ iex> :ets.select(:user_lookup, fun)
 Want to learn more about the match specification?  Check out the official Erlang documentation for [match_spec](http://www.erlang.org/doc/apps/erts/match_spec.html).
 
 ## Deleting Data
+
+Just as important as inserting new data, we need a mechanism to delete data.
+Let's look at what options are available to us in ETS
 
 ### Removing Records
 
