@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Mix
 ---
 
@@ -42,7 +42,7 @@ $ mix new example
 Открыв файл, можно увидеть что-то подобное (комментарии убраны для упрощения):
 
 ```elixir
-defmodule Example.Mix do
+defmodule Example.MixProject do
   use Mix.Project
 
   def project do
