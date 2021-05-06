@@ -10,13 +10,13 @@ excerpt: >
 ---
 This post is inspired by some of my work, together with [Bruce Tate](https://twitter.com/redrapids), on Pragmatic Bookshelf's upcoming book on LiveView. Elixir School is happy to be able to offer a give-away of a small number e-books once they are published, so stay tuned for updates!
 
-As LiveView matures it is becoming clear that it much more than just a tool for building real-time features in your web app. LiveView is a state management system for your single page app. Developers are increasingly reaching for LiveView to build and manage the complexities of a full-featured SPA. This is why, in our upcoming LiveView book, we're aiming to build out a diverse and robust set of features using LiveView.
+As LiveView matures it is becoming clear that is much more than just a tool for building real-time features in your web app. LiveView is a state management system for your single page app. Developers are increasingly reaching for LiveView to build and manage the complexities of a full-featured SPA. This is why, in our upcoming LiveView book, we're aiming to build out a diverse and robust set of features using LiveView.
 
 Once such common feature is that of a real-time admin-facing dashboard. Such dashboards often require data visualization and LiveView means we can offer data viz in real-time. In this post, we'll look at how to leverage the [Contex](https://github.com/mindok/contex) library for server-side SVG chart rendering. We'll render a Contex chart in a LiveView and update our chart in real-time. Along the way, I hope you'll get excited about what you can do with LiveView, and what you can learn if you dive into our upcoming book.
 
 ## The Problem
 
-While there quite a few JavaScript charting libraries to choose from, we're after a _server-side rendering_ solution. LiveView manages state on the server. State changes trigger re-renders the HTML, pushes that HTML to the client, which then efficiently updates the UI. So, we don't want to bring in a library to renders charts with lots of complex JavaScript on the client. We need to be able to draw our charts on the server and send that chart HTML down to the client.
+While there are quite a few JavaScript charting libraries to choose from, we're after a _server-side rendering_ solution. LiveView manages state on the server. State changes trigger re-renders the HTML, pushes that HTML to the client, which then efficiently updates the UI. So, we don't want to bring in a library to render charts with lots of complex JavaScript on the client. We need to be able to draw our charts on the server and send that chart HTML down to the client.
 
 While there aren't many server-rendered chart libraries in Elixir, luckily for us, there is Contex!
 
@@ -486,7 +486,7 @@ Something like this:
 
 ![game ratings chart selected category]({% asset game-ratings-bar-chart-selected.png @path %})
 
-We'll being by using the `BarChart.event_handler/2` function to add a `phx-click` event to the bars in our chart.
+We'll begin by using the `BarChart.event_handler/2` function to add a `phx-click` event to the bars in our chart.
 
 ```elixir
 # lib/game_store_web/live/game_ratings_live.ex
@@ -511,7 +511,7 @@ GameStoreWeb.AdminDashboardLive.handle_event("chart-bar-clicked", %{"category" =
 
 Oh no! Our parent LiveView crashed because we haven't yet implemented the `handle_event/3` function for our `"chart-bar-clicked"` event. You'll notice that the event was sent to the parent LiveView, `GameStoreWeb.AdminDashboardLive`, and _not_ our `GameRatingsLive` component. This is because, in order to send an event to a component, rather than it's parent, it is necessary to add the `phx-target=<%= @myself %>` attribute to the element that contains the `phx-click` event (or other DOM element binding). The `@myself` assignment refers to the unique identifier for the current component.
 
-However, the Contex package doesn't (yet) allow us to specify the event target via the call to `BarChart.event_handler/2`. There is an [open issue](https://github.com/mindok/contex/issues/29) for just this work if there are any readers out there interesetd in contributing!
+However, the Contex package doesn't (yet) allow us to specify the event target via the call to `BarChart.event_handler/2`. There is an [open issue](https://github.com/mindok/contex/issues/29) for just this work if there are any readers out there interested in contributing!
 
 So, we'll need to:
 
@@ -539,7 +539,7 @@ end
 ```
 `send_update/2` is called with the name of the component that we want to update and a keyword list that will get passed to the updating component as the new assigns. The keyword list _must_ include the ID that we are targeting for an update. Here, we're pulling the component's ID out of socket assigns where we stored it in the first part of this blog post.
 
-With this call to `send_update/2`, we will cause the `GameRatingsLive` component to re-render and re-invoke the `update/2` callback, this time with an `assigns` that includes our `:selected_category` key pointing to the click event payload. We'll cover the `send_update/2` function, and more options for communicating between child components and parent LiveViews, in the LiveView book. For now, its enough to understand that `send_update/2` can be invoked from a parent LiveView to tell a component that is running in the LiveView to update.
+With this call to `send_update/2`, we will cause the `GameRatingsLive` component to re-render and re-invoke the `update/2` callback, this time with an `assigns` that includes our `:selected_category` key pointing to the click event payload. We'll cover the `send_update/2` function, and more options for communicating between child components and parent LiveViews, in the LiveView book. For now, it's enough to understand that `send_update/2` can be invoked from a parent LiveView to tell a component that is running in the LiveView to update.
 
 Now we're ready to teach the `GameRatingsLive` component how to render a Contex `BarChart` with a selected category. We can do this with the help of the [`BarChart.select_item/2`](https://hexdocs.pm/contex/Contex.BarChart.html#select_item/2). This function takes in two arguments, the current `BarChart` struct and a map that looks like this:
 
