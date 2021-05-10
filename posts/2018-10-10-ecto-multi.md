@@ -1,12 +1,14 @@
----
-author: Svilen Gospodinov
-author_link: https://github.com/svileng
-categories: general
-tags: ['ecto', 'software design']
-date:   2018-11-07
-layout: post
-title:  A brief guide to Ecto.Multi
-excerpt: Learn how to compose and execute batches of queries using Ecto.Multi.
+%{
+  author: "Svilen Gospodinov",
+  author_link: "https://github.com/svileng",
+  date: ~D[2018-11-07],
+  tags: ["ecto", "software design", "general"],
+  title: "A brief guide to Ecto.Multi",
+  excerpt: """
+  Learn how to compose and execute batches of queries using Ecto.Multi.
+  """
+}
+
 ---
 
 Ecto.Multi is a set of utilities aimed at composing and executing atomic operations, usually (but not always, as you’ll see soon) performed against the database. Furthermore, it handles rollbacks, provides results on either success or error, flattens-out nested code and saves multiple round trips to the database.

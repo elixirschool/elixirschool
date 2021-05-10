@@ -1,13 +1,14 @@
----
-author: Sean Callan
-author_link: https://github.com/doomspork
-categories: general
-tags: ['admissions']
-date: 2019-10-23
-layout: post
-title: Building Elixir School's Admissions portal
-excerpt: >
+%{
+  author: "Sean Callan",
+  author_link: "https://github.com/doomspork",
+  date: ~D[2019-10-23],
+  tags: ["admissions", "general"],
+  title: "Building Elixir School's Admissions portal",
+  excerpt: """
   Follow along as we use build Elixir School's Slack invite portal: Admissions.
+  """
+}
+
 ---
 
 If you didn't know, Elixir School has its own Slack where contributors can gather to discuss our organization's content and projects but most importantly, support one another in our Elixir journey. When we set out to create our own Slack we wanted to address a big concern with many public Slacks: the signal to noise ratio is bad, there's just too much spam.

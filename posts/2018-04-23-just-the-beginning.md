@@ -1,14 +1,16 @@
----
-author: Sean Callan
-author_link: https://github.com/doomspork
-categories: announcement
-date:   2018-04-23
-layout: post
-title:  Just the beginning
-excerpt: >
+%{
+  author: "Sean Callan",
+  author_link: "https://github.com/doomspork",
+  date: ~D[2018-04-23],
+  tags: ["announcement"],
+  title: "Just the beginning",
+  excerpt: """
   Announcing the official Elixir School blog: Appendix.
   Follow along to learn more about Elixir, functional programming, in addition to tips and tricks you can take advantage of when building Elixir applications.
   Join us to learn more!
+  """
+}
+
 ---
 
 Welcome, Bem-vindo, Bienvenido!

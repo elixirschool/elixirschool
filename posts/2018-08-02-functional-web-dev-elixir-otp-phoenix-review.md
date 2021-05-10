@@ -1,13 +1,14 @@
----
-author: George Mantzouranis
-author_link: https://github.com/gemantzu
-categories: review
-tags: ['phoenix']
-date:   2018-08-22
-layout: post
-title:  Reviewing Functional Web Development with Elixir, OTP, and Phoenix
-excerpt: >
- Lance Halvorsen shows us how to build our a guessing video game from the ground up using Elixir and OTP. In the end, he shows us how to build a fully working UI experience with Phoenix, Presence and Channels.
+%{
+  author: "George Mantzouranis",
+  author_link: "https://github.com/gemantzu",
+  date: ~D[2018-08-22],
+  tags: ["phoenix", "review"],
+  title: "Reviewing Functional Web Development with Elixir, OTP, and Phoenix",
+  excerpt: """
+  Lance Halvorsen shows us how to build our a guessing video game from the ground up using Elixir and OTP. In the end, he shows us how to build a fully working UI experience with Phoenix, Presence and Channels.
+  """
+}
+
 ---
 
 Our first review was quite popular and the feedback we received has been wonderful!

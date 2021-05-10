@@ -1,12 +1,15 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: general
-date: 2020-05-06
-layout: post
-title: "Instrumenting Phoenix with Telemetry Part III: Phoenix + Ecto Telemetry Events"
-excerpt: >
-  In this series, we're instrumenting a Phoenix app and sending metrics to StatsD with the help of Elixir and Erlang's Telemetry offerings. In Part III we'll examine Phoenix and Ecto's out-of-the-box Telemetry events and use `Telemetry.Metrics` to observe a wide-range of such events.
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2020-05-06],
+  tags: ["general"],
+  title: "Instrumenting Phoenix with Telemetry Part III: Phoenix + Ecto Telemetry Events",
+  excerpt: """
+  In this series, we're instrumenting a Phoenix app and sending metrics to StatsD with the help of Elixir and Erlang's Telemetry offerings.
+  In Part III we'll examine Phoenix and Ecto's out-of-the-box Telemetry events and use `Telemetry.Metrics` to observe a wide-range of such events.
+  """
+}
+
 ---
 
 ## Table Of Contents

@@ -1,12 +1,14 @@
----
-author: Bobby Grayson
-author_link: https://github.com/notactuallypagemcconnell
-categories: general
-date: 2018-10-01
-layout: post
-title:  Agnostic Version Management With asdf
-excerpt: >
+%{
+  author: "Bobby Grayson",
+  author_link: "https://github.com/notactuallypagemcconnell",
+  date: ~D[2018-10-01],
+  tags: ["general"],
+  title: "Agnostic Version Management With asdf",
+  excerpt: """
   Take a dive into flexible version management of Elixir, Erlang, and OTP with `asdf`!
+  """
+}
+
 ---
 
 ## What is it?

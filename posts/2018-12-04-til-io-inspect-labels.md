@@ -1,12 +1,14 @@
----
-author: Sean Callan
-author_link: https://github.com/doomspork
-categories: til
-date: 2018-12-04
-layout: post
-title:  TIL about `IO.inspect/2`'s `:label` opt
-excerpt: >
+%{
+  author: "Sean Callan",
+  author_link: "https://github.com/doomspork",
+  date: ~D[2018-12-04],
+  tags: ["til"],
+  title: "TIL about `IO.inspect/2`'s `:label` opt",
+  excerpt: """
   Did you know you could label your output?  Neither did we!  Check out today's TIL to learn more.
+  """
+}
+
 ---
 
 If you've ever found yourself debugging Elixir then you're probably familiar with `IO.inspect/2` but just in case let's see an example of how we might use it:
