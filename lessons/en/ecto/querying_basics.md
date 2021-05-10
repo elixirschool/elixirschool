@@ -1,9 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Querying",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.2.0
-title: Querying
----
-
-{% include toc.html %}
 
 In this lesson, we'll continue building off the `Friends` app and the movie-cataloguing domain we set up in the [previous lesson](./associations).
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.3.0",
+  title: "Basics",
+  excerpt: """
+  Getting started, basic data types, and basic operations.
+  """
+}
 ---
-version: 1.3.0
-title: Basics
----
-
-Getting started, basic data types, and basic operations.
-
-{% include toc.html %}
 
 ## Getting Started
 

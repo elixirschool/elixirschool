@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Mox",
+  excerpt: """
+  Mox is a library for designing concurrent mocks in Elixir.
+  """
+}
 ---
-version: 1.0.1
-title: Mox
----
-
-Mox is a library for designing concurrent mocks in Elixir.
-
-{% include toc.html %}
 
 ## Writing Testable Code
 

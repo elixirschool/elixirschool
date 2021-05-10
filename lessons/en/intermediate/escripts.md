@@ -1,12 +1,12 @@
----
-version: 1.0.2
-title: Executables
----
-
-To build executables in Elixir we will be using escript.
+%{
+  version: "1.0.2",
+  title: "Executables",
+  excerpt: """
+  To build executables in Elixir we will be using escript.
 Escript produces an executable that can be run on any system with Erlang installed.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Getting Started
 

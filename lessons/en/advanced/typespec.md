@@ -1,13 +1,13 @@
----
-version: 1.0.3
-title: Specifications and types
----
-
-In this lesson we will learn about `@spec` and `@type` syntax.
+%{
+  version: "1.0.3",
+  title: "Specifications and types",
+  excerpt: """
+  In this lesson we will learn about `@spec` and `@type` syntax.
 `@spec` is more of a syntax complement for writing documentation that could be analyzed by tools.
 `@type` helps us write more readable and easier to understand code.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Introduction
 

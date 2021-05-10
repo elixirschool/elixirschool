@@ -1,11 +1,11 @@
+%{
+  version: "1.2.2",
+  title: "Associations",
+  excerpt: """
+  In this section we'll learn how to use Ecto to define and work with associations between our schemas.
+  """
+}
 ---
-version: 1.2.2
-title: Associations
----
-
-In this section we'll learn how to use Ecto to define and work with associations between our schemas.
-
-{% include toc.html %}
 
 ## Set Up
 

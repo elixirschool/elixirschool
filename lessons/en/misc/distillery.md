@@ -1,12 +1,12 @@
----
-version: 2.0.4
-title: Distillery (Basics)
----
-
-Distillery is a release manager written in pure Elixir.
+%{
+  version: "2.0.4",
+  title: "Distillery (Basics)",
+  excerpt: """
+  Distillery is a release manager written in pure Elixir.
 It allows you to generate releases that can be deployed elsewhere with little to no configuration.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## What is a release?
 

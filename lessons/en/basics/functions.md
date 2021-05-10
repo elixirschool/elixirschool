@@ -1,12 +1,12 @@
----
-version: 1.2.0
-title: Functions
----
-
-In Elixir and many functional languages, functions are first class citizens.
+%{
+  version: "1.2.0",
+  title: "Functions",
+  excerpt: """
+  In Elixir and many functional languages, functions are first class citizens.
 We will learn about the types of functions in Elixir, what makes them different, and how to use them.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Anonymous Functions
 

@@ -1,11 +1,11 @@
+%{
+  version: "2.4.0",
+  title: "Basics",
+  excerpt: """
+  Ecto is an official Elixir project providing a database wrapper and integrated query language. With Ecto we're able to create migrations, define schemas, insert and update records, and query them.
+  """
+}
 ---
-version: 2.4.0
-title: Basics
----
-
-Ecto is an official Elixir project providing a database wrapper and integrated query language. With Ecto we're able to create migrations, define schemas, insert and update records, and query them.
-
-{% include toc.html %}
 
 ### Adapters
 

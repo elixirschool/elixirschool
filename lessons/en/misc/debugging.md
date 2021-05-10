@@ -1,13 +1,13 @@
----
-version: 1.1.3
-title: Debugging
----
-
-Bugs are an inherent part of any project, that's why we need debugging.
+%{
+  version: "1.1.3",
+  title: "Debugging",
+  excerpt: """
+  Bugs are an inherent part of any project, that's why we need debugging.
 
 In this lesson we'll learn about debugging Elixir code as well as static analysis tools to help find potential bugs.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## IEx
 
