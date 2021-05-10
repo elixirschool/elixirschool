@@ -267,11 +267,11 @@ iex > :int.ni(Example)
 
 当你打开调试器的时候，会出现类似的新窗口：  
 
-![Debugger Screenshot 1]({% asset debugger_1.png @path %})
+![Debugger Screenshot 1](/images/debugger_1.png)
 
 当我们把调试器挂载到要调试的模块时，它就会出现在左边的菜单：  
 
-![Debugger Screenshot 2]({% asset debugger_2.png @path %})
+![Debugger Screenshot 2](/images/debugger_2.png)
 
 ### 创建断点
 
@@ -295,11 +295,11 @@ iex > Example.cpu_burns(1, 1, 1)
 
 在 IEx 中，代码的运行被挂起了，调试器窗口显示如下：  
 
-![Debugger Screenshot 3]({% asset debugger_3.png @path %})
+![Debugger Screenshot 3](/images/debugger_3.png)
 
 另一个窗口会显示出当前执行的源代码：  
 
-![Debugger Screenshot 4]({% asset debugger_4.png @path %})
+![Debugger Screenshot 4](/images/debugger_4.png)
 
 在这个窗口中，我们可以查看变量的值，跳到下一行代码，或者执行表达式。调用 `:int.disable_break/2` 就能够禁用断点：  
 

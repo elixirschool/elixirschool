@@ -211,11 +211,11 @@ View them at "doc/index.html".
 
 모든 것이 예정대로 되었다면, 위의 예제 출력 메시지와 비슷한 메시지를 볼 수 있을 것입니다. Mix 프로젝트 내부에, **doc/**라는 디렉터리를 확인할 수 있고, 안에는 자동으로 생성된 문서가 있습니다. 웹 브라우저로 색인 페이지를 열어보면 다음과 같은 화면을 보게 될 것입니다.
 
-![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
+![ExDoc Screenshot 1](/images/documentation_1.png)
 
 Earmark가 마크다운을 렌더링하고 ExDoc가 이를 쓸만한 포멧으로 표시하는 것을 볼 수 있습니다.
 
-![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
+![ExDoc Screenshot 2](/images/documentation_2.png)
 
 Github에 배포할 수도 있고, 홈페이지에도 배포할 수 있지만, 보통은 [HexDocs](https://hexdocs.pm/)에 배포 합니다.
 

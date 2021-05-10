@@ -209,11 +209,11 @@ View them at "doc/index.html".
 
 全てが計画どおりなら、上記の例にあるような出力メッセージが表示されるでしょう。次に、Mixプロジェクト内部を見ていきましょう。 **doc/** ディレクトリがあるはずです。中身は生成されたドキュメントになります。インデックスページをブラウザで開くと、以下のように表示されるはずです:
 
-![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
+![ExDoc Screenshot 1](/images/documentation_1.png)
 
 Earmarkがマークダウンを描画し、ExDocがわかりやすいフォーマットで表示してくれています。
 
-![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
+![ExDoc Screenshot 2](/images/documentation_2.png)
 
 これでGithubや自身のウェブサイト、あるいは非常に一般的な [HexDocs](https://hexdocs.pm/) へデプロイすることができるようになりました。
 

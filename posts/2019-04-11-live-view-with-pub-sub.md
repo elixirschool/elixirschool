@@ -169,7 +169,7 @@ end
 
 So, if a given LiveView process *broadcasts* to that topic, all of our subscribers will receive that message. We want our live view to broadcast whenever it will update the state of its socket. This way, we can tell all subscribing LiveView processes to update their own socket's state, which will then cause that LiveView's template to re-render. The flow will work like this:
 
-![]({% asset live_view_pub_sub.png @path %})
+![](/images/live_view_pub_sub.png)
 
 Let's add a broadcast when our LiveView first receives the `"deploy"` event and when it receives each subsequent deployment step event:
 
