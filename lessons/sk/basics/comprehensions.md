@@ -1,11 +1,11 @@
+%{
+  version: "1.1.0",
+  title: "Comprehensions",
+  excerpt: """
+  List comprehensions sú syntaktickým zjednodušením prechádzania kolekciami v Elixire. V tejto lekcii sa naučíme, ako ich používať na iterovanie a generovanie.
+  """
+}
 ---
-version: 1.1.0
-title: Comprehensions
----
-
-List comprehensions sú syntaktickým zjednodušením prechádzania kolekciami v Elixire. V tejto lekcii sa naučíme, ako ich používať na iterovanie a generovanie.
-
-{% include toc.html %}
 
 ## Základy
 

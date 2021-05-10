@@ -1,11 +1,11 @@
+%{
+  version: "1.1.2",
+  title: "Základy",
+  excerpt: """
+  Inštalácia, základné dátové typy a operácie.
+  """
+}
 ---
-version: 1.1.2
-title: Základy
----
-
-Inštalácia, základné dátové typy a operácie.
-
-{% include toc.html %}
 
 ## Príprava
 

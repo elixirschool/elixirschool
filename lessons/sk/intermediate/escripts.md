@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Spustiteľné súbory",
+  excerpt: """
+  Na to, aby sme mohli vytvoriť spustiteľné súbory v Elixire budeme používať escript. Escript vytvorí spustiteľný súbor, ktorý môže byť spustiteľný na akomkoľvek systéme, kde je nainštalovaný Erlang.
+  """
+}
 ---
-version: 1.0.1
-title: Spustiteľné súbory
----
-
-Na to, aby sme mohli vytvoriť spustiteľné súbory v Elixire budeme používať escript. Escript vytvorí spustiteľný súbor, ktorý môže byť spustiteľný na akomkoľvek systéme, kde je nainštalovaný Erlang.
-
-{% include toc.html %}
 
 ## Začíname
 

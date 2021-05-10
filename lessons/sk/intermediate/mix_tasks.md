@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "Vlastné Mix Tasky",
+  excerpt: """
+  Vytváranie vlastných Mix taskov pre vaše Elixir projekty.
+  """
+}
 ---
-version: 1.0.2
-title: Vlastné Mix Tasky
----
-
-Vytváranie vlastných Mix taskov pre vaše Elixir projekty.
-
-{% include toc.html %}
 
 ## Úvod
 

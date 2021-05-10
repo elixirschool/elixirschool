@@ -1,15 +1,15 @@
----
-version: 1.0.1
-title: Spracovanie Chýb
----
-
-Bežne môžeme vidieť pri funkciách návratovú hodnotu tuple `{:error, reason}`, ale Elixir podporuje aj výnimky a v tejto lekcii si ukážeme ako spracovávať chyby a rôzne mechanizmy ktoré máme k dispozícii.
+%{
+  version: "1.0.1",
+  title: "Spracovanie Chýb",
+  excerpt: """
+  Bežne môžeme vidieť pri funkciách návratovú hodnotu tuple `{:error, reason}`, ale Elixir podporuje aj výnimky a v tejto lekcii si ukážeme ako spracovávať chyby a rôzne mechanizmy ktoré máme k dispozícii.
 
 Vo všeobecnosti je v Elixire konvenciou vytvárať funkciu `example/1`, ktorá vráti `{:ok, result}` alebo `{:error, reason}` a funkcia `example!/1`, ktorá vráti neobalený výsledok alebo vyvolá chybu.
 
 Táto lekcia sa zameriava na spracovanie týchto chýb.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Spracovanie Chýb
 
