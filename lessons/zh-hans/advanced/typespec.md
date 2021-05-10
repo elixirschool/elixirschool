@@ -1,11 +1,11 @@
+%{
+  version: "1.0.3",
+  title: "Specifications and types",
+  excerpt: """
+  这节课我们学习 `@spec` 和 `@type` 语法. `@spec` 不仅仅是一个写文档的语法补充, 它还可以被工具用来进行分析. `@type` 则帮助我们写更易读易懂的代码.
+  """
+}
 ---
-version: 1.0.3
-title: Specifications and types
----
-
-这节课我们学习 `@spec` 和 `@type` 语法. `@spec` 不仅仅是一个写文档的语法补充, 它还可以被工具用来进行分析. `@type` 则帮助我们写更易读易懂的代码.
-
-{% include toc.html %}
 
 ## 简介
 

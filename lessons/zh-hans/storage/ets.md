@@ -1,12 +1,11 @@
+%{
+  version: "1.1.0",
+  title: "Erlang 项式存储 (ETS)",
+  excerpt: """
+  Erlang 项式存储 (Erlang Term Storage，通常简称 ETS) 是 OTP 中内置的一个功能强大的存储引擎，我们在 Elixir 中也可以很方便地使用。本文将介绍如何使用 ETS 以及如何在我们的应用中使用它。
+  """
+}
 ---
-version: 1.1.0
-title: Erlang 项式存储 (ETS)
-base_commit: 035ee14
----
-
-Erlang 项式存储 (Erlang Term Storage，通常简称 ETS) 是 OTP 中内置的一个功能强大的存储引擎，我们在 Elixir 中也可以很方便地使用。本文将介绍如何使用 ETS 以及如何在我们的应用中使用它。
-
-{% include toc.html %}
 
 ## 概览
 

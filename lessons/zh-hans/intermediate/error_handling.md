@@ -1,15 +1,15 @@
----
-version: 1.1.0
-title: 错误处理
----
-
-Elixir 通常会返回 `{:error, reason}` 元组来表示错误, 但也支持产生异常. 这节课我们来看看都有那些处理错误的方式, 以及我们该怎样处理错误.
+%{
+  version: "1.1.0",
+  title: "错误处理",
+  excerpt: """
+  Elixir 通常会返回 `{:error, reason}` 元组来表示错误, 但也支持产生异常. 这节课我们来看看都有那些处理错误的方式, 以及我们该怎样处理错误.
 
 一般情况下在 Elixir 中 (`example/1`) 的函数会返回 `{:ok, result}` 或 `{:error, reason}`. 另一个 (`example!/1`)  的函数会返回 unwrapped 的结果或者触发一个错误.
 
 这节课我们将关注后者.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 约定习俗
 

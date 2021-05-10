@@ -1,11 +1,11 @@
+%{
+  version: "1.1.0",
+  title: "文档模块",
+  excerpt: """
+  Documenting Elixir code.
+  """
+}
 ---
-version: 1.1.0
-title: 文档模块
----
-
-Documenting Elixir code.
-
-{% include toc.html %}
 
 ## 注解
 

@@ -1,9 +1,8 @@
----
-version: 1.1.0
-title: StreamData
----
-
-基于用例的单元测试工具库，如 [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) 是帮助你验证代码是否与预期运行逻辑相符的好工具。
+%{
+  version: "1.1.0",
+  title: "StreamData",
+  excerpt: """
+  基于用例的单元测试工具库，如 [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) 是帮助你验证代码是否与预期运行逻辑相符的好工具。
 但是基于用例的单元测试有它的缺点：
 
 * 由于你只测试某一些输入，一些极端情况很容易被忽略。
@@ -11,8 +10,9 @@ title: StreamData
 * 仅为一个函数编写几个测试样例也可能会非常繁琐。
 
 本教程将探索如何使用 [StreamData](https://github.com/whatyouhide/stream_data) 来帮助我们克服上述缺点。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 什么是 StreamData?
 

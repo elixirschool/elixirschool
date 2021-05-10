@@ -1,8 +1,10 @@
----
-version: 1.0.0
-title: Nerves
-redirect_from:
-  - /zh-hans/lessons/advanced/nerves
+%{
+  version: "1.0.0",
+  title: "Nerves",
+  excerpt: """
+  
+  """
+}
 ---
 
 ## Nerves 简介

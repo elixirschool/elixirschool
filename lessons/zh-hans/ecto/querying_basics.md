@@ -1,9 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "查询",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.2.0
-title: 查询
----
-
-{% include toc.html %}
 
 本章节，我们将基于[前面课程](./associations)完成的电影分类领域做的 `Friends` 应用继续我们的课程和实践。
 

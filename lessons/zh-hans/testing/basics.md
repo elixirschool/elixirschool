@@ -1,11 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "测试",
+  excerpt: """
+  测试是软件开发重要的一部分，这节课我们会讲一下如何使用 ExUnit 测试 Elixir 代码，以及测试中的最佳实践方法。
+  """
+}
 ---
-version: 1.2.0
-title: 测试
----
-
-测试是软件开发重要的一部分，这节课我们会讲一下如何使用 ExUnit 测试 Elixir 代码，以及测试中的最佳实践方法。
-
-{% include toc.html %}
 
 ## ExUnit
 
