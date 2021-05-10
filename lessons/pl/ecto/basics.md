@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Basics",
+  excerpt: """
+  Ecto jest oficjalnym projektem zespołu Elixira zapewniającym obsługę baz danych wraz z odpowiednim, zintegrowanym językiem. Za pomocą Ecto możemy migrować dane, definiować modele, wstawiać, aktualizować i odpytywać bazę danych.
+  """
+}
 ---
-version: 0.9.1
-title: Basics
----
-
-Ecto jest oficjalnym projektem zespołu Elixira zapewniającym obsługę baz danych wraz z odpowiednim, zintegrowanym językiem. Za pomocą Ecto możemy migrować dane, definiować modele, wstawiać, aktualizować i odpytywać bazę danych.
-
-{% include toc.html %}
 
 ## Przygotowanie
 

@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Mnesia",
+  excerpt: """
+  Mnesia to rozwiązanie „wagi ciężkiej” do zarządzania w czasie rzeczywistym rozproszonymi bazami danych.
+  """
+}
 ---
-version: 0.9.0
-title: Mnesia
----
-
-Mnesia to rozwiązanie „wagi ciężkiej” do zarządzania w czasie rzeczywistym rozproszonymi bazami danych.
-
-{% include toc.html %}
 
 ## Wstęp
 

@@ -1,15 +1,15 @@
----
-version: 0.9.1
-title: Wyjątki i błędy
----
-
-Elixir wspiera obsługę wyjątków. Ta lekcja jest poświęcona mechanizmom do obsługi błędów, wśród których najpopularniejszym jest zwracanie krotki `{:error, reason}`. 
+%{
+  version: "0.9.1",
+  title: "Wyjątki i błędy",
+  excerpt: """
+  Elixir wspiera obsługę wyjątków. Ta lekcja jest poświęcona mechanizmom do obsługi błędów, wśród których najpopularniejszym jest zwracanie krotki `{:error, reason}`. 
 
 Ogólnie przyjętą w Elixirze zasadą jest tworzenie funkcji (`example/1`) zwracającej `{:ok, result}` albo `{:error, reason}` oraz oddzielnej funkcji (`example!/1`), która zwróci bezpośrednio `result` albo zakończy się wyjątkiem.
 
 W tej lekcji skupimy się na pracy z takim podejściem.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Obsługa błędów
 

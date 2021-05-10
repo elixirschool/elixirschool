@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "GenStage",
+  excerpt: """
+  W tej lekcji przyjrzymy się z bliska GenStage, jaką pełni funkcję i jak może mieć wpływ na nasze aplikacje.
+  """
+}
 ---
-version: 1.0.1
-title: GenStage
----
-
-W tej lekcji przyjrzymy się z bliska GenStage, jaką pełni funkcję i jak może mieć wpływ na nasze aplikacje. 
-
-{% include toc.html %}
 
 ## Wstęp
 

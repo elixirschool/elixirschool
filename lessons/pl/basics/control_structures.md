@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "Struktury sterujące",
+  excerpt: """
+  W tej lekcji przyjrzymy się strukturom sterującym dostępnym w Elixirze.
+  """
+}
 ---
-version: 1.1.1
-title: Struktury sterujące
----
-
-W tej lekcji przyjrzymy się strukturom sterującym dostępnym w Elixirze.
-
-{% include toc.html %}
 
 ## `if` i `unless`
 

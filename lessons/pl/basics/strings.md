@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Ciągi znaków",
+  excerpt: """
+  Czym są ciągi znaków w Elixirze, listy znaków, grafemy i jak wygląda obsługa kodowania znaków.
+  """
+}
 ---
-version: 0.9.1
-title: Ciągi znaków
----
-
-Czym są ciągi znaków w Elixirze, listy znaków, grafemy i jak wygląda obsługa kodowania znaków.
-
-{% include toc.html %}
 
 ## Ciągi znaków
 

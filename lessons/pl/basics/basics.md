@@ -1,11 +1,11 @@
+%{
+  version: "1.2.1",
+  title: "Podstawy",
+  excerpt: """
+  Przygotowanie środowiska, podstawowe typy danych i operacje.
+  """
+}
 ---
-version: 1.2.1
-title: Podstawy
----
-
-Przygotowanie środowiska, podstawowe typy danych i operacje.
-
-{% include toc.html %}
 
 ## Przygotowanie środowiska
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Zachowania",
+  excerpt: """
+  W poprzedniej lekcji poznaliśmy specyfikacje i typy. W tej dowiemy się jak wymusić na module ich implementację. W Elixirze funkcjonalność ta nosi nazwę zachowań.
+  """
+}
 ---
-version: 1.0.1
-title: Zachowania
----
-
-W poprzedniej lekcji poznaliśmy specyfikacje i typy. W tej dowiemy się jak wymusić na module ich implementację. W Elixirze funkcjonalność ta nosi nazwę zachowań.
-
-{% include toc.html %}
 
 ## Zastosowania
 
