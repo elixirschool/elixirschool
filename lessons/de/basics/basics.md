@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Grundlagen",
+  excerpt: """
+  Zum Anfang: Grundlegende Datentypen und Operationen.
+  """
+}
 ---
-version: 0.9.0
-title: Grundlagen
----
-
-Zum Anfang: Grundlegende Datentypen und Operationen.
-
-{% include toc.html %}
 
 ## Grundlagen
 

@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Pipe Operator",
+  excerpt: """
+  Der pipe-Operator `|>` gibt das Resultat des vorherigen Ausdrucks als ersten Parameter an den neuen Ausdrucks weiter.
+  """
+}
 ---
-version: 0.9.1
-title: Pipe Operator
----
-
-Der pipe-Operator `|>` gibt das Resultat des vorherigen Ausdrucks als ersten Parameter an den neuen Ausdrucks weiter.
-
-{% include toc.html %}
 
 ## Einführung
 
