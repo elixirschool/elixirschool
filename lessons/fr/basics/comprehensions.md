@@ -1,12 +1,12 @@
----
-version: 1.1.0
-title: Compréhensions
----
-
-Les compréhensions de liste sont un _sucre syntaxique_ pour parcourir des énumérables en Elixir.
+%{
+  version: "1.1.0",
+  title: "Compréhensions",
+  excerpt: """
+  Les compréhensions de liste sont un _sucre syntaxique_ pour parcourir des énumérables en Elixir.
 Dans cette leçon, nous verrons comment nous pouvons utiliser les compréhensions pour itérations et générations.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Bases
 

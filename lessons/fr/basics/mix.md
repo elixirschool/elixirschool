@@ -1,17 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Mix",
+  excerpt: """
+  Avant de plonger dans les profondeurs d'Elixir, nous devons d'abord apprendre Mix.
+  """
+}
 ---
-version: 1.1.2
-title: Mix
----
-
-Avant de plonger dans les profondeurs d'Elixir, nous devons d'abord apprendre Mix.
-Si vous êtes familier avec Ruby, Mix est l'équivalent de Bundler, Rubygems, et Rake combinés.
-C'est une part primordiale de tout projet Elixir et dans cette leçon nous allons explorer quelques une de ses fonctionnalités importantes.
-Pour voir tout ce que Mix permet de faire dans l'environnement courant, lancez `mix help`.
-
-Jusqu'ici nous avons travaillé exclusivement dans `iex`, ce qui a ses limitations.
-Dans le cas d'un projet réel nous avons besoin de séparer notre code dans différents fichiers, et Mix est là pour nous aider à les gérer efficacement.
-
-{% include toc.html %}
 
 ## Nouveau projet
 
@@ -38,7 +32,7 @@ On peut lire dans les messages de sortie que Mix a créé notre dossier et un ce
 ```
 
 Dans cette leçon nous allons nous concentrer sur le fichier `mix.exs`.
-C'est dans ce fichier que nous configurons notre application, ses dépendances, son environnement et sa version. 
+C'est dans ce fichier que nous configurons notre application, ses dépendances, son environnement et sa version.
 Ouvrez le fichier dans votre éditeur préféré, vous devriez voir quelque chose comme ce qui suit (les commentaires ont été supprimés pour plus de concision):
 
 ```elixir

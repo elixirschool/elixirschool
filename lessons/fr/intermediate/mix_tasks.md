@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Tâches Mix Personnalisées",
+  excerpt: """
+  Créer des tâches Mix personnalisées pour votre projet Elixir.
+  """
+}
 ---
-version: 0.9.1
-title: Tâches Mix Personnalisées
----
-
-Créer des tâches Mix personnalisées pour votre projet Elixir.
-
-{% include toc.html %}
 
 ## Introduction
 
