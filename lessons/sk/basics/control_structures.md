@@ -7,7 +7,7 @@
 }
 ---
 
-## `if` a `unless`
+## if a unless
 
 Na funkciu `if/2` ste už pravdepodobne narazili a ak ste pracovali s Ruby, poznáte aj `unless/2`. V Elixire fungujú úplne rovnako, no sú implementované ako makrá, nie sú to skutočné jazykové konštrukty. Ich implementáciu si môžete pozrieť v dokumentácii [modulu Kernel](https://hexdocs.pm/elixir/Kernel.html).
 
@@ -36,7 +36,7 @@ iex> unless is_integer("hello") do
 "Not an Int"
 ```
 
-## `case`
+## case
 
 Ak potrebujeme hodnotu porovnať s viacerými možnosťami (vzormi), môžeme použiť `case/2`:
 
@@ -93,7 +93,7 @@ iex> case {1, 2, 3} do
 Pozrite si príslušnú kapitolu v oficiálnej dokumentácii [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 
-## `cond`
+## cond
 
 Keď potrebujeme vetviť na základe podmienok, nie hodnôt, použijeme `cond/1` - funguje to podobne ako séria `else if` alebo `elsif` v iných jazykoch:
 
@@ -121,7 +121,7 @@ iex> cond do
 "Catch all"
 ```
 
-## `with`
+## with
 
 Špeciálna riadiaca štruktúra `with/1` je užitočná, keď potrebujeme použiť vnorené `case/2` výrazy alebo v situácii keď ich nemôžeme spojiť pomocou operátora pipe. Výraz `with/1` je zložený z kľúčových slov, generátorov a výrazu.
 

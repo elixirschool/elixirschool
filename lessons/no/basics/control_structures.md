@@ -7,7 +7,7 @@
 }
 ---
 
-## `if` og `unless`
+## if og unless
 
 Sannsynligheten er stor for at du har vært borti `if/2` tidligere, og har du tidligere programmert i Ruby kjenner du til `unless/2`. De virker på samme måte i Elixir, men er her definert som makroer, og ikke språk konstruksjoner. Du kan finne implementeringen i [Kernel modulen](https://hexdocs.pm/elixir/Kernel.html).
 
@@ -36,7 +36,7 @@ iex> unless is_integer("hello") do
 "Not an Int"
 ```
 
-## `case`
+## case
 
 Om vi trenger å sammenligne mot forskjellige mønster, kan vi bruke `case`:
 
@@ -96,7 +96,7 @@ iex> case {1, 2, 3} do
 Se den offisielle dokumentasjonen for [Tillatte uttrykk i beskyttelsesklausuler](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 
-## `cond`
+## cond
 
 Hvis vi trenger å sammenligne forhold, og ikke verdier, kan vi bruke `cond`.
 Denne funksjonen kan sammenlignes med `else if` eller `elsif` i andre programmeringsspråk:
@@ -125,7 +125,7 @@ iex> cond do
 "Catch all"
 ```
 
-## `with`
+## with
 
 `with` er nyttig hvis vi for eksempel benytter oss av et nestet `case` statement eller forhold som ikke enkelt kan transporteres sammen. `with` består av nøkkelord, generatorer og et utrykk.
 

@@ -100,7 +100,7 @@ iex> for x <- 1..100,
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
 
-## Using `:into`
+## Using :into
 
 What if we want to produce something other than a list?
 Given the `:into` option we can do just that!

@@ -89,7 +89,7 @@ iex> for x <- 1..100,
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
 
-## Použitie `:into`
+## Použitie :into
 
 Čo ak chceme, aby výsledkom comprehension bolo niečo iné ako zoznam? Použijeme parameter `:into`! Tento parameter akceptuje ľubovoľnú štruktúru, ktorá implementuje protokol `Collectable`.
 

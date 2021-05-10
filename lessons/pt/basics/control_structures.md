@@ -7,7 +7,7 @@
 }
 ---
 
-## `if` e `unless`
+## if e unless
 
 Existem chances de que você já tenha encontrado `if/2` antes, e caso você tenha utilizado Ruby você é familiarizado com `unless/2`. Em Elixir eles trabalham praticamente da mesma forma porém são definidos como macros, não construtores da linguagem; Você pode encontrar a implementação deles em [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
 
@@ -34,7 +34,7 @@ iex> unless is_integer("hello") do
 "Not an Int"
 ```
 
-## `case`
+## case
 
 Caso seja necessário combinar múltiplos padrões nós poderemos utilizar `case/2`:
 
@@ -89,7 +89,7 @@ iex> case {1, 2, 3} do
 Verifique a documentação oficial sobre [Expressões permitidas em cláusulas guard](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 
-## `cond`
+## cond
 
 Quando necessitamos associar condições, e não valores, nós podemos recorrer ao `cond/1`; Isso é semelhante ao `else if` ou `elsif` de outras linguagens:
 
@@ -117,7 +117,7 @@ iex> cond do
 "Catch all"
 ```
 
-## `with`
+## with
 
 A forma especial `with/1` é útil quando tentamos usar `case/2` de maneira aninhada ou em situações que não é possível encadear funções. A expressão `with/1` é composta de palavras-chaves, generators e finalmente uma expressão.
 

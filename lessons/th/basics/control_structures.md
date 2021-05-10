@@ -7,7 +7,7 @@
 }
 ---
 
-## `if` และ `unless`
+## if และ unless
 
 คุณน่าจะเคยใช้งาน `if/2` กันมาก่อน และถ้าหากว่าคุณมาจากโลกของ Ruby จะต้องคุ้นเคยกับ `unless/2` อย่างแน่นอน ใน Elixir มันก็จะทำงานเหมือนกันนั่นแหละ แต่ว่ามันถูกสร้างขึ้นในรูปของ macros (ไม่ใช่จากโครงสร้างภาษา) ซึ่งคุณก็สามารถหาอ่านเพิ่มเติมว่ามันสร้างขึ้นมายังไง ได้ที่ [โมดูล Kernel](https://hexdocs.pm/elixir/Kernel.html)
 
@@ -36,7 +36,7 @@ iex> unless is_integer("hello") do
 "Not an Int"
 ```
 
-## `case`
+## case
 
 ถ้าหากว่าบางสถานการณ์คุณต้องการ match ค่า กับ pattern ต่างๆ เราก็สามารถใช้ `case/2` ได้
 
@@ -94,7 +94,7 @@ iex> case {1, 2, 3} do
 
 ดู official doc เพิ่มเติมเกี่ยวกับ [Expression ที่ใช้ได้กับ guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
-## `cond`
+## cond
 
 เมื่อเราต้องการจะ match เงื่อนไขแทนที่จะเทียบกับค่า เราสามารถเปลี่ยนมาใช้ `cond/1` แทนได้ เทียบได้กับ `else if` หรือ `elsif` ในภาษาอื่น ๆ 
 
@@ -122,7 +122,7 @@ iex> cond do
 "Catch all"
 ```
 
-## `with`
+## with
 
 รูปแบบพิเศษ `with/1` จะมีประโยชน์มากเลย หากเห็นว่าอาจจะต้องใข้ case/2 ซ้อนกัน หรือในสถานการณ์ที่คุณไม่สามารถ pipe ต่อกันได้อย่างสวยงาม เจ้า `with/1` จะประกอบด้วย keyword, generator และ expression
 

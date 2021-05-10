@@ -36,7 +36,7 @@ update/4             values/1
 
 And now we know the functions we have and their arity!
 
-### `.iex.exs`
+### .iex.exs
 
 Every time IEx starts it will look for a `.iex.exs` configuration file.
 If it's not present in the current directory, then the user's home directory (`~/.iex.exs`) will be used as the fallback.
@@ -74,7 +74,7 @@ iex> IExHelpers.whats_this?(:test)
 
 As we can see we don't need to do anything special to require or import our helpers, IEx handles that for us.
 
-### `h`
+### h
 
 `h` is one of the most useful tools our Elixir shell gives us.
 Due to the language's fantastic first-class support for documentation, the docs for any code can be reached using this helper.
@@ -157,7 +157,7 @@ Examples
 
 As we can see we were not only able to find what functions were available as part of the module but we were able to access individual function docs, many of which include example usage.
 
-### `i`
+### i
 
 Let's put some of our new-found knowledge to use by employing `h` to learn a bit more about the `i` helper:
 
@@ -206,7 +206,7 @@ The individual headings can be dense, but at a high level we can gather some rel
 
 This gives us a lot to work with and is better than going in blind.
 
-### `r`
+### r
 
 If we want to recompile a particular module we can use the `r` helper.
 Let's say we've changed some code and want to run a new function we've added.
@@ -220,7 +220,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `t`
+### t
 
 The `t` helper tells us about Types available in a given module:
 

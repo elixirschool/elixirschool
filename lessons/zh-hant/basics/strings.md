@@ -73,7 +73,7 @@ iex> String.graphemes string
 
 讓我們回顧一下字串模組中一些最重要和最有用的函數。本課程只介紹可用函數中的一個子集。要完整瀏覽整套函數集請造訪官方 [`String`](https://hexdocs.pm/elixir/String.html) 文件。
 
-### `length/1`
+### length/1
 
 回傳字串中的字位數目。
 
@@ -82,7 +82,7 @@ iex> String.length "Hello"
 5
 ```
 
-### `replace/3`
+### replace/3
 
 回傳一個以新取代字串替換目前字串 pattern 的新字串。
 
@@ -91,7 +91,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-### `duplicate/2`
+### duplicate/2
 
 回傳重複原本字串 n 次的新字串。
 
@@ -100,7 +100,7 @@ iex> String.duplicate("Oh my ", 3)
 "Oh my Oh my Oh my "
 ```
 
-### `split/2`
+### split/2
 
 回傳由一個 pattern 分割的字串列表。
 

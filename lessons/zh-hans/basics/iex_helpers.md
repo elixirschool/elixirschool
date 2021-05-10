@@ -36,7 +36,7 @@ update/4             values/1
 
 这样我们就知道模块中有那些函数了!
 
-### `.iex.exs`
+### .iex.exs
 
 每当 IEx 启动时都会读取叫 `.iex.exs` 的配置文件. 这个文件不在当前目录时, 会使用用户家目录的文件 (`~/.iex.exs`) 作为代替.
 
@@ -70,7 +70,7 @@ iex> IExHelpers.whats_this?(:test)
 
 如我们所见, 并不需要特别的 `require` 或 `import`, IEx 已经帮我们处理好了.
 
-### `h`
+### h
 
 `h` 是 Elixir shell 中最有用的工具了.
 多亏了这门语言对文档的支持一级棒, 我们可以用这个辅助函数查看任意代码的文档.
@@ -149,7 +149,7 @@ Examples
 
 如我们所见, 不仅可以看到模块中有什么函数还能看到每个单独函数的文档, 而且它们大多都有使用示例.
 
-### `i`
+### i
 
 让我们用刚才学到的 `h` 来 了解一下 `i` 辅助函数:
 
@@ -197,7 +197,7 @@ Reference modules
 
 这给了我们很多可供参考的信息, 终于可以不用抓瞎了.
 
-### `r`
+### r
 
 如果想要重新编译一个具体的模块我们可以使用 `r` 辅助函数. 比如改变了一点代码想要运行新加的函数, 可以保存变更后使用 `r` 来重新编译:
 
@@ -209,7 +209,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `t`
+### t
 
 `t` 辅助函数告诉我们在模块中都有那些定义的类型:
 

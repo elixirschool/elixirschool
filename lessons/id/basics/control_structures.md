@@ -7,7 +7,7 @@
 }
 ---
 
-## `if` dan `unless`
+## if dan unless
 
 Besar kemungkinan anda sudah bertemu `if/2` sebelumnya, dan jika sudah terbiasa dengan Ruby anda juga sudah familiar dengan `unless/2`. Dalam Elixir keduanya berfungsi cukup mirip tetapi keduanya didefinisikan sebagai macro, bukannya fasilitas bahasa; Anda dapat melihat implementasinya di [modul Kernel](https://hexdocs.pm/elixir/Kernel.html).
 
@@ -36,7 +36,7 @@ iex> unless is_integer("hello") do
 "Not an Int"
 ```
 
-## `case`
+## case
 
 Jika diperlukan untuk mencocokkan pada banyak pola kita dapat menggunakan `case/2`:
 
@@ -93,7 +93,7 @@ iex> case {1, 2, 3} do
 
 Ceklah dokumentasi resmi untuk [Expression yang diijinkan dalam klausa penjaga](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
-## `cond`
+## cond
 
 Ketika kita perlu mencocokkan kondisi, dan bukannya value, kita dapat menggunakan `cond`; ini seperti `else if` atau `elsif` di bahasa-bahasa lain:
 
@@ -121,7 +121,7 @@ iex> cond do
 "Catch all"
 ```
 
-## `with`
+## with
 
 Bentuk spesial `with/1` berguna ketika anda ingin menggunakan sebuah pernyataan `case/2` bertingkat atau situasi yang tidak dapat di-pipe dengan mudah. Ekspresi `with/1` terdiri dari keyword, generator, dan akhirnya sebuah expression.
 

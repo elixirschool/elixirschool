@@ -9,7 +9,7 @@
 
 En esta lección construiremos una la aplicación `Friends` y el catálogo de películas que configuramos en nuestra [lección anterior](./associations)
 
-## Obteniendo registros con `Ecto.Repo`
+## Obteniendo registros con Ecto.Repo
 
 Recuerda que un "repositorio" en Ecto se relaciona a un set de datos como nuestra base de datos Postgres.
 Toda comunicación con la base se hará utilizando este repositorio.
@@ -59,11 +59,11 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 
 Si queremos escribir consultas más complejas o si queremos regresar _todos_ los registros que cumplan con cierta condición tenemos que usar el módulo `Ecto.Query`.
 
-## Escribiendo consultas con `Ecto.Query`
+## Escribiendo consultas con Ecto.Query
 
 El módulo `Ecto.Query` nos proveé con un DSL que podemos usar para escribir consultas para obtener información del repositorio de nuestra aplicación.
 
-### Creando consultas con `Ecto.Query.from/2`
+### Creando consultas con Ecto.Query.from/2
 
 Podemos crear una consulta con la función `Ecto.Query.from/2`. Esta función toma dos argumentos: una expresión y una keyword list. Hagamos un consulta que obtenga todas las películas de nuestro repositorio:
 
@@ -92,7 +92,7 @@ iex> Repo.all(query)
 ]
 ```
 
-#### Usando `from` en Keyword Queries
+#### Usando from en Keyword Queries
 
 El ejemplo anterior le da a `from/2` un argumento de un "keyword query". Cuando usamos `from` con un keyword query, el primer argumento puede ser una de dos cosas:
 
@@ -101,7 +101,7 @@ El ejemplo anterior le da a `from/2` un argumento de un "keyword query". Cuando 
 
 El segundo argumento en nuestro keyword query `select`.
 
-#### Usando `from` con una Query Expression
+#### Usando from con una Query Expression
 
 Cuando se usa `from` con una query expression, el primer argumento debe ser un valor que implemente el protocolo `Ecto.Queryable` (ex: `Movie`). El segundo argumento es una expresión. Veamos un ejemplo:
 
@@ -126,7 +126,7 @@ iex> Repo.all(query)
 
 Puedes usar query expressions cuando _no_ necesitas usar `in` (`m in Movie`). No necesitas usar `in` cuando no necesitas una referencia a la estructura de datos. La consulta de arriba no requiere una referencia a la estructura de datos. No estamos, por ejemplo, seleccionando películas donde se cumpla cierta condición, por lo que no es necesario usar expresiones y consultas con `in`.
 
-### Usando expresiones `select`
+### Usando expresiones select
 
 Usamos la función `Ecto.Query.select/3` para especificar donde se declara que seleccionaremos en nuestra consulta. Si queremos seleccionar sólo ciertos campos, podemos especificar esos campos como una lista de átomos o haciendo referencia a las llaves de una estructura. Revisemos el primer enfoque:
 
@@ -166,7 +166,7 @@ iex(16)> Repo.all(query)
 
 En esta forma de usar `select` regresamos una lista conteniendo los valores seleccionados.
 
-### Usando expresiones `where`
+### Usando expresiones where
 
 Podemos usar expresiones `where` para incluir cláusulas "where" en nuestras consultas. Múltiples expresiones `where` se combinan en sentencias SQL `WHERE AND`.
 
@@ -200,7 +200,7 @@ iex> Repo.all(query)
 ["Something about video games"]
 ```
 
-### Usando `where` con valores interpolados
+### Usando where con valores interpolados
 
 En orden para usar valores interpolados o expresiones de Elixir en nuestras cláusulas where necesitamos usar el operador `^`. Esto nos permite _fijar_ el valor a una variable y hacer referencia a este valor en vez de reasignar la variable.
 

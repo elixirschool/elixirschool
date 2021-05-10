@@ -36,7 +36,7 @@ update/4             values/1
 
 A teraz vieme aké funkcie máme k dispozícii!
 
-### `.iex.exs`
+### .iex.exs
 
 Zakaždým keď sa spustí IEx, bude hľadať konfiguračný súbor `.iex.exs`. Ak nie je v aktuálnom adresári, tak sa ako záloha použije z užívateľovho home adresára `~/.iex.exs`.
 
@@ -72,7 +72,7 @@ iex> IExHelpers.whats_this?(:test)
 
 Ako môžeme vidieť nepotrebujeme použiť require alebo import aby sme mali prístup k našim pomocným funkciám, IEx to spraví za nás.
 
-### `h`
+### h
 
 `h` je jeden z najužitočnejších nástrojov Elixir shellu.
 Vďaka perfektnej podpore dokumentácie, ju môžeme pri akomkoľvek kóde zobraziť pomocou tejto pomocnej funkcie.
@@ -152,7 +152,7 @@ Examples
 
 Ako môžeme vidieť, nielen, že sme schopní nájisť aké funkcie má modul k dispozícii, ale máme prístup aj k dokumentácii jednotlivých funkcií, kde mnohé obsahujú aj príklad použitia.
 
-### `i`
+### i
 
 Teraz zúžitkujeme naše novo získané znalosti o pomocnej funkcii `h` tým, že ju použijeme aby sme sa naučili viac o pomocnej funkcii `i`:
 
@@ -200,7 +200,7 @@ Individuálne položky sú na prvý pohľad stručné, ale po prejdení môžeme
 
 To nám dáva informácie o tom ako s modulom pracovať a je určite lepšie ako to skúšať naslepo.
 
-### `r`
+### r
 
 Ak chceme prekompilovať určitý modul môžeme tak urobiť pomocnou funkciou `r`. Povedzme, že sme zmenili časť kódu a chceme spustiť novú funkciu, ktorú sme pridali. Aby sme to spravili, potrebujeme uložiť naše zmeny a prekompilovať pomocou `r`:
 
@@ -212,7 +212,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `t`
+### t
 
 Pomocná funkcia `t` nám povie aké typy sú dostupne v danom module:
 

@@ -90,7 +90,7 @@ iex> for x <- 1..100,
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
 
-## Usando `:into`
+## Usando :into
 
 E se nós quisermos produzir algo que não seja uma lista? Passando a opção `:into` nós podemos fazer exatamente isso! Como uma regra geral, `:into` aceita qualquer estrutura que implemente o protocolo `Collectable`.
 

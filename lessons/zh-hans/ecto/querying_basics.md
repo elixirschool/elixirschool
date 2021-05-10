@@ -9,7 +9,7 @@
 
 本章节，我们将基于[前面课程](./associations)完成的电影分类领域做的 `Friends` 应用继续我们的课程和实践。
 
-## 使用 `Ecto.Repo` 来获取记录
+## 使用 Ecto.Repo 来获取记录
 
 在 Ecto 里面，一个 “repository” 对应了一个数据存储空间，比如我们的 Postgres 数据库。所有和此数据库打交道的操作都是经过这个 repository 来实现的。
 
@@ -56,11 +56,11 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 
 如果我们需要编写更复杂的查询，或者获得 _所有的_ 满足条件的记录，我们则需要使用 `Ecto.Query` 模块。
 
-## 使用 `Ecto.Query` 编写查询语句
+## 使用 Ecto.Query 编写查询语句
 
 `Ecto.Query` 模块提供了查询 DSL。我们可以使用它来从应用的 repository 查询和获取数据。
 
-### 通过 `Ecto.Query.from/2` 创建基于关键字的查询语句
+### 通过 Ecto.Query.from/2 创建基于关键字的查询语句
 
 我们可以使用 `Ecto.Query.from/2` 宏来创建查询。这个函数接收两个参数：一个是表达式，和可选的一个关键字列表。让我们创建一个最简单的从 repository 获取所有的电影的查询语句：
 
@@ -89,7 +89,7 @@ iex> Repo.all(query)
 ]
 ```
 
-#### 使用 `from` 的简单无绑定查询
+#### 使用 from 的简单无绑定查询
 
 上面的样例丧失了 SQL 语句最有趣的部分。我们通常纸箱查询某几个特定的字段，或者根据一些条件来过滤数据。当我们希望只获取标题为 `"Ready Player One"` 的所有电影的 `title` 和 `tagline` 字段时：
 
@@ -174,7 +174,7 @@ iex> Movie
 
 注意，如果要在换行符之后继续输入，请使用 `\`
 
-### 使用 `where` 表达式
+### 使用 where 表达式
 
 我们可以使用 `where` 表达式来包含查询语句的 “where” 部分。多个 `where` 表达式则会被合成为 `WHERE AND` 的 SQL 语句。
 
@@ -208,7 +208,7 @@ iex> Repo.all(query)
 ["Something about video games"]
 ```
 
-### 在 `where` 中使用插值
+### 在 where 中使用插值
 
 为了在 where 语句中使用 Elixir 表达式或者插值，我们需要使用 `^`，或者叫 pin 操作符。它允许我们把一个值 _钉_ 到一个变量上，避免重新绑定。
 

@@ -7,7 +7,7 @@
 }
 ---
 
-## Hora (`Time`)
+## Hora (Time)
 
 Elixir tiene algunos módulos que trabajan con tiempo.
 Empecemos por obtener la hora actual:
@@ -40,7 +40,7 @@ iex> t.day
 
 Pero hay un problemita: como te habrás dado cuenta, esta estructura sólo contine la hora del día, no hay datos acerca del día, mes o año.
 
-## Fecha (`Date`)
+## Fecha (Date)
 
 Al contrario de `Time`, la estructura `Date` tiene información acerca de la fecha actual, sin información acerca de la hora.
 

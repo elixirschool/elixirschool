@@ -284,7 +284,7 @@ mix ecto.migrate
 
 ### “属于”
 
-#### 通过 `Ecto.build_assoc/3` 来保存
+#### 通过 Ecto.build_assoc/3 来保存
 
 对于"属于"这种关系，我们可以通过 Ecto 的 `build_assoc/3` 函数来处理。
 
@@ -361,7 +361,7 @@ iex> Repo.insert!(distributor)
 
 ### 多对多
 
-#### 通过 `Ecto.Changeset.put_assoc/4` 来保存
+#### 通过 Ecto.Changeset.put_assoc/4 来保存
 
 `build_assoc/3` 的做法是不能用在多对多关系的处理上面的。因为 movie 或者 actor 表本身都不包含相应的外键。我们需要使用 Ecto Changesets 和 `put_assoc/4` 函数来处理。
 

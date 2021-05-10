@@ -31,7 +31,7 @@ iex(kate@localhost)>
 
 这两个节点可以通过 `Node.spawn_link/2` 来相互发送消息。
 
-### 通过 `Node.spawn_link/2` 来通信
+### 通过 Node.spawn_link/2 来通信
 
 这个函数需要接收两个参数：
 
@@ -104,7 +104,7 @@ iex --sname kate@localhost --cookie secret_token
 
 只有拿着相同 `cookie` 启动的节点才能够成功相互通信。
 
-#### `Node.spawn_link/2` 的限制
+#### Node.spawn_link/2 的限制
 
 虽然 `Node.spawn_link/2` 很好阐明节点之间的关系，以及我们在它们之间发送消息的方式，但是，它 **不是** 在分布式节点中运行的应用之间传递消息的好的做法。`Node.spawn_link/2` 会创建出独立的进程，也就是不受监管的进程。如果能有 **跨节点** 之间创建出受监管的异步进程的话...
 

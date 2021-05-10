@@ -284,7 +284,7 @@ mix ecto.migrate
 
 ### 従属
 
-#### `Ecto.build_assoc/3` による保存
+#### Ecto.build_assoc/3 による保存
 
 "従属"の関係では、 `build_assoc/3` 関数を利用できます。
 
@@ -359,7 +359,7 @@ iex> Repo.insert!(distributor)
 
 ### 多対多
 
-#### `Ecto.Changeset.put_assoc/4` による保存
+#### Ecto.Changeset.put_assoc/4 による保存
 
 `build_assoc/3` のアプローチは多対多の関係では使えません。映画テーブルも俳優テーブルも外部キーを持たないためです。代わりに、Ectoのチェンジセットと `put_assoc/4` 関数を利用する必要があります。
 

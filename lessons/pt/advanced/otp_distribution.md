@@ -33,7 +33,7 @@ iex(kate@localhost)>
 
 Esses dois nós de processamento podem enviar mensagens entre si usando `Node.spawn_link/2`.
 
-### Comunicando com `Node.spawn_link/2`
+### Comunicando com Node.spawn_link/2
 
 Essa função recebe dois argumentos:
 * O nome do nó de processamento ao qual você deseja se conectar
@@ -109,7 +109,7 @@ iex --sname kate@localhost --cookie secret_token
 
 Somente nós de processamento iniciados com o mesmo `cookie` vão ser capazes de se conectar entre si com sucesso.
 
-#### Limitações de `Node.spawn_link/2`
+#### Limitações de Node.spawn_link/2
 
 Enquanto `Node.spawn_link/2` ilustra as relações entre nós de processamento e a maneira como podemos enviar mensagens entre eles, essa não é a escolha certa para uma aplicação que será executada entre nós de processamento distribuídos.
 `Node.spawn_link/2` gera processos isolados, ou seja, processos que não serão supervisionados.

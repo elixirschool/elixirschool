@@ -33,7 +33,7 @@ update/4             values/1
 
 現在我們知道能用的函數和其引數個數了！
 
-### `.iex.exs`
+### .iex.exs
 
 每次 IEx 啟動，它都會尋找一個 `.iex.exs` 的設罝檔案。如果它不在當前目錄中，則使用者的主目錄 (`~/.iex.exs`) 將被做為回退 (fallback) 使用。
 
@@ -68,7 +68,7 @@ iex> IExHelpers.whats_this?(:test)
 
 正如所看到的，不需要執行任何特殊的事件來請求或導入 helpers，IEx 會幫我們處理好。
 
-### `h`
+### h
 
 `h` 是 Elixir shell 付與我們最有用的工具之一。由於 Elixir 語言對文件 (documentation) 的一流支援，任何程式碼的文件都可以使用這個 helper 來實現。
 
@@ -147,7 +147,7 @@ Examples
 
 正如所看到的，不僅能夠找到是那一個函數能作為模組的一部分，而且還能夠存取各別函數的文件，其中許多文件都包含了範例和用法。
 
-### `i`
+### i
 
 先讓我們利用一些新發現的 `h` 知識來學習更多 `i` helper：
 
@@ -195,7 +195,7 @@ Reference modules
 
 這給了我們很多比盲目去試更好的有用資訊。
 
-### `r`
+### r
 
 如果想重新編譯一個特定的模組，可以使用 `r` helper。比方說，我們已經改變了一些程式碼，並希望執行新加入的函數。
 要做到這一點，需要儲存修改並重新以 r 編譯：
@@ -208,7 +208,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `t`
+### t
 
  `t` helper 告訴我們關於所給定模組中的可用型別：
 

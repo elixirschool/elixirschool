@@ -106,7 +106,7 @@ iex> %{name: "Sean"} = sean
 
 Skoro już wiemy jak tworzyć moduły oraz struktury przyjrzyjmy się jak wykorzystywać je w kodzie z pomocą komponentów. Elixir pozwala na współpracę pomiędzy modułami na kilka sposobów. Przyjrzyjmy się, z czego możemy skorzystać.
 
-### `alias`
+### alias
 
 Pozwala na tworzenie aliasów nazw modułów, co jest bardzo często wykorzystywane w kodzie Elixira:
 
@@ -146,7 +146,7 @@ defmodule Example do
 end
 ```
 
-### `import`
+### import
 
 Jeżeli zamiast aliasu chcemy dołączyć, zaimportować, funkcje i makra z modułu do naszego kodu to możemy użyć `import/`:
 
@@ -193,7 +193,7 @@ import List, only: :functions
 import List, only: :macros
 ```
 
-### `require`
+### require
 
 Choć nie jest to zbyt często stosowana funkcja to `require/2` jest też bardzo ważna. Pozwala ona na wymuszenie kompilacji i załadowania wskazanego modułu. Jest to szczególnie przydatne, jeżeli chcemy korzystać z makr:
 
@@ -207,7 +207,7 @@ end
 
 Jeżeli spróbujemy wywołać makro, które jeszcze nie zostało załadowane, to otrzymamy błąd.
 
-### `use`
+### use
 
 Pozwala na użycie modułu w aktualnym kontekście. Jest to szczególnie użyteczne, gdy moduł potrzebny jest do konfiguracji. Wywołując `use` odwołujemy się do zaczepu `__using__` wewnątrz modułu, pozwalając modułowi na zmiany w aktualnym kontekście:
 

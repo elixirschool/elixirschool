@@ -284,7 +284,7 @@ A maneira como salvamos registros junto dos dados associados depende da natureza
 
 ### Belongs To
 
-#### Salvando com o `Ecto.build_assoc/3`
+#### Salvando com o Ecto.build_assoc/3
 
 Com um relacionamento "belongs to", podemos alavancar a função `build_assoc/3` do Ecto.
 
@@ -359,7 +359,7 @@ iex> Repo.insert!(distributor)
 
 ### Many to Many
 
-#### Salvando com `Ecto.Changeset.put_assoc/4`
+#### Salvando com Ecto.Changeset.put_assoc/4
 
 A abordagem `build_assoc/3` não funcionará para o nosso relacionamento muitos-para-muitos(many-to-many). Isso ocorre porque nem as tabelas de filme nem de ator contêm uma chave estrangeira. Em vez disso, precisamos usar o Ecto Changesets e a função `put_assoc/4`.
 

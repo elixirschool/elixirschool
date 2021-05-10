@@ -35,7 +35,7 @@ update/4             values/1
 
 og nå kjenner vi til modulen sine funksjoner og deres aritet.
 
-### `.iex.exs`
+### .iex.exs
 
 Hver gang IEx starter så vil den se etter en `.iex.exs` konfigurasjons fil. Hvis den ikke er tilgjengelig i nåværende direktiv, så vil den sjekke brukerens hjemmedirektiv (`~/.iex.exs`) og ta den i bruk.
 
@@ -68,7 +68,7 @@ iex> IExHelpers.whats_this?(:test)
 
 Som vi kan se, så trenger vi ikke å gjøre noe spesielt for å få tak i våre hjelpere, IEx håndterer det for oss.
 
-### `h`
+### h
 
 `h` er en av de mest brukbare verktøyene som Elixir terminalen gir oss. På grunn av språkets fantastiske førsteklasse støtte for dokumentasjons, så vil dokumentasjonene for hvilken som helst kode bli nådd ved bruk av denne hjelperen.
 For å se det i aksjon:
@@ -145,7 +145,7 @@ Examples
 
 Som vi kan se, så kunne vi se både funksjonene som var tilgjenglig i modulen, men også den individuelle dokumentasjonen for hver funksjon som inkluderer eksempeler.
 
-### `i`
+### i
 
 La oss ta i bruk det vi vet om `h` for å lære om `i` hjelperen:
 
@@ -194,7 +194,7 @@ De første linjene kan være kompakte, men på et høyt nivå så kan vi ekstrah
 
 Dette gir oss veldig mye å jobbe med.
 
-### `r`
+### r
 
 Hvis vi rekompilere en spesifikk modul så kan vi ta i bruk `r` hjelperen. La oss si at vi endret på noe kode og ønsker å ta i bruk den nye funksjonen som vi la til. For å gjøre det så må vi lagre våre endringer og rekompilere med r:
 
@@ -206,7 +206,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `t`
+### t
 
 hjelperen `t` forteller oss om typer tilgjenglig i en gitt modul:
 

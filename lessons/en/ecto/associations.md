@@ -283,7 +283,7 @@ The manner in which we save records along with their associated data depends on 
 
 ### Belongs To
 
-#### Saving With `Ecto.build_assoc/3`
+#### Saving With Ecto.build_assoc/3
 
 With a "belongs to" relationship, we can leverage Ecto's `build_assoc/3` function.
 
@@ -358,7 +358,7 @@ iex> Repo.insert!(distributor)
 
 ### Many to Many
 
-#### Saving With `Ecto.Changeset.put_assoc/4`
+#### Saving With Ecto.Changeset.put_assoc/4
 
 The `build_assoc/3` approach won't work for our many-to-many relationship. That is because neither the movie nor actor tables contain a foreign key. Instead, we need to leverage Ecto Changesets and the `put_assoc/4` function.
 

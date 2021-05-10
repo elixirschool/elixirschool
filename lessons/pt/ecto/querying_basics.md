@@ -9,7 +9,7 @@
 
 Nesta lição, estaremos construindo a aplicação `Friends` e o catálogo de filmes que configuramos na [lição anterior](./associations).
 
-## Buscando Registros com `Ecto.Repo`
+## Buscando Registros com Ecto.Repo
 
 Lembre-se de que um "repositório" no Ecto é mapeado para um armazenamento de dados, como nosso banco de dados Postgres.
 Toda a comunicação com o banco de dados será feita usando este repositório.
@@ -57,11 +57,11 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 
 Se quisermos escrever consultas mais complexas, ou se quisermos retornar _todos_ os registros que atendam a uma determinada condição, precisamos usar o módulo `Ecto.Query`.
 
-## Escrevendo Consultar com `Ecto.Query`
+## Escrevendo Consultar com Ecto.Query
 
 O módulo `Ecto.Query` nos fornece a DSL de consulta que podemos usar para criar consultas para recuperar dados do repositório da aplicação.
 
-### Criando Consultas baseadas em palavras-chave com `Ecto.Query.from/2`
+### Criando Consultas baseadas em palavras-chave com Ecto.Query.from/2
 
 Podemos criar uma consulta com a função `Ecto.Query.from/2`. Esta função recebe dois argumentos: uma expressão e uma lista opcional de palavras-chave. Vamos criar a consulta mais simples para selecionar todos os filmes do nosso repositório:
 
@@ -90,7 +90,7 @@ iex> Repo.all(query)
 ]
 ```
 
-#### Consultas bindingless com `from`
+#### Consultas bindingless com from
 
 O exemplo acima não tem a parte mais divertida das declarações (statements) SQL. Nós frequentemente queremos não apenas buscar campos específicos ou filtrar registros por alguma condição. Vamos carregar `title` e `tagline` de todos os filmes que tenham o título `"Ready Player One"`:
 
@@ -175,7 +175,7 @@ iex> Movie \
 
 Note que para continuar escrevendo depois da quebra de linha, use o caracter `\`.
 
-### Usando `where` com Valores Interpolados
+### Usando where com Valores Interpolados
 
 Para usar valores interpolados ou expressões Elixir em nossas cláusulas where, precisamos usar o operador pin, `^`. Isso nos permite _fixar_ um valor para uma variável e se referir ao valor fixado, em vez de vincular essa variável.
 
