@@ -1,11 +1,11 @@
+%{
+  version: "1.0.3",
+  title: "Umbrella-Projekte",
+  excerpt: """
+  Manchmal kann ein Projekt richtig groß werden. Das Mix build tool erlaubt uns unseren Code in mehrere Anwendungen aufzuteilen und unser Elixir Projekt einfacher handhabbar zu machen, wenn es größer wird.
+  """
+}
 ---
-version: 1.0.3
-title: Umbrella-Projekte
----
-
-Manchmal kann ein Projekt richtig groß werden. Das Mix build tool erlaubt uns unseren Code in mehrere Anwendungen aufzuteilen und unser Elixir Projekt einfacher handhabbar zu machen, wenn es größer wird.
-
-{% include toc.html %}
 
 ## Einführung
 

@@ -1,13 +1,13 @@
----
-version: 1.0.3
-title: OTP Nebenläufigkeit
----
-
-Wir haben uns die Elixir-Abstraktion für Nebenläufigkeit angesehen, aber manchmal hätten wir gern mehr Kontrolle und dafür sehen wir uns OTP behaviors an, auf denen Elixir gebaut wurde.
+%{
+  version: "1.0.3",
+  title: "OTP Nebenläufigkeit",
+  excerpt: """
+  Wir haben uns die Elixir-Abstraktion für Nebenläufigkeit angesehen, aber manchmal hätten wir gern mehr Kontrolle und dafür sehen wir uns OTP behaviors an, auf denen Elixir gebaut wurde.
 
 In dieser Lektion werden wir uns hauptsächlich mit zwei wichtigen Teilen beschäftigen: GenServers.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## GenServer
 

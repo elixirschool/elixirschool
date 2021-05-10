@@ -1,11 +1,11 @@
+%{
+  version: "0.9.2",
+  title: "Dokumentation",
+  excerpt: """
+  Wie dokumentiert man Elixir Code?
+  """
+}
 ---
-version: 0.9.2
-title: Dokumentation
----
-
-Wie dokumentiert man Elixir Code?
-
-{% include toc.html %}
 
 ## Anmerkungen
 

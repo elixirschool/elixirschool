@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Enums",
+  excerpt: """
+  Ein Satz Algorithmen, um über collections zu gehen.
+  """
+}
 ---
-version: 0.9.0
-title: Enums
----
-
-Ein Satz Algorithmen, um über collections zu gehen.
-
-{% include toc.html %}
 
 ## Enum
 

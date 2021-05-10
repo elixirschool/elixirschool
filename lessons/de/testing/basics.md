@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Testen",
+  excerpt: """
+  Testen ist ein wichtiger Teil der Softwareentwicklung. In dieser Lektion werden wir uns anschauen, wie man Elixir Code mit ExUnit testet und einige best practices davon kennen lernen.
+  """
+}
 ---
-version: 0.9.1
-title: Testen
----
-
-Testen ist ein wichtiger Teil der Softwareentwicklung. In dieser Lektion werden wir uns anschauen, wie man Elixir Code mit ExUnit testet und einige best practices davon kennen lernen.
-
-{% include toc.html %}
 
 ## ExUnit
 

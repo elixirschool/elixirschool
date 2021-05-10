@@ -1,11 +1,11 @@
+%{
+  version: "2.4.0",
+  title: "Basics",
+  excerpt: """
+  Ecto ist ein offizielles Elixir-Projekt, das einen Datenbank-Wrapper und eine integrierte Abfragesprache bereitstellt. Mit Ecto sind wir in der Lage, Migrationen zu erstellen, Schemmas zu definieren, Datensätze einzufügen, zu aktualisieren und diese abzufragen.
+  """
+}
 ---
-version: 2.4.0
-title: Basics
----
-
-Ecto ist ein offizielles Elixir-Projekt, das einen Datenbank-Wrapper und eine integrierte Abfragesprache bereitstellt. Mit Ecto sind wir in der Lage, Migrationen zu erstellen, Schemmas zu definieren, Datensätze einzufügen, zu aktualisieren und diese abzufragen.
-
-{% include toc.html %}
 
 ### Adapter
 
