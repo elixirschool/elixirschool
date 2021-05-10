@@ -1,11 +1,11 @@
+%{
+  version: "1.7.0",
+  title: "Enum",
+  excerpt: """
+  コレクションを列挙していくために用いる一連のアルゴリズム。
+  """
+}
 ---
-version: 1.7.0
-title: Enum
----
-
-コレクションを列挙していくために用いる一連のアルゴリズム。
-
-{% include toc.html %}
 
 ## Enum
 

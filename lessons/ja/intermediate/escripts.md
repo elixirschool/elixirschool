@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "実行ファイル",
+  excerpt: """
+  Elixirで実行ファイルをビルドするにはescriptを利用します。escriptはErlangがインストールされているあらゆるシステム上で動作する実行ファイルを生み出します。
+  """
+}
 ---
-version: 1.0.2
-title: 実行ファイル
----
-
-Elixirで実行ファイルをビルドするにはescriptを利用します。escriptはErlangがインストールされているあらゆるシステム上で動作する実行ファイルを生み出します。
-
-{% include toc.html %}
 
 ## 始めに
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "制御構造",
+  excerpt: """
+  このレッスンではElixirで利用できる制御構造を見ていきます。
+  """
+}
 ---
-version: 1.1.1
-title: 制御構造
----
-
-このレッスンではElixirで利用できる制御構造を見ていきます。
-
-{% include toc.html %}
 
 ## `if` と `unless`
 

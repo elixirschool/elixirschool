@@ -1,11 +1,11 @@
+%{
+  version: "1.1.0",
+  title: "ドキュメント",
+  excerpt: """
+  Elixirコードのドキュメント。
+  """
+}
 ---
-version: 1.1.0
-title: ドキュメント
----
-
-Elixirコードのドキュメント。
-
-{% include toc.html %}
 
 ## 注釈
 
