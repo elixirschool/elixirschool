@@ -1,11 +1,11 @@
+%{
+  version: "1.0.4",
+  title: "Guardian (Основы)",
+  excerpt: """
+  [Guardian](https://github.com/ueberauth/guardian) &mdash; часто используемая библиотека, основанная на [JWT](https://jwt.io/) (JSON Web Token).
+  """
+}
 ---
-version: 1.0.4
-title: Guardian (Основы)
----
-
-[Guardian](https://github.com/ueberauth/guardian) &mdash; часто используемая библиотека, основанная на [JWT](https://jwt.io/) (JSON Web Token).
-
-{% include toc.html %}
 
 ## JWT
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "Embedded Elixir (EEx)",
+  excerpt: """
+  По аналогии с ERB в Ruby и JSP в Java, в Elixir есть EEx или Embedded Elixir ("встраиваемый" Elixir код). С помощью EEx мы можем встраивать и интерпретировать код Elixir внутри любого другого текста.
+  """
+}
 ---
-version: 1.0.2
-title: Embedded Elixir (EEx)
----
-
-По аналогии с ERB в Ruby и JSP в Java, в Elixir есть EEx или Embedded Elixir ("встраиваемый" Elixir код). С помощью EEx мы можем встраивать и интерпретировать код Elixir внутри любого другого текста.
-
-{% include toc.html %}
 
 ## API
 
