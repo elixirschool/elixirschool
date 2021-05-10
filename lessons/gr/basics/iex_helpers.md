@@ -1,9 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "Βοηθοί IEx",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.0.2
-title: Βοηθοί IEx
----
-
-{% include toc.html %}
 
 ## Σύνοψη
 

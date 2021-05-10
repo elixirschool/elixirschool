@@ -1,11 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Ειδικές Εργασίες Mix",
+  excerpt: """
+  Δημιουργία ειδικών εργασιών Mix για τα Elixir projects σας.
+  """
+}
 ---
-version: 1.2.0
-title: Ειδικές Εργασίες Mix
----
-
-Δημιουργία ειδικών εργασιών Mix για τα Elixir projects σας.
-
-{% include toc.html %}
 
 ## Εισαγωγή
 
