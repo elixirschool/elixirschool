@@ -1,11 +1,11 @@
+%{
+  version: "1.5.0",
+  title: "列舉 (Enum)",
+  excerpt: """
+  一組在可列舉函數中的列舉演算法。
+  """
+}
 ---
-version: 1.5.0
-title: 列舉 (Enum)
----
-
-一組在可列舉函數中的列舉演算法。
-
-{% include toc.html %}
 
 ## 列舉 (Enum)
 

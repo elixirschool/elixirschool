@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "可執行檔案",
+  excerpt: """
+  要在 Elixir 中建立可執行檔案，需使用 escript。Escript 將生成一個可以在任何安裝了 Erlang 的系統上運作的可執行檔案。
+  """
+}
 ---
-version: 1.0.1
-title: 可執行檔案
----
-
-要在 Elixir 中建立可執行檔案，需使用 escript。Escript 將生成一個可以在任何安裝了 Erlang 的系統上運作的可執行檔案。
-
-{% include toc.html %}
 
 ## 入門
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Erlang 互用性",
+  excerpt: """
+  在 Erlang VM（BEAM）之上構建的附加好處之一，就是有大量的現有函式庫可供使用。互用性 (Interoperability) 使我們能夠藉由 Elixir 程式碼即能利用這些函式庫和 Erlang 標準函式庫。在本課程中，將介紹如何存取隨第三方 Erlang packages 一起的標準函式庫功能。
+  """
+}
 ---
-version: 1.0.1
-title: Erlang 互用性
----
-
-在 Erlang VM（BEAM）之上構建的附加好處之一，就是有大量的現有函式庫可供使用。互用性 (Interoperability) 使我們能夠藉由 Elixir 程式碼即能利用這些函式庫和 Erlang 標準函式庫。在本課程中，將介紹如何存取隨第三方 Erlang packages 一起的標準函式庫功能。
-
-{% include toc.html %}
 
 ## 標準函式庫
 

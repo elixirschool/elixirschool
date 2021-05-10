@@ -1,9 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "查詢",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.1.1
-title: 查詢
----
-
-{% include toc.html %}
 
 在本課程中，將基於 `Friends` 應用程式和在 [上一課](./associations) 中設定的電影目錄域來繼續構建。
 

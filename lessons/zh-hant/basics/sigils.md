@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "符咒 (Sigils)",
+  excerpt: """
+  使用和創設符咒 (sigils)。
+  """
+}
 ---
-version: 1.0.2
-title: 符咒 (Sigils)
----
-
-使用和創設符咒 (sigils)。
-
-{% include toc.html %}
 
 ## 符咒概述
 

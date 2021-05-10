@@ -1,17 +1,17 @@
----
-version: 1.1.0
-title: Mix
----
-
-在能夠潛入 Elixir 的深處之前，首先需要了解 Mix。
+%{
+  version: "1.1.0",
+  title: "Mix",
+  excerpt: """
+  在能夠潛入 Elixir 的深處之前，首先需要了解 Mix。
 如果你熟悉 Ruby，Mix 就是 Bundler、RubyGems 和 Rake 的綜合。
 這是任何 Elixir 專案的關鍵組成部分，在本課中，我們將會探索其幾個重要功能。
 在目前環境中要查找 Mix 提供的所有功能，請執行 `mix help`。
 
 到現在為止，我們一直在 `iex` 裡面工作，這有其局限性。
 為了構建一些實質性的東西，我們需要把程式碼分成許多資料夾來有效地管理它們；Mix 讓我們在一個專案中能夠做到這一點。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 新增專案 (New Projects)
 

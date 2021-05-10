@@ -1,11 +1,11 @@
+%{
+  version: "1.1.0",
+  title: "GenStage",
+  excerpt: """
+  在本課程中，將仔細研究 GenStage、它的作用和如何在應用程式中利用。
+  """
+}
 ---
-version: 1.1.0
-title: GenStage
----
-
-在本課程中，將仔細研究 GenStage、它的作用和如何在應用程式中利用。
-
-{% include toc.html %}
 
 ## 簡介
 
