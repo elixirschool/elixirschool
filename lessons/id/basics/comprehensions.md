@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Comprehensions",
+  excerpt: """
+  List comprehension adalah pemanis sintaks (syntactic sugar) untuk menjalani enumerable di Elixir.  Dalam pelajaran ini kita akan melihat bagaimana kita bisa menggunakannya untuk iterasi dan pembuatan enumerable.
+  """
+}
 ---
-version: 0.9.0
-title: Comprehensions
----
-
-List comprehension adalah pemanis sintaks (syntactic sugar) untuk menjalani enumerable di Elixir.  Dalam pelajaran ini kita akan melihat bagaimana kita bisa menggunakannya untuk iterasi dan pembuatan enumerable.
-
-{% include toc.html %}
 
 ## Dasar
 

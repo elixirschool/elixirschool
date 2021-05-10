@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Operator pipe",
+  excerpt: """
+  Operator pipe`|>` melewatkan hasil expression di sebelah kirinya sebagai parameter pertama untuk expression di sebelah kanannya.
+  """
+}
 ---
-version: 0.9.1
-title: Operator pipe
----
-
-Operator pipe`|>` melewatkan hasil expression di sebelah kirinya sebagai parameter pertama untuk expression di sebelah kanannya.
-
-{% include toc.html %}
 
 ## Perkenalan
 
