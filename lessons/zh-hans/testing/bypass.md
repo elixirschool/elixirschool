@@ -1,13 +1,13 @@
+%{
+  version: "1.0.0",
+  title: "Bypass",
+  excerpt: """
+  测试的时候，很多情况下我们要对外部服务发出请求。我们甚至可能需要模拟不同的场景，比如意外发生的服务器错误。在 Elixir 中要高效地实现上面的功能可得向外获取一些帮助。  
+
+在本章课程中，我们将探索 [bypass](https://github.com/PSPDFKit-labs/bypass) 是如何快速方便地帮助我们在测试中处理这些请求。
+  """
+}
 ---
-version: 1.0.0
-title: Bypass
----
-
-测试的时候，很多情况下我们要对外部服务发出请求。我们甚至可能需要模拟不同的场景，比如意外发生的服务器错误。在 Elixir 中要高效地实现上面的功能可得向外获取一些帮助。  
-
-在本章课程中，我们将探索 [bypass](https://github.com/PSPDFKit-labs/bypass) 是如何快速方便地帮助我们在测试中处理这些请求。  
-
-{% include toc.html %}
 
 ## Bypass 是什么？
 

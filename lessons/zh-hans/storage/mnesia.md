@@ -1,11 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Mnesia 数据库",
+  excerpt: """
+  Mnesia 是一个强大的分布式实时数据库管理系统。
+  """
+}
 ---
-version: 1.2.0
-title: Mnesia 数据库
----
-
-Mnesia 是一个强大的分布式实时数据库管理系统。
-
-{% include toc.html %}
 
 ## 概要
 

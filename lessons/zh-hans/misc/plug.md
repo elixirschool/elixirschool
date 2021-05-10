@@ -1,15 +1,15 @@
----
-version: 2.2.0
-title: Plug
----
-
-如果你熟悉 Ruby，你可以把 Plug 想成 Rack，再加上一点 Sinatra。它提供了编写 Web 应用组件的一组规范，以及接入 Web 服务器所需的一些适配器。虽然 Plug 不属于 Elixir 的核心库，但它依然是一个 Elixir 官方维护的项目。
+%{
+  version: "2.2.0",
+  title: "Plug",
+  excerpt: """
+  如果你熟悉 Ruby，你可以把 Plug 想成 Rack，再加上一点 Sinatra。它提供了编写 Web 应用组件的一组规范，以及接入 Web 服务器所需的一些适配器。虽然 Plug 不属于 Elixir 的核心库，但它依然是一个 Elixir 官方维护的项目。
 
 通过本课程，我们会使用 `PlugCowboy` 来从零开始打造一个简单的 HTTP 服务器。Cowboy 是一个为 Erlang 打造的简单的 HTTP 服务器。而 Plug 则为我们提供了它的 connection 适配。
 
 当极简的 web 应用配置好后，我们将学习 Plug 的 router 以及如何在单个 web 应用内使用多个 plugs。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 环境准备
 

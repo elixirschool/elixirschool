@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "OTP Supervisors",
+  excerpt: """
+  Supervisors 是一种特殊的进程：专门来监控其他的进程。supervisors 能够自动重启出错的子进程，从而编写容错性高的程序。
+  """
+}
 ---
-version: 1.1.1
-title: OTP Supervisors
----
-
-Supervisors 是一种特殊的进程：专门来监控其他的进程。supervisors 能够自动重启出错的子进程，从而编写容错性高的程序。
-
-{% include toc.html %}
 
 ## 配置
 

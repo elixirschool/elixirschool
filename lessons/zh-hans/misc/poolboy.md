@@ -1,11 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Poolboy",
+  excerpt: """
+  如果不控制好程序创建的最大并行进程数，系统资源很容易就会耗尽。[Poolboy](https://github.com/devinus/poolboy) 就是为了解决这个问题，在 Erlang 下被广泛使用的轻量级，通用进程池程序库。
+  """
+}
 ---
-version: 1.2.0
-title: Poolboy
----
-
-如果不控制好程序创建的最大并行进程数，系统资源很容易就会耗尽。[Poolboy](https://github.com/devinus/poolboy) 就是为了解决这个问题，在 Erlang 下被广泛使用的轻量级，通用进程池程序库。
-
-{% include toc.html %}
 
 ## 为什么需要 Poolboy？
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "魔符(Sigil)",
+  excerpt: """
+  使用和定义魔符。
+  """
+}
 ---
-version: 1.0.2
-title: 魔符(Sigil)
----
-
-使用和定义魔符。
-
-{% include toc.html %}
 
 ## 魔符(Sigil) 概述
 

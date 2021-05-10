@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "控制语句",
+  excerpt: """
+  这篇教程，我们将学习 Elixir 语言中的控制语句。
+  """
+}
 ---
-version: 1.1.1
-title: 控制语句
----
-
-这篇教程，我们将学习 Elixir 语言中的控制语句。
-
-{% include toc.html %}
 
 ## `if` 和 `unless`
 

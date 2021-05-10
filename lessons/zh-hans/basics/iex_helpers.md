@@ -1,9 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "IEx 辅助函数",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.0.2
-title: IEx 辅助函数
----
-
-{% include toc.html %}
 
 ## 概述
 

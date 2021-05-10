@@ -1,11 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "字符串",
+  excerpt: """
+  字符串、字符列表、字素(Graphemes) 和字码点（Codepoints）。
+  """
+}
 ---
-version: 1.2.0
-title: 字符串
----
-
-字符串、字符列表、字素(Graphemes) 和字码点（Codepoints）。
-
-{% include toc.html %}
 
 ## 字符串
 

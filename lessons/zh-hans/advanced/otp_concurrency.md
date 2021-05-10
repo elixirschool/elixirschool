@@ -1,13 +1,13 @@
----
-version: 1.1.3
-title: OTP 并发
----
-
-我们已经看过了 Elixir 层的并发抽象机制，但有时候我们需要更多的控制，那就要了解 Elixir 底层的东西：OTP 行为（behaviors）。
+%{
+  version: "1.1.3",
+  title: "OTP 并发",
+  excerpt: """
+  我们已经看过了 Elixir 层的并发抽象机制，但有时候我们需要更多的控制，那就要了解 Elixir 底层的东西：OTP 行为（behaviors）。
 
 在这一课中，我们将专注于最大的一块：Genservers。
-
-{% include toc.html %}
+  """
+}
+---
 
 # GenServer
 OTP server 是一个模块，包含了 Genserver 的主要行为，外加一系列的 callbacks。Genserver 最核心的内容是这样一个循环：每次迭代处理一个带有目标状态的请求。

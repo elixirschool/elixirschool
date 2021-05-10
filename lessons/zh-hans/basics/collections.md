@@ -1,11 +1,11 @@
+%{
+  version: "1.3.1",
+  title: "集合",
+  excerpt: """
+  列表（list）、元组（tuple）、关键字列表（keyword list）、映射（map）。
+  """
+}
 ---
-version: 1.3.1
-title: 集合
----
-
-列表（list）、元组（tuple）、关键字列表（keyword list）、映射（map）。
-
-{% include toc.html %}
 
 ## 列表（List）
 

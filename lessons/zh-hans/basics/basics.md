@@ -1,11 +1,11 @@
+%{
+  version: "1.2.1",
+  title: "基础",
+  excerpt: """
+  安装，基本类型和基本操作。
+  """
+}
 ---
-version: 1.2.1
-title: 基础
----
-
-安装，基本类型和基本操作。
-
-{% include toc.html %}
 
 ## 安装
 

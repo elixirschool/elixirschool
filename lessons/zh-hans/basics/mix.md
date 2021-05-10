@@ -1,13 +1,13 @@
----
-version: 1.1.1
-title: Mix
----
-
-在更深入了解 Elixir 之前，我们必须先学习 mix。如果你熟悉 Ruby 的话，mix 就是 Bundler，RubyGems 和 Rake 的结合。mix 对于开发 Elixir 至关重要，我们在这篇课程只会介绍它的部分特性。要查看 Mix 在当前环境中提供的所有内容，请运行 `mix help`。
+%{
+  version: "1.1.1",
+  title: "Mix",
+  excerpt: """
+  在更深入了解 Elixir 之前，我们必须先学习 mix。如果你熟悉 Ruby 的话，mix 就是 Bundler，RubyGems 和 Rake 的结合。mix 对于开发 Elixir 至关重要，我们在这篇课程只会介绍它的部分特性。要查看 Mix 在当前环境中提供的所有内容，请运行 `mix help`。
 
 直到现在，我们还一直用 `iex` 和 Elixir 打交道，这种方法明显是有局限的。在编写大型项目的时候，为了方便管理，我们会把代码分成不同的文件，mix 就是为了管理项目而生的。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 新建项目
 
