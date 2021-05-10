@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Sigiler",
+  excerpt: """
+  Bruke og lage sigiler.
+  """
+}
 ---
-version: 0.9.0
-title: Sigiler
----
-
-Bruke og lage sigiler.
-
-{% include toc.html %}
 
 ## Sigil Oversikt
 

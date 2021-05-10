@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Enum",
+  excerpt: """
+  Et sett med algoritmer for å iterere over kolleksjoner.
+  """
+}
 ---
-version: 0.9.0
-title: Enum
----
-
-Et sett med algoritmer for å iterere over kolleksjoner.
-
-{% include toc.html %}
 
 ## Enum
 
