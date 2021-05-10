@@ -1,11 +1,11 @@
+%{
+  version: "1.2.1",
+  title: "กลุ่มข้อมูล (Collections)",
+  excerpt: """
+  List, tuple, keyword list, และ map
+  """
+}
 ---
-version: 1.2.1
-title: กลุ่มข้อมูล (Collections)
----
-
-List, tuple, keyword list, และ map
-
-{% include toc.html %}
 
 ## Lists
 
