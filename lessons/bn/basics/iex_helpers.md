@@ -1,9 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "IEx হেল্পার",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.0.1
-title: IEx হেল্পার 
----
-
-{% include toc.html %}
 
 ## সূচনা 
 
