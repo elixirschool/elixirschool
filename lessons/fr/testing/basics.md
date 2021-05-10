@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Tests",
+  excerpt: """
+  Faire des tests est une partie importante du développement informatique. Dans cette leçon, nous allons voir comment tester notre code Elixir avec ExUnit ainsi que les bonnes pratiques pour cela.
+  """
+}
 ---
-version: 0.9.0
-title: Tests
----
-
-Faire des tests est une partie importante du développement informatique. Dans cette leçon, nous allons voir comment tester notre code Elixir avec ExUnit ainsi que les bonnes pratiques pour cela.
-
-{% include toc.html %}
 
 ## ExUnit
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.7.0",
+  title: "Enum",
+  excerpt: """
+  Un ensemble d'algorithmes pour énumérer sur les collections.
+  """
+}
 ---
-version: 1.7.0
-title: Enum
----
-
-Un ensemble d'algorithmes pour énumérer sur les collections.
-
-{% include toc.html %}
 
 ## Enum
 
