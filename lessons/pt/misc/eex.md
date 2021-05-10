@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "Elixir embutido (EEx)",
+  excerpt: """
+  Do mesmo jeito que Ruby possui ERB e Java JSPs, Elixir tem EEx ou *Embedded Elixir (Elixir embutido)*. Com EEx podemos embutir e avaliar código Elixir dentro das *strings*.
+  """
+}
 ---
-version: 1.0.2
-title: Elixir embutido (EEx)
----
-
-Do mesmo jeito que Ruby possui ERB e Java JSPs, Elixir tem EEx ou *Embedded Elixir (Elixir embutido)*. Com EEx podemos embutir e avaliar código Elixir dentro das *strings*.
-
-{% include toc.html %}
 
 ## API
 

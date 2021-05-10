@@ -1,11 +1,11 @@
+%{
+  version: "1.1.2",
+  title: "Estruturas de Controle",
+  excerpt: """
+  Nesta lição iremos conhecer algumas estruturas de controle disponíveis em Elixir.
+  """
+}
 ---
-version: 1.1.2
-title: Estruturas de Controle
----
-
-Nesta lição iremos conhecer algumas estruturas de controle disponíveis em Elixir.
-
-{% include toc.html %}
 
 ## `if` e `unless`
 

@@ -1,17 +1,17 @@
----
-version: 1.2.2
-title: Changesets
----
-
-Para inserir, atualizar ou excluir as informações de um banco de dados, `Ecto.Repo.insert/2`, `update/2` e `delete/2` requerem um changeset como primeiro parâmetro.
+%{
+  version: "1.2.2",
+  title: "Changesets",
+  excerpt: """
+  Para inserir, atualizar ou excluir as informações de um banco de dados, `Ecto.Repo.insert/2`, `update/2` e `delete/2` requerem um changeset como primeiro parâmetro.
 Mas o que são exatamente changesets?
 
 Uma tarefa comum para quase todos os desenvolvedores é verificar os dados de entrada por possíveis erros — queremos ter certeza de que os dados estão no estado correto antes de tentarmos usá-los para nossos propósitos.
 
 O Ecto fornece uma solução completa para trabalhar com alteração de dados na forma do módulo `Changeset` e de estruturas de dados.
 Nesta lição, vamos explorar essa funcionalidade e aprender a verificar a integridade dos dados antes de persisti-los no banco de dados.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Criando seu primeiro changeset
 

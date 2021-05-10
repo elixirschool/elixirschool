@@ -1,12 +1,12 @@
----
-version: 1.2.0
-title: Poolboy
----
-
-Você pode esgotar facilmente os recursos do sistema se não limitar o número máximo de processos simultâneos que seu programa pode gerar.
+%{
+  version: "1.2.0",
+  title: "Poolboy",
+  excerpt: """
+  Você pode esgotar facilmente os recursos do sistema se não limitar o número máximo de processos simultâneos que seu programa pode gerar.
 [Poolboy](https://github.com/devinus/poolboy) é uma biblioteca de pool genérica leve e amplamente usada para Erlang que resolve esse problema.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Por quê usar Poolboy?
 
