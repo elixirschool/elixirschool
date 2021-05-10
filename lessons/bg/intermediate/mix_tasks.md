@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Mix Tasks",
+  excerpt: """
+  Създаване на Mix tasks за вашите Elixir проекти.
+  """
+}
 ---
-version: 0.9.1
-title: Mix Tasks
----
-
-Създаване на Mix tasks за вашите Elixir проекти.
-
-{% include toc.html %}
 
 ## Въведение
 
