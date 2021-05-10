@@ -2,7 +2,6 @@
   version: "1.0.2",
   title: "IEx Helpers",
   excerpt: """
-  
   """
 }
 ---

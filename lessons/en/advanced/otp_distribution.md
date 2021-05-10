@@ -2,10 +2,8 @@
   version: "1.0.2",
   title: "OTP Distribution",
   excerpt: """
-  ## Introduction to Distribution
-
-We can run our Elixir apps on a set of different nodes distributed across a single host or across multiple hosts.
-Elixir allows us to communicate across these nodes via a few different mechanisms which we will outline in this lesson.
+  We can run our Elixir apps on a set of different nodes distributed across a single host or across multiple hosts.
+  Elixir allows us to communicate across these nodes via a few different mechanisms which we will outline in this lesson.
   """
 }
 ---

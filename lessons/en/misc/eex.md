@@ -3,7 +3,7 @@
   title: "Embedded Elixir (EEx)",
   excerpt: """
   Much like Ruby has ERB and Java has JSPs, Elixir has EEx, or Embedded Elixir.
-With EEx we can embed and evaluate Elixir inside strings.
+  With EEx we can embed and evaluate Elixir inside strings.
   """
 }
 ---

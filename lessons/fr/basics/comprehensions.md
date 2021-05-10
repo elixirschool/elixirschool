@@ -3,7 +3,7 @@
   title: "Compréhensions",
   excerpt: """
   Les compréhensions de liste sont un _sucre syntaxique_ pour parcourir des énumérables en Elixir.
-Dans cette leçon, nous verrons comment nous pouvons utiliser les compréhensions pour itérations et générations.
+  Dans cette leçon, nous verrons comment nous pouvons utiliser les compréhensions pour itérations et générations.
   """
 }
 ---

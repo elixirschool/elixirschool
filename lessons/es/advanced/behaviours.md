@@ -3,7 +3,7 @@
   title: "Comportamientos",
   excerpt: """
   Aprendimos acerca de Typespecs en la lección anterior, ahora vamos a aprender como requerir que un módulo implemente esas especificaciones.
-En Elixir, esta funcionalidad es referida como comportamientos.
+  En Elixir, esta funcionalidad es referida como comportamientos.
   """
 }
 ---

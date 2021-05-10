@@ -2,7 +2,9 @@
   version: "0.9.1",
   title: "Erlang-Interoperabilität",
   excerpt: """
-  Einer der Vorteile davon, wenn man auf die Erlang VM (BEAM) aufbaut, ist der große Reichtum an vorhandenen Bibiliotheken, die wir benutzen können. Interoperabilität erlaubt uns sowohl diese als auch die Erlang-Standardbibliothek von unserem Elixir Code zu benutzen. In dieser Lektion werden wir sehen, wie man auf die Funktionalität der Standardbibliothek und Drittanbieter-Erlang-Pakete zugreift.
+  Einer der Vorteile davon, wenn man auf die Erlang VM (BEAM) aufbaut, ist der große Reichtum an vorhandenen Bibiliotheken, die wir benutzen können.
+  Interoperabilität erlaubt uns sowohl diese als auch die Erlang-Standardbibliothek von unserem Elixir Code zu benutzen.
+  In dieser Lektion werden wir sehen, wie man auf die Funktionalität der Standardbibliothek und Drittanbieter-Erlang-Pakete zugreift.
   """
 }
 ---

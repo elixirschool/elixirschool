@@ -2,7 +2,9 @@
   version: "1.0.3",
   title: "Spezifikationen und Typen",
   excerpt: """
-  In dieser Lektion werden wir die `@spec`- und `@type`-Syntax kennen lernen. Die Erste ist eine Ergänzung um Dokumentation zu schreiben, die von Tools ausgewertet werden kann. Die Zweite hilft uns lesbareren und einfacheren Code zu schreiben.
+  In dieser Lektion werden wir die `@spec`- und `@type`-Syntax kennen lernen.
+  Die Erste ist eine Ergänzung um Dokumentation zu schreiben, die von Tools ausgewertet werden kann.
+  Die Zweite hilft uns lesbareren und einfacheren Code zu schreiben.
   """
 }
 ---
@@ -73,7 +75,7 @@ defmodule Examples do
 end
 ```
 
-Wir haben den Typ `t(first, last)` bereits definiert, welcher eine Repräsentation des structs `%Examples{first: first, last: last}` ist. An diesem Punkt sehen wir, dass Typen Parameter entgegen nehmen können, aber wir haben den Typ `t` ebenfalls definiert und diesmal ist er eine Repräsentation des structs `%Examples{first: integer, last: integer}`.   
+Wir haben den Typ `t(first, last)` bereits definiert, welcher eine Repräsentation des structs `%Examples{first: first, last: last}` ist. An diesem Punkt sehen wir, dass Typen Parameter entgegen nehmen können, aber wir haben den Typ `t` ebenfalls definiert und diesmal ist er eine Repräsentation des structs `%Examples{first: integer, last: integer}`.
 
 Wo ist der Unterschied? Der erste Fall repräsentiert das struct `Examples`, bei dem die zwei keys von jedem Typ sein könnten. Im zweiten Fall repräsentiert ein struct dessen keys `integer` sind. Das bedeutet Code wie:
 

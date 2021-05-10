@@ -4,10 +4,10 @@
   excerpt: """
   Con el objetivo de insertar, actualizar o borrar datos de la base de datos, `Ecto.Repo.insert/2`, `update/2` y `delete/2` requieren un *changeset* como primer parámetro. Pero ¿Qué son los *changesets*?
 
-Una tarea familiar para casi todo desarrollador es revisar la data de entrada en busca de potenciales errores - queremos asegurarnos que la data esté en un estado correcto, antes de intentar usarlos para nuestros propósitos.
+  Una tarea familiar para casi todo desarrollador es revisar la data de entrada en busca de potenciales errores - queremos asegurarnos que la data esté en un estado correcto, antes de intentar usarlos para nuestros propósitos.
 
-Ecto provee una solución completa para trabajar con los cambios de datos en la forma de un módulo `Changeset` y una estructura de datos.
-En esta lección vamos a explorar esta funcionalidad y aprender como verificar la integridad de la data antes de guardarla a la base de datos.
+  Ecto provee una solución completa para trabajar con los cambios de datos en la forma de un módulo `Changeset` y una estructura de datos.
+  En esta lección vamos a explorar esta funcionalidad y aprender como verificar la integridad de la data antes de guardarla a la base de datos.
   """
 }
 ---

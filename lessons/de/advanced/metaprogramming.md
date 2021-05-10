@@ -2,10 +2,12 @@
   version: "1.0.2",
   title: "Metaprogrammierung",
   excerpt: """
-  Metaprogrammierung ist die Vorgehensweise Code zu benutzen, um Code zu schreiben. In Elixir gibt uns das die Möglichkeit die Sprache zu erweitern, so dass sie unseren Anforderungen eher entspricht und dynamisch den Code zu verändern. Wir starten mit einem Blick darauf, wie Elixir unter der Haube repräsentiert wird; dann wie man es verändert und schlussendlich können wir dieses Wissen dazu nutzen, um es zu erweitern.
+  Metaprogrammierung ist die Vorgehensweise Code zu benutzen, um Code zu schreiben.
+  In Elixir gibt uns das die Möglichkeit die Sprache zu erweitern, so dass sie unseren Anforderungen eher entspricht und dynamisch den Code zu verändern.
+  Wir starten mit einem Blick darauf, wie Elixir unter der Haube repräsentiert wird; dann wie man es verändert und schlussendlich können wir dieses Wissen dazu nutzen, um es zu erweitern.
 
-
-Vorsicht: Metaprogrammierung ist kniffelig und sollte nur falls wirklich notwendig eingesetzt werden. Zuviel benutzt wird sie unweigerlich zu komplexem Code führen, der schwierig zu verstehen und debuggen ist.
+  Vorsicht: Metaprogrammierung ist kniffelig und sollte nur falls wirklich notwendig eingesetzt werden.
+  Zuviel benutzt wird sie unweigerlich zu komplexem Code führen, der schwierig zu verstehen und debuggen ist.
   """
 }
 ---
@@ -137,7 +139,7 @@ iex> Macro.to_string(quote(do: foo.bar(1, 2, 3)))
 "foo.bar(1, 2, 3)"
 ```
 
-Wenn du den Code anschauen möchtest, der durch die Makros erzeugt wird, kannst du sie mit `Macro.expand/2` und `Macro.expand_once/2` kombinieren. Diese Funktionen dehnen Makros in ihren gequoteten Code aus. Die erste Funktion dehnt sie eventuell mehrere Male aus, während die letztere dies nur einmal macht. 
+Wenn du den Code anschauen möchtest, der durch die Makros erzeugt wird, kannst du sie mit `Macro.expand/2` und `Macro.expand_once/2` kombinieren. Diese Funktionen dehnen Makros in ihren gequoteten Code aus. Die erste Funktion dehnt sie eventuell mehrere Male aus, während die letztere dies nur einmal macht.
 Lass uns zum Beispiel unser `unless`-Beispiel aus der vorherigen Sektion anschauen:
 
 ```elixir

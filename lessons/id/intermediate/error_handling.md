@@ -4,9 +4,9 @@
   excerpt: """
   Walaupun lebih umum menggunakan pengembalian tuple `{:error, reason}`, Elixir mendukung exception dan dalam pelajaran ini kita akan melihat bagaimana menangani error dan berbagai mekanisme yang tersedia untuk kita.
 
-Secara umum, konvensi dalam Elixir adalah untuk membuat sebuah fungsi (`example/1`) yang mengembalikan `{:ok, result}` dan `{:error, reason}` dan fungsi lain yang terpisah (`example!/1`) yang mengembalikan `result` saja atau memunculkan (raise) sebuah error.
+  Secara umum, konvensi dalam Elixir adalah untuk membuat sebuah fungsi (`example/1`) yang mengembalikan `{:ok, result}` dan `{:error, reason}` dan fungsi lain yang terpisah (`example!/1`) yang mengembalikan `result` saja atau memunculkan (raise) sebuah error.
 
-Pelajaran ini akan fokus pada berinteraksi dengan yang terakhir.
+  Pelajaran ini akan fokus pada berinteraksi dengan yang terakhir.
   """
 }
 ---
