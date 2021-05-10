@@ -1,12 +1,14 @@
----
-author: Sean Callan
-author_link: https://github.com/doomspork
-categories: general
-date:   2018-07-25
-layout: post
-tags: ['ecto', 'software design']
-title:  Ecto query composition
-excerpt: Follow along as we look at how to dynamically compose Ecto queries using pattern matching and reduction.
+%{
+  author: "Sean Callan",
+  author_link: "https://github.com/doomspork",
+  date: ~D[2018-07-25],
+  tags: ["ecto", "software design", "general"],
+  title: "Ecto query composition",
+  excerpt: """
+  Follow along as we look at how to dynamically compose Ecto queries using pattern matching and reduction.
+  """
+}
+
 ---
 
 Ecto is fantastic tool that provides us with a great degree of flexibility.

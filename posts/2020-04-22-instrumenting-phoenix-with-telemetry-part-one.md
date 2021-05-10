@@ -1,12 +1,14 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: general
-date: 2020-04-22
-layout: post
-title: "Instrumenting Phoenix with Telemetry Part I: Telemetry Under The Hood"
-excerpt: >
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2020-04-22],
+  tags: ["general"],
+  title: "Instrumenting Phoenix with Telemetry Part I: Telemetry Under The Hood",
+  excerpt: """
   In this series, we're instrumenting a Phoenix app and sending metrics to StatsD with the help of Elixir and Erlang's Telemetry offerings. In Part I we'll start out by setting up a basic, DIY Telemetry pipeline and examining how Erlang's Telemetry library works under the hood
+  """
+}
+
 ---
 
 ## Table Of Contents

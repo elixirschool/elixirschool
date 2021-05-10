@@ -1,13 +1,14 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: til
-tags: ['phoenix']
-date: 2019-03-19
-layout: post
-title:  Walk-Through of Phoenix LiveView
-excerpt: >
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2019-03-19],
+  tags: ["phoenix", "til"],
+  title: "Walk-Through of Phoenix LiveView",
+  excerpt: """
   Learn how to use Phoenix LiveView for real-time features without complicated JS frameworks.
+  """
+}
+
 ---
 It's here! Phoenix LiveView leverages server-rendered HTML and Phoenix's native WebSocket tooling so you can build fancy real-time features without all that complicated JavaScript. If you're sick to death of writing JS (I had a bad day with Redux, don't ask), then this is the library for you!
 

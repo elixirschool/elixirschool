@@ -1,13 +1,14 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: general
-tags: ['live view']
-date: 2019-12-29
-layout: post
-title: LiveView Design Patterns - LiveComponent and the Single Responsibility Principle
-excerpt: >
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2019-12-29],
+  tags: ["live view", "general"],
+  title: "LiveView Design Patterns - LiveComponent and the Single Responsibility Principle",
+  excerpt: """
   It's easy to end up with an overly complex LiveView that houses lots of business rules and responsibilities. We can use `Phoenix.LiveComponent` to build a LiveView feature that is clean, maintainable and adherent to the Single Responsibility Principle.
+  """
+}
+
 ---
 
 ## LiveView Can Get Messy

@@ -1,12 +1,14 @@
----
-author: Bobby Grayson
-categories: general
-tags: ['plug']
-date: 2019-02-12
-layout: post
-title: Deploying our `Plug.Router` application to Heroku
-excerpt: >
+%{
+  author: "Bobby Grayson",
+  author_link: "",
+  date: ~D[2019-02-12],
+  tags: ["plug", "general"],
+  title: "Deploying our `Plug.Router` application to Heroku",
+  excerpt: """
   Want to put your app in the real world? Today we do it with Heroku!
+  """
+}
+
 ---
 
 In our previous post, [Building web apps with Plug.Router](https://elixirschool.com/blog/building-apps-with-plug-router/) we built a website using just `Plut.Router`.

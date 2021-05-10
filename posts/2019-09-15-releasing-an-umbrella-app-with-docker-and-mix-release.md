@@ -1,13 +1,14 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: general
-tags: ['docker', 'mix release', 'config', 'umbrella apps']
-date: 2019-09-20
-layout: post
-title: Releasing an Umbrella App with Docker, Mix Release and Config
-excerpt: >
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2019-09-20],
+  tags: ["docker", "mix release", "config", "umbrella apps", "general"],
+  title: "Releasing an Umbrella App with Docker, Mix Release and Config",
+  excerpt: """
   The release of Elixir 1.9 gave us `mix release` and the ability to support basic releases, runtime configuration and more, natively in Elixir. Learn how we were able to build a production release of an Elixir umbrella app with Docker, `mix release` and the new `Config` module.
+  """
+}
+
 ---
 
 The prelease of Elixir 1.9 earlier this year introduced some [powerful new tools](http://blog.plataformatec.com.br/2019/04/whats-new-in-elixir-apr-19/). `mix release` allows us to build a release without Distillery; configuration for our umbrella child apps has been moved to the parent application; the addition of the `Config` module deprecates `Mix.Config` and makes it easy to configure our releases, and configuration has been further simplified with the addition of functions like `System.fetch_env!`.

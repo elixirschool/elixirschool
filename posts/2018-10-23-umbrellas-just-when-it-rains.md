@@ -1,13 +1,14 @@
----
-author: Sean Callan
-author_link: https://github.com/doomspork
-categories: general
-date: 2018-10-22
-tags: ['umbrella applications', 'software design']
-layout: post
-title: 'Umbrellas: only when it rains?'
-excerpt: >
+%{
+  author: "Sean Callan",
+  author_link: "https://github.com/doomspork",
+  date: ~D[2018-10-22],
+  tags: ["umbrella applications", "software design", "general"],
+  title: "",
+  excerpt: """
   A look at umbrella applications and how they can help us write cleaner maintainable code.
+  """
+}
+
 ---
 
 The umbrella application is a powerful tool available to us that a lot of users are unfamiliar with.

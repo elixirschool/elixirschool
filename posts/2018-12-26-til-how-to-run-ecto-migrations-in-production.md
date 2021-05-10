@@ -1,13 +1,14 @@
----
-author: Kate Travers
-author_link: https://github.com/ktravers
-categories: til
-tags: ['ecto']
-date: 2018-12-16
-layout: post
-title: TIL How to Run Ecto Migrations on Production
-excerpt: >
+%{
+  author: "Kate Travers",
+  author_link: "https://github.com/ktravers",
+  date: ~D[2018-12-16],
+  tags: ["ecto", "til"],
+  title: "TIL How to Run Ecto Migrations on Production",
+  excerpt: """
   What to do when you can't use `mix ecto.migrate`
+  """
+}
+
 ---
 
 You'd think the answer to this question would be a simple Google search away. Unfortunately, that wasn't the case for me this afternoon, working on a Phoenix project with a newly-added Ecto backend. In an effort to save others (and let's be honest, future me) the same frustration, here's the most straight-forward solutions I found.

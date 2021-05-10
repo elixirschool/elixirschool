@@ -1,10 +1,14 @@
----
-author: Bobby Grayson
-date: 2019-02-21
-layout: post
-title:  Elixir Supervisor Strategies
-excerpt: >
+%{
+  author: "Bobby Grayson",
+  author_link: "",
+  date: ~D[2019-02-21],
+  tags: [],
+  title: "Elixir Supervisor Strategies",
+  excerpt: """
   Learn the ins and outs of Elixir's 3 supervisor strategies
+  """
+}
+
 ---
 
 One of the things that makes OTP and Elixir unique is the model of supervisor behaviour that applications can take with different processes they start.
