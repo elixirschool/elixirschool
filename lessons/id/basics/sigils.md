@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Sigil",
+  excerpt: """
+  Menggunakan dan membuat sigil.
+  """
+}
 ---
-version: 0.9.0
-title: Sigil
----
-
-Menggunakan dan membuat sigil.
-
-{% include toc.html %}
 
 ## Sekilas tentang Sigil
 

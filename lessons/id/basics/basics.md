@@ -1,11 +1,11 @@
+%{
+  version: "1.1.2",
+  title: "Dasar",
+  excerpt: """
+  Awal Mulai, data tipe-tipe dasar, dan operasi-operasi dasar.
+  """
+}
 ---
-version: 1.1.2
-title: Dasar
----
-
-Awal Mulai, data tipe-tipe dasar, dan operasi-operasi dasar.
-
-{% include toc.html %}
 
 ## Setup
 

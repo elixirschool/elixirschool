@@ -1,11 +1,11 @@
+%{
+  version: "1.3.0",
+  title: "Enum",
+  excerpt: """
+  Sekumpulan algoritma untuk melakukan enumerasi atas enumerables.
+  """
+}
 ---
-version: 1.3.0
-title: Enum
----
-
-Sekumpulan algoritma untuk melakukan enumerasi atas enumerables.
-
-{% include toc.html %}
 
 ## Enum
 

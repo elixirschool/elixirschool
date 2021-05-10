@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Pencocokan Pola",
+  excerpt: """
+  Pencocokan pola (Pattern matching) adalah sebuah bagian Elixir yang powerful, memungkinkan kita mencocokkan value sederhana, struktur data, dan bahkan fungsi. Dalam pelajaran ini kita akan mulai melihat bagaimana pencocokan pola ini digunakan.
+  """
+}
 ---
-version: 1.0.1
-title: Pencocokan Pola
----
-
-Pencocokan pola (Pattern matching) adalah sebuah bagian Elixir yang powerful, memungkinkan kita mencocokkan value sederhana, struktur data, dan bahkan fungsi. Dalam pelajaran ini kita akan mulai melihat bagaimana pencocokan pola ini digunakan.
-
-{% include toc.html %}
 
 ## Match operator
 

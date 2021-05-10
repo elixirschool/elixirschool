@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Custom Mix Tasks",
+  excerpt: """
+  Membuat task Mix custom untuk project Elixir anda.
+  """
+}
 ---
-version: 0.9.1
-title: Custom Mix Tasks 
----
-
-Membuat task Mix custom untuk project Elixir anda.
-
-{% include toc.html %}
 
 ## Perkenalan 
 
