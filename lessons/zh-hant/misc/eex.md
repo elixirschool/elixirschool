@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "嵌入式 Elixir (EEx)",
+  excerpt: """
+  就像 Ruby 有 ERB 而 Java 有 JSP 一樣，Elixir 有 EEx，或稱為嵌入式 (Embedded) Elixir。通過 EEx，可以嵌入 Elixir 內部字串並求值。
+  """
+}
 ---
-version: 1.0.2
-title: 嵌入式 Elixir (EEx)
----
-
-就像 Ruby 有 ERB 而 Java 有 JSP 一樣，Elixir 有 EEx，或稱為嵌入式 (Embedded) Elixir。通過 EEx，可以嵌入 Elixir 內部字串並求值。
-
-{% include toc.html %}
 
 ## API
 

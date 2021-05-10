@@ -1,15 +1,15 @@
----
-version: 1.1.0
-title: 錯誤處理
----
-
-儘管常見到回傳 `{:error, reason}` tuple，但 Elixir 也支援異常 (exceptions)，在本課程中，將看看如何處理錯誤和我們可用的不同機制。
+%{
+  version: "1.1.0",
+  title: "錯誤處理",
+  excerpt: """
+  儘管常見到回傳 `{:error, reason}` tuple，但 Elixir 也支援異常 (exceptions)，在本課程中，將看看如何處理錯誤和我們可用的不同機制。
 
 一般來說，Elixir 中的慣例 (convention) 是建立一個函數 (`example/1`) 回傳 `{:ok, result}` 和 `{:error, reason}`。而一個單獨的函數 (`example!/1`) 回傳無包圍的 (unwrapped) `result` 或觸發一個錯誤。
 
 本課程將著重於與後者互動。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 一般慣例
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.1.0",
+  title: "Erlang 項式儲存 (ETS)",
+  excerpt: """
+  Erlang 項式儲存 (Erlang Term Storage) 通常被稱為 ETS，它是內建於 OTP 中的強大儲存引擎，可用於 Elixir。在本課程中，將介紹如何與 ETS 連接以及如何在應用程式中使用它。
+  """
+}
 ---
-version: 1.1.0
-title: Erlang 項式儲存 (ETS)
----
-
-Erlang 項式儲存 (Erlang Term Storage) 通常被稱為 ETS，它是內建於 OTP 中的強大儲存引擎，可用於 Elixir。在本課程中，將介紹如何與 ETS 連接以及如何在應用程式中使用它。
-
-{% include toc.html %}
 
 ## 概述
 

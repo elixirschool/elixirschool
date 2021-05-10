@@ -1,11 +1,11 @@
+%{
+  version: "1.2.1",
+  title: "基礎",
+  excerpt: """
+  入門、基本資料型別和操作。
+  """
+}
 ---
-version: 1.2.1
-title: 基礎
----
-
-入門、基本資料型別和操作。
-
-{% include toc.html %}
 
 ## 入門
 

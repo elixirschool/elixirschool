@@ -1,11 +1,11 @@
+%{
+  version: "1.1.0",
+  title: "自訂 Mix 工作",
+  excerpt: """
+  為 Elixir 專案建立自訂 Mix 工作 (custom Mix tasks)。
+  """
+}
 ---
-version: 1.1.0
-title: 自訂 Mix 工作
----
-
-為 Elixir 專案建立自訂 Mix 工作 (custom Mix tasks)。
-
-{% include toc.html %}
 
 ## 簡介
 

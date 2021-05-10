@@ -1,9 +1,11 @@
+%{
+  version: "2.0.1",
+  title: "Distillery（基礎）",
+  excerpt: """
+  Distillery 是純粹使用 Elixir 編寫的發布版本管理工具。它可以生成幾乎不需要配置就可以部署到其他地方的發布版本。
+  """
+}
 ---
-version: 2.0.1
-title: Distillery（基礎）
----
-
-Distillery 是純粹使用 Elixir 編寫的發布版本管理工具。它可以生成幾乎不需要配置就可以部署到其他地方的發布版本。
 
 ## 什麼是一個發布版本？
 
@@ -88,11 +90,11 @@ For a complete listing of commands and their use:
     > _build/dev/rel/book_app/bin/book_app help
 ```
 
-要執行應用程式，請在終端機中輸入以下內容 `_build/dev/rel/MYAPP/bin/MYAPP foreground` 
+要執行應用程式，請在終端機中輸入以下內容 `_build/dev/rel/MYAPP/bin/MYAPP foreground`
 在你的情況用你的專案名稱替換 MYAPP。現在是正在執行應用程式的發布版本！
 
 
-## 在 Phoenix 中使用 Distillery 
+## 在 Phoenix 中使用 Distillery
 
 如果你是 Distillery 與 Phoenix 配合著使用，會需要執行一些額外的步驟，然後才能起作用。
 

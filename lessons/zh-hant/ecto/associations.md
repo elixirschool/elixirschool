@@ -1,11 +1,11 @@
+%{
+  version: "1.2.1",
+  title: "關聯關係",
+  excerpt: """
+  在本章節中，將學習如何使用 Ecto 來定義和處理結構描述(schema)之間的關聯關係。
+  """
+}
 ---
-version: 1.2.1
-title: 關聯關係
----
-
-在本章節中，將學習如何使用 Ecto 來定義和處理結構描述(schema)之間的關聯關係。
-
-{% include toc.html %}
 
 ## 設定
 

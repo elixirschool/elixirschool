@@ -1,8 +1,10 @@
----
-version: 1.0.0
-title: Nerves
-redirect_from:
-  - /zh-hant/lessons/advanced/nerves
+%{
+  version: "1.0.0",
+  title: "Nerves",
+  excerpt: """
+  
+  """
+}
 ---
 
 ## 簡介和硬體需求

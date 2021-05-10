@@ -1,11 +1,11 @@
+%{
+  version: "2.4.0",
+  title: "基礎",
+  excerpt: """
+  Ecto 是一個官方 Elixir 專案，提供資料庫封裝 (wrapper) 和整合查詢語言。通過 Ecto，能夠建立遷移 (migration)、定義結構描述 (schema)、插入 (insert) 和更新記錄 (update) 並查詢 (query)。
+  """
+}
 ---
-version: 2.4.0
-title: 基礎
----
-
-Ecto 是一個官方 Elixir 專案，提供資料庫封裝 (wrapper) 和整合查詢語言。通過 Ecto，能夠建立遷移 (migration)、定義結構描述 (schema)、插入 (insert) 和更新記錄 (update) 並查詢 (query)。
-
-{% include toc.html %}
 
 ### 轉接器
 

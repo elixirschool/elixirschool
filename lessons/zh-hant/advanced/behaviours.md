@@ -1,12 +1,12 @@
----
-version: 1.0.1
-title: 行為
----
-
-在前一課中了解了 Typespecs，現在將學習如何請求一個模組來實現這些規範 (specifications)。
+%{
+  version: "1.0.1",
+  title: "行為",
+  excerpt: """
+  在前一課中了解了 Typespecs，現在將學習如何請求一個模組來實現這些規範 (specifications)。
 在 Elixir 中，這個功能被稱為行為 (behaviours)。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 用途
 
