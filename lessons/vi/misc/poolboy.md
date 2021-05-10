@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Poolboy",
+  excerpt: """
+  Bạn có thể dễ dàng hao tổn hết tài nguyên của hệ thống nếu bạn cho phép các tiến trình đồng thời (concurrent process) chạy một cách tùy ý. Poolboy giúp chúng ta tránh việc hao tổn quá mức đó bằng cách tạo ra một tập worker (worker pool) để giới hạn các tiến trình đồng thời.
+  """
+}
 ---
-version: 0.9.1
-title: Poolboy
----
-
-Bạn có thể dễ dàng hao tổn hết tài nguyên của hệ thống nếu bạn cho phép các tiến trình đồng thời (concurrent process) chạy một cách tùy ý. Poolboy giúp chúng ta tránh việc hao tổn quá mức đó bằng cách tạo ra một tập worker (worker pool) để giới hạn các tiến trình đồng thời.
-
-{% include toc.html %}
 
 ## Vì sao dùng Poolboy?
 

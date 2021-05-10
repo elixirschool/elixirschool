@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Comprehensions",
+  excerpt: """
+  List comprehension là một cú pháp hỗ trợ việc lặp qua các phần tử trong Elixir. Trong bài này, chúng ta sẽ cùng xem cách sử dụng comprehension cho iteration và generation.
+  """
+}
 ---
-version: 0.9.0
-title: Comprehensions
----
-
-List comprehension là một cú pháp hỗ trợ việc lặp qua các phần tử trong Elixir. Trong bài này, chúng ta sẽ cùng xem cách sử dụng comprehension cho iteration và generation.
-
-{% include toc.html %}
 
 ## Cơ bản
 

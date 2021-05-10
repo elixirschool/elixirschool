@@ -1,13 +1,13 @@
----
-version: 0.9.1
-title: Metaprogramming
----
-
-Metaprogramming là quá trình sử dụng code để viết code. Trong Elixir, nó cung cấp cho chúng ta khả năng mở rộng ngôn ngữ để phù hợp với yêu cầu, và để thay đổi code một cách động. Chúng ta sẽ bắt đầu bằng việc xem cách mà Elixir được biểu diễn code, cũng như cách để thay đổi nó, và cuối cùng, chúng ta có thể sử dụng kiến thức này để mở rộng chính Elixir.
+%{
+  version: "0.9.1",
+  title: "Metaprogramming",
+  excerpt: """
+  Metaprogramming là quá trình sử dụng code để viết code. Trong Elixir, nó cung cấp cho chúng ta khả năng mở rộng ngôn ngữ để phù hợp với yêu cầu, và để thay đổi code một cách động. Chúng ta sẽ bắt đầu bằng việc xem cách mà Elixir được biểu diễn code, cũng như cách để thay đổi nó, và cuối cùng, chúng ta có thể sử dụng kiến thức này để mở rộng chính Elixir.
 
 Cảnh báo: Metaprogramming khá là khó hiểu, và chỉ nên sử dụng khi cần thiết. Lạm dụng nó sẽ dẫn tới những đoạn code phức tạp, do đó rất khó để hiểu và để debug.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Quote
 

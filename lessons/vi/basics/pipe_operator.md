@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Pipe Operator",
+  excerpt: """
+  Pipe `|>` lấy kết quả của một biểu thức làm tham số đầu tiên cho một biểu thức khác.
+  """
+}
 ---
-version: 1.0.1
-title: Pipe Operator
----
-
-Pipe `|>` lấy kết quả của một biểu thức làm tham số đầu tiên cho một biểu thức khác.
-
-{% include toc.html %}
 
 ## Giới thiệu
 

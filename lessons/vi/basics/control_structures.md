@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Cấu trúc điều khiển",
+  excerpt: """
+  Trong bài này ta sẽ xem qua các loại cấu trúc điều khiểu có sẵn trong Elixir.
+  """
+}
 ---
-version: 0.9.1
-title: Cấu trúc điều khiển
----
-
-Trong bài này ta sẽ xem qua các loại cấu trúc điều khiểu có sẵn trong Elixir.
-
-{% include toc.html %}
 
 ## `if` và `unless`
 

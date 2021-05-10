@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Pattern matching (so trùng mẫu)",
+  excerpt: """
+  Pattern matching (so trùng mẫu) là chức năng lợi hại của Elixir, nó giúp chúng ta so khớp các giá trị đơn giản, các kiểu cấu trúc dữ liệu và cả hàm. Trong bài này chúng ta sẽ cùng khám phá cách cơ chế này.
+  """
+}
 ---
-version: 0.9.0
-title: Pattern matching (so trùng mẫu)
----
-
-Pattern matching (so trùng mẫu) là chức năng lợi hại của Elixir, nó giúp chúng ta so khớp các giá trị đơn giản, các kiểu cấu trúc dữ liệu và cả hàm. Trong bài này chúng ta sẽ cùng khám phá cách cơ chế này.
-
-{% include toc.html %}
 
 ## Match operator (Toán tử khớp)
 

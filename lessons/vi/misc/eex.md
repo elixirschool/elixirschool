@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Embedded Elixir (EEx)",
+  excerpt: """
+  Như ERB của Ruby hay JSPs của Java, Elixir cũng có EEx hãy Embedded Elixir (tạm dịch: Elixir nhúng). Với EEx ta có thể nhúng hay thực thi lệnh Elixir trong string.
+  """
+}
 ---
-version: 0.9.1
-title: Embedded Elixir (EEx)
----
-
-Như ERB của Ruby hay JSPs của Java, Elixir cũng có EEx hãy Embedded Elixir (tạm dịch: Elixir nhúng). Với EEx ta có thể nhúng hay thực thi lệnh Elixir trong string.
-
-{% include toc.html %}
 
 ## API
 

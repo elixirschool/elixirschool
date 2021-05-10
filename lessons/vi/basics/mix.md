@@ -1,12 +1,13 @@
----
-version: 0.9.2
-title: Mix
----
-
-Trước khi đi sâu vào Elixir thì chúng ta cần tìm hiều về mix đầu tiên. Nếu bạn đã quen thuộc với Ruby thì mix tương ứng với Bundler, Rubygems và Rake hợp lại. Mix là một phần quan trọng trong bất cứ dự án Elixir nào và trong bài này chúng ta sẽ đi vào một vài tính năng thú vị của nó. Để xem mix có tất cả những chức năng gì thì chúng ta chạy `mix help`.
+%{
+  version: "0.9.2",
+  title: "Mix",
+  excerpt: """
+  Trước khi đi sâu vào Elixir thì chúng ta cần tìm hiều về mix đầu tiên. Nếu bạn đã quen thuộc với Ruby thì mix tương ứng với Bundler, Rubygems và Rake hợp lại. Mix là một phần quan trọng trong bất cứ dự án Elixir nào và trong bài này chúng ta sẽ đi vào một vài tính năng thú vị của nó. Để xem mix có tất cả những chức năng gì thì chúng ta chạy `mix help`.
 
 Tính cho đến thời điểm hiện tại thì chúng ta làm việc hoàn toàn bên trong `iex`, tuy nhiên việc đó có rất nhiều hạn chế. Để tạo được một dự án có ý nghĩa hơn thì chúng ta cần chia code ra thành nhiều file cho dễ quản lý, và mix giúp chúng ta làm việc đó với chức năng projects.
-{% include toc.html %}
+  """
+}
+---
 
 ## Tạo Projects
 Khi chúng ta tạo một dự án Elixir mới, mix khiến việc đó trở nên vô cùng dễ dàng với câu lệnh `mix new`. Câu lệnh đó sẽ tạo ra cấu trúc thư mục project và những gì cần thiết ban đầu. Việc này khá dễ hiểu, vậy hãy bắt đầu thôi:

@@ -1,15 +1,15 @@
----
-version: 0.9.1
-title: Xử Lý Lỗi
----
-
-Mặc dù trong Elixir để trả về lỗi, chúng ta thường dùng `{:error, reason}`, nhưng Elixir cũng hỗ trợ các exceptions (tạm dịch ngoại lệ), trong bài học này chúng ta sẽ xem xét các cách để xử lý lỗi, và những cơ chế khác nhau để làm chuyện này.
+%{
+  version: "0.9.1",
+  title: "Xử Lý Lỗi",
+  excerpt: """
+  Mặc dù trong Elixir để trả về lỗi, chúng ta thường dùng `{:error, reason}`, nhưng Elixir cũng hỗ trợ các exceptions (tạm dịch ngoại lệ), trong bài học này chúng ta sẽ xem xét các cách để xử lý lỗi, và những cơ chế khác nhau để làm chuyện này.
 
 Nói chung quy ước trong Elixir là tạo ra một hàm (`example/1`) mà trả về `{:ok, result}` và `{:error, reason}` và một hàm riêng biệt (`example!/1`) trả về `result` hoặc văng ra một lỗi.
 
 Trong bài học này chúng ta sẽ tập trung vào việc xử lý lỗi.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Xử Lý Lỗi
 
