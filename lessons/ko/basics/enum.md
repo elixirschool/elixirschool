@@ -1,11 +1,11 @@
+%{
+  version: "1.7.0",
+  title: "Enum",
+  excerpt: """
+  열거 가능한 것들을 열거하기 위한 일련의 알고리즘.
+  """
+}
 ---
-version: 1.7.0
-title: Enum
----
-
-열거 가능한 것들을 열거하기 위한 일련의 알고리즘.
-
-{% include toc.html %}
 
 ## Enum
 

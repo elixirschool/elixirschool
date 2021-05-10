@@ -1,11 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Poolboy",
+  excerpt: """
+  프로그램이 생성 할 수 있는 동시 프로세스의 최대 수를 제한하지 않으면 쉽게 시스템 자원을 고갈시킬 수 있습니다. [Poolboy](https://github.com/devinus/poolboy)는 이 문제를 해결하기 위해 Erlang에서 널리 사용되는 가볍고 일반적인 풀링 라이브러리입니다.
+  """
+}
 ---
-version: 1.2.0
-title: Poolboy
----
-
-프로그램이 생성 할 수 있는 동시 프로세스의 최대 수를 제한하지 않으면 쉽게 시스템 자원을 고갈시킬 수 있습니다. [Poolboy](https://github.com/devinus/poolboy)는 이 문제를 해결하기 위해 Erlang에서 널리 사용되는 가볍고 일반적인 풀링 라이브러리입니다.
-
-{% include toc.html %}
 
 ## 왜 Poolboy를 사용하나요?
 
