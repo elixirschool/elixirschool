@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "Pattern Matching",
+  excerpt: """
+  Le Pattern matching est une partie très puissante d'Elixir, il nous permet de tester la correspondance de simples valeurs, de structures de données, et même de fonctions. Dans cette leçon nous allons voir comment on utilise le pattern matching.
+  """
+}
 ---
-version: 1.0.2
-title: Pattern Matching
----
-
-Le Pattern matching est une partie très puissante d'Elixir, il nous permet de tester la correspondance de simples valeurs, de structures de données, et même de fonctions. Dans cette leçon nous allons voir comment on utilise le pattern matching.
-
-{% include toc.html %}
 
 ## L'opérateur Match
 

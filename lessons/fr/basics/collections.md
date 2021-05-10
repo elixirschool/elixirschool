@@ -1,11 +1,11 @@
+%{
+  version: "1.3.1",
+  title: "Collections",
+  excerpt: """
+  Les listes, tuples, listes à mots clé, et tableaux associatifs.
+  """
+}
 ---
-version: 1.3.1
-title: Collections
----
-
-Les listes, tuples, listes à mots clé, et tableaux associatifs.
-
-{% include toc.html %}
 
 ## Listes
 

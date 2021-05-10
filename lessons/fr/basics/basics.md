@@ -1,11 +1,11 @@
+%{
+  version: "1.3.0",
+  title: "Bases",
+  excerpt: """
+  Installation, types de base et opérations.
+  """
+}
 ---
-version: 1.3.0
-title: Bases
----
-
-Installation, types de base et opérations.
-
-{% include toc.html %}
 
 ## Installation
 

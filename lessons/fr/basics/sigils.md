@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "Sigils",
+  excerpt: """
+  Utilisation et création de _sigils_.
+  """
+}
 ---
-version: 1.0.2
-title: Sigils
----
-
-Utilisation et création de _sigils_.
-
-{% include toc.html %}
 
 ## Vue d'ensemble des sigils
 
