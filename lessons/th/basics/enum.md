@@ -1,11 +1,11 @@
+%{
+  version: "1.3.0",
+  title: "Enum",
+  excerpt: """
+  ชุดของ algorithm สำหรับใช้งานกับ `Enum`
+  """
+}
 ---
-version: 1.3.0
-title: Enum
----
-
-ชุดของ algorithm สำหรับใช้งานกับ `Enum`
-
-{% include toc.html %}
 
 ## Enum
 

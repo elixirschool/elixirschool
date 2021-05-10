@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "Sigils",
+  excerpt: """
+  การใช้งานและสร้าง Sigils
+  """
+}
 ---
-version: 1.0.2
-title: Sigils
----
-
-การใช้งานและสร้าง Sigils
-
-{% include toc.html %}
 
 ## Sigils Overview
 
