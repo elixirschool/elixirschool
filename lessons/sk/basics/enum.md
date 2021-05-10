@@ -1,11 +1,11 @@
+%{
+  version: "1.4.0",
+  title: "Enum",
+  excerpt: """
+  Sada algoritmov pre iterovanie nad kolekciami.
+  """
+}
 ---
-version: 1.4.0
-title: Enum
----
-
-Sada algoritmov pre iterovanie nad kolekciami.
-
-{% include toc.html %}
 
 ## Enum
 

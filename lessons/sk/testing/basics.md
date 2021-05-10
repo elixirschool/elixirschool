@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "Testovanie",
+  excerpt: """
+  Testovanie je dôležitou súčasťou vývoja softvéru. V tejto lekcii sa pozrieme na to, ako testovať náš Elixir kód pomocou knižnice ExUnit a na testovacie *best practices*.
+  """
+}
 ---
-version: 1.1.1
-title: Testovanie
----
-
-Testovanie je dôležitou súčasťou vývoja softvéru. V tejto lekcii sa pozrieme na to, ako testovať náš Elixir kód pomocou knižnice ExUnit a na testovacie *best practices*.
-
-{% include toc.html %}
 
 ## ExUnit
 
