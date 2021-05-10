@@ -1,17 +1,17 @@
----
-version: 1.1.2
-title: Mix
----
-
-Antes de podermos mergulhar nas águas mais profundas de Elixir, primeiro precisamos aprender a utilizar o Mix. 
+%{
+  version: "1.1.2",
+  title: "Mix",
+  excerpt: """
+  Antes de podermos mergulhar nas águas mais profundas de Elixir, primeiro precisamos aprender a utilizar o Mix. 
 Se você estiver familiarizado com Ruby, Mix é o Bundler, RubyGems e o Rake juntos. 
 É uma parte crucial de qualquer projeto Elixir e nesta lição vamos explorar apenas algumas das suas grandes funcionalidades. 
 Para ver tudo que o Mix tem para oferecer no ambiente atual, execute `mix help`.
 
 Até agora trabalhamos exclusivamente dentro do `iex` que tem limitações. 
 A fim de construir algo substancial precisamos dividir nosso código acima em outros arquivos para gerenciá-lo de forma eficaz; Mix nos permite fazer isso com projetos.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Novos Projetos
 

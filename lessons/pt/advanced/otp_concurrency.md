@@ -1,13 +1,13 @@
----
-version: 1.0.3
-title: Concorrência OTP
----
-
-Já olhamos as abstrações em Elixir para concorrência, mas as vezes precisamos de um controle maior e para isso nós temos os comportamentos OTP no qual Elixir é construída em cima.
+%{
+  version: "1.0.3",
+  title: "Concorrência OTP",
+  excerpt: """
+  Já olhamos as abstrações em Elixir para concorrência, mas as vezes precisamos de um controle maior e para isso nós temos os comportamentos OTP no qual Elixir é construída em cima.
 
 Nessa lição vamos nos focar na peça mais importante: GenServers.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## GenServer
 

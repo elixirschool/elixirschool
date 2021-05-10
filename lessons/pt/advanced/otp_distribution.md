@@ -1,13 +1,13 @@
----
-version: 1.0.2
-title: Distribuição OTP
----
-
-## Introdução à Distribuição
+%{
+  version: "1.0.2",
+  title: "Distribuição OTP",
+  excerpt: """
+  ## Introdução à Distribuição
 
 Podemos executar nossas aplicações Elixir em um conjunto diferente de nós de processamento (nodes), distribuídos em um único servidor ou entre múltiplos servidores. Elixir permite que nos comuniquemos entre esses nós de processamento por meio de alguns mecanismos diferentes, os quais iremos destacar nesta lição.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Comunicação Entre Nós de Processamento
 

@@ -1,13 +1,13 @@
----
-version: 1.1.3
-title: Depuração
----
-
-Bugs são problemas comuns em qualquer projeto, é por isso que precisamos da depuração.
+%{
+  version: "1.1.3",
+  title: "Depuração",
+  excerpt: """
+  Bugs são problemas comuns em qualquer projeto, é por isso que precisamos da depuração.
 
 Nesta sessão vamos aprender sobre como fazer depuração no código Elixir, bem como ferramentas de análises estáticas para ajudar a encontrar possíveis bugs.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## IEx
 

@@ -1,9 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Consultas",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.2.0
-title: Consultas
----
-
-{% include toc.html %}
 
 Nesta lição, estaremos construindo a aplicação `Friends` e o catálogo de filmes que configuramos na [lição anterior](./associations).
 

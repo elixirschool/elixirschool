@@ -1,11 +1,11 @@
+%{
+  version: "1.3.0",
+  title: "Básico",
+  excerpt: """
+  Primeiros Passos, tipos básicos e operações básicas.
+  """
+}
 ---
-version: 1.3.0
-title: Básico
----
-
-Primeiros Passos, tipos básicos e operações básicas.
-
-{% include toc.html %}
 
 ## Primeiros Passos
 
@@ -180,7 +180,7 @@ iex> rem(10, 3)
 
 ### Booleanos
 
-Elixir provê os operadores booleanos `||`, `&&`, e `!`. 
+Elixir provê os operadores booleanos `||`, `&&`, e `!`.
 Estes suportam qualquer tipo:
 
 ```elixir

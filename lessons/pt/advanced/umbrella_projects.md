@@ -1,11 +1,11 @@
+%{
+  version: "1.0.3",
+  title: "Projetos Guarda-chuva",
+  excerpt: """
+  Em determinados momentos um projeto pode ficar enorme, realmente enorme. A ferramenta de construção Mix nos permite dividir nosso código em vários aplicativos e fazer nossos projetos em Elixir mais manejáveis à medida que crescem.
+  """
+}
 ---
-version: 1.0.3
-title: Projetos Guarda-chuva
----
-
-Em determinados momentos um projeto pode ficar enorme, realmente enorme. A ferramenta de construção Mix nos permite dividir nosso código em vários aplicativos e fazer nossos projetos em Elixir mais manejáveis à medida que crescem.
-
-{% include toc.html %}
 
 ## Introdução
 

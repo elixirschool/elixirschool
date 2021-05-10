@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Operador Pipe",
+  excerpt: """
+  O operador pipe `|>` passa o resultado de uma expressão como o primeiro parâmetro de outra expressão.
+  """
+}
 ---
-version: 1.0.1
-title: Operador Pipe
----
-
-O operador pipe `|>` passa o resultado de uma expressão como o primeiro parâmetro de outra expressão.
-
-{% include toc.html %}
 
 ## Introdução
 

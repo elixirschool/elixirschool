@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Protocols",
+  excerpt: """
+  Nesta lição nós iremos aprender um pouco sobre Protocols, o que eles são e como usamos ele em Elixir.
+  """
+}
 ---
-version: 1.0.1
-title: Protocols
----
-
-Nesta lição nós iremos aprender um pouco sobre Protocols, o que eles são e como usamos ele em Elixir.
-
-{% include toc.html %}
 
 ## O que são Protocols
 Então, o que eles são?
