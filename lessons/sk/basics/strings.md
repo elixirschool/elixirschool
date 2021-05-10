@@ -61,7 +61,7 @@ iex> String.graphemes string
 
 Ukážme si niektoré z najdôležitejších fukcií z modulu String. Ich kompletný zoznam aj s príkladmi použitia nájdete v oficiálnej dokumentácii modulu [`String`](https://hexdocs.pm/elixir/String.html).
 
-### `length/1`
+### length/1
 
 Vráti počet grafém v reťazci.
 
@@ -70,7 +70,7 @@ iex> String.length "Čučoriedka"
 10
 ```
 
-### `replace/3`
+### replace/3
 
 Vráti nový reťazec, ktorý vznike nahradením sekvencie (vzoru) v pôvodnom reťazci inou sekvenciou.
 
@@ -79,7 +79,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-### `duplicate/2`
+### duplicate/2
 
 Vráti nový reťazec, ktorý vznikne n-násobným zopakovaním pôvodného reťazca.
 
@@ -88,7 +88,7 @@ iex> String.duplicate("Oh my ", 3)
 "Oh my Oh my Oh my "
 ```
 
-### `split/2`
+### split/2
 
 Vráti zoznam reťazcov, ktorý vznikne rozdelením pôvodného reťazca podľa danej sekvencie.
 

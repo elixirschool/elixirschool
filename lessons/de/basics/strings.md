@@ -61,7 +61,7 @@ iex> String.graphemes string
 
 Lass uns nochmal ein paar der wichtisten und nützlichsten Funktionen des Stringmoduls anschauen. Diese Lektion wird nur einen Teil der verfügbaren Funktionen behandeln. Um eine komplette Liste an Funktionen zu sehen besuche die offizielle [`String`](https://hexdocs.pm/elixir/String.html)-Dokumentation.
 
-### `length/1`
+### length/1
 
 Gibt die Anzahl der Graphemes im String zurück.
 
@@ -70,7 +70,7 @@ iex> String.length "Hello"
 5
 ```
 
-### `replace/3`
+### replace/3
 
 Gibt einen neuen String zurück, in dem das zu ersetzende pattern im String durch einen neuen String ersetzt wurde.
 
@@ -79,7 +79,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-### `duplicate/2`
+### duplicate/2
 
 Gibt einen neuen String n-mal zurück.
 
@@ -88,7 +88,7 @@ iex> String.duplicate("Oh my ", 3)
 "Oh my Oh my Oh my "
 ```
 
-### `split/2`
+### split/2
 
 Gibt eine Liste an Strings zurück, geteilt anhand eines patterns.
 

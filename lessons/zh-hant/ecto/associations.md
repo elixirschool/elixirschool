@@ -283,7 +283,7 @@ mix ecto.migrate
 
 ### 屬於 (Belongs To)
 
-#### 經由 `Ecto.build_assoc/3` 儲存
+#### 經由 Ecto.build_assoc/3 儲存
 
 對於 "屬於" 關係，可以利用 Ecto 的 `build_assoc/3` 函數。
 
@@ -358,7 +358,7 @@ iex> Repo.insert!(distributor)
 
 ### 多對多 (Many to Many)
 
-#### 經由 `Ecto.Changeset.put_assoc/4` 儲存
+#### 經由 Ecto.Changeset.put_assoc/4 儲存
 
 `build_assoc/3` 方法對多對多關係不起作用。這是因為 movie 和 actor 表格都沒有包含外鍵。作為替代，需要利用 Ecto 變更集 和 `put_assoc/4` 函數。
 

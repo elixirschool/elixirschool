@@ -61,7 +61,7 @@ iex> String.graphemes string
 
 Mari kita review beberapa fungsi yang paling penting dan berguna yang disediakan modul String untuk kita.
 
-### `length/1`
+### length/1
 
 Mengembalikan jumlah Grapheme dalam string tersebut.
 
@@ -70,7 +70,7 @@ iex> String.length "Hello"
 5
 ```
 
-### `replace/3`
+### replace/3
 
 Mengembalikan sebuah string baru, mengganti sebuah pola yang ada dalam string tersebut dngan string baru.
 
@@ -79,7 +79,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-### `duplicate/2`
+### duplicate/2
 
 Mengembalikan sebuah string baru yang diulang n kali.
 
@@ -88,7 +88,7 @@ iex> String.duplicate("Oh my ", 3)
 "Oh my Oh my Oh my "
 ```
 
-### `split/2`
+### split/2
 
 Mengembalikan sebuah array dari string setelah dipisah oleh sebuah pola.
 

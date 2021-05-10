@@ -36,7 +36,7 @@ update/4             values/1
 
 I już wiemy jakie funkcje są dostępne wraz z ich arnością!
 
-### `.iex.exs`
+### .iex.exs
 
 Za każdym razem, gdy uruchamiamy IEx, poszukuje on pliku `.iex.exs` w bieżącym katalogu. Jeżeli plik nie istnieje, to sprawdzany jest katalog domowy użytkownika (`~/.iex.exs`).
 
@@ -71,7 +71,7 @@ iex> IExHelpers.whats_this?(:test)
 
 Jak widać, nie musimy wykonywać żadnych dodatkowych, operacji w rodzaju importowania, IEx zrobił to za nas. 
 
-### `h`
+### h
 
 `h` to jedna z najprzydatniejszych funkcji w powłoce.
 Dzięki fantastycznemu wsparciu dla dokumentacji jako elementu języka, dzięki tej funkcji pomocniczej możemy dostać się do dokumentacji dowolnego kodu. Jest to banalnie proste:
@@ -148,7 +148,7 @@ Examples
 
 Jak widać, możemy nie tylko dostać się do dokumentacji modułu, ale też do dowolnej funkcji w tym module. W dodatku dokumentacja zazwyczaj zawiera przykłady użycia.
 
-### `i`
+### i
 
 Wykorzystajmy naszą nowo zdobytą wiedzę, by z pomocą `h` zapoznać się z możliwościami funkcji `i`:
 
@@ -196,7 +196,7 @@ I choć poszczególne sekcje mogą zawierać dużo informacji, to na pewnym wyso
 
 To pozwala nam na zaoszczędzenie mnóstwa pracy i nie poruszamy się jak błędna owieczka.
 
-### `r`
+### r
 
 By zrekompilować dowolny moduł używamy funkcji `r`. Załóżmy, że zmieniliśmy jakiś kod i chcemy uruchomić nowo dodaną funkcję. Wszystko, co musimy zrobić, to zapisać nasze zmiany i zrekompilować je z użyciem `r`:  
 
@@ -208,7 +208,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `t`
+### t
 
 `t` mówi nam jakie typy mamy dostępne w danym module:
 

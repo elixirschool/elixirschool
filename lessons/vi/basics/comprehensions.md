@@ -92,7 +92,7 @@ iex> for x <- 1..100,
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
 
-## Sử dụng `:into`
+## Sử dụng :into
 
 Nếu muốn cung cấp các kết quả khác thay vì chỉ một list, chúng ta sẽ sử dụng lựa chọn `:into` để làm điều đó. `:into` chấp nhận bất cứ cấu trúc nào cài đặt protocol `Collectable`.
 

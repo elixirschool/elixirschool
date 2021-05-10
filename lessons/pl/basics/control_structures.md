@@ -7,7 +7,7 @@
 }
 ---
 
-## `if` i `unless`
+## if i unless
 
 Zapewne spotkałeś się już z `if/2` w innych językach, a jeżeli znasz język Ruby, to również `unless/2` zapewne nie będzie Ci obce.
 W Elixirze instrukcje te działają w podobny sposób, ale nie są elementami języka, a makrami. Ich implementacje możesz znaleźć w dokumentacji [modułu jądra](https://hexdocs.pm/elixir/Kernel.html).
@@ -37,7 +37,7 @@ iex> unless is_integer("hello") do
 "Not an Int"
 ```
 
-## `case`
+## case
 
 Jeżeli chcemy sprawdzić wiele różnych wzorców, to możemy użyć `case/2`:
 
@@ -96,7 +96,7 @@ iex> case {1, 2, 3} do
 
 Więcej szczegółów znajdziesz w dokumentacji w języku angielskim, w module [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
-## `cond`
+## cond
 
 Jeżeli chcemy sprawdzić warunki niebędące wartościami, możemy użyć `cond/1`; wyrażenie to odpowiada konstrukcjom `else if` czy `elsif` z innych języków:
 
@@ -124,7 +124,7 @@ iex> cond do
 "Catch all"
 ```
 
-## `with`
+## with
 
 Konstrukcji `with/1` możemy użyć zamiast wielu zagnieżdżonych wyrażeń `case/2` lub w sytuacjach, gdy nie mogą być one powiązane w jednoznaczny sposób. Wyrażenie `with/1` składa się ze słowa kluczowego, generatora i wyrażenia.
 

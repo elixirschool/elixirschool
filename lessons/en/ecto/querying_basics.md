@@ -9,7 +9,7 @@
 
 In this lesson, we'll continue building off the `Friends` app and the movie-cataloguing domain we set up in the [previous lesson](./associations).
 
-## Fetching Records with `Ecto.Repo`
+## Fetching Records with Ecto.Repo
 
 Recall that a "repository" in Ecto maps to a datastore such as our Postgres database.
 All communication to the database will be done using this repository.
@@ -57,11 +57,11 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 
 If we want to write more complex queries, or if we want to return _all_ records that meet a certain condition, we need to use the `Ecto.Query` module.
 
-## Writing Queries with `Ecto.Query`
+## Writing Queries with Ecto.Query
 
 The `Ecto.Query` module provides us with the Query DSL which we can use to write queries to retrieve data from the application's repository.
 
-### Keyword-based queries with `Ecto.Query.from/2`
+### Keyword-based queries with Ecto.Query.from/2
 
 We can create a query with the `Ecto.Query.from/2` macro. This function takes in two arguments: an expression and an optional keyword list. Let's create the most simple query to select all of the movies from our repository:
 
@@ -90,7 +90,7 @@ iex> Repo.all(query)
 ]
 ```
 
-#### Bindingless queries with `from`
+#### Bindingless queries with from
 
 The example above lacks the most fun parts of SQL statements. We often want to only query for specific fields or filter records by some condition. Let's fetch `title` and `tagline` of all movies that have `"Ready Player One"` title:
 
@@ -174,7 +174,7 @@ iex> Movie \
 
 Note that to continue writing after the line break, use the character `\`.
 
-### Using `where` with Interpolated Values
+### Using where with Interpolated Values
 
 In order to use interpolated values or Elixir expressions in our where clauses, we need to use the `^`, or pin, operator. This allows us to _pin_ a value to a variable and refer to that pinned value, instead of re-binding that variable.
 

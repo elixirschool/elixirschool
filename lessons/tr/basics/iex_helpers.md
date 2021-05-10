@@ -35,7 +35,7 @@ update/4             values/1
 ```
 Ve şimdi sahip olduğumuz function'ları ve onların gerekliliklerini biliyoruz!
 
-### `.iex.exs`
+### .iex.exs
 
 IEx her başlatıldığında bir `.iex.exs` yapılandırma dosyası arar. Geçerli dizinde yoksa kullanıcının ana dizininde bulunan (~/.iex.exs) yedek olarak kullanılacaktır.
 
@@ -71,7 +71,7 @@ iex> IExHelpers.whats_this?(:test)
 Görebildiğimiz gibi, helpers modüllerimizi çağırmak veya import etmek için özel bir şeyler yapmak zorunda değiliz, IEx bunu bizim için zaten halledecektir.
 
 
-### `h`
+### h
 
 `h`, Elixir komut satırının bize verdiği en faydalı araçlardan biridir.
 Dilin dokümantasyonu için muhteşem birinci sınıf desteği sayesinde, herhangi bir kodun dokümanlarına bu yardımcı araç kullanılarak ulaşılabilir.
@@ -150,7 +150,7 @@ Examples
 
 Gördüğünüz gibi modülün bir parçası olarak hangi fonksiyonların mevcut olduğunu bulamadık, ancak birçoğunda gördük ki örnek kullanımı içeren fonksiyon belgeleri var.
 
-### `i`
+### i
 
 Yeni kullanacağımız `i` yardımcı aracı hakkında biraz daha fazla bilgi sahibi olabilmek için `h` aracını kullanalım:
 
@@ -198,7 +198,7 @@ Belli başlı konular şu şekildedir:
 
 Bu size çok çalışmanızı sağlasa da kör olmaktan kurtarır.
 
-### `r`
+### r
 
 Belli bir modülü yeniden derlemek istersek `r` yardımcı aracını kullanabiliriz. Diyelim ki, bazı kodları değiştirdik ve eklediğimiz yeni bir fonksiyonu çalıştırmak istedik. Bunu yapmak için değişikliklerimizi kaydettirip r ile yeniden derlemeliyiz:
 
@@ -210,7 +210,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `s`
+### s
 
 `s` ile, bir modül veya fonksiyon için tip özellikleri bilgisini alabiliriz. Bunu, ne beklediğini bilmek için kullanabiliriz:
 
@@ -227,7 +227,7 @@ iex> s Map
 @spec get_and_update!(map(), key(), (value() -> {get, value()})) :: {get, map()} | no_return() when get: term()
 ```
 
-### `t`
+### t
 
 `t` yardımcı aracı, belirli bir modülde kullanılabilen tipleri hakkında bilgi verir:
 

@@ -52,7 +52,7 @@ rescue
 end
 ```
 
-## Blok `after`
+## Blok after
 
 Czasami musimy podjąć pewne dodatkowe działania po wykonaniu kodu w bloku `try/rescue`, niezależnie czy błąd się pojawił, czy też nie.  Służy do tego konstrukcja `try/after`.  Odpowiada ona konstrukcji `begin/rescue/ensure` w Ruby lub `try/catch/finally` w Javie:
 

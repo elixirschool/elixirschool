@@ -63,7 +63,7 @@ iex> String.graphemes string
 
 String modülünün kullanışlı bazı fonksiyonlarını inceleyelim. Bu derste mevcut fonksiyonların bir kısmını kapsayacaktır. Fonksiyonların tam listesini görmek için resmi  [`String`](https://hexdocs.pm/elixir/String.html) dokümanlarına bakın.
 
-### `length/1`
+### length/1
 
 Stringlerin içinde Graphemes sayını döner.
 
@@ -72,7 +72,7 @@ iex> String.length "Hello"
 5
 ```
 
-### `replace/3`
+### replace/3
 
 Belirtilen desenle eşleşenleri belirtilen string ile  değiştirip yeni bir dize döndürür.
 
@@ -81,7 +81,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-### `duplicate/2`
+### duplicate/2
 
 N kere tekrarlanan yeni bir string döndürür.
 
@@ -90,7 +90,7 @@ iex> String.duplicate("Oh my ", 3)
 "Oh my Oh my Oh my "
 ```
 
-### `split/2`
+### split/2
 
 Bir desene göre bölünmüş stringlerin bir listesini döndürür.
 

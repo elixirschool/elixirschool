@@ -33,7 +33,7 @@ iex(kate@localhost)>
 
 這兩個 node 可以使用 `Node.spawn_link/2` 互相發送訊息。
 
-###  藉由 `Node.spawn_link/2` 進行通訊
+###  藉由 Node.spawn_link/2 進行通訊
 
 這個函數有兩個參數：
 * 要連接 node 的名稱
@@ -109,7 +109,7 @@ iex --sname kate@localhost --cookie secret_token
 
 只有以相同 `cookie` 開頭的 node 才能成功對接到彼此。
 
-#### `Node.spawn_link/2` 限制
+#### Node.spawn_link/2 限制
 
 雖然 `Node.spawn_link/2` 說明了 node 間的關係及可以在它們之間發送訊息的規則，但它真的 _不是_ 將執行在分散式 node 上應用程式的正確選擇。
 `Node.spawn_link/2` 產生孤立的處理程序，

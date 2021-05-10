@@ -7,7 +7,7 @@
 }
 ---
 
-## `if` dan `unless`
+## if dan unless
 
 Kemungkinan besar anda telah menemui `if/2` sebelum ini, dan jika anda pernah menggunakan Ruby anda sudah biasa dengan `unless/2`.  Dalam Elixir mereka berfungsi lebih kurang sama tetapi mereka adalah ditetapkan sebagai makro, bukan komponen asas bahasa itu sendiri;  Anda akan menjumpai pelaksanaan mereka dalam [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
 
@@ -36,7 +36,7 @@ iex> unless is_integer("hello") do
 "Not an Int"
 ```
 
-## `case`
+## case
 
 Jika memerlukan pemadanan dengan pelbagai corak kita boleh gunakan `case`:
 
@@ -93,7 +93,7 @@ iex> case {1, 2, 3} do
 
 Lihat dokumen rasmi untuk [Kenyataan yang dibenarkan di dalam klausa 'guard'](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
-## `cond`
+## cond
 
 Jika kita perlu untuk memadankan keadaan, dan bukan nilai, kita boleh berpaling kepada `cond`; ini adalah sama dengan `else if` atau `elsif` dalam bahasa-bahasa lain:
 

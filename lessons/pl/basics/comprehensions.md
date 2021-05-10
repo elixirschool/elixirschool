@@ -89,7 +89,7 @@ iex> for x <- 1..100,
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
 
-## Użycie `:into`
+## Użycie :into
 
 A co jeżeli chcemy otrzymać coś innego niż listę?  W tym celu służy`:into`! Ogólna zasada jest taka, że `:into` akceptuje jako argument dowolną strukturę implementującą protokół `Collectable`.
 

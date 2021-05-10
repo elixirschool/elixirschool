@@ -106,7 +106,7 @@ iex> %{name: "Sean"} = sean
 
 Teraz, keď už dokážeme vytvárať vlastné moduly a štruktúry, je načase naučiť sa, ako pridať funkcionalitu definovanú v iných moduloch. Elixir nám na tento účel poskytuje niekoľko spôsobov ako interagovať s inými modulmi.
 
-### `alias`
+### alias
 
 Dovoľuje nám dať externému modulu (kratší) alias, cez ktorý potom k nemu budeme pristupovať. V Elixirovom kóde je použitie aliasov veľmi bežné:
 
@@ -148,7 +148,7 @@ defmodule Example do
 end
 ```
 
-### `import`
+### import
 
 Ak chceme z externého modulu len importovať jeho funkcie a makrá do nášho modulu, môžeme použiť príkaz `import`:
 
@@ -193,7 +193,7 @@ import List, only: :functions
 import List, only: :macros
 ```
 
-### `require`
+### require
 
 Keď chceme z iného modulu načítať len makrá, ale nie funkcie, použijeme `require`:
 
@@ -207,7 +207,7 @@ end
 
 Ak sa pokúsime zavolať makro, ktoré nie je načítané, Elixir vyhodí chybu.
 
-### `use`
+### use
 
 Makrom `use` umožníme cieľovému modulu modifikovať náš modul.
 Keď zavoláme `use` v našom kóde, tak vlastne vyvoláme `__using__/1` callback definovaný v dodanom module.

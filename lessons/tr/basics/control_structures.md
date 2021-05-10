@@ -7,7 +7,7 @@
 }
 ---
 
-## `if` and `unless`
+## if and unless
 
 Muhtemelen `if/2` daha once kullandiniz ve eger daha once Ruby de kullandiysaniz muhtemelen `unless/2` ile de tanistiniz. Elixir'de bunlar asagi yukari ayni sekilde calismaktadir fakat bunlar makro olarak tanimlanmistir, dilin bir bileseni olarak degil. Dil icerisince nasil uygulandiklarini [Cekirdek Modul](https://hexdocs.pm/elixir/Kernel.html) icerisinde inceleyebilirsiniz.
 
@@ -36,7 +36,7 @@ iex> unless is_integer("merhaba") do
 "Integer degil"
 ```
 
-## `case`
+## case
 
 Eger birden fazla karsilastirma yapmak gerekirse `case/2` kullanilabilir:
 
@@ -96,7 +96,7 @@ iex> case {1, 2, 3} do
 
 Elixir resmi dokumanlarindan devamini inceleyebilirsiniz. [Kosullu karsilastimalar (guard clauses) hakkinda daha fazla](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
-## `cond`
+## cond
 
 Degerleri karsilastirmak yerine durumlari karsilastirmak istersek `cond/1` kullanmamiz gerekir; bu diger dillerdeki `else if` veya `elsif`e benzemektedir:
 
@@ -124,7 +124,7 @@ iex> cond do
 "Varsayilan durum"
 ```
 
-## `with`
+## with
 
 `with/1` pipe `|` operatorunun kullanilamadigi bazi durumlarda kullanisli olabilir.
 `with/1` ifadesi anahtar kelimeler (keywords), uretecler (generators) ve son olarak ifadelerden olusur.

@@ -84,7 +84,7 @@ Let's review some of the most important and useful functions of the String modul
 This lesson will only cover a subset of the available functions.
 To see a complete set of functions visit the official [`String`](https://hexdocs.pm/elixir/String.html) docs.
 
-### `length/1`
+### length/1
 
 Returns the number of Graphemes in the string.
 
@@ -93,7 +93,7 @@ iex> String.length "Hello"
 5
 ```
 
-### `replace/3`
+### replace/3
 
 Returns a new string replacing a current pattern in the string with some new replacement string.
 
@@ -102,7 +102,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-### `duplicate/2`
+### duplicate/2
 
 Returns a new string repeated n times.
 
@@ -111,7 +111,7 @@ iex> String.duplicate("Oh my ", 3)
 "Oh my Oh my Oh my "
 ```
 
-### `split/2`
+### split/2
 
 Returns a list of strings split by a pattern.
 

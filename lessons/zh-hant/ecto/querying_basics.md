@@ -9,7 +9,7 @@
 
 在本課程中，將基於 `Friends` 應用程式和在 [上一課](./associations) 中設定的電影目錄域來繼續構建。
 
-## 使用 `Ecto.Repo` 提取記錄
+## 使用 Ecto.Repo 提取記錄
 
 回想一下，Ecto 中的 "存放庫" 映射到資料儲存區，例如 Postgres 資料庫。
 所有與資料庫的通訊都將使用此存放庫完成。
@@ -59,11 +59,11 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 
 如果想編寫更複雜的查詢，或者想要回傳滿足特定條件的 _所有_ 記錄，則需要使用 `Ecto.Query` 模組。
 
-## 使用 `Ecto.Query` 編寫查詢
+## 使用 Ecto.Query 編寫查詢
 
 `Ecto.Query` 模組提供了查詢 DSL，可以用它編寫查詢來從應用程式的存放庫中檢索資料。
 
-### 使用 `Ecto.Query.from/2` 進行基於關鍵字查詢
+### 使用 Ecto.Query.from/2 進行基於關鍵字查詢
 
 可以使用 `Ecto.Query.from/2` 巨集建立一個查詢。此函數包含兩個參數：表達式和一個可選的關鍵字列表。現在建立一個最簡易的查詢來從存放庫中選取所有電影：
 
@@ -92,7 +92,7 @@ iex> Repo.all(query)
 ]
 ```
 
-#### 使用 `from` 的無綁定查詢
+#### 使用 from 的無綁定查詢
 
 上面的範例缺少 SQL 語句中最有趣的部分。我們通常只想查詢特定欄位或按照某種條件來過濾記錄。現在來擷取所有具有 `"Ready Player One"` 標題電影的 `title` 和 `tagline`：
 
@@ -173,7 +173,7 @@ iex> Repo.all(query)
 ```
 
 
-### 在 `where` 中使用插值
+### 在 where 中使用插值
 
 為了在 where 子句中使用插值或 Elixir 表達式，需要使用 `^` 或 pin 運算子。這允許將一個值 _釘_ 在變數上並引用該被固定的值，而不是重新綁定該變數。
 

@@ -7,7 +7,7 @@
 }
 ---
 
-## `if` 和 `unless`
+## if 和 unless
 
 你之前可能遇到过 `if/2`了，如果你使用过 Ruby，也会很熟悉 `unless/2`。它们在 Elixir 使用方式也一样，只不过它们在 Elixir 里是宏定义，不是语言本身的语句。你可以在 [Kernel 模块](https://hexdocs.pm/elixir/Kernel.html) 找到它们的实现。
 
@@ -36,7 +36,7 @@ iex> unless is_integer("hello") do
 "Not an Int"
 ```
 
-## `case`
+## case
 
 如果需要匹配多个模式，我们可使用 `case`：
 
@@ -95,7 +95,7 @@ iex> case {1, 2, 3} do
 
 参考官方的文档来看[卫兵支持的表达式](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions)
 
-## `cond`
+## cond
 
 当我们需要匹配条件而不是值的时候，可以使用 `cond/1`，这和其他语言的 `else if` 或者 `elsif` 相似：
 

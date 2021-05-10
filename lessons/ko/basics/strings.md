@@ -62,7 +62,7 @@ iex> String.graphemes string
 
 문자열 모듈에서 가장 중요하고 쓸만한 몇 가지 함수들을 살펴보도록 합시다. 이 강좌에서는 사용할 수 있는 함수의 일부만 다룹니다. 사용할 수 있는 함수의 전체 목록을 보시려면, 공식 [`String`](https://hexdocs.pm/elixir/String.html) 문서를 확인하세요.
 
-### `length/1`
+### length/1
 
 문자열이 가지는 문자소의 개수를 반환합니다.
 
@@ -71,7 +71,7 @@ iex> String.length "Hello"
 5
 ```
 
-### `replace/4`
+### replace/4
 
 문자열 내에서 발견되는 패턴을 다른 문자열로 치환하여 새 문자열을 반환합니다.
 
@@ -80,7 +80,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-### `duplicate/2`
+### duplicate/2
 
 n번 반복되는 새 문자열을 반환합니다.
 
@@ -89,7 +89,7 @@ iex> String.duplicate "Oh my ", 3
 "Oh my Oh my Oh my "
 ```
 
-### `split/2`
+### split/2
 
 문자열을 패턴에 따라 분리해 문자열의 리스트를 반환합니다.
 

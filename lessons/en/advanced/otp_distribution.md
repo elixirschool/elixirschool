@@ -34,7 +34,7 @@ iex(kate@localhost)>
 
 These two nodes can send messages to one another using `Node.spawn_link/2`.
 
-### Communicating with `Node.spawn_link/2`
+### Communicating with Node.spawn_link/2
 
 This function takes in two arguments:
 * The name of the node to which you want to connect
@@ -110,7 +110,7 @@ iex --sname kate@localhost --cookie secret_token
 
 Only nodes started with the same `cookie` will be able to successfully connect to one another.
 
-#### `Node.spawn_link/2` Limitations
+#### Node.spawn_link/2 Limitations
 
 While `Node.spawn_link/2` illustrates the relationships between nodes and the manner in which we can send messages between them, it is _not_ really the right choice for an application that will run across distributed nodes.
 `Node.spawn_link/2` spawns processes in isolation, i.e. processes that are not supervised.

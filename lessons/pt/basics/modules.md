@@ -136,7 +136,7 @@ Os `roles` não são mais exibidos na saída!
 
 Agora que sabemos como criar módulos e structs, vamos aprender a incluir uma funcionalidade existente neles através da composição. Elixir nos fornece uma variedade de maneiras diferentes para interagir com outros módulos, vamos ver o que temos à nossa disposição.
 
-### `alias`
+### alias
 
 Permite-nos criar pseudônimos, usado frequentemente em código Elixir:
 
@@ -176,7 +176,7 @@ defmodule Example do
 end
 ```
 
-### `import`
+### import
 
 Se queremos importar funções em vez de criar pseudônimos de um módulo, podemos usar `import`:
 
@@ -221,7 +221,7 @@ import List, only: :functions
 import List, only: :macros
 ```
 
-### `require`
+### require
 
 Nós podemos usar `require` para dizer ao Elixir que vamos usar macros de outro módulo. A pequena diferença com `import` é que ele permite usar macros, mas não funções do módulo especificado.
 
@@ -235,7 +235,7 @@ end
 
 Se tentar chamar um macro que ainda não está carregado, Elixir vai gerar um erro.
 
-### `use`
+### use
 
 Com a macro `use` podemos dar habilidade a outro módulo para modificar a sua definição atual.
 Quando invocamos `use` em nosso código estamos invocando o callback `__using__/1` definido pelo módulo declarado.

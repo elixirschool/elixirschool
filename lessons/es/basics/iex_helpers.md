@@ -36,7 +36,7 @@ update/4             values/1
 
 ¡Y ahora sabemos las funciones que tenemos y su número de argumentos que acepta una funcion en específico!
 
-### `.iex.exs`
+### .iex.exs
 
 Cada vez que IEx se inicia buscará un archivo de configuración `.iex.exs`. Si no está presente en el directorio actual, entonces el directorio raíz del usuario (`~/.iex.exs`) será usado como respaldo.
 
@@ -72,7 +72,7 @@ iex> IExHelpers.whats_this?(:test)
 
 Como podemos ver no necesitamos hacer nada especial para requerir o importar nuestros ayudantes, IEx se encarga de eso por nosotros.
 
-### `h`
+### h
 
 El `h` es una de las herramientas más útiles que nos da nuestra cáscara de elixir.
 Gracias al fantástico soporte de documentación de primera clase que ofrece Elixir, se puede acceder a los documentos de cualquier código mediante este asistente.
@@ -150,7 +150,7 @@ Ejemplos
 
 Como podemos ver, no sólo pudimos encontrar cuales funciones estaban disponibles como parte del módulo, sino que también pudimos acceder a documentos de funciones individuales, muchos de los cuales incluyen ejemplos de uso.
 
-### `i`
+### i
 
 Pongamos en práctica algunos de nuestros nuevos conocimientos mediante el empleo de `h` para aprender un poco más sobre el `i` helper:
 
@@ -198,7 +198,7 @@ Los títulos individuales pueden ser densos, pero a un alto nivel podemos recopi
 
 Esto nos da mucho con que trabajar y es mejor que ir a ciegas.
 
-### `r`
+### r
 
 Si queremos recompilar un módulo en particular podemos usar el ayudante `r`. Digamos que hemos cambiado algún código y queremos ejecutar una nueva función que hemos añadido. Para ello necesitamos guardar nuestros cambios y recompilar con r:
 
@@ -210,7 +210,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `t`
+### t
 
 El `t` helper nos habla de los Tipos disponibles en un módulo dado:
 

@@ -90,7 +90,7 @@ iex> for x <- 1..100,
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
 
-## `:into` Kullanımı
+## :into Kullanımı
 
 Listeden başka bir şey üretmek istiyorsak ne yapacağız? `:Into` seçeneğini göz önüne alırsak yapabiliriz, Genel bir kural olarak, `:into`, `Collectable` protokolünü uygulayan herhangi bir yapıyı kabul edecektir.
 
