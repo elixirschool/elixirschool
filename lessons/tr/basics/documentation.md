@@ -1,11 +1,11 @@
+%{
+  version: "1.0.3",
+  title: "Belgelendirme",
+  excerpt: """
+  Elixir kodunun belgelendirilmesi.
+  """
+}
 ---
-version: 1.0.3
-title: Belgelendirme
----
-
-Elixir kodunun belgelendirilmesi.
-
-{% include toc.html %}
 
 ## Bilgi Notu
 

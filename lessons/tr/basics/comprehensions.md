@@ -1,11 +1,11 @@
+%{
+  version: "1.1.0",
+  title: "Comprehensions(Kavramlar)",
+  excerpt: """
+  Liste anlama kavramları, Elixir'deki numaralandırılmış metinler aracılığıyla döngü yapmak için syntactic sugar(sözdizimsel guzellik) bulunmaktadır. Bu dersimizde, iteration ve generation için bazı kavramaları nasıl kullanabildiğimizi inceleyeceğiz.
+  """
+}
 ---
-version: 1.1.0
-title: Comprehensions(Kavramlar)
----
-
-Liste anlama kavramları, Elixir'deki numaralandırılmış metinler aracılığıyla döngü yapmak için syntactic sugar(sözdizimsel guzellik) bulunmaktadır. Bu dersimizde, iteration ve generation için bazı kavramaları nasıl kullanabildiğimizi inceleyeceğiz.
-
-{% include toc.html %}
 
 ## Temeller
 
