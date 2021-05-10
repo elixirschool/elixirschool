@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "日付と時間",
+  excerpt: """
+  Elixirで時間を扱ってみましょう。
+  """
+}
 ---
-version: 1.1.1
-title: 日付と時間
----
-
-Elixirで時間を扱ってみましょう。
-
-{% include toc.html %}
 
 ## Time
 

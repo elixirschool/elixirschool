@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "埋め込みElixir (EEx)",
+  excerpt: """
+  RubyにERBが、そしてJavaにJSPがあるようにElixirにもEEx即ち埋め込みElixirがあります。EExを使って文字列の中にElixirを埋め込んで評価することができます。
+  """
+}
 ---
-version: 1.0.2
-title: 埋め込みElixir (EEx)
----
-
-RubyにERBが、そしてJavaにJSPがあるようにElixirにもEEx即ち埋め込みElixirがあります。EExを使って文字列の中にElixirを埋め込んで評価することができます。
-
-{% include toc.html %}
 
 ## API
 

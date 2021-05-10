@@ -1,11 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Poolboy",
+  excerpt: """
+  もしあなたのプログラムを実行しているprocess数が生成できる最大限まで使っていない場合、簡単にシステムリソースを使い果たすことになります。 [Poolboy](https://github.com/devinus/poolboy) はErlangで広く利用されている軽量で汎用的なpoolingライブラリです。
+  """
+}
 ---
-version: 1.2.0
-title: Poolboy
----
-
-もしあなたのプログラムを実行しているprocess数が生成できる最大限まで使っていない場合、簡単にシステムリソースを使い果たすことになります。 [Poolboy](https://github.com/devinus/poolboy) はErlangで広く利用されている軽量で汎用的なpoolingライブラリです。
-
-{% include toc.html %}
 
 ## なぜPoolboyを使うか
 

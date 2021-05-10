@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "Sigils",
+  excerpt: """
+  シギル(sigil)を使う/作る
+  """
+}
 ---
-version: 1.0.2
-title: Sigils
----
-
-シギル(sigil)を使う/作る
-
-{% include toc.html %}
 
 ## シギルの概要
 

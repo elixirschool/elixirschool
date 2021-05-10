@@ -1,9 +1,8 @@
----
-version: 1.1.0
-title: StreamData
----
-
-[ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) のような例ベース(example-base)のユニットテストライブラリは、考えている通りにコードが動くことを保証できる素晴らしいツールです。
+%{
+  version: "1.1.0",
+  title: "StreamData",
+  excerpt: """
+  [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) のような例ベース(example-base)のユニットテストライブラリは、考えている通りにコードが動くことを保証できる素晴らしいツールです。
 しかし、例ベースのユニットテストにはいくつかの問題があります:
 
 * 限られた数の入力でのみテストをするため、エッジケースを見逃しやすい
@@ -11,8 +10,9 @@ title: StreamData
 * 1つの関数を複数の例でテストする場合はとても冗長になりやすい
 
 このレッスンでは、 [StreamData](https://github.com/whatyouhide/stream_data) を使うことでこれらの問題をどのように克服できるかを見ていきます。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## StreamDataとは?
 

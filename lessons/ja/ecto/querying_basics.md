@@ -1,9 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "クエリ",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.2.0
-title: クエリ
----
-
-{% include toc.html %}
 
 このレッスンでは、 `Friends` アプリと [前のレッスン](./associations) で設定した映画ドメインを引き続き作成します。
 
