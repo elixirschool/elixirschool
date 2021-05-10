@@ -1,11 +1,11 @@
+%{
+  version: "1.3.0",
+  title: "Collezioni",
+  excerpt: """
+  Liste, tuple, liste di keywords e mappe.
+  """
+}
 ---
-version: 1.3.0
-title: Collezioni
----
-
-Liste, tuple, liste di keywords e mappe.
-
-{% include toc.html %}
 
 ## Liste
 

@@ -1,13 +1,13 @@
----
-version: 0.9.1
-title: Concorrenza
----
-
-Uno dei punti di forza di Elixir è il suo supporto alla concorrenza. Grazie alla Erlang VM (BEAM), scrivere programmi concorrenti in Elixir è più semplice di quanto ci si possa aspettare. Il modello di concorrenza si basa sugli Attori, ovvero dei processi concorrenti che mantengono uno stato interno e comunicano con altri attori/processi attraverso lo scambio di messaggi.
+%{
+  version: "0.9.1",
+  title: "Concorrenza",
+  excerpt: """
+  Uno dei punti di forza di Elixir è il suo supporto alla concorrenza. Grazie alla Erlang VM (BEAM), scrivere programmi concorrenti in Elixir è più semplice di quanto ci si possa aspettare. Il modello di concorrenza si basa sugli Attori, ovvero dei processi concorrenti che mantengono uno stato interno e comunicano con altri attori/processi attraverso lo scambio di messaggi.
 
 In questa lezione daremo un'occhiata ai moduli relativi ai processi concorrenti che vengono forniti dall'installazione di Elixir. Nel prossimo capitolo, ci occuperemo dei behaviour OTP che li implementano.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Processi
 
