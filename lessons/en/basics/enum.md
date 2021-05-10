@@ -1,11 +1,11 @@
+%{
+  version: "1.8.0",
+  title: "Enum",
+  excerpt: """
+  A set of algorithms for enumerating over enumerables.
+  """
+}
 ---
-version: 1.8.0
-title: Enum
----
-
-A set of algorithms for enumerating over enumerables.
-
-{% include toc.html %}
 
 ## Enum
 

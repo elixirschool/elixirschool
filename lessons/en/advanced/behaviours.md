@@ -1,12 +1,12 @@
----
-version: 1.0.1
-title: Behaviours
----
-
-We learned about Typespecs in the previous lesson, here we'll learn how to require a module to implement those specifications.
+%{
+  version: "1.0.1",
+  title: "Behaviours",
+  excerpt: """
+  We learned about Typespecs in the previous lesson, here we'll learn how to require a module to implement those specifications.
 In Elixir, this functionality is referred to as behaviours.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Uses
 

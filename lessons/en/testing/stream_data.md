@@ -1,9 +1,8 @@
----
-version: 1.1.1
-title: StreamData
----
-
-An example-based unit testing library like [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) is a wonderful tool to help you verify that your code works the way you think it does.
+%{
+  version: "1.1.1",
+  title: "StreamData",
+  excerpt: """
+  An example-based unit testing library like [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) is a wonderful tool to help you verify that your code works the way you think it does.
 However, example-based unit tests have some drawbacks:
 
 * It can be easy to miss edge cases, since you're only testing a few inputs.
@@ -11,8 +10,9 @@ However, example-based unit tests have some drawbacks:
 * These tests can be very verbose when you use several examples for one function.
 
 In this lesson we're going to explore how [StreamData](https://github.com/whatyouhide/stream_data) can help us overcome some of these drawbacks.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## What is StreamData?
 
