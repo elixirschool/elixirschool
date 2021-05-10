@@ -3,7 +3,7 @@
   title: "Proyectos Umbrella",
   excerpt: """
   Algunas veces un proyecto puede ser grande, demasiado grande incluso.
-Mix nos permite separar nuestro código en varias aplicaciones y hacer que nuestros proyectos de Elixir sean más manejables a medida que van creciendo.
+  Mix nos permite separar nuestro código en varias aplicaciones y hacer que nuestros proyectos de Elixir sean más manejables a medida que van creciendo.
   """
 }
 ---

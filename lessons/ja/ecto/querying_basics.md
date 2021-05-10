@@ -2,7 +2,6 @@
   version: "1.2.0",
   title: "クエリ",
   excerpt: """
-  
   """
 }
 ---
@@ -122,7 +121,7 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 これまで、 `from` マクロの最初の引数として `Ecto.Queryable` プロトコル（例： `Movie`）を実装するモジュールを使用しました。しかしながら、このような `in` 式も利用することができます。
 
 ```elixir
-iex> query = from(m in Movie)           
+iex> query = from(m in Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 

@@ -2,7 +2,8 @@
   version: "2.4.0",
   title: "Basics",
   excerpt: """
-  Ecto ist ein offizielles Elixir-Projekt, das einen Datenbank-Wrapper und eine integrierte Abfragesprache bereitstellt. Mit Ecto sind wir in der Lage, Migrationen zu erstellen, Schemmas zu definieren, Datensätze einzufügen, zu aktualisieren und diese abzufragen.
+  Ecto ist ein offizielles Elixir-Projekt, das einen Datenbank-Wrapper und eine integrierte Abfragesprache bereitstellt.
+  Mit Ecto sind wir in der Lage, Migrationen zu erstellen, Schemmas zu definieren, Datensätze einzufügen, zu aktualisieren und diese abzufragen.
   """
 }
 ---
@@ -78,7 +79,7 @@ Zusätzlich wird das `Friends.Repo` Modul erstellt unter `lib/friends/repo.ex`.
 
 ```elixir
 defmodule Friends.Repo do
-  use Ecto.Repo, 
+  use Ecto.Repo,
     otp_app: :friends,
     adapter: Ecto.Adapters.Postgres
 end

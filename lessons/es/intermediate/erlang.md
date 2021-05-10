@@ -3,8 +3,8 @@
   title: "Interoperabilidad Erlang",
   excerpt: """
   Uno de los beneficios añadidos de Elixir al estar construido sobre Erlang VM (BEAM) es la gran cantidad de bibliotecas existentes que están disponibles para nosotros.
-La interoperabilidad nos permite aprovechar esas bibliotecas y la librería estándar de Erlang desde nuestro código Elixir.
-En esta lección vamos a ver como acceder a la funcionalidad en la librería estándar junto con los paquetes de Erlang de terceros.
+  La interoperabilidad nos permite aprovechar esas bibliotecas y la librería estándar de Erlang desde nuestro código Elixir.
+  En esta lección vamos a ver como acceder a la funcionalidad en la librería estándar junto con los paquetes de Erlang de terceros.
   """
 }
 ---

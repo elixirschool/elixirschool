@@ -4,7 +4,7 @@
   excerpt: """
   Kita sudah melihat abstraksi Elixir untuk konkurensi tapi terkadang kita butuh kendali lebih dan untuk itu kita beralih ke perilaku OTP yang mana Elixir dibangun di atasnya.
 
-Dalam pelajaran ini kita hanya akan fokus pada bagian yang paling penting yaitu Genserver.
+  Dalam pelajaran ini kita hanya akan fokus pada bagian yang paling penting yaitu Genserver.
   """
 }
 ---

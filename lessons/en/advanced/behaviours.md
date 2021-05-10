@@ -3,7 +3,7 @@
   title: "Behaviours",
   excerpt: """
   We learned about Typespecs in the previous lesson, here we'll learn how to require a module to implement those specifications.
-In Elixir, this functionality is referred to as behaviours.
+  In Elixir, this functionality is referred to as behaviours.
   """
 }
 ---

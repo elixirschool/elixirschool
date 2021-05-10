@@ -3,7 +3,7 @@
   title: "Fonctions",
   excerpt: """
   En Elixir, comme dans tous les langages fonctionnels, les fonctions sont des citoyens de premier ordre.
-Nous verrons les différents types de fonctions en Elixir, ce qui les rend différentes et comment les utiliser.
+  Nous verrons les différents types de fonctions en Elixir, ce qui les rend différentes et comment les utiliser.
   """
 }
 ---
@@ -101,7 +101,7 @@ iex> Length.of [1, 2, 3]
 
 ### Nommage de Fonctions et Arité
 
-Nous avons mentionné précédemment que les fonctions sont nommées par la combinaison de leur nom donné et de leur arité (nombre d'arguments). 
+Nous avons mentionné précédemment que les fonctions sont nommées par la combinaison de leur nom donné et de leur arité (nombre d'arguments).
 Ce qui signifie que l'on peut par exemple faire ceci:
 
 ```elixir
@@ -233,7 +233,7 @@ Passons à la mise en correspondance suivante :
 ```
 
 Maintenant, c'est identique à la fonction `Greeter1` originale dans laquelle nous realisions le _pattern matching_ sur le tableau associatif mais ne retenions que le nom de Fred.
-Ce que nous obtenons, ce sont deux variables que nous pouvons utiliser à la place d'une seule : 
+Ce que nous obtenons, ce sont deux variables que nous pouvons utiliser à la place d'une seule :
 
 1. `person` se référant à `%{name: "Fred", age: "95", favorite_color: "Taupe"}`
 2. `person_name` se référeant à `"Fred"`
@@ -293,7 +293,7 @@ Nous pouvons le mettre à profit pour assigner les valeurs dans des variables di
 ### Fonctions privées
 
 Lorsque nous ne voulons pas que d'autres modules aient accès à nos fonctions, nous pouvons utiliser des fonctions privées.
-Les fonctions privées sont seulement disponibles au sein de leur propre module. 
+Les fonctions privées sont seulement disponibles au sein de leur propre module.
 Elles sont définies avec le mot-clé `defp` :
 
 ```elixir
@@ -360,7 +360,7 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-Quand nous combinons nos exemples de gardes avec les arguments par défaut, nous rencontrons un problème. 
+Quand nous combinons nos exemples de gardes avec les arguments par défaut, nous rencontrons un problème.
 Regardons cela de plus près :
 
 ```elixir

@@ -2,9 +2,9 @@
   version: "0.9.1",
   title: "Concurrency",
   excerpt: """
-  Satu poin yang menjual dari Elixir adalah dukungannya terhadap konkurensi. Berkat Erlang VM (BEAM), konkurensi dalam Elixir sangat mudah.  Model konkurensinya berdasar pada Actor, sebuah proses terlindung (contained) yang berkomunikasi dengan proses lain lewat pengiriman pesan (message passing). 
+  Satu poin yang menjual dari Elixir adalah dukungannya terhadap konkurensi. Berkat Erlang VM (BEAM), konkurensi dalam Elixir sangat mudah.  Model konkurensinya berdasar pada Actor, sebuah proses terlindung (contained) yang berkomunikasi dengan proses lain lewat pengiriman pesan (message passing).
 
-Dalam pelajaran ini kita akan melihat pada modul-modul konkurensi yang diluncurkan bersama Elixir.  Dalam bab selanjutnya kita membahas perilaku OTP yang mengimplementasikannya.
+  Dalam pelajaran ini kita akan melihat pada modul-modul konkurensi yang diluncurkan bersama Elixir.  Dalam bab selanjutnya kita membahas perilaku OTP yang mengimplementasikannya.
   """
 }
 ---
