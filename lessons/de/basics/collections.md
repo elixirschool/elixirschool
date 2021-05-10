@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Collections",
+  excerpt: """
+  Listen, Tupel, Keywords, Maps und funktionale Kombinatoren.
+  """
+}
 ---
-version: 0.9.0
-title: Collections
----
-
-Listen, Tupel, Keywords, Maps und funktionale Kombinatoren.
-
-{% include toc.html %}
 
 ## Listen
 

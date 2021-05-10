@@ -1,15 +1,15 @@
----
-version: 0.9.0
-title: Fehlerbehandlung
----
-
-Obwohl es üblich ist das `{:error, reason}`-Tupel zurückzugeben, unterstützt Elixir Exceptions und in dieser Lektion werden wir lernen, wie man Fehler behandelt und welche verschiedenen Möglichkeiten wir haben.
+%{
+  version: "0.9.0",
+  title: "Fehlerbehandlung",
+  excerpt: """
+  Obwohl es üblich ist das `{:error, reason}`-Tupel zurückzugeben, unterstützt Elixir Exceptions und in dieser Lektion werden wir lernen, wie man Fehler behandelt und welche verschiedenen Möglichkeiten wir haben.
 
 Üblicherweise ist die Konvention in Elixir eine Funktion (`example/1`) zu schreiben, welche `{:ok, result}` oder `{:error, reason}` zurückgibt und eine separate Funktion (`example!/1`), die das "rohe" `result` zurückgibt oder einen Fehler wirft.
 
 Diese Lektion wird sich auf den zweiten Fall konzentrieren.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Fehlerbehandlung
 
