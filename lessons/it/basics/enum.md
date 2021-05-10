@@ -1,11 +1,11 @@
+%{
+  version: "1.5.0",
+  title: "Enumerazioni",
+  excerpt: """
+  Un insieme di algoritmi per enumerare le collezioni.
+  """
+}
 ---
-version: 1.5.0
-title: Enumerazioni
----
-
-Un insieme di algoritmi per enumerare le collezioni.
-
-{% include toc.html %}
 
 ## Enum
 
