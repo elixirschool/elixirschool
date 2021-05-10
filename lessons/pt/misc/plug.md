@@ -1,9 +1,8 @@
----
-version: 2.2.0
-title: Plug
----
-
-Se você estiver familiarizado com Ruby, você pode pensar sobre Plug como o Rack com uma pitada de Sinatra.
+%{
+  version: "2.2.0",
+  title: "Plug",
+  excerpt: """
+  Se você estiver familiarizado com Ruby, você pode pensar sobre Plug como o Rack com uma pitada de Sinatra.
 Ele fornece uma especificação para componentes de aplicação web e adaptadores para servidores web.
 Mesmo não fazendo parte do núcleo de Elixir, Plug é um projeto oficial de Elixir.
 
@@ -11,8 +10,9 @@ Nessa lição nós vamos construir um simples servidor HTTP do zero usando a bib
 Cowboy é um simples servidor HTTP para o Erlang e Plug vai nos disponibilizar um "connection adapter" para esse servidor web.
 
 Depois de montar nossa mini aplicação web, nós vamos aprender as rotas do Plug e como usar vários plugs em uma única aplicação web.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Pré-requisitos
 

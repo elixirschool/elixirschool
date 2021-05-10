@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "NimblePublisher",
+  excerpt: """
+  [NimblePublisher](https://github.com/dashbitco/nimble_publisher) é um mecanismo de publicação simples baseado em um sistema de arquivos com suporte a Markdown e realce de código.
+  """
+}
 ---
-version: 1.0.2
-title: NimblePublisher
----
-
-[NimblePublisher](https://github.com/dashbitco/nimble_publisher) é um mecanismo de publicação simples baseado em um sistema de arquivos com suporte a Markdown e realce de código.
-
-{% include toc.html %}
 
 ## Por que usar NimblePublisher?
 

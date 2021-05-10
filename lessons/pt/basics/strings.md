@@ -1,11 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Strings",
+  excerpt: """
+  Strings, listas de caracteres, Graphemes e Codepoints.
+  """
+}
 ---
-version: 1.2.0
-title: Strings
----
-
-Strings, listas de caracteres, Graphemes e Codepoints.
-
-{% include toc.html %}
 
 ## Strings
 

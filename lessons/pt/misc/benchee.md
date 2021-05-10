@@ -1,11 +1,11 @@
+%{
+  version: "2.0.0",
+  title: "Benchee",
+  excerpt: """
+  Não podemos simplesmente adivinhar quais funções são rápidas e quais são lentas - precisamos de medidas reais quando estamos curiosos. É aí que _benchmarking_ entra. Nesta lição, aprenderemos sobre como é fácil medir a velocidade do nosso código.
+  """
+}
 ---
-version: 2.0.0
-title: Benchee
----
-
-Não podemos simplesmente adivinhar quais funções são rápidas e quais são lentas - precisamos de medidas reais quando estamos curiosos. É aí que _benchmarking_ entra. Nesta lição, aprenderemos sobre como é fácil medir a velocidade do nosso código.
-
-{% include toc.html %}
 
 # Sobre Benchee
 

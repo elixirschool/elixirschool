@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "Sigils",
+  excerpt: """
+  Trabalhando e criando sigils.
+  """
+}
 ---
-version: 1.0.2
-title: Sigils
----
-
-Trabalhando e criando sigils.
-
-{% include toc.html %}
 
 ## Overview sobre Sigils
 

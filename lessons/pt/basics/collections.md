@@ -1,11 +1,11 @@
+%{
+  version: "1.3.1",
+  title: "Coleções",
+  excerpt: """
+  Listas, tuplas, listas de palavras-chave e mapas.
+  """
+}
 ---
-version: 1.3.1
-title: Coleções
----
-
-Listas, tuplas, listas de palavras-chave e mapas.
-
-{% include toc.html %}
 
 ## Listas
 

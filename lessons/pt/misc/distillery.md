@@ -1,12 +1,12 @@
----
-version: 2.0.4
-title: Distillery (Básico)
----
-
-Distillery é um gerenciador de releases escrito em Elixir puro.
+%{
+  version: "2.0.4",
+  title: "Distillery (Básico)",
+  excerpt: """
+  Distillery é um gerenciador de releases escrito em Elixir puro.
 Ele permite que você produza releases que podem ser deployed em outros lugares com pouca ou nenhuma configuração.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## O que é uma release?
 
