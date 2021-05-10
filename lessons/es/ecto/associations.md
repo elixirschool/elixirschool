@@ -284,7 +284,7 @@ La manera en la que guardamos registros junto con sus datos asociados, depende d
 
 ### Belongs To
 
-#### Guardando con `Ecto.build_assoc/3`
+#### Guardando con Ecto.build_assoc/3
 
 Con una relación "belongs to", podemos aprovechar la función de Ecto `build_assoc/3`.
 
@@ -359,7 +359,7 @@ iex> Repo.insert!(distributor)
 
 ### Muchos a Muchos
 
-#### Guardando con `Ecto.Changeset.put_assoc/4`
+#### Guardando con Ecto.Changeset.put_assoc/4
 
 La estrategia `build_assoc/3` no funcionará para nuestra relación muchos-a-muchos. Esto es porque ni el actor ni la película contienen una llave foranea. En su lugar, necesitamos aprovechar los Changesets de Ecto y la función `put_assoc/4`
 

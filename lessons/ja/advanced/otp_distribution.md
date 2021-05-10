@@ -34,7 +34,7 @@ iex(kate@localhost)>
 
 これら2つのノードは `Node.spawn_link/2` を使うことで相手にメッセージを送ることができます。
 
-### `Node.spawn_link/2` による通信
+### Node.spawn_link/2 による通信
 
 この関数は2つの引数を取ります:
 
@@ -111,7 +111,7 @@ iex --sname kate@localhost --cookie secret_token
 
 同一の `cookie` で開始されたノード同士のみがお互いに接続することができます。
 
-#### `Node.spawn_link/2` の制限
+#### Node.spawn_link/2 の制限
 
 `Node.spawn_link/2` は、ノード間の関係とメッセージ送信を可能にする方法を示す一方で、実際には分散ノードをまたいで動作するアプリケーションに対しては正しい選択では _ありません_ 。
 `Node.spawn_link/2` は単独でプロセスを生成します。

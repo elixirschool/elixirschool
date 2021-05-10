@@ -137,7 +137,7 @@ iex> inspect(sean)
 我们知道了如何创建模块和结构体之后，现在我们来学习如何通过组合的方式为模块中添加新的功能。
 Elixir 提供了好几种让我们可以在模块中访问到其他模块的方式。
 
-### `alias`
+### alias
 
 在 Elixir 中非常常见，可以让我们通过别名去访问模块：
 
@@ -177,7 +177,7 @@ defmodule Example do
 end
 ```
 
-### `import`
+### import
 
 我们可以用 `import` 从另一个模块中导入函数：
 
@@ -222,7 +222,7 @@ import List, only: :functions
 import List, only: :macros
 ```
 
-### `require`
+### require
 
 `require` 用来告诉 Elixir 我们要调用其他模块中的宏。跟 `import` 的区别是，`require` 对宏有效，而对函数无效：
 
@@ -236,7 +236,7 @@ end
 
 如果我们调用了未被加载的宏，Elixir 会报错。
 
-### `use`
+### use
 
 `use` 用来修改我们当前的模块。当我们在当前模块中调用 `use` 时，Elixir 会执行指定模块中所定义的 `__using__` 回调。
 

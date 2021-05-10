@@ -37,7 +37,7 @@ update/4             values/1
 
 Jetzt kennen wir die enthaltenen Funktionen und ihre Arity!
 
-### `.iex.exs`
+### .iex.exs
 
 Immer wenn IEx startet, wird es nach einer `.iex.exs` Konfigurationsdatei suchen. Falls diese im aktuellen Verzeichnis nicht vorhanden ist, wird eine entsprechende Datei im Homeverzeichnis des Nutzers (`~/.iex.exs`) als Fallback genutzt.
 
@@ -72,7 +72,7 @@ iex> IExHelpers.whats_this?(:test)
 
 Wie wir sehen können, müssen wir nichts besonderes tun um unsere neuen Funktionen zu importieren - IEx kümmert sich für uns darum.
 
-### `h`
+### h
 
 `h` ist eines der nützlichsten Werkzeuge in IEx.
 Dank der First-Class Unterstützung von Dokumentation in Elixir, kann die Dokumentation jeglichen Programmcodes mit dieser Hilfsfunktion eingesehen werden.
@@ -151,7 +151,7 @@ Examples
 
 Wie du siehst, waren wir nicht nur dazu in der Lage, herauzufinden welche Funktionen Teil des Moduls sind, sondern wir konnten auch direkt auf die Dokumentation für einzelne dieser Funktionen zugreifen - oft sogar mit Anwendungsbeispielen.
 
-### `i`
+### i
 
 Lass uns einen Teil unseres neuen Wissens nutzen indem wir `h` verwenden, um mehr über die `i`-Hilfsfunktion zu erfahren (und diese danach selbst zu benutzen):
 
@@ -199,7 +199,7 @@ Die einzelnen Übershriften im Output von `i` können sehr informationsdicht sei
 
 Das gibt uns eine Menge womit wir arbeiten können.
 
-### `r`
+### r
 
 Falls wir ein bestimmtes Modul neu kompilieren möchten, können wir `r` nutzen.
 Nehmen wir an, wir haben einen Teil unseres Programmcodes verändert und wollen eine neu hinzugefügte Funktion ausführen.
@@ -213,7 +213,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 {:reloaded, MyProject, [MyProject]}
 ```
 
-### `t`
+### t
 
 Die `t` Hilfsfunktion gibt Auskunft über die in einem Modul verfügbaren Typen:
 

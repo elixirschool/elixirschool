@@ -145,7 +145,7 @@ iex> ~W/i love #{'e'}lixir school/
 ["i", "love", "\#{'e'}lixir", "school"]
 ```
 
-### Struktura `NaiveDateTime`
+### Struktura NaiveDateTime
 
 Struktura [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) jest uproszczeniem `DateTime`, które **nie posiada informacji o strefie czasowej**.
 

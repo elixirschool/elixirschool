@@ -107,7 +107,7 @@ iex> %{navn: "Sean"} = sean
 
 Nå som vi vet hvordan vi lager moduler og structs, la oss lære oss hvordan vi kan legge til eksisterende funksjonalitet til de via komposisjon. Elixir forsyner oss med mange forskjellige måter å integrere med andre moduler.
 
-### `alias`
+### alias
 
 Tillater oss å gi alias til modulnavn; noe som er veldig ofte brukt i Elixir.
 
@@ -147,7 +147,7 @@ defmodule Example do
 end
 ```
 
-### `import`
+### import
 
 Hvis vi har lyst til å importere funksjoner og makroer istedenfor å bruke et alias for modulen kan vi bruke `ìmport/`:
 
@@ -192,7 +192,7 @@ import List, only: :functions
 import List, only: :macros
 ```
 
-### `require`
+### require
 
 Brukt sjeldnere, men fortsatt viktig er `require/2`. Å kreve en modul forsikrer at den er kompilert og lastet.
 Dette er mest brukbart når vi trenger å aksessere en modul sine makroer:
@@ -207,7 +207,7 @@ end
 
 Hvis vi prøver å kalle en makro som ikke er lastet, så vil Elixir heve en feil.
 
-### `use`
+### use
 
 use makroen kaller en spesiell makro, kalt `__using__/1`, i den spesifiserte modulen. Her er et eksempel:
 

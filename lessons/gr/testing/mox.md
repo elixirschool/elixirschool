@@ -170,7 +170,7 @@ Mox.Server.start_link([])
 Mox.defmock(HTTPoison.BaseMock, for: HTTPoison.Base)
 # ... etc...
 
-# 3. Override the config settings (similar to adding these to `config/test.exs`)
+# 3. Override the config settings (similar to adding these to config/test.exs)
 Application.put_env(:my_app, :http_client, HTTPoison.BaseMock)
 # ... etc...
 ```

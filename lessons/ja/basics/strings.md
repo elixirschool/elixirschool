@@ -71,7 +71,7 @@ iex> String.graphemes string
 
 では、Stringモジュールにある重要で役に立つ関数をいくつか見てみましょう。このレッスンでは数ある関数のうち一部のみ扱います。全ての関数を確認したい場合は、公式ドキュメントの [`String`](https://hexdocs.pm/elixir/String.html) を見てください。
 
-### `length/1`
+### length/1
 
 書記素の長さを返します。
 
@@ -80,7 +80,7 @@ iex> String.length "Hello"
 5
 ```
 
-### `replace/3`
+### replace/3
 
 文字列の中の検索パターンを新しい文字列に置き換えて得られた文字列を返します。
 
@@ -89,7 +89,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-### `duplicate/2`
+### duplicate/2
 
 文字列をn回繰り返した文字列を返します。
 
@@ -98,7 +98,7 @@ iex> String.duplicate("Oh my ", 3)
 "Oh my Oh my Oh my "
 ```
 
-### `split/2`
+### split/2
 
 パターンによって分割された文字列の配列を返します。
 

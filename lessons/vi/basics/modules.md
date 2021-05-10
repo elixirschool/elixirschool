@@ -108,7 +108,7 @@ iex> %{name: "Sean"} = sean
 
 Giờ chúng ta đã biết cách để tạo các module và struct. Hãy cùng học cách để thêm cách tính năng đã tồn tại vào trong chúng thông qua composition. Elixir cung cấp cho chúng ta một vài cách để tương tác giữa các module với nhau.
 
-### `alias`
+### alias
 
 Cho phép chúng ta có thể "alias" tên của một module, "alias" được sử dụng khá thường xuyên trong Elixir:
 
@@ -148,7 +148,7 @@ defmodule Example do
 end
 ```
 
-### `import`
+### import
 
 Nếu chúng ta muốn import nhiều hàm và macros thay vì alias module, chúng ta có thể dùng `import/`
 
@@ -194,7 +194,7 @@ import List, only: :functions
 import List, only: :macros
 ```
 
-### `require`
+### require
 
 Mặc dùng ít khi sử dụng, `require/2` dù sao cũng khá quan trong để yêu cầu một module đảm bảo rằng nó được biên dịch vào nạp vào. Điều này đặc biệt hữu dụng nếu chúng ta muốn truy cập vào các macro của một module:
 
@@ -208,7 +208,7 @@ end
 
 Nếu chúng ta có gắng gọi một macro chưa được nạp trong Elixir, một lỗi sẽ bị văng ra.
 
-### `use`
+### use
 
 `use` macro sẽ gọi tới một macro đặc biệt, được gọi là `__using__/1` từ module được chỉ định. Đây là một ví dụ:
 

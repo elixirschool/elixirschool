@@ -146,7 +146,7 @@ iex> inspect(sean)
 我們已經知道如何創建模組和結構體，現在讓我們學習如何通過合成來加入已存在的功能。
 Elixir 提供了多種不同的方式來與其他模組進行互動。
 
-### `別名 (alias)`
+### 別名 (alias)
 
 允許在模組名稱中使用別名；這在 Elixir 的程式碼中使用相當頻繁：
 
@@ -186,7 +186,7 @@ defmodule Example do
 end
 ```
 
-### `導入 (import)`
+### 導入 (import)
 
 如果想導入函數而不是別名 (aliasing) 模組，可以使用 `import`：
 
@@ -232,7 +232,7 @@ import List, only: :functions
 import List, only: :macros
 ```
 
-### `請求 (require)`
+### 請求 (require)
 
 可以使用 `require` 來告訴 Elixir 將使用來自其他模組的巨集 (macros)。
 與 `import` 的細微差異在於只允許呼用巨集，而非被指定模組的函數：
@@ -247,7 +247,7 @@ end
 
 如果我們試圖呼用一個尚未載入的巨集，Elixir 將會出現錯誤訊息。
 
-### `呼用 (use)`
+### 呼用 (use)
 
 使用 `use` 巨集，我們可以讓另一個模組修改我們目前模組的定義。
 當我們在程式碼中呼用 `use` 時，實際上是呼用由所提供模組定義的 `__using__/1` 回呼函數。

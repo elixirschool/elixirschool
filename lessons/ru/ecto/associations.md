@@ -283,7 +283,7 @@ mix ecto.migrate
 
 ### Belongs To
 
-#### Сохранение с помощью `Ecto.build_assoc/3`
+#### Сохранение с помощью Ecto.build_assoc/3
 
 Со связью `belongs to`, можно использовать метод Ecto `build_assoc/3`.
 
@@ -358,7 +358,7 @@ iex> Repo.insert!(distributor)
 
 ### Many to Many
 
-#### Сохранение с помощью `Ecto.Changeset.put_assoc/4`
+#### Сохранение с помощью Ecto.Changeset.put_assoc/4
 
 Подход, использованный ранее с `build_assoc/3`, не сработает со связью многие-ко-многим, так как ни у таблицы актёров, ни у таблицы фильмов нет полей для этой связи. Вместо этого нужно использовать функцию `put_assoc/4`.
 

@@ -106,7 +106,7 @@ iex> %{name: "Sean"} = sean
 
 Setelah kita tahu cara membuat modul dan struct, mari pelajari cara memasukkan fungsionalitas yang sudah ada ke dalamnya melalui komposisi (composition).  Elixir memberi kita beragam cara untuk berinteraksi dengan modul lain.
 
-### `alias`
+### alias
 
 Elixir mengijinkan kita melakukan alias terhadap nama modul, sering dipakai di code Elixir:
 
@@ -146,7 +146,7 @@ defmodule Example do
 end
 ```
 
-### `import`
+### import
 
 Jika kita ingin mengimpor fungsi dan macro dari modul lain dan bukannya melakukan alias terhadap modul tersebut kita bisa menggunakan `import`:
 
@@ -191,7 +191,7 @@ import List, only: :functions
 import List, only: :macros
 ```
 
-### `require`
+### require
 
 Walau lebih jarang dipakai `require/2` tetaplah penting.  Melakukan require pada sebuah modul memastikan bahwa modul itu dikompilasi dan dimuat (load).  Ini paling berguna kala kita perlu mengakses makro di sebuah modul:
 
@@ -205,7 +205,7 @@ end
 
 Jika kita mencoba memanggil sebuah macro yang belum dimuat, Elixir akan menghasilkan error.
 
-### `use`
+### use
 
 Menggunakan sebuah modul di konteks saat ini.  Ini khususnya berguna ketika sebuah modul perlu melakukan setup.  Dengan memanggil `use` kita mengaktifkan hook `__using__` di dalam modul tersebut, memungkinkan modul tersebut mengubah konteks yang ada:
 

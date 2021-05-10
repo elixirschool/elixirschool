@@ -61,7 +61,7 @@ iex> String.graphemes string
 
 Chúng ta hãy cùng xem qua một số hàm quan trọng và hữu ích nhất của String module. Bài này chỉ đề cập một số các hàm có sẵn. Các bạn có thể xem đầy đủ tại tài liệu chính thức [`String`](https://hexdocs.pm/elixir/String.html).
 
-### `length/1`
+### length/1
 
 Trả về số Grapheme trong string.
 
@@ -70,7 +70,7 @@ iex> String.length "Hello"
 5
 ```
 
-### `replace/3`
+### replace/3
 
 Trả về một string mới với các mẫu trùng đã được thay thế.
 
@@ -79,7 +79,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-### `duplicate/2`
+### duplicate/2
 
 Trả về một string mới được lặp lại n lần.
 
@@ -88,7 +88,7 @@ iex> String.duplicate("Oh my ", 3)
 "Oh my Oh my Oh my "
 ```
 
-### `split/2`
+### split/2
 
 Tách chuỗi được ngăn cách bởi một mẫu nào đó.
 

@@ -72,7 +72,7 @@ iex> String.graphemes string
 
 这个部分我们看一下 `String` 模块最常用的一些函数。本课程只会介绍其中的一部分，如果要了解所有的函数，请参考[官方 `String` 文档](https://hexdocs.pm/elixir/String.html)。
 
-### `length/1`
+### length/1
 
 返回字符串中的字素的数量：
 
@@ -81,7 +81,7 @@ iex> String.length("Hello")
 5
 ```
 
-### `replace/3`
+### replace/3
 
 返回一个新的字符串，它的值是把原来某些模式替换成新的字符串得到的：
 
@@ -90,7 +90,7 @@ iex> String.replace("Hello", "e", "a")
 "Hallo"
 ```
 
-### `duplicate/2`
+### duplicate/2
 
 返回重复了 n 遍的字符串：
 
@@ -99,7 +99,7 @@ iex> String.duplicate("Oh my ", 3)
 "Oh my Oh my Oh my "
 ```
 
-### `split/2`
+### split/2
 
 返回把原字符串按照某个模式分隔后的字符串列表：
 

@@ -88,7 +88,7 @@ iex> for x <- 1..100,
 [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]
 ```
 
-## Menggunakan `:into`
+## Menggunakan :into
 
 Bagaimana jika kita ingin membuat sesuatu yang bukan list?  Dengan pilihan `:into` kita bisa.  Sebagai panduan umum, `:into` menerima segala struktur yang mengimplementasikan protokol `Collectable`.
 

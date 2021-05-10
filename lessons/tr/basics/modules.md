@@ -106,7 +106,7 @@ iex> %{name: "Sean"} = sean
 
 Artık modülleri ve ve yapıları nasıl oluşturacağımız biliyoruz, Birleştirme yolu ile farklı fonksiyonellikleri nasıl ekleyeceğimizi öğrenelim.  Elixir diğer modüllerle etkileşime girmek için farklı yöntemler sunar.
 
-### `alias`
+### alias
 
 Modülere takma adlar tanımlamamıza izin veriri ve bu Elixir'de sıkça kullanılır:
 
@@ -146,7 +146,7 @@ defmodule Example do
 end
 ```
 
-### `import`
+### import
 
 If we want to import functions and macros rather than aliasing the module we can use `import/`:
 Eğer takma ad kullanmak yerine fonksiyon ve makroları eklemek isterseniz `import/` kullana biliriniz:
@@ -191,7 +191,7 @@ import List, only: :functions
 import List, only: :macros
 ```
 
-### `require`
+### require
 
 `require/2` çok sık kullanılmasada önemlidir. Bir modül gerekirse onun derlenmesini ve yüklenmesini sağlar. Bir modülün makrolarına erişmeye çalışıtığımızda kolaylık sağlar:
 
@@ -205,7 +205,7 @@ end
 
 Henüz yüklenmemiş bir makro çağırmaya kalkarsak, Elixir hata mesajı verir.
 
-### `use`
+### use
 
 `use` makrosu ile başka bir modülün mevcut modül tanımımızı değiştirmesini sağlayabiliriz.
 Kodumuzdaki `use` fonksiyonunu çağırdığımızda, sağlanan bu modül tarafından tanımlanan  `__using__/1`  callback gerçekleştirilir.

@@ -19,7 +19,7 @@ iex> sum.(2, 3)
 5
 ```
 
-### L'abbreviazione `&`
+### L'abbreviazione &
 
 L'uso delle funzioni anonime è una pratica così comune che in Elixir c'è un'abbreviazione per ottenere lo stesso risultato:
 
@@ -237,11 +237,11 @@ Quindi ora, quando `Greeter2.hello/1` viene invocata, possiamo usare tutte le in
 ...> Greeter2.hello(fred)
 "Hello, Fred"
 %{age: "95", favorite_color: "Taupe", name: "Fred"}
-# chiamata con una mappa contenente solo la chiave `:name`
+# chiamata con una mappa contenente solo la chiave :name
 ...> Greeter2.hello(%{name: "Fred"})
 "Hello, Fred"
 %{name: "Fred"}
-# chiamata con una mappa senza la chiave `:name`
+# chiamata con una mappa senza la chiave :name
 ...> Greeter2.hello(%{age: "95", favorite_color: "Taupe"})
 ** (FunctionClauseError) no function clause matching in Greeter2.hello/1
 
