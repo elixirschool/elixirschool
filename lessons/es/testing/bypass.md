@@ -1,13 +1,13 @@
----
-version: 1.0.0
-title: Bypass
----
-
-Cuando estamos probando nuestras aplicaciones, muchas veces necesitamos hacer requests a servicios externos. Incluso igual y queremos simular distintas situaciones como errores no esperados del servidor. Manejar estos casos de manera eficiente no es fácil en Elixir sin un poco de ayuda.
+%{
+  version: "1.0.0",
+  title: "Bypass",
+  excerpt: """
+  Cuando estamos probando nuestras aplicaciones, muchas veces necesitamos hacer requests a servicios externos. Incluso igual y queremos simular distintas situaciones como errores no esperados del servidor. Manejar estos casos de manera eficiente no es fácil en Elixir sin un poco de ayuda.
 
 En esta lección vamos a explorar cómo [bypass](https://github.com/PSPDFKit-labs/bypass) nos puede ayudar a rápida y fácilmente manejar esos requests en nuestras pruebas.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## ¿Qué es Bypass?
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "Cadenas",
+  excerpt: """
+  Cadenas, listas de caracteres, Grafemas y puntos de código.
+  """
+}
 ---
-version: 1.1.1
-title: Cadenas
----
-
-Cadenas, listas de caracteres, Grafemas y puntos de código.
-
-{% include toc.html %}
 
 ## Cadenas
 

@@ -1,9 +1,11 @@
+%{
+  version: "1.0.3",
+  title: "Querying",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.0.3
-title: Querying
----
-
-{% include toc.html %}
 
 En esta lección construiremos una la aplicación `Friends` y el catálogo de películas que configuramos en nuestra [lección anterior](./associations)
 

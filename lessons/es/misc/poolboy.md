@@ -1,12 +1,12 @@
----
-version: 1.2.0
-title: Poolboy
----
-
-Puedes acabarte los recursos de tu sistema si no limitas el número de procesos concurrentes que tu programa puede crear.
+%{
+  version: "1.2.0",
+  title: "Poolboy",
+  excerpt: """
+  Puedes acabarte los recursos de tu sistema si no limitas el número de procesos concurrentes que tu programa puede crear.
 [Poolboy](https://github.com/devinus/poolboy) es una librería genérica de pooling para Erlang que es muy usada, ligera y que soluciona este problema.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## ¿Por qué utilizar Poolboy?
 

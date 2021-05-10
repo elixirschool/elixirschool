@@ -1,16 +1,16 @@
----
-version: 1.2.0
-title: Plug
----
-
-Si estás familiarizado con Ruby puedes imaginar que Plug es como Rack con un poquito de Sinatra.
+%{
+  version: "1.2.0",
+  title: "Plug",
+  excerpt: """
+  Si estás familiarizado con Ruby puedes imaginar que Plug es como Rack con un poquito de Sinatra.
 Este proporciona una especificación para componentes de aplicaciones web y adaptadores para servidores web.
 Si bien no forma parte del núcleo de Elixir, Plug es un proyecto oficial de Elixir.
 
 Empezaremos creando una aplicación web mínima basada en Plug.
 Despues de eso, aprenderemos acerca del enrutador de Plug y como agregar Plug a una aplicación web existente.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Prerrequisitos
 

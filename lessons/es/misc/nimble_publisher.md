@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "NimblePublisher",
+  excerpt: """
+  [NimblePublisher](https://github.com/dashbitco/nimble_publisher) es un motor de publicación minimalista basado en ficheros con soporte para Markdown y coloreado de sintaxis.
+  """
+}
 ---
-version: 1.0.1
-title: NimblePublisher
----
-
-[NimblePublisher](https://github.com/dashbitco/nimble_publisher) es un motor de publicación minimalista basado en ficheros con soporte para Markdown y coloreado de sintaxis.
-
-{% include toc.html %}
 
 ## ¿Por qué usar NimblePublisher?
 
