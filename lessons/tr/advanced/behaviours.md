@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Davranışlar",
+  excerpt: """
+  Önceki derste Typespec'leri öğrendik, burada bu özellikleri uygulamak için bir modülün nasıl kullanılabileceğini göreceğiz. Elixir'de, bu durum davranışlar olarak adlandırılır.
+  """
+}
 ---
-version: 1.0.1
-title: Davranışlar
----
-
-Önceki derste Typespec'leri öğrendik, burada bu özellikleri uygulamak için bir modülün nasıl kullanılabileceğini göreceğiz. Elixir'de, bu durum davranışlar olarak adlandırılır.
-
-{% include toc.html %}
 
 ## Kullanımları
 

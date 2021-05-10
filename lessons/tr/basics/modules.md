@@ -1,10 +1,11 @@
+%{
+  version: "1.2.1",
+  title: "Modüller",
+  excerpt: """
+  Bu zaman kadar ki derslerimiz de fonksiyonları aynı dosya ve alanda tanımladık. In this lesson we're going to cover how to group functions and define a specialized map in a struct in order to organize our code more efficiently.
+  """
+}
 ---
-version: 1.2.1
-title: Modüller
----
-
-Bu zaman kadar ki derslerimiz de fonksiyonları aynı dosya ve alanda tanımladık. In this lesson we're going to cover how to group functions and define a specialized map in a struct in order to organize our code more efficiently.
-{% include toc.html %}
 
 ## Modüller
 

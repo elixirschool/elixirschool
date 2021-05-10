@@ -1,11 +1,11 @@
+%{
+  version: "1.4.0",
+  title: "Enum",
+  excerpt: """
+  Koleksiyonlarin numaralandirilmasi icin kullanilan sabit degerler algoritmalari.
+  """
+}
 ---
-version: 1.4.0
-title: Enum
----
-
-Koleksiyonlarin numaralandirilmasi icin kullanilan sabit degerler algoritmalari.
-
-{% include toc.html %}
 
 ## Enum
 

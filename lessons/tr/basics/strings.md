@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "Stringler (Dizeler)",
+  excerpt: """
+  Stringler, Karakter Listeleri, Graphemes ve Codepoints.
+  """
+}
 ---
-version: 1.1.1
-title:  Stringler (Dizeler)
----
-
-Stringler, Karakter Listeleri, Graphemes ve Codepoints.
-
-{% include toc.html %}
 
 ## Strinler
 

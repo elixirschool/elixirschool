@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Yürütüle bilirlik",
+  excerpt: """
+  Elixir'de yürütülebilir dosyalar oluşturmak için `eskript` kullanıyor olacağız. Escript, Erlang yüklü herhangi bir sistemde çalıştırılabilen bir yürütülebilir dosya üretir.
+  """
+}
 ---
-version: 1.0.1
-title: Yürütüle bilirlik
----
-
-Elixir'de yürütülebilir dosyalar oluşturmak için `eskript` kullanıyor olacağız. Escript, Erlang yüklü herhangi bir sistemde çalıştırılabilen bir yürütülebilir dosya üretir.
-
-{% include toc.html %}
 
 ## Başlarken
 

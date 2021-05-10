@@ -1,11 +1,11 @@
+%{
+  version: "1.1.2",
+  title: "Temeller",
+  excerpt: """
+  Temel veri tipleri ve temel operasyonlar ile başlayalım.
+  """
+}
 ---
-version: 1.1.2
-title: Temeller
----
-
-Temel veri tipleri ve temel operasyonlar ile başlayalım.
-
-{% include toc.html %}
 
 ## Başlarken
 
