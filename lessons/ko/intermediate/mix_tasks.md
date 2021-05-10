@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "커스텀 Mix 태스크",
+  excerpt: """
+  Elixir 프로젝트를 위한 커스텀 Mix 태스크 만들어 봅시다.
+  """
+}
 ---
-version: 1.0.1
-title: 커스텀 Mix 태스크
----
-
-Elixir 프로젝트를 위한 커스텀 Mix 태스크 만들어 봅시다.
-
-{% include toc.html %}
 
 ## 소개
 

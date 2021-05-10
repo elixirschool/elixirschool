@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "제어 구조",
+  excerpt: """
+  이번 강의에서는 우리가 Elixir에서 사용할 수 있는 제어 구조들에 대해 알아봅니다.
+  """
+}
 ---
-version: 1.1.1
-title: 제어 구조
----
-
-이번 강의에서는 우리가 Elixir에서 사용할 수 있는 제어 구조들에 대해 알아봅니다.
-
-{% include toc.html %}
 
 ## `if` 와 `unless`
 
