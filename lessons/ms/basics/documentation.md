@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Dokumentasi",
+  excerpt: """
+  Mendokumentasi kod Elixir.
+  """
+}
 ---
-version: 0.9.1
-title: Dokumentasi
----
-
-Mendokumentasi kod Elixir.
-
-{% include toc.html %}
 
 ## Pencatatan
 

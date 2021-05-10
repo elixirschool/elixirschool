@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Enum",
+  excerpt: """
+  Satu kumpulan algorithm untuk memproses satu persatu(enumerate) isi kandungan 'collection'.
+  """
+}
 ---
-version: 0.9.0
-title: Enum
----
-
-Satu kumpulan algorithm untuk memproses satu persatu(enumerate) isi kandungan 'collection'.
-
-{% include toc.html %}
 
 ## Enum
 

@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Operator Paip",
+  excerpt: """
+  Operator Paip `|>` menghantar hasil dari satu ungkapan(expression) sebagai paramater pertama kepada satu ungkapan lain.
+  """
+}
 ---
-version: 0.9.1
-title: Operator Paip
----
-
-Operator Paip `|>` menghantar hasil dari satu ungkapan(expression) sebagai paramater pertama kepada satu ungkapan lain.
-
-{% include toc.html %}
 
 ## Pengenalan
 
