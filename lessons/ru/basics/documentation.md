@@ -212,11 +212,11 @@ View them at "doc/index.html".
 
 Если все прошло хорошо, то вы должны увидеть сообщение, похожее на вывод команды выше. Давайте теперь заглянем в Mix проект. Там должна появиться новая папка с названием  **doc/**. Внутри нее находится сгенерированная документация. Если открыть ее начальную страницу ( **doc/index.html** ) в веб-обозревателе, то мы увидим следующее:
 
-![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
+![ExDoc Screenshot 1](/images/documentation_1.png)
 
 Мы видим, что Earmark обработал нашу разметку Markdown, и и теперь она отображается в удобном отформатированном виде.
 
-![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
+![ExDoc Screenshot 2](/images/documentation_2.png)
 
 Теперь мы можем разместить эту документацию на GitHub, на своем сайте, либо (наиболее обычный вариант) на[HexDocs](https://hexdocs.pm/).
 

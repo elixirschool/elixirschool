@@ -200,11 +200,11 @@ View them at "doc/index.html".
 
 Jika semuanya berjalan sesuai rencana, anda mestinya melihat pesan serupa dengan output contoh di atas. Mari sekarang lihat ke dalam project Mix kita dan kita mestinya melihat bahwa ada direktori lain bernama **doc/**. Di dalamnya adalah dokumentasi yang kita hasilkan. Jika kita mengunjungi halaman indox di browser kita kita harusnya melihat seperti berikut:
 
-![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
+![ExDoc Screenshot 1](/images/documentation_1.png)
 
 Kita bisa melihat bahwa Earmark telah merender markdown kita dan ExDoc sekarang menampilkannya dalam format yang bagus.
 
-![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
+![ExDoc Screenshot 2](/images/documentation_2.png)
 
 Kita sekarang bisa mendeploy ke GitHub, website kita sendiri, atau, lebih umum, [HexDocs](https://hexdocs.pm/).
 

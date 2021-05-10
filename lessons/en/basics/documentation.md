@@ -232,11 +232,11 @@ Let's now look inside our Mix project and we should see that there is another di
 Inside is our generated documentation.
 If we visit the index page in our browser we should see the following:
 
-![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
+![ExDoc Screenshot 1](/images/documentation_1.png)
 
 We can see that Earmark has rendered our Markdown and ExDoc is now displaying it in a useful format.
 
-![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
+![ExDoc Screenshot 2](/images/documentation_2.png)
 
 We can now deploy this to GitHub, our own website, or more commonly [HexDocs](https://hexdocs.pm/).
 

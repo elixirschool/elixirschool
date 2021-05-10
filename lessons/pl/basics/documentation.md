@@ -228,11 +228,11 @@ Jeżeli wszystko poszło zgodnie z planem powinieneś zobaczyć komunikat taki j
 Jeżeli zajrzymy teraz do naszego projektu, to w katalogu **doc/** odnajdziemy wygenerowaną dokumentację.
 Jeżeli otworzysz plik `index.html` w przeglądarce, powinieneś zobaczyć:
 
-![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
+![ExDoc Screenshot 1](/images/documentation_1.png)
 
 Jak widać Earmark stworzył z naszych znaczników dokumentację, a ExDoc wyświetla ją w czytelny sposób.
 
-![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
+![ExDoc Screenshot 2](/images/documentation_2.png)
 
 Możemy ją teraz umieścić na GitHubie, naszej stronie, albo w serwisie [HexDocs](https://hexdocs.pm/).
 

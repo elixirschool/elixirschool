@@ -228,11 +228,11 @@ View them at "doc/index.html".
 裡面是那些被生成的文件。
 如果在瀏覽器中存取索引頁面 (index page)，應該會看到以下內容：
 
-![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
+![ExDoc Screenshot 1](/images/documentation_1.png)
 
 可以看到，Earmark 已經完成渲染 Markdown 因而 ExDoc 現在顯示為一個可用易讀的格式。
 
-![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
+![ExDoc Screenshot 2](/images/documentation_2.png)
 
 現在可以將其部署到 GitHub、我們自己的網站，或更常見的 [HexDocs](https://hexdocs.pm/)。
 

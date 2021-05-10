@@ -320,7 +320,7 @@ While `benchee_json` and `benchee_csv` are simple, `benchee_html` is actually _v
 It can help you produce nice graphs and charts from your results easily, and you can even export them as PNG images.
 You check out [an example html report](http://www.pragtob.info/benchee/README/results.html) if you're interested, it includes graphs like this one:
 
-![benchee_html graph export sample]({% asset benchee_html_graph_sample.png @path %})
+![benchee_html graph export sample](/images/benchee_html_graph_sample.png)
 
 All three formatters are well-documented on their respective GitHub pages, so we won't cover the details of them here.
 
