@@ -1,13 +1,14 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: general
-tags: ['conferences']
-date: 2019-09-08
-layout: post
-title: Dispatch From ElixirConf 2019
-excerpt: >
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2019-09-08],
+  tags: ["conferences", "general"],
+  title: "Dispatch From ElixirConf 2019",
+  excerpt: """
   We had a great time at ElixirConf 2019! Hear about Elixir School's two workshops, along with the highlight talks and activities that we enjoyed this year.
+  """
+}
+
 ---
 
 This year's ElixirConf, in Colorado, really reflected the growing and thriving nature of the Elixir community. It was a jam-packed two days of workshops and two days of multi-track talks that showcased the increasingly diverse and innovative people and technologies that Elixir has to offer.

@@ -1,13 +1,14 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: general
-tags: ['phoenix']
-date: 2019-04-11
-layout: post
-title:  Building Real-Time Features with Phoenix Live View and PubSub
-excerpt: >
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2019-04-11],
+  tags: ["phoenix", "general"],
+  title: "Building Real-Time Features with Phoenix Live View and PubSub",
+  excerpt: """
   Integrate Phoenix PubSub with LiveView to build real-time features capable of broadcasting updates across a set of clients.
+  """
+}
+
 ---
 
 In an [earlier post](https://elixirschool.com/blog/phoenix-live-view/), we used the brand new (still pre-release at time of writing) Phoenix LiveView library to build a real-time feature with very little backend code and even less JavaScript. LiveView allowed us to easily connect our client to the server via a socket and push updates down to our client. In an app that allows users to "deploy" a repo to GitHub, we achieved the following real-time functionality:

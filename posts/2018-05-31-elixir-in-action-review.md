@@ -1,12 +1,14 @@
----
-author: George Mantzouranis
-author_link: https://github.com/gemantzu
-categories: review
-date:   2018-06-18
-layout: post
-title:  Reviewing Elixir in Action, Second Edition
-excerpt: >
- The first installment in our new series looking at, and reviewing, different learning materials available to the Elixir community.
+%{
+  author: "George Mantzouranis",
+  author_link: "https://github.com/gemantzu",
+  date: ~D[2018-06-18],
+  tags: ["review"],
+  title: "Reviewing Elixir in Action, Second Edition",
+  excerpt: """
+  The first installment in our new series looking at, and reviewing, different learning materials available to the Elixir community.
+  """
+}
+
 ---
 
 Welcome to the first post in our new series reviewing various learning material available for Elixir.

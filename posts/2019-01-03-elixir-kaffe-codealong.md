@@ -1,12 +1,14 @@
----
-author: Meryl Dakin
-author_link: https://github.com/meryldakin
-categories: general
-date: 2019-01-15
-layout: post
-title:  Connecting Elixir to Kafka with Kaffe
-excerpt: >
+%{
+  author: "Meryl Dakin",
+  author_link: "https://github.com/meryldakin",
+  date: ~D[2019-01-15],
+  tags: ["general"],
+  title: "Connecting Elixir to Kafka with Kaffe",
+  excerpt: """
   A codealong to help connect Kafka to your Elixir project with the wrapper Kaffe.
+  """
+}
+
 ---
 
 If we want to use the popular messaging system Kafka with our Elixir projects, we have a few wrappers we can choose from. This blogpost covers integrating one of them, [Kaffe](https://github.com/spreedly/kaffe), which doesn't have a lot of resources and therefore can be tricky to troubleshoot.

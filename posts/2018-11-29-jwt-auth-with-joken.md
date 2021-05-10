@@ -1,13 +1,14 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: general
-tags: ['plug', 'authentication']
-date:   2018-11-29
-layout: post
-title:  JWT Auth in Elixir with Joken
-excerpt: >
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2018-11-29],
+  tags: ["plug", "authentication", "general"],
+  title: "JWT Auth in Elixir with Joken",
+  excerpt: """
   Use Joken and JOSE for a light-weight implementation of JWT Auth in your Elixir web application.
+  """
+}
+
 ---
 
 [JSON Web Tokens](https://jwt.io/introduction/), or JWTs, allow us to authenticate requests between the client and the server by encrypting authentication information into a secure, compact JSON object that is digitally signed. In this post, we'll use the [Joken](https://github.com/bryanjos/joken) library to implement JWT auth in a Phoenix app. We'll focus on JWTs that are signed using a ECDSA private/public key pair, although you can also sign JWTs using an HMAC algorithm.

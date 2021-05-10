@@ -1,13 +1,14 @@
----
-author: Prince Wilson
-date: 2019-03-25
-layout: post
-categories: til
-tags: ['ecto']
-author_link: https://github.com/maxcell
-title:  TIL Ecto Constraints and Validations
-excerpt: >
+%{
+  author: "Prince Wilson",
+  author_link: "https://github.com/maxcell",
+  date: ~D[2019-03-25],
+  tags: ["ecto", "til"],
+  title: "TIL Ecto Constraints and Validations",
+  excerpt: """
   Let's take a look at how Ecto handles these two ways of ensuring data integrity
+  """
+}
+
 ---
 
 Developers want to create the best applications they can for their users. In the process, they want to make sure to give good feedback to their users when data doesn't get saved into the database. In Elixir, there is a great tool on top of the database that helps -- Ecto! It can put validations and constraints onto specific fields to ensure data integrity.

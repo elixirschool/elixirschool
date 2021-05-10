@@ -1,12 +1,15 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: general
-date: 2020-04-29
-layout: post
-title: "Instrumenting Phoenix with Telemetry Part II: Telemetry Metrics + Reporters"
-excerpt: >
-  In this series, we're instrumenting a Phoenix app and sending metrics to StatsD with the help of Elixir and Erlang's Telemetry offerings. In Part II we'll use Elixir's `Telemetry.Metrics` and `TelemetryMetricsStatsd` libraries to define and send metrics to StatsD for a given Telemetry event.
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2020-04-29],
+  tags: ["general"],
+  title: "Instrumenting Phoenix with Telemetry Part II: Telemetry Metrics + Reporters",
+  excerpt: """
+  In this series, we're instrumenting a Phoenix app and sending metrics to StatsD with the help of Elixir and Erlang's Telemetry offerings.
+  In Part II we'll use Elixir's `Telemetry.Metrics` and `TelemetryMetricsStatsd` libraries to define and send metrics to StatsD for a given Telemetry event.
+  """
+}
+
 ---
 
 ## Table Of Contents
@@ -283,7 +286,7 @@ So, when we execute our Telemetry with the `conn` passed in as the metadata argu
 
 ```elixir
 # lib/quantum_web/controllers/user_controller.ex
-def new(conn, _params) do 
+def new(conn, _params) do
   :telemetry.execute([:phoenix, :request], %{duration: System.monotonic_time() - start}, conn)
 end
 ```

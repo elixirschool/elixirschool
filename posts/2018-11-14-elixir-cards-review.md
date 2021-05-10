@@ -1,12 +1,14 @@
----
-author: George Mantzouranis
-author_link: https://github.com/gemantzu
-categories: review
-date:   2018-11-14
-layout: post
-title:  Reviewing Elixircards
-excerpt: >
+%{
+  author: "George Mantzouranis",
+  author_link: "https://github.com/gemantzu",
+  date: ~D[2018-11-14],
+  tags: ["review"],
+  title: "Reviewing Elixircards",
+  excerpt: """
   Elixircards show us how modern learning tools should work through their Elixir Decks.
+  """
+}
+
 ---
 
 For the next part of this series, we are reviewing 6 decks from [Elixircards](https://elixircards.co.uk/)

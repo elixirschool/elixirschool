@@ -1,13 +1,14 @@
----
-author: Alex Griffith
-author_link: https://github.com/alexgriff
-categories: til
-date: 2018-12-12
-layout: post
-tags: ['testing', 'logging']
-title:  TIL about ExUnit's capture_log option
-excerpt: >
+%{
+  author: "Alex Griffith",
+  author_link: "https://github.com/alexgriff",
+  date: ~D[2018-12-12],
+  tags: ["testing", "logging", "til"],
+  title: "TIL about ExUnit's capture_log option",
+  excerpt: """
   Capture the output from Logger to clean up your test runs
+  """
+}
+
 ---
 
 Have you ever run `mix test` and seen red error messages being logged when, in fact, all your tests are passing? This can often occur when adding test coverage for "sad path" code flows that include calls to `Logger.error/1`.

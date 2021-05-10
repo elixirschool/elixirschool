@@ -1,13 +1,14 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: general
-tags: ['live view']
-date: 2019-10-20
-layout: post
-title: Building a Table Sort UI with Live View's `live_link`
-excerpt: >
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2019-10-20],
+  tags: ["live view", "general"],
+  title: "Building a Table Sort UI with Live View's `live_link`",
+  excerpt: """
   We'll use LiveView's `live_link/2` together with the `handle_params/3` callback to allow users to sort a table in real-time.
+  """
+}
+
 ---
 
 LiveView makes it easy to solve for some of the most common UI challenges with little to no front-end code. It allows us to save JavaScript for the hard stuff––for complex and sophisticated UI changes. In building out a recent admin-facing view that included a table of student cohorts at the Flatiron School, I found myself reaching for LiveView. In just a few lines of backend code, my sortable table was up and running. Keep reading to see how you can leverage LiveView's `live_link/2` and `handle_params/3` to build out such a feature.

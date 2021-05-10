@@ -1,12 +1,14 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: general
-date: 2019-01-19
-layout: post
-title: Understanding Recursion with Elixir
-excerpt: >
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2019-01-19],
+  tags: ["general"],
+  title: "Understanding Recursion with Elixir",
+  excerpt: """
   De-mystify the concept of recursion and gain a deeper understanding of how and why to use it by writing our very own recursive function in Elixir.
+  """
+}
+
 ---
 
 "Recursion" can be a scary word for those of us unfamiliar with its applications. In this post, we'll de-mystify the concept of recursion and gain a deeper understanding of how and why to use it by writing our very own recursive function in Elixir.

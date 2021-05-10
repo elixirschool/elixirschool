@@ -1,13 +1,14 @@
----
-author: Kate Travers
-author_link: https://github.com/ktravers
-categories: til
-tags: ['ecto']
-date: 2019-08-23
-layout: post
-title: TIL How to Select Merge with Ecto.Query
-excerpt: >
+%{
+  author: "Kate Travers",
+  author_link: "https://github.com/ktravers",
+  date: ~D[2019-08-23],
+  tags: ["ecto", "til"],
+  title: "TIL How to Select Merge with Ecto.Query",
+  excerpt: """
   Before you reach for adding another association to your schema, consider using `Ecto.Query#select_merge/3` with a virtual field instead.
+  """
+}
+
 ---
 
 Working with Elixir and Ecto, I've run into scenarios where I needed to retrieve data from a table plus maybe a field or two from an unassociated table. In the past, whenever this happened, I'd usually spin up something I wasn't totally satisfied with -- maybe updating the schema(s), breaking it up into multiple queries, or building a multi-select statement if I was feeling fancy.

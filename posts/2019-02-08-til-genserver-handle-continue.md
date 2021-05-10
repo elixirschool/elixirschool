@@ -1,12 +1,14 @@
----
-author: Sophie DeBenedetto
-author_link: https://github.com/sophiedebenedetto
-categories: til
-date: 2019-02-15
-layout: post
-title:  TIL GenServer's `handle_continue/2`
-excerpt: >
+%{
+  author: "Sophie DeBenedetto",
+  author_link: "https://github.com/sophiedebenedetto",
+  date: ~D[2019-02-15],
+  tags: ["til"],
+  title: "TIL GenServer's `handle_continue/2`",
+  excerpt: """
   Support non-blocking, async GenServer initialization callbacks with OTP 21's nifty `handle_continue/2`!
+  """
+}
+
 ---
 
 What happens when starting up your GenServer requires executing a long-running process? We _don't_ want the execution of that process to block the GenServer from completing start-up. We also don't want to execute that process asynchronously in a way that creates a race condition between the running of the process and other messages arriving in our GenServer's inbox. In this post, we'll take a closer look at these two problems and understand how OTP 21's `GenServer.handle_continue/2` is the perfect solution.

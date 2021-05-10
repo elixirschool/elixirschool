@@ -1,13 +1,14 @@
----
-author: Sean Callan
-author_link: https://github.com/doomspork
-categories: general
-date: 2018-07-17
-layout: post
-tags: ['configuration', 'software design']
-title: Configuration Demystified
-excerpt: >
+%{
+  author: "Sean Callan",
+  author_link: "https://github.com/doomspork",
+  date: ~D[2018-07-17],
+  tags: ["configuration", "software design", "general"],
+  title: "Configuration Demystified",
+  excerpt: """
   We attempt to clear up some confusion around configuration by looking at the different types, the roles they play, and a different approach we could take.
+  """
+}
+
 ---
 
 There's been a lot of discussion about configuration in the community lately.

@@ -1,12 +1,14 @@
----
-author: George Mantzouranis
-author_link: https://github.com/gemantzu
-categories: review
-date:   2019-06-06
-layout: post
-title:  Reviewing Elixir Conf EU 2019
-excerpt: >
+%{
+  author: "George Mantzouranis",
+  author_link: "https://github.com/gemantzu",
+  date: ~D[2019-06-06],
+  tags: ["review"],
+  title: "Reviewing Elixir Conf EU 2019",
+  excerpt: """
   ElixirSchool was invited to participate in a conference for the first time! Our own @gemantzu was there, and has a lot to say!
+  """
+}
+
 ---
 
 Last year, it was my first time ever participating in the conference. I wanted to go off and see what this community had to offer me, as Elixir is the first language I have seriously considered working with as a professional. So, 2019 being my second back-to-back participation, I think can provide a direct comparison on how things have fared in our European join.
