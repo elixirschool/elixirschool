@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Grunnleggende Elixir",
+  excerpt: """
+  Installasjon, grunnleggende typer og operatorer.
+  """
+}
 ---
-version: 0.9.0
-title: Grunnleggende Elixir
----
-
-Installasjon, grunnleggende typer og operatorer.
-
-{% include toc.html %}
 
 ## Installering
 

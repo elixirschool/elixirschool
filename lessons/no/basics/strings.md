@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Strenger",
+  excerpt: """
+  Strenger, Karakter lister, Grafemer og Kode punkter.
+  """
+}
 ---
-version: 0.9.1
-title: Strenger
----
-
-Strenger, Karakter lister, Grafemer og Kode punkter.
-
-{% include toc.html %}
 
 ## Strenger
 

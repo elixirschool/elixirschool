@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Kontrollstrukturer",
+  excerpt: """
+  I denne leksjonen skal vi ta en nærmere titt på de forskjellige kontrollstrukturene Elixir har tilgjengelig.
+  """
+}
 ---
-version: 0.9.1
-title: Kontrollstrukturer
----
-
-I denne leksjonen skal vi ta en nærmere titt på de forskjellige kontrollstrukturene Elixir har tilgjengelig.
-
-{% include toc.html %}
 
 ## `if` og `unless`
 
