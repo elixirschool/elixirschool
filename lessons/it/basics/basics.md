@@ -1,11 +1,11 @@
+%{
+  version: "1.2.1",
+  title: "Base",
+  excerpt: """
+  Configurazione, tipi di base ed operazioni di base.
+  """
+}
 ---
-version: 1.2.1
-title: Base
----
-
-Configurazione, tipi di base ed operazioni di base.
-
-{% include toc.html %}
 
 ## Configurazione
 
