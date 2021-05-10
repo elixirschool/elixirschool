@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Pipe Operator",
+  excerpt: """
+  pipe operator `|>` นั้นใช้สำหรับส่งผลลัพธ์ของ expression ไปเป็น argument ตัวแรกของ expression ถัดไป
+  """
+}
 ---
-version: 1.0.1
-title: Pipe Operator
----
-
-pipe operator `|>` นั้นใช้สำหรับส่งผลลัพธ์ของ expression ไปเป็น argument ตัวแรกของ expression ถัดไป
-
-{% include toc.html %}
 
 ## บทนำ
 
