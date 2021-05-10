@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Operator potoku",
+  excerpt: """
+  Operator potoku `|>` przekazuje wynik jednego wyrażenia jako pierwszy parametr następnego wyrażenia.
+  """
+}
 ---
-version: 1.0.1
-title: Operator potoku
----
-
-Operator potoku `|>` przekazuje wynik jednego wyrażenia jako pierwszy parametr następnego wyrażenia.
-
-{% include toc.html %}
 
 ## Wprowadzenie
 

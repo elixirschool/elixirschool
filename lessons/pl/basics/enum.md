@@ -1,11 +1,11 @@
+%{
+  version: "1.6.1",
+  title: "Enum",
+  excerpt: """
+  Algorytmy pomagające przetwarzać kolekcje.
+  """
+}
 ---
-version: 1.6.1
-title: Enum
----
-
-Algorytmy pomagające przetwarzać kolekcje.
-
-{% include toc.html %}
 
 ## Enum
 

@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Organizacja kodu",
+  excerpt: """
+  Doświadczenie podpowiada, że bardzo ciężko jest trzymać cały nasz kod w jednym pliku. W tej lekcji przyjrzymy się, jak grupować nasze funkcje w moduły oraz jak za pomocą wyspecjalizowanych map, zwanych strukturami, można efektywnie zorganizować nasz kod.
+  """
+}
 ---
-version: 0.9.1
-title: Organizacja kodu
----
-
-Doświadczenie podpowiada, że bardzo ciężko jest trzymać cały nasz kod w jednym pliku. W tej lekcji przyjrzymy się, jak grupować nasze funkcje w moduły oraz jak za pomocą wyspecjalizowanych map, zwanych strukturami, można efektywnie zorganizować nasz kod.
-
-{% include toc.html %}
 
 ## Moduły
 

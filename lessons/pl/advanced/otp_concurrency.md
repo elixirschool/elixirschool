@@ -1,13 +1,13 @@
+%{
+  version: "1.0.4",
+  title: "Współbieżność z OTP",
+  excerpt: """
+  Poznaliśmy już abstrakcję do obsługi współbieżności, jaką oferuje Elixir, ale czasami potrzebujemy większej kontroli nad tym, co się dzieje, dlatego też możemy chcieć użyć zachowań OTP, na których zbudowany jest Elixir.
+
+  W tej lekcji skupimy się na istotniejszym elemencie: GenServer.
+  """
+}
 ---
-version: 1.0.4
-title: Współbieżność z OTP
----
-
-Poznaliśmy już abstrakcję do obsługi współbieżności, jaką oferuje Elixir, ale czasami potrzebujemy większej kontroli nad tym, co się dzieje, dlatego też możemy chcieć użyć zachowań OTP, na których zbudowany jest Elixir.
-
-W tej lekcji skupimy się na istotniejszym elemencie: GenServer.
-
-{% include toc.html %}
 
 ## GenServer
 

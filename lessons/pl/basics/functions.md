@@ -1,12 +1,12 @@
----
-version: 1.2.0
-title: Funkcje
----
-
-W Elixirze i w wielu innych językach funkcyjnych, funkcje są konceptem absolutnie podstawowym.
+%{
+  version: "1.2.0",
+  title: "Funkcje",
+  excerpt: """
+  W Elixirze i w wielu innych językach funkcyjnych, funkcje są konceptem absolutnie podstawowym.
 W tej lekcji poznamy rodzaje funkcji, różnice pomiędzy nimi oraz ich zastosowania.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Funkcje anonimowe
 

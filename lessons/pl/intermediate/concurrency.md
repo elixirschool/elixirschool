@@ -1,15 +1,13 @@
+%{
+  version: "1.1.1",
+  title: "Współbieżność",
+  excerpt: """
+  Jednym z najbardziej wartościowych elementów Elixira jest obsługa współbieżności.
+  Dzięki temu, że działa on na maszynie wirtualnej Erlanga, zadanie to zostało bardzo uproszczone.
+  Współbieżność oparta jest o model aktorów, reprezentowanych przez procesy, które komunikują się, wymieniając wiadomości.
+  """
+}
 ---
-version: 1.1.1
-title: Współbieżność
----
-
-Jednym z najbardziej wartościowych elementów Elixira jest obsługa współbieżności.
-Dzięki temu, że działa on na maszynie wirtualnej Erlanga, zadanie to zostało bardzo uproszczone.
-Współbieżność oparta jest o model aktorów, reprezentowanych przez procesy, które komunikują się, wymieniając wiadomości.
-
-W tej lekcji przyjrzymy się modułom, które służą do obsługi współbieżności, a w kolejnych omówimy i zaimplementujemy zachowania OTP.
-
-{% include toc.html %}
 
 ## Procesy
 

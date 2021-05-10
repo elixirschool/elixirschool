@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "Dokumentowanie kodu",
+  excerpt: """
+  Jak dokumentować kod Elixira.
+  """
+}
 ---
-version: 1.1.1
-title: Dokumentowanie kodu
----
-
-Jak dokumentować kod Elixira.
-
-{% include toc.html %}
 
 ## Adnotacje
 
