@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Fungsi",
+  excerpt: """
+  Di Elixir dan banyak bahasa fungsional lainnya, fungsi adalah first class citizen. Kita akan pelajari tentang tipe-tipe fungsi di Elixir, apa yang membuatnya berbeda, dan bagaimana menggunakannya.
+  """
+}
 ---
-version: 0.9.1
-title: Fungsi
----
-
-Di Elixir dan banyak bahasa fungsional lainnya, fungsi adalah first class citizen. Kita akan pelajari tentang tipe-tipe fungsi di Elixir, apa yang membuatnya berbeda, dan bagaimana menggunakannya.
-
-{% include toc.html %}
 
 ## Anonymous function
 

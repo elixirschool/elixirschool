@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Strings",
+  excerpt: """
+  Tentang String di Elixir, Char list, Grapheme, dan Codepoint.
+  """
+}
 ---
-version: 0.9.1
-title: Strings
----
-
-Tentang String di Elixir, Char list, Grapheme, dan Codepoint.
-
-{% include toc.html %}
 
 ## String di Elixir
 

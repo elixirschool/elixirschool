@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "Struktur Kendali",
+  excerpt: """
+  Dalam pelajaran ini kita akan melihat struktur kendali yang tersedia untuk kita di Elixir.
+  """
+}
 ---
-version: 1.1.1
-title: Struktur Kendali
----
-
-Dalam pelajaran ini kita akan melihat struktur kendali yang tersedia untuk kita di Elixir.
-
-{% include toc.html %}
 
 ## `if` dan `unless`
 

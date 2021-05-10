@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Embedded Elixir (EEx)",
+  excerpt: """
+  Sebagaimana Ruby punya ERB dan Java punya JSP, Elixir punya EEx atau Embedded Elixir.  Dengan EEx kita bisa memasukkan dan menjalankan Elixir di dalam string.
+  """
+}
 ---
-version: 0.9.1
-title: Embedded Elixir (EEx)
----
-
-Sebagaimana Ruby punya ERB dan Java punya JSP, Elixir punya EEx atau Embedded Elixir.  Dengan EEx kita bisa memasukkan dan menjalankan Elixir di dalam string.
-
-{% include toc.html %}
 
 ## API
 

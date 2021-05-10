@@ -1,12 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Mnesia",
+  excerpt: """
+  Mnesia adalah sebuah sistem manajemen database terdistribusi real-time yang kuat.
+  """
+}
 ---
-version: 0.9.0
-title: Mnesia
----
-
-Mnesia adalah sebuah sistem manajemen database terdistribusi real-time yang kuat.
-
-
-{% include toc.html %}
 
 ## Sekilas
 
