@@ -1,9 +1,11 @@
+%{
+  version: "1.1.2",
+  title: "Nerves",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.1.2
-title: Nerves
----
-
-{% include toc.html %}
 
 ## Εισαγωγή και απαιτήσεις
 
