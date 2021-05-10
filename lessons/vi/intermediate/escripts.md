@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "File thực thi",
+  excerpt: """
+  Để tạo các file thực thi trong Elixir chúng ta sẽ sử dụng escript. Escript tạo một thực thi mà có thể chạy trên bất kỳ hệ thống nào với Erlang được cài đặt.
+  """
+}
 ---
-version: 0.9.1
-title: File thực thi
----
-
-Để tạo các file thực thi trong Elixir chúng ta sẽ sử dụng escript. Escript tạo một thực thi mà có thể chạy trên bất kỳ hệ thống nào với Erlang được cài đặt. 
-
-{% include toc.html %}
 
 ## Bắt đầu
 

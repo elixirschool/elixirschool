@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Tác vụ Mix tùy biến",
+  excerpt: """
+  Tạo ra một tác vụ tùy biến cho dự án Elixir của bạn.
+  """
+}
 ---
-version: 0.9.1
-title: Tác vụ Mix tùy biến
----
-
-Tạo ra một tác vụ tùy biến cho dự án Elixir của bạn.
-
-{% include toc.html %}
 
 ## Giới thiệu
 

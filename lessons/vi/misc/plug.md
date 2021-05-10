@@ -1,11 +1,11 @@
+%{
+  version: "0.10.0",
+  title: "Plug",
+  excerpt: """
+  Nếu bạn biết Ruby bạn có thể nghĩ Plug như là Rack với một chút Sinatra. Nó cung cấp một đặc tả cho các thành phần ứng dụng web và kết nối nó với web servers. Tuy không nằm trong phần cốt lõi nhưng Plug là một dự án chính thức của Elixir.
+  """
+}
 ---
-version: 0.10.0
-title: Plug
----
-
-Nếu bạn biết Ruby bạn có thể nghĩ Plug như là Rack với một chút Sinatra. Nó cung cấp một đặc tả cho các thành phần ứng dụng web và kết nối nó với web servers. Tuy không nằm trong phần cốt lõi nhưng Plug là một dự án chính thức của Elixir.
-
-{% include toc.html %}
 
 ## Cài đặt
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.0.3",
+  title: "Đặc tả và kiểu",
+  excerpt: """
+  Trong bài học này, chúng ta sẽ học về cú pháp `@spec` và `@type`. `@spec` giống như là một cú pháp hỗ trợ để viết tài liệu, và có thể được phân tích bởi các công cụ khác, `@type` giúp chúng ta viết các code dễ đọc và dễ hiểu hơn.
+  """
+}
 ---
-version: 1.0.3
-title: Đặc tả và kiểu
----
-
-Trong bài học này, chúng ta sẽ học về cú pháp `@spec` và `@type`. `@spec` giống như là một cú pháp hỗ trợ để viết tài liệu, và có thể được phân tích bởi các công cụ khác, `@type` giúp chúng ta viết các code dễ đọc và dễ hiểu hơn.
-
-{% include toc.html %}
 
 ## Giới thiệu
 

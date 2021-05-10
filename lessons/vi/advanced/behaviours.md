@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Behaviours",
+  excerpt: """
+  Chúng ta đã học về Typespecs trong bài học trước, trong bài này, chúng ta sẽ học về cách để yêu cầu một module cài đặt những tiêu chuẩn đó. Trong Elixir, tính năng này thường được gọi bằng Behaviours.
+  """
+}
 ---
-version: 1.0.1
-title: Behaviours
----
-
-Chúng ta đã học về Typespecs trong bài học trước, trong bài này, chúng ta sẽ học về cách để yêu cầu một module cài đặt những tiêu chuẩn đó. Trong Elixir, tính năng này thường được gọi bằng Behaviours.
-
-{% include toc.html %}
 
 ## Sử dụng
 

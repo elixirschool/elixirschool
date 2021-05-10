@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Strings",
+  excerpt: """
+  String, Chuỗi kí tự (Char List), Chữ cái (Graphemes) và Codepoints.
+  """
+}
 ---
-version: 0.9.1
-title: Strings
----
-
-String, Chuỗi kí tự (Char List), Chữ cái (Graphemes) và Codepoints.
-
-{% include toc.html %}
 
 ## Strings
 

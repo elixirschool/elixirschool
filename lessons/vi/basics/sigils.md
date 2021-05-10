@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Sigils",
+  excerpt: """
+  Làm việc cùng và tạo mới sigils.
+  """
+}
 ---
-version: 0.9.0
-title: Sigils
----
-
-Làm việc cùng và tạo mới sigils.
-
-{% include toc.html %}
 
 ## Tổng quan về Sigils
 

@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Hàm",
+  excerpt: """
+  Trong Elixir và nhiều ngôn ngữ lập trình hàm, hàm là "first class citizen". Chúng ta sẽ học về các kiểu hàm trong Elixir, chúng khác nhau như thế nào, và dùng chúng ra sao.
+  """
+}
 ---
-version: 0.9.1
-title: Hàm
----
-
-Trong Elixir và nhiều ngôn ngữ lập trình hàm, hàm là "first class citizen". Chúng ta sẽ học về các kiểu hàm trong Elixir, chúng khác nhau như thế nào, và dùng chúng ra sao.
-
-{% include toc.html %}
 
 ## Hàm nặc danh (Anonymous function)
 
