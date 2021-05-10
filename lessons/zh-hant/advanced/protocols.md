@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "協定",
+  excerpt: """
+  在本課程中，將研究協定 (Protocols) 是什麼，以及如何在 Elixir 中使用。
+  """
+}
 ---
-version: 1.0.1
-title: 協定
----
-
-在本課程中，將研究協定 (Protocols) 是什麼，以及如何在 Elixir 中使用。
-
-{% include toc.html %}
 
 ## 什麼是協定 (Protocols)
 

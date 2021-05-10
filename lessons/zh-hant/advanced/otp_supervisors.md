@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "OTP Supervisors",
+  excerpt: """
+  Supervisors 是一個有特殊目的處理程序：它監控其它處理程序。這些 supervisors 使我們能夠藉由在子 (child) 處理程序失效時自動重新啟動，進而建立有故障容錯能力 (fault-tolerant) 的應用程式 。
+  """
+}
 ---
-version: 1.1.1
-title: OTP Supervisors
----
-
-Supervisors 是一個有特殊目的處理程序：它監控其它處理程序。這些 supervisors 使我們能夠藉由在子 (child) 處理程序失效時自動重新啟動，進而建立有故障容錯能力 (fault-tolerant) 的應用程式 。
-
-{% include toc.html %}
 
 ## 配置 (Configuration)
 

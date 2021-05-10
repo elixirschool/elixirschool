@@ -1,15 +1,15 @@
----
-version: 1.0.0
-title: Bypass
----
-
-在測試應用程式時，通常需要向外部服務發出請求。
+%{
+  version: "1.0.0",
+  title: "Bypass",
+  excerpt: """
+  在測試應用程式時，通常需要向外部服務發出請求。
 甚至可能想要模擬不同的情況，例如意外的伺服器錯誤。
 在沒有任何幫助下，要在 Elixir 中以效率高的方式進行處理並不容易。
 
 在本課程中，將探討 [bypass](https://github.com/PSPDFKit-labs/bypass) 如何幫助我們快速輕鬆地處理測試中的這些請求。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 什麼是 Bypass？
 

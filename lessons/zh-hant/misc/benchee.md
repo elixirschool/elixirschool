@@ -1,13 +1,13 @@
----
-version: 2.0.0
-title: Benchee
----
-
-我們無法靠猜測來得知哪些函數快而哪些慢 - 當想知道時需要實際量測。
+%{
+  version: "2.0.0",
+  title: "Benchee",
+  excerpt: """
+  我們無法靠猜測來得知哪些函數快而哪些慢 - 當想知道時需要實際量測。
 這就是基準測試（benchmarking）出場之時。
 在本課程中，將學習測量程式碼的速度是有多麼容易。
-
-{% include toc.html %}
+  """
+}
+---
 
 # 關於 Benchee
 

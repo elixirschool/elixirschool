@@ -1,9 +1,8 @@
----
-version: 1.1.0
-title: StreamData
----
-
-基於案例（example-based）的單元測試函式庫，例如 [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html)，是個極佳的工具來協助驗證程式碼是否以如你預期的方式工作。
+%{
+  version: "1.1.0",
+  title: "StreamData",
+  excerpt: """
+  基於案例（example-based）的單元測試函式庫，例如 [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html)，是個極佳的工具來協助驗證程式碼是否以如你預期的方式工作。
 但是，基於案例的單元測試有一些缺點：
 
 * 由於並非測試所有輸入情境，因此容易遺漏邊界案例。
@@ -11,8 +10,9 @@ title: StreamData
 * 想以多個案例測試單一函數時，這些測試可能會非常冗長。
 
 在本課程中，將探討 [StreamData](https://github.com/whatyouhide/stream_data) 如何幫助我們克服上述一些缺點。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 什麼是 StreamData?
 

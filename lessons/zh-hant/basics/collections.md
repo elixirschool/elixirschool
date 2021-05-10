@@ -1,11 +1,11 @@
+%{
+  version: "1.3.1",
+  title: "集合",
+  excerpt: """
+  串列、元組、關鍵字串列和映射。
+  """
+}
 ---
-version: 1.3.1
-title: 集合
----
-
-串列、元組、關鍵字串列和映射。
-
-{% include toc.html %}
 
 ## 串列 (Lists)
 

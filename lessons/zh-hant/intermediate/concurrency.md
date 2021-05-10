@@ -1,13 +1,13 @@
----
-version: 1.1.0
-title: 並行性
----
-
-Elixir 的賣點之一是支援並行性 (concurrency)。感謝 Erlang VM (BEAM)，Elixir 的並行性比預期的要容易。並行性模組依賴於 Actors，一個包含通過信文傳遞 (message passing) 而與其它處理程序 (processes) 對話的行程。
+%{
+  version: "1.1.0",
+  title: "並行性",
+  excerpt: """
+  Elixir 的賣點之一是支援並行性 (concurrency)。感謝 Erlang VM (BEAM)，Elixir 的並行性比預期的要容易。並行性模組依賴於 Actors，一個包含通過信文傳遞 (message passing) 而與其它處理程序 (processes) 對話的行程。
 
 在本課程中，將介紹 Elixir 附帶的並行性模組。而在下面章節中，會介紹實現它們的 OTP 行為。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 處理程序 (Processes)
 

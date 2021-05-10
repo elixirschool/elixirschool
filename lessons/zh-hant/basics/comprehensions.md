@@ -1,11 +1,11 @@
+%{
+  version: "1.1.0",
+  title: "解析",
+  excerpt: """
+  列表解析 (List comprehensions) 是在 Elixir 中通過列舉來循環 (looping) 的語法糖 (syntactic sugar)。在本課程中，我們將看看如何使用解析 (comprehensions) 來進行疊代 (iteration) 和生成 (generation)。
+  """
+}
 ---
-version: 1.1.0
-title: 解析
----
-
-列表解析 (List comprehensions) 是在 Elixir 中通過列舉來循環 (looping) 的語法糖 (syntactic sugar)。在本課程中，我們將看看如何使用解析 (comprehensions) 來進行疊代 (iteration) 和生成 (generation)。
-
-{% include toc.html %}
 
 ## 基礎
 

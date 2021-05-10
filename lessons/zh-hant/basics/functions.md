@@ -1,12 +1,12 @@
----
-version: 1.2.0
-title: 函數
----
-
-在 Elixir 和許多函數式語言中，函數是一等公民。
+%{
+  version: "1.2.0",
+  title: "函數",
+  excerpt: """
+  在 Elixir 和許多函數式語言中，函數是一等公民。
 本課程將會學習 Elixir 中的函數類型、它們因何與眾不同，以及如何使用它們。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 匿名 (Anonymous) 函數
 

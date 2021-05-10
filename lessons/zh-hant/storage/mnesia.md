@@ -1,11 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Mnesia",
+  excerpt: """
+  Mnesia 是一個重型即時分佈式資料庫管理系統。
+  """
+}
 ---
-version: 1.2.0
-title: Mnesia
----
-
-Mnesia 是一個重型即時分佈式資料庫管理系統。
-
-{% include toc.html %}
 
 ## 概要
 

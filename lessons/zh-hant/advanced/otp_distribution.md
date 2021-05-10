@@ -1,13 +1,13 @@
----
-version: 1.0.1
-title: OTP 分散式
----
-
-## 分散式簡介
+%{
+  version: "1.0.1",
+  title: "OTP 分散式",
+  excerpt: """
+  ## 分散式簡介
 可以於一組分散在單個主機或多個主機上的不同 node 中執行 Elixir 應用程式。
 Elixir 允許通過幾個不同的機制在這些 node 之間進行通訊，在本課程中將概述這些機制。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## node 間的通訊
 

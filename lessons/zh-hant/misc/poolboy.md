@@ -1,12 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Poolboy",
+  excerpt: """
+  如果不限制程式可以生成的最大並行處理程序數量，則會輕易地耗盡系統資源。[Poolboy](https://github.com/devinus/poolboy) 是一個廣泛使用於解決這個問題的 Erlang 輕量級通用池函式庫。
+  """
+}
 ---
-version: 1.2.0
-title: Poolboy
----
-
-如果不限制程式可以生成的最大並行處理程序數量，則會輕易地耗盡系統資源。[Poolboy](https://github.com/devinus/poolboy) 是一個廣泛使用於解決這個問題的 Erlang 輕量級通用池函式庫。
-
-
-{% include toc.html %}
 
 ## 為什麼使用 Poolboy？
 
