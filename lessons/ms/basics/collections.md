@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Collections",
+  excerpt: """
+  List, tuples, keywords, maps, dicts dan functional combinators.
+  """
+}
 ---
-version: 0.9.0
-title: Collections
----
-
-List, tuples, keywords, maps, dicts dan functional combinators.
-
-{% include toc.html %}
 
 ## List
 
