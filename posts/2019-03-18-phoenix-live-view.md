@@ -196,7 +196,7 @@ Now that we have the basic pieces in place, let's break down the live view proce
 
 The live view connection process looks something like this:
 
-![]({% asset live_view.png @path %})
+![](/images/live_view.png)
 
 When our app receives an HTTP request for the index route, it will respond by rendering the static HTML defined in our live view's `render/1` function. It will do so by first invoking our view's `mount/2` function, only then rendering the HTML populated with whatever default values `mount/2` assigned to the socket.
 

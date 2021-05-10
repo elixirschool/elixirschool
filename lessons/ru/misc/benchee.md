@@ -320,7 +320,7 @@ end
 Он может с легкостью строить красивые графики и диаграммы, и даже позволяет экспортировать их в изображение формата PNG.
 Можете посмотреть [пример вывода html](http://www.pragtob.info/benchee/README/results.html), если интересно - он включает в себя графики вроде этого:
 
-![benchee_html graph export sample]({% asset benchee_html_graph_sample.png @path %})
+![benchee_html graph export sample](/images/benchee_html_graph_sample.png)
 
 Для всех трёх форматтеров написана хорошая документация на их страницах на GitHub, поэтому мы не будем вдаваться в детали.
 

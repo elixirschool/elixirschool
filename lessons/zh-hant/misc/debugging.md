@@ -260,11 +260,11 @@ iex > :int.ni(Example)
 
 當開啟除錯器時將看到一個像下面一樣的新視窗：
 
-![Debugger Screenshot 1]({% asset debugger_1.png @path %})
+![Debugger Screenshot 1](/images/debugger_1.png)
 
 而在將模組加入到除錯器後，在左側的選單中即能被使用：
 
-![Debugger Screenshot 2]({% asset debugger_2.png @path %})
+![Debugger Screenshot 2](/images/debugger_2.png)
 
 ## 建立斷點
 
@@ -290,11 +290,11 @@ iex > Example.cpu_burns(1, 1, 1)
 
 執行將在 IEx 中暫停，除錯器視窗口應顯示如下：
 
-![Debugger Screenshot 3]({% asset debugger_3.png @path %})
+![Debugger Screenshot 3](/images/debugger_3.png)
 
 並且將出現帶有原始碼的額外視窗：
 
-![Debugger Screenshot 4]({% asset debugger_4.png @path %})
+![Debugger Screenshot 4](/images/debugger_4.png)
 
 在這個視窗中，可以尋找變數的值，往前到下一行或計算表達式。
 在指令中 `:int.disable_break/2` 則可以被呼用以禁用斷點：

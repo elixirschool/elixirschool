@@ -289,11 +289,11 @@ The `:int` module is an interpreter that gives us the ability to create breakpoi
 
 When you start the debugger you will see a new window like this:
 
-![Debugger Screenshot 1]({% asset debugger_1.png @path %})
+![Debugger Screenshot 1](/images/debugger_1.png)
 
 After we've attached our module to the debugger it will be available in the menu on the left:
 
-![Debugger Screenshot 2]({% asset debugger_2.png @path %})
+![Debugger Screenshot 2](/images/debugger_2.png)
 
 ### Creating breakpoints
 
@@ -319,11 +319,11 @@ iex > Example.cpu_burns(1, 1, 1)
 
 Execution will be paused in IEx and the debugger window should look like this:
 
-![Debugger Screenshot 3]({% asset debugger_3.png @path %})
+![Debugger Screenshot 3](/images/debugger_3.png)
 
 An additional window with our source code will appear:
 
-![Debugger Screenshot 4]({% asset debugger_4.png @path %})
+![Debugger Screenshot 4](/images/debugger_4.png)
 
 In this window we can look up the value of variables, step forward to next line, or evaluate expressions.
 `:int.disable_break/2` can be called in order to disable a breakpoint:

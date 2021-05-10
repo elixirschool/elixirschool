@@ -132,11 +132,11 @@ iex > :int.ni(Example)
 
 디버거를 시작하면 이런 창을 볼 수 있습니다.
 
-![Debugger Screenshot 1]({% asset debugger_1.png @path %})
+![Debugger Screenshot 1](/images/debugger_1.png)
 
 모듈을 디버거에 붙인 다음 왼쪽에 있는 메뉴에서 사용 가능합니다.
 
-![Debugger Screenshot 2]({% asset debugger_2.png @path %})
+![Debugger Screenshot 2](/images/debugger_2.png)
 
 ## 브레이크 포인트 만들기
 
@@ -160,11 +160,11 @@ iex > Example.cpu_burns(1, 1, 1)
 
 실행은 IEx에서 멈추고 이런 디버거 화면이 보일 것입니다.
 
-![Debugger Screenshot 3]({% asset debugger_3.png @path %})
+![Debugger Screenshot 3](/images/debugger_3.png)
 
 그리고 창이 하나 더 열리고 소스 코드가 나타날 것입니다.
 
-![Debugger Screenshot 4]({% asset debugger_4.png @path %})
+![Debugger Screenshot 4](/images/debugger_4.png)
 
 이 창에서는 변수의 값을 볼 수 있고, 다음 줄로 넘어가거나 식을 평가해볼 수 있습니다. `:int.disable_break/2`로 브레이크 포인트를 비활성화 할 수 있습니다.
 

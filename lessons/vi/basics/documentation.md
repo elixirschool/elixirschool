@@ -202,11 +202,11 @@ View them at "doc/index.html".
 
 Hy vọng rằng, mọi thứ vẫn như kế hoạch, bạn có thể thấy những nội dung tương tự như ví dụ ở trên. Hãy cùng xem xét ở bên trong dự án Mix của chúng ta, và chúng ta sẽ thấy một thư mục được tạo ở gọi là **doc/**. Trong thư mục này chính là các tài liệu được sinh ra. Nếu chúng ta mở trang index bằng trình duyệt, chúng ta có thể thấy:
 
-![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
+![ExDoc Screenshot 1](/images/documentation_1.png)
 
 Chúng ta thấy Earmark đã hiển thị markdown, và ExDoc dưới định khác tốt hơn.
 
-![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
+![ExDoc Screenshot 2](/images/documentation_2.png)
 
 Giờ đây chúng ta có thể triển khai dự án này lên Github, hoặc phổ biến hơn là [HexDocs](https://hexdocs.pm/).
 
