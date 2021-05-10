@@ -1,13 +1,13 @@
----
-version: 0.9.2
-title: Mix
----
-
-Sebelum kita belajar lebih mendalam mengenai Elixir kita perlu memahami tentang mix.  Jika anda biasa dengan Ruby, mix adalah gabungan Bundler, RubyGems dan Rake.  Ia adalah elemen penting di dalam mana-mana projek Elixir dan di dalam pelajaran ini kita akan meneroka beberapa cirinya yang hebat.  Untuk melihat apa yang dibekalkan oleh mix, jalankan `mix help`.
+%{
+  version: "0.9.2",
+  title: "Mix",
+  excerpt: """
+  Sebelum kita belajar lebih mendalam mengenai Elixir kita perlu memahami tentang mix.  Jika anda biasa dengan Ruby, mix adalah gabungan Bundler, RubyGems dan Rake.  Ia adalah elemen penting di dalam mana-mana projek Elixir dan di dalam pelajaran ini kita akan meneroka beberapa cirinya yang hebat.  Untuk melihat apa yang dibekalkan oleh mix, jalankan `mix help`.
 
 Sehingga tahap ini kita telah bekerja dengan `iex` yang mempunyai banyak kekangan.  Untuk membina sesuatu yang berguna kita perlu memisahkan kod kita kepada banyak fail supaya mudah untuk diuruskan, dan mix memudahkan kita menguruskan projek-projek kita.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Projek Baru
 

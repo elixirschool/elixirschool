@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Struktur Kawalan",
+  excerpt: """
+  Dalam pelajaran ini kita akan melihat struktur kawalan yang dibekalkan oleh ELixir.
+  """
+}
 ---
-version: 0.9.0
-title: Struktur Kawalan
----
-
-Dalam pelajaran ini kita akan melihat struktur kawalan yang dibekalkan oleh ELixir.
-
-{% include toc.html %}
 
 ## `if` dan `unless`
 

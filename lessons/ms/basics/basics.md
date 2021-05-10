@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Asas",
+  excerpt: """
+  Penyediaan, Jenis Data Asas dan Operasi.
+  """
+}
 ---
-version: 0.9.0
-title: Asas
----
-
-Penyediaan, Jenis Data Asas dan Operasi.
-
-{% include toc.html %}
 
 ## Penyediaan
 
