@@ -2,7 +2,6 @@
   version: "1.0.1",
   title: "Ayudantes de IEx",
   excerpt: """
-  
   """
 }
 ---
@@ -40,7 +39,7 @@ update/4             values/1
 
 Cada vez que IEx se inicia buscará un archivo de configuración `.iex.exs`. Si no está presente en el directorio actual, entonces el directorio raíz del usuario (`~/.iex.exs`) será usado como respaldo.
 
-Las opciones de configuración y el código definido en este archivo estarán disponibles cuando se inicie el 
+Las opciones de configuración y el código definido en este archivo estarán disponibles cuando se inicie el
 de IEx. Por ejemplo, si queremos algunas funciones de ayuda disponibles en IEx, podemos abrir `.iex.exs` y hacer algunos cambios.
 
 Empecemos por añadir un módulo con algunas funciones de ayuda:

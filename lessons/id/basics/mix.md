@@ -4,7 +4,7 @@
   excerpt: """
   Sebelum kita bisa masuk ke pelajaran Elixir lebih mendalam pertama-tama kita harus belajar tentang mix. Jika anda sudah familiar dengan Ruby, mix adalah seperti gabungan dari Bundler, RubyGems, dan Rake.  Mix adalah bagian krusial dari project Elixir apapun dan dalam pelajaran ini kita akan mengeksplorasi sebagian dari fitur-fiturnya. Untuk melihat semua yang bisa dilakukan oleh mix, jalankan `mix help`.
 
-Sampai sekarang kita hanya bekerja dengan `iex` yang punya keterbatasan.  Untuk membuat sesuatu yang bermakna, kita perlu memecah code kita ke banyak file agar bisa mengaturnya dengan efektir. Mix memungkinkan kita melakukan hal itu dengan project.
+  Sampai sekarang kita hanya bekerja dengan `iex` yang punya keterbatasan.  Untuk membuat sesuatu yang bermakna, kita perlu memecah code kita ke banyak file agar bisa mengaturnya dengan efektir. Mix memungkinkan kita melakukan hal itu dengan project.
   """
 }
 ---

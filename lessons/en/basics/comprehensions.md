@@ -3,7 +3,7 @@
   title: "Comprehensions",
   excerpt: """
   List comprehensions are syntactic sugar for looping through enumerables in Elixir.
-In this lesson, we'll look at how we can use comprehensions for iteration and generation.
+  In this lesson, we'll look at how we can use comprehensions for iteration and generation.
   """
 }
 ---

@@ -3,7 +3,7 @@
   title: "Testing",
   excerpt: """
   Testing is an important part of developing software.
-In this lesson we'll look at how to test our Elixir code with ExUnit and some best practices for doing so.
+  In this lesson we'll look at how to test our Elixir code with ExUnit and some best practices for doing so.
   """
 }
 ---

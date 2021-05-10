@@ -4,7 +4,7 @@
   excerpt: """
   Wir haben uns die Elixir-Abstraktion für Nebenläufigkeit angesehen, aber manchmal hätten wir gern mehr Kontrolle und dafür sehen wir uns OTP behaviors an, auf denen Elixir gebaut wurde.
 
-In dieser Lektion werden wir uns hauptsächlich mit zwei wichtigen Teilen beschäftigen: GenServers.
+  In dieser Lektion werden wir uns hauptsächlich mit zwei wichtigen Teilen beschäftigen: GenServers.
   """
 }
 ---
@@ -41,7 +41,7 @@ end
 
 ### Synchrone Funktionen
 
-Oft ist es notwendig mit unserem GenServer in einer synchronen Art und Weise zu interagieren, etwa eine Funktion aufrufen und auf das Ergebnis warten. 
+Oft ist es notwendig mit unserem GenServer in einer synchronen Art und Weise zu interagieren, etwa eine Funktion aufrufen und auf das Ergebnis warten.
 Um synchrone Requests zu verwalten müssen wir den `GenServer.handle_call/3`-Callback benutzen, welcher benötigt: Den Request, den PID des Aufrufers und den vorhandenen Status; es wird davon ausgegangen, dass er ein Tupel zurückgibt: `{:reply, response, state}`.
 
 Mit pattern matching können wir Callbacks für viele verschiedene Requests und Stati definieren. Eine komplette Liste akzeptierter Rückgabewerte findet sich in der [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3)-Dokumentation.

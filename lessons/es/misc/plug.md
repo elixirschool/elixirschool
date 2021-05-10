@@ -3,11 +3,11 @@
   title: "Plug",
   excerpt: """
   Si estás familiarizado con Ruby puedes imaginar que Plug es como Rack con un poquito de Sinatra.
-Este proporciona una especificación para componentes de aplicaciones web y adaptadores para servidores web.
-Si bien no forma parte del núcleo de Elixir, Plug es un proyecto oficial de Elixir.
+  Este proporciona una especificación para componentes de aplicaciones web y adaptadores para servidores web.
+  Si bien no forma parte del núcleo de Elixir, Plug es un proyecto oficial de Elixir.
 
-Empezaremos creando una aplicación web mínima basada en Plug.
-Despues de eso, aprenderemos acerca del enrutador de Plug y como agregar Plug a una aplicación web existente.
+  Empezaremos creando una aplicación web mínima basada en Plug.
+  Despues de eso, aprenderemos acerca del enrutador de Plug y como agregar Plug a una aplicación web existente.
   """
 }
 ---
@@ -44,7 +44,7 @@ $ mix deps.get
 
 ## La especificación
 
-Para comenzar a crear Plugs, necesitamos conocer, y adherirse a la especificación Plug. 
+Para comenzar a crear Plugs, necesitamos conocer, y adherirse a la especificación Plug.
 Afortunadamente para nosotros, sólo hay dos funciones necesarias: `init/1` y `call/2`.
 
 Aquí hay un Plug simple que devuelve "Hello World!":

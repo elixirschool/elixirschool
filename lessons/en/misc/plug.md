@@ -3,13 +3,13 @@
   title: "Plug",
   excerpt: """
   If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra.
-It provides a specification for web application components and adapters for web servers.
-While not part of Elixir core, Plug is an official Elixir project.
+  It provides a specification for web application components and adapters for web servers.
+  While not part of Elixir core, Plug is an official Elixir project.
 
-In this lesson we'll build a simple HTTP server from scratch using the `PlugCowboy` Elixir library.
-Cowboy is a simple HTTP server for Erlang and Plug will provide us with a connection adapter for that web server.
+  In this lesson we'll build a simple HTTP server from scratch using the `PlugCowboy` Elixir library.
+  Cowboy is a simple HTTP server for Erlang and Plug will provide us with a connection adapter for that web server.
 
-After we set up our minimal web application, we'll learn about Plug's router and how to use multiple plugs in a single web app.
+  After we set up our minimal web application, we'll learn about Plug's router and how to use multiple plugs in a single web app.
   """
 }
 ---

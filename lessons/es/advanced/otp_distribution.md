@@ -4,8 +4,8 @@
   excerpt: """
   ## Introducción a la distribución
 
-Podemos ejecutar aplicaciones Elixir en un conjunto de nodos distribuidos diferentes ya sea en un único *host* o en múltiples *hosts*.
-Elixir nos permite comunicarnos a través de estos nodos usando algunos mecanismos los cuales están fuera del objetivo de esta lección.
+  Podemos ejecutar aplicaciones Elixir en un conjunto de nodos distribuidos diferentes ya sea en un único *host* o en múltiples *hosts*.
+  Elixir nos permite comunicarnos a través de estos nodos usando algunos mecanismos los cuales están fuera del objetivo de esta lección.
   """
 }
 ---

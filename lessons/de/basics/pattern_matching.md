@@ -2,7 +2,9 @@
   version: "0.9.0",
   title: "Pattern Matching",
   excerpt: """
-  Pattern matching ist ein mächtiger Teil Elixirs. Es erlaubt uns einfache Werte, Datenstrukturen und sogar Funktionen zu matchen. In dieser Lektion werden wir anfangen zu sehen, wie pattern matching benutzt wird.
+  Pattern matching ist ein mächtiger Teil Elixirs.
+  Es erlaubt uns einfache Werte, Datenstrukturen und sogar Funktionen zu matchen.
+  In dieser Lektion werden wir anfangen zu sehen, wie pattern matching benutzt wird.
   """
 }
 ---

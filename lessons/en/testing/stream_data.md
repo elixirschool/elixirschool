@@ -3,13 +3,13 @@
   title: "StreamData",
   excerpt: """
   An example-based unit testing library like [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) is a wonderful tool to help you verify that your code works the way you think it does.
-However, example-based unit tests have some drawbacks:
+  However, example-based unit tests have some drawbacks:
 
-* It can be easy to miss edge cases, since you're only testing a few inputs.
-* You can write these tests without thinking through your requirements thoroughly.
-* These tests can be very verbose when you use several examples for one function.
+  * It can be easy to miss edge cases, since you're only testing a few inputs.
+  * You can write these tests without thinking through your requirements thoroughly.
+  * These tests can be very verbose when you use several examples for one function.
 
-In this lesson we're going to explore how [StreamData](https://github.com/whatyouhide/stream_data) can help us overcome some of these drawbacks.
+  In this lesson we're going to explore how [StreamData](https://github.com/whatyouhide/stream_data) can help us overcome some of these drawbacks.
   """
 }
 ---
@@ -24,7 +24,7 @@ This can be helpful when you have to debug your code!
 If a 50-element list causes your function to break, and only one of the list elements is problematic, StreamData can help you identify the offending element.
 
 This testing library has two main modules.
-[`StreamData`](https://hexdocs.pm/stream_data/StreamData.html) generates streams of random data. 
+[`StreamData`](https://hexdocs.pm/stream_data/StreamData.html) generates streams of random data.
 [`ExUnitProperties`](https://hexdocs.pm/stream_data/ExUnitProperties.html) lets you run tests against your functions, using the generated data as your input.
 
 You might be asking how you can say anything meaningful about a function if you don't know what your exact inputs are. Read on!
@@ -103,12 +103,12 @@ end
 
 That's hardly a comprehensive test, though.
 What should happen when the second argument is `0`?
-What should the output be when the first argument is an empty string? 
+What should the output be when the first argument is an empty string?
 What does it even mean to repeat an empty string?
 How should the function work with UTF-8 characters?
 Will the function still work with large input strings?
 
-We could write more examples to test edge cases and large strings. 
+We could write more examples to test edge cases and large strings.
 However, let's see if we can use StreamData to test this function more rigorously without much more code.
 
 ```elixir
@@ -138,7 +138,7 @@ This lets us document the property we're testing.
 We can omit the module name when calling `string/2` because `use ExUnitProperties` [imports StreamData functions](https://github.com/whatyouhide/stream_data/blob/v0.4.2/lib/ex_unit_properties.ex#L109).
 * `StreamData.integer/0` generates random integers.
 * `times >= 0` is kind of like a guard clause.
-It ensures that the random integers we use in our test are greater than or equal to zero. 
+It ensures that the random integers we use in our test are greater than or equal to zero.
 [`SreamData.positive_integer/0`](https://hexdocs.pm/stream_data/StreamData.html#positive_integer/0) exists, but it's not quite what we want, since `0` is an acceptable value in our function.
 
 The `???` is just some pseudocode I added.
@@ -288,7 +288,7 @@ end
 
 We used `StreamData.list_of/1` and `StreamData.term/0` to create lists of random length, whose elements are any type.
 
-Like the property-based test for repeating strings, we compare the length of the new list with the product of the source list and `times`. 
+Like the property-based test for repeating strings, we compare the length of the new list with the product of the source list and `times`.
 The second assertion takes some explaining:
 
 1. We break the new list apart into several lists, each of which has the same number of elements as `list`.
@@ -325,7 +325,7 @@ end
 
 How might we test this?
 Let's approach it a bit differently than we've done so far.
-For strings and lists, we asserted something about the length of the final data, and we asserted something about the contents of the data. 
+For strings and lists, we asserted something about the length of the final data, and we asserted something about the contents of the data.
 Trying the same approach with tuples is possible, but the test code may not be as straightforward.
 
 Consider two sequences of operations you could perform on a tuple:
