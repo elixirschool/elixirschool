@@ -1,11 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "カスタムMixタスク",
+  excerpt: """
+  ElixirプロジェクトのためのカスタムMixタスクの作成
+  """
+}
 ---
-version: 1.2.0
-title: カスタムMixタスク
----
-
-ElixirプロジェクトのためのカスタムMixタスクの作成
-
-{% include toc.html %}
 
 ## 導入
 

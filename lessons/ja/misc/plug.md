@@ -1,9 +1,8 @@
----
-version: 2.2.0
-title: Plug
----
-
-Rubyをよくご存知なら、PlugはところどころSinatraの面影をもつRackだと考えることができます。
+%{
+  version: "2.2.0",
+  title: "Plug",
+  excerpt: """
+  Rubyをよくご存知なら、PlugはところどころSinatraの面影をもつRackだと考えることができます。
 
 PlugはWebアプリケーションのための仕様と、Webサーバーのためのアダプタを提供します。Elixirのコアの一部ではなく、公式のElixirプロジェクトです。
 
@@ -12,8 +11,9 @@ CowboyはErlang用のシンプルなHTTPサーバーであり、PlugはそのWeb
 
 Plugをつかって最小限のWebアプリケーションの開発を始めることができます。
 そして、Plugのrouterや既存のWebアプリケーションにPlugを追加する方法を学んでいきましょう。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 前提条件
 
