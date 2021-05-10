@@ -1,7 +1,0 @@
-{
-  "name": "Elixir School",
-  "description": "ElixirSchool.com — Lessons in the Elixir programming language.",
-  "repository": "https://github.com/elixirschool/elixirschool",
-  "website": "https://elixirschool.com",
-  "keywords": ["elixir", "elixir-lang", "elixirschool", "learning", "open-source"]
-}
