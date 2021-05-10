@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Kolleksjoner",
+  excerpt: """
+  Lister, tupler, nøkkelord, kart og funksjonell kombinasjon.
+  """
+}
 ---
-version: 0.9.0
-title: Kolleksjoner
----
-
-Lister, tupler, nøkkelord, kart og funksjonell kombinasjon.
-
-{% include toc.html %}
 
 ## Lister (lists)
 

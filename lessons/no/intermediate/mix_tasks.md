@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Egnedefinerte Mix Tasks",
+  excerpt: """
+  Å lage egendefinerte Mix tasks for dine Elixir prosjekter.
+  """
+}
 ---
-version: 1.0.1
-title: Egnedefinerte Mix Tasks
----
-
-Å lage egendefinerte Mix tasks for dine Elixir prosjekter.
-
-{% include toc.html %}
 
 ## Introduksjon
 
