@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "GenStage",
+  excerpt: """
+  In this lesson we're going to take a closer look at the GenStage, what role it serves, and how we can leverage it in our applications.
+  """
+}
 ---
-version: 1.1.1
-title: GenStage
----
-
-In this lesson we're going to take a closer look at the GenStage, what role it serves, and how we can leverage it in our applications.
-
-{% include toc.html %}
 
 ## Introduction
 

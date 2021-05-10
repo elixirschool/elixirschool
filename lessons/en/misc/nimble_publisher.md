@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "NimblePublisher",
+  excerpt: """
+  [NimblePublisher](https://github.com/dashbitco/nimble_publisher) is a minimal filesystem-based publishing engine with Markdown support and code highlighting.
+  """
+}
 ---
-version: 1.0.2
-title: NimblePublisher
----
-
-[NimblePublisher](https://github.com/dashbitco/nimble_publisher) is a minimal filesystem-based publishing engine with Markdown support and code highlighting.
-
-{% include toc.html %}
 
 ## Why use NimblePublisher?
 
