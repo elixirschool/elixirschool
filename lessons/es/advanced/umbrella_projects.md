@@ -1,12 +1,12 @@
----
-version: 1.0.1
-title: Proyectos Umbrella
----
-
-Algunas veces un proyecto puede ser grande, demasiado grande incluso.
+%{
+  version: "1.0.1",
+  title: "Proyectos Umbrella",
+  excerpt: """
+  Algunas veces un proyecto puede ser grande, demasiado grande incluso.
 Mix nos permite separar nuestro código en varias aplicaciones y hacer que nuestros proyectos de Elixir sean más manejables a medida que van creciendo.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Introducción
 

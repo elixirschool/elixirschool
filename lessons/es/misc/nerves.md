@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Nerves",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.0.1
-title: Nerves
-redirect_from:
-  - /es/lessons/advanced/nerves
----
-
-{% include toc.html %}
 
 ## Introducción y requerimientos
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.2.0",
+  title: "Guardian (Básico)",
+  excerpt: """
+  [Guardian](https://github.com/ueberauth/guardian) es una librería de autenticación ampliamente utilizada, basada en [JWT](https://jwt.io/) (JSON Web Tokens).
+  """
+}
 ---
-version: 1.2.0
-title: Guardian (Básico)
----
-
-[Guardian](https://github.com/ueberauth/guardian) es una librería de autenticación ampliamente utilizada, basada en [JWT](https://jwt.io/) (JSON Web Tokens).
-
-{% include toc.html %}
 
 ## JWTs
 

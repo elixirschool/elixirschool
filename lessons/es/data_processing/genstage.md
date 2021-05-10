@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "GenStage",
+  excerpt: """
+  En esta lección vamos a echar un vistazo muy de cerca a `GenStage`, que rol cumple y como podemos aprovecharlo en nuestra aplicaciones.
+  """
+}
 ---
-version: 1.0.2
-title: GenStage
----
-
-En esta lección vamos a echar un vistazo muy de cerca a `GenStage`, que rol cumple y como podemos aprovecharlo en nuestra aplicaciones.
-
-{% include toc.html %}
 
 ## Introducción
 
