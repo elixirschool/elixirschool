@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "Reťazce",
+  excerpt: """
+  Reťazce, Charlisty, Grafémy a Codepointy
+  """
+}
 ---
-version: 1.1.1
-title: Reťazce
----
-
-Reťazce, Charlisty, Grafémy a Codepointy
-
-{% include toc.html %}
 
 ## Reťazce
 

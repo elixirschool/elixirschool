@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Sigily",
+  excerpt: """
+  Práca so sigilmi a ich vytváranie.
+  """
+}
 ---
-version: 1.0.1
-title: Sigily
----
-
-Práca so sigilmi a ich vytváranie.
-
-{% include toc.html %}
 
 ## Čo sú sigily
 

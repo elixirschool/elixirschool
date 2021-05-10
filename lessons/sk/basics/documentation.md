@@ -1,11 +1,11 @@
+%{
+  version: "1.0.3",
+  title: "Dokumentácia",
+  excerpt: """
+  Dokumentovanie kódu v Elixire.
+  """
+}
 ---
-version: 1.0.3
-title: Dokumentácia
----
-
-Dokumentovanie kódu v Elixire.
-
-{% include toc.html %}
 
 
 ## O dokumentovaní v Elixire

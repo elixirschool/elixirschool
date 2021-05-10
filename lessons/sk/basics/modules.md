@@ -1,11 +1,11 @@
+%{
+  version: "1.3.1",
+  title: "Moduly",
+  excerpt: """
+  Zo skúsenosti vieme, že je dosť nepohodlné, mať všetky funkcie v jedinom súbore. V tejto lekcii sa naučíme, ako funkcie zoskupovať a definovať špeciálny typ mapy, zvaný *struct*, aby sme mohli náš kód usporiadať efektívnejšie.
+  """
+}
 ---
-version: 1.3.1
-title: Moduly
----
-
-Zo skúsenosti vieme, že je dosť nepohodlné, mať všetky funkcie v jedinom súbore. V tejto lekcii sa naučíme, ako funkcie zoskupovať a definovať špeciálny typ mapy, zvaný *struct*, aby sme mohli náš kód usporiadať efektívnejšie.
-
-{% include toc.html %}
 
 ## Moduly
 

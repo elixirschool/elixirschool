@@ -1,9 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Pomocné funkcie IEx",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.0.1
-title: Pomocné funkcie IEx
----
-
-{% include toc.html %}
 
 ## Prehľad
 
