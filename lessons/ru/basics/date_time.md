@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "Дата и время",
+  excerpt: """
+  Работа с временем в Elixir.
+  """
+}
 ---
-version: 1.1.1
-title: Дата и время
----
-
-Работа с временем в Elixir.
-
-{% include toc.html %}
 
 ## Время
 
