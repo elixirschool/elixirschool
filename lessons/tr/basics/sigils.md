@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "İşaretler (Sigils)",
+  excerpt: """
+  İşaretlerle çalışma ve yeni işaretler oluşturma.
+  """
+}
 ---
-version: 1.0.1
-title: İşaretler (Sigils)
----
-
-İşaretlerle çalışma ve yeni işaretler oluşturma.
-
-{% include toc.html %}
 
 ## Genel Bilgi
 

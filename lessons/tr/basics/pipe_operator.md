@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Pipe Operatörü",
+  excerpt: """
+  Pipe operatörü `|>` bir fonksiyonun sonucunu diğer fonksiyona ilk değer olarak geçirir.
+  """
+}
 ---
-version: 1.0.1
-title: Pipe Operatörü
----
-
-Pipe operatörü `|>` bir fonksiyonun sonucunu diğer fonksiyona ilk değer olarak geçirir.
-
-{% include toc.html %}
 
 ## Giriş
 Programlama dağınık olabilir. Gerçekten çok fazla dağınıklık ve karmaşa takip etmeyi zorlaştır. Aşağıda iç içe geçmiş fonksiyonları inceleyelim:

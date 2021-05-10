@@ -1,13 +1,13 @@
----
-version: 1.0.1
-title: Hata işleme
----
-
-`{:error, reason}` demet'inin kullanımı daha yaygın olmasına rağmen, Elixir bir takım istisnaları'da desteklemektedir. Bu derste bahsettiğimiz istisnaların neler olduğuna  göz atacağız.
+%{
+  version: "1.0.1",
+  title: "Hata işleme",
+  excerpt: """
+  `{:error, reason}` demet'inin kullanımı daha yaygın olmasına rağmen, Elixir bir takım istisnaları'da desteklemektedir. Bu derste bahsettiğimiz istisnaların neler olduğuna  göz atacağız.
 
 Bu ders ile standart kullanım dışında kalan hata yakalamalarına değineceğiz.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Hata işleme
 

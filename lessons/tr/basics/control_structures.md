@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "Kontrol Yapilari",
+  excerpt: """
+  Burada Elixir'in bize sundugu kontrol yapilarini inceleyecegiz.
+  """
+}
 ---
-version: 1.1.1
-title: Kontrol Yapilari
----
-
-Burada Elixir'in bize sundugu kontrol yapilarini inceleyecegiz.
-
-{% include toc.html %}
 
 ## `if` and `unless`
 
