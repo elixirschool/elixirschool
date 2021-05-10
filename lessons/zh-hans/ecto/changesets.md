@@ -1,15 +1,15 @@
----
-version: 1.2.2
-title: Changesets
----
-
-为了往数据库中插入，更新或是删除数据，`Ecto.Repo.insert/2`, `update/2` 和 `delete/2` 都需要一个 changeset 作为它的第一个参数，那么什么是 changesets 呢?
+%{
+  version: "1.2.2",
+  title: "Changesets",
+  excerpt: """
+  为了往数据库中插入，更新或是删除数据，`Ecto.Repo.insert/2`, `update/2` 和 `delete/2` 都需要一个 changeset 作为它的第一个参数，那么什么是 changesets 呢?
 
 几乎每个开发人员都熟悉的一个任务是检查输入数据是否存在潜在的错误 - 这是因为我们希望在尝试将数据用于我们的目的之前确保数据是处于正确的状态。
 
 Ecto 提供了一个有关数据更改的完整解决方案，Ecto 将相关的函数和数据结构集合在 `Changeset` 模块中。 在本节课程中，我们将学习 `Changeset` 有关的功能，以及如何在将数据保存到数据库之前校验数据的完整性相关的知识。
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 创建你的第一个 changeset
 

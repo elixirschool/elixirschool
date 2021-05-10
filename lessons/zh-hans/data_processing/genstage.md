@@ -1,11 +1,11 @@
+%{
+  version: "1.1.1",
+  title: "GenStage",
+  excerpt: """
+  本课, 我们将学习 GenStage, 它的作用, 以及如何在我们的应用中使用它.
+  """
+}
 ---
-version: 1.1.1
-title: GenStage
----
-
-本课, 我们将学习 GenStage, 它的作用, 以及如何在我们的应用中使用它.
-
-{% include toc.html %}
 
 ## 介绍
 

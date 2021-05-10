@@ -1,11 +1,11 @@
+%{
+  version: "2.4.0",
+  title: "Basics",
+  excerpt: """
+  Ecto 是 Elixir 官方提供的数据库包装和集成查询语言的项目。 使用Ecto，我们可以创建 migrations，定义 schema，插入和更新记录，以及查询数据。
+  """
+}
 ---
-version: 2.4.0
-title: Basics
----
-
-Ecto 是 Elixir 官方提供的数据库包装和集成查询语言的项目。 使用Ecto，我们可以创建 migrations，定义 schema，插入和更新记录，以及查询数据。
-
-{% include toc.html %}
 
 ### 适配器
 

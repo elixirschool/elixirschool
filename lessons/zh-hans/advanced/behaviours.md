@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "行为",
+  excerpt: """
+  我们在前面的课程学习了类型和 specification。那么，这一章我们将学习如何引用一个模块来实现那些 specification。在 Elixir 里，这个功能被称之为行为。
+  """
+}
 ---
-version: 1.0.1
-title: 行为
----
-
-我们在前面的课程学习了类型和 specification。那么，这一章我们将学习如何引用一个模块来实现那些 specification。在 Elixir 里，这个功能被称之为行为。  
-
-{% include toc.html %}
 
 ## 使用场景
 

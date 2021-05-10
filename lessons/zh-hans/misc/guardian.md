@@ -1,11 +1,11 @@
+%{
+  version: "1.0.3",
+  title: "Guardian（基础）",
+  excerpt: """
+  [Guardian](https://github.com/ueberauth/guardian) 是一个广泛使用的，基于 [JWT](https://jwt.io/) (JSON Web Tokens) 的验证程序库。
+  """
+}
 ---
-version: 1.0.3
-title: Guardian（基础）
----
-
-[Guardian](https://github.com/ueberauth/guardian) 是一个广泛使用的，基于 [JWT](https://jwt.io/) (JSON Web Tokens) 的验证程序库。  
-
-{% include toc.html %}
 
 ## JWTs
 

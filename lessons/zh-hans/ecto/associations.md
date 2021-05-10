@@ -1,11 +1,11 @@
+%{
+  version: "1.2.1",
+  title: "关联关系",
+  excerpt: """
+  本课程我们将学习如何使用 Ecto 来定义和使用 schema 之间的关联关系。
+  """
+}
 ---
-version: 1.2.1
-title: 关联关系
----
-
-本课程我们将学习如何使用 Ecto 来定义和使用 schema 之间的关联关系。
-
-{% include toc.html %}
 
 ## 配置
 

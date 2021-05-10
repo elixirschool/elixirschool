@@ -1,11 +1,11 @@
+%{
+  version: "2.0.2",
+  title: "Distillery (基础)",
+  excerpt: """
+  Distillery 是纯 Elixir 编写的发布管理工具。它可以让你在极少，甚至不需要配置的情况下生成发布包，并部署到其它环境。
+  """
+}
 ---
-version: 2.0.2
-title: Distillery (基础)
----
-
-Distillery 是纯 Elixir 编写的发布管理工具。它可以让你在极少，甚至不需要配置的情况下生成发布包，并部署到其它环境。
-
-{% include toc.html %}
 
 ## 什么是发布包？
 

@@ -1,11 +1,11 @@
+%{
+  version: "1.6.1",
+  title: "Enum 模块",
+  excerpt: """
+  一些枚举集合元素的算法。
+  """
+}
 ---
-version: 1.6.1
-title: Enum 模块
----
-
-一些枚举集合元素的算法。
-
-{% include toc.html %}
 
 ## Enum
 
