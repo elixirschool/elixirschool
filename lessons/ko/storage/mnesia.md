@@ -1,11 +1,11 @@
+%{
+  version: "1.0.0",
+  title: "Mnesia",
+  excerpt: """
+  Mnesia는 실시간 분산 데이터베이스 관리 시스템을 담당하고 있습니다.
+  """
+}
 ---
-version: 1.0.0
-title: Mnesia
----
-
-Mnesia는 실시간 분산 데이터베이스 관리 시스템을 담당하고 있습니다.
-
-{% include toc.html %}
 
 ## 개론
 

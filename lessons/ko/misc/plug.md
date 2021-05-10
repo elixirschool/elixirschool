@@ -1,16 +1,16 @@
----
-version: 1.2.0
-title: Plug
----
-
-Ruby를 잘 알고 계신다면 Plug는 여러 부분에서 Sinatra의 영향을 받은 Rack이라고 생각해도 좋습니다.
+%{
+  version: "1.2.0",
+  title: "Plug",
+  excerpt: """
+  Ruby를 잘 알고 계신다면 Plug는 여러 부분에서 Sinatra의 영향을 받은 Rack이라고 생각해도 좋습니다.
 Plug는 Web 애플리케이션을 위한 명세와 Web 서버를 위한 어댑터를 제공합니다.
 Plug는 Elixir 코어의 일부가 아닌, Elixir의 공식 프로젝트입니다.
 
 작은 Plug 기반의 웹 애플리케이션을 만드는 것으로 시작해봅시다.
 그러고 나면, Plug의 라우터와 기존의 웹 애플리케이션에 Plug를 추가하는 법을 알게 될 것입니다.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## 시작하기 전에
 

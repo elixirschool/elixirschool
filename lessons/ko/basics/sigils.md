@@ -1,11 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "시길",
+  excerpt: """
+  시길을 이용하고 만드는 법.
+  """
+}
 ---
-version: 1.0.1
-title: 시길
----
-
-시길을 이용하고 만드는 법.
-
-{% include toc.html %}
 
 ## 시길 개요
 

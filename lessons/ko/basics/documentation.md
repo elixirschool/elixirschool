@@ -1,11 +1,11 @@
+%{
+  version: "1.1.0",
+  title: "문서화",
+  excerpt: """
+  Elixir 코드 문서화하기.
+  """
+}
 ---
-version: 1.1.0
-title: 문서화
----
-
-Elixir 코드 문서화하기.
-
-{% include toc.html %}
 
 ## 주석
 
