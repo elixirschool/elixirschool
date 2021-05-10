@@ -1,11 +1,11 @@
+%{
+  version: "1.3.1",
+  title: "Kolekcje",
+  excerpt: """
+  Listy, krotki, listy asocjacyjne i mapy.
+  """
+}
 ---
-version: 1.3.1
-title: Kolekcje
----
-
-Listy, krotki, listy asocjacyjne i mapy.
-
-{% include toc.html %}
 
 ## Listy
 

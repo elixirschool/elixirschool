@@ -1,11 +1,11 @@
+%{
+  version: "0.10.0",
+  title: "Plug",
+  excerpt: """
+  Jeżeli masz doświadczenie z Ruby to Plug może być czymś w rodzaju Racka z domieszką Sinatry. Definiuje on specyfikację dla aplikacji webowych oraz adapterów dla serwerów. Choć nie jest częścią biblioteki standardowej, to Plug jest oficjalnym projektem zespołu odpowiedzialnego za Elixira.
+  """
+}
 ---
-version: 0.10.0
-title: Plug
----
-
-Jeżeli masz doświadczenie z Ruby to Plug może być czymś w rodzaju Racka z domieszką Sinatry. Definiuje on specyfikację dla aplikacji webowych oraz adapterów dla serwerów. Choć nie jest częścią biblioteki standardowej, to Plug jest oficjalnym projektem zespołu odpowiedzialnego za Elixira.   
-
-{% include toc.html %}
 
 ## Instalacja
 

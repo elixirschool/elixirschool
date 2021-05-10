@@ -1,9 +1,11 @@
+%{
+  version: "1.0.1",
+  title: "Powłoka IEx",
+  excerpt: """
+  
+  """
+}
 ---
-version: 1.0.1
-title: Powłoka IEx 
----
-
-{% include toc.html %}
 
 ## Wstęp
 
