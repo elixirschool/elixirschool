@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Ejecutables",
+  excerpt: """
+  Para construir ejecutables en Elixir utilizaremos escript. Escript produce un ejecutable que puede correr en cualquier sistema con Erlang instalado.
+  """
+}
 ---
-version: 0.9.1
-title: Ejecutables
----
-
-Para construir ejecutables en Elixir utilizaremos escript. Escript produce un ejecutable que puede correr en cualquier sistema con Erlang instalado.
-
-{% include toc.html %}
 
 ## Comenzando
 

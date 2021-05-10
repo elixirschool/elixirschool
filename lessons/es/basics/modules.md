@@ -1,11 +1,11 @@
+%{
+  version: "1.4.1",
+  title: "Composición",
+  excerpt: """
+  Sabemos por experiencia que es incontrolable tener todas nuestras funciones en el mismo archivo y alcance. En esta sección cubriremos cómo agrupar funciones y definir un mapa especializado conocido como estructura (struct), con el propósito de organizar nuestro código de manera eficiente.
+  """
+}
 ---
-version: 1.4.1
-title: Composición
----
-
-Sabemos por experiencia que es incontrolable tener todas nuestras funciones en el mismo archivo y alcance. En esta sección cubriremos cómo agrupar funciones y definir un mapa especializado conocido como estructura (struct), con el propósito de organizar nuestro código de manera eficiente.
-
-{% include toc.html %}
 
 ## Modulos
 

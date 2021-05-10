@@ -1,11 +1,11 @@
+%{
+  version: "1.0.2",
+  title: "Tareas de Mix personalizadas",
+  excerpt: """
+  Creando tareas de Mix personalizadas para tus proyectos Elixir.
+  """
+}
 ---
-version: 1.0.2
-title: Tareas de Mix personalizadas
----
-
-Creando tareas de Mix personalizadas para tus proyectos Elixir.
-
-{% include toc.html %}
 
 ## Introducción
 

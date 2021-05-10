@@ -1,12 +1,12 @@
----
-version: 1.0.1
-title: Comportamientos
----
-
-Aprendimos acerca de Typespecs en la lección anterior, ahora vamos a aprender como requerir que un módulo implemente esas especificaciones.
+%{
+  version: "1.0.1",
+  title: "Comportamientos",
+  excerpt: """
+  Aprendimos acerca de Typespecs en la lección anterior, ahora vamos a aprender como requerir que un módulo implemente esas especificaciones.
 En Elixir, esta funcionalidad es referida como comportamientos.
-
-{% include toc.html %}
+  """
+}
+---
 
 ## Usos
 

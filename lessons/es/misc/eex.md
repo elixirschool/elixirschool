@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Elixir Embebido (EEx)",
+  excerpt: """
+  Al igual que Ruby tiene ERB y Java JSP, Elixir tiene EEx o Elixir Embebido. Con EEx podemos integrar y evaluar Elixir dentro de las cadenas.
+  """
+}
 ---
-version: 0.9.1
-title: Elixir Embebido (EEx)
----
-
-Al igual que Ruby tiene ERB y Java JSP, Elixir tiene EEx o Elixir Embebido. Con EEx podemos integrar y evaluar Elixir dentro de las cadenas.
-
-{% include toc.html %}
 
 ## API
 

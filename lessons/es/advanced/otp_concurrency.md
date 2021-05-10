@@ -1,13 +1,13 @@
----
-version: 1.0.3
-title: Concurrencia en OTP
----
-
-Hemos visto las abstracciones de Elixir para manejar concurrencia pero a veces necesitamos mayor control, para eso podemos usar los comportamientos OTP sobre los que está construido Elixir.
+%{
+  version: "1.0.3",
+  title: "Concurrencia en OTP",
+  excerpt: """
+  Hemos visto las abstracciones de Elixir para manejar concurrencia pero a veces necesitamos mayor control, para eso podemos usar los comportamientos OTP sobre los que está construido Elixir.
 
 En este lección nos enfocaremos en el componente mas grande: GenServers
-
-{% include toc.html %}
+  """
+}
+---
 
 ## GenServer
 

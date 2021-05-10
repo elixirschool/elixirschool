@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Almacenamiento de términos de Erlang (ETS)",
+  excerpt: """
+  Almacenamiento de términos de Erlang, comúnmente conocido como ETS, es un potente motor de almacenamiento incorporado en OTP y disponible para utilizar en Elixir. En esta lección vamos a ver cómo interactuar con ETS y cómo se pueden emplear en nuestras aplicaciones.
+  """
+}
 ---
-version: 0.9.1
-title: Almacenamiento de términos de Erlang (ETS)
----
-
-Almacenamiento de términos de Erlang, comúnmente conocido como ETS, es un potente motor de almacenamiento incorporado en OTP y disponible para utilizar en Elixir. En esta lección vamos a ver cómo interactuar con ETS y cómo se pueden emplear en nuestras aplicaciones.
-
-{% include toc.html %}
 
 ## Descripción General
 

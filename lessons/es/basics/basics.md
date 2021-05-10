@@ -1,11 +1,11 @@
+%{
+  version: "1.2.1",
+  title: "Básico",
+  excerpt: """
+  Preparar el entorno, tipos y operaciones básicas.
+  """
+}
 ---
-version: 1.2.1
-title: Básico
----
-
-Preparar el entorno, tipos y operaciones básicas.
-
-{% include toc.html %}
 
 ## Preparar el entorno
 
