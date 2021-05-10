@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Testing",
+  excerpt: """
+  Testing là một phần quan trọng của phát triển phần mềm. Trong bài này, chúng ta sẽ học cách để test code Elixir với ExUnit và một vài best practice để làm chuyện này.
+  """
+}
 ---
-version: 0.9.1
-title: Testing
----
-
-Testing là một phần quan trọng của phát triển phần mềm. Trong bài này, chúng ta sẽ học cách để test code Elixir với ExUnit và một vài best practice để làm chuyện này.
-
-{% include toc.html %}
 
 ## ExUnit
 

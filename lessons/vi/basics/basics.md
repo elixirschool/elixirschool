@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Cơ bản",
+  excerpt: """
+  Cài đặt, cái kiểu phổ thông và cơ chế hoạt động.
+  """
+}
 ---
-version: 0.9.0
-title: Cơ bản
----
-
-Cài đặt, cái kiểu phổ thông và cơ chế hoạt động.
-
-{% include toc.html %}
 
 ## Cài đặt
 

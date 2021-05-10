@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "OTP Supervisors",
+  excerpt: """
+  Supervisor (tạm dịch là giám trình - tiến trình giám sát) là các tiến trình (process) đặc biệt với chỉ một mục đích: quản lý các tiến trình khác. Giám trình cho phép chúng ta tạo ra các ứng dụng chống chịu lỗi (fault-tolerent) bằng cách tự động khởi động lại các tiến trình con khi chúng bị hỏng.
+  """
+}
 ---
-version: 0.9.1
-title: OTP Supervisors
----
-
-Supervisor (tạm dịch là giám trình - tiến trình giám sát) là các tiến trình (process) đặc biệt với chỉ một mục đích: quản lý các tiến trình khác. Giám trình cho phép chúng ta tạo ra các ứng dụng chống chịu lỗi (fault-tolerent) bằng cách tự động khởi động lại các tiến trình con khi chúng bị hỏng.
-
-{% include toc.html %}
 
 ## Cấu hình
 

@@ -1,11 +1,11 @@
+%{
+  version: "0.9.0",
+  title: "Mnesia",
+  excerpt: """
+  Mnesia là một hệ thống nặng kí trong việc quản trị cơ sở dữ liệu thời gian thực.
+  """
+}
 ---
-version: 0.9.0
-title: Mnesia
----
-
-Mnesia là một hệ thống nặng kí trong việc quản trị cơ sở dữ liệu thời gian thực.
-
-{% include toc.html %}
 
 ## Tổng quan
 

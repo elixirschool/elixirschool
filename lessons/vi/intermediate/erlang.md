@@ -1,11 +1,11 @@
+%{
+  version: "0.9.1",
+  title: "Erlang Interoperability",
+  excerpt: """
+  Một trong những lợi ích của việc xây dựng dựa trên Erlang VM (BEAM) chính là việc có rất nhiều những thư viện mà chúng ta có thể sử dụng. Tính tương tác này giúp chúng ta có thể tận dụng những thư viện đó cũng như thư viện chuẩn của Erlang từ Elixir code. Trong bài này chúng ta sẽ xem làm thế nào để sử dụng được những tính năng bên trong thư viện chuẩn cũng như thư viện của bên thứ ba từ Erlang.
+  """
+}
 ---
-version: 0.9.1
-title: Erlang Interoperability
----
-
-Một trong những lợi ích của việc xây dựng dựa trên Erlang VM (BEAM) chính là việc có rất nhiều những thư viện mà chúng ta có thể sử dụng. Tính tương tác này giúp chúng ta có thể tận dụng những thư viện đó cũng như thư viện chuẩn của Erlang từ Elixir code. Trong bài này chúng ta sẽ xem làm thế nào để sử dụng được những tính năng bên trong thư viện chuẩn cũng như thư viện của bên thứ ba từ Erlang.
-
-{% include toc.html %}
 
 ## Thư viện chuẩn
 Chúng ta có thể sử dụng một cách rộng rãi các thư viện chuẩn của Erlang ở bên trong ứng dụng Elixir. Module Erlang được biểu diễn bằng các atom không viết hoa (lowercase) như là `:os` hay là `:timer`.
