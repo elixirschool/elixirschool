@@ -2,7 +2,7 @@
   author: "Meryl Dakin",
   author_link: "https://github.com/meryldakin",
   date: ~D[2019-01-15],
-  tags: ["general"],
+  tags: ["kafka", "libraries"],
   title: "Connecting Elixir to Kafka with Kaffe",
   excerpt: """
   A codealong to help connect Kafka to your Elixir project with the wrapper Kaffe.
@@ -77,7 +77,7 @@ defp deps do
   [
     {:kaffe, "~> 1.9"}
   ]
-end  
+end
 ```
 
 - **2.c:** Run `mix deps.get` in the terminal to lock new dependencies.
@@ -144,7 +144,7 @@ end
 ```elixir
 config :kaffe,
   consumer: [
-    endpoints: [localhost: 9092],               
+    endpoints: [localhost: 9092],
     topics: ["our_topic", "another_topic"],     # the topic(s) that will be consumed
     consumer_group: "example-consumer-group",   # the consumer group for tracking offsets in Kafka
     message_handler: ExampleConsumer,           # the module that will process messages

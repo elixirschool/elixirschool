@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2020-05-06],
-  tags: ["general"],
+  tags: ["phoenix", "telemetry", "instrumenting"],
   title: "Instrumenting Phoenix with Telemetry Part III: Phoenix + Ecto Telemetry Events",
   excerpt: """
   In this series, we're instrumenting a Phoenix app and sending metrics to StatsD with the help of Elixir and Erlang's Telemetry offerings.

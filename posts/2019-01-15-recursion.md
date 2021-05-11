@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2019-01-19],
-  tags: ["general"],
+  tags: ["recursion", "software design"],
   title: "Understanding Recursion with Elixir",
   excerpt: """
   De-mystify the concept of recursion and gain a deeper understanding of how and why to use it by writing our very own recursive function in Elixir.
@@ -284,7 +284,7 @@ We can fix this by using `Enum.reverse` on the `new_list` once we've reached our
 ```elixir
 def delete_all([], el, new_list) do
   Enum.reverse(new_list)
-end  
+end
 ```
 
 If we put it all together, we'll have:
@@ -305,7 +305,7 @@ defmodule MyList do
 
   def delete_all([], el, new_list) do
     Enum.reverse(new_list)
-  end  
+  end
 end
 ```
 

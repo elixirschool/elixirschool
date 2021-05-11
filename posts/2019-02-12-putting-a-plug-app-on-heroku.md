@@ -2,7 +2,7 @@
   author: "Bobby Grayson",
   author_link: "",
   date: ~D[2019-02-12],
-  tags: ["plug", "general"],
+  tags: ["plug", "deployment", "Heroku"],
   title: "Deploying our `Plug.Router` application to Heroku",
   excerpt: """
   Want to put your app in the real world? Today we do it with Heroku!

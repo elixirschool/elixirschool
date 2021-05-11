@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2019-05-21],
-  tags: ["general"],
+  tags: ["LiveView", "presence"],
   title: "Tracking Users in a Chat App with LiveView, PubSub Presence",
   excerpt: """
   Use Phoenix Presence in your LiveView to track user state with just a few lines of code.
@@ -299,7 +299,7 @@ This function has two responsibilities:
 
 ```elixir
 def handle_info(%{event: "presence_diff", payload: _payload}, socket = %{assigns: %{chat: chat}}) do
-  users =   
+  users =
     Presence.list(topic(chat.id))
     |> Enum.map(fn {_user_id, data} ->
       data[:metas]
@@ -403,7 +403,7 @@ Let's update our `mount/2` function to do exactly that:
 
 def mount(%{chat: chat, current_user: current_user}, socket) do
   ...
-  users =   
+  users =
     Presence.list(topic(chat.id))
     |> Enum.map(fn {_user_id, data} ->
       data[:metas]
@@ -434,7 +434,7 @@ The running LiveView processes that receive this `"presence_diff"` event will ne
 # lib/phat_web/live/chat_live_view.ex
 
 def handle_info(%{event: "presence_diff", payload: _payload}, socket = %{assigns: %{chat: chat}}) do
-  users =   
+  users =
     Presence.list(topic(chat.id))
     |> Enum.map(fn {_user_id, data} ->
       data[:metas]

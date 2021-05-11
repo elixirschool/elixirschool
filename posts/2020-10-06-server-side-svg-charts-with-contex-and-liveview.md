@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2020-10-06],
-  tags: ["general"],
+  tags: ["LiveView", "libraries"],
   title: "Real-Time SVG Charts with Contex and LiveView",
   excerpt: """
   Learn how to use the Contex package to render server-side SVG charts that you can update in real-time with LiveView.
@@ -10,6 +10,7 @@
 }
 
 ---
+
 This post is inspired by some of my work, together with [Bruce Tate](https://twitter.com/redrapids), on Pragmatic Bookshelf's upcoming book on LiveView. Elixir School is happy to be able to offer a give-away of a small number e-books once they are published, so stay tuned for updates!
 
 As LiveView matures it is becoming clear that is much more than just a tool for building real-time features in your web app. LiveView is a state management system for your single page app. Developers are increasingly reaching for LiveView to build and manage the complexities of a full-featured SPA. This is why, in our upcoming LiveView book, we're aiming to build out a diverse and robust set of features using LiveView.

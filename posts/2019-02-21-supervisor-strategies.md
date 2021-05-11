@@ -2,7 +2,7 @@
   author: "Bobby Grayson",
   author_link: "",
   date: ~D[2019-02-21],
-  tags: [],
+  tags: ["OTP", "supervisors"],
   title: "Elixir Supervisor Strategies",
   excerpt: """
   Learn the ins and outs of Elixir's 3 supervisor strategies
@@ -42,7 +42,7 @@ defmodule Counter.One do
     IO.inspect("starting", label: "Counter.One")
     success = GenServer.start_link(__MODULE__, 0)
     IO.inspect("started", label: "Counter.One")
-    success 
+    success
   end
 
   @impl true
@@ -137,7 +137,7 @@ defmodule Counter.Two do
     IO.inspect("starting", label: "Counter.Two")
     success = GenServer.start_link(__MODULE__, 0)
     IO.inspect("started", label: "Counter.Two")
-    success 
+    success
   end
 
   @impl true
@@ -190,7 +190,7 @@ defmodule Counter.Three do
     IO.inspect("starting", label: "Counter.Three")
     success = GenServer.start_link(__MODULE__, 0)
     IO.inspect("started", label: "Counter.Three")
-    success 
+    success
   end
 
   @impl true

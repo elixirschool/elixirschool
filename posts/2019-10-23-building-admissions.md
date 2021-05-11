@@ -2,7 +2,7 @@
   author: "Sean Callan",
   author_link: "https://github.com/doomspork",
   date: ~D[2019-10-23],
-  tags: ["admissions", "general"],
+  tags: ["admissions", "software design"],
   title: "Building Elixir School's Admissions portal",
   excerpt: """
   Follow along as we use build Elixir School's Slack invite portal: Admissions.
