@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2018-11-29],
-  tags: ["plug", "authentication", "general"],
+  tags: ["plug", "auth"],
   title: "JWT Auth in Elixir with Joken",
   excerpt: """
   Use Joken and JOSE for a light-weight implementation of JWT Auth in your Elixir web application.

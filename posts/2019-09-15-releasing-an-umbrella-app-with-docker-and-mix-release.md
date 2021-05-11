@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2019-09-20],
-  tags: ["docker", "mix release", "config", "umbrella apps", "general"],
+  tags: ["docker", "releases", "config", "umbrellas", "deployment"],
   title: "Releasing an Umbrella App with Docker, Mix Release and Config",
   excerpt: """
   The release of Elixir 1.9 gave us `mix release` and the ability to support basic releases, runtime configuration and more, natively in Elixir. Learn how we were able to build a production release of an Elixir umbrella app with Docker, `mix release` and the new `Config` module.

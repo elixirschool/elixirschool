@@ -2,7 +2,7 @@
   author: "Sean Callan",
   author_link: "",
   date: ~D[2019-01-25],
-  tags: ["plug", "software design", "general"],
+  tags: ["plug", "software design"],
   title: "Building web apps with Plug.Router",
   excerpt: """
   When it comes to building a web application with Elixir many people will immediately reach for Phoenix.

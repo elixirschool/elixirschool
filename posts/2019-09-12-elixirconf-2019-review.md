@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2019-09-08],
-  tags: ["conferences", "general"],
+  tags: ["conference"],
   title: "Dispatch From ElixirConf 2019",
   excerpt: """
   We had a great time at ElixirConf 2019! Hear about Elixir School's two workshops, along with the highlight talks and activities that we enjoyed this year.
@@ -40,7 +40,7 @@ Just because Elixir is now feature-complete doesn't mean that the core team does
 
 ### Chris McCord's Friday Evening Keynote: LiveView in the Wild
 
-This past year, Chris McCord and other core Phoenix maintainers gave us LiveView––a technology for writing rich, real-time UX with server-rendered HTML. Here, Chris walks us through the powerful features of LiveView and gives us a look at how it behaves "in the wild", especially compared to traditional SPAs (Single Page Applications). LiveView's first release contains a set of exciting and powerful features––including JavaScript hooks, Live navigation and LiveView test. Learn more about this incredibly powerful set of tooling by checking out the full talk [here](https://www.youtube.com/watch?v=XhNv1ikZNLs).  
+This past year, Chris McCord and other core Phoenix maintainers gave us LiveView––a technology for writing rich, real-time UX with server-rendered HTML. Here, Chris walks us through the powerful features of LiveView and gives us a look at how it behaves "in the wild", especially compared to traditional SPAs (Single Page Applications). LiveView's first release contains a set of exciting and powerful features––including JavaScript hooks, Live navigation and LiveView test. Learn more about this incredibly powerful set of tooling by checking out the full talk [here](https://www.youtube.com/watch?v=XhNv1ikZNLs).
 
 ### Contracts for Building Reliable Systems - Chris Keathley
 

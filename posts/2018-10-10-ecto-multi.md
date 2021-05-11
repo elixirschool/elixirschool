@@ -2,7 +2,7 @@
   author: "Svilen Gospodinov",
   author_link: "https://github.com/svileng",
   date: ~D[2018-11-07],
-  tags: ["ecto", "software design", "general"],
+  tags: ["ecto", "software design"],
   title: "A brief guide to Ecto.Multi",
   excerpt: """
   Learn how to compose and execute batches of queries using Ecto.Multi.

@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2019-03-19],
-  tags: ["phoenix", "til"],
+  tags: ["phoenix", "TIL", "LiveView"],
   title: "Walk-Through of Phoenix LiveView",
   excerpt: """
   Learn how to use Phoenix LiveView for real-time features without complicated JS frameworks.

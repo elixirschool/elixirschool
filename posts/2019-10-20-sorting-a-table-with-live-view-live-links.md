@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2019-10-20],
-  tags: ["live view", "general"],
+  tags: ["LiveView"],
   title: "Building a Table Sort UI with Live View's `live_link`",
   excerpt: """
   We'll use LiveView's `live_link/2` together with the `handle_params/3` callback to allow users to sort a table in real-time.
@@ -64,7 +64,7 @@ Let's take a look at how we can implement a `handle_params/3` function now.
 
 The `handle_params/3` callback is invoked under two circumstances.
 * After `mount/2` is called (i.e. when the live view first renders)
-* When a live navigation event, like a live link click, occurs. This second circumstance only triggers this callback when, as described above, the live view we are linking to is the same live view we are currently on _and_ the LiveView is defined in the router.  
+* When a live navigation event, like a live link click, occurs. This second circumstance only triggers this callback when, as described above, the live view we are linking to is the same live view we are currently on _and_ the LiveView is defined in the router.
 
 `handle_params/3` receives three arguments:
 * The query parameters

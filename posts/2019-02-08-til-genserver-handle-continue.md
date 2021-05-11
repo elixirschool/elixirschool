@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2019-02-15],
-  tags: ["til"],
+  tags: ["TIL"],
   title: "TIL GenServer's `handle_continue/2`",
   excerpt: """
   Support non-blocking, async GenServer initialization callbacks with OTP 21's nifty `handle_continue/2`!
