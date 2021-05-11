@@ -2,7 +2,7 @@
   author: "Kate Travers",
   author_link: "https://github.com/ktravers",
   date: ~D[2018-12-16],
-  tags: ["ecto", "til"],
+  tags: ["ecto", "TIL"],
   title: "TIL How to Run Ecto Migrations on Production",
   excerpt: """
   What to do when you can't use `mix ecto.migrate`

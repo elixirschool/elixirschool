@@ -2,7 +2,7 @@
   author: "Sean Callan",
   author_link: "https://github.com/doomspork",
   date: ~D[2018-12-04],
-  tags: ["til"],
+  tags: ["TIL"],
   title: "TIL about `IO.inspect/2`'s `:label` opt",
   excerpt: """
   Did you know you could label your output?  Neither did we!  Check out today's TIL to learn more.

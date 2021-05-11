@@ -2,7 +2,7 @@
   author: "Sean Callan",
   author_link: "https://github.com/doomspork",
   date: ~D[2018-07-17],
-  tags: ["configuration", "software design", "general"],
+  tags: ["config", "software design"],
   title: "Configuration Demystified",
   excerpt: """
   We attempt to clear up some confusion around configuration by looking at the different types, the roles they play, and a different approach we could take.

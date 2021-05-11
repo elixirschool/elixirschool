@@ -2,7 +2,7 @@
   author: "Prince Wilson",
   author_link: "https://github.com/maxcell",
   date: ~D[2019-03-25],
-  tags: ["ecto", "til"],
+  tags: ["ecto", "TIL"],
   title: "TIL Ecto Constraints and Validations",
   excerpt: """
   Let's take a look at how Ecto handles these two ways of ensuring data integrity

@@ -2,7 +2,7 @@
   author: "Kate Travers",
   author_link: "https://github.com/ktravers",
   date: ~D[2019-08-23],
-  tags: ["ecto", "til"],
+  tags: ["ecto", "TIL"],
   title: "TIL How to Select Merge with Ecto.Query",
   excerpt: """
   Before you reach for adding another association to your schema, consider using `Ecto.Query#select_merge/3` with a virtual field instead.

@@ -2,7 +2,7 @@
   author: "Alex Griffith",
   author_link: "https://github.com/alexgriff",
   date: ~D[2018-12-12],
-  tags: ["testing", "logging", "til"],
+  tags: ["testing", "logging", "TIL"],
   title: "TIL about ExUnit's capture_log option",
   excerpt: """
   Capture the output from Logger to clean up your test runs

@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2019-06-04],
-  tags: ["general"],
+  tags: ["LiveView"],
   title: "Using Channels with LiveView for Better UX",
   excerpt: """
   By pairing a custom Phoenix Channel with our LiveView, with the help of a Registry, we can respond to LiveView events with custom JavaScript on the client-side to provide better UX.
@@ -70,7 +70,7 @@ Later...
 
 There is a lot of code to get through, so we've organized our approach into the following parts:
 
-I. [Establishing the Socket and Channel](#-establishing-the-socket-and-channel)  
+I. [Establishing the Socket and Channel](#-establishing-the-socket-and-channel)
 
 II. [Handling Events in the LiveView](#handling-events-in-the-liveview)
 

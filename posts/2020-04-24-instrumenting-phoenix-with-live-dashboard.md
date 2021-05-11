@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2020-04-24],
-  tags: ["general"],
+  tags: ["phoenix", "telemetry", "instrumenting", "LiveView"],
   title: "Instrumenting Phoenix with Telemetry and LiveDashboard",
   excerpt: """
   The recent release of the LiveDashboard library allows us to visualize our application metrics, performance and behavior in real-time.

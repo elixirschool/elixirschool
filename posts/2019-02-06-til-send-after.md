@@ -2,7 +2,7 @@
   author: "Sean Callan",
   author_link: "https://github.com/doomspork",
   date: ~D[2019-02-07],
-  tags: ["til"],
+  tags: ["TIL"],
   title: "TIL about `Process.send_after/4`",
   excerpt: """
   Want to schedule something to run later? Need a reoccurring task? Today we learn how!

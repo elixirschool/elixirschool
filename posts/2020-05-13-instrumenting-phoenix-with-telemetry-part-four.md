@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2020-05-13],
-  tags: ["general"],
+  tags: ["phoenix", "telemetry", "instrumenting"],
   title: "Instrumenting Phoenix with Telemetry Part IV: Erlang VM Measurements with `telemetry_poller`",
   excerpt: """
   In this series, we're instrumenting a Phoenix app and sending metrics to StatsD with the help of Elixir and Erlang's Telemetry offerings.

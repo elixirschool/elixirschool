@@ -2,7 +2,7 @@
   author: "Sophie DeBenedetto",
   author_link: "https://github.com/sophiedebenedetto",
   date: ~D[2019-04-11],
-  tags: ["phoenix", "general"],
+  tags: ["phoenix", "LiveView"],
   title: "Building Real-Time Features with Phoenix Live View and PubSub",
   excerpt: """
   Integrate Phoenix PubSub with LiveView to build real-time features capable of broadcasting updates across a set of clients.
