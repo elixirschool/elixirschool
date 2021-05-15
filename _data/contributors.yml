@@ -455,7 +455,7 @@
     - translator
   languages:
     - zh-hans
-    
+
 - github: caicaishmily
   name: Chai
   intro:
@@ -528,14 +528,14 @@
 
 - github: TGITS
   name: Christophe Vaudry
-  intro: 
+  intro:
   homepage: https://tgits.github.io/
   twitter: _TGITS
   contributions:
     - translator
   languages:
     - fr
-    
+
 - github: jersearls
   name: Jeremy Searls
   intro: I'm an elixir developer at Cars.com living in Kalamazoo, MI
@@ -555,7 +555,7 @@
   lessons:
     - NimblePublisher
   languages:
-    - es 
+    - es
 
 - github: RTSolo
   name: Konstantinos Maglaras
@@ -571,6 +571,18 @@
   name: Jan Gromko
   intro: I'm Elixir developer at AmberBit and I live in Poland (Białystok/Kraków).
   twitter: JanGromko
+  contributions:
+    - translator
+  languages:
+    - pl
+
+- github: bartoszgorka
+  name: Bartosz Górka
+  intro:
+    Bartosz is a software engineer looking for challenging problems to solve.
+    He specializes in backend development, emphasizing Domain-Driven Design, Elixir/OTP principles, and modular software design.
+  homepage: https://bartoszgorka.com/
+  twitter: BartoszGorka96
   contributions:
     - translator
   languages:
