@@ -1,24 +1,33 @@
 ---
 title: Elixir School
 layout: home
-version: 1.0.0
+version: 2.0.0
 ---
 
-[![License](//img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+Elixir School to najlepsze źródło informacji dla każdego, kto chce nauczyć się języka programowania Elixir.
 
-Lekcje programowania w języku Elixir, inspirowane lekcjami Twittera [Scala School](http://twitter.github.io/scala_school/).
+Niezależnie od Twojego doświadczenia w tworzeniu oprogramowania, wszystko, czego potrzebujesz, znajdziesz w samouczkach i zasobach pomocniczych.
 
-_Zachęcamy do dzielenia się opiniami i wsparciem projektu!_
+Dzięki ciężkiej pracy wolontariuszy Elixir School została przetłumaczona na wiele języków. Niektóre z tych tłumaczeń: [Việt ngữ][vi], [简体中文][zh-hans], [繁體中文][zh-hant], [Español][es], [Slovenčina][sk], [日本語][ja], [Polski][pl], [Português][pt], [Русский][ru], [Bahasa Indonesia][id], [Bahasa Melayu][ms], [Українською][uk], [한국어][ko], [Italiano][it], [Deutsch][de], [বাংলা][bn], [Türkçe][tr], [ภาษาไทย][th], i [Ελληνικά][gr].
 
-## O Elixirze
+Czekamy na każdą pomoc i zachęcamy do przyłączenia się do nas, aby uczynić Elixir School lepszym miejscem na GitHub [elixirschool/elixirschool](https://github.com/elixirschool/elixirschool)!
 
-"Elixir to dynamiczny, funkcyjny język zaprojektowany z myślą o budowie skalowalnych i łatwych w utrzymaniu aplikacji." — [elixir-lang.org](http://elixir-lang.org/)
-
-Elixir wykorzystuje sprawdzoną w boju maszynę wirtualną Erlanga (Erlang VM (BEAM)) do budowy rozproszonych i odpornych na błędy systemów z naciskiem na niskie opóźnienia.
-
-__Cechy__:
-
-+ Skalowalny
-+ Odporny na błędy
-+ Funkcyjny
-+ Rozszerzalny
+  [es]: /es/
+  [it]: /it/
+  [ja]: /ja/
+  [ko]: /ko/
+  [pl]: /pl/
+  [pt]: /pt/
+  [ru]: /ru/
+  [sk]: /sk/
+  [vi]: /vi/
+  [id]: /id/
+  [ms]: /ms/
+  [uk]: /uk/
+  [de]: /de/
+  [bn]: /bn/
+  [tr]: /tr/
+  [th]: /th/
+  [zh-hans]: /zh-hans/
+  [zh-hant]: /zh-hant/
+  [gr]: /gr/
