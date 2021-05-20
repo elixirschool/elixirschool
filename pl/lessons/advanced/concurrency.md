@@ -93,7 +93,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-Czasami nie chcemy by awaria jednego procesu, spowodowała zamknięcie połączonego z nim innego procesu.
+Czasami nie chcemy by awaria jednego procesu spowodowała zamknięcie połączonego z nim innego procesu.
 Dlatego też musimy przechwycić informacje o zamknięciu korzystając z `Process.flag/2`.
 Wykorzystana zostaje funkcja [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) dla flagi `trap_exit`.
 Podczas przechwytywania wyjść (`trap_exit` jest ustawione na `true`), sygnały wyjścia będą odbierane jako wiadomość w postaci krotki: `{:EXIT, from_pid, reason}`.
@@ -119,7 +119,7 @@ Exit reason: kaboom
 
 ### Monitoring
 
-A co jeżeli nie chcemy łączyć procesów, ale chcemy nadal być informowani o awariach?
+A co, jeżeli nie chcemy łączyć procesów, ale chcemy nadal być informowani o awariach?
 Do tego służy mechanizm monitoringu `spawn_monitor`.
 Gdy monitorujemy inny proces z naszego procesu, to gdy otrzymamy wiadomość o jego awarii, nasz proces nie ulegnie awarii ani też nie będziemy musieli jawnie obsłużyć sygnału zamknięcia.
 
@@ -144,8 +144,8 @@ Exit reason: kaboom
 ## Agenci
 
 Agenci są pewnego rodzaju abstrakcją nad procesami służącą do zarządzania ich stanem w tle.
-Możemy się do nich odwołać z poziomu innego procesu aplikacji, albo innego węzła.
-Aktualny stan agenta jest równy ostatniej zwróconej przez agenta wartości:
+Możemy się do nich odwołać z poziomu innego procesu aplikacji albo innego węzła.
+Aktualny stan agenta jest równy wartości zwracanej przez naszą funkcję:
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
