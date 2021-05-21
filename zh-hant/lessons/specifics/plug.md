@@ -98,7 +98,7 @@ end
 我們的 `lib/example/application.ex` 檔案應該在 `start/2`函數中實現子規範：
 
 ```elixir
-efmodule Example.Application do
+defmodule Example.Application do
   use Application
   require Logger
 

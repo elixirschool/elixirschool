@@ -34,7 +34,7 @@ Dari outputnya kita bisa melihat bahwa mix sudah membuat direktori kita dan seju
 Dalam pelajaran ini kita akan berfokus pada `mix.exs`.  Di sini kita mengkonfigurasi aplikasi, dependeksi, environment, dan versi kita.  Bukalah file tersebut di editor favorit anda, anda akan melihat seperti berikut (komentar dibuang untuk meringkas tampilan):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

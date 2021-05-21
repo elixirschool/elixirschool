@@ -156,7 +156,7 @@ Then, we need to teach our live view to broadcast new messages to these subscrib
 
 def handle_event("message", %{"message" => message_params}, socket) do
   chat = Chats.create_message(message_params)
-  PhatWeb.Endpoint.broadcast_from(self(), topic(chat.id), "message", %{chat: chat})
+  PhatWeb.Endpoint.broadcast_from(topic(chat.id), self(), "message", %{chat: chat})
   {:noreply, assign(socket, chat: chat, message: Chats.change_message())}
 end
 ```

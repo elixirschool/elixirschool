@@ -41,7 +41,7 @@ end
 ```
 Here, we're calling our "get inventory for shopping list items" code in the `init/1` callback that gets triggered when `start_link/1` is called.
 
-This problem with this approach is that `start_link/1` will block until `init/1` returns `{:ok, state}`. We won't return from `init/1` until _after_ the inventory-fetching code runs. That _could_ be time consuming. We don't want our GenServer blocked by this.
+The problem with this approach is that `start_link/1` will block until `init/1` returns `{:ok, state}`. We won't return from `init/1` until _after_ the inventory-fetching code runs. That _could_ be time consuming. We don't want our GenServer blocked by this.
 
 Let's explore an asynchronous approach.
 

@@ -34,7 +34,7 @@ $ mix new example
 ในบทนี้เราจะเน้นไปที่ไฟล์ `mix.exs` ไฟล์นี้เราสามารถ configure application ของเรา, dependency, environment, และ version เมื่อเปิดไฟล์ `mix.exs` ใน editor ที่คุณชอบ คุณจะเจอโค้ดหน้าตาแบบนี้ (comments ถูกลบออกเผื่อให้กระชับขึ้น):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

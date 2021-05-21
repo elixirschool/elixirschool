@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: 日付と時間
 ---
 
@@ -93,7 +93,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 また、タイムゾーンを提供するだけで、NaiveDateTimeからDateTimeのインスタンスを作ることができます:
 
-```
+```elixir
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 {:ok, #DateTime<2016-05-24 13:26:08.003Z>}
 ```
@@ -103,13 +103,13 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 この問題を解決するには、[tzdata](https://github.com/lau/tzdata) パッケージをインストールして設定する必要があります。
 それをインストールした後、Tzdataをタイムゾーンデータベースとして使用するように、Elixirにグローバル設定をする必要があります。
 
-```
+```elixir
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 ```
 
 パリのタイムゾーンで時間を作成して、それをニューヨーク時間に変換してみましょう。
 
-```
+```elixir
 iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
 #DateTime<2019-01-01 12:00:00+01:00 CET Europe/Paris>
 iex> {:ok, ny_datetime} = DateTime.shift_zone(paris_datetime, "America/New_York")

@@ -210,7 +210,7 @@ pessoa:
 iex> %Friends.Person{}
 %Friends.Person{
   __meta__: #Ecto.Schema.Metadata<:built, "people">,
-  age: 11,
+  age: 0,
   id: nil,
   name: nil
 }

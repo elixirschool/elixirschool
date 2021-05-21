@@ -1,5 +1,5 @@
 ---
-version: 1.0.2
+version: 1.1.1
 title: Struktury sterujące
 ---
 
@@ -9,9 +9,10 @@ W tej lekcji przyjrzymy się strukturom sterującym dostępnym w Elixirze.
 
 ## `if` i `unless`
 
-Zapewne spotkałeś się już z `if/2` w innych językach, a jeżeli znasz Ruby to `unless/2` nie będzie ci obca.  W Elixirze działają w podobny sposób, ale nie są elementem języka, a makrami; Ich implementacje znajdziesz w dokumentacji [modułu jądra](https://hexdocs.pm/elixir/Kernel.html).
+Zapewne spotkałeś się już z `if/2` w innych językach, a jeżeli znasz język Ruby, to również `unless/2` zapewne nie będzie Ci obce.
+W Elixirze instrukcje te działają w podobny sposób, ale nie są elementami języka, a makrami. Ich implementacje możesz znaleźć w dokumentacji [modułu jądra](https://hexdocs.pm/elixir/Kernel.html).
 
-Przypomnijmy, że w Elixirze, jedynymi wartościami fałszywymi są `nil` i wartość logiczna `false`.
+Przypomnijmy, że w Elixirze jedynymi wartościami traktowanymi jako _fałsz_ są `nil` i wartość logiczna `false`.
 
 ```elixir
 iex> if String.valid?("Hello") do
@@ -27,7 +28,7 @@ iex> if "a string value" do
 "Truthy"
 ```
 
-Użycie `unless/2` jest takie samo jak `if/2` tylko, że warunek działa w przeciwnym kierunku:
+Użycie `unless/2` jest podobne do `if/2`, tylko że warunek działa na odwrót:
 
 ```elixir
 iex> unless is_integer("hello") do
@@ -38,7 +39,7 @@ iex> unless is_integer("hello") do
 
 ## `case`
 
-Jeżeli chcemy sprawdzić wiele różnych wzorców, to możemy użyć `case`:
+Jeżeli chcemy sprawdzić wiele różnych wzorców, to możemy użyć `case/2`:
 
 ```elixir
 iex> case {:ok, "Hello World"} do
@@ -49,7 +50,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-Zmienna `_` jest niezbędnym elementem wyrażenia `case`. Bez niej, jeżeli nie będzie istnieć dopasowanie, program zwróci błąd:
+Zmienna `_` jest istotnym elementem wyrażenia `case/2`. Bez niej, jeżeli nie będzie istnieć dopasowanie, program zwróci błąd:
 
 ```elixir
 iex> case :even do
@@ -64,9 +65,10 @@ iex> case :even do
 "Not Odd"
 ```
 
-Konstrukcja `_` działa tak samo, jak `else`, czyli dopasuje "wszystko inne".
+Konstrukcję `_` możesz rozumieć jako `else` – dopasowuje bowiem „wszystko inne”.
 
-Jako że `case` wykorzystuje dopasowanie wzorców, wszystkie zasady tam obowiązujące są zachowane.  Jeżeli chcesz dopasować istniejącą zmienną, to musisz użyć operatora `^`:
+Jako że `case/2` wykorzystuje dopasowanie wzorców, wszystkie zasady tam obowiązujące są zachowane.
+Jeżeli chcesz dopasować istniejącą zmienną, musisz użyć operatora przypięcia `^`:
 
 ```elixir
 iex> pie = 3.14 
@@ -92,11 +94,11 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Więcej szczegółów znajdziesz w dokumentacji, w języku angielskim, [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
+Więcej szczegółów znajdziesz w dokumentacji w języku angielskim, w module [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 ## `cond`
 
-Jeżeli chcemy sprawdzić wiele warunków, ale nie są to wartości, to należy użyć `cond`; odpowiada on konstrukcjom `else if` czy `elsif` z innych języków:
+Jeżeli chcemy sprawdzić warunki niebędące wartościami, możemy użyć `cond/1`; wyrażenie to odpowiada konstrukcjom `else if` czy `elsif` z innych języków:
 
 _Ten przykład pochodzi z oficjalnego przewodnika po języku Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
 
@@ -124,11 +126,11 @@ iex> cond do
 
 ## `with`
 
-Konstrukcja `with` jest to forma, którą możemy użyć zamiast zagnieżdżonych wyrażeń `case` albo w sytuacji, gdy nie mogą być one powiązane w jednoznaczny sposób. Wyrażenie `with` składa się ze słowa kluczowego, generatora i wyrażenia.
+Konstrukcji `with/1` możemy użyć zamiast wielu zagnieżdżonych wyrażeń `case/2` lub w sytuacjach, gdy nie mogą być one powiązane w jednoznaczny sposób. Wyrażenie `with/1` składa się ze słowa kluczowego, generatora i wyrażenia.
 
-Zajmiemy się jeszcze generatorami przy okazji omawiania list składanych, a na chwilę obecną jedyne co musimy wiedzieć to, że używają dopasowania wzorców, by połączyć elementy po prawej stronie `<-` z tymi po lewej.
+Zajmiemy się jeszcze generatorami przy okazji omawiania [list składanych](../comprehensions/), ale na chwilę obecną jedyne, co musimy wiedzieć, to że używają [dopasowania wzorców](../pattern-matching/), by połączyć elementy po prawej stronie `<-` z tymi po lewej.
 
-Zacznijmy od prostego wyrażenia `with`:
+Zacznijmy od prostego wyrażenia `with/1`:
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
@@ -138,7 +140,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 "Callan, Sean"
 ```
 
-W przypadku gdy żadne z wyrażeń nie zostanie dopasowane, otrzymamy błąd:
+W przypadku, kiedy żadne z wyrażeń nie zostanie dopasowane, zostanie zwrócona niepasująca wartość:
 
 ```elixir
 iex> user = %{first: "doomspork"}
@@ -149,7 +151,7 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 :error
 ```
 
-Teraz przyjrzyjmy się większemu przykładowi bez `with`, a następnie zrefaktoryzujmy go:
+Teraz przyjrzyjmy się większemu przykładowi bez `with/1`, a następnie zrefaktoryzujmy go:
 
 ```elixir
 case Repo.insert(changeset) do
@@ -167,15 +169,16 @@ case Repo.insert(changeset) do
 end
 ```
 
-Dzięki wprowadzeniu `with` nasz końcowy kod jest krótszy i łatwiejszy do zrozumienia:
+Dzięki wprowadzeniu `with/1` nasz końcowy kod jest krótszy i łatwiejszy do zrozumienia:
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
-     {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token, claims),
-     do: important_stuff(jwt, full_claims)
+     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token, claims) do
+  important_stuff(token, full_claims)
+end
 ```
 
-Elixir od wersji 1.3 pozwala też na użycie `else` w wyrażeniu `with`:
+Elixir od wersji 1.3 pozwala też na użycie `else` w wyrażeniach `with/1`:
 
 ```elixir
 import Integer
@@ -183,13 +186,20 @@ import Integer
 m = %{a: 1, c: 3}
 
 a =
-  with {:ok, res} <- Map.fetch(m, :a),
-       true <- is_even(res) do
-    IO.puts("Divided by 2 it is #{div(res, 2)}")
+  with {:ok, number} <- Map.fetch(m, :a),
+    true <- is_even(number) do
+      IO.puts "#{number} divided by 2 is #{div(number, 2)}"
+      :even
   else
-    :error -> IO.puts("We don't have this item in map")
-    _ -> IO.puts("It's not odd")
+    :error ->
+      IO.puts("We don't have this item in map")
+      :error
+
+    _ ->
+      IO.puts("It is odd")
+      :odd
   end
 ```
 
-Pozwala to na łatwiejszą obsługę błędów, która jest podobna do wyrażenia `case`. Przekazywana wartość to pierwsze niedopasowane wyrażenie.
+Pozwala to na łatwiejszą obsługę błędów, która jest podobna do wyrażenia `case`.
+Przekazywana wartość to pierwsze niedopasowane wyrażenie.

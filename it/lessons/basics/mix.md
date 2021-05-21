@@ -42,7 +42,7 @@ Qui possiamo configurare la nostra applicazione, le dipendenze, l'ambiente e la 
 Apri il file nel tuo editor preferito, dovresti vedere qualcosa di simile a questo (commenti rimossi per chiarezza):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

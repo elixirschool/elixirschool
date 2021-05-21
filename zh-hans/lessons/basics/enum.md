@@ -1,5 +1,5 @@
 ---
-version: 1.6.0
+version: 1.6.1
 title: Enum 模块
 ---
 
@@ -263,7 +263,7 @@ iex> Enum.map([1,2,3], &Adding.plus_three(&1))
 [4, 5, 6]
 ```
 
-更简单的语法是，直接使用函数名，而不显示捕获变量
+更简单的语法是，直接使用函数名，而不显式捕获变量
 > 去掉`/1`会被认为是调用 `Adding.plus_three/0`
 ```elixir
 iex> Enum.map([1,2,3], &Adding.plus_three/1) 

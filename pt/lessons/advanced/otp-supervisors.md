@@ -88,7 +88,7 @@ end
 
 + `start` - Chave obrigatória. O Módulo/Função/Argumentos para chamar quando iniciar o supervisor.
 
-+ `shutdown` - Chave opcional. Define o comportamento di filho durante o desligamento. Opções são:
++ `shutdown` - Chave opcional. Define o comportamento do filho durante o desligamento. Opções são:
 
   + `:brutal_kill` - O filho é parado imediatamente.
 
@@ -108,9 +108,9 @@ end
 
 ## DynamicSupervisor
 
-Supervisores normalmente começam com uma lista de filhos para iniciar quando a aplicação inicia. No entanto, às vezes os filhos supervisionados não vão ser conhecidos quando a aplicação inicia (por exemplo, nós podemos tem uma aplicação web que inicia um processo para lidar com a conexão de um usuário em nosso site). Para esses caso nós vamos querer um supervisor que os filhos podem ser iniciados sob demanda. O DynamicSupervisor é usado para lidar com esse caso.
+Supervisores normalmente começam com uma lista de filhos para iniciar quando a aplicação inicia. No entanto, às vezes os filhos supervisionados não vão ser conhecidos quando a aplicação inicia (por exemplo, nós podemos ter uma aplicação web que inicia um processo para lidar com a conexão de um usuário em nosso site). Para esses caso nós vamos querer um supervisor que os filhos podem ser iniciados sob demanda. O DynamicSupervisor é usado para lidar com esse caso.
 
-Já nós não vamos especificar os filhos, nós precisamos apenas definir as opções de tempo de execução do supervisor. O DynamicSupervisor suporta apenas a estratégia de supervisão `:one_for_one`:
+Já que nós não vamos especificar os filhos, nós precisamos apenas definir as opções de tempo de execução do supervisor. O DynamicSupervisor suporta apenas a estratégia de supervisão `:one_for_one`:
 
 ```elixir
 options = [
@@ -121,7 +121,7 @@ options = [
 DynamicSupervisor.start_link(options)
 ```
 
-Então, para iniciar um novo SimpleQueue dinamicamente nós vamos usar `start_child/2` que receve um supervisor e a especificação do filho (de novo, `SimpleQueue` usa `use GenServer` então a especificação do filho já é definida):
+Então, para iniciar um novo SimpleQueue dinamicamente nós vamos usar `start_child/2` que recebe um supervisor e a especificação do filho (de novo, `SimpleQueue` usa `use GenServer` então a especificação do filho já é definida):
 
 ```elixir
 {:ok, pid} = DynamicSupervisor.start_child(SimpleQueue.Supervisor, SimpleQueue)

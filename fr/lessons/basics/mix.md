@@ -44,7 +44,7 @@ C'est dans ce fichier que nous configurons notre application, ses dépendances, 
 Ouvrez le fichier dans votre éditeur préféré, vous devriez voir quelque chose comme ce qui suit (les commentaires ont été supprimés pour plus de concision):
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

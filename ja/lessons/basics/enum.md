@@ -1,5 +1,5 @@
 ---
-version: 1.6.1
+version: 1.7.0
 title: Enum
 ---
 
@@ -190,6 +190,13 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
+便宜上, `sort/2` に `:asc` または `:desc` をソート関数として渡すことができます：
+
+```elixir
+Enum.sort([2, 3, 1], :desc)
+[3, 2, 1]
+```
+
 ### uniq
 
 `uniq/1` を使ってコレクションから重複した要素を取り除くことができます:
@@ -255,13 +262,13 @@ iex>  Enum.map([1,2,3], fn number -> Adding.plus_three(number) end)
 次に、キャプチャ演算子を使用するようにリファクタリングできます。
 
 ```elixir
-iex> Enum.map([1,2,3], &Adding.plus_three(&1)) 
+iex> Enum.map([1,2,3], &Adding.plus_three(&1))
 [4, 5, 6]
 ```
 
 最も簡潔な構文の場合、変数を明示的にキャプチャせずに、名前付き関数を直接呼び出すことができます。
 
 ```elixir
-iex> Enum.map([1,2,3], &Adding.plus_three/1) 
+iex> Enum.map([1,2,3], &Adding.plus_three/1)
 [4, 5, 6]
 ```

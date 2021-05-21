@@ -34,7 +34,7 @@ $ mix new example
 আমরা একটু `mix.exs` ফাইলটি খুলে দেখি। এই ফাইলটির মাধ্যমে আমরা আমাদের অ্যাপ্লিকেশান, ডিপেন্ডেন্সি, এনভারনমেন্ট ও ভার্সন কনফিগার করে থাকি। ফাইলটির কন্টেন্ট নীচে দেখানো হয়েছে (কমেন্ট সরিয়ে দেয়া হয়েছে সংক্ষিপ্ততার জন্য)-
 
 ```elixir
-defmodule Example.Mixfile do
+defmodule Example.Mix do
   use Mix.Project
 
   def project do

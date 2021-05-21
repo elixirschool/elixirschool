@@ -128,7 +128,7 @@ There are a number of additional release configuration options that you can chec
 Since our build and deployment pipeline requires that our app's environment variables be present at _runtime_, rather than build time, we need our release to have runtime configuration. To enable runtime configuration for our release, we create a file, `config/releases.exs`.
 
 ```elixir
-# registrar_umbrella/config/config.exs
+# registrar_umbrella/config/releases.exs
 
 import Config
 

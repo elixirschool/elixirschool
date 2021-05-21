@@ -22,7 +22,7 @@ Then you can easily avoid running out of your system resources.
 That's where Poolboy comes in.
 It allows you to easily set up a pool of workers managed by a `Supervisor` without much effort on your part.
 There are many libraries which use Poolboy under the covers.
-For example, `postgrex`'s connection pool *(which is leveraged by Ecto when using PostgreSQL)* and `redis_poolex` *(Redis connection pool)* are some popular libraries which use Poolboy.
+For example,`redis_poolex` *(Redis connection pool)* is a popular library which uses Poolboy.
 
 ## Installation
 
