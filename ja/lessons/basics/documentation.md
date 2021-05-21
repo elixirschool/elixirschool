@@ -50,7 +50,7 @@ end
 `Greeter` モジュールを新しいファイル `greeter.ex` に入れてコンパイルすると、これを自分で確認できます。
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

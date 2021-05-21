@@ -50,7 +50,7 @@ end
 Vi (eller andre) får tilgang til modulens dokumentasjon ved å bruke `h` hjelperfunksjonen i IEx.
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

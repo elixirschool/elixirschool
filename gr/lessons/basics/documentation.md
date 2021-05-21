@@ -59,7 +59,7 @@ end
 Μπορούμε να το δούμε και μόνοι μας αν προσθέσουμε το 'Greeter' σε ένα καινούριο αρχείο, 'greeter.ex' και το κάνουμε compile:
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

@@ -49,7 +49,7 @@ end
 Wir (oder andere) können diese Moduldokumentation über die `h` Hilfsfunktion in IEx abrufen.
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

@@ -49,7 +49,7 @@ end
 Kita (atau orang lain) bisa mengakses dokumentasi modul ini menggunakan fungsi pembantu `h` di dalam IEx.
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

@@ -48,7 +48,7 @@ end
 আমরা এই মডিউলকে অ্যাক্সেস করতে পারি `IEx` এ গিয়ে `h` কমান্ডের সাহায্যে।
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

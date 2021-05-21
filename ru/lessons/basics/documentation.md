@@ -51,7 +51,7 @@ end
 Мы можем в этом убедиться если сохраним наш модуль `Greeter` в новый файл `greeter.ex` и скомпилируем его:
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

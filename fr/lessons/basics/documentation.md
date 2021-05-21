@@ -50,7 +50,7 @@ La documentation de ce module est accessible en utilisant la fonction d'aide `h`
 Nous pouvons le constater directement si nous plaçons le module `Greeter` dans un nouveau fichier, `greeter.ex`, et que nous le compilons :
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

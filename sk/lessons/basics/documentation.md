@@ -48,7 +48,7 @@ end
 Dokumentáciu k modulu môžeme zobraziť v konzole IEx pomocnou funkciou `h`:
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter
