@@ -1,5 +1,5 @@
 ---
-version: 1.1.2
+version: 1.3.0
 title: 기본
 ---
 
@@ -13,7 +13,7 @@ Elixir를 시작합시다. 기본적인 타입과 연산자를 배워봅시다.
 
 elixir-lang.org 홈페이지의 [Installing Elixir](http://elixir-lang.org/install.html) 가이드에서 운영체제별로 설치하는 방법을 알아볼 수 있습니다.
 
-Elixir를 설치하고 나서 어떤 버전이 설치되었는지 손쉽게 확인할 수 있습니다.
+Elixir를 설치하고 나서 어떤 버전이 설치되었는지 손쉽게 찾을 수 있습니다.
 
     $ elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}]  [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
@@ -26,10 +26,12 @@ Elixir를 설치하면 대화형 셸인 `IEx`가 함께 설치됩니다. `IEx`�
 
 `iex`를 실행하는 걸로 시작해보아요.
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}]  [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
+
+주의: 윈도우 PowerShell에서는 `iex.bat`으로 입력해야 합니다.
 
 여기서 계속 나아가봅시다. 간단한 코드를 조금 써 보면서 체험해보세요.
 
@@ -91,7 +93,8 @@ false
 
 ### 애텀
 
-애텀은 이름이 그대로 값이 되는 상수입니다. Ruby에서 사용되는 심볼과 비슷한 느낌입니다.
+애텀은 이름이 그대로 값이 되는 상수입니다.
+Ruby에서 사용되는 심볼과 비슷한 느낌입니다.
 
 ```elixir
 iex> :foo
@@ -111,7 +114,8 @@ iex> :true === true
 true
 ```
 
-Elixir에서 사용하는 모듈의 이름도 애텀입니다. `Myapp.MyModule`는 올바른 애텀입니다. 아직 정의하지 않았다고 하더라도 올바른 애텀입니다.
+Elixir에서 사용하는 모듈의 이름도 애텀입니다.
+`Myapp.MyModule`는 올바른 애텀입니다. 아직 정의하지 않았다고 하더라도 올바른 애텀입니다.
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
@@ -177,6 +181,7 @@ iex> rem(10, 3)
 ### 논리 연산
 
 Elixir에서 논리 연산자로 `||`와 `&&`, `!`를 타입에 관계없이 사용할 수 있습니다.
+논리 연산은 모든 타입을 지원합니다.
 
 ```elixir
 iex> -20 || true
@@ -210,6 +215,8 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
+주의: Elixir의 `and`와 `or`는 사실 Erlang의 `andalso`와 `orelse`에 대응합니다.
+
 ### 비교 연산
 
 `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<`, `>` 같은 다른 언어에서도 익숙했던 비교 연산자를 Elixir에서도 사용할 수 있습니다.
@@ -240,7 +247,7 @@ Elixir에서 비교 연산자를 사용할 때, 타입에 관계없이 비교할
 숫자 < 애텀 < 참조 < 함수 < 포트 < pid < 튜플 < 맵 < 리스트 < 비트스트링
 ```
 
-이런 특징은 다른 언어에서는 찾아보기 힘든 재미있는 비교 연산을 문법에 맞게 사용할 수 있게 해 줍니다.
+이런 특징은 다른 언어에서는 찾아보기 힘든 신기하지만 문법에 맞는 비교 연산을 사용할 수 있게 해 줍니다.
 
 ```elixir
 iex> :hello > 999
