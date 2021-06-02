@@ -48,7 +48,7 @@ end
 然后我们添加指定电影和角色之间的“一对多”关系的 schema。
 
 ```elixir
-# lib/example/movie.ex
+# lib/friends/movie.ex
 defmodule Friends.Movie do
   use Ecto.Schema
 
@@ -99,7 +99,7 @@ end
 我们的 schema 也要相应的定义角色“属于”它的电影的关系。
 
 ```elixir
-# lib/example/character.ex
+# lib/friends/character.ex
 
 defmodule Friends.Character do
   use Ecto.Schema
@@ -151,7 +151,7 @@ end
 然后 `Distributor` schema 应该使用 `belongs_to/3` 宏来使得我们可以调用 `distributor.movie` 来通过外键查找相应的分销商。
 
 ```elixir
-# lib/example/distributor.ex
+# lib/friends/distributor.ex
 
 defmodule Friends.Distributor do
   use Ecto.Schema
@@ -166,7 +166,7 @@ end
 接着，我们就可以把“一对一”关系添加到 `Movie` schema：
 
 ```elixir
-# lib/example/movie.ex
+# lib/friends/movie.ex
 
 defmodule Friends.Movie do
   use Ecto.Schema
@@ -242,7 +242,7 @@ end
 接着，添加一个 `many_to_many` 宏到 `Movie` schema：
 
 ```elixir
-# lib/example/movie.ex
+# lib/friends/movie.ex
 
 defmodule Friends.Movie do
   use Ecto.Schema
@@ -260,7 +260,7 @@ end
 最后，使用同样的 `many_to_many` 宏来定义我们的 `Actor` schema。
 
 ```elixir
-# lib/example/actor.ex
+# lib/friends/actor.ex
 
 defmodule Friends.Actor do
   use Ecto.Schema
