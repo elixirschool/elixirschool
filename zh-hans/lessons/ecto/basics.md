@@ -36,7 +36,7 @@ $ cd friends
 ```elixir
   defp deps do
     [
-      {:ecto, "~> 3.2"},
+      {:ecto_sql, "~> 3.2"},
       {:postgrex, "~> 0.15"}
     ]
   end
