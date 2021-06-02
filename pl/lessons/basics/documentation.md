@@ -49,7 +49,7 @@ end
 Dostęp do dokumentacji modułu w IEx jest możliwy z pomocą polecenia `h`.
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

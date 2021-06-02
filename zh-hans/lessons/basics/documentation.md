@@ -51,7 +51,7 @@ end
 我们可以通过把 `Greeter` 模块移到一个新文件 `greeter.ex` 并编译来亲自试验一下。
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

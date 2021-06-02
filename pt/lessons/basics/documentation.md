@@ -49,7 +49,7 @@ end
 Nós (ou outros) podemos acessar esta documentação de módulo usando a função `h` helper dentro de IEx. Nós podemos ver por nós mesmos se colocarmos nosso módulo `Greeter` em um novo arquivo chamado `greeter.ex` e compilarmos:
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

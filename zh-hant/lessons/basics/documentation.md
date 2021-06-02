@@ -59,7 +59,7 @@ end
 如果將 `Greeter` 模組放進一個新檔案 `greeter.ex` 內並進行編譯，我們自己就會看到：
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

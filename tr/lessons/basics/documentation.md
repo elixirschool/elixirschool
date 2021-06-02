@@ -50,7 +50,7 @@ end
 Biz veya diğer insanlar IEx içinde  `h` yardımcı fonksiyonu ile bu modül belgelerine erişe bilirler.
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

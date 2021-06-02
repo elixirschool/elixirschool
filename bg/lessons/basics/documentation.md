@@ -47,7 +47,7 @@ end
 Ние (или други) могат да достъпят тази документация, чрез помощната функция `h` в IEx.
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter

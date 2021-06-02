@@ -49,7 +49,7 @@ end
 IEx에서 모듈의 문서에 접근하고자 한다면 `h` 헬퍼 함수를 이용할 수 있습니다.
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter
