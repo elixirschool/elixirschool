@@ -6,15 +6,15 @@ date: 2021-03-06
 layout: post
 title: "Clean Control Flow in Elixir with Pattern Matching and Immutability"
 excerpt: >
-  Learn how to you use pattern matching instead of guard clauses to implement really clean control flow in Elixir.
+  Learn how to use pattern matching instead of guard clauses to implement really clean control flow in Elixir.
 ---
-One of the features that fascinate me most about Elixir is pattern matching. I always wonder if there is a way to solve what I need using it, and I love exploring it. When you combine the beauty of pattern matching with the power of immutability, some things almost seem magical. But they are not!
-It is not my focus to cover everything about pattern matching and immutability on this post. My goal here is to show you how we can use pattern matching instead of guard clauses to implement really clean control flow in Elixir.
+One of the features that fascinate me most about Elixir is pattern matching. I always wonder if there is a way to solve what I need using it and I love exploring it. When you combine the beauty of pattern matching with the power of immutability some things almost seem magical but they are not!
+It is not my focus to cover everything about pattern matching and immutability but instead to demonstrate how we can use pattern matching instead of guard clauses to implement clean control flows in Elixir.
 
-Let's say you're building the game of battleship and you need to build some logic that says the same player can't attack twice in a row. One way to solve the problem is to register the identifier of the last player that performed an attack.
-With this information we now have two possibilities, if the player who is trying to make a new attack is the same as the last one that was registered as the last shooter, we will just ignore the attack. Otherwise, if the attack is coming from another player, we will compute the attack.
+For this post we'll focus on implementing logic for the tabletop game Battleship. The first rule we'll implement is simple: a player cannot go twice in a row. One way to solve this is to track the last player that performed an move.
+With this information we now have two possibilities: If the player who is trying to make a move is the same as the last player who take action we will just ignore the move. Otherwise we can will compute the move.
 
-Depending on your elixir knowledge, you might think of some conditional as the first solution, something like:
+Depending on our experience with Elixir we might reach for a conditional as the first solution, something like:
 
 ```elixir 
 def maybe_attack(player, last_shooter) do
@@ -23,7 +23,7 @@ def maybe_attack(player, last_shooter) do
         |> make_an_attack()
         |> set_as_last_shooter()
     else
-      ignore()
+      :ignored
     end
 end
 ```
@@ -32,7 +32,7 @@ Or even pattern matching with guard clause
 
 ```elixir
 def maybe_attack(player, last_shooter) when player == last_shooter do
-    ignore()
+    :ignored
 end
 
 def maybe_attack(player, last_shooter) do
@@ -46,7 +46,7 @@ But it is possible to combine the pattern matching we already used in the guard 
 
 ```elixir
 def maybe_attack(last_shooter, last_shooter) do
-    ignore()
+    :ignored
 end
 
 def maybe_attack(player, last_shooter) do
@@ -72,7 +72,7 @@ We have two `maybe_attack` functions both with arity 2, so Elixir will try to pa
 
 ```elixir
 def maybe_attack(last_shooter, last_shooter) do
-    ignore()
+    :ignored
 end
 ```
 
@@ -105,15 +105,15 @@ last_shooter = player1
 With a valid match, our function will run! Player2 will make an attack and then will be registered as our new `last_shooter`!
 
 What if player2 tries another attack in a row?
-Well, we will call our first `maybe_attack` function again and try a match. Player2 wants to make an attack and is also `last_shooter`, so we get the following call
+Well, we will call our first `maybe_attack` function again and try a match. Player2 wants to make an attack and is also `last_shooter`, so we get the following call:
 
 `maybe_attack(player2, player2)`
 
-Trying to match it with the first maybe_attack function we get the following match
+Trying to match it with the first maybe_attack function we get the following match:
 
 ```elixir
 def maybe_attack(last_shooter, last_shooter) do
-    ignore()
+    :ignored
 end
 ```
 
@@ -123,6 +123,7 @@ last_shooter = player2
 ```
 
 Which is a valid match! And since our function just ignores the attack attempt, nothing will happen until another player attempts an attack!
+That's it! We've learned how pattern matching and data immutability together can provide an elegant solution to control flows, another tool in our Elixir toolbox!
 
 ## Resources
 
