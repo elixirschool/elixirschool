@@ -1,5 +1,5 @@
 ---
-version: 1.5.0
+version: 1.7.0
 title: Enum
 ---
 
@@ -186,6 +186,13 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
 
+Pour plus de commodité, `sort/2` nous permet d'utiliser `:asc` ou `:desc` comme la fonction de tri :
+
+```elixir
+Enum.sort([2, 3, 1], :desc)
+[3, 2, 1]
+```
+
 ### uniq
 
 Nous pouvons utiliser `uniq/1` pour supprimer les doublons de nos collections.
@@ -202,4 +209,64 @@ iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 ```elixir
 iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coord.y end)
 [%{x: 1, y: 1}, %{x: 3, y: 3}]
+```
+
+### L'utilisation d'Enum avec l'opérateur de capture (&)
+
+Plusieurs fonctions du module Enum d'Elixir utilisent des fonctions anonymes comme argument pour travailler sur chaque itérable d'une collection.
+
+Ces fonctions anonymes sont souvent écrits en abrégé à l'aide de l'opérateur de capture (&).
+
+Ci-dessous on trouve quelques exemples d'implémentation de l'opérateur de capture avec le module Enum.
+Chaque version est fonctionnellement équivalent.
+
+#### L'utilisation de l'opérateur de capture avec une fonction anonyme
+
+Ci-dessous on a un exemple typique de la syntaxe standard pour passer une fonction anonyme à `Enum.map/2`.
+
+```elixir
+iex> Enum.map([1,2,3], fn number -> number + 3 end)
+[4, 5, 6]
+```
+
+Maintenant avec l'implémentation de l'opérateur de capture (&), qui capture chaque itérable de la liste de nombres ([1,2,3]) et l'attribue à variable &1 lors de l'application de la fonction par la fonction `Enum.map/2`.
+
+```elixir
+iex> Enum.map([1,2,3], &(&1 + 3))
+[4, 5, 6]
+```
+
+Cela peut être encore refactorisé en attribuant la fonction avec l'opérateur de capture à une variable et en l'utilisant dans la fonction `Enum.map/2`.
+
+```elixir
+iex> plus_three = &(&1 + 3)
+iex> Enum.map([1,2,3], plus_three)
+[4, 5, 6]
+```
+
+#### L'utilisation de l'opérateur de capture avec une fonction nommée
+
+Nous créons d'abord une fonction nommée et l'utilisons dans `Enum.map/2`.
+
+```elixir
+defmodule Adding do
+  def plus_three(number), do: number + 3
+end
+
+iex>  Enum.map([1,2,3], fn number -> Adding.plus_three(number) end)
+[4, 5, 6]
+```
+
+Ensuite, nous pouvons refactoriser pour utiliser l'opérateur de capture
+
+```elixir
+iex> Enum.map([1,2,3], &Adding.plus_three(&1))
+[4, 5, 6]
+```
+
+Pour la syntaxe la plus succincte, nous pouvons appeler directement la fonction nommée sans capturer explicitement la variable.
+
+```elixir
+iex> Enum.map([1,2,3], &Adding.plus_three/1)
+[4, 5, 6]
 ```
