@@ -31,7 +31,7 @@ Para iniciar, executamos `iex`:
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
 
-Nota: No Windows PowerShell, é necessario executar `iex.bat`.
+Nota: No Windows PowerShell, é necessário executar `iex.bat`.
 
 Podemos testar e digitar algumas expressões simples:
 
