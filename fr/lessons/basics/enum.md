@@ -33,7 +33,7 @@ Pour la liste complète des fonctions, consultez la documentation officielle du 
 
 ### all?
 
-Lorsque nous utilisons `all?/2`, et la plupart de fonctions du module `Enum`, nous fournissons une fonction à appliquer aux éléments de nos collections. Dans le cas de `all?/2`, toute la collection dois être évaluée à `true` sinon `false` sera retourné:
+Lorsque nous utilisons `all?/2`, et la plupart de fonctions du module `Enum`, nous fournissons une fonction à appliquer aux éléments de nos collections. Dans le cas de `all?/2`, toute la collection dois être évaluée à `true` sinon `false` sera retourné :
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -44,7 +44,7 @@ true
 
 ### any?
 
-Contrairement à ci-dessus, `any?/2` retournera `true` si au moins un élément est évalué à `true`:
+Contrairement à ci-dessus, `any?/2` retournera `true` si au moins un élément est évalué à `true` :
 
 ```elixir
 iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
@@ -53,7 +53,7 @@ true
 
 ### chunk_every/2
 
-Si vous devez diviser vos collections en plus petits groupes d'une taille donnée, `chunk_every/2` est la fonction que vous recherchez:
+Si vous devez diviser vos collections en plus petits groupes d'une taille donnée, `chunk_every/2` est la fonction que vous recherchez :
 
 ```elixir
 iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
@@ -64,7 +64,7 @@ Il existe quelques options pour `chunk_every/4` que nous ne verrons pas, mais qu
 
 ### chunk_by
 
-Si on veut grouper nos collections autrement que par taille, on peux utiliser la fonction `chunk_by/2`. Elle prend un énumérable donné et une fonction, et quand le retour de cette fonction change, un nouveau groupe est crée:
+Si on veut grouper nos collections autrement que par taille, on peux utiliser la fonction `chunk_by/2`. Elle prend un énumérable donné et une fonction, et quand le retour de cette fonction change, un nouveau groupe est crée :
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -75,7 +75,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-Parfois, diviser une collection en petits groupes n'est pas exactement ce dont on a besoin. Si c'est le cas, `map_every/3` peut être très utile pour agir sur chaque `nième` élément, en commençant toujours par le premier:
+Parfois, diviser une collection en petits groupes n'est pas exactement ce dont on a besoin. Si c'est le cas, `map_every/3` peut être très utile pour agir sur chaque `nième` élément, en commençant toujours par le premier :
 
 ```elixir
 # Apply function every three items
@@ -85,7 +85,7 @@ iex> Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
 
 ### each
 
-Pour itérer sur une collection sans produire une nouvelle valeur, on utilise `each/2`:
+Pour itérer sur une collection sans produire une nouvelle valeur, on utilise `each/2` :
 
 ```elixir
 iex> Enum.each(["one", "two", "three"], fn(s) -> IO.puts(s) end)
@@ -99,7 +99,7 @@ __Note__: La fonction `each/2` retourne l'atome `:ok`.
 
 ### map
 
-Pour appliquer une fonction à chaque élément et produire une nouvelle collection, nous avons la fonction `map/2`:
+Pour appliquer une fonction à chaque élément et produire une nouvelle collection, nous avons la fonction `map/2` :
 
 ```elixir
 iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
@@ -108,7 +108,7 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 
 ### min
 
-`min/1` trouve la valeur minimale d'une collection:
+`min/1` trouve la valeur minimale d'une collection :
 
 ```elixir
 iex> Enum.min([5, 3, 0, -1])
@@ -124,14 +124,14 @@ iex> Enum.min([], fn -> :foo end)
 
 ### max
 
-`max/1` retourne la valeur maximale d'une collection:
+`max/1` retourne la valeur maximale d'une collection :
 
 ```elixir
 iex> Enum.max([5, 3, 0, -1])
 5
 ```
 
-`max/2` est à `max/1` ce que `min/2` est à `min/1`:
+`max/2` est à `max/1` ce que `min/2` est à `min/1` :
 
 ```elixir
 Enum.max([], fn -> :bar end)
@@ -149,7 +149,7 @@ iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
 
 ### reduce
 
-Avec `reduce/3` nous pouvons réduire nos collections à une unique valeur. Pour cela nous passons un accumulateur optionnel (`10` dans cet exemple) à notre fonction; s'il n'y a pas d'accumulateur, la première valeur est utilisée:
+Avec `reduce/3` nous pouvons réduire nos collections à une unique valeur. Pour cela nous passons un accumulateur optionnel (`10` dans cet exemple) à notre fonction; s'il n'y a pas d'accumulateur, la première valeur est utilisée :
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
@@ -164,7 +164,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 Le tri de collections est facilité avec non pas une, mais deux fonctions de tri.
 
-`sort/1` utilise le [tri de termes](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) d'Erlang pour déterminer l'ordre:
+`sort/1` utilise le [tri de termes](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) d'Erlang pour déterminer l'ordre :
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
@@ -174,7 +174,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-`sort/2` nous permet de fournir notre propre fonction de tri:
+`sort/2` nous permet de fournir notre propre fonction de tri :
 
 ```elixir
 # avec notre fonction
