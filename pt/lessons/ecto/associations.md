@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.2.2
 title: Associações
 ---
 
@@ -316,7 +316,7 @@ iex> movie = Repo.insert!(movie)
 Agora vamos construir nosso personagem associado e inseri-lo no banco de dados:
 
 ```elixir
-character = Ecto.build_assoc(movie, :characters, %{name: "Wade Watts"})
+iex> character = Ecto.build_assoc(movie, :characters, %{name: "Wade Watts"})
 %Friends.Character{
   __meta__: %Ecto.Schema.Metadata<:built, "characters">,
   id: nil,
@@ -324,7 +324,7 @@ character = Ecto.build_assoc(movie, :characters, %{name: "Wade Watts"})
   movie_id: 1,
   name: "Wade Watts"
 }
-Repo.insert!(character)
+iex> Repo.insert!(character)
 %Friends.Character{
   __meta__: %Ecto.Schema.Metadata<:loaded, "characters">,
   id: 1,
