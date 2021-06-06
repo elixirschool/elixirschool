@@ -587,3 +587,13 @@
     - translator
   languages:
     - pl
+
+- github: g-belmonte
+  name: Guilherme Belmonte
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - fr
