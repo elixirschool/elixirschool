@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.3.0
 title: Bases
 ---
 
@@ -13,7 +13,7 @@ Installation, types de base et opérations.
 
 Les instructions d'installation pour chaque système d'exploitation se trouvent sur elixir-lang.org dans le [guide d'installation.](http://elixir-lang.org/install.html).
 
-Une fois qu'Elixir est installé, nous pouvons facilement confirmer la version installée.
+Une fois qu'Elixir est installé, nous pouvons facilement trouver la version installée.
 
     % elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
@@ -30,6 +30,8 @@ Pour commencer, lançons `iex`:
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
+
+Note: Sous Windows PowerShell, il faut taper `iex.bat`.
 
 Maintenant, essayons `iex` en tapant quelques expressions simples:
 
