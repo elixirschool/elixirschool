@@ -10,7 +10,7 @@ Elixir에서 시간을 다룹니다.
 ## Time
 
 Elixir에는 시간을 다루기 위한 모듈이 있습니다.
-현재 시각을 구하는 것 부터 시작해보죠.
+현재 시각을 구하는 것부터 시작해보죠.
 
 ```elixir
 iex> Time.utc_now
@@ -69,14 +69,14 @@ true
 
 날짜와 시간을 동시에 가지는 구조체가 Elixir는 두 개가 있습니다.
 `NaiveDateTime`부터 이야기해보죠.
-이 모듈의 단점은 타임존 지원이 없는 것입니다.
+이 모듈에는 타임존 지원이 없다는 단점이 있습니다.
 
 ```elixir
 iex(15)> NaiveDateTime.utc_now
 ~N[2029-01-21 19:55:10.008965]
 ```
 
-그러나 현재 시간과 날짜가 모두 있으므로 다음과 같이 시간을 추가할 수 있습니다.
+그러나 현재 시간과 날짜가 모두 있으므로 다음과 같이 시간을 더할 수 있습니다.
 
 ```elixir
 iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
@@ -91,7 +91,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 > 이 모듈의 많은 기능에는 시간대 데이터베이스가 필요합니다. 기본적으로 `Calendar.get_time_zone_database/0`에서 반환하는 기본 시간대 데이터베이스를 사용하며, 이 데이터베이스의 기본값은 `Calendar.UTCOnlyTimeZoneDatabase`입니다. 이는 "Etc/UTC" 날짜 시간 만 처리하고 다른 모든 타임존에 대해 `{:error, :utc_only_time_zone_database}`를 반환합니다.
 
-또한 타임존을 제공하기만하면 NaiveDateTime에서 DateTime 인스턴스를 만들 수 있습니다.
+또, NaiveDateTime에 타임존을 제공해 주기만 하면 DateTime 인스턴스를 만들 수 있습니다.
 
 ```elixir
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
@@ -108,7 +108,7 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 ```
 
-이제 파리 타임존으로 시간을 만들어 뉴욕 시간으로 변환 해 보겠습니다.
+이제 파리 타임존으로 시간을 만들어 뉴욕 시간으로 변환해 보겠습니다.
 
 ```elixir
 iex> paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
@@ -122,5 +122,4 @@ iex> ny_datetime
 보시다시피 시간이 파리 시간 12시에서 6 시로 변경되었습니다. 두 도시 간의 시차는 6 시간입니다.
 
 끝입니다! 작업에 다른 고급 기능이 필요하면 [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html), [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) 문서를 꼼꼼히 읽어 보세요.
-Elixir에서 시간과 함께 작업 할 수있는 강력한 라이브러리 인 [Timex](https://github.com/bitwalker/timex), [Calendar](https://github.com/lau/calendar)도 살펴보세요.
-
+Elixir에서 시간과 함께 작업할 수있는 강력한 라이브러리인 [Timex](https://github.com/bitwalker/timex), [Calendar](https://github.com/lau/calendar)도 살펴보세요.
