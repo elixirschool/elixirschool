@@ -587,3 +587,13 @@
     - translator
   languages:
     - pl
+
+- github: cristineguadelupe
+  name: Cristine Guadelupe
+  intro: I'm an Elixir developer, cat and coffee lover, and LiveView enthusiast.
+  twitter: crisguade
+  homepage: https://cristineguadelupe.me/
+  contributions:
+    - blog
+  articles:
+    - Clean Control Flow in Elixir with Pattern Matching and Immutability
