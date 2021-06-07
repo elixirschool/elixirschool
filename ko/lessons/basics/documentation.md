@@ -1,5 +1,5 @@
 ---
-version: 1.0.3
+version: 1.1.0
 title: 문서화
 ---
 
@@ -47,6 +47,7 @@ end
 ```
 
 IEx에서 모듈의 문서에 접근하고자 한다면 `h` 헬퍼 함수를 이용할 수 있습니다.
+`Greeter` 모듈을 새 파일 `greeter.ex`에 넣고 컴파일하면 직접 확인할 수 있습니다.
 
 ```elixir
 iex> c("greeter.ex", ".")
@@ -58,6 +59,8 @@ iex> h Greeter
 
 사람을 반기는 함수 hello/1 를 제공합니다.
 ```
+
+_주의_: Mix 프로젝트 컨텍스트 내에서 작업한다면 파일 컴파일을 위에서 처럼 수동으로 할 필요는 없습니다. Mix 프로젝트에서는 `iex -S mix`를 사용하여 현재 프로젝트의 IEx 콘솔을 로드할 수 있습니다.
 
 ### 함수 문서화하기
 
@@ -154,7 +157,7 @@ $ cd greet_everyone
 
 이제 `@doc` 강의에서 보았던 코드들을 `lib/greeter.ex`라는 파일에 복사/붙여넣기하고, 모든 코드들이 여전히 잘 동작하는지 커맨드 라인으로 확인해보세요. Mix 프로젝트 폴더 내에 있으므로, `iex -S mix` 명령 시퀀스로 조금 색다르게 IEx를 시작해야 합니다.
 
-```bash
+```elixir
 iex> h Greeter.hello
 
                 def hello(name)
@@ -176,17 +179,23 @@ Examples
 
 ### 설치하기
 
-위의 출력을 제대로 확인했다면, ExDoc를 설정할 준비가 되었습니다. `mix.exs` 파일에 `:earmark`, `:ex_doc` 의존성을 추가하세요.
+위의 출력을 제대로 확인했다면, ExDoc를 설정할 준비가 되었습니다.
+`mix.exs` 파일에 `:ex_doc` 의존성을 추가하세요.
 
 ```elixir
 def deps do
-  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
+  [{:ex_doc, "~> 0.21", only: :dev, runtime: false}]
 end
 ```
 
-프로덕션 환경에서 이 의존성들이 다운로드 받아서 컴파일되는 것을 원하지 않기 때문에 `only: :dev` 키-값 쌍을 명시해 두었습니다. 왜 Earmark를 쓸까요? Earmark는 elixir 프로그래밍 언어를 위한 마크다운 파서 입니다. ExDoc를 이용하여 `@moduledoc`, `@doc` 내부의 문서를 HTML 문서로 아름답게 변환시켜 줍니다.
+프로덕션 환경에서 `ex_doc` 의존성을 다운로드 받아서 컴파일되는 것을 원하지 않기 때문에 `only: :dev` 키-값 쌍을 명시해 두었습니다.
 
-그렇게 큰 의미가 없다고 생각 하시면 Earmark를 사용을 강요하진 않습니다. 마크업 툴을 Pandoc, Hoedown, Cmark같은 다른 걸로 바꿀 수도 있습니다. 하지만, [여기](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool)를 참고해서 설정을 조금 더 건드려야 할 필요가 있습니다. 여기서는, Earmark로 진행 하겠습니다.
+`ex_doc`는 Earmark라는 라이브러리를 추가합니다.
+
+왜 Earmark를 쓸까요? Earmark는 Elixir 프로그래밍 언어를 위한 마크다운 파서 입니다. ExDoc를 이용하여 `@moduledoc`, `@doc` 내부의 문서를 HTML 문서로 아름답게 변환시켜 줍니다.
+
+원한다면 마크 업 도구를 Cmark로 변경할 수 있다는 점에 주목할 가치가 있지만 [여기](https://hexdocs.pm/ex_doc/ExDoc.Markdown.html#module-using-cmark)에서 읽을 수 있는 약간 더 많은 설정을 해야합니다.
+여기서는, Earmark로 진행 하겠습니다.
 
 ### 문서 생성하기
 
@@ -212,7 +221,7 @@ Github에 배포할 수도 있고, 홈페이지에도 배포할 수 있지만, �
 
 ## 좋은 습관
 
-Elixir의 모범 가이드 라인에 따라 주석을 달아야 합니다. Elixir는 확실히 역사가 오래되지 않은 언어이기 때문에, 생태계가 커져감에 따라 많은 표준들이  생겨날 것입니다. 커뮤니티에서도 좋은 습관을 정립하기 위해 노력했습니다. 좋은 습관들에 대해서 더 알아보고자 한다면 [Elixir 스타일 가이드](https://github.com/niftyn8/elixir_style_guide)를 보세요.
+Elixir의 모범 가이드 라인에 따라 문서화하세요. Elixir는 확실히 역사가 오래되지 않은 언어이기 때문에, 생태계가 커져감에 따라 많은 표준들이  생겨날 것입니다. 커뮤니티에서도 좋은 습관을 정립하기 위해 노력했습니다. 좋은 습관들에 대해서 더 알아보고자 한다면 [Elixir 스타일 가이드](https://github.com/niftyn8/elixir_style_guide)를 보세요.
 
   - 항상 모듈을 문서화해두세요.
 
