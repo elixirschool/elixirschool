@@ -190,7 +190,8 @@ Você pode finalmente parar de tirar e colocar cartões SD no dispositivo!
 
 _Dica: `ssh 192.168.88.2` te dá um shell IEx no dispositivo no contexto da aplicação._
 
-_Solução de Problemas: Se você não tiver uma chave ssh existente em sua pasta home, você vai receber um erro `No SSH public keys found in ~/.ssh.`. Nesse caso, você vai precisar rodar `ssh-keygen` e re-gravar o firmware para usar o recurso de atualização por rede._
+_Solução de Problemas: Se você não tiver uma chave ssh existente em sua pasta home, você vai receber um erro `No SSH public keys Found in ~/.ssh.`.
+Nesse caso, você vai precisar rodar `ssh-keygen` e re-gravar o firmware para usar o recurso de atualização por rede._
 
 ## Configurando o controle do LED
 
@@ -200,7 +201,7 @@ Depois de instalar a dependência, você precisa configurar a lista de LED para 
 Por exemplo, para todos modelos de Raspberry Pi, existe apenas um LED onboard: `led0`.
 Vamos usá-lo adicionando uma linha `config :nerves_leds, names: [green: "led0"]` ao arquivo `config/config.exs`.
 
-Para outros dispositivos, você pode dar uma olhada na [parte correspondente do projeto nerves_example](https://github.com/nerves-project/nerves_examples/tree/master/hello_leds/config).
+Para outros dispositivos, você pode dar uma olhada na [parte correspondente do projeto nerves_example](https://github.com/nerves-project/nerves_examples/tree/main/hello_leds/config).
 
 Depois de configurar o LED em si, nós certamente precisamos controlá-lo de alguma forma.
 Para fazer isso, nós adicionaremos um GenServer (veja detalhes sobre GenServers na lição [Concorrência OTP](../../advanced/otp-concurrency.md)) em `lib/network_led/blinker.ex` com esse conteúdo:
