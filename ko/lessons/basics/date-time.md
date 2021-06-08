@@ -3,7 +3,7 @@ version: 1.1.1
 title: 날짜와 시간
 ---
 
-Elixir에서 시간을 다룹니다.
+Elixir에서 시간을 다루어 봅시다.
 
 {% include toc.html %}
 
@@ -25,7 +25,7 @@ iex> ~T[19:39:31.056226]
 ```
 
 시길에 대한 더 자세한 내용은 [시길 강의](../sigils)에서 보실 수 있습니다.
-구조체에 부분을 접근하는 것은 쉽습니다.
+이 구조체의 부분에 손쉽게 접근할 수 있습니다.
 
 ```elixir
 iex> t = ~T[19:39:31.056226]
@@ -38,7 +38,7 @@ iex> t.day
 ** (KeyError) key :day not found in: ~T[19:39:31.056226]
 ```
 
-그러나 한 가지 문제가 있습니다. 보시다시피 구조체에는 하루 내의 시간 만 포함되며 년/월/일 데이터는 없습니다.
+그러나 한 가지 문제가 있습니다. 보시다시피 이 구조체에는 하루 내의 시간만 있고 년/월/일 데이터는 없습니다.
 
 ## Date
 
@@ -87,7 +87,7 @@ iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
 
 다음은 이 섹션의 제목에서 짐작할 수 있듯이 `DateTime`입니다.
 이 모듈은 `NaiveDateTime`에서 이야기한 제한 사항이 없습니다. 시간과 날짜가 모두 있으며 타임존을 지원합니다.
-하지만 타임존을 조심하세요. 공식 문서에서 인용하겠습니다.
+하지만 타임존을 사용하기 전에 조심해야 합니다. 공식 문서에서도 이렇게 말하고 있는데요.
 
 > 이 모듈의 많은 기능에는 시간대 데이터베이스가 필요합니다. 기본적으로 `Calendar.get_time_zone_database/0`에서 반환하는 기본 시간대 데이터베이스를 사용하며, 이 데이터베이스의 기본값은 `Calendar.UTCOnlyTimeZoneDatabase`입니다. 이는 "Etc/UTC" 날짜 시간 만 처리하고 다른 모든 타임존에 대해 `{:error, :utc_only_time_zone_database}`를 반환합니다.
 
@@ -102,7 +102,7 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 
 이전 챕터에서 다루었듯, 기본적으로 Elixir에는 타임존 데이터가 없습니다.
 이 문제를 해결하기 위해선, [tzdata](https://github.com/lau/tzdata) 팩키지를 설치하고 설정할 필요가 있습니다.
-설치 후, Tzdata를 타임존 데이터베이스로 사용하도록 Elixir를 전역적으로 설정해야 합니다.
+설치한 후에는, Tzdata를 타임존 데이터베이스로 사용하도록 Elixir의 전역 설정을 건드려줘야 합니다.
 
 ```elixir
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
@@ -119,7 +119,7 @@ iex> ny_datetime
 #DateTime<2019-01-01 06:00:00-05:00 EST America/New_York>
 ```
 
-보시다시피 시간이 파리 시간 12시에서 6 시로 변경되었습니다. 두 도시 간의 시차는 6 시간입니다.
+보시다시피 시간이 파리 시각 12시에서 뉴욕 시각 6시로 변경되었습니다. 두 도시 간의 시차는 6시간이니까요.
 
 끝입니다! 작업에 다른 고급 기능이 필요하면 [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html), [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) 문서를 꼼꼼히 읽어 보세요.
 Elixir에서 시간과 함께 작업할 수있는 강력한 라이브러리인 [Timex](https://github.com/bitwalker/timex), [Calendar](https://github.com/lau/calendar)도 살펴보세요.
