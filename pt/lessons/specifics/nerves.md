@@ -1,5 +1,5 @@
 ---
-version: 1.0.1
+version: 1.1.2
 title: Nerves
 redirect_from:
   - /pt/lessons/advanced/nerves
@@ -9,17 +9,27 @@ redirect_from:
 
 ## Introdução e requisitos
 
-Nós falaremos sobre Nerves nessa lição. O projeto Nerves é um framework para utilizar Elixir em desenvolvimento de software embarcado. Como o website do Nerves diz, ele permite que você "construa e faça deploy de software embarcado à prova de balas em Elixir". Essa lição será um pouco diferente de outras lições da Elixir School. Nerves é um pouco mais difícil de absorver já que requer a configuração de um sistema avançado e hardware adicional, então pode não ser adequado para iniciantes.
+Nós falaremos sobre Nerves nessa lição.
+O projeto Nerves é um framework para utilizar Elixir em desenvolvimento de software embarcado.
+Como o website do Nerves diz, ele permite que você "construa e faça deploy de software embarcado à prova de balas em Elixir".
+Essa lição será um pouco diferente de outras lições da Elixir School.
+Nerves é um pouco mais difícil de absorver já que requer a configuração de um sistema avançado e hardware adicional, então pode não ser adequado para iniciantes.
 
 Para escrever código embarcado usando Nerves, você vai precisar de um dos [dispositivos suportados](https://hexdocs.pm/nerves/targets.html), um leitor de cartão com um cartão de memória suportado pelo hardware de sua escolha, e uma conexão a rede cabeada para acessar esse dispositivo pela rede.
 
-De qualquer forma, nós sugerimos usar um Raspberry Pi, já que ele tem um LED controlável onboard. Também é recomendável ter uma tela conectada ao seu dispositivo alvo já que isso vai simplificar o debug usando IEx.
+De qualquer forma, nós sugerimos usar um Raspberry Pi, já que ele tem um LED controlável onboard.
+Também é recomendável ter uma tela conectada ao seu dispositivo alvo já que isso vai simplificar o debug usando IEx.
 
 ## Configuração
 
-O projeto Nerves tem um excelente [Guia de introdução](https://hexdocs.pm/nerves/getting-started.html), mas a quantidade de detalhes lá pode ser assustadora para alguns usuários. Em vez disso, esse tutorial vai tentar apresentar "menos palavras, mais código".
+O projeto Nerves tem um excelente [Guia de introdução](https://hexdocs.pm/nerves/getting-started.html), mas a quantidade de detalhes lá pode ser assustadora para alguns usuários.
+Em vez disso, esse tutorial vai tentar apresentar "menos palavras, mais código".
 
-Primeiramente, você vai precisar de um ambiente configurado. Você pode encontrar o guia na parte de [Instalação](https://hexdocs.pm/nerves/installation.html) da wiki do Nerves. Por favor, tenha certeza de que você tem a mesma versão tanto do OTP quanto do Elixir mencionadas no guia. Não utilizar a versão correta pode causar problemas conforme você progride. No momento em que esse guia foi escrito, qualquer versão de Elixir (compilada com Erlang/OTP 21) deve funcionar.
+Primeiramente, você vai precisar de um ambiente configurado.
+Você pode encontrar o guia na parte de [Instalação](https://hexdocs.pm/nerves/installation.html) da wiki do Nerves.
+Por favor, tenha certeza de que você tem a mesma versão tanto do OTP quanto do Elixir mencionadas no guia.
+Não utilizar a versão correta pode causar problemas conforme você progride.
+No momento em que esse guia foi escrito, qualquer versão de Elixir (compilada com Erlang/OTP 21) deve funcionar.
 
 Depois de configurar, você deve conseguir construir seu primeiro projeto Nerves!
 
@@ -59,35 +69,40 @@ Plug the SDCard into the target and power it up. See target documentation
 above for more information and other targets.
 ```
 
-Nosso projeto foi gerado e está pronto para ser transferido para nosso dispositivo de teste! Vamos tentar agora!
+Nosso projeto foi gerado e está pronto para ser transferido para nosso dispositivo de teste!
+Vamos tentar agora!
 
 No caso de um Raspberry Pi 3, você define `MIX_TARGET=rpi3`, mas você pode mudar isso para se adequar ao hardware que você tem dependendo do hardware alvo (veja a lista na [documentação do Nerves](https://hexdocs.pm/nerves/targets.html#content)).
 
 Vamos configurar nossas dependências primeiro:
 
-```
+```shell
 $ export MIX_TARGET=rpi3
 $ cd network_led
 $ mix deps.get
 
 ....
 
+Nerves environment
   MIX_TARGET:   rpi3
   MIX_ENV:      dev
 Resolving Nerves artifacts...
   Resolving nerves_system_rpi3
-  => Trying https://github.com/nerves-project/nerves_system_rpi3/releases/download/v1.7.0/nerves_system_rpi3-portable-1.7.0-17EA89A.tar.gz
-|==================================================| 100% (133 / 133) MB
+  => Trying https://github.com/nerves-project/nerves_system_rpi3/releases/download/v1.12.2/nerves_system_rpi3-portable-1.12.2-E904717.tar.gz
+|==================================================| 100% (142 / 142) MB
   => Success
   Resolving nerves_toolchain_arm_unknown_linux_gnueabihf
-  => Trying https://github.com/nerves-project/toolchains/releases/download/v1.1.0/nerves_toolchain_arm_unknown_linux_gnueabihf-darwin_x86_64-1.1.0-2305AD8.tar.xz
-|==================================================| 100% (50 / 50) MB
+  => Trying https://github.com/nerves-project/toolchains/releases/download/v1.3.2/nerves_toolchain_arm_unknown_linux_gnueabihf-darwin_x86_64-1.3.2-E31F29C.tar.xz
+|==================================================| 100% (55 / 55) MB
   => Success
 ```
 
+Nota: certifique-se de ter configurado a variável de ambiente que especifica a plataforma alvo antes de executar `mix deps.get`, pois esse comando irá baixar as imagens apropriadas e ferramentas para a plataforma especificada.
+
 ## Gravando o firmware
 
-Agora nós podemos continuar a transferir o drive. Coloque o cartão no leitor, e se você configurou tudo corretamente nas etapas anteriores, depois de rodar `mix firmware.burn` e confirmar o dispositivo que está usando você deveria receber essa pergunta:
+Agora nós podemos continuar a transferir o drive.
+Coloque o cartão no leitor, e se você configurou tudo corretamente nas etapas anteriores, depois de rodar `mix firmware.burn` e confirmar o dispositivo que está usando você deveria receber essa pergunta:
 
 ```
 Building ......../network_led/_build/rpi_dev/nerves/images/network_led.fw...
@@ -109,26 +124,41 @@ Se você tiver uma tela conectada - você deve ver uma sequência de boot Linux 
 
 ## Configurando a rede
 
-A próxima etapa é configurar a rede. O ecossistema Nerves provê uma variedade de pacotes, e [nerves_network](https://github.com/nerves-project/nerves_network) é o que precisaremos para conectar o dispositivo à rede através da porta cabeada Ethernet.
+A próxima etapa é configurar a rede.
+O ecossistema Nerves provê uma variedade de pacotes, e [vintage_net](https://github.com/nerves-networking/vintage_net) é o que precisaremos para conectar o dispositivo à rede através da porta cabeada Ethernet.
 
-Esse pacote já está presente em seu projeto como uma dependência de `nerves_init_gadget`. No entanto, por padrão, ele usa DHCP (veja a configuração para ele em `config/config.exs` depois de rodar `config :nerves_init_gadget`). É mais fácil ter um endereço IP estático.
+Esse pacote já está presente em seu projeto como uma dependência de [`nerves_pack`](https://github.com/nerves-project/nerves_pack).
+No entanto, por padrão, ele usa DHCP (veja a configuração para ele em `config/targets.exs` depois de rodar `config :vintage_net`).
+É mais fácil ter um endereço IP estático.
 
-Para configurar uma rede estática, você deve adicionar as seguintes linhas ao `config/config.exs`:
+Para configurar uma rede estática na porta cabeada Ethernet, você deve atualizar a configuração do `:vintage_net` no `config/config.exs` da seguinte maneira:
 
 ```elixir
 # Statically assign an address
-config :nerves_network, :default,
-  eth0: [
-    ipv4_address_method: :static,
-    ipv4_address: "192.168.88.2",
-    ipv4_subnet_mask: "255.255.255.0",
-    nameservers: ["8.8.8.8", "8.8.4.4"]
+config :vintage_net,
+  regulatory_domain: "US",
+  config: [
+    {"usb0", %{type: VintageNetDirect}},
+    {"eth0",
+     %{
+       type: VintageNetEthernet,
+       ipv4: %{
+         method: :static,
+         address: "192.168.88.2",
+         prefix_length: 24,
+         gateway: "192.168.88.1",
+         name_servers: ["8.8.8.8", "8.8.4.4"]
+       }
+     }},
+    {"wlan0", %{type: VintageNetWiFi}}
   ]
- ```
+```
 
-Por favor note que essa configuração é para uma rede cabeada. Se você quiser usar rede sem fio - dê uma olhada na [documentação de rede do Nerves](https://github.com/nerves-project/nerves_network#wifi-networking).
+Por favor note que essa configuração atualiza somente a rede cabeada Ethernet.
+Se você quiser usar rede sem fio - dê uma olhada no [VintageNet Cookbook](https://hexdocs.pm/vintage_net/cookbook.html#wifi).
 
-Note que você precisa usar seus parâmetros de rede local aqui - em minha rede há um IP desalocado `192.168.88.2`, que eu irei usar. No entanto, em seu caso, pode ser diferente.
+Note que você precisa usar seus parâmetros de rede local aqui - em minha rede há um IP desalocado `192.168.88.2`, que eu irei usar.
+No entanto, em seu caso, pode ser diferente.
 
 Depois de mudar isso, nós vamos precisar gravar a versão modificada do firmware através de `mix firmware.burn`, e depois iniciar o dispositivo com o novo cartão.
 
@@ -145,27 +175,36 @@ Essa saída significa que o dispositivo agora pode ser alcançado através da re
 
 ## Gravação de firmware de rede
 
-Até então, nós temos gravado cartões SD e inserido-os fisicamente em nosso hardware. Enquanto isso é um ótimo começo, é mais direto enviar nossas atualizações pela rede. O pacote `nerves_firmware_ssh` faz exatamente isso. Ele já está presente em seu projeto por padrão e é configurado para auto-detectar e encontrar chaves SSH em seu diretório.
+Até então, nós temos gravado cartões SD e inserido-os fisicamente em nosso hardware.
+Enquanto isso é um ótimo começo, é mais direto enviar nossas atualizações pela rede.
+O pacote [`ssh_subsystem_fwup`](https://github.com/nerves-project/ssh_subsystem_fwup) faz exatamente isso.
+Ele já está presente em seu projeto por padrão e é configurado para auto-detectar e encontrar chaves SSH em seu diretório `~/.ssh`.
 
-Para usar a funcionalidade de atualização de firmware por rede, você vai precisar gerar um script de upload com `mix firmware.gen.script`. Esse comando vai gear um novo script `upload.sh` que podemos rodar para atualizar o firmware.
+Para usar a funcionalidade de atualização de firmware por rede, você vai precisar gerar um script de upload com `mix firmware.gen.script`.
+Esse comando vai gerar um novo script `upload.sh` que podemos rodar para atualizar o firmware.
 
 Se a rede estiver funcional depois da etapa anterior, você pode prosseguir.
 
-Para atualizar suas configurações, a melhor forma é usar `mix firmware && ./upload.sh 192.168.88.2`: o primeiro comando cria o firmware atualizado, e o segundo o envia pela rede e atualiza o dispositivo. Você pode finalmente parar de tirar e colocar cartões SD no dispositivo!
+Para atualizar suas configurações, a melhor forma é usar `mix firmware && ./upload.sh 192.168.88.2`: o primeiro comando cria o firmware atualizado, e o segundo o envia pela rede e atualiza o dispositivo.
+Você pode finalmente parar de tirar e colocar cartões SD no dispositivo!
 
 _Dica: `ssh 192.168.88.2` te dá um shell IEx no dispositivo no contexto da aplicação._
 
-_Solução de Problemas: Se você não tiver uma chave ssh existente em sua pasta home, você vai receber um erro `No SSH public keys found in ~/.ssh.`. Nesse caso, você vai precisar rodar `ssh-keygen` e re-gravar o firmware para usar o recurso de atualização por rede._
+_Solução de Problemas: Se você não tiver uma chave ssh existente em sua pasta home, você vai receber um erro `No SSH public keys Found in ~/.ssh.`.
+Nesse caso, você vai precisar rodar `ssh-keygen` e re-gravar o firmware para usar o recurso de atualização por rede._
 
 ## Configurando o controle do LED
 
 Para interagir com LEDs, você vai precisar do pacote [nerves_leds](https://github.com/nerves-project/nerves_leds) instalado, o que é feito adicionando `{:nerves_leds, "~> 0.8", targets: @all_targets},` no arquivo `mix.exs`.
 
-Depois de instalar a dependência, você precisa configurar a lista de LED para o dispositivo. Por exemplo, para todos modelos de Raspberry Pi, existe apenas um LED onboard: `led0`. Vamos usá-lo adicionando uma linha `config :nerves_leds, names: [green: "led0"]` ao arquivo `config/config.exs`.
+Depois de instalar a dependência, você precisa configurar a lista de LED para o dispositivo.
+Por exemplo, para todos modelos de Raspberry Pi, existe apenas um LED onboard: `led0`.
+Vamos usá-lo adicionando uma linha `config :nerves_leds, names: [green: "led0"]` ao arquivo `config/config.exs`.
 
-Para outros dispositivos, você pode dar uma olhada na [parte correspondente do projeto nerves_example](https://github.com/nerves-project/nerves_examples/tree/master/hello_leds/config).
+Para outros dispositivos, você pode dar uma olhada na [parte correspondente do projeto nerves_example](https://github.com/nerves-project/nerves_examples/tree/main/hello_leds/config).
 
-Depois de configurar o LED em si, nós certamente precisamos controlá-lo de alguma forma. Para fazer isso, nós adicionaremos um GenServer (veja detalhes sobre GenServers na lição [Concorrência OTP](../../advanced/otp-concurrency.md)) em `lib/network_led/blinker.ex` com esses conteúdos:
+Depois de configurar o LED em si, nós certamente precisamos controlá-lo de alguma forma.
+Para fazer isso, nós adicionaremos um GenServer (veja detalhes sobre GenServers na lição [Concorrência OTP](../../advanced/otp-concurrency.md)) em `lib/network_led/blinker.ex` com esse conteúdo:
 
 ```elixir
 defmodule NetworkLed.Blinker do
@@ -225,7 +264,8 @@ Agora a única peça faltando no quebra-cabeça é controlar o LED através da i
 
 ## Adicionando o servidor web
 
-Nessa etapa, nós vamos usar `Plug.Router`. Se você precisar de um lembrete - sinta-se livre para passar o olho na lição sobre [Plug](../../../lessons/specifics/plug/).
+Nessa etapa, nós vamos usar `Plug.Router`.
+Se você precisar de um lembrete - sinta-se livre para passar o olho na lição sobre [Plug](../../../lessons/specifics/plug/).
 
 Primeiro, nós vamos adicionar `{:plug_cowboy, "~> 2.0"}` no arquivo `mix.exs` e instalar as dependências.
 
