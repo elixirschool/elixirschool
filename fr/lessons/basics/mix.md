@@ -1,5 +1,5 @@
 ---
-version: 1.1.1
+version: 1.1.2
 title: Mix
 ---
 
@@ -30,8 +30,6 @@ On peut lire dans les messages de sortie que Mix a créé notre dossier et un ce
 * creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/example.ex
 * creating test
@@ -44,7 +42,7 @@ C'est dans ce fichier que nous configurons notre application, ses dépendances, 
 Ouvrez le fichier dans votre éditeur préféré, vous devriez voir quelque chose comme ce qui suit (les commentaires ont été supprimés pour plus de concision):
 
 ```elixir
-defmodule Example.Mix do
+defmodule Example.MixProject do
   use Mix.Project
 
   def project do
