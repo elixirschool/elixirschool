@@ -588,6 +588,16 @@
   languages:
     - pl
 
+- github: g-belmonte
+  name: Guilherme Belmonte
+  intro:
+  homepage:
+  twitter:
+  contributions:
+    - translator
+  languages:
+    - fr
+
 - github: cristineguadelupe
   name: Cristine Guadelupe
   intro: I'm an Elixir developer, cat and coffee lover, and LiveView enthusiast.
