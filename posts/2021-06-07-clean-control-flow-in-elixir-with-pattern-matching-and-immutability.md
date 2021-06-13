@@ -1,13 +1,15 @@
+%{
+    author: "Cristine Guadelupe",
+    author_link: "https://github.com/cristineguadelupe",
+    tags: ["general"],
+    date: ~D[2021-06-07],
+    title: "Clean Control Flow in Elixir with Pattern Matching and Immutability",
+    excerpt: """
+    Learn how to use pattern matching instead of guard clauses to implement really clean control flow in Elixir.
+    """
+}
 ---
-author: Cristine Guadelupe
-author_link: https://github.com/cristineguadelupe
-categories: general
-date: 2021-06-07
-layout: post
-title: "Clean Control Flow in Elixir with Pattern Matching and Immutability"
-excerpt: >
-  Learn how to use pattern matching instead of guard clauses to implement really clean control flow in Elixir.
----
+
 One of the features that fascinate me most about Elixir is pattern matching. I always wonder if there is a way to solve what I need using it and I love exploring it. When you combine the beauty of pattern matching with the power of immutability some things almost seem magical but they are not!
 It is not my focus to cover everything about pattern matching and immutability but instead to demonstrate how we can use pattern matching instead of guard clauses to implement clean control flows in Elixir.
 
@@ -16,7 +18,7 @@ With this information we now have two possibilities: If the player who is trying
 
 Depending on our experience with Elixir we might reach for a conditional as the first solution, something like:
 
-```elixir 
+```elixir
 def maybe_move(player, last_player) do
     if player != last_player do
         player
@@ -68,7 +70,7 @@ Let's say we have `player1` and `player2`, `player1` made the most recent move a
 
 So we will call the function `maybe_move(player2, player1)` where `player2` is the player who wants to make a move and `player1` is our last_player
 
-We have two `maybe_move` functions both with arity 2, so Elixir will try to pattern match from top to bottom, i.e. the first function it will try to match will be 
+We have two `maybe_move` functions both with arity 2, so Elixir will try to pattern match from top to bottom, i.e. the first function it will try to match will be
 
 ```elixir
 def maybe_move(last_player, last_player) do
