@@ -1,5 +1,5 @@
 ---
-version: 1.7.0
+version: 1.7.1
 title: Enum
 ---
 
@@ -68,7 +68,8 @@ There are a few options for `chunk_every/4` but we won't go into them, check out
 ### chunk_by
 
 If we need to group our collection based on something other than size, we can use the `chunk_by/2` function.
-It takes a given enumerable and a function, and when the return on that function changes a new group is started and begins the creation of the next:
+It takes a given enumerable and a function, and when the return on that function changes a new group is started and begins the creation of the next.
+In the examples below, each string of the same length is grouped together until we encounter a new string of a new length:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
