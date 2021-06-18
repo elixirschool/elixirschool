@@ -255,7 +255,7 @@ The Presence process's state for the given topic will look something like this:
 
 When we call `Presence.track`, Presence will broadcast a `"presence_diff"` event over its PubSub backend. We told our Presence module to use the same PubSub server as the rest of the application––the very same server that backs our `PhatWeb.Endpoint`.
 
-Recall that our live view clients are subscribing to this PubSub server via the following call in the `mount/2` function: ` PhatWeb.Endpoint.subscribe(topic(chat.id))`. So, these subscribing LiveView processes will receive the `"presence_diff"` event, which looks something like this:
+Recall that our live view clients are subscribing to this PubSub server via the following call in the `mount/2` function: `PhatWeb.Endpoint.subscribe(topic(chat.id))`. So, these subscribing LiveView processes will receive the `"presence_diff"` event, which looks something like this:
 
 ```elixir
 %{
