@@ -9,7 +9,7 @@ Documentando código em Elixir.
 
 ## Anotações
 
-Quanto mais comentamos e mantemos uma documentação de qualidade continuamente, torna-se uma controversa dentro do mundo da programação. No entanto, nós podemos concordar que documentação é importante para nós e para aqueles que trabalham com a nossa base de código.
+Quanto comentamos e o que faz uma documentação ser de qualidade segue sendo uma controvérsia dentro do mundo da programação. No entanto, nós podemos concordar que documentação é importante para nós e para aqueles que trabalham com a nossa base de código.
 
 Elixir trata de documentação como uma *cidadã de primeira classe*, oferecendo várias funções de acesso e geração de documentação para seus projetos. O núcleo do Elixir nos fornece muitos atributos diferentes para anotar uma base de código. Vejamos 3 maneiras:
 
@@ -28,11 +28,11 @@ Observe este script em Elixir (greeting.exs):
 IO.puts("Hello, " <> "chum.")
 ```
 
-Elixir, ao executar este script irá ignorar tudo, de `#` até o fim da linha, tratando-a como dados ocultos e sem lógica de execução. Pode adicionar nenhum valor para a operação ou o desempenho do script, no entanto, quando não é tão óbvio sobre o que está acontecendo, um programador deve saber ler o comentário. Esteja atento para não abusar do comentário de uma linha! Bagunçar uma base de código pode se tornar um pesadelo indesejável para alguns. É melhor usar com moderação.
+Elixir, ao executar este script, irá ignorar tudo de `#` até o fim da linha, tratando-a como dados ocultos e sem lógica de execução. Pode adicionar nenhum valor para a operação ou alterar o desempenho do script, no entanto, quando não é tão óbvio o que está acontecendo, um programador deve conseguir entender ao ler o comentário. Esteja atento para não abusar do comentário de uma linha! Bagunçar uma base de código pode se tornar um pesadelo indesejável para alguns. É melhor usar com moderação.
 
 ### Documentação de  Módulos
 
-A anotação `@moduledoc`  permite a documentação em linha em um nível de módulo. É tipicamente situada logo abaixo da declaração `defmodule` no topo de um arquivo. O exemplo abaixo mostra um comentário de uma linha dentro do `@moduledoc` decorator.
+A anotação `@moduledoc`  permite a documentação em linha em um nível de módulo. É tipicamente situada logo abaixo da declaração `defmodule` no topo de um arquivo. O exemplo abaixo mostra um comentário de uma linha dentro do decorador `@moduledoc`.
 
 ```elixir
 defmodule Greeter do
@@ -121,7 +121,7 @@ Examples
 iex>
 ```
 
-Observe como você pode usar marcação de dentro para fora da documentação e o terminal irá renderizar isto? Além de realmente ser uma ótima nova adição para o vasto ecossistema de Elixir, fica muito mais interessante quando olhamos o ExDoc para gerar documentação HTML em tempo real.
+Observe como você pode usar marcação na documentação e o terminal irá renderizar isto. Além de realmente ser uma ótima nova adição para o vasto ecossistema de Elixir, ficará muito mais interessante quando olharmos o ExDoc para gerar documentação HTML em tempo real.
 
 **Nota:** a anotação `@spec` é usada para analisar estaticamente o código. Para aprender mais sobre isso, veja a lição [Especificações e tipos](../../advanced/typespec).
 
@@ -178,7 +178,7 @@ Examples
 
 ### Instalando
 
-Assumindo que tudo está bem, e a saída acima sugere que estamos prontos para configurar ExDoc. Dentro do nosso arquivo `mix.exs` adicione as duas dependências necessárias para começar; `:earmark` e `:ex_doc`.
+Assumindo que tudo está bem, a saída acima sugere que estamos prontos para configurar o ExDoc. Dentro do nosso arquivo `mix.exs` adicione as duas dependências necessárias para começar; `:earmark` e `:ex_doc`.
 
 ```elixir
 def deps do
@@ -189,9 +189,9 @@ def deps do
 end
 ```
 
-Nós especificamos o `only :dev` par de chave-valor, já que não desejamos fazer o download e compilar essas dependências em um ambiente de produção. Porém, porquê Earmark? Earmark é um parser para Markdown da linguagem de programação Elixir no qual ExDoc utiliza para converter nossa documentação dentro de `@moduledoc` e `@doc` em uma bela estrutura HTML.
+Nós especificamos o par de chave-valor `only :dev`, já que não desejamos fazer o download e compilar essas dependências em um ambiente de produção. Porém, por que Earmark? Earmark é um parser para Markdown da linguagem de programação Elixir no qual ExDoc utiliza para converter nossa documentação dentro de `@moduledoc` e `@doc` em uma bela estrutura HTML.
 
-É interessante notar neste momento, que você não é obrigado a usar Earmark. Você pode mudar a ferramenta de marcação para outras como Pandoc, Hoedown ou Cmark; porém você terá que fazer um pouco mais de configuração, no qual você pode ler sobre [aqui](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Para este tutorial, vamos continuar utilizando Earmark.
+É interessante notar neste momento que você não é obrigado a usar Earmark. Você pode mudar a ferramenta de marcação para outras como Pandoc, Hoedown ou Cmark; porém você terá que fazer um pouco mais de configuração, no qual você pode ler sobre [aqui](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Para este tutorial, vamos continuar utilizando Earmark.
 
 ### Gerando Documentação
 
@@ -209,7 +209,7 @@ Com esperança, se tudo correu como planejado, você deve ver uma mensagem semel
 
 ![ExDoc Screenshot 1]({% asset documentation_1.png @path %})
 
-Podemos ver que Earmark converteu nosso markdown e ExDoc agora é exibido em um formato útil.
+Podemos ver que Earmark converteu nosso markdown e o ExDoc está exibindo-o em um formato útil.
 
 ![ExDoc Screenshot 2]({% asset documentation_2.png @path %})
 
@@ -217,7 +217,7 @@ Agora nós podemos implantar isso para GitHub, o nosso próprio site, ou mais co
 
 ## Boas Práticas
 
-Ao adicionar documentação deve ser seguido as boas práticas orientadas pela linguagem. Considerando que Elixir é uma linguagem bastante jovem, muitas normas ainda serão descobertas ao longo do crescimento do ecossistema. A comunidade, entretanto, tem feito esforços para estabelecer as melhores práticas. Para ler mais sobre, veja [O Guia de Estilo Elixir](https://github.com/niftyn8/elixir_style_guide).
+Documentação deve ser adicionada seguindo as boas práticas orientadas pela linguagem. Considerando que Elixir é uma linguagem bastante jovem, muitas normas ainda serão descobertas ao longo do crescimento do ecossistema. A comunidade, entretanto, tem feito esforços para estabelecer as melhores práticas. Para ler mais sobre, veja [O Guia de Estilo Elixir](https://github.com/niftyn8/elixir_style_guide).
 
   - Sempre documente um módulo.
 
@@ -239,7 +239,7 @@ defmodule Greeter do
 end
 ```
 
-  - Quando se refere a funções dentro da documentação de um módulo, use backticks desta forma:
+  - Quando se referir a funções dentro da documentação de um módulo, use backticks desta forma:
 
 ```elixir
 defmodule Greeter do
