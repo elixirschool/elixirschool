@@ -39,7 +39,7 @@ Tego rodzaju komentarze powinny być używane z umiarem, ponieważ w dużej licz
 ### Dokumentowanie modułów
 
 Adnotacja `@moduledoc` służy do dokumentowania modułów.
-Zazwyczaj umieszcza się ją w linii poniżej deklaracji `defmodule` na górze pliku
+Zazwyczaj umieszcza się ją w linii poniżej deklaracji `defmodule` na górze pliku.
 Poniższy przykład ilustruje użycie `@moduledoc`.
 
 ```elixir
