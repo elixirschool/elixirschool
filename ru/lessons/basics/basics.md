@@ -1,5 +1,5 @@
 ---
-version: 1.2.1
+version: 1.3.0
 title: Основы
 ---
 
@@ -15,11 +15,10 @@ title: Основы
 
 После того, как Elixir установлен, вы с лёгкостью можете проверить, какая именно версия была установлена.
 
-    $ elixir -v
+    % elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
-
 
 ### Интерактивный режим
 
@@ -27,10 +26,12 @@ title: Основы
 
 Для того чтобы начать, запустите `iex`:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:8:8] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-	iex>
+    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+    iex>
+
+Примечание: В Windows PowerShell вам нужно написать `iex.bat`.
 
 Попробуем написать несколько простых выражений:
 
@@ -82,7 +83,6 @@ iex> 1.0e-10
 
 Elixir поддерживает два значения логического типа: `true` и `false`. Абсолютно все значения в языке считаются истинными кроме `false` и `nil`:
 
-
 ```elixir
 iex> true
 true
@@ -102,8 +102,7 @@ iex> :foo == :bar
 false
 ```
 
-Стоит отметить, что булевы значения `true`, `false` являются атомами `:true` и `:false`
-
+Стоит отметить, что булевы значения `true`, `false` являются атомами `:true` и `:false`.
 
 ```elixir
 iex> is_atom(true)
@@ -159,7 +158,6 @@ iex> "foo\nbar"
 В Elixir, ожидаемо, есть базовые операторы `+`, `-`, `*`, `/`.
 Стоит отметить что результатом вызова `/` всегда будет число с плавающей запятой:
 
-
 ```elixir
 iex> 2 + 2
 4
@@ -202,7 +200,6 @@ true
 ```
 
 Также есть три дополнительных оператора, у которых первый аргумент _обязан_ быть логического типа (`true` или `false`):
-
 
 ```elixir
 iex> true and 42
