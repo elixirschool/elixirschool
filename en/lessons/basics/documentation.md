@@ -1,5 +1,5 @@
 ---
-version: 1.1.0
+version: 1.1.1
 title: Documentation
 ---
 
@@ -84,7 +84,7 @@ defmodule Greeter do
   """
 
   @doc """
-  Prints a hello message
+  Prints a hello message.
 
   ## Parameters
 
@@ -109,14 +109,16 @@ end
 If we kick into IEx again and use the helper command (`h`) on the function prepended with the module name, we should see the following:
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter.hello
 
                 def hello(name)
 
-Prints a hello message
+  @spec hello(String.t()) :: String.t()
+
+Prints a hello message.
 
 Parameters
 
@@ -177,7 +179,9 @@ iex> h Greeter.hello
 
                 def hello(name)
 
-Prints a hello message
+  @spec hello(String.t()) :: String.t()
+
+Prints a hello message.
 
 Parameters
 
