@@ -159,7 +159,7 @@ That's the way we check if a parameter is a String in Elixir.
 After that, we are calling a function that orders the string alphabetically.
 It first converts the string to lowercase and then uses `String.graphemes/1` to get a list of the graphemes in the string.
 Finally, it pipes that list into `Enum.sort/1`.
-Pretty straight, right?
+Pretty straightforward, right?
 
 Let's check the output on iex:
 
