@@ -13,7 +13,7 @@ excerpt: >
 In an [earlier post](https://elixirschool.com/blog/phoenix-live-view/), we used the brand new (still pre-release at time of writing) Phoenix LiveView library to build a real-time feature with very little backend code and even less JavaScript. LiveView allowed us to easily connect our client to the server via a socket and push updates down to our client. In an app that allows users to "deploy" a repo to GitHub, we achieved the following real-time functionality:
 
 <div class="responsive-embed">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/8M-Hjj7IBu8" frameborder="0" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/8M-Hjj7IBu8" allowfullscreen></iframe>
 </div>
 <br />
 
@@ -22,7 +22,7 @@ But what happens when we have a set of clients that _all_ need to see the _same_
 In this post, we'll learn how to use PubSub to make real-time updates available to all of our LiveView clients, not just the person who clicked the "Deploy to GitHub" button. Our finished product will look like this:
 
 <div class="responsive-embed">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/QLwfYNgVuu0" frameborder="0" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/QLwfYNgVuu0" allowfullscreen></iframe>
 </div>
 <br />
 
