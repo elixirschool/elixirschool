@@ -138,7 +138,7 @@ end
 
 Maintaining a representation of the search form's selected query and inputed value in state allows us to ensure that the correct search query radio button is selected and allows us to update the placeholder text of the search form input field:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6Ta2Au-PcQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6Ta2Au-PcQI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 Maintaining the search form state also ensures that users can navigate directly to the `/consumed_messages` route with a set of query params and see not just the correctly populated messages but also the correctly configured search form:

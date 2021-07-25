@@ -22,7 +22,7 @@ Users need to be able to sort this table by cohort name, campus, start date or s
 
 Here's a look at the behavior we're going for. Note how the URL changes when we click on a given column heading to sort the table.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-4VRaX1uEhk" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-4VRaX1uEhk" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Using `live_link/2`
 
