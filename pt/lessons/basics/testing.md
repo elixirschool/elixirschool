@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.2.1 
 title: Testando
 ---
 
@@ -60,7 +60,7 @@ end
 
 Se você escreveu testes antes, então você está familiarizado com `assert`; em alguns frameworks `should` ou `expect` preenchem o papel de `assert`.
 
-Usamos o `assert` macro para testar se a expressão é verdadeira. No caso em que não é, um erro vai ser levantado e os nossos testes irão falhar. Para testar uma falha vamos mudar nosso exemplo e em seguida, executar o `mix test`.
+Usamos a macro `assert` para testar se a expressão é verdadeira. No caso em que não é, um erro vai ser levantado e os nossos testes irão falhar. Para testar uma falha vamos mudar nosso exemplo e em seguida, executar o `mix test`.
 
 ```elixir
 defmodule ExampleTest do
