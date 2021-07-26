@@ -3,7 +3,7 @@
   author_link: "https://github.com/doomspork",
   date: ~D[2018-10-22],
   tags: ["umbrellas", "software design"],
-  title: "",
+  title: "Umbrellas just when it rains",
   excerpt: """
   A look at umbrella applications and how they can help us write cleaner maintainable code.
   """
