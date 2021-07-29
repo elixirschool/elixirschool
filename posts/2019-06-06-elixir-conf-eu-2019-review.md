@@ -37,10 +37,10 @@ From the beginning of the conference, I got to see some familiar faces from last
 
 I got to talk with all of the sponsors that had a booth in the venue, which was really fun. Cultivate, solarisBank, coders51, bitcrowd, ScoutAPM, Erlang Solutions and Toyota Connected, they are doing some great stuff with Elixir and some of them are hiring as well. They were kind enough to provide us with some swag, including some very nice t-shirts and a ton of stickers! Check it out:
 
-![IMG_20190421_155525](https://user-images.githubusercontent.com/4966172/58432840-1752fe00-80bd-11e9-83ec-e1626c35bf5a.jpg)
+![Conference merchandise including stickers, water bottles, USB cables](https://user-images.githubusercontent.com/4966172/58432840-1752fe00-80bd-11e9-83ec-e1626c35bf5a.jpg)
 
 
-![IMG_20190421_154204](https://user-images.githubusercontent.com/4966172/58432844-1a4dee80-80bd-11e9-962e-8a0eb2db059d.jpg)
+![Conference t-shirt, badge and bag](https://user-images.githubusercontent.com/4966172/58432844-1a4dee80-80bd-11e9-962e-8a0eb2db059d.jpg)
 
 ## Review
 
@@ -88,7 +88,7 @@ He started showing how to bring a simple screen up with Scenic, then he discusse
 
 The rest of the talk is all about how, by leveraging the Box Model with a picture of a fish in it, and constantly building more copies of it, rotating it, scaling it and putting it on screen, you can produce a simplified version of that painting.
 
-[![](https://img.youtube.com/vi/sV5ValgY4ck/0.jpg)](https://www.youtube.com/watch?v=sV5ValgY4ck)
+[![Live coding an Escher painting using Scenic by Ju Liu on Youtube](https://img.youtube.com/vi/sV5ValgY4ck/0.jpg)](https://www.youtube.com/watch?v=sV5ValgY4ck)
 
 ### Rewriting critical software in Elixir - a case study by Renan Ranelli
 
@@ -102,7 +102,7 @@ What Telnyx did was run the new service along the old one, put a proxy in front 
 
 The outcome of this process was near zero incidents after the cutover to the new service, a better runtime with a 100% Elixir codebase, a huge improvement in observability (for example via wobserver), new features shipping faster, and parallelization made ridiculously cheap and simpler all of which led to more happy customers. 
 
-[![](https://img.youtube.com/vi/WocZIc4mPxs/0.jpg)](https://www.youtube.com/watch?v=WocZIc4mPxs)
+[![Rewriting critical software in Elixir - a case study by Renan Ranelli on Youtube](https://img.youtube.com/vi/WocZIc4mPxs/0.jpg)](https://www.youtube.com/watch?v=WocZIc4mPxs)
 
 ### Building a GameBoy emulator with Elixir and Scenic by Tonći Galić
 
@@ -148,7 +148,7 @@ Lastly, he talked about how our system should handle failure with external servi
 
 He closed his talk by saying that, by solving all those potential issues before hand, we can prevent a ton of issues happening in the future, that we have really powerful tools in our runtime, and we should take advantage of them to build more robust systems.
 
-[![](https://img.youtube.com/vi/lg7M0h9eoug/0.jpg)](https://www.youtube.com/watch?v=lg7M0h9eoug)
+[![Building resilient systems with stacking by Chris Keathley on Youtube](https://img.youtube.com/vi/lg7M0h9eoug/0.jpg)](https://www.youtube.com/watch?v=lg7M0h9eoug)
 
 ### Lessons From our first trillion messages with Flow by John Mertens
 
@@ -168,7 +168,7 @@ In Lesson 3, he spoke about how every system is different and there is no magic 
 
 As a bonus, we get to see how they have been already playing with Broadway, and how easy to swap it in instead of Flow, along the differences that they have as systems.
 
-[![flow](https://img.youtube.com/vi/t46L9RKmlNo/0.jpg)](https://www.youtube.com/watch?v=t46L9RKmlNo)
+[![Lessons From our first trillion messages with Flow by John Mertens on Youtube](https://img.youtube.com/vi/t46L9RKmlNo/0.jpg)](https://www.youtube.com/watch?v=t46L9RKmlNo)
 
 ### Telemetry ...and metrics for all - ElixirConf EU 2019 by Arkadiusz Gil
 
@@ -182,7 +182,7 @@ A Telemetry event consists for three parts, the event name, the measurements (me
 
 Lastly, he demonstrated the way you can plug Telemetry into a project by using the Rumble application from the Phoenix Programming book. It is as simple as adding the dependencies in `mix.exs`, making a custom module that defines which metrics we want, supervising it in `application.ex` and we are good to go from the application standpoint. The difficult part is setting up the reporter, like statsd, but there is going to be one included in Phoenix as well, where we will be able to access it from a route.
 
-[![](https://img.youtube.com/vi/cOuyOmcDV1U/0.jpg)](https://www.youtube.com/watch?v=cOuyOmcDV1U)
+[![Telemetry ...and metrics for all - ElixirConf EU 2019 by Arkadiusz Gil on Youtube](https://img.youtube.com/vi/cOuyOmcDV1U/0.jpg)](https://www.youtube.com/watch?v=cOuyOmcDV1U)
 
 ## Erlang Ecosystem Foundation
 
