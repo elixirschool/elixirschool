@@ -111,7 +111,7 @@ iex> File.read("path/to/unknown/file")
 
 ## 关键字列表（Keyword list）
 
-关键字列表（keywords list）和映射（maps）是 Elixir 中两个相关的集合。Elixir 的关键字列表是一种特殊的列表：列表里的内容是二元元组，并且二元组的第一个元素必须是原子。它和列表的行为完全一致。
+关键字列表（keyword list）和映射（maps）是 Elixir 中两个相关的集合。Elixir 的关键字列表是一种特殊的列表：列表里的内容是二元元组，并且二元组的第一个元素必须是原子。它和列表的行为完全一致。
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
