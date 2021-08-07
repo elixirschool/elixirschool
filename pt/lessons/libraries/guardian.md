@@ -90,7 +90,7 @@ def deps do
 end
 ```
 
-`config/config.ex`
+`config/config.exs`
 
 ```elixir
 # no arquivo de configuração de cada ambiente você deve sobrescrever isto se é externo

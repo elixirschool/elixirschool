@@ -89,7 +89,7 @@ def deps do
 end
 ```
 
-`config/config.ex`
+`config/config.exs`
 
 ```elixir
 # en cada archivo de configuración del entorno, debe sobrescribir esto si es externo
@@ -245,7 +245,7 @@ end
 
 Agregue su módulo de implementación y controlador de errores a su configuración:
 
-`config/config.ex`
+`config/config.exs`
 
 ```elixir
 config :my_app, MyApp.AuthAccessPipeline,

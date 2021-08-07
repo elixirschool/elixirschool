@@ -89,7 +89,7 @@ def deps do
 end
 ```
 
-`config/config.ex`
+`config/config.exs`
 
 ```elixir
 # in each environment config file you should overwrite this if it's external

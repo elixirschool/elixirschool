@@ -90,7 +90,7 @@ def deps do
 end
 ```
 
-`config/config.ex`
+`config/config.exs`
 
 ```elixir
 # в каждом окружении стоит переопределять этот ключ
