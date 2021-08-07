@@ -1,12 +1,13 @@
----
-author: Frank Kumro
-author_link: https://frank.kumro.io
-categories: general
-date: 2021-07-14
-layout: post
-title: "Learning Elixir with others - The Elixir Book Club"
-excerpt: >
+%{
+  author: "Frank Kumro",
+  author_link: "https://frank.kumro.io",
+  date: ~D[2021-07-14],
+  tags: ["Announcement"],
+  title: "Learning Elixir with others - The Elixir Book Club",
+  excerpt: """
   Enjoy reading your favorite Elixir books with a group of other Alchemists, introducing the Elixir Book Club.
+  """
+}
 ---
 
 The Elixir community has no shortage of high-quality learning material, which leads to a problem: purchasing every Elixir book published while
