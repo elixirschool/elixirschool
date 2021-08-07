@@ -89,7 +89,7 @@ def deps do
 end
 ```
 
-W pliku `config/config.ex`:
+W pliku `config/config.exs`:
 
 ```elixir
 # Nadpisz tę wartość w plikach konfiguracyjnych dla poszczególnych środowisk

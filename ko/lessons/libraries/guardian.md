@@ -78,7 +78,7 @@ def deps do
 end
 ```
 
-`config/config.ex`
+`config/config.exs`
 
 ```elixir
 # 공개하는 코드라면 각 환경 설정에서 덮어써야 합니다

@@ -78,7 +78,7 @@ def deps do
 end
 ```
 
-`config/config.ex`
+`config/config.exs`
 
 ```elixir
 # 修改所有外部的配置文件

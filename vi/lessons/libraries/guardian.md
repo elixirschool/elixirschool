@@ -78,7 +78,7 @@ def deps do
 end
 ```
 
-`config/config.ex`
+`config/config.exs`
 
 ```elixir
 config :guardian, Guardian,
