@@ -138,7 +138,7 @@ iex> inspect(sean)
 "%Example.User<name: \"Sean\", ...>"
 ```
 
-The `roles` are excluded from output!
+Ролі не включено у вивід!
 
 ## Композиція
 
