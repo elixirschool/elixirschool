@@ -126,6 +126,8 @@ iex> [foo: "bar", hello: "world"]
 [foo: "bar", hello: "world"]
 iex> [{:foo, "bar"}, {:hello, "world"}]
 [foo: "bar", hello: "world"]
+iex> [foo: "bar", hello: "world", foo: "OK"]
+[foo: "bar", hello: "world", foo: "OK"]
 ```
 
 As três características relevantes das listas de palavras-chave são:
