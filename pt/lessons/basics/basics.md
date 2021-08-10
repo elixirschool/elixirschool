@@ -239,6 +239,8 @@ iex> 2 == 2.0
 true
 iex> 2 === 2.0
 false
+iex> 2 !== 2.0
+true
 ```
 
 Uma característica importante do Elixir é que qualquer tipo pode ser comparado; isto é particularmente útil em ordenação. Não precisamos memorizar a ordem de classificação, mas é importante estar ciente de que:
