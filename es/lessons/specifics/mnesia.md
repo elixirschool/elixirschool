@@ -106,7 +106,7 @@ iex> Mnesia.create_schema([node()])
 iex> Mnesia.start()
 :ok
 ```
-La función `Mnesia.start/0` es asíncrona. Empieza la inicialización de las tablas existentes y retorna al átomo `:ok`. En caso necesitemos realizar alguna acción sobre una tabla existente justo luego de iniciar Mnesia necesitamos llamar a la función `Mnesia.wait_for_tables/2`. Esto suspenderá la llamada hasta que las tablas hayan sido inicializadas. Revisa el ejemplo en la sección [Inicialización de datos y migración](#inicialización de datos y migración).
+La función `Mnesia.start/0` es asíncrona. Empieza la inicialización de las tablas existentes y retorna al átomo `:ok`. En caso necesitemos realizar alguna acción sobre una tabla existente justo luego de iniciar Mnesia necesitamos llamar a la función `Mnesia.wait_for_tables/2`. Esto suspenderá la llamada hasta que las tablas hayan sido inicializadas. Revisa el ejemplo en la sección [Inicialización de datos y migración](#inicialización-de-datos-y-migración).
 
 Hay que tener en cuenta que cuando corremos un sistema distribuido con dos o más nodos la función `Mnesia.start/1` debe ser ejecutada en todos los nodos.
 
