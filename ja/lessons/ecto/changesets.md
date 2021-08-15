@@ -122,7 +122,7 @@ end
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> validate_required([:name])
 end
 ```
@@ -149,7 +149,7 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> validate_required([:name])
   |> validate_length(:name, min: 2)
 end
