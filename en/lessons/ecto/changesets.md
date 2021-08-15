@@ -121,7 +121,7 @@ Now we can ensure that `name` is always present:
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> validate_required([:name])
 end
 ```
