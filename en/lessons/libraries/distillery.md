@@ -17,7 +17,7 @@ It also provides any scripts necessary for launching your application.
 
 > Releases enable simplified deployment: they are self-contained, and provide everything needed to boot the release; they are easily administered via the provided shell script to open up a remote console, start/stop/restart the release, start in the background, send remote commands, and more. In addition, they are archivable artifacts, meaning you can restore an old release from its tarball at any point in the future (barring incompatibilities with the underlying OS or system libraries). The use of releases is also a prerequisite of performing hot upgrades and downgrades, one of the most powerful features of the Erlang VM. - [Distillery Documentation](https://hexdocs.pm/distillery/introduction/understanding_releases.html)
 
-A release will contain the folowing:
+A release will contain the following:
 * a /bin folder
   * This contains a script that is the starting point to running your entire application.
 * a /lib folder

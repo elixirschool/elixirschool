@@ -121,5 +121,5 @@ iex> ny_datetime
 
 As you can see, time changed from 12:00 Paris time to 6:00, which is correct - time difference between the two cities is 6 hours.
 
-This is it! If you want to work with other advanced functions you may want to consider looking futher into docs for [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html) and [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html)
+This is it! If you want to work with other advanced functions you may want to consider looking further into docs for [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html) and [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html)
 You should also consider [Timex](https://github.com/bitwalker/timex) and [Calendar](https://github.com/lau/calendar) which are powerful libraries to work with time in Elixir.

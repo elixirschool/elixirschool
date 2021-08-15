@@ -232,7 +232,7 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
 
 Great, it works! However, there was really no need to implement this function ourselves — the `validate_inclusion/4` function could be used instead; still, you can see how you can add your own errors which should come useful.
 
-## Adding changes programatically
+## Adding changes programmatically
 
 Sometimes you want to introduce changes to a changeset manually. The `put_change/3` helper exists for this purpose.
 
