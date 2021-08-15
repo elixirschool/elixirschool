@@ -122,7 +122,7 @@ end
 ```elixir
 def changeset(struct, params) do
   struct
-  |> cast(params, [:name])
+  |> cast(params, [:name, :age])
   |> validate_required([:name])
 end
 ```
