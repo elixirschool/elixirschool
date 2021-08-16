@@ -72,6 +72,7 @@ La oss lage en egendefinert Mix task. Lag en ny mappe og fil **hello/lib/mix/tas
 
 ```elixir
 defmodule Mix.Tasks.Hello do
+  @moduledoc "The hello mix task: `mix help hello`"
   use Mix.Task
 
   @shortdoc "Simply runs the Hello.say/0 command."
