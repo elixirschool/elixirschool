@@ -100,7 +100,7 @@ Apart from automated tests, you also need to do manual checks on your site using
 
 ## Conclusion
 
-Web page validation is an important step in web development, that is often skipped because manually checking each web page is a cumbersome task.
+Web page validation is an important step in web development that is often skipped because manually checking each web page is a cumbersome task.
 
 Fortunately, there are ways to automate large site validation, so we can quickly detect and fix HTML and accessibility issues, smashing many accessibility barriers on our sites and making them reachable by a larger number of people.
 
