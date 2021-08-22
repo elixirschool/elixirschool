@@ -24,7 +24,7 @@ end
 Daha sonra, projemiz için `:main_module` atomunu belirtmekle birlikte `:escript` seçeneğini dahil etmek için Mixfile dosyanızı güncellemelisiniz:
 
 ```elixir
-defmodule ExampleApp.Mixfile do
+defmodule ExampleApp.Mixproject do
   def project do
     [app: :example_app, version: "0.0.1", escript: escript()]
   end

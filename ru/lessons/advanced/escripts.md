@@ -26,7 +26,7 @@ end
 Далее нам надо обновить наш Mixfile &mdash; включить `:escript` для нашего проекта, а также указать `:main_module`:
 
 ```elixir
-defmodule ExampleApp.Mixfile do
+defmodule ExampleApp.Mixproject do
   def project do
     [app: :example_app, version: "0.0.1", escript: escript()]
   end
