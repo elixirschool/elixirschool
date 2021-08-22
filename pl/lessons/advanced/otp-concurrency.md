@@ -1,9 +1,9 @@
 ---
-version: 0.9.1
+version: 1.0.4
 title: Współbieżność z OTP
 ---
 
-Poznaliśmy już abstrakcję do obsługi współbieżności, jaką oferuje Elixir. Czasami potrzebujemy większej kontroli nad tym, co się dzieje. Dlatego też Elixir ma obsługę zachowań OTP.  
+Poznaliśmy już abstrakcję do obsługi współbieżności, jaką oferuje Elixir, ale czasami potrzebujemy większej kontroli nad tym, co się dzieje, dlatego też możemy chcieć użyć zachowań OTP, na których zbudowany jest Elixir.
 
 W tej lekcji skupimy się na istotniejszym elemencie: GenServer.
 
@@ -11,18 +11,24 @@ W tej lekcji skupimy się na istotniejszym elemencie: GenServer.
 
 ## GenServer
 
-Serwer OTP zawiera moduł zachowań GenServer, który implementuje zestaw wywołań zwrotnych (ang. _callback_). W dużym uproszczeniu GenServer to pętla, w której każda iteracja odpowiada obsłudze jednego żądania, które aktualizuje stan aplikacji.  
+Serwer OTP zawiera moduł zachowań GenServer, który implementuje zestaw wywołań zwrotnych (ang. _callback_).
+W dużym uproszczeniu GenServer to pętla, w której każda iteracja odpowiada obsłudze jednego żądania, które aktualizuje stan aplikacji.
 
-Zademonstrujemy działanie GenServer, implementując prostą kolejkę.
+Zademonstrujemy działanie API GenServer, implementując prostą kolejkę.
 
-By uruchomić GenServer, musimy go wystartować oraz obsłużyć procedurę inicjacji. W większości przypadków chcemy obsłużyć łączenie procesów, dlatego użyjemy `GenServer.start_link/3`. Przekażemy do modułu GenServer argumenty startowe i niewielki zestaw opcji. Argumenty zostaną przekazane do funkcji `GenServer.init/1`, która na ich podstawie utworzy początkowy stan aplikacji. W naszym przykładzie argumenty i stan początkowy będą takie same:
+By uruchomić GenServer, musimy go wystartować oraz obsłużyć procedurę inicjacji.
+W większości przypadków chcemy obsłużyć łączenie procesów, dlatego używamy `GenServer.start_link/3`.
+Przekazujemy do modułu GenServer argumenty startowe i zestaw opcji.
+Argumenty zostaną przekazane do funkcji `GenServer.init/1`, która na ich podstawie utworzy stan początkowy poprzez zwracaną przez nią wartość.
+W naszym przykładzie argumenty i stan początkowy będą takie same:
 
 ```elixir
 defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  Start our queue and link it.  This is a helper function
+  Uruchom naszą kolejkę i połącz jej proces.
+  Jest to funkcja pomocnicza.
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -37,17 +43,13 @@ end
 
 ### Funkcje synchroniczne
 
-Czasami zadania zlecane GenServer muszą być wykonywane w sposób synchroniczny, czyli wywołujemy funkcję i czekamy na rezultat. By sprostać temu wyzwaniu, musimy zaimplementować funkcję zwrotną `GenServer.handle_call/3`, która jako parametry przyjmuje: 
+Często zadania zlecane GenServerom muszą być wykonywane w sposób synchroniczny — po wywołaniu funkcji czekamy na rezultat.
+By obsłużyć synchroniczne żądania, musimy zaimplementować funkcję zwrotną `GenServer.handle_call/3`, która jako parametry przyjmuje: żądanie, PID procesu wywołującego, stan; oczekiwana odpowiedź to z kolei krotka w postaci: `{:reply, odpowiedź, stan}`.
 
- * żądanie,
- * PID procesu wywołującego,
- * stan.
- 
-W odpowiedzi musi zwrócić krotkę w postaci: `{:reply, odpowiedź, stan}`.
+Wykorzystując dopasowania wzorców, możemy zdefiniować wiele różnych wywołań zwrotnych, w zależności od żądania i stanu.
+Pełna dokumentacja zawierająca listę parametrów i zwracanych wartości znajduje się w dokumentacji [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3).
 
-Wykorzystując dopasowania wzorców, możemy zdefiniować wiele różnych wywołań zwrotnych, w zależności od żądania i stanu. Pełna dokumentacja zawierająca listę parametrów i zwracanych wartości znajduje się w dokumentacji [`GenServer.handle_call/3`](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#c:handle_call/3).
-
-By zademonstrować wywołanie synchroniczne, dodajmy do naszej kolejki, możliwość wyświetlenia zawartości i usunięcia jednej z wartości:
+By zademonstrować wywołanie synchroniczne, dodajmy do naszej kolejki możliwość wyświetlenia zawartości i usunięcia jednej z wartości:
 
 ```elixir
 defmodule SimpleQueue do
@@ -82,7 +84,7 @@ defmodule SimpleQueue do
 end
 ```
 
-Wystartujmy naszą aplikację `SimpleQueue` i przetestujmy nowe funkcjonalności:
+Wystartujmy naszą aplikację `SimpleQueue` i przetestujmy jej nowe funkcje:
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])
@@ -97,9 +99,10 @@ iex> SimpleQueue.queue
 
 ### Funkcje asynchroniczne
 
-Wywołania asynchroniczne są obsługiwane przez `handle_cast/2`.  Działają podobnie jak `handle_call/3`, a jedynymi różnicami są brak PID wywołującego oraz to, że nie oczekujemy wartości zwracanej.
+Wywołania asynchroniczne są obsługiwane przez `handle_cast/2`.
+Działają podobnie jak `handle_call/3`, a jedynymi różnicami są brak PID wywołującego oraz to, że nie oczekujemy żadnej odpowiedzi.
 
-Zaimplementujmy dodawanie elementów do kolejki jako asynchroniczne. Dzięki temu, dodając element nie będziemy blokować działania programu:
+Zaimplementujemy dodawanie elementów do kolejki jako funckję asynchroniczną, dzięki czemu dodając element nie będziemy blokować działania programu:
 
 ```elixir
 defmodule SimpleQueue do
@@ -142,7 +145,7 @@ defmodule SimpleQueue do
 end
 ```
 
-Spróbujmy użyć naszej nowej funkcjonalności:
+Spróbujmy użyć naszej nowej funkcji:
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])
@@ -155,4 +158,4 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-Więcej informacji znajdziesz w oficjalnej dokumentacji [GenServer](http://elixir-lang.org/docs/v1.1/elixir/GenServer.html#content).
+Więcej informacji znajdziesz w oficjalnej dokumentacji [GenServer](https://hexdocs.pm/elixir/GenServer.html#content).
