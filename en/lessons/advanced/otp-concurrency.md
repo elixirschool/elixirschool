@@ -28,7 +28,7 @@ defmodule SimpleQueue do
 
   @doc """
   Start our queue and link it.
-This is a helper function
+  This is a helper function
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
