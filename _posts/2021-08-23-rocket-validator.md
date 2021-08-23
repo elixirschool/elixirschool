@@ -11,7 +11,7 @@ Learn how we're checking and monitoring the new Elixir School site to detect and
 
 ## Intro
 
-One of the core principles of Elixir School is to be an inclusive community. We want to help people from all over the world learn to code using Elixir. To facilitate that we provide translations of the lessons to many languages, maintained by volunteers worldwide. By removing the language barrier, we're helping more people get into the Elixir community.
+One of the core principles of Elixir School is to be an inclusive community. We want to help people from all over the world learn to code using Elixir. To facilitate that, we provide translations of the lessons to many languages, maintained by volunteers worldwide. By removing the language barrier, we're helping more people get into the Elixir community.
 
 Apart from the language barrier, there are other barriers that we're aware of - [web accessibility barriers](https://www.w3.org/WAI/people-use-web/abilities-barriers/) are everywhere on the World Wide Web, making it harder for people to access content that is often taken for granted.
 
