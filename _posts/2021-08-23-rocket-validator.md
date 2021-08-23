@@ -15,7 +15,7 @@ One of the core principles of Elixir School is to be an inclusive community. We 
 
 Apart from the language barrier, there are other barriers that we're aware of - [web accessibility barriers](https://www.w3.org/WAI/people-use-web/abilities-barriers/) are everywhere on the World Wide Web, making it harder for people to access content that is often taken for granted.
 
-Low vision may make a web unreadable if the text has low contrast or the font size cannot be adapted easily. Unsighted people can use screen readers to hear the page content, but it won't work well if the content is poorly structured and can't be properly interpreted by the screen reader software. People with reduced mobility may prefer to navigate through the lessons using the keyboard instead of the mouse, but again this won't work fine if the document is not laid out correctly.
+Low vision may make a web page unreadable if the text has low contrast or the font size cannot be adapted easily. Unsighted people can use screen readers to hear the page content, but it won't work well if the content is poorly structured and can't be properly interpreted by the screen reader software. People with reduced mobility may prefer to navigate through the lessons using the keyboard instead of the mouse, but again this won't work if the document is not laid out correctly.
 
 The good news is that we can make Elixir School accessible for everyone. And it's not a hard task, it just requires that we're aware of those barriers and that we follow the web standards to provide well-structured web pages.
 
