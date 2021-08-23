@@ -63,7 +63,7 @@ The graph above shows how we're improving Elixir School by reducing the average 
 
 ## Validating light / dark modes for contrast issues
 
-Elixir School has a light / dark mode switch which is great to choose the UI you prefer, but this also means all our URLs are duplicated regarding contrast issues. If we want to ensure there are no contrast issues, we need to check both in light and dark modes.
+Elixir School has a light / dark mode switch which is great to choose the UI you prefer, but this also means all of our URLs need to be validated in light mode and dark mode to ensure there are no low contrast issues for each theme.
 
 ![Light and Dark modes on Elixir School](https://www.dropbox.com/s/yzzj595vteqdi69/rocket-validator-contrast.png?raw=1)
 
