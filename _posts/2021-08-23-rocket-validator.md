@@ -1,6 +1,6 @@
 ---
 author: Jaime Iniesta
-author_link: https://jaimeiniesta.com
+author_link: https://github.com/jaimeiniesta
 categories: general
 date: 2021-08-16
 layout: post
