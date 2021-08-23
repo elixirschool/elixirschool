@@ -67,7 +67,7 @@ Elixir School has a light / dark mode switch which is great to choose the UI you
 
 ![Light and Dark modes on Elixir School](https://www.dropbox.com/s/yzzj595vteqdi69/rocket-validator-contrast.png?raw=1)
 
-To validate accessibility on both the light and dark modes, we came up with the idea of adding an optional parameter `?ui=dark` on the URLs that, when present, enables the dark mode. So, we can run reports for the light mode using the default [light mode XML sitemap](https://beta.elixirschool.com/sitemap.xml) and reports for the dark mode using the [dark mode XML sitemap](https://beta.elixirschool.com/sitemap_dark_mode.xml) that adds this parameter to the URLs.
+To validate accessibility on both the light and dark modes, we came up with the idea of adding an optional parameter `?ui=dark` on the URLs that, when present, enables dark mode. So, we can run reports for the light mode using the default [light mode XML sitemap](https://beta.elixirschool.com/sitemap.xml) and reports for the dark mode using the [dark mode XML sitemap](https://beta.elixirschool.com/sitemap_dark_mode.xml) that adds this parameter to the URLs.
 
 With these XML sitemaps in place, we generate two kinds of reports:
 
