@@ -106,7 +106,7 @@ Fortunately, there are ways to automate large site validation, so we can quickly
 
 ## Thanks!
 
-This article was written by [Jaime Iniesta](https://jaimeiniesta.com), a freelance web developer that has created [Rocket Validator](https://rocketvalidator.com) using Elixir.
+This article was written by [Jaime Iniesta](https://jaimeiniesta.com), a freelance web developer who has created [Rocket Validator](https://rocketvalidator.com) using Elixir.
 
 Try Rocket Validator on your sites by creating a [Free Rocket Validator Account](https://rocketvalidator.com/registration/new).
 
