@@ -337,7 +337,7 @@ iex(moebi@localhost)> hi
 現在從為 `send_message` 函數編寫一個簡單的測試開始。
 
 ```elixir
-# test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -379,7 +379,7 @@ end
 現在將在此測試中加入一個 `ExUnit` 標籤：
 
 ```elixir
-#test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -394,6 +394,7 @@ end
 如果測試 _不是_ 在命名 node 上執行，將在測試 helper 加入一些條件邏輯，以排除帶有此類標籤的測試。
 
 ```elixir
+# test/test_helper.exs
 exclude =
   if Node.alive?, do: [], else: [distributed: true]
 
