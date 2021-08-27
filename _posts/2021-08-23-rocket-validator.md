@@ -4,7 +4,7 @@ author_link: https://github.com/jaimeiniesta
 categories: general
 date: 2021-08-16
 layout: post
-title: "Validating accessibility and HTML with Rocket Validator"
+title: "Validating Accessibility and HTML with Rocket Validator"
 excerpt: >
 Learn how we're checking and monitoring the new Elixir School site to detect and fix accessibility and HTML issues using Rocket Validator.
 ---
