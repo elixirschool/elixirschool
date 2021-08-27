@@ -24,7 +24,7 @@ end
 Ďalej potrebujeme aktualizovať náš Mixfile, aby obsahoval možnosť `:escript` pre náš projekt spolu so špecifikovaným hlavným modulom (`:main_module`):
 
 ```elixir
-defmodule ExampleApp.Mixfile do
+defmodule ExampleApp.Mixproject do
   def project do
     [app: :example_app, version: "0.0.1", escript: escript()]
   end
