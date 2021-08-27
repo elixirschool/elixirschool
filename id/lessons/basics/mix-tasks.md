@@ -71,6 +71,7 @@ Mari kita buat task Mix custom kita. Buat sebuah direktori baru dan file **hello
 
 ```elixir
 defmodule Mix.Tasks.Hello do
+  @moduledoc "The hello mix task: `mix help hello`"
   use Mix.Task
 
   @shortdoc "Simply runs the Hello.say/0 command."

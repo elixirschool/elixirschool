@@ -71,6 +71,7 @@ Vamos a crear nuestra tarea Mix personalizada. Crea un nuevo directorio y un arc
 
 ```elixir
 defmodule Mix.Tasks.Hello do
+  @moduledoc "The hello mix task: `mix help hello`"
   use Mix.Task
 
   @shortdoc "Simply runs the Hello.say/0 function"

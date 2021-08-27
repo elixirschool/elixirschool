@@ -76,6 +76,7 @@ W tym pliku zamieść poniższy kod:
 
 ```elixir
 defmodule Mix.Tasks.Hello do
+  @moduledoc "The hello mix task: `mix help hello`"
   use Mix.Task
 
   @shortdoc "Wywołuje funkcję Hello.say/0."
@@ -99,6 +100,7 @@ Spójrzmy, jak możemy zmienić napisaną przez nas funkcję Mixa tak, by uruch
 
 ```elixir
 defmodule Mix.Tasks.Hello do
+  @moduledoc "The hello mix task: `mix help hello`"
   use Mix.Task
 
   @shortdoc "Wywołuje funkcję Hello.say/0."

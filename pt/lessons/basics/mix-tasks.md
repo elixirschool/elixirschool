@@ -76,6 +76,7 @@ Neste arquivo, vamos inserir estas 7 linhas de Elixir.
 
 ```elixir
 defmodule Mix.Tasks.Hello do
+  @moduledoc "The hello mix task: `mix help hello`"
   use Mix.Task
 
   @shortdoc "Simply calls the Hello.say/0 function."
@@ -104,6 +105,7 @@ Vamos ver como fazer a nossa tarefa Mix inicializar nossa aplicação e suas dep
 
 ```elixir
 defmodule Mix.Tasks.Hello do
+  @moduledoc "The hello mix task: `mix help hello`"
   use Mix.Task
 
   @shortdoc "Simply calls the Hello.say/0 function."

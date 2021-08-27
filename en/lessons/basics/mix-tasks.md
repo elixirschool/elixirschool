@@ -76,6 +76,7 @@ Within this file, let's insert these 7 lines of Elixir.
 
 ```elixir
 defmodule Mix.Tasks.Hello do
+  @moduledoc "The hello mix task: `mix help hello`"
   use Mix.Task
 
   @shortdoc "Simply calls the Hello.say/0 function."
@@ -99,6 +100,7 @@ Let's look at how we can update our Mix task to start our application and depend
 
 ```elixir
 defmodule Mix.Tasks.Hello do
+  @moduledoc "The hello mix task: `mix help hello`"
   use Mix.Task
 
   @shortdoc "Simply calls the Hello.say/0 function."
