@@ -337,7 +337,7 @@ iex(moebi@localhost)> hi
 Vamos a empezar a escribir una prueba simple para nuestra función `send_message`.
 
 ```elixir
-# test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -379,7 +379,7 @@ Vamos a revisar el primer enfoque.
 Agregaremos una etiqueta `ExUnit` a esta prueba:
 
 ```elixir
-#test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -394,6 +394,7 @@ end
 Y agregaremos lógica condicional a nuestro *helper* de pruebas para excluir pruebas con tales etiquetas si las pruebas no están corriendo en un nodo con nombre.
 
 ```elixir
+# test/test_helper.exs
 exclude =
   if Node.alive?, do: [], else: [distributed: true]
 

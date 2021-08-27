@@ -336,7 +336,7 @@ iex(moebi@localhost)> hi
 Let's start by writing a simple test for our `send_message` function.
 
 ```elixir
-# test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -375,7 +375,7 @@ Let's take a look at the first approach.
 We'll add an `ExUnit` tag to this test:
 
 ```elixir
-#test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -390,6 +390,7 @@ end
 And we'll add some conditional logic to our test helper to exclude tests with such tags if the tests are _not_ running on a named node.
 
 ```elixir
+# test/test_helper.exs
 exclude =
   if Node.alive?, do: [], else: [distributed: true]
 

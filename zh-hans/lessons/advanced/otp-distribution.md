@@ -314,7 +314,7 @@ iex(moebi@localhost)> hi
 让我们来给我们的 `send_message` 函数编写一个简单的测试用例吧。
 
 ```elixir
-# test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -354,7 +354,7 @@ end
 我们需要添加一个 `ExUnit` tag 到测试用例之上：
 
 ```elixir
-#test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -369,6 +369,7 @@ end
 然后，我们就可以在测试的 helper 模块添加一些条件逻辑，使得那些拥有特定标签的测试用例，当不是运行在一个命名的节点的时侯，被排除在外。
 
 ```elixir
+# test/test_helper.exs
 exclude =
   if Node.alive?, do: [], else: [distributed: true]
 

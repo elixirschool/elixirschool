@@ -336,7 +336,7 @@ iex(moebi@localhost)> hi
 Ας ξεκινήσουμε γράφοντας μια απλή δοκιμή για τη συνάρτησή μας `send_message`.
 
 ```elixir
-# test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -375,7 +375,7 @@ end
 Θα προσθέσουμε μια ετικέτα `ExUnit` σε αυτή τη δοκιμή:
 
 ```elixir
-#test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -390,6 +390,7 @@ end
 Και θα προσθέσουμε μια λογική συνθήκη στο βοηθό δοκιμών μας για να εξαιρούμε δοκιμές με αυτή την ετικέτα αν οι δοκιμές _δεν_ τρέχουν σε ονομασμένο κόμβο.
 
 ```elixir
+# test/test_helper.exs
 exclude =
   if Node.alive?, do: [], else: [distributed: true]
 

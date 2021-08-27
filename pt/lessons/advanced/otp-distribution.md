@@ -335,7 +335,7 @@ iex(moebi@localhost)> hi
 Vamos começar escrevendo um simples teste para nossa função `send_message`.
 
 ```elixir
-# test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -377,7 +377,7 @@ Vamos dar uma olhada na primeira abordagem.
 Nós vamos adicionar uma tag `ExUnit` tag nesse teste:
 
 ```elixir
-#test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -392,6 +392,7 @@ end
 E vamos adicionar alguma lógica condicional ao nosso helper de teste para excluir testes com tais tags se os testes _não_ estão executando em um nó de processamento nomeado.
 
 ```elixir
+# test/test_helper.exs
 exclude =
   if Node.alive?, do: [], else: [distributed: true]
 

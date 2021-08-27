@@ -339,7 +339,7 @@ iex(moebi@localhost)> hi
 `send_message` 関数の簡単なテストを書いてみましょう。
 
 ```elixir
-# test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -381,7 +381,7 @@ end
 このテストに `ExUnit` タグを追加します:
 
 ```elixir
-#test/chat_test.ex
+# test/chat_test.exs
 defmodule ChatTest do
   use ExUnit.Case, async: true
   doctest Chat
@@ -396,6 +396,7 @@ end
 そして、テストが名前付きノードで実行 _されていない_ 場合にそのタグを持つテストを除外するため、条件分岐ロジックをテストヘルパーに追加します。
 
 ```elixir
+# test/test_helper.exs
 exclude =
   if Node.alive?, do: [], else: [distributed: true]
 
