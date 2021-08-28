@@ -11,7 +11,7 @@ In this lesson we're going to take a closer look at the GenStage, what role it s
 
 So what is GenStage?  From the official documentation, it is a "specification and computational flow for Elixir", but what does that mean to us?
 
-What it means is that GenStage provides a way for us to define a pipeline of work to be carried out by independent steps (or stages) in a separate processes; if you've worked with pipelines before then some of these concepts should be familiar.
+What it means is that GenStage provides a way for us to define a pipeline of work to be carried out by independent steps (or stages) in separate processes; if you've worked with pipelines before then some of these concepts should be familiar.
 
 To better understand how this works, let's visualize a simple producer-consumer flow:
 
