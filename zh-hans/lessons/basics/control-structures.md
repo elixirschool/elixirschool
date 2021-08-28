@@ -122,3 +122,83 @@ iex> cond do
 ...> end
 "Catch all"
 ```
+
+## `with`
+
+当我们需要使用嵌套的`case/2`语句,或者无法完全地使用管道符号连接在一起时,这时`with/1`是非常有用的。`with/1`表达式由关键字(keyword)、生成器(generator)和最后一个表达式(expression)组成。
+
+我们将会在[list comprehensions lesson](../comprehensions/)谈论更多关于生成器的知识,现在我们只需要知道它们使用[pattern matching](../pattern-matching/)将`<-`右侧与左侧进行比较。
+
+我们将从一个简单的`with/1`例子开始,然后再探索更多的东西:
+
+```elixir
+iex> user = %{first: "Sean", last: "Callan"}
+%{first: "Sean", last: "Callan"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+"Callan, Sean"
+```
+
+如果表达式匹配失败,将会返回这个匹配失败的值:
+
+```elixir
+iex> user = %{first: "doomspork"}
+%{first: "doomspork"}
+iex> with {:ok, first} <- Map.fetch(user, :first),
+...>      {:ok, last} <- Map.fetch(user, :last),
+...>      do: last <> ", " <> first
+:error
+```
+
+现在我们来看一个不带`with/1`并且复杂例子,看看我们是如何重构它的:
+
+```elixir
+case Repo.insert(changeset) do
+  {:ok, user} ->
+    case Guardian.encode_and_sign(user, :token, claims) do
+      {:ok, token, full_claims} ->
+        important_stuff(token, full_claims)
+
+      error ->
+        error
+    end
+
+  error ->
+    error
+end
+```
+
+当我们引入`with/1`时,我们可以获得更加简洁并且容易理解的代码:
+
+```elixir
+with {:ok, user} <- Repo.insert(changeset),
+     {:ok, token, full_claims} <- Guardian.encode_and_sign(user, :token, claims) do
+  important_stuff(token, full_claims)
+end
+```
+
+在Elixir 1.3中,`with/1`语句能够支持`else`:
+
+```elixir
+import Integer
+
+m = %{a: 1, c: 3}
+
+a =
+  with {:ok, number} <- Map.fetch(m, :a),
+    true <- is_even(number) do
+      IO.puts "#{number} divided by 2 is #{div(number, 2)}"
+      :even
+  else
+    :error ->
+      IO.puts("We don't have this item in map")
+      :error
+
+    _ ->
+      IO.puts("It is odd")
+      :odd
+  end
+```
+
+使用`case`这种模式匹配的方式来处理错误是非常有好处的,第一个未能够匹配表达式的值将会被传递。
