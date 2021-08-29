@@ -2,7 +2,7 @@
 author: Jaime Iniesta
 author_link: https://github.com/jaimeiniesta
 categories: general
-date: 2021-08-16
+date: 2021-09-02
 layout: post
 title: "Validating Accessibility and HTML with Rocket Validator"
 excerpt: >
