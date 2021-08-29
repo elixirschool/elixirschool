@@ -24,7 +24,7 @@ iex> to_string("foo")
 "foo"
 ```
 
-As you can see we've called the function on multiple types and demonstrated that it work on them all.
+As you can see we've called the function on multiple types and demonstrated that it works on them all.
 What if we call `to_string/1` on tuples (or any type that hasn't implemented `String.Chars`)?
 Let's see:
 
