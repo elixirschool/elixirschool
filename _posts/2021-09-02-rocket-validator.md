@@ -33,7 +33,7 @@ It's great that we have tools that help in detecting issues on web pages. Both t
 
 [Rocket Validator](https://rocketvalidator.com) is an online service that performs site-wide validation of large websites. It's an automated web crawler that will find the internal web pages of a site and validate each web page found using the W3C Validator and axe-core, producing detailed reports on the issues found, within seconds.
 
-This service, also powered by Elixir, Phoenix, LiveView and Oban, is a subscription-based service for web agencies and freelance developers. But, it's free for open source projects like [Elixir School](https://github.com/elixirschool/school_house/pulls?q=is%3Apr+label%3A%22rocket+validator%22+is%3Aclosed) and [Docusaurus](https://github.com/facebook/docusaurus/pulls?q=is%3Apr+rocket+validator)! We're using Rocket Validator to run reports on the new Elixir School and to monitor the site via weekly-scheduled and deploy-triggered validations.
+This service, also powered by Elixir, Phoenix, LiveView, and Oban, is a subscription-based service for web agencies and freelance developers. But, it's free for open source projects like [Elixir School](https://github.com/elixirschool/school_house/pulls?q=is%3Apr+label%3A%22rocket+validator%22+is%3Aclosed) and [Docusaurus](https://github.com/facebook/docusaurus/pulls?q=is%3Apr+rocket+validator)! We're using Rocket Validator to run reports on the new Elixir School and monitor the site via weekly-scheduled and deploy-triggered validations.
 
 ## Running a site validation report
 
