@@ -27,7 +27,7 @@ HTML is the basis of web pages, but a perfectly valid HTML page can still have a
 
 ## The power of automated site validation
 
-So, it's great that we have tools that help in detecting issues on web pages. Both the W3C HTML validator and axe-core are open source and can be incorporated into our web development flow. But, there's an important limitation: they can only check one URL at a time. When you have a small website with just a few web pages, it might be an option to do manual checks using these tools. But, what can we do with a large site like Elixir School? According to the latest reports, Elixir School has more than 1,000 web pages. If we want to check them all with the W3C Validator and axe-core, we would need to run 2,000 manual checks!
+It's great that we have tools that help in detecting issues on web pages. Both the W3C HTML validator and axe-core are open source and can be incorporated into our web development flow. But, there's an important limitation: they can only check one URL at a time. So, when you have a small website with just a few web pages, it might be an option to do manual checks using these tools. But, what can we do with a large site like Elixir School? According to the latest reports, Elixir School has more than 1,000 web pages. If we want to check them all with the W3C Validator and axe-core, we would need to run 2,000 manual checks!
 
 ## 🚀 Rocket Validator to the rescue!
 
