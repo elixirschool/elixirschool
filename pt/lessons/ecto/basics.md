@@ -260,7 +260,7 @@ iex> %{person | age: 18}
   id: nil,
   name: "Tom"
 }
-iex> Map.put(person, :name, "Jerry"}
+iex> Map.put(person, :name, "Jerry")
 %Friends.Person{
   __meta__: #Ecto.Schema.Metadata<:built, "people">,
   age: 11,
