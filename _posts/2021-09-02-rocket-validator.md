@@ -23,7 +23,7 @@ The good news is that we can make Elixir School accessible for everyone. It requ
 
 The World Wide Web Consortium (W3C) is an international community that defines and develops [Web standards](https://www.w3.org/standards/), HTML being probably the most used -and abused- of those standards. At the end of 1997, the [W3C launched](https://www.webdesignmuseum.org/web-design-history/w3c-html-validator-1997) the [W3C HTML Validator](https://validator.w3.org/), a service to check any web page and find issues in its HTML structure. More than two decades later, this service is still in good health, and many tools have been built around its [open source validator](https://github.com/validator/validator).
 
-HTML is the basis of web pages, but a perfectly valid HTML page can still have accessibility issues. For example, a web page may have a bad combination of colors that results in low contrast: a light color text over a light background may lead to unreadable text by people with low vision. If a video has no captions, deaf users won't understand what it's talking about it. Sections of the document may not be accessible for users that don't employ a mouse to move through the document. Zooming and scaling may be disabled, making it impossible for the users to enlarge the web page to see it better. Many known issues are easily detected using automated accessibility checkers like [axe-core](https://github.com/dequelabs/axe-core).
+HTML is the basis of web pages, but a perfectly valid HTML page can still have accessibility issues. For example, a web page may have a bad combination of colors that results in low contrast: a light color text over a light background may lead to unreadable text by people with low vision. If a video has no captions, deaf users won't understand what it's talking about. Sections of the document may not be accessible for users that don't employ a mouse to move through the document. Zooming and scaling may be disabled, making it impossible for the users to enlarge the web page to see it better. Many known issues are easily detected using automated accessibility checkers like [axe-core](https://github.com/dequelabs/axe-core).
 
 ## The power of automated site validation
 
@@ -37,7 +37,7 @@ This service, also powered by Elixir, Phoenix, LiveView, and Oban, is a subscrip
 
 ## Running a site validation report
 
-To run a site-wide validation report, we need to enter a starting URL. This URI is usually the front page of the site we're going to validate, but it can be any internal URL, or an XML or TXT sitemap containing the web pages to validate. Rocket Validator will visit this initial URL and discover the internal web pages, adding them to the report.
+To run a site-wide validation report, we need to enter a starting URL. This URL is usually the front page of the site we're going to validate, but it can be any internal URL, or an XML or TXT sitemap containing the web pages to validate. Rocket Validator will visit this initial URL and discover the internal web pages, adding them to the report.
 
 ![Rocket Validator new site validation report](https://www.dropbox.com/s/amt7ilhw3b0sdh2/rocket-validator-new-report.png?raw=1)
 
