@@ -37,7 +37,7 @@ This service, also powered by Elixir, Phoenix, LiveView, and Oban, is a subscrip
 
 ## Running a site validation report
 
-To run a site-wide validation report, we just need to enter a starting URL. This is usually the front page of the site we're going to validate, but it can be any internal URL, or an XML or TXT sitemap containing the web pages to validate. Rocket Validator will visit this initial URL and discover the internal web pages, adding them to the report.
+To run a site-wide validation report, we need to enter a starting URL. This URI is usually the front page of the site we're going to validate, but it can be any internal URL, or an XML or TXT sitemap containing the web pages to validate. Rocket Validator will visit this initial URL and discover the internal web pages, adding them to the report.
 
 ![Rocket Validator new site validation report](https://www.dropbox.com/s/amt7ilhw3b0sdh2/rocket-validator-new-report.png?raw=1)
 
