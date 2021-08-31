@@ -17,7 +17,7 @@ Apart from the language barrier, there are other barriers that we're aware of - 
 
 Low vision may make a web page unreadable if the text has low contrast or the font size cannot be adapted easily. Unsighted people can use screen readers to hear the page content, but it won't work well if it is poorly structured and can't be properly interpreted by the screen reader software. People with reduced mobility may prefer to navigate through the lessons using the keyboard instead of the mouse, but this won't work if the document is not laid out correctly.
 
-The good news is that we can make Elixir School accessible for everyone. And it's not a hard task, it just requires that we're aware of those barriers and that we follow the web standards to provide well-structured web pages.
+The good news is that we can make Elixir School accessible for everyone. It requires that we're aware of those barriers and follows the web standards to provide well-structured web pages.
 
 ## How to find accessibility and HTML issues
 
