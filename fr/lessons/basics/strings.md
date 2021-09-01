@@ -3,7 +3,7 @@ version: 1.2.0
 title: Chaines
 ---
 
-Chaines, Caractères Listes, Graphemes and Codepoints.
+Chaines, Liste des caractères, Graphemes and Points de code.
 
 {% include toc.html %}
 
@@ -19,14 +19,14 @@ iex> string = <<104,101,108,108,111>>
 iex> string <> <<0>>
 <<104, 101, 108, 108, 111, 0>>
 ```
-En concaténant la chaine avec l'octet `0`, IEx affiche la chaine comme une séquence binaire car l'ajout de l'octet `0` rend la chaine invalide.
+En concaténant la chaine avec l'octet `0`, IEx affiche la chaine comme une liste binaire car l'ajout de l'octet `0` rend la chaine invalide.
 Avec cette astuce, il est possible de voir la chaine exprimée sous forme d'octets.
 
 >NOTE: L'utilisation de << >> indique au compilateur que les éléments à l'intérieur des chevrons sont des octets.
 
 ## Charlists
 
-En interne, les chaines Elixir sont des représentées par d es séquences d'octets et non pas un tableau de caractères.
+En interne, les chaines Elixir sont des représentées par des séquences d'octets et non par un tableau de caractères.
 Elixir propose également un type liste de caractères.
 Les chaines de caractères Elixir sont encadrées par des guillements ( " - Double quotes en Anglais) tandis que les listes de caractères sont encadrées par des apostrophes ( ' - Single quote en Anglais).
 
@@ -52,17 +52,17 @@ iex> ?Z
 
 Il devient alors possible d'utiliser la notation `?Z`plutôt que 'Z' pour un symbole.
 
-On utilise généralement en Elixir des chaines de caractères plutôt que des listes de caractères, les listes de caractère sont supportées principalement pour les intéractions avec des modules Erlang.
+On utilise généralement en Elixir des chaines plutôt que des listes de caractères, les listes de caractères sont supportées principalement pour les intéractions avec des modules Erlang.
 
 Pour plus d'informations, consulter la documentation officielle [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
 
 ## Graphemes et points de code
 
-Les points de code sont de simples caractères Unicode représentés par un ou plusieurs octets selon le codage UTF-8
+Les points de code sont de simples caractères Unicode représentés par un ou plusieurs octets selon le codage UTF-8.
 Les caractères hors table ASCII US seront systèmatiquement encodés avec deux octets ou plus.
 Par exemple, les caractères du jeu Latin qui portent un tilde ou un accent (`á, ñ, è`)  sont codés sur deux octets.
-Les caractères provenant de langues astiatiques sont parfois codées sur trois ou quatre octets.
-Un grapheme est une collection de points de code qui sont affichés comme un seul caractère.
+Les caractères provenant de langues astiatiques sont parfois codés sur trois ou quatre octets.
+Un grapheme est une collection de points de code représantant un seul caractère.
 
 Le module String contient deux functions pour obtenir un grapheme ou un point de code, `graphemes/1` and `codepoints/1`.
 Considérons l'exemple suivant : 
@@ -80,7 +80,7 @@ iex> String.graphemes string
 
 ## Fonctions de chaines de caractères
 
-Regardons maintenant quelques unes des fonctions les plus utiles et importantes du module String d'Elixir. Nous ne verrons ici qu'une fration des fonctions disponibles.
+Regardons maintenant quelques unes des fonctions les plus utiles et importantes du module String d'Elixir. Nous ne verrons ici qu'une fraction des fonctions disponibles.
 Pour une liste complète consulter la documentation officielle [`String`](https://hexdocs.pm/elixir/String.html) docs.
 
 ### `length/1`
@@ -112,7 +112,7 @@ iex> String.duplicate("Oh my ", 3)
 
 ### `split/2`
 
-Renvoie une liste de chaines issue de la division en sous-chaines de la chaine d'origine, selon le motif spécifié.
+Renvoie une liste de chaines issue de l'éclatement en sous-chaines de la chaine d'origine, selon le motif spécifié.
 
 ```elixir
 iex> String.split("Hello World", " ")
