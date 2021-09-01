@@ -7,11 +7,11 @@ Não podemos simplesmente adivinhar quais funções são rápidas e quais são l
 
 {% include toc.html %}
 
-# Sobre Benchee
+## Sobre Benchee
 
 Enquanto existe uma [função no Erlang](http://erlang.org/doc/man/timer.html#tc-1) que pode ser usada para medição muito básica do tempo de execução de uma função, ela não é tão boa de usar como algumas das ferramentas disponíveis e não lhe dá várias medidas para obter boas estatísticas, então vamos usar [Benchee](https://github.com/PragTob/benchee). Benchee nos fornece uma série de estatísticas com comparações fáceis entre cenários, uma ótima característica que nos permite testar diferentes entradas para as funções que estamos avaliando, e vários formatadores diferentes que podemos usar para mostrar nossos resultados, assim como a capacidade de escrever seu próprio formatador se desejado.
 
-# Uso
+## Uso
 
 Para adicionar Benchee ao seu projeto, adicione-o como uma dependência ao seu arquivo `mix.exs`:
 ```elixir
@@ -89,11 +89,11 @@ map.flatten        1.24 K - 1.94x slower +390.20 μs
 
 Há também outras estatísticas disponíveis, mas estas quatro são frequentemente as mais úteis e comumente usadas para _benchmarking_,  por isso elas são exibidas no formatador padrão. Para aprender mais sobre outras métricas disponíveis, confira a documentação [hexdocs](https://hexdocs.pm/benchee/Benchee.Statistics.html#t:t/0).
 
-# Configuração
+## Configuração
 
 Uma das melhores partes do Benchee são todas as opções de configuração disponíveis. Examinaremos o básico primeiro, uma vez que não requerem exemplos de código, e então mostraremos como usar uma das melhores características do Benchee - _inputs_.
 
-## Básico
+### Básico
 
 Benchee possui uma grande variedade de opções de configuração. Na interface mais comum `Benchee.run/2`, estas são passadas como segundo argumento na forma de uma _keywork list_ opcional:
 
@@ -139,7 +139,7 @@ As opções disponíveis são as seguintes (também documentadas em [hexdocs](ht
   * **none** - nenhuma escala de unidade ocorrerá. Durações serão mostradas em microsegundos, e contadores de _ips_ serão mostrados sem unidades.
 * `:before_scenario` / `after_scenario` / `before_each` / `after_each` - nós não vamos nos prolongar muito nesse aqui, mas se você precisa fazer algo antes/depois da sua função de benchmarking sem que seja mensurado consulte a [seção de hooks na documentação do Benchee](https://github.com/bencheeorg/benchee#hooks-setup-teardown-etc).
 
-## Inputs
+### Inputs
 
 É muito importante fazer o _benchmark_ de suas funções com dados que refletem o que a função pode realmente operar no mundo real. Frequentemente uma função pode se comportar diferentemente em conjuntos menores de dados versus conjuntos grandes de dados! Isso é onde a configuração de `input` do Benchee entra. Isso permite que você teste a mesma função mas com muitas entradas diferentes conforme desejar, e então você pode ver os resultados do _benchmark_ com cada uma dessas funções.
 
@@ -248,11 +248,11 @@ map.flatten      178.18 K - 1.50x slower +1.86 μs
 
 Agora podemos ver informações para nossos _benchmarks_, agrupados por entrada. Este exemplo simples não fornece nenhuma intuição surpreendente, mas você ficaria bem surpreso o quanto a performance varia baseada no tamanho da entrada.
 
-# Formatadores
+## Formatadores
 
 A saída do console que vimos é um começo útil para medir o tempo de execução de funções, mas não é sua única opção. Nessa seção vamos olhar brevemente os três formatadores disponíveis, e também tocar no que você vai precisar para escrever seu próprio formatador se quiser.
 
-## Outros formatadores
+### Outros formatadores
 
 Benchee tem um formatador embutido para o console, que é o que já vimos, mas há outros três formatadores oficialmente suportados - [`benchee_csv`](https://github.com/bencheeorg/benchee_csv), [`benchee_json`](https://github.com/bencheeorg/benchee_json) e [`benchee_html`](https://github.com/bencheeorg/benchee_html). Cada um deles faz exatamente o que você esperaria, que é escrever os resultados no formato dos arquivos nomeados de forma que você possa trabalhar os resultados futuramente no formato que quiser.
 
@@ -274,7 +274,7 @@ Enquanto `benchee_json` e `benchee_csv` são muito simples, `benchee_html` é na
 
 Todos os três formatadores são bem documentados nas suas respectivas páginas no GitHub, então não vamos cobrir todos os detalhes deles aqui.
 
-## Formatadores customizados
+### Formatadores customizados
 
 Se os quatro formatadores não são suficientes para você, você também pode escrever seu próprio formatador. Escrever um formatador é bem fácil. Você precisa escrever uma função que aceite uma estrutura `%Benchee.Suite{}`, e dela você pode tirar qualquer informação que você queira. Informação sobre o que exatamente está nessa estrutura pode ser encontrada no [GitHub](https://github.com/PragTob/benchee/blob/master/lib/benchee/suite.ex) ou [HexDocs](https://hexdocs.pm/benchee/Benchee.Suite.html). A base de código é bem documentada e fácil de ler se quiser ver quais tipos de informações podem estar disponíveis para escrever formatadores personalizados.
 
@@ -339,7 +339,7 @@ Average for flat_map: 419433.3593474056
 Average for map.flatten: 788524.9366408596
 ```
 
-## Memória
+### Memória
 
 Estamos quase no fim, mas percorremos todo esse caminho sem mostrar a vocês uma das características mais legais do Benchee: medições de memória!
 
