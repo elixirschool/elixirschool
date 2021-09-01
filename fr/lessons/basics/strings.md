@@ -1,6 +1,6 @@
 ---
 version: 1.2.0
-title: Strings
+title: Chaines
 ---
 
 Chaines, Caractères Listes, Graphemes and Codepoints.
@@ -80,13 +80,12 @@ iex> String.graphemes string
 
 ## Fonctions de chaines de caractères
 
-Let's review some of the most important and useful functions of the String module.
-This lesson will only cover a subset of the available functions.
-To see a complete set of functions visit the official [`String`](https://hexdocs.pm/elixir/String.html) docs.
+Regardons maintenant quelques unes des fonctions les plus utiles et importantes du module String d'Elixir. Nous ne verrons ici qu'une fration des fonctions disponibles.
+Pour une liste complète consulter la documentation officielle [`String`](https://hexdocs.pm/elixir/String.html) docs.
 
 ### `length/1`
 
-Returns the number of Graphemes in the string.
+Renvoie le nombre de graphemes dans la chaine.
 
 ```elixir
 iex> String.length "Hello"
@@ -95,7 +94,7 @@ iex> String.length "Hello"
 
 ### `replace/3`
 
-Returns a new string replacing a current pattern in the string with some new replacement string.
+Renvoie une nouvelle chaine où une portion de chaine d'origine est remplacée par une nouvelle chaine.
 
 ```elixir
 iex> String.replace("Hello", "e", "a")
@@ -104,7 +103,7 @@ iex> String.replace("Hello", "e", "a")
 
 ### `duplicate/2`
 
-Returns a new string repeated n times.
+Renvoie une nouvelle chaine qui contient la chaine d'origine duppliquée n fois.
 
 ```elixir
 iex> String.duplicate("Oh my ", 3)
@@ -113,29 +112,30 @@ iex> String.duplicate("Oh my ", 3)
 
 ### `split/2`
 
-Returns a list of strings split by a pattern.
+Renvoie une liste de chaines issue de la division en sous-chaines de la chaine d'origine, selon le motif spécifié.
 
 ```elixir
 iex> String.split("Hello World", " ")
 ["Hello", "World"]
 ```
 
-## Exercise
+## Exercice
 
-Let's walk through a simple exercise to demonstrate we are ready to go with Strings!
+Exerçons nous maintenant avec un exercice simple !
 
-### Anagrams
+### Anagrammes
 
-A and B are considered anagrams if there's a way to rearrange A or B making them equal.
-For example:
+A et B sont des anagrammes si il est possible de modifier l'ordre des lettres de telle sorte que A et B soient identiques.
+Par exemple :
 
 + A = super
 + B = perus
 
-If we re-arrange the characters on String A, we can get the string B, and vice versa.
+Si nous modifions l'emplacement des lettres dans la chaine A nous obtenons la chaine B et inversement.
 
-So, how could we check if two strings are Anagrams in Elixir?  The easiest solution is to just sort the graphemes of each string alphabetically and then check if they both lists are equal.
-Let's try that:
+Maintenant, comment pourrions-nous vérifier si deux chaines sont des anagrammes avec Elixir ? La solution la plus simple est de trier chaque chaine par ordre alphabétique puis de vérifier que la chaine A est égale à la chaine B.
+
+Considérons l'exemple suivant :
 
 ```elixir
 defmodule Anagram do
@@ -152,16 +152,16 @@ defmodule Anagram do
 end
 ```
 
-Let's first look at `anagrams?/2`.
-We are checking whether the parameters we are receiving are binaries or not.
-That's the way we check if a parameter is a String in Elixir.
+Regardons en premier la fonction `anagrams?/2`.
+Nous vérifions dans un premier temps que les paramètres que nous recevons sont bien des chaines (Type binary)
 
-After that, we are calling a function that orders the string alphabetically.
-It first converts the string to lowercase and then uses `String.graphemes/1` to get a list of the graphemes in the string.
-Finally, it pipes that list into `Enum.sort/1`.
-Pretty straightforward, right?
+Nous appelons ensuite la fonction `sort_string/1` qui trie la chaine par ordre alphabétique :
+La chaine est d'abord forcée en minuscule puis passée au travers de la fonction `String.graphemes/1` qui renvoie une liste des graphemes présents dans la chaine.
+Finalement, le résultat est passé en premier argument à la fonction `Enum.sort/1` avec l'opérateur pipe (|>)
 
-Let's check the output on iex:
+Plutôt simple non ?
+
+Vérifions le résultat sur iex:
 
 ```elixir
 iex> Anagram.anagrams?("Hello", "ohell")
@@ -184,5 +184,5 @@ iex> Anagram.anagrams?(3, 5)
     iex:11: Anagram.anagrams?/2
 ```
 
-As you can see, the last call to `anagrams?` caused a FunctionClauseError.
-This error is telling us that there is no function in our module that meets the pattern of receiving two non-binary arguments, and that's exactly what we want, to just receive two strings, and nothing more.
+Nous constatons que le dernier appel à la fonction `anagrams?` provoque une erreur. 
+L'erreur nous informe qu'aucune fonction correspondant aux paramètres passés (Deux entiers - Donc deux arguments qui ne sont pas de type binary) n'a pu être trouvée ; C'est parfait, c'est pile le comportement que nous cherchons, pouvoir utiliser la fonction uniquement avec deux chaines.
