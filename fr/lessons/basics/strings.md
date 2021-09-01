@@ -56,16 +56,16 @@ On utilise généralement en Elixir des chaines de caractères plutôt que des l
 
 Pour plus d'informations, consulter la documentation officielle [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
 
-## Graphemes and Codepoints
+## Graphemes et points de code
 
-Codepoints are just simple Unicode characters which are represented by one or more bytes, depending on the UTF-8 encoding.
-Characters outside of the US ASCII character set will always encode as more than one byte.
-For example, Latin characters with a tilde or accents (`á, ñ, è`) are typically encoded as two bytes.
-Characters from Asian languages are often encoded as three or four bytes.
-Graphemes consist of multiple codepoints that are rendered as a single character.
+Les points de code sont de simples caractères Unicode représentés par un ou plusieurs octets selon le codage UTF-8
+Les caractères hors table ASCII US seront systèmatiquement encodés avec deux octets ou plus.
+Par exemple, les caractères du jeu Latin qui portent un tilde ou un accent (`á, ñ, è`)  sont codés sur deux octets.
+Les caractères provenant de langues astiatiques sont parfois codées sur trois ou quatre octets.
+Un grapheme est une collection de points de code qui sont affichés comme un seul caractère.
 
-The String module already provides two functions to obtain them, `graphemes/1` and `codepoints/1`.
-Let's look at an example:
+Le module String contient deux functions pour obtenir un grapheme ou un point de code, `graphemes/1` and `codepoints/1`.
+Considérons l'exemple suivant : 
 
 ```elixir
 iex> string = "\u0061\u0301"
@@ -78,7 +78,7 @@ iex> String.graphemes string
 ["á"]
 ```
 
-## String Functions
+## Fonctions de chaines de caractères
 
 Let's review some of the most important and useful functions of the String module.
 This lesson will only cover a subset of the available functions.
