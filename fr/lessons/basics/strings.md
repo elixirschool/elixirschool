@@ -28,12 +28,11 @@ Avec cette astuce, il est possible de voir la chaine exprimée sous forme d'octe
 
 En interne, les chaines Elixir sont des représentées par d es séquences d'octets et non pas un tableau de caractères.
 Elixir propose également un type liste de caractères.
-Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters.
-Elixir also has a char list type (character list).
-Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
+Les chaines de caractères Elixir sont encadrées par des guillements ( " - Double quotes en Anglais) tandis que les listes de caractères sont encadrées par des apostrophes ( ' - Single quote en Anglais).
 
-What's the difference? Each value in a charlist is the Unicode code point of a character whereas in a binary, the codepoints are encoded as UTF-8.
-Let's dig in:
+Quelle différence cela fait ? Dans une liste de caractères chaque valeur stockée représente un point de code Unicode. Dans une chaine de type binary, les points de code sont encodés avec UTF-8
+
+Considérons l'exemple suivant :
 
 ```elixir
 iex> 'hełło'
@@ -42,21 +41,20 @@ iex> "hełło" <> <<0>>
 <<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
-`322` is the Unicode codepoint for ł but it is encoded in UTF-8 as the two bytes `197`, `130`.
+`322` est le point de code Unicode pour ł . On constate en revanche que la même lettre ł est encodée sur deux octets en UTF-8.
 
-You can get a character’s code point by using `?`
+Il est possible d'obtenir le point de code d'un caractère en utilisant `?`
 
 ```elixir
 iex> ?Z
 90
 ```
 
-This allows you to use the notation `?Z` rather than 'Z' for a symbol.
+Il devient alors possible d'utiliser la notation `?Z`plutôt que 'Z' pour un symbole.
 
-When programming in Elixir, we usually use strings, not charlists.
-The charlist support is mainly included because it is required for some Erlang modules.
+On utilise généralement en Elixir des chaines de caractères plutôt que des listes de caractères, les listes de caractère sont supportées principalement pour les intéractions avec des modules Erlang.
 
-For further information, see the official [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+Pour plus d'informations, consulter la documentation officielle [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
 
 ## Graphemes and Codepoints
 
