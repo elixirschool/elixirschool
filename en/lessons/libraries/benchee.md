@@ -9,12 +9,12 @@ In this lesson, we'll learn about how easy it is to measure the speed of our cod
 
 {% include toc.html %}
 
-# About Benchee
+## About Benchee
 
  While there is a [function in Erlang](http://erlang.org/doc/man/timer.html#tc-1) that can be used for basic measurements of a function's execution time, it's not as nice to use as some of the available tools and it doesn't give you multiple measurements to get useful statistics from, so we're going to use [Benchee](https://github.com/bencheeorg/benchee).
 Benchee provides us with a range of statistics with easy comparisons between scenarios, a great feature that allows us to test different inputs to the functions we're benchmarking, and several different formatters that we can use to display our results, as well as the ability to write your formatter if desired.
 
-# Usage
+## Usage
 
 To add Benchee to your project, add it as a dependency to your `mix.exs` file:
 ```elixir
@@ -102,12 +102,12 @@ For this metric, a lower number is better.
 There are also other available statistics, but these five are frequently the most helpful and commonly used for benchmarking, which is why they are displayed in the default formatter.
 To learn more about the other available metrics, check out the documentation on [hexdocs](https://hexdocs.pm/benchee/Benchee.Statistics.html#t:t/0).
 
-# Configuration
+## Configuration
 
 One of the best parts of Benchee is all the available configuration options.
 We'll go over the basics first since they don't require code examples, and then we'll show how to use one of the best features of Benchee - inputs.
 
-## Basics
+### Basics
 Benchee takes a wealth of configuration options.
 In the most common `Benchee.run/2` interface, these are passed as the second argument in the form of an optional keyword list:
 
@@ -175,7 +175,7 @@ A tie results in the larger unit being selected.
 Durations is displayed in nanoseconds, and ips counts is displayed without units.
 * `:before_scenario`/`after_scenario`/`before_each`/`after_each` - we won't get into those too much here but if you need to do something before/after your benchmarking function without it being measured refer to [Benchee's hooks section](//github.com/bencheeorg/benchee#hooks-setup-teardown-etc)
 
-## Inputs
+### Inputs
 
 It's important to benchmark your functions with data that reflects what that function might actually operate on in the real world.
 Frequently a function can behave differently on small sets of data versus large sets of data! This is where Benchee's `inputs` configuration option comes in.
@@ -291,12 +291,12 @@ map.flatten      178.18 K - 1.50x slower +1.86 μs
 We can now see information for our benchmarks, grouped by input.
 This simple example doesn't provide any mind blowing insights, but you'd be surprised how much performance varies based on input size!
 
-# Formatters
+## Formatters
 
 The console output that we've seen is a helpful beginning for measuring the runtimes of your functions, but it's not your only option!
 In this section we'll look briefly at the three other available formatters, and also touch on what you'd need to do to write your formatter if you like.
 
-## Other formatters
+### Other formatters
 
 Benchee has a console formatter built in, which is what we've seen already, but there are three other officially supported formatters -
 [`benchee_csv`](https://github.com/bencheeorg/benchee_csv),
@@ -324,7 +324,7 @@ You check out [an example html report](http://www.pragtob.info/benchee/README/re
 
 All three formatters are well-documented on their respective GitHub pages, so we won't cover the details of them here.
 
-## Custom formatters
+### Custom formatters
 
 If the four offered formatters aren't enough for you, you can also write custom formatter.
 Writing a formatter is pretty easy.
@@ -394,7 +394,7 @@ Average for flat_map: 419433.3593474056
 Average for map.flatten: 788524.9366408596
 ```
 
-## Memory
+### Memory
 
 We're almost all the way to the end, but we've gone all this way without showing you one of Benchee's coolest features: memory measurements!
 
