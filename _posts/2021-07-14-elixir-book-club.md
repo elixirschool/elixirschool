@@ -22,7 +22,7 @@ Quite frequently, we transition to general Elixir talk after we finish the book 
 is always something to learn. Whether it is a library or a specific tool, I leave knowing more than when I arrived.
 
 We are always happy to have new people join; if you are interested in joining the Elixir book club, use the discord link below to join the server.
-You can also visit our website at [https://www.elixirbookclub.com](https://www.elixirbookclub.com/) to RSVP or find out when the next meeting is.
+You can also visit our website at [https://elixirbookclub.com](https://elixirbookclub.com/) to RSVP or find out when the next meeting is.
 Make sure to say hello, and we are looking forward to meeting you!
 
 [https://discord.gg/veN54bAmVa](https://discord.gg/veN54bAmVa)
