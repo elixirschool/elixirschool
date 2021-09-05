@@ -10,7 +10,7 @@ title: Plug
 В этом уроке мы создадим простой HTTP-сервер с нуля, используя для этого библиотеку Elixir PlugCowboy.
 Cowboy - это простой HTTP-сервер для Erlang, и Plug предоставит нам интерфейс подключения для этого веб-сервера.
 
-После того, как мы настроим наше простенькое рабочее веб-приложение, мы узнаем о маршрутизаторе Plug и о том, как использовать несколько плагинов в одном веб-приложении.
+После того, как мы настроим наше простенькое рабочее веб-приложение, мы узнаем о маршрутизаторе Plug и о том, как использовать несколько модулей Plug в одном веб-приложении.
 
 {% include toc.html %}
 
@@ -89,8 +89,8 @@ end
 Эта функция принимает три аргумента:
 
 * `:scheme` - HTTP или HTTPS как атом (`:http`, `:https`)
-* `:plug` - плагин (Plug-модуль), который будет использоваться в качестве интерфейса для веб-сервера.
-Можете уточнить имя модуля (например, `MyPlug`), или кортеж из имени модуля и опцией `{MyPlug, plug_opts}`, где `plug_opts` будут переданы в функцию `init/1` вашего плагина.
+* `:plug` - модуль Plug, который будет использоваться в качестве интерфейса для веб-сервера.
+Можете уточнить имя модуля (например, `MyPlug`), или кортеж из имени модуля и опцией `{MyPlug, plug_opts}`, где `plug_opts` будут переданы в функцию `init/1` вашего модуля Plug.
 * `:options` - опции сервера.
 Здесь следует указать номер порта, который вы хотите задать вашему серверу для ожидания запросов.
 
@@ -119,7 +119,7 @@ _Примечание_: Здесь нам не нужно вызывать `chil
 Здесь мы просто передаём кортеж: модуль, который мы хотим использовать для дочернего процесса, и три обязательных аргумента.
 
 Это запустит веб-сервер `Cowboy2` под супервизором.
-В свою очередь, Cowboy начнёт работу по протоколу HTTP (можно также указать HTTPS) с использованием указанного порта (8080) и с плагином (Example.HelloWorldPlug) в качестве интерфейса для входящих веб-запросов.
+В свою очередь, Cowboy начнёт работу по протоколу HTTP (можно также указать HTTPS) с использованием указанного порта (8080) и с модулем Plug (Example.HelloWorldPlug) в качестве интерфейса для входящих веб-запросов.
 
 Теперь всё готово к запуску нашего первого веб-приложения, созданного на базе `Plug`. Учтите, что из-за того, что мы создали OTP-проект с деревом супервизора (передав аргумент `--sup`), наше приложение `Example` запустится автоматически из-за функции `application`.
 
@@ -202,17 +202,17 @@ end
 
 ## Создание еще одного модуля Plug
 
-It is common to use more than one plug in a given web application, each of which is dedicated to its own responsibility.
-For example, we might have a plug that handles routing, a plug that validates incoming web requests, a plug that authenticates incoming requests, etc.
-In this section, we'll define a plug to verify incoming requests parameters and we'll teach our application to use _both_ of our plugs--the router and the validation plug.
+Считается обычной практикой использовать в одном веб-приложении несколько модулей Plug, каждый из которых занимается своим делом.
+Например, у нас может быть был модуль, отвечающий за маршрутизацию; модуль, отвечающий за валидацию входящих веб-запросов; модуль, отвечающий за аутентификацию входящих запросов и так далее.
+В данном разделе мы создадим модуль Plug, который будет проверять параметры входящих запросов (модуль-валидатор) и мы научим наше веб-приложение использовать оба наших модуля Plug -- маршрутизатор и валидатор.
 
-We want to create a Plug that verifies whether or not the request has some set of required parameters.
-By implementing our validation in a Plug we can be assured that only valid requests will make it through to our application.
-We will expect our Plug to be initialized with two options: `:paths` and `:fields`.
-These will represent the paths we apply our logic to and which fields to require.
+Нам нужно создать модуль Plug, который проверяет, соответствует ли запрос какому-то заданному набору параметров.
+Только валидные (соответствующие всему набору параметров) запросы будут переданы нашему приложению, если мы реализуем проверку валидности в модуле Plug.
+Этот модуль Plug должен быть инициализирован с двумя опциями: `:paths` и `:fields`.
+Эти опции задают пути, у которых будет проверяться логика, и поля, которые будут необходимы для проверки.
 
-_Note_: Plugs are applied to all requests which is why we will handle filtering requests and applying our logic to only a subset of them.
-To ignore a request we simply pass the connection through.
+_Примечание_: В веб-приложении модули Plug применяются ко всем запросом, из-за чего мы будем фильтровать запросы и применять нашу логику валидации только к некоторым из этих запросов.
+Чтобы проигнорировать запрос, мы просто пробрасываем соединение дальше.
 
 Сначала мы покажем реализацию такого модуля Plug, а потом разберём его работу.
 Создаём модуль в файле `lib/example/plug/verify_request.ex`:
@@ -247,11 +247,11 @@ defmodule Example.Plug.VerifyRequest do
 end
 ```
 
-The first thing to note is we have defined a new exception `IncompleteRequestError` which we'll raise in the event of an invalid request.
+В первую очередь, нужно обратить внимание на то, что здесь мы задали новое исключение `IncompleteRequestError`. Оно вызывается в случае получения невалидного запроса.
 
-Вторая часть модуля, это функция `call/2`.
-This is where we decide whether or not to apply our verification logic.
-Only when the request's path is contained in our `:paths` option will we call `verify_request!/2`.
+Вторая часть модуля это функция `call/2`.
+В этой функции мы определяем, нужно или нет применять нашу логику валидации.
+Мы вызываем `verify_request!/2` только в случае, если путь запроса содержится в `:paths`.
 
 Последняя часть описываемого модуля Plug &mdash; закрытая функция `verify_request!/2`, которая проверяет наличие у запроса всех требуемых параметров из аргумента `:fields`.
 В случае отсутствия любого из параметров, вызывается исключение `IncompleteRequestError`.
@@ -287,22 +287,22 @@ defmodule Example.Router do
 end
 ```
 
-With this code, we are telling our application to send incoming requests through the `VerifyRequest` plug _before_ running through the code in the router.
-Via the function call:
+В этом участке кода мы указываем нашему веб-приложению перенаправлять входящие запросы через модуль Plug `VerifyRequest` _до того_, как будет выполнен код в модуле-маршрутизаторе.
+Это осуществляется вызовом следующей функции:
 
 ```elixir
 plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
 ```
-We automatically invoke `VerifyRequest.init(fields: ["content", "mimetype"], paths: ["/upload"])`.
-This in turn passes the given options to the `VerifyRequest.call(conn, opts)` function.
+Здесь автоматически вызывается `VerifyRequest.init(fields: ["content", "mimetype"], paths: ["/upload"])`.
+Заданные опции передаются в функцию `VerifyRequest.call(conn, opts)`.
 
-Let's take a look at this plug in action! Go ahead and crash your local server (remember, that's done by pressing `ctrl + c` twice).
-Then restart the server (`mix run --no-halt`).
-Now go to <http://127.0.0.1:8080/upload> in your browser and you'll see that the page simply isn't working. You'll just see a default error page provided by your browser.
+Пришло время посмотреть на работу нашего модуля Plug. Остановите свой локальный сервер (для тех, кто забыл: нажмите `ctrl + c` два раза).
+Затем перезагрузите сервер (`mix run --no-halt`).
+Перейдите по адресу  <http://127.0.0.1:8080/upload> и вы увидите, что эта страница просто не отображается. Вам будет показана стандартная страница с ошибкой.
 
-Now let's add our required params by going to <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>. Now we should see our 'Uploaded' message.
+Теперь давайте передадим требуемые параметры через запрос <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>. Сейчас мы должны увидеть наше сообщение 'Загружено'.
 
-It's not great that when we raise an error, we don't get _any_ page. We'll look at how to handle errors with plugs later.
+То, что мы _вообще не получаем никакую страницу_ в случае получения ошибочного запроса, нехорошо. Мы разберёмся, как обрабатывать подобные ошибки, несколько позже.
 
 ## Делаем HTTP порт конфигурируемым
 
@@ -317,8 +317,8 @@ use Mix.Config
 config :example, cowboy_port: 8080
 ```
 
-Next we need to update `lib/example/application.ex` read the port configuration value, and pass it to Cowboy.
-We'll define a private function to wrap up that responsibility
+Дальше нам нужно обновить `lib/example/application.ex`, получить номер порта и передать это значение веб-серверу Cowboy.
+Здесь мы зададим приватную функцию `cowboy_port`, которая будет выполнять эту работу.
 
 ```elixir
 defmodule Example.Application do
@@ -446,17 +446,17 @@ defmodule Example.Router do
 end
 ```
 
-You'll notice that at the top, we are now adding `use Plug.ErrorHandler`.
+Обратите внимание, что в начале листинга мы указываем `use Plug.ErrorHandler`.
 
-This plug catches any error, and then looks for a function `handle_errors/2` to call in order to handle it.
+Этот модуль Plug обрабатывает все ошибки, а потом вызывает функцию `handle_errors/2`, которая займётся обработкой всех ошибок.
 
-`handle_errors/2` just needs to accept the `conn` as the first argument and then a map with three items (`:kind`, `:reason`, and `:stack`) as the second.
+Функция `handle_errors/2` принимает два параметра: `conn` и ассоциативный массив с тремя элементами (`:kind`, `:reason` и `:stack`).
 
-You can see we've defined a very simple `handle_errors/2` function to see what's going on. Let's stop and restart our app again to see how this works!
+Мы задали очень простую функцию `handle_errors/2`, чтобы были лучше видно происходящее в приложении. Теперь давайте остановим и перезагрузим наше веб-приложение, чтобы увидеть работу этой функции.
 
-Now, when you navigate to <http://127.0.0.1:8080/upload>, you'll see a friendly error message.
+По переходу на адрес <http://127.0.0.1:8080/upload> вы увидите заданное вами сообщение об ошибке.
 
-If you look in your terminal, you'll see something like the following:
+Если обратить внимание на терминал, в котором запущен сервер, то там можно разглядеть что-то наподобие:
 
 ```shell
 kind: :error
@@ -499,7 +499,7 @@ end
 
 Перезагрузите сервер и обновите страницу, теперь вы получите ответ `400 Bad Request`.
 
-This plug makes it really easy to catch the useful information needed for developers to fix issues, while being able to also give our end user a nice page so it doesn't look like our app totally blew up!
+Этот модуль Plug облегчает работу разработчикам, позволяя им получать полезную информацию для исправлению ошибок, и в то же время этот модуль показывает нашим пользователям красивую страничку с ошибкой вместо стандартной "ничего не работает".
 
 ## Доступные модули Plug
 
