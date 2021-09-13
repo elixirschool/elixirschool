@@ -1,12 +1,13 @@
----
-author: Jaime Iniesta
-author_link: https://github.com/jaimeiniesta
-categories: general
-date: 2021-09-02
-layout: post
-title: "Validating Accessibility and HTML with Rocket Validator"
-excerpt: >
+%{
+  author: "Jaime Iniesta",
+  author_link: "https://github.com/jaimeiniesta",
+  tags: ["Announcement"],
+  date: ~D[2021-09-02],
+  title: "Validating Accessibility and HTML with Rocket Validator",
+  excerpt: """
   Learn how we're checking and monitoring the new Elixir School site to detect and fix accessibility and HTML issues using Rocket Validator.
+  """
+}
 ---
 
 ## Intro
