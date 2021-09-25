@@ -32,7 +32,7 @@
 ## Εγκατάσταση της StreamData
 
 Αρχικά, δημιουργήστε ένα νέο mix πρότζεκτ.
-Ανατρέξτε στο [Νέα Projects](https://elixirschool.com/gr/lessons/basics/mix/#new-projects) αν χρειάζεστε κάποια βοήθεια.
+Ανατρέξτε στο [Νέα Projects](https://elixirschool.com/el/lessons/basics/mix/#new-projects) αν χρειάζεστε κάποια βοήθεια.
 
 Στη συνέχεια, προσθέστε την StreamData ως εξάρτηση στο `mix.exs` αρχείο σας:
 
