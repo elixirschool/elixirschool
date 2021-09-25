@@ -4,37 +4,36 @@
 # Default owners for everything in the repo.
 *        @elixirschool/english
 
-/lessons/en/      @elixirschool/english
+lessons/en/      @elixirschool/english
 
-/lessons/es/      @elixirschool/spanish
+lessons/es/      @elixirschool/spanish
 
-/lessons/fr/      @elixirschool/french
+lessons/fr/      @elixirschool/french
 
-/lessons/gr/      @elixirschool/greek
+lessons/gr/      @elixirschool/greek
 
-/lessons/id/      @elixirschool/indonesian
+lessons/id/      @elixirschool/indonesian
 
-/lessons/it/      @elixirschool/italian
+lessons/it/      @elixirschool/italian
 
-/lessons/ja/      @elixirschool/japanese
+lessons/ja/      @elixirschool/japanese
 
-/lessons/ko/      @elixirschool/korean
+lessons/ko/      @elixirschool/korean
 
-/lessons/pl/      @elixirschool/polish
+lessons/pl/      @elixirschool/polish
 
-/lessons/pt/      @elixirschool/portuguese
+lessons/pt/      @elixirschool/portuguese
 
-/lessons/ru/      @elixirschool/russian
+lessons/ru/      @elixirschool/russian
 
-/lessons/sk/      @elixirschool/slovak
+lessons/sk/      @elixirschool/slovak
 
-/lessons/th/      @elixirschool/thai
+lessons/th/      @elixirschool/thai
 
-/lessons/uk/      @elixirschool/ukrainian
+lessons/uk/      @elixirschool/ukrainian
 
-/lessons/vi/      @elixirschool/vietnamese
+lessons/vi/      @elixirschool/vietnamese
 
-/lessons/zh-hans/ @elixirschool/chinese
+lessons/zh-hans/ @elixirschool/chinese
 
-/lessons/zh-hant/ @elixirschool/traditional-chinese
-
+lessons/zh-hant/ @elixirschool/traditional-chinese
