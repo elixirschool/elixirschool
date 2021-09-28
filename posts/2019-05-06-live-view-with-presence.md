@@ -94,7 +94,7 @@ After mounting and setting the socket state, the live view will render the `Chat
 
 Our template is simple: it grabs the chat we assigned to our live view's socket, displays the chat room name and iterates over the messages to show us the content and sender. It also contains a form for a new message, built on the empty message changeset we assigned to our socket. At this point, our rendered template looks something like this:
 
-![]({% asset live-view-1.png @path %})
+![live view chat window](/images/live-view-1.png)
 
 ### Pushing Messages to the LiveView Client
 
@@ -181,7 +181,7 @@ The live view handles the `"message"` message by updating the socket's state wit
 
 Now that our live view is smart enough to broadcast messages to all of the users in the given chat room, we're ready to build some features that track and interact with those users. Let's say we want to have our template render a list of users in the chat room, something like this:
 
-![]({% asset live-view-presence-1.png @path %})
+![list users in the chat room](/images/live-view-presence-1.png)
 
 We could create our own data structure for tracking user presence in a live view, store it in the live view's socket, and hand-roll our own functions to update that data structure when a user joins, leaves or otherwise changes their state. However, the [Phoenix Presence behaviour](https://hexdocs.pm/phoenix/Phoenix.Presence.html) abstracts this work away from us. It provides presence tracking for processes and channels, leveraging Phoenix PubSub behind the scenes to broadcast updates. It also uses a CRDT (Conflict-free Replicated Data Type) model, which means it works on distributed applications.
 
@@ -454,7 +454,7 @@ So, we don't have to write any additional code to handle the "leave" event at al
 
 So far, we've leveraged presence to keep track of users as they join or leave the LiveView. We can also use presence to track the state of a given user while they are present in the LiveView process. Let's see how this works by building a feature that indicates that a given user is typing into the new chat message form by appending a `"..."` to their name on the list of present users rendered in the template:
 
-![]({% asset live-view-presence-2.png @path %})
+![show which users are typing](/images/live-view-presence-2.png)
 
 First, we'll update the `:metas` payload we use to describe the starting state of a given user with the data point: `typing: false`:
 

@@ -17,7 +17,7 @@ LiveView makes it easy to solve for some of the most common UI challenges with l
 
 Our view presents a table of student cohorts that looks like this:
 
-![live view table]({% asset live-view-table.png @path %})
+![live view table](/images/live-view-table.png)
 
 Users need to be able to sort this table by cohort name, campus, start date or status. We'd also like to ensure that the "sort by" attribute is included in the URL's query params, so that users can share links to sorted views.
 
