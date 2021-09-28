@@ -72,7 +72,7 @@ And that's it! If we run `mix deps.get` and then `mix phx.server`, we'll see our
 
 ### Home
 
-![live dashboard home]({% asset ld-home.png @path %})
+![live dashboard home](/images/ld-home.png)
 
 There are a number of monitoring features that LiveView displays for us out-of-the-box.
 
@@ -80,31 +80,31 @@ On the `Home` page, we can see system information like our Erlang/OTP version, P
 
 ### Processes
 
-![live dashboard processes]({% asset ld-processes.png @path %})
+![live dashboard processes](/images/ld-processes.png)
 
 The `Processes` page allows us to introspect on the processes running in our app. We can see helpful info like how much memory each process account for and even which function a given process is currently executing. Inspecting a given process, we see further info including its status, initial function and stacktrace.
 
 ### Ports
 
-![live dashboard ports]({% asset ld-ports.png @path %})
+![live dashboard ports](/images/ld-ports.png)
 
 The `Ports` page visualizes the ports (responsible for application I/O) exposed by our application.
 
 Inspecting a given port, we can see the which process is responsible for exposing the port and managing input/output over that port.
 
-![live dashboard port-detail]({% asset ld-port-detail.png @path %})
+![live dashboard port-detail](/images/ld-port-detail.png)
 
 ### Sockets
 
 The `Sockets` page exposes information about all of the sockets currently managed by the application. Sockets in our Phoenix app are responsible for all UDP/TCP traffic. Here, we even see the socket connection responsible for listening on port `:4000`.
 
-![live dashboard port-4000-detail]({% asset ld-port-4000-detail.png @path %})
+![live dashboard port-4000-detail](/images/ld-port-4000-detail.png)
 
 ### ETS
 
 The last out-of-the-box page that the LiveDashboard offers us is the `ETS` page. ETS (Erlang Term Storage) is our in-memory storage. We can even se the entry for the Telemetry handler table.
 
-![live dashboard ets-detail]({% asset ld-ets-detail.png @path %})
+![live dashboard ets-detail](/images/ld-ets-detail.png)
 
 ## LiveDashboard Metrics
 ### Establishing Metrics
@@ -208,7 +208,7 @@ live_dashboard "/dashboard", metrics: Quantum.Telemetry
 
 Now, if we visit `/dashboard` in the browser and click the `Metrics` tab we'll see our metrics:
 
-![live dashboard metrics]({% asset ld-metrics.png @path %})
+![live dashboard metrics](/images/ld-metrics.png)
 
 Let's take a peek under the hood to better understand how this configuration works.
 
@@ -305,7 +305,7 @@ plug Phoenix.LiveDashboard.RequestLogger,
 
 Now we can visit `/dashboard` in the browser and click the `Request Logger` tab. We'll click "enable cookie" to enable a cookie that streams request logs. Now we should see the stream of our request logs:
 
-![live dashboard request-logger]({% asset ld-request-logger.png @path %})
+![live dashboard request-logger](/images/ld-request-logger.png)
 
 Let's take a brief look under the hood of LiveDashboard to get a better understanding of how RequestLogger works.
 

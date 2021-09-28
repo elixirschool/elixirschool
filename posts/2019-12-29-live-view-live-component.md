@@ -36,7 +36,7 @@ Let's take a look at how we can use components to refactor some complicated Live
 Let's say we have an application that uses a message broker like RabbitMQ to publish and consume messages between systems. Our app persists these messages in the DB and exposes a UI for users to list and search such persisted messages.
 
 
-![live view messages index]({% asset live-view-messages-index.png @path %})
+![live view messages index](/images/live-view-messages-index.png)
 
 We're using LiveView to enact the search functionality, pagination and maintain which messages are currently being displayed in state. Our live view module responds to search form events and maintains the state of the search form, handles the search form submission *and* renders the template with various search and pagination params.
 
@@ -145,7 +145,7 @@ Maintaining a representation of the search form's selected query and inputed val
 Maintaining the search form state also ensures that users can navigate directly to the `/consumed_messages` route with a set of query params and see not just the correctly populated messages but also the correctly configured search form:
 
 
-![live component search form query params]({% asset live-component-search-form-query-params.png @path %})
+![live component search form query params](/images/live-component-search-form-query-params.png)
 
 ### The Problem
 

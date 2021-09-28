@@ -33,7 +33,7 @@ In this post, we'll focus on using Contex to build a bar chart.
 ## What We'll Build
 Drawing from an example that you'll see in greater depth in our upcoming LiveView book, we'll add a chart to our Admin Dashboard LiveView. The Admin Dashboard is part of an online gaming app in which users can play online versions of games like ping-pong and tic-tac-toe. We ask users to fill our a survey that rates games on a scale of 1 to 5 stars. Our Admin Dashboard should include a chart of products and their average star ratings. Something like this:
 
-![game ratings chart]({% asset game-ratings-chart.png @path %})
+![game ratings chart](/images/game-ratings-chart.png)
 
 The chart should also update in real-time. In other words, as users around the world use and review our extremely popular and super fun games, the chart should update in real-time to reflect updated average ratings.
 
@@ -418,7 +418,7 @@ Our `GameRatingsLive` template is pretty simple, it renders the SVG stored in th
 
 Now, we should see the following chart rendered when we navigate to `/admin-dashboard`:
 
-![game ratings chart]({% asset game-ratings-chart.png @path %})
+![game ratings chart](/images/game-ratings-chart.png)
 
 One "gotcha" that I'll point out is that, in order to get the column labels (i.e. game names and star values) to be visible, I had to apply the custom CSS borrowed from the Contex example app [here](https://github.com/mindok/contex-samples/blob/master/assets/css/app.css#L6-L52), and copied below:
 
@@ -487,7 +487,7 @@ We'll use this function to implement the following functionality:
 
 Something like this:
 
-![game ratings chart selected category]({% asset game-ratings-bar-chart-selected.png @path %})
+![game ratings chart selected category](/images/game-ratings-bar-chart-selected.png)
 
 We'll begin by using the `BarChart.event_handler/2` function to add a `phx-click` event to the bars in our chart.
 
