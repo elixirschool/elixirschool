@@ -1,5 +1,5 @@
 %{
-  version: "1.0.2",
+  version: "1.0.3",
   title: "Erlang Interoperability",
   excerpt: """
   One of the added benefits to building on top of the Erlang VM (BEAM) is the plethora of existing libraries available to us.
@@ -156,4 +156,4 @@ Erlang:
 20
 ```
 
-That's it!  Leveraging Erlang from within our Elixir applications is easy and effectively doubles the number of libraries available to us.
+That's it! Leveraging Erlang from within our Elixir applications is easy and effectively doubles the number of libraries available to us.
