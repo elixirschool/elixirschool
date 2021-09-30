@@ -3,13 +3,13 @@
   title: "StreamData",
   excerpt: """
   基于用例的单元测试工具库，如 [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) 是帮助你验证代码是否与预期运行逻辑相符的好工具。
-但是基于用例的单元测试有它的缺点：
+  但是基于用例的单元测试有它的缺点：
 
-* 由于你只测试某一些输入，一些极端情况很容易被忽略。
-* 你可能没有仔细思考清楚需求就能够写出这些测试用例。
-* 仅为一个函数编写几个测试样例也可能会非常繁琐。
+  * 由于你只测试某一些输入，一些极端情况很容易被忽略。
+  * 你可能没有仔细思考清楚需求就能够写出这些测试用例。
+  * 仅为一个函数编写几个测试样例也可能会非常繁琐。
 
-本教程将探索如何使用 [StreamData](https://github.com/whatyouhide/stream_data) 来帮助我们克服上述缺点。
+  本教程将探索如何使用 [StreamData](https://github.com/whatyouhide/stream_data) 来帮助我们克服上述缺点。
   """
 }
 ---
