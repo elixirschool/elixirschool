@@ -3,12 +3,12 @@
   title: "Mix",
   excerpt: """
   Zanim zajmiemy się bardziej zaawansowanymi aspektami Elixira musimy poznać Mix.
-Jeżeli znasz język Ruby, to można powiedzieć, że Mix stanowi połączenie Bundlera, RubyGems i Rake.
-Jest to kluczowy element każdego projektu tworzonego w Elixirze i w tej lekcji przyjrzymy się najważniejszym jego funkcjom.
-By uzyskać pełną listę oferowanych funkcji, wpisz `mix help`.
+  Jeżeli znasz język Ruby, to można powiedzieć, że Mix stanowi połączenie Bundlera, RubyGems i Rake.
+  Jest to kluczowy element każdego projektu tworzonego w Elixirze i w tej lekcji przyjrzymy się najważniejszym jego funkcjom.
+  By uzyskać pełną listę oferowanych funkcji, wpisz `mix help`.
 
-Dotychczas pracowaliśmy z interpreterem `iex`, który ma dość ograniczone możliwości.
-Chcąc napisać coś bardziej rozbudowanego, musimy nasz kod podzielić na wiele plików, by móc nim efektywnie zarządzać; Mix pozwala nam to robić z projektami.
+  Dotychczas pracowaliśmy z interpreterem `iex`, który ma dość ograniczone możliwości.
+  Chcąc napisać coś bardziej rozbudowanego, musimy nasz kod podzielić na wiele plików, by móc nim efektywnie zarządzać; Mix pozwala nam to robić z projektami.
   """
 }
 ---

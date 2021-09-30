@@ -3,7 +3,7 @@
   title: "Funkcje",
   excerpt: """
   W Elixirze i w wielu innych językach funkcyjnych, funkcje są konceptem absolutnie podstawowym.
-W tej lekcji poznamy rodzaje funkcji, różnice pomiędzy nimi oraz ich zastosowania.
+  W tej lekcji poznamy rodzaje funkcji, różnice pomiędzy nimi oraz ich zastosowania.
   """
 }
 ---

@@ -4,7 +4,7 @@
   excerpt: """
   Erlang VM'nin (BEAM) üstüne inşa edilmenin getirdiği ek avantajlardan biriside, mevcut kütüphanelerinin bolluk içerisinde oluşudur. Çalışıla bilirlik, bu kütüphaneleri ve Erlang standart kütüphanelerini Elixir kodumuzda kullanmamızı sağlar. 
 
-Bu dersimizde, üçüncü taraf Erlang paketleriyle birlikte standart kütüphanelerdeki fonksiyonlara nasıl erişeceğimize bakacağız.
+  Bu dersimizde, üçüncü taraf Erlang paketleriyle birlikte standart kütüphanelerdeki fonksiyonlara nasıl erişeceğimize bakacağız.
   """
 }
 ---
