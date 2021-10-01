@@ -317,7 +317,7 @@ defp deps do
 end
 ```
 
-Mientrad que `benchee_json` y `benchee_csv` son simples, `benchee_html` tiene _muchas_ funcionalidades.
+Mientras que `benchee_json` y `benchee_csv` son simples, `benchee_html` tiene _muchas_ funcionalidades.
 Te puede ayudar a producir fácilmente gráficas de resultados, e incluso las puedes exportar como imágenes PNG.
 Puedes revisar [un reporte HTML de ejemplo](http://www.pragtob.info/benchee/README/results.html) si te interesa. Incluye gráficas como esta:
 
