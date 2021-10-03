@@ -42,7 +42,7 @@ With third-party tools like Datadog, Splunk and Honeycomb, and libraries like Te
 
 ## Telemetry Gives Us Visibility
 
-[Telemetry](https://www.erlang-solutions.com/blog/introducing-telemetry.html) is an open source suite of libraries which aims to to unify and standardize how the libraries and applications on the BEAM are instrumented and monitored. How does it work?
+[Telemetry](https://www.erlang-solutions.com/blog/introducing-telemetry.html) is an open source suite of libraries which aims to unify and standardize how the libraries and applications on the BEAM are instrumented and monitored. How does it work?
 
 > At the core of Telemetry lies the event. The event indicates that something has happened: an HTTP request was accepted, a database query returned a result, or the user has signed in. Each event can have many handlers attached to it, each performing a specific action when the event is published. For example, an event handler might update a metric, log some data, or enrich a context of distributed trace.
 
