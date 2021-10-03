@@ -1,6 +1,6 @@
 %{
   author: "Frank Kumro",
-  author_link: "https://frank.kumro.io",
+  author_link: "https://github.com/fkumro",
   date: ~D[2021-07-14],
   tags: ["Announcement"],
   title: "Learning Elixir with others - The Elixir Book Club",
