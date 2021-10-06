@@ -69,7 +69,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 现在我们可以创建 changesets，但由于我们没有校验，对 name 所做的任何更改都会被 Ecto 接受，所以我们最终可能会得到一个值为空的 name：
 
 ```elixir
-iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{"name" => ""})
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{:name => ""})
 %Ecto.Changeset<
  action: nil,
  changes: %{name: nil},

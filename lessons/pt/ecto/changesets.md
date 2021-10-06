@@ -76,7 +76,7 @@ Uma alternativa para o `cast/3` é o `change/2`, que não tem a capacidade de fi
 Agora podemos criar changesets, mas como não temos validação, quaisquer alterações ao nome do usuário serão aceitas, então podemos acabar com um nome vazio:
 
 ```elixir
-iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{"name" => ""})
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{:name => ""})
 %Ecto.Changeset<
   action: nil,
   changes: %{name: nil},

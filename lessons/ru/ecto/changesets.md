@@ -75,12 +75,12 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 Теперь можно создавать наборы изменений, но поскольку у нас ещё нет никакой валидации, любое изменение имени будет применено. Например, полностью пустое имя:
 
 ```elixir
-iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => ""}, [:name, :age])
-%Ecto.Changeset<
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{:name => ""})
+#Ecto.Changeset<
   action: nil,
-  changes: %{name: nil},
+  changes: %{name: ""},
   errors: [],
-  data: %Friends.Person<>,
+  data: #Friends.Person<>,
   valid?: true
 >
 ```

@@ -75,7 +75,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 Τώρα μπορούμε να δημιουργήσουμε σετ αλλαγών, αλλά από τη στιγμή που δεν έχουμε επιβεβαίωση, όλες οι αλλαγές στο όνομα του ατόμου θα γίνουν αποδεκτές, έτσι μπορούμε να καταλήξουμε με ένα άδειο όνομα:
 
 ```elixir
-iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{name: ""})
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{:name => ""})
 #Ecto.Changeset<
   action: nil,
   changes: %{name: ""},

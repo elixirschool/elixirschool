@@ -76,15 +76,14 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 ここではチェンジセットを作りましたが、バリデーションを持っていないので、personのnameにあらゆる変更が受け付けられてしまい、その結果、空の名前になる可能性もあります。
 
 ```elixir
-iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => ""}, [:name, :age])
-%Ecto.Changeset<
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{:name => ""})
+#Ecto.Changeset<
   action: nil,
-  changes: %{name: nil},
+  changes: %{name: ""},
   errors: [],
-  data: %Friends.Person<>,
+  data: #Friends.Person<>,
   valid?: true
 >
-```
 
 Ectoはチェンジセットが正常であると言っていますが、実際には空の名前を許可したくありません。これを修正しましょう！
 
