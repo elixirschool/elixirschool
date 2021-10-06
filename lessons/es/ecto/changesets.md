@@ -75,7 +75,7 @@ Es útil cuando confías en la fuente que está haciendo los cambios o cuando tr
 Ahora podemos crear *changesets* pero dado que no tenemos validaciones cualquier cambio al nombre de la persona será aceptado, por lo que podríamos terminar con un nombre vació:
 
 ```elixir
-iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{:name => ""})
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{name: ""})
 %Ecto.Changeset<
   action: nil,
   changes: %{name: nil},

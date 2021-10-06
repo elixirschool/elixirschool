@@ -75,7 +75,7 @@ It is useful when you trust the source making the changes or when you work with 
 Now we can create changesets, but since we do not have validation, any changes to person's name will be accepted, so we can end up with an empty name:
 
 ```elixir
-iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{:name => ""})
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{name: ""})
 #Ecto.Changeset<
   action: nil,
   changes: %{name: ""},

@@ -75,7 +75,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 現在可以建立變更集，但由於沒有驗證，因此將接受對 Person 中 name 的任何更改，最終會得到一個空的 name：
 
 ```elixir
-iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{:name => ""})
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{name: ""})
 %Ecto.Changeset<
   action: nil,
   changes: %{name: nil},

@@ -76,7 +76,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 ここではチェンジセットを作りましたが、バリデーションを持っていないので、personのnameにあらゆる変更が受け付けられてしまい、その結果、空の名前になる可能性もあります。
 
 ```elixir
-iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{:name => ""})
+iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{name: ""})
 #Ecto.Changeset<
   action: nil,
   changes: %{name: ""},
