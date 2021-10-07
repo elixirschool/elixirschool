@@ -11,7 +11,7 @@
 
 Supervisors 的魔法是藏在 `Supervisor.start_link/2` 函數中。除了能啟動 Supervisors 和子處理程序 (Children) 之外，它還允許定義 supervisor 用於管理子處理程序的策略 (strategy)。
 
-現在從使用 [OTP Concurrency](../../advanced/otp-concurrency) 課程中的 SimpleQueue 開始吧：
+現在從使用 [OTP Concurrency](/zh-hant/lessons/advanced/otp_concurrency) 課程中的 SimpleQueue 開始吧：
 
 使用 `mix new simple_queue --sup` 建立一個帶有 supervisor tree 的新專案。`SimpleQueue` 模組的程式碼應該置於 `lib/simple_queue.ex` ，而新增的 supervisor 程式碼則於 `lib/simple_queue/application.ex` 中。
 

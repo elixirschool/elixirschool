@@ -12,7 +12,7 @@
 ## 簡介
 
 想描述函數介面 (interface) 的需求並不少見，
-能夠使用 [@doc annotation](../../basics/documentation) 做到，但這只是給與其他開發者在編輯期間的未驗證資訊。
+能夠使用 [@doc annotation](/zh-hant/lessons/basics/documentation) 做到，但這只是給與其他開發者在編輯期間的未驗證資訊。
 而為此，Elixir 有著 `@spec` 註解來描述將由編譯器驗證的函數規範。
 
 但是在某些情況下，規範 (specification) 將會相當大且複雜。
@@ -73,7 +73,7 @@ end
 
 在 `Examples` 模組中引入了一個結構體，它包含兩個欄位 (fields) `first` 和 `last`。
 這是自 `Range` 模組來的較簡易結構體版本。
-如需更多 `structs` 資訊，請參考 [modules](../../basics/modules/#structs)。
+如需更多 `structs` 資訊，請參考 [modules](/zh-hant/lessons/basics/modules#structs)。
 現在想像一下，我們需要在很多地方用 `Examples` 結構體來做規範。
 但寫出冗長而複雜的規範會很煩人，且可能成為 bug 的來源。
 一個解決這個問題的方法是 `@type`。
@@ -133,7 +133,7 @@ end
 ### 型別的文件
 
 我們需要談論的最後一個元素是如何註解型別。
-正如從 [documentation](../../basics/documentation) 課程中學到的，有 `@doc` 和 `@moduledoc` 註解來為函數和模組建立文件。
+正如從 [documentation](/zh-hant/lessons/basics/documentation) 課程中學到的，有 `@doc` 和 `@moduledoc` 註解來為函數和模組建立文件。
 為了註解型別，可以使用 `@typedoc`：
 
 ```elixir

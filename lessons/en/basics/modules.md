@@ -11,7 +11,7 @@
 ## Modules
 
 Modules allow us to organize functions into a namespace.
-In addition to grouping functions, they allow us to define named and private functions which we covered in the [functions lesson](../functions/).
+In addition to grouping functions, they allow us to define named and private functions which we covered in the [functions lesson](/en/lessons/basics/functions).
 
 Let's look at a basic example:
 
@@ -313,4 +313,4 @@ iex> Example.hello("Sean")
 These are simple examples to demonstrate how `use` works but it is an incredibly powerful tool in the Elixir toolbox.
 As you continue to learn about Elixir keep an eye out for `use`, one example you're sure to see is `use ExUnit.Case, async: true`.
 
-**Note**: `quote`, `alias`, `use`, `require` are macros related to [metaprogramming](../../advanced/metaprogramming).
+**Note**: `quote`, `alias`, `use`, `require` are macros related to [metaprogramming](/en/lessons/advanced/metaprogramming).

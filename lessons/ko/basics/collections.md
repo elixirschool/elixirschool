@@ -63,7 +63,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**참고:** 값 비교는 [엄격한 비교](../basics/#comparison)를 사용합니다. 예를 들면,
+**참고:** 값 비교는 [엄격한 비교](/ko/lessons/basics/basics#comparison)를 사용합니다. 예를 들면,
 
 ```elixir
 iex> [2] -- [2.0]
@@ -85,7 +85,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-앞서 언급한 함수들과 더불어서, [패턴 매칭](../pattern-matching/)과 cons 연산자 `|`를 이용할 수도 있습니다. 이러한 패턴은 차후 강의에서 보게 될 것입니다.
+앞서 언급한 함수들과 더불어서, [패턴 매칭](/ko/lessons/basics/pattern_matching)과 cons 연산자 `|`를 이용할 수도 있습니다. 이러한 패턴은 차후 강의에서 보게 될 것입니다.
 
 > [역주] : `cons`는 Lisp 계열 언어에서 애텀과 리스트를 연결할 때 쓰이는 연산입니다. 첫번째 매개변수로 주어지는 애텀을 두번째 매개변수로 주어지는 리스트의 head 부분에 삽입하게 됩니다. `(cons 1 (2 3)) == (cons 1 (cons 2 (cons 3 nil))))`
 
@@ -109,7 +109,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-튜플은 함수가 추가 정보를 반환하는 수단으로 자주 사용됩니다. 이것의 유용함은 [패턴 매칭(pattern matching)](../pattern-matching/)을 배울 때 더 명확해질 것입니다.
+튜플은 함수가 추가 정보를 반환하는 수단으로 자주 사용됩니다. 이것의 유용함은 [패턴 매칭(pattern matching)](/ko/lessons/basics/pattern_matching)을 배울 때 더 명확해질 것입니다.
 
 ```elixir
 iex> File.read("path/to/existing/file")

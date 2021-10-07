@@ -56,7 +56,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-*Pozn.:* Odčítanie listov používa [striktné porovnanie](../basics/#comparison) na nájdenie zhodných hodnôt.
+*Pozn.:* Odčítanie listov používa [striktné porovnanie](/sk/lessons/basics/basics#comparison) na nájdenie zhodných hodnôt.
 
 ### Head / Tail
 
@@ -69,7 +69,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-Naviac môžeme použiť [pattern matching](../pattern-matching/) a operátor `|` (cons), ktorý rozdelí zoznam na hlavu a chvost. O tomto vzore si povieme v neskorších lekciách:
+Naviac môžeme použiť [pattern matching](/sk/lessons/basics/pattern_matching) a operátor `|` (cons), ktorý rozdelí zoznam na hlavu a chvost. O tomto vzore si povieme v neskorších lekciách:
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -89,7 +89,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-Bežne sa tuples používajú ako mechanizmus pre návratové hodnoty z funkcií - v kapitole o [pattern matchingu](../pattern-matching/) si ukážeme, ako užitočné to skutočne je:
+Bežne sa tuples používajú ako mechanizmus pre návratové hodnoty z funkcií - v kapitole o [pattern matchingu](/sk/lessons/basics/pattern_matching) si ukážeme, ako užitočné to skutočne je:
 
 ```elixir
 iex> File.read("path/to/existing/file")

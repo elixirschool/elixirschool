@@ -137,7 +137,7 @@ iex>
 Zauważ, jak za pomocą znaczników umożliwiliśmy terminalowi sformatowanie dokumentacji. Poza tym, że fajnie to wygląda i jest nowatorskim rozwiązaniem w ekosystemie Elixira, to daje nam duże możliwości przy generowaniu HTML-a z pomocą narzędzia ExDoc.
 
 **Uwaga:** adnotacja `@spec` jest używana do statycznej analizy kodu.
-Jeśli chcesz dowiedzieć się więcej na ten temat, zajrzyj do lekcji [Specyfikacje i typy](../../advanced/typespec).
+Jeśli chcesz dowiedzieć się więcej na ten temat, zajrzyj do lekcji [Specyfikacje i typy](/pl/lessons/advanced/typespec).
 
 ## ExDoc
 

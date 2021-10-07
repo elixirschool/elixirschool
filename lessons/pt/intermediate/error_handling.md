@@ -19,7 +19,7 @@ No momento, a comunidade Elixir chegou a algumas convenções sobre o retorno de
 
 * Para erros que não fazem parte das operações normais (ex: não é possível analisar os dados de configuração), você lançaria uma exceção.
 
-Geralmente lidamos com fluxo de erros padrão com [Pattern Matching](../basics/pattern-matching/), mas nesta lição, estamos focando no segundo caso - nas exceções.
+Geralmente lidamos com fluxo de erros padrão com [Pattern Matching](/pt/lessons/basics/pattern_matching), mas nesta lição, estamos focando no segundo caso - nas exceções.
 
 Muitas vezes, em APIs públicas, você também pode encontrar uma segunda versão da função com um ! (exemplo!/1) que retorna o resultado desempacotado(ex: retorna o resultado no lugar de retornar uma tupla) ou levanta um erro.
 

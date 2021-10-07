@@ -9,7 +9,7 @@
 
 ## Modules
 
-Les modules nous permettent d'organiser nos fonctions à l'intérieur d'un _namespace_ (aussi appelé _espace de noms_ en français). En plus de grouper les fonctions, ils nous permettent de définir des fonctions nommées et des fonctions privées définies dans la [leçon sur les fonctions](../functions/).
+Les modules nous permettent d'organiser nos fonctions à l'intérieur d'un _namespace_ (aussi appelé _espace de noms_ en français). En plus de grouper les fonctions, ils nous permettent de définir des fonctions nommées et des fonctions privées définies dans la [leçon sur les fonctions](/fr/lessons/basics/functions).
 
 Regardons cet exemple :
 
@@ -308,4 +308,4 @@ iex> Example.hello("Sean")
 Ce sont ici des exemples simples dont le but est de démontrer le fonctionnement de `use`, mais c'est un outil extrêmement puissant dans la boite à outils d'Elixir.
 En continuant votre apprentissage, faites attention aux utilisations de `use`, un exemple que vous serez sur de voir est: `use ExUnit.Case, async: true`.
 
-**Note** : `quote`, `alias`, `use`, `require` sont des macros utilisées quand nous travaillons avec la [métaprogrammation](../../advanced/metaprogramming).
+**Note** : `quote`, `alias`, `use`, `require` sont des macros utilisées quand nous travaillons avec la [métaprogrammation](/fr/lessons/advanced/metaprogramming).

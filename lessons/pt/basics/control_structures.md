@@ -121,7 +121,7 @@ iex> cond do
 
 A forma especial `with/1` é útil quando tentamos usar `case/2` de maneira aninhada ou em situações que não é possível encadear funções. A expressão `with/1` é composta de palavras-chaves, generators e finalmente uma expressão.
 
-Iremos discutir generators na [lição sobre list comprehensions](../comprehensions) para comparar o lado direito do operador `<-` com o lado esquerdo.
+Iremos discutir generators na [lição sobre list comprehensions](/pt/lessons/basics/comprehensions) para comparar o lado direito do operador `<-` com o lado esquerdo.
 
 Vamos começar com um exemplo simples de `with/1` e então vamos olhar em algo mais:
 

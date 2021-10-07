@@ -24,7 +24,7 @@ iex> ~T[19:39:31.056226]
 ~T[19:39:31.056226]
 ```
 
-You can learn more about sigils in the [lesson about sigils](../sigils).
+You can learn more about sigils in the [lesson about sigils](/en/lessons/basics/sigils).
 It is easy to access parts of this struct:
 
 ```elixir

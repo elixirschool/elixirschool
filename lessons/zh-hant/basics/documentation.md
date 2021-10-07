@@ -136,7 +136,7 @@ iex>
 有注意我們如何在文件中使用 markup 語言，而 terminal 又是如何渲染它的嗎？除了讓 Elixir 龐大的生態系統中增加一個很酷的功能外，同時當我們查看 ExDoc 來動態生成 HTML 文件時，它又變得更加有趣。
 
 **註：** `@spec` 註解用於程式碼的靜態分析。
-要了解更多資訊，請查看 [規範和型別](../../advanced/typespec) 課程。
+要了解更多資訊，請查看 [規範和型別](/zh-hant/lessons/advanced/typespec) 課程。
 
 ## ExDoc
 

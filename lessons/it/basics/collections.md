@@ -58,7 +58,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Nota:** La sottrazione usa la [strict comparison](../basics#confronto) per controllare i valori. Per esempio:
+**Nota:** La sottrazione usa la [strict comparison](/it/lessons/basics/basics#confronto) per controllare i valori. Per esempio:
 ```elixir
 iex> [2] -- [2.0]
 [2]
@@ -77,7 +77,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-Oltre alle funzioni menzionate in precedenza, puoi usare [pattern matching](../pattern-matching/) e l'operatore _pipe_ `|` per dividere la lista; vedremo questo operatore nelle lezioni successive:
+Oltre alle funzioni menzionate in precedenza, puoi usare [pattern matching](/it/lessons/basics/pattern_matching) e l'operatore _pipe_ `|` per dividere la lista; vedremo questo operatore nelle lezioni successive:
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -97,7 +97,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-È comune usare le tuple come meccanismo per ricevere informazioni addizionali dalle funzioni; l'utilità di questo sarà più evidente quando parleremo di [pattern matching](../pattern-matching/).
+È comune usare le tuple come meccanismo per ricevere informazioni addizionali dalle funzioni; l'utilità di questo sarà più evidente quando parleremo di [pattern matching](/it/lessons/basics/pattern_matching).
 
 ```elixir
 iex> File.read("path/to/existing/file")

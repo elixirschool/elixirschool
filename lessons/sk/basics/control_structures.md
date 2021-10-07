@@ -125,7 +125,7 @@ iex> cond do
 
 Špeciálna riadiaca štruktúra `with/1` je užitočná, keď potrebujeme použiť vnorené `case/2` výrazy alebo v situácii keď ich nemôžeme spojiť pomocou operátora pipe. Výraz `with/1` je zložený z kľúčových slov, generátorov a výrazu.
 
-O generátoroch si povieme viac v [lekcii o comprehensions](../comprehensions/), ale zatiaľ stačí keď vieme, že používajú [pattern matching](../pattern-matching/) na porovnanie pravej strany operátora `<-` s ľavou stranou.
+O generátoroch si povieme viac v [lekcii o comprehensions](/sk/lessons/basics/comprehensions), ale zatiaľ stačí keď vieme, že používajú [pattern matching](/sk/lessons/basics/pattern_matching) na porovnanie pravej strany operátora `<-` s ľavou stranou.
 
 Začneme s jednoduchým príkladom ako použiť `with/1`:
 

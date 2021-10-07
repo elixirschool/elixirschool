@@ -58,7 +58,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**註：** 串列減法使用 [嚴格比較 (strict comparison)](../basics/#comparison) 來比對值。例如：
+**註：** 串列減法使用 [嚴格比較 (strict comparison)](/zh-hant/lessons/basics/basics#comparison) 來比對值。例如：
 
 ```elixir
 iex> [2] -- [2.0]
@@ -80,7 +80,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-除了上面兩個函式外，您還可以使用 [模式比對 (pattern matching)](../pattern-matching/) 和 cons 運算子 `|` 來將串列分成頭和尾。這些在之後的課程會有更多的說明：
+除了上面兩個函式外，您還可以使用 [模式比對 (pattern matching)](/zh-hant/lessons/basics/pattern_matching) 和 cons 運算子 `|` 來將串列分成頭和尾。這些在之後的課程會有更多的說明：
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -100,7 +100,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-元組常用作為讓函式回傳附加訊息的手法；這在當我們學到 [pattern matching](../pattern-matching/) 後會更能理解它的好用之處：
+元組常用作為讓函式回傳附加訊息的手法；這在當我們學到 [pattern matching](/zh-hant/lessons/basics/pattern_matching) 後會更能理解它的好用之處：
 
 ```elixir
 iex> File.read("path/to/existing/file")

@@ -7,7 +7,7 @@
 }
 ---
 
-在本課程中，將基於 `Friends` 應用程式和在 [上一課](./associations) 中設定的電影目錄域來繼續構建。
+在本課程中，將基於 `Friends` 應用程式和在 [上一課](/zh-hant/lessons/ecto/associations) 中設定的電影目錄域來繼續構建。
 
 ## 使用 Ecto.Repo 提取記錄
 

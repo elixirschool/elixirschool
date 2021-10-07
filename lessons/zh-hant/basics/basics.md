@@ -147,7 +147,7 @@ iex> "foo\nbar"
 ```
 
 Elixir 還包括更複雜的資料型別。
-當學習 [群集](../collections/) 和 [函數](../functions/) 時將進一步了解這些。
+當學習 [群集](/zh-hant/lessons/basics/collections) 和 [函數](/zh-hant/lessons/basics/functions) 時將進一步了解這些。
 
 ## 基本運算
 

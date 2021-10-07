@@ -9,7 +9,7 @@
 
 ## Enum
 
-Modul `Enum` mencakup lebih dari 70 fungsi untuk bekerja pada enumrables. Semua koleksi yang sudah kita pelajari dalam [pelajaran sebelumnya](../collections/), dengan pengecualian tuple, adalah enumerables.
+Modul `Enum` mencakup lebih dari 70 fungsi untuk bekerja pada enumrables. Semua koleksi yang sudah kita pelajari dalam [pelajaran sebelumnya](/id/lessons/basics/collections), dengan pengecualian tuple, adalah enumerables.
 
 Pelajaran ini akan hanya mencakup sebagian dari fungsi yang ada, akan tetapi kita sebenarnya dapat mencobanya.
 Mari kita lakukan sedikit eksperiment pada IEx.

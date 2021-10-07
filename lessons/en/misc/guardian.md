@@ -139,7 +139,7 @@ Since this is the minimum setup, let's first consider HTTP requests.
 ## HTTP requests
 
 Guardian provides a number of Plugs to facilitate integration into HTTP requests.
-You can learn about Plug in a [separate lesson](../../specifics/plug/).
+You can learn about Plug in a [separate lesson](/en/lessons/misc/plug).
 Guardian doesn't require Phoenix, but using Phoenix in the following examples will be easiest to demonstrate.
 
 The easiest way to integrate into HTTP is via the router.

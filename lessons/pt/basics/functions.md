@@ -289,7 +289,7 @@ iex> Greeter.phrase
 
 ### Guards
 
-Nós cobrimos brevemente guards nas lições de [Estruturas Condicionais](../control-structures), agora veremos como podemos aplicá-los em funções nomeadas. Uma vez que Elixir tem correspondência em uma função, qualquer guard existente irá ser testado.
+Nós cobrimos brevemente guards nas lições de [Estruturas Condicionais](/pt/lessons/basics/control_structures), agora veremos como podemos aplicá-los em funções nomeadas. Uma vez que Elixir tem correspondência em uma função, qualquer guard existente irá ser testado.
 
 No exemplo a seguir nós temos duas funções com a mesma assinatura, contamos com guards para determinar qual usar com base no tipo do argumento:
 

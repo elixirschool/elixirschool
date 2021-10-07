@@ -63,7 +63,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Note:** List subtraction uses [strict comparison](../basics/#comparison) to match the values. For example:
+**Note:** List subtraction uses [strict comparison](/en/lessons/basics/basics#comparison) to match the values. For example:
 
 ```elixir
 iex> [2] -- [2.0]
@@ -85,7 +85,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-In addition to the aforementioned functions, you can use [pattern matching](../pattern-matching/) and the cons operator `|` to split a list into head and tail. We'll learn more about this pattern in later lessons:
+In addition to the aforementioned functions, you can use [pattern matching](/en/lessons/basics/pattern_matching) and the cons operator `|` to split a list into head and tail. We'll learn more about this pattern in later lessons:
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -107,7 +107,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-It is common for tuples to be used as a mechanism to return additional information from functions; the usefulness of this will be more apparent when we get into [pattern matching](../pattern-matching/):
+It is common for tuples to be used as a mechanism to return additional information from functions; the usefulness of this will be more apparent when we get into [pattern matching](/en/lessons/basics/pattern_matching):
 
 ```elixir
 iex> File.read("path/to/existing/file")

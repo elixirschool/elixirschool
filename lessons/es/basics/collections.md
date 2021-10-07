@@ -64,7 +64,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Nota:** La sustracción de listas utiliza [comparación estricta](../basics/#comparación) para coincidir los valores. Por Ejemplo:
+**Nota:** La sustracción de listas utiliza [comparación estricta](/es/lessons/basics/basics#comparación) para coincidir los valores. Por Ejemplo:
 ```elixir
 iex> [2] -- [2.0]
 [2]
@@ -85,7 +85,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-Además de las funciones anteriormente mencionadas, puedes hacer uso de la [coincidencia de patrones](../pattern-matching/) y del operador _cons_ `|` para partir una lista en cabeza y cola. Aprenderemos más acerca de este patrón en futuras lecciones:
+Además de las funciones anteriormente mencionadas, puedes hacer uso de la [coincidencia de patrones](/es/lessons/basics/pattern_matching) y del operador _cons_ `|` para partir una lista en cabeza y cola. Aprenderemos más acerca de este patrón en futuras lecciones:
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -107,7 +107,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-Es común que utilicemos las tuplas como un mecanismo que retorna información adicional de funciones; la utilidad de esto será más evidente cuando aprendamos sobre [coincidencia de patrones](../pattern-matching/):
+Es común que utilicemos las tuplas como un mecanismo que retorna información adicional de funciones; la utilidad de esto será más evidente cuando aprendamos sobre [coincidencia de patrones](/es/lessons/basics/pattern_matching):
 
 ```elixir
 iex> File.read("path/to/existing/file")

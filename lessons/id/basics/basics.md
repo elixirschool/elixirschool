@@ -146,7 +146,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir juga memasukkan banyak tipe-tipe data kompleks. Kita akan mempelajari lebih banyak lagi hal tersebut ketika kita belajar tentang [Koleksi](../collections/) dan [Fungsi](../functions/).
+Elixir juga memasukkan banyak tipe-tipe data kompleks. Kita akan mempelajari lebih banyak lagi hal tersebut ketika kita belajar tentang [Koleksi](/id/lessons/basics/collections) dan [Fungsi](/id/lessons/basics/functions).
 
 ## Operasi Dasar
 

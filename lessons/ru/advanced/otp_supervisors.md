@@ -11,7 +11,7 @@
 
 Магия супервизоров заключена в функции `Supervisor.start_link/2`.  Помимо запуска нашего супервизора и его потомков, она позволяет нам определять стратегию, которую будет использовать наш супервизор для управления дочерними процессами.
 
-Давайте начнём, используя `SimpleQueue` из урока [OTP Concurrency](../../advanced/otp-concurrency):
+Давайте начнём, используя `SimpleQueue` из урока [OTP Concurrency](/ru/lessons/advanced/otp_concurrency):
 
 Создадим новый проект используя`mix new simple_queue --sup` для генерации проекта с деревом супервизора. Код для модуля `SimpleQueue` должен находиться в `lib/simple_queue.ex`, а код супервизора, который мы добавим, пойдет в `lib/simple_queue/application.ex`.
 

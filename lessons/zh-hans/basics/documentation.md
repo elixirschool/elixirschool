@@ -125,7 +125,7 @@ iex>
 
 注意到我们是如何使用文档标记以及终端是怎么渲染这些文档的了么？这很不错吧，当你看到使用ExDoc模块能够动态地生成HTML文档时，你会觉得更有趣。
 
-**注意：**`@spec`这个注解一般用于代码的静态分析。想了解更多的话，可以看下[Specifications and types](../../advanced/typespec)这个章节。
+**注意：**`@spec`这个注解一般用于代码的静态分析。想了解更多的话，可以看下[Specifications and types](/zh-hans/lessons/advanced/typespec)这个章节。
 
 ## ExDoc
 

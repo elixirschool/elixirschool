@@ -125,7 +125,7 @@ iex> cond do
 
 Bentuk spesial `with/1` berguna ketika anda ingin menggunakan sebuah pernyataan `case/2` bertingkat atau situasi yang tidak dapat di-pipe dengan mudah. Ekspresi `with/1` terdiri dari keyword, generator, dan akhirnya sebuah expression.
 
-Kita akan diskusikan generator lebih jauh di [Daftar Pelajaran Pemahaman](../comprehensions/), tapi sementara ini kita hanya perlu mengetahui bahwa mereka menggunakan [pencocokan pola](../pattern-matching/) untuk membandingkan sisi kanan dari `<-` terhadap sisi kiri.
+Kita akan diskusikan generator lebih jauh di [Daftar Pelajaran Pemahaman](/id/lessons/basics/comprehensions), tapi sementara ini kita hanya perlu mengetahui bahwa mereka menggunakan [pencocokan pola](/id/lessons/basics/pattern_matching) untuk membandingkan sisi kanan dari `<-` terhadap sisi kiri.
 
 Kita akan mulai dengan contoh sederhana dari `with/1` dan kemudian melihat lebih jauh:
 

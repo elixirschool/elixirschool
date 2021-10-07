@@ -55,7 +55,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Not:** Bu işlemde [katı kıyaslama (strict comparison)](../basics/#comparison) kullanılır. Örneğin
+**Not:** Bu işlemde [katı kıyaslama (strict comparison)](/tr/lessons/basics/basics#comparison) kullanılır. Örneğin
 
 ```elixir
 iex> [2] -- [2.0]
@@ -75,7 +75,7 @@ iex> tl [3.14, :kek, "Elma"]
 [:kek, "Elma"]
 ```
 
-Bunlara ek olarak, listeyi baş ve kuyruk olarak ayırmak icin, [desen eşleştirmesi (Pattern Matching)](../pattern-matching/) ve `|` operatöru kullanılabilir. Bunları ileride daha detayli bir şekilde inceleyeceğiz.
+Bunlara ek olarak, listeyi baş ve kuyruk olarak ayırmak icin, [desen eşleştirmesi (Pattern Matching)](/tr/lessons/basics/pattern_matching) ve `|` operatöru kullanılabilir. Bunları ileride daha detayli bir şekilde inceleyeceğiz.
 
 ```elixir
 iex> [h|t] = [3.14, :kek, "Elma"]
@@ -95,7 +95,7 @@ iex> {3.14, :kek, "Elma"}
 {3.14, :kek, "Elma"}
 ```
 
-Demetlerin fonksiyonlardan ek bilgi döndürme mekanizmasi olarak kullanılması yaygındır; bunun faydalarını [desen eşleştirmesi - Pattern Matching](../pattern-matching/) konusunda inceleyeceğiz.
+Demetlerin fonksiyonlardan ek bilgi döndürme mekanizmasi olarak kullanılması yaygındır; bunun faydalarını [desen eşleştirmesi - Pattern Matching](/tr/lessons/basics/pattern_matching) konusunda inceleyeceğiz.
 
 ```elixir
 iex> File.read("path/to/existing/file")

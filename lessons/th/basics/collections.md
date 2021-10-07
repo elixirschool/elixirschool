@@ -56,7 +56,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**หมายเหตุ** list subtraction ใช้ [strict comparison](../basics/#การเปรียบเทียบ) เพื่อ match ค่าต่างๆ
+**หมายเหตุ** list subtraction ใช้ [strict comparison](/th/lessons/basics/basics#การเปรียบเทียบ) เพื่อ match ค่าต่างๆ
 
 ### Head / Tail
 
@@ -69,7 +69,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-นอกเหนือจาก function ที่กล่าวมาข้างต้นแล้ว เราสามารถใช้ [pattern matching](../pattern-matching/) และ cons operator `|` เพื่อแยกส่วน head กับ tail ของ list ออกจากกัน เราจะเรียนรู้เกี่ยวกับเรื่อง pattern นี้ในบทเรียนต่อๆ ไป
+นอกเหนือจาก function ที่กล่าวมาข้างต้นแล้ว เราสามารถใช้ [pattern matching](/th/lessons/basics/pattern_matching) และ cons operator `|` เพื่อแยกส่วน head กับ tail ของ list ออกจากกัน เราจะเรียนรู้เกี่ยวกับเรื่อง pattern นี้ในบทเรียนต่อๆ ไป
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -91,7 +91,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-เป็นเรื่องปกติสำหรับ tuple ที่จะถูกใช้ในส่วนการ return ของ function ประโยชน์ของการใช้งานในลักษณะนี้จะถูกอธิบายให้ชัดเจนมากขึ้นตอนที่เราไปถึงบท [pattern matching](../pattern-matching/)
+เป็นเรื่องปกติสำหรับ tuple ที่จะถูกใช้ในส่วนการ return ของ function ประโยชน์ของการใช้งานในลักษณะนี้จะถูกอธิบายให้ชัดเจนมากขึ้นตอนที่เราไปถึงบท [pattern matching](/th/lessons/basics/pattern_matching)
 
 ```elixir
 iex> File.read("path/to/existing/file")

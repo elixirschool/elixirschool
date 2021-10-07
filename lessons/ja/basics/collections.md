@@ -58,7 +58,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**参考:** リストの減算の値のマッチには [strict comparison](../basics/#comparison) が使われています。例えば:
+**参考:** リストの減算の値のマッチには [strict comparison](/ja/lessons/basics/basics#comparison) が使われています。例えば:
 
 ```elixir
 iex> [2] -- [2.0]
@@ -78,7 +78,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-前述した関数に加えて、リストを頭部と尾部に分けるのに[パターンマッチング](../pattern-matching/)やcons演算子(`|`)を使うこともできます。このパターンについては後のレッスンで取り上げます:
+前述した関数に加えて、リストを頭部と尾部に分けるのに[パターンマッチング](/ja/lessons/basics/pattern_matching)やcons演算子(`|`)を使うこともできます。このパターンについては後のレッスンで取り上げます:
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]

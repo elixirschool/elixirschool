@@ -139,7 +139,7 @@ iex>
 Notice how you can use markup within our documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
 
 **Note:** the `@spec` annotation is used to statically analyze code.
-To learn more about it, check out the [Specifications and types](../../advanced/typespec) lesson.
+To learn more about it, check out the [Specifications and types](/en/lessons/advanced/typespec) lesson.
 
 ## ExDoc
 

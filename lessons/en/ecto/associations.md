@@ -9,7 +9,7 @@
 
 ## Set Up
 
-We'll start off with the same `Friends` app from the previous lesson. You can refer to the setup [here](../basics) for a quick refresher.
+We'll start off with the same `Friends` app from the previous lesson. You can refer to the setup [here](/en/lessons/ecto/basics) for a quick refresher.
 
 ## Types of Associations
 

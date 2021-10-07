@@ -13,7 +13,7 @@
 The magic of Supervisors is in the `Supervisor.start_link/2` function.
 In addition to starting our supervisor and children, it allows us to define the strategy our supervisor uses for managing child processes.
 
-Using the `SimpleQueue` from the [OTP Concurrency](../../advanced/otp-concurrency) lesson, let's get started:
+Using the `SimpleQueue` from the [OTP Concurrency](/en/lessons/advanced/otp_concurrency) lesson, let's get started:
 
 Create a new project using `mix new simple_queue --sup` to create a new project with a supervisor tree.
 The code for the `SimpleQueue` module should go in `lib/simple_queue.ex` and the supervisor code we'll be adding will go in `lib/simple_queue/application.ex`

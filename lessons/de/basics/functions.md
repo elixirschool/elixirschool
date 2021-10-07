@@ -134,7 +134,7 @@ iex> Greeter.phrase
 
 ### Guards
 
-Wir haben guards kurz im Kapitel [Kontrollstrukturen](../control-structures) angeschnitten, jetzt werden wir sehen wie man sie auf benannte Funktionen anwenden kann. Wenn Elixir einmal eine Funktion gematched hat, werden alle vorhandenen guards überprüft.
+Wir haben guards kurz im Kapitel [Kontrollstrukturen](/de/lessons/basics/control_structures) angeschnitten, jetzt werden wir sehen wie man sie auf benannte Funktionen anwenden kann. Wenn Elixir einmal eine Funktion gematched hat, werden alle vorhandenen guards überprüft.
 
 Im folgenden Beispiel haben wir zwei Funktionen mit der selben Signatur, aber die guards entscheiden anhand der verwendeten Argumenttypen, welche Funktion aufgerufen wird.
 
