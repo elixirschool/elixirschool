@@ -132,7 +132,7 @@ iex> Greeter.phrase
 
 ### Kontroller
 
-Kontrolleri [Kontrol Yapıları](../control-structures) dersinde kısaca inceledik, şimdi adlandırılmış fonksiyonlarda nasıl kullanılacağını göreceğiz.   Elixir fonksiyonu bulduktan sonra kontrolleri test edecek.
+Kontrolleri [Kontrol Yapıları](./control_structures) dersinde kısaca inceledik, şimdi adlandırılmış fonksiyonlarda nasıl kullanılacağını göreceğiz.   Elixir fonksiyonu bulduktan sonra kontrolleri test edecek.
 
 Aşağıdaki örnekte aynı ada ve argüman sayısına ait iki fonksiyona sahibiz, hangisinin kullanılacağını belirlemek için kontrolleri kullanıyoruz:
 

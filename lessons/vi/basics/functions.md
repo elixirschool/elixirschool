@@ -132,7 +132,7 @@ iex> Greeter.phrase
 
 ### Guards
 
-Ta đã xem sơ qua guards trong bài [Cấu trúc điều khiển](../control-structures), giờ ta sẽ xem cách chúng ta áp dụng chúng cho hàm được đặt tên.  Một khi Elixir so trùng được một hàm các guard sẽ được kiểm tra.
+Ta đã xem sơ qua guards trong bài [Cấu trúc điều khiển](./control_structures), giờ ta sẽ xem cách chúng ta áp dụng chúng cho hàm được đặt tên.  Một khi Elixir so trùng được một hàm các guard sẽ được kiểm tra.
 
 Trong ví dụ tiếp theo ta có hai function với signature giống nhau, ta phải dựa vào guard để xác định cái nào sẽ được dùng dựa vào kiểu của tham số:
 
