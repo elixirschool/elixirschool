@@ -1,21 +1,164 @@
 %{
-  version: "1.0.1",
+  version: "1.1.3",
   title: "Отладка",
   excerpt: """
-  Ошибки – неотъемлемая часть любого проекта, поэтому отладка очень важна. В этом уроке мы узнаем об отладке Elixir-кода и инструментах статического анализа, позволяющих находить потенциальные проблемы.
+  Ошибки – неотъемлемая часть любого проекта, поэтому отладка очень важна.
+
+  В этом уроке мы узнаем об отладке Elixir-кода и инструментах статического анализа, позволяющих находить потенциальные проблемы.
   """
 }
 ---
 
-# Dialyxir и Dialyzer
+## IEx
 
-[Dialyzer](http://erlang.org/doc/man/dialyzer.html) – **DI**screpancy **A**na**LYZ**er for **ER**lang programs – инструмент статического анализа кода. Его задача – _не выполняя_ сам программный код, проанализировать его на наличие ошибок, лишних выражений, недостижимых участков и т.д.
+Самый простой инструмент для отладки кода на Elixir - это IEx.
+
+But don't be fooled by its simplicity - you can solve most of the issues with your application by it.
+
+IEx means `Elixir's interactive shell`.
+
+Вы уже могли видеть IEx в предыдущем уроке [Основы](../../basics/basics), где мы запускали код Elixir в интерактивном режиме в оболочке.
+
+Идея проста.
+
+Вы получаете интерактивную оболочку в контексте того места, которое хотите отлаживать.
+
+Давай попробуем.
+
+Для этого создайте файл с именем `test.exs` и поместите в него следующий код:
+
+```elixir
+defmodule TestMod do
+  def sum([a, b]) do
+    b = 0
+
+    a + b
+  end
+end
+
+IO.puts(TestMod.sum([34, 65]))
+```
+
+И если вы запустите его - вы получите очевидный результат `34`:
+
+```shell
+$ elixir test.exs
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+34
+```
+
+И теперь мы переходим к самой захватывающей части - отладке.
+
+Поместите `require IEx; IEx.pry` после строки `b = 0`, и попробуйте запустить еще раз.
+
+Вы получите что-то вроде этого:
+
+```elixir
+$ elixir test.exs
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+Cannot pry #PID<0.92.0> at TestMod.sum/1 (test.exs:5). Is an IEx shell running?
+34
+```
+
+Вы должны принять к сведению это важное сообщение.
+
+When running an application, as usual, IEx outputs this message instead of blocking execution of the program.
+
+To run it properly you need to prepend your command with `iex -S`.
+
+What this does is it runs `mix` inside the `iex` command so that it runs the application in a special mode, such that calls to `IEx.pry` stop the application execution.
+
+For example, `iex -S mix phx.server` to debug your Phoenix application.
+In our case, it's going to be `iex -r test.exs` to require the file:
+
+```elixir
+$ iex -r test.exs
+Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
+
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+Request to pry #PID<0.107.0> at TestMod.sum/1 (test.exs:5)
+
+    3:     b = 0
+    4:
+    5:     require IEx; IEx.pry
+    6:
+    7:     a + b
+
+Allow? [Yn]
+```
+
+Вы попадаете в интерактивный режим, после нажатия клавиш `y` или Enter.
+
+```elixir
+$ iex -r test.exs
+Erlang/OTP 21 [erts-10.3.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe] [dtrace]
+
+warning: variable "b" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  test.exs:2
+
+Request to pry #PID<0.107.0> at TestMod.sum/1 (test.exs:5)
+
+    3:     b = 0
+    4:
+    5:     require IEx; IEx.pry
+    6:
+    7:     a + b
+
+Allow? [Yn] y
+Interactive Elixir (1.8.1) - press Ctrl+C to exit (type h() ENTER for help)
+pry(1)> a
+34
+pry(2)> b
+0
+pry(3)> a + b
+34
+pry(4)> continue
+34
+
+Interactive Elixir (1.8.1) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)>
+BREAK: (a)bort (c)ontinue (p)roc info (i)nfo (l)oaded
+       (v)ersion (k)ill (D)b-tables (d)istribution
+```
+
+To quit IEx, you can either hit `Ctrl+C` two times to exit the app, or type `continue` to go to the next breakpoint.
+
+As you can see, you can run any Elixir code.
+
+However, the limitation is that you can't modify variables of existing code, due to language immutability.
+
+However, you can get values of all the variables and run any computations.
+
+In this case, the bug would be in `b` reassigned to 0, and `sum` function being buggy as a result.
+
+Sure, language has already caught this bug even on the first run, but that's an example!
+
+### IEx.Helpers
+
+One of the more annoying parts of working with IEx is it has no history of commands you used in previous runs.
+
+For solving that problem, there is a separate subsection on [IEx documentation](https://hexdocs.pm/iex/IEx.html#module-shell-history), where you can find the solution for your platform of choice.
+
+You can also look through the list of other available helpers in [IEx.Helpers documentation](https://hexdocs.pm/iex/IEx.Helpers.html).
+
+## Dialyxir и Dialyzer
+
+[Dialyzer](http://erlang.org/doc/man/dialyzer.html) – **DI**screpancy **A**na**LYZ**er for **ER**lang programs – инструмент статического анализа кода.
+Его задача – _не выполняя_ сам программный код, проанализировать его на наличие ошибок, лишних выражений, недостижимых участков и т.д.
 
 [Dialyxir](https://github.com/jeremyjh/dialyxir) – это mix-команда, облегчающая использование `Dialyzer` в Elixir.
 
-Спецификации позволяют таким инструментам как `Dialyzer` лучше понимать код. В отличие от документации, которая может быть прочитана только живыми людьми (если она, конечно, существует и хорошо написана), `@spec` использует более формальный, понятный компьютеру синтаксис.
+Спецификации позволяют таким инструментам как `Dialyzer` лучше понимать код.
+В отличие от документации, которая может быть прочитана только живыми людьми (если она, конечно, существует и хорошо написана), `@spec` использует более формальный, понятный компьютеру синтаксис.
 
-Давайте добавим `Dialyxir` в наш проект. Проще всего сделать это, добавив зависимость в `mix.exs`:
+Давайте добавим Dialyxir в наш проект.
+Проще всего сделать это, добавив зависимость в `mix.exs`:
 
 ```elixir
 defp deps do
@@ -31,13 +174,20 @@ $ mix deps.get
 $ mix deps.compile
 ```
 
-Первая команда загрузит и установит `Dialyxir`. Возможно, вместе с ним понадобится установить также `Hex`. Вторая команда компилирует `Dialyxir`. Если вы хотите установить его глобально, пожалуйста, обратитесь к [документации](https://github.com/jeremyjh/dialyxir#installation).
+Первая команда загрузит и установит Dialyxir.
+Возможно, вместе с ним понадобится установить также Hex.
+Вторая команда компилирует Dialyxir.
+Если вы хотите установить его глобально, пожалуйста, обратитесь к [документации](https://github.com/jeremyjh/dialyxir#installation).
 
-Последним шагом мы запустим `Dialyxir`, чтобы он построил PLT (Персистентную Таблицу Поиска). Это придется делать после установки каждой новой версии Erlang или Elixir. К счастью, `Dialyzer` не будет пытаться анализировать стандартную библиотеку при каждом использовании. На загрузку потребуется несколько минут.
+Последним шагом мы запустим Dialyxir, чтобы он построил PLT (Персистентную Таблицу Поиска).
+Это придется делать после установки каждой новой версии Erlang или Elixir.
+К счастью, Dialyzer не будет пытаться анализировать стандартную библиотеку при каждом использовании.
+На загрузку потребуется несколько минут.
 
 ```shell
 $ mix dialyzer --plt
-Starting PLT Core Build ... this will take awhile
+Starting PLT Core Build ...
+this will take awhile
 dialyzer --build_plt --output_plt /.dialyxir_core_18_1.3.2.plt --apps erts kernel stdlib crypto public_key -r /Elixir/lib/elixir/../eex/ebin /Elixir/lib/elixir/../elixir/ebin /Elixir/lib/elixir/../ex_unit/ebin /Elixir/lib/elixir/../iex/ebin /Elixir/lib/elixir/../logger/ebin /Elixir/lib/elixir/../mix/ebin
   Creating PLT /.dialyxir_core_18_1.3.2.plt ...
 ...
@@ -45,20 +195,23 @@ dialyzer --build_plt --output_plt /.dialyxir_core_18_1.3.2.plt --apps erts kerne
 done (warnings were emitted)
 ```
 
-## Статический анализ кода
+### Статический анализ кода
 
-Все готово к использованию `Dialyxir`:
+Все готово к использованию Dialyxir:
 
 ```shell
 $ mix dialyzer
 ...
-examples.ex:3: Invalid type specification for function 'Elixir.Examples':sum_times/1. The success typing is (_) -> number()
+examples.ex:3: Invalid type specification for function 'Elixir.Examples':sum_times/1.
+The success typing is (_) -> number()
 ...
 ```
 
-Сообщение от `Dialyzer` понятно: тип возвращаемого значения нашей функции `sum_times/1` отличается от объявленного. Причина в том, что `Enum.sum/1` возвращает число типа `number`, а не `integer`, но при этом заявлено, что `sum_times/1` возвращает `integer`.
+Сообщение от Dialyzer понятно: тип возвращаемого значения нашей функции `sum_times/1` отличается от объявленного.
+Причина в том, что `Enum.sum/1` возвращает число типа `number`, а не `integer`, но при этом заявлено, что `sum_times/1` возвращает `integer`.
 
-Поскольку `number` это не `integer` мы получаем ошибку. Как её исправить? Нужно использовать функцию `round/1`, чтобы превратить число типа `number` в `integer`:
+Поскольку `number` это не `integer` мы получаем ошибку.
+Как её исправить? Нужно использовать функцию `round/1`, чтобы превратить число типа `number` в `integer`:
 
 ```elixir
 @spec sum_times(integer) :: integer
@@ -75,15 +228,19 @@ end
 ```shell
 $ mix dialyzer
 ...
-  Proceeding with analysis... done in 0m0.95s
+  Proceeding with analysis...
+done in 0m0.95s
 done (passed successfully)
 ```
 
 Использование спецификаций вместе с инструментами статического анализа позволяет писать код, тестирующий сам себя и содержащий меньше ошибок.
 
-# Отладка
+## Отладка
 
-Иногда статического анализа кода не достаточно. Часто, чтобы найти ошибки, нужно понять логику выполнения программы. Самый простой способ – это добавить в наш код выражения вывода, такие как `IO.puts/2`, чтобы отследить значения переменных и ход выполнения. Однако он примитивен и обладает рядом ограничений. К счастью для нас, мы можем использовать отладчик Erlang для работы с Elixir-кодом.
+Иногда статического анализа кода не достаточно.
+Часто, чтобы найти ошибки, нужно понять логику выполнения программы.
+Самый простой способ – это добавить в наш код выражения вывода, такие как `IO.puts/2`, чтобы отследить значения переменных и ход выполнения. Однако он примитивен и обладает рядом ограничений.
+К счастью для нас, мы можем использовать отладчик Erlang для работы с Elixir-кодом.
 
 Взглянем на простейший модуль:
 
@@ -112,11 +269,13 @@ iex > :debugger.start()
 {:ok, #PID<0.307.0>}
 ```
 
-Модуль `:debugger` отвечает за доступ к отладчику. Функция `start/1` позволяет настраивать его:
+Модуль `:debugger` отвечает за доступ к отладчику.
+Функция `start/1` позволяет настраивать его:
 
 + Можно передать в качестве аргумента путь к внешнему файлу конфигураций.
 + Дополнительные аргументы `:local` и `:global` оказывают следующий эффект:
-    + `:global` – отладчик будет интерпретировать код на всех известных нодах. Это аргумент по умолчанию.
+    + `:global` – отладчик будет интерпретировать код на всех известных нодах.
+Это аргумент по умолчанию.останова
     + `:local` – отладчик будет интерпретировать код только на текущей ноде.
 
 Следующим шагом подключим наш модуль к отладчику:
@@ -138,7 +297,8 @@ iex > :int.ni(Example)
 
 ## Точки останова
 
-Точка останова – это точка в коде, где выполнение программы будет остановлено. Есть два способа поставить точку останова:
+Точка останова – это точка в коде, где выполнение программы будет остановлено.
+Есть два способа поставить точку останова:
 
 + вызвать `:int.break/2` в нашем коде
 + через графический интерфейс
@@ -150,7 +310,8 @@ iex > :int.break(Example, 8)
 :ok
 ```
 
-Точка установлена в строке 8 модуля `Example`. Теперь, когда мы вызовем нашу функцию:
+Точка установлена в строке 8 модуля `Example`.
+Теперь, когда мы вызовем нашу функцию:
 
 ```elixir
 iex > Example.cpu_burns(1, 1, 1)
@@ -164,7 +325,8 @@ iex > Example.cpu_burns(1, 1, 1)
 
 ![Скриншот отладчика 4](/images/debugger_4.png)
 
-В этом окне можно просмотреть значения переменных, выполнить следующую строку кода или произвольное выражение. Функция `:int.disable_break/2` позволяет деактивировать точку останова:
+В этом окне можно просмотреть значения переменных, выполнить следующую строку кода или произвольное выражение.
+Функция `:int.disable_break/2` позволяет деактивировать точку останова:
 
 ```elixir
 iex > :int.disable_break(Example, 8)
@@ -173,12 +335,15 @@ iex > :int.disable_break(Example, 8)
 
 Реактивировать точку останова можно вызовом функции `:int.enable_break/2`. Удалить точку совсем можно так:
 
- ```elixir
+```elixir
 iex > :int.delete_break(Example, 8)
 :ok
 ```
 
-Все те же операции доступны в окне отладчика. В верхнем меню __Break__ при помощи __Line Break__ можно поставить точку останова. Если мы выберем строку, не содержащую кода, точка останова будет проигнорирована интерпретатором, но отобразится в окне отладчика. Есть три типа точек останова:
+Все те же операции доступны в окне отладчика.
+В верхнем меню __Break__ при помощи __Line Break__ можно поставить точку останова.
+Если мы выберем строку, не содержащую кода, точка останова будет проигнорирована интерпретатором, но отобразится в окне отладчика.
+Есть три типа точек останова:
 
 + Точка останова в строке – отладчик остановит выполнение сразу же, как только мы достигнем нужной строки. Ставится при помощи `:int.break/2`
 + Условная точка останова – похожа на предыдущую, но отладчик остановит ход выполнения, только если выполнится определенное условие. Ставится функцией `:int.get_binding/2`
