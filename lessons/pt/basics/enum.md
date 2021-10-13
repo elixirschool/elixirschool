@@ -1,5 +1,5 @@
 %{
-  version: "1.7.0",
+  version: "1.8.0",
   title: "Enum",
   excerpt: """
   Um conjunto de algoritmos para fazer enumeração em coleções.
