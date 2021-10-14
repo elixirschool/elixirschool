@@ -9,7 +9,7 @@
 
 ## Introdução
 
-Não é incomum querer descrever a interface de sua função. Claro, você pode utilizar a anotação [@doc](../../basics/documentation), mas isso é somente informação para outros desenvolvedores. Isso não será checado em tempo de compilação. Para isso, Elixir tem uma anotação chamada `@spec` para descrever especificação de função que vai ser analisada pelo compilador.
+Não é incomum querer descrever a interface de sua função. Claro, você pode utilizar a anotação [@doc](/pt/lessons/basics/documentation), mas isso é somente informação para outros desenvolvedores. Isso não será checado em tempo de compilação. Para isso, Elixir tem uma anotação chamada `@spec` para descrever especificação de função que vai ser analisada pelo compilador.
 
 Em alguns casos, a especificação é grande e complicada. Se você quiser reduzir a complexidade, você deverá introduzir um tipo de definição personalizada. Elixir tem a anotação `@type` para isso. Em contra partida, Elixir é uma linguagem dinâmica. Isso significa que toda informação a respeito do tipo será ignorado pelo compilador, mas pode ser utilizada por outras ferramentas.
 
@@ -54,7 +54,7 @@ def sum_times(a, params) do
 end
 ```
 
-Inserimos uma estrutura no módulo `Examples` que contém dois campos, `first` e `last`. Essa é uma versão simples de estrutura do módulo `Range`. Falaremos sobre `structs` quando iniciarmos as discussões sobre [módulos](../../basics/modules/#structs). Vamos imaginar que precisamos especificar a estrutura `Examples` em vários lugares. Seria chato escrever especificações longas, complexas e isso seria uma fonte de bugs. Uma solução para esse problema é `@type`.
+Inserimos uma estrutura no módulo `Examples` que contém dois campos, `first` e `last`. Essa é uma versão simples de estrutura do módulo `Range`. Falaremos sobre `structs` quando iniciarmos as discussões sobre [módulos](/pt/lessons/basics/modules#structs). Vamos imaginar que precisamos especificar a estrutura `Examples` em vários lugares. Seria chato escrever especificações longas, complexas e isso seria uma fonte de bugs. Uma solução para esse problema é `@type`.
 
 Elixir tem três diretivas para tipos:
 
@@ -106,7 +106,7 @@ end
 
 ### Documentação de tipos
 
-O último elemento que vamos falar é sobre como documentar nossos tipos. Como vimos na [documentação](../../basics/documentation), temos as anotações `@doc` e `@moduledoc` para criar documentação para funções e módulos. Para documentar nossos tipos, usamos `@typedoc`:
+O último elemento que vamos falar é sobre como documentar nossos tipos. Como vimos na [documentação](/pt/lessons/basics/documentation), temos as anotações `@doc` e `@moduledoc` para criar documentação para funções e módulos. Para documentar nossos tipos, usamos `@typedoc`:
 
 ```elixir
 defmodule Examples do

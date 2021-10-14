@@ -120,7 +120,7 @@ iex>
 
 Všimnime si, že v dokumentácii je možné používať formátovanie textu pomocou markdown syntaxe. Naša dokumentácia potom vyzerá veľmi prehľadne - či už priamo v konzole alebo vo vygenerovanej HTML verzii pri použití ExDoc.
 
-**Poznámka:** Anotácia `@spec` je používaná pri statickej analýze kódu. Ak chcete vedieť viac, pozrite si lekciu [Špecifikácie a typy](../../../en/lessons/advanced/typespec).
+**Poznámka:** Anotácia `@spec` je používaná pri statickej analýze kódu. Ak chcete vedieť viac, pozrite si lekciu [Špecifikácie a typy](/en/lessons/advanced/typespec).
 
 ## ExDoc
 

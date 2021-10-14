@@ -6,7 +6,7 @@
 }
 ---
 
-このレッスンでは、 `Friends` アプリと [前のレッスン](./associations) で設定した映画ドメインを引き続き作成します。
+このレッスンでは、 `Friends` アプリと [前のレッスン](/ja/lessons/ecto/associations) で設定した映画ドメインを引き続き作成します。
 
 ## Ecto.Repo によるレコードのフェッチ
 

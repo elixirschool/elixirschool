@@ -117,7 +117,7 @@ end
 
 ### HTTP 请求
 
-Guardian 提供了好一些和 HTTP 请求集成的 Plugs。你可以从[另一章课程](../../specifics/plug/)中了解 Plug。Guardian 不是必须和 Phoenix 集成，但是最容易的。  
+Guardian 提供了好一些和 HTTP 请求集成的 Plugs。你可以从[另一章课程](/zh-hans/lessons/misc/plug)中了解 Plug。Guardian 不是必须和 Phoenix 集成，但是最容易的。  
 
 最简单的和 HTTP 集成的方式是通过路由器。因为 Guardian 的 HTTP 集成是基于 plugs 的，所以你可以在任何用 plug 的地方使用它。  
 

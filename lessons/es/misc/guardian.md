@@ -155,7 +155,7 @@ Como esta es la configuración mínima, primero consideremos las peticiones HTTP
 ## Peticiones HTTP
 
 Guardian proporciona varios `Plugs` para facilitar la integración con las peticiones HTTP.
-Puedes aprender acerca de Plug en una [lección separada](../../specifics/plug/).
+Puedes aprender acerca de Plug en una [lección separada](/es/lessons/misc/plug).
 Guardian no requiere Phoenix, pero si esta usando Phoenix en los siguientes ejemplos sera más fácil de mostrar.
 
 La forma más fácil de integrarse en HTTP es a través del router

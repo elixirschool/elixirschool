@@ -177,7 +177,7 @@ LEDとやり取りするには、[nerves_leds](https://github.com/nerves-project
 
 他のデバイスについては、[nerves_examplesプロジェクトで対応する部分](https://github.com/nerves-project/nerves_examples/tree/main/hello_leds/config) を参照してください。
 
-LED自体を設定したら、どうにかしてそれを制御する必要があります。そのために、以下の内容を含む `lib/network_led/blinker.ex` にGenServerを追加します（[OTP Concurrency](../../advanced/otp-concurrency) レッスンのGenServerについての詳細を参照）。
+LED自体を設定したら、どうにかしてそれを制御する必要があります。そのために、以下の内容を含む `lib/network_led/blinker.ex` にGenServerを追加します（[OTP Concurrency](/ja/lessons/advanced/otp_concurrency) レッスンのGenServerについての詳細を参照）。
 
 ```elixir
 defmodule NetworkLed.Blinker do
@@ -237,7 +237,7 @@ Nervesのアプリケーションには2つの異なるスーパーバイザー�
 
 ## Webサーバーを追加する
 
-このステップでは、 `Plug.Router` を使います。思い出す必要がある場合は、[Plug](../../../lessons/specifics/plug/) レッスンを読んでください。
+このステップでは、 `Plug.Router` を使います。思い出す必要がある場合は、[Plug](/ja/lessons/misc/plug) レッスンを読んでください。
 
 最初に、 `{:plug_cowboy, "~> 2.0"},` を `mix.exs` に追加して依存関係をインストールします。
 

@@ -127,7 +127,7 @@ iex> cond do
 
 当我们需要使用嵌套的`case/2`语句,或者无法完全地使用管道符号连接在一起时,这时`with/1`是非常有用的。`with/1`表达式由关键字(keyword)、生成器(generator)和最后一个表达式(expression)组成。
 
-我们将会在[list comprehensions lesson](../comprehensions/)谈论更多关于生成器的知识,现在我们只需要知道它们使用[pattern matching](../pattern-matching/)将`<-`右侧与左侧进行比较。
+我们将会在[list comprehensions lesson](/zh-hans/lessons/basics/comprehensions)谈论更多关于生成器的知识,现在我们只需要知道它们使用[pattern matching](/zh-hans/lessons/basics/pattern_matching)将`<-`右侧与左侧进行比较。
 
 我们将从一个简单的`with/1`例子开始,然后再探索更多的东西:
 

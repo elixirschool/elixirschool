@@ -6,7 +6,7 @@
 }
 ---
 
-In this lesson, we'll continue building off the `Friends` app and the movie-cataloguing domain we set up in the [previous lesson](./associations).
+In this lesson, we'll continue building off the `Friends` app and the movie-cataloguing domain we set up in the [previous lesson](/en/lessons/ecto/associations).
 
 ## Fetching Records with Ecto.Repo
 

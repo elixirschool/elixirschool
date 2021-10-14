@@ -13,7 +13,7 @@
 
 자식 프로세스는 리스트와 `Supervisor.Spec`에 포함된 `worker/3` 함수를 사용해서 정의됩니다. `worker/3` 함수는 모듈, 인자, 옵션을 받습니다. 내부적으로 `worker/3`는 초기화할 때 주어진 인자를 사용해서 `start_link/3`을 호출합니다.
 
-[OTP의 동시성](../../advanced/otp-concurrency)에서 구현한 SimpleQueue를 사용해서 시작해봅시다.
+[OTP의 동시성](/ko/lessons/advanced/otp_concurrency)에서 구현한 SimpleQueue를 사용해서 시작해봅시다.
 
 ```elixir
 import Supervisor.Spec

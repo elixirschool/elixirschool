@@ -124,7 +124,7 @@ iex>
 
 Remarquez comment le balisage met en forme la documentation dans le terminal. En plus d'être vraiment cool et d'être un nouvel atout au vaste écosystème d'Elixir, il devient beaucoup plus intéressant lorsqu'on regarde ExDoc pour générer de la documentation HTML à la volée !
 
-**Note:** L'annotation `@spec` est utilisé pour analyser statiquement le code. Pour en savoir plus, consultez la leçon [Specifications and types](../../advanced/typespec).
+**Note:** L'annotation `@spec` est utilisé pour analyser statiquement le code. Pour en savoir plus, consultez la leçon [Specifications and types](/fr/lessons/advanced/typespec).
 
 ## ExDoc
 

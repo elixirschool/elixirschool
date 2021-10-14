@@ -13,7 +13,7 @@ Phép thuật của giám trình nằm trong hàm `Supervisor.start_link/2`. Ngo
 
 Các tiến trình con được định nghĩa bằng cách sử dụng một danh sách, và hàm `worker/3` (được import từ module `Supervisor.Spec`). Hàm `worker/3` nhận vào một module, các đối số, và một tập các tuỳ chọn. Ở bên dưới `worker/3` gọi tới hàm `start_link/3` với các đối số trong quá trình khởi tạo.
 
-Chúng ta sẽ bắt đầu với SimpleQueue trong bài [OTP Concurrency](../../advanced/otp-concurrency):
+Chúng ta sẽ bắt đầu với SimpleQueue trong bài [OTP Concurrency](/vi/lessons/advanced/otp_concurrency):
 
 ```elixir
 import Supervisor.Spec

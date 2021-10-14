@@ -9,7 +9,7 @@
 
 ## Configuración
 
-Vamos a comenzar con la aplicación `Ejemplo` de la lección anterior. Puedes ir a la configuración [aquí](../basics) para recordarlo rápidamente.
+Vamos a comenzar con la aplicación `Ejemplo` de la lección anterior. Puedes ir a la configuración [aquí](/es/lessons/ecto/basics) para recordarlo rápidamente.
 
 ## Tipos de asociaciones
 

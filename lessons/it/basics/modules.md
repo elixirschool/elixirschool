@@ -9,7 +9,7 @@
 
 ## Moduli
 
-I moduli sono il modo migliore per organizzare le funzioni all'interno di un namespace. Oltre a raggruppare le funzioni, i moduli permettono di definire funzioni con nomi e funzioni private, affrontate nella [lezione sulle funzioni](../functions).
+I moduli sono il modo migliore per organizzare le funzioni all'interno di un namespace. Oltre a raggruppare le funzioni, i moduli permettono di definire funzioni con nomi e funzioni private, affrontate nella [lezione sulle funzioni](/it/lessons/basics/functions).
 
 Diamo uno sguardo ad un semplice esempio:
 
@@ -303,4 +303,4 @@ iex> Example.hello("Sean")
 
 Questi sono semplici esempi che dimostrano l'uso di `use` ma è uno strumento incredibilmente potente in Elixir. Mentre continui ad imparare Elixir, tienilo d'occhio, un esempio che sei sicuro di vedere è `use ExUnit.Case, async: true`.
 
-**Nota**: `quote`, `alias`, `use`, `require` sono macro usate in [metaprogrammazione](../../advanced/metaprogramming).
+**Nota**: `quote`, `alias`, `use`, `require` sono macro usate in [metaprogrammazione](/it/lessons/advanced/metaprogramming).

@@ -11,7 +11,7 @@
 
 ## Einführung
 
-Es ist nicht ungewöhnlich, dass du das Interface deiner Funktionen beschreiben möchtest. Natürlich kannst du die [@doc Annotation](../../basics/documentation) benutzen, aber das ist nur Information für andere Entwickler, welche nicht während der Kompiliervorgangs überprüft wird. Aus diesem Grund bietet Elixir `@spec`-Annotation, um Spezifikationen von Funktionen zu beschreiben, die vom Compiler überprüft werden.
+Es ist nicht ungewöhnlich, dass du das Interface deiner Funktionen beschreiben möchtest. Natürlich kannst du die [@doc Annotation](/de/lessons/basics/documentation) benutzen, aber das ist nur Information für andere Entwickler, welche nicht während der Kompiliervorgangs überprüft wird. Aus diesem Grund bietet Elixir `@spec`-Annotation, um Spezifikationen von Funktionen zu beschreiben, die vom Compiler überprüft werden.
 
 Jedoch sind Spezifikationen in manchen Fällen ziemlich groß und umständlich. Falls du Komplexität reduzieren möchtest, möchtest du benutzerdefinierte Typdefinitionen einführen. Elixir hat dafür `@type`-Annotationen. Andererseits ist Elixir immer noch eine dynamische Sprache. Das bedeutet jegliche Information über Typen wird vom Compiler ignoriert, kann jedoch von anderen Tools benutzt werden.
 
@@ -55,7 +55,7 @@ def sum_times(a, params) do
 end
 ```
 
-Wir haben ein struct im `Examples`-Modul hinzugefügt, das die beiden Felder `first` und `last` beinhaltet. Das ist die einfachere Version des structs aus dem `Range`-Modul. Wir sprechen noch über `structs`, wenn wir [Module](../../basics/modules/#structs) besprechen. Lass uns davon ausgehen, dass wir das `Examples`-struct an vielen Stellen brauchen und es nervtötend ist lange, komplexe Spezifikationen zu schreiben, die Bugs herbeiführen könnten. Eine Lösung für dieses Problem ist `@type`.
+Wir haben ein struct im `Examples`-Modul hinzugefügt, das die beiden Felder `first` und `last` beinhaltet. Das ist die einfachere Version des structs aus dem `Range`-Modul. Wir sprechen noch über `structs`, wenn wir [Module](/de/lessons/basics/modules#structs) besprechen. Lass uns davon ausgehen, dass wir das `Examples`-struct an vielen Stellen brauchen und es nervtötend ist lange, komplexe Spezifikationen zu schreiben, die Bugs herbeiführen könnten. Eine Lösung für dieses Problem ist `@type`.
 
 Elixir hat drei Direktiven für Typen:
 
@@ -107,7 +107,7 @@ end
 
 ### Dokumentation von Typen
 
-Der letzte Punkt, über den wir reden sollten, ist wie man Typen dokumentiert. Wie wir bereits aus der  [Dokumentation](../../basics/documentation)-Lektion wissen gibt es `@doc`- und `@moduledoc`-Annotationen, um Dokumentation für Funktionen und Module zu schreiben. Um Typen zu dokumentieren können wir `@typedoc` nutzen:
+Der letzte Punkt, über den wir reden sollten, ist wie man Typen dokumentiert. Wie wir bereits aus der  [Dokumentation](/de/lessons/basics/documentation)-Lektion wissen gibt es `@doc`- und `@moduledoc`-Annotationen, um Dokumentation für Funktionen und Module zu schreiben. Um Typen zu dokumentieren können wir `@typedoc` nutzen:
 
 ```elixir
 defmodule Examples do

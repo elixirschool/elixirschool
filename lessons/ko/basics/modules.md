@@ -9,7 +9,7 @@
 
 ## 모듈
 
-모듈은 이름공간 안에 함수를 구성할 수 있도록 해줍니다. 함수를 묶을 수 있는 것에서 한 걸음 더 나아가, [함수 수업](../functions/)에서 다루었던 이름이 있는 함수와 private 함수를 정의할 수도 있게 됩니다.
+모듈은 이름공간 안에 함수를 구성할 수 있도록 해줍니다. 함수를 묶을 수 있는 것에서 한 걸음 더 나아가, [함수 수업](/ko/lessons/basics/functions)에서 다루었던 이름이 있는 함수와 private 함수를 정의할 수도 있게 됩니다.
 
 기본적인 예제를 살펴보도록 하지요.
 
@@ -272,4 +272,4 @@ iex> Example.hello("Sean")
 이것들은 `use`가 어떻게 작동하는지 보여주는 간단한 예제이지만 Elixir 툴박스에서 매우 강력한 도구입니다.
 Elixir를 계속 공부하신다면 `use`를 여기저기서 보게 될 것 입니다. 한 가지 예를 들면 `use ExUnit.Case, async: true`입니다.
 
-**주의**: `quote`, `alias`, `use`, `require`는 [메타 프로그래밍](../../advanced/metaprogramming)에서 사용한 매크로입니다.
+**주의**: `quote`, `alias`, `use`, `require`는 [메타 프로그래밍](/ko/lessons/advanced/metaprogramming)에서 사용한 매크로입니다.

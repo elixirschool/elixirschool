@@ -255,4 +255,4 @@ Macro `Ecto.Migration.__using__/1` bao gồm một lời gọi import, do vậy 
 
 Nói tóm lại: `use` macro đơn giản gọi tới `__using__/1` macro của module cụ thể. Để thực sử hiều nó làm những gì, bạn cần đọc vào module `__using__/1`
 
-**Note**: `quote`, `alias`, `use`, `require` là các macro được sử dụng khi chúng ta làm việc với [metaprogramming](../../advanced/metaprogramming).
+**Note**: `quote`, `alias`, `use`, `require` là các macro được sử dụng khi chúng ta làm việc với [metaprogramming](/vi/lessons/advanced/metaprogramming).

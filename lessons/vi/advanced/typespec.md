@@ -9,7 +9,7 @@
 
 ## Giới thiệu
 
-Thông thường, bạn sẽ muốn mô tả giao diện cho hàm của bạn. Tất nhiện bạn có thể sử dụng [@doc annotation](../../basics/documentation), tuy nhiên nó chỉ là các thông tin cho các lập trình viên khác, mà không được kiểm tra trong lúc biên dịch. Cho mục đích này, Elixir cung cấp `@spec` annotation để mô tả các đặc tả của hàm sẽ được kiểm tra bởi trình biên dịch
+Thông thường, bạn sẽ muốn mô tả giao diện cho hàm của bạn. Tất nhiện bạn có thể sử dụng [@doc annotation](/vi/lessons/basics/documentation), tuy nhiên nó chỉ là các thông tin cho các lập trình viên khác, mà không được kiểm tra trong lúc biên dịch. Cho mục đích này, Elixir cung cấp `@spec` annotation để mô tả các đặc tả của hàm sẽ được kiểm tra bởi trình biên dịch
 
 Tuy nhiên, trong một số trường hợp, các đặc tả sẽ trở nên khá lớn và phức tạp. Nếu bạn muốn giảm bớt tính phức tạp, nhưng vẫn muốn đưa ra định nghĩa cho các kiểu mới, Elixir cung cấp anotiation(tạm dịch là ký tự chú thích)`@type` để làm việc này. Nói cách khác, Elixir vẫn là một ngôn ngữ kiểu động (dynamic language). Nghĩa là tất cả các thông tin về kiểu sẽ bị trình biên dịch bỏ qua, nhưng nó có thể được sử dụng bởi các công cụ khác.
 
@@ -54,7 +54,7 @@ def sum_times(a, params) do
 end
 ```
 
-Chúng ta giới thiệu thêm một struct trong `Examples` module, chứa hai trường `first` và `last`. Đây là phiên bản đơn giản hơn của module `Range`. Chúng ta sẽ nói về `struct` khi chúng ta thảo luận về [modules](../../basics/modules/#structs). Tưởng tượng rằng, chúng ta muốn mô tả đặc tả với `Examples` struct trong rất nhiều chỗ. Những đặc tả này có thể sẽ rất dài, phức tạp, và có thể là cội nguồn của các bug. Một giải pháp cho chuyện này là dùng `@type`.
+Chúng ta giới thiệu thêm một struct trong `Examples` module, chứa hai trường `first` và `last`. Đây là phiên bản đơn giản hơn của module `Range`. Chúng ta sẽ nói về `struct` khi chúng ta thảo luận về [modules](/vi/lessons/basics/modules#structs). Tưởng tượng rằng, chúng ta muốn mô tả đặc tả với `Examples` struct trong rất nhiều chỗ. Những đặc tả này có thể sẽ rất dài, phức tạp, và có thể là cội nguồn của các bug. Một giải pháp cho chuyện này là dùng `@type`.
 
 Elixir cung cấp ba cách dùng để định nghĩa kiểu:
 
@@ -106,7 +106,7 @@ end
 
 ### Viết tài liệu cho kiểu
 
-Thành phần cuối cùng chúng ta muốn thảo luận là về các để viết tài liệu cho kiểu. Như chúng ta đã biết từ bài [documentation](../../basics/documentation), chúng ta có `@doc` và `@moduledoc` để viết các tài liệu cho hàm và cho module. Để viết tài liệu cho kiểu, chúng ta có thể dùng `@typedoc`:
+Thành phần cuối cùng chúng ta muốn thảo luận là về các để viết tài liệu cho kiểu. Như chúng ta đã biết từ bài [documentation](/vi/lessons/basics/documentation), chúng ta có `@doc` và `@moduledoc` để viết các tài liệu cho hàm và cho module. Để viết tài liệu cho kiểu, chúng ta có thể dùng `@typedoc`:
 
 
 ```elixir

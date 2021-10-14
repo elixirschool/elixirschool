@@ -139,7 +139,7 @@ Serializer 負責查找 `sub` (主體) 欄位中被標識的資源。
 ## HTTP requests
 
 Guardian 提供了許多 Plugs，以便於整合到 HTTP 請求中。
-可以在 [單獨課程](../../specifics/plug/) 了解 plug。
+可以在 [單獨課程](/zh-hant/lessons/misc/plug) 了解 plug。
 Guardian 不要求 Phoenix，但在接下來的範例中使用 Phoenix 將是最容易展示的。
 
 整合到 HTTP 的最簡單方法是通過路由器。

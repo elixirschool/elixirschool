@@ -54,7 +54,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Merk:**  Operatoren bruker [nøyaktig sammenligning](../basics/#sammenligningsoperatorer) for å matche verdiene.
+**Merk:**  Operatoren bruker [nøyaktig sammenligning](/no/lessons/basics/basics#sammenligningsoperatorer) for å matche verdiene.
 
 ### Head / Tail
 

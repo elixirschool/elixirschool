@@ -56,7 +56,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Note:** Les soustractions de listes utilisent une [comparaison stricte](../basics/#comparaison) pour comparer les valeurs.
+**Note:** Les soustractions de listes utilisent une [comparaison stricte](/fr/lessons/basics/basics#comparaison) pour comparer les valeurs.
 
 ### Head / Tail
 
@@ -69,7 +69,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-En plus des fonctions ci-dessus, vous pouvez utiliser le [pattern matching](../pattern-matching/) et l'opérateur pipe `|` pour déstructurer une liste. Nous verrons cet idiome dans les leçons suivantes :
+En plus des fonctions ci-dessus, vous pouvez utiliser le [pattern matching](/fr/lessons/basics/pattern_matching) et l'opérateur pipe `|` pour déstructurer une liste. Nous verrons cet idiome dans les leçons suivantes :
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -89,7 +89,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-Les tuples sont souvent utilisés comme une façon de retourner des informations additionnelles d'une fonction. Leur utilité deviendra plus apparente lorsque nous verrons le [pattern matching](../pattern-matching/): :
+Les tuples sont souvent utilisés comme une façon de retourner des informations additionnelles d'une fonction. Leur utilité deviendra plus apparente lorsque nous verrons le [pattern matching](/fr/lessons/basics/pattern_matching): :
 
 ```elixir
 iex> File.read("path/to/existing/file")

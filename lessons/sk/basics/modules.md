@@ -9,7 +9,7 @@
 
 ## Moduly
 
-Moduly nám umožňujú organizovať funkcie do menných priestorov (*namespaces*). Definujeme v nich pomenované a privátne funkcie, o ktorých sme si povedali v [lekcii o funkciách](../functions/).
+Moduly nám umožňujú organizovať funkcie do menných priestorov (*namespaces*). Definujeme v nich pomenované a privátne funkcie, o ktorých sme si povedali v [lekcii o funkciách](/sk/lessons/basics/functions).
 
 Pozrime sa na jednoduchý príklad:
 

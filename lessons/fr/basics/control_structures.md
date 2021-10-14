@@ -127,7 +127,7 @@ iex> cond do
 
 La forme spécifique `with/1` s'utilise dans les cas où l'on pourrait avoir besoin d'un `case/2` imbriqué ou dans des situations qu'on ne peut pas enchainer de manière propre. L'expression `with/1` est composée de mots clés, de générateurs, et finalement d'une expression.
 
-On discutera plus en profondeur des générateurs dans la [leçon sur les compréhensions de listes](../comprehensions/), mais pour le moment nous avons juste besoin de savoir qu'ils utilisent le [pattern matching](../pattern-matching/) pour comparer le coté droit du `<-` au coté gauche.
+On discutera plus en profondeur des générateurs dans la [leçon sur les compréhensions de listes](/fr/lessons/basics/comprehensions), mais pour le moment nous avons juste besoin de savoir qu'ils utilisent le [pattern matching](/fr/lessons/basics/pattern_matching) pour comparer le coté droit du `<-` au coté gauche.
 
 Commençons par un exemple simple de `with/1` avant d'aller voir des exemples plus complexes:
 

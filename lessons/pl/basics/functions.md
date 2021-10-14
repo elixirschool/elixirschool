@@ -313,7 +313,7 @@ iex> Greeter.phrase
 
 ### Strażnicy
 
-Pokrótce omówiliśmy strażników w lekcji o [strukturach kontrolnych](../control-structures), a teraz przyjrzymy się bliżej, jak można wykorzystać ich w funkcjach.
+Pokrótce omówiliśmy strażników w lekcji o [strukturach kontrolnych](/pl/lessons/basics/control_structures), a teraz przyjrzymy się bliżej, jak można wykorzystać ich w funkcjach.
 Elixir, odszukując funkcję do wywołania, sprawdza warunki dla wszystkich strażników.
 
 W poniższym przykładzie mamy dwie funkcje o takiej samej sygnaturze, ale wywołanie właściwej jest możliwe dzięki strażnikom sprawdzającym typ argumentu:

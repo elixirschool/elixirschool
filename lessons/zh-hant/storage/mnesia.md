@@ -24,7 +24,7 @@ Mnesia 的 *關聯和物件混合資料模式* 使其適用於開發任何規模
 
 ## Schema
 
-由於 Mnesia 是 Erlang 核心的一部分，而不是 Elixir，因此必須使用冒號語法存取它 (參考課程：[Erlang 互用性](../../advanced/erlang/))：
+由於 Mnesia 是 Erlang 核心的一部分，而不是 Elixir，因此必須使用冒號語法存取它 (參考課程：[Erlang 互用性](/zh-hant/lessons/intermediate/erlang))：
 
 ```elixir
 

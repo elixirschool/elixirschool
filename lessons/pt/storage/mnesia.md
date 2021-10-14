@@ -24,7 +24,7 @@ Se você puder responder "sim" a qualquer uma das seguintes perguntas, então es
 
 ## Schema
 
-Como Mnesia faz parte do núcleo do Erlang, ao invés de Elixir, temos que acessá-lo com a sintaxe de dois pontos (Ver lição: [Erlang Interoperability](../../advanced/erlang/)) como a seguir:
+Como Mnesia faz parte do núcleo do Erlang, ao invés de Elixir, temos que acessá-lo com a sintaxe de dois pontos (Ver lição: [Erlang Interoperability](/pt/lessons/intermediate/erlang)) como a seguir:
 
 ```elixir
 

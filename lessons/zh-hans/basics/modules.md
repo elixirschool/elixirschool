@@ -9,7 +9,7 @@
 
 ## 模块
 
-模块可以让我们把函数组织到不同命名空间。除了能为函数分组，它还允许我们定义命名函数和私有函数，这个已经在[前面](../functions/)讲过。
+模块可以让我们把函数组织到不同命名空间。除了能为函数分组，它还允许我们定义命名函数和私有函数，这个已经在[前面](/zh-hans/lessons/basics/functions)讲过。
 
 我们来看一个简单的例子：
 
@@ -301,4 +301,4 @@ iex> Example.hello("Sean")
 
 上面这些简单的例子展示了 `use` 的用法。`use` 是 Elixir 工具箱中非常强大的一个。在你学习 Elixir 的过程中，多留意一下， 你会看到很多使用 `use` 的地方，之前我们已经遇到过的一个例子就是 `use ExUnit.Case, async: true`。
 
-**注意**: `quote`, `alias`, `use`, `require` 都是宏，我们会在[元编程](../../advanced/metaprogramming)一节学到更多有关宏的知识。
+**注意**: `quote`, `alias`, `use`, `require` 都是宏，我们会在[元编程](/zh-hans/lessons/advanced/metaprogramming)一节学到更多有关宏的知识。

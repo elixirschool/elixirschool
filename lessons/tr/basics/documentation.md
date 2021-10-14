@@ -122,7 +122,7 @@ iex>
 
 Belgelendirmelerimizde noktalma işaretlerini nasıl kullanacağımız ve bunları terminalin nasıl yorumladığını fark ettiniz mi? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
 
-**Not:**  `@spec` veri tiplerinin statik tanımları için kullanılır. Daha fazla bilgi almak istiyorsanız [Specifications and types](../../advanced/typespec) dersine göz atın.
+**Not:**  `@spec` veri tiplerinin statik tanımları için kullanılır. Daha fazla bilgi almak istiyorsanız [Specifications and types](/tr/lessons/advanced/typespec) dersine göz atın.
 
 ## ExDoc
 

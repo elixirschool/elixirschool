@@ -24,7 +24,7 @@ If you can answer 'yes' to any of the following questions, then this is a good i
 
 ## Schema
 
-As Mnesia is part of the Erlang core, rather than Elixir, we have to access it with the colon syntax (See Lesson: [Erlang Interoperability](../../advanced/erlang/)):
+As Mnesia is part of the Erlang core, rather than Elixir, we have to access it with the colon syntax (See Lesson: [Erlang Interoperability](/en/lessons/intermediate/erlang)):
 
 ```elixir
 

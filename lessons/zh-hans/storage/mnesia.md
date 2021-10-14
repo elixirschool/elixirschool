@@ -22,7 +22,7 @@ Mnesia 是 Erlang 运行时中自带的一个数据库管理系统（DBMS），�
 
 ## Schema
 
-因为 Mnesia 属于 Erlang 核心的一部分，但是 Elixir 还没有包含它 ，所以我们要用 `:mnesia` 这种方式去引用 Mnesia （参考[和 Erlang 互操作](../../advanced/erlang/)）。
+因为 Mnesia 属于 Erlang 核心的一部分，但是 Elixir 还没有包含它 ，所以我们要用 `:mnesia` 这种方式去引用 Mnesia （参考[和 Erlang 互操作](/zh-hans/lessons/intermediate/erlang)）。
 
 ```elixir
 

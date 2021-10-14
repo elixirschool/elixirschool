@@ -11,7 +11,7 @@
 ## モジュール
 
 モジュールは関数群を名前空間へと組織する最良の方法です。
-関数をまとめることに加えて、[関数](../functions/)のレッスンで取り上げた名前付き関数やプライベート関数を定義できます。
+関数をまとめることに加えて、[関数](/ja/lessons/basics/functions)のレッスンで取り上げた名前付き関数やプライベート関数を定義できます。
 
 基本的な例を見てみましょう:
 
@@ -314,4 +314,4 @@ iex> Example.hello("Sean")
 これらは `use` がどうやって動作するのかを説明する簡単な例でしたが、これはElixirのツールボックスで信じられないほどに強力なツールです。
 Elixirを学び続けたら `use` をあっちこっちで見ることになるでしょう。かならず見ることになりそうな例をひとつあげれば、 `use ExUnit.Case, async: true` です。
 
-**注意**: `quote` 、 `alias` 、 `use` 、 `require` は[メタプログラミング](../../advanced/metaprogramming)で使用してたマクロです。
+**注意**: `quote` 、 `alias` 、 `use` 、 `require` は[メタプログラミング](/ja/lessons/advanced/metaprogramming)で使用してたマクロです。

@@ -9,7 +9,7 @@
 
 ## Modüller
 
-Modüller, fonksiyonları bir isim namespace da organize etmemizi sağlar. Bunlara ek olarak [fonksiyonlar dersinde](../functions/).  adlandırılmış ve özel fonksiyonları tanımlamamıza izin verir.
+Modüller, fonksiyonları bir isim namespace da organize etmemizi sağlar. Bunlara ek olarak [fonksiyonlar dersinde](/tr/lessons/basics/functions).  adlandırılmış ve özel fonksiyonları tanımlamamıza izin verir.
 
 Basit bir örneğe bakalım:
 
@@ -273,4 +273,4 @@ iex> Example.hello("Sean")
 Bu gösterilenler, kullanımın nasıl çalıştığını gösteren en basit örneklerdir, ancak `use` Elixir araç kutusundaki en güçlü araçlardan biridir.
 Elixir'i öğrenmeye devam ederken `use` modülüne göz kulak olun, öğrenmeye devam ederken mutlaka göreceğiniz örneklerden biride `use ExUnit.Case, async: true`
 
-**Not**: [Meta programalmada](../../advanced/metaprogramming) kullanılan makrolar : `quote`, `alias`, `use`, `require` .
+**Not**: [Meta programalmada](/tr/lessons/advanced/metaprogramming) kullanılan makrolar : `quote`, `alias`, `use`, `require` .

@@ -58,7 +58,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**注意：**这里比较是否相同使用的是[严格比较(strict comparison)](../basics/#comparison)，请参考下面的例子：
+**注意：**这里比较是否相同使用的是[严格比较(strict comparison)](/zh-hans/lessons/basics/basics#comparison)，请参考下面的例子：
 
 ```elixir
 iex> [2] -- [2.0]
@@ -78,7 +78,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-除了上面的提到的函数，你还可以使用[模式匹配(pattern matching)](../pattern-matching/) 和 `|` 操作符来把一个列表分成头尾两部分；我们在后面的教程中还会看到这种用法。
+除了上面的提到的函数，你还可以使用[模式匹配(pattern matching)](/zh-hans/lessons/basics/pattern_matching) 和 `|` 操作符来把一个列表分成头尾两部分；我们在后面的教程中还会看到这种用法。
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -100,7 +100,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-元组一个很常见的用法是作为函数的返回值，来返回额外的信息。当介绍到[模式匹配](../pattern-matching/)的时候，这种用法的好处就显而易见了。
+元组一个很常见的用法是作为函数的返回值，来返回额外的信息。当介绍到[模式匹配](/zh-hans/lessons/basics/pattern_matching)的时候，这种用法的好处就显而易见了。
 
 ```elixir
 iex> File.read("path/to/existing/file")

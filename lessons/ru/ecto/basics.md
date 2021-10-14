@@ -57,7 +57,7 @@ defmodule FriendsApp.App do
   end
 end
 ```
-Чтобы узнать больше о супервизорах советуем посетить урок [Супервизоры](../../advanced/otp-supervisors).
+Чтобы узнать больше о супервизорах советуем посетить урок [Супервизоры](/ru/lessons/advanced/otp_supervisors).
 
 ### Настройка
 

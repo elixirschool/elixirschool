@@ -127,7 +127,7 @@ iex> cond do
 
 當你可能使用一個巢狀但無法清楚互相傳遞 (piped) 的 `case/2` 陳述語句或情況時，特殊形式的 `with/1` 是非常有用的。`with/1` 表達式由關鍵字、生成器 (generators) 以及表達式構成。
 
-我們將在 [list comprehensions lesson](../comprehensions/) 中更廣泛地探討生成器，但是現在我們只需要知道它使用 [pattern matching](../pattern-matching/) 以 `<-` 的右側來與左邊做比對。
+我們將在 [list comprehensions lesson](/zh-hant/lessons/basics/comprehensions) 中更廣泛地探討生成器，但是現在我們只需要知道它使用 [pattern matching](/zh-hant/lessons/basics/pattern_matching) 以 `<-` 的右側來與左邊做比對。
 
 我們將以 `with/1` 的一個簡單例子開始，然後再看看更多的東西：
 

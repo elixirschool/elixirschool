@@ -146,7 +146,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-また、Elixirにはより複雑なデータ型も含まれています。[コレクション](../collections/)や[関数](../functions/)について学ぶときにそれらについても詳しく学びます。
+また、Elixirにはより複雑なデータ型も含まれています。[コレクション](/ja/lessons/basics/collections)や[関数](/ja/lessons/basics/functions)について学ぶときにそれらについても詳しく学びます。
 
 ## 基本的な演算
 

@@ -9,7 +9,7 @@
 
 ## Enum
 
-Modul `Enum` obsahuje viac ako 70 funkcií pre prácu s kolekciami. Všetky kolekcie, o ktoré sme spomínali v [predchádzajúcej lekcii](../collections/), okrem tuples, sú iterovateľné.
+Modul `Enum` obsahuje viac ako 70 funkcií pre prácu s kolekciami. Všetky kolekcie, o ktoré sme spomínali v [predchádzajúcej lekcii](/sk/lessons/basics/collections), okrem tuples, sú iterovateľné.
 
 Táto lekcia pokrýva len zopár dostupných funkcii, ale môžeme ich preskúmať aj sami.
 Spravme malý experiment v IEx.

@@ -6,7 +6,7 @@
 }
 ---
 
-En esta lección construiremos una la aplicación `Friends` y el catálogo de películas que configuramos en nuestra [lección anterior](./associations)
+En esta lección construiremos una la aplicación `Friends` y el catálogo de películas que configuramos en nuestra [lección anterior](/es/lessons/ecto/associations)
 
 ## Obteniendo registros con Ecto.Repo
 

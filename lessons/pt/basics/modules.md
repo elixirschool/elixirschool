@@ -9,7 +9,7 @@
 
 ## Módulo
 
-Os módulos permitem a organização de funções em um namespace. Além de agrupar funções, eles permitem definir funções nomeadas e privadas que cobrimos na [lição sobre funções](../functions/).
+Os módulos permitem a organização de funções em um namespace. Além de agrupar funções, eles permitem definir funções nomeadas e privadas que cobrimos na [lição sobre funções](/pt/lessons/basics/functions).
 
 Vejamos um exemplo básico:
 
@@ -302,4 +302,4 @@ iex> Example.hello("Sean")
 Esses exemplos simples demonstram como `use` funciona, mas essa é uma ferramenta poderosa na caixa de ferramentas do Elixir.
 À medida que você passa a aprender mais sobre Elixir, você observa bem como o `use` é utilizado. Um exemplo que você verá com certeza é `use ExUnit.Case, async: true`.
 
-**Nota**: `quote`, `alias`, `use`, `require`, são macros utilizadas quando trabalhamos com [metaprogramação](../../advanced/metaprogramming).
+**Nota**: `quote`, `alias`, `use`, `require`, são macros utilizadas quando trabalhamos com [metaprogramação](/pt/lessons/advanced/metaprogramming).

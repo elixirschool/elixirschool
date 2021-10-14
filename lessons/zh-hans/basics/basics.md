@@ -153,7 +153,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir 还包含很多复杂的数据类型。当我们学到[集合](../collections/)和[函数](../functions/)的时候我们会学到更多关于这方面的知识。
+Elixir 还包含很多复杂的数据类型。当我们学到[集合](/zh-hans/lessons/basics/collections)和[函数](/zh-hans/lessons/basics/functions)的时候我们会学到更多关于这方面的知识。
 
 ## 基本操作
 
