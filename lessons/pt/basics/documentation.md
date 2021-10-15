@@ -192,7 +192,7 @@ Assumindo que tudo está bem, a saída acima sugere que estamos prontos para con
 
 Nós especificamos o par de chave-valor `only :dev`, já que não desejamos fazer o download e compilar essas dependências em um ambiente de produção. O `ex_doc` irá também adicionar outra biblioteca para nós, chamada Earmark.  Earmark é um parser para Markdown da linguagem de programação Elixir no qual ExDoc utiliza para converter nossa documentação dentro de `@moduledoc` e `@doc` em uma bela estrutura HTML.
 
-É interessante notar neste momento que você não é obrigado a usar a ferramenta de marcação Cmark, caso você desejar, mas você precisará fazer um pouco mais de configuração e você pode ler sobre [aqui](https://hexdocs.pm/ex_doc/ExDoc.Markdown.html#module-using-cmark).  Para este tutorial, vamos continuar utilizando Earmark.
+É interessante notar neste momento que você pode mudar a ferramenta de marcação para a Cmark caso desejar, mas você precisará fazer um pouco mais de configuração e você pode ler sobre [aqui](https://hexdocs.pm/ex_doc/ExDoc.Markdown.html#module-using-cmark).  Para este tutorial, vamos continuar utilizando Earmark.
 
 ### Gerando Documentação
 
