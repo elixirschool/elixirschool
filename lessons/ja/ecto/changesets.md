@@ -84,6 +84,7 @@ iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{name: ""})
   data: #Friends.Person<>,
   valid?: true
 >
+```
 
 Ectoはチェンジセットが正常であると言っていますが、実際には空の名前を許可したくありません。これを修正しましょう！
 
