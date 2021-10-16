@@ -1,5 +1,5 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "Documentação",
   excerpt: """
   Documentando código em Elixir.
@@ -30,9 +30,9 @@ IO.puts("Hello, " <> "chum.")
 
 Elixir, ao executar este script, irá ignorar tudo de `#` até o fim da linha, tratando-a como dados ocultos e sem lógica de execução. Pode adicionar nenhum valor para a operação ou alterar o desempenho do script, no entanto, quando não é tão óbvio o que está acontecendo, um programador deve conseguir entender ao ler o comentário. Esteja atento para não abusar do comentário de uma linha! Bagunçar uma base de código pode se tornar um pesadelo indesejável para alguns. É melhor usar com moderação.
 
-### Documentação de  Módulos
+### Documentação de Módulos
 
-A anotação `@moduledoc`  permite a documentação em linha em um nível de módulo. É tipicamente situada logo abaixo da declaração `defmodule` no topo de um arquivo. O exemplo abaixo mostra um comentário de uma linha dentro do decorador `@moduledoc`.
+A anotação `@moduledoc` permite a documentação em linha em um nível de módulo. É tipicamente situada logo abaixo da declaração `defmodule` no topo de um arquivo. O exemplo abaixo mostra um comentário de uma linha dentro do decorador `@moduledoc`.
 
 ```elixir
 defmodule Greeter do
@@ -97,14 +97,16 @@ end
 Se utilizarmos IEx novamente e executar o comando auxiliar (`h`) sobre a função prefixada com o nome do módulo, devemos ver o seguinte.
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter.hello
 
                 def hello(name)
 
-`hello/1` prints a hello message
+  @spec hello(String.t()) :: String.t()
+
+Prints a hello message.
 
 Parameters
 
@@ -156,12 +158,14 @@ $ cd greet_everyone
 
 Agora, copie e cole o código a partir da lição de anotação `@doc` dentro do arquivo chamado `lib/greeter.ex` e garanta que tudo ainda está funcionando na linha de comando. Agora que estamos trabalhando dentro do projeto Mix nós temos que iniciar o IEx um pouco diferente usando o comando `iex -S mix`:
 
-```bash
+```elixir
 iex> h Greeter.hello
 
                 def hello(name)
 
-Prints a hello message
+  @spec hello(String.t()) :: String.t()
+
+Prints a hello message.
 
 Parameters
 
@@ -178,20 +182,17 @@ Examples
 
 ### Instalando
 
-Assumindo que tudo está bem, a saída acima sugere que estamos prontos para configurar o ExDoc. Dentro do nosso arquivo `mix.exs` adicione as duas dependências necessárias para começar; `:earmark` e `:ex_doc`.
+Assumindo que tudo está bem, a saída acima sugere que estamos prontos para configurar o ExDoc. Dentro do nosso arquivo `mix.exs` adicione a dependência necessária para começar: `:ex_doc`.
 
 ```elixir
-def deps do
-  [
-    {:earmark, "~> 1.2", only: :dev},
-    {:ex_doc, "~> 0.19", only: :dev}
-  ]
-end
+  def deps do
+    [{:ex_doc, "~> 0.21", only: :dev, runtime: false}]
+  end
 ```
 
-Nós especificamos o par de chave-valor `only :dev`, já que não desejamos fazer o download e compilar essas dependências em um ambiente de produção. Porém, por que Earmark? Earmark é um parser para Markdown da linguagem de programação Elixir no qual ExDoc utiliza para converter nossa documentação dentro de `@moduledoc` e `@doc` em uma bela estrutura HTML.
+Nós especificamos o par de chave-valor `only :dev`, já que não desejamos fazer o download e compilar essas dependências em um ambiente de produção. O `ex_doc` irá também adicionar outra biblioteca para nós, chamada Earmark.  Earmark é um parser para Markdown da linguagem de programação Elixir no qual ExDoc utiliza para converter nossa documentação dentro de `@moduledoc` e `@doc` em uma bela estrutura HTML.
 
-É interessante notar neste momento que você não é obrigado a usar Earmark. Você pode mudar a ferramenta de marcação para outras como Pandoc, Hoedown ou Cmark; porém você terá que fazer um pouco mais de configuração, no qual você pode ler sobre [aqui](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Para este tutorial, vamos continuar utilizando Earmark.
+É interessante notar neste momento que você pode mudar a ferramenta de marcação para a Cmark caso desejar, mas você precisará fazer um pouco mais de configuração e você pode ler sobre [aqui](https://hexdocs.pm/ex_doc/ExDoc.Markdown.html#module-using-cmark).  Para este tutorial, vamos continuar utilizando Earmark.
 
 ### Gerando Documentação
 
