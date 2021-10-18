@@ -1,5 +1,5 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "Τεκμηρίωση",
   excerpt: """
   Τεκμηρίωση κώδικα Elixir.
@@ -7,12 +7,13 @@
 }
 ---
 
+
 ## Σχολιασμός
 
 Το πόσο πολύ και το τι ακριβώς ορίζει την ποιοτική τεκμηρίωση, είναι ένα αμφισβητήσιμο θέμα στον προγραμματιστικό κόσμο.
 Πάντως, μπορούμε όλοι να συμφωνήσουμε ότι η τεκμηρίωση είναι σημαντική για εμάς και όσους δουλεύουν στην βάση κώδικά μας.
 
-Η Elixir χειρίζεται την τεκμηρίωση σαν *πελάτη πρώτης κατηγορίας*, παρέχοντας διάφορες λειτουργίες για την πρόσβαση και τη δημιουργία τεκμηρίωσης για τα projects μας.
+Η Elixir χειρίζεται την τεκμηρίωση σαν *πολίτη πρώτης κατηγορίας*, παρέχοντας διάφορες λειτουργίες για την πρόσβαση και τη δημιουργία τεκμηρίωσης για τα projects μας.
 O πυρήνας της Elixir μας παρέχει πολλές διαφορετικές ιδιότητες για να σχολιάσουμε μια βάση κώδικα.
 Ας δούμε 3 τρόπους:
 
@@ -84,11 +85,11 @@ defmodule Greeter do
   """
 
   @doc """
-  Prints a hello message
+  Τυπώνει μήνυμα hello.
 
   ## Παράμετροι
 
-    - name: String that represents the name of the person.
+    - name: Αλφαριθμητικό που αντιπροσωπεύει το όνομα του ατόμου.
 
   ## Παραδείγματα
 
@@ -109,18 +110,20 @@ end
 Αν μπούμε στο IEx ξανά και χρησιμοποιήσουμε την εντολή βοήθειας (`h`) στη συνάρτηση με το όνομα της ενότητας πιο πριν, θα δούμε το ακόλουθο:
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter.hello
 
                 def hello(name)
 
-Prints a hello message
+  @spec hello(String.t()) :: String.t()
 
-Parameters
+Τυπώνει μήνυμα hello.
 
-  • name: String that represents the name of the person.
+Παράμετροι
+
+  • name: Αλφαριθμητικό που αντιπροσωπεύει το όνομα του ατόμου.
 
 Examples
 
@@ -177,13 +180,15 @@ iex> h Greeter.hello
 
                 def hello(name)
 
-Prints a hello message
+  @spec hello(String.t()) :: String.t()
 
-Parameters
+Τυπώνει μήνυμα hello.
 
-• name: String that represents the name of the person.
+Παράμετροι
 
-Examples
+• name: Αλφαριθμητικό που αντιπροσωπεύει το όνομα του ατόμου.
+
+Παραδείγματα
 
     iex> Greeter.hello("Sean")
     "Hello, Sean"
