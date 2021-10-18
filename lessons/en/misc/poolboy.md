@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Poolboy",
   excerpt: """
   You can easily exhaust your system resources if you do not limit the maximum number of concurrent processes that your program can spawn.
@@ -156,7 +156,7 @@ defmodule PoolboyApp.Test do
           # that might be thrown and return the worker back to poolboy in a clean manner. It also allows
           # the programmer to retrieve the error and potentially fix it.
           try do
-            GenServer.call(pid, {:square_root, i}) end
+            GenServer.call(pid, {:square_root, i})
           catch
             e, r -> IO.inspect("poolboy transaction caught error: #{inspect(e)}, #{inspect(r)}")
             :ok
