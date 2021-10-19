@@ -12,7 +12,7 @@
 ## Introduction
 
 It's not uncommon you would like to describe the interface of your function.
-You could use [@doc annotation](../../basics/documentation), but it is only information for other developers that is not checked in compilation time.
+You could use [@doc annotation](/en/lessons/basics/documentation), but it is only information for other developers that is not checked in compilation time.
 For this purpose Elixir has `@spec` annotation to describe the specification of a function that will be checked by compiler.
 
 However in some cases specification is going to be quite big and complicated.
@@ -73,7 +73,7 @@ end
 
 We introduced a struct in the `Examples` module that contains two fields - `first` and `last`.
 This is a simpler version of the struct from the `Range` module.
-For more information on `structs`, please reference the section on [modules](../../basics/modules/#structs).
+For more information on `structs`, please reference the section on [modules](/en/lessons/basics/modules#structs).
 Let's imagine that we need a specification with an `Examples` struct in many places.
 It would be annoying to write long, complex specifications and could be a source of bugs.
 A solution to this problem is `@type`.
@@ -133,7 +133,7 @@ end
 ### Documentation of types
 
 The last element that we need to talk about is how to document our types.
-As we know from the [documentation](../../basics/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules.
+As we know from the [documentation](/en/lessons/basics/documentation) lesson we have `@doc` and `@moduledoc` annotations to create documentation for functions and modules.
 For documenting our types we can use `@typedoc`:
 
 ```elixir

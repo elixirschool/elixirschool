@@ -63,7 +63,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Nota:** subtração de listas usa [comparação estrita](../basics/#comparação) para match de valores. Por exemplo:
+**Nota:** subtração de listas usa [comparação estrita](/pt/lessons/basics/basics#comparação) para match de valores. Por exemplo:
 
 ```elixir
 iex> [2] -- [2.0]
@@ -85,7 +85,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-Além das funções citadas, pode-se usar [pattern matching](../pattern-matching) e o operador cons (`|`) para dividir a lista em topo e cauda; veremos este padrão em futuras lições:
+Além das funções citadas, pode-se usar [pattern matching](/pt/lessons/basics/pattern_matching) e o operador cons (`|`) para dividir a lista em topo e cauda; veremos este padrão em futuras lições:
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]
@@ -107,7 +107,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-É comum usar tuplas como um mecanismo que retorna informação adicional de funções; a utilidade disso ficará mais aparente quando vermos [pattern matching](../pattern-matching/):
+É comum usar tuplas como um mecanismo que retorna informação adicional de funções; a utilidade disso ficará mais aparente quando vermos [pattern matching](/pt/lessons/basics/pattern_matching):
 
 ```elixir
 iex> File.read("path/to/existing/file")

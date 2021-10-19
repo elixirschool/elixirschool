@@ -13,7 +13,7 @@
 スーパバイザの魔術は `Supervisor.start_link/2` 関数の中にあります。
 スーパーバイザプロセスと子プロセスを開始するのに加えて、子を管理するためにスーパーバイザが使用する戦略を定義することができます。
 
-[OTPの並行性](../../advanced/otp-concurrency)レッスンで実装したSimpleQueueを用いて、始めていきましょう。
+[OTPの並行性](/ja/lessons/advanced/otp_concurrency)レッスンで実装したSimpleQueueを用いて、始めていきましょう。
 
 新しいプロジェクトを `mix new simple_queue --sup` を使って作成することで、スーパバイザツリーも一緒に作成することができます。
 `SimpleQueue` モジュール用のコードは `lib/simple_queue.ex` へ、スーパバイザを起動するコードは `lib/simple_queue/application.ex` に記述することになります。

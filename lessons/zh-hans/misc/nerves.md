@@ -169,7 +169,7 @@ _故障排除：如果您的主文件夹中没有现有的 ssh 密钥，则会�
 
 对于其他设备，您可以查看[nerves_examples 项目的相应部分](https://github.com/nerves-project/nerves_examples/tree/master/hello_leds/config).
 
-配置 LED 后，我们肯定需要以某种方式控制它。 为此，我们将在 `lib/network_led/blinker.ex` 中添加一个 GenServer（请参阅 [OTP Concurrency](../../advanced/otp-concurrency) 课程中有关 GenServers 的详细信息），其中包含以下内容：
+配置 LED 后，我们肯定需要以某种方式控制它。 为此，我们将在 `lib/network_led/blinker.ex` 中添加一个 GenServer（请参阅 [OTP Concurrency](/zh-hans/lessons/advanced/otp_concurrency) 课程中有关 GenServers 的详细信息），其中包含以下内容：
 
 ```elixir
 defmodule NetworkLed.Blinker do
@@ -229,7 +229,7 @@ end
 
 ## 添加 Web 服务器
 
-在这一步中，我们将使用 `Plug.Router`。 如果您需要提醒 - 请随意浏览[插件](../../../lessons/specifics/plug/) 课程.
+在这一步中，我们将使用 `Plug.Router`。 如果您需要提醒 - 请随意浏览[插件](/zh-hans/lessons/misc/plug) 课程.
 
 首先，我们将 `{plug_cowboy, '〜> 2.0“}，` 添加到 `mix.exs` 并安装依赖项。
 

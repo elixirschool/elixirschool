@@ -1,5 +1,5 @@
 %{
-  version: "1.7.0",
+  version: "1.8.0",
   title: "Enum",
   excerpt: """
   Um conjunto de algoritmos para fazer enumeração em coleções.
@@ -9,7 +9,7 @@
 
 ## Enum
 
-O módulo `Enum` inclui mais de 70 funções para trabalhar com enumeráveis. Todas as coleções que aprendemos na [lição anterior](../collections/), com exceção das tuplas, são enumeráveis.
+O módulo `Enum` inclui mais de 70 funções para trabalhar com enumeráveis. Todas as coleções que aprendemos na [lição anterior](/pt/lessons/basics/collections), com exceção das tuplas, são enumeráveis.
 
 Esta lição abrangerá apenas um subconjunto das funções disponíveis, no entanto, podemos examiná-las pessoalmente.
 Vamos fazer um pequeno experimento no IEx.

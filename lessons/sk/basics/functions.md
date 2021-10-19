@@ -138,7 +138,7 @@ iex> Greeter.phrase
 
 ### Hraničné podmienky
 
-Hraničných podmienok (*guards*) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](../control-structures). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
+Hraničných podmienok (*guards*) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](/sk/lessons/basics/control_structures). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
 Keď Elixir vybral funkciu, akékoľvek existujúce hraničné podmienky budú otestované.
 
 V nasledujúcom príklade máme dve funkcie s tou istou hlavičkou, no rôznymi hraničnými podmienkami. Testujeme typ parametra:

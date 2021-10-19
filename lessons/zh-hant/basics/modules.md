@@ -11,7 +11,7 @@
 ## 模組
 
 模組允許我們將函數整合到一個命名空間 (namespace) 中。
-除了對函數進行分組之外，它同時允許我們定義在 [函數](../functions/) 中介紹的命名函數和私有函數。
+除了對函數進行分組之外，它同時允許我們定義在 [函數](/zh-hant/lessons/basics/functions) 中介紹的命名函數和私有函數。
 
 現在來看看一個基本的例子：
 
@@ -315,4 +315,4 @@ iex> Example.hello("Sean")
 這些簡單的例子說明了 `use` 是如何運作的，它是 Elixir 工具箱中一個非常強大的工具。
 當你繼續學習 Elixir 的時候，留意一下 `use` ，你肯定會看到一個例子，就是 `use ExUnit.Case, async: true`。
 
-**註**： `quote`, `alias`, `use`, `require` 是我們使用 [metaprogramming](../../advanced/metaprogramming) 時引用的巨集。
+**註**： `quote`, `alias`, `use`, `require` 是我們使用 [metaprogramming](/zh-hant/lessons/advanced/metaprogramming) 時引用的巨集。

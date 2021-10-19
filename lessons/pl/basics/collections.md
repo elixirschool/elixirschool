@@ -61,7 +61,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Uwaga:** Operacja używa [dokładnego porównania](../basics/#comparison) przy wyszukiwaniu wartości.
+**Uwaga:** Operacja używa [dokładnego porównania](/pl/lessons/basics/basics#comparison) przy wyszukiwaniu wartości.
 
 ```elixir
 iex> [2] -- [2.0]
@@ -83,7 +83,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-Oprócz wyżej wymienionych funkcji, możesz użyć [dopasowywania wzorców](../pattern-matching/) i operatora `|`, aby podzielić listę na początek i koniec.
+Oprócz wyżej wymienionych funkcji, możesz użyć [dopasowywania wzorców](/pl/lessons/basics/pattern_matching) i operatora `|`, aby podzielić listę na początek i koniec.
 Dowiemy się więcej o tym schemacie w kolejnych lekcjach:
 
 ```elixir
@@ -109,7 +109,7 @@ iex> {3.14, :pie, "Apple"}
 ```
 
 Typowym zastosowaniem krotek jest zwracanie dodatkowych informacji z funkcji.
-Jest to bardzo przydatne, przez co przyjrzymy się temu bliżej przy omawianiu mechanizmu [dopasowywania wzorców](../pattern-matching/):
+Jest to bardzo przydatne, przez co przyjrzymy się temu bliżej przy omawianiu mechanizmu [dopasowywania wzorców](/pl/lessons/basics/pattern_matching):
 
 ```elixir
 iex> File.read("path/to/existing/file")

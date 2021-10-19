@@ -203,7 +203,7 @@ _Αντιμετώπιση προβλημάτων: Αν δεν έχετε ένα 
 Για άλλες συσκευές, μπορείτε να ρίξετε μια ματιά στο [αντίστοιχο μέρος του πρότζεκτ nerves_examples](https://github.com/nerves-project/nerves_examples/tree/main/hello_leds/config).
 
 Αφού ρυθμίσουμε την λυχνία LED, σίγουρα θα πρέπει κάπως να την ελέγξουμε.
-Για να το κάνουμε αυτό, θα προσθέσουμε έναν GenServer (δείτε λεπτομέριες στο μάθημα [OTP Concurrency](../../advanced/otp-concurrency)) στο αρχείο `lib/network_led/blinker.ex` με αυτά τα περιεχόμενα:
+Για να το κάνουμε αυτό, θα προσθέσουμε έναν GenServer (δείτε λεπτομέριες στο μάθημα [OTP Concurrency](/el/lessons/advanced/otp_concurrency)) στο αρχείο `lib/network_led/blinker.ex` με αυτά τα περιεχόμενα:
 
 ```elixir
 defmodule NetworkLed.Blinker do
@@ -264,7 +264,7 @@ end
 ## Προσθέτοντας τον εξυπηρετητή ιστού
 
 Σε αυτό το βήμα, θα χρησιμοποιήσουμε το `Plug.Router`.
-Αν χρειάζεστε μια υπενθύμιση - μπορείτε να ανατρέξετε στο μάθημα [Plug](../../../lessons/specifics/plug/).
+Αν χρειάζεστε μια υπενθύμιση - μπορείτε να ανατρέξετε στο μάθημα [Plug](/el/lessons/misc/plug).
 
 Αρχικά, θα προσθέσουμε την γραμμή `{:plug_cowboy, "~> 2.0"},` στο αρχείο `mix.exs` και θα εγκαταστήσουμε τις εξαρτήσεις.
 

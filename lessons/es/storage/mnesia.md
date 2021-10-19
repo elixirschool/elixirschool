@@ -24,7 +24,7 @@ Si puedes responder 'si' a cualquiera de las siguientes preguntas entonces es un
 
 ## Esquema
 
-Como Mnesia es parte del core de Erlang y no de Elixir podemos acceder a este con la sintaxis `:` (Revisa la lección: [Interoperabilidad con Erlang](../../advanced/erlang/)):
+Como Mnesia es parte del core de Erlang y no de Elixir podemos acceder a este con la sintaxis `:` (Revisa la lección: [Interoperabilidad con Erlang](/es/lessons/intermediate/erlang)):
 
 ```elixir
 

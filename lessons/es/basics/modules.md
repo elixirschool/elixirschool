@@ -306,4 +306,4 @@ iex> Example.hello("Sean")
 Estos son ejemplos simples para mostrar como funciona `use`, pero es una herramienta increíblemente poderosa en las herramientas de Elixir.
 A medida que continúe aprendiendo acerca de Elixir, este atento a `use`, un ejemplo que seguramente vera es `use ExUnit.Case, async: true`.
 
-**Nota**: `quote`, `alias`, `use`, `require` son macros utilizadas cuando trabajamos con [metaprogramming](../../advanced/metaprogramming).
+**Nota**: `quote`, `alias`, `use`, `require` son macros utilizadas cuando trabajamos con [metaprogramming](/es/lessons/advanced/metaprogramming).

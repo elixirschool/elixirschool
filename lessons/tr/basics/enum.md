@@ -9,7 +9,7 @@
 
 ## Enum
 
-`Enum` modulu 70'ten fazla fonksiyon icerir. Bunlar daha once inceledigimiz [koleksiyonlar](../collections/) ile calismak icin kullanilir.
+`Enum` modulu 70'ten fazla fonksiyon icerir. Bunlar daha once inceledigimiz [koleksiyonlar](/tr/lessons/basics/collections) ile calismak icin kullanilir.
 
 Bu ders mevcut olan fonksiyonlarin sadece bir kismini icerecektir fakat bunlari asagidaki method ile inceleyebiliriz.
 Gelin interaktif elixir modunda (IEx) bir deneme yapalim.

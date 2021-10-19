@@ -17,7 +17,7 @@ But don't be fooled by its simplicity - you can solve most of the issues with yo
 
 IEx means `Elixir's interactive shell`.
 
-You could have already seen IEx in one of the previous lessons like [Basics](../../basics/basics) where we ran Elixir code interactively in the shell.
+You could have already seen IEx in one of the previous lessons like [Basics](/en/lessons/basics/basics) where we ran Elixir code interactively in the shell.
 
 The idea here is simple.
 

@@ -203,7 +203,7 @@ Let's use it by adding a `config :nerves_leds, names: [green: "led0"]` line to t
 For other devices, you can take a look at the [corresponding part of the nerves_examples project](https://github.com/nerves-project/nerves_examples/tree/main/hello_leds/config).
 
 After configuring the LED itself, we surely need to control it somehow.
-To do that, we will add a GenServer (see details about GenServers in [OTP Concurrency](../../advanced/otp-concurrency) lesson) in `lib/network_led/blinker.ex` with these contents:
+To do that, we will add a GenServer (see details about GenServers in [OTP Concurrency](/en/lessons/advanced/otp_concurrency) lesson) in `lib/network_led/blinker.ex` with these contents:
 
 ```elixir
 defmodule NetworkLed.Blinker do
@@ -264,7 +264,7 @@ Now the only missing piece of the puzzle left is to control the LED via the web 
 ## Adding the web server
 
 In this step, we will be using `Plug.Router`.
-If you need a reminder - feel free to skim through the [Plug](../../../lessons/specifics/plug/) lesson.
+If you need a reminder - feel free to skim through the [Plug](/en/lessons/misc/plug) lesson.
 
 First, we will add `{:plug_cowboy, "~> 2.0"},` to `mix.exs` and install the dependencies.
 

@@ -55,7 +55,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**দ্রষ্টব্য:** এটি [strict comparison](../basics/#comparison) ব্যবহার করে ভ্যালু ম্যাচ করার জন্য। 
+**দ্রষ্টব্য:** এটি [strict comparison](/bn/lessons/basics/basics#comparison) ব্যবহার করে ভ্যালু ম্যাচ করার জন্য। 
 
 ### হেড/টেইল 
 
@@ -68,7 +68,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-এছাড়াও আমরা [pattern matching](../pattern-matching/) এবং কন্স অপারেটর  `|` দিয়েও একটি লিস্টকে দুই ভাগে ভাগ করতে পারি যা সম্পর্কে পরে আলোচনা হবে। 
+এছাড়াও আমরা [pattern matching](/bn/lessons/basics/pattern_matching) এবং কন্স অপারেটর  `|` দিয়েও একটি লিস্টকে দুই ভাগে ভাগ করতে পারি যা সম্পর্কে পরে আলোচনা হবে। 
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]

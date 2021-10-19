@@ -252,4 +252,4 @@ end
 
 **নোট**: `quote`, `alias`, `use`, `require` হল ম্যাক্রো যা মেটাপ্রোগ্রামিংয়ের সময়ে ব্যবহৃত হয়।
 <!-- TODO: Add link we advanced/metaprogramming is translated
-[মেটাপ্রোগ্রামিংয়ের](../../advanced/metaprogramming) সময়ে ব্যবহৃত হয়। -->
+[মেটাপ্রোগ্রামিংয়ের](/bn/lessons/advanced/metaprogramming) সময়ে ব্যবহৃত হয়। -->

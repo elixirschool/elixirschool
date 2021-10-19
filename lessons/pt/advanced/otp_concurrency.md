@@ -1,5 +1,5 @@
 %{
-  version: "1.0.3",
+  version: "1.0.4",
   title: "Concorrência OTP",
   excerpt: """
   Já olhamos as abstrações em Elixir para concorrência, mas as vezes precisamos de um controle maior e para isso nós temos os comportamentos OTP no qual Elixir é construída em cima.
@@ -22,7 +22,8 @@ defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  Start our queue and link it.  This is a helper function
+  Start our queue and link it.
+  This is a helper function
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)

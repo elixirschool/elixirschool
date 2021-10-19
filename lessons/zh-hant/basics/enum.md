@@ -10,7 +10,7 @@
 ## 列舉 (Enum)
 
 `Enum` 模組包含超過 70 個可列舉 (enumerables) 的工作函數。
-我們在 [previous lesson](../collections/)，中了解到的所有群集，除了元組之外，都為可列舉。
+我們在 [previous lesson](/zh-hant/lessons/basics/collections)，中了解到的所有群集，除了元組之外，都為可列舉。
 
 這個課程只涵蓋可用函數中的一個子集，但我們其實可以自己去測試它們。
 讓我們在 IEx 中做一個小實驗。

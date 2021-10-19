@@ -128,7 +128,7 @@ iex> cond do
 
 `with/1` è un'espressione speciale utile quando abbiamo dei `case/2` nidificati o situazioni in cui non puoi elegantemente usare l'operatore _pipe_ (`|>`). L'espressione `with/1` è composta da keywords, generators e una espressione.
 
-Parleremo dei generators nella lezione sulle [Comprensione delle liste](../comprehensions/), ma per ora dobbiamo solo sapere utilizzare il [pattern matching](../pattern-matching/) per paragornare il valore sulla destra di `<-` a quello sulla sinistra.
+Parleremo dei generators nella lezione sulle [Comprensione delle liste](/it/lessons/basics/comprehensions), ma per ora dobbiamo solo sapere utilizzare il [pattern matching](/it/lessons/basics/pattern_matching) per paragornare il valore sulla destra di `<-` a quello sulla sinistra.
 
 Iniziamo con una semplice espressione `with/1` ed in seguito vedremo qualcosa di più complesso.
 

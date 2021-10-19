@@ -17,7 +17,7 @@
 
 IEx 全称是 `Elixir 的交互式 shell`。
 
-你可能已经在前面的[基础课](../../basics/basics)那里了解到它了。
+你可能已经在前面的[基础课](/zh-hans/lessons/basics/basics)那里了解到它了。
 
 调试的做法其实很简单。我们就在需要调试的地方，通过交互式的 shell 来操作。
 

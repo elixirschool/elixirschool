@@ -55,7 +55,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Hinweis:** Es nutzt [strikte Vergleiche](../basics/#comparison) um die Werte zu vergleichen.
+**Hinweis:** Es nutzt [strikte Vergleiche](/de/lessons/basics/basics#comparison) um die Werte zu vergleichen.
 
 ### Head / Tail
 
@@ -68,7 +68,7 @@ iex> tl [3.14, :pie, "Apple"]
 [:pie, "Apple"]
 ```
 
-Zusätzlich zu den bereits erwähnten Funktionen kannst du [Pattern Matching](../pattern-matching/) und den Cons-Operator `|` dazu benutzen eine Liste in `head` und `tail` zu teilen; wir werden in späteren Kapiteln mehr über dieses Pattern lernen:
+Zusätzlich zu den bereits erwähnten Funktionen kannst du [Pattern Matching](/de/lessons/basics/pattern_matching) und den Cons-Operator `|` dazu benutzen eine Liste in `head` und `tail` zu teilen; wir werden in späteren Kapiteln mehr über dieses Pattern lernen:
 
 ```elixir
 iex> [head | tail] = [3.14, :pie, "Apple"]

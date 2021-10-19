@@ -304,7 +304,7 @@ iex> Greeter.phrase
 
 ### 監視 (Guards)
 
-我們在 [Control Structures](../control-structures) 課程中簡要地介紹了監視 (guards)，現在我們來看看如何應用到命名函數上。
+我們在 [Control Structures](/zh-hant/lessons/basics/control_structures) 課程中簡要地介紹了監視 (guards)，現在我們來看看如何應用到命名函數上。
 一旦 Elixir 配對了一個函數，任何現有的監視語句 (guards) 都將被檢驗。
 
 在下面的例子中，我們有兩個具有相同簽章的函數，我們依靠監視 (guards) 來決定使用何種引數類型 (argument's type) 的函數：

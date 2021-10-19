@@ -128,7 +128,7 @@ iex> cond do
 
 Konstrukcji `with/1` możemy użyć zamiast wielu zagnieżdżonych wyrażeń `case/2` lub w sytuacjach, gdy nie mogą być one powiązane w jednoznaczny sposób. Wyrażenie `with/1` składa się ze słowa kluczowego, generatora i wyrażenia.
 
-Zajmiemy się jeszcze generatorami przy okazji omawiania [list składanych](../comprehensions/), ale na chwilę obecną jedyne, co musimy wiedzieć, to że używają [dopasowania wzorców](../pattern-matching/), by połączyć elementy po prawej stronie `<-` z tymi po lewej.
+Zajmiemy się jeszcze generatorami przy okazji omawiania [list składanych](/pl/lessons/basics/comprehensions), ale na chwilę obecną jedyne, co musimy wiedzieć, to że używają [dopasowania wzorców](/pl/lessons/basics/pattern_matching), by połączyć elementy po prawej stronie `<-` z tymi po lewej.
 
 Zacznijmy od prostego wyrażenia `with/1`:
 

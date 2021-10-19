@@ -149,7 +149,7 @@ iex> "foo\nbar"
 ```
 
 Elixir também inclui tipos de dados mais complexos.
-Nós vamos aprender mais sobre estes quando aprendermos sobre [coleções](../collections/) e [funções](../functions/).
+Nós vamos aprender mais sobre estes quando aprendermos sobre [coleções](/pt/lessons/basics/collections) e [funções](/pt/lessons/basics/functions).
 
 ## Operações Básicas
 

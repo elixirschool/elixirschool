@@ -129,8 +129,8 @@ iex> cond do
 `with/1` pipe `|` operatorunun kullanilamadigi bazi durumlarda kullanisli olabilir.
 `with/1` ifadesi anahtar kelimeler (keywords), uretecler (generators) ve son olarak ifadelerden olusur.
 
-Uretecleri (generators) [liste kapsamlari](../comprehensions/) konusunda inceleyecegiz, fakat simdilik
-bilmemiz gereken `<-` ifadesinin sag ve sol taraflarinin karsilastirmasinin [ornegini bulma (pattern matching)](../pattern-matching/) ile yapildigidir.
+Uretecleri (generators) [liste kapsamlari](/tr/lessons/basics/comprehensions) konusunda inceleyecegiz, fakat simdilik
+bilmemiz gereken `<-` ifadesinin sag ve sol taraflarinin karsilastirmasinin [ornegini bulma (pattern matching)](/tr/lessons/basics/pattern_matching) ile yapildigidir.
 
 Basit bir `with/1` ornegiyle basliyoruz:
 

@@ -139,7 +139,7 @@ Guardianを使用するための構成が整ったので、それをアプリケ
 ## HTTPリクエスト
 
 Guardianは、HTTPリクエストとの連携を容易にするために多数のPlugを提供しています。
-Plugについては [別レッスン](../../specifics/plug/) で学ぶことができます。
+Plugについては [別レッスン](/ja/lessons/misc/plug) で学ぶことができます。
 
 GuardianはPhoenixを必要としませんが、以下の例でPhoenixを使用するのが、最も簡単に試すことができます。
 

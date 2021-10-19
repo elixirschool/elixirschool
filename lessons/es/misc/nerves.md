@@ -167,7 +167,7 @@ Luego de configurar la dependencia necesitas configurar la lista de LEDs para el
 
 Para otros dispositivos puedes revisar la [documentación](https://github.com/nerves-project/nerves_examples/tree/master/hello_leds/config).
 
-Luego de configurar el LED, necesitamos controlarlo de alguna forma. Para hacer eso agregaremos un GenServer (mira los detalles acerca de GenServers en la lección de [Concurrencia OTP](../../advanced/otp-concurrency)) en `lib/network_led/blinker.ex` con este contenido:
+Luego de configurar el LED, necesitamos controlarlo de alguna forma. Para hacer eso agregaremos un GenServer (mira los detalles acerca de GenServers en la lección de [Concurrencia OTP](/es/lessons/advanced/otp_concurrency)) en `lib/network_led/blinker.ex` con este contenido:
 
 ```elixir
 defmodule NetworkLed.Blinker do
@@ -227,7 +227,7 @@ Ahora la única pieza perdida del rompecabezas es controlar el LED mediante una 
 
 ## Agregando un servidor web
 
-En este paso usaremos `Plug.Router`. Si necesitas un recordatorio sientete libre de revisar la lección de [Plug](../../../lessons/specifics/plug/).
+En este paso usaremos `Plug.Router`. Si necesitas un recordatorio sientete libre de revisar la lección de [Plug](/es/lessons/misc/plug).
 
 Primero agregaremos `{:plug_cowboy, "~> 2.0"},` a `mix.exs` e instalaremos las dependencias.
 

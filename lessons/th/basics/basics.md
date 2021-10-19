@@ -146,7 +146,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir ยังมี data type ที่ซับซ้อนกว่าที่กล่าวมาข้างต้น เราจะได้เรียนเพิ่มเติมตอนที่ไปถึงเรื่องของ [collections](../collections/) และ [functions](../functions/)
+Elixir ยังมี data type ที่ซับซ้อนกว่าที่กล่าวมาข้างต้น เราจะได้เรียนเพิ่มเติมตอนที่ไปถึงเรื่องของ [collections](/th/lessons/basics/collections) และ [functions](/th/lessons/basics/functions)
 
 ## Operation พื้นฐาน
 

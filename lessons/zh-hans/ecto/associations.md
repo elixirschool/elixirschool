@@ -9,7 +9,7 @@
 
 ## 配置
 
-我们将基于前面课程搭建的 app, `Friends`，来操作。你可以通过[这里](../basics)来回顾一下。
+我们将基于前面课程搭建的 app, `Friends`，来操作。你可以通过[这里](/zh-hans/lessons/ecto/basics)来回顾一下。
 
 ## 关联的种类
 

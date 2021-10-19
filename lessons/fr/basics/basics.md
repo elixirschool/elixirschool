@@ -147,7 +147,7 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir comprend aussi des types plus complexes. Nous verrons plus à ce sujet en parlant des [collections](../collections/) et des [fonctions](../functions/).
+Elixir comprend aussi des types plus complexes. Nous verrons plus à ce sujet en parlant des [collections](/fr/lessons/basics/collections) et des [fonctions](/fr/lessons/basics/functions).
 
 ## Opérations de base
 

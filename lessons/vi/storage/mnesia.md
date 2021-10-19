@@ -22,7 +22,7 @@ Lựa chọn việc sử dụng một công nghệ nào thường khá là rối
 
 ## Schema
 
-Bởi vì Mnesia là một phần của Erlang, chứ không phải từ Elixir, chúng ta cần truy suất nó với cú pháp hai chấm (See Lesson: [Erlang Interoperability](../../advanced/erlang/)):
+Bởi vì Mnesia là một phần của Erlang, chứ không phải từ Elixir, chúng ta cần truy suất nó với cú pháp hai chấm (See Lesson: [Erlang Interoperability](/vi/lessons/intermediate/erlang)):
 
 ```elixir
 

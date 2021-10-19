@@ -24,7 +24,7 @@ iex> ~T[19:39:31.056226]
 ~T[19:39:31.056226]
 ```
 
-Puedes aprender más acerca de los sigilos en la [lección acerca de los sigilos](../sigils/).
+Puedes aprender más acerca de los sigilos en la [lección acerca de los sigilos](/es/lessons/basics/sigils).
 Es fácil acceder a partes de esta estructura:
 
 ```elixir

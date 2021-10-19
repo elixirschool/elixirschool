@@ -9,7 +9,7 @@
 
 ## Enum
 
-Moduł `Enum` zawiera ponad siedemdziesiąt funkcji wspomagających pracę z kolekcjami, które omawialiśmy w [poprzedniej lekcji](./collections/). W tej lekcji przyjrzymy się tylko niektórym z funkcji. Innym sposobem na zapoznanie się z dostępnymi funkcjami jest wykorzystanie `iex`:
+Moduł `Enum` zawiera ponad siedemdziesiąt funkcji wspomagających pracę z kolekcjami, które omawialiśmy w [poprzedniej lekcji](/pl/lessons/basics/collections). W tej lekcji przyjrzymy się tylko niektórym z funkcji. Innym sposobem na zapoznanie się z dostępnymi funkcjami jest wykorzystanie `iex`:
 
 ```elixir
 iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->

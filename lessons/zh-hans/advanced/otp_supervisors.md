@@ -11,7 +11,7 @@
 
 Supervisors 的魔力主要在 `Supervisor.start_link/2` 函数。除了能启动 supervisor 和子进程之外，它还允许我们设置管理子进程的策略。
 
-通过 [`OTP 并发`](../../advanced/otp-concurrency) 课程中实现的 `SimpleQueue`，我们开始本节课程：  
+通过 [`OTP 并发`](/zh-hans/lessons/advanced/otp_concurrency) 课程中实现的 `SimpleQueue`，我们开始本节课程：  
 
 使用 `mix new simple_queue --sup` 命令，我们创建了拥有 supervisor 树的新项目。`SimpleQueue` 的代码因为放在 `lib/simple_queue.ex` 而 supervisor 的代码我们将添加到 `lib/simple_queue/application.ex` 中。  
 

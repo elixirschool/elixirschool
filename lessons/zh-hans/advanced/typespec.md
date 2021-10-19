@@ -9,7 +9,7 @@
 
 ## 简介
 
-通常你可能会希望描述所写函数的接口. 那么你可以使用 [@文档注解](../../basics/documentation), 但这部分信息并不能在编译时用来做检查. 出于这个原因 Elixir 有 `@spec` 注解用来描述函数的定义, 并且会被编译器检查.
+通常你可能会希望描述所写函数的接口. 那么你可以使用 [@文档注解](/zh-hans/lessons/basics/documentation), 但这部分信息并不能在编译时用来做检查. 出于这个原因 Elixir 有 `@spec` 注解用来描述函数的定义, 并且会被编译器检查.
 
 然而在某些情况下定义会非常的多并且复杂. 如果希望减少复杂度, 你会想要采用自定义的类型. Elixir 有 `@type` 注解可以做到. 另一方面 Elixr 始终是一个动态语言. 这意味着所有类型的信息会被编译器忽略, 但会被其他工具使用.
 
@@ -54,7 +54,7 @@ def sum_times(a, params) do
 end
 ```
 
-我们引入了一个 `Examples` 模块的结构体, 包含了两个字段: `first`, `last`. 这是一个构建 `Range` 模块的简易版结构体. 更多的关于结构体的信息可以查看[模块](../../basics/modules/#structs)部分. 想象一下我们在很多地方都需要 `Examples` 结构体. 写这么又长又复杂的 specification 会非常烦, 并且也可能会成为 bug 的来源. 一个解决这个问题的方法就是 `@type`.
+我们引入了一个 `Examples` 模块的结构体, 包含了两个字段: `first`, `last`. 这是一个构建 `Range` 模块的简易版结构体. 更多的关于结构体的信息可以查看[模块](/zh-hans/lessons/basics/modules#structs)部分. 想象一下我们在很多地方都需要 `Examples` 结构体. 写这么又长又复杂的 specification 会非常烦, 并且也可能会成为 bug 的来源. 一个解决这个问题的方法就是 `@type`.
 
 Elixir 有3种关于类型的指令：
 
@@ -106,7 +106,7 @@ end
 
 ### 类型的文档（Documentation of types）
 
-最后一个我们需要谈论的是如何为我们添加文档。如我们从 [文档](../../basics/documentation) 这节课学到的, `@doc` 和 `@moduledoc` 注解可以为函数和模块创建文档。为我们的类型创建文档可以使用 `@typedoc`：
+最后一个我们需要谈论的是如何为我们添加文档。如我们从 [文档](/zh-hans/lessons/basics/documentation) 这节课学到的, `@doc` 和 `@moduledoc` 注解可以为函数和模块创建文档。为我们的类型创建文档可以使用 `@typedoc`：
 
 ```elixir
 defmodule Examples do

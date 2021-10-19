@@ -9,7 +9,7 @@
 
 ## Enum
 
-Le module `Enum` inclus plus de 70 fonctions pour travailler sur les énumérables. Toutes les collections que nous avons vues dans la [leçon précédente](../collections/), à l'exception des Tuples, sont énumérables.
+Le module `Enum` inclus plus de 70 fonctions pour travailler sur les énumérables. Toutes les collections que nous avons vues dans la [leçon précédente](/fr/lessons/basics/collections), à l'exception des Tuples, sont énumérables.
 
 Cette leçon ne couvre qu'une partie des fonctions disponibles, cependant nous pouvons les examiner par nous même. Faisons une petite expérience dans IEx.
 

@@ -58,7 +58,7 @@ defmodule FriendsApp.App do
 end
 ```
 
-Untuk info lebih lanjut tentang supervisor lihatlah pelajaran [OTP Supervisors](../../advanced/otp-supervisors).
+Untuk info lebih lanjut tentang supervisor lihatlah pelajaran [OTP Supervisors](/id/lessons/advanced/otp_supervisors).
 
 ### Konfigurasi
 

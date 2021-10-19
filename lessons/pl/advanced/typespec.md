@@ -9,7 +9,7 @@
 
 ## Wstęp 
 
-Nie jest niczym niezwykłym, chęć określenia interfejsu funkcji. Można oczywiście użyć [adnotacji @doc](../../basics/documentation), ale jest to jedynie informacja dla innych programistów, która nie jest weryfikowana w czasie kompilacji. W tym celu Elixir ma adnotację `@spec`, która pozwala na opisanie specyfikacji funkcji w sposób zrozumiały dla kompilatora.
+Nie jest niczym niezwykłym, chęć określenia interfejsu funkcji. Można oczywiście użyć [adnotacji @doc](/pl/lessons/basics/documentation), ale jest to jedynie informacja dla innych programistów, która nie jest weryfikowana w czasie kompilacji. W tym celu Elixir ma adnotację `@spec`, która pozwala na opisanie specyfikacji funkcji w sposób zrozumiały dla kompilatora.
 
 Jednakże w niektórych przypadkach specyfikacje mogą być dość złożone. Jeżeli chcemy zredukować tę złożoność, to możemy zdefiniować własny typ. Adnotacja `@type` służy w tym właśnie celu. Z drugiej strony, Elixir pozostaje językiem dynamicznym, co oznacza, że wszystkie informacje o typach zostaną zignorowane przez kompilator. Mogą być jednak one użyte przez inne narzędzia.  
 
@@ -54,7 +54,7 @@ def sum_times(a, params) do
 end
 ```
 
-Użyliśmy tu struktury z modułu `Examples`, która zawiera dwa pola `first` i `last`. Jest to uproszczona wersja struktury z modułu `Range`. Będziemy jeszcze mówić o strukturach przy okazji lekcji o [modułach](../../basics/modules/#structs). Załóżmy, że potrzebujemy specyfikacji używającej `Examples` w wielu miejscach. Oznacza to dużo pisania, a w dodatku łatwo o błąd. Rozwiązaniem jest użycie `@type`. 
+Użyliśmy tu struktury z modułu `Examples`, która zawiera dwa pola `first` i `last`. Jest to uproszczona wersja struktury z modułu `Range`. Będziemy jeszcze mówić o strukturach przy okazji lekcji o [modułach](/pl/lessons/basics/modules#structs). Załóżmy, że potrzebujemy specyfikacji używającej `Examples` w wielu miejscach. Oznacza to dużo pisania, a w dodatku łatwo o błąd. Rozwiązaniem jest użycie `@type`. 
  
 Elixir ma trzy dyrektywy opisujące typ:
 
@@ -106,7 +106,7 @@ end
 
 ### Dokumentowanie typów
 
-Ostatnią rzeczą, o którą należy omówić, jest sposób dokumentowania typów. Jak wiemy z lekcji o [dokumentacji](../../basics/documentation), mamy do dyspozycji adnotacje `@doc` i `@moduledoc` służące do tworzenia dokumentacji dla funkcji i modułów. Aby dokumentować typ, używamy `@typedoc`:
+Ostatnią rzeczą, o którą należy omówić, jest sposób dokumentowania typów. Jak wiemy z lekcji o [dokumentacji](/pl/lessons/basics/documentation), mamy do dyspozycji adnotacje `@doc` i `@moduledoc` służące do tworzenia dokumentacji dla funkcji i modułów. Aby dokumentować typ, używamy `@typedoc`:
 
 ```elixir
 defmodule Examples do

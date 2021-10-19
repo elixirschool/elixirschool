@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.3.0",
   title: "Βασικά",
   excerpt: """
   Κάνοντας την αρχή, βασικοί τύποι δεδομένων και βασικές λειτουργίες.
@@ -13,7 +13,7 @@
 
 Οδηγίες εγκατάστασης για όλα τα λειτουργικά συστήματα μπορούν να βρεθούν στο elixir-lang.org, στον οδηγό [Installing Elixir](http://elixir-lang.org/install.html).
 
-Αφού εγκαταστήσετε την Elixir, μπορείτε έυκολα να επιβεβαιώσετε την εγκαταστημένη έκδοση.
+Αφού εγκαταστήσετε την Elixir, μπορείτε έυκολα να βρείτε την εγκαταστημένη έκδοση.
 
     % elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
@@ -30,6 +30,8 @@
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
+
+Σημείωση: Στο PowerShell των Windows, θα πρέπει να γράψετε `iex.bat`.
 
 Ας προχωρήσουμε τις δοκιμές μας γράφοντας μερικές απλές εκφράσεις:
 
@@ -147,7 +149,7 @@ iex> "foo\nbar"
 ```
 
 Η Elixir επίσης υποστηρίζει πιο πολύπλοκους τύπους δεδομένων.
-Θα μάθουμε περισσότερα για αυτούς όταν μάθουμε για τις [Συλλογές](../collections/) και τις [Συναρτήσεις](../functions/).
+Θα μάθουμε περισσότερα για αυτούς όταν μάθουμε για τις [Συλλογές](/el/lessons/basics/collections) και τις [Συναρτήσεις](/el/lessons/basics/functions).
 
 ## Βασικές Λειτουργίες
 

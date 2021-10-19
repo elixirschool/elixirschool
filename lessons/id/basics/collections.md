@@ -55,7 +55,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Catatan:** List menggunakan [perbandingan ketat](../basics/#perbandingan) untuk mencocokkan nilai.
+**Catatan:** List menggunakan [perbandingan ketat](/id/lessons/basics/basics#perbandingan) untuk mencocokkan nilai.
 
 ### Kepala / Ekor
 
