@@ -261,7 +261,7 @@ iex(alex@localhost)> how are you?
 
 `Chat.TaskSupervisor` には、 `send_message/2` から `spawn_task/4` に渡されるメッセージの引数とともに `Chat.receive_message` 関数を実行するタスクを監視するように指示しています。
 
-そのため、 `Chat.receive_message("hi")` はリモードノードの `kate` で呼び出され、 `"hi"` というメッセージをそのノードの標準出力ストリームへと流します。
+そのため、 `Chat.receive_message("hi")` はリモートノードの `kate` で呼び出され、 `"hi"` というメッセージをそのノードの標準出力ストリームへと流します。
 この場合、タスクはリモートノード上で監視されているので、そのノードがこのI/Oプロセスのグループマネージャになります。
 
 ### リモートノードのメッセージへの返信

@@ -141,7 +141,7 @@ options = [
 DynamicSupervisor.start_link(options)
 ```
 
-そして、スーパバイザと子プロセスの定義を引数として `start_child/2` を用いることで動的にSimpleQueueを起動します。ただ `SimplefQueue` は `use GenServer` を使っているので、すでに子プロセスは定義済みです。
+そして、スーパバイザと子プロセスの定義を引数として `start_child/2` を用いることで動的にSimpleQueueを起動します。ただ `SimpleQueue` は `use GenServer` を使っているので、すでに子プロセスは定義済みです。
 
 ```elixir
 {:ok, pid} = DynamicSupervisor.start_child(SimpleQueue.Supervisor, SimpleQueue)
