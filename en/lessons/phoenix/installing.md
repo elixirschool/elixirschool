@@ -17,7 +17,7 @@ You will also need some database to run your application,  if you are just getti
 
 #### Linux Users
 
-You might need to install the [inotify-tools](https://github.com/inotify-tools/inotify-tools/wiki) to run the phoenix applicaton.
+You might need to install the [inotify-tools](https://github.com/inotify-tools/inotify-tools/wiki) to run the phoenix application.
 
 ### Installing Phoenix
 
@@ -56,7 +56,7 @@ After installation is done, you can access the project folder with `cd hello`
 ### Database Configuration
 
 We need to setup our project to connect to our local database. Go to the `config/` folder and open the file `dev.exs`, and you will see a file with something like that
-Dont forget to change the username and password configs (if necessary). You may also need to change the test environment (`config/test.exs`)
+Don't forget to change the username and password configs (if necessary). You may also need to change the test environment (`config/test.exs`)
 ```elixir
 # Configure your database
 config :hello, Hello.Repo,
@@ -84,6 +84,6 @@ Finally, we can run the application with:
 mix phx.server
 ```
 
-By default, phoenix applicatons runs at port 4000. If you go to http://localhost:4000, you should see this page
+By default, phoenix applications runs at port 4000. If you go to http://localhost:4000, you should see this page
 
 ![]({% asset hello_phoenix.png @path %})
