@@ -2,7 +2,7 @@
 version: 1.0.0
 title: Installing Phoenix
 ---
-Installing Phoenix
+With some simple steps you can install and create your first phoenix project
 
 {% include toc.html %}
 
