@@ -11,7 +11,7 @@
 
 ### Some considerations
 
-Before installing the phoenix, you will need to install elixir in your machine. The latest version of phoenix framework needs [Phoenix 12 or later](https://hexdocs.pm/phoenix/installation.html#erlang-22-or-later) and [Erlang 22 or later](https://hexdocs.pm/phoenix/installation.html#erlang-22-or-later).
+Before installing Phoenix, you will need to install elixir in your machine. The latest version of phoenix framework needs [Phoenix 12 or later](https://hexdocs.pm/phoenix/installation.html#erlang-22-or-later) and [Erlang 22 or later](https://hexdocs.pm/phoenix/installation.html#erlang-22-or-later).
 
 You will also need some database to run your application,  if you are just getting started with Phoenix, we recommend you to install PostgreSQL. You can check the (installation guides)[https://wiki.postgresql.org/wiki/Detailed_installation_guides] to install it to your OS.
 
