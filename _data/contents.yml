@@ -54,3 +54,5 @@ libraries:
   - stream-data
   - nimble-publisher
   - mox
+phoenix:
+  - installing

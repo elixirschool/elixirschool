@@ -15,6 +15,7 @@ sections:
   blog: Blog
   contributors: Contributors
   translation_report: Translation Report
+  phoenix: Phoenix Framework
 
 version_messages:
   outdated: "Some contents of this translation may be outdated."
