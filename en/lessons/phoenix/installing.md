@@ -1,23 +1,20 @@
-%{
-  version: "1.0.0",
-  title: "Installing and Generating a Phoenix Project",
-  excerpt: """
-  Getting started with phoenix framework
-  """
-}
 ---
+version: 1.0.0
+title: Installing Phoenix
+---
+Installing Phoenix
+
+{% include toc.html %}
 
 ## Getting Started
 
 ### Some considerations
 
-Before installing Phoenix, you will need to install elixir in your machine. The latest version of phoenix framework needs [Phoenix 12 or later](https://hexdocs.pm/phoenix/installation.html#erlang-22-or-later) and [Erlang 22 or later](https://hexdocs.pm/phoenix/installation.html#erlang-22-or-later).
+Before creating a Phoenix project, you will need to install elixir in your machine. The latest version of phoenix framework needs [Elixir 12 or later](https://hexdocs.pm/phoenix/installation.html#erlang-22-or-later) and [Erlang 22 or later](https://hexdocs.pm/phoenix/installation.html#erlang-22-or-later).
 
-You will also need some database to run your application,  if you are just getting started with Phoenix, we recommend you to install PostgreSQL. You can check the (installation guides)[https://wiki.postgresql.org/wiki/Detailed_installation_guides] to install it to your OS.
+You will also need some database to run your application,  if you are just getting started with Phoenix, we recommend you to install PostgreSQL. You can check the [installation guides](https://wiki.postgresql.org/wiki/Detailed_installation_guides) to install it to your OS.
 
-#### Linux Users
-
-You might need to install the [inotify-tools](https://github.com/inotify-tools/inotify-tools/wiki) to run the phoenix application.
+**linux users**: You might need to install the [inotify-tools](https://github.com/inotify-tools/inotify-tools/wiki) to run the phoenix application.
 
 ### Installing Phoenix
 
