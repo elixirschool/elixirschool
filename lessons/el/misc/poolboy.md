@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Poolboy",
   excerpt: """
   Μπορείτε πολύ εύκολα να εξαντλήσετε τους πόρους τους συστήματός σας αν δεν περιορίσετε τον μέγιστο αριθμό ταυτόχρονων διεργασιών που μπορεί να ξεκινήσει το πρόγραμμά σας.
@@ -157,7 +157,7 @@ defmodule PoolboyApp.Test do
           # που μπορούν να δημιουργηθούν και να γυρίσουμε τον εργάτη πίσω στο poolboy με ένα καθαρό τρόπο.
           # Επίσης επιτρέπει στον προγραματιστή να επικαλεστεί το σφάλμα και να το διορθώσει.
           try do
-            GenServer.call(pid, {:square_root, i}) end
+            GenServer.call(pid, {:square_root, i})
           catch
             e, r -> IO.inspect("poolboy transaction caught error: #{inspect(e)}, #{inspect(r)}")
             :ok
