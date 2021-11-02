@@ -53,7 +53,7 @@ $ mix deps.get
 
 在 Ecto 中，一个 repository 是映射到数据存储区的，例如 Postgres 数据库。所有与数据库的通信都将使用该 repository 完成。
 
-通过运行以下命令创建一个Repository:
+通过运行以下命令创建一个Repository:
 
 ```shell
 $ mix ecto.gen.repo -r Friends.Repo
