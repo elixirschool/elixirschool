@@ -129,7 +129,7 @@ iex> 10 / 5
 2.0
 ```
 
-Nếu bạn cần chia số Integer hoặc tìm số thừa, Elixir có 2 hàm hữu dụng để thực hiện:
+Nếu bạn cần chia số nguyên hoặc tìm số thừa, Elixir có 2 hàm hữu dụng để thực hiện:
 
 ```elixir
 iex> div(10, 5)
@@ -138,7 +138,7 @@ iex> rem(10, 3)
 1
 ```
 
-### Boolean (Luận lý Boole)
+### Boolean (Luận lý Boolean)
 
 Elixir cung cấp luận tử `||`, `&&`, and `!`, chúng hỗ trợ các kiểu dữ liệu sau:
 
@@ -189,7 +189,7 @@ iex> 2 <= 3
 true
 ```
 
-Nếu muốn so sánh kĩ số Float hay số Integer, sử dụng `===`:
+Nếu muốn so sánh có xét đến số thực hay số nguyên, sử dụng `===`:
 
 ```elixir
 iex> 2 == 2.0
@@ -215,7 +215,7 @@ false
 
 ### String Interpolation (Chèn chuỗi)
 
-Nếu bạn đã từng sử dụng qua Ruby, chèn vào một String với Elixir rất giống:
+Nếu bạn đã từng sử dụng qua Ruby, cách để chèn vào một chuỗi trong Elixir rất tương tự:
 
 ```elixir
 iex> name = "Sean"
@@ -223,9 +223,9 @@ iex> "Hello #{name}"
 "Hello Sean"
 ```
 
-### Sâu nối String
+### String Concat (Nối chuỗi)
 
-Dùng `<>` để xâu các String lại với nhau:
+Dùng `<>` để nối chuỗi lại với nhau:
 
 ```elixir
 iex> name = "Sean"
