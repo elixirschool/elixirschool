@@ -1,0 +1,32 @@
+---
+name: Continuous Integration
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+  push:
+    branches:
+      - master
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout School House
+        uses: actions/checkout@v2
+        with:
+          repository: elixirschool/school_house
+      - name: Checkout Content
+        uses: actions/checkout@v2
+        with:
+          path: content
+      - run: mv content/images assets/static/images
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: 24
+          elixir-version: 1.12
+      - run: mix deps.get
+      - run: mix compile
