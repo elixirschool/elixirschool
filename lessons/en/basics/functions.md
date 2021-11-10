@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.3.0",
   title: "Functions",
   excerpt: """
   In Elixir and many functional languages, functions are first class citizens.
