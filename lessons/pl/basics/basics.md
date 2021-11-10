@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.3.0",
   title: "Podstawy",
   excerpt: """
   Przygotowanie środowiska, podstawowe typy danych i operacje.
@@ -11,25 +11,27 @@
 
 ### Instalacja
 
-Proces instalacji środowiska dla poszczególnych systemów operacyjnych jest opisany, w języku angielskim, na stronie Elixir-lang.org w sekcji [Installing Elixir](http://elixir-lang.org/install.html).
+Proces instalacji środowiska dla poszczególnych systemów operacyjnych jest opisany, w języku angielskim, na stronie elixir-lang.org w sekcji [Installing Elixir](http://elixir-lang.org/install.html).
 
 Po zakończeniu procesu instalacji możemy w łatwy sposób sprawdzić, którą wersję zainstalowaliśmy:
 
-     % elixir -v
-     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+    % elixir -v
+    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-     Elixir {{ site.elixir.version }}
+    Elixir {{ site.elixir.version }}
 
 ### Tryb interaktywny
 
-W Elixirze dostępna jest interaktywna powłoka `iex`, która pozwala nam na uruchamianie kodu w konsoli.   
+W Elixirze dostępna jest interaktywna powłoka `iex`, która pozwala nam na bieżąco uruchamiać kod w konsoli.
 
-By ją uruchomić wpisz w wierszu poleceń `iex`:
+By ją uruchomić, wpisz w wierszu poleceń `iex`:
 
 	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
+
+Uwaga: W Windows PowerShell musisz wpisać `iex.bat`.
 
 Spróbujmy wykonać kilka prostych operacji:
 
@@ -42,20 +44,21 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-Nie martw się, jeśli nie rozumiesz jeszcze wszystkich wyrażeń. Mamy nadzieję, że zrozumiesz ideę.
+Nie martw się, jeśli nie rozumiesz jeszcze wszystkich wyrażeń.
+Mamy nadzieję, że zrozumiesz ideę.
 
 ## Podstawowe typy danych
 
 ### Liczby całkowite
 
-ang. _Integer_
+ang. _integer_
 
 ```elixir
 iex> 255
 255
 ```
 
-Elixir pozwala też na używanie liczb w notacji binarnej, ósemkowej i szesnastkowej:  
+Elixir pozwala też na używanie liczb w notacji binarnej, ósemkowej i szesnastkowej:
 
 ```elixir
 iex> 0b0110
@@ -68,7 +71,7 @@ iex> 0x1F
 
 ### Liczby zmiennoprzecinkowe
 
-W Elixirze liczby zmiennoprzecinkowe (ang. _float_) oznaczamy pojedynczą kropką; mają one 64 bitową precyzję oraz możemy użyć notacji z `e` do wyrażenia potęg:
+W Elixirze liczby zmiennoprzecinkowe (ang. _float_) oznaczamy pojedynczą kropką; mają one 64-bitową precyzję oraz możemy użyć notacji z `e` do wyrażenia potęg:
 
 ```elixir
 iex> 3.14
@@ -82,7 +85,7 @@ iex> 1.0e-10
 
 ### Wartości logiczne
 
-Wartości logiczne (ang. _Boolean_) są reprezentowane przez `true` dla prawdy i `false` dla fałszu; każda wartość, innego typu, będzie interpretowana jako prawda poza `false` i `nil`:  
+Wartości logiczne (ang. _boolean_) są reprezentowane przez `true` dla prawdy i `false` dla fałszu; każda wartość, innego typu, będzie interpretowana jako prawda poza `false` i `nil`:
 
 ```elixir
 iex> true
@@ -93,7 +96,8 @@ false
 
 ### Atomy
 
-Atomy są to stałe, których nazwa jest jednocześnie ich wartością. Jeżeli masz doświadczenie z językiem Ruby to atomy są tym samym co Symbole:
+Atomy (ang. _atoms_) są to stałe, których nazwa jest jednocześnie ich wartością.
+Jeżeli masz doświadczenie z językiem Ruby, to atomy są tym samym co Symbole:
 
 ```elixir
 iex> :foo
@@ -113,7 +117,8 @@ iex> :true === true
 true
 ```
 
-Nazwy modułów w Elixirze są atomami. Dla przykładu `MyApp.MyModule` jest poprawnym atomem nawet wtedy, gdy moduł o takiej nazwie nie istnieje.
+Nazwy modułów w Elixirze również są atomami.
+Dla przykładu `MyApp.MyModule` jest poprawnym atomem nawet wtedy, gdy moduł o takiej nazwie nie istnieje.
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
@@ -129,7 +134,7 @@ iex> :crypto.strong_rand_bytes 3
 
 ### Ciągi znaków
 
-Ciągi znaków (ang. _String_) w Elixirze są reprezentowane w kodowaniu UTF-8 i otoczone znakiem cudzysłowu:
+Ciągi znaków (ang. _string_) w Elixirze są reprezentowane w kodowaniu UTF-8 i otoczone znakiem cudzysłowu:
 
 ```elixir
 iex> "Hello"
@@ -138,7 +143,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-W ciągu znaków można używać zarówno znaków ucieczki jak i tworzyć ciągi w wielu liniach:
+W ciągu znaków można używać zarówno znaków ucieczki, jak i tworzyć ciągi w wielu liniach:
 
 ```elixir
 iex> "foo
@@ -155,7 +160,8 @@ Więcej na ten temat dowiemy się, kiedy poznamy [kolekcje](/pl/lessons/basics/c
 
 ### Arytmetyczne
 
-Elixir oczywiście wspiera podstawowe operatory `+`, `-`, `*` i`/`.  Ważne jest, że operacja `/` zawsze zwróci liczbę zmiennoprzecinkową:
+Elixir oczywiście wspiera podstawowe operatory `+`, `-`, `*` i `/`.
+Ważne jest, że operacja `/` zawsze zwróci liczbę zmiennoprzecinkową:
 
 ```elixir
 iex> 2 + 2
@@ -168,7 +174,7 @@ iex> 10 / 5
 2.0
 ```
 
-Jeżeli jednak potrzebujesz dzielenia liczb całkowitych, albo reszty z dzielenia, Elixir udostępnia dwie funkcje do obsługi tych działań:
+Jeżeli jednak potrzebujesz dzielenia liczb całkowitych albo reszty z dzielenia (tj. modulo), Elixir udostępnia dwie funkcje do obsługi tych działań:
 
 ```elixir
 iex> div(10, 5)
@@ -179,7 +185,8 @@ iex> rem(10, 3)
 
 ### Logiczne
 
-Elixir posiada operatory logiczne `||`, `&&` i `!`. Wspierają one wszystkie typy:
+Elixir posiada operatory logiczne `||`, `&&` i `!`.
+Wspierają one wszystkie typy:
 
 ```elixir
 iex> -20 || true
@@ -230,7 +237,7 @@ iex> 2 <= 3
 true
 ```
 
-Operator `===` porównuje wartość i typ, na przykład:
+Dla ścisłego porównania liczb całkowitych i zmiennoprzecinkowych użyj operatora `===`:
 
 ```elixir
 iex> 2 == 2.0
@@ -239,7 +246,8 @@ iex> 2 === 2.0
 false
 ```
 
-Ważną cechą Elixira jest to, że można porównać zmienne dowolnego typu, co jest szczególnie użyteczne przy sortowaniu. Nie musimy pamiętać kolejności przy sortowaniu, ale warto jest by mieć to na uwadze:
+Ważną cechą Elixira jest to, że można porównać zmienne dowolnego typu, co jest szczególnie użyteczne przy sortowaniu.
+Nie musimy pamiętać kolejności przy sortowaniu, ale warto mieć to na uwadze:
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
@@ -256,7 +264,7 @@ false
 
 ### Interpolacja ciągów znaków
 
-Jeżeli używałeś Rubiego to interpolacja ciągów znaków w Elixirze wygląda tak samo:
+Jeżeli używałeś Ruby to interpolacja ciągów znaków w Elixirze będzie wyglądać znajomo:
 
 ```elixir
 iex> name = "Sean"
