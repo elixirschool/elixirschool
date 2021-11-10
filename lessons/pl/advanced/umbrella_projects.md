@@ -1,15 +1,19 @@
 %{
-  version: "0.9.1",
+  version: "1.0.3",
   title: "Projekty zbiorcze",
   excerpt: """
-  Z czasem projekt może stać się duży, naprawdę duży. Mix pozwala nam na podzielenie naszego projektu na mniejsze, łatwiejsze w utrzymaniu i zarządzaniu. Projekty, które składają się z wielu mniejszych pod projektów, nazywamy projektami zbiorczymi albo po angielsku _umbrella project_.
+  Z czasem projekt może stać się duży, naprawdę duży.
+  Mix pozwala nam na podzielenie naszego projektu na mniejsze aplikacje, łatwiejsze w utrzymaniu i zarządzaniu.
+  Projekty, które składają się z wielu mniejszych podprojektów, nazywamy projektami zbiorczymi albo — po angielsku — _umbrella projects_.
   """
 }
 ---
 
 ## Wprowadzenie
 
-Tworzenie projektu zbiorczego przebiega prawie tak samo, jak zwykłego, a jedyną różnicą jest flaga `--umbrella`. W naszym przykładzie stworzymy *powłokę* na potrzeby narzędzia do nauki maszynowej. Dlaczego właśnie nauka maszynowa? A czemu by nie? Tego typu projekty zawierają zazwyczaj wiele algorytmów i funkcji narzędziowych.
+Tworzenie projektu zbiorczego przebiega prawie tak samo, jak zwykłego, jedyną różnicą jest flaga `--umbrella`.
+W naszym przykładzie stworzymy *powłokę* na potrzeby narzędzia do uczenia maszynowego.
+Dlaczego właśnie uczenie maszynowe? A dlaczego nie? Tego typu projekty zawierają zazwyczaj wiele algorytmów uczenia i różnych użytkowych funkcji.
 
 ```shell
 $ mix new machine_learning_toolkit --umbrella
@@ -36,8 +40,8 @@ for each application in the apps/ directory.
 
 Jak widać po wpisach w konsoli, Mix stworzył niewielki szkielet projektu zawierający dwa katalogi:
 
-  - `apps/` – gdzie będą znajdować się projekty potomne.
-  - `config/` – gdzie przechowywana jest konfiguracja projektu zbiorczego.
+  - `apps/` — gdzie będą znajdować się podprojekty,
+  - `config/` — gdzie przechowywana jest konfiguracja projektu zbiorczego.
 
 
 ## Projekty potomne
@@ -104,7 +108,7 @@ You can use "mix" to compile it, test it, and more:
 Run "mix help" for more commands.
 ```
 
-Nasze drzewo katalogów powinno wyglądać tak:
+Nasze drzewo katalogów powinno wyglądać teraz tak:
 
 ```shell
 $ tree
@@ -113,8 +117,6 @@ $ tree
 ├── apps
 │   ├── datasets
 │   │   ├── README.md
-│   │   ├── config
-│   │   │   └── config.exs
 │   │   ├── lib
 │   │   │   └── datasets.ex
 │   │   ├── mix.exs
@@ -123,8 +125,6 @@ $ tree
 │   │       └── test_helper.exs
 │   ├── svm
 │   │   ├── README.md
-│   │   ├── config
-│   │   │   └── config.exs
 │   │   ├── lib
 │   │   │   └── svm.ex
 │   │   ├── mix.exs
@@ -133,8 +133,6 @@ $ tree
 │   │       └── test_helper.exs
 │   └── utilities
 │       ├── README.md
-│       ├── config
-│       │   └── config.exs
 │       ├── lib
 │       │   └── utilities.ex
 │       ├── mix.exs
@@ -146,7 +144,8 @@ $ tree
 └── mix.exs
 ```
 
-Jeżeli teraz wrócimy do katalogu projektu zbiorczego, będziemy mogli zobaczyć jak działają typowe zadania mixa jak kompilacja. Jako że projekty potomne to zwyczajne aplikacje to zawsze możemy też wejść do ich katalogów i bez żadnych problemów wywołać tam zadania mixa.
+Jeżeli wrócimy do katalogu projektu zbiorczego, będziemy mogli zobaczyć jak działają typowe zadania Mixa, takie jak kompilacja.
+Ponieważ projekty potomne to zwyczajne aplikacje, zawsze możemy też wejść do ich katalogów i bez żadnych problemów wywołać tam wszystkie rzeczy, które zwykle udostępnia nam Mix.
 
 ```bash
 $ mix compile
@@ -173,7 +172,9 @@ Consolidated Inspect
 
 ## IEx
 
-Jeżeli myślisz, że praca z projektami zbiorczymi w IEx różni się w jakiś sposób od pracy ze zwykłymi projektami, to jesteś w błędzie! Przejdźmy do głównego katalogu projektu i uruchommy IEx `iex -S mix` i już możemy pracować z projektem bez żadnych przeszkód. Na przykład zmieńmy zawartości pliku `apps/datasets/lib/datasets.ex`.
+Możesz pomyśleć, że interakcja w IEx z aplikacjami w projekcie zbiorczym będzie wyglądać nieco inaczej niż zwykle.
+Cóż — wierz lub nie, ale zupełnie tak nie jest! Jeśli przejdziemy do głównego katalogu projektu i uruchomimy tam IEx za pomocą komendy `ies -S mix`, możemy pracować ze wszystkimi podprojektami bez najmniejszych przeszkód.
+Dla prostego przykładu możemy zmienić zwartość pliku `apps/datasets/lib/datasets.ex`.
 
 ```elixir
 defmodule Datasets do
@@ -185,7 +186,7 @@ end
 
 ```shell
 $ iex -S mix
-Erlang/OTP 18 [erts-7.2.1] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 ==> datasets
 Compiled lib/datasets.ex
@@ -198,5 +199,6 @@ Consolidated Inspect
 Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
 iex> Datasets.hello
-:world
+Hello, I'm the datasets
+:ok
 ```
