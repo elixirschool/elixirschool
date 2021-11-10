@@ -2,38 +2,38 @@
 # Order is important. The last matching pattern takes the most precedence.
 
 # Default owners for everything in the repo.
-*        @elixirschool/developers
+*        @elixirschool/english
 
-en/      @elixirschool/english
+lessons/en/      @elixirschool/english
 
-es/      @elixirschool/spanish
+lessons/es/      @elixirschool/spanish
 
-fr/      @elixirschool/french
+lessons/fr/      @elixirschool/french
 
-gr/      @elixirschool/greek
+lessons/el/      @elixirschool/greek
 
-id/      @elixirschool/indonesian
+lessons/id/      @elixirschool/indonesian
 
-it/      @elixirschool/italian
+lessons/it/      @elixirschool/italian
 
-ja/      @elixirschool/japanese
+lessons/ja/      @elixirschool/japanese
 
-ko/      @elixirschool/korean
+lessons/ko/      @elixirschool/korean
 
-pl/      @elixirschool/polish
+lessons/pl/      @elixirschool/polish
 
-pt/      @elixirschool/portuguese
+lessons/pt/      @elixirschool/portuguese
 
-ru/      @elixirschool/russian
+lessons/ru/      @elixirschool/russian
 
-sk/      @elixirschool/slovak
+lessons/sk/      @elixirschool/slovak
 
-th/      @elixirschool/thai
+lessons/th/      @elixirschool/thai
 
-uk/      @elixirschool/ukrainian
+lessons/uk/      @elixirschool/ukrainian
 
-vi/      @elixirschool/vietnamese
+lessons/vi/      @elixirschool/vietnamese
 
-zh-hans/ @elixirschool/chinese
+lessons/zh-hans/ @elixirschool/chinese
 
-zh-hant/ @elixirschool/traditional-chinese
+lessons/zh-hant/ @elixirschool/traditional-chinese

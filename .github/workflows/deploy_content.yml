@@ -4,7 +4,7 @@ name: School House Deploy
 on:
   push:
     branches:
-      - content-only-changes
+      - master
 
 jobs:
   deploy:
