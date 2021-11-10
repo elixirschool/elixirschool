@@ -1,15 +1,17 @@
 %{
-  version: "0.9.0",
+  version: "1.1.0",
   title: "Składanie kolekcji",
   excerpt: """
-  Składanie list (ang. list comprehensions), to lukier składniowy pozwalający na wygodniejszą pracę z kolekcjami i danymi przeliczalnymi. W tej lekcji przyjrzymy się jak mechanizm ten, ułatwia przetwarzanie oraz tworzenie kolekcji na bazie już istniejących.
+  Składanie list (ang. list comprehensions) to lukier składniowy, pozwalający na wygodniejszą pracę z kolekcjami i danymi typu wyliczeniowego.
+  W tej lekcji przyjrzymy się temu, jak możemy użyć tego mechanizmu do iterowania po kolekcjach i generowania ich.
   """
 }
 ---
 
 ## Podstawy
 
-Najczęściej składanie list używane jest do tworzenia bardziej zwięzłego kodu z wykorzystaniem `Enum` oraz `Stream`. Przyjrzyjmy się prostemu porównaniu, a następnie omówmy jego elementy:
+Najczęściej składanie list używane jest do tworzenia bardziej zwięzłego kodu do iterowania w `Enum` oraz `Stream`.
+Przyjrzyjmy się prostemu przykładowi składania kolekcji, a następnie omówmy jego elementy:
 
 ```elixir
 iex> list = [1, 2, 3, 4, 5]
@@ -17,9 +19,12 @@ iex> for x <- list, do: x*x
 [1, 4, 9, 16, 25]
 ```
 
-Pierwsze co widać to użycie słowa kluczowego `for` i generatora. Czym jest generator?  Generatorem nazywamy wyrażenie `x <- [1, 2, 3, 4]` znajdujące się w liście składanej. Odpowiada ono za dostarczenie kolejnych wartości.
+Pierwsze co możemy zauważyć, to użycie słowa kluczowego `for` i generatora.
+Czym jest generator?
+Generatorem nazywamy wyrażenie `x <- [1, 2, 3, 4]` znajdujące się w liście składanej.
+Odpowiada ono za generowanie kolejnych wartości.
 
-Oczywiście składania można stosować nie tylko do list, ale do wszystkich kolekcji i danych binarnych:
+Oczywiście składanie można stosować nie tylko do list, ale do wszystkich danych typu wyliczeniowego (ang. _enumerables_).
 
 ```elixir
 # Listy asocjacyjne
@@ -35,15 +40,15 @@ iex> for <<c <- "hello">>, do: <<c>>
 ["h", "e", "l", "l", "o"]
 ```
 
-Jak zapewne zauważyłeś, generatory opierają się o dopasowanie wzorców, by przypisać dane do zmiennej po lewej stronie. Jeżeli jakiś element nie zostanie dopasowany, to jest po prostu ignorowany:
+Jak zapewne zauważyłeś, generatory opierają się o dopasowanie wzorców, by przypisać dane do zmiennej po lewej stronie.
+Jeżeli jakiś element nie zostanie dopasowany, to jest po prostu ignorowany:
 
 ```elixir
-iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], 
-...> do: val
+iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], do: val
 ["Hello", "World"]
 ```
 
-Możliwe jest użycie wielu generatorów naraz, co trochę przypomina zagnieżdżanie pętli:
+Możliwe jest użycie wielu generatorów naraz, co może trochę przypominać zagnieżdżone pętle:
 
 ```elixir
 iex> list = [1, 2, 3, 4]
@@ -53,7 +58,7 @@ iex> for n <- list, times <- 1..n do
 ["*", "*", "**", "*", "**", "***", "*", "**", "***", "****"]
 ```
 
-By lepiej zilustrować to zachowanie, użyjmy `IO.puts` by wyświetlić wartości z dwóch generatorów:
+By lepiej zilustrować to zachowanie, użyjmy `IO.puts`, by wyświetlić wartości z dwóch generatorów:
 
 ```elixir
 iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
@@ -69,20 +74,26 @@ iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 4 - 4
 ```
 
-Składanie list, to tzw. lukier składniowy i powinno być stosowane tylko w razie potrzeby.
+Składanie list to tzw. lukier składniowy i powinno być stosowane tylko wtedy, kiedy faktycznie jest potrzebne.
 
-## Filtrowanie
+## Filtry
 
-O filtrowaniu możemy myśleć jak o strażnikach dla odwzorowania. Gdy filtr zwraca wartość `false` lub `nil` to wartość ta jest wyłączana z przetwarzania przez odwzorowanie. Przefiltrujmy pewien zakres liczb tak, by uzyskać tylko liczby  parzyste:
+O filtrach możemy myśleć jak o strażnikach dla składania list.
+Gdy filtr zwraca wartość `false` lub `nil`, wartość ta jest wyłączana z ostatecznej listy.
+Przeiterujmy po liście, biorąc pod uwagę jedynie liczby parzyste.
+By sprawdzić parzystość liczby, użyjemy funkcji `is_even/1` z modułu Integer:
 
 ```elixir
+import Integer
 iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
-Filtry, podobnie jak generatory, możemy łączyć. Przefiltrujmy liczby tak, by uzyskać tylko te, które są parzyste i podzielne przez trzy:
+Filtry, podobnie jak generatory, możemy łączyć.
+Rozszerzmy nasz zakres liczb, a następnie przefiltrujmy go tak, by znaleźć liczby, które są jednocześnie parzyste i podzielne przez 3:
 
 ```elixir
+import Integer
 iex> for x <- 1..100,
 ...>   is_even(x),
 ...>   rem(x, 3) == 0, do: x
@@ -91,21 +102,23 @@ iex> for x <- 1..100,
 
 ## Użycie :into
 
-A co jeżeli chcemy otrzymać coś innego niż listę?  W tym celu służy`:into`! Ogólna zasada jest taka, że `:into` akceptuje jako argument dowolną strukturę implementującą protokół `Collectable`.
+Co jeżeli chcemy otrzymać coś innego niż listę?
+Po to mamy opcję `:into`!
+Ogólna zasada jest taka, że `:into` akceptuje jako argument dowolną strukturę implementującą protokół `Collectable`.
 
-Przykład użycia `:into`, by stworzyć mapę z listy asocjacyjnej:
+Użyjmy`:into`, by stworzyć mapę z listy asocjacyjnej:
 
 ```elixir
 iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-Jako że binarne ciągi znaków są przeliczalne, możemy zatem użyć składania w połączeniu z `:into` by stworzyć ciąg 
-znaków:
+Jako że binarne ciągi znaków są kolekcjami, możemy użyć składania w połączeniu z `:into` by stworzyć ciąg znaków:
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-I to wszystko! Składania są mechanizmem pozwalającym na tworzenie zwięzłego kodu do obsługi kolekcji.  
+I to wszystko!
+Składanie list jest mechanizmem pozwalającym na tworzenie zwięzłego kodu do obsługi kolekcji.
