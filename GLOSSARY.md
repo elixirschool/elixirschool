@@ -20,7 +20,10 @@ Class names and proper nouns do not get translated.
 - [Glossary - Portuguese](#glossary-portuguese)
   - [Elixir-related terms](#portuguese-elixir-related-terms)
   - [CS terms](#portuguese-cs-terms)
-
+- [Glossary - Bengali](#glossary-bengali)
+  - [General Terms](#bengali-general-terms)
+  - [Elixir-related terms](#bengali-elixir-related-terms)
+  - [CS terms](#bengali-cs-terms)
 ### <a name="glossary-russian"></a> Glossary - Russian
 
 #### <a name="russian-elixir-related-terms"></a> Elixir-related terms
@@ -185,3 +188,20 @@ Class names and proper nouns do not get translated.
 - standard library - biblioteca padrão
 - tail - cauda
 - worker - operário
+
+### <a name="glossary-bengali"></a> Glossary - Bengali
+
+#### <a name="bengali-general-terms"></a> General Terms
+
+- Note - বিঃদ্রঃ
+- NB - বিঃদ্রঃ
+
+#### <a name="bengali-elixir-related-terms"></a> Elixir-related terms
+
+- Tuple - টাপল
+- iex - iex
+
+
+#### <a name="bengali-cs-terms"></a> CS terms
+
+- value - ভ্যালু
