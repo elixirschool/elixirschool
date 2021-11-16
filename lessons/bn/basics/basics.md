@@ -31,7 +31,7 @@
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
 
-বি:দ্র: উন্ডোজপাওয়ার শেলে আপনাকে `iex.bat` টাইপ করতে হবে।
+বিঃদ্রঃ উন্ডোজপাওয়ার শেলে আপনাকে `iex.bat` টাইপ করতে হবে।
 
 আসুন আমরা কিছু এক্সপ্রেশন টাইপ করি এবং সেগুলোর আউটপুট দেখে নেই:
 
@@ -212,7 +212,7 @@ iex> not 42
 ** (ArgumentError) argument error
 ```
 
-বি:দ্র: এলিক্সির এর `and` এবং `or` আসলে আর্ল্যাং এর `andalso` এবং `orelse` অপারেটরে ম্যাপ করা।
+বিঃদ্রঃ এলিক্সির এর `and` এবং `or` আসলে আর্ল্যাং এর `andalso` এবং `orelse` অপারেটরে ম্যাপ করা।
 
 ### তুলনা
 
