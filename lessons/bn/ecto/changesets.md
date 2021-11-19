@@ -91,7 +91,7 @@ iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{name: ""})
 
 ভ্যালিডেশান এর জন্যে এক্টোতে অনেকগুলো বিল্ট-ইন ফাংশন রয়েছে।
 
-আমরা `Ecto.Changeset` বহুলভাবে ব্যবহার করতে যাচ্ছি, তাই আমরা `Ecto.Changeset` কে আমাদের `person.ex` মডিউলে ইম্পোর্ট করবো, যেটাতে আমাদের স্কিমাও রয়েছে:
+আমরা `Ecto.Changeset` অনেক ব্যবহার করব, তাই আমরা `Ecto.Changeset` কে আমাদের `person.ex` মডিউলে ইম্পোর্ট করবো, যেটাতে আমাদের স্কিমাও রয়েছে:
 
 ```elixir
 defmodule Friends.Person do
