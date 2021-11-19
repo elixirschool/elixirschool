@@ -5,7 +5,7 @@ tags: ["ecto"],
 date: ~D[2021-11-18],
 title: "TIL: Cleaner queries with Ecto `map`",
 excerpt: """
-How learning more about the Ecto.Query module can help you write cleaner select queries.
+Today I learned how to write cleaner `Ecto` select queries with the help of `Ecto.Query.map`.
 """
 }
 
@@ -13,7 +13,7 @@ How learning more about the Ecto.Query module can help you write cleaner select 
 
 # TIL: Cleaner queries with Ecto `map`
 
-It's not unusual for database queries to avoid select * when we can use an index (say, :id) and have a performance gain.
+When working with large tables, is a common practice to avoid using `SELECT *` to make a beter use of computer resources and database indices.
 
 So, instead of writing:
 
@@ -22,7 +22,7 @@ query = from p in Post
 Repo.all(query)
 ```
 
-And getting back more data than we would care using, we can explicitly tell Ecto (and the DB) which columns we want it to return us:
+To avoid getting back more data than we need, we can explicitly tell Ecto (and the DB) which columns we want it to return us:
 
 ```elixir
 query = from p in Post, select: %{id: p.id, title: p.title, category_id: p.category_id}
@@ -31,7 +31,7 @@ Repo.all(query)
 
 But why do we have to be so explicit and duplicate keys and values? Isn't there a better way?
 
-It turns out Ecto.Query already solved this for us with the map/2 function. So this:
+It turns out Ecto.Query already solved this for us with the `map/2` function. So this:
 
 ```elixir
 query = from p in Post, select: %{id: p.id, title: p.title, category_id: p.category_id}
@@ -69,6 +69,8 @@ def filter_posts_by_id(posts_ids, fields \\ [:id, :title, :category_id]) do
     |> Repo.all()
 end
 ```
+
+Thanks to the `Ecto.Query.map/2` function and the use of pipes, we end up with clean, composable and highly readable code.
 
 Enjoy Ecto!
 
