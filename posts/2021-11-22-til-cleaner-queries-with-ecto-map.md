@@ -2,7 +2,7 @@
 author: "Yuri Oliveira",
 author_link: "https://github.com/yuriploc",
 tags: ["ecto"],
-date: ~D[2021-11-18],
+date: ~D[2021-11-22],
 title: "TIL: Cleaner queries with Ecto `map`",
 excerpt: """
 Today I learned how to write cleaner `Ecto` select queries with the help of `Ecto.Query.map`.
