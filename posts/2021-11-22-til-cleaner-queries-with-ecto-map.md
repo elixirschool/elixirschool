@@ -13,7 +13,7 @@ Today I learned how to write cleaner `Ecto` select queries with the help of `Ect
 
 # TIL: Cleaner queries with Ecto `map`
 
-When working with large tables, is a common practice to avoid using `SELECT *` to make a beter use of computer resources and database indices.
+When working with large tables, a common practice avoids using `SELECT *` to make better use of computer resources and database indices.
 
 So, instead of writing:
 
