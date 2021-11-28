@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.3.0",
   title: "Συναρτήσεις",
   excerpt: """
   Στην Elixir όπως και σε άλλες συναρτησιακές γλώσσες, οι συναρτήσεις είναι απόλυτα υποστηριζόμενες.
@@ -380,21 +380,18 @@ defmodule Greeter do
   defp phrase("gr"), do: "Γειά σου, "
 end
 
-** (CompileError) iex:31: definitions with multiple clauses and default values require a header.
+** (CompileError) iex:8: def hello/2 defines defaults multiple times. Elixir allows defaults to be declared once per definition.
 Instead of:
 
     def foo(:first_clause, b \\ :default) do ... end
-    def foo(:second_clause, b) do ... end
+    def foo(:second_clause, b \\ :default) do ... end
 
 one should write:
 
     def foo(a, b \\ :default)
     def foo(:first_clause, b) do ... end
     def foo(:second_clause, b) do ... end
-
-def hello/2 has multiple clauses and defines defaults in one or more clauses
-    iex:31: (module)
-```
+    ```
 
 Στην Elixir δεν αρέσουν οι προκαθορισμένες παράμετροι σε πολλαπλά αντιπαραβαλόμενες συναρτήσεις, μπορεί να δημιουργήσει σύγχυση.
 Για να το χειριστούμε προσθέτουμε μια κεφαλή συνάρτησης με τις προκαθορισμένες παράμετρους μας:
@@ -414,12 +411,12 @@ defmodule Greeter do
   end
 
   defp phrase("en"), do: "Hello, "
-  defp phrase("es"), do: "Γειά σου, "
+  defp phrase("el"), do: "Γειά σου, "
 end
 
 iex> Greeter.hello ["Sean", "Steve"]
 "Hello, Sean, Steve"
 
-iex> Greeter.hello ["Sean", "Steve"], "gr"
+iex> Greeter.hello ["Sean", "Steve"], "el"
 "Γειά σου, Sean, Steve"
 ```
