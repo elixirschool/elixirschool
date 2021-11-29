@@ -1,5 +1,5 @@
 %{
-  version: "1.1.2",
+  version: "1.2.0",
   title: "Data i czas",
   excerpt: """
   Obsługa czasu w Elixirze.

@@ -1,5 +1,5 @@
 %{
-  version: "1.1.2",
+  version: "1.2.0",
   title: "Date and Time",
   excerpt: """
   Working with time in Elixir.
