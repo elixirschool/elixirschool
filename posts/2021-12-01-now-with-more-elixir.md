@@ -2,7 +2,7 @@
 author: "Sean Callan",
 author_link: "https://github.com/doomspork",
 tags: ["Announcement"],
-date: ~D[2021-11-09],
+date: ~D[2021-12-01],
 title: "Now With More Elixir!",
 excerpt: """
 How Elixir School migrated from Jekyll to a Phoenix powered site
