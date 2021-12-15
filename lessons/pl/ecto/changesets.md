@@ -4,7 +4,7 @@
   excerpt: """
   W celu wstawienia danych do bazy, ich zmiany lub usunięcia, funkcje `Ecto.Repo.insert/2`, `update/2` i `delete/2` wymagają zestawu zmian — _changesetu_ — jako pierwszego parametru. Ale czym są changesety?
 
-  Niemal każdy programista zna problem sprawdzania poprawności danych wejściowych pod kątem potencjalnych błędów — chcemy mieć pewność, że dane są poprawne, zanim spróbujemy ich użyć do naszych celów.
+  Niemal każdy programista zna problem sprawdzania danych wejściowych pod kątem potencjalnych błędów — chcemy mieć pewność, że dane są poprawne, zanim spróbujemy ich użyć do naszych celów.
 
   Ecto dostarcza kompletne rozwiązanie do pracy ze zmianami danych — moduł i strukturę `Changeset`.
   W tej lekcji dowiemy się więcej na ten temat i nauczymy się, jak weryfikować integralność danych, zanim zapiszemy je do bazy.
@@ -23,7 +23,7 @@ iex> %Ecto.Changeset{}
 
 Jak możesz zauważyć, ma ona kilka potencjalnie przydatnych pól, jednak wszystkie z nich są w tej chwili puste.
 
-Aby changeset był naprawdę użyteczny, podczas jego tworzenia musimy przedstawić projekt tego, jak wyglądają dane, które chcemy zmodyfikować.
+Aby changeset był naprawdę użyteczny, podczas jego tworzenia musimy przedstawić informację, jak wyglądają dane, które chcemy zmodyfikować.
 Cóż może być lepszym narzędziem do tego celu niż stworzone przez nas schematy, które definiują pola i ich typy?
 
 Użyjmy naszego schematu `Friends.Person` z poprzedniej lekcji:
@@ -39,7 +39,7 @@ defmodule Friends.Person do
 end
 ```
 
-Aby utworzyć zestaw zmian dla schematu `Person` użyjemy funkcji `Ecto.Changeset.cast/3`:
+Aby utworzyć zestaw zmian dla schematu `Person`, użyjemy funkcji `Ecto.Changeset.cast/3`:
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
@@ -47,10 +47,10 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
  valid?: true>
 ```
 
-Pierwszym parametrem są oryginalne dane — w tym przypadku początkowa struktura `%Friends.Person{}`.
+Pierwszym parametrem są oryginalne dane — w tym przypadku oryginalna struktura `%Friends.Person{}`.
 Ecto jest wystarczająco mądre, by znaleźć schemat jedynie na podstawie samej struktury.
 Drugie w kolejności są zmiany, których chcemy dokonać — w powyższym przypadku była to jedynie pusta mapa.
-Trzecim parametrem jest to, co czyni funkcję `cast/3` wyjątkową: lista pól, które będą brane pod uwagę, co pozwala nam na kontrolowanie, które pola mogą być zmienione i jednocześnie na ochronę pozostałych z nich.
+Trzecim parametrem jest to, co czyni funkcję `cast/3` wyjątkową: lista pól, które będą brane pod uwagę, co pozwala nam na kontrolowanie, które pola mogą być zmienione wraz z jednoczesną ochroną pozostałych z nich.
 
 ```elixir
 iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [:name, :age])
@@ -72,7 +72,7 @@ Możesz zauważyć, że nowe imię (pole `name`) zostało za drugim razem pomini
 Alternatywą dla `cast/3` jest funkcja `change/2`, która jednak nie pozwala na filtrowanie zmian w taki sposób, jaki umożliwia nam `cast/3`.
 Jest to użyteczne wtedy, gdy ufamy źródłu zmian, albo kiedy zmieniamy dane ręcznie.
 
-Teraz możemy tworzyć zestawy zmian, jednak dopóki nie mamy żadnej walidacji, dowolne zmiany imienia osoby będą akceptowane, więc może się skończyć tak, że imię będzie pustą wartością:
+Teraz możemy tworzyć zestawy zmian, jednak dopóki nie mamy żadnej walidacji, właściwie dowolne zmiany wartości pola `name` będą akceptowane, więc może się skończyć tak, że imię będzie pustą wartością:
 
 ```elixir
 iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{name: ""})
@@ -89,9 +89,9 @@ Ecto mówi, że changeset jest poprawny, ale przecież nie chcemy dopuszczać pu
 
 ## Walidacja
 
-Ecto ma wiele wbudowanych, bardzo pomocnych funkcji do walidacji danych.
+Ecto ma wbudowanych wiele niezwykle pomocnych funkcji do walidacji danych.
 
-Będziemy używać `Ecto.Changeset` w wielu miejscach, więc zaimportujmy go w module zdefiniowanym w `person.ex`, który zawiera również nasz schemat:
+Będziemy używać `Ecto.Changeset` w wielu miejscach, więc zaimportujmy go w module zdefiniowanym w `person.ex`, zawierającym również nasz schemat:
 
 ```elixir
 defmodule Friends.Person do
@@ -107,7 +107,7 @@ end
 
 Teraz możemy używać funkcji `cast/3` bezpośrednio.
 
-Powszechnym jest definiowanie jednej lub kilku funkcji tworzących zestawy zmian dla schematu. Stwórzmy taką — jej parametrami będą struktura i mapa ze zmianami, a zwracany będzie changeset:
+Powszechnym jest definiowanie jednej lub kilku funkcji tworzących zestawy zmian dla schematu. Stwórzmy zatem taką — jej parametrami będą struktura i mapa ze zmianami, a zwracany będzie changeset:
 
 ```elixir
 def changeset(struct, params) do
@@ -127,7 +127,7 @@ end
 ```
 
 Gdy wywołujemy funkcję `Friends.Person.changeset/2` i przekazujemy pustą wartość jako `name`, zestaw zmian nie będzie już poprawny, a na dodatek będzie zawierał pomocny komunikat błędu.
-Uwaga: nie zapomnij wywołać funkcji `recompile()` podczas pracy w konsoli `iex`, w przeciwnym razie zmiany wprowadzone właśnie w kodzie nie będą załadowane.
+Uwaga: jeśli pracujesz w konsoli `iex`, nie zapomnij uruchomić funkcji `recompile()` po wprowadzeniu zmian w kodzie, w przeciwnym razie nie będą one załadowane.
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
@@ -154,7 +154,7 @@ def changeset(struct, params) do
 end
 ```
 
-Możesz spróbować zgadnąć, jaki byłby wynik, gdybyśmy przekazali imię składające się z tylko jednej litery!
+Możesz spróbować zgadnąć, jaki będzie wynik, jeśli przekażemy imię składające się z tylko jednej litery!
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
@@ -170,7 +170,7 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
 >
 ```
 
-Możesz być dla Ciebie zaskakujące, że komunikat błędu zawiera `%{count}` — pomaga to w tłumaczeniu na inne języki; jeśli chcesz pokazywać bezpośrednio błędy użytkownikowi, możesz je uczynić czytelnymi dla ludzi za pomocą funkcji [`traverse_errors/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#traverse_errors/2) — spójrz na przykład w dokumentacji.
+Może być dla Ciebie zaskakujące, że komunikat błędu zawiera `%{count}` — jest to pomocne w tłumaczeniu na inne języki; jeśli chcesz pokazywać bezpośrednio błędy użytkownikowi, możesz je uczynić czytelnymi dla ludzi za pomocą funkcji [`traverse_errors/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#traverse_errors/2) — zapoznaj się z przykładem w dokumentacji.
 
 Niektóre spośród pozostałych walidatorów wbudowanych w `Ecto.Changeset` to:
 
@@ -207,7 +207,7 @@ end
 
 Powyżej wprowadziliśmy dwie nowe funkcje pomocnicze: [`get_field/3`](https://hexdocs.pm/ecto/Ecto.Changeset.html#get_field/3) i [`add_error/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#add_error/4). Nazwy raczej dobrze opisują ich działanie, ale i tak zachęcam do zajrzenia do dokumentacji.
 
-Dobrą praktyką jest, by zwracać zawszze `%Ecto.Changeset{}`, dzięki czemu można potem użyć operatora `|>` i ułatwić dodanie później kolejnych walidacji:
+Dobrą praktyką jest, by w funkcjach tego rodzaju zwracać zawsze `%Ecto.Changeset{}`, dzięki czemu można potem użyć operatora `|>` i ułatwić późniejsze dodawanie kolejnych walidacji:
 
 ```elixir
 def changeset(struct, params) do
@@ -230,7 +230,7 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
 >
 ```
 
-Great, it works! However, there was really no need to implement this function ourselves — the `validate_inclusion/4` function could be used instead; still, you can see how you can add your own errors which should come useful.
+Świetnie, to działa! Tak naprawdę w tym przypadku nie musieliśmy implementować własnej funkcji — zamiast tego mogliśmy użyć `validate_inclusion/4` — jednakże przykład ten pokazał, jak możemy dodawać własne błędy do changesetów, co powinno okazać się przydatne.
 
 ## Programowe dodawanie zmian
 
@@ -274,7 +274,7 @@ iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
 >
 ```
 
-Oddzielne funkcje tworzące changesety dla różnych przypadków użycia (takie jak `registration_changeset/2`) nie są rzeczą rzadką — czasem potrzebna jest pewna elastyczność, by wykonywać jedynie określone walidacje czy filtorwać konkretne parametry.
+Oddzielne funkcje tworzące changesety dla różnych przypadków użycia (takie jak `registration_changeset/2`) nie są rzeczą rzadką — czasem potrzebna jest pewna elastyczność, by wykonywać jedynie określone walidacje czy filtrować konkretne parametry.
 Wymieniona wyżej funkcja może być użyta gdzieś indziej w funkcji `sign_up/1`:
 
 ```elixir
