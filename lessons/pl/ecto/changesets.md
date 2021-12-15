@@ -1,5 +1,5 @@
 %{
-  version: "1.2.2",
+  version: "1.2.3",
   title: "Zestawy zmian",
   excerpt: """
   W celu wstawienia danych do bazy, ich zmiany lub usunięcia, funkcje `Ecto.Repo.insert/2`, `update/2` i `delete/2` wymagają zestawu zmian — _changesetu_ — jako pierwszego parametru. Ale czym są changesety?
