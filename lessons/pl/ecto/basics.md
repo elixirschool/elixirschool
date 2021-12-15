@@ -2,7 +2,7 @@
   version: "2.4.0",
   title: "Podstawy",
   excerpt: """
-  Ecto jest oficjalnym projektem zespołu Elixira, zapewniającym obsługę baz danych wraz z odpowiednim, zintegrowanym językiem. Za pomocą Ecto możemy tworzyć migracje, definiować modele, wstawiać, aktualizować oraz wyszukiwać rekordy w bazie.
+  Ecto jest oficjalnym projektem zespołu Elixira, zapewniającym obsługę baz danych wraz z odpowiednim, zintegrowanym językiem. Za pomocą Ecto możemy tworzyć migracje, definiować schematy, wstawiać, aktualizować oraz wyszukiwać rekordy w bazie.
   """
 }
 ---
@@ -23,7 +23,7 @@ W trakcie tej lekcji omówimy trzy części Ecto:
 
 * repozytorium — dostarcza ono interfejs do naszej bazy, w tym połączenie z nią;
 * migracje — mechanizm do tworzenia, modyfikowania i usuwania tabel i indeksów w bazie;
-* modele — specjalne struktury reprezentujące wpisy w tabelach bazy danych.
+* schematy — specjalne struktury reprezentujące wpisy w tabelach bazy danych.
 
 Zacznijmy od stworzenia aplikacji z drzewem nadzoru:
 
@@ -168,14 +168,14 @@ Wróćmy do wiersza poleceń i uruchommy naszą migrację:
 $ mix ecto.migrate
 ```
 
-### Modele
+### Schematy
 
-Teraz, gdy stworzyliśmy naszą pierwszą tabelę, musimy powiedzieć Ecto nieco więcej na jej temat, co częściowo zrobimy poprzez model (ang. _schema_).
-Model jest modułem definiującym mapowanie do pól w bazie danych.
+Teraz, gdy stworzyliśmy naszą pierwszą tabelę, musimy powiedzieć Ecto nieco więcej na jej temat, co częściowo zrobimy poprzez schematy (ang. _schema_).
+Schemat jest modułem definiującym mapowanie do pól w bazie danych.
 
-Podczas gdy w nazwach tabel Ecto faworyzuje liczbę mnogą, moduł nazywany jest zwykle w liczbie pojedynczej, zatem utwórzmy model `Person` (_osoba_), który będzie towarzyszył naszej tabeli.
+Podczas gdy w nazwach tabel Ecto faworyzuje liczbę mnogą, moduł nazywany jest zwykle w liczbie pojedynczej, zatem utwórzmy schemat `Person` (_osoba_), który będzie towarzyszył naszej tabeli.
 
-Stwórzmy nowy model w pliku `lib/friends/person.ex`:
+Stwórzmy nowy schemat w pliku `lib/friends/person.ex`:
 
 ```elixir
 defmodule Friends.Person do
@@ -188,9 +188,9 @@ defmodule Friends.Person do
 end
 ```
 
-Możemy tu zauważyć, że moduł `Friends.Person` mówi Ecto, że ten model odnosi się do tabeli `people`, która zawiera dwie kolumny: `name` — z typem danych `string`, a także `age` — liczbę całkowitą z zerem jako wartością domyślną.
+Możemy tu zauważyć, że moduł `Friends.Person` mówi Ecto, że ten schemat odnosi się do tabeli `people`, która zawiera dwie kolumny: `name` — z typem danych `string`, a także `age` — liczbę całkowitą z zerem jako wartością domyślną.
 
-Rzućmy okiem na nasz model, otwierając `iex -S mix` i tworząc nową osobę:
+Rzućmy okiem na nasz schemat, otwierając `iex -S mix` i tworząc nową osobę:
 
 ```elixir
 iex> %Friends.Person{}
@@ -218,7 +218,7 @@ iex> name
 "Tom"
 ```
 
-Możemy również zmieniać nasze modele dokładnie tak, jak w dowolnej mapie czy strukturze w Elixirze:
+Możemy również zmieniać nasze schematy dokładnie tak, jak w dowolnej mapie czy strukturze w Elixirze:
 
 ```elixir
 iex> %{person | age: 18}
