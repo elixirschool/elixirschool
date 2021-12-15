@@ -205,7 +205,7 @@ iex> person = %Friends.Person{name: "Tom", age: 11}
 %Friends.Person{age: 11, name: "Tom"}
 ```
 
-Ponieważ modele są po prostu strukturami, możemy wchodzić z nimi w interakcje tak, jak do tego przywykliśmy:
+Ponieważ schematy są po prostu strukturami, możemy wchodzić z nimi w interakcje tak, jak do tego przywykliśmy:
 
 ```elixir
 iex> person.name
