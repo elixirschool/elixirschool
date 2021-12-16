@@ -1,5 +1,5 @@
 %{
-  version: "1.2.2",
+  version: "1.2.3",
   title: "Changesets",
   excerpt: """
   In order to insert, update or delete data from the database, `Ecto.Repo.insert/2`, `update/2` and `delete/2` require a changeset as their first parameter. But what are changesets?
@@ -237,7 +237,7 @@ Great, it works! However, there was really no need to implement this function ou
 Sometimes you want to introduce changes to a changeset manually. The `put_change/3` helper exists for this purpose.
 
 Rather than making the `name` field required, let's allow users to sign up without a name, and call them "Anonymous".
-The function we need will look familiar — it accepts and returns a changeset, just like the `validate_fictional_name/1`  we introduced earlier:
+The function we need will look familiar — it accepts and returns a changeset, just like the `validate_fictional_name/1` we introduced earlier:
 
 ```elixir
 def set_name_if_anonymous(changeset) do
