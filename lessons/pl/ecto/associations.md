@@ -93,7 +93,7 @@ defmodule Friends.Repo.Migrations.CreateCharacters do
 end
 ```
 
-#### Schamat „należy do”
+#### Schemat „należy do”
 
 Również nasz schemat powinien definiować relację „należy do” między postacią i jej filmem.
 
