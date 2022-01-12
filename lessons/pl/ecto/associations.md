@@ -60,7 +60,7 @@ defmodule Friends.Movie do
 end
 ```
 
-Makro `has_many/3` nie dodaje niczego do samej bazy danych, pozwala jednak na użycie klucza obcego z powiązanego schematu — `characters` — by umożliwić nam dostęp do postaci występujących w danym filmie. Umożliwi nam to na wywołanie `movie.characters`.
+Makro `has_many/3` nie dodaje niczego do samej bazy danych, pozwala jednak na użycie klucza obcego z powiązanego schematu — `characters` — by umożliwić nam dostęp do postaci występujących w danym filmie. Pozwoli nam to na wywołanie `movie.characters`.
 
 #### Migracja „belongs to” — „należy do”
 
