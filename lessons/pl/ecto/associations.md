@@ -43,7 +43,7 @@ defmodule Friends.Repo.Migrations.CreateMovies do
 end
 ```
 
-#### Schemat dla relacji „ma wiele”
+#### Schemat dla relacji „posiada wiele”
 
 Dodamy schemat, który określi relację między filmem a jego postaciami.
 
@@ -219,8 +219,7 @@ Wygenerujmy migrację dla tabeli łączącej:
 mix ecto.gen.migration create_movies_actors
 ```
 
-Zaimplementujemy migrację tak, by tabela miała dwa klucze obce.
-Dodany również indeks unikalny, by zapewnić, że dany aktor z danym filmem będzie połączony tylko raz:
+Zaimplementujemy migrację tak, by tabela miała dwa klucze obce. Dodany również indeks unikalny, by zapewnić, że dany aktor z danym filmem będzie połączony tylko raz:
 
 ```elixir
 # priv/migrations/*_create_movies_actors.ex
@@ -272,8 +271,254 @@ defmodule Friends.Actor do
 end
 ```
 
-Mozemy uruchomić migracje:
+Możemy uruchomić migracje:
 
 ```console
 mix ecto.migrate
 ```
+
+## Zapisywanie powiązanych danych
+
+Sposób, w jaki będziemy zapisywać rekordy wraz z ich powiązanymi danymi zależy od rodzaju relacji między tymi rekordami. Zacznijmy od relacji „jeden do wielu”.
+
+### „Należy do”
+
+#### Zapisywanie z użyciem Ecto.build_assoc/3
+
+W relacji „należy do” możemy skorzystać z funkcji Ecto `build_assoc/3`.
+
+[`build_assoc/3`](https://hexdocs.pm/ecto/Ecto.html#build_assoc/3) przyjmuje trzy argumenty:
+
+* strukturę rekordu, który chcemy zapisać,
+* nazwę relacji,
+* wszelkie atrybuty, które chcemy przypisać do powiązanego rekordu, który zapisujemy.
+
+Zapiszmy więc film wraz z jego powiązaną postacią. Najpierw utwórzmy odpowiedni rekord dla filmu:
+
+```elixir
+iex> alias Friends.{Movie, Character, Repo}
+iex> movie = %Movie{title: "Ready Player One", tagline: "Something about video games"}
+
+%Friends.Movie{
+  __meta__: %Ecto.Schema.Metadata<:built, "movies">,
+  actors: %Ecto.Association.NotLoaded<association :actors is not loaded>,
+  characters: %Ecto.Association.NotLoaded<association :characters is not loaded>,
+  distributor: %Ecto.Association.NotLoaded<association :distributor is not loaded>,
+  id: nil,
+  tagline: "Something about video games",
+  title: "Ready Player One"
+}
+
+iex> movie = Repo.insert!(movie)
+```
+
+Teraz zbudujemy strukturę dla postaci występującej w tym filmie i dodamy ją do bazy danych:
+
+```elixir
+iex> character = Ecto.build_assoc(movie, :characters, %{name: "Wade Watts"})
+%Friends.Character{
+  __meta__: %Ecto.Schema.Metadata<:built, "characters">,
+  id: nil,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie_id: 1,
+  name: "Wade Watts"
+}
+iex> Repo.insert!(character)
+%Friends.Character{
+  __meta__: %Ecto.Schema.Metadata<:loaded, "characters">,
+  id: 1,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie_id: 1,
+  name: "Wade Watts"
+}
+```
+
+Zauważ, że skoro makro `has_many/3` w schemacie `Movie` mówi, że film ma wiele _postaci_ — `:characters` — nazwa relacji, którą przekazujemy jako drugi argument funkcji `build_assoc/3` jest właśnie taka: `:characters`. Możesz zobaczyć, że postać, którą właśnie utworzyliśmy, w polu `movie_id` ma poprawnie przypisane ID powiązanego z nią filmu.
+
+Aby użyć `build_assoc/3` do zapisania zwiazanego z filmem dystrybutora, zastosujemy to samo podejście, podając nazwę relacji film-dystrybutor jako drugi argument funkcji `build_assoc/3`:
+
+```elixir
+iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})
+%Friends.Distributor{
+  __meta__: %Ecto.Schema.Metadata<:built, "distributors">,
+  id: nil,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie_id: 1,
+  name: "Netflix"
+}
+iex> Repo.insert!(distributor)
+%Friends.Distributor{
+  __meta__: %Ecto.Schema.Metadata<:loaded, "distributors">,
+  id: 1,
+  movie: %Ecto.Association.NotLoaded<association :movie is not loaded>,
+  movie_id: 1,
+  name: "Netflix"
+}
+```
+
+### Wiele do wielu
+
+#### Saving With Ecto.Changeset.put_assoc/4
+
+Sposób z `build_assoc/3` nie zadziała dla relacji „wiele do wielu”. Wynika to z prostego faktu, że ani tabela filmów, ani tabela aktorów nie zawierają kluczy obcych. Zamiast tego będziemy musieli więc użyć zastawów zmian Ecto (_changesetów_) i funkcji `put_assoc/4`.
+
+Załóżmy, że mamy już w bazie rekord z filmem, który utworzyliśmy wyżej, teraz dodajmy rekord aktora:
+
+```elixir
+iex> alias Friends.Actor
+iex> actor = %Actor{name: "Tyler Sheridan"}
+%Friends.Actor{
+  __meta__: %Ecto.Schema.Metadata<:built, "actors">,
+  id: nil,
+  movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
+  name: "Tyler Sheridan"
+}
+iex> actor = Repo.insert!(actor)
+%Friends.Actor{
+  __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
+  id: 1,
+  movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
+  name: "Tyler Sheridan"
+}
+```
+
+Teraz jesteśmy gotowi, by powiązać nasz film z aktorem poprzez tabelę łączącą.
+
+Zauważ przede wszystkim, że — skoro pracujemy z changesetami — musimy mieć pewność, że nasza struktura `movie` będzie miała wcześniej załadowane powiązane dane. O ładowaniu takich danych powiemy nieco więcej w późniejszym czasie — teraz wystarczy wiedzieć, że możemy ładować powiązane rekordy w taki oto sposób:
+
+```elixir
+iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
+%Friends.Movie{
+ __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  actors: [],
+  characters: [
+    %Friends.Character{
+      __meta__: #Ecto.Schema.Metadata<:loaded, "characters">,
+      id: 1,
+      movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+      movie_id: 1,
+      name: "Wade Watts"
+    }
+  ],
+  distributor: %Friends.Distributor{
+    __meta__: #Ecto.Schema.Metadata<:loaded, "distributors">,
+    id: 1,
+    movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+    movie_id: 1,
+    name: "Netflix"
+  },
+  id: 1,
+  tagline: "Something about video game",
+  title: "Ready Player One"
+}
+```
+
+Teraz utwórzmy changeset dla rekordu naszego filmu:
+
+```elixir
+iex> movie_changeset = Ecto.Changeset.change(movie)
+%Ecto.Changeset<action: nil, changes: %{}, errors: [], data: %Friends.Movie<>,
+ valid?: true>
+```
+
+Nasz changeset przekażemy jako pierwszy argument do funkcji [`Ecto.Changeset.put_assoc/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#put_assoc/4):
+
+```elixir
+iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [actor])
+%Ecto.Changeset<
+  action: nil,
+  changes: %{
+    actors: [
+      %Ecto.Changeset<action: :update, changes: %{}, errors: [],
+       data: %Friends.Actor<>, valid?: true>
+    ]
+  },
+  errors: [],
+  data: %Friends.Movie<>,
+  valid?: true
+>
+```
+
+To daje nam _nowy_ changeset, reprezentujący następującą zmianę: dodaj aktorów z tej listy do danego rekordu filmu.
+
+Na koniec zaktualizujemy rekordy filmu i aktora, używając ostatniego zestawu zmian:
+
+```elixir
+iex> Repo.update!(movie_actors_changeset)
+%Friends.Movie{
+  __meta__: #Ecto.Schema.Metadata<:loaded, "movies">,
+  actors: [
+    %Friends.Actor{
+      __meta__: #Ecto.Schema.Metadata<:loaded, "actors">,
+      id: 1,
+      movies: #Ecto.Association.NotLoaded<association :movies is not loaded>,
+      name: "Tyler Sheridan"
+    }
+  ],
+  characters: [
+    %Friends.Character{
+      __meta__: #Ecto.Schema.Metadata<:loaded, "characters">,
+      id: 1,
+      movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+      movie_id: 1,
+      name: "Wade Watts"
+    }
+  ],
+  distributor: %Friends.Distributor{
+    __meta__: #Ecto.Schema.Metadata<:loaded, "distributors">,
+    id: 1,
+    movie: #Ecto.Association.NotLoaded<association :movie is not loaded>,
+    movie_id: 1,
+    name: "Netflix"
+  },
+  id: 1,
+  tagline: "Something about video game",
+  title: "Ready Player One"
+}
+```
+
+Możemy zauważyć, że uzyskaliśmy w ten sposób rekord filmu z aktorem, poprawnie powiązanym i załadowanym dla nas pod `movie.actors`.
+
+Możemy użyć tego samego sposobu, aby dodać zupełnie nowego aktora, który ma być powiazany z danym filmem. Zamiast przekazywać _zapisaną_ już strukturę z danymi aktora do `put_assoc/4`, możemy po prostu przekazać strukturę opisującą aktora, którego chcemy stworzyć w naszej bazie:
+
+```elixir
+iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])
+%Ecto.Changeset<
+  action: nil,
+  changes: %{
+    actors: [
+      %Ecto.Changeset<
+        action: :insert,
+        changes: %{name: "Gary"},
+        errors: [],
+        data: %Friends.Actor<>,
+        valid?: true
+      >
+    ]
+  },
+  errors: [],
+  data: %Friends.Movie<>,
+  valid?: true
+>
+iex>  Repo.update!(changeset)
+%Friends.Movie{
+  __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
+  actors: [
+    %Friends.Actor{
+      __meta__: %Ecto.Schema.Metadata<:loaded, "actors">,
+      id: 2,
+      movies: %Ecto.Association.NotLoaded<association :movies is not loaded>,
+      name: "Gary"
+    }
+  ],
+  characters: [],
+  distributor: nil,
+  id: 1,
+  tagline: "Something about video games",
+  title: "Ready Player One"
+}
+```
+
+Jak możemy zauważyć, nowy aktor został stworzonyz ID "2" i atrybutami, które mu przypisaliśmy.
+
+W następnej lekcji dowiemy się, jak możemy tworzyć zapytania, by wyszukiwać powiązane rekordy.
