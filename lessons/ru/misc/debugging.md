@@ -13,9 +13,9 @@
 
 Самый простой инструмент для отладки кода на Elixir - это IEx.
 
-But don't be fooled by its simplicity - you can solve most of the issues with your application by it.
+Не дайте ввести себя в заблуждение - несмотря на простоту, IEx может решить большинство проблем вашего приложения.
 
-IEx means `Elixir's interactive shell`.
+IEx значит `Elixir's interactive shell` (интерактивная оболочка).
 
 Вы уже могли видеть IEx в предыдущем уроке [Основы](../../basics/basics), где мы запускали код Elixir в интерактивном режиме в оболочке.
 
@@ -23,7 +23,7 @@ IEx means `Elixir's interactive shell`.
 
 Вы получаете интерактивную оболочку в контексте того места, которое хотите отлаживать.
 
-Давай попробуем.
+Давайте попробуем.
 
 Для этого создайте файл с именем `test.exs` и поместите в него следующий код:
 
@@ -64,16 +64,17 @@ Cannot pry #PID<0.92.0> at TestMod.sum/1 (test.exs:5). Is an IEx shell running?
 34
 ```
 
-Вы должны принять к сведению это важное сообщение.
+Обратите внимание на это важное сообщение.
 
-When running an application, as usual, IEx outputs this message instead of blocking execution of the program.
+Во время обычного запуска прилоежния IEx показывает вам это сообщение вместо того, чтобы заблокировать выполнение программы.
 
-To run it properly you need to prepend your command with `iex -S`.
+Для корректного запуска дебаггера вам нужно запустить команду с ключом -S: `iex -S`.
 
-What this does is it runs `mix` inside the `iex` command so that it runs the application in a special mode, such that calls to `IEx.pry` stop the application execution.
+Это запускает `mix` внутри `iex` таким образом, что приложение выполняется в специальном режиме, и вызовы к `IEx.pry` останавливают выполнение приложения.
 
-For example, `iex -S mix phx.server` to debug your Phoenix application.
-In our case, it's going to be `iex -r test.exs` to require the file:
+Например, выполните `iex -S mix phx.server` для отладки приложения Phoenix.
+
+В нашем случае запустим команду `iex -r test.exs` для нашего файла:
 
 ```elixir
 $ iex -r test.exs
@@ -93,7 +94,7 @@ Request to pry #PID<0.107.0> at TestMod.sum/1 (test.exs:5)
 Allow? [Yn]
 ```
 
-Вы попадаете в интерактивный режим, после нажатия клавиш `y` или Enter.
+Вы попадаете в интерактивный режим после нажатия клавиш `y` или Enter.
 
 ```elixir
 $ iex -r test.exs
@@ -127,25 +128,25 @@ BREAK: (a)bort (c)ontinue (p)roc info (i)nfo (l)oaded
        (v)ersion (k)ill (D)b-tables (d)istribution
 ```
 
-To quit IEx, you can either hit `Ctrl+C` two times to exit the app, or type `continue` to go to the next breakpoint.
+Чтобы выйти из IEx, вы можете или два раза нажать `Ctrl+C` для выхода из приложения, или напечатать `continue` для перехода к следующей точке останова.
 
-As you can see, you can run any Elixir code.
+Очевидно, что таким образом вы можете выполнить любой код на Elixir.
 
-However, the limitation is that you can't modify variables of existing code, due to language immutability.
+Однако, существуют ограничения: вы не можете изменять переменные у существуюего кода из-за неизменности языка (immutability).
 
-However, you can get values of all the variables and run any computations.
+Но, тем не менее, вы можете получить значения всех переменных и выполнить любые вычисления.
 
-In this case, the bug would be in `b` reassigned to 0, and `sum` function being buggy as a result.
+В данном примере баг заключается в том, что переменной `b` присваивается 0 и функция `sum` работает некорректно.
 
-Sure, language has already caught this bug even on the first run, but that's an example!
+Конечно, этот баг был обнаружен самим интерпретатором языкa программирования при первом же запуске, но это был всего лишь простейший пример.
 
 ### IEx.Helpers
 
-One of the more annoying parts of working with IEx is it has no history of commands you used in previous runs.
+Одна из самых раздражающих особенностей работы с IEx заключается в том, что у него нет истории команд, которые вы выполняли в предыдущих запускаж.
 
-For solving that problem, there is a separate subsection on [IEx documentation](https://hexdocs.pm/iex/IEx.html#module-shell-history), where you can find the solution for your platform of choice.
+Для решения этой проблемы существует отдельная секция документации на [IEx документации](https://hexdocs.pm/iex/IEx.html#module-shell-history), где вы можете найти решения для вашей платформы по выбору.
 
-You can also look through the list of other available helpers in [IEx.Helpers documentation](https://hexdocs.pm/iex/IEx.Helpers.html).
+Также можете просмотреть список других источников по ссылке [IEx.Helpers документация](https://hexdocs.pm/iex/IEx.Helpers.html).
 
 ## Dialyxir и Dialyzer
 
