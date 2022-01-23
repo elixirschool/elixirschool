@@ -1,9 +1,9 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Poolboy",
   excerpt: """
-  You can easily exhaust your system resources if you do not limit the maximum number of concurrent processes that your program can spawn.
-  [Poolboy](https://github.com/devinus/poolboy) is a widely used lightweight, generic pooling library for Erlang that addresses this issue.
+  Вы можете незаметно использовать все системные ресурсы, если вы не ограничите максимальное число конкурентных процессов, создаваемых вашей программой.
+  [Poolboy](https://github.com/devinus/poolboy) — известная, легковесная, библиотека для Erlang решающая эту проблему.
   """
 }
 ---
@@ -20,9 +20,9 @@
 Так можно с лёгкостью избежать истощения системных ресурсов.
 
 Для этого и нужен Poolboy.
-It allows you to easily set up a pool of workers managed by a `Supervisor` without much effort on your part.
-There are many libraries which use Poolboy under the covers.
-For example,`redis_poolex` *(Redis connection pool)* is a popular library which uses Poolboy.
+Он позволяет легко и просто настроить пул процессов-обработчиков, управляемых процессом-супервизором, без каких-то значительных усилий с вашей стороны.
+Существует множество библиотек, использующих Poolboy "под капотом".
+Например, `redis_poolex` *(Redis connection pool)* - довольно популярная библиотека, использующая Poolboy.
 
 ## Установка
 
@@ -96,13 +96,18 @@ defmodule PoolboyApp.Application do
 end
 ```
 
-Первое, что мы сделали — объявили настройки для пула. Присвоили уникальное имя `:name`, установили локальную область видимости (`:scope`) и ограничили размер пула (`:size`) пятью процессами. Также в опции `:max_overflow` мы указали, что в случае, если все процессы-обработчики будут заняты, то можно создавать два дополнительных процесса, чтобы помочь разобраться с нагрузкой. *(`overflow`-процессы завершаются как только они выполнят свою работу.)*
+В первую очередь мы задали опции настройки пула процессов-обработчиков.
+Наш пул мы назвали `:worker` и установили параметр `:scope` (область видимости) в `:local`.
+Затем мы установили, что в качестве `:worker_module` этот пул процессов-обработчиков должен использовать `PoolboyAbpp.Worker`.
+Также мы задали, что `:size` этого пула равен `5` обработчикам.
+Кроме того, на случай, если все обработчики заняты, мы разрешаем создать ещё `2` обработчика в рамках настройки `:max_overflow`
+*(эти `overflow` обработчики исчезнут после того, как закончат свою задачу)*.
 
-Next, we added `:poolboy.child_spec/2` function to the array of children so that the pool of workers will be started when the application starts.
-It takes two arguments: name of the pool, and pool configuration.
+И, наконец, мы добавили функцию `:poolboy.child_spec/2` к списку потомков, поэтому пул процессов-обработчиков будет создан вместе с запуском приложения.
+Эта функция принимает два аргумента: имя пула и настройку пула.
 
-## Создание рабочего процесса
-Модуль рабочего процесса будет простым GenServer'ом, который считает квадратный корень числа, затем останавливается на секунду и выводит pid процесса.
+## Создание процесса-обработчика
+Модуль процесса-обработчика будет простым GenServer'ом, который считает квадратный корень числа, затем останавливается на секунду и выводит pid процесса.
 Создадим `lib/poolboy_app/worker.ex`:
 
 ```elixir
@@ -151,7 +156,7 @@ defmodule PoolboyApp.Test do
           # that might be thrown and return the worker back to poolboy in a clean manner. It also allows
           # the programmer to retrieve the error and potentially fix it.
           try do
-            GenServer.call(pid, {:square_root, i}) end
+            GenServer.call(pid, {:square_root, i})
           catch
             e, r -> IO.inspect("poolboy transaction caught error: #{inspect(e)}, #{inspect(r)}")
             :ok
@@ -186,7 +191,7 @@ process #PID<0.156.0> calculating square root of 3
 
 Если в пуле не останется свободных процессов, Poolboy вызовет таймаут после периода таймаута по умолчанию (пять секунд) и не будет принимать новые запросы.
 В нашем примере мы увеличили период таймаута до минуты, чтобы показать, как можно менять это значение.
-In case of this app, you can observe the error if you change the value of `@timeout` to less than 1000.
+Для конкретно этого приложения вы можете увидеть ошибку, если поменяете значение `@timeout` на что-то, меньшее 1000.
 
 Несмотря на то, что мы пытаемся создать много процессов *(всего двадцать в примере выше)*, функция `:poolboy.transaction/3` ограничит общее количество созданных процессов до пяти *(плюс два процесса для обработки перегрузки)*, как мы и указали в настройках.
 Все запросы будут обработаны пулом процессов вместо создания по процессу на каждый запрос.
