@@ -63,7 +63,7 @@ iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-There are a few options for `chunk_every/4` but we won't go into them, check out [`the official documentation of this function`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) to learn more.
+There are a few options for `chunk_every/4` but we won't go into them, check out [the official documentation of this function](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) to learn more.
 
 ### chunk_by
 
