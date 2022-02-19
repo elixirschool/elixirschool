@@ -55,6 +55,7 @@ Handling result...
 :ok
 iex> handle_result.({:error})
 An error has occurred!
+:ok
 ```
 
 ## Named Functions
