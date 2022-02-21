@@ -1,5 +1,5 @@
 %{
-  version: "1.8.1",
+  version: "1.9.0",
   title: "Enum",
   excerpt: """
   A set of algorithms for enumerating over enumerables.
