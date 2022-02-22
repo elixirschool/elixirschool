@@ -50,7 +50,7 @@ true
 
 ## Best Practices
 
-Falls die arity einer Funktion größer als 1 ist, stell sicher, Anführungszeichen zu benutzen. Es ist für Elixir nicht so wichtig, aber für andere Programmierer, die deinen Code falsch interpretieren könnten. Wenn wir nochmal unser drittes Beispiel nehmen und die Klammern von `String.ends_with?/2` entfernen, werden wir mit der folgenden Warnung konfrontiert.
+Falls die arity einer Funktion größer als 1 ist, stell sicher, Klammern zu benutzen. Es ist für Elixir nicht so wichtig, aber für andere Programmierer, die deinen Code falsch interpretieren könnten. Wenn wir nochmal unser drittes Beispiel nehmen und die Klammern von `String.ends_with?/2` entfernen, werden wir mit der folgenden Warnung konfrontiert.
 
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"
