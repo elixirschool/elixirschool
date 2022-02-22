@@ -2,7 +2,7 @@
 author: "Bobby Grayson",
 author_link: "https://github.com/notactuallytreyanastasio",
 tags: [],
-date: ~D[2021-02-12],
+date: ~D[2022-02-22],
 title: "`:odbc` and Efficient Querying With Streams",
 excerpt: """
 Learn how to use Erlang's built in `:odbc` interface to query using streams effectively
