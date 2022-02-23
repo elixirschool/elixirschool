@@ -1,5 +1,5 @@
 %{
-  version: "1.0.0",
+  version: "1.0.1",
   title: "Bypass",
   excerpt: """
   When testing our applications there are often times we need to make requests to external services.
@@ -274,4 +274,4 @@ There shouldn't be anything too surprisingly in the above test.
 Instead of creating a single Bypass connection in `setup`, we're creating two within our test and specifying their ports as 1234 and 1337.
 Next we see our `Bypass.expect/2` calls and finally the same code we have in `SchedulerTest` to start the scheduler and assert we log the appropriate messages.
 
-That's it!  We've built a utility to keep us informed if there's any issues with our domains and we've learned how to employe Bypass to write better tests with external services.
+That's it!  We've built a utility to keep us informed if there are any issues with our domains and we've learned how to employ Bypass to write better tests with external services.

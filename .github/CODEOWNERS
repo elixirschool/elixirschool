@@ -4,6 +4,8 @@
 # Default owners for everything in the repo.
 *        @elixirschool/english
 
+lessons/bn/      @elixirschool/bengali
+
 lessons/en/      @elixirschool/english
 
 lessons/es/      @elixirschool/spanish

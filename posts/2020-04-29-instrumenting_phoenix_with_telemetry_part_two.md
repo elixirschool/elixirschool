@@ -161,7 +161,7 @@ defmodule Quantum.Telemetry do
 end
 ```
 
-We'll come back to the metrics list in a bit. First, let's teach our application to start this Supervisor when the app starts up but adding it to our application's supervision tree in the `Quantum.Application.start/2` function:
+We'll come back to the metrics list in a bit. First, let's teach our application to start this Supervisor when the app starts up by adding it to our application's supervision tree in the `Quantum.Application.start/2` function:
 
 ```elixir
 # lib/quantum/application.ex

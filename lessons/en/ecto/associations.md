@@ -202,7 +202,7 @@ Define the migration:
 ```elixir
 # priv/migrations/*_create_actors.ex
 
-defmodule Friends.Repo.Migrations.Actors do
+defmodule Friends.Repo.Migrations.CreateActors do
   use Ecto.Migration
 
   def change do

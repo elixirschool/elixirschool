@@ -33,7 +33,7 @@ In this post, we'll examine Phoenix and Ecto's out-of-the-box Telemetry events a
 
 ## Achieving Observability with Phoenix and Ecto Telemetry Events
 
-To achieve observability, we know we nee to track things like:
+To achieve observability, we know we need to track things like:
 
 * Count and duration of all requests to all endpoints, with the ability to view this information broken down by things like:
   * Route
