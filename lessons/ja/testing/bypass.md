@@ -143,7 +143,7 @@ end
 
 このテストケースには特別なものはないので、次の「予期せぬサーバーの停止」に進みましょう。
 これは私たちがもっとも懸念しているリクエストです。
-これを達成するために、`Bypass.expect/2`は使用せず、代わりに`Bypass.down/1`に依存して、接続をシャットダウンしましょう。
+これを達成するために、`Bypass.expect/2`は使用せず、代わりに`Bypass.down/1`を実行して、接続をシャットダウンしましょう。
 
 ```elixir
 test "request with unexpected outage", %{bypass: bypass} do
