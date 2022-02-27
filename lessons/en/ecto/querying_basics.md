@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Querying",
   excerpt: """
   """
@@ -237,7 +237,7 @@ iex> movie.actors
 %Ecto.Association.NotLoaded<association :actors is not loaded>
 ```
 
-We _can't_ access those associated characters unless we preload them. There are a few different way to preload records with Ecto.
+We _can't_ access those associated characters unless we preload them. There are a few different ways to preload records with Ecto.
 
 #### Preloading With Two Queries
 
