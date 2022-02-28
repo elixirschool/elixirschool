@@ -75,7 +75,7 @@ There are currently three different supervision strategies available to supervis
 
 After the supervisor has started it must know how to start/stop/restart its children.
 Each child module should have a `child_spec/1` function to define these behaviors.
-The `use GenServer`, `use Supervisor`, and `use Agent` macros automatically define this method for us (`SimpleQueue` has `use Genserver`, so we do not need to modify the module), but if you need to define it yourself `child_spec/1` should return a map of options:
+The `use GenServer`, `use Supervisor`, and `use Agent` macros automatically define this method for us (`SimpleQueue` has `use GenServer`, so we do not need to modify the module), but if you need to define it yourself `child_spec/1` should return a map of options:
 
 ```elixir
 def child_spec(opts) do
