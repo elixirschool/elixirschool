@@ -291,7 +291,6 @@ iex> Mnesia.transaction(
 
 詳しくは[Erlang Mnesia ドキュメントのselect/2](http://erlang.org/doc/man/mnesia.html#select-2)を参照してください。
 
-
 ## データの初期化とマイグレーション
 
 どのソフトウェアソリューションでも、ソフトウェアのアップグレードやデータベースに保存されているデータのマイグレーションが必要になる時期がやってきます。
