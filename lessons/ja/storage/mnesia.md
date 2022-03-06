@@ -127,7 +127,7 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 
 アトムを使用して `:id`、`:name`、`:job` カラムを定義します。
 最初のアトム (この場合は `:id`) がプライマリキーとなります。
-少なくとも1つの属性が必要です。
+プライマリキーに加えて、少なくとも1つの属性が必要です。
 
 `Mnesia.create_table/2` を実行すると、以下のいずれかのレスポンスが返されます。
 
@@ -141,7 +141,7 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:aborted, {:already_exists, Person}}
 ```
 
-## ダーティな方法
+## ダーティーな方法
 
 最初に、Mnesiaテーブルの読み書きのダーティーなやり方について見ていきます。
 これは成功が保証されていないため、一般的には避けるべきですが、Mnesiaを学び、快適に操作できるようになるための助けになるはずです。
