@@ -16,7 +16,7 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implementa las colecciones como listas enlazadas.
+Elixir implementa a las colecciones de lista como listas enlazadas.
 Esto significa que acceder al largo de la lista es una operación que se ejecutará en tiempo lineal (`O(n)`).
 Por esta razón, normalmente es más rápido agregar un elemento al inicio que al final:
 
