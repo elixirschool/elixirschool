@@ -1,15 +1,19 @@
 %{
-  version: "1.2.0",
+  version: "1.3.0",
   title: "Funciones",
   excerpt: """
-  En Elixir y en muchos lenguajes funcionales, las funciones son ciudadanos de primera clase. Vamos a aprender acerca de los tipos de funciones en Elixir, qué los hace diferentes, y cómo usarlos.
+  En Elixir y en muchos lenguajes funcionales, las funciones son ciudadanos de primera clase. 
+  Vamos a aprender acerca de los tipos de funciones en Elixir, qué los hace diferentes, y cómo usarlos.
   """
 }
 ---
 
 ## Funciones anónimas
 
-Tal como el nombre sugiere, una función anónima no tiene nombre. Como vimos en la lección `Enum`, son pasadas frecuentemente a otras funciones. Para definir una función anónima en Elixir necesitamos las palabras clave `fn` y `end`. Dentro de estos podemos definir, separados por `->`, cualquier número de parámetros y el cuerpo de la función.
+Tal como el nombre sugiere, una función anónima no tiene nombre. 
+Como vimos en la lección `Enum`, son pasadas frecuentemente a otras funciones. 
+Para definir una función anónima en Elixir necesitamos las palabras clave `fn` y `end`. 
+Dentro de estos podemos definir, separados por `->`, cualquier número de parámetros y el cuerpo de la función.
 
 Vamos a ver un ejemplo básico:
 
@@ -55,9 +59,11 @@ An error has occurred!
 
 ## Funciones con nombre
 
-Podemos definir funciones con nombre para así poder referirnos a ellas luego. Estas funciones con nombre son definidas con la palabra clave `def` dentro de un módulo. Vamos a aprender más acerca de los módulos en las siguientes lecciones, por ahora nos enfocaremos solamente en las funciones con nombre.
+Podemos definir funciones con nombre para así poder referirnos a ellas luego. 
+Estas funciones con nombre son definidas con la palabra clave `def` dentro de un módulo. 
+Vamos a aprender más acerca de los módulos en las siguientes lecciones, por ahora nos enfocaremos solamente en las funciones con nombre.
 
-Las funciones definidas dentro de un módulo están disponibles para ser usadas por otros módulos, esto es particularmente útil para construir bloques en Elixir:
+Las funciones definidas dentro de un módulo están disponibles para ser usadas por otros módulos. 
 
 ```elixir
 defmodule Greeter do
@@ -70,7 +76,7 @@ iex> Greeter.hello("Sean")
 "Hello, Sean"
 ```
 
-Si el cuerpo de nuestra función solo se extiende a una línea, podemos acortarla con `do:`:
+Si el cuerpo de nuestra función solo se extiende a una línea, podemos acortarla con `, do:`:
 
 ```elixir
 defmodule Greeter do
@@ -94,7 +100,7 @@ iex> Length.of [1, 2, 3]
 
 ### Nombre de funciones y aridad
 
-Anteriormente mencionamos que las funciones son nombradas por la combinación de nombre y aridad (cantidad de argumentos).
+Anteriormente mencionamos que las funciones son nombradas por la combinación de nombre y aridad (número de argumentos).
 Esto significa que puedes hacer cosas como:
 
 ```elixir
@@ -114,15 +120,15 @@ iex> Greeter2.hello("Fred", "Jane")
 ```
 Enumeramos los nombres de las funciones en los comentarios anteriores.
 La primera implementación no recibe argumentos, su equivalente es `hello/0`; la segunda función recibe un argumento equivalente a `hello/1`, y así.
-A diferencia de la sobrecarga en otros lenguajes, estas son consideradas funciones diferentes entre si.
-(La coincidencia de patrones, descrita anteriormente, aplica solo cuando se definen varias funciones con el mismo nombre y el mismo numero de argumentos).
+A diferencia de la sobrecarga en otros lenguajes, estas son consideradas funciones diferentes entre sí.
+(La coincidencia de patrones, descrita anteriormente, aplica solo cuando se definen varias funciones con el mismo nombre y el _mismo_ número de argumentos).
 
 ### Funciones y coincidencia de patrones
 
 Detrás de escenas, las funciones se ajustan a el numero de argumentos con los que se llaman.
 
-Digamos que necesitamos una función para aceptar un mapa, pero solo nos interesa utilizar una llave en particular.
-Podemos coincidir el argumento con la llave de la siguiente forma:
+Digamos que necesitamos una función para aceptar un mapa, pero solo nos interesa utilizar una clave en particular.
+Podemos coincidir el argumento con la clave de la siguiente forma:
 
 ```elixir
 defmodule Greeter1 do
@@ -132,7 +138,7 @@ defmodule Greeter1 do
 end
 ```
 
-Digamos que tenemos el siguiente mapa:
+Digamos que tenemos el siguiente mapa describiendo a una persona llamada Fred:
 
 ```elixir
 iex> fred = %{
@@ -149,7 +155,7 @@ Estos son los resultados que obtenemos al llamar `Greeter1.hello/1` con el mapa 
 ...> Greeter1.hello(fred)
 "Hello, Fred"
 ```
-¿Qué sucede cuando llamamos la función con un mapa que no contiene la llave `:name`?
+¿Qué sucede cuando llamamos la función con un mapa que _no contiene_ la clave `:name`?
 
 ```elixir
 # call without the key we need returns an error
@@ -187,11 +193,11 @@ En `Greeter1.hello/1`, el mapa que pasamos (`fred`) se evalúa comparandolo con 
 %{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
-Encuentra que existe una llave que corresponde a `:name` en el mapa proporcionado.
-¡Tenemos una coincidencia! y como resultado de esta coincidencia exitosa, el valor de la llave `:name` en el mapa de la derecha (Por ejemplo el mapa `fred`) esta vinculado a la variable de la izquierda (`person_name`).
+Encuentra que existe una clave que corresponde a `:name` en el mapa proporcionado.
+¡Tenemos una coincidencia! y como resultado de esta coincidencia exitosa, el valor de la clave `:name` en el mapa de la derecha (Por ejemplo el mapa `fred`) está vinculado a la variable de la izquierda (`person_name`).
 
-Ahora, ¿qué sucede si quisiéramos asignar el nombre de Fred a `person_name` pero TAMBIÉN queremos acceder a todo el mapa? Digamos que queremos hacer `IO.inspect(fred)` despues de saludarlo.
-En este punto, debido a que solo buscamos la llave `:name` en nuestro mapa, solo vinculamos el valor de esa llave a una variable, la función no tiene conocimiento del resto del mapa.
+Ahora, ¿qué sucede si quisiéramos asignar el nombre de Fred a `person_name` pero TAMBIÉN quisiéramos acceder a todo el mapa? Digamos que queremos hacer `IO.inspect(fred)` despues de saludarlo.
+En este punto, debido a que solo buscamos la clave `:name` en nuestro mapa, solo vinculamos el valor de esa clave a una variable, la función no tiene conocimiento del resto del mapa.
 
 Para poder conservarlo, debemos asignar ese mapa completo a su propia variable para que podamos utilizarlo.
 
@@ -205,22 +211,23 @@ defmodule Greeter2 do
 end
 ```
 
-Recuerde que Elixir buscara la coincidencia a medida de que se presente.
-Por lo tanto, en este caso, cada lado buscara la coincidencia con el argumento entrante y se unirá a lo que corresponda.
+Recuerda que Elixir buscará la coincidencia a medida de que se presenta.
+Por lo tanto, en este caso, cada lado buscará la coincidencia con el argumento entrante y se unirá a lo que corresponda.
 Tomemos el lado derecho primero:
 
 ```elixir
 person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
-Ahora, `person` a sido evaluado y vinculado a todo el mapa de fred.
+Ahora, `person` ha sido evaluado y vinculado a todo el mapa de fred.
 Pasemos a la siguiente coincidencia:
 ```elixir
 %{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
-Ahora esto es lo mismo a nuestra función original `Greeter1` en la que la que solo buscábamos la coincidencia con el mapa y solo reteníamos el nombre de Fred.
+Esto es lo mismo que nuestra función original `Greeter1` en la que la que solo buscábamos la coincidencia con el mapa y solo reteníamos el nombre de Fred.
 Lo que hemos logrado son dos variable que podemos usar en lugar de una:
+
 1. `person`, refiriéndose a `%{name: "Fred", age: "95", favorite_color: "Taupe"}`
 2. `person_name`, refiriéndose a `"Fred"`
 
@@ -246,7 +253,7 @@ Así que ahora cuando llamamos `Greeter2.hello/1`, podemos usar toda la informac
     iex:15: Greeter2.hello/1
 ```
 
-Así que hemos visto que las coincidencias en Elixir se ajustan a múltiples profundidades porque cada argumento se compara con los datos entrantes de forma independiente, dejandonos las variables para llamarlas dentro de nuestra función.
+Así que hemos visto que las coincidencias en Elixir se ajustan a múltiples profundidades porque cada argumento se compara con los datos entrantes de forma independiente, dejándonos las variables para llamarlas dentro de nuestra función.
 
 Si cambiamos el orden de `%{name: person_name}` y `person` en la lista, obtendremos los mismos resultados ya que cada uno coincide con fred por su cuenta.
 
@@ -268,7 +275,6 @@ Y llamémoslo con los mismos datos que usamos en `Greeter2.hello/1`:
 %{age: "95", favorite_color: "Taupe", name: "Fred"}
 ```
 
-Continuar escribiendo
 Recordemos que aunque parezca que `%{name: person_name} = person` hace coincidir los patrones con `%{name: person_name}` contra la variable `person`, en realidad esta haciendo coincidir los patrones con los argumentos proporcionados.
 
 **Resumen:** Las funciones buscan coincidencia con cada uno de los datos proporcionados de forma independiente.
@@ -276,8 +282,8 @@ Podemos usar esto para vincular valores a variables separadas dentro de la funci
 
 ### Funciones privadas
 
-Cuando no queremos que otros módulos accedan a una función especifica, podemos hacer que la función sea privada.
-Las funciones privadas solo pueden ser llamadas desde su propio modulo.
+Cuando no queremos que otros módulos accedan a una función específica, podemos hacer que la función sea privada.
+Las funciones privadas solo pueden ser llamadas desde dentro de su propio módulo.
 Las definimos en Elixir con `defp`:
 
 ```elixir
@@ -296,7 +302,7 @@ iex> Greeter.phrase
 
 ### Guardias
 
-Hemos cubierto brevemente las guardias en la lección [Estructuras de control](/es/lessons/basics/control_structures), ahora veremos cómo aplicarlas a las funciones con nombre. Una vez Elixir ha coincidido una función algunas guardias serán evaluadas.
+Hemos cubierto brevemente las guardias en la lección [Estructuras de control](/es/lessons/basics/control_structures), ahora veremos cómo aplicarlas a las funciones con nombre. Una vez Elixir ha hecha coincidencia con una función, de existir, las guardias serán evaluadas.
 
 En el siguiente ejemplo tenemos dos funciones con la misma firma, confiamos en las guardias para determinar cuál usar basándonos en el tipo de los argumentos:
 
@@ -361,19 +367,16 @@ defmodule Greeter do
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+** (CompileError) iex:8: def hello/2 defines defaults multiple times. Elixir allows defaults to be declared once per definition. Instead of:
 
     def foo(:first_clause, b \\ :default) do ... end
-    def foo(:second_clause, b) do ... end
+    def foo(:second_clause, b \\ :default) do ... end
 
 one should write:
 
     def foo(a, b \\ :default)
     def foo(:first_clause, b) do ... end
     def foo(:second_clause, b) do ... end
-
-def hello/2 has multiple clauses and defines defaults in one or more clauses
-    iex:31: (module)
 ```
 
 A Elixir no le gustan los parámetros por defecto en múltiples coincidencias de funciones, esto puede ser confuso. Para manejar esto podemos agregar una función al inicio con nuestros argumentos por defecto:
