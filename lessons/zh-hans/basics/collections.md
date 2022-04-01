@@ -1,5 +1,5 @@
 %{
-  version: "1.3.1",
+  version: "1.3.2",
   title: "集合",
   excerpt: """
   列表（list）、元组（tuple）、关键字列表（keyword list）、映射（map）。
@@ -177,10 +177,12 @@ iex> %{map | foo: "baz"}
 %{foo: "baz", hello: "world"}
 iex> map.hello
 "world"
+iex> map.foo
+"bar"
 ```
 
 **注意**: 这种语法只在更新一个已经存在于映射的键才有效！如果键不存在，则会抛出 `KeyError` 错误。
-
+**注意**: Elixir 的数据结构是`不可变的`，正如上面的运行结果显示的那样，没有修改原来的map，而是返回新的map。
 要创建一个新的键值对，则应当使用 [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3)
 
 ```elixir
