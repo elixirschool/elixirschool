@@ -145,7 +145,7 @@ defmodule GenstageExample.ProducerConsumer do
 
   def handle_events(events, _from, state) do
     numbers =
-      events
+      state
       |> Enum.filter(&Integer.is_even/1)
 
     {:noreply, numbers, state}
