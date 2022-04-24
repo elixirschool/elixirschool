@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.2.0",
   title: "날짜와 시간",
   excerpt: """
   Elixir에서 시간을 다루어 봅시다.
@@ -42,7 +42,7 @@ iex> t.day
 
 ## Date
 
-`Time`과 달리 `Date` 구조체는 현재 시간에 대한 정보없이 현재 날짜에 대한 정보를 가지고 있습니다.
+`Time`과 달리 `Date` 구조체는 시간에 대한 정보없이 날짜에 대한 정보를 가지고 있습니다.
 
 ```elixir
 iex> Date.utc_today
@@ -52,7 +52,7 @@ iex> Date.utc_today
 그리고 날짜를 다루기 위한 유용한 함수를 가지고 있습니다.
 
 ```elixir
-iex> {:ok, date} = Date.new(2020, 12,12)
+iex> {:ok, date} = Date.new(2020, 12, 12)
 {:ok, ~D[2020-12-12]}
 iex> Date.day_of_week date
 6
@@ -76,7 +76,7 @@ iex(15)> NaiveDateTime.utc_now
 ~N[2029-01-21 19:55:10.008965]
 ```
 
-그러나 현재 시간과 날짜가 모두 있으므로 다음과 같이 시간을 더할 수 있습니다.
+그러나 시간과 날짜가 모두 있으므로 다음과 같이 시간을 더할 수 있습니다.
 
 ```elixir
 iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
@@ -100,7 +100,7 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 
 ## 타임존 다루기
 
-이전 챕터에서 다루었듯, 기본적으로 Elixir에는 타임존 데이터가 없습니다.
+이전 섹션에서 다루었듯, 기본적으로 Elixir에는 타임존 데이터가 없습니다.
 이 문제를 해결하기 위해선, [tzdata](https://github.com/lau/tzdata) 팩키지를 설치하고 설정할 필요가 있습니다.
 설치한 후에는, Tzdata를 타임존 데이터베이스로 사용하도록 Elixir의 전역 설정을 건드려줘야 합니다.
 
