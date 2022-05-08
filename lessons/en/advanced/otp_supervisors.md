@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.1.2",
   title: "OTP Supervisors",
   excerpt: """
   Supervisors are specialized processes with one purpose: monitoring other processes.
@@ -96,17 +96,17 @@ Used by the supervisor to identify the child specification.
 The Module/Function/Arguments to call when started by the supervisor
 
 + `shutdown` - Optional key.
-Defines child's behavior during shutdown.
-Options are:
+  Defines child's behavior during shutdown.
+  Options are:
 
   + `:brutal_kill` - Child is stopped immediately
 
-  + any positive integer - time in milliseconds supervisor will wait before killing child process.
-If the process is a `:worker` type, this defaults to 5000.
+  + `0` or a positive integer - time in milliseconds supervisor will wait before killing child process.
+    If the process is a `:worker` type, `shutdown` defaults to `5000`.
 
   + `:infinity` - Supervisor will wait indefinitely before killing child process.
-Default for `:supervisor` process type.
-Not recommended for `:worker` type.
+    Default for `:supervisor` process type.
+    Not recommended for `:worker` type.
 
 + `restart` - Optional key.
 There are several approaches for handling child process crashes:
