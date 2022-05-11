@@ -315,7 +315,8 @@ iex> Greeter.phrase
 ### Guards
 
 We briefly covered guards in the [Control Structures](/en/lessons/basics/control_structures) lesson, now we'll see how we can apply them to named functions.
-Once Elixir has matched a function any existing guards will be tested. In the following examples we will use the [Pipe Operator](/en/lessons/basics/pipe_operator) `|>` that passes the result of an expression as the first parameter of another expression.
+Once Elixir has matched a function any existing guards will be tested.
+In case you didn't see or don't understand the pipe operator `|>`, you must check in this [lesson](/en/lessons/basics/pipe_operator).
 
 In the following example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
 
