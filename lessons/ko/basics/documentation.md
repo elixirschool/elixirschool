@@ -1,5 +1,5 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "문서화",
   excerpt: """
   Elixir 코드 문서화하기.
@@ -98,14 +98,16 @@ end
 다시 IEx로 들어갑시다. 모듈의 이름이 딸린 함수에 대해 헬퍼 명령(`h`)을 이용하면 다음과 같은 화면을 볼 수 있습니다.
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter.hello
 
                 def hello(name)
 
-`hello/1`는 hello 메시지를 출력합니다.
+  @spec hello(String.t()) :: String.t()
+
+hello 메시지를 출력합니다.
 
 Parameters
 
@@ -161,6 +163,8 @@ $ cd greet_everyone
 iex> h Greeter.hello
 
                 def hello(name)
+
+  @spec hello(String.t()) :: String.t()
 
 hello 메시지를 출력합니다.
 

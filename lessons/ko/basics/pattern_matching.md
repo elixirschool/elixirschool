@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.0.2",
   title: "패턴 매칭",
   excerpt: """
   패턴 매칭은 Elixir의 강력한 기능입니다. 이를 이용하면 간단한 값, 자료 구조, 심지어는 함수까지도 매치시킬 수 있습니다. 이번 강의에서는 패턴 매칭이 어떻게 사용되는지 알아보기로 합니다.
@@ -96,4 +96,8 @@ iex> greet.("Hello", "Sean")
 "Hi Sean"
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
+iex> greeting
+"Hello"
 ```
+
+`"Mornin"` 예시에서 `greeting` 변수에 `"Mornin"`을 재할당하는 것은 오직 함수 내부에서만 발생한다는 점에 주목하세요. 함수 바깥에 있는 `greeting` 변수는 여전히 `"Hello"`입니다.
