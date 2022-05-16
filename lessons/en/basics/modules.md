@@ -233,7 +233,7 @@ import List, only: :macros
 
 ### require
 
-We could use `require` to tell Elixir you're going to use macros from other module.
+We could use `require` to tell Elixir you're going to use macros from another module.
 The slight difference with `import` is that it allows using macros, but not functions from the specified module:
 
 ```elixir
