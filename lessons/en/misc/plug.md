@@ -1,5 +1,5 @@
 %{
-  version: "2.2.0",
+  version: "2.3.0",
   title: "Plug",
   excerpt: """
   If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra.
