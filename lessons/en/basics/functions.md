@@ -316,16 +316,15 @@ iex> Greeter.phrase
 
 We briefly covered guards in the [Control Structures](/en/lessons/basics/control_structures) lesson, now we'll see how we can apply them to named functions.
 Once Elixir has matched a function any existing guards will be tested.
-In case you didn't see or don't understand the pipe operator `|>`, you must check in this [lesson](/en/lessons/basics/pipe_operator).
 
 In the following example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
 
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -369,9 +368,9 @@ Let's see what that might look like:
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -403,9 +402,9 @@ defmodule Greeter do
   def hello(names, language_code \\ "en")
 
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do
