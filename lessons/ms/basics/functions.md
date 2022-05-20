@@ -119,9 +119,9 @@ Di dalam contoh di bawah kita ada dua fungsi yang mempunyai pengenalan yang sama
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -164,9 +164,9 @@ Jika kita gabungkan contoh klausa kawalan dengan argumen lalai(default argument)
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -199,9 +199,9 @@ defmodule Greeter do
   def hello(names, language_code \\ "en")
 
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do
