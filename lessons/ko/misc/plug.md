@@ -9,7 +9,7 @@
   `PlugCowboy` 라이브러리를 이용해 간단한 HTTP 서버를 밑바닥부터 만드는 것으로 시작해봅시다.
   Cowboy는 Erlang으로 된 간단한 웹서버이며 Plug는 해당 웹서버에 대한 커넥션 어댑터를 제공해줍니다.
 
-  최소한의 웹 어플리케이션을 준비하고 나면, Plug의 라우터와 단일 웹 애플리케이션에서 여러 plug를 사용하는 법을 배우게 될 것입니다.
+  최소한의 웹 어플리케이션을 준비하고 나면, Plug의 라우터 동작원리를 배우고, 단일 웹 애플리케이션에서 여러 plug를 사용하는 법을 배우게 될 것입니다.
   """
 }
 ---
@@ -71,7 +71,7 @@ end
 파일을 `lib/example/hello_world_plug.ex`에 저장합니다.
 
 `init/1` 함수는 Plug의 옵션을 초기화할 때 사용됩니다. 이는 슈퍼바이저 트리에
-의해서 호출되는데, 이에 대해서는 다음 섹션에서 설명합니다. 여기서는 무시하게될 빈 리스트입니다.
+의해서 호출되는데, 이에 대해서는 다음 섹션에서 설명합니다. 여기서는 무시하게 될 빈 리스트입니다.
 
 `init/1`에 의해서 반환되는 값은 최종적으로 `call/2`의 두번째 인자로 넘겨집니다.
 
@@ -87,7 +87,7 @@ Cowboy는 `%Plug.Conn{}` 커넥션 구조체를 첫번째 인자로 받으며,
 
 이 함수는 다음 3가지 옵션을 받습니다.
 
-* `:scheme` - HTTP나 HTTPS 아톰 (`:http`, `:https`)
+* `:scheme` - HTTP 혹은 HTTPS 아톰 (`:http`, `:https`)
 * `:plug` - 웹서버의 인터페이스로 사용될 plug 모듈. `MyPlug`처럼 모듈 이름만 적거나 `{MyPlug, plug_opts}`처럼 모듈 이름과 옵션으로 된 튜플을 명시 가능합니다. `plug_opts`는 plug모듈의 `init/1` 함수로 넘겨지게 됩니다. 
 * `:options` - 서버 옵션. 서버가 요청을 수신할 포트 번호를 포함하고 있어야 합니다.
 
@@ -113,8 +113,8 @@ defmodule Example.Application do
 end
 ```
 
-_참고_: 이 프로세스를 시작하는 supervisor가 호출할 것이기 때문에, `child_spec` 을 여기서 직접 호출할 필요 없습니다.
-그저 child spec을 구축할 모듈과 거기에 필요한 트리 옵션으로 된 튜플을 넘깁니다. 
+_참고_: 이 프로세스를 시작하는 supervisor가 호출할 것이기 때문에, `child_spec` 을 여기서 직접 호출할 필요는 없습니다.
+그저 child spec을 만드려는 모듈과 그에 필요한 3개의 옵션으로 묶인 튜플을 넘깁니다. 
 
 이것은 앱의 supervision tree 밑에서 Cowboy2 서버를 시작합니다.
 그것은 Cowboy를 HTTP 스킴(또는 HTTPS 스킴)과 주어진 포트 `8080`로 실행하고, 
@@ -174,7 +174,7 @@ defmodule Example.Router do
 end
 ```
 
-이것은 꽤 최소한의 라우터이지만 코드는 꽤 자명합니다.
+이것은 굉장히 최소한의 라우터이지만 코드는 꽤 자명합니다.
 `use plug.Router`를 통해 매크로를 넣어 `:match`와 `:dispatch`라는 내장 Plug를 설정했습니다.
 루트에 대한 GET 요청을 처리하는 최상위 라우트와 다른 모든 요청과 매치해 404 메시지를 반환하는 두 번째 라우트가 정의되어 있습니다.
 
@@ -203,8 +203,7 @@ end
 
 ## 다른 Plug 추가하기
 
-It is common to use more than one plug in a given web application, each of which is dedicated to its own responsibility.
-주어진 웹 애플리케이션에서 둘 이상의 각자 자기 역할에 전념하는 Plug를 사용하는 것이 일반적입니다. 예를 들어 라우팅을 처리하는 Plug, 들어오는 웹 요청을 유효성 검증하는 Plug, 들어오는 요청을 인증하는 Plug 등이 있을 수 있습니다. 이 섹션에서는 들어오는 요청 매개변수를 유효성 검사하는 Plug를 정의하고 애플리케이션이 라우터 Plug와 유효성 검사 Plug를 _모두_ 사용하도록 해보겠습니다.
+주어진 웹 애플리케이션에서 둘 이상의 각자 자기 역할에 전념하는 Plug를 사용하는 것이 일반적입니다. 예를 들어 라우팅을 처리하는 Plug, 들어오는 웹 요청을 유효성 검증하는 Plug, 들어오는 요청을 인증하는 Plug 등이 있을 수 있습니다. 이 섹션에서는 들어오는 웹 요청의 유효성을 검증하는 Plug 정의하고 애플리케이션이 라우터 Plug와 유효성 검사 Plug를 _모두_ 사용하도록 해보겠습니다.
 
 요청에 필요한 매개 변수가 있는지 확인하기 위한 Plug를 만들고자 합니다.
 Plug 안에서 유효성 검증을 구현하면 유효한 요청 만 애플리케이션에 전달 될 수 있습니다.
@@ -298,11 +297,10 @@ plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
 자동으로 `VerifyRequest.init(fields: ["content", "mimetype"], paths: ["/upload"])`을 호출합니다.
 이것은 차례로 `VerifyRequest.call(conn, opts)` 함수에 주어진 옵션을 전달합니다.
 
-이제 plug가 동작하는것을 보겠습니다. 로컬 서버를 강제 종료 시킵니다. (다시 한 번, `ctrl + c` 두번 눌러서).
+이제 plug가 동작하는것을 보겠습니다. 로컬 서버를 강제 종료 시킵니다. ('ctrl + c' 두번 눌러서 종료가 된다는 점을 기억해주세요).
 그 다음, 서버를 재시작합니다. (`mix run --no-halt`).
 이제 브라우저에서 <http://127.0.0.1:8080/upload>로 가보면 해당 페이지는 동작하지 않습니다. 브라우저에서 제공하는 디폴트 에러 페이지를 보게 될 것입니다.
 
-Now let's add our required params by going to 
 이제 필요한 파라미터를 추가해서 <http://127.0.0.1:8080/upload?content=thing1&mimetype=thing2>로 가봅시다.
 'Uploaded' 메시지를 보게 될 것입니다.
 
@@ -313,7 +311,7 @@ Now let's add our required params by going to
 `Example` 모듈과 어플리케이션을 정의했을 때, HTTP 포트는 모듈에 하드 코딩되어 있습니다.
 설정 파일에 포트를 설정하여 포트를 구성 할 수 있도록 하는 것이 모범 사례로 생각됩니다.
 
-`config/config.exs` 안에 애플리케이션 환경 변수 하나를 설정할 것입니다. 
+`config/config.exs` 안에 애플리케이션 환경 변수 하나를 설정할 것입니다.
 
 ```elixir
 use Mix.Config
@@ -451,17 +449,16 @@ defmodule Example.Router do
 end
 ```
 
-
 가장 위에 `use Plug.ErrorHandler`를 추가했다는 것을 알아차릴 것입니다.
 
 이 플러그는 어떤 에러든 잡아서, `handle_errors/2` 함수를 찾아 호출해 그것을 처리하도록 합니다.
 
 `handle_errors/2` 는 `conn`을 첫 번째 파라미터, 3개 아이템(`:kind`, `:reason`, `:stack`)이 들어간 map을 2번째 파라미터로 받습니다.
 
-무슨 일이 벌어지는지 살펴보기 위해 매우 간단한 `handle_errors/2` 함수를 정의했습니다. 
+무슨 일이 벌어지는지 살펴보기 위해 매우 간단한 `handle_errors/2` 함수를 정의했습니다.
 앱을 중단하고 다시 시작해서 이것이 동작하는지 봅시다!
 
-이제 <http://127.0.0.1:8080/upload>로 가보면, 친숙한 에러 메시지를 볼 수 있습니다. 
+이제 <http://127.0.0.1:8080/upload>로 가보면, 친숙한 에러 메시지를 볼 수 있습니다.
 
 터미널을 보면 다음과 같은 메시지를 보게 될 겁니다.
 
