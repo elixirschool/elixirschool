@@ -30,11 +30,9 @@ _참고_: 최종 코드로 바로 건너뛰고 싶으면, Elixir School 레포 [
 이 시점에서 새로운 Mix 프로젝트를 만드는 것과 의존성들을 추가하는 것에는 익숙하다고 보기에 테스트할 코드 부분들에만 집중할 것입니다. 
 빠른 복습이 필요하면 [Mix](https://elixirschool.com/en/lessons/basics/mix)레슨의 [New Projects](https://elixirschool.com/en/lessons/basics/mix/#new-projects) 섹션을 참고하세요.
 
-
 도메인들에 보낼 요청을 만드는 것을 처리할 새로운 모듈을 하나 만드는 것으로 시작해 봅시다.
-[HTTPoison](https://github.com/edgurgel/httpoison)을 써서 URL 하나를 받고 
-HTTP 200 요청은 `{:ok, body}`를 반환하고 다른 모든 요청은 `{:error, reason}`을 반환하는 
-`ping/1` 함수를 하나 만듭니다
+[HTTPoison](https://github.com/edgurgel/httpoison)을 써서 `ping/1` 함수를 정의합시다.
+`ping/1` 함수는 URL를 인자로 받아, HTTP 200 요청이면 `{:ok, body}`를 반환하고 다른 모든 요청은 `{:error, reason}`을 반환하도록 합니다.
 
 ```elixir
 defmodule Clinic.HealthCheck do
@@ -51,6 +49,7 @@ defmodule Clinic.HealthCheck do
   defp response({:error, %{reason: reason}}), do: {:error, reason}
 end
 ```
+
 여기서 GenServer를 만들지 _않는다는_ 것을 알아차릴텐데, 그것은 다음의 정당한 이유가 있습니다.
 GenServer에서 기능(관심사)을 분리함으로써, 동시성에 대한 장애물 없이 코드를 테스트할 수 있습니다.
 
@@ -78,7 +77,7 @@ end
 
 여기서는 Bypass에 default port를 사용하도록 의존하는데, 바꿔야 할 필요가 있다면(뒤의 섹션에서 그렇게 하겠지만)
 우리는 `Bypass.open/1`에 `:port` 옵션과 값을 `Bypass.open(port: 1337)`처럼 줄 수 있습니다.
-이제 우리는 Bypass가 작동하게 할 준비가 됐습니다. 다음과 같이 먼저 성공하는 요청부터 시작해 보겠습니다.
+이제 우리는 Bypass가 작동하게 할 준비가 됐습니다. 먼저, 다음과 같이 성공하는 요청부터 시작해 보겠습니다.
 
 ```elixir
 defmodule Clinic.HealthCheckTests do
@@ -125,7 +124,6 @@ test "request with HTTP 200 response", %{bypass: bypass} do
   assert {:ok, "pong"} = HealthCheck.ping("http://localhost:#{bypass.port}/ping")
 end
 ```
-
 
 테스트의 마지막 부분에서 `HealthCheck.ping/1`을 사용하고 응답을 검사했는데, `bypass.port`는 무엇일까요?
 Bypass는 실제로 로컬 port를 수신대기하며 해당 요청들을 가로채기 때문에, 
