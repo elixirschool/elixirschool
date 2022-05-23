@@ -9,7 +9,7 @@
   `PlugCowboy` 라이브러리를 이용해 간단한 HTTP 서버를 밑바닥부터 만드는 것으로 시작해봅시다.
   Cowboy는 Erlang으로 된 간단한 웹서버이며 Plug는 해당 웹서버에 대한 커넥션 어댑터를 제공해줍니다.
 
-  최소한의 웹 어플리케이션을 준비하고 나면, Plug의 라우터 동작원리를 배우고, 단일 웹 애플리케이션에서 여러 plug를 사용하는 법을 배우게 될 것입니다.
+  기본적인 웹 애플리케이션을 준비하고 난 뒤, Plug의 라우터와 웹 애플리케이션 하나에 여러 plug를 사용하는 법을 배웁니다.
   """
 }
 ---
@@ -31,7 +31,7 @@ supervision tree를 포함한 Elixir 앱이 필요합니다.
 ## 의존성
 
 의존성은 mix를 사용하여 간단하게 추가할 수 있습니다.
-Plug를 Cowboy2의 웹서버용 인터페이스로 사용하기 위해서는 `PlugCowboy` 패키지를 설치해야 합니다.
+Plug를 Cowboy2의 어댑터 인터페이스로 사용하기 위해서는 `PlugCowboy` 패키지를 설치해야 합니다.
 
 ```elixir
 def deps do
@@ -76,14 +76,13 @@ end
 `init/1`에 의해서 반환되는 값은 최종적으로 `call/2`의 두번째 인자로 넘겨집니다.
 
 `call/2` 함수는 Cowboy로부터 넘어온 모든 새로운 요청에 대해서 각각 호출됩니다.
-Cowboy는 `%Plug.Conn{}` 커넥션 구조체를 첫번째 인자로 받으며,
-`%Plug.Conn{}` 커넥션 구조체를 반환해야 합니다.
+Cowboy는 `%Plug.Conn{}` 커넥션 구조체를 첫번째 인자로 받으며, `%Plug.Conn{}` 커넥션 구조체를 반환해야 합니다.
 
 ## 프로젝트의 애플리케이션 모듈 설정하기
 
-애플리케이션이 시작될 때 그것이 Cowboy 웹 서버를 시작하고 관리하도록 해야 합니다.
+애플리케이션이 시작될 때 Cowboy 웹 서버를 시작하고 모니터링하도록 해야 합니다.
 
-[`Plug.Cowboy.child_spec/1`](https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html#child_spec/1) 함수를 이용해 그렇게 할 것입니다.
+이는 [`Plug.Cowboy.child_spec/1`](https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html#child_spec/1) 함수를 사용해서 할 수 있습니다.
 
 이 함수는 다음 3가지 옵션을 받습니다.
 
@@ -91,9 +90,7 @@ Cowboy는 `%Plug.Conn{}` 커넥션 구조체를 첫번째 인자로 받으며,
 * `:plug` - 웹서버의 인터페이스로 사용될 plug 모듈. `MyPlug`처럼 모듈 이름만 적거나 `{MyPlug, plug_opts}`처럼 모듈 이름과 옵션으로 된 튜플을 명시 가능합니다. `plug_opts`는 plug모듈의 `init/1` 함수로 넘겨지게 됩니다. 
 * `:options` - 서버 옵션. 서버가 요청을 수신할 포트 번호를 포함하고 있어야 합니다.
 
-
 `lib/example/application.ex` 파일은 `start/2` 함수에서 위 child spec을 구현해야 합니다.
-
 
 ```elixir
 defmodule Example.Application do
@@ -116,15 +113,12 @@ end
 _참고_: 이 프로세스를 시작하는 supervisor가 호출할 것이기 때문에, `child_spec` 을 여기서 직접 호출할 필요는 없습니다.
 그저 child spec을 만드려는 모듈과 그에 필요한 3개의 옵션으로 묶인 튜플을 넘깁니다. 
 
-이것은 앱의 supervision tree 밑에서 Cowboy2 서버를 시작합니다.
-그것은 Cowboy를 HTTP 스킴(또는 HTTPS 스킴)과 주어진 포트 `8080`로 실행하고, 
-수신되는 웹 요청에 대한 인터페이스로  `Example.HelloWorldPlug` 를 지정합니다.
+이렇게 supervision tree 아래에 Cowboy2 서버를 실행시킵니다.
+지정한 포트 `8080`과 HTTP 스키마(HTTPS를 지정할 수도 있음)로 Cowboy를 실행하고, `Example.HelloWorldPlug`를 들어오는 모든 웹 요청을 담당하는 인터페이스로 지정합니다.
 
-이제 앱을 실행하고 웹 요청을 보내볼 준비가 되었습니다! 참고로 앞에서 OTP 앱을 `--sup` 플래그로 생성했기 때문에, 
-`Example` 애플리케이션은 `application` 함수 덕분에 자동으로 실행될 것입니다.
+이제 앱을 실행하고 웹 요청을 보낼 준비가 되었습니다! OTP 앱을 `--sup` 플래그로 생성했으니, `application` 함수 덕분에 `Example` 애플리케이션이 자동으로 실행되는 점을 유의하세요.
 
-
-`mix.exs` 에서 다음과 같은 내용을 볼 수 있어야 합니다.
+`mix.exs`를 열면 아래와 같은 내용을 볼 수 있습니다.
 
 ```elixir
 def application do
@@ -152,7 +146,6 @@ Hello World!
 ## Plug.Router
 
 웹 사이트 또는 REST API와 같은 대부분의 애플리케이션의 경우처럼 한 라우터가 서로 다른 경로들과 서로 다른 HTTP 메소드에 대한 요청을 각각 다른 처리기들로 라우팅 해야 할 것입니다.
-
 `Plug`는 이런 일을 할 수 있는 라우터를 제공합니다. 봐서 알 수 있듯이, Elixir에서는 Plug만으로 Sinatra가 하던 일을 할 수 때문에 Sinatra와 같은 프레임워크가 필요하지 않습니다.
 
 시작해봅시다. `lib/example/router.ex` 파일을 만들어 다음 내용을 안에 넣으세요.
@@ -203,7 +196,9 @@ end
 
 ## 다른 Plug 추가하기
 
-주어진 웹 애플리케이션에서 둘 이상의 각자 자기 역할에 전념하는 Plug를 사용하는 것이 일반적입니다. 예를 들어 라우팅을 처리하는 Plug, 들어오는 웹 요청을 유효성 검증하는 Plug, 들어오는 요청을 인증하는 Plug 등이 있을 수 있습니다. 이 섹션에서는 들어오는 웹 요청의 유효성을 검증하는 Plug 정의하고 애플리케이션이 라우터 Plug와 유효성 검사 Plug를 _모두_ 사용하도록 해보겠습니다.
+일반적으로 웹 애플리케이션에서는 여러 개의 Plug를 사용하고, Plug에는 각자 담당하는 역할이 있습니다. 
+이를테면 라우팅을 처리하는 Plug, 들어오는 웹 요청이 유효한지 검증하는 Plug, 들어오는 요청을 인증하는 Plug 등이 있을 수 있습니다.
+이 섹션에서는 들어오는 요청 속 매개변수가 유효한지를 검사하는 Plug를 정의하고, 애플리케이션이 라우터 Plug와 유효성 검사 Plug를 _모두_ 사용하도록 해보겠습니다.
 
 요청에 필요한 매개 변수가 있는지 확인하기 위한 Plug를 만들고자 합니다.
 Plug 안에서 유효성 검증을 구현하면 유효한 요청 만 애플리케이션에 전달 될 수 있습니다.
@@ -493,7 +488,7 @@ stack: [
 ]
 ```
 
-지금은 여전히 `500 Internal Server Error` 에러 메시지를 보내고 있습니다. 예외모듈에 `:plug_status` 필드를 추가해서 상태 코드를 사용자정의 할 수 있습니다.
+아직 `500 Internal Server Error` 에러 메시지를 보내고 있습니다. 예외 모듈에 `:plug_status` 필드를 추가하면 상태 코드를 변경할 수 있습니다.
 `lib/example/plug/verify_request.ex` 파일을 열고 다음을 추가하세요.
 
 ```elixir
@@ -502,7 +497,7 @@ defmodule IncompleteRequestError do
 end
 ```
 
-서버를 재시작하고 새로고침하면, 이제 `404 Bad Request` 메시지를 보게 될 것입니다.
+서버를 재시작하고 새로고침하면, 이제 `404 Bad Request` 메시지를 볼 수 있게 됩니다.
 
 이 plug를 사용하면 개발자가 문제를 해결하는 데 필요한 유용한 정보를 쉽게 파악할 수 있을 뿐만 아니라 최종 사용자에게 멋진 페이지를 제공하여 앱이 완전히 망가진 것처럼은 보이지 않도록 할 수 있습니다!
 
