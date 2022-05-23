@@ -50,7 +50,6 @@ defmodule SimpleQueue.Application do
 end
 ```
 
-If we run `iex -S mix` we'll see that our `SimpleQueue` is automatically started:
 `iex -S mix`로 실행해보면 `SimpleQueue`가 자동으로 시작된걸 다음처럼 확인해 볼 수 있습니다.
 
 ```elixir
@@ -123,7 +122,7 @@ end
 ## DynamicSupervisor
 
 슈퍼바이저들은 보통 앱 시작시 실행할 자식 리스트를 가지고 실행합니다.
-하지만 때때로 감독 대상 자식 프로세스를 앱 시작시에는 모르는 상태일 수 있습니다. (예를 들면, 각 유저가 사이트에 접속하는걸 처리할 새로운 프로세스를 각각 만드는 웹 애플리케이션이 있습니다.)
+하지만 때때로 관리 대상 자식 프로세스를 앱 시작시에는 모르는 상태일 수 있습니다. (예를 들면, 각 유저가 사이트에 접속하는걸 처리할 새로운 프로세스를 각각 만드는 웹 애플리케이션이 있습니다.)
 
 이런한 경우 필요에 따라 자식 프로세스를 실행하는 슈퍼바이저가 있어야 할 것입니다.
 DynamicSupervisor가 바로 이럴 때 사용됩니다.
