@@ -7,7 +7,6 @@
   대부분의 개발자는 입력 데이터에 잠재적인 오류가 있는지 확인하는 작업에 익숙합니다. 데이터를 목적에 맞게 사용하기 전에 데이터가 올바른 상태인지 확인해야 합니다.
 
   Ecto는 `Changeset` 모듈 및 데이터 자료구조의 방식으로 데이터 변경 작업을 위한 완벽한 솔루션을 제공합니다.
-
   이 단원에서는 이 기능을 살펴보고 데이터를 데이터베이스에 저장하기 전에 데이터의 무결성을 확인하는 방법을 배웁니다.
   """
 }
@@ -92,7 +91,7 @@ Ecto는 위 체인지셋이 유효하다고 말하고 있지만 실제로는 빈
 
 Ecto에는 도움이 되는 내장 유효성 검사 함수들이 많이 있습니다.
 
-이제 `Ecto.Changeset`을 많이 사용할 것이므로 `Ecto.Changeset`을 스키마가 정의된 `person.ex`의 모듈에 임포트 시킵시다.
+앞으로 `Ecto.Changeset`을 많이 사용할 것이므로 `Ecto.Changeset`을 스키마가 정의된 `person.ex`의 모듈에 임포트 시킵시다.
 
 ```elixir
 defmodule Friends.Person do
@@ -106,9 +105,9 @@ defmodule Friends.Person do
 end
 ```
 
-이제 `cast/3` 함수를 직접 호출할 수 있습니다.
+그러면 `cast/3` 함수를 직접 호출할 수 있습니다.
 
-일반적으로 한 스키마에 한 개 이상의 체인지셋 생성 함수를 둡니다. 구조체와 변경사항 map을 받아 체인지셋을 반환하는 함수를 하나 만들겠습니다.
+일반적으로 한 스키마에 한 개 이상의 체인지셋 생성 함수를 둡니다. 구조체와 변경사항 맵을 받아 체인지셋을 반환하는 함수를 하나 만들겠습니다.
 
 ```elixir
 def changeset(struct, params) do
@@ -141,11 +140,9 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
 >
 ```
 
-If you attempt to do `Repo.insert(changeset)` with the changeset above, you will receive `{:error, changeset}` back with the same error, so you do not have to check `changeset.valid?` yourself every time.
 위 체인지셋으로 `Repo.insert(changeset)`을 시도하면 같은 오류가 포함된 `{:error, changeset}`을 반환받습니다. 따라서 매번 `changeset.valid?` 를 직접 확인할 필요 없습니다.
 삽입, 변경, 삭제 수행을 시도하고 에러가 있으면 처리하도록 하는것이 더 쉽습니다.
 
-Apart from `validate_required/2`, there is also `validate_length/3`, that takes some extra options:
 `validate_required/2` 이외에도 `validate_length/3` 함수가 있는데, 몇가지 추가 옵션을 받습니다.
 
 ```elixir
@@ -189,10 +186,8 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
 
 ### 사용자 정의 validator 
 
-Although the built-in validators cover a wide range of use cases, you may still need something different.
 내장 validator들이 많은 유스케이스를 처리하긴 하지만, 그렇지 못한 경우도 여전히 있습니다.
 
-Every `validate_` function we used so far accepts and returns an `%Ecto.Changeset{}`, so we can easily plug our own.
 지금까지 사용한 모든 `validate_` 함수는 인자와 반환값 모두 `%Ecto.Changeset{}`이므로 직접 만들어 연결하는것도 쉽습니다.
 
 예를 들어, 사람 이름에 가상 인물의 이름만 허용하도록 만들어봅시다.

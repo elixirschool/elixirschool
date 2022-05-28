@@ -77,7 +77,6 @@ mix ecto.gen.migration create_characters
 ```elixir
 add :movie_id, references(:movies)
 ```
-
 그러면 마이그레이션이 다음과 같습니다.
 
 ```elixir
