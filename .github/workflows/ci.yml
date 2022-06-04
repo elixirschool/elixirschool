@@ -26,7 +26,7 @@ jobs:
       - run: mv content/images assets/static/images
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: 24
-          elixir-version: 1.12
+          otp-version: 25
+          elixir-version: 1.13.4
       - run: mix deps.get
       - run: mix compile
