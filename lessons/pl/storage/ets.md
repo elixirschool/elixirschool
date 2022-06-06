@@ -1,30 +1,37 @@
 %{
-  version: "0.9.1",
+  version: "1.1.1",
   title: "Erlang Term Storage (ETS)",
   excerpt: """
-  Erlang Term Storage, zwany ETS, jest potężnym mechanizmem składowania danych zbudowanym z użyciem OTP i gotowym do użycia w Elixirze. W tej lekcji przyjrzymy się jak możemy użyć ETS w naszej aplikacji.
+  Erlang Term Storage — ETS — jest potężnym mechanizmem składowania danych wbudowanym w OTP i dostępnym do użycia w Elixirze.
+  W tej lekcji zobaczymy, jak połączyć się z ETS i jak możemy go użyć w naszych aplikacjach.
   """
 }
 ---
 
 ## Informacje wstępne
 
-ETS jest rozwiązaniem bazującym na pamięci operacyjnej, które pozwala na składowanie obiektów Elixirowych i Erlangowych. ETS został zaprojektowany, by obsługiwać nawet duże zbiory danych ze stałym czasem dostępu.
+ETS jest rozwiązaniem bazującym na pamięci operacyjnej, które pozwala na składowanie obiektów elixirowych i erlangowych.
+ETS został zaprojektowany tak, by obsługiwać nawet duże zbiory danych ze stałym czasem dostępu.
 
-Tabele ETS są tworzone i obsługiwane przez procesy. Kiedy proces zarządzający tabelą kończy się, to tabela jest usuwana.  Domyślnie istnieje ograniczenie do 1400 tabel na węzeł.
+Tabele ETS są tworzone i obsługiwane przez oddzielne procesy.
+Kiedy proces zarządzający tabelą kończy się, tabela z nim powiązana jest usuwana.
+Możesz mieć tak wiele tabel ETS, jak tylko zechcesz — jedynym limitem jest pamięć serwera. Możliwe jest ustalenie maksymalnej liczby tabel za pomocą zmiennej środowiskowej `ERL_MAX_ETS_TABLES`.
+
 
 ## Tworzenie tabel
 
-Do tworzenia tabel służy funkcja `new/2`, która jako parametry przyjmuje nazwę tabeli i zbiór opcji, a zwraca identyfikator tabeli, którego możemy używać w operacjach.
+Do tworzenia tabel służy funkcja `new/2`, która jako parametry przyjmuje nazwę tabeli i zbiór opcji, a zwraca identyfikator tabeli, którego możemy używać w dalszych operacjach.
 
-Przykładowo stwórzmy tabelę do składowania i wyszukiwania użytkowników po nicku:
+Dla przykładu stwórzmy tabelę do składowania i wyszukiwania użytkowników po nicku:
 
 ```elixir
 iex> table = :ets.new(:user_lookup, [:set, :protected])
 8212
 ```
 
-Podobnie jak w GenServers, ETS umożliwia odwołanie się do tabeli po nazwie, a nie tylko po identyfikatorze. By to zrobić, musimy dodać opcję `:named_table`. I teraz możemy odwołać się d naszej tabeli bezpośrednio po nazwie:
+Podobnie jak w GenServerach, ETS umożliwia odwołanie się do tabeli po nazwie, a nie tylko po identyfikatorze.
+By to zrobić, musimy dodać opcję `:named_table`.
+Dzięki niej możemy odwołać się do naszej tabeli bezpośrednio po jej nazwie:
 
 ```elixir
 iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
@@ -35,29 +42,47 @@ iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
 
 W ETS wyróżniamy cztery typy tabel:
 
-+ `set` — Jest to typ domyślny. Jedna wartość na klucz. Klucze są unikalne.
-+ `ordered_set` — Podobny do `set`, ale klucze są posortowanie w rozumieniu Erlanga/Elixira. Warto pamiętać, że klucze są inaczej porównywane w ramach `ordered_set`.  Przy czym zasada nierówności kluczy jest spójna. Przykładowo 1 i 1.0 są traktowane jako równe.
-+ `bag` — Wiele wartości w kluczu, ale wartości te muszą być unikalne.
-+ `duplicate_bag` — Wiele wartości w kluczu. Wartości mogą się powtarzać.
++ `set` — typ domyślny.
+Jedna wartość na klucz.
+Klucze są unikalne.
++ `ordered_set` — podobny do `set`, ale klucze są posortowanie w rozumieniu Erlanga/Elixira.
+Warto pamiętać, że klucze są inaczej porównywane w ramach `ordered_set`.
+Konieczne jest zachowanie zasady rozróżnialności kluczy — nie mogą być one równe.
+Przykładowo 1 i 1.0 są traktowane jako równe.
++ `bag` — wiele wartości w kluczu, ale wartości te muszą być unikalne.
++ `duplicate_bag` — wiele wartości w kluczu, duplikaty są dopuszczalne.
 
 ### Kontrola dostępu
 
 Zasady dostępy w ETS są zbliżone do tych dla modułów:
 
-+ `public` — Odczyt i zapis dla wszystkich procesów.
-+ `protected` — Odczyt dla wszystkich procesów. Zapis tylko dla procesu zarządzającego. Jest to wartość domyślna.
-+ `private` — Odczyt i zapis tylko dla procesu zarządzającego.
++ `public` — odczyt i zapis dla wszystkich procesów.
++ `protected` — odczyt dla wszystkich procesów.
+Zapis tylko dla procesu zarządzającego.
+Jest to wartość domyślna.
++ `private` — odczyt i zapis tylko dla procesu zarządzającego.
+
+## Wyścigi
+
+Jeśli więcej niż jeden proces może zapisywać dane do tabeli — czy to przez publiczny dostęp (`public`), czy przez wiadomości do procesu zarządzającego — możliwe jest wystąpienie zjawiska wyścigów (hazardu).
+Przykładowo, dwa procesy mogą jednocześnie odczytać wartość licznika równą `0`, następnie ją zwiększyć i zapisać `1`; końcowy rezultat będzie zatem odzwierciedlał tylko pojedynczą inkrementację tego licznika.
+
+Specjalnie dla liczników dostępna jest funkcja [:ets.update_counter/3](http://erlang.org/doc/man/ets.html#update_counter-3), która zapewnia „atomowe” (niepodzielne) procesy aktualizacji i odczytywania wartości.
+Dla innych przypadków może być konieczne, aby proces zarządzający tabelą wykonywał własne atomowe operacje jako odpowiedź na przychodzące wiadomości, takie jak „dodaj tę wartość do listy pod kluczem `:results`”.
 
 ## Wstawianie informacji
 
-ETS nie posiada schematu. Jedyne ograniczenie polega na tym, że dane są składowane jako krotki, w których pierwsza wartość to klucz. By dodać rekord, należy użyć funkcji `insert/2`:
+ETS nie posiada schematu.
+Jedyne ograniczenie polega na tym, że dane są składowane jako krotki, w których pierwsza wartość to klucz.
+By dodać rekord, możemy użyć funkcji `insert/2`:
 
 ```elixir
 iex> :ets.insert(:user_lookup, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
 true
 ```
 
-Gdy użyjemy `insert/2` z`set` lub `ordered_set` istniejaca wartość zostanie zastąpiona. By temu zapobiec, należy użyć funkcji `insert_new/2`, która zwróci `false`, jeżeli klucz istnieje:
+Gdy użyjemy `insert/2` z `set` lub `ordered_set`, już istniejace dane mogą zostać nadpisane.
+By temu zapobiec, należy użyć funkcji `insert_new/2`, która zwróci `false`, jeżeli dany klucz istnieje:
 
 ```elixir
 iex> :ets.insert_new(:user_lookup, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
@@ -68,9 +93,11 @@ true
 
 ## Wyszukiwanie informacji
 
-ETS posiada kilka wygodnych i elastycznych sposobów na wyszukiwanie danych. Przyjrzyjmy się jak pobierać dane po kluczu i z użyciem różnych form dopasowania wzorców.
+ETS posiada kilka wygodnych i elastycznych sposobów na wyszukiwanie danych.
+Przyjrzyjmy się, jak pobierać dane po kluczu i z użyciem różnych form dopasowania wzorców.
 
-Najbardziej wydajną, idealną wręcz, metodą wyszukiwania danych jest użycie klucza. Wyszukiwania bazujące na dopasowanie, choć są wygodne, powinny być używane rozsądnie, ponieważ rzutują na wydajność, szczególnie przy dużych zbiorach danych.
+Najbardziej wydajną, idealną wręcz metodą wyszukiwania danych jest użycie klucza.
+Wyszukiwania bazujące na dopasowaniu wzorców, choć bywają użyteczne, iterują po całej tabeli, więc powinniśmy ich używać oszczędnie, zwłaszcza przy dużych zbiorach danych.
 
 ### Wyszukiwanie po kluczu
 
@@ -83,11 +110,14 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 
 ### Proste porównania
 
-ETS został zaprojektowany dla Erlanga, więc pamiętaj iż porównywanie zmiennych może wyglądać _trochę niezdarnie_.
+ETS został zaprojektowany dla Erlanga, więc pamiętaj iż porównywanie zmiennych może wyglądać _odrobinę_ niezgrabnie.
 
-By wskazać, które zmienne będziemy porównywać, używamy atomów `:"$1"`, `:"$2"`, `:"$3"`, itd. Numer zmiennej odwołuje się do pozycji w wyniku, a nie pozycji w porównaniu. Jeżeli nie jesteśmy zainteresowaniu jakąś wartością, to używamy zmiennej `:_`.
+By wskazać, które zmienne będziemy porównywać, używamy atomów `:"$1"`, `:"$2"`, `:"$3"` itd.
+Numer zmiennej odwołuje się do pozycji w wyniku, a nie pozycji w porównaniu.
+Jeżeli nie jesteśmy zainteresowani jakąś wartością, używamy zmiennej `:_`.
 
-Wartości też mogą zostać użyte w dopasowaniu, ale tylko zmienne zostaną zwrócone jako część wyniku. Złóżmy to wszystko razem i zobaczmy, jak działa:
+Wartości także mogą zostać użyte w dopasowaniu, ale jedynie zmienne zostaną zwrócone jako część wyniku.
+Złóżmy to wszystko razem i zobaczmy, jak to działa:
 
 ```elixir
 iex> :ets.match(:user_lookup, {:"$1", "Sean", :_})
@@ -112,11 +142,15 @@ iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 iex> :ets.match_object(:user_lookup, {:_, "Sean", :_})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
+
 ### Zaawansowane wyszukiwanie
 
-Wiemy już, jak wygląda proste wyszukiwanie, ale co jeżeli chcielibyśmy mieć coś w rodzaju SQL? Na całe szczęście mamy do dyspozycji elastyczniejsze rozwiązanie. Do przeszukiwania danych możemy użyć funkcji `select/2`, przyjmującej jako argument listę trójelementowych krotek. Krotki te reprezentują wzorzec, zero lub więcej strażników oraz format odpowiedzi.
+Wiemy już, jak wygląda proste wyszukiwanie, ale co zrobić, jeżeli chcielibyśmy mieć coś w rodzaju SQL? Na szczęście mamy do dyspozycji bardziej solidne rozwiązanie.
+Aby przeszukać nasze dane przy użyciu funkcji `select/2`, musimy skonstruować listę trójelementowych krotek.
+Krotki te reprezentują wzorzec, zero lub więcej strażników oraz format odpowiedzi.
 
-Zmienne użyte w dopasowaniu oraz dwie nowe `:"$$"` i `:"$_"`, mogą być użyte do sformatowania wyniku. Te nowe zmienne są skróconym zapisem do formatowania wyniku; `:"$$"` zwraca wynik jako listę, a `:"$_"` zwróci oryginalny obiekt.
+Zmienne użyte w dopasowaniu — oraz dwie nowe, `:"$$"` i `:"$_"` — mogą być użyte do skonstruowania zwracanej wartości.
+Te nowe zmienne są skróconym zapisem do formatowania wyniku; `:"$$"` zwraca wynik jako listę, a `:"$_"` zwróci oryginalny obiekt.
 
 Zmieńmy nasz poprzedni przykład z `match/2` tak, by użyć `select/2`:
 
@@ -125,12 +159,14 @@ iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :_, :"$3"}, [], [:"$_"]}]){% endraw %}
+iex> :ets.select(:user_lookup, [{{:"$1", :_, :"$3"}, [], [:"$_"]}])
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
- {"spork", 30, ["ruby", "elixir"]}]
+ {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 ```
 
-Pomimo że `select/2` pozwala na precyzyjniejszą kontrolę rezultatów, to składnia tej funkcji jest nieprzyjazna szczególnie w złożonych przypadkach. Do ich obsługi ETS zawiera funkcję `fun2ms/1`, która zmienia funkcję w specyfikację zwaną `match_specs`.  Z pomocą`fun2ms/1` możemy tworzyć zapytania, używając lepiej nam znanej składni funkcyjnej. 
+Choć `select/2` pozwala na bardziej precyzyjną kontrolę rezultatów, to składnia tej funkcji jest nieprzyjazna w szczególnie złożonych przypadkach.
+Do ich obsługi ETS zawiera funkcję `fun2ms/1`, która zmienia funkcję w specyfikację zwaną `match_specs`.
+Z pomocą`fun2ms/1` możemy tworzyć zapytania, używając lepiej nam znanej składni funkcyjnej.
 
 Połączmy zatem `fun2ms/1` i `select/2`, by odszukać wszystkie `usernames` z dwoma lub więcej językami:
 
@@ -142,13 +178,15 @@ iex> :ets.select(:user_lookup, fun)
 ["doomspork", "3100"]
 ```
 
-Chcesz dowiedzieć się więcej o specyfikacji dopasowań? Zapoznaj się z oficjalną, erlngową, dokumentacją w języku angielskim [match_spec](http://www.erlang.org/doc/apps/erts/match_spec.html).
+Chcesz dowiedzieć się więcej o specyfikacji dopasowań? Zapoznaj się z oficjalną, erlangową dokumentacją w języku angielskim na temat [match_spec](http://www.erlang.org/doc/apps/erts/match_spec.html).
 
 ## Usuwanie danych
 
-### Usuwanie rekordów 
+### Usuwanie rekordów
 
-Usuwanie rekordów jest zbliżone do wstawiania za pomocą `insert/2` i wyszukiwania za pomocą `lookup/2`. Wywołując `delete/2` przekazujemy nazwę tabeli i klucz. W wyniku usunięte zostaną zarówno dane, jak i klucz:
+Usuwanie rekordów jest tak proste, jak użycie `insert/2` i `lookup/2`.
+Wywołując `delete/2` przekazujemy nazwę tabeli i klucz.
+W wyniku usunięte zostaną zarówno dane, jak i klucz:
 
 ```elixir
 iex> :ets.delete(:user_lookup, "doomspork")
@@ -157,7 +195,9 @@ true
 
 ### Usuwanie tabel
 
-Tabele ETS nie są usuwane, chyba że proces je obsługujący zakończy się. Czasami jednak musimy usunąć tabelę, ale nie zatrzymując procesu. Służy do tego funkcja `delete/1`:
+Tabele ETS nie są usuwane, chyba że proces je obsługujący zakończy się.
+Czasami jednak konieczne może być usunięcie tabeli bez zatrzymywania zarządzającego nią procesu.
+Możemy do tego użyć funkcji `delete/1`:
 
 ```elixir
 iex> :ets.delete(:user_lookup)
@@ -166,19 +206,21 @@ true
 
 ## Przykładowe użycie ETS
 
-Wykorzystajmy naszą wiedzę w praktyce. Stwórzmy aplikację – prosty _cache_ dla drogich obliczeniowo operacji. Zaimplementujemy funkcję `get/4`, która jako argumenty przyjmuje moduł, funkcję, argumenty tej funkcji oraz opcje. Na początek obchodzi nas tylko opcja `:ttl`.  
+Wykorzystajmy zdobytą wiedzę w praktyce i stwórzmy aplikację — prosty _cache_ — pamięć podręczną — dla kosztownych obliczeniowo operacji.
+Zaimplementujemy funkcję `get/4`, która jako argumenty będzie przyjmować moduł, funkcję, argumenty tej funkcji oraz opcje.
+Na początek obchodzi nas tylko opcja `:ttl`.
 
 W przykładzie zakładamy, że tabela ETS została utworzona przez inny proces, na przykład nadzorcę:
 
 ```elixir
 defmodule SimpleCache do
   @moduledoc """
-  A simple ETS based cache for expensive function calls.
+  Prosty, oparty na ETS cache dla kosztownych obliczeniowo funkcji.
   """
 
   @doc """
-  Retrieve a cached value or apply the given function caching and returning
-  the result.
+  Zwróć zapisaną wartość albo zastosuj daną funkcję, zapisując
+  i zwracając wynik.
   """
   def get(mod, fun, args, opts \\ []) do
     case lookup(mod, fun, args) do
@@ -192,7 +234,7 @@ defmodule SimpleCache do
   end
 
   @doc """
-  Lookup a cached result and check the freshness
+  Wyszukaj zapisany wynik i sprawdź jego aktualność.
   """
   defp lookup(mod, fun, args) do
     case :ets.lookup(:simple_cache, [mod, fun, args]) do
@@ -202,7 +244,7 @@ defmodule SimpleCache do
   end
 
   @doc """
-  Compare the result expiration against the current system time.
+  Porównaj czas wygaśnięcia wyniku z aktualnym czasem systemowym.
   """
   defp check_freshness({mfa, result, expiration}) do
     cond do
@@ -212,7 +254,7 @@ defmodule SimpleCache do
   end
 
   @doc """
-  Apply the function, calculate expiration, and cache the result.
+  Zastosuj funkcję, oblicz czas wygaśnięcia i zapisz wynik.
   """
   defp cache_apply(mod, fun, args, ttl) do
     result = apply(mod, fun, args)
@@ -223,7 +265,8 @@ defmodule SimpleCache do
 end
 ```
 
-Zademonstrujmy działanie naszego _cacha_ z użyciem funkcji zwracającej czas systemowy z 10-sekundową "pamięcią" (TTL). Jak widać na poniższym przykładzie, otrzymujemy wynik z pamięci podręcznej, do momentu aż wartość się nie zdezaktualizuje:
+Zademonstrujmy działanie naszego _cache'a_ z użyciem funkcji zwracającej czas systemowy z 10-sekundową „pamięcią” (TTL).
+Jak zobaczysz w poniższym przykładzie, otrzymujemy wynik z pamięci podręcznej, do momentu aż wartość się nie zdezaktualizuje:
 
 ```elixir
 defmodule ExampleApp do
@@ -257,9 +300,11 @@ iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
 
 Jak widać, udało nam się zaimplementować skalowalną i szybką pamięć podręczną bez żadnych zewnętrznych zależności, a to tylko jedno z zastosowań ETS.
 
-## ETS, a dysk twardy
+## ETS a dysk twardy
 
-Jak wiemy ETS do działania wykorzystuje pamięć RAM, a co jeżeli chcielibyśmy mieć rozwiązanie wykorzystujące dysk twardy? Do tego służy _Disk Based Term Storage_, w skrócie DETS. Interfejsy ETS i DETS mają spójne API z dokładnością do sposobu tworzenia tabel. DETS wykorzystuje `open_file/2` i nie wymaga opcji `:named_table`:
+Jak już wiemy, ETS do działania wykorzystuje pamięć RAM — ale co jeżeli chcielibyśmy mieć rozwiązanie wykorzystujące dysk twardy? Do tego służy _Disk Based Term Storage_, w skrócie DETS.
+Interfejsy ETS i DETS mają spójne API z wyjątkiem sposobu tworzenia tabel.
+DETS wykorzystuje `open_file/2` i nie wymaga opcji `:named_table`:
 
 ```elixir
 iex> {:ok, table} = :dets.open_file(:disk_storage, [type: :set])
@@ -279,4 +324,4 @@ $ ls | grep -c disk_storage
 1
 ```
 
-Trzeba jeszcze zaznaczyć, że DETS nie wspiera `ordered_set` w przeciwieństwie do ETS, tylko `set`, `bag` i `duplicate_bag` są obsługiwane.
+Trzeba jeszcze zaznaczyć, że w przeciwieństwie do ETS, DETS nie wspiera `ordered_set`, a jedynie `set`, `bag` i `duplicate_bag`.
