@@ -15,17 +15,17 @@ Ecto는 어댑터를 통해 서로 다른 데이터베이스를 지원합니다.
 * MySQL
 * SQLite
 
-이 단원에서는 Ecto가 PostgreSQL 어댑터를 사용하도록 설정하겠습니다.
+이 단원에서는 PostgreSQL 어댑터를 사용하도록 Ecto를 설정하겠습니다.
 
 ### 시작하기
 
-이 단원의 과정에서 Ecto의 3가지 파트를 다룰 것입니다.
+이 단원을 통해 Ecto의 3가지 파트를 다룰 것입니다.
 
 * 레포지토리 - 커넥션을 포함한 데이터베이스의 인터페이스 제공
 * 마이그레이션 — 데이터베이스 테이블과 인덱스의 생성, 변경, 삭제 매커니즘
 * 스키마 — 데이터베이스 테이블 엔트리를 나타내는 특정 구조체
 
-시작해보자면 슈퍼비전 트리를 포함한 새 애플리케이션을 생성합니다.
+시작해 보겠습니다. 슈퍼비전 트리를 포함한 새 애플리케이션을 생성합니다.
 
 ```shell
 $ mix new friends --sup
@@ -71,7 +71,7 @@ config :friends, Friends.Repo,
   hostname: "localhost"
 ```
 
-이렇게 Ecto가 데이터베이스에 연결할 방법을 구성합니다. 연결하고자 하는 데이터베이스와 일치하는 인증정보를 입력해야 합니다.
+이런식으로 Ecto가 데이터베이스에 연결할 방법을 구성합니다. 연결하고자 하는 데이터베이스와 일치하는 인증정보를 입력해야 합니다.
 
 또한 `Friends.Repo` 모듈이 `lib/friends/repo.ex` 파일에 생성됩니다.
 
@@ -83,7 +83,7 @@ defmodule Friends.Repo do
 end
 ```
 
-`Friends.Repo` 모듈을 사용하여 데이터베이스에 쿼리할 것입니다. 또한 데이터베이스 설정 정보는 `:friends` Elixir 애플리케이션에서 찾도록 하고 어댑터는 `Ecto.Adapters.Postgres`로 선택했습니다.
+`Friends.Repo` 모듈을 사용하여 데이터베이스에 쿼리할 것입니다. 또한 데이터베이스 설정 정보는 Elixir 애플리케이션 `:friends`에서 찾도록 하고 어댑터는 `Ecto.Adapters.Postgres`로 선택했습니다.
 
 이제 `Friends.Repo`를 하나의 슈퍼바이저로 `lib/friends/application.ex` 파일 안의 애플리케이션 슈퍼비전 트리에 넣으세요.
 그러면 애플리케이션 시작시 Ecto 프로세스를 띄우게 됩니다.
@@ -205,7 +205,7 @@ iex> person = %Friends.Person{name: "Tom", age: 11}
 %Friends.Person{age: 11, name: "Tom"}
 ```
 
-스키마는 그저 구조체라서 보통의 구조체처럼 상호작용 할수 있습니다.
+스키마는 그자체로 구조체라서 보통의 구조체처럼 상호작용 할수 있습니다.
 
 ```elixir
 iex> person.name
@@ -218,7 +218,7 @@ iex> name
 "Tom"
 ```
 
-비슷하게 보통 Elixir map이나 구조체처럼 변경도 가능합니다.
+비슷하게 스키마 데이터 변경도 보통의 다른 Elixir map이나 구조체처럼 가능합니다.
 
 ```elixir
 iex> %{person | age: 18}
