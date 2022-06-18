@@ -168,8 +168,8 @@ Hal menarik lain mengenai map adalah map telah menyediakan sintaks untuk memperb
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
 %{foo: "bar", hello: "world"}
-iex> %{map | foo: "baz"}
+iex> map = %{map | foo: "baz"}
 %{foo: "baz", hello: "world"}
-iex> map.hello
-"world"
+iex> map.foo
+"baz"
 ```
