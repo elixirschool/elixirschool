@@ -116,7 +116,7 @@ def changeset(struct, params) do
 end
 ```
 
-Vamos vamos a asegurarnos de que `name` esté siempre presente.
+Vamos a asegurarnos de que `name` esté siempre presente.
 
 ```elixir
 def changeset(struct, params) do
