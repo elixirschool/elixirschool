@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Testing",
   excerpt: """
   Testing is an important part of developing software.
@@ -108,7 +108,7 @@ Use `refute` when you want to ensure a statement is always false.
 
 Sometimes it may be necessary to assert that an error has been raised.
 We can do this with `assert_raise`.
-We'll see an example of `assert_raise` in the next lesson on Plug.
+We'll see an example of `assert_raise` in the lesson on Plug.
 
 ### assert_receive
 
