@@ -39,11 +39,15 @@ defmodule SampleWeb.BoardLive do
       %{task: "deploy to production", id: "#{1}-work"},
       %{task: "code challenge", id: "#{2}-work"},
       %{task: "plan community events", id: "#{3}-work"}
-    ]    house_cards = [
+    ]    
+
+    house_cards = [
       %{task: "wash my dog", id: "#{1}-house"},
       %{task: "sweep the house", id: "#{2}-house"},
       %{task: "tidy my bedroom", id: "#{3}-house"}
-    ]    school_cards = [
+    ]    
+
+    school_cards = [
       %{task: "group discussion", id: "#{1}-school"},
       %{task: "submit assignment", id: "#{2}-school"},
       %{task: "work on school project", id: "#{3}-school"}
@@ -158,7 +162,7 @@ How can we exactly solve this problem?
 
 ## 3. Solution
 
-Luckily, in Phoenix LiveView v0.16.0 assigns_to_attribute/2 function was introduced.This function takes in assigns as the first argument and a list of assign’s keys that are to be excluded as the optional second argument.
+Luckily, in Phoenix LiveView v0.16.0 [assigns_to_attribute/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.Helpers.html#assigns_to_attributes/2) function was introduced.This function takes in assigns as the first argument and a list of assign’s keys that are to be excluded as the optional second argument.
 
 This function is Useful for transforming caller assigns into dynamic attributes while stripping reserved keys from the result.
 
@@ -191,7 +195,9 @@ Inspect the assigns and see what it holds:
 
 ```elixir
 def card(assigns) do
-IO.inspect(assigns, label: "==================card component=====")    ~H"""
+IO.inspect(assigns, label: "==================card component=====")    
+
+~H"""
     <div>
       <div class="column">
         <%= @card.task %>
@@ -211,7 +217,7 @@ IO.inspect(assigns, label: "==================card component=====")    ~H"""
 }
 ```
 
-We can see the assigns contains the card and the class assigns. Lets go ahead and invoke the assigns_to_attribute/2 inside the card/1 to transform our class assign for use in tag attribute.
+We can see the assigns contains the card and the class assigns. Lets go ahead and invoke the assigns_to_attribute/2 inside the card/1 to transform our class assign for use in `<div>` tag attribute.
 
 ```elixir
 def card(assigns) do
@@ -245,7 +251,7 @@ assigns = assign(assigns, :extra, extra)~H"""
 end
 ```
 
-Next, I have updated our assigns with the attributes(extra) using the assign/2 function .We shall use the @extra to output as HTML attributes on the <div> tag.
+Next, I have updated our assigns with the attributes(extra) using the [assign/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.html#assign/2) function .We shall use the @extra to output as HTML attributes on the <div> tag.
 
 **NB:** The component markup has no column class passed to it.I had to remove it there and pass it to class assign when calling the card/1 function.
 
