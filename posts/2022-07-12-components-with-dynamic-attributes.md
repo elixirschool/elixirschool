@@ -241,7 +241,8 @@ We don’t want to use the card assign as an attribute so we will have to exclud
 ```elixir
 def card(assigns) do
 extra = assigns_to_attributes(assigns, [:card])
-assigns = assign(assigns, :extra, extra)~H"""
+assigns = assign(assigns, :extra, extra)
+~H"""
     <div>
       <div {@extra} >
         <%= @card.task %>
