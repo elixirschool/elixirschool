@@ -253,7 +253,7 @@ end
 
 Here I have updated our assigns with the HTML attributes contained in `extra` using the [assign/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.html#assign/2) function. So we can use the `@extra` assignment to output HTML attributes on the `<div>` tag.
 
-**NB:** The component markup has no column class passed to it.I had to remove it there and pass it to class assign when calling the card/1 function.
+**Note:** The `class` assignment should also contain the "column" class, along with the `"bg-*"` class, as shown below.
 
 ```elixir
 <.card card={card} class={"column bg-green"}/>
