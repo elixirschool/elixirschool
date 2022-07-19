@@ -19,7 +19,7 @@ What exactly I’m I trying to say? Lets say we are creating an application akin
 ![board plan](/images/board-plan.png)
 
 
-From the above image , I have split the board into 3 columns. That is the house, work and school columns. The user interacting with this board is supposed to add weekly task they are supposed to do in each sector.
+From the above image , I have split the board into 3 columns--the "house", "work", and "school" columns. The user interacting with this board can add weekly tasks they are supposed to do to each column.
 
 You will also notice that each sector has a card of different color. I want us to use reusable component to implement in our application. The board will act as the parent LiveView while the card will be the component.
 
