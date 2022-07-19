@@ -24,7 +24,7 @@ For example, lets say that I have a component markup that generates something li
 </div>
 
 ```
-In the component there is a `class` attribute passed with `column` and `bg-green` values. But the component is supposed to be reusable and when I used it somewhere else, I may want a `yellow` background.That means I should pass in `bg-yellow` class.
+In the component there is a `class` attribute assigned with `column` and `bg-green` values. But the component is supposed to be reusable and when I used it somewhere else, I may want a `yellow` background.That means I should pass in `bg-yellow` class.
 
  ```
   <div class="column bg-yellow">
@@ -36,11 +36,11 @@ What exactly I’m I trying to say? Lets create an application akin to Kanban. I
 ![board plan](/images/board-plan.png)
 
 
-From the above image , I have split the board into 3 columns. That is the house, work and school columns. The user interacting with this board is supposed to add weekly task they are supposed to do in each sector.
+From the above image , I have split the board into 3 columns--the "house", "work", and "school" columns. The user interacting with this board can add weekly tasks they are supposed to do to each column.
 
-You will also notice that each sector has a card of different color. I want us to use reusable component to implement in our application. The board will act as the parent LiveView while the card will be the component.
+You will also notice that each column has a card of different color. I want us to use reusable components to implement these cards in our LiveView application. The board will act as the parent live view while the card will be the component.
 
-Now that we want the cards in each section to have different colors, how can we make it possible keeping in mind that we are using reusable components.
+We want the cards in each section to have different colors. So, how can we leverage the same reusable component in each column, when the card should be a different color each time?
 
 We can achieve this with the help of dynamic component attributes and the assigns_to_attributes/2 function. 
 
@@ -132,12 +132,12 @@ Our weekly planning task board should look something similar to this when we ope
 
 ## 2.Problem: Reusing components with different attributes
 
-  1. We want the cards in each section to have a different color from one another . For example, cards in work section can be blue, in house can be green and in school section can be yellow.
+  1. We want the cards in each column to have a different color from one another . For example, cards in the "work" column should be blue, cards in the "house" column should be green, and cards in the "school" column should be yellow.
 
   2. We should be able to use the same card/1 function component we defined earlier, while still ensuring that cards can be a different color in the different columns.
 
 
-Imagine writing our markup in this manner:
+We could solve the first problem like this:
 
 ```elixir
     <div class="row">
@@ -175,18 +175,21 @@ Imagine writing our markup in this manner:
 
 ```
 
-We have solved our first problem , its working but this code has some shortcomings. Personally, its redundant to write the same markup over and over again and this is the reason why we opted to use function components. However, when we use reusable components we are going back to our previous implementation.
+We have solved our first problem , its working but this code has some shortcomings. Personally, its redundant to write the same markup over and over again and this is the reason why we opted to use function components in the first place. However, our original implementation doesn't allow us to control the color of the cards in each column.
+
 
 How can we exactly solve this problem?
 
 
 ## 3. Solution: Dynamic Component Attributes with `assigns_to_attributes/2`
 
-Luckily, in Phoenix LiveView v0.16.0 [assigns_to_attribute/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.Helpers.html#assigns_to_attributes/2) function was introduced.This function takes in assigns as the first argument and a list of assign’s keys that are to be excluded as the optional second argument.
+Luckily, Phoenix LiveView v0.16.0 introduced the [assigns_to_attribute/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.Helpers.html#assigns_to_attributes/2) function. 
 
-This function is Useful for transforming caller assigns into dynamic attributes while stripping reserved keys from the result.
+_This function is useful for transforming caller assigns into dynamic attributes while stripping reserved keys from the result._
 
-Now that we are assured we can transform the assigns passed to card/1 into attributes, let’s go ahead and add class assign and pass bg-* i.e “bg-blue” as the value. “bg-*” represents background color with a css added property.
+`assigns_to_attribute/2` takes in assigns as the first argument and a list of assign’s keys that are to be excluded as the optional second argument.Then it returns a filtered list of keywords for use as HTML attributes.
+
+Now that we are assured we can transform the assigns passed to `card/1` into attributes, let’s go ahead and add an assigns of `class` to our call to `card/1`. We'll give that assigns a value of `"bg-*"`. “bg-*” represents background color with a CSS added property.
 
 
 ```elixir
@@ -261,9 +264,10 @@ We don’t want to use the card assign as an attribute so we will have to exclud
 ```elixir
 def card(assigns) do
 extra = assigns_to_attributes(assigns, [:card])
-assigns = assign(assigns, :extra, extra)~H"""
+assigns = assign(assigns, :extra, extra)
+~H"""
     <div>
-      <div {@ extra} >
+      <div {@extra} >
         <%= @card.task %>
       </div>
     </div>
@@ -271,15 +275,16 @@ assigns = assign(assigns, :extra, extra)~H"""
 end
 ```
 
-Next, I have updated our assigns with the attributes(extra) using the [assign/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.html#assign/2) function .We shall use the @extra to output as HTML attributes on the <div> tag.
+Here I have updated our assigns with the HTML attributes contained in `extra` using the [assign/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.html#assign/2) function. So we can use the `@extra` assignment to output HTML attributes on the `<div>` tag.
 
-**Note:** The component markup has no column class passed to it.I had to remove it there and pass it to class assign when calling the card/1 function.
+
+**Note:** The `class` assignment should also contain the "column" class, along with the `"bg-*"` class, as shown below.
 
 ```elixir
 <.card card={card} class={"column bg-green"}/>
 ```
 
-This is how our rendered markup looks like when you inspect on the browser:
+This is how our rendered markup looks like when you inspect it in the browser:
 
 ```
 <div>
