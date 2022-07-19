@@ -112,7 +112,7 @@ Our weekly planning task board should look something similar to this when we ope
 
 ## 2.Problem
 
-  1. We want the cards in each section to have a different color from one another . For example, cards in work section can be blue, in house can be green and in school section can be yellow.
+  1. We want the cards in each column to have a different color from one another . For example, cards in the "work" column should be blue, cards in the "house" column should be green, and cards in the "school" column should be yellow.
 
   2. Card component defined earlier should also be maintained.
 
