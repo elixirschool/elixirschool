@@ -259,7 +259,7 @@ Here I have updated our assigns with the HTML attributes contained in `extra` us
 <.card card={card} class={"column bg-green"}/>
 ```
 
-This is how our rendered markup looks like when you inspect on the browser:
+This is how our rendered markup looks like when you inspect it in the browser:
 
 ```
 <div>
