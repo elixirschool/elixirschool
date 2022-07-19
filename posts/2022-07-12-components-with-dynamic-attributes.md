@@ -251,7 +251,7 @@ assigns = assign(assigns, :extra, extra)~H"""
 end
 ```
 
-Next, I have updated our assigns with the attributes(extra) using the [assign/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.html#assign/2) function .We shall use the @extra to output as HTML attributes on the <div> tag.
+Here I have updated our assigns with the HTML attributes contained in `extra` using the [assign/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.html#assign/2) function. So we can use the `@extra` assignment to output HTML attributes on the `<div>` tag.
 
 **NB:** The component markup has no column class passed to it.I had to remove it there and pass it to class assign when calling the card/1 function.
 
