@@ -243,7 +243,7 @@ def card(assigns) do
 extra = assigns_to_attributes(assigns, [:card])
 assigns = assign(assigns, :extra, extra)~H"""
     <div>
-      <div {@ extra} >
+      <div {@extra} >
         <%= @card.task %>
       </div>
     </div>
