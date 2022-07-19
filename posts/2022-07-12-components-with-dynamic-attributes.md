@@ -164,7 +164,7 @@ How can we exactly solve this problem?
 
 Luckily, Phoenix LiveView v0.16.0 introduced the [assigns_to_attribute/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.Helpers.html#assigns_to_attributes/2) function. This function takes in assigns as the first argument and a list of assign’s keys that are to be excluded as the optional second argument.
 
-This function is Useful for transforming caller assigns into dynamic attributes while stripping reserved keys from the result.
+This function is useful for transforming caller assigns into dynamic attributes while stripping reserved keys from the result.
 
 Now that we are assured we can transform the assigns passed to card/1 into attributes, let’s go ahead and add class assign and pass bg-* i.e “bg-blue” as the value. “bg-*” represents background color with a css added property.
 
