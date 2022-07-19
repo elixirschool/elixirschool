@@ -166,7 +166,7 @@ Luckily, Phoenix LiveView v0.16.0 introduced the [assigns_to_attribute/2](https:
 
 This function is useful for transforming caller assigns into dynamic attributes while stripping reserved keys from the result.
 
-Now that we are assured we can transform the assigns passed to card/1 into attributes, let’s go ahead and add class assign and pass bg-* i.e “bg-blue” as the value. “bg-*” represents background color with a css added property.
+Now that we are assured we can transform the assigns passed to `card/1` into attributes, let’s go ahead and add an assigns of `class` to our call to `card/1`. We'll give that assigns a vlue of `"bg-*"`. “bg-*” represents background color with a CSS added property.
 
 
 ```elixir
