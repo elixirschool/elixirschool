@@ -155,7 +155,7 @@ We could solve the first problem like this:
 
 ```
 
-We have solved our first problem , its working but it looks so messed up. Personally, its redundant to write the same markup over and over again and this is the reason why we opted to use function components. However, when we use reusable components we are going back to our previous implementation.
+We have solved our first problem , its working but it looks so messed up. It's redundant to write the same markup over and over again and this is the reason why we opted to use function components in the first place. However, our original implementation doesn't allow us to control the color of the cards in each column.
 
 How can we exactly solve this problem?
 
