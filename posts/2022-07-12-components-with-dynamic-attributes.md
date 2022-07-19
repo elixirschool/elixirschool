@@ -11,7 +11,7 @@
 ---
 
 
-I’m quite sure most of you, have already interacted with components you have created more components to reuse in your application.However, sometimes you may feel stuck when creating reusable components more so when you want components to meet certain criteria. For example, you may want the feature in component A to be different from that of component B.
+I’m quite sure most of you have already interacted with components. You  may have created components to reuse in your application. However, sometimes you may feel stuck when creating reusable components more so when you want components to meet certain criteria. For example, you may want the feature in component A to be different from that of component B.
 
 What exactly I’m I trying to say? Lets say we are creating an application akin to kanban. I want us to create an application that can help users plan their weekly task.
 
