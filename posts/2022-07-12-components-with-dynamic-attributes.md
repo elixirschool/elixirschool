@@ -11,9 +11,26 @@
 ---
 
 
-I’m quite sure most of you have already interacted with components. You  may have created components to reuse in your application. However, sometimes you may feel stuck when creating reusable components more so when you want components to meet certain criteria. For example, you may want the feature in component A to be different from that of component B.
+I’m quite sure most of you have already interacted with components. You  may have created components to reuse in your application. However, sometimes you may feel stuck when creating reusable components more so when you want to pass in common attributes with different values in your component's markup. 
 
-What exactly I’m I trying to say? Lets say we are creating an application akin to kanban. I want us to create an application that can help users plan their weekly task.
+For example, lets say that I have a component markup that generates something like this:
+
+```elixir
+
+<div>
+  <div class="column bg-green">
+    learn dynamic attributes
+  </div>
+</div>
+
+```
+In the component there is a `class` attribute passed with `column` and `bg-green` values. But the component is supposed to be reusable and when I used it somewhere else, I may want a `yellow` background.That means I should pass in `bg-yellow` class.
+
+ ```
+  <div class="column bg-yellow">
+
+ ```  
+What exactly I’m I trying to say? Lets create an application akin to Kanban. I want us to create an application that can help users plan their weekly tasks.
 
 
 ![board plan](/images/board-plan.png)
@@ -25,10 +42,12 @@ You will also notice that each sector has a card of different color. I want us t
 
 Now that we want the cards in each section to have different colors, how can we make it possible keeping in mind that we are using reusable components.
 
+We can achieve this with the help of dynamic component attributes and the assigns_to_attributes/2 function. 
+
 
 Let’s begin:
 
-## 1.Create Board LiveView
+## 1.Create Board live view
 
 ```elixir
 defmodule SampleWeb.BoardLive do
@@ -100,9 +119,10 @@ end
 
 I have created a BoardLive page that renders each card component for house, work and school section.
 
-The card components have been defined using [function components](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.Component.html) mechanism, which is useful for reusing markup in our LiveView.
+Here, I'm iterating over the card structs in socket assigns. For each card struct, I'm rendering the details of that card with the help of the `card/1` [function components](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.Component.html). Function components are functions that take in some assigns and return some HEEx markup. They are useful for reusing markup in our LiveView applications.
 
-**NB:** I’m not getting into the details of how the user should add their weekly task. In this example I have hard-coded the task assuming that the user had already added their task. We are actually displaying the task added to the cards .
+
+**Note:** I’m not getting into the details of how the user should add their weekly task. In this example I have hard-coded the task assuming that the user had already added their task. We are actually displaying the task added to the cards .
 
 Our weekly planning task board should look something similar to this when we open our browser:
 
@@ -110,11 +130,11 @@ Our weekly planning task board should look something similar to this when we ope
 ![board plan output](/images/board-plan-output.png)
 
 
-## 2.Problem
+## 2.Problem: Reusing components with different attributes
 
   1. We want the cards in each section to have a different color from one another . For example, cards in work section can be blue, in house can be green and in school section can be yellow.
 
-  2. Card component defined earlier should also be maintained.
+  2. We should be able to use the same card/1 function component we defined earlier, while still ensuring that cards can be a different color in the different columns.
 
 
 Imagine writing our markup in this manner:
@@ -155,12 +175,12 @@ Imagine writing our markup in this manner:
 
 ```
 
-We have solved our first problem , its working but it looks so messed up. Personally, its redundant to write the same markup over and over again and this is the reason why we opted to use function components. However, when we use reusable components we are going back to our previous implementation.
+We have solved our first problem , its working but this code has some shortcomings. Personally, its redundant to write the same markup over and over again and this is the reason why we opted to use function components. However, when we use reusable components we are going back to our previous implementation.
 
 How can we exactly solve this problem?
 
 
-## 3. Solution
+## 3. Solution: Dynamic Component Attributes with `assigns_to_attributes/2`
 
 Luckily, in Phoenix LiveView v0.16.0 [assigns_to_attribute/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.Helpers.html#assigns_to_attributes/2) function was introduced.This function takes in assigns as the first argument and a list of assign’s keys that are to be excluded as the optional second argument.
 
@@ -253,7 +273,7 @@ end
 
 Next, I have updated our assigns with the attributes(extra) using the [assign/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.html#assign/2) function .We shall use the @extra to output as HTML attributes on the <div> tag.
 
-**NB:** The component markup has no column class passed to it.I had to remove it there and pass it to class assign when calling the card/1 function.
+**Note:** The component markup has no column class passed to it.I had to remove it there and pass it to class assign when calling the card/1 function.
 
 ```elixir
 <.card card={card} class={"column bg-green"}/>
@@ -270,3 +290,8 @@ This is how our rendered markup looks like when you inspect on the browser:
 ```
 
 ![board plan output2](/images/board-plan-output2.png)
+
+
+## Conclusion
+
+So far, we've seen how we can support dynamic attributes in components using `assign_to_attributes/2`. This function is useful when you want to incorporate creating reusable components in your application, because it can give us control over HTML attributes that we pass in the component's markup.
