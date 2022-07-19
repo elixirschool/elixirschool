@@ -23,7 +23,7 @@ From the above image , I have split the board into 3 columns--the "house", "work
 
 You will also notice that each column has a card of different color. I want us to use reusable components to implement these cards in our LiveView application. The board will act as the parent live view while the card will be the component.
 
-Now that we want the cards in each section to have different colors, how can we make it possible keeping in mind that we are using reusable components.
+We want the cards in each section to have different colors. So, how can leverage the same reusable component in each column, when the card should be a different color each time?
 
 
 Let’s begin:
