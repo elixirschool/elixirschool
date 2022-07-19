@@ -117,7 +117,7 @@ Our weekly planning task board should look something similar to this when we ope
   2. Card component defined earlier should also be maintained.
 
 
-Imagine writing our markup in this manner:
+We could solve the first problem like this:
 
 ```elixir
     <div class="row">
