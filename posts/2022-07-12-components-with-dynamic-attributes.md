@@ -21,7 +21,7 @@ What exactly I’m I trying to say? Lets say we are creating an application akin
 
 From the above image , I have split the board into 3 columns--the "house", "work", and "school" columns. The user interacting with this board can add weekly tasks they are supposed to do to each column.
 
-You will also notice that each sector has a card of different color. I want us to use reusable component to implement in our application. The board will act as the parent LiveView while the card will be the component.
+You will also notice that each column has a card of different color. I want us to use reusable components to implement these cards in our LiveView application. The board will act as the parent live view while the card will be the component.
 
 Now that we want the cards in each section to have different colors, how can we make it possible keeping in mind that we are using reusable components.
 
