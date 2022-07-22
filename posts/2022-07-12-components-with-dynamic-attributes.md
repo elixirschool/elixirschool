@@ -183,7 +183,7 @@ How can we solve this problem?
 
 ## 3. Solution: Dynamic Component Attributes with `assigns_to_attributes/2`
 
-Luckily, Phoenix LiveView v0.16.0 introduced the [assigns_to_attribute/2](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.Helpers.html#assigns_to_attributes/2) function. 
+Luckily, Phoenix LiveView v0.16.0 introduced the [`assigns_to_attribute/2`](https://hexdocs.pm/phoenix_live_view/0.16.0/Phoenix.LiveView.Helpers.html#assigns_to_attributes/2) function. 
 
 _This function is useful for transforming caller assigns into dynamic attributes while stripping reserved keys from the result._
 
