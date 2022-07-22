@@ -197,16 +197,12 @@ Now that we are assured we can transform the assigns passed to `card/1` into HTM
 <%= for card <- @work_cards do %> 
    <.card card={card} class={"bg-blue"}/>
  <% end %>
-.
-.
-.
+<!--- ... -->
  <h3>House</h3>
  <%= for card <- @house_cards do %> 
    <.card card={card} class={"bg-green"}/>
  <% end %>
-.
-.
-.
+<!--- ... -->
 <h3>School</h3>
 <%= for card <- @school_cards do %> 
   <.card card={card} class={"bg-yellow"}/>
@@ -245,8 +241,7 @@ We can see the assigns contains the card and the class assigns. Let's go ahead a
 ```elixir
 def card(assigns) do
 extra = assigns_to_attributes(assigns)
-.
-. 
+# ...
 end
 ```
 
