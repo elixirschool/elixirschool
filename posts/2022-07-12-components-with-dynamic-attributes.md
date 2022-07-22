@@ -42,7 +42,7 @@ You will also notice that each column has a card of different color. I want us t
 
 We want the cards in each section to have different colors. So, how can we leverage the same reusable component in each column, when the card should be a different color each time?
 
-We can achieve this with the help of dynamic component attributes and the assigns_to_attributes/2 function. 
+We can achieve this with the help of dynamic component attributes and the `assigns_to_attributes/2` function. 
 
 
 Let’s begin:
