@@ -11,7 +11,7 @@
 ---
 
 
-I’m quite sure most of you have already interacted with components. You  may have created components to reuse in your application. However, sometimes you may feel stuck when creating reusable components more so when you want to pass in common attributes with different values in your component's markup. 
+I’m quite sure most of you have already interacted with live view components. You  may have created components to reuse in your live view application. However, sometimes you may feel stuck when creating reusable components more so when you want to pass in common attributes with different values in your component's markup. 
 
 For example, lets say that I have a component markup that generates something like this:
 
