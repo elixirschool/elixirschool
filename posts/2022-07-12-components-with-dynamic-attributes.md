@@ -15,7 +15,7 @@ I’m quite sure most of you have already interacted with live view components. 
 
 For example, lets say that I have a component markup that generates something like this:
 
-```elixir
+```html
 
 <div>
   <div class="column bg-green">
