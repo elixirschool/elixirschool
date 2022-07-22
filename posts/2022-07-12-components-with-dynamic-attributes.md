@@ -30,7 +30,7 @@ In the component there is a `class` attribute assigned with `column` and `bg-gre
   <div class="column bg-yellow">
 
  ```  
-What exactly I’m I trying to say? Lets create an application akin to Kanban. I want us to create an application that can help users plan their weekly tasks.
+I'll show you exactly how to build the re-usable component we need in an example application akin to Kanban that can help users plan their weekly tasks.
 
 
 ![board plan](/images/board-plan.png)
