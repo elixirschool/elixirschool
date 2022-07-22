@@ -187,7 +187,7 @@ Luckily, Phoenix LiveView v0.16.0 introduced the [`assigns_to_attribute/2`](http
 
 _This function is useful for transforming caller assigns into dynamic attributes while stripping reserved keys from the result._
 
-`assigns_to_attribute/2` takes in assigns as the first argument and a list of assign’s keys that are to be excluded as the optional second argument.Then it returns a filtered list of keywords for use as HTML attributes.
+`assigns_to_attribute/2` takes in assigns as the first argument and a list of assign’s keys that are to be excluded as the optional second argument. Then it returns a filtered list of keywords for use as HTML attributes.
 
 Now that we are assured we can transform the assigns passed to `card/1` into attributes, let’s go ahead and add an assigns of `class` to our call to `card/1`. We'll give that assigns a value of `"bg-*"`. “bg-*” represents background color with a CSS added property.
 
