@@ -24,7 +24,7 @@ For example, lets say that I have a component markup that generates something li
 </div>
 
 ```
-In the component there is a `class` attribute assigned with `column` and `bg-green` values. But the component is supposed to be reusable and when I used it somewhere else, I may want a `yellow` background.That means I should pass in `bg-yellow` class.
+In the component there is a `class` HTML attribute assigned with `column` and `bg-green` values. But the component is supposed to be reusable and when I use it somewhere else, I may want a `"yellow"` background. That means I should set a `bg-yellow` class.
 
  ```html
   <div class="column bg-yellow">
