@@ -178,7 +178,7 @@ We could solve the first problem like this:
 We have solved our first problem , its working but this code has some shortcomings. Personally, its redundant to write the same `<div>` markup over and over again and this is the reason why we opted to use function components in the first place. However, our original implementation doesn't allow us to control the color of the cards in each column.
 
 
-How can we exactly solve this problem?
+How can we solve this problem?
 
 
 ## 3. Solution: Dynamic Component Attributes with `assigns_to_attributes/2`
