@@ -250,7 +250,7 @@ extra = assigns_to_attributes(assigns)
 end
 ```
 
-If we invoke assigns_to_attributes/2 with the assigns, it returns a list of keywords as shown:
+If we invoke `assigns_to_attributes/2` with the assigns, it returns a list of keywords as shown:
 
 ```elixir
 [
