@@ -1,27 +1,29 @@
 %{
-  version: "0.9.1",
+  version: "1.0.2",
   title: "Uruchamianie programów",
   excerpt: """
-  Do stworzenia pliku wykonywalnego w Elixirze służy escript. Escript generuje plik wykonywalny, który może zostać uruchomiony na każdym komputerze, na którym zainstalowano Erlanga.
+  Do stworzenia pliku wykonywalnego w Elixirze służy escript.
+  Escript generuje plik wykonywalny, który może zostać uruchomiony na każdym komputerze z zainstalowanym Erlangiem.
   """
 }
 ---
 
 ## Na początek
 
-By utworzyć plik, który można uruchomić, za pomocą escriptu musimy zrobić tylko kilka drobnych rzeczy: zaimplementować funkcję `main/1` oraz zaktualizować konfigurację mixa.
+Do utworzenia pliku, który można uruchomić za pomocą escriptu, potrzebujemy zrobić tylko kilka drobnych rzeczy: zaimplementować funkcję `main/1` oraz zaktualizować konfigurację Mixa.
 
-Na początek stwórzmy moduł, który będzie punktem startowym programu. W nim zaimplementujemy funkcję `main/1`:
+Zaczniemy od stworzenia modułu, który będzie punktem startowym programu.
+To w nim zaimplementujemy funkcję `main/1`:
 
 ```elixir
 defmodule ExampleApp.CLI do
   def main(args \\ []) do
-    # Do stuff
+    # Rób swoje rzeczy
   end
 end
 ```
 
-Następnie w pliku mixa dodajemy sekcję `:escript`, która zawiera opcję `:main_module`:
+Następnie potrzebujemy zaktualizować nasz Mixfile, by zawierał opcję `:escript` oraz wskazywał główny moduł — `:main_module`:
 
 ```elixir
 defmodule ExampleApp.Mixproject do
@@ -37,14 +39,15 @@ end
 
 ## Parsowanie argumentów
 
-Do naszej aplikacji możemy przekazać pewne argumenty z linii poleceń. By je sparsować, użyjemy Elixirowego modułu `OptionParser.parse/2` z opcją `:switches`, która zawiera informacje, iż nasza flaga jest typu logicznego:
+Kiedy nasza aplikacja jest już skonfigurowana, możemy przejść do przetwarzania argumentów z wiersza poleceń.
+By to zrobić, użyjemy Elixirowego modułu `OptionParser.parse/2` z opcją `:switches`, by wskazać, że nasza flaga jest zmienną typu logicznego:
 
 ```elixir
 defmodule ExampleApp.CLI do
   def main(args \\ []) do
     args
-    |> parse_args
-    |> response
+    |> parse_args()
+    |> response()
     |> IO.puts()
   end
 
@@ -56,29 +59,29 @@ defmodule ExampleApp.CLI do
     {opts, List.to_string(word)}
   end
 
-  defp response({opts, "Hello"}), do: response({opts, "World"})
-
   defp response({opts, word}) do
     if opts[:upcase], do: String.upcase(word), else: word
   end
 end
 ```
 
-## Tworzenie plików wykonywalnych
+## Budowanie plików wykonywalnych
 
-Jak już skonfigurujemy aplikację by używała escript, stworzenie pliku wykonywalnego z Mixem jest banalne:
+Kiedy już skonfigurujemy aplikację tak, by używała escriptu, stworzenie pliku wykonywalnego z Mixem jest banalne:
 
-```elixir
+```bash
 $ mix escript.build
 ```
 
 Zobaczmy jak to działa:
 
-```elixir
+```bash
 $ ./example_app --upcase Hello
-WORLD
+HELLO
 
 $ ./example_app Hi
 Hi
 ```
-I to wszystko! Właśnie stworzyliśmy nasz pierwszy program z użyciem escriptu.  
+
+I to wszystko!
+Właśnie stworzyliśmy nasz pierwszy program z użyciem escriptu.

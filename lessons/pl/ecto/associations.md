@@ -1,33 +1,33 @@
 %{
   version: "1.2.2",
-  title: "Associations",
+  title: "Relacje",
   excerpt: """
-  In this section we'll learn how to use Ecto to define and work with associations between our schemas.
+  W tej lekcji nauczymy się, jak korzystać z Ecto do definiowania relacji między schematami i pracy z nimi.
   """
 }
 ---
 
-## Set Up
+## Przygotowanie
 
-We'll start off with the same `Friends` app from the previous lesson. You can refer to the setup [here](/en/lessons/ecto/basics) for a quick refresher.
+Będziemy pracować z tą samą aplikacją `Friends`, której używaliśmy w poprzednich lekcjach. Możesz zajrzeć [tutaj](/pl/lessons/ecto/basics), jeśli potrzebujesz przypomnienia.
 
-## Types of Associations
+## Rodzaje relacji
 
-There are three types of associations we can define between our schemas. We'll look at what they are and how to implement each type of relationship.
+Istnieją trzy rodzaje relacji, które możemy zdefiniować między naszymi schematami. Przyjrzymy się każdemu z nich i nauczymy się, jak je zaimplementować.
 
-### Belongs To/Has Many
+### Jeden do wielu
 
-We're adding some new entities to our Friends app's domain model so that we can catalogue our favorite films. We'll start with two schemas: `Movie` and `Character`. We'll implement a "has many/belongs to" relationship between these two schemas: A movie has many characters and a character belongs to a movie.
+Dodamy kilka nowych encji do aplikacji Friends, by móc katalogować nasze ulubione filmy. Zaczniemy od schematów: `Movie` (_film_) i `Character` (_postać_). Zaimplementujmy między nimi relację „jeden do wielu”: w każdym filmie będzie wiele postaci, a każda postać będzie związana z jakimś filmem.
 
-#### The Has Many Migration
+#### Migracja „has many” — „posiada wiele”
 
-Let's generate a migration for `Movie`:
+Wygenerujmy migrację dla tabeli `Movie`:
 
 ```console
 mix ecto.gen.migration create_movies
 ```
 
-Open up the newly generated migration file and define your `change` function to create the `movies` table with a few attributes:
+Otwórz nowo utworzony plik z migracją i zdefiniuj funkcję `change`, by stworzyć tabelę `movies` z kilkoma atrybutami:
 
 ```elixir
 # priv/repo/migrations/*_create_movies.exs
@@ -43,9 +43,9 @@ defmodule Friends.Repo.Migrations.CreateMovies do
 end
 ```
 
-#### The Has Many Schema
+#### Schemat dla relacji „posiada wiele”
 
-We'll add a schema that specifies the "has many" relationship between a movies and its characters.
+Dodamy schemat, który określi relację między filmem a jego postaciami.
 
 ```elixir
 # lib/friends/movie.ex
@@ -60,24 +60,24 @@ defmodule Friends.Movie do
 end
 ```
 
-The `has_many/3` macro doesn't add anything to the database itself. What it does is use the foreign key on the associated schema, `characters`, to make a movie's associated characters available. This is what will allow us to call `movie.characters`.
+Makro `has_many/3` nie dodaje niczego do samej bazy danych, pozwala jednak na użycie klucza obcego z powiązanego schematu — `characters` — by umożliwić nam dostęp do postaci występujących w danym filmie. Pozwoli nam to na wywołanie `movie.characters`.
 
-#### The Belongs To Migration
+#### Migracja „belongs to” — „należy do”
 
-Now we're ready to build our `Character` migration and schema. A character belongs to a movie, so we'll define a migration and schema that specifies this relationship.
+Teraz jesteśmy gotowi, by zbudować migrację i schemat `Character`. Postać należy do filmu, więc stworzymy migrację i schemat opisujące tę zależność.
 
-First, generate the migration:
+Najpierw wygenerujmy migrację:
 
 ```console
 mix ecto.gen.migration create_characters
 ```
 
-To declare that a character belongs to a movie, we need the `characters` table to have a `movie_id` column. We want this column to function as a foreign key. We can accomplish this with the following line in our `create table/1` function:
+Aby zadeklarować, że postać należy do filmu, potrzebujemy, aby tabela `characters` zawierała kolumnę `movie_id`, która będzie kluczem obcym. Możemy to uczynić poprzez dodanie następującej linii w funkcji `create table/1`:
 
 ```elixir
 add :movie_id, references(:movies)
 ```
-So our migration should look like this:
+Cała nasza migracja będzie zatem wyglądała tak:
 
 ```elixir
 # priv/migrations/*_create_characters.exs
@@ -93,9 +93,9 @@ defmodule Friends.Repo.Migrations.CreateCharacters do
 end
 ```
 
-#### The Belongs To Schema
+#### Schemat „należy do”
 
-Our schema likewise needs to define the "belongs to" relationship between a character and its movie.
+Również nasz schemat powinien definiować relację „należy do” między postacią i jej filmem.
 
 ```elixir
 # lib/friends/character.ex
@@ -110,25 +110,25 @@ defmodule Friends.Character do
 end
 ```
 
-Let's take a closer look at what the `belongs_to/3` macro does for us. In addition to adding the foreign key `movie_id` to our schema, it also gives us the ability to access associated `movies` schema _through_ `characters`. It uses the foreign key to make a character's associated movie available when we query for them. This is what will allow us to call `character.movie`.
+Przyjrzyjmy się bliżej temu, co dokładniej robi dla nas makro `belongs_to/3`. Poza dodaniem klucza obcego `movie_id`, pozwala nam również na dostęp do schematu `movies` _poprzez_ schemat `characters`. Używa klucza obcego, by umożliwić nam dostęp do filmu związanego z daną postacią. Pozwoli nam to wywoływać `character.movie`.
 
-Now we're ready to run our migrations:
+Jesteśmy już gotowi, by uruchomić nasze migracje:
 
 ```console
 mix ecto.migrate
 ```
 
-### Belongs To/Has One
+### Jeden do jednego
 
-Let's say that a movie has one distributor, for example Netflix is the distributor of their original film "Bright".
+Załóżmy, że film ma jednego dystrybutora — na przykład Netflix jest dystrybutorem filmu „Bright”.
 
-We'll define the `Distributor` migration and schema with the "belongs to" relationship. First, let's generate the migration:
+Zdefiniujmy migrację i schemat `Distributor` (_dystrybutor_) z relacją „należy do”. Zacznijmy od wygenerowania migracji:
 
 ```console
 mix ecto.gen.migration create_distributors
 ```
 
-We should add a foreign key of `movie_id` to the `distributors` table migration we just generated as well as a unique index to enforce that a movie has only one distributor:
+Powinniśmy dodać klucz obcy `movie_id` do migracji dla tabeli `distributors`, jak również stworzyć indeks unikalny, który zapewni, że film będzie miał tylko jednego dystrybutora:
 
 ```elixir
 # priv/repo/migrations/*_create_distributors.exs
@@ -141,13 +141,13 @@ defmodule Friends.Repo.Migrations.CreateDistributors do
       add :name, :string
       add :movie_id, references(:movies)
     end
-    
+
     create unique_index(:distributors, [:movie_id])
   end
 end
 ```
 
-And the `Distributor` schema should use the `belongs_to/3` macro to allow us to call `distributor.movie` and look up a distributor's associated movie using this foreign key.
+Z kolei schemat `Distributor` powinien używać makra `belongs_to/3`, które pozwoli na wywoływanie `distributor.movie` i dostęp do filmu danego dystrybutora przy użyciu klucza obcego.
 
 ```elixir
 # lib/friends/distributor.ex
@@ -162,7 +162,7 @@ defmodule Friends.Distributor do
 end
 ```
 
-Next up, we'll add the "has one" relationship to the `Movie` schema:
+Następnie dodamy relację „posiada jeden” do schematu `Movie`:
 
 ```elixir
 # lib/friends/movie.ex
@@ -174,30 +174,30 @@ defmodule Friends.Movie do
     field :title, :string
     field :tagline, :string
     has_many :characters, Friends.Character
-    has_one :distributor, Friends.Distributor # I'm new!
+    has_one :distributor, Friends.Distributor # Nowa linijka!
   end
 end
 ```
 
-The `has_one/3` macro functions just like the `has_many/3` macro. It uses the associated schema's foreign key to look up and expose the movie's distributor. This will allow us to call `movie.distributor`.
+Makro `has_one/3` działa tak, jak makro `has_many/3`. Używa klucza obcego powiązanego schematu, aby wyszukać i udostępnić nam dystrybutora filmu. Umożliwi to wywołanie `movie.distributor`.
 
-We're ready to run our migrations:
+Jesteśmy gotowi, by uruchomić nasze migracje:
 
 ```console
 mix ecto.migrate
 ```
 
-### Many To Many
+### Wiele do wielu
 
-Let's say that a movie has many actors and that an actor can belong to more than one movie. We'll build a join table that references _both_ movies _and_ actors to implement this relationship.
+Możemy założyć, że w filmie występuje wielu aktorów, a każdy aktor może wystąpić w więcej niż jednym filmie. Stworzymy tabelę łączącą, odwołującą się zarówno do filmów, jak i aktorów, by zaimplementować tę relację.
 
-First, let's generate the `Actors` migration:
+Najpierw wygenerujmy migrację `Actors` (_aktorzy_):
 
 ```console
 mix ecto.gen.migration create_actors
 ```
 
-Define the migration:
+Zdefiniujmy, co migracja ma zrobić:
 
 ```elixir
 # priv/migrations/*_create_actors.ex
@@ -213,13 +213,13 @@ defmodule Friends.Repo.Migrations.CreateActors do
 end
 ```
 
-Let's generate our join table migration:
+Wygenerujmy migrację dla tabeli łączącej:
 
 ```console
 mix ecto.gen.migration create_movies_actors
 ```
 
-We'll define our migration such that the table has two foreign keys. We'll also add a unique index to enforce unique pairings of actors and movies:
+Zaimplementujemy migrację tak, by tabela zawierała dwa klucze obce. Dodamy również indeks unikalny, by zapewnić, że dany aktor z danym filmem będzie połączony tylko raz:
 
 ```elixir
 # priv/migrations/*_create_movies_actors.ex
@@ -238,7 +238,7 @@ defmodule Friends.Repo.Migrations.CreateMoviesActors do
 end
 ```
 
-Next up, let's add the `many_to_many` macro to our `Movie` schema:
+Teraz dodajmy makro `many_to_many` do naszego schematu `Movie`:
 
 ```elixir
 # lib/friends/movie.ex
@@ -251,12 +251,12 @@ defmodule Friends.Movie do
     field :tagline, :string
     has_many :characters, Friends.Character
     has_one :distributor, Friends.Distributor
-    many_to_many :actors, Friends.Actor, join_through: "movies_actors" # I'm new!
+    many_to_many :actors, Friends.Actor, join_through: "movies_actors" # Nowa linijka!
   end
 end
 ```
 
-Finally, we'll define our `Actor` schema with the same `many_to_many` macro.
+Na koniec zdefiniujmy schemat `Actor`, używając tego samego makra `many_to_many`.
 
 ```elixir
 # lib/friends/actor.ex
@@ -271,29 +271,29 @@ defmodule Friends.Actor do
 end
 ```
 
-We're ready to run our migrations:
+Możemy uruchomić migracje:
 
 ```console
 mix ecto.migrate
 ```
 
-## Saving Associated Data
+## Zapisywanie powiązanych danych
 
-The manner in which we save records along with their associated data depends on the nature of the relationship between the records. Let's start with the "Belongs to/has many" relationship.
+Sposób, w jaki będziemy zapisywać rekordy wraz z ich powiązanymi danymi zależy od rodzaju relacji między tymi rekordami. Zacznijmy od relacji „jeden do wielu”.
 
-### Belongs To
+### „Należy do”
 
-#### Saving With Ecto.build_assoc/3
+#### Zapisywanie z użyciem Ecto.build_assoc/3
 
-With a "belongs to" relationship, we can leverage Ecto's `build_assoc/3` function.
+W relacji „należy do” możemy skorzystać z funkcji Ecto `build_assoc/3`.
 
-[`build_assoc/3`](https://hexdocs.pm/ecto/Ecto.html#build_assoc/3) takes in three arguments:
+[`build_assoc/3`](https://hexdocs.pm/ecto/Ecto.html#build_assoc/3) przyjmuje trzy argumenty:
 
-* The struct of the record we want to save.
-* The name of the association.
-* Any attributes we want to assign to the associated record we are saving.
+* strukturę rekordu, który chcemy zapisać,
+* nazwę relacji,
+* wszelkie atrybuty, które chcemy przypisać do powiązanego rekordu, który zapisujemy.
 
-Let's save a movie and an associated character. First, we'll create a movie record:
+Zapiszmy więc film wraz ze związaną z nim postacią. Najpierw utwórzmy odpowiedni rekord dla filmu:
 
 ```elixir
 iex> alias Friends.{Movie, Character, Repo}
@@ -312,7 +312,7 @@ iex> movie = %Movie{title: "Ready Player One", tagline: "Something about video g
 iex> movie = Repo.insert!(movie)
 ```
 
-Now we'll build our associated character and insert it into the database:
+Teraz zbudujemy strukturę dla postaci występującej w tym filmie i dodamy ją do bazy danych:
 
 ```elixir
 iex> character = Ecto.build_assoc(movie, :characters, %{name: "Wade Watts"})
@@ -333,9 +333,9 @@ iex> Repo.insert!(character)
 }
 ```
 
-Notice that since the `Movie` schema's `has_many/3` macro specifies that a movie has many `:characters`, the name of the association that we pass as a second argument to `build_assoc/3` is exactly that: `:characters`. We can see that we've created a character that has its `movie_id` properly set to the ID of the associated movie.
+Zauważ, że skoro makro `has_many/3` w schemacie `Movie` mówi, że film ma wiele _postaci_ — `:characters` (liczba mnoga!) — nazwa relacji, którą przekazujemy jako drugi argument funkcji `build_assoc/3` jest właśnie taka: `:characters`. Możesz zobaczyć, że postać, którą właśnie utworzyliśmy, w polu `movie_id` ma poprawnie przypisane ID powiązanego z nią filmu.
 
-In order to use `build_assoc/3` to save a movie's associated distributor, we take the same approach of passing the _name_ of the movie's relationship to distributor as the second argument to `build_assoc/3`:
+Aby użyć `build_assoc/3` do zapisania zwiazanego z filmem dystrybutora, zastosujemy to samo podejście, podając nazwę relacji film-dystrybutor jako drugi argument funkcji `build_assoc/3`:
 
 ```elixir
 iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})
@@ -356,13 +356,13 @@ iex> Repo.insert!(distributor)
 }
 ```
 
-### Many to Many
+### Wiele do wielu
 
-#### Saving With Ecto.Changeset.put_assoc/4
+#### Zapisywanie z użyciem Ecto.Changeset.put_assoc/4
 
-The `build_assoc/3` approach won't work for our many-to-many relationship. That is because neither the movie nor actor tables contain a foreign key. Instead, we need to leverage Ecto Changesets and the `put_assoc/4` function.
+Sposób z `build_assoc/3` nie zadziała dla relacji „wiele do wielu”. Wynika to z prostego faktu, że ani tabela filmów, ani tabela aktorów nie zawierają kluczy obcych. Zamiast tego będziemy musieli więc użyć zastawów zmian Ecto (_changesetów_) i funkcji `put_assoc/4`.
 
-Assuming we already have the movie record we created above, let's create an actor record:
+Załóżmy, że mamy już w bazie rekord z filmem, który utworzyliśmy wyżej, teraz dodajmy rekord aktora:
 
 ```elixir
 iex> alias Friends.Actor
@@ -382,9 +382,9 @@ iex> actor = Repo.insert!(actor)
 }
 ```
 
-Now we're ready to associate our movie to our actor via the join table.
+Teraz jesteśmy gotowi, by powiązać nasz film z aktorem poprzez tabelę łączącą.
 
-First, note that in order to work with changesets, we need to make sure that our `movie` structure has preloaded associated data. We'll talk more about preloading data in a bit. For now, it's enough to understand that we can preload our associations like this:
+Zauważ najpierw, że — skoro pracujemy z changesetami — musimy mieć pewność, iż nasza struktura `movie` będzie miała wcześniej załadowane powiązane dane. O ładowaniu takich danych powiemy nieco więcej w późniejszym czasie — teraz wystarczy wiedzieć, że możemy ładować powiązane rekordy w następujący sposób:
 
 ```elixir
 iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
@@ -413,7 +413,7 @@ iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
 }
 ```
 
-Next up, we'll create a changeset for our movie record:
+Teraz utwórzmy changeset dla rekordu naszego filmu:
 
 ```elixir
 iex> movie_changeset = Ecto.Changeset.change(movie)
@@ -421,7 +421,7 @@ iex> movie_changeset = Ecto.Changeset.change(movie)
  valid?: true>
 ```
 
-Now we'll pass our changeset as the first argument to [`Ecto.Changeset.put_assoc/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#put_assoc/4):
+Nasz changeset przekażemy jako pierwszy argument do funkcji [`Ecto.Changeset.put_assoc/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#put_assoc/4):
 
 ```elixir
 iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [actor])
@@ -439,9 +439,9 @@ iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actor
 >
 ```
 
-This gives us a _new_ changeset that represents the following change: add the actors in this list of actors to the given movie record.
+To daje nam _nowy_ changeset, reprezentujący następującą zmianę: dodaj aktorów z tej listy do danego filmu.
 
-Lastly, we'll update the given movie and actor records using our latest changeset:
+Na koniec zaktualizujemy rekordy filmu i aktora, używając ostatniego zestawu zmian:
 
 ```elixir
 iex> Repo.update!(movie_actors_changeset)
@@ -477,9 +477,9 @@ iex> Repo.update!(movie_actors_changeset)
 }
 ```
 
-We can see that this gives us a movie record with the new actor properly associated and already preloaded for us under `movie.actors`.
+Możesz zauważyć, że uzyskaliśmy w ten sposób rekord filmu z aktorem, poprawnie powiązanym i załadowanym dla nas pod `movie.actors`.
 
-We can use this same approach to create a brand new actor that is associated with the given movie. Instead of passing a _saved_ actor struct into `put_assoc/4`, we simply pass in a map of attributes describing a new actor that we want to create:
+Możemy użyć tego samego sposobu, aby dodać zupełnie nowego aktora, który ma być powiązany z danym filmem. Zamiast przekazywać _zapisaną_ już strukturę z danymi aktora do `put_assoc/4`, możemy po prostu przekazać strukturę opisującą aktora, którego chcemy stworzyć w naszej bazie:
 
 ```elixir
 iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])
@@ -519,6 +519,6 @@ iex>  Repo.update!(changeset)
 }
 ```
 
-We can see that a new actor was created with an ID of "2" and the attributes we assigned it.
+Jak możesz zauważyć, nowy aktor został stworzony z ID "2" i atrybutami, które mu przypisaliśmy.
 
-In the next section, we'll learn how to query for our associated records.
+W następnej lekcji dowiemy się, jak można tworzyć zapytania, by wyszukiwać powiązane ze sobą rekordy.

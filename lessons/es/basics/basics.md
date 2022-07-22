@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.3.0",
   title: "Básico",
   excerpt: """
   Preparar el entorno, tipos y operaciones básicas.
@@ -22,7 +22,7 @@ Después de que Elixir haya sido instalado, puedes confirmar la versión instala
 
 ### Probando el Modo Interactivo
 
-Elixir viene con `iex`, una consola interactiva, que nos permite evaluar expresiones Elixir al vuelo.
+Elixir viene con IEx, una consola interactiva, que nos permite evaluar expresiones Elixir al vuelo.
 
 Para empezar, ejecutamos `iex`:
 
@@ -30,6 +30,8 @@ Para empezar, ejecutamos `iex`:
 
 	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 	iex>
+
+Nota: En la PowerShell de Windows, necesitas teclear `iex.bat`.
 
 Avancemos y hagamos una prueba escribiendo unas cuantas expresiones sencillas:
 
@@ -153,8 +155,8 @@ Aprenderemos más sobre ellos cuando veamos [colecciones](/es/lessons/basics/col
 
 ### Aritmética
 
-Elixir soporta los operadores básicos `+`, `-`, `*`, y `/` como era de esperarse.
-Es importante resaltar que `/` siempre retornará un número con coma flotante:
+Elixir soporta los operadores básicos `+`, `-`, `*`, y `/` como era de esperar.
+Es importante resaltar que `/` siempre devolverá un número con coma flotante:
 
 ```elixir
 iex> 2 + 2
@@ -167,7 +169,7 @@ iex> 10 / 5
 2.0
 ```
 
-Si necesitas una división entera o el resto de una división, Elixir viene con dos funciones útiles para para lograr esto:
+Si necesitas una división entera o el resto de una división (el módulo), Elixir viene con dos funciones útiles para para lograr esto:
 
 ```elixir
 iex> div(10, 5)

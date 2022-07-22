@@ -6,20 +6,20 @@
 }
 ---
 
-In this lesson, we'll continue building off the `Friends` app and the movie-cataloguing domain we set up in the [previous lesson](/en/lessons/ecto/associations).
+이 단원에서는 `Friends` 애플리케이션과 [이전 단원](/ko/lessons/ecto/associations)에서 세팅한 영화-카탈로그 도메인을 이어서 만들어보겠습니다.
 
-## Fetching Records with Ecto.Repo
+## Ecto.Repo로 DB 레코드 조회
 
-Recall that a "repository" in Ecto maps to a datastore such as our Postgres database.
-All communication to the database will be done using this repository.
+이전 단원에서 Ecto의 "레포지토리"는 Postgres 데이터베이스 같은 데이터 저장소에 매핑된다고 했었습니다.
+데이터베이스와의 모든 상호작용은 이 레포지토리를 통해 이뤄집니다.
 
-We can perform simple queries directly against our `Friends.Repo` with the help of a handful of functions.
+`Friends.Repo`의 함수들을 사용하여 간단한 쿼리들을 직접 실행해볼 수 있습니다.
 
-### Fetching Records by ID
+### ID로 레코드 조회 
 
-We can use the `Repo.get/3` function to fetch a record from the database given its ID. This function requires two arguments: a "queryable" data structure and the ID of a record to retrieve from the database. It returns a struct describing the record found, if any. It returns `nil` if no such record is found.
+데이터베이스에서 레코드를 ID로 조회하기 위해 `Repo.get/3` 함수를 사용할 수 있습니다. 이 함수는 2개의 인자로 "쿼리가능한(queryable)" 자료구조와 조회할 레코드의 ID를 받습니다. 레코드를 찾았다면 해당 구조체를 반환하고, 아니면 `nil`을 반환합니다.
 
-Let's take a look at an example. Below, we'll get the movie with an ID of 1:
+예제를 한번 봅시다. 아래와 같이 ID가 1인 영화를 조회합니다.
 
 ```elixir
 iex> alias Friends.{Repo, Movie}
@@ -35,11 +35,11 @@ iex> Repo.get(Movie, 1)
 }
 ```
 
-Notice that the first argument we give to `Repo.get/3` is our `Movie` module. `Movie` is "queryable" because the module uses the `Ecto.Schema` module and defines a schema for its data structure. This gives `Movie` access to the `Ecto.Queryable` protocol. This protocol converts a data structure into an `Ecto.Query`. Ecto queries are used to retrieve data from a repository. More on queries later.
+`Repo.get/3`에 전달하는 첫 번째 인자는 `Movie` 모듈입니다. `Movie`는 "쿼리가능"합니다. 모듈이 `Ecto.Schema`를 사용하고 자료구조를 스키마로 정의하고 있기 때문입니다. 그러면 `Movie`가 `Ecto.Queryable` 프로토콜에 접근할 수 있는데, 이 프로토콜은 자료 구조를 `Ecto.Query`로 전환합니다. Ecto 쿼리는 레포지토리에서 데이터를 조회할 때 쓰입니다. 쿼리에 관해서는 추후 좀 더 알아보겠습니다.
 
-### Fetching Records by Attribute
+### 속성으로 레코드 조회 
 
-We can also fetch records that meet a given criteria with the `Repo.get_by/3` function. This function requires two arguments: the "queryable" data structure and the clause with which we want to query. `Repo.get_by/3` returns a single result from the repository. Let's look at an example:
+주어진 조건을 만족하는 레코드를 조회하는 것도 `Repo.get_by/3` 함수로 가능합니다. 이 함수는 2개의 인자로 "쿼리가능한" 자료구조와 쿼리할 절을 요구합니다. `Repo.get_by/3`은 레포지토리에서 받은 결과 하나를 반환합니다. 예제를 보겠습니다.
 
 ```elixir
 iex> Repo.get_by(Movie, title: "Ready Player One")
@@ -54,15 +54,15 @@ iex> Repo.get_by(Movie, title: "Ready Player One")
 }
 ```
 
-If we want to write more complex queries, or if we want to return _all_ records that meet a certain condition, we need to use the `Ecto.Query` module.
+더 복잡한 쿼리를 작성하거나 특정 조건을 만족하는 _모든_ 레코드를 조회하고 싶다면 `Ecto.Query` 모듈을 사용해야 합니다.
 
-## Writing Queries with Ecto.Query
+## Ecto.Query로 쿼리 작성하기
 
-The `Ecto.Query` module provides us with the Query DSL which we can use to write queries to retrieve data from the application's repository.
+`Ecto.Query` 모듈에서 제공하는 Query DSL로 애플리케이션 레포지토리에서 데이터를 조회하는 쿼리를 작성할 수 있습니다.
 
-### Keyword-based queries with Ecto.Query.from/2
+### Ecto.Query.from/2와 키워드 기반 쿼리
 
-We can create a query with the `Ecto.Query.from/2` macro. This function takes in two arguments: an expression and an optional keyword list. Let's create the most simple query to select all of the movies from our repository:
+`Ecto.Query.from/2` 매크로로 쿼리를 만들 수 있습니다. 이 함수는 인자로 표현식 하나와 옵셔널 인자로 키워드 리스트를 받습니다. 레포지토리에서 모든 영화를 조회하는 가장 단순한 쿼리를 만들어 봅시다.
 
 ```elixir
 iex> import Ecto.Query
@@ -70,7 +70,7 @@ iex> query = from(Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
-In order to execute our query, we use the `Repo.all/2` function. This function takes in a required argument of an Ecto query and returns all of the records that meet the conditions of the query.
+쿼리를 실행하기 위해 `Repo.all/2` 함수를 사용합니다. 이 함수는 필수 인자인 Ecto 쿼리를 가지고 쿼리 조건을 충족하는 모든 레코드를 반환합니다.
 
 ```elixir
 iex> Repo.all(query)
@@ -89,9 +89,9 @@ iex> Repo.all(query)
 ]
 ```
 
-#### Bindingless queries with from
+#### from과 바인딩없는 쿼리
 
-The example above lacks the most fun parts of SQL statements. We often want to only query for specific fields or filter records by some condition. Let's fetch `title` and `tagline` of all movies that have `"Ready Player One"` title:
+위 예제는 SQL문의 가장 흥미로운 부분이 빠졌습니다. 보통은 특정 필드만 쿼리하거나 특정 조건으로 필터링하여 쿼리하는 경우가 많습니다. 모든 영화 중에 `Ready Player One` 제목을 가진 영화만 조회하되 `title`과 `tagline`필드만 불러옵시다.
 
 ```elixir
 iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
@@ -112,20 +112,20 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 ]
 ```
 
-Please note that the returned struct only has `tagline` and `title` fields set – this is the result of our `select:` part.
+반환된 구조체는 `tagline`과 `title` 필드만 값이 들어있음에 유의하세요. 이는 `select:` 부분의 결과입니다.
 
-Queries like this are called *bindingless*, because they are simple enough to not require bindings.
+이런 쿼리는 바인딩이 필요없을정도로 간단하므로 바인딩없는 쿼리라 불립니다.
 
-#### Bindings in queries
+#### 쿼리의 바인딩 
 
-So far we used a module that implements the `Ecto.Queryable` protocol (ex: `Movie`) as the first argument for `from` macro. However, we can also use `in` expression, like this:
+지금까지 `Ecto.Queryable` 프로토콜을 구현한 모듈 하나(예: `Movie`)를 `from` 매크로의 첫 번째 인자로 사용했습니다. 하지만 다음처럼 `in` 표현식도 사용가능합니다.
 
 ```elixir
 iex> query = from(m in Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
-In such case, we call `m` a *binding*. Bindings are extremely useful, because they allow us to reference modules in other parts of the query. Let's select titles of all movies that have `id` less than `2`:
+이 경우 `m`을 _바인딩_ 이라고 표현합니다. 바인딩을 사용하면 쿼리의 다른 부분에서 모듈들을 참조할수 있어 매우 유용합니다. 영화의 제목 필드만 선택하고 `id`가 `2`보다 작은 영화들만 조회해봅시다.
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
@@ -136,7 +136,7 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-The very important thing here is how output of the query changed. Using an *expression* with a binding in `select:` part allows you to specify exactly the way selected fields will be returned. We can ask for a tuple, for example:
+여기서 쿼리의 출력이 변경된것에 주목하세요. `select:` 부분에서 *표현식*을 바인딩과 사용함으로써 선택된 필드들이 반환될 형태를 정확하게 명시할 수 있습니다. 예를 들면 다음처럼 튜플로 반환시킬 수 있습니다.
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: {m.title})
@@ -145,12 +145,12 @@ iex> Repo.all(query)
 [{"Ready Player One"}]
 ```
 
-It is a good idea to always start with a simple bindingless query and introduce a binding whenever you need to reference your data structure. More on bindings in queries can be found in [Ecto documentation](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions)
+처음엔 바인딩없는 간단한 쿼리로 시작하고 데이터 구조를 참조해야할 때 바인딩을 쓰는것이 좋습니다. 쿼리의 바인딩에 관한 더 많은 정보는 [Ecto 공식 문서](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions)를 참고하세요.
 
 
-### Macro-based queries
+### 매크로기반 쿼리 
 
-In the examples above we used keywords `select:` and `where:` inside of `from` macro to build a query – these are so called *keyword-based queries*. There is, however, another way to compose queries – macro-based queries. Ecto provides macros for every keyword, like `select/3` or `where/3`. Each macro accepts a *queryable* value, *an explicit list of bindings* and the same expression you'd provide to its keyword analogue:
+위 예제에서 쿼리를 작성하기위해 `from`매크로 안에서 `select:`와 `where:`같은 키워드를 사용하는걸 *키워드기반 쿼리*라고 합니다. 쿼리를 조합하는 다른 방법은 매크로 기반 쿼리입니다. Ecto는 `select/3`이나 `where/3`같은 각 키워드에 해당하는 매크로들을 제공합니다. 각 매크로는 *쿼리가능한* 값과 *명시된 바인딩 리스트* 그리고 키워드문에 썼던 동일한 표현식을 인자로 받습니다.
 
 ```elixir
 iex> query = select(Movie, [m], m.title)
@@ -161,7 +161,7 @@ SELECT m0."title" FROM "movies" AS m0 []
 ["Ready Player One"]
 ```
 
-The good thing about macros is that they work very well with pipes:
+매크로의 좋은점은 파이프로 깔끔하게 연결된다는 점입니다.
 
 ```elixir
 iex> Movie \
@@ -171,11 +171,11 @@ iex> Movie \
 [{"Ready Player One"}]
 ```
 
-Note that to continue writing after the line break, use the character `\`.
+위 iex에서 다음줄에 이어서 작성하기 위해 `\` 문자를 썼음에 유의하세요.
 
-### Using where with Interpolated Values
+### 보간(Interpolated)값과 where 사용
 
-In order to use interpolated values or Elixir expressions in our where clauses, we need to use the `^`, or pin, operator. This allows us to _pin_ a value to a variable and refer to that pinned value, instead of re-binding that variable.
+where절 안에서 보간값이나 Elixir 표현식을 사용하기 위해 핀 연산자 `^`이 필요합니다. 이것은 핀 꽂듯이 값을 변수에 고정해서 변수가 재 바인딩 되지 않고 해당 값을 가리키게 합니다.
 
 ```elixir
 iex> title = "Ready Player One"
@@ -189,18 +189,18 @@ iex> Repo.all(query)
 ["Something about video games"]
 ```
 
-### Getting the First and Last Records
+### 첫 레코드나 마지막 레코드 조회 
 
-We can fetch the first or last records from a repository using the `Ecto.Query.first/2` and `Ecto.Query.last/2` functions.
+`Ecto.Query.first/2`나 `Ecto.Query.last/2` 함수로 레포지토리에서 첫 레코드나 마지막 레코드만 불러올수 있습니다.
 
-First, we'll write a query expression using the `first/2` function:
+우선 `first/2` 함수를 이용해 쿼리 표현식을 작성합니다.
 
 ```elixir
 iex> first(Movie)
 #Ecto.Query<from m0 in Friends.Movie, order_by: [asc: m0.id], limit: 1>
 ```
 
-Then we pass our query to the `Repo.one/2` function to get our result:
+그런 다음 결과를 얻기 위해 `Repo.one/2` 함수에 쿼리를 전달합니다.
 
 ```elixir
 iex> Movie |> first() |> Repo.one()
@@ -217,19 +217,19 @@ SELECT m0."id", m0."title", m0."tagline" FROM "movies" AS m0 ORDER BY m0."id" LI
 }
 ```
 
-The `Ecto.Query.last/2` function is used in the same way:
+`Ecto.Query.last/2` 함수도 똑같이 사용합니다.
 
 ```elixir
 iex> Movie |> last() |> Repo.one()
 ```
 
-## Querying For Associated data
+## 연관 데이터 쿼리 
 
-### Preloading
+### 프리로드 
 
-In order to be able to access the associated records that the `belongs_to`, `has_many` and `has_one` macros expose to us, we need to _preload_ the associated schemas.
+`belongs_to`, `has_many`, `has_one` 매크로로 정의된 연관 레코드에 접근 가능하게 하기 위해 연관된 스키마를 _프리로드_ 해야합니다.
 
-Let's take a look to see what happens when we try to ask a movie for its associated actors:
+한 영화에 연관된 배우들을 요청하려고 할 때 어떤일이 발생하는지 보겠습니다.
 
 ```elixir
 iex> movie = Repo.get(Movie, 1)
@@ -237,11 +237,11 @@ iex> movie.actors
 %Ecto.Association.NotLoaded<association :actors is not loaded>
 ```
 
-We _can't_ access those associated characters unless we preload them. There are a few different ways to preload records with Ecto.
+프리로드 하지 않고서는 연관된 배우들에 접근할 수 없습니다. Ecto로 레코드를 프리로드하는 몇가지 방법이 있습니다.
 
-#### Preloading With Two Queries
+#### 두 쿼리로 프리로드 
 
-The following query will preload associated records in a _separate_ query.
+다음 쿼리는 연관 레코드를 _별개의_ 쿼리로 프리로드 합니다.
 
 ```elixir
 iex> Repo.all(from m in Movie, preload: [:actors])
@@ -274,11 +274,11 @@ iex> Repo.all(from m in Movie, preload: [:actors])
 ]
 ```
 
-We can see that the above line of code ran _two_ database queries. One for all of the movies, and another for all of the actors with the given movie IDs.
+위 코드라인에서 두 데이터베이스 쿼리를 실행했음을 알 수 있습니다. 하나는 모든 영화를, 다른 하나는 해당 영화들의 ID로 연관된 모든 배우들을 조회했습니다.
 
 
-#### Preloading With One Query
-We can cut down on our database queries with the following:
+#### 한 쿼리로 프리로드하기 
+다음처럼 하면 데이터베이스 쿼리를 줄일 수 있습니다.
 
 ```elixir
 iex> query = from(m in Movie, join: a in assoc(m, :actors), preload: [actors: a])
@@ -311,7 +311,7 @@ iex> Repo.all(query)
 ]
 ```
 
-This allows us to execute just one database call. It also has the added benefit of allowing us to select and filter both movies and associated actors in the same query. For example, this approach allows us to query for all movies where the associated actors meet certain conditions using a `join` statement. Something like:
+이렇게하면 데이터베이스 호출이 한번만 됩니다. 또한 영화와 연관된 배우들 둘 다에 대해 한 쿼리에서 필드 선택과 필터링이 가능합니다. 예를 들어 `join` 문을 써서 모든 영화중에 연관된 배우들이 특정 조건만 만족하는 영화들만 조회할 수 있습니다.
 
 ```elixir
 Repo.all from m in Movie,
@@ -320,11 +320,11 @@ Repo.all from m in Movie,
   preload: [actors: a]
 ```
 
-More on join statements in a bit.
+join문에 대해서는 조금 뒤에 더 살펴보겠습니다.
 
-#### Preloading Fetched Records
+#### 조회된 레코드 프리로드 
 
-We can also preload the associated schemas of records that have already been queried from the database.
+데이터베이스에서 이미 쿼리되어 나온 레코드의 연관 스키마도 프리로드 할 수 있습니다.
 
 ```elixir
 iex> movie = Repo.get(Movie, 1)
@@ -362,7 +362,7 @@ iex> movie = Repo.preload(movie, :actors)
 }
 ```
 
-Now we can ask a movie for its actors:
+이제 영화의 배우들을 다음처럼 요청합니다.
 
 ```elixir
 iex> movie.actors
@@ -382,9 +382,9 @@ iex> movie.actors
 ]
 ```
 
-### Using Join Statements
+### Join문 사용하기
 
-We can execute queries that include join statements with the help of the `Ecto.Query.join/5` function.
+`Ecto.Query.join/5` 함수를 이용해 join문을 포함한 쿼리를 실행할 수 있습니다.
 
 ```elixir
 iex> alias Friends.Character
@@ -398,7 +398,7 @@ iex> Repo.all(query)
 [{"Ready Player One", "Wade Watts"}]
 ```
 
-The `on` expression can also use a keyword list:
+`on` 표현식은 키워드 리스트도 쓸 수 있습니다.
 
 ```elixir
 from m in Movie,
@@ -408,7 +408,7 @@ from m in Movie,
   select: {m.title, c.name}
 ```
 
-In the example above, we are joining on an Ecto schema, `m in Movie`. We can also join on an Ecto query. Let's say our movies table has a column `stars`, where we store the "star rating" of the film, a number 1-5.
+위 예제에서 `m in Movie`로 Ecto 스키마를 조인했습니다. Ecto query에도 조인할 수 있습니다. 영화 테이블에 1에서 5까지의 숫자로 된 "별점"을 나타내는 `stars` 컬럼이 있다고 해봅시다.
 
 ```elixir
 movies = from m in Movie, where: [stars: 5]
@@ -419,4 +419,4 @@ from c in Character,
   select: {m.title, c.name}
 ```
 
-The Ecto Query DSL is a powerful tool that provides us with everything we need to make even complex database queries. With this introduction provides you with the basic building blocks to start querying.
+Ecto Query DSL은 복잡한 데이터베이스 쿼리를 만드는 데 필요한 모든 것을 제공하는 강력한 도구입니다. 이 단원에서는 쿼리를 시작하는데 필요한 기본 초석 정도를 소개했습니다.

@@ -108,7 +108,7 @@ iex> %{name: "Sean"} = sean
 %Example.User<name: "Sean", roles: [...], ...>
 ```
 
-自 Elixir 1.8 開始，結構體加入自定自我訓練(introspection)。
+自 Elixir 1.8 開始，結構體加入自省(introspection)。
 要了解這代表著什麼以及如何使用它，現在來檢查(inspect) `sean` 擷取：
 
 ```elixir

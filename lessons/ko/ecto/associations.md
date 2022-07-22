@@ -1,33 +1,33 @@
 %{
   version: "1.2.2",
-  title: "Associations",
+  title: "어소시에이션",
   excerpt: """
-  In this section we'll learn how to use Ecto to define and work with associations between our schemas.
+  이 단원에서는 Ecto로 스키마 사이의 어소시에이션(Associations)을 정의하는 방법을 배워보겠습니다.
   """
 }
 ---
 
-## Set Up
+## 준비 
 
-We'll start off with the same `Friends` app from the previous lesson. You can refer to the setup [here](/en/lessons/ecto/basics) for a quick refresher.
+이전 단원의 데모 앱 `Friends`에서 시작하겠습니다. 준비를 위해 빠르게 복습이 필요하면 [여기](/en/lessons/ecto/basics)를 참고하세요.
 
-## Types of Associations
+## 어소시에이션들의 타입 
 
-There are three types of associations we can define between our schemas. We'll look at what they are and how to implement each type of relationship.
+스키마 간에 정의할 수 있는 어소시에이션의 종류는 3가지입니다. 각 관계가 무엇이고 어떻게 구현하는지 살펴보겠습니다.
 
-### Belongs To/Has Many
+### 종속(Belongs To) 관계/일대다(Has Many) 관계
 
-We're adding some new entities to our Friends app's domain model so that we can catalogue our favorite films. We'll start with two schemas: `Movie` and `Character`. We'll implement a "has many/belongs to" relationship between these two schemas: A movie has many characters and a character belongs to a movie.
+즐겨보는 영화의 카탈로그를 만들 수 있도록 Friends 앱의 도메인 모델에 몇 가지 새로운 엔티티를 추가합니다. 우선 `Movie`와 `Character` 두 스키마를 추가합니다. 이 스키마들 사이에 "일대다/종속" 관계를 구현할 것인데, 영화(movie)는 복수의 등장인물(character)을 가지며 등장인물 하나는 한 영화에 종속되도록 합니다.
 
-#### The Has Many Migration
+#### 일대다 관계 마이그레이션 
 
-Let's generate a migration for `Movie`:
+`Movie`의 마이그레이션을 생성합니다.
 
 ```console
 mix ecto.gen.migration create_movies
 ```
 
-Open up the newly generated migration file and define your `change` function to create the `movies` table with a few attributes:
+새로 생성된 마이그레이션 파일을 열고 `change` 함수를 선언하여 몇몇 속성을 가진 `movies` 테이블을 만들도록 합니다.
 
 ```elixir
 # priv/repo/migrations/*_create_movies.exs
@@ -43,9 +43,9 @@ defmodule Friends.Repo.Migrations.CreateMovies do
 end
 ```
 
-#### The Has Many Schema
+#### 일대다 관계 스키마 
 
-We'll add a schema that specifies the "has many" relationship between a movies and its characters.
+영화와 등장인물 사이에 "일대다" 관계를 지정하는 스키마를 추가합니다.
 
 ```elixir
 # lib/friends/movie.ex
@@ -60,24 +60,24 @@ defmodule Friends.Movie do
 end
 ```
 
-The `has_many/3` macro doesn't add anything to the database itself. What it does is use the foreign key on the associated schema, `characters`, to make a movie's associated characters available. This is what will allow us to call `movie.characters`.
+`has_many/3` 매크로는 데이터베이스 자체에 아무것도 추가하지 않습니다. 그저 연관된 스키마인 `characters`의 외래키를 이용해 영화에 연관된 등장인물을 이용할 수 있게 합니다. 즉 `movie.characters`처럼 사용할 수 있습니다.
 
-#### The Belongs To Migration
+#### 종속 관계 마이그레이션 
 
-Now we're ready to build our `Character` migration and schema. A character belongs to a movie, so we'll define a migration and schema that specifies this relationship.
+이제 `Character` 마이그레이션과 스키마를 만들 준비가 되었습니다. 한 등장인물은 한 영화에 종속되므로 이 관계를 나타내는 마이그레이션과 스키마를 정의합니다.
 
-First, generate the migration:
+먼저 마이그레이션을 생성합니다.
 
 ```console
 mix ecto.gen.migration create_characters
 ```
 
-To declare that a character belongs to a movie, we need the `characters` table to have a `movie_id` column. We want this column to function as a foreign key. We can accomplish this with the following line in our `create table/1` function:
+영화에 종속되는 등장인물을 정의하기 위해서는, `movie_id` 컬럼을 가지는 `characters` 테이블이 필요합니다. 이 컬럼은 외래 키로써 동작해야 합니다. 이를 위해 `create table/1` 함수에 다음 한줄을 추가하면 됩니다.
 
 ```elixir
 add :movie_id, references(:movies)
 ```
-So our migration should look like this:
+그러면 마이그레이션이 다음과 같습니다.
 
 ```elixir
 # priv/migrations/*_create_characters.exs
@@ -93,9 +93,9 @@ defmodule Friends.Repo.Migrations.CreateCharacters do
 end
 ```
 
-#### The Belongs To Schema
+#### 종속 관계 스키마
 
-Our schema likewise needs to define the "belongs to" relationship between a character and its movie.
+마찬가지로 스키마는 등장인물과 영화 사이의 "종속" 관계를 정의해야 합니다.
 
 ```elixir
 # lib/friends/character.ex
@@ -110,25 +110,25 @@ defmodule Friends.Character do
 end
 ```
 
-Let's take a closer look at what the `belongs_to/3` macro does for us. In addition to adding the foreign key `movie_id` to our schema, it also gives us the ability to access associated `movies` schema _through_ `characters`. It uses the foreign key to make a character's associated movie available when we query for them. This is what will allow us to call `character.movie`.
+`belongs_to/3` 매크로가 무엇을 하는지 자세히 보겠습니다. 스키마에 외래 키 `movie_id`를 추가하는것 외에도, 이 매크로는 `characters`를 통해 연관된 `movies` 스키마에 접근하는 기능을 제공합니다. 외래 키를 사용하여 등장인물을 쿼리할 때 등장인물과 관련된 영화를 이용할 수 있습니다. 즉 `character.movie` 처럼 사용할 수 있습니다.
 
-Now we're ready to run our migrations:
+이제 마이그레이션을 실행할 준비가 되었네요.
 
 ```console
 mix ecto.migrate
 ```
 
-### Belongs To/Has One
+### 종속 관계/일대다 관계 
 
-Let's say that a movie has one distributor, for example Netflix is the distributor of their original film "Bright".
+한 영화에 한 배급사가 있다고 가정해보겠습니다. 예를 들어 Netflix는 "Bright" 영화의 배급사입니다.
 
-We'll define the `Distributor` migration and schema with the "belongs to" relationship. First, let's generate the migration:
+"종속" 관계로 `Distributor` 마이그레이션 및 스키마를 정의할 것입니다. 우선 마이그레이션을 생성해 보겠습니다.
 
 ```console
 mix ecto.gen.migration create_distributors
 ```
 
-We should add a foreign key of `movie_id` to the `distributors` table migration we just generated as well as a unique index to enforce that a movie has only one distributor:
+생성한 `distributors` 테이블 마이그레이션에 외래 키 `movie_id`와 영화의 배급사가 1명인 것을 나타내는 유니크 인덱스를 추가할 필요가 있습니다.
 
 ```elixir
 # priv/repo/migrations/*_create_distributors.exs
@@ -147,7 +147,7 @@ defmodule Friends.Repo.Migrations.CreateDistributors do
 end
 ```
 
-And the `Distributor` schema should use the `belongs_to/3` macro to allow us to call `distributor.movie` and look up a distributor's associated movie using this foreign key.
+그리고 `Distributor` 스키마는 `belongs_to/3` 매크로를 사용하여 `distributor.movie`를 호출했을 때 위에서의 외래 키를 가지고 한 배급사와 관련된 영화를 조회할 수 있도록 해야 합니다.
 
 ```elixir
 # lib/friends/distributor.ex
@@ -162,7 +162,7 @@ defmodule Friends.Distributor do
 end
 ```
 
-Next up, we'll add the "has one" relationship to the `Movie` schema:
+다음으로 `Movie` 스키마에 "일대일" 관계를 추가하겠습니다.
 
 ```elixir
 # lib/friends/movie.ex
@@ -179,25 +179,25 @@ defmodule Friends.Movie do
 end
 ```
 
-The `has_one/3` macro functions just like the `has_many/3` macro. It uses the associated schema's foreign key to look up and expose the movie's distributor. This will allow us to call `movie.distributor`.
+`has_one/3` 매크로는 `has_many/3`와 유사한 기능입니다. 연관 스키마의 외래키로 해당 영화의 배급사를 찾아서 보여줍니다. `movie.distributor`처럼 쓸 수 있습니다.
 
-We're ready to run our migrations:
+마이그레이션을 실행해봅시다.
 
 ```console
 mix ecto.migrate
 ```
 
-### Many To Many
+### 다대다 관계 
 
-Let's say that a movie has many actors and that an actor can belong to more than one movie. We'll build a join table that references _both_ movies _and_ actors to implement this relationship.
+한 영화가 많은 배우를 가지고 있고 한 배우는 여러 영화에 속해있다고 해봅시다. 이 관계를 구현하려면 영화와 배우를 _둘 다_ 참조하는 조인 테이블을 만들어야 합니다.
 
-First, let's generate the `Actors` migration:
+우선 `Actors` 마이그레이션을 만듭니다.
 
 ```console
 mix ecto.gen.migration create_actors
 ```
 
-Define the migration:
+마이그레이션을 정의합니다.
 
 ```elixir
 # priv/migrations/*_create_actors.ex
@@ -213,13 +213,13 @@ defmodule Friends.Repo.Migrations.CreateActors do
 end
 ```
 
-Let's generate our join table migration:
+조인 테이블 마이그레이션을 생성합시다.
 
 ```console
 mix ecto.gen.migration create_movies_actors
 ```
 
-We'll define our migration such that the table has two foreign keys. We'll also add a unique index to enforce unique pairings of actors and movies:
+마이그레이션에 두 개의 외래키를 가진 테이블을 정의했습니다. 또한 유니크 인덱스를 추가해 한 배우는 한 영화와 하나의 쌍으로만 묶이도록 합니다.
 
 ```elixir
 # priv/migrations/*_create_movies_actors.ex
@@ -238,7 +238,7 @@ defmodule Friends.Repo.Migrations.CreateMoviesActors do
 end
 ```
 
-Next up, let's add the `many_to_many` macro to our `Movie` schema:
+그 다음 `many_to_many` 매크로를 `Movie` 스키마에 추가합시다.
 
 ```elixir
 # lib/friends/movie.ex
@@ -256,7 +256,7 @@ defmodule Friends.Movie do
 end
 ```
 
-Finally, we'll define our `Actor` schema with the same `many_to_many` macro.
+마지막으로 `Actor` 스키마에도 역시 `many_to_many` 매크로를 정의합니다.
 
 ```elixir
 # lib/friends/actor.ex
@@ -271,29 +271,29 @@ defmodule Friends.Actor do
 end
 ```
 
-We're ready to run our migrations:
+마이그레이션을 실행합니다.
 
 ```console
 mix ecto.migrate
 ```
 
-## Saving Associated Data
+## 연관 데이터 저장 
 
-The manner in which we save records along with their associated data depends on the nature of the relationship between the records. Let's start with the "Belongs to/has many" relationship.
+어떤 레코드를 연관 데이터와 함께 저장하는 방법은 어떤 관계 속성이냐에 달려있습니다. "종속 관계/일대다 관계"부터 시작해봅시다.
 
-### Belongs To
+### 종속 관계 
 
-#### Saving With Ecto.build_assoc/3
+#### Ecto.build_assoc/3 이용한 저장
 
-With a "belongs to" relationship, we can leverage Ecto's `build_assoc/3` function.
+"종속 관계" 에서는 Ecto의 `build_assoc/3` 함수를 사용할 수 있습니다.
 
-[`build_assoc/3`](https://hexdocs.pm/ecto/Ecto.html#build_assoc/3) takes in three arguments:
+[`build_assoc/3`](https://hexdocs.pm/ecto/Ecto.html#build_assoc/3)는 다음 3가지 인자를 받습니다.
 
-* The struct of the record we want to save.
-* The name of the association.
-* Any attributes we want to assign to the associated record we are saving.
+* 저장할 레코드의 구조체
+* 어소시에이션의 이름
+* 저장할 연관 레코드에 할당할 속성들
 
-Let's save a movie and an associated character. First, we'll create a movie record:
+영화 하나와 연관된 등장인물을 저장해봅시다. 먼저 영화 레코드를 하나 생성합니다.
 
 ```elixir
 iex> alias Friends.{Movie, Character, Repo}
@@ -312,7 +312,7 @@ iex> movie = %Movie{title: "Ready Player One", tagline: "Something about video g
 iex> movie = Repo.insert!(movie)
 ```
 
-Now we'll build our associated character and insert it into the database:
+이제 연관된 등장인물을 만들고 데이터베이스에 삽입합니다.
 
 ```elixir
 iex> character = Ecto.build_assoc(movie, :characters, %{name: "Wade Watts"})
@@ -333,9 +333,9 @@ iex> Repo.insert!(character)
 }
 ```
 
-Notice that since the `Movie` schema's `has_many/3` macro specifies that a movie has many `:characters`, the name of the association that we pass as a second argument to `build_assoc/3` is exactly that: `:characters`. We can see that we've created a character that has its `movie_id` properly set to the ID of the associated movie.
+`Movie` 스키마의 `has_many/3` 매크로가 한 영화가 여러 `:characters`를 가지고 있다고 명시하기 때문에 `build_assoc/3`의 두 번째 인자로 `:characters`를 넘긴다는걸 기억하세요. 생성한 등장인물이 그와 연관된 영화의 ID인 `move_id`가 올바르게 설정되었음을 알 수 있습니다.
 
-In order to use `build_assoc/3` to save a movie's associated distributor, we take the same approach of passing the _name_ of the movie's relationship to distributor as the second argument to `build_assoc/3`:
+한 영화의 연관 배급사를 `build_assoc/3` 으로 저장하기 위해 영화의 배급사 관계 이름을 두 번째 인자로 넘깁니다.
 
 ```elixir
 iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})
@@ -356,13 +356,13 @@ iex> Repo.insert!(distributor)
 }
 ```
 
-### Many to Many
+### 다대다 관계 
 
-#### Saving With Ecto.Changeset.put_assoc/4
+#### Ecto.Changeset.put_assoc/4 이용한 저장
 
-The `build_assoc/3` approach won't work for our many-to-many relationship. That is because neither the movie nor actor tables contain a foreign key. Instead, we need to leverage Ecto Changesets and the `put_assoc/4` function.
+다대다 관계에는 `build_assoc/3`를 쓰지 않습니다. 영화나 배우 테이블 둘다 외래키가 없기 떄문입니다. 그 대신, Ecto Changeset과 `put_assoc/4` 함수를 이용하겠습니다.
 
-Assuming we already have the movie record we created above, let's create an actor record:
+위에서 생성한 영화 레코드를 사용한다고 가정하고, 배우 레코드를 생성합시다.
 
 ```elixir
 iex> alias Friends.Actor
@@ -382,9 +382,9 @@ iex> actor = Repo.insert!(actor)
 }
 ```
 
-Now we're ready to associate our movie to our actor via the join table.
+이제 영화를 조인 테이블을 통해 배우와 연결할 준비가 됐습니다.
 
-First, note that in order to work with changesets, we need to make sure that our `movie` structure has preloaded associated data. We'll talk more about preloading data in a bit. For now, it's enough to understand that we can preload our associations like this:
+우선 유의해야할 점은 체인지셋을 사용하려면 `movie` 구조체가 연관 데이터를 프리로드한 상태여야 합니다. 데이터를 프리로드하는건 추후에 자세히 다뤄보겠습니다. 일단 지금은 다음과 같이 어소시에이션들을 프리로드할 수 있다는 것만 알아두세요.
 
 ```elixir
 iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
@@ -413,7 +413,7 @@ iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
 }
 ```
 
-Next up, we'll create a changeset for our movie record:
+다음은 영화 레코드의 체인지셋을 생성합니다.
 
 ```elixir
 iex> movie_changeset = Ecto.Changeset.change(movie)
@@ -421,7 +421,7 @@ iex> movie_changeset = Ecto.Changeset.change(movie)
  valid?: true>
 ```
 
-Now we'll pass our changeset as the first argument to [`Ecto.Changeset.put_assoc/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#put_assoc/4):
+이제 [`Ecto.Changeset.put_assoc/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#put_assoc/4)에 그 체인지셋을 첫번째 인자로 전달합니다.
 
 ```elixir
 iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [actor])
@@ -439,9 +439,9 @@ iex> movie_actors_changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actor
 >
 ```
 
-This gives us a _new_ changeset that represents the following change: add the actors in this list of actors to the given movie record.
+이것은 새로운 체인지셋을 반환하는데, 주어진 영화 레코드의 actors 필드에 배우 목록을 추가하는 변경사항을 보여줍니다.
 
-Lastly, we'll update the given movie and actor records using our latest changeset:
+마지막으로 주어진 영화와 배우 레코드를 최신 체인지셋을 사용해 업데이트합니다.
 
 ```elixir
 iex> Repo.update!(movie_actors_changeset)
@@ -477,9 +477,9 @@ iex> Repo.update!(movie_actors_changeset)
 }
 ```
 
-We can see that this gives us a movie record with the new actor properly associated and already preloaded for us under `movie.actors`.
+이렇게 하면 영화 레코드에 새 배우 레코드가 적절히 연결되고 `movie.actors`에 프리로드된 상태로 보여집니다.
 
-We can use this same approach to create a brand new actor that is associated with the given movie. Instead of passing a _saved_ actor struct into `put_assoc/4`, we simply pass in a map of attributes describing a new actor that we want to create:
+같은 방식으로 주어진 영화에 연결된 또다른 배우를 생성 할 수 있습니다. 미리 _저장된_ 배우를 `put_assoc/4`에 넘기는 대신, 생성하고자 하는 새 배우의 속성들이 들어있는 맵을 전달해도 됩니다.
 
 ```elixir
 iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])
@@ -519,6 +519,6 @@ iex>  Repo.update!(changeset)
 }
 ```
 
-We can see that a new actor was created with an ID of "2" and the attributes we assigned it.
+새 배우가 ID "2"로 생성되었고 지정했던 속성들이 잘 들어있습니다.
 
-In the next section, we'll learn how to query for our associated records.
+다음 섹션에서는 연관된 레코드를 어떻게 쿼리하는지 배워보겠습니다.

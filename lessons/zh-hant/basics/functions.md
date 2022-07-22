@@ -312,9 +312,9 @@ iex> Greeter.phrase
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -358,9 +358,9 @@ iex> Greeter.hello("Sean", "es")
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -394,9 +394,9 @@ Elixir 不喜歡多重比對函數中的預設引數值，因可能會造成混�
 defmodule Greeter do
   def hello(names, language_code \\ "en")
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do
