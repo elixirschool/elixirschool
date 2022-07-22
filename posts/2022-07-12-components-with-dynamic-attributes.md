@@ -259,7 +259,7 @@ If we invoke assigns_to_attributes/2 with the assigns, it returns a list of keyw
 ]
 ```
 
-We don’t want to use the card assign as an attribute so we will have to exclude it from the list and only remain with the class assign.
+We don’t want to use the card assign as an HTML attribute so we will have to exclude it from the list and only remain with the class assign.
 
 ```elixir
 def card(assigns) do
