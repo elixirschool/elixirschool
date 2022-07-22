@@ -240,7 +240,7 @@ IO.inspect(assigns, label: "==================card component=====")
 }
 ```
 
-We can see the assigns contains the card and the class assigns. Lets go ahead and invoke the assigns_to_attribute/2 inside the card/1 to transform our class assign for use in `<div>` tag attribute.
+We can see the assigns contains the card and the class assigns. Let's go ahead and invoke the `assigns_to_attribute/2` inside the `card/1` to transform our class assignment for use in a `<div>` tag attribute.
 
 ```elixir
 def card(assigns) do
