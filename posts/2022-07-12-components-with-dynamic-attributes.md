@@ -134,7 +134,7 @@ Our weekly planning task board should look something similar to this when we ope
 
   1. We want the cards in each column to have a different color from one another . For example, cards in the "work" column should be blue, cards in the "house" column should be green, and cards in the "school" column should be yellow.
 
-  2. We should be able to use the same card/1 function component we defined earlier, while still ensuring that cards can be a different color in the different columns.
+  2. We should be able to use the same `card/1` function component we defined earlier, while still ensuring that cards can be a different color in the different columns.
 
 
 We could solve the first problem like this:
