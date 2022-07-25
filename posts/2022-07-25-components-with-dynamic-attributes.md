@@ -2,7 +2,7 @@
   author: "Tracey Onim",
   author_link: "https://github.com/TraceyOnim",
   tags: ["LiveView", "Components", "LiveView Helpers"],
-  date: ~D[2022-07-12],
+  date: ~D[2022-07-25],
   title: "Components with dynamic attributes",
   excerpt: """
   Learn how you can support dynamic attributes when using reusable components with assigns_to_attribute/2 function.
