@@ -1,5 +1,5 @@
 %{
-  version: "1.9.0",
+  version: "1.9.1",
   title: "Enum",
   excerpt: """
   A set of algorithms for enumerating over enumerables.
@@ -223,6 +223,7 @@ iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coo
 ```
 
 # Enum using the Capture operator (&)
+
 Many functions within the Enum module in Elixir take anonymous functions as an argument to work with each iterable of the enumerable that is passed.
 
 These anonymous functions are often written shorthand using the Capture operator (&).
@@ -255,6 +256,7 @@ iex> Enum.map([1,2,3], plus_three)
 ```
 
 ## Using the capture operator with a named function
+
 First we create a named function and call it within the anonymous function defined in `Enum.map/2`.
 
 ```elixir
