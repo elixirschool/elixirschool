@@ -134,7 +134,7 @@ For example:
 
 If we re-arrange the characters on String A, we can get the string B, and vice versa.
 
-So, how could we check if two strings are Anagrams in Elixir?  The easiest solution is to just sort the graphemes of each string alphabetically and then check if they both lists are equal.
+So, how could we check if two strings are Anagrams in Elixir?  The easiest solution is to just sort the graphemes of each string alphabetically and then check if both the lists are equal.
 Let's try that:
 
 ```elixir
