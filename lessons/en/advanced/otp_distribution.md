@@ -1,5 +1,5 @@
 %{
-  version: "1.0.3",
+  version: "1.1.0",
   title: "OTP Distribution",
   excerpt: """
   We can run our Elixir apps on a set of different nodes distributed across a single host or across multiple hosts.
