@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.0.3",
   title: "Erlang 상호 운용",
   excerpt: """
   Erlang VM (BEAM) 위에서 작업하면서 추가된 이점 중 하나는 기존의 다양한 라이브러리를 사용할 수 있다는 점입니다. 상호 운용성은 우리의 Elixir 코드에서 이러한 라이브러리들과 Erlang 표준 라이브러리를 사용할 수 있도록 해줍니다. 이번 강의에서는 서드파티 Erlang 패키지와 더불어 표준 라이브러리의 기능에 접근하는 법을 알아봅니다.
@@ -120,14 +120,19 @@ iex> "Hello World" |> to_charlist |> :string.words
 
 ### 변수
 
+언랭에서는 변수가 대문자로 시작해야하고 값을 재할당하는 것을 허용하지 않습니다.
+
 Elixir:
 
 ```elixir
 iex> x = 10
 10
 
-iex> x1 = x + 10
+iex> x = 20
 20
+
+iex> x1 = x + 10
+30
 ```
 
 Erlang:
@@ -136,8 +141,11 @@ Erlang:
 1> X = 10.
 10
 
-2> X1 = X + 1.
-11
+2> X = 20.
+** exception error: no match of right hand side value 20
+
+3> X1 = X + 10.
+20
 ```
 
 이게 전부 입니다! 우리의 Elixir 애플리케이션에서 Erlang을 사용하는 것은 쉬우면서도 우리가 사용할 수 있는 라이브러리의 수를 두 배 가까이 늘려 줍니다.
