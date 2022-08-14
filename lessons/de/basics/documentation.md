@@ -13,9 +13,9 @@ Wieviel wir kommentieren und was qualitativ hochwertige Dokumentation ausmacht b
 
 Elixir betrachtet Dokumentation als einen *Bürger erster Klasse* und bietet diverse Funktionen, um Dokumentation für deine Projekte abzurufen und zu generieren. Elixir bietet uns viele verschiedene Attribute, um Codebasen zu kommentieren. Lass uns 3 Möglichkeiten anschauen:
 
-  - `#` - Für Inline-Dokumentation.
-  - `@moduledoc` - Für Dokumentation auf Modulebene.
-  - `@doc` - Für Dokumentation auf Funktionsebene.
+- `#` - Für Inline-Dokumentation.
+- `@moduledoc` - Für Dokumentation auf Modulebene.
+- `@doc` - Für Dokumentation auf Funktionsebene.
 
 ### Inline-Dokumentation
 
@@ -214,7 +214,7 @@ Jetzt können wir es auf GitHub, unserer eigenen Webseite oder auch wie üblich 
 
 Dokumentation schreiben sollte in die best practices Richtlinien einer Programmiersprache aufgenommen werden. Da Elixir eine recht junge Sprache ist und das Ökosystem noch wächst, können noch viele Standards entdeckt werden. Die Community hat jedoch bereits probiert best practices zu etablieren. Um mehr über diese best practices zu lesen, schau in den [Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
-  - Dokumentiere ein Modul immer.
+- Dokumentiere ein Modul immer.
 
 ```elixir
 defmodule Greeter do
@@ -225,7 +225,7 @@ defmodule Greeter do
 end
 ```
 
-  - Falls du nicht vorhast ein Modul zu dokumentieren, lass es **nicht** einfach leer. Zieh in Erwägung das Modul mit `false` zu annotieren:
+- Falls du nicht vorhast ein Modul zu dokumentieren, lass es **nicht** einfach leer. Zieh in Erwägung das Modul mit `false` zu annotieren:
 
 ```elixir
 defmodule Greeter do
@@ -234,7 +234,8 @@ defmodule Greeter do
 end
 ```
 
- - Wenn du dich innerhalb einer Moduldokumentation auf eine Funktion beziehst, benutze Backticks wie hier:
+- Wenn du dich innerhalb einer Moduldokumentation auf eine Funktion beziehst, benutze Backticks wie hier:
+
 ```elixir
 defmodule Greeter do
   @moduledoc """
@@ -249,7 +250,7 @@ defmodule Greeter do
 end
 ```
 
- - Schreibe jeglichen Code getrennt durch eine Leerzeile unter `@moduledoc`:
+- Schreibe jeglichen Code getrennt durch eine Leerzeile unter `@moduledoc`:
 
 ```elixir
 defmodule Greeter do
@@ -268,7 +269,7 @@ defmodule Greeter do
 end
 ```
 
- - Benutze Markdown innerhalb von Funktionen, um das Lesen via IEx oder ExDoc einfacher zu machen.
+- Benutze Markdown innerhalb von Funktionen, um das Lesen via IEx oder ExDoc einfacher zu machen.
 
 ```elixir
 defmodule Greeter do
@@ -299,6 +300,6 @@ defmodule Greeter do
 end
 ```
 
- - Versuche ein paar Codebeispiele in deiner Dokumentation zu schreiben. Das erlaubt es dir zudem automatisch Tests aus Codebeispielen zu generieren. Das ist in Modulen, Funktionen oder Makros durch [ExUnit.DocTest][] möglich. Um das zu tun, musst du das `doctest/1`-Makro in deinem Testcode aufrufen und die Beispiele so schreiben, wie es die Richtlinien in der [offiziellen Dokumentation][ExUnit.DocTest] beschreiben.
+- Versuche ein paar Codebeispiele in deiner Dokumentation zu schreiben. Das erlaubt es dir zudem automatisch Tests aus Codebeispielen zu generieren. Das ist in Modulen, Funktionen oder Makros durch [ExUnit.DocTest][] möglich. Um das zu tun, musst du das `doctest/1`-Makro in deinem Testcode aufrufen und die Beispiele so schreiben, wie es die Richtlinien in der [offiziellen Dokumentation][ExUnit.DocTest] beschreiben.
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

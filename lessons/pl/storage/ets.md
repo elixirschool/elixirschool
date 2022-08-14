@@ -17,7 +17,6 @@ Tabele ETS są tworzone i obsługiwane przez oddzielne procesy.
 Kiedy proces zarządzający tabelą kończy się, tabela z nim powiązana jest usuwana.
 Możesz mieć tak wiele tabel ETS, jak tylko zechcesz — jedynym limitem jest pamięć serwera. Możliwe jest ustalenie maksymalnej liczby tabel za pomocą zmiennej środowiskowej `ERL_MAX_ETS_TABLES`.
 
-
 ## Tworzenie tabel
 
 Do tworzenia tabel służy funkcja `new/2`, która jako parametry przyjmuje nazwę tabeli i zbiór opcji, a zwraca identyfikator tabeli, którego możemy używać w dalszych operacjach.

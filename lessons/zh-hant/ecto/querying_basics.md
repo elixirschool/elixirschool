@@ -3,7 +3,7 @@
   title: "查詢",
   excerpt: """
   
-  """
+"""
 }
 ---
 
@@ -117,7 +117,7 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 
 請注意，回傳的結構體僅有 `tagline` 和 `title` 欄位 — 這是 `select:` 部​​分的結果。
 
-這樣的查詢稱為 *無綁定（bindingless）*，因為它們非常簡單，不需要綁定。
+這樣的查詢稱為 _無綁定（bindingless）_，因為它們非常簡單，不需要綁定。
 
 #### 查詢中的綁定
 
@@ -128,7 +128,7 @@ iex> query = from(m in Movie)
 %Ecto.Query<from m in Friends.Movie>
 ```
 
-在這種情況下，稱 `m` 為一個 *綁定*。綁定非常有用，因為它能夠在查詢的其他部分參照模組。現在選擇所有 `id` 小於 `2` 電影的標題：
+在這種情況下，稱 `m` 為一個 _綁定_。綁定非常有用，因為它能夠在查詢的其他部分參照模組。現在選擇所有 `id` 小於 `2` 電影的標題：
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
@@ -139,7 +139,7 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-這裡非常重要的是如何改變查詢的輸出。通過在 `select:` 中使用帶有綁定的 *表達式* ，可以明確指定回傳選定欄位的方式。例如，可以要求一個元組：
+這裡非常重要的是如何改變查詢的輸出。通過在 `select:` 中使用帶有綁定的 _表達式_ ，可以明確指定回傳選定欄位的方式。例如，可以要求一個元組：
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
@@ -150,10 +150,9 @@ iex> Repo.all(query)
 
 始終從簡單的無綁定查詢出發，並在需要參照資料結構時導入綁定是一個好主意。有關查詢中使用綁定的更多資訊，請參考 [Ecto 文件](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions)
 
-
 ### 基於巨集的查詢
 
-上面的範例，在 `from` 巨集中使用了關鍵字 `select:` 和 `where:` 來建立查詢 — 這就是所謂 *基於關鍵字的查詢*。但是，還有另一種組合查詢的方式 — 基於巨集的查詢。Ecto 為每個關鍵字提供巨集，例如 `select/3` 或 `where/3`。每個巨集都接受一個 *可查詢（queryable）* 的值，一個顯式的綁定串列以及需提供相同類似關鍵字的表達式：
+上面的範例，在 `from` 巨集中使用了關鍵字 `select:` 和 `where:` 來建立查詢 — 這就是所謂 _基於關鍵字的查詢_。但是，還有另一種組合查詢的方式 — 基於巨集的查詢。Ecto 為每個關鍵字提供巨集，例如 `select/3` 或 `where/3`。每個巨集都接受一個 _可查詢（queryable）_ 的值，一個顯式的綁定串列以及需提供相同類似關鍵字的表達式：
 
 ```elixir
 iex> query = select(Movie, [m], m.title)                           
@@ -171,7 +170,6 @@ iex> query = Movie |> where([m], m.id < 2) |> select([m], {m.title})
 iex> Repo.all(query)
 [{"Ready Player One"}]
 ```
-
 
 ### 在 where 中使用插值
 
@@ -276,8 +274,8 @@ iex> Repo.all(from m in Movie, preload: [:actors])
 
 可以看到上面程式碼執行了 _2_ 次資料庫查詢。一次用於所有電影，另一次用於具有給定電影 ID 的所有演員。
 
-
 #### 使用 1 個查詢預載
+
 可以通過以下方式減少資料庫查詢次數：
 
 ```elixir

@@ -12,6 +12,7 @@
 ---
 
 ## What is it?
+
 Oftentimes we need to use multiple versions of our tools.
 Many communities have their own things to do this.
 In Ruby we have `chruby`, `rbenv`, `rvm` and more, NodeJS has `nvm`.
@@ -22,6 +23,7 @@ There is one big win that I see with `asdf` that no other tool has allowed me to
 Let's check it out!
 
 ## Setup
+
 Installing `asdf` is a breeze.
 
 First, clone it down:
@@ -59,6 +61,7 @@ With Fish:
 echo 'source ~/.asdf/asdf.fish' >> ~/.config/fish/config.fish
 mkdir -p ~/.config/fish/completions; and cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions
 ```
+
 Now restart your shell, and type `asdf` and we get our first introduction to the tool.
 
 ```shell
@@ -86,6 +89,7 @@ UTILS
 ```
 
 ## Using it with Elixir
+
 To get `asdf` working with Elixir, we first will need Erlang.
 Depending on our system, there are some simple steps:
 
@@ -143,4 +147,3 @@ To learn more about how asdf manages these things under the hood and further cus
 As you can see, this makes it quite seamless to be able to switch around a toolset that is somewhat complicated underneath the service.
 I find `asdf` to be a great tool for managing this piece of my complexity in my day to day life.
 Happy hacking!
-

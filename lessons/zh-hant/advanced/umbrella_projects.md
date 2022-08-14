@@ -38,9 +38,8 @@ for each application in the apps/ directory.
 
 正如你可以從 shell 指令中看到的，Mix 建立了一個帶有兩個目錄的小型框架專案：
 
-  - `apps/` - 子 (child) 專案駐在目錄
-  - `config/` - 保護傘專案的配置設定存放目錄
-
+- `apps/` - 子 (child) 專案駐在目錄
+- `config/` - 保護傘專案的配置設定存放目錄
 
 ## 子專案
 

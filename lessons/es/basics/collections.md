@@ -31,7 +31,6 @@ iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
 
-
 ### Concatenación de listas
 
 La concatenación de listas usa el operador `++/2`:
@@ -65,6 +64,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 ```
 
 **Nota:** La sustracción de listas utiliza [comparación estricta](/es/lessons/basics/basics#comparación) para coincidir los valores. Por Ejemplo:
+
 ```elixir
 iex> [2] -- [2.0]
 [2]

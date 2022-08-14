@@ -13,25 +13,25 @@ Elixir membekalkan satu sintaks alternatif untuk mewakili dan memanipulasi strin
 
 Senarai sigil yang tersedia termasuk:
 
-  - `~C` Menjana satu list aksara **tanpa** 'escaping' atau 'interpolation'
-  - `~c` Menjana satu list aksara **mengandungi** 'escaping' atau 'interpolation'
-  - `~R` Menjana satu ungkapan nalar(regular expression) **tanpa** 'escaping' atau 'interpolation'
-  - `~r` Menjana satu ungkapan nalar(regular expression) **mengandungi** 'escaping' atau 'interpolation'
-  - `~S` Menjana string **tanpa** 'escaping' atau 'interpolation'
-  - `~s` Menjana string **mengandungi** 'escaping' atau 'interpolation'
-  - `~W` Menjana satu list **tanpa** 'escaping' atau 'interpolation'
-  - `~w` Menjana satu list **mengandungi** 'escaping' atau 'interpolation'
+- `~C` Menjana satu list aksara **tanpa** 'escaping' atau 'interpolation'
+- `~c` Menjana satu list aksara **mengandungi** 'escaping' atau 'interpolation'
+- `~R` Menjana satu ungkapan nalar(regular expression) **tanpa** 'escaping' atau 'interpolation'
+- `~r` Menjana satu ungkapan nalar(regular expression) **mengandungi** 'escaping' atau 'interpolation'
+- `~S` Menjana string **tanpa** 'escaping' atau 'interpolation'
+- `~s` Menjana string **mengandungi** 'escaping' atau 'interpolation'
+- `~W` Menjana satu list **tanpa** 'escaping' atau 'interpolation'
+- `~w` Menjana satu list **mengandungi** 'escaping' atau 'interpolation'
 
 Senarai kata-kata sempadan(delimiters) termasuk:
 
-  - `<...>` Sepasang tanda kurungan muncung
-  - `{...}` Sepasang tanda kurungan kerinting
-  - `[...]` Sepasang tanda kurungan kotak
-  - `(...)` Sepasang tanda kurungan
-  - `|...|` Sepasang tanda paip
-  - `/.../` Sepasang tanda miring hadapan
-  - `"..."` Sepasang tanda ungkapan berganda
-  - `'...'` Sepasang tanda ungkapan tunggal
+- `<...>` Sepasang tanda kurungan muncung
+- `{...}` Sepasang tanda kurungan kerinting
+- `[...]` Sepasang tanda kurungan kotak
+- `(...)` Sepasang tanda kurungan
+- `|...|` Sepasang tanda paip
+- `/.../` Sepasang tanda miring hadapan
+- `"..."` Sepasang tanda ungkapan berganda
+- `'...'` Sepasang tanda ungkapan tunggal
 
 ### List Aksara
 
@@ -98,6 +98,7 @@ iex> ~s/the cat in the hat on the mat/
 iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
+
 Tetapi apakah perbezaannya?  Perbezaannya adalah sama dengan sigil List Aksara yang telah kita lihat.  Jawapannya adalah 'interpolation' dan 'escape sequence'.  Jika kita lihat satu lagi contoh:
 
 ```elixir

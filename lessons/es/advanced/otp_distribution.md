@@ -2,9 +2,10 @@
   version: "1.0.1",
   title: "Distribución en OTP",
   excerpt: """
-  ## Introducción a la distribución
 
-  Podemos ejecutar aplicaciones Elixir en un conjunto de nodos distribuidos diferentes ya sea en un único *host* o en múltiples *hosts*.
+## Introducción a la distribución
+
+Podemos ejecutar aplicaciones Elixir en un conjunto de nodos distribuidos diferentes ya sea en un único *host* o en múltiples *hosts*
   Elixir nos permite comunicarnos a través de estos nodos usando algunos mecanismos los cuales están fuera del objetivo de esta lección.
   """
 }
@@ -37,6 +38,7 @@ Estos dos nodos pueden enviarse mensajes entre sí usando `Node.spawn_link/2`.
 ### Comunicación con Node.spawn_link/2
 
 Esta función toma dos argumentos:
+
 * El nombre del nodo al cual te quieres conectar.
 * La función a ser ejecutada por el proceso remoto corriendo en ese nodo.
 
@@ -112,9 +114,9 @@ Solo los nodos que hayan sido iniciados con la misma `cookie` serán capaces de 
 
 #### Limitaciones de Node.spawn_link/2
 
-Mientras que `Node.spawn_link/2` ilustra la relación entre nodos y la manera como podemos enviar mensajes entre ellos, esta _no_ es realmente la decisión correcta para una aplicación que correrá entre nodos distribuidos.
+Mientras que `Node.spawn_link/2` ilustra la relación entre nodos y la manera como podemos enviar mensajes entre ellos, esta *no* es realmente la decisión correcta para una aplicación que correrá entre nodos distribuidos.
 `Node.spawn_link/2` genera procesos aislados, es decir procesos que no están supervisados.
-Si solo hubiera una forma de generar procesos supervisados, asíncronos a _través de los nodos_...
+Si solo hubiera una forma de generar procesos supervisados, asíncronos a *través de los nodos*...
 
 ## Tareas distribuidas
 
@@ -132,7 +134,7 @@ mix new chat --sup
 ### Agregando un supervisor de tareas al árbol de supervisión
 
 Un supervisor de tareas supervisa dinámicamente tareas.
-Este empieza sin hijos, frecuentemente _bajo_ otro supervisor, y puede ser usado luego para supervisar cualquier número de tareas.
+Este empieza sin hijos, frecuentemente *bajo* otro supervisor, y puede ser usado luego para supervisar cualquier número de tareas.
 
 Vamos a agregar un supervisor de tareas al árbol de supervisión de nuestra aplicación y llamarlo `Chat.TaskSupervisor`
 
@@ -257,7 +259,7 @@ Vamos a volver a visitar nuestro código ver que es lo que está pasando aquí.
 Tenemos una función `Chat.send_message/2` que toma el nombre del nodo remoto en el cual queremos ejecutar nuestra tarea supervisada y el mensaje que queremos enviar a ese nodo.
 
 Esa función llama a nuestra función `spawn_task/4` la cual empieza una tarea asíncrona en el nodo remoto con el nombre dado, supervisada por `Chat.TaskSupervisor` en ese nodo remoto.
-Sabemos que el supervisor de tareas con el nombre `Chat.TaskSupervisor` está corriendo en ese nodo porque ese nodo _también_ está corriendo una instancia de nuestra aplicación de chat y `Chat.TaskSupervisor` ha iniciado como parte del árbol de supervisión de nuestra aplicación.
+Sabemos que el supervisor de tareas con el nombre `Chat.TaskSupervisor` está corriendo en ese nodo porque ese nodo *también* está corriendo una instancia de nuestra aplicación de chat y `Chat.TaskSupervisor` ha iniciado como parte del árbol de supervisión de nuestra aplicación.
 
 Le estamos diciendo a `Chat.TaskSupervisor` que supervise una tarea que ejecuta la función `Chat.receive_message` con un argumento de cualquier mensaje que se haya pasado a `spawn_task/4` desde `send_message/2`.
 
@@ -278,7 +280,7 @@ Vamos a definir otra versión de nuestra función `send_message/2` que haga *pat
 Si el destinatario es `:moebi@localhost` vamos a:
 
 * Tomar el nombre del nodo actual usando `Node.self()`
-* Dar el nombre del nodo actual, es decir el destinatario, a una nueva función `receive_message_for_moebi/2`, de modo que podemos enviar un mensaje de _regreso_ a ese nodo.
+* Dar el nombre del nodo actual, es decir el destinatario, a una nueva función `receive_message_for_moebi/2`, de modo que podemos enviar un mensaje de *regreso* a ese nodo.
 
 ```elixir
 # lib/chat.ex
@@ -288,7 +290,7 @@ def send_message(:moebi@localhost, message) do
 end
 ```
 
-Ahora definiremos una función `receive_message_for_moebi/2` que imprima, con `IO.puts`, el mensaje en el flujo STDOUT del nodo de `moebi` _y_ envíe un mensaje de regreso al emisor.
+Ahora definiremos una función `receive_message_for_moebi/2` que imprima, con `IO.puts`, el mensaje en el flujo STDOUT del nodo de `moebi` *y* envíe un mensaje de regreso al emisor.
 
 ```elixir
 # lib/chat.ex
@@ -299,7 +301,7 @@ def receive_message_for_moebi(message, from) do
 end
 ```
 
-Llamando a `send_message/2` con el nombre del nodo que envió el mensaje original (el nodo emisor) le estamos diciendo al nodo _remoto_ que genere una tarea supervisada en el nodo emisor.
+Llamando a `send_message/2` con el nombre del nodo que envió el mensaje original (el nodo emisor) le estamos diciendo al nodo *remoto* que genere una tarea supervisada en el nodo emisor.
 
 Vamos a verlo en acción.
 En tres diferentes terminales, abre tres diferentes nodos:
@@ -367,9 +369,11 @@ Esto es demasiado trabajo y definitivamente nos sería considerado un proceso de
 Hay dos enfoques diferentes que podríamos usar aquí:
 
 1.
+
 Condicionalmente excluir las pruebas que necesitan nodos distribuidos si el nodo necesario no está corriendo.
 
 2.
+
 Configurar nuestra aplicación para evitar generar tareas en nodos remotos en el entorno de pruebas.
 
 Vamos a revisar el primer enfoque.
@@ -416,7 +420,7 @@ Finished in 0.02 seconds
 1 test, 0 failures, 1 excluded
 ```
 
-Si queremos ejecutar pruebas distribuidas, simplemente necesitamos hacer los pasos relatados en la sección previa: ejecutar el nodo `moebi@localhost` _y_ ejecutar las pruebas en un nodo nombrado usando `iex`.
+Si queremos ejecutar pruebas distribuidas, simplemente necesitamos hacer los pasos relatados en la sección previa: ejecutar el nodo `moebi@localhost` *y* ejecutar las pruebas en un nodo nombrado usando `iex`.
 
 Vamos a revisar el otro enfoque configurando la aplicación para comportarse diferente en entornos diferentes.
 

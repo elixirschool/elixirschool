@@ -147,7 +147,6 @@ iex> Enum.max([], fn -> :bar end)
 
 `filter/2` 函數使我們有能力篩選集合，留下只包含使用所提供函數且計算後為 `true` 的那些元素。
 
-
 ```elixir
 iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
 [2, 4]

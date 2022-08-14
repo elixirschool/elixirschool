@@ -6,7 +6,7 @@
 
   Em geral, a convenção em Elixir é criar uma função (`example/1`) que retorna `{:ok, result}` e `{:error, reason}` e uma função separada (`example!/1`) que retorna o `result` desempacotado ou levanta um erro.
 
-  Esta lição irá focar na interação com o último.
+Esta lição irá focar na interação com o último
   """
 }
 ---
@@ -150,7 +150,7 @@ iex> spawn_link fn -> exit("oh no") end
 ** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
-Embora seja possível pegar uma saída com `try/catch` fazê-lo é _extremamente_ raro. Em quase todos os casos é vantajoso deixar o supervisor controlar a saída do processo:
+Embora seja possível pegar uma saída com `try/catch` fazê-lo é *extremamente* raro. Em quase todos os casos é vantajoso deixar o supervisor controlar a saída do processo:
 
 ```elixir
 iex> try do

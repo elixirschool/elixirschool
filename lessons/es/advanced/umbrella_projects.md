@@ -39,9 +39,8 @@ for each application in the apps/ directory.
 
 Como puedes ver por la salida del comando, Mix creó un pequeño esqueleto con dos carpetas:
 
-  - `apps/` - donde estarán los sub-proyectos o proyectos hijos
-  - `config/` - donde estarán las configuraciones de nuestro proyecto umbrella
-
+- `apps/` - donde estarán los sub-proyectos o proyectos hijos
+- `config/` - donde estarán las configuraciones de nuestro proyecto umbrella
 
 ## Proyectos hijos
 

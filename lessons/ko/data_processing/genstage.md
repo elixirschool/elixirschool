@@ -48,8 +48,8 @@
 슈퍼바이저 트리가 있는 프로젝트를 생성하는 것부터 시작해 보겠습니다.
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 `mix.exs`의 의존성에 `gen_stage`을 넣어 갱신합니다.
@@ -65,7 +65,7 @@ end
 더 진행하기 전에 의존성을 받아 컴파일을 해둡시다.
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 이제 프로듀서를 만들 준비가 되었습니다.
@@ -75,8 +75,8 @@ $ mix do deps.get, compile
 GenStage 애플리케이션의 첫 걸음은 프로듀서를 만드는 것 부터 시작합니다. 전에 말했던 것처럼 정적인 숫자의 스트림을 넣는 프로듀서를 만들고 싶습니다. 프로듀서 파일을 생성합시다.
 
 ```shell
-$ mkdir lib/genstage_example
-$ touch lib/genstage_example/producer.ex
+mkdir lib/genstage_example
+touch lib/genstage_example/producer.ex
 ```
 
 이제 코드를 추가할 수 있습니다.
@@ -107,7 +107,7 @@ end
 이제 숫자를 생성하는 프로듀서에서 프로듀서-컨슈머로 넘어 갑시다. 프로듀서에게 숫자를 요청하고, 홀수를 걸러 내고, 요구에 응답하기를 원합니다.
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 예제 코드를 참고해 파일을 갱신해 봅시다.
@@ -145,7 +145,7 @@ end
 마지막으로 컨슈머만 남았습니다. 시작해보죠.
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 컨슈머와 프로듀서-컨슈머는 아주 비슷하기 때문에 코드도 그렇게 다르지 않을 것입니다.

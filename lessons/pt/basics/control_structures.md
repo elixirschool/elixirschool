@@ -26,7 +26,9 @@ iex> if "a string value" do
 ...> end
 "Truthy"
 ```
+
 Usar `unless/2` é bem parecido com o uso do `if/2` porém trabalhando de forma negativa:
+
 ```elixir
 iex> unless is_integer("hello") do
 ...>   "Not an Int"
@@ -46,6 +48,7 @@ iex> case {:ok, "Hello World"} do
 ...> end
 "Hello World"
 ```
+
 A variável `_` é uma importante inclusão na declaração do `case/2`. Sem isso a falha em procura de combinação iria causar um erro:
 
 ```elixir
@@ -73,6 +76,7 @@ iex> case "cherry pie" do
 ...> end
 "I bet cherry pie is tasty"
 ```
+
 Outra característica interessante do `case/2` é o seu suporte para cláusulas de guarda:
 
 _Este exemplo vem diretamente do [Guia Introdutório](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) oficial do Elixir._
@@ -86,8 +90,8 @@ iex> case {1, 2, 3} do
 ...> end
 "Will match"
 ```
-Verifique a documentação oficial sobre [Expressões permitidas em cláusulas guard](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
+Verifique a documentação oficial sobre [Expressões permitidas em cláusulas guard](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
 ## cond
 

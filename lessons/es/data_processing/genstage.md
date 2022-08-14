@@ -58,8 +58,8 @@ Por último construiremos un consumidor que imprima los números restantes para 
 Comenzaremos generando un proyecto con un árbol de supervisión:
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 Vamos a actualizar nuestras dependencias en `mix.exs` para incluir `gen_stage`:
@@ -75,7 +75,7 @@ end
 Deberíamos descargar nuestras dependencias y compilarlas antes de continuar:
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 ¡Ahora estamos listos para construir nuestro productor!
@@ -87,8 +87,8 @@ Como discutimos antes, queremos crear un productor que emita un flujo constante 
 Vamos a crear nuestro archivo productor:
 
 ```shell
-$ mkdir lib/genstage_example
-$ touch lib/genstage_example/producer.ex
+mkdir lib/genstage_example
+touch lib/genstage_example/producer.ex
 ```
 
 Ahora podemos agregamos el código:
@@ -125,7 +125,7 @@ Ahora que tenemos un productor generando números, vamos a pasar a nuestro produ
 Vamos a querer solicitar números de nuestro productor, filtrar los impares y responder a la demanda.
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 Vamos a actualizar nuestro archivo para que se parezca al código de ejemplo:
@@ -168,7 +168,7 @@ Por último pero no menos importante tenemos nuestro consumidor.
 Vamos a empezar:
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 Dado que los consumidores y productores-consumidores son tan similares nuestro código no va a ser muy diferente:
@@ -237,7 +237,7 @@ $ mix run --no-halt
 En este punto ya tenemos un *pipeline* funcionando.
 Hay un productor emitiendo números, un productor-consumidor descartando números impares y un consumidor mostrando todo esto y continuando con el flujo.
 
-## Muchos productores y consumidores 
+## Muchos productores y consumidores
 
 Mencionamos en la introducción que era posible tener mas de un productor o consumidor.
 Vamos a ver justo eso.

@@ -22,7 +22,7 @@
 먼저 애플리케이션을 만들어 봅시다.
 
 ```shell
-$ mix new poolboy_app --sup
+mix new poolboy_app --sup
 ```
 
 `mix.exs`에 Poolboy를 의존성으로 추가합니다.
@@ -34,8 +34,9 @@ end
 ```
 
 그리고 Poolboy를 포함해 의존성을 가져옵니다.
+
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## 설정 옵션
@@ -85,6 +86,7 @@ end
 그런 다음, `poolboy.child_spec/2` 함수를 자식 리스트에 추가해 워커 풀이 애플리케이션이 시작될 때 시작되도록 합니다. 이 함수는 풀의 이름, 풀 설정 두 인자를 받습니다.
 
 ## 워커 생성하기
+
 워커 모듈은 숫자의 제곱근을 계산하고 1초 쉰 다음에 워커의 pid를 출력하는 단순한 `GenServer`입니다. `lib/poolboy_app/worker.ex`를 만듭니다.
 
 ```elixir
@@ -138,7 +140,7 @@ end
 테스트 함수를 실행해 결과를 확인해 봅시다.
 
 ```shell
-$ iex -S mix
+iex -S mix
 ```
 
 ```elixir

@@ -40,7 +40,7 @@ iex(6)> "hełło" <> <<0>>
 
 Elixir de kod yazarken genellik stringleri kullanırız. Bazı erlang modülleri için gerekli olduğundan charlist destek verilmiştir.
 
-Daha fazla destek için resmi [`Başlangıç Kılavuzu'na`] bakınız.(http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+Daha fazla destek için resmi [`Başlangıç Kılavuzu'na`] bakınız.(<http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html>).
 
 ## Graphemes ve Codepoints
 
@@ -131,7 +131,7 @@ end
 
 Önce `anagrams?/2` izleyelim. Aldığımız parametrelerin binary olup olmadığını kontrol edelim. Elixirde para metrenin string olup olmadığı bu şekilde kontrol edilmektedir.
 
-Daha sonra 2 stringi alfabetik olarak sıralayan bir fonksiyon çağırıyoruz. Bu fonksiyonda, önce strinleri küçük harfe çeviriyoruz ve ardından graphemeslerin bir listesini almak için `String.graphemes/1` kullanıyoruz. Son olarak da `Enum.sort/1` içine aktarıyoruz. oldukça basit, değil mi ? 
+Daha sonra 2 stringi alfabetik olarak sıralayan bir fonksiyon çağırıyoruz. Bu fonksiyonda, önce strinleri küçük harfe çeviriyoruz ve ardından graphemeslerin bir listesini almak için `String.graphemes/1` kullanıyoruz. Son olarak da `Enum.sort/1` içine aktarıyoruz. oldukça basit, değil mi ?
 
 iex üzerindeki çıktıyı kontrol edelim:
 
@@ -155,4 +155,5 @@ iex> Anagram.anagrams?(3, 5)
 
     iex:11: Anagram.anagrams?/2
 ```
+
 Gördüğünüz gibi, `anagrams?` a yapılan son çağrı bir FunctionClauseError'a neden oldu. Bu hata bize, modülümüz de ikili olmayan argümanı alma desenini karşılayan hiçbir fonksiyonun olmadığını anlatıyor. Sadece iki stringi alan fonksiyonun olduğunu  ve başka bir şey olmadığını söylüyor.

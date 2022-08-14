@@ -31,7 +31,7 @@ iex> sum.(2, 3)
 
 Sizin de tahmin ettiğiniz gibi yöntemde de parametreler `&1`, `&2`, `&3` şeklinde tanımlanır.
 
-##  Desen (Pattern) Eşleme
+## Desen (Pattern) Eşleme
 
 Elixir'de desen eşleme değişkenlerle sınırlı değildir, göreceğiniz gibi bir fonksiyonun adına da uygulana bilinir.
 
@@ -110,11 +110,12 @@ iex> Greeter2.hello("Fred")
 iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
+
 Fonksiyon isimleri yukarda sıralanmıştır.  İlk kullanımda herhangi bir argüman almadığından `hello/0` olarak bilinir. İkincisi ise bir argüman alır ve `hello/1` olarak bilir. İsimlendirme bu şekilde devam eder. Diğer dillerin aksine burada hepsi farklı fonksiyon olarak kabul edilir. (Pattern matching, described just a moment ago, applies only when multiple definitions are provided for function definitions with the _same_ number of arguments.)
 
 ### Özel Fonksiyonlar
-Belli bir fonksiyona diğer modüller tarafından erişmesini istemiyorsak `defp` ile özel fonksiyonlarımız tanımlaya biliriz. Özel fonksiyonlar sadece kendi modülleri tarafında çağrıla bilinir.
 
+Belli bir fonksiyona diğer modüller tarafından erişmesini istemiyorsak `defp` ile özel fonksiyonlarımız tanımlaya biliriz. Özel fonksiyonlar sadece kendi modülleri tarafında çağrıla bilinir.
 
 ```elixir
 defmodule Greeter do

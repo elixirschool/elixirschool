@@ -13,10 +13,9 @@ Nekadar yorum yapmamız ve belgeyi kaliteli yapan şeyler programlama dünyasın
 
 Elixir belgelere *birinci sınıf vatandaş* olarak davranıyor ve projeleriniz belgelendirmeniz ve belgelere ulaşmanız için çeşitli fonksiyonlar sunuyor. Şimdi bunun 3 yolunu inceleyelim:
 
-
-  - `#` - Satır içi belgelendirme için.
-  - `@moduledoc` - Modül seviyesinde belgelendirme yapmak için.
-  - `@doc` - Fonksiyon seviyesinde belgelendirme yapmak için.
+- `#` - Satır içi belgelendirme için.
+- `@moduledoc` - Modül seviyesinde belgelendirme yapmak için.
+- `@doc` - Fonksiyon seviyesinde belgelendirme yapmak için.
 
 ### Satır İçi Belgelendirme
 
@@ -186,7 +185,7 @@ Herşey doğru ise yukardakine benzer bir çıktı alıyoruz, şimdi ExDoc kurma
   end
 ```
 
-Bu bağımlılıkları üretim ortamında (production environment) kurmamak için  `only: :dev` anahtar/değer çiftini ekleyin. Peki neden Earmark? Earmark, ExDoc'un `@moduledoc` ve `@doc` içindeki belgelerimizi güzel görünümlü HTML'ye çevirmek için kullandığı Elixir programlama dili için bir Markdown ayrıştırıcısıdır (parser). 
+Bu bağımlılıkları üretim ortamında (production environment) kurmamak için  `only: :dev` anahtar/değer çiftini ekleyin. Peki neden Earmark? Earmark, ExDoc'un `@moduledoc` ve `@doc` içindeki belgelerimizi güzel görünümlü HTML'ye çevirmek için kullandığı Elixir programlama dili için bir Markdown ayrıştırıcısıdır (parser).
 
 Bu noktada Earmark kullanmak zorunda olmadığımız belirtmekte fayda var. Pandoc, Hoedown, or Cmark gibi başkalarıyla değiştire bilirsiniz; [Burada](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool) okuyacağınız birkaç küçük konfigrasyonu daha yapmanız gerekecek. Biz Earmark kullanmaya devam edeceğiz.
 
@@ -216,7 +215,7 @@ Artık bunu GitHu'da, kendi sitemizde veya [HexDocs'da](https://hexdocs.pm/) yay
 
 Belgelendirme dilin kurallarına göre yapılmalıdır. Elixir oldukça genç bir dil olduğundan, ekosistem büyüdükçe yeni standartlar keşfedilmeye devam edecektir. Bununla birlikte topluluk en iyi kullanım metodlarını belirlemeye çalıştı. TDaha fazla bilgi için [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide) göz atın.
 
-  - Her zaman modülleri belgelendirin.
+- Her zaman modülleri belgelendirin.
 
 ```elixir
 defmodule Greeter do
@@ -227,7 +226,7 @@ defmodule Greeter do
 end
 ```
 
-  - Eğer bir modülü belgelendirmeyi düşünmüyorsanız, boş **bırakmıyın** . Modüle `false` ile yorum bırakın , tıpkı şöyle:
+- Eğer bir modülü belgelendirmeyi düşünmüyorsanız, boş **bırakmıyın** . Modüle `false` ile yorum bırakın , tıpkı şöyle:
 
 ```elixir
 defmodule Greeter do
@@ -236,7 +235,7 @@ defmodule Greeter do
 end
 ```
 
- - Modül belgelerinde fonksiyonlara atıfta bulunmak isterseniz şu  şekilde ters tırnak kullanın:
+- Modül belgelerinde fonksiyonlara atıfta bulunmak isterseniz şu  şekilde ters tırnak kullanın:
 
 ```elixir
 defmodule Greeter do
@@ -252,7 +251,7 @@ defmodule Greeter do
 end
 ```
 
- -  `@moduledoc` altındaki kodları bir satır ile ayırın:
+- `@moduledoc` altındaki kodları bir satır ile ayırın:
 
 ```elixir
 defmodule Greeter do
@@ -271,7 +270,7 @@ defmodule Greeter do
 end
 ```
 
- - Dokümanlarınız da Markdown kullanın. Bu IEx veya ExDoc aracılığı ile belgelerinizi okumanızı kolaylaştıracaktır.
+- Dokümanlarınız da Markdown kullanın. Bu IEx veya ExDoc aracılığı ile belgelerinizi okumanızı kolaylaştıracaktır.
 
 ```elixir
 defmodule Greeter do
@@ -302,5 +301,5 @@ defmodule Greeter do
 end
 ```
 
- - Belgelerinize bazı kod örnekleri eklemeye çalışın. Bu da modüle, fonksiyona veya bir makroda bulunan kod örneklerinde [ExUnit.DocTest][] ile otomatik testler oluşturmamıza olanak sağlar. Bunu yapmak için, `doctest / 1` makrosunu çağırmanız ve örnekleriniz [ExUnit.DocTest] [resmi belgelerinde] ayrıntılı olarak belirtilen bazı yönergelere göre yazmanız gerekir.
-[ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html
+- Belgelerinize bazı kod örnekleri eklemeye çalışın. Bu da modüle, fonksiyona veya bir makroda bulunan kod örneklerinde [ExUnit.DocTest][] ile otomatik testler oluşturmamıza olanak sağlar. Bunu yapmak için, `doctest / 1` makrosunu çağırmanız ve örnekleriniz [ExUnit.DocTest] [resmi belgelerinde] ayrıntılı olarak belirtilen bazı yönergelere göre yazmanız gerekir.
+[ExUnit.DocTest]: <https://hexdocs.pm/ex_unit/ExUnit.DocTest.html>

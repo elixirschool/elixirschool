@@ -48,8 +48,8 @@
 首先, 我们生成一个带有监控树的项目:
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 让我们在 `mix.exs` 文件的依赖列表中加入 `gen_stage`:
@@ -65,7 +65,7 @@ end
 接着获取并编译依赖:
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 现在我们准备好编写我们的生产者了!
@@ -75,7 +75,7 @@ $ mix do deps.get, compile
 GenStage 应用的第一步是创建我们的生产者.  正如我们之前讨论过的, 我们想要创建一个发出恒定数字流的生产者.  让我们来创建生产者的文件:
 
 ```shell
-$ touch lib/genstage_example/producer.ex
+touch lib/genstage_example/producer.ex
 ```
 
 现在添加代码:
@@ -106,7 +106,7 @@ end
 现在, 我们有了一个产生数字的生产者, 让我们看看生产者-消费者.  我们想要向生产者请求数字, 过滤掉奇数, 并响应需求.
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 让我们在文件中写入如下代码:
@@ -144,7 +144,7 @@ end
 最后来让我们来看看同样重要的消费者:
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 由于消费者和生产者-消费者太相似了, 所以代码看起来没有什么区别:

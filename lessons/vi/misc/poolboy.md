@@ -22,8 +22,8 @@ Cài đặt là việc quá dễ với mix. Đơn giản là thêm Poolboy làm 
 Trước hết ta hãy tạo một ứng dụng:
 
 ```bash
-$ mix new poolboy_app --sup
-$ mix deps.get
+mix new poolboy_app --sup
+mix deps.get
 ```
 
 Thêm Poolboy vào thư viện trong file `mix.exs`.
@@ -91,6 +91,7 @@ Sau đó ta thêm hàm `pollboy.child_spec/3` vào mảng các con để tập w
 Hàm `child_spec/3` nhận ba tham số: Tên của tập, cấu hình của tập và tham số thứ ba là cái sẽ được truyền vào hàm `worker.start_link`. Trong trường hợp của chúng ta là một mảng rỗng.
 
 ## Tạo worker
+
 Worker module sẽ là một GenServer đơn giản tính căn của một số, sleep một giây và sau đó in ra số pid của worker.
 
 ```elixir

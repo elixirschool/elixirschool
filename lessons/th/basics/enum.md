@@ -26,12 +26,11 @@ at/3
 ...
 ```
 
-จากที่ลองจะเห็นว่ามี function มากมายให้เราใช้งานจริง ๆ  `Enum` นับเป็น core ของการเขียนโปรแกรมแบบ functional แล้วมันก็มีประโยชน์มาก ๆ เลยทีเดียว 
+จากที่ลองจะเห็นว่ามี function มากมายให้เราใช้งานจริง ๆ  `Enum` นับเป็น core ของการเขียนโปรแกรมแบบ functional แล้วมันก็มีประโยชน์มาก ๆ เลยทีเดียว
 
 หากเราใช้มันร่วมกับสิ่งเยี่ยมยอดอื่น ๆ ของ Elixir มันจะทำให้ developer ทำงานได้อย่างมีประสิทธิภาพมากเลยทีเดียว
 
 สำหรับรายชื่อ function ทั้งหมด สามารถเข้าไปอ่านเพิ่มได้ที่ [`Enum`](https://hexdocs.pm/elixir/Enum.html) สำหรับ lazy enumeration ใช้โมดูล [`Stream`](https://hexdocs.pm/elixir/Stream.html).
-
 
 ### all?
 
@@ -170,7 +169,7 @@ iex> Enum.sort([:foo, "bar", Enum, -1, 4])
 [-1, 4, Enum, :foo, "bar"]
 ```
 
-เราสามารถใช้ sort function ที่เราสร้างขึ้นมาเองได้ใน `sort/2` 
+เราสามารถใช้ sort function ที่เราสร้างขึ้นมาเองได้ใน `sort/2`
 
 ```elixir
 # ใช้ function

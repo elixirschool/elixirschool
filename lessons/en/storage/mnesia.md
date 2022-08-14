@@ -17,10 +17,10 @@ The Mnesia *relational and object hybrid data model* is what makes it suitable f
 When to use a particular piece of technology is often a confusing pursuit.
 If you can answer 'yes' to any of the following questions, then this is a good indication to use Mnesia over ETS or DETS.
 
-  - Do I need to roll back transactions?
-  - Do I need an easy to use syntax for reading and writing data?
-  - Should I store data across multiple nodes, rather than one?
-  - Do I need a choice where to store information (RAM or disk)?
+- Do I need to roll back transactions?
+- Do I need an easy to use syntax for reading and writing data?
+- Should I store data across multiple nodes, rather than one?
+- Do I need a choice where to store information (RAM or disk)?
 
 ## Schema
 
@@ -111,7 +111,7 @@ The function `Mnesia.start/0` is asynchronous.
 It starts the initialization of the existing tables and returns the `:ok` atom.
 In case we need to perform some actions on an existing table right after starting Mnesia, we need to call the `Mnesia.wait_for_tables/2` function.
 It will suspend the caller until the tables are initialized.
-See the example in the section [Data initialization and migration](#data-initialization-and-migration). 
+See the example in the section [Data initialization and migration](#data-initialization-and-migration).
 
 It is worth keeping in mind when running a distributed system with two or more participating nodes, the function `Mnesia.start/1` must be executed on all participating nodes.
 
@@ -131,8 +131,8 @@ At least one additional attribute is required.
 
 When we execute `Mnesia.create_table/2`, it will return either one of the following responses:
 
- - `{:atomic, :ok}` if the function executes successfully
- - `{:aborted, Reason}` if the function failed
+- `{:atomic, :ok}` if the function executes successfully
+- `{:aborted, Reason}` if the function failed
 
 In particular, if the table already exists, the reason will be of the form `{:already_exists, table}` so if we try to create this table a second time, we will get:
 
@@ -195,6 +195,7 @@ iex> data_to_write = fn ->
 iex> Mnesia.transaction(data_to_write)
 {:atomic, :ok}
 ```
+
 Based on this transaction message, we can safely assume that we have written the data to our `Person` table.
 Let's use a transaction to read from the database now to make sure.
 We will use `Mnesia.read/1` to read from the database, but again from within an anonymous function.
@@ -232,8 +233,8 @@ iex> Mnesia.add_table_index(Person, :job)
 
 The result is similar to the one returned by `Mnesia.create_table/2`:
 
- - `{:atomic, :ok}` if the function executes successfully
- - `{:aborted, Reason}` if the function failed
+- `{:atomic, :ok}` if the function executes successfully
+- `{:aborted, Reason}` if the function failed
 
 In particular, if the index already exists, the reason will be of the form `{:already_exists, table, attribute_index}` so if we try to add this index a second time, we will get:
 
@@ -301,13 +302,13 @@ To do this, we can use the `Mnesia.table_info/2` function to retrieve the curren
 
 The code below does this by implementing the following logic:
 
-* Create the table with the v2 attributes: `[:id, :name, :job, :age]`
-* Handle the creation result:
-    * `{:atomic, :ok}`: initialize the table by creating indices on `:job` and `:age`
-    * `{:aborted, {:already_exists, Person}}`: check what the attributes are in the current table and act accordingly:
-        * if it's the v1 list (`[:id, :name, :job]`), transform the table giving everybody an age of 21 and add a new index on `:age`
-        * if it's the v2 list, do nothing, we're good
-        * if it's something else, bail out
+- Create the table with the v2 attributes: `[:id, :name, :job, :age]`
+- Handle the creation result:
+  - `{:atomic, :ok}`: initialize the table by creating indices on `:job` and `:age`
+  - `{:aborted, {:already_exists, Person}}`: check what the attributes are in the current table and act accordingly:
+    - if it's the v1 list (`[:id, :name, :job]`), transform the table giving everybody an age of 21 and add a new index on `:age`
+    - if it's the v2 list, do nothing, we're good
+    - if it's something else, bail out
 
 If we are performing any actions on the existing tables right after starting Mnesia with `Mnesia.start/0`, those tables may not be initialized and accessible.
 In that case, we should use the [`Mnesia.wait_for_tables/2`](http://erlang.org/doc/man/mnesia.html#wait_for_tables-2) function.

@@ -2,7 +2,7 @@
   version: "1.3.0",
   title: "Funciones",
   excerpt: """
-  En Elixir y en muchos lenguajes funcionales, las funciones son ciudadanos de primera clase. 
+  En Elixir y en muchos lenguajes funcionales, las funciones son ciudadanos de primera clase.
   Vamos a aprender acerca de los tipos de funciones en Elixir, qué los hace diferentes, y cómo usarlos.
   """
 }
@@ -10,9 +10,9 @@
 
 ## Funciones anónimas
 
-Tal como el nombre sugiere, una función anónima no tiene nombre. 
-Como vimos en la lección `Enum`, son pasadas frecuentemente a otras funciones. 
-Para definir una función anónima en Elixir necesitamos las palabras clave `fn` y `end`. 
+Tal como el nombre sugiere, una función anónima no tiene nombre.
+Como vimos en la lección `Enum`, son pasadas frecuentemente a otras funciones.
+Para definir una función anónima en Elixir necesitamos las palabras clave `fn` y `end`.
 Dentro de estos podemos definir, separados por `->`, cualquier número de parámetros y el cuerpo de la función.
 
 Vamos a ver un ejemplo básico:
@@ -59,11 +59,11 @@ An error has occurred!
 
 ## Funciones con nombre
 
-Podemos definir funciones con nombre para así poder referirnos a ellas luego. 
-Estas funciones con nombre son definidas con la palabra clave `def` dentro de un módulo. 
+Podemos definir funciones con nombre para así poder referirnos a ellas luego.
+Estas funciones con nombre son definidas con la palabra clave `def` dentro de un módulo.
 Vamos a aprender más acerca de los módulos en las siguientes lecciones, por ahora nos enfocaremos solamente en las funciones con nombre.
 
-Las funciones definidas dentro de un módulo están disponibles para ser usadas por otros módulos. 
+Las funciones definidas dentro de un módulo están disponibles para ser usadas por otros módulos.
 
 ```elixir
 defmodule Greeter do
@@ -118,6 +118,7 @@ iex> Greeter2.hello("Fred")
 iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
+
 Enumeramos los nombres de las funciones en los comentarios anteriores.
 La primera implementación no recibe argumentos, su equivalente es `hello/0`; la segunda función recibe un argumento equivalente a `hello/1`, y así.
 A diferencia de la sobrecarga en otros lenguajes, estas son consideradas funciones diferentes entre sí.
@@ -155,6 +156,7 @@ Estos son los resultados que obtenemos al llamar `Greeter1.hello/1` con el mapa 
 ...> Greeter1.hello(fred)
 "Hello, Fred"
 ```
+
 ¿Qué sucede cuando llamamos la función con un mapa que _no contiene_ la clave `:name`?
 
 ```elixir
@@ -183,10 +185,13 @@ iex> fred = %{
 ...> favorite_color: "Taupe"
 ...> }
 ```
+
 `Greeter1.hello/1` espera un argumento como el siguiente:
+
 ```elixir
 %{name: person_name}
 ```
+
 En `Greeter1.hello/1`, el mapa que pasamos (`fred`) se evalúa comparandolo con nuestro argumento (`%{name: person_name}`):
 
 ```elixir
@@ -202,6 +207,7 @@ En este punto, debido a que solo buscamos la clave `:name` en nuestro mapa, solo
 Para poder conservarlo, debemos asignar ese mapa completo a su propia variable para que podamos utilizarlo.
 
 Empecemos una nueva función:
+
 ```elixir
 defmodule Greeter2 do
   def hello(%{name: person_name} = person) do
@@ -221,6 +227,7 @@ person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 
 Ahora, `person` ha sido evaluado y vinculado a todo el mapa de fred.
 Pasemos a la siguiente coincidencia:
+
 ```elixir
 %{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
@@ -232,6 +239,7 @@ Lo que hemos logrado son dos variable que podemos usar en lugar de una:
 2. `person_name`, refiriéndose a `"Fred"`
 
 Así que ahora cuando llamamos `Greeter2.hello/1`, podemos usar toda la información de Fred:
+
 ```elixir
 # call with entire person
 ...> Greeter2.hello(fred)
@@ -258,6 +266,7 @@ Así que hemos visto que las coincidencias en Elixir se ajustan a múltiples pro
 Si cambiamos el orden de `%{name: person_name}` y `person` en la lista, obtendremos los mismos resultados ya que cada uno coincide con fred por su cuenta.
 
 Cambiamos la variable y el mapa:
+
 ```elixir
 defmodule Greeter3 do
   def hello(person = %{name: person_name}) do
@@ -268,6 +277,7 @@ end
 ```
 
 Y llamémoslo con los mismos datos que usamos en `Greeter2.hello/1`:
+
 ```elixir
 # call with same old Fred
 ...> Greeter3.hello(fred)

@@ -15,9 +15,9 @@ Sin embargo, todos podemos estar de acuerdo que la documentación es importante 
 Elixir trata la documentación como *ciudadanos de primera clase*, ofreciendo varias funciones para acceder y generar documentación para tus proyectos.
 El núcleo de Elixir nos provee con diferentes atributos para documentar el código. Vamos a ver 3 formas:
 
-  - `#` - Para documentación en linea.
-  - `@moduledoc` - Para documentación a nivel de módulo.
-  - `@doc` - Para documentación a nivel de función.
+- `#` - Para documentación en linea.
+- `@moduledoc` - Para documentación a nivel de módulo.
+- `@doc` - Para documentación a nivel de función.
 
 ### Documentación en linea
 
@@ -31,7 +31,7 @@ IO.puts "Hello, " <> "chum."
 ```
 
 Elixir, cuando ejecuta este script ignorará todo desde `#` hasta el final de la linea, tratándolo como datos sin uso.
-Esto puede no agregar valor a la operación o rendimiento del _script_, sin embargo cuando no es obvio que está pasando, un programador debería saberlo leyendo tu comentario.
+Esto puede no agregar valor a la operación o rendimiento del *script*, sin embargo cuando no es obvio que está pasando, un programador debería saberlo leyendo tu comentario.
 ¡Se consciente de no abusar del comentario en línea! Ensuciar un código puede volverse una pesadilla para algunos.
 Es mejor usarlo con moderación.
 
@@ -237,7 +237,7 @@ Ya que Elixir es un lenguaje bastante joven muchos estándares aun esta siendo d
 La comunidad, sin embargo, intentó establecer las mejores prácticas.
 Para leer acerca de estas mejores prácticas puedes revisar [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
-  - Siempre documenta un módulo.
+- Siempre documenta un módulo.
 
 ```elixir
 defmodule Greeter do
@@ -248,7 +248,7 @@ defmodule Greeter do
 end
 ```
 
-  - Si no vas a documentar un módulo, **no** lo dejes en blanco, Considera anotar el módulo como `false`, al igual que:
+- Si no vas a documentar un módulo, **no** lo dejes en blanco, Considera anotar el módulo como `false`, al igual que:
 
 ```elixir
 defmodule Greeter do
@@ -257,7 +257,7 @@ defmodule Greeter do
 end
 ```
 
- - Cuando te refieras a funciones dentro de la documentación de un módulo, usa *backticks* al igual que:
+- Cuando te refieras a funciones dentro de la documentación de un módulo, usa *backticks* al igual que:
 
 ```elixir
 defmodule Greeter do
@@ -273,7 +273,7 @@ defmodule Greeter do
 end
 ```
 
- - Separar cualquier código una linea bajo `@moduledoc` como:
+- Separar cualquier código una linea bajo `@moduledoc` como:
 
 ```elixir
 defmodule Greeter do
@@ -292,7 +292,7 @@ defmodule Greeter do
 end
 ```
 
- - Usa Markdown dentro de la documentación.
+- Usa Markdown dentro de la documentación.
  Esto hará facil la lectura ya sea desde IEx o ExDoc.
 
 ```elixir
@@ -324,7 +324,7 @@ defmodule Greeter do
 end
 ```
 
- - Prueba incluir algunos ejemplos en tu documentación.
+- Prueba incluir algunos ejemplos en tu documentación.
  Esto te permitirá agregar pruebas automáticas desde los ejemplos encontrados en un módulo, función, o macro con [ExUnit.DocTest][].
  Para hacer eso, necesitas invocar al macro `doctest/1` desde tu caso de prueba y escribir tus ejemplos conforme a algunas directrices, las cuales estan detalladas en la [documentación oficial][ExUnit.DocTest].
 

@@ -93,7 +93,6 @@ Mas esteja ciente dos fusos horários. A documentação oficial fala:
 
 > Muitas funções neste módulo requerem um fuso horário do banco de dados. Por padrão, é utilizado o fuso horário do banco de dados que é retornado pela função `Calendar.get_time_zone_database/0`, cujo padrão é `Calendar.UTCOnlyTimeZoneDatabase`, que lida apenas com as datas "Etc/UTC" e retorna `{:error, :utc_only_time_zone_database}` para qualquer outro fuso horário.
 
-
 Também, note que você pode criar um instância de DateTime a partir de um NaiveDateTime, apenas fornecendo o fuso horário:
 
 ``` elixir

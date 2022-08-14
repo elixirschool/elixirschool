@@ -70,7 +70,7 @@ end
 Kiedy już skonfigurujemy aplikację tak, by używała escriptu, stworzenie pliku wykonywalnego z Mixem jest banalne:
 
 ```bash
-$ mix escript.build
+mix escript.build
 ```
 
 Zobaczmy jak to działa:

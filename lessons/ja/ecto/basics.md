@@ -28,8 +28,8 @@ Ectoアダプタを使用することで異なるデータベースをサポー�
 まずはスーパーバイザーツリーを持つアプリケーションを作ります。
 
 ```shell
-$ mix new friends --sup
-$ cd friends
+mix new friends --sup
+cd friends
 ```
 
 `mix.exs` ファイルにectoとpostgrexパッケージの依存を追加します。
@@ -46,7 +46,7 @@ $ cd friends
 次のコマンドで依存を取得します。
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 #### レポジトリの作成
@@ -57,7 +57,7 @@ EctoのレポジトリはPostgresデータベースのようなデータスト�
 次のコマンドを実行してレポジトリをセットアップしましょう:
 
 ```shell
-$ mix ecto.gen.repo -r Friends.Repo
+mix ecto.gen.repo -r Friends.Repo
 ```
 
 これは、使用するアダプタを含むデータベースとの接続にの中に必要な設定を `config/config.exs` の中に生成します。
@@ -110,7 +110,7 @@ config :friends, ecto_repos: [Friends.Repo]
 次のコマンドでPostgresの中にデータベースを作ることができます:
 
 ```shell
-$ mix ecto.create
+mix ecto.create
 ```
 
 Ectoは `config/config.exs` ファイルの中の情報を使って、Postgresへの接続方法、そしてデータベースに与える名前を決定します。
@@ -128,7 +128,7 @@ Ectoの慣習ではテーブルを複数形にすることから、私たちの�
 マイグレーションを作るベストな方法は、mixの `ecto.gen.migration <name>` タスクなので、私たちの場合は次のように使いましょう:
 
 ```shell
-$ mix ecto.gen.migration create_people
+mix ecto.gen.migration create_people
 ```
 
 これは `priv/repo/migrations` フォルダの中にタイムスタンプを名前に含んだ新しいファイルを生成します。
@@ -165,7 +165,7 @@ end
 シェルに移動してマイグレーションを実行してみましょう:
 
 ```shell
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 ### スキーマ

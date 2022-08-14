@@ -80,10 +80,10 @@ A solution to this problem is `@type`.
 
 Elixir has three directives for types:
 
-  - `@type` – simple, public type.
+- `@type` – simple, public type.
 Internal structure of type is public.
-  - `@typep` – type is private and could be used only in the module where is defined.
-  - `@opaque` – type is public, but internal structure is private.
+- `@typep` – type is private and could be used only in the module where is defined.
+- `@opaque` – type is public, but internal structure is private.
 
 Let's define our type:
 

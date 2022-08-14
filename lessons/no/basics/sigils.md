@@ -13,30 +13,29 @@ Elixir har en alternativ syntaks for å representere og jobbe med literaler. En 
 
 En liste av tilgjengelige sigiler:
 
-  - `~C` Lager en enkel karakterliste **uten** avsnitt eller tekst interpolasjon
-  - `~c` Lager en enkel karakterliste **med** avsnitt eller tekst interpolasjon
-  - `~R` Lager et regulært uttrykk **uten** avsnitt og tekst interpolasjon
-  - `~r` Lager et regulært uttrykk **med** avsnitt og tekst interpolasjon
-  - `~S` Lager en streng **uten** avsnitt og tekst interpolasjon
-  - `~s` Lager en streng **med** avsnitt eller tekst interpolasjon
-  - `~W` Lager en liste av ord **uten** avsnitt og tekst interpolasjon
-  - `~w` Lager en liste av ord **med** avsnitt og tekst interpolasjon
+- `~C` Lager en enkel karakterliste **uten** avsnitt eller tekst interpolasjon
+- `~c` Lager en enkel karakterliste **med** avsnitt eller tekst interpolasjon
+- `~R` Lager et regulært uttrykk **uten** avsnitt og tekst interpolasjon
+- `~r` Lager et regulært uttrykk **med** avsnitt og tekst interpolasjon
+- `~S` Lager en streng **uten** avsnitt og tekst interpolasjon
+- `~s` Lager en streng **med** avsnitt eller tekst interpolasjon
+- `~W` Lager en liste av ord **uten** avsnitt og tekst interpolasjon
+- `~w` Lager en liste av ord **med** avsnitt og tekst interpolasjon
 
 Skilletegn i Elixir:
 
-  - `<...>` Et par av vinkelparenteser
-  - `{...}` Et par av krøllete parenteser
-  - `[...]` Et par av firkant parenteser
-  - `(...)` Et par av parenteser
-  - `|...|` Et par av loddrett strek
-  - `/.../` Et par av skråstrek
-  - `"..."` Et par av dobbelt anførselstegn
-  - `'...'` Et par av enkelte anførselstegn
+- `<...>` Et par av vinkelparenteser
+- `{...}` Et par av krøllete parenteser
+- `[...]` Et par av firkant parenteser
+- `(...)` Et par av parenteser
+- `|...|` Et par av loddrett strek
+- `/.../` Et par av skråstrek
+- `"..."` Et par av dobbelt anførselstegn
+- `'...'` Et par av enkelte anførselstegn
 
 ### Enkel karakterliste
 
 Sigilet `~c` og `~C` lager en enkel karakterliste, eksempel:
-
 
 ```elixir
 iex> ~c/2 + 7 = #{2 + 7}/

@@ -140,7 +140,6 @@ iex> inspect(sean)
 
 `roles` 已被排除在輸出中！
 
-
 ## 合成 (Composition)
 
 我們已經知道如何創建模組和結構體，現在讓我們學習如何通過合成來加入已存在的功能。
@@ -297,7 +296,6 @@ end
 ```
 
 現在更新我們的 `Example` 模組以包含新創設的選項 `greeting` ：
-
 
 ```elixir
 defmodule Example do

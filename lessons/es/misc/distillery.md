@@ -16,6 +16,7 @@ Un release es un paquete que contiene tu código de Erlang/Elixir ya compilado (
 > Los releases permiten un despliegue simplificado: son auto-contenidos y proveen todo lo necesario para iniciar el release. Son fácilmente administrables mediante los scripts que provee que pueden abrir una consola remota, iniciar/detener/reiniciar el release, iniciar en background, envíar comandos remotamente y mucho más. Además son artefactos archivables, lo que significa que puedes restaurar un release anterior desde un tarball en cualquier momento en el futuro (a menos que existan incompatibilidades con el sistema operativo o librerías del sistema). Utilizar releases es también un prerrequisito para poder realizar actualizaciones en caliente, una de las caracteristicas más poderosas de la VM de Erlang. - [Distillery Documentation](https://hexdocs.pm/distillery/introduction/understanding_releases.html)
 
 Un release contiene lo siguiente:
+
 * Una carpeta /bin
   * Contiene un script que será el punto de inicio para ejecutar la aplicación completa.
 * Una carpeta /lib
@@ -24,7 +25,6 @@ Un release contiene lo siguiente:
   * Contiene metadata acerca del release además de hooks o comandos personalizados.
 * Un /erts-VERSION
   * Contiene el runtime de Erlang el cual permite a la máquina ejecutar tu aplicación sin tener Erlang o Elixir instalado.
-
 
 ### Comenzando/Instalación
 
@@ -45,7 +45,6 @@ mix deps.get
 ```
 mix compile
 ```
-
 
 ### Construye el release
 
@@ -90,9 +89,8 @@ For a complete listing of commands and their use:
     > _build/dev/rel/book_app/bin/book_app help
 ```
 
-Para iniciar tu aplicación escribe lo siguiente en tu terminal ` _build/dev/rel/MYAPP/bin/MYAPP foreground`
+Para iniciar tu aplicación escribe lo siguiente en tu terminal `_build/dev/rel/MYAPP/bin/MYAPP foreground`
 Reemplaza MYAPP con el nombre de tu proyecto. ¡Ahora estamos ejecutando el release construido de nuestra aplicación!
-
 
 ## Utilizando Distillery con Phoenix
 
@@ -108,6 +106,7 @@ config :book_app, BookAppWeb.Endpoint,
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 ```
+
 A esto:
 
 ```
@@ -121,10 +120,11 @@ config :book_app, BookApp.Endpoint,
 ```
 
 Hemos hecho algunas cosas aquí:
-- `server` - inicia la aplicación de endpoints http de Cowboy al iniciar la aplicación
-- `root` - define la carpeta raíz de la aplicación que es de donde los archivos estáticos serán servidos
-- `version` - elimina el cache de la aplicación cuando se actualice en caliente la version de la aplicación.
-- `port` - cambiar el puerto para que sea definido por una variable de ambiente nos permite enviar el número del puerto cuando iniciemos la aplicación. Al iniciar la aplicación podemos pasar el puerto ejecutando `PORT=4001 _build/prod/rel/book_app/bin/book_app foreground`
+
+* `server` - inicia la aplicación de endpoints http de Cowboy al iniciar la aplicación
+* `root` - define la carpeta raíz de la aplicación que es de donde los archivos estáticos serán servidos
+* `version` - elimina el cache de la aplicación cuando se actualice en caliente la version de la aplicación.
+* `port` - cambiar el puerto para que sea definido por una variable de ambiente nos permite enviar el número del puerto cuando iniciemos la aplicación. Al iniciar la aplicación podemos pasar el puerto ejecutando `PORT=4001 _build/prod/rel/book_app/bin/book_app foreground`
 
 Si ejecutaste el comando anterior, pudiste haber notado que tu aplicación falló porque no puede conectarse a la base de datos ya que ninguna existe actualmente. Esto puede rectificarse ejecutando un comando `mix` de Ecto. En la terminal, ejecuta lo siguiente:
 
@@ -143,7 +143,6 @@ Distillery nos permite ejecutar código en diferentes puntos del ciclo de vida d
 * pre/post_configure
 * pre/post_stop
 * pre/post_upgrade
-
 
 Para nuestros propósitos utilizaremos el hook `post_start` para ejecutar nuestras migraciones en producción.
 Primero creemos una nueva tarea de release llamada `migrate`. Una tarea es una función en un módulo que podemos llamar desde la terminal que contiene código que esta separado de la funcionalidad interna de nuestra aplicación. Es útil para las tareas que la aplicación misma típicamente no se ejecute.
@@ -230,6 +229,7 @@ release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
 Puedes ver más sobre los shell_scripts de Distillery [aquí](https://hexdocs.pm/distillery/extensibility/shell_scripts.html)
 
 Finalmente, agrega lo siguiente a tu archivo `rel/config.exs`
+
 ```
 release :book_app do
   ...

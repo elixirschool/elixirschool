@@ -37,7 +37,7 @@ iex> Repo.get(Movie, 1)
 
  Como podrás observar, el primer argumento que le damos a `Repo.get/3` es nuestro módulo `Movie`. `Movie` es "queryable" porque usa el módulo `Ecto.Schema` para definir un esquema para su estructura de datos. Esto permite que `Movie` acceda al protocolo `Ecto.Queryable`. El protocolo convierte la estructura de datos en un `Ecto.Query`. Las consultas de Ecto se usan para obtener información de un repositorio. Hablaremos más sobre consultas luego.
 
-### Obteniendo registros por atributo
+###  Obteniendo registros por atributo
 
 También podemos obtener registros que cumplan con ciertos criterios con la función `Repo.get_by/3`. Esta función requiere dos argumentos: la estructura de datos "queryable" y la cláusula con la que vamos a consultar. `Repo.get_by/3` regresa un solo registro del repositorio. Veamos un ejemplo:
 
@@ -152,7 +152,7 @@ Démonos cuenta que _no_ usamos la expresión `in` en el primer argumento que le
 
 Este enfoque regresa una estructura sólo con el campo `title` lleno.
 
-El segundo enfoque se comporta un poco diferente. Ahora, *necesitamos* usar una expresión `in`. Eso es porque necesitamos crear una referencia a la estructura de datos en orden para poder especificar la llave `title` de nuestra estructura de película.
+El segundo enfoque se comporta un poco diferente. Ahora, _necesitamos_ usar una expresión `in`. Eso es porque necesitamos crear una referencia a la estructura de datos en orden para poder especificar la llave `title` de nuestra estructura de película.
 
 ```elixir
 iex(15)> query = from(m in Movie, select: m.title)

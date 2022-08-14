@@ -16,9 +16,9 @@ Elixir traktuje dokumentację jako byt podstawowy (ang. *first-class citizen*), 
 Elixir dostarcza wiele różnych rozwiązań na poziomie kodu do tworzenia dokumentacji.
 Przyjrzyjmy się trzem z nich:
 
-  - `#` – Służy do komentowania kodu.
-  - `@moduledoc` – Pozwala na tworzenie dokumentacji modułów.
-  - `@doc` – Pozwala na tworzenie dokumentacji poszczególnych funkcji.
+- `#` – Służy do komentowania kodu.
+- `@moduledoc` – Pozwala na tworzenie dokumentacji modułów.
+- `@doc` – Pozwala na tworzenie dokumentacji poszczególnych funkcji.
 
 ### Komentowanie kodu
 
@@ -68,7 +68,7 @@ iex> h Greeter
 Provides a function hello/1 to greet a human
 ```
 
-_Uwaga_: nie musimy ręcznie kompilować naszych plików, jak zrobiliśmy to powyżej, jeśli pracujemy w projekcie Mixa. W takim przypadku możemy użyć polecenia `iex -S mix`, by załadować konsolę IEx dla obecnego projektu.
+*Uwaga*: nie musimy ręcznie kompilować naszych plików, jak zrobiliśmy to powyżej, jeśli pracujemy w projekcie Mixa. W takim przypadku możemy użyć polecenia `iex -S mix`, by załadować konsolę IEx dla obecnego projektu.
 
 ### Dokumentowanie funkcji
 
@@ -242,7 +242,7 @@ Zasady tworzenia dokumentacji powinny być opisane w przewodniku dobrych praktyk
 Jako że Elixir jest jeszcze bardzo młodym językiem, to wiele elementów jego ekosystemu musi zostać zestandaryzowanych, co oznacza, że dobre praktyki dla dokumentacji są tworzone przede wszystkim przez społeczność programistów.
 Można o tym poczytać, w dokumencie [TheElixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
-  - Zawsze dokumentuj moduły.
+- Zawsze dokumentuj moduły.
 
 ```elixir
 defmodule Greeter do
@@ -253,7 +253,7 @@ defmodule Greeter do
 end
 ```
 
-  - Jeżeli nie załączasz dokumentacji, to **nie** zostawiaj jej pustej. Dopisz `false` do adnotacji:
+- Jeżeli nie załączasz dokumentacji, to **nie** zostawiaj jej pustej. Dopisz `false` do adnotacji:
 
 ```elixir
 defmodule Greeter do
@@ -262,7 +262,7 @@ defmodule Greeter do
 end
 ```
 
- - Jak odwołujesz się do funkcji w dokumentacji modułu, używaj grawisów:
+- Jak odwołujesz się do funkcji w dokumentacji modułu, używaj grawisów:
 
 ```elixir
 defmodule Greeter do
@@ -278,7 +278,7 @@ defmodule Greeter do
 end
 ```
 
- - Oddziel kod od `@moduledoc`, pozostawiając wolną linię:
+- Oddziel kod od `@moduledoc`, pozostawiając wolną linię:
 
 ```elixir
 defmodule Greeter do
@@ -297,7 +297,7 @@ defmodule Greeter do
 end
 ```
 
- - Używaj znaczników Markdown w dokumentowaniu funkcji, by łatwiej było czytać ją w IEx lub ExDoc.
+- Używaj znaczników Markdown w dokumentowaniu funkcji, by łatwiej było czytać ją w IEx lub ExDoc.
 
 ```elixir
 defmodule Greeter do
@@ -328,7 +328,7 @@ defmodule Greeter do
 end
 ```
 
- - Podawaj przykłady w dokumentacji.
+- Podawaj przykłady w dokumentacji.
  Pozwoli to też na wygenerowanie testów automatycznych na ich podstawie z użyciem [ExUnit.DocTest][].
  By to zrobić, należy wywołać makro `doctest/1`, lecz dokumentacja musi spełniać pewne warunki opisane w [oficjalniej dokumentacji][ExUnit.DocTest] narzędzia.
 

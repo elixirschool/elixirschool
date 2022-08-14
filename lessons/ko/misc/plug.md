@@ -9,7 +9,7 @@
   `PlugCowboy` 라이브러리를 이용해 간단한 HTTP 서버를 밑바닥부터 만드는 것으로 시작해봅시다.
   Cowboy는 Erlang으로 된 간단한 웹서버이며 Plug는 해당 웹서버에 대한 커넥션 어댑터를 제공해줍니다.
 
-  기본적인 웹 애플리케이션을 준비하고 난 뒤, Plug의 라우터와 웹 애플리케이션 하나에 여러 plug를 사용하는 법을 배웁니다.
+기본적인 웹 애플리케이션을 준비하고 난 뒤, Plug의 라우터와 웹 애플리케이션 하나에 여러 plug를 사용하는 법을 배웁니다
   """
 }
 ---
@@ -21,8 +21,8 @@
 슈퍼비전 트리가 있는 새 OTP 프로젝트를 만드는 것으로 시작해 봅시다.
 
 ```shell
-$ mix new example --sup
-$ cd example
+mix new example --sup
+cd example
 ```
 
 슈퍼바이저를 이용해서 Cowboy2 웹서버를 시작하고 실행할 것이기 때문에 슈퍼비전 트리를 포함한 Elixir 앱이 필요합니다.
@@ -45,7 +45,7 @@ end
 커맨드 라인에서 다음과 같은 mix 테스크를 실행해 새로운 의존성을 가져옵니다.
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## Plug 명세
@@ -89,7 +89,7 @@ Cowboy는 `%Plug.Conn{}` 커넥션 구조체를 첫번째 인자로 받으며, `
 이 함수는 다음 3가지 옵션을 받습니다.
 
 * `:scheme` - HTTP 혹은 HTTPS 아톰 (`:http`, `:https`)
-* `:plug` - 웹서버의 인터페이스로 사용될 plug 모듈. `MyPlug`처럼 모듈 이름만 적거나 `{MyPlug, plug_opts}`처럼 모듈 이름과 옵션으로 된 튜플을 명시 가능합니다. `plug_opts`는 plug모듈의 `init/1` 함수로 넘겨지게 됩니다. 
+* `:plug` - 웹서버의 인터페이스로 사용될 plug 모듈. `MyPlug`처럼 모듈 이름만 적거나 `{MyPlug, plug_opts}`처럼 모듈 이름과 옵션으로 된 튜플을 명시 가능합니다. `plug_opts`는 plug모듈의 `init/1` 함수로 넘겨지게 됩니다.
 * `:options` - 서버 옵션. 서버가 요청을 수신할 포트 번호를 포함하고 있어야 합니다.
 
 `lib/example/application.ex` 파일은 `start/2` 함수에서 위 child spec을 구현해야 합니다.
@@ -113,7 +113,7 @@ end
 ```
 
 _참고_: 이 프로세스를 시작하는 슈퍼바이저가 호출할 것이기 때문에, `child_spec` 을 여기서 직접 호출할 필요는 없습니다.
-그저 child spec을 만드려는 모듈과 그에 필요한 3개의 옵션으로 묶인 튜플을 넘깁니다. 
+그저 child spec을 만드려는 모듈과 그에 필요한 3개의 옵션으로 묶인 튜플을 넘깁니다.
 
 이렇게 슈퍼비전 트리 아래에 Cowboy2 서버를 실행시킵니다.
 지정한 포트 `8080`과 HTTP 스키마(HTTPS를 지정할 수도 있음)로 Cowboy를 실행하고, `Example.HelloWorldPlug`를 들어오는 모든 웹 요청을 담당하는 인터페이스로 지정합니다.
@@ -135,7 +135,7 @@ end
 커맨드 라인에서 다음을 실행하십시오.
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 일단 모든 것이 컴파일이 끝나고`[info] Started app`가 나타나면, 웹 브라우저에서
@@ -198,7 +198,7 @@ end
 
 ## 다른 Plug 추가하기
 
-일반적으로 웹 애플리케이션에서는 여러 개의 Plug를 사용하고, Plug에는 각자 담당하는 역할이 있습니다. 
+일반적으로 웹 애플리케이션에서는 여러 개의 Plug를 사용하고, Plug에는 각자 담당하는 역할이 있습니다.
 이를테면 라우팅을 처리하는 Plug, 들어오는 웹 요청이 유효한지 검증하는 Plug, 들어오는 요청을 인증하는 Plug 등이 있을 수 있습니다.
 이 섹션에서는 들어오는 요청 속 매개변수가 유효한지를 검사하는 Plug를 정의하고, 애플리케이션이 라우터 Plug와 유효성 검사 Plug를 _모두_ 사용하도록 해보겠습니다.
 
@@ -344,7 +344,7 @@ end
 이걸로 애플리케이션을 실행하기 위한 명령을 사용할 수 있습니다.
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 ## Plug의 테스트
@@ -401,7 +401,7 @@ end
 테스트는 다음 처럼 실행해 볼 수 있습니다.
 
 ```shell
-$ mix test test/example/router_test.exs
+mix test test/example/router_test.exs
 ```
 
 ## Plug.ErrorHandler

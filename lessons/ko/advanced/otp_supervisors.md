@@ -10,7 +10,7 @@
 
 ## 설정
 
-슈퍼바이저의 마법은 `Supervisor.start_link/2` 함수의 내부에 있습니다. 
+슈퍼바이저의 마법은 `Supervisor.start_link/2` 함수의 내부에 있습니다.
 슈퍼바이저와 자식 프로세스를 실행하면서, 슈퍼바이저가 자식 프로세스를 관리하기 위해 사용할 전략을 정의할 수 있습니다.
 
 [OTP 동시성](/ko/lessons/advanced/otp_concurrency)에서 구현한 SimpleQueue를 사용해서 시작해봅시다.
@@ -148,7 +148,7 @@ DynamicSupervisor.start_link(options)
 
 ## Task 슈퍼바이저
 
-Task는 전용 슈퍼바이저인 `Task.Supervisor`를 가지고 있습니다. 
+Task는 전용 슈퍼바이저인 `Task.Supervisor`를 가지고 있습니다.
 동적으로 태스크를 생성하도록 설계되어 있으며, 내부적으로 `DynamicSupervisor`를 사용합니다.
 
 ### 설정하기

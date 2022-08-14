@@ -14,7 +14,7 @@ Cela génère la structure de dossiers de notre projet et crée les fichiers de 
 C'est plutôt simple et direct, alors allons-y :
 
 ```bash
-$ mix new example
+mix new example
 ```
 
 On peut lire dans les messages de sortie que Mix a créé notre dossier et un certain nombre de fichiers :
@@ -71,8 +71,8 @@ La section `application` est utilisée pendant la génération de notre fichier 
 Il peut être nécessaire d'utiliser `iex` dans le contexte de notre application. Heureusement, Mix rend cela facile. On peut commencer une nouvelle session `iex` :
 
 ```bash
-$ cd example
-$ iex -S mix
+cd example
+iex -S mix
 ```
 
 Démarrer `iex` de cette façon va charger notre application et ses dépendances dans le contexte d'exécution.
@@ -86,7 +86,7 @@ Pour compiler un projet Mix nous avons simplement besoin de lancer `mix compile`
 **Note: Les tâches Mix relatives à un projet ne sont disponibles que depuis le répertoire racine de ce projet, seules les tâches globales sont disponibles autrement**
 
 ```bash
-$ mix compile
+mix compile
 ```
 
 Il n'y a pas grand chose dans notre projet donc la sortie n'est pas très passionnante, mais elle devrait se terminer avec succès :
@@ -124,7 +124,7 @@ Comme vous l'avez probablement compris, la dépendance à `cowboy` est nécessai
 Une fois nos dépendances définies, il reste une dernière étape, les récupérer. C'est similaire à `bundle install` :
 
 ```bash
-$ mix deps.get
+mix deps.get
 ```
 
 Et voilà ! Nous avons défini et récupéré nos dépendances.
@@ -143,5 +143,5 @@ L'environnement courant peut être accédé en utilisant `Mix.env`.
 Sans surprise, il peut être modifié via la variable d'environnemnt `MIX_ENV`:
 
 ```bash
-$ MIX_ENV=prod mix compile
+MIX_ENV=prod mix compile
 ```

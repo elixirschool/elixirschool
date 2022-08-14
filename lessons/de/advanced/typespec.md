@@ -59,9 +59,9 @@ Wir haben ein struct im `Examples`-Modul hinzugefügt, das die beiden Felder `fi
 
 Elixir hat drei Direktiven für Typen:
 
-  - `@type` – einfacher, öffentlicher Typ. Interne Struktur des Typen ist öffentlich.
-  - `@typep` – Typ ist privat und kann nur innerhalb des Moduls genutzt werden, in dem es definiert wurde.
-  - `@opaque` – Typ ist öffentlich, aber interne Struktur ist privat.
+- `@type` – einfacher, öffentlicher Typ. Interne Struktur des Typen ist öffentlich.
+- `@typep` – Typ ist privat und kann nur innerhalb des Moduls genutzt werden, in dem es definiert wurde.
+- `@opaque` – Typ ist öffentlich, aber interne Struktur ist privat.
 
 Lass uns unseren Typ definieren:
 

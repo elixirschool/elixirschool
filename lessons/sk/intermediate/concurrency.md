@@ -4,7 +4,7 @@
   excerpt: """
   Jednou z výhod Elixiru je jeho podpora konkurentnosti. Vďaka Erlang VM (BEAM), konkurentnosť v Elixire je jednodušia než by človek čakal. Model konkurentnosti sa spolieha na Actorov, ktorí predstavujú uzavretý proces, ktorý komunikuje s ostatnými procesmi pomocou odosielania správ.
 
-  V tejto lekcii sa pozrieme na konkurentné moduly, ktoré sú dodávané spolu s Elixirom. V nasledujúcej kapitole pokryjeme správania OTP, ktoré ich implementujú.
+V tejto lekcii sa pozrieme na konkurentné moduly, ktoré sú dodávané spolu s Elixirom. V nasledujúcej kapitole pokryjeme správania OTP, ktoré ich implementujú
   """
 }
 ---

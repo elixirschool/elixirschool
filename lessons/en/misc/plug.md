@@ -9,7 +9,7 @@
   In this lesson we'll build a simple HTTP server from scratch using the `PlugCowboy` Elixir library.
   Cowboy is a simple HTTP server for Erlang and Plug will provide us with a connection adapter for that web server.
 
-  After we set up our minimal web application, we'll learn about Plug's router and how to use multiple plugs in a single web app.
+After we set up our minimal web application, we'll learn about Plug's router and how to use multiple plugs in a single web app
   """
 }
 ---
@@ -21,8 +21,8 @@ This tutorial assumes you have Elixir 1.5 or higher, and `mix` installed already
 We'll start by creating a new OTP project, with a supervision tree.
 
 ```shell
-$ mix new example --sup
-$ cd example
+mix new example --sup
+cd example
 ```
 
 We need our Elixir app to include a supervision tree because we will use a Supervisor to start up and run our Cowboy2 server.
@@ -45,7 +45,7 @@ end
 At the command line, run the following mix task to pull in these new dependencies:
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## The Plug Specification
@@ -94,7 +94,6 @@ You can specify a module name, like `MyPlug`, or a tuple of the module name and 
 * `:options` - The server options.
 Should include the port number on which you want your server listening for requests.
 
-
 Our `lib/example/application.ex` file should implement the child spec in its `start/2` function:
 
 ```elixir
@@ -124,6 +123,7 @@ It starts Cowboy running under the HTTP scheme (you can also specify HTTPS), on 
 Now we're ready to run our app and send it some web requests! Notice that, because we generated an OTP app with the `--sup` flag, our `Example` application will start up automatically thanks to the `application` function.
 
 In `mix.exs` you should see the following:
+
 ```elixir
 def application do
   [
@@ -137,7 +137,7 @@ We're ready to try out this minimalistic, plug-based web server.
 On the command line, run:
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 Once everything is finished compiling, and `[info]  Starting application...` appears, open a web
@@ -293,6 +293,7 @@ Via the function call:
 ```elixir
 plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
 ```
+
 We automatically invoke `VerifyRequest.init(fields: ["content", "mimetype"], paths: ["/upload"])`.
 This in turn passes the given options to the `VerifyRequest.call(conn, opts)` function.
 
@@ -345,7 +346,7 @@ The third argument of `Application.get_env` is the default value, for when the c
 Now to run our application we can use:
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 ## Testing a Plug
@@ -402,7 +403,7 @@ end
 Run it with this:
 
 ```shell
-$ mix test test/example/router_test.exs
+mix test test/example/router_test.exs
 ```
 
 ## Plug.ErrorHandler

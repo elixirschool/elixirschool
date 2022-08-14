@@ -6,7 +6,7 @@
   Este proporciona una especificación para componentes de aplicaciones web y adaptadores para servidores web.
   Si bien no forma parte del núcleo de Elixir, Plug es un proyecto oficial de Elixir.
 
-  Empezaremos creando una aplicación web mínima basada en Plug.
+Empezaremos creando una aplicación web mínima basada en Plug
   Despues de eso, aprenderemos acerca del enrutador de Plug y como agregar Plug a una aplicación web existente.
   """
 }
@@ -19,10 +19,9 @@ Este tutorial asume que ya tienes Elixir y `mix` instalado.
 Si no has iniciado un proyecto, crea uno de la siguiente manera:
 
 ```shell
-$ mix new example
-$ cd example
+mix new example
+cd example
 ```
-
 
 ## Instalación
 
@@ -39,7 +38,7 @@ end
 En la línea de comando, ejecuta la siguiente tarea de mix para actualizar estas nuevas dependencias:
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## La especificación
@@ -117,7 +116,7 @@ Estamos listos para probar este servidor web, minimalístico basado en Plug.
 En la línea de comando ejecuta:
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 Cuando todo termine de compilar, y el mensaje `[info]  Started app` aparece, abre el explorador web en `127.0.0.1:8080`. Este debera de desplegar:
@@ -164,7 +163,6 @@ end
 ```
 
 Inicia el servidor de nuevo, detén el anterior si aún sigue corriendo.(Presiona `Ctrl+C` dos veces).
-
 
 Ahora en un navegador web ve a `127.0.0.1:8080`.
 Deberá de mostrar `Welcome`.
@@ -302,8 +300,9 @@ config :example, cowboy_port: 8080
 ```
 
 Ahora para correr nuestra aplicación podemos utilizar:
+
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 ## Probando un Plug
@@ -354,7 +353,6 @@ defmodule Example.RouterTest do
   end
 end
 ```
-
 
 ## Plugs disponibles
 

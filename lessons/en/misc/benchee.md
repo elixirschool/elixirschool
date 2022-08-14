@@ -17,11 +17,13 @@ Benchee provides us with a range of statistics with easy comparisons between sce
 ## Usage
 
 To add Benchee to your project, add it as a dependency to your `mix.exs` file:
+
 ```elixir
 defp deps do
   [{:benchee, "~> 1.0", only: :dev}]
 end
 ```
+
 Then we call:
 
 ```shell
@@ -51,7 +53,7 @@ Benchee.run(%{
 Now to run our benchmark, we call:
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 And we should see something like the following output in your console:
@@ -108,6 +110,7 @@ One of the best parts of Benchee is all the available configuration options.
 We'll go over the basics first since they don't require code examples, and then we'll show how to use one of the best features of Benchee - inputs.
 
 ### Basics
+
 Benchee takes a wealth of configuration options.
 In the most common `Benchee.run/2` interface, these are passed as the second argument in the form of an optional keyword list:
 
@@ -220,11 +223,13 @@ First, we now have an `inputs` map that contains the information for our inputs 
 We're passing that inputs map as a configuration option to `Benchee.run/2`.
 
 And since our functions need to take an argument now, we need to update our benchmark functions to accept an argument, so instead of:
+
 ```elixir
 fn -> Enum.flat_map(list, map_fun) end
 ```
 
 we now have:
+
 ```elixir
 fn list -> Enum.flat_map(list, map_fun) end
 ```
@@ -232,7 +237,7 @@ fn list -> Enum.flat_map(list, map_fun) end
 Let's run this again using:
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 Now you should see output in your console like this:

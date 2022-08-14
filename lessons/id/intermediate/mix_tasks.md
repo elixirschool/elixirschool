@@ -7,7 +7,7 @@
 }
 ---
 
-## Perkenalan 
+## Perkenalan
 
 Tidak jarang kita ingin mengembangkan (extend) fungsionalitas aplikasi Elixir kita dengan menambahkan task Mix sendiri. Sebelum kita belajar tentang cara membuat task Mix spesifik untuk project kita, mari lihat salah satu yang sudah ada:
 

@@ -26,7 +26,6 @@ iex> Example.greeting "Sean"
 
 Es posible anidar módulos en Elixir, permitiéndonos ser explícitos nombrando nuestra funcionalidad.
 
-
 ```elixir
 defmodule Example.Greetings do
   def morning(name) do
@@ -58,7 +57,6 @@ end
 ```
 
 Es importante destacar que hay atributos reservados en Elixir. Los tres más comunes son:
-
 
 + `moduledoc` — Documenta el módulo actual.
 + `doc` — Documentación para funciones y macros.
@@ -104,6 +102,7 @@ Algo muy importante es que podemos hacer coincidencia entre estructuras y mapas:
 iex> %{name: "Sean"} = sean
 %Example.User<name: "Sean", roles: [...], ...>
 ```
+
 A partir de Elixir 1.8 las estructuras incluyen la inspección personalizada.
 Para entender que significa esto y cómo debemos usarlo, debemos inspeccionar el mapa `sean`:
 

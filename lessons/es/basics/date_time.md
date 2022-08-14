@@ -68,7 +68,7 @@ Otras funciones pueden ser encontradas en la [documentación](https://hexdocs.pm
 
 En Elixir existen dos tipos de estructuras que contienen tanto la hora como la fecha al mismo tiempo.
 La primera es `NaiveDateTime`.
-Su desventaja es la falta de soporte para la zona horaria: 
+Su desventaja es la falta de soporte para la zona horaria:
 
 ```elixir
 iex(15)> NaiveDateTime.utc_now

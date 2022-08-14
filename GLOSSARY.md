@@ -1,13 +1,13 @@
 ## What is this?
 
 This file is targeted at the translators and serves as a basic tutorial for translating this project. It includes two lists of terms:
-  - terms which do not get translated at all
-  - terminology translations (glossary)
+
+- terms which do not get translated at all
+- terminology translations (glossary)
 
 ### What does not get translated?
 
 Class names and proper nouns do not get translated.
-
 
 ### Table of Contents
 
@@ -24,6 +24,7 @@ Class names and proper nouns do not get translated.
   - [General Terms](#bengali-general-terms)
   - [Elixir-related terms](#bengali-elixir-related-terms)
   - [CS terms](#bengali-cs-terms)
+
 ### <a name="glossary-russian"></a> Glossary - Russian
 
 #### <a name="russian-elixir-related-terms"></a> Elixir-related terms
@@ -85,7 +86,6 @@ Class names and proper nouns do not get translated.
 - supervisor - супервизор
 - tail - хвост
 - worker - рабочий процесс
-
 
 ### <a name="glossary-ukrainian"></a> Glossary - Ukrainian
 
@@ -200,7 +200,6 @@ Class names and proper nouns do not get translated.
 
 - Tuple - টাপল
 - iex - iex
-
 
 #### <a name="bengali-cs-terms"></a> CS terms
 

@@ -177,7 +177,6 @@ with {:ok, user} <- Repo.insert(changeset),
 end
 ```
 
-
 Από την Elixir 1.3 και μετά, οι εκφράσεις `with/1` υποστηρίζουν την `else`:
 
 ```elixir

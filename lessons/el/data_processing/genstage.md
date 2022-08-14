@@ -58,8 +58,8 @@
 Θα ξεκινήσουμε δημιουργώντας ένα project με ένα δέντρο παρακολούθησης:
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 Ας αναβαθμίσουμε τις εξαρτήσεις μας στο `mix.exs` για να συμπεριλάβουμε το `gen_stage`:
@@ -75,7 +75,7 @@ end
 Θα πρέπει να κατεβάσουμε τις εξαρτήσεις μας και να τις συντάξουμε πριν προχωρήσουμε:
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 Τώρα είμαστε έτοιμοι να χτίστουμε τον παραγωγό μας!
@@ -87,7 +87,7 @@ $ mix do deps.get, compile
 Ας δημιουργήσουμε το αρχείο παραγωγού:
 
 ```shell
-$ touch lib/genstage_example/producer.ex
+touch lib/genstage_example/producer.ex
 ```
 
 Τώρα μπορούμε να προσθέσουμε τον κώδικα:
@@ -124,7 +124,7 @@ end
 Θα θέλουμε να ζητήσουμε αριθμούς από τον παραγωγό μας, να αφαιρέσουμε τους μονούς και να απαντήσουμε στη ζήτηση.
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 Ας αναβαθμίσουμε το αρχείο μας για να δείχνει όπως ο κώδικας στο παράδειγμα:
@@ -167,7 +167,7 @@ end
 Ας ξεκινήσουμε:
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 Από τη στιγμή που οι καταναλωτές και οι παραγωγοί-καταναλωτές είναι τόσο όμοιοι ο κώδικάς μας δεν θα δείχνει τόσο διαφορετικός:

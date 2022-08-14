@@ -58,8 +58,8 @@ Na końcu stworzymy konsumenta, aby wyświetlić wybrane liczby na ekranie.
 Naszą pracę zaczniemy od stworzenia projektu z wykorzystaniem drzewa nadzoru:
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 Zmieńmy `mix.exs`, dodając zależność `gen_stage`:
@@ -75,7 +75,7 @@ end
 Zanim przejdziemy dalej, musimy pobrać i skompilować zależności:
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 I już jesteśmy gotowi by stworzyć naszego producenta!
@@ -87,7 +87,7 @@ Tak jak wcześniej zaplanowaliśmy, chcemy stworzyć producenta, który będzie 
 Stworzymy zatem plik modułu producenta:
 
 ```shell
-$ touch lib/genstage_example/producer.ex
+touch lib/genstage_example/producer.ex
 ```
 
 Teraz możemy dodać kod:
@@ -124,7 +124,7 @@ Teraz, gdy mamy już naszego producenta generującego liczby, możemy zająć si
 Będzie on żądać od producenta zbioru liczb, wybierać tylko parzyste i odsyłać tak odfiltrowany zbiór na żądanie konsumenta.
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 Po utworzeniu pliku dodajmy kod:
@@ -167,7 +167,7 @@ No i na końcu mamy naszego konsumenta.
 Zacznijmy od utworzenia pliku:
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 Jako że producent-konsument i konsument są bardzo podobne, to kod nie będzie się różnił w znaczący sposób:

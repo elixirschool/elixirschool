@@ -52,7 +52,6 @@ true
 
 Hvis nummeret av argumenter til en funksjon(aritet) er mer enn 1, må vi benytte oss av paranteser. Dette er ikke så viktig for Elixir, men det er viktig for andre utviklere som kan misforstå kodene du har skrevet. Hvis vi tar det tredje eksemplet over, og fjerner parantesene fra `String.ends_with?/2` gir Elixir oss en advarsel:
 
-
 ```shell
 iex> "elixir" |> String.ends_with? "ixir"
 warning: parentheses are required when piping into a function call. For example:

@@ -49,7 +49,7 @@ iex> case {:ok, "Hello World"} do
 "Hello World"
 ```
 
-ตัวแปร `_` เป็นตัวแปรสำคัญมาก ๆ ใน `case/2` เพราะถ้าค่ามันไม่ match กับอะไรเลย มันจะทำให้เกิด error 
+ตัวแปร `_` เป็นตัวแปรสำคัญมาก ๆ ใน `case/2` เพราะถ้าค่ามันไม่ match กับอะไรเลย มันจะทำให้เกิด error
 
 ```elixir
 iex> case :even do
@@ -80,7 +80,7 @@ iex> case "cherry pie" do
 
 feature เท่ๆ อีกอย่างของ `case/2` ก็คือมันรองรับ guard clauses
 
-_ตัวอย่างนี้มาจาก official Elixir [Getting Started] (http://elixir-lang.org/getting-started/case-cond-and-if.html#case)_
+_ตัวอย่างนี้มาจาก official Elixir [Getting Started] (<http://elixir-lang.org/getting-started/case-cond-and-if.html#case>)_
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -96,9 +96,9 @@ iex> case {1, 2, 3} do
 
 ## cond
 
-เมื่อเราต้องการจะ match เงื่อนไขแทนที่จะเทียบกับค่า เราสามารถเปลี่ยนมาใช้ `cond/1` แทนได้ เทียบได้กับ `else if` หรือ `elsif` ในภาษาอื่น ๆ 
+เมื่อเราต้องการจะ match เงื่อนไขแทนที่จะเทียบกับค่า เราสามารถเปลี่ยนมาใช้ `cond/1` แทนได้ เทียบได้กับ `else if` หรือ `elsif` ในภาษาอื่น ๆ
 
-_ตัวอย่างนี้มาจาก official Elixir [Getting Started] (http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)_
+_ตัวอย่างนี้มาจาก official Elixir [Getting Started] (<http://elixir-lang.org/getting-started/case-cond-and-if.html#cond>)_
 
 ```elixir
 iex> cond do

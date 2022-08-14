@@ -30,6 +30,7 @@ In this post, we'll incorporate Erlang's [`telemetry_poller` library](https://gi
 ## Getting Started
 
 You can follow along with this tutorial by cloning down the repo [here](https://github.com/elixirschool/telemetry-code-along/tree/part-4-start).
+
 * Checking out the starting state of our code on the branch [part-4-start](https://github.com/elixirschool/telemetry-code-along/tree/part-4-start)
 * Find the solution code on the branch [part-4-solution](https://github.com/elixirschool/telemetry-code-along/tree/part-4-solution)
 
@@ -40,7 +41,6 @@ In order to report on Erlang VM measurements as metrics, we will:
 * Install the `telemetry_poller` dependency
 * Define metrics for `telemetry_poller` Telemetry events using `Telemetry.Metrics`
 * That's it!
-
 
 ## Step 1: Installing `telemetry_poller`
 
@@ -203,7 +203,6 @@ defp metrics do
   ]
 end
 ```
-
 
 ## Polling for Custom Measurements
 

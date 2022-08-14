@@ -70,7 +70,7 @@ end
 Once we've finished configuring our application to use escript, building our executable is a breeze with Mix:
 
 ```bash
-$ mix escript.build
+mix escript.build
 ```
 
 Let's take it for a spin:

@@ -43,7 +43,6 @@ end
 
 And here's the corresponding ExUnit tests. The details aren't super important, but the tests are  configured to use a [mock server for the test environment](https://medium.com/flatiron-labs/rolling-your-own-mock-server-for-testing-in-elixir-2cdb5ccdd1a0).
 
-
 ```elixir
 defmodule GithubClientTest do
   use ExUnit.Case
@@ -67,7 +66,6 @@ Great-- the tests pass! Interspersed in the output, though, you'll see the red e
 `17:32:00.090 [error] User invalid_username does not exist`
 
 Right now we only have two tests, but this can get really distracting as the test suite grows. This applies not only to the "sad path" tests that include error logging, but any logging we might do using other functions included with the [`Logger` module](https://hexdocs.pm/logger/Logger.html) like `Logger.info/1` or `Logger.debug/1`
-
 
 There are a few ways to solve this. To stop logged output from showing up for _all tests_ add `capture_log: true` to your ExUnit config. In a new mix project this would be found in `test/test_helper.exs` and look like:
 

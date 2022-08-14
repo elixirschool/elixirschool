@@ -35,7 +35,6 @@ Al aprovecharlo y combinarlo con otras ventajas de Elixir es increíblemente emp
 
 Para ver la lista completa de funciones, visita la documentación oficial [`Enum`](https://hexdocs.pm/elixir/Enum.html); para enumeración diferida (lazy) usa el módulo [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
-
 ### all?
 
 Cuando usas `all?/2`, y muchas de las funciones de `Enum`, proveemos una función para aplicar a los elementos de nuestra colección.
@@ -197,6 +196,7 @@ iex> Enum.sort([%{:count => 4}, %{:count => 1}], fn(x, y) -> x[:count] > y[:coun
 iex> Enum.sort([%{:count => 4}, %{:count => 1}])
 [%{count: 1}, %{count: 4}]
 ```
+
 Por comodidad, `sort/2` nos permite usar los átomos `:asc` o `:desc` como función de ordenación:
 
 ```elixir
@@ -223,6 +223,7 @@ iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coo
 ```
 
 ## Enum usando el operador de Captura (&)
+
 Muchas funciones del módule de Enum en Elixir reciben funciones anónimas como argumento para ejecutarla en cada elemento de la colección a la que se le pasa.
 
 Estas funciones anónimas suelen escribirse habitualmente con el operador de Captura (&).
@@ -238,6 +239,7 @@ Abajo el típico ejemplo de sintaxis estándar pasando una función anónima a `
 iex> Enum.map([1,2,3], fn number -> number + 3 end)
 [4, 5, 6]
 ```
+
 Ahora implementamos la misma funcionalidad pero con el operador de captura (&); capturando cada elemento de la lista de números ([1,2,3]) y asignándolo a la variable &1 cuando es pasada a la función de mapeado.
 
 ```elixir
@@ -254,6 +256,7 @@ iex> Enum.map([1,2,3], plus_three)
 ```
 
 ### Usando el operador de captura con una función con nombre (no anónima)
+
 Primero creamos una función con nombre y la llamamos dentro de la función anónima definida en `Enum.map/2`.
 
 ```elixir

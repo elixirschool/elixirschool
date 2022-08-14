@@ -67,7 +67,7 @@ end
 Sobald wir die Konfiguration unserer Anwendung mit escript abgeschlossen haben ist die Erzeugung einer ausführbaren Datei mit der Hilfe von Mix einfach:
 
 ```elixir
-$ mix escript.build
+mix escript.build
 ```
 
 Let's take it for a spin:

@@ -43,7 +43,6 @@ iex> Example.greeting("Sean")
 
 Darüber hinaus stellt uns EEx die Möglichkeit zur Verfügung, mit `compile_string/2` oder `compile_file/2` Elixir ASTs aus Strings bzw. Dateien zu generieren. Diese API wird intern von den vorher genannten APIs genutzt, kann aber auch direkt genutzt werden, falls wir eine eigene Lösung zum Umgang mit EEx schreiben möchten.
 
-
 ## Tags
 
 Standardmäßig gibt es vier von EEx unterstützte Tags:
@@ -55,7 +54,7 @@ Standardmäßig gibt es vier von EEx unterstützte Tags:
 <%# Kommentar- wird einfach verworfen %>
 ```
 
-Alle Ausdrücke die ausgewertet werden sollen, __müssen__ das Gleichheitszeichen (`=`) nutzen. Zu beachten ist, dass Elixir z.B. auch Konstrukte wie `if` nicht anders behandelt als andere Ausdrücke. Ohne `=` keine Ausgabe: 
+Alle Ausdrücke die ausgewertet werden sollen, __müssen__ das Gleichheitszeichen (`=`) nutzen. Zu beachten ist, dass Elixir z.B. auch Konstrukte wie `if` nicht anders behandelt als andere Ausdrücke. Ohne `=` keine Ausgabe:
 
 ```elixir
 <%= if true do %>
@@ -73,6 +72,7 @@ In Elixir ist die `EEx.SmartEngine` voreingestellt, diese beinhaltet Unterstütz
 iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 "Hi, Sean"
 ```
+
 Die `EEx.SmartEngine`-Zuweisungen sind nützlich da sie geändert werden können ohne erneute Kompilierung des Templates zu erfordern.
 
 Willst du deine eigene Engine schreiben? Schau dir das Behaviour [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html) an, um zu sehen was du dafür benötigst.

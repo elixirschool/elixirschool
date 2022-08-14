@@ -29,7 +29,6 @@ If you'd like to learn more about these workshops, you can check out the code an
   * [Complete code for LiveView features](https://github.com/elixirschool/pointing-party/tree/live-view-js-hooks)
   * [Complete code for Property-based testing features](https://github.com/elixirschool/pointing-party/tree/test-vote-calculation-with-stream-data)
 
-
 ## Talks We Enjoyed
 
 There were so many exciting talks to check out, but with a multi-track schedule, we sadly couldn't catch them all. Here are a few that stood out to us in particular.
@@ -49,7 +48,6 @@ Chris Keathley's talk asked the question: "How can we build systems that withsta
 ### Elixir + CQRS - Architecting for Availability, Operability, and Maintainability At PagerDuty - Jon Grieman
 
 Learn about how Pager Duty builds systems that are more reliable than your most reliable app with the help of CQRS patterns. Jon Grieman talks us through Pager Duty's refactor of a Rails monolith into an Elixir umbrella app backed by Kafka and lays out why Elixir and CQRS are such a good fit. Check out the full talk [here](https://www.youtube.com/watch?v=-d2NPc8cEnw).
-
 
 ## Activity Highlights
 

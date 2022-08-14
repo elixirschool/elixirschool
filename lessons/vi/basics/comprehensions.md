@@ -11,7 +11,6 @@
 
 Comprehension thường được dùng để cung cấp các lời gọi ngắn gọn cho `Enum` và `Stream`. Hãy cùng bắt đầu với việc xem cách sử dụng comprehension đơn giản, rồi sau đó sẽ chia nhỏ nó:
 
-
 ```elixir
 iex> list = [1, 2, 3, 4, 5]
 iex> for x <- list, do: x*x
@@ -75,7 +74,6 @@ List comprehension là một cú pháp hỗ trợ, và nên được sử dụng
 
 Bạn có thể nghĩ các bộ lọc như là các bảo vệ cho comprehension. Khi một giá trị lọc trả về `false` hoặc `nil` nó sẽ bị loại bỏ khỏi list kết quả. Hãy cùng lặp qua một khoảng, và trả về các số chẵn. Chúng ta sẽ sử dụng hàm `is_even/1` từ module Integer để kiểm tra xem một số là chẵn hay lẻ.
 
-
 ```elixir
 import Integer
 iex> for x <- 1..10, is_even(x), do: x
@@ -97,7 +95,6 @@ iex> for x <- 1..100,
 Nếu muốn cung cấp các kết quả khác thay vì chỉ một list, chúng ta sẽ sử dụng lựa chọn `:into` để làm điều đó. `:into` chấp nhận bất cứ cấu trúc nào cài đặt protocol `Collectable`.
 
 Sử dụng `:into`, chúng ta sẽ tạo nên một map từ một keyword list:
-
 
 ```elixir
 iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}

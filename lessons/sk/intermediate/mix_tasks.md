@@ -84,7 +84,6 @@ end
 
 Všimnite si, že názov modulu začína na `Mix.Task` a nasleduje meno, ktorým chceme náš task spúšťať z príkazového riadku (teda v tomto prípade `Hello`). Nasleduje uvedenie modulu `Mix.Task`, ktorým do nášho modulu vnesieme rovnomenný behaviour (niečo ako interface v objektových jazykoch). Ďalej implementujeme povinnú funkciu run, ktorá bude nateraz ignorovať svoje argumenty. V tejto funkcii už len zavoláme našu funkciu `say` z modulu `Hello`.
 
-
 ## Mix Tasky v akcii
 
 Poďme si náš nový task vyskúšať. V príkazovom riadku zadajme `mix hello` a mali by sme vidieť nasledovné:

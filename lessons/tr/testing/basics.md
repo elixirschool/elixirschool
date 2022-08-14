@@ -62,7 +62,6 @@ Daha önce testler yazdıysanız, `assert` ile tanışıyorsunuz demektir; bazı
 
 İfadenin doğru olduğunu test etmek için `assert` kullanıyoruz. Kullanmadığımız takdirde, bir hata ortaya çıkacağından dolayı testlerimiz başarısız olur. Bir hatayı test etmek için, örneğimizi değiştirelim ve ardından tekrar `mix test` 'i çalıştıralım:
 
-
 ```elixir
 defmodule ExampleTest do
   use ExUnit.Case
@@ -98,7 +97,7 @@ ExUnit bize, başarısız olduğumuz olayın tam olarak nerede olduğunu, beklen
 
 `refute`, `assert` yapmak  “değilse” ifadesi ise “iddi” anlamına gelir. Bir ifadenin her zaman yanlış olmasını sağlamak istediğinizde `refute` ü kullanın.
 
-`refute` is to `assert` as `unless` is to `if`. 
+`refute` is to `assert` as `unless` is to `if`.
 
 ### assert_raise
 
@@ -142,7 +141,7 @@ defmodule OutputTest do
 end
 ```
 
-`ExUnit.CaptureLog`, ` Logger` için çıktı yakalama eşdeğeridir.
+`ExUnit.CaptureLog`, `Logger` için çıktı yakalama eşdeğeridir.
 
 ## Test Kurulumu
 

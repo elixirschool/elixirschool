@@ -1,6 +1,7 @@
 # Contribution Guidelines
 
 ## General
+
 Please ensure your pull request adheres to the following guidelines:
 
 * New lessons or improvements to existing lessons are welcome.
@@ -29,6 +30,7 @@ Fun fact! The version changes are necessary because we use that to programmatica
 Each language has a generated [Translation Report](https://elixirschool.com/es/report/)
 
 ## Adding a New Lesson
+
 To add a new lesson, create the file under the appropriate directory in `en/lessons` (or `<language_code>/lessons`) if you are not writing your new lesson in English).
 
 Then, update `_data/content.yml` with the name of your new lesson under the appropriate section.
@@ -37,7 +39,6 @@ If you've added a new section (i.e. a new directory under `/lessons`), add the s
 
 Thank you for your contributions!
 
-
 ## Adding a new Language
 
 1. Create a folder using the ISO language code (e.g. ja, zh-hans, es, et al) with lesson subfolders.
@@ -45,9 +46,9 @@ Not sure which language code to use?
 Check [here](https://www.loc.gov/standards/iso639-2/php/English_list.php) for the official list.
 
   ```shell
-  $ cd elixirschool
-  $ mkdir -p ja/lessons/{basics,advanced,specifics,libraries}
-  $ touch ja/lessons/{basics,advanced,specifics,libraries}/.gitkeep
+  cd elixirschool
+  mkdir -p ja/lessons/{basics,advanced,specifics,libraries}
+  touch ja/lessons/{basics,advanced,specifics,libraries}/.gitkeep
   ```
 
 1. Add your language code to `interlang` in `_data/locales/en.yml`:
@@ -60,7 +61,7 @@ Check [here](https://www.loc.gov/standards/iso639-2/php/English_list.php) for th
 1. Create a locale file for your new language using `_data/locales/en.yml` as a guide:
 
   ```shell
-  $ touch _data/locales/ja.yml
+  touch _data/locales/ja.yml
   ```
 
 1. If the new language is RTL (right-to-left) it should be added to the `rtl_languages` list in `config.yml`:

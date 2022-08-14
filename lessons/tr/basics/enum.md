@@ -14,7 +14,6 @@
 Bu ders mevcut olan fonksiyonlarin sadece bir kismini icerecektir fakat bunlari asagidaki method ile inceleyebiliriz.
 Gelin interaktif elixir modunda (IEx) bir deneme yapalim.
 
-
 ```elixir
 iex
 iex> Enum.__info__(:functions) |> Enum.each(fn({function, arity}) ->
@@ -38,12 +37,10 @@ Elixir'in de avantajlari ile birlesip gelistiricilere inanilmaz bir guc vermekte
 Tum fonksiyon listesi icin resmi dokumana [`Enum`](http://elixir-lang.org/docs/stable/elixir/Enum.html) goz atabilirsiniz.
 Lazy enumeration icin bu [`Stream`](http://elixir-lang.org/docs/stable/elixir/Stream.html) sayfaya goz atabilirsiniz.
 
-
 ### all?
 
 Diger bircok `Enum` fonksiyonunda oldugu gibi `all?/2` kullanirken de, tum koleksiyonu bir fonksiyon baglariz.  
 `all?/2` kullanildiginda, tum koleksiyon elemanlarini kosula uydugunda dogru `true`, uymuyorsa yanlis `false` donecektir.
-
 
 ```elixir
 iex> Enum.all?(["pire", "deve", "merhaba"], fn(s) -> String.length(s) == 3 end)
@@ -101,7 +98,6 @@ iex> Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
 
 Bazen de koleksiyondaki tum degerlere yeni bir deger olusturmadan ulasmak istenir; bu durumda `each/2` kullanilir.
 
-
 ```elixir
 iex> Enum.each(["bir", "iki", "uc"], fn(s) -> IO.puts(s) end)
 bir
@@ -157,7 +153,6 @@ Enum.max([], fn -> :deve end)
 
 `reduce/3` ile koleksiyondaki degerler teke indirilir. Bunu yapmak icin fonksiyona gonderilecek, tercihe bagli bir deger verilir (ilk ornekte 10 verilmis);
 eger bu deger verilmezse, koleksiyondaki ilk deger kullanilir.
-
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)

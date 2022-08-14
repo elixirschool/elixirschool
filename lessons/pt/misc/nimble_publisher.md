@@ -263,7 +263,7 @@ E crie `lib/nimble_school_web/templates/blog/show.html.eex` para renderizar uma 
 <%= raw @post.body %>
 ```
 
-### Navegue por suas postagens!
+### Navegue por suas postagens
 
 Tudo pronto para seguir!
 

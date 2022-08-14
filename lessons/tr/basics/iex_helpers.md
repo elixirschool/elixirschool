@@ -3,7 +3,7 @@
   title: "IEx Yardımcıları",
   excerpt: """
   
-  """
+"""
 }
 ---
 
@@ -33,6 +33,7 @@ replace!/3           replace/3            split/2
 take/2               to_list/1            update!/3
 update/4             values/1
 ```
+
 Ve şimdi sahip olduğumuz function'ları ve onların gerekliliklerini biliyoruz!
 
 ### .iex.exs
@@ -69,7 +70,6 @@ iex> IExHelpers.whats_this?(:test)
 ```
 
 Görebildiğimiz gibi, helpers modüllerimizi çağırmak veya import etmek için özel bir şeyler yapmak zorunda değiliz, IEx bunu bizim için zaten halledecektir.
-
 
 ### h
 

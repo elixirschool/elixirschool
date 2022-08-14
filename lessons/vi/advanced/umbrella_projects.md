@@ -36,9 +36,8 @@ for each application in the apps/ directory.
 
 Như bạn thấy từ shell command ở trên, Mix tạo ra một dự án khung cho chúng ta với 2 thư mục:
 
-  - `apps/` - nơi chứa các dự án con
-  - `config/` - nơi chứa các file cấu hình cho dự án ô
-
+- `apps/` - nơi chứa các dự án con
+- `config/` - nơi chứa các file cấu hình cho dự án ô
 
 ## Các dự án con
 
@@ -174,7 +173,6 @@ Consolidated Inspect
 ## IEx
 
 Bạn có thể nghĩ rằng tương tác với các ứng dụng có thể hơi khác khi làm việc trong một dự án ô. Dù tin hay không, thì giả thiết này là không chính xác. Nếu chúng ta quay trở về thư mục gốc của dự án, và khởi động IEx bằng cách `iex -S mix`, chúng ta có thể tương tác với tất cả các dự án bình thường. Hãy cùng thay đổi nội dụng của `apps/datasets/lib/datasets.ex` cho ví dụ đơn giản sau:
-
 
 ```elixir
 defmodule Datasets do

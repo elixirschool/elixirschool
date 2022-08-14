@@ -62,7 +62,6 @@ end
 
 そして、設定ファイルの中で次のようにします。
 
-
 ```elixir
 config :my_app, :http_client, HTTPoison
 ```
@@ -108,7 +107,6 @@ defmodule MyAppTest do
   end
 end
 ```
-
 
 どこかで必要なモジュール（`HTTP200Mock`と`HTTP404Mock`）を作成していることが前提になります。
 各テスト終了後に `:http_client` が以前の状態に戻るようにするために、[`on_exit`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#on_exit/2) コールバックを [`setup`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#setup/1) フィクスチャに追加しています。

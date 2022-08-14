@@ -114,7 +114,7 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 
 Please note that the returned struct only has `tagline` and `title` fields set – this is the result of our `select:` part.
 
-Queries like this are called *bindingless*, because they are simple enough to not require bindings.
+Queries like this are called _bindingless_, because they are simple enough to not require bindings.
 
 #### Bindings in queries
 
@@ -125,7 +125,7 @@ iex> query = from(m in Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
-In such case, we call `m` a *binding*. Bindings are extremely useful, because they allow us to reference modules in other parts of the query. Let's select titles of all movies that have `id` less than `2`:
+In such case, we call `m` a _binding_. Bindings are extremely useful, because they allow us to reference modules in other parts of the query. Let's select titles of all movies that have `id` less than `2`:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
@@ -136,7 +136,7 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-The very important thing here is how output of the query changed. Using an *expression* with a binding in `select:` part allows you to specify exactly the way selected fields will be returned. We can ask for a tuple, for example:
+The very important thing here is how output of the query changed. Using an _expression_ with a binding in `select:` part allows you to specify exactly the way selected fields will be returned. We can ask for a tuple, for example:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: {m.title})
@@ -147,10 +147,9 @@ iex> Repo.all(query)
 
 It is a good idea to always start with a simple bindingless query and introduce a binding whenever you need to reference your data structure. More on bindings in queries can be found in [Ecto documentation](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions)
 
-
 ### Macro-based queries
 
-In the examples above we used keywords `select:` and `where:` inside of `from` macro to build a query – these are so called *keyword-based queries*. There is, however, another way to compose queries – macro-based queries. Ecto provides macros for every keyword, like `select/3` or `where/3`. Each macro accepts a *queryable* value, *an explicit list of bindings* and the same expression you'd provide to its keyword analogue:
+In the examples above we used keywords `select:` and `where:` inside of `from` macro to build a query – these are so called _keyword-based queries_. There is, however, another way to compose queries – macro-based queries. Ecto provides macros for every keyword, like `select/3` or `where/3`. Each macro accepts a _queryable_ value, _an explicit list of bindings_ and the same expression you'd provide to its keyword analogue:
 
 ```elixir
 iex> query = select(Movie, [m], m.title)
@@ -276,8 +275,8 @@ iex> Repo.all(from m in Movie, preload: [:actors])
 
 We can see that the above line of code ran _two_ database queries. One for all of the movies, and another for all of the actors with the given movie IDs.
 
-
 #### Preloading With One Query
+
 We can cut down on our database queries with the following:
 
 ```elixir

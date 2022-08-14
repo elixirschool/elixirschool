@@ -145,5 +145,3 @@ For en lengre diskusjon på dette:
 [Flott artikkel](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/). Tanken er at, istedenfor at man mocker vekk avhengigheter for testing (mock som et *verb*), så er det mange fordeler å eksplisit definere grensesnitt (oppførseler) for kode utenfor din applikasjon, og heller bruke Mock (som et *substantiv*) implementasjoner i din klient kode for testingen.
 
 For å endre implementasjon av din applikasjon kode, så er den foretrukne måten og heller gi modulen som et argument og bruke en standard verdi. Hvis det ikke fungerer, så kan du bruke den innebygde konfigurasjons mekansimen. For å lage disse mock implementasjonene, så trenger du ikke et spesielt mocking bibliotek, kun oppførseler og tilbakekallende funksjoner.
-
-

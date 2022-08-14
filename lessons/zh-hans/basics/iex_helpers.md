@@ -3,7 +3,7 @@
   title: "IEx 辅助函数",
   excerpt: """
   
-  """
+"""
 }
 ---
 
@@ -53,6 +53,7 @@ defmodule IExHelpers do
   def whats_this?(_term), do: "Type: Unknown"
 end
 ```
+
 现在当我们启动 IEx 的时候就可以使用 IExHelpers 模块了. 启动 IEx 试一下我们的辅助函数:
 
 ```elixir

@@ -6,7 +6,7 @@
 
   Niemal każdy programista zna problem sprawdzania danych wejściowych pod kątem potencjalnych błędów — chcemy mieć pewność, że dane są poprawne, zanim spróbujemy ich użyć do naszych celów.
 
-  Ecto dostarcza kompletne rozwiązanie do pracy ze zmianami danych — moduł i strukturę `Changeset`.
+Ecto dostarcza kompletne rozwiązanie do pracy ze zmianami danych — moduł i strukturę `Changeset`
   W tej lekcji dowiemy się więcej na ten temat i nauczymy się, jak weryfikować integralność danych, zanim zapiszemy je do bazy.
   """
 }
@@ -287,5 +287,5 @@ end
 
 ## Podsumowanie
 
-Istnieje wiele przypadków użycia, o których nie powiedzieliśmy w tej lekcji, takich jak [zestawy zmian bez schematów](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets), których możesz użyć do walidacji _dowolnych_ danych, czy też obsługa efektów ubocznych w changesetach ([`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2)), praca z asocjacjami i strukturami wbudowanymi. 
+Istnieje wiele przypadków użycia, o których nie powiedzieliśmy w tej lekcji, takich jak [zestawy zmian bez schematów](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets), których możesz użyć do walidacji _dowolnych_ danych, czy też obsługa efektów ubocznych w changesetach ([`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2)), praca z asocjacjami i strukturami wbudowanymi.
 Możemy się tym zająć w przyszłości, w lekcji na poziomie zaawansowanym, a w międzyczasie zachęcamy do zapoznania się z [dokumentacją Ecto Changeset](https://hexdocs.pm/ecto/Ecto.Changeset.html), gdzie można znaleźć więcej informacji na ten temat.

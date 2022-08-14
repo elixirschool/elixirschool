@@ -69,6 +69,7 @@ end
 iex> Greeter.hello("Sean")
 "Hello, Sean"
 ```
+
 Se o corpo da nossa função apenas tem uma linha, nós podemos reduzi-lo ainda mais com `do:`:
 
 ```elixir
@@ -114,7 +115,8 @@ iex> Greeter2.hello("Fred", "Jane")
 Nós listamos os nomes das funções nos comentários acima. A primeira implementação não recebe argumentos, é conhecida como `hello/0`; a segunda função recebe um argumento, portanto será conhecido como `hello/1` e assim por diante. E, ao contrário de sobrecargar funções como em outras linguagens de programação, estas são pensadas como funções _diferentes_ entre uma e outra. (Pattern matching, ou combinação de padrões, descrita agora há pouco, apenas se aplica quando várias definições são fornecidas com a _mesma_ quantidade de argumentos.)
 
 ### Funções e pattern matching
-Nos bastidores, as funções fazem pattern match nos argumentos com as quais são chamadas. 
+
+Nos bastidores, as funções fazem pattern match nos argumentos com as quais são chamadas.
 
 Se precisássemos de uma função que aceitasse um mapa, mas estivéssemos interessados em utilizar apenas uma chave, poderíamos fazer o pattern match da presença da chave assim:
 
@@ -241,7 +243,7 @@ Agora, quando chamarmos `Greeter2.hello/1`, podemos utilizar toda a informação
     iex:15: Greeter2.hello/1
 ```
 
-Vimos, então, que o Elixir faz um pattern match de múltipla profundidade, pois cada argumento faz match com a entrada de maneira independente. 
+Vimos, então, que o Elixir faz um pattern match de múltipla profundidade, pois cada argumento faz match com a entrada de maneira independente.
 
 Se alterarmos a ordem de `%{name: person_name}` e `person` na lista, teremos os mesmos resultados, pois cada um faz o pattern match com `fred` de maneira separada.
 

@@ -59,6 +59,7 @@ First, we'll take a look at how to set up a simple reporting pipeline for custom
 ### Getting Started
 
 You can follow along with this tutorial by cloning down the repo [here](https://github.com/elixirschool/telemetry-code-along/tree/part-1-start).
+
 * Checking out the starting state of our code on the branch [part-1-start](https://github.com/elixirschool/telemetry-code-along/tree/part-1-start)
 * Find the solution code on the branch [part-1-solution](https://github.com/elixirschool/telemetry-code-along/tree/part-1-solution)
 
@@ -129,7 +130,6 @@ end
 ```
 
 Here, we're emitting an event that includes the duration measurement--tracking the duration of the web request--along with the context of the web request, described by the `conn` struct.
-
 
 ### Step 3: Defining and Attaching The Telemetry Handler
 
@@ -279,7 +279,7 @@ execute(EventName, Measurements, Metadata) when is_map(Measurements) and is_map(
 
 Let's break down this process:
 
-#### First, look up the handlers for the event in ETS:
+#### First, look up the handlers for the event in ETS
 
 ```erlang
 % telemetry/src/telemetry.erl
@@ -480,7 +480,7 @@ Our reporting mechanism, currently set up to send metrics to StatsD, is also a l
 
 Well the answer is, you _don't_ have to emit all of your own events _or_ be responsible for all of your reporting! Now that we understand _how_ to set up a Telemetry pipeline, and how it works under the hood to store and execute callbacks for events using ETS, we're ready to rely on some handy abstractions that additional Telemetry libraries provide.
 
-Surprise! Phoenix and Ecto are *already* emitting common events from source code, including request counts and duration. The `Telemetry.Metrics` library will make it super easy for us to hook into these events without defining and attaching our own handlers.
+Surprise! Phoenix and Ecto are _already_ emitting common events from source code, including request counts and duration. The `Telemetry.Metrics` library will make it super easy for us to hook into these events without defining and attaching our own handlers.
 
 Further, Telemetry provides a number of reporting clients, including a StatsD reporter, that we can plug into our `Telemetry.Metrics` module for free metrics reporting to StatsD _or_ DogStatsD, allowing us to take advantage of event metadata with tagging.
 

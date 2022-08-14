@@ -11,7 +11,6 @@
 
 Para criar um projeto guarda-chuva nós iniciamos um projeto como se iniciássemos um projeto Mix normal, mas colocando o argumento `--umbrella`. Neste exemplo, faremos o *shell* de um kit de ferramentas de aprendizado de máquina. Por que um kit de ferramentas de aprendizado de máquina? Por que não? É composto de vários algoritmos de aprendizado e funções de utilidades diferentes.
 
-
 ```shell
 $ mix new machine_learning_toolkit --umbrella
 
@@ -37,9 +36,8 @@ for each application in the apps/ directory.
 
 Como você pode ver a partir do comando Mix no shell, foi criado um pequeno projeto de esqueleto para nós com dois diretórios:
 
-  - `apps/` - onde nossos sub-projetos (filhos) ficarão
-  - `config/` - onde a nossa configuração dos  projetos guarda-chuva permanecerá
-
+- `apps/` - onde nossos sub-projetos (filhos) ficarão
+- `config/` - onde a nossa configuração dos  projetos guarda-chuva permanecerá
 
 ## Projetos filhos
 

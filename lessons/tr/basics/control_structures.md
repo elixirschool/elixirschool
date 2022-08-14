@@ -181,7 +181,6 @@ with {:ok, user} <- Repo.insert(changeset),
 end
 ```
 
-
 Elixir 1.3 ile birlikte `with/1` ile birlikte `else` desteklenmeye baslanmistir.
 
 ```elixir

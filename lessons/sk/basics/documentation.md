@@ -7,16 +7,15 @@
 }
 ---
 
-
 ## O dokumentovaní v Elixire
 
 Čo všetko a ako podrobne komentovať a dokumentovať zostáva vo svete programovania stále otvorenou otázkou. Všetci sa však asi zhodneme na tom, že dokumentovanie kódu je dôležité pre nás samotných a aj ďalších ľudí, ktorí budú s našim kódom pracovať.
 
 Elixir berie dokumentáciu ako svoju plnohodnotnú súčasť (*first-class citizen*) a ponúka rôzne funkcie pre jej generovanie a jednoduchý prístup k nej. Jadro jazyka ponúka viacero možností anotácie kódu, pozrime sa na základné tri:
 
-  - `#` - pre inline komentáre
-  - `@doc` - pre dokumentáciu funkcií
-  - `@moduledoc` - pre dokumentáciu celých modulov
+- `#` - pre inline komentáre
+- `@doc` - pre dokumentáciu funkcií
+- `@moduledoc` - pre dokumentáciu celých modulov
 
 ### Inline komentáre
 
@@ -215,7 +214,7 @@ Teraz môžeme dokumentáciu nasadiť na GitHub, náš vlastný web, alebo na [H
 
 Dokumentácia by mala dodržiavať pravidlá a postupy bežné v danom jazyku. Keďže je Elixir stále relatívne mladým jazykom, niektoré štandardy stále nie sú ustálené. Komunita sa však snaží zbierať a dokumentovať ustálené pravidlá na webe [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
-  - Vždy dokumentujte moduly
+- Vždy dokumentujte moduly
 
 ```elixir
 defmodule Greeter do
@@ -226,7 +225,7 @@ defmodule Greeter do
 end
 ```
 
-  - Ak svoj modul nechcete dokumentovať, nevynechajte `@moduledoc` - pridajte aspoň prázdnu (false) anotáciu:
+- Ak svoj modul nechcete dokumentovať, nevynechajte `@moduledoc` - pridajte aspoň prázdnu (false) anotáciu:
 
 ```elixir
 defmodule Greeter do
@@ -235,7 +234,7 @@ defmodule Greeter do
 end
 ```
 
-  - Keď v dokumentácii modulu spomínate niektorú jeho funkciu, použite spätné apostrofy (backticks):
+- Keď v dokumentácii modulu spomínate niektorú jeho funkciu, použite spätné apostrofy (backticks):
 
 ```elixir
 defmodule Greeter do
@@ -251,7 +250,7 @@ defmodule Greeter do
 end
 ```
 
-  - Pod dokumentáciou vždy nechajte jeden voľný riadok:
+- Pod dokumentáciou vždy nechajte jeden voľný riadok:
 
 ```elixir
 defmodule Greeter do
@@ -270,7 +269,7 @@ defmodule Greeter do
 end
 ```
 
-  - Používajte markdown, aby vaša dokumentácia boľa prehľadná a ľahko čitateľná či už v IEx alebo ExDocu.
+- Používajte markdown, aby vaša dokumentácia boľa prehľadná a ľahko čitateľná či už v IEx alebo ExDocu.
 
 ```elixir
 defmodule Greeter do
@@ -301,6 +300,6 @@ defmodule Greeter do
 end
 ```
 
-  - Pokúste sa do dokumentácie priložiť aj nejaké príklady použitia. Okrem iného vám to umožní vygenerovať automatické testy funkcií, modulov, či makier pomocou nástroja [ExUnit.DocTest](https://hexdocs.pm/ex_unit/ExUnit.DocTest.html). Aby sme to mohli spraviť, musíme zavolať makro `doctest/1` z test casov a napísať príklady zodpovedajúce pokynom v [oficiálnej dokumentácii][ExUnit.DocTest].
+- Pokúste sa do dokumentácie priložiť aj nejaké príklady použitia. Okrem iného vám to umožní vygenerovať automatické testy funkcií, modulov, či makier pomocou nástroja [ExUnit.DocTest](https://hexdocs.pm/ex_unit/ExUnit.DocTest.html). Aby sme to mohli spraviť, musíme zavolať makro `doctest/1` z test casov a napísať príklady zodpovedajúce pokynom v [oficiálnej dokumentácii][ExUnit.DocTest].
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

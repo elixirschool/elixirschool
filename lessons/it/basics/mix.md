@@ -7,7 +7,7 @@
   È un elemento cruciale di qualsiasi progetto Elixir e in questa lezione esploreremo solo una parte delle sue eccezionali funzionalità.
   Per vedere tutte le cose che mix può fare, esegui il comando `mix help`.
 
-  Finora abbiamo lavorato esclusivamente con `iex` che però ha alcune limitazioni.
+Finora abbiamo lavorato esclusivamente con `iex` che però ha alcune limitazioni
   Per costruire qualcosa di significativo dobbiamo dividere il nostro codice su più files in modo da poterli gestire meglio, Mix ci permette di farlo con i progetti.
   """
 }
@@ -20,7 +20,7 @@ Questo genererà la struttura delle cartelle per il nostro progetto assieme ai f
 È facile, quindi cominciamo:
 
 ```bash
-$ mix new example
+mix new example
 ```
 
 Dall'output possiamo vedere che Mix ha creato la nostra directory assieme ad un certo numero di files predefiniti:
@@ -78,8 +78,8 @@ Potrebbe essere necessario usare `iex` all'interno del constesto della nostra ap
 Fortunatamente per noi, Mix rende questa operazione semplice. Con la nostra applicazione compilata, possiamo iniziare una nuova sessione di `iex`:
 
 ```bash
-$ cd example
-$ iex -S mix
+cd example
+iex -S mix
 ```
 
 Lanciando `iex` in questo modo, verrà caricata la nostra applicazione e le sue dipendenze all'interno della sessione.
@@ -92,9 +92,8 @@ In questa sezione affronteremo come compilare il nostro progetto ed in cosa cons
 Per compilare un progetto con Mix, dobbiamo solo lanciare il comando `mix compile` all'interno della cartella principale:
 **Nota: i comandi di Mix per un progetto sono disponibili solo se eseguiti nella cartella principale del progetto, altrimenti sono disponibili solo i comandi globali di Mix.**
 
-
 ```bash
-$ mix compile
+mix compile
 ```
 
 Non c'è molto nel nostro progetto per cui il risultato non sarà entusiasmante, tuttavia l'operazione dovrebbe finalizzarsi con successo:
@@ -132,7 +131,7 @@ Come avrai probabilmente intuito dalle dipendenze mostrate sopra, la dipendenza 
 Una volta definite le nostre dipendenze manca solo un ultimo passaggio, scaricarle. Questo è molto simile a `bundle install`:
 
 ```bash
-$ mix deps.get
+mix deps.get
 ```
 
 Fatto! Abbiamo definito e scaricato le dipendenze per il nostro progetto. Ora siamo pronti ad aggiungere altre dipendenze quando sarà necessario.
@@ -150,5 +149,5 @@ L'ambiente corrente può essere raggiunto usando `Mix.env`.
 Come previsto, l'ambiente può essere cambiato tramite la variabile d'ambiente `MIX_ENV`:
 
 ```bash
-$ MIX_ENV=prod mix compile
+MIX_ENV=prod mix compile
 ```

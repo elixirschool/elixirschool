@@ -50,7 +50,7 @@ Benchee.run(%{
 続いて、ベンチマークを実行するために、次のように呼び出します。
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 そして、あなたのコンソールに次のような出力が表示されるはずです。
@@ -206,9 +206,8 @@ fn list -> Enum.flat_map(list, map_fun) end
 
 もう一度実行してみましょう。
 
-
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 これで、コンソールに次のような出力が表示されるはずです。
@@ -276,9 +275,9 @@ map.flatten      178.18 K - 1.50x slower +1.86 μs
 
 Bencheeはコンソールフォーマッターを内蔵しており、これはすでに見たとおりですが、その他に公式にサポートされているフォーマッターは以下の3つです。
 
-- [`benchee_csv`](https://github.com/bencheeorg/benchee_csv)
-- [`benchee_json`](https://github.com/bencheeorg/benchee_json)
-- [`benchee_html`](https://github.com/bencheeorg/benchee_html)
+* [`benchee_csv`](https://github.com/bencheeorg/benchee_csv)
+* [`benchee_json`](https://github.com/bencheeorg/benchee_json)
+* [`benchee_html`](https://github.com/bencheeorg/benchee_html)
 
 それぞれ、期待通りの働きをします。つまり、結果を指定されたファイル形式に書き出すので、好きな形式で結果をさらに処理できます。
 

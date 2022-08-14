@@ -66,7 +66,6 @@ iex> case :even do
 
 想像 `_` 做為 `else` 將會比對 "所有一切"。
 
-
 由於 `case/2` 依賴於模式比對，因此相同的規則和限制都適用。如果你打算比對已存在變數，你必須使用 pin `^/1` 運算子：
 
 ```elixir
@@ -177,7 +176,6 @@ with {:ok, user} <- Repo.insert(changeset),
   important_stuff(token, full_claims)
 end
 ```
-
 
 從 Elixir 1.3 開始， `with/1` 陳述句支援 `else` 語法：
 

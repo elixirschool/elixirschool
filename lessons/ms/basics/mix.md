@@ -4,7 +4,7 @@
   excerpt: """
   Sebelum kita belajar lebih mendalam mengenai Elixir kita perlu memahami tentang mix.  Jika anda biasa dengan Ruby, mix adalah gabungan Bundler, RubyGems dan Rake.  Ia adalah elemen penting di dalam mana-mana projek Elixir dan di dalam pelajaran ini kita akan meneroka beberapa cirinya yang hebat.  Untuk melihat apa yang dibekalkan oleh mix, jalankan `mix help`.
 
-  Sehingga tahap ini kita telah bekerja dengan `iex` yang mempunyai banyak kekangan.  Untuk membina sesuatu yang berguna kita perlu memisahkan kod kita kepada banyak fail supaya mudah untuk diuruskan, dan mix memudahkan kita menguruskan projek-projek kita.
+Sehingga tahap ini kita telah bekerja dengan `iex` yang mempunyai banyak kekangan.  Untuk membina sesuatu yang berguna kita perlu memisahkan kod kita kepada banyak fail supaya mudah untuk diuruskan, dan mix memudahkan kita menguruskan projek-projek kita
   """
 }
 ---
@@ -14,7 +14,7 @@
 Apabila kita bersedia untuk membina satu projek baru Elixir, mix memudahkannya dengan arahan `mix new`.  Ini akan menjana struktur direktori projek dan plat dandang(boilerplate) yang berkaitan.  Ianya agak mudah, jadi mari kita mulakan:
 
 ```bash
-$ mix new example
+mix new example
 ```
 
 Daripada paparan output kita boleh melihat yang mix telah membuat direktori kita dan beberapa fail plat dandang:
@@ -68,8 +68,8 @@ Bahagian `application` digunakan semasa penjanaan fail aplikasi kita yang akan k
 Ada kemungkinan di mana `iex` perlu digunakan di dalam konteks aplikasi kita.  Kita bernasib baik, mix telah memudahkan kita.  Kita boleh menjalankan satu sesi `iex` baru:
 
 ```bash
-$ cd example
-$ iex -S mix
+cd example
+iex -S mix
 ```
 
 Menjalankan `iex` dengan cara ini akan memuatkan aplikasi kita dan komponen sokongan ke dalam runtime semasa.
@@ -81,7 +81,7 @@ Mix adalah pintar dan akan mengkompil perubahan anda apabila diperlukan, tetapi 
 Untuk mengkompil projek, kita hanya perlu jalankan `mix compile` di dalam direktori induk:
 
 ```bash
-$ mix compile
+mix compile
 ```
 
 Projek kita tidak mempunyai banyak kandungan jadi paparan output tidak begitu menarik tetap ia sepatutnya berjaya dijalankan:
@@ -117,7 +117,7 @@ Sebagaimana yang dapat anda lihat dari senarai komponen sokongan di atas, kompon
 Setelah membuat tetapan komponen sokongan langkah terakhir ialah memuatkan mereka.  Ini adalah sama dengan `bundle install`:
 
 ```bash
-$ mix deps.get
+mix deps.get
 ```
 
 Itu sahaja!  Kita telah membuat tetapan dan memuatkan komponen sokongan untuk projek kita.  Sekarang kita telah bersedia untuk memuatkan komponen sokongan lain apabila diperlukan.
@@ -133,5 +133,5 @@ Mix, seperti Bundler, menyokong pelbagai persekitaran(environment).  Secara lala
 Nilai persekitaran semasa boleh dicapai menggunakan `Mix.env`.  ilai persekitaran juga boleh diubah menggunakan pembolehubah `MIX_ENV`:
 
 ```bash
-$ MIX_ENV=prod mix compile
+MIX_ENV=prod mix compile
 ```

@@ -13,9 +13,9 @@ Seberapa banyak kita membuat komentar dalam source code dan apa yang membuat dok
 
 Elixir memperlakukan dokumentasi sebagai kelompok yang penting (first-class citizen), menawarkan berbagai fungsi untuk mengakses dan membuat dokumentasi untuk project. Elixir core memberi kita banyak atribut untuk menganotasi sebuah code. Mari lihat 3 cara:
 
-  - `#` - Untuk dokumentasi inline.
-  - `@moduledoc` - Untuk dokumentasi tingkat modul.
-  - `@doc` - Untuk dokumentasi tingkat fungsi.
+- `#` - Untuk dokumentasi inline.
+- `@moduledoc` - Untuk dokumentasi tingkat modul.
+- `@doc` - Untuk dokumentasi tingkat fungsi.
 
 ### Dokumentasi Inline
 
@@ -212,7 +212,7 @@ Kita sekarang bisa mendeploy ke GitHub, website kita sendiri, atau, lebih umum, 
 
 Menambahkan dokumentasi semestinya ditambahkan di dalam panduan Best Practice. Karena Elixir adalah sebuah bahasa yang masih muda, banyak standar yang masih perlu ditumbuhkan bersama ekosistemnya. Tetapi, komunitas Elixir sudah berusaha membuat panduan ini. Untuk membaca lebih jauh tentang best practice, lihatlah [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
-  - Selalu dokumentasikan sebuah modul.
+- Selalu dokumentasikan sebuah modul.
 
 ```elixir
 defmodule Greeter do
@@ -223,7 +223,7 @@ defmodule Greeter do
 end
 ```
 
-  - Jika anda tidak berniat mendokumentasikan sebuah modul, **jangan** membiarkannya kosong. Pertimbangkan untuk menganotasi modul itu dengan `false` seperti berikut:
+- Jika anda tidak berniat mendokumentasikan sebuah modul, **jangan** membiarkannya kosong. Pertimbangkan untuk menganotasi modul itu dengan `false` seperti berikut:
 
 ```elixir
 defmodule Greeter do
@@ -232,7 +232,7 @@ defmodule Greeter do
 end
 ```
 
- - Ketika merefer ke fungsi di dalam dokumentasi modul, gunakanlah tanda backtick seperti berikut:
+- Ketika merefer ke fungsi di dalam dokumentasi modul, gunakanlah tanda backtick seperti berikut:
 
 ```elixir
 defmodule Greeter do
@@ -248,7 +248,7 @@ defmodule Greeter do
 end
 ```
 
- - Pisahkanlah setiap code satu baris di bawah `@moduledoc` seperti berikut:
+- Pisahkanlah setiap code satu baris di bawah `@moduledoc` seperti berikut:
 
 ```elixir
 defmodule Greeter do
@@ -267,7 +267,7 @@ defmodule Greeter do
 end
 ```
 
- - Gunakan markdown di dalam fungsi yang akan membuatnya lebih mudah dibaca baik lewat IEx maupun ExDoc.
+- Gunakan markdown di dalam fungsi yang akan membuatnya lebih mudah dibaca baik lewat IEx maupun ExDoc.
 
 ```elixir
 defmodule Greeter do
@@ -298,6 +298,6 @@ defmodule Greeter do
 end
 ```
 
- - Upayakan untuk memasukkan beberapa contoh code dalam dokumentasi anda, ini juga memungkinkan anda menghasilkan test secara otomatis dari contoh yang ditemukan di dalam sebuah modul, fungsi, maupun macro menggunakan [ExUnit.DocTest][]. Untuk melakukan hal itu, kita perlu memanggil macro `doctest/1` dari test case kita dan menulis contoh mengikuti beberapa panduan yang didetailkan di [dokumentasi resmi][ExUnit.DocTest]
+- Upayakan untuk memasukkan beberapa contoh code dalam dokumentasi anda, ini juga memungkinkan anda menghasilkan test secara otomatis dari contoh yang ditemukan di dalam sebuah modul, fungsi, maupun macro menggunakan [ExUnit.DocTest][]. Untuk melakukan hal itu, kita perlu memanggil macro `doctest/1` dari test case kita dan menulis contoh mengikuti beberapa panduan yang didetailkan di [dokumentasi resmi][ExUnit.DocTest]
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

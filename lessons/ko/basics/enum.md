@@ -32,6 +32,7 @@ at/3
 열거형은 함수형 프로그래밍의 핵심이며, 방금 본 문서화 같은 다른 Elixir의 자랑과 함께 열거형은 개발에 매우 도움이 됩니다.
 
 # 함수들
+
 전체 목록을 보시려면 공식 [`Enum`](https://hexdocs.pm/elixir/Enum.html) 문서를 보시면 됩니다. 지연 열거(lazy enumeration)는 [`Stream`](https://hexdocs.pm/elixir/Stream.html) 모듈을 이용해보세요.
 
 ## all?

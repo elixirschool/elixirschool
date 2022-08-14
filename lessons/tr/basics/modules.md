@@ -26,6 +26,7 @@ iex> Example.greeting "Sean"
 
 Elixir'de kodunuzu modüllerin içine eklemeniz namespacesinizi daha efektif kullanmanızı sağlar.
 Elixir
+
 ```elixir
 defmodule Example.Greetings do
   def morning(name) do
@@ -150,6 +151,7 @@ end
 
 If we want to import functions and macros rather than aliasing the module we can use `import/`:
 Eğer takma ad kullanmak yerine fonksiyon ve makroları eklemek isterseniz `import/` kullana biliriniz:
+
 ```elixir
 iex> last([1, 2, 3])
 ** (CompileError) iex:9: undefined function last/1
@@ -238,6 +240,7 @@ Kodumuzu IEx'de denersek, `hello/1` öğesinin `Example` modülünde mevcut oldu
 iex> Example.hello("Sean")
 "Hi, Sean"
 ```
+
 Burada ise, `Hello` modülü üzerinde  `__using__/1` callback yaptığını görebiliriz ve sonuçta oluşan kod modülize edilmiş olur.
 Basit bir örnek gösterdik, `__using __ / 1`’in seçenekleri nasıl desteklediğine bakmak için kodumuzu güncelleyelim.
 Bunu greeting seçeneği ekleyerek uygulayacağız:
@@ -255,7 +258,6 @@ end
 ```
 
 `Example` modülünü `greeting` seçeneğini içerecek şekilde güncelleyelim:
-
 
 ```elixir
 defmodule Example do

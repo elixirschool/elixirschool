@@ -58,8 +58,8 @@ Last we'll build a consumer to display the remaining numbers for us.
 We'll begin by generating a project with a supervision tree:
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 Let's update our dependencies in `mix.exs` to include `gen_stage`:
@@ -75,7 +75,7 @@ end
 We should fetch our dependencies and compile before going much further:
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 Now we're ready to build our producer!
@@ -87,7 +87,7 @@ As we discussed before, we want to create a producer that emits a constant strea
 Let's create our producer file:
 
 ```shell
-$ touch lib/genstage_example/producer.ex
+touch lib/genstage_example/producer.ex
 ```
 
 Now we can add the code:
@@ -124,7 +124,7 @@ Now that we have a number-generating producer, let's move on to our producer-con
 We'll want to request numbers from our producer, filter out the odd one, and respond to demand.
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 Let's update our file to look like the example code:
@@ -167,7 +167,7 @@ Last but not least we have our consumer.
 Let's get started:
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 Since consumers and producer-consumers are so similar our code won't look much different:

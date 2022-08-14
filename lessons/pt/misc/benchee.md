@@ -14,11 +14,13 @@ Enquanto existe uma [função no Erlang](http://erlang.org/doc/man/timer.html#tc
 ## Uso
 
 Para adicionar Benchee ao seu projeto, adicione-o como uma dependência ao seu arquivo `mix.exs`:
+
 ```elixir
 defp deps do
   [{:benchee, "~> 1.0", only: :dev}]
 end
 ```
+
 Então chamamos:
 
 ```shell
@@ -44,7 +46,7 @@ Benchee.run(%{
 Agora para executar nosso _benchmark_, chamamos:
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 E devemos ver algo com a seguinte saída no seu console:
@@ -85,7 +87,7 @@ map.flatten        1.24 K - 1.94x slower +390.20 μs
 * **average** - este é o tempo médio de execução da função. Para esta métrica, um número baixo é melhor.
 * **deviation** - este é o desvio padrão, que nos diz o quanto os resultados para cada iteração variam nos resultados. Aqui é dado como uma porcentagem da média.
 * **median** - quando todos tempos medidos são ordenados, este é o valor médio (ou média dos dois valores do meio quando o número de amostras é par). Devido à inconsistências de ambiente este será mais estável do que a `average`, e um pouco mais provável que reflita a performance normal do seu código em produção. Para esta métrica, um número baixo é melhor.
-* **99th%** - 99% de todas as medições são mais rápidas do que isto, o que torna este tipo como *pior caso* de desempenho. Menor é melhor.
+* **99th%** - 99% de todas as medições são mais rápidas do que isto, o que torna este tipo como _pior caso_ de desempenho. Menor é melhor.
 
 Há também outras estatísticas disponíveis, mas estas quatro são frequentemente as mais úteis e comumente usadas para _benchmarking_,  por isso elas são exibidas no formatador padrão. Para aprender mais sobre outras métricas disponíveis, confira a documentação [hexdocs](https://hexdocs.pm/benchee/Benchee.Statistics.html#t:t/0).
 
@@ -178,11 +180,13 @@ Benchee.run(
 Você notará duas diferenças. Primeiro, agora temos um mapa `inputs` que contém a informação para nossas entradas para nossas funções. Estamos passando aquele mapa de entradas como uma opção de configuração para `Benchee.run/2`.
 
 E como nossas funções precisam de um argumento agora, precisamos atualizar nossas funções de benchmark para aceitar um argumento, então em vez de:
+
 ```elixir
 fn -> Enum.flat_map(list, map_fun) end
 ```
 
 agora temos:
+
 ```elixir
 fn list -> Enum.flat_map(list, map_fun) end
 ```
@@ -190,7 +194,7 @@ fn list -> Enum.flat_map(list, map_fun) end
 Vamos rodar isso novamente usando:
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 Agora você deve ver a saída no seu console como isso:

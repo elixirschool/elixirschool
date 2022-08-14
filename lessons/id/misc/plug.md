@@ -176,7 +176,7 @@ end
 Lalu untuk menjalankan aplikasi kita kita bisa gunakan:
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 ## Menguji Plug

@@ -85,7 +85,7 @@ This deck contains introductory content about Elixir. It is a good jack-of-all t
 
 ### Kernel 1
 
-This deck contains cards that cover the Kernel functions, some arithmetic expressions, logical expressions, and regular expressions.  All these cards can easily be practiced in _iex_. They are a bit repetitive on some topics but that repetition paid off, as it did clear up certain things for me. 
+This deck contains cards that cover the Kernel functions, some arithmetic expressions, logical expressions, and regular expressions.  All these cards can easily be practiced in _iex_. They are a bit repetitive on some topics but that repetition paid off, as it did clear up certain things for me.
 
 ### Enum 1
 
@@ -95,7 +95,7 @@ The information contained in these collections are great and you will learn a lo
 
 ### GenServer
 
-I don't know if this deck was supposed to be part of a series at some point, as the deck I received was labeled as __GenServer 1__ but is now listed on the website simply as  __GenServer__. This deck is magnificent, period.  It has so much information on GenServers, starting from initialization and covering topics like writing your own, termination, edge cases, hibernation, and more. You may find some cards are a bit repetitive but since this is a very tough, but important, component of the ecosystem the repetition and edge cases they contain are probably needed.
+I don't know if this deck was supposed to be part of a series at some point, as the deck I received was labeled as **GenServer 1** but is now listed on the website simply as  **GenServer**. This deck is magnificent, period.  It has so much information on GenServers, starting from initialization and covering topics like writing your own, termination, edge cases, hibernation, and more. You may find some cards are a bit repetitive but since this is a very tough, but important, component of the ecosystem the repetition and edge cases they contain are probably needed.
 
 If you’ve never written a GenServer or you’re just looking to re-enforce your understanding, this deck should be on your list.
 
@@ -113,7 +113,7 @@ Elixircards is a great idea. If  “Learning 2.0” was a thing these flashcard 
 
 I found most of the cards very helpful and really nicely priced for the knowledge / help they provide in practicing your Elixir knowledge on-the-go.  Given how creative the Elixir community is, I’m sure we can come up with some great games using the elixircards.
 
-With a little work and some additions the elixircards would be in a class of their own.  For instance, I think `Enum` should be approached differently so as not to require the purchase of all decks at once to get the most use out of them.  Perhaps mixing the difficulty and functions across the three separate decks? 
+With a little work and some additions the elixircards would be in a class of their own.  For instance, I think `Enum` should be approached differently so as not to require the purchase of all decks at once to get the most use out of them.  Perhaps mixing the difficulty and functions across the three separate decks?
 
 I would love to see the GenServer deck expanded like some of the others and focus on OTP in general, with OTP 1 being the basics and OTP 3 being the more advanced topics.  Adding content on Tasks and Supervision would be a welcomed addition as well.
 

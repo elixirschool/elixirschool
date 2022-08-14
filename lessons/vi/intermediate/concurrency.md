@@ -4,7 +4,7 @@
   excerpt: """
   Một trong những điểm nổi bật của Elixir đó là việc hỗ trợ xử lý đồng thời. Nhờ có máy ảo Erlang (BEAM), việc xử lý đồng thời trong Elixir dễ hơn rất nhiều so với mong đợi. Mô hình xử lý đồng thời dựa và Actor, một process có thể tương tác với các process khác thông qua việc truyền thông điệp.
 
-  Trong bài học này, chúng ta xem cách các module xử lý đồng thời làm việc trong Elixir. Trong chương kế tiếp chúng ta sẽ học về OTP, và cách cài đặt chúng.
+Trong bài học này, chúng ta xem cách các module xử lý đồng thời làm việc trong Elixir. Trong chương kế tiếp chúng ta sẽ học về OTP, và cách cài đặt chúng
   """
 }
 ---
@@ -154,7 +154,6 @@ iex> Agent.get(Numbers, &(&1))
 ## Tasks
 
 Tasks cung cấp một cách để chạy một hàm dưới nền, và lấy ra giá trị trả về lúc sau. Chúng có thể cực kỳ hữu dụng khi muốn xử lý các hoạt động tốn chi phí mà không làm chậm lại ứng dụng.
-
 
 ```elixir
 defmodule Example do
