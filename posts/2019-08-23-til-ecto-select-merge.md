@@ -25,7 +25,6 @@ Say you work at a school with an admissions department, and you've been tasked w
 |----------|------------------|------------------|
 | 8/1/2019 | Student Admitted | Albus Dumbledore |
 
-
 To start with, we have an `AdmissionEvent` schema that looks like this:
 
 ```elixir

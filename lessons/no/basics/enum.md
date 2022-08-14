@@ -13,11 +13,9 @@ Modulen `Enum` inneholder over hundre funksjoner som vi kan benytte av oss når 
 
 Denne leksjonen vil kun dekke en brøkdel av de tilgjengelige funksjonene. For en komplett liste av alle funksjonene, se den offisielle  [`Enum`](https://hexdocs.pm/elixir/Enum.html) dokumentasjonen, eller [`Stream`](https://hexdocs.pm/elixir/Stream.html) for lazy enums.
 
-
 ### all?
 
 Ved bruk av `all?` (og de fleste andre av Enums funksjoner), forsyner vi kolleksjonens elementer med en funksjon. I `all?` sitt tilfelle, må hele kolleksjonen evalueres til `true`, ellers vil `false` bli returnert:
-
 
 ```elixir
 iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
@@ -116,7 +114,6 @@ iex> Enum.max([5, 3, 0, -1])
 
 `max/2` gjør det samme og oppfører seg som `min/2`,
 den tillater oss å sende inn en anonym funksjon med en standard verdi til `Enum`:
-
 
 ```elixir
 Enum.max([], fn -> :bar end)

@@ -8,6 +8,7 @@
 ---
 
 ### Adaptadores
+
 O Ecto suporta diferentes banco de dados através do uso de adaptadores. Alguns
 exemplos de adaptadores são:
 
@@ -18,6 +19,7 @@ exemplos de adaptadores são:
 Nessa lição configuraremos o Ecto para usar o adaptador do PostgreSQL.
 
 ### Começando
+
 Nesta lição, cobriremos três partes do Ecto:
 
 + O repositório: provê a interface com nosso banco de dados, incluindo a conexão.
@@ -29,8 +31,8 @@ Nesta lição, cobriremos três partes do Ecto:
 Para iniciar criaremos uma aplicação com uma árvore de supervisão:
 
 ```shell
-$ mix new friends --sup
-$ cd friends
+mix new friends --sup
+cd friends
 ```
 
 Adicione o ecto e o postgrex como dependências no seu `mix.exs`:
@@ -47,10 +49,11 @@ end
 Depois, busque as dependências usando:
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 #### Criando um repositório
+
 Um repositório no Ecto mapeia a um banco de dados, como o nosso banco no
 Postgres. Toda a comunicação ao banco de dados será feita através desse
 repositório.
@@ -58,7 +61,7 @@ repositório.
 Crie um repositório rodando:
 
 ```shell
-$ mix ecto.gen.repo -r Friends.Repo
+mix ecto.gen.repo -r Friends.Repo
 ```
 
 Essa tarefa irá gerar toda a configuração requirida para conectar a um banco de dados em `config/config.exs`, incluindo a configuração do adaptador. Esse é o arquivo de configuração para nosso banco de dados `Friends`:
@@ -97,10 +100,10 @@ def start(_type, _args) do
   ]
 
 ...
-``` 
+```
 
 Depois disso, precisamos adicionar a seguinte linha no nosso
-`config/config.exs`: 
+`config/config.exs`:
 
 ```elixir
 config :friends, ecto_repos: [Friends.Repo]
@@ -113,7 +116,7 @@ Já concluímos a configuração do repositório! Agora podemos criar o banco de
 dados no PostgreSQL com o seguinte comando:
 
 ```shell
-$ mix ecto.create
+mix ecto.create
 ```
 
 Ecto vai utilizar a informação no arquivo `config/config.exs` para determinar
@@ -137,8 +140,9 @@ A melhor maneira de criar migrações é a tarefa `ecto.gen.migration <nome>`,
 então em nosso caso vamos usar:
 
 ```shell
-$ mix ecto.gen.migration create_people
-``` 
+mix ecto.gen.migration create_people
+```
+
 Isso irá gerar um novo arquivo na pasta `priv/repo/migrations` contendo uma
 timestamp no nome. Se navegarmos para esse diretório e abrirmos a migração,
 veremos algo assim:
@@ -175,10 +179,11 @@ Adicionalmente, nós incluímos `null: false` e `default: 0` como opções.
 Agora vamos rodar nossa migração:
 
 ```shell
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 ### Esquemas
+
 Agora que criamos nossa tabela inicial, precisamos dizer mais sobre ela ao
 Ecto, e parte de como fazemos isso é através de esquemas. Um esquema é um
 módulo que define um mapeando dos campos de uma tabela.
@@ -272,4 +277,3 @@ iex> Map.put(person, :name, "Jerry")
 Em nossa próxima lição, sobre changesets, iremos dar uma olhada em como
 validar as nossas mudanças e, finalmente, em como fazer elas persistir no banco
 de dados.
-

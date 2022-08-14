@@ -58,9 +58,9 @@ Chúng ta giới thiệu thêm một struct trong `Examples` module, chứa hai 
 
 Elixir cung cấp ba cách dùng để định nghĩa kiểu:
 
-  - `@type` – kiểu public. Các cấu trúc nội tại của kiểu là public
-  - `@typep` – kiểu private, và chỉ có thể sử dụng trong module mà nó được định nghĩa.
-  - `@opaque` – kiểu public, but cấu trúc nội tại là private
+- `@type` – kiểu public. Các cấu trúc nội tại của kiểu là public
+- `@typep` – kiểu private, và chỉ có thể sử dụng trong module mà nó được định nghĩa.
+- `@opaque` – kiểu public, but cấu trúc nội tại là private
 
 Hãy cùng định nghĩa kiểu của chúng ta:
 
@@ -107,7 +107,6 @@ end
 ### Viết tài liệu cho kiểu
 
 Thành phần cuối cùng chúng ta muốn thảo luận là về các để viết tài liệu cho kiểu. Như chúng ta đã biết từ bài [documentation](/vi/lessons/basics/documentation), chúng ta có `@doc` và `@moduledoc` để viết các tài liệu cho hàm và cho module. Để viết tài liệu cho kiểu, chúng ta có thể dùng `@typedoc`:
-
 
 ```elixir
 defmodule Examples do

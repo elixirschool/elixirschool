@@ -114,7 +114,7 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 
 Zauważ, że zwrócona struktura ma niepuste wartości jedynie dla pól `tagline` i `title` — jest to efektem wyrażenia `select:` w naszym zapytaniu.
 
-Zapytania takie jak to nazywane są *zapytaniami bez przypisań*, gdyż są na tyle proste, że nie wymagają przypisań.
+Zapytania takie jak to nazywane są _zapytaniami bez przypisań_, gdyż są na tyle proste, że nie wymagają przypisań.
 
 #### Przypisania w zapytaniach
 
@@ -125,7 +125,7 @@ iex> query = from(m in Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
-W tym przypadku `m` nazywamy *przypisaniem* (ang. *binding*). Przypisania są niezwykle przydatne, ponieważ pozwalają nam odnosić się do danego modułu w innych częściach zapytania. Pobierzmy teraz z bazy wszystkie filmy, które mają ID mniejsze od `2`:
+W tym przypadku `m` nazywamy _przypisaniem_ (ang. _binding_). Przypisania są niezwykle przydatne, ponieważ pozwalają nam odnosić się do danego modułu w innych częściach zapytania. Pobierzmy teraz z bazy wszystkie filmy, które mają ID mniejsze od `2`:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
@@ -136,7 +136,7 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-Bardzo istotne jest, jak zmieniła się tu wartość wyjściowa zapytania. Użycie *wyrażenia* z przypisaniem w części `select:` pozwala nam na dokładne wskazanie, w jakiej formie mają być zwrócone wybrane pola. Możemy na przykład chcieć, by zapytanie zwracało krotki, jak w tym przykładzie:
+Bardzo istotne jest, jak zmieniła się tu wartość wyjściowa zapytania. Użycie _wyrażenia_ z przypisaniem w części `select:` pozwala nam na dokładne wskazanie, w jakiej formie mają być zwrócone wybrane pola. Możemy na przykład chcieć, by zapytanie zwracało krotki, jak w tym przykładzie:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: {m.title})
@@ -147,10 +147,9 @@ iex> Repo.all(query)
 
 Dobrym pomysłem jest, aby zaczynać zawsze z prostymi zapytaniami bez przypisań, a przypisania wprowadzać wtedy, kiedy faktycznie potrzebujemy odnieść się do struktury danych. Więcej na ten temat możesz znaleźć w [dokumentacji Ecto](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions).
 
-
 ### Zapytania oparte o makra
 
-W pokazanych wyżej przykładach używaliśmy słów kluczowych `select:` i `where:` w makrze `from`, aby zbudować zapytanie — są to tak zwane *zapytania oparte o słowa kluczowe*. Jest jednak również inny sposób tworzenia zapytań — zapytania oparte o makra. Ecto dostarcza makra dla każdego ze słów kluczowych, jak na przykład `select/3` lub `where/3`. Każde z makr przyjmuje *odpytywalną* wartość, listę konkretnych przypisań i takie samo wyrażenie, jakie podalibyśmy w analogicznym zapytaniu ze słowami kluczowymi:
+W pokazanych wyżej przykładach używaliśmy słów kluczowych `select:` i `where:` w makrze `from`, aby zbudować zapytanie — są to tak zwane _zapytania oparte o słowa kluczowe_. Jest jednak również inny sposób tworzenia zapytań — zapytania oparte o makra. Ecto dostarcza makra dla każdego ze słów kluczowych, jak na przykład `select/3` lub `where/3`. Każde z makr przyjmuje _odpytywalną_ wartość, listę konkretnych przypisań i takie samo wyrażenie, jakie podalibyśmy w analogicznym zapytaniu ze słowami kluczowymi:
 
 ```elixir
 iex> query = select(Movie, [m], m.title)

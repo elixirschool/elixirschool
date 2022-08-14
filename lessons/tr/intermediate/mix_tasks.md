@@ -85,7 +85,6 @@ end
 
 Defmodule fonksiyonunu `Mix.Tasks` ve komut satırından çağırmak  istediğimiz isim ile başlattığımıza dikkat edin.İkinci satırda `Mix.Tasks` davranışını ad alanına getiren `use Mix.Task` işlevini tanımlıyoruz. Daha sonra, şu an için herhangi bir argüman almayan `run` fonksiyonunu oluşturuyoruz. Bu fonksiyonun içine de `Hello` modülünü ve `say` fonksiyonunu çağırıyoruz.
 
-
 ## Mix Görevlerini Çalıştırmak
 
 Şimdi Mix görevlerimizi kontrol edelim. Proje dizininde olduğumuz sürece çalışmaları gerekiyor. Komut satırından `mix hello` komutunu çağırdığımızda aşağıdaki çıktıyı görmemiz gerekiyor:

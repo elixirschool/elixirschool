@@ -5,11 +5,11 @@
   An example-based unit testing library like [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) is a wonderful tool to help you verify that your code works the way you think it does.
   However, example-based unit tests have some drawbacks:
 
-  * It can be easy to miss edge cases, since you're only testing a few inputs.
-  * You can write these tests without thinking through your requirements thoroughly.
-  * These tests can be very verbose when you use several examples for one function.
+* It can be easy to miss edge cases, since you're only testing a few inputs.
+* You can write these tests without thinking through your requirements thoroughly.
+* These tests can be very verbose when you use several examples for one function.
 
-  In this lesson we're going to explore how [StreamData](https://github.com/whatyouhide/stream_data) can help us overcome some of these drawbacks.
+In this lesson we're going to explore how [StreamData](https://github.com/whatyouhide/stream_data) can help us overcome some of these drawbacks
   """
 }
 ---

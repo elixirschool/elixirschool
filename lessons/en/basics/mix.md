@@ -7,7 +7,7 @@
   It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of its great features.
   To see all that Mix has to offer in the current environment run `mix help`.
 
-  Until now we've been working exclusively within `iex` which has limitations.
+Until now we've been working exclusively within `iex` which has limitations
   In order to build something substantial we need to divide our code up into many files to effectively manage it; Mix lets us do that with projects.
   """
 }
@@ -20,7 +20,7 @@ This will generate our project's folder structure and necessary boilerplate.
 This is pretty straightforward, so let's get started:
 
 ```bash
-$ mix new example
+mix new example
 ```
 
 From the output we can see that Mix has created our directory and a number of boilerplate files:
@@ -79,8 +79,8 @@ Thankfully for us, Mix makes this easy.
 We can start a new `iex` session:
 
 ```bash
-$ cd example
-$ iex -S mix
+cd example
+iex -S mix
 ```
 
 Starting `iex` this way will load your application and dependencies into the current runtime.
@@ -94,7 +94,7 @@ To compile a Mix project we only need to run `mix compile` in our base directory
 **Note: Mix tasks for a project are available only from the project root directory, only global Mix tasks are available otherwise.**
 
 ```bash
-$ mix compile
+mix compile
 ```
 
 There isn't much to our project so the output isn't too exciting but it should complete successfully:
@@ -133,7 +133,7 @@ Once we've defined our dependencies there is one final step: fetching them.
 This is analogous to `bundle install`:
 
 ```bash
-$ mix deps.get
+mix deps.get
 ```
 
 That's it! We've defined and fetched our project dependencies.
@@ -152,5 +152,5 @@ The current environment can be accessed using `Mix.env`.
 As expected, the environment can be changed via the `MIX_ENV` environment variable:
 
 ```bash
-$ MIX_ENV=prod mix compile
+MIX_ENV=prod mix compile
 ```

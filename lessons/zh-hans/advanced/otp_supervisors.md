@@ -82,28 +82,27 @@ def child_spec(opts) do
 end
 ```
 
-+ `id` - 必备 key。Supervisor 用来定位子进程的 specification。  
+- `id` - 必备 key。Supervisor 用来定位子进程的 specification。  
 
-+ `start` - 必备 key。被 Supervisor 启动时，需要调用的 Module/Function/Arguments  
+- `start` - 必备 key。被 Supervisor 启动时，需要调用的 Module/Function/Arguments  
 
-+ `shutdown` - 可选 key。子进程关闭时的行为。可选项为有以下几种：  
+- `shutdown` - 可选 key。子进程关闭时的行为。可选项为有以下几种：  
 
-  + `:brutal_kill` - 子进程立即停止  
+  - `:brutal_kill` - 子进程立即停止  
 
-  + 任何正整数 - 以毫秒为单位的等待时间，超过后 Supervisor 将杀掉此子进程。如果进程是 `:worker` 类型，此选项默认为 5000。  
+  - 任何正整数 - 以毫秒为单位的等待时间，超过后 Supervisor 将杀掉此子进程。如果进程是 `:worker` 类型，此选项默认为 5000。  
 
-  + `:infinity` - Supervisor 将会无限期地等待。这是 `:supervisor` 进程类型的默认值。不推荐 `:worker` 类型使用。  
+  - `:infinity` - Supervisor 将会无限期地等待。这是 `:supervisor` 进程类型的默认值。不推荐 `:worker` 类型使用。  
 
-+ `restart` - 可选 key。当子进程崩溃时有如下几种处理方式：  
+- `restart` - 可选 key。当子进程崩溃时有如下几种处理方式：  
 
-  + `:permanent` - 总是重启子进程。所有进程的默认值。  
+  - `:permanent` - 总是重启子进程。所有进程的默认值。  
 
-  + `:temporary` - 绝不重启子进程。  
+  - `:temporary` - 绝不重启子进程。  
 
-  + `:transient` - 只有在非正常中止的时候，才重启子进程。  
+  - `:transient` - 只有在非正常中止的时候，才重启子进程。  
 
-+ `type` - 可选 key。进程可以是 `:worker` 或者 `:supervisor` 类型。默认是 `:worker`。  
-
+- `type` - 可选 key。进程可以是 `:worker` 或者 `:supervisor` 类型。默认是 `:worker`。  
 
 ## DynamicSupervisor
 

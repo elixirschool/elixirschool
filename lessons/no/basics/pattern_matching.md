@@ -58,7 +58,6 @@ iex> {:ok, value} = {:error}
 Hva vi nettopp lærte, er at sammenligningsoperatoren tildeler når venstre siden av en sammenligning er en variabel. I noen tilfeller er dette uønsket, og vi kan da benytte oss av festeoperatoren: `^`.
 Når vi fester en variabel sammenligner vi den med den eksisterende verdien uten å binde variabelen til en ny verdi. La oss se hvordan dette fungerer:
 
-
 ```elixir
 iex> x = 1
 1
@@ -98,4 +97,3 @@ iex> greet.("Hello", "Sean")
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
 ```
-

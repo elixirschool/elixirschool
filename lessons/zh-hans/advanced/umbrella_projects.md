@@ -36,9 +36,8 @@ for each application in the apps/ directory.
 
 正如你在 shell 命令中看到的, Mix 为我们创建了一个项目的框架, 并有两个目录:
 
-  - `apps/` - 我们子项目所在的地方
-  - `config/` - 我们 umbrella 项目配置文件所在的地方
-
+- `apps/` - 我们子项目所在的地方
+- `config/` - 我们 umbrella 项目配置文件所在的地方
 
 ## 子项目
 
@@ -195,9 +194,3 @@ iex> Datasets.hello
 Hello, I'm the datasets
 :ok
 ```
-
-
-
-
-
-

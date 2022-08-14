@@ -45,6 +45,7 @@ iex> "hełło" <> <<0>>
 iex> ?Z  
 90
 ```
+
 這允許你使用 `?Z` 而不是 'Z' 作為表示符號。
 
 在 Elixir 中撰寫程式時，通常使用字串 (strings)，而不是字元列表 (charlists)。不過 Elixir 也包括對字元列表的支援，因為一些 Erlang 模組需要它。

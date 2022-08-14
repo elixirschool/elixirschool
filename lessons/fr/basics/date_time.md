@@ -100,7 +100,7 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 
 ## Working with timezones
 
-Comme noté dans la section précédente, de base Elixir n'a aucune donnée relative aux fuseaux horaires. 
+Comme noté dans la section précédente, de base Elixir n'a aucune donnée relative aux fuseaux horaires.
 Pour répondre à cette problématique, nous devons installer et configurer la librairie [tzdata](https://github.com/lau/tzdata).
 Après l'avoir installé, vous devez configurer Elixir globalement pour utiliser _Tzdata_ comme base de données de fuseaux horaires :
 

@@ -28,8 +28,8 @@ A través de esta lección cubriremos tres partes de Ecto:
 Para empezar, crearemos una aplicación con su árbol de supervisión.
 
 ```shell
-$ mix new friends --sup
-$ cd friends
+mix new friends --sup
+cd friends
 ```
 
 Agrega los paquetes de Ecto y Postgrex a tu archivo `mix.exs`
@@ -46,7 +46,7 @@ Agrega los paquetes de Ecto y Postgrex a tu archivo `mix.exs`
 Y descarga las dependencias ejecutando
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 #### Creando un repositorio
@@ -57,7 +57,7 @@ Toda comunicación con la base de datos se hará usando este repositorio.
 Configura un repositorio ejecutando:
 
 ```shell
-$ mix ecto.gen.repo -r Friends.Repo
+mix ecto.gen.repo -r Friends.Repo
 ```
 
 Esto generará la configuración requerida en `config/config.exs` para conectarse a la base de datos, incluyendo el adaptador que usará.
@@ -110,7 +110,7 @@ Esto permitirá que nuestra aplicación pueda ejecutar comandos mix de Ecto desd
 Ahora podemos crear la base de datos dentro de Postgres con este comando:
 
 ```shell
-$ mix ecto.create
+mix ecto.create
 ```
 
 Ecto usará la información en `config/config.exs` para determinar como conectarse con Postgres y que nombre darle a la base de datos.
@@ -128,7 +128,7 @@ La convención en Ecto es pluralizar las tablas, así que para nuestra aplicaci�
 La mejor forma de crear migraciones es con el comando mix `ecto.gen.migration <name>`, así que para nuestro caso ejecutaremos:
 
 ```shell
-$ mix ecto.gen.migration create_people
+mix ecto.gen.migration create_people
 ```
 
 Esto generará un nuevo archivo en el directorio `priv/repo/migrations` que contendrá un timestamp en su nombre.
@@ -165,7 +165,7 @@ Adicionalmente hemos incluido `null: false` y `default: 0` como opciones.
 Movámonos a la terminal y ejecutemos nuestra migración:
 
 ```shell
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 ### Esquemas

@@ -56,7 +56,6 @@ An error has occurred!
 
 Kita boleh takrifkan fungsi-fungsi dengan nama supaya boleh dirujuk kemudian, fungsi-fungsi bernama ini ditakrifkan dengan katakunci `def` di dalam satu modul.  Kita akan belajar lebih lanjut mengenai Modul di dalam pelajaran-pelajaran selepas ini, untuk masa sekarang kita akan fokus hanya kepada fungsi bernama.
 
-
 Fungsi-fungsi yang ditakrifkan di dalam satu modul adalah tersedia untuk digunakan oleh modul-modul lain, ini adalah blok binaan penting di dalam Elixir:
 
 ```elixir

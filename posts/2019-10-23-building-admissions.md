@@ -13,13 +13,13 @@
 
 If you didn't know, Elixir School has its own Slack where contributors can gather to discuss our organization's content and projects but most importantly, support one another in our Elixir journey. When we set out to create our own Slack we wanted to address a big concern with many public Slacks: the signal to noise ratio is bad, there's just too much spam.
 
-> Have you contributed to an Elixir School project but not joined us on Slack? Head over to https://admissions.elixirschool.com to get your invite today!
+> Have you contributed to an Elixir School project but not joined us on Slack? Head over to <https://admissions.elixirschool.com> to get your invite today!
 
 So how can we keep our Slack public but prevent spammers from joining and do so in a way that doesn't add work to our maintainers? Our solution: required at least once contribution of any side to any one of our projects.
 
 Achieving this required an application that used GitHub to verify a user's eligibility. This application would come to be known as: Admissions.
 
-> Want to skip ahead and see the final product? The code can be found at https://github.com/elixirschool/admissions.
+> Want to skip ahead and see the final product? The code can be found at <https://github.com/elixirschool/admissions>.
 
 In this post we're going to explore how Admissions works and how we achieved our goals using Elixir and Phoenix. To start let's look at the expected flow and work from there:
 
@@ -213,7 +213,7 @@ With our new dependency in place we can fetch (`mix deps.get`) and get on our wa
 
 We've called this new module `Registrar` in keeping with our college theme, it can be found in the `lib/admissions/registrar.ex` file.
 
->  ### reg·is·trar
+>## reg·is·trar
 >
 > 1. An official in a college or university who is responsible for keeping student records.
 
@@ -313,7 +313,7 @@ At this point non-contributors have been handled, they're encouraged to find opp
 
 We have reached our very final step: inviting contributors to Slack! To do this will require the use of the official Slack API and the `users.admin.invite` function they provide. This request must be a form POST with the user's email we collected in the last step and our organization's Slack token, there are some optional Slack settings you can include as well.
 
-> You can find more on the Slack API in the official documentation at https://api.slack.com/
+> You can find more on the Slack API in the official documentation at <https://api.slack.com/>
 
 Once we handled our response we had a working API client:
 
@@ -378,4 +378,4 @@ We've already added a route for this function so we're done. Like done done. We 
 
 Have you contributed to an Elixir School project but not yet joined Slack? Head over to [http://admissions.elixirschool.com](http://admissions.elixirschool.com/) and check your eligibility!
 
-Interested in seeing the code in it's entirity? Looking for a contribution opportunity to unlock Slack access? You can find the project on GitHub at https://github.com/elixirschool/admissions.
+Interested in seeing the code in it's entirity? Looking for a contribution opportunity to unlock Slack access? You can find the project on GitHub at <https://github.com/elixirschool/admissions>.

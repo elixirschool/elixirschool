@@ -4,7 +4,7 @@
   excerpt: """
   Antes de que podamos sumergirnos en las profundas aguas de Elixir primero necesitamos aprender acerca de mix. Si estás familiarizado con Ruby, mix es Bundler, RubyGems y Rake combinados. Es una parte crucial de cualquier proyecto Elixir y en esta lección vamos a explorar solo algunas de sus grandiosas características. Para ver todo lo que mix ofrece ejecutamos `mix help`.
 
-  Hasta ahora hemos estado trabajando exclusivamente dentro de `iex` con sus limitaciones. Para construir algo sustancial necesitamos dividir nuestro código en varios archivos para administrarlos efectivamente, mix nos permite hacer eso con nuestros proyectos.
+Hasta ahora hemos estado trabajando exclusivamente dentro de `iex` con sus limitaciones. Para construir algo sustancial necesitamos dividir nuestro código en varios archivos para administrarlos efectivamente, mix nos permite hacer eso con nuestros proyectos
   """
 }
 ---
@@ -14,7 +14,7 @@
 Cuando estamos listos para crear un nuevo proyecto Elixir, mix lo hace fácil con el comando `mix new`. Esto generará la estructura y los archivos necesarios de nuestro proyecto. Esto es bastante sencillo, ahora vamos a empezar:
 
 ```bash
-$ mix new example
+mix new example
 ```
 
 De la salida podemos ver que mix ha creado nuestro directorio y un número de archivos:
@@ -68,12 +68,11 @@ La sección `application` es usada durante la generación de nuestro archivo de 
 Puede ser necesario usar `iex` dentro del contexto de nuestra aplicación. Por suerte para nosotros, mix hace esto fácil. Podemos empezar una nueva sesión `iex`:
 
 ```bash
-$ cd example
-$ iex -S mix
+cd example
+iex -S mix
 ```
 
 Al empezar `iex` de esta forma, mix cargará nuestra aplicación y dependencias en la ejecución actual.
-
 
 ## Compilación
 
@@ -82,7 +81,7 @@ Mix es inteligente y compilará tus cambios cuando sea necesario, pero todavia p
 Para compilar un proyecto mix solo necesitamos ejecutar `mix compile` en nuestro directorio base:
 
 ```bash
-$ mix compile
+mix compile
 ```
 
 No hay mucho en nuestro proyecto, por eso la salida no es tan emocionante así que esto debería completarse satisfactoriamente:
@@ -93,7 +92,6 @@ Generated example app
 ```
 
 Cuando compilamos un proyecto mix crea un directorio `_build` para nuestros artefactos. Si miramos dentro de `_build` vamos a ver nuestra aplicación compilada `example.app`.
-
 
 ## Administrar dependencias
 
@@ -119,7 +117,7 @@ Como probablemente has visto en las dependencias arriba, la dependencia `cowboy`
 Una vez que hemos definido nuestras dependencias hay un paso final: obtenerlas. Esto es análogo a `bundle install` (en Ruby):
 
 ```bash
-$ mix deps.get
+mix deps.get
 ```
 
 ¡Eso es! Hemos definido y obtenido nuestras dependencias. Ahora estamos preparados para agregar dependencias cuando sea necesario.
@@ -135,5 +133,5 @@ Mix, como Bundler, soporta diferentes entornos. Mix trabaja con tres entornos:
 El actual entorno puede ser accedido usando `Mix.env`. Como esperamos, el entorno puede ser cambiado mediante la variable de entorno `MIX_ENV`:
 
 ```bash
-$ MIX_ENV=prod mix compile
+MIX_ENV=prod mix compile
 ```

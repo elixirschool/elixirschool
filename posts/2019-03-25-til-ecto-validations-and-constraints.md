@@ -18,6 +18,7 @@ However, did you know they are differences between validations and constraints? 
 ## Data Integrity is Rule #1
 
 > Data Integrity is the maintenance of, and the assurance of the accuracy and consistency of, data over its entire lifecycle
+>
 > - [Wikipedia](https://en.wikipedia.org/wiki/Data_integrity)
 
 So we're building a super cool app with users that can login and logout. We'd probably have some schema like this:
@@ -156,7 +157,7 @@ end
 ```
 
 ```bash
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 Now if we try again we'll see that our record did not get saved:

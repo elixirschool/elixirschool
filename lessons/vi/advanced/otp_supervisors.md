@@ -27,7 +27,7 @@ children = [
 
 Nếu tiến trình của chúng ta bị lỗi, hoặc bị tắt đi, giám trình sẽ tự động khởi động lại nó như chưa có điều gì xảy ra.
 
-### Các chiến thuật:
+### Các chiến thuật
 
 Hiện tại, có bốn chiến thuật khác nhau để khởi động lại các tiến trình con:
 

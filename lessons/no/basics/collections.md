@@ -28,7 +28,6 @@ iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
 
-
 ### Listesammenføyning (list concatenation)
 
 For å sammenføye to lister bruker vi `++/2` operatoren:

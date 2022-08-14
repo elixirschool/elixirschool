@@ -6,7 +6,7 @@
   En Elixir esto nos da la habilidad de extender el lenguaje para que encaje con nuestras necesidades y poder cambiar el código dinámicamente.
   Vamos a empezar mirando como Elixir está representado por detrás, luego vamos a modificarlo y finalmente podemos usar este conocimiento para extenderlo.
 
-  Unas palabras de advertencia: La Metaprogramación es complicada y solo debería ser usada cuando sea realmente necesario.
+Unas palabras de advertencia: La Metaprogramación es complicada y solo debería ser usada cuando sea realmente necesario
   El abuso con seguridad acabará con código complejo que es difícil de mantener y depurar.
   """
 }

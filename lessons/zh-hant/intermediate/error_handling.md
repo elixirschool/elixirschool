@@ -6,7 +6,7 @@
 
   一般來說，Elixir 中的慣例 (convention) 是建立一個函數 (`example/1`) 回傳 `{:ok, result}` 和 `{:error, reason}`。而一個單獨的函數 (`example!/1`) 回傳無包圍的 (unwrapped) `result` 或觸發一個錯誤。
 
-  本課程將著重於與後者互動。
+本課程將著重於與後者互動
   """
 }
 ---
@@ -94,7 +94,7 @@ end
 
 ## New Errors
 
-雖然 Elixir 包含許多類似於 `RuntimeError` 的內建錯誤型別，但是如果需要特定的東西，仍然可以建立自己的錯誤型別。使用 `defexception/1` 巨集且用 `:message` 選項設定一個預設的錯誤訊息就能很容易產生一個新的錯誤訊息： 
+雖然 Elixir 包含許多類似於 `RuntimeError` 的內建錯誤型別，但是如果需要特定的東西，仍然可以建立自己的錯誤型別。使用 `defexception/1` 巨集且用 `:message` 選項設定一個預設的錯誤訊息就能很容易產生一個新的錯誤訊息：
 
 ```elixir
 defmodule ExampleError do

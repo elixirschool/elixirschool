@@ -4,7 +4,7 @@
   excerpt: """
   Sebelum kita bisa masuk ke pelajaran Elixir lebih mendalam pertama-tama kita harus belajar tentang mix. Jika anda sudah familiar dengan Ruby, mix adalah seperti gabungan dari Bundler, RubyGems, dan Rake.  Mix adalah bagian krusial dari project Elixir apapun dan dalam pelajaran ini kita akan mengeksplorasi sebagian dari fitur-fiturnya. Untuk melihat semua yang bisa dilakukan oleh mix, jalankan `mix help`.
 
-  Sampai sekarang kita hanya bekerja dengan `iex` yang punya keterbatasan.  Untuk membuat sesuatu yang bermakna, kita perlu memecah code kita ke banyak file agar bisa mengaturnya dengan efektir. Mix memungkinkan kita melakukan hal itu dengan project.
+Sampai sekarang kita hanya bekerja dengan `iex` yang punya keterbatasan.  Untuk membuat sesuatu yang bermakna, kita perlu memecah code kita ke banyak file agar bisa mengaturnya dengan efektir. Mix memungkinkan kita melakukan hal itu dengan project
   """
 }
 ---
@@ -14,7 +14,7 @@
 Ketika kita siap untuk membuat sebuah project Elixir baru, mix membuatnya mudah dengan perintah `mix new`.  Perintah ini akan membuat struktur folder dan prasyarat (boilerplate) yang dibutuhkan untuk project kita.  Hal ini cukup sederhana, jadi mari kita mulai:
 
 ```bash
-$ mix new example
+mix new example
 ```
 
 Dari outputnya kita bisa melihat bahwa mix sudah membuat direktori kita dan sejumlah file boilerplate:
@@ -68,8 +68,8 @@ Bagian `application` digunakan dalam proses pembuatan file aplikasi kita yang ak
 Mungkin kita perlu menggunakan `iex` dalam konteks aplikasi kita.  Untungnya, mix mempermudah hal ini.  Kita bisa memulasi sebuah sesi `iex` baru:
 
 ```bash
-$ cd example
-$ iex -S mix
+cd example
+iex -S mix
 ```
 
 Memulai `iex` dengan cara ini akan memuat aplikasi anda dan dependensinya ke dalam runtime yang berjalan.
@@ -81,7 +81,7 @@ Mix cerdas dan akan mengkompilasi perubahan yang anda lakukan jika perlu, tetapi
 Untuk mengkompilasi sebuah project mix kita hanya perlu menjalankan `mix compile` di direktori dasar:
 
 ```bash
-$ mix compile
+mix compile
 ```
 
 Tidak banyak yang ada dalam project kita sehingga output nya tidak begitu menarik, tapi kompilasinya harusnya selesai dengan baik:
@@ -117,7 +117,7 @@ Seperti yang mungkin sudah anda pahami dari contoh di atas, dependensi `cowboy` 
 Begitu kita telah mendefinisikan dependensi kita, ada satu langkah terakhir, mengambilnya.  Ini analog dengan `bundle install`:
 
 ```bash
-$ mix deps.get
+mix deps.get
 ```
 
 Selesai!  Kita sudah mendefinisikan dan mangambil dependensi project kita.  Sekarang kita sudah siap untuk manambahkan dependensi jika saatnya tiba.
@@ -133,5 +133,5 @@ Mix, seperti Bundler, mendukung pembedaan environment.  Secara default mix beker
 Environment yang sedang berjalan dapat diakses menggunakan `Mix.env`.  Sebagaimana diduga, environment bisa diubah dengan environment variable `MIX_ENV`:
 
 ```bash
-$ MIX_ENV=prod mix compile
+MIX_ENV=prod mix compile
 ```

@@ -17,9 +17,10 @@ In this codealong we'll build a simple Elixir application and use Kaffe to conne
 
 This post assumes basic knowledge of Elixir and no knowledge of Kafka or Kaffe. Here is the repo with the full project: [Elixir Kaffe Codealong](https://github.com/elixirschool/elixir_kaffe_codealong).
 
-
 ## What is Kafka, briefly?
+
 Kafka is a messaging system. It does essentially three things:
+
 1. Receives messages from applications
 2. Keeps those messages in the order they were received in
 3. Allows other applications to read those messages in order
@@ -47,7 +48,9 @@ Before we jump into the codealong let's clarify a few common Kafka terms you'll 
 ## Codealong: basic Elixir app & Kafka running locally
 
 ### Set up Kafka Server
+
 Follow the first two steps of the [quickstart instructions](http://kafka.apache.org/documentation/#quickstart) from Apache Kafka:
+
 1. [Download the code](https://www.apache.org/dyn/closer.cgi?path=/kafka/2.1.0/kafka_2.11-2.1.0.tgz)
 2. Start the servers
 Zookeeper (a service that handles some coordination and state management for Kafka)
@@ -55,14 +58,15 @@ Zookeeper (a service that handles some coordination and state management for Kaf
 Kafka
 `bin/kafka-server-start.sh config/server.properties`
 
-
 ### Set up Elixir App
 
-* **1. Start new project**
+- **1. Start new project**
 `mix new elixir_kaffe_codealong`
 
-* **2. Configure kaffe**
+- **2. Configure kaffe**
+
 - **2.a:** In `mix.exs` add `:kaffe` to the list of extra applications:
+
 ```elixir
 def application do
   [
@@ -72,6 +76,7 @@ end
 ```
 
 - **2.b:** Add kaffe to list of dependencies:
+
 ```elixir
 defp deps do
   [
@@ -82,8 +87,9 @@ end
 
 - **2.c:** Run `mix deps.get` in the terminal to lock new dependencies.
 
-* **3. Configure producer**
+- **3. Configure producer**
 in `config/config.exs` add:
+
 ```elixir
 config :kaffe,
   producer: [
@@ -96,9 +102,10 @@ config :kaffe,
   ]
 ```
 
-* **4. Configure consumer**
+- **4. Configure consumer**
 
 - **4.a:** add `/lib/application.ex` with the following code:
+
 ```elixir
 defmodule ElixirKaffeCodealong.Application do
   use Application # read more about Elixir's Application module here: https://hexdocs.pm/elixir/Application.html
@@ -113,7 +120,9 @@ defmodule ElixirKaffeCodealong.Application do
   end
 end
 ```
+
 - **4.b:** back in `mix.exs`, add a new item to the application function:
+
 ```elixir
 def application do
   [
@@ -125,7 +134,9 @@ def application do
   ]
 end
 ```
+
 - **4.c:** add a consumer module to accept messages from Kafka as `/lib/example_consumer.ex` with the following code:
+
 ```elixir
 defmodule ExampleConsumer do
   # function to accept Kafka messaged MUST be named "handle_message"
@@ -140,7 +151,9 @@ defmodule ExampleConsumer do
   end
 end
 ```
+
 - **4.d:** configure the consumer module in `/config/config.exs`
+
 ```elixir
 config :kaffe,
   consumer: [
@@ -151,10 +164,11 @@ config :kaffe,
   ]
 ```
 
-* **5. Add a producer module (optional, can also call Kaffe from the console)**
+- **5. Add a producer module (optional, can also call Kaffe from the console)**
 We're going to wrap the functions Kaffe provides us in our own methods for ExampleProducer. Calling on Kaffe directly would also work; the `produce_sync` function is what ultimately sends our message to Kafka.
 
 add `/lib/example_producer.ex` with the following code:
+
 ```elixir
 defmodule ExampleProducer do
   def send_my_message({key, value}, topic) do
@@ -171,7 +185,7 @@ defmodule ExampleProducer do
 end
 ```
 
-* **6. Send and receive messages in the console!**
+- **6. Send and receive messages in the console!**
 
 Now we have everything configured and can use the modules we've created to send and read messages through Kafka!
 
@@ -180,6 +194,7 @@ Now we have everything configured and can use the modules we've created to send 
 3. Our consumer, which we configured to subscribe to the topic called "another_topic", will receive the message we've sent and print it to the console.
 
 Start an interactive elixir shell with `iex -S mix` and call the following:
+
 ```sh
 iex> ExampleProducer.send_my_message({"Metamorphosis", "Franz Kafka"}, "another_topic")
 ...>[debug] event#produce_list topic=another_topic
@@ -201,8 +216,10 @@ iex> %{
 ```
 
 ## Variations: Docker & Umbrella Apps
+
 - If you're running Kafka from a docker container (most common in real applications), you will use that hostname in the config file rather than `localhost`
 - In an umbrella app you'll configure Kaffe in the child application running it. If you have apps separated by environment, you can start the consumer by structuring it as a child like this:
+
 ```elixir
     children = case args do
       [env: :prod] -> [worker(Kaffe.Consumer, [])]
@@ -213,22 +230,29 @@ iex> %{
 ```
 
 ## Troubleshooting Errors
+
 - **No leader error**
+
 ```
 ** (MatchError) no match of right hand side value: {:error, :LeaderNotAvailable}
 ```
+
 Solution: Try again. It just needed a minute to warm up.
 
 - **Invalid Topic error**
+
 ```
 ** (MatchError) no match of right hand side value: {:error, :InvalidTopicException}
 ```
+
 Solution: Your topic shouldn't have spaces in it, does it?
 
 ## The end
+
 This should have given you the basic setup for you to start exploring more of this on your own, but there's lots more you can do with Kaffe so check out sending multiple messages, consumer groups, etc. If you come up with any more troubleshooting errors you've solved, let us know by [creating an issue here](https://github.com/elixirschool/elixirschool/issues).
 
 ## Resources
+
 - [Elixir Kaffe Codealong](https://github.com/elixirschool/elixir_kaffe_codealong)
 - [Kaffe on Github](https://github.com/spreedly/kaffe)
 - [Kaffe on Hexdocs](https://hexdocs.pm/kaffe/Kaffe.html#content)

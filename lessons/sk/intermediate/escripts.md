@@ -67,7 +67,7 @@ end
 Po dokončení konfigurácie našej aplikácie, tak aby použila escript je vybudovanie spustiteľného súboru hračka s Mixom:
 
 ```elixir
-$ mix escript.build
+mix escript.build
 ```
 
 A teraz našu aplikáciu vyskúšajme:

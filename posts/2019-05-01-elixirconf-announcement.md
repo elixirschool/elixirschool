@@ -19,9 +19,9 @@ But wait — there’s __even more__! In continued dedication to our mission of 
 
 Join Sean Callan ([@doomspork](https://github.com/doomspork)), Sophie DeBenedetto ([@SophieDeBenedetto](https://github.com/sophiedebenedetto)), and Michael Stalker ([@michaelstalker](https://github,com/michaelstalker)) for two awesome days of training in beautiful Denver, CO. Come for Day 1 or Day 2, or both, and level up your Elixir in a truly first-of-its-kind workshop.
 
-After Day 1’s workshop, __*Harnessing the Real-Time Web with Phoenix, Channels, and Presence*__, you’ll come away with the experience to confidently create Phoenix applications from scratch and implement basic real-time features. Along the way, learn not only Elixir and Phoenix how-tos, but also testing and application design best practices while we work together on our applications.
+After Day 1’s workshop, ___Harnessing the Real-Time Web with Phoenix, Channels, and Presence___, you’ll come away with the experience to confidently create Phoenix applications from scratch and implement basic real-time features. Along the way, learn not only Elixir and Phoenix how-tos, but also testing and application design best practices while we work together on our applications.
 
-On Day 2, we’ll explore the advanced features of Phoenix, the real-time web, and testing with __*Building Bulletproof Real-Time Applications with Phoenix, LiveView, and StreamData*__. Expanding on the applications used in Day 1 (attendance is not required but encouraged), we’ll incorporate features into our application that leverage the new LiveView library and we’ll ensure our features are well tested with property-based testing and StreamData.
+On Day 2, we’ll explore the advanced features of Phoenix, the real-time web, and testing with ___Building Bulletproof Real-Time Applications with Phoenix, LiveView, and StreamData___. Expanding on the applications used in Day 1 (attendance is not required but encouraged), we’ll incorporate features into our application that leverage the new LiveView library and we’ll ensure our features are well tested with property-based testing and StreamData.
 
 __What is ElixirConf?__
 

@@ -130,7 +130,7 @@ end
 
 Vamos primero a revisar `anagrams?/2`. Estamos revisando si los parámetros que estamos recibiendo son binarios o no. Esa es la forma de revisar si un parámetro es una cadena en Elixir.
 
-Luego de eso llamamos a una función que ordena las cadenas alfabéticamente. Primero convierte la cadena a minúsculas y luego usa `String.graphemes/1` para obtener una lista de grafemas de la cadena. Finalmente envía esa lista a `Enum.sort/1`. 
+Luego de eso llamamos a una función que ordena las cadenas alfabéticamente. Primero convierte la cadena a minúsculas y luego usa `String.graphemes/1` para obtener una lista de grafemas de la cadena. Finalmente envía esa lista a `Enum.sort/1`.
 
 Vamos a revisar la salida en iex:
 

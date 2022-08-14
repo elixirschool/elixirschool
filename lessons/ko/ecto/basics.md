@@ -28,8 +28,8 @@ Ecto는 어댑터를 통해 서로 다른 데이터베이스를 지원합니다.
 시작해 보겠습니다. 슈퍼비전 트리를 포함한 새 애플리케이션을 생성합니다.
 
 ```shell
-$ mix new friends --sup
-$ cd friends
+mix new friends --sup
+cd friends
 ```
 
 ecto와 postgrex 패키지를 `mix.exs` 파일의 의존성 목록에 추가합니다.
@@ -46,7 +46,7 @@ ecto와 postgrex 패키지를 `mix.exs` 파일의 의존성 목록에 추가합�
 아래 명령어를 통해 의존성 있는 라이브러리를 가져옵니다.
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 #### 레포지토리 생성
@@ -57,7 +57,7 @@ Ecto의 레포지토리는 Postgres 데이터베이스같은 데이터 저장소
 다음 명령어를 실행하여 레포지토리를 설정합니다.
 
 ```shell
-$ mix ecto.gen.repo -r Friends.Repo
+mix ecto.gen.repo -r Friends.Repo
 ```
 
 위 명령어로 사용할 어댑터를 포함하여 데이터베이스에 연결하기 위해 필요한 설정들이 `config/config.exs`에 생성됩니다.
@@ -110,7 +110,7 @@ config :friends, ecto_repos: [Friends.Repo]
 이제 다음 명령어로 postgres 안에 데이터베이스를 생성해봅시다.
 
 ```shell
-$ mix ecto.create
+mix ecto.create
 ```
 
 Ecto는 `config/config.exs` 파일 안의 정보로 Postgres와 연결할 방법과 데이터베이스에 전달할 이름을 판단하게 됩니다.
@@ -128,7 +128,7 @@ Ecto에서는 관례적으로 테이블 이름에 복수형을 쓰고 있습니�
 마이그레이션을 생성하는 가장 좋은 방법은 `ecto.gen.migration <name>` 믹스 태스크를 사용하는 것입니다. 다음과 같이 실행해 봅시다.
 
 ```shell
-$ mix ecto.gen.migration create_people
+mix ecto.gen.migration create_people
 ```
 
 `priv/repo/migrations` 폴더에 타임스탬프가 포함된 이름으로 새 파일이 하나 생성됩니다.
@@ -165,7 +165,7 @@ end
 shell에서 마이그레이션을 실행해봅시다.
 
 ```shell
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 ### 스키마

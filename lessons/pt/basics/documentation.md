@@ -13,9 +13,9 @@ Quanto comentamos e o que faz uma documentação ser de qualidade segue sendo um
 
 Elixir trata de documentação como uma *cidadã de primeira classe*, oferecendo várias funções de acesso e geração de documentação para seus projetos. O núcleo do Elixir nos fornece muitos atributos diferentes para anotar uma base de código. Vejamos 3 maneiras:
 
-  - `#` - Para documentação em linha.
-  - `@moduledoc` - Para documentação em nível de módulo.
-  - `@doc` - Para documentação em nível de função.
+- `#` - Para documentação em linha.
+- `@moduledoc` - Para documentação em nível de módulo.
+- `@doc` - Para documentação em nível de função.
 
 ### Documentação em Linha
 
@@ -59,7 +59,7 @@ iex> h Greeter
 Provides a function hello/1 to greet a human
 ```
 
-_Nota_: não precisamos compilar manualmente nossos arquivos como fizemos acima se estamos trabalhando dentro do contexto de um projeto mix. Você pode usar o `iex -S mix` para carregar o IEx console de um projeto atual se você estiver trabalhando em um projeto mix.
+*Nota*: não precisamos compilar manualmente nossos arquivos como fizemos acima se estamos trabalhando dentro do contexto de um projeto mix. Você pode usar o `iex -S mix` para carregar o IEx console de um projeto atual se você estiver trabalhando em um projeto mix.
 
 ### Documentação de Funções
 
@@ -220,7 +220,7 @@ Agora nós podemos implantar isso para GitHub, o nosso próprio site, ou mais co
 
 Documentação deve ser adicionada seguindo as boas práticas orientadas pela linguagem. Considerando que Elixir é uma linguagem bastante jovem, muitas normas ainda serão descobertas ao longo do crescimento do ecossistema. A comunidade, entretanto, tem feito esforços para estabelecer as melhores práticas. Para ler mais sobre, veja [O Guia de Estilo Elixir](https://github.com/niftyn8/elixir_style_guide).
 
-  - Sempre documente um módulo.
+- Sempre documente um módulo.
 
 ```elixir
 defmodule Greeter do
@@ -231,7 +231,7 @@ defmodule Greeter do
 end
 ```
 
-  - Caso você não pretenda documentar um módulo, **não deixe-o** em branco. Considere anotar o módulo com `false` como a seguir:
+- Caso você não pretenda documentar um módulo, **não deixe-o** em branco. Considere anotar o módulo com `false` como a seguir:
 
 ```elixir
 defmodule Greeter do
@@ -240,7 +240,7 @@ defmodule Greeter do
 end
 ```
 
-  - Quando se referir a funções dentro da documentação de um módulo, use backticks desta forma:
+- Quando se referir a funções dentro da documentação de um módulo, use backticks desta forma:
 
 ```elixir
 defmodule Greeter do
@@ -256,7 +256,7 @@ defmodule Greeter do
 end
 ```
 
- - Separe todo e qualquer código de uma única linha abaixo de `@moduledoc` como a seguir:
+- Separe todo e qualquer código de uma única linha abaixo de `@moduledoc` como a seguir:
 
 ```elixir
 defmodule Greeter do
@@ -275,7 +275,7 @@ defmodule Greeter do
 end
 ```
 
- - Use markdown dentro de funções para torná-lo mais fácil de ler, até em caso de leitura através de IEx ou ExDoc.
+- Use markdown dentro de funções para torná-lo mais fácil de ler, até em caso de leitura através de IEx ou ExDoc.
 
 ```elixir
 defmodule Greeter do
@@ -306,6 +306,6 @@ defmodule Greeter do
 end
 ```
 
- - Tente incluir alguns exemplos de código em sua documentação, isto também permite gerar testes automáticos a partir dos exemplos de código encontrados em um módulo, função ou macro com [Exunit.DocTest] []. A fim de fazer isso, é preciso invocar o macro `doctest/1` de seu caso de teste e escrever os seus exemplos de acordo com algumas orientações, que são detalhados na [documentação oficial][ExUnit.DocTest].
+- Tente incluir alguns exemplos de código em sua documentação, isto também permite gerar testes automáticos a partir dos exemplos de código encontrados em um módulo, função ou macro com [Exunit.DocTest] []. A fim de fazer isso, é preciso invocar o macro `doctest/1` de seu caso de teste e escrever os seus exemplos de acordo com algumas orientações, que são detalhados na [documentação oficial][ExUnit.DocTest].
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

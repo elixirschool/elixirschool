@@ -73,7 +73,6 @@ What if we ultimately want to send StatsD metrics to Datadog, which _does_ suppo
 
 For the purposes of this tutorial, we'll use the DogStatsD formatter to make it easy to read and understand the metrics and tags that we are constructing and sending to StatsD.
 
-
 ```elixir
 defmodule Quantum.Telemetry do
   use Supervisor
@@ -102,10 +101,10 @@ end
 ## Getting Started
 
 You can follow along with this tutorial by cloning down the repo [here]
-(https://github.com/elixirschool/telemetry-code-along/tree/part-3-start).
+(<https://github.com/elixirschool/telemetry-code-along/tree/part-3-start>).
+
 * Checking out the starting state of our code on the branch [part-3-start](https://github.com/elixirschool/telemetry-code-along/tree/part-3-start)
 * Find the solution code on the branch [part-3-solution](https://github.com/elixirschool/telemetry-code-along/tree/part-3-solution)
-
 
 ## Phoenix Telemetry Events
 
@@ -126,7 +125,6 @@ metadata = %{metadata | conn: conn}
 Here, Phoenix is calculating the duration by subtracting the start time, set at the beginning of the request processing pipeline, from the current time. Then it's updating the metadata map to include the `conn`. Lastly, it's executing the Telemetry metric with this information.
 
 Now that we know which Telemetry event we care about, let's make our `Telemetry.Metrics`, `Quantum.Telemetry` module aware of it.
-
 
 ```elixir
 # lib/quantum/telemetry.ex

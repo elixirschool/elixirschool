@@ -95,7 +95,6 @@ iex> case {1, 2, 3} do
 
 Leggi la documentazione ufficiale per [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
-
 ## cond
 
 Quando abbiamo bisogno di verificare condizioni, non valori, possiamo usare `cond`; è simile a `else if` o `elsif` in altri linguaggi:

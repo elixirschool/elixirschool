@@ -37,7 +37,7 @@ end
 
 ## 解析引數 (Parsing Args)
 
-隨著應用程式設定，可以接著解析命令列引數。為此，將使用 Elixir 的 `OptionParser.parse/2` 伴隨 `:switches` 選項來表示旗標 (flag) 是布林 (boolean)： 
+隨著應用程式設定，可以接著解析命令列引數。為此，將使用 Elixir 的 `OptionParser.parse/2` 伴隨 `:switches` 選項來表示旗標 (flag) 是布林 (boolean)：
 
 ```elixir
 defmodule ExampleApp.CLI do
@@ -67,7 +67,7 @@ end
 一旦完成應用程式使用 escript 的環境設置，以 Mix 建立可執行檔案是不費吹灰之力的：
 
 ```elixir
-$ mix escript.build
+mix escript.build
 ```
 
 現在來試試看：
@@ -80,4 +80,4 @@ $ ./example_app Hi
 Hi
 ```
 
-就這樣。我們已經使用 escript 在 Elixir 中建立了第一個可執行檔案。 
+就這樣。我們已經使用 escript 在 Elixir 中建立了第一個可執行檔案。

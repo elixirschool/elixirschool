@@ -22,7 +22,7 @@ Poolboy 就是为此产生。它允许你设置一个受 `Supervisor` 管理的 
 让我们先来创建一个应用：
 
 ```shell
-$ mix new poolboy_app --sup
+mix new poolboy_app --sup
 ```
 
 把 Poolboy 添加到 `mix.exs` 的依赖配置里面。
@@ -36,7 +36,7 @@ end
 然后安装获取依赖。
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## 配置选项
@@ -84,7 +84,6 @@ end
 最开始定义的是进程池的配置选项。进程池的名字设置为 `:worker`，`:scope` 设为 `:local`。然后我们指派 `PoolboyApp.Worker` 模块作为 `:worker_module`。进程池的大小通过 `:size` 设置为 5。同时，通过配置 `:max_overflow` 选项，我们还可以让进程池在 worker 进程繁忙的情况下，最多创建两个额外的 worker。*（`overflow` workers 完成工作后会被销毁。）*
 
 然后，我们把 `:poolboy.child_spec/2` 函数添加到 children 数组中，它就会随着应用的启动而启动。这个函数接收两个参数：进程池名字，和它的配置。
-
 
 ## 创建 Worker
 
@@ -141,7 +140,7 @@ end
 运行测试，结果如下：
 
 ```shell
-$ iex -S mix
+iex -S mix
 ```
 
 ```elixir

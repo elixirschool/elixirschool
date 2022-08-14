@@ -33,16 +33,16 @@ Since `:odbc` is included in Erlang, we don't need to include any dependencies.
 We can create a new supervised project and get started immediately
 
 ```shell
-$ mix new my_etl_odbc_app --sup
-$ cd my_etl_odbc_app
-$ mix compile
+mix new my_etl_odbc_app --sup
+cd my_etl_odbc_app
+mix compile
 ```
 
 Now, let's make a config for our connection.
 
 ```shell
-$ mkdir config
-$ touch config/config.exs
+mkdir config
+touch config/config.exs
 ```
 
 And we open that up:
@@ -137,7 +137,6 @@ end
 There are a lot of moving parts here that are quite specific to `:odbc` and the fact it relies on charlists over binaries like most higher level Elixir APIs.
 
 Let's look at this piece by piece.
-
 
 ```elixir
   def run(query) do
@@ -247,6 +246,7 @@ Now, we make our row stream and our query stream work together to write to the f
 Once it completes, you can find it at the path we hard-coded.
 
 ## Conclusion
+
 In a real system, since `:odbc` makes one process per connection, you will want to use a tool like [Poolboy](https://hex.pm/packages/poolboy).
 Check out the [post on Poolboy](https://elixirschool.com/en/lessons/misc/poolboy) to see how you could integrate it into this querying interface as to not overload whatever database you may be talking to.
 

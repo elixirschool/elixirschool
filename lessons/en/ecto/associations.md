@@ -77,6 +77,7 @@ To declare that a character belongs to a movie, we need the `characters` table t
 ```elixir
 add :movie_id, references(:movies)
 ```
+
 So our migration should look like this:
 
 ```elixir

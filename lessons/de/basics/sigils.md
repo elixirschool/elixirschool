@@ -13,26 +13,26 @@ Elixir bietet eine alternative Syntax, um Literale darzustellen und damit zu arb
 
 Die Liste vorhandener sigils beinhaltet:
 
-  - `~C` Erstellt eine Characterliste **ohne** escaping und Interpolation
-  - `~c` Erstellt eine Characterliste **mit** escaping oder Interpolation
-  - `~R` Erstellt einen regulären Ausdruck **ohne** escaping oder Interpolation
-  - `~r` Erstellt eine regulären Ausdruck **mit** escaping und Interpolation
-  - `~S` Erstellt eine String **ohne** escaping oder Interpolation
-  - `~s` Erstellt einen String **mit** escaping oder Interpolation
-  - `~W` Erstellt eine Wörterliste **ohne** escaping oder Interpolation
-  - `~w` Erstellt eine Wörterliste **mit** escaping und Interpolation
-  - `~N` Erstellt ein `NaiveDateTime` struct
+- `~C` Erstellt eine Characterliste **ohne** escaping und Interpolation
+- `~c` Erstellt eine Characterliste **mit** escaping oder Interpolation
+- `~R` Erstellt einen regulären Ausdruck **ohne** escaping oder Interpolation
+- `~r` Erstellt eine regulären Ausdruck **mit** escaping und Interpolation
+- `~S` Erstellt eine String **ohne** escaping oder Interpolation
+- `~s` Erstellt einen String **mit** escaping oder Interpolation
+- `~W` Erstellt eine Wörterliste **ohne** escaping oder Interpolation
+- `~w` Erstellt eine Wörterliste **mit** escaping und Interpolation
+- `~N` Erstellt ein `NaiveDateTime` struct
 
 Eine Liste an Trennzeichen beinhaltet:
 
-  - `<...>` Ein Paar spitze Klammern
-  - `{...}` Ein Paar geschweifte Klammern
-  - `[...]` Ein Paar eckige Klammern
-  - `(...)` Ein Paar runde Klammern
-  - `|...|` Ein Paar pipes
-  - `/.../` Ein Paar Slashes
-  - `"..."` Ein Paar doppelte Anführungszeichen
-  - `'...'` Ein Paar einfache Anführungszeichen
+- `<...>` Ein Paar spitze Klammern
+- `{...}` Ein Paar geschweifte Klammern
+- `[...]` Ein Paar eckige Klammern
+- `(...)` Ein Paar runde Klammern
+- `|...|` Ein Paar pipes
+- `/.../` Ein Paar Slashes
+- `"..."` Ein Paar doppelte Anführungszeichen
+- `'...'` Ein Paar einfache Anführungszeichen
 
 ### Characterlisten
 

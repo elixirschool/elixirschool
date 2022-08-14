@@ -77,6 +77,7 @@ Aby zadeklarować, że postać należy do filmu, potrzebujemy, aby tabela `chara
 ```elixir
 add :movie_id, references(:movies)
 ```
+
 Cała nasza migracja będzie zatem wyglądała tak:
 
 ```elixir

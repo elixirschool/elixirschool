@@ -46,7 +46,7 @@ Benchee.run(%{
 Aby uruchomić nasz test wydajności, wykonujemy:
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 Następnie w konsoli powinniśmy zobaczyć:
@@ -189,7 +189,7 @@ fn(list) -> Enum.flat_map(list, map_fun) end
 Uruchommy to ponownie:
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 Teraz powinieneś zobaczyć następujące dane w konsoli:

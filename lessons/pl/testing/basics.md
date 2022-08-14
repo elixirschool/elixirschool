@@ -184,7 +184,7 @@ Zamiast tego społeczność Elixira zachęca, by zmienić myślenie na ten tema
 
 By poznać szerszą dyskusję w tej sprawie, przeczytaj ten [znakomity artykuł](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/).
 
-Mówiąc w dużym skrócie, zamiast mockowania zależności dla testów (mockowania jako *czasownika*), istotnie lepszym podejściem jest jawne definiowanie interfejsów (zachowań) dla kodu znajdującego się poza naszą aplikacją i użycie w testach mockupów (jako *rzeczownika*).
+Mówiąc w dużym skrócie, zamiast mockowania zależności dla testów (mockowania jako _czasownika_), istotnie lepszym podejściem jest jawne definiowanie interfejsów (zachowań) dla kodu znajdującego się poza naszą aplikacją i użycie w testach mockupów (jako _rzeczownika_).
 
 By lepiej zrozumieć wzorzec „mocków jako rzeczowników”, możesz:
 

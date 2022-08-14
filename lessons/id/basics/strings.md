@@ -103,9 +103,9 @@ Mari langsung mencoba dengan dua latihan sederhana untuk mendemonstrasikan bahwa
 
 ### Anagram
 
-A dan B dianggap anagram jika dengan mengubah urutan karakternya kita bisa membuatnya jadi sama. Sebagai contoh: 
+A dan B dianggap anagram jika dengan mengubah urutan karakternya kita bisa membuatnya jadi sama. Sebagai contoh:
 A = super
-B = perus 
+B = perus
 
 Jika kita mengubah urutan karakter-karakter di string A, kita bisa dapatkan string B, dan sebaliknya.
 

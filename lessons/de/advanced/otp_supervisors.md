@@ -27,6 +27,7 @@ children = [
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
+
 oder eine Liste von Tupeln, falls du Konfigurations-Optionen mitgeben willst:
 
 ```elixir
@@ -43,6 +44,7 @@ defmodule SimpleQueue.Application do
   end
 end
 ```
+
 Wenn wir `iex -S mix` ausführen, sehen wir, dass unsere SimpleQueue automatisch gestartet wird:
 
 ```elixir
@@ -131,6 +133,7 @@ options = [
 
 DynamicSupervisor.start_link(options)
 ```
+
 Um eine neue SimpleQueue dynamisch zu starten, nutzen wir dann die Funktion `start_child/2`, welche einen Supervisor und eine Kind-Spezifikation als Argumente nimmt (`SimpleQueue` nutzt `use GenServer`, die Kind-Spezifikation ist daher schon definiert):
 
 ```elixir

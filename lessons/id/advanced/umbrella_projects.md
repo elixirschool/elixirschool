@@ -36,9 +36,8 @@ for each application in the apps/ directory.
 
 Sebagaimana yang bisa anda lihat dari perintah shell tersebut, Mix membuat sebuah project kerangka kecil untuk kita dengan dua direktori:
 
-  - `apps/` - tempat tinggal subproject (project anak) kita
-  - `config/` - tempat tinggal konfigurasi project payung kita
-
+- `apps/` - tempat tinggal subproject (project anak) kita
+- `config/` - tempat tinggal konfigurasi project payung kita
 
 ## Project Anak
 

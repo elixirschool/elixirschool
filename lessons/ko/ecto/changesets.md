@@ -6,7 +6,7 @@
 
   대부분의 개발자는 입력 데이터에 잠재적인 오류가 있는지 확인하는 작업에 익숙합니다. 데이터를 목적에 맞게 사용하기 전에 데이터가 올바른 상태인지 확인해야 합니다.
 
-  Ecto는 `Changeset` 모듈 및 데이터 자료구조의 방식으로 데이터 변경 작업을 위한 완벽한 솔루션을 제공합니다.
+Ecto는 `Changeset` 모듈 및 데이터 자료구조의 방식으로 데이터 변경 작업을 위한 완벽한 솔루션을 제공합니다
   이 단원에서는 이 기능을 살펴보고 데이터를 데이터베이스에 저장하기 전에 데이터의 무결성을 확인하는 방법을 배웁니다.
   """
 }
@@ -87,7 +87,7 @@ iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{name: ""})
 
 Ecto는 위 체인지셋이 유효하다고 말하고 있지만 실제로는 빈 이름은 허용하지 않을 것입니다. 고쳐봅시다!
 
-## 유효성 검사 
+## 유효성 검사
 
 Ecto에는 도움이 되는 내장 유효성 검사 함수들이 많이 있습니다.
 
@@ -184,7 +184,7 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
 
 [여기](https://hexdocs.pm/ecto/Ecto.Changeset.html#summary)에서 전체 리스트와 사용방법같은 세부사항을 확인할 수 있습니다.
 
-### 사용자 정의 validator 
+### 사용자 정의 validator
 
 내장 validator들이 많은 유스케이스를 처리하긴 하지만, 그렇지 못한 경우도 여전히 있습니다.
 
@@ -232,7 +232,7 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
 
 잘 동작하네요! 그런데 사실 `validate_inclusion/4` 함수가 이미 있어 직접 이 함수를 만들 필요는 없었습니다. 그래도 에러 메시지를 직접 정의하는 방법을 알게된건 쓸모가 있습니다.
 
-## 프로그래밍 방식으로 변경사항 만들기 
+## 프로그래밍 방식으로 변경사항 만들기
 
 체인지셋에 직접 변경사항을 적용해야 할 때도 있습니다. 그런 경우 `put_change/3` 함수를 사용합니다.
 
@@ -261,7 +261,7 @@ def registration_changeset(struct, params) do
 end
 ```
 
-파라미터에 `name`을 넘기지 않아도 `Anonymous`가 자동으로 설정될 것입니다. 
+파라미터에 `name`을 넘기지 않아도 `Anonymous`가 자동으로 설정될 것입니다.
 
 ```elixir
 iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
@@ -285,7 +285,7 @@ def sign_up(params) do
 end
 ```
 
-## 결론 
+## 결론
 
 이 강의에서 다루지 않은 많은 사용 사례와 기능들이 있습니다. 예를 들어 _모든_ 데이터의 유효성 검증에 사용할 수 있는 [schemaless changesets](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets)이 있고, 사이드 이펙트를 체인지셋으로 처리하는 것이나([`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2)) 연관관계와 임베드를 다루는 것들이 있습니다.
 추후 심화 단원에서 이것들을 다뤄볼 것이긴 하지만, 그 전에 [Ecto Changeset 공식문서](https://hexdocs.pm/ecto/Ecto.Changeset.html)를 한번 보시는걸 추천드립니다.

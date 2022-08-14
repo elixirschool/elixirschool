@@ -6,7 +6,7 @@
   We may even want to simulate different situations like unexpected server errors.
   Handling this in an efficient way doesn't come easy in Elixir without a little help.
 
-  In this lesson we're going to explore how [bypass](https://github.com/PSPDFKit-labs/bypass) can help us quickly and easily handle these requests in our tests.
+In this lesson we're going to explore how [bypass](https://github.com/PSPDFKit-labs/bypass) can help us quickly and easily handle these requests in our tests
   """
 }
 ---
@@ -29,7 +29,6 @@ _Note_: If you wish to skip ahead to the final code, head over to the Elixir Sch
 
 By this point we should be comfortable creating new Mix projects and adding our dependencies so we'll focus instead of the pieces of code we'll be testing.
 If you do need a quick refresher, refer to the [New Projects](https://elixirschool.com/en/lessons/basics/mix/#new-projects) section of our [Mix](https://elixirschool.com/en/lessons/basics/mix) lesson.
-
 
 Let's start by creating a new module that will handle making the requests to our domains.
 With [HTTPoison](https://github.com/edgurgel/httpoison) let's create a function, `ping/1`, that takes a URL and returns `{:ok, body}` for HTTP 200 requests and `{:error, reason}` for all others:

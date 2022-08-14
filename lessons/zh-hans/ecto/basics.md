@@ -20,6 +20,7 @@ Ecto通过使用适配器可以支持不同的数据库。 一些常见的适配
 ### 开始
 
 在本课程中，我们将介绍有关 Ecto 的以下三部分：
+
 * Repository - 提供数据库的接口，包括连接
 * Migrations - 一种创建，修改和删除数据库表和索引的机制
 * Schemas - 表示数据库表实例的特殊结构
@@ -27,8 +28,8 @@ Ecto通过使用适配器可以支持不同的数据库。 一些常见的适配
 首先，让我们创建一个带有 supervision 树应用程序
 
 ```shell
-$ mix new friends --sup
-$ cd friends
+mix new friends --sup
+cd friends
 ```
 
 将 ecto 和 postgrex 包依赖项添加到 `mix.exs` 文件中
@@ -45,18 +46,17 @@ $ cd friends
 使用如下命令安装依赖项
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 #### 创建一个 Repository
-
 
 在 Ecto 中，一个 repository 是映射到数据存储区的，例如 Postgres 数据库。所有与数据库的通信都将使用该 repository 完成。
 
 通过运行以下命令创建一个Repository:
 
 ```shell
-$ mix ecto.gen.repo -r Friends.Repo
+mix ecto.gen.repo -r Friends.Repo
 ```
 
 上述命令会在 `config/config.exs` 文件中生成所需的配置，用来连接到我们要使用的数据库。
@@ -110,7 +110,7 @@ config :friends, ecto_repos: [Friends.Repo]
 我们现在可以使用以下命令在 postgres 中创建数据库：
 
 ```shell
-$ mix ecto.create
+mix ecto.create
 ```
 
 Ecto 将使用 `config/config.exs` 文件中的配置信息来确定如何连接到 Postgres 中对应的数据库。
@@ -128,7 +128,7 @@ Ecto 中的约定是将表格复数化，因此对于应用程序，我们需要
 创建 migrations 的最佳方法是执行 `mix ecto.gen.migration <name>` 任务，所以在我们的例子中使用如下命令：
 
 ```shell
-$ mix ecto.gen.migration create_people
+mix ecto.gen.migration create_people
 ```
 
 这将在 `priv/repo/migrations` 文件夹中生成一个文件名中包含一个时间戳的新文件。
@@ -164,7 +164,7 @@ end
 让我们跳转到 shell 并运行我们的 migration：
 
 ```shell
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 ### Schemas
@@ -188,7 +188,6 @@ end
 ```
 
 在这里我们可以看到 `Friends.Person` 模块告诉 Ecto 这个 schema 与 `people` 表有关，我们有两个字段：一个字符串类型的 `name` 字段和一个`age` 字段，并指定 `age` 的默认值为 `0`。
-
 
 让我们通过 `iex -S mix` 并创建一个新 person 来看看我们的 schema 是啥样的：
 

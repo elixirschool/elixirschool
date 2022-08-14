@@ -4,7 +4,7 @@
   excerpt: """
   臭虫（Bugs）可谓是任何项目都无法避免的存在，所以调试也不可或缺。
 
-  本课程我们将学习如何调试 Elixir 代码，并使用静态分析工具来帮助寻找可能存在的 bugs。
+本课程我们将学习如何调试 Elixir 代码，并使用静态分析工具来帮助寻找可能存在的 bugs
   """
 }
 ---
@@ -144,7 +144,6 @@ BREAK: (a)bort (c)ontinue (p)roc info (i)nfo (l)oaded
 
 你还可以通过 [IEx.Helpers 文档](https://hexdocs.pm/iex/IEx.Helpers.html)来查看可用的一些辅助工具有哪些。
 
-
 ## Dialyxir 和 Dialyzer
 
 [Dialyzer](http://erlang.org/doc/man/dialyzer.html)，全称就是 **DI**screpancy **A**na**LYZ**er for **ER**lang，它是一个静态代码分析工具。也就是说，它_阅读_和分析你的代码，但是不_执行_它们，比如说，寻找 bugs，无法触及的死代码等。
@@ -216,6 +215,7 @@ $ mix dialyzer
   Proceeding with analysis... done in 0m0.95s
 done (passed successfully)
 ```
+
 借助 specifications 就可以使用工具进行静态代码分析，并让代码变得更健壮和包含更少的 bugs。  
 
 ## 调试
@@ -239,7 +239,7 @@ end
 然后运行 `iex`：  
 
 ```bash
-$ iex -S mix
+iex -S mix
 ```
 
 再运行调试器：  
@@ -253,8 +253,8 @@ Erlang 的 `:debugger` 模块可以让我们访问调试器。我们可以使用
 
 + 通过传入文件路径来指定外部配置文件。  
 + 如果参数是 `:local` 或者 `:global`，调试器就会：  
-    + `:global` - 调试器会解析所有已知节点的代码。这个是选项的默认值。  
-    + `:local` - 调试器只会解析当前节点的代码。  
+  + `:global` - 调试器会解析所有已知节点的代码。这个是选项的默认值。  
+  + `:local` - 调试器只会解析当前节点的代码。  
 
 下一步就是把调试器挂载到我们的模块上：  
 
@@ -315,7 +315,7 @@ iex > :int.delete_break(Example, 8)
 :ok
 ```
 
-在调试器窗口也有同样的操作选项。在顶层菜单，__Break__，我们可以选择 __Line Break__ 并设置断点。如果我们选择了一行没有代码的涤烦设置了断点，它会被忽略，但是依然会在调试器窗口出现。断点的类型有三种：  
+在调试器窗口也有同样的操作选项。在顶层菜单，**Break**，我们可以选择 **Line Break** 并设置断点。如果我们选择了一行没有代码的涤烦设置了断点，它会被忽略，但是依然会在调试器窗口出现。断点的类型有三种：  
 
 + 行断点 - 调试器到达目标行时，挂起执行。这种断点通过 `:int.break/2` 设置。  
 + 条件断点 - 和行断点类似，但是调试器只有在满足特定条件的时候才会挂起代码。`:int.get_binding/2` 可以获取绑定的条件变量。  

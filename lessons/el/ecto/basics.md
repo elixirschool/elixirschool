@@ -30,8 +30,8 @@
 Για να ξεκινήσουμε θα δημιουργήσουμε ένα νέο project με δέντρο επιτήρησης.
 
 ```shell
-$ mix new friends --sup
-$ cd friends
+mix new friends --sup
+cd friends
 ```
 
 Προσθέστε τα πακέτα εξαρτήσεων ecto_sql και postgrex στο `mix.exs` αρχείο μας:
@@ -48,7 +48,7 @@ end
 Κατεβάστε τις εξαρτήσεις με τη χρήση:
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 #### Δημιουργία ενός Αποθετηρίου
@@ -59,7 +59,7 @@ $ mix deps.get
 Ορίστε ένα αποθετήριο τρέχοντας την εντολή:
 
 ```shell
-$ mix ecto.gen.repo -r Friends.Repo
+mix ecto.gen.repo -r Friends.Repo
 ```
 
 Αυτή η εντολή θα δημιουργήσει τις απαραίτητες ρυθμίσεις στο αρχείο `config/config.exs` για τη σύνδεση στη βάση δεδομένων, συμπεριλαμβανομένου του προσαρμογέα που θα χρησιμοποιηθεί.
@@ -112,7 +112,7 @@ config :friends, ecto_repos: [Friends.Repo]
 Τώρα μπορούμε να δημιουργήσουμε τη βάση δεδομένων μέσα στην Postgres με αυτή την εντολή:
 
 ```shell
-$ mix ecto.create
+mix ecto.create
 ```
 
 Το Ecto θα χρησιμοποιήσει τις πληροφορίες στο αρχείο `config/config.exs` για να προσδιορίσει πως να συνδεθεί στην Postgres και τι όνομα να δώσει στη βάση δεδομένων.
@@ -131,7 +131,7 @@ $ mix ecto.create
 Ο καλύτερος τρόπος να δημιουργήσουμε μετατροπές είναι η εργασία mix `ecto.gen.migration <όνομα μετατροπής>`, έτσι στην περίπτωσή μας θα χρησιμοποιήσουμε:
 
 ```shell
-$ mix ecto.gen.migration create_people
+mix ecto.gen.migration create_people
 ```
 
 Αυτή η εντολή θα δημιουργήσει ένα νέο αρχείο στο φάκελο `priv/repo/migrations` που θα περιέχει την χρονική σήμανση στο όνομα του.
@@ -168,7 +168,7 @@ end
 Μεταβείτε στο τερματικό και τρέξτε τη μετατροπή:
 
 ```shell
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 ### Σχήματα

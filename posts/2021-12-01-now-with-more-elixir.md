@@ -11,7 +11,7 @@ How Elixir School migrated from Jekyll to a Phoenix powered site
 
 ---
 
-# Now With More Elixir!
+# Now With More Elixir
 
 If you follow us on Twitter then you may have gotten a sneak peek at the new site before today's big launch but for those who haven't followed along we thought we'd cover this exciting new chapter in our history.
 

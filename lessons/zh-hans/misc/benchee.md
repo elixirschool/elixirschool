@@ -46,7 +46,7 @@ Benchee.run(%{
 现在就可以运行我们的基准测试了：
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 类似的输出就会出现在你的命令行控制台：
@@ -88,7 +88,6 @@ map.flatten        1.24 K - 1.94x slower +390.20 μs
 * **deviation** - 这是标准差，也就是每次调用耗时和前述平均值之间的偏移量。这里是平均标准差的百分比形式。
 * **median** - 中位数。当所有的数值都测量出来后，排序，取中间的那个值（如果是偶数结果的话，取中间两个值的平均数）。因为环境的不一致性，这个值比 `average` 更稳定，也更能体现代码在线上运行的效率。这个数值也是越小越好。
 * **99th %** - 99% 的测量值比当前数值要快，也就是说这个基本是**最差的**性能指标。这个数值越小越好。
-
 
 还有其它的一些统计数字，但是这四个是最常用，也是最常用的测量基准值，所以它们都在默认的格式化工具中显示。想了解更多可用的测量数值，可参考 [hexdocs](https://hexdocs.pm/benchee/Benchee.Statistics.html#t:t/0) 上的文档。
 
@@ -195,7 +194,7 @@ fn list -> Enum.flat_map(list, map_fun) end
 让我们再做一次测试：
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 现在你应该在控制台看到类似这样的输出：

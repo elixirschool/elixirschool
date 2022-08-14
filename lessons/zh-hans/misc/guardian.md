@@ -122,6 +122,7 @@ Guardian 提供了好一些和 HTTP 请求集成的 Plugs。你可以从[另一�
 最简单的和 HTTP 集成的方式是通过路由器。因为 Guardian 的 HTTP 集成是基于 plugs 的，所以你可以在任何用 plug 的地方使用它。  
 
 Guardian plug 使用的一般流程是这样的：  
+
 1. 从请求（任何地方）中找到令牌，并验证：`Verify*` plugs  
 2. 可选地从令牌中获取相应的资源：`LoadResource` plug  
 3. 确保请求中包含有效的令牌，如果没有，拒绝访问：`EnsureAuthenticated` plug

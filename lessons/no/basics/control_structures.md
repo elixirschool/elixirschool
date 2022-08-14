@@ -82,7 +82,6 @@ En annen fiffig funksjon i `case`, er dens støtte for beskyttelsesklausuler (gu
 
 _Dette eksemplet er hentet direkte fra den offisielle Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) guiden._
 
-
 ```elixir
 iex> case {1, 2, 3} do
 ...>   {1, x, 3} when x > 0 ->
@@ -94,7 +93,6 @@ iex> case {1, 2, 3} do
 ```
 
 Se den offisielle dokumentasjonen for [Tillatte uttrykk i beskyttelsesklausuler](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
-
 
 ## cond
 
@@ -154,7 +152,6 @@ iex> with {:ok, first} <- Map.fetch(user, :first),
 
 La oss nå se på et større eksempel uten `with`, og deretter se hvordan vi kan refaktorere det:
 
-
 ```elixir
 case Repo.insert(changeset) do
   {:ok, user} ->
@@ -178,4 +175,3 @@ with {:ok, user} <- Repo.insert(changeset),
      {:ok, jwt, full_claims} <- Guardian.encode_and_sign(user, :token, claims),
      do: important_stuff(jwt, full_claims)
 ```
-

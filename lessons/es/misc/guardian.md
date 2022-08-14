@@ -98,7 +98,6 @@ config :my_app, MyApp.Guardian,
        secret_key: "Secret key. Puede usar `mix guardian.gen.secret` para obtener una"
 ```
 
-
 Este es el conjunto mínimo de información que necesita proporcionar a Guardian para operar.
 No debe codificar su clave secreta directamente en su configuración de nivel superior
 En cambio, cada entorno debe tener su propia clave.
@@ -253,7 +252,6 @@ config :my_app, MyApp.AuthAccessPipeline,
   error_handler: MyApp.AuthErrorHandler
 ```
 
-
 #### Básicos
 
 Dentro del controlador, hay un par de opciones sobre cómo acceder al usuario actualmente conectado.
@@ -312,7 +310,7 @@ En su controlador de inicio de sesión:
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
-    	# Usar tokens de acceso.
+     # Usar tokens de acceso.
       # Use access tokens.
       # Se pueden usar otros tokens, como: :refresh etc.
       # Other tokens can be used, like :refresh etc

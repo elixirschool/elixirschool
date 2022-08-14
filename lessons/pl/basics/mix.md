@@ -7,7 +7,7 @@
   Jest to kluczowy element każdego projektu tworzonego w Elixirze i w tej lekcji przyjrzymy się najważniejszym jego funkcjom.
   By uzyskać pełną listę oferowanych funkcji, wpisz `mix help`.
 
-  Dotychczas pracowaliśmy z interpreterem `iex`, który ma dość ograniczone możliwości.
+Dotychczas pracowaliśmy z interpreterem `iex`, który ma dość ograniczone możliwości
   Chcąc napisać coś bardziej rozbudowanego, musimy nasz kod podzielić na wiele plików, by móc nim efektywnie zarządzać; Mix pozwala nam to robić z projektami.
   """
 }
@@ -20,7 +20,7 @@ Generator stworzy strukturę katalogów oraz niezbędne pliki projektu.
 Jest to bardzo proste – zatem zaczynajmy:
 
 ```bash
-$ mix new example
+mix new example
 ```
 
 W konsoli pojawi się informacja, że Mix stworzył niezbędne pliki oraz katalogi:
@@ -79,8 +79,8 @@ Dzięki Mixowi jest to na szczęście proste.
 Wystarczy uruchomić nową sesję `iex` z parametrami:
 
 ```bash
-$ cd example
-$ iex -S mix
+cd example
+iex -S mix
 ```
 
 Tak uruchomiony `iex` załaduje na starcie aplikację wraz z zależnościami.
@@ -94,7 +94,7 @@ Do skompilowania projektu wystarczy polecenie `mix compile` wywołane w katalogu
 **Uwaga: polecenia Mixa specyficzne dla projektu są dostępne jedynie w głównym katalogu tego projektu – w innych lokalizacjach można użyć jedynie poleceń globalnych.**
 
 ```bash
-$ mix compile
+mix compile
 ```
 
 Nasz projekt nie zawiera zbyt wielu elementów, a zatem komunikat nie jest zbyt ekscytujący, ale kompilacja powinna zakończyć się powodzeniem:
@@ -133,7 +133,7 @@ Kiedy nasze zależności są już skonfigurowane, pozostaje nam jeszcze jeden k
 Jest to zachowanie analogiczne do `bundle install`:
 
 ```bash
-$ mix deps.get
+mix deps.get
 ```
 
 I to wszystko! Zdefiniowaliśmy i pobraliśmy nasze zależności.
@@ -152,5 +152,5 @@ Aktualne środowisko dostępne jest w `Mix.env`.
 Jak można się spodziewać, istnieje możliwość skonfigurowania go za pomocą zmiennej środowiskowej `MIX_ENV`:
 
 ```bash
-$ MIX_ENV=prod mix compile
+MIX_ENV=prod mix compile
 ```

@@ -50,7 +50,7 @@ Again, Plataformatec has a nice blog post on [deploying your Elixir app with eDe
 
 Hi future me! Hope this post was still helpful the nth time around.
 
-### References:
+### References
 
 - [Phoenix Ecto Integration](https://github.com/phoenixframework/phoenix_ecto)
 - [Ecto.Migrator](https://hexdocs.pm/ecto_sql/Ecto.Migrator.html)

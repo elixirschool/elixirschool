@@ -28,8 +28,8 @@ W trakcie tej lekcji omówimy trzy części Ecto:
 Zacznijmy od stworzenia aplikacji z drzewem nadzoru:
 
 ```shell
-$ mix new friends --sup
-$ cd friends
+mix new friends --sup
+cd friends
 ```
 
 Dodajmy biblioteki `ecto_sql` i `postgrex` jako zależności w pliku `mix.exs`:
@@ -46,7 +46,7 @@ Dodajmy biblioteki `ecto_sql` i `postgrex` jako zależności w pliku `mix.exs`:
 A na koniec pobierzmy zależności:
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 #### Tworzenie repozytorium
@@ -57,7 +57,7 @@ Wszelka komunikacja z bazą danych będzie się odbywać właśnie za pośrednic
 Stwórzmy je zatem:
 
 ```shell
-$ mix ecto.gen.repo -r Friends.Repo
+mix ecto.gen.repo -r Friends.Repo
 ```
 
 Powyższa komenda wygeneruje konfigurację w pliku `config/config.exs`, konieczną do łączenia się z bazą danych.
@@ -110,7 +110,7 @@ Skończyliśmy konfigurowanie repozytorium!
 Teraz możemy stworzyć bazę danych w Postgresie za pomocą następującej komendy:
 
 ```shell
-$ mix ecto.create
+mix ecto.create
 ```
 
 Ecto będzie używać informacji z pliku `config/config.exs`, by ustalić, jak łączyć się z Postgresem i jaką nazwę nadać bazie danych.
@@ -128,7 +128,7 @@ Konwencja Ecto mówi, że tabele powinny mieć nazwy w liczbie mnogiej, zatem st
 Najlepszym sposobem na utworzenie migracji jest użycie zadania Mixa `ecto.gen.migration <name>`, więc w tym przypadku powinniśmy uruchomić następujące polecenie:
 
 ```shell
-$ mix ecto.gen.migration create_people
+mix ecto.gen.migration create_people
 ```
 
 Wygeneruje ono nowy plik w folderze `priv/repo/migrations`, zawierający w nazwie datę i czas.
@@ -165,7 +165,7 @@ Dodaliśmy ponadto `null: false` i `default: 0` jako opcje.
 Wróćmy do wiersza poleceń i uruchommy naszą migrację:
 
 ```shell
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 ### Schematy

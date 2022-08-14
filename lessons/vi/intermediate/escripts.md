@@ -37,7 +37,7 @@ end
 
 ## Phân tích đối số (Parsing args)
 
-Với việc ứng dụng đã được cấu hình (with our application set up), chúng ta có thể chuyển sang phân tích các đối số trên command line. Để làm điều này chúng ta sẽ sử dụng `OptionParser.parse/2` của Elixir với tùy chọn `:switches` để chỉ ra cờ của chúng ta là luận lý: 
+Với việc ứng dụng đã được cấu hình (with our application set up), chúng ta có thể chuyển sang phân tích các đối số trên command line. Để làm điều này chúng ta sẽ sử dụng `OptionParser.parse/2` của Elixir với tùy chọn `:switches` để chỉ ra cờ của chúng ta là luận lý:
 
 ```elixir
 defmodule ExampleApp.CLI do
@@ -67,7 +67,7 @@ end
 Một khi chúng ta đã hoàn tất việc cấu hình ứng dụng để sử dụng escript, xây dựng file thực thi khá là đơn giản với Mix:
 
 ```elixir
-$ mix escript.build
+mix escript.build
 ```
 
 Giờ hãy cùng thử xem kết quả ra sao:

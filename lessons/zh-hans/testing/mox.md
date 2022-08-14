@@ -106,6 +106,7 @@ defmodule MyAppTest do
   end
 end
 ```
+
 假设你已经在某处创建了所需的模块（ `HTTP200Mock` 和 `HTTP404Mock` ）。
 我们在 [`setup`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#setup/1) 宏中，定义了一个 [`on_exit`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#on_exit/2) 函数回调，以确保 `:http_client` 在每次测试后，都能返回到之前的状态。
 
@@ -154,7 +155,7 @@ end
 
 然后，修改 `test_helper.exs` 文件来完成以下工作：
 
-1. 定义一个或多个 Mock 
+1. 定义一个或多个 Mock
 2. 为 Mock 设置好相应的应用变量
 
 ```elixir

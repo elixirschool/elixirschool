@@ -48,8 +48,8 @@ Với ứng dụng này chúng ta sẽ sử dụng cả ba vai trò trong GenSta
 Chúng ta sẽ bắt đầu với việc sinh ra một dự án với supervision tree (tạm dịch: cây giám sát).
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 Sau đó thêm `gen_stage` vào các thư viện trong `mix.exs`
@@ -65,7 +65,7 @@ end
 Chúng ta cần tải thư viện về và biên dịch trước khi xem tiếp:
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 Giờ thì ta đã sẵn sàng để viết producer rồi!
@@ -75,8 +75,8 @@ Giờ thì ta đã sẵn sàng để viết producer rồi!
 Bước đầu tiên của ứng dụng GenStage là tạo producer. Như đã nói từ trước, chúng ta muốn tạo một producer xuất một dãy các con số. File producer là như sau:
 
 ```shell
-$ mkdir lib/genstage_example
-$ touch lib/genstage_example/producer.ex
+mkdir lib/genstage_example
+touch lib/genstage_example/producer.ex
 ```
 
 Sau đó thêm code vào:
@@ -107,7 +107,7 @@ Hàm `handle_demand/2` là phần chủ yếu và **phải được cài đặt*
 Giờ ta đã có một producer để sinh các con số rồi, tiếp đến sẽ là producer-consumer. Chúng ta sẽ muốn gửi yêu cầu các con số từ producer, sau đó lọc ra các con số chẵn, rồi cuối cùng trả lời các yêu cầu.
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 Ta cập nhật file cho nó giống với đoạn code bên dưới:
@@ -146,7 +146,7 @@ Khi ta đánh dấu process là một producer-consumer, tham số thứ hai c�
 Và giờ thì tới lượt consumer:
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 Vì consumer và producer-consumer khá giống nhau nên code của chúng ta trông không khác nhau lắm:

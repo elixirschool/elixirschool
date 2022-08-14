@@ -29,8 +29,8 @@ Im Laufe dieser Lektion werden wir drei Teile behandeln:
 Zu Beginn erstellen wir eine Anwendung mit einem Supervisor-Baum.
 
 ```shell
-$ mix new friends --sup
-$ cd friends
+mix new friends --sup
+cd friends
 ```
 
 Füge die Ecto und Postgrex Paket-Abhängigkeit zu deiner `mix.exs` Datei hinzu.
@@ -47,7 +47,7 @@ Füge die Ecto und Postgrex Paket-Abhängigkeit zu deiner `mix.exs` Datei hinzu.
 Lade die Pakete herunter.
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 #### Ein Repository erstellen
@@ -58,12 +58,11 @@ Die gesamte Kommunikation mit der Datenbank wird über dieses Repository abgewic
 So erstellst du ein neues Repository:
 
 ```shell
-$ mix ecto.gen.repo -r Friends.Repo
+mix ecto.gen.repo -r Friends.Repo
 ```
 
 Dies erzeugt die Konfiguration, welche für um eine Verbindung zu einer Datenbank notwendig ist. Einschließlich des zu verwendenden Adapters.
 So sieht Konfigurationsdatei für unsere Anwendung `Friends` aus.
-
 
 ```elixir
 config :friends, Friends.Repo,
@@ -105,6 +104,7 @@ Danach müssen wir das Repo noch in unserer `config/config.exs` Datei definieren
 ```elixir
 config :friends, ecto_repos: [Friends.Repo]
 ```
+
 Somit erlauben wir unserer Applikation, Ecto mix Kommandos von der Kommandozeile auszuführen.
 
 Nun ist das Repository vollständig konfiguriert.
@@ -112,7 +112,7 @@ Nun ist das Repository vollständig konfiguriert.
 Jetzt können wir eine Datenbank mit folgendem Kommando erstellen:
 
 ```shell
-$ mix ecto.create
+mix ecto.create
 ```
 
 Alle notwendigen Informationen inklusive des Datenbanknamens nimmt Ecto aus der `config/config.exs` Datei.
@@ -130,7 +130,7 @@ Die Konvention in Ecto ist es, unsere Tabellen zu pluralisieren. Für unsere Anw
 Der beste Weg eine Migrationen zu erstellen, ist das Kommando `ecto.gen.migration <name>`:
 
 ```shell
-$ mix ecto.gen.migration create_people
+mix ecto.gen.migration create_people
 ```
 
 Dadurch wird eine neue Datei im Ordner `priv/repo/migrations` erzeugt, die einen Zeitstempel im Dateinamen enthält.
@@ -166,7 +166,7 @@ Nebst dem Datentyp der Spalten haben wir auch `null: false` und `default: 0` als
 Lasst uns nun die Migration in der Kommandozeile ausführen:
 
 ```shell
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 ### Schemas

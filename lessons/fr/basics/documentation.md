@@ -13,9 +13,9 @@ La quantité de commentaires et ce qu'est une documentation de qualité reste un
 
 Elixir traite la documentation comme une *valeur de première classe*, offrant diverses fonctions pour accéder et générer de la documentation pour vos projets. Le noyau d'Elixir nous fournit de nombreux attributs différents pour annoter le code source. Regardons 3 manières de faire :
 
-  - `#` - Pour la documentation en ligne.
-  - `@moduledoc` - Pour la documentation au niveau des modules.
-  - `@doc` - Pour la documentation au niveau des fonctions.
+- `#` - Pour la documentation en ligne.
+- `@moduledoc` - Pour la documentation au niveau des modules.
+- `@doc` - Pour la documentation au niveau des fonctions.
 
 ### Documentation en ligne (ou commentaire)
 
@@ -60,7 +60,7 @@ iex> h Greeter
 Provides a function hello/1 to greet a human
 ```
 
-_Note_: nous n'avons pas besoin de compiler manuellement les fichiers comme nous l'avons fait ci-dessus si nous travaillons dans le contexte d'un projet mix. Vous pouvez en effet utiliser `iex -S mix` pour charger le terminal IEx pour le projet courant quand vous travaillez avec un projet mix.
+*Note*: nous n'avons pas besoin de compiler manuellement les fichiers comme nous l'avons fait ci-dessus si nous travaillons dans le contexte d'un projet mix. Vous pouvez en effet utiliser `iex -S mix` pour charger le terminal IEx pour le projet courant quand vous travaillez avec un projet mix.
 
 ### La documentation des fonctions
 
@@ -221,7 +221,7 @@ Nous pouvons maintenant le déployer sur notre propre site web ou plus communém
 
 L'ajout de documentation devrait se faire en suivant la ligne directive dictée par les bonnes pratiques du langage. Cependant, comme Elixir est un langage encore jeune de nombreuses normes sont encore à découvrir au fur et à mesure que l'écosystème se développe. Néanmoins la communauté essaye d'établir les pratiques exemplaires (les `Best Practices`). Pour en savoir plus sur les bonnes pratiques, consultez : [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
-  - Toujours documenter un module.
+- Toujours documenter un module.
 
 ```elixir
 defmodule Greeter do
@@ -232,7 +232,7 @@ defmodule Greeter do
 end
 ```
 
-  - Si vous n'avez pas l'intention de documenter un module, **ne le laissez pas** vide. Envisagez d'annoter le module à `false`, comme suit :
+- Si vous n'avez pas l'intention de documenter un module, **ne le laissez pas** vide. Envisagez d'annoter le module à `false`, comme suit :
 
 ```elixir
 defmodule Greeter do
@@ -241,7 +241,7 @@ defmodule Greeter do
 end
 ```
 
- - Lorsque vous vous référez aux fonctions de la documentation du module, utilisez les backticks (*apostrophes inverses* en français) de la manière suivante (sur un clavier AZERTY Français les "backticks" s'écrivent ainsi : `[alt gr] + [è] puis [espace]`) :
+- Lorsque vous vous référez aux fonctions de la documentation du module, utilisez les backticks (*apostrophes inverses* en français) de la manière suivante (sur un clavier AZERTY Français les "backticks" s'écrivent ainsi : `[alt gr] + [è] puis [espace]`) :
 
 ```elixir
 defmodule Greeter do
@@ -257,7 +257,7 @@ defmodule Greeter do
 end
 ```
 
- - Sautez une ligne sous la documentation du module avant tout code comme suit :
+- Sautez une ligne sous la documentation du module avant tout code comme suit :
 
 ```elixir
 defmodule Greeter do
@@ -276,7 +276,7 @@ defmodule Greeter do
 end
 ```
 
- - Utilisez Markdown dans vos documentations. Elles seront plus lisibles via IEx ou ExDoc.
+- Utilisez Markdown dans vos documentations. Elles seront plus lisibles via IEx ou ExDoc.
 
 ```elixir
 defmodule Greeter do

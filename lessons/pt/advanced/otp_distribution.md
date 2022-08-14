@@ -2,9 +2,10 @@
   version: "1.0.2",
   title: "Distribuição OTP",
   excerpt: """
-  ## Introdução à Distribuição
 
-  Podemos executar nossas aplicações Elixir em um conjunto diferente de nós de processamento (nodes), distribuídos em um único servidor ou entre múltiplos servidores. Elixir permite que nos comuniquemos entre esses nós de processamento por meio de alguns mecanismos diferentes, os quais iremos destacar nesta lição.
+## Introdução à Distribuição
+
+Podemos executar nossas aplicações Elixir em um conjunto diferente de nós de processamento (nodes), distribuídos em um único servidor ou entre múltiplos servidores. Elixir permite que nos comuniquemos entre esses nós de processamento por meio de alguns mecanismos diferentes, os quais iremos destacar nesta lição
   """
 }
 ---
@@ -36,6 +37,7 @@ Esses dois nós de processamento podem enviar mensagens entre si usando `Node.sp
 ### Comunicando com Node.spawn_link/2
 
 Essa função recebe dois argumentos:
+
 * O nome do nó de processamento ao qual você deseja se conectar
 * A função a ser executada pelo processo remoto em execução no outro nó de processamento
 
@@ -131,7 +133,7 @@ mix new chat --sup
 ### Adicionando a Tarefa de Supervisão na Árvore de Supervisão
 
 Uma Tarefa de Supervisão supervisona dinamicamente tarefas.
-Ela é iniciada sem filhos, normalmente _sob_ um supervisor próprio, e podemos usar depois para supervisionar qualquer número de tarefas.
+Ela é iniciada sem filhos, normalmente *sob* um supervisor próprio, e podemos usar depois para supervisionar qualquer número de tarefas.
 
 Nós vamos adicionar a Tarefa de Supervisão à árvore de supervisão da nossa aplicação e chamá-la de `Chat.TaskSupervisor`
 
@@ -256,7 +258,7 @@ Vamos revisar nosso código e detalhar o que está acontecendo aqui.
 Temos uma função `Chat.send_message/2` que recebe o nome do nó de processamento remoto no qual queremos executar nossas tarefas supervisionadas e a mensagem que queremos enviar para esse nó de processamento.
 
 Essa função chama nossa função `spawn_task/4` que inicia uma tarefa assíncrona executada no nó de processamento remoto com o nome fornecido, supervisionada por `Chat.TaskSupervisor` naquele nó de processamento remoto.
-Sabemos que a Tarefa de Supervisão com o nome `Chat.TaskSupervisor` está em execução naquele nó porque esse nó de proessamento está _também_ executando uma instância da nossa aplicação Chat e `Chat.TaskSupervisor` é iniciada como parte da árvore de supervisão da app Chat.
+Sabemos que a Tarefa de Supervisão com o nome `Chat.TaskSupervisor` está em execução naquele nó porque esse nó de proessamento está *também* executando uma instância da nossa aplicação Chat e `Chat.TaskSupervisor` é iniciada como parte da árvore de supervisão da app Chat.
 
 Estamos dizendo para `Chat.TaskSupervisor` para supervisionar uma tarefa que executa a função `Chat.receive_message` que recebe como um argumento qualquer mensagem passada para `spawn_task/4` a partir da função `send_message/2`.
 
@@ -276,7 +278,7 @@ Vamos definir outra versão da nossa função `send_message/2` cujo padrão casa
 Se o destinatário é `:moebi@locahost`, vamos
 
 * Pegar o nome do nó de processamento atual usando `Node.self()`
-* Passe o nome do nó de processamento atual, por exemplo, o remetente, para a nova função `receive_message_for_moebi/2`, para que possamos enviar uma mensagem _de volta_ para esse nó.
+* Passe o nome do nó de processamento atual, por exemplo, o remetente, para a nova função `receive_message_for_moebi/2`, para que possamos enviar uma mensagem *de volta* para esse nó.
 
 ```elixir
 # lib/chat.ex
@@ -286,7 +288,7 @@ def send_message(:moebi@localhost, message) do
 end
 ```
 
-A seguir, vamos definir uma função `receive_message_for_moebi/2` que exibe a mensagem recebida no fluxo de STDOUT (saída) do nó de processamento `moebi` via `IO.puts` _e_ envia uma mensagem de volta para o remetente:
+A seguir, vamos definir uma função `receive_message_for_moebi/2` que exibe a mensagem recebida no fluxo de STDOUT (saída) do nó de processamento `moebi` via `IO.puts` *e* envia uma mensagem de volta para o remetente:
 
 ```elixir
 # lib/chat.ex
@@ -297,7 +299,7 @@ def receive_message_for_moebi(message, from) do
 end
 ```
 
-Ao chamar `send_message/2` com o nome de um nó de processamento que enviou a mensagem original (o "nó de processamento remetente") estamos dizendo para o nó de processamento _remoto_ para gerar uma tarefa supervisionada de volta para esse nó remetente.
+Ao chamar `send_message/2` com o nome de um nó de processamento que enviou a mensagem original (o "nó de processamento remetente") estamos dizendo para o nó de processamento *remoto* para gerar uma tarefa supervisionada de volta para esse nó remetente.
 
 Vamos ver isso em ação.
 Em três janelas diferentes do terminal, abra três diferentes nós nomeados:
@@ -365,9 +367,11 @@ Podemos fazer esse teste passar executando alguns passos:
 Tem duas abordagens diferentes que podemos usar aqui:
 
 1.
+
 Exclua condicionalmente testes que necessitem de nós de processamento distribuídos, se o nó necessário não estiver em execução.
 
 2.
+
 Configure nossa aplicação para evitar a geração de tarefas em nós de processamento remotos em um ambiente de teste.
 
 Vamos dar uma olhada na primeira abordagem.
@@ -389,7 +393,7 @@ defmodule ChatTest do
 end
 ```
 
-E vamos adicionar alguma lógica condicional ao nosso helper de teste para excluir testes com tais tags se os testes _não_ estão executando em um nó de processamento nomeado.
+E vamos adicionar alguma lógica condicional ao nosso helper de teste para excluir testes com tais tags se os testes *não* estão executando em um nó de processamento nomeado.
 
 ```elixir
 # test/test_helper.exs
@@ -414,7 +418,7 @@ Finished in 0.02 seconds
 1 test, 0 failures, 1 excluded
 ```
 
-E se quisermos executar nossos testes distribuídos, simplesmente precisamos seguir os passos descritos na seção anterior:  executar o nó `moebi@localhost` _e_ rodar os testes em um nó nomeado por meio de `iex`.
+E se quisermos executar nossos testes distribuídos, simplesmente precisamos seguir os passos descritos na seção anterior:  executar o nó `moebi@localhost` *e* rodar os testes em um nó nomeado por meio de `iex`.
 
 Vamos dar uma olhada em nossa outra abordagem de teste - configurar a aplicação para se comportar de maneira diferente em ambientes diferentes.
 

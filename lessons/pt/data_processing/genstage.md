@@ -48,8 +48,8 @@ Para nossa aplicação usaremos todos os três papéis do GenStage. Nosso produt
 Começaremos gerando um projeto com uma árvore de supervisão:
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 Vamos atualizar nossas dependências no `mix.exs` para incluir `gen_stage`:
@@ -65,7 +65,7 @@ end
 Devemos buscar nossas dependências e compilar antes de avançar mais:
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 Agora estamos prontos para construir nosso produtor!
@@ -75,7 +75,7 @@ Agora estamos prontos para construir nosso produtor!
 O primeiro passo da nossa aplicação GenStage é criar nosso produtor. Conforme falamos antes, queremos criar um produtor que emite um fluxo constante de números. Vamos criar o arquivo do nosso produtor:
 
 ```shell
-$ touch lib/genstage_example/producer.ex
+touch lib/genstage_example/producer.ex
 ```
 
 Agora podemos adicionar o código:
@@ -106,7 +106,7 @@ A função `handle_demand/2` é onde a maioria de nosso produtor está definida.
 Agora que temos um produtor gerador de números, vamos ao nosso produtor-consumidor. Queremos solicitar números de nosso produtor, filtrar os ímpares, e responder à demanda.
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 Vamos atualizar nosso arquivo para se parecer com o código de exemplo:
@@ -144,7 +144,7 @@ A função `handle_events/3` é nosso cavalo de batalha, onde recebemos nossos e
 Por último, mas não menos importante, nós temos nosso consumidor. Vamos começar:
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 Uma vez que consumidores e produtores-consumidores são tão similares, nosso código não será muito diferente:

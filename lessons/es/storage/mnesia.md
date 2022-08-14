@@ -17,10 +17,10 @@ El *modelo de datos híbrido relacional-objeto* es lo que lo hace adecuado para 
 Cuando usar una pieza particular de tecnología es frecuentemente una pregunta difícil de contestar.
 Si puedes responder 'si' a cualquiera de las siguientes preguntas entonces es un buen indicador para usar Mnesia en lugar de ETS o DETS.
 
-  - ¿Necesito hacer rollback de transacciones?
-  - ¿Necesito una sintaxis fácil usar para leer y escribir data?
-  - ¿Debería guardar data en múltiples nodos en lugar de uno solo?
-  - ¿Necesito elegir donde guardar información (RAM o disco)?
+- ¿Necesito hacer rollback de transacciones?
+- ¿Necesito una sintaxis fácil usar para leer y escribir data?
+- ¿Debería guardar data en múltiples nodos en lugar de uno solo?
+- ¿Necesito elegir donde guardar información (RAM o disco)?
 
 ## Esquema
 
@@ -106,6 +106,7 @@ iex> Mnesia.create_schema([node()])
 iex> Mnesia.start()
 :ok
 ```
+
 La función `Mnesia.start/0` es asíncrona. Empieza la inicialización de las tablas existentes y retorna al átomo `:ok`. En caso necesitemos realizar alguna acción sobre una tabla existente justo luego de iniciar Mnesia necesitamos llamar a la función `Mnesia.wait_for_tables/2`. Esto suspenderá la llamada hasta que las tablas hayan sido inicializadas. Revisa el ejemplo en la sección [Inicialización de datos y migración](#inicialización-de-datos-y-migración).
 
 Hay que tener en cuenta que cuando corremos un sistema distribuido con dos o más nodos la función `Mnesia.start/1` debe ser ejecutada en todos los nodos.
@@ -126,8 +127,8 @@ Al menos un atributo adicional es requerido.
 
 Cuando ejecutamos `Mnesia.create_table/2` esto retornará una de las siguientes respuestas:
 
- - `{:atomic, :ok}` si la función se ejecuta satisfactoriamente
- - `{:aborted, Reason}` si la función falla
+- `{:atomic, :ok}` si la función se ejecuta satisfactoriamente
+- `{:aborted, Reason}` si la función falla
 
 En particular si la tabla ya existe, la razón será de la forma `{:already_exists, table}` por lo que si intentamos crear esta tabla por segunda vez obtendremos:
 
@@ -190,6 +191,7 @@ iex> data_to_write = fn ->
 iex> Mnesia.transaction(data_to_write)
 {:atomic, :ok}
 ```
+
 Basado en este mensaje de la transacción podemos con seguridad asumir que hemos escrito la data en nuestra tabla `Person`.
 Vamos a usar una transacción para leer de la base de datos para asegurarnos.
 Usaremos `Mnesia.read/1` para leer de la base de datos pero otra vez desde una función anónima.
@@ -227,8 +229,8 @@ iex> Mnesia.add_table_index(Person, :job)
 
 El resultado es similar al regresado por `Mnesia.create_table/2`:
 
- - `{:atomic, :ok}` si la función se ejecutó satisfactoriamente
- - `{:aborted, Reason}` si la función falló
+- `{:atomic, :ok}` si la función se ejecutó satisfactoriamente
+- `{:aborted, Reason}` si la función falló
 
 Particularmente si el índice ya existe la razón será de la forma `{:already_exists, table, attribute_index}` por lo que podemos tratar de agregar este índice una segunda vez y obtendremos:
 
@@ -296,13 +298,13 @@ Para hacer esto podemos usar la función `Mnesia.table_info/2` para obtener la e
 
 El código siguiente hace esto implementando la siguiente lógica.
 
-* Crea la tabla con los atributos de la versión 2: `[:id, :name, :job, :age]`
-* Maneja el resultado del a creación:
-    * `{:atomic, :ok}`: inicializa la tabla creando índices en `:job` y `:age`
-    * `{:aborted, {:already_exists, Person}}`: revisa que atributos son usados en la tabla actual y actúa según sea el caso
-        * Si es la lista de la v1 (`[:id, :name, :job]`), transforma la tabla dando a cada uno una edad de 21 y agregando un nuevo índice en `:age`
-        * Si es la lista de la v2 no se hace nada, todo está bien
-        * Si es algo diferente retorna el error
+- Crea la tabla con los atributos de la versión 2: `[:id, :name, :job, :age]`
+- Maneja el resultado del a creación:
+  - `{:atomic, :ok}`: inicializa la tabla creando índices en `:job` y `:age`
+  - `{:aborted, {:already_exists, Person}}`: revisa que atributos son usados en la tabla actual y actúa según sea el caso
+    - Si es la lista de la v1 (`[:id, :name, :job]`), transforma la tabla dando a cada uno una edad de 21 y agregando un nuevo índice en `:age`
+    - Si es la lista de la v2 no se hace nada, todo está bien
+    - Si es algo diferente retorna el error
 
 Si estamos realizando alguna acción en las tablas existentes justo luego de iniciar Mnesia con `Mnesia.start/0` esas tablas puede que no estén inicializadas y no sean accesibles. En ese caso deberíamos usar la función [`Mnesia.wait_for_tables/2`](http://erlang.org/doc/man/mnesia.html#wait_for_tables-2). Esto suspenderá el proceso actual hasta que las tablas sean inicializadas o hasta que tiempo límite sea alcanzado.
 

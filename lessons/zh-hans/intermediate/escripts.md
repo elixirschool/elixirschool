@@ -67,7 +67,7 @@ end
 一旦我们在应用中配置好了 escript，使用 Mix 构建可执行文件就易如反掌了：  
 
 ```bash
-$ mix escript.build
+mix escript.build
 ```
 
 来看一下最后的运行情况：  

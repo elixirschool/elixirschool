@@ -27,7 +27,6 @@ iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
 
-
 ### Perangkaian List
 
 Perangkaian list menggunakan operator `++/2`:

@@ -13,9 +13,9 @@
 
 Elixir把文档看作是*一等公民*，它提供了大量的函数来为项目创建和操作（access）文档。Elixir提供了多种方式来编写注释或者是注解。下面是其中三种方式：
 
-  - `#` - 用于单行的注释
-  - `@moduledoc` - 用于模块文档的注释
-  - `@doc` - 用于函数的注释
+- `#` - 用于单行的注释
+- `@moduledoc` - 用于模块文档的注释
+- `@doc` - 用于函数的注释
 
 ### 单行注释
 
@@ -61,7 +61,7 @@ iex> h Greeter
 Provides a function hello/1 to greet a human
 ```
 
-_注意_: 如果代码是在一个 mix 项目底下，我们并不需要像上面那样手动编译文件。只需要通过执行 `iex -S mix` 命令，IEx 控制台就可以加载当前项目。
+*注意*: 如果代码是在一个 mix 项目底下，我们并不需要像上面那样手动编译文件。只需要通过执行 `iex -S mix` 命令，IEx 控制台就可以加载当前项目。
 
 ### 函数注释
 
@@ -219,7 +219,7 @@ View them at "doc/index.html".
 
 编写文档是编程的最佳实践。因为Elixir还很年轻，许多语言标准依然在随着它的生态发展而发展。Elixir的社区正在尝试进行这种最佳实践。你可以从[Elixir代码风格](https://github.com/niftyn8/elixir_style_guide)中了解到类似的最佳实践。
 
-  - 总是给模块提供注释
+- 总是给模块提供注释
 
 ```elixir
 defmodule Greeter do
@@ -230,7 +230,7 @@ defmodule Greeter do
 end
 ```
 
-  - 如果你不想给模块注释，**不要留空**。可以考虑给模块注解提供一个值为`false`的参数，就像下面这样：
+- 如果你不想给模块注释，**不要留空**。可以考虑给模块注解提供一个值为`false`的参数，就像下面这样：
 
 ```elixir
 defmodule Greeter do
@@ -239,7 +239,7 @@ defmodule Greeter do
 end
 ```
 
- - 当在模块里面引用一个函数时，使用单引号将其括起来：
+- 当在模块里面引用一个函数时，使用单引号将其括起来：
 
 ```elixir
 defmodule Greeter do
@@ -255,7 +255,7 @@ defmodule Greeter do
 end
 ```
 
- - `@moduledoc`下面的代码一行只写一句：
+- `@moduledoc`下面的代码一行只写一句：
 
 ```elixir
 defmodule Greeter do
@@ -274,7 +274,7 @@ defmodule Greeter do
 end
 ```
 
- - 使用markdown语法来编写文档。因为它能被ExDoc和IEx更好地解析：
+- 使用markdown语法来编写文档。因为它能被ExDoc和IEx更好地解析：
 
 ```elixir
 defmodule Greeter do
@@ -305,6 +305,6 @@ defmodule Greeter do
 end
 ```
 
- - 尝试在你的文档里面加入一些测试代码。 这将能够让你在模块 [ExUnit.DocTest][]的帮助下对模块、函数、宏等生成自动测试。为了做到这一点，你需要在你的测试用例中使用`doctest/1`这个宏。当然，你首先得看一下[ExUnit的官方文档][ExUnit.DocTest]。
+- 尝试在你的文档里面加入一些测试代码。 这将能够让你在模块 [ExUnit.DocTest][]的帮助下对模块、函数、宏等生成自动测试。为了做到这一点，你需要在你的测试用例中使用`doctest/1`这个宏。当然，你首先得看一下[ExUnit的官方文档][ExUnit.DocTest]。
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

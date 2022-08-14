@@ -35,6 +35,7 @@ These two nodes can send messages to one another using `Node.spawn_link/2`.
 ### Communicating with Node.spawn_link/2
 
 This function takes in two arguments:
+
 * The name of the node to which you want to connect
 * The function to be executed by the remote process running on that node
 
@@ -110,9 +111,9 @@ Only nodes started with the same `cookie` will be able to successfully connect t
 
 #### Node.spawn_link/2 Limitations
 
-While `Node.spawn_link/2` illustrates the relationships between nodes and the manner in which we can send messages between them, it is _not_ really the right choice for an application that will run across distributed nodes.
+While `Node.spawn_link/2` illustrates the relationships between nodes and the manner in which we can send messages between them, it is *not* really the right choice for an application that will run across distributed nodes.
 `Node.spawn_link/2` spawns processes in isolation, i.e. processes that are not supervised.
-If only there was a way to spawn supervised, asynchronous processes _across nodes_...
+If only there was a way to spawn supervised, asynchronous processes *across nodes*...
 
 ## Distributed Tasks
 
@@ -130,7 +131,7 @@ mix new chat --sup
 ### Adding the Task Supervisor to the Supervision Tree
 
 A Task Supervisor dynamically supervises tasks.
-It is started with no children, often _under_ a supervisor of its own, and can be used later on to supervise any number of tasks.
+It is started with no children, often *under* a supervisor of its own, and can be used later on to supervise any number of tasks.
 
 We'll add a Task Supervisor to our app's supervision tree and name it `Chat.TaskSupervisor`
 
@@ -255,7 +256,7 @@ Let's revisit our code and break down what's happening here.
 We have a function `Chat.send_message/2` that takes in the name of the remote node on which we want to run our supervised tasks and the message we want to send that node.
 
 That function calls our `spawn_task/4` function which starts an async task running on the remote node with the given name, supervised by the `Chat.TaskSupervisor` on that remote node.
-We know that the Task Supervisor with the name `Chat.TaskSupervisor` is running on that node because that node is _also_ running an instance of our Chat application and the `Chat.TaskSupervisor` is started up as part of the Chat app's supervision tree.
+We know that the Task Supervisor with the name `Chat.TaskSupervisor` is running on that node because that node is *also* running an instance of our Chat application and the `Chat.TaskSupervisor` is started up as part of the Chat app's supervision tree.
 
 We are telling the `Chat.TaskSupervisor` to supervise a task that executes the `Chat.receive_message` function with an argument of whatever message was passed down to `spawn_task/4` from `send_message/2`.
 
@@ -275,7 +276,7 @@ We'll define another version of our `send_message/2` function that pattern match
 If the recipient is `:moebi@locahost`, we will
 
 * Grab the name of the current node using `Node.self()`
-* Give the name of the current node, i.e. the sender, to a new function `receive_message_for_moebi/2`, so that we can send a message _back_ to that node.
+* Give the name of the current node, i.e. the sender, to a new function `receive_message_for_moebi/2`, so that we can send a message *back* to that node.
 
 ```elixir
 # lib/chat.ex
@@ -285,7 +286,7 @@ def send_message(:moebi@localhost, message) do
 end
 ```
 
-Next up, we'll define a function `receive_message_for_moebi/2` that `IO.puts` out the message in the `moebi` node's STDOUT stream _and_ sends a message back to the sender:
+Next up, we'll define a function `receive_message_for_moebi/2` that `IO.puts` out the message in the `moebi` node's STDOUT stream *and* sends a message back to the sender:
 
 ```elixir
 # lib/chat.ex
@@ -296,7 +297,7 @@ def receive_message_for_moebi(message, from) do
 end
 ```
 
-By calling `send_message/2` with the name of the node that sent the original message (the "sender node") we are telling the _remote_ node to spawn an supervised task back on that sender node.
+By calling `send_message/2` with the name of the node that sent the original message (the "sender node") we are telling the *remote* node to spawn an supervised task back on that sender node.
 
 Let's see it in action.
 In three different terminal windows, open three different named nodes:
@@ -385,7 +386,7 @@ defmodule ChatTest do
 end
 ```
 
-And we'll add some conditional logic to our test helper to exclude tests with such tags if the tests are _not_ running on a named node.
+And we'll add some conditional logic to our test helper to exclude tests with such tags if the tests are *not* running on a named node.
 
 ```elixir
 # test/test_helper.exs
@@ -410,7 +411,7 @@ Finished in 0.02 seconds
 1 test, 0 failures, 1 excluded
 ```
 
-And if we want to run our distributed tests, we simply need to go through the steps outlined in the previous section: run the `moebi@localhost` node _and_ run the tests in a named node via `iex`.
+And if we want to run our distributed tests, we simply need to go through the steps outlined in the previous section: run the `moebi@localhost` node *and* run the tests in a named node via `iex`.
 
 Let's take a look at our other testing approach--configuring the application to behave differently in different environments.
 

@@ -6,7 +6,7 @@
 
   Secara umum, konvensi dalam Elixir adalah untuk membuat sebuah fungsi (`example/1`) yang mengembalikan `{:ok, result}` dan `{:error, reason}` dan fungsi lain yang terpisah (`example!/1`) yang mengembalikan `result` saja atau memunculkan (raise) sebuah error.
 
-  Pelajaran ini akan fokus pada berinteraksi dengan yang terakhir.
+Pelajaran ini akan fokus pada berinteraksi dengan yang terakhir
   """
 }
 ---

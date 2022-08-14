@@ -67,7 +67,7 @@ end
 escriptを用いるようにアプリケーションを設定し終えたら、実行ファイルのビルドはMixのおかげで楽勝です:
 
 ```bash
-$ mix escript.build
+mix escript.build
 ```
 
 試しに実行してみましょう:

@@ -180,7 +180,6 @@ with {:ok, user} <- Repo.insert(changeset),
 end
 ```
 
-
 As of Elixir 1.3, `with/1` statements support `else`:
 
 ```elixir

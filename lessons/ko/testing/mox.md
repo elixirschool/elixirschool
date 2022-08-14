@@ -108,12 +108,12 @@ end
 ```
 
 필요한 모듈들(`HTTP200Mock`과 `HTTP404Mock`)은 생성되었다고 가정합니다.
-[`on_exit`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#on_exit/2) 콜백을 [`setup`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#setup/1) 픽스쳐에 추가하여 각 테스트가 끝날때마다 `:http_client`가 이전의 상태로 돌아가도록 했습니다. 
+[`on_exit`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#on_exit/2) 콜백을 [`setup`](https://hexdocs.pm/ex_unit/master/ExUnit.Callbacks.html#setup/1) 픽스쳐에 추가하여 각 테스트가 끝날때마다 `:http_client`가 이전의 상태로 돌아가도록 했습니다.
 
 하지만 일반적으로 위와 같은 패턴을 따라야 하는건 아닙니다!
 다음과 같은 몇가지 이유가 있는데, 당장은 그 이유들이 와닿지 않을 수도 있습니다.
 
-우선 `:http_client`에 대해 정의한 모듈이 필요한 작업을 수행할 수 있다는 보장이 없습니다. 즉 모듈에 `get/1` 함수가 반드시 있어야 한다는 규약이 강제되지 않습니다. 
+우선 `:http_client`에 대해 정의한 모듈이 필요한 작업을 수행할 수 있다는 보장이 없습니다. 즉 모듈에 `get/1` 함수가 반드시 있어야 한다는 규약이 강제되지 않습니다.
 
 두 번째로, 위 테스트는 비동기로 안전하게 실행될 수 없습니다.
 애플리케이션의 상태는 애플리케이션 _전체_로 공유되기 때문에, 한 테스트에서 `:http_client`를 재정의하면 다른 (동시에 실행되는)테스트가 잘못된 결과를 받을 수도 있습니다.
@@ -125,7 +125,7 @@ end
 
 ## Mox : 이 모든 문제들의 해결책
 
-Elixir에서 목을 사용할 때 믿고 쓰는 패키지는 José Valim이 직접 만든 [Mox](https://hexdocs.pm/mox/Mox.html)입니다. 위에서 나열한 모든 문제들을 해결해 줍니다. 
+Elixir에서 목을 사용할 때 믿고 쓰는 패키지는 José Valim이 직접 만든 [Mox](https://hexdocs.pm/mox/Mox.html)입니다. 위에서 나열한 모든 문제들을 해결해 줍니다.
 
 전제 조건을 기억하세요. 다음 코드처럼 설정된 모듈을 가져오기 위해 애플리케이션 config를 확인해야만 합니다.
 

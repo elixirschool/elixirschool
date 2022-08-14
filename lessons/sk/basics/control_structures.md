@@ -92,7 +92,6 @@ iex> case {1, 2, 3} do
 
 Pozrite si príslušnú kapitolu v oficiálnej dokumentácii [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
-
 ## cond
 
 Keď potrebujeme vetviť na základe podmienok, nie hodnôt, použijeme `cond/1` - funguje to podobne ako séria `else if` alebo `elsif` v iných jazykoch:

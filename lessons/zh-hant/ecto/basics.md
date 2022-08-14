@@ -28,8 +28,8 @@ Ecto 經由使用轉接器支援不同的資料庫，幾個轉接器的範例如
 首先，將使用 supervision 樹建立一個應用程式。
 
 ```shell
-$ mix new friends --sup
-$ cd friends
+mix new friends --sup
+cd friends
 ```
 
 將 ecto 和 postgrex 套件相依關係添加到 `mix.exs` 檔案中。
@@ -46,7 +46,7 @@ $ cd friends
 使用以下指令擷取相依關係
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 #### 建立存放庫 (Repository)
@@ -57,7 +57,7 @@ Ecto 中的存放庫映射到資料儲存，例如 Postgres 資料庫。
 通過執行以下指令設置存放庫：
 
 ```shell
-$ mix ecto.gen.repo -r Friends.Repo
+mix ecto.gen.repo -r Friends.Repo
 ```
 
 這會在 `config/config.exs` 中建立連接到包含要使用轉接器的資料庫的所需配置。
@@ -110,7 +110,7 @@ config :friends, ecto_repos: [Friends.Repo]
 可以使用以下指令在 postgres 中建立資料庫：
 
 ```shell
-$ mix ecto.create
+mix ecto.create
 ```
 
 Ecto 將使用 `config/config.exs` 檔案中的資訊來確定如何連接到 Postgres 以及如何命名資料庫。
@@ -128,7 +128,7 @@ Ecto 將使用 `config/config.exs` 檔案中的資訊來確定如何連接到 Po
 建立遷移的最佳方法是執行 mix `ecto.gen.migration <name>`，所以在範例中將使用：
 
 ```shell
-$ mix ecto.gen.migration create_people
+mix ecto.gen.migration create_people
 ```
 
 這會在 `priv/repo/migrations` 資料夾內生成一個檔案名中含有時間戳記的新檔案。
@@ -165,7 +165,7 @@ end
 現在跳到 shell 並執行遷移：
 
 ```shell
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 ### 結構描述 (Schemas)

@@ -43,7 +43,7 @@ iex> [1, 2] ++ [3, 4, 1]
 Na marginesie należy wspomnieć o formacie nazwy użytym powyżej (`++/2`).
 W Elixirze, jak i w Erlangu, na którym bazuje Elixir, każda nazwa funkcji lub operatora składa się z dwóch elementów – z nazwy, tu `++` i liczby argumentów (arności, argumentowości).
 Arność wraz z nazwą funkcji zapisaną z użyciem slasha jest kluczową kwestią, jeżeli chcemy mówić o kodzie Elixira (jak i Erlanga).
-Będziemy jeszcze o tym mówić, a na chwilę obecną ułatwi nam to zrozumienie używanej notacji.   
+Będziemy jeszcze o tym mówić, a na chwilę obecną ułatwi nam to zrozumienie używanej notacji.
 
 ### Usuwanie elementów
 

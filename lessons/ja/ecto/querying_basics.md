@@ -114,7 +114,7 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 
 返ってくる構造体には `tagline` と `title` フィールドのみが設定されていることに注意してください - これは `select:` の結果です。
 
-このようなクエリは、bindingを必要としないほど単純であるため、 *bindingless* と呼ばれます。
+このようなクエリは、bindingを必要としないほど単純であるため、 _bindingless_ と呼ばれます。
 
 #### クエリでのBinding
 
@@ -125,7 +125,7 @@ iex> query = from(m in Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
-このような場合には、 `m` を *binding* と呼びます。クエリの他の部分からモジュールが参照できるため、Bindingは非常に便利です。 `id` が `2` より小さい全ての映画のタイトルを選択してみましょう:
+このような場合には、 `m` を _binding_ と呼びます。クエリの他の部分からモジュールが参照できるため、Bindingは非常に便利です。 `id` が `2` より小さい全ての映画のタイトルを選択してみましょう:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
@@ -136,7 +136,7 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-ここで非常に重要なことは、クエリの出力がどのように変化したかです。`select:` 部分のbindingで *式* を使用すると、選択したフィールドが返される方法を正確に指定できます。例えば、タプルを指定できます。
+ここで非常に重要なことは、クエリの出力がどのように変化したかです。`select:` 部分のbindingで _式_ を使用すると、選択したフィールドが返される方法を正確に指定できます。例えば、タプルを指定できます。
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: {m.title})
@@ -149,7 +149,7 @@ iex> Repo.all(query)
 
 ### マクロクエリ
 
-上記の例では、 `from` マクロ内でキーワード `select:` と `where:` を使用してクエリを作成しました。これらは、*keyword-basedのクエリ* と呼ばれます。ただし、クエリを作成する別の方法もあります。マクロベースのクエリです。Ectoは、`select/3` や `where/3` のような全てのキーワードに対してマクロを提供します。各マクロは、*queryable* な値、*明示的なbindingのリスト*、およびアナログなキーワードに提供するのと同じ式を受け入れます:
+上記の例では、 `from` マクロ内でキーワード `select:` と `where:` を使用してクエリを作成しました。これらは、_keyword-basedのクエリ_ と呼ばれます。ただし、クエリを作成する別の方法もあります。マクロベースのクエリです。Ectoは、`select/3` や `where/3` のような全てのキーワードに対してマクロを提供します。各マクロは、_queryable_ な値、_明示的なbindingのリスト_、およびアナログなキーワードに提供するのと同じ式を受け入れます:
 
 ```elixir
 iex> query = select(Movie, [m], m.title)

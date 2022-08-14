@@ -16,9 +16,9 @@ Elixir 將文件視為*一等公民*，提供多樣的函數來存取和生成�
 Elixir 核心為提供許多不同的屬性來標註程式庫。
 現在來看看 3 種不同的方式：
 
-  - `#` - 行內註解
-  - `@moduledoc` - 模組層 (module-level) 註解文件。
-  - `@doc` - 函數內 (function-level) 註解文件。
+- `#` - 行內註解
+- `@moduledoc` - 模組層 (module-level) 註解文件。
+- `@doc` - 函數內 (function-level) 註解文件。
 
 ### 行內註解 (Inline Documentation)
 
@@ -69,7 +69,7 @@ iex> h Greeter
 Provides a function hello/1 to greet a human
 ```
 
-_註_：在 mix 專案內，是不需要像上面那樣手動編譯檔案。如果是正在 mix 專案中工作，則使用 `iex -S mix` 就可以為當前專案載入 IEx 控制台。
+*註*：在 mix 專案內，是不需要像上面那樣手動編譯檔案。如果是正在 mix 專案中工作，則使用 `iex -S mix` 就可以為當前專案載入 IEx 控制台。
 
 ### 函數內註解 (Documenting Functions)
 
@@ -243,7 +243,7 @@ View them at "doc/index.html".
 但即便如此，Elixir 社群依然試圖建立最佳實踐。
 要詳細了解最佳實踐，請參考 [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
-  - 永遠記得註解模組。
+- 永遠記得註解模組。
 
 ```elixir
 defmodule Greeter do
@@ -254,7 +254,7 @@ defmodule Greeter do
 end
 ```
 
-  - 如果你不打算註解一個模組，**不要** 留白。
+- 如果你不打算註解一個模組，**不要** 留白。
   考慮以 `false` 來註解模組，如下所示：
 
 ```elixir
@@ -264,7 +264,7 @@ defmodule Greeter do
 end
 ```
 
- - 引述位於模組文件內的函數時，請使用反引號 (backticks)：
+- 引述位於模組文件內的函數時，請使用反引號 (backticks)：
 
 ```elixir
 defmodule Greeter do
@@ -280,7 +280,7 @@ defmodule Greeter do
 end
 ```
 
- - 在 `@moduledoc` 下面的程式碼，以空一行的方式分隔，如下所示：
+- 在 `@moduledoc` 下面的程式碼，以空一行的方式分隔，如下所示：
 
 ```elixir
 defmodule Greeter do
@@ -299,7 +299,7 @@ defmodule Greeter do
 end
 ```
 
- - 在文件 (docs) 中使用 Markdown 語法。
+- 在文件 (docs) 中使用 Markdown 語法。
  這將讓不論是 IEx 或 ExDoc 都能更容易解析文件。
 
 ```elixir
@@ -331,7 +331,7 @@ defmodule Greeter do
 end
 ```
 
- - 試著在文件中包含一些程式碼範例。
+- 試著在文件中包含一些程式碼範例。
  這會允許你在 [ExUnit.DocTest][] 幫助下從模組、函數或巨集中的程式碼範例中生成自動測試。
  為了做到這一點，需要在測試例子中呼用 `doctest/1` 巨集，並根據 [official documentation][ExUnit.DocTest] 中介紹的準則編寫範例。
 

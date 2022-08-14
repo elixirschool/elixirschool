@@ -13,26 +13,26 @@ Elixir provee una sintaxis alternativa para representar y trabajar con literales
 
 Una lista de los sigilos incorporados incluye:
 
-  - `~C` Genera una lista de caracteres **sin** escapado o interpolación
-  - `~c` Genera una lista de caracteres **con** escapado e interpolación
-  - `~R` Genera una expresión regular **sin** escapado o interpolación
-  - `~r` Genera una expresión regular **con** escapado e interpolación
-  - `~S` Genera una cadena **sin** escapado o interpolación
-  - `~s` Genera una cadena **con** escapado e interpolación
-  - `~W` Genera una lista de palabras **sin** escapado o interpolación
-  - `~w` Genera una lista de palabras **con** escapado e interpolación
-  - `~N` Genera una estructura `NaiveDateTime`
+- `~C` Genera una lista de caracteres **sin** escapado o interpolación
+- `~c` Genera una lista de caracteres **con** escapado e interpolación
+- `~R` Genera una expresión regular **sin** escapado o interpolación
+- `~r` Genera una expresión regular **con** escapado e interpolación
+- `~S` Genera una cadena **sin** escapado o interpolación
+- `~s` Genera una cadena **con** escapado e interpolación
+- `~W` Genera una lista de palabras **sin** escapado o interpolación
+- `~w` Genera una lista de palabras **con** escapado e interpolación
+- `~N` Genera una estructura `NaiveDateTime`
 
 Una lista de delimitadores incluye:
 
-  - `<...>` Un par de simbolos de mayor/menor
-  - `{...}` Un par de llaves
-  - `[...]` Un par de corchetes
-  - `(...)` Un par de paréntesis
-  - `|...|` Un par de *pipes*
-  - `/.../` Un par de *slashes*
-  - `"..."` Un par de comillas dobles
-  - `'...'` Un par de comillas simples
+- `<...>` Un par de simbolos de mayor/menor
+- `{...}` Un par de llaves
+- `[...]` Un par de corchetes
+- `(...)` Un par de paréntesis
+- `|...|` Un par de *pipes*
+- `/.../` Un par de *slashes*
+- `"..."` Un par de comillas dobles
+- `'...'` Un par de comillas simples
 
 ### Lista de caracteres
 
@@ -137,7 +137,6 @@ iex> ~W/i love #{'e'}lixir school/
 Una [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) puede ser útil para crear rápidamente una estructura para representar un `Datetime` **sin** zona horaria.
 
 En la mayor parte, deberiamos evitar crear una estructura `NaiveDatetime` directamente. Sin embargo, es muy útil para la *pattern matching*. Por ejemplo:
-
 
 ```elixir
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}

@@ -32,7 +32,7 @@ Tudo o que precisamos fazer é adicionar Poolboy como uma dependência no nosso 
 Primeiro vamos criar uma aplicação:
 
 ```shell
-$ mix new poolboy_app --sup
+mix new poolboy_app --sup
 ```
 
 Adicione o Poolboy como uma dependência do nosso `mix.exs`.
@@ -44,8 +44,9 @@ end
 ```
 
 Então baixe as dependências, incluindo o Poolboy.
+
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## As opções de configuração
@@ -107,6 +108,7 @@ Em seguida, adicionamos a função `:poolboy.child_spec/2` à matriz de filhos p
 Ele recebe dois argumentos: o nome do pool e a configuração do pool.
 
 ## Criando um Gerenciador
+
 O módulo de gerenciamento será um `GenServer` simples calculando a raiz quadrada de um número, dormindo por um segundo e imprimindo o pid do gerenciador.
 Crie `lib/poolboy_app/worker.ex`:
 
@@ -164,7 +166,7 @@ end
 Execute a função de teste para ver o resultado.
 
 ```shell
-$ iex -S mix
+iex -S mix
 ```
 
 ```elixir

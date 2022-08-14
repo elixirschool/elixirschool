@@ -9,7 +9,7 @@
   Nessa lição nós vamos construir um simples servidor HTTP do zero usando a biblioteca em Elixir `PlugCowboy`.
   Cowboy é um simples servidor HTTP para o Erlang e Plug vai nos disponibilizar um "connection adapter" para esse servidor web.
 
-  Depois de montar nossa mini aplicação web, nós vamos aprender as rotas do Plug e como usar vários plugs em uma única aplicação web.
+Depois de montar nossa mini aplicação web, nós vamos aprender as rotas do Plug e como usar vários plugs em uma única aplicação web
   """
 }
 ---
@@ -21,8 +21,8 @@ Este tutorial assume que você já tenha Elixir 1.5 ou superior e o `mix` instal
 Nós vamos começar criando um novo projeto OTP, com uma árvore de supervisão.
 
 ```shell
-$ mix new example --sup
-$ cd example
+mix new example --sup
+cd example
 ```
 
 Nós precisamos que nossa aplicação Elixir inclua uma árvore de supervisão porque nós vamos usar um Supervisor para iniciar e rodar nosso servidor Cowboy2.
@@ -45,7 +45,7 @@ end
 No terminal, rode o seguinte comando mix para baixar as novas dependências:
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## A especificação Plug
@@ -94,7 +94,6 @@ Você pode especificar o nome do módulo, como `MyPlug`, ou uma tupla com o nome
 * `:options` - As opções do servidor.
 Deve ser incluído o número da porta em que você deseja que servidor escute por requisições.
 
-
 Nosso arquivo `lib/example/application.ex` deve implementar a child spec em sua função `start/2`:
 
 ```elixir
@@ -124,6 +123,7 @@ Ele inicia o Cowboy debaixo do esquema HTTP (você também pode especificar HTTP
 Agora nós estamos prontos para rodar nossa aplicação em enviar algumas requisições! Note que, porque nós geramos nosso OTP app com a parâmetro `--sup`, nossa aplicação `Example` vai iniciar automaticamente graças a função `application`.
 
 No `mix.exs` você deve ver o seguinte:
+
 ```elixir
 def application do
   [
@@ -137,7 +137,7 @@ Estamos prontos para testar este servidor web minimalista, baseado no Plug.
 No terminal, execute:
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 Quando a compilação estiver terminado, e aparecer `[info]  Starting application...`,
@@ -293,6 +293,7 @@ Através da chamada de função:
 ```elixir
 plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
 ```
+
 Nós automaticamente invocamos `VerifyRequest.init(fields: ["content", "mimetype"], paths: ["/upload"])`.
 Isso por sua vez passa as opções recebidas para a função `VerifyRequest.call(conn, opts)`.
 
@@ -345,7 +346,7 @@ O terceiro argumento do `Application.get_env` é um valor padrão para quando a 
 Agora para executar nossa aplicação, podemos usar:
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 ## Testando Plugs
@@ -402,7 +403,7 @@ end
 Execute com o comando:
 
 ```shell
-$ mix test test/example/router_test.exs
+mix test test/example/router_test.exs
 ```
 
 ## Plug.ErrorHandler

@@ -113,7 +113,6 @@ iex> Greeter2.hello("Fred", "Jane")
 
 Wir haben oben die Funktionsnamen in Kommentaren angegeben. Die erste Implementierung nimmt keine Argumente entgegen, also ist sie bekannt als `hello/0`; die zweite nimmt ein Argument und ist somit `hello/1` und so weiter. Anders wie überladene Funktionen aus anderen Sprachen kann man sich diese als _verschiedene_ Funktionen vorstellen. Pattern matching, wie vorhin erklärt, trifft nur zu, wenn mehrere Definitionen für Funktionsdefinitionen gegeben sind, die alle die _gleiche_ Anzahl Argumente besitzen.
 
-
 ### Private Funktionen
 
 Wenn wir nicht wollen, dass andere Module auf Funktionen zugreifen, können wir diese Funktionen als privat definieren. Private Funktionen können nur innerhalb ihres Moduls aufgerufen werden. Wir definieren sie in Elixir mit `defp`:

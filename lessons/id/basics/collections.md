@@ -27,7 +27,6 @@ iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
 
-
 ### Penggandengan List
 
 Penggandengan list menggunakan operator `++/2`:

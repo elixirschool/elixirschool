@@ -33,7 +33,6 @@ at/3
 
 要想了解全部的函数，请访问官方的 [`Enum`](https://hexdocs.pm/elixir/Enum.html) 文档。而要想了解惰性枚举（lazy enumeration），访问 [`Stream`](https://hexdocs.pm/elixir/Stream.html) 模块。
 
-
 ### all?
 
 使用 `all?` 以及大部分 `Enum` 函数的时候，我们要提供一个函数来作用到要操作的集合上。只有当函数在所有的元素上都返回 `true` 的时候，`all?` 才会返回 `true`，否则结果就是 `false`。
@@ -165,7 +164,6 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 ### sort
 
-
 对集合进行排序，Elixir 提供了两个 `sort` 函数来帮忙。第一个使用 Elixir 默认的排序规则进行排序：
 
 `sort/1` 使用了 Erlang 的 [数据比较规则](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) 来决定排序的顺序：
@@ -208,15 +206,13 @@ iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coo
 [%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```
 
-
-
-
 ### 使用 & 操作符
+
 Enum 模块中的很多函数接收一个 匿名函数 作为参数。
 
 这些匿名函数往往可以使用 & 操作符来简写。
 
-下面是一些例子，展现了如何在 Enum 模块中使用 & 操作符。 
+下面是一些例子，展现了如何在 Enum 模块中使用 & 操作符。
 每个例子在功能上都是等价的。
 
 #### 用 & 操作符取代一个匿名函数
@@ -265,6 +261,7 @@ iex> Enum.map([1,2,3], &Adding.plus_three(&1))
 
 更简单的语法是，直接使用函数名，而不显式捕获变量
 > 去掉`/1`会被认为是调用 `Adding.plus_three/0`
+
 ```elixir
 iex> Enum.map([1,2,3], &Adding.plus_three/1) 
 [4, 5, 6]

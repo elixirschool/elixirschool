@@ -188,7 +188,7 @@ The gist is, that instead of mocking away dependencies for testing (mock as a *v
 
 To leverage this "mocks-as-a-noun" pattern you can:
 
-* Define a behaviour that is implemented both by the entity for which you'd like to define a mock _and_ the module that will act as the mock.
+* Define a behaviour that is implemented both by the entity for which you'd like to define a mock *and* the module that will act as the mock.
 * Define the mock module
 * Configure your application code to use the mock in the given test or test environment, for example by passing the mock module into a function call as an argument or by configuring your application to use the mock module in the test environment.
 

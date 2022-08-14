@@ -3,7 +3,7 @@
   title: "Nerves",
   excerpt: """
   
-  """
+"""
 }
 ---
 
@@ -166,7 +166,6 @@ _故障排除：如果您的主文件夹中没有现有的 ssh 密钥，则会�
 
 设置依赖关系后，需要为设备配置 LED 列表。 例如，对于所有 Raspberry Pi 型号，板载只有一个 LED：`led0`。 让我们通过在 `config/config.exs` 中添加一行 `config: nerves_leds, names:[green: "led0"]` 来使用它。
 
-
 对于其他设备，您可以查看[nerves_examples 项目的相应部分](https://github.com/nerves-project/nerves_examples/tree/master/hello_leds/config).
 
 配置 LED 后，我们肯定需要以某种方式控制它。 为此，我们将在 `lib/network_led/blinker.ex` 中添加一个 GenServer（请参阅 [OTP Concurrency](/zh-hans/lessons/advanced/otp_concurrency) 课程中有关 GenServers 的详细信息），其中包含以下内容：
@@ -257,6 +256,7 @@ defmodule NetworkLed.Http do
   match(_, do: send_resp(conn, 404, "Oops!"))
 end
 ```
+
 最后一步 - 将 `{Plug.Cowboy, scheme: :http, plug: NetworkLed.Http, options: [port: 80]}` 添加到应用程序监督树中。
 
 固件更新后，您可以试试。 访问 `http://192.168.88.2/` 将返回纯文本响应，`http://192.168.88.2/enable` 和 `http://192.168.88.2/disable` 将控制禁用并启用该 LED！

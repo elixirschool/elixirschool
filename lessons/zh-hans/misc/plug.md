@@ -6,7 +6,7 @@
 
   通过本课程，我们会使用 `PlugCowboy` 来从零开始打造一个简单的 HTTP 服务器。Cowboy 是一个为 Erlang 打造的简单的 HTTP 服务器。而 Plug 则为我们提供了它的 connection 适配。
 
-  当极简的 web 应用配置好后，我们将学习 Plug 的 router 以及如何在单个 web 应用内使用多个 plugs。
+当极简的 web 应用配置好后，我们将学习 Plug 的 router 以及如何在单个 web 应用内使用多个 plugs
   """
 }
 ---
@@ -18,8 +18,8 @@
 先从创建一个带 supervision tree 的 OTP 项目开始：
 
 ```shell
-$ mix new example --sup
-$ cd example
+mix new example --sup
+cd example
 ```
 
 我们的 Elixir 应用需要包含 supervision tree 是因为我们需要用到 Supervisor 来启动和运行我们的 Cowboy2 服务器。
@@ -41,7 +41,7 @@ end
 然后，在命令行运行下面的 mix 任务拉取新添加的依赖：
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## Plug 规范
@@ -124,7 +124,7 @@ end
 现在，一个最简的，基于 Plug 的 web 服务已经准备就绪。在命令行运行：
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 等编译完成，`[info]  Starting application...` 在命令行出现后，打开浏览器访问 <http://127.0.0.1:8080>。浏览器页面就会显示：
@@ -308,7 +308,7 @@ end
 我们可以通过下面的命令来启动应用：
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 ## 测试 Plug
@@ -364,7 +364,7 @@ end
 运行以下的命令进行测试：
 
 ```shell
-$ mix test test/example/router_test.exs
+mix test test/example/router_test.exs
 ```
 
 ## Plug.ErrorHandler
