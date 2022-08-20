@@ -146,4 +146,4 @@ mix hello             # Simply calls the Hello.say/0 function.
 Note: Our code must be compiled before new tasks will appear in the `mix help` output.
 We can do this either by running `mix compile` directly or by running our task as we did with `mix hello`, which will trigger the compilation for us.
 
-The name of the task is whatever is after the Mix.Tasks in the module name. So `MixTasks.MyHelper.Utility` becomes `my_helper.utility`.
+It's important to note that task names are derived from the module name, so `MixTasks.MyHelper.Utility` will become `my_helper.utility`.
