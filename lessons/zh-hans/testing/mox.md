@@ -176,7 +176,7 @@ Application.put_env(:my_app, :http_client, HTTPoison.BaseMock)
 作为幕后工作， Mox 将会在BEAM中动态创建一个以这个名字命名的模块。
 
 第二个麻烦的问题是 `for:` 引用的模块 _必须_ 是一种行为：它 _必须_ 定义相关回调函数。
-Mox 在这个模块上使用自省（），你只能在定义了 `@callback` 之后，定义模拟函数。
+Mox 在这个模块上使用自省（ introspection ），你只能在定义了 `@callback` 之后，定义模拟函数。
 这就是使用 Mox 所约定的方式。
 有时很难找到行为模块：例如， `HTTPoison` 依赖于 `HTTPoison.Base` ，但除非你查看它的源代码，否则你很难发现这一点。
 如果你尝试为第三方包创建模拟，你可能会发现它不存在任何依赖的行为！
