@@ -29,21 +29,21 @@ Por este conjunto de exemplos, nós iremos usar o módulo String de Elixir.
 
 - Tokenize String (vagamente)
 
-```shell
+```elixir
 iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
 - Converte palavras para letras maiúsculas
 
-```shell
+```elixir
 iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 
 - Checa terminação de palavra
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
@@ -52,7 +52,7 @@ true
 
 Se a aridade de uma função for maior do que 1, certifique-se de usar parênteses. Isso não importa muito para Elixir, porém é importante para outros programadores que podem interpretar mal o seu código. Mas ainda assim, a ordem é importante com o operador pipe. Se tomarmos o nosso terceiro exemplo, e retirarmos os parênteses do `String.ends_with?/2`, receberemos o seguinte aviso:
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with? "ixir"
 warning: parentheses are required when piping into a function call. For example:
 
