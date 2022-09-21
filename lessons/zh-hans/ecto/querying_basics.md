@@ -3,7 +3,7 @@
   title: "查询",
   excerpt: """
   
-  """
+"""
 }
 ---
 
@@ -114,7 +114,7 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 
 请注意到返回的结构体只包含 `tagline` 和 `title` - 这是通过 `select:` 部分设置的结果。
 
-以上那些查询被称为 *无绑定（bindingless）*，它们足够简单。
+以上那些查询被称为 _无绑定（bindingless）_，它们足够简单。
 
 #### 查询的绑定
 
@@ -125,7 +125,7 @@ iex> query = from(m in Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
-这样的情况，我们把 `m` 称为一个 *绑定（binding）*。绑定非常有用，因为它们允许我们在查询的其它部分中引用这些模块。当我们想找出所有 `id` 小于 `2` 的电影的标题时：
+这样的情况，我们把 `m` 称为一个 _绑定（binding）_。绑定非常有用，因为它们允许我们在查询的其它部分中引用这些模块。当我们想找出所有 `id` 小于 `2` 的电影的标题时：
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
@@ -136,7 +136,7 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-在这里，最重要的一点就是，查询语句的输出是如何改变的。通过在 `select:` 部分使用绑定和*表达式*，我们可以精确指定要返回字段的结构。比如说，我们想返回一个元组：
+在这里，最重要的一点就是，查询语句的输出是如何改变的。通过在 `select:` 部分使用绑定和_表达式_，我们可以精确指定要返回字段的结构。比如说，我们想返回一个元组：
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
@@ -147,10 +147,9 @@ iex> Repo.all(query)
 
 比较好的做法是，通过简单的无绑定查询开始，等需要引用你的数据结构时，再引入绑定的用法。对于查询中的绑定使用方法，可参见 [Ecto 文档](https://hexdocs.pm/ecto/Ecto.Query.html#module-query-expressions)
 
-
 ### 基于宏的查询
 
-上面的例子里，我们使用的是在 `from` 宏里面添加 `select:` 和 `where:` 关键字来打造查询语句 - 这些也被称为*基于关键字的查询语句*。但是，还有另一种组装查询语句的方式 - 基于宏的查询语句。Ecto 为每一个关键字都提供了宏，比如 `select/3` 或者 `where/3`。每一个宏都接收一个 *queryable* 值，一个*显式声明的绑定列表*，和提供给关键字查询语句类似的表达式：
+上面的例子里，我们使用的是在 `from` 宏里面添加 `select:` 和 `where:` 关键字来打造查询语句 - 这些也被称为_基于关键字的查询语句_。但是，还有另一种组装查询语句的方式 - 基于宏的查询语句。Ecto 为每一个关键字都提供了宏，比如 `select/3` 或者 `where/3`。每一个宏都接收一个 _queryable_ 值，一个_显式声明的绑定列表_，和提供给关键字查询语句类似的表达式：
 
 ```elixir
 iex> query = select(Movie, [m], m.title)                           

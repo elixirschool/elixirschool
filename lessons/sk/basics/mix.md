@@ -4,7 +4,7 @@
   excerpt: """
   Než sa ponoríme do Elixiru hlbšie, musíme sa naučiť pracovať s nástrojom Mix. Ak poznáte Ruby, Mix vám bude pripomínať kombináciu nástrojov Bundler, RubyGems a Rake. Je kľúčovou súčasťou každého elixirového projektu a v tejto lekcii si ukážeme len niekoľko z jeho skvelých funkcií. Zoznam všetkého, čo vie Mix ponúknuť zobrazíme príkazom `mix help`.
 
-  Doteraz sme pracovali výhradne iba s `iex`, čo však má svoje limity. Pri skutočnom projekte potrebujeme kód rozdeliť do samostatných súborov aby sme ho mohli efektívne spravovať. Mix nám s tým pomôže.
+Doteraz sme pracovali výhradne iba s `iex`, čo však má svoje limity. Pri skutočnom projekte potrebujeme kód rozdeliť do samostatných súborov aby sme ho mohli efektívne spravovať. Mix nám s tým pomôže
   """
 }
 ---
@@ -14,7 +14,7 @@
 Keď sme pripravený vytvoriť nový Elixir projekt, Mix nám to uľahčí príkazom `mix new`. Ten nám vygeneruje štruktúru adresárov projektu a všetky základné súbory:
 
 ```bash
-$ mix new example
+mix new example
 ```
 
 Z výstupu príkazu vidíme, že boli vytvorené všetky štandardné adresáre a súbory:
@@ -68,8 +68,8 @@ Sekcia `application` slúži na špecifikovanie aplikácii (menších častí pr
 Možno budeme musieť použiť `iex` v kontexte našej aplikácie. Našťastie pre nás, Mix nám to uľahčí. Môžeme spustiť novú inštanciu `iex` spolu s Mix takto:
 
 ```bash
-$ cd example
-$ iex -S mix
+cd example
+iex -S mix
 ```
 
 Keď spustíme `iex` týmto spôsobom, tak zároveň načíta našu aplikáciu a aj všetky jej závislosti.
@@ -81,7 +81,7 @@ Mix je natoľko inteligentný, že dokáže sám zistiť, že sme niečo zmenili
 Pre kompiláciu stačí v kmeňovom adresári projektu spustiť príkaz `mix compile`:
 
 ```bash
-$ mix compile
+mix compile
 ```
 
 V našom projekte zatiaľ skoro nič nie je, takže kompilácia by mala prebehnúť rýchlo a bez problémov:
@@ -117,7 +117,7 @@ Ako ste si zrejme domysleli, balíček `cowboy` je nutný len pri vývoji a test
 Po pridaní závislostí nám zostáva už len povedať Mixu, aby ich stiahol (v Ruby tomu zodpovedá príkaz `bundle install`):
 
 ```bash
-$ mix deps.get
+mix deps.get
 ```
 
 To je všetko! Definovali a stiahli sme závislosti nášho projektu. Teraz sme pripravení pridať závislosti keď budeme potrebovať.
@@ -133,5 +133,5 @@ Mix, rovnako, ako Bundler, podporuje rôzne behové prostredia. Tri základné p
 V kóde zistíme aktívne prostredie použitím `Mix.env`. Behové prostredie môžeme nastaviť pomocou premennej operačného systému `MIX_ENV`, napríklad:
 
 ```bash
-$ MIX_ENV=prod mix compile
+MIX_ENV=prod mix compile
 ```

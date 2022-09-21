@@ -77,6 +77,7 @@ To declare that a character belongs to a movie, we need the `characters` table t
 ```elixir
 add :movie_id, references(:movies)
 ```
+
 So our migration should look like this:
 
 ```elixir
@@ -202,7 +203,7 @@ Define the migration:
 ```elixir
 # priv/migrations/*_create_actors.ex
 
-defmodule Friends.Repo.Migrations.Actors do
+defmodule Friends.Repo.Migrations.CreateActors do
   use Ecto.Migration
 
   def change do
@@ -479,7 +480,7 @@ iex> Repo.update!(movie_actors_changeset)
 
 We can see that this gives us a movie record with the new actor properly associated and already preloaded for us under `movie.actors`.
 
-We can use this same approach to create a brand new actor that is associated with the given movie. Instead of passing a _saved_ actor struct into `put_assoc/4`, we simply pass in an actor struct describing a new actor that we want to create:
+We can use this same approach to create a brand new actor that is associated with the given movie. Instead of passing a _saved_ actor struct into `put_assoc/4`, we simply pass in a map of attributes describing a new actor that we want to create:
 
 ```elixir
 iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])

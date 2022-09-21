@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.2.0",
   title: "Date and Time",
   excerpt: """
   Working with time in Elixir.
@@ -42,7 +42,7 @@ But there is a catch: as you may have noticed, this struct only contains the tim
 
 ## Date
 
-Contrary to `Time`, a `Date` struct has info about the current date, without any info about current time.
+Contrary to `Time`, a `Date` struct has info about the date, without any info about the time.
 
 ```elixir
 iex> Date.utc_today
@@ -52,7 +52,7 @@ iex> Date.utc_today
 And it has some useful functions to work with dates:
 
 ```elixir
-iex> {:ok, date} = Date.new(2020, 12,12)
+iex> {:ok, date} = Date.new(2020, 12, 12)
 {:ok, ~D[2020-12-12]}
 iex> Date.day_of_week date
 6
@@ -73,10 +73,10 @@ Its disadvantage is lack of timezone support:
 
 ```elixir
 iex(15)> NaiveDateTime.utc_now
-~N[2029-01-21 19:55:10.008965]
+~N[2022-01-21 19:55:10.008965]
 ```
 
-But it has both the current time and date, so you can play with adding time, for example:
+But it has both the time and date, so you can play with adding time, for example:
 
 ```elixir
 iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
@@ -100,7 +100,7 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 
 ## Working with timezones
 
-As we have noted in the previous chapter, by default Elixir does not have any timezone data.
+As we have noted in the previous section, by default Elixir does not have any timezone data.
 To solve this issue, we need to install and set up the [tzdata](https://github.com/lau/tzdata) package.
 After installing it, you should globally configure Elixir to use Tzdata as timezone database:
 

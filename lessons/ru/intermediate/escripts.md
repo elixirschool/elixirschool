@@ -1,5 +1,5 @@
 %{
-  version: "1.0.2",
+  version: "1.0.3",
   title: "Исполняемые файлы",
   excerpt: """
   Для сборки исполняемых файлов в Elixir мы будем использовать escript.
@@ -23,7 +23,7 @@ defmodule ExampleApp.CLI do
 end
 ```
 
-Далее нам надо обновить наш Mixfile &mdash; включить `:escript` для нашего проекта, а также указать `:main_module`:
+Далее нам надо обновить наш Mixfile — включить `:escript` для нашего проекта, а также указать `:main_module`:
 
 ```elixir
 defmodule ExampleApp.Mixproject do
@@ -70,7 +70,7 @@ end
 Как только мы закончили настройку нашего приложения для использования escript, до сборки исполняемого файла остался всего один шаг с Mix:
 
 ```bash
-$ mix escript.build
+mix escript.build
 ```
 
 Давайте попробуем:

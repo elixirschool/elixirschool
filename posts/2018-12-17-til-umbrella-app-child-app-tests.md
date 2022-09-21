@@ -38,7 +38,7 @@ Paths given to `mix test` did not match any directory/file: test/github_client_t
 Paths given to `mix test` did not match any directory/file: test/github_client_test.exs
 ```
 
-This _technically_ works--it _did_ run the test we specified--but its not quite what we want. Any `mix` command we run from the root of our umbrella app is recursively run from the root of each child app in the `apps/` directory. So, while this did run the `github_client_test.exs` test when the command was executed in the child app that contains that test, it also executed that command against *every other child app*. Resulting in these not-so-nice error messages:
+This _technically_ works--it _did_ run the test we specified--but its not quite what we want. Any `mix` command we run from the root of our umbrella app is recursively run from the root of each child app in the `apps/` directory. So, while this did run the `github_client_test.exs` test when the command was executed in the child app that contains that test, it also executed that command against _every other child app_. Resulting in these not-so-nice error messages:
 
 ```bash
 Paths given to `mix test` did not match any directory/file:
@@ -48,6 +48,7 @@ test/github_client_test.exs
 Not ideal.
 
 ### Like This
+
 To run _all_ of the tests for just one specific child app, we can run the following from the root of the umbrella app:
 
 ```elixir
@@ -100,4 +101,3 @@ mix child_app_name_test test/child_app_name_test.exs
 ```
 
 And that's it! A nice, easy-to-use command for running a child app's specs. You could define one such alias for each child app in your umbrella and run those tests with ease.
-

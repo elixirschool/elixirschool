@@ -4,7 +4,7 @@
   excerpt: """
   我們已經看過 Elixir 抽象的並行性，但是有時候需要更好的控制，為此我們轉而了解構建 Elixir 的 OTP 行為 (behaviors)。
 
-  在本課程中，焦點會放在最龐大的部分：GenServers。
+在本課程中，焦點會放在最龐大的部分：GenServers
   """
 }
 ---

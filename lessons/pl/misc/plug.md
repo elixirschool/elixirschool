@@ -176,7 +176,7 @@ end
 I teraz by uruchomić naszą aplikację wystarczy wpisać:
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 ## Testowanie Plugów

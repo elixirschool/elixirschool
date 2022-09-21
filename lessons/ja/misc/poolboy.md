@@ -22,7 +22,7 @@ mixを使えばインストールは簡単です。Poolboyの依存関係を `mi
 まずは簡単なアプリケーションを作ってみましょう。
 
 ```shell
-$ mix new poolboy_app --sup
+mix new poolboy_app --sup
 ```
 
 `mix.exs` にPoolboyの依存関係を追加しましょう。
@@ -36,7 +36,7 @@ end
 そして、Poolboyを含めた依存関係を持ってきましょう。
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## 設定可能なオプション
@@ -140,7 +140,7 @@ end
 テスト関数を実行して結果を見ましょう。
 
 ```shell
-$ iex -S mix
+iex -S mix
 ```
 
 ```elixir

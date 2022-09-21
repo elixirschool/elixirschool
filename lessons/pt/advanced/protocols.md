@@ -8,11 +8,12 @@
 ---
 
 ## O que são Protocols
+
 Então, o que eles são?
 Protocolos são um meio de alcançar polimorfismo no Elixir.
 Uma dor de Erlang é estender uma API existente para tipos recentemente definidos.
 Para evitar isso no Elixir, a função é despachada dinamicamente com base no tipo do valor.
-O Elixir vem com um número de protocolos incorporados, por exemplo, o protocolo `String.Chars` é responsável pela função` to_string / 1` que vimos ser usada anteriormente.
+O Elixir vem com um número de protocolos incorporados, por exemplo, o protocolo `String.Chars` é responsável pela função`to_string / 1` que vimos ser usada anteriormente.
 Vamos dar uma analizar `to_string/1` com um exemplo rápido:
 
 ```elixir

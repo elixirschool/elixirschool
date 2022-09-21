@@ -17,7 +17,7 @@ In this (brief) post, we will show how to get things up and running on [Heroku](
 It really is quite easy, but today when I set out to do it, the resources I found either focused on Phoenix or had a few holes, so I figured I would write up a simple one here.
 Before we get started, head over to Heroku and make an account as well as install their CLI tools.
 
-## Let's Do It!
+## Let's Do It
 
 To deploy our application to Heroku we'll need to do a few things:
 
@@ -31,6 +31,7 @@ We won't waste too much time on `Procfile` details but simply put they define wh
 ```
 web: mix run --no-halt
 ```
+
 We've told Heroku we want our `web` process to execute the `mix run --no-halt` command.
 That's it!
 
@@ -66,7 +67,7 @@ elixir_version=1.8
 Now we can get it up in the real world:
 
 ```
-$ git push heroku master && heroku open
+git push heroku master && heroku open
 ```
 
 And after that push succeeds, we can see our portfolio site live and working in the real world.

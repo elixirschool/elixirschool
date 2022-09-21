@@ -11,7 +11,7 @@
 
 NimblePublisher is a simple library designed for publishing content parsed from local files using Markdown syntax. A typical use case would be building a blog.
 
-This library encapsulates most of the code that Dashbit uses for their own blog, as presented in their post [Welcome to our blog: how it was made!](https://dashbit.co/blog/welcome-to-our-blog-how-it-was-made) - and where they explain why they chose parsing the content from local files instead of using a database or a more complex CMS. 
+This library encapsulates most of the code that Dashbit uses for their own blog, as presented in their post [Welcome to our blog: how it was made!](https://dashbit.co/blog/welcome-to-our-blog-how-it-was-made) - and where they explain why they chose parsing the content from local files instead of using a database or a more complex CMS.
 
 ## Creating your content
 
@@ -49,7 +49,7 @@ A typical blog post will be written in Markdown syntax, with a metadata section 
 Yes, this is **the post** you've been waiting for.
 ```
 
-I'll let you be creative writing your own posts. Just ensure you follow the above format for the metadata and content. 
+I'll let you be creative writing your own posts. Just ensure you follow the above format for the metadata and content.
 
 With these posts in place, let's install NimblePublisher so we can parse the content and build up our `Blog` context.
 
@@ -126,7 +126,7 @@ We also define `@tags` by taking them from the `@posts`.
 Finally, we define `all_posts/0` and `all_tags/0` that will just return what was parsed respectively.
 
 Let's try it! Enter a console with `iex -S mix` and run:
- 
+
 ```elixir
 iex(1)> NimbleSchool.Blog.all_posts()
 [
@@ -273,7 +273,7 @@ And create `lib/nimble_school_web/templates/blog/show.html.eex` to render a sing
 <%= raw @post.body %>
 ```
 
-### Browse your posts!
+### Browse your posts
 
 You're ready to go!
 
@@ -307,7 +307,7 @@ And place the generated CSS classes in your stylesheets.
 
 ## Serving other content
 
-NimblePublisher can also be used to build up other publishing contexts with a different structure. 
+NimblePublisher can also be used to build up other publishing contexts with a different structure.
 
 For example, we could manage a collection of Frequently Asked Questions (FAQs), in this case we probably don't need dates, or authors, and a simpler structure with `:id`, `:question` and `:answer` would be just great.
 

@@ -93,7 +93,6 @@ iex> case {1, 2, 3} do
 
 Xem tài liệu tại trang chủ về [Biểu thức hợp lệ trong mệnh đề guard](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
-
 ## cond
 
 Khi chúng ta cần so trùng điều kiện mà không phải giá trị, chúng ta chuyển sang dùng `cond`. Nó giống với `else if` hay `elsif` của các ngôn ngữ khác:

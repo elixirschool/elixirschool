@@ -32,7 +32,7 @@ Todo lo que necesitamos hacer es agregar Poolboy como dependencia en nuestro arc
 Creemos una aplicación primero
 
 ```shell
-$ mix new poolboy_app --sup
+mix new poolboy_app --sup
 ```
 
 Agregamos Poolboy como dependencia en nuestro archivo `mix.exs`.
@@ -44,8 +44,9 @@ end
 ```
 
 Luego descarguemos las dependencias, incluyendo Poolboy.
+
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## Opciones de configuración
@@ -165,7 +166,7 @@ end
 Ejecuta la function de prueba para ver el resultado.
 
 ```shell
-$ iex -S mix
+iex -S mix
 ```
 
 ```elixir

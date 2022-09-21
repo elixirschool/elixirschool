@@ -58,9 +58,9 @@ Inserimos uma estrutura no módulo `Examples` que contém dois campos, `first` e
 
 Elixir tem três diretivas para tipos:
 
-  - `@type` – tipo é público e a estrutura interna do tipo é pública.
-  - `@typep` – tipo é privado e pode ser utilizado somente no módulo onde é definido.
-  - `@opaque` – tipo é público, mas estrutura interna é privada.
+- `@type` – tipo é público e a estrutura interna do tipo é pública.
+- `@typep` – tipo é privado e pode ser utilizado somente no módulo onde é definido.
+- `@opaque` – tipo é público, mas estrutura interna é privada.
 
 Vamos definir nosso tipo:
 

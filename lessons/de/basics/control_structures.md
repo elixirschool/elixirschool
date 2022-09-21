@@ -198,5 +198,5 @@ a =
       :odd
   end
   ```
-Es hilft bei der Fehlerbehandlung, indem es pattern matching in ihm ermöglicht. Der übergebene Wert ist der erste nicht übereinstimmende Ausdruck.
 
+Es hilft bei der Fehlerbehandlung, indem es pattern matching in ihm ermöglicht. Der übergebene Wert ist der erste nicht übereinstimmende Ausdruck.

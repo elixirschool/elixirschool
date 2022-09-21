@@ -77,7 +77,6 @@ iex> 1.0e-10
 1.0e-10
 ```
 
-
 ### Mantıksal Tipler (Booleans)
 
 Elixir de mantıksal `true` ve `false` değerleri bulunur; `false` ve `nil` dışında herşey true olarak kabul edilir:
@@ -119,6 +118,7 @@ true
 ```
 
 Atomlar aynı zamanda Erlang kütüphanelerine erişmek için de kullanılır.
+
 ```elixir
 iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>

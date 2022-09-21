@@ -8,6 +8,7 @@
 ---
 
 ## Thư viện chuẩn
+
 Chúng ta có thể sử dụng một cách rộng rãi các thư viện chuẩn của Erlang ở bên trong ứng dụng Elixir. Module Erlang được biểu diễn bằng các atom không viết hoa (lowercase) như là `:os` hay là `:timer`.
 
 Hãy thử sử dụng `:timer.tc` để đo thời gian chạy của một hàm:

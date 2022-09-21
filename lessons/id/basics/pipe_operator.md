@@ -67,4 +67,3 @@ Ambiguous pipe found at:
 
 ["ELIXIR", "ROCKS"]
 ```
-

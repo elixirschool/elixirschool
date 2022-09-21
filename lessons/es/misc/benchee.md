@@ -17,11 +17,13 @@ Benchee nos proveé con una gama de estadísticas con comparaciones sencillas en
 ## Uso
 
 Para agregar Benchee a tu projecto, añádelo como una dependencia en tu archivo `mix.exs`:
+
 ```elixir
 defp deps do
   [{:benchee, "~> 1.0", only: :dev}]
 end
 ```
+
 Después ejecutamos:
 
 ```shell
@@ -51,7 +53,7 @@ Benchee.run(%{
 Para correr nuestra prueba de desempeño, ejecutamos:
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 Y debes ver algo como la siguiente salida en la terminal:
@@ -108,6 +110,7 @@ Uno de los mejores aspectos de Benchee es la gran cantidad de opciones de config
 Vamos a revisar las opciones básicas primero dado que no requieren ejemplos de código, y después mostraremos cómo utilizar una de las mejores características de Benchee - entradas.
 
 ### Nivel Básico
+
 Benchee acepta una gran cantidad de opciones de configuración.
 En la interfaz `Benchee.run/2`, estas se pasan como el segundo argumento en la forma de una lista de palabras clave opcional:
 
@@ -221,11 +224,13 @@ Primero, ahora tenemos un mapa `inputs` que contiene la información para cada e
 Estamos pasando ese mapa de entradas como una opción de configuración a `Benchee.run/2`.
 
 Y puesto que ahora nuestras funciones necesitan tomar un argumento,necesitamos actualizar nuestras funciones de pruebas para aceptar un argumento. Entonces, en vez de:
+
 ```elixir
 fn -> Enum.flat_map(list, map_fun) end
 ```
 
 ahora tenemos:
+
 ```elixir
 fn list -> Enum.flat_map(list, map_fun) end
 ```
@@ -233,7 +238,7 @@ fn list -> Enum.flat_map(list, map_fun) end
 Ejecutemos esto nuevamente usando:
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 Ahora deberías ver una salida en tu consola como la siguiente:

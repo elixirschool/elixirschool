@@ -2,8 +2,10 @@
   version: "1.0.1",
   title: "OTP 分散式",
   excerpt: """
-  ## 分散式簡介
-  可以於一組分散在單個主機或多個主機上的不同 node 中執行 Elixir 應用程式。
+
+## 分散式簡介
+
+可以於一組分散在單個主機或多個主機上的不同 node 中執行 Elixir 應用程式
   Elixir 允許通過幾個不同的機制在這些 node 之間進行通訊，在本課程中將概述這些機制。
   """
 }
@@ -33,9 +35,10 @@ iex(kate@localhost)>
 
 這兩個 node 可以使用 `Node.spawn_link/2` 互相發送訊息。
 
-###  藉由 Node.spawn_link/2 進行通訊
+### 藉由 Node.spawn_link/2 進行通訊
 
 這個函數有兩個參數：
+
 * 要連接 node 的名稱
 * 由遠端處理程序要在該 node 上執行的函數
 
@@ -111,10 +114,10 @@ iex --sname kate@localhost --cookie secret_token
 
 #### Node.spawn_link/2 限制
 
-雖然 `Node.spawn_link/2` 說明了 node 間的關係及可以在它們之間發送訊息的規則，但它真的 _不是_ 將執行在分散式 node 上應用程式的正確選擇。
+雖然 `Node.spawn_link/2` 說明了 node 間的關係及可以在它們之間發送訊息的規則，但它真的 *不是* 將執行在分散式 node 上應用程式的正確選擇。
 `Node.spawn_link/2` 產生孤立的處理程序，
 即不受監控的處理程序。
-要是能有一種方法產生 _跨 node 間_ 被監控的非同步處理程序…
+要是能有一種方法產生 *跨 node 間* 被監控的非同步處理程序…
 
 ## 分散式工作
 
@@ -132,7 +135,7 @@ mix new chat --sup
 ### 將 Task Supervisor 加入 Supervision Tree
 
 Task Supervisor 動態地監控工作。
-它啟動時沒有子處理程序，通常是在自己的 supervisor _監控下_，並且可以在以後用於監控任何數量的工作。
+它啟動時沒有子處理程序，通常是在自己的 supervisor *監控下*，並且可以在以後用於監控任何數量的工作。
 
 將為應用程式的 supervision tree 加入一個 Task Supervisor，並將其命名為 `Chat.TaskSupervisor`
 
@@ -257,7 +260,7 @@ iex(alex@localhost)> how are you?
 現在有一個函數 `Chat.send_message/2`，它接收想要執行監控工作的遠端 node 名稱以及發送給該 node 的訊息。
 
 該函數呼用 `spawn_task/4` 函數，啟動在遠端 node 上執行且由`Chat.TaskSupervisor` 監控具有給定名稱的非同步工作。
-我們知道名為 `Chat.TaskSupervisor` 的 Task Supervisor 正在該 node 上執行，因為該 node _也_ 是執行聊天應用程式的實例，並且 `Chat.TaskSupervisor` 是作為聊天應用程式的 supervision tree 的一部分啟動的。
+我們知道名為 `Chat.TaskSupervisor` 的 Task Supervisor 正在該 node 上執行，因為該 node *也* 是執行聊天應用程式的實例，並且 `Chat.TaskSupervisor` 是作為聊天應用程式的 supervision tree 的一部分啟動的。
 
 我們告訴 `Chat.TaskSupervisor` 來監控一個執行 `Chat.receive_message` 函數的工作，該工作的參數是從 `send_message/2` 傳遞給 `spawn_task/4` 的任何訊息。
 
@@ -278,7 +281,7 @@ Moebi 想要加入聊天應用程式，但遺憾的是他不知道如何輸入�
 
 * 使用 `Node.self()` 獲取當前 node 的名稱
 * 給出當前 node ，即
-發送者名稱，到一個新函數 `receive_message_for_moebi/2`，這樣就可以發送訊息 _回_ 該 node。
+發送者名稱，到一個新函數 `receive_message_for_moebi/2`，這樣就可以發送訊息 *回* 該 node。
 
 ```elixir
 # lib/chat.ex
@@ -288,7 +291,7 @@ def send_message(:moebi@localhost, message) do
 end
 ```
 
-接下來，將定義一個函數 `receive_message_for_moebi/2`，`IO.puts` 在 `moebi` node 的 STDOUT 流中輸出  訊息 _且_ 將訊息發送回發送者：
+接下來，將定義一個函數 `receive_message_for_moebi/2`，`IO.puts` 在 `moebi` node 的 STDOUT 流中輸出  訊息 *且* 將訊息發送回發送者：
 
 ```elixir
 # lib/chat.ex
@@ -299,7 +302,7 @@ def receive_message_for_moebi(message, from) do
 end
 ```
 
-通過使用發送原始訊息 node ("發送者 node") 的名稱呼用 `send_message/2` ，是告訴 _遠端_ node 在該發送者 node 上產生一個受監控的工作。
+通過使用發送原始訊息 node ("發送者 node") 的名稱呼用 `send_message/2` ，是告訴 *遠端* node 在該發送者 node 上產生一個受監控的工作。
 
 現在來看看它的實際執行效果。
 在三個不同的終端機視窗中，打開三個不同命名的 node：
@@ -367,9 +370,11 @@ end
 不過這裡可以採取兩個不同的選擇：
 
 1.
+
 如果必要的 node 未執行，則有條件地排除需要分散式 node 的測試。
 
 2.
+
 配置應用程式以避免在測試環境中的遠端 node 上建立工作。
 
 現在來看看第一種方法。
@@ -391,7 +396,7 @@ defmodule ChatTest do
 end
 ```
 
-如果測試 _不是_ 在命名 node 上執行，將在測試 helper 加入一些條件邏輯，以排除帶有此類標籤的測試。
+如果測試 *不是* 在命名 node 上執行，將在測試 helper 加入一些條件邏輯，以排除帶有此類標籤的測試。
 
 ```elixir
 # test/test_helper.exs
@@ -416,7 +421,7 @@ Finished in 0.02 seconds
 1 test, 0 failures, 1 excluded
 ```
 
-如果想執行分散式測試，只需要完成上一節中概述的步驟：執行 `moebi@localhost` node _且_ 藉由 `iex` 在命名節點中執行測試。
+如果想執行分散式測試，只需要完成上一節中概述的步驟：執行 `moebi@localhost` node *且* 藉由 `iex` 在命名節點中執行測試。
 
 現在來看看其他測試方法 - 將應用程式配置為在不同環境中有不同的表現。
 

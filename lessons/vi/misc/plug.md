@@ -184,7 +184,7 @@ config :example, cowboy_port: 8080
 Now to run our application we can use:
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 ## Kiểm thử Plug

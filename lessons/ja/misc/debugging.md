@@ -121,7 +121,7 @@ end
 ここで `iex` を実行します:
 
 ```bash
-$ iex -S mix
+iex -S mix
 ```
 
 そしてデバッガを実行します:

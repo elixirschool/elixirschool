@@ -24,6 +24,7 @@ While there are quite a few JavaScript charting libraries to choose from, we're 
 While there aren't many server-rendered chart libraries in Elixir, luckily for us, there is Contex!
 
 ## Introducing Contex
+
 [Contex](https://github.com/mindok/contex) is a server-side charting library written in Elixir that allows us to build and render SVG charts on the server. We can then use LiveView to render these charts in a template and enable them to be updated in real-time. Contex currently supports bar charts, point plots, gantt charts and sparkline charts.
 
 It's worth mentioning that there are a few other server-side charting libraries in Elixir. The [`ggity`](https://github.com/srowley/ggity) is designed to "bring interface of R's `ggplot2` library to the task of drawing SVG plots with Elixir" and supports a number of different chart types. The [`plotex`](https://github.com/elcritch/plotex) library builds and renders time plot series SVG charts on the server. The `ggity` library, while likely a good choice for exploratory data analysis, is not optimized for use with LiveView nor is it currently intended for production use and the `plotex` library is aimed at rendering time plot series charts only. So, `contex`, while still a new library with some [in-progress TODOs](https://github.com/mindok/contex#warning), is most closely aligned with our need to performantly render data in LiveView, in real-time, in a variety of formats.
@@ -31,6 +32,7 @@ It's worth mentioning that there are a few other server-side charting libraries 
 In this post, we'll focus on using Contex to build a bar chart.
 
 ## What We'll Build
+
 Drawing from an example that you'll see in greater depth in our upcoming LiveView book, we'll add a chart to our Admin Dashboard LiveView. The Admin Dashboard is part of an online gaming app in which users can play online versions of games like ping-pong and tic-tac-toe. We ask users to fill our a survey that rates games on a scale of 1 to 5 stars. Our Admin Dashboard should include a chart of products and their average star ratings. Something like this:
 
 ![game ratings chart](/images/game-ratings-chart.png)
@@ -66,6 +68,7 @@ Then, we use this assignment to set the `:id` of our stateful component:
 We're storing the component's ID in socket assigns so that we can use it later to send updates to the component with the help of the `send_update/2` function. More on that later.
 
 ## Getting Started
+
 First off, we'll add the Contex package to our app's dependencies in the `mix.exs` file:
 
 ```elixir
@@ -75,6 +78,7 @@ First off, we'll add the Contex package to our app's dependencies in the `mix.ex
 Run `mix deps.get` to install the new dependency.
 
 ## Querying Data To Chart
+
 Before we can render our bar chart, we need to query for and format our data for the chart. We'll write query that selects all of the games, along with the average rating for each game.
 
 We'll implement our query in a query builder module defined in the core of application. The functional core of our application is where we put all of the code that is predictable and reliable. Working with the data in our database is a great example of something that is just that. Let's take a look at our query  now.
@@ -108,7 +112,8 @@ defmodule GameStore.Catalogue.Game.Query do
   end
 end
 ```
-While the work of *composing* queries is predictable and reliable, the work of *executing* queries is anything but. You can't be certain of what the results of executing a database query will be, and such work is often dependent on input from a user. So, the execution of our query will be the responsibility of our app's `Catalogue` context. The context acts as our application's boundary, and it's where we can located code that deals with uncertainty and with input from the outside world.
+
+While the work of _composing_ queries is predictable and reliable, the work of _executing_ queries is anything but. You can't be certain of what the results of executing a database query will be, and such work is often dependent on input from a user. So, the execution of our query will be the responsibility of our app's `Catalogue` context. The context acts as our application's boundary, and it's where we can located code that deals with uncertainty and with input from the outside world.
 
 Let's wrap up our query in a context function in the `Catalogue` context now. We execute our query by piping it to a call to `Repo.all()`
 
@@ -144,9 +149,11 @@ Note that we've chosen for our query to select and return a collection of result
 Let's turn our attention to building out that chart with this data now.
 
 ## Defining Your Chart in LiveView
+
 Before we build out or component in earnest, it's worth mentioning the pattern that we will be applying to manage state in that component. We'll rely on reducers to successively update socket state to initialize the starting state of our component and handle updates. Reducers are functions that take a thing and return an updated thing of the same type. They allow us to compose neat, clean pipelines that make it easy to build and manage LiveView state and respond to events by updating that state. This is a pattern that we'll go into greater depth on in our LiveView book.
 
 ### Storing Chart Data in State
+
 First off, we'll teach our `GameRatingsLive` component to query for these games with average ratings and keep them in the socket assigns.
 
 Recall that earlier we said that we're rendering the `GameRatingsLive` component as a stateful component in the `AdminDashboardLive` LiveView. We'll leverage the stateful component's `update/2` lifecycle method to fetch our game and ratings data and store it in socket assigns.
@@ -178,6 +185,7 @@ First, we'll apply whatever assigns have come in from the parent LiveView, then 
 Now that we have our query results available in state, we're ready to use them to build our chart.
 
 ### Building The Bar Chart
+
 There are three stages to building a Contex chart:
 
 * Initializing the dataset
@@ -187,6 +195,7 @@ There are three stages to building a Contex chart:
 We'll add a reducer to our `update/2` pipeline that updates socket state for each step in this process.
 
 #### Initializing the `DataSet`
+
 The first step of building a Contex chart is to initialize the data set with the `Contex.DataSet` module. [The `DataSet` module](https://hexdocs.pm/contex/Contex.Dataset.html) wraps your dataset for plotting charts. It provides a set of convenience functions that subsequent chart plotting modules will leverage to operate on and chart your data. `Dataset` handles several different data structures by marshalling them into a consistent form for consumption by the chart plotting functions. The data structures it can handle are: a list of maps, list of lists or a list of tuples. Recall that we ensured that our query for games with average ratings returns a list of tuples.
 
 We'll begin by implementing a new reducer function, `assign_dataset/1`. This reducer will initialize a new `DataSet` with the query results, our list of game and average rating tuples, from socket assigns. Then, it will add the dataset to socket state:
@@ -231,6 +240,7 @@ If we take a look at the output of our call to `Contex.DataSet.new/1`, we'll see
 The `DataSet` considers the first element of a given tuple in the list to be the "category column" and the second element to be the "value column". The category column is used to label the bar chart category (in our case the game name), and the value column is used to populate the value of that category.
 
 #### Initializing the `BarChart`
+
 Now that we have our dataset, we can use it to initialize our `BarChart`. We'll do this in a subsequent reducer that we'll add to the `update/2` pipeline, `assign_chart/1`.
 
 ```elixir
@@ -352,6 +362,7 @@ column_map: %{category_col: 0, value_cols: [1]}
 The values of `0` and `[1]` refer to the indices of elements in the tuples in our `DataSet`. The element at the `0` index will be considered the "category" and the element and the `1` index will be considered the "value". Our tuples have the game name at the zero index and the average rating at the `1` index, so our game names will be treated at the category and their average ratings the value.
 
 #### Render the Chart SVG
+
 The `Contex.Plot` module will plot our data and render it to SVG markup. We'll add another reducer to our pipeline, `assign_chart_svg`. This reducer will initialize and configure the `Contex.Plot` and render it to SVG. Then, it will assign this SVG to the `:chart_svg` key in socket assigns.
 
 The `Plot` module manages the layout of the chart plot--the chart title, axis labels, legend, etc. We initialize our `Plot` with the plot width and height, and the chart struct:
@@ -407,6 +418,7 @@ end
 Now we're ready to render this SVG markup in our template.
 
 #### Rendering the Chart in the Template
+
 Our `GameRatingsLive` template is pretty simple, it renders the SVG stored in the `@chart_svg` assignment:
 
 ```html
@@ -476,6 +488,7 @@ One "gotcha" that I'll point out is that, in order to get the column labels (i.e
 Now that our chart is rendering beautifully, let's talk about updating it in real-time.
 
 ## Real-Time Updates
+
 The great news about rendering our chart in a LiveView is that we'll get real-time updates for free! Should any state changes occur server-side, the chart will be automatically re-rendered with any new data. We could imagine, for example, leveraging PubSub to send a message to the parent `AdminDashboardLive` every time a user submits a new game rating. The `AdminDashboard` could then in turn use the `send_update/2` function to update the child `GameRatingsLive` component, causing it to re-render and re-fetch the games with average ratings data from the database, thus rendering an updated chart with the latest game ratings. In this way, LiveView can manage the state of our single page in a way that reflects and is impacted by the overall state of our distributed application. Working with PubSub and LiveView is a little outside the scope of this post, but you can learn more about it in our earlier post on this topic [here](https://elixirschool.com/blog/live-view-with-pub-sub/).
 
 Aside from the free live updates our chart will benefit from, just by virtue of being rendered in LiveView, the Contex library does allow us to add event handlers to the chart itself. The `BarChart` module exposes a function, [`event_handler/2`](https://hexdocs.pm/contex/Contex.BarChart.html#event_handler/2), which attaches a `phx-click` attribute to each bar element in the chart.
@@ -540,6 +553,7 @@ defmodule GameStoreWeb.AdminDashboardLive do
   end
 end
 ```
+
 `send_update/2` is called with the name of the component that we want to update and a keyword list that will get passed to the updating component as the new assigns. The keyword list _must_ include the ID that we are targeting for an update. Here, we're pulling the component's ID out of socket assigns where we stored it in the first part of this blog post.
 
 With this call to `send_update/2`, we will cause the `GameRatingsLive` component to re-render and re-invoke the `update/2` callback, this time with an `assigns` that includes our `:selected_category` key pointing to the click event payload. We'll cover the `send_update/2` function, and more options for communicating between child components and parent LiveViews, in the LiveView book. For now, it's enough to understand that `send_update/2` can be invoked from a parent LiveView to tell a component that is running in the LiveView to update.
@@ -585,11 +599,13 @@ Here we're adding a conditional reducer `maybe_select_category/2`, to our chart 
 Now, if we point our browser at `/admin-dashboard` and click a given bar chart category bar, we should see it highlighted appropriately!
 
 ## Conclusion
+
 We can see that Contex is a powerful and flexible tool for server-side SVG charting in Elixir. On top of that, it seamlessly integrates into our LiveView, accommodating real-time updates and even allowing us to attach `phx-click` events to chart elements. I hope to see the Contex library grow even further and encourage anyone reading to try it our and consider contributing.
 
 Beyond our look at Contex, we touched on a lot of LiveView concepts here. We took a look at how core/boundary application design comes into play in our LiveView features, we leveraged stateful components and saw how parent LiveViews can communicate to their child components and we wrote some nice, organized LiveView code that leveraged reducers to establish socket state. For a deeper dive into these concepts and more, don't forget to check out Pragmatic Bookshelf's upcoming LiveView book, and keep an eye out for Elixir School's LiveView book give-away!
 
 ## Resources
+
 For a closer look at Contex:
 
 * [Contex official site](https://contex-charts.org/)

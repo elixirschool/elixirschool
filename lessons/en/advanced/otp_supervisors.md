@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.1.2",
   title: "OTP Supervisors",
   excerpt: """
   Supervisors are specialized processes with one purpose: monitoring other processes.
@@ -75,7 +75,7 @@ There are currently three different supervision strategies available to supervis
 
 After the supervisor has started it must know how to start/stop/restart its children.
 Each child module should have a `child_spec/1` function to define these behaviors.
-The `use GenServer`, `use Supervisor`, and `use Agent` macros automatically define this method for us (`SimpleQueue` has `use Genserver`, so we do not need to modify the module), but if you need to define it yourself `child_spec/1` should return a map of options:
+The `use GenServer`, `use Supervisor`, and `use Agent` macros automatically define this method for us (`SimpleQueue` has `use GenServer`, so we do not need to modify the module), but if you need to define it yourself `child_spec/1` should return a map of options:
 
 ```elixir
 def child_spec(opts) do
@@ -90,37 +90,42 @@ end
 ```
 
 + `id` - Required key.
-Used by the supervisor to identify the child specification.
+  Used by the supervisor to identify the child specification.
 
 + `start` - Required key.
-The Module/Function/Arguments to call when started by the supervisor
+  The Module/Function/Arguments to call when started by the supervisor
 
 + `shutdown` - Optional key.
-Defines child's behavior during shutdown.
-Options are:
+  Defines child's behavior during shutdown.
+
+  Options are:
 
   + `:brutal_kill` - Child is stopped immediately
 
-  + any positive integer - time in milliseconds supervisor will wait before killing child process.
-If the process is a `:worker` type, this defaults to 5000.
+  + `0` or a positive integer - time in milliseconds supervisor will wait before killing child process.
+
+    If the process is a `:worker` type, `shutdown` defaults to `5000`.
 
   + `:infinity` - Supervisor will wait indefinitely before killing child process.
-Default for `:supervisor` process type.
-Not recommended for `:worker` type.
+
+    Default for `:supervisor` process type.
+
+    Not recommended for `:worker` type.
 
 + `restart` - Optional key.
-There are several approaches for handling child process crashes:
+
+  There are several approaches for handling child process crashes:
 
   + `:permanent` - Child is always restarted.
-Default for all processes
+    Default for all processes
 
   + `:temporary` - Child process is never restarted.
 
   + `:transient` - Child process is restarted only if it terminates abnormally.
 
 + `type` - Optional key.
-Processes can be either `:worker` or `:supervisor`.
-Defaults to `:worker`.
+  Processes can be either `:worker` or `:supervisor`.
+  Defaults to `:worker`.
 
 ## DynamicSupervisor
 

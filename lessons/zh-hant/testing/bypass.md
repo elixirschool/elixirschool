@@ -6,7 +6,7 @@
   甚至可能想要模擬不同的情況，例如意外的伺服器錯誤。
   在沒有任何幫助下，要在 Elixir 中以效率高的方式進行處理並不容易。
 
-  在本課程中，將探討 [bypass](https://github.com/PSPDFKit-labs/bypass) 如何幫助我們快速輕鬆地處理測試中的這些請求。
+在本課程中，將探討 [bypass](https://github.com/PSPDFKit-labs/bypass) 如何幫助我們快速輕鬆地處理測試中的這些請求
   """
 }
 ---
@@ -29,7 +29,6 @@ _註_：如果希望直接跳至最後的完整程式碼，請前往 Elixir Scho
 
 至此，應該可以輕鬆地建立新的 Mix 專案並加入相依性，因此這裡將只專注於要測試的程式碼片段。
 如果需要快速復習，請參考 [Mix](https://elixirschool.com/en/lessons/basics/mix) 課程的 [New Projects](https://elixirschool.com/en/lessons/basics/mix/#new-projects) 部分。
-
 
 現在從建立一個新模組開始，該模組將處理對域名的請求。
 使用 [HTTPoison](https://github.com/edgurgel/httpoison) 建立一個名為 `ping/1` 的函數，該函數接收一個 URL，並為 HTTP 200 的請求回傳 `{:ok, body}` 否則則回傳 `{:error, reason}`。

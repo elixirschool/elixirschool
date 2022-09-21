@@ -26,7 +26,6 @@ iex> Example.greeting "Sean"
 
 Trong Elixir, chúng ta có thể tạo các module lòng này, điều này cho phép bạn có thể dễ dàng phân chia các tính năng hơn.
 
-
 ```elixir
 defmodule Example.Greetings do
   def morning(name) do
@@ -45,7 +44,6 @@ iex> Example.Greetings.morning "Sean"
 ### Thuộc tính của module
 
 Thuộc tính của module phần lớn được dùng như hằng số trong Elixir. Hãy cùng xem một ví dụ đơn giản:
-
 
 ```elixir
 defmodule Example do
@@ -188,7 +186,6 @@ iex> last([1, 2, 3])
 
 Bên cạnh các cặp tên/arity, có 2 atom đặc biệt, `:functions` và `:macros` được dùng để chỉ import các hàm hoặc các macro tương ứng:
 
-
 ```elixir
 import List, only: :functions
 import List, only: :macros
@@ -211,7 +208,6 @@ Nếu chúng ta có gắng gọi một macro chưa được nạp trong Elixir, 
 ### use
 
 `use` macro sẽ gọi tới một macro đặc biệt, được gọi là `__using__/1` từ module được chỉ định. Đây là một ví dụ:
-
 
 ```elixir
 # lib/use_import_require/use_me.ex
@@ -239,7 +235,6 @@ sử dụng module UseImportRequire.UseMe để định nghĩa một hàm `use_t
 Phoenix framework sử dụng `__using__/1` để giảm bớt việc phải lặp lại các alias và import call trong các module do lập trình viên định nghĩa.
 
 Sau đây là một ví dụ rất ngắn gọi từ trong module `Ecto.Migration`:
-
 
 ```elixir
 defmacro __using__(_) do

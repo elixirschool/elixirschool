@@ -49,13 +49,14 @@ In total the book has 13 chapters.
 
 In Chapters 1 to 4, we are introduced to the platform, the language and the basics that we can use and find in almost any language (even more on functional ones). We can find details about variables, operators, control flow, data abstractions and protocols (Elixir version of polymorphism). In this section, we begin working on our ToDoList application, and by the end of it, we have a module that contains the CRUD functionality of a ToDoList entity.
 
-Chapters 5 to 11 are probably the most awesome part of the book (and what I believe made the first edition of it so popular amongst Elixir developers), a very thorough explanation about OTP and its counterparts (GenServer, Supervision, ETS Tables, OTP Applications) and the toolkit (Observer, Mix, Plug). In this section a lot of features are added to the ToDoList app: 
+Chapters 5 to 11 are probably the most awesome part of the book (and what I believe made the first edition of it so popular amongst Elixir developers), a very thorough explanation about OTP and its counterparts (GenServer, Supervision, ETS Tables, OTP Applications) and the toolkit (Observer, Mix, Plug). In this section a lot of features are added to the ToDoList app:
+
 * add a custom server process to maintain state
 * migrate state to a GenServer
 * add a cache so that we start supporting multiple to-do lists
 * add basic data persistence
 * add a supervision tree and introduce a basic pool of workers
-Additionally, we are introduced to ETS tables, OTP Applications and configuration, dependencies and Plug. In this section, I got the feeling that I am pair programming as a junior with the author, sitting beside him while he designs the application. When he finds a hole in his design, he questions himself "What part of the OTP can cover this hole, and how?". Then, he turns to me and gives me a detailed explanation on what we are doing, proceeds with the implementation on the todo-list app, and finally turns to me again and discusses on alternatives and ups and downs of the chosen path. I like this aproach, and I want to see it in more language learning books. 
+Additionally, we are introduced to ETS tables, OTP Applications and configuration, dependencies and Plug. In this section, I got the feeling that I am pair programming as a junior with the author, sitting beside him while he designs the application. When he finds a hole in his design, he questions himself "What part of the OTP can cover this hole, and how?". Then, he turns to me and gives me a detailed explanation on what we are doing, proceeds with the implementation on the todo-list app, and finally turns to me again and discusses on alternatives and ups and downs of the chosen path. I like this aproach, and I want to see it in more language learning books.
 
 In the last two chapters, we can see how to make our app run on a cluster, release it using Distillery, and maintain it (Debug, Log etc). The author follows the same approach here as well, albeit not in that much detail, as the topics discussed in this section are very broad (clustering, data replication, network partitions, releases) and would need way too much detail to cover in a language introduction book.
 

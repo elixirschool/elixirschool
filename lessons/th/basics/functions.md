@@ -9,7 +9,7 @@
 
 ## ฟังก์ชันไม่ระบุตัวตน (Anonymous Function)
 
-เช่นเดียวกับชื่อของมัน Anonymous Function ไม่มีชื่อ ดังนั้นเราเห็นในบทเรียน `Enum` เหล่านี้มักจะถูกส่งผ่านไปยังฟังก์ชันอื่น ๆ  ในการกำหนด Anonymous Function ใน Elixir เราต้องใช้ `fn` และ` end`เป็นคำหลัก ภายในเหล่านี้เราสามารถกำหนดจำนวน parameter และฟังก์ชันแยกออกจากกันด้วย `->`
+เช่นเดียวกับชื่อของมัน Anonymous Function ไม่มีชื่อ ดังนั้นเราเห็นในบทเรียน `Enum` เหล่านี้มักจะถูกส่งผ่านไปยังฟังก์ชันอื่น ๆ  ในการกำหนด Anonymous Function ใน Elixir เราต้องใช้ `fn` และ`end`เป็นคำหลัก ภายในเหล่านี้เราสามารถกำหนดจำนวน parameter และฟังก์ชันแยกออกจากกันด้วย `->`
 
 ลองดูตัวอย่างเบื้องต้น:
 
@@ -68,6 +68,7 @@ end
 iex> Greeter.hello("Sean")
 "Hello, Sean"
 ```
+
  ถ้าฟังก์ชันทั้งหมดครอบคลุมในบรรทัดเดียว เราสามารถย่อลงได้อีกด้วยคำสั้ง`do:`:
 
 ```elixir
@@ -139,9 +140,9 @@ iex> Greeter.phrase
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -184,9 +185,9 @@ iex> Greeter.hello("Sean", "es")
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -218,9 +219,9 @@ Elixir ไม่สามารถ argument เริ่มต้นในฟั
 defmodule Greeter do
   def hello(names, language_code \\ "en")
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do

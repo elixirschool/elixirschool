@@ -59,6 +59,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 ```
 
 **Nota:** La sottrazione usa la [strict comparison](/it/lessons/basics/basics#confronto) per controllare i valori. Per esempio:
+
 ```elixir
 iex> [2] -- [2.0]
 [2]

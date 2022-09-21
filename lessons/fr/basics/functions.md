@@ -312,7 +312,7 @@ iex> Greeter.phrase
 
 ### Guards (Gardes)
 
-Nous avons brièvement couvert les gardes (on reprend ici la traduction en français de _guards_ utilisée dans __Programmer en Erlang__, Pearson, 2010) dans la leçon sur les [Structures de contrôle](/fr/lessons/basics/control_structures). Nous allons à présent voir comment nous pouvons les appliquer aux fonctions.
+Nous avons brièvement couvert les gardes (on reprend ici la traduction en français de _guards_ utilisée dans **Programmer en Erlang**, Pearson, 2010) dans la leçon sur les [Structures de contrôle](/fr/lessons/basics/control_structures). Nous allons à présent voir comment nous pouvons les appliquer aux fonctions.
 Dès lors qu'Elixir a trouvé une correspondance sur un nom de fonction, toutes les gardes seront testées.
 
 L'exemple ci-dessous contient deux fonctions avec la même signature. Nous allons nous servir des gardes pour déterminer laquelle des deux utiliser, en nous basant sur le type des arguments :
@@ -320,9 +320,9 @@ L'exemple ci-dessous contient deux fonctions avec la même signature. Nous allon
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -366,9 +366,9 @@ Regardons cela de plus près :
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -403,9 +403,9 @@ defmodule Greeter do
   def hello(names, language_code \\ "en")
 
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do

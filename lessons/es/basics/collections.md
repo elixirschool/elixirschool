@@ -16,7 +16,7 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implementa las colecciones como listas enlazadas.
+Elixir implementa a las colecciones de lista como listas enlazadas.
 Esto significa que acceder al largo de la lista es una operación que se ejecutará en tiempo lineal (`O(n)`).
 Por esta razón, normalmente es más rápido agregar un elemento al inicio que al final:
 
@@ -30,7 +30,6 @@ iex> ["π" | list]
 iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
-
 
 ### Concatenación de listas
 
@@ -65,6 +64,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 ```
 
 **Nota:** La sustracción de listas utiliza [comparación estricta](/es/lessons/basics/basics#comparación) para coincidir los valores. Por Ejemplo:
+
 ```elixir
 iex> [2] -- [2.0]
 [2]

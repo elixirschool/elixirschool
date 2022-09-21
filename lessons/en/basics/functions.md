@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.3.0",
   title: "Functions",
   excerpt: """
   In Elixir and many functional languages, functions are first class citizens.
@@ -55,6 +55,7 @@ Handling result...
 :ok
 iex> handle_result.({:error})
 An error has occurred!
+:ok
 ```
 
 ## Named Functions
@@ -321,9 +322,9 @@ In the following example we have two functions with the same signature, we rely 
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -367,9 +368,9 @@ Let's see what that might look like:
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -380,20 +381,17 @@ defmodule Greeter do
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) iex:31: definitions with multiple clauses and default values require a header.
+** (CompileError) iex:8: def hello/2 defines defaults multiple times. Elixir allows defaults to be declared once per definition.
 Instead of:
 
     def foo(:first_clause, b \\ :default) do ... end
-    def foo(:second_clause, b) do ... end
+    def foo(:second_clause, b \\ :default) do ... end
 
 one should write:
 
     def foo(a, b \\ :default)
     def foo(:first_clause, b) do ... end
     def foo(:second_clause, b) do ... end
-
-def hello/2 has multiple clauses and defines defaults in one or more clauses
-    iex:31: (module)
 ```
 
 Elixir doesn't like default arguments in multiple matching functions, it can be confusing.
@@ -404,9 +402,9 @@ defmodule Greeter do
   def hello(names, language_code \\ "en")
 
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do

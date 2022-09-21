@@ -1,12 +1,12 @@
 %{
-  version: "1.0.0",
+  version: "1.0.1",
   title: "Bypass",
   excerpt: """
   When testing our applications there are often times we need to make requests to external services.
   We may even want to simulate different situations like unexpected server errors.
   Handling this in an efficient way doesn't come easy in Elixir without a little help.
 
-  In this lesson we're going to explore how [bypass](https://github.com/PSPDFKit-labs/bypass) can help us quickly and easily handle these requests in our tests.
+In this lesson we're going to explore how [bypass](https://github.com/PSPDFKit-labs/bypass) can help us quickly and easily handle these requests in our tests
   """
 }
 ---
@@ -29,7 +29,6 @@ _Note_: If you wish to skip ahead to the final code, head over to the Elixir Sch
 
 By this point we should be comfortable creating new Mix projects and adding our dependencies so we'll focus instead of the pieces of code we'll be testing.
 If you do need a quick refresher, refer to the [New Projects](https://elixirschool.com/en/lessons/basics/mix/#new-projects) section of our [Mix](https://elixirschool.com/en/lessons/basics/mix) lesson.
-
 
 Let's start by creating a new module that will handle making the requests to our domains.
 With [HTTPoison](https://github.com/edgurgel/httpoison) let's create a function, `ping/1`, that takes a URL and returns `{:ok, body}` for HTTP 200 requests and `{:error, reason}` for all others:
@@ -274,4 +273,4 @@ There shouldn't be anything too surprisingly in the above test.
 Instead of creating a single Bypass connection in `setup`, we're creating two within our test and specifying their ports as 1234 and 1337.
 Next we see our `Bypass.expect/2` calls and finally the same code we have in `SchedulerTest` to start the scheduler and assert we log the appropriate messages.
 
-That's it!  We've built a utility to keep us informed if there's any issues with our domains and we've learned how to employe Bypass to write better tests with external services.
+That's it!  We've built a utility to keep us informed if there are any issues with our domains and we've learned how to employ Bypass to write better tests with external services.

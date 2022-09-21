@@ -89,12 +89,11 @@ iex> :ets.lookup(:user_lookup, "doomspork")
 
 ### Correspondências Simples
 
-ETS foi construído para o Erlang, logo, tenha em atenção que correspondência de variáveis pode parecer um _pouco_ desajeitado.
+ETS foi construído para o Erlang, logo, tenha em atenção que correspondência de variáveis pode parecer um *pouco* desajeitado.
 
 Para especificar uma variável no nosso *match*, usamos os *atoms* `:"$1"`, `:"$2"`, `:"$3"`, e assim por diante; o número da variável reflete a posição do resultado e não a posição do *match*. Para valores que não nos interessam usamos a variável `:_`.
 
 Valores podem ser usados na correspondência, mas apenas variáveis farão parte do nosso resultado. Vamos juntar tudo isso e ver como funciona:
-
 
 ```elixir
 iex> :ets.match(:user_lookup, {:"$1", "Sean", :_})

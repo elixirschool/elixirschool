@@ -78,6 +78,7 @@ Queremos que esta columna funcione como una llave foranea. Podemos lograr esto c
 ```elixir
 add :movie_id, references(:movies)
 ```
+
 Entonces nuestra migración debe verse así:
 
 ```elixir
@@ -203,7 +204,7 @@ Define la migración:
 ```elixir
 # priv/migrations/*_create_actors.ex
 
-defmodule Friends.Repo.Migrations.Actors do
+defmodule Friends.Repo.Migrations.CreateActors do
   use Ecto.Migration
 
   def change do

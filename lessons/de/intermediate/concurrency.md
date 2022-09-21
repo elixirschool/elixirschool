@@ -6,7 +6,7 @@
   Dank der Erlang VM (BEAM) ist Nebenläufigkeit in Elixir einfacher als erwartet.
   Die Nebenläufigkeit basiert auf dem Actor Model, bei dem ein abgeschlossener Prozess mit anderen Prozessen durch message passing kommuniziert.
 
-  In dieser Lektion werden wir uns die Nebenläufigkeitsmodule anschauen, welche mit Elixir geliefert werden.
+In dieser Lektion werden wir uns die Nebenläufigkeitsmodule anschauen, welche mit Elixir geliefert werden
   Im darauf folgenden Kapitel werden wir OTP behandeln, die diese Module implementieren.
   """
 }

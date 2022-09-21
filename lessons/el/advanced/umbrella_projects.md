@@ -39,9 +39,8 @@ for each application in the apps/ directory.
 
 Όπως μπορείτε να δείτε από την εντολή τερματικού, το Mix μας δημιούργησε ένα μικρό σκελετό project με δύο φακέλους:
 
-  - `apps/` - εδώ εδρέυουν τα υπό (παιδιά) projects
-  - `config/` - εδώ εδρέυει η ρύθμιση των projects ομπρέλας
-
+- `apps/` - εδώ εδρέυουν τα υπό (παιδιά) projects
+- `config/` - εδώ εδρέυει η ρύθμιση των projects ομπρέλας
 
 ## Projects παιδιά
 

@@ -36,9 +36,9 @@ channel.on("new_message", (msg) => {
 })
 ```
 
-But wait! The LiveView client-side library only responds to _one_ event from the LiveView process running on the server––the diff event. This event isn't granular enough to tell us _what_ changed on the page. It merely forces the appropriate portions of the page to re-render.
+But wait! The LiveView client-side library only responds to *one* event from the LiveView process running on the server––the diff event. This event isn't granular enough to tell us *what* changed on the page. It merely forces the appropriate portions of the page to re-render.
 
-So, how can we get our LiveView to emit an event that our front-end _can_ respond to in order to fire our `scrollTop`-adjusting JS?
+So, how can we get our LiveView to emit an event that our front-end *can* respond to in order to fire our `scrollTop`-adjusting JS?
 
 ## The Solution
 
@@ -81,7 +81,6 @@ IV. [Sending Messages From the Channel to the Front-End](#sending-messages-from-
 ## Getting Started
 
 If you'd like to follow along with this tutorial, we recommend reading and completing the tutorial in our previous post [here](https://elixirschool.com/blog/live-view-with-presence/) first. This will get your code into the correct starting state. You can also clone down the repo [here](https://github.com/elixirschool/live-view-chat) to get the starting code. Otherwise, you can checkout the completed code [here](https://github.com/elixirschool/live-view-chat/tree/live-view-channel-registry).
-
 
 ## Part I: Establishing the Socket and Channel
 
@@ -200,7 +199,7 @@ let channel = liveSocket.channel("event_bus:" + chatId, {})
 Now, when the page loads, we will:
 
 * Connect to and start the LiveView process running over the socket
-* Join a channel over that _same_ socket
+* Join a channel over that *same* socket
 
 Later, we can write some code on the front-end to respond to a specific event by changing the chat box's scroll height:
 
@@ -274,7 +273,7 @@ def handle_info(%{event: "new_message", payload: state}, socket) do
 end
 ```
 
-So, how can we make sure each LiveView process handling this message will only send a message to the channel _after_ this function finishes working? We can use `send/2` to have the live view send a message to itself! Since a process can only do one thing at a time, the live view process will finish the the current work in the `handle_info/2`  processing the `"new_message"` event *before* acting on the message it receives from itself.
+So, how can we make sure each LiveView process handling this message will only send a message to the channel *after* this function finishes working? We can use `send/2` to have the live view send a message to itself! Since a process can only do one thing at a time, the live view process will finish the the current work in the `handle_info/2`  processing the `"new_message"` event *before* acting on the message it receives from itself.
 
 ```elixir
 def handle_info(%{event: "new_message", payload: state}, socket) do
@@ -394,7 +393,7 @@ In the `mount/2` function of our live view, we store the session UUID in the soc
 
 Let's take a look at how we will give our channel access to this token.
 
-When we send the socket connection request from the browser, we hit the `connect/3` function of our extended Live View socket, `PhatWeb.LiveSocket`. At this time, we _don't_ have access to the Live View process's representation of the socket, but we _do_ have access to the channel's representation of the socket.
+When we send the socket connection request from the browser, we hit the `connect/3` function of our extended Live View socket, `PhatWeb.LiveSocket`. At this time, we *don't* have access to the Live View process's representation of the socket, but we *do* have access to the channel's representation of the socket.
 
 We need to give the channel awareness of the session UUID. So, we'll include the signed token from the page in the socket connection request and use `connect/3` to store the session UUID in the channel's socket state.
 
@@ -450,11 +449,11 @@ We're ready to have the live view send a message to its channel!
 Let's recap the "new chat message" process so far:
 
 * A user submits the "new message" form and sends a `"new_message"` event to the live view
-* The live view responds to this event by updating its own socket's state, re-rendering _and_ broadcasting the `"new_message"` event to all the live view processes subscribing to the topic for this chat room, i.e. the processes that represent the other users in the chat room.
+* The live view responds to this event by updating its own socket's state, re-rendering *and* broadcasting the `"new_message"` event to all the live view processes subscribing to the topic for this chat room, i.e. the processes that represent the other users in the chat room.
 * The live view processes receive this message broadcast and respond to it by updating their own state and re-rendering. They also `send` a message to themselves that they will process once they finish re-rendering.
 * The live view processes responds to the message they sent themselves, telling themselves to send a message to the channel with which they share a socket.
 
-Now our live views have what they need to look up their associated channel. They are storing the _same_ session UUID in state that the channel used to register its PID in the `SessionRegistry`. So, our live views can look up the channel PID and send a message to that PID.
+Now our live views have what they need to look up their associated channel. They are storing the *same* session UUID in state that the channel used to register its PID in the `SessionRegistry`. So, our live views can look up the channel PID and send a message to that PID.
 
 ```elixir
 # lib/phat_web/live/chat_live_view.ex
@@ -522,6 +521,6 @@ Now, right after the page re-renders, the channel will receive the `"new_message
 
 ## Conclusion
 
-We've seen that a seeming "limit" of LiveView can be surpassed by incorporating available Phoenix real-time tools––in this case Phoenix Channels. The work in this post raises the question: "What _should_ LiveView be capable of?" Is the extension of LiveView with a custom Phoenix Channel a violation of the "purpose" of LiveView? Does such a use-case mean we should eschew LiveView in favor of Channels?
+We've seen that a seeming "limit" of LiveView can be surpassed by incorporating available Phoenix real-time tools––in this case Phoenix Channels. The work in this post raises the question: "What *should* LiveView be capable of?" Is the extension of LiveView with a custom Phoenix Channel a violation of the "purpose" of LiveView? Does such a use-case mean we should eschew LiveView in favor of Channels?
 
-I think there are still distinctive advantages to using LiveView to back a feature like our chat app. Almost all of the chat functionality is handled in less than 100 lines of LiveView code. This is as opposed to all of the Channel back and front-end code that you would otherwise write. So, I would like to see LiveView become _more_ extensible and configurable, making it easier to incorporate custom channels out-of-the-box.
+I think there are still distinctive advantages to using LiveView to back a feature like our chat app. Almost all of the chat functionality is handled in less than 100 lines of LiveView code. This is as opposed to all of the Channel back and front-end code that you would otherwise write. So, I would like to see LiveView become *more* extensible and configurable, making it easier to incorporate custom channels out-of-the-box.

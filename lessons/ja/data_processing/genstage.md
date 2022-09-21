@@ -58,8 +58,8 @@ GenStageの仕様では以下の3つの役割があります。
 まずはスーパーバイザーツリーを持つmixプロジェクトを作成しましょう。
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 続いて `mix.exs` ファイルを開いて依存ライブラリに `gen_stage` を加えます。
@@ -75,7 +75,7 @@ end
 この先に進む前に、依存ライブラリを取得してコンパイルを通しておきましょう。
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 生産者を構築する準備が整いました！
@@ -87,7 +87,7 @@ GenStageアプリケーションの第一歩は、生産者の作成です。
 という訳で早速、生産者のファイルを作成しましょう:
 
 ```shell
-$ touch lib/genstage_example/producer.ex
+touch lib/genstage_example/producer.ex
 ```
 
 そして以下のコードを書き加えましょう:
@@ -123,7 +123,7 @@ GenStageは `init/1` 関数からの戻り値で自身のプロセスを分類�
 生産者に数を催促し、数をフィルターして偶数のみに絞り、消費者からの催促に応えたいと思います。
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 以下のサンプルコードのようにファイルを更新しましょう:
@@ -166,7 +166,7 @@ end
 でははじめましょう:
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 消費者と生産者-消費者はとてもよく似ているので、さほど変わりありません:

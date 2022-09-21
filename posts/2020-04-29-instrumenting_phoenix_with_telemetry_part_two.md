@@ -99,6 +99,7 @@ Most of this happens under the hood. We are only on the hook for defining a `Tel
 ## Getting Started
 
 You can follow along with this tutorial by cloning down the repo [here](https://github.com/elixirschool/telemetry-code-along/tree/part-2-start).
+
 * Checking out the starting state of our code on the branch [part-2-start](https://github.com/elixirschool/telemetry-code-along/tree/part-2-start)
 * Find the solution code on the branch [part-2-solution](https://github.com/elixirschool/telemetry-code-along/tree/part-2-solution)
 
@@ -161,7 +162,7 @@ defmodule Quantum.Telemetry do
 end
 ```
 
-We'll come back to the metrics list in a bit. First, let's teach our application to start this Supervisor when the app starts up but adding it to our application's supervision tree in the `Quantum.Application.start/2` function:
+We'll come back to the metrics list in a bit. First, let's teach our application to start this Supervisor when the app starts up by adding it to our application's supervision tree in the `Quantum.Application.start/2` function:
 
 ```elixir
 # lib/quantum/application.ex
@@ -341,7 +342,6 @@ Phew!
 
 Let's take a deeper dive into this process by taking a look at some source code.
 
-
 ### `TelemetryMetricsStatsd` Attaches Events to Handlers and Config Data
 
 When our supervisor starts the `TelemetryMetricsStatsd` GenServer, the GenServer's `init/1` function calls on [`TelemetryMetricsStatsd.EventHandler.attach/7`](https://github.com/beam-telemetry/telemetry_metrics_statsd/blob/master/lib/telemetry_metrics_statsd/event_handler.ex#L24) with a set of arguments that includes the metrics list we provided. This in turn executes a call to `:telemetry.attach/4`:
@@ -437,7 +437,6 @@ end
 The `Telemetry.Metrics` and `TelemetryMetricsStatsd` libraries make it even easier for us to handle Telemetry events and report metrics based on those events. All we have to do is define a Supervisor that uses `Telemetry.Metrics` and tell that Supervisor to start the `TelemetryMetricsStatsd` GenServer with a list of metric definitions.
 
 That's it! The `TelemetryMetricsStatsd` library will take care of calling `:telemetry.attach/3` to store events in ETS along with a handler callback function and the metrics list for that event. Later, when a Telemetry event is executed, Telemetry will lookup the event and its associated handler function and metrics list and invoke the handler function with this data. The handler function, `TelemetryMetricsStatsd.EventHandler.handle_event/4`, will iterate over the list of metric structs that was stored for the event in ETS and construct the appropriate StatsD metric given the metric type and tags, the event measurement map and metadata. All for free!
-
 
 ## Next Up
 

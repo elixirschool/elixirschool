@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.2.0",
   title: "커스텀 Mix 태스크",
   excerpt: """
   Elixir 프로젝트를 위한 커스텀 Mix 태스크 만들어 봅시다.
@@ -84,6 +84,26 @@ end
 
 defmodule 구문을 `Mix.Tasks`와 명령줄에서 호출하고자 하는 이름으로 시작한다는 것에 주목하십시오. 두번째 줄에서는 `use Mix.Task`를 사용하여 이 네임스페이스에 `Mix.Task`의 동작을 가져옵니다. 그 다음에 run 함수를 선언하는데, 여기에서는 모든 매개변수를 무시합니다. 이 함수 안에서 `Hello` 모듈과 `say` 함수를 호출합니다.
 
+## 애플리케이션을 불러오기
+
+Mix는 애플리케이션이나 의존성을 자동으로 실행하지 않고, 이렇게 동작해도 Mix Task 사용할 때 대부분은 문제가 없습니다. 하지만 Mix Task에서 Ecto를 사용해 데이터베이스에 접근하고 싶으면 어떻게 해야 할까요? 이럴 때에는 Ecto.Repo가 실행된 후에 앱이 실행되도록 할 필요가 있습니다.
+여기서는 앱을 명시적으로 실행하도록 하거나, 애플리케이션을 실행하고 차례대로 다른 앱까지 실행하는 방법으로 접근해볼 수 있습니다.
+
+의존성과 애플리케이션을 실행하도록 Mix task를 수정해봅시다.
+
+``` elixir
+  @moduledoc "The hello mix task: `mix help hello`"
+  use Mix.Task
+
+  @shortdoc "Simply calls the Hello.say/0 function."
+  def run(_) do
+    # 이것은 우리 애플리케이션을 실행할 것입니다.
+    Mix.Task.run("app.start")
+
+    Hello.say()
+  end
+```
+
 ## Mix 태스크 사용하기
 
 우리가 만든 Mix 태스크를 확인해 봅시다. 여러분이 프로젝트 디렉토리 내에 있으면 잘 작동할 것입니다. 명령줄에서 `mix hello`를 실행하면 다음과 같은 내용이 출력됩니다.
@@ -110,3 +130,6 @@ mix app.start         # Starts all registered apps
 mix hello             # Simply calls the Hello.say/0 function.
 ...
 ```
+
+Note: 새로운 태스크가 `mix help` 출력에 나오게 하려면 먼저 코드를 컴파일해줘야 합니다.
+`mix compile`을 직접 실행하거나 `mix hello`를 실행할 때처럼 태스크를 실행시키면 컴파일도 함께 실행됩니다.

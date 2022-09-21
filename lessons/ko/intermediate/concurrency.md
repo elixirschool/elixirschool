@@ -1,10 +1,10 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "동시성",
   excerpt: """
   Elixir의 매력적인 부분 중 하나는 동시성(Concurrency) 지원입니다. Erlang VM (BEAM) 덕분에, Elixir에서의 동시성은 여러분이 생각하는 것보다 간단합니다. 동시성 모델은 액터(Actor) 모델에 의존하고 있습니다. 액터는 메시지를 전달하여 다른 프로세스들과 통신하는 독립적인 프로세스입니다.
 
-  이번 강의에서는, Elixir에 탑재된 동시성 모듈에 대해 알아보겠습니다. 이어질 챕터에서는 이를 구현하는 OTP 비헤이비어(OTP behavior)를 다루도록 하겠습니다.
+이번 강의에서는, Elixir에 탑재된 동시성 모듈에 대해 알아보겠습니다. 이어질 챕터에서는 이를 구현하는 OTP 비헤이비어(OTP behavior)를 다루도록 하겠습니다
   """
 }
 ---
@@ -48,7 +48,7 @@ defmodule Example do
       {:ok, "hello"} -> IO.puts("World")
     end
 
-    listen
+    listen()
   end
 end
 
@@ -82,6 +82,7 @@ iex> spawn_link(Example, :explode, [])
 ```
 
 가끔은 연결된 프로세스로 인해 현재의 프로세스가 함께 종료되는 것을 막아야할 때도 있습니다. 이를 위해서는 종료 신호를 인지하여 이를 적절하게 처리해 주어야 하는데 이 때 사용되는 것이 `Process.flag/2`입니다. 이 예시 모듈에서는 얼랭(erlang)의 [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) 함수를 이용해서 `trap_exit` 플래그를 처리합니다. 종료 신호를 trap할 때(`trap_exit`를 `true`로 설정했을 때), 다음과 같은 튜플 메시지를 수신하게 될 것입니다. `{:EXIT, from_pid, reason}`
+
 - [역주] trap 명령은 시스템에서 비동기적으로 발생하는 신호를 잡아서 필요한 작업을 수행하게 해주는 명령입니다.
 
 ```elixir
@@ -93,7 +94,7 @@ defmodule Example do
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
+      {:EXIT, _from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -112,10 +113,10 @@ defmodule Example do
   def explode, do: exit(:kaboom)
 
   def run do
-    {pid, ref} = spawn_monitor(Example, :explode, [])
+    spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
+      {:DOWN, _ref, :process, _from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -163,7 +164,11 @@ defmodule Example do
 end
 
 iex> task = Task.async(Example, :double, [2000])
-%Task{pid: #PID<0.111.0>, ref: #Reference<0.0.8.200>}
+%Task{
+  owner: #PID<0.105.0>,
+  pid: #PID<0.114.0>,
+  ref: #Reference<0.2418076177.4129030147.64217>
+}
 
 # 다른 작업을 수행합니다
 

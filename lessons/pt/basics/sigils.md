@@ -15,26 +15,26 @@ O núcleo do Elixir fornece-nos alguns sigils, no entanto, é possível criar o 
 
 Uma lista de sigils disponíveis incluem:
 
-  - `~C` Gera uma lista de caracteres **sem** escape ou interpolação
-  - `~c` Gera uma lista de caracteres **com** escape e interpolação
-  - `~R` Gera uma expressão regular **sem** escape ou interpolação
-  - `~r` Gera uma expressão regular **com** escape e interpolação
-  - `~S` Gera strings **sem** escape ou interpolação
-  - `~s` Gera string **com** escape e interpolação
-  - `~W` Gera uma lista **sem** escape ou interpolação
-  - `~w` Gera uma lista **com** escape e interpolação
-  - `~N` Gera uma `NaiveDateTime` struct
+- `~C` Gera uma lista de caracteres **sem** escape ou interpolação
+- `~c` Gera uma lista de caracteres **com** escape e interpolação
+- `~R` Gera uma expressão regular **sem** escape ou interpolação
+- `~r` Gera uma expressão regular **com** escape e interpolação
+- `~S` Gera strings **sem** escape ou interpolação
+- `~s` Gera string **com** escape e interpolação
+- `~W` Gera uma lista **sem** escape ou interpolação
+- `~w` Gera uma lista **com** escape e interpolação
+- `~N` Gera uma `NaiveDateTime` struct
 
 Uma lista de delimitadores inclui:
 
-  - `<...>` Um par de brackets
-  - `{...}` Um par de chaves
-  - `[...]` Um par de colchetes
-  - `(...)` Um par de parênteses
-  - `|...|` Um par de pipes
-  - `/.../` Um par de barras
-  - `"..."` Um par de aspas duplas
-  - `'...'` Um par de aspas simples
+- `<...>` Um par de brackets
+- `{...}` Um par de chaves
+- `[...]` Um par de colchetes
+- `(...)` Um par de parênteses
+- `|...|` Um par de pipes
+- `/.../` Um par de barras
+- `"..."` Um par de aspas duplas
+- `'...'` Um par de aspas simples
 
 ### Lista de Caracteres
 
@@ -182,7 +182,7 @@ iex> ~u/elixir school/
 ELIXIR SCHOOL
 ```
 
-Primeiro definimos um módulo chamado `MySigils` e dentro deste módulo, criamos uma função chamada `sigil_u`. 
+Primeiro definimos um módulo chamado `MySigils` e dentro deste módulo, criamos uma função chamada `sigil_u`.
 Como não existe nenhum sigil `~u` no espaço de sigil existente, vamos usá-lo.
 O `_u` indica que desejamos usar `u` como caractere depois do til.
 A definição da função deve receber dois argumentos, uma entrada e uma lista.

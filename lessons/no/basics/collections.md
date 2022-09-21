@@ -1,5 +1,5 @@
 %{
-  version: "0.9.0",
+  version: "0.9.1",
   title: "Kolleksjoner",
   excerpt: """
   Lister, tupler, nøkkelord, kart og funksjonell kombinasjon.
@@ -28,8 +28,7 @@ iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
 
-
-### Listesammenf&oslash;yning (list concatenation)
+### Listesammenføyning (list concatenation)
 
 For å sammenføye to lister bruker vi `++/2` operatoren:
 

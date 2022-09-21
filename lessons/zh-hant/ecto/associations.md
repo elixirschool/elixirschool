@@ -77,6 +77,7 @@ mix ecto.gen.migration create_characters
 ```elixir
 add :movie_id, references(:movies)
 ```
+
 所以我們的 migration 應該如下所示：
 
 ```elixir
@@ -110,7 +111,7 @@ defmodule Friends.Character do
 end
 ```
 
-現在仔細看看 `belongs_to/3` 巨集做了些什麼。除了將外鍵 `movie_id` 加入到結構描述之外，它還使我們能夠 _通過_ `characters` 存取關聯的 `movies` 結構描述。當查詢角色時，它使用外鍵讓角色的關聯電影可用。這將允許我們呼用 `character.movie`。 
+現在仔細看看 `belongs_to/3` 巨集做了些什麼。除了將外鍵 `movie_id` 加入到結構描述之外，它還使我們能夠 _通過_ `characters` 存取關聯的 `movies` 結構描述。當查詢角色時，它使用外鍵讓角色的關聯電影可用。這將允許我們呼用 `character.movie`。
 
 現在準備好執行 migrations：
 
@@ -202,7 +203,7 @@ mix ecto.gen.migration create_actors
 ```elixir
 # priv/migrations/*_create_actors.ex
 
-defmodule Friends.Repo.Migrations.Actors do
+defmodule Friends.Repo.Migrations.CreateActors do
   use Ecto.Migration
 
   def change do

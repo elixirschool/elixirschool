@@ -31,7 +31,6 @@ Before we get started, we'll run `mix release.init` from the root of our umbrell
 
 More on these files later.
 
-
 ## Configuring the Umbrella App with the `Config` Module
 
 The first thing we need to do is make sure our Elixir umbrella app's children are properly configured with the new `Config` module.

@@ -24,7 +24,7 @@ iex> EEx.eval_string "Hi, <%= name %>", [name: "Sean"]
 
 Najszybszą, i preferowaną, metodą użycia EEx jest osadzenie szablonu w module dzięki czemu można go skompilować. By to zrobić potrzebujemy w czasie kompilacji modułu pliku z szablonem oraz makr `function_from_string/5` i `function_from_file/5`.
 
-Przenieśmy nasze powitanie do osobnego pliku, szablonu, i zdefiniujmy dla niego funkcję w module: 
+Przenieśmy nasze powitanie do osobnego pliku, szablonu, i zdefiniujmy dla niego funkcję w module:
 
 ```elixir
 # greeting.eex
@@ -75,4 +75,4 @@ iex> EEx.eval_string "Hi, <%= @name %>", assigns: [name: "Sean"]
 
 Przypisania obecne w `EEx.SmartEngine` są bardzo przydatne ponieważ pozwalają wprowadzać zmiany bez konieczności rekompilacji szablonu.
 
-Zainteresowany stworzeniem własnego silnika? Sprawdź jak działa [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html) by zobaczyć co jest wymagane. 
+Zainteresowany stworzeniem własnego silnika? Sprawdź jak działa [`EEx.Engine`](https://hexdocs.pm/eex/EEx.Engine.html) by zobaczyć co jest wymagane.

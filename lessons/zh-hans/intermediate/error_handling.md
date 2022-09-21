@@ -6,7 +6,7 @@
 
   一般情况下在 Elixir 中 (`example/1`) 的函数会返回 `{:ok, result}` 或 `{:error, reason}`. 另一个 (`example!/1`)  的函数会返回 unwrapped 的结果或者触发一个错误.
 
-  这节课我们将关注后者.
+这节课我们将关注后者
   """
 }
 ---

@@ -9,7 +9,7 @@
   首先將建立一個最小的基於 Plug 的 Web 應用程式。
   而之後，將學習 Plug 的路由器以及如何將 Plug 加入到現有的 Web 應用程式。
 
-  在設定了最小的 Web 應用程式之後，將了解 Plug 的路由器以及如何在單個 Web 應用程式中使用多個 plug。
+在設定了最小的 Web 應用程式之後，將了解 Plug 的路由器以及如何在單個 Web 應用程式中使用多個 plug
   """
 }
 ---
@@ -21,8 +21,8 @@
 首先建立一個帶有 supervision 樹的新 OTP 專案。
 
 ```shell
-$ mix new example --sup
-$ cd example
+mix new example --sup
+cd example
 ```
 
 我們需要 Elixir 的應用程式中包含 supervision 樹，因為將使用 Supervisor 來啟動和執行 Cowboy2 伺服器。
@@ -45,7 +45,7 @@ end
 在命令列中，執行以下 mix 工作來引入這些新的耦合性：
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## Plug 規範
@@ -94,7 +94,6 @@ end
 * `:options` - 伺服器選項。
 應該包括你希望伺服器監聽請求的埠號。
 
-
 我們的 `lib/example/application.ex` 檔案應該在 `start/2`函數中實現子規範：
 
 ```elixir
@@ -124,6 +123,7 @@ _註_：不需要在這裡呼用 `child_spec`，supervisor 將在啟動此處理
 現在已經準備好執行應用程式並向其發送一些 Web 請求！請注意，因為使用 `--sup` 旗標生成了一個 OTP 應用程式，所以 `Example` 應用程式將由於 `application` 函數自動啟動。
 
 在 `mix.exs` 中你應該會看到以下內容：
+
 ```elixir
 def application do
   [
@@ -137,7 +137,7 @@ end
 在命令列上，執行：
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 一旦所有內容編譯完成，出現 `[info]  Starting application...` 後，打開一個 Web 頁面
@@ -297,6 +297,7 @@ plug(
   paths: ["/upload"]
 )
 ```
+
 我們自動呼用(invoke) `VerifyRequest.init(fields: ["content", "mimetype"],
 paths: ["/upload"])`。
 這又將給定的選項傳遞給 `VerifyRequest.call(conn, opts)` 函數。
@@ -350,7 +351,7 @@ end
 要執行應用程式可以使用：
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 ## 測試 Plug
@@ -407,7 +408,7 @@ end
 用這個執行它：
 
 ```shell
-$ mix test test/example/router_test.exs
+mix test test/example/router_test.exs
 ```
 
 ## Plug.ErrorHandler

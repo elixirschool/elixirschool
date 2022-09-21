@@ -20,7 +20,7 @@ iex> sum.(2, 3)
 5
 ```
 
-###  & 操作符
+### & 操作符
 
 因为在 Elixir 中使用匿名函数非常常见，所以有一个快捷方式来做这件事：
 
@@ -269,7 +269,7 @@ end
 %{age: "95", favorite_color: "Taupe", name: "Fred"}
 ```
 
-记住，虽然看起来 `%{name: person_name} = person}` 这个表达式是把 `%{name: person_name}` 模式匹配到 `person` 这个变量上，其实是它们 _各自_ 匹配到传入的参数上。
+记住，虽然看起来 `%{name: person_name} = person` 这个表达式是把 `%{name: person_name}` 模式匹配到 `person` 这个变量上，其实是它们 _各自_ 匹配到传入的参数上。
 
 **总结:** 函数按传入的数据，各自独立匹配相应的参数。我们可以在函数内绑定多个独立的变量。
 
@@ -300,9 +300,9 @@ iex> Greeter.phrase
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -345,9 +345,9 @@ iex> Greeter.hello("Sean", "es")
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -380,9 +380,9 @@ defmodule Greeter do
   def hello(names, language_code \\ "en")
 
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do

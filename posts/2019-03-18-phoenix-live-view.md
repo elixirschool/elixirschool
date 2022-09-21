@@ -59,6 +59,7 @@ config :my_app, MyApp.Endpoint,
     signing_salt: "YOUR_SECRET"
   ]
 ```
+
 *Note: You can generate a secret by running `mix phx.gen.secret` from the command line.*
 
 * Update your configuration to enable writing LiveView templates with the  `.leex` extension.
@@ -120,6 +121,7 @@ end
   }
 }
 ```
+
 You'll need to run `npm install` after this step.
 
 * Use the LiveView JavaScript library to connect to the LiveView socket in `app.js`
@@ -226,7 +228,7 @@ Now that we understand how the live view is first rendered and how the live view
 
 ### Rendering Live Updates
 
-LiveView is listening to updates to our socket and will re-render _only the portions of the page that need updating_. Taking a closer look at our `render/1` function, we see that it renders the values of the keys assigned to our socket.
+LiveView is listening to updates to our socket and will re-render *only the portions of the page that need updating*. Taking a closer look at our `render/1` function, we see that it renders the values of the keys assigned to our socket.
 
 Where `mount/2` assigned the values `:deploy_step`, our `render/1` function renders them like this:
 
@@ -332,7 +334,6 @@ We'll define our template in `lib/my_app_web/templates/page/github_deploy.html.l
 ```
 
 Next, we'll have our live view's `render/1` function simply tell our `PageView` to render this template:
-
 
 ```elixir
 defmodule MyApp.GithubDeployView do

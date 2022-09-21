@@ -3,7 +3,7 @@
   title: "IEx Hjelpere",
   excerpt: """
   
-  """
+"""
 }
 ---
 
@@ -148,7 +148,6 @@ Som vi kan se, så kunne vi se både funksjonene som var tilgjenglig i modulen, 
 ### i
 
 La oss ta i bruk det vi vet om `h` for å lære om `i` hjelperen:
-
 
 ```elixir
 iex> h i

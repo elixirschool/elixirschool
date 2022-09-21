@@ -14,6 +14,7 @@
 What happens when starting up your GenServer requires executing a long-running process? We _don't_ want the execution of that process to block the GenServer from completing start-up. We also don't want to execute that process asynchronously in a way that creates a race condition between the running of the process and other messages arriving in our GenServer's inbox. In this post, we'll take a closer look at these two problems and understand how OTP 21's `GenServer.handle_continue/2` is the perfect solution.
 
 ## Starting GenServers without Blocking
+
 Let's say that we are building a GenServer for a shopping list fulfillment application. Our GenServer will hold state describing a grocery shopping list _and_ be aware of the available inventory as it relates to that shopping list. When our GenServer starts up, it will receive a shopping list and put it in state. But wait! Our GenServer initialization process will _then_ need to take that shopping list and retrieve relevant inventory from another source.
 
 Our first attempt at solving this problem could look something like this:
@@ -41,6 +42,7 @@ defmodule ShoppingListFulfillment do
   end
 end
 ```
+
 Here, we're calling our "get inventory for shopping list items" code in the `init/1` callback that gets triggered when `start_link/1` is called.
 
 The problem with this approach is that `start_link/1` will block until `init/1` returns `{:ok, state}`. We won't return from `init/1` until _after_ the inventory-fetching code runs. That _could_ be time consuming. We don't want our GenServer blocked by this.
@@ -48,6 +50,7 @@ The problem with this approach is that `start_link/1` will block until `init/1` 
 Let's explore an asynchronous approach.
 
 ## Asynchronous Callbacks and Race Conditions
+
 We can use `Kernel.send/2` in our `init` callback to kick off some asynchronous work without blocking `GenServer.start_link/1`. When we use `send/2` and give it a first argument of `self`, i.e. the PID of our GenServer, our GenServer will handle that message with a `handle_info/2` function that matches the message we sent.
 
 ```elixir

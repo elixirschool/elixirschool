@@ -32,7 +32,6 @@ Elixir possiede una moltitudine di funzionalità che riguardano enumerazioni. Qu
 
 Per conoscere tutte le funzioni visita la documentazione ufficiale del modulo [`Enum`](https://hexdocs.pm/elixir/Enum.html); per enumerare gli elementi a richiesta (_lazy enumeration_) puoi usare il modulo [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
-
 ### all?
 
 Quando si usa `all?/2`, come nella maggior parte delle funzioni di `Enum`, forniamo una funzione che verrà applicata su ciascun elemento della collezione.
@@ -120,7 +119,7 @@ iex> Enum.min([5, 3, 0, -1])
 -1
 ```
 
-`min/2` fornisce le stesse funzionalità di `min/1`, ma in caso di enumerazione vuota, permette di specificare una funzione per produrre il valore minimo 
+`min/2` fornisce le stesse funzionalità di `min/1`, ma in caso di enumerazione vuota, permette di specificare una funzione per produrre il valore minimo
 
 ```elixir
 iex> Enum.min([], fn -> :foo end)

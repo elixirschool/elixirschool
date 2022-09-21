@@ -70,7 +70,6 @@ true
 
 ETS nos ofrece algunas maneras convenientes y flexibles para recuperar los datos almacenados. Vamos a ver cómo recuperar los datos por clave y por medio de diferentes formas de coincidencia de patrones.
 
-
 El más eficiente, e ideal, método de recuperación es la búsqueda de claves. Si bien es útil, el método de concordancia itera a través de la tabla y debe utilizarse con moderación, especialmente en caso de grandes conjuntos de datos.
 
 ### Búsqueda de claves

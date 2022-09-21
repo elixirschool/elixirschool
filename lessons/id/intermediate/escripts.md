@@ -69,7 +69,7 @@ end
 Sesudah kita selesai mengkonfigurasi aplikasi kita untuk menggunakan escript, membuild eksekutabel kita adalah mudah dengan Mix:
 
 ```elixir
-$ mix escript.build
+mix escript.build
 ```
 
 Let's take it for a spin:

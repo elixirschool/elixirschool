@@ -8,6 +8,7 @@
 ---
 
 ## What Are Protocols
+
 So what are they?
 Protocols are a means of achieving polymorphism in Elixir.
 One pain of Erlang is extending an existing API for newly defined types.

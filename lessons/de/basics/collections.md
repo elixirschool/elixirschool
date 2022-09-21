@@ -27,7 +27,6 @@ iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
 
-
 ### Listen-Verkettung
 
 Listen-Verkettung benutzt den `++/2` Operator:

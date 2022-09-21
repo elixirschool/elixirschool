@@ -54,7 +54,7 @@ Mặc định có bốn tag được hỗ trợ trong EEx:
 <%# Comment - sẽ bị bỏ qua trong code %>
 ```
 
-Mọi biểu thực mà bạn muốn xuất quả quả __đều phải__ dùng kí hiệu bằng (`=`). Chú ý rằng các ngôn ngữ template khác có thể có một cách xử lý riêng với `if` nhưng EEx thì không. Không có `=` sẽ **không có gì** được xuất ra:
+Mọi biểu thực mà bạn muốn xuất quả quả __đều phải__ dùng kí hiệu bằng (`=`). Chú ý rằng các ngôn ngữ template khác có thể có một cách xử lý riêng với `if` nhưng EEx thì không. Không có `=` sẽ __không có gì__ được xuất ra:
 
 ```elixir
 <%= if true do %>

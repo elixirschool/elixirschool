@@ -71,8 +71,6 @@ end
 
 *Note that we've moved the default argument definition into a function head. If you're defining a function with multiple clauses and a default value, the default value definition belongs in a function head. Learn more about default arguments, function heads and function clauses in [this Elixir School lesson.](https://elixirschool.com/en/lessons/basics/functions/#default-arguments)*
 
-
-
 ## Why is it Useful?
 
 Recursion is useful anytime we need to repeat an action under a certain condition. Anytime you want to use a `while` or `until` loop, you can probably implement your solution with recursion.
@@ -111,6 +109,7 @@ List.delete(["Apple", "Pear", "Grapefruit", "Pear"], "Pear")
 Before we start building our function, let's take a look at how we can use recursion and pattern matching to operate on Elixir lists.
 
 ### Using Recursion on a List
+
 > Lists in Elixir are effectively linked lists, which means they are internally represented in pairs containing the head and the tail of a list. - Hex Docs
 
 This means we can use [pattern matching](https://elixirschool.com/en/lessons/basics/pattern-matching/) to grab the first element, or the "head" of the list:
@@ -203,12 +202,12 @@ Before we start coding, let's map out how our function needs to behave. Since El
 
 Our approach will work something like this:
 
-* Look at the head of the list. If that element is equal to the value whose occurrences we want to remove, we will *not* grab the element to add to the new list.
-* If that element is *not* equal to the value we want to remove, we will add it to the new list.
+* Look at the head of the list. If that element is equal to the value whose occurrences we want to remove, we will _not_ grab the element to add to the new list.
+* If that element is _not_ equal to the value we want to remove, we will add it to the new list.
 * In either case, we'll grab the tail of the list and repeat the previous step.
 * Once the tail is empty, i.e. we've looked at every element in the list, stop recursing.
 
-#### Let's Build It!
+#### Let's Build It
 
 First, we'll define a `MyList.delete_all/2` function that takes in two arguments: the original list and the element whose occurrences we want to delete.
 
@@ -237,7 +236,7 @@ end
 
 The `MyList.delete_all/3` function's first job is to determine whether or not the first element in the current list, the `head` of the list, is the same value as the element we want to remove.
 
-If so, we *won't* add it to our new list. Instead, we'll call `MyList.delete_all/3` again with the remainder of the current list, the `tail`, and pass in our `new_list` unchanged. We can accomplish this with a guard clause:
+If so, we _won't_ add it to our new list. Instead, we'll call `MyList.delete_all/3` again with the remainder of the current list, the `tail`, and pass in our `new_list` unchanged. We can accomplish this with a guard clause:
 
 ```elixir
 def delete_all([head | tail], el, new_list) when head === el do
@@ -245,7 +244,7 @@ def delete_all([head | tail], el, new_list) when head === el do
 end
 ```
 
-If the head of the current list is *not* equal to the value we want to remove, however, we *do* want to add it to our `new_list` before moving on.
+If the head of the current list is _not_ equal to the value we want to remove, however, we _do_ want to add it to our `new_list` before moving on.
 
 We'll define another `delete_all/3` function, this time without a guard clause, to meet this condition:
 

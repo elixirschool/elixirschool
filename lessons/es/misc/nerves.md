@@ -155,7 +155,7 @@ Si la red está funcional luego del paso previo estás listo para continuar.
 
 Para actualizar tu configuración la forma mas simple es usar `mix firmware && ./upload.sh 192.168.88.2`: el primer comando crea el *firmware* de actualización y el segundo los sube sobre la red y reinicia el dispositivo. Ahora finalmente puede dejar de tener que cambiar tarjetas SD en tu dispositivo.
 
-_Pista: `ssh 192.168.88.2`te da una shell IEx en el dispositivo en el contexto de la aplicación. _
+_Pista: `ssh 192.168.88.2`te da una shell IEx en el dispositivo en el contexto de la aplicación._
 
 _Solución de problemas: Si no tienes de una llave ssh existente en tu directorio de usuario tendrás un error `No SSH public keys found in ~/.ssh.`. En este caso neecesitarás ejecutar `ssh-keygen` y regrabar el firmware para usar la característica de actualización sobre la red._
 

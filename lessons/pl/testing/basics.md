@@ -1,17 +1,20 @@
 %{
-  version: "1.1.1",
+  version: "1.2.1",
   title: "Testowanie kodu",
   excerpt: """
-  Testowanie kodu jest bardzo ważną częścią procesu produkcji oprogramowania. W tej lekcji przyjrzymy się zagadnieniu testowania kodu w Elixirze z wykorzystaniem ExUnit. Poznamy też kilka dobrych praktyk z tym związanych.
+  Testowanie kodu jest ważną częścią procesu tworzenia oprogramowania.
+  W tej lekcji przyjrzymy się zagadnieniu testowania kodu w Elixirze z wykorzystaniem ExUnit i poznamy kilka dobrych praktyk z tym związanych.
   """
 }
 ---
 
 ## ExUnit
 
-Elixir posiada wbudowaną bibliotekę ExUnit, która zawiera wszystko, co potrzebne do pisania testów. Zanim zagłębimy się w ten temat, musimy wspomnieć, że testy są w Elixirze tworzone w postaci skryptów w plikach `.exs`. Zanim uruchomimy nasze testy, musimy wystartować ExUnita za pomocą `ExUnit.start()`, jest to zazwyczaj robione w skrypcie `test/test_helper.exs`.
+Elixir posiada wbudowaną bibliotekę ExUnit, która zawiera wszystko, czego potrzebujemy, by dokładnie przetestować nasz kod.
+Zanim zagłębimy się w ten temat, musimy wspomnieć, że testy są w Elixirze tworzone w postaci skryptów w plikach `.exs`.
+Przed uruchomieniem naszych testów musimy wystartować ExUnit za pomocą `ExUnit.start()`, co jest zazwyczaj wykonywane w skrypcie `test/test_helper.exs`.
 
-Generując projekt w poprzedniej lekcji, mix był na tyle miły, że utworzył plik `test/example_test.exs` zawierający prosty test:
+Generując projekt w poprzedniej lekcji, Mix był na tyle miły, że utworzył plik `test/example_test.exs`, zawierający prosty test:
 
 ```elixir
 defmodule ExampleTest do
@@ -24,7 +27,8 @@ defmodule ExampleTest do
 end
 ```
 
-Możemy uruchomić nasz test za pomocą `mix test`.  Powinniśmy otrzymać komunikat podobny do poniższego:
+Możemy uruchomić nasz test za pomocą polecenia `mix test`.
+Jeśli to zrobimy, powinniśmy zobaczyć mniej więcej coś takiego:
 
 ```shell
 ..
@@ -33,7 +37,7 @@ Finished in 0.03 seconds
 2 tests, 0 failures
 ```
 
-Dlaczego w wyniku otrzymujemy, że dwa testy zostały uruchomione? Zajrzyjmy do pliku `lib/example.ex`. Mix utworzył tam dla nas kolejny test, doctest.
+Dlaczego w zwróconym wyniku widzimy dwie kropki? Oprócz testu w `test/example_test.exs`, Mix utworzył również test dokumentacyjny — doctest — w pliku `lib/example.ex`.
 
 ```elixir
 defmodule Example do
@@ -58,9 +62,11 @@ end
 
 ### assert
 
-Jeżeli kiedyś pisałeś już testy to zapewne znasz pojęcie `assert`; niektóre biblioteki używają `should` lub `expect` zamiennie z `assert`.
+Jeżeli kiedyś pisałeś już testy, to zapewne znasz pojęcie `assert`; niektóre biblioteki używają `should` lub `expect` zamiast `assert`.
 
-Makro `assert` sprawdza, czy wyrażenie jest prawdziwe. Jeżeli nie jest, to zwróci błąd, a nasz test nie powiedzie się. By to sprawdzić, zmieńmy nasz przykładowy test i uruchommy polecenie `mix test`:
+Makra `assert` używamy do sprawdzania, czy wyrażenie jest prawdziwe.
+Jeżeli nie jest, zostanie zwrócony błąd, a nasz test nie powiedzie się.
+By to sprawdzić, spróbujmy zmienić nasz przykładowy test i ponownie uruchomić polecenie `mix test`:
 
 ```elixir
 defmodule ExampleTest do
@@ -73,23 +79,8 @@ defmodule ExampleTest do
 end
 ```
 
-W efekcie otrzymamy zupełnie inny komunikat:
+Teraz powinniśmy zobaczyć zupełnie inny rezultat:
 
-```shell
-  1) test the truth (ExampleTest)
-     test/example_test.exs:5
-     Assertion with == failed
-     code: 1 + 1 == 3
-     lhs:  2
-     rhs:  3
-     stacktrace:
-       test/example_test.exs:6
-
-......
-
-Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
-1 tests, 1 failures
-```
 ```shell
   1) test greets the world (ExampleTest)
      test/example_test.exs:5
@@ -110,15 +101,19 @@ ExUnit dokładnie wskazuje miejsca, w których testy się nie powiodły, jakie b
 
 ### refute
 
-`refute` jest tym dla `assert` czym `unless` dla `if`.  Użyj `refute` jeżeli chcesz sprawdzić wyrażenie, które zawsze jest nieprawdziwe.  
+`refute` jest tym dla `assert` czym `unless` dla `if`.
+Możesz użyć `refute`, jeżeli chcesz sprawdzić wyrażenie, które zawsze jest nieprawdziwe.
 
 ### assert_raise
 
-Czasami ważne jest sprawdzenie, czy został zwrócony wyjątek. Możemy to zrobić za pomocą `assert_raise`.  W kolejnej lekcji poświęconej Plugowi zobaczymy przykłady zastosowania `assert_raise`.
+Czasami ważne jest sprawdzenie, czy został zwrócony wyjątek.
+Możemy to zrobić za pomocą `assert_raise`.
+W lekcji poświęconej Plugowi zobaczymy przykłady zastosowania `assert_raise`.
 
 ### assert_receive
 
-Typowa aplikacja zawiera wiele procesów/aktorów, którzy komunikują się między sobą za pomocą wiadomości. Testy mają nam odpowiedzieć na pytanie, czy wiadomość została wysłana. Jako że ExUnit działa jako niezależny proces, to może być adresatem wiadomości. By sprawdzić, czy testowa wiadomość dodarła, możemy wykorzystać makro `assert_received`: 
+Typowa Elixirowa aplikacja zawiera wiele aktorów/procesów, którzy komunikują się między sobą za pomocą wiadomości, dlatego też w testach będziemy chcieli sprawdzać, czy wiadomości są wysyłane.
+Ponieważ ExUnit działa jako niezależny proces, może on być adresatem takich wiadomości, tak jak dowolny inny proces, a do testów możemy użyć w tym przypadku makra `assert_received`:
 
 ```elixir
 defmodule SendingProcess do
@@ -141,7 +136,8 @@ end
 
 ### capture_io i capture_log
 
-Przechwytywanie informacji produkowanych przez aplikację jest możliwe za pomocą `ExUnit.CaptureIO` bez konieczności ingerowania w jej kod. Wystarczy jako argument przekazać funkcję, która wypisuje informacje na standardowe wyjście:  
+Przechwytywanie informacji produkowanych przez aplikację jest możliwe za pomocą `ExUnit.CaptureIO` bez konieczności ingerowania w jej kod.
+Wystarczy przekazać jako argument funkcję, która wypisuje informacje na standardowe wyjście:
 
 ```elixir
 defmodule OutputTest do
@@ -154,13 +150,16 @@ defmodule OutputTest do
 end
 ```
 
-Jeżeli w naszej aplikacji wykorzystujemy `Logger`, to możemy użyć `ExUnit.CaptureLog` do przechwytywania informacji zapisywanych do dziennika.
+`ExUnit.CaptureLog` jest odpowiednikiem przechwytywania informacji ze standardowego wyjścia przez `Logger`.
 
 ## Konfiguracja testów
 
-W pewnych sytuacjach musimy przygotować środowisko przed uruchomieniem testów. W tym celu możemy użyć makr `setup` i `setup_all`. Makro `setup` będzie uruchomione przed każdym testem, a `setup_all` zostanie uruchomione jednorazowo przed wszystkimi testami. Powinny one zwrócić `{:ok, state}`, gdzie `state` będzie dostępny dla naszych testów.
+W pewnych sytuacjach musimy przygotować środowisko przed uruchomieniem testów.
+W tym celu możemy użyć makr `setup` i `setup_all`.
+Makro `setup` będzie uruchamiane przed każdym testem, a `setup_all` zostanie uruchomione jednorazowo przed wszystkimi testami w module.
+Makra te powinny zwracać krotkę `{:ok, state}`, gdzie `state` będzie dostępny dla naszych testów.
 
-Przykładowo zmieńmy nasz test tak, by korzystał z `setup_all`:
+Dla przykładu zmieńmy nasz kod tak, by korzystał z `setup_all`:
 
 ```elixir
 defmodule ExampleTest do
@@ -179,8 +178,18 @@ end
 
 ## Mockowanie
 
-W Elixirze mockom mówimy stanowcze nie. Możesz mieć chęć skorzystania z mocków, ale są one niechętnie widziane w społeczności Elixira i to nie bez powodu. 
+Bądźmy ostrożni w myśleniu o mockowaniu. Kiedy tworzymy mockupy dla poszczególnych interakcji poprzez tworzenie okrojonych wersji funkcji (ang. _stubs_), ustanawiamy niebezpieczny wzorzec. Łączymy przebieg naszych testów z zachowaniem konkretnej zależności, takiej jak klient API. Unikamy definiowania współdzielonych zachowań między tymi funkcjami. Czynimy w ten sposób trudniejszym powtarzanie naszych testów.
 
-Temat ten w wyczerpujący sposób został omówiony w [artykule](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/) autorstwa José Valima. Istotą problemu jest użycie mocków, które wymusza jawne zdefiniowanie interfejsów pomiędzy naszym kodem i kodem klienta. Mocki są w takim przypadku specyficznymi, ponieważ służą tylko do testowania, implementacjami kodu klienta. 
+Zamiast tego społeczność Elixira zachęca, by zmienić myślenie na ten temat w testach: myśleć o mockupach (rzeczowniku), a nie o mockowaniu (czasowniku).
 
-Rozwiązaniem jest taka implementacja po naszej stronie, by przekazywać moduł jako argument i używać wartości domyślnych. Jeżeli takie rozwiązanie nie jest wystarczające, to możemy użyć wbudowanego mechanizmu konfiguracji, by utworzyć odpowiednie mocki. Jednocześnie nie potrzebujemy żadnej dodatkowej biblioteki do tworzenia mocków dla naszych zachowań i wywołań zwrotnych.
+By poznać szerszą dyskusję w tej sprawie, przeczytaj ten [znakomity artykuł](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/).
+
+Mówiąc w dużym skrócie, zamiast mockowania zależności dla testów (mockowania jako _czasownika_), istotnie lepszym podejściem jest jawne definiowanie interfejsów (zachowań) dla kodu znajdującego się poza naszą aplikacją i użycie w testach mockupów (jako _rzeczownika_).
+
+By lepiej zrozumieć wzorzec „mocków jako rzeczowników”, możesz:
+
+* Zdefiniować zachowanie, które jest zaimplementowane zarówno przez moduł, dla którego chcesz zdefiniować mockup _oraz_ przez moduł, który będzie pełnił rolę mockupu.
+* Zdefiniować moduł-mockup.
+* Skonfigurować swoją aplikację tak, by używała mockupu w danym teście — na przykład poprzez przekazanie modułu mockupu jako argumentu w wywołaniu funkcji — lub w całym środowisku testowym, poprzez odpowiednią konfigurację tego środowiska.
+
+Jeśli chcesz nieco bardziej zagłębić się w temat mockupów w Elixirze i poznać bibliotekę Mox, która pozwala na definiowanie równoległych mockupów, zajrzyj do lekcji na ten temat w [tym miejscu](/en/lessons/testing/mox).

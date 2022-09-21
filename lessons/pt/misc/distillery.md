@@ -18,6 +18,7 @@ Ela também provê quaisquer scripts necessários para rodar a sua aplicação.
 > Releases permitem deployment simplificados: elas são auto-contidas, e provêm tudo o que for necessário para iniciar a release; elas são facilmente administradas via o shell script provido para abrir um console remoto, iniciar/parar/reiniciar a release, iniciar no background, enviar comandos remotos, e mais. Além disso, elas são artefatos arquiváveis, o que significa que você pode restaurar uma release antiga do seu tarball em qualquer momento no futuro (salvo incompatibilidades com o SO ou bibliotecas do sistema). O uso de releases também é um pré-requisito para realizar hot upgrades e downgrades, um dos recursos mais poderosos da VM do Erlang. - [Documentação do Distillery](https://hexdocs.pm/distillery/introduction/understanding_releases.html)
 
 Uma release irá conter o seguinte:
+
 * uma pasta /bin
   * Esta contém um script que é o ponto de início para rodar a sua aplicação inteira.
 * uma pasta /lib
@@ -26,7 +27,6 @@ Uma release irá conter o seguinte:
   * Esta contém metadados sobre a release assim como também hooks e comandos customizados.
 * Um /erts-VERSION
   * Este contém o runtime do Erlang que irá permitir que uma máquina execute a sua aplicação sem necessitar ter o Erlang ou Elixir instalados.
-
 
 ### Iniciando/instalação
 
@@ -48,7 +48,6 @@ mix deps.get
 ```shell
 mix compile
 ```
-
 
 ### Construindo a sua release
 
@@ -93,10 +92,9 @@ For a complete listing of commands and their use:
     > _build/dev/rel/book_app/bin/book_app help
 ```
 
-Para executar sua aplicação, digite o seguinte no seu terminal ` _build/dev/rel/MYAPP/bin/MYAPP foreground`
+Para executar sua aplicação, digite o seguinte no seu terminal `_build/dev/rel/MYAPP/bin/MYAPP foreground`
 No seu caso substitua MYAPP com o nome do seu projeto.
 Agora nós estamos rodando o build da release da nossa aplicação!
-
 
 ## Utilizando Distillery com o Phoenix
 
@@ -112,6 +110,7 @@ config :book_app, BookAppWeb.Endpoint,
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 ```
+
 para isto:
 
 ```elixir
@@ -125,10 +124,11 @@ config :book_app, BookAppWeb.Endpoint,
 ```
 
 Nós fizemos algumas coisas aqui:
-- `server` - inicia o endpoint HTTP da aplicação Cowboy no início do aplicação
-- `root` - define a raiz da aplicação que é onde os arquivos estáticos são servidos
-- `version` - quebra o cache da aplicação quando a versão da mesma sofre um hot upgrade
-- `port` - alterar a porta para ser setada por uma variável de ambiente permite que passamos o número da porta quando estivermos iniciando a aplicação.
+
+* `server` - inicia o endpoint HTTP da aplicação Cowboy no início do aplicação
+* `root` - define a raiz da aplicação que é onde os arquivos estáticos são servidos
+* `version` - quebra o cache da aplicação quando a versão da mesma sofre um hot upgrade
+* `port` - alterar a porta para ser setada por uma variável de ambiente permite que passamos o número da porta quando estivermos iniciando a aplicação.
 Quando iniciamos a aplicação, podemos suprir a porta executando `PORT=4001 _build/prod/rel/book_app/bin/book_app foreground`
 
 Se você executou o comando acima, você talvez tenha notado que a sua aplicação crashou porquê é incapaz de conectar ao banco de dados já que nenhum banco de dados atualmente existe.
@@ -145,7 +145,6 @@ Entretanto, você irá notar que a suas migrations para o seu banco de dados nã
 Normalmente em desenvolvimento executamos essas migrations manualmente chamando `mix.ecto.migrate`.
 Para a release, nós teremos que configurar isto para que ela possa rodar as migrations por si própria.
 
-
 ## Executando Migrations em Produção
 
 O Distillery nos provê a habilidade de executar código em diferentes pontos do ciclo de vida da release. Estes pontos são conhecidos como  [boot-hooks](https://hexdocs.pm/distillery/1.5.2/boot-hooks.html). Os hooks fornecidos pelo Distillery incluem:
@@ -155,7 +154,6 @@ O Distillery nos provê a habilidade de executar código em diferentes pontos do
 * pre/post_configure
 * pre/post_stop
 * pre/post_upgrade
-
 
 Para o nosso propósito, iremos estar utilizando o hook `post_start` para executar as migrações da nossa aplicação em produção.
 Primeiro vamos criar uma nova tarefa da release chamada `migrate`.
@@ -178,7 +176,6 @@ end
 O [Ecto.Migrator](https://hexdocs.pm/ecto/2.2.8/Ecto.Migrator.html) nos permite executar nossas migrations com o banco de dados conectado.
 
 Depois, crie um novo arquivo - `rel/hooks/post_start/migrate.sh` e adicione o seguinte código:
-
 
 ```shell
 echo "Running migrations"
@@ -246,13 +243,13 @@ Depois, crie um novo arquivo `rel/commands/seed.sh` e adicione o seguinte códig
 release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
 ```
 
-
 *Nota* - `release_ctl()` é um shell script fornecido pelo Distillery que nos permite executar comandos localmente ou em um nó limpo.
 Se você precisa rodar isto em um nó já em execução você pode executar `release_remote_ctl()`
 
 Veja mais sobre shell_scripts do Distillery [aqui](https://hexdocs.pm/distillery/extensibility/shell_scripts.html)
 
 Por último, adicione o seguinte ao seu arquivo `rel/config.exs`
+
 ```elixir
 release :book_app do
   ...

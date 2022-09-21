@@ -132,7 +132,6 @@ iex> Greeter2.hello("Fred", "Jane")
 Допустим, нам нужна функция, принимающая ассоциативный массив, в котором нам интересует лишь определённый ключ.
 Можно сопоставить образец с аргумента на наличие этого ключа следующим образом:
 
-
 ```elixir
 defmodule Greeter1 do
   def hello(%{name: person_name}) do
@@ -142,6 +141,7 @@ end
 ```
 
 Теперь предположим, что у нас есть ассоциативный массив, который представляет человека по имени Fred:
+
 ```elixir
 iex> fred = %{
 ...> name: "Fred",
@@ -186,10 +186,13 @@ iex> fred = %{
 ...> favorite_color: "Taupe"
 ...> }
 ```
+
 `Greeter1.hello/1` ожидает такой аргумент:
+
 ```elixir
 %{name: person_name}
 ```
+
 В `Greeter1.hello/1` передаваемый ассоциативный массив (`fred`) сопоставляется с нашим аргументом (`%{name: person_name}`):
 
 ```elixir
@@ -205,6 +208,7 @@ iex> fred = %{
 Чтобы сохранить данные про него, нам нужно присвоить весь связанный с ним ассоциативный массив отдельной переменной, чтобы мы могли его потом использовать.
 
 Давайте создадим новую функцию:
+
 ```elixir
 defmodule Greeter2 do
   def hello(%{name: person_name} = person) do
@@ -231,10 +235,12 @@ person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 
 Сейчас это похоже на нашу оригинальную функция `Greeter1`, где мы сопоставляем образец с ассоциативным массивом и оставляем только имя Фреда.
 У нас есть две переменные, которые мы можем использовать вместо одной:
+
 1. `person`, ссылающаяся на `%{name: "Fred", age: "95", favorite_color: "Taupe"}`
 2. `person_name`, ссылающаяся на `"Fred"`
 
 Так что теперь, когда мы вызываем `Greeter2.hello/1`, мы можем использовать всю информацию про Фреда:
+
 ```elixir
 # call with entire person
 ...> Greeter2.hello(fred)
@@ -263,6 +269,7 @@ person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 Если мы изменим порядок `%{name: person_name}` и `person` в списке, то получим тот же самый результат, потому что каждый из них соответствует fred сам по себе.
 
 Обмениваем переменную и ассоциативный массив:
+
 ```elixir
 defmodule Greeter3 do
   def hello(person = %{name: person_name}) do
@@ -273,6 +280,7 @@ end
 ```
 
 И теперь вызываем нашу функцию с теми же данными, которые использовали при вызове `Greeter2.hello/1`:
+
 ```elixir
 # call with same old Fred
 ...> Greeter3.hello(fred)
@@ -314,9 +322,9 @@ iex> Greeter.phrase
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -359,9 +367,9 @@ iex> Greeter.hello("Sean", "es")
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -394,9 +402,9 @@ defmodule Greeter do
   def hello(names, language_code \\ "en")
 
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do

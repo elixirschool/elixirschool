@@ -53,7 +53,7 @@ iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
 
-## Najlepsze praktyki 
+## Najlepsze praktyki
 
 Jeśli liczba argumentów funkcji jest większa niż 1, pamiętaj o korzystaniu z nawiasów.
 Nawiasy w Elixirze nie są obowiązkowe, ale ich stosowanie poprawia czytelność kodu, co docenić mogą inni programiści.
@@ -71,4 +71,3 @@ is ambiguous and should be written as
 
 true
 ```
-

@@ -13,26 +13,26 @@ Elixir provides an alternative syntax for representing and working with literals
 
 Mevcut işaretlerin listesi:
 
-  - `~C` Kaçış veya enterpolasyon **olmadan**  karakter listesi oluşturur
-  - `~c` Kaçış veya enterpolasyon **ile**  karakter listesi oluşturur
-  - `~R` Kaçış veya enterpolasyon **olmadan** düzenli ifade üretir
-  - `~r` Kaçış veya enterpolasyon **ile** düzenli ifade üretir
-  - `~S` Kaçış veya enterpolasyon **olmadan**  dizge üretir
-  - `~s` Kaçış veya enterpolasyon **ile**  dizge üretir
-  - `~W` Kaçış veya enterpolasyon **olmadan** kelime listesi oluşturur
-  - `~w` Kaçış veya enterpolasyon **ile** kelime listesi oluşturur
-  - `~N` `NaiveDateTime` yapısı üretir
+- `~C` Kaçış veya enterpolasyon **olmadan**  karakter listesi oluşturur
+- `~c` Kaçış veya enterpolasyon **ile**  karakter listesi oluşturur
+- `~R` Kaçış veya enterpolasyon **olmadan** düzenli ifade üretir
+- `~r` Kaçış veya enterpolasyon **ile** düzenli ifade üretir
+- `~S` Kaçış veya enterpolasyon **olmadan**  dizge üretir
+- `~s` Kaçış veya enterpolasyon **ile**  dizge üretir
+- `~W` Kaçış veya enterpolasyon **olmadan** kelime listesi oluşturur
+- `~w` Kaçış veya enterpolasyon **ile** kelime listesi oluşturur
+- `~N` `NaiveDateTime` yapısı üretir
 
 Sınırlandırıcıların listesi:
 
-  - `<...>` A pair of pointy brackets
-  - `{...}` A pair of curly brackets
-  - `[...]` A pair of square brackets
-  - `(...)` A pair of parentheses
-  - `|...|` A pair of pipes
-  - `/.../` A pair of forward slashes
-  - `"..."` A pair of double quotes
-  - `'...'` A pair of single quotes
+- `<...>` A pair of pointy brackets
+- `{...}` A pair of curly brackets
+- `[...]` A pair of square brackets
+- `(...)` A pair of parentheses
+- `|...|` A pair of pipes
+- `/.../` A pair of forward slashes
+- `"..."` A pair of double quotes
+- `'...'` A pair of single quotes
 
 ### Karakter Listesi
 
@@ -77,6 +77,7 @@ true
 ```
 
 Elixir ayrıca Erlang [Regex](https://hexdocs.pm/elixir/Regex.html) API'sinide sağlar. Şimdi `Regex.split / 2` fonksiyonuna regex işaretlerini uygulayalım:
+
 ```elixir
 iex> string = "100_000_000"
 "100_000_000"
@@ -84,8 +85,8 @@ iex> string = "100_000_000"
 iex> Regex.split(~r/_/, string)
 ["100", "000", "000"]
 ```
-Gördüğümüz gibi, `` ~ r / _ / ` işareti sayesinde" "100_000_000" dizesi alt çizgi üzerinde bölünmüştür. `Regex.split` fonksiyonu bir liste döndürür.
 
+Gördüğümüz gibi, `` ~ r / _ / ` işareti sayesinde" "100_000_000" dizesi alt çizgi üzerinde bölünmüştür. `Regex.split` fonksiyonu bir liste döndürür.
 
 ### Dizi
 

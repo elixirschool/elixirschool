@@ -6,7 +6,7 @@
 
   In general the convention in Elixir is to create a function (`example/1`) which returns `{:ok, result}` and `{:error, reason}` and a separate function (`example!/1`) that returns the unwrapped `result` or raises an error.
 
-  This lesson will focus on interacting with the latter.
+This lesson will focus on interacting with the latter
   """
 }
 ---

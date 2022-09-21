@@ -9,7 +9,7 @@
   このレッスンではElixirのライブラリの `PlugCowboy` を使って、シンプルなHTTPサーバーを一から構築します。
   CowboyはErlang用のシンプルなHTTPサーバーであり、PlugはそのWebサーバー用の接続アダプターを提供します。
 
-  Plugをつかって最小限のWebアプリケーションの開発を始めることができます。
+Plugをつかって最小限のWebアプリケーションの開発を始めることができます
   そして、Plugのrouterや既存のWebアプリケーションにPlugを追加する方法を学んでいきましょう。
   """
 }
@@ -22,8 +22,8 @@
 まず、スーパーバイザーツリーを使用して、新規のOTPプロジェクトを作成します。
 
 ```shell
-$ mix new example --sup
-$ cd example
+mix new example --sup
+cd example
 ```
 
 Cowboy2サーバーの起動と実行にはスーパーバイザーを使用するので、Elixirアプリにスーパーバイザーを含める必要があります。
@@ -47,7 +47,7 @@ end
 コマンドラインで次のmixタスクを実行して、これらの新しい依存関係をダウンロードしてください。
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## 仕様
@@ -142,7 +142,7 @@ end
 次のコマンドで実行します:
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 1度コンパイルが終了すると、 `[info] Starting application...` が表示され `http://127.0.0.1:8080` をブラウザで開くと次のように表示されます
@@ -350,7 +350,7 @@ end
 そして次のコマンドでアプリケーションを実行できます。
 
 ```shell
-$ mix run --no-halt
+mix run --no-halt
 ```
 
 ## Plugのテスト
@@ -407,7 +407,7 @@ end
 次のコマンドで実行します
 
 ```shell
-$ mix test test/example/router_test.exs
+mix test test/example/router_test.exs
 ```
 
 ## Plug.ErrorHandler

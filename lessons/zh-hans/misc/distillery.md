@@ -46,7 +46,6 @@ mix deps.get
 mix compile
 ```
 
-
 ### 生成发布包
 
 在命令行，运行
@@ -90,7 +89,7 @@ For a complete listing of commands and their use:
     > _build/dev/rel/book_app/bin/book_app help
 ```
 
-在命令行输入命令 ` _build/dev/rel/MYAPP/bin/MYAPP foreground` 就可以启动你的应用。当然，你需要把 MYAPP 替换为你的项目名称。这样我们就已经通过发布包来运行我们的应用了！
+在命令行输入命令 `_build/dev/rel/MYAPP/bin/MYAPP foreground` 就可以启动你的应用。当然，你需要把 MYAPP 替换为你的项目名称。这样我们就已经通过发布包来运行我们的应用了！
 
 ## 在 Phoenix 项目中使用 Distillery
 
@@ -118,10 +117,11 @@ config :book_app, BookAppWeb.Endpoint,
 ```
 
 这里做的修改是：
-- `server` —— 在系统启动的时候，运行 Cowboy 应用的 http 服务
-- `root` —— 配置系统根目录，也就是放置并提供静态文件的路径。
-- `version` —— 当系统版本升级的时候，系统缓存就会被清除。
-- `port` —— 根据 ENV 环境变量，在系统启动的时候设置端口，通过 `PORT=4001 _build/prod/rel/book_app/bin/book_app foreground`
+
+* `server` —— 在系统启动的时候，运行 Cowboy 应用的 http 服务
+* `root` —— 配置系统根目录，也就是放置并提供静态文件的路径。
+* `version` —— 当系统版本升级的时候，系统缓存就会被清除。
+* `port` —— 根据 ENV 环境变量，在系统启动的时候设置端口，通过 `PORT=4001 _build/prod/rel/book_app/bin/book_app foreground`
 
 如果执行上述命令的时候，系统由于找不到数据库而崩溃了。我们可以通过 Ecto `mix` 命令来修复这个错误。在命令行，输入：
 
@@ -218,7 +218,6 @@ end
 
 release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
 ```
-
 
 *注意* - `release_ctl()` 是 Distillery 提供的脚本，可以让我们在本地或者一个干净的节点运行命令。如果需要在一个运行中的节点执行命令，你需要使用 `release_remote_ctl()`。
 

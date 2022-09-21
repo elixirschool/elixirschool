@@ -113,7 +113,7 @@ ExUnit 會告訴我們失敗斷言 (failed assertions) 出現的行數、期望�
 ### assert_receive
 
 在 Elixir 中，應用程式是由互相發送訊息的 actors/processes 組成，因此會有測試發送訊息的需要。
-由於 ExUnit 在其自身的執行序 (process) 中執行，所以可以像其它任何執行序一樣接收訊息，並可以使用 `assert_received` 巨集執行斷言： 
+由於 ExUnit 在其自身的執行序 (process) 中執行，所以可以像其它任何執行序一樣接收訊息，並可以使用 `assert_received` 巨集執行斷言：
 
 ```elixir
 defmodule SendingProcess do

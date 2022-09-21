@@ -17,7 +17,6 @@ Tables in ETS are created and owned by individual processes.
 When an owner process terminates, its tables are destroyed.
 You can have as many ETS table as you want, the only limit is the server memory. A limit can be specified using the `ERL_MAX_ETS_TABLES` environment variable.
 
-
 ## Creating Tables
 
 Tables are created with `new/2`, which accepts a table name, and a set of options, and returns a table identifier that we can use in subsequent operations.
@@ -159,7 +158,7 @@ iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 
-{% raw %}iex> :ets.select(:user_lookup, [{{:"$1", :_, :"$3"}, [], [:"$_"]}]){% endraw %}
+iex> :ets.select(:user_lookup, [{{:"$1", :_, :"$3"}, [], [:"$_"]}])
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 ```

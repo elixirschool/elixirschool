@@ -12,7 +12,7 @@
 Czasami chcemy, by moduły współdzieliły publiczne API, rozwiązaniem tego problemu w Elixirze są zachowania. Zachowania pełną dwie role:
 
 + Definiują zestaw funkcji, które muszą być zaimplementowane w module,
-+ Sprawdzają, czy rzeczywiście zaimplementowano wymagane funkcje. 
++ Sprawdzają, czy rzeczywiście zaimplementowano wymagane funkcje.
 
 Elixir zawiera pewną ilość zachowań jak na przykład GenServer, ale w tej lekcji skupimy się na tworzeniu własnych.
 
@@ -20,7 +20,7 @@ Elixir zawiera pewną ilość zachowań jak na przykład GenServer, ale w tej le
 
 W celu lepszego zrozumienia zachowań definiujmy je w module `Worker`. Wszystkie implementacje będą musiały zawierać dwie funkcje `init/1` i `perform/2`.
 
-Aby to osiągnąć, użyjemy dyrektywy `@callback`, która ma składnię zbliżoną do `@spec` i definiuje __wymagane__ metody; w przypadku makr należy użyć `@macrocallback`. Zdefiniujmy metody `init/1` i `perform/2`: 
+Aby to osiągnąć, użyjemy dyrektywy `@callback`, która ma składnię zbliżoną do `@spec` i definiuje __wymagane__ metody; w przypadku makr należy użyć `@macrocallback`. Zdefiniujmy metody `init/1` i `perform/2`:
 
 ```elixir
 defmodule Example.Worker do
@@ -31,7 +31,7 @@ defmodule Example.Worker do
 end
 ```
 
-Nasze zachowanie określa `init/1` jako funkcję przyjmującą jako parametr dowolną wartość i zwracającą krotkę `{:ok, state}` albo `{:error, reason}`, jest to standardowa inicjacja modułu. Nasza funkcja `perform/2` będzie otrzymywać jako parametry pewne argumenty wraz ze stanem, który zainicjował nasz moduł. Spodziewamy się, że funkcja ta zwróci `{:ok, result, state}` albo `{:error, reason, state}`, podobnie jak GenServer. 
+Nasze zachowanie określa `init/1` jako funkcję przyjmującą jako parametr dowolną wartość i zwracającą krotkę `{:ok, state}` albo `{:error, reason}`, jest to standardowa inicjacja modułu. Nasza funkcja `perform/2` będzie otrzymywać jako parametry pewne argumenty wraz ze stanem, który zainicjował nasz moduł. Spodziewamy się, że funkcja ta zwróci `{:ok, result, state}` albo `{:error, reason, state}`, podobnie jak GenServer.
 
 ## Użycie zachowań
 

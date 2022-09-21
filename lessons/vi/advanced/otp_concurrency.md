@@ -4,7 +4,7 @@
   excerpt: """
   Chúng ta đã xem về các trừu tượng hoá của Elixir cho xử lý đồng thời (concurrency), nhưng đôi khi chúng ta cần quyền điều khiển lớn hơn, bởi thế chúng ta sẽ đi sâu vào tìm hiểu hành vi của OTP mà đã có sẵn ở trong Elixir.
 
-  Trong bài này, chúng ta sẽ tập trung vào hai phần chính: GenServers và GenEvents.
+Trong bài này, chúng ta sẽ tập trung vào hai phần chính: GenServers và GenEvents
   """
 }
 ---
@@ -90,6 +90,7 @@ iex> SimpleQueue.queue
 ```
 
 ### Hàm bất đồng bộ
+
 Các yêu cầu bất đồng bộ sẽ được xử lý bởi callback `handle_cast/2`. Việc này cũng gần như `handle_call/3` nhưng không nhận vào người gọi (caller), và không mong đợi việc trả lời lại.
 
 Chúng ta sẽ thực hiện hàm enqueue sao cho nó là bất đồng bộ, cập nhật hàng đợi nhưng không làm nghẽn xử lý hiện tại:
@@ -147,6 +148,7 @@ iex> SimpleQueue.enqueue(20)
 iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
+
 Để biết thêm thông tin, hãy xem tài liệu chính thức tại [GenServer](https://hexdocs.pm/elixir/GenServer.html#content).
 
 ## GenEvent

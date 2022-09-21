@@ -15,27 +15,27 @@ Elixir fournit de base un certain nombre de _sigils_, et il est aussi possible d
 
 La liste des _sigils_ disponibles inclut :
 
-  - `~C` génère une liste de caractères **sans** échappement ni interpolation
-  - `~c` génère une liste de caractères **avec** échappement et interpolation
-  - `~R` génère une expression régulière **sans** échappement ni interpolation
-  - `~r` génère une expression régulière **avec** échappement et interpolation
-  - `~S` génère une chaîne de caractères **sans** échappement ni interpolation
-  - `~s` génère une chaîne de caractères **avec** échappement et interpolation
-  - `~W` génère une liste de mots **sans** échappement ni interpolation
-  - `~w` génère une liste de mots **avec** échappement et interpolation
-  - `~N` génère une _struct_ `NaiveDateTime`
-  - `~U` génère une _struct_ `DateTime` (depuis Elixir 1.9.0)
+- `~C` génère une liste de caractères **sans** échappement ni interpolation
+- `~c` génère une liste de caractères **avec** échappement et interpolation
+- `~R` génère une expression régulière **sans** échappement ni interpolation
+- `~r` génère une expression régulière **avec** échappement et interpolation
+- `~S` génère une chaîne de caractères **sans** échappement ni interpolation
+- `~s` génère une chaîne de caractères **avec** échappement et interpolation
+- `~W` génère une liste de mots **sans** échappement ni interpolation
+- `~w` génère une liste de mots **avec** échappement et interpolation
+- `~N` génère une _struct_ `NaiveDateTime`
+- `~U` génère une _struct_ `DateTime` (depuis Elixir 1.9.0)
 
 La liste des délimiteurs inclut :
 
-  - `<...>` Une paire de chevrons
-  - `{...}` Une paire d'accolades
-  - `[...]` Une paire de crochets
-  - `(...)` Une paire de parenthèses
-  - `|...|` Une paire de barres verticales
-  - `/.../` Une paire de barres obliques
-  - `"..."` Une paire de guillemets doubles
-  - `'...'` Une paire de guillemets simples
+- `<...>` Une paire de chevrons
+- `{...}` Une paire d'accolades
+- `[...]` Une paire de crochets
+- `(...)` Une paire de parenthèses
+- `|...|` Une paire de barres verticales
+- `/.../` Une paire de barres obliques
+- `"..."` Une paire de guillemets doubles
+- `'...'` Une paire de guillemets simples
 
 ### Listes de caractères
 

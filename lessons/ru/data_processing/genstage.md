@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.1.2",
   title: "GenStage",
   excerpt: """
   В этом уроке мы поближе рассмотрим GenStage, узнаем, какую роль он выполняет, и как мы можем использовать его в наших приложениях.
@@ -58,8 +58,8 @@
 Мы начнем с создания проекта с деревом надзора:
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 Давайте обновим наши зависимости в `mix.exs`, добавив `gen_stage`:
@@ -75,7 +75,7 @@ end
 Мы должны скачать зависимости и скомпилировать их прежде чем двигаться дальше:
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 Теперь мы готовы к созданию нашего приложения!
@@ -87,7 +87,7 @@ $ mix do deps.get, compile
 Давайте создадим файл для этого производителя:
 
 ```shell
-$ touch lib/genstage_example/producer.ex
+touch lib/genstage_example/producer.ex
 ```
 
 Теперь мы можем добавить код:
@@ -109,7 +109,7 @@ defmodule GenstageExample.Producer do
 end
 ```
 
-Две важные части, которые нужно принять к сведению &mdash; `init/1` и `handle_demand/2`.
+Две важные части, которые нужно принять к сведению — `init/1` и `handle_demand/2`.
 В `init/1` мы устанавливаем начальное состояние, как мы делали в наших GenServer, но, что более важно, мы помечаем запускаемый процесс производителем.
 На основе результата вызова функции `init/1` GenStage классифицирует процесс.
 
@@ -124,7 +124,7 @@ end
 Мы хотим запрашивать числа от производителя, фильтровать от нечетных и реагировать на требования.
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 Давайте обновим наш файл, чтобы он выглядел как пример кода:
@@ -167,7 +167,7 @@ end
 Начнём:
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 Поскольку потребитель и производитель-потребитель очень схожи, наш код не будет сильно отличаться:

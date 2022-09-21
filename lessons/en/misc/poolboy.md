@@ -32,7 +32,7 @@ All we need to do is add Poolboy as a dependency to our `mix.exs`.
 Let's create an application first:
 
 ```shell
-$ mix new poolboy_app --sup
+mix new poolboy_app --sup
 ```
 
 Add Poolboy as a dependency to our `mix.exs`.
@@ -44,8 +44,9 @@ end
 ```
 
 Then fetch dependencies, including Poolboy.
+
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## The configuration options
@@ -107,6 +108,7 @@ Next, we added `:poolboy.child_spec/2` function to the array of children so that
 It takes two arguments: name of the pool, and pool configuration.
 
 ## Creating Worker
+
 The worker module will be a simple `GenServer` that calculates the square root of a number, sleeps for one second, and prints out the pid of the worker.
 Create `lib/poolboy_app/worker.ex`:
 
@@ -174,7 +176,7 @@ end
 Run the test function to see the result.
 
 ```shell
-$ iex -S mix
+iex -S mix
 ```
 
 ```elixir

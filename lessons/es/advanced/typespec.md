@@ -82,10 +82,10 @@ Una solución para este problema es `@type`.
 
 Elixir tiene tres directivas para tipos:
 
-  - `@type` – simple, tipo público.
+- `@type` – simple, tipo público.
 La estructura interna del tipo es pública.
-  - `@typep` – el tipo es privado y solo puede ser usado en el módulo donde es definido.
-  - `@opaque` – el tipo es público pero la estructura interna es privada.
+- `@typep` – el tipo es privado y solo puede ser usado en el módulo donde es definido.
+- `@opaque` – el tipo es público pero la estructura interna es privada.
 
 Vamos a definir nuestro tipo:
 

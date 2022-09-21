@@ -4,7 +4,7 @@
   excerpt: """
   Bugs are an inherent part of any project, that's why we need debugging.
 
-  In this lesson we'll learn about debugging Elixir code as well as static analysis tools to help find potential bugs.
+In this lesson we'll learn about debugging Elixir code as well as static analysis tools to help find potential bugs
   """
 }
 ---
@@ -259,7 +259,7 @@ end
 Then run `iex`:
 
 ```bash
-$ iex -S mix
+iex -S mix
 ```
 
 And run debugger:
@@ -274,9 +274,9 @@ We can use the `start/1` function to configure it:
 
 + An external configuration file can be used by passing the file path.
 + If the argument is `:local` or `:global` then debugger will:
-    + `:global` – debugger will interpret code on all known nodes.
+  + `:global` – debugger will interpret code on all known nodes.
 This is default value.
-    + `:local` – debugger will interpret code only on current node.
+  + `:local` – debugger will interpret code only on current node.
 
 The next step is to attach our module to debugger:
 
@@ -341,7 +341,7 @@ iex > :int.delete_break(Example, 8)
 ```
 
 The same operations are available in the debugger window.
-In the top menu, __Break__, we can select __Line Break__ and setup breakpoints.
+In the top menu, **Break**, we can select **Line Break** and setup breakpoints.
 If we select a line that does not contain code then breakpoints will be ignored, but it will appear in the debugger window.
 There are three types of breakpoints:
 

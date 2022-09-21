@@ -67,7 +67,7 @@ end
 Quando terminamos de configurar nossa aplicação para usar escript, criar o executável é muito simples usando Mix:
 
 ```bash
-$ mix escript.build
+mix escript.build
 ```
 
 Vamos testar:

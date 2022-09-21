@@ -151,6 +151,7 @@ def mount(%{chat: chat, current_user: current_user}, socket) do
    )}
 end
 ```
+
 Then, we need to teach our live view to broadcast new messages to these subscribers when it handles the `"message"` event.
 
 ```elixir

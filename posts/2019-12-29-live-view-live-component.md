@@ -35,7 +35,6 @@ Let's take a look at how we can use components to refactor some complicated Live
 
 Let's say we have an application that uses a message broker like RabbitMQ to publish and consume messages between systems. Our app persists these messages in the DB and exposes a UI for users to list and search such persisted messages.
 
-
 ![live view messages index](/images/live-view-messages-index.png)
 
 We're using LiveView to enact the search functionality, pagination and maintain which messages are currently being displayed in state. Our live view module responds to search form events and maintains the state of the search form, handles the search form submission *and* renders the template with various search and pagination params.
@@ -141,9 +140,7 @@ Maintaining a representation of the search form's selected query and inputed val
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6Ta2Au-PcQI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
 Maintaining the search form state also ensures that users can navigate directly to the `/consumed_messages` route with a set of query params and see not just the correctly populated messages but also the correctly configured search form:
-
 
 ![live component search form query params](/images/live-component-search-form-query-params.png)
 
@@ -162,6 +159,7 @@ However, our search component will go on to maintain the search form state indep
 This way, we can move the search form change event handling and its subsequent impact on search form state out of the live view. This will leave us with a cleaner live view with fewer responsibilities.
 
 ### Defining the Component
+
 #### Setting Initial State From LiveView
 
 We'll begin by defining our component, `RailwayUiWeb.MessageLive.SearchComponent`, and rendering it with an initial search from state from the parent live view.

@@ -13,7 +13,6 @@ Thư viện test được đính kèm với Elixir là ExUnit, và nó cũng bao
 
 Khi chúng ta sinh ra dự án mẫu trong bài học trước, mix đã tự động tạo các test đơn giản, chúng ta có thể thấy nó trong `test/example_test.exs`:
 
-
 ```elixir
 defmodule ExampleTest do
   use ExUnit.Case
@@ -37,7 +36,6 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 Nếu bạn muốn viết các test thì trước hết bạn cần làm quen với `assert`, trong một vài frameworks `should` hoặc là `expect` sẽ đóng vai trò của `assert`.
 
 Chúng ta sử dụng `assert` macro để test tính đúng đắn của một biểu thức. Nếu biểu thức là không đúng, một lỗi sẽ được văng ra, và bộ test sẽ thất bại. Hãy cùng sửa ví dụ của chúng ta để bộ test thất bại:
-
 
 ```elixir
 defmodule ExampleTest do
@@ -73,7 +71,6 @@ ExUnit sẽ nói cho chúng ta biết chính xác test sai ở đâu, giá trị
 ### refute
 
 `refute` đối với `assert` giống như `unless` với `if`.  Dùng `refute` khi bạn muốn đảm bảo một lệnh là luôn luôn sai.
-
 
 ### assert_raise
 

@@ -6,7 +6,7 @@
 
   Üblicherweise ist die Konvention in Elixir eine Funktion (`example/1`) zu schreiben, welche `{:ok, result}` oder `{:error, reason}` zurückgibt und eine separate Funktion (`example!/1`), die das "rohe" `result` zurückgibt oder einen Fehler wirft.
 
-  Diese Lektion wird sich auf den zweiten Fall konzentrieren.
+Diese Lektion wird sich auf den zweiten Fall konzentrieren
   """
 }
 ---

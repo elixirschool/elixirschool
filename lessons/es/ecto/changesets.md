@@ -6,7 +6,7 @@
 
   Una tarea familiar para casi todo desarrollador es revisar la data de entrada en busca de potenciales errores - queremos asegurarnos que la data esté en un estado correcto, antes de intentar usarlos para nuestros propósitos.
 
-  Ecto provee una solución completa para trabajar con los cambios de datos en la forma de un módulo `Changeset` y una estructura de datos.
+Ecto provee una solución completa para trabajar con los cambios de datos en la forma de un módulo `Changeset` y una estructura de datos
   En esta lección vamos a explorar esta funcionalidad y aprender como verificar la integridad de la data antes de guardarla a la base de datos.
   """
 }
@@ -116,7 +116,7 @@ def changeset(struct, params) do
 end
 ```
 
-Vamos vamos a asegurarnos de que `name` esté siempre presente.
+Vamos a asegurarnos de que `name` esté siempre presente.
 
 ```elixir
 def changeset(struct, params) do
@@ -287,5 +287,5 @@ end
 
 ## Conclusión
 
-Hay muchos casos de uso y funcionalidad que no hemos cubierto en esta lección tal como [changesets sin esquema](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) que puedes usar para validar _cualquier_ data; o tratar con efecto colaterales a lo largo del *changeset* ([`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2) o trabajar con asociaciones y embebidos.
+Hay muchos casos de uso y funcionalidad que no hemos cubierto en esta lección tal como [changesets sin esquema](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) que puedes usar para validar *cualquier* data; o tratar con efecto colaterales a lo largo del *changeset* ([`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2) o trabajar con asociaciones y embebidos.
 Podríamos cubrir estos en una futura lección avanzada, pero por ahora te alentamos a explorar la [documentación de Ecto Changeset](https://hexdocs.pm/ecto/Ecto.Changeset.html) para mas información.

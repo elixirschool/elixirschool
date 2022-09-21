@@ -6,7 +6,7 @@
 
   几乎每个开发人员都熟悉的一个任务是检查输入数据是否存在潜在的错误 - 这是因为我们希望在尝试将数据用于我们的目的之前确保数据是处于正确的状态。
 
-  Ecto 提供了一个有关数据更改的完整解决方案，Ecto 将相关的函数和数据结构集合在 `Changeset` 模块中。 在本节课程中，我们将学习 `Changeset` 有关的功能，以及如何在将数据保存到数据库之前校验数据的完整性相关的知识。
+Ecto 提供了一个有关数据更改的完整解决方案，Ecto 将相关的函数和数据结构集合在 `Changeset` 模块中。 在本节课程中，我们将学习 `Changeset` 有关的功能，以及如何在将数据保存到数据库之前校验数据的完整性相关的知识
   """
 }
 ---
@@ -162,7 +162,7 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
 >
 ```
 
-您可能会奇怪为什么错误消息包含了神秘的 `％{count}` 符号 - 这是为了辅助翻译成其他语言; 如果你想直接向用户显示错误，你可以使用 [`traverse_errors/2`] (https://hexdocs.pm/ecto/Ecto.Changeset.html#traverse_errors/2)使它们成为用户可读的信息 - 你可以查看文档中提供的示例。
+您可能会奇怪为什么错误消息包含了神秘的 `％{count}` 符号 - 这是为了辅助翻译成其他语言; 如果你想直接向用户显示错误，你可以使用 [`traverse_errors/2`] (<https://hexdocs.pm/ecto/Ecto.Changeset.html#traverse_errors/2>)使它们成为用户可读的信息 - 你可以查看文档中提供的示例。
 
 下面是 `Ecto.Changeset` 中的一些其他内置的 validators：
 
@@ -230,7 +230,6 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
 
 为了不让 `name` 字段成为必需，让我们允许用户在没有名字的情况下注册，并称之为 "匿名"。 我们需要的函数看起来很熟悉 - 它接受并返回一个 changeset，就像我们之前介绍的 `validate_fictional_name/1` 一样：
 
-
 ```elixir
 def set_name_if_anonymous(changeset) do
   name = get_field(changeset, :name)
@@ -244,7 +243,6 @@ end
 ```
 
 只有在我们的应用程序中注册时，我们才能将用户名设置为 `匿名` ; 要做到这一点，我们将创建一个新的 changeset 函数：
-
 
 ```elixir
 def registration_changeset(struct, params) do

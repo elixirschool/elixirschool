@@ -13,25 +13,25 @@ Elixir memberikan sintaks alteratif untuk bekerja dengan literal. Sebuah sigil d
 
 Sigil yang tersedia di antaranya:
 
-  - `~C` Membuat sebuah character list **tanpa** escaping maupun interpolasi
-  - `~c` Membuat sebuah character list **dengan** escaping dan interpolasi
-  - `~R` Membuat sebuah regular expression **tanpa** escaping maupun interpolasi
-  - `~r` Membuat sebuah regular expression **dengan** escaping dan interpolasi
-  - `~S` Membuat sebuah string **tanpa** escaping maupun interpolasi
-  - `~s` Membuat sebuah string **dengan** escaping dan interpolasi
-  - `~W` Membuat sebuah list **tanpa** escaping maupun interpolasi
-  - `~w` Membuat sebuah list **dengan** escaping dan interpolasi
+- `~C` Membuat sebuah character list **tanpa** escaping maupun interpolasi
+- `~c` Membuat sebuah character list **dengan** escaping dan interpolasi
+- `~R` Membuat sebuah regular expression **tanpa** escaping maupun interpolasi
+- `~r` Membuat sebuah regular expression **dengan** escaping dan interpolasi
+- `~S` Membuat sebuah string **tanpa** escaping maupun interpolasi
+- `~s` Membuat sebuah string **dengan** escaping dan interpolasi
+- `~W` Membuat sebuah list **tanpa** escaping maupun interpolasi
+- `~w` Membuat sebuah list **dengan** escaping dan interpolasi
 
 Pembatas (delimiter) yang tersedia di antaranya:
 
-  - `<...>` Sepasang kurung lancip
-  - `{...}` Sepasang kurung kurawal
-  - `[...]` Sepasang kurung siku
-  - `(...)` Sepasang kurung biasa
-  - `|...|` Sepasang tanda pipe
-  - `/.../` Sepasang garis miring
-  - `"..."` Sepasang kutip ganda
-  - `'...'` Sepasang kutip tunggal
+- `<...>` Sepasang kurung lancip
+- `{...}` Sepasang kurung kurawal
+- `[...]` Sepasang kurung siku
+- `(...)` Sepasang kurung biasa
+- `|...|` Sepasang tanda pipe
+- `/.../` Sepasang garis miring
+- `"..."` Sepasang kutip ganda
+- `'...'` Sepasang kutip tunggal
 
 ### Char List
 
