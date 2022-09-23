@@ -1,5 +1,5 @@
 %{
-  version: "1.8.0",
+  version: "1.9.0",
   title: "Enum",
   excerpt: """
   Um conjunto de algoritmos para fazer enumeração em coleções.
@@ -7,7 +7,7 @@
 }
 ---
 
-## Enum
+# Overview
 
 O módulo `Enum` inclui mais de 70 funções para trabalhar com enumeráveis. Todas as coleções que aprendemos na [lição anterior](/pt/lessons/basics/collections), com exceção das tuplas, são enumeráveis.
 
@@ -31,9 +31,11 @@ Usando isso, é claro que temos uma grande quantidade de funcionalidades, e isso
 A enumeração é o núcleo da programação funcional e é uma coisa incrivelmente útil.
 Ao aproveitar isso combinado com outras vantagens de Elixir, como a documentação sendo um cidadão de primeira classe como acabamos de ver, também pode ser incrivelmente poderoso para o desenvolvedor.
 
+# Common Functions
+
 Para obter uma lista completa de funções, visite a documentação oficial do [`Enum`](https://hexdocs.pm/elixir/Enum.html); para enumeração preguiçosa use o módulo [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
-### all?
+## all?
 
 Ao usar `all?/2`, e muitas das funções de `Enum`, provemos uma função para aplicar nos elementos da nossa coleção. No caso do `all?/2`, a coleção inteira deve ser avaliada como `true`, caso contrário `false` será retornado:
 
@@ -44,7 +46,7 @@ iex> Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) > 1 end)
 true
 ```
 
-### any?
+## any?
 
 Diferente da anterior, `any?/2` retornará `true` se ao menos um elemento for `true`:
 
@@ -53,7 +55,7 @@ iex> Enum.any?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 5 end)
 true
 ```
 
-### chunk_every
+## chunk_every
 
 Se você necessita quebrar sua coleção em pequenos grupos, `chunk_every/2` é a função que você provavelmente está buscando:
 
@@ -64,7 +66,7 @@ iex> Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
 
 Há algumas opções para `chunk_every/4` porém não vamos entrar nelas, revise [`a documentação oficial para esta função`](https://hexdocs.pm/elixir/Enum.html#chunk_every/4) para aprender mais.
 
-### chunk_by
+## chunk_by
 
 Se necessita agrupar uma coleção baseado em algo diferente do tamanho, podemos usar a função `chunk_by/2`. Ela recebe um enumerável e uma função, e quando o retorno desta função muda, um novo grupo é iniciado e começa a criação do próximo:
 
@@ -75,7 +77,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 [["one", "two"], ["three"], ["four", "five"], ["six"]]
 ```
 
-### map_every
+## map_every
 
 Algumas vezes quebrar uma coleção em blocos não é o suficiente para fazer exatamente o que você precisa. Nesse caso, `map_every/3` pode ser muito útil para tratar apenas itens específicos da sua coleção (`nth`), sempre atingindo o primeiro:
 
@@ -85,7 +87,7 @@ iex> Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
 [1001, 2, 3, 1004, 5, 6, 1007, 8]
 ```
 
-### each
+## each
 
 Pode ser necessário iterar sobre uma coleção sem produzir um novo valor, para este caso podemos usar `each/2`:
 
@@ -99,7 +101,7 @@ three
 
 __Nota__: A função `each/2` retorna um átomo `:ok`.
 
-### map
+## map
 
 Para aplicar uma função a cada elemento e produzir uma nova coleção use a função `map/2`:
 
@@ -108,7 +110,7 @@ iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
 [-1, 0, 1, 2]
 ```
 
-### min
+## min
 
 `min/1` retorna o valor mínimo de uma coleção:
 
@@ -124,7 +126,7 @@ iex> Enum.min([], fn -> :foo end)
 :foo
 ```
 
-### max
+## max
 
 `max/1` retorna o valor máximo de uma coleção:
 
@@ -140,7 +142,7 @@ iex> Enum.max([], fn -> :bar end)
 :bar
 ```
 
-### filter
+## filter
 
 A função `filter/2` nos permite filtrar uma coleção para incluir apenas os elementos que são avaliados como `true` provendo uma função como argumento.
 
@@ -149,7 +151,7 @@ iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
 [2, 4]
 ```
 
-### reduce
+## reduce
 
 Com `reduce/3` podemos transformar nossa coleção em um único valor, para fazer isto aplicamos um acumulador opcional (`10` neste exemplo) que será passado a nossa função; se não prover um acumulador, o primeiro valor será usado:
 
@@ -164,7 +166,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 "cba1"
 ```
 
-### sort
+## sort
 
 Ordenar nossas coleções é fácil não só com uma, mas com duas funções de ordenação.
 
@@ -197,7 +199,7 @@ Enum.sort([2, 3, 1], :desc)
 [3, 2, 1]
 ```
 
-### uniq
+## uniq
 
 Podemos usar `uniq/1` para eliminar itens duplicados em nossas coleções:
 
@@ -206,7 +208,7 @@ iex> Enum.uniq([1, 2, 3, 2, 1, 1, 1, 1, 1])
 [1, 2, 3]
 ```
 
-### uniq_by
+## uniq_by
 
 `uniq_by/2` também pode ser utilizado para eliminar itens duplicados em nossas coleções, mas nos permite fornecer uma função para fazer a comparação de exclusividade.
 
@@ -215,7 +217,7 @@ iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coo
 [%{x: 1, y: 1}, %{x: 3, y: 3}]
 ```
 
-### Enum usando o operador Capture (&)
+## Enum usando o operador Capture (&)
 
 Muitas funções dentro do módulo Enum no Elixir usam funções anônimas como um argumento para trabalhar com cada iterável do enumerável que é passado.
 
@@ -223,7 +225,7 @@ Essas funções anônimas são frequentemente escritas de forma abreviada usando
 
 Aqui estão alguns exemplos que mostram como o operador capture pode ser implementado com o módulo Enum. Cada versão é funcionalmente equivalente.
 
-#### Usando o operador capture com uma função anônima
+### Usando o operador capture com uma função anônima
 
 Abaixo está um exemplo típico da sintaxe padrão ao passar uma função anônima para `Enum.map/2`.
 
@@ -247,7 +249,7 @@ iex> Enum.map([1,2,3], plus_three)
 [4, 5, 6]
 ```
 
-#### Usando o operador capture com uma função nomeada
+### Usando o operador capture com uma função nomeada
 
 Primeiro, criamos uma função nomeada e a chamamos dentro da função anônima definida em `Enum.map/2`.
 
