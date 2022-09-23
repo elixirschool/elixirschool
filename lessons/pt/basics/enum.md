@@ -31,7 +31,7 @@ Usando isso, é claro que temos uma grande quantidade de funcionalidades, e isso
 A enumeração é o núcleo da programação funcional e é uma coisa incrivelmente útil.
 Ao aproveitar isso combinado com outras vantagens de Elixir, como a documentação sendo um cidadão de primeira classe como acabamos de ver, também pode ser incrivelmente poderoso para o desenvolvedor.
 
-# Common Functions
+# Funções
 
 Para obter uma lista completa de funções, visite a documentação oficial do [`Enum`](https://hexdocs.pm/elixir/Enum.html); para enumeração preguiçosa use o módulo [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
