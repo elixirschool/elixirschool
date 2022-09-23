@@ -7,7 +7,7 @@
 }
 ---
 
-# Overview
+# Visão Geral
 
 O módulo `Enum` inclui mais de 70 funções para trabalhar com enumeráveis. Todas as coleções que aprendemos na [lição anterior](/pt/lessons/basics/collections), com exceção das tuplas, são enumeráveis.
 
