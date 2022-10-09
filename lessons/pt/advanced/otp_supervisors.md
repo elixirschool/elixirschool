@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.1.2",
   title: "Supervisores OTP",
   excerpt: """
   Supervisores são processos especializados com um propósito: monitorar outros processos. Estes supervisores nos possibilitam a criação de aplicações tolerantes a falhas automaticamente reiniciando processos filhos quando eles falham.
@@ -84,27 +84,42 @@ def child_spec(opts) do
 end
 ```
 
-+ `id` - Chave obrigatória. Usada pelo supervisor para identificar a especificação do filho.
++ `id` - Chave obrigatória. 
+  Usada pelo supervisor para identificar a especificação do filho.
 
-+ `start` - Chave obrigatória. O Módulo/Função/Argumentos para chamar quando iniciar o supervisor.
++ `start` - Chave obrigatória. 
+  O Módulo/Função/Argumentos para chamar quando iniciar o supervisor.
 
-+ `shutdown` - Chave opcional. Define o comportamento do filho durante o desligamento. Opções são:
++ `shutdown` - Chave opcional. 
+  Define o comportamento do filho durante o desligamento.
+
+  Opções são:
 
   + `:brutal_kill` - O filho é parado imediatamente.
 
-  + qualquer inteiro positivo - tempo em milisegundos que o supervisor vai esperar antes de matar o processo filho. Se o processo é do tipo `:worker`, esse valor é por padrão 5000.
+  + `0` ou um inteiro positivo - tempo em milissegundos que o supervisor vai esperar antes de matar o processo filho.
+  
+    Se o processo é do tipo `:worker`, o valor `shutdown` é por padrão `5000`.
 
-  + `:infinity` - O Supervisor vai esperar indefinidamente antes de matar o processo filho. Padrão para processos do tipo `:supervisor`. Não recomendado para o tipo `:worker`.
+  + `:infinity` - O Supervisor vai esperar indefinidamente antes de matar o processo filho.
+  
+    Padrão para processos do tipo `:supervisor`.
+  
+    Não recomendado para o tipo `:worker`.
 
-+ `restart` - Chave opcional. Há várias abordagens para lidar com a quebra de processos filhos:
++ `restart` - Chave opcional.
 
-  + `:permanent` - O processo filho é sempre reiniciado. Padrão para todos os processos
+  Há várias abordagens para lidar com a quebra de processos filhos:
+
+  + `:permanent` - O processo filho é sempre reiniciado.
+    Padrão para todos os processos
 
   + `:temporary` - O processo filho nunca é reiniciado.
 
   + `:transient` - O processo filho é reiniciado se ele termina de maneira anormal.
 
-+ `type` - Chave opcional. Processos podem  ser `:worker` ou `:supervisor`. Por padrão é `:worker`.
++ `type` - Chave opcional.
+  Processos podem  ser `:worker` ou `:supervisor`. Por padrão é `:worker`.
 
 ## DynamicSupervisor
 
