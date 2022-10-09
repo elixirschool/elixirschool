@@ -1,8 +1,8 @@
 %{
   version: "1.2.0",
-  title: "Date and Time",
+  title: "Tanggal dan Waktu",
   excerpt: """
-  Working with time in Elixir.
+  Bekerja dengan waktu di Elixir.
   """
 }
 ---
