@@ -1,9 +1,9 @@
 %{
-    version: "1.3.0",
-    title: "Ειδικές Εργασίες Mix",
-    excerpt: """
-    Δημιουργία ειδικών εργασιών Mix για τα Elixir projects σας.
-    """
+  version: "1.3.0",
+  title: "Ειδικές Εργασίες Mix",
+  excerpt: """
+  Δημιουργία ειδικών εργασιών Mix για τα Elixir projects σας.
+  """
 }
 ---
 
