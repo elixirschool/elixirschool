@@ -1,17 +1,20 @@
 %{
-  version: "1.2.0",
-  title: "Testando",
+  version: "1.2.1",
+  title: "Testes",
   excerpt: """
-  Testes são uma parte importante do desenvolvimento de software. Nesta lição nós veremos como testar nosso código Elixir com ExUnit e algumas das melhores práticas de como fazer isto.
+  Testes são uma parte importante do desenvolvimento de software.
+  Nesta lição nós veremos como testar nosso código Elixir com ExUnit e algumas das melhores práticas de como fazer isto.
   """
 }
 ---
 
 ## ExUnit
 
-O framework de testes integrado do Elixir é o ExUnit, isto inclui tudo o que precisamos para testar exaustivamente o nosso código. Antes de avançar, é importante notar que testes são implementados como scripts Elixir, por isso precisamos usar a extensão de arquivo `.exs`. Antes de podermos executar nossos testes nós precisamos iniciar o ExUnit com `ExUnit.start()`, este é mais comumente feito em `test/test_helper.exs`.
+O framework de testes integrado do Elixir é o ExUnit e ele inclui tudo o que precisamos para testar exaustivamente o nosso código.
+Antes de avançar, é importante notar que testes são implementados como scripts Elixir, por isso precisamos usar a extensão de arquivo `.exs`.
+Antes de podermos executar nossos testes nós precisamos iniciar o ExUnit com `ExUnit.start()`, e isto é mais comumente feito em `test/test_helper.exs`.
 
-Quando geramos nosso projeto de exemplo na lição anterior, o mix foi útil o suficiente para criar um teste simples para nós, podemos encontrá-lo em `test/example_test.exs`:
+Quando geramos nosso projeto de exemplo na lição anterior, o mix foi útil o suficiente para criar um teste simples para nós e podemos encontrá-lo em `test/example_test.exs`:
 
 ```elixir
 defmodule ExampleTest do
@@ -24,7 +27,8 @@ defmodule ExampleTest do
 end
 ```
 
-Podemos executar testes do nosso projeto com `mix test`. Se fizermos isso agora devemos ver uma saída semelhante a:
+Podemos executar testes do nosso projeto com `mix test`.
+Se fizermos isso agora devemos ver uma saída semelhante a:
 
 ```shell
 ..
@@ -33,7 +37,7 @@ Finished in 0.03 seconds
 2 tests, 0 failures
 ```
 
-Porque há dois testes na saída? Além do teste em `test/example_test.exs`, Mix criou um doctest em `lib/example.ex`.
+Porque há dois testes na saída? Além do teste em `test/example_test.exs`, Mix também criou um doctest em `lib/example.ex`.
 
 ```elixir
 defmodule Example do
@@ -60,7 +64,9 @@ end
 
 Se você escreveu testes antes, então você está familiarizado com `assert`; em alguns frameworks `should` ou `expect` preenchem o papel de `assert`.
 
-Usamos o `assert` macro para testar se a expressão é verdadeira. No caso em que não é, um erro vai ser levantado e os nossos testes irão falhar. Para testar uma falha vamos mudar nosso exemplo e em seguida, executar o `mix test`.
+Usamos o `assert` macro para testar se a expressão é verdadeira.
+No caso em que não é, um erro vai ser gerado e os nossos testes irão falhar.
+Para testar uma falha, vamos mudar nossa amostra e em seguida executar o `mix test`.
 
 ```elixir
 defmodule ExampleTest do
@@ -91,19 +97,23 @@ Finished in 0.03 seconds
 2 tests, 1 failures
 ```
 
-ExUnit nos diz exatamente onde nossos asserts falharam, qual era o valor esperado e qual o valor atual.
+ExUnit nos diz exatamente onde nossas asserções falharam, qual era o valor esperado e qual o valor atual.
 
 ### refute
 
-`refute` é para `assert` como `unless` é para `if`. Use `refute` quando você quiser garantir que uma declaração é sempre falsa.
+`refute` é para `assert` como `unless` é para `if`.
+Use `refute` quando você quiser garantir que uma declaração é sempre falsa.
 
 ### assert_raise
 
-Às vezes pode ser necessário afirmar que um erro foi levantado, podemos fazer isso com `assert_raise`. Vamos ver um exemplo de `assert_raise` na próxima lição sobre Plug.
+Às vezes pode ser necessário afirmar que um erro foi gerado.
+Podemos fazer isso com `assert_raise`.
+Vamos ver um exemplo de `assert_raise` na lição sobre Plug.
 
 ### assert_receive
 
-Em Elixir, as aplicações consistem em atores/processos que enviam mensagens um para o outro, portanto muitas vezes você quer testar mensagens sendo enviadas. Como o ExUnit executa seu próprio processo ele pode receber mensagem como qualquer outro processo e você pode  afirmar isso com a macro `assert_received`:
+Em Elixir, aplicações consistem em atores/processos que enviam mensagens um para o outro, portanto você irá querer testar mensagens sendo enviadas.
+Como o ExUnit é executado no seu próprio processo, ele pode receber mensagem como qualquer outro processo e você pode afirmar nele mesmo com a macro `assert_received`:
 
 ```elixir
 defmodule SendingProcess do
@@ -122,11 +132,12 @@ defmodule TestReceive do
 end
 ```
 
-`assert_received` não espera mensagens com `assert_receive` você pode especificar um tempo limite.
+`assert_received` não espera mensagens, com `assert_receive` você pode especificar um tempo limite.
 
-### capture_io and capture_log
+### capture_io e capture_log
 
-Capturar uma saída da aplicação é possível com `ExUnit.CaptureIO` sem mudar a aplicação original. Basta passar a função gerando a saída em:
+Capturar uma saída da aplicação é possível com `ExUnit.CaptureIO` sem mudar a aplicação original.
+Basta passar a função gerando a saída em:
 
 ```elixir
 defmodule OutputTest do
@@ -143,7 +154,10 @@ end
 
 ## Configuração de Teste
 
-Em alguns casos, pode ser necessária a realização de configuração antes de nossos testes. Para fazer isso acontecer, nós podemos usar as macros `setup` e `setup_all`. `setup` irá ser executado antes de cada teste, e `setup_all` uma vez antes da suíte de testes. Espera-se que eles vão retornar uma tupla de `{:ok, state}`, o estado estará disponível para os nossos testes.
+Em alguns casos, pode ser necessária a realização de configuração antes de nossos testes.
+Para fazer isso acontecer, nós podemos usar as macros `setup` e `setup_all`.
+`setup` será executado antes de cada teste e `setup_all` uma vez antes do suíte de testes.
+Espera-se que eles vão retornar uma tupla de `{:ok, state}`, o estado estará disponível para os nossos testes.
 
 Por uma questão de exemplo, vamos mudar o nosso código para usar `setup_all`:
 
@@ -162,10 +176,20 @@ defmodule ExampleTest do
 end
 ```
 
-## Mocking
+## Simulações de Teste (Mocks)
 
-A resposta simples para mocking no Elixir é: não faça isso. Você pode instintivamente querer utilizar mocks, porém eles são altamente desaconselhados na comunidade Elixir por uma boa razão.
+Queremos ter cuidado com a forma que pensamos sobre “mocks”. Quando simulamos certas interações criando funções de simulação exclusivas em um determinado exemplo de teste, estabelecemos um padrão perigoso. Acoplamos a execução dos nossos testes ao comportamento de uma dependência específica, como um cliente de API. Evitamos definir o comportamento compartilhado entre nossas funções simuladas. Tornamos mais difícil iterar nossos testes.
 
-Para uma discussão mais longa, temos este [excelente artigo](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/). O ponto principal é que ao invés de mockar dependências para testar (mock como *verbo*), existem muitas vantagens em explicitamente definir interfaces (comportamentos) para código fora da aplicação e usar implementações mockadas (mock como *nome*) no nosso código cliente para testar.
+Em vez disso, a comunidade Elixir nos encoraja a mudar como pensamos sobre simulações de teste; para pensarmos em mock como um substantivo, em vez de um verbo. 
 
-Para alternar entre as implementações no código da aplicação, a maneira preferida é passar o módulo como argumento e usar um valor padrão. Se isto não funcionar, use o mecanismo de configuração embutido. Para criar estas implementações mockadas, você não precisa de uma biblioteca especial de mocking, apenas comportamentos e callbacks.
+Para uma discussão mais longa neste tópico, veja este [excelente artigo](http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/).
+
+A essência é que, em vez de simular dependências em testes (mock como *verbo*), existem muitas vantagens em explicitamente definir interfaces (comportamentos) para código fora da aplicação e usar implementações de simulações (mock como *substantivo*) no seu código para testes.
+
+Para aproveitar esse padrão "mock-como-substantivo" você pode:
+
+* Definir um comportamento que seja implementado pela entidade para qual você gostaria de definir uma simulação *e* pelo módulo que atuará como a simulação
+* Definir o módulo de simulação
+* Configurar seu código da aplicação para usar o mock em um certo teste ou ambiente de teste, por exemplo, passando o módulo de simulação como argumento em uma chamada de função ou configurando sua aplicação para usar o módulo de simulação no ambiente de teste.
+
+Para um mergulho mais profundo em simulações de teste em Elixir, e uma olhada na biblioteca Mox que permite definir simulações simultâneas, confira nossa lição sobre Mox [aqui](/pt/lessons/testing/mox).
