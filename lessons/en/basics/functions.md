@@ -194,14 +194,14 @@ iex> fred = %{
 %{name: person_name}
 ```
 
-In `Greeter1.hello/1`, the map we pass (`fred`) is evaluated against our argument (`%{name: person_name}`):
+In `Greeter1.hello/1`, the map we pass (`fred`) is evaluated against function argument (`%{name: person_name}`):
 
 ```elixir
 %{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
 It finds that there is a key that corresponds to `name` in the incoming map.
-We have a match! And as a result of this successful match, the value of the `:name` key in the map on the right (i.e. the `fred` map) is bound to the variable on the left (`person_name`).
+We have a match! And as a result of this successful match, the value of the `:name` key in the map on the right (i.e. the `fred` map) is bound to the `person_name` variable on the left.
 
 Now, what if we still wanted to assign Fred's name to `person_name` but we ALSO want to retain awareness of the entire person map? Let's say we want to `IO.inspect(fred)` after we greet him.
 At this point, because we only pattern-matched the `:name` key of our map, thus only binding the value of that key to a variable, the function doesn't have knowledge of the rest of Fred.
