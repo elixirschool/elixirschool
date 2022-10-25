@@ -263,11 +263,11 @@ So now when we call `Greeter2.hello/1`, we can use all of Fred's information:
     iex:15: Greeter2.hello/1
 ```
 
-So we've seen that Elixir pattern-matches at multiple depths because each argument matches against the incoming data independently, leaving us with the variables to call them by inside our function.
+So we've seen that Elixir pattern-matches at multiple depths because each argument matches against the incoming data independently, leaving us with the variables that we can use inside the function.
 
 If we switch the order of `%{name: person_name}` and `person` in the list, we will get the same result because each are matching to fred on their own.
 
-We swap the variable and the map:
+We swap the variable and the map in new function argument:
 
 ```elixir
 defmodule Greeter3 do
@@ -287,7 +287,7 @@ And call it with the same data we used in `Greeter2.hello/1`:
 %{age: "95", favorite_color: "Taupe", name: "Fred"}
 ```
 
-Remember that even though it looks like `%{name: person_name} = person` is pattern-matching the `%{name: person_name}` against the `person` variable, they're actually _each_ pattern-matching to the passed-in argument.
+Remember that in this expression `%{name: person_name} = person` even though it looks like this map `%{name: person_name}` is pattern-matching against the `person` variable, they're actually _each_ independently pattern-matching to the passed-in argument.
 
 **Summary:** Functions pattern-match the data passed in to each of its arguments independently.
 We can use this to bind values to separate variables within the function.
