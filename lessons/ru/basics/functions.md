@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.3.0",
   title: "Функции",
   excerpt: """
   В Elixir, как и в многих других функциональных языках, функции являются полноценными объектами.
@@ -55,6 +55,7 @@ Handling result...
 :ok
 iex> handle_result.({:error})
 An error has occurred!
+:ok
 ```
 
 ## Именованные функции
@@ -264,8 +265,6 @@ person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 
 Таким образом мы увидели сопоставление с образцом Elixir работает на несколько уровней, поскольку каждый аргумент сопоставляется с переданными данными независимо, оставляя нам переменные для их вызова внутри нашей функции.
 
-Итак, мы видели, что шаблон Elixir сопоставляется на нескольких глубинах, потому что каждый аргумент сопоставляется с входящими данными независимо, в результате чего у нас есть переменные, которые можно использовать внутри функции.
-
 Если мы изменим порядок `%{name: person_name}` и `person` в списке, то получим тот же самый результат, потому что каждый из них соответствует fred сам по себе.
 
 Обмениваем переменную и ассоциативный массив:
@@ -296,7 +295,8 @@ end
 ### Закрытые функции
 
 Когда мы не хотим давать доступ к функции из других модулей, мы определяем закрытые (private) функции.
-Они могут быть вызваны только из этого же модуля. Такие функции определяются с помощью `defp`:
+Они могут быть вызваны только из этого же модуля.
+Такие функции определяются с помощью `defp`:
 
 ```elixir
 defmodule Greeter do
@@ -362,7 +362,8 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-Когда мы используем одновременно ограничители и аргументы по умолчанию, то все перестает работать. Давайте посмотрим как это выглядит:
+Когда мы используем одновременно ограничители и аргументы по умолчанию, то все перестает работать.
+Давайте посмотрим как это выглядит:
 
 ```elixir
 defmodule Greeter do
@@ -380,10 +381,11 @@ defmodule Greeter do
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+** (CompileError) iex:8: def hello/2 defines defaults multiple times. Elixir allows defaults to be declared once per definition.
+Instead of:
 
     def foo(:first_clause, b \\ :default) do ... end
-    def foo(:second_clause, b) do ... end
+    def foo(:second_clause, b \\ :default) do ... end
 
 one should write:
 
@@ -395,7 +397,8 @@ def hello/2 has multiple clauses and defines defaults in one or more clauses
     iex:31: (module)
 ```
 
-Elixir не поддерживает аргументы по умолчанию при наличии нескольких подходящих функций. Для решения этой проблемы мы добавляем определение функции с аргументами по умолчанию:
+Elixir не поддерживает аргументы по умолчанию при наличии нескольких подходящих функций.
+Для решения этой проблемы мы добавляем определение функции с аргументами по умолчанию:
 
 ```elixir
 defmodule Greeter do
@@ -403,7 +406,7 @@ defmodule Greeter do
 
   def hello(names, language_code) when is_list(names) do
     names = Enum.join(names, ", ")
-    
+
     hello(names, language_code)
   end
 
