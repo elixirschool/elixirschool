@@ -137,7 +137,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) は **タイムゾーンがない** `DateTime` を表現する構造体を手早く作るときに有用です。
 
-ほとんどの場合、 `NaiveDateTime` 構造体を直接作ることは避けるべきです。ですが、パターンマッチングには有用です。例をあげます:
+ほとんどの場合、 `NaiveDateTime` 構造体を直接作ることは避けるべきです。ですが、パターンマッチには有用です。例をあげます:
 
 ```elixir
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
