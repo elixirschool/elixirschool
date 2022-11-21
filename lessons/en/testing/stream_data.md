@@ -139,7 +139,7 @@ We can omit the module name when calling `string/2` because `use ExUnitPropertie
 * `StreamData.integer/0` generates random integers.
 * `times >= 0` is kind of like a guard clause.
 It ensures that the random integers we use in our test are greater than or equal to zero.
-[`SreamData.positive_integer/0`](https://hexdocs.pm/stream_data/StreamData.html#positive_integer/0) exists, but it's not quite what we want, since `0` is an acceptable value in our function.
+[`StreamData.positive_integer/0`](https://hexdocs.pm/stream_data/StreamData.html#positive_integer/0) exists, but it's not quite what we want, since `0` is an acceptable value in our function.
 
 The `???` is just some pseudocode I added.
 What exactly should we assert?
