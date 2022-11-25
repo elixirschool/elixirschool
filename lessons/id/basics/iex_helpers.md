@@ -229,7 +229,7 @@ iex> t Map
 @type value() :: any()
 ```
 
-Sekarang kita tahu bahwa `Map` adalah sebuah modul yang memiliki field `key` dan `value` didalamnya.
+Sekarang kita tahu bahwa di dalam module `Map` telah dideklarasikan tipe `key` dan `value`.
 Dan berikut kalau kita lihat kode sumbernya:
 
 ```elixir
@@ -240,7 +240,7 @@ defmodule Map do
 # ...
 ```
 
-Ini hanya contoh sederhana, memperlihatkan bahwa key dan value dari sebuah Map bisa bertipe apapun.
+Memperlihatkan bahwa key dan value dari sebuah Map bisa bertipe apapun.
 
-Nah dengan memanfaatkan fitur-fitur diatas maka kita bisa dengan mudah mengekplorasi kode dan mempelajari bagaimana sesuatu itu bekerja.
+Nah dengan memanfaatkan fitur-fitur diatas maka kita bisa dengan mudah mengeksplorasi kode dan mempelajari bagaimana sesuatu itu bekerja.
 IEx sangatlah bermanfaat buat para pengembang, dengan semua fitur tersebut maka bereksplorasi dan membangun dengan Elixir menjadi lebih menyenangkan!
