@@ -70,7 +70,7 @@ Supervisors 目前有三種不同的重新啟動策略：
 
 ### 子處理程序規範 (Child Specification)
 
-在 supervisor 啟動後，它必須知道如何啟動/停止/重啟它的子處理程序。每個子處理程序模組都應該有一個 `child_spec/1` 函數來定義這些行為。`use GenServer`、`use Supervisor` 和 `use Agent` 巨集自動定義了這個方法 (`SimpleQueue` 有 `use Genserver`，所以不需要修改模組)，但是如果需要自己定義， `child_spec/1` 應該回傳一個選項的映射 (map of options)：
+在 supervisor 啟動後，它必須知道如何啟動/停止/重啟它的子處理程序。每個子處理程序模組都應該有一個 `child_spec/1` 函數來定義這些行為。`use GenServer`、`use Supervisor` 和 `use Agent` 巨集自動定義了這個方法 (`SimpleQueue` 有 `use GenServer`，所以不需要修改模組)，但是如果需要自己定義， `child_spec/1` 應該回傳一個選項的映射 (map of options)：
 
 ```elixir
 def child_spec(opts) do
