@@ -68,7 +68,7 @@ Es gibt zurzeit drei verschiedene Strategien zum Neustart, welche Supervisors be
 
 Nachdem ein Supervisor gestartet ist, muss er wissen, wie er seine Kinder starten/stoppen/neustarten soll.
 Jedes Kind-Modul sollte eine `child_spec/1` Funktion haben, die dieses Verhalten definiert.
-Die Macros `use GenServer`, `use Supervisor`, und `use Agent` definieren diese Methode automatisch für uns (`SimpleQueue` hat `use Genserver`, also brauchen wir dieses Modul nicht anzupassen), aber wenn du sie selbst definieren musst, sollte `child_spec/1` eine Map von Optionen zurückgeben:
+Die Macros `use GenServer`, `use Supervisor`, und `use Agent` definieren diese Methode automatisch für uns (`SimpleQueue` hat `use GenServer`, also brauchen wir dieses Modul nicht anzupassen), aber wenn du sie selbst definieren musst, sollte `child_spec/1` eine Map von Optionen zurückgeben:
 
 ```elixir
 def child_spec(opts) do
