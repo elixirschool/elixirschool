@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.3.0",
   title: "Funções",
   excerpt: """
   Em Elixir e em várias linguagens funcionais, funções são cidadãos de primeira classe. Nós aprenderemos sobre os tipos de funções em Elixir, qual a diferença, e como utilizá-las.
@@ -356,19 +356,17 @@ defmodule Greeter do
   defp phrase("pt"), do: "Olá, "
 end
 
-** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+** (CompileError) iex:8: def hello/2 defines defaults multiple times. Elixir allows defaults to be declared once per definition.
+Instead of:
 
     def foo(:first_clause, b \\ :default) do ... end
-    def foo(:second_clause, b) do ... end
+    def foo(:second_clause, b \\ :default) do ... end
 
 one should write:
 
     def foo(a, b \\ :default)
     def foo(:first_clause, b) do ... end
     def foo(:second_clause, b) do ... end
-
-def hello/2 has multiple clauses and defines defaults in one or more clauses
-    iex:31: (module)
 ```
 
 Elixir não gosta de argumentos padrões em múltiplas funções, pode ser confuso. Para lidar com isto, adicionamos funções com nosso argumento padrão:
