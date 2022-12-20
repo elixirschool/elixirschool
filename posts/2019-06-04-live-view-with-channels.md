@@ -194,6 +194,7 @@ const liveSocket = new LiveSocket("/live")
 liveSocket.connect()
 
 let channel = liveSocket.channel("event_bus:" + chatId, {})
+channel.join()
 ```
 
 Now, when the page loads, we will:
