@@ -195,6 +195,8 @@ liveSocket.connect()
 
 let channel = liveSocket.channel("event_bus:" + chatId, {})
 channel.join()
+        .receive("ok", resp => console.log("joined", resp))
+        .receive("error", err => console.log("joining failed", err));
 ```
 
 Now, when the page loads, we will:
