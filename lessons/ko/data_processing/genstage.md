@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.1.1",
   title: "GenStage",
   excerpt: """
   이 강좌에서는 GenStage가 어떤 역할을 하고, 애플리케이션에서 어떻게 사용하는지 자세히 살펴보도록 하겠습니다.
@@ -57,7 +57,7 @@ cd genstage_example
 ```elixir
 defp deps do
   [
-    {:gen_stage, "~> 0.11"}
+    {:gen_stage, "~> 1.0.0"}
   ]
 end
 ```
@@ -75,7 +75,6 @@ mix do deps.get, compile
 GenStage 애플리케이션의 첫 걸음은 프로듀서를 만드는 것 부터 시작합니다. 전에 말했던 것처럼 정적인 숫자의 스트림을 넣는 프로듀서를 만들고 싶습니다. 프로듀서 파일을 생성합시다.
 
 ```shell
-mkdir lib/genstage_example
 touch lib/genstage_example/producer.ex
 ```
 
@@ -200,6 +199,7 @@ end
 
 ```shell
 $ mix run --no-halt
+{#PID<0.109.0>, 0, :state_doesnt_matter}
 {#PID<0.109.0>, 2, :state_doesnt_matter}
 {#PID<0.109.0>, 4, :state_doesnt_matter}
 {#PID<0.109.0>, 6, :state_doesnt_matter}
@@ -219,10 +219,16 @@ $ mix run --no-halt
 
 ```elixir
 children = [
-  worker(GenstageExample.Producer, [0]),
-  worker(GenstageExample.ProducerConsumer, []),
-  worker(GenstageExample.Consumer, [], id: 1),
-  worker(GenstageExample.Consumer, [], id: 2)
+  {GenstageExample.Producer, 0},
+  {GenstageExample.ProducerConsumer, []},
+  %{
+    id: 1,
+    start: {GenstageExample.Consumer, :start_link, [[]]}
+  },
+  %{
+    id: 2,
+    start: {GenstageExample.Consumer, :start_link, [[]]}
+  },
 ]
 ```
 
@@ -230,10 +236,10 @@ children = [
 
 ```shell
 $ mix run --no-halt
+{#PID<0.120.0>, 0, :state_doesnt_matter}
 {#PID<0.120.0>, 2, :state_doesnt_matter}
-{#PID<0.121.0>, 4, :state_doesnt_matter}
+{#PID<0.120.0>, 4, :state_doesnt_matter}
 {#PID<0.120.0>, 6, :state_doesnt_matter}
-{#PID<0.120.0>, 8, :state_doesnt_matter}
 ...
 {#PID<0.120.0>, 86478, :state_doesnt_matter}
 {#PID<0.121.0>, 87338, :state_doesnt_matter}
