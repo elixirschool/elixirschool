@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.3.0",
   title: "커스텀 Mix 태스크",
   excerpt: """
   Elixir 프로젝트를 위한 커스텀 Mix 태스크 만들어 봅시다.
@@ -133,3 +133,5 @@ mix hello             # Simply calls the Hello.say/0 function.
 
 Note: 새로운 태스크가 `mix help` 출력에 나오게 하려면 먼저 코드를 컴파일해줘야 합니다.
 `mix compile`을 직접 실행하거나 `mix hello`를 실행할 때처럼 태스크를 실행시키면 컴파일도 함께 실행됩니다.
+
+중요한 건 태스크 이름은 모듈 이름에서 파생된다는 점입니다. 따라서 `MixTasks.MyHelper.Utility`는 `my_helper.utility`가 됩니다.
