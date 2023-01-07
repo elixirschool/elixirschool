@@ -107,7 +107,7 @@ iex> {3.14, :pie, "Apple"}
 {3.14, :pie, "Apple"}
 ```
 
-Umumnya tuple digunakan sebagai mekanisme untuk mengembalikan informasi tambahan dari fungsi; manfaat dari ini akan lebih jelas ketika kita mempelajari [pencocokan pola (pattern matching)](/en/lessons/basics/pattern_matching):
+Umumnya tuple digunakan sebagai mekanisme untuk mengembalikan informasi tambahan dari fungsi; manfaat dari ini akan lebih jelas ketika kita mempelajari [pencocokan pola (pattern matching)](/id/lessons/basics/pattern_matching):
 
 ```elixir
 iex> File.read("path/to/existing/file")
