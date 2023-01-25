@@ -4,18 +4,18 @@
   excerpt: """
   我们已经看过了 Elixir 层的并发抽象机制，但有时候我们需要更多的控制，那就要了解 Elixir 底层的东西：OTP 行为（behaviors）。
 
-在这一课中，我们将专注于最大的一块：Genservers
+在这一课中，我们将专注于最大的一块：GenServers
   """
 }
 ---
 
 # GenServer
 
-OTP server 是一个模块，包含了 Genserver 的主要行为，外加一系列的 callbacks。Genserver 最核心的内容是这样一个循环：每次迭代处理一个带有目标状态的请求。
+OTP server 是一个模块，包含了 GenServer 的主要行为，外加一系列的 callbacks。GenServer 最核心的内容是这样一个循环：每次迭代处理一个带有目标状态的请求。
 
-为了演示 Genserver 的 API，我们将实现一个简单的 queue，来存储和获取值。
+为了演示 GenServer 的 API，我们将实现一个简单的 queue，来存储和获取值。
 
-最开始，我们要先启动和初始化 Genserver，一般情况下，我们需要链接进程，所以还要使用 `Genserver.start_link/3`。传递给 Genserver 的参数包括：我们所在的模块，初始状态，以及其他 Genserver 参数。`Genserver.init/1` 的参数用来设置初始的状态，比如在下面的例子中，初始状态为 []:
+最开始，我们要先启动和初始化 GenServer，一般情况下，我们需要链接进程，所以还要使用 `GenServer.start_link/3`。传递给 GenServer 的参数包括：我们所在的模块，初始状态，以及其他 GenServer 参数。`GenServer.init/1` 的参数用来设置初始的状态，比如在下面的例子中，初始状态为 []:
 
 ```elixir
 defmodule SimpleQueue do
@@ -37,9 +37,9 @@ end
 
 ## 同步函数
 
-有时候需要和 Genservers 进行同步的交互：调用一个函数，然后等待它的响应返回。要处理同步请求，我们需要实现 `Genserver.handle_call/3` 函数，接受的参数是：请求、调用者的 PID，初始的状态，期望的返回值是 `{:reply, response, state}` 三元组。
+有时候需要和 GenServers 进行同步的交互：调用一个函数，然后等待它的响应返回。要处理同步请求，我们需要实现 `GenServer.handle_call/3` 函数，接受的参数是：请求、调用者的 PID，初始的状态，期望的返回值是 `{:reply, response, state}` 三元组。
 
-使用模式匹配，我们可以为不同的请求和状态定义不同的 callbacks，能够接受的所有返回值列表可以前往 [`Genserver.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) 文档处查看。
+使用模式匹配，我们可以为不同的请求和状态定义不同的 callbacks，能够接受的所有返回值列表可以前往 [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) 文档处查看。
 
 为了演示同步请求，我们添加这样的功能：返回现在队列的状态以及删除队列中的一个值：
 
