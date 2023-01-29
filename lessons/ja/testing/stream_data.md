@@ -168,10 +168,8 @@ assert actual_length == expected_length
 2. 最終的な文字列の中身はオリジナルの文字列が延々と繰り返されるものである
 
 これは [プロパティの言い換え](https://www.propertesting.com/book_what_is_a_property.html#_alternate_wording_of_properties) の別の方法です。
-
-# 1を検証するコードは既に持っています
-
-# 2を検証するために、最終的な文字列をオリジナルの文字列で分割し、0回以上の空文字列が繰り返されていることを検証しましょう
+#1 を検証するコードは既に持っています。
+#2 を検証するために、最終的な文字列をオリジナルの文字列で分割し、0回以上の空文字列が繰り返されていることを検証しましょう。
 
 ```elixir
 list =
