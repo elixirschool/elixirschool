@@ -1,5 +1,5 @@
 %{
-  version: "2.2.0",
+  version: "2.2.1",
   title: "Plug",
   excerpt: """
   Ruby를 잘 알고 계신다면 Plug는 여러 부분에서 Sinatra의 영향을 받은 Rack이라고 생각해도 좋습니다.
@@ -311,7 +311,7 @@ plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
 `config/config.exs` 안에 애플리케이션 환경 변수 하나를 설정할 것입니다.
 
 ```elixir
-use Mix.Config
+import Config
 
 config :example, cowboy_port: 8080
 ```
