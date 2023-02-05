@@ -195,7 +195,7 @@ a =
       :error
 
     _ ->
-      IO.puts("It's not odd")
+      IO.puts("It's odd")
       :odd
   end
 ```
