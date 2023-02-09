@@ -410,6 +410,8 @@ defmodule Greeter do
   def hello(name, language_code) when is_binary(name) do
     phrase(language_code) <> name
   end
+  
+  def hello(_), do:  "Unexpected statement."
 
   defp phrase("en"), do: "Hello, "
   defp phrase("es"), do: "Hola, "
@@ -420,4 +422,7 @@ iex> Greeter.hello ["Sean", "Steve"]
 
 iex> Greeter.hello ["Sean", "Steve"], "es"
 "Hola, Sean, Steve"
+
+iex> Greeter.hello(12345)
+"Unexptected statement."
 ```
