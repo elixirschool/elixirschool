@@ -110,23 +110,26 @@ This is different from other languages where there is still the overhead of a fu
 To demonstrate this we'll make a simple logger that can either be enabled or disabled:
 
 ```elixir
-defmodule Logger do
+defmodule LoggerExample do
   defmacro log(msg) do
-    if Application.get_env(:logger, :enabled) do
+
       quote do
-        IO.puts("Logged message: #{unquote(msg)}")
+        IO.puts("[LOGGER]- #{Time.utc_now()} : #{unquote(msg)}")
       end
-    end
+
   end
 end
 
 defmodule Example do
-  require Logger
+  require LoggerExample
 
-  def test do
-    Logger.log("This is a log message")
+  def test(text \\ "default-message") do
+    LoggerExample.log("#{text}")
   end
 end
+
+
+Example.test("This is new message!")
 ```
 
 With logging enabled our `test` function would result in code looking something like this:
