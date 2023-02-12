@@ -236,8 +236,9 @@ Finally, create the HTML files to render the content. Under `lib/nimble_school_w
 ```html
 <h1>Listing all posts</h1>
 
+<ul style="list-style: none;">
 <%= for post <- @posts do %>
-  <div id="<%= post.id %>" style="margin-bottom: 3rem;">
+  <li id="<%= post.id %>" style="margin-bottom: 3rem;">
     <h2>
       <%= link post.title, to: Routes.blog_path(@conn, :show, post)%>
     </h2>
@@ -251,8 +252,9 @@ Finally, create the HTML files to render the content. Under `lib/nimble_school_w
     </p>
 
     <%= raw post.description %>
-  </div>
+  </li>
 <% end %>
+</ul>
 ```
 
 And create `lib/nimble_school_web/templates/blog/show.html.eex` to render a single post:

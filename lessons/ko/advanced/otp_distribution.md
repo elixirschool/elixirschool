@@ -1,5 +1,5 @@
 %{
-  version: "1.0.2",
+  version: "1.1.0",
   title: "OTP Distribution",
   excerpt: """
   하나 혹은 여러 호스트에 분산되어있는 서로 다른 노드들의 집합에서 Elixir 앱을 실행시킬 수 있습니다.
@@ -446,7 +446,7 @@ end
 
 ```elixir
 # config/dev.exs
-use Mix.Config
+import Config
 config :chat, remote_supervisor: fn(recipient) -> {Chat.TaskSupervisor, recipient} end
 ```
 
@@ -454,15 +454,15 @@ config :chat, remote_supervisor: fn(recipient) -> {Chat.TaskSupervisor, recipien
 
 ```elixir
 # config/test.exs
-use Mix.Config
+import Config
 config :chat, remote_supervisor: fn(_recipient) -> Chat.TaskSupervisor end
 ```
 
 `config/config.exs` 에서는 다음 부분은 주석 해제해야 합니다.
 
 ```elixir
-use Mix.Config
-import_config "#{Mix.env()}.exs"
+import Config
+import_config "#{config_env()}.exs"
 ```
 
 마지막으로 `Chat.remote_supervisor/1` 함수를 우리의 새로운 애플리케이션 변수에 저장된 함수를 찾아서 사용하도록 변경합니다.
