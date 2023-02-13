@@ -9,7 +9,7 @@
 
 ## Anotações
 
-Quanto comentamos e o que faz uma documentação ser de qualidade segue sendo uma controvérsia dentro do mundo da programação. No entanto, nós podemos concordar que documentação é importante para nós e para aqueles que trabalham com a nossa base de código.
+Já comentamos muito sobre o que faz uma documentação ser de qualidade porem isto continua sendo uma controvérsia dentro do mundo da programação. No entanto, nós podemos concordar que documentação é importante tanto para nós, quanto para aqueles que trabalham com a nossa base de código.
 
 Elixir trata de documentação como uma *cidadã de primeira classe*, oferecendo várias funções de acesso e geração de documentação para seus projetos. O núcleo do Elixir nos fornece muitos atributos diferentes para anotar uma base de código. Vejamos 3 maneiras:
 
