@@ -29,7 +29,7 @@ There are three ways to go about this:
 If the above test case is on, say, line 100 in the test file, then run your command as
 
 ```shell
-mix test ./path/to/test/file/math_test.exs:100
+$ mix test ./path/to/test/file/math_test.exs:100
 
 ```
   This will run the test case on line 100 and skip all other tests. Of course, the basic setup will be done. Boom! Saved so much time and back to being productive.
@@ -49,7 +49,7 @@ end
 The command to run in this case would be 
 
   ```shell
-  mix test ./path/to/test/file/math_test.exs --only run:true
+  $ mix test ./path/to/test/file/math_test.exs --only run:true
   ```
 
 This command will find the tag you've specified and run the relevant test. This approach is line agnostic and just requires the correct tag. The tag could be any key value pair which makes most sense in your project but make sure to use `@tag`. This can be further extended and added to other tests that you'd like to run together. This is helpful when those test cases might be scattered across the test file.
