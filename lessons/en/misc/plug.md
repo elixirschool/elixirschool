@@ -219,6 +219,8 @@ We'll create it at `lib/example/plug/verify_request.ex`:
 
 ```elixir
 defmodule Example.Plug.VerifyRequest do
+  import Plug.Conn
+
   defmodule IncompleteRequestError do
     @moduledoc """
     Error raised when a required field is missing.
@@ -230,7 +232,8 @@ defmodule Example.Plug.VerifyRequest do
   def init(options), do: options
 
   def call(%Plug.Conn{request_path: path} = conn, opts) do
-    if path in opts[:paths], do: verify_request!(conn.params, opts[:fields])
+    if path in opts[:paths], 
+      do: fetch_query_params(conn).params |> verify_request!(opts[:fields])
     conn
   end
 
