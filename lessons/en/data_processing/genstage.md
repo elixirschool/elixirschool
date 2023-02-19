@@ -110,7 +110,7 @@ end
 ```
 
 The two most important parts to take note of here are `init/1` and `handle_demand/2`.
-In `init/1` we set the initial state as we've done in our GenServers, but more importantly we label ourselves as a producer.
+In `init/1` we set the initial state as we've done in our GenStage, but more importantly we label ourselves as a producer.
 The response from our `init/1` function is what GenStage relies upon to classify our process.
 
 The `handle_demand/2` function is where the majority of our producer is defined.
