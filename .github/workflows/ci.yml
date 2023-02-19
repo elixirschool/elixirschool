@@ -9,7 +9,7 @@ on:
       - synchronize
   push:
     branches:
-      - master
+      - main
 
 jobs:
   Build:

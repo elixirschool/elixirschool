@@ -27,9 +27,9 @@ at/3
 ...
 ```
 
-Usando isso, é claro que temos uma grande quantidade de funcionalidades, e isso é por uma razão.
-A enumeração é o núcleo da programação funcional e é uma coisa incrivelmente útil.
-Ao aproveitar isso combinado com outras vantagens de Elixir, como a documentação sendo um cidadão de primeira classe como acabamos de ver, também pode ser incrivelmente poderoso para o desenvolvedor.
+A enumeração é o núcleo da programação funcional.
+Se combinada com outras características de Elixir,
+a enumeração pode ser um recurso incrivelmente poderoso para os desenvolvedores.
 
 # Funções
 

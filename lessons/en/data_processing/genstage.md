@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.1.2",
   title: "GenStage",
   excerpt: """
   In this lesson we're going to take a closer look at the GenStage, what role it serves, and how we can leverage it in our applications.
@@ -50,7 +50,7 @@ Now that we've covered the roles within GenStage let's start on our application.
 
 In this example we'll be constructing a GenStage application that emits numbers, sorts out the even numbers, and finally prints them.
 
-For our application we'll use all three GenStage roles.
+In our application, we'll use all three GenStage roles.
 Our producer will be responsible for counting and emitting numbers.
 We'll use a producer-consumer to filter out only the even numbers and later respond to demand from downstream.
 Last we'll build a consumer to display the remaining numbers for us.
@@ -218,7 +218,7 @@ def start(_type, _args) do
 end
 ```
 
-If things are all correct, we can run our project and we should see everything working:
+If things are all correct, we can run our project and should see everything working:
 
 ```shell
 $ mix run --no-halt
