@@ -64,7 +64,7 @@ true
 
 ## NaiveDateTime
 
-Elixir 中有两中结构体既包含时间信息，又包含日期信息。我们首先来看 `NaiveDateTime`。 它的一个不足是缺少时区的信息。
+Elixir 中有两种结构体既包含时间信息，又包含日期信息。我们首先来看 `NaiveDateTime`。 它的一个不足是缺少时区的信息。
 
 ```elixir
 iex(15)> NaiveDateTime.utc_now
