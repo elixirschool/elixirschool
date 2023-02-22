@@ -36,12 +36,12 @@ iex(kate@localhost)>
 
 这个函数需要接收两个参数：
 
-* 需要连接的节点名称  
-* 需要远程节点运行的函数  
+* 需要连接的节点名称
+* 需要远程节点运行的函数
 
 它会和远程节点建立连接，然后在对方那运行指定的函数，然后返回关联进程的 PID。
 
-让我们先定义一个模块，`Kate`，在 `kate` 节点上，并懂得如何介绍 Kate 这个人：
+让我们先定义一个模块 `Kate`，在 `kate` 节点上，并懂得如何介绍 Kate 这个人：
 
 ```elixir
 iex(kate@localhost)> defmodule Kate do
@@ -153,10 +153,10 @@ end
 
 这个函数需要四个参数：
 
-* 我们想用来监管任务的 supervisor。为了让远程节点来监管任务，我们可以传入一个 `{SupervisorName, remote_node_name}` 的元组。  
-* 要执行的函数所在的模块名  
-* 要执行的函数名  
-* 任何需要传入函数的参数  
+* 我们想用来监管任务的 supervisor。为了让远程节点来监管任务，我们可以传入一个 `{SupervisorName, remote_node_name}` 的元组。
+* 要执行的函数所在的模块名
+* 要执行的函数名
+* 任何需要传入函数的参数
 
 我们还可以传入第五个，可选的参数来设置 shutdown 选项。不过这里我们暂时不考虑这个问题。
 
@@ -253,12 +253,12 @@ iex(alex@localhost)> how are you?
 
 让我们把这个 Chat 应用变得更智能一些吧。
 
-目前，任何人都可以在一个命名的 `iex` 会话运行这个应用，开始聊天。但是，比如说一直中型白色，名为 Moebi 的狗也希望能参与进来。Moebi 希望能加入 Chat 应用，但是可惜的是它不懂得如何打字，因为它是一只狗嘛。所以，我们希望 `Chat` 模块能帮 Moebi 回复任何发送到 `moebi@localhost` 节点的消息。无论你对 Moebi 说什么，它总是回复 `"chicken?"`。因为它的唯一希望就是能吃鸡。
+目前，任何人都可以在一个命名的 `iex` 会话运行这个应用，开始聊天。但是，比如说一只中型白色，名为 Moebi 的狗也希望能参与进来。Moebi 希望能加入 Chat 应用，但是可惜的是它不懂得如何打字，因为它是一只狗嘛。所以，我们希望 `Chat` 模块能帮 Moebi 回复任何发送到 `moebi@localhost` 节点的消息。无论你对 Moebi 说什么，它总是回复 `"chicken?"`。因为它的唯一希望就是能吃鸡。
 
 我们来定义另一个版本的 `send_message/2` 函数，让它能模式匹配 `recipient` 参数。如果接收方是 `:moebi@locahost`，我们就会：
 
-* 通过 `Node.self()` 来获取当前节点的名字  
-* 把当前节点，也就是消息发送方，的名字，传到新的函数 `receive_message_for_moebi/2`，使得我们可以给它 **返回** 消息。
+* 通过 `Node.self()` 来获取当前节点的名字
+* 把当前节点，也就是消息发送方，将它的名字传到新的函数 `receive_message_for_moebi/2`，使得我们可以给它 **返回** 消息。
 
 ```elixir
 # lib/chat.ex
@@ -336,8 +336,8 @@ end
 
 我们可以通过下面几个步骤来让这个测试得以通过：
 
-* 打开另一个命令行窗口，运行命令 `iex --sname moebi@localhost -S mix` 来启动一个命名的节点  
-* 回到第一个命令行窗口，通过一个 `iex` 会话来启动一个命名的几点并运行这个测试：`iex --sname sophie@localhost -S mix test`  
+* 打开另一个命令行窗口，运行命令 `iex --sname moebi@localhost -S mix` 来启动一个命名的节点
+* 回到第一个命令行窗口，通过一个 `iex` 会话来启动一个命名的几点并运行这个测试：`iex --sname sophie@localhost -S mix test`
 
 显然，这么麻烦，而且这绝对不能算是自动化测试的过程。
 
