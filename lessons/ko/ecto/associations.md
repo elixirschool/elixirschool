@@ -72,7 +72,7 @@ end
 mix ecto.gen.migration create_characters
 ```
 
-영화에 종속되는 등장인물을 정의하기 위해서는, `movie_id` 컬럼을 가지는 `characters` 테이블이 필요합니다. 이 컬럼은 외래 키로써 동작해야 합니다. 이를 위해 `create table/1` 함수에 다음 한줄을 추가하면 됩니다.
+영화에 종속되는 등장인물을 정의하기 위해서는, `movie_id` 컬럼을 가지는 `characters` 테이블이 필요합니다. 이 컬럼은 외래 키로써 동작해야 합니다. 이를 위해 `create table/1` 함수에 다음 한 줄을 추가하면 됩니다.
 
 ```elixir
 add :movie_id, references(:movies)
@@ -111,7 +111,7 @@ defmodule Friends.Character do
 end
 ```
 
-`belongs_to/3` 매크로가 무엇을 하는지 자세히 보겠습니다. 스키마에 외래 키 `movie_id`를 추가하는것 외에도, 이 매크로는 `characters`를 통해 연관된 `movies` 스키마에 접근하는 기능을 제공합니다. 외래 키를 사용하여 등장인물을 쿼리할 때 등장인물과 관련된 영화를 이용할 수 있습니다. 즉 `character.movie` 처럼 사용할 수 있습니다.
+`belongs_to/3` 매크로가 무엇을 하는지 자세히 보겠습니다. 스키마에 외래 키 `movie_id`를 추가 하는 것 외에도, 이 매크로는 `characters`를 통해 연관된 `movies` 스키마에 접근하는 기능을 제공합니다. 외래 키를 사용하여 등장인물을 쿼리할 때 등장인물과 관련된 영화를 이용할 수 있습니다. 즉 `character.movie` 처럼 사용할 수 있습니다.
 
 이제 마이그레이션을 실행할 준비가 되었네요.
 
@@ -220,7 +220,7 @@ end
 mix ecto.gen.migration create_movies_actors
 ```
 
-마이그레이션에 두 개의 외래키를 가진 테이블을 정의했습니다. 또한 유니크 인덱스를 추가해 한 배우는 한 영화와 하나의 쌍으로만 묶이도록 합니다.
+마이그레이션에 두 개의 외래키를 가진 테이블을 정의했습니다. 또한 유니크 인덱스를 추가해서 한 배우는 한 영화와 하나의 쌍으로만 묶이도록 합니다.
 
 ```elixir
 # priv/migrations/*_create_movies_actors.ex
@@ -286,7 +286,7 @@ mix ecto.migrate
 
 #### Ecto.build_assoc/3 이용한 저장
 
-"종속 관계" 에서는 Ecto의 `build_assoc/3` 함수를 사용할 수 있습니다.
+"종속 관계"에서는 Ecto의 `build_assoc/3` 함수를 사용할 수 있습니다.
 
 [`build_assoc/3`](https://hexdocs.pm/ecto/Ecto.html#build_assoc/3)는 다음 3가지 인자를 받습니다.
 
@@ -361,7 +361,7 @@ iex> Repo.insert!(distributor)
 
 #### Ecto.Changeset.put_assoc/4 이용한 저장
 
-다대다 관계에는 `build_assoc/3`를 쓰지 않습니다. 영화나 배우 테이블 둘다 외래키가 없기 떄문입니다. 그 대신, Ecto Changeset과 `put_assoc/4` 함수를 이용하겠습니다.
+다대다 관계에는 `build_assoc/3`를 쓰지 않습니다. 영화나 배우 테이블 둘 다 외래키가 없기 떄문입니다. 그 대신, Ecto Changeset과 `put_assoc/4` 함수를 이용하겠습니다.
 
 위에서 생성한 영화 레코드를 사용한다고 가정하고, 배우 레코드를 생성합시다.
 
@@ -385,7 +385,7 @@ iex> actor = Repo.insert!(actor)
 
 이제 영화를 조인 테이블을 통해 배우와 연결할 준비가 됐습니다.
 
-우선 유의해야할 점은 체인지셋을 사용하려면 `movie` 구조체가 연관 데이터를 프리로드한 상태여야 합니다. 데이터를 프리로드하는건 추후에 자세히 다뤄보겠습니다. 일단 지금은 다음과 같이 어소시에이션들을 프리로드할 수 있다는 것만 알아두세요.
+우선 유의해야 할 점은 체인지셋을 사용하려면 `movie` 구조체가 연관 데이터를 프리로드한 상태여야 합니다. 데이터를 프리로드하는 건 추후에 자세히 다뤄보겠습니다. 일단 지금은 다음과 같이 어소시에이션들을 프리로드할 수 있다는 것만 알아두세요.
 
 ```elixir
 iex> movie = Repo.preload(movie, [:distributor, :characters, :actors])
@@ -480,7 +480,7 @@ iex> Repo.update!(movie_actors_changeset)
 
 이렇게 하면 영화 레코드에 새 배우 레코드가 적절히 연결되고 `movie.actors`에 프리로드된 상태로 보여집니다.
 
-같은 방식으로 주어진 영화에 연결된 또다른 배우를 생성 할 수 있습니다. 미리 _저장된_ 배우를 `put_assoc/4`에 넘기는 대신, 생성하고자 하는 새 배우의 속성들이 들어있는 맵을 전달해도 됩니다.
+같은 방식으로 주어진 영화에 연결된 또 다른 배우를 생성 할 수 있습니다. 미리 _저장된_ 배우를 `put_assoc/4`에 넘기는 대신, 생성하고자 하는 새 배우의 속성들이 들어있는 맵을 전달해도 됩니다.
 
 ```elixir
 iex> changeset = movie_changeset |> Ecto.Changeset.put_assoc(:actors, [%{name: "Gary"}])
