@@ -91,7 +91,7 @@ iex> Repo.all(query)
 
 #### 使用 from 的简单无绑定查询
 
-上面的样例丧失了 SQL 语句最有趣的部分。我们通常纸箱查询某几个特定的字段，或者根据一些条件来过滤数据。当我们希望只获取标题为 `"Ready Player One"` 的所有电影的 `title` 和 `tagline` 字段时：
+上面的样例丧失了 SQL 语句最有趣的部分。我们通常只想查询某几个特定的字段，或者根据一些条件来过滤数据。当我们希望只获取标题为 `"Ready Player One"` 的所有电影的 `title` 和 `tagline` 字段时：
 
 ```elixir
 iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
