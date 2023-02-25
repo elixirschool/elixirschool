@@ -21,10 +21,10 @@ iex> %Ecto.Changeset{}
 %Ecto.Changeset<action: nil, changes: %{}, errors: [], data: nil, valid?: false>
 ```
 
-몇몇 유용할것같은 필드들이 보이지만 지금은 모두 비어있습니다.
+몇몇 유용할 것 같은 필드들이 보이지만 지금은 모두 비어있습니다.
 
 체인지셋을 진정 유용하게 사용하려면 데이터가 어떤 것인지에 대한 청사진이 필요합니다.
-그런 데이터 청사진으로는 필드와 타입들을 정의하고있는 스키마가 딱이죠.
+그런 데이터 청사진으로는 필드와 타입들을 정의하고 있는 스키마가 딱이죠.
 
 이전 단원의 `Friends.Person` 스키마를 사용합시다.
 
@@ -47,7 +47,7 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{}, [:name, :age])
  valid?: true>
 ```
 
-첫 번째 파라미터는 본래의 데이터입니다. 여기서는 `%Friends.Person{}` 구조체 입니다.
+첫 번째 파라미터는 본래의 데이터입니다. 여기서는 `%Friends.Person{}` 구조체입니다.
 Ecto는 구조체 자체에서 스키마를 찾을 수 있습니다.
 두 번째 파라미터는 만들고자 하는 변경사항인데, 위에서는 그냥 비어있는 맵입니다.
 세 번째 파라미터가 바로 `cast/3`가 특별한 이유입니다. 이것은 허용하는 필드 목록으로, 이를 통해 변경할 필드들만 통과하고 나머지는 안전하게 보호되도록 제어할 수 있습니다.
@@ -69,10 +69,10 @@ iex> Ecto.Changeset.cast(%Friends.Person{name: "Bob"}, %{"name" => "Jack"}, [])
 
 두 번째 실행에서 명시적으로 허용되지 않은 새 이름이 무시됩니다.
 
-`cast/3` 대신 `change/2` 함수를 사용할 수 있습니다. 다만 `cast/3`처럼 변경사항을 필터링 할 수는 없습니다.
+`cast/3` 대신 `change/2` 함수를 사용할 수 있습니다. 다만 `cast/3`처럼 변경사항을 필터링할 수는 없습니다.
 변경사항의 데이터 근원지를 신뢰할 수 있거나 데이터를 수동으로 조작할 때 유용합니다.
 
-이제 체인지셋을 만들 수 있지만 아직 유효성 검사가 없어 사람의 이름으로 어떤것이든 넣을 수 있다보니 다음처럼 텅빈 이름도 적용되어 버립니다.
+이제 체인지셋을 만들 수 있지만 아직 유효성 검사가 없어 사람의 이름으로 어떤 것이든 넣을 수 있다 보니 다음처럼 텅 빈 이름도 적용되어 버립니다.
 
 ```elixir
 iex> Ecto.Changeset.change(%Friends.Person{name: "Bob"}, %{name: ""})
@@ -143,7 +143,7 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
 위 체인지셋으로 `Repo.insert(changeset)`을 시도하면 같은 오류가 포함된 `{:error, changeset}`을 반환받습니다. 따라서 매번 `changeset.valid?` 를 직접 확인할 필요 없습니다.
 삽입, 변경, 삭제 수행을 시도하고 에러가 있으면 처리하도록 하는것이 더 쉽습니다.
 
-`validate_required/2` 이외에도 `validate_length/3` 함수가 있는데, 몇가지 추가 옵션을 받습니다.
+`validate_required/2` 이외에도 `validate_length/3` 함수가 있는데, 몇 가지 추가 옵션을 받습니다.
 
 ```elixir
 def changeset(struct, params) do
@@ -154,7 +154,7 @@ def changeset(struct, params) do
 end
 ```
 
-한글자로 된 이름을 넘겨보면 결과가 어떨지 충분히 예상해볼 수 있겠습니다!
+한 글자로 된 이름을 넘겨보면 결과가 어떨지 충분히 예상해볼 수 있겠습니다!
 
 ```elixir
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "A"})
@@ -205,7 +205,7 @@ def validate_fictional_name(changeset) do
 end
 ```
 
-예제에서 두개의 새로운 보조 함수 [`get_field/3`](https://hexdocs.pm/ecto/Ecto.Changeset.html#get_field/3)와 [`add_error/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#add_error/4)를 사용하고 있습니다. 두 함수가 무엇을 하는지는 자명하지만 문서를 한번 보는것도 추천드립니다.
+예제에서 두개의 새로운 보조 함수 [`get_field/3`](https://hexdocs.pm/ecto/Ecto.Changeset.html#get_field/3)와 [`add_error/4`](https://hexdocs.pm/ecto/Ecto.Changeset.html#add_error/4)를 사용하고 있습니다. 두 함수가 무엇을 하는지는 자명하지만 문서를 한번 보는 것도 추천드립니다.
 
 항상 `%Ecto.Changeset{}`을 반환하면 `|>` 연산자를 이용해 추후 더 많은 유효성 검증을 추가할 수 있어 꽤나 유용합니다.
 
@@ -230,7 +230,7 @@ iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => "Bob"})
 >
 ```
 
-잘 동작하네요! 그런데 사실 `validate_inclusion/4` 함수가 이미 있어 직접 이 함수를 만들 필요는 없었습니다. 그래도 에러 메시지를 직접 정의하는 방법을 알게된건 쓸모가 있습니다.
+잘 동작하네요! 그런데 사실 `validate_inclusion/4` 함수가 이미 있어 직접 이 함수를 만들 필요는 없었습니다. 그래도 에러 메시지를 직접 정의하는 방법을 알게 된 건 쓸모가 있습니다.
 
 ## 프로그래밍 방식으로 변경사항 만들기
 
