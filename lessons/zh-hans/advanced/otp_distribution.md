@@ -258,7 +258,7 @@ iex(alex@localhost)> how are you?
 我们来定义另一个版本的 `send_message/2` 函数，让它能模式匹配 `recipient` 参数。如果接收方是 `:moebi@locahost`，我们就会：
 
 * 通过 `Node.self()` 来获取当前节点的名字
-* 把当前节点，也就是消息发送方，将它的名字传到新的函数 `receive_message_for_moebi/2`，使得我们可以给它 **返回** 消息。
+* 把当前节点（即消息发送方）的名字传给新函数 `receive_message_for_moebi/2`，使得我们可以给它 **返回** 消息。
 
 ```elixir
 # lib/chat.ex
@@ -339,7 +339,7 @@ end
 * 打开另一个命令行窗口，运行命令 `iex --sname moebi@localhost -S mix` 来启动一个命名的节点
 * 回到第一个命令行窗口，通过一个 `iex` 会话来启动一个命名的几点并运行这个测试：`iex --sname sophie@localhost -S mix test`
 
-显然，这么麻烦，而且这绝对不能算是自动化测试的过程。
+显然，这个操作十分麻烦，并且不符合自动化测试的要求。
 
 我们有两种不同的选择：
 
