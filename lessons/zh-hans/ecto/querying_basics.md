@@ -2,7 +2,7 @@
   version: "1.2.0",
   title: "查询",
   excerpt: """
-  
+
 """
 }
 ---
@@ -70,7 +70,7 @@ iex> query = from(Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
-我们可以使用 `Repo.all/2` 函数来执行这个查询语句。这个函数必须接收一个 Ecto 查询语句参数，兵解返回满足查询条件的所有记录。
+我们可以使用 `Repo.all/2` 函数来执行这个查询语句。这个函数必须接收一个 Ecto 查询语句参数，并且返回满足查询条件的所有记录。
 
 ```elixir
 iex> Repo.all(query)
@@ -91,14 +91,14 @@ iex> Repo.all(query)
 
 #### 使用 from 的简单无绑定查询
 
-上面的样例丧失了 SQL 语句最有趣的部分。我们通常纸箱查询某几个特定的字段，或者根据一些条件来过滤数据。当我们希望只获取标题为 `"Ready Player One"` 的所有电影的 `title` 和 `tagline` 字段时：
+上面的样例丧失了 SQL 语句最有趣的部分。我们通常只想查询某几个特定的字段，或者根据一些条件来过滤数据。当我们希望只获取标题为 `"Ready Player One"` 的所有电影的 `title` 和 `tagline` 字段时：
 
 ```elixir
 iex> query = from(Movie, where: [title: "Ready Player One"], select: [:title, :tagline])
 #Ecto.Query<from m0 in Friends.Movie, where: m0.title == "Ready Player One",
  select: [:title, :tagline]>
 
-iex> Repo.all(query)                                                                    
+iex> Repo.all(query)
 SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready Player One') []
 [
   %Friends.Movie{
@@ -121,7 +121,7 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 目前为止，我们通过使用一个实现了 `Ecto.Queryable` 协议（比如：`Movie`）的模块来作为 `from` 宏的第一个参数。但是，我们也可以使用 `in` 表达式：
 
 ```elixir
-iex> query = from(m in Movie)                                                           
+iex> query = from(m in Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
@@ -131,7 +131,7 @@ iex> query = from(m in Movie)
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
 #Ecto.Query<from m0 in Friends.Movie, where: m0.id < 2, select: m0.title>
 
-iex> Repo.all(query)                                           
+iex> Repo.all(query)
 SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
@@ -139,9 +139,9 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 在这里，最重要的一点就是，查询语句的输出是如何改变的。通过在 `select:` 部分使用绑定和_表达式_，我们可以精确指定要返回字段的结构。比如说，我们想返回一个元组：
 
 ```elixir
-iex> query = from(m in Movie, where: m.id < 2, select: {m.title})             
+iex> query = from(m in Movie, where: m.id < 2, select: {m.title})
 
-iex> Repo.all(query)                                                          
+iex> Repo.all(query)
 [{"Ready Player One"}]
 ```
 
@@ -152,10 +152,10 @@ iex> Repo.all(query)
 上面的例子里，我们使用的是在 `from` 宏里面添加 `select:` 和 `where:` 关键字来打造查询语句 - 这些也被称为_基于关键字的查询语句_。但是，还有另一种组装查询语句的方式 - 基于宏的查询语句。Ecto 为每一个关键字都提供了宏，比如 `select/3` 或者 `where/3`。每一个宏都接收一个 _queryable_ 值，一个_显式声明的绑定列表_，和提供给关键字查询语句类似的表达式：
 
 ```elixir
-iex> query = select(Movie, [m], m.title)                           
+iex> query = select(Movie, [m], m.title)
 #Ecto.Query<from m0 in Friends.Movie, select: m0.title>
 
-iex> Repo.all(query)                    
+iex> Repo.all(query)
 SELECT m0."title" FROM "movies" AS m0 []
 ["Ready Player One"]
 ```
@@ -178,7 +178,7 @@ iex> Movie
 我们可以使用 `where` 表达式来包含查询语句的 “where” 部分。多个 `where` 表达式则会被合成为 `WHERE AND` 的 SQL 语句。
 
 ```elixir
-iex> query = from(m in Movie, where: m.title == "Ready Player One")                   
+iex> query = from(m in Movie, where: m.title == "Ready Player One")
 %Ecto.Query<from m in Friends.Movie, where: m.title == "Ready Player One">
 iex> Repo.all(query)
 
@@ -214,7 +214,7 @@ iex> Repo.all(query)
 ```elixir
 iex> title = "Ready Player One"
 "Ready Player One"
-iex> query = from(m in Movie, where: m.title == ^title, select: m.tagline)            
+iex> query = from(m in Movie, where: m.title == ^title, select: m.tagline)
 %Ecto.Query<from m in Friends.Movie, where: m.title == ^"Ready Player One",
  select: m.tagline>
 iex> Repo.all(query)
@@ -315,7 +315,7 @@ iex> Repo.all(from m in Movie, preload: [:actors])
 
 ```elixir
 iex> query = from(m in Movie, join: a in assoc(m, :actors), preload: [actors: a])
-iex> Repo.all(query)  
+iex> Repo.all(query)
 [
   %Friends.Movie{
     __meta__: %Ecto.Schema.Metadata<:loaded, "movies">,
