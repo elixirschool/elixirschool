@@ -258,7 +258,7 @@ iex(alex@localhost)> how are you?
 我们来定义另一个版本的 `send_message/2` 函数，让它能模式匹配 `recipient` 参数。如果接收方是 `:moebi@locahost`，我们就会：
 
 * 通过 `Node.self()` 来获取当前节点的名字
-* 把当前节点（即消息发送方）的名字传给新函数 `receive_message_for_moebi/2`，使得我们可以给它 **返回** 消息。
+* 把当前节点（即消息发送方）的名字传给新函数 `receive_message_for_moebi/2`，使得我们可以给节点 **返回** 消息。
 
 ```elixir
 # lib/chat.ex
