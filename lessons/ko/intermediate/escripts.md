@@ -21,7 +21,7 @@ defmodule ExampleApp.CLI do
 end
 ```
 
-그 다음 Mixfile에서 메인 모듈(`:main_module`)로 지정해 주고 이를 `:escript` 옵션으로 프로젝트 설정에 덧붙여주면 됩니다.
+그다음 Mixfile에서 메인 모듈(`:main_module`)로 지정해 주고 이를 `:escript` 옵션으로 프로젝트 설정에 덧붙여주면 됩니다.
 
 ```elixir
 defmodule ExampleApp.Mixproject do
