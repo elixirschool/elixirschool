@@ -169,7 +169,7 @@ bin/book_app rpc "Elixir.BookApp.ReleaseTasks.migrate"
 
 最后，在 `rel/config.exs` 文件，我们加入如下钩子到 prod 的配置里。
 
-把一下配置：
+把以下配置：
 
 ```elixir
 environment :prod do

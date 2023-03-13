@@ -1,5 +1,5 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "OTP Distribution",
   excerpt: """
   하나 혹은 여러 호스트에 분산되어있는 서로 다른 노드들의 집합에서 Elixir 앱을 실행시킬 수 있습니다.
@@ -12,7 +12,7 @@
 
 Elixir는 Erlang VM에서 실행됩니다. 즉 Erlang의 강력한 [분산 기능](http://erlang.org/doc/reference_manual/distributed.html)에 접근이 가능하다는 뜻이죠.
 
-> 하나의 분산 Erlang 시스템은 서로간에 통신하는 다수의 Erlang 런타임 시스템들로 구성됩니다.
+> 하나의 분산 Erlang 시스템은 서로 간에 통신하는 다수의 Erlang 런타임 시스템들로 구성됩니다.
 각 런타임 시스템을 노드라고 부릅니다.
 
 이름이 지정된(명명된) Erlang 런타임 시스템이 곧 노드입니다.
@@ -41,7 +41,7 @@ iex(kate@localhost)>
 
 함수는 원격 노드에 커넥션을 만들고 주어진 함수를 해당 노드에서 실행하면서 연결된 프로세스의 PID를 반환합니다.
 
-Kate라는 사람을 소개하는 법을 알고있는 `Kate` 모듈을 `kate` 노드에 정의해 보겠습니다.
+Kate라는 사람을 소개하는 법을 알고 있는 `Kate` 모듈을 `kate` 노드에 정의해 보겠습니다.
 
 ```elixir
 iex(kate@localhost)> defmodule Kate do
@@ -66,14 +66,14 @@ Hi, my name is Kate
 유의할 점은, `Kate.say_name/0` 이 원격 노드에서 실행되었더라도, 로컬(호출한) 노드가 `IO.puts`의 출력 결과를 받았다는 것입니다.
 그 이유는 로컬 노드가 **그룹 리더**이기 때문입니다.
 Erlang VM은 프로세스들을 통해 I/O를 관리합니다.
-그 덕분에 `IO.puts` 같은 I/O 작업을 분산 노드간에 실행할 수 있습니다.
+그 덕분에 `IO.puts` 같은 I/O 작업을 분산 노드 간에 실행할 수 있습니다.
 이러한 분산 프로세스들은 I/O 프로세스 그룹 리더에 의해 관리됩니다.
 그룹 리더는 항상 해당 프로세스를 스폰한 노드입니다.
 따라서 위에서 `alex` 노드가 `spawn_link/2` 함수를 호출한 노드이기 때문에 해당 노드가 그룹 리더이고, `IO.puts`의 출력 결과가 해당 노드의 표준 출력 스트림에 바로 나타나게 되는 것입니다.
 
 #### 메시지에 응답하기
 
-메시지를 받은 수신자 노드가 어떤 *응답*을 발신자 노드에게 다시 보내도록 하려면 어떻게 해야할까요? 간단한 `receive/1`과 [`send/3`](https://hexdocs.pm/elixir/Process.html#send/3) 구성을 통해 정확히 그것을 해낼 수 있습니다.
+메시지를 받은 수신자 노드가 어떤 *응답*을 발신자 노드에게 다시 보내도록 하려면 어떻게 해야 할까요? 간단한 `receive/1`과 [`send/3`](https://hexdocs.pm/elixir/Process.html#send/3) 구성을 통해 정확히 그것을 해낼 수 있습니다.
 
 `alex` 노드가 `kate`노드에 링크를 스폰하고 `kate`노드에서 익명 함수를 실행하도록 할 것입니다.
 그 익명함수는 메시지 하나와 `alex` 노드의 PID를 기술한 특정 튜플을 메시지로 받기 위해 수신 대기하고 있을 것입니다.
@@ -95,7 +95,7 @@ iex(alex@localhost)> flush()
 :ok
 ```
 
-#### 서로 다른 네트워크에 위취한 노드들 간의 통신에 대한 참고사항
+#### 서로 다른 네트워크에 위치한 노드들 간의 통신에 대한 참고사항
 
 서로 다른 네트워크에 위치한 노드 간에 메시지를 전송하려면, 공통의 쿠키를 가지고 이름 지정 노드들을 시작해야 합니다.
 
@@ -107,7 +107,7 @@ iex --sname alex@localhost --cookie secret_token
 iex --sname kate@localhost --cookie secret_token
 ```
 
-같은 `cookie`를 가지고 시작된 노드들만 서로간에 성공적으로 연결될 수 있습니다.
+같은 `cookie`를 가지고 시작된 노드들만 서로 간에 성공적으로 연결될 수 있습니다.
 
 #### Node.spawn_link/2 한계점
 
@@ -131,7 +131,7 @@ mix new chat --sup
 ### 슈퍼바이저 트리에 Task 슈퍼바이저 추가하기
 
 Task 슈퍼바이저는 task들을 동적으로 관리합니다.
-주로 그 자신의 슈퍼바이저 *밑에서* 자식은 없이 시작되고, 이후에 여러 task들을 관리하는 데 사용 될 수 있습니다.
+주로 그 자신의 슈퍼바이저 *밑에서* 자식은 없이 시작되고, 이후에 여러 task들을 관리하는 데 사용될 수 있습니다.
 
 우리의 app 슈퍼비전 트리에 `Chat.TaskSupervisor`라는 이름으로 Task 슈퍼바이저를 하나 추가해 봅시다.
 
@@ -153,7 +153,7 @@ defmodule Chat.Application do
 end
 ```
 
-이제 우리의 애플리케이션이 주어진 노드에서 시작될때마다 `Chat.Supervisor`가 실행되고 task들을 관리할 것이라는 것을 압니다.
+이제 우리의 애플리케이션이 주어진 노드에서 시작될 때마다 `Chat.Supervisor`가 실행되고 task들을 관리할 것이라는 것을 압니다.
 
 ### 관리되는 Task를 통해 메시지 전송하기
 
@@ -268,11 +268,11 @@ iex(alex@localhost)> how are you?
 Chat 앱을 좀더 똑똑하게 만들어 보겠습니다.
 지금까지는 사용자 수에 상관없이 명명된 `iex` 세션에서 애플리케이션을 실행하고 채팅을 시작할 수 있었습니다.
 하지만 거기에 소외되고 싶지 않은 Moebi라는 이름의 중형견이 있다고 해봅시다.
-Moebi는 Chat 앱에 끼고 싶지만 그는 개라서 슬프게도 타이핑 치는법을 모릅니다.
+Moebi는 Chat 앱에 끼고 싶지만 그는 개라서 슬프게도 타이핑 치는 법을 모릅니다.
 따라서 Moebi를 대신해 `moebi@localhost`로 명명된 노드로 전송된 모든 메시지에 응답하도록 `Chat` 모듈을 가르칠 것입니다.
-Moebi에게 뭐라고 말하던 그는 `"chicken?"` 이라고 대답할 것입니다. 그의 진정한 소망은 치킨을 먹는것이기 때문이죠.
+Moebi에게 뭐라고 말하던 그는 `"chicken?"` 이라고 대답할 것입니다. 그의 진정한 소망은 치킨을 먹는 것이기 때문이죠.
 
-이전 `send_message/2` 함수의 또다른 버전을 정의해 `recipient` 인자에 패턴 매칭하도록 해보겠습니다.
+이전 `send_message/2` 함수의 또 다른 버전을 정의해 `recipient` 인자에 패턴 매칭하도록 해보겠습니다.
 만약 수신자(recipient)가 `:moebi@localhost` 라면, 다음을 수행합니다.
 
 * `Node.self()`를 이용해 현재 노드의 이름을 얻습니다.
@@ -322,8 +322,8 @@ chicken?
 :ok
 ```
 
-`alex` 노드가 `"chicken?"` 이라는 응답을 받은것을 볼 수 있습니다.
-`kate` 노드를 연다면, 아무 메시지도 받지 않은것을 확인할 수 있는데, `alex`나 `moebi` 둘다 그녀에게는 보내지 않았기 때문입니다. (미안해요 `kate`)
+`alex` 노드가 `"chicken?"` 이라는 응답을 받은 것을 볼 수 있습니다.
+`kate` 노드를 연다면, 아무 메시지도 받지 않은 것을 확인할 수 있는데, `alex`나 `moebi` 둘 다 그녀에게는 보내지 않았기 때문입니다. (미안해요 `kate`)
 And if we open the `moebi` node's terminal window, we'll see the message that the `alex` node sent:
 
 ```elixir
@@ -346,7 +346,7 @@ defmodule ChatTest do
 end
 ```
 
-`mix test`를 통해 테스트를 실행하면, 다음 에러 메시지와 함께 실패하는것을 볼 수 있습니다.
+`mix test`를 통해 테스트를 실행하면, 다음 에러 메시지와 함께 실패하는 것을 볼 수 있습니다.
 
 ```elixir
 ** (exit) exited in: GenServer.call({Chat.TaskSupervisor, :moebi@localhost}, {:start_task, [#PID<0.158.0>, :monitor, {:sophie@localhost, #PID<0.158.0>}, {Chat, :receive_message_for_moebi, ["hi", :sophie@localhost]}], :temporary, nil}, :infinity)
@@ -360,12 +360,12 @@ end
 * 새 터미널 창을 열고 다음처럼 명명 노드를 실행합니다: `iex --sname moebi@localhost -S mix`
 * 본래의 터미널로 돌아가 테스트를 실행하되 `iex` session에서 명명된 노드를 통해 실행합니다: `iex --sname sophie@localhost -S mix test`
 
-이것은 너무 번잡하며 분명 자동화된 테스트 과정으로 여겨지지도 않을겁니다.
+이것은 너무 번잡하며 분명 자동화된 테스트 과정으로 여겨지지도 않을 겁니다.
 
 여기서 우리가 취할 수 있는 다음 2가지 접근법이 있습니다.
 
 1. 분산된 노드를 필요로 하는 테스트들을 해당 필요한 노드가 실행되지 않았으면 제외하도록 조건을 겁니다.
-2. 테스트 환경에서 원격 노드에 태스크를 생성하는것을 피하도록 애플리케이션을 설정합니다
+2. 테스트 환경에서 원격 노드에 태스크를 생성하는 것을 피하도록 애플리케이션을 설정합니다
 
 첫 번째 접근법을 한 번 봅시다.
 
@@ -386,7 +386,7 @@ defmodule ChatTest do
 end
 ```
 
-그리고 test helper에 만약 테스트가 명명된 노드에서 실행되는게 *아니*라면 해당 태그들이 붙은 테스트들을 제외하도록 조건문을 추가합니다.
+그리고 test helper에 만약 테스트가 명명된 노드에서 실행되는 게 *아니*라면 해당 태그들이 붙은 테스트들을 제외하도록 조건문을 추가합니다.
 
 ```elixir
 # test/test_helper.exs
@@ -397,11 +397,11 @@ ExUnit.start(exclude: exclude)
 ```
 
 노드가 살아있는지(alive)를 확인합니다.
-다시말해 해당 노드가 분산 시스템의 일부인지를 [`Node.alive?`](https://hexdocs.pm/elixir/Node.html#alive?/0)로 확인합니다.
+다시 말해 해당 노드가 분산 시스템의 일부인지를 [`Node.alive?`](https://hexdocs.pm/elixir/Node.html#alive?/0)로 확인합니다.
 아니라면, `ExUnit`이 `distributed: true` 태그인 테스트들은 스킵하도록 합니다.
 그 반대의 경우엔 테스트를 제외하지 않도록 합니다.
 
-이제 군더더기 없이 `mix test`를 실행하면 다음을 보게 될겁니다.
+이제 군더더기 없이 `mix test`를 실행하면 다음을 보게 될 겁니다.
 
 ```bash
 mix test
@@ -480,4 +480,4 @@ Erlang VM의 힘 덕분에 가능한 Elixir의 기본 분산 기능은 Elixir를
 분산 컴퓨팅을 처리하는 Elixir의 능력을 활용해 동시적으로 백그라운드 잡을 실행하거나, 고성능 애플리케이션을 지원하거나, 고비용의 명령을 실행하는 것을 상상해보세요.
 
 이 단원에서 Elixir의 분산처리 개념에 대한 기초적 소개와 분산된 애플리케이션 구축을 시작하기 위해 필요한 도구에 대해 배웠습니다.
-관리되는 태스크를 이용해 분산된 애플리케이션의 여러 노드간에 메시지를 전송할 수 있습니다.
+관리되는 태스크를 이용해 분산된 애플리케이션의 여러 노드 간에 메시지를 전송할 수 있습니다.

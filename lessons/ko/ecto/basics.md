@@ -51,7 +51,7 @@ mix deps.get
 
 #### 레포지토리 생성
 
-Ecto의 레포지토리는 Postgres 데이터베이스같은 데이터 저장소라 할 수 있습니다.
+Ecto의 레포지토리는 Postgres 데이터베이스 같은 데이터 저장소라 할 수 있습니다.
 데이터베이스와의 모든 커뮤니케이션은 이 레포지토리를 이용해서 이루어집니다.
 
 다음 명령어를 실행하여 레포지토리를 설정합니다.
@@ -86,7 +86,7 @@ end
 `Friends.Repo` 모듈을 사용하여 데이터베이스에 쿼리할 것입니다. 또한 데이터베이스 설정 정보는 Elixir 애플리케이션 `:friends`에서 찾도록 하고 어댑터는 `Ecto.Adapters.Postgres`로 선택했습니다.
 
 이제 `Friends.Repo`를 하나의 슈퍼바이저로 `lib/friends/application.ex` 파일 안의 애플리케이션 슈퍼비전 트리에 넣으세요.
-그러면 애플리케이션 시작시 Ecto 프로세스를 띄우게 됩니다.
+그러면 애플리케이션 시작 시 Ecto 프로세스를 띄우게 됩니다.
 
 ```elixir
   def start(_type, _args) do
@@ -115,7 +115,7 @@ mix ecto.create
 
 Ecto는 `config/config.exs` 파일 안의 정보로 Postgres와 연결할 방법과 데이터베이스에 전달할 이름을 판단하게 됩니다.
 
-오류가 뜬다면 설정 정보가 올바른지, postgres가 구동중인지 확인해주세요.
+오류가 뜬다면 설정 정보가 올바른지, postgres가 구동 중인지 확인해주세요.
 
 ### 마이그레이션
 
@@ -197,7 +197,7 @@ iex> %Friends.Person{}
 %Friends.Person{age: 0, name: nil}
 ```
 
-기대한대로 새 `Person` 하나를 얻었고 `age`는 기본값이 들어가 있습니다.
+기대한 대로 새 `Person` 하나를 얻었고 `age`는 기본값이 들어가 있습니다.
 제대로 된 person을 만들어 봅시다.
 
 ```elixir
@@ -205,7 +205,7 @@ iex> person = %Friends.Person{name: "Tom", age: 11}
 %Friends.Person{age: 11, name: "Tom"}
 ```
 
-스키마는 그자체로 구조체라서 보통의 구조체처럼 상호작용 할수 있습니다.
+스키마는 그 자체로 구조체라서 보통의 구조체처럼 상호작용 할 수 있습니다.
 
 ```elixir
 iex> person.name
