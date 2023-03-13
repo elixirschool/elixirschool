@@ -1,20 +1,20 @@
 %{
-  version: "1.2.0",
-  title: "Fonctions",
+  version: "1.3.0",
+  title: "Functions",
   excerpt: """
-  En Elixir, comme dans tous les langages fonctionnels, les fonctions sont des citoyens de premier ordre.
-  Nous verrons les différents types de fonctions en Elixir, ce qui les rend différentes et comment les utiliser.
+    En Elixir, comme dans tous les langages fonctionnels, les fonctions sont des citoyens de premier ordre.
+    Nous verrons les différents types de fonctions en Elixir, ce qui les rend différentes et comment les utiliser.
   """
 }
 ---
 
 ## Fonctions anonymes
 
-Tout comme l'appellation le sous-entend, les fonctions anonymes n'ont pas de nom.
+Tout comme l'appellation le sous-entends, les fonctions anonymes n'ont pas de nom.
 Comme nous l'avons vu dans la leçon `Enum`, elles sont fréquemment passées à d'autres fonctions.
 Pour définir une fonction anonyme en Elixir, nous avons besoin des mot-clés `fn` et `end`, à l'intérieur desquels nous pouvons définir n'importe quel nombre de paramètres et de corps de fonction, séparés par `->`.
 
-Jetons un coup d'œil à un exemple basique:
+Jetons un coup d'œil à un exemple basique :
 
 ```elixir
 iex> sum = fn (a, b) -> a + b end
@@ -32,12 +32,11 @@ iex> sum.(2, 3)
 5
 ```
 
-Comme vous l'avez peut-être déjà deviné, dans la version raccourcie nos paramètres sont disponibles en tant que `&1`, `&2`, `&3`, etc.
+Comme vous l'avez peut-être déjà deviné, dans la version raccourcie, nos paramètres sont disponibles en tant que `&1`, `&2`, `&3`, etc.
 
 ## Pattern matching
 
-Le _pattern matching_ (ou _Filtrage par motif_ en français) en Elixir ne se limite pas juste aux variables. Il peut être appliqué également aux signatures de
-fonctions, comme nous allons le voir dans cette section.
+Le _pattern matching_ (ou _Filtrage par motif_ en français) en Elixir ne se limite pas juste aux variables. Il peut être appliqué également aux signatures de fonctions, comme nous allons le voir dans cette section.
 
 Elixir utilise le _pattern matching_ pour identifier le groupe de paramètres correspondant, et appelle le corps de fonction correspondant :
 
@@ -55,11 +54,12 @@ Handling result...
 :ok
 iex> handle_result.({:error})
 An error has occurred!
+:ok
 ```
 
 ## Fonctions nommées
 
-Nous pouvons définir des fonctions nommées afin de  pouvoir les appeler facilement plus tard.
+Nous pouvons définir des fonctions nommées afin de pouvoir les appeler facilement plus tard.
 Ces fonctions nommées sont définies avec le mot-clé `def` au sein d'un module.
 Nous en apprendrons plus au sujet des Modules dans les prochaines leçons, mais pour l'instant, concentrons-nous seulement sur les fonctions nommées.
 
@@ -85,7 +85,7 @@ defmodule Greeter do
 end
 ```
 
-Armés de notre connaissance du _pattern matching_, explorons maintenant la récursion avec les fonctions nommés :
+Armés de notre connaissance du _pattern matching_, explorons maintenant la récursion avec les fonctions nommées :
 
 ```elixir
 defmodule Length do
@@ -102,14 +102,14 @@ iex> Length.of [1, 2, 3]
 ### Nommage de Fonctions et Arité
 
 Nous avons mentionné précédemment que les fonctions sont nommées par la combinaison de leur nom donné et de leur arité (nombre d'arguments).
-Ce qui signifie que l'on peut par exemple faire ceci:
+Ce qui signifie que l'on peut par exemple faire ceci :
 
 ```elixir
 defmodule Greeter2 do
-  def hello(), do: "Hello, anonymous person!"   # hello/0
-  def hello(name), do: "Hello, " <> name        # hello/1
-  def hello(name1, name2), do: "Hello, #{name1} and #{name2}"
-                                                # hello/2
+def hello(), do: "Hello, anonymous person!"   # hello/0
+def hello(name), do: "Hello, " <> name        # hello/1
+def hello(name1, name2), do: "Hello, #{name1} and #{name2}"
+                                              # hello/2
 end
 
 iex> Greeter2.hello()
@@ -120,8 +120,9 @@ iex> Greeter2.hello("Fred", "Jane")
 "Hello, Fred and Jane"
 ```
 
-Nous avons listés les noms des fonctions dans l'exemple ci-dessus dans les commentaires.
-La première implémentation ne prend pas d'arguments, donc son nom sera `hello/0`; la seconde prend un argument et donc sera nommée `hello/1`, et ainsi de suite. Contrairement à la surcharge de fonctions dans d'autres langages, ces fonctions sont considérées _différentes_ les unes des autres.
+Nous avons listé les noms des fonctions dans l'exemple ci-dessus dans les commentaires.
+La première implémentation ne prend pas d'arguments, donc son nom sera `hello/0`; la seconde prend un argument et donc sera nommée `hello/1`, et ainsi de suite.
+Contrairement à la surcharge de fonctions dans d'autres langages, ces fonctions sont considérées _différentes_ les unes des autres.
 (Le _pattern matching_, que l'on vient de décrire, ne s'applique que quand de multiples définitions sont données pour le _même_ nombre d'arguments.)
 
 ### Fonctions et Pattern Matching
@@ -139,7 +140,7 @@ defmodule Greeter1 do
 end
 ```
 
-Maintenant imaginons que nous avons un tableau associatif décrivant une personne nommé Fred :
+Maintenant, imaginons que nous avons un tableau associatif décrivant une personne nommé Fred :
 
 ```elixir
 iex> fred = %{
@@ -149,7 +150,7 @@ iex> fred = %{
 ...> }
 ```
 
-Ci-après nous avons le résultat quand nous appelons  `Greeter1.hello/1` avec le tableau associatif `fred` :
+Ci-après, nous avons le résultat quand nous appelons  `Greeter1.hello/1` avec le tableau associatif `fred` :
 
 ```elixir
 # call with entire map
@@ -201,12 +202,12 @@ Dans `Greeter1.hello/1`, le tableau associatif que nous passons (`fred`) est év
 Une clé qui correspond à `name` dans le tableau associatif en entrée est trouvée.
 Nous avons une correspondance ! Et comme conséquence de cette mise en correspondance, la valeur associée à la clé `:name` dans le tableau à droite (i.e. le tableau associatif `fred`) est _assignée_ à la variable à gauche (`person_name`).
 
-Maintenant, et si nous voulons assigner le nom de Fred à `person_name` mais que nous voulons AUSSI conserver l'entièreté du tableau associatif représentant la personne ? Disons par exemple que nous voulons `IO.inspect(fred)` après l'avoir salué.
+Maintenant, et si nous voulons assigner le nom de Fred à `person_name`, mais que nous voulons AUSSI conserver l'entièreté du tableau associatif représentant la personne ? Disons par exemple que nous voulons `IO.inspect(fred)` après l'avoir salué.
 A ce stade, parce que nous n'avons effectué du _pattern matching_ uniquement sur la clé `:name` de notre tableau associatif, n'ayant ainsi assigné que la valeur de cette clé à une variable, la fonction n'a pas accès au reste de Fred.
 
 Afin de le conserver, nous avons besoin d'assigner l'entièreté du tableau associatif à sa propre variable pour pouvoir l'utiliser.
 
-Démarrons l'écriture d'une nouvelle fonction:
+Démarrons l'écriture d'une nouvelle fonction :
 
 ```elixir
 defmodule Greeter2 do
@@ -218,7 +219,7 @@ end
 ```
 
 Il faut se souvenir qu'Elixir va mettre en correspondance les arguments comme ils viennent.
-Par conséquent dans ce cas, chaque côté va être mis en correspondance avec un argument entrant et assigné avec la valeur associée à cette mise en correspondance.
+Par conséquent, dans ce cas, chaque côté va être mis en correspondance avec un argument entrant et assigné avec la valeur associée à cette mise en correspondance.
 Examinons le côté droit en premier :
 
 ```elixir
@@ -232,11 +233,11 @@ Passons à la mise en correspondance suivante :
 %{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
-Maintenant, c'est identique à la fonction `Greeter1` originale dans laquelle nous realisions le _pattern matching_ sur le tableau associatif mais ne retenions que le nom de Fred.
+Maintenant, c'est identique à la fonction `Greeter1` originale dans laquelle nous realisions le _pattern matching_ sur le tableau associatif, mais ne retenions que le nom de Fred.
 Ce que nous obtenons, ce sont deux variables que nous pouvons utiliser à la place d'une seule :
 
 1. `person` se référant à `%{name: "Fred", age: "95", favorite_color: "Taupe"}`
-2. `person_name` se référeant à `"Fred"`
+2. `person_name` se référant à `"Fred"`
 
 Désormais quand nous appellons `Greeter2.hello/1`, nous pouvons utiliser toutes les information de Fred :
 
@@ -285,7 +286,7 @@ Et nous l'appelons avec les mêmes données que celles que nous avons utilisées
 %{age: "95", favorite_color: "Taupe", name: "Fred"}
 ```
 
-Il faut bien se rappeler que même si cela donne l'impression que `%{name: person_name} = person` met en correspondance `%{name: person_name}` avec la variable `person`, en fait ils sont chacun mis en correspondance avec l'argument passé en entrée.
+Il faut bien se rappeler que même si cela donne l'impression que `%{name: person_name} = person` met en correspondance `%{name: person_name}` avec la variable `person`, en fait, ils sont chacun mis en correspondance avec l'argument passé en entrée.
 
 **Résumé:** Les fonctions effectuent la mise en correspondance des données qui leur sont passées en entrée sur leurs arguments de manière indépendante.
 Nous pouvons le mettre à profit pour assigner les valeurs dans des variables différentes au sein de la fonction.
@@ -379,20 +380,17 @@ defmodule Greeter do
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) iex:31: definitions with multiple clauses and default values require a header.
+** (CompileError) iex:8: def hello/2 defines defaults multiple times. Elixir allows defaults to be declared once per definition.
 Instead of:
 
     def foo(:first_clause, b \\ :default) do ... end
-    def foo(:second_clause, b) do ... end
+    def foo(:second_clause, b \\ :default) do ... end
 
 one should write:
 
     def foo(a, b \\ :default)
     def foo(:first_clause, b) do ... end
     def foo(:second_clause, b) do ... end
-
-def hello/2 has multiple clauses and defines defaults in one or more clauses
-    iex:31: (module)
 ```
 
 Elixir n'aime pas les arguments par défaut dans les fonctions avec plusieurs matchs, ça peut être déroutant.
@@ -404,7 +402,7 @@ defmodule Greeter do
 
   def hello(names, language_code) when is_list(names) do
     names = Enum.join(names, ", ")
-    
+
     hello(names, language_code)
   end
 
