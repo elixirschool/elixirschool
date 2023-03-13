@@ -23,7 +23,7 @@ By responding with pre-defined responses we can test any number of possibilities
 
 To better illustrate the features of Bypass we'll be building a simple utility application to ping a list of domains and ensure they're online.
 To do this we'll create new supervisor project and a GenServer to check the domains on a configurable interval.
-By leveraging Bypass in our tests we'll be able to verify our application will work in many different outcomes.
+By leveraging Bypass in our tests we'll be able to verify our application will work in many different scenarios.
 
 _Note_: If you wish to skip ahead to the final code, head over to the Elixir School repo [Clinic](https://github.com/elixirschool/clinic) and have a look.
 
@@ -61,7 +61,7 @@ ExUnit.start()
 Application.ensure_all_started(:bypass)
 ```
 
-Now that we know Bypass will be running during our tests let's head over to `test/clinic/health_check_test.exs` and finish our setup.
+Now that we know Bypass will be running during our tests, let's head over to `test/clinic/health_check_test.exs` and finish our setup.
 To prepare Bypass for accepting requests we need to open the connect with `Bypass.open/1`, which can be done in our test setup callback:
 
 ```elixir
@@ -232,7 +232,7 @@ Now we have working `Scheduler` and `HealthCheck` modules, let's write an integr
 We'll need Bypass for this test and we'll have to handle multiple Bypass requests per test, let's see how we do that.
 
 Remember the `bypass.port` from earlier?  When we need to mimic multiple sites, the `:port` option comes in handy.
-As you've probably guessed, we can create multiple Bypass connections each with a different port, these would simulate independent sites.
+As you've probably guessed, we can create multiple Bypass connections with different ports to simulate independent sites.
 We'll start by reviewing our updated `test/clinic_test.exs` file:
 
 ```elixir
@@ -269,7 +269,7 @@ defmodule ClinicTest do
 end
 ```
 
-There shouldn't be anything too surprisingly in the above test.
+There shouldn't be anything too surprising in the above test.
 Instead of creating a single Bypass connection in `setup`, we're creating two within our test and specifying their ports as 1234 and 1337.
 Next we see our `Bypass.expect/2` calls and finally the same code we have in `SchedulerTest` to start the scheduler and assert we log the appropriate messages.
 
