@@ -102,4 +102,3 @@ end
 Jawaban sederhana untuk mocking dalam Elixir: jangan lakukan.  Anda mungkin terbiasa menggunakan mock tapi mock sangat tidak disukai dalam komunitas Elixir dan untuk alasan yang benar.  Jika anda mengikuti prinsip disain yang baik, code yang dihasilkan akan mudah dites sebagai komponen yang mandiri.
 
 Lawanlah godaan ini.
-

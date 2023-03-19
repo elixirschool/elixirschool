@@ -262,6 +262,7 @@ Se você já usou Ruby, a interpolação de strings em Elixir parecerá muito fa
 
 ```elixir
 iex> name = "Sean"
+"Sean"
 iex> "Hello #{name}"
 "Hello Sean"
 ```
@@ -272,6 +273,7 @@ A concatenação de strings usa o operador `<>`:
 
 ```elixir
 iex> name = "Sean"
+"Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```

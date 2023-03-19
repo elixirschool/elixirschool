@@ -6,7 +6,7 @@
 
   A familiar task for almost every developer is checking input data for potential errors — we want to make sure that data is in the right state, before we attempt to use it for our purposes.
 
-  Ecto provides a complete solution for working with data changes in the form of the `Changeset` module and data structure.
+Ecto provides a complete solution for working with data changes in the form of the `Changeset` module and data structure.
   In this lesson we're going to explore this functionality and learn how to verify data's integrity, before we persist it to the database.
   """
 }

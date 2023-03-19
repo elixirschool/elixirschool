@@ -31,7 +31,7 @@
 首先來建立一個應用程式：
 
 ```shell
-$ mix new poolboy_app --sup
+mix new poolboy_app --sup
 ```
 
 將 Poolboy 加入到 `mix.exs` 的相依性中。
@@ -43,8 +43,9 @@ end
 ```
 
 然後提取依賴性，包括 Poolboy。
+
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## 配置選項
@@ -106,6 +107,7 @@ end
 它帶有兩個參數：池的名稱和池配置。
 
 ## 建立 Worker
+
 worker 模組將是一個簡單的 `GenServer`，可以計算數字的平方根，休眠一秒鐘，然後印出 worker 的 pid。
 建立 `lib/poolboy_app/worker.ex`：
 
@@ -163,7 +165,7 @@ end
 執行測試函數來查看結果。
 
 ```shell
-$ iex -S mix
+iex -S mix
 ```
 
 ```elixir

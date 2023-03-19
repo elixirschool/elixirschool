@@ -55,7 +55,6 @@ When should a client subscribe to a topic? We already have a LiveView that is re
 
 Each LiveView process should subscribe to the topic when the LiveView mounts. We can do that with the `Phoenix.PubSub.subscribe/3` function:
 
-
 ```elixir
 defmodule MyAppWeb.GithubDeployView do
   use Phoenix.LiveView
@@ -167,12 +166,11 @@ def mount(_session, socket) do
 end
 ```
 
-So, if a given LiveView process *broadcasts* to that topic, all of our subscribers will receive that message. We want our live view to broadcast whenever it will update the state of its socket. This way, we can tell all subscribing LiveView processes to update their own socket's state, which will then cause that LiveView's template to re-render. The flow will work like this:
+So, if a given LiveView process _broadcasts_ to that topic, all of our subscribers will receive that message. We want our live view to broadcast whenever it will update the state of its socket. This way, we can tell all subscribing LiveView processes to update their own socket's state, which will then cause that LiveView's template to re-render. The flow will work like this:
 
 ![](/images/live_view_pub_sub.png)
 
 Let's add a broadcast when our LiveView first receives the `"deploy"` event and when it receives each subsequent deployment step event:
-
 
 ```elixir
 defmodule MyAppWeb.GithubDeployView do
@@ -220,7 +218,7 @@ defmodule MyAppWeb.GithubDeployView do
 end
 ```
 
-By using the `Phoenix.PubSub.broadcast_from/4` function, we broadcast a message describing the new socket state to all subscribers of a topic, *excluding the process from which we call broadcast*. We don't need the live view that received the click event to broadcast to itself, since it is already sending itself the next message via `send(self(), next_step)` and already updating its own socket's state via `assign(socket, state)`.
+By using the `Phoenix.PubSub.broadcast_from/4` function, we broadcast a message describing the new socket state to all subscribers of a topic, _excluding the process from which we call broadcast_. We don't need the live view that received the click event to broadcast to itself, since it is already sending itself the next message via `send(self(), next_step)` and already updating its own socket's state via `assign(socket, state)`.
 
 Now that we are successfully broadcasting the message, we need to teach our LiveView how to handle the receipt of the message. We can do this be defining another `handle_info/2` function that will pattern match against the broadcast struct:
 

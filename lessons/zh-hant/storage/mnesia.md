@@ -17,10 +17,10 @@ Mnesia 的 *關聯和物件混合資料模式* 使其適用於開發任何規模
 尋求何時該應用一項技術的特定部份往往是令人困惑的。
 如果對以下任何問題都回答「是」，那麼這是使用 Mnesia 而不是 ETS 或 DETS 的良好指示。
 
-  - 需要回復交易嗎 (roll back transactions)？
-  - 是否需要易用的語法來讀取和寫入資料？
-  - 應該跨多節點而不是單一節點儲存資料嗎？
-  - 是否需要選擇儲存資訊的位置（RAM或磁碟）？
+- 需要回復交易嗎 (roll back transactions)？
+- 是否需要易用的語法來讀取和寫入資料？
+- 應該跨多節點而不是單一節點儲存資料嗎？
+- 是否需要選擇儲存資訊的位置（RAM或磁碟）？
 
 ## Schema
 
@@ -106,7 +106,8 @@ iex> Mnesia.create_schema([node()])
 iex> Mnesia.start()
 :ok
 ```
-函數 `Mnesia.start/0` 是非同步的。它啟動現有表格的初始化設定並回傳 `:ok` atom。如果要在啟動 Mnesia 之後立即對現有表格執行某些動作，需要呼用 `Mnesia.wait_for_tables/2` 函數。它會暫停呼用者，直到表格被初始化完成。請參考 [資料初始化和遷移](#data-initialization-and-migration) 一章的範例。 
+
+函數 `Mnesia.start/0` 是非同步的。它啟動現有表格的初始化設定並回傳 `:ok` atom。如果要在啟動 Mnesia 之後立即對現有表格執行某些動作，需要呼用 `Mnesia.wait_for_tables/2` 函數。它會暫停呼用者，直到表格被初始化完成。請參考 [資料初始化和遷移](#data-initialization-and-migration) 一章的範例。
 
 在執行具有兩個或更多節點的分佈式系統時，請留心記得，必須在所有參與節點上執行函數 `Mnesia.start/1`。
 
@@ -126,8 +127,8 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 
 當執行 `Mnesia.create_table/2` 時，它將回傳以下任一結果：
 
- - `{:atomic, :ok}` 如果函數執行成功
- - `{:aborted, Reason}` 如果函數執行失敗
+- `{:atomic, :ok}` 如果函數執行成功
+- `{:aborted, Reason}` 如果函數執行失敗
 
 特別的是，如果表格已經存在，格式將為 `{:already_exists, table}`，所以如果第二次嘗試建立這個表格，將得到：
 
@@ -190,6 +191,7 @@ iex> data_to_write = fn ->
 iex> Mnesia.transaction(data_to_write)
 {:atomic, :ok}
 ```
+
 基於此 transaction 訊息，可以安心地假設已將資料寫入 `Person` 表格。
 現在使用 transaction 從資料庫中讀取來確定。
 將使用 `Mnesia.read/1` 從資料庫中讀取，再次的，從匿名函數中讀取。
@@ -227,8 +229,8 @@ iex> Mnesia.add_table_index(Person, :job)
 
 結果與 `Mnesia.create_table/2` 回傳的類似：
 
- - `{:atomic, :ok}` 如果函數執行成功
- - `{:aborted, Reason}` 如果函數執行失敗
+- `{:atomic, :ok}` 如果函數執行成功
+- `{:aborted, Reason}` 如果函數執行失敗
 
 特別的是，如果索引已經存在，錯誤訊息將以 `{:already_exists, table, attribute_index}` 格式顯示，所以如果第二次嘗試加入這個索引，將得到：
 
@@ -271,7 +273,7 @@ iex> Mnesia.transaction(
 ```elixir
 iex> Mnesia.transaction(
 ...>   fn ->
-...>     {% raw %}Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}]){% endraw %}
+...>     Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}])
 ...>   end
 ...> )
 {:atomic, [[7, "Waylon Smithers", "Executive assistant"], [4, "Marge Simpson", "home maker"], [6, "Monty Burns", "Businessman"], [5, "Hans Moleman", "unknown"]]}
@@ -282,7 +284,7 @@ iex> Mnesia.transaction(
 
 - `match` 與您傳遞給 `Mnesia.match_object/1` 函數的內容相同; 但是，請注意特殊的 atoms `:"$n"` 它指定查詢其餘部分所使用的位置參數。
 - the `guard` 列表是一個 tuples 列表，它指定要用的監視函數，本範例中是 `:>` (大於) 的第一個位置參數 `:"$1"` 和常數 `3` 作為屬性的內建函數 with the first positional parameter `:"$1"` and the constant `3` as attributes
-- the `result` 列表是查詢後回傳的欄位列表。以特殊的 atom `:"$$"` 的位置參數的形式引用所有欄位，因此可以使用 `[:"$1", :"$2"]` 回傳前兩個欄位或用 `[:"$$"]` 回傳所有欄位。 
+- the `result` 列表是查詢後回傳的欄位列表。以特殊的 atom `:"$$"` 的位置參數的形式引用所有欄位，因此可以使用 `[:"$1", :"$2"]` 回傳前兩個欄位或用 `[:"$$"]` 回傳所有欄位。
 
 有關更多詳細資訊，請參閱 [select/2 的 Erlang Mnesia 文件](http://erlang.org/doc/man/mnesia.html#select-2)。
 
@@ -296,13 +298,13 @@ iex> Mnesia.transaction(
 
 下面的程式碼通過實現以下邏輯來實做：
 
-* 使用 v2 屬性建立表格： `[:id, :name, :job, :age]`
-* 處理建立結果:
-    * `{:atomic, :ok}`: 通過在 `:job` 和 `:age` 上建立索引來初始化表格。
-    * `{:aborted, {:already_exists, Person}}`: 檢查目前表格中的屬性並採取相應措施：
-        * 如果它是v1列表 (`[:id, :name, :job]`)，轉換表格並給每個人 21 歲並在 `:age` 加入一個新索引。
-        * 如果它是 v2 列表，一切正常，什麼都不做。
-        * 如果它是其他的情況，bail out
+- 使用 v2 屬性建立表格： `[:id, :name, :job, :age]`
+- 處理建立結果:
+  - `{:atomic, :ok}`: 通過在 `:job` 和 `:age` 上建立索引來初始化表格。
+  - `{:aborted, {:already_exists, Person}}`: 檢查目前表格中的屬性並採取相應措施：
+    - 如果它是v1列表 (`[:id, :name, :job]`)，轉換表格並給每個人 21 歲並在 `:age` 加入一個新索引。
+    - 如果它是 v2 列表，一切正常，什麼都不做。
+    - 如果它是其他的情況，bail out
 
 如果在使用 `Mnesia.start/0` 啟動 Mnesia 之後立即對現有表格執行任何動作，那麼這些表格可能無法被初始化和存取。在這種情況下，應該使用 [`Mnesia.wait_for_tables/2`](http://erlang.org/doc/man/mnesia.html#wait_for_tables-2) 函數。它將暫停當前處理程序，直到表格初始化完成或到達等候逾時。
 

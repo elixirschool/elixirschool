@@ -4,7 +4,7 @@
   excerpt: """
   Elixirin derinliklerine girmeden önce Mix öğrenelim. Eğer daha önceden Ruby biliyorsanız Mix'i Bundeller, RubyGems ve Rake ile eşleştirin. Mix, Elixirin önemli bir parçası ve bu dersimizde sadece birkaç özelliğini öğreneceğiz. Mix'in sunduğu tüm özelliklerini görmek için `mix help` komutun çalıştırın.
 
-  Şimdiye kadar sınırlamalar içeren  `iex` ile çalıştık. Daha önemli şeyler İnşaat etmek için ve kodunuz etkili bir şekilde yönetmek için kodumuzu faklı dosyalar bölmemiz gerekir; İşte Mix bunu projelere yapmamıza izin verir.
+Şimdiye kadar sınırlamalar içeren  `iex` ile çalıştık. Daha önemli şeyler İnşaat etmek için ve kodunuz etkili bir şekilde yönetmek için kodumuzu faklı dosyalar bölmemiz gerekir; İşte Mix bunu projelere yapmamıza izin verir
   """
 }
 ---
@@ -14,7 +14,7 @@
 Yeni bir Elixir projesi oluşturmaya hazırsak ,Mix'in  `mix new` komutu ile kolayca oluşturabilirsiniz. Bu projenin klasör yapısını ve gerekli dosyaları oluşturur. Kullanımı oldukça basittir, haydi başlayalım:
 
 ```bash
-$ mix new example
+mix new example
 ```
 
 Çıktıda Mix'in hangi dizinleri ve dosyaları oluşturduğunu göre bilirisiniz:
@@ -65,12 +65,11 @@ Bakacağımız ilk bölüm `project`. Burada uygulamamızın adını (`app`), s�
 
 ## İnteraktif
 
-
 Uygulamamızı bazen `iex`'de kullanmamız gerekebilir.  Neyse ki Mix bunu kolaylaştırıyor.  Yeni bir  `iex` oturumu başlatabiliriz:
 
 ```bash
-$ cd example
-$ iex -S mix
+cd example
+iex -S mix
 ```
 
  `iex`'i bu şekilde başlatmak uygulamamızı ve bağımlılılarını mevcut çalıştırma ortamına yükleyecektir.
@@ -82,7 +81,7 @@ Mix akıllıdır gerektiğinde değişikleri derleyecektir anaca yinde sizin pro
 Bir mix projesini derlemek için ana dizinde `mix compile` çalıştırmanız yeterlidir:
 
 ```bash
-$ mix compile
+mix compile
 ```
 
 projemizde çok bir şey yoktu bu yüzden verdiği çıktı pek heyecan verici değil:
@@ -118,7 +117,7 @@ Yukardaki bağımlılık tanımlarından da anladığımız gibi `cowboy` bağı
 Bağımlılıklarımızı tanımladığımıza göre bir adım daha atıyoruz: onları yüklüyoruz. Bu `bundle install`'a benzer:
 
 ```bash
-$ mix deps.get
+mix deps.get
 ```
 
 Bu kadar!  Bağımlılıklarımız ekledi ve yükledik. Artık zamanı geldiğinde bağımlılıkları eklemeye hazırız.
@@ -134,5 +133,5 @@ Mix, Bundler çok benzer ve farklı ortamları destekler. Üç ortam karışık 
 Geçerli ortama `Mix.env` kullanarak erişebiliriz. Beklendiği gibi `MIX_ENV` değişkeniyle ortam değiştirile bilinir:
 
 ```bash
-$ MIX_ENV=prod mix compile
+MIX_ENV=prod mix compile
 ```

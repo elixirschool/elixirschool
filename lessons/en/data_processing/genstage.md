@@ -1,15 +1,16 @@
 %{
-  version: "1.1.1",
-  title: "GenStage",
-  excerpt: """
-  In this lesson we're going to take a closer look at the GenStage, what role it serves, and how we can leverage it in our applications.
-  """
+version: "1.1.3",
+title: "GenStage",
+excerpt: """
+In this lesson we're going to take a closer look at the GenStage, what role it serves, and how we can leverage it in our applications.
+"""
 }
+
 ---
 
 ## Introduction
 
-So what is GenStage?  From the official documentation, it is a "specification and computational flow for Elixir", but what does that mean to us?
+So what is GenStage? From the official documentation, it is a "specification and computational flow for Elixir", but what does that mean to us?
 
 What it means is that GenStage provides a way for us to define a pipeline of work to be carried out by independent steps (or stages) in separate processes; if you've worked with pipelines before then some of these concepts should be familiar.
 
@@ -31,16 +32,16 @@ To better illustrate these concepts we'll be constructing a pipeline with GenSta
 As we've read, the role we give our stage is important.
 The GenStage specification recognizes three roles:
 
-+ `:producer` — A source.
-Producers wait for demand from consumers and respond with the requested events.
+- `:producer` — A source.
+  Producers wait for demand from consumers and respond with the requested events.
 
-+ `:producer_consumer` — Both a source and a sink.
-Producer-consumers can respond to demand from other consumers as well as request events from producers.
+- `:producer_consumer` — Both a source and a sink.
+  Producer-consumers can respond to demand from other consumers as well as request events from producers.
 
-+ `:consumer` — A sink.
-A consumer requests and receives data from producers.
+- `:consumer` — A sink.
+  A consumer requests and receives data from producers.
 
-Notice that our producers __wait__ for demand?  With GenStage our consumers send demand upstream and process the data from our producer.
+Notice that our producers **wait** for demand? With GenStage our consumers send demand upstream and process the data from our producer.
 This facilitates a mechanism known as back-pressure.
 Back-pressure puts the onus on the producer to not over-pressure when consumers are busy.
 
@@ -50,7 +51,7 @@ Now that we've covered the roles within GenStage let's start on our application.
 
 In this example we'll be constructing a GenStage application that emits numbers, sorts out the even numbers, and finally prints them.
 
-For our application we'll use all three GenStage roles.
+In our application, we'll use all three GenStage roles.
 Our producer will be responsible for counting and emitting numbers.
 We'll use a producer-consumer to filter out only the even numbers and later respond to demand from downstream.
 Last we'll build a consumer to display the remaining numbers for us.
@@ -58,8 +59,8 @@ Last we'll build a consumer to display the remaining numbers for us.
 We'll begin by generating a project with a supervision tree:
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 Let's update our dependencies in `mix.exs` to include `gen_stage`:
@@ -75,7 +76,7 @@ end
 We should fetch our dependencies and compile before going much further:
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 Now we're ready to build our producer!
@@ -87,7 +88,7 @@ As we discussed before, we want to create a producer that emits a constant strea
 Let's create our producer file:
 
 ```shell
-$ touch lib/genstage_example/producer.ex
+touch lib/genstage_example/producer.ex
 ```
 
 Now we can add the code:
@@ -110,7 +111,7 @@ end
 ```
 
 The two most important parts to take note of here are `init/1` and `handle_demand/2`.
-In `init/1` we set the initial state as we've done in our GenServers, but more importantly we label ourselves as a producer.
+In `init/1` we set the initial state as we've done in our GenStage, but more importantly we label ourselves as a producer.
 The response from our `init/1` function is what GenStage relies upon to classify our process.
 
 The `handle_demand/2` function is where the majority of our producer is defined.
@@ -124,7 +125,7 @@ Now that we have a number-generating producer, let's move on to our producer-con
 We'll want to request numbers from our producer, filter out the odd one, and respond to demand.
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 Let's update our file to look like the example code:
@@ -158,7 +159,7 @@ With the `subscribe_to` option, we instruct GenStage to put us into communicatio
 
 The `handle_events/3` function is our workhorse, where we receive our incoming events, process them, and return our transformed set.
 As we'll see consumers are implemented in much the same way, but the important difference is what our `handle_events/3` function returns and how it's used.
- When we label our process a producer_consumer, the second argument of our tuple — `numbers` in our case — is used to meet the demand of consumers downstream.
+When we label our process a producer_consumer, the second argument of our tuple — `numbers` in our case — is used to meet the demand of consumers downstream.
 In consumers this value is discarded.
 
 ## Consumer
@@ -167,7 +168,7 @@ Last but not least we have our consumer.
 Let's get started:
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 Since consumers and producer-consumers are so similar our code won't look much different:
@@ -218,7 +219,7 @@ def start(_type, _args) do
 end
 ```
 
-If things are all correct, we can run our project and we should see everything working:
+If things are all correct, we can run our project and should see everything working:
 
 ```shell
 $ mix run --no-halt
@@ -232,7 +233,7 @@ $ mix run --no-halt
 {#PID<0.109.0>, 229066, :state_doesnt_matter}
 ```
 
-We did it!  As we expected our application only omits even numbers and it does so __quickly__.
+We did it! As we expected our application only omits even numbers and it does so **quickly**.
 
 At this point we have a working pipeline.
 There is a producer emitting numbers, a producer-consumer discarding odd numbers, and a consumer displaying all of this and continuing the flow.
@@ -281,12 +282,12 @@ As you can see we now have multiple PIDs, simply by adding a line of code and gi
 
 Now that we've covered GenStage and built our first example application, what are some of the _real_ use cases for GenStage?
 
-+ Data Transformation Pipeline — Producers don't have to be simple number generators.
-We could produce events from a database or even another source like Apache's Kafka.
-With a combination of producer-consumers and consumers, we could process, sort, catalog, and store metrics as they become available.
+- Data Transformation Pipeline — Producers don't have to be simple number generators.
+  We could produce events from a database or even another source like Apache's Kafka.
+  With a combination of producer-consumers and consumers, we could process, sort, catalog, and store metrics as they become available.
 
-+ Work Queue — Since events can be anything, we could produce units of work to be completed by a series of consumers.
+- Work Queue — Since events can be anything, we could produce units of work to be completed by a series of consumers.
 
-+ Event Processing — Similar to a data pipeline, we could receive, process, sort, and take action on events emitted in real time from our sources.
+- Event Processing — Similar to a data pipeline, we could receive, process, sort, and take action on events emitted in real time from our sources.
 
-These are just a __few__ of the possibilities for GenStage.
+These are just a **few** of the possibilities for GenStage.

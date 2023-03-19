@@ -28,8 +28,8 @@ Through the course of this lesson we'll cover three parts to Ecto:
 To start we'll create an application with a supervision tree.
 
 ```shell
-$ mix new friends --sup
-$ cd friends
+mix new friends --sup
+cd friends
 ```
 
 Add the ecto and postgrex package dependencies to your `mix.exs` file.
@@ -46,7 +46,7 @@ Add the ecto and postgrex package dependencies to your `mix.exs` file.
 Fetch the dependencies using
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 #### Creating a Repository
@@ -57,7 +57,7 @@ All communication to the database will be done using this repository.
 Set up a repository by running:
 
 ```shell
-$ mix ecto.gen.repo -r Friends.Repo
+mix ecto.gen.repo -r Friends.Repo
 ```
 
 This will generate the configuration required in `config/config.exs` to connect to a database including the adapter to use.
@@ -110,7 +110,7 @@ We're all done configuring the repository!
 We can now create the database inside of postgres with this command:
 
 ```shell
-$ mix ecto.create
+mix ecto.create
 ```
 
 Ecto will use the information in the `config/config.exs` file to determine how to connect to Postgres and what name to give the database.
@@ -128,7 +128,7 @@ The convention in Ecto is to pluralize our tables so for application we'll need 
 The best way to create migrations is the mix `ecto.gen.migration <name>` task, so in our case let's use:
 
 ```shell
-$ mix ecto.gen.migration create_people
+mix ecto.gen.migration create_people
 ```
 
 This will generate a new file in the `priv/repo/migrations` folder containing timestamp in the filename.
@@ -165,7 +165,7 @@ Additionally, we've included `null: false` and `default: 0` as options.
 Let's jump to the shell and run our migration:
 
 ```shell
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 ### Schemas

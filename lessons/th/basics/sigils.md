@@ -9,32 +9,32 @@
 
 ## Sigils Overview
 
-ใน Elixir คุณสามารถแสดงผลและจัดการกับตัวอักษรต่างๆได้ในอีก syntax หนึ่งได้ โดยใช้ sigils 
+ใน Elixir คุณสามารถแสดงผลและจัดการกับตัวอักษรต่างๆได้ในอีก syntax หนึ่งได้ โดยใช้ sigils
 การใช้งาน Sigil นั้นจะเริ่มโดยการใช้สัญลักษณ์ตัวหนอน `~` และตามด้วยตัวอักษรหนึ่งตัว ซึ่ง Elixir core นั้นมี sigil เบื้องต้นบางส่วนพร้อมสำหรับการใข้งานอยู่แล้ว แต่คุณก็สามารถสร้าง sigil ของตัวเองได้เช่นกัน
 
 Sigils เบื้องต้นที่มีให้ใช้งาน:
 
-  - `~C` จะสร้าง list ของ character โดยที่ **ไม่มี** การ escaping หรือ interpolation
-  - `~c` จะสร้าง list ของ character โดยที่ **มี** การ escaping หรือ interpolation
-  - `~R` จะสร้าง regular Expression โดยที่ **ไม่มี** การ escaping หรือ interpolation
-  - `~r` จะสร้าง regular Expression โดยที่ **มี** การ escaping หรือ interpolation
-  - `~S` จะสร้าง string โดยที่ **ไม่มี** การ escaping หรือ interpolation
-  - `~s` จะสร้าง string โดยที่ **มี** การ escaping หรือ interpolation
-  - `~W` จะสร้าง list ของ word โดยที่ **ไม่มี** การ escaping หรือ interpolation
-  - `~w` จะสร้าง list ของ word โดยที่ **มี** การ escaping หรือ interpolation
-  - `~N` จะสร้าง struct ประเภท `NaiveDateTime`
-  - `~U` จะสร้าง struct ประเภท `DateTime` (ตั้งแต่ Elixir 1.9.0)
+- `~C` จะสร้าง list ของ character โดยที่ **ไม่มี** การ escaping หรือ interpolation
+- `~c` จะสร้าง list ของ character โดยที่ **มี** การ escaping หรือ interpolation
+- `~R` จะสร้าง regular Expression โดยที่ **ไม่มี** การ escaping หรือ interpolation
+- `~r` จะสร้าง regular Expression โดยที่ **มี** การ escaping หรือ interpolation
+- `~S` จะสร้าง string โดยที่ **ไม่มี** การ escaping หรือ interpolation
+- `~s` จะสร้าง string โดยที่ **มี** การ escaping หรือ interpolation
+- `~W` จะสร้าง list ของ word โดยที่ **ไม่มี** การ escaping หรือ interpolation
+- `~w` จะสร้าง list ของ word โดยที่ **มี** การ escaping หรือ interpolation
+- `~N` จะสร้าง struct ประเภท `NaiveDateTime`
+- `~U` จะสร้าง struct ประเภท `DateTime` (ตั้งแต่ Elixir 1.9.0)
 
 สำหรับ delimiters มีได้ดังนี้:
 
-  - `<...>` A pair of pointy brackets
-  - `{...}` A pair of curly brackets
-  - `[...]` A pair of square brackets
-  - `(...)` A pair of parentheses
-  - `|...|` A pair of pipes
-  - `/.../` A pair of forward slashes
-  - `"..."` A pair of double quotes
-  - `'...'` A pair of single quotes
+- `<...>` A pair of pointy brackets
+- `{...}` A pair of curly brackets
+- `[...]` A pair of square brackets
+- `(...)` A pair of parentheses
+- `|...|` A pair of pipes
+- `/.../` A pair of forward slashes
+- `"..."` A pair of double quotes
+- `'...'` A pair of single quotes
 
 ### Char List
 
@@ -72,7 +72,6 @@ true
 จะเห็นได้ว่า ในการทดสอบความเท่ากันอันแรกนั้นพบว่า `Elixir` นั้นไม่ match กับ Regular Expression เนื่องจากเรื่องของตัวพิมพ์ใหญ่พิมพ์เล็ก
 ที่เป็นเช่นนี้เพราะ Elixir นั้นรองรับ Regular Expression แบบ Perl Compatible Regular Expressions (PCRE) จึงจำเป็นต้องเพิ่ม `i` ต่อท้าย sigil ในตอนสร้าง เพื่อให้ regular expression นั้นไม่เป็น case sensitivity
 
-
 ```elixir
 iex> re = ~r/elixir/i
 ~r/elixir/i
@@ -84,7 +83,7 @@ iex> "elixir" =~ re
 true
 ```
 
-นอกจากนี้ Elixir ได้มี [Regex](https://hexdocs.pm/elixir/Regex.html) API ให้เรียกใช้งาน ซึ่งสร้างขึ้นบน regular expression library ของ Erlang 
+นอกจากนี้ Elixir ได้มี [Regex](https://hexdocs.pm/elixir/Regex.html) API ให้เรียกใช้งาน ซึ่งสร้างขึ้นบน regular expression library ของ Erlang
 เมื่อทำการใช้ `Regex.split/2` คู่กับ Regex sigil
 
 ```elixir
@@ -96,7 +95,6 @@ iex> Regex.split(~r/_/, string)
 ```
 
 อย่างที่เห็นว่า string `"100_000_000"` ได้ถูกแบ่งโดย underscore เนื่องจาก sigil `~r/_/` ที่สร้างขึ้น และฟังก์ชัน `Regex.split` ได้ทำการ return เป็น list ออกมา
-
 
 ### String
 
@@ -151,7 +149,7 @@ iex> ~W/i love #{'e'}lixir school/
 
 Sigil [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html) สามารถใช้เพื่อสร้าง struct `DateTime` ที่**ไม่มี** timezone
 
-ในส่วนใหญ่ เราควรจะหลีกเลี่ยงการสร้าง struct `NaiveDateTime` โดยตรง 
+ในส่วนใหญ่ เราควรจะหลีกเลี่ยงการสร้าง struct `NaiveDateTime` โดยตรง
 แต่จะมีประโชน์มากสำหรับกรณีที่ใช้เพื่อการทำ Pattern Matching เช่น
 
 ```elixir

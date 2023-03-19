@@ -7,7 +7,6 @@
 }
 ---
 
-
 ## Annotation
 
 How much we comment and what makes quality documentation remains a contentious issue within the programming world.
@@ -17,9 +16,9 @@ Elixir treats documentation as a *first-class citizen*, offering various functio
 The Elixir core provides us with many different attributes to annotate a codebase.
 Let's look at 3 ways:
 
-  - `#` - For inline documentation.
-  - `@moduledoc` - For module-level documentation.
-  - `@doc` - For function-level documentation.
+- `#` - For inline documentation.
+- `@moduledoc` - For module-level documentation.
+- `@doc` - For function-level documentation.
 
 ### Inline Documentation
 
@@ -70,7 +69,7 @@ iex> h Greeter
 Provides a function hello/1 to greet a human
 ```
 
-_Note_: we don't need to manually compile our files as we did above if we're working within the context of a mix project. You can use `iex -S mix` to load the IEx console for the current project if you're working in a mix project.
+*Note*: we don't need to manually compile our files as we did above if we're working within the context of a mix project. You can use `iex -S mix` to load the IEx console for the current project if you're working in a mix project.
 
 ### Documenting Functions
 
@@ -214,7 +213,7 @@ We specify the `only: :dev` key-value pair as we don't want to download and comp
 
 Earmark is a Markdown parser for the Elixir programming language that ExDoc utilizes to turn our documentation within `@moduledoc` and `@doc` to beautiful looking HTML.
 
-It is worth noting at this point that you change the markup tool to Cmark if you wish, but you will need to do a little more configuration which you can read about [here](https://hexdocs.pm/ex_doc/ExDoc.Markdown.html#module-using-cmark).
+It is worth noting at this point that you can change the markup tool to Cmark if you wish, but you will need to do a little more configuration which you can read about [here](https://hexdocs.pm/ex_doc/ExDoc.Markdown.html#module-using-cmark).
 For this tutorial, we'll just stick with Earmark.
 
 ### Generating Documentation
@@ -249,7 +248,7 @@ Since Elixir is a fairly young language many standards are still to be discovere
 The community, however, tried to establish best practices.
 To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
-  - Always document a module.
+- Always document a module.
 
 ```elixir
 defmodule Greeter do
@@ -260,7 +259,7 @@ defmodule Greeter do
 end
 ```
 
-  - If you do not intend to document a module, **do not** leave it blank.
+- If you do not intend to document a module, **do not** leave it blank.
 Consider annotating the module `false`, like so:
 
 ```elixir
@@ -270,7 +269,7 @@ defmodule Greeter do
 end
 ```
 
- - When referring to functions within module documentation, use backticks like so:
+- When referring to functions within module documentation, use backticks like so:
 
 ```elixir
 defmodule Greeter do
@@ -286,7 +285,7 @@ defmodule Greeter do
 end
 ```
 
- - Separate any and all code one line under the `@moduledoc` as so:
+- Separate any and all code one line under the `@moduledoc` as so:
 
 ```elixir
 defmodule Greeter do
@@ -305,7 +304,7 @@ defmodule Greeter do
 end
 ```
 
- - Use Markdown within docs.
+- Use Markdown within docs.
 It will make it easier to read either via IEx or ExDoc.
 
 ```elixir
@@ -337,7 +336,7 @@ defmodule Greeter do
 end
 ```
 
- - Try to include some code examples in your documentation.
+- Try to include some code examples in your documentation.
 This also allows you to generate automatic tests from the code examples found in a module, function, or macro with [ExUnit.DocTest][].
 In order to do that, you need to invoke the `doctest/1` macro from your test case and write your examples according to some guidelines as detailed in the [official documentation][ExUnit.DocTest].
 

@@ -17,11 +17,13 @@ Benchee 提供了各種統計資料，可以方便地比較各種情境，該功
 # 使用方法
 
 要將 Benchee 加入到專案中，請將其作為相依性加入到的 `mix.exs` 檔案中：
+
 ```elixir
 defp deps do
   [{:benchee, "~> 1.0", only: :dev}]
 end
 ```
+
 然後執行：
 
 ```shell
@@ -51,7 +53,7 @@ Benchee.run(%{
 現在執行基準測試，呼用：
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 現在應該在控制台中看到類似以下的輸出內容：
@@ -108,6 +110,7 @@ Benchee 最棒的部分之一是這些可用的配置選項。
 接著將先介紹基礎知識，因為不需要程式碼範例，然後將說明如何使用 Benchee 的最佳功能之一 ー 輸入。
 
 ## 基礎
+
 Benchee 具有大量的配置選項。
 在最常見的 `Benchee.run/2` 界面中，會以可選關鍵字列表的形式作為第二個參數傳遞：
 
@@ -167,7 +170,7 @@ Benchee.run(%{"example function" => fn -> "hi!" end},
 例如，`1_200_000` 擴展為 1.2 M，而 `800_000` 擴展為800K。
 當列表中的各個值可能具有不同的最佳擬合單位時，單位縮放策略將決定 Benchee 如何為整個值列表選擇最佳擬合單位。
 有四種策略，均以 atom 形式給定，預設為 `:best`：
-  * **best** - 最頻繁使用的最佳擬合單位。 
+  * **best** - 最頻繁使用的最佳擬合單位。
 平局(tie results)導致選擇了較大的單位。
   * **largest** - 使用最大的最佳擬合單位
   * **smallest** - 使用最小的最佳擬合單位
@@ -220,11 +223,13 @@ Benchee.run(
 我們會將輸入映射作為配置選項傳遞給 `Benchee.run/2`。
 
 並且由於函數現在需要接受參數，因此需要更新基準測試函數以接受參數，所以不要：
+
 ```elixir
 fn -> Enum.flat_map(list, map_fun) end
 ```
 
 而改為這樣：
+
 ```elixir
 fn list -> Enum.flat_map(list, map_fun) end
 ```
@@ -232,7 +237,7 @@ fn list -> Enum.flat_map(list, map_fun) end
 再次使用以下指令執行它：
 
 ```shell
-$ mix run benchmark.exs
+mix run benchmark.exs
 ```
 
 現在，應該在控制台中看到如下輸出：

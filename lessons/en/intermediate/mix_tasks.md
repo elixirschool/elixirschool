@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.4.0",
   title: "Custom Mix Tasks",
   excerpt: """
   Creating custom Mix tasks for your Elixir projects.
@@ -145,3 +145,5 @@ mix hello             # Simply calls the Hello.say/0 function.
 
 Note: Our code must be compiled before new tasks will appear in the `mix help` output.
 We can do this either by running `mix compile` directly or by running our task as we did with `mix hello`, which will trigger the compilation for us.
+
+It's important to note that task names are derived from the module name, so `Mix.Tasks.MyHelper.Utility` will become `my_helper.utility`.

@@ -57,7 +57,6 @@ iex> {:ok, value} = {:error}
 Eslestirme operatoru, esitligin sol tarafinda bir degisken varsa eslestirme yapar. Fakat bazi durumlarda bu yeniden esleme islemi istenmemektedir. Bu gibi kosullarda, sapka operatoru (pin operator) kullanilir: `^`
 Degiskenin yanina sapka koyuldugunda "varolan degeri eslestir, yeni deger atama" demektir. Nasil calistigina goz atalim isterseniz:
 
-
 ```elixir
 iex> x = 1
 1

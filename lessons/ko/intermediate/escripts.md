@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.0.2",
   title: "실행 파일",
   excerpt: """
   escript를 사용하여 Elixir로 짠 코드를 실행 파일로 빌드할 수 있습니다. 이렇게 빌드한 실행 파일은 Erlang이 설치된 모든 시스템에서 실행할 수 있게 됩니다.
@@ -21,7 +21,7 @@ defmodule ExampleApp.CLI do
 end
 ```
 
-그 다음 Mixfile에서 메인 모듈(`:main_module`)로 지정해 주고 이를 `:escript` 옵션으로 프로젝트 설정에 덧붙여주면 됩니다.
+그다음 Mixfile에서 메인 모듈(`:main_module`)로 지정해 주고 이를 `:escript` 옵션으로 프로젝트 설정에 덧붙여주면 됩니다.
 
 ```elixir
 defmodule ExampleApp.Mixproject do
@@ -43,8 +43,8 @@ end
 defmodule ExampleApp.CLI do
   def main(args \\ []) do
     args
-    |> parse_args
-    |> response
+    |> parse_args()
+    |> response()
     |> IO.puts()
   end
 
@@ -56,8 +56,6 @@ defmodule ExampleApp.CLI do
     {opts, List.to_string(word)}
   end
 
-  defp response({opts, "Hello"}), do: response({opts, "World"})
-
   defp response({opts, word}) do
     if opts[:upcase], do: String.upcase(word), else: word
   end
@@ -68,15 +66,15 @@ end
 
 애플리케이션이 escript를 사용하도록 설정을 끝내고 나면, Mix를 사용해서 실행파일을 한방에 시원하게 만들 수 있습니다.
 
-```elixir
-$ mix escript.build
+``` bash
+mix escript.build
 ```
 
 이제 시운전을 한번 해 봅시다.
 
-```elixir
+``` bash
 $ ./example_app --upcase Hello
-WORLD
+HELLO
 
 $ ./example_app Hi
 Hi

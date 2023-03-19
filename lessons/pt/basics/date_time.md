@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.2.0",
   title: "Data e Tempo",
   excerpt: """
   Trabalhando com tempo em Elixir.
@@ -44,7 +44,7 @@ Mas há uma pegadinha: como você pode ter notado, essa struct contém apenas te
 
 ## Date
 
-Ao contrário do `Time`, a struct `Date` tem as informações sobre a data atual sem nenhuma informação sobre o tempo atual.
+Ao contrário do `Time`, a struct `Date` tem as informações sobre a data sem nenhuma informação sobre o tempo.
 
 ```elixir
 iex> Date.utc_today
@@ -54,7 +54,7 @@ iex> Date.utc_today
 Mas ele tem algumas funções úteis para trabalhar com datas:
 
 ```elixir
-iex> {:ok, date} = Date.new(2020, 12,12)
+iex> {:ok, date} = Date.new(2020, 12, 12)
 {:ok, ~D[2020-12-12]}
 iex> Date.day_of_week date
 6
@@ -75,10 +75,10 @@ A desvantagem é a falta de suporte para fuso horário:
 
 ```elixir
 iex(15)> NaiveDateTime.utc_now
-~N[2029-01-21 19:55:10.008965]
+~N[2022-01-21 19:55:10.008965]
 ```
 
-Mas ele tem tanto o tempo atual como a data, então você pode adicionar tempo, por exemplo:
+Mas ele tem tanto o tempo como a data, então você pode adicionar tempo, por exemplo:
 
 ```elixir
 iex> NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
@@ -93,7 +93,6 @@ Mas esteja ciente dos fusos horários. A documentação oficial fala:
 
 > Muitas funções neste módulo requerem um fuso horário do banco de dados. Por padrão, é utilizado o fuso horário do banco de dados que é retornado pela função `Calendar.get_time_zone_database/0`, cujo padrão é `Calendar.UTCOnlyTimeZoneDatabase`, que lida apenas com as datas "Etc/UTC" e retorna `{:error, :utc_only_time_zone_database}` para qualquer outro fuso horário.
 
-
 Também, note que você pode criar um instância de DateTime a partir de um NaiveDateTime, apenas fornecendo o fuso horário:
 
 ``` elixir
@@ -103,7 +102,7 @@ iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
 
 ## Trabalhando com timezones
 
-Como observamos no capítulo anterior, por padrão, o Elixir não possui dados de fuso horário.
+Como observamos na seção anterior, por padrão, o Elixir não possui dados de fuso horário.
 Para resolver esse problema, precisamos instalar e configurar o pacote [tzdata](https://github.com/lau/tzdata).
 Após a instalação, você deve configurar globalmente o Elixir para usar o Tzdata com o fuso horário do banco de dados:
 

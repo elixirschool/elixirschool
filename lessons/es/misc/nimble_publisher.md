@@ -126,7 +126,7 @@ También definiremos `@tags` sacándolas de los `@posts`.
 Por último, definimos `all_posts/0` y `all_tags/0` que simplemente devolverán lo que acabamos de parsear.
 
 ¡Vamos a probarlo! Entra en una consola con `iex -S mix` y ejecuta:
- 
+
 ```elixir
 iex(1)> NimbleSchool.Blog.all_posts()
 [
@@ -274,7 +274,7 @@ Y crea `lib/nimble_school_web/templates/blog/show.html.eex` para pintar un post 
 <%= raw @post.body %>
 ```
 
-### ¡Probemos el blog!
+### ¡Probemos el blog
 
 ¡Ya está todo preparado!
 
@@ -319,7 +319,7 @@ Podríamos colocar nuestros ficheros de contenidos en una estructura de director
 /priv/faqs/when-did-it-start.md
 ```
 
-Y podríamos definir nuestra struct `Faq` y la función para construirla en `lib/nimble_school/faqs/faq.ex` de esta manera: 
+Y podríamos definir nuestra struct `Faq` y la función para construirla en `lib/nimble_school/faqs/faq.ex` de esta manera:
 
 ```elixir
 defmodule NimbleSchool.Faqs.Faq do

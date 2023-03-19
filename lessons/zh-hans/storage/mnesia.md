@@ -15,10 +15,10 @@ Mnesia 是 Erlang 运行时中自带的一个数据库管理系统（DBMS），�
 
 何时该使用何种技术常常是一个令人困惑的事情。如果下面这些问题中任意一个的答案是 yes 的话，则是一个很好的迹象告诉我们在这个情况下用 Mnesia 比用 ETS 或者 DETS 要适合。
 
-  - 我是否需要回滚事务？
-  - 我是否需要用一个简单的语法来读写数据？
-  - 我是否需要在多于一个以上的节点存储数据？
-  - 我是否需要选择数据存储的位置（内存还是硬盘）？
+- 我是否需要回滚事务？
+- 我是否需要用一个简单的语法来读写数据？
+- 我是否需要在多于一个以上的节点存储数据？
+- 我是否需要选择数据存储的位置（内存还是硬盘）？
 
 ## Schema
 
@@ -111,8 +111,8 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 我们使用原子 `:id`, `:name` 和 `:job` 定义了表的字段。第一个原子作为主键(也就是 `:id`)，并且至少需要一个附加属性。
 当我们执行 `Mnesia.create_table/2` 可能返回下面两种结果中的任意一种：
 
- - `{:atomic, :ok}` 代表执行成功
- - `{:aborted, Reason}` 代表执行失败
+- `{:atomic, :ok}` 代表执行成功
+- `{:aborted, Reason}` 代表执行失败
 
 如果数据库中已经存在同名的表，返回结果中的 `Reason` 为 `{:already_exists, table}`。所以当我们再执行一次上面的命令是，我们会得到下面的结果：
 
@@ -204,9 +204,8 @@ iex> Mnesia.add_table_index(Person, :job)
 
 结果跟 `Mnesia.create_table/2` 返回的相同：
 
- - `{:atomic, :ok}` 表示执行成功
- - `{:aborted, Reason}` 表示执行失败
-
+- `{:atomic, :ok}` 表示执行成功
+- `{:aborted, Reason}` 表示执行失败
 
 类似的，如果索引已经存在，返回结果中的 `Reason` 为 `{:already_exists, table, attribute_index}`。所以当我们再执行一次上面的命令是，我们会得到下面的结果：
 
@@ -246,7 +245,7 @@ iex> Mnesia.transaction(
 ```elixir
 iex> Mnesia.transaction(
 ...>   fn ->
-...>     {% raw %}Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}]){% endraw %}
+...>     Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}])
 ...>   end
 ...> )
 {:atomic, [[7, "Waylon Smithers", "Executive assistant"], [4, "Marge Simpson", "home maker"], [6, "Monty Burns", "Businessman"], [5, "Hans Moleman", "unknown"]]}
@@ -266,13 +265,13 @@ iex> Mnesia.transaction(
 
 在下面的代码中，我们要实现这些逻辑：
 
-* 创建 v2 的表结构，包括这些属性： `[:id, :name, :job, :age]`
-* 根据建表函数的返回结果分别处理：
-    * `{:atomic, :ok}`: 为 `Person` 表的 `:job` 和 `:age` 字段添加索引
-    * `{:aborted, {:already_exists, Person}}`: 检查现有的字段并且做相应的处理：
-        * 如果是 v1 的字段列表 (`[:id, :name, :job]`)，改造表结构，给所有人的年龄设为 21 并且在 `:age` 上添加索引
-        * 如果已经是我们想要的 v2 的字段列表，则无需做任何处理
-        * 如果是其他情况，则返回错误
+- 创建 v2 的表结构，包括这些属性： `[:id, :name, :job, :age]`
+- 根据建表函数的返回结果分别处理：
+  - `{:atomic, :ok}`: 为 `Person` 表的 `:job` 和 `:age` 字段添加索引
+  - `{:aborted, {:already_exists, Person}}`: 检查现有的字段并且做相应的处理：
+    - 如果是 v1 的字段列表 (`[:id, :name, :job]`)，改造表结构，给所有人的年龄设为 21 并且在 `:age` 上添加索引
+    - 如果已经是我们想要的 v2 的字段列表，则无需做任何处理
+    - 如果是其他情况，则返回错误
 
 如果我们在用 `Mnesia.start/0` 启动 Mnesia 后马上对现有的表进行任何操作的话，那些表可能还没有初始化，并且无法访问。在这样的情况下，我们应该使用 [`Mnesia.wait_for_tables/2`](http://erlang.org/doc/man/mnesia.html#wait_for_tables-2) 函数。它会挂起当前的进程，直到数据库表初始化完毕，或者超时。
 

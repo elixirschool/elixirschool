@@ -24,7 +24,7 @@ That means all information about a type will be ignored by the compiler, but cou
 ## Specification
 
 If you have experience with Java you could think about specification as an `interface`.
-Specification defines what should be the type of a function's parameters and of it's return value.
+Specification defines what should be the type of a function's parameters and of its return value.
 
 To define input and output types we use the `@spec` directive placed right before the function definition and taking as a `params` the name of the function, a list of parameter types, and after `::` the type of the return value.
 
@@ -80,10 +80,10 @@ A solution to this problem is `@type`.
 
 Elixir has three directives for types:
 
-  - `@type` – simple, public type.
+- `@type` – simple, public type.
 Internal structure of type is public.
-  - `@typep` – type is private and could be used only in the module where is defined.
-  - `@opaque` – type is public, but internal structure is private.
+- `@typep` – type is private and could be used only in the module where is defined.
+- `@opaque` – type is public, but internal structure is private.
 
 Let's define our type:
 

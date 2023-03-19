@@ -1,19 +1,19 @@
 %{
-  version: "1.1.2",
+  version: "1.3.0",
   title: "Dasar",
   excerpt: """
-  Awal Mulai, data tipe-tipe dasar, dan operasi-operasi dasar.
+  Persiapan, tipe data dasar, dan operasi dasar.
   """
 }
 ---
 
-## Setup
+## Persiapan
 
 ### Instalasi Elixir
 
 Instruksi instalasi untuk masing-masing OS dapat dilihat di Elixir-lang.org bagian panduan [Installing Elixir](http://elixir-lang.org/install.html).
 
-Setelah Elixir sudah di instal, anda dapat dengan mudah mengecek versi yang terinstal.
+Setelah Elixir terinstal, kamu dapat dengan mudah melihat versi yang terinstal.
 
     % elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
@@ -24,14 +24,16 @@ Setelah Elixir sudah di instal, anda dapat dengan mudah mengecek versi yang teri
 
 Elixir dilengkapi dengan IEx, sebuah shell interaktif, yang memungkinkan kita mencoba perintah Elixir.
 
-Untuk memulai, kita jalankan `iex`:
+Untuk memulai, mari kita jalankan `iex`:
 
-	Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+ Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-	Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-	iex>
+ Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
+ iex>
 
-Mari langsung saja kita coba dengan menulis beberapa sintaks sederhana:
+Catatan: Pada Windows PowerShell, IEx dijalankan dengan mengetik `iex.bat`.
+
+Sekarang, mari kita coba menulis beberapa ekpresi sederhana:
 
 ```elixir
 iex> 2+3
@@ -42,9 +44,9 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-Jangan khawatir bila anda belum mengerti setiap sintaks ekspresi yang ada, tetapi kami berharap anda dapat ide-nya.
+Jangan khawatir bila kamu belum memahami setiap ekspresi yang ada, tetapi kami berharap kamu memahami garis besarnya.
 
-## Tipe dasar
+## Tipe Data Dasar
 
 ### Integer
 
@@ -66,7 +68,7 @@ iex> 0x1F
 
 ### Float
 
-Dalam Elixir, bilangan tidak bulat (float) membutuhkan sebuah titik desimal setelah setidaknya satu digit; bilangan ini memiliki tingkat presisi 64 bit double precision dan mendukung `e` untuk bilangan eksponen:
+Dalam Elixir, bilangan tidak bulat (float) membutuhkan sebuah titik desimal setelah setidaknya satu digit; bilangan ini memiliki tingkat presisi 64-bit double precision dan mendukung `e` untuk bilangan eksponen:
 
 ```elixir
 iex> 3.14 
@@ -76,7 +78,6 @@ iex> .14
 iex> 1.0e-10
 1.0e-10
 ```
-
 
 ### Boolean
 
@@ -91,7 +92,7 @@ false
 
 ### Atom
 
-Sebuah atom adalah sebuah konstanta dimana nilainya adalah namanya itu sendiri. Jika anda sudah familiar dengan Ruby, atom adalah sinonim dengan Symbol:
+Sebuah atom adalah sebuah konstanta dimana nilainya adalah namanya itu sendiri. Jika kamu familiar dengan Ruby, atom merupakan sinonim dari Symbol:
 
 ```elixir
 iex> :foo
@@ -111,14 +112,14 @@ iex> :true === true
 true
 ```
 
-Nama modul dalam Elixir adalah juga atom. `MyApp.MyModule` adalah atom yang sah, walaupun modul tersebut belum dideklarasikan.
+Nama modul dalam Elixir juga berupa atom. `MyApp.MyModule` adalah atom yang sah, walaupun modul tersebut belum dideklarasikan.
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
 true
 ```
 
-Atom juga digunakan untuk mereferensi modul dari librari erlang, termasuk apa yang sudah ada.
+Atom juga digunakan untuk mereferensikan modul dari librari erlang, termasuk modul-modul bawaan.
 
 ```elixir
 iex> :crypto.strong_rand_bytes 3
@@ -127,7 +128,7 @@ iex> :crypto.strong_rand_bytes 3
 
 ### String
 
-String dalam Elixir adalah UTF-8 encoded dan dituliskan di antara petik ganda (double quotes):
+String dalam Elixir terkodekan dalam UTF-8 dan dituliskan di antara petik ganda (double quotes):
 
 ```elixir
 iex> "Hello"
@@ -136,7 +137,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-String mendukung penggantian baris dan escape sequences:
+String mendukung jeda baris (line break) dan escape sequences:
 
 ```elixir
 iex> "foo
@@ -146,13 +147,13 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir juga memasukkan banyak tipe-tipe data kompleks. Kita akan mempelajari lebih banyak lagi hal tersebut ketika kita belajar tentang [Koleksi](/id/lessons/basics/collections) dan [Fungsi](/id/lessons/basics/functions).
+Elixir juga mendukung banyak tipe data kompleks. Kita akan mempelajari hal-hal tersebut lebih banyak ketika kita belajar tentang [Koleksi](/id/lessons/basics/collections) dan [Fungsi](/id/lessons/basics/functions).
 
 ## Operasi Dasar
 
 ### Aritmetik
 
-Elixir mendukung operator dasar `+`, `-`, `*`, dan `/` sebagaimana yang sudah dapat diduga. Penting diperhatikan bahwa `/` akan selalu menghasilkan bilangan float:
+Elixir mendukung operator dasar `+`, `-`, `*`, dan `/` sebagaimana yang sudah dapat diduga. Perlu diperhatikan bahwa `/` akan selalu menghasilkan bilangan dengan tipe data float:
 
 ```elixir
 iex> 2 + 2
@@ -165,7 +166,7 @@ iex> 10 / 5
 2.0
 ```
 
-Jika anda membutuhkan pembagian bulat (integer) atau sisa pembagian, Elixir memiliki dua fungsi untuk itu:
+Jika kamu membutuhkan pembagian dengan hasil bilangan bulat (integer) atau sisa pembagian, Elixir memiliki dua fungsi untuk itu:
 
 ```elixir
 iex> div(10, 5)
@@ -176,7 +177,7 @@ iex> rem(10, 3)
 
 ### Boolean
 
-Elixir menyediakan operator boolean `||`, `&&`, dan `!`. Operator-operator ini mendukung tipe apapun:
+Elixir menyediakan operator boolean `||`, `&&`, dan `!`. Operator-operator ini bisa digunakan untuk tipe data apapun:
 
 ```elixir
 iex> -20 || true
@@ -212,7 +213,7 @@ iex> not 42
 
 ### Perbandingan
 
-Elixir dilengkapi semua operator perbandingan (comparison) yang biasa kita pakai: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` dan `>`.
+Elixir dilengkapi dengan semua operator perbandingan (comparison) yang biasa kita pakai: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` dan `>`.
 
 ```elixir
 iex> 1 > 2
@@ -234,13 +235,13 @@ iex> 2 === 2.0
 false
 ```
 
-Sebuah fitur penting dari Elixir adalah bahwa segala macam tipe dapat dibandingkan, ini berguna dalam pengurutan (sorting). Kita tidak perlu menghafalkan urutannya tapi penting untuk dipahami:
+Sebuah fitur penting dari Elixir adalah bahwa segala macam tipe dapat dibandingkan; ini berguna dalam pengurutan (sorting). Kita tidak perlu menghafalkan urutannya. Tapi penting untuk dipahami:
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
-Ini bisa menghasilkan perbandingan yang menarik, dan valid, yang mungkin tidak anda temukan di bahasa lain:
+Ini bisa menghasilkan perbandingan yang menarik namun valid, yang mungkin tidak akan kamu temukan di bahasa lain:
 
 ```elixir
 iex> :hello > 999
@@ -251,7 +252,7 @@ false
 
 ### Interpolasi String
 
-Kalau anda sudah menggunakan Ruby, interpolasi string di Elixir akan tidak asing lagi:
+Kalau kamu pernah menggunakan Ruby, interpolasi string di Elixir tidak akan terasa asing:
 
 ```elixir
 iex> name = "Sean"

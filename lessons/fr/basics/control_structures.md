@@ -94,7 +94,6 @@ iex> case {1, 2, 3} do
 
 La documentation pour [les expressions permises dans les clauses de garde](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
 
-
 ## cond
 
 Lorsque nous avons besoin de faire correspondre des conditions et non des valeurs, nous pouvons utiliser `cond/1`; un peu comme `else if` ou `elsif` dans d'autres langages:
@@ -177,7 +176,6 @@ with {:ok, user} <- Repo.insert(changeset),
   important_stuff(token, full_claims)
 end
 ```
-
 
 Depuis Elixir 1.3, la déclaration `with/1` supporte `else`:
 

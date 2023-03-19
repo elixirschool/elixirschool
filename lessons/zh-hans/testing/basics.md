@@ -41,7 +41,6 @@ Finished in 0.03 seconds
 
 我们在测试文件中使用 `assert` 宏来检查表达式为真，如果表达式不为真，就会抛出异常，测试也就失败了。为了看看失败的情况，我们修改一下项目的测试，然后运行 `mix test`:
 
-
 ```elixir
 defmodule ExampleTest do
   use ExUnit.Case

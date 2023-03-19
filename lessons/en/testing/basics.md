@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Testing",
   excerpt: """
   Testing is an important part of developing software.
@@ -108,7 +108,7 @@ Use `refute` when you want to ensure a statement is always false.
 
 Sometimes it may be necessary to assert that an error has been raised.
 We can do this with `assert_raise`.
-We'll see an example of `assert_raise` in the next lesson on Plug.
+We'll see an example of `assert_raise` in the lesson on Plug.
 
 ### assert_receive
 
@@ -188,7 +188,7 @@ The gist is, that instead of mocking away dependencies for testing (mock as a *v
 
 To leverage this "mocks-as-a-noun" pattern you can:
 
-* Define a behaviour that is implemented both by the entity for which you'd like to define a mock _and_ the module that will act as the mock.
+* Define a behaviour that is implemented both by the entity for which you'd like to define a mock *and* the module that will act as the mock.
 * Define the mock module
 * Configure your application code to use the mock in the given test or test environment, for example by passing the mock module into a function call as an argument or by configuring your application to use the mock module in the test environment.
 

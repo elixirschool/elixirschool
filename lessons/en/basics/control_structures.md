@@ -180,28 +180,29 @@ with {:ok, user} <- Repo.insert(changeset),
 end
 ```
 
-
 As of Elixir 1.3, `with/1` statements support `else`:
 
 ```elixir
-import Integer
-
-m = %{a: 1, c: 3}
-
-a =
-  with {:ok, number} <- Map.fetch(m, :a),
-    true <- is_even(number) do
-      IO.puts "#{number} divided by 2 is #{div(number, 2)}"
-      :even
-  else
-    :error ->
-      IO.puts("We don't have this item in map")
-      :error
-
-    _ ->
-      IO.puts("It is odd")
-      :odd
-  end
+iex> import Integer
+Integer
+iex> m = %{a: 1, c: 3}
+%{a: 1, c: 3}
+iex> a =
+...>   with {:ok, number} <- Map.fetch(m, :a),
+...>     true <- is_even(number) do
+...>       IO.puts "#{number} divided by 2 is #{div(number, 2)}"
+...>       :even
+...>   else
+...>     :error ->
+...>       IO.puts("We don't have this item in map")
+...>       :error
+...> 
+...>     _ ->
+...>       IO.puts("It is odd")
+...>       :odd
+...>   end
+It is odd
+:odd
 ```
 
 It helps to handle errors by providing `case`-like pattern matching in it. The value passed is the first non-matched expression.

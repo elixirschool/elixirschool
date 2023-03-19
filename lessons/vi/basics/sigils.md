@@ -13,25 +13,25 @@ Elixir cung cấp cho chúng ta một cú pháp thay thế để mô tả và l�
 
 Chuỗi sigils được cung cấp ban đầu bao gồm:
 
-  - `~C` Sinh ra một chuỗi các kí tự **không gồm** kí tự escape và kí tự nội suy (interpolation)
-  - `~c` Sinh ra một chuỗi các kí tự **gồm** kí tự escape và kí tự nội suy (interpolation)
-  - `~R` Sinh ra một chuỗi biểu thức chính qui **không gồm** kí tự escape và kí tự nội suy (interpolation)
-  - `~r` Sinh ra một chuỗi biểu thức chính qui **gồm** kí tự escape và kí tự nội suy (interpolation)
-  - `~S` Sinh ra một string **không gồm** kí tự escape và kí tự nội suy (interpolation)
-  - `~s` Sinh ra một string **gồm** kí tự escape và kí tự nội suy (interpolation)
-  - `~W` Sinh ra một list **không gồm** kí tự escape và kí tự nội suy (interpolation)
-  - `~w` Sinh ra một list **gồm** kí tự escape và kí tự nội suy (interpolation)
+- `~C` Sinh ra một chuỗi các kí tự **không gồm** kí tự escape và kí tự nội suy (interpolation)
+- `~c` Sinh ra một chuỗi các kí tự **gồm** kí tự escape và kí tự nội suy (interpolation)
+- `~R` Sinh ra một chuỗi biểu thức chính qui **không gồm** kí tự escape và kí tự nội suy (interpolation)
+- `~r` Sinh ra một chuỗi biểu thức chính qui **gồm** kí tự escape và kí tự nội suy (interpolation)
+- `~S` Sinh ra một string **không gồm** kí tự escape và kí tự nội suy (interpolation)
+- `~s` Sinh ra một string **gồm** kí tự escape và kí tự nội suy (interpolation)
+- `~W` Sinh ra một list **không gồm** kí tự escape và kí tự nội suy (interpolation)
+- `~w` Sinh ra một list **gồm** kí tự escape và kí tự nội suy (interpolation)
 
 Chuỗi phân tách bao gồm:
 
-  - `<...>` Một cặp dấu ngoặc nhọn
-  - `{...}` Một cặp dấu ngoặc xoắn
-  - `[...]` Một cặp dấu ngoặc vuông
-  - `(...)` Một cặp dấu ngoặc tròn
-  - `|...|` Một cặp dấu đường ống
-  - `/.../` Một cặp dấu gạch chéo
-  - `"..."` Một cặp dấu trích dẫn kép
-  - `'...'` Một cặp dấu trích dẫn đơn
+- `<...>` Một cặp dấu ngoặc nhọn
+- `{...}` Một cặp dấu ngoặc xoắn
+- `[...]` Một cặp dấu ngoặc vuông
+- `(...)` Một cặp dấu ngoặc tròn
+- `|...|` Một cặp dấu đường ống
+- `/.../` Một cặp dấu gạch chéo
+- `"..."` Một cặp dấu trích dẫn kép
+- `'...'` Một cặp dấu trích dẫn đơn
 
 ### Chuỗi kí tự
 
@@ -45,9 +45,10 @@ iex> ~C/2 + 7 = #{2 + 7}/
 '2 + 7 = \#{2 + 7}'
 ```
 
-Chúng ta có thể thấy kí tự thường `~c` sẽ nội suy phần tính toán, trong khi kĩ tự hoa `~C` không. Chúng ta sẽ thấy chuỗi kí tự hoa / thường sẽ là chủ đề thường thấy của các sigils có sẵn. 
+Chúng ta có thể thấy kí tự thường `~c` sẽ nội suy phần tính toán, trong khi kĩ tự hoa `~C` không. Chúng ta sẽ thấy chuỗi kí tự hoa / thường sẽ là chủ đề thường thấy của các sigils có sẵn.
 
-### Biểu thức chính qui 
+### Biểu thức chính qui
+
 `~r` và `~R` sigils thường được sử dụng để biểu diễn biểu thức chính qui. Biểu thức chính qui đó được tạo ra ngay lúc chạy hoặc là để sử dụng bên trong hàm `Regex`. Ví dụ:
 
 ```elixir
@@ -131,6 +132,7 @@ iex> ~W/i love #{'e'}lixir school/
 ```
 
 ## Tạo mới Sigils
+
 Một trong những mục tiêu của Elixir là trở thành một ngôn ngữ có thể mở rộng được. Do đó mà không hề ngạc nhiên khi chúng ta có thể tự tạo mới sigils. Trong ví dụ dưới đây, chúng ta sẽ tạo mới sigil để chuyển một chuỗi sang dạng viết hoa. Do chúng ta đã có sẵn hàm để làm việc đó trong Elixir (`String.upcase/1`), chúng ta sẽ bọc hàm đó lại bởi sigil.
 
 ```elixir

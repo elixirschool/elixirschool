@@ -38,8 +38,8 @@ for each application in the apps/ directory.
 
 Wie du am Shellbefehl sehen kannst, erstellt Mix ein kleines Projekt für uns mit zwei Verzeichnissen:
 
-  - `apps/` - hier werden unsere Unterprojekte wohnen
-  - `config/` - wo die Konfiguration für unser Umbrella-Projekt lebt
+- `apps/` - hier werden unsere Unterprojekte wohnen
+- `config/` - wo die Konfiguration für unser Umbrella-Projekt lebt
 
 ## Kindprojekte
 

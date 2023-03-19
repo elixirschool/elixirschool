@@ -6,14 +6,14 @@
 
   Nói chung quy ước trong Elixir là tạo ra một hàm (`example/1`) mà trả về `{:ok, result}` và `{:error, reason}` và một hàm riêng biệt (`example!/1`) trả về `result` hoặc văng ra một lỗi.
 
-  Trong bài học này chúng ta sẽ tập trung vào việc xử lý lỗi.
+Trong bài học này chúng ta sẽ tập trung vào việc xử lý lỗi
   """
 }
 ---
 
 ## Xử Lý Lỗi
 
-Trước khi chúng ta có thể xử lý lỗi chúng ta cần phải tạo ra chúng và cách đơn giản nhất để làm như vậy là với `raise/1`: 
+Trước khi chúng ta có thể xử lý lỗi chúng ta cần phải tạo ra chúng và cách đơn giản nhất để làm như vậy là với `raise/1`:
 
 ```elixir
 iex> raise "Oh no!"

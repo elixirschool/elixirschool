@@ -12,7 +12,7 @@
 ## Wprowadzenie
 
 Tworzenie projektu zbiorczego przebiega prawie tak samo, jak zwykłego, jedyną różnicą jest flaga `--umbrella`.
-W naszym przykładzie stworzymy *powłokę* na potrzeby narzędzia do uczenia maszynowego.
+W naszym przykładzie stworzymy _powłokę_ na potrzeby narzędzia do uczenia maszynowego.
 Dlaczego właśnie uczenie maszynowe? A dlaczego nie? Tego typu projekty zawierają zazwyczaj wiele algorytmów uczenia i różnych użytkowych funkcji.
 
 ```shell
@@ -40,9 +40,8 @@ for each application in the apps/ directory.
 
 Jak widać po wpisach w konsoli, Mix stworzył niewielki szkielet projektu zawierający dwa katalogi:
 
-  - `apps/` — gdzie będą znajdować się podprojekty,
-  - `config/` — gdzie przechowywana jest konfiguracja projektu zbiorczego.
-
+- `apps/` — gdzie będą znajdować się podprojekty,
+- `config/` — gdzie przechowywana jest konfiguracja projektu zbiorczego.
 
 ## Projekty potomne
 

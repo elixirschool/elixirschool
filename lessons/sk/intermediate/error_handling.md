@@ -6,7 +6,7 @@
 
   Vo všeobecnosti je v Elixire konvenciou vytvárať funkciu `example/1`, ktorá vráti `{:ok, result}` alebo `{:error, reason}` a funkcia `example!/1`, ktorá vráti neobalený výsledok alebo vyvolá chybu.
 
-  Táto lekcia sa zameriava na spracovanie týchto chýb.
+Táto lekcia sa zameriava na spracovanie týchto chýb
   """
 }
 ---

@@ -43,8 +43,8 @@ Restart procesu potomnego można obsłużyć na kilka sposobów:
 + `:permanent` – proces potomny jest zawsze restartowany,
 + `:temporary` – proces potomny nigdy nie jest restartowany,
 + `:transient` – proces potomny zostanie zrestartowany, tylko jeżeli zakończył się w wyniku awarii.
- 
-Konfiguracja ta jest opcjonalna, a wartością domyślną jest `:permanent`. 
+
+Konfiguracja ta jest opcjonalna, a wartością domyślną jest `:permanent`.
 
 ### Zagnieżdżanie
 

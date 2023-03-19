@@ -38,11 +38,11 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-Poznámka k formátu zápisu funkcií a operátorov, ktorý je použitý v príkladoch: v Elixire má názov funkcie dve časti: meno funkcie (v tomto prípade `++`) a početnosť parametrov (_arity_ - v tomto prípade `2`). Operátor `++` teda vyžaduje, aby sme mu dodali 2 parametre pri jeho volaní. Pri popise väčšiny funkcii je uvedené jej meno a počet parametrov, ktoré sú spojené lomítkom. O tomto si povieme detailnejšie neskôr, táto poznámka ti zatiaľ pomôže pochopiť túto notáciu.
+Poznámka k formátu zápisu funkcií a operátorov, ktorý je použitý v príkladoch: v Elixire má názov funkcie dve časti: meno funkcie (v tomto prípade `++`) a početnosť parametrov (*arity* - v tomto prípade `2`). Operátor `++` teda vyžaduje, aby sme mu dodali 2 parametre pri jeho volaní. Pri popise väčšiny funkcii je uvedené jej meno a počet parametrov, ktoré sú spojené lomítkom. O tomto si povieme detailnejšie neskôr, táto poznámka ti zatiaľ pomôže pochopiť túto notáciu.
 
 ### Odčítavanie listov
 
-Odčítanie listov (_list subtraction_) zabezpečuje operátor `--/2`, pri ktorom je bezpečné odčítať aj chýbajúcu hodnotu:
+Odčítanie listov (*list subtraction*) zabezpečuje operátor `--/2`, pri ktorom je bezpečné odčítať aj chýbajúcu hodnotu:
 
 ```elixir
 iex> ["foo", :bar, 42] -- [42, "bar"]
@@ -60,7 +60,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 
 ### Head / Tail
 
-Pri používaní zoznamov je bežné pracovať s hlavou a chvostom zoznamu. Hlava (_head_) je prvý element zoznamu a chvost (_tail_) je zoznam, ktorý obsahuje zvyšok prvkov. Elixir poskytuje dve užitočné funkcie, `hd` a `tl`, pre prácu s týmito časťami:
+Pri používaní zoznamov je bežné pracovať s hlavou a chvostom zoznamu. Hlava (*head*) je prvý element zoznamu a chvost (*tail*) je zoznam, ktorý obsahuje zvyšok prvkov. Elixir poskytuje dve užitočné funkcie, `hd` a `tl`, pre prácu s týmito časťami:
 
 ```elixir
 iex> hd [3.14, :pie, "Apple"]
@@ -115,7 +115,7 @@ Pre keyword listy je charakteristické:
 + Kľúče sú zoradené.
 + Kľúče nemusia byť unikátne.
 
-Z týchto dôvodov sú keyword listy najčastejšie využívané na odovzdanie doplnkových parametrov (_options_) do funkcií.
+Z týchto dôvodov sú keyword listy najčastejšie využívané na odovzdanie doplnkových parametrov (*options*) do funkcií.
 
 ## Mapy
 

@@ -4,7 +4,7 @@
   excerpt: """
   Bugs são problemas comuns em qualquer projeto, é por isso que precisamos da depuração.
 
-  Nesta sessão vamos aprender sobre como fazer depuração no código Elixir, bem como ferramentas de análises estáticas para ajudar a encontrar possíveis bugs.
+Nesta sessão vamos aprender sobre como fazer depuração no código Elixir, bem como ferramentas de análises estáticas para ajudar a encontrar possíveis bugs
   """
 }
 ---
@@ -123,6 +123,7 @@ iex(1)>
 BREAK: (a)bort (c)ontinue (p)roc info (i)nfo (l)oaded
        (v)ersion (k)ill (D)b-tables (d)istribution
 ```
+
 Para sair do IEx, você pode pressionar `Ctrl + C` duas vezes para sair do aplicativo ou digitar `continue` para seguir para o próximo breakpoint.
 
 Como você pode ver, é possivel executar qualquer código Elixir.
@@ -255,7 +256,7 @@ end
 Então rodamos o `iex`:
 
 ```bash
-$ iex -S mix
+iex -S mix
 ```
 
 E rodamos o debugger:
@@ -270,9 +271,9 @@ Podemos usar a função `start/1` para configurá-lo:
 
 + Um arquivo de configuração externo pode ser usado passando o caminho do arquivo.
 + Se o argumento for `:local` ou `:global`, o depurador vai:
-    + `:global` – o depurador irá interpretar o código em todos os nós conhecidos.
+  + `:global` – o depurador irá interpretar o código em todos os nós conhecidos.
     Esse é o valor padrão.
-    + `:local` – o depurador irá interpretar o código somente no nó atual.
+  + `:local` – o depurador irá interpretar o código somente no nó atual.
 
 O próximo passo é anexar nosso módulo ao depurador:
 
@@ -336,7 +337,7 @@ iex > :int.delete_break(Example, 8)
 :ok
 ```
 
-As mesmas operações estão disponíveis na janela do depurador. No menu superior, __Break__, nós podemos selecionar  __Line Break__ e configurar o breakpoint. Se selecionarmos uma linha que não contenha código, os pontos de interrupção serão ignorados, mas ele aparecerá na janela do depurador. Existem três tipos de breakpoint:
+As mesmas operações estão disponíveis na janela do depurador. No menu superior, **Break**, nós podemos selecionar  **Line Break** e configurar o breakpoint. Se selecionarmos uma linha que não contenha código, os pontos de interrupção serão ignorados, mas ele aparecerá na janela do depurador. Existem três tipos de breakpoint:
 
 + Breakpoint de linha - o depurador suspende a execução quando chegamos à linha, com a configuração `:int.break/2`
 + Breakpoint condicional — semelhante ao breakpoint de linha, mas o depurador suspende somente quando a condição especificada for atingida, estes são configurados usando `:int.get_binding/2`

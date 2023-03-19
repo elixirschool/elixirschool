@@ -73,7 +73,7 @@ Its disadvantage is lack of timezone support:
 
 ```elixir
 iex(15)> NaiveDateTime.utc_now
-~N[2029-01-21 19:55:10.008965]
+~N[2022-01-21 19:55:10.008965]
 ```
 
 But it has both the time and date, so you can play with adding time, for example:

@@ -28,8 +28,8 @@ V priebehu tejto lekcie pokryjeme tri hlavné časti Ecta:
 Na začiatok si vytvoríme aplikáciu so supervision stromom supervízorov (_supervision tree_).
 
 ```shell
-$ mix new friends --sup
-$ cd friends
+mix new friends --sup
+cd friends
 ```
 
 Do súboru `mix.exs` pridáme ako závislosti balíčky `ecto` a `postgrex`.
@@ -46,7 +46,7 @@ Do súboru `mix.exs` pridáme ako závislosti balíčky `ecto` a `postgrex`.
 Stiahneme závislosti použitím príkazu
 
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 #### Vytvorenie Repozitára
@@ -57,7 +57,7 @@ Všetka komunikácia s databázou bude vykonávaná pomocou tohto repozitára.
 Nastavíme repozitár spustením:
 
 ```shell
-$ mix ecto.gen.repo -r Friends.Repo
+mix ecto.gen.repo -r Friends.Repo
 ```
 
 Príkaz vygeneruje potrebnú konfiguráciu v `config/config.exs` na pripojenie k databáze vrátane adaptéru, ktorý má použiť.
@@ -110,7 +110,7 @@ Práve sme úspešne nakonfigurovali repozitár!
 Môžeme vytvoriť Postgres databázu pomocou nasledujúceho príkazu:
 
 ```shell
-$ mix ecto.create
+mix ecto.create
 ```
 
 Ecto použije informácie v súbore `config/config.exs` na vytvorenie pripojenia do Postgresu a voľbu mena databázy.
@@ -128,7 +128,7 @@ V Ecte je konvenciou voliť názvy tabuliek v množnom čísle - pre našu aplik
 Najlepší spôsob ako vytvoriť migrácie je mix príkaz `ecto.gen.migration <name>`, čiže v našom prípade:
 
 ```shell
-$ mix ecto.gen.migration create_people
+mix ecto.gen.migration create_people
 ```
 
 Toto nám vygeneruje nový súbor v zložke `priv/repo/migrations`, ktorý obsahovať v názve súboru timestamp (časovú značku).
@@ -164,7 +164,7 @@ Ako vidíme vyššie, stĺpcom sme definovali dátový typ, obmedzenie na nenulo
 Teraz ale poďme do príkazového riadku a spusťme našu migráciu:
 
 ```shell
-$ mix ecto.migrate
+mix ecto.migrate
 ```
 
 ### Schémy

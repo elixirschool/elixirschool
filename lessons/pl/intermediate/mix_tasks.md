@@ -1,8 +1,8 @@
 %{
-  version: "1.2.0",
-  title: "Własne funkcje Mix'a",
+  version: "1.4.0",
+  title: "Własne funkcje Mixa",
   excerpt: """
-  Tworzenie własnych funkcji Mix'a dla projektów w Elixirze.
+  Tworzenie własnych funkcji Mixa dla projektów w Elixirze.
   """
 }
 ---
@@ -145,3 +145,5 @@ mix hello             # Simply calls the Hello.say/0 function.
 
 Uwaga: Nasz kod musi być skompilowany, zanim nowe funkcje pojawią się w informacji zwracanej przez `mix help`.
 Możemy to zrobić zarówno używając wprost polecenia `mix compile`, jak i wywołując naszą funkcję, tak jak zrobiliśmy to z `mix hello`, co uruchomi dla nas proces kompilacji.
+
+Warto podkreślić, że nazwy zadań Mixa pochodzą od nazw modułów, więc zadaniem defniowanym przez `Mix.Tasks.MyHelper.Utility` będzie `my_helper.utility`.

@@ -8,6 +8,7 @@
 ---
 
 ## ¿Qué son los Protocolos?
+
 Entonces, ¿qué son?
 Los protocolos son un medio para lograr polimorfismo en Elixir.
 Uno de los puntos dolorosos de Erlang es extender un API para tipos nuevos.

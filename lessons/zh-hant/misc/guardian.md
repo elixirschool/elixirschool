@@ -10,7 +10,7 @@
 ## JWTs
 
 JWT 可以為身份驗證提供含有豐富訊息的權杖 (token)。
-在許多身份驗證系統僅提供對資源主體識別碼 (subject identifier) 存取的情況下，JWT 則以多樣化資訊的方式提供，例如： 
+在許多身份驗證系統僅提供對資源主體識別碼 (subject identifier) 存取的情況下，JWT 則以多樣化資訊的方式提供，例如：
 
 * 誰簽發的權杖
 * 誰是權杖擁有者
@@ -124,6 +124,7 @@ defmodule MyApp.GuardianSerializer do
   def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
+
 Serializer 負責查找 `sub` (主體) 欄位中被標識的資源。
 它可以從資料庫、API 甚至簡易字串中查找，
 同時也負責將資源序列化到 `sub` 欄位。

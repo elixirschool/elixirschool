@@ -195,7 +195,6 @@ import List, only: :macros
 
 Walaupun tidak kerap digunakan `require/2` tidak kurang pentingnya.  Kepemerluan satu modul memastikan ianya dikompilkan dan dipasang.  Ianya amat berguna apabila kita perlu mencapai makro sesatu modul:
 
-
 ```elixir
 defmodule Example do
   require SuperMacros

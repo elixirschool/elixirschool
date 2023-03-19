@@ -39,9 +39,8 @@ for each application in the apps/ directory.
 
 As you can see from the shell command, Mix created a small skeleton project for us with two directories:
 
-  - `apps/` - where our sub (child) projects will reside
-  - `config/` - where our umbrella project's configuration will live
-
+- `apps/` - where our sub (child) projects will reside
+- `config/` - where our umbrella project's configuration will live
 
 ## Child projects
 

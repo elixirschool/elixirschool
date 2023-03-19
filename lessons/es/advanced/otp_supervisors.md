@@ -70,7 +70,7 @@ Hay actualmente 3 diferentes estrategias disponibles para los supervisores:
 
 ## Especificación de hijo
 
-Después de que el supervisor ha comenzado este debe saber como comenzar/parar/restaurar a sus hijos. Cada módulo hijo debería tener una función `child_spec/1` que defina estos comportamientos. Los macros `use GenServer`, `use Supervisor`, y `use Agent` automáticamente definen este método por nosotros (`SimpleQueue` tiene `use Genserver`, entonces no necesitamos modificar el módulo), pero si necesitas definirlo por ti mismo `child_spec/1` debería retornar un mapa de opciones:
+Después de que el supervisor ha comenzado este debe saber como comenzar/parar/restaurar a sus hijos. Cada módulo hijo debería tener una función `child_spec/1` que defina estos comportamientos. Los macros `use GenServer`, `use Supervisor`, y `use Agent` automáticamente definen este método por nosotros (`SimpleQueue` tiene `use GenServer`, entonces no necesitamos modificar el módulo), pero si necesitas definirlo por ti mismo `child_spec/1` debería retornar un mapa de opciones:
 
 ```elixir
 def child_spec(opts) do

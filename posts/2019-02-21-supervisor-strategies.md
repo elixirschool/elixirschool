@@ -125,10 +125,12 @@ State: 22
 Counter.One: "working and my state is 0"
 Counter.One: "working and my state is 1"
 ```
+
 This fails because we made a specific clause to coerce failure by raising an error when the state reached `22` in our counter.
 It is restarted with a state 0 (the default) after this failure.
 
 Now lets make another module that will never fail:
+
 ```elixir
 defmodule Counter.Two do
   use GenServer
@@ -238,6 +240,7 @@ We can add it to `lib/counter/application.ex` in the list of children, last afte
 ```
 
 ## One For One
+
 Now, let's start our application and see the failure behaviour and state for each GenServer.
 These logs are truncated to just the interesting parts.
 
@@ -276,6 +279,7 @@ In the default configuration, we dont want one child processes failure to effect
 If we let it continue to 22 with `Counter.One`, we would see the same behaviour (allow a crash without impacting any siblings, as its one for one).
 
 ## Rest For One
+
 Now let's try it with `rest_for_one`.
 Rest for one as a strategy starts the children in sequence, and if an earlier child fails the ones after it do too.
 We want to change our line assigning `opts` in `lib/counter/application.ex` to state that.
@@ -294,7 +298,6 @@ We want to change our line assigning `opts` in `lib/counter/application.ex` to s
 
 Now, let's start up again.
 These logs are also truncated to the interesting part
-
 
 ```
 Counter.One: "working and my state is 3"
@@ -329,6 +332,7 @@ The key takeaway here is _order matters_.
 Because `Counter.One` doesn't fail until `22` is its state, and `Counter.Three` fails with a state of `5`, `Counter.One` will force a restart of all 3 children since its first, but `Counter.Three`'s failures have no effect on its siblings.
 
 ## One For All
+
 Now let's enable it with `one_for_all`.
 In this supervisory model if one child fails, all must be restarted.
 To do this lets change `lib/counter/application.ex` again.

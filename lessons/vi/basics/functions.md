@@ -139,9 +139,9 @@ Trong ví dụ tiếp theo ta có hai function với signature giống nhau, ta 
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -184,9 +184,9 @@ Khi chúng ta kết hợp ví dụ guard với tham số mặc định, ta sẽ 
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "vn") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "vn") when is_binary(name) do
@@ -219,9 +219,9 @@ defmodule Greeter do
   def hello(names, language_code \\ "vn")
 
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do

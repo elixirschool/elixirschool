@@ -114,7 +114,7 @@ SELECT m0."title", m0."tagline" FROM "movies" AS m0 WHERE (m0."title" = 'Ready P
 
 Note que a estrutura (struct) retornada tem somente os campos `tagline` e `title` – esse é o resultado da parte do nosso `select:`.
 
-Consultas como esta são chamadas *bindingless*, porque elas são simples o suficiente para não requerer bindings.
+Consultas como esta são chamadas _bindingless_, porque elas são simples o suficiente para não requerer bindings.
 
 #### Bindings em consultas
 
@@ -125,7 +125,7 @@ iex> query = from(m in Movie)
 #Ecto.Query<from m0 in Friends.Movie>
 ```
 
-Nesse caso, nós chamamos `m` de *binding* (atribuição). Bindings são extremamente úteis, porque eles permitem que nós referenciemos módulos em outras partes de uma consulta (query). Vamos selecionar os títulos de todos os filmes que tenham o `id` menor que `2`:
+Nesse caso, nós chamamos `m` de _binding_ (atribuição). Bindings são extremamente úteis, porque eles permitem que nós referenciemos módulos em outras partes de uma consulta (query). Vamos selecionar os títulos de todos os filmes que tenham o `id` menor que `2`:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: m.title)
@@ -136,7 +136,7 @@ SELECT m0."title" FROM "movies" AS m0 WHERE (m0."id" < 2) []
 ["Ready Player One"]
 ```
 
-Um ponto muito importante aqui é como a saída de uma consulta é alterada. Usando uma *expressão* com uma atribuição na parte do `select:` isso nos permite especificar exatamente a forma como os campos selecionados serão retornados. Nós podemos solicitar o retorno como uma tupla, por exemplo:
+Um ponto muito importante aqui é como a saída de uma consulta é alterada. Usando uma _expressão_ com uma atribuição na parte do `select:` isso nos permite especificar exatamente a forma como os campos selecionados serão retornados. Nós podemos solicitar o retorno como uma tupla, por exemplo:
 
 ```elixir
 iex> query = from(m in Movie, where: m.id < 2, select: {m.title})
@@ -149,9 +149,9 @@ iex> Repo.all(query)
 
 ### Consultas baseadas em macros
 
-Nos exemplos acima nós usamos as palavras-chave `select:` e `where:` dentro da macro `from` para construir uma consulta (query) - essas são chamadas de *consultas baseadas em palavras-chave*. Há, no entanto, outra forma de compor consultas - baseadas em macros. Ecto fornece macros para cada palavra-chave, como `select/3` or `where/3`.
+Nos exemplos acima nós usamos as palavras-chave `select:` e `where:` dentro da macro `from` para construir uma consulta (query) - essas são chamadas de _consultas baseadas em palavras-chave_. Há, no entanto, outra forma de compor consultas - baseadas em macros. Ecto fornece macros para cada palavra-chave, como `select/3` or `where/3`.
 
-Cada macro aceita um valor *queryable* (buscável), *uma lista explícita de bindings* e a mesma expressão que você forneceu para sua consulta de palavras-chave análoga:
+Cada macro aceita um valor _queryable_ (buscável), _uma lista explícita de bindings_ e a mesma expressão que você forneceu para sua consulta de palavras-chave análoga:
 
 ```elixir
 iex> query = select(Movie, [m], m.title)
@@ -228,7 +228,7 @@ iex> Movie |> last() |> Repo.one()
 
 ### Pré-carregamento
 
-Para poder acessar os registros associados que os macros `belongs_to`,` has_many` e `has_one` nos expõem, precisamos _pré-carregar_ os esquemas associados.
+Para poder acessar os registros associados que os macros `belongs_to`,`has_many` e `has_one` nos expõem, precisamos _pré-carregar_ os esquemas associados.
 
 Vamos dar uma olhada para ver o que acontece quando tentamos perguntar os atores associados a um filme:
 
@@ -277,8 +277,8 @@ iex> Repo.all(from m in Movie, preload: [:actors])
 
 Podemos ver que a linha de código acima executou duas consultas no banco de dados. Um para todos os filmes e outro para todos os atores com os IDs de filme fornecidos.
 
-
 #### Pré-carregamento Com Uma Consulta
+
 Podemos reduzir nossas consultas ao banco de dados com o seguinte:
 
 ```elixir

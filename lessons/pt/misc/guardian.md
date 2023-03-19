@@ -124,6 +124,7 @@ defmodule MyApp.GuardianSerializer do
   def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
+
 O seu serializer é responsável por encontrar o recurso no campo `sub` (sujeito).
 Isso pode ser uma busca em banco de dados, em uma API, ou até uma simples string.
 Ele ainda é responsável por serializar o recurso em um campo `sub`.

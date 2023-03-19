@@ -74,6 +74,7 @@ defmodule MyAppWeb.JwtAuthToken do
   end
 end
 ```
+
 This will return the `Joken.Token` struct in the following format:
 
 ```elixir
@@ -90,7 +91,7 @@ This will return the `Joken.Token` struct in the following format:
 
 #### Validating Token Expiration
 
-We're not quite done with our token struct though. Notice that the `:validations` key points to an empty map. The data stored under `:validations` key of the token struct will be used by `Joken.verify/2` to determine the validity of a decoded token's claims. Our token's encoded claims will include an *expiration date*, under a key of `"exp"`. We *only* want a decoded token to be considered valid if the `"exp"` in the claims has is not in the past. So, we'll leverage `Joken.with_validation` to write a validation function that returns true if the token's claims' `"exp"` is _not_ in the past:
+We're not quite done with our token struct though. Notice that the `:validations` key points to an empty map. The data stored under `:validations` key of the token struct will be used by `Joken.verify/2` to determine the validity of a decoded token's claims. Our token's encoded claims will include an _expiration date_, under a key of `"exp"`. We _only_ want a decoded token to be considered valid if the `"exp"` in the claims has is not in the past. So, we'll leverage `Joken.with_validation` to write a validation function that returns true if the token's claims' `"exp"` is _not_ in the past:
 
 ```elixir
 defmodule MyAppWeb.JwtAuthToken do
@@ -193,6 +194,7 @@ end
 The first function call, `JOSE.JWK.from_pem` converts our public key PEM binary into a `JOSE.JWK`. The second function call, `JOSE.JWK.to_map` (you guessed it) converts that `JOSE.JWK` into a map. So, we end up with a tuple that looks like this:
 
 {% raw %}
+
 ```elixir
 {%{kty: :jose_jwk_kty_ec},
  %{
@@ -202,6 +204,7 @@ The first function call, `JOSE.JWK.from_pem` converts our public key PEM binary 
    "y" => "xxxx"
  }}
 ```
+
 {% endraw %}
 
 Where the second element of the tuple is the ECDSA public key map. Joken will use this map as a key when generating an ECDSA signer.
@@ -350,7 +353,7 @@ defmodule MyAppWeb.JwtAuthPlug do
 end
 ```
 
-Here, we use a convenient `Plug.Conn` function to get value of the Cookie request header: `Plug.Conn.get_req_header`. Then, we use another function, `Plug.Conn.Cookies.decode` to turn that value (a string separated by `,`, `, ` or `;`) into a map. Lastly, we pattern-match the JWT out of the map.
+Here, we use a convenient `Plug.Conn` function to get value of the Cookie request header: `Plug.Conn.get_req_header`. Then, we use another function, `Plug.Conn.Cookies.decode` to turn that value (a string separated by `,`, `,` or `;`) into a map. Lastly, we pattern-match the JWT out of the map.
 
 Now that we have our JWT, let's decode it!
 

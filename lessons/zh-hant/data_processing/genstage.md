@@ -19,7 +19,7 @@
 [A] -> [B] -> [C]
 ```
 
-在這個範例中，有三個 stages：`A` 消費者 (producer)，`B` 生產者-消費者 (producer-consumer) 與 `C` 消費者 (consumer)。  `A` 
+在這個範例中，有三個 stages：`A` 消費者 (producer)，`B` 生產者-消費者 (producer-consumer) 與 `C` 消費者 (consumer)。  `A`
 產生一個被 `B` 消耗的值，`B` 執行一些工作並回傳將被 consumer `C` 收到的新值；我們將在下一節中看到，stage 的角色很重要。
 
 雖然範例是 1 對 1 的生產者-消費者，但在任何特定 stage 都可能有多個生產者和多個消費者。
@@ -58,8 +58,8 @@ GenStage 的規範中承認三種角色：
 讓我們從生成一個有 supervision 樹的專案開始：
 
 ```shell
-$ mix new genstage_example --sup
-$ cd genstage_example
+mix new genstage_example --sup
+cd genstage_example
 ```
 
 現在更新 `mix.exs` 中的耦合性 (dependencies) 以包含 `gen_stage`：
@@ -75,7 +75,7 @@ end
 在進一步研究之前，應該先取得 (fetch) 耦合關係 (dependencies) 並進行編譯：
 
 ```shell
-$ mix do deps.get, compile
+mix do deps.get, compile
 ```
 
 現在準備好建立生產者了！
@@ -87,8 +87,8 @@ GenStage 應用程式的第一件事是建立生產者。
 現在來建立生產者資料夾和檔案：
 
 ```shell
-$ mkdir lib/genstage_example
-$ touch lib/genstage_example/producer.ex
+mkdir lib/genstage_example
+touch lib/genstage_example/producer.ex
 ```
 
 這時可以加入我們所需程式碼：
@@ -125,7 +125,7 @@ end
 我們希望從生產者索取數字，濾除奇數，並能回應需求。
 
 ```shell
-$ touch lib/genstage_example/producer_consumer.ex
+touch lib/genstage_example/producer_consumer.ex
 ```
 
 現在更新檔案，使其看起來像範例內的程式碼：
@@ -160,7 +160,7 @@ end
 `handle_events/3` 函數是我們的主力，接收傳入事件、處理 (process) 它們並回傳轉換後的集合。
 而消費者的實現方式也大致相同，但重要的區別在於 `handle_events/3` 函數的回傳值以及如何被使用的。
 當將處理程序標記為 producer_consumer 時，在範例中是 tuple 的第二個引數 - `numbers` 是用於達到下游的消費者需求；
-但在消費者中，這個值會被丟棄。     
+但在消費者中，這個值會被丟棄。
 
 ## 消費者
 
@@ -168,7 +168,7 @@ end
 開始囉：
 
 ```shell
-$ touch lib/genstage_example/consumer.ex
+touch lib/genstage_example/consumer.ex
 ```
 
 由於消費者和生產者-消費者如此相似，所以程式碼看起來不會有太大的不同：

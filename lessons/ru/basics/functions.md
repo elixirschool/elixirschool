@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.3.0",
   title: "Функции",
   excerpt: """
   В Elixir, как и в многих других функциональных языках, функции являются полноценными объектами.
@@ -55,6 +55,7 @@ Handling result...
 :ok
 iex> handle_result.({:error})
 An error has occurred!
+:ok
 ```
 
 ## Именованные функции
@@ -132,7 +133,6 @@ iex> Greeter2.hello("Fred", "Jane")
 Допустим, нам нужна функция, принимающая ассоциативный массив, в котором нам интересует лишь определённый ключ.
 Можно сопоставить образец с аргумента на наличие этого ключа следующим образом:
 
-
 ```elixir
 defmodule Greeter1 do
   def hello(%{name: person_name}) do
@@ -142,6 +142,7 @@ end
 ```
 
 Теперь предположим, что у нас есть ассоциативный массив, который представляет человека по имени Fred:
+
 ```elixir
 iex> fred = %{
 ...> name: "Fred",
@@ -186,17 +187,20 @@ iex> fred = %{
 ...> favorite_color: "Taupe"
 ...> }
 ```
+
 `Greeter1.hello/1` ожидает такой аргумент:
+
 ```elixir
 %{name: person_name}
 ```
+
 В `Greeter1.hello/1` передаваемый ассоциативный массив (`fred`) сопоставляется с нашим аргументом (`%{name: person_name}`):
 
 ```elixir
 %{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
-Функция находит, что есть ключ, который соответствует ключу `name` в переданном ассоциативной массиве.
+Функция находит, что есть ключ, который соответствует ключу `name` в переданном ассоциативном массиве.
 У нас совпадение! И в результате этого значение ключа `:name` в ассоциативном массиве справа (т.е. в массиве `fred`) привязывается к переменной слева (`person_name`).
 
 Теперь, что если мы все ещё хотим присвоить имя Fred в `person_name`, но и кроме этого ТАКЖЕ хотим сохранить весь ассоциативный массив человека? Допустим, нам захотелось выполнить `IO.inspect(fred)` после того, как мы приветствуем его.
@@ -205,6 +209,7 @@ iex> fred = %{
 Чтобы сохранить данные про него, нам нужно присвоить весь связанный с ним ассоциативный массив отдельной переменной, чтобы мы могли его потом использовать.
 
 Давайте создадим новую функцию:
+
 ```elixir
 defmodule Greeter2 do
   def hello(%{name: person_name} = person) do
@@ -231,10 +236,12 @@ person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 
 Сейчас это похоже на нашу оригинальную функция `Greeter1`, где мы сопоставляем образец с ассоциативным массивом и оставляем только имя Фреда.
 У нас есть две переменные, которые мы можем использовать вместо одной:
+
 1. `person`, ссылающаяся на `%{name: "Fred", age: "95", favorite_color: "Taupe"}`
 2. `person_name`, ссылающаяся на `"Fred"`
 
 Так что теперь, когда мы вызываем `Greeter2.hello/1`, мы можем использовать всю информацию про Фреда:
+
 ```elixir
 # call with entire person
 ...> Greeter2.hello(fred)
@@ -258,11 +265,10 @@ person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 
 Таким образом мы увидели сопоставление с образцом Elixir работает на несколько уровней, поскольку каждый аргумент сопоставляется с переданными данными независимо, оставляя нам переменные для их вызова внутри нашей функции.
 
-Итак, мы видели, что шаблон Elixir сопоставляется на нескольких глубинах, потому что каждый аргумент сопоставляется с входящими данными независимо, в результате чего у нас есть переменные, которые можно использовать внутри функции.
-
 Если мы изменим порядок `%{name: person_name}` и `person` в списке, то получим тот же самый результат, потому что каждый из них соответствует fred сам по себе.
 
 Обмениваем переменную и ассоциативный массив:
+
 ```elixir
 defmodule Greeter3 do
   def hello(person = %{name: person_name}) do
@@ -273,6 +279,7 @@ end
 ```
 
 И теперь вызываем нашу функцию с теми же данными, которые использовали при вызове `Greeter2.hello/1`:
+
 ```elixir
 # call with same old Fred
 ...> Greeter3.hello(fred)
@@ -288,7 +295,8 @@ end
 ### Закрытые функции
 
 Когда мы не хотим давать доступ к функции из других модулей, мы определяем закрытые (private) функции.
-Они могут быть вызваны только из этого же модуля. Такие функции определяются с помощью `defp`:
+Они могут быть вызваны только из этого же модуля.
+Такие функции определяются с помощью `defp`:
 
 ```elixir
 defmodule Greeter do
@@ -314,9 +322,9 @@ iex> Greeter.phrase
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -354,14 +362,15 @@ iex> Greeter.hello("Sean", "es")
 "Hola, Sean"
 ```
 
-Когда мы используем одновременно ограничители и аргументы по умолчанию, то все перестает работать. Давайте посмотрим как это выглядит:
+Когда мы используем одновременно ограничители и аргументы по умолчанию, то все перестает работать.
+Давайте посмотрим как это выглядит:
 
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -372,10 +381,11 @@ defmodule Greeter do
   defp phrase("es"), do: "Hola, "
 end
 
-** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+** (CompileError) iex:8: def hello/2 defines defaults multiple times. Elixir allows defaults to be declared once per definition.
+Instead of:
 
     def foo(:first_clause, b \\ :default) do ... end
-    def foo(:second_clause, b) do ... end
+    def foo(:second_clause, b \\ :default) do ... end
 
 one should write:
 
@@ -387,16 +397,17 @@ def hello/2 has multiple clauses and defines defaults in one or more clauses
     iex:31: (module)
 ```
 
-Elixir не поддерживает аргументы по умолчанию при наличии нескольких подходящих функций. Для решения этой проблемы мы добавляем определение функции с аргументами по умолчанию:
+Elixir не поддерживает аргументы по умолчанию при наличии нескольких подходящих функций.
+Для решения этой проблемы мы добавляем определение функции с аргументами по умолчанию:
 
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en")
 
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do

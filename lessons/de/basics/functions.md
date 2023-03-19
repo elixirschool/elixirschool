@@ -113,7 +113,6 @@ iex> Greeter2.hello("Fred", "Jane")
 
 Wir haben oben die Funktionsnamen in Kommentaren angegeben. Die erste Implementierung nimmt keine Argumente entgegen, also ist sie bekannt als `hello/0`; die zweite nimmt ein Argument und ist somit `hello/1` und so weiter. Anders wie überladene Funktionen aus anderen Sprachen kann man sich diese als _verschiedene_ Funktionen vorstellen. Pattern matching, wie vorhin erklärt, trifft nur zu, wenn mehrere Definitionen für Funktionsdefinitionen gegeben sind, die alle die _gleiche_ Anzahl Argumente besitzen.
 
-
 ### Private Funktionen
 
 Wenn wir nicht wollen, dass andere Module auf Funktionen zugreifen, können wir diese Funktionen als privat definieren. Private Funktionen können nur innerhalb ihres Moduls aufgerufen werden. Wir definieren sie in Elixir mit `defp`:
@@ -141,9 +140,9 @@ Im folgenden Beispiel haben wir zwei Funktionen mit der selben Signatur, aber di
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -186,9 +185,9 @@ Wenn wir unser Beispiel mit guards mit Defaultargumenten kombinieren, rennen wir
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -221,9 +220,9 @@ defmodule Greeter do
   def hello(names, language_code \\ "en")
 
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do

@@ -4,7 +4,7 @@
   excerpt: """
   Cuando estamos probando nuestras aplicaciones, muchas veces necesitamos hacer requests a servicios externos. Incluso igual y queremos simular distintas situaciones como errores no esperados del servidor. Manejar estos casos de manera eficiente no es fácil en Elixir sin un poco de ayuda.
 
-  En esta lección vamos a explorar cómo [bypass](https://github.com/PSPDFKit-labs/bypass) nos puede ayudar a rápida y fácilmente manejar esos requests en nuestras pruebas.
+En esta lección vamos a explorar cómo [bypass](https://github.com/PSPDFKit-labs/bypass) nos puede ayudar a rápida y fácilmente manejar esos requests en nuestras pruebas
   """
 }
 ---
@@ -106,6 +106,7 @@ Bypass.expect(bypass, fn conn ->
   Plug.Conn.resp(conn, 200, "pong")
 end)
 ```
+
 `Bypass.expect/2` toma nuestra conección de Bypass y una función de aridad singular que espera modificar una conección y regresarla. Esta es también una oportunidad para hacer aseveraciones sobre ese request para verificar que está como esperamos.
 Actualicemos nuestra url de pruebas para que incluya `/ping` y aseverar tanto la ruta del request como el método HTTP:
 
@@ -189,6 +190,7 @@ defp report({:error, reason}) do
   |> Logger.error()
 end
 ```
+
 Como dijimos antes, pasaremos los sitios a `HealthCheck.ping/1` y luego iteraremos los resultados con `Enum.each/2` y aplicaremos nuestra función `report/1` contra cada uno.
 Con estas funciones puestas, nuestro agendador está listo y nos podemos concentrar en probarlo.
 
@@ -263,6 +265,7 @@ defmodule ClinicTest do
   end
 end
 ```
+
 No debería haber nada sorprendente en la prueba de arriba.
 En lugar de crear una sola conección en `setup`, creamos dos en nuestra prueba y especificamos sus puertos como 1234 y 1337.
 Después vemos nuestras llamadas `Bypass.expect/2` y finalmente el mismo código que tenemos en `SchedulerTest` para iniciar el agendador y aseverar que registramos los mensajes apropiados.

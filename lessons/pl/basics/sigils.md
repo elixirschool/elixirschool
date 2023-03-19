@@ -15,27 +15,27 @@ Biblioteka standardowa Elixira dostarcza predefiniowane sigile, ale można też 
 
 Lista dostępnych sigili to:
 
-  - `~C` Tworzy listę znaków **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
-  - `~c` Tworzy listę znaków **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
-  - `~R` Tworzy wyrażenie regularne **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
-  - `~r` Tworzy wyrażenie regularne **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
-  - `~S` Tworzy ciąg znaków **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
-  - `~s` Tworzy ciąg znaków **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
-  - `~W` Tworzy listę słów **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
-  - `~w` Tworzy listę słów **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
-  - `~N` Tworzy strukturę `NaiveDateTime`.
-  - `~U` Tworzy strukturę `DateTime` (od Elixira 1.9.0).
+- `~C` Tworzy listę znaków **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
+- `~c` Tworzy listę znaków **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
+- `~R` Tworzy wyrażenie regularne **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
+- `~r` Tworzy wyrażenie regularne **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
+- `~S` Tworzy ciąg znaków **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
+- `~s` Tworzy ciąg znaków **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
+- `~W` Tworzy listę słów **bez uwzględnienia** interpolacji i interpretacji znaków specjalnych.
+- `~w` Tworzy listę słów **z uwzględnieniem** interpolacji i interpretacji znaków specjalnych.
+- `~N` Tworzy strukturę `NaiveDateTime`.
+- `~U` Tworzy strukturę `DateTime` (od Elixira 1.9.0).
 
 Listę możemy utworzyć korzystając ze znaków:
 
-  - `<...>` Nawiasy ostrokątne
-  - `{...}` Nawiasy klamrowe
-  - `[...]` Nawiasy kwadratowe
-  - `(...)` Nawiasy okrągłe
-  - `|...|` Para kresek pionowych
-  - `/.../` Para ukośników prawych (ang. slash)
-  - `"..."` Cudzysłów
-  - `'...'` Cudzysłów pojedynczy
+- `<...>` Nawiasy ostrokątne
+- `{...}` Nawiasy klamrowe
+- `[...]` Nawiasy kwadratowe
+- `(...)` Nawiasy okrągłe
+- `|...|` Para kresek pionowych
+- `/.../` Para ukośników prawych (ang. slash)
+- `"..."` Cudzysłów
+- `'...'` Cudzysłów pojedynczy
 
 ### Listy znaków
 
@@ -108,6 +108,7 @@ iex> ~s/the cat in the hat on the mat/
 iex> ~S/the cat in the hat on the mat/
 "the cat in the hat on the mat"
 ```
+
 Jaka jest między nimi różnica? Taka sama jak w przypadku list znaków, które już omawialiśmy.
 Sigil pisany wielką literą wykona się na ciągu już zinterpretowanym, w którym wykonano też sekwencje ucieczki.
 Przyjrzyjmy się temu na kolejnym przykładzie:

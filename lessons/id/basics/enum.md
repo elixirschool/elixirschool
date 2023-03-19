@@ -31,7 +31,6 @@ Menggunakan ini, jelas bahwa kita memiliki sejumlah fungsionalias yang luas, dan
 
 Untuk daftar lengkap fungsi (functions) silahkan kunjungi dokumentasi resmi [`Enum`](https://hexdocs.pm/elixir/Enum.html); untuk enumerasi lazy gunakan modul [`Stream`](https://hexdocs.pm/elixir/Stream.html).
 
-
 ### all?
 
 Ketika menggunakan `all?/2`, dan banyak `Enum`, kita menyediakan sebuah fungsi untuk diterapkan ke item koleksi kita. Dalam kasus `all?/2`, keseluruhan koleksi harus mengevaluasi `true` jika tidak `false` akan dikembalikan:
@@ -65,7 +64,7 @@ Ada beberapa opsi untuk `chunk_every/4` tapi kita tidak akan membahas lebih dala
 
 ### chunk_by
 
-Jika kita butuh mengelompokkan koleksi kita berdasar selain ukuran, kita dapat gunakan fungsi `chunk_by/2`. Itu mengambil yang diberikan enumerable dan sebuah fungsi, dan ketika hasil kembali fungsi berubah, sebuah kelompok baru dimulai dan memulai penciptaan selanjutnya: 
+Jika kita butuh mengelompokkan koleksi kita berdasar selain ukuran, kita dapat gunakan fungsi `chunk_by/2`. Itu mengambil yang diberikan enumerable dan sebuah fungsi, dan ketika hasil kembali fungsi berubah, sebuah kelompok baru dimulai dan memulai penciptaan selanjutnya:
 
 ```elixir
 iex> Enum.chunk_by(["one", "two", "three", "four", "five"], fn(x) -> String.length(x) end)
@@ -76,7 +75,7 @@ iex> Enum.chunk_by(["one", "two", "three", "four", "five", "six"], fn(x) -> Stri
 
 ### map_every
 
-Terkadang membingkah (chungking) keluar sebuah koleksi tidak cukup untuk apa yang kita butuhkan. Jika hal tersebut pada kasus ini, `map_every/3` dapat sangatlah berguna untuk mengenai setiap item `nth`, selalu mengenai yang pertama. 
+Terkadang membingkah (chungking) keluar sebuah koleksi tidak cukup untuk apa yang kita butuhkan. Jika hal tersebut pada kasus ini, `map_every/3` dapat sangatlah berguna untuk mengenai setiap item `nth`, selalu mengenai yang pertama.
 
 ```elixir
 # Menerapkan fungsi setiap tiga item

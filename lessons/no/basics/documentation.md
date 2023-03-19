@@ -14,9 +14,9 @@ sikkert, dokumentasjon er viktig både for oss selv, og de som jobber med koden 
 
 Elixir behandler dokumentasjon som *first-class citizen*, noe som gir oss forskjellige funksjoner vi kan benytte oss av for å generere dokumentasjon i prosjektene våre. Elixir gir oss attributter for å kommentere kode. La oss ta en titt på 3 måter:
 
-  - `#` - For å dokumentere en linje.
-  - `@moduledoc` - For å dokumentere en modul.
-  - `@doc` - For å dokumentere en funksjon.
+- `#` - For å dokumentere en linje.
+- `@moduledoc` - For å dokumentere en modul.
+- `@doc` - For å dokumentere en funksjon.
 
 ### Dokumentere med enkeltlinjer
 
@@ -215,7 +215,7 @@ Vi kan på dette tidspunktet legge det ut på GitHub, vår egen nettside, eller 
 
 Dokumentasjon burde skrives etter retningslinjer for beste praksis. Siden Elixir er et temmelig nytt språk, er ennå ikke alle standarder satt. Fellesskapet rundt Elixir har forsøkt å lage slike retningslinjer for beste praksis. Du kan lese mer på [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
-  - Alltid dokumenter en modul.
+- Alltid dokumenter en modul.
 
 ```elixir
 defmodule Greeter do
@@ -226,7 +226,7 @@ defmodule Greeter do
 end
 ```
 
-  - Hvis du ikke ønsker å dokumentere en modul, **ikke** la den være tom. Merk heller modulen `false`, slik som:
+- Hvis du ikke ønsker å dokumentere en modul, **ikke** la den være tom. Merk heller modulen `false`, slik som:
 
 ```elixir
 defmodule Greeter do
@@ -235,7 +235,7 @@ defmodule Greeter do
 end
 ```
 
- - Hvis du refererer til funksjoner i moduldokumentasjonen, gjør slik:
+- Hvis du refererer til funksjoner i moduldokumentasjonen, gjør slik:
 
 ```elixir
 defmodule Greeter do
@@ -251,7 +251,7 @@ defmodule Greeter do
 end
 ```
 
- - Separer all kode en linje under `@moduledoc` slik som dette:
+- Separer all kode en linje under `@moduledoc` slik som dette:
 
 ```elixir
 defmodule Greeter do
@@ -270,7 +270,7 @@ defmodule Greeter do
 end
 ```
 
- - Bruk markdown i funksjoner for å gjøre de lettere å lese enten i IEX eller ExDoc.
+- Bruk markdown i funksjoner for å gjøre de lettere å lese enten i IEX eller ExDoc.
 
 ```elixir
 defmodule Greeter do
@@ -301,6 +301,6 @@ defmodule Greeter do
 end
 ```
 
- - Forsøk å legge til noen kodeeksempler i dokumentasjonen. Dette vil også gjøre at du kan generere automatiske tester fra kodeeksemplene i en modul, funksjon eller makro med [ExUnit.DocTest][]. For å gjøre det, må du kalle `doctest/1` makroen fra testen, og skrive eksemplene etter retningslinjene i [den offisielle dokumentasjonen][ExUnit.DocTest].
+- Forsøk å legge til noen kodeeksempler i dokumentasjonen. Dette vil også gjøre at du kan generere automatiske tester fra kodeeksemplene i en modul, funksjon eller makro med [ExUnit.DocTest][]. For å gjøre det, må du kalle `doctest/1` makroen fra testen, og skrive eksemplene etter retningslinjene i [den offisielle dokumentasjonen][ExUnit.DocTest].
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

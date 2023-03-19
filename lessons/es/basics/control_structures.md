@@ -11,7 +11,6 @@
 
 Es probable que hayas visto `if/2` antes, y si has utilizado Ruby estás familiarizado con `unless/2`. En Elixir ambos funcionan de la misma forma pero están definidos como macros, no son construcciones propias del lenguaje; puedes encontrar su implementación en el [módulo Kernel](https://hexdocs.pm/elixir/Kernel.html).
 
-
 Debería tenerse en cuenta que en Elixir, los únicos valores falsos son `nil` y el booleano `false`.
 
 ```elixir
@@ -93,7 +92,6 @@ iex> case {1, 2, 3} do
 ```
 
 Revisa la documentación oficial para [Expresiones permitidas en cláusulas de guardia](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions).
-
 
 ## cond
 
@@ -200,4 +198,5 @@ a =
       :odd
   end
 ```
+
 Esto ayuda a manejar errores dándonos coincidencia de patrones parecida a la del `case`. El valor pasado es el de la primera expresión que no coincidió con el valor esperado.

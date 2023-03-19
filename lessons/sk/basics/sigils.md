@@ -13,26 +13,26 @@ Elixir poskytuje alternatívnu syntax na reprezentáciu a prácu s literálmi. S
 
 Zoznam dostupných sigilov obsahuje:
 
-  - `~C` Vytvorí charlist (zoznam znakov) **bez** escapovania a interpolácie
-  - `~c` Vytvorí charlist **s** escapovaním a interpoláciou
-  - `~R` Vytvorí regulárny výraz **bez** escapovania a interpolácie
-  - `~r` Vytvorí regulárny výraz **s** escapovaním a interpoláciou
-  - `~S` Vytvorí reťazec **bez** escapovania a interpolácie
-  - `~s` Vytvorí reťazec **s** escapovaním a interpoláciou
-  - `~W` Vytvorí zoznam reťazcov  **bez** escapovania a interpolácie
-  - `~w` Vytvorí zoznam reťazcov **s** escapovaním a interpoláciou
-  - `~N` Vytvorí `NaiveDateTime` struct
+- `~C` Vytvorí charlist (zoznam znakov) **bez** escapovania a interpolácie
+- `~c` Vytvorí charlist **s** escapovaním a interpoláciou
+- `~R` Vytvorí regulárny výraz **bez** escapovania a interpolácie
+- `~r` Vytvorí regulárny výraz **s** escapovaním a interpoláciou
+- `~S` Vytvorí reťazec **bez** escapovania a interpolácie
+- `~s` Vytvorí reťazec **s** escapovaním a interpoláciou
+- `~W` Vytvorí zoznam reťazcov  **bez** escapovania a interpolácie
+- `~w` Vytvorí zoznam reťazcov **s** escapovaním a interpoláciou
+- `~N` Vytvorí `NaiveDateTime` struct
 
 Po tilde a znaku určujúcom druh sigilu nasleduje vstup sigilu ohraničený oddeľovačmi. Ako oddeľovače môžeme použiť tieto znaky:
 
-  - `<...>` Pár ostrých zátvoriek
-  - `{...}` Pár zložených zátvoriek
-  - `[...]` Pár hranatých zátvoriek
-  - `(...)` Pár okrúhlych zátvoriek
-  - `|...|` Pár pajp
-  - `/.../` Pár lomítok (nie spätných!)
-  - `"..."` Pár dvojitých úvodzoviek
-  - `'...'` Pár jednoduchých úvodzoviek
+- `<...>` Pár ostrých zátvoriek
+- `{...}` Pár zložených zátvoriek
+- `[...]` Pár hranatých zátvoriek
+- `(...)` Pár okrúhlych zátvoriek
+- `|...|` Pár pajp
+- `/.../` Pár lomítok (nie spätných!)
+- `"..."` Pár dvojitých úvodzoviek
+- `'...'` Pár jednoduchých úvodzoviek
 
 ### Zoznamy znakov
 

@@ -75,7 +75,7 @@ iex> SimpleQueue.queue
 
 起動されたスーパバイザは、子プロセスをどのように起動/停止/再起動させるのかを知ってなくてはなりません。
 各々の子モジュールにはこれらの振る舞いを定義する `child_spec/1` 関数が必要です。
-`use GenServer` や `use Supervisor` や `use Agent` のマクロを使う場合は、この定義が自動的に行われます。例えば `SimpleQueue` は `use Genserver` してるので、モジュールの記述を変更する必要はありません。自分で定義する必要がある場合は `child_spec/1` 関数が以下のようにキーのマップを返すようにします。
+`use GenServer` や `use Supervisor` や `use Agent` のマクロを使う場合は、この定義が自動的に行われます。例えば `SimpleQueue` は `use GenServer` してるので、モジュールの記述を変更する必要はありません。自分で定義する必要がある場合は `child_spec/1` 関数が以下のようにキーのマップを返すようにします。
 
 ```elixir
 def child_spec(opts) do

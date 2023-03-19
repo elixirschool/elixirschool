@@ -97,7 +97,6 @@ iex> sean = %{steve | name: "Sean"}
 
 Det viktigste er at du kan matche structs mot maps:
 
-
 ```elixir
 iex> %{navn: "Sean"} = sean
 %Eksempel.Bruker{navn: "Sean", roller: [:admin, :eier]}

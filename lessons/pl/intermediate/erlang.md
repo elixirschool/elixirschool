@@ -51,7 +51,7 @@ png =
   :png.create(%{:size => {30, 30}, :mode => {:indexed, 8}, :file => file, :palette => palette})
 ```
 
-## Najważniejsze różnice 
+## Najważniejsze różnice
 
 Skoro wiemy już, jak korzystać z Erlanga, musimy jeszcze poznać pewne pułapki wynikające z tego rozwiązania.
 

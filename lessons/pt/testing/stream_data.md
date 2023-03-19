@@ -5,11 +5,11 @@
   Uma biblioteca de testes unitários baseada em exemplos como a [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) é uma ferramenta maravilhosa para verificar se o código que você escreveu funciona da maneira que você espera.
   Entretanto, esse tipo de teste tem algumas desvantagens:
 
-  * Pode ser fácil de perder casos de borda, já que você está testando apenas algumas poucas entradas.
-  * Você pode escrever esses testes sem pensar cuidadosamente em seus requisitos.
-  * Esses testes podem ser bastante verbosos quando você usa vários exemplos para uma função.
+* Pode ser fácil de perder casos de borda, já que você está testando apenas algumas poucas entradas.
+* Você pode escrever esses testes sem pensar cuidadosamente em seus requisitos.
+* Esses testes podem ser bastante verbosos quando você usa vários exemplos para uma função.
 
-  Nessa lição, vamos explorar como [StreamData](https://github.com/whatyouhide/stream_data) pode nos ajudar a superar alguns desses problemas.
+Nessa lição, vamos explorar como [StreamData](https://github.com/whatyouhide/stream_data) pode nos ajudar a superar alguns desses problemas
   """
 }
 ---
@@ -58,7 +58,7 @@ Digamos que queremos uma função tipo a [`String.duplicate/2`](https://hexdocs.
 ### Strings
 
 Primeiro, vamos escrever uma função que irá duplicar strings.
-Quais são os requisitos para a nossa função? 
+Quais são os requisitos para a nossa função?
 
 1. O primeiro argumento deve ser uma string.
 Esta é a string que iremos duplicar.
@@ -136,7 +136,7 @@ O que isso faz?
 Isso nos permite documentar a propriedade que estamos testando.
 * [`check/1`](https://hexdocs.pm/stream_data/ExUnitProperties.html#check/1) é uma macro que nos permite definir os dados que vamos usar no teste.
 * [`StreamData.string/2`](https://hexdocs.pm/stream_data/StreamData.html#string/2) gera strings aleatórias.
-Nós podemos omitir o nome do módulo quando chamamos `string/2` porque `use ExUnitProperties` [importa as funções da biblioteca StreamData](https://github.com/whatyouhide/stream_data/blob/v0.4.2/lib/ex_unit_properties.ex#L109). 
+Nós podemos omitir o nome do módulo quando chamamos `string/2` porque `use ExUnitProperties` [importa as funções da biblioteca StreamData](https://github.com/whatyouhide/stream_data/blob/v0.4.2/lib/ex_unit_properties.ex#L109).
 * `StreamData.integer/0` gera inteiros aleatórios.
 * `times >= 0` é tipo uma cláusula guard.
 Isso garante que os inteiros aleatórios que usamos nos nossos testes são maiores ou iguais a zero.
@@ -164,7 +164,7 @@ assert actual_length == expected_length
 ```
 
 Isso é melhor do que nada, mas ainda não é o ideal.
-Esse teste ainda passaria se nossa função gerasse strings aleatórias com o tamanho correto. 
+Esse teste ainda passaria se nossa função gerasse strings aleatórias com o tamanho correto.
 
 Realmente queremos verificar duas coisas:
 
@@ -206,7 +206,7 @@ defmodule RepeaterTest do
 end
 ```
 
-Quando comparamos isso com o nosso teste original, vemos que a versão usando StreamData é duas vezes maior. 
+Quando comparamos isso com o nosso teste original, vemos que a versão usando StreamData é duas vezes maior.
 No entendo, conforme você adiciona mais casos de teste ao teste original ...
 
 ```elixir
@@ -312,7 +312,7 @@ Repeater.duplicate({:a, :b, :c}, 3)
 # {:a, :b, :c, :a, :b, :c, :a, :b, :c}
 ```
 
-Uma maneira de fazermos isso é converter a tupla em uma lista, duplicar a lista e converter a estrutura de dados de volta para uma tupla. 
+Uma maneira de fazermos isso é converter a tupla em uma lista, duplicar a lista e converter a estrutura de dados de volta para uma tupla.
 
 ```elixir
 defmodule Repeater do
@@ -463,4 +463,4 @@ O efeito cumulativo é que esse tipo de teste vai ser executado mais lentamente 
 
 Ainda assim, testes baseados em propriedade são ótimos complementos para testes unitátios baseados em exemplos.
 Eles nos permitem escrever testes sucintos que cobrem uma ampla variedade de entradas.
-Se você não precisa manter estado entre as execuções de teste, SteamData oferece uma ótima sintaxe para escrever testes baseados em propriedade. 
+Se você não precisa manter estado entre as execuções de teste, SteamData oferece uma ótima sintaxe para escrever testes baseados em propriedade.

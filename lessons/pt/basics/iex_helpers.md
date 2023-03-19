@@ -14,7 +14,6 @@ Assim que você começar a trabalhar com Elixir, IEx será o seu melhor amigo. E
 
 Quando trabalhando no shell, você talvez com frequência se encontre usando um novo módulo com o qual não está familiarizado. Para entender um pouco do que está disponível para você, a funcionalidade de autocompletar é maravilhosa. Simplesmente digite o nome de um módulo seguido por `.` então pressione `Tab`:
 
-
 ```elixir
 iex> Map. # pressione Tab
 delete/2             drop/2               equal?/2
@@ -227,6 +226,7 @@ defmodule Map do
   @type value :: any
 # ...
 ```
+
 Isto é um exemplo simples, declarando que keys e values por implementação pode ser de qualquer tipo, mas é útil saber disto.
 
 Com a aplicação de todos estes helpers embutidos podemos facilmente explorar o código e aprender mais sobre como as coisas funcionam. IEx é uma ferramenta bastante poderosa e robusta que dá poder aos desenvolvedores. Com essas ferramentas em nossa caixa de ferramentas, explorar e construir pode ser ainda mais divertido!

@@ -91,6 +91,7 @@ iex> case {1, 2, 3} do
 ...> end
 "Will match"
 ```
+
 [Expressions allowed in guard clauses](https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions) 공식 문서를 참고하십시오.
 
 ## cond
@@ -176,7 +177,6 @@ with {:ok, user} <- Repo.insert(changeset),
 end
 ```
 
-
 Elixir 1.3부터 `with/1`구문에서 `else`를 사용할 수 있습니다.
 
 ```elixir
@@ -195,7 +195,7 @@ a =
       :error
 
     _ ->
-      IO.puts("It's not odd")
+      IO.puts("It's odd")
       :odd
   end
 ```

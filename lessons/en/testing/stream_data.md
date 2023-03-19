@@ -5,11 +5,11 @@
   An example-based unit testing library like [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) is a wonderful tool to help you verify that your code works the way you think it does.
   However, example-based unit tests have some drawbacks:
 
-  * It can be easy to miss edge cases, since you're only testing a few inputs.
-  * You can write these tests without thinking through your requirements thoroughly.
-  * These tests can be very verbose when you use several examples for one function.
+* It can be easy to miss edge cases, since you're only testing a few inputs.
+* You can write these tests without thinking through your requirements thoroughly.
+* These tests can be very verbose when you use several examples for one function.
 
-  In this lesson we're going to explore how [StreamData](https://github.com/whatyouhide/stream_data) can help us overcome some of these drawbacks.
+In this lesson we're going to explore how [StreamData](https://github.com/whatyouhide/stream_data) can help us overcome some of these drawbacks
   """
 }
 ---
@@ -139,7 +139,7 @@ We can omit the module name when calling `string/2` because `use ExUnitPropertie
 * `StreamData.integer/0` generates random integers.
 * `times >= 0` is kind of like a guard clause.
 It ensures that the random integers we use in our test are greater than or equal to zero.
-[`SreamData.positive_integer/0`](https://hexdocs.pm/stream_data/StreamData.html#positive_integer/0) exists, but it's not quite what we want, since `0` is an acceptable value in our function.
+[`StreamData.positive_integer/0`](https://hexdocs.pm/stream_data/StreamData.html#positive_integer/0) exists, but it's not quite what we want, since `0` is an acceptable value in our function.
 
 The `???` is just some pseudocode I added.
 What exactly should we assert?

@@ -26,7 +26,6 @@ iex> table = :ets.new(:user_lookup, [:set, :protected])
 
 Giống như GenServers, có một cách để truy cập bảng trong ETS bằng tên thay vì nhận diện. Để làm vậy chúng ta cần thêm vào `:named_table`. Sau đó chúng ta có thể truy cập trực tiếp thông qua tên:
 
-
 ```elixir
 iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
 :user_lookup
@@ -116,7 +115,7 @@ iex> :ets.match_object(:user_lookup, {:_, "Sean", :_})
 
 ### Tìm kiếm nâng cao
 
-Chúng ta đã học về cách match những trường hợp đơn giản, nhưng nếu chúng ta muốn thứ gì đó giống với SQL query? Rất may có một syntax mạnh mẽ hơn cho chúng ta. Để tìm kiếm dữ liệu với `select/2` chúng ta cần phải tạo một danh sách các tuple với 3 tham số. Những tuple đại diện cho pattern của chúng ta, dữ liệu rỗng hay nâng cao hơn và trả về kiểu giá trị. 
+Chúng ta đã học về cách match những trường hợp đơn giản, nhưng nếu chúng ta muốn thứ gì đó giống với SQL query? Rất may có một syntax mạnh mẽ hơn cho chúng ta. Để tìm kiếm dữ liệu với `select/2` chúng ta cần phải tạo một danh sách các tuple với 3 tham số. Những tuple đại diện cho pattern của chúng ta, dữ liệu rỗng hay nâng cao hơn và trả về kiểu giá trị.
 
 `:"$$"` và `:"$"` có thể được sử dụng để tạo nên giá trị trả về. Những biến mới này là những shortcut cho kiểu giá trị; `:"$$"` lấy kết quả như là một dánh sách và `:"$"` lấy dữ liệu gốc.  
 
@@ -261,7 +260,7 @@ Như bạn thấy chúng ta có thể cài đặt một hệ thống cache nhanh
 
 ## Disk-based ETS
 
-Chúng ta biết ETS là lưu trữ trong bộ nhớ nhưng nếu chúng ta cần lưu trữ trên disk thì sao? Vì vậy chúng ta có Disk Based Term Storage, hay ngắn gọn DETS. ETS và DETS là như nhau chỉ với khác biệt là cách mà bảng được tạo. DETS dựa vào `open_file/2` và không cần `:named_table`: 
+Chúng ta biết ETS là lưu trữ trong bộ nhớ nhưng nếu chúng ta cần lưu trữ trên disk thì sao? Vì vậy chúng ta có Disk Based Term Storage, hay ngắn gọn DETS. ETS và DETS là như nhau chỉ với khác biệt là cách mà bảng được tạo. DETS dựa vào `open_file/2` và không cần `:named_table`:
 
 ```elixir
 iex> {:ok, table} = :dets.open_file(:disk_storage, [type: :set])

@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.3.0",
   title: "Funções",
   excerpt: """
   Em Elixir e em várias linguagens funcionais, funções são cidadãos de primeira classe. Nós aprenderemos sobre os tipos de funções em Elixir, qual a diferença, e como utilizá-las.
@@ -69,6 +69,7 @@ end
 iex> Greeter.hello("Sean")
 "Hello, Sean"
 ```
+
 Se o corpo da nossa função apenas tem uma linha, nós podemos reduzi-lo ainda mais com `do:`:
 
 ```elixir
@@ -114,7 +115,8 @@ iex> Greeter2.hello("Fred", "Jane")
 Nós listamos os nomes das funções nos comentários acima. A primeira implementação não recebe argumentos, é conhecida como `hello/0`; a segunda função recebe um argumento, portanto será conhecido como `hello/1` e assim por diante. E, ao contrário de sobrecargar funções como em outras linguagens de programação, estas são pensadas como funções _diferentes_ entre uma e outra. (Pattern matching, ou combinação de padrões, descrita agora há pouco, apenas se aplica quando várias definições são fornecidas com a _mesma_ quantidade de argumentos.)
 
 ### Funções e pattern matching
-Nos bastidores, as funções fazem pattern match nos argumentos com as quais são chamadas. 
+
+Nos bastidores, as funções fazem pattern match nos argumentos com as quais são chamadas.
 
 Se precisássemos de uma função que aceitasse um mapa, mas estivéssemos interessados em utilizar apenas uma chave, poderíamos fazer o pattern match da presença da chave assim:
 
@@ -241,7 +243,7 @@ Agora, quando chamarmos `Greeter2.hello/1`, podemos utilizar toda a informação
     iex:15: Greeter2.hello/1
 ```
 
-Vimos, então, que o Elixir faz um pattern match de múltipla profundidade, pois cada argumento faz match com a entrada de maneira independente. 
+Vimos, então, que o Elixir faz um pattern match de múltipla profundidade, pois cada argumento faz match com a entrada de maneira independente.
 
 Se alterarmos a ordem de `%{name: person_name}` e `person` na lista, teremos os mesmos resultados, pois cada um faz o pattern match com `fred` de maneira separada.
 
@@ -296,9 +298,9 @@ No exemplo a seguir nós temos duas funções com a mesma assinatura, contamos c
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -341,9 +343,9 @@ Quando combinamos nosso exemplo de guard com argumento padrão, nos deparamos co
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -354,19 +356,17 @@ defmodule Greeter do
   defp phrase("pt"), do: "Olá, "
 end
 
-** (CompileError) iex:31: definitions with multiple clauses and default values require a header. Instead of:
+** (CompileError) iex:8: def hello/2 defines defaults multiple times. Elixir allows defaults to be declared once per definition.
+Instead of:
 
     def foo(:first_clause, b \\ :default) do ... end
-    def foo(:second_clause, b) do ... end
+    def foo(:second_clause, b \\ :default) do ... end
 
 one should write:
 
     def foo(a, b \\ :default)
     def foo(:first_clause, b) do ... end
     def foo(:second_clause, b) do ... end
-
-def hello/2 has multiple clauses and defines defaults in one or more clauses
-    iex:31: (module)
 ```
 
 Elixir não gosta de argumentos padrões em múltiplas funções, pode ser confuso. Para lidar com isto, adicionamos funções com nosso argumento padrão:
@@ -376,9 +376,9 @@ defmodule Greeter do
   def hello(names, language_code \\ "en")
 
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do

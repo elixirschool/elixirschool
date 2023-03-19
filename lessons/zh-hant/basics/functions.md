@@ -23,7 +23,7 @@ iex> sum.(2, 3)
 5
 ```
 
-###  & 簡寫符號
+### & 簡寫符號
 
 在 Elixir 中使用匿名函數是非常普遍的做法，因此有一個使用簡寫符號的書寫法：
 
@@ -141,6 +141,7 @@ end
 ```
 
 現在假設有個描述某人名字為 Fred 的映射：
+
 ```elixir
 iex> fred = %{
 ...> name: "Fred",
@@ -185,10 +186,13 @@ iex> fred = %{
 ...> favorite_color: "Taupe"
 ...> }
 ```
+
 `Greeter1.hello/1` 期待這樣的參數：
+
 ```elixir
 %{name: person_name}
 ```
+
 在 `Greeter1.hello/1` 中，傳入的映射 (`fred`) 是根據參數 (`%{name: person_name}`) 賦值：
 
 ```elixir
@@ -198,13 +202,13 @@ iex> fred = %{
 它發現在傳入的映射中有一個與 `name` 對應的鍵。
 現在配對成立！並且由於這次成功的配對，右邊映射中 `:name` 鍵的值（即 `fred` 映射）將綁定到左邊的變數（`person_name`）上。
 
-
 現在，如果仍希望將 Fred 的名字分配給 `person_name`，但「也」想保留對整個 person 映射的認知呢？假設在問候他之後想要 `IO.inspect(fred)`。
 此時，因為只有對映射中的 `:name` 鍵進行模式比對，因此只會將該鍵的值綁定到變數，所以函數並不會了解 Fred 的其餘資訊。
 
 為了保留完整資訊，需要將整個映射分配給它自己的變數，以便能夠使用它。
 
 現在建立一個新函數：
+
 ```elixir
 defmodule Greeter2 do
   def hello(%{name: person_name} = person) do
@@ -224,16 +228,19 @@ person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 
 現在，`person` 已被賦值並綁定到整個 fred-map。
 接著繼續進行下一個模式比對：
+
 ```elixir
 %{name: person_name} = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 ```
 
 這與原來模式比對映射並且只保留 Fred 名字的 `Greeter1` 函數相同。
 這麼做所取得的成果為可以使用兩個變數而不是只有一個：
+
 1. `person` ，指向 `%{name: "Fred", age: "95", favorite_color: "Taupe"}`
 2. `person_name` ，指向 `"Fred"`
 
 所以現在當呼用  `Greeter2.hello/1` 時，可以使用 Fred 的所有資訊：
+
 ```elixir
 # call with entire person
 ...> Greeter2.hello(fred)
@@ -260,6 +267,7 @@ person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 如果在列表中切換 `%{name: person_name}` 和 `person` 的順序，將得到相同的結果，因為每個都與 fred 自己配對。
 
 現在交換變數和映射:
+
 ```elixir
 defmodule Greeter3 do
   def hello(person = %{name: person_name}) do
@@ -270,6 +278,7 @@ end
 ```
 
 並以在 `Greeter2.hello/1` 中使用的相同資料呼用它：
+
 ```elixir
 # call with same old Fred
 ...> Greeter3.hello(fred)
@@ -312,9 +321,9 @@ iex> Greeter.phrase
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -358,9 +367,9 @@ iex> Greeter.hello("Sean", "es")
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -394,9 +403,9 @@ Elixir 不喜歡多重比對函數中的預設引數值，因可能會造成混�
 defmodule Greeter do
   def hello(names, language_code \\ "en")
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do

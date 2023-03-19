@@ -9,18 +9,18 @@
 
 ## Visão Geral
 
-Mnesia é um sistema de banco de dados (DBMS) que vem acompanhado da Runtime do Erlang, e por isso podemos utilizar naturalmente com Elixir. 
+Mnesia é um sistema de banco de dados (DBMS) que vem acompanhado da Runtime do Erlang, e por isso podemos utilizar naturalmente com Elixir.
 O *modelo de dados híbrido relacional e de objeto* do Mnesia é o que o torna adequado para o desenvolvimento de aplicações distribuídas de qualquer escala.
 
 ## Quando Usar
 
-Quando usar uma determinada peça de tecnologia é muitas vezes um exercício confuso. 
+Quando usar uma determinada peça de tecnologia é muitas vezes um exercício confuso.
 Se você puder responder "sim" a qualquer uma das seguintes perguntas, então esta é uma boa indicação para usar Mnesia ao invés do ETS ou DETS.
 
-  - Eu preciso reverter transações?
-  - Preciso de uma sintaxe fácil de utilizar na leitura e escrita de dados?
-  - Devo armazenar dados em vários nós, em vez de um?
-  - Preciso escolher onde armazenar informações (RAM ou disco)?
+- Eu preciso reverter transações?
+- Preciso de uma sintaxe fácil de utilizar na leitura e escrita de dados?
+- Devo armazenar dados em vários nós, em vez de um?
+- Preciso escolher onde armazenar informações (RAM ou disco)?
 
 ## Schema
 
@@ -43,7 +43,7 @@ Neste caso, estamos passando o nó associado com a nossa sessão IEx.
 ## Nós
 
 Uma vez que executar o comando`Mnesia.create_schema([node()])` via IEx, você deve ver uma pasta chamada **Mnesia.nonode@nohost** ou similar no seu diretório de trabalho atual.
-Você pode estar se perguntando o que o **nonode@nohost** significa já que não nos deparamos com isso antes. 
+Você pode estar se perguntando o que o **nonode@nohost** significa já que não nos deparamos com isso antes.
 Vamos dar uma olhada.
 
 ```shell
@@ -74,7 +74,7 @@ Usage: iex [options] [.exs file] [data]
 ** Options can be passed to the VM using ELIXIR_ERL_OPTIONS or --erl
 ```
 
-Quando passamos a opção `--help` para IEx a partir da linha de comando, nos é apresentado todas as opções possíveis. 
+Quando passamos a opção `--help` para IEx a partir da linha de comando, nos é apresentado todas as opções possíveis.
 Podemos ver que existe opção `--name` e `--sname` para atribuição de informações para nós.
 Um nó é apenas uma Máquina Virtual do Erlang lidando com suas próprias comunicações, garbage collection, processamento agendado, memória e muito mais.
 O nó está sendo nomeado como **nonode@nohost** simplesmente por padrão.
@@ -89,9 +89,9 @@ iex(learner@elixirschool.com)> Node.self
 :"learner@elixirschool.com"
 ```
 
-Como podemos ver agora, o nó que estamos executando é um átomo chamado `:"learner@elixirschool.com"`. 
+Como podemos ver agora, o nó que estamos executando é um átomo chamado `:"learner@elixirschool.com"`.
 Se nós executarmos `Mnesia.create_schema([node()])` novamente, nós iremos ver que ela criou uma outra pasta chamada **Mnesia.learner@elixirschool.com**.
-O propósito disto é bem simples. 
+O propósito disto é bem simples.
 Nós em Erlang são usados para conectar a outros nós para compartilhar (distribuir) informação e recursos.
 Isto não tem que estar limitado a mesma máquina e pode comunicar através de LAN, internet, etc.
 
@@ -106,13 +106,14 @@ iex> Mnesia.create_schema([node()])
 iex> Mnesia.start()
 :ok
 ```
+
 A função `Mnesia.start/0` é assíncrona. Ela inicia a inicialização das tabelas existentes e retorna o átomo `:ok`. Caso seja necessário realizar algumas ações em uma tabela existente logo após iniciar o Mnesia, precisaremos chamar a função `Mnesia.wait_for_tables/2`. Ela irá suspender o chamador até que as tabelas sejam inicializadas. Veja o exemplo na seção [Inicialização de dados e migração](#inicialização-de-dados-e-migração).
 
 Vale a pena manter em mente que quando executando um sistema distribuído com dois ou mais nós participando, a função `Mnesia.start/1` deve ser executada em todos os nós participantes.
 
 ## Criando Tabelas
 
-A função `Mnesia.create_table/2` é usada para criar tabelas dentro do nosso banco de dados. 
+A função `Mnesia.create_table/2` é usada para criar tabelas dentro do nosso banco de dados.
 Abaixo criamos uma tabela chamada `Person`, e em seguida, passamos uma lista de palavra-chave definindo o schema da tabela.
 
 ```elixir
@@ -120,14 +121,14 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:atomic, :ok}
 ```
 
-Nós definimos as colunas usando os átomos `:id`, `:name`, e `:job`. 
+Nós definimos as colunas usando os átomos `:id`, `:name`, e `:job`.
 O primeiro átomo (neste caso, `:id`) é a chave primária.
 Pelo menos um atributo adicional é necessário.
 
 Quando executamos `Mnesia.create_table/2`, ele irá retornar qualquer uma das seguinte respostas:
 
- - `{:atomic, :ok}` se a função foi executada com êxito
- - `{:aborted, Reason}` se a função falhou
+- `{:atomic, :ok}` se a função foi executada com êxito
+- `{:aborted, Reason}` se a função falhou
 
 Em particular, se a tabela já existir a razão será na forma `{:already_exists, table}`, e se nós tentarmos criar esta tabela uma segunda vez nós teremos:
 
@@ -138,7 +139,7 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 
 ## A Maneira Suja
 
-Primeiro de tudo, vamos olhar para a maneira suja de leitura e escrita em uma tabela no Mnesia. 
+Primeiro de tudo, vamos olhar para a maneira suja de leitura e escrita em uma tabela no Mnesia.
 Isso geralmente deve ser evitado, pois o sucesso não é garantido, mas deve nos ajudar a aprender e tornar-se confortável trabalhando com Mnesia.
 Vamos adicionar algumas entradas para nossa tabela **Person**.
 
@@ -175,7 +176,7 @@ Se nós tentarmos consultar um registro que não existe, Mnesia irá responder c
 
 Tradicionalmente nós usamos **transações** para encapsular nossas leituras no nosso banco de dados.
 Transações são uma parte importante para concepção de sistemas altamente distribuídos e tolerantes a falhas.
-Uma *transação* no Mnesia é um mecanismo através do qual uma série de operações da base de dados pode ser executada como um bloco funcional. 
+Uma *transação* no Mnesia é um mecanismo através do qual uma série de operações da base de dados pode ser executada como um bloco funcional.
 Primeiro criamos uma função anônima, neste caso `data_to_write` e em seguida, passamos esta função para `Mnesia.transaction`.
 
 ```elixir
@@ -190,7 +191,8 @@ iex> data_to_write = fn ->
 iex> Mnesia.transaction(data_to_write)
 {:atomic, :ok}
 ```
-Com base neste mensagem de transação, podemos seguramente assumir que nós escrevemos os dados para a nossa tabela `Person`. 
+
+Com base neste mensagem de transação, podemos seguramente assumir que nós escrevemos os dados para a nossa tabela `Person`.
 Vamos usar uma transação para ler a partir do banco de dados agora para ter certeza.
 Usaremos `Mnesia.read/1` para ler a partir do banco de dados, mais uma vez de dentro de uma função anônima.
 
@@ -204,7 +206,7 @@ iex> Mnesia.transaction(data_to_read)
 {:atomic, [{Person, 6, "Monty Burns", "Businessman"}]}
 ```
 
-Note que se você quiser atualizar dados, somente precisa chamar `Mnesia.write/1` com a mesma chave de um registro existente. 
+Note que se você quiser atualizar dados, somente precisa chamar `Mnesia.write/1` com a mesma chave de um registro existente.
 Portanto, para atualizar o registro para Hans, você pode fazer o seguinte:
 
 ```elixir
@@ -217,7 +219,7 @@ iex> Mnesia.transaction(
 
 ## Usando índices
 
-Mnesia suporta índices em colunas não chaves, e dados podem ser então consultados usando estes índices. 
+Mnesia suporta índices em colunas não chaves, e dados podem ser então consultados usando estes índices.
 Dessa forma podemos adicionar um índice na coluna `:job` da tabela `Person`:
 
 ```elixir
@@ -252,7 +254,7 @@ iex> Mnesia.transaction(
 
 Mnesia suporta consultas complexas para recuperar dados de uma tabela na forma de combinação e funções de seleção ad-hoc.
 
-A função `Mnesia.match_object/1` retorna todos os registros que combinem com o padrão informado. 
+A função `Mnesia.match_object/1` retorna todos os registros que combinem com o padrão informado.
 Se qualquer coluna na tabela tiver índices, estes podem ser usados para tornar a busca mais eficiente.
 Use o átomo especial `:_` para identificar colunas que não devem participar da combinação.
 
@@ -271,13 +273,13 @@ Vamos olhar um exemplo que seleciona todos os registros que contém uma chave qu
 ```elixir
 iex> Mnesia.transaction(
 ...>   fn ->
-...>     {% raw %}Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}]){% endraw %}
+...>     Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}])
 ...>   end
 ...> )
 {:atomic, [[7, "Waylon Smithers", "Executive assistant"], [4, "Marge Simpson", "home maker"], [6, "Monty Burns", "Businessman"], [5, "Hans Moleman", "unknown"]]}
 ```
 
-Vamos analisar isto. 
+Vamos analisar isto.
 O primeiro atributo é a tabela, `Person`, e o segundo atributo é uma tripla da forma `{match, [guard], [result]}`:
 
 - `match` é o mesmo que você passaria para a função `Mnesia.match_object/1`. Entretanto, note os átomos especiais `:"$n"` que especificam parâmetros posicionais que são usados no restante da consulta
@@ -289,20 +291,20 @@ Para mais detalhes, veja [a documentação para select/2 do Mnesia Erlang](http:
 ## Inicialização de dados e migração
 
 A cada evolução de software, virá a hora quando você precisará atualizar o software e migrar os dados armazenados em seu banco de dados.
-Por exemplo, talvez precisaremos adicionar a coluna `:age` em nossa tabela `Person` na v2 da nossa aplicação. 
-Nós não podemos criar a tabela `Person` uma vez que ela já foi criada, mas podemos transformá-la. 
-Para isso precisamos saber quando transformar, o qual podemos fazer quando estamos criando a tabela. 
+Por exemplo, talvez precisaremos adicionar a coluna `:age` em nossa tabela `Person` na v2 da nossa aplicação.
+Nós não podemos criar a tabela `Person` uma vez que ela já foi criada, mas podemos transformá-la.
+Para isso precisamos saber quando transformar, o qual podemos fazer quando estamos criando a tabela.
 Para fazer isto, podemos usar a função `Mnesia.table_info/2` para buscar a estrutura atual da tabela e a função `Mnesia.transform_table/3` para transformá-la na nova estrutura.
 
 O código abaixo faz isto através da implementação da seguinte lógica:
 
-* Cria a tabela com os atributos da v2: `[:id, :name, :job, :age]`
-* Trata o resultado da criação:
-  * `{:atomic, :ok}`: inicializa a tabela criando índices em `:job` e `:age`
-  * `{:aborted, {:already_exists, Person}}`: verifica quais são os atributos na tabela atual e age de acordo:
-    * se é a lista v1 (`[:id, :name, :job]`), transforma a tabela dando uma idade de 21 anos para todos e adiciona um novo índice em `:age`
-    * se é a lista v2, não faz nada
-    * se é algo diferente, descarta
+- Cria a tabela com os atributos da v2: `[:id, :name, :job, :age]`
+- Trata o resultado da criação:
+  - `{:atomic, :ok}`: inicializa a tabela criando índices em `:job` e `:age`
+  - `{:aborted, {:already_exists, Person}}`: verifica quais são os atributos na tabela atual e age de acordo:
+    - se é a lista v1 (`[:id, :name, :job]`), transforma a tabela dando uma idade de 21 anos para todos e adiciona um novo índice em `:age`
+    - se é a lista v2, não faz nada
+    - se é algo diferente, descarta
 
 Se estivermos executando alguma ação nas tabelas existentes logo após iniciar o Mnesia com `Mnesia.start/0`, essas tabelas podem não ser inicializadas e acessíveis. Nesse caso, devemos usar a função [`Mnesia.wait_for_tables/2`](http://erlang.org/doc/man/mnesia.html#wait_for_tables-2). Ela suspenderá o processo atual até que as tabelas sejam inicializadas ou até que o tempo limite seja atingido.
 

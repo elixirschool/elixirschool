@@ -15,27 +15,27 @@ The Elixir core provides us with some built in sigils however, it is possible to
 
 A list of available sigils include:
 
-  - `~C` Generates a character list **with no** escaping or interpolation
-  - `~c` Generates a character list **with** escaping and interpolation
-  - `~R` Generates a regular expression **with no** escaping or interpolation
-  - `~r` Generates a regular expression **with** escaping and interpolation
-  - `~S` Generates a string **with no** escaping or interpolation
-  - `~s` Generates a string **with** escaping and interpolation
-  - `~W` Generates a word list **with no** escaping or interpolation
-  - `~w` Generates a word list **with** escaping and interpolation
-  - `~N` Generates a `NaiveDateTime` struct
-  - `~U` Generates a `DateTime` struct (since Elixir 1.9.0)
+- `~C` Generates a character list **with no** escaping or interpolation
+- `~c` Generates a character list **with** escaping and interpolation
+- `~R` Generates a regular expression **with no** escaping or interpolation
+- `~r` Generates a regular expression **with** escaping and interpolation
+- `~S` Generates a string **with no** escaping or interpolation
+- `~s` Generates a string **with** escaping and interpolation
+- `~W` Generates a word list **with no** escaping or interpolation
+- `~w` Generates a word list **with** escaping and interpolation
+- `~N` Generates a `NaiveDateTime` struct
+- `~U` Generates a `DateTime` struct (since Elixir 1.9.0)
 
 A list of delimiters include:
 
-  - `<...>` A pair of pointy brackets
-  - `{...}` A pair of curly brackets
-  - `[...]` A pair of square brackets
-  - `(...)` A pair of parentheses
-  - `|...|` A pair of pipes
-  - `/.../` A pair of forward slashes
-  - `"..."` A pair of double quotes
-  - `'...'` A pair of single quotes
+- `<...>` A pair of pointy brackets
+- `{...}` A pair of curly brackets
+- `[...]` A pair of square brackets
+- `(...)` A pair of parentheses
+- `|...|` A pair of pipes
+- `/.../` A pair of forward slashes
+- `"..."` A pair of double quotes
+- `'...'` A pair of single quotes
 
 ### Char List
 
@@ -165,9 +165,9 @@ iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23
 
 ### DateTime
 
-A [DateTime](https://hexdocs.pm/elixir/DateTime.html) can be useful for quickly creating 
-a struct to represent a `DateTime` **with** a UTC timezone. Since it's in the UTC timezone 
-and your string might represent a different timezone, a 3rd item is returned that represents 
+A [DateTime](https://hexdocs.pm/elixir/DateTime.html) can be useful for quickly creating
+a struct to represent a `DateTime` **with** a UTC timezone. Since it's in the UTC timezone
+and your string might represent a different timezone, a 3rd item is returned that represents
 the offset in seconds.
 
 For example:

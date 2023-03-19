@@ -105,6 +105,7 @@ defmodule MyApp.GuardianSerializer do
   def from_token(_), do: {:error, "Unknown resource type"}
 end
 ```
+
 Serializer của bạn đảm nhiệm phần tìm kiếm tài nguyên ở trong trường `sub` (subject). Nó có thể tìm trong DB, một API hoặc thậm chí trong nội dung một chuỗi đơn giản.
 Nó cũng chịu trách nhiệm cho việc serializer các tài nguyên trong trường `sub`.
 

@@ -39,7 +39,6 @@ I got to talk with all of the sponsors that had a booth in the venue, which was 
 
 ![IMG_20190421_155525](https://user-images.githubusercontent.com/4966172/58432840-1752fe00-80bd-11e9-83ec-e1626c35bf5a.jpg)
 
-
 ![IMG_20190421_154204](https://user-images.githubusercontent.com/4966172/58432844-1a4dee80-80bd-11e9-962e-8a0eb2db059d.jpg)
 
 ## Review
@@ -94,13 +93,13 @@ The rest of the talk is all about how, by leveraging the Box Model with a pictur
 
 Renan Ranelli gave us some very insightful information on how to rewrite critical software in Elixir while the old system is still a moving target. Renan works in Telnyx, an IP Telephony company, where their old python system was slowing down in development due to tech debt.
 
-He began giving us some small insight on how IP telephony works, and the functionality of their Dialplan service that was up for a rewrite. That service is almost stateless, super latency sensitive and had relatively low throughput for each server. The service produced an xml file, with all the information the switch needs to to operate on a call. 
+He began giving us some small insight on how IP telephony works, and the functionality of their Dialplan service that was up for a rewrite. That service is almost stateless, super latency sensitive and had relatively low throughput for each server. The service produced an xml file, with all the information the switch needs to to operate on a call.
 
 The first step in the case study was getting buy-in from stakeholders by convincing them that the company needs to slow down feature development to pay technical debt, which they accomplished phrasing all the benefits in business terms. The next step was to commit resources, which is very critical as a rewrite is a huge amount of work when you are chasing a moving target. Another step is to write and deploy continuously.
 
-What Telnyx did was run the new service along the old one, put a proxy in front of them that directed the traffic to both of them and logged the request, and both of their responses to a database. That way, Telnyx was able to make the final step––verifying feature parity–– finding disparities in the responses, fixing them, writing a regression test for that disparity to guard against it in the future, and iterating on those fixes with the help of TDD and rewrite / clean code, in a “TDD-ish” cycle of them that looks really close to the regular TDD one. 
+What Telnyx did was run the new service along the old one, put a proxy in front of them that directed the traffic to both of them and logged the request, and both of their responses to a database. That way, Telnyx was able to make the final step––verifying feature parity–– finding disparities in the responses, fixing them, writing a regression test for that disparity to guard against it in the future, and iterating on those fixes with the help of TDD and rewrite / clean code, in a “TDD-ish” cycle of them that looks really close to the regular TDD one.
 
-The outcome of this process was near zero incidents after the cutover to the new service, a better runtime with a 100% Elixir codebase, a huge improvement in observability (for example via wobserver), new features shipping faster, and parallelization made ridiculously cheap and simpler all of which led to more happy customers. 
+The outcome of this process was near zero incidents after the cutover to the new service, a better runtime with a 100% Elixir codebase, a huge improvement in observability (for example via wobserver), new features shipping faster, and parallelization made ridiculously cheap and simpler all of which led to more happy customers.
 
 [![](https://img.youtube.com/vi/WocZIc4mPxs/0.jpg)](https://www.youtube.com/watch?v=WocZIc4mPxs)
 
@@ -134,7 +133,7 @@ Wolfgang is an experienced developer who has worked on a variety of technologies
 
 Chris, a developer that currently works on Bleacher Report, closed the first day (besides lightning talks), demonstrating on how to sleep well when the storm comes, a.k.a. how to build a robust system that can handle a failure gracefully, provide feedback to other systems and give insight to operations.
 
-He began his talk saying complex systems run in degraded mode, and that scaling is a problem of handling failure. The cogs of the stacked design mentioned in the title, were all part of things you can do before your application starts: booting the runtime and configuration, starting dependencies, connecting to external systems, having alarms setup and showing feedback to us, and communicating with services we don’t control. 
+He began his talk saying complex systems run in degraded mode, and that scaling is a problem of handling failure. The cogs of the stacked design mentioned in the title, were all part of things you can do before your application starts: booting the runtime and configuration, starting dependencies, connecting to external systems, having alarms setup and showing feedback to us, and communicating with services we don’t control.
 
 About booting, he talks about how we should avoid having runtime configuration done via Mix, and how to configure our application via a Config module that is supervised and starts with our app.
 
@@ -142,9 +141,9 @@ Regarding starting dependencies, he showcased how we can have a load balancer in
 
 Then, regarding connections to external systems, he demonstrated how our database connections should always start in disconnected mode, as `Supervisors are about guarantees - Fred Hebert`, meaning that when we start our application, the database might for some reason be unavailable or loaded, so we should use a module which would check if the database is available, and then start having real traffic.
 
-Regarding alarms, in case for example the previous issue occurs where we can’t control to the database, the system should provide feedback to the operators, by raising an alarm. This can work by having a watchdog process which constantly monitors the database status and toggle an alarm based on it. 
+Regarding alarms, in case for example the previous issue occurs where we can’t control to the database, the system should provide feedback to the operators, by raising an alarm. This can work by having a watchdog process which constantly monitors the database status and toggle an alarm based on it.
 
-Lastly, he talked about how our system should handle failure with external services by using circuit breakers (like [Fuse, a circuit breaker for erlang](https://github.com/jlouis/fuse)). This can depend on a per application basis, but we could always have a write-through cache, which means that you can write the last good external service response to an ETS table, which in case the downstream service is down, we can provide to the end user. 
+Lastly, he talked about how our system should handle failure with external services by using circuit breakers (like [Fuse, a circuit breaker for erlang](https://github.com/jlouis/fuse)). This can depend on a per application basis, but we could always have a write-through cache, which means that you can write the last good external service response to an ETS table, which in case the downstream service is down, we can provide to the end user.
 
 He closed his talk by saying that, by solving all those potential issues before hand, we can prevent a ton of issues happening in the future, that we have really powerful tools in our runtime, and we should take advantage of them to build more robust systems.
 
@@ -152,7 +151,7 @@ He closed his talk by saying that, by solving all those potential issues before 
 
 ### Lessons From our first trillion messages with Flow by John Mertens
 
-John on his talk give a real life example on how they use Flow in Change.org to process a ton of messages stored in SQS. They have a Ruby/JS website where people’s actions produce and store messages in SQS, which are then processed by their Elixir / Flow system. 
+John on his talk give a real life example on how they use Flow in Change.org to process a ton of messages stored in SQS. They have a Ruby/JS website where people’s actions produce and store messages in SQS, which are then processed by their Elixir / Flow system.
 
 The 3 lessons they have learned, are the following:
 
@@ -174,11 +173,11 @@ As a bonus, we get to see how they have been already playing with Broadway, and 
 
 Arkadiusz Gil's talk was about Telemetry, a dynamic dispatching library used for metrics and instrumentations.
 
-He started by talking about monitoring, and how crucial it is to improving performance. The goal is to use monitoring early on in the lifecycle of our project (as we have done already with testing and deployment), so we can use it as another form of verification. Next, he showed us how we can do metrics today, using custom functions (like the number of requests, the number of successful responses, how big a load we are pushing to external systems like the the database, how to track memory or cpu usage from the vm etc). 
+He started by talking about monitoring, and how crucial it is to improving performance. The goal is to use monitoring early on in the lifecycle of our project (as we have done already with testing and deployment), so we can use it as another form of verification. Next, he showed us how we can do metrics today, using custom functions (like the number of requests, the number of successful responses, how big a load we are pushing to external systems like the the database, how to track memory or cpu usage from the vm etc).
 
-But as we add more and more, this custom set up becomes repetitive. Telemetry uses events emitted from various parts of our systems, and then attaches to those events by using handlers, which are in turn pushed to a reporter system like statsd. 
+But as we add more and more, this custom set up becomes repetitive. Telemetry uses events emitted from various parts of our systems, and then attaches to those events by using handlers, which are in turn pushed to a reporter system like statsd.
 
-A Telemetry event consists for three parts, the event name, the measurements (measurable properties like payload) and some metadata. Various libraries are beginning to add support for Telemetry emitting events in them, like Ecto from v3.1, Phoenix from v1.5 and Plug from 1.8. Arkadiusz also showed us `Telemetry.Poller` which every couple of seconds picks some metrics from the BEAM and emits them as Telemetry events and `Telemetry.Metrics` which allows us to specify how telemetry events are aggregated over time. Some examples of metrics is `last_value`, `sum`, `counter` and `distribution` which gives us some insight into statistics. 
+A Telemetry event consists for three parts, the event name, the measurements (measurable properties like payload) and some metadata. Various libraries are beginning to add support for Telemetry emitting events in them, like Ecto from v3.1, Phoenix from v1.5 and Plug from 1.8. Arkadiusz also showed us `Telemetry.Poller` which every couple of seconds picks some metrics from the BEAM and emits them as Telemetry events and `Telemetry.Metrics` which allows us to specify how telemetry events are aggregated over time. Some examples of metrics is `last_value`, `sum`, `counter` and `distribution` which gives us some insight into statistics.
 
 Lastly, he demonstrated the way you can plug Telemetry into a project by using the Rumble application from the Phoenix Programming book. It is as simple as adding the dependencies in `mix.exs`, making a custom module that defines which metrics we want, supervising it in `application.ex` and we are good to go from the application standpoint. The difficult part is setting up the reporter, like statsd, but there is going to be one included in Phoenix as well, where we will be able to access it from a route.
 

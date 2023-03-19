@@ -13,9 +13,9 @@ Chúng ta nên comment nhiều ra sao, và điều gì làm nên các tài liệ
 
 Elixir coi tài liệu là *công dân hạng nhất*, và đưa ra rất nhiều chức năng để có thể truy cập và sinh ra tài liệu cho các dự án. Elixir core cung cấp cho chúng ta nhiều thuộc tính khác nhau để có thể đánh dấu vào trong trong code. Hãy cùng xem xét 3 cách dưới đây:
 
-  - `#` - Viết tài liệu inline (ở mức từng dòng code)
-  - `@moduledoc` - Viết tài liệu ở mức module.
-  - `@doc` - Viết tài liệu ở mức function/macro.
+- `#` - Viết tài liệu inline (ở mức từng dòng code)
+- `@moduledoc` - Viết tài liệu ở mức module.
+- `@doc` - Viết tài liệu ở mức function/macro.
 
 ### Inline Documentation
 
@@ -29,7 +29,6 @@ IO.puts("Hello, " <> "chum.")
 ```
 
 Elixir khi chạy đoạn script trên sẽ bỏ qua tất cả những đoạn code trong dòng bắt đầu từ `#`, coi chúng như là những dữ liệu được bỏ đi. Inline comment không thêm bất cứ giá trị nào vào hoạt động và tốc độ của đoạn script, tuy nhiên khi mà đoạn code bạn viết không thể hiện rõ những gì nó chạy, lập trình viên có thể biết thông qua việc đọc comment của bạn. Tuy nhiên, không nên lạm dụng inline comment. Comment bừa bãi có thể khiến codebase trở thành ác mộng. Nó nên được sử dụng tốt nhất trong chừng mực.
-
 
 ### Documenting Modules
 
@@ -63,7 +62,6 @@ Provides a function hello/1 to greet a human
 ### Documenting Functions
 
 Elixir ngoài việc cho chúng ta khả năng viết tài liệu ở mức module, còn cho phép chúng ta viết tài liệu ở mức hàm. `@doc` được sử dụng để mô tả tài liệu cho từng hàm hoặc macro. `@doc` thường nằm ngay trên hàm mà nó muốn mô tả.
-
 
 ```elixir
 defmodule Greeter do
@@ -187,7 +185,6 @@ Chúng ta xác định `only: :dev` vì chúng ta không muốn phải tải và
 
 Cần chú ý ở điểm này, bạn không bắt buộc phải sử dụng Earmark. Bạn có thể thay đổi công cụ markup với các tool khác như Pandoc, Hoedown, hoặc là Cmark, tuy nhiên bạn sẽ phải cấu hình thêm một số thứ khác, có thể đọc thêm về điều này ở [đây](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Trong bài viết này, chúng ta vẫn sẽ chỉ sử dụng Earmark.
 
-
 ### Generating Documentation
 
 Chạy tiếp từ dòng lệnh 2 lệnh sau:
@@ -214,7 +211,7 @@ Giờ đây chúng ta có thể triển khai dự án này lên Github, hoặc p
 
 Việc thêm tài liệu nên được nằm trong hướng dẫn về Best practices của một ngôn ngữ. Từ việc Elixir là một ngôn ngữ còn khá non trẻ, rất nhiều chuẩn còn đang được khai phá, cũng như hệ sinh thái đang phát triển. Tuy nhiên, công đồng đã nỗ lực để có thể tạo ra những Best Practice. Để đọc thêm về những Best Practice, có thể xem [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
-  - Luôn luôn viết tài liệu cho một module
+- Luôn luôn viết tài liệu cho một module
 
 ```elixir
 defmodule Greeter do
@@ -225,7 +222,7 @@ defmodule Greeter do
 end
 ```
 
-  - Nếu bạn không muốn viết tài liệu cho một module, đừng để trông nó, lúc đó, có thể sử dụng `false` như sau:
+- Nếu bạn không muốn viết tài liệu cho một module, đừng để trông nó, lúc đó, có thể sử dụng `false` như sau:
 
 ```elixir
 defmodule Greeter do
@@ -234,7 +231,7 @@ defmodule Greeter do
 end
 ```
 
- - Khi muốn trỏ tới một hàm trong module, có thể sử dụng dấu `\`` như sau:
+- Khi muốn trỏ tới một hàm trong module, có thể sử dụng dấu `\`` như sau:
 
 ```elixir
 defmodule Greeter do
@@ -250,7 +247,7 @@ defmodule Greeter do
 end
 ```
 
- - Phân tách tất cả các code một dòng trong `@moduledoc` như sau:
+- Phân tách tất cả các code một dòng trong `@moduledoc` như sau:
 
 ```elixir
 defmodule Greeter do
@@ -269,7 +266,7 @@ defmodule Greeter do
 end
 ```
 
- - Sử dụng markdown trong các tài liệu sẽ làm nó dễ đọc hơn qua IEx và ExDoc.
+- Sử dụng markdown trong các tài liệu sẽ làm nó dễ đọc hơn qua IEx và ExDoc.
 
 ```elixir
 defmodule Greeter do
@@ -300,6 +297,6 @@ defmodule Greeter do
 end
 ```
 
- - Cố gắng thêm một vài code ví dụ vào trong tài liệu của bạn, nó cũng cho phép bạn có thể sinh ra các test tự động từ code ví dụ tìm thấy trong module, hàm hoặc là macro với [ExUnit.DocTest][]. Để làm điều đó, bạn sẽ cần phải gọi tới `doctest/1` macro trong file test, và viết các ví dụ tuân theo một vài hướng dẫn, chi tiết được mô tả trong [tài liệu chuẩn][ExUnit.DocTest]
+- Cố gắng thêm một vài code ví dụ vào trong tài liệu của bạn, nó cũng cho phép bạn có thể sinh ra các test tự động từ code ví dụ tìm thấy trong module, hàm hoặc là macro với [ExUnit.DocTest][]. Để làm điều đó, bạn sẽ cần phải gọi tới `doctest/1` macro trong file test, và viết các ví dụ tuân theo một vài hướng dẫn, chi tiết được mô tả trong [tài liệu chuẩn][ExUnit.DocTest]
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

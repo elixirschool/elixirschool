@@ -112,6 +112,7 @@ iex> cond do
 ```
 
 Seperti juga `case`, `cond` akan menimbulkan satu ralat jika tiada padanan.  Untuk mengatasi keadaan ini, kita boleh menetapkan satu padanan kepada `true`:
+
 ```elixir
 iex> cond do
 ...>   7 + 1 == 0 -> "Incorrect"

@@ -54,7 +54,7 @@ We'll start by turning the `"Name"` table header into a live link.
 </table>
 ```
 
-The `live_link/2` function generates a live link for HTML5 pushState based navigation *without* page reloads.
+The `live_link/2` function generates a live link for HTML5 pushState based navigation _without_ page reloads.
 
 With the help of the the `Routes.live_path` helper, we're generating the following live link: `"/cohorts?sort_by=name"`. Since this route belongs to the `CohortsLive` live view that we've already mounted, _and_ since that live view is defined in our router (as opposed to rendered from a controller action), this means we will invoke our existing live view's `handle_params/3` function _without mounting a new LiveView_. Pretty cool!
 
@@ -63,10 +63,12 @@ Let's take a look at how we can implement a `handle_params/3` function now.
 ## Implementing `handle_params/3`
 
 The `handle_params/3` callback is invoked under two circumstances.
+
 * After `mount/2` is called (i.e. when the live view first renders)
 * When a live navigation event, like a live link click, occurs. This second circumstance only triggers this callback when, as described above, the live view we are linking to is the same live view we are currently on _and_ the LiveView is defined in the router.
 
 `handle_params/3` receives three arguments:
+
 * The query parameters
 * The requested url
 * The socket
@@ -131,7 +133,7 @@ Our `handle_params/3` function will then sort the cohorts stored `socket.assigns
 
 Since `handle_params/3` is _also_ called after `mount/2`, we have therefore allowed a user to navigate directly to `/cohorts?sort_by=name` via their browser and see the live view render with a table of cohorts already sorted by name. And just like that we've enabled users to share links to sorted table views with zero additional lines of code!
 
-## More Sorting!
+## More Sorting
 
 Now that our "sort by name" feature is up and running, let's add the remaining live links to allow users to sort by the other attributes we listed earlier: campus, start date and status.
 

@@ -6,7 +6,7 @@
 
   En general la convención en Elixir es crear una función (`example/1`) que devuelve `{:ok, result}` y `{:error, reason}` y una función distinta (`example!/1`) que devuelve el resultado `result` sin envolver o levanta un error.
 
-  Esta lección se enfocará en interactuar con la última forma.
+Esta lección se enfocará en interactuar con la última forma
   """
 }
 ---

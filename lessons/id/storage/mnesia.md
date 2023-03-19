@@ -15,10 +15,10 @@ Mnesia adalah sebuah Sistem Manajemen Database (DBSM) yang disertakan bersama Er
 
 Kapan kita menggunakan sebuah teknologi seringkali jadi masalah yang membingungkan.  Jika anda bisa menjawab 'ya' pada satu saja pertanyaan berikut, maka ini adalah indikasi bagus untuk menggunakan Mnesia sebagai ganti ETS atau DETS.
 
-  - Apakah aku perlu membalikkan (roll back) transaksi?
-  - Apakah aku perlu sebuah sintaks yang mudah digunakan untuk membaca dan menulis data?
-  - Apakah aku perlu menyimpan data lintas node, dan tidak hanya satu node?
-  - Apakah aku perlu bisa memilih di mana informasi disimpan (RAM atau disk)?
+- Apakah aku perlu membalikkan (roll back) transaksi?
+- Apakah aku perlu sebuah sintaks yang mudah digunakan untuk membaca dan menulis data?
+- Apakah aku perlu menyimpan data lintas node, dan tidak hanya satu node?
+- Apakah aku perlu bisa memilih di mana informasi disimpan (RAM atau disk)?
 
 ## Schema
 
@@ -38,7 +38,7 @@ Untuk pelajaran ini, kita akan mengambil pendekatan yang terakhir ketika bekerja
 
 ## Node
 
-Begitu kita sudah menjalankan perintah `Mnesia.create_schema([node()])` via IEx, anda mestinya melihat sebuah folder bernama **Mnesia.nonode@nohost** atau yang serupa di dalam direktori kerja yang sekarang ada.  Anda mungkin bertanya-tanya apa artinya **nonode@nohost** karena sebelumnya kita belum pernah melihatnya. Mari kita lihat. 
+Begitu kita sudah menjalankan perintah `Mnesia.create_schema([node()])` via IEx, anda mestinya melihat sebuah folder bernama **Mnesia.nonode@nohost** atau yang serupa di dalam direktori kerja yang sekarang ada.  Anda mungkin bertanya-tanya apa artinya **nonode@nohost** karena sebelumnya kita belum pernah melihatnya. Mari kita lihat.
 
 ```shell
 $ iex --help
@@ -107,8 +107,8 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 
 Kita mendefinisikan kolom-kolom menggunakan atom-atom `:id`, `:name`, dan `:job`. Ketika kita menjalankan `Mnesia.create_table/2`, fungsi tersebut akan mengembalikan salah satu dari respons berikut:
 
- - `{:atomic, :ok}` jika fungsi tersebut selesai dengan baik
- - `{:aborted, Reason}` jika fungsi tersebut gagal
+- `{:atomic, :ok}` jika fungsi tersebut selesai dengan baik
+- `{:aborted, Reason}` jika fungsi tersebut gagal
 
 ## Cara yang Kotor
 
@@ -159,6 +159,7 @@ iex> data_to_write = fn ->
 iex> Mnesia.transaction(data_to_write)
 {:atomic, :ok}
 ```
+
 Berdasarkan pesan transaksi ini, kita bisa dengan aman mengasumsikan bahwa kita telah menuliskan data ke tabel `Person` kita.  Mari kita gunakan transaksi untuk membaca dari database untuk memastikan. Kita akan gunakan `Mnesia.read/1` untuk membaca dari database, tetapi sekali lagi dari sebuah fungsi anonim.
 
 ```shell

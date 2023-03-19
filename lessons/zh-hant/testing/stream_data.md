@@ -5,11 +5,11 @@
   基於案例（example-based）的單元測試函式庫，例如 [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html)，是個極佳的工具來協助驗證程式碼是否以如你預期的方式工作。
   但是，基於案例的單元測試有一些缺點：
 
-  * 由於並非測試所有輸入情境，因此容易遺漏邊界案例。
-  * 可以編寫這些測試案例而無需仔細考慮需求。
-  * 想以多個案例測試單一函數時，這些測試可能會非常冗長。
+* 由於並非測試所有輸入情境，因此容易遺漏邊界案例。
+* 可以編寫這些測試案例而無需仔細考慮需求。
+* 想以多個案例測試單一函數時，這些測試可能會非常冗長。
 
-  在本課程中，將探討 [StreamData](https://github.com/whatyouhide/stream_data) 如何幫助我們克服上述一些缺點。
+在本課程中，將探討 [StreamData](https://github.com/whatyouhide/stream_data) 如何幫助我們克服上述一些缺點
   """
 }
 ---
@@ -24,7 +24,7 @@ StreamData 函式庫將執行每個測試 [預設情況下 100 次](https://hexd
 如果包含 50 個元素的串列導致函數中斷，並並僅僅其中一個串列元素存在問題，則 StreamData 可以協助辦識有問題的元素。
 
 這個測式函式庫有兩個主要模組。
-[`StreamData`](https://hexdocs.pm/stream_data/StreamData.html) 產生隨機資料流；而 
+[`StreamData`](https://hexdocs.pm/stream_data/StreamData.html) 產生隨機資料流；而
 [`ExUnitProperties`](https://hexdocs.pm/stream_data/ExUnitProperties.html) 可以讓你使用產生的資料作為輸入來針對函數執行測試。
 
 你可能會問，不知道實際的輸入內容時，該如何斷定函數的測試是有意義的。繼續往下讀！
@@ -111,7 +111,6 @@ end
 我們還可以編寫更多範例來測試邊界案例和大型字串。
 但是，來看看是否能夠用 StreamData 在沒有更多程式碼的情況下更嚴格地測試該函數。
 
-
 ```elixir
 defmodule RepeaterTest do
   use ExUnit.Case
@@ -149,6 +148,7 @@ end
 ```elixir
 assert String.duplicate(str, times) == Repeater.duplicate(str, times)
 ```
+
 ...但這只是使用實際函數的實現，不是很有用。
 還是可以藉由僅驗證字串的長度來放寬斷言條件：
 

@@ -7,6 +7,7 @@
   The concurrency model relies on Actors, a contained process that communicates with other processes through message passing.
 
   In this lesson we'll look at the concurrency modules that ship with Elixir.
+
   In the following chapter we cover the OTP behaviors that implement them.
   """
 }

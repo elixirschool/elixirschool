@@ -77,7 +77,6 @@ iex> 1.0e-10
 1.0e-10
 ```
 
-
 ### Booleans
 
 Elixir unterstützt `true` und `false` als Booleans; alles außer `false` und `nil` wird als wahr betrachtet:

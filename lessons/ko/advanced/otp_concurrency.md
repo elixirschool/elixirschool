@@ -4,7 +4,7 @@
   excerpt: """
   지난 강의에서는 Elixir의 동시성에 대해 살펴보았습니다만, 더 정밀한 조작이 필요한 경우가 있습니다. 그럴 때에는 Elixir의 바탕이 된 OTP 비헤이비어를 사용할 수 있습니다.
 
-  이번 강의에서는 가장 큰 부분인 GenServer에 대해서 다루겠습니다.
+이번 강의에서는 가장 큰 부분인 GenServer에 대해서 다루겠습니다
   """
 }
 ---
@@ -15,14 +15,14 @@ OTP 서버는 여러 콜백을 구현한 GenServer 비헤이비어가 포함된 
 
 GenServer API를 나타내기 위해, 값을 저장하고 빼낼 수 있는 기초적인 큐(queue)를 구현해보겠습니다.
 
-GenServer를 시작하기 위해, 기동 하고 초기화 처리를 해야 합니다. 대부분의 경우, 프로세스를 연결해야 하므로 `GenServer.start_link/3`를 사용할 수 있습니다. 방금 언급한 함수를 이용할 때, 시작할 GenServer 모듈, 초기 인자, 그리고 GenServer 옵션들을 넘깁니다. 반환되는 값을 통해 초기 상태를 결정하는 `GenServer.init/1`로 인자들이 넘겨지게 될 것입니다. 넘겨지는 인자가 초기 상태가 되는 다음의 예제를 보겠습니다.
+GenServer를 시작하기 위해, 기동하고 초기화 처리를 해야 합니다. 대부분의 경우, 프로세스를 연결해야 하므로 `GenServer.start_link/3`를 사용할 수 있습니다. 방금 언급한 함수를 이용할 때, 시작할 GenServer 모듈, 초기 인자, 그리고 GenServer 옵션들을 넘깁니다. 반환되는 값을 통해 초기 상태를 결정하는 `GenServer.init/1`로 인자들이 넘겨지게 될 것입니다. 넘겨지는 인자가 초기 상태가 되는 다음의 예제를 보겠습니다.
 
 ```elixir
 defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  큐로 프로세스를 연결하세요. 이것은 헬퍼 함수 입니다.
+  큐로 프로세스를 연결하세요. 이것은 헬퍼 함수입니다.
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -37,7 +37,7 @@ end
 
 ### 동기 함수
 
-GenServer와 동기적(함수를 호출하여 응답을 기다림)으로 데이터를 주고 받아야 할 때가 종종 있습니다. 동기 요청을 다루기 위해, `GenServer.handle_call/3` 콜백을 구현해야 합니다. 이는 요청, 함수를 호출하는 프로세스의 PID, 현재 상태를 인자로 가집니다. `{:reply, response, state}` 같은 튜플을 응답으로 반환하길 기대합니다.
+GenServer와 동기적(함수를 호출하여 응답을 기다림)으로 데이터를 주고받아야 할 때가 종종 있습니다. 동기 요청을 다루기 위해, `GenServer.handle_call/3` 콜백을 구현해야 합니다. 이는 요청, 함수를 호출하는 프로세스의 PID, 현재 상태를 인자로 가집니다. `{:reply, response, state}` 같은 튜플을 응답으로 반환하길 기대합니다.
 
 패턴매칭을 이용하여, 다양한 요청과 상태에 따라 콜백을 정의할 수 있습니다. [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3) 문서에서 허용되는 반환 값의 전체 목록을 확인할 수 있습니다.
 
@@ -76,7 +76,7 @@ defmodule SimpleQueue do
 end
 ```
 
-이제 SimpleQueue를 시작해 새로만든 dequeue 기능을 테스트해봅시다.
+이제 SimpleQueue를 시작해 새로 만든 dequeue 기능을 테스트해봅시다.
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])

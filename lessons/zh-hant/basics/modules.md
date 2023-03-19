@@ -108,7 +108,7 @@ iex> %{name: "Sean"} = sean
 %Example.User<name: "Sean", roles: [...], ...>
 ```
 
-自 Elixir 1.8 開始，結構體加入自定自我訓練(introspection)。
+自 Elixir 1.8 開始，結構體加入自省(introspection)。
 要了解這代表著什麼以及如何使用它，現在來檢查(inspect) `sean` 擷取：
 
 ```elixir
@@ -139,7 +139,6 @@ iex> inspect(sean)
 ```
 
 `roles` 已被排除在輸出中！
-
 
 ## 合成 (Composition)
 
@@ -297,7 +296,6 @@ end
 ```
 
 現在更新我們的 `Example` 模組以包含新創設的選項 `greeting` ：
-
 
 ```elixir
 defmodule Example do

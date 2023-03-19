@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Poolboy",
   excerpt: """
   프로그램이 생성 할 수 있는 동시 프로세스의 최대 수를 제한하지 않으면 쉽게 시스템 자원을 고갈시킬 수 있습니다. [Poolboy](https://github.com/devinus/poolboy)는 이 문제를 해결하기 위해 Erlang에서 널리 사용되는 가볍고 일반적인 풀링 라이브러리입니다.
@@ -22,7 +22,7 @@
 먼저 애플리케이션을 만들어 봅시다.
 
 ```shell
-$ mix new poolboy_app --sup
+mix new poolboy_app --sup
 ```
 
 `mix.exs`에 Poolboy를 의존성으로 추가합니다.
@@ -34,8 +34,9 @@ end
 ```
 
 그리고 Poolboy를 포함해 의존성을 가져옵니다.
+
 ```shell
-$ mix deps.get
+mix deps.get
 ```
 
 ## 설정 옵션
@@ -85,6 +86,7 @@ end
 그런 다음, `poolboy.child_spec/2` 함수를 자식 리스트에 추가해 워커 풀이 애플리케이션이 시작될 때 시작되도록 합니다. 이 함수는 풀의 이름, 풀 설정 두 인자를 받습니다.
 
 ## 워커 생성하기
+
 워커 모듈은 숫자의 제곱근을 계산하고 1초 쉰 다음에 워커의 pid를 출력하는 단순한 `GenServer`입니다. `lib/poolboy_app/worker.ex`를 만듭니다.
 
 ```elixir
@@ -125,7 +127,17 @@ defmodule PoolboyApp.Test do
     Task.async(fn ->
       :poolboy.transaction(
         :worker,
-        fn pid -> GenServer.call(pid, {:square_root, i}) end,
+        fn pid -> 
+          # 젠서버 호출을 try - catch 블록으로 감싸 봅시다. 
+          # 이것은 우리가 어떤 예외든 잡을 수 있게 해주며 깔끔한 방법으로 워커가 풀보이에게 응답하도록 해줍니다.
+          # 또한 프로그래머가 오류를 검색하고 수정할 수 있도록 해줍니다.
+          try do
+            GenServer.call(pid, {:square_root, i})
+          catch
+            e, r -> IO.inspect("poolboy transaction caught error: #{inspect(e)}, #{inspect(r)}")
+            :ok
+          end
+        end,
         @timeout
       )
     end)
@@ -138,7 +150,7 @@ end
 테스트 함수를 실행해 결과를 확인해 봅시다.
 
 ```shell
-$ iex -S mix
+iex -S mix
 ```
 
 ```elixir

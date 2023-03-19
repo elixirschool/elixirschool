@@ -138,7 +138,7 @@ iex> Greeter.phrase
 
 ### Hraničné podmienky
 
-Hraničných podmienok (*guards*) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](/sk/lessons/basics/control_structures). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
+Hraničných podmienok (_guards_) sme sa krátko dotkli v kapitole o [riadiacich štruktúrach](/sk/lessons/basics/control_structures). Teraz sa pozrieme na ich využitie pri definovaní pomenovaných funkcií.
 Keď Elixir vybral funkciu, akékoľvek existujúce hraničné podmienky budú otestované.
 
 V nasledujúcom príklade máme dve funkcie s tou istou hlavičkou, no rôznymi hraničnými podmienkami. Testujeme typ parametra:
@@ -146,9 +146,9 @@ V nasledujúcom príklade máme dve funkcie s tou istou hlavičkou, no rôznymi 
 ```elixir
 defmodule Greeter do
   def hello(names) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello
+    names = Enum.join(names, ", ")
+    
+    hello(names)
   end
 
   def hello(name) when is_binary(name) do
@@ -191,9 +191,9 @@ Problém môže nastať, ak nevhodne skombinujeme hraničné podmienky s východ
 ```elixir
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code \\ "en") when is_binary(name) do
@@ -226,9 +226,9 @@ defmodule Greeter do
   def hello(names, language_code \\ "en")
 
   def hello(names, language_code) when is_list(names) do
-    names
-    |> Enum.join(", ")
-    |> hello(language_code)
+    names = Enum.join(names, ", ")
+    
+    hello(names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do

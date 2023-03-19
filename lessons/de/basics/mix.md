@@ -4,7 +4,7 @@
   excerpt: """
   Bevor wir in tiefere Gewässer von Elixir eintauchen können, müssen wir erst mix lernen. Falls du mit Ruby vertraut bist, so ist mix wie Bundler, RubyGems und Rake zusammen. Es ist ein elementarer Bestandteil eines Elixir-Projekts und in dieser Lektion werden wir ein paar der tollen Features kennenlernen, die uns mix bietet. Um alles zu sehen, was dir mix bietet, sieh dir doch `mix help` an.
 
-  Bis jetzt haben wir ausschließlich innerhalb von `iex` mit dessen Limitierungen gearbeitet. Um etwas Bedeutenderes zu bauen müssen wir unseren Code in mehr Dateien aufteilen, um ihn effektiv zu verwalten. Mix lasst uns genau das für unsere Projekte tun.
+Bis jetzt haben wir ausschließlich innerhalb von `iex` mit dessen Limitierungen gearbeitet. Um etwas Bedeutenderes zu bauen müssen wir unseren Code in mehr Dateien aufteilen, um ihn effektiv zu verwalten. Mix lasst uns genau das für unsere Projekte tun
   """
 }
 ---
@@ -14,7 +14,7 @@
 Wenn wir soweit sind, ein neues Elixir-Projekt zu erstellen, macht mix es uns mit dem `mix new`-Befehl einfach. Dieser generiert die Verzeichnisstruktur unseres Projekts und notwendiges Boilerplate. Alles ziemlich unkompliziert, also lass uns loslegen:
 
 ```bash
-$ mix new example
+mix new example
 ```
 
 An der Ausgabe können wir sehen, dass mix unser Verzeichnis und eine Sammlung an Boilerplatedateien erstellt hat:
@@ -68,8 +68,8 @@ Die Sektion `application` wird während der Erstellung unserer Anwendungsdatei w
 Es könnte vonnöten sein `iex` im Kontext unserer Anwendung zu starten. Glücklicherweise macht mix das einfach. Wir können so eine neue `iex`-Sitzung starten:
 
 ```bash
-$ cd example
-$ iex -S mix
+cd example
+iex -S mix
 ```
 
 `iex` auf diese Weise zu starten lädt unsere Anwendung und Abhängigkeiten in die aktuelle Laufzeitumgebung.
@@ -81,7 +81,7 @@ Mix ist clever und kompiliert Änderungen, falls notwendig. Es kann jedoch immer
 Um ein mix-Projekt zu kompilieren brauchen wir nur `mix compile` im Hauptverzeichnis unserer Anwendung aufzurufen:
 
 ```bash
-$ mix compile
+mix compile
 ```
 
 Da noch nicht viel in unserem Projekt vorhanden ist, ist die Ausgabe nicht besonders spannend:
@@ -117,7 +117,7 @@ Wie du vielleicht schon anhand der Abhängigkeiten oben erkennen kannst ist `cow
 Haben wir einmal unsere Abhängigkeiten definiert, bleibt nur noch eines übrig: Sie herunterladen. Das ist analog zu `bundle install`:
 
 ```bash
-$ mix deps.get
+mix deps.get
 ```
 
 Das war's! Wir haben unsere Abhängigkeiten definiert und heruntergeladen. Nun sind wir darauf vorbereitet mit Abhängigkeiten umzugehen, wenn die Zeit kommt.
@@ -133,5 +133,5 @@ Mix unterstützt wie Bundler abweichende Umgebungen. Standardmäßig arbeitet mi
 Die aktuell verwendete Umgebung kann mit `Mix.env` abgefragt werden. Wie erwartet kann die Umgebung mit der `MIX_ENV`-Umgebungsvariable gesetzt werden:
 
 ```bash
-$ MIX_ENV=prod mix compile
+MIX_ENV=prod mix compile
 ```

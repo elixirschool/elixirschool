@@ -19,7 +19,6 @@ Along with these reviews, we're hoping to be able to offer additional discounts 
 
 For the next part of this series, we are reviewing [_Functional Web Development with Elixir, OTP, and Phoenix_](https://pragprog.com/book/lhelph/functional-web-development-with-elixir-otp-and-phoenix) by [Lance Halvorsen](https://twitter.com/lance_halvorsen).
 
-
 ## Author
 
 Lance has been developing software for the web professionally for two decades. He's worked with a number of languages, frameworks, and approaches during that time. All of those experiences feed into his current thoughts on web development, which are captured in this book.

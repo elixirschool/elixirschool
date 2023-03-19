@@ -67,7 +67,7 @@ end
 Uygulamanızı eskript kullanmak için yapılandırdıktan hemen sonra, bizim çalıştırılabilir programımızı Mix ile birlikte aşağıdaki gibi kullanacağız.
 
 ```elixir
-$ mix escript.build
+mix escript.build
 ```
 
 Hadi bir örnek ile yaptıklarımıza bakalım.

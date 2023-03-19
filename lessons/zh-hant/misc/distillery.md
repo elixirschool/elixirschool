@@ -16,6 +16,7 @@
 > 發布版本可以簡化部署：它們是獨立（self-contained）的，並提供啟動套件所需的一切；可通過其提供的殼層腳本打開在背景啟動的遠端控制台來輕鬆管理，像是啟動/停止/重新啟動套件或是發送遠端指令等。此外，它們是可封存的加工品，這表示可以在將來的任何時候從其壓縮檔中還原舊發布版本（除非與基礎 OS 或系統函式庫不相容）使用發布版本也是執行熱升級和熱降級的前置作業，而熱升級和熱降級是 Erlang VM 最強大的功能之一。 ー [Distillery 文件](https://hexdocs.pm/distillery/introduction/understanding_releases.html)
 
 一個發布版本將包含以下內容：
+
 * /bin 資料夾
   * 含有一個腳本，該腳本是執行整個應用程式的起點。
 * /lib 資料夾
@@ -24,7 +25,6 @@
   * 含有有關該發布版本的後設資料以及鉤子和自定指令。
 * /erts-VERSION
   * 含有 Erlang 執行期環境，機器無需安裝 Erlang 或 Elixir 即可執行應用程式。
-
 
 ### 入門/安裝
 
@@ -45,7 +45,6 @@ mix deps.get
 ```
 mix compile
 ```
-
 
 ### 建立你的發布版本
 
@@ -93,7 +92,6 @@ For a complete listing of commands and their use:
 要執行應用程式，請在終端機中輸入以下內容 `_build/dev/rel/MYAPP/bin/MYAPP foreground`
 在你的情況用你的專案名稱替換 MYAPP。現在是正在執行應用程式的發布版本！
 
-
 ## 在 Phoenix 中使用 Distillery
 
 如果你是 Distillery 與 Phoenix 配合著使用，會需要執行一些額外的步驟，然後才能起作用。
@@ -108,6 +106,7 @@ config :book_app, BookAppWeb.Endpoint,
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 ```
+
 改為：
 
 ```elixir
@@ -121,10 +120,11 @@ config :book_app, BookApp.Endpoint,
 ```
 
 此時己經完成的事項是：
-- `server` - 在應用程式啟動時啟動 Cowboy 應用程式的 http 端點服務。
-- `root` - 設定應用程式根目錄，該目錄是靜態文件存取位置。
-- `version` - 熱升級應用程式版本時，將清除應用程式快取。
-- `port` - 藉由設定 ENV 變數可以在啟動應用程式時傳入連接埠號碼來改變連接埠設定。當啟動應用程式時，可以通過執行 `PORT=4001 _build/prod/rel/book_app/bin/book_app foreground` 來提供連接埠。
+
+* `server` - 在應用程式啟動時啟動 Cowboy 應用程式的 http 端點服務。
+* `root` - 設定應用程式根目錄，該目錄是靜態文件存取位置。
+* `version` - 熱升級應用程式版本時，將清除應用程式快取。
+* `port` - 藉由設定 ENV 變數可以在啟動應用程式時傳入連接埠號碼來改變連接埠設定。當啟動應用程式時，可以通過執行 `PORT=4001 _build/prod/rel/book_app/bin/book_app foreground` 來提供連接埠。
 
 如果執行上述指令，可能會發現應用程試當機了，因為當前不存在資料庫而無法與其連接。這可以通過執行 Ecto `mix` 指令來修正。在終端機中，輸入以下內容：
 
@@ -133,7 +133,6 @@ MIX_ENV=prod mix ecto.create
 ```
 
 這個指令會建立資料庫。現在嘗試重新執行應用程式，它會成功啟動。但是，你同時會注意到，資料庫遷移尚未執行。通常在開發時，會通過呼用 `mix.ecto migrate` 來手動執行這些遷移。但對於發布版本，必須對其進行配置，以便它可以獨立執行遷移。
-
 
 ## 在正式環境執行遷移
 
@@ -144,7 +143,6 @@ Distillery 能夠在發布版本生命週期的不同時間點之間執行程式
 * pre/post_configure
 * pre/post_stop
 * pre/post_upgrade
-
 
 因著目的，將使用 `post_start` 鉤子在正式環境中執行應用程式遷移。首先，建立一個名為 `migrate` 的新發布版本工作。發布版本工作是一個模組函數，可以從終端機上呼用它，其中包含與應用程式內部運作分離的程式碼。對於特別是應用程式本身不需要執行的工作而言，這很有用。
 
@@ -163,7 +161,6 @@ end
 *註* ー 好的做法是在執行這些遷移之前，確保所有應用程式都已正確啟動。 [Ecto.Migrator](https://hexdocs.pm/ecto/2.2.8/Ecto.Migrator.html) 允許對已連接的資料庫執行遷移。
 
 接下來，建立一個新檔案 - `rel/hooks/post_start/migrate.sh` 並加入以下程式碼：
-
 
 ```
 echo "Running migrations"
@@ -226,12 +223,12 @@ end
 release_ctl eval "BookAppWeb.ReleaseTasks.seed/0"
 ```
 
-
 *註* - `release_ctl()` 是 Distillery 提供的殼層腳本，它允許在本機或乾淨的節點中執行指令。如果需要在正在執行的節點上使用此指令，則可以執行 `release_remote_ctl()`
 
 在 [這裡](https://hexdocs.pm/distillery/extensibility/shell_scripts.html)查看更多有關 Distillery 的 shell_scripts 資訊。
 
 最後，將以下內容加入到 `rel/config.exs` 檔案中。
+
 ```elixir
 release :book_app do
   ...

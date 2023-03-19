@@ -38,7 +38,6 @@ iex> [1, 2] ++ [3, 4, 1]
 
 Yukarıdaki (`++/2`) kullanımını açiklamak gerekirse; Elixir'de (ve Erlang'ta; çünkü Elixir, Erlang üzerinde geliştirilmiştir), bir fonksiyon veya operatörun iki bileşeni vardir. Birincisi verdiğiniz isim (burada operatör `++`), ve aldiğı parametrelerin sayisi (_arity_). İşlem için alınan parametreler bir sayıdır ve Elixir için ana özelliklerden birisidir. Verilen isim ve parametre sayilari bolme isareti (/) ile birleştirilir, `++/2` gibi. Bundan ileride bahsedecegiz; simdilik bu kadarini anlamaniz yeterlidir.
 
-
 ### Liste Ayrıştırma/Çıkarma
 
 Ayırma/çıkarma işlemi `--/2` operatöru ile sağlanır; listede olmayan bir değeri çıkarmak dahi bir probleme yol açmayacaktır:

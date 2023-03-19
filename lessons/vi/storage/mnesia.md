@@ -15,10 +15,10 @@ Mnesia là hệ quản trị cơ sở dữ liệu (DBMS) được lấy từ Erl
 
 Lựa chọn việc sử dụng một công nghệ nào thường khá là rối rắm. Nếu bạn có thể trả lời 'Yes' cho bất kì câu hỏi sau, thì đó là tín hiệu tốt cho việc sử dụng Mnesia mà không phải là ETS hay DETS.
 
-  - Tôi có cần chuyển về các transactions cũ không?
-  - Liệu tôi có muốn dễ dàng trong việc sử dụng cú pháp cho đọc và ghi?
-  - Tôi có nên lưu trữ dữ liệu ở nhiều nodes, thay vì một?
-  - Tôi có cần lựa chọn nơi nào để lưu trữ thông tin (RAM or disk)?
+- Tôi có cần chuyển về các transactions cũ không?
+- Liệu tôi có muốn dễ dàng trong việc sử dụng cú pháp cho đọc và ghi?
+- Tôi có nên lưu trữ dữ liệu ở nhiều nodes, thay vì một?
+- Tôi có cần lựa chọn nơi nào để lưu trữ thông tin (RAM or disk)?
 
 ## Schema
 
@@ -107,8 +107,8 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 
 Chúng ta định nghĩa các cột thông qua atoms `:id`, `:name` và `:job`. Khi chúng ta thực thi `Mnesia.create_table/2`, nó sẽ trả về một trong 2 loại sau đây:
 
- - `{:atomic, :ok}` Nếu thực thi thành công
- - `{:aborted, Reason}` Nếu thực thi thất bại
+- `{:atomic, :ok}` Nếu thực thi thành công
+- `{:aborted, Reason}` Nếu thực thi thất bại
 
 Thực tế, nếu bảng tồn tại, lý do sẽ nằm ở mẫu `{:already_exists, table}` vậy nên chúng ta thử tạo bảng lần thứ 2, chúng ta sẽ nhận được kết quả sau:
 
@@ -152,7 +152,7 @@ Nếu bạn muốn truy vấn thông tin không tồn tại Mnesia sẽ trả v�
 
 ## Transactions
 
-Thông thường chúng ta sử dụng **transactions** để đóng gói lại những truy vấn đọc và ghi tới database. Transactions là một phần quan trọng trong việc thiết kế chống chịu lỗi, đặc biệt trong hệ thống phân tán. Mnesia *transaction là một phương pháp mà cho phép một nhóm cách thao tác database có thể thực thi trong một function block*. Đầu tiên chúng ta tạo một function nặc danh, trong trường hợp này `data_to_write` và sau đó truyền nó vào `Mnesia.transaction`.
+Thông thường chúng ta sử dụng **transactions** để đóng gói lại những truy vấn đọc và ghi tới database. Transactions là một phần quan trọng trong việc thiết kế chống chịu lỗi, đặc biệt trong hệ thống phân tán. Mnesia _transaction là một phương pháp mà cho phép một nhóm cách thao tác database có thể thực thi trong một function block_. Đầu tiên chúng ta tạo một function nặc danh, trong trường hợp này `data_to_write` và sau đó truyền nó vào `Mnesia.transaction`.
 
 ```elixir
 iex> data_to_write = fn ->
@@ -166,6 +166,7 @@ iex> data_to_write = fn ->
 iex> Mnesia.transaction(data_to_write)
 {:atomic, :ok}
 ```
+
 Dựa trên kết quả của transaction, chúng ta có thể yên tâm giả định là chúng ta ghi dữ liệu xuống bảng `Person`. Hãy sử dụng transaction để đọc từ database để đảm bảo việc này. Chúng ta sẽ sử dụng `Mnesia.read/1` để đọc từ database, nhưng là từ một function nặc danh một lần nữa.
 
 ```elixir
@@ -199,8 +200,8 @@ iex> Mnesia.add_table_index(Person, :job)
 
 Kết quả tương tự với kết quả từ câu lệnh `Mnesia.create_table/2`:
 
- - `{:atomic, :ok}` nếu thực thi thành công
- - `{:aborted, Reason}` nếu thực thi thật bại
+- `{:atomic, :ok}` nếu thực thi thành công
+- `{:aborted, Reason}` nếu thực thi thật bại
 
 Thực tế, nếu chỉ mục đã tồn tại, lý do sẽ nằm ở mẫu `{:already_exists, table, attribute_index}` vậy nếu chúng thử thêm vào chỉ một một lần nữa, chúng ta sẽ nhận được kết quả sau:
 
@@ -240,7 +241,7 @@ iex> Mnesia.transaction(
 ```elixir
 iex> Mnesia.transaction(
 ...>   fn ->
-...>     {% raw %}Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}]){% endraw %}
+...>     Mnesia.select(Person, [{{Person, :"$1", :"$2", :"$3"}, [{:>, :"$1", 3}], [:"$$"]}])
 ...>   end
 ...> )
 {:atomic, [[7, "Waylon Smithers", "Executive assistant"], [4, "Marge Simpson", "home maker"], [6, "Monty Burns", "Businessman"], [5, "Hans Moleman", "unknown"]]}
@@ -260,13 +261,13 @@ Với bất kì giải pháp phần mềm nào, sẽ đến lúc bạn cần nâ
 
 Cài đặt sau thực hiện chúng thông qua thực thi các cách sau:
 
-* Tạo bảng thuộc tính v2: `[:id, :name, :job, :age]`
-* Xử lý kết quả tạo bảng trả về:
-    * `{:atomic, :ok}`: khởi tạo bảng bằng cách tạo chỉ mục trên `:job` và `:age`
-    * `{:aborted, {:already_exists, Person}}`: kiểm tra những thuộc tính hiện tại trong bảng và thao tác như sau:
-        * nếu nó nằm trong danh sách v1 (`[:id, :name, :job]`), chuyển đổi bảng gán mọi người với tuổi 21 và tạo chỉ mục trên `:age`
-        * nếu nó nằm trên dánh sách v2, không làm gì cả, mọi thứ tốt
-        * nếu khác nữa, kệ nó
+- Tạo bảng thuộc tính v2: `[:id, :name, :job, :age]`
+- Xử lý kết quả tạo bảng trả về:
+  - `{:atomic, :ok}`: khởi tạo bảng bằng cách tạo chỉ mục trên `:job` và `:age`
+  - `{:aborted, {:already_exists, Person}}`: kiểm tra những thuộc tính hiện tại trong bảng và thao tác như sau:
+    - nếu nó nằm trong danh sách v1 (`[:id, :name, :job]`), chuyển đổi bảng gán mọi người với tuổi 21 và tạo chỉ mục trên `:age`
+    - nếu nó nằm trên dánh sách v2, không làm gì cả, mọi thứ tốt
+    - nếu khác nữa, kệ nó
 
 `Mnesia.transform_table/3` function lấy bảng và các tham số, function mà chuyển đổi dữ liệu từ cũ sang kiểu mới và danh sách các thuộc tính mới.
 

@@ -3,20 +3,20 @@
   title: "Powłoka IEx",
   excerpt: """
   
-  """
+"""
 }
 ---
 
 ## Wstęp
 
-Gdy zaczynasz przygodę z Elixirem, to IEx jest twoim najlepszym przyjacielem. 
+Gdy zaczynasz przygodę z Elixirem, to IEx jest twoim najlepszym przyjacielem.
 Jest to REPL. Ma  jednak wiele dodatkowych cech, które ułatwiają pracę z istniejącym kodem, jak i tworzenie własnych rozwiązań.
 W tej lekcji omówimy te pomocne elementy.
 
 ### Autouzupełnianie
 
-Gdy pracujemy z powłoką, to może się zdarzyć, że chcemy użyć modułu, którego nie znamy. 
-Funkcja autouzupełniania jest niezastąpiona, gdy chcemy rozeznać się w możliwościach takiego modułu. 
+Gdy pracujemy z powłoką, to może się zdarzyć, że chcemy użyć modułu, którego nie znamy.
+Funkcja autouzupełniania jest niezastąpiona, gdy chcemy rozeznać się w możliwościach takiego modułu.
 Wystarczy po nazwie modułu postawić kropkę i nacisnąć `Tab`:
 
 ```elixir
@@ -69,7 +69,7 @@ iex> IExHelpers.whats_this?(:test)
 "Type: Atom"
 ```
 
-Jak widać, nie musimy wykonywać żadnych dodatkowych, operacji w rodzaju importowania, IEx zrobił to za nas. 
+Jak widać, nie musimy wykonywać żadnych dodatkowych, operacji w rodzaju importowania, IEx zrobił to za nas.
 
 ### h
 
@@ -183,7 +183,7 @@ Reference modules
   Module, Atom
 ```
 
-Dowiedzieliśmy się kilku rzeczy o `Map` w tym, gdzie są pliki źródłowe i z jakich modułów korzysta. Jest to szczególnie użyteczne, gdy pracujemy z nieznanymi typami danych czy nowymi funkcjami. 
+Dowiedzieliśmy się kilku rzeczy o `Map` w tym, gdzie są pliki źródłowe i z jakich modułów korzysta. Jest to szczególnie użyteczne, gdy pracujemy z nieznanymi typami danych czy nowymi funkcjami.
 
 I choć poszczególne sekcje mogą zawierać dużo informacji, to na pewnym wysokim poziomie możemy zebrać wiele istotnych informacji:
 
@@ -228,6 +228,6 @@ defmodule Map do
 # ...
 ```
 
-Jest to bardzo prosty przykład, który pokazuje, że klucze i wartości mogą być dowolnego typu. 
+Jest to bardzo prosty przykład, który pokazuje, że klucze i wartości mogą być dowolnego typu.
 
 Wykorzystując wszystkie te wbudowane elementy, możemy bardzo łatwo badać kod, bo dowiedzieć się jak działa. IEx to wydajne i niezawodne narzędzie dla programistów. Mając je w naszym arsenale nauka i tworzenie kodu może być jeszcze fajniejszą zabawą.

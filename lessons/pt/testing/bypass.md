@@ -6,7 +6,7 @@
   Podemos até mesmo querer simular diferentes situações como erros inesperados do servidor.
   Tratar isso de modo eficiente não é fácil no Elixir sem uma pequena ajuda.
 
-  Nesta lição vamos explorar como [bypass](https://github.com/PSPDFKit-labs/bypass) pode nos ajudar rapidamente e tratar facilmente essas chamadas em nossos testes.
+Nesta lição vamos explorar como [bypass](https://github.com/PSPDFKit-labs/bypass) pode nos ajudar rapidamente e tratar facilmente essas chamadas em nossos testes
   """
 }
 ---
@@ -29,7 +29,6 @@ _Nota_: Se você deseja avançar para o código final, dê uma olhada no reposit
 
 Neste ponto devemos estar confortáveis criando novos projetos Mix e adicionando nossas dependências, então focaremos nas partes do código que estamos testando.
 Se você precisar de uma atualização rápida, consulte a seção [New Projects](https://elixirschool.com/en/lessons/basics/mix/#new-projects) de nossa lição [Mix](https://elixirschool.com/en/lessons/basics/mix).
-
 
 Vamos começar criando um novo módulo que tratará de fazer as requisições para nossos domínios.
 Com [HTTPoison](https://github.com/edgurgel/httpoison) vamos criar uma função, `ping/1`, que recebe uma URL e retorna `{:ok, body}` para uma requisição HTTP 200 e `{:error, reason}` para todos os outros:
