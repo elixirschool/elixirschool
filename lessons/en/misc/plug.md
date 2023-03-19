@@ -348,16 +348,7 @@ defmodule Example.Application do
     Supervisor.start_link(children, opts)
   end
 
-  # For Elixir < 1.9
   defp cowboy_port, do: Application.get_env(:example, :cowboy_port, 8080)
-  
-  # For Elixir 1.9+
-  defp cowboy_port do
-    case Application.fetch_env(:example, :cowboy_port) do
-      {:ok, value} -> value
-      :error -> 8080
-    end
-  end
 
 end
 ```
