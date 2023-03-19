@@ -319,7 +319,7 @@ use Mix.Config
 config :example, cowboy_port: 8080
 ```
 
-For Elixir version 1.9+ (`Mix.Config` was removed in Elixir 1.9):
+For Elixir version 1.9+ (`Mix.Config` was deprecated in Elixir 1.9):
 
 ```elixir
 import Config
