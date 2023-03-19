@@ -2,7 +2,7 @@
   author: "Kevin Mathew",
   author_link: "https://github.com/kevinam99",
   tags: ["testing", "ExUnit"],
-  date: ~D[2023-02-15],
+  date: ~D[2023-03-19],
   title: "Run specific test cases with ExUnit",
   excerpt: """
   Learn how you can easily run one specific test case or a group test cases in Elixir without having to run through the whole test suites and custom workarounds.
