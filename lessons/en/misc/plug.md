@@ -1,5 +1,5 @@
 %{
-  version: "2.2.0",
+  version: "2.3.0",
   title: "Plug",
   excerpt: """
   If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra.
@@ -312,10 +312,21 @@ It's considered good practice to make the port configurable by putting it in a c
 
 We'll set an application environment variable in `config/config.exs`
 
+For Elixir versions below 1.9:
+
 ```elixir
 use Mix.Config
 
 config :example, cowboy_port: 8080
+```
+
+For Elixir version 1.9+ (`Mix.Config` was deprecated in Elixir 1.9):
+
+```elixir
+import Config
+
+config :example,
+  cowboy_port: 8080
 ```
 
 Next we need to update `lib/example/application.ex` read the port configuration value, and pass it to Cowboy.
@@ -338,6 +349,7 @@ defmodule Example.Application do
   end
 
   defp cowboy_port, do: Application.get_env(:example, :cowboy_port, 8080)
+
 end
 ```
 
