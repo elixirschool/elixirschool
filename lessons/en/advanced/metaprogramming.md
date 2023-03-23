@@ -264,7 +264,7 @@ By including `var!/2` we increase the risk of a variable resolution conflict.
 ### Binding
 
 We already covered the usefulness of `unquote/1`, but there's another way to inject values into our code: binding.
-With variable binding we are able to include multiple variables in our macro and ensure they're only unquoted once, avoiding accidental revaluations.
+With variable binding we are able to include multiple variables in our macro and ensure they're only unquoted once, avoiding accidental re-evaluations.
 To use bound variables we need to pass a keyword list to the `bind_quoted` option in `quote/2`.
 
 To see the benefit of `bind_quoted` and to demonstrate the revaluation issue let's use an example.
@@ -290,7 +290,7 @@ iex> Example.double_puts(:os.system_time)
 1450475941851733000
 ```
 
-The times are different! What happened? Using `unquote/1` on the same expression multiple times results in revaluation and that can have unintended consequences.
+The times are different! What happened? Using `unquote/1` on the same expression multiple times results in re-evaluation and that can have unintended consequences.
 Let's update the example to use `bind_quoted` and see what we get:
 
 ```elixir
