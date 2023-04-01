@@ -31,9 +31,9 @@ $ mix deps.get
 $ mix deps.compile
 ```
 
-첫 번째 명령어는 Dialyxir를 다운로드하고 설치할 것입니다. Hex도 같이 설치할 것인지 물어볼 수도 있습니다. 두 번째 명령어는 Dialyxir 애플리케이션을 컴파일할 것 입니다. Dialyxir를 전역으로 설치하고 싶으면, [문서](https://github.com/jeremyjh/dialyxir#installation)를 읽어보세요.
+첫 번째 명령어는 Dialyxir를 다운로드하고 설치할 것입니다. Hex도 같이 설치할 것인지 물어볼 수도 있습니다. 두 번째 명령어는 Dialyxir 애플리케이션을 컴파일할 것입니다. Dialyxir를 전역으로 설치하고 싶으면, [문서](https://github.com/jeremyjh/dialyxir#installation)를 읽어보세요.
 
-마지막으로 Dialyzer를 실행해 PLT(Persistent Lookup Table)를 다시 빌드합니다. Erlang이나 Elixir의 새버전을 설치할 때마다 이 작업이 필요합니다. 다행이도, Dialyzer는 사용할 때마다 표준 라이브러리를 분석 하려하지 않습니다. 전부 다운로드하는데에는 조금 시간이 걸립니다.
+마지막으로 Dialyzer를 실행해 PLT(Persistent Lookup Table)를 다시 빌드합니다. Erlang이나 Elixir의 새 버전을 설치할 때마다 이 작업이 필요합니다. 다행히도, Dialyzer는 사용할 때마다 표준 라이브러리를 분석하려 하지 않습니다. 전부 다운로드하는 데에는 조금 시간이 걸립니다.
 
 ```shell
 $ mix dialyzer --plt
@@ -58,7 +58,7 @@ examples.ex:3: Invalid type specification for function 'Elixir.Examples':sum_tim
 
 Dialyzer의 메세지는 명확합니다. `sum_times/1`함수의 반환값이 선언과 다르다고 합니다. 이것은 `Enum.sum/1`이 `integer`가 아닌 `number`를 반환하지만 `sum_times/1`은 `integer` 를 반환하기 때문입니다.
 
-`number`는 `integer`가 아니기 때문에 에러가 발생합니다. 어떻게 고칠 수 있을까요? `number`를 `integer`로 바꾸기위해 `round/1`을 사용할 필요가 있습니다.
+`number`는 `integer`가 아니기 때문에 에러가 발생합니다. 어떻게 고칠 수 있을까요? `number`를 `integer`로 바꾸기 위해 `round/1`을 사용할 필요가 있습니다.
 
 ```elixir
 @spec sum_times(integer) :: integer
@@ -83,7 +83,7 @@ done (passed successfully)
 
 # 디버깅
 
-정적분석만으로 충분하지 않을 때가 있습니다. 버그를 찾기 위해 실행 흐름을 이해할 필요가 있을 때가 있는데, 이럴 때 가장 쉬운 방법은 코드의 흐름과 값을 확인하기 위해 `IO.puts/2`같은 출력문을 사용하는 것이지만, 이 기술은 원시적이고 한계가 있습니다. 고맙게도 Elixir 코드를 디버깅하기위해 Erlang의 디버거를 사용할 수 있습니다.
+정적 분석만으로 충분하지 않을 때가 있습니다. 버그를 찾기 위해 실행 흐름을 이해할 필요가 있을 때가 있는데, 이럴 때 가장 쉬운 방법은 코드의 흐름과 값을 확인하기 위해 `IO.puts/2`같은 출력문을 사용하는 것이지만, 이 기술은 원시적이고 한계가 있습니다. 고맙게도 Elixir 코드를 디버깅하기 위해 Erlang의 디버거를 사용할 수 있습니다.
 
 기초적인 모듈이 있다고 합시다.
 
@@ -164,7 +164,7 @@ iex > Example.cpu_burns(1, 1, 1)
 
 ![Debugger Screenshot 4](/images/debugger_4.png)
 
-이 창에서는 변수의 값을 볼 수 있고, 다음 줄로 넘어가거나 식을 평가해볼 수 있습니다. `:int.disable_break/2`로 브레이크 포인트를 비활성화 할 수 있습니다.
+이 창에서는 변수의 값을 볼 수 있고, 다음 줄로 넘어가거나 식을 평가해볼 수 있습니다. `:int.disable_break/2`로 브레이크 포인트를 비활성화할 수 있습니다.
 
 ```elixir
 iex > :int.disable_break(Example, 8)
