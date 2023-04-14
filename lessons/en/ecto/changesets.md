@@ -4,7 +4,7 @@
   excerpt: """
   In order to insert, update or delete data from the database, `Ecto.Repo.insert/2`, `update/2` and `delete/2` require a changeset as their first parameter. But what are changesets?
 
-  A familiar task for almost every developer is checking input data for potential errors — we want to make sure that data is in the right state, before we attempt to use it for our purposes.
+  A familiar task for almost every developer is checking input data for potential errors because we want to make sure that data is in the right state, before we attempt to use it for our purposes.
 
 Ecto provides a complete solution for working with data changes in the form of the `Changeset` module and data structure.
   In this lesson we're going to explore this functionality and learn how to verify data's integrity, before we persist it to the database.
@@ -126,10 +126,13 @@ def changeset(struct, params) do
 end
 ```
 
-When we call the `Friends.Person.changeset/2` function and pass an empty name, the changeset will be no longer valid, and will even contain a helpful error message.
+When we call the `Friends.Person.changeset/2` function and pass an empty name, the changeset will no longer be valid, and will even contain a helpful error message.
 Note: do not forget to run `recompile()` when working in `iex`, otherwise it won't pick up the changes you make in code.
 
 ```elixir
+iex> recompile
+Compiling 1 file (.ex)
+:ok
 iex> Friends.Person.changeset(%Friends.Person{}, %{"name" => ""})
 %Ecto.Changeset<
   action: nil,
