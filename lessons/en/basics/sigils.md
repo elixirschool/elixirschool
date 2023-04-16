@@ -11,7 +11,7 @@
 
 Elixir provides an alternative syntax for representing and working with literals.
 A sigil will start with a tilde `~` followed by a character.
-The Elixir core provides us with some built in sigils however, it is possible to create our own when we need to extend the language.
+The Elixir core provides us with some built in sigils, however, it is possible to create our own when we need to extend the language.
 
 A list of available sigils include:
 
