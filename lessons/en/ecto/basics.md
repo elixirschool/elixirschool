@@ -123,7 +123,7 @@ To create and modify tables inside the postgres database Ecto provides us with m
 Each migration describes a set of actions to be performed on our database, like which tables to create or update.
 
 Since our database doesn't have any tables yet, we'll need to create a migration to add some.
-The convention in Ecto is to pluralize our tables so for application we'll need a `people` table, so let's start there with our migrations.
+The convention in Ecto is to pluralize our tables. For our application we'll need a `people` table, so let's start there with our migrations.
 
 The best way to create migrations is the mix `ecto.gen.migration <name>` task, so in our case let's use:
 

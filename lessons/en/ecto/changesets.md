@@ -274,7 +274,7 @@ iex> Friends.Person.registration_changeset(%Friends.Person{}, %{})
 >
 ```
 
-Having changeset creator functions that have a specific responsibility (like `registration_changeset/2`) is not uncommon — sometimes you need the flexibility to perform only certain validations or filter specific parameters.
+Having changeset creator functions that have a specific responsibility (like `registration_changeset/2`) is common — sometimes you need the flexibility to perform only certain validations or filter specific parameters.
 The function above could be then used in a dedicated `sign_up/1` helper elsewhere:
 
 ```elixir
@@ -288,4 +288,4 @@ end
 ## Conclusion
 
 There are a lot of use cases and functionality that we did not cover in this lesson, such as [schemaless changesets](https://hexdocs.pm/ecto/Ecto.Changeset.html#module-schemaless-changesets) that you can use to validate _any_ data; or dealing with side-effects alongside the changeset ([`prepare_changes/2`](https://hexdocs.pm/ecto/Ecto.Changeset.html#prepare_changes/2)) or working with associations and embeds.
-We may cover these in a future, advanced lesson, but in the meantime — we encourage to explore [Ecto Changeset's documentation](https://hexdocs.pm/ecto/Ecto.Changeset.html) for more information.
+We may cover these in a future, advanced lesson, but in the meantime we encourage you to explore [Ecto Changeset's documentation](https://hexdocs.pm/ecto/Ecto.Changeset.html) for more information.
