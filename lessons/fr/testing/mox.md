@@ -11,10 +11,10 @@
 
 Les tests, ainsi que les mocks qui les facilitent, ne sont en général pas les choses les plus impressionnantes d'un langage, ce n'est donc pas une surprise qu'il y ai moins de choses écrites à leur propos.
 La bonne nouvelle, c'est que vous _pouvez_ utiliser les mocks en Elixir!
-La méthodologie exacte est peut-être différente des habitudes que vous avez avec d'autres langages, mais le but final est le même: les mocks peuvent simuler la sortie d'une fonction interne, et nous permet donc d'affirmer les réponses de toutes les exécutions possibles de notre code.
+La méthodologie exacte est peut-être différente des habitudes que vous avez avec d'autres langages, mais le but final est le même: les mocks peuvent simuler la sortie d'une fonction interne, et ils nous permettent donc d'affirmer les réponses de toutes les exécutions possibles de notre code.
 
 Avant de voir des cas d'utilisation complexes, parlons d'abord des techniques qui peuvent nous aider à rendre notre code plus facile à tester.
-Une tactique simple est de passer un module à une fonction, plutôt que de coder en dur le module à l'intérieur de la fonction.
+Une tactique simple est de passer un module à une fonction en tant que paramètre, plutôt que de donner en dur le module à l'intérieur de la fonction.
 
 Par exemple, si on codait en dur un client HTTP dans une fonction :
 
