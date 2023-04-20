@@ -16,13 +16,15 @@ iex> [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
 ```
 
-Elixir implementiert Listen als verkettete Listen. Das bedeutet der Zugriff auf die Listenlänge ist eine `O(n)` Operation. Aus diesem Grund ist ist meist schneller ein Element vorne hinzuzufügen als anzuhängen:
+Elixir implementiert Listen als verkettete Listen. Das bedeutet der Zugriff auf die Listenlänge ist eine `O(n)` Operation. Aus diesem Grund ist es meist schneller ein Element vorne hinzuzufügen als anzuhängen:
 
 ```elixir
 iex> list = [3.14, :pie, "Apple"]
 [3.14, :pie, "Apple"]
+# Voranstellen (schnell)
 iex> ["π" | list]
 ["π", 3.14, :pie, "Apple"]
+# Anhängen (langsam)
 iex> list ++ ["Cherry"]
 [3.14, :pie, "Apple", "Cherry"]
 ```
