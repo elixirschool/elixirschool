@@ -34,7 +34,7 @@ iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node()])
 ```
 
-이 강의에서는 Mnesia API를 사용할 때에 후자의 방법을 사용할 것입니다. `Mnesia.create_schema/`는 새로운 스키마를 생성하며, 노드 리스트를 집어 넣습니다. 여기에서는 IEx 세션과 연결된 노드 리스트를 넘겼습니다.
+이 강의에서는 Mnesia API를 사용할 때 후자의 방법을 사용할 것입니다. `Mnesia.create_schema/`는 새로운 스키마를 생성하며, 노드 리스트를 집어넣습니다. 여기에서는 IEx 세션과 연결된 노드 리스트를 넘겼습니다.
 
 ## 노드들
 
@@ -105,7 +105,7 @@ iex> Mnesia.create_table(Person, [attributes: [:id, :name, :job]])
 {:atomic, :ok}
 ```
 
-애텀 `:id`, `:name`, `:job`를 사용해서 컬럼을 정의합니다. `Mnesia.create_table/2`를 실행하면 다음 중 하나가 응답으로 돌아올 것입니다.
+애텀 `:id`, `:name`, `:job`을 사용해서 컬럼을 정의합니다. `Mnesia.create_table/2`를 실행하면 다음 중 하나가 응답으로 돌아올 것입니다.
 
 - `{:atomic, :ok}` 함수가 성공적으로 실행되었을 때.
 - `{:aborted, Reason}` 함수가 실패했을 때.
@@ -167,7 +167,7 @@ iex> Mnesia.transaction(data_to_write)
 {:atomic, :ok}
 ```
 
-이 트랜잭션 메시지를 통해서 데이터들이 안전하게 `Person` 테이블에 저장되었음을 추정할 수 있습니다. 그러면 확인을 위해서 데이터베이스에서 트랜잭션을 사용해서 데이터를 읽어봅시다. `Mnesia.read/1`를 통해서 데이터를 읽어올 수 있으며, 다시 한 번 강조하지만, 익명 함수로 감싸주세요.
+이 트랜잭션 메시지를 통해서 데이터들이 안전하게 `Person` 테이블에 저장되었음을 추정할 수 있습니다. 그러면 확인을 위해서 데이터베이스에서 트랜잭션을 사용해서 데이터를 읽어봅시다. `Mnesia.read/1`를 통해서 데이터를 읽어올 수 있으며, 다시 한번 강조하지만, 익명 함수로 감싸주세요.
 
 ```elixir
 iex> data_to_read = fn ->
@@ -247,7 +247,7 @@ iex> Mnesia.transaction(
 {:atomic, [[7, "Waylon Smithers", "Executive assistant"], [4, "Marge Simpson", "home maker"], [6, "Monty Burns", "Businessman"], [5, "Hans Moleman", "unknown"]]}
 ```
 
-풀어 봅시다. 첫 번째 인자는 테이블 `Person` 입니다. 두 번째 인자는 `{match, [guard], [result]}` 형식입니다.
+풀어 봅시다. 첫 번째 인자는 테이블 `Person`입니다. 두 번째 인자는 `{match, [guard], [result]}` 형식입니다.
 
 - `match`는 `Mnesia.match_object/1` 함수에 넘기는 것과 동일합니다. 하지만 쿼리의 나머지에 사용하는 파라미터의 위치를 지정하는 특수 애텀 `:"$n"`에 주의하세요.
 - `guard` 리스트는 적용할 가드 함수를 지정하는 튜플의 리스트입니다. 이 경우에는 `:>` (더 큼) 빌트인 함수, 위치 파라미터 `:"$1"`, 상수 `3`이 인자로 사용되었습니다.
@@ -257,7 +257,7 @@ iex> Mnesia.transaction(
 
 ## 데이터 초기화와 이관
 
-모든 소프트웨어 제품이 그렇듯이 소프트웨어를 업그레이드하고 데이터베이스에 저장된 데이터를 이관해야할 때가 있습니다. 예를 들어 앱을 v2로 버전업하면서 `Person` 테이블의 `:age` 컬럼을 추가해야 한다고 해봅시다. 테이블이 이미 있으므로 `Person` 테이블을 만들수는 없지만 변환할 수는 있습니다. 이를 위해서는 테이블을 생성할 때 무엇을 할 수 있는 지, 언제 변환해야 하는 지 알아야 합니다. `Mnesia.table_info/2` 함수를 사용해 현재 테이블의 구조를 검색하고 `Mnesia.transform_table/3`로 새 구조로 변환할 수 있습니다.
+모든 소프트웨어 제품이 그렇듯이 소프트웨어를 업그레이드하고 데이터베이스에 저장된 데이터를 이관해야 할 때가 있습니다. 예를 들어 앱을 v2로 버전업하면서 `Person` 테이블의 `:age` 컬럼을 추가해야 한다고 해봅시다. 테이블이 이미 있으므로 `Person` 테이블을 만들 수는 없지만 변환할 수는 있습니다. 이를 위해서는 테이블을 생성할 때 무엇을 할 수 있는지, 언제 변환해야 하는 지 알아야 합니다. `Mnesia.table_info/2` 함수를 사용해 현재 테이블의 구조를 검색하고 `Mnesia.transform_table/3`로 새 구조로 변환할 수 있습니다.
 
 아래에 있는 코드는 다음 로직을 구현합니다.
 
@@ -265,7 +265,7 @@ iex> Mnesia.transaction(
 - 생성 결과를 처리
   - `{:atomic, :ok}`: `:job`, `:age`에 인덱스를 생성해 테이블 초기화
   - `{:aborted, {:already_exists, Person}}`: 현재 테이블에 어떤 인자가 있고 올바르게 동작하는지 확인
-    - v1의 목록(`[:id, :name, :job]`)이라면 모든 레코드의 나이를 21를 설정하고 `:age`에 새 인덱스를 설정해 변환
+    - v1의 목록(`[:id, :name, :job]`)이라면 모든 레코드의 나이를 21로 설정하고 `:age`에 새 인덱스를 설정해 변환
     - v2의 목록이라면 아무것도 하지 않음
     - 다른 결과면 종료
 
