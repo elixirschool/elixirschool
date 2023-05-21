@@ -119,7 +119,7 @@ Aus diesen Gründen sind Keyword Listen die am meist genutzten, um Optionen an F
 
 ## Maps
 
-In Elixir sind Maps der Weg um einen Key-Value Store zu implementieren. Im Gegensatz zu Keyword Listen erlauben Maps jeden Typ als Schlüssel und sind nicht sortiert. Listen werden mit der `%{}` Syntax definiert:
+In Elixir sind Maps der Weg um einen Key-Value Store zu implementieren. Im Gegensatz zu Keyword Listen erlauben Maps jeden Typ als Schlüssel und sind nicht sortiert. Maps werden mit der `%{}` Syntax definiert:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
