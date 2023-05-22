@@ -33,7 +33,7 @@ Finished in 0.03 seconds
 2 tests, 0 failures
 ```
 
-어? 아웃풋이 두개네요? `lib/example.ex`를 확인해 봅시다. Mix가 여기에 다른 테스트를 만들어 놓았네요. doctest라 부릅니다.
+어? 아웃풋이 두 개네요? `lib/example.ex`를 확인해 봅시다. Mix가 여기에 다른 테스트를 만들어 놓았네요. doctest라 부릅니다.
 
 ```elixir
 defmodule Example do
@@ -103,7 +103,7 @@ Finished in 0.03 seconds
 
 ### assert_receive
 
-메시지를 주고 받는 엑터와 프로세스로 구성된 Elixir 애플리케이션에서는 메시지를 보낸 후를 테스트 하고 싶을 때가 많습니다. ExUnit이 자신의 프로세스 안에서 실행되기 때문에 다른 프로세스 처럼 메시지를 받을 수 있고 `assert_receive` 매크로로 assert할 수 있습니다.
+메시지를 주고받는 엑터와 프로세스로 구성된 Elixir 애플리케이션에서는 메시지를 보낸 후를 테스트하고 싶을 때가 많습니다. ExUnit이 자신의 프로세스 안에서 실행되기 때문에 다른 프로세스처럼 메시지를 받을 수 있고 `assert_receive` 매크로로 assert할 수 있습니다.
 
 ```elixir
 defmodule SendingProcess do
