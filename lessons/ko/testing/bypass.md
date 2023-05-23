@@ -50,12 +50,12 @@ defmodule Clinic.HealthCheck do
 end
 ```
 
-여기서 GenServer를 만들지 _않았다는_ 사실을 알아차렸을텐데, 이렇게 해 놓은 데에는 이유가 있습니다.
+여기서 GenServer를 만들지 _않았다는_ 사실을 알아차렸을 텐데, 이렇게 해 놓은 데에는 이유가 있습니다.
 GenServer에서 기능(과 관심사)을 분리함으로써, 동시성이란 이름의 장애물을 피하고서 코드를 테스트할 수 있습니다.
 
 코드가 준비되면 테스트를 시작해야 합니다.
 Bypass를 사용하기 전에 그것이 실행 중인지를 확인해야 합니다.
-그렇게 하려면 다음과 같이 `test/test_helper.exs`를 업데이트 해보겠습니다.
+그렇게 하려면 다음과 같이 `test/test_helper.exs`를 업데이트해 보겠습니다.
 
 ```elixir
 ExUnit.start()
@@ -112,7 +112,7 @@ end)
 
 `Bypass.expect/2`는 Bypass 커넥션과, 커넥션을 변경하고 반환할 1-arity 함수를 인자로 받습니다.
 이것은 해당 요청이 기대한 요청인지 검증할 수 있는 기회가 됩니다.
-테스트 url에 `/ping` 을 포함시키고 request path와 HTTP method를 검증하도록 업데이트 합시다.
+테스트 url에 `/ping` 을 포함시키고 request path와 HTTP method를 검증하도록 업데이트합시다.
 
 ```elixir
 test "request with HTTP 200 response", %{bypass: bypass} do
@@ -145,8 +145,8 @@ end
 ```
 
 이 테스트 케이스에는 특별할 것이 없으므로 바로 다음으로 넘어갑시다. 다음은 예상치 못한 서버 중단의 경우입니다.
-우리가 가장 관심있는 요청들입니다.
-이를 달성하기 위해 `Bypass.expect/2`를 사용하지 않고 `Bypass.down/1`을 이용해 커넥션을 강제 종료 시킵니다.
+우리가 가장 관심 있는 요청들입니다.
+이를 달성하기 위해 `Bypass.expect/2`를 사용하지 않고 `Bypass.down/1`을 이용해 커넥션을 강제 종료시킵니다.
 
 ```elixir
 test "request with unexpected outage", %{bypass: bypass} do
@@ -156,7 +156,7 @@ test "request with unexpected outage", %{bypass: bypass} do
 end
 ```
 
-테스트를 실행해 보면 모든것이 기대한대로 통과하는 것을 볼 수 있습니다!
+테스트를 실행해 보면 모든 것이 기대한 대로 통과하는 것을 볼 수 있습니다!
 `HealthCheck` 모듈이 테스트 되었으므로 이제 GenServer 기반의 스케쥴러와 함께 테스트하는 경우로 넘어갈 수 있습니다.
 
 ## 여러 외부 호스트
@@ -164,7 +164,7 @@ end
 이 프로젝트에서는 스케줄러를 베어본으로 유지하고 `Process.send_after/3`를 이용해 반복 확인을 실행할 것입니다.
 `Process` 모듈에 대해서 더 알고싶다면 [documentation](https://hexdocs.pm/elixir/Process.html)을 참고하세요.
 스케줄러는 다음 3가지 옵션을 필요로 합니다. sites 모음, 도메인 확인 간격, `ping/1`을 구현하는 모듈.
-모듈을 전달함으로써 기능과 GenServer를 더 잘 분리하여 각각을 더 잘 테스트 할 수 있게 해줍니다.
+모듈을 전달함으로써 기능과 GenServer를 더 잘 분리하여 각각을 더 잘 테스트할 수 있게 해줍니다.
 
 ```elixir
 def init(opts) do
@@ -204,7 +204,7 @@ end
 앞에서 논의한 대로 `HealthCheck.ping/1`에 사이트들을 전달하고 그 결과를 `Enum.each/2`로 순회하며 `report/1` 함수를 각각 적용합니다.
 이 함수들로 스케줄러는 완성되었고 이제 테스트에 집중할 수 있습니다.
 
-스케줄러는 Bypass를 필요로 하지 않으므로 단위 테스트에 너무 집중하지는 않을것입니다. 따라서 바로 다음의 최종 코드로 넘어갈 수 있습니다.
+스케줄러는 Bypass를 필요로 하지 않으므로 단위 테스트에 너무 집중하지는 않을 것입니다. 따라서 바로 다음의 최종 코드로 넘어갈 수 있습니다.
 
 ```elixir
 defmodule Clinic.SchedulerTest do
@@ -236,7 +236,7 @@ end
 `TestCheck`으로 상태 확인의 테스트 구현을 이용하며
 적절한 메시지들이 로깅되었는지 검증하기 위해 `CaptureLog.capture_log/1`를 이용합니다.
 
-이제 동작하는 `Scheduler`와 `HealthCheck` 모듈이 각각 있으므로 모든것이 잘 동작하는지 검증하는 통합 테스트를 작성해 봅시다.
+이제 동작하는 `Scheduler`와 `HealthCheck` 모듈이 각각 있으므로 모든 것이 잘 동작하는지 검증하는 통합 테스트를 작성해 봅시다.
 이 테스트를 위해 Bypass가 필요하며 각 테스트마다 여러 Bypass 요청들을 처리해야 합니다. 어떻게 하는지 보겠습니다.
 
 아까 전에 이야기했던 `bypass.port`, 기억하고 계신가요? `:port` 옵션을 사용하면 편하게 여러 사이트를 시뮬레이션할 수 있습니다.
@@ -278,6 +278,6 @@ end
 ```
 
 위 테스트에서 딱히 놀라운 것은 없을 겁니다. `setup`에서 단일 Bypass 커넥션을 생성하는 대신, 2개를 생성해서 각각 1234와 1337를 포트로 지정했습니다.
-그 다음 `Bypass.expect/2` 호출을 보면, `SchedulerTest`에서 봤던 코드랑 같은, 스케줄러를 시작하고 적절한 메시지 로그를 검증하는 코드를 볼 수 있습니다.
+그다음 `Bypass.expect/2` 호출을 보면, `SchedulerTest`에서 봤던 코드랑 같은, 스케줄러를 시작하고 적절한 메시지 로그를 검증하는 코드를 볼 수 있습니다.
 
 이게 끝입니다! 우리는 도메인에 문제가 있는 경우 계속해서 알려주는 유틸리티를 구축했으며 외부 서비스로 더 나은 테스트를 작성하기 위해 Bypass를 사용하는 방법을 배웠습니다.
