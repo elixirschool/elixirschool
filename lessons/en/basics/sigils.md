@@ -190,7 +190,6 @@ As there is already a function for this in the Elixir Core (`String.upcase/1`), 
 
 iex> defmodule MySigils do
 ...>   def sigil_p(string, []), do: String.upcase(string)
-...>   def sigil_REV(string, []), do: String.reverse(string) # Only available in Elixir 1.15+
 ...> end
 
 iex> import MySigils
