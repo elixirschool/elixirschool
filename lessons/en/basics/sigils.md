@@ -9,9 +9,11 @@
 
 ## Sigils Overview
 
-Elixir provides an alternative syntax for representing and working with literals.
-A sigil will start with a tilde `~` followed by a character.
-The Elixir core provides us with some built in sigils, however, it is possible to create our own when we need to extend the language.
+Elixir provides an alternative syntax for representing and working with literals, called sigils.
+
+A sigil starts with a tilde `~` and is followed by an identifier and a pair of delimiters. Prior to Elixir 1.15, the identifier must be a single character. As of 1.15, the identifier may also be a string of multiple uppercase characters.
+
+The Elixir core provides us with some built in sigils, however, it is possible to create our own when we need to extend the language. 
 
 A list of available sigils include:
 
@@ -188,16 +190,38 @@ As there is already a function for this in the Elixir Core (`String.upcase/1`), 
 
 iex> defmodule MySigils do
 ...>   def sigil_p(string, []), do: String.upcase(string)
+...>   def sigil_REV(string, []), do: String.reverse(string) # Only available in Elixir 1.15+
 ...> end
 
 iex> import MySigils
-nil
+MySigils
 
 iex> ~p/elixir school/
-ELIXIR SCHOOL
+"ELIXIR SCHOOL"
 ```
 
 First we define a module called `MySigils` and within that module, we created a function called `sigil_p`.
 As there is no existing `~p` sigil in the existing sigil space, we will use it.
 The `_p` indicates that we wish to use `p` as the character after the tilde.
 The function definition must take two arguments, an input and a list.
+
+### Multi-character sigils
+
+In Elixir 1.15 and above, sigil identifiers may also be a sequence of uppercase characters. This can be used to clarify what a sigil is doing by providing more context than a single character provides.
+
+Following the structure of the previous example, we can define a sigil `~REV` that reverses a string.
+
+```elixir
+
+iex> defmodule MySigils do
+...>   def sigil_REV(string, []), do: String.reverse(string)
+...> end
+
+iex> import MySigils
+MySigils
+
+iex> ~REV<foobar>
+"raboof"
+```
+
+Note that for multi-character sigils, all characters must be uppercase. Sigil functions like `sigil_rev` or `sigil_Rev` would cause a `SyntaxError` on invocation.
