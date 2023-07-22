@@ -11,7 +11,7 @@
 
 ## Match Operator
 
-Bereit für einen Hirnverdreher? In Elixir ist der `=`-Operator eigentlich ein match-Operator. Durch disen können wir Werte zuweisen und matchen:
+Bereit für einen Hirnverdreher? In Elixir ist der `=`-Operator eigentlich ein match-Operator. Durch diesen können wir Werte zuweisen und matchen:
 
 ```elixir
 iex> x = 1
