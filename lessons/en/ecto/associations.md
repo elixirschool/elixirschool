@@ -473,7 +473,7 @@ iex> Repo.update!(movie_actors_changeset)
     name: "Netflix"
   },
   id: 1,
-  tagline: "Something about video game",
+  tagline: "Something about video games",
   title: "Ready Player One"
 }
 ```
