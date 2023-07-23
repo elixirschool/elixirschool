@@ -1,5 +1,5 @@
 %{
-  version: "1.0.2",
+  version: "1.1.0",
   title: "Sigils",
   excerpt: """
   Working with and creating sigils.
