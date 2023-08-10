@@ -1,11 +1,12 @@
 %{
-  version: "1.3.0",
-  title: "Functions",
-  excerpt: """
-  In Elixir and many functional languages, functions are first class citizens.
-  We will learn about the types of functions in Elixir, what makes them different, and how to use them.
-  """
+version: "1.3.0",
+title: "Functions",
+excerpt: """
+In Elixir and many functional languages, functions are first class citizens.
+We will learn about the types of functions in Elixir, what makes them different, and how to use them.
+"""
 }
+
 ---
 
 ## Anonymous Functions
@@ -323,7 +324,7 @@ In the following example we have two functions with the same signature, we rely 
 defmodule Greeter do
   def hello(names) when is_list(names) do
     names = Enum.join(names, ", ")
-    
+
     hello(names)
   end
 
@@ -369,7 +370,7 @@ Let's see what that might look like:
 defmodule Greeter do
   def hello(names, language_code \\ "en") when is_list(names) do
     names = Enum.join(names, ", ")
-    
+
     hello(names, language_code)
   end
 
@@ -382,13 +383,18 @@ defmodule Greeter do
 end
 
 ** (CompileError) iex:8: def hello/2 defines defaults multiple times. Elixir allows defaults to be declared once per definition.
+```
+
 Instead of:
 
+```elixir
     def foo(:first_clause, b \\ :default) do ... end
     def foo(:second_clause, b \\ :default) do ... end
+```
 
 one should write:
 
+```elixir
     def foo(a, b \\ :default)
     def foo(:first_clause, b) do ... end
     def foo(:second_clause, b) do ... end
