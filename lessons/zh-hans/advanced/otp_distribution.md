@@ -111,7 +111,7 @@ iex --sname kate@localhost --cookie secret_token
 
 ## 分布式任务
 
-[分布式任务](https://hexdocs.pm/elixir/master/Task.html#module-distributed-tasks) 允许我们在节点之间创建出受监管的任务。我们通过一个简单的 supervisor 应用来实现分布式任务，允许用户通过 `iex` 会话来在分布式的节点之间相互通信。
+[分布式任务](https://hexdocs.pm/elixir/Task.html#module-distributed-tasks) 允许我们在节点之间创建出受监管的任务。我们通过一个简单的 supervisor 应用来实现分布式任务，允许用户通过 `iex` 会话来在分布式的节点之间相互通信。
 
 ### 定义一个 Supervisor 应用
 
@@ -149,7 +149,7 @@ end
 
 ### 使用受监管的任务发送消息
 
-我们会使用 [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/master/Task.Supervisor.html#async/5) 函数来启动监管任务。
+我们会使用 [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/Task.Supervisor.html#async/5) 函数来启动监管任务。
 
 这个函数需要四个参数：
 

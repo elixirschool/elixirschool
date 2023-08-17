@@ -117,7 +117,7 @@ iex --sname kate@localhost --cookie secret_token
 
 ## 분산 태스크
 
-[분산된 태스크](https://hexdocs.pm/elixir/master/Task.html#module-distributed-tasks)는 노드 간에도 감독되는 태스크들을 생성할 수 있게 해줍니다.
+[분산된 태스크](https://hexdocs.pm/elixir/Task.html#module-distributed-tasks)는 노드 간에도 감독되는 태스크들을 생성할 수 있게 해줍니다.
 우리는 분산된 태스크를 이용해 사용자가 분산 노드들 간에 `iex` 세션을 통해 서로 채팅을 할 수 있도록 하는 간단한 슈퍼바이저 애플리케이션을 만들어볼 것입니다.
 
 ### 슈퍼바이저 애플리케이션 정의
@@ -157,7 +157,7 @@ end
 
 ### 관리되는 Task를 통해 메시지 전송하기
 
-관리되는 태스크를 [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/master/Task.Supervisor.html#async/5) 함수를 이용해 시작해 봅시다.
+관리되는 태스크를 [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/Task.Supervisor.html#async/5) 함수를 이용해 시작해 봅시다.
 
 이 함수는 다음 4개의 인자를 받아야 합니다.
 

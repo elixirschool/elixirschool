@@ -118,7 +118,7 @@ _ノード間で_ 監視された非同期プロセスを生成する方法が�
 
 ## 分散タスク
 
-[分散タスク](https://hexdocs.pm/elixir/master/Task.html#module-distributed-tasks) によって、監視されたタスクをノードをまたいで生成することができます。
+[分散タスク](https://hexdocs.pm/elixir/Task.html#module-distributed-tasks) によって、監視されたタスクをノードをまたいで生成することができます。
 ここでは分散タスクを利用し、分散されたノードをまたいで `iex` セッションを通じたユーザー間のチャットを可能にするシンプルなスーパーバイザアプリケーションを作ります。
 
 ### スーパーバイザアプリケーションの定義
@@ -158,7 +158,7 @@ end
 
 ### 監視されたタスクへのメッセージ送信
 
-[`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/master/Task.Supervisor.html#async/5) 関数で監視されたタスクを開始します。
+[`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/Task.Supervisor.html#async/5) 関数で監視されたタスクを開始します。
 
 この関数は4つの引数を受け取らなければいけません:
 

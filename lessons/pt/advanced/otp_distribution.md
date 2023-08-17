@@ -117,7 +117,7 @@ Se ao menos houvesse uma maneira de gerar processos supervisionados e assíncron
 
 ## Tarefas Distribuídas
 
-[Tarefas distribuídas](https://hexdocs.pm/elixir/master/Task.html#module-distributed-tasks) permitem que geremos tarefas supervisionadas entre nós de processamento.
+[Tarefas distribuídas](https://hexdocs.pm/elixir/Task.html#module-distributed-tasks) permitem que geremos tarefas supervisionadas entre nós de processamento.
 Vamos construir uma aplicação de supervisão simples que utiliza tarefas distribuídas para permitir que usuários conversem uns com os outros por meio de uma sessão `iex`, entre nós de processamento distribuídos.
 
 ### Definindo a Aplicação de Supervisão
@@ -157,7 +157,7 @@ Agora nós sabemos que sempre que nossa aplicação for iniciada em determinado 
 
 ### Enviando Mensagens com Tarefas Supervisionadas
 
-Vamos iniciar tarefas supervisionadas com a função [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/master/Task.Supervisor.html#async/5).
+Vamos iniciar tarefas supervisionadas com a função [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/Task.Supervisor.html#async/5).
 
 Esta função deve receber quatro argumentos:
 

@@ -117,7 +117,7 @@ If only there was a way to spawn supervised, asynchronous processes *across node
 
 ## Distributed Tasks
 
-[Distributed tasks](https://hexdocs.pm/elixir/master/Task.html#module-distributed-tasks) allow us to spawn supervised tasks across nodes.
+[Distributed tasks](https://hexdocs.pm/elixir/Task.html#module-distributed-tasks) allow us to spawn supervised tasks across nodes.
 We'll build a simple supervisor application that leverages distributed tasks to allow users to chat with one another via an `iex` session, across distributed nodes.
 
 ### Defining the Supervisor Application
@@ -157,7 +157,7 @@ Now we know that wherever our application is started on a given node, the `Chat.
 
 ### Sending Messages with Supervised Tasks
 
-We'll start supervised tasks with the [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/master/Task.Supervisor.html#async/5) function.
+We'll start supervised tasks with the [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/Task.Supervisor.html#async/5) function.
 
 This function must take in four arguments:
 

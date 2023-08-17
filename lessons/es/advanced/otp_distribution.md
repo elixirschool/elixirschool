@@ -120,7 +120,7 @@ Si solo hubiera una forma de generar procesos supervisados, asíncronos a *trav�
 
 ## Tareas distribuidas
 
-Las [tareas distribuidas](https://hexdocs.pm/elixir/master/Task.html#module-distributed-tasks) nos permite generar tareas supervisadas a través de nodos.
+Las [tareas distribuidas](https://hexdocs.pm/elixir/Task.html#module-distributed-tasks) nos permite generar tareas supervisadas a través de nodos.
 Construiremos una aplicación simple con un supervisor que aprovecha las tareas distribuidas para permitir a los usuarios *chatear* entre sí usando una sesión `iex` a través de nodos distribuidos.
 
 ### Definiendo una aplicación supervisada
@@ -160,7 +160,7 @@ Ahora que sabemos que donde sea que nuestra aplicación sea iniciada en un nodo,
 
 ### Enviando mensajes con tareas supervisadas
 
-Empezaremos tareas supervisadas con la función [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/master/Task.Supervisor.html#async/5).
+Empezaremos tareas supervisadas con la función [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/Task.Supervisor.html#async/5).
 
 Esta función debe tomar cuatro parámetros:
 
