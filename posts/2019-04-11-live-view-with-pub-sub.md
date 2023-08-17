@@ -260,6 +260,6 @@ Done!
 
 ## Conclusion
 
-Another approach to building this broadcast functionality would be to use an Elixir [Registry](https://hexdocs.pm/elixir/master/Registry.html). It wouldn't give us the ability to broadcast across distributed nodes as easily as PubSub, but I'd be curious to see it implemented to solve this problem.
+Another approach to building this broadcast functionality would be to use an Elixir [Registry](https://hexdocs.pm/elixir/Registry.html). It wouldn't give us the ability to broadcast across distributed nodes as easily as PubSub, but I'd be curious to see it implemented to solve this problem.
 
 The Phoenix PubSub library, however, allowed us to build a real-time feature that broadcasts shared updates to a set of users with just an additional five lines of code. Our Phoenix app was already configured to use Phoenix PubSub, and already had the pubsub backend up and running thanks to some out-of-the-box configuration. Integrating it with our existing LiveView code proved to be pretty straightforward, and we had even more advanced real-time functionality up and running in no time.

@@ -121,7 +121,7 @@ iex --sname kate@localhost --cookie secret_token
 
 ## 分散式工作
 
-[分散式工作](https://hexdocs.pm/elixir/master/Task.html#module-distributed-tasks) 允許跨 node 產生受監控的工作。
+[分散式工作](https://hexdocs.pm/elixir/Task.html#module-distributed-tasks) 允許跨 node 產生受監控的工作。
 現在將構建一個簡單的 supervisor 應用程式，利用分散式工作來允許在分散式 node 中的另一個使用者通過 `iex` 對話來聊天。
 
 ### 定義 Supervisor 應用程式
@@ -161,7 +161,7 @@ end
 
 ### 使用受監控的工作發送訊息
 
-現在將使用 [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/master/Task.Supervisor.html#async/5) 函數開始監控工作
+現在將使用 [`Task.Supervisor.async/5`](https://hexdocs.pm/elixir/Task.Supervisor.html#async/5) 函數開始監控工作
 
 此函數必須包含四個參數：
 
