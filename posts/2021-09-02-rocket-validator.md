@@ -99,4 +99,4 @@ This article was written by [Jaime Iniesta](https://jaimeiniesta.com), a freelan
 
 Try Rocket Validator on your sites by creating a [Free Rocket Validator Account](https://rocketvalidator.com/registration/new).
 
-If you want to upgrade after that, use the **[ELIXIRSCHOOL](https://rocketvalidator.com/pricing?coupon=ELIXIRSCHOOL) coupon code to get a 50% discount** on any subscription plan.
+If you want to upgrade after that, use the **[ELIXIR](https://rocketvalidator.com/pricing?coupon=ELIXIR) coupon code to get a 50% discount** on the first month of your Rocket Validator Pro subscription plan.
