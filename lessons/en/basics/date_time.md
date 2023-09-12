@@ -72,7 +72,7 @@ The first is `NaiveDateTime`.
 Its disadvantage is lack of timezone support:
 
 ```elixir
-iex(15)> NaiveDateTime.utc_now
+iex> NaiveDateTime.utc_now
 ~N[2022-01-21 19:55:10.008965]
 ```
 
