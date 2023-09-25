@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.1.2",
   title: "日付と時間",
   excerpt: """
   Elixirで時間を扱ってみましょう。
@@ -72,7 +72,7 @@ Elixirには日付と時間を同時に含む構造体が2種類あります。
 この構造体のデメリットはタイムゾーンのサポートが無いという点です:
 
 ```elixir
-iex(15)> NaiveDateTime.utc_now
+iex> NaiveDateTime.utc_now
 ~N[2029-01-21 19:55:10.008965]
 ```
 

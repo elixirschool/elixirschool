@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.1.2",
   title: "Date et Heure",
   excerpt: """
   Travailler avec le temps en Elixir.
@@ -72,7 +72,7 @@ La première est `NaiveDateTime`.
 Son inconvénient est qu'elle n'offre pas le support des fuseaux horaires.
 
 ```elixir
-iex(15)> NaiveDateTime.utc_now
+iex> NaiveDateTime.utc_now
 ~N[2029-01-21 19:55:10.008965]
 ```
 

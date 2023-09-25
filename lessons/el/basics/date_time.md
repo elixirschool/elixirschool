@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.2.2",
   title: "Ημερομηνία και Ώρα",
   excerpt: """
   Πως δουλεύουμε με την ώρα στην Elixir
@@ -72,7 +72,7 @@ true
 Το μειονέκτημά της είναι η έλειψη υποστήριξης για ζώνες ώρας:
 
 ```elixir
-iex(15)> NaiveDateTime.utc_now
+iex> NaiveDateTime.utc_now
 ~N[2029-01-21 19:55:10.008965]
 ```
 

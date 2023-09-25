@@ -1,5 +1,5 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "日期與時間",
   excerpt: """
   在 Elixir 中處理時間。
@@ -72,7 +72,7 @@ true
 缺點是缺少時區支援：
 
 ```elixir
-iex(15)> NaiveDateTime.utc_now
+iex> NaiveDateTime.utc_now
 ~N[2029-01-21 19:55:10.008965]
 ```
 

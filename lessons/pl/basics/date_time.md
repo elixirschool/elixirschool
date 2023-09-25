@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Data i czas",
   excerpt: """
   Obsługa czasu w Elixirze.
@@ -72,7 +72,7 @@ Pierwszym z nich jest `NaiveDateTime`.
 Jego wadą jest brak danych o strefie czasowej:
 
 ```elixir
-iex(15)> NaiveDateTime.utc_now
+iex> NaiveDateTime.utc_now
 ~N[2029-01-21 19:55:10.008965]
 ```
 

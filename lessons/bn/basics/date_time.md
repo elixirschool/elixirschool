@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.1.2",
   title: "ডেট টাইম",
   excerpt: """
   এলিক্সিরে সময় সংক্রান্ত কাজ করা
@@ -72,7 +72,7 @@ true
 অসুবিধা হলো, এতে কোন টাইমজোন সাপোর্ট নাইঃ
 
 ```elixir
-iex(15)> NaiveDateTime.utc_now
+iex> NaiveDateTime.utc_now
 ~N[2029-01-21 19:55:10.008965]
 ```
 

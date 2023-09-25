@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Tanggal dan Waktu",
   excerpt: """
   Bekerja dengan waktu di Elixir.
@@ -70,7 +70,7 @@ Ada dua jenis *struct* yang berisi tanggal dan waktu sekaligus di Elixir.
 Yang pertama adalah `NaiveDateTime` yang memiliki kekurangan dalam dukungan zona waktu.
 
 ```elixir
-iex(15)> NaiveDateTime.utc_now
+iex> NaiveDateTime.utc_now
 ~N[2022-01-21 19:55:10.008965]
 ```
 
