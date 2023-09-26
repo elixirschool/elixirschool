@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "날짜와 시간",
   excerpt: """
   Elixir에서 시간을 다루어 봅시다.
@@ -72,7 +72,7 @@ true
 이 모듈에는 타임존 지원이 없다는 단점이 있습니다.
 
 ```elixir
-iex(15)> NaiveDateTime.utc_now
+iex> NaiveDateTime.utc_now
 ~N[2029-01-21 19:55:10.008965]
 ```
 

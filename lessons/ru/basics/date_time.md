@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Дата и время",
   excerpt: """
   Работа с временем в Elixir.
@@ -72,7 +72,7 @@ true
 Её недостаток - отсутствие поддержки часовых поясов:
 
 ```elixir
-iex(15)> NaiveDateTime.utc_now
+iex> NaiveDateTime.utc_now
 ~N[2022-01-21 19:55:10.008965]
 ```
 

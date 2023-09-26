@@ -1,5 +1,5 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "日期和时间",
   excerpt: """
   Elixir 中有关时间和日期的处理
@@ -67,7 +67,7 @@ true
 Elixir 中有两种结构体既包含时间信息，又包含日期信息。我们首先来看 `NaiveDateTime`。 它的一个不足是缺少时区的信息。
 
 ```elixir
-iex(15)> NaiveDateTime.utc_now
+iex> NaiveDateTime.utc_now
 ~N[2029-01-21 19:55:10.008965]
 ```
 
