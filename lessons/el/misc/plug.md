@@ -1,5 +1,5 @@
 %{
-  version: "2.2.0",
+  version: "2.3.0",
   title: "Plug",
   excerpt: """
   Αν είστε εξοικειομένοι με τη Ruby μπορείτε να σκεφτείτε το Plug σαν το Rack με λίγο Sinatra.
@@ -313,10 +313,20 @@ plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
 
 Θα ορίσουμε μια μεταβλητή περιβάλλοντος εφαρμογής στο `config/config.exs`
 
+Για έκδοση Elixir κατώτερο από 1.9:
+
 ```elixir
 use Mix.Config
 
 config :example, cowboy_port: 8080
+```
+Για έκδοση Elixir 1.9 και πάνω: (`Mix.Config` απαρχαιώθηκε στην Elixir 1.9):
+
+```elixir
+import Config
+
+config :example,
+  cowboy_port: 8080
 ```
 
 Στη συνέχεια πρέπει να ενημερώσουμε το `lib/example/application.ex`, να διαβάσουμε την διαμορφομένη τιμή της θύρας, και να την περάσουμε στο Cowboy.
@@ -339,6 +349,7 @@ defmodule Example.Application do
   end
 
   defp cowboy_port, do: Application.get_env(:example, :cowboy_port, 8080)
+
 end
 ```
 
