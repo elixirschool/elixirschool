@@ -1,5 +1,5 @@
 %{
-  version: "1.0.2",
+  version: "1.1.0",
   title: "Sigils",
   excerpt: """
   Trabalhando e criando sigils.
@@ -9,8 +9,10 @@
 
 ## Overview sobre Sigils
 
-Elixir fornece uma sintaxe alternativa para representar e trabalhar com literais.
-Um sigil (símbolo especial) vai começar com um til `~` seguido por um caractere.
+Elixir fornece uma sintaxe alternativa para representar e trabalhar com literais, chamada de sigils.
+
+Um sigilo começa com um til `~` e é seguido por um identificador e um par de delimitadores. Antes do Elixir 1.15, o identificador deve ser um único caractere. A partir da versão 1.15, o identificador também pode ser uma sequência de vários caracteres maiúsculos.
+
 O núcleo do Elixir fornece-nos alguns sigils, no entanto, é possível criar o nosso próprio quando precisamos estender a linguagem.
 
 Uma lista de sigils disponíveis incluem:
@@ -24,6 +26,7 @@ Uma lista de sigils disponíveis incluem:
 - `~W` Gera uma lista **sem** escape ou interpolação
 - `~w` Gera uma lista **com** escape e interpolação
 - `~N` Gera uma `NaiveDateTime` struct
+- `~U` Gera uma `DateTime` struct (desde Elixir 1.9.0)
 
 Uma lista de delimitadores inclui:
 
@@ -162,6 +165,20 @@ Por exemplo:
 iex> NaiveDateTime.from_iso8601("2015-01-23 23:50:07") == {:ok, ~N[2015-01-23 23:50:07]}
 ```
 
+### DateTime
+
+Um [DateTime](https://hexdocs.pm/elixir/DateTime.html) pode ser útil para criar rapidamente
+uma struct que representa um `DateTime` **com** o timezone UTC. Como está no fuso horário UTC
+e sua string pode representar um fuso horário diferente, um terceiro item é retornado que representa
+o offset em segundos.
+
+Por exemplo:
+
+```elixir
+iex> DateTime.from_iso8601("2015-01-23 23:50:07Z") == {:ok, ~U[2015-01-23 23:50:07Z], 0}
+iex> DateTime.from_iso8601("2015-01-23 23:50:07-0600") == {:ok, ~U[2015-01-24 05:50:07Z], -21600}
+```
+
 ## Criando Sigils
 
 Um dos objetivos do Elixir é ser uma linguagem de programação extensível.
@@ -172,17 +189,38 @@ Como já existe uma função para isso no núcleo do Elixir (`String.upcase/1`),
 ```elixir
 
 iex> defmodule MySigils do
-...>   def sigil_u(string, []), do: String.upcase(string)
+...>   def sigil_p(string, []), do: String.upcase(string)
 ...> end
 
 iex> import MySigils
-nil
+MySigils
 
-iex> ~u/elixir school/
-ELIXIR SCHOOL
+iex> ~p/elixir school/
+"ELIXIR SCHOOL"
 ```
 
-Primeiro definimos um módulo chamado `MySigils` e dentro deste módulo, criamos uma função chamada `sigil_u`.
-Como não existe nenhum sigil `~u` no espaço de sigil existente, vamos usá-lo.
-O `_u` indica que desejamos usar `u` como caractere depois do til.
+Primeiro definimos um módulo chamado `MySigils` e dentro deste módulo, criamos uma função chamada `sigil_p`.
+Como não existe nenhum sigil `~p` no espaço de sigil existente, vamos usá-lo.
+O `_p` indica que desejamos usar `p` como caractere depois do til.
 A definição da função deve receber dois argumentos, uma entrada e uma lista.
+
+### Sigils com vários caracteres
+
+No Elixir 1.15 e superior, os identificadores de sigils também podem ser uma sequência de caracteres maiúsculos. Isto pode ser usado para esclarecer o que um sigil está fazendo, fornecendo mais contexto do que um único caractere fornece.
+
+Seguindo a estrutura do exemplo anterior, podemos definir um sigil `~REV` que inverte uma string.
+
+```elixir
+
+iex> defmodule MySigils do
+...>   def sigil_REV(string, []), do: String.reverse(string)
+...> end
+
+iex> import MySigils
+MySigils
+
+iex> ~REV<foobar>
+"raboof"
+```
+
+Observe que para sigils com vários caracteres, todos os caracteres devem ser maiúsculos. Funções do Sigil como `sigil_rev` ou `sigil_Rev` causariam um `SyntaxError` na invocação.
