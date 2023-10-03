@@ -1,5 +1,5 @@
 %{
-  version: "1.4.0",
+  version: "1.4.1",
   title: "Custom Mix Tasks",
   excerpt: """
   Creating custom Mix tasks for your Elixir projects.
@@ -94,7 +94,9 @@ Within this function, we call our `Hello` module and the `say` function.
 
 ## Loading your application
 
-Mix does not automatically start our application or any of its dependencies which is fine for many Mix task use-cases but what if we need to use Ecto and interact with a database? In that case we need to make sure the app behind Ecto.Repo has started. There are 2 ways for us to handle this: explicitly starting an app or we can start our application which in turn will start the others.
+Mix does not automatically start our application or any of its dependencies which is fine for many Mix task use-cases but what if we need to use Ecto and interact with a database? 
+In that case we need to make sure the app behind Ecto.Repo has started. 
+There are 2 ways for us to handle this: explicitly starting an app or we can start our application which in turn will start the others.
 
 Let's look at how we can update our Mix task to start our application and dependencies:
 
