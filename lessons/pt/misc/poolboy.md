@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Poolboy",
   excerpt: """
   Você pode esgotar facilmente os recursos do sistema se não limitar o número máximo de processos simultâneos que seu programa pode gerar.
@@ -22,7 +22,7 @@ Então você pode facilmente evitar ficar sem seus recursos do sistema.
 É aí que entra Poolboy.
 Ele cria um pool de serviços gerenciados por um `Supervisor` sem nenhum esforço de sua parte para fazê-lo manualmente.
 Há muitas bibliotecas que usam Poolboy por baixo dos panos.
-Por exemplo, o pool de conexões do `postgrex` *(que é alavancado pelo Ecto ao usar o PostgreSQL)* e o `redis_poolex` *(Redis connection pool)* são algumas bibliotecas populares que usam o Poolboy.
+Por exemplo, o `redis_poolex` *(Redis connection pool)* é uma biblioteca popular que usa o Poolboy.
 
 ## Instalação
 
@@ -153,7 +153,17 @@ defmodule PoolboyApp.Test do
     Task.async(fn ->
       :poolboy.transaction(
         :worker,
-        fn pid -> GenServer.call(pid, {:square_root, i}) end,
+        fn pid -> 
+          # Vamos agrupar a chamada do genserver em um bloco try-catch. Isso nos permite capturar quaisquer exceções
+          # que possam ser lançadas e devolver o worker ao poolboy de maneira limpa. Também permitindo 
+          # ao programador recuperar o erro e potencialmente corrigi-lo.
+          try do
+            GenServer.call(pid, {:square_root, i})
+          catch
+            e, r -> IO.inspect("poolboy transaction caught error: #{inspect(e)}, #{inspect(r)}")
+            :ok
+          end
+        end,
         @timeout
       )
     end)
