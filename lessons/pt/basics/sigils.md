@@ -223,4 +223,4 @@ iex> ~REV<foobar>
 "raboof"
 ```
 
-Observe que para sigils com vários caracteres, todos os caracteres devem ser maiúsculos. Funções do Sigil como `sigil_rev` ou `sigil_Rev` causariam um `SyntaxError` na invocação.
+Observe que para sigils com vários caracteres, todos os caracteres devem ser maiúsculos. Funções de sigil como `sigil_rev` ou `sigil_Rev` causariam um `SyntaxError` na invocação.
