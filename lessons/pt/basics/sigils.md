@@ -11,7 +11,7 @@
 
 Elixir fornece uma sintaxe alternativa para representar e trabalhar com literais, chamada de sigils.
 
-Um sigilo começa com um til `~` e é seguido por um identificador e um par de delimitadores. Antes do Elixir 1.15, o identificador deve ser um único caractere. A partir da versão 1.15, o identificador também pode ser uma sequência de vários caracteres maiúsculos.
+Um sigil começa com um til `~` e é seguido por um identificador e um par de delimitadores. Antes do Elixir 1.15, o identificador deve ser um único caractere. A partir da versão 1.15, o identificador também pode ser uma sequência de vários caracteres maiúsculos.
 
 O núcleo do Elixir fornece-nos alguns sigils, no entanto, é possível criar o nosso próprio quando precisamos estender a linguagem.
 
