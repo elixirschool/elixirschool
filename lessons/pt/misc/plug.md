@@ -312,7 +312,7 @@ Quando definimos a aplicação e o módulo `Example`, a porta HTTP foi definida 
 
 Nós vamos adicionar uma variável no ambiente da aplicação em `config/config.exs`
 
-For Elixir versions below 1.9:
+Para versões do Elixir abaixo da 1.9:
 
 ```elixir
 use Mix.Config
