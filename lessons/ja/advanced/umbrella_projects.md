@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.0.2",
   title: "アンブレラプロジェクト",
   excerpt: """
   プロジェクトが大きく、本当に大きくなることが時々あります。Mixビルドツールはプロジェクトの成長に合わせて、コードを複数のアプリケーションに分割してElixirプロジェクトをより管理しやすくする方法を提供します。
@@ -197,5 +197,6 @@ Consolidated Inspect
 Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
 iex> Datasets.hello
-:world
+Hello, I'm the datasets
+:ok
 ```
