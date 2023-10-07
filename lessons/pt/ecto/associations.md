@@ -1,5 +1,5 @@
 %{
-  version: "1.2.2",
+  version: "1.3.0",
   title: "Associações",
   excerpt: """
   Nessa seção vamos aprender a utilizar o Ecto para definir e trabalhar com associações entre esquemas.
@@ -229,7 +229,7 @@ defmodule Friends.Repo.Migrations.CreateMoviesActors do
   use Ecto.Migration
 
   def change do
-    create table(:movies_actors) do
+    create table(:movies_actors, primary_key: false) do
       add :movie_id, references(:movies)
       add :actor_id, references(:actors)
     end
