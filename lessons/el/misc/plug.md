@@ -313,14 +313,14 @@ plug VerifyRequest, fields: ["content", "mimetype"], paths: ["/upload"]
 
 Θα ορίσουμε μια μεταβλητή περιβάλλοντος εφαρμογής στο `config/config.exs`
 
-Για έκδοση Elixir κατώτερο από 1.9:
+Για έκδοση Elixir μικρότερη από την 1.9:
 
 ```elixir
 use Mix.Config
 
 config :example, cowboy_port: 8080
 ```
-Για έκδοση Elixir 1.9 και πάνω: (`Mix.Config` απαρχαιώθηκε στην Elixir 1.9):
+Για έκδοση Elixir μεγαλύτερη από 1.9: (το `Mix.Config` έγινε deprecate στην έκδοση Elixir 1.9):
 
 ```elixir
 import Config
