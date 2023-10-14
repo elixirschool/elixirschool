@@ -1,5 +1,5 @@
 %{
-  version: "2.2.0",
+  version: "2.3.0",
   title: "Plug",
   excerpt: """
   Se você estiver familiarizado com Ruby, você pode pensar sobre Plug como o Rack com uma pitada de Sinatra.
@@ -312,10 +312,21 @@ Quando definimos a aplicação e o módulo `Example`, a porta HTTP foi definida 
 
 Nós vamos adicionar uma variável no ambiente da aplicação em `config/config.exs`
 
+Para versões do Elixir abaixo da 1.9:
+
 ```elixir
 use Mix.Config
 
 config :example, cowboy_port: 8080
+```
+
+Para Elixir versão 1.9+ (`Mix.Config` foi descontinuado no Elixir 1.9):
+
+```elixir
+import Config
+
+config :example,
+  cowboy_port: 8080
 ```
 
 Depois nós precisamos atualizar `lib/example/application.ex` para ler a porta a partir da configuração e passar para o Cowboy.  
@@ -338,6 +349,7 @@ defmodule Example.Application do
   end
 
   defp cowboy_port, do: Application.get_env(:example, :cowboy_port, 8080)
+
 end
 ```
 
