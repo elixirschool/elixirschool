@@ -1,5 +1,5 @@
 %{
-  version: "1.0.2",
+  version: "1.1.0",
   title: "Η Κατανομή στο OTP",
   excerpt: """
   Μπορούμε να τρέξουμε τις εφαρμογές μας elixir σε ένα σύνολο διαφορετικών κόμβων που κατανέμονται σε ένα ή και πολλούς διακομιστές.
@@ -35,7 +35,6 @@ iex(kate@localhost)>
 ### Επικοινωνόντας με την Node.spawn_link/2
 
 Αυτή η συνάρτηση δέχεται δύο ορίσματα:
-
 * Το όνομα του κόμβου στον οποίο θέλετε να συνδεθεί
 * Τη συνάρτηση που θα εκτελεστεί από την απομακρυσμένη διεργασία που τρέχει σε αυτό τον κόμβο
 
@@ -396,7 +395,8 @@ exclude =
 ExUnit.start(exclude: exclude)
 ```
 
-Ελέγχουμε αν ο κόμβος είναι ζωντανός, δηλαδή αν ο κόμβος είναι μέρος ενός κατανεμημένου συστήματος με την [`Node.alive?`](https://hexdocs.pm/elixir/Node.html#alive?/0).
+Ελέγχουμε αν ο κόμβος είναι ζωντανός,
+δηλαδή αν ο κόμβος είναι μέρος ενός κατανεμημένου συστήματος με την [`Node.alive?`](https://hexdocs.pm/elixir/Node.html#alive?/0).
 Αν όχι, θα καλέσουμε την `ExUnit` για να παρακάμψουμε όσες δοκιμές έχουν την ετικέτα `distributed: true`.
 Αλλιώς, θα του πούμε να μην εξαιρέσει καμμία δοκιμή.
 
@@ -445,7 +445,7 @@ end
 
 ```elixir
 # config/dev.exs
-use Mix.Config
+import Config
 config :chat, remote_supervisor: fn(recipient) -> {Chat.TaskSupervisor, recipient} end
 ```
 
@@ -453,15 +453,15 @@ config :chat, remote_supervisor: fn(recipient) -> {Chat.TaskSupervisor, recipien
 
 ```elixir
 # config/test.exs
-use Mix.Config
+import Config
 config :chat, remote_supervisor: fn(_recipient) -> Chat.TaskSupervisor end
 ```
 
 Θυμηθείτε να βγάλετε από σχόλιο αυτή τη γραμμή στο `config/config.exs`:
 
 ```elixir
-use Mix.Config
-import_config "#{Mix.env()}.exs"
+import Config
+import_config "#{config_env()}.exs"
 ```
 
 Τέλος, θα αναβαθμίσουμε τη συνάρτησή μας `Chat.remote_supervisor/1` ώστε να ψάξει και να χρησιμοποιήσει τη συνάρτηση που αποθηκεύτηκε στη μεταβλητή εφαρμογής μας:
