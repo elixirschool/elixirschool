@@ -95,7 +95,7 @@ end
 ```
 
 Mientras el trabajo es realizado diferente la API pública no lo es, y cualquier código que aproveche estos módulos puede interactuar con ellos sabiendo como van a responder.
-Esto nos da la habilidad de crear cualquier número de *workers*, todos realizando tareas diferentes pero conforme a la la misma API pública.
+Esto nos da la habilidad de crear cualquier número de *workers*, todos realizando tareas diferentes pero conforme a la misma API pública.
 
 Si por casualidad agregamos un comportamiento pero no implementamos todas las funciones requeridas tendremos una advertencia en tiempo de compilación.
 Para ver esto en acción vamos a modificar el código de `Example.Compressor`y vamos a eliminar la función `init/1`:

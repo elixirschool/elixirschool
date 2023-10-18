@@ -155,4 +155,4 @@ iex> Anagram.anagrams?(3, 5)
     iex:11: Anagram.anagrams?/2
 ```
 
-Como puedes ver la última llamada a `anagrams?` causa un `FunctionClauseError`. Este error esta diciendo que no hay una función en nuestro módulo que coincida con el patrón de recibir 2 argumentos no binarios, y eso es exactamente lo que queremos, solo recibir cadenas y nada mas.
+Como puedes ver la última llamada a `anagrams?` causa un `FunctionClauseError`. Este error está diciendo que no hay una función en nuestro módulo que coincida con el patrón de recibir 2 argumentos no binarios, y eso es exactamente lo que queremos, solo recibir cadenas y nada mas.

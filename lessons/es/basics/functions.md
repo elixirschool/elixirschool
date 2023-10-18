@@ -312,7 +312,7 @@ iex> Greeter.phrase
 
 ### Guardias
 
-Hemos cubierto brevemente las guardias en la lección [Estructuras de control](/es/lessons/basics/control_structures), ahora veremos cómo aplicarlas a las funciones con nombre. Una vez Elixir ha hecha coincidencia con una función, de existir, las guardias serán evaluadas.
+Hemos cubierto brevemente las guardias en la lección [Estructuras de control](/es/lessons/basics/control_structures), ahora veremos cómo aplicarlas a las funciones con nombre. Una vez Elixir ha hecho coincidencia con una función, de existir, las guardias serán evaluadas.
 
 En el siguiente ejemplo tenemos dos funciones con la misma firma, confiamos en las guardias para determinar cuál usar basándonos en el tipo de los argumentos:
 
