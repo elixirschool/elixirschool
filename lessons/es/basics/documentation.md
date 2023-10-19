@@ -130,7 +130,7 @@ iex>
 
 ¿Notas como puedes usar marcado dentro de la documentación y la terminal lo renderizará? Además de ser realmente genial y una adición novedosa al vasto ecosistema de Elixir, se vuelve mucho más interesante cuando vemos que ExDoc genera documentación en HTML sobre la marcha.
 
-**Nota:** la anotación `@spec` es usada para analisis estático del código. Para aprender mas acerca de eso, revisa la lección [Especificaciones y tipos](/es/lessons/advanced/typespec).
+**Nota:** la anotación `@spec` es usada para análisis estático del código. Para aprender mas acerca de eso, revisa la lección [Especificaciones y tipos](/es/lessons/advanced/typespec).
 
 ## ExDoc
 
@@ -220,7 +220,7 @@ View them at "doc/index.html".
 Si todo fue de acuerdo al plan, deberías ver un mensaje similar al mensaje de salida del anterior ejemplo.
 Ahora vamos a ver dentro de nuestro proyecto Mix y deberíamos ver que hay otro directorio llamado **docs/**.
 Dentro está nuestra documentación generada.
-Si visitamos la página indice(index.html) en nuestro navegador deberíamos ver los siguiente:
+Si visitamos la página indice(index.html) en nuestro navegador deberíamos ver lo siguiente:
 
 ![ExDoc Screenshot 1](/images/documentation_1.png)
 

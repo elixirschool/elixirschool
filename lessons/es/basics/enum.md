@@ -224,7 +224,7 @@ iex> Enum.uniq_by([%{x: 1, y: 1}, %{x: 2, y: 1}, %{x: 3, y: 3}], fn coord -> coo
 
 ## Enum usando el operador de Captura (&)
 
-Muchas funciones del módule de Enum en Elixir reciben funciones anónimas como argumento para ejecutarla en cada elemento de la colección a la que se le pasa.
+Muchas funciones del módulo de Enum en Elixir reciben funciones anónimas como argumento para ejecutarla en cada elemento de la colección a la que se le pasa.
 
 Estas funciones anónimas suelen escribirse habitualmente con el operador de Captura (&).
 

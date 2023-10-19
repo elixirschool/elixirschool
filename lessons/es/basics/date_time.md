@@ -90,7 +90,7 @@ Pero utiliza con cuidado las zonas horarias. La documentación dice:
 
 > Varias funciones en este módulo requieren una base de datos de zonas horarias. Por defecto, utiliza la base de datos por defecto que regresa `Calendar.get_time_zone_database/0`, que a su vez está predeterminada a `Calendar.UTCOnlyTimeZoneDatabase` que solo trabaja con fechas y horas en "Etc/UTC" y regresa el error `{:error, :utc_only_time_zone_database}` para cualquier otra zona horaria.
 
-Además, nota que puedes crear una instacia `DateTime` a partir de una instancia `NaiveDateTime`, sólo con proveer la zona horaria:
+Además, nota que puedes crear una instancia `DateTime` a partir de una instancia `NaiveDateTime`, sólo con proveer la zona horaria:
 
 ```elixir
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")

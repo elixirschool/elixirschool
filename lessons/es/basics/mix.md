@@ -76,7 +76,7 @@ Al empezar `iex` de esta forma, mix cargará nuestra aplicación y dependencias 
 
 ## Compilación
 
-Mix es inteligente y compilará tus cambios cuando sea necesario, pero todavia puede ser necesario compilar tu proyecto explícitamente. En esta sección vamos a cubrir cómo compilar nuestro proyecto y como se hace la compilación.
+Mix es inteligente y compilará tus cambios cuando sea necesario, pero todavía puede ser necesario compilar tu proyecto explícitamente. En esta sección vamos a cubrir cómo compilar nuestro proyecto y como se hace la compilación.
 
 Para compilar un proyecto mix solo necesitamos ejecutar `mix compile` en nuestro directorio base:
 

@@ -35,7 +35,7 @@ iex> quote do: if value, do: "True", else: "False"
  [{:value, [], Elixir}, [do: "True", else: "False"]]}
 ```
 
-¿Te das cuenta de que el primer árbol no retorna tuplas? Hay cinco literales que se retornan a si mismos cuando son `quoted`.
+¿Te das cuenta de que el primer árbol no retorna tuplas? Hay cinco literales que se retornan a sí mismos cuando son `quoted`.
 
 ```elixir
 iex> :atom

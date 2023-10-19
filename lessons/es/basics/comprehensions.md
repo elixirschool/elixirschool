@@ -17,7 +17,7 @@ iex> for x <- list, do: x * x
 [1, 4, 9, 16, 25]
 ```
 
-La primera cosa que notamos es el uso de `for` y un generador. ¿Qué es un generador? Generadores son las expresiones `x <- [1, 2, 3, 4]` encontradas en las comprensión de listas. Son responsables de generar el siguiente valor.
+La primera cosa que notamos es el uso de `for` y un generador. ¿Qué es un generador? Generadores son las expresiones `x <- [1, 2, 3, 4]` encontradas en las comprensiones de listas. Son responsables de generar el siguiente valor.
 
 Por suerte para nosotros, las comprensiones no están limitadas a las listas; de hecho ellas pueden trabajar con cualquier enumerable.
 
