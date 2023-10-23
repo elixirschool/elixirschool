@@ -221,11 +221,15 @@ end
 
 ### View
 
-Create the view module where you can place the helpers needed to render the view. By now it's just:
+Create a helper module necessary for rendering views in 
+`lib/nimble_school_web/controllers/blog_html.ex`. 
+By now it's just:
 
 ```elixir
-defmodule NimbleSchoolWeb.BlogView do
-  use NimbleSchoolWeb, :view
+defmodule NimbleSchoolWeb.BlogHTML do
+  use NimbleSchoolWeb, :html
+
+  embed_templates "blog_html/*"
 end
 ```
 
