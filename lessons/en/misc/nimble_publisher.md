@@ -235,16 +235,16 @@ end
 
 ### Template
 
-Finally, create the HTML files to render the content. Under `lib/nimble_school_web/templates/blog/index.html.eex` define this to render the list of posts:
+Finally, create the HTML files to render the content. Under `lib/nimble_school_web/controllers/blog_html
+/index.html.heex` define this to render the list of posts:
 
 ```html
 <h1>Listing all posts</h1>
 
-<ul style="list-style: none;">
 <%= for post <- @posts do %>
-  <li id="<%= post.id %>" style="margin-bottom: 3rem;">
+  <div id="{post.id}" style="margin-bottom: 3rem;">
     <h2>
-      <%= link post.title, to: Routes.blog_path(@conn, :show, post)%>
+      <.link href={~p"/blog/#{post.id}"}><%= post.title %></.link>
     </h2>
 
     <p>
@@ -256,15 +256,15 @@ Finally, create the HTML files to render the content. Under `lib/nimble_school_w
     </p>
 
     <%= raw post.description %>
-  </li>
+  </div>
 <% end %>
-</ul>
 ```
 
-And create `lib/nimble_school_web/templates/blog/show.html.eex` to render a single post:
+And create `lib/nimble_school_web/controllers/blog_html
+/show.html.heex` to render a single post:
 
 ```html
-<%= link "← All posts", to: Routes.blog_path(@conn, :index)%>
+<.link href={~p"/blog"}>← All posts</.link>
 
 <h1><%= @post.title %></h1>
 
