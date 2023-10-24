@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.0.2",
   title: "Pencocokan Pola",
   excerpt: """
   Pencocokan pola (Pattern matching) adalah sebuah bagian Elixir yang powerful, memungkinkan kita mencocokkan value sederhana, struktur data, dan bahkan fungsi. Dalam pelajaran ini kita akan mulai melihat bagaimana pencocokan pola ini digunakan.
@@ -9,7 +9,7 @@
 
 ## Match operator
 
-Siap untuk dibuat bingung? Dalam Elixir, operator `=` sebetulnya adalah operator pencocokan (match operator). Melalui operator pencocokan kita dapat menetapkan (assign) dan kemudian mencocokkan value, mari kita lihat:
+Siap untuk dibuat bingung? Dalam Elixir, operator `=` sebetulnya adalah operator pencocokan (match operator), dapat disamakan dengan tanda 'sama dengan' di aljabar. Saat dipakai, akan mengubah ekspresi menjadi persamaan dan membuat Elixir mencocokkan nilai di sisi kiri dengan nilai di sisi kanan. Jika nilainya cocok, akan dikembalikan nilai dari persamaan tersebut. Mari kita lihat:
 
 ```elixir
 iex> x = 1
@@ -56,7 +56,7 @@ iex> {:ok, value} = {:error}
 
 Kita baru saja pelajari bahwa operator pencocokan melakukan assignment ketika sisi kiri pencocokan berisi variabel. Dalam beberapa kasus perilaku ini, variable rebinding, tidak diinginkan. Untuk situasi semacam ini, kita punya pin operator: `^`.
 
-Ketika kita melakukan pin sebuah variabel kita mencocokkan terhadap value yang ada dan bukannya melakukan rebinding terhadap value yang baru. Mari lihat bagaimana ini terjadi:
+Ketika kita melakukan pin sebuah variabel, kita mencocokkan terhadap value yang ada dan bukannya melakukan rebinding terhadap value yang baru. Mari lihat bagaimana ini terjadi:
 
 ```elixir
 iex> x = 1
@@ -96,4 +96,8 @@ iex> greet.("Hello", "Sean")
 "Hi Sean"
 iex> greet.("Mornin'", "Sean")
 "Mornin', Sean"
+iex> greeting
+"Hello"
 ```
+
+Perhatikan pada contoh `"Mornin'"` bahwa perubahan value dari `greeting` menjadi `"Mornin'"` hanya terjadi di dalam fungsi. Di luar fungsi, value `greeting` masih tetap `"Hello"`.
