@@ -1,5 +1,5 @@
 %{
-  version: "1.0.2",
+  version: "1.1.0",
   title: "NimblePublisher",
   excerpt: """
   [NimblePublisher](https://github.com/dashbitco/nimble_publisher) is a minimal filesystem-based publishing engine with Markdown support and code highlighting.
