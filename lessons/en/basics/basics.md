@@ -1,5 +1,5 @@
 %{
-  version: "1.3.0",
+  version: "1.3.1",
   title: "Basics",
   excerpt: """
   Getting started, basic data types, and basic operations.
@@ -210,7 +210,7 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
