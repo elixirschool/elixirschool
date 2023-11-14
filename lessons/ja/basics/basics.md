@@ -1,5 +1,5 @@
 %{
-  version: "1.3.0",
+  version: "1.4.0",
   title: "基本",
   excerpt: """
   入門、基本データ型、そして基本的な演算。
@@ -206,7 +206,7 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
