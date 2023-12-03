@@ -91,7 +91,7 @@ iex> tail
 
 ## Tuple
 
-Le tuple sono simili alle liste, ma sono conservate in memoria in modo adiancente. Ciò permette di accedere agli elementi in modo rapido, ma rende le modifiche più dispendiose; la nuova tupla deve essere interamente copiata in memoria. Le tuple sono rappresentate con le parentesi graffe:
+Le tuple sono simili alle liste, ma sono conservate in memoria in modo adiacente. Ciò permette di accedere agli elementi in modo rapido, ma rende le modifiche più dispendiose; la nuova tupla deve essere interamente copiata in memoria. Le tuple sono rappresentate con le parentesi graffe:
 
 ```elixir
 iex> {3.14, :pie, "Apple"}
