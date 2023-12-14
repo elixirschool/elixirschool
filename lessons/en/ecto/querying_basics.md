@@ -418,4 +418,4 @@ from c in Character,
   select: {m.title, c.name}
 ```
 
-The Ecto Query DSL is a powerful tool that provides us with everything we need to make even complex database queries. With this introduction provides you with the basic building blocks to start querying.
+The Ecto Query DSL is a powerful tool that provides us with everything we need to make even complex database queries. With this introduction, you are provided with the basic building blocks to start querying.
