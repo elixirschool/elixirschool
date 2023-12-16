@@ -185,7 +185,7 @@ Some of the other built-in validators in `Ecto.Changeset` are:
 + validate_number/3
 + validate_subset/4
 
-You can find the full list with details how to use them [here](https://hexdocs.pm/ecto/Ecto.Changeset.html#summary).
+You can find the full list with details on how to use them [here](https://hexdocs.pm/ecto/Ecto.Changeset.html#summary).
 
 ### Custom validations
 
