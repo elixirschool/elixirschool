@@ -1,5 +1,5 @@
 %{
-  version: "1.1.2",
+  version: "1.1.3",
   title: "OTP Supervisors",
   excerpt: """
   Supervisors are specialized processes with one purpose: monitoring other processes.
@@ -163,7 +163,7 @@ Including the `Task.Supervisor` is no different than other supervisors:
 
 ```elixir
 children = [
-  {Task.Supervisor, name: ExampleApp.TaskSupervisor, restart: :transient}
+  {Task.Supervisor, name: ExampleApp.TaskSupervisor}
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
@@ -173,10 +173,10 @@ The major difference between `Supervisor` and `Task.Supervisor` is that its defa
 
 ### Supervised Tasks
 
-With the supervisor started we can use the `start_child/2` function to create a supervised task:
+With the supervisor started we can use the `start_child/3` function to create a supervised task and pass in our options:
 
 ```elixir
-{:ok, pid} = Task.Supervisor.start_child(ExampleApp.TaskSupervisor, fn -> background_work end)
+{:ok, pid} = Task.Supervisor.start_child(ExampleApp.TaskSupervisor, fn -> IO.puts("Background Work Done") end, [restart: :transient])
 ```
 
 If our task crashes prematurely it will be re-started for us.
