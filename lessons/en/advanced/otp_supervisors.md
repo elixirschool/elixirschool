@@ -1,5 +1,5 @@
 %{
-  version: "1.1.3",
+  version: "1.2.0",
   title: "OTP Supervisors",
   excerpt: """
   Supervisors are specialized processes with one purpose: monitoring other processes.
