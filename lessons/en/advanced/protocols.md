@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.1.0",
   title: "Protocols",
   excerpt: """
   In this lesson we are going to look at Protocols, what they are, and how we use them in Elixir.
@@ -92,8 +92,7 @@ defimpl AsAtom, for: Map do
 end
 ```
 
-Here we've defined our protocol and it's expected function, `to_atom/1`, along with implementations for a few types.
-Now that we have our protocol, let's put it to use in IEx:
+Here we've defined our protocol and it's expected function, `to_atom/1`, along with implementations for a few types. What the `defdelegate` macro does is simply forward the `to_atom/1` function to be executed by the specified module. Now that we have our protocol, let's put it to use in IEx:
 
 ```elixir
 iex> import AsAtom
