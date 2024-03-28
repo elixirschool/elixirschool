@@ -117,7 +117,7 @@ iex> inspect(sean)
 ```
 
 All of our fields are present which is okay for this example but what if we had a protected field we didn't want to include?
-The new `@derive` feature let's us accomplish just this!
+The new `@derive` feature lets us accomplish just this!
 Let's update our example so `roles` are no longer included in our output:
 
 ```elixir
