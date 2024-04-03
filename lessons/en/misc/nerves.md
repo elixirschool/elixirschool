@@ -14,7 +14,7 @@ As the website for Nerves says, it allows you to "craft and deploy bulletproof e
 This lesson will be a bit different from other Elixir School lessons.
 Nerves is a bit more difficult to get into as it requires both some advanced system setup and additional hardware, so may not be suitable for beginners.
 
-To write embedded code using Nerves, you will need one of the [supported targets](https://hexdocs.pm/nerves/targets.html), a card reader with a memory card supported by the hardware of your choice, as well as wired networking connection to access this device by the network.
+To write embedded code using Nerves, you will need one of the [supported targets](https://hexdocs.pm/nerves/supported-targets.html), a card reader with a memory card supported by the hardware of your choice, as well as wired networking connection to access this device by the network.
 
 However, we would suggest using a Raspberry Pi, due to it having controllable LED onboard.
 It is also advisable to have a screen connected to your target device as this will simplify debugging using IEx.
