@@ -221,7 +221,7 @@ iex> name
 Similarly, we can update our schemas just as we would any other map or struct in Elixir:
 
 ```elixir
-iex> %{person | age: 18}
+iex> person = %{person | age: 18}
 %Friends.Person{age: 18, name: "Tom"}
 iex> Map.put(person, :name, "Jerry")
 %Friends.Person{age: 18, name: "Jerry"}
