@@ -167,7 +167,7 @@ defmodule Example do
 end
 ```
 
-If there's a conflict between two aliases or we just wish to alias to a different name entirely, we can use the `:as` option:
+If there's a conflict between two aliases or we just wish to alias to a different name entirely, we can use the `as:` option:
 
 ```elixir
 defmodule Example do
