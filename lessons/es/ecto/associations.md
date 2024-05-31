@@ -48,7 +48,7 @@ end
 Vamos a agregar un esquema que especifica la relación "has many" entre una película y sus personajes.
 
 ```elixir
-# lib/example/movie.ex
+# lib/friends/movie.ex
 defmodule Friends.Movie do
   use Ecto.Schema
 
@@ -100,7 +100,7 @@ end
 Nuestro esquema igualmente necesita definir la relación "belongs to" entre un personaje y su película.
 
 ```elixir
-# lib/example/character.ex
+# lib/friends/character.ex
 
 defmodule Friends.Character do
   use Ecto.Schema
@@ -152,7 +152,7 @@ end
 Y el esquema `Distributor` debería usar el macro `belongs_to/3` que nos permite llamar `distributor.movie` y buscar la película asociada al distribuidor usando esta llave foranea.
 
 ```elixir
-# lib/example/distributor.ex
+# lib/friends/distributor.ex
 
 defmodule Friends.Distributor do
   use Ecto.Schema
@@ -167,7 +167,7 @@ end
 Después, vamos a agregar la relación `has_one` a el esquema `Movie`:
 
 ```elixir
-# lib/example/movie.ex
+# lib/friends/movie.ex
 
 defmodule Friends.Movie do
   use Ecto.Schema
@@ -243,7 +243,7 @@ end
 Después, vamos a agregar el macro `many_to_many` a nuestro esquema `Movie`:
 
 ```elixir
-# lib/example/movie.ex
+# lib/friends/movie.ex
 
 defmodule Friends.Movie do
   use Ecto.Schema
@@ -261,7 +261,7 @@ end
 Finalmente, definiremos nuestro esquema `Actor` con el mismo macro `many_to_may`.
 
 ```elixir
-# lib/example/actor.ex
+# lib/friends/actor.ex
 
 defmodule Friends.Actor do
   use Ecto.Schema
