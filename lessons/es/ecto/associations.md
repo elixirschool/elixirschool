@@ -191,7 +191,7 @@ mix ecto.migrate
 
 ### Muchos a Muchos
 
-Digamos que una película tiene muchos actores, y que un actor puede pertenecer a más de una película. Vamos a construir una talba de asociación que referencía _ambas_ películas _y_ actores para implementar esta relación.
+Digamos que una película tiene muchos actores, y que un actor puede pertenecer a más de una película. Vamos a construir una tabla de asociación que referencía _ambas_ películas _y_ actores para implementar esta relación.
 
 Primero, vamos a generar la migración `Actors` (Actores):
 
