@@ -98,8 +98,8 @@ iex> greet = fn
 #Function<12.54118792/2 in :erl_eval.expr/5>
 iex> greet.("Hello", "Sean")
 "Hi Sean"
-iex> greet.("Mornin'", "Sean")
-"Mornin', Sean"
+iex> greet.("Morning'", "Sean")
+"Morning', Sean"
 iex> greeting
 "Hello"
 ```
