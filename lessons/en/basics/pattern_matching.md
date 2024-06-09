@@ -68,7 +68,9 @@ iex> x = 1
 iex> ^x = 2
 ** (MatchError) no match of right hand side value: 2
 iex> {x, ^x} = {2, 1}
-{2, 1}
+** (MatchError) no match of right hand side value: {2, 1}
+iex> {x, ^x} = {2, 2}
+{2, 2}
 iex> x
 2
 ```
