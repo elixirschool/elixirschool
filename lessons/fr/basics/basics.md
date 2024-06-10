@@ -1,5 +1,5 @@
 %{
-  version: "1.3.0",
+  version: "1.4.0",
   title: "Bases",
   excerpt: """
   Installation, types de base et opérations.
@@ -11,7 +11,7 @@
 
 ### Installer Elixir
 
-Les instructions d'installation pour chaque système d'exploitation se trouvent sur elixir-lang.org dans le [guide d'installation.](http://elixir-lang.org/install.html).
+Les instructions d'installation pour chaque système d'exploitation se trouvent sur *elixir-lang.org* dans le [guide d'installation.](http://elixir-lang.org/install.html).
 
 Une fois qu'Elixir est installé, nous pouvons facilement trouver la version installée.
 
@@ -24,16 +24,16 @@ Une fois qu'Elixir est installé, nous pouvons facilement trouver la version ins
 
 Elixir vient avec `iex`, un shell interactif qui nous permet d'évaluer des expressions Elixir au fur et à mesure.
 
-Pour commencer, lançons `iex`:
+Pour commencer, lançons `iex` :
 
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
     iex>
 
-Note: Sous Windows PowerShell, il faut taper `iex.bat`.
+Note : Sous Windows PowerShell, il faut taper `iex.bat`.
 
-Maintenant, essayons `iex` en tapant quelques expressions simples:
+Maintenant, essayons `iex` en tapant quelques expressions simples :
 
 ```elixir
 iex> 2+3
@@ -48,14 +48,14 @@ Ce n'est pas grave si vous ne comprenez pas chaque expression maintenant, autant
 
 ## Types de base
 
-### Entiers (Integers)
+### Entiers (*Integers*)
 
 ```elixir
 iex> 255
 255
 ```
 
-Il y a également le support des notations binaires, octales et hexadécimales :
+En plus de la base décimale, les entiers peuvent être notés en base binaire, octale et hexadécimale :
 
 ```elixir
 iex> 0b0110
@@ -66,9 +66,9 @@ iex> 0x1F
 31
 ```
 
-### Nombres à virgule flottante (Floats)
+### Nombres à virgule flottante (*Floats*)
 
-En Elixir, les nombres à virgule flottantes requièrent une décimale après au moins une chiffre; elles ont une précision de l'ordre d'un `double` de 64 bits et offrent le support de la notation `e` pour les exponentielles.
+En Elixir, les nombres à virgule flottante requièrent une décimale après au moins un chiffre ; elles ont une précision de l'ordre d'un `double` de 64 bits et offrent le support de la notation `e` pour les exponentielles.
 
 ```elixir
 iex> 3.14
@@ -79,9 +79,9 @@ iex> 1.0e-10
 1.0e-10
 ```
 
-### Booléens (Booleans)
+### Booléens (*Booleans*)
 
-Elixir supporte `true` et `false` comme valeurs booléennes; tout est considéré comme vrai (truthy) à part `false` et `nil` :
+Les valeurs booléennes sont dénotées `true` et `false`. Tout est considéré comme vrai, excepté `false` et `nil`.
 
 ```elixir
 iex> true
@@ -90,9 +90,9 @@ iex> false
 false
 ```
 
-### Atomes (Atoms)
+### Atomes (*Atoms*)
 
-Un atome est une constante qui a pour valeur son nom. Si vous êtes familiers avec Ruby, ils sont synonymes du type `Symbol`
+Un atome est une constante qui a pour valeur son nom. Ils sont équivalent au type `Symbol` en Ruby.
 
 ```elixir
 iex> :foo
@@ -101,7 +101,7 @@ iex> :foo == :bar
 false
 ```
 
-NOTE : Les booléens `true` et `false` sont aussi respectivement les atomes `:true` et `:false`.
+Note : les booléens `true` et `false` sont aussi respectivement les atomes `:true` et `:false`.
 
 ```elixir
 iex> is_atom(true)
@@ -112,7 +112,7 @@ iex> :true === true
 true
 ```
 
-Les noms de modules en Elixir sont aussi des atomes. `MyApp.MyModule` est un atome valide, même si aucun module de ce nom n'a pas encore été déclaré.
+Les noms de modules en Elixir sont aussi des atomes. `MyApp.MyModule` est un atome valide, même si aucun module de ce nom n'a été déclaré.
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
@@ -126,9 +126,9 @@ iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
-### Chaînes de caractères (Strings)
+### Chaînes de caractères (*Strings*)
 
-Les chaînes de caractères en Elixir sont encodées en UTF-8 et entourées de guillemets droits doubles :
+Les chaînes de caractères en Elixir sont encodées en *UTF-8* et entourées de guillemets droits doubles :
 
 ```elixir
 iex> "Hello"
@@ -137,7 +137,7 @@ iex> "dziękuję"
 "dziękuję"
 ```
 
-Les chaînes de caractères supportent les retours à la ligne et les séquences d'échappement :
+Les chaînes de caractères peuvent contenir des retours à la ligne et des séquences d'échappement :
 
 ```elixir
 iex> "foo
@@ -147,13 +147,13 @@ iex> "foo\nbar"
 "foo\nbar"
 ```
 
-Elixir comprend aussi des types plus complexes. Nous verrons plus à ce sujet en parlant des [collections](/fr/lessons/basics/collections) et des [fonctions](/fr/lessons/basics/functions).
+Elixir comprend aussi des types plus complexes. Nous approfondirons ce sujet dans les leçons dédiées aux [collections](/fr/lessons/basics/collections) et aux [fonctions](/fr/lessons/basics/functions).
 
 ## Opérations de base
 
-### Arithmétique
+### Opérations arithmétiques
 
-Elixir supporte les opérateurs `+`, `-`, `*` et `/` comme prévu. Il est important de se souvenir que `/` retournera toujours un nombre à virgule flottante :
+Elixir supporte les opérateurs `+`, `-`, `*` et `/`. `/` produit toujours un nombre à virgule flottante :
 
 ```elixir
 iex> 2 + 2
@@ -166,7 +166,7 @@ iex> 10 / 5
 2.0
 ```
 
-Si vous avez besoin du reste d'une division ou d'une division entière (le modulo), Elixir comprend deux fonctions bien utiles pour les obtenir :
+De plus, Elixir comprend deux fonctions pour calculer le quotient (ou modulo) et le reste (en anglais : *remainder*) d'une division :
 
 ```elixir
 iex> div(10, 5)
@@ -175,9 +175,9 @@ iex> rem(10, 3)
 1
 ```
 
-### Booléens
+### Opérations booléennes
 
-Elixir fournit les opérateurs booléens `||`, `&&` et `!`. Ils supportent n'importe quel type:
+Elixir fournit les opérateurs booléens `||`, `&&` et `!`. Ils supportent n'importe quel type :
 
 ```elixir
 iex> -20 || true
@@ -196,7 +196,7 @@ iex> !false
 true
 ```
 
-Il y a trois opérateurs additionnels, dont le premier argument _doit_ être un booléen (`true` ou `false`) :
+Il y a trois opérateurs additionnels, dont le premier argument _doit_ être un booléen (`true` ou `false`) :
 
 ```elixir
 iex> true and 42
@@ -206,16 +206,16 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
 
-Note: Les opérateurs `and` et `or` d'Elixir mappent en fait à `andalso` et `orelse` en Erlang.
+Note : Les opérateurs `and` et `or` d'Elixir correspondent respectivement à `andalso` et `orelse` en Erlang.
 
-### Comparaison
+### Comparaisons
 
-Elixir a tous les opérateurs de comparaison habituels: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` et `>`.
+Elixir a tous les opérateurs de comparaison habituels : `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` et `>`.
 
 ```elixir
 iex> 1 > 2
@@ -228,7 +228,7 @@ iex> 2 <= 3
 true
 ```
 
-Pour une comparaison stricte d'entiers et de nombres à virgule flottante, utilisez `===` :
+Pour une comparaison stricte d'entiers et de nombres à virgule flottante, utilisez `===` :
 
 ```elixir
 iex> 2 == 2.0
@@ -237,13 +237,13 @@ iex> 2 === 2.0
 false
 ```
 
-Une fonctionnalité importante d'Elixir est que deux types différents peuvent être comparés, ce qui est particulièrement utile quand on effectue un tri. Nous n'avons pas besoin de mémoriser l'ordre de tri mais il est important d'en être conscient :
+Des valeurs de types différents peuvent être comparés, c'est utile pour effectuer un tri. L'ordre est le suivant :
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
-Cela permet de réaliser des comparaisons intéressantes, que vous ne trouveriez pas dans d'autres langages :
+Cela permet de réaliser des comparaisons intéressantes, que vous ne trouveriez pas dans d'autres langages :
 
 ```elixir
 iex> :hello > 999
@@ -254,7 +254,7 @@ false
 
 ### Interpolation des chaînes de caractères
 
-Si vous avez déjà utilisé Ruby, l'interpolation en Elixir vous semblera familière :
+Si vous avez déjà utilisé Ruby, l'interpolation en Elixir vous semblera familière :
 
 ```elixir
 iex> name = "Sean"
@@ -264,7 +264,7 @@ iex> "Hello #{name}"
 
 ### Concaténation de chaînes de caractères
 
-La concaténation de chaînes utilise l'opérateur `<>` :
+L'opérateur de concaténation de chaînes de caractères est `<>` :
 
 ```elixir
 iex> name = "Sean"
