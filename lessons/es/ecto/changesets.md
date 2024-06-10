@@ -281,7 +281,7 @@ La función de arriba podría ser luego usada en una función de ayuda dedicada 
 def sign_up(params) do
   %Friends.Person{}
   |> Friends.Person.registration_changeset(params)
-  |> Fiends.Repo.insert()
+  |> Friends.Repo.insert()
 end
 ```
 
