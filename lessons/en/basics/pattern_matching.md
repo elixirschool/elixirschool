@@ -1,5 +1,5 @@
 %{
-  version: "1.0.2",
+  version: "1.1.0",
   title: "Pattern Matching",
   excerpt: """
   Pattern matching is a powerful part of Elixir. It allows us to match simple values, data structures, and even functions.
@@ -103,5 +103,6 @@ iex> greet.("Mornin'", "Sean")
 iex> greeting
 "Hello"
 ```
+The first clause of the function uses the pin operator to match the existing value of greeting. This means that if greeting is "Hello", it will use the first clause, otherwise it will use the second clause.
 
 Note in the `"Mornin'"` example that the reassignment of `greeting` to `"Mornin'"` only happens inside the function. Outside of the function `greeting` is still `"Hello"`.
