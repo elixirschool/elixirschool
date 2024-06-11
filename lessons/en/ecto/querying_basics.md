@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.3.0",
   title: "Querying",
   excerpt: """
   """
@@ -412,7 +412,7 @@ In the example above, we are joining on an Ecto schema, `m in Movie`. We can als
 ```elixir
 movies = from m in Movie, where: [stars: 5]
 from c in Character,
-  join: ^movies,
+  join: m in subquery(movies),
   on: [id: c.movie_id], # keyword list
   where: c.name == "Wade Watts",
   select: {m.title, c.name}
