@@ -1,5 +1,5 @@
 %{
-  version: "1.3.1",
+  version: "1.4.0",
   title: "Основы",
   excerpt: """
   Базовая настройка, типы и операторы.
@@ -180,7 +180,8 @@ iex> rem(10, 3)
 
 ### Логические операторы
 
-Elixir предоставляет операторы `||`, `&&`, `!`, которые поддерживают работу с любыми типами:
+Elixir предоставляет логические операторы `||`, `&&`, `!`.
+Они поддерживают работу с любыми типами:
 
 ```elixir
 iex> -20 || true
@@ -209,7 +210,7 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
@@ -261,6 +262,7 @@ false
 
 ```elixir
 iex> name = "Sean"
+"Sean"
 iex> "Hello #{name}"
 "Hello Sean"
 ```
@@ -271,6 +273,7 @@ iex> "Hello #{name}"
 
 ```elixir
 iex> name = "Sean"
+"Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
