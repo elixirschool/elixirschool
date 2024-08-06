@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.3.0",
   title: "Язык запросов",
   excerpt: """
   """
@@ -188,7 +188,7 @@ iex> Repo.all(query)
 ["Something about video games"]
 ```
 
-### Получение первой и последней записей
+### Получение первой и последней записи
 
 Можно получить первую или последнюю запись из репозитория при помощи функций `Ecto.Query.first/2` и `Ecto.Query.last/2`.
 
@@ -412,7 +412,7 @@ from m in Movie,
 ```elixir
 movies = from m in Movie, where: [stars: 5]
 from c in Character,
-  join: ^movies,
+  join: m in subquery(movies),
   on: [id: c.movie_id], # ключевой список
   where: c.name == "Wade Watts",
   select: {m.title, c.name}
