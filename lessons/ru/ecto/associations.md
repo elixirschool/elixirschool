@@ -1,5 +1,5 @@
 %{
-  version: "1.2.2",
+  version: "1.3.0",
   title: "Связи",
   excerpt: """
   В этом уроке мы рассмотрим, как использовать Ecto для определения связей и работы с ассоциациями между схемами.
@@ -48,7 +48,7 @@ end
 Добавим модель для нашей миграции со связью между фильмами и героями:
 
 ```elixir
-# lib/example/movie.ex
+# lib/friends/movie.ex
 defmodule Friends.Movie do
   use Ecto.Schema
 
@@ -229,7 +229,7 @@ defmodule Friends.Repo.Migrations.CreateMoviesActors do
   use Ecto.Migration
 
   def change do
-    create table(:movies_actors) do
+    create table(:movies_actors, primary_key: false) do
       add :movie_id, references(:movies)
       add :actor_id, references(:actors)
     end

@@ -14,7 +14,7 @@ One of the features that fascinate me most about Elixir is pattern matching. I a
 It is not my focus to cover everything about pattern matching and immutability but instead to demonstrate how we can use pattern matching instead of guard clauses to implement clean control flows in Elixir.
 
 For this post we'll focus on implementing logic for the tabletop game Battleship. The first rule we'll implement is simple: a player cannot go twice in a row. One way to solve this is to track the last player that performed a move.
-With this information we now have two possibilities: If the player who is trying to make a move is the same as the last player who take action we will just ignore the move. Otherwise we can will compute the move.
+With this information we now have two possibilities: If the player who is trying to make a move is the same as the last player who take action we will just ignore the move. Otherwise we will compute the move.
 
 Depending on our experience with Elixir we might reach for a conditional as the first solution, something like:
 
