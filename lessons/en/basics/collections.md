@@ -130,8 +130,8 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 
 The three characteristics of keyword lists highlight their importance:
 
-+ Keys are atoms.
-+ Keys are ordered.
++ Keys must be atoms.
++ Keys are ordered, as specified by the developer.
 + Keys do not have to be unique.
 
 For these reasons, keyword lists are most commonly used to pass options to functions.
