@@ -231,12 +231,12 @@ person = %{name: "Fred", age: "95", favorite_color: "Taupe"}
 %{age: "95", favorite_color: "Taupe", name: "Fred"}
 
 # 传入只是包含了 name 键值的字典
-...> Greeter4.hello(%{name: "Fred"})
+...> Greeter2.hello(%{name: "Fred"})
 "Hello, Fred"
 %{name: "Fred"}
 
 # 传入不包含 name 键值的字典
-...> Greeter4.hello(%{age: "95", favorite_color: "Taupe"})
+...> Greeter2.hello(%{age: "95", favorite_color: "Taupe"})
 ** (FunctionClauseError) no function clause matching in Greeter2.hello/1    
 
     The following arguments were given to Greeter2.hello/1:
