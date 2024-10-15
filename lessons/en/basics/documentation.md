@@ -67,7 +67,7 @@ Reason:  When code is entered into `iex`, Elixir's interactive shell compiles it
 Consider a scenario where there's a file named `greeter.ex` in the current working directory, and an `iex` session is launched from there:
 
 ```
-iex> c("greeter.ex)
+iex> c("greeter.ex")
 [Greeter]
 
 iex> h Greeter
