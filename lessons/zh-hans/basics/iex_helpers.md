@@ -74,7 +74,7 @@ iex> IExHelpers.whats_this?(:test)
 ### h
 
 `h` 是 Elixir shell 中最有用的工具了.
-多亏了这门语言对文档的支持一级棒, 我们可以用这个辅助函数查看任意代码的文档.
+多亏了这门语言对文档出色的一等支持, 我们可以用这个辅助函数查看任意代码的文档.
 我们看一下使用的例子:
 
 ```elixir
@@ -212,7 +212,7 @@ warning: redefining module MyProject (current version loaded from _build/dev/lib
 
 ### t
 
-`t` 辅助函数告诉我们在模块中都有那些定义的类型:
+`t` 辅助函数告诉我们在模块中都有哪些定义的类型:
 
 ```elixir
 iex> t Map
