@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.1.2",
   title: "Control Structures",
   excerpt: """
   In this lesson we will look at the control structures available to us in Elixir.
@@ -205,4 +205,4 @@ It is odd
 :odd
 ```
 
-It helps to handle errors by providing `case`-like pattern matching in it. The value passed is the first non-matched expression.
+`else` helps to handle errors by providing `case`-like pattern matching. The first non-matched expression is passed to `els:`
