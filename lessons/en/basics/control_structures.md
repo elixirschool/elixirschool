@@ -205,4 +205,4 @@ It is odd
 :odd
 ```
 
-`else` helps to handle errors by providing `case`-like pattern matching. The first non-matched expression is passed to `els:`
+`else` helps to handle errors by providing `case`-like pattern matching. The first non-matched expression is passed to `else`
