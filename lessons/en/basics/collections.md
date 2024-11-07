@@ -167,7 +167,7 @@ iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-As we can see from the output above, there is a special syntax for maps containing only atom keys:
+As we can see from the output above, there is a special syntax to create maps containing only atom keys:
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
@@ -176,7 +176,7 @@ iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-In addition, there is a special syntax you can use with atom keys:
+In addition, there is a special syntax to fetch the value for atom keys:
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
