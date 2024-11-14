@@ -200,7 +200,7 @@ Depois de instalar a dependência, você precisa configurar a lista de LED para 
 Por exemplo, para todos modelos de Raspberry Pi, existe apenas um LED onboard: `led0`.
 Vamos usá-lo adicionando uma linha `config :nerves_leds, names: [green: "led0"]` ao arquivo `config/config.exs`.
 
-Para outros dispositivos, você pode dar uma olhada na [parte correspondente do projeto nerves_example](https://github.com/nerves-project/nerves_examples/tree/main/hello_leds/config).
+Para outros dispositivos, você pode dar uma olhada na [parte correspondente do projeto nerves_example]((https://github.com/nerves-project/nerves_examples/tree/main/blinky/config).
 
 Depois de configurar o LED em si, nós certamente precisamos controlá-lo de alguma forma.
 Para fazer isso, nós adicionaremos um GenServer (veja detalhes sobre GenServers na lição [Concorrência OTP](/pt/lessons/advanced/otp_concurrency)) em `lib/network_led/blinker.ex` com esse conteúdo:
