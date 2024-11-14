@@ -200,7 +200,7 @@ _Αντιμετώπιση προβλημάτων: Αν δεν έχετε ένα 
 Για παράδειγμα, για όλα τα μοντέλα Raspberry Pi, υπάρχει μόνο μια λυχνία LED ενσωματομένη: `led0`.
 Ας την χρησιμοποιήσουμε προσθέτοντας μια γραμμή `config :nerves_leds, names: [green: "led0"]` στο αρχείο `config/config.exs`.
 
-Για άλλες συσκευές, μπορείτε να ρίξετε μια ματιά στο [αντίστοιχο μέρος του πρότζεκτ nerves_examples](https://github.com/nerves-project/nerves_examples/tree/main/hello_leds/config).
+Για άλλες συσκευές, μπορείτε να ρίξετε μια ματιά στο [αντίστοιχο μέρος του πρότζεκτ nerves_examples]((https://github.com/nerves-project/nerves_examples/tree/main/blinky/config).
 
 Αφού ρυθμίσουμε την λυχνία LED, σίγουρα θα πρέπει κάπως να την ελέγξουμε.
 Για να το κάνουμε αυτό, θα προσθέσουμε έναν GenServer (δείτε λεπτομέριες στο μάθημα [OTP Concurrency](/el/lessons/advanced/otp_concurrency)) στο αρχείο `lib/network_led/blinker.ex` με αυτά τα περιεχόμενα:
