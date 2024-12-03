@@ -284,7 +284,7 @@ iex> Mnesia.transaction(
 ```
 
 Let's unpack this.
-The first attribute is the table, `Person`, the second attribute is a triple of the form `{match, [guard], [result]}`:
+The first attribute is the table, `Person`, the second attribute is a tuple of the form `{match, [guard], [result]}`:
 
 - `match` is the same as what you'd pass to the `Mnesia.match_object/1` function; however, note the special atoms `:"$n"` that specify positional parameters that are used by the remainder of the query
 - the `guard` list is a list of tuples that specifies what guard functions to apply, in this case the `:>` (greater than) built in function with the first positional parameter `:"$1"` and the constant `3` as attributes
