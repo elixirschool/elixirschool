@@ -19,14 +19,14 @@ A node is any Erlang runtime system that has been given a name.
 We can start a node by opening up `iex` session and naming it:
 
 ```bash
-iex --sname alex@localhost
+iex --sname alex@localhost -S mix
 iex(alex@localhost)>
 ```
 
 Let's open up another node in another terminal window:
 
 ```bash
-iex --sname kate@localhost
+iex --sname kate@localhost -S mix
 iex(kate@localhost)>
 ```
 
