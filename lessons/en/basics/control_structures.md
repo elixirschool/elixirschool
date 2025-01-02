@@ -1,5 +1,5 @@
 %{
-  version: "1.1.2",
+  version: "1.1.3",
   title: "Control Structures",
   excerpt: """
   In this lesson we will look at the control structures available to us in Elixir.
@@ -42,7 +42,9 @@ iex> unless is_integer("hello") do
 If it's necessary to match against multiple patterns we can use `case/2`:
 
 ```elixir
-iex> case {:ok, "Hello World"} do
+iex> status = {:ok, "Hello World"}
+{:ok, "Hello World"}
+iex> case status do
 ...>   {:ok, result} -> result
 ...>   {:error} -> "Uh oh!"
 ...>   _ -> "Catch all"
@@ -53,7 +55,9 @@ iex> case {:ok, "Hello World"} do
 The `_` variable is an important inclusion in `case/2` statements. Without it, failure to find a match will raise an error:
 
 ```elixir
-iex> case :even do
+iex> result = :even
+:even
+iex> case result do
 ...>   :odd -> "Odd"
 ...> end
 ** (CaseClauseError) no case clause matching: :even
