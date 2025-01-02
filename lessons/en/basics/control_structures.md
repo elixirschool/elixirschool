@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.1.3",
   title: "Control Structures",
   excerpt: """
   In this lesson we will look at the control structures available to us in Elixir.
