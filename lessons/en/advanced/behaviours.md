@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.0.2",
   title: "Behaviours",
   excerpt: """
   We learned about Typespecs in the previous lesson, here we'll learn how to require a module to implement those specifications.
@@ -95,7 +95,7 @@ end
 ```
 
 While the work performed is different, the public facing API isn't, and any code leveraging these modules can interact with them knowing they'll respond as expected.
-This gives us the ability to create any number of workers, all performing different tasks, but conforming to the same public API.
+This allows us to create any number of workers, all performing different tasks, but conforming to the same public API.
 
 If we happen to add a behaviour but fail to implement all of the required functions, a compile time warning will be raised.
 To see this in action let's modify our `Example.Compressor` code by removing the `init/1` function:

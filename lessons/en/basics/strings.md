@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Strings",
   excerpt: """
   Strings, Char Lists, Graphemes and Codepoints.
@@ -58,7 +58,7 @@ For further information, see the official [`Getting Started Guide`](http://elixi
 
 ## Graphemes and Codepoints
 
-Codepoints are just simple Unicode characters which are represented by one or more bytes, depending on the UTF-8 encoding.
+Codepoints are basic Unicode characters which are represented by one or more bytes, depending on the UTF-8 encoding.
 Characters outside of the US ASCII character set will always encode as more than one byte.
 For example, Latin characters with a tilde or accents (`á, ñ, è`) are typically encoded as two bytes.
 Characters from Asian languages are often encoded as three or four bytes.
@@ -122,7 +122,7 @@ iex> String.split("Hello World", " ")
 
 ## Exercise
 
-Let's walk through a simple exercise to demonstrate we are ready to go with Strings!
+Let's walk through a exercise to demonstrate we are ready to go with Strings!
 
 ### Anagrams
 
@@ -134,7 +134,7 @@ For example:
 
 If we re-arrange the characters on String A, we can get the string B, and vice versa.
 
-So, how could we check if two strings are Anagrams in Elixir?  The easiest solution is to just sort the graphemes of each string alphabetically and then check if both the lists are equal.
+So, how could we check if two strings are Anagrams in Elixir?  The most straightforward approach is to sort the graphemes of each string alphabetically and then check if both the lists are equal.
 Let's try that:
 
 ```elixir
@@ -159,7 +159,6 @@ That's the way we check if a parameter is a String in Elixir.
 After that, we are calling a function that orders the string alphabetically.
 It first converts the string to lowercase and then uses `String.graphemes/1` to get a list of the graphemes in the string.
 Finally, it pipes that list into `Enum.sort/1`.
-Pretty straightforward, right?
 
 Let's check the output on iex:
 
@@ -185,4 +184,4 @@ iex> Anagram.anagrams?(3, 5)
 ```
 
 As you can see, the last call to `anagrams?` caused a FunctionClauseError.
-This error is telling us that there is no function in our module that meets the pattern of receiving two non-binary arguments, and that's exactly what we want, to just receive two strings, and nothing more.
+This error is telling us that there is no function in our module that meets the pattern of receiving two non-binary arguments, and that's exactly what we want, to receive two strings, and nothing more.

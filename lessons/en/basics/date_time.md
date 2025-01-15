@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.2.2",
   title: "Date and Time",
   excerpt: """
   Working with time in Elixir.
@@ -25,7 +25,7 @@ iex> ~T[19:39:31.056226]
 ```
 
 You can learn more about sigils in the [lesson about sigils](/en/lessons/basics/sigils).
-It is easy to access parts of this struct:
+To access parts of this struct:
 
 ```elixir
 iex> t = ~T[19:39:31.056226]
@@ -91,7 +91,7 @@ But be aware about timezones. The official docs state:
 
 > Many functions in this module require a time zone database. By default, it uses the default time zone database returned by `Calendar.get_time_zone_database/0`, which defaults to `Calendar.UTCOnlyTimeZoneDatabase` which only handles "Etc/UTC" datetimes and returns `{:error, :utc_only_time_zone_database}` for any other time zone.
 
-Also, note that you can create a DateTime instance from the NaiveDateTime, just by providing the timezone:
+Also, note that you can create a DateTime instance from the NaiveDateTime, by providing the timezone:
 
 ```elixir
 iex> DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")

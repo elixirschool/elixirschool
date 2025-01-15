@@ -1,5 +1,5 @@
 %{
-  version: "1.4.0",
+  version: "1.4.1",
   title: "Basics",
   excerpt: """
   Getting started, basic data types, and basic operations.
@@ -13,7 +13,7 @@
 
 Installation instructions for each OS can be found on elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
 
-After Elixir is installed, you can easily find the installed version.
+After Elixir is installed, you can find the installed version.
 
     % elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
@@ -33,7 +33,7 @@ To get started, let's run `iex`:
 
 Note: On Windows PowerShell, you need to type `iex.bat`.
 
-Let's go ahead and give it a try now by typing in a few simple expressions:
+Let's go ahead and give it a try now by typing in a few basic expressions:
 
 ```elixir
 iex> 2+3
