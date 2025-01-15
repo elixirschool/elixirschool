@@ -1,5 +1,5 @@
 %{
-  version: "1.1.4",
+  version: "1.2.0",
   title: "Control Structures",
   excerpt: """
   In this lesson we will look at the control structures available to us in Elixir.
@@ -7,10 +7,9 @@
 }
 ---
 
-## if and unless
+## if
 
-Chances are you've encountered `if/2` before, and if you've used Ruby you're familiar with `unless/2`.
-In Elixir they work much the same way but they are defined as macros, not language constructs. You can find their implementation in the [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
+You may have encountered `if/2` before. In Elixir it works much the same way but is defined as a macro, not language constructs; you can find the implementation in the [Kernel module](https://hexdocs.pm/elixir/Kernel.html).
 
 It should be noted that in Elixir, the only falsey values are `nil` and the boolean `false`.
 
@@ -26,15 +25,6 @@ iex> if "a string value" do
 ...>   "Truthy"
 ...> end
 "Truthy"
-```
-
-Using `unless/2` is like `if/2` only it works on the negative:
-
-```elixir
-iex> unless is_integer("hello") do
-...>   "Not an Int"
-...> end
-"Not an Int"
 ```
 
 ## case

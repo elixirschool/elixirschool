@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.4.0",
   title: "Testing",
   excerpt: """
   Testing is an important part of developing software.
@@ -101,7 +101,7 @@ ExUnit will tell us exactly where our failed assertions are, what the expected v
 
 ### refute
 
-`refute` is to `assert` as `unless` is to `if`.
+`refute` is the opposite of `assert`. 
 Use `refute` when you want to ensure a statement is always false.
 
 ### assert_raise
