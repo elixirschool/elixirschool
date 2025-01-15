@@ -1,5 +1,5 @@
 %{
-  version: "1.0.3",
+  version: "1.0.4",
   title: "Erlang Interoperability",
   excerpt: """
   One of the added benefits to building on top of the Erlang VM (BEAM) is the plethora of existing libraries available to us.
@@ -104,7 +104,7 @@ true
 ```
 
 It's important to note that many older Erlang libraries may not support binaries so we need to convert Elixir strings to char lists.
-Thankfully this is easy to accomplish with the `to_charlist/1` function:
+Thankfully this can be accomplished with the `to_charlist/1` function:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -156,4 +156,4 @@ Erlang:
 20
 ```
 
-That's it! Leveraging Erlang from within our Elixir applications is easy and effectively doubles the number of libraries available to us.
+That's it, leveraging Erlang from within our Elixir applications effectively doubles the number of libraries available to us!

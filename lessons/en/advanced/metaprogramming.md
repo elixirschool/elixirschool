@@ -1,5 +1,5 @@
 %{
-  version: "1.0.3",
+  version: "1.0.4",
   title: "Metaprogramming",
   excerpt: """
   Metaprogramming is the process of using code to write code.
@@ -73,7 +73,7 @@ In the `unquote/1` example the resulting code includes the value of `denominator
 Once we understand `quote/2` and `unquote/1` we're ready to dive into macros.
 It is important to remember that macros, like all metaprogramming, should be used sparingly.
 
-In the simplest of terms macros are special functions designed to return a quoted expression that will be inserted into our application code.
+At their core macros are special-case functions designed to return a quoted expression that will be inserted into our application code.
 Imagine the macro being replaced with the quoted expression rather than called like a function.
 With macros we have everything necessary to extend Elixir and dynamically add code to our applications.
 

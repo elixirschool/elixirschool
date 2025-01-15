@@ -1,5 +1,5 @@
 %{
-  version: "1.4.1",
+  version: "1.4.2",
   title: "Custom Mix Tasks",
   excerpt: """
   Creating custom Mix tasks for your Elixir projects.
@@ -27,7 +27,7 @@ $ mix phx.new my_phoenix_app
 ```
 
 As we can see from the shell command above, The Phoenix Framework has a custom Mix task to generate a new project.
-What if we could create something similar for our project? Well, the great news is we can, and Elixir makes this easy for us to do.
+What if we could create something similar for our project? Well, the great news is we can, and Elixir provides excellent tools for this.
 
 ## Setup
 
@@ -55,7 +55,7 @@ mix test
 Run "mix help" for more commands.
 ```
 
-Now, in our **lib/hello.ex** file that Mix generated for us, let's create a simple function that will output "Hello, World!"
+Now, in our **lib/hello.ex** file that Mix generated for us, let's create a function that will output "Hello, World!"
 
 ```elixir
 defmodule Hello do
@@ -79,7 +79,7 @@ defmodule Mix.Tasks.Hello do
   @moduledoc "The hello mix task: `mix help hello`"
   use Mix.Task
 
-  @shortdoc "Simply calls the Hello.say/0 function."
+  @shortdoc "Calls the Hello.say/0 function."
   def run(_) do
     # calling our Hello.say() function from earlier
     Hello.say()
@@ -105,7 +105,7 @@ defmodule Mix.Tasks.Hello do
   @moduledoc "The hello mix task: `mix help hello`"
   use Mix.Task
 
-  @shortdoc "Simply calls the Hello.say/0 function."
+  @shortdoc "Calls the Hello.say/0 function."
   def run(_) do
     # This will start our application
     Mix.Task.run("app.start")

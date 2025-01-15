@@ -1,5 +1,5 @@
 %{
-  version: "1.9.1",
+  version: "1.9.2",
   title: "Enum",
   excerpt: """
   A set of algorithms for enumerating over enumerables.
@@ -173,7 +173,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 ### sort
 
-Sorting our collections is made easy with not one, but two, sorting functions.
+Sorting our collections is made with not one, but two, sorting functions.
 
 `sort/1` uses Erlang's [term ordering](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) to determine the sorted order:
 

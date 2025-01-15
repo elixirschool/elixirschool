@@ -1,5 +1,5 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "Sigils",
   excerpt: """
   Working with and creating sigils.
@@ -130,7 +130,7 @@ iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
 
 The word list sigil can come in handy from time to time.
 It can save both time, keystrokes and arguably reduce the complexity within the codebase.
-Take this simple example:
+Take this example:
 
 ```elixir
 iex> ~w/i love elixir school/
@@ -140,7 +140,7 @@ iex> ~W/i love elixir school/
 ["i", "love", "elixir", "school"]
 ```
 
-We can see that what is typed between the delimiters is separated by whitespace into a list.
+We can see that what is typed between the delimiters results in a list of words separated by spaces.
 However, there is no difference between these two examples.
 Again, the difference comes with the interpolation and escape sequences.
 Take the following example:
@@ -182,7 +182,7 @@ iex> DateTime.from_iso8601("2015-01-23 23:50:07-0600") == {:ok, ~U[2015-01-24 05
 ## Creating Sigils
 
 One of the goals of Elixir is to be an extendable programming language.
-It should come as no surprise then that you can easily create your own custom sigils.
+It should come as no surprise then that you can create your own custom sigils.
 In this example, we will create a sigil to convert a string to uppercase.
 As there is already a function for this in the Elixir Core (`String.upcase/1`), we will wrap our sigil around that function.
 

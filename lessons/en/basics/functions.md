@@ -1,5 +1,5 @@
 %{
-  version: "1.3.0",
+  version: "1.3.1",
   title: "Functions",
   excerpt: """
   In Elixir and many functional languages, functions are first class citizens.
@@ -10,7 +10,7 @@
 
 ## Anonymous Functions
 
-Just as the name implies, an anonymous function has no name.
+As the name implies, an anonymous function has no name.
 As we saw in the `Enum` lesson, these are frequently passed to other functions.
 To define an anonymous function in Elixir we need the `fn` and `end` keywords.
 Within these we can define any number of parameters and function bodies separated by `->`.
@@ -37,7 +37,7 @@ As you probably already guessed, in the shorthand version our parameters are ava
 
 ## Pattern Matching
 
-Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
+Pattern matching isn't limited to variables in Elixir, it can be applied to function signatures as we will see in this section.
 
 Elixir uses pattern matching to check through all possible match options and select the first matching option to run:
 
@@ -60,7 +60,7 @@ An error has occurred!
 
 ## Named Functions
 
-We can define functions with names so we can easily refer to them later.
+We can define functions with names so we can refer to them later.
 Named functions are defined within a module using the `def` keyword .
 We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
 
@@ -124,7 +124,7 @@ iex> Greeter2.hello("Fred", "Jane")
 We've listed the function names in comments above.
 The first implementation takes no arguments, so it is known as `hello/0`; the second takes one argument so it is known as `hello/1`, and so on.
 Unlike function overloads in some other languages, these are thought of as _different_ functions from each other.
-(Pattern matching, described just a moment ago, applies only when multiple definitions are provided for function definitions with the _same_ number of arguments.)
+(Pattern matching, described a moment ago, applies only when multiple definitions are provided for function definitions with the _same_ number of arguments.)
 
 ### Functions and Pattern Matching
 
@@ -203,7 +203,7 @@ In `Greeter1.hello/1`, the map we pass (`fred`) is evaluated against our argumen
 It finds that there is a key that corresponds to `name` in the incoming map.
 We have a match! And as a result of this successful match, the value of the `:name` key in the map on the right (i.e. the `fred` map) is bound to the variable on the left (`person_name`).
 
-Now, what if we still wanted to assign Fred's name to `person_name` but we ALSO want to retain awareness of the entire person map? Let's say we want to `IO.inspect(fred)` after we greet him.
+Now, what if we still wanted to assign Fred's name to `person_name` but we ALSO want to retain awareness of the entire person map? Let's say we want to `IO.inspect(fred)` after we greet them.
 At this point, because we only pattern-matched the `:name` key of our map, thus only binding the value of that key to a variable, the function doesn't have knowledge of the rest of Fred.
 
 In order to retain it, we need to assign that entire map to its own variable for us to be able to use it.

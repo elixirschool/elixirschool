@@ -1,5 +1,5 @@
 %{
-  version: "1.1.3",
+  version: "1.1.4",
   title: "Control Structures",
   excerpt: """
   In this lesson we will look at the control structures available to us in Elixir.
@@ -52,7 +52,7 @@ iex> case status do
 "Hello World"
 ```
 
-The `_` variable is an important inclusion in `case/2` statements. Without it, failure to find a match will raise an error:
+The `_` variable is an important inclusion in `case/2` statements. Without it, failing to find a match will raise an error:
 
 ```elixir
 iex> result = :even
@@ -131,11 +131,11 @@ iex> cond do
 
 ## with
 
-The special form `with/1` is useful when you might use a nested `case/2` statement or situations that cannot cleanly be piped together. The `with/1` expression is composed of the keywords, the generators, and finally an expression.
+The construct `with/1` is useful when you might use a nested `case/2` statement or situations that cannot cleanly be piped together. The `with/1` expression is composed of the keywords, the generators, and finally an expression.
 
 We'll discuss generators more in the [list comprehensions lesson](/en/lessons/basics/comprehensions), but for now we only need to know they use [pattern matching](/en/lessons/basics/pattern_matching) to compare the right side of the `<-` to the left.
 
-We'll start with a simple example of `with/1` and then look at something more:
+We'll start with an example of `with/1` and then look at something more:
 
 ```elixir
 iex> user = %{first: "Sean", last: "Callan"}
@@ -175,7 +175,7 @@ case Repo.insert(changeset) do
 end
 ```
 
-When we introduce `with/1` we end up with code that is easy to understand and has fewer lines:
+When we introduce `with/1` we end up with code that clearer and has fewer lines:
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),

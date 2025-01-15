@@ -1,5 +1,5 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "Comprehensions",
   excerpt: """
   List comprehensions are syntactic sugar for looping through enumerables in Elixir.
@@ -11,7 +11,7 @@
 ## Basics
 
 Comprehensions can often be used to produce more concise statements for `Enum` and `Stream` iteration.
-Let's start by looking at a simple comprehension and then break it down:
+Let's start by looking at a comprehension and then break it down:
 
 ```elixir
 iex> list = [1, 2, 3, 4, 5]
@@ -103,7 +103,7 @@ iex> for x <- 1..100,
 ## Using :into
 
 What if we want to produce something other than a list?
-Given the `:into` option we can do just that!
+Given the `:into` option we can do that!
 As a general rule of thumb, `:into` accepts any structure that implements the `Collectable` protocol.
 
 Using `:into`, let's create a map from a keyword list:
@@ -121,4 +121,4 @@ iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 ```
 
 That's it!
-List comprehensions are an easy way to iterate through collections concisely.
+List comprehensions are another way to iterate through collections concisely.

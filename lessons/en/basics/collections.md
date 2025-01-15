@@ -1,5 +1,5 @@
 %{
-  version: "1.3.1",
+  version: "1.3.2",
   title: "Collections",
   excerpt: """
   Lists, tuples, keyword lists, and maps.
@@ -9,7 +9,7 @@
 
 ## Lists
 
-Lists are simple collections of values which may include multiple types; lists may also include non-unique values:
+Lists are collections of values which may include multiple types; lists may also include non-unique values:
 
 ```elixir
 iex> [3.14, :pie, "Apple"]
@@ -119,7 +119,7 @@ iex> File.read("path/to/unknown/file")
 ## Keyword lists
 
 Keyword lists and maps are the associative collections of Elixir.
-In Elixir, a keyword list is a special list of two-element tuples whose first element is an atom; they share performance with lists:
+In Elixir, a keyword list is a special-case list of two-element tuples whose first element is an atom; they share performance with lists:
 
 ```elixir
 iex> [foo: "bar", hello: "world"]
@@ -167,7 +167,7 @@ iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-As we can see from the output above, there is a special syntax to create maps containing only atom keys:
+As we can see from the output above, there is a special syntax for maps containing only atom keys:
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
@@ -176,7 +176,7 @@ iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-In addition, there is a special syntax to fetch the value for atom keys:
+In addition, there is a syntax for fetching the value for atom keys:
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}

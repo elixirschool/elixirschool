@@ -1,8 +1,8 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "Pattern Matching",
   excerpt: """
-  Pattern matching is a powerful part of Elixir. It allows us to match simple values, data structures, and even functions.
+  Pattern matching is a powerful part of Elixir. It allows us to match values, data structures, and even functions.
   In this lesson we will begin to see how pattern matching is used.
   """
 }
@@ -17,7 +17,7 @@ iex> x = 1
 1
 ```
 
-Now let's try some simple matching:
+Now let's try some matching:
 
 ```elixir
 iex> 1 = x
