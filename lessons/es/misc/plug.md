@@ -207,7 +207,7 @@ defmodule Example.Plug.VerifyRequest do
       |> Map.keys()
       |> contains_fields?(fields)
 
-    unless verified, do: raise(IncompleteRequestError)
+    if !verified, do: raise(IncompleteRequestError)
   end
 
   defp contains_fields?(keys, fields), do: Enum.all?(fields, &(&1 in keys))
