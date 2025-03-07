@@ -1,5 +1,5 @@
 %{
-  version: "1.3.0",
+  version: "1.4.1",
   title: "Básico",
   excerpt: """
   Primeiros Passos, tipos básicos e operações básicas.
@@ -11,20 +11,20 @@
 
 ### Instalando Elixir
 
-As instruções para instalação em cada sistema operacional podem ser encontradas em [Elixir-lang.org](http://elixir-lang.org) na aba [Install](http://elixir-lang.org/install.html).
+As instruções de instalação para cada sistema operacional podem ser encontradas em [Elixir-lang.org](http://elixir-lang.org) na aba [Install](http://elixir-lang.org/install.html).
 
-Após instalar o Elixir, você pode facilmente encontrar a versão instalada.
+Após instalar o Elixir, você pode encontrar a versão instalada.
 
     % elixir -v
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir {{ site.elixir.version }}
 
-### Modo Interativo
+### Tentando o Modo Interativo
 
-Elixir vem com IEx, um console interativo, que nos permite avaliar expressões em Elixir.
+Elixir vem com IEx, um console interativo, que nos permite avaliar expressões em Elixir à medida que avançamos.
 
-Para iniciar, executamos `iex`:
+Para iniciar, vamos executar o `iex`:
 
     Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
@@ -33,7 +33,7 @@ Para iniciar, executamos `iex`:
 
 Nota: No Windows PowerShell, é necessário executar `iex.bat`.
 
-Podemos testar e digitar algumas expressões simples:
+Vamos em frente e tentar agora digitando algumas expressões básicas:
 
 ```elixir
 iex> 2+3
@@ -44,7 +44,7 @@ iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-Não se preocupe se não entender cada expressão ainda, mas esperamos que você compreenda a ideia.
+Não se preocupe se você ainda não entendeu todas as expressões, mas esperamos que você tenha entendido a ideia.
 
 ## Tipos Básicos
 
@@ -81,7 +81,7 @@ iex> 1.0e-10
 
 ### Booleanos
 
-Elixir suporta `true` e `false` como booleanos; todo valor é verdadeiro com exceção de `false` e `nil`:
+Elixir suporta `true` e `false` como booleanos; tudo é verdadeiro com exceção de `false` e `nil`:
 
 ```elixir
 iex> true
@@ -92,8 +92,8 @@ false
 
 ### Átomos
 
-Um átomo é uma constante cujo o nome é seu valor.
-Se está familiarizado com Ruby, estes são equivalentes aos símbolos:
+Um átomo é uma constante cujo nome é seu valor.
+Se você está familiarizado com Ruby, estes são equivalentes aos Symbols:
 
 ```elixir
 iex> :foo
@@ -113,14 +113,14 @@ iex> :true === true
 true
 ```
 
-Nomes de módulos em Elixir também são átomos. `MyApp.MyModule` é um átomo válido, mesmo se tal módulo ainda não tenha sido declarado.
+Nomes de módulos em Elixir também são átomos. `MyApp.MyModule` é um átomo válido, mesmo que tal módulo ainda não tenha sido declarado.
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
 true
 ```
 
-Átomos também são usados para referenciar módulos de bibliotecas Erlang, incluindo as bibliotecas integradas.
+Átomos também são usados para referenciar módulos de bibliotecas Erlang, incluindo as bibliotecas embutidas.
 
 ```elixir
 iex> :crypto.strong_rand_bytes 3
@@ -149,14 +149,14 @@ iex> "foo\nbar"
 ```
 
 Elixir também inclui tipos de dados mais complexos.
-Nós vamos aprender mais sobre estes quando aprendermos sobre [coleções](/pt/lessons/basics/collections) e [funções](/pt/lessons/basics/functions).
+Nós aprenderemos mais sobre estes quando aprendermos sobre [coleções](/pt/lessons/basics/collections) e [funções](/pt/lessons/basics/functions).
 
 ## Operações Básicas
 
 ### Aritmética
 
 Elixir suporta os operadores básicos `+`, `-`, `*`, e `/` como era de se esperar.
-É importante ressaltar que `/` sempre retornará um número ponto flutuante:
+É importante lembrar que `/` sempre retornará um número de ponto flutuante:
 
 ```elixir
 iex> 2 + 2
@@ -169,7 +169,7 @@ iex> 10 / 5
 2.0
 ```
 
-Se você necessita de uma divisão inteira ou o resto da divisão, Elixir vem com duas funções úteis para isto:
+Se você precisa de uma divisão inteira ou o resto da divisão, Elixir vem com duas funções úteis para conseguir isso:
 
 ```elixir
 iex> div(10, 5)
@@ -200,7 +200,7 @@ iex> !false
 true
 ```
 
-Há três operadores adicionais cujo o primeiro argumento _tem_ que ser um booleano (`true` e `false`):
+Há três operadores adicionais cujo primeiro argumento _deve_ ser um booleano (`true` e `false`):
 
 ```elixir
 iex> true and 42
@@ -232,7 +232,7 @@ iex> 2 <= 3
 true
 ```
 
-Para comparação de inteiros e pontos flutuantes usa-se `===`:
+Para comparação estrita de inteiros e pontos flutuantes usa-se `===`:
 
 ```elixir
 iex> 2 == 2.0
@@ -241,13 +241,13 @@ iex> 2 === 2.0
 false
 ```
 
-Uma característica importante do Elixir é que qualquer tipo pode ser comparado; isto é particularmente útil em ordenação. Não precisamos memorizar a ordem de classificação, mas é importante estar ciente de que:
+Uma característica importante do Elixir é que qualquer tipo pode ser comparado; isto é particularmente útil em ordenação. Não precisamos memorizar a ordem de classificação, mas é importante estar ciente disto:
 
 ```elixir
 number < atom < reference < function < port < pid < tuple < map < list < bitstring
 ```
 
-Isso pode levar a algumas comparações interessantes e válidas, que você pode não encontrar em outras linguagens:
+Isto pode levar a algumas comparações interessantes e válidas, que você pode não encontrar em outras linguagens:
 
 ```elixir
 iex> :hello > 999
@@ -258,7 +258,7 @@ false
 
 ### Interpolação de Strings
 
-Se você já usou Ruby, a interpolação de strings em Elixir parecerá muito familiar:
+Se você já usou Ruby, a interpolação de strings em Elixir parecerá familiar:
 
 ```elixir
 iex> name = "Sean"
