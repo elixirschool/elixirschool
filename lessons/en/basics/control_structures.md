@@ -165,7 +165,7 @@ case Repo.insert(changeset) do
 end
 ```
 
-When we introduce `with/1` we end up with code that clearer and has fewer lines:
+When we introduce `with/1` we end up with code that is clearer and has fewer lines:
 
 ```elixir
 with {:ok, user} <- Repo.insert(changeset),
