@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.2.2",
   title: "Modüller",
   excerpt: """
   Bu zaman kadar ki derslerimiz de fonksiyonları aynı dosya ve alanda tanımladık. In this lesson we're going to cover how to group functions and define a specialized map in a struct in order to organize our code more efficiently.
@@ -242,7 +242,7 @@ iex> Example.hello("Sean")
 ```
 
 Burada ise, `Hello` modülü üzerinde  `__using__/1` callback yaptığını görebiliriz ve sonuçta oluşan kod modülize edilmiş olur.
-Basit bir örnek gösterdik, `__using __ / 1`’in seçenekleri nasıl desteklediğine bakmak için kodumuzu güncelleyelim.
+Basit bir örnek gösterdik, `__using __/1`’in seçenekleri nasıl desteklediğine bakmak için kodumuzu güncelleyelim.
 Bunu greeting seçeneği ekleyerek uygulayacağız:
 
 ```elixir
