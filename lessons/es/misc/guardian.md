@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Guardian (Básico)",
   excerpt: """
   [Guardian](https://github.com/ueberauth/guardian) es una librería de autenticación ampliamente utilizada, basada en [JWT](https://jwt.io/) (JSON Web Tokens).
@@ -119,7 +119,7 @@ defmodule MyApp.Guardian do
 
     # Puede usar cualquier valor para el subject de su token pero
     # debería ser útil para recuperar el recurso más adelante, ver
-    # cómo se usa en la función `resource_from_claims / 1`.
+    # cómo se usa en la función `resource_from_claims/1`.
     # Un 'id' único es un buen subject, una dirección de correo electrónico no única
     # es un subject pobre.
     sub = to_string(resource.id)
