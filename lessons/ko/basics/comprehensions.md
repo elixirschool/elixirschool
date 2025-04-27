@@ -1,5 +1,5 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "Comprehensions",
   excerpt: """
   List comprehension은 Elixir에서 열거형을 이용하여 반복하는 데 사용되는 Syntactic sugar입니다. 이번 강의에서는 반복과 제너레이션을 위해 어떻게 comprehension을 사용하는지에 대해 알아봅니다.
@@ -9,7 +9,8 @@
 
 ## 기본
 
-Comprehension은 대체적으로 `Enum`과 `Stream` 반복보다 간결한 구문을 작성하기 위해 사용될 수 있습니다. 일단 간단한 comprehension 예제를 보고 차근차근 파헤쳐 봅시다.
+Comprehension은 대체적으로 `Enum`과 `Stream` 반복보다 간결한 구문을 작성하기 위해 사용될 수 있습니다.
+일단 간단한 comprehension 예제를 보고 차근차근 파헤쳐 봅시다.
 
 ```elixir
 iex> list = [1, 2, 3, 4, 5]
@@ -108,4 +109,5 @@ iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-여기까지입니다! List comprehension은 컬렉션 반복을 간결하게 만들어주는 쉬운 방법입니다.
+여기까지입니다!
+List comprehension은 컬렉션 반복을 간결하게 만들어주는 또 다른 방법입니다.
