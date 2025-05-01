@@ -1,5 +1,5 @@
 %{
-  version: "1.3.0",
+  version: "1.4.1",
   title: "기본",
   excerpt: """
   Elixir를 시작합시다. 기본적인 타입과 연산자를 배워봅시다.
@@ -179,7 +179,7 @@ iex> rem(10, 3)
 
 ### 논리 연산
 
-Elixir에서 논리 연산자로 `||`와 `&&`, `!`를 타입에 관계없이 사용할 수 있습니다.
+Elixir에서 논리 연산자로 `||`와 `&&`, `!`를 사용할 수 있습니다.
 논리 연산은 모든 타입을 지원합니다.
 
 ```elixir
@@ -209,7 +209,7 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
@@ -261,6 +261,7 @@ Ruby를 사용한 적이 있다면 Elixir의 문자열 내부 식 전개는 익�
 
 ```elixir
 iex> name = "Sean"
+"Sean"
 iex> "Hello #{name}"
 "Hello Sean"
 ```
@@ -271,6 +272,7 @@ iex> "Hello #{name}"
 
 ```elixir
 iex> name = "Sean"
+"Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```

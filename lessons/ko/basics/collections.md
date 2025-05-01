@@ -1,5 +1,5 @@
 %{
-  version: "1.3.1",
+  version: "1.3.2",
   title: "컬렉션",
   excerpt: """
   리스트, 튜플, 키워드 리스트, 맵.
@@ -169,7 +169,7 @@ iex> %{:foo => "bar", :foo => "hello world"}
 %{foo: "hello world"}
 ```
 
-위의 출력에서 볼 수 있듯이, 모든 키가 애텀인 맵을 정의하기 위한 특별한 문법도 존재합니다.
+위의 출력에서 볼 수 있듯이, 모든 키가 애텀인 맵을 생성하기 위한 특별한 문법도 존재합니다.
 
 ```elixir
 iex> %{foo: "bar", hello: "world"}
@@ -178,7 +178,7 @@ iex> %{foo: "bar", hello: "world"} == %{:foo => "bar", :hello => "world"}
 true
 ```
 
-그리고 애텀 키에 접근하기 위한 특별한 문법이 있습니다.
+그리고 애텀 키에 해당하는 값을 가져오기 위한 특별한 문법이 있습니다.
 
 ```elixir
 iex> map = %{foo: "bar", hello: "world"}
