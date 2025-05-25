@@ -44,7 +44,7 @@ iex> spawn(Example, :add, [2, 3])
 
 Pour communiquer, les processus échangent des messages. 
 
-Cela repose sur deux composants : `send/2` et `receive`. La fonction `send/2` permet d'envoyer un message à un processus en utilisant son *PID*. Pour écouter les messages, nous utilisons `receive` ; s'il n'y en a pas encore, le processus s'interrompt en attendant le prochain message correspondant à l'une des clauses.
+Cela repose sur deux composants : `send/2` et `receive`. La fonction `send/2` permet d'envoyer un message à un processus en utilisant son *PID*. Pour écouter les messages, nous utilisons `receive` ; s'il n'y en a pas encore, le processus s'interrompe en attendant le prochain message correspondant à l'une des clauses.
 
 ```elixir
 defmodule Example do
