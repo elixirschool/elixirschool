@@ -121,4 +121,4 @@ iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 ```
 
 Et voilà !
-Les compréhensions de liste sont une manière simple et consise d'itérer sur une collection.
+Les compréhensions de liste sont une manière simple et concise d'itérer sur une collection.
