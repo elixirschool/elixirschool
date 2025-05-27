@@ -70,7 +70,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Nous pouvons constaterdans le premier test d'égalité, que `Elixir` n'a pas de correspondance avec l'expression régulière.
+Nous pouvons constater dans le premier test d'égalité, que `Elixir` n'a pas de correspondance avec l'expression régulière.
 C'est parce que le mot est capitalisé.
 Parce qu'Elixir supporte les Expressions Régulières Compatibles de Perl (ou **PCRE** - "**P**erl **C**ompatible **R**egular **E**xpressions" en anglais), nous pouvons ajouter `i` à la fin de l'expression régulière de notre _sigil_ pour désactiver la sensibilité à la casse:
 
@@ -127,7 +127,7 @@ iex> ~S/welcome to elixir #{String.downcase "SCHOOL"}/
 ### Listes de mots
 
 Le _sigil_ de liste de mots peut quelquefois être fort pratique.
-Il peut et sauver du temps et des frappes au clavier, et sans doute réduire la complexité du code.
+Il peut économiser du temps et des frappes au clavier, et sans doute réduire la complexité du code.
 Prenez l'exemple suivant:
 
 ```elixir
