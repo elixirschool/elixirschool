@@ -72,7 +72,7 @@ Veuillez noter que `listen/0` est récursive : cela permet au processus de trait
 
 ### Liaison entre processus
 
-Un problème avec `spawn` est qu'il n'est pas évident de savoir quand un processus s'interrompt. Pour cela, nous avons besoin de relier les processus entre avec `spawn_link`. Deux processus liés reçoivent des notifications d'extinction de l'un et de l'autre.
+Un problème avec `spawn` est qu'il n'est pas évident de savoir quand un processus s'interrompt. Pour cela, nous avons besoin de relier les processus entre avec `spawn_link`. Deux processus liés reçoivent des notifications d'extinction l'un et de l'autre.
 
 Par exemple :
 
@@ -88,7 +88,7 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-Parfois, nous ne voulons pas qu'un processus s'interrompe en même temps que celui auquel il est lié. Pour cela, nous devons *piéger* l'ordre d'extinction avec `Process.flag/2`. Cela utilise la fonction [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) d'Erlang pour le *flag* `trap_exit`. Quand l'ordre d'extinction est piégé (c'est-à-dire que le *flag* `trap_exit` a pour valeur `true`), le signal d'extinction est recy comme un tuple : `{:EXIT, from_pid, reason}`.
+Parfois, nous ne voulons pas qu'un processus s'interrompe en même temps que celui auquel il est lié. Pour cela, nous devons *piéger* l'ordre d'extinction avec `Process.flag/2`. Cela utilise la fonction [process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2) d'Erlang pour le *flag* `trap_exit`. Quand l'ordre d'extinction est piégé (c'est-à-dire que le *flag* `trap_exit` a pour valeur `true`), le signal d'extinction est reçu comme un tuple : `{:EXIT, from_pid, reason}`.
 
 ```elixir
 defmodule Example do
