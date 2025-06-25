@@ -1,5 +1,5 @@
 %{
-  version: "1.4.1",
+  version: "1.4.2",
   title: "Basics",
   excerpt: """
   Getting started, basic data types, and basic operations.
@@ -172,8 +172,8 @@ iex> 10 / 5
 If you need integer division or the division remainder (i.e., modulo), Elixir comes with two helpful functions to achieve this:
 
 ```elixir
-iex> div(10, 5)
-2
+iex> div(10, 3)
+3
 iex> rem(10, 3)
 1
 ```
