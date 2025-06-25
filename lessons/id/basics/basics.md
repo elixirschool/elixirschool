@@ -169,8 +169,8 @@ iex> 10 / 5
 Jika kamu membutuhkan pembagian dengan hasil bilangan bulat (integer) atau sisa pembagian, Elixir memiliki dua fungsi untuk itu:
 
 ```elixir
-iex> div(10, 5)
-2
+iex> div(10, 3)
+3
 iex> rem(10, 3)
 1
 ```

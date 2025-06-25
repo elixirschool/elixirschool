@@ -167,8 +167,8 @@ iex> 10 / 5
 Falls du Integerdivision oder den Rest der Division brauchst hat Elixir zwei hilfreiche Funktionen dafür:
 
 ```elixir
-iex> div(10, 5)
-2
+iex> div(10, 3)
+3
 iex> rem(10, 3)
 1
 ```

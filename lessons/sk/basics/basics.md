@@ -154,8 +154,8 @@ iex> 10 / 5
 Ak potrebujete celočíselné delenie, alebo zvyšok po ňom (modulo), poskytuje na to Elixir tieto dve funkcie:
 
 ```elixir
-iex> div(10, 5)
-2
+iex> div(10, 3)
+3
 iex> rem(10, 3)
 1
 ```
