@@ -146,8 +146,8 @@ iex> 10 / 5
 Elixir har to innebygde funksjoner for å returnere et heltall(integer), eller finne rest i en divisjon:
 
 ```elixir
-iex> div(10, 5)
-2
+iex> div(10, 3)
+3
 iex> rem(10, 3)
 1
 ```

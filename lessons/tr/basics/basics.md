@@ -167,8 +167,8 @@ iex> 10 / 5
 Eğer tamsayılarda bölme veya kalan bulma işlemleri yapmak gerekiyorsa, Elixir bunun için iki yardımcı fonksiyon ile birlikte gelmektedir:
 
 ```elixir
-iex> div(10, 5)
-2
+iex> div(10, 3)
+3
 iex> rem(10, 3)
 1
 ```

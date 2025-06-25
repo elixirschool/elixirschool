@@ -176,8 +176,8 @@ iex> 10 / 5
 Jeżeli jednak potrzebujesz dzielenia liczb całkowitych albo reszty z dzielenia (tj. modulo), Elixir udostępnia dwie funkcje do obsługi tych działań:
 
 ```elixir
-iex> div(10, 5)
-2
+iex> div(10, 3)
+3
 iex> rem(10, 3)
 1
 ```
