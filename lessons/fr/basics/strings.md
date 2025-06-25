@@ -52,15 +52,15 @@ iex> ?Z
 Cela nous permet d'utiliser la notation `?Z` plutôt que 'Z' pour un symbole.
 
 Quand on programme en Elixir, on utilise généralement les chaînes plutôt que les listes de caractères. 
-Si le support de ces listes de caractères est inclus, c'est pricipalement car il est requis par certains modules Erlang.
+Si le support de ces listes de caractères est inclus, c'est principalement car il est requis par certains modules Erlang.
 
 Pour plus d'informations, vous pouvez voir la documentation officielle. [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html)
 
 ## Les Graphèmes et Points de code
 
-Les points de codes (Codepoints en anglais) sont de simple caractères Unicode, représentés par un ou plusieurs octets, selon l'encodage UTF-8.
+Les points de codes (Codepoints en anglais) sont de simples caractères Unicode, représentés par un ou plusieurs octets, selon l'encodage UTF-8.
 Les caractères hors de la table ASCII US seront toujours encodés en plusieurs octets.
-Pat exemple, les caractères des langues latines avec tildes ou accents (`á, ñ, è`) sont généralement encodés en deux octets.
+Par exemple, les caractères des langues latines avec tildes ou accents (`á, ñ, è`) sont généralement encodés en deux octets.
 Les caractères des langues asiatiques sont souvent encodés en trois ou quatre octets.
 Un graphème est en ensemble de points de code, représentés par un seul caractère.
 
