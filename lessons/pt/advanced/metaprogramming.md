@@ -77,7 +77,7 @@ defmodule OurMacro do
 end
 ```
 
-Vamos usar require `Ouracro` para declarar que _queremos_ usar a macro:
+Vamos usar require `OurMacro` para declarar que _queremos_ usar a macro:
 
 ```elixir
 iex> require OurMacro
