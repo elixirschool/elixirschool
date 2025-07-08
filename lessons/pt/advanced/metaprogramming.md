@@ -46,7 +46,7 @@ iex> {"hello", :world} # 2 element tuples
 
 ## Unquote
 
-Agora que podemos recuperar a estrutura interna do nosso código, como podemos modificá-lo? Para injetar novo código ou valores usamos `unquote/1`. Quando *unquote* em uma expressão que vai ser avaliada e injetado no AST. Para demonstrar `unquote/1` vejamos alguns exemplos:
+Agora que podemos recuperar a estrutura interna do nosso código, como podemos modificá-lo? Para injetar novo código ou valores usamos `unquote/1`. Quando o *unquote* é usado em uma expressão, essa expressão será validada e injetada na AST. Para demonstrar `unquote/1` vejamos alguns exemplos:
 
 ```elixir
 iex> denominator = 2
@@ -63,9 +63,9 @@ No primeiro exemplo, a variável `denominator` é citada de modo que a AST resul
 
 Uma vez que entendemos `quote/2` e `unquote/1` estamos prontos para mergulhar em macros. É importante lembrar que macros, como todas as metaprogramações, devem ser usadas com moderação.
 
-No mais simples dos termos, macros são funções especiais destinadas a retornar uma expressão entre aspas que será inserido no nosso código do aplicativo. Imagine um macro substituído por uma expressão *quote*, em vez de chamada como uma função. Com macros temos tudo que é necessário para estender Elixir e dinamicamente adicionar código para nossas aplicações.
+No mais simples dos termos, macros são funções especiais destinadas a retornar uma expressão entre aspas que será inserida no código da nossa aplicação. Imagine uma macro substituída por uma expressão *quote*, em vez de chamada como uma função. Com macros, temos tudo o que é necessário para estender Elixir e dinamicamente adicionar código às nossas aplicações.
 
-Começamos por definir um macro usando `defmacro/2` que em si é um macro, como grande parte da linguagem Elixir (deixar isso imerso). Como exemplo vamos implementar `unless` como um macro. Lembre-se que o nosso macro precisa retornar uma expressão citada:
+Começamos por definir uma macro usando `defmacro/2` que por si só, já é uma macro, como grande parte da linguagem Elixir (pode parecer confuso, mas você vai se acostumar com isso). Como exemplo, vamos implementar `unless` como uma macro. Lembre-se que a nossa macro precisa retornar uma expressão entre aspas:
 
 ```elixir
 defmodule OurMacro do
@@ -77,7 +77,7 @@ defmodule OurMacro do
 end
 ```
 
-Vamos exigir um módulo e testar o seu Macro:
+Vamos usar require `Ouracro` para declarar que _queremos_ usar a macro:
 
 ```elixir
 iex> require OurMacro
@@ -88,7 +88,7 @@ iex> OurMacro.unless false, do: "Hi"
 "Hi"
 ```
 
-Já que macros substituem o código em nossa aplicação, nós podemos controlar quando e o que é compilado. Um exemplo disso pode ser encontrado no módulo `Logger`. Quando o log está desabilitado nenhum código é injetado e o aplicativo resultante não contém referências ou chamadas de função para registro. Isso é diferente de outras linguagens onde ainda existe a sobrecarga de uma chamada de função, mesmo quando a implementação é NOP.
+Já que macros substituem o código em nossa aplicação, podemos controlar quando e o que é compilado. Um exemplo disso pode ser encontrado no módulo `Logger`. Quando o log está desabilitado, nenhum código é injetado e a aplicação resultante não contém referências ou chamadas de função para logar uma mensagem. Isso é diferente de outras linguagens onde ainda existe a sobrecarga de uma chamada de função, mesmo quando a implementação é NOP (nenhuma operação a ser executada).
 
 Para demonstrar isso, vamos fazer um *logger* simples que pode ser ativado ou desativado:
 
@@ -129,14 +129,14 @@ end
 
 ## Debugando
 
-Está bem, agora nós sabemos como usar `quote/2`, `unquote/1` e escrever macros. Mas e se você tiver uma grande quantidade de código *quoted* e você precisa entendê-lo? Nesse caso, você pode usar `Macro.to_string/2`. Veja este exemplo:
+Certo, agora sabemos como usar `quote/2`, `unquote/1` e escrever macros. Mas e se você tiver uma grande quantidade de código *quoted* e você precisa entendê-lo? Nesse caso, você pode usar `Macro.to_string/2`. Veja este exemplo:
 
 ```elixir
 iex> Macro.to_string(quote(do: foo.bar(1, 2, 3)))
 "foo.bar(1, 2, 3)"
 ```
 
-E quando você quiser ver o código gerado por macros você pode combinar eles com `Macro.expand/2` e `Macro.expand_once/2`, essas funções expandem os macros para seus códigos *quoted*. O primeiro pode expandir ele várias vezes, enquanto o último - apenas uma vez. Por exemplo, vamos modificar o exemplo do `unless` da seção anterior:
+E quando você quiser ver o código gerado por macros, você pode combinar eles com `Macro.expand/2` e `Macro.expand_once/2`, essas funções expandem as macros para seus códigos *quoted*. O primeiro pode expandir ele várias vezes, enquanto o último - apenas uma vez. Por exemplo, vamos modificar o exemplo do `unless` da seção anterior:
 
 ```elixir
 defmodule OurMacro do
@@ -176,13 +176,13 @@ end
 
 Você deve lembrar que nós mencionamos que `if` é um macro em Elixir, aqui nós vemos expandido para sua declaração `case` subjacente.
 
-### Macros Privados
+### Macros Privadas
 
-Embora não seja tão comum, Elixir suporta macros privadas. Um macro privado é definido com `defmacrop` e só pode ser chamado a partir do módulo no qual ele foi definido. Macros privados devem ser definidas antes do código que as invoca.
+Embora não seja tão comum, Elixir suporta macros privadas. Uma macro privada é definida com `defmacrop` e só pode ser chamada a partir do módulo no qual ela foi definida. Macros privadas devem ser definidas antes do código que as invoca.
 
 ### Higienização de Macros
 
-A característica de como macros interagem com o contexto de quem o chamou quando expandido é conhecida como a higienização de macro. Por padrão macros no Elixir são higiênicos e não entrarão em conflito com nosso contexto:
+A característica de como macros interagem com o contexto de quem a chamou quando expandida é conhecida como a higienização de macro. Por padrão, macros em Elixir são higiênicas e não entrarão em conflito com nosso contexto:
 
 ```elixir
 defmodule Example do
@@ -201,7 +201,7 @@ iex> val
 42
 ```
 
-Mas e se quisermos manipular o valor de `val` ? Para marcar uma variável como sendo anti-higiênica podemos usar `var!/2`. Vamos atualizar o nosso exemplo para incluir outro macro utilizando `var!/2`!
+Mas e se quisermos manipular o valor de `val` ? Para marcar uma variável como sendo anti-higiênica podemos usar `var!/2`. Vamos atualizar o nosso exemplo para incluir outra macro utilizando `var!/2`!
 
 ```elixir
 defmodule Example do
@@ -232,13 +232,13 @@ iex> val
 -1
 ```
 
-Ao incluir `var!/2` em nossa macro que manipular o valor de `val` sem passá-la em nossa macro. O uso de macros não higiênicos deve ser mantido a um mínimo. Ao incluir `var!/2` que aumentam o risco de um conflito de resolução de variável.
+Ao incluir `var!/2` em nossa macro, manipulamos o valor de `val`, sem passá-la em nossa macro. O uso de macros não higiênicas deve ser mantido a um mínimo. Ao incluir `var!/2`, aumentamos o risco de um conflito de resolução de variável.
 
 ### Binding
 
-Nós já cobrimos a utilidade do `unquote/1` mas há outra maneira de injetar valores em nosso código: *binding*. Com *binding* de variável somos capazes de incluir múltiplas variáveis em nossa macro e garantir que eles são *unquote* apenas uma vez, evitando reavaliações acidentais. Para usar variáveis de vinculação precisamos passar uma lista de palavras-chave para a opção `bind_quoted` de `quote/2`.
+Nós já cobrimos a utilidade do `unquote/1` mas há outra maneira de injetar valores em nosso código: *binding*. Com o *binding* de variável, somos capazes de incluir múltiplas variáveis em nossa macro e garantir que eles são *unquoted* apenas uma vez, evitando revalidações acidentais. Para usar variáveis de vinculação (binding) precisamos passar uma lista de palavras-chave para a opção `bind_quoted` de `quote/2`.
 
-Para ver o benefício de `bind_quote` e para demonstrar o problema de reavaliação, vamos usar um exemplo. Podemos começar por criar uma macro que simplesmente exibe a expressão duas vezes:
+Para ver o benefício de `bind_quote` e para demonstrar o problema de revalidação, vamos usar um exemplo. Podemos começar criando uma macro que simplesmente exibe a expressão duas vezes:
 
 ```elixir
 defmodule Example do
@@ -251,7 +251,7 @@ defmodule Example do
 end
 ```
 
-Vamos tentar o nosso novo macro, passando a hora atual do sistema, devemos esperar para vê-lo emitido duas vezes:
+Vamos testar a nossa nova macro, passando a hora atual do sistema. Devemos ver o output sendo exibido duas vezes:
 
 ```elixir
 iex> Example.double_puts(:os.system_time)
@@ -259,7 +259,7 @@ iex> Example.double_puts(:os.system_time)
 1450475941851733000
 ```
 
-Os tempos são diferentes! O que aconteceu? Usando `unquote/1` na mesma expressão várias vezes os resultados em reavaliação podem ter consequências inesperadas. Vamos atualizar o exemplo para usar `bind_quoted` e ver o que temos:
+Os tempos são diferentes! O que aconteceu? Usar `unquote/1` na mesma expressão várias vezes, faz com que a expressão seja revalidada cada vez que é chamada, o que pode ter consequências inesperadas. Vamos atualizar o exemplo para usar `bind_quoted` e ver o que acontece:
 
 ```elixir
 defmodule Example do
@@ -278,6 +278,6 @@ iex> Example.double_puts(:os.system_time)
 1450476083466500000
 ```
 
-Com `bind_quoted` nós temos o nosso resultado esperado: o mesmo tempo impresso duas vezes.
+Com `bind_quoted` temos o resultado esperado: o mesmo tempo impresso duas vezes.
 
-Agora que nós cobrimos `quote/2`, `unquote/1`, e `defmacro/2` temos todas as ferramentas necessárias para estender Elixir para atender às nossas necessidades.
+Agora que cobrimos `quote/2`, `unquote/1`, e `defmacro/2` temos todas as ferramentas necessárias para estender Elixir para atender às nossas necessidades.
