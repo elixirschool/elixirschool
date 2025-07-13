@@ -1,5 +1,5 @@
 %{
-  version: "1.4.2",
+  version: "2.0.0",
   title: "Basics",
   excerpt: """
   Getting started, basic data types, and basic operations.
@@ -11,51 +11,64 @@
 
 ### Installing Elixir
 
-Installation instructions for each OS can be found on elixir-lang.org in the [Installing Elixir](http://elixir-lang.org/install.html) guide.
+Installation instructions for each operating system can be found in the official [Elixir Installation Guide](https://hexdocs.pm/elixir/introduction.html#installation). The guide covers package managers for all major platforms including macOS (via Homebrew), Ubuntu/Debian (via apt), Windows (via Chocolatey), and more.
 
-After Elixir is installed, you can find the installed version.
+After Elixir is installed, you can verify the installation and check the version:
 
-    % elixir -v
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+```bash
+$ elixir --version
+Erlang/OTP 26 [erts-14.2.2] [source] [64-bit] [smp:10:10] [ds:10:10:10] [async-threads:1] [jit:ns]
 
-    Elixir {{ site.elixir.version }}
+Elixir 1.16.0 (compiled with Erlang/OTP 26)
+```
+
+Don't worry about understanding all the details in this output - it shows that both Erlang (which Elixir runs on) and Elixir are properly installed.
 
 ### Trying Interactive Mode
 
-Elixir comes with IEx, an interactive shell, which allows us to evaluate Elixir expressions as we go.
+Elixir comes with IEx (Interactive Elixir), a powerful shell that allows us to evaluate Elixir expressions as we go. This is one of the best ways to learn and experiment with the language.
 
 To get started, let's run `iex`:
 
-    Erlang/OTP {{ site.erlang.OTP }} [erts-{{ site.erlang.erts }}] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+```bash
+$ iex
+Erlang/OTP 26 [erts-14.2.2] [source] [64-bit] [smp:10:10] [ds:10:10:10] [async-threads:1] [jit:ns]
 
-    Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
-    iex>
+Interactive Elixir (1.16.0) - press Ctrl+C to exit (type h() ENTER for help)
+iex>
+```
 
-Note: On Windows PowerShell, you need to type `iex.bat`.
+**Note**: On Windows, you may need to type `iex.bat` depending on your installation method.
 
-Let's go ahead and give it a try now by typing in a few basic expressions:
+Let's try some basic expressions to get a feel for the language:
 
 ```elixir
-iex> 2+3
+iex> 2 + 3
 5
-iex> 2+3 == 5
+iex> 2 + 3 == 5
 true
 iex> String.length("The quick brown fox jumps over the lazy dog")
 43
 ```
 
-Don't worry if you don't understand every expression yet, but we hope you get the idea.
+Don't worry if you don't understand every expression yet - we'll cover all of these concepts in detail. The important thing is to get comfortable with the interactive environment.
 
 ## Basic Data Types
 
+Elixir has several basic data types that form the foundation of the language. Let's explore each one with practical examples.
+
 ### Integers
+
+Integers in Elixir are straightforward and support arbitrarily large values:
 
 ```elixir
 iex> 255
 255
+iex> 1_000_000
+1000000
 ```
 
-Support for binary, octal, and hexadecimal numbers comes built in:
+Elixir supports different number bases out of the box:
 
 ```elixir
 iex> 0b0110
@@ -66,9 +79,11 @@ iex> 0x1F
 31
 ```
 
+**Tip**: You can use underscores in large numbers to improve readability, as shown with `1_000_000` above.
+
 ### Floats
 
-In Elixir, floating point numbers require a decimal after at least one digit; they have 64-bit double precision and support `e` for exponent values:
+Floating point numbers in Elixir require a decimal point after at least one digit. They have 64-bit double precision and support scientific notation:
 
 ```elixir
 iex> 3.14
@@ -81,28 +96,35 @@ iex> 1.0e-10
 
 ### Booleans
 
-Elixir supports `true` and `false` as booleans; everything is truthy except for `false` and `nil`:
+Elixir supports `true` and `false` as booleans. An important concept in Elixir is that everything is considered "truthy" except for `false` and `nil`:
 
 ```elixir
 iex> true
 true
 iex> false
 false
+iex> is_boolean(true)
+true
+iex> is_boolean(1)
+false
 ```
 
 ### Atoms
 
-An atom is a constant whose name is its value.
-If you're familiar with Ruby, these are synonymous with Symbols:
+Atoms are constants where their name is their value. If you're familiar with Ruby, these are similar to symbols. They're commonly used to tag return values and represent state:
 
 ```elixir
 iex> :foo
 :foo
 iex> :foo == :bar
 false
+iex> :ok
+:ok
+iex> {:ok, "result"}
+{:ok, "result"}
 ```
 
-The booleans `true` and `false` are also the atoms `:true` and `:false`, respectively.
+The booleans `true` and `false` are actually atoms `:true` and `:false`:
 
 ```elixir
 iex> is_atom(true)
@@ -113,29 +135,31 @@ iex> :true === true
 true
 ```
 
-Names of modules in Elixir are also atoms. `MyApp.MyModule` is a valid atom, even if no such module has been declared yet.
+Module names in Elixir are also atoms. `MyApp.MyModule` is a valid atom, even if no such module has been declared yet:
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
 true
 ```
 
-Atoms are also used to reference modules from Erlang libraries, including built in ones.
+Atoms are also used to reference modules from Erlang libraries:
 
 ```elixir
-iex> :crypto.strong_rand_bytes 3
+iex> :crypto.strong_rand_bytes(3)
 <<23, 104, 108>>
 ```
 
 ### Strings
 
-Strings in Elixir are UTF-8 encoded and are wrapped in double quotes:
+Strings in Elixir are UTF-8 encoded and wrapped in double quotes:
 
 ```elixir
 iex> "Hello"
 "Hello"
 iex> "dziękuję"
 "dziękuję"
+iex> "🎉"
+"🎉"
 ```
 
 Strings support line breaks and escape sequences:
@@ -146,17 +170,15 @@ iex> "foo
 "foo\nbar"
 iex> "foo\nbar"
 "foo\nbar"
+iex> "He said, \"Hello!\""
+"He said, \"Hello!\""
 ```
-
-Elixir also includes more complex data types.
-We'll learn more about these when we learn about [collections](/en/lessons/basics/collections) and [functions](/en/lessons/basics/functions).
 
 ## Basic Operations
 
 ### Arithmetic
 
-Elixir supports the basic operators `+`, `-`, `*`, and `/` as you would expect.
-It's important to remember that `/` will always return a float:
+Elixir supports the basic arithmetic operators you'd expect:
 
 ```elixir
 iex> 2 + 2
@@ -169,7 +191,7 @@ iex> 10 / 5
 2.0
 ```
 
-If you need integer division or the division remainder (i.e., modulo), Elixir comes with two helpful functions to achieve this:
+**Important**: The `/` operator always returns a float. For integer division or remainder operations, Elixir provides dedicated functions:
 
 ```elixir
 iex> div(10, 3)
@@ -178,30 +200,28 @@ iex> rem(10, 3)
 1
 ```
 
-### Boolean
+### Boolean Logic
 
-Elixir provides the `||`, `&&`, and `!` boolean operators.
-These support any types:
+Elixir provides boolean operators that work with any data type:
 
 ```elixir
 iex> -20 || true
 -20
 iex> false || 42
 42
-
 iex> 42 && true
 true
 iex> 42 && nil
 nil
-
 iex> !42
 false
 iex> !false
 true
 ```
-In Elixir, the concept of "truthiness" is very simple: only `false` and `nil` are considered falsy. Every other value, including `0`, `""` (empty string), and `[]` (empty list), is considered truthy. This strict rule allows boolean operators like `||`, `&&`, and `!` to work predictably with any data type for conditional logic.
 
-There are three additional operators whose first argument _must_ be a boolean (`true` or `false`):
+In Elixir, the concept of "truthiness" is simple: only `false` and `nil` are considered falsy. Everything else, including `0`, `""` (empty string), and `[]` (empty list), is truthy.
+
+There are three additional operators that require boolean values as their first argument:
 
 ```elixir
 iex> true and 42
@@ -212,15 +232,13 @@ iex> not false
 true
 iex> 42 and true
 ** (BadBooleanError) expected a boolean on left-side of "and", got: 42
-iex> not 42
-** (ArgumentError) argument error
 ```
 
-Note: Elixir's `and` and `or` actually map to `andalso` and `orelse` in Erlang.
+**Note**: `and`, `or`, and `not` are stricter about their arguments compared to `&&`, `||`, and `!`.
 
 ### Comparison
 
-Elixir comes with all the comparison operators we're used to: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<`, and `>`.
+Elixir provides all the comparison operators you'd expect:
 
 ```elixir
 iex> 1 > 2
@@ -242,13 +260,7 @@ iex> 2 === 2.0
 false
 ```
 
-An important feature of Elixir is that any two types can be compared; this is particularly useful in sorting. We don't need to memorize the sort order, but it is important to be aware of it:
-
-```elixir
-number < atom < reference < function < port < pid < tuple < map < list < bitstring
-```
-
-This can lead to some interesting, yet valid comparisons you may not find in other languages:
+A unique feature of Elixir is that any two types can be compared, which is useful for sorting:
 
 ```elixir
 iex> :hello > 999
@@ -257,15 +269,19 @@ iex> {:hello, :world} > [1, 2, 3]
 false
 ```
 
+The sort order is: `number < atom < reference < function < port < pid < tuple < map < list < bitstring`
+
 ### String Interpolation
 
-If you've used Ruby, string interpolation in Elixir will look familiar:
+String interpolation in Elixir uses the `#{}` syntax, similar to Ruby:
 
 ```elixir
 iex> name = "Sean"
 "Sean"
 iex> "Hello #{name}"
 "Hello Sean"
+iex> "The result is #{2 + 2}"
+"The result is 4"
 ```
 
 ### String Concatenation
@@ -278,3 +294,63 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Working with IEx
+
+### Getting Help
+
+IEx provides excellent built-in help. Type `h()` for general help, or `h/1` with a function name for specific documentation:
+
+```elixir
+iex> h()
+# General help information
+
+iex> h(Enum.map)
+# Documentation for Enum.map function
+```
+
+### Tab Completion
+
+IEx supports tab completion. Try typing `String.` and then pressing Tab to see available functions:
+
+```elixir
+iex> String. # press Tab
+at/2         bag_distance/2   capitalize/2     chunk/2
+codepoints/1 contains?/2      downcase/1       duplicate/2
+# ... and many more
+```
+
+### Recompiling Code
+
+When working on a project, you can recompile your code without restarting IEx:
+
+```elixir
+iex> recompile()
+```
+
+### Accessing Documentation
+
+You can access documentation for any module or function right from IEx:
+
+```elixir
+iex> h(String.split)
+
+  def split(string, pattern \\ " ", options \\ [])
+
+  @spec split(
+          t(),
+          pattern() | [pattern()],
+          keyword()
+        ) :: [t()]
+
+Splits string into substrings at each occurrence of one or more
+patterns.
+
+# ... rest of documentation
+```
+
+## Next Steps
+
+Now that you've learned the basics of Elixir's data types and operations, you're ready to dive deeper into more complex data structures like lists, tuples, and maps in our [Collections](/en/lessons/basics/collections) lesson.
+
+Remember: the best way to learn Elixir is to experiment. Keep IEx open and try variations of the examples you've seen. Don't be afraid to break things - it's all part of the learning process!
