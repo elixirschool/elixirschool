@@ -121,5 +121,5 @@ iex> ny_datetime
 
 Comme vous pouvez le voir, l'heure est passée de 12:00 pour le fuseau horaire parisien à 6:00, ce qui est correct - il y a bien une différence de 6 heures entre les deux villes.
 
-Ca y est ! Si vous voulez travailler avec des fonctions plus avancées, vous voudrez peut-être regarder de manière plus approfondie la documentation pour [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html) et [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html)
+Ça y est ! Si vous voulez travailler avec des fonctions plus avancées, vous voudrez peut-être regarder de manière plus approfondie la documentation pour [Time](https://hexdocs.pm/elixir/Time.html), [Date](https://hexdocs.pm/elixir/Date.html), [DateTime](https://hexdocs.pm/elixir/DateTime.html) et [NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html)
 Vous pourriez également considérer [Timex](https://github.com/bitwalker/timex) et [Calendar](https://github.com/lau/calendar) qui sont de puissantes bibliothèques pour travailler avec le temps en Elixir.

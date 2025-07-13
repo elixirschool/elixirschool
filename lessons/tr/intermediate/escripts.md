@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.0.2",
   title: "Yürütüle bilirlik",
   excerpt: """
   Elixir'de yürütülebilir dosyalar oluşturmak için `eskript` kullanıyor olacağız. Escript, Erlang yüklü herhangi bir sistemde çalıştırılabilen bir yürütülebilir dosya üretir.
@@ -37,7 +37,7 @@ end
 
 ## Arg'ları Ayrıştırma
 
-Uygulama kurulumumuzla, komut satırı argümanlarını ayrıştırmaya devam edebiliriz. Bunu yapmak için, değerin boolean olduğunu belirtmek gerekir ve Elixir' için `OptionParser.parse / 2` fonksiyonunu `: switch` seçeneği ile birlikte kullanacağız:
+Uygulama kurulumumuzla, komut satırı argümanlarını ayrıştırmaya devam edebiliriz. Bunu yapmak için, değerin boolean olduğunu belirtmek gerekir ve Elixir' için `OptionParser.parse/2` fonksiyonunu `:switch` seçeneği ile birlikte kullanacağız:
 
 ```elixir
 defmodule ExampleApp.CLI do

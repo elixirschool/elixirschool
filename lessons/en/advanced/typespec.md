@@ -98,7 +98,7 @@ end
 ```
 
 We defined the type `t(first, last)` already, which is a representation of the struct `%Examples{first: first, last: last}`.
-At this point we see types could takes parameters, but we defined type `t` as well and this time it is a representation of the struct `%Examples{first: integer, last: integer}`.
+At this point we see types could take parameters, but we defined type `t` as well and this time it is a representation of the struct `%Examples{first: integer, last: integer}`.
 
 What is the difference? The first one represents the struct `Examples` in which the two keys could be any type.
 The second one represents the struct in which the keys are `integers`.

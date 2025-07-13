@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.0.2",
   title: "Davranışlar",
   excerpt: """
   Önceki derste Typespec'leri öğrendik, burada bu özellikleri uygulamak için bir modülün nasıl kullanılabileceğini göreceğiz. Elixir'de, bu durum davranışlar olarak adlandırılır.
@@ -31,7 +31,7 @@ defmodule Example.Worker do
 end
 ```
 
-Burada `init/1` değerini herhangi bir değeri kabul etmek ve `{: ok, state}` veya `{: error, reason}` demetini döndürmek olarak tanımladık.  `Perform / 2` fonksiyonumuz, başlattığımız durumla birlikte işçimiz için bazı argümanlar alacak, ve sonuçlandırmak için `{:ok, result, state}` veya `{:error, reason, state}` gibi durum demetlerini bekleyecek.
+Burada `init/1` değerini herhangi bir değeri kabul etmek ve `{:ok, state}` veya `{:error, reason}` demetini döndürmek olarak tanımladık.  `perform/2` fonksiyonumuz, başlattığımız durumla birlikte işçimiz için bazı argümanlar alacak, ve sonuçlandırmak için `{:ok, result, state}` veya `{:error, reason, state}` gibi durum demetlerini bekleyecek.
 
 ## Davranışları kullanma
 

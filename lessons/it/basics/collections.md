@@ -40,7 +40,7 @@ iex> [1, 2] ++ [3, 4, 1]
 [1, 2, 3, 4, 1]
 ```
 
-Nota riguardo al formato del nome (`++/2`) usato qui sopra: In Elixir (e Erlang, sul quale Elixir è construito), il nome di una funzione o di un operatore ha due componenti: il nome da noi dato (in questo caso `++`) ed il suo _arity_. L'arity è una parte principale di Elixir (ed Erland), è il numero di argomenti di una data funzione (in questo caso due). L'arity e il nome della funzione sono separati da uno slash. Ne parleremo di più tardi, per ora questa conoscenza ti aiuterà a capire questa notazione.
+Nota riguardo al formato del nome (`++/2`) usato qui sopra: In Elixir (e Erlang, sul quale Elixir è construito), il nome di una funzione o di un operatore ha due componenti: il nome da noi dato (in questo caso `++`) ed il suo _arity_. L'arity è una parte principale di Elixir (ed Erlang), è il numero di argomenti di una data funzione (in questo caso due). L'arity e il nome della funzione sono separati da uno slash. Ne parleremo di più tardi, per ora questa conoscenza ti aiuterà a capire questa notazione.
 
 ### Sottrazione tra Liste
 

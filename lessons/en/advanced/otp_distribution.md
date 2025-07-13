@@ -420,7 +420,7 @@ Let's take a look at our other testing approach--configuring the application to 
 The part of our code that tells `Task.Supervisor` to start a supervised task on a remote node is here:
 
 ```elixir
-# app/chat.ex
+# lib/chat.ex
 def spawn_task(module, fun, recipient, args) do
   recipient
   |> remote_supervisor()

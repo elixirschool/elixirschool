@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.0.2",
   title: "行為",
   excerpt: """
   在前一課中了解了 Typespecs，現在將學習如何請求一個模組來實現這些規範 (specifications)。
@@ -32,7 +32,7 @@ defmodule Example.Worker do
 end
 ```
 
-在這裡定義 `init / 1` 做為接受任何值並回傳一個 tuple 不論 `{:ok, state}` 或 `{:error, reason}`，這是一個非常標準的初始化。`perform/2` 函數將會隨著初始化狀態收到一些工作模組的引數，將預期 `perform/2` 非常像 GenServers 回傳 `{:ok, result, state}` 或 `{:error, reason, state}`。
+在這裡定義 `init/1` 做為接受任何值並回傳一個 tuple 不論 `{:ok, state}` 或 `{:error, reason}`，這是一個非常標準的初始化。`perform/2` 函數將會隨著初始化狀態收到一些工作模組的引數，將預期 `perform/2` 非常像 GenServers 回傳 `{:ok, result, state}` 或 `{:error, reason, state}`。
 
 ## 開始使用行為 (behaviours)
 

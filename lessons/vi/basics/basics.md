@@ -135,8 +135,8 @@ iex> 10 / 5
 Nếu bạn cần chia số nguyên hoặc tìm số thừa, Elixir có 2 hàm hữu dụng để thực hiện:
 
 ```elixir
-iex> div(10, 5)
-2
+iex> div(10, 3)
+3
 iex> rem(10, 3)
 1
 ```
