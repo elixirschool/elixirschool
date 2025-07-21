@@ -473,6 +473,4 @@ Lastly, follow the principle of least privilege by exposing only necessary APIs,
 
 The Lua library for Elixir provides a powerful and safe way to add user-defined scripting capabilities to our applications. By leveraging the BEAM VM's strengths and Luerl's sandboxing capabilities, we can create flexible, extensible systems that allow users to customize behavior without compromising security.
 
-Whether we're building plugin systems, configuration engines, or business rules platforms, the combination of Elixir and Lua's simplicity creates amazing possibilities for application extensibility.
-
 The seamless integration between Elixir and Lua, combined with the safety guarantees of running everything on the BEAM VM, makes this library an excellent choice for applications that need to execute user-defined logic safely and efficiently.
