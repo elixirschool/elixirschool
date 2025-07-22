@@ -440,7 +440,7 @@ When evaluating user code be sure to never expose dangerous functions that acces
 
 Lastly, follow the principle of least privilege by exposing only necessary APIs, as each function represents a potential attack vector for malicious scripts.
 
-### Conclusion
+## Conclusion
 
 The Lua library for Elixir provides a powerful and safe way to add user-defined scripting capabilities to our applications. By leveraging the BEAM VM's strengths and Luerl's sandboxing capabilities, we can create flexible, extensible systems that allow users to customize behavior without compromising security.
 
