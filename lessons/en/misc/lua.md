@@ -44,7 +44,7 @@ iex> result
 [5]
 ```
 
-The `Lua.eval!/2` function returns a tuple containing the results (as a list) and the Lua state. Even simple expressions return results as lists because Lua functions can return multiple values.
+The `Lua.eval!/2` function returns a tuple containing the results (as a list) and the Lua state. It's important to note even simple expressions return results as lists because Lua functions can return multiple values.
 
 ### The ~LUA Sigil
 
@@ -121,9 +121,9 @@ Note that Elixir functions exposed to Lua should:
 - Accept a list of arguments
 - Return a list of results (even for single values)
 
-### Using the deflua Macro
+### Using the `deflua` Macro
 
-For more complex APIs, the `deflua` macro provides a cleaner syntax:
+For more complex APIs, we can use the `deflua` macro:
 
 ```elixir
 defmodule MathAPI do
@@ -142,7 +142,7 @@ iex> {[16.0], _state} = Lua.eval!(lua, ~LUA[return power(2, 4)])
 
 ### Scoped APIs
 
-We can organize functions under namespaces using the `:scope` option:
+The `:scope` option provides a mechanism for us to organize functions under namespaces:
 
 ```elixir
 defmodule StringAPI do
@@ -158,38 +158,9 @@ iex> {["HELLO"], _state} = Lua.eval!(lua, ~LUA[return str.upper("hello")])
 {["HELLO"], #PID<0.130.0>}
 ```
 
-## Advanced API Patterns
+### Stateful APIs
 
-### Working with Lua Tables
-
-When working with complex Lua data structures, we can use `Lua.Table.as_list/1` to convert Lua tables back to Elixir lists:
-
-```elixir
-defmodule Queue do
-  use Lua.API, scope: "q"
-
-  deflua push(v), state do
-    # Pull out the global variable "my_queue" from lua
-    queue = Lua.get!(state, [:my_queue])
-    
-    # Call the Lua function table.insert(table, value)
-    {[], state} = Lua.call_function!(state, [:table, :insert], [queue, v])
-    
-    # Return the modified lua state with no return values
-    {[], state}
-  end
-end
-
-iex> lua = Lua.new() |> Lua.load_api(Queue)
-iex> {[queue], _} = Lua.eval!(lua, """
-...> my_queue = {}
-...> q.push("first")
-...> q.push("second")
-...> return my_queue
-...> """)
-iex> Lua.Table.as_list(queue)
-["first", "second"]
-```
+Sometimes it may be necessary to access or modify the Lua state from within our API functions, this is available to us as the second argument of `deflua`:
 
 ```elixir
 defmodule CounterAPI do
@@ -457,19 +428,19 @@ end
 
 When integrating Lua into our Elixir applications there are several important considerations for performance optimization and security that will help ensure efficient and secure execution.
 
-## Performance
+### Performance
 
 For performance one of the most impactful optimization is using compile-time chunks with the `c` modifier in `~LUA` sigils, eliminating parsing overhead on every execution. It is also advisable to reuse Lua state when possible since creating new states involves expensive initialization of the entire Lua environment.
 
 Data conversion may become a bottleneck with large datasets so keeping data in compatible formats reduces conversion overhead. Another consideration that impacts performance and security is to expose only the functions your scripts actually need, each exposed function increases memory footprint and potential security risks.
 
-## Security
+### Security
 
 When evaluating user code be sure to never expose dangerous functions that access file systems, networks, or processes, as malicious scripts could compromise your entire application. If you must store sensitive data in your Lua state use private context rather than Lua variables since private context remains isolated from the Lua execution environment.
 
 Lastly, follow the principle of least privilege by exposing only necessary APIs, as each function represents a potential attack vector for malicious scripts.
 
-## Conclusion
+### Conclusion
 
 The Lua library for Elixir provides a powerful and safe way to add user-defined scripting capabilities to our applications. By leveraging the BEAM VM's strengths and Luerl's sandboxing capabilities, we can create flexible, extensible systems that allow users to customize behavior without compromising security.
 
