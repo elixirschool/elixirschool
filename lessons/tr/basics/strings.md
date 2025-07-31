@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.1.2",
   title: "Stringler (Dizeler)",
   excerpt: """
   Stringler, Karakter Listeleri, Graphemes ve Codepoints.
@@ -46,7 +46,7 @@ Daha fazla destek için resmi [`Başlangıç Kılavuzu'na`] bakınız.(<http://e
 
 Codepoints, UTF-8 kodlamasına bağlı olarak bir veya daha fazla bayt tarafından temsil edilen basit Unicode karakterleridir. ABD ASCII karakter kümesinin dışındaki karakterler her zaman birden fazla bayt olarak kodlanır. Örneğin, tilde veya aksan (`á, ñ, è`) Latin karakterleri genellikle iki bayt olarak kodlanır.Asya dillerinden karakterler genellikle üç veya dört bayt olarak kodlanır. Graphemeler tek bir karakter olarak işlenen çoklu kod noktalarından oluşur.
 
-String modülü, bunları sağlamak için iki işlev daha sunmaktadır: "graphemes / 1" ve "codepoints / 1". Bir örneğe bakalım:
+String modülü, bunları sağlamak için iki işlev daha sunmaktadır: "graphemes/1" ve "codepoints/1". Bir örneğe bakalım:
 
 ```elixir
 iex> string = "\u0061\u0301"

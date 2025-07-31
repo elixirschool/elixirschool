@@ -1,5 +1,5 @@
 %{
-  version: "1.9.1",
+  version: "1.9.3",
   title: "Enum",
   excerpt: """
   A set of algorithms for enumerating over enumerables.
@@ -158,7 +158,7 @@ iex> Enum.filter([1, 2, 3, 4], fn(x) -> rem(x, 2) == 0 end)
 ### reduce
 
 With `reduce/3` we can distill our collection down into a single value.
-To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first element in the enumerable is used:
+To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided, the first element of the enumerable is used as the starting accumulator, and the function processes the remaining elements:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
@@ -173,7 +173,7 @@ iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
 
 ### sort
 
-Sorting our collections is made easy with not one, but two, sorting functions.
+Sorting our collections is made with not one, but two, sorting functions.
 
 `sort/1` uses Erlang's [term ordering](http://erlang.org/doc/reference_manual/expressions.html#term-comparisons) to determine the sorted order:
 

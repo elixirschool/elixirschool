@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.0.2",
   title: "İşaretler (Sigils)",
   excerpt: """
   İşaretlerle çalışma ve yeni işaretler oluşturma.
@@ -76,7 +76,7 @@ iex> "elixir" =~ re
 true
 ```
 
-Elixir ayrıca Erlang [Regex](https://hexdocs.pm/elixir/Regex.html) API'sinide sağlar. Şimdi `Regex.split / 2` fonksiyonuna regex işaretlerini uygulayalım:
+Elixir ayrıca Erlang [Regex](https://hexdocs.pm/elixir/Regex.html) API'sinide sağlar. Şimdi `Regex.split/2` fonksiyonuna regex işaretlerini uygulayalım:
 
 ```elixir
 iex> string = "100_000_000"

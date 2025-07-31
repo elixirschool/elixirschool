@@ -1,5 +1,5 @@
 %{
-  version: "1.0.2",
+  version: "1.0.3",
   title: "IEx Helpers",
   excerpt: """
   """
@@ -16,7 +16,7 @@ There is a slew of built-in helpers that we will go over in this lesson.
 
 When working in the shell, you often might find yourself using a new module that you are unfamiliar with.
 To understand some of what is available to you, the autocomplete functionality is wonderful.
-Simply type a module name followed by `.` then press `Tab`:
+Type a module name followed by `.` then press `Tab`:
 
 ```elixir
 iex> Map. # press Tab
@@ -71,13 +71,13 @@ iex> IExHelpers.whats_this?(:test)
 "Type: Atom"
 ```
 
-As we can see we don't need to do anything special to require or import our helpers, IEx handles that for us.
+As we can see we don't need to do anything extra to require or import our helpers, IEx handles that for us.
 
 ### h
 
 `h` is one of the most useful tools our Elixir shell gives us.
 Due to the language's fantastic first-class support for documentation, the docs for any code can be reached using this helper.
-To see it in action is simple:
+To see it in action:
 
 ```elixir
 iex> h Enum
@@ -240,8 +240,8 @@ defmodule Map do
 # ...
 ```
 
-This is a simple example, stating that keys and values per the implementation can be any type, but it is useful to know.
+This is a example, stating that keys and values per the implementation can be any type, but it is useful to know.
 
-By leveraging all these built-in niceties we can easily explore the code and learn more about how things work.
+By leveraging all these built-in niceties we can explore the code and learn more about how things work.
 IEx is a very powerful and robust tool that empowers developers.
 With these tools in our toolbox, exploring, and building can be even more fun!

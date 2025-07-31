@@ -1,5 +1,5 @@
 %{
-  version: "1.2.0",
+  version: "1.2.1",
   title: "Documentation",
   excerpt: """
   Documenting Elixir code.
@@ -9,7 +9,7 @@
 
 ## Annotation
 
-How much we comment and what makes quality documentation remains a contentious issue within the programming world.
+How much we comment and what makes quality documentation is a contentious issue within the programming world.
 However, we can all agree that documentation is important for ourselves and those working with our codebase.
 
 Elixir treats documentation as a *first-class citizen*, offering various functions to access and generate documentation for your projects.
@@ -33,14 +33,14 @@ IO.puts("Hello, " <> "chum.")
 ```
 
 Elixir, when running this script will ignore everything from `#` to the end of the line, treating it as throwaway data.
-It may add no value to the operation or performance of the script, however when it's not so obvious what is happening a programmer should know from reading your comment.
-Be mindful not to abuse the single line comment! Littering a codebase could become an unwelcome nightmare for some.
+It may add no value to the operation or performance of the script, however when it's less clear what is happening a programmer should know from reading your comment.
+Be mindful not to overuse the single line comment! Littering a codebase could become an unwelcome nightmare for some.
 It is best used in moderation.
 
 ### Documenting Modules
 
 The `@moduledoc` annotator allows for inline documentation at a module level.
-It typically sits just under the `defmodule` declaration at the top of a file.
+It typically sits under the `defmodule` declaration at the top of a file.
 The example below shows a one line comment within the `@moduledoc` decorator.
 
 ```elixir
@@ -93,9 +93,9 @@ Provides a function hello/1 to greet a human
 
 ### Documenting Functions
 
-Just as Elixir gives us the ability for module level annotation, it also enables similar annotations for documenting functions.
+Elixir gives us the ability for module level annotation and it also enables similar annotations for documenting functions.
 The `@doc` annotator allows for inline documentation at a function level.
-The `@doc` annotator sits just above the function it is annotating.
+The `@doc` annotator sits above the function it is annotating.
 
 ```elixir
 defmodule Greeter do
@@ -234,7 +234,7 @@ We specify the `only: :dev` key-value pair as we don't want to download and comp
 Earmark is a Markdown parser for the Elixir programming language that ExDoc utilizes to turn our documentation within `@moduledoc` and `@doc` to beautiful looking HTML.
 
 It is worth noting at this point that you can change the markup tool to Cmark if you wish, but you will need to do a little more configuration which you can read about [here](https://hexdocs.pm/ex_doc/ExDoc.Markdown.html#module-using-cmark).
-For this tutorial, we'll just stick with Earmark.
+For this tutorial, we'll stick with Earmark.
 
 ### Generating Documentation
 

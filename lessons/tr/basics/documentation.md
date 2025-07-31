@@ -1,5 +1,5 @@
 %{
-  version: "1.0.3",
+  version: "1.0.4",
   title: "Belgelendirme",
   excerpt: """
   Elixir kodunun belgelendirilmesi.
@@ -301,5 +301,5 @@ defmodule Greeter do
 end
 ```
 
-- Belgelerinize bazı kod örnekleri eklemeye çalışın. Bu da modüle, fonksiyona veya bir makroda bulunan kod örneklerinde [ExUnit.DocTest][] ile otomatik testler oluşturmamıza olanak sağlar. Bunu yapmak için, `doctest / 1` makrosunu çağırmanız ve örnekleriniz [ExUnit.DocTest] [resmi belgelerinde] ayrıntılı olarak belirtilen bazı yönergelere göre yazmanız gerekir.
+- Belgelerinize bazı kod örnekleri eklemeye çalışın. Bu da modüle, fonksiyona veya bir makroda bulunan kod örneklerinde [ExUnit.DocTest][] ile otomatik testler oluşturmamıza olanak sağlar. Bunu yapmak için, `doctest/1` makrosunu çağırmanız ve örnekleriniz [ExUnit.DocTest] [resmi belgelerinde] ayrıntılı olarak belirtilen bazı yönergelere göre yazmanız gerekir.
 [ExUnit.DocTest]: <https://hexdocs.pm/ex_unit/ExUnit.DocTest.html>

@@ -1,5 +1,5 @@
 %{
-  version: "1.4.1",
+  version: "1.4.2",
   title: "Modules",
   excerpt: """
   We know from experience it's unruly to have all of our functions in the same file and scope.
@@ -46,7 +46,7 @@ iex> Example.Greetings.morning "Sean"
 ### Module Attributes
 
 Module attributes are most commonly used as constants in Elixir.
-Let's look at a simple example:
+Let's look at a example:
 
 ```elixir
 defmodule Example do
@@ -67,7 +67,7 @@ The three most common are:
 
 ## Structs
 
-Structs are special maps with a defined set of keys and default values.
+Structs are special-case maps with a defined set of keys and default values.
 A struct must be defined within a module, which it takes its name from.
 It is common for a struct to be the only thing defined within a module.
 
@@ -92,7 +92,7 @@ iex> %Example.User{name: "Steve", roles: [:manager]}
 %Example.User<name: "Steve", roles: [:manager]>
 ```
 
-We can update our struct just like we would a map:
+We can update our struct like we would a map:
 
 ```elixir
 iex> steve = %Example.User{name: "Steve"}
@@ -117,7 +117,7 @@ iex> inspect(sean)
 ```
 
 All of our fields are present which is okay for this example but what if we had a protected field we didn't want to include?
-The new `@derive` feature lets us accomplish just this!
+The new `@derive` feature lets us accomplish this!
 Let's update our example so `roles` are no longer included in our output:
 
 ```elixir
@@ -167,7 +167,7 @@ defmodule Example do
 end
 ```
 
-If there's a conflict between two aliases or we just wish to alias to a different name entirely, we can use the `:as` option:
+If there's a conflict between two aliases or we wish to alias to a different name entirely, we can use the `:as` option:
 
 ```elixir
 defmodule Example do
@@ -224,7 +224,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arity pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
+In addition to the name/arity pairs there are two special-case atoms, `:functions` and `:macros`, which import only functions and macros respectively:
 
 ```elixir
 import List, only: :functions
@@ -251,7 +251,7 @@ If we attempt to call a macro that is not yet loaded Elixir will raise an error.
 With the `use` macro we can enable another module to modify our current module's definition.
 When we call `use` in our code we're actually invoking the `__using__/1` callback defined by the provided module.
 The result of the `__using__/1` macro becomes part of our module's definition.
-To get a better understanding how this works let's look at a simple example:
+To get a better understanding how this works let's look at a example:
 
 ```elixir
 defmodule Hello do
@@ -310,7 +310,7 @@ iex> Example.hello("Sean")
 "Hola, Sean"
 ```
 
-These are simple examples to demonstrate how `use` works but it is an incredibly powerful tool in the Elixir toolbox.
+These are examples to demonstrate how `use` works but it is an incredibly powerful tool in the Elixir toolbox.
 As you continue to learn about Elixir keep an eye out for `use`, one example you're sure to see is `use ExUnit.Case, async: true`.
 
 **Note**: `quote`, `alias`, `use`, `require` are macros related to [metaprogramming](/en/lessons/advanced/metaprogramming).

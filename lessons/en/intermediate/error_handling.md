@@ -1,5 +1,5 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "Error Handling",
   excerpt: """
   Although more common to return the `{:error, reason}` tuple, Elixir supports exceptions and in this lesson we'll look at how to handle errors and the different mechanisms available to us.
@@ -97,7 +97,7 @@ end
 ## New Errors
 
 While Elixir includes a number of builtin error types like `RuntimeError`, we maintain the ability to create our own if we need something specific.
-Creating a new error is easy with the `defexception/1` macro which conveniently accepts the `:message` option to set a default error message:
+Creating a new error with the `defexception/1` macro conveniently accepts the `:message` option to set a default error message:
 
 ```elixir
 defmodule ExampleError do

@@ -169,8 +169,8 @@ iex> 10 / 5
 De plus, Elixir comprend deux fonctions pour calculer le quotient (ou modulo) et le reste (en anglais : *remainder*) d'une division :
 
 ```elixir
-iex> div(10, 5)
-2
+iex> div(10, 3)
+3
 iex> rem(10, 3)
 1
 ```

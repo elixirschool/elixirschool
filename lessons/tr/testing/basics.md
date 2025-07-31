@@ -1,5 +1,5 @@
 %{
-  version: "1.1.1",
+  version: "1.1.2",
   title: "Test Yapmak",
   excerpt: """
   Test, yazılım geliştirmenin önemli bir parçasıdır. Bu derste `ExUnit` ile Elixir kodumuzu nasıl test edeceğimize bakacağız ve bu konuda bazı ipuçları vereceğiz.
@@ -147,7 +147,7 @@ end
 
 Bazı durumlarda, testlerimizden önce kurulum yapmamız gerekebilir. Bunu başarmak için `setup` ve `setup_all` kullanabiliriz.
 
-`setup` ile `setup_all` komutlarının arasında ki fark: setup_all sadece 1 kez çalışır, setup ise her testten önce çalışır. `{: Ok, state}` demetini döndürmesi bekleniyor.
+`setup` ile `setup_all` komutlarının arasında ki fark: setup_all sadece 1 kez çalışır, setup ise her testten önce çalışır. `{:ok, state}` demetini döndürmesi bekleniyor.
 
 Örneğin, `setup_all` işlevini kullanmak için kodumuzu değiştireceğiz:
 

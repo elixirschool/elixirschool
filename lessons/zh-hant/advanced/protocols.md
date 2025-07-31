@@ -1,5 +1,5 @@
 %{
-  version: "1.0.1",
+  version: "1.0.2",
   title: "協定",
   excerpt: """
   在本課程中，將研究協定 (Protocols) 是什麼，以及如何在 Elixir 中使用。
@@ -58,7 +58,7 @@ iex> to_string({3.14, "apple", :pie})
 "{3.14, apple, pie}"
 ```
 
-我們已經知道如何實現一個協定，但如何定義一個新協定呢？將實現 `to_atom / 1` 來做為範例。讓我們看看如何用 `defprotocol` 來做到這一點：
+我們已經知道如何實現一個協定，但如何定義一個新協定呢？將實現 `to_atom/1` 來做為範例。讓我們看看如何用 `defprotocol` 來做到這一點：
 
 ```elixir
 defprotocol AsAtom do

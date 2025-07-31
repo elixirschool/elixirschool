@@ -1,10 +1,10 @@
 %{
-  version: "1.1.2",
+  version: "1.1.3",
   title: "Mix",
   excerpt: """
-  Before we can dive into the deeper waters of Elixir we first need to learn about Mix.
+  Before we can jump into the deeper waters of Elixir we first need to learn about Mix.
   If you're familiar with Ruby, Mix is Bundler, RubyGems, and Rake combined.
-  It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of its great features.
+  It's a crucial part of any Elixir project and in this lesson we're going to explore a few of its great features.
   To see all that Mix has to offer in the current environment run `mix help`.
 
 Until now we've been working exclusively within `iex` which has limitations.
@@ -15,9 +15,9 @@ Until now we've been working exclusively within `iex` which has limitations.
 
 ## New Projects
 
-When we're ready to create a new Elixir project, Mix makes it easy with the `mix new` command.
+When we're ready to create a new Elixir project, Mix makes it a breeze with the `mix new` command.
 This will generate our project's folder structure and necessary boilerplate.
-This is pretty straightforward, so let's get started:
+Let's get started:
 
 ```bash
 mix new example
@@ -75,7 +75,6 @@ The `application` section is used during the generation of our application file 
 ## Interactive
 
 It may be necessary to use `iex` within the context of our application.
-Thankfully for us, Mix makes this easy.
 We can start a new `iex` session:
 
 ```bash

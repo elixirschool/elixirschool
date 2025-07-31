@@ -131,8 +131,8 @@ iex> 10 / 5
 Jika anda memerlukan pembahagian integer atau baki pembahagian, Elixir membekalkan dengan dua fungsi untuk menjayakannya:
 
 ```elixir
-iex> div(10, 5)
-2
+iex> div(10, 3)
+3
 iex> rem(10, 3)
 1
 ```

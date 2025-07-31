@@ -1,5 +1,5 @@
 %{
-  version: "1.1.0",
+  version: "1.1.1",
   title: "NimblePublisher",
   excerpt: """
   [NimblePublisher](https://github.com/dashbitco/nimble_publisher) is a minimal filesystem-based publishing engine with Markdown support and code highlighting.
@@ -235,8 +235,7 @@ end
 
 ### Template
 
-Finally, create the HTML files to render the content. Under `lib/nimble_school_web/controllers/blog_html
-/index.html.heex` define this to render the list of posts:
+Finally, create the HTML files to render the content. Under `lib/nimble_school_web/controllers/blog_html/index.html.heex` define this to render the list of posts:
 
 ```html
 <h1>Listing all posts</h1>
@@ -260,8 +259,7 @@ Finally, create the HTML files to render the content. Under `lib/nimble_school_w
 <% end %>
 ```
 
-And create `lib/nimble_school_web/controllers/blog_html
-/show.html.heex` to render a single post:
+And create `lib/nimble_school_web/controllers/blog_html/show.html.heex` to render a single post:
 
 ```html
 <.link href={~p"/blog"}>← All posts</.link>
@@ -287,9 +285,9 @@ Fire up the web server with `iex -S mix phx.server` and visit [http://localhost:
 
 ## Extending metadata
 
-NimblePublisher is very flexible when it comes to define our posts structure and metadata. For example, let's say we want to add a `:published` key to flag the posts, and only show the ones where this is `true`.
+NimblePublisher is very flexible when it comes to defining our post's structure and metadata. For example, let's say we want to add a `:published` key to flag the posts, and only show the ones where this is `true`.
 
-We just need to add the `:published` key to the `Post` struct, and also to the posts metadata. In the `Blog` module we can define:
+We need to add the `:published` key to the `Post` struct and the posts metadata. In the `Blog` module now we can define:
 
 ```elixir
 def all_posts, do: @posts

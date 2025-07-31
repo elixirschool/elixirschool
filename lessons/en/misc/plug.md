@@ -1,5 +1,5 @@
 %{
-  version: "2.3.0",
+  version: "2.4.0",
   title: "Plug",
   excerpt: """
   If you're familiar with Ruby you can think of Plug as Rack with a splash of Sinatra.
@@ -240,7 +240,7 @@ defmodule Example.Plug.VerifyRequest do
       |> Map.keys()
       |> contains_fields?(fields)
 
-    unless verified, do: raise(IncompleteRequestError)
+    if !verified, do: raise(IncompleteRequestError)
   end
 
   defp contains_fields?(keys, fields), do: Enum.all?(fields, &(&1 in keys))
