@@ -39,6 +39,12 @@ end
 Here we've defined `init/1` as accepting any value and returning a tuple of either `{:ok, state}` or `{:error, reason}`, this is a pretty standard initialization.
 Our `perform/2` function will receive some arguments for the worker along with the state we initialized, we'll expect `perform/2` to return `{:ok, result, state}` or `{:error, reason, state}` much like GenServers.
 
+### `term` Type in Elixir
+
+The `term` type in Elixir represents **any value** and is the broadest type in the language, encompassing all other types like atoms, integers, maps, lists, etc. It is often used in behaviours to allow maximum flexibility in contracts. It’s always good to use more specific types (e.g., map, list, integer) when the context allows, as this improves readability and type-checking.
+
+For more details, refer to the [Elixir Typespecs Documentation](https://hexdocs.pm/elixir/typespecs.html#built-in-types).
+
 ## Using behaviours
 
 Now that we've defined our behaviour we can use it to create a variety of modules that all share the same public API.
