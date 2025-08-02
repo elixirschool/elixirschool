@@ -3,8 +3,8 @@
   title: "Mix",
   excerpt: """
   Elixirin derinliklerine girmeden önce Mix öğrenelim. Eğer daha önceden Ruby biliyorsanız Mix'i Bundeller, RubyGems ve Rake ile eşleştirin. Mix, Elixirin önemli bir parçası ve bu dersimizde sadece birkaç özelliğini öğreneceğiz. Mix'in sunduğu tüm özelliklerini görmek için `mix help` komutun çalıştırın.
-
-Şimdiye kadar sınırlamalar içeren  `iex` ile çalıştık. Daha önemli şeyler İnşaat etmek için ve kodunuz etkili bir şekilde yönetmek için kodumuzu faklı dosyalar bölmemiz gerekir; İşte Mix bunu projelere yapmamıza izin verir
+  
+  Şimdiye kadar sınırlamalar içeren  `iex` ile çalıştık. Daha önemli şeyler İnşaat etmek için ve kodunuz etkili bir şekilde yönetmek için kodumuzu faklı dosyalar bölmemiz gerekir; İşte Mix bunu projelere yapmamıza izin verir
   """
 }
 ---

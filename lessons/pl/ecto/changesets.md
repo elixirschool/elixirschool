@@ -3,10 +3,10 @@
   title: "Zestawy zmian",
   excerpt: """
   W celu wstawienia danych do bazy, ich zmiany lub usunięcia, funkcje `Ecto.Repo.insert/2`, `update/2` i `delete/2` wymagają zestawu zmian — _changesetu_ — jako pierwszego parametru. Ale czym są changesety?
-
+  
   Niemal każdy programista zna problem sprawdzania danych wejściowych pod kątem potencjalnych błędów — chcemy mieć pewność, że dane są poprawne, zanim spróbujemy ich użyć do naszych celów.
-
-Ecto dostarcza kompletne rozwiązanie do pracy ze zmianami danych — moduł i strukturę `Changeset`
+  
+  Ecto dostarcza kompletne rozwiązanie do pracy ze zmianami danych — moduł i strukturę `Changeset`
   W tej lekcji dowiemy się więcej na ten temat i nauczymy się, jak weryfikować integralność danych, zanim zapiszemy je do bazy.
   """
 }

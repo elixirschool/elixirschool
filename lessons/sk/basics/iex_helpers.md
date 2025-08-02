@@ -3,7 +3,7 @@
   title: "Pomocné funkcie IEx",
   excerpt: """
   
-"""
+  """
 }
 ---
 

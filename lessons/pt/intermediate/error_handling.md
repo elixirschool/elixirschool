@@ -3,10 +3,10 @@
   title: "Tratamento de Erros",
   excerpt: """
   Embora seja mais comum o retorno da tupla `{:error, reason}`, o Elixir suporta exceções e nesta lição veremos como lidar com erros e os diferentes mecanismos disponíveis para nós.
-
+  
   Em geral, a convenção em Elixir é criar uma função (`example/1`) que retorna `{:ok, result}` e `{:error, reason}` e uma função separada (`example!/1`) que retorna o `result` desempacotado ou levanta um erro.
-
-Esta lição irá focar na interação com o último
+  
+  Esta lição irá focar na interação com o último
   """
 }
 ---

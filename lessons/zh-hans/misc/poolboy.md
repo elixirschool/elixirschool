@@ -2,9 +2,9 @@
 version: "1.2.1",
 title: "Poolboy",
 excerpt: """
-如果你不限制你的程序可以产生的最大并发进程数，你会很容易耗尽你的系统资源。
-[Poolboy](https://github.com/devinus/poolboy) 就是为了解决这个问题，在 Erlang 下被广泛使用的轻量级，通用进程池程序库。
-"""
+  如果你不限制你的程序可以产生的最大并发进程数，你会很容易耗尽你的系统资源。
+  [Poolboy](https://github.com/devinus/poolboy) 就是为了解决这个问题，在 Erlang 下被广泛使用的轻量级，通用进程池程序库。
+  """
 }
 
 ---

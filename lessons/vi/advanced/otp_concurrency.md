@@ -3,8 +3,8 @@
   title: "OTP Concurrency",
   excerpt: """
   Chúng ta đã xem về các trừu tượng hoá của Elixir cho xử lý đồng thời (concurrency), nhưng đôi khi chúng ta cần quyền điều khiển lớn hơn, bởi thế chúng ta sẽ đi sâu vào tìm hiểu hành vi của OTP mà đã có sẵn ở trong Elixir.
-
-Trong bài này, chúng ta sẽ tập trung vào hai phần chính: GenServers và GenEvents
+  
+  Trong bài này, chúng ta sẽ tập trung vào hai phần chính: GenServers và GenEvents
   """
 }
 ---

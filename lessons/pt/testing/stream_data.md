@@ -4,12 +4,12 @@
   excerpt: """
   Uma biblioteca de testes unitários baseada em exemplos como a [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html) é uma ferramenta maravilhosa para verificar se o código que você escreveu funciona da maneira que você espera.
   Entretanto, esse tipo de teste tem algumas desvantagens:
-
-* Pode ser fácil de perder casos de borda, já que você está testando apenas algumas poucas entradas.
-* Você pode escrever esses testes sem pensar cuidadosamente em seus requisitos.
-* Esses testes podem ser bastante verbosos quando você usa vários exemplos para uma função.
-
-Nessa lição, vamos explorar como [StreamData](https://github.com/whatyouhide/stream_data) pode nos ajudar a superar alguns desses problemas
+  
+  * Pode ser fácil de perder casos de borda, já que você está testando apenas algumas poucas entradas.
+  * Você pode escrever esses testes sem pensar cuidadosamente em seus requisitos.
+  * Esses testes podem ser bastante verbosos quando você usa vários exemplos para uma função.
+  
+  Nessa lição, vamos explorar como [StreamData](https://github.com/whatyouhide/stream_data) pode nos ajudar a superar alguns desses problemas
   """
 }
 ---
