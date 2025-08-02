@@ -3,8 +3,8 @@
   title: "Concurrency",
   excerpt: """
   Elixir'in önemli noktalarından biri de eşzamanlılık desteğidir. Erlang VM (BEAM) sayesinde, Elixir'deki eşzamanlılık beklenenden daha kolaydır. Eşzamanlılık modeli, mesaj geçişi yoluyla diğer süreçlerle iletişim kuran aktörlere dayanır.
-
-Bu derste Elixir ile birlikte gelen eşzamanlılık modüllerine bakacağız. Takip eden bölümde, bunları uygulayan OTP davranışlarını ele alıyoruz
+  
+  Bu derste Elixir ile birlikte gelen eşzamanlılık modüllerine bakacağız. Takip eden bölümde, bunları uygulayan OTP davranışlarını ele alıyoruz
   """
 }
 ---

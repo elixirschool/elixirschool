@@ -3,8 +3,8 @@
   title: "Mix",
   excerpt: """
   Než sa ponoríme do Elixiru hlbšie, musíme sa naučiť pracovať s nástrojom Mix. Ak poznáte Ruby, Mix vám bude pripomínať kombináciu nástrojov Bundler, RubyGems a Rake. Je kľúčovou súčasťou každého elixirového projektu a v tejto lekcii si ukážeme len niekoľko z jeho skvelých funkcií. Zoznam všetkého, čo vie Mix ponúknuť zobrazíme príkazom `mix help`.
-
-Doteraz sme pracovali výhradne iba s `iex`, čo však má svoje limity. Pri skutočnom projekte potrebujeme kód rozdeliť do samostatných súborov aby sme ho mohli efektívne spravovať. Mix nám s tým pomôže
+  
+  Doteraz sme pracovali výhradne iba s `iex`, čo však má svoje limity. Pri skutočnom projekte potrebujeme kód rozdeliť do samostatných súborov aby sme ho mohli efektívne spravovať. Mix nám s tým pomôže
   """
 }
 ---

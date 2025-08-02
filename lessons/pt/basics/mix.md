@@ -6,8 +6,8 @@
   Se você estiver familiarizado com Ruby, Mix é o Bundler, RubyGems e o Rake juntos.
   É uma parte crucial de qualquer projeto Elixir e nesta lição vamos explorar apenas algumas das suas grandes funcionalidades.
   Para ver tudo que o Mix tem para oferecer no ambiente atual, execute `mix help`.
-
-Até agora trabalhamos exclusivamente dentro do `iex` que tem limitações
+  
+  Até agora trabalhamos exclusivamente dentro do `iex` que tem limitações
   A fim de construir algo substancial precisamos dividir nosso código acima em outros arquivos para gerenciá-lo de forma eficaz; Mix nos permite fazer isso com projetos.
   """
 }

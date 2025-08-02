@@ -3,10 +3,10 @@
   title: "Obsługa błędów",
   excerpt: """
   Choć bardziej popularnym rozwiązaniem jest zwracanie krotki `{:error, reason}`, Elixir wspiera też wyjątki — i w tej lekcji przyjrzymy się sposobom obsługi błędów i różnym dostępnym mechanizmom do tego służącym.
-
+  
   Ogólnie przyjętą w Elixirze zasadą jest tworzenie funkcji (`example/1`) zwracającej `{:ok, result}` albo `{:error, reason}` oraz oddzielnej funkcji (`example!/1`), która zwraca bezpośrednio `result` albo wyrzuca wyjątek.
-
-W tej lekcji skupimy się na tej ostatniej opcji
+  
+  W tej lekcji skupimy się na tej ostatniej opcji
   """
 }
 ---

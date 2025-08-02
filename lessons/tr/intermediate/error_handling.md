@@ -3,8 +3,8 @@
   title: "Hata işleme",
   excerpt: """
   `{:error, reason}` demet'inin kullanımı daha yaygın olmasına rağmen, Elixir bir takım istisnaları'da desteklemektedir. Bu derste bahsettiğimiz istisnaların neler olduğuna  göz atacağız.
-
-Bu ders ile standart kullanım dışında kalan hata yakalamalarına değineceğiz
+  
+  Bu ders ile standart kullanım dışında kalan hata yakalamalarına değineceğiz
   """
 }
 ---

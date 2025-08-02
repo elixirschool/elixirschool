@@ -3,8 +3,8 @@
   title: "OTP 并发",
   excerpt: """
   我们已经看过了 Elixir 层的并发抽象机制，但有时候我们需要更多的控制，那就要了解 Elixir 底层的东西：OTP 行为（behaviors）。
-
-在这一课中，我们将专注于最大的一块：GenServers
+  
+  在这一课中，我们将专注于最大的一块：GenServers
   """
 }
 ---

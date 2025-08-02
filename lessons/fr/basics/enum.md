@@ -2,8 +2,8 @@
 version: "1.9.1",
 title: "Enum",
 excerpt: """
-Un ensemble d'algorithmes pour énumérer sur les collections.
-"""
+  Un ensemble d'algorithmes pour énumérer sur les collections.
+  """
 }
 ---
 
