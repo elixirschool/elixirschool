@@ -88,7 +88,7 @@ iex> %{^key => value} = %{:hello => "world"}
 iex> greeting = "Hello"
 "Hello"
 iex> greet = fn
-...>째   (^greeting, name) -> "Hi #{name}"
+...>   (^greeting, name) -> "Hi #{name}"
 ...>   (greeting, name) -> "#{greeting}, #{name}"
 ...> end
 #Function<12.54118792/2 in :erl_eval.expr/5>
