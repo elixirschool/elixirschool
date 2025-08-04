@@ -402,9 +402,9 @@ defmodule Greeter do
   def hello(names, language_code \\ "en")
 
   def hello(names, language_code) when is_list(names) do
-    binary_names = Enum.join(names, ", ")
+    comma_separated_names = Enum.join(names, ", ")
 
-    hello(binary_names, language_code)
+    hello(comma_separated_names, language_code)
   end
 
   def hello(name, language_code) when is_binary(name) do
