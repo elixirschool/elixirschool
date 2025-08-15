@@ -56,7 +56,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Hinweis:** Es nutzt [strikte Vergleiche](/de/lessons/basics/basics#comparison) um die Werte zu vergleichen.
+**Hinweis:** Es nutzt [strikte Vergleiche](basics.md#comparison) um die Werte zu vergleichen.
 
 ### Head / Tail
 

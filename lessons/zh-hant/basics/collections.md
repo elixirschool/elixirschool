@@ -58,7 +58,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**註：** 串列減法使用 [嚴格比較 (strict comparison)](/zh-hant/lessons/basics/basics#comparison) 來比對值。例如：
+**註：** 串列減法使用 [嚴格比較 (strict comparison)](basics.md#comparison) 來比對值。例如：
 
 ```elixir
 iex> [2] -- [2.0]
