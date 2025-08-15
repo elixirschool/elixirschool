@@ -54,7 +54,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Not:** Bu işlemde [katı kıyaslama (strict comparison)](basics.md#comparison) kullanılır. Örneğin
+**Not:** Bu işlemde [katı kıyaslama (strict comparison)](basics.md#karşılaştırmalar) kullanılır. Örneğin
 
 ```elixir
 iex> [2] -- [2.0]
