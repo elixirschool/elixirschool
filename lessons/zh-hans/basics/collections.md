@@ -57,7 +57,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**注意：**这里比较是否相同使用的是[严格比较(strict comparison)](/zh-hans/lessons/basics/basics#comparison)，请参考下面的例子：
+**注意：**这里比较是否相同使用的是[严格比较(strict comparison)](basics.md#比较)，请参考下面的例子：
 
 ```elixir
 iex> [2] -- [2.0]

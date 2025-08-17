@@ -56,7 +56,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-*Pozn.:* Odčítanie listov používa [striktné porovnanie](/sk/lessons/basics/basics#comparison) na nájdenie zhodných hodnôt.
+*Pozn.:* Odčítanie listov používa [striktné porovnanie](basics.md#porovnávanie) na nájdenie zhodných hodnôt.
 
 ### Head / Tail
 

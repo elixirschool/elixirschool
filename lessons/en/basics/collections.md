@@ -63,7 +63,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Note:** List subtraction uses [strict comparison](/en/lessons/basics/basics#comparison) to match the values. For example:
+**Note:** List subtraction uses [strict comparison](basics.md#comparison) to match the values. For example:
 
 ```elixir
 iex> [2] -- [2.0]

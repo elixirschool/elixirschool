@@ -61,7 +61,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**Uwaga:** Operacja używa [dokładnego porównania](/pl/lessons/basics/basics#comparison) przy wyszukiwaniu wartości.
+**Uwaga:** Operacja używa [dokładnego porównania](basics.md#porównania) przy wyszukiwaniu wartości.
 
 ```elixir
 iex> [2] -- [2.0]

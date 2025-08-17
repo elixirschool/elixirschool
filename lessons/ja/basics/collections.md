@@ -58,7 +58,7 @@ iex> [1,2,2,3,2,3] -- [1,2,3,2]
 [2, 3]
 ```
 
-**参考:** リストの減算の値のマッチには [strict comparison](/ja/lessons/basics/basics#comparison) が使われています。例えば:
+**参考:** リストの減算の値のマッチには [strict comparison](basics.md#比較) が使われています。例えば:
 
 ```elixir
 iex> [2] -- [2.0]
