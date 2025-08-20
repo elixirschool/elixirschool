@@ -40,25 +40,24 @@ This service, also powered by Elixir, Phoenix, LiveView, and Oban, is a subscrip
 
 To run a site-wide validation report, we need to enter a starting URL. This URL is usually the front page of the site we're going to validate, but it can be any internal URL, or an XML or TXT sitemap containing the web pages to validate. Rocket Validator will visit this initial URL and discover the internal web pages, adding them to the report.
 
-![Rocket Validator new site validation report](https://www.dropbox.com/s/amt7ilhw3b0sdh2/rocket-validator-new-report.png?raw=1)
+![Rocket Validator new site validation report](/images/rocket-validator-new-report.png)
 
-We can also define the validation speed as a rate limit of requests per second and define the options:
+You can also define the number of web pages to include in the report, and the options:
 
 * **Check HTML**. Will run the W3C HTML Validator on each page found.
 * **Check Accessibility**. Will run axe-core on each page found.
-* **Deep Crawl**. Will find more web pages on the site by following recursively the internal links found.
 
-Once we click on **Start Validation**, results will appear within seconds as the web pages are validated. We can browse the Summary Report to see a global overview including the most important issues (so you know what to fix first), as well as reports that group the common issues on the site and detailed reports per each web page.
+Once we click on **Validate**, results will appear within seconds as the web pages are validated. We can browse the Summary Report to see a global overview including the most important issues (so you know what to fix first), as well as reports that group the common issues on the site and detailed reports per each web page.
 
-![Rocket Validator summary report](https://www.dropbox.com/s/z611nr8ofpikawx/rocket-validator-summary-report.png?raw=1)
+![Rocket Validator summary report](/images/rocket-validator-summary-report.png)
 
 ## Validating light / dark modes for contrast issues
 
 Elixir School has a light / dark mode switch which is great to choose the UI you prefer, but this also means all of our URLs need to be validated in light mode and dark mode to ensure there are no low contrast issues for each theme.
 
-![Light and Dark modes on Elixir School](https://www.dropbox.com/s/yzzj595vteqdi69/rocket-validator-contrast.png?raw=1)
+![Light and Dark modes on Elixir School](/images/rocket-validator-contrast.png)
 
-To validate accessibility on both the light and dark modes, we came up with the idea of adding an optional parameter `?ui=dark` on the URLs that, when present, enables dark mode. So, we can run reports for the light mode using the default [light mode XML sitemap](https://beta.elixirschool.com/sitemap.xml) and reports for the dark mode using the [dark mode XML sitemap](https://beta.elixirschool.com/sitemap_dark_mode.xml) that adds this parameter to the URLs.
+To validate accessibility on both the light and dark modes, we came up with the idea of adding an optional parameter `?ui=dark` on the URLs that, when present, enables dark mode. So, we can run reports for the light mode using the default [light mode XML sitemap](https://elixirschool.com/sitemap.xml) and reports for the dark mode using the [dark mode XML sitemap](https://elixirschool.com/sitemap_dark_mode.xml) that adds this parameter to the URLs.
 
 With these XML sitemaps in place, we generate two kinds of reports:
 
@@ -70,6 +69,8 @@ With these XML sitemaps in place, we generate two kinds of reports:
 Site validation reports can also be [scheduled](https://docs.rocketvalidator.com/scheduling/) to run daily, weekly or monthly, thus providing constant monitoring on your sites. For Elixir School we've set a weekly schedule on the site, which is sometimes changed to daily when we're working intensively on fixing the site.
 
 We're also using [deploy hooks](https://docs.rocketvalidator.com/deploy-hooks/) - so a new deploy triggers a site validation report. This was very easy to integrate into Heroku with the [Heroku post-hook add-on](https://devcenter.heroku.com/articles/deploy-hooks#http-post-hook).
+
+Rocket Validator keeps a record of the latest site validation reports run, and also provides statistics that show the evolution in the quality of the analyzed sites. Check the [Elixir School Accessibility Stats](https://rocketvalidator.com/stats/elixirschool.com) to get the latest reports.
 
 ## Muting issues we won't fix
 
