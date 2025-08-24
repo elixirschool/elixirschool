@@ -10,8 +10,7 @@
 
 ## Overview
 
-ETS is a robust in-memory storage system for Elixir and Erlang terms that comes included with the runtime capable of storing large amounts of data and offers constant time data access for most operations.
-It's particularly useful for caching, lookups, and scenarios where we need fast access to structured data.
+ETS is a robust in-memory storage system for Elixir and Erlang terms that comes included with the runtime capable of storing large amounts of data and offers constant time data access for most operations. It's particularly useful for caching, lookups, and scenarios where we need fast access to structured data.
 
 Tables in ETS are created and owned by individual processes.
 When an owner process terminates, its tables are automatically destroyed.

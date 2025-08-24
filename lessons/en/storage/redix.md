@@ -38,7 +38,7 @@ mix deps.get
 
 ### Connecting to Redis
 
-Let's start by establishing a connection to Redis. The simplest way is to use `Redix.start_link/1`:
+Let's start by establishing a connection to Redis. The simplest way is to use `Redix.start_link/1`. There
 
 ```elixir
 # Connect to Redis on localhost:6379 (default)
@@ -59,9 +59,6 @@ Let's start by establishing a connection to Redis. The simplest way is to use `R
 Redix uses Redis's native command structure, refer to the official Redis documentation for a complete list of commands. Commands are represented as lists of strings:
 
 ```elixir
-iex> {:ok, conn} = Redix.start_link()
-{:ok, #PID<0.123.0>}
-
 iex> Redix.command(conn, ["SET", "mykey", "Hello, Redis!"])
 {:ok, "OK"}
 
@@ -84,14 +81,13 @@ iex> Redix.command!(conn, ["PING"])
 iex> Redix.command!(conn, ["GET", "mykey"])
 "Hello, Redis!"
 
-# This will raise an exception if the command fails
 iex> Redix.command!(conn, ["INVALID", "COMMAND"])
 ** (Redix.Error) ERR unknown command 'INVALID'
 ```
 
 ### Pipelining Commands
 
-One of Redis's powerful features is command pipelining, which allows we to send multiple commands at once. This dramatically improves performance when we need to execute several commands:
+One of Redis's powerful features is command pipelining, which allows us to send multiple commands at once. This dramatically improves performance when we need to execute several commands:
 
 ```elixir
 iex> commands = [
@@ -104,7 +100,6 @@ iex> commands = [
 iex> Redix.pipeline(conn, commands)
 {:ok, ["OK", "OK", "value1", "value2"]}
 
-# Using the bang variant
 iex> Redix.pipeline!(conn, [["INCR", "foo"], ["INCR", "foo"], ["INCRBY", "foo", "2"]])
 [1, 2, 4]
 ```
@@ -247,19 +242,6 @@ defmodule MyApp.RedisPool do
 end
 ```
 
-Add it to our supervision tree:
-
-```elixir
-def start(_type, _args) do
-  children = [
-    MyApp.RedisPool,
-    # ...other children
-  ]
-
-  Supervisor.start_link(children, strategy: :one_for_one)
-end
-```
-
 Now we can use the pool:
 
 ```elixir
@@ -301,7 +283,6 @@ defmodule MyApp.Subscriber do
   def init(_opts) do
     {:ok, pubsub} = Redix.PubSub.start_link()
     
-    # Subscribe to channels
     {:ok, ref} = Redix.PubSub.subscribe(pubsub, "notifications", self())
     
     state = %{pubsub: pubsub, ref: ref}
@@ -316,13 +297,7 @@ defmodule MyApp.Subscriber do
   def handle_info({:redix_pubsub, pubsub, ref, :message, %{channel: channel, payload: message}}, state) do
     IO.puts("Received message on #{channel}: #{message}")
     # Process the message here
-    handle_notification(channel, message)
     {:noreply, state}
-  end
-
-  defp handle_notification(channel, message) do
-    # Our message processing logic here
-    IO.puts("Processing: #{message} from #{channel}")
   end
 end
 ```
@@ -330,69 +305,12 @@ end
 ### Using Pub/Sub in Practice
 
 ```elixir
-# Start the subscriber
 {:ok, _} = MyApp.Subscriber.start_link([])
 
-# Start the publisher
 {:ok, _} = MyApp.Publisher.start_link()
 
-# Publish a message
 MyApp.Publisher.publish("notifications", "Hello, subscribers!")
 #=> {:ok, 1}  # Number of subscribers that received the message
-```
-
-## Configuration and Resilience
-
-### Connection Configuration
-
-Redix provides extensive configuration options for production use:
-
-```elixir
-{:ok, conn} = Redix.start_link(
-  host: "redis.example.com",
-  port: 6379,
-  password: "secret",
-  database: 1,
-  sync_connect: true,          # Wait for connection before returning
-  backoff_initial: 500,        # Initial reconnection delay (ms)
-  backoff_max: 30_000,         # Maximum reconnection delay (ms)
-  exit_on_disconnection: false # Don't crash on disconnection
-)
-```
-
-### Redis Sentinel Support
-
-For high availability, we can use Redis Sentinel:
-
-```elixir
-sentinels = [
-  "redis://sentinel1.example.com:26379",
-  "redis://sentinel2.example.com:26379",
-  "redis://sentinel3.example.com:26379"
-]
-
-{:ok, conn} = Redix.start_link(
-  sentinel: [
-    sentinels: sentinels,
-    group: "mymaster"
-  ]
-)
-```
-
-### SSL/TLS Connections
-
-For secure connections:
-
-```elixir
-{:ok, conn} = Redix.start_link(
-  host: "secure-redis.example.com",
-  port: 6380,
-  ssl: true,
-  socket_opts: [
-    verify: :verify_peer,
-    cacerts: :public_key.cacerts_get()
-  ]
-)
 ```
 
 ## Observability and Monitoring

@@ -41,12 +41,11 @@ iex> Cachex.start_link(:my_cache)
 {:ok, #PID<0.123.0>}
 ```
 
-For production applications, it's bes to add Cachex to our supervision tree in `application.ex`:
+For production applications, it's best to add Cachex to our supervision tree in `application.ex`:
 
 ```elixir
 children = [
-  {Cachex, [:my_cache]},     # with default options
-  {Cachex, [:my_cache, []]}  # with custom options
+  {Cachex, [:my_cache, []]}  
 ]
 ```
 
@@ -68,10 +67,6 @@ iex> {:ok, %{name: "Alice", age: 30}} = Cachex.get(:my_cache, "user:123")
 
 # Delete a key
 iex> {:ok, true} = Cachex.del(:my_cache, "user:123")
-
-# Verify deletion
-iex> {:ok, false} = Cachex.exists?(:my_cache, "user:123")
-iex> {:ok, nil} = Cachex.get(:my_cache, "user:123")
 ```
 
 ### Unsafe Operations
@@ -90,7 +85,7 @@ iex> Cachex.get!(:nonexistent_cache, "key")
 ** (Cachex.Error) Specified cache not running
 ```
 
-While convenient for testing and chaining operations, use unsafe functions cautiously in production where explicit error handling is preferred.
+These are convenient for testing and chaining operations but use careful using unsafe functions in production where explicit error handling is preferred.
 
 ## Advanced Operations
 
@@ -101,7 +96,6 @@ For better performance when dealing with multiple keys, use batch operations:
 ```elixir
 iex> {:ok, _pid} = Cachex.start_link(:my_cache)
 
-# Insert multiple key-value pairs at once
 iex> {:ok, true} = Cachex.put_many(:my_cache, [
 ...>   {"user:1", %{name: "Alice"}},
 ...>   {"user:2", %{name: "Bob"}},
@@ -114,15 +108,12 @@ iex> {:ok, true} = Cachex.put_many(:my_cache, [
 Cachex supports atomic updates for safe concurrent modifications:
 
 ```elixir
-# Atomic increment
 iex> Cachex.put(:my_cache, "counter", 0)
 iex> {:ok, 1} = Cachex.incr(:my_cache, "counter")
 iex> {:ok, 2} = Cachex.incr(:my_cache, "counter")
 
-# Atomic decrement
 iex> {:ok, 1} = Cachex.decr(:my_cache, "counter")
 
-# Atomic get and update
 iex> {:commit, 10} = Cachex.get_and_update(:my_cache, "counter", fn value ->
 ...>   value * 10
 ...> end)
@@ -130,15 +121,9 @@ iex> {:commit, 10} = Cachex.get_and_update(:my_cache, "counter", fn value ->
 
 ### Optimized Batch Execution
 
-Use `Cachex.execute/3` to perform multiple operations efficiently:
+We can use `Cachex.execute/3` to perform multiple operations efficiently:
 
 ```elixir
-# Standard approach (multiple validations)
-r1 = Cachex.get!(:my_cache, "key1")
-r2 = Cachex.get!(:my_cache, "key2") 
-r3 = Cachex.get!(:my_cache, "key3")
-
-# Optimized batch approach (single validation)
 {r1, r2, r3} = Cachex.execute!(:my_cache, fn cache ->
   r1 = Cachex.get!(cache, "key1")
   r2 = Cachex.get!(cache, "key2")
@@ -151,7 +136,7 @@ end)
 
 ### Default Expiration
 
-Set a default expiration for all cache entries:
+Cachex provides the ability for us to set a default expiration for all cache entries:
 
 ```elixir
 import Cachex.Spec
@@ -163,40 +148,26 @@ Cachex.start_link(:my_cache, [
 
 ### Per-Key Expiration
 
-Set expiration when storing values:
+Alternatively, we can set an expiration when storing values:
 
 ```elixir
-# Expire after 60 seconds
 iex> Cachex.put(:my_cache, "session:abc", user_data, expire: :timer.seconds(60))
 
-# Or set expiration after storing
 iex> Cachex.put(:my_cache, "key", "value")
 iex> Cachex.expire(:my_cache, "key", :timer.seconds(30))
 ```
 
-### Testing Expiration
-
-```elixir
-iex> Cachex.put(:my_cache, "short_lived", "data", expire: 100)
-{:ok, true}
-
-# Wait for expiration
-iex> :timer.sleep(150)
-:ok
-
-iex> Cachex.get(:my_cache, "short_lived")
-{:ok, nil}
-```
-
 ## Lazy Loading with Fetch
 
-The `fetch/4` function provides elegant lazy loading when keys are missing:
+The `fetch/4` function provides elegant lazy loading when keys are missing. When using `fetch/4` Cachex will execute our function, and cache the result, whenever there is no value present at the key:
 
 ```elixir
-# Simple fetch with function reference
 {:commit, 6} = Cachex.fetch(:my_cache, "tarzan", &String.length/1)
+```
 
-# Fetch with custom logic and expiration
+It's possible to set an expiration when using `fetch/4`:
+
+```elixir
 {:commit, data} = Cachex.fetch(:my_cache, "api:users", fn ->
   users = fetch_users_from_api()
   {:commit, users, expire: :timer.minutes(10)}
@@ -226,10 +197,8 @@ result = Cachex.transaction!(:my_cache, ["user:1", "user:2"], fn cache ->
   user1 = Cachex.get!(cache, "user:1")
   user2 = Cachex.get!(cache, "user:2")
   
-  # Perform some operation
   updated_user1 = update_user(user1)
   
-  # Update the cache atomically
   Cachex.put!(cache, "user:1", updated_user1)
   
   updated_user1
@@ -240,7 +209,7 @@ end)
 
 ## Statistics and Monitoring
 
-Enable statistics collection with hooks:
+Using hooks, we can enable statistics collection in Cachex. Let's look at an example scenario to see what statistics are available:
 
 ```elixir
 import Cachex.Spec
@@ -251,17 +220,14 @@ Cachex.start_link(:my_cache, [
   ]
 ])
 
-# Generate some activity
 Cachex.put!(:my_cache, "key1", "value1")
 Cachex.put!(:my_cache, "key2", "value2")
 Cachex.get!(:my_cache, "key1")  # hit
 Cachex.get!(:my_cache, "key3")  # miss
 
-# View statistics
 stats = Cachex.stats!(:my_cache)
 IO.inspect(stats)
 
-# Output:
 # %{
 #   meta: %{creation_date: 1726777631670},
 #   hits: 1,
@@ -274,63 +240,42 @@ IO.inspect(stats)
 # }
 ```
 
+We see in our output there's some valuation information available to us: The number of hits and missing, the percentage of each, how many of each call has been performed, the total number of operations, and the number of writes.
+
 ## Cache Limiting and Pruning
 
 ### Automatic Limiting with Hooks
 
-Prevent memory issues by limiting cache size:
+Another ability of hooks is tracking access times and prevent memory issues by limiting cache size:
 
 ```elixir
 import Cachex.Spec
 
-# LRU-style eviction with scheduled pruning
 Cachex.start_link(:my_cache, [
   hooks: [
-    hook(module: Cachex.Limit.Accessed),  # Track access times
+    hook(module: Cachex.Limit.Accessed), # Track access times
     hook(module: Cachex.Limit.Scheduled, args: {
-      500,  # Maximum 500 entries
-      [],   # Options for Cachex.prune/3
-      []    # Options for Cachex.Limit.Scheduled
+      500, # Maximum 500 entries
+      [],  # Options for Cachex.prune/3
+      []   # Options for Cachex.Limit.Scheduled
     })
   ]
 ])
-```
-
-### Manual Pruning
-
-You can also manually control cache size:
-
-```elixir
-# Insert test data
-for i <- 1..100, do: Cachex.put!(:my_cache, i, i)
-
-{:ok, 100} = Cachex.size(:my_cache)
-
-# Prune to 50 entries with 10% reclaim buffer
-{:ok, true} = Cachex.prune(:my_cache, 50, reclaim: 0.1)
-
-{:ok, 45} = Cachex.size(:my_cache)  # 50 - (50 * 0.1) = 45
 ```
 
 ## Persistence
 
 ### Saving and Restoring Cache Data
 
-Cachex can persist cache data to disk:
+Cachex can persist cache data to disk and restore from disk, automatically merging with existing data:
 
 ```elixir
-# Save cache to file
 {:ok, true} = Cachex.save(:my_cache, "/tmp/my_cache.dat")
 
-# Restore from file (merges with existing data)
-{:ok, _count} = Cachex.restore(:my_cache, "/tmp/my_cache.dat")
-
-# Clear before restore for exact match
-Cachex.clear(:my_cache)
 {:ok, _count} = Cachex.restore(:my_cache, "/tmp/my_cache.dat")
 ```
 
-Note that expired entries in the saved file will not be restored.
+**Note**: Expired entries in the saved file will not be restored.
 
 ## Distributed Caching
 
@@ -339,22 +284,21 @@ Cachex supports distributed caching across multiple nodes using routers:
 ```elixir
 import Cachex.Spec
 
-# Ring-based distributed cache
 Cachex.start_link(:distributed_cache, [
   router: router(module: Cachex.Router.Ring, options: [
-    monitor: true  # Automatically handle node changes
+    monitor: true
   ])
 ])
 ```
 
-Some things to keep in mind when we're workign in distributed mode:
+Some things to keep in mind when we're working in distributed mode:
 - Keys are automatically routed to appropriate nodes
 - Multi-key operations require keys to be on the same node
 - Some operations like `stream/3` are not available in distributed mode
 
 ## Custom Hooks
 
-Create custom hooks to extend Cachex functionality:
+With custom hooks we can extend extend Cachex's functionality:
 
 ```elixir
 defmodule MyApp.CacheLogger do
@@ -368,9 +312,6 @@ defmodule MyApp.CacheLogger do
   end
 end
 
-# Attach the hook
-import Cachex.Spec
-
 Cachex.start_link(:my_cache, [
   hooks: [
     hook(module: MyApp.CacheLogger)
@@ -380,7 +321,7 @@ Cachex.start_link(:my_cache, [
 
 ## Real-World Example
 
-Here's a practical example of using Cachex in a web application:
+Let's look at a practical example of using Cachex in a web application. In this exmaple we'll limit the size of our cache to 1000 entries and set an hour TTL on entries. We'll use the `fetch/4` function we looked at previously to retrieve our cached user or look the user up in the event there is a cache miss. When we update our user's record, we'll update our cache record:
 
 ```elixir
 defmodule MyApp.UserCache do
@@ -424,25 +365,18 @@ defmodule MyApp.UserCache do
 end
 ```
 
-Add it to our supervision tree:
-
-```elixir
-children = [
-  MyApp.UserCache,
-  # ... other children
-]
-```
-
 ## Best Practices
 
-When working with Cachex in production, we should use supervision trees for cache management rather than manual starts, as this ensures proper process lifecycle management. Error handling becomes crucial in production code, so we prefer explicit error handling over unsafe functions that raise exceptions.
+Caching can be a powerful tool in the toolbox but there's a few things to consider when using it to ensure we achieve the best results:
 
-Setting appropriate TTLs helps us balance performance gains with data freshness requirements. Monitoring cache statistics allows us to optimize hit rates and identify potential issues before they impact performance. When working with multiple keys, batch operations provide significant performance improvements over individual calls.
-
-For multi-node deployments, distributed caching can provide better scalability and fault tolerance. We should implement proper fallback strategies using `fetch/4` when integrating with databases or external services. Finally, transactions become essential for operations requiring consistency across multiple keys, ensuring data integrity in concurrent environments.
+- Set appropriate TTLs to balance performance with data freshness requirements. It's a good idea to pair TTLs with proper fallback strategies using `fetch/4`.
+- Monitoring cache statistics allows us understand how our caching implementation is performing, empowering us to optimize hit rates and identify potential issues before they impact performance.
+- If we need to work with multiple keys at the same time there is significant performance benefit to using batch operations in Cachex.
+- Transactions are essential for operations requiring consistency across multiple keys, helping us ensure data integrity in concurrent environments.
+- Lastly, if we're deploying our system into a multi-node environment Cachex's distributed caching capabilities provide solid scalability and fault tolerance.
 
 ## Conclusion
 
-Cachex provides a comprehensive caching solution for Elixir applications, offering everything from simple key-value storage to advanced distributed caching with transactions and monitoring. Its rich feature set and extensible architecture make it suitable for applications of any scale, from simple web apps to large distributed systems.
+Cachex provides a comprehensive caching solution for Elixir applications, offering everything from simple key-value storage to advanced distributed caching with transactions and monitoring. Its rich feature set and extensible architecture make it suitable for applications of any scale, whether we're building a simple web apps or a large distributed systems.
 
-The library's emphasis on performance, reliability, and developer experience makes it an excellent choice for improving application performance through intelligent caching strategies. Whether you need basic memoization or complex distributed cache coordination, Cachex provides the tools to build robust caching solutions.
+The library's emphasis on performance, reliability, and developer experience makes it an excellent choice for improving application performance through intelligent caching strategies. Whether we need basic memoization or complex distributed cache coordination, Cachex provides the tools we need.
