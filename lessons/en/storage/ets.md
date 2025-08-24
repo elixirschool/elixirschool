@@ -41,27 +41,54 @@ Now we can access our table directly by name instead of keeping track of the ref
 
 ### Table Types
 
-ETS provides four different table types to suit various use cases. The default `set` type stores one value per key with unique keys, making it ideal for simple key-value storage. An `ordered_set` works similarly to `set` but maintains order by Erlang/Elixir term ordering, where key comparison uses Erlang's term ordering and `1` and `1.0` are considered equal. The `bag` type allows multiple objects per key but only permits one instance of each unique object per key. Finally, `duplicate_bag` supports multiple objects per key with duplicates allowed, useful for scenarios like storing multiple events for the same timestamp.
+ETS provides four different table types to suit various use cases:
+
++ The default `set` type stores one value per key with unique keys, making it ideal for simple key-value storage. 
++ An `ordered_set` works similarly to `set` but maintains order by Erlang/Elixir term ordering, where key comparison uses Erlang's term ordering and `1` and `1.0` are considered equal. 
++ The `bag` type allows multiple objects per key but only permits one instance of each unique object per key. 
++ Finally, `duplicate_bag` supports multiple objects per key with duplicates allowed, useful for scenarios like storing multiple events for the same timestamp.
 
 Let's see the differences in action:
 
+#### Set
+
 ```elixir
-iex> set_table = :ets.new(:set_example, [:set, :named_table])
+iex> :ets.new(:set_example, [:set, :named_table])
 iex> :ets.insert(:set_example, {:key, "value1"})
 iex> :ets.insert(:set_example, {:key, "value2"})  # Overwrites previous
 iex> :ets.lookup(:set_example, :key)
 [{:key, "value2"}]
+```
 
-iex> bag_table = :ets.new(:bag_example, [:bag, :named_table])
+#### Bag
+
+```elixir
+iex> :ets.new(:bag_example, [:bag, :named_table])
 iex> :ets.insert(:bag_example, {:key, "value1"})
 iex> :ets.insert(:bag_example, {:key, "value2"})  # Adds to existing
+iex> :ets.insert(:bag_example, {:key, "value2"})  # Ignored
 iex> :ets.lookup(:bag_example, :key)
 [{:key, "value1"}, {:key, "value2"}]
 ```
 
+#### Duplicating Bag
+
+```elixir
+iex> :ets.new(:duplicate_bag_example, [:duplicate_bag, :named_table])
+iex> :ets.insert(:duplicate_bag_example, {:key, "value1"})
+iex> :ets.insert(:duplicate_bag_example, {:key, "value2"})  
+iex> :ets.insert(:duplicate_bag_example, {:key, "value2"}) 
+iex> 
+[{:key, "value1"}, {:key, "value2"}, {:key, "value2"}] # Two instances of `{:key, "value2"}` exist
+```
+
 ### Access Controls
 
-Access control in ETS determines which processes can read from and write to our tables. The `public` mode makes read and write operations available to all processes, which is useful for shared data structures but requires careful coordination to avoid race conditions. The `protected` mode, which is the default, allows read access to all processes while restricting write access to only the owner process, providing a good balance of accessibility and safety. The `private` mode limits both read and write access to the owner process only, offering maximum isolation at the cost of reduced accessibility.
+Access control in ETS determines which processes can read from and write to our tables, there are three modes: `public`, `protected`, and `private`.
+
++ The `public` mode makes read and write operations available to all processes, which is useful for shared data structures but requires careful coordination to avoid race conditions. 
++ The `protected` mode, which is the default, allows read access to all processes while restricting write access to only the owner process, providing a good balance of accessibility and safety. 
+" The `private` mode limits both read and write access to the owner process only, offering maximum isolation at the cost of reduced accessibility.
 
 ```elixir
 iex> public_table = :ets.new(:public_example, [:set, :public, :named_table])
@@ -442,12 +469,6 @@ iex> :dets.close(table)
 **Note**: DETS doesn't support `ordered_set` - only `set`, `bag`, and `duplicate_bag`.
 
 After closing IEx, we'll find a `disk_storage` file in our directory containing the persisted data.
-
-## Best Practices and Tips
-
-When working with ETS, several considerations can help us build more effective and performant applications. Choosing the right table type is crucial - we should use `set` for unique keys, `bag` when we need multiple values per key, and `ordered_set` when we need sorted data. Considering concurrency options early in our design helps optimize performance; enabling `read_concurrency` benefits read-heavy workloads while `write_concurrency` helps with write-heavy scenarios.
-
-Memory management becomes important for long-running applications, so monitoring table sizes with `:ets.info/2` and implementing cleanup strategies prevents memory issues over time. Our key design should distribute evenly for better performance in concurrent scenarios, and we should remember that tables are tied to the owner process - consider using a dedicated GenServer for important tables to ensure data persistence. Finally, using atomic operations like `:ets.update_counter/3` and similar functions helps us avoid race conditions when multiple processes interact with our tables.
 
 ## Conclusion
 

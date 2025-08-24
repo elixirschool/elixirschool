@@ -369,11 +369,10 @@ end
 
 Caching can be a powerful tool in the toolbox but there's a few things to consider when using it to ensure we achieve the best results:
 
-- Set appropriate TTLs to balance performance with data freshness requirements. It's a good idea to pair TTLs with proper fallback strategies using `fetch/4`.
-- Monitoring cache statistics allows us understand how our caching implementation is performing, empowering us to optimize hit rates and identify potential issues before they impact performance.
-- If we need to work with multiple keys at the same time there is significant performance benefit to using batch operations in Cachex.
-- Transactions are essential for operations requiring consistency across multiple keys, helping us ensure data integrity in concurrent environments.
-- Lastly, if we're deploying our system into a multi-node environment Cachex's distributed caching capabilities provide solid scalability and fault tolerance.
++ Use TTLs to balance performance with data freshness requirements, it's a good idea to pair TTLs with proper fallback strategies using `fetch/4`.
++ If we need to work with multiple keys at the same time use batch operations in Cachex.
++ Transactions are essential for operations requiring consistency across multiple keys.
++ Use Cachex's distributed caching in a multi-node environment for scalability and fault tolerance.
 
 ## Conclusion
 

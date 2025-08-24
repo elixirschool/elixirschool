@@ -688,8 +688,6 @@ end
 
 Mnesia is a powerful, distributed database that's perfect for Elixir applications requiring real-time performance and fault tolerance. Its tight integration with the BEAM virtual machine makes it unique among database solutions.
 
-Start simple with basic tables and operations, then add complexity as needed. Think distributed by designing our schema with distribution in mind from the beginning. Use transactions to wrap critical operations and ensure consistency. Monitor performance by keeping an eye on table sizes and query patterns, and plan for growth by designing our schema evolution strategy early.
-
 Mnesia excels in scenarios requiring embedded databases, real-time performance, and distributed architectures. While it may not be suitable for every use case, it can be the perfect solution for applications that fit its strengths.
 
 For more advanced topics like hot code swapping, custom backends, and performance tuning, explore the [official Mnesia documentation](http://erlang.org/doc/man/mnesia.html).

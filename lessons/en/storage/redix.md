@@ -46,14 +46,11 @@ Let's start by establishing a connection to Redis. The simplest way is to use `R
 
 # Connect using a Redis URI
 {:ok, conn} = Redix.start_link("redis://localhost:6379/3")
-
-# Connect with a registered name for easy access
-{:ok, conn} = Redix.start_link("redis://localhost:6379", name: :redix)
 ```
 
 ### Executing Commands
 
-Redix uses Redis's native command structure, refer to the official Redis documentation for a complete list of commands. Commands are represented as lists of strings:
+Redix uses Redis's native command structure, represented as lists of strings; for a complete list of commands refer to the official Redis documentation.
 
 ```elixir
 iex> Redix.command(conn, ["SET", "mykey", "Hello, Redis!"])
@@ -101,73 +98,77 @@ iex> Redix.pipeline!(conn, [["INCR", "foo"], ["INCR", "foo"], ["INCRBY", "foo", 
 [1, 2, 4]
 ```
 
-Pipeline commands return results in the same order as the commands were sent, making it easy to correlate commands with their responses.
+Pipeline commands return results in the same order as the commands were sent making it easy to correlate commands with their responses.
 
 ## Working with Data Types
 
-Redis supports various data types, and Redix makes it easy to work with all of them.
+Redis supports various data types and Redix makes it easy to work with all of them.
 
 ### Strings
 
 ```elixir
 # Set and get strings
-Redix.command!(conn, ["SET", "username", "alice"])
-Redix.command!(conn, ["GET", "username"])
-#=> "alice"
+iex> Redix.command!(conn, ["SET", "username", "alice"])
+"Ok"
+iex> Redix.command!(conn, ["GET", "username"])
+"alice"
+```
 
-# Atomic operations
-Redix.command!(conn, ["INCR", "page_views"])
-#=> 1
-Redix.command!(conn, ["INCRBY", "page_views", "5"])
-#=> 6
+### Atomic operations
+
+```elixir
+iex> Redix.command!(conn, ["INCR", "page_views"])
+1
+iex> Redix.command!(conn, ["INCRBY", "page_views", "5"])
+6
 ```
 
 ### Lists
 
 ```elixir
 # Push elements to a list
-Redix.command!(conn, ["LPUSH", "tasks", "task1"])
-Redix.command!(conn, ["LPUSH", "tasks", "task2"])
-Redix.command!(conn, ["RPUSH", "tasks", "task3"])
+iex> Redix.command!(conn, ["LPUSH", "tasks", "task1"])
+iex> Redix.command!(conn, ["LPUSH", "tasks", "task2"])
+iex> Redix.command!(conn, ["RPUSH", "tasks", "task3"])
 
 # Get list contents
-Redix.command!(conn, ["LRANGE", "tasks", "0", "-1"])
-#=> ["task2", "task1", "task3"]
+iex> Redix.command!(conn, ["LRANGE", "tasks", "0", "-1"])
+["task3", "task2", "task1"]
 
 # Pop elements
-Redix.command!(conn, ["LPOP", "tasks"])
-#=> "task2"
+iex> Redix.command!(conn, ["LPOP", "tasks"])
+"task3"
 ```
 
 ### Sets
 
 ```elixir
 # Add members to a set
-Redix.command!(conn, ["SADD", "languages", "elixir"])
-Redix.command!(conn, ["SADD", "languages", "erlang", "go", "rust"])
+iex> Redix.command!(conn, ["SADD", "languages", "elixir"])
+iex> Redix.command!(conn, ["SADD", "languages", "erlang", "go", "rust"])
 
 # Get all members
-Redix.command!(conn, ["SMEMBERS", "languages"])
-#=> ["erlang", "elixir", "go", "rust"]
+iex> Redix.command!(conn, ["SMEMBERS", "languages"])
+["elixir", "erlang", "go", "rust"]
 
 # Check membership
-Redix.command!(conn, ["SISMEMBER", "languages", "elixir"])
-#=> 1
+iex> Redix.command!(conn, ["SISMEMBER", "languages", "elixir"])
+1
 ```
 
 ### Hashes
 
 ```elixir
 # Set hash fields
-Redix.command!(conn, ["HSET", "user:1", "name", "Alice", "age", "30"])
+iex> Redix.command!(conn, ["HSET", "user:1", "name", "Alice", "age", "30"])
 
 # Get specific fields
-Redix.command!(conn, ["HGET", "user:1", "name"])
-#=> "Alice"
+iex> Redix.command!(conn, ["HGET", "user:1", "name"])
+"Alice"
 
 # Get all fields and values
-Redix.command!(conn, ["HGETALL", "user:1"])
-#=> ["name", "Alice", "age", "30"]
+iex> Redix.command!(conn, ["HGETALL", "user:1"])
+["name", "Alice", "age", "30"]
 ```
 
 ## Integration with Applications
@@ -177,7 +178,6 @@ Redix.command!(conn, ["HGETALL", "user:1"])
 For real-world applications, we generally want to start Redix connections under our application's supervision tree with registered names:
 
 ```elixir
-# In our application.ex
 def start(_type, _args) do
   children = [
     {Redix, name: :redix, host: "localhost", port: 6379}
@@ -192,11 +192,11 @@ end
 Now we can use the connection anywhere in our application:
 
 ```elixir
-Redix.command(:redix, ["SET", "app_state", "running"])
-#=> {:ok, "OK"}
+iex> Redix.command(:redix, ["SET", "app_state", "running"])
+{:ok, "OK"}
 
-Redix.command!(:redix, ["GET", "app_state"])
-#=> "running"
+iex> Redix.command!(:redix, ["GET", "app_state"])
+"running"
 ```
 
 ### Building a Connection Pool
@@ -242,11 +242,11 @@ end
 Now we can use the pool:
 
 ```elixir
-MyApp.RedisPool.command(["SET", "key", "value"])
-#=> {:ok, "OK"}
+iex> MyApp.RedisPool.command(["SET", "key", "value"])
+{:ok, "OK"}
 
-MyApp.RedisPool.pipeline([["INCR", "counter"], ["GET", "counter"]])
-#=> {:ok, [1, "1"]}
+iex> MyApp.RedisPool.pipeline([["INCR", "counter"], ["GET", "counter"]])
+ :ok, [1, "1"]}
 ```
 
 ## Pub/Sub Messaging
@@ -293,21 +293,28 @@ defmodule MyApp.Subscriber do
 
   def handle_info({:redix_pubsub, pubsub, ref, :message, %{channel: channel, payload: message}}, state) do
     IO.puts("Received message on #{channel}: #{message}")
-    # Process the message here
+    handle_notification(channel, message)
     {:noreply, state}
+  end
+
+  def handle_notification(channel, message) do
+    # Handle notification
   end
 end
 ```
 
-### Using Pub/Sub in Practice
+### Pub/Sub in Practice
 
 ```elixir
-{:ok, _} = MyApp.Subscriber.start_link([])
+iex> {:ok, _} = MyApp.Subscriber.start_link([])
+{:ok, #PID<0.413.0>}
+Successfully subscribed to notifications
 
-{:ok, _} = MyApp.Publisher.start_link()
+iex> {:ok, _} = MyApp.Publisher.start_link()
+{:ok, #PID<0.415.0>}
 
-MyApp.Publisher.publish("notifications", "Hello, subscribers!")
-#=> {:ok, 1}  # Number of subscribers that received the message
+iex> MyApp.Publisher.publish("notifications", "Hello, subscribers!")
+{:ok, 1}  # Number of subscribers that received the message
 ```
 
 ## Observability and Monitoring
@@ -315,7 +322,7 @@ MyApp.Publisher.publish("notifications", "Hello, subscribers!")
 ### Telemetry Integration
 
 Redix emits telemetry events that we can use for monitoring:
-
+   
 ```elixir
 defmodule MyApp.RedixTelemetry do
   require Logger
@@ -415,6 +422,8 @@ end
 
 ### Rate Limiting
 
+Rate limiting prevents abuse and ensures fair resource usage by restricting how many requests a user or IP address can make within a specific time window. Let's look at an example implementation using Redix Redis's atomic `INCR` and `EXPIRE` commands in a pipeline, leveraging Redis's speed and atomicity to track request counts per identifier without race conditions.
+
 ```elixir
 defmodule MyApp.RateLimit do
   @redix_name :rate_limit_redix
@@ -467,9 +476,9 @@ In `test/test_helper.exs`:
 ```elixir
 ExUnit.start()
 
-# Clean up Redis before each test
 ExUnit.after_suite(fn _results ->
-  {:ok, conn} = Redix.start_link(Application.get_env(:my_app, :redis_url))
+  redis_url = Application.get_env(:my_app, :redis_url)
+  {:ok, conn} = Redix.start_link(redis_url)
   Redix.command!(conn, ["FLUSHDB"])
   Redix.stop(conn)
 end)
@@ -482,7 +491,9 @@ defmodule MyApp.CacheTest do
   use ExUnit.Case
   
   setup do
-    {:ok, conn} = Redix.start_link(Application.get_env(:my_app, :redis_url))
+    redis_url = Application.get_env(:my_app, :redis_url)
+    {:ok, conn} = Redix.start_link(redis_url)
+
     Redix.command!(conn, ["FLUSHDB"])  # Clean database before each test
     
     on_exit(fn -> Redix.stop(conn) end)
@@ -500,11 +511,11 @@ end
 
 ## Best Practices
 
-For high-traffic applications implementing connection pooling is essential to distribute load across multiple connections and prevent bottlenecks. Similarly, graceful disconnection handling through appropriate backoff strategies ensures our application remains resilient when Redis becomes temporarily unavailable.
+We should keep a few things in mind when using Redix in our applications:
 
-Performance optimization comes through strategic use of pipelining when executing multiple commands, which significantly reduces round-trip time compared to individual command execution. Monitoring this performance through telemetry allows us to track command execution times and overall connection health, helping identify issues before they impact users.
-
-Data management practices are equally important: use consistent key naming patterns to avoid conflicts and simplify debugging, and always set appropriate TTLs on cached data to prevent memory bloat and ensure data freshness. For operations requiring atomicity across multiple commands, Redis transactions using MULTI/EXEC provide the necessary guarantees to maintain data consistency.
++ Always set appropriate TTLs on cached data to prevent memory bloat and ensure data freshness.
++ When executing multiple commands use pipelining for performance.
++ If we need atomicity across multiple commands, use Redis' transactions `MULTI`/`EXEC` for data consistency.
 
 ## Conclusion
 
