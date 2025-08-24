@@ -23,13 +23,13 @@ Mnesia might not be the best choice for applications requiring SQL compatibility
 
 ## Getting Started
 
-Since Mnesia is part of the Erlang Runtime System, we access it using the colon syntax for Erlang interoperability. Let's start by aliasing it for convenience:
+Since Mnesia is part of the Erlang Runtime System, we access it using the colon syntax for Erlang interoperability but we can give it a more familiar feel if we start by aliasing it for convenience:
 
 ```elixir
 iex> alias :mnesia, as: Mnesia
 ```
 
-Throughout this lesson, we'll use this approach to make our code more readable.
+We'll use this approach throughout this lesson to make our code more readable and familiar.
 
 ### Creating a Schema
 
