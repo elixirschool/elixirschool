@@ -1,5 +1,5 @@
 %{
-  version: "1.3.2",
+  version: "1.4.0",
   title: "Collections",
   excerpt: """
   Lists, tuples, keyword lists, and maps.
@@ -196,16 +196,21 @@ iex> %{map | foo: "baz"}
 
 **Note**: this syntax only works for updating a key that already exists in the map! If the key does not exist, a `KeyError` will be raised.
 
-To create a new key, instead use [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3)
+To add a new key we can instead use [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3), this adds a new key if one does not exist and updates the record if a value exists at that key already.  We can see these behaviors demonstrated in our example:
 
 ```elixir
 iex> map = %{hello: "world"}
 %{hello: "world"}
+# Try updating our map with a new `:foo` key using the `|` method
 iex> %{map | foo: "baz"}
 ** (KeyError) key :foo not found in: %{hello: "world"}
     (stdlib) :maps.update(:foo, "baz", %{hello: "world"})
     (stdlib) erl_eval.erl:259: anonymous fn/2 in :erl_eval.expr/5
     (stdlib) lists.erl:1263: :lists.foldl/3
-iex> Map.put(map, :foo, "baz")
+# Use `Map.put/3` to add our new key and value
+iex> map = Map.put(map, :foo, "baz")
 %{foo: "baz", hello: "world"}
+# Use `Map.put/3` to update our key
+iex> Map.put(map, :foo, "bar")
+%{foo: "bar", hello: "world"}
 ```
