@@ -34,7 +34,7 @@ All that's left is to handle your deployment, or package publishing, when new re
 
 ## Understanding Conventional Commits
 
-Before diving into Release Please configuration let's look at what makes it possible: [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/). This lightweight specification provides structure to commit messages, making them human and machine-readable. At first it may feel like extra work but once you get used to using conventional commits you'll really appreciate the consistency, git history cleaniness, and the automation that comes from their adoption.
+Before diving into Release Please configuration let's look at what makes it possible: [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/). This lightweight specification provides structure to commit messages, making them human and machine-readable. At first it may feel like extra work but once you get used to using conventional commits you'll really appreciate the consistency, git history cleanliness, and the automation that comes from their adoption.
 
 ### The Basic Format
 

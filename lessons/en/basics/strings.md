@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.2.2",
   title: "Strings",
   excerpt: """
   Strings, Char Lists, Graphemes and Codepoints.
@@ -122,7 +122,7 @@ iex> String.split("Hello World", " ")
 
 ## Exercise
 
-Let's walk through a exercise to demonstrate we are ready to go with Strings!
+Let's walk through an exercise to demonstrate we are ready to go with Strings!
 
 ### Anagrams
 
