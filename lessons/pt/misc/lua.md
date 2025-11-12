@@ -129,7 +129,7 @@ iex> {[10], _state} = Lua.eval!(lua, ~LUA[return sum(1, 2, 3, 4)]c)
 {[10], #PID<0.128.0>}
 ```
 
-Note que funções Elixir expostas ao Lua devem:
+Note que funções Elixir expostas à Lua devem:
 - Aceitar uma lista de argumentos
 - Retornar uma lista de resultados (mesmo para valores únicos)
 
