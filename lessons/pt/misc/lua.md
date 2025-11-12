@@ -2,7 +2,7 @@
   version: "1.0.0",
   title: "Lua",
   excerpt: """
-  A biblioteca Lua fornece uma interface ergonômica para o Luerl, permitindo a execução segura de scripts Lua em sandbox diretamente na BEAM VM. Nesta lição, exploraremos como incorporar capacidades de scripting Lua em nossas aplicações Elixir para lógica definida pelo usuário, configuração e extensibilidade.
+  A biblioteca Lua fornece uma interface ergonômica para o Luerl, permitindo a execução segura de scripts Lua em sandbox diretamente na máquina virtual da BEAM (BEAM VM). Nesta lição, exploraremos como incorporar capacidades de scripting em Lua às nossas aplicações Elixir para lógica definida pelo usuário, configuração e extensibilidade.
   """
 }
 ---
