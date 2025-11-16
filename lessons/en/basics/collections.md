@@ -160,13 +160,6 @@ iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-If a duplicate is added to a map, it will replace the former value:
-
-```elixir
-iex> %{:foo => "bar", :foo => "hello world"}
-%{foo: "hello world"}
-```
-
 As we can see from the output above, there is a special syntax for maps containing only atom keys:
 
 ```elixir
