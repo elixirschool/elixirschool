@@ -140,24 +140,26 @@ For these reasons, keyword lists are most commonly used to pass options to funct
 
 In Elixir, maps are the "go-to" key-value store.
 Unlike keyword lists, they allow keys of any type and are un-ordered.
-You can define a map with the `%{}` syntax:
+You can define a map with the `%{}` syntax, using defined keys or variables:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
 %{:foo => "bar", "hello" => :world}
-iex> map[:foo]
-"bar"
-iex> map["hello"]
-:world
-```
-
-As of Elixir 1.2, variables are allowed as map keys:
-
-```elixir
 iex> key = "hello"
 "hello"
 iex> %{key => "world"}
 %{"hello" => "world"}
+```
+
+There are also multiple ways of accessing map values:
+
+```elixir
+iex> map[:foo]
+"bar"
+iex> map["hello"]
+:world
+iex> Map.get(map, :foo)
+"bar"
 ```
 
 As we can see from the output above, there is a special syntax for maps containing only atom keys:
