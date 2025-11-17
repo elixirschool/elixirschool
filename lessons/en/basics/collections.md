@@ -1,5 +1,5 @@
 %{
-  version: "1.3.2",
+  version: "1.4.0",
   title: "Collections",
   excerpt: """
   Lists, tuples, keyword lists, and maps.
@@ -140,31 +140,26 @@ For these reasons, keyword lists are most commonly used to pass options to funct
 
 In Elixir, maps are the "go-to" key-value store.
 Unlike keyword lists, they allow keys of any type and are un-ordered.
-You can define a map with the `%{}` syntax:
+You can define a map with the `%{}` syntax, using defined keys or variables:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
 %{:foo => "bar", "hello" => :world}
-iex> map[:foo]
-"bar"
-iex> map["hello"]
-:world
-```
-
-As of Elixir 1.2, variables are allowed as map keys:
-
-```elixir
 iex> key = "hello"
 "hello"
 iex> %{key => "world"}
 %{"hello" => "world"}
 ```
 
-If a duplicate is added to a map, it will replace the former value:
+There are also multiple ways of accessing map values:
 
 ```elixir
-iex> %{:foo => "bar", :foo => "hello world"}
-%{foo: "hello world"}
+iex> map[:foo]
+"bar"
+iex> map["hello"]
+:world
+iex> Map.get(map, :foo)
+"bar"
 ```
 
 As we can see from the output above, there is a special syntax for maps containing only atom keys:
@@ -196,16 +191,21 @@ iex> %{map | foo: "baz"}
 
 **Note**: this syntax only works for updating a key that already exists in the map! If the key does not exist, a `KeyError` will be raised.
 
-To create a new key, instead use [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3)
+To add a new key we can instead use [`Map.put/3`](https://hexdocs.pm/elixir/Map.html#put/3), this adds a new key if one does not exist and updates the record if a value exists at that key already.  We can see these behaviors demonstrated in our example:
 
 ```elixir
 iex> map = %{hello: "world"}
 %{hello: "world"}
+# Try updating our map with a new `:foo` key using the `|` method
 iex> %{map | foo: "baz"}
 ** (KeyError) key :foo not found in: %{hello: "world"}
     (stdlib) :maps.update(:foo, "baz", %{hello: "world"})
     (stdlib) erl_eval.erl:259: anonymous fn/2 in :erl_eval.expr/5
     (stdlib) lists.erl:1263: :lists.foldl/3
-iex> Map.put(map, :foo, "baz")
+# Use `Map.put/3` to add our new key and value
+iex> map = Map.put(map, :foo, "baz")
 %{foo: "baz", hello: "world"}
+# Use `Map.put/3` to update our key
+iex> Map.put(map, :foo, "bar")
+%{foo: "bar", hello: "world"}
 ```
