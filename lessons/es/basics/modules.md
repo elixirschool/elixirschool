@@ -271,7 +271,7 @@ iex> Example.hello("Sean")
 "Hi, Sean"
 ```
 
-Aquí podemos ver que `use` invocó el callback `__using__/1` del módulo `Hello` que a su ves agrego el código resultante a nuestro módulo.
+Aquí podemos ver que `use` invocó el callback `__using__/1` del módulo `Hello` que a su vez agrego el código resultante a nuestro módulo.
 Ahora que hemos demostrado un ejemplo básico, actualicemos nuestro código para ver cómo `__using__/1` admite opciones.
 Haremos esto agregando la opción `greeting`:
 
