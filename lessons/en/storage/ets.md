@@ -113,15 +113,15 @@ iex> :ets.new(:read_heavy_table, [:set, :public, {:read_concurrency, true}])
 
 ## Inserting Data
 
-ETS has no predefined schema - the only requirement is that data must be stored as tuples where the first element is the key.
-To add new data we use `:ets.insert/2`:
+ETS objects have no predefined schema - the only requirement is that data must be stored as tuples where the first element is the key.
+To add a new object we use `:ets.insert/2`:
 
 ```elixir
 iex> :ets.insert(:user_lookup, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
 true
 ```
 
-When using `:ets.insert/2` with a `set` or `ordered_set`, existing data with the same key will be replaced.
+When using `:ets.insert/2` with a `set` or `ordered_set`, existing object with the same key will be replaced.
 To avoid overwriting, use `:ets.insert_new/2` which returns `false` for existing keys:
 
 ```elixir
@@ -187,7 +187,7 @@ iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
  ["", ["Elixir", "Ruby", "JavaScript"], "3100"]]
 ```
 
-If we want the original object regardless of variables, use `:ets.match_object/2`:
+If we want the complete object, use `:ets.match_object/2`:
 
 ```elixir
 iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
@@ -246,7 +246,7 @@ iex> {next_key, next_object} = :ets.next_lookup(:user_lookup, key)
 
 ### Updating Elements
 
-**New in OTP 27**: `:ets.update_element/4` allows providing a default object when the key doesn't exist:
+`:ets.update_element/4` allows providing a default object when the key doesn't exist:
 
 ```elixir
 iex> table = :ets.new(:example, [])
@@ -447,7 +447,7 @@ After closing IEx, we'll find a `disk_storage` file in our directory containing 
 
 When working with ETS, several considerations can help us build more effective and performant applications. Choosing the right table type is crucial - we should use `set` for unique keys, `bag` when we need multiple values per key, and `ordered_set` when we need sorted data. Considering concurrency options early in our design helps optimize performance; enabling `read_concurrency` benefits read-heavy workloads while `write_concurrency` helps with write-heavy scenarios.
 
-Memory management becomes important for long-running applications, so monitoring table sizes with `:ets.info/2` and implementing cleanup strategies prevents memory issues over time. Our key design should distribute evenly for better performance in concurrent scenarios, and we should remember that tables are tied to the owner process - considering using a dedicated GenServer for important tables helps ensure data persistence. Finally, using atomic operations like `:ets.update_counter/3` and similar functions helps us avoid race conditions when multiple processes interact with our tables.
+Memory management becomes important for long-running applications, so monitoring table sizes with `:ets.info/2` and implementing cleanup strategies prevents memory issues over time. Our key design should distribute evenly for better performance in concurrent scenarios, and we should remember that tables are tied to the owner process - consider using a dedicated GenServer for important tables to ensure data persistence. Finally, using atomic operations like `:ets.update_counter/3` and similar functions helps us avoid race conditions when multiple processes interact with our tables.
 
 ## Conclusion
 

@@ -20,8 +20,7 @@ To get started with Redix, add it to our `mix.exs`:
 ```elixir
 defp deps do
   [
-    {:redix, "~> 1.1"},
-    {:castore, ">= 0.0.0"}  #  Recommended for SSL connections
+    {:redix, "~> 1.1"}
   ]
 end
 ```
@@ -31,8 +30,6 @@ Then fetch the dependencies:
 ```shell
 mix deps.get
 ```
-
-**Note**: The `castore` dependency provides a bundle of CA certificates, useful when connecting to Redis instances over SSL.
 
 ## Basic Usage
 
@@ -87,7 +84,7 @@ iex> Redix.command!(conn, ["INVALID", "COMMAND"])
 
 ### Pipelining Commands
 
-One of Redis's powerful features is command pipelining, which allows us to send multiple commands at once. This dramatically improves performance when we need to execute several commands:
+One of Redix's powerful features is command pipelining, which allows us to send multiple commands at once. This dramatically improves performance when we need to execute several commands:
 
 ```elixir
 iex> commands = [
