@@ -10,9 +10,7 @@
 
 ## Overview
 
-Cachex is a feature-rich caching library for Elixir that provides a robust solution for storing and retrieving data efficiently. Unlike simple in-memory stores, Cachex offers advanced features like automatic expiration, distributed caching across nodes, transactional operations, and extensible hooks for custom behavior.
-
-Cachex provides automatic expiration with configurable TTL policies, distributed caching across multiple nodes, and transactional operations for atomic cache updates. It supports fallback functions for lazy loading of missing data, batch operations for improved performance, statistics and monitoring through hooks, and custom commands for specialized operations.
+Cachex is a feature-rich caching library for Elixir that provides a robust solution for storing and retrieving data. Feaatures include automatic expiration with configurable TTL policies, distributed caching across multiple nodes, and transactional operations for atomic cache updates. It supports fallback functions for lazy loading of missing data, batch operations for improved performance, metrics and monitoring through hooks, and custom commands for specialized operations.
 
 ## Installation and Setup
 
@@ -119,19 +117,6 @@ iex> {:commit, 10} = Cachex.get_and_update(:my_cache, "counter", fn value ->
 ...> end)
 ```
 
-### Optimized Batch Execution
-
-We can use `Cachex.execute/3` to perform multiple operations efficiently:
-
-```elixir
-{r1, r2, r3} = Cachex.execute!(:my_cache, fn cache ->
-  r1 = Cachex.get!(cache, "key1")
-  r2 = Cachex.get!(cache, "key2")
-  r3 = Cachex.get!(cache, "key3")
-  {r1, r2, r3}
-end)
-```
-
 ## Expiration and TTL
 
 ### Default Expiration
@@ -188,9 +173,22 @@ for _ <- 1..10 do
 end
 ```
 
+### Optimized Batch Execution
+
+We can use `Cachex.execute/3` to efficiently perform several operations in a single function call; everything runs inside the same process without round trips between your code and the cache, minimizing messaging overhead and locking.
+
+```elixir
+{r1, r2, r3} = Cachex.execute!(:my_cache, fn cache ->
+  r1 = Cachex.get!(cache, "key1")
+  r2 = Cachex.get!(cache, "key2")
+  r3 = Cachex.get!(cache, "key3")
+  {r1, r2, r3}
+end)
+```
+
 ## Transactions
 
-Transactions provide atomic operations across multiple keys:
+While `Cachex.execute!/3` is great for batch operations, `Cachex.transaction!/3` ensures that all operations within the transaction are atomic and that the specified keys are properly locked during execution.
 
 ```elixir
 result = Cachex.transaction!(:my_cache, ["user:1", "user:2"], fn cache ->
