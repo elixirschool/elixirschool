@@ -127,7 +127,7 @@ Luego para empezar un `SimpleQueue` dinámicamente usaremos `start_child/2` el c
 {:ok, pid} = DynamicSupervisor.start_child(SimpleQueue.Supervisor, SimpleQueue)
 ```
 
-## Supervidor de tareas
+## Supervisor de tareas
 
 Las tareas tienen su propio supervisor especializado, `Task.Supervisor`. Diseñado para crear tareas dinámicamente, el supervisor usa `DynamicSupervisor` por debajo.
 
