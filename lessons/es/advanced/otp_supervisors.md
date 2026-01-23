@@ -108,9 +108,9 @@ end
 
 ## DynamicSupervisor
 
-Los supervisores normalmente empiezan con una lista de hijos para iniciar cuando empieza la aplicación. Como sea algunas veces los hijos supervisados no serán conocidos cuando nuestra aplicación empieza (Por ejemplo puede que tengamos una aplicación web que inicia un nuevo proceso para manejar a un usuario conectándose a nuestro sitio). Para esos casos vamos a querer un supervisor donde los hijos pueden ser iniciados a demanda. El supervidor dinámico es usado para manejar este caso.
+Los supervisores normalmente empiezan con una lista de hijos para iniciar cuando empieza la aplicación. Como sea algunas veces los hijos supervisados no serán conocidos cuando nuestra aplicación empieza (Por ejemplo puede que tengamos una aplicación web que inicia un nuevo proceso para manejar a un usuario conectándose a nuestro sitio). Para esos casos vamos a querer un supervisor donde los hijos pueden ser iniciados a demanda. El supervisor dinámico es usado para manejar este caso.
 
-Como no especificamos los hijos solo necesitamos definir las opciones de ejecución del supervisor. El supervidor dinámico solo soporta la estrategia `:one_for_one`:
+Como no especificamos los hijos solo necesitamos definir las opciones de ejecución del supervisor. El supervisor dinámico solo soporta la estrategia `:one_for_one`:
 
 ```elixir
 options = [
