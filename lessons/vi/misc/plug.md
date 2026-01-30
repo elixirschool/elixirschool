@@ -196,7 +196,7 @@ Xem qua đoạn code kiểm thử router ở dưới đây nhé:
 ```elixir
 defmodule RouterTest do
   use ExUnit.Case
-  use Plug.Test
+  import Plug.Test
 
   alias Example.Plug.Router
 

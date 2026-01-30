@@ -359,7 +359,7 @@ mix run --no-halt
 ```elixir
 defmodule Example.RouterTest do
   use ExUnit.Case
-  use Plug.Test
+  import Plug.Test
 
   alias Example.Router
 
@@ -438,7 +438,8 @@ defmodule Example.Router do
     send_resp(conn, 404, "Ой!")
   end
 
-  defp handle_errors(conn, %{kind: kind, reason: reason, stack: stack}) do
+  @impl Plug.ErrorHandler
+  def handle_errors(conn, %{kind: kind, reason: reason, stack: stack}) do
     IO.inspect(kind, label: :kind)
     IO.inspect(reason, label: :reason)
     IO.inspect(stack, label: :stack)

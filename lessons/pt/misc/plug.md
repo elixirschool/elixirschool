@@ -371,7 +371,7 @@ Escreva o código de teste a seguir em `test/example/router_test.exs`:
 ```elixir
 defmodule Example.RouterTest do
   use ExUnit.Case
-  use Plug.Test
+  import Plug.Test
 
   alias Example.Router
 

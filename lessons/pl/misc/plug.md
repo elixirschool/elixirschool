@@ -188,7 +188,7 @@ Przyjrzyjmy się jak można przetestować nasz router:
 ```elixir
 defmodule RouterTest do
   use ExUnit.Case
-  use Plug.Test
+  import Plug.Test
 
   alias Example.Plug.Router
 
