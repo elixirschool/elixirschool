@@ -188,7 +188,7 @@ Coba kita lihat apakah anda bisa pahami test router ini:
 ```elixir
 defmodule RouterTest do
   use ExUnit.Case
-  use Plug.Test
+  import Plug.Test
 
   alias Example.Plug.Router
 

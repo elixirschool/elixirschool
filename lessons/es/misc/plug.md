@@ -315,7 +315,7 @@ Comprueba si puedes darle seguimiento a la pueba del router:
 ```elixir
 defmodule Example.RouterTest do
   use ExUnit.Case
-  use Plug.Test
+  import Plug.Test
 
   alias Example.Router
 

@@ -357,7 +357,7 @@ Plug의 테스트는 `Plug.Test` 덕분에 무척 간단합니다.
 ```elixir
 defmodule Example.RouterTest do
   use ExUnit.Case
-  use Plug.Test
+  import Plug.Test
 
   alias Example.Router
 

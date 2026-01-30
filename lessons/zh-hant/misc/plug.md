@@ -364,7 +364,7 @@ mix run --no-halt
 ```elixir
 defmodule Example.RouterTest do
   use ExUnit.Case
-  use Plug.Test
+  import Plug.Test
 
   alias Example.Router
 
