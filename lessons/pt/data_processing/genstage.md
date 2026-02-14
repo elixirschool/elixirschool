@@ -137,7 +137,7 @@ end
 
 Você deve ter notado com nosso produtor-consumidor que introduzimos uma nova opção no `init/1` e uma nova função: `handle_events/3`. Com a opção `subscribe_to`, instruímos o GenStage a nos colocar em comunicação com um produtor específico.
 
-A função `handle_events/3` é nosso cavalo de batalha, onde recebemos nossos eventos de entrada, os processamos, e retornamos nosso conjunto modificado. Como veremos, consumidores são implementados de maneira muito semelhante, mas a diferença importante é que nossa função `handle_events/3` retorna e como ela é usada. Quando rotulamos nosso processo um produtor_consumidor, o segundo argumento da nossa tupla — `numbers` no nosso caso — é usado para conhecer a demanda de consumidores. Em consumidores esse valor é descartado.
+A função `handle_events/3` é nosso cavalo de batalha, onde recebemos nossos eventos de entrada, os processamos, e retornamos nosso conjunto modificado. Como veremos, consumidores são implementados de maneira muito semelhante, mas a diferença importante é o que nossa função `handle_events/3` retorna e como ela é usada. Quando rotulamos nosso processo um produtor-consumidor, o segundo argumento da nossa tupla — `numbers` no nosso caso — é usado para conhecer a demanda de consumidores. Em consumidores esse valor é descartado.
 
 ## Consumidor
 
