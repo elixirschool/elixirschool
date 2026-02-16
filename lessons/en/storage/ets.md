@@ -1,87 +1,155 @@
 %{
-  version: "1.1.1",
+  version: "2.0.0",
   title: "Erlang Term Storage (ETS)",
   excerpt: """
-  Erlang Term Storage, commonly referred to as ETS, is a powerful storage engine built into OTP and available to use in Elixir.
-  In this lesson we'll look at how to interface with ETS and how it can be employed in our applications.
+  Erlang Term Storage, commonly referred to as ETS, is a powerful in-memory storage engine built into the Erlang VM and available to use in Elixir.
+  In this lesson we'll explore how to interface with ETS and how it can be employed in our applications for high-performance data storage and retrieval.
   """
 }
 ---
 
 ## Overview
 
-ETS is a robust in-memory store for Elixir and Erlang objects that comes included.
-ETS is capable of storing large amounts of data and offers constant time data access.
+ETS is a robust in-memory storage system for Elixir and Erlang terms that comes included with the runtime capable of storing large amounts of data and offers constant time data access for most operations. It's particularly useful for caching, lookups, and scenarios where we need fast access to structured data.
 
 Tables in ETS are created and owned by individual processes.
-When an owner process terminates, its tables are destroyed.
-You can have as many ETS table as you want, the only limit is the server memory. A limit can be specified using the `ERL_MAX_ETS_TABLES` environment variable.
+When an owner process terminates, its tables are automatically destroyed.
+By default, we can create as many ETS tables as memory allows, though we can set limits using the `ERL_MAX_ETS_TABLES` environment variable.
+
+ETS provides several key benefits that make it invaluable for high-performance applications. It offers fast access with constant time lookups for most operations, enabling efficient data retrieval even with large datasets. The system supports concurrent access, allowing multiple processes to read from tables simultaneously while maintaining data consistency. ETS provides flexible storage options with different table types to suit various use cases, from simple key-value stores to more complex data structures. Additionally, it's memory efficient, storing data directly in the VM without serialization overhead, which reduces both memory usage and access times.
 
 ## Creating Tables
 
-Tables are created with `new/2`, which accepts a table name, and a set of options, and returns a table identifier that we can use in subsequent operations.
+Tables are created with `:ets.new/2`, which accepts a table name and a set of options, returning a table identifier for subsequent operations.
 
-For our example we'll create a table to store and look up users by their nickname:
+For our example, we'll create a table to store and look up users by their nickname:
 
 ```elixir
 iex> table = :ets.new(:user_lookup, [:set, :protected])
-8212
+#Reference<0.1234567890.1234567890.123456>
 ```
 
-Much like GenServers, there is a way to access ETS tables by name rather than identifier.
-To do this we need to include the `:named_table` option.
-Then we can access our table directly by name:
+Much like GenServers, there's a way to access ETS tables by name rather than identifier.
+To do this we need to include the `:named_table` option:
 
 ```elixir
 iex> :ets.new(:user_lookup, [:set, :protected, :named_table])
 :user_lookup
 ```
 
+Now we can access our table directly by name instead of keeping track of the reference.
+
 ### Table Types
 
-There are four types of tables available in ETS:
+ETS provides four different table types to suit various use cases:
 
-+ `set` — This is the default table type.
-One value per key.
-Keys are unique.
-+ `ordered_set` — Similar to `set` but ordered by Erlang/Elixir term.
-It is important to note that key comparison is different within `ordered_set`.
-Keys need not match so long as they compare equally.
-1 and 1.0 are considered equal.
-+ `bag` — Many objects per key but only one instance of each object per key.
-+ `duplicate_bag` — Many objects per key, with duplicates allowed.
++ The default `set` type stores one value per key with unique keys, making it ideal for simple key-value storage. 
++ An `ordered_set` works similarly to `set` but maintains order by Erlang/Elixir term ordering, where key comparison uses Erlang's term ordering and `1` and `1.0` are considered equal. 
++ The `bag` type allows multiple objects per key but only permits one instance of each unique object per key. 
++ Finally, `duplicate_bag` supports multiple objects per key with duplicates allowed, useful for scenarios like storing multiple events for the same timestamp.
+
+Let's see the differences in action:
+
+#### Set
+
+```elixir
+iex> :ets.new(:set_example, [:set, :named_table])
+iex> :ets.insert(:set_example, {:key, "value1"})
+iex> :ets.insert(:set_example, {:key, "value2"})  # Overwrites previous
+iex> :ets.lookup(:set_example, :key)
+[{:key, "value2"}]
+```
+
+#### Bag
+
+```elixir
+iex> :ets.new(:bag_example, [:bag, :named_table])
+iex> :ets.insert(:bag_example, {:key, "value1"})
+iex> :ets.insert(:bag_example, {:key, "value2"})  # Adds to existing
+iex> :ets.insert(:bag_example, {:key, "value2"})  # Ignored
+iex> :ets.lookup(:bag_example, :key)
+[{:key, "value1"}, {:key, "value2"}]
+```
+
+#### Duplicating Bag
+
+```elixir
+iex> :ets.new(:duplicate_bag_example, [:duplicate_bag, :named_table])
+iex> :ets.insert(:duplicate_bag_example, {:key, "value1"})
+iex> :ets.insert(:duplicate_bag_example, {:key, "value2"})  
+iex> :ets.insert(:duplicate_bag_example, {:key, "value2"}) 
+iex> 
+[{:key, "value1"}, {:key, "value2"}, {:key, "value2"}] # Two instances of `{:key, "value2"}` exist
+```
 
 ### Access Controls
 
-Access control in ETS is similar to access control within modules:
+Access control in ETS determines which processes can read from and write to our tables, there are three modes: `public`, `protected`, and `private`.
 
-+ `public` — Read/Write available to all processes.
-+ `protected` — Read available to all processes.
-Only writable by owner process.
-This is the default.
-+ `private` — Read/Write limited to owner process.
++ The `public` mode makes read and write operations available to all processes, which is useful for shared data structures but requires careful coordination to avoid race conditions. 
++ The `protected` mode, which is the default, allows read access to all processes while restricting write access to only the owner process, providing a good balance of accessibility and safety. 
+" The `private` mode limits both read and write access to the owner process only, offering maximum isolation at the cost of reduced accessibility.
 
-## Race Conditions
+```elixir
+iex> public_table = :ets.new(:public_example, [:set, :public, :named_table])
+iex> protected_table = :ets.new(:protected_example, [:set, :protected, :named_table])
+iex> private_table = :ets.new(:private_example, [:set, :private, :named_table])
+```
 
-If more than one process can write to a table - whether via `:public` access or by messages to the owning process - race conditions are possible.
-For example, two processes each read a counter value of `0`, increment it, and write `1`; the end result reflects only a single increment.
+## Concurrency and Race Conditions
 
-For counters specifically, [:ets.update_counter/3](http://erlang.org/doc/man/ets.html#update_counter-3) provides for atomic update-and-read.
-For other cases, it may be necessary for the owner process to perform custom atomic operations in response to messages, such as "add this value to the list at key `:results`".
+When multiple processes can write to a table (via `:public` access or by sending messages to the owning process), race conditions are possible.
+For example, two processes each reading a counter value of `0`, incrementing it, and writing `1` back would result in a lost increment.
 
-## Inserting data
+For counters specifically, `:ets.update_counter/3` provides atomic update-and-read operations:
 
-ETS has no schema.
-The only limitation is that data must be stored as a tuple whose first element is the key.
-To add new data we can use `insert/2`:
+```elixir
+iex> :ets.new(:counters, [:set, :public, :named_table])
+iex> :ets.insert(:counters, {:page_views, 0})
+iex> :ets.update_counter(:counters, :page_views, 1)
+1
+iex> :ets.update_counter(:counters, :page_views, 5)
+6
+```
+
+For other atomic operations, we might need the owner process to handle updates through message passing to ensure consistency.
+
+## Performance Features
+
+### Write Concurrency
+
+ETS tables can be optimized for concurrent writes using the `write_concurrency` option:
+
+```elixir
+iex> :ets.new(:concurrent_table, [:set, :public, {:write_concurrency, true}])
+```
+
+Starting with OTP 25, we can use `{:write_concurrency, :auto}` to let the runtime automatically optimize based on usage patterns:
+
+```elixir
+iex> :ets.new(:adaptive_table, [:set, :public, {:write_concurrency, :auto}])
+```
+
+### Read Concurrency
+
+For tables with many concurrent readers, enable read concurrency:
+
+```elixir
+iex> :ets.new(:read_heavy_table, [:set, :public, {:read_concurrency, true}])
+```
+
+## Inserting Data
+
+ETS objects have no predefined schema - the only requirement is that data must be stored as tuples where the first element is the key.
+To add a new object we use `:ets.insert/2`:
 
 ```elixir
 iex> :ets.insert(:user_lookup, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
 true
 ```
 
-When we use `insert/2` with a `set` or `ordered_set` existing data will be replaced.
-To avoid this there is `insert_new/2` which returns `false` for existing keys:
+When using `:ets.insert/2` with a `set` or `ordered_set`, existing object with the same key will be replaced.
+To avoid overwriting, use `:ets.insert_new/2` which returns `false` for existing keys:
 
 ```elixir
 iex> :ets.insert_new(:user_lookup, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
@@ -90,40 +158,55 @@ iex> :ets.insert_new(:user_lookup, {"3100", "", ["Elixir", "Ruby", "JavaScript"]
 true
 ```
 
+We can also insert multiple objects at once:
+
+```elixir
+iex> users = [
+...>   {"alice", "Alice", ["Python", "Go"]},
+...>   {"bob", "Bob", ["JavaScript", "TypeScript"]},
+...>   {"charlie", "Charlie", ["Rust", "C++"]}
+...> ]
+iex> :ets.insert(:user_lookup, users)
+true
+```
+
 ## Data Retrieval
 
-ETS offers us a few convenient and flexible ways to retrieve our stored data.
-We'll look at how to retrieve data by key and through different forms of pattern matching.
-
-The most efficient, and ideal, retrieval method is key lookup.
-While useful, matching iterates through the table and should be used sparingly especially for very large data sets.
+ETS offers several convenient and flexible ways to retrieve stored data.
+We'll explore key-based lookups and various pattern matching approaches.
 
 ### Key Lookup
 
-Given a key, we can use `lookup/2` to retrieve all records with that key:
+The most efficient retrieval method is key lookup using `:ets.lookup/2`:
 
 ```elixir
 iex> :ets.lookup(:user_lookup, "doomspork")
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
-### Simple Matches
+For tables that might have multiple objects per key (bag types), this returns all matching objects:
 
-ETS was built for Erlang, so be warned that match variables may feel a _little_ clunky.
+```elixir
+iex> bag_table = :ets.new(:skills, [:bag, :named_table])
+iex> :ets.insert(:skills, [{"doomspork", "Elixir"}, {"doomspork", "Ruby"}])
+iex> :ets.lookup(:skills, "doomspork")
+[{"doomspork", "Elixir"}, {"doomspork", "Ruby"}]
+```
 
-To specify a variable in our match we use the atoms `:"$1"`, `:"$2"`, `:"$3"`, and so on.
-The variable number reflects the result position and not the match position.
-For values we're not interested in, we use the `:_` variable.
+### Simple Pattern Matching
 
-Values can also be used in matching, but only variables will be returned as part of our result.
-Let's put it all together and see how it works:
+ETS supports pattern matching using special variables. Variables are specified with atoms like `:"$1"`, `:"$2"`, `:"$3"`, and so on.
+The variable number reflects the result position, not the match position.
+For values we don't care about, use the `:_` variable.
+
+Let's see how it works:
 
 ```elixir
 iex> :ets.match(:user_lookup, {:"$1", "Sean", :_})
 [["doomspork"]]
 ```
 
-Let's look at another example to see how variables influence the resulting list order:
+Here's how variables influence the result order:
 
 ```elixir
 iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
@@ -131,7 +214,7 @@ iex> :ets.match(:user_lookup, {:"$99", :"$1", :"$3"})
  ["", ["Elixir", "Ruby", "JavaScript"], "3100"]]
 ```
 
-What if we want our original object, not a list?  We can use `match_object/2`, which regardless of variables returns our entire object:
+If we want the complete object, use `:ets.match_object/2`:
 
 ```elixir
 iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
@@ -142,83 +225,115 @@ iex> :ets.match_object(:user_lookup, {:_, "Sean", :_})
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
 ```
 
-### Advanced Lookup
+### Advanced Querying with Select
 
-We learned about simple match cases but what if we want something more akin to an SQL query?  Thankfully there is a more robust syntax available to us.
-To lookup our data with `select/2` we need to construct a list of tuples with arity 3.
-These tuples represent our pattern, zero or more guards, and a return value format.
+For more complex queries, use `:ets.select/2`. This function takes a list of match specifications - tuples with three elements: pattern, guards, and result format.
 
-Our match variables and two new variables, `:"$$"` and `:"$_"`, can be used to construct the return value.
-These new variables are shortcuts for the result format; `:"$$"` gets results as lists and `:"$_"` gets the original data objects.
+The special variables `:"$$"` and `:"$_"` are shortcuts for result formatting. The `:"$$"` variable returns results as lists while `:"$_"` returns the original data objects.
 
-Let's take one of our previous `match/2` examples and turn it into a `select/2`:
+Let's convert a `:ets.match_object/2` example to `:ets.select/2`:
 
 ```elixir
-iex> :ets.match_object(:user_lookup, {:"$1", :_, :"$3"})
-[{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
- {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
-
 iex> :ets.select(:user_lookup, [{{:"$1", :_, :"$3"}, [], [:"$_"]}])
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]},
  {"3100", "", ["Elixir", "Ruby", "JavaScript"]}]
 ```
 
-Although `select/2` allows for finer control over what and how we retrieve records, the syntax is quite unfriendly and will only become more so.
-To handle this the ETS module includes `fun2ms/1`, which turns the functions into match_specs.
-With `fun2ms/1` we can create queries using a familiar function syntax.
-
-Let's use `fun2ms/1` and `select/2` to find all usernames with more than 2 languages:
+ETS includes `:ets.fun2ms/1` to convert functions into match specifications for more readable queries:
 
 ```elixir
 iex> fun = :ets.fun2ms(fn {username, _, langs} when length(langs) > 2 -> username end)
-{% raw %}[{{:"$1", :_, :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]{% endraw %}
+[{{:"$1", :_, :"$2"}, [{:>, {:length, :"$2"}, 2}], [:"$1"]}]
 
 iex> :ets.select(:user_lookup, fun)
 ["doomspork", "3100"]
 ```
 
-Want to learn more about the match specification?  Check out the official Erlang documentation for [match_spec](http://www.erlang.org/doc/apps/erts/match_spec.html).
+### Table Traversal
+
+ETS provides functions to iterate through tables:
+
+```elixir
+iex> :ets.first(:user_lookup)
+"3100"
+iex> :ets.next(:user_lookup, "3100")
+"doomspork"
+```
+
+**New in OTP 27**: The `first_lookup/1` and `next_lookup/2` functions combine traversal with lookup:
+
+```elixir
+iex> {key, object} = :ets.first_lookup(:user_lookup)
+{"3100", {"3100", "", ["Elixir", "Ruby", "JavaScript"]}}
+iex> {next_key, next_object} = :ets.next_lookup(:user_lookup, key)
+{"doomspork", {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}}
+```
+
+## Updating Data
+
+### Updating Elements
+
+`:ets.update_element/4` allows providing a default object when the key doesn't exist:
+
+```elixir
+iex> table = :ets.new(:example, [])
+iex> :ets.update_element(table, :key, {2, :new_value}, {:key, :new_value})
+true
+iex> :ets.lookup(table, :key)
+[{:key, :new_value}]
+```
+
+### Taking Data
+
+The `:ets.take/2` function works like `:ets.delete/2` but also returns the deleted objects:
+
+```elixir
+iex> :ets.take(:user_lookup, "doomspork")
+[{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
+iex> :ets.lookup(:user_lookup, "doomspork")
+[]
+```
 
 ## Deleting Data
 
 ### Removing Records
 
-Deleting terms is as straightforward as `insert/2` and `lookup/2`.
-With `delete/2` we only need our table and the key.
-This deletes both the key and its values:
+Deleting individual records is straightforward with `:ets.delete/2`:
 
 ```elixir
-iex> :ets.delete(:user_lookup, "doomspork")
+iex> :ets.delete(:user_lookup, "3100")
 true
 ```
 
 ### Removing Tables
 
-ETS tables are not garbage collected unless the parent is terminated.
-Sometimes it may be necessary to delete an entire table without terminating the owner process.
-For this we can use `delete/1`:
+ETS tables are not garbage collected unless the parent process terminates.
+To delete an entire table explicitly, use `:ets.delete/1`:
 
 ```elixir
 iex> :ets.delete(:user_lookup)
 true
 ```
 
-## Example ETS Usage
+## Practical Example: Building a Simple Cache
 
-Given what we've learned above, let's put everything together and build a simple cache for expensive operations.
-We'll implement a `get/4` function to take a module, function, arguments, and options.
-For now the only option we'll worry about is `:ttl`.
-
-For this example we're assuming the ETS table has been created as part of another process, such as a supervisor:
+Let's implement a simple cache for expensive operations using what we've learned:
 
 ```elixir
 defmodule SimpleCache do
   @moduledoc """
-  A simple ETS based cache for expensive function calls.
+  A simple ETS-based cache for expensive function calls.
   """
 
+  @table_name :simple_cache
+
+  def start_link do
+    :ets.new(@table_name, [:set, :public, :named_table, {:read_concurrency, true}])
+    {:ok, self()}
+  end
+
   @doc """
-  Retrieve a cached value or apply the given function caching and returning
+  Retrieve a cached value or apply the given function, caching and returning
   the result.
   """
   def get(mod, fun, args, opts \\ []) do
@@ -233,11 +348,11 @@ defmodule SimpleCache do
   end
 
   @doc """
-  Lookup a cached result and check the freshness
+  Lookup a cached result and check if it's still fresh
   """
   defp lookup(mod, fun, args) do
-    case :ets.lookup(:simple_cache, [mod, fun, args]) do
-      [result | _] -> check_freshness(result)
+    case :ets.lookup(@table_name, {mod, fun, args}) do
+      [{_key, result, expiration}] -> check_freshness(result, expiration)
       [] -> nil
     end
   end
@@ -245,10 +360,11 @@ defmodule SimpleCache do
   @doc """
   Compare the result expiration against the current system time.
   """
-  defp check_freshness({mfa, result, expiration}) do
-    cond do
-      expiration > :os.system_time(:seconds) -> result
-      :else -> nil
+  defp check_freshness(result, expiration) do
+    if expiration > :os.system_time(:seconds) do
+      result
+    else
+      nil
     end
   end
 
@@ -258,69 +374,106 @@ defmodule SimpleCache do
   defp cache_apply(mod, fun, args, ttl) do
     result = apply(mod, fun, args)
     expiration = :os.system_time(:seconds) + ttl
-    :ets.insert(:simple_cache, {[mod, fun, args], result, expiration})
+    :ets.insert(@table_name, {{mod, fun, args}, result, expiration})
     result
   end
-end
-```
 
-To demonstrate the cache we'll use a function that returns the system time and a TTL of 10 seconds.
-As you'll see in the example below, we get the cached result until the value has expired:
+  @doc """
+  Clear expired entries from the cache
+  """
+  def cleanup do
+    current_time = :os.system_time(:seconds)
+    expired_pattern = {{:_, :_, :_}, :_, :"$1"}
+    guard = [{:<, :"$1", current_time}]
+    expired_keys = :ets.select(@table_name, [{expired_pattern, guard, [:"$_"]}])
 
-```elixir
-defmodule ExampleApp do
-  def test do
-    :os.system_time(:seconds)
+    Enum.each(expired_keys, fn {key, _, _} ->
+      :ets.delete(@table_name, key)
+    end)
+
+    length(expired_keys)
   end
 end
-
-iex> :ets.new(:simple_cache, [:named_table])
-:simple_cache
-iex> ExampleApp.test
-1451089115
-iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
-1451089119
-iex> ExampleApp.test
-1451089123
-iex> ExampleApp.test
-1451089127
-iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
-1451089119
 ```
 
-After 10 seconds if we try again we should get a fresh result:
+Let's test our cache:
 
 ```elixir
-iex> ExampleApp.test
-1451089131
-iex> SimpleCache.get(ExampleApp, :test, [], ttl: 10)
-1451089134
+iex> SimpleCache.start_link()
+{:ok, #PID<0.123.0>}
+
+iex> defmodule ExampleApp do
+...>   def expensive_operation do
+...>     :timer.sleep(1000)  # Simulate expensive work
+...>     :os.system_time(:seconds)
+...>   end
+...> end
+
+iex> SimpleCache.get(ExampleApp, :expensive_operation, [], ttl: 10)
+1640995200  # Takes ~1 second
+
+iex> SimpleCache.get(ExampleApp, :expensive_operation, [], ttl: 10)
+1640995200  # Returns immediately from cache
+
+# After 10 seconds...
+iex> SimpleCache.get(ExampleApp, :expensive_operation, [], ttl: 10)
+1640995211  # Takes ~1 second again as cache expired
 ```
 
-As you see we are able to implement a scalable and fast cache without any external dependencies and this is only one of many uses for ETS.
+## Information and Monitoring
 
-## Disk-based ETS
+ETS provides several functions to inspect table properties:
 
-We now know ETS is for in-memory term storage but what if we need disk-based storage? For that we have Disk Based Term Storage, or DETS for short.
-The ETS and DETS APIs are interchangeable with the exception of how tables are created.
-DETS relies on `open_file/2` and doesn't require the `:named_table` option:
+```elixir
+iex> :ets.info(:simple_cache)
+[
+  {:id, :simple_cache},
+  {:decentralized_counters, false},
+  {:read_concurrency, true},
+  {:write_concurrency, false},
+  {:compressed, false},
+  {:memory, 305},
+  {:owner, #PID<0.123.0>},
+  {:heir, :none},
+  {:name, :simple_cache},
+  {:size, 1},
+  {:node, :nonode@nohost},
+  {:named_table, true},
+  {:type, :set},
+  {:keypos, 1},
+  {:protection, :protected}
+]
+
+iex> :ets.info(:simple_cache, :size)
+1
+iex> :ets.info(:simple_cache, :memory)
+305
+```
+
+## Disk-based Storage with DETS
+
+For persistent storage, Erlang provides DETS (Disk-based Term Storage).
+The DETS API is nearly identical to ETS, with the main difference being table creation:
 
 ```elixir
 iex> {:ok, table} = :dets.open_file(:disk_storage, [type: :set])
 {:ok, :disk_storage}
-iex> :dets.insert_new(table, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
-true
-iex> select_all = :ets.fun2ms(&(&1))
-[{:"$1", [], [:"$1"]}]
-iex> :dets.select(table, select_all)
+iex> :dets.insert(table, {"doomspork", "Sean", ["Elixir", "Ruby", "Java"]})
+:ok
+iex> :dets.lookup(table, "doomspork")
 [{"doomspork", "Sean", ["Elixir", "Ruby", "Java"]}]
+iex> :dets.close(table)
+:ok
 ```
 
-If you exit `iex` and look in your local directory, you'll see a new file `disk_storage`:
+**Note**: DETS doesn't support `ordered_set` - only `set`, `bag`, and `duplicate_bag`.
 
-```shell
-$ ls | grep -c disk_storage
-1
-```
+After closing IEx, we'll find a `disk_storage` file in our directory containing the persisted data.
 
-One last thing to note is that DETS does not support `ordered_set` like ETS, only `set`, `bag`, and `duplicate_bag`.
+## Conclusion
+
+ETS is a powerful in-memory storage solution that provides fast, concurrent access to structured data.
+Its flexibility in table types, access controls, and performance optimizations makes it suitable for a wide range of use cases from simple caches to complex data structures.
+
+Combined with DETS for persistence, ETS forms a complete storage solution that can handle everything from temporary caches to application state management.
+Understanding ETS is essential for building high-performance Elixir applications that need efficient data access patterns.
