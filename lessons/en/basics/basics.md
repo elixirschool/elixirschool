@@ -1,5 +1,5 @@
 %{
-  version: "1.4.2",
+  version: "1.5.0",
   title: "Basics",
   excerpt: """
   Getting started, basic data types, and basic operations.
@@ -278,3 +278,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Conclusion
+
+In this lesson, we covered the fundamental building blocks of Elixir.
+
+We started by installing Elixir and launching the interactive shell, IEx, where we evaluated simple expressions and saw immediate results. From there, we explored the core data types: integers (including binary, octal, and hexadecimal forms), floats, booleans, atoms, and strings.
+
+We also worked with basic operations such as arithmetic, boolean logic, and comparison operators. Along the way, we saw how Elixir handles truthiness—only `false` and `nil` are falsy—and how operators like `||`, `&&`, `and`, and `or` behave differently depending on their expectations.
+
+Finally, we looked at string interpolation and concatenation, two essential tools for working with text.
+
+These concepts form the foundation of everyday Elixir development. Take some time to experiment with them in IEx, try modifying the examples, and observe how the language behaves. A solid understanding of these basics will make the next topics much easier to grasp.
