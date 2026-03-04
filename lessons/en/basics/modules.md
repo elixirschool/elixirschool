@@ -46,7 +46,7 @@ iex> Example.Greetings.morning "Sean"
 ### Module Attributes
 
 Module attributes are most commonly used as constants in Elixir.
-Let's look at a example:
+Let's look at an example:
 
 ```elixir
 defmodule Example do
