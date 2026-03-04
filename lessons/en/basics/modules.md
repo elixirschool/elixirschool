@@ -58,6 +58,8 @@ defmodule Example do
 end
 ```
 
+Note: the `~s` construct in the example above is a string sigil, which is covered in the [sigils lesson](/en/lessons/basics/sigils).
+
 It is important to note there are reserved attributes in Elixir.
 The three most common are:
 
@@ -251,7 +253,7 @@ If we attempt to call a macro that is not yet loaded Elixir will raise an error.
 With the `use` macro we can enable another module to modify our current module's definition.
 When we call `use` in our code we're actually invoking the `__using__/1` callback defined by the provided module.
 The result of the `__using__/1` macro becomes part of our module's definition.
-To get a better understanding how this works let's look at a example:
+To get a better understanding how this works let's look at an example:
 
 ```elixir
 defmodule Hello do
