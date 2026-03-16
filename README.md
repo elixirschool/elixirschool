@@ -4,7 +4,7 @@
 
 You can access lessons at [ElixirSchool.com](https://elixirschool.com).
 
-_Feedback and participation are strongly encouraged! Please see [Contributing](CONTRIBUTING.md) for more details on how to get involved._
+_Feedback and participation are strongly encouraged! Please see [Contributing](CONTRIBUTING.md) for more details on how to get involved. Be sure to review our [style guide](https://github.com/elixirschool/elixirschool/wiki/Lesson-Styleguide) before submitting changes._
 
 ### Running Locally
 
@@ -29,20 +29,29 @@ elixir bin/version_report.exs --severity major,missing
 
 1. Each of the languages has a folder in `lessons/` directory of this repo. To start translating you need to copy a file from the English language to the corresponding folder in your language and start translating it.
 
-2. Run `elixir bin/version_report.exs --lang <your-lang>` to see pages that haven't been translated yet, or pages which need to have their translations updated.
+2. Use the [version report](#translation-version-report) to see pages that haven't been translated yet, or pages which need to have their translations updated:
+
+   ```shell
+   elixir bin/version_report.exs --lang <your-lang>
+   ```
 
 3. Translated lessons must include page metadata.
    * `title` should be a translation of the original lesson's `title`.
    * `version` should be set to the original English `version`.
+   * `excerpt` should be a translation of the original lesson's `excerpt`.
 
    For example `lessons/ja/basics/basics.md`:
 
-  ```yaml
-  ---
-  title: 基本
-  version: 1.0.0
-  ---
-  ```
+   ```elixir
+   %{
+     version: "1.0.0",
+     title: "基本",
+     excerpt: """
+     基本についての短い説明。
+     """
+   }
+   ---
+   ```
 
 4. Submit a PR with the new translated lesson :tada:
 
@@ -50,7 +59,7 @@ elixir bin/version_report.exs --severity major,missing
 
 Elixir School is powered by Phoenix and [NimblePublisher](https://github.com/dashbitco/nimble_publisher), a publishing engine that supports Markdown formatting. If you're familiar with Phoenix & NimblePublisher then you're ready to go, if you aren't don't fret we're here to help!
 
-1. We need to create the file for our article. Blog posts live in the `posts/` directory. Our filename will need to confirm to the `YYYY-MM-DD-name-separated-with-hyphens.md` pattern.
+1. We need to create the file for our article. Blog posts live in the `posts/` directory. Our filename will need to conform to the `YYYY-MM-DD-name-separated-with-hyphens.md` pattern.
 
 2. After opening the new file in our favorite editor we need to add some metadata to the top of it:
 
