@@ -12,10 +12,11 @@ Please ensure your pull request adheres to the following guidelines:
 
 All lessons should include the following front matter:
 
-```markdown
----
-version: 2.0.0
-title: Ecto
+```elixir
+%{
+  version: "2.0.0",
+  title: "Ecto"
+}
 ---
 ```
 
@@ -31,15 +32,50 @@ Each language has a generated [Translation Report](https://elixirschool.com/es/r
 
 ## Adding a New Lesson
 
-To add a new lesson, create the file under the appropriate directory in `en/lessons` (or `<language_code>/lessons`) if you are not writing your new lesson in English).
+Lesson content is managed in this repository while the website is powered by the [school_house](https://github.com/elixirschool/school_house) repository.
 
-Then, update `_data/content.yml` with the name of your new lesson under the appropriate section.
+To add a new lesson, create the file under the appropriate directory in `lessons/en/` (or `lessons/<language_code>/` if you are not writing your new lesson in English).
 
-If you've added a new section (i.e. a new directory under `/lessons`), add the section name under the `sections` key of `_data/locales/en.yml` or `_data/locales/<language_code>.yml` if the section + lesson you added are not in English.
+Your new lesson file should include the required front matter:
+
+```elixir
+%{
+  version: "1.0.0",
+  title: "Lesson Title",
+  excerpt: """
+  A short description of the lesson.
+  """
+}
+---
+```
+
+Once the lesson content has been added here, a corresponding change may be needed in the [school_house](https://github.com/elixirschool/school_house) repository to register the new lesson for display on the website.
 
 Thank you for your contributions!
 
-## Adding a new Language
+## Adding a New Translation
+
+1. Each of the languages has a folder in `lessons/` directory of this repo. To start translating you need to copy a file from the English language to the corresponding folder in your language and start translating it.
+
+2. Check the [translation report](https://elixirschool.com/pt/report/) for pages that haven't been translated yet, or for pages which need to have their translations updated in the corresponding language you want to work with.
+
+3. Translated lessons must include page metadata.
+   * `title` should be a translation of the original lesson's `title`.
+   * `version` should be set to the original English `version`.
+
+   For example `lessons/ja/basics/basics.md`:
+
+   ```elixir
+   %{
+     version: "1.0.0",
+     title: "基本"
+   }
+   ---
+   ```
+
+4. Submit a PR with the new translated lesson :tada:
+
+## Adding a New Language
 
 1. Create a folder using the ISO language code (e.g. ja, zh-hans, es, et al) with lesson subfolders.
 Not sure which language code to use?
@@ -47,31 +83,33 @@ Check [here](https://www.loc.gov/standards/iso639-2/php/English_list.php) for th
 
   ```shell
   cd elixirschool
-  mkdir -p ja/lessons/{basics,advanced,specifics,libraries}
-  touch ja/lessons/{basics,advanced,specifics,libraries}/.gitkeep
+  mkdir -p lessons/ja/{basics,advanced,intermediate,ecto,misc,storage,testing,data_processing,phoenix}
   ```
 
-1. Add your language code to `interlang` in `_data/locales/en.yml`:
+2. A corresponding update will be needed in the [school_house](https://github.com/elixirschool/school_house) repository to register the new language for the website.
 
-  ```yaml
-  interlang:
-   ja: Japanese
-  ```
+3. Submit a PR with the new language folder and translated lessons :tada:
 
-1. Create a locale file for your new language using `_data/locales/en.yml` as a guide:
+## Posting an Article
 
-  ```shell
-  touch _data/locales/ja.yml
-  ```
+Elixir School is powered by Phoenix and [NimblePublisher](https://github.com/dashbitco/nimble_publisher), a publishing engine that supports Markdown formatting. If you're familiar with Phoenix & NimblePublisher then you're ready to go, if you aren't don't fret we're here to help!
 
-1. If the new language is RTL (right-to-left) it should be added to the `rtl_languages` list in `config.yml`:
+1. We need to create the file for our article. Blog posts live in the `posts/` directory. Our filename will need to conform to the `YYYY-MM-DD-name-separated-with-hyphens.md` pattern.
 
-  ```yaml
-  script_direction: rtl
-  ```
+2. After opening the new file in our favorite editor we need to add some metadata to the top of it:
 
-## Gotcha
+```elixir
+%{
+  author: "Author Name",
+  author_link: "https://github.com/author_github_account",
+  tags: ["phoenix"],
+  date: ~D[YYYY-MM-DD],
+  title: "Full Article Title",
+  excerpt: """
+  Article short preview text
+  """
+}
+---
+```
 
-Look out for Liquid templating weirdness!
-
-If you have a code snippet that includes the following syntax: `{%{message: "error message"}, :error}`, i.e. if you have a tuple where the first element is a map, WATCH OUT! That set of characters, `{%` is the start of a liquid tag! Instead, wrap your backticked code block in `{% raw % }` `{% endraw %}`
+3. Once we've completed writing our post submit a pull request to have it reviewed before it is published.
