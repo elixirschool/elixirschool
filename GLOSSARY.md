@@ -52,7 +52,7 @@ Class names and proper nouns do not get translated.
 - anonymous function - анонимная функция
 - arity - арность
 - attribute - атрибут
-- bitsring - битовая строка
+- bitstring - битовая строка
 - binding - контекст
 - boolean - логический тип
 - callback - функция обратного вызова
@@ -111,7 +111,7 @@ Class names and proper nouns do not get translated.
 
 - anonymous function - анонімна функція
 - attribute - атрибут
-- bitsring - бітовий рядок
+- bitstring - бітовий рядок
 - binding - контекст
 - boolean - логічний тип даних
 - callback - зворотній виклик
