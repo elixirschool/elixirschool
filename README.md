@@ -10,11 +10,26 @@ _Feedback and participation are strongly encouraged! Please see [Contributing](C
 
 This repository only contains the lessons and blog posts hosted on Elixir School. To run the Elixir School website locally, find the code and setup instructions in the [school_house](https://github.com/elixirschool/school_house) repository.
 
+### Translation Version Report
+
+To see which translations are outdated or missing, run the version report script:
+
+```shell
+elixir bin/version_report.exs
+```
+
+Filter by language or severity:
+
+```shell
+elixir bin/version_report.exs --lang ja,es
+elixir bin/version_report.exs --severity major,missing
+```
+
 ### Translating a Lesson
 
 1. Each of the languages has a folder in `lessons/` directory of this repo. To start translating you need to copy a file from the English language to the corresponding folder in your language and start translating it.
 
-2. Check the [translation report](https://elixirschool.com/pt/report/) for pages that haven't been translated yet, or for pages which need to have their translations updated in the corresponding language you want to work with.
+2. Run `elixir bin/version_report.exs --lang <your-lang>` to see pages that haven't been translated yet, or pages which need to have their translations updated.
 
 3. Translated lessons must include page metadata.
    * `title` should be a translation of the original lesson's `title`.
