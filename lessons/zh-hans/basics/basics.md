@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.5.0",
   title: "基础",
   excerpt: """
   安装，基本类型和基本操作。
@@ -201,6 +201,8 @@ iex> !false
 true
 ```
 
+在 Elixir 中，"真值性"的概念非常简单：只有 `false` 和 `nil` 被视为假值。其他所有值，包括 `0`、`""`（空字符串）和 `[]`（空列表），都被视为真值。这个严格的规则让布尔运算符如 `||`、`&&` 和 `!` 能够以可预测的方式与任何数据类型配合使用于条件逻辑。
+
 还有三个操作符（`and`、`or`、`not`），它们的第一个参数_必须_是布尔类型（`true` 和 `false`）:
 
 ```elixir
@@ -211,12 +213,12 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
 
-备注：Elixir 是基于 Erlang VM (BEAM) 上的语言。如果你是 Erlang 开发人员，其实 `and`，`or` 是相应的 `andalso` 和 `orelse` 操作符。所以它们不会计算第一个参数的值，而只会计算第二个参数。
+备注：Elixir 的 `and` 和 `or` 实际上映射到 Erlang 中的 `andalso` 和 `orelse`。
 
 ### 比较
 
@@ -276,3 +278,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## 结论
+
+在这个课程中，我们涵盖了 Elixir 的基本构建模块。
+
+我们从安装 Elixir 和启动交互式 shell IEx 开始，在其中评估简单的表达式并立即看到结果。从那里，我们探索了核心数据类型：整数（包括二进制、八进制和十六进制形式）、浮点数、布尔值、原子和字符串。
+
+我们也使用了基本运算，如算术、布尔逻辑和比较运算符。一路上，我们看到了 Elixir 如何处理真值性 — 只有 `false` 和 `nil` 是假值 — 以及 `||`、`&&`、`and` 和 `or` 运算符如何根据它们的期望而有不同的行为。
+
+最后，我们看了字符串内插和字符串拼接，这是处理文本的两个基本工具。
+
+这些概念构成了日常 Elixir 开发的基础。花些时间在 IEx 中实验它们，尝试修改示例，并观察语言的行为。对这些基础的扎实理解将使接下来的主题更容易掌握。

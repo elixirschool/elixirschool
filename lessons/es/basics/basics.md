@@ -1,5 +1,5 @@
 %{
-  version: "1.3.0",
+  version: "1.5.0",
   title: "Básico",
   excerpt: """
   Preparar el entorno, tipos y operaciones básicas.
@@ -199,6 +199,8 @@ iex> !false
 true
 ```
 
+En Elixir, el concepto de "veracidad" es muy simple: solo `false` y `nil` se consideran falsos. Cualquier otro valor, incluyendo `0`, `""` (cadena vacía) y `[]` (lista vacía), se considera verdadero. Esta regla estricta permite que los operadores booleanos como `||`, `&&` y `!` funcionen de manera predecible con cualquier tipo de dato para lógica condicional.
+
 Hay tres operadores adicionales cuyo primer argumento _tiene_ que ser un booleano (`true` y `false`):
 
 ```elixir
@@ -209,7 +211,7 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
@@ -274,3 +276,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Conclusión
+
+En esta lección, cubrimos los bloques de construcción fundamentales de Elixir.
+
+Comenzamos instalando Elixir y lanzando la consola interactiva IEx, donde evaluamos expresiones simples y vimos resultados inmediatos. Desde ahí, exploramos los tipos de datos básicos: enteros (incluyendo formas binarias, octales y hexadecimales), flotantes, booleanos, átomos y cadenas.
+
+También trabajamos con operaciones básicas como aritmética, lógica booleana y operadores de comparación. En el camino, vimos cómo Elixir maneja la veracidad — solo `false` y `nil` son falsos — y cómo los operadores `||`, `&&`, `and` y `or` se comportan de manera diferente según sus expectativas.
+
+Finalmente, vimos la interpolación y concatenación de cadenas, dos herramientas esenciales para trabajar con texto.
+
+Estos conceptos forman la base del desarrollo diario con Elixir. Tómate un tiempo para experimentar con ellos en IEx, intenta modificar los ejemplos y observa cómo se comporta el lenguaje. Una comprensión sólida de estos conceptos básicos hará que los próximos temas sean mucho más fáciles de entender.

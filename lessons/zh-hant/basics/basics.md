@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.5.0",
   title: "基礎",
   excerpt: """
   入門、基本資料型別和操作。
@@ -198,6 +198,8 @@ iex> !false
 true
 ```
 
+在 Elixir 中，「真值性」的概念非常簡單：只有 `false` 和 `nil` 被視為假值。其他所有值，包括 `0`、`""`（空字串）和 `[]`（空列表），都被視為真值。這個嚴格的規則讓布林運算子如 `||`、`&&` 和 `!` 能夠以可預測的方式與任何資料型別配合使用於條件邏輯。
+
 有三個運算子的第一個引數 (argument) _必須_ 為布林型別 (`true` 或 `false`)：
 
 ```elixir
@@ -208,7 +210,7 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
@@ -273,3 +275,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## 結論
+
+在這個課程中，我們涵蓋了 Elixir 的基本構建模組。
+
+我們從安裝 Elixir 和啟動互動式 shell IEx 開始，在其中評估簡單的表達式並立即看到結果。從那裡，我們探索了核心資料型別：整數（包括二進位、八進位和十六進位形式）、浮點數、布林值、原子和字串。
+
+我們也使用了基本運算，如算術、布林邏輯和比較運算子。一路上，我們看到了 Elixir 如何處理真值性 — 只有 `false` 和 `nil` 是假值 — 以及 `||`、`&&`、`and` 和 `or` 運算子如何根據它們的期望而有不同的行為。
+
+最後，我們看了字串內插和字串串接，這是處理文字的兩個基本工具。
+
+這些概念構成了日常 Elixir 開發的基礎。花些時間在 IEx 中實驗它們，嘗試修改範例，並觀察語言的行為。對這些基礎的紮實理解將使接下來的主題更容易掌握。

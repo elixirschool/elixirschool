@@ -1,5 +1,5 @@
 %{
-  version: "1.4.0",
+  version: "1.5.0",
   title: "Bases",
   excerpt: """
   Installation, types de base et opérations.
@@ -196,6 +196,8 @@ iex> !false
 true
 ```
 
+En Elixir, le concept de "véracité" est très simple : seuls `false` et `nil` sont considérés comme faux. Toute autre valeur, y compris `0`, `""` (chaîne vide) et `[]` (liste vide), est considérée comme vraie. Cette règle stricte permet aux opérateurs booléens comme `||`, `&&` et `!` de fonctionner de manière prévisible avec n'importe quel type de données pour la logique conditionnelle.
+
 Il y a trois opérateurs additionnels, dont le premier argument _doit_ être un booléen (`true` ou `false`) :
 
 ```elixir
@@ -271,3 +273,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Conclusion
+
+Dans cette leçon, nous avons couvert les éléments fondamentaux d'Elixir.
+
+Nous avons commencé par installer Elixir et lancer le shell interactif IEx, où nous avons évalué des expressions simples et vu des résultats immédiats. De là, nous avons exploré les types de données de base : les entiers (y compris les formes binaires, octales et hexadécimales), les flottants, les booléens, les atomes et les chaînes de caractères.
+
+Nous avons également travaillé avec des opérations de base telles que l'arithmétique, la logique booléenne et les opérateurs de comparaison. En chemin, nous avons vu comment Elixir gère la véracité — seuls `false` et `nil` sont faux — et comment les opérateurs `||`, `&&`, `and` et `or` se comportent différemment selon leurs attentes.
+
+Enfin, nous avons examiné l'interpolation et la concaténation de chaînes, deux outils essentiels pour travailler avec du texte.
+
+Ces concepts forment la base du développement quotidien avec Elixir. Prenez le temps de les expérimenter dans IEx, essayez de modifier les exemples et observez comment le langage se comporte. Une compréhension solide de ces bases rendra les prochains sujets beaucoup plus faciles à appréhender.

@@ -1,5 +1,5 @@
 %{
-  version: "0.9.0",
+  version: "1.5.0",
   title: "Grunnleggende Elixir",
   excerpt: """
   Installasjon, grunnleggende typer og operatorer.
@@ -174,6 +174,8 @@ iex> !false
 true
 ```
 
+I Elixir er konseptet "sannhet" veldig enkelt: bare `false` og `nil` anses som usanne. Alle andre verdier, inkludert `0`, `""` (tom streng) og `[]` (tom liste), anses som sanne. Denne strenge regelen gjør at boolske operatorer som `||`, `&&` og `!` fungerer forutsigbart med alle datatyper for betinget logikk.
+
 Det er i tillegg tre andre operatorer, hvor første argumentet _må_ være en boolsk verdi (`true` eller `false`):
 
 ```elixir
@@ -184,10 +186,12 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Merk: Elixirs `and` og `or` tilsvarer faktisk `andalso` og `orelse` i Erlang.
 
 ### Sammenligningoperatorer
 
@@ -250,38 +254,14 @@ iex> "Hello " <> name
 "Hello Sean"
 ```
 
-iex> "Hello " <> name
-"Hello Sean"
+## Konklusjon
 
-```
+I denne leksjonen dekket vi de grunnleggende byggesteinene i Elixir.
 
+Vi startet med å installere Elixir og starte det interaktive skallet IEx, der vi evaluerte enkle uttrykk og så umiddelbare resultater. Derfra utforsket vi de grunnleggende datatypene: heltall (inkludert binære, oktale og heksadesimale former), flyttall, boolske verdier, atomer og strenger.
 
-Dette kan føre til noen interessante, men gyldige sammenligninger du kanskje ikke finner i andre programmeringsspråk:
+Vi jobbet også med grunnleggende operasjoner som aritmetikk, boolsk logikk og sammenligningsoperatorer. Underveis så vi hvordan Elixir håndterer sannhet — bare `false` og `nil` er usanne — og hvordan operatorene `||`, `&&`, `and` og `or` oppfører seg forskjellig avhengig av forventningene.
 
-```elixir
-iex> :hello > 999
-true
-iex> {:hello, :world} > [1, 2, 3]
-false
-```
+Til slutt så vi på strenginterpolasjon og strengsammensetning, to viktige verktøy for å jobbe med tekst.
 
-### Strenginterpolering (String interpolation)
-
-Hvis du noen gang har programmert i Ruby, vil strenginterpolering i Elixir
-se kjent ut:
-
-```elixir
-iex> name = "Sean"
-iex> "Hello #{name}"
-"Hello Sean"
-```
-
-### Strengsammensetning (String concatenation)
-
-Strengsammensetning benytter `<>` operatoren:
-
-```elixir
-iex> name = "Sean"
-iex> "Hello " <> name
-"Hello Sean"
-```
+Disse konseptene danner grunnlaget for daglig Elixir-utvikling. Ta deg tid til å eksperimentere med dem i IEx, prøv å endre eksemplene og observer hvordan språket oppfører seg. En solid forståelse av disse grunnleggende konseptene vil gjøre de neste temaene mye lettere å forstå.

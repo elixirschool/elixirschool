@@ -1,5 +1,5 @@
 %{
-  version: "1.4.1",
+  version: "1.5.0",
   title: "Básico",
   excerpt: """
   Primeiros Passos, tipos básicos e operações básicas.
@@ -200,6 +200,8 @@ iex> !false
 true
 ```
 
+No Elixir, o conceito de "veracidade" é muito simples: apenas `false` e `nil` são considerados falsos. Qualquer outro valor, incluindo `0`, `""` (string vazia) e `[]` (lista vazia), é considerado verdadeiro. Essa regra estrita permite que operadores booleanos como `||`, `&&` e `!` funcionem de maneira previsível com qualquer tipo de dado para lógica condicional.
+
 Há três operadores adicionais cujo primeiro argumento _deve_ ser um booleano (`true` e `false`):
 
 ```elixir
@@ -210,7 +212,7 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
@@ -277,3 +279,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Conclusão
+
+Nesta lição, cobrimos os blocos fundamentais do Elixir.
+
+Começamos instalando o Elixir e iniciando o shell interativo IEx, onde avaliamos expressões simples e vimos resultados imediatos. A partir daí, exploramos os tipos de dados básicos: inteiros (incluindo formas binárias, octais e hexadecimais), floats, booleanos, átomos e strings.
+
+Também trabalhamos com operações básicas como aritmética, lógica booleana e operadores de comparação. Ao longo do caminho, vimos como o Elixir lida com veracidade — apenas `false` e `nil` são falsos — e como os operadores `||`, `&&`, `and` e `or` se comportam de maneira diferente dependendo de suas expectativas.
+
+Por fim, vimos a interpolação e concatenação de strings, duas ferramentas essenciais para trabalhar com texto.
+
+Esses conceitos formam a base do desenvolvimento diário com Elixir. Reserve um tempo para experimentá-los no IEx, tente modificar os exemplos e observe como a linguagem se comporta. Uma compreensão sólida desses fundamentos tornará os próximos tópicos muito mais fáceis de entender.

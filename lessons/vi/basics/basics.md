@@ -1,5 +1,5 @@
 %{
-  version: "0.9.0",
+  version: "1.5.0",
   title: "Cơ bản",
   excerpt: """
   Cài đặt, cái kiểu phổ thông và cơ chế hoạt động.
@@ -162,6 +162,8 @@ iex> !false
 true
 ```
 
+Trong Elixir, khái niệm "tính đúng đắn (truthiness)" rất đơn giản: chỉ có `false` và `nil` được coi là sai. Mọi giá trị khác, bao gồm `0`, `""` (chuỗi rỗng) và `[]` (danh sách rỗng), đều được coi là đúng. Quy tắc nghiêm ngặt này cho phép các toán tử boolean như `||`, `&&` và `!` hoạt động có thể dự đoán được với bất kỳ kiểu dữ liệu nào cho logic điều kiện.
+
 Có 3 luận tử bổ sung mà đối số _phải là_ một luận lý Boolean (`true` và `false`):
 
 ```elixir
@@ -172,10 +174,12 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Lưu ý: `and` và `or` trong Elixir thực tế ánh xạ tới `andalso` và `orelse` trong Erlang.
 
 ### So sánh
 
@@ -235,3 +239,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Kết luận
+
+Trong bài học này, chúng ta đã tìm hiểu các khối xây dựng cơ bản của Elixir.
+
+Chúng ta bắt đầu bằng việc cài đặt Elixir và khởi chạy shell tương tác IEx, nơi chúng ta đánh giá các biểu thức đơn giản và thấy kết quả ngay lập tức. Từ đó, chúng ta khám phá các kiểu dữ liệu cốt lõi: số nguyên (bao gồm dạng nhị phân, bát phân và thập lục phân), số thực, boolean, atom và chuỗi.
+
+Chúng ta cũng làm việc với các phép toán cơ bản như số học, logic boolean và toán tử so sánh. Trên đường đi, chúng ta thấy Elixir xử lý tính đúng đắn như thế nào — chỉ `false` và `nil` là sai — và các toán tử `||`, `&&`, `and` và `or` hoạt động khác nhau như thế nào tùy theo kỳ vọng của chúng.
+
+Cuối cùng, chúng ta đã xem xét nội suy chuỗi và nối chuỗi, hai công cụ thiết yếu để làm việc với văn bản.
+
+Những khái niệm này tạo nên nền tảng của việc phát triển Elixir hàng ngày. Hãy dành thời gian để thử nghiệm với chúng trong IEx, thử sửa đổi các ví dụ và quan sát cách ngôn ngữ hoạt động. Hiểu vững chắc những điều cơ bản này sẽ giúp các chủ đề tiếp theo dễ nắm bắt hơn nhiều.

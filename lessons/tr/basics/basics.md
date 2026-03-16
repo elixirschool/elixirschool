@@ -1,5 +1,5 @@
 %{
-  version: "1.1.2",
+  version: "1.5.0",
   title: "Temeller",
   excerpt: """
   Temel veri tipleri ve temel operasyonlar ile başlayalım.
@@ -194,6 +194,8 @@ iex> !false
 true
 ```
 
+Elixir'de "doğruluk" kavramı çok basittir: yalnızca `false` ve `nil` yanlış olarak kabul edilir. `0`, `""` (boş dize) ve `[]` (boş liste) dahil diğer tüm değerler doğru olarak kabul edilir. Bu katı kural, `||`, `&&` ve `!` gibi boolean operatörlerin koşullu mantık için herhangi bir veri türüyle öngörülebilir şekilde çalışmasını sağlar.
+
 İlk argümanı mutlaka mantıksal değer (`true` yada `false`) olması gereken 3 ek operatör bulunmaktadır:
 
 ```elixir
@@ -204,10 +206,12 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Not: Elixir'deki `and` ve `or` aslında Erlang'daki `andalso` ve `orelse` ile eşleşir.
 
 ### Karşılaştırmalar
 
@@ -267,3 +271,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Sonuç
+
+Bu derste Elixir'in temel yapı taşlarını ele aldık.
+
+Elixir'i kurarak ve etkileşimli kabuk IEx'i başlatarak başladık; burada basit ifadeleri değerlendirdik ve anında sonuçlar gördük. Oradan temel veri türlerini keşfettik: tam sayılar (ikili, sekizli ve onaltılı formlar dahil), kayan noktalı sayılar, boolean değerler, atomlar ve dizeler.
+
+Ayrıca aritmetik, boolean mantık ve karşılaştırma operatörleri gibi temel işlemlerle çalıştık. Bu süreçte Elixir'in doğruluğu nasıl ele aldığını gördük — yalnızca `false` ve `nil` yanlıştır — ve `||`, `&&`, `and` ve `or` operatörlerinin beklentilerine göre nasıl farklı davrandığını gözlemledik.
+
+Son olarak, metinle çalışmak için iki temel araç olan dize enterpolasyonu ve dize birleştirmeye baktık.
+
+Bu kavramlar günlük Elixir geliştirmenin temelini oluşturur. IEx'te bunlarla deney yapmak için biraz zaman ayırın, örnekleri değiştirmeyi deneyin ve dilin nasıl davrandığını gözlemleyin. Bu temellerin sağlam bir şekilde anlaşılması, sonraki konuların kavranmasını çok daha kolay hale getirecektir.

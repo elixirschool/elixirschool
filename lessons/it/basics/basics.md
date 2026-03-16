@@ -1,5 +1,5 @@
 %{
-  version: "1.2.1",
+  version: "1.5.0",
   title: "Base",
   excerpt: """
   Configurazione, tipi di base ed operazioni di base.
@@ -195,6 +195,8 @@ iex> !false
 true
 ```
 
+In Elixir, il concetto di "veridicità" è molto semplice: solo `false` e `nil` sono considerati falsi. Ogni altro valore, inclusi `0`, `""` (stringa vuota) e `[]` (lista vuota), è considerato vero. Questa regola rigorosa permette agli operatori booleani come `||`, `&&` e `!` di funzionare in modo prevedibile con qualsiasi tipo di dato per la logica condizionale.
+
 Esistono altri tre operatori che _devono_ ricevere un booleano (`true` e `false`) come primo argomento:
 
 ```elixir
@@ -205,7 +207,7 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
@@ -270,3 +272,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Conclusione
+
+In questa lezione, abbiamo trattato gli elementi fondamentali di Elixir.
+
+Abbiamo iniziato installando Elixir e avviando la shell interattiva IEx, dove abbiamo valutato espressioni semplici e visto risultati immediati. Da lì, abbiamo esplorato i tipi di dati di base: interi (incluse le forme binarie, ottali e esadecimali), float, booleani, atomi e stringhe.
+
+Abbiamo anche lavorato con operazioni di base come aritmetica, logica booleana e operatori di confronto. Lungo il percorso, abbiamo visto come Elixir gestisce la veridicità — solo `false` e `nil` sono falsi — e come gli operatori `||`, `&&`, `and` e `or` si comportano diversamente a seconda delle loro aspettative.
+
+Infine, abbiamo esaminato l'interpolazione e la concatenazione di stringhe, due strumenti essenziali per lavorare con il testo.
+
+Questi concetti formano la base dello sviluppo quotidiano con Elixir. Prendetevi del tempo per sperimentarli in IEx, provate a modificare gli esempi e osservate come si comporta il linguaggio. Una solida comprensione di queste basi renderà gli argomenti successivi molto più facili da comprendere.

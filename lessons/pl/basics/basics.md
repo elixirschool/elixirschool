@@ -1,5 +1,5 @@
 %{
-  version: "1.3.0",
+  version: "1.5.0",
   title: "Podstawy",
   excerpt: """
   Przygotowanie środowiska, podstawowe typy danych i operacje.
@@ -204,6 +204,8 @@ iex> !false
 true
 ```
 
+W Elixirze koncept "prawdziwości" jest bardzo prosty: tylko `false` i `nil` są uważane za fałszywe. Każda inna wartość, w tym `0`, `""` (pusty łańcuch znaków) i `[]` (pusta lista), jest uważana za prawdziwą. Ta ścisła reguła pozwala operatorom boolowskim takim jak `||`, `&&` i `!` działać przewidywalnie z dowolnym typem danych w logice warunkowej.
+
 Istnieją też trzy operatory, których pierwszym argumentem _musi_ być wartość logiczna (`true` lub `false`):
 
 ```elixir
@@ -214,7 +216,7 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
@@ -280,3 +282,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Podsumowanie
+
+W tej lekcji omówiliśmy podstawowe elementy składowe Elixira.
+
+Zaczęliśmy od instalacji Elixira i uruchomienia interaktywnej powłoki IEx, gdzie ocenialiśmy proste wyrażenia i widzieliśmy natychmiastowe wyniki. Stamtąd zbadaliśmy podstawowe typy danych: liczby całkowite (w tym formy binarne, ósemkowe i szesnastkowe), liczby zmiennoprzecinkowe, wartości logiczne, atomy i łańcuchy znaków.
+
+Pracowaliśmy również z podstawowymi operacjami, takimi jak arytmetyka, logika boolowska i operatory porównania. Po drodze zobaczyliśmy, jak Elixir radzi sobie z prawdziwością — tylko `false` i `nil` są fałszywe — oraz jak operatory `||`, `&&`, `and` i `or` zachowują się różnie w zależności od swoich oczekiwań.
+
+Na koniec przyjrzeliśmy się interpolacji i konkatenacji łańcuchów znaków, dwóm niezbędnym narzędziom do pracy z tekstem.
+
+Te koncepty stanowią podstawę codziennego programowania w Elixirze. Poświęć trochę czasu na eksperymentowanie z nimi w IEx, spróbuj modyfikować przykłady i obserwuj, jak zachowuje się język. Solidne zrozumienie tych podstaw sprawi, że kolejne tematy będą znacznie łatwiejsze do opanowania.

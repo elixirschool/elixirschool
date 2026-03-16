@@ -1,5 +1,5 @@
 %{
-  version: "0.9.0",
+  version: "1.5.0",
   title: "Asas",
   excerpt: """
   Penyediaan, Jenis Data Asas dan Operasi.
@@ -158,6 +158,8 @@ iex> !false
 true
 ```
 
+Dalam Elixir, konsep "kebenaran" sangat mudah: hanya `false` dan `nil` dianggap palsu. Setiap nilai lain, termasuk `0`, `""` (rentetan kosong), dan `[]` (senarai kosong), dianggap benar. Peraturan ketat ini membolehkan operator boolean seperti `||`, `&&`, dan `!` berfungsi secara boleh diramal dengan apa-apa jenis data untuk logik bersyarat.
+
 Terdapat juga tiga operator tambahan yang mana argumen pertama _mesti_ sejenis boolean (`true` dan `false`):
 
 ```elixir
@@ -168,10 +170,12 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Nota: `and` dan `or` dalam Elixir sebenarnya dipetakan kepada `andalso` dan `orelse` dalam Erlang.
 
 ### Perbandingan
 
@@ -231,3 +235,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Kesimpulan
+
+Dalam pelajaran ini, kita telah membincangkan blok binaan asas Elixir.
+
+Kita bermula dengan memasang Elixir dan melancarkan shell interaktif IEx, di mana kita menilai ungkapan mudah dan melihat keputusan serta-merta. Dari situ, kita meneroka jenis data teras: integer (termasuk bentuk binari, oktal, dan heksadesimal), float, boolean, atom, dan rentetan.
+
+Kita juga bekerja dengan operasi asas seperti aritmetik, logik boolean, dan operator perbandingan. Sepanjang jalan, kita melihat bagaimana Elixir mengendalikan kebenaran — hanya `false` dan `nil` adalah palsu — dan bagaimana operator `||`, `&&`, `and`, dan `or` berkelakuan berbeza bergantung pada jangkaan mereka.
+
+Akhirnya, kita melihat interpolasi dan penggabungan rentetan, dua alat penting untuk bekerja dengan teks.
+
+Konsep-konsep ini membentuk asas pembangunan Elixir harian. Luangkan sedikit masa untuk bereksperimen dengannya dalam IEx, cuba ubah suai contoh-contoh, dan perhatikan bagaimana bahasa ini berkelakuan. Pemahaman yang kukuh tentang asas-asas ini akan menjadikan topik seterusnya lebih mudah untuk difahami.

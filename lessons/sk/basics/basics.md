@@ -1,5 +1,5 @@
 %{
-  version: "1.1.2",
+  version: "1.5.0",
   title: "Základy",
   excerpt: """
   Inštalácia, základné dátové typy a operácie.
@@ -181,6 +181,8 @@ iex> !false
 true
 ```
 
+V Elixire je koncept „pravdivosti" veľmi jednoduchý: iba `false` a `nil` sa považujú za nepravdivé. Každá iná hodnota, vrátane `0`, `""` (prázdny reťazec) a `[]` (prázdny zoznam), sa považuje za pravdivú. Toto prísne pravidlo umožňuje boolovským operátorom ako `||`, `&&` a `!` pracovať predvídateľne s akýmkoľvek typom údajov pre podmienkovú logiku.
+
 Ďalšie tri logické operátory _vyžadujú_, aby prvým operandom bola hodnota typu Boolean (`true` alebo `false`):
 
 ```elixir
@@ -191,10 +193,12 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Poznámka: Operátory `and` a `or` v Elixire v skutočnosti zodpovedajú operátorom `andalso` a `orelse` v Erlangu.
 
 ### Porovnávanie
 
@@ -254,3 +258,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Záver
+
+V tejto lekcii sme prebrali základné stavebné bloky Elixiru.
+
+Začali sme inštaláciou Elixiru a spustením interaktívneho shellu IEx, kde sme vyhodnocovali jednoduché výrazy a okamžite videli výsledky. Odtiaľ sme preskúmali základné dátové typy: celé čísla (vrátane binárnych, oktálových a hexadecimálnych foriem), čísla s plávajúcou desatinnou čiarkou, booleovské hodnoty, atómy a reťazce.
+
+Pracovali sme tiež so základnými operáciami ako aritmetika, booleovská logika a porovnávacie operátory. Cestou sme videli, ako Elixir pracuje s pravdivosťou — iba `false` a `nil` sú nepravdivé — a ako sa operátory `||`, `&&`, `and` a `or` správajú rôzne v závislosti od svojich očakávaní.
+
+Na záver sme sa pozreli na interpoláciu a zreťazenie reťazcov, dva základné nástroje pre prácu s textom.
+
+Tieto koncepty tvoria základ každodenného vývoja v Elixire. Venujte trochu času experimentovaniu s nimi v IEx, skúste upraviť príklady a pozorujte, ako sa jazyk správa. Solídne pochopenie týchto základov výrazne uľahčí pochopenie ďalších tém.

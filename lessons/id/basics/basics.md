@@ -1,5 +1,5 @@
 %{
-  version: "1.3.0",
+  version: "1.5.0",
   title: "Dasar",
   excerpt: """
   Persiapan, tipe data dasar, dan operasi dasar.
@@ -196,6 +196,8 @@ iex> !false
 true
 ```
 
+Di Elixir, konsep "kebenaran" sangat sederhana: hanya `false` dan `nil` yang dianggap salah. Setiap nilai lainnya, termasuk `0`, `""` (string kosong), dan `[]` (list kosong), dianggap benar. Aturan ketat ini memungkinkan operator boolean seperti `||`, `&&`, dan `!` bekerja secara dapat diprediksi dengan tipe data apa pun untuk logika kondisional.
+
 Ada tiga operator tambahan yang argumen pertamanya _harus_ sebuah boolean (`true` dan `false`):
 
 ```elixir
@@ -206,10 +208,12 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Catatan: `and` dan `or` di Elixir sebenarnya dipetakan ke `andalso` dan `orelse` di Erlang.
 
 ### Perbandingan
 
@@ -269,3 +273,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Kesimpulan
+
+Dalam pelajaran ini, kita telah membahas blok bangunan dasar Elixir.
+
+Kita mulai dengan menginstal Elixir dan menjalankan shell interaktif IEx, di mana kita mengevaluasi ekspresi sederhana dan melihat hasil secara langsung. Dari sana, kita menjelajahi tipe data inti: integer (termasuk bentuk biner, oktal, dan heksadesimal), float, boolean, atom, dan string.
+
+Kita juga bekerja dengan operasi dasar seperti aritmatika, logika boolean, dan operator perbandingan. Sepanjang jalan, kita melihat bagaimana Elixir menangani kebenaran — hanya `false` dan `nil` yang salah — dan bagaimana operator `||`, `&&`, `and`, dan `or` berperilaku berbeda tergantung pada ekspektasinya.
+
+Terakhir, kita melihat interpolasi dan penggabungan string, dua alat penting untuk bekerja dengan teks.
+
+Konsep-konsep ini membentuk fondasi pengembangan Elixir sehari-hari. Luangkan waktu untuk bereksperimen dengannya di IEx, coba modifikasi contoh-contohnya, dan amati bagaimana bahasa ini berperilaku. Pemahaman yang kuat tentang dasar-dasar ini akan membuat topik selanjutnya jauh lebih mudah dipahami.

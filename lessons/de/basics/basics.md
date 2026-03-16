@@ -1,5 +1,5 @@
 %{
-  version: "0.9.0",
+  version: "1.5.0",
   title: "Grundlagen",
   excerpt: """
   Zum Anfang: Grundlegende Datentypen und Operationen.
@@ -194,6 +194,8 @@ iex> !false
 true
 ```
 
+In Elixir ist das Konzept der "Wahrheitswerte" sehr einfach: Nur `false` und `nil` gelten als falsch. Jeder andere Wert, einschließlich `0`, `""` (leerer String) und `[]` (leere Liste), gilt als wahr. Diese strikte Regel ermöglicht es booleschen Operatoren wie `||`, `&&` und `!`, vorhersehbar mit jedem Datentyp für bedingte Logik zu arbeiten.
+
 Es gibt drei weitere Operatoren, deren erstes Argument ein Boolean sein _muss_:
 
 ```elixir
@@ -204,10 +206,12 @@ true
 iex> not false
 true
 iex> 42 and true
-** (ArgumentError) argument error: 42
+** (BadBooleanError) expected a boolean on left-side of "and", got: 42
 iex> not 42
 ** (ArgumentError) argument error
 ```
+
+Hinweis: Elixirs `and` und `or` entsprechen tatsächlich `andalso` und `orelse` in Erlang.
 
 ### Vergleiche
 
@@ -267,3 +271,15 @@ iex> name = "Sean"
 iex> "Hello " <> name
 "Hello Sean"
 ```
+
+## Fazit
+
+In dieser Lektion haben wir die grundlegenden Bausteine von Elixir behandelt.
+
+Wir begannen mit der Installation von Elixir und dem Start der interaktiven Shell IEx, in der wir einfache Ausdrücke auswerteten und sofortige Ergebnisse sahen. Von dort aus erkundeten wir die grundlegenden Datentypen: Ganzzahlen (einschließlich binärer, oktaler und hexadezimaler Formen), Gleitkommazahlen, Boolesche Werte, Atome und Strings.
+
+Wir arbeiteten auch mit grundlegenden Operationen wie Arithmetik, boolescher Logik und Vergleichsoperatoren. Dabei sahen wir, wie Elixir mit Wahrheitswerten umgeht — nur `false` und `nil` sind falsch — und wie Operatoren wie `||`, `&&`, `and` und `or` sich je nach ihren Erwartungen unterschiedlich verhalten.
+
+Schließlich schauten wir uns String-Interpolation und -Verkettung an, zwei wesentliche Werkzeuge für die Arbeit mit Text.
+
+Diese Konzepte bilden die Grundlage der täglichen Elixir-Entwicklung. Nehmen Sie sich etwas Zeit, um sie in IEx auszuprobieren, versuchen Sie die Beispiele zu modifizieren und beobachten Sie, wie sich die Sprache verhält. Ein solides Verständnis dieser Grundlagen wird die nächsten Themen viel leichter erfassbar machen.
