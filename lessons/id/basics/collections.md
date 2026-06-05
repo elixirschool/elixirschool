@@ -42,7 +42,7 @@ iex> [1, 2] ++ [3, 4, 1]
 
 Catatan tambahan tentang format nama (`++/2`) yang digunakan di atas:
 Dalam Elixir (dan Erlang, bahasa yang digunakan untuk membangun Elixir), sebuah nama fungsi atau operator memiliki dua komponen: nama yang kamu berikan (di sini `++`) dan _arity_ nya.
-Arity (jumlah parameter) adalah bagian inti (penting) dari pembicaraan tentang kode Elixir (dan Erlang).
+Arity (jumlah parameter) merupakan konsep penting dalam Elixir (dan Erlang).
 Arity merupakan jumlah argumen yang bisa diterima oleh sebuah fungsi (dua, dalam kasus ini).
 Arity dan nama fungsinya digabungkan dengan garis miring. Kita akan membicarakan hal ini lebih banyak; saat ini, pengetahuan ini akan membantu kamu untuk memahami notasi ini.
 
@@ -56,7 +56,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 ```
 
 Perhatikan nilai yang terulang.
-Setiap elemen yang ada di sebelah kanan akan menghapus elemen pertama dengan nilai yang sama dari sebelah kiri kiri:
+Setiap elemen yang ada di sebelah kanan akan menghapus elemen pertama dengan nilai yang sama dari sebelah kiri:
 
 ```elixir
 iex> [1,2,2,3,2,3] -- [1,2,3,2]
@@ -75,7 +75,7 @@ iex> [2.0] -- [2.0]
 ### Kepala / Ekor
 
 Ketika menggunakan list, kita biasa menggunakan kepala (head) dan ekor (tail) dari list tersebut.
-Kepala (Head) adalah elemen pertama dari list, sedang ekor (tail) adalah list yang berisi elemen-elemen lainnya.
+Kepala (Head) adalah elemen pertama dari list, sedangkan ekor (tail) adalah list yang berisi elemen-elemen lainnya.
 Elixir menyediakan dua fungsi yang sangat berguna, `hd` dan `tl`, untuk memakai keduanya:
 
 ```elixir
@@ -128,9 +128,9 @@ iex> [{:foo, "bar"}, {:hello, "world"}]
 [foo: "bar", hello: "world"]
 ```
 
-Tiga karakteristik keyword list menyoroti pentingnya mereka:
+Keyword list punya tiga karakteristik penting berikut:
 
-+ Kunci (key)-nya harus berupa atom.
++ Key-nya harus berupa atom.
 + Kuncinya diurutkan sesuai yang ditentukan.
 + Kuncinya tidak harus unik.
 
@@ -139,7 +139,7 @@ Untuk alasan-alasan inilah keyword list paling sering digunakan untuk meneruskan
 ## Map
 
 Di Elixir, map adalah sarana yang paling sering digunakan untuk penyimpanan key-value (kunci-nilai).
-Tidak seperti keyword list, mereka (map) membolehkan kunci dari tipe apa pun dan tidak perlu urut.
+Tidak seperti keyword list, map membolehkan kunci dari tipe apa pun dan tidak perlu urut.
 Kamu bisa mendefinisikan sebuah map dengan sintaks `%{}`, memakai kunci atau variabel yang ditentukan:
 
 ```elixir
