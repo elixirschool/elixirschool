@@ -1,15 +1,16 @@
 %{
-  version: "1.0.2",
+  version: "1.1.1",
   title: "Pencocokan Pola",
   excerpt: """
-  Pencocokan pola (Pattern matching) adalah sebuah bagian Elixir yang powerful, memungkinkan kita mencocokkan value sederhana, struktur data, dan bahkan fungsi. Dalam pelajaran ini kita akan mulai melihat bagaimana pencocokan pola ini digunakan.
+  Pencocokan pola adalah bagian penting dari Elixir. Ini memungkinkan kita untuk mencocokkan nilai, struktur data, dan bahkan fungsi.
+  Dalam pelajaran ini kita akan mulai melihat bagaimana pencocokan pola digunakan.
   """
 }
 ---
 
-## Match operator
+## Operator Pencocokan
 
-Siap untuk dibuat bingung? Dalam Elixir, operator `=` sebetulnya adalah operator pencocokan (match operator), dapat disamakan dengan tanda 'sama dengan' di aljabar. Saat dipakai, akan mengubah ekspresi menjadi persamaan dan membuat Elixir mencocokkan nilai di sisi kiri dengan nilai di sisi kanan. Jika nilainya cocok, akan dikembalikan nilai dari persamaan tersebut. Mari kita lihat:
+Apa kamu siap menghadapi kejutan? Di Elixir, operator `=` sebetulnya adalah operator pencocokan (match operator), dapat disamakan dengan tanda sama dengan dalam aljabar. Saat digunakan, operator ini memperlakukan ekspresi sebagai sebuah persamaan dan membuat Elixir mencoba mencocokkan nilai di sisi kiri dengan nilai di sisi kanan. Jika pencocokan berhasil, ekspresi tersebut mengembalikan nilai persamaan. Jika tidak, ia akan melempar kesalahan. Mari kita lihat:
 
 ```elixir
 iex> x = 1
@@ -25,7 +26,7 @@ iex> 2 = x
 ** (MatchError) no match of right hand side value: 1
 ```
 
-Mari coba dengan sebagian collection yang kita tahu:
+Mari mencobanya dengan beberapa koleksi yang sudah kita kenal:
 
 ```elixir
 # Lists
@@ -52,11 +53,14 @@ iex> {:ok, value} = {:error}
 ** (MatchError) no match of right hand side value: {:error}
 ```
 
-## Pin operator
+## Operator Pin
 
-Kita baru saja pelajari bahwa operator pencocokan melakukan assignment ketika sisi kiri pencocokan berisi variabel. Dalam beberapa kasus perilaku ini, variable rebinding, tidak diinginkan. Untuk situasi semacam ini, kita punya pin operator: `^`.
+Operator pencocokan melakukan penugasan ketika sisi kiri pencocokan mencakup sebuah variabel.
+Dalam beberapa kasus, perilaku pengikatan ulang variabel ini tidak diinginkan.
+Untuk situasi semacam ini, kita punya pin operator: `^`.
 
-Ketika kita melakukan pin sebuah variabel, kita mencocokkan terhadap value yang ada dan bukannya melakukan rebinding terhadap value yang baru. Mari lihat bagaimana ini terjadi:
+Ketika sebuah variabel diberi operator pin, Elixir akan mencocokkan nilai yang sudah, bukan mengikat ulang variabel tersebut ke nilai baru.
+Mari kita lihat bagaimana cara kerjanya:
 
 ```elixir
 iex> x = 1
@@ -69,7 +73,7 @@ iex> x
 2
 ```
 
-Elixir 1.2 menambahkan dukungan pada pin dalam key dari map dan klausa fungsi:
+Sejak Elixir 1.2, operator pin juga dapat digunakan pada key map dan klausa fungsi:
 
 ```elixir
 iex> key = "hello"
@@ -82,7 +86,7 @@ iex> %{^key => value} = %{:hello => "world"}
 ** (MatchError) no match of right hand side value: %{hello: "world"}
 ```
 
-Sebuah contoh pinning dalam klausa fungsi:
+Contoh penggunaan operator pin dalam klausa fungsi:
 
 ```elixir
 iex> greeting = "Hello"
@@ -99,5 +103,6 @@ iex> greet.("Mornin'", "Sean")
 iex> greeting
 "Hello"
 ```
+Klausa pertama fungsi menggunakan operator pin untuk mencocokkan nilai yang sudah ada dari `greeting`. Ini berarti jika `greeting` adalah "Hello", maka akan menggunakan klausa pertama, jika tidak maka akan menggunakan klausa kedua.
 
-Perhatikan pada contoh `"Mornin'"` bahwa perubahan value dari `greeting` menjadi `"Mornin'"` hanya terjadi di dalam fungsi. Di luar fungsi, value `greeting` masih tetap `"Hello"`.
+Perhatikan pada contoh `"Mornin'"` bahwa penugasan ulang `greeting` menjadi `"Mornin'"` hanya terjadi di dalam fungsi. Di luar fungsi, `greeting` tetap `"Hello"`.
