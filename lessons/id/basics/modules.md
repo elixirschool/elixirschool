@@ -1,22 +1,24 @@
 %{
-  version: "0.9.1",
-  title: "Composition",
+  version: "1.4.2",
+  title: "Modul",
   excerpt: """
-  Kita tahu dari pengalaman bahwa adalah menyusahkan jika kita mengumpulkan semua fungsi yang kita buat dalam file dan scope (cakupan) yang sama.  Dalam pelajaran ini kita akan mengulas bahgaimana mengelompokkan fungsi dan mendefinisikan suatu map khusus yang dikenal sebagai sebuah struct untuk mengorganisasikan code kita secara lebih efisien.
+  Bagaimana cara mengelompokkan fungsi dan mendefinisikan peta khusus 
+  untuk mengatur kode kita lebih efisien.
   """
 }
 ---
 
 ## Modul
 
-Modul adalah cara terbaik untuk mengorganisasikan fungsi ke dalam sebuah namespace.  Selain mengelompokkan fungsi, modul juga memungkinkan kita mendefinisikan fungsi bernama dan fungsi privat yang kita bahas di pelajaran sebelumnya.
+Modul memungkinkan kita untuk mengorganisir fungsi ke dalam sebuah namespace.
+Selain mengelompokkan fungsi, modul juga memungkinkan kita untuk mendefinisikan fungsi bernama dan fungsi privat yang telah kita bahas dalam [pelajaran fungsi](/id/lessons/basics/functions).
 
-Let's look at a basic example:
+Mari kita lihat contoh dasar:
 
-``` elixir
+```elixir
 defmodule Example do
   def greeting(name) do
-    ~s(Hello #{name}.)
+    "Hello #{name}."
   end
 end
 
@@ -24,7 +26,7 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
-Kita bisa membuat modul bertingkat (nested) di Elixir, memungkinkan kita untuk mengelompokkan fungsi-fungsi lebih lanjut:
+Dimungkinkan untuk menyusun modul secara bertingkat di Elixir, mengizinkan Anda untuk membuat namespace lebih lanjut untuk fungsionalitas Anda:
 
 ```elixir
 defmodule Example.Greetings do
@@ -43,7 +45,8 @@ iex> Example.Greetings.morning "Sean"
 
 ### Atribut Modul
 
-Atribut modul paling sering digunakan sebagai konstanta di Elixir.  Mari lihat contoh sederhana berikut:
+Atribut modul paling sering digunakan sebagai konstanta di Elixir.
+Mari kita lihat contohnya:
 
 ```elixir
 defmodule Example do
@@ -55,17 +58,22 @@ defmodule Example do
 end
 ```
 
-Penting dicatat bahwa ada atribut yang dicadangkan (reserved) di Elixir.  Tiga atribut tercadang (reserved attribute) yang paling umum adalah:
+Catatan: konstruksi `~s` dalam contoh di atas adalah sigil string, ini dibahas dalam [pelajaran sigil](/id/lessons/basics/sigils).
 
-+ `moduledoc` — Dokumentasi modul.
-+ `doc` — Dokumentasi fungsi dan makro.
-+ `behaviour` — Menggunakan behaviour dari OTP atau yang didefinisikan oleh user.
+Penting untuk dicatat bahwa ada atribut yang dicadangkan di Elixir.
+Tiga yang paling umum adalah:
+
+- `moduledoc` — Mendokumentasikan modul saat ini.
+- `doc` — Dokumentasi untuk fungsi dan makro.
+- `behaviour` — Menggunakan perilaku OTP atau perilaku yang ditentukan pengguna.
 
 ## Struct
 
-Struct adalah map yang spesial dengan sekumpulan key yang sudah didefinisikan dan punya nilai default.  Struct harus didefinisikan di dalam sebuah modul yang namanya juga menjadi nama struct tersebut.  Lazim terjadi bahwa struct tersebut merupakan satu-satunya yang didefinisikan di dalam sebuah modul.
+Struct (sebuah Struktur) adalah map khusus dengan kumpulan kunci dan punya nilai default.
+Sebuah struct harus didefinisikan di dalam sebuah modul, yang namanya diambil dari modul tersebut.
+Sudah umum sebuah struct adalah satu-satunya hal yang didefinisikan di dalam sebuah modul.
 
-Untuk mendefinisikan sebuah struct kita menggunakan `defstruct` bersama daftar keyword dari fieldnya dan juga nilai defaultnya:
+Untuk mendefinisikan sebuah struct, kita menggunakan `defstruct` bersama dengan daftar kata kunci yang berisi field dan nilai default:
 
 ```elixir
 defmodule Example.User do
@@ -95,20 +103,53 @@ iex> sean = %{steve | name: "Sean"}
 %Example.User<name: "Sean", roles: [...], ...>
 ```
 
-Lebih penting lagi, anda bisa mencocokkan struct terhadap map:
+Lebih penting lagi, kamu bisa mencocokkan struct terhadap map:
 
 ```elixir
 iex> %{name: "Sean"} = sean
 %Example.User<name: "Sean", roles: [...], ...>
 ```
 
-## Composition
+Mulai Elixir 1.8, struct menyertakan introspeksi kustom.
+Untuk memahami apa artinya ini dan bagaimana kita menggunakannya, mari kita periksa tangkapan `sean` kita:
 
-Setelah kita tahu cara membuat modul dan struct, mari pelajari cara memasukkan fungsionalitas yang sudah ada ke dalamnya melalui komposisi (composition).  Elixir memberi kita beragam cara untuk berinteraksi dengan modul lain.
+```elixir
+iex> inspect(sean)
+"%Example.User<name: \"Sean\", roles: [...], ...>"
+```
+
+Semua field kita sudah ada, yang mana tidak masalah untuk contoh ini, tetapi bagaimana jika kita memiliki field yang dilindungi yang tidak ingin kita sertakan?
+Fitur `@derive` yang baru memungkinkan kita untuk melakukan hal ini!
+Mari kita perbarui contoh kita sehingga `roles` tidak lagi disertakan dalam output kita:
+
+```elixir
+defmodule Example.User do
+  @derive {Inspect, only: [:name]}
+  defstruct name: nil, roles: []
+end
+```
+
+_Catatan_: kita juga bisa menggunakan `@derive {Inspect, except: [:roles]}`, keduanya setara.
+
+Dengan modul yang telah diperbarui, mari kita lihat apa yang terjadi di `iex`:
+
+```elixir
+iex> sean = %Example.User{name: "Sean"}
+%Example.User<name: "Sean", ...>
+iex> inspect(sean)
+"%Example.User<name: \"Sean\", ...>"
+```
+
+`roles` tersebut dikecualikan dari output!
+
+## Komposisi
+
+Sekarang kita sudah tahu cara membuat modul dan struct, mari kita pelajari cara menambahkan fungsionalitas yang sudah ada ke dalamnya melalui komposisi.
+Elixir menyediakan berbagai cara berbeda untuk berinteraksi dengan modul lain.
 
 ### alias
 
-Elixir mengijinkan kita melakukan alias terhadap nama modul, sering dipakai di code Elixir:
+Memungkinkan kita untuk membuat alias nama modul; cukup sering digunakan dalam kode Elixir:
 
 ```elixir
 defmodule Sayings.Greetings do
@@ -128,7 +169,7 @@ defmodule Example do
 end
 ```
 
-If there's a conflict with two aliases or you just wish to alias to a different name entirely, we can use the `:as` option:
+Jika terjadi konflik antara dua alias atau kita ingin membuat alias ke nama yang berbeda sama sekali, kita dapat menggunakan opsi `:as`:
 
 ```elixir
 defmodule Example do
@@ -138,7 +179,7 @@ defmodule Example do
 end
 ```
 
-It's possible to alias multiple modules at once:
+Dimungkinkan untuk membuat alias untuk beberapa modul sekaligus:
 
 ```elixir
 defmodule Example do
@@ -148,7 +189,7 @@ end
 
 ### import
 
-Jika kita ingin mengimpor fungsi dan macro dari modul lain dan bukannya melakukan alias terhadap modul tersebut kita bisa menggunakan `import`:
+Jika kita ingin mengimpor fungsi daripada membuat alias untuk modul, kita dapat menggunakan `import`:
 
 ```elixir
 iex> last([1, 2, 3])
@@ -159,11 +200,12 @@ iex> last([1, 2, 3])
 3
 ```
 
-#### Filtering
+#### Penyaringan
 
-Secara default semua fungsi dan macro diimpor, tetapi kita bisa memfilter menggunakan pilihan `:only` dan `:except`.
+Secara default, semua fungsi dan makro diimpor, tetapi kita dapat menyaringnya menggunakan opsi `:only` dan `:except`.
 
-Untuk mengimpor fungsi dan macro secara spesifik, kita harus memberikan pasangan nama/arity ke `:only` dan `:except`.  Mari kita awali dengan hanya mengimpor fungsi `last/1`:
+Untuk mengimpor fungsi dan makro tertentu, kita harus memberikan pasangan nama/aritas ke `:only` dan `:except`.
+Mari kita mulai dengan mengimpor hanya fungsi `last/1`:
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -173,7 +215,7 @@ iex> last([1, 2, 3])
 3
 ```
 
-Jika kita mengimport semua kecuali `last/1` dan mencoba fungsi-fungsi yang sama dengan sebelumnya:
+Jika kita mengimport semua kecuali `last/1` dan mencoba fungsi-fungsi yang sama seperti sebelumnya:
 
 ```elixir
 iex> import List, except: [last: 1]
@@ -184,7 +226,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-Sebagai tambahan pada pasangan nama/arity, ada dua atom spesial `:functions` dan `macros`, yang masing-masing hanya mengimpor fungsi dan macro:
+Selain pasangan nama/aritas, terdapat dua atom kasus khusus, `:functions` dan `:macros`, yang masing-masing hanya mengimpor fungsi dan makro:
 
 ```elixir
 import List, only: :functions
@@ -193,7 +235,8 @@ import List, only: :macros
 
 ### require
 
-Walau lebih jarang dipakai `require/2` tetaplah penting.  Melakukan require pada sebuah modul memastikan bahwa modul itu dikompilasi dan dimuat (load).  Ini paling berguna kala kita perlu mengakses makro di sebuah modul:
+Kita bisa menggunakan `require` untuk memberi tahu Elixir bahwa kita akan menggunakan makro dari modul lain.
+Perbedaan kecil dengan `import` adalah bahwa `require` memungkinkan penggunaan makro, tetapi bukan fungsi dari modul yang ditentukan:
 
 ```elixir
 defmodule Example do
@@ -203,22 +246,73 @@ defmodule Example do
 end
 ```
 
-Jika kita mencoba memanggil sebuah macro yang belum dimuat, Elixir akan menghasilkan error.
+Jika kita mencoba memanggil makro yang belum dimuat, Elixir akan menampilkan kesalahan.
 
 ### use
 
-Menggunakan sebuah modul di konteks saat ini.  Ini khususnya berguna ketika sebuah modul perlu melakukan setup.  Dengan memanggil `use` kita mengaktifkan hook `__using__` di dalam modul tersebut, memungkinkan modul tersebut mengubah konteks yang ada:
+Dengan makro `use`, kita dapat memungkinkan modul lain untuk memodifikasi definisi modul kita saat ini.
+Saat kita memanggil `use` dalam kode kita, sebenarnya kita memanggil callback `__using__/1` yang didefinisikan oleh modul yang diberikan.
+Hasil dari makro `__using__/1` menjadi bagian dari definisi modul kita.
+Untuk memahami cara kerjanya dengan lebih baik, mari kita lihat contohnya:
 
 ```elixir
-defmodule MyModule do
-  defmacro __using__(opts) do
+defmodule Hello do
+  defmacro __using__(_opts) do
     quote do
-      import MyModule.Foo
-      import MyModule.Bar
-      import MyModule.Baz
-
-      alias MyModule.Repo
+      def hello(name), do: "Hi, #{name}"
     end
   end
 end
 ```
+
+Di sini kita telah membuat modul `Hello` yang mendefinisikan callback `__using__/1` di dalamnya kita mendefinisikan fungsi `hello/1`.
+Mari kita buat modul baru agar kita dapat mencoba kode baru kita:
+
+```elixir
+defmodule Example do
+  use Hello
+end
+```
+
+Jika kita mencoba kode kita di IEx, kita akan melihat bahwa `hello/1` tersedia di modul `Example`:
+
+```elixir
+iex> Example.hello("Sean")
+"Hi, Sean"
+```
+
+Di sini kita dapat melihat bahwa `use` memanggil callback `__using__/1` pada `Hello` yang kemudian menambahkan kode yang dihasilkan ke modul kita.
+Sekarang setelah kita mendemonstrasikan contoh dasar, mari kita perbarui kode kita untuk melihat bagaimana `__using__/1` mendukung opsi.
+Kita akan melakukan ini dengan menambahkan opsi `greeting`:
+
+```elixir
+defmodule Hello do
+  defmacro __using__(opts) do
+    greeting = Keyword.get(opts, :greeting, "Hi")
+
+    quote do
+      def hello(name), do: unquote(greeting) <> ", " <> name
+    end
+  end
+end
+```
+
+Mari kita perbarui modul `Example` kita untuk menyertakan opsi `greeting` yang baru dibuat:
+
+```elixir
+defmodule Example do
+  use Hello, greeting: "Hola"
+end
+```
+
+Jika kita mencobanya di IEx, kita akan melihat bahwa sapaannya telah diubah:
+
+```elixir
+iex> Example.hello("Sean")
+"Hola, Sean"
+```
+
+Ini adalah contoh untuk menunjukkan cara kerja `use`, tetapi ini adalah alat yang sangat ampuh dalam perangkat Elixir.
+Saat Anda terus belajar tentang Elixir, perhatikan `use`, salah satu contoh yang pasti akan Anda lihat adalah `use ExUnit.Case, async: true`.
+
+**Catatan**: `quote`, `alias`, `use`, `require` adalah makro yang terkait dengan [metaprogramming](/id/lessons/advanced/metaprogramming).
