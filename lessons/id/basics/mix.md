@@ -1,28 +1,34 @@
 %{
-  version: "0.9.2",
+  version: "1.1.3",
   title: "Mix",
   excerpt: """
-  Sebelum kita bisa masuk ke pelajaran Elixir lebih mendalam pertama-tama kita harus belajar tentang mix. Jika anda sudah familiar dengan Ruby, mix adalah seperti gabungan dari Bundler, RubyGems, dan Rake.  Mix adalah bagian krusial dari project Elixir apapun dan dalam pelajaran ini kita akan mengeksplorasi sebagian dari fitur-fiturnya. Untuk melihat semua yang bisa dilakukan oleh mix, jalankan `mix help`.
-  
-  Sampai sekarang kita hanya bekerja dengan `iex` yang punya keterbatasan.  Untuk membuat sesuatu yang bermakna, kita perlu memecah code kita ke banyak file agar bisa mengaturnya dengan efektir. Mix memungkinkan kita melakukan hal itu dengan project
+  Sebelum kita dapat menyelami lebih dalam Elixir, pertama-tama kita perlu mempelajari tentang Mix.
+  Jika Anda familiar dengan Ruby, Mix adalah gabungan dari Bundler, RubyGems, dan Rake.
+  Ini adalah bagian penting dari setiap proyek Elixir dan dalam pelajaran ini kita akan menjelajahi beberapa fitur hebatnya.
+  Untuk melihat semua yang ditawarkan Mix di lingkungan saat ini, jalankan `mix help`.
+
+  Sampai sekarang kita telah bekerja secara eksklusif di dalam `iex` yang memiliki keterbatasan.
+  Untuk membangun sesuatu yang substansial, kita perlu membagi kode kita menjadi banyak file agar dapat dikelola secara efektif; Mix memungkinkan kita melakukan itu dengan proyek.
   """
 }
 ---
 
 ## Project Baru
 
-Ketika kita siap untuk membuat sebuah project Elixir baru, mix membuatnya mudah dengan perintah `mix new`.  Perintah ini akan membuat struktur folder dan prasyarat (boilerplate) yang dibutuhkan untuk project kita.  Hal ini cukup sederhana, jadi mari kita mulai:
+Saat kita siap membuat proyek Elixir baru, Mix mempermudahnya dengan perintah `mix new`.
+Ini akan menghasilkan struktur folder proyek kita dan file-file dasar yang diperlukan.
+Mari kita mulai:
 
 ```bash
 mix new example
 ```
 
-Dari outputnya kita bisa melihat bahwa mix sudah membuat direktori kita dan sejumlah file boilerplate:
+Dari outputnya kita dapat melihat bahwa Mix telah membuat direktori kita dan sejumlah file dasar:
 
 ```bash
 * creating README.md
-* creating .gitignore
 * creating .formatter.exs
+* creating .gitignore
 * creating mix.exs
 * creating lib
 * creating lib/example.ex
@@ -31,10 +37,12 @@ Dari outputnya kita bisa melihat bahwa mix sudah membuat direktori kita dan seju
 * creating test/example_test.exs
 ```
 
-Dalam pelajaran ini kita akan berfokus pada `mix.exs`.  Di sini kita mengkonfigurasi aplikasi, dependeksi, environment, dan versi kita.  Bukalah file tersebut di editor favorit anda, anda akan melihat seperti berikut (komentar dibuang untuk meringkas tampilan):
+Dalam pelajaran ini kita akan memfokuskan perhatian kita pada `mix.exs`.
+Di sini kita mengkonfigurasi aplikasi, dependensi, lingkungan, dan versi kita.
+Buka file tersebut di editor favorit Anda, Anda akan melihat sesuatu seperti ini (komentar dihapus untuk mempersingkat):
 
 ```elixir
-defmodule Example.Mix do
+defmodule Example.MixProject do
   use Mix.Project
 
   def project do
@@ -59,26 +67,30 @@ defmodule Example.Mix do
 end
 ```
 
-Bagian pertama yang akan kita lihat adalah `project`.  Di sini kita mendefinisikan nama aplikasi kita (`app`), menyatakan versi kita (`version`), versi Elixir (`elixir`), dan terakhir dependensi (`deps`).
+Bagian pertama yang akan kita lihat adalah `project`.
+Di sini kita mendefinisikan nama aplikasi (`app`), menentukan versi (`version`), versi Elixir (`elixir`), dan akhirnya dependensi (`deps`).
 
-Bagian `application` digunakan dalam proses pembuatan file aplikasi kita yang akan kita bahas nanti.
+Bagian `application` digunakan selama pembuatan file aplikasi yang akan kita bahas nanti.
 
 ## Interaktif
 
-Mungkin kita perlu menggunakan `iex` dalam konteks aplikasi kita.  Untungnya, mix mempermudah hal ini.  Kita bisa memulasi sebuah sesi `iex` baru:
+Mungkin perlu menggunakan `iex` dalam konteks aplikasi kita.
+Kita dapat memulai sesi `iex` baru:
 
 ```bash
 cd example
 iex -S mix
 ```
 
-Memulai `iex` dengan cara ini akan memuat aplikasi anda dan dependensinya ke dalam runtime yang berjalan.
+Menjalankan `iex` dengan cara ini akan memuat aplikasi dan dependensi Anda ke dalam runtime saat ini.
 
 ## Kompilasi
 
-Mix cerdas dan akan mengkompilasi perubahan yang anda lakukan jika perlu, tetapi mungkin masih perlu mengkompilasi project anda secara eksplisit.  Dalam bagian ini kita akan membahas cara mengkompilasi project kita dan apa yang dilakukan oleh kompilasi.
+Mix itu cerdas dan akan mengkompilasi perubahan Anda jika diperlukan, tetapi mungkin masih perlu untuk mengkompilasi proyek Anda secara eksplisit.
+Di bagian ini kita akan membahas cara mengkompilasi proyek kita dan apa yang dilakukan kompilasi.
 
-Untuk mengkompilasi sebuah project mix kita hanya perlu menjalankan `mix compile` di direktori dasar:
+Untuk mengkompilasi proyek Mix, kita hanya perlu menjalankan `mix compile` di direktori dasar kita:
+**Catatan: Tugas Mix untuk sebuah proyek hanya tersedia dari direktori root proyek, hanya tugas Mix global yang tersedia selain itu.**
 
 ```bash
 mix compile
@@ -91,46 +103,52 @@ Compiled lib/example.ex
 Generated example app
 ```
 
-Ketika kita mengkompilasi sebuah project, mix membuat sebuah direktori `_build` untuk artifak kita.  Jika kita melihat ke dalam `_build` kita akan melihat aplikasi kita yang sudah dikompilasi: `example.app`.
+Saat kita mengkompilasi sebuah proyek, Mix membuat direktori `_build` untuk artefak kita.
+Jika kita melihat ke dalam `_build`, kita akan melihat aplikasi yang telah dikompilasi: `example.app`.
 
-## Menata Dependensi
+## Mengelola Dependensi
 
-Project kita tidak punya dependensi (dependency, project lain yang dibutuhkan), sekarang ini, tapi akan punya, sehingga kita akan membahas tentang mendefinisikan ketergantungan dan mengambilnya.
+Proyek kita belum memiliki dependensi, tetapi akan segera memilikinya, jadi kita akan membahas cara mendefinisikan dependensi dan mengambilnya.
 
-Untuk menambahkan sebuah dependensi baru, kita perlu terlebih dulu menambahkannya ke file `mix.exs` kita di bagian `deps`.  Daftar dependensi kita terdiri dari tuple dengan dua value yang harus ada dan satu opsional: Nama paket (package) sebagai sebuah atom, string berisi versi, dan pilihan opsional.
+Untuk menambahkan dependensi baru, kita perlu menambahkannya terlebih dahulu ke `mix.exs` di bagian `deps`.
+Daftar dependensi kita terdiri dari tuple dengan dua nilai wajib dan satu nilai opsional: nama paket sebagai atom, string versi, dan opsi opsional.
 
-Untuk contoh ini mari lihat sebuah project dengan dependensi, seperti [phoenix_slim](https://github.com/doomspork/phoenix_slim):
+Untuk contoh ini, mari kita lihat sebuah proyek dengan dependensi, seperti [phoenix_slim](https://github.com/doomspork/phoenix_slim):
 
 ```elixir
 def deps do
   [
-    {:phoenix, "~> 1.1 or ~> 1.2"},
-    {:phoenix_html, "~> 2.3"},
-    {:cowboy, "~> 1.0", only: [:dev, :test]},
-    {:slime, "~> 0.14"}
+    {:phoenix, "~> 1.8"},
+    {:phoenix_html, "~> 4.3"},
+    {:cowboy, "~> 2.12", only: [:dev, :test]},
+    {:slime, "~> 1.3"}
   ]
 end
 ```
 
-Seperti yang mungkin sudah anda pahami dari contoh di atas, dependensi `cowboy` hanya dibutuhkan selama development dan tes.
+Seperti yang mungkin Anda pahami dari dependensi di atas, dependensi `cowboy` hanya diperlukan selama pengembangan dan pengujian.
 
-Begitu kita telah mendefinisikan dependensi kita, ada satu langkah terakhir, mengambilnya.  Ini analog dengan `bundle install`:
+Setelah kita mendefinisikan dependensi kita, ada satu langkah terakhir: mengambilnya.
+Ini mirip dengan `bundle install`:
 
 ```bash
 mix deps.get
 ```
 
-Selesai!  Kita sudah mendefinisikan dan mangambil dependensi project kita.  Sekarang kita sudah siap untuk manambahkan dependensi jika saatnya tiba.
+Selesai! Kita sudah mendefinisikan dan mengambil dependensi proyek kita.
+Sekarang kita siap untuk menambahkan dependensi ketika saatnya tiba.
 
-## Environment
+## Lingkungan
 
-Mix, seperti Bundler, mendukung pembedaan environment.  Secara default mix bekerja dengan tiga environment:
+Mix, seperti halnya Bundler, mendukung berbagai lingkungan.
+Secara default, Mix dikonfigurasi untuk memiliki tiga lingkungan:
 
-+ `:dev` — Environment default.
-+ `:test` — Digunakan oleh `mix test`. Dibahas lebih jauh di pelajaran kita berikutnya.
-+ `:prod` — Digunakan ketika kita meluncurkan aplikasi kita di production.
+- `:dev` — Lingkungan default.
+- `:test` — Digunakan oleh `mix test`. Dibahas lebih lanjut di pelajaran berikutnya.
+- `:prod` — Digunakan saat kita meluncurkan aplikasi ke lingkungan produksi.
 
-Environment yang sedang berjalan dapat diakses menggunakan `Mix.env`.  Sebagaimana diduga, environment bisa diubah dengan environment variable `MIX_ENV`:
+Lingkungan saat ini dapat diakses menggunakan `Mix.env`.
+Seperti yang diharapkan, lingkungan dapat diubah melalui variabel lingkungan `MIX_ENV`:
 
 ```bash
 MIX_ENV=prod mix compile

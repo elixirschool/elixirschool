@@ -1,50 +1,71 @@
 %{
-  version: "0.9.1",
+  version: "1.2.2",
   title: "Strings",
   excerpt: """
-  Tentang String di Elixir, Char list, Grapheme, dan Codepoint.
+  String, Charlist, Graphemes dan Codepoints.
   """
 }
 ---
 
 ## String di Elixir
 
-String Elixir tidak lebih dari serangkaian byte. Mari lihat sebuah contoh:
+String Elixir hanyalah urutan byte.
+Lihat contohnya:
 
 ```elixir
 iex> string = <<104,101,108,108,111>>
 "hello"
+iex> string <> <<0>>
+<<104, 101, 108, 108, 111, 0>>
 ```
 
->PERHATIKAN: Menggunakan sintaks << >> kita memberitahukan ke compiler bahwa elemen-elemen di dalam simbol ini adalah byte.
+Dengan menggabungkan string dengan byte `0`, IEx menampilkan string tersebut sebagai biner karena string tersebut bukan lagi string yang valid.
+Trik ini dapat membantu kita melihat byte yang mendasari string apa pun.
 
-## Char list
+>CATATAN: Dengan menggunakan sintaks << >> kita memberi tahu kompiler bahwa elemen di dalam simbol tersebut adalah byte.
 
-Secara internal, string Elixir direpresentasikan dengan serangkaian byte dan bukannya array dari karakter, dan Elixir juga punya tipe char list (list dari karaketer).  String Elixir dibuat dengan kutip ganda, sedangkan char list dibuat dengan kutip tunggal.
+## Charlists
 
-Apa beda antara keduanya? Setiap value dari char list adalah nilai ASCII dari karakter tersebut. Mari kita dalami:
+Secara internal, string Elixir direpresentasikan dengan urutan byte, bukan array karakter.
+Elixir juga memiliki tipe daftar karakter (character list).
+String Elixir diapit dengan tanda kutip ganda, sedangkan daftar karakter diapit dengan tanda kutip tunggal.
+
+Apa perbedaannya? Setiap nilai dalam daftar karakter adalah titik kode Unicode dari sebuah karakter, sedangkan dalam biner, titik kode dikodekan sebagai UTF-8.
+Mari kita pelajari:
 
 ```elixir
-iex> char_list = 'hello'
-'hello'
-
-iex> [hd|tl] = char_list
-'hello'
-
-iex> {hd, tl}
-{104, 'ello'}
-
-iex> Enum.reduce(char_list, "", fn char, acc -> acc <> to_string(char) <> "," end)
-"104,101,108,108,111,"
+iex> 'hełło'
+[104, 101, 322, 322, 111]
+iex> "hełło" <> <<0>>
+<<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
-Ketika membuat program di Elixir, kita biasanya tidak memakai char list melainkan String. Dukungan terhadap char list diberikan karena char list dibutuhkan oleh beberapa modul Erlang.
+`322` is the Unicode codepoint for ł but it is encoded in UTF-8 as the two bytes `197`, `130`.
 
-## Grapheme and codepoint
+You can get a character’s code point by using `?`
 
-Codepoint adalah karakter Unicode sederhana, yang bisa direpresentasikan dengan satu atau dua byte. Sebagai contoh, karakter dengan tilde atau aksen: `á, ñ, è`. Grapheme terdiri dari beberapa codepoint yang tampak sebagai satu karakter sederhana.
+```elixir
+iex> ?Z
+90
+```
 
-Modul String sudah menyediakan dua fungsi untuk menggunakannya, `graphemes/1` and `codepoints/1`. Mari kita lihat contohnya:
+Ini memungkinkan Anda menggunakan notasi `?Z` daripada 'Z' untuk sebuah simbol.
+
+Saat memprogram di Elixir, kita biasanya menggunakan string, bukan charlist.
+Dukungan charlist terutama disertakan karena diperlukan untuk beberapa modul Erlang.
+
+Untuk informasi lebih lanjut, lihat [`Panduan Memulai` resmi](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+
+## Grafem dan Codepoints
+
+Codepoint adalah karakter Unicode dasar yang direpresentasikan oleh satu atau lebih byte, tergantung pada pengkodean UTF-8.
+Karakter di luar set karakter ASCII AS akan selalu dikodekan sebagai lebih dari satu byte.
+Misalnya, karakter Latin dengan tilde atau aksen (`á, ñ, è`) biasanya dikodekan sebagai dua byte.
+Karakter dari bahasa Asia sering dikodekan sebagai tiga atau empat byte.
+Grafem terdiri dari beberapa codepoint yang dirender sebagai satu karakter.
+
+Modul String sudah menyediakan dua fungsi untuk mendapatkannya, `graphemes/1` dan `codepoints/1`.
+Mari kita lihat contohnya:
 
 ```elixir
 iex> string = "\u0061\u0301"
@@ -59,11 +80,13 @@ iex> String.graphemes string
 
 ## Fungsi String
 
-Mari kita review beberapa fungsi yang paling penting dan berguna yang disediakan modul String untuk kita.
+Mari kita tinjau beberapa fungsi terpenting dan paling berguna dari modul String.
+Pelajaran ini hanya akan membahas sebagian kecil dari fungsi yang tersedia.
+Untuk melihat kumpulan fungsi lengkap, kunjungi dokumentasi resmi [`String`](https://hexdocs.pm/elixir/String.html).
 
 ### length/1
 
-Mengembalikan jumlah Grapheme dalam string tersebut.
+Mengembalikan jumlah grafem dalam string.
 
 ```elixir
 iex> String.length "Hello"
@@ -72,7 +95,7 @@ iex> String.length "Hello"
 
 ### replace/3
 
-Mengembalikan sebuah string baru, mengganti sebuah pola yang ada dalam string tersebut dngan string baru.
+Mengembalikan string baru yang menggantikan pola saat ini dalam string dengan string pengganti baru.
 
 ```elixir
 iex> String.replace("Hello", "e", "a")
@@ -81,7 +104,7 @@ iex> String.replace("Hello", "e", "a")
 
 ### duplicate/2
 
-Mengembalikan sebuah string baru yang diulang n kali.
+Mengembalikan sebuah string baru yang diulang sebanyak n kali.
 
 ```elixir
 iex> String.duplicate("Oh my ", 3)
@@ -90,7 +113,7 @@ iex> String.duplicate("Oh my ", 3)
 
 ### split/2
 
-Mengembalikan sebuah array dari string setelah dipisah oleh sebuah pola.
+Mengembalikan daftar string yang dipisahkan berdasarkan pola.
 
 ```elixir
 iex> String.split("Hello World", " ")
@@ -103,15 +126,16 @@ Mari langsung mencoba dengan dua latihan sederhana untuk mendemonstrasikan bahwa
 
 ### Anagram
 
-A dan B dianggap anagram jika dengan mengubah urutan karakternya kita bisa membuatnya jadi sama. Sebagai contoh:
-A = super
-B = perus
+A dan B dianggap sebagai anagram jika ada cara untuk menyusun ulang A atau B sehingga keduanya sama.
+Sebagai contoh:
 
-Jika kita mengubah urutan karakter-karakter di string A, kita bisa dapatkan string B, dan sebaliknya.
++ A = super
++ B = perus
 
-Jadi, bagaimana cara mengecek apakah dua string adalah Anagram di Elixir?
+Jika kita menyusun ulang karakter pada String A, kita bisa mendapatkan string B, dan sebaliknya.
 
-Cara yang termudah adalah dengan mengurutkan kedua string secara alfabet dan mencek apakah sama. Mari cek contoh berikut:
+Jadi, bagaimana kita bisa memeriksa apakah dua string adalah anagram di Elixir? Pendekatan yang paling mudah adalah dengan mengurutkan graphem dari setiap string secara alfabetis dan kemudian memeriksa apakah kedua daftar tersebut sama.
+Mari kita coba:
 
 ```elixir
 defmodule Anagram do
@@ -128,9 +152,13 @@ defmodule Anagram do
 end
 ```
 
-Mari pertama-tama mengamati `anagrams?/2`. Kita mengecek apakah parameter yang kita terima adalah binary atau bukan. Itulah cara untuk mengecek apakah sebuah parameter adalah String di Elixir.
+Mari lihat `anagrams?/2` terlebih dahulu.
+Kita memeriksa apakah parameter yang kita terima berupa biner atau bukan.
+Itulah cara kita memeriksa apakah suatu parameter adalah String di Elixir.
 
-Setelah itu, kita memanggil sebuah fungsi yang mengurutkan kedua string dalam urutan alfabetis, pertama-tama mengubahnya jadi huruf kecil dan lalu menggunakan `String.graphemes` yang mengembalikan array berisi Grapheme dari string tersebut.
+Setelah itu, kita memanggil fungsi yang mengurutkan string secara alfabetis.
+Pertama, fungsi tersebut mengubah string menjadi huruf kecil, kemudian menggunakan `String.graphemes/1` untuk mendapatkan daftar grafem dalam string.
+Terakhir, mengalirkan pipa daftar tersebut ke `Enum.sort/1`.
 
 Mari kita cek outputnya di iex:
 
@@ -155,4 +183,5 @@ iex> Anagram.anagrams?(3, 5)
     iex:11: Anagram.anagrams?/2
 ```
 
-Sebagaimana bisa anda lihat, pemanggilan terakhir ke `anagrams?` mengakibatkan FunctionClauseError.  Error ini memberitahu kita bahwa tidak ada fungsi di modul kita yang cocok dengan pola menerima dua argumen non-biner, dan itu persis yang kita inginkan, menerima dua string dan tidak yang lain.
+Seperti yang Anda lihat, panggilan terakhir ke `anagrams?` menyebabkan FunctionClauseError.
+Kesalahan ini memberi tahu kita bahwa tidak ada fungsi dalam modul kita yang memenuhi pola menerima dua argumen non-biner, dan itulah yang kita inginkan, yaitu menerima dua string, dan tidak yang lain.

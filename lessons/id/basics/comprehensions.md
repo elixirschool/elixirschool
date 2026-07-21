@@ -1,15 +1,17 @@
 %{
-  version: "0.9.0",
+  version: "1.1.1",
   title: "Comprehensions",
   excerpt: """
-  List comprehension adalah pemanis sintaks (syntactic sugar) untuk menjalani enumerable di Elixir.  Dalam pelajaran ini kita akan melihat bagaimana kita bisa menggunakannya untuk iterasi dan pembuatan enumerable.
+  List comprehension adalah sintaksis yang disederhanakan untuk melakukan perulangan melalui enumerable di Elixir.
+  Dalam pelajaran ini, kita akan melihat bagaimana kita dapat menggunakan comprehension untuk iterasi dan generasi.
   """
 }
 ---
 
 ## Dasar
 
-Sering kali comprehension bisa digunakan untuk membuat statement yang lebih ringkas untuk iterasi `Enum` dan `Stream`.  Mari mulai dengan melihat sebuah comprehension sederhana dan kemudian memecahnya:
+Comprehension sering kali digunakan untuk menghasilkan pernyataan yang lebih ringkas untuk iterasi `Enum` dan `Stream`.
+Mari mulai dengan melihat sebuah comprehension dan kemudian menguraikannya:
 
 ```elixir
 iex> list = [1, 2, 3, 4, 5]
@@ -17,32 +19,36 @@ iex> for x <- list, do: x*x
 [1, 4, 9, 16, 25]
 ```
 
-Yang pertama kita sadari adalah penggunaan `for` dan sebuah generator.  Apa itu generator?  Generator adalah ekspresi serupa `x <- [1, 2, 3, 4]` yang ditemukan dalam list comprehension, dan berperan membuat nilai berikutnya.
+Hal pertama yang kita perhatikan adalah penggunaan `for` dan generator.
+Apa itu generator?
+Generator adalah ekspresi `x <- [1, 2, 3, 4]` yang ditemukan dalam list comprehension.
+Generator bertanggung jawab untuk menghasilkan nilai berikutnya.
 
-Untungnya comprehension tidak hanya terbatas pada list, melainkan juga pada segala enumerable:
+Untungnya, comprehension tidak terbatas pada list; bahkan, comprehension dapat bekerja dengan enumerable apa pun:
 
 ```elixir
-# Keyword List
+# Keyword Lists
 iex> for {_key, val} <- [one: 1, two: 2, three: 3], do: val
 [1, 2, 3]
 
-# Map
+# Maps
 iex> for {k, v} <- %{"a" => "A", "b" => "B"}, do: {k, v}
 [{"a", "A"}, {"b", "B"}]
 
-# Binary
+# Binaries
 iex> for <<c <- "hello">>, do: <<c>>
 ["h", "e", "l", "l", "o"]
 ```
 
-Sebagaimana yang anda mungkin sudah sadari, generator bergantung pada pencocokan pola (pattern matching) untuk membandingkan inputnya dengan variabel di sisi kiri.  Dalam kondisi sebuah match tidak ditemukan, value tersebut diabaikan:
+Seperti banyak hal lainnya di Elixir, generator mengandalkan pencocokan pola untuk membandingkan himpunan inputnya dengan variabel di sisi kiri.
+Jika tidak ada kecocokan, nilainya akan diabaikan:
 
 ```elixir
 iex> for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], do: val
 ["Hello", "World"]
 ```
 
-Adalah mungkin untuk menggunakan generator rangkap (multiple), seperti loop bertingkat:
+Dimungkinkan untuk menggunakan beberapa generator, mirip dengan perulangan bertingkat:
 
 ```elixir
 iex> list = [1, 2, 3, 4]
@@ -52,7 +58,7 @@ iex> for n <- list, times <- 1..n do
 ["*", "*", "**", "*", "**", "***", "*", "**", "***", "****"]
 ```
 
-Untuk mengilustraksikan dengan lebih baik loop yang terjadi, mari gunakan `IO.puts` untuk menampilkan kedua value yang dihasilkan:
+Untuk lebih jelas menggambarkan perulangan yang terjadi, mari gunakan `IO.puts` untuk menampilkan dua nilai yang dihasilkan:
 
 ```elixir
 iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
@@ -68,20 +74,26 @@ iex> for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
 4 - 4
 ```
 
-List comprehension adalah pemanis sintaks dan mestinya dipakai hanya jika dalam kondisi yang cocok.
+List comprehension adalah bentuk penyederhanaan sintaksis dan sebaiknya hanya digunakan bila sesuai.
 
 ## Filter
 
-Anda bisa membayangkan filter sebagai semacam guard untuk comprehension.  Ketika sebuah value bernilai `false` atau `nil`, value tersebut dikecualikan dari list yang dihasilkan.  Mari lakukan loop atas sebuah range dan hanya perhatikan bilangan genap:
+Anda dapat menganggap filter sebagai semacam Klausa Penjaga untuk Comprehensions.
+Ketika nilai yang difilter mengembalikan `false` atau `nil`, nilai tersebut dikecualikan dari daftar akhir.
+Mari kita lakukan perulangan pada suatu rentang dan hanya memperhatikan angka genap.
+Kita akan pakai fungsi `is_even/1` dari modul Integer untuk memeriksa apakah suatu nilai genap atau tidak.
 
 ```elixir
+import Integer
 iex> for x <- 1..10, is_even(x), do: x
 [2, 4, 6, 8, 10]
 ```
 
-Seperti generator, kita bisa gunakan filter rangkap.  Mari coba pada sebuah range dan membuang semua yang tidak genap dan tidak habis dibagi 3:
+Seperti generator, kita dapat menggunakan beberapa filter.
+Mari kita perluas rentang kita dan kemudian saring hanya untuk nilai-nilai yang genap dan habis dibagi 3.
 
 ```elixir
+import Integer
 iex> for x <- 1..100,
 ...>   is_even(x),
 ...>   rem(x, 3) == 0, do: x
@@ -90,20 +102,23 @@ iex> for x <- 1..100,
 
 ## Menggunakan :into
 
-Bagaimana jika kita ingin membuat sesuatu yang bukan list?  Dengan pilihan `:into` kita bisa.  Sebagai panduan umum, `:into` menerima segala struktur yang mengimplementasikan protokol `Collectable`.
+Bagaimana jika kita ingin menghasilkan sesuatu selain daftar?
+Dengan opsi `:into`, kita bisa melakukannya!
+Sebagai aturan umum, `:into` menerima struktur apa pun yang mengimplementasikan protokol `Collectable`.
 
-Menggunakan `:into`, mari buat sebuah map dari sebuah keyword list:
+Dengan menggunakan `:into`, mari buat peta dari daftar kata kunci:
 
 ```elixir
 iex> for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
 %{one: 1, three: 3, two: 2}
 ```
 
-Karena bitstring adalah enumerable kita bisa gunakan list comprehension dan `:into` untuk membuat string:
+Karena biner adalah Collectable, kita dapat menggunakan list comprehension dan `:into` untuk membuat string:
 
 ```elixir
 iex> for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
 "Hello"
 ```
 
-List comprehension adalah sebuah cara yang mudah untuk mengiterasi atas berbagai collection dengan cara yang ringkas.
+Selesai!
+List comprehension adalah cara lain untuk mengulang koleksi secara ringkas.
