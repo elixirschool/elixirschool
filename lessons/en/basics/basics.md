@@ -199,6 +199,13 @@ false
 iex> !false
 true
 ```
+
+- `a || b` returns `a` if `a` is truthy, otherwise returns `b`
+
+- `a && b` returns `b` if `a` is truthy, otherwise returns `a`
+
+- `!a` returns `false` if `a` is truthy, otherwise returns `true`
+
 In Elixir, the concept of "truthiness" is very simple: only `false` and `nil` are considered falsy. Every other value, including `0`, `""` (empty string), and `[]` (empty list), is considered truthy. This strict rule allows boolean operators like `||`, `&&`, and `!` to work predictably with any data type for conditional logic.
 
 There are three additional operators whose first argument _must_ be a boolean (`true` or `false`):
