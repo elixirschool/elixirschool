@@ -46,7 +46,7 @@ iex> try do
 ...> rescue
 ...>   e in RuntimeError -> IO.puts("An error occurred: " <> e.message)
 ...> end
-An error occured: Oh no!
+An error occurred: Oh no!
 :ok
 ```
 
