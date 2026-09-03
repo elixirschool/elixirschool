@@ -54,7 +54,7 @@ iex> ?Z
 Όταν προγραμματίζουμε στην Elixir, συνήθως χρησιμοποιούμε Αλφαριθμητικά, όχι λίστες χαρακτήρων.
 Η υποστήριξη για λίστες χαρακτήρων υπάρχει επειδή χρειάζεται σε μερικές ενότητες της Erlang.
 
-Για περισσότερες πληροφορίες, δείτε στην επίσημη τεκμηρίωση το [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+Για περισσότερες πληροφορίες, δείτε στην επίσημη τεκμηρίωση το [`Getting Started Guide`](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html).
 
 ## Γραφήματα και Κωδικοσημεία
 

@@ -39,7 +39,7 @@ iex(6)> "hełło" <> <<0>>
 
 Cuando programamos en Elixir usualmente usamos cadenas no listas de caracteres. El soporte para listas de caracteres esta incluido principalmente porque es requerido para algunos módulos Erlang.
 
-Para mas información podemos ver la [`Guía de inicio`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+Para mas información podemos ver la [`Guía de inicio`](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html).
 
 ## Grafemas y puntos de código
 

@@ -81,7 +81,7 @@ iex> case "cherry pie" do
 
 Un'altra funzionalità interessante di `case` è il suo supporto alle clausole di controllo (_guard clauses_):
 
-_Questo esempio è tratto direttamente dalla guida ufficiale di Elxir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
+_Questo esempio è tratto direttamente dalla guida ufficiale di Elxir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case)._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -99,7 +99,7 @@ Leggi la documentazione ufficiale per [Expressions allowed in guard clauses](htt
 
 Quando abbiamo bisogno di verificare condizioni, non valori, possiamo usare `cond`; è simile a `else if` o `elsif` in altri linguaggi:
 
-_Questo esempio è tratto direttamente dalla guida ufficiale di Elxir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
+_Questo esempio è tratto direttamente dalla guida ufficiale di Elxir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond)._
 
 ```elixir
 iex> cond do

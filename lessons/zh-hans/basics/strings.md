@@ -48,7 +48,7 @@ iex> ?Z
 
 在使用 Elixir 编程的时候，通常会使用字符串，而不是字符列表。字符列表之所以存在，是因为有些 Erlang 模块要用到它。
 
-更多的信息请参考官方文档 [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+更多的信息请参考官方文档 [`Getting Started Guide`](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html).
 
 ## 字素和字码点
 

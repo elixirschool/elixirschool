@@ -79,7 +79,7 @@ iex> case "cherry pie" do
 
 Друго добро свойство на `case` е неговата поддръжка за предпазващи клаузи:
 
-_Този пример е директно от официалното ръководство на Elixir [Начални стъпки](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
+_Този пример е директно от официалното ръководство на Elixir [Начални стъпки](https://elixir.hexdocs.pm/case-cond-and-if.html#case)._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -97,7 +97,7 @@ iex> case {1, 2, 3} do
 
 Когато трябва да съпоставяме условия, а не стойности, може да се обърнем към `cond`; това е сходно с `else if` или `elsif` от други езици:
 
-_Този пример е директно от официалното ръководство на Elixir [Начални стъпки](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
+_Този пример е директно от официалното ръководство на Elixir [Начални стъпки](https://elixir.hexdocs.pm/case-cond-and-if.html#cond)._
 
 ```elixir
 iex> cond do

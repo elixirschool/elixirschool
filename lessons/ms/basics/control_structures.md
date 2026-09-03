@@ -79,7 +79,7 @@ iex> case "cherry pie" do
 
 Satu lagi ciri `case` ialah sokongan kepada klausa 'guard':
 
-_Contoh ini diambil terus dari panduan rasmi Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
+_Contoh ini diambil terus dari panduan rasmi Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case)._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -97,7 +97,7 @@ Lihat dokumen rasmi untuk [Kenyataan yang dibenarkan di dalam klausa 'guard'](ht
 
 Jika kita perlu untuk memadankan keadaan, dan bukan nilai, kita boleh berpaling kepada `cond`; ini adalah sama dengan `else if` atau `elsif` dalam bahasa-bahasa lain:
 
-_Contoh ini diambil terus dari panduan rasmi Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
+_Contoh ini diambil terus dari panduan rasmi Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond)._
 
 ```elixir
 iex> cond do

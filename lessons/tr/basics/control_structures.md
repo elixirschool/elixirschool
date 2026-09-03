@@ -82,7 +82,7 @@ iex> case "kirazli kek" do
 `case/2`nin diger guzel ozelligi de kosullu karsilastirmalari (guard clauses)
 desteklemesidir:
 
-_Asagidaki ornek direkt olarak resmi Elixir [Baslarken](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) sayfasindan alinmistir._
+_Asagidaki ornek direkt olarak resmi Elixir [Baslarken](https://elixir.hexdocs.pm/case-cond-and-if.html#case) sayfasindan alinmistir._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -100,7 +100,7 @@ Elixir resmi dokumanlarindan devamini inceleyebilirsiniz. [Kosullu karsilastimal
 
 Degerleri karsilastirmak yerine durumlari karsilastirmak istersek `cond/1` kullanmamiz gerekir; bu diger dillerdeki `else if` veya `elsif`e benzemektedir:
 
-_Asagidaki ornek direkt olarak resmi Elixir [Baslarken](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) sayfasindan alinmistir._
+_Asagidaki ornek direkt olarak resmi Elixir [Baslarken](https://elixir.hexdocs.pm/case-cond-and-if.html#cond) sayfasindan alinmistir._
 
 ```elixir
 iex> cond do

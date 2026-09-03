@@ -72,7 +72,7 @@ iex> case "cherry pie" do
 
 `case/2`의 또다른 멋진 점은 가드 구문을 지원한다는 것입니다.
 
-_이 예제는 Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) 가이드에서 그대로 가져온 것입니다._
+_이 예제는 Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case) 가이드에서 그대로 가져온 것입니다._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -90,7 +90,7 @@ iex> case {1, 2, 3} do
 
 값이 아닌 조건식에 매치해야 할 때에는 `cond/1`를 사용하면 됩니다. 이는 다른 언어의 `else if`나 `elsif`와 유사합니다.
 
-_이 예제는 Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) 가이드에서 그대로 가져온 것입니다._
+_이 예제는 Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond) 가이드에서 그대로 가져온 것입니다._
 
 ```elixir
 iex> cond do

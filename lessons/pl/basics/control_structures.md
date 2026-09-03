@@ -82,7 +82,7 @@ iex> case "cherry pie" do
 
 Kolejną właściwością `case` jest wsparcie dla wyrażeń strażników:
 
-_Ten przykład pochodzi z oficjalnego przewodnika po języku Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
+_Ten przykład pochodzi z oficjalnego przewodnika po języku Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case)._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -100,7 +100,7 @@ Więcej szczegółów znajdziesz w dokumentacji w języku angielskim, w module [
 
 Jeżeli chcemy sprawdzić warunki niebędące wartościami, możemy użyć `cond/1`; wyrażenie to odpowiada konstrukcjom `else if` czy `elsif` z innych języków:
 
-_Ten przykład pochodzi z oficjalnego przewodnika po języku Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
+_Ten przykład pochodzi z oficjalnego przewodnika po języku Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond)._
 
 ```elixir
 iex> cond do

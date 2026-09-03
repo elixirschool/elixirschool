@@ -54,7 +54,7 @@ Ini memungkinkan Anda menggunakan notasi `?Z` daripada 'Z' untuk sebuah simbol.
 Saat memprogram di Elixir, kita biasanya menggunakan string, bukan charlist.
 Dukungan charlist terutama disertakan karena diperlukan untuk beberapa modul Erlang.
 
-Untuk informasi lebih lanjut, lihat [`Panduan Memulai` resmi](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+Untuk informasi lebih lanjut, lihat [`Panduan Memulai` resmi](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html).
 
 ## Grafem dan Codepoints
 

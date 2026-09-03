@@ -79,7 +79,7 @@ iex> case "cherry pie" do
 
 Otra característica interesante de `case` es que soporta cláusulas de guardia:
 
-_Este ejemplo proviene directamente de la guía oficial de Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
+_Este ejemplo proviene directamente de la guía oficial de Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case)._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -97,7 +97,7 @@ Revisa la documentación oficial para [Expresiones permitidas en cláusulas de g
 
 Cuando necesitamos coincidencias con condiciones, y no valores, podemos cambiar a `cond`; esto es parecido a `else if` o `elsif` en otros lenguajes:
 
-_Este ejemplo proviene directamente de la guía oficial de Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
+_Este ejemplo proviene directamente de la guía oficial de Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond)._
 
 ```elixir
 iex> cond do

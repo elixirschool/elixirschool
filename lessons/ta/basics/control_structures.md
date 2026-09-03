@@ -80,7 +80,7 @@ iex> case "cherry pie" do
 
 `case/2`ன் மற்றொரு பயனுள்ள அம்சம் காப்புகள் ஆகும்:
 
-_இந்த எடுத்துக்காட்டு எலிக்சரின் [அதிகாரபூர்வ கையேட்டிலிருந்து](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) எடுக்கப்பட்டது._
+_இந்த எடுத்துக்காட்டு எலிக்சரின் [அதிகாரபூர்வ கையேட்டிலிருந்து](https://elixir.hexdocs.pm/case-cond-and-if.html#case) எடுக்கப்பட்டது._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -98,7 +98,7 @@ iex> case {1, 2, 3} do
 
 மதிப்புகளுக்குப்பதிலாக, கோவைகளைப்பொருத்திப்பார்க்கவேண்டுமெனில், `cond/1`; ஐப்பயன்படுத்தலாம். இது பிறநிரலாக்கமொழிகளிலுள்ள `else if` அல்லது `elsif` க்கு இணையானதாகும்:
 
-_இந்த எடுத்துக்காட்டு எலிக்சரின் [அதிகாரபூர்வ கையேட்டிலிருந்து](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) எடுக்கப்பட்டது._
+_இந்த எடுத்துக்காட்டு எலிக்சரின் [அதிகாரபூர்வ கையேட்டிலிருந்து](https://elixir.hexdocs.pm/case-cond-and-if.html#cond) எடுக்கப்பட்டது._
 
 ```elixir
 iex> cond do

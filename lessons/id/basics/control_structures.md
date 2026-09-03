@@ -76,7 +76,7 @@ iex> case "cherry pie" do
 
 Fitur menarik lainnya dari `case/2` adalah dukungannya terhadap klausa penjaga (guard clause):
 
-_Contoh ini diambil langsung dari panduan resmi [Awal Mulai](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) Elixir._
+_Contoh ini diambil langsung dari panduan resmi [Awal Mulai](https://elixir.hexdocs.pm/case-cond-and-if.html#case) Elixir._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -94,7 +94,7 @@ Cek dokumentasi resmi untuk [Ekspresi yang diizinkan dalam klausa penjaga](https
 
 Ketika kita perlu mengevaluasi kondisi alih-alih mencocokkan nilai, kita dapat menggunakan `cond`; ini seperti `else if` atau `elsif` di bahasa-bahasa lain:
 
-_Contoh ini diambil langsung dari panduan resmi [Awal Mulai](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) Elixir._
+_Contoh ini diambil langsung dari panduan resmi [Awal Mulai](https://elixir.hexdocs.pm/case-cond-and-if.html#cond) Elixir._
 
 ```elixir
 iex> cond do

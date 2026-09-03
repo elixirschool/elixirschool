@@ -80,7 +80,7 @@ iex> case "μηλόπιτα" do
 
 Ακόμα ένα πολύ καλό χαρακτηριστικό της `case/2` είναι η υποστήριξή της για ρήτρες προστασίας:
 
-_Αυτό το παράδειγμα προέρχεται κατευθείαν από τον επίσημο οδηγό της Elixir, [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
+_Αυτό το παράδειγμα προέρχεται κατευθείαν από τον επίσημο οδηγό της Elixir, [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case)._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -98,7 +98,7 @@ iex> case {1, 2, 3} do
 
 Όταν χρειάζεται να αντιπαραβάλουμε συνθήκες αντί για τιμές μπορούμε να στραφούμε στην `cond/1`.  Αυτή είναι όμοια με τις `else if` και `elsif` από άλλες γλώσσες:
 
-_Αυτό το παράδειγμα προέρχεται κατευθείαν από τον επίσημο οδηγό της Elixir, [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
+_Αυτό το παράδειγμα προέρχεται κατευθείαν από τον επίσημο οδηγό της Elixir, [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond)._
 
 ```elixir
 iex> cond do
