@@ -91,6 +91,15 @@ iex> Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
 [1001, 2, 3, 1004, 5, 6, 1007, 8]
 ```
 
+### map
+
+To apply our function to each item and produce a new collection look to the `map/2` function:
+
+```elixir
+iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
+[-1, 0, 1, 2]
+```
+
 ### each
 
 It may be necessary to iterate over a collection without producing a new value, for this case we use `each/2`:
@@ -104,15 +113,6 @@ three
 ```
 
 __Note__: The `each/2` function does return the atom `:ok`.
-
-### map
-
-To apply our function to each item and produce a new collection look to the `map/2` function:
-
-```elixir
-iex> Enum.map([0, 1, 2, 3], fn(x) -> x - 1 end)
-[-1, 0, 1, 2]
-```
 
 ### min
 
