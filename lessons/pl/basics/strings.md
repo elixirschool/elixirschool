@@ -53,7 +53,7 @@ Pozwala to na użycie notacji `?Z` zamiast 'Z' dla symbolu.
 Podczas programowania w Elixirze zwykle używamy ciągów znaków, a nie list znaków.
 Obsługa list znaków jest zawarta głównie dlatego, że jest wymagana dla niektórych modułów Erlanga.
 
-Więcej informacji można znaleźć w oficjalnym [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+Więcej informacji można znaleźć w oficjalnym [`Getting Started Guide`](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html).
 
 ## Grafemy i kodowanie
 

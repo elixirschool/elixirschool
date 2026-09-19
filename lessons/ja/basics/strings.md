@@ -48,7 +48,7 @@ iex> ?Z
 
 Elixirでプログラムするときは通常は文字リストを使わず文字列を使います。文字リストがサポートされているのは一部のErlangモジュールがそれを必要としているからです。
 
-詳しい情報が必要なら公式の [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html) を見てください。
+詳しい情報が必要なら公式の [`Getting Started Guide`](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html) を見てください。
 
 ## 書記素とコードポイント
 

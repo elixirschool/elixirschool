@@ -38,7 +38,7 @@ iex(6)> "hełło" <> <<0>>
 
 Pri programovaní v Elixire zvyčajne používame reťazce, nie charlisty. Podpora charlistov je v Elixire hlavne kvôli niektorým Erlangovým modulom, ktoré ju vyžadujú.
 
-Viac informácii nájdete v [oficiálnej príručke](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+Viac informácii nájdete v [oficiálnej príručke](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html).
 
 ## Grafémy a Codepointy
 

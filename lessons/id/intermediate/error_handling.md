@@ -1,15 +1,26 @@
 %{
-  version: "0.9.1",
+  version: "1.1.1",
   title: "Penanganan Error",
   excerpt: """
-  Walaupun lebih umum menggunakan pengembalian tuple `{:error, reason}`, Elixir mendukung exception dan dalam pelajaran ini kita akan melihat bagaimana menangani error dan berbagai mekanisme yang tersedia untuk kita.
-  
+  Meskipun lebih umum untuk mengembalikan tuple `{:error, reason}`, Elixir mendukung exception dan dalam pelajaran ini kita akan melihat bagaimana menangani error dan berbagai mekanisme yang tersedia bagi kita.
+    
   Secara umum, konvensi dalam Elixir adalah untuk membuat sebuah fungsi (`example/1`) yang mengembalikan `{:ok, result}` dan `{:error, reason}` dan fungsi lain yang terpisah (`example!/1`) yang mengembalikan `result` saja atau memunculkan (raise) sebuah error.
   
   Pelajaran ini akan fokus pada berinteraksi dengan yang terakhir
   """
 }
 ---
+
+## Konvensi Umum
+
+Saat ini, komunitas Elixir telah menyepakati beberapa konvensi mengenai penanganan kesalahan:
+
+* Untuk kesalahan yang merupakan bagian dari operasi reguler suatu fungsi (misalnya, pengguna memasukkan tipe tanggal yang salah), fungsi tersebut mengembalikan `{:ok, result}` dan `{:error, reason}` sesuai dengan itu.
+* Untuk kesalahan yang bukan bagian dari operasi normal (misalnya, tidak dapat mengurai data konfigurasi), ada pengecualian (exception).
+
+Kita umumnya menangani kesalahan alur standar dengan [Pencocokan Pola](/id/lessons/basics/pattern_matching), tetapi dalam pelajaran ini, kita berfokus pada kasus kedua - pada exception.
+
+Seringkali, dalam API publik, Anda juga dapat menemukan versi kedua dari fungsi dengan ! (contoh!/1) yang mengembalikan hasil yang tidak dibungkus atau menimbulkan kesalahan.
 
 ## Penanganan Error
 
@@ -20,14 +31,14 @@ iex> raise "Oh no!"
 ** (RuntimeError) Oh no!
 ```
 
-Jika kita ingin menspesifikasikan tipe dan pesan kesalahan (message), kita perlu menggunakan `raise/2`:
+Jika kita ingin menentukan tipe dan pesannya, kita perlu menggunakan `raise/2`:
 
 ```elixir
 iex> raise ArgumentError, message: "the argument value is invalid"
 ** (ArgumentError) the argument value is invalid
 ```
 
-Ketika kita tahu sebuah error bisa muncul, kita bisa menanganinya menggunakan `try/rescue` dan pencocokan pola:
+Ketika kita tahu bahwa kesalahan mungkin terjadi, kita bisa menanganinya menggunakan `try/rescue` dan pencocokan pola:
 
 ```elixir
 iex> try do
@@ -39,7 +50,7 @@ An error occurred: Oh no!
 :ok
 ```
 
-Adalah mungkin mencocokkan banyak error dalam satu rescue tunggal:
+Adalah mungkin mencocokkan beberapa error dalam satu rescue tunggal:
 
 ```elixir
 try do
@@ -54,7 +65,9 @@ end
 
 ## After
 
-Pada berbagai kesempatan mungkin perlu melakukan beberapa tindakan setelah `try/rescue` kita apapun errornya.  Untuk ini kita punya `try/after`.  Jika anda familiar dengan Ruby ini seperti `begin/rescue/ensure` atau di Java `try/catch/finally`:
+Terkadang mungkin perlu melakukan beberapa tindakan setelah `try/rescue` kita terlepas dari kesalahan yang terjadi.
+Untuk ini kita punya `try/after`.
+Jika Anda familiar dengan Ruby, ini mirip dengan `begin/rescue/ensure` atau di Java `try/catch/finally`:
 
 ```elixir
 iex> try do
@@ -72,17 +85,19 @@ The end!
 Ini paling sering dipakai dengan file atau koneksi yang harus ditutup:
 
 ```elixir
-{:ok, file} = File.open "example.json"
+{:ok, file} = File.open("example.json")
+
 try do
-   # Do hazardous work
+  # Do hazardous work
 after
-   File.close(file)
+  File.close(file)
 end
 ```
 
 ## Error Baru
 
-Sementara Elixir mencakup sejumlah tipe error yang built in seperti `RuntimeError` kita punya kemampuan membuat tipe error sendiri jika kita perlu sesuatu yang spesifik.  Membuat error baru adalah mudah dengan macro `defexception/1` yang menerima opsi `:message` untuk menset pesan kesalahan default:
+Meskipun Elixir menyertakan sejumlah tipe kesalahan bawaan seperti `RuntimeError`, kami tetap mempertahankan kemampuan untuk membuat sendiri jika kami membutuhkan sesuatu yang spesifik.
+Membuat kesalahan baru dengan makro `defexception/1` dengan mudah menerima opsi `:message` untuk mengatur pesan kesalahan default:
 
 ```elixir
 defmodule ExampleError do
@@ -103,7 +118,8 @@ iex> try do
 
 ## Throw
 
-Mekanisme lain untuk bekerja dengan error dalam Elixir adalah `throw` and `catch`.  Dalam prakteknya ini sangat jarang muncul dalam code Elixir yang lebih baru tetapi tetap penting untuk diketahui dan dipahami.
+Mekanisme lain untuk menangani kesalahan di Elixir adalah `throw` dan `catch`.
+Dalam praktiknya, ini sangat jarang terjadi dalam kode Elixir yang lebih baru, tetapi tetap penting untuk mengetahui dan memahaminya.
 
 Fungsi `throw/1` memberi kita kemampuan untuk keluar dari eksekusi dengan value spesifik yang bisa kita `catch` (tangkap) dan gunakan:
 
@@ -124,20 +140,22 @@ iex> try do
 "Caught: 5"
 ```
 
-Sebagaimana disinggung, `throw/catch` cukup jarang ada dan biasanya hadir sebagai penghadang (stopgap) ketika librari gagal menyediakan API yang memadai.
+Seperti yang telah disebutkan, `throw/catch` cukup jarang digunakan dan biasanya ada sebagai solusi sementara ketika pustaka gagal menyediakan API yang memadai.
 
 ## Exit
 
-Mekanisme kesalahan Elixir yang terakhir adalah `exit`.  Signal exit muncul manakala sebuah proses mati dan merupakan bagian penting dalam toleransi kegagalan Elixir.
+Mekanisme kesalahan terakhir yang disediakan Elixir adalah `exit`.
+Sinyal exit terjadi setiap kali suatu proses mati dan merupakan bagian penting dari toleransi kesalahan Elixir.
 
-Untuk keluar secara eksplisit kita bisa gunakan `exit/1`:
+Untuk keluar secara eksplisit, kita dapat menggunakan `exit/1`:
 
 ```elixir
 iex> spawn_link fn -> exit("oh no") end
 ** (EXIT from #PID<0.101.0>) evaluator process exited with reason: "oh no"
 ```
 
-Walau adalah mungkin menangkap sebuah exit dengan `try/catch`, melakukannya adalah _sangat_ jarang.  Dalam hampir semua kasus lebih baik membiarkan supervisor menangani exit proses tersebut:
+Meskipun dimungkinkan untuk menangkap exit dengan `try/catch`, melakukannya adalah sangat jarang.
+Dalam hampir semua kasus, lebih menguntungkan untuk membiarkan supervisor menangani keluaran proses:
 
 ```elixir
 iex> try do

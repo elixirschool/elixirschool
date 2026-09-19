@@ -54,7 +54,7 @@ Cela nous permet d'utiliser la notation `?Z` plutôt que 'Z' pour un symbole.
 Quand on programme en Elixir, on utilise généralement les chaînes plutôt que les listes de caractères. 
 Si le support de ces listes de caractères est inclus, c'est principalement car il est requis par certains modules Erlang.
 
-Pour plus d'informations, vous pouvez voir la documentation officielle. [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html)
+Pour plus d'informations, vous pouvez voir la documentation officielle. [`Getting Started Guide`](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html)
 
 ## Les Graphèmes et Points de code
 

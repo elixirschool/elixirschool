@@ -1,5 +1,5 @@
 %{
-  version: "1.0.2",
+  version: "1.0.3",
   title: "Fitur Penunjang IEx",
   excerpt: """
   
@@ -9,15 +9,15 @@
 
 ## Gambaran
 
-Ketika mulai bekerja dengan Elixir, maka IEx ada teman terbaik.
+Ketika mulai bekerja dengan Elixir, IEx adalah sahabat terbaik.
 IEx adalah sebuah REPL (Read–Eval–Print Loop), tetapi memiliki lebih banyak fitur yang bisa mempermudah ketika mengeksplorasi kode baru atau dipakai untuk membantu pengembangan.
-Terdapat banyak fitur bawaan yang akan kita ulas satu-persatu di pelajaran ini.
+Terdapat banyak *helper* bawaan yang akan kita bahas dalam pelajaran ini.
 
 ### Autocomplete
 
-Ketika bekerja di shell IEx, kadang kita perlu menggunakan modul baru yang belum pernah kita pakai.
-Untuk mengetahui apa saja yang tersedia dari modul tersebut, autocomplete bisa membantu.
-Hanya dengan mengetik nama modul diikuti tanda `.` (titik) dan tekan tombol `Tab`:
+Saat bekerja di shell, Anda mungkin sering menemukan diri Anda menggunakan modul baru yang tidak dikenal.
+Untuk memahami beberapa hal yang tersedia bagi Anda, fungsi autocomplete sangat membantu.
+Ketik nama modul diikuti dengan `.` lalu tekan `Tab`:
 
 ```elixir
 iex> Map. # press Tab
@@ -34,17 +34,17 @@ take/2               to_list/1            update!/3
 update/4             values/1
 ```
 
-Dan sekarang kita bisa tahu semua fungsi yang ada termasuk *arity* atau jumlah parameternya!
+Dan sekarang kita tahu fungsi-fungsi yang kita miliki dan aritasnya!
 
 ### .iex.exs
 
-Setiap kali IEx dijalankan maka dia akan coba membaca file konfigurasi  `.iex.exs`.
-Apabila file tersebut tidak ditemukan di direktori saat ini (lokasi dijalankannya IEx), maka file tersebut akan coba dibaca dari direktori home pengguna (`~/.iex.exs`).
+Setiap kali IEx dijalankan, ia akan mencari file konfigurasi `.iex.exs`.
+Jika file tersebut tidak ada di direktori saat ini, maka direktori home pengguna (`~/.iex.exs`) akan digunakan sebagai cadangan.
 
-Konfigurasi dan kode yang ada di dalam file tersebut akan otomatis tersedia ketika kita menjalankan IEx.
-Misalnya kita ingin sebuah fungsi pembantu supaya bisa diakses dari dalam IEx, tinggal buka file `.iex.exs` dan tambah kode yang diperlukan.
+Opsi konfigurasi dan kode yang didefinisikan dalam file ini akan tersedia bagi kita saat shell IEx dijalankan.
+Misalnya, jika kita menginginkan beberapa fungsi pembantu yang tersedia di IEx, kita dapat membuka `.iex.exs` dan melakukan beberapa perubahan.
 
-Mari kita mulai dengan membuat sebuah modul dan fungsi pembantu di dalamnya:
+Mari kita mulai dengan menambahkan modul dengan beberapa fungsi pembantu:
 
 ```elixir
 defmodule IExHelpers do
@@ -56,8 +56,8 @@ defmodule IExHelpers do
 end
 ```
 
-Sekarang ketika kita menjalankan IEx maka module `IExHelpers` akan tersedia dan bisa diakses.
-Jalankan IEx dan coba menggunakan module dan fungsi-fungsi yang sudah kita buat tadi:
+Sekarang, saat kita menjalankan IEx, modul IExHelpers akan tersedia bagi kita sejak awal.
+Buka IEx dan mari kita coba helper baru kita:
 
 ```elixir
 $ iex
@@ -72,13 +72,13 @@ iex> IExHelpers.whats_this?(:test)
 "Type: Atom"
 ```
 
-Seperti yang terlihat, kita tidak perlu melakukkan tindakan khusus untuk meng-import modul yang kita buat barusan, IEx melakukkannya buat kita.
+Seperti yang kita lihat, kita tidak perlu melakukan hal tambahan apa pun untuk membutuhkan atau mengimpor helper kita, IEx menanganinya untuk kita.
 
 ### h
 
-`h` adalah salah satu alat (fungsi) paling berguna yang shell Elixir berikan kepada kita.
-Digunakan untuk membaca dokumentasi kode.
-Untuk menggunakannya sangatlah mudah:
+`h` adalah salah satu alat paling berguna yang diberikan oleh shell Elixir kita.
+Karena dukungan kelas satu yang fantastis dari bahasa ini untuk dokumentasi, dokumentasi untuk kode apa pun dapat diakses menggunakan helper ini.
+Untuk melihat cara kerjanya:
 
 ```elixir
 iex> h Enum
@@ -110,8 +110,8 @@ For example:
 ┃ Enum.each Stream.cycle([1, 2, 3]), &IO.puts(&1)
 ```
 
-Sekarang kita gabung dengan fitur autocomplete yang dibahas sebelumnya.
-Bayangkan kita sedang mempelajari modul `Map` untuk pertama kalinya:
+And now we can even combine this with the autocomplete features of our shell.
+Imagine we were exploring Map for the first time:
 
 ```elixir
 iex> h Map
@@ -155,11 +155,11 @@ Examples
 ┃ %{a: 3, b: 2, d: 4}
 ```
 
-Bisa dilihat bahwa kita tidak hanya bisa melihat fungsi-fungsi apa saja yang tersedia dari modul tersebut tetapi juga bisa mengakses dokumentasi dari setiap fungsi tersebut, diantaranya bahkan menyertakan contoh penggunaan.
+Seperti yang dapat kita lihat, kita tidak hanya dapat menemukan fungsi apa saja yang tersedia sebagai bagian dari modul tersebut, tetapi kita juga dapat mengakses dokumentasi fungsi individual, yang banyak di antaranya menyertakan contoh penggunaan.
 
 ### i
 
-Mari kita gunakan pengetahuan yang baru saja kita pelajari tentang `h` untuk mengetahui lebih banyak tentang apa itu fungsi `i`:
+Mari kita terapkan sebagian pengetahuan baru kita dengan menggunakan `h` untuk mempelajari lebih lanjut tentang helper `i`:
 
 ```elixir
 iex> h i
@@ -192,25 +192,25 @@ Reference modules
   Module, Atom
 ```
 
-Sekarang kita punya cukup informasi tentang `Map` termasuk dimana kode sumbernya disimpan dan modul-module yang menjadi rujukannya.
-Ini cukup berguna ketika kita mempelajari tipe data atau fungsi-fungsi asing dan baru yang tidak pernah kita pakai sebelumnya.
+Sekarang kita punya cukup informasi tentang `Map`, termasuk di mana kode sumbernya disimpan dan modul-modul yang dirujuknya.
+Ini sangat berguna saat menjelajahi tipe data kustom, tipe data asing, dan fungsi-fungsi baru.
 
-Isinya memang cukup banyak, tetapi secara umum kita bisa mengambil beberapa informasi berikut:
+Judul-judul individualnya mungkin padat, tetapi secara garis besar kita dapat mengumpulkan beberapa informasi yang relevan:
 
-- Apa tipe datanya, dalam hal ini atom
-- Dimana letak kode sumbernya
-- Versi dan opsi kompilasinya
-- Keterangan umum
-- Bagaimana cara mengaksesnya
-- Module lain apa yang menjadi rujukannya
+- Ini adalah tipe data atom
+- Di mana kode sumbernya berada
+- Versi dan opsi kompilasi
+- Deskripsi umum
+- Cara mengaksesnya
+- Modul lain apa yang dirujuknya
 
-Hal tersebut memberikan kita cukup informasi, lebih baik daripada tidak ada sama sekali.
+Ini memberi kita banyak hal untuk dikerjakan dan lebih baik daripada melakukannya tanpa informasi yang cukup.
 
 ### r
 
-Apabila kita ingin mengkompilasi ulang modul tertentu, kita bisa menggunakan `r` yang merupakan alias dari `recompile`.
-Misalkan kita melakukkan perubahan terhadap sebuah kode atau ingin menjalankan fungsi baru yang kita buat (tanpa keluar dari shell IEx).
-Cukup simpan perubahan tersebut dan kompilasi ulang dengan `r`:
+Jika kita ingin mengkompilasi ulang modul tertentu, kita dapat menggunakan helper `r`.
+Misalnya, kita telah mengubah beberapa kode dan ingin menjalankan fungsi baru yang telah kita tambahkan.
+Untuk melakukan itu, kita perlu menyimpan perubahan kita dan mengkompilasi ulang dengan `r`:
 
 ```elixir
 iex> r MyProject
@@ -230,7 +230,7 @@ iex> t Map
 @type value() :: any()
 ```
 
-Sekarang kita tahu bahwa di dalam module `Map` telah dideklarasikan tipe `key` dan `value`.
+Sekarang kita tahu bahwa di dalam modul `Map` telah dideklarasikan tipe `key` dan `value`.
 Dan berikut kalau kita lihat kode sumbernya:
 
 ```elixir
@@ -241,7 +241,8 @@ defmodule Map do
 # ...
 ```
 
-Memperlihatkan bahwa key dan value dari sebuah Map bisa bertipe apapun.
+Ini adalah contoh yang menyatakan bahwa `key` dan `value` sesuai implementasi dapat berupa tipe apa pun, ini hal penting untuk mengetahuinya.
 
-Nah dengan memanfaatkan fitur-fitur diatas maka kita bisa dengan mudah mengeksplorasi kode dan mempelajari bagaimana sesuatu itu bekerja.
-IEx sangatlah bermanfaat buat para pengembang, dengan semua fitur tersebut maka bereksplorasi dan membangun dengan Elixir menjadi lebih menyenangkan!
+Dengan memanfaatkan semua fitur bawaan ini, kita dapat menjelajahi kode dan mempelajari lebih lanjut tentang cara kerja berbagai hal.
+IEx adalah alat yang sangat ampuh dan tangguh yang memberdayakan para pengembang.
+Dengan alat-alat ini di kotak peralatan kita, menjelajahi dan membangun dapat menjadi lebih menyenangkan!

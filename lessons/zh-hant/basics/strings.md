@@ -50,7 +50,7 @@ iex> ?Z
 
 在 Elixir 中撰寫程式時，通常使用字串 (strings)，而不是字元列表 (charlists)。不過 Elixir 也包括對字元列表的支援，因為一些 Erlang 模組需要它。
 
-欲了解更多資訊，請參閱官方 [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+欲了解更多資訊，請參閱官方 [`Getting Started Guide`](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html).
 
 ## 字位和碼位 (Graphemes and Codepoints)
 

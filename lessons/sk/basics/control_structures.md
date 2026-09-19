@@ -78,7 +78,7 @@ iex> case "cherry pie" do
 
 Výborná vec, ktorú nám `case/2` umožňuje použiť, sú tzv. *guard clauses* (hraničné podmienky):
 
-_Nasledujúci príklad pochádza priamo z oficiálnej príručky Elixiru [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
+_Nasledujúci príklad pochádza priamo z oficiálnej príručky Elixiru [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case)._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -96,7 +96,7 @@ Pozrite si príslušnú kapitolu v oficiálnej dokumentácii [Expressions allowe
 
 Keď potrebujeme vetviť na základe podmienok, nie hodnôt, použijeme `cond/1` - funguje to podobne ako séria `else if` alebo `elsif` v iných jazykoch:
 
-_Nasledujúci príklad pochádza priamo z oficiálnej príručky Elixiru [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
+_Nasledujúci príklad pochádza priamo z oficiálnej príručky Elixiru [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond)._
 
 ```elixir
 iex> cond do

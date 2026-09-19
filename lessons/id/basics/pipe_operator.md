@@ -1,69 +1,75 @@
 %{
-  version: "0.9.1",
-  title: "Operator pipe",
+  version: "1.0.1",
+  title: "Operator Pipa",
   excerpt: """
-  Operator pipe`|>` melewatkan hasil expression di sebelah kirinya sebagai parameter pertama untuk expression di sebelah kanannya.
+  Operator pipa `|>` meneruskan hasil suatu ekspresi sebagai parameter pertama dari ekspresi lain.
   """
 }
 ---
 
 ## Perkenalan
 
-Pembuatan program bisa sangat rumit. Begitu rumitnya sehingga pemanggilan fungsi bisa begitu berlapis sehingga sulit ditelusuri. Sebagai contoh fungsi berlapis berikut ini:
+Pemrograman bisa menjadi rumit.
+Bahkan sangat rumit sehingga panggilan fungsi bisa menjadi sangat saling terkait sehingga sulit untuk dipahami.
+Perhatikan fungsi berlapis berikut ini:
 
 ```elixir
 foo(bar(baz(new_function(other_function()))))
 ```
 
-Di sini, kita meneruskan nilai dari `other_function/0` ke `new_function/1`, dan `new_function/1` ke `baz/1`, `baz/1` ke `bar/1`, dan akhirnya hasil dari `bar/1` ke `foo/1`. Elixir mengambil pendekatan pragmatis terhadap kekacauan sintaksis ini dengan memberi kita operator pipe. Operator pipe yang tampak seperti `|>` *mengambil hasil dari satu expression dan meneruskannya*. Mari lihat lagi snippet di atas kalau ditulis dengan operator pipe.
+Di sini, kita meneruskan nilai dari `other_function/0` ke `new_function/1`, dan `new_function/1` ke `baz/1`, `baz/1` ke `bar/1`, dan akhirnya hasil dari `bar/1` ke `foo/1`.
+Elixir mengambil pendekatan pragmatis terhadap kekacauan sintaksis ini dengan memberi kita operator pipa.
+Operator pipa yang terlihat seperti `|>` _mengambil hasil dari satu ekspresi, dan meneruskannya_.
+Mari kita lihat lagi cuplikan kode di atas yang ditulis ulang menggunakan operator pipa.
 
 ```elixir
 other_function() |> new_function() |> baz() |> bar() |> foo()
 ```
 
-Pipe mengambil hasil dari kiri, dan meneruskannya ke sebelah kanan.
+Pipa tersebut mengambil hasil dari sisi kiri, dan meneruskannya ke sisi kanan.
 
 ## Contoh
 
-Pada sekumpulan contoh berikut, kita akan menggunakan modul String dari Elixir.
+Untuk rangkaian contoh ini, kita akan menggunakan modul String dari Elixir.
 
-- Memecah string
+- Tokenisasi String (memecah String secara longgar)
 
-```shell
+```elixir
 iex> "Elixir rocks" |> String.split()
 ["Elixir", "rocks"]
 ```
 
-- Mengubah semua token jadi huruf kapital
+- Mengubah semua token jadi huruf besar
 
-```shell
+```elixir
 iex> "Elixir rocks" |> String.upcase() |> String.split()
 ["ELIXIR", "ROCKS"]
 ```
 
 - Mengecek ending
 
-```shell
+```elixir
 iex> "elixir" |> String.ends_with?("ixir")
 true
 ```
 
-## Best Practice
+## Praktik Terbaik
 
-Jika arity (jumlah parameter) dari sebuah fungsi adalah lebih dari 1, pastikan untuk menggunakan tanda kurung. Hal ini tidak berarti banyak untuk Elixir, tapi penting untuk programmer lain yang bisa salah memahami code anda. Jika kita lihat contoh ke-2, dan membuang tanda kurungnya dari `Enum.map/2`, kita mendapat peringatan sebagai berikut.
+Jika aritas suatu fungsi lebih dari 1, pastikan untuk menggunakan tanda kurung.
+Hal ini tidak terlalu penting bagi Elixir, tetapi penting bagi programmer lain yang mungkin salah menafsirkan kode Anda.
+Namun, hal ini penting untuk operator pipa.
+Misalnya, jika kita mengambil contoh ketiga kita, dan menghapus tanda kurung dari `String.ends_with?/2`, kita akan mendapatkan peringatan berikut.
 
-```shell
-iex> "Elixir rocks" |> String.split |> Enum.map &String.upcase/1
-warning: parentheses are required when piping into a function call. For example:
+```elixir
+iex> "elixir" |> String.ends_with? "ixir"
+warning: parentheses are required when piping into a function call.
+For example:
 
-    foo 1 |> bar 2 |> baz 3
+  foo 1 |> bar 2 |> baz 3
 
 is ambiguous and should be written as
 
-    foo(1) |> bar(2) |> baz(3)
+  foo(1) |> bar(2) |> baz(3)
 
-Ambiguous pipe found at:
-  iex:1
-
-["ELIXIR", "ROCKS"]
+true
 ```

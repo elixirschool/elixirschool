@@ -48,7 +48,7 @@ iex> ?Z
 
 Elixir로 프로그래밍할 때, 문자 리스트보다는 문자열을 자주 사용하게 됩니다. 문자 리스트의 지원은 몇몇 얼랭 모듈에 필요하기 때문에 포함되어 있습니다.
 
-더 자세한 정보는 공식 [`시작 가이드`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html)를 참고하세요.
+더 자세한 정보는 공식 [`시작 가이드`](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html)를 참고하세요.
 
 ## 문자소와 코드 포인트
 

@@ -40,7 +40,7 @@ iex(6)> "hełło" <> <<0>>
 
 Elixir de kod yazarken genellik stringleri kullanırız. Bazı erlang modülleri için gerekli olduğundan charlist destek verilmiştir.
 
-Daha fazla destek için resmi [`Başlangıç Kılavuzu'na`] bakınız.(<http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html>).
+Daha fazla destek için resmi [`Başlangıç Kılavuzu'na`] bakınız.(<https://elixir.hexdocs.pm/binaries-strings-and-charlists.html>).
 
 ## Graphemes ve Codepoints
 

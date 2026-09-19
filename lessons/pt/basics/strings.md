@@ -48,7 +48,7 @@ Isso permite usar a notação `?Z` em vez de 'Z' para um símbolo.
 
 Ao programar em Elixir, geralmente usamos strings ao invés de listas de caracteres. O suporte a listas de caracteres é incluso principalmente por ser obrigatório para alguns módulos Erlang.
 
-Para mais informação, veja o [`Guia de Introdução`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html) oficial.
+Para mais informação, veja o [`Guia de Introdução`](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html) oficial.
 
 ## Graphemes e Codepoints
 

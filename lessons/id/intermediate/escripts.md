@@ -1,17 +1,19 @@
 %{
-  version: "0.9.1",
+  version: "1.0.2",
   title: "Executables",
   excerpt: """
-  Untuk membuat eksekutabel di Elixir kita akan menggunakan escript.  Escript menghasilkan sebuah eksekutabel yang bisa dijalankan pada sistem apapun yang sudah diinstali Erlang.
+  Untuk membuat Executable di Elixir, kita akan menggunakan escript.
+  Escript menghasilkan berkas yang dapat dieksekusi di sistem apa pun yang sudah terpasang Erlang.
   """
 }
 ---
 
 ## Memulai
 
-Untuk membuat sebuah eksekutabel dengan escript hanya ada beberapa hal yang kita perlu lakukan: implementasi sebuah fungsi `main/1` dan mengubah Mixfile kita.
+Untuk membuat eksekutabel dengan escript, hanya ada beberapa hal yang perlu kita lakukan: implementasi fungsi `main/1` dan memperbarui Mixfile kita.
 
-Kita akan mulai dengan membuat sebuah modul untuk menjadi titik masuk (entry point) ke eksekutabel kita.  Inilah tempat kita mengimplementasi `main/1`:
+Kita akan mulai dengan membuat modul yang berfungsi sebagai titik masuk ke program yang dapat dieksekusi.
+Di sinilah kita akan mengimplementasikan `main/1`:
 
 ```elixir
 defmodule ExampleApp.CLI do
@@ -21,7 +23,7 @@ defmodule ExampleApp.CLI do
 end
 ```
 
-Kemudian kita perlu mengubah Mixfile kita untuk memasukkan opsi `:escript` ke project kita bersama dengan menspesifikasikan `:main_module` kita:
+Selanjutnya, kita perlu memperbarui Mixfile kita untuk menyertakan opsi `:escript` untuk proyek kita beserta penentuan `:main_module`:
 
 ```elixir
 defmodule ExampleApp.Mixproject do
@@ -35,16 +37,17 @@ defmodule ExampleApp.Mixproject do
 end
 ```
 
-## Memparse Argumen
+## Mengurai Argumen
 
-Dengan aplikasi kita siap, kita dapat lanjut ke memparse argumen dari command line.  Untuk melakukan ini kita akan gunakan `OptionParser.parse/2` dari Elixir dengan opsi `:switches` untuk mengindikasikan bahwa flag kita adalah boolean:
+Setelah aplikasi kita siap, kita dapat melanjutkan ke penguraian argumen dari baris perintah (command line).
+Untuk melakukan ini, kita akan gunakan `OptionParser.parse/2` Elixir dengan opsi `:switches` untuk menunjukkan bahwa flag kita adalah boolean:
 
 ```elixir
 defmodule ExampleApp.CLI do
   def main(args \\ []) do
     args
-    |> parse_args
-    |> response
+    |> parse_args()
+    |> response()
     |> IO.puts()
   end
 
@@ -56,30 +59,29 @@ defmodule ExampleApp.CLI do
     {opts, List.to_string(word)}
   end
 
-  defp response({opts, "Hello"}), do: response({opts, "World"})
-
   defp response({opts, word}) do
     if opts[:upcase], do: String.upcase(word), else: word
   end
 end
 ```
 
-## Membuild
+## Membangun
 
-Sesudah kita selesai mengkonfigurasi aplikasi kita untuk menggunakan escript, membuild eksekutabel kita adalah mudah dengan Mix:
+Setelah kita selesai mengkonfigurasi aplikasi kita untuk menggunakan escript, membangun file executable kita menjadi mudah dengan Mix:
 
-```elixir
+```bash
 mix escript.build
 ```
 
 Let's take it for a spin:
 
-```elixir
+```bash
 $ ./example_app --upcase Hello
-WORLD
+HELLO
 
 $ ./example_app Hi
 Hi
 ```
 
-Selesai.  Kita sudah membuat eksekutabel pertama kita menggunakan escript.
+Selesai.
+Kita telah membuat eksekutabel pertama kita di Elixir menggunakan escript.

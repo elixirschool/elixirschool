@@ -1,17 +1,20 @@
 %{
-  version: "0.9.1",
+  version: "1.0.4",
   title: "Interoperabilitas dengan Erlang",
   excerpt: """
-  Salah satu keuntungan tambahan dari membangun di atas VM Erlang adalah banyaknya librari yang sudah ada yang bisa kita pakai. Interoperabilitas memungkinkan kita memanfaatkan librari-librari tersebut dan juga librari standar Erlang dari code Elixir kita.  Dalam pelajaran ini kita akan melihat bagaimana mengakses fungsi dalam librari standar dan juga paket Erlang buatan pihak lain (third party).
+  Salah satu keuntungan tambahan dari membangun di atas VM Erlang (BEAM) adalah banyaknya pustaka yang tersedia untuk kita pakai.
+  Interoperabilitas memungkinkan kita memanfaatkan pustaka-pustaka tersebut dan juga pustaka standar Erlang dari kode Elixir kita.
+  Dalam pelajaran ini kita akan melihat bagaimana mengakses fungsi dalam librari standar dan juga paket Erlang pihak ketiga.
   """
 }
 ---
 
-## Librari Standar
+## Pustaka Standar
 
-Librari standar Erlang yang luas itu dapat diakses dari code Elixir di dalam aplikasi kita.  Modul-modul Erlang direpresentasikan dengan atom huruf kecil seperti `:os` dan `:timer`.
+Pustaka standar Erlang yang luas dapat diakses dari kode Elixir mana pun dalam aplikasi kita.
+Modul Erlang direpresentasikan oleh atom huruf kecil seperti `:os` dan `:timer`.
 
-Mari gunakan `:timer.tc` untuk mengukur waktu eksekusi dari sebuah fungsi yang ada:
+Mari gunakan `:timer.tc` untuk mengukur waktu eksekusi fungsi tertentu:
 
 ```elixir
 defmodule Example do
@@ -31,7 +34,9 @@ Untuk daftar lengkap modul yang tersedia, lihat [Erlang Reference Manual](http:/
 
 ## Paket Erlang
 
-Dalam pelajaran sebelumnya kita membahas Mix dan menata dependensi kita.  Librari Erlang juga dengan cara yang sama.  Jika librari Erlang tersebut belum dimasukkan ke [Hex](https://hex.pm) anda bisa merujuk ke repositori git:
+Pada pelajaran sebelumnya kita telah membahas Mix dan mengelola dependensi kita.
+Menambahkan pustaka Erlang bekerja dengan cara yang sama.
+Jika pustaka Erlang belum diunggah ke [Hex](https://hex.pm), Anda dapat merujuk ke repositori git sebagai gantinya:
 
 ```elixir
 def deps do
@@ -39,7 +44,7 @@ def deps do
 end
 ```
 
-Sekarang kita bisa mengakses librari Erlang kita:
+Sekarang kita bisa mengakses pustaka Erlang tersebut:
 
 ```elixir
 png =
@@ -48,11 +53,12 @@ png =
 
 ## Perbedaan yang Nampak
 
-Sekarang setelah kita tahu cara menggunakan Erlang kita harus membahas sebagian kejutan (gotcha) yang ada.
+Sekarang setelah kita tahu cara menggunakan Erlang, kita perlu membahas beberapa kendala yang muncul terkait interoperabilitas Erlang.
 
 ### Atom
 
-Atom Erlang sangat mirip atom Elixir tanpa tanda titik dua (`:`).  Atom-atom Erlang direpresentasikan dengan string huruf kecil dan garis bawah:
+Atom Erlang terlihat sangat mirip dengan atom Elixir tanpa tanda titik dua (`:`).
+Atom direpresentasikan oleh string huruf kecil dan garis bawah:
 
 Elixir:
 
@@ -68,7 +74,8 @@ example.
 
 ### String
 
-Dalam Elixir ketika kita berbicara tentang string yang kita maksud adalah binari yang dienkode dengan UTF-8.  Dalam Erlang, string tetap pakai kutip ganda tetapi merujuk ke char list:
+Dalam Elixir, ketika kita berbicara tentang string, yang kita maksud adalah biner yang dikodekan UTF-8.
+Dalam Erlang, string masih menggunakan tanda kutip ganda tetapi merujuk pada daftar karakter (char list):
 
 Elixir:
 
@@ -96,7 +103,8 @@ false
 true
 ```
 
-Adalah penting dicatat bahwa banyak librari Erlang yang lawas mungkin tidak mendukung binary sehingga kita perlu mengkonversi string Elixir ke char list.  Untungnya hal ini mudah dikerjakan dengan fungsi `to_charlist/1`:
+Penting untuk dicatat bahwa banyak pustaka Erlang lama mungkin tidak mendukung biner, jadi kita perlu mengkonversi string Elixir ke daftar karakter.
+Untungnya, ini mudah dilakukan dengan fungsi `to_charlist/1`:
 
 ```elixir
 iex> :string.words("Hello World")
@@ -114,11 +122,13 @@ iex> :string.words("Hello World")
     (stdlib) string.erl:1659: :string.strip/3
     (stdlib) string.erl:1597: :string.words/2
 
-iex> "Hello World" |> to_charlist |> :string.words
+iex> "Hello World" |> to_charlist() |> :string.words
 2
 ```
 
 ### Variabel
+
+Dalam Erlang, variabel diawali dengan huruf kapital dan pengikatan ulang tidak diperbolehkan.
 
 Elixir:
 
@@ -126,8 +136,11 @@ Elixir:
 iex> x = 10
 10
 
-iex> x1 = x + 10
+iex> x = 20
 20
+
+iex> x1 = x + 10
+30
 ```
 
 Erlang:
@@ -136,8 +149,11 @@ Erlang:
 1> X = 10.
 10
 
-2> X1 = X + 1.
-11
+2> X = 20.
+** exception error: no match of right hand side value 20
+
+3> X1 = X + 10.
+20
 ```
 
-Selesai!  Menggunakan Erlang dari dalam aplikasi Elixir kita adalah mudah dan secara efektif melipatgandakan jumlah librari yang tersedia untuk kita.
+Selesai! Memanfaatkan Erlang dari dalam aplikasi Elixir kita secara efektif melipatgandakan jumlah pustaka yang tersedia bagi kita.

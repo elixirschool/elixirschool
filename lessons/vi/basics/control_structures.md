@@ -79,7 +79,7 @@ iex> case "mắm tôm" do
 
 Một tính năng hay của `case` là nó hỗ trợ mệnh đề guard (guard clause):
 
-_Ví dụ này được dẫn trực tiếp từ trang chủ của Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) guide._
+_Ví dụ này được dẫn trực tiếp từ trang chủ của Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case) guide._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -97,7 +97,7 @@ Xem tài liệu tại trang chủ về [Biểu thức hợp lệ trong mệnh đ
 
 Khi chúng ta cần so trùng điều kiện mà không phải giá trị, chúng ta chuyển sang dùng `cond`. Nó giống với `else if` hay `elsif` của các ngôn ngữ khác:
 
-_Ví dụ này được dẫn trực tiếp từ trang chủ của Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guide._
+_Ví dụ này được dẫn trực tiếp từ trang chủ của Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond) guide._
 
 ```elixir
 iex> cond do

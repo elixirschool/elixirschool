@@ -1,5 +1,5 @@
 %{
-  version: "1.9.3",
+  version: "1.9.4",
   title: "Enum",
   excerpt: """
   A set of algorithms for enumerating over enumerables.
@@ -167,7 +167,7 @@ iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
 iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 6
 
-iex> Enum.reduce(["a","b","c"], "1", fn(x,acc)-> x <> acc end)
+iex> Enum.reduce(["a","b","c"], "1", fn(x, acc)-> x <> acc end)
 "cba1"
 ```
 

@@ -120,7 +120,7 @@ iex> is_atom(MyApp.MyModule)
 true
 ```
 
-Atoms are also used to reference modules from Erlang libraries, including built in ones.
+Atoms are also used to reference modules from Erlang libraries, including built-in ones.
 
 ```elixir
 iex> :crypto.strong_rand_bytes 3

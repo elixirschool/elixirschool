@@ -79,7 +79,7 @@ iex> case "cherry pie" do
 
 Другой интересной возможностью `case/2` является поддержка ограничивающих выражений:
 
-_Этот пример взят из официальной документации [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)._
+_Этот пример взят из официальной документации [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case)._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -97,7 +97,7 @@ iex> case {1, 2, 3} do
 
 Когда нужно проверять условия, а не значения, можно использовать `cond/1`. Это похоже на `else if` или `elsif` в других языках:
 
-_Этот пример взят из официальной документации [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)._
+_Этот пример взят из официальной документации [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond)._
 
 ```elixir
 iex> cond do

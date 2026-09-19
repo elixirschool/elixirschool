@@ -1,17 +1,20 @@
 %{
-  version: "0.9.2",
-  title: "Documentation",
+  version: "1.2.1",
+  title: "Dokumentasi",
   excerpt: """
-  Mendokumentasikan Elixir code.
+  Mendokumentasikan kode Elixir.
   """
 }
 ---
 
 ## Anotasi
 
-Seberapa banyak kita membuat komentar dalam source code dan apa yang membuat dokumentasi berkualitas tetap jadi perdebatan dalam dunia pemrograman. Tetapi, kita semua bisa sepakat bahwa dokumentasi penting bagi diri kita sendiri dan bagi orang-orang yang bekerja dengan code kita.
+Seberapa banyak kita membuat komentar dan apa yang membuat dokumentasi berkualitas adalah isu yang diperdebatkan dalam dunia pemrograman.
+Kita sepakat bahwa dokumentasi penting bagi diri kita sendiri dan mereka yang bekerja dengan basis kode kita.
+Elixir memperlakukan dokumentasi sebagai *warga negara kelas satu*, menawarkan berbagai fungsi untuk mengakses dan menghasilkan dokumentasi untuk proyek Anda.
+Inti Elixir menyediakan banyak atribut berbeda untuk memberi anotasi pada basis kode.
 
-Elixir memperlakukan dokumentasi sebagai kelompok yang penting (first-class citizen), menawarkan berbagai fungsi untuk mengakses dan membuat dokumentasi untuk project. Elixir core memberi kita banyak atribut untuk menganotasi sebuah code. Mari lihat 3 cara:
+Mari kita lihat tiga caranya:
 
 - `#` - Untuk dokumentasi inline.
 - `@moduledoc` - Untuk dokumentasi tingkat modul.
@@ -19,20 +22,26 @@ Elixir memperlakukan dokumentasi sebagai kelompok yang penting (first-class citi
 
 ### Dokumentasi Inline
 
-Mungkin cara termudah untuk memberi dokumentasi adalah dengan komentar yang inline (disisipkan dalam code). Serupa dengan Ruby atau Python, komentar inline Elixir ditandai dengan `#`, sering disebut tanda *pound*, atau tanda *hash*.
+Mungkin cara paling sederhana untuk memberi komentar pada kode Anda adalah dengan komentar sebaris.
+Mirip dengan Ruby atau Python, komentar sebaris Elixir ditandai dengan `#`, yang sering dikenal sebagai *pound* atau *hash* tergantung dari mana Anda berasal di dunia.
 
-Coba lihat script Elixir berikut (greeting.exs):
+Coba lihat skrip Elixir berikut (greeting.exs):
 
 ```elixir
 # Outputs 'Hello, chum.' to the console.
-IO.puts "Hello, " <> "chum."
+IO.puts("Hello, " <> "chum.")
 ```
 
-Elixir, ketika menjalankan script ini, akan mengabaikan semua mulai dari tanda `#` sampai akhir baris, memperlakukannya seperti data yang dibuang. Bagian itu mungkin tidak memberi nilai tambah pada operasi atau kinerja program, tetapi jika apa yang sedang terjadi tidak mudah dipahami, seorang programmer bisa tahu dari komentarnya. Perhatikan untuk tidak terlalu banyak menggunakan komentar seperti ini. Mengotori code bisa jadi menyusahkan untuk sebagian orang. Yang terbaik adalah menggunakannya secukupnya.
+Elixir, saat menjalankan skrip ini, akan mengabaikan semua yang ada dari `#` hingga akhir baris, memperlakukannya sebagai data yang tidak penting.
+Mungkin tidak menambah nilai pada operasi atau kinerja skrip, namun ketika kurang jelas apa yang terjadi, seorang programmer harus mengetahuinya dari membaca komentar Anda.
+Berhati-hatilah agar tidak terlalu sering menggunakan komentar satu baris! Mengotori kode bisa jadi menyusahkan untuk sebagian orang.
+Sebaiknya digunakan secukupnya.
 
 ### Mendokumentasikan Modul
 
-Anotator `@moduledoc` mengijinkan adanya dokumentasi inline di tingkat modul. Anotator ini biasanya berada persis di bawah deklarasi `defmodule` pada bagian atas file. Contoh di bawah ini menunjukkan sebuah komentar satu baris di dalam `@moduledoc`.
+Anotasi `@moduledoc` memungkinkan dokumentasi inline pada tingkat modul.
+Biasanya terletak di bawah deklarasi `defmodule` di bagian atas file.
+Contoh di bawah ini menunjukkan komentar satu baris di dalam dekorator `@moduledoc`.
 
 ```elixir
 defmodule Greeter do
@@ -46,7 +55,28 @@ defmodule Greeter do
 end
 ```
 
-Kita (atau orang lain) bisa mengakses dokumentasi modul ini menggunakan fungsi pembantu `h` di dalam IEx.
+Kita (atau orang lain) dapat mengakses dokumentasi modul ini menggunakan fungsi pembantu `h` di dalam IEx.
+Namun, menggunakan fungsi pembantu `h` segera setelah membuat modul di `iex` dapat menyebabkan masalah berikut:
+
+```elixir
+iex> h Greeter
+Greeter was not compiled with docs
+```
+Alasan: Saat kode dimasukkan ke dalam `iex`, shell interaktif Elixir mengkompilasinya di memori tanpa secara otomatis menulis kode yang telah dikompilasi ke disk. Menyimpan bytecode yang telah dikompilasi memerlukan instruksi eksplisit, baik dengan menyimpan bytecode secara eksplisit atau dengan menggunakan fungsi I/O file Elixir untuk menuliskannya ke file.
+
+Pertimbangkan skenario di mana terdapat file bernama `greeter.ex` di direktori kerja saat ini, dan sesi `iex` diluncurkan dari sana:
+
+```elixir
+iex> c("greeter.ex")
+[Greeter]
+
+iex> h Greeter
+Greeter was not compiled with docs
+```
+
+Menemukan masalah yang sama di sini adalah hal yang wajar karena sifat dari `c("greeter.ex")`. Perintah ini mengkompilasi berkas di memori tetapi tidak secara otomatis menulis bytecode (berkas `.beam`) ke disk. Namun, agar helper `h/1` berfungsi dengan benar, file `.beam` perlu ada di disk.
+
+Untuk mengatasi hal ini, penting untuk menginstruksikan `c` untuk menyimpan bytecode yang dihasilkan di direktori saat ini. Tindakan ini memungkinkan helper `h/1` untuk mengakses dan menampilkan dokumentasi sebagaimana mestinya.
 
 ```elixir
 iex> c("greeter.ex", ".")
@@ -59,9 +89,13 @@ iex> h Greeter
 Provides a function hello/1 to greet a human
 ```
 
+*Catatan*: Kita tidak perlu mengkompilasi file secara manual seperti yang kita lakukan di atas jika kita bekerja dalam konteks proyek mix. Anda dapat menggunakan `iex -S mix` untuk memuat konsol IEx untuk proyek saat ini jika Anda bekerja dalam proyek mix.
+
 ### Mendokumentasikan Fungsi
 
-Sebagaimana Elixir memberi kita anotasi tingkat modul, Elixir juga memberikan anotasi serupa untuk mendokumentasikan fungsi. Anotator `@doc` memungkinkan dokumentasi inline di tingkat fungsi. Anotator `@doc` berada tepat di atas fungsi yang didokumentasikan.
+Elixir memberi kita kemampuan untuk anotasi tingkat modul dan juga memungkinkan anotasi serupa untuk mendokumentasikan fungsi.
+Anotator `@doc` memungkinkan dokumentasi sebaris pada tingkat fungsi.
+Anotator `@doc` berada tepat di atas fungsi yang dianotasi.
 
 ```elixir
 defmodule Greeter do
@@ -70,7 +104,7 @@ defmodule Greeter do
   """
 
   @doc """
-  Prints a hello message
+  Prints a hello message.
 
   ## Parameters
 
@@ -92,17 +126,19 @@ defmodule Greeter do
 end
 ```
 
-Jika kita masuk IEx lagi dan menggunakan fungsi pembantu `h` terhadap fungsi tersebut, diawali nama modul, kita mestinya melihat seperti berikut.
+Jika kita masuk ke IEx lagi dan menggunakan perintah pembantu (`h`) pada fungsi yang diawali dengan nama modul, kita akan melihat hasil berikut:
 
 ```elixir
-iex> c("greeter.ex")
+iex> c("greeter.ex", ".")
 [Greeter]
 
 iex> h Greeter.hello
 
                 def hello(name)
 
-`hello/1` prints a hello message
+  @spec hello(String.t()) :: String.t()
+
+Prints a hello message.
 
 Parameters
 
@@ -119,18 +155,23 @@ Examples
 iex>
 ```
 
-Apakah anda perhatikan bahwa kita bisa menggunakan markup di dalam dokumentasi kita dan terminal akan menampilkannya ? Memang itu fasilitas yang bagus dan berguna, tapi lebih menarik lagi kalau kita melihat ExDoc untuk menghasilkan dokumentasi HTML.
+Perhatikan bagaimana Anda dapat menggunakan markup di dalam dokumentasi kami dan terminal akan menampilkannya? Selain sangat keren dan merupakan tambahan baru bagi ekosistem Elixir yang luas, hal ini menjadi jauh lebih menarik ketika kita melihat ExDoc untuk menghasilkan dokumentasi HTML secara instan.
+
+**Catatan:** Anotasi `@spec` digunakan untuk menganalisis kode secara statis.
+Untuk mempelajari lebih lanjut tentang hal ini, lihat pelajaran [Spesifikasi dan tipe](/id/lessons/advanced/typespec).
 
 ## ExDoc
 
-ExDoc adalah project Elixir resmi yang menghasilkan **dokumentasi untuk project Elixir** yang online dan berformat HTML yang bisa dilihat di [GitHub](https://github.com/elixir-lang/ex_doc). Pertama-tama mari buat sebuah project Mix untuk aplikasi kita:
+ExDoc adalah proyek Elixir resmi yang dapat ditemukan di [GitHub](https://github.com/elixir-lang/ex_doc).
+Proyek ini menghasilkan **HTML (HyperText Markup Language) dan dokumentasi online** untuk proyek Elixir.
+Pertama, mari kita buat proyek Mix untuk aplikasi kita:
 
 ```bash
 $ mix new greet_everyone
 
 * creating README.md
-* creating .gitignore
 * creating .formatter.exs
+* creating .gitignore
 * creating mix.exs
 * creating lib
 * creating lib/greet_everyone.ex
@@ -150,14 +191,17 @@ $ cd greet_everyone
 
 ```
 
-Sekarang copas code dari pelajaran anotator `@doc` ke dalam sebuah file bernama `lib/greeter.ex` dan pastikan semua masih bekerja dari command line. Sekarang karena kita bekerja di dalam sebuah project Mix kita perlu menjalankan IEx secara sedikit berbeda menggunakan perintah `iex -S mix`:
+Salin dan tempel kode dari pelajaran anotator `@doc` ke dalam file bernama `lib/greeter.ex` dan pastikan semuanya masih berfungsi dari baris perintah.
+Sekarang kita bekerja dalam proyek Mix, kita perlu memulai IEx sedikit berbeda menggunakan urutan perintah `iex -S mix`:
 
-```bash
+```elixir
 iex> h Greeter.hello
 
                 def hello(name)
 
-Prints a hello message
+  @spec hello(String.t()) :: String.t()
+
+Prints a hello message.
 
 Parameters
 
@@ -174,21 +218,27 @@ Examples
 
 ### Menginstal
 
-Mengasumsikan bahwa semuanya berjalan baik, dan kita melihat output di atas mengindikasikan bahwa kita siap mensetup ExDoc. Di dalam file `mix.exs` kita tambahkan kedua dependensi yang dibutuhkan untuk memulai; `:earmark` dan `:ex_doc`.
+Dengan asumsi semuanya berjalan lancar dan kita melihat output di atas, kita sekarang siap untuk mengatur ExDoc.
+Di dalam file `mix.exs`, tambahkan dependensi `:ex_doc` untuk memulai.
 
 ```elixir
-def deps do
-  [{:earmark, "~> 0.1", only: :dev}, {:ex_doc, "~> 0.11", only: :dev}]
-end
+  def deps do
+    [{:ex_doc, "~> 0.21", only: :dev, runtime: false}]
+  end
 ```
 
-Kita menspesifikasikan pasangan key-value `only: :dev` karena kita tidak ingin mengunduh dan mengkompilkasi dependensi ini di production. Tapi kenapa Earmark? Earmark adalah sebuah parser Markdown untuk Elixir yang digunakan ExDoc untuk mengubah dokumentasi kita di dalam `@moduledoc` dan `@doc` menjadi HTML yang cantik.
+Kita menentukan pasangan key-value `only: :dev` karena kita tidak ingin mengunduh dan mengkompilasi dependensi `ex_doc` di lingkungan produksi.
 
-Adalah patut diperhatikan bahwa anda tidak dipaksa menggunakan Earmark. Anda bisa mengubah tool markup nya ke tool lain seperti Pandoc, Hoedown, atau Cmark; hanya saja akan perlu melakukan sedikit konfigurasi lagi yang bisa dibaca [di sini](https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool). Untuk tutorial ini, kita tetap pakai Earmark.
+`ex_doc` juga akan menambahkan pustaka lain untuk kita, Earmark.
+
+Earmark adalah parser Markdown untuk bahasa pemrograman Elixir yang digunakan ExDoc untuk mengubah dokumentasi kita di dalam `@moduledoc` dan `@doc` menjadi HTML yang indah.
+
+Perlu dicatat pada titik ini bahwa Anda dapat mengubah alat markup menjadi Cmark jika Anda mau, tetapi Anda perlu melakukan sedikit konfigurasi tambahan yang dapat Anda baca [di sini](https://hexdocs.pm/ex_doc/ExDoc.Markdown.html#module-using-cmark).
+Untuk tutorial ini, kita akan tetap menggunakan Earmark.
 
 ### Membuat Dokumentasi
 
-Kemudian, dari command line jalankan kedua perintah berikut ini:
+Selanjutnya, jalankan dua perintah berikut dari baris perintah:
 
 ```bash
 $ mix deps.get # mengunduh ExDoc + Earmark.
@@ -198,32 +248,39 @@ Docs successfully generated.
 View them at "doc/index.html".
 ```
 
-Jika semuanya berjalan sesuai rencana, anda mestinya melihat pesan serupa dengan output contoh di atas. Mari sekarang lihat ke dalam project Mix kita dan kita mestinya melihat bahwa ada direktori lain bernama **doc/**. Di dalamnya adalah dokumentasi yang kita hasilkan. Jika kita mengunjungi halaman indox di browser kita kita harusnya melihat seperti berikut:
+Jika semuanya berjalan sesuai rencana, Anda akan melihat pesan yang mirip dengan pesan output pada contoh di atas.
+Sekarang mari kita lihat ke dalam proyek Mix kita dan kita akan melihat ada direktori lain yang disebut **doc/**.
+Di dalamnya terdapat dokumentasi yang telah kita buat.
+Jika kita mengunjungi halaman indeks di browser kita, kita akan melihat hal berikut:
 
 ![ExDoc Screenshot 1](/images/documentation_1.png)
 
-Kita bisa melihat bahwa Earmark telah merender markdown kita dan ExDoc sekarang menampilkannya dalam format yang bagus.
+Kita dapat melihat bahwa Earmark telah merender Markdown kita dan ExDoc sekarang menampilkannya dalam format yang berguna.
 
 ![ExDoc Screenshot 2](/images/documentation_2.png)
 
-Kita sekarang bisa mendeploy ke GitHub, website kita sendiri, atau, lebih umum, [HexDocs](https://hexdocs.pm/).
+Kita sekarang dapat menyebarkan ini ke GitHub, situs web kita sendiri, atau yang lebih umum [HexDocs](https://hexdocs.pm/).
 
-## Best Practice
+## Praktik Terbaik
 
-Menambahkan dokumentasi semestinya ditambahkan di dalam panduan Best Practice. Karena Elixir adalah sebuah bahasa yang masih muda, banyak standar yang masih perlu ditumbuhkan bersama ekosistemnya. Tetapi, komunitas Elixir sudah berusaha membuat panduan ini. Untuk membaca lebih jauh tentang best practice, lihatlah [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
+Dokumentasi harus ditambahkan dalam Pedoman Praktik Terbaik bahasa tersebut.
+Karena Elixir adalah bahasa yang relatif baru, banyak standar masih perlu ditemukan seiring pertumbuhan ekosistemnya.
+Namun, komunitas telah mencoba untuk menetapkan praktik terbaik.
+Untuk membaca lebih lanjut tentang praktik terbaik, lihat [Panduan Gaya Elixir](https://github.com/niftyn8/elixir_style_guide).
 
 - Selalu dokumentasikan sebuah modul.
 
 ```elixir
 defmodule Greeter do
   @moduledoc """
-  This is good documentation.
+  Ini adalah dokumentasi yang baik.
   """
 
 end
 ```
 
-- Jika anda tidak berniat mendokumentasikan sebuah modul, **jangan** membiarkannya kosong. Pertimbangkan untuk menganotasi modul itu dengan `false` seperti berikut:
+- Jika Anda tidak bermaksud mendokumentasikan modul, **jangan** biarkan kosong.
+Pertimbangkan untuk memberi anotasi `false` pada modul, seperti ini:
 
 ```elixir
 defmodule Greeter do
@@ -232,7 +289,7 @@ defmodule Greeter do
 end
 ```
 
-- Ketika merefer ke fungsi di dalam dokumentasi modul, gunakanlah tanda backtick seperti berikut:
+- Saat merujuk pada fungsi dalam dokumentasi modul, gunakan tanda backtick seperti ini:
 
 ```elixir
 defmodule Greeter do
@@ -248,7 +305,7 @@ defmodule Greeter do
 end
 ```
 
-- Pisahkanlah setiap code satu baris di bawah `@moduledoc` seperti berikut:
+- Pisahkan semua kode satu baris di bawah `@moduledoc` seperti ini:
 
 ```elixir
 defmodule Greeter do
@@ -267,7 +324,8 @@ defmodule Greeter do
 end
 ```
 
-- Gunakan markdown di dalam fungsi yang akan membuatnya lebih mudah dibaca baik lewat IEx maupun ExDoc.
+- Gunakan Markdown di dalam dokumen.
+Ini akan mempermudah pembacaan baik melalui IEx maupun ExDoc.
 
 ```elixir
 defmodule Greeter do
@@ -298,6 +356,8 @@ defmodule Greeter do
 end
 ```
 
-- Upayakan untuk memasukkan beberapa contoh code dalam dokumentasi anda, ini juga memungkinkan anda menghasilkan test secara otomatis dari contoh yang ditemukan di dalam sebuah modul, fungsi, maupun macro menggunakan [ExUnit.DocTest][]. Untuk melakukan hal itu, kita perlu memanggil macro `doctest/1` dari test case kita dan menulis contoh mengikuti beberapa panduan yang didetailkan di [dokumentasi resmi][ExUnit.DocTest]
+- Cobalah untuk menyertakan beberapa contoh kode dalam dokumentasi Anda.
+Ini juga memungkinkan Anda untuk menghasilkan pengujian otomatis dari contoh kode yang ditemukan dalam modul, fungsi, atau makro dengan [ExUnit.DocTest][].
+Untuk melakukan itu, Anda perlu memanggil makro `doctest/1` dari *test case* Anda dan menulis contoh Anda sesuai dengan beberapa panduan seperti yang dijelaskan dalam [dokumentasi resmi][ExUnit.DocTest].
 
 [ExUnit.DocTest]: https://hexdocs.pm/ex_unit/ExUnit.DocTest.html

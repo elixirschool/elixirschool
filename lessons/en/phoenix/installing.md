@@ -1,5 +1,5 @@
 %{
-  version: "1.0.0",
+  version: "1.1.0",
   title: "Installing Phoenix",
   excerpt: """
   With some simple steps you can install and create your first phoenix project
@@ -11,15 +11,15 @@
 
 ### Some considerations
 
-Before creating a Phoenix project, we will need to install elixir. The latest version of phoenix framework needs [Elixir 12 or later](https://hexdocs.pm/phoenix/installation.html#erlang-22-or-later) and [Erlang 22 or later](https://hexdocs.pm/phoenix/installation.html#erlang-22-or-later).
+Before creating a Phoenix project, we will need to install elixir. The latest version of phoenix framework needs [Elixir 1.15 or later](https://hexdocs.pm/phoenix/installation.html#elixir-1-15-or-later) and [Erlang 24 or later](https://hexdocs.pm/phoenix/installation.html#erlang-24-or-later).
 
-We'll also need some database to run yotheur application, we recommend you to install PostgreSQL. You can check the [installation guides](https://wiki.postgresql.org/wiki/Detailed_installation_guides) to install it.
+We'll also need some database to run your application, we recommend you to install PostgreSQL. You can check the [installation guides](https://wiki.postgresql.org/wiki/Detailed_installation_guides) to install it.
 
 **linux users**: We might need to install the [inotify-tools](https://github.com/inotify-tools/inotify-tools/wiki) to run the phoenix application.
 
 ### Installing Phoenix
 
-To start, we need to install the Hex package manager. The package manager is necessary to get the Phoenix Application because some dependencies are installed with it, and some extra dependencies might need along the way.
+To start, we need to install the Hex package manager. The package manager is necessary to get the Phoenix Application because some dependencies are installed with it, and some extra dependencies might be needed along the way.
 
 ```bash
 mix local.hex
@@ -33,11 +33,11 @@ mix archive.install hex phx_new
 
 We'll have all the necessary tools to create a Phoenix Project
 
-obs: We'll need to answer Y to allow both of them to install.
+Note: We'll need to answer Y to allow both of them to install.
 
 ## Creating the First Phoenix Project
 
-To create a new project, just run the command `mix phx.new` from any directory in order to bootstrap our Phoenix application. On the example above, we are creating a new project with the name of `hello`
+To create a new project, just run the command `mix phx.new` from any directory in order to bootstrap our Phoenix application. In the example below, we are creating a new project with the name of `hello`
 
 ```bash
 $ mix phx.new hello
@@ -52,7 +52,8 @@ After installation is done, we can access the project folder with `cd hello`
 
 ### Database Configuration
 
-We need to setup our project to connect to our local database. Go to the `config/` folder and open the file `dev.exs`, and we'll see a file with something like that
+We need to setup our project to connect to our local database. Go to the `config/` folder and open the file `dev.exs`, and we'll see a file with something like this.
+
 Don't forget to change the username and password configs (if necessary). We may also need to change the test environment (`config/test.exs`)
 
 ```elixir
@@ -82,6 +83,6 @@ Finally, we can run the application with:
 mix phx.server
 ```
 
-By default, phoenix applications runs at port 4000. If we go to <http://localhost:4000>, we should see this page
+By default, phoenix applications run at port 4000. If we go to <http://localhost:4000>, we should see this page
 
-![](/images/hello_phoenix.png)
+![Hello Phoenix page](/images/hello_phoenix.png)

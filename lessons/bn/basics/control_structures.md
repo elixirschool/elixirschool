@@ -80,7 +80,7 @@ iex> case "cherry pie" do
 
 `case` এর আরেকটি ফিচার হল গার্ডের ব্যবহার।
 
-_এই উদাহরণটি সরাসরি এলিক্সিরের অফিসিয়াল ডকুমেন্টেশান থেকে নেয়া [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) গাইড থেকে।_
+_এই উদাহরণটি সরাসরি এলিক্সিরের অফিসিয়াল ডকুমেন্টেশান থেকে নেয়া [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case) গাইড থেকে।_
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -98,7 +98,7 @@ iex> case {1, 2, 3} do
 
 যখন আমরা একাধিক কন্ডিশানের সাথে আমাদের ম্যাচিং করতে হবে তখন `cond` ব্যবহার করব যা অন্যান্য ল্যাঙ্গুয়েজের `else if`, `elsif`, `elif` ইত্যাদির মত করে কাজ করে।
 
-_এই উদাহরণটি সরাসরি এলিক্সিরের অফিসিয়াল ডকুমেন্টেশান থেকে নেয়া [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) গাইড থেকে।_
+_এই উদাহরণটি সরাসরি এলিক্সিরের অফিসিয়াল ডকুমেন্টেশান থেকে নেয়া [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond) গাইড থেকে।_
 
 ```elixir
 iex> cond do

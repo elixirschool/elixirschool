@@ -1,21 +1,27 @@
 %{
-  version: "0.9.1",
+  version: "1.1.1",
   title: "Concurrency",
   excerpt: """
-  Satu poin yang menjual dari Elixir adalah dukungannya terhadap konkurensi. Berkat Erlang VM (BEAM), konkurensi dalam Elixir sangat mudah.  Model konkurensinya berdasar pada Actor, sebuah proses terlindung (contained) yang berkomunikasi dengan proses lain lewat pengiriman pesan (message passing).
+  Salah satu daya tarik Elixir adalah dukungannya terhadap konkurensi.
+  Berkat Erlang VM (BEAM), konkurensi di Elixir lebih mudah dari yang diperkirakan.
+  Model konkurensi bergantung pada Aktor, sebuah proses terisolasi yang berkomunikasi dengan proses lain melalui pengiriman pesan.
   
-  Dalam pelajaran ini kita akan melihat pada modul-modul konkurensi yang diluncurkan bersama Elixir.  Dalam bab selanjutnya kita membahas perilaku OTP yang mengimplementasikannya
+  Dalam pelajaran ini kita akan melihat modul konkurensi yang disertakan dengan Elixir.
+  
+  Pada bab selanjutnya kita akan membahas perilaku OTP yang mengimplementasikannya.
   """
 }
 ---
 
 ## Proses
 
-Proses (process) dalam VM Erlang adalah ringan dan dijalankan lintas CPU.  Walau proses mungkin tampak sebagai native thread, proses sebetulnya lebih sederhana dan bukannya jarang memiliki ribuan proses yang konkuren dalam sebuah aplikasi Elixir.
+Proses dalam VM Erlang ringan dan berjalan di semua CPU.
+Meskipun tampak seperti thread asli, proses lebih sederhana dan tidak jarang terdapat ribuan proses konkuren dalam aplikasi Elixir.
 
-Cara termudah untuk membuat sebuah proses baru adalah `spawn`, yang menggunakan sebuah fungsi yang bernama maupun yang anonim.  Ketika kita membuat sebuah proses baru, `spawn` mengembalikan sebuah _Process Identifier_, atau PID, untuk mengidentifikasikannya secara unik di dalam aplikasi kita.
+Cara termudah untuk membuat proses baru adalah dengan `spawn`, yang menerima fungsi anonim atau bernama.
+Saat kita membuat proses baru, ia mengembalikan _Pengidentifikasi Proses_, atau PID, untuk mengidentifikasinya secara unik dalam aplikasi kita.
 
-Untuk memulai kita akan membuat sebuah modul dan mendefinisikan sebuah fungsi yang kita ingin jalankan:
+Untuk memulai, kita akan membuat modul dan mendefinisikan fungsi yang ingin kita jalankan:
 
 ```elixir
 defmodule Example do
@@ -39,7 +45,11 @@ iex> spawn(Example, :add, [2, 3])
 
 ### Pengiriman Pesan
 
-Untuk berkomunikasi, proses-proses bergantung pada pengiriman pesan (message passing).  Ada dua komponen utama: `send/2` and `receive`.  Fungsi `send/2` mengijinkan kita mengirim pesan ke PID.  Untuk mendengarkan kita gunakan `receive` untuk mencocokkan pesan.  Jika tidak ada kecocokan eksekusi berjalan terus.
+Untuk berkomunikasi, proses bergantung pada pengiriman pesan.
+Ada dua komponen utama dalam hal ini: `send/2` dan `receive`.
+Fungsi `send/2` mengijinkan kita untuk mengirim pesan ke PID.
+Untuk mendengarkan, kita menggunakan `receive` untuk mencocokkan pesan.
+Jika tidak ada kecocokan eksekusi berjalan terus.
 
 ```elixir
 defmodule Example do
@@ -47,6 +57,8 @@ defmodule Example do
     receive do
       {:ok, "hello"} -> IO.puts("World")
     end
+
+    listen()
   end
 end
 
@@ -61,9 +73,14 @@ iex> send pid, :ok
 :ok
 ```
 
-### Process Linking
+Anda mungkin memperhatikan bahwa fungsi `listen/0` bersifat rekursif, ini memungkinkan proses kita untuk menangani beberapa pesan.
+Tanpa rekursi, proses kita akan keluar setelah menangani pesan pertama.
 
-Satu masalah dengan `spawn` adalah cara mengetahui ketika sebuah proses crash.  Untuk itu kita perlu mengkaitkan (link) proses-proses kita menggunakan `spawn_link`.  Dua proses yang terkait akan saling menerima notifikasi exit:
+### Penautan Proses
+
+Satu masalah dengan `spawn` adalah cara mengetahui kapan suatu proses mengalami crash.
+Untuk itu, kita perlu menautkan proses kita menggunakan `spawn_link`.
+Dua proses yang ditautkan akan saling menerima notifikasi *exit*:
 
 ```elixir
 defmodule Example do
@@ -77,7 +94,9 @@ iex> spawn_link(Example, :explode, [])
 ** (EXIT from #PID<0.57.0>) evaluator process exited with reason: :kaboom
 ```
 
-Terkadang kita tidak ingin proses kita yang terkait untuk mengakibatkan proses yang sekarang ada ikut crash.  Untuk itu kita perlu menjebak (trap) exit.  Ketika menjebak exit proses akan menerima sebagai sebuah pesan tuple: `{:EXIT, from_pid, reason}`.
+Terkadang kita tidak ingin proses yang tertaut menyebabkan proses yang sedang berjalan mengalami crash.
+Untuk itu, kita perlu menangkap sinyal *exit* menggunakan `Process.flag/2`.
+Ini menggunakan fungsi `[process_flag/2](http://erlang.org/doc/man/erlang.html#process_flag-2)` dari Erlang untuk flag `trap_exit`. Saat menangkap sinyal keluar (`trap_exit` diatur ke `true`), sinyal keluar akan diterima sebagai pesan tuple: `{:EXIT, from_pid, reason}`.
 
 ```elixir
 defmodule Example do
@@ -88,7 +107,7 @@ defmodule Example do
     spawn_link(Example, :explode, [])
 
     receive do
-      {:EXIT, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
+      {:EXIT, _from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -98,19 +117,20 @@ Exit reason: kaboom
 :ok
 ```
 
-### Process Monitoring
+### Pemantauan Proses
 
-Bagaimana jika kita tidak ingin mengkaitkan dua proses tetapi tetap ingin menerima informasi? Untuk itu kita bisa menggunakan pemantauan proses (process monitoring) dengan `spawn_monitor`. Ketika kita memantau sebuah proses keta menerima sebuah pesan jika proses tersebut crash, tanpa akibatkan proses kita yang sedang berjalan ikut crash atau perlu secara eksplisit menjebak exit.
+Bagaimana jika kita tidak ingin menautkan dua proses tetapi tetap ingin mendapatkan informasi? Untuk itu kita dapat menggunakan pemantauan proses dengan `spawn_monitor`.
+Saat kita memantau suatu proses, kita akan mendapatkan pesan jika proses tersebut mengalami crash, tanpa proses kita saat ini mengalami crash atau perlu secara eksplisit menjebak exit.
 
 ```elixir
 defmodule Example do
   def explode, do: exit(:kaboom)
 
   def run do
-    {pid, ref} = spawn_monitor(Example, :explode, [])
+    spawn_monitor(Example, :explode, [])
 
     receive do
-      {:DOWN, ref, :process, from_pid, reason} -> IO.puts("Exit reason: #{reason}")
+      {:DOWN, _ref, :process, _from_pid, reason} -> IO.puts("Exit reason: #{reason}")
     end
   end
 end
@@ -122,7 +142,9 @@ Exit reason: kaboom
 
 ## Agent
 
-Agent adalah sebuah abstraksi yang melingkupi background process yang menjaga state.  Kita bisa mengakses Agent dari proses lain di dalam aplikasi dan node kita.  State dari Agent kita diset ke return value fungsi kita:
+Agent adalah abstraksi di sekitar proses latar belakang yang menjaga status (state).
+Kita bisa mengakses Agent dari proses lain di dalam aplikasi dan node kita.
+State dari Agent kita diset ke return value fungsi kita:
 
 ```elixir
 iex> {:ok, agent} = Agent.start_link(fn -> [1, 2, 3] end)
@@ -147,7 +169,8 @@ iex> Agent.get(Numbers, &(&1))
 
 ## Task
 
-Task memberikan cara untuk mengeksekusi sebuah fungsi di background dan menerima hasilnya belakangan.  Task bisa berguna terutama ketika menangani operasi yang mahal (makan waktu lama) tanpa memblok eksekusi aplikasi kita.
+Task menyediakan cara untuk mengeksekusi fungsi di latar belakang dan mengambil nilai kembaliannya nanti.
+Task bisa sangat berguna saat menangani operasi yang memakan banyak sumber daya tanpa memblokir eksekusi aplikasi.
 
 ```elixir
 defmodule Example do
@@ -158,9 +181,13 @@ defmodule Example do
 end
 
 iex> task = Task.async(Example, :double, [2000])
-%Task{pid: #PID<0.111.0>, ref: #Reference<0.0.8.200>}
+%Task{
+  owner: #PID<0.105.0>,
+  pid: #PID<0.114.0>,
+  ref: #Reference<0.2418076177.4129030147.64217>
+}
 
-# Lanjutkan kerjakan hal lain
+# Do some work
 
 iex> Task.await(task)
 4000

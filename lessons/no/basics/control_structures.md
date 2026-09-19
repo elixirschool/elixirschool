@@ -80,7 +80,7 @@ iex> case "cherry pie" do
 
 En annen fiffig funksjon i `case`, er dens støtte for beskyttelsesklausuler (guard clauses):
 
-_Dette eksemplet er hentet direkte fra den offisielle Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case) guiden._
+_Dette eksemplet er hentet direkte fra den offisielle Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case) guiden._
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -99,7 +99,7 @@ Se den offisielle dokumentasjonen for [Tillatte uttrykk i beskyttelsesklausuler]
 Hvis vi trenger å sammenligne forhold, og ikke verdier, kan vi bruke `cond`.
 Denne funksjonen kan sammenlignes med `else if` eller `elsif` i andre programmeringsspråk:
 
-_Dette eksemplet er hentet direkte fra den offisielle Elixir [Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond) guiden._
+_Dette eksemplet er hentet direkte fra den offisielle Elixir [Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond) guiden._
 
 ```elixir
 iex> cond do

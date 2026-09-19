@@ -54,7 +54,7 @@ This allows you to use the notation `?Z` rather than 'Z' for a symbol.
 When programming in Elixir, we usually use strings, not charlists.
 The charlist support is mainly included because it is required for some Erlang modules.
 
-For further information, see the official [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+For further information, see the official [`Getting Started Guide`](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html).
 
 ## Graphemes and Codepoints
 

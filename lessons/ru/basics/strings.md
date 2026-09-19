@@ -51,7 +51,7 @@ iex> ?Z
 
 Программируя на Elixir, мы обычно используем строки, а не списки символов. Поддержка списков символов включена, в основном, для совместимости с некоторыми модулями Erlang.
 
-Для получения дополнительной информации, читайте официальную документацию [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+Для получения дополнительной информации, читайте официальную документацию [`Getting Started Guide`](https://elixir.hexdocs.pm/binaries-strings-and-charlists.html).
 
 ## Графемы и коды символов
 

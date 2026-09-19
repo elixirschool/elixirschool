@@ -80,7 +80,7 @@ iex> case "cherry pie" do
 
 `case/2` のもう1つの素晴らしい特徴として、ガード節に対応していることがあげられます:
 
-_この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#case)ガイドから直接持ってきています。_
+_この例は公式のElixirの[Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#case)ガイドから直接持ってきています。_
 
 ```elixir
 iex> case {1, 2, 3} do
@@ -98,7 +98,7 @@ iex> case {1, 2, 3} do
 
 値ではなく、条件をマッチさせる必要がある時には、 `cond/1` を使うことができます。これは他の言語でいうところの `else if` や `elsif` のようなものです:
 
-_この例は公式のElixirの[Getting Started](http://elixir-lang.org/getting-started/case-cond-and-if.html#cond)ガイドから直接持ってきています。_
+_この例は公式のElixirの[Getting Started](https://elixir.hexdocs.pm/case-cond-and-if.html#cond)ガイドから直接持ってきています。_
 
 ```elixir
 iex> cond do
