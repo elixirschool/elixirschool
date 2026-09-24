@@ -1,15 +1,18 @@
 %{
-  version: "0.9.1",
+  version: "1.0.3",
   title: "Umbrella Projects",
   excerpt: """
-  Terkadang sebuah project bisa menjadi sangat besar. Perangkat build Mix memungkinkan kita untuk memecah code kita jadi beberapa aplikasi dan membuat project Elixir kita lebih tertata dalam pengembangannya.
+  Terkadang sebuah proyek bisa menjadi besar, bahkan sangat besar.
+  Alat build Mix memungkinkan kita untuk membagi kode kita menjadi beberapa aplikasi dan membuat proyek Elixir kita lebih mudah dikelola seiring pertumbuhannya.
   """
 }
 ---
 
 ## Perkenalan
 
-Untuk membuat sebuah project payung (umbrella project) kita mulai sebuah project seperti project Mix biasa tetapi menggunakan flag `--umbrella`. Untuk contoh ini, kita akan membuat *shell* dari sebuah perangkat (toolkit) untuk pembelajaran mesin (machine learning). Kenapa machine learning toolkit? Kenapa tidak? Toolkit ini terdiri dari berbagai algoritma pembelajaran yang berbeda dan juga fungsi-fungsi pembantu (utility function).
+Untuk membuat proyek payung, kita memulai proyek seolah-olah kita akan memulai proyek Mix biasa, tetapi dengan menambahkan flag `--umbrella`.
+Untuk contoh ini, kita akan membuat *kerangka* dari sebuah toolkit pembelajaran mesin (machine learning).
+Mengapa toolkit pembelajaran mesin? Mengapa tidak? Toolkit ini terdiri dari berbagai algoritma pembelajaran dan fungsi utilitas.
 
 ```shell
 $ mix new machine_learning_toolkit --umbrella
@@ -34,14 +37,14 @@ in the umbrella project root will automatically run
 for each application in the apps/ directory.
 ```
 
-Sebagaimana yang bisa anda lihat dari perintah shell tersebut, Mix membuat sebuah project kerangka kecil untuk kita dengan dua direktori:
+Seperti yang Anda lihat dari perintah shell tersebut, Mix telah membuat proyek kerangka kecil untuk kita dengan dua direktori:
 
-- `apps/` - tempat tinggal subproject (project anak) kita
-- `config/` - tempat tinggal konfigurasi project payung kita
+- `apps/` - tempat proyek sub (anak) kita akan berada
+- `config/` - tempat konfigurasi proyek induk kita akan berada
 
 ## Project Anak
 
-Mari pindah ke direktori project `machine_learning_toolkit/apps` directory dan buat 3 aplikasi normal menggunakan Mix seperti berikut:
+Mari kita masuk ke direktori `machine_learning_toolkit/apps` proyek dan buat 3 aplikasi biasa menggunakan Mix seperti berikut:
 
 ```shell
 $ mix new utilities
@@ -103,7 +106,7 @@ You can use "mix" to compile it, test it, and more:
 Run "mix help" for more commands.
 ```
 
-Seharusnya kita sekarang punya project tree seperti berikut:
+Sekarang kita seharusnya memiliki struktur proyek seperti ini:
 
 ```shell
 $ tree
@@ -112,8 +115,6 @@ $ tree
 ├── apps
 │   ├── datasets
 │   │   ├── README.md
-│   │   ├── config
-│   │   │   └── config.exs
 │   │   ├── lib
 │   │   │   └── datasets.ex
 │   │   ├── mix.exs
@@ -122,8 +123,6 @@ $ tree
 │   │       └── test_helper.exs
 │   ├── svm
 │   │   ├── README.md
-│   │   ├── config
-│   │   │   └── config.exs
 │   │   ├── lib
 │   │   │   └── svm.ex
 │   │   ├── mix.exs
@@ -132,8 +131,6 @@ $ tree
 │   │       └── test_helper.exs
 │   └── utilities
 │       ├── README.md
-│       ├── config
-│       │   └── config.exs
 │       ├── lib
 │       │   └── utilities.ex
 │       ├── mix.exs
@@ -145,7 +142,8 @@ $ tree
 └── mix.exs
 ```
 
-Jika kita pindah kembali ke direktori root project payungnya, kita bisa melihat bahwa kita bisa memanggil semua perintah yang biasa seperti compile. Karena subproject adalah aplikasi normal biasa, anda bisa pindah ke direktorinya dan melakukan semua kegiatan yang biasanya dimungkinkan oleh Mix untuk kita lakukan.
+Jika kita kembali ke direktori root proyek utama, kita dapat melihat bahwa kita dapat memanggil semua perintah umum seperti kompilasi.
+Karena subproyek hanyalah aplikasi biasa, Anda dapat masuk ke direktori mereka dan melakukan semua hal yang sama seperti biasanya yang memungkinkan Mix untuk Anda lakukan.
 
 ```bash
 $ mix compile
@@ -172,7 +170,9 @@ Consolidated Inspect
 
 ## IEx
 
-Anda mungkin berpikir bahwa berinteraksi dengan applikasi-aplikasinya akan jadi sedikit berbeda di dalam sebuah project payung. Percaya atau tidak, itu salah! Kalau kita pindah direktori ke direktori paling atas, dan memulai IEx dengan `iex -S mix` kita bisa berinteraksi dengan semua projectnya secara normal. Mari ubah isi dari `apps/datasets/lib/datasets.ex` untuk contoh sederhana ini.
+Anda mungkin berpikir bahwa berinteraksi dengan aplikasi akan sedikit berbeda dalam proyek payung.
+Percaya atau tidak, Anda salah! Jika kita mengubah direktori ke direktori tingkat atas, dan memulai IEx dengan `iex -S mix`, kita dapat berinteraksi dengan semua proyek secara normal.
+Mari kita ubah isi `apps/datasets/lib/datasets.ex` untuk contoh sederhana ini.
 
 ```elixir
 defmodule Datasets do
@@ -197,5 +197,6 @@ Consolidated Inspect
 Interactive Elixir ({{ site.elixir.version }}) - press Ctrl+C to exit (type h() ENTER for help)
 
 iex> Datasets.hello
-:world
+Hello, I'm the datasets
+:ok
 ```

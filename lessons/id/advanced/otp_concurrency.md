@@ -1,28 +1,34 @@
 %{
-  version: "1.0.0",
+  version: "1.0.4",
   title: "OTP Concurrency",
   excerpt: """
-  Kita sudah melihat abstraksi Elixir untuk konkurensi tapi terkadang kita butuh kendali lebih dan untuk itu kita beralih ke perilaku OTP yang mana Elixir dibangun di atasnya.
+  Kita sudah lihat abstraksi Elixir untuk konkurensi, tapi kadang kita butuh kontrol yang lebih besar dan untuk itu kita beralih ke perilaku OTP yang menjadi dasar Elixir.
   
-  Dalam pelajaran ini kita hanya akan fokus pada bagian yang paling penting yaitu GenServer
+  Dalam pelajaran ini kita akan fokus pada bagian terbesar: GenServer
   """
 }
 ---
 
 ## GenServer
 
-Sebuah OTP server adalah sebuah modul dengan perilaku GenServer yang mengimplementasikan sekumpulan callback.  Pada tingkat paling mendasarnya sebuah GenServer adalah sebuah loop yang menangani sebuah request per iterasi dan melewatkan sebuah state yang sudah diperbaharui (updated).
+Server OTP adalah modul dengan perilaku GenServer yang mengimplementasikan serangkaian callback.
+Pada tingkat paling dasar, GenServer adalah proses tunggal yang menjalankan loop yang menangani satu pesan per iterasi meneruskan status yang diperbarui.
 
-Untuk mendemonstasikan API GenServer kita akan menimplementasikan sebuah antrian (queue) sederhana untuk menyimpan dan menerima value.
+Untuk mendemonstrasikan API GenServer, kita akan mengimplementasikan antrian dasar untuk menyimpan dan mengambil nilai.
 
-Untuk memulai GenServer kita, kita perlu memulainya dan menangani inisialisasinya. Dalam kebanyakan kasus kita akan ingin mengkaitkan (link) proses jadi kita menggunakan `GenServer.start_link/3`. Kita memasukkan modul GenServer yang kita mulai, argumen awal, dan sejumlah opsi GenServer.  Argumen-argumen itu akan diteruskan ke `GenServer.init/1` yang menset state awal melalui value yang dikembalikannya.  Dalam contoh kita ini argumennya adalah state awal (initial state) kita:
+Untuk memulai GenServer kita, kita perlu memulainya dan menangani inisialisasinya. 
+Dalam kebanyakan kasus, kita ingin menghubungkan proses, jadi kita menggunakan `GenServer.start_link/3`.
+Kita meneruskan modul GenServer yang kita mulai, argumen awal, dan serangkaian opsi GenServer.
+Argumen akan diteruskan ke `GenServer.init/1` yang mengatur status awal melalui nilai kembaliannya.
+Dalam contoh kita, argumennya adalah status awal kita:
 
 ```elixir
 defmodule SimpleQueue do
   use GenServer
 
   @doc """
-  Start our queue and link it.  This is a helper function
+  Start our queue and link it.
+  This is a helper function
   """
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -37,11 +43,13 @@ end
 
 ### Fungsi Sinkron
 
-Seringkali kita perlu berinteraksi dengan GenServer dengan cara yang sinkron, memanggil fungsi dan menunggu jawabannya.  Untuk menangani permintaan (request) yang sinkron kita perlu mengimplementasikan callback `GenServer.handle_call/3` yang menerima parameter: permintaan tersebut (request), PID pemanggil, dan state yang sedang ada; yang dikembalikan adalah sebuah tuple: `{:reply, response, state}`.
+Seringkali kita perlu berinteraksi dengan GenServer secara sinkron, memanggil sebuah fungsi dan menunggu responnya.
+Untuk menangani permintaan sinkron, kita perlu mengimplementasikan callback `GenServer.handle_call/3` yang menerima: permintaan, PID pemanggil, dan status yang ada; diharapkan akan membalas dengan mengembalikan tuple: `{:reply, response, state}`.
 
-Dengan pencocokan pola kita bisa mendefinisikan callback untuk banyak request dan state. Daftar lengkap value pengembalian (return value) yang dapat diterima bisa dilihat di dokumentasi [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3).
+Dengan pencocokan pola, kita dapat mendefinisikan callback untuk berbagai permintaan dan status yang berbeda.
+Daftar lengkap nilai kembalian yang diterima dapat ditemukan di dokumentasi [`GenServer.handle_call/3`](https://hexdocs.pm/elixir/GenServer.html#c:handle_call/3).
 
-Untuk mendemonstrasikan request yang sinkron, mari kita tambahkan kemampuan untuk menampilkan antrian kita saat ini dan untuk mengeluarkan sebuah entri:
+Untuk mendemonstrasikan permintaan sinkron, mari kita tambahkan kemampuan untuk menampilkan antrean kita saat ini dan untuk menghapus sebuah nilai:
 
 ```elixir
 defmodule SimpleQueue do
@@ -76,7 +84,7 @@ defmodule SimpleQueue do
 end
 ```
 
-Mari memulai SimpleQueue kita dan mencoba fungsi dequeue kita yang baru:
+Mari memulai SimpleQueue kita dan uji fungsionalitas dequeue baru kita:
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])
@@ -89,11 +97,12 @@ iex> SimpleQueue.queue
 [3]
 ```
 
-### Fungsi Taksinkron
+### Fungsi Asinkron
 
-Request yang taksinkron (asynchronous) ditangani dengan callback `handle_cast/2`.  Callback ini bekerja mirip dengan `handle_call/3` tetapi tidak menerima pemanggilnya dan tidak perlu ada balasan (mengembalikan sesuatu).
+Permintaan asinkron ditangani dengan callback `handle_cast/2`.
+Ini bekerja hampir sama seperti `handle_call/3` tetapi tidak menerima pemanggil dan tidak diharapkan untuk membalas.
 
-Kita akan mengimplementasikan fungsi enqueue kita secara taksinkron, mengubah antrian kita tetapi tidak memblok eksekusi kita yang sedang berjalan:
+Kita akan mengimplementasikan fungsi enqueue kita secara asinkron, memperbarui antrean tetapi tidak memblokir eksekusi kita saat ini:
 
 ```elixir
 defmodule SimpleQueue do
@@ -136,7 +145,7 @@ defmodule SimpleQueue do
 end
 ```
 
-Mari kita gunakan fungsionalitas kita yang baru:
+Mari kita manfaatkan fungsi baru kita:
 
 ```elixir
 iex> SimpleQueue.start_link([1, 2, 3])
@@ -149,4 +158,4 @@ iex> SimpleQueue.queue
 [1, 2, 3, 20]
 ```
 
-Untuk informasi lebih lanjut kunjungi dokumentasi resmi [GenServer](https://hexdocs.pm/elixir/GenServer.html#content).
+Untuk informasi lebih lanjut, lihat dokumentasi resmi [GenServer](https://hexdocs.pm/elixir/GenServer.html#content).

@@ -1,19 +1,25 @@
 %{
-  version: "0.9.1",
+  version: "1.0.4",
   title: "Metaprogramming",
   excerpt: """
-  Metaprogramming adalah proses menggunakan code untuk menulis code.  Dalam Elixir hal ini memberi kita kemampuan mengembangkan bahasa ini agar sesuai dengan kebutuhan kita dan mengubah code secara dinamis.  Kita akan mulai dengan melihat bagaimana Elixir direpresentasikan di dalamnya, bagaimana mengubahnya, dan akhirnya kita bisa menggunakan pengetahuan itu untuk mengembangkannya.
+  Metaprogramming adalah proses menggunakan kode untuk menulis kode.
+  Dalam Elixir, ini memberi kita kemampuan untuk memperluas bahasa agar sesuai dengan kebutuhan kita dan mengubah kode secara dinamis.
+  Kita akan mulai dengan melihat bagaimana Elixir direpresentasikan di balik layar, kemudian bagaimana memodifikasinya, dan akhirnya kita dapat menggunakan pengetahuan ini untuk memperluasnya.
   
-  Perhatian:  Metaprogramming itu tidak mudah dan hanya patut digunakan ketika teramat perlu.  Terlalu banyak menggunakannya hampir pasti hasilkan code yang kompleks dan sulit dipahami dan didebug
+  Peringatan: Metaprogramming itu rumit dan hanya boleh digunakan jika diperlukan.
+  Penggunaan berlebihan hampir pasti akan menghasilkan kode yang kompleks yang sulit dipahami dan di-debug.
   """
 }
 ---
 
 ## Quote
 
-Langkah pertama metaprogramming adalah memahami bagaimana expression itu direpresentasikan.  Dalam Elixir abstract syntax tree (AST), representasi internal code kita, disusun dalam tuple.  Tuple-tuple ini terdiri dari tiga bagian: nama fungsi, metadata, dan argumen-argumen fungsi.
+Langkah pertama menuju metaprogramming adalah memahami bagaimana ekspresi direpresentasikan.
+Di Elixir, pohon sintaks abstrak (abstract syntax tree atau AST), representasi internal kode kita, terdiri dari tuple.
+Tuple ini berisi tiga bagian: nama fungsi, metadata, dan argumen fungsi.
 
-Untuk melihat struktur internal ini, Elixir memberi kita fungsi `quote/2`.  Menggunakan `quote/2` kita dapat mengubah code Elixir menjadi representasi mendasarnya:
+Untuk melihat struktur internal ini, Elixir menyediakan fungsi `quote/2`.
+Dengan menggunakan `quote/2`, kita dapat mengkonversi kode Elixir ke representasi dasarnya:
 
 ```elixir
 iex> quote do: 42
@@ -29,7 +35,7 @@ iex> quote do: if value, do: "True", else: "False"
  [{:value, [], Elixir}, [do: "True", else: "False"]]}
 ```
 
-Lihat bahwa tiga yang pertama di atas tidak menghasilkan tuple?  Ada lima literal yang mengembalikan dirinya sendiri ketika di-quote:
+Perhatikan bahwa tiga yang pertama tidak mengembalikan tuple? Ada lima literal yang mengembalikan dirinya sendiri ketika di-quote:
 
 ```elixir
 iex> :atom
@@ -46,7 +52,9 @@ iex> {"hello", :world} # 2 element tuples
 
 ## Unquote
 
-Sekarang, setelah kita bisa mengakses struktur internal code kita, bagaimana kita mengubahnya?  Untuk memasukkan code atau value yang baru kita gunakan `unquote/1`.  Ketika kita melakukan unquote sebuah ekspresi, ekspresi tersebut akan dievaluasi dan dimasukkan ke AST.  Untuk mendemonstrasikan `unquote/1` mari lihat beberapa contoh:
+Sekarang kita dapat mengambil struktur internal kode kita, bagaimana cara kita memodifikasinya? Untuk menyuntikkan kode atau nilai baru, kita menggunakan `unquote/1`.
+Saat kita menghapus tanda kutip pada sebuah ekspresi, ekspresi tersebut akan dievaluasi dan disuntikkan ke dalam AST.
+Untuk mendemonstrasikan `unquote/1`, mari kita lihat beberapa contoh:
 
 ```elixir
 iex> denominator = 2
@@ -57,15 +65,21 @@ iex> quote do: divide(42, unquote(denominator))
 {:divide, [], [42, 2]}
 ```
 
-Dalam contoh pertama variabel `denominator` kita di-quote sehingga AST yang dihasilkan berisi tuple untuk mengakses variabel tersebut.  Dalam contoh yang `unquote/1` code yang dihasilkan mengandung nilai dari `denominator`.
+Pada contoh pertama, variabel `denominator` kita diberi tanda kutip sehingga AST yang dihasilkan menyertakan tuple untuk mengakses variabel tersebut.
+Pada contoh `unquote/1`, kode yang dihasilkan menyertakan nilai `denominator` sebagai gantinya.
 
-## Macro
+## Makro
 
-Begitu kita paham `quote/2` dan `unquote/1` kita siap untuk masuk ke macro.  Adalah penting diingat bahwa macro, seperti halnya semua metaprogramming, sepatutnya digunakan secara tidak boros.
+Setelah kita memahami `quote/2` dan `unquote/1`, kita siap untuk mempelajari makro (macro).
+Penting untuk diingat bahwa makro, seperti semua metaprogramming, harus digunakan dengan hemat.
 
-Dalam bentuk yang paling sederhana macro adalah fungsi khusus yang dirancang untuk mengembalikan sebuah ekspresi yang di-quote yang akan disisipkan ke dalam code aplikasi kita.  Bayangkan macro tersebut diganti dengan ekspresi yang ter-quote dan bukannya dipanggil seperti sebuah fungsi.  Dengan macro kita punya semua yang dibutuhkan untuk mengembangkan Elixir dan secara dinamis menambahkan code ke aplikasi kita.
+Pada intinya, makro adalah fungsi kasus khusus yang dirancang untuk mengembalikan ekspresi yang dikutip yang akan dimasukkan ke dalam kode aplikasi kita.
+Bayangkan makro tersebut diganti dengan ekspresi yang dikutip, bukan dipanggil seperti fungsi.
+Dengan makro, kita memiliki semua yang diperlukan untuk memperluas Elixir dan menambahkan kode secara dinamis ke aplikasi kita.
 
-Kita mulai dengan mendefinisikan sebuah macro dengan `defmacro/2` yang, seperti banyak bagian Elixir, sendirinya adalah sebuah macro.  Sebagai sebuah contoh kita akan mengimplementasikan `unless` sebagai sebuah macro.  Ingatlah bahwa macro kita harus mengembalikan ekspresi yang ter-quote:
+Kita mulai dengan mendefinisikan makro menggunakan `defmacro/2` yang, seperti sebagian besar Elixir, itu sendiri adalah makro (renungkan hal itu).
+Sebagai contoh, kita akan mengimplementasikan `unless` sebagai makro.
+Ingat bahwa makro kita perlu mengembalikan ekspresi yang dikutip:
 
 ```elixir
 defmodule OurMacro do
@@ -77,7 +91,7 @@ defmodule OurMacro do
 end
 ```
 
-Mari require modul kita dan tes macro kita:
+Mari kita panggil modul kita dan coba jalankan makro kita:
 
 ```elixir
 iex> require OurMacro
@@ -88,9 +102,12 @@ iex> OurMacro.unless false, do: "Hi"
 "Hi"
 ```
 
-Karena macro mengganti code kita dalam aplikasi kita, kita bisa mengendalikan kapan dan apa yang dikompilasi.  Sebuah contoh untuk ini dapat ditemukan di modul `Logger`.  Ketika logging dimatikan tidak ada code yang dimasukkan dan aplikasi yang dihasilkan tidak mengandung referensi atau pemanggilan fungsi ke logging.  Ini berbeda dengan bahasa lain dimana masih ada overhead dari sebuah pemanggilan fungsi bahkan ketika implementasinya adalah NOP (tidak ada eksekusi).
+Karena makro menggantikan kode dalam aplikasi kita, kita dapat mengontrol kapan dan apa yang dikompilasi.
+Contohnya dapat ditemukan di modul `Logger`.
+Ketika pencatatan (logging) dinonaktifkan, tidak ada kode yang disuntikkan dan aplikasi yang dihasilkan tidak berisi referensi atau panggilan fungsi ke pencatatan.
+Ini berbeda dari bahasa lain di mana masih ada overhead dari panggilan fungsi bahkan ketika implementasinya adalah NOP (No Operating Procedures).
 
-Untuk mendemonstrasikan ini kita akan membuat sebuah logger sederhana yang bisa diaktifkan dan dimatikan:
+Untuk mendemonstrasikan hal ini, kita akan membuat logger sederhana yang dapat diaktifkan atau dinonaktifkan:
 
 ```elixir
 defmodule Logger do
@@ -112,7 +129,7 @@ defmodule Example do
 end
 ```
 
-Dengan logging diaktifkan fungsi `test` kita akan tampak seperti ini:
+Dengan mengaktifkan pencatatan log, fungsi `test` kita akan menghasilkan kode yang kurang lebih seperti ini:
 
 ```elixir
 def test do
@@ -127,13 +144,69 @@ def test do
 end
 ```
 
-### Private Macro
+## Debugging
 
-Walau tidak begitu umum, Elixir mendukung macro yang privat.  Sebuah macro privat didefinisikan dengan `defmacrop` dan hanya bisa dipanggil dari dalam modul tempatnya didefinisikan.  Macro privat harus didenifisikan sebelum code yang memanggilnya.
+Baiklah, sekarang kita sudah tahu cara menggunakan `quote/2`, `unquote/1` dan menulis makro.
+Tetapi bagaimana jika Anda memiliki kode yang sangat panjang yang diapit tanda kutip dan ingin memahaminya? Dalam hal ini, Anda dapat menggunakan `Macro.to_string/2`.
+Lihat contoh ini:
 
-### Macro Hygiene
+```elixir
+iex> Macro.to_string(quote(do: foo.bar(1, 2, 3)))
+"foo.bar(1, 2, 3)"
+```
 
-Bagaimana macro berinteraksi dengan konteks pemanggilnya ketika disisipkan/diekspansi dikenal dengan macro hygiene. Secara default macro di Elixir adalah higienis dan tidak berkonflik dengan konteks code kita:
+Dan ketika Anda ingin melihat kode yang dihasilkan oleh makro, Anda dapat menggabungkannya dengan `Macro.expand/2` dan `Macro.expand_once/2`, fungsi-fungsi ini memperluas makro ke dalam kode yang dikutip.
+Yang pertama dapat memperluasnya beberapa kali, sedangkan yang kedua hanya sekali.
+Sebagai contoh, mari kita modifikasi contoh `unless` dari bagian sebelumnya:
+
+```elixir
+defmodule OurMacro do
+  defmacro unless(expr, do: block) do
+    quote do
+      if !unquote(expr), do: unquote(block)
+    end
+  end
+end
+
+require OurMacro
+
+quoted =
+  quote do
+    OurMacro.unless(true, do: "Hi")
+  end
+```
+
+```elixir
+iex> quoted |> Macro.expand_once(__ENV__) |> Macro.to_string |> IO.puts
+if(!true) do
+  "Hi"
+end
+```
+
+Jika kita menjalankan kode yang sama dengan `Macro.expand/2`, hasilnya menarik:
+
+```elixir
+iex> quoted |> Macro.expand(__ENV__) |> Macro.to_string |> IO.puts
+case(!true) do
+  x when x in [false, nil] ->
+    nil
+  _ ->
+    "Hi"
+end
+```
+
+Anda mungkin ingat bahwa kami telah menyebutkan `if` sebagai makro di Elixir, di sini kita melihatnya diperluas menjadi pernyataan `case` yang mendasarinya.
+
+### Makro Privat
+
+Walau tidak begitu umum, Elixir mendukung makro privat.
+Makro privat didefinisikan dengan `defmacrop` dan hanya dapat dipanggil dari modul tempat makro tersebut didefinisikan.
+Makro privat harus didefinisikan sebelum kode yang memanggilnya.
+
+### Kebersihan Makro
+
+Cara makro berinteraksi dengan konteks pemanggil saat diekspansi dikenal sebagai kebersihan makro (macro hygiene).
+Secara default, makro di Elixir bersifat higienis dan tidak akan berkonflik dengan konteks kita:
 
 ```elixir
 defmodule Example do
@@ -152,7 +225,8 @@ iex> val
 42
 ```
 
-Tetapi bagaimana jika kita ingin memanipulasi nilai `val`?  Untuk menandai sebuah variabel sebagai tidak higienis kita bisa menggunakan `var!/2`.  Mari coba ubah contoh kita untuk menggunakan macro lain yang menggunakan `var!/2`:
+Bagaimana jika kita ingin memanipulasi nilai `val`? Untuk menandai variabel sebagai tidak higienis, kita dapat menggunakan `var!/2`.
+Mari kita perbarui contoh kita untuk menyertakan makro lain yang menggunakan `var!/2`:
 
 ```elixir
 defmodule Example do
@@ -183,13 +257,18 @@ iex> val
 -1
 ```
 
-Dengan menggunakan `var!/2` dalam macro kita, kita memanipulasi nilai dari `val` tanpa mengirimkannya ke dalam macro kita (sebagai argumen misalnya).  Penggunaan macro non-higienis mesti dijaga tetap minimal.  Dengan menggunakan `var!/2` kita menaikkan resiko konflik variabel.
+Dengan menyertakan `var!/2` dalam makro kita, kita memanipulasi nilai `val` tanpa meneruskannya ke dalam makro kita.
+Penggunaan makro yang tidak higienis harus diminimalkan.
+Dengan menyertakan `var!/2`, kita meningkatkan risiko konflik resolusi variabel.
 
-### Binding
+### Pengikatan (Binding)
 
-Kita sudah membahas kegunaan `unquote/1`, tapi ada cara lain untuk menyisipkan value ke code kita: pengikatan (binding).  Dengan pengikatan variabel (variable binding) kita bisa menyertakan banyak variabel dalam macro kita dan memastikan variabel-variabel tersebut hanya di-unqote sekali, menghindari reevaluasi tanpa sengaja. Untuk menggunakan variabel yang diikat kita perlu memasukkan daftar keyword (keyword list) ke opsi `bind_quoted` di `quote/2`.
+Kita sudah membahas kegunaan `unquote/1`, tetapi ada cara lain untuk memasukkan nilai ke dalam kode kita: pengikatan.
+Dengan pengikatan variabel, kita dapat menyertakan beberapa variabel dalam makro kita dan memastikan variabel tersebut hanya dilepas tanda kutipnya sekali, menghindari evaluasi ulang yang tidak disengaja.
+Untuk menggunakan variabel terikat, kita perlu memberikan daftar kata kunci ke opsi `bind_quoted` di `quote/2`.
 
-Untuk melihat manfaat dari `bind_quote` dan untuk mendemonstrasikan masalah reevaluasi, mari kita gunakan sebuah contoh.  Kita bisa mulai dengan membuat sebuah macro yang menuliskan ekspresinya dua kali:
+Untuk melihat manfaat `bind_quoted` dan untuk mendemonstrasikan masalah evaluasi ulang, mari kita gunakan contoh.
+Kita dapat mulai dengan membuat makro yang hanya mengeluarkan ekspresi dua kali:
 
 ```elixir
 defmodule Example do
@@ -202,7 +281,8 @@ defmodule Example do
 end
 ```
 
-Kita akan mencoba macro kita yang baru ini dengan memberinya waktu sistem saat ini.  Kita harusnya mengharapkan tampilnya tulisan yang sama dua kali:
+Kita akan mencoba makro baru kita dengan memberikan waktu sistem saat ini sebagai input.
+Kita akan melihat outputnya dua kali:
 
 ```elixir
 iex> Example.double_puts(:os.system_time)
@@ -210,7 +290,8 @@ iex> Example.double_puts(:os.system_time)
 1450475941851733000
 ```
 
-Waktunya berbeda!  Ada apa?  Menggunakan `unquote/1` pada ekspresi yang sama beberapa kali menghasilkan reevaluasi dan hal itu bisa memiliki konsekuensi yang tidak diharapkan.  Mari ubah contoh tersebut dengan menggunakan `bind_quoted` dan lihat apa yang kita dapat:
+Waktunya berbeda! Apa yang terjadi? Menggunakan `unquote/1` pada ekspresi yang sama beberapa kali mengakibatkan evaluasi ulang dan itu dapat menimbulkan konsekuensi yang tidak diinginkan.
+Mari kita perbarui contohnya untuk menggunakan `bind_quoted` dan lihat apa yang kita dapatkan:
 
 ```elixir
 defmodule Example do
@@ -231,4 +312,4 @@ iex> Example.double_puts(:os.system_time)
 
 Dengan `bind_quoted` kita dapatkan hasil yang diharapkan: waktu yang sama dicetak dua kali.
 
-Sekarang setelah kita membahas `quote/2`, `unquote/1`, dan `defmacro/2` kita punya semua yang diperlukan untuk mengembangkan Elixir untuk sesuai kebutuhan kita.
+Sekarang setelah kita membahas `quote/2`, `unquote/1`, dan `defmacro/2` kita punya semua alat yang diperlukan untuk mengembangkan Elixir agar sesuai kebutuhan kita.

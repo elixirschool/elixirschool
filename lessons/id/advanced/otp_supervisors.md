@@ -1,83 +1,183 @@
 %{
-  version: "0.9.1",
+  version: "1.1.2",
   title: "OTP Supervisors",
   excerpt: """
-  Supervisor adalah proses khusus yang memiliki satu peran: memonitor proses lain. Supervisor ini memungkinkan kita membuat aplikasi yang toleran-kegagalan (fault-tolerant) dengan secara otomatis menjalankan ulang proses anak (child process) jika proses anak itu fail (mengalami kegagalan).
+  Supervisor adalah proses khusus dengan satu tujuan: memantau proses lain.
+  Supervisor ini memungkinkan kita untuk membuat aplikasi yang tahan terhadap kesalahan dengan secara otomatis memulai ulang proses anak ketika proses tersebut gagal.
   """
 }
 ---
 
 ## Konfigurasi
 
-Inti Supervisor adalah fungsi `Supervisor.start_link/2`.  Di samping menjalankan supervisor kita dan anak-anaknya, fungsi ini juga memungkinkan kita mendefinisikan strategi yang digunakan supervisor kita untuk mengatur proses-proses anak.
+Keajaiban Supervisor terletak pada fungsi `Supervisor.start_link/2`.
+Selain memulai supervisor dan proses anak, fungsi ini memungkinkan kita untuk mendefinisikan strategi yang digunakan supervisor untuk mengelola proses anak.
 
-Proses-proses anak didefinisikan menggunakan sebuah list dan fungsi `worker/3` yang kita import dari `Supervisor.Spec`.  Fungsi `worker/3` ini menerima sebuah modul, argumen, dan sekumpulang opsi.  Di dalamnya `worker/3` memanggil `start_link/3` dengan argumen-argumen kita dalam inisialisasi.
+Menggunakan `SimpleQueue` dari pelajaran [OTP Concurrency](/id/lessons/advanced/otp_concurrency), mari kita mulai:
 
-Menggunakan SimpleQueue dari pelajaran [OTP Concurrency](/id/lessons/advanced/otp_concurrency) mari kita mulai:
+Buat proyek baru menggunakan `mix new simple_queue --sup` untuk membuat proyek baru dengan pohon supervisor.
+Kode untuk modul `SimpleQueue` harus ditempatkan di `lib/simple_queue.ex` dan kode supervisor yang akan kita tambahkan akan ditempatkan di `lib/simple_queue/application.ex`
+
+Proses anak didefinisikan menggunakan daftar, baik daftar nama modul:
 
 ```elixir
-import Supervisor.Spec
+defmodule SimpleQueue.Application do
+  use Application
 
-children = [
-  worker(SimpleQueue, [], name: SimpleQueue)
-]
+  def start(_type, _args) do
+    children = [
+      SimpleQueue
+    ]
 
-{:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
+    opts = [strategy: :one_for_one, name: SimpleQueue.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end
 ```
 
-Jika proses kita crash atau diterminasi Supervisor kita akan secara otomatis menjalankan ulang seakan tidak ada yang terjadi.
+atau daftar tuple jika Anda ingin menyertakan opsi konfigurasi:
+
+```elixir
+defmodule SimpleQueue.Application do
+  use Application
+
+  def start(_type, _args) do
+    children = [
+      {SimpleQueue, [1, 2, 3]}
+    ]
+
+    opts = [strategy: :one_for_one, name: SimpleQueue.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end
+```
+
+Jika kita menjalankan `iex -S mix`, kita akan melihat bahwa `SimpleQueue` kita secara otomatis dimulai:
+
+```elixir
+iex> SimpleQueue.queue
+[1, 2, 3]
+```
+
+Jika proses `SimpleQueue` kita mengalami kegagalan atau dihentikan, Supervisor kita akan secara otomatis memulai ulang proses tersebut seolah-olah tidak terjadi apa-apa.
 
 ### Strategi
 
-Saat ini ada empat strategi penjalanan ulang yang tersedia untuk supervisor:
+Saat ini tersedia tiga strategi pengawasan berbeda untuk supervisor:
 
-+ `:one_for_one` - Hanya jalankan ulang proses anak yang gagal.
++ `:one_for_one` - Hanya memulai ulang proses anak yang gagal.
+ 
++ `:one_for_all` - Memulai ulang semua proses anak jika terjadi kegagalan.
+ 
++ `:rest_for_one` - Memulai ulang proses yang gagal dan semua proses yang dimulai setelahnya.
 
-+ `:one_for_all` - Jalankan ulang semua proses anak jika satu gagal.
+## Spesifikasi Anak
 
-+ `:rest_for_one` - Jalankan ulang proses yang gagal dan semua proses yang dijalankan setelahnya.
-
-+ `:simple_one_for_one` - Pilihan terbaik untuk proses anak yang dipasangkan secara dinamis (dynamically attached). Supervisor hanya bisa mengurus satu anak.
-
-### Nesting
-
-Di samping proses pekerja (worker process), kita juga bisa mensupervisi supervisor lain untuk membuat sebuah pohon supervisor (supervisor tree).  Satu-satunya perbedaan adalah menggantikan `worker/3` dengan `supervisor/3`:
+Setelah supervisor dimulai, ia harus mengetahui cara memulai/menghentikan/memulai ulang anak-anaknya.
+Setiap modul anak harus memiliki fungsi `child_spec/1` untuk mendefinisikan perilaku ini.
+Makro `use GenServer`, `use Supervisor`, dan `use Agent` secara otomatis mendefinisikan metode ini untuk kita (`SimpleQueue` memiliki `use GenServer`, jadi kita tidak perlu memodifikasi modul), tetapi jika Anda perlu mendefinisikannya sendiri, `child_spec/1` harus mengembalikan map opsi:
 
 ```elixir
-import Supervisor.Spec
+def child_spec(opts) do
+  %{
+    id: SimpleQueue,
+    start: {__MODULE__, :start_link, [opts]},
+    shutdown: 5_000,
+    restart: :permanent,
+    type: :worker
+  }
+end
+```
 
-children = [
-  supervisor(ExampleApp.ConnectionSupervisor, [[name: ExampleApp.ConnectionSupervisor]]),
-  worker(SimpleQueue, [[], [name: SimpleQueue]])
++ `id` - Kunci wajib.
+  Digunakan oleh supervisor untuk mengidentifikasi spesifikasi anak.
+
++ `start` - Kunci wajib.
+  Modul/Fungsi/Argumen yang akan dipanggil saat dimulai oleh supervisor.
+
++ `shutdown` - Kunci opsional.
+  Mendefinisikan perilaku anak selama proses penghentian.
+
+  Beberapa opsi:
+
+  + `:brutal_kill` - Anak dihentikan segera.
+
+  + `0` atau bilangan bulat positif - waktu dalam milidetik yang akan ditunggu supervisor sebelum menghentikan proses anak.
+
+    Jika prosesnya bertipe `:worker`, `shutdown` secara default adalah `5000`.
+
+  + `:infinity` - Supervisor akan menunggu tanpa batas waktu sebelum menghentikan proses anak.
+
+    Default untuk tipe proses `:supervisor`.
+
+    Tidak disarankan untuk tipe `:worker`.
+
+  + `restart` - Kunci opsional.
+
+    Ada beberapa pendekatan untuk menangani crash proses anak:
+
+    + `:permanent` - Proses anak selalu dimulai ulang.
+      Default untuk semua proses
+    
+    + `:temporary` - Proses anak tidak pernah dimulai ulang.
+    
+    + `:transient` - Proses anak hanya dimulai ulang jika berakhir secara tidak normal.
+
++ `type` - Kunci opsional.
+  Proses dapat berupa `:worker` atau `:supervisor`.
+  Defaultnya adalah `:worker`.
+
+## DynamicSupervisor
+
+Supervisor biasanya dimulai dengan daftar proses anak yang akan dijalankan saat aplikasi dimulai.
+Namun, terkadang proses anak yang diawasi tidak diketahui saat aplikasi kita dimulai (misalnya, kita mungkin memiliki aplikasi web yang memulai proses baru untuk menangani pengguna yang terhubung ke situs kita).
+Untuk kasus-kasus ini, kita memerlukan supervisor di mana proses anak dapat dijalankan sesuai permintaan.
+DynamicSupervisor digunakan untuk menangani kasus ini.
+
+Karena kita tidak akan menentukan proses anak, kita hanya perlu mendefinisikan opsi runtime untuk supervisor.
+DynamicSupervisor hanya mendukung strategi supervisi `:one_for_one`:
+
+```elixir
+options = [
+  name: SimpleQueue.Supervisor,
+  strategy: :one_for_one
 ]
 
-{:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
+DynamicSupervisor.start_link(options)
+```
+
+Kemudian, untuk memulai SimpleQueue baru secara dinamis, kita akan menggunakan `start_child/2` yang membutuhkan supervisor dan spesifikasi child (sekali lagi, `SimpleQueue` menggunakan `use GenServer` sehingga spesifikasi child sudah ditentukan):
+
+```elixir
+{:ok, pid} = DynamicSupervisor.start_child(SimpleQueue.Supervisor, SimpleQueue)
 ```
 
 ## Supervisor untuk Task
 
-Task punya Supervisornya sendiri, `Task.Supervisor`.  Didesain untuk task yang dibuat secara dinamis, supervisor ini menggunakan `:simple_one_for_one` di dalamnya.
+Setiap Task memiliki Supervisor khusus, yaitu `Task.Supervisor`.
+Dirancang untuk tugas yang dibuat secara dinamis, supervisor ini menggunakan `DynamicSupervisor` di baliknya.
 
 ### Setup
 
-Menggunakan `Task.Supervisor` tidak beda dengan supervisor lain:
+Menambahkan `Task.Supervisor` tidak berbeda dengan supervisor lainnya:
 
 ```elixir
-import Supervisor.Spec
-
 children = [
-  supervisor(Task.Supervisor, [[name: ExampleApp.TaskSupervisor]])
+  {Task.Supervisor, name: ExampleApp.TaskSupervisor, restart: :transient}
 ]
 
 {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
 
+Perbedaan utama antara `Supervisor` dan `Task.Supervisor` adalah strategi restart default-nya adalah `:temporary` (tugas tidak akan pernah di-restart).
+
 ### Task yang Disupervisi
 
-Setelah supervisor dijalankan kita bisa menggunakan fungsi `start_child/2` untuk membuat task yang disupervisi:
+Setelah supervisor dijalankan, kita dapat menggunakan fungsi `start_child/2` untuk membuat tugas yang diawasi:
 
 ```elixir
 {:ok, pid} = Task.Supervisor.start_child(ExampleApp.TaskSupervisor, fn -> background_work end)
 ```
 
-Jika task kita crash sebelum waktunya, task itu akan dijalankan ulang (restart) untuk kita.  Ini khususnya bisa berguna ketika bekerja dengan koneksi yang datang atau memproses pekerjaan di belakang layar (background work).
+Jika task kita mengalami crash sebelum waktunya, task tersebut akan dijalankan ulang untuk kita.
+Ini sangat berguna saat bekerja dengan koneksi masuk atau memproses pekerjaan latar belakang.
