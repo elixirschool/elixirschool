@@ -1,349 +1,230 @@
 %{
-  version: "0.9.1",
-  title: "Basics",
+  version: "2.4.0",
+  title: "Dasar Ecto",
   excerpt: """
-  Ecto adalah sebuah project resmi Elixir yang memberikan sebuah wrapper (pembungkus) terhadap database dan bahasa query yang terintegrasi.  Dengan Ecto kita bisa membuat migrasi, mendefinisikan model, melakukan insert dan update data, dan melakukan query.
+  Ecto adalah proyek Elixir resmi yang menyediakan pembungkus basis data dan bahasa kueri terintegrasi. Dengan Ecto, kita dapat membuat migrasi, mendefinisikan skema, menyisipkan dan memperbarui data, serta melakukan kueri terhadap data tersebut.
   """
 }
 ---
 
-## Setup
+### Adapter
 
-Untuk mulai kita perlu menginclude Ecto dan sebuah adapter database dalam `mix.exs` project kita.  Anda bisa menemukan daftar adapter database yang didukung di bagian [Usage](https://github.com/elixir-lang/ecto/blob/master/README.md#usage) section dari README Ecto.  Sebagai contoh kita akan gunakan Postgresql:
+Ecto mendukung berbagai basis data melalui penggunaan adapter. Beberapa contoh adapter adalah:
 
-```elixir
-defp deps do
-  [{:ecto, "~> 1.0"}, {:postgrex, ">= 0.0.0"}]
-end
+* PostgreSQL
+* MySQL
+* SQLite
+
+Untuk pelajaran ini, kita akan mengkonfigurasi Ecto untuk menggunakan adapter PostgreSQL.
+
+### Memulai
+
+Sepanjang pelajaran ini, kita akan membahas tiga bagian Ecto:
+
+* Repositori — menyediakan antarmuka ke basis data kita, termasuk koneksi
+* Migrasi — mekanisme untuk membuat, memodifikasi, dan menghapus tabel dan indeks basis data
+* Skema — struktur khusus yang mewakili entri tabel basis data
+
+Untuk memulai, kita akan membuat aplikasi dengan pohon supervisi.
+
+```shell
+mix new friends --sup
+cd friends
 ```
 
-Sekarang kita bisa tambahkan Ecto dan adapter kita ke application:
+Tambahkan dependensi paket ecto dan postgrex ke file `mix.exs` Anda.
 
 ```elixir
-def application do
-  [applications: [:ecto, :postgrex]]
-end
-```
-
-### Repository
-
-Akhirnya kita perlu membuat repositori project kita, wrapper untuk databasenya.  Ini bisa dilakukan lewat task `mix ecto.gen.repo -r FriendsApp.Repo`.  Kita akan membahas task mix Ecto nanti.  Repo bisa ditemukan di `lib/<project name>/repo.ex`:
-
-```elixir
-defmodule FriendsApp.Repo do
-  use Ecto.Repo, otp_app: :example_app
-end
-```
-
-### Supervisor
-
-Setelah kita membuat Repo, kita perlu mensetup pohon supervisor (supervisor tree) kita, yang biasanya ditemukan di `lib/<project name>.ex`.
-
-Penting dicatat bahwa kita mensetup Repo sebagai sebuah supervisor dengan `supervisor/3` dan _bukan_ `worker/3`.  Jika anda membuat app dengan flag `--sup` sebagian besarnya sudah dibuat:
-
-```elixir
-defmodule FriendsApp.App do
-  use Application
-
-  def start(_type, _args) do
-    import Supervisor.Spec
-
-    children = [
-      supervisor(FriendsApp.Repo, [])
+  defp deps do
+    [
+      {:ecto_sql, "~> 3.2"},
+      {:postgrex, "~> 0.15"}
     ]
-
-    opts = [strategy: :one_for_one, name: FriendsApp.Supervisor]
-    Supervisor.start_link(children, opts)
   end
-end
 ```
 
-Untuk info lebih lanjut tentang supervisor lihatlah pelajaran [OTP Supervisors](/id/lessons/advanced/otp_supervisors).
+Ambil dependensi menggunakan:
 
-### Konfigurasi
+```shell
+mix deps.get
+```
 
-Untuk mengkonfigurasi Ecto kita perlu menambahkan sebuah bagian ke `config/config.exs` kita.  Di sini kita akan menspesifikasikan repositori, adapter, database, dan informasi terkait account:
+#### Membuat Repositori
+
+Repositori di Ecto dipetakan ke penyimpanan data seperti basis data Postgres kita.
+Semua komunikasi ke basis data akan dilakukan menggunakan repositori ini.
+
+Siapkan repositori dengan menjalankan:
+
+```shell
+mix ecto.gen.repo -r Friends.Repo
+```
+
+Ini akan menghasilkan konfigurasi yang diperlukan di `config/config.exs` untuk terhubung ke basis data termasuk adaptor yang akan digunakan.
+Ini adalah file konfigurasi untuk aplikasi `Friends` kita.
 
 ```elixir
-config :example_app, FriendsApp.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  database: "example_app",
+config :friends, Friends.Repo,
+  database: "friends_repo",
   username: "postgres",
-  password: "postgres",
+  password: "",
   hostname: "localhost"
 ```
 
-## Mix Task
+Ini mengkonfigurasi cara Ecto terhubung ke basis data. Anda mungkin perlu mengkonfigurasi basis data Anda agar memiliki kredensial yang sesuai.
 
-Ecto menyertakan sejumlah task mix yang membantu untuk bekerja dengan database kita:
-
-```shell
-mix ecto.create         # Membuat database untuk repo
-mix ecto.drop           # Menghapus database untuk repo
-mix ecto.gen.migration  # Membuat migrasi baru untuk repo
-mix ecto.gen.repo       # Membuat repo baru
-mix ecto.migrate        # Menjalankan migrasi pada repo
-mix ecto.rollback       # Menjalankan balik migrasi dari repo
-```
-
-## Migrasi
-
-Cara terbaik membuat migrasi adalah dengan task `mix ecto.gen.migration <name>`.  Jika anda sudah kenal ActiveRecord maka ini akan tampak familiar.
-
-Mari mulai dengan melihat sebuah migrasi untuk tabel users:
+Ini juga membuat modul `Friends.Repo` di dalam `lib/friends/repo.ex`.
 
 ```elixir
-defmodule FriendsApp.Repo.Migrations.CreateUser do
+defmodule Friends.Repo do
+  use Ecto.Repo, 
+    otp_app: :friends,
+    adapter: Ecto.Adapters.Postgres
+end
+```
+
+Kita akan menggunakan modul `Friends.Repo` untuk melakukan query ke database. Kita juga memberi tahu modul ini untuk menemukan informasi konfigurasi database-nya di aplikasi Elixir `:friends` dan kita memilih adapter `Ecto.Adapters.Postgres`.
+
+Selanjutnya, kita akan mengatur `Friends.Repo` sebagai supervisor di dalam pohon supervisi aplikasi kita di `lib/friends/application.ex`.
+Ini akan memulai proses Ecto saat aplikasi kita dijalankan.
+
+```elixir
+  def start(_type, _args) do
+    # List all child processes to be supervised
+    children = [
+      Friends.Repo,
+    ]
+
+  ...
+```
+
+Setelah itu, kita perlu menambahkan baris berikut ke file `config/config.exs` kita:
+
+```elixir
+config :friends, ecto_repos: [Friends.Repo]
+```
+
+Ini akan memungkinkan aplikasi kita untuk menjalankan perintah ecto mix dari baris perintah.
+
+Kita sudah selesai mengkonfigurasi repositori!
+Sekarang kita dapat membuat basis data di dalam postgres dengan perintah ini:
+
+```shell
+mix ecto.create
+```
+
+Ecto akan menggunakan informasi dalam file `config/config.exs` untuk menentukan cara terhubung ke Postgres dan nama apa yang akan diberikan pada basis data.
+
+Jika Anda menerima kesalahan apa pun, pastikan informasi konfigurasi sudah benar dan instance postgres Anda sedang berjalan.
+
+### Migrasi
+
+Untuk membuat dan memodifikasi tabel di dalam basis data postgres, Ecto menyediakan migrasi.
+Setiap migrasi menjelaskan serangkaian tindakan yang akan dilakukan pada basis data kita, seperti tabel mana yang akan dibuat atau diperbarui.
+
+Karena basis data kita belum memiliki tabel, kita perlu membuat migrasi untuk menambahkannya.
+Konvensi di Ecto adalah menggunakan bentuk jamak untuk tabel kita. Untuk aplikasi kita, kita membutuhkan tabel `people`, jadi mari kita mulai dari sana dengan migrasi kita.
+
+Cara terbaik untuk membuat migrasi adalah dengan menggunakan tugas `mix ecto.gen.migration <name>`, jadi dalam kasus kita, mari kita gunakan:
+
+```shell
+mix ecto.gen.migration create_people
+```
+
+Ini akan menghasilkan file baru di folder `priv/repo/migrations` yang berisi stempel waktu dalam nama file.
+Jika kita menavigasi ke direktori kita dan membuka migrasi, kita akan melihat sesuatu seperti ini:
+
+```elixir
+defmodule Friends.Repo.Migrations.CreatePeople do
   use Ecto.Migration
 
   def change do
-    create table(:users) do
-      add(:username, :string, unique: true)
-      add(:encrypted_password, :string, null: false)
-      add(:email, :string)
-      add(:confirmed, :boolean, default: false)
 
-      timestamps
-    end
-
-    create(unique_index(:users, [:username], name: :unique_usernames))
   end
 end
 ```
 
-Secara default Ecto membuat sebuah primary key yang auto-increment bernama `id`.  Di sini kita menggunakan callback default `change/0` tetapi Ecto juga mendukung `up/0` dan `down/0` jika anda perlu mengendalikan secara lebih rinci.
-
-Sebagaimana yang anda mungkin sudah terka, menambahkan `timestamps` ke migrasi anda akan membuat dan mengelola `inserted_at` dan `updated_at`.
-
-Untuk menjalankan migrasi kita yang baru jalankanlah `mix ecto.migrate`.
-
-Untuk info lebih lanjut tentang migrasi silakan lihat di bagian [Ecto.Migration](http://hexdocs.pm/ecto/Ecto.Migration.html#content) dari dokumentasi.
-
-## Model
-
-Sekarang setelah kita membuat migrasi kita dapat melanjutkan ke model.  Model mendefinisikan schema kita, metode pembantu, dan changeset.  Kita akan bahas changeset lebih jauh di bagian berikutnya.
-
-Untuk sementara ini mari lihat seperti apa model dari migrasi kita:
+Mari kita mulai dengan memodifikasi fungsi `change/0` untuk membuat tabel baru `people` dengan `name` dan `age`:
 
 ```elixir
-defmodule FriendsApp.User do
-  use Ecto.Schema
-  import Ecto.Changeset
+defmodule Friends.Repo.Migrations.CreatePeople do
+  use Ecto.Migration
 
-  schema "users" do
-    field(:username, :string)
-    field(:encrypted_password, :string)
-    field(:email, :string)
-    field(:confirmed, :boolean, default: false)
-    field(:password, :string, virtual: true)
-    field(:password_confirmation, :string, virtual: true)
-
-    timestamps
-  end
-
-  @required_fields ~w(username encrypted_password email)
-  @optional_fields ~w()
-
-  def changeset(user, params \\ :empty) do
-    user
-    |> cast(params, @required_fields, @optional_fields)
-    |> unique_constraint(:username)
-  end
-end
-```
-
-Schema yang kita definisikan dalam model kita merepresentasikan apa yang kita spesifikasikan di migrasi kita.  Sebagai tambahan atas field-field database kita kita juga memasukkan dua virtual field.  Virtual field tidak disimpan ke database tapi bisa jadi berguna untuk hal-hal seperti validasi.  Kita akan lihat tentang virtual field di bagian [Changesets](#changesets).
-
-## Query
-
-Sebelum kita bisa melakukan query pada repository kita kita perlu mengimpor API Query.  Untuk saat ini kita hanya perlu mengimpor `from/2`:
-
-```elixir
-import Ecto.Query, only: [from: 2]
-```
-
-Dokumentasi resmi bisa ditemukan di [Ecto.Query](http://hexdocs.pm/ecto/Ecto.Query.html).
-
-### Dasar
-
-Ecto menyediakan DSL Query yang sangat bagus yang memungkinkan kita mengekspresikan query dengan jelas.  Untuk menemukan username dari semua akun yang sudah dikonfirmasikan kita dapat gunakan seperti ini:
-
-```elixir
-alias FriendsApp.{Repo, User}
-
-query =
-  from(
-    u in User,
-    where: u.confirmed == true,
-    select: u.username
-  )
-
-Repo.all(query)
-```
-
-Selain `all/2`, Repo menyediakan sejumlah callback termasuk `one/2`, `get/3`, `insert/2`, dan `delete/2`.  Daftar lengkap callback bisa ditemukan di [Ecto.Repo#callbacks](http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks).
-
-### Count
-
-```elixir
-query =
-  from(
-    u in User,
-    where: u.confirmed == true,
-    select: count(u.id)
-  )
-```
-
-### Group By
-
-Untuk mengelompokkan user berdasar status konfirmasinya kita bisa masukkan opsi `group_by`:
-
-```elixir
-query =
-  from(
-    u in User,
-    group_by: u.confirmed,
-    select: [u.confirmed, count(u.id)]
-  )
-
-Repo.all(query)
-```
-
-### Order By
-
-Mengurutkan user berdasarkan tanggal pembuatannya:
-
-```elixir
-query =
-  from(
-    u in User,
-    order_by: u.inserted_at,
-    select: [u.username, u.inserted_at]
-  )
-
-Repo.all(query)
-```
-
-Untuk mengurutkannya secara menurun (`DESC`):
-
-```elixir
-query =
-  from(
-    u in User,
-    order_by: [desc: u.inserted_at],
-    select: [u.username, u.inserted_at]
-  )
-```
-
-### Join
-
-Dengan asumsi kita punya profil yang terkait dengan user kita, mari dapatkan semua profil akun yang sudah terkonfirmasi:
-
-```elixir
-query =
-  from(
-    p in Profile,
-    join: u in assoc(p, :user),
-    where: u.confirmed == true
-  )
-```
-
-### Fragment
-
-Terkadang, seperti saat kita butuh fungsi database yang khusus, API Query tidaklah cukup.  Fungsi `fragment/1` ada untuk tujuan ini:
-
-```elixir
-query =
-  from(
-    u in User,
-    where: fragment("downcase(?)", u.username) == ^username,
-    select: u
-  )
-```
-
-Contoh tambahan query dapat ditemukan di deskripsi modul [Ecto.Query.API](http://hexdocs.pm/ecto/Ecto.Query.API.html).
-
-## Changeset
-
-Dalam bagian sebelumnya kita pelajari cara mendapatkan data, tetapi bagaimana dengan menambahkan dan mengubahnya?  Untuk itu kita perlu Changeset.
-
-Changeset mengurus pemfilteran, validasi, dan menangani batasan ketika mengubah sebuah model.
-
-Untuk contoh ini kita akan fokus pada changeset untuk membuat user.  Untuk memulai kita perlu mengubah model kita:
-
-```elixir
-defmodule FriendsApp.User do
-  use Ecto.Schema
-  import Ecto.Changeset
-  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
-
-  schema "users" do
-    field(:username, :string)
-    field(:encrypted_password, :string)
-    field(:email, :string)
-    field(:confirmed, :boolean, default: false)
-    field(:password, :string, virtual: true)
-    field(:password_confirmation, :string, virtual: true)
-
-    timestamps
-  end
-
-  @required_fields ~w(username email password password_confirmation)
-  @optional_fields ~w()
-
-  def changeset(user, params \\ :empty) do
-    user
-    |> cast(params, @required_fields, @optional_fields)
-    |> validate_length(:password, min: 8)
-    |> validate_password_confirmation()
-    |> unique_constraint(:username, name: :email)
-    |> put_change(:encrypted_password, hashpwsalt(params[:password]))
-  end
-
-  defp validate_password_confirmation(changeset) do
-    case get_change(changeset, :password_confirmation) do
-      nil ->
-        password_incorrect_error(changeset)
-
-      confirmation ->
-        password = get_field(changeset, :password)
-        if confirmation == password, do: changeset, else: password_mismatch_error(changeset)
+  def change do
+    create table(:people) do
+      add :name, :string, null: false
+      add :age, :integer, default: 0
     end
   end
-
-  defp password_mismatch_error(changeset) do
-    add_error(changeset, :password_confirmation, "Password tidak cocok")
-  end
-
-  defp password_incorrect_error(changeset) do
-    add_error(changeset, :password, "tidak valid")
-  end
 end
 ```
 
-Kita sudah mengubah fungsi `changeset/2` kita dan menambahkan tiga fungsi penolong baru: `validate_password_confirmation/1`, `password_mismatch_error/1`, dan `password_incorrect_error/1`.
+Seperti yang Anda lihat di atas, kami juga telah mendefinisikan tipe data kolom.
+Selain itu, kami juga menyertakan `null: false` dan `default: 0` sebagai opsi.
 
-Sebagaimana diduga, `changeset/2` membuat sebuah changeset baru untuk kita.  Di dalamnya kita menggunakan `cast/4` untuk mengubah parameter kita ke sebuah changeset dari serangkaian field yang dibutuhkan (required) dan yang opsional.  Lelau kita memvalidasi panjang password changeset tersebut, kita gunakan fungsi kita sendiri untuk memvalidasi kecocokan konfirmasi password, dan kita memvalidasi keunikan username.  Akhirnya kita mengubah field database password.  Untuk ini kita gunakan `put_change/3` untuk mengubah sebuah value dalam changeset tersebut.
+Mari kita langsung ke shell dan jalankan migrasi kita:
 
-Menggunakan `User.changeset/2` adalah relatif sederhana:
+```shell
+mix ecto.migrate
+```
+
+### Skema
+
+Setelah kita membuat tabel awal, kita perlu memberi tahu Ecto lebih banyak tentang tabel tersebut, dan salah satu caranya adalah melalui skema.
+Skema adalah modul yang mendefinisikan pemetaan ke bidang tabel basis data yang mendasarinya.
+
+Meskipun Ecto lebih menyukai bentuk jamak untuk nama tabel basis data, skema biasanya tunggal, jadi kita akan membuat skema `Person` untuk menyertai tabel kita.
+
+Mari kita buat skema baru kita di `lib/friends/person.ex`:
 
 ```elixir
-alias FriendsApp.{User, Repo}
+defmodule Friends.Person do
+  use Ecto.Schema
 
-pw = "passwords should be hard"
-
-changeset =
-  User.changeset(%User{}, %{
-    username: "doomspork",
-    email: "sean@seancallan.com",
-    password: pw,
-    password_confirmation: pw
-  })
-
-case Repo.insert(changeset) do
-  {:ok, model}        -> # Inserted with success
-  {:error, changeset} -> # Something went wrong
+  schema "people" do
+    field :name, :string
+    field :age, :integer, default: 0
+  end
 end
 ```
 
-Beres! Sekarang anda sudah siap menyimpan data.
+Di sini kita dapat melihat bahwa modul `Friends.Person` memberi tahu Ecto bahwa skema ini berkaitan dengan tabel `people` dan bahwa kita memiliki dua kolom: `name` yang merupakan string dan `age`, sebuah bilangan bulat dengan nilai default `0`.
+
+Mari kita lihat skema kita dengan membuka `iex -S mix` dan membuat orang baru:
+
+```elixir
+iex> %Friends.Person{}
+%Friends.Person{age: 0, name: nil}
+```
+
+Seperti yang diharapkan, kita mendapatkan `Person` baru dengan nilai default yang diterapkan pada `age`.
+Sekarang mari kita buat orang "nyata":
+
+```elixir
+iex> person = %Friends.Person{name: "Tom", age: 11}
+%Friends.Person{age: 11, name: "Tom"}
+```
+
+Karena skema hanyalah sebuah struktur (struct), kita dapat berinteraksi dengan data kita seperti yang biasa kita lakukan:
+
+```elixir
+iex> person.name
+"Tom"
+iex> Map.get(person, :name)
+"Tom"
+iex> %{name: name} = person
+%Friends.Person{age: 11, name: "Tom"}
+iex> name
+"Tom"
+```
+
+Demikian pula, kita dapat memperbarui skema kita seperti halnya kita memperbarui map atau struktur lainnya di Elixir:
+
+```elixir
+iex> person = %{person | age: 18}
+%Friends.Person{age: 18, name: "Tom"}
+iex> Map.put(person, :name, "Jerry")
+%Friends.Person{age: 18, name: "Jerry"}
+```
+
+Pada pelajaran kita selanjutnya tentang Changeset, kita akan melihat bagaimana cara memvalidasi perubahan data kita dan akhirnya bagaimana cara menyimpannya ke dalam basis data kita.
